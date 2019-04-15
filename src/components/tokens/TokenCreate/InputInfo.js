@@ -2,11 +2,14 @@ import React, {Component, Fragment, PureComponent} from 'react';
 import {t, tu} from "../../../utils/i18n";
 import {connect} from "react-redux";
 import {FormattedNumber, FormattedDate, injectIntl} from "react-intl";
+import SweetAlert from "react-bootstrap-sweetalert";
 import 'moment/min/locales';
 import NumericInput from '../../common/NumericInput';
 import {
   Form, Row, Col, Input, InputNumber, AutoComplete, DatePicker
 } from 'antd';
+import { promises } from 'fs';
+import { Promise } from 'es6-shim';
 const { TextArea } = Input;
 const AutoCompleteOption = AutoComplete.Option;
 
@@ -16,6 +19,9 @@ export class TokenCreate extends Component {
     super(props);
     this.state = {
       autoCompleteResult: [],
+      social_total: 20,
+      social_current: 4,
+      modal: null,
       iconList: [
         {name: 'twitter', active: true, links: ['']},
         {name: 'Facebook', active: true, links: ['']},
@@ -61,17 +67,59 @@ export class TokenCreate extends Component {
       iconList[index].active = true
     }else{
       iconList[index].active = false
+      iconList[index].links = ['']
     }
     this.setState({ iconList: iconList })
   }
   addSocalItem = (index) => {
+    let {iconList, social_current} = this.state
+    this.checkAmount().then(() => {
+      iconList[index].links.push('')
+      this.setState({ iconList: iconList, social_current:  ++social_current })
+    })
+   
+  }
+
+  subSocalItem = (index, link_index) => {
+    let {iconList, social_current} = this.state
+    iconList[index].links.splice(link_index, 1)
+    this.setState({ iconList: iconList, social_current:  --social_current})
+  }
+
+  checkAmount(amount){
+    let {social_current, social_total} = this.state
+    const {intl} = this.props
+
+    return new Promise((resolve, reject) => {
+      if(social_current < social_total){
+        resolve()
+      }else{
+        this.setState({
+          modal: <SweetAlert
+                  warning
+                  title={false}
+                  confirmBtnText={intl.formatMessage({id: 'confirm'})}
+                  confirmBtnBsStyle="warning"
+                  onConfirm={() => this.setState({modal: null})}
+                  style={{marginLeft: '-240px', marginTop: '-195px'}}
+                >
+                  {tu("socoal_v_format")}
+                </SweetAlert>
+        })
+      }
+    })
+  }
+
+  setLinks = (index, link_index, e) => {
+    e.preventDefault();
     let {iconList} = this.state
-    iconList[index].links.push('')
+
+    iconList[index].links.splice(link_index, 1, e.target.value)
     this.setState({ iconList: iconList })
   }
 
   render() {
-    const { autoCompleteResult, type, iconList } = this.state;
+    const { autoCompleteResult, type, iconList,modal } = this.state;
     const {intl} = this.props
     const { getFieldDecorator } = this.props.form;
 
@@ -121,7 +169,7 @@ export class TokenCreate extends Component {
                       rules: [{ required: true, message: tu('description_v_required'), whitespace: true},
                               {min: 1, max: 500, message: tu('description_v_length')}],
                     })(
-                      <TextArea autosize={{ minRows: 1, maxRows: 6 }}  placeholder={intl.formatMessage({id: 'description_message'})} />
+                      <TextArea autosize={{ minRows: 4, maxRows: 6 }}  placeholder={intl.formatMessage({id: 'description_message'})} />
                     )}
                   </Form.Item>
                 </Col>
@@ -269,7 +317,7 @@ export class TokenCreate extends Component {
               </Row>
             </div>
             
-            <div className="px-2">
+            <div className="px-2 mb-3">
               <div className="d-flex mb-3">
                 <h5>{tu('select_socoal_link')}</h5>
                 <div className="d-flex icon-list ml-3">
@@ -288,7 +336,7 @@ export class TokenCreate extends Component {
                 {
                   iconList.map( (item, index) => {
                     if(item.active){
-                      return <Col  span={24} md={11}>
+                      return <Col  span={24} md={11} key={index}>
                       <div className="d-flex justify-content-between mb-2 pr-4">
                         <div className="d-flex align-items-center">
                           <i className={`${item.name}-active`}></i>
@@ -297,10 +345,13 @@ export class TokenCreate extends Component {
                         <a href="javascript:;" className="text-lighter" onClick={() => this.addSocalItem(index)}>{tu('so_add')} +</a>
                       </div>
                       {
-                        item.links.map( link => {
-                          return <div className="d-flex align-items-center mb-4">
-                            <Input/>
-                            <i className="delete-active ml-2"></i>
+                        item.links.map( (link, link_index) => {
+                          return <div className="d-flex align-items-center mb-4" key={link_index}>
+                            <Input value={link} onChange={(e) => this.setLinks(index, link_index, e)}/>
+                            {link_index> 0? 
+                              <i className="delete-active ml-2 cursor-pointer"  onClick={() => this.subSocalItem(index, link_index)}></i>:
+                              <i className="emty-icon ml-2"></i>
+                            }
                           </div>
                         })
                         
@@ -320,9 +371,20 @@ export class TokenCreate extends Component {
            
 
           </Form>
+          {modal}
         </main>
     )
   }
 }
 
-export default Form.create({ name: 'input_info' })(injectIntl(TokenCreate));
+function mapPropsToFields(props) {
+  let data = props.state.paramData
+  let params = {} 
+  Object.keys(data).map(key => {
+    params[key] = Form.createFormField({
+      value: data[key],
+    })
+  })
+  return  params
+}
+export default Form.create({ name: 'input_info', mapPropsToFields })(injectIntl(TokenCreate));

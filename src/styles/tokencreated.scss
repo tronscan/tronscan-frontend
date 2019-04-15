@@ -71,5 +71,21 @@
   .cursor-pointer{
     cursor: pointer;
   }
+  .emty-icon{
+    width: 20px;
+    height: 20px;
+  }
+
+  .steps{
+    display: flex;
+
+    &-item{
+      flex: 1;
+      text-align: center;
+      height: 45px;
+      line-height: 45px;
+    }
+    
+  }
 
 }

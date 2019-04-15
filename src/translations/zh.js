@@ -1702,7 +1702,7 @@ export const messages = {
   "token_price":"通证价格",
   "select_socoal_link":"选择添加社交媒体链接",
   "so_add":"继续添加",
-  "":"",
+  "socoal_v_format":"媒体最多可以选择20个",
   "":"",
   "":"",
   "":"",

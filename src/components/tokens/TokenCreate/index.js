@@ -19,15 +19,15 @@ export class TokenCreate extends Component {
       step: 3,
       type: 'trc20',
       paramData: {
-        token_name: '',
-        token_abbr: '',
-        token_introduction: '',
+        token_name: '213',
+        token_abbr: '444',
+        token_introduction: '22',
         token_supply: 0,
         precision: 0,
         logo_url: '',
         author: 'rabbit',
-        contract_address: '',
-        contract_create_date: '',
+        contract_address: '2',
+        contract_create_date: '3',
         contract_code: "",
         website: '',
         email: '',
@@ -56,12 +56,18 @@ export class TokenCreate extends Component {
     return (
 
         <main  className="container pb-3 token-create header-overlap tokencreated">
-          <Steps size="small" current={step}>
-            <Step title="类型" />
-            <Step title="录入" />
-            <Step title="确认" />
-            <Step title="结果" />
-          </Steps>,
+          <div className="steps">
+            {
+              ['type', 'input', 'confirm', 'result'].map((item, index) => {
+                let stepclass = ''
+                if(index < step){ stepclass = 'is-success' }
+                if(index == step){ stepclass = 'is-process' }
+                if(index > step){ stepclass = 'is-wait' }
+                return <div className={`${stepclass} steps-item`}>{index + 1}. {tu(item)}</div>
+              })
+            }
+          </div>
+
           <div className="row">
             <div className="col-sm-12">
               <div className="card">
