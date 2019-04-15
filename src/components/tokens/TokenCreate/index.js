@@ -7,6 +7,7 @@ import { Steps } from 'antd';
 import SelectTrc from './SelectTrc';
 import InputInfo from './InputInfo';
 import SubmitInfo from './SubmitInfo';
+import ResultInfo from './ResultInfo';
 
 const Step = Steps.Step;
 
@@ -106,14 +107,14 @@ export class TokenCreate extends Component {
                     />
                   }
                     { step === 3 &&
-                    <resultInfo
+                    <ResultInfo
                         state={this.state}
-                        nextStep={(number) => {
-                            this.changeStep(number)
-                        }}
-                        nextState={(params) => {
-                            this.changeState(params)
-                        }}
+                        // nextStep={(number) => {
+                        //     this.changeStep(number)
+                        // }}
+                        // nextState={(params) => {
+                        //     this.changeState(params)
+                        // }}
                     />
                     }
                 </div>

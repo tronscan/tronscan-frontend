@@ -3257,12 +3257,42 @@ h5 {
   }
 }
 
-.result-failure{
+.result-failure,.result-success{
   display: flex;
   flex-direction: column;
+  align-items:center;
+  margin-top: 2.5rem;
   img{
     display: inline-block;
     width: 152px;
     height: 131px;
+  }
+  h5{
+    font-size:30px;
+    color:#333333;
+    font-family:PingFangSC-Semibold;
+    margin-top: 1rem;
+  }
+  .failure-reason{
+    color: #979797;
+    font-size: 1rem;
+  }
+}
+
+.result-success{
+  p{
+    font-size: 1rem;
+  }
+  .result-success-info{
+    color:#979797;
+  }
+  .mytoken{
+    color:#979797;
+    .mytoken-wallet{
+      color: red;
+    }
+  }
+  .submit-market{
+    color: #333333;
   }
 }
