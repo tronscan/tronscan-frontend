@@ -5,8 +5,9 @@ import {FormattedNumber, FormattedDate, injectIntl} from "react-intl";
 import SweetAlert from "react-bootstrap-sweetalert";
 import 'moment/min/locales';
 import NumericInput from '../../common/NumericInput';
+import {TRXPrice} from "../../common/Price";
 import {
-  Form, Row, Col, Input, InputNumber, AutoComplete, DatePicker
+  Form, Row, Col, Input, InputNumber, AutoComplete, DatePicker, Icon
 } from 'antd';
 import { promises } from 'fs';
 import { Promise } from 'es6-shim';
@@ -22,19 +23,8 @@ export class TokenCreate extends Component {
       social_total: 20,
       social_current: 4,
       modal: null,
-      iconList: [
-        {name: 'twitter', active: true, links: ['']},
-        {name: 'Facebook', active: true, links: ['']},
-        {name: 'telegram', active: true, links: ['']},
-        {name: 'weibo', active: true, links: ['']},
-        {name: 'reddit', active: false, links: ['']},
-        {name: 'Medium', active: false, links: ['']},
-        {name: 'steemit', active: false, links: ['']},
-        {name: 'Instagram', active: false, links: ['']},
-        {name: 'weixin', active: false, links: ['']},
-        {name: 'Group', active: false, links: ['']},
-        {name: 'discord', active: false, links: ['']}
-      ],
+      precision_20: 18,
+      token_trx_order: true,
       ...this.props.state
     };
   }
@@ -52,10 +42,12 @@ export class TokenCreate extends Component {
   }
 
   submit = (e) => {
+    const {iconList} = this.state
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       if (!err) {
         console.log('Received values of form: ', values);
+        this.props.nextState({paramData: values, iconList})
       }
     });
   }
@@ -119,9 +111,9 @@ export class TokenCreate extends Component {
   }
 
   render() {
-    const { autoCompleteResult, type, iconList,modal } = this.state;
-    const {intl} = this.props
-    const { getFieldDecorator } = this.props.form;
+    const { autoCompleteResult, type, iconList,modal, precision_20, token_trx_order } = this.state;
+    const {intl, nextStep} = this.props
+    const { getFieldDecorator, getFieldsValue } = this.props.form;
 
     const isTrc10 = type === 'trc10'
     const isTrc20 = type === 'trc20'
@@ -129,6 +121,32 @@ export class TokenCreate extends Component {
     const logoOptions = autoCompleteResult.map(logo => (
       <AutoCompleteOption key={logo}>{logo}</AutoCompleteOption>
     ));
+    
+    let first = {}
+    let last = {}
+    let abbrAmount = 0
+    const {token_abbr, trx_amount, token_amount} = getFieldsValue(['token_abbr', 'trx_amount', 'token_amount'])
+    if(token_trx_order){
+      first = {
+        abbr: token_abbr,
+        name: 'token_amount'
+      }
+      last = {
+        abbr: 'trx',
+        name: 'trx_amount'
+      }
+      abbrAmount = parseInt((trx_amount / token_amount)*100) / 100
+    }else{
+      first = {
+        abbr: 'trx',
+        name: 'trx_amount'
+      }
+      last = {
+        abbr: token_abbr,
+        name: 'token_amount'
+      }
+      abbrAmount = parseInt((token_amount / trx_amount)*100) / 100
+    }
 
     return (
         <main className="">
@@ -187,7 +205,7 @@ export class TokenCreate extends Component {
                     {getFieldDecorator('precision',{
                       rules: [{ required: true, message: ''}],
                     })(
-                      <InputNumber min={0} max={6} className="w-100"/>
+                      <InputNumber min={0} max={ isTrc20? precision_20: 6} className="w-100"/>
                     )}
                   </Form.Item>
                 </Col>
@@ -250,22 +268,41 @@ export class TokenCreate extends Component {
             </div>
             
             {/* price info */}
-            {/**<div className={ isTrc10? 'd-block': 'd-none'}>
+            <div className={ isTrc10? 'd-block': 'd-none'}>
              <h4 className="mb-3">{tu('price_info')}</h4>
              <hr/>
              <Row gutter={24} type="flex" justify="space-between" className="px-2">
-               <Col  span={24} md={11}>
-                 <Form.Item label={tu('contract_address')}>
-                   {getFieldDecorator('contract_address', {
-                     rules: [{ required: isTrc10, message: tu('contract_address_required'), whitespace: true},
-                             {pattern: /^T[a-zA-Z0-9]{33}$/, message: tu('contract_address_format')}],
-                   })(
-                     <Input placeholder={intl.formatMessage({id: 'contract_address_placeholder'})}/>
-                   )}
+               <Col span={24}>
+                 <Form.Item label={tu('token_price')}  required>
+                    <div className="d-flex">
+                      <span className="mr-3">trx{tu('trc20_last_price')}: <TRXPrice amount={1} currency="USD" source="home"/></span>
+                      <Form.Item  className="d-flex align-items-center">
+                        {getFieldDecorator(firstAbbr, {
+                          rules: [{ required: isTrc10, message: tu('enter_the_amount'), whitespace: true}]
+                        })(
+                          <NumericInput style={{width: '80px'}} className="mr-2"/>
+                        )}
+                        {firstAbbr}
+                        </Form.Item>
+                        
+                      <Icon type="swap" className="mx-2 fix_form ordericon" onClick={() => this.setState({token_trx_order: !token_trx_order})}/>
+
+                      <Form.Item  className="d-flex align-items-center mr-4">
+                        {getFieldDecorator(!token_trx_order? 'token_amount': 'trx_amount', { 
+                          rules: [{ required: isTrc10, message: tu('enter_the_amount'), whitespace: true}]
+                        })(
+                          <NumericInput style={{width: '80px'}} className="mr-2"/>
+                        )}
+                        {!token_trx_order? paramData.token_abbr: 'trx'}
+                        </Form.Item>
+
+                        <span style={{color: '#9e9e9e'}}>(1{token_trx_order? paramData.token_abbr: 'trx'} = {!token_trx_order? paramData.token_abbr: 'trx'})</span>
+                    </div>
                  </Form.Item>
                </Col>
                <Col  span={24} md={11}>
-                 <Form.Item label={tu('contract_created_date')}>
+                 <Form.Item label={tu('participation')}>
+                    
                   <DatePicker />
                  </Form.Item>
                </Col>
@@ -279,7 +316,7 @@ export class TokenCreate extends Component {
                  </Form.Item>
                </Col>
               </Row>
-            </div> */}
+            </div>
 
 
             {/* social info */}
@@ -365,7 +402,7 @@ export class TokenCreate extends Component {
             
 
             <div className="text-right px-2">
-              <button className="btn btn-default btn-lg">{tu('prev_step')}</button>
+              <button className="btn btn-default btn-lg" onClick={() => nextStep(0)}>{tu('prev_step')}</button>
               <button className="ml-4 btn btn-danger btn-lg" htmltype="submit">{tu('submit')}</button>
             </div>
            

@@ -17,8 +17,8 @@ export class TokenCreate extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      step: 3,
-      type: 'trc20',
+      step: 1,
+      type: 'trc10',
       paramData: {
         token_name: '213',
         token_abbr: '444',
@@ -33,7 +33,22 @@ export class TokenCreate extends Component {
         website: '',
         email: '',
         while_paper: '',
-      }
+        trx_amount: '1',
+        token_amount: '2'
+      },
+      iconList: [
+        {name: 'twitter', active: true, links: ['']},
+        {name: 'Facebook', active: true, links: ['']},
+        {name: 'telegram', active: true, links: ['']},
+        {name: 'weibo', active: true, links: ['']},
+        {name: 'reddit', active: false, links: ['']},
+        {name: 'Medium', active: false, links: ['']},
+        {name: 'steemit', active: false, links: ['']},
+        {name: 'Instagram', active: false, links: ['']},
+        {name: 'weixin', active: false, links: ['']},
+        {name: 'Group', active: false, links: ['']},
+        {name: 'discord', active: false, links: ['']}
+      ],
     };
   }
 
@@ -57,14 +72,14 @@ export class TokenCreate extends Component {
     return (
 
         <main  className="container pb-3 token-create header-overlap tokencreated">
-          <div className="steps">
+          <div className="steps mb-4 py-2">
             {
               ['type', 'input', 'confirm', 'result'].map((item, index) => {
                 let stepclass = ''
                 if(index < step){ stepclass = 'is-success' }
                 if(index == step){ stepclass = 'is-process' }
                 if(index > step){ stepclass = 'is-wait' }
-                return <div className={`${stepclass} steps-item`}>{index + 1}. {tu(item)}</div>
+                return <div className={`${stepclass} steps-item`} key={index}>{index + 1}. {tu(item)}</div>
               })
             }
           </div>
