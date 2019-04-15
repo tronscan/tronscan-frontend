@@ -217,6 +217,7 @@ class SmartContract extends React.Component {
                               </li>
                               {
                                 token20&& <li><p>{tu('token_tracker')}: </p>
+                                  <img width={20} height={20} src={token20.icon_url} alt={token20.name} style={{marginRight:10}}/>
                                   <TokenTRC20Link name={token20.name} address={token20.contract_address} namePlus={token20.name + ' (' + token20.symbol + ')'} />
                                 </li>
                               }

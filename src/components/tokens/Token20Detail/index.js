@@ -374,7 +374,16 @@ class Token20Detail extends React.Component {
                       <div className="card-body">
                         <div className="d-flex">
                           {token && token.icon_url ?
-                              <img className='token-logo' src={token.icon_url}/> :
+                              <div>
+                                  {
+                                      token.contract_address == 'THvZvKPLHKLJhEFYKiyqj6j8G8nGgfg7ur'?
+                                          <div className="token-img-top">
+                                            <img className='token-logo' src={token.icon_url}/>
+                                            <i></i>
+                                          </div>
+                                          :<img className='token-logo' src={token.icon_url}/>
+                                  }
+                              </div>:
                               <img className='token-logo' src={require('../../../images/logo_default.png')}/>
                           }
                           <div style={{width: '70%'}} className="token-description">

@@ -146,8 +146,10 @@ export  class TokenBalances extends React.Component {
                 className: 'ant_table',
                 render: (text, record, index) => {
                     return (
-                        <TokenTRC20Link name={record.name} address={record.contract_address}
-                                        namePlus={record.name + ' (' + record.symbol + ')'}/>
+                        record.contract_address == 'THvZvKPLHKLJhEFYKiyqj6j8G8nGgfg7ur'?<div className="map-token-top">
+                            <TokenTRC20Link name={record.name} address={record.contract_address} namePlus={record.name + ' (' + record.symbol + ')'}/>
+                            <i></i>
+                        </div>: <TokenTRC20Link name={record.name} address={record.contract_address} namePlus={record.name + ' (' + record.symbol + ')'}/>
                     )
                 }
             },

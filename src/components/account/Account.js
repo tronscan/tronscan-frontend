@@ -235,8 +235,14 @@ export default class Account extends Component {
             tokens20.map((token) => (
                 <tr key={token.token20_name}>
                   <td className="text-nowrap">
-                    <TokenTRC20Link name={token.name} address={token.contract_address}
-                                    namePlus={token.name + ' (' + token.symbol + ')'}/>
+                      {
+                          token.contract_address == 'THvZvKPLHKLJhEFYKiyqj6j8G8nGgfg7ur'?<div className="map-token-top">
+                            <TokenTRC20Link name={token.name} address={token.contract_address}
+                                            namePlus={token.name + ' (' + token.symbol + ')'}/>
+                            <i></i>
+                            </div>:<TokenTRC20Link name={token.name} address={token.contract_address}
+                                                   namePlus={token.name + ' (' + token.symbol + ')'}/>
+                      }
                   </td>
                   <td className="text-right">
                     <span>{token.token20_balance}</span>
