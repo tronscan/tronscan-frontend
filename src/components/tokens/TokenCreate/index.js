@@ -106,7 +106,7 @@ export class TokenCreate extends Component {
                     />
                   }
                     { step === 3 &&
-                    <SubmitInfo
+                    <resultInfo
                         state={this.state}
                         nextStep={(number) => {
                             this.changeStep(number)

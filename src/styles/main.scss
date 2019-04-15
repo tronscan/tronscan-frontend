@@ -3256,3 +3256,13 @@ h5 {
     height: 2.375rem;
   }
 }
+
+.result-failure{
+  display: flex;
+  flex-direction: column;
+  img{
+    display: inline-block;
+    width: 152px;
+    height: 131px;
+  }
+}

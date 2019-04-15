@@ -10,7 +10,7 @@ import {
 
 const { TextArea } = Input;
 
-export class SubmitInfo extends Component {
+export class resultInfo extends Component {
 
     constructor(props) {
         super(props);
@@ -34,7 +34,18 @@ export class SubmitInfo extends Component {
         return (
             <main className="token-result">
                 <div className="result-failure">
-                    div
+                    <img src={require("../../../images/arrow.png")} alt=""/>
+                    <h5>{tu('token录入失败')}</h5>
+                    <div>
+                        <span>失败原因：</span>
+                        <p>1.token名称涉及敏感信息</p>
+                        <p>2.token名称涉及敏感信息</p>
+                        <p>3.token名称涉及敏感信息</p>
+                    </div>
+                    <div className="d-flex mt-3">
+                        <button className="btn btn-default btn-lg">{tu('暂不提交')}</button>
+                        <button className="ml-4 btn btn-danger btn-lg">{tu('再次提交')}</button>
+                    </div>
                 </div>
                 <div className="result-success">
 
@@ -45,4 +56,4 @@ export class SubmitInfo extends Component {
 }
 
 
-export default injectIntl(SubmitInfo);
+export default injectIntl(resultInfo);
