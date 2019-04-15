@@ -277,26 +277,26 @@ export class TokenCreate extends Component {
                     <div className="d-flex">
                       <span className="mr-3">trx{tu('trc20_last_price')}: <TRXPrice amount={1} currency="USD" source="home"/></span>
                       <Form.Item  className="d-flex align-items-center">
-                        {getFieldDecorator(firstAbbr, {
+                        {getFieldDecorator(first.name, {
                           rules: [{ required: isTrc10, message: tu('enter_the_amount'), whitespace: true}]
                         })(
                           <NumericInput style={{width: '80px'}} className="mr-2"/>
                         )}
-                        {firstAbbr}
+                        {first.abbr}
                         </Form.Item>
                         
                       <Icon type="swap" className="mx-2 fix_form ordericon" onClick={() => this.setState({token_trx_order: !token_trx_order})}/>
 
                       <Form.Item  className="d-flex align-items-center mr-4">
-                        {getFieldDecorator(!token_trx_order? 'token_amount': 'trx_amount', { 
+                        {getFieldDecorator(last.name, { 
                           rules: [{ required: isTrc10, message: tu('enter_the_amount'), whitespace: true}]
                         })(
                           <NumericInput style={{width: '80px'}} className="mr-2"/>
                         )}
-                        {!token_trx_order? paramData.token_abbr: 'trx'}
+                        {last.abbr}
                         </Form.Item>
 
-                        <span style={{color: '#9e9e9e'}}>(1{token_trx_order? paramData.token_abbr: 'trx'} = {!token_trx_order? paramData.token_abbr: 'trx'})</span>
+                        <span style={{color: '#9e9e9e'}}>(1 {first.abbr} = {`${abbrAmount} ${last.abbr}`})</span>
                     </div>
                  </Form.Item>
                </Col>
