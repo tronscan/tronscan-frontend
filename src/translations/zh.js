@@ -288,7 +288,7 @@ export const messages = {
     "successfully_frozen": "成功冻结",
     "name_changed": "名称已更改",
     "successfully_changed_name_to_message": "成功更改名字",
-    "unable_to_rename_title": "无法重命名",
+    "unable_to_rename_title": "此名称已经存在",
     "unable_to_rename_message": "更新名字时出现错误，请稍后重试",
     "unfreeze_trx_confirm_message": "确定要解冻TRX？",
     "unfreeze_assets": "解冻资产",
@@ -577,7 +577,7 @@ export const messages = {
     #                                                                                #
     ##################################################################################
     */
-    "next_round": "下一轮投票",
+    "next_round": "下一轮计票",
     "total_votes": "总票数",
     "most_ranks": "排名上升最多",
     "view_live_ranking": "查看实时排名",

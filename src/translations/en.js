@@ -291,7 +291,7 @@ export const messages = {
   "successfully_frozen": "Successfully frozen",
   "name_changed": "Name changed",
   "successfully_changed_name_to_message": "Successfully changed name to",
-  "unable_to_rename_title": "Unable to rename",
+  "unable_to_rename_title": "This name has existed",
   "unable_to_rename_message": "Something went wrong while updating your account name, please try again later",
   "unfreeze_trx_confirm_message": "Are you sure you want to unfreeze TRX?",
   "unfreeze_assets": "Unfreeze Assets",
