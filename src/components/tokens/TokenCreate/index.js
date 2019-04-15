@@ -17,7 +17,7 @@ export class TokenCreate extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      step: 1,
+      step: 3,
       type: 'trc10',
       paramData: {
         token_name: '213',

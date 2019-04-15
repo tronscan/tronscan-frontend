@@ -50,54 +50,54 @@ export class SubmitInfo extends Component {
                             </p>
                         </Col>
                         <Col span={24} md={12}>
-                            <label>{tu('通证简称')}</label>
+                            <label>{tu('token_abbr')}</label>
                             <p className="border-dashed"></p>
                         </Col>
                     </Row>
                     <Row type="flex"  gutter={64}>
                         <Col span={24} md={12}>
-                            <label>{tu('通证简介')}</label>
+                            <label>{tu('token_description')} {tu('description')}</label>
                             <p className="border-dashed"></p>
                         </Col>
                         <Col span={24} md={12}>
-                            <label>{tu('发行总量')}</label>
-                            <p className="border-dashed"></p>
-                        </Col>
-                    </Row>
-                    <Row type="flex"  gutter={64}>
-                        <Col span={24} md={12}>
-                            <label>{tu('精度')}</label>
-                            <p className="border-dashed"></p>
-                        </Col>
-                        <Col span={24} md={12}>
-                            <label>{tu('logo')}</label>
+                            <label>{tu('total_supply')}</label>
                             <p className="border-dashed"></p>
                         </Col>
                     </Row>
                     <Row type="flex"  gutter={64}>
                         <Col span={24} md={12}>
-                            <label>{tu('发行者')}</label>
+                            <label>{tu('TRC20_decimals')}</label>
+                            <p className="border-dashed"></p>
+                        </Col>
+                        <Col span={24} md={12}>
+                            <label>{tu('token_logo')}</label>
+                            <p className="border-dashed"></p>
+                        </Col>
+                    </Row>
+                    <Row type="flex"  gutter={64}>
+                        <Col span={24} md={12}>
+                            <label>{tu('issuer')}</label>
                             <p className="border-dashed"></p>
                         </Col>
                     </Row>
 
                 </section>
                 <section className="mt-4">
-                    <h4 className="mb-3">{tu('合约信息')}</h4>
+                    <h4 className="mb-3">{tu('contract_info')}</h4>
                     <hr/>
                     <Row type="flex"  gutter={64}>
                         <Col span={24} md={12}>
-                            <label>{tu('合约地址')}</label>
+                            <label>{tu('trc20_token_info_Contract_Address')}</label>
                             <p className="border-dashed"></p>
                         </Col>
                         <Col span={24} md={12}>
-                            <label>{tu('合约创建日期')}</label>
+                            <label>{tu('contract_created_date')}</label>
                             <p className="border-dashed"></p>
                         </Col>
                     </Row>
                     <Row type="flex">
                         <Col span={24} md={24}>
-                            <label>{tu('合约代码')}</label>
+                            <label>{tu('contract_code')}</label>
                             <TextArea rows={4}
                              disabled={true}
                              defaultValue="合约代码合约代码合约代码合约代码"
@@ -106,27 +106,27 @@ export class SubmitInfo extends Component {
                     </Row>
                 </section>
                 <section className="mt-4">
-                    <h4 className="mb-3">{tu('社交信息')}</h4>
+                    <h4 className="mb-3">{tu('social_info')}</h4>
                     <hr/>
                     <Row type="flex"  gutter={64}>
                         <Col span={24} md={12}>
-                            <label>{tu('官网')}</label>
+                            <label>{tu('trc20_token_info_Website')}</label>
                             <p className="border-dashed"></p>
                         </Col>
                         <Col span={24} md={12}>
-                            <label>{tu('邮箱')}</label>
+                            <label>{tu('email')}</label>
                             <p className="border-dashed"></p>
                         </Col>
                     </Row>
                     <Row type="flex">
                         <Col span={24} md={24}>
-                            <label>{tu('白皮书地址')}</label>
+                            <label>{tu('whitepaper_address')}</label>
                             <p className="border-dashed"></p>
                         </Col>
                     </Row>
                     <Row type="flex">
                         <Col span={24} md={24}>
-                            <label>{tu('社交媒体链接')}</label>
+                            <label>{tu('social_link')}</label>
                         </Col>
                     </Row>
                     <hr/>
@@ -140,7 +140,7 @@ export class SubmitInfo extends Component {
                     {/*</form>*/}
                 </section>
                 <section className="text-right px-2">
-                    <button className="btn btn-default btn-lg">{tu('返回')}</button>
+                    <button className="btn btn-default btn-lg">{tu('trc20_token_return')}</button>
                     <button className="ml-4 btn btn-danger btn-lg" htmltype="submit">{tu('submit')}</button>
                 </section>
             </main>
