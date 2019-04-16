@@ -44,6 +44,7 @@ export default function Contract({contract}) {
     let TokenIDList = [];
     TokenIDList.push(contract)
     let tokenIdData  = rebuildList(TokenIDList,'asset_name','amount')[0]
+    console.log('contract',contract);
   switch (contract.contractType.toUpperCase()) {
     case "TRANSFERCONTRACT":
 
@@ -363,34 +364,33 @@ export default function Contract({contract}) {
                         </div>
                       </div>
                     </div>
-                    {contract.tokenTransferInfo || (contract.tokenTransferInfo && contract.tokenTransferInfo.decimals == null) || (contract.tokenTransferInfo && contract.tokenTransferInfo.symbol  == null) && <div className="d-flex border-bottom pt-2">
+                    {contract.tokenTransferInfo && contract.tokenTransferInfo.decimals !==undefined && contract.tokenTransferInfo.symbol !==undefined && <div className="d-flex border-bottom pt-2">
                           <div className="content_box_name">{tu('TRC20_transfers')}</div>
-                          <div className="flex1">
-                              <div className="d-flex border-bottom content_item">
-                                  <div className="content_name">{tu('from')}:</div>
-                                  <div className="flex1"><AddressLink address={contract.tokenTransferInfo['from_address']}/></div>
-                              </div>
-                              <div className="d-flex border-bottom content_item">
-                                  <div className="content_name">{tu('to')}:</div>
-                                  <div className="flex1"><AddressLink address={contract.tokenTransferInfo['to_address']}/></div>
-                              </div>
-                              <div className="d-flex border-bottom content_item">
-                                  <div className="content_name" >{tu('amount')}:</div>
-                                  <div className="flex1">{Number(contract.tokenTransferInfo['amount_str'])/ Math.pow(10,contract.tokenTransferInfo['decimals'])}
-                                  {
-                                      contract.tokenTransferInfo['contract_address'] == CONTRACT_ADDRESS_USDT?
-                                          <b className="token-img-top" style={{marginLeft:10,marginRight:5}}>
-                                              <img width={20} height={20} src={contract.tokenTransferInfo['icon_url']} alt={contract.tokenTransferInfo['name']} />
-                                              <i style={{width:10,height:10}}></i>
-                                          </b>
-                                          : <img width={20} height={20} src={contract.tokenTransferInfo['icon_url']} alt={contract.tokenTransferInfo['name']} style={{marginRight:10}}/>
+                              <div className="flex1">
+                                  <div className="d-flex border-bottom content_item">
+                                      <div className="content_name">{tu('from')}:</div>
+                                      <div className="flex1"><AddressLink address={contract.tokenTransferInfo['from_address']}/></div>
+                                  </div>
+                                  <div className="d-flex border-bottom content_item">
+                                      <div className="content_name">{tu('to')}:</div>
+                                      <div className="flex1"><AddressLink address={contract.tokenTransferInfo['to_address']}/></div>
+                                  </div>
+                                  <div className="d-flex border-bottom content_item">
+                                      <div className="content_name" >{tu('amount')}:</div>
+                                      <div className="flex1">{Number(contract.tokenTransferInfo['amount_str'])/ Math.pow(10,contract.tokenTransferInfo['decimals'])}
+                                          {
+                                              contract.tokenTransferInfo['contract_address'] == CONTRACT_ADDRESS_USDT?
+                                                  <b className="token-img-top" style={{marginLeft:10,marginRight:5}}>
+                                                      <img width={20} height={20} src={contract.tokenTransferInfo['icon_url']} alt={contract.tokenTransferInfo['name']} />
+                                                      <i style={{width:10,height:10}}></i>
+                                                  </b>
+                                                  : <img width={20} height={20} src={contract.tokenTransferInfo['icon_url']} alt={contract.tokenTransferInfo['name']} style={{marginLeft:10,marginRight:5}}/>
 
-                                  }
-                                  <TokenTRC20Link name={contract.tokenTransferInfo['name']} address={contract.tokenTransferInfo['contract_address']} namePlus={contract.tokenTransferInfo['name'] + ' (' + contract.tokenTransferInfo['symbol'] + ')'}/></div>
+                                          }
+                                          <TokenTRC20Link name={contract.tokenTransferInfo['name']} address={contract.tokenTransferInfo['contract_address']} namePlus={contract.tokenTransferInfo['name'] + ' (' + contract.tokenTransferInfo['symbol'] + ')'}/></div>
+                                  </div>
                               </div>
-
-                          </div>
-                      </div>}
+                     </div>}
 
                     {JSON.stringify(contract.internal_transactions) != '{}' && <div className="d-flex border-bottom pt-2">
                       <div className="content_box_name">{tu('Internal_txns')}</div>
