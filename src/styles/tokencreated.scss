@@ -1,4 +1,5 @@
 .tokencreated {
+  .card-body{background: #fff;}
   .ant-input {
 
     &,
@@ -169,12 +170,46 @@
     line-height: 40px;
   }
 
-  .ordericon{
+  .ordericon {
     height: 38px;
     transition: 0.3s all linear;
-    &:hover{
+
+    &:hover {
       color: $main-red;
     }
   }
 
+  .part {
+    background:#fcfcfc;
+    box-shadow:0 2px 4px 0 rgba(232,232,232,0.50);
+
+    &_title {
+      display: flex;
+      justify-content: space-between;
+
+      &_name {
+        &::before {
+          display: inline-block;
+          margin-right: 4px;
+          color: #f5222d;
+          font-size: 14px;
+          font-family: SimSun, sans-serif;
+          line-height: 1;
+          content: '*';
+        }
+
+        &::after {
+          content: ':';
+          position: relative;
+          top: -0.5px;
+          margin: 0 8px 0 2px;
+        }
+      }
+    }
+
+  }
+  .frozen-supply-tip{
+    color:#9e9e9e!important;
+    margin-top: 20px;
+  }
 }

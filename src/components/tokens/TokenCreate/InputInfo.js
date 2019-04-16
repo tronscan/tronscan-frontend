@@ -7,7 +7,7 @@ import 'moment/min/locales';
 import NumericInput from '../../common/NumericInput';
 import {TRXPrice} from "../../common/Price";
 import {
-  Form, Row, Col, Input, InputNumber, AutoComplete, DatePicker, Icon
+  Form, Row, Col, Input, InputNumber, AutoComplete, DatePicker, Icon, Switch
 } from 'antd';
 import { promises } from 'fs';
 import { Promise } from 'es6-shim';
@@ -125,7 +125,13 @@ export class TokenCreate extends Component {
     let first = {}
     let last = {}
     let abbrAmount = 0
-    const {token_abbr, trx_amount, token_amount} = getFieldsValue(['token_abbr', 'trx_amount', 'token_amount'])
+    const {token_abbr, 
+      trx_amount, 
+      token_amount, 
+      freeze_amount,
+      participation_type,
+      freeze_tyle} = getFieldsValue(['token_abbr', 'trx_amount', 'token_amount', 'freeze_amount', 'participation_type', 'freeze_tyle'])
+
     if(token_trx_order){
       first = {
         abbr: token_abbr,
@@ -148,6 +154,7 @@ export class TokenCreate extends Component {
       abbrAmount = parseInt((token_amount / trx_amount)*100) / 100
     }
 
+    console.log(participation_type)
     return (
         <main className="">
           <Form
@@ -269,11 +276,11 @@ export class TokenCreate extends Component {
             
             {/* price info */}
             <div className={ isTrc10? 'd-block': 'd-none'}>
-             <h4 className="mb-3">{tu('price_info')}</h4>
-             <hr/>
-             <Row gutter={24} type="flex" justify="space-between" className="px-2">
-               <Col span={24}>
-                 <Form.Item label={tu('token_price')}  required>
+              <h4 className="mb-3">{tu('price_info')}</h4>
+              <hr/>
+              <Row gutter={24} type="flex" justify="space-between" className="px-2">
+                <Col span={24}>
+                  <Form.Item label={tu('token_price')}  required className="m-0">
                     <div className="d-flex">
                       <span className="mr-3">trx{tu('trc20_last_price')}: <TRXPrice amount={1} currency="USD" source="home"/></span>
                       <Form.Item  className="d-flex align-items-center">
@@ -299,21 +306,64 @@ export class TokenCreate extends Component {
                         <span style={{color: '#9e9e9e'}}>(1 {first.abbr} = {`${abbrAmount} ${last.abbr}`})</span>
                     </div>
                  </Form.Item>
+                </Col>
+                <Col  span={24} md={11}>
+                <div className="part p-3 mb-4">
+                  <div className="part_title mb-3">
+                    <span className="part_title_name">{tu('participation')}</span>
+                    {getFieldDecorator('participation_type', {valuePropName: 'checked'})(
+                      <Switch checkedChildren={tu('freeze_on')} unCheckedChildren={tu('freeze_off')} />
+                    )}
+                  </div>
+                  <div style={{marginBottom: '36px'}}>{tu('participation_message_0')} {token_abbr} {tu('participation_message_1')}</div>
+                  <Row gutter={24} type="flex" justify="space-between" className={`${participation_type? 'd-flex': 'd-none'} px-2`}>
+                    <Col  span={11}>
+                      <Form.Item label={tu('start_time')}>
+                        {getFieldDecorator('participation_start_date', {})(
+                          <DatePicker style={{ width: '100%' }} />
+                        )}
+                      </Form.Item>
+                    </Col>
+                    <Col  span={11}>
+                      <Form.Item label={tu('end_time')}>
+                        {getFieldDecorator('participation_end_date', {})(
+                          <DatePicker style={{ width: '100%' }} />
+                        )}
+                      </Form.Item>
+                    </Col>
+                  </Row>
+                </div>
                </Col>
-               <Col  span={24} md={11}>
-                 <Form.Item label={tu('participation')}>
-                    
-                  <DatePicker />
-                 </Form.Item>
-               </Col>
-               <Col  span={24}>
-                 <Form.Item label={tu('contract_code')}>
-                  {getFieldDecorator('contract_address', {
-                    rules: [{ required: isTrc10, message: tu('contract_address_required'), whitespace: true}],
-                  })(
-                    <TextArea rows={6}  placeholder={intl.formatMessage({id: 'contract_code_placeholder'})} />
-                  )}
-                 </Form.Item>
+                <Col  span={24} md={11}>
+                <div className="part p-3  mb-4">
+                  <div className="part_title mb-3">
+                    <span className="part_title_name">{tu('frozen_supply')}</span>
+                    {getFieldDecorator('freeze_tyle', {valuePropName: 'checked'})(
+                      <Switch checkedChildren={tu('freeze_on')} unCheckedChildren={tu('freeze_off')} />
+                    )}
+                  </div>
+                  <div className="mb-3">{tu('frozen_supply_message_0')}</div>
+                  <Row gutter={10} type="flex" justify="space-between" className={`${freeze_tyle? 'd-flex': 'd-none'} px-2`}>
+                    <Col  span={8}>
+                      <Form.Item label={tu('amount')}>
+                        {getFieldDecorator('freeze_amount', {})(
+                          <NumericInput className="w-100"/>
+                        )}
+                      </Form.Item>
+                    </Col>
+                    <Col  span={6}>
+                      <Form.Item label={tu('days_to_freeze')}>
+                        {getFieldDecorator('freeze_date', {})(
+                          <NumericInput className="w-100"/>
+                        )}
+                      </Form.Item>
+                    </Col>
+                    <Col  span={8}>
+                      <p>{tu('total')}{tu('frozen_supply')}:</p>
+                      <div className="frozen-supply-tip"><FormattedNumber value={freeze_amount}/></div>
+                    </Col>
+                  </Row>
+                </div>
                </Col>
               </Row>
             </div>
@@ -422,6 +472,7 @@ function mapPropsToFields(props) {
       value: data[key],
     })
   })
+  console.log(params)
   return  params
 }
 export default Form.create({ name: 'input_info', mapPropsToFields })(injectIntl(TokenCreate));

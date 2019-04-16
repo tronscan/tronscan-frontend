@@ -3,11 +3,12 @@ import {t, tu} from "../../../utils/i18n";
 import {connect} from "react-redux";
 import {FormattedNumber, FormattedDate, injectIntl} from "react-intl";
 import 'moment/min/locales';
+import moment from 'moment';
 import { Steps } from 'antd';
 import SelectTrc from './SelectTrc';
 import InputInfo from './InputInfo';
 import SubmitInfo from './SubmitInfo';
-import ResultInfo from './ResultInfo';
+import ResultInfo from './resultInfo';
 
 const Step = Steps.Step;
 
@@ -34,7 +35,15 @@ export class TokenCreate extends Component {
         email: '',
         while_paper: '',
         trx_amount: '1',
-        token_amount: '2'
+        token_amount: '2',
+        participation_type: true,
+        participation_start_date: moment(new Date().getTime()),
+        participation_end_date: moment(new Date().getTime() + 24*60*60*1000),
+        freeze_tyle: false,
+        freeze_amount: '',
+        freeze_date: '',
+
+
       },
       iconList: [
         {name: 'twitter', active: true, links: ['']},
@@ -71,7 +80,7 @@ export class TokenCreate extends Component {
     let {step} = this.state;
     return (
 
-        <main  className="container pb-3 token-create header-overlap tokencreated">
+        <main  className="container pb-3 token-create header-overlap tokencreated token_black">
           <div className="steps mb-4 py-2">
             {
               ['type', 'input', 'confirm', 'result'].map((item, index) => {
