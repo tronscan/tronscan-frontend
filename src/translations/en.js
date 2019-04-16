@@ -1716,6 +1716,6 @@ export const messages = {
   "gain": "Change (%)",
   "volume_24_trx": 'Volume (24H)',
   'all': 'All',
-  "market_capitalization_trx": "Market Capitalization (TRX) ",
+  "market_capitalization_trx": "Market Cap (TRX)",
 
 };
