@@ -1715,5 +1715,7 @@ export const messages = {
   "token_fliter": 'token fliter',
   "gain": "Change (%)",
   "volume_24_trx": 'Volume (24H)',
-  'all': 'All'
+  'all': 'All',
+  "market_capitalization_trx": "Market Capitalization (TRX) ",
+
 };

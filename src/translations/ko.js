@@ -1655,9 +1655,10 @@ export const messages = {
   "social_link":"소셜 링크",
   "TRON_ecosystem":"TRON 생태",
   "accunt_ad_tip":"TRXMarket LaunchBase 에서 중점 발표 ACE 출시",
-
   "token_fliter": '토큰 필터',
   "gain": "변경 (%)",
   "volume_24_trx": '볼륨 (24H)',
-  'all': '모두'
+  'all': '모두',
+  "market_capitalization_trx": "시장 가치 (TRX)",
+
 };

@@ -1698,10 +1698,10 @@ export const messages = {
   "select_start_time":"Por favor seleccione la hora de inicio",
   "select_end_time":"Por favor, seleccione la hora de finalización",
   "binance": "binance",
-
   "token_fliter": 'Filtro de fichas',
   "gain": "Cambio (%)",
   "volume_24_trx": 'Volumen (24H)',
-  'all': 'TODO'
+  'all': 'TODO',
+  "market_capitalization_trx": "Capitalización de mercado (TRX) ",
 
 };

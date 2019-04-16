@@ -1655,10 +1655,10 @@ export const messages = {
   "social_link":"Ссылка на социальную сеть",
   "TRON_ecosystem":"Экосистема TRON",
   "accunt_ad_tip":"TRXMarket LaunchBase укажет свой первый токен -ACE",
-
   "token_fliter": 'Фильтр токенов',
   "gain": "Изменение (%)",
   "volume_24_trx": 'Объем (24 часа)',
-  'all': 'полный'
+  'all': 'полный',
+  "market_capitalization_trx": "Рыночная капитализация (TRX)",
 
 };

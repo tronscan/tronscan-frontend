@@ -244,7 +244,7 @@ class TokenList extends Component {
         }
       },
       {
-        title: intl.formatMessage({id: 'market_capitalization'}),
+        title: intl.formatMessage({id: 'market_capitalization_trx'}),
         dataIndex: 'marketcap',
         key: 'marketcap',
         sorter: true,
