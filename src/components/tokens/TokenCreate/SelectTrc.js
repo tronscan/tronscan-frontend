@@ -29,8 +29,12 @@ export class TokenCreate extends Component {
     let {type} = this.state
     return (
         <main className="text-center">
-          <h3 className="mb-4">{tu('select_type')}</h3>
-          <h5 className="f-18 mb-4">推荐发行20通证 单击此处了解更多10，20通证的区别</h5>
+          <h2 className="mb-4 font-weight-bold">{tu('select_type')}</h2>
+          <h5 className="f-18 mb-4 justify-content-center">
+            {tu('select_trx_tip1')}
+            <a className="col-red mx-1">{tu('select_trx_tip2')}</a>
+            {tu('select_trx_tip3')}
+          </h5>
           <p className="text-muted mb-4 font-weight-light">10通证不需要合约，1024个Trx <br/>
           20通证由智能合约发行，不需要Trx</p>
 

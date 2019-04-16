@@ -12,38 +12,41 @@ import ResultInfo from './resultInfo';
 
 const Step = Steps.Step;
 
+@connect(
+  state => ({
+    account: state.app.account
+  })
+)
 
 export class TokenCreate extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      step: 3,
+      step: 1,
       type: 'trc10',
       paramData: {
-        token_name: '213',
-        token_abbr: '444',
-        token_introduction: '22',
-        token_supply: 0,
+        token_name: '',
+        token_abbr: '',
+        token_introduction: '',
+        token_supply: '',
         precision: 0,
         logo_url: '',
-        author: 'rabbit',
-        contract_address: '2',
-        contract_create_date: '3',
+        author: '',
+        contract_address: '',
+        contract_create_date: '',
         contract_code: "",
         website: '',
         email: '',
-        while_paper: '',
-        trx_amount: '1',
-        token_amount: '2',
+        white_paper: '',
+        trx_amount: '',
+        token_amount: '',
         participation_type: true,
         participation_start_date: moment(new Date().getTime()),
         participation_end_date: moment(new Date().getTime() + 24*60*60*1000),
         freeze_tyle: false,
         freeze_amount: '',
         freeze_date: '',
-
-
       },
       iconList: [
         {name: 'twitter', active: true, links: ['']},
@@ -61,10 +64,20 @@ export class TokenCreate extends Component {
     };
   }
 
-  componentDidMount() {}
+  componentDidMount() {
+    this.setState({
+      paramData: {
+        ...this.state.paramData,
+        author: this.props.account.address
+      }
+    })
+  }
 
-  componentDidUpdate(prevProps) {
-    console.log(this.state, prevProps)
+  componentDidUpdate(prevProps) {}
+
+  componentWillUnmount(a,b,c,d){
+    console.log(a,b,c,d)
+    return 
   }
 
 
@@ -72,7 +85,6 @@ export class TokenCreate extends Component {
     this.setState({step: step});
   }
   changeState = (params) => {
-    console.log(params)
     this.setState(params);
   }
 

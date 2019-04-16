@@ -46,8 +46,8 @@ export class TokenCreate extends Component {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       if (!err) {
-        console.log('Received values of form: ', values);
         this.props.nextState({paramData: values, iconList})
+        this.props.nextStep(2)
       }
     });
   }
@@ -153,8 +153,6 @@ export class TokenCreate extends Component {
       }
       abbrAmount = parseInt((token_amount / trx_amount)*100) / 100
     }
-
-    console.log(participation_type)
     return (
         <main className="">
           <Form
@@ -232,8 +230,12 @@ export class TokenCreate extends Component {
                   </Form.Item>
                 </Col>
                 <Col  span={24} md={11}>
-                  <Form.Item label={tu('issuer')}>
-                    <Input defaultValue="rabbit" disabled/>
+                  <Form.Item label={tu('issuer')} required>
+                    {getFieldDecorator('author',{
+                      rules: [{ required: true, message: ''}],
+                    })(
+                      <Input disabled/>
+                    )}
                   </Form.Item>
                 </Col>
               </Row>
@@ -376,7 +378,7 @@ export class TokenCreate extends Component {
               <Row gutter={24} type="flex" justify="space-between" className="px-2">
                 <Col  span={24} md={11}>
                   <Form.Item label={tu('trc20_token_info_Website')}>
-                    {getFieldDecorator('trc20_token_info_Website', {
+                    {getFieldDecorator('Website', {
                       rules: [{ required: true, message: tu('no_url_error'), whitespace: true}],
                     })(
                       <Input/>
@@ -395,7 +397,7 @@ export class TokenCreate extends Component {
                 </Col>
                 <Col span={24}>
                   <Form.Item label={tu('whitepaper_address')}>
-                    {getFieldDecorator('whitepaper_address', {})(
+                    {getFieldDecorator('white_paper', {})(
                       <Input />
                     )}
                   </Form.Item>
@@ -472,7 +474,6 @@ function mapPropsToFields(props) {
       value: data[key],
     })
   })
-  console.log(params)
   return  params
 }
 export default Form.create({ name: 'input_info', mapPropsToFields })(injectIntl(TokenCreate));

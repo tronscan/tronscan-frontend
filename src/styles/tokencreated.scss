@@ -212,4 +212,9 @@
     color:#9e9e9e!important;
     margin-top: 20px;
   }
+  .col-red{
+    &, & *{
+      color: #C23631!important;
+    }
+  }
 }
