@@ -130,7 +130,7 @@ export class TokenCreate extends Component {
       token_amount, 
       freeze_amount,
       participation_type,
-      freeze_tyle} = getFieldsValue(['token_abbr', 'trx_amount', 'token_amount', 'freeze_amount', 'participation_type', 'freeze_tyle'])
+      freeze_type} = getFieldsValue(['token_abbr', 'trx_amount', 'token_amount', 'freeze_amount', 'participation_type', 'freeze_type'])
 
     if(token_trx_order){
       first = {
@@ -214,10 +214,10 @@ export class TokenCreate extends Component {
                     )}
                   </Form.Item>
                 </Col>
-                <Col  span={24} md={11}>
+                <Col  span={24} md={11} className={ isTrc20? 'd-block': 'd-none'}>
                   <Form.Item label={tu('token_logo')}>
                     {getFieldDecorator('logo_url', {
-                      rules: [{ required: true, message: tu('logo_v_required'), whitespace: true},
+                      rules: [{ required: isTrc20, message: tu('logo_v_required'), whitespace: true},
                               {pattern: /\.jpg|\.png$/, message: tu('logo_v_format')}],
                     })(
                       <AutoComplete
@@ -340,12 +340,12 @@ export class TokenCreate extends Component {
                 <div className="part p-3  mb-4">
                   <div className="part_title mb-3">
                     <span className="part_title_name">{tu('frozen_supply')}</span>
-                    {getFieldDecorator('freeze_tyle', {valuePropName: 'checked'})(
+                    {getFieldDecorator('freeze_type', {valuePropName: 'checked'})(
                       <Switch checkedChildren={tu('freeze_on')} unCheckedChildren={tu('freeze_off')} />
                     )}
                   </div>
                   <div className="mb-3">{tu('frozen_supply_message_0')}</div>
-                  <Row gutter={10} type="flex" justify="space-between" className={`${freeze_tyle? 'd-flex': 'd-none'} px-2`}>
+                  <Row gutter={10} type="flex" justify="space-between" className={`${freeze_type? 'd-flex': 'd-none'} px-2`}>
                     <Col  span={8}>
                       <Form.Item label={tu('amount')}>
                         {getFieldDecorator('freeze_amount', {})(
@@ -378,24 +378,24 @@ export class TokenCreate extends Component {
               <Row gutter={24} type="flex" justify="space-between" className="px-2">
                 <Col  span={24} md={11}>
                   <Form.Item label={tu('trc20_token_info_Website')}>
-                    {getFieldDecorator('Website', {
+                    {getFieldDecorator('website', {
                       rules: [{ required: true, message: tu('no_url_error'), whitespace: true}],
                     })(
                       <Input/>
                     )}
                   </Form.Item>
                 </Col>
-                <Col  span={24} md={11}>
+                <Col  span={24} md={11} className={ isTrc20? 'd-block': 'd-none'}>
                   <Form.Item label={tu('email')}>
                     {getFieldDecorator('email', {
-                      rules: [{ required: true, message: tu('email_v_required'), whitespace: true},
+                      rules: [{ required: isTrc20, message: tu('email_v_required'), whitespace: true},
                               {type: 'email', message: tu('email_v_format')}],
                     })(
                       <Input/>
                     )}
                   </Form.Item>
                 </Col>
-                <Col span={24}>
+                <Col span={24} className={ isTrc20? 'd-block': 'd-none'}>
                   <Form.Item label={tu('whitepaper_address')}>
                     {getFieldDecorator('white_paper', {})(
                       <Input />
@@ -406,7 +406,7 @@ export class TokenCreate extends Component {
               </Row>
             </div>
             
-            <div className="px-2 mb-3">
+            <div className={ isTrc20? 'd-block px-2 mb-3': 'd-none'}>
               <div className="d-flex mb-3">
                 <h5>{tu('select_socoal_link')}</h5>
                 <div className="d-flex icon-list ml-3">
@@ -455,7 +455,7 @@ export class TokenCreate extends Component {
 
             <div className="text-right px-2">
               <button className="btn btn-default btn-lg" onClick={() => nextStep(0)}>{tu('prev_step')}</button>
-              <button className="ml-4 btn btn-danger btn-lg" htmltype="submit">{tu('submit')}</button>
+              <button className="ml-4 btn btn-danger btn-lg" htmltype="submit">{tu('next')}</button>
             </div>
            
 

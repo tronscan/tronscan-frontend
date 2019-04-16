@@ -23,28 +23,28 @@ export class TokenCreate extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      step: 1,
+      step: 2,
       type: 'trc10',
       paramData: {
-        token_name: '',
-        token_abbr: '',
-        token_introduction: '',
-        token_supply: '',
-        precision: 0,
+        token_name: 'add',
+        token_abbr: 'ADD',
+        token_introduction: "Africa Trading Chain can be used to improve the financial support level of China-Africa cooperation by blockchain technology. The project origin is from the “One Belt and One Road” initiative and is based in Africa . It is also receiving strong supports from many African governments.",
+        token_supply: '1000000000',
+        precision: 6,
         logo_url: '',
-        author: '',
+        author: 'TA561MxvhxM4f81mU7bx9oipGP5zowTbhL',
         contract_address: '',
         contract_create_date: '',
         contract_code: "",
-        website: '',
+        website: 'www.baidu.com',
         email: '',
         white_paper: '',
-        trx_amount: '',
-        token_amount: '',
+        trx_amount: '0.1',
+        token_amount: '1',
         participation_type: true,
         participation_start_date: moment(new Date().getTime()),
         participation_end_date: moment(new Date().getTime() + 24*60*60*1000),
-        freeze_tyle: false,
+        freeze_type: false,
         freeze_amount: '',
         freeze_date: '',
       },
@@ -68,7 +68,7 @@ export class TokenCreate extends Component {
     this.setState({
       paramData: {
         ...this.state.paramData,
-        author: this.props.account.address
+       // author: this.props.account.address
       }
     })
   }
