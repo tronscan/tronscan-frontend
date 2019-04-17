@@ -14,6 +14,7 @@ import { BrowserRouter } from 'react-router-dom'
 import ReactDOM from 'react-dom'
 import SweetAlert from "react-bootstrap-sweetalert";
 import { Modal, Button } from 'antd';
+import NavigationPrompt from "react-router-navigation-prompt";
 
 const confirm = Modal.confirm;
 
@@ -33,25 +34,26 @@ export class TokenCreate extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      step: 0,
+      step: 1,
       type: 'trc10',
       modal: null,
+      leave_lock: false,
       paramData: {
-        token_name: 'add',
-        token_abbr: 'ADD',
-        token_introduction: "Africa Trading Chain can be used to improve the financial support level of China-Africa cooperation by blockchain technology. The project origin is from the “One Belt and One Road” initiative and is based in Africa . It is also receiving strong supports from many African governments.",
-        token_supply: '1000000000',
-        precision: 6,
+        token_name: '',
+        token_abbr: '',
+        token_introduction: "",
+        token_supply: '',
+        precision: 0,
         logo_url: '',
-        author: 'TA561MxvhxM4f81mU7bx9oipGP5zowTbhL',
+        author: '',
         contract_address: '',
         contract_create_date: '',
         contract_code: "",
-        website: 'www.baidu.com',
+        website: '',
         email: '',
         white_paper: '',
-        trx_amount: '0.1',
-        token_amount: '1',
+        trx_amount: '',
+        token_amount: '',
         participation_type: true,
         participation_start_date: moment(new Date().getTime()),
         participation_end_date: moment(new Date().getTime() + 24*60*60*1000),
@@ -86,12 +88,6 @@ export class TokenCreate extends Component {
     }
   }
 
-  componentDidUpdate(prevProps) {}
-
-  componentWillUnmount(){
-    
-  }
-
   changeStep = (step) => {
     this.setState({step: step});
   }
@@ -117,34 +113,11 @@ export class TokenCreate extends Component {
     return account.isLoggedIn;
   };
 
-  getConfirmation (message,callback) {
-    // console.log(callback(false))
-    const allowTransition = window.confirm(message);
-    callback(allowTransition);
-    // confirm({
-    //   title: 'Do you want to delete these items?',
-    //   content: 'When clicked the OK button, this dialog will be closed after 1 second',
-    //   onOk() {
-    //     callback(true)
-    //   },
-    //   onCancel() {
-    //     callback(false)
-    //   },
-    // });
-}
-// <BrowserRouter getUserConfirmation={this.getConfirmation} >
-// <Prompt message={location => {return 'aaa'}}/>
-// </BrowserRouter>
- // <Prompt message="Are you sure you want to leave?" />
   render() {
-    let {step, modal} = this.state;
+    let {step, modal, paramData, leave_lock} = this.state;
 
     return (
       <main  className="container pb-3 token-create header-overlap tokencreated token_black">
-        {modal}
-        <BrowserRouter getUserConfirmation={this.getConfirmation} >
-          <Prompt message="Are you sure you want to leave?" when={false}/>
-        </BrowserRouter>
         <div className="steps mb-4 py-2">
             {
               ['type', 'input', 'confirm', 'result'].map((item, index) => {
@@ -156,7 +129,6 @@ export class TokenCreate extends Component {
               })
             }
           </div>
-
           <div className="row">
             <div className="col-sm-12">
               <div className="card">
@@ -210,6 +182,24 @@ export class TokenCreate extends Component {
               </div>
             </div>
           </div>
+          {modal}
+          <NavigationPrompt when={leave_lock && step < 3}>
+            {({ onConfirm, onCancel }) => (
+              <SweetAlert
+                info
+                showCancel
+                title={tu("leave_tip")}
+                confirmBtnText={tu('confirm')}
+                cancelBtnText={tu("cancel")}
+                cancelBtnBsStyle="default"
+                confirmBtnBsStyle="danger"
+                onConfirm={onConfirm}
+                onCancel={onCancel}
+                style={{marginLeft: '-240px', marginTop: '-195px'}}
+              >
+              </SweetAlert>
+            )}
+          </NavigationPrompt>
         </main>
     )
   }

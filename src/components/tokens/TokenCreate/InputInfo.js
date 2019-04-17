@@ -28,7 +28,11 @@ export class TokenCreate extends Component {
   }
 
   componentDidMount() {}
-
+  componentDidUpdate(prevProps, prevState) {
+    if(!this.props.state.leave_lock){
+      this.props.nextState({leave_lock: true})
+    }
+  }
   handleLogoChange = (value) => {
     let autoCompleteResult;
     if (!value || /\.jpg|\.png$/.test(value)) {
@@ -48,6 +52,10 @@ export class TokenCreate extends Component {
         this.props.nextStep(2)
       }
     });
+  }
+
+  valueChange(props, changedValues, allValues){
+    console.log(props, changedValues, allValues)
   }
 
   addSocal = (index) => {
@@ -473,4 +481,5 @@ function mapPropsToFields(props) {
   })
   return  params
 }
+
 export default Form.create({ name: 'input_info', mapPropsToFields })(injectIntl(TokenCreate));
