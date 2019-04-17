@@ -9,8 +9,6 @@ import {TRXPrice} from "../../common/Price";
 import {
   Form, Row, Col, Input, InputNumber, AutoComplete, DatePicker, Icon, Switch
 } from 'antd';
-import { promises } from 'fs';
-import { Promise } from 'es6-shim';
 const { TextArea } = Input;
 const AutoCompleteOption = AutoComplete.Option;
 

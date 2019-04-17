@@ -4,9 +4,15 @@ import {connect} from "react-redux";
 import {FormattedNumber, FormattedDate, injectIntl} from "react-intl";
 import 'moment/min/locales';
 import { Steps } from 'antd';
+import SweetAlert from "react-bootstrap-sweetalert";
 
 const Step = Steps.Step;
 
+@connect(
+  state => ({
+    wallet: state.wallet.current,
+  })
+)
 
 export class TokenCreate extends Component {
 
@@ -17,16 +23,64 @@ export class TokenCreate extends Component {
     };
   }
 
-  componentDidMount() {}
+  componentDidMount() {
+    const {checkExistingToken, nextState} = this.props
+    if(!checkExistingToken()){
+      nextState({type: 'trc20'})
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+    let {wallet, checkExistingToken} = this.props;
+    if (wallet !== null) {
+      if (prevProps.wallet === null || wallet.address !== prevProps.wallet.address) {
+        if(!checkExistingToken()){
+         this.setModal()
+        }
+      }
+    }
+  }
 
   setSelect(type) {
-    this.props.nextState({type: type})
-    this.setState({type})
+    const {isLoggedInFn, nextState, checkExistingToken} = this.props
+    if(isLoggedInFn()){
+      if(type == 'trc10'){
+        if(checkExistingToken()){
+          nextState({type: type})
+        }else{
+          this.setModal()
+        }
+      }else{
+        nextState({type: type})
+      }
+    }
+  }
+
+  goToNextStep =() => {
+    const {nextStep, isLoggedInFn} = this.props
+    if(isLoggedInFn()){
+      nextStep(1)
+    }
+  }
+
+  setModal = () => {
+    let {intl} = this.props;
+    this.setState({
+      modal: <SweetAlert
+        warning
+        title={false}
+        confirmBtnText={intl.formatMessage({id: 'confirm'})}
+        confirmBtnBsStyle="warning"
+        onConfirm={() => this.setState({modal: null})}
+        style={{marginLeft: '-240px', marginTop: '-195px'}}
+      >
+        {tu("trx_token_account_limit")}
+      </SweetAlert>
+    })
   }
 
   render() {
-    let {nextStep} = this.props
-    let {type} = this.state
+    let {type} = this.props.state
     return (
         <main className="text-center">
           <h2 className="mb-4 font-weight-bold">{tu('select_type')}</h2>
@@ -54,7 +108,7 @@ export class TokenCreate extends Component {
             type="button" 
             className="btn btn-danger btn-lg" 
             style={{width: '252px'}}
-            onClick={() => nextStep(1)}
+            onClick={this.goToNextStep}
           >{tu('trc20_confirm')}</button>
         
         </main>

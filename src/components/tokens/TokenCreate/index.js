@@ -9,22 +9,34 @@ import SelectTrc from './SelectTrc';
 import InputInfo from './InputInfo';
 import SubmitInfo from './SubmitInfo';
 import ResultInfo from './resultInfo';
+import { Prompt } from 'react-router'
+import { BrowserRouter } from 'react-router-dom'
+import ReactDOM from 'react-dom'
+import SweetAlert from "react-bootstrap-sweetalert";
+import { Modal, Button } from 'antd';
+import {Client} from "../../../services/api";
+
+const confirm = Modal.confirm;
 
 const Step = Steps.Step;
 
 @connect(
   state => ({
-    account: state.app.account
+    account: state.app.account,
+    wallet: state.wallet.current,
   })
 )
+
+// @reactMixin.decorate(Lifecycle)
 
 export class TokenCreate extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      step: 2,
+      step: 0,
       type: 'trc10',
+      modal: null,
       paramData: {
         token_name: 'add',
         token_abbr: 'ADD',
@@ -68,18 +80,12 @@ export class TokenCreate extends Component {
     this.setState({
       paramData: {
         ...this.state.paramData,
-       // author: this.props.account.address
+       author: this.props.account.address
       }
     })
   }
 
   componentDidUpdate(prevProps) {}
-
-  componentWillUnmount(a,b,c,d){
-    console.log(a,b,c,d)
-    return 
-  }
-
 
   changeStep = (step) => {
     this.setState({step: step});
@@ -88,12 +94,65 @@ export class TokenCreate extends Component {
     this.setState(params);
   }
 
-  render() {
-    let {step} = this.state;
-    return (
+  isLoggedIn = () => {
+    let {account, intl} = this.props;
+    if(!account.isLoggedIn){
+      this.setState({
+        modal: <SweetAlert
+          warning
+          title={false}
+          confirmBtnText={intl.formatMessage({id: 'confirm'})}
+          confirmBtnBsStyle="warning"
+          onConfirm={() => this.setState({modal: null})}
+          style={{marginLeft: '-240px', marginTop: '-195px'}}
+        >
+          {tu("not_signed_in")}
+        </SweetAlert>
+      })
+    }
+    return account.isLoggedIn;
+  };
 
-        <main  className="container pb-3 token-create header-overlap tokencreated token_black">
-          <div className="steps mb-4 py-2">
+  checkExistingToken = () => {
+    let {wallet} = this.props;
+    if (wallet !== null) {
+      Client.getIssuedAsset(wallet.address).then(({token}) => {
+        return token
+      });
+    }
+  };
+
+  getConfirmation (message,callback) {
+    console.log(callback)
+    return false
+    // console.log(callback(false))
+    // const allowTransition = window.confirm(message);
+    // callback(allowTransition);
+    // confirm({
+    //   title: 'Do you want to delete these items?',
+    //   content: 'When clicked the OK button, this dialog will be closed after 1 second',
+    //   onOk() {
+    //     callback(true)
+    //   },
+    //   onCancel() {
+    //     callback(false)
+    //   },
+    // });
+}
+// <BrowserRouter getUserConfirmation={this.getConfirmation} >
+// <Prompt message={location => {return 'aaa'}}/>
+// </BrowserRouter>
+ // <Prompt message="Are you sure you want to leave?" />
+  render() {
+    let {step, modal} = this.state;
+
+    return (
+      <main  className="container pb-3 token-create header-overlap tokencreated token_black">
+        {modal}
+        <BrowserRouter getUserConfirmation={this.getConfirmation} >
+          <Prompt message="Are you sure you want to leave?" />
+        </BrowserRouter>
+        <div className="steps mb-4 py-2">
             {
               ['type', 'input', 'confirm', 'result'].map((item, index) => {
                 let stepclass = ''
@@ -118,6 +177,8 @@ export class TokenCreate extends Component {
                       nextState={(params) => {
                         this.changeState(params)
                       }}
+                      isLoggedInFn={this.isLoggedIn}
+                      checkExistingToken={this.checkExistingToken}
                     /> 
                   }
                   { step === 1 && 
@@ -157,7 +218,6 @@ export class TokenCreate extends Component {
               </div>
             </div>
           </div>
-        
         </main>
     )
   }
