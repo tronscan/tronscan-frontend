@@ -14,10 +14,9 @@ export class resultInfo extends Component {
 
     constructor(props) {
         super(props);
+        console.log('this.props.state',this.props.state)
         this.state = {
             ...this.props.state,
-            captcha_code:null,
-            resultType:true
         };
     }
 
@@ -29,28 +28,41 @@ export class resultInfo extends Component {
         })
     }
 
+    againInput = () => {
+        let res = '';
+        let errorInfo = ''
+        this.setState({
+            res,
+            errorInfo
+        },() => {
+            this.props.nextState({res, errorInfo})
+            this.props.nextStep(1)
+        });
+    }
+
+    goToTokensList = () => {
+        window.location.hash = "#/tokens/list";
+    }
 
     render() {
         let { intl } = this.props;
-        let { type, resultType } = this.state;
+        let { type, res, errorInfo } = this.state;
         console.log('type',type)
         return (
             <main className="token-result">
                 {
-                    !resultType? <div className="result-failure">
+                    !res? <div className="result-failure">
                         <img src={require("../../../images/token/result_failure.png")} alt=""/>
                         <h5>{tu('token_input_failure')}</h5>
                         <div className="mt-3 d-flex failure-reason">
-                            <span></span>
+                            <span>{tu('token_input_failure_reason')}</span>
                             <div>
-                                <p>1.token名称涉及敏感信息</p>
-                                <p>2.token名称涉及敏感信息</p>
-                                <p>3.token名称涉及敏感信息</p>
+                                <p>1.{errorInfo}</p>
                             </div>
                         </div>
                         <div className="d-flex mt-3">
-                            <button className="btn btn-default btn-lg">{tu('token_input_failure_no_submit')}</button>
-                            <button className="ml-4 btn btn-danger btn-lg">{tu('token_input_failure_submit')}</button>
+                            <button className="btn btn-default btn-lg" onClick={this.goToTokensList}>{tu('token_input_failure_no_submit')}</button>
+                            <button className="ml-4 btn btn-danger btn-lg" onClick={this.againInput}>{tu('token_input_failure_submit')}</button>
                         </div>
                     </div>
                         :

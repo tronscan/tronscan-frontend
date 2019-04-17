@@ -34,7 +34,7 @@ export class TokenCreate extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      step: 1,
+      step: 0,
       type: 'trc10',
       modal: null,
       leave_lock: false,
@@ -55,8 +55,8 @@ export class TokenCreate extends Component {
         trx_amount: '',
         token_amount: '',
         participation_type: true,
-        participation_start_date: moment(new Date().getTime()),
-        participation_end_date: moment(new Date().getTime() + 24*60*60*1000),
+        participation_start_date:  moment().add(1, 'days').startOf('day'),
+        participation_end_date:  moment().add(2, 'days').startOf('day'),
         freeze_type: false,
         freeze_amount: '',
         freeze_date: '',
@@ -74,6 +74,8 @@ export class TokenCreate extends Component {
         {name: 'Group', active: false, links: ['']},
         {name: 'discord', active: false, links: ['']}
       ],
+      res:'',
+      errorInfo:'',
     };
   }
 
@@ -170,12 +172,12 @@ export class TokenCreate extends Component {
                     { step === 3 &&
                     <ResultInfo
                         state={this.state}
-                        // nextStep={(number) => {
-                        //     this.changeStep(number)
-                        // }}
-                        // nextState={(params) => {
-                        //     this.changeState(params)
-                        // }}
+                         nextStep={(number) => {
+                             this.changeStep(number)
+                         }}
+                         nextState={(params) => {
+                             this.changeState(params)
+                         }}
                     />
                     }
                 </div>

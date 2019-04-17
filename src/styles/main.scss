@@ -3255,6 +3255,10 @@ h5 {
     line-height: 22px;
     height: 2.375rem;
   }
+  .border-dashed-textarea{
+    padding-bottom: 6px;
+    border-bottom: 1px dashed #eeeeee;
+  }
 }
 
 .result-failure,.result-success{

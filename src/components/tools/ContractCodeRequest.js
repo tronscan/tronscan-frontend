@@ -98,9 +98,14 @@ export default class TestNetRequest extends React.Component {
         // }
     };
 
+    // canRequest = () => {
+    //     let {verificationCode, waitingForTrx} = this.state;
+    //     return !waitingForTrx && !!verificationCode;
+    // };
+
     canRequest = () => {
-        let {verificationCode, waitingForTrx} = this.state;
-        return !waitingForTrx && !!verificationCode;
+        let {verificationCode, } = this.state;
+        return   verificationCode
     };
 
     render() {

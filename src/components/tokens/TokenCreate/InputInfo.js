@@ -17,6 +17,7 @@ export class TokenCreate extends Component {
 
   constructor(props) {
     super(props);
+      console.log('this.props.state11111',this.props.state)
     this.state = {
       autoCompleteResult: [],
       social_total: 20,
