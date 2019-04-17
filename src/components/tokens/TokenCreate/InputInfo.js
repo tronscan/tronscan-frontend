@@ -54,10 +54,6 @@ export class TokenCreate extends Component {
     });
   }
 
-  valueChange(props, changedValues, allValues){
-    console.log(props, changedValues, allValues)
-  }
-
   addSocal = (index) => {
     let {iconList} = this.state
 

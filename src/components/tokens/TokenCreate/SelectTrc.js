@@ -28,10 +28,6 @@ export class TokenCreate extends Component {
 
   componentDidMount() {
     this.checkExistingToken()
-    setTimeout(() => {
-      console.log(this.props.wallet)
-    }, 1000);
-    
   }
 
   componentDidUpdate(prevProps, prevState) {
