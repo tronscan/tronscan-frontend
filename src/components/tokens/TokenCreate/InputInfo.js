@@ -12,6 +12,7 @@ import {
 const { TextArea } = Input;
 const AutoCompleteOption = AutoComplete.Option;
 
+let leave_lock = false
 export class TokenCreate extends Component {
 
   constructor(props) {
@@ -28,11 +29,13 @@ export class TokenCreate extends Component {
   }
 
   componentDidMount() {}
+
   componentDidUpdate(prevProps, prevState) {
-    if(!this.props.state.leave_lock){
-      this.props.nextState({leave_lock: true})
+    if(leave_lock && !this.props.state.leave_lock){
+      this.props.nextState({leave_lock})
     }
   }
+
   handleLogoChange = (value) => {
     let autoCompleteResult;
     if (!value || /\.jpg|\.png$/.test(value)) {
@@ -478,4 +481,7 @@ function mapPropsToFields(props) {
   return  params
 }
 
-export default Form.create({ name: 'input_info', mapPropsToFields })(injectIntl(TokenCreate));
+function onValuesChange(){
+  leave_lock = true
+}
+export default Form.create({ name: 'input_info', mapPropsToFields, onValuesChange })(injectIntl(TokenCreate));
