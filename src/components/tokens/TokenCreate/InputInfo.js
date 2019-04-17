@@ -87,13 +87,12 @@ export class TokenCreate extends Component {
         this.setState({
           modal: <SweetAlert
                   warning
-                  title={false}
+                  title={tu("socoal_v_format")}
                   confirmBtnText={intl.formatMessage({id: 'confirm'})}
-                  confirmBtnBsStyle="warning"
+                  confirmBtnBsStyle="danger"
                   onConfirm={() => this.setState({modal: null})}
                   style={{marginLeft: '-240px', marginTop: '-195px'}}
                 >
-                  {tu("socoal_v_format")}
                 </SweetAlert>
         })
       }

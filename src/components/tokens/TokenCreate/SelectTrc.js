@@ -5,6 +5,7 @@ import {FormattedNumber, FormattedDate, injectIntl} from "react-intl";
 import 'moment/min/locales';
 import { Steps } from 'antd';
 import SweetAlert from "react-bootstrap-sweetalert";
+import {Client} from "../../../services/api";
 
 const Step = Steps.Step;
 
@@ -19,78 +20,98 @@ export class TokenCreate extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      modal: null,
+      issuedAsset: null,
       ...this.props.state
     };
   }
 
   componentDidMount() {
-    const {checkExistingToken, nextState} = this.props
-    if(!checkExistingToken()){
-      nextState({type: 'trc20'})
-    }
+    this.checkExistingToken()
+    setTimeout(() => {
+      console.log(this.props.wallet)
+    }, 1000);
+    
   }
 
-  componentDidUpdate(prevProps) {
-    let {wallet, checkExistingToken} = this.props;
+  componentDidUpdate(prevProps, prevState) {
+    let {wallet} = this.props;
     if (wallet !== null) {
       if (prevProps.wallet === null || wallet.address !== prevProps.wallet.address) {
-        if(!checkExistingToken()){
-         this.setModal()
-        }
+        this.checkExistingToken()
       }
     }
   }
 
   setSelect(type) {
-    const {isLoggedInFn, nextState, checkExistingToken} = this.props
-    if(isLoggedInFn()){
-      if(type == 'trc10'){
-        if(checkExistingToken()){
-          nextState({type: type})
-        }else{
-          this.setModal()
-        }
-      }else{
-        nextState({type: type})
-      }
-    }
+    const {isLoggedInFn, nextState} = this.props
+    nextState({type: type})
+    // if(isLoggedInFn()){
+    //   if(type == 'trc10'){
+    //     if(this.state.issuedAsset){
+    //       nextState({type: type})
+    //     }else{
+    //       this.setModal()
+    //     }
+    //   }else{
+    //     nextState({type: type})
+    //   }
+    // }
   }
 
   goToNextStep =() => {
-    const {nextStep, isLoggedInFn} = this.props
-    if(isLoggedInFn()){
-      nextStep(1)
+    const {nextStep, isLoggedInFn, wallet} = this.props
+    const {issuedAsset} = this.state
+    if(!isLoggedInFn()) return
+    if(!issuedAsset){
+      this.setModal('trx_token_account_limit')
+      return
     }
+    if(wallet.balance < 1024*Math.pow(10,6)){
+      this.setModal('trx_token_fee_message')
+      return
+    } 
+    nextStep(1)
   }
 
-  setModal = () => {
+  setModal = (msg) => {
     let {intl} = this.props;
     this.setState({
       modal: <SweetAlert
-        warning
-        title={false}
+        error
+        title={tu(msg)}
         confirmBtnText={intl.formatMessage({id: 'confirm'})}
-        confirmBtnBsStyle="warning"
+        confirmBtnBsStyle="danger"
         onConfirm={() => this.setState({modal: null})}
         style={{marginLeft: '-240px', marginTop: '-195px'}}
       >
-        {tu("trx_token_account_limit")}
       </SweetAlert>
     })
   }
+
+  checkExistingToken = () => {
+    let {wallet} = this.props;
+    if (wallet !== null) {
+      Client.getIssuedAsset(wallet.address).then(({token}) => {
+        this.setState({issuedAsset: (token == undefined)})
+        token !== undefined && this.props.nextState({type: 'trc20'})
+      });
+    }
+  };
 
   render() {
     let {type} = this.props.state
     return (
         <main className="text-center">
+          {this.state.modal}
           <h2 className="mb-4 font-weight-bold">{tu('select_type')}</h2>
           <h5 className="f-18 mb-4 justify-content-center">
             {tu('select_trx_tip1')}
             <a className="col-red mx-1">{tu('select_trx_tip2')}</a>
             {tu('select_trx_tip3')}
           </h5>
-          <p className="text-muted mb-4 font-weight-light">10通证不需要合约，1024个Trx <br/>
-          20通证由智能合约发行，不需要Trx</p>
+          <p className="text-muted mb-4 font-weight-light">{tu('select_tip1')}<br/>
+          {tu('select_tip2')}</p>
 
           <div className="d-flex justify-content-between mx-auto mb-5 select-trc">
             {
@@ -106,11 +127,10 @@ export class TokenCreate extends Component {
           </div>
           <button 
             type="button" 
-            className="btn btn-danger btn-lg" 
+            className="btn btn-danger btn-lg btn-w" 
             style={{width: '252px'}}
             onClick={this.goToNextStep}
-          >{tu('trc20_confirm')}</button>
-        
+         >{tu('trc20_confirm')}</button>
         </main>
     )
   }

@@ -77,12 +77,14 @@ export class TokenCreate extends Component {
   }
 
   componentDidMount() {
-    this.setState({
-      paramData: {
-        ...this.state.paramData,
-       author: this.props.account.address
-      }
-    })
+    if(this.isLoggedIn()){
+      this.setState({
+        paramData: {
+          ...this.state.paramData,
+        author: this.props.account.address
+        }
+      })
+    }
   }
 
   componentDidUpdate(prevProps) {}
@@ -100,34 +102,22 @@ export class TokenCreate extends Component {
       this.setState({
         modal: <SweetAlert
           warning
-          title={false}
+          title={tu("not_signed_in")}
           confirmBtnText={intl.formatMessage({id: 'confirm'})}
-          confirmBtnBsStyle="warning"
+          confirmBtnBsStyle="danger"
           onConfirm={() => this.setState({modal: null})}
           style={{marginLeft: '-240px', marginTop: '-195px'}}
         >
-          {tu("not_signed_in")}
         </SweetAlert>
       })
     }
     return account.isLoggedIn;
   };
 
-  checkExistingToken = () => {
-    let {wallet} = this.props;
-    if (wallet !== null) {
-      Client.getIssuedAsset(wallet.address).then(({token}) => {
-        return token
-      });
-    }
-  };
-
   getConfirmation (message,callback) {
-    console.log(callback)
-    return false
     // console.log(callback(false))
-    // const allowTransition = window.confirm(message);
-    // callback(allowTransition);
+    const allowTransition = window.confirm(message);
+    callback(allowTransition);
     // confirm({
     //   title: 'Do you want to delete these items?',
     //   content: 'When clicked the OK button, this dialog will be closed after 1 second',
@@ -178,7 +168,6 @@ export class TokenCreate extends Component {
                         this.changeState(params)
                       }}
                       isLoggedInFn={this.isLoggedIn}
-                      checkExistingToken={this.checkExistingToken}
                     /> 
                   }
                   { step === 1 && 
