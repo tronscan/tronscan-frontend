@@ -1660,5 +1660,6 @@ export const messages = {
   "volume_24_trx": 'Объем (24 часа)',
   'all': 'полный',
   "market_capitalization_trx": "Рыночная капитализация (TRX)",
+  "token_txs_info":"Token",
 
 };

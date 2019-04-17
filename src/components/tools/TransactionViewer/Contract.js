@@ -376,18 +376,23 @@ export default function Contract({contract}) {
                                   </div>
                                   <div className="d-flex border-bottom content_item">
                                       <div className="content_name" >{tu('amount')}:</div>
-                                      <div className="flex1">{Number(contract.tokenTransferInfo['amount_str'])/ Math.pow(10,contract.tokenTransferInfo['decimals'])}
+                                      <div className="flex1">{Number(contract.tokenTransferInfo['amount_str'])/ Math.pow(10,contract.tokenTransferInfo['decimals'])}</div>
+                                  </div>
+                                  <div className="d-flex border-bottom content_item">
+                                      <div className="content_name" >{tu('token_txs_info')}:</div>
+                                      <div className="flex1">
                                           {
                                               contract.tokenTransferInfo['contract_address'] == CONTRACT_ADDRESS_USDT?
-                                                  <b className="token-img-top" style={{marginLeft:10,marginRight:5}}>
+                                                  <b className="token-img-top" style={{marginRight:5}}>
                                                       <img width={20} height={20} src={contract.tokenTransferInfo['icon_url']} alt={contract.tokenTransferInfo['name']} />
-                                                      <i style={{width:10,height:10}}></i>
+                                                      <i style={{width:10,height:10,bottom:-5}}></i>
                                                   </b>
-                                                  : <img width={20} height={20} src={contract.tokenTransferInfo['icon_url']} alt={contract.tokenTransferInfo['name']} style={{marginLeft:10,marginRight:5}}/>
+                                                  : <img width={20} height={20} src={contract.tokenTransferInfo['icon_url']} alt={contract.tokenTransferInfo['name']} style={{marginRight:5}}/>
 
                                           }
                                           <TokenTRC20Link name={contract.tokenTransferInfo['name']} address={contract.tokenTransferInfo['contract_address']} namePlus={contract.tokenTransferInfo['name'] + ' (' + contract.tokenTransferInfo['symbol'] + ')'}/></div>
                                   </div>
+
                               </div>
                      </div>}
 

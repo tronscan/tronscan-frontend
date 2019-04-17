@@ -1703,5 +1703,6 @@ export const messages = {
   "volume_24_trx": 'Volumen (24H)',
   'all': 'TODO',
   "market_capitalization_trx": "Capitalización de mercado (TRX) ",
+  "token_txs_info":"Token",
 
 };

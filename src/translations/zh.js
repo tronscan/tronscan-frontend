@@ -1659,7 +1659,7 @@ export const messages = {
     "accunt_ad_tip":"TRXMarket LaunchBase 瞩目呈现 ACE重磅登陆",
     'all': '全部',
     "market_capitalization_trx":"市值（TRX）",
-
+    "token_txs_info":"通证",
 
 
 };

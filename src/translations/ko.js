@@ -1660,5 +1660,6 @@ export const messages = {
   "volume_24_trx": '볼륨 (24H)',
   'all': '모두',
   "market_capitalization_trx": "시장 가치 (TRX)",
+  "token_txs_info":"Token",
 
 };

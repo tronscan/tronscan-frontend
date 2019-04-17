@@ -1649,5 +1649,6 @@ export const messages = {
     "volume_24_trx": '(24H) جلد',
     'all': 'همه',
     "market_capitalization_trx": "ارزش بازار (TRX)",
+    "token_txs_info":"Token",
 
 };

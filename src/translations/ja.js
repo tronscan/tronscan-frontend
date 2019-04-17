@@ -1655,6 +1655,7 @@ export const messages = {
     "volume_24_trx": 'ボリューム（24時間）',
     'all': 'すべて',
     "market_capitalization_trx": "市場価値 (TRX)",
+    "token_txs_info":"Token",
 
 }
 
