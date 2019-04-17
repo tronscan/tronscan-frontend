@@ -14,7 +14,6 @@ import { BrowserRouter } from 'react-router-dom'
 import ReactDOM from 'react-dom'
 import SweetAlert from "react-bootstrap-sweetalert";
 import { Modal, Button } from 'antd';
-import {Client} from "../../../services/api";
 
 const confirm = Modal.confirm;
 
@@ -89,6 +88,10 @@ export class TokenCreate extends Component {
 
   componentDidUpdate(prevProps) {}
 
+  componentWillUnmount(){
+    
+  }
+
   changeStep = (step) => {
     this.setState({step: step});
   }
@@ -140,7 +143,7 @@ export class TokenCreate extends Component {
       <main  className="container pb-3 token-create header-overlap tokencreated token_black">
         {modal}
         <BrowserRouter getUserConfirmation={this.getConfirmation} >
-          <Prompt message="Are you sure you want to leave?" />
+          <Prompt message="Are you sure you want to leave?" when={false}/>
         </BrowserRouter>
         <div className="steps mb-4 py-2">
             {
