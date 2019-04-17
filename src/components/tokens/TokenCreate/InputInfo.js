@@ -321,7 +321,13 @@ export class TokenCreate extends Component {
                       <Switch checkedChildren={tu('freeze_on')} unCheckedChildren={tu('freeze_off')} />
                     )}
                   </div>
-                  <div style={{marginBottom: '36px'}}>{tu('participation_message_0')} {token_abbr} {tu('participation_message_1')}</div>
+                  <div style={{marginBottom: '36px'}}>
+                    {
+                      participation_type?
+                      <div>{tu('participation_message_0')} {token_abbr} {tu('participation_message_1')}</div>:
+                      <div style={{marginBottom: '36px'}}>{tu('participation_message_2')}</div>
+                    }
+                  </div>
                   <Row gutter={24} type="flex" justify="space-between" className={`${participation_type? 'd-flex': 'd-none'} px-2`}>
                     <Col  span={11}>
                       <Form.Item label={tu('start_time')}>
