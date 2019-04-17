@@ -52,6 +52,8 @@ class TokenList extends Component {
       if(!item.isTop){
         item.index = count + 1
         count++
+      }else{
+        item.c_index = index +1
       }
      
       item.marketcap = item.marketcap || 0
@@ -185,7 +187,7 @@ class TokenList extends Component {
             <div>
               <h5>
               {
-                record.isTop?
+                (record.isTop && record.c_index == 1)?
                 <a href="javascript:;">{record.name + ' (' + record.abbr + ')'}</a>:
                 <div>
                   {
@@ -326,7 +328,7 @@ class TokenList extends Component {
                   }}
                   onRow={(record) => {
                     return {onClick: (event) => {
-                      if(record.isTop){
+                      if(record.isTop &&  record.c_index == 1){
                         window.open(url)
                       }
                     }}}}
