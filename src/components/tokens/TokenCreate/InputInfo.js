@@ -310,7 +310,7 @@ export class TokenCreate extends Component {
                         {last.abbr}
                         </Form.Item>
 
-                        <span style={{color: '#9e9e9e'}}>(1 {first.abbr} = {`${abbrAmount} ${last.abbr}`})</span>
+                        <span className={isNaN(abbrAmount) && 'd-none'} style={{color: '#9e9e9e'}}>(1 {first.abbr} = {`${abbrAmount} ${last.abbr}`})</span>
                     </div>
                  </Form.Item>
                 </Col>
