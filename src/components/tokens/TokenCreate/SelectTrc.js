@@ -58,8 +58,9 @@ export class TokenCreate extends Component {
   goToNextStep =() => {
     const {nextStep, isLoggedInFn, wallet} = this.props
     const {issuedAsset} = this.state
+    const {type} = this.props.state
     if(!isLoggedInFn()) return
-    if(!issuedAsset){
+    if(!issuedAsset && (type == 'trc10')){
       this.setModal('trx_token_account_limit')
       return
     }
@@ -90,7 +91,7 @@ export class TokenCreate extends Component {
     if (wallet !== null) {
       Client.getIssuedAsset(wallet.address).then(({token}) => {
         this.setState({issuedAsset: (token == undefined)})
-        token !== undefined && this.props.nextState({type: 'trc20'})
+        // token !== undefined && this.props.nextState({type: 'trc20'})
       });
     }
   };
