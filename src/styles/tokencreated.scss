@@ -222,4 +222,32 @@
     font-weight: normal;
     font-size: 22px;
   }
+
+  @media only screen and (max-width: 768px) {
+
+    .select-trc{
+      width: 100%;
+
+      &-item{
+        width: 45%;
+        height: 78px;
+        font-size: 12px;
+
+        div{
+          margin-left: 106px
+        }
+        h1{
+          font-size: 20px;
+        }
+      }
+    }
+    .steps-item{
+      height: 30px;
+      line-height: 30px;
+    }
+    .btn-w{
+      font-size: 14px;
+      height: 40px;
+    }
+  }
 }

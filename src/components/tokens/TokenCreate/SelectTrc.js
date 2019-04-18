@@ -101,7 +101,7 @@ export class TokenCreate extends Component {
         <main className="text-center">
           {this.state.modal}
           <h2 className="mb-4 font-weight-bold">{tu('select_type')}</h2>
-          <h5 className="f-18 mb-4 justify-content-center">
+          <h5 className="f-18 mb-4 d-block">
             {tu('select_trx_tip1')}
             <a className="col-red mx-1">{tu('select_trx_tip2')}</a>
             {tu('select_trx_tip3')}
