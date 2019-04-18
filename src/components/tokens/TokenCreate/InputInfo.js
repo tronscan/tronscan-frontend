@@ -286,28 +286,29 @@ export class TokenCreate extends Component {
               <Row gutter={24} type="flex" justify="space-between" className="px-2">
                 <Col span={24}>
                   <Form.Item label={tu('token_price')}  required className="m-0">
-                    <div className="d-flex">
+                    <div className="d-md-flex">
                       <span className="mr-3">trx{tu('trc20_last_price')}: <TRXPrice amount={1} currency="USD" source="home"/></span>
-                      <Form.Item  className="d-flex align-items-center">
-                        {getFieldDecorator(first.name, {
-                          rules: [{ required: isTrc10, message: tu('enter_the_amount'), whitespace: true}]
-                        })(
-                          <NumericInput style={{width: '80px'}} className="mr-2"/>
-                        )}
-                        {first.abbr}
-                        </Form.Item>
-                        
-                      <Icon type="swap" className="mx-2 fix_form ordericon" onClick={() => this.setState({token_trx_order: !token_trx_order})}/>
+                      <div className="d-flex">
+                        <Form.Item  className="d-flex align-items-center">
+                          {getFieldDecorator(first.name, {
+                            rules: [{ required: isTrc10, message: tu('enter_the_amount'), whitespace: true}]
+                          })(
+                            <NumericInput style={{width: '80px'}} className="mr-2"/>
+                          )}
+                          {first.abbr}
+                          </Form.Item>
+                          
+                        <Icon type="swap" className="mx-2 fix_form ordericon" onClick={() => this.setState({token_trx_order: !token_trx_order})}/>
 
-                      <Form.Item  className="d-flex align-items-center mr-4">
-                        {getFieldDecorator(last.name, { 
-                          rules: [{ required: isTrc10, message: tu('enter_the_amount'), whitespace: true}]
-                        })(
-                          <NumericInput style={{width: '80px'}} className="mr-2"/>
-                        )}
-                        {last.abbr}
-                        </Form.Item>
-
+                        <Form.Item  className="d-flex align-items-center mr-4">
+                          {getFieldDecorator(last.name, { 
+                            rules: [{ required: isTrc10, message: tu('enter_the_amount'), whitespace: true}]
+                          })(
+                            <NumericInput style={{width: '80px'}} className="mr-2"/>
+                          )}
+                          {last.abbr}
+                          </Form.Item>
+                        </div>
                         <span className={isNaN(abbrAmount)? 'd-none': ''} style={{color: '#9e9e9e'}}>(1 {first.abbr} = {`${abbrAmount} ${last.abbr}`})</span>
                     </div>
                  </Form.Item>
@@ -328,14 +329,14 @@ export class TokenCreate extends Component {
                     }
                   </div>
                   <Row gutter={24} type="flex" justify="space-between" className={`${participation_type? 'd-flex': 'd-none'} px-2`}>
-                    <Col  span={11}>
+                    <Col span={24} md={11}>
                       <Form.Item label={tu('start_time')}>
                         {getFieldDecorator('participation_start_date', {})(
                           <DatePicker style={{ width: '100%' }} />
                         )}
                       </Form.Item>
                     </Col>
-                    <Col  span={11}>
+                    <Col span={24} md={11}>
                       <Form.Item label={tu('end_time')}>
                         {getFieldDecorator('participation_end_date', {})(
                           <DatePicker style={{ width: '100%' }} />

@@ -81,13 +81,26 @@ export class TokenCreate extends Component {
 
   componentDidMount() {
     if(this.isLoggedIn()){
-      this.setState({
-        paramData: {
-          ...this.state.paramData,
-        author: this.props.account.address
-        }
-      })
+      this.setDefaultData()
     }
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    let {wallet} = this.props;
+    if (wallet !== null) {
+      if (prevProps.wallet === null || wallet.address !== prevProps.wallet.address) {
+        this.setDefaultData()
+      }
+    }
+  }
+
+  setDefaultData = () => {
+    this.setState({
+      paramData: {
+        ...this.state.paramData,
+      author: this.props.account.address
+      }
+    })
   }
 
   changeStep = (step) => {
