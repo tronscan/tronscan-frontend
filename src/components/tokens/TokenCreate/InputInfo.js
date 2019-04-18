@@ -12,7 +12,7 @@ import {
 const { TextArea } = Input;
 const AutoCompleteOption = AutoComplete.Option;
 
-let leave_lock = false
+// let leave_lock = false
 export class TokenCreate extends Component {
 
   constructor(props) {
@@ -29,13 +29,11 @@ export class TokenCreate extends Component {
     };
   }
 
-  componentDidMount() {}
-
-  componentDidUpdate(prevProps, prevState) {
-    if(leave_lock && !this.props.state.leave_lock){
-      this.props.nextState({leave_lock})
-    }
+  componentDidMount() {
+    this.props.nextState({leave_lock: true})
   }
+
+  componentDidUpdate(prevProps, prevState) {}
 
   handleLogoChange = (value) => {
     let autoCompleteResult;
@@ -310,7 +308,7 @@ export class TokenCreate extends Component {
                         {last.abbr}
                         </Form.Item>
 
-                        <span className={isNaN(abbrAmount) && 'd-none'} style={{color: '#9e9e9e'}}>(1 {first.abbr} = {`${abbrAmount} ${last.abbr}`})</span>
+                        <span className={isNaN(abbrAmount)? 'd-none': ''} style={{color: '#9e9e9e'}}>(1 {first.abbr} = {`${abbrAmount} ${last.abbr}`})</span>
                     </div>
                  </Form.Item>
                 </Col>
@@ -480,6 +478,7 @@ export class TokenCreate extends Component {
 function mapPropsToFields(props) {
   let data = props.state.paramData
   let params = {} 
+
   Object.keys(data).map(key => {
     params[key] = Form.createFormField({
       value: data[key],
@@ -488,7 +487,4 @@ function mapPropsToFields(props) {
   return  params
 }
 
-function onValuesChange(){
-  leave_lock = true
-}
-export default Form.create({ name: 'input_info', mapPropsToFields, onValuesChange })(injectIntl(TokenCreate));
+export default Form.create({ name: 'input_info', mapPropsToFields })(injectIntl(TokenCreate));
