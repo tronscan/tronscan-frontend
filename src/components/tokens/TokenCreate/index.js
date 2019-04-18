@@ -6,7 +6,7 @@ import 'moment/min/locales';
 import moment from 'moment';
 import { Steps } from 'antd';
 import SelectTrc from './SelectTrc';
-import InputInfo from './InputInfo';
+import InputInfo from './InputInfo/index';
 import SubmitInfo from './SubmitInfo';
 import ResultInfo from './resultInfo';
 import { Prompt } from 'react-router'
@@ -34,10 +34,10 @@ export class TokenCreate extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      step: 0,
-      type: 'trc10',
+      step: 1,
+      type: 'trc20',
       modal: null,
-      leave_lock: false,
+      leave_lock: true,
       paramData: {
         token_name: '',
         token_abbr: '',
