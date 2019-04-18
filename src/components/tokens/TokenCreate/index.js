@@ -35,7 +35,7 @@ export class TokenCreate extends Component {
     super(props);
     this.state = {
       step: 1,
-      type: 'trc10',
+      type: 'trc20',
       modal: null,
       leave_lock: true,
       paramData: {
