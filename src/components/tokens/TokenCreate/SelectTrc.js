@@ -63,10 +63,10 @@ export class TokenCreate extends Component {
       this.setModal('trx_token_account_limit')
       return
     }
-    if(wallet.balance < 1024*Math.pow(10,6)){
-      this.setModal('trx_token_fee_message')
-      return
-    } 
+    // if(wallet.balance < 1024*Math.pow(10,6)){
+    //   this.setModal('trx_token_fee_message')
+    //   return
+    // }
     nextStep(1)
   }
 

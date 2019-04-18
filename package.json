@@ -111,6 +111,7 @@
     "react-responsive": "^4.1.0",
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",
+    "react-router-navigation-prompt": "^1.8.5",
     "react-router-redux": "^5.0.0-alpha.9",
     "react-scrollspy": "^3.3.5",
     "react-spinners": "^0.2.6",
