@@ -1696,6 +1696,7 @@ export const messages = {
   "email": "邮箱",
   "email_v_required":"邮箱必须填写",
   "email_v_format":"邮箱格式不符合要求",
+  "email_placeholder": "联系邮箱",
   "whitepaper_address":"白皮书地址",
   "price_info":"价格信息",
   "select_socoal_link":"选择添加社交媒体链接",

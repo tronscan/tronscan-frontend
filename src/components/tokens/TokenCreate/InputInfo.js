@@ -204,7 +204,7 @@ export class TokenCreate extends Component {
                     {getFieldDecorator('token_supply', {
                       rules: [{ required: true, message: tu('supply_v_required'), whitespace: true}],
                     })(
-                      <NumericInput placeholder={intl.formatMessage({id: 'abbr_message'})}/>
+                      <NumericInput placeholder={intl.formatMessage({id: 'supply_message'})}/>
                     )}
                   </Form.Item>
                 </Col>
@@ -293,7 +293,7 @@ export class TokenCreate extends Component {
                           {getFieldDecorator(first.name, {
                             rules: [{ required: isTrc10, message: tu('enter_the_amount'), whitespace: true}]
                           })(
-                            <NumericInput style={{width: '80px'}} className="mr-2"/>
+                            <NumericInput style={{width: '80px'}}/>
                           )}
                           {first.abbr}
                           </Form.Item>
@@ -391,7 +391,7 @@ export class TokenCreate extends Component {
                     {getFieldDecorator('website', {
                       rules: [{ required: true, message: tu('no_url_error'), whitespace: true}],
                     })(
-                      <Input/>
+                      <Input placeholder={intl.formatMessage({id: 'url_message'})}/>
                     )}
                   </Form.Item>
                 </Col>
@@ -401,14 +401,14 @@ export class TokenCreate extends Component {
                       rules: [{ required: isTrc20, message: tu('email_v_required'), whitespace: true},
                               {type: 'email', message: tu('email_v_format')}],
                     })(
-                      <Input/>
+                      <Input placeholder={intl.formatMessage({id: 'email_placeholder'})}/>
                     )}
                   </Form.Item>
                 </Col>
                 <Col span={24} className={ isTrc20? 'd-block': 'd-none'}>
                   <Form.Item label={tu('whitepaper_address')}>
                     {getFieldDecorator('white_paper', {})(
-                      <Input />
+                      <Input placeholder={intl.formatMessage({id: 'whitepaper_address'})}/>
                     )}
                   </Form.Item>
                 </Col>
@@ -417,9 +417,9 @@ export class TokenCreate extends Component {
             </div>
             
             <div className={ isTrc20? 'd-block px-2 mb-3': 'd-none'}>
-              <div className="d-flex mb-3">
-                <h5>{tu('select_socoal_link')}</h5>
-                <div className="d-flex icon-list ml-3">
+              <div className="d-md-flex mb-4">
+                <h5 className="mr-3 mb-md-0">{tu('select_socoal_link')}</h5>
+                <div className="d-flex icon-list">
                   {
                     iconList.map( (item, index) => {
                       return <div key={index} 
@@ -453,7 +453,6 @@ export class TokenCreate extends Component {
                             }
                           </div>
                         })
-                        
                       }
                     </Col>
                     }
