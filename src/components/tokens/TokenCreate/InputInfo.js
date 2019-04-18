@@ -164,7 +164,7 @@ export class TokenCreate extends Component {
           >
             {/* base info */}
             <div>
-              <h4 className="mb-3">{tu('basic_info')}</h4>
+              <h4 className="mb-2">{tu('basic_info')}</h4>
               <hr/>
               <Row gutter={24} type="flex" justify="space-between" className="px-2">
                 <Col  span={24} md={11}>
@@ -246,7 +246,7 @@ export class TokenCreate extends Component {
 
             {/* contract info */}
             <div className={ isTrc20? 'd-block': 'd-none'}>
-             <h4 className="mb-3">{tu('contract_info')}</h4>
+             <h4 className="mb-2">{tu('contract_info')}</h4>
              <hr/>
              <Row gutter={24} type="flex" justify="space-between" className="px-2">
                <Col span={24} md={11}>
@@ -281,7 +281,7 @@ export class TokenCreate extends Component {
             
             {/* price info */}
             <div className={ isTrc10? 'd-block': 'd-none'}>
-              <h4 className="mb-3">{tu('price_info')}</h4>
+              <h4 className="mb-2">{tu('price_info')}</h4>
               <hr/>
               <Row gutter={24} type="flex" justify="space-between" className="px-2">
                 <Col span={24}>
@@ -383,7 +383,7 @@ export class TokenCreate extends Component {
 
             {/* social info */}
            <div>
-              <h4 className="mb-3">{tu('social_info')}</h4>
+              <h4 className="mb-2">{tu('social_info')}</h4>
               <hr/>
               <Row gutter={24} type="flex" justify="space-between" className="px-2">
                 <Col  span={24} md={11}>
