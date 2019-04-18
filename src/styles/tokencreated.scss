@@ -93,46 +93,22 @@
       line-height: 45px;
       color: #fff;
 
-      &.is-success {
-        background-image: url(../images/step_icon/center-d.png)
+      @each $name, $tip in (success, d), (process, w), (wait, t){
+        &.is-#{$name} {
+          background-image: url(../images/step_icon/center-#{$tip}.png)
+        }
+        &:first-child.is-#{$name} {
+          background-image: url(../images/step_icon/first-#{$tip}.png)
+        }
+        &:last-child.is-#{$name} {
+          background-image: url(../images/step_icon/last-#{$tip}.png);
+        }
       }
-
-      &.is-process {
-        background-image: url(../images/step_icon/center-w.png)
-      }
-
+      background-size: 100% 100%;
       &.is-wait {
-        background-image: url(../images/step_icon/center.png);
         color: #9b9b9b;
       }
-
-      &:first-child.is-success {
-        background-image: url(../images/step_icon/first-d.png)
-      }
-
-      &:first-child.is-process {
-        background-image: url(../images/step_icon/first-w.png)
-      }
-
-      &:first-child.is-wait {
-        background-image: url(../images/step_icon/first.png);
-      }
-
-      &:last-child.is-success {
-        background-image: url(../images/step_icon/last-d.png)
-      }
-
-      &:last-child.is-process {
-        background-image: url(../images/step_icon/last-w.png)
-      }
-
-      &:last-child.is-wait {
-        background-image: url(../images/step_icon/last.png);
-      }
-
-      background-size: 100% 100%;
     }
-
   }
 
   .select-trc {
