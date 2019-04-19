@@ -58,7 +58,7 @@ class ExchangeList extends React.Component {
       hr:"",
       min:"",
       sec:"",
-      AdClose:false,
+      AdClose:true,
       adURL:"https://trx.market/launchBase?utm_source=TS2",
       adchURL: "https://trx.market/zh/launchBase?utm_source=TS2",
       };
@@ -80,7 +80,7 @@ class ExchangeList extends React.Component {
     if (dex == "GEM") {
       this.setState({ tokenAudited: false });
     }
-    this.countdown();
+    //this.countdown();
   }
 
   componentWillUnmount() {
@@ -112,10 +112,26 @@ class ExchangeList extends React.Component {
       let sec = parseInt((msec / 1000) % 60);
 
       // 个位数前补零
-      day = day > 9 ? day : "0" + day;
-      hr = hr > 9 ? hr : "0" + hr;
-      min = min > 9 ? min : "0" + min;
-      sec = sec > 9 ? sec : "0" + sec;
+      if(day < 10 &&  day > 0){
+          day =  "0" + day
+      }else if(day <= 0){
+          day =  "00"
+      }
+      if(hr < 10 &&  hr > 0){
+          hr =  "0" + hr
+      }else if(hr <= 0){
+          hr =  "00"
+      }
+      if(min < 10 &&  min > 0){
+          min =  "0" + min
+      }else if(min <= 0){
+          min =  "00"
+      }
+      if(sec < 10 &&  sec > 0){
+          sec =  "0" + sec
+      }else if(sec <= 0){
+          sec =  "00"
+      }
       this.setState({
           day: day,
           hr: hr,

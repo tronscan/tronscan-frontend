@@ -20,4 +20,5 @@ deploy:
   github-token: $GITHUB_TOKEN
   keep-history: true
   on:
-    branch: master
+    branch: dev2019_ledger_1
+

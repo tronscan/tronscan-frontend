@@ -38,8 +38,6 @@
     "dotenv": "4.0.0",
     "dotenv-expand": "4.2.0",
     "echarts": "^4.0.4",
-    "electron": "^2.0.1",
-    "electron-packager": "^12.1.0",
     "elliptic": "^6.4.0",
     "eslint": "4.10.0",
     "eslint-config-react-app": "^2.1.0",

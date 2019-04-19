@@ -36,7 +36,8 @@ import { FormatNumberByDecimals } from '../../utils/number'
 import { getQueryString } from "../../utils/url";
 
 @connect(
-    state => ({
+    state => {
+      return {
       account: state.app.account,
       walletType: state.app.wallet,
       tokenBalances: state.account.tokens,
@@ -47,8 +48,8 @@ import { getQueryString } from "../../utils/url";
       delegated: state.account.delegated,
       wallet: state.wallet,
       currentWallet: state.wallet.current,
-      trxBalance: state.account.balance,
-    }),
+      trxBalance: state.account.trxBalance,
+    }},
     {
       login,
       loadRecentTransactions,
@@ -1078,20 +1079,21 @@ export default class Account extends Component {
   createTxnPair = async (firstTokenId, secondTokenId, firstTokenBalance, secondTokenBalance) => {
     let res;
     let {account, currentWallet} = this.props;
-    if (this.state.isTronLink === 1) {
-      let tronWeb;
-      if (this.props.walletType.type === "ACCOUNT_LEDGER") {
-        tronWeb = this.props.tronWeb();
-      } else if (this.props.walletType.type === "ACCOUNT_TRONLINK") {
-        tronWeb = account.tronWeb;
-      }
+    if (this.props.walletType.type === "ACCOUNT_LEDGER") {
+      const tronWeb = this.props.tronWeb();
+      const unSignTransaction = await tronWeb.transactionBuilder.createTRXExchange(firstTokenId, firstTokenBalance, secondTokenBalance, currentWallet.address).catch(e => false);
+      const {result} = await  transactionResultManager(unSignTransaction, tronWeb);
+      res = result;
+    }else if (this.props.walletType.type === "ACCOUNT_TRONLINK") {
+      const tronWeb = account.tronWeb;
       const unSignTransaction = await tronWeb.transactionBuilder.createTRXExchange(firstTokenId, firstTokenBalance, secondTokenBalance, tronWeb.defaultAddress.hex).catch(e => false);
       const {result} = await  transactionResultManager(unSignTransaction, tronWeb);
       res = result;
-    } else {
+    }else {
       const {success} = await Client.createExchange(currentWallet.address, firstTokenId, secondTokenId, firstTokenBalance, secondTokenBalance)(account.key);
       res = success;
     }
+    
     if (res) {
       this.setState({
         temporaryName: name,
@@ -1117,15 +1119,15 @@ export default class Account extends Component {
   injectExchange = async (exchangeId, tokenId, quant) => {
     let res;
     let {account, currentWallet} = this.props;
-    if (this.state.isTronLink === 1) {
-      let tronWeb;
-      if (this.props.walletType.type === "ACCOUNT_LEDGER") {
-        tronWeb = this.props.tronWeb();
-      } else if (this.props.walletType.type === "ACCOUNT_TRONLINK") {
-        tronWeb = account.tronWeb;
-      }
+    if (this.props.walletType.type === "ACCOUNT_LEDGER") {
+      const tronWeb = this.props.tronWeb();
+      const unSignTransaction = await tronWeb.transactionBuilder.injectExchangeTokens(exchangeId, tokenId, quant, currentWallet.address).catch(e => false);
+      const {result} = await  transactionResultManager(unSignTransaction, tronWeb);
+      res = result;
+    }else if (this.props.walletType.type === "ACCOUNT_TRONLINK") {
+      const tronWeb = account.tronWeb;
       const unSignTransaction = await tronWeb.transactionBuilder.injectExchangeTokens(exchangeId, tokenId, quant, tronWeb.defaultAddress.hex).catch(e => false);
-      const {result} = await transactionResultManager(unSignTransaction, tronWeb);
+      const {result} = await  transactionResultManager(unSignTransaction, tronWeb);
       res = result;
     } else {
       const {success} = await Client.injectExchange(currentWallet.address, exchangeId, tokenId, quant)(account.key);
@@ -1156,15 +1158,15 @@ export default class Account extends Component {
   withdrawExchange = async (exchangeId, tokenId, quant) => {
     let res;
     let {account, currentWallet} = this.props;
-    if (this.state.isTronLink === 1) {
-      let tronWeb;
-      if (this.props.walletType.type === "ACCOUNT_LEDGER") {
-        tronWeb = this.props.tronWeb();
-      } else if (this.props.walletType.type === "ACCOUNT_TRONLINK") {
-        tronWeb = account.tronWeb;
-      }
+    if (this.props.walletType.type === "ACCOUNT_LEDGER") {
+      const tronWeb = this.props.tronWeb();
+      const unSignTransaction = await tronWeb.transactionBuilder.withdrawExchangeTokens(exchangeId, tokenId, quant, currentWallet.address).catch(e => false);
+      const {result} = await  transactionResultManager(unSignTransaction, tronWeb);
+      res = result;
+    }else if (this.props.walletType.type === "ACCOUNT_TRONLINK") {
+      const tronWeb = account.tronWeb;
       const unSignTransaction = await tronWeb.transactionBuilder.withdrawExchangeTokens(exchangeId, tokenId, quant, tronWeb.defaultAddress.hex).catch(e => false);
-      const {result} = await transactionResultManager(unSignTransaction, tronWeb)
+      const {result} = await  transactionResultManager(unSignTransaction, tronWeb);
       res = result;
     } else {
       const {success} = await Client.withdrawExchange(currentWallet.address, exchangeId, tokenId, quant)(account.key);
@@ -1425,7 +1427,9 @@ export default class Account extends Component {
 
   render() {
     let {modal, sr, issuedAsset, showBandwidth, showBuyTokens, temporaryName, hideSmallCurrency, tokenTRC10} = this.state;
+
     let {account, frozen, totalTransactions, currentWallet, wallet, accountResource, trxBalance, intl} = this.props;
+
     if (!wallet.isOpen || !currentWallet) {
       return (
           <main className="container header-overlap">
@@ -1450,14 +1454,14 @@ export default class Account extends Component {
     return (
         <main className="container header-overlap token_black accounts">
           {modal}
-          <div className="text-center alert alert-light alert-dismissible fade show" role="alert">
-            <a href={url} target="_blank" style={{textDecoration: 'none'}}>
-              {tu("accunt_ad_tip")}
-            </a>
-            <button type="button" className="close" data-dismiss="alert" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
+          {/*<div className="text-center alert alert-light alert-dismissible fade show" role="alert">*/}
+            {/*<a href={url} target="_blank" style={{textDecoration: 'none'}}>*/}
+              {/*{tu("accunt_ad_tip")}*/}
+            {/*</a>*/}
+            {/*<button type="button" className="close" data-dismiss="alert" aria-label="Close">*/}
+              {/*<span aria-hidden="true">&times;</span>*/}
+            {/*</button>*/}
+          {/*</div>*/}
           <div className="row">
             <div className="col-md-3">
               <div className="card h-100 bg-line_red bg-image_band">
