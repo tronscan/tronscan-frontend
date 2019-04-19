@@ -63,7 +63,6 @@ class TokenList extends Component {
         // if (tokens.length === 0) {
         //     toastr.warning(intl.formatMessage({id: 'warning'}), intl.formatMessage({id: 'record_not_found'}));
         // }
-        console.log('tokens',tokens);
         this.setState({
             loading: false,
             tokens,
@@ -99,13 +98,10 @@ class TokenList extends Component {
     addIEOClass = () =>{
         let { page } = this.state;
         let table = document.querySelector('.ant-table-tbody').firstElementChild;//获取第一个表格
-        console.log('page',page)
         if(page == 1){
             table.classList.add('trc20-star-ad')
-            console.log('table',111)
         }else{
             table.classList.remove('trc20-star-ad')
-            console.log('table',222)
         }
         if(document.querySelector('.trc20-star-ad')){
             document.querySelector('.trc20-star-ad').addEventListener("click", function(){

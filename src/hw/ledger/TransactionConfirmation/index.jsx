@@ -18,13 +18,9 @@ export default function Contract({ contract, extra }) {
       tokenList[0].token_id = TronWeb.toUtf8(contractParams.asset_name);
       tokenList[0].amount = contractParams.amount;
       tokenInfo = rebuildList(tokenList, 'token_id', 'amount')[0];
-      console.log('tokenInfo',tokenInfo)
   }
 
 
-  console.log("contract.type.toUpperCase()",contract.type.toUpperCase())
-  console.log('contractParams',contractParams)
-  console.log('extra',extra)
 
   switch (contract.type.toUpperCase()) {
     case "TRANSFERCONTRACT":

@@ -48,7 +48,7 @@ class ExchangeList extends React.Component {
       hr:"",
       min:"",
       sec:"",
-      AdClose:false,
+      AdClose:true,
       adURL:"https://trx.market/launchBase?utm_source=TS2",
       adchURL:"https://trx.market/zh/launchBase?utm_source=TS2",
     };
@@ -63,7 +63,7 @@ class ExchangeList extends React.Component {
     }, 10000);
 
     this.setState({ time: getDataTime });
-    this.countdown();
+    //this.countdown();
   }
 
   componentWillUnmount() {

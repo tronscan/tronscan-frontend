@@ -46,9 +46,7 @@ export function withTronWeb(InnerComponent) {
       const {account, wallet} = this.props;
 
       return async (transaction) => {
-        console.log('transaction111')
-        console.log("SIGNING TRANSACTION", transaction);
-          console.log('transaction222')
+
 
         if (!wallet.isOpen) {
           throw new Error("wallet is not open");
@@ -73,7 +71,6 @@ export function withTronWeb(InnerComponent) {
 
                 let tokenInfo = [];
                 let extra = {};
-                console.log('contractType',contractType)
                 switch (contractType){
                     case 2: // Transfer Assets
                       const ID = tronWeb.toUtf8(
@@ -84,7 +81,6 @@ export function withTronWeb(InnerComponent) {
                       tokenInfo.push(this.getLedgerTokenInfo(ID).message);
                       break;
                     case 41: //ExchangeCreateContract
-                      console.log(transaction.raw_data.contract[0].parameter.value);
                       const token1 =  await this.getTokenExtraInfo(
                         transaction.raw_data.contract[0].parameter.value.first_token_id
                       );
@@ -147,7 +143,6 @@ export function withTronWeb(InnerComponent) {
                 }
 
                 extra.hash = transaction.txID;
-                console.log('transaction8888',transaction)
                 this.setState({
                   modal: await this.buildModal(extra, transaction)
                 });
@@ -159,7 +154,6 @@ export function withTronWeb(InnerComponent) {
                 });
 
                 transaction.signature = [Buffer.from(signedResponse).toString('hex')];
-                  console.log('transaction9999',transaction)
                 return transaction;
               } finally {
                 this.hideModal();
@@ -227,7 +221,7 @@ export function withTronWeb(InnerComponent) {
         error();
         this.hideModal();
       };
-      console.log(extra);
+      //console.log(extra);
 
       return (
         <Modal isOpen={true} fade={false} keyboard={false} size="lg" className="modal-dialog-centered" zIndex="9999">

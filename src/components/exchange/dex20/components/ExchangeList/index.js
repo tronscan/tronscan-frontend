@@ -58,7 +58,7 @@ class ExchangeList extends React.Component {
       hr:"",
       min:"",
       sec:"",
-      AdClose:false,
+      AdClose:true,
       adURL:"https://trx.market/launchBase?utm_source=TS2",
       adchURL: "https://trx.market/zh/launchBase?utm_source=TS2",
       };
@@ -80,7 +80,7 @@ class ExchangeList extends React.Component {
     if (dex == "GEM") {
       this.setState({ tokenAudited: false });
     }
-    this.countdown();
+    //this.countdown();
   }
 
   componentWillUnmount() {
