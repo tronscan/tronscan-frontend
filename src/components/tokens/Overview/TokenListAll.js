@@ -328,7 +328,6 @@ class TokenList extends Component {
                   }}
                   onRow={(record) => {
                     return {onClick: (event) => {
-                      console.log(record)
                       if(record.isTop &&  record.contractAddress == "TNYNLRkqq956bQc2buvoLbaLgh25RkJMiN"){
                         window.open(url)
                       }
