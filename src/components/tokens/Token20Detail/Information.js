@@ -1,5 +1,6 @@
 import React from "react";
 import {tu} from "../../../utils/i18n";
+import {toThousands} from "../../../utils/number";
 import {FormattedDate, FormattedNumber, FormattedTime } from "react-intl";
 import {AddressLink, ExternalLink} from "../../common/Links";
 import {Link} from "react-router-dom";
@@ -21,7 +22,11 @@ export function Information({token}) {
   const tokenList = [
     { 
       name: 'total_supply', 
-      content: <FormattedNumber value={token.total_supply_with_decimals / (Math.pow(10,token.decimals))}/>
+      content: <div>
+        {/*<FormattedNumber value={token.total_supply_with_decimals / (Math.pow(10,token.decimals))} maximumFractionDigits={token.decimals}/>*/}
+        <span>{toThousands(parseFloat(token.total_supply_with_decimals / (Math.pow(10,token.decimals))).toFixed(token.decimals))}</span>
+        <span className="ml-1">{token.symbol}</span>
+      </div>
     },
     {
       name: 'contract_address',

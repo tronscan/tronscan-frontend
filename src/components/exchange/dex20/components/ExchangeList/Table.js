@@ -19,7 +19,7 @@ class ExchangeTable extends React.Component {
       activeIndex: props.activeIndex,
       optional: [],
       optionalBok: false,
-      offlineToken: [27]
+      offlineToken: [30]
     };
   }
 

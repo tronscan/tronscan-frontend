@@ -32,7 +32,8 @@ const Search = Input.Search;
 class ExchangeList extends React.Component {
   constructor() {
     super();
-    this.state = {
+      this.date =  "2019-04-18T15:00:00.000Z"
+      this.state = {
       dataSource: [],
       time: null,
       tokenAudited: true,
@@ -52,8 +53,15 @@ class ExchangeList extends React.Component {
       },
       tagLock: true,
       open: false,
-      id: alpha(24)
-    };
+      id: alpha(24),
+      day:"",
+      hr:"",
+      min:"",
+      sec:"",
+      AdClose:false,
+      adURL:"https://trx.market/launchBase?utm_source=TS2",
+      adchURL: "https://trx.market/zh/launchBase?utm_source=TS2",
+      };
   }
 
   componentDidMount() {
@@ -72,6 +80,7 @@ class ExchangeList extends React.Component {
     if (dex == "GEM") {
       this.setState({ tokenAudited: false });
     }
+    this.countdown();
   }
 
   componentWillUnmount() {
@@ -86,6 +95,62 @@ class ExchangeList extends React.Component {
       this.setData(tokenAudited);
     }
   }
+
+  //活动倒计时
+  countdown(){
+      // 目标日期时间戳
+      const end = Date.parse(new Date(this.date));
+      // 当前时间戳
+      const now = Date.parse(new Date());
+      // 相差的毫秒数
+      const msec = end - now;
+
+      // 计算时分秒数
+      let day = parseInt(msec / 1000 / 60 / 60 / 24);
+      let hr = parseInt((msec / 1000 / 60 / 60) % 24);
+      let min = parseInt((msec / 1000 / 60) % 60);
+      let sec = parseInt((msec / 1000) % 60);
+
+      // 个位数前补零
+      if(day < 10 &&  day > 0){
+          day =  "0" + day
+      }else if(day <= 0){
+          day =  "00"
+      }
+      if(hr < 10 &&  hr > 0){
+          hr =  "0" + hr
+      }else if(hr <= 0){
+          hr =  "00"
+      }
+      if(min < 10 &&  min > 0){
+          min =  "0" + min
+      }else if(min <= 0){
+          min =  "00"
+      }
+      if(sec < 10 &&  sec > 0){
+          sec =  "0" + sec
+      }else if(sec <= 0){
+          sec =  "00"
+      }
+      this.setState({
+          day: day,
+          hr: hr,
+          min: min,
+          sec: sec,
+      });
+
+      // 一秒后递归
+      setTimeout(() => {
+          this.countdown();
+      }, 1000);
+  }
+
+  marketAdClose = (e) =>{
+      window.event.returnValue=false
+      this.setState({
+          AdClose:true
+      });
+  };
   setData(type) {
     let { exchange20List, exchangeallList } = this.props;
     if (type) {
@@ -143,14 +208,33 @@ class ExchangeList extends React.Component {
       activeIndex,
       searchAddId,
       id,
-      open
+      open,
+      day,
+      hr,
+      min,
+      sec,
+      AdClose,
+      adURL,
+      adchURL
     } = this.state;
     let { intl } = this.props;
     return (
       <div className="exchange-list mr-2">
         {/* 市场 */}
+
         <div className="exchange-list-mark p-3 mb-2">
           {/* 标题 */}
+          {!AdClose &&<a href={intl.locale == 'zh'? adchURL: adURL}  target="_blank" className="market-ad">
+              <img src={ intl.locale == "zh"?require("../../../../../images/market/ieo_zh.png"):require("../../../../../images/market/ieo_en.png")} alt="ieo"/>
+              <ul>
+                <li>{day}</li>
+                <li>{hr}</li>
+                <li>{min}</li>
+                <li>{sec}</li>
+              </ul>
+              <i className="market-ad-close" onClick={ (e)=>{this.marketAdClose(e)}}>×</i>
+            </a>
+          }
           <div className="d-flex  justify-content-between align-items-center w-100 mb-3">
             <h6 className="m-0">
               {/* {tu("marks")} */}
@@ -228,7 +312,7 @@ class ExchangeList extends React.Component {
           <div className="dex-search" />
           {
             <PerfectScrollbar>
-              <div className="exchange-list__table" style={styles.list}>
+              <div className="exchange-list__table" style={AdClose?styles.list:styles.adlist}>
                 <ExchangeTable dataSource={dataSource} />
               </div>
             </PerfectScrollbar>
@@ -266,7 +350,9 @@ export default connect(
 
 const styles = {
   list: {
-    // height: 320,
     height: 300
+  },
+  adlist:{
+      height:106
   }
 };

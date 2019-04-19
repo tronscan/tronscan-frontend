@@ -3,7 +3,7 @@ import xhr from "axios/index";
 import {Client} from "../../../services/api";
 import {ONE_TRX} from "../../../constants";
 import {connect} from "react-redux";
-import {injectIntl} from "react-intl";
+import {FormattedNumber, injectIntl} from "react-intl";
 import {filter, includes} from "lodash";
 import {tronAddresses} from "../../../utils/tron";
 import {TronLoader} from "../../common/loaders";
@@ -14,6 +14,14 @@ import {tu} from "../../../utils/i18n";
 import CountUp from 'react-countup';
 import {Link} from "react-router-dom"
 import {API_URL} from "../../../constants";
+import { DatePicker, Select } from 'antd';
+import SmartTable from "../../common/SmartTable.js"
+import moment from 'moment';
+import { upperFirst } from 'lodash'
+import {AddressLink} from "../../common/Links";
+import {Truncate} from "../../common/text";
+
+import isMobile from "../../../utils/isMobile";
 import {
     LineReactHighChartAdd,
     LineReactHighChartTx,
@@ -21,7 +29,11 @@ import {
     LineReactHighChartBlockchainSize,
     BarReactHighChartBlockSize,
     LineReactHighChartPrice,
-    LineReactHighChartVolumeUsd
+    LineReactHighChartVolumeUsd,
+    EnergyConsumeChart,
+    ContractInvocationChart,
+    ContractInvocationDistributionChart,
+    EnergyConsumeDistributionChart
 } from "../../common/LineCharts";
 
 import {
@@ -31,6 +43,10 @@ import {
 
 import {loadPriceData} from "../../../actions/markets";
 import {t} from "../../../utils/i18n";
+
+const Option = Select.Option;
+
+// const API_URL = 'http://52.15.68.74:10000'
 
 class Statistics extends React.Component {
 
@@ -62,7 +78,18 @@ class Statistics extends React.Component {
             priceBTC:null,
             marketCapitalization:null,
             foundationFreeze:null,
-            circulatingNum:null
+            circulatingNum:null,
+            energyConsumeData: null,
+            ContractInvocation: null,
+            ContractInvocationDistribution: null,
+            ContractInvocationDistributionParams: {
+                time: new Date().getTime() - 2*24*60*60*1000,
+                range: 20,
+                total_used_energy: 0,
+                scale: '',
+                range_type: 'Top20'
+            },
+            EnergyConsumeDistribution: null
         };
     }
 
@@ -89,6 +116,19 @@ class Statistics extends React.Component {
             case 'accounts':
                 this.loadAccounts();
                 break;
+            case 'EnergyConsume':
+                this.loadEnergyConsumeData();
+                break;
+            case 'ContractInvocation':
+                this.loadContractInvocation();
+                break;
+            case 'ContractInvocationDistribution':
+                this.loadContractInvocationDistribution();
+                break;
+            case 'EnergyConsumeDistribution':
+                this.loadEnergyConsumeDistribution();
+                break;
+                
             default:
                 this.loadTxOverviewStats();
                 break;
@@ -447,21 +487,348 @@ class Statistics extends React.Component {
         });
     }
 
+    // 获取TRON日能量消耗图表
+    async loadEnergyConsumeData() {
+        let {data} = await xhr.get(API_URL + "/api/energystatistic");
+        data.data.pop()
+        this.setState({
+            energyConsumeData: data.data,
+            summit: {
+                EnergyConsume_sort: [
+                    {
+                        date:  data.max.day,
+                        increment: data.max.total_energy
+                    },
+                    {
+                        date:  data.min.day,
+                        increment: data.min.total_energy
+                    }
+                ]
+                
+            }
+        });
+    }
+
+    // TRON日合约调用图表
+    async loadContractInvocation() {
+        // 次数
+        let {data } = await xhr.get(API_URL + "/api/triggerstatistic");
+        // 地址数
+        let {data: addressData } = await xhr.get(API_URL + "/api/calleraddressstatistic");
+
+        data.data.pop()
+        addressData.data.pop()
+
+        let payload = {
+            trigger_amount: [],
+            address_amount: []
+        }
+        data.data.map(item => {
+            payload.trigger_amount.push([
+                moment(item.day).valueOf(),
+                item.triggers_amount
+            ])
+        })
+        addressData.data.map(item => {
+            payload.address_amount.push([
+                moment(item.day).valueOf(),
+                item.caller_amount
+            ])
+        })
+
+        this.setState({
+            ContractInvocation: payload,
+            summit: {
+                ContractInvocation_sort: [
+                    {
+                        date: data.max.day,
+                        increment: data.max.triggers_amount
+                    },
+                    {
+                        date: data.min.day,
+                        increment: data.min.triggers_amount
+                    }
+                ]
+                
+            }
+        });
+    }
+
+   // 每日合约消耗能量分布
+    async loadEnergyConsumeDistribution(){
+        let { time, range} = this.state.ContractInvocationDistributionParams
+        let {data: {total, totalEnergy, data}} = await xhr.get(API_URL + "/api/energydailystatistic?limit="+ range+"&day="+time);
+
+        let totle_used_energy = 0
+        let used_scale = ''
+
+        data.map((item, index) => {
+            item.percent = ((item.total_energy / totalEnergy)*100).toFixed(2) + '%'
+            item.index = index+1
+            item.name = item.name || '-'
+            totle_used_energy += item.total_energy
+        })
+
+        used_scale = ((totle_used_energy / totalEnergy)*100).toFixed(2) + '%'
+
+        this.setState({
+            EnergyConsumeDistribution: data,
+            ContractInvocationDistributionParams: {
+                ...this.state.ContractInvocationDistributionParams,
+                total_used_energy: totle_used_energy,
+                scale: used_scale,
+                total_energy: totalEnergy
+            }
+        });
+    }
+
+     
+    async loadContractInvocationDistribution() {
+        let { time, range} = this.state.ContractInvocationDistributionParams
+        let {data: {data, totalCallerAmount, totalTrigger}} = await xhr.get(API_URL + "/api/triggeramountstatistic?limit="+ range+"&day="+time);
+        // let {data: callData} = await xhr.get(API_URL + "/api/calleraddressamountstatistic?limit="+ range+"&long="+time);
+
+        let totle_used_energy = 0
+        let used_scale = ''
+
+        data.map((item, index) => {
+            item.caller_percent = (item.caller_amount / totalCallerAmount).toFixed(2) + '%'
+            item.trigger_percent = (item.trigger_amount / totalTrigger).toFixed(2) + '%'
+            item.index = index+1
+            item.name = item.name || '-'
+        })
+        
+        used_scale = (totle_used_energy / data.totalTrigger).toFixed(2) + '%'
+
+
+        this.setState({
+            ContractInvocationDistribution: data,
+            ContractInvocationDistributionParams: {
+                ...this.state.ContractInvocationDistributionParams,
+                total_energy: totalTrigger
+            }
+        });
+    }
+
+    onChangeDate = (date, dateString) => {
+        let {match} = this.props;
+        let chartName = match.params.chartName;
+        this.setState({
+            ContractInvocationDistributionParams: {
+                ...this.state.ContractInvocationDistributionParams,
+                time: date.valueOf()
+            }
+        }, () => {
+           
+            switch (chartName){
+                case 'ContractInvocationDistribution':
+                    this.loadContractInvocationDistribution();
+                    break;
+                case 'EnergyConsumeDistribution':
+                    this.loadEnergyConsumeDistribution();
+                    break;
+            }
+        })
+       
+       
+    }
+    handleChangeSelect = (value) => {
+        let {match} = this.props;
+        let chartName = match.params.chartName;
+        let map = {
+            20: 'Top20',
+            50: 'Top50',
+            100: 'Top100',
+        }
+        this.setState({
+            ContractInvocationDistributionParams: {
+                ...this.state.ContractInvocationDistributionParams,
+                range: value,
+                range_type: map[value]
+            }
+        }, () => {
+            switch (chartName){
+                case 'ContractInvocationDistribution':
+                    this.loadContractInvocationDistribution();
+                    break;
+                case 'EnergyConsumeDistribution':
+                    this.loadEnergyConsumeDistribution();
+                    break;
+            }
+        })
+    }
+
+    disabledEndDate = (endValue) => {
+        const startValue = new Date() -  2*24*60*60*1000
+        if (!endValue || !startValue) {
+          return false;
+        }
+        return endValue.valueOf() >= startValue.valueOf();
+    }
+
+    customizedColumn = () => {
+        let {intl} = this.props;
+        let column = [
+            {
+                title: "#",
+                dataIndex: 'index',
+                key: 'index',
+                width: '40px',
+                align: 'center',
+                render: (text, record, index) => {
+                  return <span>{text}</span>
+                }
+            },
+          {
+            title: upperFirst(intl.formatMessage({id: 'contract_address'})),
+            dataIndex: 'contract_address',
+            key: 'contract_address',
+            render: (text, record, index) => {
+              return <AddressLink address={text} isContract={true}/>
+            }
+          },
+          {
+            title: upperFirst(intl.formatMessage({id: 'contract_name'})),
+            dataIndex: 'name',
+            key: 'name',
+            render: (text, record, index) => {
+              return <span>{text || '-'}</span>
+            }
+          },
+          {
+            title: upperFirst(intl.formatMessage({id: 'total_energy_used'})),
+            dataIndex: 'total_energy',
+            key: 'total_energy',
+            render: (text, record, index) => {
+              return <FormattedNumber value={text}/>
+            }
+          },
+          {
+            title: upperFirst(intl.formatMessage({id: 'freezing_energy'})),
+            dataIndex: 'energy',
+            key: 'energy',
+            render: (text, record, index) => {
+              return <FormattedNumber value={text}/>
+            }
+          },
+          {
+            title: upperFirst(intl.formatMessage({id: 'burning_energy'})),
+            dataIndex: 'trx',
+            key: 'trx',
+            render: (text, record, index) => {
+              return <FormattedNumber value={text}/>
+            }
+          },
+          {
+            title: upperFirst(intl.formatMessage({id: 'energy_scale'})),
+            dataIndex: 'percent',
+            key: 'percent',
+            render: (text, record, index) => {
+              return <span>{text}</span>
+            }
+          },
+        ];
+        return column;
+      }
+
+      callCustomizedColumn = () => {
+        let {intl} = this.props;
+        let column = [
+            {
+                title: "#",
+                dataIndex: 'index',
+                key: 'index',
+                width: '40px',
+                align: 'center',
+                render: (text, record, index) => {
+                  return <span>{text}</span>
+                }
+            },
+          {
+            title: upperFirst(intl.formatMessage({id: 'contract_address'})),
+            dataIndex: 'contract_address',
+            key: 'contract_address',
+            render: (text, record, index) => {
+              return <AddressLink address={text}/>
+            }
+          },
+          {
+            title: upperFirst(intl.formatMessage({id: 'contract_name'})),
+            dataIndex: 'name',
+            key: 'name',
+            render: (text, record, index) => {
+              return <span>{text || '-'}</span>
+            }
+          },
+          {
+            title: upperFirst(intl.formatMessage({id: 'call_address_time'})),
+            dataIndex: 'caller_amount',
+            key: 'caller_amount',
+            render: (text, record, index) => {
+              return <FormattedNumber value={text}/>
+            }
+          },
+          {
+            title: upperFirst(intl.formatMessage({id: 'call_time'})),
+            dataIndex: 'trigger_amount',
+            key: 'trigger_amount',
+            render: (text, record, index) => {
+              return <FormattedNumber value={text}/>
+            }
+          },
+          {
+            title: upperFirst(intl.formatMessage({id: 'call_address_scale'})),
+            dataIndex: 'caller_percent',
+            key: 'caller_percent',
+            render: (text, record, index) => {
+              return <span>{text}</span>
+            }
+          },
+          {
+            title: upperFirst(intl.formatMessage({id: 'call_scale'})),
+            dataIndex: 'trigger_percent',
+            key: 'trigger_percent',
+            render: (text, record, index) => {
+              return <span>{text}</span>
+            }
+          },
+        ];
+        return column;
+      }
+
+
 
     render() {
         let {match, intl} = this.props;
-        let {txOverviewStats, txOverviewStatsFull, addressesStats, blockSizeStats, blockchainSizeStats, priceStats, transactionStats, transactionValueStats, blockStats, accounts, volumeStats, pieChart, supplyTypesChart, summit,genesisNum,blockProduceRewardsNum,nodeRewardsNum,independenceDayBurned,feeBurnedNum,currentTotalSupply,priceUSD,priceBTC,marketCapitalization,foundationFreeze,circulatingNum} = this.state;
+        let {txOverviewStats, txOverviewStatsFull, 
+            addressesStats, blockSizeStats, blockchainSizeStats, 
+            priceStats, transactionStats, transactionValueStats, 
+            blockStats, accounts, volumeStats, pieChart, 
+            supplyTypesChart, summit,genesisNum,
+            blockProduceRewardsNum,nodeRewardsNum,
+            independenceDayBurned,feeBurnedNum,currentTotalSupply,
+            priceUSD,priceBTC,marketCapitalization,foundationFreeze,
+            circulatingNum, energyConsumeData, ContractInvocation,
+            ContractInvocationDistribution, ContractInvocationDistributionParams,
+            EnergyConsumeDistribution } = this.state;
+
         let unit;
         let uploadURL = API_URL + "/api/v2/node/overview_upload";
+        let column = this.customizedColumn()
+        let call_colum = this.callCustomizedColumn()
+
+        let chartHeight = isMobile? 240: 500
+
         if (match.params.chartName === 'blockchainSizeStats' || match.params.chartName === 'addressesStats') {
             unit = 'increase';
         } else {
             unit = 'number';
         }
+
         return (
             <main className="container header-overlap">
                 {
-                    match.params.chartName != 'pieChart' && match.params.chartName != 'supply' ?
+                    match.params.chartName != 'pieChart' && match.params.chartName != 'supply' && match.params.chartName != 'ContractInvocationDistribution' && match.params.chartName !='EnergyConsumeDistribution' ?
                         <div className="alert alert-light" role="alert">
                           <div className="row">
                             <div className="col-md-6 text-center">
@@ -489,46 +856,46 @@ class Statistics extends React.Component {
               <div className="row">
                 <div className="col-md-12">
                   <div className="card">
-                    <div className="card-body p-5">
+                    <div className="card-body p-3 p-md-5">
                         {
                             match.params.chartName === 'txOverviewStats' &&
-                            <div style={{height: 500}}>
+                            <div style={{height: chartHeight}}>
                                 {
                                     txOverviewStats === null ?
                                         <TronLoader/> :
-                                        <LineReactHighChartTx source='singleChart' style={{height: 500}}
+                                        <LineReactHighChartTx source='singleChart' style={{height: chartHeight}}
                                                               data={txOverviewStats} intl={intl}/>
                                 }
                             </div>
                         }
                         {
                             match.params.chartName === 'totalTxns' &&
-                            <div style={{height: 500}}>
+                            <div style={{height: chartHeight}}>
                                 {
                                   txOverviewStatsFull === null ?
                                         <TronLoader/> :
-                                        <LineReactHighChartTotalTxns source='singleChart' style={{height: 500}}
+                                        <LineReactHighChartTotalTxns source='singleChart' style={{height: chartHeight}}
                                                                      data={txOverviewStatsFull} intl={intl}/>
                                 }
                             </div>
                         }
                         {
                             match.params.chartName === 'addressesStats' &&
-                            <div style={{height: 500}}>
+                            <div style={{height: chartHeight}}>
                                 {
                                     addressesStats === null ?
                                         <TronLoader/> :
-                                        <LineReactHighChartAdd source='singleChart' style={{height: 500}} data={addressesStats} intl={intl}/>
+                                        <LineReactHighChartAdd source='singleChart' style={{height: chartHeight}} data={addressesStats} intl={intl}/>
                                 }
                             </div>
                         }
                         {
                             match.params.chartName === 'blockSizeStats' &&
-                            <div style={{height: 500}}>
+                            <div style={{height: chartHeight}}>
                                 {
                                     blockSizeStats === null ?
                                         <TronLoader/> :
-                                        <BarReactHighChartBlockSize source='singleChart' style={{height: 500}}
+                                        <BarReactHighChartBlockSize source='singleChart' style={{height: chartHeight}}
                                                                     data={blockSizeStats}
                                                                     intl={intl}/>
                                 }
@@ -536,39 +903,39 @@ class Statistics extends React.Component {
                         }
                         {
                             match.params.chartName === 'blockchainSizeStats' &&
-                            <div style={{height: 500}}>
+                            <div style={{height: chartHeight}}>
                                 {
                                     blockchainSizeStats === null ?
                                         <TronLoader/> :
-                                        <LineReactHighChartBlockchainSize source='singleChart' style={{height: 500}}
+                                        <LineReactHighChartBlockchainSize source='singleChart' style={{height: chartHeight}}
                                                                           data={blockchainSizeStats} intl={intl}/>
                                 }
                             </div>
                         }
                         {
                             match.params.chartName === 'priceStats' &&
-                            <div style={{height: 500}}>
+                            <div style={{height: chartHeight}}>
                                 {
                                     priceStats === null ?
                                         <TronLoader/> :
-                                        <LineReactHighChartPrice source='singleChart' style={{height: 500}}
+                                        <LineReactHighChartPrice source='singleChart' style={{height: chartHeight}}
                                                                  data={priceStats} intl={intl}/>
                                 }
                             </div>
                         }
                         {
                             match.params.chartName === 'accounts' &&
-                            <div style={{height: 500}}>
+                            <div style={{height: chartHeight}}>
                                 {
                                     accounts === null ?
                                         <TronLoader/> :
-                                        <PieReact style={{height: 500}} data={accounts}/>
+                                        <PieReact style={{height: chartHeight}} data={accounts}/>
                                 }
                             </div>
                         }
                         {
                             match.params.chartName === 'transactionValueStats' &&
-                            <div style={{height: 500}}>
+                            <div style={{height: chartHeight}}>
                                 {
                                     transactionValueStats === null ?
                                         <TronLoader/> :
@@ -576,7 +943,7 @@ class Statistics extends React.Component {
                                             id: 'trx_transferred_past_hour',
                                             href: 'transactionValueStats'
                                         }}
-                                                   style={{height: 500}} data={transactionValueStats}
+                                                   style={{height: chartHeight}} data={transactionValueStats}
                                                    keysData={['timestamp', 'value']}
                                                    format={{timestamp: true}}/>
                                 }
@@ -584,13 +951,13 @@ class Statistics extends React.Component {
                         }
                         {
                             match.params.chartName === 'transactionStats' &&
-                            <div style={{height: 500}}>
+                            <div style={{height: chartHeight}}>
                                 {
                                     transactionStats === null ?
                                         <TronLoader/> :
                                         <LineReact
                                             message={{id: 'transactions_past_hour', href: 'transactionStats'}}
-                                            style={{height: 500}} data={transactionStats}
+                                            style={{height: chartHeight}} data={transactionStats}
                                             keysData={['timestamp', 'value']}
                                             format={{timestamp: true}}/>
                                 }
@@ -598,12 +965,12 @@ class Statistics extends React.Component {
                         }
                         {
                             match.params.chartName === 'blockStats' &&
-                            <div style={{height: 500}}>
+                            <div style={{height: chartHeight}}>
                                 {
                                     blockStats === null ?
                                         <TronLoader/> :
                                         <LineReact message={{id: 'average_blocksize', href: 'blockStats'}}
-                                                   style={{height: 500}} data={blockStats}
+                                                   style={{height: chartHeight}} data={blockStats}
                                                    keysData={['timestamp', 'value']}
                                                    format={{timestamp: true}}/>
                                 }
@@ -611,17 +978,146 @@ class Statistics extends React.Component {
                         }
                         {
                             match.params.chartName === 'volumeStats' &&
-                            <div style={{height: 500}}>
+                            <div style={{height: chartHeight}}>
                                 {
                                     volumeStats === null ?
                                         <TronLoader/> :
-                                        <LineReactHighChartVolumeUsd source='singleChart'
-                                                                     style={{height: 500}}
+                                        <LineReactHighChartVolumeUsd style={{height: chartHeight}}
                                                                      data={volumeStats}
                                                                      intl={intl}/>
                                 }
                             </div>
                         }
+                        {
+                            match.params.chartName === 'EnergyConsume' &&
+                            <div style={{height: chartHeight}}>
+                                {
+                                    energyConsumeData === null ?
+                                        <TronLoader/> :
+                                        <EnergyConsumeChart source='singleChart'
+                                                                     style={{height: chartHeight}}
+                                                                     data={energyConsumeData}
+                                                                     type="c2"
+                                                                     intl={intl}/>
+                                }
+                            </div>
+                        }
+                        {
+                            match.params.chartName === 'ContractInvocation' &&
+                            <div style={{height: chartHeight}}>
+                                {
+                                    ContractInvocation === null ?
+                                        <TronLoader/> :
+                                        <ContractInvocationChart source='singleChart'
+                                                                     style={{height: chartHeight}}
+                                                                     data={ContractInvocation}
+                                                                     intl={intl}/>
+                                }
+                            </div>
+                        }
+
+                        {
+                        //    EnergyConsumeDistribution
+                            match.params.chartName === 'EnergyConsumeDistribution' &&
+                            <div>
+                            {
+                                EnergyConsumeDistribution === null ? <TronLoader/> :
+                                <div>
+                                    <div className="d-md-flex justify-content-between pb-3">
+                                        <DatePicker 
+                                            onChange={this.onChangeDate}
+                                            disabledDate={this.disabledEndDate}
+                                            defaultValue={moment(new Date(ContractInvocationDistributionParams.time), 'YYYY-MM-DD')}/>
+
+                                        <div className="pt-3 pt-md-0">
+                                            <span className="mr-2">{tu('range')}: </span>
+                                            <Select defaultValue="top20" style={{ width: 160 }} onChange={this.handleChangeSelect}>
+                                                <Option value="20">top20</Option>
+                                                <Option value="50">top50</Option>
+                                                <Option value="100">top100</Option>
+                                            </Select>
+                                        </div>
+                                    </div>
+                                
+                                    <EnergyConsumeDistributionChart
+                                        style={{height: chartHeight}}
+                                        data={EnergyConsumeDistribution}
+                                        intl={intl}
+                                    />
+                                    <div className="token_black">
+                                    <div className="col-md-12 table_pos">
+                                        <p>{intl.formatMessage({id:'a_total'})+ intl.formatNumber(ContractInvocationDistributionParams.total_energy)+ 
+                                        intl.formatMessage({id:'energe'})+' ('+ intl.formatMessage({id:'with_the_proportion_of'})+ContractInvocationDistributionParams.scale+
+                                            ') '+ intl.formatMessage({id:'uesd_by_the'}) + ContractInvocationDistributionParams.range_type +
+                                            intl.formatMessage({id:'contracts_from_the_total_used_of'}) + intl.formatNumber(ContractInvocationDistributionParams.total_used_energy)+
+                                            intl.formatMessage({id:'energe'})}
+                                        </p>
+                                        {( EnergyConsumeDistribution.length === 0)?
+                                        <div className="p-3 text-center no-data">{tu("no_data")}</div>
+                                        :
+                                        <SmartTable 
+                                            bordered={true} 
+                                            column={column} 
+                                            data={EnergyConsumeDistribution} 
+                                        />}
+                                    </div>
+                                    </div>
+
+                                </div>
+                            }
+                            </div>
+                        }
+
+                        {
+                           
+                            match.params.chartName === 'ContractInvocationDistribution' &&
+                            <div>
+                            {
+                                ContractInvocationDistribution === null ? <TronLoader/> :
+                                <div>
+                                    <div className="d-md-flex justify-content-between pb-3">
+                                        <DatePicker 
+                                            onChange={this.onChangeDate}
+                                            disabledDate={this.disabledEndDate}
+                                            defaultValue={moment(new Date(ContractInvocationDistributionParams.time), 'YYYY-MM-DD')}/>
+
+                                        <div className="pt-3 pt-md-0">
+                                            <span className="mr-2">{tu('range')}: </span>
+                                            <Select defaultValue="top20" style={{ width: 160 }} onChange={this.handleChangeSelect}>
+                                                <Option value="20">top20</Option>
+                                                <Option value="50">top50</Option>
+                                                <Option value="100">top100</Option>
+                                            </Select>
+                                        </div>
+                                    </div>
+                                
+                                    <ContractInvocationDistributionChart
+                                        style={{height: chartHeight}}
+                                        data={ContractInvocationDistribution}
+                                        intl={intl}
+                                    />
+                                    <div className="token_black">
+                                    <div className="col-md-12 table_pos">
+                                        <p>{ intl.formatMessage({id: 'a_total'}) + intl.formatNumber(ContractInvocationDistributionParams.total_energy)+ 
+                                            intl.formatMessage({id: 'Contract_times_calls'})}
+                                        </p>
+                                        {( ContractInvocationDistribution.length === 0)?
+                                        <div className="p-3 text-center no-data">{tu("no_data")}</div>
+                                        :
+                                        <SmartTable 
+                                            bordered={true} 
+                                            column={call_colum} 
+                                            data={ContractInvocationDistribution} 
+                                        />}
+                                    </div>
+                                    </div>
+
+                                </div>
+                            }
+                            </div>
+                        }
+
+                        
                         {
 
                             match.params.chartName === 'pieChart' &&
@@ -633,7 +1129,7 @@ class Statistics extends React.Component {
                                                                      message={{id: 'produce_distribution'}}
                                                                      intl={intl}
                                                                      data={pieChart}
-                                                                     style={{height: 500}}/>
+                                                                     style={{height: chartHeight}}/>
 
                                 }
                             </div>

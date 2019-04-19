@@ -1588,6 +1588,39 @@ export const messages = {
     "20_transfers": "TRC-20 transfers",
     "internal_transactions": "internal transactions",
 
+
+    "total_energy_used_chart": "نمودار مصرف انرژی روزانه قرارداد",	
+    "total_used_energy": "کل انرژی استفاده شده،",	
+    "energy_used_by_freezing_TRX": "انرژی استفاده شده توسط فریز تی آر ایکس",	
+    "energy_used_by_burning_TRX": "انرژی استفاده شده توسط سوزاندن تی آر ایکس",	
+    "total_energy_used": "کل انرژی مصرف شده",	
+    "freezing_energy": "انرژی از تی آر ایکس فریز شده",	
+    "burning_energy": "انرژی از تی آر ایکس سوزانده شده",	
+    "energy_scale": "نسبت مصرف انرژی",	
+    "range": "محدوده",	
+	
+    "call": "تماس",	
+    "caller": "تماس گیرنده",	
+    "call_time": "زمان تماس",	
+    "call_scale": "	تعداد تماس",
+    "call_address_time": "آدرس زمان تماس",	
+    "call_address_scale": "آدرس تعداد تماس",	
+	
+    "contract_call_chart": "جدول وضعیت تماس قرارداد ترون",	
+    "call_address_number": "تعداد آدرس ها",
+    "contract_call_per_day": "قرارداد تماس در هر روز",	
+    "contract_call_chart_day": 'نمودار تماس قرارداد روزانه',	
+    "Tron_energy_chart": "مصرف انرژی روزانه ترون",	
+    "tron_contract_call_chart": "	نمودار تماس قرارداد روز ترون",
+    "day_contract_energy_distribution": "	توزیع انرژی مصرفی روزانه",
+    "day_contract_call_distribution": " تماس روزانه",	
+	
+    "a_total": "مجموع",	
+    "with_the_proportion_of": "با نسبت",	
+    "uesd_by_the": "	استفاده شده توسط",
+    "contracts_from_the_total_used_of": "قرارداد از مجموع استفاده از",	
+    "Contract_times_calls": "زمان های تماس قرارداد (مرتب شده بر اساس قرارداد برابر ارزش به ترتیب نزولی)",	
+
     /*
         ##################################################################################
         #                                                                                #
@@ -1607,5 +1640,17 @@ export const messages = {
     "select_start_time":"لطفا زمان شروع را انتخاب کنید",
     "select_end_time":"لطفا زمان پایان را انتخاب کنید",
     "binance": "binance",
+    "EnergyConsume_title": "تاریخ مصرف انرژی روزانه TRON",
+    "EnergyConsume_subtitle": "برای بزرگنمایی کلیک کنید و در قسمت نقطه بکشید",
+    "EnergyConsume_yaxis": "انرژی",
+    "social_link":"لینک های اجتماعی",
+    "TRON_ecosystem":"محیط زیست ترون",
+    "accunt_ad_tip":"نمایش پروژه TRXMarket LaunchBase ACE فرود سنگین",
+    "token_fliter": 'فیلتر توکن',
+    "gain": "تغییر (٪)",
+    "volume_24_trx": '(24H) جلد',
+    'all': 'همه',
+    "market_capitalization_trx": "ارزش بازار (TRX)",
+    "token_txs_info":"Token",
 
 };

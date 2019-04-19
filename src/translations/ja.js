@@ -1592,6 +1592,44 @@ export const messages = {
     "20_transfers": "TRC-20 transfers",
     "internal_transactions": "internal transactions",
 
+
+    "total_energy_used_chart": "毎日コントラクト・エネルギー使用の図",
+    "total_used_energy": "消耗された総エネルギー",
+    "energy_used_by_freezing_TRX": "TRX凍結用のエネルギー",
+    "energy_used_by_burning_TRX": "TRX焼却用のエネルギー",
+    "total_energy_used": "消耗されたエネルギーの総額",
+    "freezing_energy": "凍結されたエネルギー冻结trx的能量",
+    "burning_energy": "焼却されたエネルギー",
+    "energy_scale": "エネルギーの割合",
+    "range": "range",
+
+    "call": "コール",
+    "caller": "コーラー",
+    "call_time": "コール回数",
+    "call_scale": "コール回数の割合",
+    "call_address_time": "コールされたアドレス数",
+    "call_address_scale": "コールされたアドレス数の割合",
+
+    "contract_call_chart": "TRONコントラクトのコール状況表",
+    "call_address_number": "アドレス数",
+    "contract_call_per_day": "毎日のコントラクト・コール",
+    "contract_call_chart_day": '毎日のコール・チャート',
+    "Tron_energy_chart": "TRON1日平均エネルギー消耗図表",
+    "tron_contract_call_chart": "TRON1日平均コントラクト・コールの図表",
+    "day_contract_energy_distribution": "毎日のコントラクトより消耗されたエネルギーの分布",
+    "day_contract_call_distribution": "毎日のコントラクト・コールの分布",
+
+    "a_total": "総額",
+    "with_the_proportion_of": "割当て",
+    "uesd_by_the": "に使われた",
+    "contracts_from_the_total_used_of": "_合計使用量からのコントラクト",
+    "Contract_times_calls": "コントラクトのコール回数",
+
+    "EnergyConsume_title": "TRON日々エネルギー消費の履歴",
+    "EnergyConsume_subtitle": "描画領域をドラッグしてズームインする",
+    "EnergyConsume_yaxis": "エネルギー",
+
+
     /*
         ##################################################################################
         #                                                                                #
@@ -1611,6 +1649,15 @@ export const messages = {
     "select_start_time":"開始時間を選択してください",
     "select_end_time":"終了時間を選択してください",
     "binance": "binance",
+    "social_link":"ソーシャルリンク",
+    "TRON_ecosystem":"TRONエコシステム",
+    "accunt_ad_tip":"TRXMarket LaunchBaseから注目発表 ACE華やかに登場",
+    "token_fliter": 'トークンフィルター',
+    "gain": "変更（％）",
+    "volume_24_trx": 'ボリューム（24時間）',
+    'all': 'すべて',
+    "market_capitalization_trx": "市場価値 (TRX)",
+    "token_txs_info":"Token",
 
 }
 

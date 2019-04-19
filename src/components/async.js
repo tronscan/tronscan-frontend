@@ -378,6 +378,25 @@ export const TokenTRC20ListAsync = asyncComponent({
     )
 });
 
+export const TokenAllAsync = asyncComponent({
+  LoadingComponent: () => <TronLoader />,
+  resolve: () =>
+    new Promise(resolve =>
+      // Webpack's code splitting API w/naming
+      require.ensure(
+        [],
+        require => {
+          $script("", () => {
+            resolve(require("./tokens/Overview/TokenListAll"));
+          });
+        },
+        "TokenList"
+      )
+    )
+});
+
+
+
 export const TokensCreateAsync = asyncComponent({
   LoadingComponent: () => <TronLoader />,
   resolve: () =>

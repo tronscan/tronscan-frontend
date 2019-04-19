@@ -4,7 +4,7 @@ import xhr from "axios/index";
 import {injectIntl} from "react-intl";
 import {doSearch, getSearchType} from "../../services/search";
 import CountUp from 'react-countup';
-import {channel, Client} from "../../services/api";
+import {channel, Client, Client20} from "../../services/api";
 import {Link} from "react-router-dom";
 import {TRXPrice} from "../common/Price";
 import RecentBlocks from "./RecentBlocks";
@@ -49,6 +49,19 @@ export default class Home extends Component {
       addressesStats: null,
       maxTps: 0,
       tps: 0,
+      notice: [],
+      noticezhIEO:{
+          id:1,
+          html_url:"https://trx.market/zh/launchBase?utm_source=TS1",
+          name:"TRXMarket LaunchBase 瞩目呈现 ACE重磅登陆",
+          created_at: "2019-04-09T12:00:00Z",
+      },
+      noticeenIEO:{
+          id:1,
+          html_url:"https://trx.market/launchBase?utm_source=TS1",
+          name:"TRXMarket LaunchBase grand open ACE is waiting for you",
+          created_at: "2019-04-09T12:00:00Z"
+      },
     };
   }
 
@@ -62,9 +75,9 @@ export default class Home extends Component {
   }
 
   async loadAccounts() {
-    let { totalAccounts } = await Client.getAccounts();
+    let { rangeTotal } = await Client.getAccounts();
     this.setState({
-      totalAccounts: totalAccounts
+      totalAccounts: rangeTotal
     })
   }
 
@@ -114,12 +127,12 @@ export default class Home extends Component {
         });
       }
     }
-      this.setState({
+    this.setState({
       txOverviewStats: temp.slice(0, 14),
       addressesStats: addressesTemp.slice(0, 14),
       transactionPerDay: temp[temp.length - 2].totalTransaction,
       blockHeight: blocks[0] ? blocks[0].number : 0,
-      totalAccounts: txOverviewStats[txOverviewStats.length-1].totalAddress,
+     // totalAccounts: txOverviewStats[txOverviewStats.length-1].totalAddress,
     });
   }
 
@@ -158,10 +171,17 @@ export default class Home extends Component {
     }
   };
 
-  componentDidMount() {
+  async componentDidMount() {
     this.loadNodes();
     this.load();
+    this.loadAccounts();
     this.reconnect();
+
+    let { intl } = this.props;
+    let { noticezhIEO, noticeenIEO } = this.state;
+    const data = await Client20.getTRONNotice(intl.locale, { page: 2 });
+    intl.locale == "zh"? data.articles.unshift(noticezhIEO):data.articles.unshift(noticeenIEO);
+    this.setState({ notice: data.articles });
     // constellationPreset(this.$ref, "Hot Sparks");
 
     // this.props.setInterval(() => {
@@ -169,10 +189,16 @@ export default class Home extends Component {
     // }, 6000);
   }
 
-  componentDidUpdate(prevProps) {
-    const {wsdata} = this.props
+  async  componentDidUpdate(prevProps) {
+    const {wsdata, intl} = this.props;
+    let { noticezhIEO, noticeenIEO } = this.state;
     if (wsdata !== prevProps.wsdata) {
       this.reconnect();
+    }
+    if (prevProps.intl.locale !== intl.locale) {
+        const data = await Client20.getTRONNotice(intl.locale, { page: 2 });
+        intl.locale == "zh"? data.articles.unshift(noticezhIEO):data.articles.unshift(noticeenIEO);
+        this.setState({ notice: data.articles });
     }
   }
 
@@ -222,7 +248,39 @@ export default class Home extends Component {
 
             <div className="container home-splash p-0 p-md-3">
               <div className="row justify-content-center text-center">
-                <div className="col-12">
+                <div className="col-12 exchange">
+                  <div className="notice">
+                    <img src={require("../../images/announcement-logo.png")} alt="" />
+                    <div className="notice-wrap">
+                        {this.state.notice.map((v, i) => (
+                            <a
+                                className="item"
+                                key={v.id}
+                                href={v.html_url}
+                                target="_blank"
+                            >
+                  <span title={v.name} className="title">
+                    {v.name}
+                  </span>
+                              <span className="date">
+                    ({v.created_at.substring(5, 10)})
+                  </span>
+                            </a>
+                        ))}
+                    </div>
+                      {this.state.notice.length > 0 ? (
+                          <a
+                              href={
+                                  intl.locale == "zh"
+                                      ? "https://support.tronscan.org/hc/zh-cn/categories/360001618172-%E5%85%AC%E5%91%8A%E4%B8%AD%E5%BF%83"
+                                      : "https://support.tronscan.org/hc/en-us/categories/360001621692-Announcements"
+                              }
+                              target="_blank"
+                          >
+                              {tu("learn_more")}>
+                          </a>
+                      ) : null}
+                  </div>
                   {/*<p className="mt-5 mt-5-logo">*/}
                   {/*<img src={this.getLogo()}*/}
                   {/*className="animated ad-600ms zoomIn"/>*/}

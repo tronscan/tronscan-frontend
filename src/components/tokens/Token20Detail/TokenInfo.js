@@ -4,6 +4,7 @@ import {ONE_TRX} from "../../../constants";
 import {tu} from "../../../utils/i18n";
 import {AddressLink, ExternalLink} from "../../common/Links";
 import {withTimers} from "../../../utils/timing";
+import {toThousands} from "../../../utils/number";
 
 class TokenInfo extends React.Component {
 
@@ -32,7 +33,11 @@ class TokenInfo extends React.Component {
             <tr>
               <th>{tu("total_supply")}:</th>
               <td>
-                <FormattedNumber value={token.total_supply_with_decimals / (Math.pow(10,token.decimals))}/>
+                <div>
+                    {/*<FormattedNumber value={token.total_supply_with_decimals / (Math.pow(10,token.decimals))} maximumFractionDigits={token.decimals}/>*/}
+                  <span>{toThousands(parseFloat(token.total_supply_with_decimals / (Math.pow(10,token.decimals))).toFixed(token.decimals))}</span>
+                  <span className="ml-1">{token.symbol}</span>
+                </div>
               </td>
             </tr>
             <tr>

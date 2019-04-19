@@ -7,6 +7,8 @@ import {SwitchToken} from "../../common/Switch";
 import SmartTable from "../../common/SmartTable.js"
 import {upperFirst} from "lodash";
 import _ from "lodash";
+import { CONTRACT_ADDRESS_USDT } from "../../../constants";
+
 import rebuildList from "../../../utils/rebuildList";
 
 export  class TokenBalances extends React.Component {
@@ -146,8 +148,10 @@ export  class TokenBalances extends React.Component {
                 className: 'ant_table',
                 render: (text, record, index) => {
                     return (
-                        <TokenTRC20Link name={record.name} address={record.contract_address}
-                                        namePlus={record.name + ' (' + record.symbol + ')'}/>
+                        record.contract_address == CONTRACT_ADDRESS_USDT?<div className="map-token-top">
+                            <TokenTRC20Link name={record.name} address={record.contract_address} namePlus={record.name + ' (' + record.symbol + ')'}/>
+                            <i></i>
+                        </div>: <TokenTRC20Link name={record.name} address={record.contract_address} namePlus={record.name + ' (' + record.symbol + ')'}/>
                     )
                 }
             },

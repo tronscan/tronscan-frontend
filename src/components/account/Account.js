@@ -9,7 +9,7 @@ import {SwitchToken} from "../common/Switch";
 import FreezeBalanceModal from "./FreezeBalanceModal";
 import {AddressLink, HrefLink, TokenLink, TokenTRC20Link} from "../common/Links";
 import SweetAlert from "react-bootstrap-sweetalert";
-import {API_URL, IS_TESTNET, ONE_TRX} from "../../constants";
+import {API_URL, IS_TESTNET, ONE_TRX, CONTRACT_ADDRESS_USDT} from "../../constants";
 import {Client} from "../../services/api";
 import ApplyForDelegate from "./ApplyForDelegate";
 import _, {trim} from "lodash";
@@ -33,6 +33,7 @@ import {CopyToClipboard} from "react-copy-to-clipboard";
 import QRCode from "qrcode.react";
 import {byteArray2hexStr} from "@tronscan/client/src/utils/bytes";
 import { FormatNumberByDecimals } from '../../utils/number'
+import { getQueryString } from "../../utils/url";
 
 @connect(
     state => ({
@@ -82,12 +83,19 @@ export default class Account extends Component {
   }
 
   componentDidMount() {
-    let {account} = this.props;
+
+    let {account,match} = this.props;
+
+
     if (account.isLoggedIn) {
       this.setState({isTronLink: Lockr.get("islogin")});
       this.reloadTokens();
       this.loadAccount();
-      //this.getTRC20Tokens();
+      if(getQueryString('from') == 'tronlink' && getQueryString('type') == 'frozen'){
+          setTimeout(()=>{
+              this.scrollToAnchor()
+          },3000)
+      }
     }
   }
 
@@ -99,6 +107,13 @@ export default class Account extends Component {
       this.loadAccount();
       //this.getTRC20Tokens();
     }
+  }
+
+  scrollToAnchor = () => {
+
+      let anchorElement = document.getElementById('tronPower');
+      if(anchorElement) { anchorElement.scrollIntoView(); }
+
   }
 
   loadAccount = async () => {
@@ -220,8 +235,14 @@ export default class Account extends Component {
             tokens20.map((token) => (
                 <tr key={token.token20_name}>
                   <td className="text-nowrap">
-                    <TokenTRC20Link name={token.name} address={token.contract_address}
-                                    namePlus={token.name + ' (' + token.symbol + ')'}/>
+                      {
+                          token.contract_address == CONTRACT_ADDRESS_USDT?<div className="map-token-top">
+                            <TokenTRC20Link name={token.name} address={token.contract_address}
+                                            namePlus={token.name + ' (' + token.symbol + ')'}/>
+                            <i></i>
+                            </div>:<TokenTRC20Link name={token.name} address={token.contract_address}
+                                                   namePlus={token.name + ' (' + token.symbol + ')'}/>
+                      }
                   </td>
                   <td className="text-right">
                     <span>{token.token20_balance}</span>
@@ -548,7 +569,7 @@ export default class Account extends Component {
                 </td>
                   <td className="text-right">
                     {
-                      <button className="btn btn-danger mr-2" disabled={true} style={{
+                      <button className="btn btn-danger mr-2"  style={{
                         marginTop: '-5px',
                         marginBottom: '-5px'
                       }} onClick={() => {
@@ -582,7 +603,7 @@ export default class Account extends Component {
                 </td>
                 <td className="text-right">
                   {
-                    <button className="btn btn-danger mr-2" disabled={true} style={{marginTop: '-5px',
+                    <button className="btn btn-danger mr-2" style={{marginTop: '-5px',
                       marginBottom: '-5px'}} onClick={() => {
                       this.showUnfreezeModal(1, true, item.to)
                     }}>
@@ -1404,7 +1425,7 @@ export default class Account extends Component {
 
   render() {
     let {modal, sr, issuedAsset, showBandwidth, showBuyTokens, temporaryName, hideSmallCurrency, tokenTRC10} = this.state;
-    let {account, frozen, totalTransactions, currentWallet, wallet, accountResource, trxBalance} = this.props;
+    let {account, frozen, totalTransactions, currentWallet, wallet, accountResource, trxBalance, intl} = this.props;
     if (!wallet.isOpen || !currentWallet) {
       return (
           <main className="container header-overlap">
@@ -1422,12 +1443,16 @@ export default class Account extends Component {
     }
     let hasFrozen = frozen.balances.length > 0;
     let hasResourceFrozen = accountResource.frozen_balance > 0
+    let url = 'https://trx.market/launchBase?utm_source=TS4'
+    if(intl.locale == 'zh'){
+      url = 'https://trx.market/zh/launchBase?utm_source=TS4'
+    }
     return (
         <main className="container header-overlap token_black accounts">
           {modal}
           <div className="text-center alert alert-light alert-dismissible fade show" role="alert">
-            <a href="https://trondice.org" target="_blank" style={{textDecoration: 'none'}}>
-              {tu("account_ad")}
+            <a href={url} target="_blank" style={{textDecoration: 'none'}}>
+              {tu("accunt_ad_tip")}
             </a>
             <button type="button" className="close" data-dismiss="alert" aria-label="Close">
               <span aria-hidden="true">&times;</span>
@@ -1467,7 +1492,7 @@ export default class Account extends Component {
               </div>
             </div>
 
-            <div className="col-md-3 mt-3 mt-md-0">
+            <div className="col-md-3 mt-3 mt-md-0" >
               <div className="card h-100 bg-line_yellow bg-image_vote">
                 <div className="card-body">
                   <h3 style={{color: '#E0AE5C'}}>
@@ -1838,7 +1863,7 @@ export default class Account extends Component {
               </div>
             </div>
           </div>
-          <div className="row mt-3">
+          <div className="row mt-3" id="tronPower">
             <div className="col-md-12">
               <div className="card">
                 <div className="card-body">

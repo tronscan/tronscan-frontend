@@ -1599,6 +1599,42 @@ export const messages = {
   "20_transfers": "TRC-20 transfers",
   "internal_transactions": "internal transactions",
 
+  "total_energy_used_chart": "диаграмма общей использованной энергии",
+  "total_used_energy": "общая использованная энергия ",
+  "energy_used_by_freezing_TRX": " энергия, используемая при замораживание TRX ",
+  "energy_used_by_burning_TRX": " энергия, используемая при сжигании TRX ",
+  "total_energy_used": " общая использованная энергия ",
+  "freezing_energy": " энергия при заморозки",
+  "burning_energy": "энергия при сжигание",
+  "energy_scale": "шкала энергии ",
+  "range": " диапазон ",
+
+  "call": "вызов",
+  "caller": "звонящий",
+  "call_time": "время звонка ",
+  "call_scale": "шкала вызовов",
+  "call_address_time": "время адреса вызова",
+  "call_address_scale": "шкала адресов вызовов",
+
+  "contract_call_chart": "диаграмма вызваных контрактов ",
+  "call_address_number": " номер вызованого адреса",
+  "contract_call_per_day": " контрактный звонок в день ",
+  "contract_call_chart_day": ' диаграмма контрактных звоноков в день ',
+  "Tron_energy_chart": " диаграмма энергии TRON",
+  "tron_contract_call_chart": "диаграмма звонков по контракту TRON",
+  "day_contract_energy_distribution": " распределение энергии однодневного котнракта ",
+  "day_contract_call_distribution": " Распределение вызова дневного контракта",
+
+  "a_total": " Всего ",
+  "with_the_proportion_of": " с пропорцией в",
+  "uesd_by_the": " используемой",
+  "contracts_from_the_total_used_of": " контракты от общего объема использованных ",
+  "Contract_times_calls": " Вызовы времени контракта (отсортировано по значению времени контракта в порядке убывания)",
+
+
+  "EnergyConsume_title": "Ежедневная История Использованной Энергии TRON",
+  "EnergyConsume_subtitle": "Нажмите и перетащите в область для увеличения",
+  "EnergyConsume_yaxis": "Энергия",
   /*
       ##################################################################################
       #                                                                                #
@@ -1618,6 +1654,14 @@ export const messages = {
   "select_start_time":"Пожалуйста, выберите время начала",
   "select_end_time":"Пожалуйста, выберите время окончания",
   "binance": "binance",
-
+  "social_link":"Ссылка на социальную сеть",
+  "TRON_ecosystem":"Экосистема TRON",
+  "accunt_ad_tip":"TRXMarket LaunchBase укажет свой первый токен -ACE",
+  "token_fliter": 'Фильтр токенов',
+  "gain": "Изменение (%)",
+  "volume_24_trx": 'Объем (24 часа)',
+  'all': 'полный',
+  "market_capitalization_trx": "Рыночная капитализация (TRX)",
+  "token_txs_info":"Token",
 
 };

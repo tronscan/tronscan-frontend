@@ -288,7 +288,7 @@ export const messages = {
     "successfully_frozen": "成功冻结",
     "name_changed": "名称已更改",
     "successfully_changed_name_to_message": "成功更改名字",
-    "unable_to_rename_title": "无法重命名",
+    "unable_to_rename_title": "此名称已经存在",
     "unable_to_rename_message": "更新名字时出现错误，请稍后重试",
     "unfreeze_trx_confirm_message": "确定要解冻TRX？",
     "unfreeze_assets": "解冻资产",
@@ -577,7 +577,7 @@ export const messages = {
     #                                                                                #
     ##################################################################################
     */
-    "next_round": "下一轮投票",
+    "next_round": "下一轮计票",
     "total_votes": "总票数",
     "most_ranks": "排名上升最多",
     "view_live_ranking": "查看实时排名",
@@ -1596,6 +1596,44 @@ export const messages = {
     "20_transfers": "TRC-20转账",
     "internal_transactions": "合约内交易",
 
+    
+
+    "total_energy_used_chart": "每日合约能量消耗图",
+    "total_used_energy": "总能量消耗",
+    "energy_used_by_freezing_TRX": "冻结trx的能量",
+    "energy_used_by_burning_TRX": "烧毁trx的能量",
+    "total_energy_used": "总能量消耗",
+    "freezing_energy": "冻结trx的能量",
+    "burning_energy": "烧毁trx的能量",
+    "energy_scale": "能量消耗占比",
+    "range": "range",
+
+    "call": "调用",
+    "caller": "调用者",
+    "call_time": "调用次数",
+    "call_scale": "调用次数占比",
+    "call_address_time": "调用地址数",
+    "call_address_scale": "调用地址数占比",
+
+    "contract_call_chart": "TRON合约调用情况表",
+    "call_address_number": "地址数",
+    "contract_call_per_day": "每日合约调用数",
+    "contract_call_chart_day": '每日合约调用图',
+    "Tron_energy_chart": "TRON日能量消耗图表",
+    "tron_contract_call_chart": "TRON日合约调用图表",
+    "day_contract_energy_distribution": "每日合约消耗能量分布",
+    "day_contract_call_distribution": "每日合约调用分布",
+
+    "a_total": "总共",
+    "with_the_proportion_of": "占比",
+    "uesd_by_the": "被使用",
+    "contracts_from_the_total_used_of": "合约从总使用中",
+    "Contract_times_calls": "合约调用次数（按照合约次数从大到小排）",
+
+    "EnergyConsume_title": "每日能量消耗",
+    "EnergyConsume_subtitle": "拖拽数据窗口来放大或缩小",
+    "EnergyConsume_yaxis": "能量",
+
     /*
         ##################################################################################
         #                                                                                #
@@ -1614,7 +1652,16 @@ export const messages = {
     "table_info_new_tip":"目前只展示前10,000条数据.如果您想要查询其他数据，建议调整时间范围。",
     "select_start_time":"请选择开始时间",
     "select_end_time":"请选择结束时间",
-    "binance": "币安BINANCE"
+    "binance": "币安BINANCE",
+    "token_fliter": '通证筛选',
+    "gain": "涨跌幅（%）",
+    "volume_24_trx": '成交量（24H）',
+    "social_link":"社交链接",
+    "TRON_ecosystem":"TRON生态",
+    "accunt_ad_tip":"TRXMarket LaunchBase 瞩目呈现 ACE重磅登陆",
+    'all': '全部',
+    "market_capitalization_trx":"市值（TRX）",
+    "token_txs_info":"通证",
 
 
 };

@@ -14,10 +14,12 @@ import Code from "./Code";
 import Txhash from "./Txhash";
 import Events from "./Events";
 import Transfers from "./Transfers";
+import Energy from "./Energy";
+import Call from "./Call";
 import {upperFirst, filter} from "lodash";
 import {Truncate} from "../../common/text";
 import xhr from "axios/index";
-import {API_URL} from "../../../constants";
+import {API_URL, CONTRACT_ADDRESS_USDT} from "../../../constants";
 import { Tooltip } from 'antd'
 
 
@@ -102,7 +104,19 @@ class SmartContract extends React.Component {
                     path: "/events",
                     label: <span>{tu('Events')}</span>,
                     cmp: () => <Events filter={{address: id}} />,
-                }
+                },
+                energy: {
+                    id: "energy",
+                    path: "/energy",
+                    label: <span>{tu('energy')}</span>,
+                    cmp: () => <Energy filter={{address: id}} />,
+                },
+                call: {
+                  id: "call",
+                  path: "/call",
+                  label: <span>{tu('call')}</span>,
+                  cmp: () => <Call filter={{address: id}} />,
+              }
             }
         }));
     }else{
@@ -141,7 +155,19 @@ class SmartContract extends React.Component {
                     path: "/events",
                     label: <span>{tu('Events')}</span>,
                     cmp: () => <Events filter={{address: id}} />,
-                }
+                },
+                energy: {
+                  id: "energy",
+                  path: "/energy",
+                  label: <span>{tu('energy')}</span>,
+                  cmp: () => <Energy filter={{address: id}} />,
+                },
+                call: {
+                  id: "call",
+                  path: "/call",
+                  label: <span>{tu('call')}</span>,
+                  cmp: () => <Call filter={{address: id}} />,
+              }
             }
         }));
     }
@@ -191,6 +217,15 @@ class SmartContract extends React.Component {
                               </li>
                               {
                                 token20&& <li><p>{tu('token_tracker')}: </p>
+                                    {
+                                        token20.contract_address == CONTRACT_ADDRESS_USDT?
+                                            <b className="token-img-top" style={{marginRight:10}}>
+                                                <img width={20} height={20} src={token20.icon_url} alt={token20.name} />
+                                                <i style={{width:10,height:10}}></i>
+                                            </b>
+                                            : <img width={20} height={20} src={token20.icon_url} alt={token20.name} style={{marginRight:10}}/>
+
+                                    }
                                   <TokenTRC20Link name={token20.name} address={token20.contract_address} namePlus={token20.name + ' (' + token20.symbol + ')'} />
                                 </li>
                               }
@@ -198,7 +233,7 @@ class SmartContract extends React.Component {
                           </div>
                           <div className="contract-header__item">
                             <h6 className="contract-header__title">{tu('Misc')}</h6>
-                            <ul>
+                            <ul> 
                               <li>
                                 <p>{tu('contract_creator')}:</p>
                                 {contract.creator &&

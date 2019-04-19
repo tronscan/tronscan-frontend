@@ -1398,6 +1398,27 @@ $border-color-dark: #d8d8d8;
     a {
       color: $main-red;
     }
+
+    .show-current-style{
+      .ant-table.ant-table-bordered {
+        border: 1px solid #d8d8d8 !important;
+      }
+      th {
+        background: #F3F3F3 !important;
+      }
+      th:first-child, td:first-child, {
+        padding-left: 13px !important;
+      }
+      th:last-child, td:last-child {
+        padding-right: 13px!important;
+      }
+      td {
+        border-right: 1px solid #e8e8e8 !important;
+      }
+      tr:last-child td, th {
+        border-bottom: none !important;
+      }
+    }
   }
 }
 
@@ -1615,11 +1636,11 @@ h5 {
 
 ._freezeContent .modal-content {
   width: 460px;
-  height: 340px;
+ // height: 340px;
   border-radius: 2px;
   padding-left: 20px;
   padding-right: 20px;
-  //margin-top: -100px;
+ // margin-top: -100px;
 }
 
 .contract-body {
@@ -2168,6 +2189,18 @@ h5 {
     margin-top: -25px;
     position: absolute;
     right: 10px;
+  }
+}
+
+.apply-all {
+  margin-top: -35px;
+  position: absolute;
+  right: 16px;
+  @media only screen and (max-width: 768px) {
+    margin-top: -64px;
+    position: absolute;
+    right: 10px;
+    left: 10px;
   }
 }
 
@@ -3063,5 +3096,145 @@ h5 {
   background-color: #ffffff;
 }
 
+.market-ad{
+  //width: 340px;
+  margin: 0 auto;
+  display:block;
+  position: relative;
+  img{
+    width: 100%;
+    display: inline-block;
+  }
+  ul{
+    display: flex;
+    position: absolute;
+    color: #333333;
+    top: 115px;
+    left: 101px;
+    li:not(:nth-child(1)){
+      margin-left: 22px;
+    }
+  }
+  .market-ad-close{
+    font-style: normal;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 20px;
+    color: #ffffff;
+    position: absolute;
+    right: 4px;
+    top:0px;
+    transition: all 1s ease .5s;
+    z-index: 9;
+    &:hover{
+      transform: rotate(360deg);
+    }
+  }
+  @media screen and (max-width: 375px)   {
+    margin: 0 auto;
+    display:block;
+    position: relative;
+    img{
+      width: 100%;
+      display: inline-block;
+    }
+    ul{
+      top: 62%;
+      left: 50%;
+      transform: translate(-50%,-50%);
+      li:not(:nth-child(1)){
+        margin-left: 24px;
+      }
+    }
+  }
+  @media screen and (max-width: 414px) and (min-width: 376px)  {
+    //width: 352px;
+    margin: 0 auto;
+    display:block;
+    position: relative;
+    img{
+      width: 100%;
+      display: inline-block;
+    }
+    ul{
+      top: 62%;
+      left: 49.5%;
+      transform: translate(-50%,-50%);
+      li:not(:nth-child(1)){
+        margin-left: 28px;
+      }
+    }
+  }
 
+}
 
+.trc20-ad-bg{
+  .ant-table-tbody tr.trc20-star-ad{
+    background-color: rgb(234, 240, 255);
+    cursor: pointer;
+    &:hover{
+      background-color: rgb(234, 240, 255)!important;
+    }
+    td:nth-child(1){
+      position: relative;
+      .star-tip{
+        width: 20px;
+        height: 20px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-image: url('../images/token/star_tip.png');
+        background-size: 100% 100%;
+      }
+    }
+  }
+
+}
+
+.starbeat {
+  -webkit-animation: starbeat 1s infinite;
+  animation: starbeat 1s infinite;
+  display: inline-block;
+}
+
+@-webkit-keyframes starbeat {
+  0% {
+    -webkit-transform: scale(0.75);
+    transform: scale(0.75); }
+  20% {
+    -webkit-transform: scale(1);
+    transform: scale(1); }
+  40% {
+    -webkit-transform: scale(0.75);
+    transform: scale(0.75); }
+  60% {
+    -webkit-transform: scale(1);
+    transform: scale(1); }
+  80% {
+    -webkit-transform: scale(0.75);
+    transform: scale(0.75); }
+  100% {
+    -webkit-transform: scale(0.75);
+    transform: scale(0.75); }
+}
+
+@keyframes starbeat {
+  0% {
+    -webkit-transform: scale(0.75);
+    transform: scale(0.75); }
+  20% {
+    -webkit-transform: scale(1);
+    transform: scale(1); }
+  40% {
+    -webkit-transform: scale(0.75);
+    transform: scale(0.75); }
+  60% {
+    -webkit-transform: scale(1);
+    transform: scale(1); }
+  80% {
+    -webkit-transform: scale(0.75);
+    transform: scale(0.75); }
+  100% {
+    -webkit-transform: scale(0.75);
+    transform: scale(0.75); }
+}

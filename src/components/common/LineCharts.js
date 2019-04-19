@@ -16,6 +16,7 @@ import HighchartsMore from 'highcharts/highcharts-more';
 import HighchartsDrilldown from 'highcharts/modules/drilldown';
 import Highcharts3D from 'highcharts/highcharts-3d';
 import Exporting from 'highcharts/modules/exporting';
+import Variabled from 'highcharts/modules/variable-pie.js';
 
 import {cloneDeep} from "lodash";
 
@@ -23,6 +24,7 @@ HighchartsMore(Highcharts)
 HighchartsDrilldown(Highcharts);
 Highcharts3D(Highcharts);
 Exporting(Highcharts);
+Variabled(Highcharts)
 
 export class SupplyAreaHighChart extends React.Component {
 
@@ -406,6 +408,7 @@ export class LineReactHighChartTotalTxns extends React.Component {
                 )
             }
         }
+         
         Highcharts.chart(document.getElementById(id),_config);
     }
     shouldComponentUpdate(nextProps)  {
@@ -552,7 +555,7 @@ export class BarReactHighChartBlockSize extends React.Component {
                 intl.formatMessage({id: 'average_blocksize'}) + ' : ' + this.point.avgBlockSize
             )
         }
-
+ 
         Highcharts.chart(document.getElementById(id),_config);
 
     }
@@ -651,6 +654,7 @@ export class LineReactHighChartPrice extends React.Component {
                 )
             }
         }
+         
         Highcharts.chart(document.getElementById(id),_config);
     }
     shouldComponentUpdate(nextProps)  {
@@ -1124,7 +1128,6 @@ export class LineReactPrice extends React.Component {
         if (data && data.length === 0) {
             _config.title.text = "No data";
         }
-
         myChart.setOption(_config);
         this.myChart = myChart;
 
@@ -1325,4 +1328,374 @@ export class LineReactVolumeUsd extends React.Component {
             </div>
         )
     }
+}
+
+
+export class EnergyConsumeChart extends React.Component {
+
+    constructor(props) {
+        super(props)
+        this.myChart = null;
+        let id = ('_' + Math.random()).replace('.', '_');
+        this.state = {
+            lineId: 'EnergyConsumeChart' + id
+        }
+    }
+
+    initLine(id) {
+        let _config = cloneDeep(config.overviewHighChart);
+        let {intl, data, type} = this.props;
+
+        const map = {
+            c1: ['#D5887F', '#C23631'],
+            c2: ['#C23631', '#D5887F']
+        }
+
+        if (data && data.length > 0) {
+            let chartData = [
+                { name: intl.formatMessage({id: 'freezing_energy'}), data: []},
+                { name: intl.formatMessage({id: 'burning_energy'}), data: []},
+            ]
+            data.map(item => {
+                chartData[0].data.push([
+                    item.day,
+                    Number(item.energy)
+                ])
+                chartData[1].data.push([
+                    item.day,
+                    Number(item.trx)
+                ])
+            })
+
+            let options = {
+                chart: {
+                    type: 'column',
+                    zoomType: 'x'
+                },
+                colors: map[type],
+                title: {
+                    text: intl.formatMessage({id: 'EnergyConsume_title'})
+                },
+                subtitle: {text: intl.formatMessage({id: 'EnergyConsume_subtitle'})},
+                yAxis: {
+                    min: 0,
+                    title: {
+                        text: intl.formatMessage({id: 'EnergyConsume_yaxis'})
+                    }
+                },
+                legend: {
+                    align: 'center',
+                    verticalAlign: 'bottom',
+                    symbolRadius: 0,
+                    enabled: true
+                },
+                tooltip: {
+                    formatter: function () {
+                        return intl.formatMessage({id: 'date'}) +': '+intl.formatDate(this.x)+ '<br/>' +
+                        intl.formatMessage({id: 'total_energy_used'}) +': '+ intl.formatNumber(this.points[0].total)+'<br/>' +
+                        this.points.map(item => {
+                            return `<span style="color:${item.color}">${item.series.name}: </span>${intl.formatNumber(item.y)}<br/>`
+                        }).join('')
+                    },
+                    shared: true
+                },
+                plotOptions: {
+                    column: {
+                        stacking: 'normal'
+                    }
+                },
+                series: chartData
+            }
+
+            setOption(_config, options)
+        }
+         
+        if (data && data.length === 0) {
+            _config.title.text = "No data";
+        }
+        Highcharts.chart(id, _config);
+    }
+
+    componentDidMount() {
+        this.initLine(this.state.lineId);
+    }
+
+    componentDidUpdate() {
+        this.initLine(this.state.lineId);
+    }
+
+    render() {
+        return (
+            <div>
+                <div id={this.state.lineId} style={this.props.style}></div>
+            </div>
+        )
+    }
+}
+
+export class ContractInvocationChart extends React.Component {
+
+    constructor(props) {
+        super(props)
+        this.myChart = null;
+        let id = ('_' + Math.random()).replace('.', '_');
+        this.state = {
+            lineId: 'ContractInvocationChart' + id
+        }
+    }
+
+    initLine(id) {
+        let _config = cloneDeep(config.overviewHighChart);
+        let {intl, data} = this.props;
+       
+        if (data) {
+            let options =  {
+                chart: { zoomType: 'x' },
+                colors: ['#f7a35c', '#f15c80'],
+                title: {
+                    text: intl.formatMessage({id: 'contract_call_chart'})
+                },
+                subtitle: {
+                    text: intl.formatMessage({id: 'HighChart_tip'})
+                },
+                xAxis: {
+                    tickPixelInterval: 100
+                },
+                yAxis: {
+                    title: {
+                        text: intl.formatMessage({id: 'contract_call_per_day'})
+                    },
+                    type: 'logarithmic',
+                    minorTickInterval: 0.1,
+                    // tickPositions: [0, 500, 1000, 1500, 2000, 2500, 3000, 100000, 200000, 300000, 400000, 500000, 600000, 700000, 800000, 900000, 1000000, 1100000, 1200000, 1300000, 1400000]
+                },
+                legend: {
+                    align: 'center',
+                    verticalAlign: 'bottom',
+                    enabled: true
+                },
+                tooltip: {
+                    formatter: function () {
+                        return intl.formatMessage({id: 'date'}) + ': ' + intl.formatDate(this.x) + '<br/>' +
+                            this.series.name + ': ' + this.y
+                    }
+                },
+                plotOptions: {
+                    series: {
+                        marker: {
+                            enabled: false
+                        }
+                    }
+                },
+                series: [{
+                    name: intl.formatMessage({id: 'call_time'}),
+                    data: data.trigger_amount
+                }, {
+                    name: intl.formatMessage({id: 'call_address_number'}),
+                    data: data.address_amount
+                }]
+            }
+             
+            setOption(_config, options)
+        }
+        if (data && data.length === 0) {
+            _config.title.text = "No data";
+        }
+        Highcharts.chart(id, _config);
+    }
+
+    componentDidMount() {
+        this.initLine(this.state.lineId);
+    }
+
+    componentDidUpdate() {
+        this.initLine(this.state.lineId);
+    }
+
+    render() {
+        return (
+            <div>
+                <div id={this.state.lineId} style={this.props.style}></div>
+            </div>
+        )
+    }
+}
+
+
+export class ContractInvocationDistributionChart extends React.Component {
+
+    constructor(props) {
+        super(props)
+        this.myChart = null;
+        let id = ('_' + Math.random()).replace('.', '_');
+        this.state = {
+            lineId: 'ContractInvocationChart' + id
+        }
+    }
+
+    initLine(id) {
+        let _config = cloneDeep(config.overviewHighChart);
+        let {intl, data} = this.props;
+
+        
+        var chartdata = data.slice(0).map(o => {
+            o.y= o.trigger_amount
+            o.name = o.contract_address
+            return o
+        })
+       
+        if (data && data.length > 0) {
+            let options =  {
+                chart: {
+                    type: 'variablepie'
+                },
+                colors: ['#7cb5ec', '#434348', '#90ed7d', '#f7a35c', '#8085e9', 
+   '#f15c80', '#e4d354', '#2b908f', '#f45b5b', '#91e8e1'],
+                title: {
+                    text: intl.formatMessage({id: 'contract_call_chart_day'})
+                },
+                tooltip: {
+                    headerFormat: '',
+                    pointFormat: '<span style="color:{point.color}">\u25CF</span> <b> {point.name}</b><br/>' +
+                    intl.formatMessage({id: 'call_address_time'}) + ': <b>{point.caller_amount}</b><br/>' +
+                    intl.formatMessage({id: 'call_address_scale'}) + ': <b>{point.caller_percent}</b><br/>'+
+                    intl.formatMessage({id: 'call_time'}) + ': <b>{point.y}</b><br/>' +
+                    intl.formatMessage({id: 'call_scale'}) + ': <b>{point.trigger_percent}</b><br/>'
+                },
+                series: [{
+                    minPointSize: 70,
+                    innerSize: '30%',
+                    zMin: 0,
+                    name: 'countries',
+                    data: chartdata
+                }]
+            }
+            Object.keys(options).map(item => {
+                _config[item] = options[item]
+            })
+        }
+        if (data && data.length === 0) {
+            _config.title.text = "No data";
+        }
+        Highcharts.chart(id, _config);
+    }
+
+    componentDidMount() {
+        this.initLine(this.state.lineId);
+    }
+
+    componentDidUpdate() {
+        this.initLine(this.state.lineId);
+    }
+
+    render() {
+        return (
+            <div>
+                <div id={this.state.lineId} style={this.props.style}></div>
+            </div>
+        )
+    }
+}
+
+export class EnergyConsumeDistributionChart extends React.Component {
+
+    constructor(props) {
+        super(props)
+        this.myChart = null;
+        let id = ('_' + Math.random()).replace('.', '_');
+        this.state = {
+            lineId: 'ContractInvocationChart' + id
+        }
+    }
+
+    initLine(id) {
+        let _config = cloneDeep(config.overviewHighChart);
+        let {intl, data} = this.props;
+        let totalUsedEnergy = 0
+        let freezingEnergy = 0
+        let burningEnergy = 0
+
+        
+        var chartdata = data.slice(0).map(o => {
+            totalUsedEnergy += Number(o.total_energy)
+            freezingEnergy += Number(o.energy)
+            burningEnergy += Number(o.trx)
+
+            return {
+                name: o.contract_address,
+                y: Number(o.total_energy),
+                real_name: o.name,
+                percent: o.percent
+            }
+        })
+        const SUBTITLE = `
+            ${intl.formatMessage({id: 'total_used_energy'})}: ${intl.formatNumber(totalUsedEnergy)}(
+            ${intl.formatMessage({id: 'energy_used_by_freezing_TRX'})} ${intl.formatNumber(freezingEnergy)}
+            ${intl.formatMessage({id: 'energy_used_by_burning_TRX'})} ${intl.formatNumber(burningEnergy)}
+            )
+        `
+       
+        if (data && data.length > 0) {
+            let options =  {
+                chart: {
+                    type: 'variablepie'
+                },
+                colors: ['#7cb5ec', '#434348', '#90ed7d', '#f7a35c', '#8085e9', 
+   '#f15c80', '#e4d354', '#2b908f', '#f45b5b', '#91e8e1'],
+                title: {
+                    text: intl.formatMessage({id: 'total_energy_used_chart'})
+                },
+                subtitle: {
+                    text: SUBTITLE
+                },
+                tooltip: {
+                    headerFormat: '',
+                    pointFormat: '<span style="color:{point.color}">\u25CF</span> <b> {point.name}</b><br/>' +
+                    intl.formatMessage({id: 'total_energy_used'}) + ': <b>{point.y}</b><br/>' +
+                    intl.formatMessage({id: 'energy_scale'}) + ': <b>{point.percent}</b><br/>'
+                },
+                series: [{
+                    minPointSize: 70,
+                    innerSize: '30%',
+                    zMin: 0,
+                    name: 'countries',
+                    data: chartdata
+                }]
+            }
+            Object.keys(options).map(item => {
+                _config[item] = options[item]
+            })
+        }
+        if (data && data.length === 0) {
+            _config.title.text = "No data";
+        }
+        Highcharts.chart(id, _config);
+    }
+
+    componentDidMount() {
+        this.initLine(this.state.lineId);
+    }
+
+    componentDidUpdate() {
+        this.initLine(this.state.lineId);
+    }
+
+    render() {
+        return (
+            <div>
+                <div id={this.state.lineId} style={this.props.style}></div>
+            </div>
+        )
+    }
+}
+
+function setOption(config, child) {
+    Object.keys(child).map(item => {
+        if(child[item] && child[item].toString() === '[object Object]'){
+            config[item] = config[item] || {}
+            setOption(config[item] , child[item])
+        }else{
+            config[item] = child[item]
+        }
+    }) 
 }

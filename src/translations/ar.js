@@ -1582,6 +1582,43 @@
     "BTT_Token_Release_Schedule":"BTT رمز فتح قفل",
     "source_btt_team":"BTT المصدر: فريق إدارة ",
     "contract_total": "المجموع الحالي للعقد التي تم العثور عليها هو",
+
+    "total_energy_used_chart": " الرسم البياني اليومي لاستهلاك الطاقة",
+    "total_used_energy": " إجمالي الطاقة المستخدمة",
+    "energy_used_by_freezing_TRX": " TRX الطاقة المستخدمة عن طريق تجميد ",
+    "energy_used_by_burning_TRX": " TRX الطاقة تستخرج عن طريق حرق ",
+    "total_energy_used": " إجمالي استهلاك الطاقة ",
+    "freezing_energy": " trx تجميد الطاقة من ",
+    "burning_energy": " TRX الطاقة المحروقة من ",
+    "energy_scale": " نسبة استهلاك الطاقة ",
+    "range": " النطاق ",
+
+    "call": " استدعاء ",
+    "caller": " المستدعي ",
+    "call_time": " عدد مرات الاستدعاء ",
+    "call_scale": " نسبة عدد مرات الاستدعاء ",
+    "call_address_time": " عدد عناوين الاستدعاء ",
+    "call_address_scale": " كمية نسبة الاستدعاء إلى عنوان ",
+
+    "contract_call_chart": " جدول عقد ترون لحالة دعوة العقد ",
+    "call_address_number": " عدد العناوين ",
+    "contract_call_per_day": " دعوة العقد في اليوم الواحد ",
+    "contract_call_chart_day": ' الرسم البياني اليومي لدعوة العقد ',
+    "Tron_energy_chart": " الرسم البياني اليومي في ترون لكمية استهلاك الطاقة ",
+    "tron_contract_call_chart": " دعوة العقد اليومية في ترون باستخدام الرسم البياني ",
+    "day_contract_energy_distribution": " توزيع استهلاك الطاقة اليومي للعقد ",
+    "day_contract_call_distribution": " توزيع دعوات العقود اليومية ",
+
+    "a_total": "المجموع",
+    "with_the_proportion_of": " مع نسبة",
+    "uesd_by_the": " المستخدمة من قبل",
+    "contracts_from_the_total_used_of": " مجموع العقود المستخدمة من",
+    "Contract_times_calls": " عدد الدعوات للعقد (مرتبة حسب قيمة أوقات العقد بترتيب تنازلي)",
+
+    "EnergyConsume_title": "تاريخ استخدام الطاقة اليومي من ترون",
+    "EnergyConsume_subtitle":"انقر واسحب في المنطقة ومن ثم قم بالتأشير للتكبير",
+    "EnergyConsume_yaxis": "الطاقة",
+
     "20_transfers": "TRC-20 transfers",
     "internal_transactions": "internal transactions",
 
@@ -1604,5 +1641,13 @@
     "select_start_time":"يرجى تحديد وقت البدء",
     "select_end_time":"يرجى اختيار وقت الانتهاء",
     "binance": "binance",
-
+    "social_link":"رابط وسائل التواصل الاجتماعي",
+    "TRON_ecosystem":"بيئة ترون",
+    "accunt_ad_tip":"TRXMarket LaunchBase عرض مشروع ACE تسجيل الدخول متاح الى",
+    "token_fliter": 'مرشح الرمز',
+    "gain": "التغيير (٪)",
+    "volume_24_trx": '(24H) حجم',
+    'all': 'الكل',
+    "market_capitalization_trx": "القيمة السوقية (TRX)",
+    "token_txs_info":"Token",
 };
