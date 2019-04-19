@@ -75,9 +75,9 @@ export default class Home extends Component {
   }
 
   async loadAccounts() {
-    let { totalAccounts } = await Client.getAccounts();
+    let { rangeTotal } = await Client.getAccounts();
     this.setState({
-      totalAccounts: totalAccounts
+      totalAccounts: rangeTotal
     })
   }
 
@@ -127,12 +127,12 @@ export default class Home extends Component {
         });
       }
     }
-      this.setState({
+    this.setState({
       txOverviewStats: temp.slice(0, 14),
       addressesStats: addressesTemp.slice(0, 14),
       transactionPerDay: temp[temp.length - 2].totalTransaction,
       blockHeight: blocks[0] ? blocks[0].number : 0,
-      totalAccounts: txOverviewStats[txOverviewStats.length-1].totalAddress,
+     // totalAccounts: txOverviewStats[txOverviewStats.length-1].totalAddress,
     });
   }
 
@@ -174,6 +174,7 @@ export default class Home extends Component {
   async componentDidMount() {
     this.loadNodes();
     this.load();
+    this.loadAccounts();
     this.reconnect();
 
     let { intl } = this.props;

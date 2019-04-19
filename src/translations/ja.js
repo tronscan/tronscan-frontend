@@ -1650,10 +1650,12 @@ export const messages = {
     "social_link":"ソーシャルリンク",
     "TRON_ecosystem":"TRONエコシステム",
     "accunt_ad_tip":"TRXMarket LaunchBaseから注目発表 ACE華やかに登場",
-
     "token_fliter": 'トークンフィルター',
     "gain": "変更（％）",
     "volume_24_trx": 'ボリューム（24時間）',
-    'all': 'すべて'
+    'all': 'すべて',
+    "market_capitalization_trx": "市場価値 (TRX)",
+    "token_txs_info":"Token",
+
 }
 

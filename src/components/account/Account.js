@@ -9,7 +9,7 @@ import {SwitchToken} from "../common/Switch";
 import FreezeBalanceModal from "./FreezeBalanceModal";
 import {AddressLink, HrefLink, TokenLink, TokenTRC20Link} from "../common/Links";
 import SweetAlert from "react-bootstrap-sweetalert";
-import {API_URL, IS_TESTNET, ONE_TRX} from "../../constants";
+import {API_URL, IS_TESTNET, ONE_TRX, CONTRACT_ADDRESS_USDT} from "../../constants";
 import {Client} from "../../services/api";
 import ApplyForDelegate from "./ApplyForDelegate";
 import _, {trim} from "lodash";
@@ -236,8 +236,14 @@ export default class Account extends Component {
             tokens20.map((token) => (
                 <tr key={token.token20_name}>
                   <td className="text-nowrap">
-                    <TokenTRC20Link name={token.name} address={token.contract_address}
-                                    namePlus={token.name + ' (' + token.symbol + ')'}/>
+                      {
+                          token.contract_address == CONTRACT_ADDRESS_USDT?<div className="map-token-top">
+                            <TokenTRC20Link name={token.name} address={token.contract_address}
+                                            namePlus={token.name + ' (' + token.symbol + ')'}/>
+                            <i></i>
+                            </div>:<TokenTRC20Link name={token.name} address={token.contract_address}
+                                                   namePlus={token.name + ' (' + token.symbol + ')'}/>
+                      }
                   </td>
                   <td className="text-right">
                     <span>{token.token20_balance}</span>

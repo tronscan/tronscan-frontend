@@ -1638,17 +1638,17 @@ export const messages = {
     "select_start_time":"لطفا زمان شروع را انتخاب کنید",
     "select_end_time":"لطفا زمان پایان را انتخاب کنید",
     "binance": "binance",
-
     "EnergyConsume_title": "تاریخ مصرف انرژی روزانه TRON",
     "EnergyConsume_subtitle": "برای بزرگنمایی کلیک کنید و در قسمت نقطه بکشید",
     "EnergyConsume_yaxis": "انرژی",
-
     "social_link":"لینک های اجتماعی",
     "TRON_ecosystem":"محیط زیست ترون",
     "accunt_ad_tip":"نمایش پروژه TRXMarket LaunchBase ACE فرود سنگین",
-
     "token_fliter": 'فیلتر توکن',
     "gain": "تغییر (٪)",
     "volume_24_trx": '(24H) جلد',
-    'all': 'همه'
+    'all': 'همه',
+    "market_capitalization_trx": "ارزش بازار (TRX)",
+    "token_txs_info":"Token",
+
 };

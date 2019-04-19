@@ -1,6 +1,7 @@
 {
   "10.svg": "7b00f7c4e78ed9cfc676c64c040965e8.svg",
   "20.svg": "8b13bad9e9381c9866a96fc4ef728bbf.svg",
+<<<<<<< HEAD
   "About.js": "static/js/About.14f8908a.chunk.js",
   "Account.js": "static/js/Account.35448f21.chunk.js",
   "Accounts.js": "static/js/Accounts.763db3f2.chunk.js",
@@ -38,6 +39,45 @@
   "languages.js": "static/js/languages.eebe4a8e.chunk.js",
   "main.css": "static/css/main.a5181ee8.css",
   "main.js": "static/js/main.31a96cb5.js",
+=======
+  "About.js": "static/js/About.e44e5b50.chunk.js",
+  "Account.js": "static/js/Account.0d748d80.chunk.js",
+  "Accounts.js": "static/js/Accounts.12b26788.chunk.js",
+  "AddSignatureModal.js": "static/js/AddSignatureModal.1c839562.chunk.js",
+  "CopyrightAsync.js": "static/js/CopyrightAsync.1117d757.chunk.js",
+  "DemoAsync.js": "static/js/DemoAsync.2bf5bddd.chunk.js",
+  "FaqAsync.js": "static/js/FaqAsync.136aff48.chunk.js",
+  "Foundation.js": "static/js/Foundation.39368b1f.chunk.js",
+  "LedgerHelp.js": "static/js/LedgerHelp.bbbf469d.chunk.js",
+  "Live.js": "static/js/Live.6aad737f.chunk.js",
+  "Markets.js": "static/js/Markets.472f4a22.chunk.js",
+  "MyToken.js": "static/js/MyToken.6134423b.chunk.js",
+  "NodeMap.js": "static/js/NodeMap.344afc53.chunk.js",
+  "NodeTester.js": "static/js/NodeTester.924e346c.chunk.js",
+  "Nodes.js": "static/js/Nodes.1d9c269a.chunk.js",
+  "ProposalDetail.js": "static/js/ProposalDetail.68911d17.chunk.js",
+  "Recaptcha.js": "static/js/Recaptcha.7f7862eb.chunk.js",
+  "Representatives.js": "static/js/Representatives.4f22e84c.chunk.js",
+  "SingleStats.js": "static/js/SingleStats.0b4a3594.chunk.js",
+  "Stats.js": "static/js/Stats.8e5fa269.chunk.js",
+  "System.js": "static/js/System.0e494f47.chunk.js",
+  "TRONRating.js": "static/js/TRONRating.db34eeab.chunk.js",
+  "Token20Detail.js": "static/js/Token20Detail.1ae05541.chunk.js",
+  "TokenDetail.js": "static/js/TokenDetail.09a3102f.chunk.js",
+  "TokenList.js": "static/js/TokenList.615810a1.chunk.js",
+  "TokenOverview.js": "static/js/TokenOverview.0f11544d.chunk.js",
+  "TokensCreate.js": "static/js/TokensCreate.6f538740.chunk.js",
+  "TransactionViewer.js": "static/js/TransactionViewer.1e7f1476.chunk.js",
+  "TronConvertTool.js": "static/js/TronConvertTool.8ac27906.chunk.js",
+  "VerifyContractCode.js": "static/js/VerifyContractCode.e3c429ea.chunk.js",
+  "VoteLive.js": "static/js/VoteLive.0cc59bbb.chunk.js",
+  "VoteOverview.js": "static/js/VoteOverview.85b6a0ca.chunk.js",
+  "WalletWizard.js": "static/js/WalletWizard.554a9aa1.chunk.js",
+  "bootstrap.css": "d59729439a203fc474f5677b8d18d8bb.css",
+  "languages.js": "static/js/languages.57f8c852.chunk.js",
+  "main.css": "static/css/main.5585dfc6.css",
+  "main.js": "static/js/main.b231611d.js",
+>>>>>>> origin/dev2019
   "static/media/24-Hour-Trading-Volume.png": "static/media/24-Hour-Trading-Volume.b6ff215b.png",
   "static/media/Average-Price.png": "static/media/Average-Price.fca4d71b.png",
   "static/media/Block-Producer-Chart.png": "static/media/Block-Producer-Chart.3369eae3.png",
@@ -78,5 +118,9 @@
   "static/media/tron-logo-testnet.png": "static/media/tron-logo-testnet.66063d4d.png",
   "static/media/tron-logo.jpg": "static/media/tron-logo.f142f640.jpg",
   "static/media/wallet-preview.png": "static/media/wallet-preview.d53c0b10.png",
+<<<<<<< HEAD
   "vendors.js": "static/js/vendors.51ba91c5.js"
+=======
+  "vendors.js": "static/js/vendors.91f8a795.js"
+>>>>>>> origin/dev2019
 }

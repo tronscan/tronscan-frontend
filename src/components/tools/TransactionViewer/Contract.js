@@ -1,6 +1,6 @@
 import React, {Fragment} from "react";
-import {ONE_TRX} from "../../../constants";
-import {AddressLink, ExternalLink, ContractLink} from "../../common/Links";
+import {ONE_TRX, CONTRACT_ADDRESS_USDT} from "../../../constants";
+import {AddressLink, ExternalLink, ContractLink, TokenTRC20Link} from "../../common/Links";
 import Field from "./Field";
 import {TRXPrice} from "../../common/Price";
 import {tu} from "../../../utils/i18n";
@@ -44,7 +44,6 @@ export default function Contract({contract}) {
     let TokenIDList = [];
     TokenIDList.push(contract)
     let tokenIdData  = rebuildList(TokenIDList,'asset_name','amount')[0]
-   
   switch (contract.contractType.toUpperCase()) {
     case "TRANSFERCONTRACT":
 
@@ -364,7 +363,38 @@ export default function Contract({contract}) {
                         </div>
                       </div>
                     </div>
+                    {contract.tokenTransferInfo && contract.tokenTransferInfo.decimals !==undefined && contract.tokenTransferInfo.symbol !==undefined && <div className="d-flex border-bottom pt-2">
+                          <div className="content_box_name">{tu('TRC20_transfers')}</div>
+                              <div className="flex1">
+                                  <div className="d-flex border-bottom content_item">
+                                      <div className="content_name">{tu('from')}:</div>
+                                      <div className="flex1"><AddressLink address={contract.tokenTransferInfo['from_address']}/></div>
+                                  </div>
+                                  <div className="d-flex border-bottom content_item">
+                                      <div className="content_name">{tu('to')}:</div>
+                                      <div className="flex1"><AddressLink address={contract.tokenTransferInfo['to_address']}/></div>
+                                  </div>
+                                  <div className="d-flex border-bottom content_item">
+                                      <div className="content_name" >{tu('amount')}:</div>
+                                      <div className="flex1">{Number(contract.tokenTransferInfo['amount_str'])/ Math.pow(10,contract.tokenTransferInfo['decimals'])}</div>
+                                  </div>
+                                  <div className="d-flex border-bottom content_item">
+                                      <div className="content_name" >{tu('token_txs_info')}:</div>
+                                      <div className="flex1">
+                                          {
+                                              contract.tokenTransferInfo['contract_address'] == CONTRACT_ADDRESS_USDT?
+                                                  <b className="token-img-top" style={{marginRight:5}}>
+                                                      <img width={20} height={20} src={contract.tokenTransferInfo['icon_url']} alt={contract.tokenTransferInfo['name']} />
+                                                      <i style={{width:10,height:10,bottom:-5}}></i>
+                                                  </b>
+                                                  : <img width={20} height={20} src={contract.tokenTransferInfo['icon_url']} alt={contract.tokenTransferInfo['name']} style={{marginRight:5}}/>
 
+                                          }
+                                          <TokenTRC20Link name={contract.tokenTransferInfo['name']} address={contract.tokenTransferInfo['contract_address']} namePlus={contract.tokenTransferInfo['name'] + ' (' + contract.tokenTransferInfo['symbol'] + ')'}/></div>
+                                  </div>
+
+                              </div>
+                     </div>}
 
                     {JSON.stringify(contract.internal_transactions) != '{}' && <div className="d-flex border-bottom pt-2">
                       <div className="content_box_name">{tu('Internal_txns')}</div>
@@ -409,11 +439,11 @@ export default function Contract({contract}) {
                         {
                           Object.keys(contract.cost).map((c)=>{
                             return (c==='energy_fee'||c==='net_fee')?
-                            <div className="d-flex border-bottom content_item">
+                            <div className="d-flex border-bottom content_item" key={c}>
                               <div className="content_name mr-2" style={{width: 'auto'}}>{tu(c)}:</div>
                               <div className="flex1">{contract.cost[c]/1000000} TRX</div>
                             </div>:
-                            <div className="d-flex border-bottom content_item">
+                            <div className="d-flex border-bottom content_item" key={c}>
                               <div className="content_name mr-2" style={{width: 'auto'}}>{tu(c)}:</div>
                               <div className="flex1">{contract.cost[c]}</div>
                             </div>
