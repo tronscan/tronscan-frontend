@@ -174,7 +174,7 @@ class TokenList extends Component {
             {record.imgUrl ?
                 <div style={{width: '42px', height: '42px', marginRight: '18px'}}>
                     {
-                        record.id == 1002000? <div className="token-img-top">
+                        (record.abbr == 'USDT' || record.abbr == 'BTT') ? <div className="token-img-top">
                           <img style={{width: '42px', height: '42px'}} src={record.imgUrl}/>
                           <i></i>
                         </div>:<img style={{width: '42px', height: '42px'}} src={record.imgUrl}/>
