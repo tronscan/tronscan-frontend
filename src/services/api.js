@@ -50,8 +50,8 @@ class ApiClient20 {
 
   async getCurrentList(query) {
     let { data } = await xhr.get(
-      // `${this.apiUrl}/api/exchange/user/order`,
-      `http://13.58.63.31:21110/api/exchange/user/order`,
+      `${this.apiUrl}/api/exchange/user/order`,
+      // `http://13.58.63.31:21110/api/exchange/user/order`,
       {
         params: query
       }
