@@ -750,8 +750,8 @@ export const messages = {
   "ledger_note": "Nota",
   "ledger_note_message_1": "Compatible solo con Ledger Nano S por ahora.",
   "ledger_note_message_2": "use el explorador Chrome.",
-  "ledger_note_message_3": "Soportamos: Transferencias de TRX y TRC10 tokens, congelar y descongelar TRX, votar y configurar nombre.",
-  "ledger_note_message_4": "Características no disponibles actualmente: transferencia de tokens TRC20, descongelar tokens TRC10, crear tokens, trxmarket, convertir en SR, solicitar recompensas de SR, actualizar Github, crear pares de trading, inyectar capital y retirar capital.",
+  "ledger_note_message_3": "Soportamos: Transferencias de TRX y TRC10 tokens,transferencia de tokens TRC20, congelar y descongelar TRX, votar y configurar nombre.",
+  "ledger_note_message_4": "Características no disponibles actualmente: descongelar tokens TRC10, crear tokens, trxmarket, convertir en SR, solicitar recompensas de SR, actualizar Github, crear pares de trading, inyectar capital y retirar capital.",
 
   /*
   ##################################################################################
