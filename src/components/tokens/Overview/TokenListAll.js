@@ -187,7 +187,7 @@ class TokenList extends Component {
             <div>
               <h5>
               {
-                (record.isTop && record.c_index == 1)?
+                (record.isTop && record.contractAddress == "TNYNLRkqq956bQc2buvoLbaLgh25RkJMiN")?
                 <a href="javascript:;">{record.name + ' (' + record.abbr + ')'}</a>:
                 <div>
                   {
@@ -328,7 +328,8 @@ class TokenList extends Component {
                   }}
                   onRow={(record) => {
                     return {onClick: (event) => {
-                      if(record.isTop &&  record.c_index == 1){
+                      console.log(record)
+                      if(record.isTop &&  record.contractAddress == "TNYNLRkqq956bQc2buvoLbaLgh25RkJMiN"){
                         window.open(url)
                       }
                     }}}}
