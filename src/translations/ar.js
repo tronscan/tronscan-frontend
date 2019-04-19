@@ -1648,4 +1648,5 @@
     'all': 'الكل',
     "market_capitalization_trx": "القيمة السوقية (TRX)",
     "token_txs_info":"Token",
+    "result":"Result",
 };

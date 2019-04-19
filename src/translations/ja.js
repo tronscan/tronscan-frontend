@@ -1656,6 +1656,7 @@ export const messages = {
     'all': 'すべて',
     "market_capitalization_trx": "市場価値 (TRX)",
     "token_txs_info":"Token",
+    "result":"Result",
 
 }
 

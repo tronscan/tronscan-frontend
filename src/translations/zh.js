@@ -1660,6 +1660,6 @@ export const messages = {
     'all': '全部',
     "market_capitalization_trx":"市值（TRX）",
     "token_txs_info":"通证",
-
+    "result":"结果",
 
 };

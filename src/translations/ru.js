@@ -1661,5 +1661,5 @@ export const messages = {
   'all': 'полный',
   "market_capitalization_trx": "Рыночная капитализация (TRX)",
   "token_txs_info":"Token",
-
+  "result":"Result",
 };
