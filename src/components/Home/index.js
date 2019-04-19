@@ -179,8 +179,8 @@ export default class Home extends Component {
 
     let { intl } = this.props;
     let { noticezhIEO, noticeenIEO } = this.state;
-    const data = await Client20.getTRONNotice(intl.locale, { page: 2 });
-    intl.locale == "zh"? data.articles.unshift(noticezhIEO):data.articles.unshift(noticeenIEO);
+    const data = await Client20.getTRONNotice(intl.locale, { page: 3 });
+   // intl.locale == "zh"? data.articles.unshift(noticezhIEO):data.articles.unshift(noticeenIEO);
     this.setState({ notice: data.articles });
     // constellationPreset(this.$ref, "Hot Sparks");
 
@@ -196,8 +196,8 @@ export default class Home extends Component {
       this.reconnect();
     }
     if (prevProps.intl.locale !== intl.locale) {
-        const data = await Client20.getTRONNotice(intl.locale, { page: 2 });
-        intl.locale == "zh"? data.articles.unshift(noticezhIEO):data.articles.unshift(noticeenIEO);
+        const data = await Client20.getTRONNotice(intl.locale, { page: 3 });
+       // intl.locale == "zh"? data.articles.unshift(noticezhIEO):data.articles.unshift(noticeenIEO);
         this.setState({ notice: data.articles });
     }
   }

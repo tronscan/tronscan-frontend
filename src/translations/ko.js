@@ -740,8 +740,8 @@ export const messages = {
   "ledger_note": "주의",
   "ledger_note_message_1": "현재는 ledger nano S 만 지원됩니다.",
   "ledger_note_message_2": "구글 chrome 브라우저 사용",
-  "ledger_note_message_3": "지원 기능: TRX 전송, TRC 10 토큰 전송, TRX 동결， TRX 해동， 투표， 계정 이름 설정.",
-  "ledger_note_message_4": "현재 지원 불가능한 기능 ：TRC 20 토큰 전송， 토큰 생성， 거래소 거래， 슈퍼 대표 신청, 락업한 토큰 해제， 블록 상금 수령， github링크 업데이트， 거래 조합 생성， 거래 조합 자본 투자, 거래조합 자본 회수.",
+  "ledger_note_message_3": "지원 기능: TRX 전송, TRC 10 토큰 전송, TRC 20 토큰 전송, TRX 동결, TRX 해동， 투표, 계정 이름 설정.",
+  "ledger_note_message_4": "현재 지원 불가능한 기능 ： 토큰 생성, 거래소 거래, 슈퍼 대표 신청, 락업한 토큰 해제, 블록 상금 수령, github링크 업데이트, 거래 조합 생성, 거래 조합 자본 투자, 거래조합 자본 회수.",
 
   /*
   ##################################################################################

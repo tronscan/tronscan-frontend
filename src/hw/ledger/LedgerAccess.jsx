@@ -42,7 +42,7 @@ export default class LedgerAccess extends Component {
 
     while (this._isMounted) {
 
-      let {connected, address} = await this.ledger.checkForConnection();
+      let {connected, address} = await this.ledger.checkForConnection(true);
 
       if (connected) {
         this.setState({

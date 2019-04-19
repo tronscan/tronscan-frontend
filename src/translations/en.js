@@ -750,7 +750,7 @@ export const messages = {
   "ledger_note": "Note",
   "ledger_note_message_1": "only support Ledger Nano S for now.",
   "ledger_note_message_2": "use chrome explorer.",
-  "ledger_note_message_3": "We support：TRX and TRC10 token transfer, freeze and unfreeze TRX, voting, setting name.",
+  "ledger_note_message_3": "We support：TRX and TRC10 token transfer, TRC20 token transfer, freeze and unfreeze TRX, voting, setting name.",
   "ledger_note_message_4": "Features unavailable currently: TRC20 token transfer, unfreeze TRC10 tokens, token creation, trxmarket, SR application, SR rewards application, Github update, trading pair creation, capital injection and capital withdrawal.",
 
   /*

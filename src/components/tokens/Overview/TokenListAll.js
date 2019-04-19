@@ -174,7 +174,7 @@ class TokenList extends Component {
             {record.imgUrl ?
                 <div style={{width: '42px', height: '42px', marginRight: '18px'}}>
                     {
-                        record.id == 1002000? <div className="token-img-top">
+                        (record.abbr == 'USDT' || record.abbr == 'BTT') ? <div className="token-img-top">
                           <img style={{width: '42px', height: '42px'}} src={record.imgUrl}/>
                           <i></i>
                         </div>:<img style={{width: '42px', height: '42px'}} src={record.imgUrl}/>
@@ -187,7 +187,7 @@ class TokenList extends Component {
             <div>
               <h5>
               {
-                (record.isTop && record.c_index == 1)?
+                (record.isTop && record.contractAddress == "TNYNLRkqq956bQc2buvoLbaLgh25RkJMiN")?
                 <a href="javascript:;">{record.name + ' (' + record.abbr + ')'}</a>:
                 <div>
                   {
@@ -328,7 +328,7 @@ class TokenList extends Component {
                   }}
                   onRow={(record) => {
                     return {onClick: (event) => {
-                      if(record.isTop &&  record.c_index == 1){
+                      if(record.isTop &&  record.contractAddress == "TNYNLRkqq956bQc2buvoLbaLgh25RkJMiN"){
                         window.open(url)
                       }
                     }}}}

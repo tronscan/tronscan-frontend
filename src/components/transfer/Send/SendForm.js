@@ -18,6 +18,7 @@ import {Select} from 'antd';
 import isMobile from '../../../utils/isMobile';
 import {withTronWeb} from "../../../utils/tronWeb";
 import { FormatNumberByDecimals } from '../../../utils/number'
+import {transactionResultManager} from "../../../utils/tron"
 
 const { Option, OptGroup } = Select;
 
@@ -122,7 +123,6 @@ class SendForm extends React.Component {
                 console.log(e)
             });
         }
-        success = result.result;
         if (result) {
             success = result.result;
          } else {
@@ -209,16 +209,38 @@ class SendForm extends React.Component {
     let TokenName = token.substring(0, token.length - 6);
     let {onSend,tokens20} = this.props;
     let tronWeb;
-    if (this.props.wallet.type === "ACCOUNT_LEDGER"){
-       tronWeb = this.props.tronWeb();
-    }else if(this.props.wallet.type === "ACCOUNT_TRONLINK" || this.props.wallet.type === "ACCOUNT_PRIVATE_KEY"){
-       tronWeb = this.props.account.tronWeb;
-    }
+    let transactionId;
     this.setState({ isLoading: true, modal: null });
     let contractAddress = find(tokens20, t => t.name === TokenName).contract_address;
-    let contractInstance = await tronWeb.contract().at(contractAddress);
-    amount = this.Mul(amount,Math.pow(10, decimals));
-    const transactionId = await contractInstance.transfer(to, amount).send();
+
+    if (this.props.wallet.type === "ACCOUNT_LEDGER"){
+      tronWeb = this.props.tronWeb();
+      // Send TRC20
+      let unSignTransaction = await tronWeb.transactionBuilder.triggerSmartContract(
+                  tronWeb.address.toHex(contractAddress),
+                  'transfer(address,uint256)',
+                  10000000, 0,
+                  [
+                  { type: 'address', value: tronWeb.address.toHex(to)},
+                  { type: 'uint256', value: this.Mul(amount,Math.pow(10, decimals))}
+                  ],
+                  tronWeb.address.toHex(this.props.wallet.address),
+              );
+      if (unSignTransaction.transaction !== undefined)
+        unSignTransaction = unSignTransaction.transaction;
+      unSignTransaction.extra = {
+            to: to,
+            decimals: decimals,
+            token_name: TokenName,
+            amount: amount,
+      }
+      transactionId = await transactionResultManager(unSignTransaction, tronWeb)
+    }else if(this.props.wallet.type === "ACCOUNT_TRONLINK" || this.props.wallet.type === "ACCOUNT_PRIVATE_KEY"){
+      tronWeb = this.props.account.tronWeb;
+      let contractInstance = await tronWeb.contract().at(contractAddress);
+      transactionId = await contractInstance.transfer(to, this.Mul(amount,Math.pow(10, decimals))).send();
+    }
+    
     if (transactionId) {
       this.refreshTokenBalances();
       onSend && onSend();

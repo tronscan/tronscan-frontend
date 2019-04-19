@@ -743,8 +743,8 @@ export const messages = {
     "ledger_note":"注意",
     "ledger_note_message_1":"目前仅支持ledger nano S",
     "ledger_note_message_2":"使用谷歌chrome浏览器",
-    "ledger_note_message_3":"支持功能：TRX转账，TRC 10 通证转账，冻结TRX，解冻TRX，投票，设置账户名称。",
-    "ledger_note_message_4":"目前不支持的功能：TRC 20 通证转账，创建通证，交易所交易，申请超级代表，解冻锁仓的通证，领取出块奖励，更新github链接，创建交易对，交易对注资，交易对撤资。",
+    "ledger_note_message_3":"支持功能：TRX转账，TRC 10 通证转账，TRC 20 通证转账，冻结TRX，解冻TRX，投票，设置账户名称。",
+    "ledger_note_message_4":"目前不支持的功能：创建通证，交易所交易，申请超级代表，解冻锁仓的通证，领取出块奖励，更新github链接，创建交易对，交易对注资，交易对撤资。",
 
     /*
     ##################################################################################

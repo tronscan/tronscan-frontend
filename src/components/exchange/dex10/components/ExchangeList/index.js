@@ -48,7 +48,7 @@ class ExchangeList extends React.Component {
       hr:"",
       min:"",
       sec:"",
-      AdClose:false,
+      AdClose:true,
       adURL:"https://trx.market/launchBase?utm_source=TS2",
       adchURL:"https://trx.market/zh/launchBase?utm_source=TS2",
     };
@@ -63,7 +63,7 @@ class ExchangeList extends React.Component {
     }, 10000);
 
     this.setState({ time: getDataTime });
-    this.countdown();
+    //this.countdown();
   }
 
   componentWillUnmount() {
@@ -169,7 +169,8 @@ class ExchangeList extends React.Component {
   getExchanges = async () => {
     let { exchangesAllList } = this.state;
     let { exchange20List = [] } = this.props;
-    let { Data: data } = await Client.getExchangesList();
+    let { data } = await Client.getExchangesList();
+
     let tab, exchangesList;
     if (Lockr.get("DEX")) {
       tab = Lockr.get("DEX");
@@ -185,7 +186,7 @@ class ExchangeList extends React.Component {
         item.up_down_percent =
           "+" + Math.abs(Number(item.up_down_percent).toFixed(2)) + "%";
       }
-      item.price = Number(item.price.toFixed(6));
+      item.price = Number(item.price).toFixed(6);
     });
 
     const exchange10 = rebuildList(
@@ -268,6 +269,7 @@ class ExchangeList extends React.Component {
         showSearch: false,
         tagLock: false
       });
+      
       
       if (auditedTokenList && auditedTokenList.length > 0) {
         this.props.history.push(
