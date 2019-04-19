@@ -98,13 +98,19 @@ export class TokenCreate extends Component {
 
   render() {
     let {type} = this.props.state
+    const { locale } = this.props.intl
+    console.log(locale)
+    const url = locale == 'zh'?
+    'https://support.tronscan.org/hc/zh-cn/articles/360027103591-%E4%BB%80%E4%B9%88%E6%98%AFTRC10%E5%92%8CTRC20%E9%80%9A%E8%AF%81':
+    'https://support.tronscan.org/hc/en-us/articles/360027103751-What-s-the-differences-between-TRC10-and-TRC20-Tokens-';
+    
     return (
         <main className="text-center">
           {this.state.modal}
           <h2 className="mb-4 font-weight-bold">{tu('select_type')}</h2>
           <h5 className="f-18 mb-4 d-block">
             {tu('select_trx_tip1')}
-            <a className="col-red mx-1">{tu('select_trx_tip2')}</a>
+            <a className="col-red mx-1" href={url} target="_bank">{tu('select_trx_tip2')}</a>
             {tu('select_trx_tip3')}
           </h5>
           <p className="text-muted mb-4 font-weight-light">{tu('select_tip1')}<br/>
