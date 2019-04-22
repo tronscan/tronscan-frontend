@@ -1642,7 +1642,7 @@ export const messages = {
     "table_info_big":"仅展示前10,000条数据",
     "table_info_big_tip1":"所选时间内共",
     "table_info_big_tip2":"条数据，",
-    "table_info_big_tip3":"目前只展示前10,000条。",
+    "table_info_big_tip3":"目前只展示前10,000个数据。",
     "table_info_big_tip4":"如果您想要查询其他数据，建议调整时间范围。",
     "table_info_account_tip1":"波场主链共",
     "table_info_account_tip2":"个账户，目前只展示前10,000个（按照TRX余额从大到小排列）。",

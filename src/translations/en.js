@@ -1700,7 +1700,7 @@ export const messages = {
   "table_info_big":"only the first 10,000 data are displayed",
   "table_info_big_tip1":"There are altogether ",
   "table_info_big_tip2":"data within the selected time ",
-  "table_info_big_tip3":"and only 10,000 transactions are displayed.",
+  "table_info_big_tip3":"Only 10,000 pieces of data are displayed.",
   "table_info_big_tip4":"If you would like to look up other statistics, we recommend that you change the selected duration of time.",
   "table_info_account_tip1":"There are altogether ",
   "table_info_account_tip2":"accounts on TRON's MainNet and only 10,000 accounts are displayed (sorted by TRX balance from high to low)",

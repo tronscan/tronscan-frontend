@@ -34,10 +34,20 @@ export function FormatNumberByDecimals(number, decimals){
         const arr = numberString.split('.')
         const cerrentLength = arr[0].length
         const newString = arr.join('')
-
+        console.log('numberString',numberString)
+        console.log('arr',arr)
+        console.log('cerrentLength',cerrentLength)
+        console.log('newString',newString)
+        let result =  '';
         const diffLenght = cerrentLength - decimals;
         if(diffLenght > 0){
-            Newnumber = newString.slice(0, diffLenght) + '.' + newString.slice(diffLenght);
+            let newNum =  newString.slice(0, diffLenght)
+            while (newNum.length > 3) {
+                result = ',' + newNum.slice(-3) + result;
+                newNum = newNum.slice(0, newNum.length - 3);
+            }
+            if (newNum) { result = newNum + result }
+            Newnumber = result + '.' + newString.slice(diffLenght);
         }else{
             let dudo = ''
             for (let i = 0; i < Math.abs(diffLenght); i++) {
