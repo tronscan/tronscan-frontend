@@ -1642,6 +1642,8 @@ export const messages = {
     "table_info_big_tip4":"他のデータを検索したい場合は、時間範囲を調整してください。",
     "table_info_account_tip1":"TRONの主鎖には",
     "table_info_account_tip2":"のアカウントがあり、今、最初の10,000のデータのみが表示されています。（TRX残高の多い順に並べます。）",
+    "table_info_holders_tip1":"現在のトークンは合計",
+    "table_info_holders_tip2":"個アドレスがありますが、前頭の10,000個だけが表示されます。（トークン数量の大きさの順にソートされます）",
     "Singapore":"Singapore",
     "table_info_new_tip":"今、最初の10,000のデータのみが表示されています。他のデータを検索したい場合は、時間範囲を調整してください。",
     "select_start_time":"開始時間を選択してください",

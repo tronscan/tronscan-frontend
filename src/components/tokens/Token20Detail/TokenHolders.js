@@ -148,8 +148,7 @@ class TokenHolders extends React.Component {
     let {intl} = this.props
     let column = this.customizedColumn();
     let tableInfo = intl.formatMessage({id: 'a_totle'})+' ' + total +' '+ intl.formatMessage({id: 'hold_addr'});
-    let tableInfoTip = intl.formatMessage({id: 'table_info_big_tip3'});
-
+    let tableInfoTip = intl.formatMessage({id: 'table_info_holders_tip1'}) + ' ' + rangeTotal + ' ' + intl.formatMessage({id: 'table_info_holders_tip2'});
     if (!loading && addresses.length === 0) {
       return (
           <div className="p-3 text-center no-data">{tu("no_holders_found")}</div>
@@ -178,7 +177,10 @@ class TokenHolders extends React.Component {
             </div>
             <div style={styles.tablePosInfo}>
               {total ?<div className="table_pos_info d-none d-md-block" style={{left: 'auto'}}>
-                <div>{tu('view_total')} {rangeTotal} {tu('hold_addr')} <QuestionMark placement="top" info={tableInfoTip} ></QuestionMark> <br/>
+                <div>{tu('view_total')} {rangeTotal} {tu('hold_addr')}
+
+                    { rangeTotal>= 10000? <QuestionMark placement="top" info={tableInfoTip} ></QuestionMark>:""}
+                    <br/>
                     { rangeTotal>= 10000?<span>({tu('table_info_big')})</span>:""}
                 </div>
               </div> : ''}

@@ -1704,6 +1704,8 @@ export const messages = {
   "table_info_big_tip4":"If you would like to look up other statistics, we recommend that you change the selected duration of time.",
   "table_info_account_tip1":"There are altogether ",
   "table_info_account_tip2":"accounts on TRON's MainNet and only 10,000 accounts are displayed (sorted by TRX balance from high to low)",
+  "table_info_holders_tip1":"There are",
+  "table_info_holders_tip2":"addresses in the current pass, and only the first 10,000 are currently displayed (sorted from big to small according to the number of passes)",
   "Singapore":"Singapore",
   "table_info_new_tip":"Only 10,000 pieces of data are displayed. If you would like to look up other statistics, we recommend that you change the selected duration of time.",
   "select_start_time":"Please select the start time",

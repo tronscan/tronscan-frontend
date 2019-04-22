@@ -1693,6 +1693,8 @@ export const messages = {
   "table_info_big_tip4":"Si desea buscar otras estadísticas, le recomendamos que cambie la duración del tiempo seleccionado.",
   "table_info_account_tip1":"La red principal de TRON tiene ",
   "table_info_account_tip2":"cuentas, mostrando solo 10,000 cuentas (ordenadas de alta a baja TRX)",
+  "table_info_holders_tip1":"Hay direcciones ",
+  "table_info_holders_tip2":"en el pase actual y solo se muestran actualmente los primeros 10,000 (ordenados de grande a pequeño según el número de pases)",
   "Singapore":"Singapore",
   "table_info_new_tip":"Actualmente solo se muestran los primeros 10,000 datos, le recomendamos que ajuste el tiempo seleccionado.",
   "select_start_time":"Por favor seleccione la hora de inicio",
