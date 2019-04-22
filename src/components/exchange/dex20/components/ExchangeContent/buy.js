@@ -288,14 +288,25 @@ class Buy extends Component {
       limitError,
       buttonLoading
     } = this.state;
-    let { intl } = this.props;
-
-    if (price * amount < 10) {
-      this.setState({
-        secondError: intl.formatMessage({ id: "trc20_enter_10" })
-      });
-      return;
+    let { intl, exchangeData } = this.props;
+    let pairType = exchangeData.pairType;
+    console.log('pairType',pairType)
+    if (pairType == 1 || pairType == 2) {
+      if (price * amount < 10) {
+        this.setState({
+          secondError: intl.formatMessage({ id: "trc20_enter_10" })
+        });
+        return;
+      }
+    } else {
+      if (price * amount < 1) {
+        this.setState({
+          secondError: intl.formatMessage({ id: "trc20_enter_1" })
+        });
+        return;
+      }
     }
+
     if (!price || !amount || firstError || secondError || limitError) {
       return;
     }
@@ -393,6 +404,7 @@ class Buy extends Component {
         const timer2 = setInterval(async () => {
           const info = await tronWeb.trx.getTransactionInfo(id);
           _times += 1;
+          console.log('info',info)
           if (info.log && info.log[0].data) {
             const c_id = parseInt(
               info.log[0].data.toString().substring(0, 64),

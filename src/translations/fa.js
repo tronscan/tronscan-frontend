@@ -1435,6 +1435,7 @@ export const messages = {
     "trc20_amount": "مقدار",
     "trc20_enter_the_trading_amount": "مقدار معامله را وارد کنید",
     "trc20_enter_10": "Total ≥ 10 TRX",
+    "trc20_enter_1": "Total ≥ 1 USDT",
     "trc20_enter_the_trading_price": "قیمت معامله را وارد کنید",
     "trc20_TxAvailable": "موجود",
     "trc20_BUY": "خرید",

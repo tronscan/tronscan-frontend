@@ -1489,6 +1489,7 @@ export const messages = {
   "trc20_amount": "Amount",
   "trc20_enter_the_trading_amount": "Enter the Trading Amount",
   "trc20_enter_10": "Total ≥ 10 TRX",
+  "trc20_enter_1": "Total ≥ 1 USDT",
   "trc20_enter_the_trading_price": "Enter the Trading Price",
   "trc20_TxAvailable": "Available",
   "trc20_BUY": "BUY",

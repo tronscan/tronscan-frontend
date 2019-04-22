@@ -1431,6 +1431,7 @@ export const messages = {
   "trc20_amount": "수량",
   "trc20_enter_the_trading_amount": "거래 수량을 입력해주세요.",
   "trc20_enter_10": "거래액. ≥ 10 TRX",
+  "trc20_enter_1": "거래액. ≥ 1 USDT",
   "trc20_enter_the_trading_price": "거래 가격을 입력해 주세요.",
   "trc20_TxAvailable": "사용 가능",
   "trc20_BUY": "매수",

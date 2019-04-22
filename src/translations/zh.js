@@ -1434,6 +1434,7 @@ export const messages = {
    "trc20_amount":"数量",
    "trc20_enter_the_trading_amount":"请输入交易数量",
    "trc20_enter_10":"成交额 ≥ 10 TRX",
+   "trc20_enter_1": "成交额 ≥ 1 USDT",
    "trc20_enter_the_trading_price":"请输入交易价格",
    "trc20_TxAvailable":"可用",
    "trc20_BUY":"买入",

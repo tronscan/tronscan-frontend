@@ -1446,6 +1446,7 @@ export const messages = {
     "trc20_amount":"Количество",
     "trc20_enter_the_trading_amount":"Введите торговую сумму",
     "trc20_enter_10":"Всего ≥ 10 TRX",
+    "trc20_enter_1": "Всего ≥ 1 USDT",
     "trc20_enter_the_trading_price":"Введите торговую цену",
     "trc20_TxAvailable":"Имеется в наличии",
     "trc20_BUY":"КУПИТЬ",

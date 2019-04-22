@@ -1431,6 +1431,7 @@
    "trc20_amount":"الكمية",
    "trc20_enter_the_trading_amount":"يرجى إدخال عدد المعاملات",
    "trc20_enter_10":"الإجمالي ≥ 10 ترون",
+   "trc20_enter_1": "Total ≥ 1 USDT",
    "trc20_enter_the_trading_price":"يرجى إدخال سعر عملية التداول",
    "trc20_TxAvailable":"متاح",
    "trc20_BUY":"شراء",

@@ -1430,6 +1430,7 @@ export const messages = {
    "trc20_amount":"数",
    "trc20_enter_the_trading_amount":"取引量を入力してください",
    "trc20_enter_10":"取引高≥ 10 TRX",
+   "trc20_enter_1": "取引高 ≥ 1 USDT",
    "trc20_enter_the_trading_price":"仕切り値段を入力してください",
    "trc20_TxAvailable":"入手できる",
    "trc20_BUY":"買う",

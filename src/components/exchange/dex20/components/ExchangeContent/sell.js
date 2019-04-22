@@ -302,12 +302,24 @@ class Sell extends Component {
 
     let { intl, exchangeData } = this.props;
     let secondTokenName = exchangeData.sShortName;
-    if (price * amount < 10) {
-      this.setState({
-        secondError: intl.formatMessage({ id: "trc20_enter_10" })
-      });
-      return;
+    let pairType = exchangeData.pairType;
+
+    if (pairType == 1 || pairType == 2) {
+      if (price * amount < 10) {
+        this.setState({
+          secondError: intl.formatMessage({ id: "trc20_enter_10" })
+        });
+        return;
+      }
+    } else {
+      if (price * amount < 1) {
+        this.setState({
+          secondError: intl.formatMessage({ id: "trc20_enter_1" })
+        });
+        return;
+      }
     }
+    
     if (!price || !amount || firstError || secondError || limitError) {
       return;
     }

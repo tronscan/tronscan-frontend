@@ -25,7 +25,8 @@ export function channel(path, options) {
 
 class ApiClient20 {
   constructor() {
-    this.apiUrl = "https://api.trx.market";
+    // this.apiUrl = "https://api.trx.market";
+    this.apiUrl = "https://testapi.trx.market";
     this.ZDUrl = "https://tron274.zendesk.com";
     this.SCANUrl = "https://tronscanorg.zendesk.com";
   }
@@ -33,7 +34,6 @@ class ApiClient20 {
   async getexchanges20(options = {}) {
     let { data } = await xhr.get(
       `${this.apiUrl}/api/exchange/marketPair/list`,
-      // `http://13.58.63.31:21110/api/exchange/marketPair/list`,
       {
         params: options
       }
@@ -126,8 +126,8 @@ class ApiClient20 {
   async depthChart(id) {
     let { data } = await xhr({
       method: "get",
-      // url: `${this.apiUrl}/api/exchange/common/deepgraph/${id}`,
-      url: `http://18.222.178.103:3006/dex/exchange/common/deepgraph/${id}`
+      url: `${this.apiUrl}/api/exchange/common/deepgraph/${id}`
+      // url: `http://18.222.178.103:3006/dex/exchange/common/deepgraph/${id}`
     });
     return data;
   }
@@ -149,24 +149,24 @@ class ApiClient20 {
     return data;
   }
 
-    /**
-     * 获取zendesk TRONSCAN消息系统
-     */
-    async getTRONNotice(lan, query) {
-        let langauage = "en-us";
-        let id = "360001621692";
-        lan == "zh" ? (langauage = "zh-cn") : (langauage = "en-us");
-        lan == "zh" ? (id = "360001618172") : (id = "360001621692");
-        let { data } = await xhr({
-            method: "get",
-            url: `${
-                this.SCANUrl
-                }/api/v2/help_center/${langauage}/categories/${id}/articles.json?sort_by=created_at&sort_order=desc&per_page=${
-                query.page
-                }`
-        });
-        return data;
-    }
+  /**
+   * 获取zendesk TRONSCAN消息系统
+   */
+  async getTRONNotice(lan, query) {
+    let langauage = "en-us";
+    let id = "360001621692";
+    lan == "zh" ? (langauage = "zh-cn") : (langauage = "en-us");
+    lan == "zh" ? (id = "360001618172") : (id = "360001621692");
+    let { data } = await xhr({
+      method: "get",
+      url: `${
+        this.SCANUrl
+      }/api/v2/help_center/${langauage}/categories/${id}/articles.json?sort_by=created_at&sort_order=desc&per_page=${
+        query.page
+      }`
+    });
+    return data;
+  }
 }
 
 export const Client20 = new ApiClient20();
