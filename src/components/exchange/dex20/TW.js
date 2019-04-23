@@ -126,8 +126,8 @@ class ApiTW {
     // **** test
     this.contractAddress = "TPb1vyaZv59Mte7ABaRqTGCk4TaX1MzBUT";
     this.contractAddress10 = "THxN2BbBHp5nam7ZQWPrgLoAju3KTDZcNg";
-    this.contractAddrUsdt20 = "TNFCcTuCKHg2dP7dfzJuD5cnpqjqP6K5Hm"; //'TWe4z3uRvUoG9VBgoC8iSgHRtvxa9MJJPv'
-    this.contractAddrUsdt10 = "TR1peceVMh2hAJQcorRjgQX3YZK3XSKGRJ";
+    this.contractAddrUsdt20 = "TRxMaG7CwSfZdfho9KXtayDJUQEvvoCeKo"; //'TWe4z3uRvUoG9VBgoC8iSgHRtvxa9MJJPv'
+    this.contractAddrUsdt10 = "TJyrPWWP3sit856yTCJrd3cg2Uo82aZ7JN";
 
     // **** online
     // this.contractAddress = "TSMbPm5mUsaTDSEjHCd55ZJaib3Ysvjyc5";
