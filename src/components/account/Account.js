@@ -203,13 +203,13 @@ export default class Account extends Component {
     let { tokens20 } = this.props;
     if (hideSmallCurrency) {
       tokens20 = _(tokens20)
-          .filter(tb => tb.token20_balance >= 10)
-          .sortBy(tb => -tb.token20_balance)
+          .filter(tb => tb.token20_balance_decimals >= 10)
+          .sortBy(tb => -tb.token20_balance_decimals)
           .value();
     } else {
       tokens20 = _(tokens20)
-          .filter(tb => tb.token20_balance > 0)
-          .sortBy(tb => -tb.token20_balance)
+          .filter(tb => tb.token20_balance_decimals > 0)
+          .sortBy(tb => -tb.token20_balance_decimals)
           .value();
     }
     // for (let token of tokens20) {

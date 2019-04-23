@@ -22,7 +22,7 @@ import Blocks from "../../common/Blocks";
 import {channel} from "../../../services/api";
 import rebuildList from "../../../utils/rebuildList";
 import {API_URL} from '../../../constants.js'
-import { FormatNumberByDecimals } from '../../../utils/number'
+import { FormatNumberByDecimals, FormatNumberByDecimalsBalance } from '../../../utils/number'
 
 
 class Address extends React.Component {
@@ -166,13 +166,13 @@ class Address extends React.Component {
     address.trc20token_balances && address.trc20token_balances.map(item => {
         item.token20_name = item.name + '(' + item.symbol + ')';
         item.token20_balance = FormatNumberByDecimals(item.balance, item.decimals);
+        item.token20_balance_decimals = FormatNumberByDecimalsBalance(item.balance, item.decimals);
         return item
     });
     address.token20List =  _(address.trc20token_balances)
         .filter(tb => tb.balance > 0)
-        .sortBy(tb => -tb.token20_balance)
+        .sortBy(tb => -tb.balance)
         .value();
-
     let trxObj1 = _.remove(address.tokenBalances, o => toUpper(o.map_token_name) == 'TRX')[0]
     trxObj1 && address.tokenBalances.unshift(trxObj1)
 
