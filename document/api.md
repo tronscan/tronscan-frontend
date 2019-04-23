@@ -199,7 +199,6 @@ Demo: curl -X Get  https://apilist.tronscan.org/api/contracts/trigger?sort=-time
 **/api/token_trc20**  
 Desc: List all the trc20 tokens in the blockchain  
 Demo: curl -X Get  https://apilist.tronscan.org/api/token_trc20?sort=issue_time&limit=20&start=0  
-@param sort: define the sequence of the records return;  
 @param limit: page size for pagination;  
 @param start: query index for pagination;  
 @return: trc20 tokens list;  
