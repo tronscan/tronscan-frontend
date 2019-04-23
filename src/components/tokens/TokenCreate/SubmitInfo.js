@@ -268,37 +268,55 @@ const { TextArea } = Input;
             break;
 
             case 'trc20':
-                let a = this.tokenState('socialList')
-                console.log('socialList--difference',_.difference(a , [{active: true}]))
+                let data = {
+                    name: this.tokenState('name'),
+                    abbreviation: this.tokenState('abbreviation'),
+                    description: this.tokenState('description'),
+                    totalSupply: this.tokenState('totalSupply'),
+                    precision:  this.tokenState('precision'),
+                    address: this.tokenState('address'),
+                    logoUrl:this.tokenState('logoUrl'),
+                    contractAddress:this.tokenState('contractAddress'),
+                    contractCreatedRatio:this.tokenState('contractCreatedRatio'),
+                    contractCode:this.tokenState('contractCode'),
+                    url: this.tokenState('url'),
+                    email:this.tokenState('email'),
+                    whitePaper:this.tokenState('whitePaper'),
+                    socialList:this.tokenState('socialList'),
+                    timestamp:moment().value(),
+                }
+                console.log('data',data)
+                console.log('stringify',JSON.stringify(data))
                 if (Lockr.get("islogin")||this.props.walletType.type==="ACCOUNT_LEDGER"||this.props.walletType.type==="ACCOUNT_TRONLINK") {
-                    if (this.props.walletType.type === "ACCOUNT_LEDGER") {
-                        const unSignTransaction = await tronWebLedger.transactionBuilder.createToken({
-                            name: this.tokenState('name'),
-                            abbreviation: this.tokenState('abbreviation'),
-                            description: this.tokenState('description'),
-                            url: this.tokenState('url'),
-                            totalSupply: this.tokenState('totalSupply'),
-                            tokenRatio: this.tokenState('tokenRatio'),
-                            trxRatio: this.tokenState('trxRatio'),
-                            saleStart: this.tokenState('saleStart'),
-                            saleEnd: this.tokenState('saleEnd'),
-                            freeBandwidth: 1,
-                            freeBandwidthLimit: 1,
-                            frozenAmount: this.tokenState('frozenAmount'),
-                            frozenDuration: this.tokenState('frozenDuration'),
-                            precision:  this.tokenState('precision'),
-                        }, tronWebLedger.defaultAddress.hex).catch(function (e) {
-                            errorInfo = e;
-                        })
-                        if (!unSignTransaction) {
-                            res = false;
-                        } else {
-                            const {result} = await transactionResultManager(unSignTransaction, tronWebLedger);
-                            res = result;
-                        }
-                    }
+                    // if (this.props.walletType.type === "ACCOUNT_LEDGER") {
+                    //     const unSignTransaction = await tronWebLedger.transactionBuilder.createToken({
+                    //         name: this.tokenState('name'),
+                    //         abbreviation: this.tokenState('abbreviation'),
+                    //         description: this.tokenState('description'),
+                    //         url: this.tokenState('url'),
+                    //         totalSupply: this.tokenState('totalSupply'),
+                    //         tokenRatio: this.tokenState('tokenRatio'),
+                    //         trxRatio: this.tokenState('trxRatio'),
+                    //         saleStart: this.tokenState('saleStart'),
+                    //         saleEnd: this.tokenState('saleEnd'),
+                    //         freeBandwidth: 1,
+                    //         freeBandwidthLimit: 1,
+                    //         frozenAmount: this.tokenState('frozenAmount'),
+                    //         frozenDuration: this.tokenState('frozenDuration'),
+                    //         precision:  this.tokenState('precision'),
+                    //     }, tronWebLedger.defaultAddress.hex).catch(function (e) {
+                    //         errorInfo = e;
+                    //     })
+                    //     if (!unSignTransaction) {
+                    //         res = false;
+                    //     } else {
+                    //         const {result} = await transactionResultManager(unSignTransaction, tronWebLedger);
+                    //         res = result;
+                    //     }
+                    // }
 
                     if(this.props.walletType.type === "ACCOUNT_TRONLINK"){
+
                         const unSignTransaction = await tronWeb.transactionBuilder.createToken({
                             name: this.tokenState('name'),
                             abbreviation: this.tokenState('abbreviation'),
