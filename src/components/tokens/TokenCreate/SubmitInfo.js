@@ -9,6 +9,7 @@ import 'moment/min/locales';
 import ContractCodeRequest from "../../tools/ContractCodeRequest";
 import moment from 'moment';
 import Lockr from "lockr";
+import _ from 'lodash';
 import {filter, trim} from "lodash";
 import {Client} from "../../../services/api";
 import {withTronWeb} from "../../../utils/tronWeb";
@@ -35,6 +36,7 @@ const { TextArea } = Input;
             ...this.props.state,
             captcha_code:null,
             checkbox: false,
+            loading:false,
             errors: {
                 confirm: null
             }
@@ -56,7 +58,7 @@ const { TextArea } = Input;
     }
 
     tokenState = (value) => {
-        let {  paramData:{ token_name, token_abbr, token_introduction, website, token_supply, precision, author, token_amount, trx_amount, freeze_amount, freeze_date, freeze_type, participation_start_date, participation_end_date, participation_type  }} = this.state;
+        let {iconList, modal, checkbox, errors, captcha_code, type, paramData:{ token_name, token_abbr, token_introduction, token_supply, precision, author, logo_url, contract_address, contract_created_date, contract_code, token_amount, trx_amount, freeze_amount, freeze_date, freeze_type, participation_start_date, participation_end_date, participation_type, website, email, white_paper }} = this.state;
         let frozenSupplyAmount = freeze_amount * Math.pow(10,Number(precision))
         let frozenSupply =  [{amount: frozenSupplyAmount, days: freeze_date }];
         if( !participation_type ){
@@ -69,6 +71,11 @@ const { TextArea } = Input;
             'description':token_introduction,
             'url':website,
             'totalSupply': token_supply * Math.pow(10, Number(precision)),
+            'address':author,
+            'logoUrl':logo_url,
+            'contractAddress':contract_address,
+            'contractCreatedRatio':contract_created_date * Math.pow(10, Number(precision)),
+            'contractCode':contract_code,
             'tokenRatio': token_amount * Math.pow(10, Number(precision)),
             'trxRatio': trx_amount * ONE_TRX,
             'saleStart': participation_start_date.valueOf(),
@@ -82,7 +89,10 @@ const { TextArea } = Input;
             //'frozenAmount': '',
             //'frozenDuration': '',
             'frozenSupply': filter(frozenSupply, fs => fs.amount > 0),
-            'precision': Number(precision)
+            'precision': Number(precision),
+            'email':email,
+            'whitePaper':white_paper,
+            'socialList': _.filter(iconList, function(o) { return o.active }),
         }
         return orderState[value]
     }
@@ -136,18 +146,25 @@ const { TextArea } = Input;
         let newErrors = {
             confirm: null,
         };
-        let {checkbox} = this.state;
+        let {checkbox, type} = this.state;
+        console.log('type',type)
         let {intl} = this.props;
-        if (checkbox)
+        if(type == 'trc10'){
+            if (checkbox)
+                this.confirmSubmit();
+            else {
+                newErrors.confirm = intl.formatMessage({id: 'tick_checkbox'});
+                this.setState({errors: newErrors});
+            }
+        }else if(type == 'trc20'){
             this.confirmSubmit();
-        else {
-            newErrors.confirm = intl.formatMessage({id: 'tick_checkbox'});
-            this.setState({errors: newErrors});
         }
+
     }
 
     createToken = async () => {
         let {account, intl} = this.props;
+        let { type } = this.state;
         console.log('account',account)
         let res,createInfo,errorInfo;
         const tronWebLedger = this.props.tronWeb();
@@ -165,101 +182,189 @@ const { TextArea } = Input;
                 </SweetAlert>,
             loading: true
         });
-        console.log('frozenSupply=======',this.tokenState('frozenSupply'))
-        console.log('description=======',typeof this.tokenState('description'))
-        console.log('startTime=======',this.tokenState('startTime'))
-        console.log('endTime======',this.tokenState('endTime'))
-        if (Lockr.get("islogin")||this.props.walletType.type==="ACCOUNT_LEDGER"||this.props.walletType.type==="ACCOUNT_TRONLINK") {
-            if (this.props.walletType.type === "ACCOUNT_LEDGER") {
-                const unSignTransaction = await tronWebLedger.transactionBuilder.createToken({
-                    name: this.tokenState('name'),
-                    abbreviation: this.tokenState('abbreviation'),
-                    description: this.tokenState('description'),
-                    url: this.tokenState('url'),
-                    totalSupply: this.tokenState('totalSupply'),
-                    tokenRatio: this.tokenState('tokenRatio'),
-                    trxRatio: this.tokenState('trxRatio'),
-                    saleStart: this.tokenState('saleStart'),
-                    saleEnd: this.tokenState('saleEnd'),
-                    freeBandwidth: 1,
-                    freeBandwidthLimit: 1,
-                    frozenAmount: this.tokenState('frozenAmount'),
-                    frozenDuration: this.tokenState('frozenDuration'),
-                    precision:  this.tokenState('precision'),
-                }, tronWebLedger.defaultAddress.hex).catch(function (e) {
-                    errorInfo = e;
-                })
-                if (!unSignTransaction) {
-                    res = false;
-                } else {
-                    const {result} = await transactionResultManager(unSignTransaction, tronWebLedger);
-                    res = result;
+        switch (type){
+            case 'trc10':
+                if (Lockr.get("islogin")||this.props.walletType.type==="ACCOUNT_LEDGER"||this.props.walletType.type==="ACCOUNT_TRONLINK") {
+                    if (this.props.walletType.type === "ACCOUNT_LEDGER") {
+                        const unSignTransaction = await tronWebLedger.transactionBuilder.createToken({
+                            name: this.tokenState('name'),
+                            abbreviation: this.tokenState('abbreviation'),
+                            description: this.tokenState('description'),
+                            url: this.tokenState('url'),
+                            totalSupply: this.tokenState('totalSupply'),
+                            tokenRatio: this.tokenState('tokenRatio'),
+                            trxRatio: this.tokenState('trxRatio'),
+                            saleStart: this.tokenState('saleStart'),
+                            saleEnd: this.tokenState('saleEnd'),
+                            freeBandwidth: 1,
+                            freeBandwidthLimit: 1,
+                            frozenAmount: this.tokenState('frozenAmount'),
+                            frozenDuration: this.tokenState('frozenDuration'),
+                            precision:  this.tokenState('precision'),
+                        }, tronWebLedger.defaultAddress.hex).catch(function (e) {
+                            errorInfo = e;
+                        })
+                        if (!unSignTransaction) {
+                            res = false;
+                        } else {
+                            const {result} = await transactionResultManager(unSignTransaction, tronWebLedger);
+                            res = result;
+                        }
+                    }
+
+                    if(this.props.walletType.type === "ACCOUNT_TRONLINK"){
+                        const unSignTransaction = await tronWeb.transactionBuilder.createToken({
+                            name: this.tokenState('name'),
+                            abbreviation: this.tokenState('abbreviation'),
+                            description: this.tokenState('description'),
+                            url: this.tokenState('url'),
+                            totalSupply: this.tokenState('totalSupply'),
+                            tokenRatio: this.tokenState('tokenRatio'),
+                            trxRatio: this.tokenState('trxRatio'),
+                            saleStart: this.tokenState('saleStart'),
+                            saleEnd: this.tokenState('saleEnd'),
+                            freeBandwidth: 1,
+                            freeBandwidthLimit: 1,
+                            frozenAmount: this.tokenState('frozenAmount'),
+                            frozenDuration: this.tokenState('frozenDuration'),
+                            precision:  this.tokenState('precision'),
+                        }, tronWeb.defaultAddress.hex).catch(function (e) {
+                            errorInfo = e.indexOf(':')?e.split(':')[1]:e
+                        })
+                        if (!unSignTransaction) {
+                            res = false;
+                        } else {
+                            const {result} = await transactionResultManager(unSignTransaction, tronWeb);
+                            res = result;
+                        }
+                    }
+
+                }else {
+
+                    createInfo = await Client.createToken({
+                        address: account.address,
+                        name: this.tokenState('name'),
+                        shortName: this.tokenState('abbreviation'),
+                        description: this.tokenState('description'),
+                        url: this.tokenState('url'),
+                        totalSupply: this.tokenState('totalSupply'),
+                        num: this.tokenState('tokenRatio'),
+                        trxNum: this.tokenState('trxRatio'),
+                        startTime: this.tokenState('startTime'),
+                        endTime: this.tokenState('endTime'),
+                        frozenSupply: this.tokenState('frozenSupply'),
+                        precision:  this.tokenState('precision'),
+                    })(account.key);
+                    res = createInfo.success;
+                    errorInfo = createInfo.message.indexOf(':')?createInfo.message.split(':')[1]:createInfo.message;
                 }
-            }
+                this.setState({
+                    res,
+                    errorInfo
+                },() => {
+                    this.props.nextState({res, errorInfo})
+                    this.props.nextStep(3)
+                });
+            break;
 
-            if(this.props.walletType.type === "ACCOUNT_TRONLINK"){
-                const unSignTransaction = await tronWeb.transactionBuilder.createToken({
-                    name: this.tokenState('name'),
-                    abbreviation: this.tokenState('abbreviation'),
-                    description: this.tokenState('description'),
-                    url: this.tokenState('url'),
-                    totalSupply: this.tokenState('totalSupply'),
-                    tokenRatio: this.tokenState('tokenRatio'),
-                    trxRatio: this.tokenState('trxRatio'),
-                    saleStart: this.tokenState('saleStart'),
-                    saleEnd: this.tokenState('saleEnd'),
-                    freeBandwidth: 1,
-                    freeBandwidthLimit: 1,
-                    frozenAmount: this.tokenState('frozenAmount'),
-                    frozenDuration: this.tokenState('frozenDuration'),
-                    precision:  this.tokenState('precision'),
-                }, tronWeb.defaultAddress.hex).catch(function (e) {
-                    errorInfo = e.indexOf(':')?e.split(':')[1]:e
-                })
-                if (!unSignTransaction) {
-                    res = false;
-                } else {
-                    const {result} = await transactionResultManager(unSignTransaction, tronWeb);
-                    res = result;
+            case 'trc20':
+                let a = this.tokenState('socialList')
+                console.log('socialList--difference',_.difference(a , [{active: true}]))
+                if (Lockr.get("islogin")||this.props.walletType.type==="ACCOUNT_LEDGER"||this.props.walletType.type==="ACCOUNT_TRONLINK") {
+                    if (this.props.walletType.type === "ACCOUNT_LEDGER") {
+                        const unSignTransaction = await tronWebLedger.transactionBuilder.createToken({
+                            name: this.tokenState('name'),
+                            abbreviation: this.tokenState('abbreviation'),
+                            description: this.tokenState('description'),
+                            url: this.tokenState('url'),
+                            totalSupply: this.tokenState('totalSupply'),
+                            tokenRatio: this.tokenState('tokenRatio'),
+                            trxRatio: this.tokenState('trxRatio'),
+                            saleStart: this.tokenState('saleStart'),
+                            saleEnd: this.tokenState('saleEnd'),
+                            freeBandwidth: 1,
+                            freeBandwidthLimit: 1,
+                            frozenAmount: this.tokenState('frozenAmount'),
+                            frozenDuration: this.tokenState('frozenDuration'),
+                            precision:  this.tokenState('precision'),
+                        }, tronWebLedger.defaultAddress.hex).catch(function (e) {
+                            errorInfo = e;
+                        })
+                        if (!unSignTransaction) {
+                            res = false;
+                        } else {
+                            const {result} = await transactionResultManager(unSignTransaction, tronWebLedger);
+                            res = result;
+                        }
+                    }
+
+                    if(this.props.walletType.type === "ACCOUNT_TRONLINK"){
+                        const unSignTransaction = await tronWeb.transactionBuilder.createToken({
+                            name: this.tokenState('name'),
+                            abbreviation: this.tokenState('abbreviation'),
+                            description: this.tokenState('description'),
+                            totalSupply: this.tokenState('totalSupply'),
+                            precision:  this.tokenState('precision'),
+                            address: this.tokenState('address'),
+                            logoUrl:this.tokenState('logoUrl'),
+                            contractAddress:this.tokenState('contractAddress'),
+                            contractCreatedRatio:this.tokenState('contractCreatedRatio'),
+                            contractCode:this.tokenState('contractCode'),
+                            url: this.tokenState('url'),
+                            email:this.tokenState('email'),
+                            whitePaper:this.tokenState('whitePaper'),
+                            socialList:this.tokenState('socialList'),
+
+                        }, tronWeb.defaultAddress.hex).catch(function (e) {
+                            errorInfo = e.indexOf(':')?e.split(':')[1]:e
+                        })
+                        if (!unSignTransaction) {
+                            res = false;
+                        } else {
+                            const {result} = await transactionResultManager(unSignTransaction, tronWeb);
+                            res = result;
+                        }
+                    }
+
+                }else {
+
+                    createInfo = await Client.createToken({
+                        address: account.address,
+                        name: this.tokenState('name'),
+                        shortName: this.tokenState('abbreviation'),
+                        description: this.tokenState('description'),
+                        url: this.tokenState('url'),
+                        totalSupply: this.tokenState('totalSupply'),
+                        num: this.tokenState('tokenRatio'),
+                        trxNum: this.tokenState('trxRatio'),
+                        startTime: this.tokenState('startTime'),
+                        endTime: this.tokenState('endTime'),
+                        frozenSupply: this.tokenState('frozenSupply'),
+                        precision:  this.tokenState('precision'),
+                    })(account.key);
+                    res = createInfo.success;
+                    errorInfo = createInfo.message.indexOf(':')?createInfo.message.split(':')[1]:createInfo.message;
                 }
-            }
-
-        }else {
-
-            createInfo = await Client.createToken({
-                address: account.address,
-                name: this.tokenState('name'),
-                shortName: this.tokenState('abbreviation'),
-                description: this.tokenState('description'),
-                url: this.tokenState('url'),
-                totalSupply: this.tokenState('totalSupply'),
-                num: this.tokenState('tokenRatio'),
-                trxNum: this.tokenState('trxRatio'),
-                startTime: this.tokenState('startTime'),
-                endTime: this.tokenState('endTime'),
-                frozenSupply: this.tokenState('frozenSupply'),
-                precision:  this.tokenState('precision'),
-            })(account.key);
-            res = createInfo.success;
-            errorInfo = createInfo.message.indexOf(':')?createInfo.message.split(':')[1]:createInfo.message;
+                this.setState({
+                    res,
+                    errorInfo
+                },() => {
+                    this.props.nextState({res, errorInfo})
+                    this.props.nextStep(3)
+                });
+            break;
         }
-        this.setState({
-            res,
-            errorInfo
-        },() => {
-            this.props.nextState({res, errorInfo})
-            this.props.nextStep(3)
-        });
+
     };
 
     render() {
         let {intl, nextStep} = this.props;
-        let {modal, checkbox, errors, captcha_code, type, paramData:{ token_name, token_abbr, token_introduction, token_supply, precision, author, token_amount, trx_amount, freeze_amount, freeze_date, freeze_type, participation_start_date, participation_end_date, participation_type, website  }} = this.state;
+        let {iconList, modal, checkbox, errors, captcha_code, type, paramData:{ token_name, token_abbr, token_introduction, token_supply, precision, author, logo_url, contract_address, contract_created_date, contract_code, token_amount, trx_amount, freeze_amount, freeze_date, freeze_type, participation_start_date, participation_end_date, participation_type, website, email, white_paper }} = this.state;
         const isTrc10 = type === 'trc10'
         const isTrc20 = type === 'trc20'
         let startTime =  participation_start_date.valueOf();
         let endTime = participation_end_date.valueOf();
-
+        let contractCreateTime = contract_created_date ? contract_created_date.valueOf() : contract_created_date;
         console.log('startTime6666',startTime)
         console.log('endTime6666',endTime)
         return (
@@ -316,7 +421,7 @@ const { TextArea } = Input;
                     <Row type="flex"  gutter={64}>
                         <Col span={24} md={12} className={ isTrc20? 'd-block': 'd-none'}>
                             <label>{tu('token_logo')}</label>
-                            <p className="border-dashed"></p>
+                            <img className="d-block mt-2" src={logo_url} alt="" width={100} height={100}/>
                         </Col>
                     </Row>
 
@@ -327,11 +432,15 @@ const { TextArea } = Input;
                     <Row type="flex"  gutter={64}>
                         <Col span={24} md={12}>
                             <label>{tu('trc20_token_info_Contract_Address')}</label>
-                            <p className="border-dashed"></p>
+                            <p className="border-dashed">
+                                {contract_address}
+                            </p>
                         </Col>
                         <Col span={24} md={12}>
                             <label>{tu('contract_created_date')}</label>
-                            <p className="border-dashed"></p>
+                            <p className="border-dashed">
+                                <FormattedDate value={contractCreateTime}/>
+                            </p>
                         </Col>
                     </Row>
                     <Row type="flex">
@@ -339,7 +448,7 @@ const { TextArea } = Input;
                             <label>{tu('contract_code')}</label>
                             <TextArea rows={4}
                              disabled={true}
-                             defaultValue="合约代码合约代码合约代码合约代码"
+                             defaultValue={contract_code}
                             />
                         </Col>
                     </Row>
@@ -359,7 +468,6 @@ const { TextArea } = Input;
                             <label>{tu("participation")}</label>
                             <p className="border-dashed">
                                 {
-
                                     !participation_type?<span>{tu("start_date")}:  <span> - </span> &nbsp;&nbsp; {tu("end_date")}:  <span> - </span></span>
                                     :<span>{tu("start_date")}: <FormattedDate value={startTime}/> &nbsp;&nbsp; {tu("end_date")}:  <FormattedDate value={endTime}/> </span>
                                 }
@@ -391,31 +499,71 @@ const { TextArea } = Input;
                         </Col>
                         <Col span={24} md={12} className={ isTrc20? 'd-block': 'd-none'}>
                             <label>{tu('email')}</label>
-                            <p className="border-dashed"></p>
+                            <p className="border-dashed">
+                                {email}
+                            </p>
                         </Col>
                     </Row>
-                    <Row type="flex" className={ isTrc20? 'd-block': 'd-none'}>
+                    <Row type="flex" gutter={64} className={ isTrc20? 'd-flex': 'd-none'}>
                         <Col span={24} md={24}>
                             <label>{tu('whitepaper_address')}</label>
-                            <p className="border-dashed"></p>
+                            <p className="border-dashed">
+                                {white_paper}
+                            </p>
                         </Col>
                     </Row>
-                    <Row type="flex" className={ isTrc20? 'd-block': 'd-none'}>
-                        <Col span={24} md={24}>
-                            <label>{tu('social_link')}</label>
-                        </Col>
+                    <Row type="flex" className={ isTrc20? 'd-flex mt-3': 'd-none'}>
+                        <div className="d-md-flex mb-4">
+                            <label>{tu('already_add_social_link_')}</label>
+                            <div className="d-flex icon-list ml-2">
+                                {
+                                    iconList.map( (item, index) => {
+                                        if(item.active){
+                                            return <div key={index}
+                                                        className={`${item.active? item.name+'-active': item.name} icon-list-item mr-2`}
+                                            ></div>
+                                        }
+
+                                    })
+                                }
+                            </div>
+                        </div>
                     </Row>
+                    <Row gutter={24} type="flex" justify="space-between">
+                        {
+                            iconList.map( (item, index) => {
+                                if(item.active){
+                                    return <Col  span={24} md={12} key={index}>
+                                        <div className="d-flex justify-content-between mb-2 pr-4">
+                                            <div className="d-flex align-items-center">
+                                                <i className={`${item.name}-active`}></i>
+                                                <span className="text-capitalize ml-2">{item.name}</span>
+                                            </div>
+                                        </div>
+                                        {
+                                            item.links.map( (link, link_index) => {
+                                                return <div className="d-flex align-items-center mb-4" key={link_index}>
+                                                    {/*<Input value={link} onChange={(e) => this.setLinks(index, link_index, e)}/>*/}
+                                                    <p className="border-dashed" style={{width:'100%'}}>
+                                                        {link}
+                                                    </p>
+                                                </div>
+                                            })
+                                        }
+                                    </Col>
+                                }
+                            })
+                        }
+                    </Row>
+                </section>
+                <section>
                     <hr/>
                     <div className="mt-4">
                         <ContractCodeRequest  handleCaptchaCode={this.handleCaptchaCode} />
                     </div>
-                    {/*<form action="?" method="POST">*/}
-                        {/*<div className="g-recaptcha" data-sitekey="6LeaxJ0UAAAAAFEa6VoFNWWD6jJSiwWOYnlbqn3G"></div>*/}
-                        {/*<br/>*/}
-                        {/*<input type="submit" value="Submit" />*/}
-                    {/*</form>*/}
                 </section>
-                <section className="mt-4">
+
+                <section className={ isTrc10? 'd-block mt-4': 'd-none'}>
                     <div className="form-check d-flex">
                         <input type="checkbox" className="form-check-input" value={checkbox}
                                onChange={(e) => {
@@ -427,7 +575,7 @@ const { TextArea } = Input;
                     </div>
                     {this.ErrorLabel(errors.confirm)}
                 </section>
-                <section className="text-right px-2">
+                <section className="text-right px-2" >
                     <button className="btn btn-default btn-lg" onClick={() => nextStep(1)}>{tu('trc20_token_return')}</button>
                     <button className="ml-4 btn btn-danger btn-lg" htmltype="submit" disabled={captcha_code} onClick={this.submit}>{tu('submit')}</button>
                 </section>
