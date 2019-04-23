@@ -290,7 +290,7 @@ class Buy extends Component {
     } = this.state;
     let { intl, exchangeData } = this.props;
     let pairType = exchangeData.pairType;
-    console.log('pairType',pairType)
+    
     if (pairType == 1 || pairType == 2) {
       if (price * amount < 10) {
         this.setState({
@@ -363,8 +363,7 @@ class Buy extends Component {
     let id;
     try {
       id = await TW.buyByContract(data);
-      console.log(id);
-
+ 
       if (id) {
         this.setState({
           modal: (
@@ -404,7 +403,6 @@ class Buy extends Component {
         const timer2 = setInterval(async () => {
           const info = await tronWeb.trx.getTransactionInfo(id);
           _times += 1;
-          console.log('info',info)
           if (info.log && info.log[0].data) {
             const c_id = parseInt(
               info.log[0].data.toString().substring(0, 64),

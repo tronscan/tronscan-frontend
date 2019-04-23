@@ -312,14 +312,14 @@ class Sell extends Component {
         return;
       }
     } else {
-      if (price * amount < 1) {
+      if (price * amount < 0.1) {
         this.setState({
           secondError: intl.formatMessage({ id: "trc20_enter_1" })
         });
         return;
       }
     }
-    
+
     if (!price || !amount || firstError || secondError || limitError) {
       return;
     }
@@ -397,10 +397,9 @@ class Sell extends Component {
       tronWeb: tronWebOBJ
     };
 
-    console.log(data);
     try {
       const id = await TW.sellByContract(data);
-      console.log(id);
+
       if (id) {
         this.setState({
           modal: (
