@@ -126,7 +126,7 @@ class ApiTW {
     // **** test
     this.contractAddress = "TPb1vyaZv59Mte7ABaRqTGCk4TaX1MzBUT";
     this.contractAddress10 = "THxN2BbBHp5nam7ZQWPrgLoAju3KTDZcNg";
-    this.contractAddrUsdt20 = "TY1qHkV4cjWTuhKX3y44A89bq7TYynEigG"; //'TWe4z3uRvUoG9VBgoC8iSgHRtvxa9MJJPv'
+    this.contractAddrUsdt20 = "TNFCcTuCKHg2dP7dfzJuD5cnpqjqP6K5Hm"; //'TWe4z3uRvUoG9VBgoC8iSgHRtvxa9MJJPv'
     this.contractAddrUsdt10 = "TR1peceVMh2hAJQcorRjgQX3YZK3XSKGRJ";
 
     // **** online

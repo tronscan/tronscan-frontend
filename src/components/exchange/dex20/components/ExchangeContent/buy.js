@@ -290,7 +290,7 @@ class Buy extends Component {
     } = this.state;
     let { intl, exchangeData } = this.props;
     let pairType = exchangeData.pairType;
-    
+
     if (pairType == 1 || pairType == 2) {
       if (price * amount < 10) {
         this.setState({
@@ -299,7 +299,7 @@ class Buy extends Component {
         return;
       }
     } else {
-      if (price * amount < 1) {
+      if (price * amount < 0.1) {
         this.setState({
           secondError: intl.formatMessage({ id: "trc20_enter_1" })
         });
@@ -363,7 +363,7 @@ class Buy extends Component {
     let id;
     try {
       id = await TW.buyByContract(data);
- 
+
       if (id) {
         this.setState({
           modal: (
