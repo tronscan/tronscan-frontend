@@ -74,7 +74,7 @@ const { TextArea } = Input;
             'address':author,
             'logoUrl':logo_url,
             'contractAddress':contract_address,
-            'contractCreatedRatio':contract_created_date * Math.pow(10, Number(precision)),
+            'contractCreatedRatio':contract_created_date.valueOf(),
             'contractCode':contract_code,
             'tokenRatio': token_amount * Math.pow(10, Number(precision)),
             'trxRatio': trx_amount * ONE_TRX,
@@ -283,7 +283,7 @@ const { TextArea } = Input;
                     email:this.tokenState('email'),
                     whitePaper:this.tokenState('whitePaper'),
                     socialList:this.tokenState('socialList'),
-                    timestamp:moment().value(),
+                    timestamp:moment().valueOf(),
                 }
                 console.log('data',data)
                 console.log('stringify',JSON.stringify(data))
