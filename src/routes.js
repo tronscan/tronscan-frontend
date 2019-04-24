@@ -60,12 +60,12 @@ export const routes = [
     icon: "fa fa-link",
     component: () => <Redirect to="/blockchain/blocks" />,
     routes: [
-      {
-        label: "nodes",
-        icon: "fa fa-server",
-        path: "/blockchain/nodes",
-        component: NodesAsync
-      },
+      // {
+      //   label: "nodes",
+      //   icon: "fa fa-server",
+      //   path: "/blockchain/nodes",
+      //   component: NodesAsync
+      // },
       {
         path: "/blockchain/blocks",
         label: "blocks",
