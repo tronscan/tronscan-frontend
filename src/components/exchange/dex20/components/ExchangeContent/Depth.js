@@ -145,6 +145,9 @@ class Depth extends React.Component {
     // 基于准备好的dom，初始化echarts实例
     myChart = echarts.init(document.getElementById("myChart"));
     myChart.showLoading();
+
+    const start = buyList.length / 3;
+    const end = buyList.length + (sellList.length * 2) / 3;
     // 绘制图表
     myChart.setOption({
       animation: false,
@@ -162,6 +165,15 @@ class Depth extends React.Component {
           }
         }
       },
+      dataZoom: [
+        {
+          type: "inside",
+          xAxisIndex: [0],
+          startValue: start,
+          endValue: end,
+          filterMode: "filter"
+        }
+      ],
       xAxis: {
         type: "category",
         boundaryGap: false,
