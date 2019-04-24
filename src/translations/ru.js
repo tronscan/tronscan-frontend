@@ -1664,4 +1664,20 @@ export const messages = {
   "market_capitalization_trx": "Рыночная капитализация (TRX)",
   "token_txs_info":"Token",
   "result":"Result",
+
+  /*
+     ##################################################################################
+     #                                                                                #
+     # new variables    ledger 2019-04-24                                    #
+     #                                                                                #
+     ##################################################################################
+ */
+  "ledger_user_guide":"Руководство по использованию Ledger",
+  "latest_version_chrome":"Обновите Сhrome до последней версии",
+  "ledger_support_version":"Поддерживаемая версия Ledger: 0.1.0., Поддерживаемая версия Chrome 73.0",
+  "ledger_you_can":"Вы можете посетить",
+  "ledger_website":" Ledger веб-сайт ",
+  "ledger_website_download":"Загрузите и обновите последнюю версию Ledger",
+  "ledger_click_help":"Нажмите здесь для получения дополнительной помощи",
+
 };

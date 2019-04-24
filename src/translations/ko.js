@@ -1664,4 +1664,20 @@ export const messages = {
   "market_capitalization_trx": "시장 가치 (TRX)",
   "token_txs_info":"Token",
   "result":"Result",
+
+  /*
+     ##################################################################################
+     #                                                                                #
+     # new variables    ledger 2019-04-24                                    #
+     #                                                                                #
+     ##################################################################################
+ */
+  "ledger_user_guide":"Ledger사용 가이드",
+  "latest_version_chrome":"최신 버전 Chrome 사용 추천",
+  "ledger_support_version":"Ledger지원 버전: 0.1.0, Chrome버전 73.0",
+  "ledger_you_can":"너는 할 수있다 ",
+  "ledger_website":"Ledger 공식 웹 사이트",
+  "ledger_website_download":"원장의 최신 버전을 다운로드하여 업데이트하십시오",
+  "ledger_click_help":"추가 도움말을 보려면 여기를 클릭하십시오",
+
 };

@@ -1660,5 +1660,22 @@ export const messages = {
     "token_txs_info":"Token",
     "result":"Result",
 
+    /*
+     ##################################################################################
+     #                                                                                #
+     # new variables    ledger 2019-04-24                                    #
+     #                                                                                #
+     ##################################################################################
+  */
+    "ledger_user_guide":"Ledgerご利用のガイド",
+    "latest_version_chrome":"最新バージョンのChromeご利用をお薦めします",
+    "ledger_support_version":"Ledgerサポートできるバージョン:0.1.1、Chromeサポートできるバージョン73.0",
+    "ledger_you_can":"あなたは行くことができます",
+    "ledger_website":"Ledgerの公式サイト",
+    "ledger_website_download":"最新の元帳バージョンをダウンロードして更新する",
+    "ledger_click_help":"ここをクリックしてヘルプを獲得します",
+
+
+
 }
 

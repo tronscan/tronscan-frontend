@@ -1664,4 +1664,20 @@ export const messages = {
     "token_txs_info":"通证",
     "result":"结果",
 
+
+    /*
+        ##################################################################################
+        #                                                                                #
+        # new variables    ledger 2019-04-24                                    #
+        #                                                                                #
+        ##################################################################################
+    */
+    "ledger_user_guide":"Ledger使用指南",
+    "latest_version_chrome":"推荐使用最新版Chrome",
+    "ledger_support_version":"Ledger支持版本：0.1.0，chrome支持版本 73.0",
+    "ledger_you_can":"您可以去",
+    "ledger_website":"Ledger官网",
+    "ledger_website_download":"下载更新最新的Ledger版本",
+    "ledger_click_help":"点此获得更多帮助",
+
 };
