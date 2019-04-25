@@ -6,7 +6,7 @@
     "@fortawesome/fontawesome-free-solid": "^5.0.12",
     "@fortawesome/react-fontawesome": "^0.0.19",
     "@ledgerhq/hw-transport-u2f": "^4.31.0",
-    "@tronscan/client": "0.2.46",
+    "@tronscan/client": "0.2.48",
     "@tweenjs/tween.js": "^17.2.0",
     "aes-js": "^3.1.1",
     "animate.css": "^3.6.1",
