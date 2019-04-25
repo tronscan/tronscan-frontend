@@ -146,8 +146,8 @@ class Depth extends React.Component {
     myChart = echarts.init(document.getElementById("myChart"));
     myChart.showLoading();
 
-    const start = buyList.length / 3;
-    const end = buyList.length + (sellList.length * 2) / 3;
+    const start = (buyList.length * 2) / 5;
+    const end = buyList.length + (sellList.length * 2) / 5;
     // 绘制图表
     myChart.setOption({
       animation: false,
