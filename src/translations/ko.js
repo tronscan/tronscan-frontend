@@ -1648,6 +1648,8 @@ export const messages = {
   "table_info_big_tip4": "다른 통계를 보려면 선택한 기간을 변경하십시오.",
   "table_info_account_tip1": "TRON의 메인넷에는 총",
   "table_info_account_tip2": "개의 계정이 있으며, 현재 상위 10,000 개만 표시됩니다 (TRX 잔액 높은 가격에서 낮은 가격으로 정렬).",
+  "table_info_holders_tip1":"현재 토큰은 모두 ",
+  "table_info_holders_tip2":"주소에 있으며 상위 10,000 개만 표시됩니다 (토큰수량이 많은것부터적은 순서로 정렬)",
   "Singapore": "Singapore",
   "table_info_new_tip": "상위 10,000 개의 데이터 만 표시됩니다. 다른 데이터를 조회하려면  시간 범위를 변경해 주시기 바랍니다.",
   "select_start_time": "시작 시간을 선택하십시오.",
@@ -1662,5 +1664,21 @@ export const messages = {
   'all': '모두',
   "market_capitalization_trx": "시장 가치 (TRX)",
   "token_txs_info":"Token",
+  "result":"Result",
+
+  /*
+     ##################################################################################
+     #                                                                                #
+     # new variables    ledger 2019-04-24                                    #
+     #                                                                                #
+     ##################################################################################
+ */
+  "ledger_user_guide":"Ledger사용 가이드",
+  "latest_version_chrome":"최신 버전 Chrome 사용 추천",
+  "ledger_support_version":"Ledger지원 버전: 0.1.0, Chrome버전 73.0",
+  "ledger_you_can":"너는 할 수있다 ",
+  "ledger_website":"Ledger 공식 웹 사이트",
+  "ledger_website_download":"원장의 최신 버전을 다운로드하여 업데이트하십시오",
+  "ledger_click_help":"추가 도움말을 보려면 여기를 클릭하십시오",
 
 };

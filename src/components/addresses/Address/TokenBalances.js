@@ -52,8 +52,8 @@ export  class TokenBalances extends React.Component {
                 .filter(tb => tb.map_amount >= 10)
                 .value();
             TRC20balances = _(token20Balances)
-                .filter(tb => tb.token20_balance >= 10)
-                .sortBy(tb => -tb.token20_balance)
+                .filter(tb => tb.token20_balance_decimals >= 10)
+                .sortBy(tb => -tb.token20_balance_decimals)
                 .value();
         }else{
             balances = _(tokenBalances)
@@ -61,15 +61,14 @@ export  class TokenBalances extends React.Component {
                 .filter(tb => tb.map_amount > 0)
                 .value();
             TRC20balances = _(token20Balances)
-                .filter(tb => tb.token20_balance > 0)
-                .sortBy(tb => -tb.token20_balance)
+                .filter(tb => tb.token20_balance_decimals > 0)
+                .sortBy(tb => -tb.token20_balance_decimals)
                 .value();
         }
-
         this.setState({
             page,
             balances,
-            TRC20balances
+            TRC20balances,
         });
     };
 

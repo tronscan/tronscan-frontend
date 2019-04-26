@@ -1694,6 +1694,8 @@ export const messages = {
   "table_info_big_tip4":"Si desea buscar otras estadísticas, le recomendamos que cambie la duración del tiempo seleccionado.",
   "table_info_account_tip1":"La red principal de TRON tiene ",
   "table_info_account_tip2":"cuentas, mostrando solo 10,000 cuentas (ordenadas de alta a baja TRX)",
+  "table_info_holders_tip1":"Hay direcciones ",
+  "table_info_holders_tip2":"en el pase actual y solo se muestran actualmente los primeros 10,000 (ordenados de grande a pequeño según el número de pases)",
   "Singapore":"Singapore",
   "table_info_new_tip":"Actualmente solo se muestran los primeros 10,000 datos, le recomendamos que ajuste el tiempo seleccionado.",
   "select_start_time":"Por favor seleccione la hora de inicio",
@@ -1705,5 +1707,23 @@ export const messages = {
   'all': 'TODO',
   "market_capitalization_trx": "Capitalización de mercado (TRX) ",
   "token_txs_info":"Token",
+  "result":"Result",
+
+  /*
+      ##################################################################################
+      #                                                                                #
+      # new variables    ledger 2019-04-24                                    #
+      #                                                                                #
+      ##################################################################################
+   */
+  "ledger_user_guide":"Ledger User Guide",
+  "latest_version_chrome":"we recommend the latest version of chrome",
+  "ledger_support_version":"Ledger support version: 0.1.0, chrome support version 73.0",
+  "ledger_you_can":"You can go to the ",
+  "ledger_website":"Ledger Website",
+  "ledger_website_download":"to download and update the latest version of Ledger",
+  "ledger_click_help":"Click here for more help",
+
+
 
 };

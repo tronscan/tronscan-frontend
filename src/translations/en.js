@@ -1701,10 +1701,12 @@ export const messages = {
   "table_info_big":"only the first 10,000 data are displayed",
   "table_info_big_tip1":"There are altogether ",
   "table_info_big_tip2":"data within the selected time ",
-  "table_info_big_tip3":"and only 10,000 transactions are displayed.",
+  "table_info_big_tip3":"Only 10,000 pieces of data are displayed.",
   "table_info_big_tip4":"If you would like to look up other statistics, we recommend that you change the selected duration of time.",
   "table_info_account_tip1":"There are altogether ",
   "table_info_account_tip2":"accounts on TRON's MainNet and only 10,000 accounts are displayed (sorted by TRX balance from high to low)",
+  "table_info_holders_tip1":"There are",
+  "table_info_holders_tip2":"addresses in the current pass, and only the first 10,000 are currently displayed (sorted from big to small according to the number of passes)",
   "Singapore":"Singapore",
   "table_info_new_tip":"Only 10,000 pieces of data are displayed. If you would like to look up other statistics, we recommend that you change the selected duration of time.",
   "select_start_time":"Please select the start time",
@@ -1719,5 +1721,22 @@ export const messages = {
   'all': 'All',
   "market_capitalization_trx": "Market Cap (TRX)",
   "token_txs_info":"Token",
+  "result":"Result",
+
+  /*
+     ##################################################################################
+     #                                                                                #
+     # new variables    ledger 2019-04-24                                    #
+     #                                                                                #
+     ##################################################################################
+  */
+  "ledger_user_guide":"Ledger User Guide",
+  "latest_version_chrome":"we recommend the latest version of Chrome",
+  "ledger_support_version":"Ledger support version: 0.1.0, Chrome support version 73.0",
+  "ledger_you_can":"You can go to the",
+  "ledger_website":" Ledger Website ",
+  "ledger_website_download":"to download and update the latest version of Ledger",
+  "ledger_click_help":"Click here for more help",
+
 
 };

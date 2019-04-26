@@ -492,9 +492,9 @@ class Navigation extends React.Component {
           <Modal isOpen={true} fade={false} keyboard={false} size="lg" className="modal-dialog-centered">
             <ModalHeader className="text-center" toggle={this.hideModal}>
               {tu("open_ledger")}&nbsp;&nbsp;
-              {/*<Link to="/help/ledger">*/}
+              {/*<Link to="/help/ledger" onClick={this.hideModal} style={{fontSize:12,marginTop:6}}>*/}
                 {/*<small>*/}
-                    {/*{tu("beginners_guide")}*/}
+                    {/*{tu("ledger_user_guide")}*/}
                 {/*</small>*/}
               {/*</Link>*/}
             </ModalHeader>

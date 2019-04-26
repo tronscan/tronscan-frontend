@@ -1,7 +1,7 @@
 import {Client} from "../services/api";
 import {setTokenBalances} from "./account";
 import rebuildList from "../utils/rebuildList";
-import { FormatNumberByDecimals } from '../utils/number'
+import { FormatNumberByDecimals, FormatNumberByDecimalsBalance } from '../utils/number'
 
 export const SET_ACTIVE_WALLET = 'SET_ACTIVE_WALLET';
 export const SET_WALLET_LOADING = 'SET_WALLET_LOADING';
@@ -51,6 +51,7 @@ export const reloadWallet = () => async (dispatch, getState) => {
       trc20token_balances && trc20token_balances.map(item => {
           item.token20_name = item.name + '(' + item.symbol + ')';
           item.token20_balance = FormatNumberByDecimals(item.balance, item.decimals);
+          item.token20_balance_decimals = FormatNumberByDecimalsBalance(item.balance, item.decimals);
           return item
       });
       dispatch(setActiveWallet(wallet));

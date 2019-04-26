@@ -220,7 +220,7 @@ class Representative extends React.Component {
                        onClick={this.scrollTo}>{section.name}</a>
                 ))
               }
-              <ExternalLink className="list-group-item" url={address.representative.url}>Website</ExternalLink>
+              <ExternalLink className=" list-group-item" url={address.representative.url}>Website</ExternalLink>
             </Scrollspy>
           </div>
           <Link className="btn btn-secondary btn-block mb-2" to="/sr/votes">

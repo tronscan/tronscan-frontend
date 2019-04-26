@@ -141,6 +141,12 @@ class Transaction extends React.Component {
                               </td>
                             </tr>
                             <tr>
+                                <th>{tu("result")}:</th>
+                                <td>
+                                    {transaction.contractRet}
+                                </td>
+                            </tr>
+                            <tr>
                               <th>{tu("hash")}:</th>
                               <td>
                                 <Truncate>

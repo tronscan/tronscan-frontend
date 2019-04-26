@@ -1645,10 +1645,12 @@ export const messages = {
     "table_info_big":"仅展示前10,000条数据",
     "table_info_big_tip1":"所选时间内共",
     "table_info_big_tip2":"条数据，",
-    "table_info_big_tip3":"目前只展示前10,000条。",
+    "table_info_big_tip3":"目前只展示前10,000个数据。",
     "table_info_big_tip4":"如果您想要查询其他数据，建议调整时间范围。",
     "table_info_account_tip1":"波场主链共",
     "table_info_account_tip2":"个账户，目前只展示前10,000个（按照TRX余额从大到小排列）。",
+    "table_info_holders_tip1":"当前通证共有",
+    "table_info_holders_tip2":"个地址，目前只展示前10,000个(按照通证数量从大到小排序)",
     "Singapore":"新加坡",
     "table_info_new_tip":"目前只展示前10,000条数据.如果您想要查询其他数据，建议调整时间范围。",
     "select_start_time":"请选择开始时间",
@@ -1663,6 +1665,22 @@ export const messages = {
     'all': '全部',
     "market_capitalization_trx":"市值（TRX）",
     "token_txs_info":"通证",
+    "result":"结果",
 
+
+    /*
+        ##################################################################################
+        #                                                                                #
+        # new variables    ledger 2019-04-24                                    #
+        #                                                                                #
+        ##################################################################################
+    */
+    "ledger_user_guide":"Ledger使用指南",
+    "latest_version_chrome":"推荐使用最新版Chrome",
+    "ledger_support_version":"Ledger支持版本：0.1.0，chrome支持版本 73.0",
+    "ledger_you_can":"您可以去",
+    "ledger_website":"Ledger官网",
+    "ledger_website_download":"下载更新最新的Ledger版本",
+    "ledger_click_help":"点此获得更多帮助",
 
 };

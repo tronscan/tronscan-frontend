@@ -370,7 +370,7 @@ class SendForm extends React.Component {
         }
     }else if(token && TokenType == 'TRC20'){
         let TokenName =  list[0];
-        let balance = parseFloat(find(tokens20, t => t.name === TokenName).token20_balance);
+        let balance = parseFloat(find(tokens20, t => t.name === TokenName).token20_balance_decimals);
         let TokenDecimals = parseFloat(find(tokens20, t => t.name === TokenName).decimals);
         this.setState({
             decimals: TokenDecimals,
@@ -656,7 +656,7 @@ class SendForm extends React.Component {
                             <Option value={token.token_name_type} key={index}>
                                 {/*<span>{token.name}</span>*/}
                                 {/*({token.token20_balance} {intl.formatMessage({id: "available"})})*/}
-                                {token.name} ({token.token20_balance} {intl.formatMessage({id: "available"})})
+                                {token.name} ({token.token20_balance_decimals} {intl.formatMessage({id: "available"})})
                             </Option>
                         ))
                     }
