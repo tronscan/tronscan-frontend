@@ -1572,7 +1572,8 @@ export const messages = {
   "trc20_first_token": "Primer Token",
   "trc20_balance": "Saldo",
   "trc20_second_token": "Segundo Token",
-
+  "trc20_kchart":"K Line",
+  "trc20_depth":"DEPTH",
 
   /*
    *  2018-12-18

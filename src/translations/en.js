@@ -1572,7 +1572,8 @@ export const messages = {
   "trc20_first_token": "First Token",
   "trc20_balance": "balance",
   "trc20_second_token": "Second Token",
-
+  "trc20_kchart":"K Line",
+  "trc20_depth":"DEPTH",
 
   "create_deal_pair": "Create Trading Pairs",
   "add_deal_pair_desc": "Trading pair creation is available.",

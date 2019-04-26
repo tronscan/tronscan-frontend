@@ -1518,7 +1518,7 @@ export const messages = {
     "trc20_first_token": "اولین توکن",
     "trc20_balance": "بالانس",
     "trc20_second_token": "دومین توکن",
-    "trc20_kchart":"CHART",
+    "trc20_kchart":"K Line",
    "trc20_depth":"DEPTH",
 
 

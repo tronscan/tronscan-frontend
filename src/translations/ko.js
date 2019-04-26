@@ -1514,7 +1514,8 @@ export const messages = {
   "trc20_first_token": "이름",
   "trc20_balance": "잔액",
   "trc20_second_token": "이름",
-
+  "trc20_kchart":"K Line",
+  "trc20_depth":"DEPTH",
 
   /*
    *  2018-12-18

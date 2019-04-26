@@ -1529,7 +1529,7 @@ export const messages = {
    "trc20_first_token": "Первый токен",
    "trc20_balance": "Баланс",
    "trc20_second_token": "Второй токен",
-   "trc20_kchart":"CHART",
+   "trc20_kchart":"K Line",
    "trc20_depth":"DEPTH",
 
 
