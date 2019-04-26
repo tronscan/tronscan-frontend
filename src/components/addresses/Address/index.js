@@ -23,6 +23,7 @@ import {channel} from "../../../services/api";
 import rebuildList from "../../../utils/rebuildList";
 import {API_URL} from '../../../constants.js'
 import { FormatNumberByDecimals, FormatNumberByDecimalsBalance } from '../../../utils/number'
+import { Progress } from 'antd'
 
 
 class Address extends React.Component {
@@ -400,8 +401,7 @@ class Address extends React.Component {
                         }
                         <div className="row">
 
-                          <div className="col-md-12">
-
+                          <div className="col-md-6">
                             <table className="table m-0">
                               <tbody>
                               {
@@ -513,6 +513,23 @@ class Address extends React.Component {
                               </tbody>
                             </table>
 
+                          </div>
+                          <div className="col-md-6 d-flex address-circle">
+                            <div className="address-circle-bandwidth d-flex mr-4">
+                              <Progress width={82} strokeWidth={10} showInfo={false} type="circle" strokeColor="#f5bc5d" strokeLinecap="square" percent={60} />
+                              <div className="circle-info">
+                                <div>{tu('bandwidth')}</div>
+                                <h2>5084</h2>
+                              </div>
+                            </div>
+                            <div className="address-circle-line"></div>
+                            <div className="address-circle-energy d-flex ml-4">
+                              <Progress width={82} strokeWidth={10} showInfo={false} type="circle" strokeColor="#7aa2d5" strokeLinecap="square" percent={60} />
+                              <div className="circle-info">
+                                <div>{tu('energy')}</div>
+                                <h2>5084</h2>
+                              </div>
+                            </div>
                           </div>
                           {
                             /*

@@ -3238,3 +3238,41 @@ h5 {
     -webkit-transform: scale(0.75);
     transform: scale(0.75); }
 }
+.address-circle{
+  justify-content: center;
+  align-items: center;
+  .address-circle-bandwidth{
+    display: block;
+    .ant-progress{
+      .ant-progress-circle-trail{
+        stroke: #f5e1b8;
+      }
+    }
+  }
+  .address-circle-line{
+   background-color: rgba(216,216,216,0.40);
+    width:1px;
+    height:60px;
+  }
+  .address-circle-energy{
+    display: block;
+    .ant-progress{
+      .ant-progress-circle-trail{
+        stroke: #b5d6f1;
+      }
+    }
+  }
+  .circle-info{
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+    align-items:flex-start;
+    margin-left: 1rem;
+    div{
+      color: #999999;
+    }
+    h2{
+      color: #333333;
+    }
+  }
+}
