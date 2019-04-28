@@ -126,6 +126,8 @@ export const getExchanges20 = () => async dispatch => {
 
 export const getExchangesAllList = () => async dispatch => {
   let { exchangesAllList } = await Client.getexchangesAllList();
+  // _.orderBy(exchangesAllList, ['user', 'age'], ['asc', 'desc']);
+
   let f_list = Lockr.get("optional") || [];
   map(exchangesAllList, item => {
     if (item.up_down_percent.indexOf("-") != -1) {
@@ -165,8 +167,9 @@ export const getExchangesAllList = () => async dispatch => {
 
 export const getExchanges = () => async dispatch => {
   let { data } = await Client.getExchangesList();
+  console.log(123, data);
   let f_list = Lockr.get("optional") || [];
-  
+
   map(data, item => {
     if (item.up_down_percent.indexOf("-") != -1) {
       item.up_down_percent =
@@ -199,7 +202,7 @@ export const getExchanges = () => async dispatch => {
     item.exchange_abbr_name = item.exchange_abbr_name;
     return item;
   });
- 
+
   dispatch(setExchanges10(newData));
 };
 

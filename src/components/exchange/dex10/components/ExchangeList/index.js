@@ -170,6 +170,9 @@ class ExchangeList extends React.Component {
     let { exchangesAllList } = this.state;
     let { exchange20List = [] } = this.props;
     let { data } = await Client.getExchangesList();
+    data = _.sortBy(data, function(item) {
+      return -item.svolume;
+    });
 
     let tab, exchangesList;
     if (Lockr.get("DEX")) {
