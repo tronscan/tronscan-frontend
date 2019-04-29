@@ -312,7 +312,7 @@ class Sell extends Component {
         return;
       }
     } else {
-      if (price * amount < 0.1) {
+      if (price * amount < 1) {
         this.setState({
           secondError: intl.formatMessage({ id: "trc20_enter_1" })
         });
