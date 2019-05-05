@@ -249,6 +249,7 @@ class Depth extends React.Component {
       ],
       series: [
         {
+          step: "start",
           data: buyList,
           type: "line",
           symbol: "circle",
@@ -305,20 +306,7 @@ class Depth extends React.Component {
         },
         {
           data: sellList,
-          // markPoint: {
-          //   // symbol: "arrow",
-
-          //   data: [
-          //     {
-          //       type: "min",
-          //       symbol: "roundRect",
-          //       symbolSize: [20, 10],
-          //       itemStyle: {
-          //         color: "red"
-          //       }
-          //     }
-          //   ]
-          // },
+          step: "end",
           type: "line",
           symbol: "circle",
           showSymbol: false,
@@ -329,29 +317,6 @@ class Depth extends React.Component {
             shadowColor: "rgba(0, 0, 0, 0.5)",
             shadowBlur: 10
           },
-          // label: {
-          //   show: true,
-          //   position: "left",
-          //   distance: 10,
-          //   padding: 10,
-          //   fontSize: 12,
-          //   color: "#fff",
-          //   backgroundColor: "rgba(0, 0, 0, .6)",
-          //   formatter: function(params) {
-          //     return [
-          //       `价格 ：{a|￥${params.data[0]}}`,
-          //       `总量 ：{a|${Math.round(params.data[1])}}`
-          //     ].join("\n");
-          //   },
-          //   rich: {
-          //     a: {
-          //       color: "#fff",
-          //       fontSize: "12",
-          //       fontWeight: "bold",
-          //       lineHeight: "20"
-          //     }
-          //   }
-          // },
           lineStyle: {
             color: "#ee3523",
             width: "1"
