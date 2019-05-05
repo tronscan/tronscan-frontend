@@ -1485,6 +1485,7 @@ export const messages = {
   "trc20_O": "O",
   "trc20_C": "C",
   "trc20_24H_VOL": "24H VOL",
+  "trc20_24H_Total":"24H TOTAL",
   "trc20_price": "Precio",
   "trc20_amount": "Cantidad",
   "trc20_enter_the_trading_amount": "Introducir la cantidad a negociar",

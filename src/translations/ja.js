@@ -1426,6 +1426,7 @@ export const messages = {
    "trc20_O":"オープン",
    "trc20_C":"お終い",
    "trc20_24H_VOL":"24時間取引量",
+   "trc20_24H_Total":"24時間の売上高",
    "trc20_price":"価格",
    "trc20_amount":"数",
    "trc20_enter_the_trading_amount":"取引量を入力してください",

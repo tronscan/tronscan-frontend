@@ -1442,6 +1442,7 @@ export const messages = {
     "trc20_O":"O",
     "trc20_C":"C",
     "trc20_24H_VOL":"24-часовой объём",
+    "trc20_24H_Total":"24-часовой оборот",
     "trc20_price":"Цена",
     "trc20_amount":"Количество",
     "trc20_enter_the_trading_amount":"Введите торговую сумму",

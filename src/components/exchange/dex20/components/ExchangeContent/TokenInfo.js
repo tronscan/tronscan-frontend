@@ -117,10 +117,32 @@ class Tokeninfo extends React.Component {
                 {tu("24H_VOL")}{" "}
                 <span className="ml-1">
                   {" "}
-                  <TRXPrice amount={selectData.svolume} />
+                  {selectData.second_token_id == "TRX" ? (
+                    <TRXPrice amount={selectData.svolume} />
+                  ) : (
+                    <span>
+                      <FormattedNumber value={selectData.volume} />
+                      &nbsp;
+                      {selectData.first_token_abbr}
+                    </span>
+                  )}
                 </span>
                 {/*<span className=" ml-2">{selectData.volume} {selectData.first_token_id}</span>*/}
                 {/*≈*/}
+              </div>
+              <div className="mr-3">
+                {selectData.second_token_id == "TRX" ? (
+                  " "
+                ) : (
+                  <span>
+                    {tu("trc20_24H_Total")}
+                    <span className="ml-1">
+                      <FormattedNumber value={selectData.svolume} />
+                      &nbsp;
+                      {selectData.second_token_abbr}
+                    </span>
+                  </span>
+                )}
               </div>
             </div>
           </div>

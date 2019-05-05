@@ -1427,6 +1427,7 @@
    "trc20_O":"فتح",
    "trc20_C":"قبول",
    "trc20_24H_VOL":"24H VOL",
+   "trc20_24H_Total":"24H TOTAL",
    "trc20_price":"السعر",
    "trc20_amount":"الكمية",
    "trc20_enter_the_trading_amount":"يرجى إدخال عدد المعاملات",

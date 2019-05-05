@@ -1427,6 +1427,7 @@ export const messages = {
   "trc20_O": "O",
   "trc20_C": "C",
   "trc20_24H_VOL": "24H 거래 성사량",
+  "trc20_24H_Total":"24H 거래 성사 금액",
   "trc20_price": "가격",
   "trc20_amount": "수량",
   "trc20_enter_the_trading_amount": "거래 수량을 입력해주세요.",

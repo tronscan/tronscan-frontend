@@ -126,7 +126,7 @@ export const getExchanges20 = () => async dispatch => {
 
 export const getExchangesAllList = () => async dispatch => {
   let { exchangesAllList } = await Client.getexchangesAllList();
-  // _.orderBy(exchangesAllList, ['user', 'age'], ['asc', 'desc']);
+  
 
   let f_list = Lockr.get("optional") || [];
   map(exchangesAllList, item => {
@@ -167,7 +167,6 @@ export const getExchangesAllList = () => async dispatch => {
 
 export const getExchanges = () => async dispatch => {
   let { data } = await Client.getExchangesList();
-  console.log(123, data);
   let f_list = Lockr.get("optional") || [];
 
   map(data, item => {
