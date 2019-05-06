@@ -61,7 +61,7 @@ $green: #69c265;
     justify-content: space-between;
     align-items: center;
 
-    &>img {
+    & > img {
       height: 16px;
     }
 
@@ -118,7 +118,7 @@ $green: #69c265;
       }
     }
 
-    &>a {
+    & > a {
       color: #c53028;
       height: 40px;
       line-height: 40px;
@@ -378,7 +378,7 @@ $green: #69c265;
         background-color: #f3f3f3;
 
         &:hover {
-          &>td {
+          & > td {
             background-color: rgba(194, 54, 49, 0.2);
           }
         }
@@ -427,7 +427,6 @@ $green: #69c265;
     border: 1px solid #eeeeee;
 
     .ant-table {
-
       td,
       th {
         padding: 4px 8px !important;
@@ -618,7 +617,7 @@ $green: #69c265;
   border-radius: 2px;
   color: #f3f3f3;
   font-size: 12px;
-
+  z-index: 20;
   &__inr {
     color: #d8d8d8;
     padding-bottom: 10px;
@@ -656,12 +655,12 @@ $green: #69c265;
 }
 
 .badge-success-block {
-  background: #69C265;
+  background: #69c265;
   color: #fff;
 }
 
 .badge-danger-block {
-  background: #E60815;
+  background: #e60815;
   color: #fff;
 }
 
@@ -669,9 +668,7 @@ $green: #69c265;
   justify-content: space-between;
 }
 
-
 @media only screen and (max-width: 768px) {
-
   // .exchange__kline{
   //   overflow: hidden;
   // }

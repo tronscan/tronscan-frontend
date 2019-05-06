@@ -3,6 +3,7 @@ import io from "socket.io-client";
 import TronWeb from "tronweb";
 import xhr from "axios/index";
 import { API_URL } from "../constants.js";
+import { setLoginWithAddress } from "../actions/app.js";
 
 const ServerNode = "https://api.trongrid.io";
 const HttpProvider = TronWeb.providers.HttpProvider; // This provider is optional, you can just use a url for the nodes instead
@@ -102,6 +103,42 @@ class ApiClient20 {
         limit: 100,
         ...query
       }
+    });
+    return data;
+  }
+
+  async getTokenInfoItem(contract, type) {
+    // https://apilist.tronscan.org/api/token_trc20?contract=TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t
+    let params = {};
+    let url = `${API_URL}/api/token_trc20`;
+    switch (type) {
+      case 1:
+        params = {
+          id: contract
+        };
+        url = `${API_URL}/api/token`;
+        break;
+      case 2:
+        params = {
+          contract: contract
+        };
+        break;
+      case 4:
+        params = {
+          id: contract
+        };
+        url = `${API_URL}/api/token`;
+        break;
+      case 3:
+        params = {
+          contract: contract
+        };
+        break;
+      default:
+        break;
+    }
+    let { data } = await xhr.get(url, {
+      params: params
     });
     return data;
   }

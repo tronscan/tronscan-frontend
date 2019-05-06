@@ -26,37 +26,67 @@ class Tokeninfo extends React.Component {
   componentDidMount() {
     const { tokeninfo } = this.state;
     const { selectData } = this.props;
-    const newObj = tokeninfo.filter(o => o.symbol == selectData.fShortName)[0];
-    this.setState({ tokeninfoItem: newObj, detailShow: false });
+    // const newObj = tokeninfo.filter(o => o.symbol == selectData.fShortName)[0];
+    selectData && this.getTokenInfo();
+    this.setState({ detailShow: false });
   }
 
   componentDidUpdate(prevProps) {
     const { tokeninfo } = this.state;
     const { selectData, activeLanguage } = this.props;
 
-    if (!tokeninfo.length && selectData.exchange_id) {
+    if (
+      selectData.exchange_id &&
+      prevProps.selectData.id != selectData.exchange_id
+    ) {
       this.getTokenInfo();
     }
     if (
       selectData.exchange_id != prevProps.selectData.exchange_id ||
       prevProps.activeLanguage != activeLanguage
     ) {
-      const newObj = tokeninfo.filter(
-        o => o.symbol == selectData.fShortName
-      )[0];
-      this.setState({ tokeninfoItem: newObj, detailShow: false });
+      // const newObj = tokeninfo.filter(
+      //   o => o.symbol == selectData.fShortName
+      // )[0];
+      this.setState({ detailShow: false });
     }
   }
 
   getTokenInfo() {
     const { selectData } = this.props;
-    Client20.gettokenInfo20().then(({ trc20_tokens }) => {
+    // Client20.gettokenInfo20().then(({ trc20_tokens }) => {
+    //   console.log(123, trc20_tokens);
+    //   if (trc20_tokens) {
+    //     const newObj = trc20_tokens.filter(
+    //       o => o.name == selectData.first_token_id
+    //     )[0];
+    //     this.setState({ tokeninfoItem: newObj });
+    //     this.setState({ tokeninfo: trc20_tokens });
+    //   }
+    // });
+    // const { selectData } = this.props;
+    const newObj = {};
+
+    if (selectData.fShortName == "TRX") {
+      newObj["icon_url"] = "http://coin.top/production/js/20190506075825.png";
+      this.setState({ tokeninfoItem: newObj });
+      return;
+    }
+
+    const fTokenAddr = selectData.fTokenAddr;
+
+    Client20.getTokenInfoItem(fTokenAddr, selectData.pairType).then(res => {
+      const { trc20_tokens } = res;
       if (trc20_tokens) {
-        const newObj = trc20_tokens.filter(
-          o => o.name == selectData.first_token_id
-        )[0];
+        const newObj = trc20_tokens[0];
         this.setState({ tokeninfoItem: newObj });
-        this.setState({ tokeninfo: trc20_tokens });
+      }
+
+      const { data } = res;
+      if (data) {
+        const newObj = data[0];
+        newObj["icon_url"] = data[0].imgUrl;
+        this.setState({ tokeninfoItem: newObj });
       }
     });
   }
@@ -81,13 +111,14 @@ class Tokeninfo extends React.Component {
 
           <div className="ml-3">
             <div className="d-flex mb-1">
-              <div
-                className="kline_down"
-                onClick={() => this.setState({ detailShow: !detailShow })}
-              >
-                <Icon type="caret-down" theme="filled" />
-              </div>
-
+              {selectData.fShortName != "TRX" && (
+                <div
+                  className="kline_down"
+                  onClick={() => this.setState({ detailShow: !detailShow })}
+                >
+                  <Icon type="caret-down" theme="filled" />
+                </div>
+              )}
               <h5 className="mr-3 font-weight-bold">
                 {selectData.exchange_name} ≈ <span>{selectData.price}</span>
               </h5>
@@ -121,7 +152,9 @@ class Tokeninfo extends React.Component {
                     <TRXPrice amount={selectData.svolume} />
                   ) : (
                     <span>
-                      <FormattedNumber value={selectData.volume} />
+                      <FormattedNumber
+                        value={selectData.volume ? selectData.volume : 0}
+                      />
                       &nbsp;
                       {selectData.first_token_abbr}
                     </span>
@@ -137,7 +170,9 @@ class Tokeninfo extends React.Component {
                   <span>
                     {tu("trc20_24H_Total")}
                     <span className="ml-1">
-                      <FormattedNumber value={selectData.svolume} />
+                      <FormattedNumber
+                        value={selectData.svolume ? selectData.svolume : 0}
+                      />
                       &nbsp;
                       {selectData.second_token_abbr}
                     </span>
