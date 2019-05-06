@@ -2,6 +2,7 @@
 import React, {Fragment} from "react";
 import {injectIntl} from "react-intl";
 import {NavLink, Route, Switch} from "react-router-dom";
+import {connect} from "react-redux";
 import {Client} from "../../../services/api";
 import {tu} from "../../../utils/i18n";
 import {FormattedNumber} from "react-intl";
@@ -363,6 +364,7 @@ class Address extends React.Component {
 
     let {totalPower, address, tabs, stats, loading, blocksProduced, media, candidates, rank, totalVotes} = this.state;
     let {match} = this.props;
+    console.log('address',address)
     let addr = match.params.id;
     let uploadURL = API_URL + "/api/v2/node/info_upload?address=" + match.params.id
 
@@ -516,18 +518,23 @@ class Address extends React.Component {
                           </div>
                           <div className="col-md-6 d-flex address-circle">
                             <div className="address-circle-bandwidth d-flex mr-4">
-                              <Progress width={82} strokeWidth={10} showInfo={false} type="circle" strokeColor="#f5bc5d" strokeLinecap="square" percent={60} />
+                              <Progress width={82} strokeWidth={10} showInfo={false} type="circle" strokeColor="#f5bc5d" strokeLinecap="square" percent={address.bandwidth.netPercentage*100} />
                               <div className="circle-info">
                                 <div>{tu('bandwidth')}</div>
-                                <h2>5084</h2>
+                                <h2>
+                                  <FormattedNumber
+                                      value={address.bandwidth.netRemaining + address.bandwidth.freeNetRemaining}/>
+                                </h2>
                               </div>
                             </div>
                             <div className="address-circle-line"></div>
                             <div className="address-circle-energy d-flex ml-4">
-                              <Progress width={82} strokeWidth={10} showInfo={false} type="circle" strokeColor="#7aa2d5" strokeLinecap="square" percent={60} />
+                              <Progress width={82} strokeWidth={10} showInfo={false} type="circle" strokeColor="#7aa2d5" strokeLinecap="square" percent={address.bandwidth.energyPercentage*100} />
                               <div className="circle-info">
                                 <div>{tu('energy')}</div>
-                                <h2>5084</h2>
+                                <h2>
+                                  <FormattedNumber value={address.bandwidth.energyRemaining}/>
+                                </h2>
                               </div>
                             </div>
                           </div>
@@ -599,5 +606,5 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = {};
 
-// export default connect(mapStateToProps, mapDispatchToProps)(Address);
 export default injectIntl(Address);
+//export default connect(mapStateToProps, mapDispatchToProps)(injectIntl(Address));
