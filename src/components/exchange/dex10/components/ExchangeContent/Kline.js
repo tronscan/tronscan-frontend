@@ -374,7 +374,7 @@ class Kline extends React.Component {
             <div className="kline_detail p-3">
               {/* <p className="kline_detail__inr"><b className="mr-2">{tu('trc20_token_info_Token_Info')}</b>{tokeninfoItem.description}</p> */}
               <ul className="">
-                <li>
+                {/* <li>
                   <p className="title">{tu("trc20_exchange_status")}</p>
                   <p className="value">
                     {selectData.status == 1 ? (
@@ -387,7 +387,7 @@ class Kline extends React.Component {
                       </span>
                     )}
                   </p>
-                </li>
+                </li> */}
                 <li>
                   <p className="title">{tu("trc20_id")}</p>
                   <p className="value">{selectData.exchange_id}</p>
