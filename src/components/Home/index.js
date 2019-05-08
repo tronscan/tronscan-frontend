@@ -18,17 +18,23 @@ import {HrefLink} from "../common/Links";
 import {TronLoader} from "../common/loaders";
 import {LineReactHighChartAdd, LineReactHighChartTx} from "../common/LineCharts";
 import {API_URL} from "../../constants";
+import { setWebsocket } from '../../actions/account';
+import Lockr from "lockr";
 
 @connect(
-  state => (
-    {
+  state => {
+      return{
         blocks: state.blockchain.blocks,
         account: state.app.account,
         theme: state.app.theme,
         activeLanguage: state.app.activeLanguage,
-        wsdata: state.account.wsdata
+        wsdata: state.account.wsdata,
+        websocket:state.account.websocket,
     }
-  ),
+  },
+  {
+      setWebsocket
+  }
 )
 @withTimers
 @injectIntl
@@ -172,12 +178,16 @@ export default class Home extends Component {
   };
 
   async componentDidMount() {
+    const {wsdata, intl, setWebsocket, account} = this.props;
     this.loadNodes();
     this.load();
     this.loadAccounts();
     this.reconnect();
-
-    let { intl } = this.props;
+    if(!account.isLoggedIn){
+        if(Lockr.get('websocket') === 'close' || !Lockr.get('websocket')) {
+            setWebsocket();
+        }
+    }
     let { noticezhIEO, noticeenIEO } = this.state;
     const data = await Client20.getTRONNotice(intl.locale, { page: 3 });
    // intl.locale == "zh"? data.articles.unshift(noticezhIEO):data.articles.unshift(noticeenIEO);
@@ -206,13 +216,17 @@ export default class Home extends Component {
 
   componentWillUnmount() {
     //clearConstellations();
-    this.listener && this.listener.close();
+    //this.listener && this.listener.close();
+    let { account, websocket }  = this.props;
+    if(websocket){
+        websocket.close();
+        Lockr.set("websocket", 'close')
+    }
   }
 
   reconnect() {
-    const {wsdata} = this.props
-    const info = wsdata.type === 'tps'&& wsdata.data
-
+    const {wsdata,websocket,setWebsocket} = this.props;
+    const info = wsdata.type === 'tps'&& wsdata.data;
     this.setState({
       maxTps:info.maxTps?info.maxTps:0,
       tps:info.currentTps?info.currentTps:0,
@@ -558,6 +572,8 @@ function mapStateToProps(state) {
   };
 }
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = {
+    setWebsocket
+};
 
 

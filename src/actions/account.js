@@ -1,4 +1,5 @@
 import {Client} from "../services/api";
+import Lockr from "lockr";
 import ReconnectingWebSocket from 'reconnecting-websocket'
 
 export const SET_TOKEN_BALANCES = 'SET_TOKEN_BALANCES';
@@ -48,7 +49,10 @@ export const loadRecentTransactions = (address) => async (dispatch) => {
 };
 
 
-export const setWebsocket = (address) => async (dispatch) => {
+export const setWebsocket = () => async (dispatch) => {
+  if(Lockr.get("websocket") === 'open'){
+    return;
+  }
   var wsUri = "wss://apilist.tronscan.org/api/tronsocket";
   // var wsUri = "wss://api.shasta.tronscan.org/api/tronsocket";
   // var wsUri = "ws://172.16.20.200:6688/api/tronsocket";
@@ -56,7 +60,7 @@ export const setWebsocket = (address) => async (dispatch) => {
   let websocket = new ReconnectingWebSocket(wsUri, [], {
     minReconnectionDelay: 500
   })
-  websocket.onopen = res => { 
+  websocket.onopen = res => {
   }
 
   websocket.onmessage = res => {
@@ -68,7 +72,9 @@ export const setWebsocket = (address) => async (dispatch) => {
   }
 
   window.onbeforeunload = function() {
-    websocket.close()
+    Lockr.set("websocket", 'close')
+    websocket.close();
   }
   dispatch(setWebsocketFn(websocket))
+  Lockr.set("websocket", 'open')
 };

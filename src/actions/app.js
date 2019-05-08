@@ -1,6 +1,6 @@
 import {Client} from "../services/api";
 import xhr from "axios";
-import {loadRecentTransactions} from "./account";
+import {loadRecentTransactions, setWebsocket} from "./account";
 import {reloadWallet, setWalletLoading} from "./wallet";
 import Lockr from "lockr";
 
@@ -80,6 +80,7 @@ export const logout = () => (dispatch, getState) => {
   const { account, app } = getState()
   account.websocket.send('cancel:'+app.account.address)
   Lockr.rm('localAddress')
+  window.onbeforeunload();
   dispatch(setlLogout())
 }
 
@@ -93,7 +94,8 @@ export const login = privateKey => async (dispatch, getState) => {
     await dispatch(loginWithPrivateKey(privateKey));
     await dispatch(reloadWallet());
     dispatch(setWalletLoading(false));
-    await dispatch(loadRecentTransactions(getState().app.account.address));
+    await dispatch(loadRecentTransactions(getState().app.account.address))
+    await dispatch(setWebsocket());
     await setWebsocketContent(getState, getState().app.account.address)
   // }
 };
@@ -104,6 +106,7 @@ export const loginWithAddress = address => async (dispatch, getState) => {
   setTimeout(() => {
     dispatch(reloadWallet());
     dispatch(loadRecentTransactions(address));
+    dispatch(setWebsocket());
     setWebsocketContent(getState, address)
   }, 50);
 };
@@ -115,6 +118,7 @@ export const loginWithLedger = (address) => async (dispatch, getState) => {
   setTimeout(() => {
     dispatch(reloadWallet());
     dispatch(loadRecentTransactions(address));
+    dispatch(setWebsocket());
     setWebsocketContent(getState, address)
   }, 50);
 };
@@ -127,6 +131,7 @@ export const loginWithTronLink = (address,tronWeb) => async (dispatch, getState)
     await dispatch(reloadWallet());
     dispatch(setWalletLoading(false));
     await dispatch(loadRecentTransactions(address));
+    await dispatch(setWebsocket());
     await setWebsocketContent(getState, address)
     //},50)
 };

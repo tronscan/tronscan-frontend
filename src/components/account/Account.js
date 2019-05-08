@@ -110,6 +110,7 @@ export default class Account extends Component {
     }
   }
 
+
   scrollToAnchor = () => {
 
       let anchorElement = document.getElementById('tronPower');
