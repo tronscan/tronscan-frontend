@@ -391,7 +391,7 @@ class Buy extends Component {
             }
           });
 
-          console.log(event);
+          // console.log(event);
           _times += 1;
           if (event.length > 0) {
             for (var i = 0; i < event.length; i++) {
@@ -426,7 +426,7 @@ class Buy extends Component {
                   ).then(res => {});
                 }
                 clearInterval(timer);
-                console.log(123);
+                // console.log(123);
                 break;
               } else {
                 if (_times > 20) {

@@ -678,3 +678,16 @@ $green: #69c265;
     }
   }
 }
+
+.ant-btn:hover span,
+.ant-btn:focus span {
+  color: #fff !important;
+}
+.success.ant-btn:hover {
+  background: #89d086;
+  border-color: #fff;
+}
+.warning.ant-btn:hover {
+  background: #ed7979;
+  border-color: #fff;
+}
