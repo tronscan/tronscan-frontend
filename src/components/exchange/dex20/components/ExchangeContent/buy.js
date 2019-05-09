@@ -381,7 +381,7 @@ class Buy extends Component {
                     title={tu("trc20_trade_win_content")}
                     onConfirm={this.hideModal}
                   >
-                    {tu("trc20_trade_win_content")}
+                    {/* {tu("trc20_trade_win_content")} */}
                   </SweetAlert>
                 )
               });
@@ -439,7 +439,7 @@ class Buy extends Component {
                         title={tu("trc20_trade_win_content")}
                         onConfirm={this.hideModal}
                       >
-                        {tu("trc20_trade_win_content")}
+                        {/* {tu("trc20_trade_win_content")} */}
                       </SweetAlert>
                     )
                   });

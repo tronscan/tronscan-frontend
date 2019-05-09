@@ -418,7 +418,7 @@ class Sell extends Component {
                       title={tu("trc20_trade_win_content")}
                       onConfirm={this.hideModal}
                     >
-                      {tu("trc20_trade_win_content")}
+                      {/* {tu("trc20_trade_win_content")} */}
                     </SweetAlert>
                   )
                 });
@@ -476,7 +476,7 @@ class Sell extends Component {
                     title={tu("trc20_trade_win_content")}
                     onConfirm={this.hideModal}
                   >
-                    {tu("trc20_trade_win_content")}
+                    {/* {tu("trc20_trade_win_content")} */}
                   </SweetAlert>
                 )
               });
