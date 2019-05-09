@@ -1431,10 +1431,12 @@ export const messages = {
     "trc20_O": "O",
     "trc20_C": "C",
     "trc20_24H_VOL": "24H VOL",
+    "trc20_24H_Total":"24H TOTAL",
     "trc20_price": "قیمت",
     "trc20_amount": "مقدار",
     "trc20_enter_the_trading_amount": "مقدار معامله را وارد کنید",
     "trc20_enter_10": "Total ≥ 10 TRX",
+    "trc20_enter_1": "Total ≥ 1 USDT",
     "trc20_enter_the_trading_price": "قیمت معامله را وارد کنید",
     "trc20_TxAvailable": "موجود",
     "trc20_BUY": "خرید",
@@ -1517,6 +1519,8 @@ export const messages = {
     "trc20_first_token": "اولین توکن",
     "trc20_balance": "بالانس",
     "trc20_second_token": "دومین توکن",
+    "trc20_kchart":"K Line",
+   "trc20_depth":"DEPTH",
 
 
 /*

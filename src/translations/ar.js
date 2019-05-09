@@ -1427,10 +1427,12 @@
    "trc20_O":"فتح",
    "trc20_C":"قبول",
    "trc20_24H_VOL":"24H VOL",
+   "trc20_24H_Total":"24H TOTAL",
    "trc20_price":"السعر",
    "trc20_amount":"الكمية",
    "trc20_enter_the_trading_amount":"يرجى إدخال عدد المعاملات",
    "trc20_enter_10":"الإجمالي ≥ 10 ترون",
+   "trc20_enter_1": "Total ≥ 1 USDT",
    "trc20_enter_the_trading_price":"يرجى إدخال سعر عملية التداول",
    "trc20_TxAvailable":"متاح",
    "trc20_BUY":"شراء",
@@ -1513,6 +1515,8 @@
    "trc20_first_token": "الاسم",
    "trc20_balance": "الرصيد",
    "trc20_second_token": "الاسم",
+   "trc20_kchart":"K Line",
+  "trc20_depth":"DEPTH",
 
 
     /*

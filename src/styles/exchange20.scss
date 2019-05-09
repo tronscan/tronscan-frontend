@@ -1,11 +1,16 @@
 .exchange20 {
+  .ant-btn:hover, .ant-btn:focus{
+    color:#fff;
+    border-color:#fff;
+  }
   .exchange-list {
     background: none;
   }
   .exchange-list-mark {
     // height: 471px;
     // height:328px;
-    height:410px;
+    // height:410px;
+    height:450px;
   }
   .exchange-list-explain {
     // height:370px;
@@ -109,6 +114,8 @@
   .textRight{
     text-align: right;
   }
-
-
+  .exchange__kline__pic{
+    // height:329px!important;
+    border:1px solid rgb(230, 230, 230);
+  }
 }

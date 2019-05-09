@@ -1430,10 +1430,12 @@ export const messages = {
    "trc20_O":"开",
    "trc20_C":"收",
    "trc20_24H_VOL":"24H成交量",
+   "trc20_24H_Total":"24H成交额",
    "trc20_price":"价格",
    "trc20_amount":"数量",
    "trc20_enter_the_trading_amount":"请输入交易数量",
    "trc20_enter_10":"成交额 ≥ 10 TRX",
+   "trc20_enter_1": "成交额 ≥ 1 USDT",
    "trc20_enter_the_trading_price":"请输入交易价格",
    "trc20_TxAvailable":"可用",
    "trc20_BUY":"买入",
@@ -1516,6 +1518,8 @@ export const messages = {
    "trc20_first_token": "名称",
    "trc20_balance": "余额",
    "trc20_second_token": "名称",
+   "trc20_kchart":"K线",
+   "trc20_depth":"深度",
 
 
     /*

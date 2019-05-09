@@ -288,14 +288,25 @@ class Buy extends Component {
       limitError,
       buttonLoading
     } = this.state;
-    let { intl } = this.props;
+    let { intl, exchangeData } = this.props;
+    let pairType = exchangeData.pairType;
 
-    if (price * amount < 10) {
-      this.setState({
-        secondError: intl.formatMessage({ id: "trc20_enter_10" })
-      });
-      return;
+    if (pairType == 1 || pairType == 2) {
+      if (price * amount < 10) {
+        this.setState({
+          secondError: intl.formatMessage({ id: "trc20_enter_10" })
+        });
+        return;
+      }
+    } else {
+      if (price * amount < 1) {
+        this.setState({
+          secondError: intl.formatMessage({ id: "trc20_enter_1" })
+        });
+        return;
+      }
     }
+
     if (!price || !amount || firstError || secondError || limitError) {
       return;
     }
@@ -451,6 +462,7 @@ class Buy extends Component {
     ) {
       tronWeb = account.tronWeb;
     }
+
     let _b = 0;
     if (account.address && exchangeData.sTokenAddr) {
       if (exchangeData.sTokenAddr === "T9yD14Nj9j7xAB4dbGeiX9h8unkKHxuWwb") {

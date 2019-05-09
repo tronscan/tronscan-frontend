@@ -1426,10 +1426,12 @@ export const messages = {
    "trc20_O":"オープン",
    "trc20_C":"お終い",
    "trc20_24H_VOL":"24時間取引量",
+   "trc20_24H_Total":"24時間の売上高",
    "trc20_price":"価格",
    "trc20_amount":"数",
    "trc20_enter_the_trading_amount":"取引量を入力してください",
    "trc20_enter_10":"取引高≥ 10 TRX",
+   "trc20_enter_1": "取引高 ≥ 1 USDT",
    "trc20_enter_the_trading_price":"仕切り値段を入力してください",
    "trc20_TxAvailable":"入手できる",
    "trc20_BUY":"買う",
@@ -1512,6 +1514,8 @@ export const messages = {
   "trc20_first_token": "名称",
   "trc20_balance": "残高",
   "trc20_second_token": "名称",
+  "trc20_kchart":"K Line",
+   "trc20_depth":"DEPTH",
 
 
     /*

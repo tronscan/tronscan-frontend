@@ -1485,10 +1485,12 @@ export const messages = {
   "trc20_O": "O",
   "trc20_C": "C",
   "trc20_24H_VOL": "24H VOL",
+  "trc20_24H_Total":"24H TOTAL",
   "trc20_price": "Price",
   "trc20_amount": "Amount",
   "trc20_enter_the_trading_amount": "Enter the Trading Amount",
   "trc20_enter_10": "Total ≥ 10 TRX",
+  "trc20_enter_1": "Total ≥ 1 USDT",
   "trc20_enter_the_trading_price": "Enter the Trading Price",
   "trc20_TxAvailable": "Available",
   "trc20_BUY": "BUY",
@@ -1571,7 +1573,8 @@ export const messages = {
   "trc20_first_token": "First Token",
   "trc20_balance": "balance",
   "trc20_second_token": "Second Token",
-
+  "trc20_kchart":"K Line",
+  "trc20_depth":"DEPTH",
 
   "create_deal_pair": "Create Trading Pairs",
   "add_deal_pair_desc": "Trading pair creation is available.",

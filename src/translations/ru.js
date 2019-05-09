@@ -1442,10 +1442,12 @@ export const messages = {
     "trc20_O":"O",
     "trc20_C":"C",
     "trc20_24H_VOL":"24-часовой объём",
+    "trc20_24H_Total":"24-часовой оборот",
     "trc20_price":"Цена",
     "trc20_amount":"Количество",
     "trc20_enter_the_trading_amount":"Введите торговую сумму",
     "trc20_enter_10":"Всего ≥ 10 TRX",
+    "trc20_enter_1": "Всего ≥ 1 USDT",
     "trc20_enter_the_trading_price":"Введите торговую цену",
     "trc20_TxAvailable":"Имеется в наличии",
     "trc20_BUY":"КУПИТЬ",
@@ -1528,6 +1530,8 @@ export const messages = {
    "trc20_first_token": "Первый токен",
    "trc20_balance": "Баланс",
    "trc20_second_token": "Второй токен",
+   "trc20_kchart":"K Line",
+   "trc20_depth":"DEPTH",
 
 
   /*

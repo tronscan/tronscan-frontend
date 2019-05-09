@@ -1427,10 +1427,12 @@ export const messages = {
   "trc20_O": "O",
   "trc20_C": "C",
   "trc20_24H_VOL": "24H 거래 성사량",
+  "trc20_24H_Total":"24H 거래 성사 금액",
   "trc20_price": "가격",
   "trc20_amount": "수량",
   "trc20_enter_the_trading_amount": "거래 수량을 입력해주세요.",
   "trc20_enter_10": "거래액. ≥ 10 TRX",
+  "trc20_enter_1": "거래액. ≥ 1 USDT",
   "trc20_enter_the_trading_price": "거래 가격을 입력해 주세요.",
   "trc20_TxAvailable": "사용 가능",
   "trc20_BUY": "매수",
@@ -1513,7 +1515,8 @@ export const messages = {
   "trc20_first_token": "이름",
   "trc20_balance": "잔액",
   "trc20_second_token": "이름",
-
+  "trc20_kchart":"K Line",
+  "trc20_depth":"DEPTH",
 
   /*
    *  2018-12-18

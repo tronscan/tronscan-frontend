@@ -92,7 +92,13 @@ export function toThousands(num) {
         result = ',' + number.slice(-3) + result;
         number = number.slice(0, number.length - 3);
     }
-    if (number) { result = number + result + '.' + arr[1]; }
+    if (number) {
+        if(arr[1]){
+            result = number + result + '.' + arr[1];
+        }else{
+            result = number + result
+        }
+    }
     return result;
 }
 

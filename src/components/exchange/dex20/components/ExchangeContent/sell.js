@@ -302,12 +302,24 @@ class Sell extends Component {
 
     let { intl, exchangeData } = this.props;
     let secondTokenName = exchangeData.sShortName;
-    if (price * amount < 10) {
-      this.setState({
-        secondError: intl.formatMessage({ id: "trc20_enter_10" })
-      });
-      return;
+    let pairType = exchangeData.pairType;
+
+    if (pairType == 1 || pairType == 2) {
+      if (price * amount < 10) {
+        this.setState({
+          secondError: intl.formatMessage({ id: "trc20_enter_10" })
+        });
+        return;
+      }
+    } else {
+      if (price * amount < 1) {
+        this.setState({
+          secondError: intl.formatMessage({ id: "trc20_enter_1" })
+        });
+        return;
+      }
     }
+
     if (!price || !amount || firstError || secondError || limitError) {
       return;
     }
@@ -384,8 +396,10 @@ class Sell extends Component {
       _pairType: pairType,
       tronWeb: tronWebOBJ
     };
+
     try {
       const id = await TW.sellByContract(data);
+
       if (id) {
         this.setState({
           modal: (
@@ -496,23 +510,50 @@ class Sell extends Component {
     ) {
       tronWebOBJ = account.tronWeb;
     }
+
     let _b = 0;
 
-    if (currentWallet && !isNaN(parseInt(exchangeData.fTokenAddr))) {
-      var result = find(currentWallet.tokenBalances, function(o) {
-        return o["name"] + "" === exchangeData.fTokenAddr + "";
-      });
+    // if (currentWallet && !isNaN(parseInt(exchangeData.fTokenAddr))) {
+    //   var result = find(currentWallet.tokenBalances, function(o) {
+    //     return o["name"] + "" === exchangeData.fTokenAddr + "";
+    //   });
 
-      if (result) {
-        _b = result.balance / Math.pow(10, result["map_token_precision"]);
+    //   if (result) {
+    //     _b = result.balance / Math.pow(10, result["map_token_precision"]);
+    //   }
+    // } else
+    if (account.address && exchangeData.fTokenAddr) {
+      if (exchangeData.fTokenAddr === "T9yD14Nj9j7xAB4dbGeiX9h8unkKHxuWwb") {
+        _b =
+          (await tronWebOBJ.trx.getUnconfirmedBalance(this.address)) /
+          Math.pow(10, exchangeData.fPrecision);
+      } else {
+        if (exchangeData.pairType === 1 || exchangeData.pairType === 4) {
+          if (account.address && exchangeData.fTokenAddr) {
+            _b = await TW.getV10Balance({
+              _tokenA: exchangeData.fTokenAddr,
+              _uToken: account.address,
+              _precision: exchangeData.fPrecision,
+              tronWeb: tronWebOBJ
+            });
+          }
+        } else {
+          if (account.address && exchangeData.fTokenAddr) {
+            _b = await TW.getBalance({
+              _tokenA: exchangeData.fTokenAddr,
+              _uToken: account.address,
+              _precision: exchangeData.fPrecision,
+              tronWeb: tronWebOBJ
+            });
+          }
+        }
       }
-    } else if (account.address && exchangeData.fTokenAddr) {
-      _b = await TW.getBalance({
-        _tokenA: exchangeData.fTokenAddr,
-        _uToken: account.address,
-        _precision: exchangeData.fPrecision,
-        tronWeb: tronWebOBJ
-      });
+      // _b = await TW.getBalance({
+      //   _tokenA: exchangeData.fTokenAddr,
+      //   _uToken: account.address,
+      //   _precision: exchangeData.fPrecision,
+      //   tronWeb: tronWebOBJ
+      // });
     }
 
     if (_b !== firstBalance) {
