@@ -1521,6 +1521,8 @@ export const messages = {
     "trc20_second_token": "دومین توکن",
     "trc20_kchart":"K Line",
    "trc20_depth":"DEPTH",
+   "trc20_trade_win_content":"Current network is unstable , please check later",
+  "trc20_trade_win_confirm":"Confirm",
 
 
 /*
