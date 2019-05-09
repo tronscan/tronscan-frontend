@@ -88,12 +88,12 @@ export default (list = [], tokenId, amount, infolist=false) => {
 
 
 function setItem(item,name,id,pre,amount,abbr,index=''){
-  index = index == 0? '': index
-  item['map_token_name'+index] = name
-  item['map_token_name_abbr'+index] = abbr
-  item['map_token_id'+index] = id
-  item['map_token_precision'+index] = pre
-  item['map_amount'+index] =amount
+  index = index == 0? '': index;
+  item['map_token_name'+index] = name;
+  item['map_token_name_abbr'+index] = abbr;
+  item['map_token_id'+index] = id;
+  item['map_token_precision'+index] = pre;
+  item['map_amount'+index] =amount;
 
   return item
 }

@@ -24,7 +24,7 @@ import {channel} from "../../../services/api";
 import rebuildList from "../../../utils/rebuildList";
 import {API_URL} from '../../../constants.js'
 import { FormatNumberByDecimals, FormatNumberByDecimalsBalance } from '../../../utils/number'
-import { Progress } from 'antd'
+import { Progress, Tooltip } from 'antd'
 
 
 class Address extends React.Component {
@@ -347,6 +347,11 @@ class Address extends React.Component {
     let totalPower=sentDelegateBandwidth+frozenBandwidth+sentDelegateResource+frozenEnergy;
     this.setState({
         totalPower:totalPower,
+        netUsed:address.bandwidth.netUsed,
+        bandWidthPercentage:(address.bandwidth.netUsed/(address.bandwidth.netLimit + address.bandwidth.freeNetLimit))*100,
+        energyUsed:address.bandwidth.energyUsed,
+        energyPercentage:address.bandwidth.energyPercentage * 100,
+
     });
 
   }
@@ -362,9 +367,13 @@ class Address extends React.Component {
 
   render() {
 
-    let {totalPower, address, tabs, stats, loading, blocksProduced, media, candidates, rank, totalVotes} = this.state;
+    let {totalPower, address, tabs, stats, loading, blocksProduced, media, candidates, rank, totalVotes, netUsed, bandWidthPercentage, energyUsed, energyPercentage} = this.state;
     let {match} = this.props;
-    console.log('address',address)
+      console.log('address',address)
+
+    let bandWidthCircle = '已使用带宽:' + netUsed + ' 占比:' + Number(bandWidthPercentage).toFixed(2)+ '%';
+    let energyCircle = '已使用能量:' + energyUsed + ' 占比:' + Number(energyPercentage).toFixed(2)+ '%';
+
     let addr = match.params.id;
     let uploadURL = API_URL + "/api/v2/node/info_upload?address=" + match.params.id
 
@@ -518,7 +527,19 @@ class Address extends React.Component {
                           </div>
                           <div className="col-md-6 d-flex address-circle">
                             <div className="address-circle-bandwidth d-flex mr-4">
-                              <Progress width={82} strokeWidth={10} showInfo={false} type="circle" strokeColor="#f5bc5d" strokeLinecap="square" percent={address.bandwidth.netPercentage*100} />
+                              <Tooltip title={bandWidthCircle}>
+                                <Progress
+                                    width={82}
+                                    strokeWidth={10}
+                                    showInfo={false}
+                                    type="circle"
+                                    strokeColor="#f5bc5d"
+                                    strokeLinecap="square"
+                                    percent={bandWidthPercentage}
+                                />
+                              </Tooltip>
+
+
                               <div className="circle-info">
                                 <div>{tu('bandwidth')}</div>
                                 <h2>
@@ -529,7 +550,17 @@ class Address extends React.Component {
                             </div>
                             <div className="address-circle-line"></div>
                             <div className="address-circle-energy d-flex ml-4">
-                              <Progress width={82} strokeWidth={10} showInfo={false} type="circle" strokeColor="#7aa2d5" strokeLinecap="square" percent={address.bandwidth.energyPercentage*100} />
+                              <Tooltip title={energyCircle}>
+                                <Progress
+                                    width={82}
+                                    strokeWidth={10}
+                                    showInfo={false}
+                                    type="circle"
+                                    strokeColor="#7aa2d5"
+                                    strokeLinecap="square"
+                                    percent={energyPercentage}
+                                />
+                              </Tooltip>
                               <div className="circle-info">
                                 <div>{tu('energy')}</div>
                                 <h2>
