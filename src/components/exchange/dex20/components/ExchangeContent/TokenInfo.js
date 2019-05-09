@@ -55,7 +55,6 @@ class Tokeninfo extends React.Component {
   getTokenInfo() {
     const { selectData } = this.props;
     // Client20.gettokenInfo20().then(({ trc20_tokens }) => {
-    //   console.log(123, trc20_tokens);
     //   if (trc20_tokens) {
     //     const newObj = trc20_tokens.filter(
     //       o => o.name == selectData.first_token_id
