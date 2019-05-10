@@ -164,7 +164,12 @@ class Transaction extends React.Component {
                                 <th>{tu("time")}:</th>
                                 <td>
                                   <FormattedDate value={transaction.timestamp}/>&nbsp;
-                                  <FormattedTime value={transaction.timestamp}/>&nbsp;
+                                  <FormattedTime value={transaction.timestamp}
+                                                 hour='numeric'
+                                                 minute="numeric"
+                                                 second='numeric'
+                                                 hour12={false}
+                                  />&nbsp;
                                   {/*(<TimeAgoI18N date={transaction.timestamp} activeLanguage={activeLanguage}/>)*/}
                                 </td>
                               </tr>

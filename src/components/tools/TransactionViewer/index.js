@@ -202,7 +202,7 @@ class TransactionViewer extends Component {
                     <tbody>
                       <Field label="timestamp">
                         <FormattedDate value={transactionData.timestamp }/>&nbsp;
-                        <FormattedTime value={transactionData.timestamp }/>
+                        <FormattedTime value={transactionData.timestamp }  hour='numeric' minute="numeric" second='numeric' hour12={false}/>
                       </Field>
                       <Field label="contracts">
                         {transactionData.contracts.length}

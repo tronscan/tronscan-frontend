@@ -6,7 +6,7 @@ import {connect} from "react-redux";
 import {Client} from "../../../services/api";
 import {tu} from "../../../utils/i18n";
 import {FormattedNumber} from "react-intl";
-import {TokenBalances} from "./TokenBalances";
+import TokenBalances from "./TokenBalances";
 import {ONE_TRX} from "../../../constants";
 import {AddressLink, ExternalLink} from "../../common/Links";
 import {TRXPrice} from "../../common/Price";
@@ -22,9 +22,13 @@ import _ from "lodash";
 import Blocks from "../../common/Blocks";
 import {channel} from "../../../services/api";
 import rebuildList from "../../../utils/rebuildList";
+import rebuildToken20List from "../../../utils/rebuildToken20List";
 import {API_URL} from '../../../constants.js'
 import { FormatNumberByDecimals, FormatNumberByDecimalsBalance } from '../../../utils/number'
 import { Progress, Tooltip } from 'antd'
+import BigNumber from "bignumber.js"
+import {HrefLink} from "../../common/Links";
+BigNumber.config({ EXPONENTIAL_AT: [-20, 30] });
 
 
 class Address extends React.Component {
@@ -155,31 +159,50 @@ class Address extends React.Component {
     if (address.representative.enabled) {
       this.loadMedia(id);
     }
-    let tokenBalances = rebuildList(address.tokenBalances, 'name', 'balance')
+
     let balances = rebuildList(address.balances, 'name', 'balance')
 
-    address.tokenBalances =_(tokenBalances)
-      .sortBy(tb => toUpper(tb.map_token_name))
-      .sortBy(tb => -tb.map_amount).value();
-    address.balances = _(balances)
-      .sortBy(tb => toUpper(tb.map_token_name))
-      .sortBy(tb => -tb.map_amount).value();
+    balances.map((item,index) =>{
+        if(item.map_token_id === '_'){
+            item.map_amount_logo = 'https://s2.coinmarketcap.com/static/img/coins/64x64/1958.png'
+            item.tokenType = '-';
+            item.priceInTrx = 1
+        }else{
+            item.tokenType = 'TRC10'
+        }
 
-    address.trc20token_balances && address.trc20token_balances.map(item => {
+        if(item.priceInTrx){
+            item.TRXBalance = (item.priceInTrx* item.map_amount).toFixed(6)
+        }else{
+            item.TRXBalance = 0
+        }
+    })
+
+    let trc20token_balances_new  = rebuildToken20List(address.trc20token_balances, 'contract_address', 'balance');
+    let x;
+    trc20token_balances_new && trc20token_balances_new.map(item => {
+        item.tokenType = 'TRC20'
         item.token20_name = item.name + '(' + item.symbol + ')';
         item.token20_balance = FormatNumberByDecimals(item.balance, item.decimals);
         item.token20_balance_decimals = FormatNumberByDecimalsBalance(item.balance, item.decimals);
+        item.map_amount = FormatNumberByDecimalsBalance(item.balance, item.decimals);
+        if(item.priceInTrx){
+            x = new BigNumber(item.token20_balance_decimals)
+            item.TRXBalance =  x.multipliedBy(item.priceInTrx).toFixed(6);
+        }else{
+            item.TRXBalance = 0
+        }
+
         return item
     });
-    address.token20List =  _(address.trc20token_balances)
-        .filter(tb => tb.balance > 0)
-        .sortBy(tb => -tb.balance)
-        .value();
-    let trxObj1 = _.remove(address.tokenBalances, o => toUpper(o.map_token_name) == 'TRX')[0]
-    trxObj1 && address.tokenBalances.unshift(trxObj1)
 
-    let trxObj2 = _.remove(address.balances, o => toUpper(o.map_token_name) == 'TRX')[0]
-    trxObj2 && address.tokenBalances.unshift(trxObj2)
+
+
+    let tokenBalances = balances.concat(trc20token_balances_new)
+    let TRXBalance = 0;
+    tokenBalances.map((item,index) =>{
+        TRXBalance +=  Number(item.TRXBalance)
+    })
 
     let stats = await Client.getAddressStats(id);
 
@@ -228,7 +251,7 @@ class Address extends React.Component {
             // icon: "fa fa-piggy-bank",
             path: "/token-balances",
             label: <span>{tu("token_balances")}</span>,
-            cmp: () => <TokenBalances tokenBalances={address.balances} intl={intl} token20Balances={address.token20List}/>,
+            cmp: () => <TokenBalances tokenBalances={tokenBalances} intl={intl}/>,
           },
           blocks_produced: {
             id: "blocks-produced",
@@ -302,7 +325,7 @@ class Address extends React.Component {
             // icon: "fa fa-piggy-bank",
             path: "/token-balances",
             label: <span>{tu("token_balances")}</span>,
-            cmp: () => <TokenBalances tokenBalances={address.balances} intl={intl} token20Balances={address.token20List}/>,
+            cmp: () => <TokenBalances tokenBalances={tokenBalances} intl={intl}/>,
           },
           votes: {
             id: "votes",
@@ -345,8 +368,10 @@ class Address extends React.Component {
     }
 
     let totalPower=sentDelegateBandwidth+frozenBandwidth+sentDelegateResource+frozenEnergy;
+    console.log('TRXBalance22222222',TRXBalance)
     this.setState({
         totalPower:totalPower,
+        TRXBalanceTotal:TRXBalance + totalPower/ONE_TRX,
         netUsed:address.bandwidth.netUsed,
         bandWidthPercentage:(address.bandwidth.netUsed/(address.bandwidth.netLimit + address.bandwidth.freeNetLimit))*100,
         energyUsed:address.bandwidth.energyUsed,
@@ -367,7 +392,7 @@ class Address extends React.Component {
 
   render() {
 
-    let {totalPower, address, tabs, stats, loading, blocksProduced, media, candidates, rank, totalVotes, netUsed, bandWidthPercentage, energyUsed, energyPercentage} = this.state;
+    let {totalPower, address, tabs, stats, loading, blocksProduced, media, candidates, rank, totalVotes, netUsed, bandWidthPercentage, energyUsed, energyPercentage, TRXBalanceTotal} = this.state;
     let {match} = this.props;
       console.log('address',address)
 
@@ -472,16 +497,16 @@ class Address extends React.Component {
                                   <span>{stats.transactions_out}</span>&nbsp;
                                 </td>
                               </tr>
-                              <tr>
-                                <th>{tu("balance")}:</th>
-                                <td>
-                                  <ul className="list-unstyled m-0">
-                                    <li>
-                                      <TRXPrice amount={address.balance / ONE_TRX}/>
-                                    </li>
-                                  </ul>
-                                </td>
-                              </tr>
+                              {/*<tr>*/}
+                                {/*<th>{tu("balance")}:</th>*/}
+                                {/*<td>*/}
+                                  {/*<ul className="list-unstyled m-0">*/}
+                                    {/*<li>*/}
+                                      {/*<TRXPrice amount={address.balance / ONE_TRX}/>*/}
+                                    {/*</li>*/}
+                                  {/*</ul>*/}
+                                {/*</td>*/}
+                              {/*</tr>*/}
                               <tr>
                                 <th>{tu("tron_power")}:</th>
                                 <td>
@@ -497,13 +522,22 @@ class Address extends React.Component {
                                 <th>{tu("total_balance")}:</th>
                                 <td>
                                   <ul className="list-unstyled m-0">
-                                    <li>
-                                      <TRXPrice
-                                          amount={(address.balance + totalPower) / ONE_TRX}/>{' '}
-                                      <span className="small">(<TRXPrice
-                                          amount={(address.balance + totalPower) / ONE_TRX}
-                                          currency="USD"
-                                          showPopup={false}/>)</span>
+                                    <li className="d-flex justify-content-between">
+                                      <div style={{maxWidth:200}}>
+                                        <TRXPrice
+                                            amount={TRXBalanceTotal}/>{' '}
+                                        <span className="small">(<TRXPrice
+                                            amount={TRXBalanceTotal}
+                                            currency="USD"
+                                            showPopup={false}/>)</span>
+                                      </div>
+
+                                      <div >
+                                        信息来源：
+                                        <HrefLink href="https://trx.market/">TRXMarket</HrefLink>
+                                        <img width={20} height={20}  style={{marginLeft:5}} src={require("../../../images/svg/market.png")} alt=""/>
+                                      </div>
+
                                     </li>
                                   </ul>
                                 </td>

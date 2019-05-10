@@ -17,7 +17,9 @@ export const WitnessLink = ({address}) => (
 );
 
 export const TokenLink = ({id, name, namePlus, address, children, ...props}) => {
-
+  if(id == '_'){
+      return <a href="javascript:;" >{children || name}</a>
+  }
   if (name && !namePlus) {
     return <Link to={`/token/${encodeURI(id)}`} {...props}>{children || name}</Link>
   }
