@@ -49,9 +49,9 @@ class Exchange extends React.Component {
       lg = "EN";
     }
     return (
-      <div className="container header-overlap">
+      <div className="container-all header-overlap">
         <main className="exchange">
-          <div className="notice">
+          {/* <div className="notice">
             <img src={require("../../images/announcement-logo.png")} alt="" />
             <div className="notice-wrap">
               {this.state.notice.map((v, i) => (
@@ -82,7 +82,7 @@ class Exchange extends React.Component {
                 {tu("learn_more")}>
               </a>
             ) : null}
-          </div>
+          </div> */}
 
           {match.params.type === "trc10" && <Trc10 />}
           {match.params.type === "trc20" && <Trc20 />}

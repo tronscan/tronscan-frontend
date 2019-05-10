@@ -1,16 +1,4 @@
 .exchange20 {
-  .ant-btn:hover span,
-  .ant-btn:focus span {
-    color: #fff !important;
-  }
-  .success.ant-btn:hover {
-    background: #89d086;
-    border-color: #fff;
-  }
-  .warning.ant-btn:hover {
-    background: #ed7979;
-    border-color: #fff;
-  }
   .exchange-list {
     background: none;
   }
@@ -18,7 +6,7 @@
     // height: 471px;
     // height:328px;
     // height:410px;
-    height: 450px;
+    // height: 450px;
   }
   .exchange-list-explain {
     // height:370px;
@@ -121,5 +109,11 @@
   .exchange__kline__pic {
     // height:329px!important;
     border: 1px solid rgb(230, 230, 230);
+  }
+  .exchange-right {
+    display: flex;
+  }
+  .exchange-register {
+    background: #fff;
   }
 }

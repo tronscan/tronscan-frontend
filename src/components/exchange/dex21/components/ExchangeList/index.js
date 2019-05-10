@@ -342,7 +342,7 @@ class ExchangeList extends React.Component {
         </div>
 
         {/* 说明 */}
-        {/* <Explain /> */}
+        <Explain />
       </div>
     );
   }
@@ -372,7 +372,7 @@ export default connect(
 
 const styles = {
   list: {
-    // height: 350
+    height: 350
   },
   adlist: {
     height: 106

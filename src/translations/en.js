@@ -1575,6 +1575,8 @@ export const messages = {
   "trc20_second_token": "Second Token",
   "trc20_kchart":"K Line",
   "trc20_depth":"DEPTH",
+  "trc20_trade_win_content":"Current network is unstable , please check later",
+  "trc20_trade_win_confirm":"Confirm",
 
   "create_deal_pair": "Create Trading Pairs",
   "add_deal_pair_desc": "Trading pair creation is available.",

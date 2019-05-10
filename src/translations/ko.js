@@ -1517,8 +1517,8 @@ export const messages = {
   "trc20_second_token": "이름",
   "trc20_kchart":"K Line",
   "trc20_depth":"DEPTH",
-  "trc20_trade_win_content":"Current network is unstable , please check later",
-  "trc20_trade_win_confirm":"Confirm",
+  "trc20_trade_win_content":"현재 네트워크가 불안정합니다. 나중에 확인해 주시기 바랍니다.",
+  "trc20_trade_win_confirm":"확인",
 
   /*
    *  2018-12-18
