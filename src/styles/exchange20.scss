@@ -112,8 +112,12 @@
   }
   .exchange-right {
     display: flex;
+    justify-content: space-between;
   }
   .exchange-register {
     background: #fff;
+  }
+  .exchange__kline {
+    flex: 1;
   }
 }
