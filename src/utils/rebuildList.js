@@ -31,7 +31,7 @@ export default (list = [], tokenId, amount, infolist=false) => {
             setItem(item, 'TRX', id, 6, amount?item[amount] / Math.pow(10,6): 0,'TRX')
           }
           if(IDmap[id]){
-            const list = IDmap[id].split('_')
+            const list = IDmap[id].split('_&&_')
             setItem(item, list[0], list[1], list[2], amount? item[amount] / Math.pow(10,list[2]): 0,list[3])
           }
           if(!IDmap[id] && id != "_" && upperCase(id) != "TRX" && id != ''){
@@ -48,7 +48,7 @@ export default (list = [], tokenId, amount, infolist=false) => {
               setItem(item, 'TRX', id, 6, amount?item[amount] / Math.pow(10,6): 0,'TRX')
             }
             if(IDmap[id]){
-              const list = IDmap[id].split('_')
+              const list = IDmap[id].split('_&&_')
               setItem(item, list[0], list[1], list[2], amount? item[amount] / Math.pow(10,list[2]): 0,list[3])
             }
             if(!IDmap[id] && id != "_" && upperCase(id) != "TRX" && id != ''){
@@ -67,7 +67,7 @@ export default (list = [], tokenId, amount, infolist=false) => {
               setItem(item, 'TRX', id, 6, amount[index]?item[amount[index]] / Math.pow(10,6): 0,'TRX',index)
             }
             if(IDmap[id]){
-              const list = IDmap[id].split('_')
+              const list = IDmap[id].split('_&&_')
               setItem(item, list[0], list[1], list[2], amount[index]? item[amount[index]] / Math.pow(10,list[2]): 0,list[3],index)
             }
             if(!IDmap[id] && id != "_" && upperCase(id) != "TRX"){
@@ -102,7 +102,7 @@ async function  getTokensMap() {
     let {data} = await xhr.get(`${API_URL}/api/token?showAll=1&limit=4000`);
     for (var i = 0; i < data.data.length; i++) {
       if (!tokensMap[data.data[i].id]) {
-        tokensMap[data.data[i].id] = data.data[i].name + '_' + data.data[i].id + '_' + data.data[i].precision+'_'+data.data[i].abbr;
+        tokensMap[data.data[i].id] = data.data[i].name + '_&&_' + data.data[i].id + '_&&_' + data.data[i].precision+'_&&_'+data.data[i].abbr;
       }
     }
     return tokensMap
