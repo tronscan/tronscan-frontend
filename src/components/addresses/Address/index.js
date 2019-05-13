@@ -373,8 +373,8 @@ class Address extends React.Component {
     this.setState({
         totalPower:totalPower,
         TRXBalanceTotal:TRXBalance + totalPower/ONE_TRX,
-        netUsed:address.bandwidth.netUsed,
-        bandWidthPercentage:(address.bandwidth.netUsed/(address.bandwidth.netLimit + address.bandwidth.freeNetLimit))*100,
+        netUsed:address.bandwidth.netUsed + address.bandwidth.freeNetUsed,
+        bandWidthPercentage:((address.bandwidth.netUsed + address.bandwidth.freeNetUsed)/(address.bandwidth.netLimit + address.bandwidth.freeNetLimit))*100,
         energyUsed:address.bandwidth.energyUsed,
         energyPercentage:address.bandwidth.energyPercentage * 100,
 
