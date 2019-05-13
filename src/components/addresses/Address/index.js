@@ -28,6 +28,7 @@ import { FormatNumberByDecimals, FormatNumberByDecimalsBalance } from '../../../
 import { Progress, Tooltip } from 'antd'
 import BigNumber from "bignumber.js"
 import {HrefLink} from "../../common/Links";
+import {QuestionMark} from "../../common/QuestionMark";
 BigNumber.config({ EXPONENTIAL_AT: [-20, 30] });
 
 
@@ -487,7 +488,17 @@ class Address extends React.Component {
                                   <span>{address.name ? address.name : "-"}</span>
                                 </td>
                               </tr> : ""}
+                              <tr>
+                                <th>
+                                    <span className="mr-1">{tu("transactions")}</span>
+                                    <QuestionMark placement="top" text="address_transactions_tip" />
+                                  <span className="ml-1">:</span>
+                                </th>
+                                <td>
+                                  <span>{address.totalTransactionCount}</span>
 
+                                </td>
+                              </tr>
                               <tr>
                                 <th>{tu("transfers")}:</th>
                                 <td>
@@ -508,18 +519,29 @@ class Address extends React.Component {
                                 {/*</td>*/}
                               {/*</tr>*/}
                               <tr>
-                                <th>{tu("tron_power")}:</th>
+                                <th>
+                                    <span className="mr-1">{tu("tron_power")}</span>
+                                    <QuestionMark placement="top" text="address_tron_power_tip" className="ml-1"/>
+                                    <span className="ml-1" >:</span>
+                                </th>
                                 <td>
                                   <ul className="list-unstyled m-0">
-                                    <li>
+                                    <li className="d-flex">
                                       <TRXPrice showCurreny={false}
                                                 amount={(totalPower) / ONE_TRX}/>
+                                      <div>
+                                         <span className="ml-1">(</span> {tu("address_tron_power_used")}: {address.voteTotal}&nbsp;   {tu("address_tron_power_remaining")}: {(totalPower) / ONE_TRX - address.voteTotal } <span>)</span>
+                                      </div>
                                     </li>
                                   </ul>
                                 </td>
                               </tr>
                               <tr>
-                                <th>{tu("total_balance")}:</th>
+                                <th>
+                                  <span className="mr-1">{tu("total_balance")}</span>
+                                    <QuestionMark placement="top" text="address_total_balance_tip" className="ml-1"/>
+                                  <span className="ml-1" >:</span>
+                                </th>
                                 <td>
                                   <ul className="list-unstyled m-0">
                                     <li className="d-flex justify-content-between">
@@ -533,7 +555,7 @@ class Address extends React.Component {
                                       </div>
 
                                       <div >
-                                        信息来源：
+                                          {tu('address_total_balance_info_sources')}：
                                         <HrefLink href="https://trx.market/">TRXMarket</HrefLink>
                                         <img width={20} height={20}  style={{marginLeft:5}} src={require("../../../images/svg/market.png")} alt=""/>
                                       </div>

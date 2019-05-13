@@ -1684,4 +1684,23 @@ export const messages = {
     "ledger_website_download":"下载更新最新的Ledger版本",
     "ledger_click_help":"点此获得更多帮助",
 
+    /*
+        ##################################################################################
+        #                                                                                #
+        # new variables    address 2019-05-13                                    #
+        #                                                                                #
+        ##################################################################################
+    */
+    "address_transactions_tip":"交易数包含转账数",
+    "address_tron_power_tip":"冻结TRX可以获得投票权",
+    "address_total_balance_tip":"总余额包括所有有价值的通证",
+    "address_balance_token_type":"通证类别",
+    "address_balance_token_price_TRX":"TRX价值 / USDT价值",
+    "address_tron_power_used":"已用",
+    "address_tron_power_remaining":"剩余",
+    "address_total_balance_info_sources":"信息来源"
+
+
+
+
 };
