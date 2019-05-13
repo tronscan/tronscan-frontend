@@ -1668,7 +1668,7 @@
   */
     "ledger_user_guide":"دليل المستخدم لليدجر",
     "latest_version_chrome":"ننصحك باستخدام أحدث نسخة من الكروم",
-    "ledger_support_version":"نسخة ليدجر المدعومة: 0.1.0 ، دعم كروم لنسخة الإصدار 73.0",
+    "ledger_support_version":"نسخة ليدجر المدعومة: 0.1.1 ، دعم كروم لنسخة الإصدار 73.0",
     "ledger_you_can":"يمكنك الذهاب ",
     "ledger_website":"يقوم موقع Ledger",
     "ledger_website_download":"قم بتنزيل وتحديث نسخة دفتر الأستاذ",

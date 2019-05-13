@@ -1722,7 +1722,7 @@ export const messages = {
    */
   "ledger_user_guide":"Ledger User Guide",
   "latest_version_chrome":"we recommend the latest version of chrome",
-  "ledger_support_version":"Ledger support version: 0.1.0, chrome support version 73.0",
+  "ledger_support_version":"Ledger support version: 0.1.1, chrome support version 73.0",
   "ledger_you_can":"You can go to the ",
   "ledger_website":"Ledger Website",
   "ledger_website_download":"to download and update the latest version of Ledger",
