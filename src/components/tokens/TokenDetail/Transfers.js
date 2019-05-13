@@ -145,7 +145,7 @@ class Transfers extends React.Component {
         align: 'right',
         className: 'ant_table',
         render: (text, record, index) => {
-          return <NameWithId value={record}/>
+          return <NameWithId value={record} br/>
 
         },
       }

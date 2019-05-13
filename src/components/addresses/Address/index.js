@@ -369,15 +369,17 @@ class Address extends React.Component {
     }
 
     let totalPower=sentDelegateBandwidth+frozenBandwidth+sentDelegateResource+frozenEnergy;
-    console.log('TRXBalance22222222',TRXBalance)
     this.setState({
         totalPower:totalPower,
         TRXBalanceTotal:TRXBalance + totalPower/ONE_TRX,
         netUsed:address.bandwidth.netUsed + address.bandwidth.freeNetUsed,
+        netLimit:address.bandwidth.netLimit + address.bandwidth.freeNetLimit,
+        netRemaining:address.bandwidth.netRemaining + address.bandwidth.freeNetRemaining,
         bandWidthPercentage:((address.bandwidth.netUsed + address.bandwidth.freeNetUsed)/(address.bandwidth.netLimit + address.bandwidth.freeNetLimit))*100,
         energyUsed:address.bandwidth.energyUsed,
+        energyLimit:address.bandwidth.energyLimit,
+        energyRemaining:address.bandwidth.energyRemaining,
         energyPercentage:address.bandwidth.energyPercentage * 100,
-
     });
 
   }
@@ -391,15 +393,52 @@ class Address extends React.Component {
     });
   }
 
+  bandWidthCircle = () => {
+    let { netUsed, netLimit, netRemaining, bandWidthPercentage} = this.state;
+    let {intl} = this.props;
+    return (
+        <div>
+          <div>
+              {intl.formatMessage({id: 'address_netLimit'}) + ' : ' + netLimit }
+          </div>
+          <div>
+              <span>{intl.formatMessage({id: 'address_netRemaining'}) + ' : ' + netRemaining }</span>&nbsp;&nbsp;
+              <span>{intl.formatMessage({id: 'address_percentage'}) + ' : ' + (100- Number(bandWidthPercentage).toFixed(2))+ '%' }</span>
+          </div>
+          <div>
+            <span>{intl.formatMessage({id: 'address_netUsed'}) + ' : ' + netUsed }</span>&nbsp;&nbsp;
+            <span>{intl.formatMessage({id: 'address_percentage'}) + ' : ' + Number(bandWidthPercentage).toFixed(2)+ '%' }</span>
+          </div>
+        </div>
+    )
+
+  }
+
+  energyCircle = () => {
+    let { energyLimit, energyRemaining, energyUsed, energyPercentage } = this.state;
+      let {intl} = this.props;
+      return (
+          <div>
+            <div>
+                {intl.formatMessage({id: 'address_energyLimit'}) + ' : ' + energyLimit }
+            </div>
+            <div>
+              <span>{intl.formatMessage({id: 'address_energyRemaining'}) + ' : ' + energyRemaining }</span>&nbsp;&nbsp;
+              <span>{intl.formatMessage({id: 'address_percentage'}) + ' : ' + (100- Number(energyPercentage).toFixed(2))+ '%' }</span>
+            </div>
+            <div>
+              <span>{intl.formatMessage({id: 'address_energyUsed'}) + ' : ' + energyUsed }</span>&nbsp;&nbsp;
+              <span>{intl.formatMessage({id: 'address_percentage'}) + ' : ' + Number(energyPercentage).toFixed(2)+ '%' }</span>
+            </div>
+          </div>
+      )
+
+  }
+
   render() {
 
-    let {totalPower, address, tabs, stats, loading, blocksProduced, media, candidates, rank, totalVotes, netUsed, bandWidthPercentage, energyUsed, energyPercentage, TRXBalanceTotal} = this.state;
-    let {match} = this.props;
-      console.log('address',address)
-
-    let bandWidthCircle = '已使用带宽:' + netUsed + ' 占比:' + Number(bandWidthPercentage).toFixed(2)+ '%';
-    let energyCircle = '已使用能量:' + energyUsed + ' 占比:' + Number(energyPercentage).toFixed(2)+ '%';
-
+    let {totalPower, address, tabs, stats, loading, blocksProduced, media, candidates, rank, totalVotes, netRemaining, bandWidthPercentage, energyRemaining, energyPercentage, TRXBalanceTotal} = this.state;
+    let {match,intl} = this.props;
     let addr = match.params.id;
     let uploadURL = API_URL + "/api/v2/node/info_upload?address=" + match.params.id
 
@@ -490,7 +529,7 @@ class Address extends React.Component {
                               </tr> : ""}
                               <tr>
                                 <th>
-                                    <span className="mr-1">{tu("transactions")}</span>
+                                    <span className="mr-1">{tu("address_info_transactions")}</span>
                                     <QuestionMark placement="top" text="address_transactions_tip" />
                                   <span className="ml-1">:</span>
                                 </th>
@@ -500,12 +539,21 @@ class Address extends React.Component {
                                 </td>
                               </tr>
                               <tr>
-                                <th>{tu("transfers")}:</th>
+                                <th>{tu("address_info_transfers")}:</th>
                                 <td>
-                                  <i className="fa fa-arrow-down text-success"/>&nbsp;
-                                  <span>{stats.transactions_in}</span>&nbsp;
-                                  <i className="fa fa-arrow-up  text-danger"/>&nbsp;
-                                  <span>{stats.transactions_out}</span>&nbsp;
+                                  <div className="d-flex">
+                                    <div>
+                                        {stats.transactions_in + stats.transactions_out}
+                                    </div>
+                                    <div>
+                                      <span className="ml-1">(</span>
+                                      <i className="fa fa-arrow-down text-success"/>&nbsp;
+                                      <span>{stats.transactions_in}</span>&nbsp;
+                                      <i className="fa fa-arrow-up  text-danger"/>&nbsp;
+                                      <span>{stats.transactions_out}</span>&nbsp;
+                                      <span>)</span>
+                                    </div>
+                                  </div>
                                 </td>
                               </tr>
                               {/*<tr>*/}
@@ -544,7 +592,7 @@ class Address extends React.Component {
                                 </th>
                                 <td>
                                   <ul className="list-unstyled m-0">
-                                    <li className="d-flex justify-content-between">
+                                    <li >
                                       <div style={{maxWidth:200}}>
                                         <TRXPrice
                                             amount={TRXBalanceTotal}/>{' '}
@@ -554,10 +602,20 @@ class Address extends React.Component {
                                             showPopup={false}/>)</span>
                                       </div>
 
-                                      <div >
+                                      <div>
+                                        <span className="small">
                                           {tu('address_total_balance_info_sources')}：
-                                        <HrefLink href="https://trx.market/">TRXMarket</HrefLink>
-                                        <img width={20} height={20}  style={{marginLeft:5}} src={require("../../../images/svg/market.png")} alt=""/>
+                                        </span>
+                                        <span className="small">
+                                            <HrefLink
+                                                href={
+                                                    intl.locale == "zh"
+                                                        ? "https://trx.market/zh/"
+                                                        : "https://trx.market/"
+                                                }
+                                            >TRXMarket</HrefLink>
+                                        </span>
+                                        <img width={15} height={15}  style={{marginLeft:5}} src={require("../../../images/svg/market.png")} alt=""/>
                                       </div>
 
                                     </li>
@@ -583,7 +641,7 @@ class Address extends React.Component {
                           </div>
                           <div className="col-md-6 d-flex address-circle">
                             <div className="address-circle-bandwidth d-flex mr-4">
-                              <Tooltip title={bandWidthCircle}>
+                              <Tooltip title={this.bandWidthCircle}>
                                 <Progress
                                     width={82}
                                     strokeWidth={10}
@@ -597,16 +655,16 @@ class Address extends React.Component {
 
 
                               <div className="circle-info">
-                                <div>{tu('bandwidth')}</div>
+                                <div>{tu('address_netRemaining')}</div>
                                 <h2>
                                   <FormattedNumber
-                                      value={address.bandwidth.netRemaining + address.bandwidth.freeNetRemaining}/>
+                                      value={netRemaining}/>
                                 </h2>
                               </div>
                             </div>
                             <div className="address-circle-line"></div>
                             <div className="address-circle-energy d-flex ml-4">
-                              <Tooltip title={energyCircle}>
+                              <Tooltip title={this.energyCircle}>
                                 <Progress
                                     width={82}
                                     strokeWidth={10}
@@ -618,9 +676,9 @@ class Address extends React.Component {
                                 />
                               </Tooltip>
                               <div className="circle-info">
-                                <div>{tu('energy')}</div>
+                                <div>{tu('address_netRemaining')}</div>
                                 <h2>
-                                  <FormattedNumber value={address.bandwidth.energyRemaining}/>
+                                  <FormattedNumber value={energyRemaining}/>
                                 </h2>
                               </div>
                             </div>

@@ -167,12 +167,30 @@ export const disableFlag = flag => ({
 async function setWebsocketContent(getState, address){
   let { account, app } = getState()
   const localAddress = Lockr.get('localAddress')
-
+  let timer = null;
+  let count = 0;
   if(app.wallet.type === 'ACCOUNT_TRONLINK'){
-    if(localAddress !== address){
+
+    if(localAddress !== address && account.websocket){
+        console.log(666)
       await account.websocket.send('cancel:'+localAddress)
     }
   }
-  await account.websocket.send(address)
+    console.log(888)
+
+    timer = setInterval(async () => {
+        if (account.websocket) {
+            await account.websocket.send(address)
+            clearInterval(timer)
+        } else {
+            count++
+            if (count > 30) {
+                count = 0
+                Lockr.set("localAddress", '')
+                clearInterval(timer)
+            }
+        }
+    }, 100)
+
   Lockr.set('localAddress', address)
 }
