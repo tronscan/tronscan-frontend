@@ -41,9 +41,9 @@ class TransactionList extends Component {
         <TabPane tab={tu("trc20_CurOrder")} key="1">
           <Curorder props={this.props}/>
         </TabPane>
-        <TabPane tab={tu("trc20_TxRecord")} key="2">
+        {/* <TabPane tab={tu("trc20_TxRecord")} key="2">
           <TranList props={this.props}/>
-        </TabPane>
+        </TabPane> */}
         {
           currentWallet &&
           <TabPane tab={tu("trc20_my_transaction")} key="3">

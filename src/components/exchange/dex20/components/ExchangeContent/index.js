@@ -10,7 +10,7 @@ import Depth from "./Depth";
 import Transaction from "./Transaction";
 import Tokeninfo from "./TokenInfo";
 import Notice from "./Notice";
-import { Explain } from "./Explain";
+import Explain  from "./Explain";
 
 import { Input, Select } from "antd";
 const Search = Input.Search;
@@ -35,8 +35,8 @@ class ExchangeContent extends React.Component {
       <div className="exchange-content">
         <Notice />
         <div className="exchange-right">
-          <div className="exchange__kline  p-3 mb-2 mr-2">
-            <div className="p-3">
+          <div className="exchange__kline mb-2 mr-2">
+            <div className="">
               <Tokeninfo />
               <div className="mb-2">
                 <Select
@@ -54,7 +54,7 @@ class ExchangeContent extends React.Component {
             {/* transaction */}
             <Transaction />
           </div>
-          <div className="exchange-register p-3 mb-2">
+          <div className="exchange-register mb-2">
             <Explain />
           </div>
         </div>

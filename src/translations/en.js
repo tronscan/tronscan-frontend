@@ -1577,6 +1577,9 @@ export const messages = {
   "trc20_depth":"DEPTH",
   "trc20_trade_win_content":"Current network is unstable , please check later",
   "trc20_trade_win_confirm":"Confirm",
+  "trc20_history":"Trade History",
+  "trc20_register":"交易委托",
+
 
   "create_deal_pair": "Create Trading Pairs",
   "add_deal_pair_desc": "Trading pair creation is available.",

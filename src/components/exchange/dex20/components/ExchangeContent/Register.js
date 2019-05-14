@@ -22,7 +22,9 @@ class Register extends Component {
         type: 0
       },
       isLoading: true,
-      limit: 8
+      limit: 14,
+      buyMax:0,
+      sellMax:0
     };
   }
 
@@ -63,7 +65,7 @@ class Register extends Component {
   }
 
   render() {
-    let { sellList, buyList, isLoading, limit } = this.state;
+    let { sellList, buyList, isLoading, limit,buyMax,sellMax } = this.state;
     let { intl, pairs, lastPrice, setQuickSelect } = this.props;
 
     let first_token = pairs.fShortName ? "(" + pairs.fShortName + ")" : "";
@@ -75,18 +77,18 @@ class Register extends Component {
       intl.formatMessage({ id: "trc20_accumulative" }) + second_token;
 
     const sell_columns = [
-      {
-        title: "",
-        key: "sell",
-        render: (text, record, index) => {
-          return (
-            <div className="col-red">
-              {intl.formatMessage({ id: "trc20_sell" })}
-              {sellList.length < 8 ? sellList.length - index : limit - index}
-            </div>
-          );
-        }
-      },
+      // {
+      //   title: "",
+      //   key: "sell",
+      //   render: (text, record, index) => {
+      //     return (
+      //       <div className="col-red">
+      //         {intl.formatMessage({ id: "trc20_sell" })}
+      //         {sellList.length < 8 ? sellList.length - index : limit - index}
+      //       </div>
+      //     );
+      //   }
+      // },
       {
         title: trc20_price,
         dataIndex: "price",
@@ -110,18 +112,18 @@ class Register extends Component {
     ];
 
     const buy_columns = [
-      {
-        title: "",
-        key: "buy",
-        render: (text, record, index) => {
-          return (
-            <div className="col-green">
-              {intl.formatMessage({ id: "trc20_buy" })}
-              {index + 1}
-            </div>
-          );
-        }
-      },
+      // {
+      //   title: "",
+      //   key: "buy",
+      //   render: (text, record, index) => {
+      //     return (
+      //       <div className="col-green">
+      //         {intl.formatMessage({ id: "trc20_buy" })}
+      //         {index + 1}
+      //       </div>
+      //     );
+      //   }
+      // },
       {
         title: "",
         dataIndex: "price",
@@ -144,13 +146,14 @@ class Register extends Component {
       }
     ];
 
+    const maxAmount = Math.max(buyMax,sellMax)
     return (
       <div className="ant-table-content register">
         {isLoading ? (
           <TronLoader />
         ) : (
           <Fragment>
-            <Table
+            {/* <Table
               dataSource={sellList}
               columns={sell_columns}
               pagination={false}
@@ -174,7 +177,13 @@ class Register extends Component {
                   }
                 };
               }}
-            />
+            /> */}
+            <div className="register-list-header">
+              <span>{trc20_price}</span>
+              <span>{trc20_amount}</span>
+              <span>{trc20_accumulative}</span>
+            </div>
+            <RegisterList data={sellList} type="sell" max={maxAmount} setQuickSelect={setQuickSelect}></RegisterList>
             <div className="new_price">
               {/* {tu('trc20_new_price')}:  */}
               {lastPrice.type === 0 ? (
@@ -189,36 +198,13 @@ class Register extends Component {
                 </span>
               )}
             </div>
-            <Table
-              dataSource={buyList}
-              columns={buy_columns}
-              pagination={false}
-              rowKey={(record, index) => {
-                return `buy_${index}`;
-              }}
-              rowClassName={this.setActiveClass}
-              className="sell"
-              onRow={record => {
-                return {
-                  // 点击行
-                  onClick: () => {
-                    let obj = {
-                      b: {
-                        price: Number(record.price),
-                        amount: parseInt(record.amount)
-                      },
-                      type: "sell"
-                    };
-                    setQuickSelect(obj);
-                  }
-                };
-              }}
-            />
+            <RegisterList data={buyList} type="buy" max={maxAmount} setQuickSelect={setQuickSelect}></RegisterList>
           </Fragment>
         )}
       </div>
     );
   }
+
 
   async getData() {
     let { pairs, setRegister } = this.props;
@@ -284,7 +270,8 @@ class Register extends Component {
         .sort((a, b) => {
           return type ? b - a : a - b;
         });
-
+      
+      list.length > limit && (list.length = limit);
       let amount_list = [];
       let amountSum = 0;
       list.map((v, index) => {
@@ -309,14 +296,19 @@ class Register extends Component {
         ];
         arr.push(item);
       });
-      // const _max = Math.max.apply(null, amount_list)
-      // if (type === 2) {
-      //   this.buyMax = _max
-      // } else {
-      //   this.sellMax = _max
-      // }
-
-      listN.length > limit && (listN.length = limit);
+      
+      const _max = Math.max.apply(null, amount_list)
+      if (type === 1) {
+        // this.buyMax = _max
+        this.setState({
+          buyMax: _max
+        })
+      } else {
+        this.setState({
+          sellMax: _max
+        })
+        // this.sellMax = _max
+      }
     }
 
     return {
@@ -331,6 +323,46 @@ class Register extends Component {
       ? "exchange-table-row-active"
       : "";
   };
+}
+
+class RegisterList extends Component {
+  constructor() {
+    super();
+    this.handlePriceObj = this.handlePriceObj.bind(this)
+  }
+  handlePriceObj(v,type){
+    let obj = {
+      b: {
+        price: Number(v.price),
+        amount: parseInt(v.amount)
+      },
+      type: type
+    };
+    this.props.setQuickSelect(obj);
+  }
+  render() {
+    let {data,type,setQuickSelect,max} = this.props;
+    return(
+      <div className={`register-list ${type}`}>
+        {
+          data.map(v=>{
+            return(
+              <div className="list-item" key={v.key}>
+                <div className="item-detail" onClick={() => this.handlePriceObj(v,type)}>
+                  <span className={type}>{v.price}</span>
+                  <span>{v.amount}</span>
+                  <span>{v.cje}</span>
+                </div>
+                <div className={`item-pre ${type}`} style={{width:(v.amount/max)*100+'%'}}/>
+              </div>
+            )
+          })
+        }
+        
+      </div>
+    )
+  }
+
 }
 
 function mapStateToProps(state) {
