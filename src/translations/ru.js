@@ -1534,6 +1534,9 @@ export const messages = {
    "trc20_depth":"DEPTH",
    "trc20_trade_win_content":"Current network is unstable , please check later",
   "trc20_trade_win_confirm":"Confirm",
+  "trc20_hot":"популярный",
+  "trc20_top_Volume":"Торговый список",
+  "trc20_top_Rising":"Восходящий список",
 
 
   /*

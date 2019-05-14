@@ -1522,6 +1522,9 @@ export const messages = {
    "trc20_depth":"深度",
   "trc20_trade_win_content":"当前网络状况不佳，请稍后查看",
   "trc20_trade_win_confirm":"确定",
+  "trc20_hot":"热门",
+  "trc20_top_Volume":"成交额榜",
+  "trc20_top_Rising":"涨幅榜",
 
 
     /*

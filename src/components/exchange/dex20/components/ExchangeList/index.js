@@ -23,11 +23,12 @@ import {
 import { connect } from "react-redux";
 import Lockr from "lockr";
 import { QuestionMark } from "../../../../common/QuestionMark";
-import { Input, Radio } from "antd";
+import { Input, Radio, Icon, Tabs } from "antd";
 import queryString from "query-string";
 import { Tooltip } from "reactstrap";
 import { alpha } from "../../../../../utils/str";
 const Search = Input.Search;
+const TabPane = Tabs.TabPane;
 
 class ExchangeList extends React.Component {
   constructor() {
@@ -60,7 +61,8 @@ class ExchangeList extends React.Component {
       sec: "",
       AdClose: true,
       adURL: "https://trx.market/launchBase?utm_source=TS2",
-      adchURL: "https://trx.market/zh/launchBase?utm_source=TS2"
+      adchURL: "https://trx.market/zh/launchBase?utm_source=TS2",
+      activedId: 0
     };
   }
 
@@ -91,7 +93,7 @@ class ExchangeList extends React.Component {
   componentDidUpdate(prevProps) {
     let { exchange20List } = this.props;
     let { tokenAudited } = this.state;
-    if (exchange20List != prevProps.exchange20List) {
+    if (exchange20List !== prevProps.exchange20List) {
       this.setData(tokenAudited);
     }
   }
@@ -152,9 +154,11 @@ class ExchangeList extends React.Component {
     });
   };
   setData(type) {
+    console.log("type", type);
     let { exchange20List, exchangeallList } = this.props;
     if (type) {
-      this.setState({ dataSource: exchange20List });
+      this.fiterData();
+      // this.setState({ dataSource: exchange20List });
     } else {
       let new20List = exchange20List.filter(item => item.isChecked);
       let newallList = exchangeallList
@@ -215,7 +219,8 @@ class ExchangeList extends React.Component {
       sec,
       AdClose,
       adURL,
-      adchURL
+      adchURL,
+      activedId
     } = this.state;
     let { intl } = this.props;
     return (
@@ -255,14 +260,14 @@ class ExchangeList extends React.Component {
             </a>
           )}
           <div className="d-flex  justify-content-between align-items-center w-100 mb-3">
-            <h6 className="m-0">
-              {/* {tu("marks")} */}
+            {/* <h6 className="m-0">
+              
               <a href="https://trx.market" target="_blank" className="">
                 TRXMarket
               </a>
-            </h6>
+            </h6> */}
 
-            <div className="d-flex f-12">
+            {/* <div className="d-flex f-12">
               <a
                 href={
                   intl.locale == "zh"
@@ -292,40 +297,62 @@ class ExchangeList extends React.Component {
               >
                 {tu("token_application_instructions_title")}
               </a>
+            </div>*/}
+            <Input
+              placeholder={intl.formatMessage({ id: "dex_search_dec" })}
+              prefix={<Icon type="search" style={{ color: "#333" }} />}
+            />
+            <div className="collapse-icon">
+              <Icon type="arrow-left" />
             </div>
           </div>
 
           {/* filter 筛选 */}
           <div className="dex-tab">
-            {/*<div*/}
-            {/*className={"btn-sm disabled dex-tab-TRC20"}*/}
-            {/*//className={"btn btn-sm" + (tokenAudited? ' active' : '')}*/}
-            {/*//onClick={() => this.handleSelectData(true)}*/}
-            {/*id={this.state.id}*/}
-            {/*onMouseOver={() => this.setState({open: true})}*/}
-            {/*onMouseOut={() => this.setState({open: false})}*/}
-            {/*>*/}
-
-            {/*<i></i>*/}
+            <Tabs defaultActiveKey="hot" onChange={this.tabChange}>
+              <TabPane
+                tab={
+                  <span>
+                    <Icon type="star" />
+                    {tu("Favorites")}
+                  </span>
+                }
+                key="fav"
+              />
+              <TabPane
+                tab={intl.formatMessage({ id: "trc20_hot" })}
+                key="hot"
+              />
+              <TabPane
+                tab={intl.formatMessage({ id: "trc20_top_Volume" })}
+                key="volume"
+              />
+              <TabPane
+                tab={intl.formatMessage({ id: "trc20_top_Rising" })}
+                key="up_and_down"
+              />
+            </Tabs>
+          </div>
+          <div className="dex-tab">
             <div
-              className={"btn btn-sm" + (tokenAudited ? " active" : "")}
-              onClick={() => this.handleSelectData(true)}
+              className={"btn btn-sm" + (activedId === 0 ? " active" : "")}
+              // onClick={() => this.handleSelectData(true)}
+              onClick={() => this.selcetSort(0)}
             >
-              Market
-            </div>
-            {/*<Tooltip placement="top" isOpen={open} target={id}>*/}
-            {/*<span className="text-capitalize">{tu("TRC20_under_maintenance")}</span>*/}
-            {/*</Tooltip>*/}
-            <div className={"btn btn-sm"} onClick={() => this.gotoTrc10()}>
-              Bancor
+              {tu("all")}
             </div>
             <div
-              className={"btn btn-sm" + (tokenAudited ? " " : " active")}
-              onClick={() => this.handleSelectData(false)}
+              className={"btn btn-sm" + (activedId === "TRX" ? " active" : "")}
+              // onClick={() => this.gotoTrc10()}
+              onClick={() => this.selcetSort("TRX")}
             >
-              <i>
-                <i className="fas fa-star" /> {tu("Favorites")}
-              </i>
+              TRX
+            </div>
+            <div
+              className={"btn btn-sm" + (activedId === "USDT" ? " active" : "")}
+              onClick={() => this.selcetSort("USDT")}
+            >
+              USDT
             </div>
           </div>
           <div className="dex-search" />
@@ -344,6 +371,31 @@ class ExchangeList extends React.Component {
         {/* 说明 */}
         {/* <Explain /> */}
       </div>
+    );
+  }
+  fiterData() {
+    let { activedId } = this.state;
+    let { exchange20List } = this.props;
+    let fiterData = exchange20List;
+    if (activedId !== 0) {
+      fiterData = exchange20List.filter((item, index) => {
+        console.log(item.second_token_id, activedId);
+        return item.second_token_id === activedId;
+      });
+    }
+    this.setState({
+      dataSource: fiterData
+    });
+  }
+  tabChange() {}
+  selcetSort(type) {
+    this.setState(
+      {
+        activedId: type
+      },
+      () => {
+        this.fiterData();
+      }
     );
   }
 }
