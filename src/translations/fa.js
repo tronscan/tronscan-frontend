@@ -1521,6 +1521,8 @@ export const messages = {
     "trc20_second_token": "دومین توکن",
     "trc20_kchart":"K Line",
    "trc20_depth":"DEPTH",
+   "trc20_trade_win_content":"Current network is unstable , please check later",
+  "trc20_trade_win_confirm":"Confirm",
 
 
 /*
@@ -1667,7 +1669,7 @@ export const messages = {
    */
     "ledger_user_guide":"راهنمای کاربر Ledger",
     "latest_version_chrome":"ما توصیه می کنیم از آخرین نسخه از کروم استفاده کنید",
-    "ledger_support_version":"نسخه پشتیبانی لدجر: 0.1.0، نسخه پشتیبانی از کروم 73.0",
+    "ledger_support_version":"نسخه پشتیبانی لدجر:0.1.1، نسخه پشتیبانی از کروم 73.0",
     "ledger_you_can":"شما می توانید بازدید کنید",
     "ledger_website":"وب سایت Ledger",
     "ledger_website_download":"نسخه لوگر به روز شده را دانلود کنید",

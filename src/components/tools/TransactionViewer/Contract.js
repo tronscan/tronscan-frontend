@@ -509,6 +509,5 @@ export default function Contract({contract}) {
           }
       </div>
 
-
   );
 }

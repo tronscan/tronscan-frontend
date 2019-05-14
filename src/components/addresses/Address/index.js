@@ -162,7 +162,7 @@ class Address extends React.Component {
     }
 
     let balances = rebuildList(address.balances, 'name', 'balance')
-
+    let x;
     balances.map((item,index) =>{
         if(item.map_token_id === '_'){
             item.map_amount_logo = 'https://s2.coinmarketcap.com/static/img/coins/64x64/1958.png'
@@ -173,8 +173,9 @@ class Address extends React.Component {
         }
 
         if(item.priceInTrx){
-            item.TRXBalance = (item.priceInTrx* item.map_amount).toFixed(6);
-            item.TRXBalance_toThousands = toThousands((item.priceInTrx* item.map_amount).toFixed(6));
+            x= new BigNumber(item.map_amount);
+            item.TRXBalance = (x.multipliedBy(item.priceInTrx)).decimalPlaces(6);
+            item.TRXBalance_toThousands = toThousands((x.multipliedBy(item.priceInTrx)).decimalPlaces(6));
 
         }else{
             item.TRXBalance = 0
@@ -182,7 +183,7 @@ class Address extends React.Component {
     })
 
     let trc20token_balances_new  = rebuildToken20List(address.trc20token_balances, 'contract_address', 'balance');
-    let x;
+    let y;
     trc20token_balances_new && trc20token_balances_new.map(item => {
         item.tokenType = 'TRC20'
         item.token20_name = item.name + '(' + item.symbol + ')';
@@ -190,9 +191,9 @@ class Address extends React.Component {
         item.token20_balance_decimals = FormatNumberByDecimalsBalance(item.balance, item.decimals);
         item.map_amount = FormatNumberByDecimalsBalance(item.balance, item.decimals);
         if(item.priceInTrx){
-            x = new BigNumber(item.token20_balance_decimals);
-            item.TRXBalance = x.multipliedBy(item.priceInTrx).toFixed(6);
-            item.TRXBalance_toThousands = toThousands(x.multipliedBy(item.priceInTrx).toFixed(6));
+            y = new BigNumber(item.token20_balance_decimals);
+            item.TRXBalance = (y.multipliedBy(item.priceInTrx)).decimalPlaces(6);
+            item.TRXBalance_toThousands = toThousands((x.multipliedBy(item.priceInTrx)).decimalPlaces(6));
         }else{
             item.TRXBalance = 0
         }

@@ -130,22 +130,27 @@ class Transaction extends React.Component {
                       <div className="table-responsive">
                         <table className="table table-hover m-0">
                           <tbody>
-                            <tr>
-                              <th>{tu("status")}:</th>
-                              <td>
-                                {
-                                  transaction.confirmed ?
-                                  <span className="badge badge-success text-uppercase">{tu("Confirmed")}</span> :
-                                  <span className="badge badge-danger text-uppercase">{tu("Unconfirmed")}</span>
-                                }
-                              </td>
-                            </tr>
-                            <tr>
-                                <th>{tu("result")}:</th>
-                                <td>
-                                    {transaction.contractRet}
-                                </td>
-                            </tr>
+                          {
+                              transaction.hasOwnProperty("confirmed") && <tr>
+                                  <th>{tu("status")}:</th>
+                                  <td>
+                                      {
+                                          transaction.confirmed ?
+                                              <span className="badge badge-success text-uppercase">{tu("Confirmed")}</span> :
+                                              <span className="badge badge-danger text-uppercase">{tu("Unconfirmed")}</span>
+                                      }
+                                  </td>
+                              </tr>
+                          }
+                          {
+                              transaction.hasOwnProperty("contractRet") &&<tr>
+                                  <th>{tu("result")}:</th>
+                                  <td>
+                                      {transaction.contractRet}
+                                  </td>
+                              </tr>
+                          }
+
                             <tr>
                               <th>{tu("hash")}:</th>
                               <td>

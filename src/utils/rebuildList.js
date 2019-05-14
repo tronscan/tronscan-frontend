@@ -33,6 +33,7 @@ export default (list = [], tokenId, amount, infolist=false) => {
           if(IDmap[id]){
             const list = IDmap[id].split('_&&_')
             setItem(item, list[0], list[1], list[2], amount? item[amount] / Math.pow(10,list[2]): 0,list[3],list[4])
+
           }
           if(!IDmap[id] && id != "_" && upperCase(id) != "TRX" && id != ''){
             setItem(item, item[tokenId], item[tokenId], 0, item[amount],item[tokenId],item[tokenId])
@@ -48,8 +49,9 @@ export default (list = [], tokenId, amount, infolist=false) => {
               setItem(item, 'TRX', id, 6, amount?item[amount] / Math.pow(10,6): 0,'TRX','')
             }
             if(IDmap[id]){
-              const list = IDmap[id].split('_&&_')
+              const list = IDmap[id].split('_&&_');
               setItem(item, list[0], list[1], list[2], amount? item[amount] / Math.pow(10,list[2]): 0,list[3],list[4])
+
             }
             if(!IDmap[id] && id != "_" && upperCase(id) != "TRX" && id != ''){
               setItem(item, item[tokenId], item[tokenId], 0, item[amount],item[tokenId],item[tokenId])
@@ -68,7 +70,7 @@ export default (list = [], tokenId, amount, infolist=false) => {
             }
             if(IDmap[id]){
               const list = IDmap[id].split('_&&_')
-              setItem(item, list[0], list[1], list[2], amount[index]? item[amount[index]] / Math.pow(10,list[2]): 0,list[3],list[4],index)
+              setItem(item, list[0], list[1], list[2], amount[index]? item[amount[index]] / Math.pow(10,list[2]): 0,list[3],list[4],index);
             }
             if(!IDmap[id] && id != "_" && upperCase(id) != "TRX"){
               setItem(item, item[tid], 0, 0, item[amount[index]],item[tid],item[tid],index)
@@ -104,6 +106,7 @@ async function  getTokensMap() {
     let imgUrl;
     for (var i = 0; i < data.data.length; i++) {
       if (!tokensMap[data.data[i].id]) {
+
           if(data.data[i].imgUrl){
               imgUrl = data.data[i].imgUrl
           }else{

@@ -1517,6 +1517,8 @@ export const messages = {
   "trc20_second_token": "이름",
   "trc20_kchart":"K Line",
   "trc20_depth":"DEPTH",
+  "trc20_trade_win_content":"Current network is unstable , please check later",
+  "trc20_trade_win_confirm":"Confirm",
 
   /*
    *  2018-12-18
@@ -1677,7 +1679,7 @@ export const messages = {
  */
   "ledger_user_guide":"Ledger사용 가이드",
   "latest_version_chrome":"최신 버전 Chrome 사용 추천",
-  "ledger_support_version":"Ledger지원 버전: 0.1.0, Chrome버전 73.0",
+  "ledger_support_version":"Ledger지원 버전: 0.1.1, Chrome버전 73.0",
   "ledger_you_can":"너는 할 수있다 ",
   "ledger_website":"Ledger 공식 웹 사이트",
   "ledger_website_download":"원장의 최신 버전을 다운로드하여 업데이트하십시오",

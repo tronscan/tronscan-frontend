@@ -2409,9 +2409,18 @@ export const tokensMap = {
     "1002408":"Corpse_&&_1002408_&&_0_&&_CRPS_&&_https://coin.top/production/js/20190509074813.png",
     "1002409":"GameofTrons_&&_1002409_&&_0_&&_GoTs_&&_https://coin.top/production/js/20190509074813.png",
     "1002410":"TRONFUTURES_&&_1002410_&&_1_&&_TRNF_&&_https://coin.top/production/js/20190509074813.png",
-    "1002411":"maars_&&_1002411_&&_2_&&_maars_&&_https://coin.top/production/js/20190509074813.png"
+    "1002411":"maars_&&_1002411_&&_2_&&_maars_&&_https://coin.top/production/js/20190509074813.png",
+    "1002412":"Tokenizedproperties_&&_1002412_&&_6_&&_XTP_&&_https://coin.top/production/js/20190509074813.png",
+    "1002413":"BeatzCoin_&&_1002413_&&_6_&&_BTZC_&&_https://coin.top/tokenLogo/tokenLogo20190514105119.png",
+    "1002414":"AmazonLoyaltyToken_&&_1002414_&&_6_&&_AMZ_&&_https://coin.top/production/js/20190509074813.png",
+    "1002415":"Dignity_&&_1002415_&&_6_&&_DIG_&&_https://coin.top/production/js/20190509074813.png",
+    "1002416":"Cortexarts_&&_1002416_&&_2_&&_CRX_&&_https://coin.top/production/js/20190509074813.png",
+    "1002417":"BorCoin_&&_1002417_&&_6_&&_BORC_&&_https://coin.top/production/js/20190509074813.png",
+    "1002418":"YouTube_&&_1002418_&&_4_&&_Tube_&&_https://coin.top/production/js/20190509074813.png",
+    "1002419":"facebooktrx_&&_1002419_&&_6_&&_FcTrx_&&_https://coin.top/production/js/20190509074813.png",
+    "1002420":"HonourSteel_&&_1002420_&&_0_&&_HS_&&_https://coin.top/production/js/20190509074813.png",
+    "1002421":"InstaPay_&&_1002421_&&_0_&&_INSTA_&&_https://coin.top/production/js/20190509074813.png"
 }
-
 
 export const tokens20Map = {
     "TVwXxvyYawS21PT1B7XZxBZCMbQZLUENoE":"ATT_&&_TVwXxvyYawS21PT1B7XZxBZCMbQZLUENoE_&&_6_&&_ATT_&&_http://www.attchain.com/index/img/atc_logo.9757521.jpeg",
@@ -2487,5 +2496,6 @@ export const tokens20Map = {
     "TT2Yb5hZgA1S3dEmKaSAgLxUz4JxcqmeAe":"Wrapped Tron_&&_TT2Yb5hZgA1S3dEmKaSAgLxUz4JxcqmeAe_&&_6_&&_WTRX_&&_https://tronscan.org/static/media/tron-banner-1.e40b3379.png",
     "TXXs3uN5WFiYSUFRKSFLxHYz1RdVARZ2YZ":"BAGGI_&&_TXXs3uN5WFiYSUFRKSFLxHYz1RdVARZ2YZ_&&_6_&&_XBGI_&&_https://baggi.co/ico/baggi_ico_logo.png",
     "TPnYF6YmNMk2ZPteEnN19Gyz7bbhf5Bv8M":"XIO_&&_TPnYF6YmNMk2ZPteEnN19Gyz7bbhf5Bv8M_&&_6_&&_XIO_&&_https://raw.githubusercontent.com/xiowallet/xiowallet.github.io/master/xio_250.jpg",
-    "TUL5yxRKeSWvceLZ3BSU5iNJcQmNxkWayh":"Vena_&&_TUL5yxRKeSWvceLZ3BSU5iNJcQmNxkWayh_&&_6_&&_vena_&&_https://i.imgur.com/rnObnRN.jpg"
+    "TUL5yxRKeSWvceLZ3BSU5iNJcQmNxkWayh":"Vena_&&_TUL5yxRKeSWvceLZ3BSU5iNJcQmNxkWayh_&&_6_&&_vena_&&_https://i.imgur.com/rnObnRN.jpg",
+    "TG37mUxRUaH1E8DWSrrmoQ79BnZn1yHztb":"BitGuild PLAT_&&_TG37mUxRUaH1E8DWSrrmoQ79BnZn1yHztb_&&_6_&&_PLAT_&&_https://www.bitguild.com/static/media/bitguild_logo@1x.80f82c9e.png"
 }
