@@ -17,7 +17,7 @@ class TokenBalances extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            hideSmallCurrency:true,
+            hideSmallCurrency:false,
             balances:[],
             emptyState: props.emptyState,
             tokenTRC10:true,
@@ -47,10 +47,11 @@ class TokenBalances extends React.Component {
                 .sortBy(tb => toUpper(tb.map_token_name))
                 .value();
         }
-        console.log('tokenBalances=====111',tokenBalances)
+
         this.setTop(tokenBalances,'TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t')
         this.setTop(tokenBalances,'1002000');
         this.setTop(tokenBalances,'_');
+        console.log('tokenBalances=====111',tokenBalances)
         this.setState({
             page,
             balances:tokenBalances,
@@ -280,8 +281,9 @@ class TokenBalances extends React.Component {
                 {/*</div>*/}
                 <div>
                     {
-                        Object.keys(balances).length === 0 || (Object.keys(balances).length === 1 && balances[0].map_token_name === "TRX")?
-                            <div className="text-center p-3 no-data">
+                       // Object.keys(balances).length === 0 || (Object.keys(balances).length === 1 && balances[0].map_token_name === "TRX")?
+                        Object.keys(balances).length === 0?
+                        <div className="text-center p-3 no-data">
                                 {tu("no_tokens_found")}
                             </div>
                             :

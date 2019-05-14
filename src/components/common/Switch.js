@@ -8,7 +8,7 @@ export class SwitchToken extends React.Component {
     constructor() {
         super();
         this.state = {
-            hideSmallCurrency: true,
+            hideSmallCurrency: false,
         };
     }
     handleToggle = (prop) => {

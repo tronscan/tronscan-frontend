@@ -593,7 +593,7 @@ class Address extends React.Component {
                                 <td>
                                   <ul className="list-unstyled m-0">
                                     <li >
-                                      <div style={{maxWidth:200}}>
+                                      <div>
                                         <TRXPrice
                                             amount={TRXBalanceTotal}/>{' '}
                                         <span className="small">(<TRXPrice
@@ -676,7 +676,7 @@ class Address extends React.Component {
                                 />
                               </Tooltip>
                               <div className="circle-info">
-                                <div>{tu('address_netRemaining')}</div>
+                                <div>{tu('address_energyRemaining')}</div>
                                 <h2>
                                   <FormattedNumber value={energyRemaining}/>
                                 </h2>

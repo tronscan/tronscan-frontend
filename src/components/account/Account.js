@@ -71,7 +71,7 @@ export default class Account extends Component {
       privateKey: "",
       temporaryName: "",
       selectedResource: null,
-      hideSmallCurrency: true,
+      hideSmallCurrency: false,
       tokenTRC10: true,
       tokens20: [],
       dealPairTrxLimit: 100000,

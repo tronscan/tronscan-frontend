@@ -38,7 +38,7 @@ class Transfers extends React.Component {
       showTotal: props.showTotal !== false,
       emptyState: props.emptyState,
       autoRefresh: props.autoRefresh || false,
-      hideSmallCurrency:true,
+      hideSmallCurrency:false,
       tokenName:"_"
     };
   }
