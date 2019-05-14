@@ -1,5 +1,5 @@
 import React from "react";
-import { injectIntl, FormattedNumber } from "react-intl";
+import { injectIntl, FormattedNumber ,FormattedDate,FormattedTime} from "react-intl";
 import { withRouter } from "react-router";
 import { widget } from "../../../../../lib/charting_library.min";
 import Datafeed from "./udf/index.js";
@@ -9,7 +9,7 @@ import { TRXPrice } from "../../../../common/Price";
 import { Client20 } from "../../../../../services/api";
 import { change10lock, setWidget } from "../../../../../actions/exchange";
 import { TokenTRC20Link } from "../../../../common/Links";
-import { Icon } from "antd";
+import { Icon,Modal } from "antd";
 
 class Tokeninfo extends React.Component {
   constructor() {
@@ -65,20 +65,30 @@ class Tokeninfo extends React.Component {
     //   }
     // });
     // const { selectData } = this.props;
-    const newObj = {};
+    // let newObj = {};
 
     if (selectData.fShortName == "TRX") {
-      newObj["icon_url"] = "http://coin.top/production/js/20190506075825.png";
+      const newObj = {icon_url:"http://coin.top/production/js/20190506075825.png"}
       this.setState({ tokeninfoItem: newObj });
       return;
     }
 
     const fTokenAddr = selectData.fTokenAddr;
-
+    if(!fTokenAddr){
+      return
+    }
     Client20.getTokenInfoItem(fTokenAddr, selectData.pairType).then(res => {
       const { trc20_tokens } = res;
       if (trc20_tokens) {
         const newObj = trc20_tokens[0];
+        newObj["description"] = trc20_tokens[0].token_desc;
+        newObj["totalSupply"] = trc20_tokens[0].total_supply_with_decimals;
+        newObj["issued"] = trc20_tokens[0].total_supply_with_decimals;
+        newObj["nrOfTokenHolders"] = '';
+        newObj["startTime"] = trc20_tokens[0].issue_time;
+        newObj["url"] = trc20_tokens[0].home_page;
+        newObj["white_paper"] = trc20_tokens[0].white_paper;
+        newObj["precision"] = trc20_tokens[0].decimals;
         this.setState({ tokeninfoItem: newObj });
       }
 
@@ -99,139 +109,138 @@ class Tokeninfo extends React.Component {
     return (
       <div>
         {/* title 信息 */}
-        <div className="d-flex mb-3 exchange__kline__title position-relative">
+        <div className="d-flex exchange__kline__title position-relative">
           {tokeninfoItem && tokeninfoItem.icon_url ? (
-            <img
-              src={tokeninfoItem.icon_url}
-              style={{ width: "46px", height: "46px" }}
-            />
+            <img src={tokeninfoItem.icon_url}/>
           ) : (
-            <img src={imgDefault} style={{ width: "46px", height: "46px" }} />
+            <img src={imgDefault}/>
           )}
-
-          <div className="ml-3">
-            <div className="d-flex mb-1">
-              {selectData.fShortName != "TRX" && (
-                <div
-                  className="kline_down"
-                  onClick={() => this.setState({ detailShow: !detailShow })}
-                >
-                  <Icon type="caret-down" theme="filled" />
-                </div>
-              )}
-              <h5 className="mr-3 font-weight-bold">
-                {selectData.exchange_name} ≈ <span>{selectData.price}</span>
-              </h5>
+          <div className="info-wrap">
+            <div className="item">
+              <p><span>{selectData.fShortName}</span>/{selectData.sShortName}</p>
+              <p>
+                <a href="javascript:;" onClick={() => this.setState({ detailShow: !detailShow })}>
+                  <img src={require("../../../../../images/market/info.svg")}></img>
+                  {selectData.fTokenName}
+                </a>
+              </p>
             </div>
-            <div className="d-flex">
-              <div className="mr-3">
-                {tu("pairs_change")}
-                {!selectData.isUp ? (
-                  <span className="col-red ml-2">
-                    {selectData.up_down_percent}
-                  </span>
-                ) : (
-                  <span className="col-green ml-2">
-                    {selectData.up_down_percent}
-                  </span>
-                )}
-              </div>
-              <div className="mr-3">
-                {tu("H")}
-                <span className=" ml-2">{selectData.high}</span>
-              </div>
-              <div className="mr-3">
-                {tu("L")}
-                <span className=" ml-2">{selectData.low}</span>
-              </div>
-              <div className="mr-3">
-                {tu("24H_VOL")}{" "}
-                <span className="ml-1">
-                  {" "}
-                  {selectData.second_token_id == "TRX" ? (
-                    <TRXPrice amount={selectData.svolume} />
-                  ) : (
-                    <span>
-                      <FormattedNumber
-                        value={selectData.volume ? selectData.volume : 0}
-                      />
-                      &nbsp;
-                      {selectData.first_token_abbr}
-                    </span>
-                  )}
-                </span>
-                {/*<span className=" ml-2">{selectData.volume} {selectData.first_token_id}</span>*/}
-                {/*≈*/}
-              </div>
-              <div className="mr-3">
-                {selectData.second_token_id == "TRX" ? (
-                  " "
-                ) : (
-                  <span>
-                    {tu("trc20_24H_Total")}
-                    <span className="ml-1">
-                      <FormattedNumber
-                        value={selectData.svolume ? selectData.svolume : 0}
-                      />
-                      &nbsp;
-                      {selectData.second_token_abbr}
-                    </span>
-                  </span>
-                )}
-              </div>
+            <div className="item">
+              <p className={selectData.isUp ? 'col-green' : 'col-red'}>{selectData.price}</p>
+              <p>≈ 4.53263</p>
+            </div>
+            <div className="item">
+              <p>{tu("pairs_change")}</p>
+              <p className={selectData.isUp ? 'col-green' : 'col-red'}>{selectData.up_down_percent}</p>
+            </div>
+            <div className="item">
+              <p>{tu("H")}</p>
+              <p>{selectData.high}</p>
+            </div>
+            <div className="item">
+              <p>{tu("L")}</p>
+              <p>{selectData.low}</p>
+            </div>
+            <div className="item">
+              <p>{tu("24H_VOL")}</p>
+              <p>{selectData.svolume}</p>
+            </div>
+            <div className="item">
+              <p>{tu("24H_VOL")}</p>
+              <p>{selectData.volume}</p>
             </div>
           </div>
-          {tokeninfoItem && detailShow && (
-            <div className="kline_detail p-3">
-              <p className="kline_detail__inr">
-                <b className="mr-2">{tu("trc20_token_info_Token_Info")}</b>
-                {tokeninfoItem.token_desc}
-              </p>
-              <ul className="">
-                <li>
-                  <p className="title">{tu("trc20_token_info_Total_Name")}</p>
-                  <p className="value" style={{ textDecoration: "underline" }}>
-                    <TokenTRC20Link
-                      name={tokeninfoItem.name}
-                      address={tokeninfoItem.contract_address}
-                    />
-                  </p>
-                </li>
-                <li>
-                  <p className="title">{tu("trc20_token_info_Token_Symbol")}</p>
-                  <p className="value">{tokeninfoItem.symbol}</p>
-                </li>
-                <li>
-                  <p className="title">
-                    {tu("trc20_token_info_Contract_Address")}
-                  </p>
-                  <p className="value">{tokeninfoItem.contract_address}</p>
-                </li>
-                <li>
-                  <p className="title">{tu("trc20_token_info_Total_Supply")}</p>
-                  <p className="value">
-                    <FormattedNumber
-                      value={
-                        Number(tokeninfoItem.total_supply_with_decimals) /
-                        Math.pow(10, tokeninfoItem.decimals)
-                      }
-                    />
-                  </p>
-                </li>
-                <li>
-                  <p className="title">{tu("trc20_token_info_Website")}</p>
-                  <a href={tokeninfoItem.home_page} target="_bank">
-                    {tokeninfoItem.home_page}
-                  </a>
-                </li>
-              </ul>
-            </div>
-          )}
         </div>
 
-        <hr />
-
+        
         {/* <div className="exchange__kline__pic" id='tv_chart_container'></div> */}
+        <Modal
+          visible={detailShow}
+          onCancel={() => this.setState({ detailShow: !detailShow })}
+          width={530}
+          footer={null}
+        >
+          <div className="token-info-wrap">
+            <h2>
+            {tokeninfoItem && tokeninfoItem.icon_url ? (
+              <img src={tokeninfoItem.icon_url}/>
+            ) : (
+              <img src={imgDefault}/>
+            )}
+            {selectData.fShortName}
+            </h2>
+            <p>{tokeninfoItem.description}</p>
+            <hr/>
+            <div className="info-list">
+              <div>
+                <span>{tu("trc20_token_info_Total_Supply")}</span>
+                <span>
+                {tokeninfoItem.totalSupply ? <FormattedNumber
+                      value={
+                        Number(tokeninfoItem.totalSupply) /
+                        Math.pow(10, tokeninfoItem.precision || 0)
+                      }
+                    /> : '--'}
+                </span>
+              </div>
+              <div>
+                <span>{tu("trc20_top_IssuedAmount")}</span>
+                <span>
+                {tokeninfoItem.issued ? <FormattedNumber
+                      value={
+                        Number(tokeninfoItem.issued) /
+                        Math.pow(10, tokeninfoItem.precision || 0)
+                      }
+                    /> : '--'}
+                </span>
+              </div>
+              <div>
+                <span>{tu("trc20_top_nrOfTokenHolders")}</span>
+                <span>
+                {tokeninfoItem.nrOfTokenHolders ?(<FormattedNumber
+                      value={
+                        Number(tokeninfoItem.nrOfTokenHolders)
+                      }
+                    />):'--'}
+                </span>
+              </div>
+              <div>
+                <span>{tu("trc20_top_CreateTime")}</span>
+                <span>
+                {tokeninfoItem.startTime?
+                  (<span><FormattedDate 
+                    value={tokeninfoItem.startTime}/> 
+                    {' '}
+                    <FormattedTime
+                      value={tokeninfoItem.startTime}
+                      hour='numeric'
+                      minute="numeric"
+                      second='numeric'
+                      hour12={false}/>
+                    </span>) : '--'
+                }
+                </span>
+              </div>
+              <div>
+                <span>{tu("trc20_token_info_Website")}</span>
+                <span>
+                  {tokeninfoItem.url == 'no_message' || tokeninfoItem.url == '' ? '--' : <a href={tokeninfoItem.url} target="_blank">{tokeninfoItem.url}</a>}
+                  {/* <a href={tokeninfoItem.url} target="_blank">{tokeninfoItem.url}</a> */}
+                </span>
+              </div>
+              <div>
+                <span>{tu("trc20_top_WhitePaper")}</span>
+                <span>
+                  {tokeninfoItem.white_paper == 'no_message' || tokeninfoItem.white_paper == '' ? '--' : <a href={tokeninfoItem.white_paper} target="_blank">{tokeninfoItem.white_paper}</a>}
+                  </span>
+              </div>
+            </div>
+            {selectData.fShortName != "TRX" && (<div className="info-more">
+              <a href={selectData.pairType == 2 || selectData.pairType == 3 ? `https://tronscan.org/#/token20/${tokeninfoItem.contract_address}` : `https://tronscan.org/#/token/${tokeninfoItem.id}`} target="_blank">{tu('trc20_top_More')}></a>
+            </div>)}
+          </div>
+        </Modal>
+ 
       </div>
     );
   }

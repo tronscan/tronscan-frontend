@@ -1,0 +1,83 @@
+.exchange-revised {
+  .exchange-box-left {
+    width: 320px;
+  }
+  .collapse-icon {
+    background: rgba(194, 54, 49, 0.1);
+    border-radius: 4px;
+    width: 24px;
+    height: 24px;
+    text-align: center;
+    i {
+      color: #c23631;
+      font-size: 14px;
+    }
+  }
+  .exchange-list-mark {
+    .ant-input-affix-wrapper {
+      width: 85%;
+    }
+  }
+  .dex-tab {
+    .ant-tabs-nav .ant-tabs-tab {
+      margin: 0;
+      padding: 12px 11px;
+    }
+    .ant-tabs-bar {
+      margin-bottom: 0;
+    }
+
+    .ant-tabs-tab {
+      font-family: PingFang-SC-Bold;
+      font-size: 14px;
+      color: #666666;
+    }
+    .ant-tabs-nav .ant-tabs-tab-active {
+      color: #c23631;
+      background: #fff;
+    }
+    .ant-tabs-ink-bar {
+      display: block !important;
+      width: 50px;
+    }
+  }
+  .position-relative {
+    .optional-star {
+      // top: 0;
+      // bottom:0;
+      // margin:auto;
+      // position: relative;
+      margin: 0;
+      margin-right: 5px;
+      position: relative;
+      top: 10px;
+    }
+    p {
+      height: auto;
+    }
+  }
+  .bg-color.col-red {
+    padding: 5px 2px;
+    background: rgba(230, 8, 21, 0.1);
+    border-radius: 4px;
+  }
+  .bg-color.col-green {
+    padding: 5px 2px;
+    background: rgba(105, 194, 101, 0.1);
+    border-radius: 4px;
+  }
+  .exchange-list .ant-table tr {
+    background-color: #fff;
+
+    &:hover > td {
+      background: #f3f3f3 !important;
+    }
+  }
+  .exchange-table-row-active td {
+    background: #f3f3f3 !important;
+  }
+  .font-grey {
+    font-size: 12px;
+    color: #999999;
+  }
+}

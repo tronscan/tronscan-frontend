@@ -23,15 +23,15 @@ class Explain extends Component {
       <div className="exchange-list-explain">
           <ul className="exchange-list-tab">
             <li >
-              <a className={actived == 1 && "cur"} href="javascript:;" onClick={()=>this.tabChange(1)}>{tu('trc20_register')}</a>
+              <a className={actived == 1 ? "cur" : ""} href="javascript:;" onClick={()=>this.tabChange(1)}>{tu('trc20_register')}</a>
             </li>
             <li>
-              <a className={actived == 2 && "cur"} href="javascript:;" onClick={()=>this.tabChange(2)}>{tu('trc20_history')}</a>
+              <a className={actived == 2 ? "cur" : ""} href="javascript:;" onClick={()=>this.tabChange(2)}>{tu('trc20_history')}</a>
             </li>
           </ul>
           <div >
-            <div className={actived == 1 && "cur"}><Register></Register></div>
-            <div className={actived == 2 && "cur"}><TranList></TranList></div>
+            <div className={actived == 1 ? "cur" : ""}><Register></Register></div>
+            <div className={actived == 2 ? "cur" : ""}><TranList></TranList></div>
           </div>
      </div>
     )

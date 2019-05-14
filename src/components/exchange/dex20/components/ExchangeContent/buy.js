@@ -178,8 +178,8 @@ class Buy extends Component {
     return (
       <div className="exchange__transaction__item mr-2 p-3">
         {modal}
-        <h5 className="mr-3">
-          {exchangeData.fShortName}/{exchangeData.sShortName} ≈{" "}
+        <h5 className="mr-3 exchange__transaction__header">
+          <span>{exchangeData.fShortName}</span><span>/{exchangeData.sShortName}</span> ≈{" "}
           {exchangeData.price && (
             <span>{Number(exchangeData.price).toFixed(6)}</span>
           )}

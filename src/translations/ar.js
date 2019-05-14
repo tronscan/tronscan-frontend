@@ -1519,6 +1519,9 @@
   "trc20_depth":"DEPTH",
   "trc20_trade_win_content":"Current network is unstable , please check later",
   "trc20_trade_win_confirm":"Confirm",
+  "trc20_hot":"شعبي",
+  "trc20_top_Volume":"قائمة التداول",
+  "trc20_top_Rising":"قائمة ارتفاع",
 
 
     /*

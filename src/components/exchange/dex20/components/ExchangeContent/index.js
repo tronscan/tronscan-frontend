@@ -36,9 +36,9 @@ class ExchangeContent extends React.Component {
         <Notice />
         <div className="exchange-right">
           <div className="exchange__kline mb-2 mr-2">
-            <div className="">
+            <div className="exchange__kline__wrap">
               <Tokeninfo />
-              <div className="mb-2">
+              {/* <div className="mb-2">
                 <Select
                   defaultValue="kchart"
                   style={{ width: 120 }}
@@ -47,8 +47,10 @@ class ExchangeContent extends React.Component {
                   <Option value="kchart">{tu("trc20_kchart")}</Option>
                   <Option value="depth">{tu("trc20_depth")}</Option>
                 </Select>
+              </div> */}
+              <div className="p-3 mb-2">
+                {select === "kchart" ? <Kline /> : <Depth />}
               </div>
-              {select === "kchart" ? <Kline /> : <Depth />}
             </div>
 
             {/* transaction */}

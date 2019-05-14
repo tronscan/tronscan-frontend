@@ -18,6 +18,7 @@
   .exchange-list-explain {
     display: flex;
     flex-direction: column;
+    height: 100%;
     .exchange-list-tab{
       display: flex;
       list-style: none;
@@ -45,9 +46,13 @@
     }
     >div{
       display: flex;
+      height: calc(100% - 60px);
       >div{
+        height: 100%;
+        background: #fff;
         &:last-child{
           margin-left: 0.5rem;
+          overflow: auto;
         }
       }
     }
@@ -72,8 +77,10 @@
   }
 
   .ant-tabs-nav .ant-tabs-tab-active {
+    padding: 11px 30px;
     background: #c23631;
     color: #fff;
+    border-radius: 3px;
   }
   .ant-tabs-nav-container {
     line-height: 1;
@@ -239,6 +246,9 @@
           }
         }
       }
+      .ant-table-placeholder{
+        border-bottom: 0;
+      }
     }
     
   }
@@ -262,20 +272,163 @@
   }
   .exchange__kline__pic {
     // height:329px!important;
-    border: 1px solid rgb(230, 230, 230);
+    // border: 1px solid rgb(230, 230, 230);
   }
   .exchange-right {
     display: flex;
     justify-content: space-between;
+    height: 847px;
   }
   .exchange-register {
     // background: #fff;
   }
   .exchange__kline {
     flex: 1;
+    background:transparent;
+    .exchange__kline__wrap{
+      background: #fff;
+    }
+  }
+  .exchange__kline__title{
+    padding: 8.5px 16px;
+    border-bottom: 1px solid #eee;
+    img{
+      width: 36px;
+      height: 36px;
+    }
+    .info-wrap{
+      display: flex;
+      flex: 1;
+      .item{
+        padding: 0 14px 0 16px;
+        p{
+          margin-bottom: 0;
+          font-size: 14px;
+          // color: #333333;
+          line-height: 20px;
+          white-space: nowrap;
+          &:first-child{
+            font-size: 12px;
+            color: #999999;
+          }
+        }
+        &:first-child{
+          padding-left: 8px;
+          p{
+            font-size: 12px;
+            color: #999999;
+            span{
+              font-size: 16px;
+              color: #333333;
+            }
+            &:last-child{
+              a{
+                color: #666;
+                img{
+                  width: 10px;
+                  height: 12px;
+                  margin-right: 6px;
+                  vertical-align: -2px;
+                }
+              }
+            }
+          }
+        }
+        &:nth-child(2){
+          border-left: 1px solid #eee;
+          p{
+            font-size: 16px;
+            &:first-child{
+              &.col-green{
+                color: #69c265;
+              }
+              &.col-red{
+                color: #e60815;
+              }
+            }
+            &:last-child{
+              font-size: 12px;
+              color: #666666;
+            }
+          }
+        }
+      }
+    }
+    
+  }
+  .exchange__transaction__item{
+    .exchange__transaction__header{
+      span{
+        font-size: 12px;
+        color: #666666;
+        &:first-child{
+          color: #333333;
+          font-size: 16px;
+        }
+        &:nth-child(2){
+          color: #999999;
+        }
+        &:last-child{
+          font-size: 14px;
+        }
+      }
+    }
   }
 }
-
+.ant-modal-wrap {
+  .token-info-wrap{
+    padding: 6px 8px 0;
+    h2{
+      text-align: center;
+      font-size: 16px;
+      color: #333333;
+      line-height: 20px;
+      height: 20px;
+      margin-bottom: 20px;
+      img{
+        width: 20px;
+        height: 20px;
+        vertical-align: -4px;
+        margin-right: 5px;
+      }
+    }
+    p{
+      font-size: 12px;
+      color: #666666;
+    }
+    .info-list{
+      display: flex;
+      flex-wrap: wrap;
+      >div{
+        display: flex;
+        flex-direction: column;
+        width: 33.3%;
+        font-size: 12px;
+        color: #333;
+        margin-bottom: 16px;
+        >span{
+          &:first-child{
+            color: #999;
+            margin-bottom: 5px;
+          }
+          a{
+            white-space: nowrap;
+            overflow: hidden;
+            display: block;
+            text-overflow: ellipsis;
+          }
+        }
+      }
+    }
+    .info-more{
+      text-align: center;
+      font-size: 12px;
+      a{
+        color: #576B94;
+      }
+    }
+  }
+}
 @media screen and (max-width: 1560px) {
   .exchange20 {
     .exchange-list-explain{

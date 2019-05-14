@@ -6,7 +6,7 @@ import queryString from "query-string";
 import { connect } from "react-redux";
 import { getSelectData } from "../../../../../actions/exchange";
 import { filter, map, upperFirst, remove } from "lodash";
-import { injectIntl } from "react-intl";
+import { injectIntl, FormattedNumber } from "react-intl";
 import Lockr from "lockr";
 import _ from "lodash";
 
@@ -29,12 +29,12 @@ class ExchangeTable extends React.Component {
     let isfov = Lockr.get("DEX") == "GEM";
     const columns = [
       {
-        title: upperFirst(intl.formatMessage({ id: "pairs" })),
+        title: upperFirst(intl.formatMessage({ id: "trc20_price" })),
         key: "first_token_id",
-        width: 120,
+        // width: 100,
         render: (text, record, index) => {
           return (
-            <div className="position-relative">
+            <div className="position-relative" style={{ display: "flex" }}>
               {isfov && (
                 <div className="fov_tip">
                   {record.token_type == "dex20" ? (
@@ -58,44 +58,62 @@ class ExchangeTable extends React.Component {
                   )}
                 </span>
               </span>
-              {offlineToken.includes(record.id) ? (
-                <span
-                  className="exchange-abbr-name"
-                  style={{ textDecoration: "line-through" }}
+              <div className="">
+                {offlineToken.includes(record.id) ? (
+                  <p
+                    className="exchange-abbr-name"
+                    style={{ textDecoration: "line-through" }}
+                  >
+                    {record.exchange_abbr_name}
+                  </p>
+                ) : (
+                  <p className="exchange-abbr-name">
+                    {record.exchange_abbr_name}
+                  </p>
+                )}
+
+                <p
+                  className={
+                    record.up_down_percent.indexOf("-") != -1
+                      ? "col-red"
+                      : "col-green"
+                  }
                 >
-                  {record.exchange_abbr_name}
-                </span>
-              ) : (
-                <span className="exchange-abbr-name">
-                  {record.exchange_abbr_name}
-                </span>
-              )}
+                  {record.price.toFixed(record.sPrecision)}
+                </p>
+              </div>
             </div>
           );
         }
       },
       {
-        title: upperFirst(intl.formatMessage({ id: "last_price" })),
+        title: upperFirst(intl.formatMessage({ id: "trc20_24H_Total" })),
         align: "right",
         dataIndex: "price",
         key: "price",
+        // width: 120,
         render: (text, record) => {
           return (
-            <div className="textRight">{text.toFixed(record.sPrecision)}</div>
+            <div className="textRight">
+              <FormattedNumber value={record.svolume ? record.svolume : 0} />
+              {record.second_token_abbr}
+              <br />
+              <span className="font-grey">12333cny</span>
+            </div>
           );
         }
       },
       {
-        title: upperFirst(intl.formatMessage({ id: "pairs_change" })),
+        title: upperFirst(intl.formatMessage({ id: "trc20_token_info_ths_3" })),
         dataIndex: "up_down_percent",
         key: "up_down_percent",
         align: "right",
-        width: 100,
+        // width: 100,
         render: (text, record, index) => {
           return text.indexOf("-") != -1 ? (
-            <span className="col-red">{text}</span>
+            <span className="col-red bg-color">{text}</span>
           ) : (
-            <span className="col-green">{text}</span>
+            <span className="col-green bg-color">{text}</span>
           );
         }
       }
