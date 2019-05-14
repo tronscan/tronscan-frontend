@@ -3239,11 +3239,13 @@ h5 {
     -webkit-transform: scale(0.75);
     transform: scale(0.75); }
 }
+
 .address-circle{
   justify-content: center;
   align-items: center;
   .address-circle-bandwidth{
     display: block;
+    margin-right: 1.5rem;
     .ant-progress{
       .ant-progress-circle-trail{
         stroke: #f5e1b8;
@@ -3257,6 +3259,7 @@ h5 {
   }
   .address-circle-energy{
     display: block;
+    margin-left: 1.5rem;
     .ant-progress{
       .ant-progress-circle-trail{
         stroke: #b5d6f1;
@@ -3274,6 +3277,24 @@ h5 {
     }
     h2{
       color: #333333;
+    }
+  }
+  @media only screen and (max-width: 768px) {
+    flex-direction: column;
+    margin-bottom: 1rem;
+    .address-circle-bandwidth{
+      margin-right: 0;
+    }
+    .address-circle-energy{
+      margin-left: -20px;
+    }
+    .address-circle-line{
+      transform:rotate(90deg)
+    }
+    .circle-info{
+      h2{
+        font-size: 1rem;
+      }
     }
   }
 }

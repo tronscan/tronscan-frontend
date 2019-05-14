@@ -1682,5 +1682,31 @@ export const messages = {
   "ledger_website":"Ledger 공식 웹 사이트",
   "ledger_website_download":"원장의 최신 버전을 다운로드하여 업데이트하십시오",
   "ledger_click_help":"추가 도움말을 보려면 여기를 클릭하십시오",
+    /*
+       ##################################################################################
+       #                                                                                #
+       # new variables    address 2019-05-13                                    #
+       #                                                                                #
+       ##################################################################################
+   */
+
+    "address_balance_token_type":"토큰 종류",
+    "address_balance_token_price_TRX":"TRX 가격/ USD 가격",
+    "address_transactions_tip":"거래수 에는 전송 횟수가 포함됩니다.",
+    "address_tron_power_tip":"TRX 동결 후 투표권을 얻을 수 있습니다. ",
+    "address_total_balance_tip":"총 잔고에는 모든 가치 있는 토큰이 포함됩니다. ",
+    "address_tron_power_used":"이미 사용",
+    "address_tron_power_remaining":"나머지",
+    "address_total_balance_info_sources":"정보 출처",
+    "address_info_transfers": "전송",
+    "address_info_transactions": "거래",
+    "address_netLimit":"Total Bandwidth",
+    "address_netRemaining":"Available Bandwidth",
+    "address_netUsed":"Used Bandwidth",
+    "address_energyLimit":"Total Energy",
+    "address_energyRemaining":"Available Energy",
+    "address_energyUsed":"Used Energy",
+    "address_percentage":"Percentage",
+
 
 };

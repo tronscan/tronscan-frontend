@@ -168,15 +168,18 @@ async  function setWebsocketContent(getState, address){
   let { account, app } = getState()
   const localAddress = Lockr.get('localAddress')
   if(!account.websocket && Lockr.get("websocket") === 'open'){
-      console.log(456)
+      //console.log(456)
       Lockr.set("websocket","close")
       setWebsocket()
   }
-  if(app.wallet.type === 'ACCOUNT_TRONLINK'){
+  if(app.wallet.type === 'ACCOUNT_TRONLINK' && account.websocket ){
     if(localAddress !== address && account.websocket){
       await account.websocket.send('cancel:'+localAddress)
     }
   }
-  await account.websocket.send(address)
-  Lockr.set('localAddress', address)
+  if(account.websocket){
+      await account.websocket.send(address)
+      Lockr.set('localAddress', address)
+  }
+
 }

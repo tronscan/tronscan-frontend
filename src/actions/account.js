@@ -56,7 +56,7 @@ export const setWebsocket = () => async (dispatch) => {
   var wsUri = "wss://apilist.tronscan.org/api/tronsocket";
   // var wsUri = "wss://api.shasta.tronscan.org/api/tronsocket";
   // var wsUri = "ws://172.16.20.200:6688/api/tronsocket";
-  
+ // console.log('123')
   let websocket = new ReconnectingWebSocket(wsUri, [], {
     minReconnectionDelay: 500
   })

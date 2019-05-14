@@ -24,7 +24,7 @@ import {channel} from "../../../services/api";
 import rebuildList from "../../../utils/rebuildList";
 import rebuildToken20List from "../../../utils/rebuildToken20List";
 import {API_URL} from '../../../constants.js'
-import { FormatNumberByDecimals, FormatNumberByDecimalsBalance } from '../../../utils/number'
+import { FormatNumberByDecimals, FormatNumberByDecimalsBalance, toThousands } from '../../../utils/number'
 import { Progress, Tooltip } from 'antd'
 import BigNumber from "bignumber.js"
 import {HrefLink} from "../../common/Links";
@@ -173,7 +173,9 @@ class Address extends React.Component {
         }
 
         if(item.priceInTrx){
-            item.TRXBalance = (item.priceInTrx* item.map_amount).toFixed(6)
+            item.TRXBalance = (item.priceInTrx* item.map_amount).toFixed(6);
+            item.TRXBalance_toThousands = toThousands((item.priceInTrx* item.map_amount).toFixed(6));
+
         }else{
             item.TRXBalance = 0
         }
@@ -188,8 +190,9 @@ class Address extends React.Component {
         item.token20_balance_decimals = FormatNumberByDecimalsBalance(item.balance, item.decimals);
         item.map_amount = FormatNumberByDecimalsBalance(item.balance, item.decimals);
         if(item.priceInTrx){
-            x = new BigNumber(item.token20_balance_decimals)
-            item.TRXBalance =  x.multipliedBy(item.priceInTrx).toFixed(6);
+            x = new BigNumber(item.token20_balance_decimals);
+            item.TRXBalance = x.multipliedBy(item.priceInTrx).toFixed(6);
+            item.TRXBalance_toThousands = toThousands(x.multipliedBy(item.priceInTrx).toFixed(6));
         }else{
             item.TRXBalance = 0
         }
@@ -403,7 +406,7 @@ class Address extends React.Component {
           </div>
           <div>
               <span>{intl.formatMessage({id: 'address_netRemaining'}) + ' : ' + netRemaining }</span>&nbsp;&nbsp;
-              <span>{intl.formatMessage({id: 'address_percentage'}) + ' : ' + (100- Number(bandWidthPercentage).toFixed(2))+ '%' }</span>
+              <span>{intl.formatMessage({id: 'address_percentage'}) + ' : ' + (100 - Number(bandWidthPercentage).toFixed(2)).toFixed(2)+ '%' }</span>
           </div>
           <div>
             <span>{intl.formatMessage({id: 'address_netUsed'}) + ' : ' + netUsed }</span>&nbsp;&nbsp;
@@ -640,8 +643,8 @@ class Address extends React.Component {
 
                           </div>
                           <div className="col-md-6 d-flex address-circle">
-                            <div className="address-circle-bandwidth d-flex mr-4">
-                              <Tooltip title={this.bandWidthCircle}>
+                            <div className="address-circle-bandwidth d-flex">
+                              <Tooltip title={this.bandWidthCircle} overlayStyle={{'maxWidth':'500px'}}>
                                 <Progress
                                     width={82}
                                     strokeWidth={10}
@@ -663,8 +666,8 @@ class Address extends React.Component {
                               </div>
                             </div>
                             <div className="address-circle-line"></div>
-                            <div className="address-circle-energy d-flex ml-4">
-                              <Tooltip title={this.energyCircle}>
+                            <div className="address-circle-energy d-flex">
+                              <Tooltip title={this.energyCircle} overlayStyle={{'maxWidth':'500px'}}>
                                 <Progress
                                     width={82}
                                     strokeWidth={10}

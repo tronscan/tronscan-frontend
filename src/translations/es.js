@@ -1726,6 +1726,32 @@ export const messages = {
   "ledger_website_download":"to download and update the latest version of Ledger",
   "ledger_click_help":"Click here for more help",
 
+  /*
+      ##################################################################################
+      #                                                                                #
+      # new variables    address 2019-05-13                                    #
+      #                                                                                #
+      ##################################################################################
+  */
+
+  "address_balance_token_type":"Tipos de token",
+  "address_balance_token_price_TRX":"Valor de TRX/ Valor de USDT",
+  "address_transactions_tip":"El número de transacción está incluido en el número de trading ",
+  "address_tron_power_tip":"Se puede conseguir voto por congelar TRX",
+  "address_total_balance_tip":"El balance total incluye todos los tokens con valor",
+  "address_tron_power_used":"Utilizado",
+  "address_tron_power_remaining":"Restante",
+  "address_total_balance_info_sources":"Fuentes",
+  "address_info_transfers": "Transferencias",
+  "address_info_transactions": "transacciones",
+  "address_netLimit":"Total Bandwidth",
+  "address_netRemaining":"Available Bandwidth",
+  "address_netUsed":"Used Bandwidth",
+  "address_energyLimit":"Total Energy",
+  "address_energyRemaining":"Available Energy",
+  "address_energyUsed":"Used Energy",
+  "address_percentage":"Percentage",
+
 
 
 };

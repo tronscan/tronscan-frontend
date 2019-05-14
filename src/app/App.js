@@ -14,7 +14,6 @@ export default class App {
 
   async getTokensMap() {
     let {data} = await xhr.get(`${API_URL}/api/token?showAll=1&limit=3000`);
-    console.log('getTokensMap=======')
     let imgUrl;
     for (var i = 0; i < data.data.length; i++) {
       if (!tokensMap[data.data[i].id]) {
@@ -31,7 +30,6 @@ export default class App {
 
   async getTokens20Map() {
       let {data} = await xhr.get(`${API_URL}/api/tokens/overview?start=0&limit=1000&filter=trc20`);
-      console.log('getTokensMap20=======',data)
       let imgUrl;
       for (var i = 0; i < data.tokens.length; i++) {
           if (!tokens20Map[data.tokens[i].contractAddress]) {

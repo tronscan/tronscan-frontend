@@ -58,7 +58,6 @@ export const reloadWallet = () => async (dispatch, getState) => {
           item.token20_balance_decimals = FormatNumberByDecimalsBalance(item.balance, item.decimals);
           return item
       });
-      console.log('trc20token_balances_new11111111',trc20token_balances_new)
       dispatch(setActiveWallet(wallet));
       dispatch(setTokenBalances(balances_new, trc20token_balances_new, frozen, accountResource.frozen_balance_for_energy, delegated));
   }

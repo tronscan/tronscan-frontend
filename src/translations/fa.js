@@ -1673,6 +1673,32 @@ export const messages = {
     "ledger_website_download":"نسخه لوگر به روز شده را دانلود کنید",
     "ledger_click_help":" برای کمک بیشتر اینجا کلیک کنید.",
 
+    /*
+        ##################################################################################
+        #                                                                                #
+        # new variables    address 2019-05-13                                    #
+        #                                                                                #
+        ##################################################################################
+    */
+
+    "address_balance_token_type":"انواع رمز عبور",
+    "address_balance_token_price_TRX":"ارزش TRX / ارزش USD",
+    "address_transactions_tip":"تعداد معاملات شامل تعداد انتقال است.",
+    "address_tron_power_tip":"فریز TRX برای کسب حق رای",
+    "address_total_balance_tip":"مجموع تعادل شامل تمام گواهینامه های با ارزش است.",
+    "address_tron_power_used":"استفاده شده",
+    "address_tron_power_remaining":"باقی مانده",
+    "address_total_balance_info_sources":"منبع اطلاعات",
+    "address_info_transfers": "انتقال",
+    "address_info_transactions": "معاملات",
+    "address_netLimit":"Total Bandwidth",
+    "address_netRemaining":"Available Bandwidth",
+    "address_netUsed":"Used Bandwidth",
+    "address_energyLimit":"Total Energy",
+    "address_energyRemaining":"Available Energy",
+    "address_energyUsed":"Used Energy",
+    "address_percentage":"Percentage",
+
 
 
 };

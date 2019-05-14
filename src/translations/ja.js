@@ -1679,6 +1679,31 @@ export const messages = {
     "ledger_website_download":"最新の元帳バージョンをダウンロードして更新する",
     "ledger_click_help":"ここをクリックしてヘルプを獲得します",
 
+    /*
+           ##################################################################################
+           #                                                                                #
+           # new variables    address 2019-05-13                                    #
+           #                                                                                #
+           ##################################################################################
+       */
+
+    "address_balance_token_type":"トークン種類",
+    "address_balance_token_price_TRX":"TRX価値/USD価値",
+    "address_transactions_tip":"取引数は振替数を含めます",
+    "address_tron_power_tip":"TRXを凍結することで、投票権をもらえます",
+    "address_total_balance_tip":"総残高はすべて価値があるトークンを含めます",
+    "address_tron_power_used":"使用済",
+    "address_tron_power_remaining":"残り",
+    "address_total_balance_info_sources":"情報出典",
+    "address_info_transfers": "振替",
+    "address_info_transactions": "取引",
+    "address_netLimit":"Total Bandwidth",
+    "address_netRemaining":"Available Bandwidth",
+    "address_netUsed":"Used Bandwidth",
+    "address_energyLimit":"Total Energy",
+    "address_energyRemaining":"Available Energy",
+    "address_energyUsed":"Used Energy",
+    "address_percentage":"Percentage",
 
 
 }

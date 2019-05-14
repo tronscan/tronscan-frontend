@@ -1672,5 +1672,31 @@
     "ledger_website_download":"قم بتنزيل وتحديث نسخة دفتر الأستاذ",
     "ledger_click_help":"انقر هنا للحصول على مزيد من المساعدة",
 
+    /*
+        ##################################################################################
+        #                                                                                #
+        # new variables    address 2019-05-13                                    #
+        #                                                                                #
+        ##################################################################################
+    */
+
+    "address_balance_token_type":"فئة التوكن",
+    "address_balance_token_price_TRX":"قيمة TRX / قيمة USD",
+    "address_transactions_tip":"عدد المعاملات يشمل عدد التحويلات",
+    "address_tron_power_tip":"قم بتجميد TRX للحصول على حقوق التصويت",
+    "address_total_balance_tip":"يتضمن الرصيد الكلي كل قيمة للتكون",
+    "address_tron_power_used":"تم استخدامه",
+    "address_tron_power_remaining":"الفائض",
+    "address_total_balance_info_sources":"مصادر المعلومات",
+    "address_info_transfers": "تحويل",
+    "address_info_transactions": "التداول",
+    "address_netLimit":"Total Bandwidth",
+    "address_netRemaining":"Available Bandwidth",
+    "address_netUsed":"Used Bandwidth",
+    "address_energyLimit":"Total Energy",
+    "address_energyRemaining":"Available Energy",
+    "address_energyUsed":"Used Energy",
+    "address_percentage":"Percentage",
+
 
 };

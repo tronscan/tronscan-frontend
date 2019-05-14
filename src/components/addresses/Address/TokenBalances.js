@@ -51,7 +51,6 @@ class TokenBalances extends React.Component {
         this.setTop(tokenBalances,'TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t')
         this.setTop(tokenBalances,'1002000');
         this.setTop(tokenBalances,'_');
-        console.log('tokenBalances=====111',tokenBalances)
         this.setState({
             page,
             balances:tokenBalances,
@@ -109,8 +108,7 @@ class TokenBalances extends React.Component {
                             </div>
                             :
                             <div>
-                                <img width={20} height={20} src={record.map_amount_logo} alt={record.map_token_name}
-                                     style={{marginRight: 5}}/>
+                                <img width={20} height={20} src={record.map_amount_logo} style={{marginRight: 5}}/>
                                 {
                                     record.tokenType == 'TRC20'?
                                         <TokenTRC20Link name={record.map_token_id} address={record.contract_address} namePlus={record.map_token_name + ' (' + record.map_token_name_abbr + ')'}/>
@@ -126,7 +124,7 @@ class TokenBalances extends React.Component {
                 }
             },
             {
-                title: '通证类别',
+                title: upperFirst(intl.formatMessage({id: 'address_balance_token_type'})),
                 dataIndex: 'tokenType',
                 key: 'tokenType',
                 align: 'left',
@@ -159,6 +157,7 @@ class TokenBalances extends React.Component {
                 title: upperFirst(intl.formatMessage({id: 'balance'})),
                 dataIndex: 'map_amount',
                 key: 'map_amount',
+                width: '18%',
                 align: 'left',
                 className: 'ant_table',
                 render: (text, record, index) => {
@@ -184,7 +183,7 @@ class TokenBalances extends React.Component {
                 render: (text, record, index) => {
                     return (<span>
                         {record.TRXBalance? <span>
-                            {record.TRXBalance} / &nbsp;&nbsp;
+                            {record.TRXBalance_toThousands} / &nbsp;&nbsp;
                             <TRXPrice amount={record.TRXBalance}
                                       currency="USD"
                                       showPopup={false}/>
