@@ -4,11 +4,15 @@ import { QuestionMark } from "../../../../common/QuestionMark";
 import { withRouter } from "react-router-dom";
 import queryString from "query-string";
 import { connect } from "react-redux";
-import { getSelectData } from "../../../../../actions/exchange";
+import {
+  getSelectData,
+  setPriceConvert
+} from "../../../../../actions/exchange";
 import { filter, map, upperFirst, remove } from "lodash";
 import { injectIntl, FormattedNumber } from "react-intl";
 import Lockr from "lockr";
 import _ from "lodash";
+import { Client20 } from "../../../../../services/api";
 
 class ExchangeTable extends React.Component {
   constructor(props) {
@@ -24,7 +28,7 @@ class ExchangeTable extends React.Component {
   }
 
   getColumns() {
-    let { intl } = this.props;
+    let { intl, price, activeCurrency } = this.props;
     let { dataSource, offlineToken } = this.state;
     let isfov = Lockr.get("DEX") == "GEM";
     const columns = [
@@ -95,10 +99,21 @@ class ExchangeTable extends React.Component {
         render: (text, record) => {
           return (
             <div className="textRight">
-              <FormattedNumber value={record.svolume ? record.svolume : 0} />
+              <FormattedNumber value={record.svolume ? record.svolume : 0} />{" "}
               {record.second_token_abbr}
               <br />
-              <span className="font-grey">12333cny</span>
+              <span className="font-grey">
+                <FormattedNumber
+                  value={(
+                    (price && price.trxToOther && price.usdtToOther
+                      ? record.second_token_id === "TRX"
+                        ? price.trxToOther[activeCurrency]
+                        : price.usdtToOther[activeCurrency]
+                      : "") * record.svolume
+                  ).toFixed(0)}
+                />{" "}
+                {activeCurrency.toUpperCase()}
+              </span>
             </div>
           );
         }
@@ -214,6 +229,7 @@ class ExchangeTable extends React.Component {
 
   onSetUrl(record, type) {
     const { getSelectData } = this.props;
+    const { trxToOther, usdtToOther } = this.state;
 
     if (record.token_type != "dex20") {
       this.props.history.push(
@@ -227,7 +243,9 @@ class ExchangeTable extends React.Component {
     this.setState({
       activeIndex: record.exchange_id //获取点击行的索引
     });
+
     getSelectData(record, true);
+
     if (!type) {
       this.props.history.push(
         "/exchange/trc20?token=" +
@@ -249,7 +267,7 @@ class ExchangeTable extends React.Component {
     // }, 500);
   }
 
-  componentDidMount() {}
+  async componentDidMount() {}
 
   componentDidUpdate(prevProps) {
     let { dataSource } = this.props;
@@ -286,7 +304,9 @@ class ExchangeTable extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    klineLock: state.exchange.klineLock
+    klineLock: state.exchange.klineLock,
+    activeCurrency: state.app.activeCurrency,
+    price: state.exchange.price
   };
 }
 

@@ -15,6 +15,7 @@ export const SET_UPDATE_TRAN = "SET_UPDATE_TRAN";
 export const SET_10_LOCK = "SET_10_LOCK";
 export const SET_WIDGET = "SET_WIDGET";
 export const SET_REGISTER = "SET_REGISTER";
+export const SET_PRICE_CONVERT = "SET_PRICE_CONVERT";
 
 export const setSelectData = data => ({
   type: SET_SELECT_DATA,
@@ -74,6 +75,11 @@ export const setRegister = register => ({
   register
 });
 
+export const setPriceConvert = data => ({
+  type: SET_PRICE_CONVERT,
+  price: data
+});
+
 export const change10lock = type => async dispatch => {
   dispatch(change10lockstatus(type));
 };
@@ -126,7 +132,6 @@ export const getExchanges20 = () => async dispatch => {
 
 export const getExchangesAllList = () => async dispatch => {
   let { exchangesAllList } = await Client.getexchangesAllList();
-  
 
   let f_list = Lockr.get("optional") || [];
   map(exchangesAllList, item => {

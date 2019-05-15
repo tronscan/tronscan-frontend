@@ -18,7 +18,8 @@ import {
   getSelectData,
   getExchanges20,
   getExchanges,
-  getExchangesAllList
+  getExchangesAllList,
+  setPriceConvert
 } from "../../../../../actions/exchange";
 import { connect } from "react-redux";
 import Lockr from "lockr";
@@ -27,6 +28,8 @@ import { Input, Radio, Icon, Tabs } from "antd";
 import queryString from "query-string";
 import { Tooltip } from "reactstrap";
 import { alpha } from "../../../../../utils/str";
+import { Client20 } from "../../../../../services/api";
+
 const Search = Input.Search;
 const TabPane = Tabs.TabPane;
 
@@ -62,12 +65,16 @@ class ExchangeList extends React.Component {
       AdClose: true,
       adURL: "https://trx.market/launchBase?utm_source=TS2",
       adchURL: "https://trx.market/zh/launchBase?utm_source=TS2",
-      activedId: 0
+      activedId: 0,
+      priceObj: {}
     };
+    this.tabChange = this.tabChange.bind(this);
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     const { getExchanges20, getExchangesAllList } = this.props;
+    await this.getCovert("trx");
+    await this.getCovert("usdt");
     getExchanges20();
     getExchangesAllList();
     const getDataTime = setInterval(() => {
@@ -82,6 +89,7 @@ class ExchangeList extends React.Component {
     if (dex == "GEM") {
       this.setState({ tokenAudited: false });
     }
+
     //this.countdown();
   }
 
@@ -154,7 +162,6 @@ class ExchangeList extends React.Component {
     });
   };
   setData(type) {
-    console.log("type", type);
     let { exchange20List, exchangeallList } = this.props;
     if (type) {
       this.fiterData();
@@ -182,6 +189,7 @@ class ExchangeList extends React.Component {
           Lockr.set("DEX", "Main");
         }
         this.setData(type);
+        console.log(type);
         setTimeout(() => {
           this.setState({ tagLock: true });
         }, 500);
@@ -387,7 +395,24 @@ class ExchangeList extends React.Component {
       dataSource: fiterData
     });
   }
-  tabChange() {}
+  tabChange(activeKey) {
+    switch (activeKey) {
+      case "fav":
+        this.handleSelectData(false);
+        break;
+      case "hot":
+        this.handleSelectData(true);
+        break;
+      case "volume":
+        this.handleSelectData(true);
+        break;
+      case "up_and_down":
+        this.handleSelectData(true);
+        break;
+      default:
+        break;
+    }
+  }
   selcetSort(type) {
     this.setState(
       {
@@ -398,6 +423,38 @@ class ExchangeList extends React.Component {
       }
     );
   }
+  async getCovert(type) {
+    const { setPriceConvert } = this.props;
+    let { priceObj } = this.state;
+
+    if (type === "trx") {
+      let trxToOther = {};
+      let data = await Client20.coinMarketCap(type, "eth");
+      let data1 = await Client20.coinMarketCap(type, "eur");
+      trxToOther = {
+        usd: data[0].price_usd,
+        btc: data[0].price_btc,
+        eth: data[0].price_eth,
+        eur: data1[0].price_eur,
+        trx: 1
+      };
+      priceObj.trxToOther = trxToOther;
+    } else if (type === "usdt") {
+      let usdtToOther = {};
+      let data = await Client20.coinMarketCap(type, "eth");
+      let data1 = await Client20.coinMarketCap(type, "eur");
+      let data2 = await Client20.coinMarketCap(type, "trx");
+      usdtToOther = {
+        trx: data2[0].price_trx,
+        btc: data[0].price_btc,
+        eth: data[0].price_eth,
+        eur: data1[0].price_eur,
+        usd: 1
+      };
+      priceObj.usdtToOther = usdtToOther;
+    }
+    setPriceConvert(priceObj);
+  }
 }
 
 function mapStateToProps(state) {
@@ -406,7 +463,8 @@ function mapStateToProps(state) {
     exchange20List: state.exchange.list_20,
     exchange10List: state.exchange.list_10,
     exchangeallList: state.exchange.list_all,
-    klineLock: state.exchange.klineLock
+    klineLock: state.exchange.klineLock,
+    price: state.exchange.price
   };
 }
 
@@ -414,7 +472,8 @@ const mapDispatchToProps = {
   getSelectData,
   getExchanges20,
   getExchangesAllList,
-  getExchanges
+  getExchanges,
+  setPriceConvert
 };
 
 export default connect(

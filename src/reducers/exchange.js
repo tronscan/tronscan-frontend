@@ -9,7 +9,8 @@ import {
   SET_UPDATE_TRAN,
   SET_10_LOCK,
   SET_WIDGET,
-  SET_REGISTER
+  SET_REGISTER,
+  SET_PRICE_CONVERT
 } from "../actions/exchange";
 
 const initialState = {
@@ -86,6 +87,13 @@ export function exchangeReducer(state = initialState, action) {
       return {
         ...state,
         register: action.register
+      };
+    }
+
+    case SET_PRICE_CONVERT: {
+      return {
+        ...state,
+        price: action.price
       };
     }
 
