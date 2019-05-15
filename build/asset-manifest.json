@@ -116,7 +116,11 @@
   "bootstrap.css": "d59729439a203fc474f5677b8d18d8bb.css",
   "languages.js": "static/js/languages.f0b9d68b.chunk.js",
   "main.css": "static/css/main.7c9dcfcf.css",
+<<<<<<< HEAD
   "main.js": "static/js/main.c934ba81.js",
+>>>>>>> origin/dev2019
+=======
+  "main.js": "static/js/main.554ef290.js",
 >>>>>>> origin/dev2019
   "static/media/24-Hour-Trading-Volume.png": "static/media/24-Hour-Trading-Volume.b6ff215b.png",
   "static/media/Average-Price.png": "static/media/Average-Price.fca4d71b.png",
@@ -164,11 +168,15 @@
   "static/media/wallet-preview.png": "static/media/wallet-preview.d53c0b10.png",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   "vendors.js": "static/js/vendors.a065da89.js"
 =======
   "vendors.js": "static/js/vendors.b3e8f794.js"
 >>>>>>> origin/dev2019
 =======
   "vendors.js": "static/js/vendors.389d95ac.js"
+>>>>>>> origin/dev2019
+=======
+  "vendors.js": "static/js/vendors.d6178afa.js"
 >>>>>>> origin/dev2019
 }
