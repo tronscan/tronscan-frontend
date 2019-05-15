@@ -204,6 +204,19 @@ class ApiClient20 {
     });
     return data;
   }
+
+  //币之间的换算
+  async coinMarketCap(secend_token, covert) {
+    let type = "tronix";
+    if (secend_token === "usdt") {
+      type = "tether";
+    }
+    let { data } = await xhr({
+      method: "get",
+      url: `https://api.coinmarketcap.com/v1/ticker/${type}/?convert=${covert}`
+    });
+    return data;
+  }
 }
 
 export const Client20 = new ApiClient20();
