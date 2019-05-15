@@ -1753,7 +1753,7 @@ export const messages = {
   "address_balance_token_type":"Token Type",
   "address_balance_token_price_TRX":"TRX value/ USD value",
   "address_transactions_tip":"Transactions includes transfers",
-  "address_tron_power_tip":"Freeze TRX to get voting rights",
+  "address_tron_power_tip":"Freeze TRX to get TRON Power",
   "address_total_balance_tip":"The total balance includes all valuable tokens",
   "address_tron_power_used":"Used",
   "address_tron_power_remaining":"Available",

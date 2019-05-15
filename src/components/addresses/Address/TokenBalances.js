@@ -175,7 +175,7 @@ class TokenBalances extends React.Component {
                 }
             },
             {
-                title: 'TRX价值/USDT价值',
+                title:  upperFirst(intl.formatMessage({id: 'address_balance_token_price_TRX'})),
                 dataIndex: 'TRXBalance',
                 key: 'TRXBalance',
                 align: 'right',
