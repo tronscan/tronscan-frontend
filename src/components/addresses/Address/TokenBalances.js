@@ -262,7 +262,7 @@ class TokenBalances extends React.Component {
                   <div className="table_pos_info d-md-block table_pos_info_addr d-none">
                       {tableInfo}
                   </div>
-                  <div className={"table_pos_switch d-md-block " + (balances.length && tokenTRC10? "table_pos_switch_addr3" : "table_pos_switch_addr4")}>
+                  <div className={"table_pos_switch d-md-block " + (balances.length ? "table_pos_switch_addr4" : "")}>
                     <SwitchToken  handleSwitch={this.handleSwitch} text="hide_small_currency" hoverText="tokens_less_than_10"/>
                   </div>
                 </div>

@@ -651,7 +651,7 @@ class Address extends React.Component {
                                     strokeWidth={10}
                                     showInfo={false}
                                     type="circle"
-                                    strokeColor="#f5bc5d"
+                                    strokeColor="#F5A623"
                                     strokeLinecap="square"
                                     percent={bandWidthPercentage}
                                 />
@@ -674,7 +674,7 @@ class Address extends React.Component {
                                     strokeWidth={10}
                                     showInfo={false}
                                     type="circle"
-                                    strokeColor="#7aa2d5"
+                                    strokeColor="#4A90E2"
                                     strokeLinecap="square"
                                     percent={energyPercentage}
                                 />
