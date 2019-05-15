@@ -400,6 +400,10 @@ class Address extends React.Component {
   bandWidthCircle = () => {
     let { netUsed, netLimit, netRemaining, bandWidthPercentage} = this.state;
     let {intl} = this.props;
+    let address_percentage_remaining = new BigNumber(100 - Number(bandWidthPercentage));
+    let addressPercentageRemaining = address_percentage_remaining.decimalPlaces(2) + '%';
+    let address_percentage_used = new BigNumber(bandWidthPercentage);
+    let addressPercentageUsed = address_percentage_used.decimalPlaces(2) + '%';
     return (
         <div>
           <div>
@@ -407,11 +411,11 @@ class Address extends React.Component {
           </div>
           <div>
               <span>{intl.formatMessage({id: 'address_netRemaining'}) + ' : ' + netRemaining }</span>&nbsp;&nbsp;
-              <span>{intl.formatMessage({id: 'address_percentage'}) + ' : ' + (100 - Number(bandWidthPercentage).toFixed(2)).toFixed(2)+ '%' }</span>
+              <span>{intl.formatMessage({id: 'address_percentage'}) + ' : ' + addressPercentageRemaining  }</span>
           </div>
           <div>
             <span>{intl.formatMessage({id: 'address_netUsed'}) + ' : ' + netUsed }</span>&nbsp;&nbsp;
-            <span>{intl.formatMessage({id: 'address_percentage'}) + ' : ' + Number(bandWidthPercentage).toFixed(2)+ '%' }</span>
+            <span>{intl.formatMessage({id: 'address_percentage'}) + ' : ' + addressPercentageUsed }</span>
           </div>
         </div>
     )
@@ -421,6 +425,10 @@ class Address extends React.Component {
   energyCircle = () => {
     let { energyLimit, energyRemaining, energyUsed, energyPercentage } = this.state;
       let {intl} = this.props;
+      let address_percentage_remaining = new BigNumber(100 - Number(energyPercentage));
+      let addressPercentageRemaining = address_percentage_remaining.decimalPlaces(2) + '%';
+      let address_percentage_used = new BigNumber(energyPercentage);
+      let addressPercentageUsed = address_percentage_used.decimalPlaces(2) + '%';
       return (
           <div>
             <div>
@@ -428,11 +436,11 @@ class Address extends React.Component {
             </div>
             <div>
               <span>{intl.formatMessage({id: 'address_energyRemaining'}) + ' : ' + energyRemaining }</span>&nbsp;&nbsp;
-              <span>{intl.formatMessage({id: 'address_percentage'}) + ' : ' + (100- Number(energyPercentage).toFixed(2))+ '%' }</span>
+              <span>{intl.formatMessage({id: 'address_percentage'}) + ' : ' + addressPercentageRemaining }</span>
             </div>
             <div>
               <span>{intl.formatMessage({id: 'address_energyUsed'}) + ' : ' + energyUsed }</span>&nbsp;&nbsp;
-              <span>{intl.formatMessage({id: 'address_percentage'}) + ' : ' + Number(energyPercentage).toFixed(2)+ '%' }</span>
+              <span>{intl.formatMessage({id: 'address_percentage'}) + ' : ' + addressPercentageUsed }</span>
             </div>
           </div>
       )
