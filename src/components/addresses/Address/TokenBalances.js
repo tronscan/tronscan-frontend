@@ -35,25 +35,28 @@ class TokenBalances extends React.Component {
     load =  (page = 1, pageSize = 20) => {
         let {hideSmallCurrency} = this.state;
         let {tokenBalances} = this.props;
+        tokenBalances = _(tokenBalances).sortBy(tb => -tb.TRXBalance).value()
+        let tokenHasTRXValue =  _(tokenBalances).filter(tb => tb.TRXBalance > 0).sortBy(tb => -tb.TRXBalance).value();
+        let tokenNotTRXValue =  _(tokenBalances).filter(tb => tb.TRXBalance <= 0).sortBy(tb => toUpper(tb.map_token_name)).value();
+        let tokens = tokenHasTRXValue.concat(tokenNotTRXValue);
+
         if(hideSmallCurrency){
-            tokenBalances = _(tokenBalances)
+            tokens = _(tokens)
                 .filter(tb => tb.map_amount >= 10)
-                .sortBy(tb => toUpper(tb.map_token_name))
                 .value();
 
         }else{
-            tokenBalances = _(tokenBalances)
+            tokens = _(tokens)
                 .filter(tb => tb.map_amount > 0)
-                .sortBy(tb => toUpper(tb.map_token_name))
                 .value();
         }
 
-        this.setTop(tokenBalances,'TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t')
-        this.setTop(tokenBalances,'1002000');
-        this.setTop(tokenBalances,'_');
+        this.setTop(tokens,'TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t')
+        this.setTop(tokens,'1002000');
+        this.setTop(tokens,'_');
         this.setState({
             page,
-            balances:tokenBalances,
+            balances:tokens,
         });
     };
 

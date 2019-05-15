@@ -193,7 +193,7 @@ class Address extends React.Component {
         if(item.priceInTrx){
             y = new BigNumber(item.token20_balance_decimals);
             item.TRXBalance = (y.multipliedBy(item.priceInTrx)).decimalPlaces(6);
-            item.TRXBalance_toThousands = toThousands((x.multipliedBy(item.priceInTrx)).decimalPlaces(6));
+            item.TRXBalance_toThousands = toThousands((y.multipliedBy(item.priceInTrx)).decimalPlaces(6));
         }else{
             item.TRXBalance = 0
         }

@@ -1737,7 +1737,7 @@ export const messages = {
   */
 
   "address_balance_token_type":"Tipos de token",
-  "address_balance_token_price_TRX":"Valor de TRX/ Valor de USDT",
+  "address_balance_token_price_TRX":"Valor de TRX/ Valor de USD",
   "address_transactions_tip":"El número de transacción está incluido en el número de trading ",
   "address_tron_power_tip":"Se puede conseguir voto por congelar TRX",
   "address_total_balance_tip":"El balance total incluye todos los tokens con valor",
