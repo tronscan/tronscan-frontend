@@ -93,6 +93,7 @@ const { TextArea } = Input;
             'email':email,
             'whitePaper':white_paper,
             'socialList': _.filter(iconList, function(o) { return o.active }),
+            'issueTime': moment(new Date().getTime()).valueOf(),
         }
         return orderState[value]
     }
@@ -241,7 +242,7 @@ const { TextArea } = Input;
 
                 }else {
 
-                    createInfo = await Client.createToken({
+                    createInfo = await Client.createToken20({
                         address: account.address,
                         name: this.tokenState('name'),
                         shortName: this.tokenState('abbreviation'),
@@ -269,24 +270,36 @@ const { TextArea } = Input;
 
             case 'trc20':
                 let data = {
-                    name: this.tokenState('name'),
-                    abbreviation: this.tokenState('abbreviation'),
-                    description: this.tokenState('description'),
-                    totalSupply: this.tokenState('totalSupply'),
-                    precision:  this.tokenState('precision'),
-                    address: this.tokenState('address'),
-                    logoUrl:this.tokenState('logoUrl'),
-                    contractAddress:this.tokenState('contractAddress'),
-                    contractCreatedRatio:this.tokenState('contractCreatedRatio'),
-                    contractCode:this.tokenState('contractCode'),
-                    url: this.tokenState('url'),
-                    email:this.tokenState('email'),
-                    whitePaper:this.tokenState('whitePaper'),
-                    socialList:this.tokenState('socialList'),
-                    timestamp:moment().valueOf(),
+                    "name": this.tokenState('name'),
+                    "symbol": this.tokenState('abbreviation'),
+                    "token_desc": this.tokenState('description'),
+                    "total_supply": this.tokenState('totalSupply'),
+                    "decimals":  this.tokenState('precision'),
+                    "issuer_addr": this.tokenState('address'),
+                    "icon_url":this.tokenState('logoUrl'),
+                    "contract_address":this.tokenState('contractAddress'),
+                    "contract_created_ratio":this.tokenState('contractCreatedRatio'),
+                    "contract_code":this.tokenState('contractCode'),
+                    "home_page": this.tokenState('url'),
+                    "email":this.tokenState('email'),
+                    "white_paper":this.tokenState('whitePaper'),
+                    "social_media":this.tokenState('socialList'),
+                    "issue_time":this.tokenState('issueTime'),
+                }
+
+                let a  = {
+                    "content":data
+                }
+
+                console.log(tronWeb.toHex(JSON.stringify(a)))
+                let sig = await tronWeb.trx.sign(tronWeb.toHex(JSON.stringify(a)))
+                let tokenInfo = {
+                    "content":data,
+                    sig:sig
+
                 }
                 console.log('data',data)
-                console.log('stringify',JSON.stringify(data))
+                console.log('sig',sig)
                 if (Lockr.get("islogin")||this.props.walletType.type==="ACCOUNT_LEDGER"||this.props.walletType.type==="ACCOUNT_TRONLINK") {
                     // if (this.props.walletType.type === "ACCOUNT_LEDGER") {
                     //     const unSignTransaction = await tronWebLedger.transactionBuilder.createToken({
@@ -317,25 +330,12 @@ const { TextArea } = Input;
 
                     if(this.props.walletType.type === "ACCOUNT_TRONLINK"){
 
-                        const unSignTransaction = await tronWeb.transactionBuilder.createToken({
-                            name: this.tokenState('name'),
-                            abbreviation: this.tokenState('abbreviation'),
-                            description: this.tokenState('description'),
-                            totalSupply: this.tokenState('totalSupply'),
-                            precision:  this.tokenState('precision'),
-                            address: this.tokenState('address'),
-                            logoUrl:this.tokenState('logoUrl'),
-                            contractAddress:this.tokenState('contractAddress'),
-                            contractCreatedRatio:this.tokenState('contractCreatedRatio'),
-                            contractCode:this.tokenState('contractCode'),
-                            url: this.tokenState('url'),
-                            email:this.tokenState('email'),
-                            whitePaper:this.tokenState('whitePaper'),
-                            socialList:this.tokenState('socialList'),
-
-                        }, tronWeb.defaultAddress.hex).catch(function (e) {
-                            errorInfo = e.indexOf(':')?e.split(':')[1]:e
+                        const unSignTransaction = await Client.createToken20({
+                            tokenInfo
                         })
+                        // .catch(function (e) {
+                        //     errorInfo = e.indexOf(':')?e.split(':')[1]:e
+                        // })
                         if (!unSignTransaction) {
                             res = false;
                         } else {
@@ -346,7 +346,7 @@ const { TextArea } = Input;
 
                 }else {
 
-                    createInfo = await Client.createToken({
+                    createInfo = await Client.createToken20({
                         address: account.address,
                         name: this.tokenState('name'),
                         shortName: this.tokenState('abbreviation'),
@@ -383,8 +383,6 @@ const { TextArea } = Input;
         let startTime =  participation_start_date.valueOf();
         let endTime = participation_end_date.valueOf();
         let contractCreateTime = contract_created_date ? contract_created_date.valueOf() : contract_created_date;
-        console.log('startTime6666',startTime)
-        console.log('endTime6666',endTime)
         return (
             <main className="token-submit">
                 {modal}
