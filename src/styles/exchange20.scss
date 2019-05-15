@@ -1,15 +1,28 @@
 .exchange20 {
+  .ant-btn:hover span,
+  .ant-btn:focus span {
+    color: #fff !important;
+  }
+  .success.ant-btn:hover {
+    background: #89d086;
+    border-color: #fff;
+  }
+  .warning.ant-btn:hover {
+    background: #ed7979;
+    border-color: #fff;
+  }
   .exchange-list {
     background: none;
   }
   .exchange-list-mark {
     // height: 471px;
     // height:328px;
-    height:410px;
+    // height:410px;
+    height: 450px;
   }
   .exchange-list-explain {
     // height:370px;
-    height:431px;
+    height: 431px;
   }
   .exchange-list-mark,
   .exchange-list-explain {
@@ -20,7 +33,7 @@
   }
   .new_price .anticon {
     vertical-align: text-top;
-    font-size:21px;
+    font-size: 21px;
   }
   .new_price {
     line-height: 30px;
@@ -28,11 +41,10 @@
     border-bottom: 1px solid #eeeeee;
     border-top: 1px solid #eee;
     font-size: 18px;
-    background:#fff ;
+    background: #fff;
   }
 
   .table_bottom {
-    
     padding-bottom: 5px;
   }
 
@@ -67,48 +79,47 @@
     background-color: none;
   }
 
-  .register{
-    .buy{
-      tr{
-       
-        color:#e60815
+  .register {
+    .buy {
+      tr {
+        color: #e60815;
       }
     }
-    .sell{
-      tr{
-        color:#69c265;
+    .sell {
+      tr {
+        color: #69c265;
       }
     }
 
-    .ant-table tr{
-        background: none;
-        line-height: 12px;
-
+    .ant-table tr {
+      background: none;
+      line-height: 12px;
     }
-    .ant-table-thead > tr > th{
-        background: none;
+    .ant-table-thead > tr > th {
+      background: none;
     }
   }
 
-  .my-tran{
-    .fail{
-      color:#F15454;
-      background:rgba(241,84,84,0.1);
-      padding:2px 5px;
+  .my-tran {
+    .fail {
+      color: #f15454;
+      background: rgba(241, 84, 84, 0.1);
+      padding: 2px 5px;
       border-radius: 5px;
-    
     }
-    .finish{
-      color:#69C265;
-      background:rgba(105,194,101,0.1);
-      padding:2px 5px;
-      border-radius:5px;
+    .finish {
+      color: #69c265;
+      background: rgba(105, 194, 101, 0.1);
+      padding: 2px 5px;
+      border-radius: 5px;
     }
   }
 
-  .textRight{
+  .textRight {
     text-align: right;
   }
-
-
+  .exchange__kline__pic {
+    // height:329px!important;
+    border: 1px solid rgb(230, 230, 230);
+  }
 }

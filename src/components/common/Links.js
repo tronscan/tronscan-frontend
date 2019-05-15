@@ -17,7 +17,9 @@ export const WitnessLink = ({address}) => (
 );
 
 export const TokenLink = ({id, name, namePlus, address, children, ...props}) => {
-
+  if(id == '_'){
+      return <a href="javascript:;" >{children || name}</a>
+  }
   if (name && !namePlus) {
     return <Link to={`/token/${encodeURI(id)}`} {...props}>{children || name}</Link>
   }
@@ -250,13 +252,13 @@ export class ExternalLink extends React.PureComponent {
 
   render() {
 
-    let {url = '', children = null, ...props} = this.props;
+    let {url = '', children = null, className = '', ...props} = this.props;
     let {modal} = this.state;
 
     return (
         <Fragment>
           {modal}
-          <a href={url} onClick={this.onClickUrl} {...props} className="text-truncate d-block">{children || url}</a>
+          <a href={url} onClick={this.onClickUrl} {...props} className={'text-truncate d-block' + className}>{children || url}</a>
         </Fragment>
     )
   }

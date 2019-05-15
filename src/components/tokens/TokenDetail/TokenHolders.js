@@ -9,6 +9,8 @@ import {TronLoader} from "../../common/loaders";
 import {upperFirst, upperCase} from "lodash";
 import { Tooltip } from 'antd';
 import { FormatNumberByDecimals } from '../../../utils/number';
+import {QuestionMark} from "../../common/QuestionMark";
+
 
 class TokenHolders extends React.Component {
 
@@ -45,7 +47,7 @@ class TokenHolders extends React.Component {
 
     this.setState({loading: true});
 
-    let {addresses, total} = await Client.getTokenHolders(filter.token, {
+    let {addresses, total, rangeTotal} = await Client.getTokenHolders(filter.token, {
       sort: '-balance',
       limit: pageSize,
       start: (page - 1) * pageSize,
@@ -75,6 +77,7 @@ class TokenHolders extends React.Component {
       page,
       addresses,
       total,
+      rangeTotal,
       loading: false,
     });
 
@@ -143,10 +146,12 @@ class TokenHolders extends React.Component {
   }
 
   render() {
-    let {addresses, total, loading} = this.state;
+    let {addresses, total, rangeTotal, loading} = this.state;
     let {intl} = this.props
     let column = this.customizedColumn();
     let tableInfo = intl.formatMessage({id: 'a_totle'}) + ' ' + total + ' ' + intl.formatMessage({id: 'hold_addr'})
+    let tableInfoTip = intl.formatMessage({id: 'table_info_holders_tip1'}) + ' ' + rangeTotal + ' ' + intl.formatMessage({id: 'table_info_holders_tip2'});
+
     if (!loading && addresses.length === 0) {
       return (
           <div className="p-3 text-center no-data">{tu("no_holders_found")}</div>
@@ -158,6 +163,15 @@ class TokenHolders extends React.Component {
           <div className="row transfers">
             <div className="col-md-12 table_pos">
               {/* {total?<div className="table_pos_info d-none d-md-block">{tableInfo}</div>: ''} */}
+              <div style={{paddingLeft:20}}>
+                {total ?<div className="table_pos_info d-none d-md-block" style={{left: 'auto'}}>
+                  <div>{tu('view_total')} {rangeTotal} {tu('hold_addr')}
+                      { rangeTotal>= 10000?<QuestionMark placement="top" info={tableInfoTip} ></QuestionMark>:""}
+                      <br/>
+                      { rangeTotal>= 10000?<span>({tu('table_info_big')})</span>:""}
+                  </div>
+                </div> : ''}
+              </div>
               <SmartTable border={false} loading={loading} column={column} data={addresses} total={total}
                           onPageChange={(page, pageSize) => {
                             this.loadTokenHolders(page, pageSize)
@@ -169,5 +183,6 @@ class TokenHolders extends React.Component {
   }
 
 }
+
 
 export default injectIntl(TokenHolders);

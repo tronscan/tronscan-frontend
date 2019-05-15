@@ -79,6 +79,8 @@ function getClientEnvironment(publicUrl) {
         PUBLIC_URL: publicUrl,
 
         // API_URL: process.env.API_URL || `http://52.15.68.74:10000`,
+        //API_URL: process.env.API_URL || `http://172.16.22.245:8080`,
+
         API_URL: process.env.API_URL || `https://apilist.tronscan.org`,
         //API_URL: process.env.API_URL || `https://api.shasta.tronscan.org`,
         //API_URL: process.env.API_URL || `https://testapi.tronscan.org`,
@@ -87,6 +89,7 @@ function getClientEnvironment(publicUrl) {
         DESKTOP: process.env.DESKTOP || `false`,
       }
     );
+
   // Stringify all values so we can feed into Webpack DefinePlugin
   const stringified = {
     'process.env': Object.keys(raw).reduce((env, key) => {

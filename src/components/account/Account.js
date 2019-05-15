@@ -71,7 +71,7 @@ export default class Account extends Component {
       privateKey: "",
       temporaryName: "",
       selectedResource: null,
-      hideSmallCurrency: true,
+      hideSmallCurrency: false,
       tokenTRC10: true,
       tokens20: [],
       dealPairTrxLimit: 100000,
@@ -109,6 +109,7 @@ export default class Account extends Component {
       //this.getTRC20Tokens();
     }
   }
+
 
   scrollToAnchor = () => {
 
@@ -203,13 +204,13 @@ export default class Account extends Component {
     let { tokens20 } = this.props;
     if (hideSmallCurrency) {
       tokens20 = _(tokens20)
-          .filter(tb => tb.token20_balance >= 10)
-          .sortBy(tb => -tb.token20_balance)
+          .filter(tb => tb.token20_balance_decimals >= 10)
+          .sortBy(tb => -tb.token20_balance_decimals)
           .value();
     } else {
       tokens20 = _(tokens20)
-          .filter(tb => tb.token20_balance > 0)
-          .sortBy(tb => -tb.token20_balance)
+          .filter(tb => tb.token20_balance_decimals > 0)
+          .sortBy(tb => -tb.token20_balance_decimals)
           .value();
     }
     // for (let token of tokens20) {
@@ -474,7 +475,7 @@ export default class Account extends Component {
               {frozen.balances.length > 0 ? <td className="text-right">
                 <span className="mr-1">{tu('After')}</span>
                 <FormattedDate value={frozen.balances[0].expires}/>&nbsp;
-                <FormattedTime value={frozen.balances[0].expires}/>
+                <FormattedTime value={frozen.balances[0].expires}  hour='numeric' minute="numeric" second='numeric' hour12={false}/>
               </td>:<td></td>}
               <td className="text-right">
 
@@ -507,7 +508,7 @@ export default class Account extends Component {
               {accountResource.frozen_balance > 0?<td className="text-right">
                 <span className="mr-1">{tu('After')}</span>
                 <FormattedDate value={accountResource.expire_time}/>&nbsp;
-                <FormattedTime value={accountResource.expire_time}/>
+                <FormattedTime value={accountResource.expire_time}  hour='numeric' minute="numeric" second='numeric' hour12={false}/>
               </td>:<td></td>
               }
               <td className="text-right">
@@ -566,7 +567,7 @@ export default class Account extends Component {
                 <td className="text-right">
                   <span className="mr-1">{tu('After')}</span>
                   <FormattedDate value={item.expire_time_for_bandwidth}/>&nbsp;
-                  <FormattedTime value={item.expire_time_for_bandwidth}/>
+                  <FormattedTime value={item.expire_time_for_bandwidth}  hour='numeric' minute="numeric" second='numeric' hour12={false}/>
                 </td>
                   <td className="text-right">
                     {
@@ -600,7 +601,7 @@ export default class Account extends Component {
                 <td className="text-right">
                   <span className="mr-1">{tu('After')}</span>
                   <FormattedDate value={item.expire_time_for_energy}/>&nbsp;
-                  <FormattedTime value={item.expire_time_for_energy}/>
+                  <FormattedTime value={item.expire_time_for_energy}  hour='numeric' minute="numeric" second='numeric' hour12={false}/>
                 </td>
                 <td className="text-right">
                   {
@@ -1650,7 +1651,7 @@ export default class Account extends Component {
                         <td>
                           {issuedAsset.endTime - issuedAsset.startTime > 1000 ?
                               <span><FormattedDate value={issuedAsset.startTime}/>{' '}<FormattedTime
-                                  value={issuedAsset.startTime}/></span> : "-"}
+                                  value={issuedAsset.startTime}  hour='numeric' minute="numeric" second='numeric' hour12={false}/></span> : "-"}
                         </td>
                       </tr>
                       <tr>
@@ -1658,7 +1659,7 @@ export default class Account extends Component {
                         <td>
                           {issuedAsset.endTime - issuedAsset.startTime > 1000 ?
                               <span><FormattedDate value={issuedAsset.endTime}/>{' '}<FormattedTime
-                                  value={issuedAsset.endTime}/></span> : "-"}
+                                  value={issuedAsset.endTime}  hour='numeric' minute="numeric" second='numeric' hour12={false}/></span> : "-"}
                         </td>
                       </tr>
                       <tr>

@@ -95,7 +95,6 @@ class Navigation extends React.Component {
     let {account,setWebsocket} = this.props;
     let _this = this;
 
-    setWebsocket()
     window.addEventListener('message', function (e) {
       if (e.data.message) {
         _this.setState({address: e.data.message.data});
@@ -115,7 +114,11 @@ class Navigation extends React.Component {
   }
 
   componentWillUnmount() {
-    this.listener && this.listener.close();
+      let { account, websocket }  = this.props;
+      if(!account.isLoggedIn && websocket){
+          websocket.close();
+          Lockr.set("websocket", 'close')
+      }
   }
 
   componentDidUpdate(prevProps) {
@@ -492,9 +495,9 @@ class Navigation extends React.Component {
           <Modal isOpen={true} fade={false} keyboard={false} size="lg" className="modal-dialog-centered">
             <ModalHeader className="text-center" toggle={this.hideModal}>
               {tu("open_ledger")}&nbsp;&nbsp;
-              {/*<Link to="/help/ledger">*/}
+              {/*<Link to="/help/ledger" onClick={this.hideModal} style={{fontSize:12,marginTop:6}}>*/}
                 {/*<small>*/}
-                    {/*{tu("beginners_guide")}*/}
+                    {/*{tu("ledger_user_guide")}*/}
                 {/*</small>*/}
               {/*</Link>*/}
             </ModalHeader>

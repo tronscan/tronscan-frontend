@@ -1427,10 +1427,12 @@
    "trc20_O":"فتح",
    "trc20_C":"قبول",
    "trc20_24H_VOL":"24H VOL",
+   "trc20_24H_Total":"24H TOTAL",
    "trc20_price":"السعر",
    "trc20_amount":"الكمية",
    "trc20_enter_the_trading_amount":"يرجى إدخال عدد المعاملات",
    "trc20_enter_10":"الإجمالي ≥ 10 ترون",
+   "trc20_enter_1": "Total ≥ 1 USDT",
    "trc20_enter_the_trading_price":"يرجى إدخال سعر عملية التداول",
    "trc20_TxAvailable":"متاح",
    "trc20_BUY":"شراء",
@@ -1513,6 +1515,10 @@
    "trc20_first_token": "الاسم",
    "trc20_balance": "الرصيد",
    "trc20_second_token": "الاسم",
+   "trc20_kchart":"K Line",
+  "trc20_depth":"DEPTH",
+  "trc20_trade_win_content":"Current network is unstable , please check later",
+  "trc20_trade_win_confirm":"Confirm",
 
 
     /*
@@ -1634,6 +1640,8 @@
     "table_info_big_tip4":" وإذا كنت تريد الاستعلام عن بيانات أخرى ، فمن المستحسن ضبط نطاق الوقت.",
     "table_info_account_tip1":"تمتلك السلسلة الرئيسية لشركة ترون ما مجموعه ",
     "table_info_account_tip2":" حساب ، وتعرض حاليًا أعلى 10000 حساب (وهذا وفقًا لرصيد TRX من الكبير إلى الصغير)",
+    "table_info_holders_tip1":"هناك عناوين",
+    "table_info_holders_tip2":" في المسار الحالي ، ويتم حاليًا عرض أول 10000 فقط (الترتيب من الكبير إلى الصغير وفقًا لعدد مرات المرور)",
     "Singapore":"Singapore",
     "table_info_new_tip":"حاليا يتم عرض أول 10000 من البيانات فقط ، وإذا كنت تريد الاستعلام عن بيانات أخرى ، فمن المستحسن ضبط نطاق الوقت.",
     "select_start_time":"يرجى تحديد وقت البدء",
@@ -1648,4 +1656,49 @@
     'all': 'الكل',
     "market_capitalization_trx": "القيمة السوقية (TRX)",
     "token_txs_info":"Token",
+    "result":"Result",
+
+
+    /*
+     ##################################################################################
+     #                                                                                #
+     # new variables    ledger 2019-04-24                                    #
+     #                                                                                #
+     ##################################################################################
+  */
+    "ledger_user_guide":"دليل المستخدم لليدجر",
+    "latest_version_chrome":"ننصحك باستخدام أحدث نسخة من الكروم",
+    "ledger_support_version":"نسخة ليدجر المدعومة: 0.1.1 ، دعم كروم لنسخة الإصدار 73.0",
+    "ledger_you_can":"يمكنك الذهاب ",
+    "ledger_website":"يقوم موقع Ledger",
+    "ledger_website_download":"قم بتنزيل وتحديث نسخة دفتر الأستاذ",
+    "ledger_click_help":"انقر هنا للحصول على مزيد من المساعدة",
+
+    /*
+        ##################################################################################
+        #                                                                                #
+        # new variables    address 2019-05-13                                    #
+        #                                                                                #
+        ##################################################################################
+    */
+
+    "address_balance_token_type":"فئة التوكن",
+    "address_balance_token_price_TRX":"قيمة TRX / قيمة USD",
+    "address_transactions_tip":"عدد المعاملات يشمل عدد التحويلات",
+    "address_tron_power_tip":"قم بتجميد TRX للحصول على حقوق التصويت",
+    "address_total_balance_tip":"يتضمن الرصيد الكلي كل قيمة للتكون",
+    "address_tron_power_used":"تم استخدامه",
+    "address_tron_power_remaining":"الفائض",
+    "address_total_balance_info_sources":"مصادر المعلومات",
+    "address_info_transfers": "تحويل",
+    "address_info_transactions": "التداول",
+    "address_netLimit":"Total Bandwidth",
+    "address_netRemaining":"Available Bandwidth",
+    "address_netUsed":"Used Bandwidth",
+    "address_energyLimit":"Total Energy",
+    "address_energyRemaining":"Available Energy",
+    "address_energyUsed":"Used Energy",
+    "address_percentage":"Percentage",
+
+
 };

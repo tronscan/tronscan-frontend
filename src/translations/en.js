@@ -1485,10 +1485,12 @@ export const messages = {
   "trc20_O": "O",
   "trc20_C": "C",
   "trc20_24H_VOL": "24H VOL",
+  "trc20_24H_Total":"24H TOTAL",
   "trc20_price": "Price",
   "trc20_amount": "Amount",
   "trc20_enter_the_trading_amount": "Enter the Trading Amount",
   "trc20_enter_10": "Total ≥ 10 TRX",
+  "trc20_enter_1": "Total ≥ 1 USDT",
   "trc20_enter_the_trading_price": "Enter the Trading Price",
   "trc20_TxAvailable": "Available",
   "trc20_BUY": "BUY",
@@ -1571,7 +1573,8 @@ export const messages = {
   "trc20_first_token": "First Token",
   "trc20_balance": "balance",
   "trc20_second_token": "Second Token",
-
+  "trc20_kchart":"K Line",
+  "trc20_depth":"DEPTH",
 
   "create_deal_pair": "Create Trading Pairs",
   "add_deal_pair_desc": "Trading pair creation is available.",
@@ -1700,10 +1703,12 @@ export const messages = {
   "table_info_big":"only the first 10,000 data are displayed",
   "table_info_big_tip1":"There are altogether ",
   "table_info_big_tip2":"data within the selected time ",
-  "table_info_big_tip3":"and only 10,000 transactions are displayed.",
+  "table_info_big_tip3":"Only 10,000 pieces of data are displayed.",
   "table_info_big_tip4":"If you would like to look up other statistics, we recommend that you change the selected duration of time.",
   "table_info_account_tip1":"There are altogether ",
   "table_info_account_tip2":"accounts on TRON's MainNet and only 10,000 accounts are displayed (sorted by TRX balance from high to low)",
+  "table_info_holders_tip1":"There are",
+  "table_info_holders_tip2":"addresses in the current pass, and only the first 10,000 are currently displayed (sorted from big to small according to the number of passes)",
   "Singapore":"Singapore",
   "table_info_new_tip":"Only 10,000 pieces of data are displayed. If you would like to look up other statistics, we recommend that you change the selected duration of time.",
   "select_start_time":"Please select the start time",
@@ -1718,5 +1723,48 @@ export const messages = {
   'all': 'All',
   "market_capitalization_trx": "Market Cap (TRX)",
   "token_txs_info":"Token",
+  "result":"Result",
 
+  /*
+     ##################################################################################
+     #                                                                                #
+     # new variables    ledger 2019-04-24                                    #
+     #                                                                                #
+     ##################################################################################
+  */
+  "ledger_user_guide":"Ledger User Guide",
+  "latest_version_chrome":"we recommend the latest version of Chrome",
+  "ledger_support_version":"Ledger support version: 0.1.1, Chrome support version 73.0",
+  "ledger_you_can":"You can go to the",
+  "ledger_website":" Ledger Website ",
+  "ledger_website_download":"to download and update the latest version of Ledger",
+  "ledger_click_help":"Click here for more help",
+
+  /*
+          ##################################################################################
+          #                                                                                #
+          # new variables    address 2019-05-13                                    #
+          #                                                                                #
+          ##################################################################################
+      */
+
+
+
+  "address_balance_token_type":"Token Type",
+  "address_balance_token_price_TRX":"TRX value/ USD value",
+  "address_transactions_tip":"Transactions includes transfers",
+  "address_tron_power_tip":"Freeze TRX to get TRON Power",
+  "address_total_balance_tip":"The total balance includes all valuable tokens",
+  "address_tron_power_used":"Used",
+  "address_tron_power_remaining":"Available",
+  "address_total_balance_info_sources":"Information source ",
+  "address_info_transfers": "Transfers",
+  "address_info_transactions": "Transactions",
+  "address_netLimit":"Total Bandwidth",
+  "address_netRemaining":"Available Bandwidth",
+  "address_netUsed":"Used Bandwidth",
+  "address_energyLimit":"Total Energy",
+  "address_energyRemaining":"Available Energy",
+  "address_energyUsed":"Used Energy",
+  "address_percentage":"Percentage",
 };

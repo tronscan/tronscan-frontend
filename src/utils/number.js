@@ -34,6 +34,38 @@ export function FormatNumberByDecimals(number, decimals){
         const arr = numberString.split('.')
         const cerrentLength = arr[0].length
         const newString = arr.join('')
+        let result =  '';
+        const diffLenght = cerrentLength - decimals;
+        if(diffLenght > 0){
+            let newNum =  newString.slice(0, diffLenght)
+            while (newNum.length > 3) {
+                result = ',' + newNum.slice(-3) + result;
+                newNum = newNum.slice(0, newNum.length - 3);
+            }
+            if (newNum) { result = newNum + result }
+            Newnumber = result + '.' + newString.slice(diffLenght);
+        }else{
+            let dudo = ''
+            for (let i = 0; i < Math.abs(diffLenght); i++) {
+                dudo+= '0'
+            }
+            Newnumber = '0.'+ dudo +newString
+        }
+        Newnumber = Newnumber.replace(/(\.0+|0+)$/,'')
+    }else{
+        Newnumber = number
+    }
+    return Newnumber
+}
+
+export function FormatNumberByDecimalsBalance(number, decimals){
+    let Newnumber = 0
+    if(!number){ return 0 }
+    if(decimals){
+        const numberString = (number).toString()
+        const arr = numberString.split('.')
+        const cerrentLength = arr[0].length
+        const newString = arr.join('')
 
         const diffLenght = cerrentLength - decimals;
         if(diffLenght > 0){
@@ -60,7 +92,13 @@ export function toThousands(num) {
         result = ',' + number.slice(-3) + result;
         number = number.slice(0, number.length - 3);
     }
-    if (number) { result = number + result + '.' + arr[1]; }
+    if (number) {
+        if(arr[1]){
+            result = number + result + '.' + arr[1];
+        }else{
+            result = number + result
+        }
+    }
     return result;
 }
 

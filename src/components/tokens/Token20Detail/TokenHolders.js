@@ -12,10 +12,10 @@ import {toastr} from 'react-redux-toastr'
 import {isAddressValid} from "@tronscan/client/src/utils/crypto";
 import { trim } from 'lodash'
 import { FormatNumberByDecimals } from '../../../utils/number'
+import {QuestionMark} from "../../common/QuestionMark";
 
 class TokenHolders extends React.Component {
-
-  constructor(props) {
+    constructor(props) {
     super(props);
 
     this.state = {
@@ -53,6 +53,7 @@ class TokenHolders extends React.Component {
     let { data } = await xhr.get(API_URL+"/api/token_trc20/holders?sort=-balance&start=" +(page - 1) * pageSize+ "&limit="+pageSize+"&contract_address=" + filter.token);
     let addresses = data.trc20_tokens;
     let total= data.total;
+    let rangeTotal = data.rangeTotal;
     for (let index in addresses) {
       addresses[index].index = parseInt(index) + 1 + (page-1)*pageSize;
     }
@@ -61,6 +62,7 @@ class TokenHolders extends React.Component {
       page,
       addresses,
       total,
+      rangeTotal,
       loading: false,
     });
 
@@ -139,13 +141,14 @@ class TokenHolders extends React.Component {
   };
 
   render() {
-    let {addresses, total, loading,search} = this.state;
+    let {addresses, total, rangeTotal, loading,search} = this.state;
       if(total == 0){
           addresses =[];
       }
     let {intl} = this.props
     let column = this.customizedColumn();
-    let tableInfo = intl.formatMessage({id: 'a_totle'})+' ' + total +' '+ intl.formatMessage({id: 'hold_addr'})
+    let tableInfo = intl.formatMessage({id: 'a_totle'})+' ' + total +' '+ intl.formatMessage({id: 'hold_addr'});
+    let tableInfoTip = intl.formatMessage({id: 'table_info_holders_tip1'}) + ' ' + rangeTotal + ' ' + intl.formatMessage({id: 'table_info_holders_tip2'});
     if (!loading && addresses.length === 0) {
       return (
           <div className="p-3 text-center no-data">{tu("no_holders_found")}</div>
@@ -172,7 +175,17 @@ class TokenHolders extends React.Component {
                 </div>
               </div>
             </div>
-            {/* {total?<div className="table_pos_info d-none d-md-block">{tableInfo}</div>: ''} */}
+            <div style={styles.tablePosInfo}>
+              {total ?<div className="table_pos_info d-none d-md-block" style={{left: 'auto'}}>
+                <div>{tu('view_total')} {rangeTotal} {tu('hold_addr')}
+
+                    { rangeTotal>= 10000? <QuestionMark placement="top" info={tableInfoTip} ></QuestionMark>:""}
+                    <br/>
+                    { rangeTotal>= 10000?<span>({tu('table_info_big')})</span>:""}
+                </div>
+              </div> : ''}
+            </div>
+             {/*{total?<div className="table_pos_info d-none d-md-block">{tableInfo}</div>: ''}*/}
             <div style={styles.table}>
               <SmartTable border={false} loading={loading} column={column} data={addresses} total={total}
                           onPageChange={(page, pageSize) => {
@@ -190,6 +203,9 @@ const styles = {
     searchBox:{
         background: '#fff',
         paddingTop: 10,
+    },
+    tablePosInfo:{
+      paddingLeft:40
     }
 };
 

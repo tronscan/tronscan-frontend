@@ -19,6 +19,8 @@ import isMobile from '../../../utils/isMobile';
 import {withTronWeb} from "../../../utils/tronWeb";
 import { FormatNumberByDecimals } from '../../../utils/number'
 import {transactionResultManager} from "../../../utils/tron"
+import BigNumber from "bignumber.js"
+BigNumber.config({ EXPONENTIAL_AT: [-20, 30] });
 
 const { Option, OptGroup } = Select;
 
@@ -222,7 +224,7 @@ class SendForm extends React.Component {
                   10000000, 0,
                   [
                   { type: 'address', value: tronWeb.address.toHex(to)},
-                  { type: 'uint256', value: this.Mul(amount,Math.pow(10, decimals))}
+                  { type: 'uint256', value: new BigNumber(amount).shiftedBy(decimals).toString()}
                   ],
                   tronWeb.address.toHex(this.props.wallet.address),
               );
@@ -238,9 +240,8 @@ class SendForm extends React.Component {
     }else if(this.props.wallet.type === "ACCOUNT_TRONLINK" || this.props.wallet.type === "ACCOUNT_PRIVATE_KEY"){
       tronWeb = this.props.account.tronWeb;
       let contractInstance = await tronWeb.contract().at(contractAddress);
-      transactionId = await contractInstance.transfer(to, this.Mul(amount,Math.pow(10, decimals))).send();
+      transactionId = await contractInstance.transfer(to, new BigNumber(amount).shiftedBy(decimals).toString()).send();
     }
-    
     if (transactionId) {
       this.refreshTokenBalances();
       onSend && onSend();
@@ -370,7 +371,7 @@ class SendForm extends React.Component {
         }
     }else if(token && TokenType == 'TRC20'){
         let TokenName =  list[0];
-        let balance = parseFloat(find(tokens20, t => t.name === TokenName).token20_balance);
+        let balance = parseFloat(find(tokens20, t => t.name === TokenName).token20_balance_decimals);
         let TokenDecimals = parseFloat(find(tokens20, t => t.name === TokenName).decimals);
         this.setState({
             decimals: TokenDecimals,
@@ -656,7 +657,7 @@ class SendForm extends React.Component {
                             <Option value={token.token_name_type} key={index}>
                                 {/*<span>{token.name}</span>*/}
                                 {/*({token.token20_balance} {intl.formatMessage({id: "available"})})*/}
-                                {token.name} ({token.token20_balance} {intl.formatMessage({id: "available"})})
+                                {token.name} ({token.token20_balance_decimals} {intl.formatMessage({id: "available"})})
                             </Option>
                         ))
                     }

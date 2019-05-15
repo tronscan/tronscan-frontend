@@ -1426,10 +1426,12 @@ export const messages = {
    "trc20_O":"オープン",
    "trc20_C":"お終い",
    "trc20_24H_VOL":"24時間取引量",
+   "trc20_24H_Total":"24時間の売上高",
    "trc20_price":"価格",
    "trc20_amount":"数",
    "trc20_enter_the_trading_amount":"取引量を入力してください",
    "trc20_enter_10":"取引高≥ 10 TRX",
+   "trc20_enter_1": "取引高 ≥ 1 USDT",
    "trc20_enter_the_trading_price":"仕切り値段を入力してください",
    "trc20_TxAvailable":"入手できる",
    "trc20_BUY":"買う",
@@ -1512,6 +1514,10 @@ export const messages = {
   "trc20_first_token": "名称",
   "trc20_balance": "残高",
   "trc20_second_token": "名称",
+  "trc20_kchart":"K Line",
+   "trc20_depth":"DEPTH",
+   "trc20_trade_win_content":"Current network is unstable , please check later",
+  "trc20_trade_win_confirm":"Confirm",
 
 
     /*
@@ -1642,6 +1648,8 @@ export const messages = {
     "table_info_big_tip4":"他のデータを検索したい場合は、時間範囲を調整してください。",
     "table_info_account_tip1":"TRONの主鎖には",
     "table_info_account_tip2":"のアカウントがあり、今、最初の10,000のデータのみが表示されています。（TRX残高の多い順に並べます。）",
+    "table_info_holders_tip1":"現在のトークンは合計",
+    "table_info_holders_tip2":"個アドレスがありますが、前頭の10,000個だけが表示されます。（トークン数量の大きさの順にソートされます）",
     "Singapore":"Singapore",
     "table_info_new_tip":"今、最初の10,000のデータのみが表示されています。他のデータを検索したい場合は、時間範囲を調整してください。",
     "select_start_time":"開始時間を選択してください",
@@ -1656,6 +1664,49 @@ export const messages = {
     'all': 'すべて',
     "market_capitalization_trx": "市場価値 (TRX)",
     "token_txs_info":"Token",
+    "result":"Result",
+
+    /*
+     ##################################################################################
+     #                                                                                #
+     # new variables    ledger 2019-04-24                                    #
+     #                                                                                #
+     ##################################################################################
+  */
+    "ledger_user_guide":"Ledgerご利用のガイド",
+    "latest_version_chrome":"最新バージョンのChromeご利用をお薦めします",
+    "ledger_support_version":"Ledgerサポートできるバージョン:0.1.1、Chromeサポートできるバージョン73.0",
+    "ledger_you_can":"あなたは行くことができます",
+    "ledger_website":"Ledgerの公式サイト",
+    "ledger_website_download":"最新の元帳バージョンをダウンロードして更新する",
+    "ledger_click_help":"ここをクリックしてヘルプを獲得します",
+
+    /*
+           ##################################################################################
+           #                                                                                #
+           # new variables    address 2019-05-13                                    #
+           #                                                                                #
+           ##################################################################################
+       */
+
+    "address_balance_token_type":"トークン種類",
+    "address_balance_token_price_TRX":"TRX価値/USD価値",
+    "address_transactions_tip":"取引数は振替数を含めます",
+    "address_tron_power_tip":"TRXを凍結することで、投票権をもらえます",
+    "address_total_balance_tip":"総残高はすべて価値があるトークンを含めます",
+    "address_tron_power_used":"使用済",
+    "address_tron_power_remaining":"残り",
+    "address_total_balance_info_sources":"情報出典",
+    "address_info_transfers": "振替",
+    "address_info_transactions": "取引",
+    "address_netLimit":"Total Bandwidth",
+    "address_netRemaining":"Available Bandwidth",
+    "address_netUsed":"Used Bandwidth",
+    "address_energyLimit":"Total Energy",
+    "address_energyRemaining":"Available Energy",
+    "address_energyUsed":"Used Energy",
+    "address_percentage":"Percentage",
+
 
 }
 

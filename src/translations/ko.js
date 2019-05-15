@@ -1427,10 +1427,12 @@ export const messages = {
   "trc20_O": "O",
   "trc20_C": "C",
   "trc20_24H_VOL": "24H 거래 성사량",
+  "trc20_24H_Total":"24H 거래 성사 금액",
   "trc20_price": "가격",
   "trc20_amount": "수량",
   "trc20_enter_the_trading_amount": "거래 수량을 입력해주세요.",
   "trc20_enter_10": "거래액. ≥ 10 TRX",
+  "trc20_enter_1": "거래액. ≥ 1 USDT",
   "trc20_enter_the_trading_price": "거래 가격을 입력해 주세요.",
   "trc20_TxAvailable": "사용 가능",
   "trc20_BUY": "매수",
@@ -1513,7 +1515,10 @@ export const messages = {
   "trc20_first_token": "이름",
   "trc20_balance": "잔액",
   "trc20_second_token": "이름",
-
+  "trc20_kchart":"K Line",
+  "trc20_depth":"DEPTH",
+  "trc20_trade_win_content":"Current network is unstable , please check later",
+  "trc20_trade_win_confirm":"Confirm",
 
   /*
    *  2018-12-18
@@ -1647,6 +1652,8 @@ export const messages = {
   "table_info_big_tip4": "다른 통계를 보려면 선택한 기간을 변경하십시오.",
   "table_info_account_tip1": "TRON의 메인넷에는 총",
   "table_info_account_tip2": "개의 계정이 있으며, 현재 상위 10,000 개만 표시됩니다 (TRX 잔액 높은 가격에서 낮은 가격으로 정렬).",
+  "table_info_holders_tip1":"현재 토큰은 모두 ",
+  "table_info_holders_tip2":"주소에 있으며 상위 10,000 개만 표시됩니다 (토큰수량이 많은것부터적은 순서로 정렬)",
   "Singapore": "Singapore",
   "table_info_new_tip": "상위 10,000 개의 데이터 만 표시됩니다. 다른 데이터를 조회하려면  시간 범위를 변경해 주시기 바랍니다.",
   "select_start_time": "시작 시간을 선택하십시오.",
@@ -1661,5 +1668,47 @@ export const messages = {
   'all': '모두',
   "market_capitalization_trx": "시장 가치 (TRX)",
   "token_txs_info":"Token",
+  "result":"Result",
+
+  /*
+     ##################################################################################
+     #                                                                                #
+     # new variables    ledger 2019-04-24                                    #
+     #                                                                                #
+     ##################################################################################
+ */
+  "ledger_user_guide":"Ledger사용 가이드",
+  "latest_version_chrome":"최신 버전 Chrome 사용 추천",
+  "ledger_support_version":"Ledger지원 버전: 0.1.1, Chrome버전 73.0",
+  "ledger_you_can":"너는 할 수있다 ",
+  "ledger_website":"Ledger 공식 웹 사이트",
+  "ledger_website_download":"원장의 최신 버전을 다운로드하여 업데이트하십시오",
+  "ledger_click_help":"추가 도움말을 보려면 여기를 클릭하십시오",
+    /*
+       ##################################################################################
+       #                                                                                #
+       # new variables    address 2019-05-13                                    #
+       #                                                                                #
+       ##################################################################################
+   */
+
+    "address_balance_token_type":"토큰 종류",
+    "address_balance_token_price_TRX":"TRX 가격/ USD 가격",
+    "address_transactions_tip":"거래수 에는 전송 횟수가 포함됩니다.",
+    "address_tron_power_tip":"TRX 동결 후 투표권을 얻을 수 있습니다. ",
+    "address_total_balance_tip":"총 잔고에는 모든 가치 있는 토큰이 포함됩니다. ",
+    "address_tron_power_used":"이미 사용",
+    "address_tron_power_remaining":"나머지",
+    "address_total_balance_info_sources":"정보 출처",
+    "address_info_transfers": "전송",
+    "address_info_transactions": "거래",
+    "address_netLimit":"Total Bandwidth",
+    "address_netRemaining":"Available Bandwidth",
+    "address_netUsed":"Used Bandwidth",
+    "address_energyLimit":"Total Energy",
+    "address_energyRemaining":"Available Energy",
+    "address_energyUsed":"Used Energy",
+    "address_percentage":"Percentage",
+
 
 };

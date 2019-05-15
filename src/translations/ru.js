@@ -1442,10 +1442,12 @@ export const messages = {
     "trc20_O":"O",
     "trc20_C":"C",
     "trc20_24H_VOL":"24-часовой объём",
+    "trc20_24H_Total":"24-часовой оборот",
     "trc20_price":"Цена",
     "trc20_amount":"Количество",
     "trc20_enter_the_trading_amount":"Введите торговую сумму",
     "trc20_enter_10":"Всего ≥ 10 TRX",
+    "trc20_enter_1": "Всего ≥ 1 USDT",
     "trc20_enter_the_trading_price":"Введите торговую цену",
     "trc20_TxAvailable":"Имеется в наличии",
     "trc20_BUY":"КУПИТЬ",
@@ -1528,6 +1530,10 @@ export const messages = {
    "trc20_first_token": "Первый токен",
    "trc20_balance": "Баланс",
    "trc20_second_token": "Второй токен",
+   "trc20_kchart":"K Line",
+   "trc20_depth":"DEPTH",
+   "trc20_trade_win_content":"Current network is unstable , please check later",
+  "trc20_trade_win_confirm":"Confirm",
 
 
   /*
@@ -1647,6 +1653,8 @@ export const messages = {
   "table_info_big_tip4":"Если вы хотите посмотреть другие статистические данные, мы рекомендуем вам изменить временные рамки. ",
   "table_info_account_tip1":"В Главной сети TRON насчитывает в общей сложности ",
   "table_info_account_tip2":"учетных записей и в настоящее время отображает только первые 10000 (отображено в соответствии с балансом TRX от большого до малого).",
+  "table_info_holders_tip1":"В текущее время есть ",
+  "table_info_holders_tip2":"адреса токенов, и сейчас отображаются только первые 10000 (отсортированные от большого к маленькому в зависимости от количества токенов)",
   "Singapore":"Singapore",
   "table_info_new_tip":"В настоящее время отображаются только первые 10000 данных. Если вы хотите запросить другие данные, рекомендуется настроить временной диапазон.",
   "select_start_time":"Пожалуйста, выберите время начала",
@@ -1661,5 +1669,49 @@ export const messages = {
   'all': 'полный',
   "market_capitalization_trx": "Рыночная капитализация (TRX)",
   "token_txs_info":"Token",
+  "result":"Result",
+
+  /*
+     ##################################################################################
+     #                                                                                #
+     # new variables    ledger 2019-04-24                                    #
+     #                                                                                #
+     ##################################################################################
+ */
+  "ledger_user_guide":"Руководство по использованию Ledger",
+  "latest_version_chrome":"Обновите Сhrome до последней версии",
+  "ledger_support_version":"Поддерживаемая версия Ledger: 0.1.1., Поддерживаемая версия Chrome 73.0",
+  "ledger_you_can":"Вы можете посетить",
+  "ledger_website":" Ledger веб-сайт ",
+  "ledger_website_download":"Загрузите и обновите последнюю версию Ledger",
+  "ledger_click_help":"Нажмите здесь для получения дополнительной помощи",
+
+
+  /*
+      ##################################################################################
+      #                                                                                #
+      # new variables    address 2019-05-13                                    #
+      #                                                                                #
+      ##################################################################################
+  */
+
+  "address_balance_token_type":"Проходная категория",
+  "address_balance_token_price_TRX":"Значение TRX / значение USD",
+  "address_transactions_tip":"Количество транзакций включает в себя количество переводов",
+  "address_tron_power_tip":"Заморозить TRX, чтобы получить права голоса",
+  "address_total_balance_tip":"Общий баланс включает в себя все ценные сертификаты",
+  "address_tron_power_used":"Используется",
+  "address_tron_power_remaining":"Прибавочный",
+  "address_total_balance_info_sources":"Источник информации",
+  "address_info_transfers": "Переводы",
+  "address_info_transactions": "транзакции",
+  "address_netLimit":"Total Bandwidth",
+  "address_netRemaining":"Available Bandwidth",
+  "address_netUsed":"Used Bandwidth",
+  "address_energyLimit":"Total Energy",
+  "address_energyRemaining":"Available Energy",
+  "address_energyUsed":"Used Energy",
+  "address_percentage":"Percentage",
+
 
 };

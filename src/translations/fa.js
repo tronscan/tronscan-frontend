@@ -1431,10 +1431,12 @@ export const messages = {
     "trc20_O": "O",
     "trc20_C": "C",
     "trc20_24H_VOL": "24H VOL",
+    "trc20_24H_Total":"24H TOTAL",
     "trc20_price": "قیمت",
     "trc20_amount": "مقدار",
     "trc20_enter_the_trading_amount": "مقدار معامله را وارد کنید",
     "trc20_enter_10": "Total ≥ 10 TRX",
+    "trc20_enter_1": "Total ≥ 1 USDT",
     "trc20_enter_the_trading_price": "قیمت معامله را وارد کنید",
     "trc20_TxAvailable": "موجود",
     "trc20_BUY": "خرید",
@@ -1517,6 +1519,10 @@ export const messages = {
     "trc20_first_token": "اولین توکن",
     "trc20_balance": "بالانس",
     "trc20_second_token": "دومین توکن",
+    "trc20_kchart":"K Line",
+   "trc20_depth":"DEPTH",
+   "trc20_trade_win_content":"Current network is unstable , please check later",
+  "trc20_trade_win_confirm":"Confirm",
 
 
 /*
@@ -1633,6 +1639,8 @@ export const messages = {
     "table_info_big_tip4":" اگر شما می خواهید اطلاعات دیگری را پرس و جو کنید، توصیه می شود که محدوده زمانی را تنظیم کنید.",
     "table_info_account_tip1":"زنجیره اصلی ترون در مجموع ",
     "table_info_account_tip2":"  حساب دارد و در حال حاضر فقط 10،000 صفحه را نشان می دهد (مطابق با تراز ترانس از بزرگ تا کوچک).",
+    "table_info_holders_tip1":"آدرس های ",
+    "table_info_holders_tip2":"در گذر فعلی تصویب شده و تنها 10،000 نفر در حال حاضر نمایش داده می شوند (با توجه به تعداد از بزرگ به کوچک مرتب شده اند)",
     "Singapore":"Singapore",
     "table_info_new_tip":"در حال حاضر تنها 10،000 قطعه داده اول نمایش داده می شود. اگر شما می خواهید اطلاعات دیگر را جستجوکنید، توصیه می شود که محدوده زمانی را تنظیم کنید.",
     "select_start_time":"لطفا زمان شروع را انتخاب کنید",
@@ -1650,5 +1658,49 @@ export const messages = {
     'all': 'همه',
     "market_capitalization_trx": "ارزش بازار (TRX)",
     "token_txs_info":"Token",
+    "result":"Result",
+
+    /*
+     ##################################################################################
+     #                                                                                #
+     # new variables    ledger 2019-04-24                                    #
+     #                                                                                #
+     ##################################################################################
+   */
+    "ledger_user_guide":"راهنمای کاربر Ledger",
+    "latest_version_chrome":"ما توصیه می کنیم از آخرین نسخه از کروم استفاده کنید",
+    "ledger_support_version":"نسخه پشتیبانی لدجر:0.1.1، نسخه پشتیبانی از کروم 73.0",
+    "ledger_you_can":"شما می توانید بازدید کنید",
+    "ledger_website":"وب سایت Ledger",
+    "ledger_website_download":"نسخه لوگر به روز شده را دانلود کنید",
+    "ledger_click_help":" برای کمک بیشتر اینجا کلیک کنید.",
+
+    /*
+        ##################################################################################
+        #                                                                                #
+        # new variables    address 2019-05-13                                    #
+        #                                                                                #
+        ##################################################################################
+    */
+
+    "address_balance_token_type":"انواع رمز عبور",
+    "address_balance_token_price_TRX":"ارزش TRX / ارزش USD",
+    "address_transactions_tip":"تعداد معاملات شامل تعداد انتقال است.",
+    "address_tron_power_tip":"فریز TRX برای کسب حق رای",
+    "address_total_balance_tip":"مجموع تعادل شامل تمام گواهینامه های با ارزش است.",
+    "address_tron_power_used":"استفاده شده",
+    "address_tron_power_remaining":"باقی مانده",
+    "address_total_balance_info_sources":"منبع اطلاعات",
+    "address_info_transfers": "انتقال",
+    "address_info_transactions": "معاملات",
+    "address_netLimit":"Total Bandwidth",
+    "address_netRemaining":"Available Bandwidth",
+    "address_netUsed":"Used Bandwidth",
+    "address_energyLimit":"Total Energy",
+    "address_energyRemaining":"Available Energy",
+    "address_energyUsed":"Used Energy",
+    "address_percentage":"Percentage",
+
+
 
 };
