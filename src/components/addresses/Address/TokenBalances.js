@@ -89,7 +89,7 @@ class TokenBalances extends React.Component {
                 title: upperFirst(intl.formatMessage({id: 'token'})),
                 dataIndex: 'map_token_name',
                 key: 'map_token_name',
-                width: '20%',
+                width: '25%',
                 align: 'left',
                 className: 'ant_table',
                 render: (text, record, index) => {
@@ -185,12 +185,17 @@ class TokenBalances extends React.Component {
                 className: 'ant_table',
                 render: (text, record, index) => {
                     return (<span>
-                        {record.TRXBalance? <span>
-                            {record.TRXBalance_toThousands} / &nbsp;&nbsp;
-                            <TRXPrice amount={record.TRXBalance}
-                                      currency="USD"
-                                      showPopup={false}/>
-                        </span>:' - / - '}
+                        {record.TRXBalance? <div>
+                            <div>
+                                {record.TRXBalance_toThousands} TRX
+                            </div>
+                            <div className="small">
+                                <TRXPrice amount={record.TRXBalance}
+                                          currency="USD"
+                                          showPopup={false}/>
+                            </div>
+
+                        </div>:'-'}
                     </span>)
                 }
             },

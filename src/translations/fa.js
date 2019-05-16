@@ -1684,7 +1684,7 @@ export const messages = {
     */
 
     "address_balance_token_type":"انواع رمز عبور",
-    "address_balance_token_price_TRX":"ارزش TRX / ارزش USD",
+    "address_balance_token_price_TRX":"ارزش",
     "address_transactions_tip":"تعداد معاملات شامل تعداد انتقال است.",
     "address_tron_power_tip":"فریز TRX برای کسب حق رای",
     "address_total_balance_tip":"مجموع تعادل شامل تمام گواهینامه های با ارزش است.",

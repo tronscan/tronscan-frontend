@@ -380,10 +380,12 @@ class Address extends React.Component {
         netLimit:address.bandwidth.netLimit + address.bandwidth.freeNetLimit,
         netRemaining:address.bandwidth.netRemaining + address.bandwidth.freeNetRemaining,
         bandWidthPercentage:((address.bandwidth.netUsed + address.bandwidth.freeNetUsed)/(address.bandwidth.netLimit + address.bandwidth.freeNetLimit))*100,
+        availableBandWidthPercentage:(1-(address.bandwidth.netUsed + address.bandwidth.freeNetUsed)/(address.bandwidth.netLimit + address.bandwidth.freeNetLimit))*100,
         energyUsed:address.bandwidth.energyUsed,
         energyLimit:address.bandwidth.energyLimit,
         energyRemaining:address.bandwidth.energyRemaining,
         energyPercentage:address.bandwidth.energyPercentage * 100,
+        availableEnergyPercentage:address.bandwidth.energyPercentage?(1- address.bandwidth.energyPercentage) * 100 : 0,
     });
 
   }
@@ -401,9 +403,9 @@ class Address extends React.Component {
     let { netUsed, netLimit, netRemaining, bandWidthPercentage} = this.state;
     let {intl} = this.props;
     let address_percentage_remaining = new BigNumber(100 - Number(bandWidthPercentage));
-    let addressPercentageRemaining = address_percentage_remaining.decimalPlaces(2) + '%';
+    let addressPercentageRemaining = netRemaining?address_percentage_remaining.decimalPlaces(2) + '%':'0%';
     let address_percentage_used = new BigNumber(bandWidthPercentage);
-    let addressPercentageUsed = address_percentage_used.decimalPlaces(2) + '%';
+    let addressPercentageUsed = netUsed?address_percentage_used.decimalPlaces(2) + '%':'0%';
     return (
         <div>
           <div>
@@ -426,9 +428,9 @@ class Address extends React.Component {
     let { energyLimit, energyRemaining, energyUsed, energyPercentage } = this.state;
       let {intl} = this.props;
       let address_percentage_remaining = new BigNumber(100 - Number(energyPercentage));
-      let addressPercentageRemaining = address_percentage_remaining.decimalPlaces(2) + '%';
+      let addressPercentageRemaining = energyRemaining?address_percentage_remaining.decimalPlaces(2) + '%': '0%';
       let address_percentage_used = new BigNumber(energyPercentage);
-      let addressPercentageUsed = address_percentage_used.decimalPlaces(2) + '%';
+      let addressPercentageUsed = energyUsed?address_percentage_used.decimalPlaces(2) + '%': '0%';
       return (
           <div>
             <div>
@@ -449,7 +451,7 @@ class Address extends React.Component {
 
   render() {
 
-    let {totalPower, address, tabs, stats, loading, blocksProduced, media, candidates, rank, totalVotes, netRemaining, bandWidthPercentage, energyRemaining, energyPercentage, TRXBalanceTotal} = this.state;
+    let {totalPower, address, tabs, stats, loading, blocksProduced, media, candidates, rank, totalVotes, netRemaining, bandWidthPercentage, energyRemaining, energyPercentage, TRXBalanceTotal,availableBandWidthPercentage,availableEnergyPercentage} = this.state;
     let {match,intl} = this.props;
     let addr = match.params.id;
     let uploadURL = API_URL + "/api/v2/node/info_upload?address=" + match.params.id
@@ -661,7 +663,7 @@ class Address extends React.Component {
                                     type="circle"
                                     strokeColor="#F5A623"
                                     strokeLinecap="square"
-                                    percent={bandWidthPercentage}
+                                    percent={availableBandWidthPercentage}
                                 />
                               </Tooltip>
 
@@ -684,7 +686,7 @@ class Address extends React.Component {
                                     type="circle"
                                     strokeColor="#4A90E2"
                                     strokeLinecap="square"
-                                    percent={energyPercentage}
+                                    percent={availableEnergyPercentage}
                                 />
                               </Tooltip>
                               <div className="circle-info">
