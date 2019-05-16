@@ -270,34 +270,29 @@ const { TextArea } = Input;
 
             case 'trc20':
                 let data = {
-                    "name": this.tokenState('name'),
-                    "symbol": this.tokenState('abbreviation'),
-                    "token_desc": this.tokenState('description'),
-                    "total_supply": this.tokenState('totalSupply'),
-                    "decimals":  this.tokenState('precision'),
-                    "issuer_addr": this.tokenState('address'),
-                    "icon_url":this.tokenState('logoUrl'),
-                    "contract_address":this.tokenState('contractAddress'),
-                    "contract_created_ratio":this.tokenState('contractCreatedRatio'),
-                    "contract_code":this.tokenState('contractCode'),
-                    "home_page": this.tokenState('url'),
-                    "email":this.tokenState('email'),
-                    "white_paper":this.tokenState('whitePaper'),
-                    "social_media":this.tokenState('socialList'),
-                    "issue_time":this.tokenState('issueTime'),
+                    // "name": this.tokenState('name'),
+                    // "symbol": this.tokenState('abbreviation'),
+                    // "token_desc": this.tokenState('description'),
+                    // "total_supply": this.tokenState('totalSupply'),
+                    // "decimals":  this.tokenState('precision'),
+                     "issuer_addr": this.tokenState('address'),
+                    // "icon_url":this.tokenState('logoUrl'),
+                    // "contract_address":this.tokenState('contractAddress'),
+                    // "contract_created_ratio":this.tokenState('contractCreatedRatio'),
+                    //"contract_code":this.tokenState('contractCode'),
+                    // "home_page": this.tokenState('url'),
+                    // "email":this.tokenState('email'),
+                    // "white_paper":this.tokenState('whitePaper'),
+                    // "social_media":this.tokenState('socialList'),
+                    // "issue_time":this.tokenState('issueTime'),
                 }
 
-                let a  = {
-                    "content":data
-                }
 
-                console.log(tronWeb.toHex(JSON.stringify(a)))
-                let sig = await tronWeb.trx.sign(tronWeb.toHex(JSON.stringify(a)))
-                let tokenInfo = {
-                    "content":data,
-                    sig:sig
 
-                }
+                console.log(tronWeb.toHex(JSON.stringify(data)))
+                console.log('tronWeb.toHex(JSON.stringify(data))',tronWeb.toHex(JSON.stringify(data)))
+                let sig = await tronWeb.trx.sign(tronWeb.toHex(JSON.stringify(data)))
+
                 console.log('data',data)
                 console.log('sig',sig)
                 if (Lockr.get("islogin")||this.props.walletType.type==="ACCOUNT_LEDGER"||this.props.walletType.type==="ACCOUNT_TRONLINK") {
@@ -331,7 +326,8 @@ const { TextArea } = Input;
                     if(this.props.walletType.type === "ACCOUNT_TRONLINK"){
 
                         const unSignTransaction = await Client.createToken20({
-                            tokenInfo
+                            "content":data,
+                            sig:sig
                         })
                         // .catch(function (e) {
                         //     errorInfo = e.indexOf(':')?e.split(':')[1]:e
