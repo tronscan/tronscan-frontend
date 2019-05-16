@@ -158,8 +158,6 @@ class Address extends React.Component {
     this.setState({loading: true, address: {address: id}, media: null,});
 
     let address = await Client.getAddress(id);
-    console.log('address',address)
-      console.log('address.representative.enabled',address.representative.enabled)
     if (address.representative.enabled) {
       this.loadMedia(id);
     }

@@ -379,7 +379,7 @@ export default class VoteOverview extends React.Component {
               const {result} = await transactionResultManager(unSignTransaction,tronWebLedger);
               res = result;
           } catch (e) {
-              console.error('111',e)
+              console.error('error',e)
           }
       }else if(this.props.walletType.type === "ACCOUNT_PRIVATE_KEY"){
           let {success} = await Client.voteForWitnesses(account.address, witnessVotes)(account.key);
