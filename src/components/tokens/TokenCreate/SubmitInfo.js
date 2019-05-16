@@ -291,9 +291,13 @@ const { TextArea } = Input;
 
                 console.log(tronWeb.toHex(JSON.stringify(data)))
                 console.log('tronWeb.toHex(JSON.stringify(data))',tronWeb.toHex(JSON.stringify(data)))
-                let sig = await tronWeb.trx.sign(tronWeb.toHex(JSON.stringify(data)))
+                //let sig = await tronWeb.trx.sign(tronWeb.toHex(JSON.stringify(data)))
+                let hash = tronWeb.sha3(JSON.stringify(data),false);
+               // let hex = tronWeb.toHex(hash)
+                let sig = await tronWeb.trx.sign(hash)
 
                 console.log('data',data)
+                console.log('hash',hash)
                 console.log('sig',sig)
                 if (Lockr.get("islogin")||this.props.walletType.type==="ACCOUNT_LEDGER"||this.props.walletType.type==="ACCOUNT_TRONLINK") {
                     // if (this.props.walletType.type === "ACCOUNT_LEDGER") {
