@@ -144,7 +144,8 @@ class Address extends React.Component {
         token_balances: {
           id: "token_balances",
           icon: "fa fa-piggy-bank",
-          path: "/token-balances",
+         // path: "/token-balances",
+          path: "",
           label: <span>{tu("token_balances")}</span>,
           cmp: () => <TokenBalances tokenBalances={address.balances} intl={intl}/>,
         },
@@ -157,6 +158,8 @@ class Address extends React.Component {
     this.setState({loading: true, address: {address: id}, media: null,});
 
     let address = await Client.getAddress(id);
+    console.log('address',address)
+      console.log('address.representative.enabled',address.representative.enabled)
     if (address.representative.enabled) {
       this.loadMedia(id);
     }
@@ -222,11 +225,20 @@ class Address extends React.Component {
         blocksProduced: totalProducedBlocks,
         stats,
         tabs: {
+
           // ...prevProps.tabs,
+          token_balances: {
+              id: "token_balances",
+              // icon: "fa fa-piggy-bank",
+             // path: "/token-balances",
+              path:"",
+              label: <span>{tu("token_balances")}</span>,
+              cmp: () => <TokenBalances tokenBalances={tokenBalances} intl={intl}/>,
+          },
           transfers: {
             id: "transfers",
             // icon: "fa fa-exchange-alt",
-            path: "",
+            path: "/transfers",
             label: <span>{tu("transfers")}</span>,
             cmp: () => <Transfers filter={{address: id}} address/>
           },
@@ -251,13 +263,7 @@ class Address extends React.Component {
             label: <span>{tu("internal_transactions")}</span>,
             cmp: () => <Transactions filter={{address: id}} isinternal />
           },
-          token_balances: {
-            id: "token_balances",
-            // icon: "fa fa-piggy-bank",
-            path: "/token-balances",
-            label: <span>{tu("token_balances")}</span>,
-            cmp: () => <TokenBalances tokenBalances={tokenBalances} intl={intl}/>,
-          },
+
           blocks_produced: {
             id: "blocks-produced",
             // icon: "fa fa-cube",
@@ -297,10 +303,18 @@ class Address extends React.Component {
         stats,
         tabs: {
           // ...prevProps.tabs,
+          token_balances: {
+              id: "token_balances",
+              // icon: "fa fa-piggy-bank",
+             // path: "/token-balances",
+              path: "",
+              label: <span>{tu("token_balances")}</span>,
+              cmp: () => <TokenBalances tokenBalances={tokenBalances} intl={intl}/>,
+          },
           transfers: {
             id: "transfers",
             // icon: "fa fa-exchange-alt",
-            path: "",
+            path: "/transfers",
             label: <span>{tu("transfers")}</span>,
             cmp: () => <Transfers filter={{address: id}} address/>
           },
@@ -324,13 +338,6 @@ class Address extends React.Component {
             path: "/internal-transactions",
             label: <span>{tu("internal_transactions")}</span>,
             cmp: () => <Transactions filter={{address: id}} isinternal address/>
-          },
-          token_balances: {
-            id: "token_balances",
-            // icon: "fa fa-piggy-bank",
-            path: "/token-balances",
-            label: <span>{tu("token_balances")}</span>,
-            cmp: () => <TokenBalances tokenBalances={tokenBalances} intl={intl}/>,
           },
           votes: {
             id: "votes",
@@ -385,7 +392,7 @@ class Address extends React.Component {
         energyLimit:address.bandwidth.energyLimit,
         energyRemaining:address.bandwidth.energyRemaining,
         energyPercentage:address.bandwidth.energyPercentage * 100,
-        availableEnergyPercentage:address.bandwidth.energyPercentage?(1- address.bandwidth.energyPercentage) * 100 : 0,
+        availableEnergyPercentage:(1- address.bandwidth.energyPercentage) * 100,
     });
 
   }
@@ -661,7 +668,7 @@ class Address extends React.Component {
                                     strokeWidth={10}
                                     showInfo={false}
                                     type="circle"
-                                    strokeColor="#F5A623"
+                                    strokeColor="#FFA30B"
                                     strokeLinecap="square"
                                     percent={availableBandWidthPercentage}
                                 />

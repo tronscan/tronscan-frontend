@@ -136,7 +136,7 @@ export class TRXPrice extends React.PureComponent {
                                     ETH <FormattedNumber value={priceValues.prices.ETH * (amount / ONE_TRX)}
                                                          maximumFractionDigits={priceValues.currencies.ETH.fractions || 2}/><br/>
                                     USD <FormattedNumber value={priceValues.prices.USD * (amount / ONE_TRX)}
-                                                         maximumFractionDigits={priceValues.currencies.USD.fractions || 2}/><br/>
+                                                         maximumFractionDigits={priceValues.currencies.USD.fractions || 3}/><br/>
                                     EUR <FormattedNumber value={priceValues.prices.EUR * (amount / ONE_TRX)}
                                                          maximumFractionDigits={priceValues.currencies.EUR.fractions || 2}/>
                                   </Tooltip>
@@ -165,9 +165,9 @@ export class TRXPrice extends React.PureComponent {
                                     ETH <FormattedNumber value={priceValues.prices.ETH * amount}
                                                          maximumFractionDigits={priceValues.currencies.ETH.fractions || 2}/><br/>
                                     USD <FormattedNumber value={priceValues.prices.USD * amount}
-                                                         maximumFractionDigits={priceValues.currencies.USD.fractions || 6}/><br/>
+                                                         maximumFractionDigits={priceValues.currencies.USD.fractions || 3}/><br/>
                                     EUR <FormattedNumber value={priceValues.prices.EUR * amount}
-                                                         maximumFractionDigits={priceValues.currencies.EUR.fractions || 6}/>
+                                                         maximumFractionDigits={priceValues.currencies.EUR.fractions || 2}/>
                                   </Tooltip>
                               }
                           </Fragment>
@@ -194,7 +194,7 @@ export class TRXPrice extends React.PureComponent {
                                     ETH <FormattedNumber value={priceValues.prices.ETH * amount}
                                                          maximumFractionDigits={priceValues.currencies.ETH.fractions || 2}/><br/>
                                     USD <FormattedNumber value={priceValues.prices.USD * amount}
-                                                         maximumFractionDigits={priceValues.currencies.USD.fractions || 2}/><br/>
+                                                         maximumFractionDigits={priceValues.currencies.USD.fractions || 3}/><br/>
                                     EUR <FormattedNumber value={priceValues.prices.EUR * amount}
                                                          maximumFractionDigits={priceValues.currencies.EUR.fractions || 2}/>
                                   </Tooltip>
