@@ -1855,7 +1855,7 @@ export const messages = {
   */
 
   "address_balance_token_type":"通证类别",
-  "address_balance_token_price_TRX":"TRX价值 / USD价值",
+  "address_balance_token_price_TRX":"价值",
   "address_transactions_tip":"交易数包含转账数",
   "address_tron_power_tip":"冻结TRX可以获得投票权",
   "address_total_balance_tip":"总余额包括所有有价值的通证",
@@ -1871,7 +1871,6 @@ export const messages = {
   "address_energyRemaining":"可用能量",
   "address_energyUsed":"已用能量",
   "address_percentage":"占比",
-
-
+    
 
 };

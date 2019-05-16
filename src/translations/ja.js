@@ -1690,7 +1690,7 @@ export const messages = {
        */
 
     "address_balance_token_type":"トークン種類",
-    "address_balance_token_price_TRX":"TRX価値/USD価値",
+    "address_balance_token_price_TRX":"価値",
     "address_transactions_tip":"取引数は振替数を含めます",
     "address_tron_power_tip":"TRXを凍結することで、投票権をもらえます",
     "address_total_balance_tip":"総残高はすべて価値があるトークンを含めます",

@@ -111,16 +111,20 @@
   "TronConvertTool.js": "static/js/TronConvertTool.c9cec43f.chunk.js",
   "VerifyContractCode.js": "static/js/VerifyContractCode.a38cbf0c.chunk.js",
   "VoteLive.js": "static/js/VoteLive.c5a389e4.chunk.js",
-  "VoteOverview.js": "static/js/VoteOverview.b2bafb09.chunk.js",
+  "VoteOverview.js": "static/js/VoteOverview.8e15a07d.chunk.js",
   "WalletWizard.js": "static/js/WalletWizard.728bcaaa.chunk.js",
   "bootstrap.css": "d59729439a203fc474f5677b8d18d8bb.css",
-  "languages.js": "static/js/languages.f0b9d68b.chunk.js",
+  "languages.js": "static/js/languages.34013a6b.chunk.js",
   "main.css": "static/css/main.7c9dcfcf.css",
+<<<<<<< HEAD
 <<<<<<< HEAD
   "main.js": "static/js/main.c934ba81.js",
 >>>>>>> origin/dev2019
 =======
   "main.js": "static/js/main.554ef290.js",
+>>>>>>> origin/dev2019
+=======
+  "main.js": "static/js/main.e1d7c282.js",
 >>>>>>> origin/dev2019
   "static/media/24-Hour-Trading-Volume.png": "static/media/24-Hour-Trading-Volume.b6ff215b.png",
   "static/media/Average-Price.png": "static/media/Average-Price.fca4d71b.png",
@@ -169,6 +173,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   "vendors.js": "static/js/vendors.a065da89.js"
 =======
   "vendors.js": "static/js/vendors.b3e8f794.js"
@@ -178,5 +183,8 @@
 >>>>>>> origin/dev2019
 =======
   "vendors.js": "static/js/vendors.d6178afa.js"
+>>>>>>> origin/dev2019
+=======
+  "vendors.js": "static/js/vendors.0423510d.js"
 >>>>>>> origin/dev2019
 }

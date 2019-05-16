@@ -24,7 +24,7 @@ class Footer extends Component {
           <div className="container mobile-footer">
             <div className="row text-center text-xs-center text-sm-left text-md-left list">
               <div className="col-7 col-md-3">
-                <h5>Tronscan</h5>
+                <h5 className="text-uppercase">Tronscan</h5>
                 <ul className="list-unstyled">
                   <li>
                     <Link to="/help/about">
@@ -33,7 +33,7 @@ class Footer extends Component {
                   </li>
                   <li>
                     <HrefLink href={activeLanguage == 'zh'?"https://tronscanorg.zendesk.com/hc/zh-cn":"https://tronscanorg.zendesk.com/hc/en-us"}>
-                      Support center
+                      Support Center
                     </HrefLink>
                   </li>
                   <li>
@@ -60,6 +60,10 @@ class Footer extends Component {
                   </li>
                   <li>
                     <HrefLink href="https://discordapp.com/invite/GsRgsTD">Discord</HrefLink>
+                  </li>
+
+                  <li>
+                    <HrefLink href="https://www.weibo.com/tronscan?refer_flag=1005055013_&is_hot=1">Weibo</HrefLink>
                   </li>
                 </ul>
               </div>
@@ -92,7 +96,7 @@ class Footer extends Component {
                     <HrefLink href="https://trx.market">Exchanges</HrefLink>
                   </li>
                   <li>
-                    <HrefLink href="https://www.tronlink.org">wallet</HrefLink>
+                    <HrefLink href="https://www.tronlink.org">Wallet</HrefLink>
                   </li>
                   <li>
                     <HrefLink href="https://tron.app">Dapps</HrefLink>
@@ -157,7 +161,7 @@ class Footer extends Component {
           <div className="container">
             <div className="row text-center text-xs-center text-sm-left text-md-left">
               <div className="col-xs-12 col-sm-3 col-md-3">
-                <h5>Tronscan</h5>
+                <h5 className="text-uppercase">Tronscan</h5>
                 <div className="line" />
                 <ul className="list-unstyled quick-links pt-3">
                   <li className="p-2">
@@ -167,7 +171,7 @@ class Footer extends Component {
                   </li>
                   <li className="p-2">
                     <HrefLink href={activeLanguage == 'zh'?"https://tronscanorg.zendesk.com/hc/zh-cn":"https://tronscanorg.zendesk.com/hc/en-us"}>
-                      <i className="fa fa-angle-right mr-4" /> Support center
+                      <i className="fa fa-angle-right mr-4" /> Support Center
                     </HrefLink>
                   </li>
                   <li className="p-2">
@@ -199,6 +203,11 @@ class Footer extends Component {
                   <li className="p-2">
                     <HrefLink href="https://discordapp.com/invite/GsRgsTD">
                       <i className="fa fa-angle-right mr-4" /> Discord
+                    </HrefLink>
+                  </li>
+                  <li className="p-2">
+                    <HrefLink href="https://www.weibo.com/tronscan?refer_flag=1005055013_&is_hot=1">
+                      <i className="fa fa-angle-right mr-4" /> Weibo
                     </HrefLink>
                   </li>
                   {/*<li className="p-2">*/}
@@ -261,7 +270,7 @@ class Footer extends Component {
                   </li>
                   <li className="p-2">
                     <HrefLink href="https://www.tronlink.org">
-                      <i className="fa fa-angle-right mr-4" /> wallet
+                      <i className="fa fa-angle-right mr-4" /> Wallet
                     </HrefLink>
                   </li>
                   <li className="p-2">

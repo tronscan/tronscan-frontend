@@ -1696,7 +1696,7 @@ export const messages = {
   */
 
   "address_balance_token_type":"Проходная категория",
-  "address_balance_token_price_TRX":"Значение TRX / значение USD",
+  "address_balance_token_price_TRX":"Значение",
   "address_transactions_tip":"Количество транзакций включает в себя количество переводов",
   "address_tron_power_tip":"Заморозить TRX, чтобы получить права голоса",
   "address_total_balance_tip":"Общий баланс включает в себя все ценные сертификаты",

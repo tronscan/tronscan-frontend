@@ -1693,7 +1693,7 @@ export const messages = {
    */
 
     "address_balance_token_type":"토큰 종류",
-    "address_balance_token_price_TRX":"TRX 가격/ USD 가격",
+    "address_balance_token_price_TRX":"가격",
     "address_transactions_tip":"거래수 에는 전송 횟수가 포함됩니다.",
     "address_tron_power_tip":"TRX 동결 후 투표권을 얻을 수 있습니다. ",
     "address_total_balance_tip":"총 잔고에는 모든 가치 있는 토큰이 포함됩니다. ",

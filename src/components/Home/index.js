@@ -137,7 +137,7 @@ export default class Home extends Component {
       txOverviewStats: temp.slice(0, 14),
       addressesStats: addressesTemp.slice(0, 14),
       transactionPerDay: temp[temp.length - 2].totalTransaction,
-      blockHeight: blocks[0] ? blocks[0].number : 0,
+     // blockHeight: blocks[0] ? blocks[0].number : 0,
      // totalAccounts: txOverviewStats[txOverviewStats.length-1].totalAddress,
     });
   }

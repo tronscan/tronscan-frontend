@@ -63,6 +63,7 @@ const initialState = {
     {
       name: 'USD',
       id: 'usd',
+      fractions: 3,
     },
     {
       name: 'EUR',
