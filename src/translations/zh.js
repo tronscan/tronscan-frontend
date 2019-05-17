@@ -1871,6 +1871,6 @@ export const messages = {
   "address_energyRemaining":"可用能量",
   "address_energyUsed":"已用能量",
   "address_percentage":"占比",
-    
+
 
 };

@@ -292,9 +292,9 @@ const { TextArea } = Input;
                 console.log(tronWeb.toHex(JSON.stringify(data)))
                 console.log('tronWeb.toHex(JSON.stringify(data))',tronWeb.toHex(JSON.stringify(data)))
                 //let sig = await tronWeb.trx.sign(tronWeb.toHex(JSON.stringify(data)))
-                let hash = tronWeb.sha3(JSON.stringify(data),false);
+                let hash = tronWeb.toHex(JSON.stringify(data),false);
                // let hex = tronWeb.toHex(hash)
-                let sig = await tronWeb.trx.sign(hash)
+                let sig =  tronWeb.trx.sign(hash)
 
                 console.log('data',data)
                 console.log('hash',hash)
