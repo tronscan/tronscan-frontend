@@ -46,8 +46,9 @@ class ApplyForDelegate extends Component {
       }else if(this.props.walletType.type === "ACCOUNT_TRONLINK"){
           tronWeb = account.tronWeb;
       }
-      const unSignTransaction = await tronWeb.transactionBuilder.applyForSR(tronWeb.defaultAddress.hex, url).catch(e => false);
-      const {result} = await transactionResultManager(unSignTransaction, tronWeb);
+     // const unSignTransaction = await tronWeb.transactionBuilder.applyForSR(tronWeb.defaultAddress.hex, url).catch(e => false);
+        const unSignTransaction = await tronWeb.transactionBuilder.applyForSR(tronWeb.defaultAddress.hex, url);
+        const {result} = await transactionResultManager(unSignTransaction, tronWeb);
       res = result;
     } else {
       let {success} = await Client.applyForDelegate(account.address, url)(account.key);
