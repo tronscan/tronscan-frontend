@@ -3,7 +3,7 @@ import {FormattedDate, FormattedNumber, FormattedTime, injectIntl} from "react-i
 import {Sticky, StickyContainer} from "react-sticky";
 import Paging from "./Paging";
 import {Client} from "../../services/api";
-import {TransactionHashLink, AddressLink} from "./Links";
+import {TransactionHashLink, AddressLink, BlockNumberLink} from "./Links";
 import {tu} from "../../utils/i18n";
 import TimeAgo from "react-timeago";
 import {TronLoader} from "./loaders";
@@ -14,7 +14,6 @@ import {upperFirst} from "lodash";
 import {QuestionMark} from "./QuestionMark";
 import TotalInfo from "./TableTotal";
 import DateRange from "./DateRange";
-import {BlockNumberLink} from "./common/Links";
 import {DatePicker} from 'antd';
 import moment from 'moment';
 import {NameWithId} from "./names";
@@ -133,6 +132,7 @@ class NewTransactions extends React.Component {
                 dataIndex: 'hash',
                 key: 'hash',
                 align: 'left',
+                width:'15%',
                 className: 'ant_table',
                 render: (text, record, index) => {
                     return <Truncate>
@@ -144,8 +144,8 @@ class NewTransactions extends React.Component {
             },
             {
                 title: upperFirst(intl.formatMessage({id: 'status'})),
-                dataIndex: 'timestamp',
-                key: 'timestamp',
+                dataIndex: 'status',
+                key: 'status',
                 align: 'left',
                 className: 'ant_table',
                 render: (text, record, index) => {
@@ -173,8 +173,8 @@ class NewTransactions extends React.Component {
             },
             {
                 title: upperFirst(intl.formatMessage({id: 'block' })),
-                dataIndex: 'timestamp',
-                key: 'timestamp',
+                dataIndex: 'block',
+                key: 'block',
                 align: 'left',
                 className: 'ant_table',
                 render: (text, record, index) => {
@@ -187,7 +187,7 @@ class NewTransactions extends React.Component {
                 key: 'timestamp',
                 align: 'left',
                 className: 'ant_table',
-                width: '14%',
+                width: '15%',
                 render: (text, record, index) => {
                     return <TimeAgo date={text} title={moment(text).format("MMM-DD-YYYY HH:mm:ss A")}/>
                 }
@@ -196,11 +196,45 @@ class NewTransactions extends React.Component {
                 title: upperFirst(intl.formatMessage({id: 'contract_type'})),
                 dataIndex: 'contractType',
                 key: 'contractType',
-                align: 'right',
+                align: 'left',
                 width: '20%',
                 className: 'ant_table _text_nowrap',
                 render: (text, record, index) => {
                     return <span>{ContractTypes[text]}</span>
+                }
+            },
+            {
+                title: upperFirst(intl.formatMessage({id: 'address_net_fee'})),
+                dataIndex: 'address_net_fee',
+                key: 'address_net_fee',
+                align: 'left',
+                className: 'ant_table',
+                render: (text, record, index) => {
+                    return <span>
+                        {
+                            record.cost?
+                                <span>{record.cost.net_usage + record.cost.net_fee/10 }</span>
+                                : <span>-</span>
+
+
+                        }
+                    </span>
+                }
+            },
+            {
+                title: upperFirst(intl.formatMessage({id: 'address_energy_fee'})),
+                dataIndex: 'address_energy_fee',
+                key: 'address_energy_fee',
+                align: 'left',
+                className: 'ant_table',
+                render: (text, record, index) => {
+                    return <span>
+                        {
+                            record.cost?
+                                <span>{record.cost.energy_usage_total}</span>
+                                : <span>-</span>
+                        }
+                    </span>
                 }
             },
             // {

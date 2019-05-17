@@ -1776,6 +1776,6 @@ export const messages = {
     "address_energyRemaining":"可用能量",
     "address_energyUsed":"已用能量",
     "address_percentage":"占比",
-
-
+    "address_net_fee":"消耗带宽",
+    "address_energy_fee":"消耗能量",
 };
