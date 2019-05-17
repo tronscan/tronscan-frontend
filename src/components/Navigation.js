@@ -102,6 +102,7 @@ class Navigation extends React.Component {
       }
     })
     //this.getAnnouncement();
+     setWebsocket();
     $(document).click(() => {
       $('#_searchBox').css({display: 'none'});
     });
