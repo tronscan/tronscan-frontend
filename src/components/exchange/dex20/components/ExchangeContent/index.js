@@ -38,17 +38,18 @@ class ExchangeContent extends React.Component {
           <div className="exchange__kline mb-2 mr-2">
             <div className="exchange__kline__wrap">
               <Tokeninfo />
-              {/* <div className="mb-2">
-                <Select
-                  defaultValue="kchart"
-                  style={{ width: 120 }}
-                  onChange={this.handleChange}
-                >
-                  <Option value="kchart">{tu("trc20_kchart")}</Option>
-                  <Option value="depth">{tu("trc20_depth")}</Option>
-                </Select>
-              </div> */}
+              
               <div className="p-3 mb-2">
+                <div className="chart-select">
+                  <Select
+                    defaultValue="kchart"
+                    style={{ width: 80 }}
+                    onChange={this.handleChange}
+                  >
+                    <Option value="kchart">{tu("trc20_kchart")}</Option>
+                    <Option value="depth">{tu("trc20_depth")}</Option>
+                  </Select>
+                </div>
                 {select === "kchart" ? <Kline /> : <Depth />}
               </div>
             </div>

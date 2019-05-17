@@ -66,7 +66,12 @@ class Register extends Component {
 
   render() {
     let { sellList, buyList, isLoading, limit,buyMax,sellMax } = this.state;
-    let { intl, pairs, lastPrice, setQuickSelect } = this.props;
+    let { intl, pairs, lastPrice, setQuickSelect,price,activeCurrency } = this.props;
+
+    let price_convert = 0
+    if(price && price[pairs.sShortName == 'TRX' ? 'trxToOther' : 'usdtToOther']){
+      price_convert =(price[pairs.sShortName == 'TRX' ? 'trxToOther' : 'usdtToOther'][activeCurrency && activeCurrency.toLocaleLowerCase()] * pairs.price).toFixed(activeCurrency == 'trx' ? 6 : 8)
+    }
 
     let first_token = pairs.fShortName ? "(" + pairs.fShortName + ")" : "";
     let second_token = pairs.sShortName ? "(" + pairs.sShortName + ")" : "";
@@ -187,14 +192,20 @@ class Register extends Component {
             <div className="new_price">
               {/* {tu('trc20_new_price')}:  */}
               {lastPrice.type === 0 ? (
+                <span>
                 <span className="col-green up">
-                  {lastPrice.value}
+                  {lastPrice.value} 
                   <Icon type="arrow-up" />
                 </span>
+                <span style={{fontSize: '14px',color: '#666666',marginLeft:'20px'}}>≈ {price_convert} {activeCurrency.toLocaleUpperCase()}</span>
+                </span>
               ) : (
+                <span>
                 <span className="col-red down">
                   {lastPrice.value}
                   <Icon type="arrow-down" />
+                </span>
+                <span style={{fontSize: '14px',color: '#666666',marginLeft:'20px'}}>≈ {price_convert} {activeCurrency.toLocaleUpperCase()}</span>
                 </span>
               )}
             </div>
@@ -369,7 +380,9 @@ function mapStateToProps(state) {
   return {
     pairs: state.exchange.data,
     lastPrice: state.exchange.last_price ? state.exchange.last_price : {},
-    register: state.exchange.register
+    register: state.exchange.register,
+    price: state.exchange.price,
+    activeCurrency: state.app.activeCurrency
   };
 }
 

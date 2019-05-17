@@ -195,27 +195,27 @@ class Kline extends React.Component {
         //     chartType: 3
         // },
         {
-          label: "5min",
+          label: "5m",
           resolution: "5",
           chartType: 2
         },
         {
-          label: "30min",
+          label: "30m",
           resolution: "30",
           chartType: 2
         },
         {
-          label: "1hour",
+          label: "1h",
           resolution: "60",
           chartType: 2
         },
         {
-          label: "4hour",
+          label: "4h",
           resolution: "240",
           chartType: 2
         },
         {
-          label: "1day",
+          label: "1d",
           resolution: "D",
           chartType: 2
         },

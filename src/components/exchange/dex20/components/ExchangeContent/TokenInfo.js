@@ -69,6 +69,14 @@ class Tokeninfo extends React.Component {
 
     if (selectData.fShortName == "TRX") {
       const newObj = {icon_url:"http://coin.top/production/js/20190506075825.png"}
+      newObj["description"] = "TRON is dedicated to building the infrastructure for a truly decentralized Internet. The TRON Protocol, one of the largest blockchain-based operating systems in the world which offers scalability, high-availability, and high-throughput computing (HTC) support that serves as the foundation for all decentralized applications in the TRON ecosystem. It also provides better compatibility for Ethereum smart contracts through an innovative, pluggable smart contract platform. Since July 24th, 2018, TRON acquired BitTorrent Inc. which is an Internet technology company based in San Francisco. It designs distributed technologies that scale efficiently, keep intelligence at the edge, and keep creators and consumers in control of their content and data. Every month more than 170 million people use BitTorrent Inc. developed products. Its protocols move as much as 40% of the world's Internet traffic on a daily basis.";
+      newObj["totalSupply"] = '100000000000000000';
+      newObj["issued"] = '66766249779296000';
+      newObj["nrOfTokenHolders"] = '';
+      newObj["startTime"] = 1498838400000;
+      newObj["url"] = 'http://tron.network';
+      newObj["white_paper"] = 'https://tron.network/static/doc/white_paper_v_2_0.pdf';
+      newObj["precision"] = 6;
       this.setState({ tokeninfoItem: newObj });
       return;
     }
@@ -103,9 +111,12 @@ class Tokeninfo extends React.Component {
 
   render() {
     const { tokeninfoItem, detailShow, tvStatus } = this.state;
-    const { selectData, widget } = this.props;
+    const { selectData, widget, price, activeCurrency } = this.props;
     let imgDefault = require("../../../../../images/logo_default.png");
-
+    let price_convert = 0
+    if(price && price[selectData.sShortName == 'TRX' ? 'trxToOther' : 'usdtToOther']){
+      price_convert =(price[selectData.sShortName == 'TRX' ? 'trxToOther' : 'usdtToOther'][activeCurrency && activeCurrency.toLocaleLowerCase()] * selectData.price).toFixed(activeCurrency == 'trx' ? 6 : 8)
+    }
     return (
       <div>
         {/* title 信息 */}
@@ -127,7 +138,9 @@ class Tokeninfo extends React.Component {
             </div>
             <div className="item">
               <p className={selectData.isUp ? 'col-green' : 'col-red'}>{selectData.price}</p>
-              <p>≈ 4.53263</p>
+              {price_convert && <p>≈ 
+                <span>{price_convert} {activeCurrency.toLocaleUpperCase()}</span>
+              </p>}
             </div>
             <div className="item">
               <p>{tu("pairs_change")}</p>
@@ -143,12 +156,12 @@ class Tokeninfo extends React.Component {
             </div>
             <div className="item">
               <p>{tu("24H_VOL")}</p>
-              <p>{selectData.svolume}</p>
+              <p>{selectData.svolume} {selectData.fShortName}</p>
             </div>
-            <div className="item">
+            {/* <div className="item">
               <p>{tu("24H_VOL")}</p>
-              <p>{selectData.volume}</p>
-            </div>
+              <p>{selectData.volume} {selectData.sShortName}</p>
+            </div> */}
           </div>
         </div>
 
@@ -250,7 +263,9 @@ function mapStateToProps(state) {
   return {
     selectData: state.exchange.data,
     selectStatus: state.exchange.status,
-    activeLanguage: state.app.activeLanguage
+    activeLanguage: state.app.activeLanguage,
+    price: state.exchange.price,
+    activeCurrency: state.app.activeCurrency
   };
 }
 
