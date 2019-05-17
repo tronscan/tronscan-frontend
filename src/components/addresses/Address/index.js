@@ -390,7 +390,7 @@ class Address extends React.Component {
         energyLimit:address.bandwidth.energyLimit,
         energyRemaining:address.bandwidth.energyRemaining,
         energyPercentage:address.bandwidth.energyPercentage * 100,
-        availableEnergyPercentage:(1- address.bandwidth.energyPercentage) * 100,
+        availableEnergyPercentage:address.bandwidth.energyRemaining ?(1- address.bandwidth.energyPercentage) * 100 : 0,
     });
 
   }
