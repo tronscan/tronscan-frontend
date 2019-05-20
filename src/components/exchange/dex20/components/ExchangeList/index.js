@@ -78,6 +78,7 @@ class ExchangeList extends React.Component {
       inputValue: ""
     };
     this.tabChange = this.tabChange.bind(this);
+    this.onInputChange = this.onInputChange.bind(this);
   }
 
   async componentDidMount() {
@@ -122,9 +123,18 @@ class ExchangeList extends React.Component {
     let {
       exchange20List,
       exchange20VolumeList,
-      exchange20UpDownList
+      exchange20UpDownList,
+      exchanges20SearchList
     } = this.props;
-    let { tokenAudited, activedTab } = this.state;
+    let { tokenAudited, activedTab,inputValue } = this.state;
+    if(inputValue){
+      if(exchanges20SearchList !== prevProps.exchanges20SearchList){
+        this.setState({
+          dataSource: exchanges20SearchList
+        });
+      }
+      return
+    }
     if (activedTab === "hot" && exchange20List !== prevProps.exchange20List) {
       this.setData(tokenAudited, activedTab);
     }
@@ -293,7 +303,8 @@ class ExchangeList extends React.Component {
       adchURL,
       activedId,
       loading,
-      inputValue
+      inputValue,
+      activedTab
     } = this.state;
 
     let { intl } = this.props;
@@ -376,10 +387,12 @@ class ExchangeList extends React.Component {
               placeholder={intl.formatMessage({ id: "dex_search_dec" })}
               prefix={<Icon type="search" style={{ color: "#333" }} />}
               value={inputValue}
+              allowClear
               onChange={e => {
-                this.setState({
-                  inputValue: e.target.value
-                });
+                this.onInputChange(e)
+                // this.setState({
+                //   inputValue: e.target.value
+                // });
               }}
               onPressEnter={() => this.onPressEnter()}
             />
@@ -390,7 +403,7 @@ class ExchangeList extends React.Component {
 
           {/* filter 筛选 */}
           <div className="dex-tab">
-            <Tabs defaultActiveKey="hot" onChange={this.tabChange}>
+            <Tabs onChange={this.tabChange} activeKey={activedTab}>
               <TabPane
                 tab={
                   <span>
@@ -472,7 +485,7 @@ class ExchangeList extends React.Component {
     });
   }
   tabChange(activeKey) {
-    const { time, timeVolume, timeupDown } = this.state;
+    const { time, timeVolume, timeupDown, inputValue } = this.state;
     const {
       getExchanges20,
       getExchanges20Volume,
@@ -482,6 +495,14 @@ class ExchangeList extends React.Component {
     clearInterval(timeVolume);
     clearInterval(timeupDown);
 
+    if(inputValue){
+      this.setState({
+          activedTab: activeKey,
+          activedId: 0
+        })
+      this.setSearchList(activeKey,0)
+      return
+    }
     this.setState(
       {
         activedTab: activeKey,
@@ -529,7 +550,14 @@ class ExchangeList extends React.Component {
     );
   }
   selcetSort(type) {
-    let { activedTab } = this.state;
+    let { activedTab, inputValue } = this.state;
+    if(inputValue){
+      this.setState({
+        activedId: type
+      })
+      this.setSearchList(activedTab,type)
+      return
+    }
     this.setState(
       {
         activedId: type
@@ -571,21 +599,74 @@ class ExchangeList extends React.Component {
     setPriceConvert(priceObj);
   }
 
-  onInputChange() {}
+  onInputChange(e) {
+    // const { inputValue, activedTab, time, timeVolume, timeupDown } = this.state;
+    this.setState({
+      inputValue: e.target.value
+    });
+    if(!e.target.value){
+      this.setState({
+        activedTab: 'hot',
+        activedId: 0,
+        dataSource: this.keyObj('hot')
+      });
+    }
+  }
 
   onPressEnter() {
-    const { inputValue, activedTab } = this.state;
-    const { getExchanges20Search,exchanges20SearchList } = this.props;
+    const { inputValue, activedTab, time, timeVolume, timeupDown } = this.state;
+    clearInterval(time);
+    clearInterval(timeVolume);
+    clearInterval(timeupDown);
     if (inputValue === "") {
       this.setState({
         dataSource: this.keyObj(activedTab)
       });
     } else {
-      getExchanges20Search({key:inputValue})
-      this.setState({
-        dataSource: exchanges20SearchList
-      });
+      this.setState(
+        {
+          activedTab: 'hot',
+          activedId: 0
+        })
+      this.getSearchList(inputValue)
     }
+  }
+
+  getSearchList(val){
+    const { getExchanges20Search } = this.props;
+    getExchanges20Search({key:val.toUpperCase()})
+  }
+  setSearchList(tab,id){
+    let {exchanges20SearchList} = this.props;
+    let list = exchanges20SearchList
+    switch (tab) {
+      case 'fav':
+        let _list = Lockr.get("dex20") || [];
+        list = exchanges20SearchList.filter(item => _list.includes(item.id))
+        break
+      case 'hot':
+        list = exchanges20SearchList
+        break
+      case 'volume':
+        list = exchanges20SearchList.sort((a,b)=>{
+          return a.trxVolume24h-b.trxVolume24h
+        })
+        break
+      case 'up_and_down':
+        list = exchanges20SearchList.sort((a,b)=>{
+          return a.trxVolume24h-b.trxVolume24h
+        })
+        break
+    }
+    if(id != 0){
+      list = list.filter(v=>{
+        return v.second_token_abbr == id
+      })
+    }
+    
+    this.setState({
+      dataSource: list
+    });
   }
 }
 

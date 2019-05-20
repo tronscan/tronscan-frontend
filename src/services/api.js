@@ -26,8 +26,8 @@ export function channel(path, options) {
 
 class ApiClient20 {
   constructor() {
-    this.apiUrl = "https://api.trx.market";
-    // this.apiUrl = "https://testapi.trx.market";
+    // this.apiUrl = "https://api.trx.market";
+    this.apiUrl = "http://52.15.171.70:21111";
     this.ZDUrl = "https://tron274.zendesk.com";
     this.SCANUrl = "https://tronscanorg.zendesk.com";
   }
@@ -145,8 +145,8 @@ class ApiClient20 {
 
   async getExchanges20SearchList(options = {}) {
     let { data } = await xhr.get(
-      `http://13.58.63.31:21110/api/exchange/marketPair/searchList`,
-      // `${API_URL}/api/exchange/marketPair/searchList`,
+      // `http://52.15.171.70:21110/api/exchange/marketPair/searchList`,
+      `${this.apiUrl}/api/exchange/marketPair/searchList`,
       {
         params: options
       }
@@ -233,7 +233,7 @@ class ApiClient20 {
   async getMarketNew(sortType) {
     let { data } = await xhr({
       method: "get",
-      url: `http://13.58.63.31:21110/api/exchange/marketPair/list?sortType=${sortType}`
+      url: `${this.apiUrl}/api/exchange/marketPair/list?sortType=${sortType}`
     });
     return data;
   }
