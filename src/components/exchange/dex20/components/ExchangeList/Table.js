@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component, Fragment } from "react";
 import { Table } from "antd";
 import { QuestionMark } from "../../../../common/QuestionMark";
 import { withRouter } from "react-router-dom";
@@ -14,7 +14,7 @@ import Lockr from "lockr";
 import _ from "lodash";
 import { Client20 } from "../../../../../services/api";
 
-class ExchangeTable extends React.Component {
+class ExchangeTable extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -31,6 +31,7 @@ class ExchangeTable extends React.Component {
     let { intl, price, activeCurrency } = this.props;
     let { dataSource, offlineToken } = this.state;
     let isfov = Lockr.get("DEX") == "GEM";
+    let favList = Lockr.get("dex20") || [];
     const columns = [
       {
         title: upperFirst(intl.formatMessage({ id: "trc20_price" })),
@@ -39,7 +40,7 @@ class ExchangeTable extends React.Component {
         render: (text, record, index) => {
           return (
             <div className="position-relative" style={{ display: "flex" }}>
-              {isfov && (
+              {/* {isfov && (
                 <div className="fov_tip">
                   {record.token_type == "dex20" ? (
                     <img src={require("../../../../../images/svg/20.svg")} />
@@ -47,7 +48,7 @@ class ExchangeTable extends React.Component {
                     <img src={require("../../../../../images/svg/10.svg")} />
                   )}
                 </div>
-              )}
+              )} */}
 
               <span className="optional-star">
                 <span
@@ -55,7 +56,7 @@ class ExchangeTable extends React.Component {
                     this.setFavorites(ev, record, index);
                   }}
                 >
-                  {record.isChecked ? (
+                  {favList.includes(record.id) ? (
                     <i className="star_red" />
                   ) : (
                     <i className="star" />
@@ -125,6 +126,7 @@ class ExchangeTable extends React.Component {
         align: "right",
         // width: 100,
         render: (text, record, index) => {
+          // console.log(record, text);
           return text.indexOf("-") != -1 ? (
             <span className="col-red bg-color">{text}</span>
           ) : (
@@ -135,22 +137,24 @@ class ExchangeTable extends React.Component {
     ];
 
     return (
-      <Table
-        dataSource={dataSource}
-        columns={columns}
-        pagination={false}
-        rowKey={(record, index) => {
-          return index;
-        }}
-        rowClassName={this.setActiveClass}
-        onRow={record => {
-          return {
-            onClick: () => {
-              this.docodUrl(record);
-            }
-          };
-        }}
-      />
+      <Fragment>
+        <Table
+          dataSource={dataSource}
+          columns={columns}
+          pagination={false}
+          rowKey={(record, index) => {
+            return index;
+          }}
+          rowClassName={this.setActiveClass}
+          onRow={record => {
+            return {
+              onClick: () => {
+                this.docodUrl(record);
+              }
+            };
+          }}
+        />
+      </Fragment>
     );
   }
   setFavorites(ev, record) {
@@ -210,7 +214,7 @@ class ExchangeTable extends React.Component {
     });
 
     // 更新数据
-    if (dataSource.length) {
+    if (dataSource && dataSource.length) {
       if (!parsed || !currentData.length) {
         this.onSetUrl(dataSource[0]);
       } else {

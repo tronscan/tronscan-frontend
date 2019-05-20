@@ -19,7 +19,9 @@ import {
   getExchanges20,
   getExchanges,
   getExchangesAllList,
-  setPriceConvert
+  setPriceConvert,
+  getExchanges20Volume,
+  getExchanges20UpDown
 } from "../../../../../actions/exchange";
 import { connect } from "react-redux";
 import Lockr from "lockr";
@@ -29,6 +31,7 @@ import queryString from "query-string";
 import { Tooltip } from "reactstrap";
 import { alpha } from "../../../../../utils/str";
 import { Client20 } from "../../../../../services/api";
+import { TronLoader } from "../../../../common/loaders";
 
 const Search = Input.Search;
 const TabPane = Tabs.TabPane;
@@ -66,20 +69,36 @@ class ExchangeList extends React.Component {
       adURL: "https://trx.market/launchBase?utm_source=TS2",
       adchURL: "https://trx.market/zh/launchBase?utm_source=TS2",
       activedId: 0,
-      priceObj: {}
+      activedTab: "hot",
+      priceObj: {},
+      loading: true,
+      timeVolume: null,
+      timeupDown: null,
+      inputValue: ""
     };
     this.tabChange = this.tabChange.bind(this);
   }
 
   async componentDidMount() {
-    const { getExchanges20, getExchangesAllList } = this.props;
+    const {
+      getExchanges20,
+      getExchanges20Volume,
+      getExchanges20UpDown
+    } = this.props;
+    //获取各个币的兑换价格
     await this.getCovert("trx");
     await this.getCovert("usdt");
+
     getExchanges20();
-    getExchangesAllList();
+    getExchanges20Volume();
+    getExchanges20UpDown();
+
+    this.setState({
+      loading: false
+    });
+
     const getDataTime = setInterval(() => {
       getExchanges20();
-      getExchangesAllList();
     }, 10000);
     this.setState({ time: getDataTime });
     const dex = Lockr.get("DEX");
@@ -99,10 +118,30 @@ class ExchangeList extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    let { exchange20List } = this.props;
-    let { tokenAudited } = this.state;
-    if (exchange20List !== prevProps.exchange20List) {
-      this.setData(tokenAudited);
+    let {
+      exchange20List,
+      exchange20VolumeList,
+      exchange20UpDownList
+    } = this.props;
+    let { tokenAudited, activedTab } = this.state;
+
+    if (activedTab === "hot" && exchange20List !== prevProps.exchange20List) {
+      this.setData(tokenAudited, activedTab);
+    }
+
+    if (
+      activedTab === "volume" &&
+      exchange20VolumeList !== prevProps.exchange20VolumeList
+    ) {
+      console.log(123);
+      this.setData(tokenAudited, activedTab);
+    }
+
+    if (
+      activedTab === "up_and_down" &&
+      exchange20UpDownList !== prevProps.exchange20UpDownList
+    ) {
+      this.setData(tokenAudited, activedTab);
     }
   }
 
@@ -161,23 +200,45 @@ class ExchangeList extends React.Component {
       AdClose: true
     });
   };
-  setData(type) {
-    let { exchange20List, exchangeallList } = this.props;
+  keyObj(activeKey) {
+    let {
+      exchange20List,
+      exchange20VolumeList,
+      exchange20UpDownList
+    } = this.props;
+
+    let list = [];
+    switch (activeKey) {
+      case "hot":
+        list = exchange20List;
+        break;
+      case "volume":
+        list = exchange20VolumeList;
+        break;
+      case "up_and_down":
+        list = exchange20UpDownList;
+        break;
+      default:
+        break;
+    }
+    return list;
+  }
+  setData(type, activeKey) {
+    let { exchange20List } = this.props;
+
+    let list = this.keyObj(activeKey);
+
     if (type) {
-      this.fiterData();
-      // this.setState({ dataSource: exchange20List });
+      this.fiterData(list);
     } else {
-      let new20List = exchange20List.filter(item => item.isChecked);
-      let newallList = exchangeallList
-        ? exchangeallList.filter(item => item.isChecked)
-        : [];
-      let unreviewedTokenList = _(new20List)
-        .concat(newallList)
-        .value();
+      let list = Lockr.get("dex20") || [];
+      let new20List = exchange20List.filter(item => list.includes(item.id));
+      // let unreviewedTokenList = _(new20List).value();
+      let unreviewedTokenList = new20List;
       this.setState({ dataSource: unreviewedTokenList });
     }
   }
-  handleSelectData = type => {
+  handleSelectData = (type, activeKey) => {
     const { tagLock } = this.state;
     try {
       const { klineLock } = this.props;
@@ -188,8 +249,8 @@ class ExchangeList extends React.Component {
         } else {
           Lockr.set("DEX", "Main");
         }
-        this.setData(type);
-        console.log(type);
+        this.setData(type, activeKey);
+
         setTimeout(() => {
           this.setState({ tagLock: true });
         }, 500);
@@ -228,8 +289,11 @@ class ExchangeList extends React.Component {
       AdClose,
       adURL,
       adchURL,
-      activedId
+      activedId,
+      loading,
+      inputValue
     } = this.state;
+
     let { intl } = this.props;
     return (
       <div className="exchange-list mr-2">
@@ -309,10 +373,17 @@ class ExchangeList extends React.Component {
             <Input
               placeholder={intl.formatMessage({ id: "dex_search_dec" })}
               prefix={<Icon type="search" style={{ color: "#333" }} />}
+              value={inputValue}
+              onChange={e => {
+                this.setState({
+                  inputValue: e.target.value
+                });
+              }}
+              onPressEnter={() => this.onPressEnter()}
             />
-            <div className="collapse-icon">
+            {/* <div className="collapse-icon">
               <Icon type="arrow-left" />
-            </div>
+            </div> */}
           </div>
 
           {/* filter 筛选 */}
@@ -370,7 +441,11 @@ class ExchangeList extends React.Component {
                 className="exchange-list__table"
                 style={AdClose ? styles.list : styles.adlist}
               >
-                <ExchangeTable dataSource={dataSource} />
+                {loading ? (
+                  <TronLoader />
+                ) : (
+                  <ExchangeTable dataSource={dataSource} />
+                )}
               </div>
             </PerfectScrollbar>
           }
@@ -381,13 +456,12 @@ class ExchangeList extends React.Component {
       </div>
     );
   }
-  fiterData() {
+  fiterData(list) {
     let { activedId } = this.state;
-    let { exchange20List } = this.props;
-    let fiterData = exchange20List;
+    let fiterData = list;
+
     if (activedId !== 0) {
-      fiterData = exchange20List.filter((item, index) => {
-        console.log(item.second_token_id, activedId);
+      fiterData = list.filter((item, index) => {
         return item.second_token_id === activedId;
       });
     }
@@ -396,41 +470,72 @@ class ExchangeList extends React.Component {
     });
   }
   tabChange(activeKey) {
+    const { time, timeVolume, timeupDown } = this.state;
+    const {
+      getExchanges20,
+      getExchanges20Volume,
+      getExchanges20UpDown
+    } = this.props;
+    clearInterval(time);
+    clearInterval(timeVolume);
+    clearInterval(timeupDown);
     switch (activeKey) {
       case "fav":
         this.handleSelectData(false);
         break;
       case "hot":
-        this.handleSelectData(true);
+        getExchanges20();
+        this.setState({
+          time: setInterval(() => {
+            getExchanges20();
+          }, 10000)
+        });
+        this.handleSelectData(true, activeKey);
+
         break;
       case "volume":
-        this.handleSelectData(true);
+        getExchanges20Volume();
+        this.setState({
+          timeVolume: setInterval(() => {
+            getExchanges20Volume();
+          }, 10000)
+        });
+
+        this.handleSelectData(true, activeKey);
         break;
       case "up_and_down":
-        this.handleSelectData(true);
+        getExchanges20UpDown();
+        this.setState({
+          timeupDown: setInterval(() => {
+            getExchanges20UpDown();
+          }, 10000)
+        });
+        this.handleSelectData(true, activeKey);
         break;
       default:
+        this.handleSelectData(true, activeKey);
         break;
     }
   }
   selcetSort(type) {
+    let { activedTab } = this.props;
     this.setState(
       {
         activedId: type
       },
       () => {
-        this.fiterData();
+        this.fiterData(this.keyObj(activedTab));
       }
     );
   }
   async getCovert(type) {
     const { setPriceConvert } = this.props;
     let { priceObj } = this.state;
-
+    let data = await Client20.coinMarketCap(type, "eth");
+    let data1 = await Client20.coinMarketCap(type, "eur");
     if (type === "trx") {
       let trxToOther = {};
-      let data = await Client20.coinMarketCap(type, "eth");
-      let data1 = await Client20.coinMarketCap(type, "eur");
+
       trxToOther = {
         usd: data[0].price_usd,
         btc: data[0].price_btc,
@@ -441,8 +546,7 @@ class ExchangeList extends React.Component {
       priceObj.trxToOther = trxToOther;
     } else if (type === "usdt") {
       let usdtToOther = {};
-      let data = await Client20.coinMarketCap(type, "eth");
-      let data1 = await Client20.coinMarketCap(type, "eur");
+
       let data2 = await Client20.coinMarketCap(type, "trx");
       usdtToOther = {
         trx: data2[0].price_trx,
@@ -455,12 +559,30 @@ class ExchangeList extends React.Component {
     }
     setPriceConvert(priceObj);
   }
+
+  onInputChange() {}
+
+  onPressEnter() {
+    const { inputValue, activedTab } = this.state;
+
+    if (inputValue === "") {
+      this.setState({
+        dataSource: this.keyObj(activedTab)
+      });
+    } else {
+      // this.setState({
+      //   dataSource: []
+      // });
+    }
+  }
 }
 
 function mapStateToProps(state) {
   return {
     activeLanguage: state.app.activeLanguage,
     exchange20List: state.exchange.list_20,
+    exchange20VolumeList: state.exchange.volumeList,
+    exchange20UpDownList: state.exchange.upDownList,
     exchange10List: state.exchange.list_10,
     exchangeallList: state.exchange.list_all,
     klineLock: state.exchange.klineLock,
@@ -473,7 +595,9 @@ const mapDispatchToProps = {
   getExchanges20,
   getExchangesAllList,
   getExchanges,
-  setPriceConvert
+  setPriceConvert,
+  getExchanges20Volume,
+  getExchanges20UpDown
 };
 
 export default connect(

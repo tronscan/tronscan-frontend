@@ -1,6 +1,6 @@
 .exchange-revised {
   .exchange-box-left {
-    width: 350px;
+    width: 340px;
   }
   .collapse-icon {
     background: rgba(194, 54, 49, 0.1);
@@ -15,13 +15,13 @@
   }
   .exchange-list-mark {
     .ant-input-affix-wrapper {
-      width: 85%;
+      width: 100%;
     }
   }
   .dex-tab {
     .ant-tabs-nav .ant-tabs-tab {
       margin: 0;
-      padding: 12px 11px;
+      padding: 12px 15px;
     }
     .ant-tabs-bar {
       margin-bottom: 0;
@@ -57,14 +57,16 @@
     }
   }
   .bg-color.col-red {
-    padding: 5px 2px;
+    padding: 2px 5px;
     background: rgba(230, 8, 21, 0.1);
     border-radius: 4px;
+    font-size: 14px;
   }
   .bg-color.col-green {
-    padding: 5px 2px;
+    padding: 2px 5px;
     background: rgba(105, 194, 101, 0.1);
     border-radius: 4px;
+    font-size: 14px;
   }
   .exchange-list .ant-table tr {
     background-color: #fff;
