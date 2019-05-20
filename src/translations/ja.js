@@ -1706,6 +1706,8 @@ export const messages = {
     "address_energyRemaining":"ご利用可能のエネルギー",
     "address_energyUsed":"利用済のエネルギー",
     "address_percentage":"比率",
+    "address_net_fee":"Bandwidth Cost",
+    "address_energy_fee":"Energy Cost",
 
     /*
     ##################################################################################

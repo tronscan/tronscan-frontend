@@ -1699,6 +1699,8 @@
     "address_energyRemaining":"الطاقة المتاحة",
     "address_energyUsed":"الطاقة المستخدمة",
     "address_percentage":"النسبة",
+    "address_net_fee":"Bandwidth Cost",
+    "address_energy_fee":"Energy Cost",
 
     /*
     ##################################################################################

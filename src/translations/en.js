@@ -1754,7 +1754,7 @@ export const messages = {
   "address_balance_token_price_TRX":"Value",
   "address_transactions_tip":"Transactions includes transfers",
   "address_tron_power_tip":"Freeze TRX to get TRON Power",
-  "address_total_balance_tip":"The total balance includes all valuable tokens",
+  "address_total_balance_tip":"The total balance is the sum of all valuable tokens (including TRON Power)",
   "address_tron_power_used":"Used",
   "address_tron_power_remaining":"Available",
   "address_total_balance_info_sources":"Information source ",
@@ -1767,6 +1767,8 @@ export const messages = {
   "address_energyRemaining":"Available Energy",
   "address_energyUsed":"Used Energy",
   "address_percentage":"Percentage",
+  "address_net_fee":"Bandwidth Cost",
+  "address_energy_fee":"Energy Cost",
 
   /*
      ##################################################################################

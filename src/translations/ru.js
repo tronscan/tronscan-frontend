@@ -1712,6 +1712,8 @@ export const messages = {
   "address_energyRemaining":"Доступная энергия",
   "address_energyUsed":"Использованная энергия",
   "address_percentage":"Соотношение",
+  "address_net_fee":"Bandwidth Cost",
+  "address_energy_fee":"Energy Cost",
 
   /*
   ##################################################################################

@@ -1753,6 +1753,8 @@ export const messages = {
   "address_energyRemaining":"Available Energy",
   "address_energyUsed":"Used Energy",
   "address_percentage":"Percentage",
+  "address_net_fee":"Bandwidth Cost",
+  "address_energy_fee":"Energy Cost",
 
   /*
     ##################################################################################

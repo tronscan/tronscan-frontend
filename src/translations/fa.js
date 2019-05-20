@@ -1700,6 +1700,8 @@ export const messages = {
     "address_energyRemaining":"انرژی موجود",
     "address_energyUsed":"انرژی استفاده شده",
     "address_percentage":"نسبت",
+    "address_net_fee":"Bandwidth Cost",
+    "address_energy_fee":"Energy Cost",
 
     /*
     ##################################################################################

@@ -132,7 +132,7 @@ class NewTransactions extends React.Component {
                 dataIndex: 'hash',
                 key: 'hash',
                 align: 'left',
-                width:'15%',
+                width:'10%',
                 className: 'ant_table',
                 render: (text, record, index) => {
                     return <Truncate>
@@ -167,6 +167,7 @@ class NewTransactions extends React.Component {
                 key: 'contractRet',
                 align: 'left',
                 className: 'ant_table',
+                width: '15%',
                 render: (text, record, index) => {
                     return <span>{text}</span>
                 }
@@ -213,7 +214,7 @@ class NewTransactions extends React.Component {
                     return <span>
                         {
                             record.cost?
-                                <span>{record.cost.net_usage + record.cost.net_fee/10 }</span>
+                                <FormattedNumber value={record.cost.net_usage + record.cost.net_fee/10 }/>
                                 : <span>-</span>
 
 
@@ -231,7 +232,7 @@ class NewTransactions extends React.Component {
                     return <span>
                         {
                             record.cost?
-                                <span>{record.cost.energy_usage_total}</span>
+                                <FormattedNumber value={record.cost.energy_usage_total}/>
                                 : <span>-</span>
                         }
                     </span>
