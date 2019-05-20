@@ -585,8 +585,8 @@ export default class Account extends Component {
             })
           }
           {
-            delegated&&delegated.sentDelegatedResource&&delegated.sentDelegatedResource.map((item)=>{
-              return <tr>
+            delegated&&delegated.sentDelegatedResource&&delegated.sentDelegatedResource.map((item,index)=>{
+              return <tr key={index}>
                 <td>
                   <AddressLink address={item.to} truncate={false}>
                     <span className="color-tron-100">{item.to}</span>

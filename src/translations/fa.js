@@ -1693,13 +1693,25 @@ export const messages = {
     "address_total_balance_info_sources":"منبع اطلاعات",
     "address_info_transfers": "انتقال",
     "address_info_transactions": "معاملات",
-    "address_netLimit":"Total Bandwidth",
-    "address_netRemaining":"Available Bandwidth",
-    "address_netUsed":"Used Bandwidth",
-    "address_energyLimit":"Total Energy",
-    "address_energyRemaining":"Available Energy",
-    "address_energyUsed":"Used Energy",
-    "address_percentage":"Percentage",
+    "address_netLimit":"کل پهنای باند",
+    "address_netRemaining":"پهنای موجود",
+    "address_netUsed":"پهنای باند استفاده شده",
+    "address_energyLimit":"کل انرژی",
+    "address_energyRemaining":"انرژی موجود",
+    "address_energyUsed":"انرژی استفاده شده",
+    "address_percentage":"نسبت",
+
+    /*
+    ##################################################################################
+    #                                                                                #
+    # footer  2019-05-20                                    #
+    #                                                                                #
+    ##################################################################################
+*/
+    "footer_fellow_us":"Fellow Us",
+    "footer_developer_resources":"Developer Resources",
+    "footer_support_center":"Support Center",
+    "footer_tron_network":"TRON"
 
 
 

@@ -1754,6 +1754,18 @@ export const messages = {
   "address_energyUsed":"Used Energy",
   "address_percentage":"Percentage",
 
+  /*
+    ##################################################################################
+    #                                                                                #
+    # footer  2019-05-20                                    #
+    #                                                                                #
+    ##################################################################################
+  */
+  "footer_fellow_us":"Fellow Us",
+  "footer_developer_resources":"Developer Resources",
+  "footer_support_center":"Support Center",
+  "footer_tron_network":"TRON"
+
 
 
 };

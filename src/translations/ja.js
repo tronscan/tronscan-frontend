@@ -1699,13 +1699,25 @@ export const messages = {
     "address_total_balance_info_sources":"情報出典",
     "address_info_transfers": "振替",
     "address_info_transactions": "取引",
-    "address_netLimit":"Total Bandwidth",
-    "address_netRemaining":"Available Bandwidth",
-    "address_netUsed":"Used Bandwidth",
-    "address_energyLimit":"Total Energy",
-    "address_energyRemaining":"Available Energy",
-    "address_energyUsed":"Used Energy",
-    "address_percentage":"Percentage",
+    "address_netLimit":"バンド幅総量",
+    "address_netRemaining":"ご利用可能のバンド幅",
+    "address_netUsed":"利用済のバンド幅",
+    "address_energyLimit":"エネルギー総量",
+    "address_energyRemaining":"ご利用可能のエネルギー",
+    "address_energyUsed":"利用済のエネルギー",
+    "address_percentage":"比率",
+
+    /*
+    ##################################################################################
+    #                                                                                #
+    # footer  2019-05-20                                    #
+    #                                                                                #
+    ##################################################################################
+*/
+    "footer_fellow_us":"Fellow Us",
+    "footer_developer_resources":"Developer Resources",
+    "footer_support_center":"Support Center",
+    "footer_tron_network":"TRON"
 
 
 }

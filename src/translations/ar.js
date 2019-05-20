@@ -1692,13 +1692,25 @@
     "address_total_balance_info_sources":"مصادر المعلومات",
     "address_info_transfers": "تحويل",
     "address_info_transactions": "التداول",
-    "address_netLimit":"Total Bandwidth",
-    "address_netRemaining":"Available Bandwidth",
-    "address_netUsed":"Used Bandwidth",
-    "address_energyLimit":"Total Energy",
-    "address_energyRemaining":"Available Energy",
-    "address_energyUsed":"Used Energy",
-    "address_percentage":"Percentage",
+    "address_netLimit":"إجمالي النطاق الترددي",
+    "address_netRemaining":"النطاق الترددي المتاح",
+    "address_netUsed":"عرض النطاق الترددي مستخدم",
+    "address_energyLimit":"مجموع الطاقة",
+    "address_energyRemaining":"الطاقة المتاحة",
+    "address_energyUsed":"الطاقة المستخدمة",
+    "address_percentage":"النسبة",
+
+    /*
+    ##################################################################################
+    #                                                                                #
+    # footer  2019-05-20                                    #
+    #                                                                                #
+    ##################################################################################
+*/
+    "footer_fellow_us":"Fellow Us",
+    "footer_developer_resources":"Developer Resources",
+    "footer_support_center":"Support Center",
+    "footer_tron_network":"TRON"
 
 
 };

@@ -1778,4 +1778,16 @@ export const messages = {
     "address_percentage":"占比",
     "address_net_fee":"消耗带宽",
     "address_energy_fee":"消耗能量",
+
+    /*
+       ##################################################################################
+       #                                                                                #
+       # footer  2019-05-20                                    #
+       #                                                                                #
+       ##################################################################################
+   */
+    "footer_fellow_us":"关注我们",
+    "footer_developer_resources":"开发中心",
+    "footer_support_center":"帮助中心",
+    "footer_tron_network":"波场官网",
 };

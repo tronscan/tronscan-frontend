@@ -1702,13 +1702,25 @@ export const messages = {
     "address_total_balance_info_sources":"정보 출처",
     "address_info_transfers": "전송",
     "address_info_transactions": "거래",
-    "address_netLimit":"Total Bandwidth",
-    "address_netRemaining":"Available Bandwidth",
-    "address_netUsed":"Used Bandwidth",
-    "address_energyLimit":"Total Energy",
-    "address_energyRemaining":"Available Energy",
-    "address_energyUsed":"Used Energy",
-    "address_percentage":"Percentage",
+    "address_netLimit":"총 대역폭",
+    "address_netRemaining":"사용 가능한 대역폭",
+    "address_netUsed":"사용 된 대역폭",
+    "address_energyLimit":"총 에너지",
+    "address_energyRemaining":"사용 가능한 에너지",
+    "address_energyUsed":"사용 된 에너지",
+    "address_percentage":"비율",
+
+    /*
+    ##################################################################################
+    #                                                                                #
+    # footer  2019-05-20                                    #
+    #                                                                                #
+    ##################################################################################
+    */
+    "footer_fellow_us":"Fellow Us",
+    "footer_developer_resources":"Developer Resources",
+    "footer_support_center":"Support Center",
+    "footer_tron_network":"TRON"
 
 
 };
