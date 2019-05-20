@@ -178,6 +178,7 @@ class NewTransactions extends React.Component {
                 key: 'block',
                 align: 'left',
                 className: 'ant_table',
+                width: '10%',
                 render: (text, record, index) => {
                     return <BlockNumberLink number={record.block}/>
                 }
