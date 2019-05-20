@@ -101,7 +101,8 @@ export const getSelectData = (data, isSelect = false) => async dispatch => {
 
 //获取20列表，及对数据整理
 export const getExchanges20 = () => async dispatch => {
-  let { data } = await Client20.getexchanges20();
+  // let { data } = await Client20.getexchanges20();
+  let { data } = await Client20.getMarketNew(1);
 
   let f20_list = Lockr.get("dex20") || [];
 
@@ -224,7 +225,8 @@ export const getExchanges = () => async dispatch => {
 
 //获取20成交额列表，及对数据整理
 export const getExchanges20Volume = () => async dispatch => {
-  let { data } = await Client20.getexchanges20();
+  // let { data } = await Client20.getexchanges20();
+  let { data } = await Client20.getMarketNew(0);
 
   let f20_list = Lockr.get("dex20") || [];
 
@@ -266,7 +268,8 @@ export const getExchanges20Volume = () => async dispatch => {
 
 //获取20列表涨幅榜，及对数据整理
 export const getExchanges20UpDown = () => async dispatch => {
-  let { data } = await Client20.getexchanges20();
+  // let { data } = await Client20.getexchanges20();
+  let { data } = await Client20.getMarketNew(2);
 
   let f20_list = Lockr.get("dex20") || [];
 

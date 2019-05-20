@@ -217,6 +217,15 @@ class ApiClient20 {
     });
     return data;
   }
+
+  //market新接口，sortType=0 24小时交易额 sortType=1 热门 sortType=2 涨跌幅
+  async getMarketNew(sortType) {
+    let { data } = await xhr({
+      method: "get",
+      url: `http://13.58.63.31:21110/api/exchange/marketPair/list?sortType=${sortType}`
+    });
+    return data;
+  }
 }
 
 export const Client20 = new ApiClient20();

@@ -105,9 +105,9 @@ class ExchangeList extends React.Component {
     if (!dex) {
       Lockr.set("DEX", "Main");
     }
-    if (dex == "GEM") {
-      this.setState({ tokenAudited: false });
-    }
+    // if (dex == "GEM") {
+    //   this.setState({ tokenAudited: false });
+    // }
 
     //this.countdown();
   }
@@ -124,7 +124,6 @@ class ExchangeList extends React.Component {
       exchange20UpDownList
     } = this.props;
     let { tokenAudited, activedTab } = this.state;
-
     if (activedTab === "hot" && exchange20List !== prevProps.exchange20List) {
       this.setData(tokenAudited, activedTab);
     }
@@ -133,7 +132,6 @@ class ExchangeList extends React.Component {
       activedTab === "volume" &&
       exchange20VolumeList !== prevProps.exchange20VolumeList
     ) {
-      console.log(123);
       this.setData(tokenAudited, activedTab);
     }
 
@@ -219,13 +217,14 @@ class ExchangeList extends React.Component {
         list = exchange20UpDownList;
         break;
       default:
+        let listIds = Lockr.get("dex20") || [];
+        list = exchange20List.filter(item => listIds.includes(item.id));
         break;
     }
     return list;
   }
   setData(type, activeKey) {
     let { exchange20List } = this.props;
-
     let list = this.keyObj(activeKey);
 
     if (type) {
@@ -235,7 +234,9 @@ class ExchangeList extends React.Component {
       let new20List = exchange20List.filter(item => list.includes(item.id));
       // let unreviewedTokenList = _(new20List).value();
       let unreviewedTokenList = new20List;
-      this.setState({ dataSource: unreviewedTokenList });
+      // this.setState({ dataSource: unreviewedTokenList });
+
+      this.fiterData(unreviewedTokenList);
     }
   }
   handleSelectData = (type, activeKey) => {
@@ -479,46 +480,55 @@ class ExchangeList extends React.Component {
     clearInterval(time);
     clearInterval(timeVolume);
     clearInterval(timeupDown);
-    switch (activeKey) {
-      case "fav":
-        this.handleSelectData(false);
-        break;
-      case "hot":
-        getExchanges20();
-        this.setState({
-          time: setInterval(() => {
+
+    this.setState(
+      {
+        activedTab: activeKey,
+        activedId: 0
+      },
+      () => {
+        switch (activeKey) {
+          case "fav":
+            this.handleSelectData(false);
+            break;
+          case "hot":
             getExchanges20();
-          }, 10000)
-        });
-        this.handleSelectData(true, activeKey);
+            this.setState({
+              time: setInterval(() => {
+                getExchanges20();
+              }, 10000)
+            });
+            this.handleSelectData(true, activeKey);
 
-        break;
-      case "volume":
-        getExchanges20Volume();
-        this.setState({
-          timeVolume: setInterval(() => {
+            break;
+          case "volume":
             getExchanges20Volume();
-          }, 10000)
-        });
+            this.setState({
+              timeVolume: setInterval(() => {
+                getExchanges20Volume();
+              }, 10000)
+            });
 
-        this.handleSelectData(true, activeKey);
-        break;
-      case "up_and_down":
-        getExchanges20UpDown();
-        this.setState({
-          timeupDown: setInterval(() => {
+            this.handleSelectData(true, activeKey);
+            break;
+          case "up_and_down":
             getExchanges20UpDown();
-          }, 10000)
-        });
-        this.handleSelectData(true, activeKey);
-        break;
-      default:
-        this.handleSelectData(true, activeKey);
-        break;
-    }
+            this.setState({
+              timeupDown: setInterval(() => {
+                getExchanges20UpDown();
+              }, 10000)
+            });
+            this.handleSelectData(true, activeKey);
+            break;
+          default:
+            this.handleSelectData(true, activeKey);
+            break;
+        }
+      }
+    );
   }
   selcetSort(type) {
-    let { activedTab } = this.props;
+    let { activedTab } = this.state;
     this.setState(
       {
         activedId: type
