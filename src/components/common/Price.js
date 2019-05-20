@@ -63,7 +63,6 @@ class PriceProviderCmp extends React.PureComponent {
   }
 
   componentDidMount() {
-    console.log("rpops", this.props.activeCurrency);
     this.loadPrices();
   }
 

@@ -7,7 +7,7 @@ import { tu } from "../../../../../utils/i18n";
 import xhr from "axios/index";
 import { map, concat } from "lodash";
 import ExchangeTable from "./Table";
-import SearchTable from "./SearchTable";
+// import SearchTable from "./SearchTable";
 import { Explain } from "./Explain";
 import "react-perfect-scrollbar/dist/css/styles.css";
 import PerfectScrollbar from "react-perfect-scrollbar";
@@ -333,7 +333,7 @@ class ExchangeList extends React.Component {
               </i>
             </a>
           )}
-          <div className="d-flex  justify-content-between align-items-center w-100 mb-3">
+          <div className="d-flex  justify-content-between align-items-center w-100">
             {/* <h6 className="m-0">
               
               <a href="https://trx.market" target="_blank" className="">
@@ -575,13 +575,13 @@ class ExchangeList extends React.Component {
 
   onPressEnter() {
     const { inputValue, activedTab } = this.state;
-    const { getExchanges20Search,exchanges20SearchList } = this.props;
+    const { getExchanges20Search, exchanges20SearchList } = this.props;
     if (inputValue === "") {
       this.setState({
         dataSource: this.keyObj(activedTab)
       });
     } else {
-      getExchanges20Search({key:inputValue})
+      getExchanges20Search({ key: inputValue });
       this.setState({
         dataSource: exchanges20SearchList
       });

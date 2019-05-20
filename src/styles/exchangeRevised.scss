@@ -1,7 +1,10 @@
 .exchange-revised {
   .scrollbar-container {
-    height: 1300px;
+    max-height: 1300px;
     overflow-y: scroll;
+  }
+  .exchange-list .ant-table tr:hover > td {
+    font-weight: normal;
   }
   .exchange-box-left {
     width: 340px;
@@ -25,7 +28,7 @@
   .dex-tab {
     .ant-tabs-nav .ant-tabs-tab {
       margin: 0;
-      padding: 12px 15px;
+      padding: 12px 5%;
     }
     .ant-tabs-bar {
       margin-bottom: 0;

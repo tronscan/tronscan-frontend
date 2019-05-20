@@ -235,15 +235,15 @@ class ExchangeTable extends Component {
     const { getSelectData } = this.props;
     const { trxToOther, usdtToOther } = this.state;
 
-    if (record.token_type != "dex20") {
-      this.props.history.push(
-        "/exchange/trc10?token=" +
-          record.exchange_name +
-          "&id=" +
-          record.exchange_id
-      );
-      return;
-    }
+    // if (record.token_type != "dex20") {
+    //   this.props.history.push(
+    //     "/exchange/trc10?token=" +
+    //       record.exchange_name +
+    //       "&id=" +
+    //       record.exchange_id
+    //   );
+    //   return;
+    // }
     this.setState({
       activeIndex: record.exchange_id //获取点击行的索引
     });

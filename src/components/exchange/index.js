@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { injectIntl } from "react-intl";
 import { Client, Client20 } from "../../services/api";
 import { tu } from "../../utils/i18n";
-import { parallelLoadScripts } from "../../utils/ga";
+
 import { TronLoader } from "../common/loaders";
 import { withRouter } from "react-router";
 import { connect } from "react-redux";
@@ -25,21 +25,6 @@ class Exchange extends React.Component {
 
     // const { data } = await Client.getNotices({ limit: 3, sort: "-timestamp" });
     this.setState({ notice: data.articles });
-    console.log(parallelLoadScripts);
-    parallelLoadScripts(
-      ["https://www.googletagmanager.com/gtag/js?id=UA-117929022-9"],
-      () => {
-        console.log(123);
-        window.dataLayer = window.dataLayer || [];
-        let dataLayer = window.dataLayer;
-        function gtag() {
-          dataLayer.push(arguments);
-        }
-        gtag("js", new Date());
-
-        gtag("config", "UA-117929022-9");
-      }
-    );
   }
 
   async componentDidUpdate(prevProps) {

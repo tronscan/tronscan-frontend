@@ -42,6 +42,7 @@ class Notice extends React.Component {
 
   render() {
     let { intl, match } = this.props;
+    let { notice } = this.state;
     let lg = "";
     if (intl.locale === "zh") {
       lg = "CN";
@@ -55,16 +56,17 @@ class Notice extends React.Component {
           alt=""
         />
         <div className="notice-wrap">
-          {this.state.notice.map((v, i) => (
-            <a className="item" key={v.id} href={v.html_url} target="_blank">
-              <span title={v.name} className="title">
-                {v.name}
-              </span>
-              <span className="date">({v.created_at.substring(5, 10)})</span>
-            </a>
-          ))}
+          {notice &&
+            notice.map((v, i) => (
+              <a className="item" key={v.id} href={v.html_url} target="_blank">
+                <span title={v.name} className="title">
+                  {v.name}
+                </span>
+                <span className="date">({v.created_at.substring(5, 10)})</span>
+              </a>
+            ))}
         </div>
-        {this.state.notice.length > 0 ? (
+        {notice && notice.length > 0 ? (
           <a
             href={
               lg == "CN"
