@@ -10,7 +10,10 @@ import {
   SET_10_LOCK,
   SET_WIDGET,
   SET_REGISTER,
-  SET_PRICE_CONVERT
+  SET_PRICE_CONVERT,
+  SET_EXCHANGE20VOLUME_LIST,
+  SET_EXCHANGE20UPDOWN_LIST,
+  SET_EXCHANGE20SEARCH_LIST
 } from "../actions/exchange";
 
 const initialState = {
@@ -41,10 +44,28 @@ export function exchangeReducer(state = initialState, action) {
         list_20: action.list
       };
     }
+    case SET_EXCHANGE20VOLUME_LIST: {
+      return {
+        ...state,
+        volumeList: action.volumeList
+      };
+    }
+    case SET_EXCHANGE20UPDOWN_LIST: {
+      return {
+        ...state,
+        upDownList: action.upDownList
+      };
+    }
+    case SET_EXCHANGE20SEARCH_LIST: {
+      return {
+        ...state,
+        searchList: action.searchList
+      };
+    }
     case SET_EXCHANGE10_LIST: {
       return {
         ...state,
-        list_10: action.list
+        list_10: action.upDownList
       };
     }
     case SET_EXCHANGEALL_LIST: {

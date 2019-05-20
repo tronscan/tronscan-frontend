@@ -16,6 +16,9 @@ export const SET_10_LOCK = "SET_10_LOCK";
 export const SET_WIDGET = "SET_WIDGET";
 export const SET_REGISTER = "SET_REGISTER";
 export const SET_PRICE_CONVERT = "SET_PRICE_CONVERT";
+export const SET_EXCHANGE20VOLUME_LIST = "SET_EXCHANGE20VOLUME_LIST";
+export const SET_EXCHANGE20UPDOWN_LIST = "SET_EXCHANGE20UPDOWN_LIST";
+export const SET_EXCHANGE20SEARCH_LIST = "SET_EXCHANGE20SEARCH_LIST";
 
 export const setSelectData = data => ({
   type: SET_SELECT_DATA,
@@ -30,6 +33,18 @@ export const setSelectStatus = status => ({
 export const setExchanges20 = (list = []) => ({
   type: SET_EXCHANGE20_LIST,
   list
+});
+export const setExchanges20Volume = (volumeList = []) => ({
+  type: SET_EXCHANGE20VOLUME_LIST,
+  volumeList
+});
+export const setExchanges20UpDown = (upDownList = []) => ({
+  type: SET_EXCHANGE20UPDOWN_LIST,
+  upDownList
+});
+export const setExchanges20Search = (searchList = []) => ({
+  type: SET_EXCHANGE20SEARCH_LIST,
+  searchList
 });
 export const setExchanges10 = (list = []) => ({
   type: SET_EXCHANGE10_LIST,
@@ -89,8 +104,10 @@ export const getSelectData = (data, isSelect = false) => async dispatch => {
   dispatch(setSelectStatus(isSelect));
 };
 
+//获取20列表，及对数据整理
 export const getExchanges20 = () => async dispatch => {
   let { data } = await Client20.getexchanges20();
+
   let f20_list = Lockr.get("dex20") || [];
 
   let newList = cloneDeep(data.rows).map((item, index) => {
@@ -111,14 +128,13 @@ export const getExchanges20 = () => async dispatch => {
     item.token_type = "dex20";
 
     if (item.gain.indexOf("-") != -1) {
-      item.up_down_percent =
-        "-" + Math.abs(Number(item.gain * 100).toFixed(2)) + "%";
+      item.up_down_percent = Number(item.gain * 100).toFixed(2) + "%";
       item.isUp = false;
     } else {
-      item.up_down_percent =
-        "+" + Math.abs(Number(item.gain * 100).toFixed(2)) + "%";
+      item.up_down_percent = "+" + Number(item.gain * 100).toFixed(2) + "%";
       item.isUp = true;
     }
+
     f20_list.map(id => {
       if (item.exchange_id == id) {
         item.isChecked = true;
@@ -130,6 +146,7 @@ export const getExchanges20 = () => async dispatch => {
   dispatch(setExchanges20(newList));
 };
 
+//获取10币所有列表，并且对数据整理
 export const getExchangesAllList = () => async dispatch => {
   let { exchangesAllList } = await Client.getexchangesAllList();
 
@@ -208,6 +225,134 @@ export const getExchanges = () => async dispatch => {
   });
 
   dispatch(setExchanges10(newData));
+};
+
+//获取20成交额列表，及对数据整理
+export const getExchanges20Volume = () => async dispatch => {
+  let { data } = await Client20.getexchanges20();
+
+  let f20_list = Lockr.get("dex20") || [];
+
+  let newList = cloneDeep(data.rows).map((item, index) => {
+    item.exchange_id = item.id;
+    item.exchange_name = item.fTokenName + "/" + item.sTokenName;
+    item.exchange_abbr_name = item.fShortName + "/" + item.sShortName;
+    item.first_token_id = item.fTokenName;
+    item.second_token_id = item.sTokenName;
+    item.first_token_abbr = item.fShortName;
+    item.second_token_abbr = item.sShortName;
+    item.price = Number(
+      (item.price / Math.pow(10, item.sPrecision)).toFixed(item.sPrecision)
+    );
+    item.volume = parseInt(item.volume / Math.pow(10, item.fPrecision));
+    item.svolume = parseInt(item.volume24h / Math.pow(10, item.sPrecision));
+    item.high = item.highestPrice24h;
+    item.low = item.lowestPrice24h;
+    item.token_type = "dex20";
+
+    if (item.gain.indexOf("-") != -1) {
+      item.up_down_percent = Number(item.gain * 100).toFixed(2) + "%";
+      item.isUp = false;
+    } else {
+      item.up_down_percent = "+" + Number(item.gain * 100).toFixed(2) + "%";
+      item.isUp = true;
+    }
+
+    f20_list.map(id => {
+      if (item.exchange_id == id) {
+        item.isChecked = true;
+      }
+    });
+
+    return item;
+  });
+  dispatch(setExchanges20Volume(newList));
+};
+
+//获取20列表涨幅榜，及对数据整理
+export const getExchanges20UpDown = () => async dispatch => {
+  let { data } = await Client20.getexchanges20();
+
+  let f20_list = Lockr.get("dex20") || [];
+
+  let newList = cloneDeep(data.rows).map((item, index) => {
+    item.exchange_id = item.id;
+    item.exchange_name = item.fTokenName + "/" + item.sTokenName;
+    item.exchange_abbr_name = item.fShortName + "/" + item.sShortName;
+    item.first_token_id = item.fTokenName;
+    item.second_token_id = item.sTokenName;
+    item.first_token_abbr = item.fShortName;
+    item.second_token_abbr = item.sShortName;
+    item.price = Number(
+      (item.price / Math.pow(10, item.sPrecision)).toFixed(item.sPrecision)
+    );
+    item.volume = parseInt(item.volume / Math.pow(10, item.fPrecision));
+    item.svolume = parseInt(item.volume24h / Math.pow(10, item.sPrecision));
+    item.high = item.highestPrice24h;
+    item.low = item.lowestPrice24h;
+    item.token_type = "dex20";
+
+    if (item.gain.indexOf("-") != -1) {
+      item.up_down_percent = Number(item.gain * 100).toFixed(2) + "%";
+      item.isUp = false;
+    } else {
+      item.up_down_percent = "+" + Number(item.gain * 100).toFixed(2) + "%";
+      item.isUp = true;
+    }
+
+    f20_list.map(id => {
+      if (item.exchange_id == id) {
+        item.isChecked = true;
+      }
+    });
+
+    return item;
+  });
+  dispatch(setExchanges20UpDown(newList));
+};
+
+//获取20列表涨幅榜，及对数据整理
+export const getExchanges20Search = (query) => async dispatch => {
+  let { data } = await Client20.getExchanges20SearchList(query);
+
+  let f20_list = Lockr.get("dex20") || [];
+  let newList =[]
+  if(data.rows && data.rows.length > 0){
+    newList = cloneDeep(data.rows).map((item, index) => {
+      item.exchange_id = item.id;
+      item.exchange_name = item.fTokenName + "/" + item.sTokenName;
+      item.exchange_abbr_name = item.fShortName + "/" + item.sShortName;
+      item.first_token_id = item.fTokenName;
+      item.second_token_id = item.sTokenName;
+      item.first_token_abbr = item.fShortName;
+      item.second_token_abbr = item.sShortName;
+      item.price = Number(
+        (item.price / Math.pow(10, item.sPrecision)).toFixed(item.sPrecision)
+      );
+      item.volume = parseInt(item.volume / Math.pow(10, item.fPrecision));
+      item.svolume = parseInt(item.volume24h / Math.pow(10, item.sPrecision));
+      item.high = item.highestPrice24h;
+      item.low = item.lowestPrice24h;
+      item.token_type = "dex20";
+
+      if (item.gain.indexOf("-") != -1) {
+        item.up_down_percent = Number(item.gain * 100).toFixed(2) + "%";
+        item.isUp = false;
+      } else {
+        item.up_down_percent = "+" + Number(item.gain * 100).toFixed(2) + "%";
+        item.isUp = true;
+      }
+
+      f20_list.map(id => {
+        if (item.exchange_id == id) {
+          item.isChecked = true;
+        }
+      });
+
+      return item;
+    });
+  }
+  dispatch(setExchanges20Search(newList));
 };
 
 export const setWidget = payload => async dispatch => {
