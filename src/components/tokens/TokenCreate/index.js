@@ -39,14 +39,14 @@ export class TokenCreate extends Component {
       modal: null,
       leave_lock: true,
       paramData: {
-        token_name: 'github add',
-        token_abbr: 'ADD',
-        token_introduction: "GIT ADD",
-        token_supply: '21000000',
+        token_name: 'IseriCoin',
+        token_abbr: 'IRC',
+        token_introduction: "The most secure collaboration platform powered by Tron Foundation. All protected with end to end encryption.",
+        token_supply: '100000000000000000',
         precision: 6,
         logo_url: 'https://s2.coinmarketcap.com/static/img/coins/64x64/825.png',
-        author: 'TLgGY7KMeCfmxqpmKsb6zuT4rEQrvDo1WK',
-        contract_address: 'TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t',
+        author: 'TA561MxvhxM4f81mU7bx9oipGP5zowTbhL',
+        contract_address: 'TC6o5RdXrvSQGtCedYja1KvnZTtSy681uS',
         contract_created_date: moment().startOf('day'),
         contract_code: `pragma solidity ^0.4.24;
 
@@ -54,37 +54,6 @@ interface tokenRecipient {
     function receiveApproval(address _from, uint256 _value, bytes _extraData) external;
 }
 
-contract SafeMath {
-    function safeMul(uint256 a, uint256 b) internal pure returns (uint256) {
-        uint256 c = a * b;
-        _assert(a == 0 || c / a == b);
-        return c;
-    }
-
-    function safeDiv(uint256 a, uint256 b) internal pure returns (uint256) {
-        _assert(b > 0);
-        uint256 c = a / b;
-        _assert(a == b * c + a % b);
-        return c;
-    }
-
-    function safeSub(uint256 a, uint256 b) internal pure returns (uint256) {
-        _assert(b <= a);
-        return a - b;
-    }
-
-    function safeAdd(uint256 a, uint256 b) internal pure returns (uint256) {
-        uint256 c = a + b;
-        _assert(c >= a && c >= b);
-        return c;
-    }
-
-    function _assert(bool assertion) internal pure {
-        if (!assertion) {
-            revert();
-        }
-    }
-}
 
 contract Ownable  {
     address  public  _owner;
@@ -294,6 +263,7 @@ contract TRONAce is SafeMath,Ownable{
         website: 'www.baidu.com',
         email: '431027103@qq.com',
         white_paper: 'https://tether.to/wp-content/uploads/2016/06/TetherWhitePaper.pdf',
+
         trx_amount: '',
         token_amount: '',
         participation_type: true,

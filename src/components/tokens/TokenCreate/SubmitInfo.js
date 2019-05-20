@@ -71,6 +71,7 @@ const { TextArea } = Input;
             'description':token_introduction,
             'url':website,
             'totalSupply': token_supply * Math.pow(10, Number(precision)),
+            'totalSupplyTRC20':token_supply,
             'address':author,
             'logoUrl':logo_url,
             'contractAddress':contract_address,
@@ -270,21 +271,22 @@ const { TextArea } = Input;
 
             case 'trc20':
                 let data = {
-                    // "name": this.tokenState('name'),
-                    // "symbol": this.tokenState('abbreviation'),
-                    // "token_desc": this.tokenState('description'),
-                    // "total_supply": this.tokenState('totalSupply'),
-                    // "decimals":  this.tokenState('precision'),
+                     "name": this.tokenState('name'),
+                     "symbol": this.tokenState('abbreviation'),
+                     "token_desc": this.tokenState('description'),
+                     "total_supply": this.tokenState('totalSupplyTRC20'),
+                     "decimals":  this.tokenState('precision'),
                      "issuer_addr": this.tokenState('address'),
-                    // "icon_url":this.tokenState('logoUrl'),
-                    // "contract_address":this.tokenState('contractAddress'),
-                    // "contract_created_ratio":this.tokenState('contractCreatedRatio'),
-                    //"contract_code":this.tokenState('contractCode'),
-                    // "home_page": this.tokenState('url'),
-                    // "email":this.tokenState('email'),
-                    // "white_paper":this.tokenState('whitePaper'),
-                    // "social_media":this.tokenState('socialList'),
-                    // "issue_time":this.tokenState('issueTime'),
+                     "icon_url":this.tokenState('logoUrl'),
+                     "contract_address":this.tokenState('contractAddress'),
+                     "contract_created_ratio":this.tokenState('contractCreatedRatio'),
+                     "contract_code":this.tokenState('contractCode'),
+                     "home_page": this.tokenState('url'),
+                     "email":this.tokenState('email'),
+                     "white_paper":this.tokenState('whitePaper'),
+                     "social_media":this.tokenState('socialList'),
+                     "issue_time":this.tokenState('issueTime'),
+                     "timestamp":this.tokenState('issueTime'),
                 }
 
 
@@ -294,7 +296,7 @@ const { TextArea } = Input;
                 //let sig = await tronWeb.trx.sign(tronWeb.toHex(JSON.stringify(data)))
                 let hash = tronWeb.toHex(JSON.stringify(data),false);
                // let hex = tronWeb.toHex(hash)
-                let sig =  tronWeb.trx.sign(hash)
+                let sig =  await tronWeb.trx.sign(hash)
 
                 console.log('data',data)
                 console.log('hash',hash)
@@ -330,7 +332,7 @@ const { TextArea } = Input;
                     if(this.props.walletType.type === "ACCOUNT_TRONLINK"){
 
                         const unSignTransaction = await Client.createToken20({
-                            "content":data,
+                            "content":JSON.stringify(data),
                             sig:sig
                         })
                         // .catch(function (e) {
