@@ -186,9 +186,7 @@ class Tokeninfo extends React.Component {
             </div>
             <div className="item">
               <p>{tu("24H_VOL")}</p>
-              <p>
-                {selectData.svolume} {selectData.fShortName}
-              </p>
+              <p>{selectData.volume} {selectData.fShortName}</p>
             </div>
             {/* <div className="item">
               <p>{tu("24H_VOL")}</p>

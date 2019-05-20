@@ -21,7 +21,8 @@ import {
   getExchangesAllList,
   setPriceConvert,
   getExchanges20Volume,
-  getExchanges20UpDown
+  getExchanges20UpDown,
+  getExchanges20Search
 } from "../../../../../actions/exchange";
 import { connect } from "react-redux";
 import Lockr from "lockr";
@@ -574,15 +575,16 @@ class ExchangeList extends React.Component {
 
   onPressEnter() {
     const { inputValue, activedTab } = this.state;
-
+    const { getExchanges20Search,exchanges20SearchList } = this.props;
     if (inputValue === "") {
       this.setState({
         dataSource: this.keyObj(activedTab)
       });
     } else {
-      // this.setState({
-      //   dataSource: []
-      // });
+      getExchanges20Search({key:inputValue})
+      this.setState({
+        dataSource: exchanges20SearchList
+      });
     }
   }
 }
@@ -596,7 +598,8 @@ function mapStateToProps(state) {
     exchange10List: state.exchange.list_10,
     exchangeallList: state.exchange.list_all,
     klineLock: state.exchange.klineLock,
-    price: state.exchange.price
+    price: state.exchange.price,
+    exchanges20SearchList: state.exchange.searchList
   };
 }
 
@@ -607,7 +610,8 @@ const mapDispatchToProps = {
   getExchanges,
   setPriceConvert,
   getExchanges20Volume,
-  getExchanges20UpDown
+  getExchanges20UpDown,
+  getExchanges20Search
 };
 
 export default connect(

@@ -143,6 +143,17 @@ class ApiClient20 {
     return data;
   }
 
+  async getExchanges20SearchList(options = {}) {
+    let { data } = await xhr.get(
+      `http://13.58.63.31:21110/api/exchange/marketPair/searchList`,
+      // `${API_URL}/api/exchange/marketPair/searchList`,
+      {
+        params: options
+      }
+    );
+    return data;
+  }
+
   /**
    * 添加订单渠道ID
    */

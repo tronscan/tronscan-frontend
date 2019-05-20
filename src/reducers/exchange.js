@@ -12,7 +12,8 @@ import {
   SET_REGISTER,
   SET_PRICE_CONVERT,
   SET_EXCHANGE20VOLUME_LIST,
-  SET_EXCHANGE20UPDOWN_LIST
+  SET_EXCHANGE20UPDOWN_LIST,
+  SET_EXCHANGE20SEARCH_LIST
 } from "../actions/exchange";
 
 const initialState = {
@@ -53,6 +54,12 @@ export function exchangeReducer(state = initialState, action) {
       return {
         ...state,
         upDownList: action.upDownList
+      };
+    }
+    case SET_EXCHANGE20SEARCH_LIST: {
+      return {
+        ...state,
+        searchList: action.searchList
       };
     }
     case SET_EXCHANGE10_LIST: {
