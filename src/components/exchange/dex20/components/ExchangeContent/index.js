@@ -33,7 +33,7 @@ class ExchangeContent extends React.Component {
 
     return (
       <div className="exchange-content">
-        <Notice />
+        {/* <Notice /> */}
         <div className="exchange-right">
           <div className="exchange__kline mb-2 mr-2">
             <div className="exchange__kline__wrap">
