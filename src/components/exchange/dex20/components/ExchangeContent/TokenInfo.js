@@ -1,5 +1,10 @@
 import React from "react";
-import { injectIntl, FormattedNumber ,FormattedDate,FormattedTime} from "react-intl";
+import {
+  injectIntl,
+  FormattedNumber,
+  FormattedDate,
+  FormattedTime
+} from "react-intl";
 import { withRouter } from "react-router";
 import { widget } from "../../../../../lib/charting_library.min";
 import Datafeed from "./udf/index.js";
@@ -9,7 +14,7 @@ import { TRXPrice } from "../../../../common/Price";
 import { Client20 } from "../../../../../services/api";
 import { change10lock, setWidget } from "../../../../../actions/exchange";
 import { TokenTRC20Link } from "../../../../common/Links";
-import { Icon,Modal } from "antd";
+import { Icon, Modal } from "antd";
 
 class Tokeninfo extends React.Component {
   constructor() {
@@ -68,31 +73,35 @@ class Tokeninfo extends React.Component {
     // let newObj = {};
 
     if (selectData.fShortName == "TRX") {
-      const newObj = {icon_url:"http://coin.top/production/js/20190506075825.png"}
-      newObj["description"] = "TRON is dedicated to building the infrastructure for a truly decentralized Internet. The TRON Protocol, one of the largest blockchain-based operating systems in the world which offers scalability, high-availability, and high-throughput computing (HTC) support that serves as the foundation for all decentralized applications in the TRON ecosystem. It also provides better compatibility for Ethereum smart contracts through an innovative, pluggable smart contract platform. Since July 24th, 2018, TRON acquired BitTorrent Inc. which is an Internet technology company based in San Francisco. It designs distributed technologies that scale efficiently, keep intelligence at the edge, and keep creators and consumers in control of their content and data. Every month more than 170 million people use BitTorrent Inc. developed products. Its protocols move as much as 40% of the world's Internet traffic on a daily basis.";
-      newObj["totalSupply"] = '100000000000000000';
-      newObj["issued"] = '66766249779296000';
-      newObj["nrOfTokenHolders"] = '';
+      const newObj = {
+        icon_url: "http://coin.top/production/js/20190506075825.png"
+      };
+      newObj["description"] =
+        "TRON is dedicated to building the infrastructure for a truly decentralized Internet. The TRON Protocol, one of the largest blockchain-based operating systems in the world which offers scalability, high-availability, and high-throughput computing (HTC) support that serves as the foundation for all decentralized applications in the TRON ecosystem. It also provides better compatibility for Ethereum smart contracts through an innovative, pluggable smart contract platform. Since July 24th, 2018, TRON acquired BitTorrent Inc. which is an Internet technology company based in San Francisco. It designs distributed technologies that scale efficiently, keep intelligence at the edge, and keep creators and consumers in control of their content and data. Every month more than 170 million people use BitTorrent Inc. developed products. Its protocols move as much as 40% of the world's Internet traffic on a daily basis.";
+      newObj["totalSupply"] = "100000000000000000";
+      newObj["issued"] = "66766249779296000";
+      newObj["nrOfTokenHolders"] = "";
       newObj["startTime"] = 1498838400000;
-      newObj["url"] = 'http://tron.network';
-      newObj["white_paper"] = 'https://tron.network/static/doc/white_paper_v_2_0.pdf';
+      newObj["url"] = "http://tron.network";
+      newObj["white_paper"] =
+        "https://tron.network/static/doc/white_paper_v_2_0.pdf";
       newObj["precision"] = 6;
       this.setState({ tokeninfoItem: newObj });
       return;
     }
 
     const fTokenAddr = selectData.fTokenAddr;
-    if(!fTokenAddr){
-      return
+    if (!fTokenAddr) {
+      return;
     }
     Client20.getTokenInfoItem(fTokenAddr, selectData.pairType).then(res => {
       const { trc20_tokens } = res;
-      if (trc20_tokens) {
+      if (trc20_tokens && trc20_tokens[0]) {
         const newObj = trc20_tokens[0];
         newObj["description"] = trc20_tokens[0].token_desc;
         newObj["totalSupply"] = trc20_tokens[0].total_supply_with_decimals;
         newObj["issued"] = trc20_tokens[0].total_supply_with_decimals;
-        newObj["nrOfTokenHolders"] = '';
+        newObj["nrOfTokenHolders"] = "";
         newObj["startTime"] = trc20_tokens[0].issue_time;
         newObj["url"] = trc20_tokens[0].home_page;
         newObj["white_paper"] = trc20_tokens[0].white_paper;
@@ -101,7 +110,7 @@ class Tokeninfo extends React.Component {
       }
 
       const { data } = res;
-      if (data) {
+      if (data && data[0]) {
         const newObj = data[0];
         newObj["icon_url"] = data[0].imgUrl;
         this.setState({ tokeninfoItem: newObj });
@@ -113,38 +122,59 @@ class Tokeninfo extends React.Component {
     const { tokeninfoItem, detailShow, tvStatus } = this.state;
     const { selectData, widget, price, activeCurrency } = this.props;
     let imgDefault = require("../../../../../images/logo_default.png");
-    let price_convert = 0
-    if(price && price[selectData.sShortName == 'TRX' ? 'trxToOther' : 'usdtToOther']){
-      price_convert =(price[selectData.sShortName == 'TRX' ? 'trxToOther' : 'usdtToOther'][activeCurrency && activeCurrency.toLocaleLowerCase()] * selectData.price).toFixed(activeCurrency == 'trx' ? 6 : 8)
+    let price_convert = 0;
+    if (
+      price &&
+      price[selectData.sShortName == "TRX" ? "trxToOther" : "usdtToOther"]
+    ) {
+      price_convert = (
+        price[selectData.sShortName == "TRX" ? "trxToOther" : "usdtToOther"][
+          activeCurrency && activeCurrency.toLocaleLowerCase()
+        ] * selectData.price
+      ).toFixed(activeCurrency == "trx" ? 6 : 8);
     }
     return (
       <div>
         {/* title 信息 */}
         <div className="d-flex exchange__kline__title position-relative">
           {tokeninfoItem && tokeninfoItem.icon_url ? (
-            <img src={tokeninfoItem.icon_url}/>
+            <img src={tokeninfoItem.icon_url} />
           ) : (
-            <img src={imgDefault}/>
+            <img src={imgDefault} />
           )}
           <div className="info-wrap">
             <div className="item">
-              <p><span>{selectData.fShortName}</span>/{selectData.sShortName}</p>
               <p>
-                <a href="javascript:;" onClick={() => this.setState({ detailShow: !detailShow })}>
-                  <img src={require("../../../../../images/market/info.svg")}></img>
+                <span>{selectData.fShortName}</span>/{selectData.sShortName}
+              </p>
+              <p>
+                <a
+                  href="javascript:;"
+                  onClick={() => this.setState({ detailShow: !detailShow })}
+                >
+                  <img src={require("../../../../../images/market/info.svg")} />
                   {selectData.fTokenName}
                 </a>
               </p>
             </div>
             <div className="item">
-              <p className={selectData.isUp ? 'col-green' : 'col-red'}>{selectData.price}</p>
-              {price_convert && <p>≈ 
-                <span>{price_convert} {activeCurrency.toLocaleUpperCase()}</span>
-              </p>}
+              <p className={selectData.isUp ? "col-green" : "col-red"}>
+                {selectData.price}
+              </p>
+              {price_convert && (
+                <p>
+                  ≈
+                  <span>
+                    {price_convert} {activeCurrency.toLocaleUpperCase()}
+                  </span>
+                </p>
+              )}
             </div>
             <div className="item">
               <p>{tu("pairs_change")}</p>
-              <p className={selectData.isUp ? 'col-green' : 'col-red'}>{selectData.up_down_percent}</p>
+              <p className={selectData.isUp ? "col-green" : "col-red"}>
+                {selectData.up_down_percent}
+              </p>
             </div>
             <div className="item">
               <p>{tu("H")}</p>
@@ -165,7 +195,6 @@ class Tokeninfo extends React.Component {
           </div>
         </div>
 
-        
         {/* <div className="exchange__kline__pic" id='tv_chart_container'></div> */}
         <Modal
           visible={detailShow}
@@ -175,85 +204,123 @@ class Tokeninfo extends React.Component {
         >
           <div className="token-info-wrap">
             <h2>
-            {tokeninfoItem && tokeninfoItem.icon_url ? (
-              <img src={tokeninfoItem.icon_url}/>
-            ) : (
-              <img src={imgDefault}/>
-            )}
-            {selectData.fShortName}
+              {tokeninfoItem && tokeninfoItem.icon_url ? (
+                <img src={tokeninfoItem.icon_url} />
+              ) : (
+                <img src={imgDefault} />
+              )}
+              {selectData.fShortName}
             </h2>
             <p>{tokeninfoItem.description}</p>
-            <hr/>
+            <hr />
             <div className="info-list">
               <div>
                 <span>{tu("trc20_token_info_Total_Supply")}</span>
                 <span>
-                {tokeninfoItem.totalSupply ? <FormattedNumber
+                  {tokeninfoItem.totalSupply ? (
+                    <FormattedNumber
                       value={
                         Number(tokeninfoItem.totalSupply) /
                         Math.pow(10, tokeninfoItem.precision || 0)
                       }
-                    /> : '--'}
+                    />
+                  ) : (
+                    "--"
+                  )}
                 </span>
               </div>
               <div>
                 <span>{tu("trc20_top_IssuedAmount")}</span>
                 <span>
-                {tokeninfoItem.issued ? <FormattedNumber
+                  {tokeninfoItem.issued ? (
+                    <FormattedNumber
                       value={
                         Number(tokeninfoItem.issued) /
                         Math.pow(10, tokeninfoItem.precision || 0)
                       }
-                    /> : '--'}
+                    />
+                  ) : (
+                    "--"
+                  )}
                 </span>
               </div>
               <div>
                 <span>{tu("trc20_top_nrOfTokenHolders")}</span>
                 <span>
-                {tokeninfoItem.nrOfTokenHolders ?(<FormattedNumber
-                      value={
-                        Number(tokeninfoItem.nrOfTokenHolders)
-                      }
-                    />):'--'}
+                  {tokeninfoItem.nrOfTokenHolders ? (
+                    <FormattedNumber
+                      value={Number(tokeninfoItem.nrOfTokenHolders)}
+                    />
+                  ) : (
+                    "--"
+                  )}
                 </span>
               </div>
               <div>
                 <span>{tu("trc20_top_CreateTime")}</span>
                 <span>
-                {tokeninfoItem.startTime?
-                  (<span><FormattedDate 
-                    value={tokeninfoItem.startTime}/> 
-                    {' '}
-                    <FormattedTime
-                      value={tokeninfoItem.startTime}
-                      hour='numeric'
-                      minute="numeric"
-                      second='numeric'
-                      hour12={false}/>
-                    </span>) : '--'
-                }
+                  {tokeninfoItem.startTime ? (
+                    <span>
+                      <FormattedDate value={tokeninfoItem.startTime} />{" "}
+                      <FormattedTime
+                        value={tokeninfoItem.startTime}
+                        hour="numeric"
+                        minute="numeric"
+                        second="numeric"
+                        hour12={false}
+                      />
+                    </span>
+                  ) : (
+                    "--"
+                  )}
                 </span>
               </div>
               <div>
                 <span>{tu("trc20_token_info_Website")}</span>
                 <span>
-                  {tokeninfoItem.url == 'no_message' || tokeninfoItem.url == '' ? '--' : <a href={tokeninfoItem.url} target="_blank">{tokeninfoItem.url}</a>}
+                  {tokeninfoItem.url == "no_message" ||
+                  tokeninfoItem.url == "" ? (
+                    "--"
+                  ) : (
+                    <a href={tokeninfoItem.url} target="_blank">
+                      {tokeninfoItem.url}
+                    </a>
+                  )}
                   {/* <a href={tokeninfoItem.url} target="_blank">{tokeninfoItem.url}</a> */}
                 </span>
               </div>
               <div>
                 <span>{tu("trc20_top_WhitePaper")}</span>
                 <span>
-                  {tokeninfoItem.white_paper == 'no_message' || tokeninfoItem.white_paper == '' ? '--' : <a href={tokeninfoItem.white_paper} target="_blank">{tokeninfoItem.white_paper}</a>}
-                  </span>
+                  {tokeninfoItem.white_paper == "no_message" ||
+                  tokeninfoItem.white_paper == "" ? (
+                    "--"
+                  ) : (
+                    <a href={tokeninfoItem.white_paper} target="_blank">
+                      {tokeninfoItem.white_paper}
+                    </a>
+                  )}
+                </span>
               </div>
             </div>
-            {selectData.fShortName != "TRX" && (<div className="info-more">
-              <a href={selectData.pairType == 2 || selectData.pairType == 3 ? `https://tronscan.org/#/token20/${tokeninfoItem.contract_address}` : `https://tronscan.org/#/token/${tokeninfoItem.id}`} target="_blank">{tu('trc20_top_More')}></a>
-            </div>)}
+            {selectData.fShortName != "TRX" && (
+              <div className="info-more">
+                <a
+                  href={
+                    selectData.pairType == 2 || selectData.pairType == 3
+                      ? `https://tronscan.org/#/token20/${
+                          tokeninfoItem.contract_address
+                        }`
+                      : `https://tronscan.org/#/token/${tokeninfoItem.id}`
+                  }
+                  target="_blank"
+                >
+                  {tu("trc20_top_More")}>
+                </a>
+              </div>
+            )}
           </div>
         </Modal>
- 
       </div>
     );
   }
