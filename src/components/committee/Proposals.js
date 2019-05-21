@@ -369,7 +369,7 @@ class Proposal extends React.Component {
             render: (text, record, index) => {
                 return <span>
                         <FormattedDate value={Number(text)}/>&nbsp;
-                        <FormattedTime value={Number(text)}/>&nbsp;
+                        <FormattedTime value={Number(text)}  hour='numeric' minute="numeric" second='numeric' hour12={false}/>&nbsp;
                 </span>
             }
 

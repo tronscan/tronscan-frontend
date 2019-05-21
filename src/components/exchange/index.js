@@ -22,7 +22,6 @@ class Exchange extends React.Component {
   async componentDidMount() {
     let { intl, match } = this.props;
     const data = await Client20.getNotice(intl.locale, { page: 3 });
-
     // const { data } = await Client.getNotices({ limit: 3, sort: "-timestamp" });
     this.setState({ notice: data.articles });
   }
@@ -65,7 +64,7 @@ class Exchange extends React.Component {
                   <span title={v.name} className="title">
                     {v.name}
                   </span>
-                  <span className="date">
+                            <span className="date">
                     ({v.created_at.substring(5, 10)})
                   </span>
                 </a>

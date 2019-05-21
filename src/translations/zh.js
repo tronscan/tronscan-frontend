@@ -1698,4 +1698,43 @@ export const messages = {
     "ledger_website_download":"下载更新最新的Ledger版本",
     "ledger_click_help":"点此获得更多帮助",
 
+    /*
+        ##################################################################################
+        #                                                                                #
+        # new variables    address 2019-05-13                                    #
+        #                                                                                #
+        ##################################################################################
+    */
+
+    "address_balance_token_type":"通证类别",
+    "address_balance_token_price_TRX":"价值",
+    "address_transactions_tip":"交易数包含转账数",
+    "address_tron_power_tip":"冻结TRX可以获得投票权",
+    "address_total_balance_tip":"总余额为所有有价值的通证余额之和（包含投票权）",
+    "address_tron_power_used":"已用",
+    "address_tron_power_remaining":"可用",
+    "address_total_balance_info_sources":"信息来源",
+    "address_info_transfers": "转账数",
+    "address_info_transactions": "交易数",
+    "address_netLimit":"总带宽",
+    "address_netRemaining":"可用带宽",
+    "address_netUsed":"已用带宽",
+    "address_energyLimit":"总能量",
+    "address_energyRemaining":"可用能量",
+    "address_energyUsed":"已用能量",
+    "address_percentage":"占比",
+    "address_net_fee":"消耗带宽",
+    "address_energy_fee":"消耗能量",
+
+    /*
+       ##################################################################################
+       #                                                                                #
+       # footer  2019-05-20                                    #
+       #                                                                                #
+       ##################################################################################
+   */
+    "footer_fellow_us":"关注我们",
+    "footer_developer_resources":"开发中心",
+    "footer_support_center":"帮助中心",
+    "footer_tron_network":"波场官网",
 };

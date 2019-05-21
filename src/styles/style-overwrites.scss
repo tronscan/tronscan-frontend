@@ -519,6 +519,7 @@ nextvote, node, nodest, sr, totle, up, vote, accounts, nextRound, totalVotes, mo
     }
   }
   &_switch_addr_transfers{
+    left: 230px;
     @media screen and (max-width: 768px) {
       left: 0px;
       top: -55px;

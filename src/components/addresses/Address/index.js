@@ -2,15 +2,17 @@
 import React, {Fragment} from "react";
 import {injectIntl} from "react-intl";
 import {NavLink, Route, Switch} from "react-router-dom";
+import {connect} from "react-redux";
 import {Client} from "../../../services/api";
 import {tu} from "../../../utils/i18n";
 import {FormattedNumber} from "react-intl";
-import {TokenBalances} from "./TokenBalances";
+import TokenBalances from "./TokenBalances";
 import {ONE_TRX} from "../../../constants";
 import {AddressLink, ExternalLink} from "../../common/Links";
 import {TRXPrice} from "../../common/Price";
 import {TronLoader} from "../../common/loaders";
 import Transactions from "../../common/Transactions";
+import NewTransactions from "../../common/NewTransactions";
 import Votes from "../../common/Votes";
 import Transfers from "../../common/Transfers";
 import TransfersTrc20 from "../../common/TransfersTrc20";
@@ -21,8 +23,14 @@ import _ from "lodash";
 import Blocks from "../../common/Blocks";
 import {channel} from "../../../services/api";
 import rebuildList from "../../../utils/rebuildList";
+import rebuildToken20List from "../../../utils/rebuildToken20List";
 import {API_URL} from '../../../constants.js'
-import { FormatNumberByDecimals, FormatNumberByDecimalsBalance } from '../../../utils/number'
+import { FormatNumberByDecimals, FormatNumberByDecimalsBalance, toThousands } from '../../../utils/number'
+import { Progress, Tooltip } from 'antd'
+import BigNumber from "bignumber.js"
+import {HrefLink} from "../../common/Links";
+import {QuestionMark} from "../../common/QuestionMark";
+BigNumber.config({ EXPONENTIAL_AT: [-20, 30] });
 
 
 class Address extends React.Component {
@@ -137,7 +145,8 @@ class Address extends React.Component {
         token_balances: {
           id: "token_balances",
           icon: "fa fa-piggy-bank",
-          path: "/token-balances",
+         // path: "/token-balances",
+          path: "",
           label: <span>{tu("token_balances")}</span>,
           cmp: () => <TokenBalances tokenBalances={address.balances} intl={intl}/>,
         },
@@ -153,31 +162,54 @@ class Address extends React.Component {
     if (address.representative.enabled) {
       this.loadMedia(id);
     }
-    let tokenBalances = rebuildList(address.tokenBalances, 'name', 'balance')
+
     let balances = rebuildList(address.balances, 'name', 'balance')
+    let x;
+    balances.map((item,index) =>{
+        if(item.map_token_id === '_'){
+            item.map_amount_logo = 'https://s2.coinmarketcap.com/static/img/coins/64x64/1958.png'
+            item.tokenType = '-';
+            item.priceInTrx = 1
+        }else{
+            item.tokenType = 'TRC10'
+        }
 
-    address.tokenBalances =_(tokenBalances)
-      .sortBy(tb => toUpper(tb.map_token_name))
-      .sortBy(tb => -tb.map_amount).value();
-    address.balances = _(balances)
-      .sortBy(tb => toUpper(tb.map_token_name))
-      .sortBy(tb => -tb.map_amount).value();
+        if(item.priceInTrx){
+            x= new BigNumber(item.map_amount);
+            item.TRXBalance = (x.multipliedBy(item.priceInTrx)).decimalPlaces(6);
+            item.TRXBalance_toThousands = toThousands((x.multipliedBy(item.priceInTrx)).decimalPlaces(6));
 
-    address.trc20token_balances && address.trc20token_balances.map(item => {
+        }else{
+            item.TRXBalance = 0
+        }
+    })
+
+    let trc20token_balances_new  = rebuildToken20List(address.trc20token_balances, 'contract_address', 'balance');
+    let y;
+    trc20token_balances_new && trc20token_balances_new.map(item => {
+        item.tokenType = 'TRC20'
         item.token20_name = item.name + '(' + item.symbol + ')';
         item.token20_balance = FormatNumberByDecimals(item.balance, item.decimals);
         item.token20_balance_decimals = FormatNumberByDecimalsBalance(item.balance, item.decimals);
+        item.map_amount = FormatNumberByDecimalsBalance(item.balance, item.decimals);
+        if(item.priceInTrx){
+            y = new BigNumber(item.token20_balance_decimals);
+            item.TRXBalance = (y.multipliedBy(item.priceInTrx)).decimalPlaces(6);
+            item.TRXBalance_toThousands = toThousands((y.multipliedBy(item.priceInTrx)).decimalPlaces(6));
+        }else{
+            item.TRXBalance = 0
+        }
+
         return item
     });
-    address.token20List =  _(address.trc20token_balances)
-        .filter(tb => tb.balance > 0)
-        .sortBy(tb => -tb.balance)
-        .value();
-    let trxObj1 = _.remove(address.tokenBalances, o => toUpper(o.map_token_name) == 'TRX')[0]
-    trxObj1 && address.tokenBalances.unshift(trxObj1)
 
-    let trxObj2 = _.remove(address.balances, o => toUpper(o.map_token_name) == 'TRX')[0]
-    trxObj2 && address.tokenBalances.unshift(trxObj2)
+
+
+    let tokenBalances = balances.concat(trc20token_balances_new)
+    let TRXBalance = 0;
+    tokenBalances.map((item,index) =>{
+        TRXBalance +=  Number(item.TRXBalance)
+    })
 
     let stats = await Client.getAddressStats(id);
 
@@ -192,11 +224,20 @@ class Address extends React.Component {
         blocksProduced: totalProducedBlocks,
         stats,
         tabs: {
+
           // ...prevProps.tabs,
+          token_balances: {
+              id: "token_balances",
+              // icon: "fa fa-piggy-bank",
+             // path: "/token-balances",
+              path:"",
+              label: <span>{tu("token_balances")}</span>,
+              cmp: () => <TokenBalances tokenBalances={tokenBalances} intl={intl}/>,
+          },
           transfers: {
             id: "transfers",
             // icon: "fa fa-exchange-alt",
-            path: "",
+            path: "/transfers",
             label: <span>{tu("transfers")}</span>,
             cmp: () => <Transfers filter={{address: id}} address/>
           },
@@ -212,7 +253,7 @@ class Address extends React.Component {
             // icon: "fas fa-handshake",
             path: "/transactions",
             label: <span>{tu("transactions")}</span>,
-            cmp: () => <Transactions filter={{address: id}} address/>
+            cmp: () => <NewTransactions filter={{address: id}} address/>
           },
           intransactions: {
             id: "intransactions",
@@ -221,13 +262,7 @@ class Address extends React.Component {
             label: <span>{tu("internal_transactions")}</span>,
             cmp: () => <Transactions filter={{address: id}} isinternal />
           },
-          token_balances: {
-            id: "token_balances",
-            // icon: "fa fa-piggy-bank",
-            path: "/token-balances",
-            label: <span>{tu("token_balances")}</span>,
-            cmp: () => <TokenBalances tokenBalances={address.balances} intl={intl} token20Balances={address.token20List}/>,
-          },
+
           blocks_produced: {
             id: "blocks-produced",
             // icon: "fa fa-cube",
@@ -267,10 +302,18 @@ class Address extends React.Component {
         stats,
         tabs: {
           // ...prevProps.tabs,
+          token_balances: {
+              id: "token_balances",
+              // icon: "fa fa-piggy-bank",
+             // path: "/token-balances",
+              path: "",
+              label: <span>{tu("token_balances")}</span>,
+              cmp: () => <TokenBalances tokenBalances={tokenBalances} intl={intl}/>,
+          },
           transfers: {
             id: "transfers",
             // icon: "fa fa-exchange-alt",
-            path: "",
+            path: "/transfers",
             label: <span>{tu("transfers")}</span>,
             cmp: () => <Transfers filter={{address: id}} address/>
           },
@@ -286,7 +329,7 @@ class Address extends React.Component {
             // icon: "fas fa-handshake",
             path: "/transactions",
             label: <span>{tu("transactions")}</span>,
-            cmp: () => <Transactions filter={{address: id}} address/>
+            cmp: () => <NewTransactions filter={{address: id}} address/>
           },
           intransactions: {
             id: "intransactions",
@@ -294,13 +337,6 @@ class Address extends React.Component {
             path: "/internal-transactions",
             label: <span>{tu("internal_transactions")}</span>,
             cmp: () => <Transactions filter={{address: id}} isinternal address/>
-          },
-          token_balances: {
-            id: "token_balances",
-            // icon: "fa fa-piggy-bank",
-            path: "/token-balances",
-            label: <span>{tu("token_balances")}</span>,
-            cmp: () => <TokenBalances tokenBalances={address.balances} intl={intl} token20Balances={address.token20List}/>,
           },
           votes: {
             id: "votes",
@@ -345,6 +381,17 @@ class Address extends React.Component {
     let totalPower=sentDelegateBandwidth+frozenBandwidth+sentDelegateResource+frozenEnergy;
     this.setState({
         totalPower:totalPower,
+        TRXBalanceTotal:TRXBalance + totalPower/ONE_TRX,
+        netUsed:address.bandwidth.netUsed + address.bandwidth.freeNetUsed,
+        netLimit:address.bandwidth.netLimit + address.bandwidth.freeNetLimit,
+        netRemaining:address.bandwidth.netRemaining + address.bandwidth.freeNetRemaining,
+        bandWidthPercentage:((address.bandwidth.netUsed + address.bandwidth.freeNetUsed)/(address.bandwidth.netLimit + address.bandwidth.freeNetLimit))*100,
+        availableBandWidthPercentage:(1-(address.bandwidth.netUsed + address.bandwidth.freeNetUsed)/(address.bandwidth.netLimit + address.bandwidth.freeNetLimit))*100,
+        energyUsed:address.bandwidth.energyUsed,
+        energyLimit:address.bandwidth.energyLimit,
+        energyRemaining:address.bandwidth.energyRemaining,
+        energyPercentage:address.bandwidth.energyPercentage * 100,
+        availableEnergyPercentage:address.bandwidth.energyRemaining ?(1- address.bandwidth.energyPercentage) * 100 : 0,
     });
 
   }
@@ -358,10 +405,60 @@ class Address extends React.Component {
     });
   }
 
+  bandWidthCircle = () => {
+    let { netUsed, netLimit, netRemaining, bandWidthPercentage} = this.state;
+    let {intl} = this.props;
+    let address_percentage_remaining = new BigNumber(100 - Number(bandWidthPercentage));
+    let addressPercentageRemaining = netRemaining?address_percentage_remaining.decimalPlaces(2) + '%':'0%';
+    let address_percentage_used = new BigNumber(bandWidthPercentage);
+    let addressPercentageUsed = netUsed?address_percentage_used.decimalPlaces(2) + '%':'0%';
+    return (
+        <div>
+          <div>
+              {intl.formatMessage({id: 'address_netLimit'}) + ' : ' + netLimit }
+          </div>
+          <div>
+              <span>{intl.formatMessage({id: 'address_netRemaining'}) + ' : ' + netRemaining }</span>&nbsp;&nbsp;
+              <span>{intl.formatMessage({id: 'address_percentage'}) + ' : ' + addressPercentageRemaining  }</span>
+          </div>
+          <div>
+            <span>{intl.formatMessage({id: 'address_netUsed'}) + ' : ' + netUsed }</span>&nbsp;&nbsp;
+            <span>{intl.formatMessage({id: 'address_percentage'}) + ' : ' + addressPercentageUsed }</span>
+          </div>
+        </div>
+    )
+
+  }
+
+  energyCircle = () => {
+    let { energyLimit, energyRemaining, energyUsed, energyPercentage } = this.state;
+      let {intl} = this.props;
+      let address_percentage_remaining = new BigNumber(100 - Number(energyPercentage));
+      let addressPercentageRemaining = energyRemaining?address_percentage_remaining.decimalPlaces(2) + '%': '0%';
+      let address_percentage_used = new BigNumber(energyPercentage);
+      let addressPercentageUsed = energyUsed?address_percentage_used.decimalPlaces(2) + '%': '0%';
+      return (
+          <div>
+            <div>
+                {intl.formatMessage({id: 'address_energyLimit'}) + ' : ' + energyLimit }
+            </div>
+            <div>
+              <span>{intl.formatMessage({id: 'address_energyRemaining'}) + ' : ' + energyRemaining }</span>&nbsp;&nbsp;
+              <span>{intl.formatMessage({id: 'address_percentage'}) + ' : ' + addressPercentageRemaining }</span>
+            </div>
+            <div>
+              <span>{intl.formatMessage({id: 'address_energyUsed'}) + ' : ' + energyUsed }</span>&nbsp;&nbsp;
+              <span>{intl.formatMessage({id: 'address_percentage'}) + ' : ' + addressPercentageUsed }</span>
+            </div>
+          </div>
+      )
+
+  }
+
   render() {
 
-    let {totalPower, address, tabs, stats, loading, blocksProduced, media, candidates, rank, totalVotes} = this.state;
-    let {match} = this.props;
+    let {totalPower, address, tabs, stats, loading, blocksProduced, media, candidates, rank, totalVotes, netRemaining, bandWidthPercentage, energyRemaining, energyPercentage, TRXBalanceTotal,availableBandWidthPercentage,availableEnergyPercentage} = this.state;
+    let {match,intl} = this.props;
     let addr = match.params.id;
     let uploadURL = API_URL + "/api/v2/node/info_upload?address=" + match.params.id
 
@@ -400,8 +497,7 @@ class Address extends React.Component {
                         }
                         <div className="row">
 
-                          <div className="col-md-12">
-
+                          <div className="col-md-6">
                             <table className="table m-0">
                               <tbody>
                               {
@@ -451,48 +547,97 @@ class Address extends React.Component {
                                   <span>{address.name ? address.name : "-"}</span>
                                 </td>
                               </tr> : ""}
+                              <tr>
+                                <th>
+                                    <span className="mr-1">{tu("address_info_transactions")}</span>
+                                    <QuestionMark placement="top" text="address_transactions_tip" />
+                                  <span className="ml-1">:</span>
+                                </th>
+                                <td>
+                                  <span>{address.totalTransactionCount}</span>
 
-                              <tr>
-                                <th>{tu("transfers")}:</th>
-                                <td>
-                                  <i className="fa fa-arrow-down text-success"/>&nbsp;
-                                  <span>{stats.transactions_in}</span>&nbsp;
-                                  <i className="fa fa-arrow-up  text-danger"/>&nbsp;
-                                  <span>{stats.transactions_out}</span>&nbsp;
                                 </td>
                               </tr>
                               <tr>
-                                <th>{tu("balance")}:</th>
+                                <th>{tu("address_info_transfers")}:</th>
                                 <td>
-                                  <ul className="list-unstyled m-0">
-                                    <li>
-                                      <TRXPrice amount={address.balance / ONE_TRX}/>
-                                    </li>
-                                  </ul>
+                                  <div className="d-flex">
+                                    <div>
+                                        {stats.transactions_in + stats.transactions_out}
+                                    </div>
+                                    <div>
+                                      <span className="ml-1">(</span>
+                                      <i className="fa fa-arrow-down text-success"/>&nbsp;
+                                      <span>{stats.transactions_in}</span>&nbsp;
+                                      <i className="fa fa-arrow-up  text-danger"/>&nbsp;
+                                      <span>{stats.transactions_out}</span>&nbsp;
+                                      <span>)</span>
+                                    </div>
+                                  </div>
                                 </td>
                               </tr>
+                              {/*<tr>*/}
+                                {/*<th>{tu("balance")}:</th>*/}
+                                {/*<td>*/}
+                                  {/*<ul className="list-unstyled m-0">*/}
+                                    {/*<li>*/}
+                                      {/*<TRXPrice amount={address.balance / ONE_TRX}/>*/}
+                                    {/*</li>*/}
+                                  {/*</ul>*/}
+                                {/*</td>*/}
+                              {/*</tr>*/}
                               <tr>
-                                <th>{tu("tron_power")}:</th>
+                                <th>
+                                    <span className="mr-1">{tu("tron_power")}</span>
+                                    <QuestionMark placement="top" text="address_tron_power_tip" className="ml-1"/>
+                                    <span className="ml-1" >:</span>
+                                </th>
                                 <td>
                                   <ul className="list-unstyled m-0">
-                                    <li>
+                                    <li className="d-flex">
                                       <TRXPrice showCurreny={false}
                                                 amount={(totalPower) / ONE_TRX}/>
+                                      <div>
+                                         <span className="ml-1">(</span> {tu("address_tron_power_used")}: {address.voteTotal}&nbsp;   {tu("address_tron_power_remaining")}: {(totalPower) / ONE_TRX - address.voteTotal } <span>)</span>
+                                      </div>
                                     </li>
                                   </ul>
                                 </td>
                               </tr>
                               <tr>
-                                <th>{tu("total_balance")}:</th>
+                                <th>
+                                  <span className="mr-1">{tu("total_balance")}</span>
+                                    <QuestionMark placement="top" text="address_total_balance_tip" className="ml-1"/>
+                                  <span className="ml-1" >:</span>
+                                </th>
                                 <td>
                                   <ul className="list-unstyled m-0">
-                                    <li>
-                                      <TRXPrice
-                                          amount={(address.balance + totalPower) / ONE_TRX}/>{' '}
-                                      <span className="small">(<TRXPrice
-                                          amount={(address.balance + totalPower) / ONE_TRX}
-                                          currency="USD"
-                                          showPopup={false}/>)</span>
+                                    <li >
+                                      <div>
+                                        <TRXPrice
+                                            amount={TRXBalanceTotal}/>{' '}
+                                        <span className="small">(<TRXPrice
+                                            amount={TRXBalanceTotal}
+                                            currency="USD"
+                                            showPopup={false}/>)</span>
+                                      </div>
+
+                                      <div>
+                                        <span className="small">
+                                          {tu('address_total_balance_info_sources')}：
+                                        </span>
+                                        <span className="small">
+                                            <HrefLink
+                                                href={
+                                                    intl.locale == "zh"
+                                                        ? "https://trx.market/zh/"
+                                                        : "https://trx.market/"
+                                                }
+                                            >TRXMarket</HrefLink>
+                                        </span>
+                                        <img width={15} height={15}  style={{marginLeft:5}} src={require("../../../images/svg/market.png")} alt=""/>
+                                      </div>
+
                                     </li>
                                   </ul>
                                 </td>
@@ -513,6 +658,50 @@ class Address extends React.Component {
                               </tbody>
                             </table>
 
+                          </div>
+                          <div className="col-md-6 d-flex address-circle">
+                            <div className="address-circle-bandwidth d-flex">
+                              <Tooltip title={this.bandWidthCircle} overlayStyle={{'maxWidth':'500px'}}>
+                                <Progress
+                                    width={82}
+                                    strokeWidth={10}
+                                    showInfo={false}
+                                    type="circle"
+                                    strokeColor="#FFA30B"
+                                    strokeLinecap="square"
+                                    percent={availableBandWidthPercentage}
+                                />
+                              </Tooltip>
+
+
+                              <div className="circle-info">
+                                <div>{tu('address_netRemaining')}</div>
+                                <h2>
+                                  <FormattedNumber
+                                      value={netRemaining}/>
+                                </h2>
+                              </div>
+                            </div>
+                            <div className="address-circle-line"></div>
+                            <div className="address-circle-energy d-flex">
+                              <Tooltip title={this.energyCircle} overlayStyle={{'maxWidth':'500px'}}>
+                                <Progress
+                                    width={82}
+                                    strokeWidth={10}
+                                    showInfo={false}
+                                    type="circle"
+                                    strokeColor="#4A90E2"
+                                    strokeLinecap="square"
+                                    percent={availableEnergyPercentage}
+                                />
+                              </Tooltip>
+                              <div className="circle-info">
+                                <div>{tu('address_energyRemaining')}</div>
+                                <h2>
+                                  <FormattedNumber value={energyRemaining}/>
+                                </h2>
+                              </div>
+                            </div>
                           </div>
                           {
                             /*
@@ -582,5 +771,5 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = {};
 
-// export default connect(mapStateToProps, mapDispatchToProps)(Address);
 export default injectIntl(Address);
+//export default connect(mapStateToProps, mapDispatchToProps)(injectIntl(Address));

@@ -326,7 +326,7 @@ class Kline extends React.Component {
               {selectData.exchange_name && (
                 <h5 className="mr-3 font-weight-bold">
                   {selectData.exchange_name} ≈ <span>{selectData.price}</span>
-                  {/* {console.log(123, selectData)}
+                  {/*
                   {selectData.status != 1 && (
                     <span className="badge badge-danger-block text-uppercase ml-1">
                       {tu("high_risk")}

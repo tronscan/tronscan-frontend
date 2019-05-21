@@ -2009,6 +2009,7 @@ h5 {
   i {
     font-size: 10px;
     font-style: normal;
+    font-weight: 500;
     //transform: scale(0.9);
   }
 }
@@ -3263,6 +3264,67 @@ h5 {
   }
   100% {
     -webkit-transform: scale(0.75);
-    transform: scale(0.75);
+    transform: scale(0.75); }
+}
+
+.address-circle{
+  justify-content: center;
+  align-items: center;
+  .address-circle-bandwidth{
+    display: block;
+    margin-right: 1.5rem;
+    .ant-progress{
+      .ant-progress-circle-trail{
+        stroke: rgba(255,163,11, 0.4);
+      }
+    }
+  }
+  .address-circle-line{
+   background-color: rgba(216,216,216,0.40);
+    width:1px;
+    height:60px;
+  }
+  .address-circle-energy{
+    display: block;
+    margin-left: 1.5rem;
+    .ant-progress{
+      .ant-progress-circle-trail{
+        stroke: rgba(74, 144, 226, 0.4);
+      }
+    }
+  }
+  .circle-info{
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+    align-items:flex-start;
+    margin-left: 1rem;
+    div{
+      color: #999999;
+    }
+    h2{
+      color: #333333;
+    }
+  }
+  @media only screen and (max-width: 768px) {
+    flex-direction: column;
+    align-items:flex-start;
+    margin-bottom: 1rem;
+    .address-circle-bandwidth{
+      margin-right: 0;
+      margin-left: 100px;
+    }
+    .address-circle-energy{
+      margin-left: 100px;
+    }
+    .address-circle-line{
+      transform:rotate(90deg);
+      margin-left: 141px;
+    }
+    .circle-info{
+      h2{
+        font-size: 1rem;
+      }
+    }
   }
 }

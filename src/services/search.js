@@ -92,7 +92,8 @@ async function searchAddress(criteria) {
     if(accounts[0].accountType == 2){
       return `#/contract/${accounts[0].address}/code`;
     }else{
-      return `#/address/${accounts[0].address}/token-balances`;
+      //return `#/address/${accounts[0].address}/token-balances`;
+      return `#/address/${accounts[0].address}`;
     }
     
   }

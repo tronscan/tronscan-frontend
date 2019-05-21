@@ -164,8 +164,14 @@ class Block extends React.Component {
                               <th>{tu("time")}:</th>
                               <td>
                                 <FormattedDate value={block.timestamp}/>&nbsp;
-                                <FormattedTime value={block.timestamp}/>&nbsp;
-                                {(<TimeAgoI18N date={block.timestamp} activeLanguage={activeLanguage}/>)}
+                                <FormattedTime value={block.timestamp}
+                                               hour='numeric'
+                                               minute="numeric"
+                                               second='numeric'
+                                               hour12={false}
+                                />
+                                &nbsp;
+                                {/*{(<TimeAgoI18N date={block.timestamp} activeLanguage={activeLanguage}/>)}*/}
                               </td>
                             </tr>
                           }

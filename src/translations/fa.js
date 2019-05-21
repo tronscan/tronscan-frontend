@@ -1671,11 +1671,51 @@ export const messages = {
    */
     "ledger_user_guide":"راهنمای کاربر Ledger",
     "latest_version_chrome":"ما توصیه می کنیم از آخرین نسخه از کروم استفاده کنید",
-    "ledger_support_version":"نسخه پشتیبانی لدجر: 0.1.0، نسخه پشتیبانی از کروم 73.0",
+    "ledger_support_version":"نسخه پشتیبانی لدجر:0.1.1، نسخه پشتیبانی از کروم 73.0",
     "ledger_you_can":"شما می توانید بازدید کنید",
     "ledger_website":"وب سایت Ledger",
     "ledger_website_download":"نسخه لوگر به روز شده را دانلود کنید",
     "ledger_click_help":" برای کمک بیشتر اینجا کلیک کنید.",
+
+    /*
+        ##################################################################################
+        #                                                                                #
+        # new variables    address 2019-05-13                                    #
+        #                                                                                #
+        ##################################################################################
+    */
+
+    "address_balance_token_type":"انواع رمز عبور",
+    "address_balance_token_price_TRX":"ارزش",
+    "address_transactions_tip":"تعداد معاملات شامل تعداد انتقال است.",
+    "address_tron_power_tip":"فریز TRX برای کسب حق رای",
+    "address_total_balance_tip":"مجموع تعادل شامل تمام گواهینامه های با ارزش است.",
+    "address_tron_power_used":"استفاده شده",
+    "address_tron_power_remaining":"باقی مانده",
+    "address_total_balance_info_sources":"منبع اطلاعات",
+    "address_info_transfers": "انتقال",
+    "address_info_transactions": "معاملات",
+    "address_netLimit":"کل پهنای باند",
+    "address_netRemaining":"پهنای موجود",
+    "address_netUsed":"پهنای باند استفاده شده",
+    "address_energyLimit":"کل انرژی",
+    "address_energyRemaining":"انرژی موجود",
+    "address_energyUsed":"انرژی استفاده شده",
+    "address_percentage":"نسبت",
+    "address_net_fee":"Bandwidth Cost",
+    "address_energy_fee":"Energy Cost",
+
+    /*
+    ##################################################################################
+    #                                                                                #
+    # footer  2019-05-20                                    #
+    #                                                                                #
+    ##################################################################################
+*/
+    "footer_fellow_us":"Fellow Us",
+    "footer_developer_resources":"Developer Resources",
+    "footer_support_center":"Support Center",
+    "footer_tron_network":"TRON"
 
 
 

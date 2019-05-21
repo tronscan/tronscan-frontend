@@ -1682,10 +1682,50 @@ export const messages = {
  */
   "ledger_user_guide":"Ledger사용 가이드",
   "latest_version_chrome":"최신 버전 Chrome 사용 추천",
-  "ledger_support_version":"Ledger지원 버전: 0.1.0, Chrome버전 73.0",
+  "ledger_support_version":"Ledger지원 버전: 0.1.1, Chrome버전 73.0",
   "ledger_you_can":"너는 할 수있다 ",
   "ledger_website":"Ledger 공식 웹 사이트",
   "ledger_website_download":"원장의 최신 버전을 다운로드하여 업데이트하십시오",
   "ledger_click_help":"추가 도움말을 보려면 여기를 클릭하십시오",
+    /*
+       ##################################################################################
+       #                                                                                #
+       # new variables    address 2019-05-13                                    #
+       #                                                                                #
+       ##################################################################################
+   */
+
+    "address_balance_token_type":"토큰 종류",
+    "address_balance_token_price_TRX":"가격",
+    "address_transactions_tip":"거래수 에는 전송 횟수가 포함됩니다.",
+    "address_tron_power_tip":"TRX 동결 후 투표권을 얻을 수 있습니다. ",
+    "address_total_balance_tip":"총 잔고에는 모든 가치 있는 토큰이 포함됩니다. ",
+    "address_tron_power_used":"이미 사용",
+    "address_tron_power_remaining":"나머지",
+    "address_total_balance_info_sources":"정보 출처",
+    "address_info_transfers": "전송",
+    "address_info_transactions": "거래",
+    "address_netLimit":"총 대역폭",
+    "address_netRemaining":"사용 가능한 대역폭",
+    "address_netUsed":"사용 된 대역폭",
+    "address_energyLimit":"총 에너지",
+    "address_energyRemaining":"사용 가능한 에너지",
+    "address_energyUsed":"사용 된 에너지",
+    "address_percentage":"비율",
+    "address_net_fee":"Bandwidth Cost",
+    "address_energy_fee":"Energy Cost",
+
+    /*
+    ##################################################################################
+    #                                                                                #
+    # footer  2019-05-20                                    #
+    #                                                                                #
+    ##################################################################################
+    */
+    "footer_fellow_us":"Fellow Us",
+    "footer_developer_resources":"Developer Resources",
+    "footer_support_center":"Support Center",
+    "footer_tron_network":"TRON"
+
 
 };

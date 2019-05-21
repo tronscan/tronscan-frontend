@@ -86,7 +86,7 @@ class Curorder extends Component {
         render: (text, record, index) => {
           return <span>
           <FormattedDate value={Number(record.orderTime)}/> &nbsp;
-          <FormattedTime value={Number(record.orderTime)}/>&nbsp;
+          <FormattedTime value={Number(record.orderTime)} hour='numeric' minute="numeric" second='numeric' hour12={false}/>&nbsp;
         </span>
         }
       },

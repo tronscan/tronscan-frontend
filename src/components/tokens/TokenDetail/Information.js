@@ -60,7 +60,7 @@ export function Information({token,currentTotalSupply}) {
       content:  <div>
                   <FormattedDate value={token.dateCreated}/>
                   {' '}
-                  <FormattedTime value={token.dateCreated}/>
+                  <FormattedTime value={token.dateCreated}  hour='numeric' minute="numeric" second='numeric' hour12={false}/>
                 </div>
     },{ 
       name: 'GitHub', 

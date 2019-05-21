@@ -1684,6 +1684,45 @@ export const messages = {
     "ledger_website_download":"最新の元帳バージョンをダウンロードして更新する",
     "ledger_click_help":"ここをクリックしてヘルプを獲得します",
 
+    /*
+           ##################################################################################
+           #                                                                                #
+           # new variables    address 2019-05-13                                    #
+           #                                                                                #
+           ##################################################################################
+       */
+
+    "address_balance_token_type":"トークン種類",
+    "address_balance_token_price_TRX":"価値",
+    "address_transactions_tip":"取引数は振替数を含めます",
+    "address_tron_power_tip":"TRXを凍結することで、投票権をもらえます",
+    "address_total_balance_tip":"総残高はすべて価値があるトークンを含めます",
+    "address_tron_power_used":"使用済",
+    "address_tron_power_remaining":"残り",
+    "address_total_balance_info_sources":"情報出典",
+    "address_info_transfers": "振替",
+    "address_info_transactions": "取引",
+    "address_netLimit":"バンド幅総量",
+    "address_netRemaining":"ご利用可能のバンド幅",
+    "address_netUsed":"利用済のバンド幅",
+    "address_energyLimit":"エネルギー総量",
+    "address_energyRemaining":"ご利用可能のエネルギー",
+    "address_energyUsed":"利用済のエネルギー",
+    "address_percentage":"比率",
+    "address_net_fee":"Bandwidth Cost",
+    "address_energy_fee":"Energy Cost",
+
+    /*
+    ##################################################################################
+    #                                                                                #
+    # footer  2019-05-20                                    #
+    #                                                                                #
+    ##################################################################################
+*/
+    "footer_fellow_us":"Fellow Us",
+    "footer_developer_resources":"Developer Resources",
+    "footer_support_center":"Support Center",
+    "footer_tron_network":"TRON"
 
 
 }

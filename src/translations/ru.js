@@ -1683,10 +1683,52 @@ export const messages = {
  */
   "ledger_user_guide":"Руководство по использованию Ledger",
   "latest_version_chrome":"Обновите Сhrome до последней версии",
-  "ledger_support_version":"Поддерживаемая версия Ledger: 0.1.0., Поддерживаемая версия Chrome 73.0",
+  "ledger_support_version":"Поддерживаемая версия Ledger: 0.1.1., Поддерживаемая версия Chrome 73.0",
   "ledger_you_can":"Вы можете посетить",
   "ledger_website":" Ledger веб-сайт ",
   "ledger_website_download":"Загрузите и обновите последнюю версию Ledger",
   "ledger_click_help":"Нажмите здесь для получения дополнительной помощи",
+
+
+  /*
+      ##################################################################################
+      #                                                                                #
+      # new variables    address 2019-05-13                                    #
+      #                                                                                #
+      ##################################################################################
+  */
+
+  "address_balance_token_type":"Проходная категория",
+  "address_balance_token_price_TRX":"Значение",
+  "address_transactions_tip":"Количество транзакций включает в себя количество переводов",
+  "address_tron_power_tip":"Заморозить TRX, чтобы получить права голоса",
+  "address_total_balance_tip":"Общий баланс включает в себя все ценные сертификаты",
+  "address_tron_power_used":"Используется",
+  "address_tron_power_remaining":"Прибавочный",
+  "address_total_balance_info_sources":"Источник информации",
+  "address_info_transfers": "Переводы",
+  "address_info_transactions": "транзакции",
+  "address_netLimit":"Общая пропускная способность",
+  "address_netRemaining":"Доступная пропускная способность",
+  "address_netUsed":"Использованная пропускная способность",
+  "address_energyLimit":"Общая энергия",
+  "address_energyRemaining":"Доступная энергия",
+  "address_energyUsed":"Использованная энергия",
+  "address_percentage":"Соотношение",
+  "address_net_fee":"Bandwidth Cost",
+  "address_energy_fee":"Energy Cost",
+
+  /*
+  ##################################################################################
+  #                                                                                #
+  # footer  2019-05-20                                    #
+  #                                                                                #
+  ##################################################################################
+  */
+  "footer_fellow_us":"Fellow Us",
+  "footer_developer_resources":"Developer Resources",
+  "footer_support_center":"Support Center",
+  "footer_tron_network":"TRON"
+
 
 };

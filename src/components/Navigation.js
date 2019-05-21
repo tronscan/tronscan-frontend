@@ -95,7 +95,6 @@ class Navigation extends React.Component {
     let {account,setWebsocket} = this.props;
     let _this = this;
 
-    setWebsocket()
     window.addEventListener('message', function (e) {
       if (e.data.message) {
         _this.setState({address: e.data.message.data});
@@ -103,6 +102,7 @@ class Navigation extends React.Component {
       }
     })
     //this.getAnnouncement();
+     setWebsocket();
     $(document).click(() => {
       $('#_searchBox').css({display: 'none'});
     });
@@ -115,7 +115,11 @@ class Navigation extends React.Component {
   }
 
   componentWillUnmount() {
-    this.listener && this.listener.close();
+      let { account, websocket }  = this.props;
+      if(!account.isLoggedIn && websocket){
+          websocket.close();
+          Lockr.set("websocket", 'close')
+      }
   }
 
   componentDidUpdate(prevProps) {
