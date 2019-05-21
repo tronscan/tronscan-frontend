@@ -139,9 +139,9 @@ class ExchangeTable extends Component {
         render: (text, record, index) => {
         
           return text.indexOf("-") != -1 ? (
-            <div className="tab-pr-100"><span className="col-red bg-color">{text}</span></div>
+            <div className="tab-pr-50"><span className="col-red bg-color">{text}</span></div>
           ) : (
-            <div className="tab-pr-100"><span className="col-green bg-color">{text}</span></div>
+            <div className="tab-pr-50"><span className="col-green bg-color">{text}</span></div>
           );
         }
       }
@@ -157,7 +157,7 @@ class ExchangeTable extends Component {
             return index;
           }}
           rowClassName={this.setActiveClass}
-          scroll={{ y: 1000 }}
+          scroll={{ y: true}}
           className="tab-pdr"
           onRow={record => {
             return {

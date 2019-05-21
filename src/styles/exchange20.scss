@@ -267,6 +267,9 @@
       .ant-table-thead > tr.ant-table-row-hover:not(.ant-table-expanded-row) > td, .ant-table-tbody > tr.ant-table-row-hover:not(.ant-table-expanded-row) > td, .ant-table-thead > tr:hover:not(.ant-table-expanded-row) > td, .ant-table-tbody > tr:hover:not(.ant-table-expanded-row) > td{
         background: #F3F3F3;
       }
+      .ant-table-fixed-header .ant-table-scroll .ant-table-header{
+        padding-bottom: 0!important;
+      }
     }
     
   }

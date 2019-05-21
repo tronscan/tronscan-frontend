@@ -405,7 +405,7 @@ class ExchangeList extends React.Component {
           </div>
 
           {/* filter 筛选 */}
-          <div className="dex-tab tab-lar tab-pr-100">
+          <div className={intl.locale !== "en" ? "dex-tab tab-lar tab-pr-100" : "dex-tab tab-lar tab-pr-100 tab-en"}>
             <Tabs onChange={this.tabChange} activeKey={activedTab}>
               <TabPane
                 tab={
