@@ -1524,17 +1524,15 @@ export const messages = {
   "trc20_trade_win_confirm":"确定",
 
   
-  "trc20_history":"最近成交",
-  "trc20_register":"交易委托",
+
   "trc20_hot":"热门",
   "trc20_top_Volume":"成交额榜",
   "trc20_top_Rising":"涨幅榜",
-  "trc20_top_WhitePaper":"白皮书",
-  "trc20_top_CreateTime":"创建时间",
-  "trc20_top_IssuedAmount":"流通量",
-  "trc20_top_nrOfTokenHolders":"通证持有者",
-  "trc20_top_More":"查看更多",
 
+  "trc20_history":"最近成交",
+  "trc20_register":"交易委托",
+  "trc20_24h_h":"24H最高价",
+  "trc20_24h_l":"24H最低价",
 
     /*
     *  2018-12-18

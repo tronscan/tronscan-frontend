@@ -1523,6 +1523,10 @@ export const messages = {
   "trc20_top_Volume":"거래리스트",
   "trc20_top_Rising":"상승 목록",
 
+  "trc20_history":"시장 거래",
+  "trc20_register":"주문 도서",
+  "trc20_24h_h":"24H 높은",
+  "trc20_24h_l":"24H 낮은",
   /*
    *  2018-12-18
    * */

@@ -1581,6 +1581,10 @@ export const messages = {
   "trc20_top_Volume":"Lista de comercio",
   "trc20_top_Rising":"Lista creciente",
 
+  "trc20_history":"Comercios de mercado",
+  "trc20_register":"Libro de pedidos",
+  "trc20_24h_h":"24H Alto",
+  "trc20_24h_l":"24H bajo",
   /*
    *  2018-12-18
    * */

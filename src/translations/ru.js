@@ -1538,7 +1538,10 @@ export const messages = {
   "trc20_top_Volume":"Торговый список",
   "trc20_top_Rising":"Восходящий список",
 
-
+  "trc20_history":"Биржевые торги",
+  "trc20_register":"Книга заказов",
+  "trc20_24h_h":"24H Высоко",
+  "trc20_24h_l":"24H низкий",
   /*
     *  2018-12-18
   * */
