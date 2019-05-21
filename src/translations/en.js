@@ -1579,7 +1579,7 @@ export const messages = {
   "trc20_trade_win_confirm":"Confirm",
  
   "trc20_hot":"Hot",
-  "trc20_top_Volume":"Top Volume",
+  "trc20_top_Volume":"Top VOL",
   "trc20_top_Rising":"Top Rising",
   "trc20_history":"Market Trades",
   "trc20_register":"Order Book",

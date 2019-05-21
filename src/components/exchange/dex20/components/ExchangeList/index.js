@@ -347,7 +347,7 @@ class ExchangeList extends React.Component {
               </i>
             </a>
           )}
-          <div className="d-flex  justify-content-between align-items-center w-100">
+          <div className="d-flex  justify-content-between align-items-center w-100 tab-pr-100">
             {/* <h6 className="m-0">
               
               <a href="https://trx.market" target="_blank" className="">
@@ -405,13 +405,13 @@ class ExchangeList extends React.Component {
           </div>
 
           {/* filter 筛选 */}
-          <div className="dex-tab">
+          <div className={intl.locale !== "en" ? "dex-tab tab-lar tab-pr-100" : "dex-tab tab-lar tab-pr-100 tab-en"}>
             <Tabs onChange={this.tabChange} activeKey={activedTab}>
               <TabPane
                 tab={
                   <span>
                     <Icon type="star" />
-                    {tu("Favorites")}
+                    {/* {tu("Favorites")} */}
                   </span>
                 }
                 key="fav"
@@ -430,7 +430,7 @@ class ExchangeList extends React.Component {
               />
             </Tabs>
           </div>
-          <div className="dex-tab">
+          <div className="dex-tab tab-pr-100">
             <div
               className={"btn btn-sm" + (activedId === 0 ? " active" : "")}
               // onClick={() => this.handleSelectData(true)}
@@ -454,7 +454,7 @@ class ExchangeList extends React.Component {
           </div>
           <div className="dex-search" />
           {
-            <PerfectScrollbar>
+            <div>
               <div
                 className="exchange-list__table"
                 style={AdClose ? styles.list : styles.adlist}
@@ -465,7 +465,7 @@ class ExchangeList extends React.Component {
                   <ExchangeTable dataSource={dataSource} />
                 )}
               </div>
-            </PerfectScrollbar>
+            </div>
           }
         </div>
 

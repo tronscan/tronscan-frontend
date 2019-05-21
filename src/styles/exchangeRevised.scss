@@ -25,11 +25,17 @@
       width: 100%;
     }
   }
+  .tab-en{
+    .ant-tabs-tab{
+      padding: 12px 15px!important;
+    }
+  }
   .dex-tab {
     .ant-tabs-nav .ant-tabs-tab {
       margin: 0;
-      padding: 12px 15px;
+      padding: 12px 18px;
     }
+    
     .ant-tabs-bar {
       margin-bottom: 0;
     }
@@ -63,14 +69,20 @@
       height: auto;
     }
   }
+  .bg-color {
+    width: 65px;
+    display: block;
+    text-align: center;
+    float: right;
+  }
   .bg-color.col-red {
-    padding: 2px 5px;
+    padding: 2px 0;
     background: rgba(230, 8, 21, 0.1);
     border-radius: 4px;
     font-size: 14px;
   }
   .bg-color.col-green {
-    padding: 2px 5px;
+    padding: 2px 0;
     background: rgba(105, 194, 101, 0.1);
     border-radius: 4px;
     font-size: 14px;
@@ -89,4 +101,53 @@
     font-size: 12px;
     color: #999999;
   }
+  .tab-lar {
+    padding: 6px 0;
+  }
+  .dex-tab .btn.active {
+    background: #fff;
+  }
+  .optional-star .star_red{
+    width:0.8rem;
+    height: 0.8rem;
+  }
+  .exchange-list-mark{
+    padding-right:0!important;
+  }
+  .tab-pr-100{
+    padding-right:1rem;
+  }
+  .tab-pr-50{
+    padding-right:0.5rem;
+  }
+  .tab-pdr{
+    
+    .ant-table-thead{
+      line-height: 30px;
+      height: 30px;
+      &> tr > th{
+        background:#fff;
+      }
+      th{
+        &:last-child{
+          padding-right:1rem !important;
+        }
+      }
+    }
+    .ant-table-fixed-header .ant-table-scroll .ant-table-header{
+      padding-bottom:0;
+    }
+    
+  }
+
+ 
+    ::-webkit-scrollbar{
+      background: #fff;
+      width:6px;
+    }
+    ::-webkit-scrollbar-thumb{
+      background: #D8D8D8!important;
+      border-radius: 3px;
+    }
+  
 }
