@@ -1580,7 +1580,7 @@ export const messages = {
   "trc20_history":"Trade History",
   "trc20_register":"交易委托",
   "trc20_hot":"Hot",
-  "trc20_top_Volume":"Top Volume",
+  "trc20_top_Volume":"Top VOL",
   "trc20_top_Rising":"Top Rising",
 
   "create_deal_pair": "Create Trading Pairs",

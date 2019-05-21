@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from "react";
-import { Table } from "antd";
+import { Table,Icon } from "antd";
 import { QuestionMark } from "../../../../common/QuestionMark";
 import { withRouter } from "react-router-dom";
 import queryString from "query-string";
@@ -36,7 +36,7 @@ class ExchangeTable extends Component {
       {
         title: upperFirst(intl.formatMessage({ id: "trc20_price" })),
         key: "first_token_id",
-        // width: 100,
+        width: 100,
         render: (text, record, index) => {
           return (
             <div className="position-relative" style={{ display: "flex" }}>
@@ -57,9 +57,10 @@ class ExchangeTable extends Component {
                   }}
                 >
                   {favList.includes(record.id) ? (
-                    <i className="star_red" />
+                    // <i className="star_red" />
+                    <Icon type="star" style={{color:"#C53028"}} theme="filled"/>
                   ) : (
-                    <i className="star" />
+                    <Icon type="star"/>
                   )}
                 </span>
               </span>
@@ -99,7 +100,7 @@ class ExchangeTable extends Component {
         // width: 120,
         render: (text, record) => {
           return (
-            <div className="textRight">
+            <div className="textRight ">
               <FormattedNumber value={record.svolume ? record.svolume : 0} />{" "}
               {record.second_token_abbr}
               <br />
@@ -136,11 +137,11 @@ class ExchangeTable extends Component {
         align: "right",
         // width: 100,
         render: (text, record, index) => {
-          // console.log(record, text);
+        
           return text.indexOf("-") != -1 ? (
-            <span className="col-red bg-color">{text}</span>
+            <div className="tab-pr-100"><span className="col-red bg-color">{text}</span></div>
           ) : (
-            <span className="col-green bg-color">{text}</span>
+            <div className="tab-pr-100"><span className="col-green bg-color">{text}</span></div>
           );
         }
       }
@@ -156,6 +157,8 @@ class ExchangeTable extends Component {
             return index;
           }}
           rowClassName={this.setActiveClass}
+          scroll={{ y: 1000 }}
+          className="tab-pdr"
           onRow={record => {
             return {
               onClick: () => {
