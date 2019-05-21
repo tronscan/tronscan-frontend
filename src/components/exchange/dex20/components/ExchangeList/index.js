@@ -1,3 +1,4 @@
+/* eslint-disable default-case */
 import React, { Fragment } from "react";
 import { injectIntl } from "react-intl";
 import { Client } from "../../../../../services/api";
@@ -75,6 +76,7 @@ class ExchangeList extends React.Component {
       loading: true,
       timeVolume: null,
       timeupDown: null,
+      timeSearch: null,
       inputValue: ""
     };
     this.tabChange = this.tabChange.bind(this);
@@ -126,12 +128,13 @@ class ExchangeList extends React.Component {
       exchange20UpDownList,
       exchanges20SearchList
     } = this.props;
-    let { tokenAudited, activedTab, inputValue } = this.state;
+    let { tokenAudited, activedTab, inputValue, activedId } = this.state;
     if (inputValue) {
       if (exchanges20SearchList !== prevProps.exchanges20SearchList) {
-        this.setState({
-          dataSource: exchanges20SearchList
-        });
+        this.setSearchList(activedTab,activedId)
+        // this.setState({
+        //   dataSource: exchanges20SearchList
+        // });
       }
       return;
     }
@@ -485,7 +488,7 @@ class ExchangeList extends React.Component {
     });
   }
   tabChange(activeKey) {
-    const { time, timeVolume, timeupDown, inputValue } = this.state;
+    const { time, timeVolume, timeupDown, inputValue,timeSearch } = this.state;
     const {
       getExchanges20,
       getExchanges20Volume,
@@ -494,11 +497,11 @@ class ExchangeList extends React.Component {
     clearInterval(time);
     clearInterval(timeVolume);
     clearInterval(timeupDown);
-
+    clearInterval(timeSearch);
     if (inputValue) {
       this.setState({
         activedTab: activeKey,
-        activedId: 0
+        // activedId: 0
       });
       this.setSearchList(activeKey, 0);
       return;
@@ -600,71 +603,85 @@ class ExchangeList extends React.Component {
   }
 
   onInputChange(e) {
-    // const { inputValue, activedTab, time, timeVolume, timeupDown } = this.state;
+    const { activedId, activedTab, timeSearch } = this.state;
     this.setState({
       inputValue: e.target.value
     });
+    console.log(e.target.value)
     if (!e.target.value) {
+      clearInterval(timeSearch);
       this.setState({
-        activedTab: "hot",
-        activedId: 0,
-        dataSource: this.keyObj("hot")
+        // activedTab: "hot",
+        activedId: activedId,
+        dataSource: this.keyObj(activedTab)
       });
+    }else{
+      this.getSearchList(e.target.value);
     }
   }
 
   onPressEnter() {
-    const { inputValue, activedTab, time, timeVolume, timeupDown } = this.state;
-    clearInterval(time);
-    clearInterval(timeVolume);
-    clearInterval(timeupDown);
+    const { inputValue, activedTab } = this.state;
     if (inputValue === "") {
       this.setState({
         dataSource: this.keyObj(activedTab)
       });
     } else {
-      this.setState({
-        activedTab: "hot",
-        activedId: 0
-      });
+      // this.setState({
+      //   activedTab: "hot",
+      //   activedId: 0
+      // });
       this.getSearchList(inputValue);
     }
   }
 
   getSearchList(val) {
+    const { time, timeVolume, timeupDown, timeSearch } = this.state;
     const { getExchanges20Search } = this.props;
-    getExchanges20Search({ key: val.toUpperCase() });
+
+    clearInterval(time);
+    clearInterval(timeVolume);
+    clearInterval(timeupDown);
+    clearInterval(timeSearch);
+    getExchanges20Search({ key: val });
+    this.setState({
+      timeSearch: setInterval(() => {
+        getExchanges20Search({ key: val });
+      }, 10000)
+    });
   }
   setSearchList(tab, id) {
     let { exchanges20SearchList } = this.props;
-    let list = exchanges20SearchList;
+    let list = [...exchanges20SearchList];
     switch (tab) {
       case "fav":
         let _list = Lockr.get("dex20") || [];
-        list = exchanges20SearchList.filter(item => _list.includes(item.id));
+        list = list.filter(item => _list.includes(item.id));
         break;
       case "hot":
-        list = exchanges20SearchList;
+        list = list;
         break;
       case "volume":
-        list = exchanges20SearchList.sort((a, b) => {
-          return a.trxVolume24h - b.trxVolume24h;
+        list = list.sort((a, b) => {
+          return b.trxVolume24h - a.trxVolume24h;
         });
         break;
       case "up_and_down":
-        list = exchanges20SearchList.sort((a, b) => {
-          return a.trxVolume24h - b.trxVolume24h;
+        list = list.sort((a, b) => {
+          return b.gain - a.gain;
         });
         break;
     }
-    if (id != 0) {
+    if (id !== 0) {
       list = list.filter(v => {
         return v.second_token_abbr == id;
       });
     }
-
-    this.setState({
-      dataSource: list
+    // console.log(tab,id,list)
+    this.setState(()=>{
+      return {
+        dataSource: list
+      }
     });
   }
 }
