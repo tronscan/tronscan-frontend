@@ -16,7 +16,7 @@ export const messages = {
     #         Template for translating the tronscan.org website                      #
     #         Version: 1.6-13082018                                                  #
     #         Update Date: 06.12.2018                                                #
-    #         Language: English                                                      #
+    #         Language: japanese 日语                                                      #
     #         Status: Approved Version                                               #
     #         Number of checks: 4                                                    #
     #         Participants: Rovak,PMD3VSolution,DrKaradenizli,Harry                        #

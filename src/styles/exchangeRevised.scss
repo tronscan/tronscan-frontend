@@ -27,7 +27,7 @@
   }
   .tab-en{
     .ant-tabs-tab{
-      padding: 12px 15px!important;
+      padding: 12px 14px!important;
     }
   }
   .dex-tab {
@@ -61,7 +61,7 @@
       // margin:auto;
       // position: relative;
       margin: 0;
-      margin-right: 5px;
+      margin-right: 8px;
       position: relative;
       top: 10px;
     }
@@ -129,6 +129,9 @@
         background:#fff;
       }
       th{
+        &:first-child{
+          text-indent: 20px;
+        }
         &:last-child{
           padding-right:1rem !important;
         }
@@ -149,5 +152,9 @@
       background: #D8D8D8!important;
       border-radius: 3px;
     }
+
+    .ant-table {
+      font-family: Arial;
+  }
   
 }

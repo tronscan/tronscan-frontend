@@ -410,8 +410,8 @@ class ExchangeList extends React.Component {
               <TabPane
                 tab={
                   <span>
-                    <Icon type="star" />
-                    {/* {tu("Favorites")} */}
+                    {/* <Icon type="star" /> */}
+                    {tu("Favorites")}
                   </span>
                 }
                 key="fav"

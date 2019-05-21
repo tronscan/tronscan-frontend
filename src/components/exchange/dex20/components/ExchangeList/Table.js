@@ -99,17 +99,16 @@ class ExchangeTable extends Component {
         key: "price",
         // width: 120,
         render: (text, record) => {
+         
           return (
             <div className="textRight ">
-              <FormattedNumber value={record.svolume ? record.svolume : 0} />{" "}
+              <FormattedNumber value={Number(record.trxVolume24h / Math.pow(10, record.sPrecision)).toFixed(0) ? Number(record.trxVolume24h / Math.pow(10, record.sPrecision)).toFixed(0)  : 0} />{" "}
               {record.second_token_abbr}
               <br />
               <span className="font-grey">
                 {activeCurrency.toUpperCase() === "TRX" ? (
                   <FormattedNumber
-                    value={Number(
-                      record.trxVolume24h / Math.pow(10, record.sPrecision)
-                    ).toFixed(0)}
+                    value={Number(record.trxVolume24h / Math.pow(10, record.sPrecision)).toFixed(0)}
                   />
                 ) : (
                   <FormattedNumber
