@@ -104,15 +104,25 @@ class ExchangeTable extends Component {
               {record.second_token_abbr}
               <br />
               <span className="font-grey">
-                <FormattedNumber
-                  value={(
-                    (price && price.trxToOther && price.usdtToOther
-                      ? record.second_token_id === "TRX"
-                        ? price.trxToOther[activeCurrency]
-                        : price.usdtToOther[activeCurrency]
-                      : "") * record.svolume
-                  ).toFixed(0)}
-                />{" "}
+                {activeCurrency.toUpperCase() === "TRX" ? (
+                  <FormattedNumber
+                    value={Number(
+                      record.trxVolume24h / Math.pow(10, record.sPrecision)
+                    ).toFixed(0)}
+                  />
+                ) : (
+                  <FormattedNumber
+                    value={(
+                      Number(
+                        price && price.trxToOther && price.usdtToOther
+                          ? record.second_token_id === "TRX"
+                            ? price.trxToOther[activeCurrency]
+                            : price.usdtToOther[activeCurrency]
+                          : ""
+                      ) * record.svolume
+                    ).toFixed(0)}
+                  />
+                )}{" "}
                 {activeCurrency.toUpperCase()}
               </span>
             </div>

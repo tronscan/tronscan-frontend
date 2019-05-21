@@ -166,7 +166,7 @@ export class TRXPrice extends React.PureComponent {
                       <FormattedNumber
                         value={priceValues.prices.USD * (amount / ONE_TRX)}
                         maximumFractionDigits={
-                          priceValues.currencies.USD.fractions || 2
+                          priceValues.currencies.USD.fractions || 3
                         }
                       />
                       <br />
@@ -239,7 +239,7 @@ export class TRXPrice extends React.PureComponent {
                       <FormattedNumber
                         value={priceValues.prices.USD * amount}
                         maximumFractionDigits={
-                          priceValues.currencies.USD.fractions || 6
+                          priceValues.currencies.USD.fractions || 3
                         }
                       />
                       <br />
@@ -310,7 +310,7 @@ export class TRXPrice extends React.PureComponent {
                       <FormattedNumber
                         value={priceValues.prices.USD * amount}
                         maximumFractionDigits={
-                          priceValues.currencies.USD.fractions || 2
+                          priceValues.currencies.USD.fractions || 3
                         }
                       />
                       <br />
