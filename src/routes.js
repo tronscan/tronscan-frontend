@@ -27,6 +27,7 @@ import {
   TokenListAsync,
   TokenOverviewAsync,
   TokensCreateAsync,
+  TokensUpdateAsync,
   TokenTRC20ListAsync,
   TokenAllAsync,
   TransactionViewerAsync,
@@ -218,7 +219,16 @@ export const routes = [
         path: "/tokens/create",
         icon: "fa fa-plus-square",
         component: TokensCreateAsync
-      }
+      },
+      {
+        label: "token_input",
+        path: "/tokens/update/:id",
+        icon: "fa fa-plus-square",
+        component: TokensUpdateAsync,
+       // showInMenu: false
+
+      },
+
     ]
   },
   {

@@ -28,22 +28,22 @@ class Footer extends Component {
                 <ul className="list-unstyled">
                   <li className="d-flex">
                     <HrefLink href="https://t.me/tronscan_org">
-                      <i class="fab fa-telegram mr-1"></i>Telegram
+                      <i className="fab fa-telegram mr-1"></i>Telegram
                     </HrefLink>
                   </li>
                   <li>
                     <HrefLink href="https://twitter.com/TRONSCAN_ORG">
-                      <i class="fab fa-twitter mr-1"></i>Twitter
+                      <i className="fab fa-twitter mr-1"></i>Twitter
                     </HrefLink>
                   </li>
                   <li>
                     <HrefLink href="https://medium.com/@TRONSCAN_ORG">
-                      <i class="fab fa-medium-m mr-1"></i>Medium
+                      <i className="fab fa-medium-m mr-1"></i>Medium
                     </HrefLink>
                   </li>
                   <li>
                     <HrefLink href="https://discordapp.com/invite/GsRgsTD">
-                      <i class="fab fa-discord mr-1"></i>Discord
+                      <i className="fab fa-discord mr-1"></i>Discord
                     </HrefLink>
                   </li>
 
@@ -176,22 +176,22 @@ class Footer extends Component {
                 <ul className="list-unstyled quick-links pt-3">
                   <li className="p-2">
                     <HrefLink href="https://t.me/tronscan_org">
-                      <i class="fab fa-telegram mr-4"></i>Telegram
+                      <i className="fab fa-telegram mr-4"></i>Telegram
                     </HrefLink>
                   </li>
                   <li className="p-2">
                     <HrefLink href="https://twitter.com/TRONSCAN_ORG">
-                      <i class="fab fa-twitter mr-4"></i>Twitter
+                      <i className="fab fa-twitter mr-4"></i>Twitter
                     </HrefLink>
                   </li>
                   <li className="p-2">
                     <HrefLink href="https://medium.com/@TRONSCAN_ORG">
-                      <i class="fab fa-medium-m mr-4"></i>Medium
+                      <i className="fab fa-medium-m mr-4"></i>Medium
                     </HrefLink>
                   </li>
                   <li className="p-2">
                     <HrefLink href="https://discordapp.com/invite/GsRgsTD">
-                      <i class="fab fa-discord mr-4"></i>Discord
+                      <i className="fab fa-discord mr-4"></i>Discord
                     </HrefLink>
                   </li>
                   <li className="p-2">

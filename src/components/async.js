@@ -415,6 +415,24 @@ export const TokensCreateAsync = asyncComponent({
     )
 });
 
+export const TokensUpdateAsync = asyncComponent({
+    LoadingComponent: () => <TronLoader />,
+    resolve: () =>
+        new Promise(resolve =>
+            // Webpack's code splitting API w/naming
+            require.ensure(
+                [],
+                require => {
+                    $script("", () => {
+                        //resolve(require("./tokens/TokenCreate"));
+                        resolve(require("./tokens/TokenCreate/index"));
+                    });
+                },
+                "TokensCreate"
+            )
+        )
+});
+
 export const AccountsAsync = asyncComponent({
   LoadingComponent: () => <TronLoader />,
   resolve: () =>

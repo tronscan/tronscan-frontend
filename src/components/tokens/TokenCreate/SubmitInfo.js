@@ -31,7 +31,6 @@ const { TextArea } = Input;
 
     constructor(props) {
         super(props);
-        console.log('this.props.state',this.props.state)
         this.state = {
             ...this.props.state,
             captcha_code:null,
@@ -188,30 +187,30 @@ const { TextArea } = Input;
             case 'trc10':
                 if (Lockr.get("islogin")||this.props.walletType.type==="ACCOUNT_LEDGER"||this.props.walletType.type==="ACCOUNT_TRONLINK") {
                     if (this.props.walletType.type === "ACCOUNT_LEDGER") {
-                        const unSignTransaction = await tronWebLedger.transactionBuilder.createToken({
-                            name: this.tokenState('name'),
-                            abbreviation: this.tokenState('abbreviation'),
-                            description: this.tokenState('description'),
-                            url: this.tokenState('url'),
-                            totalSupply: this.tokenState('totalSupply'),
-                            tokenRatio: this.tokenState('tokenRatio'),
-                            trxRatio: this.tokenState('trxRatio'),
-                            saleStart: this.tokenState('saleStart'),
-                            saleEnd: this.tokenState('saleEnd'),
-                            freeBandwidth: 1,
-                            freeBandwidthLimit: 1,
-                            frozenAmount: this.tokenState('frozenAmount'),
-                            frozenDuration: this.tokenState('frozenDuration'),
-                            precision:  this.tokenState('precision'),
-                        }, tronWebLedger.defaultAddress.hex).catch(function (e) {
-                            errorInfo = e;
-                        })
-                        if (!unSignTransaction) {
-                            res = false;
-                        } else {
-                            const {result} = await transactionResultManager(unSignTransaction, tronWebLedger);
-                            res = result;
-                        }
+                        // const unSignTransaction = await tronWebLedger.transactionBuilder.createToken({
+                        //     name: this.tokenState('name'),
+                        //     abbreviation: this.tokenState('abbreviation'),
+                        //     description: this.tokenState('description'),
+                        //     url: this.tokenState('url'),
+                        //     totalSupply: this.tokenState('totalSupply'),
+                        //     tokenRatio: this.tokenState('tokenRatio'),
+                        //     trxRatio: this.tokenState('trxRatio'),
+                        //     saleStart: this.tokenState('saleStart'),
+                        //     saleEnd: this.tokenState('saleEnd'),
+                        //     freeBandwidth: 1,
+                        //     freeBandwidthLimit: 1,
+                        //     frozenAmount: this.tokenState('frozenAmount'),
+                        //     frozenDuration: this.tokenState('frozenDuration'),
+                        //     precision:  this.tokenState('precision'),
+                        // }, tronWebLedger.defaultAddress.hex).catch(function (e) {
+                        //     errorInfo = e;
+                        // })
+                        // if (!unSignTransaction) {
+                        //     res = false;
+                        // } else {
+                        //     const {result} = await transactionResultManager(unSignTransaction, tronWebLedger);
+                        //     res = result;
+                        // }
                     }
 
                     if(this.props.walletType.type === "ACCOUNT_TRONLINK"){
@@ -242,7 +241,6 @@ const { TextArea } = Input;
                     }
 
                 }else {
-
                     createInfo = await Client.createToken20({
                         address: account.address,
                         name: this.tokenState('name'),
@@ -290,17 +288,9 @@ const { TextArea } = Input;
                 }
 
 
-
-                console.log(tronWeb.toHex(JSON.stringify(data)))
-                console.log('tronWeb.toHex(JSON.stringify(data))',tronWeb.toHex(JSON.stringify(data)))
-                //let sig = await tronWeb.trx.sign(tronWeb.toHex(JSON.stringify(data)))
                 let hash = tronWeb.toHex(JSON.stringify(data),false);
-               // let hex = tronWeb.toHex(hash)
-                let sig =  await tronWeb.trx.sign(hash)
+                let sig =  await tronWeb.trx.sign(hash);
 
-                console.log('data',data)
-                console.log('hash',hash)
-                console.log('sig',sig)
                 if (Lockr.get("islogin")||this.props.walletType.type==="ACCOUNT_LEDGER"||this.props.walletType.type==="ACCOUNT_TRONLINK") {
                     // if (this.props.walletType.type === "ACCOUNT_LEDGER") {
                     //     const unSignTransaction = await tronWebLedger.transactionBuilder.createToken({
@@ -330,19 +320,19 @@ const { TextArea } = Input;
                     // }
 
                     if(this.props.walletType.type === "ACCOUNT_TRONLINK"){
-
+                        if()
                         const unSignTransaction = await Client.createToken20({
                             "content":JSON.stringify(data),
                             sig:sig
                         })
-                        // .catch(function (e) {
-                        //     errorInfo = e.indexOf(':')?e.split(':')[1]:e
-                        // })
-                        if (!unSignTransaction) {
-                            res = false;
+                        console.log('unSignTransaction',unSignTransaction)
+
+                        if (!unSignTransaction.retCode) {
+                            res = true;
+
                         } else {
-                            const {result} = await transactionResultManager(unSignTransaction, tronWeb);
-                            res = result;
+                            res = false;
+                            errorInfo = unSignTransaction.retMsg
                         }
                     }
 
@@ -365,6 +355,7 @@ const { TextArea } = Input;
                     res = createInfo.success;
                     errorInfo = createInfo.message.indexOf(':')?createInfo.message.split(':')[1]:createInfo.message;
                 }
+
                 this.setState({
                     res,
                     errorInfo
@@ -382,8 +373,8 @@ const { TextArea } = Input;
         let {iconList, modal, checkbox, errors, captcha_code, type, paramData:{ token_name, token_abbr, token_introduction, token_supply, precision, author, logo_url, contract_address, contract_created_date, contract_code, token_amount, trx_amount, freeze_amount, freeze_date, freeze_type, participation_start_date, participation_end_date, participation_type, website, email, white_paper }} = this.state;
         const isTrc10 = type === 'trc10'
         const isTrc20 = type === 'trc20'
-        let startTime =  participation_start_date.valueOf();
-        let endTime = participation_end_date.valueOf();
+        let startTime = participation_start_date? participation_start_date.valueOf() :'';
+        let endTime = participation_end_date?participation_end_date.valueOf():'';
         let contractCreateTime = contract_created_date ? contract_created_date.valueOf() : contract_created_date;
         return (
             <main className="token-submit">

@@ -114,10 +114,10 @@ export class TokenCreate extends Component {
   }
 
   render() {
-    const { autoCompleteResult, type, iconList,modal, precision_20, token_trx_order } = this.state;
+    const { autoCompleteResult, type, isUpdate, iconList,modal, precision_20, token_trx_order } = this.state;
     const {intl, nextStep} = this.props
     const { getFieldDecorator, getFieldsValue } = this.props.form;
-
+    console.log('isUpdate12312312313',isUpdate)
     const isTrc10 = type === 'trc10'
     const isTrc20 = type === 'trc20'
 
@@ -195,7 +195,7 @@ export class TokenCreate extends Component {
                       rules: [{ required: true, message: tu('description_v_required'), whitespace: true},
                               {min: 1, max: 500, message: tu('description_v_length')}],
                     })(
-                      <TextArea autosize={{ minRows: 4, maxRows: 6 }}  placeholder={intl.formatMessage({id: 'description_message'})} />
+                      <TextArea autosize={{ minRows: 4, maxRows: 6 }}  placeholder={intl.formatMessage({id: 'description_message'})} disabled={isUpdate}/>
                     )}
                   </Form.Item>
                 </Col>

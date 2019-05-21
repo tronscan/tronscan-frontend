@@ -44,9 +44,48 @@ export class resultInfo extends Component {
         window.location.hash = "#/tokens/list";
     }
 
+    setErrorMsg = (error) =>{
+        let str = ''
+        switch (error) {
+            case "1":
+                str = '通证名称或者简称涉及敏感词'
+            break;
+            case "2":
+                str = '通证名称或者简称与合约里定义的不符'
+            break;
+            case "3":
+                str = '发行总量与合约里的totalsupply不符'
+            break;
+            case "4":
+                str = '合约代码含有assert，不通过'
+            break;
+            case "5":
+                str = '通证精度与合约里定义的不符'
+            break;
+            case "6":
+                str = '签名验证失败'
+            break;
+            case "7":
+                str = '数据过期'
+            break;
+            case "8":
+                str = '合约已经录入'
+                break;
+            case "9":
+                str = '参数校验未通过'
+            break;
+            default:
+                str = error;
+            break;
+        }
+        return str
+
+    }
+
     render() {
         let { intl } = this.props;
         let { type, res, errorInfo } = this.state;
+        console.log('errorInfo2222',errorInfo)
         console.log('type',type)
         return (
             <main className="token-result">
@@ -57,7 +96,7 @@ export class resultInfo extends Component {
                         <div className="mt-3 d-flex failure-reason">
                             <span>{tu('token_input_failure_reason')}</span>
                             <div>
-                                <p>1.{errorInfo}</p>
+                                <p>1.{this.setErrorMsg(errorInfo)}</p>
                             </div>
                         </div>
                         <div className="d-flex mt-3">
