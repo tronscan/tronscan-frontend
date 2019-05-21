@@ -1705,13 +1705,27 @@ export const messages = {
   "address_total_balance_info_sources":"Источник информации",
   "address_info_transfers": "Переводы",
   "address_info_transactions": "транзакции",
-  "address_netLimit":"Total Bandwidth",
-  "address_netRemaining":"Available Bandwidth",
-  "address_netUsed":"Used Bandwidth",
-  "address_energyLimit":"Total Energy",
-  "address_energyRemaining":"Available Energy",
-  "address_energyUsed":"Used Energy",
-  "address_percentage":"Percentage",
+  "address_netLimit":"Общая пропускная способность",
+  "address_netRemaining":"Доступная пропускная способность",
+  "address_netUsed":"Использованная пропускная способность",
+  "address_energyLimit":"Общая энергия",
+  "address_energyRemaining":"Доступная энергия",
+  "address_energyUsed":"Использованная энергия",
+  "address_percentage":"Соотношение",
+  "address_net_fee":"Bandwidth Cost",
+  "address_energy_fee":"Energy Cost",
+
+  /*
+  ##################################################################################
+  #                                                                                #
+  # footer  2019-05-20                                    #
+  #                                                                                #
+  ##################################################################################
+  */
+  "footer_fellow_us":"Fellow Us",
+  "footer_developer_resources":"Developer Resources",
+  "footer_support_center":"Support Center",
+  "footer_tron_network":"TRON"
 
 
 };

@@ -183,11 +183,11 @@ export default class Home extends Component {
     this.load();
     this.loadAccounts();
     this.reconnect();
-    if(!account.isLoggedIn){
-        if(Lockr.get('websocket') === 'close' || !Lockr.get('websocket')) {
-            setWebsocket();
-        }
-    }
+    // if(!account.isLoggedIn){
+    //     if(Lockr.get('websocket') === 'close' || !Lockr.get('websocket')) {
+    //         setWebsocket();
+    //     }
+    // }
     let { noticezhIEO, noticeenIEO } = this.state;
     const data = await Client20.getTRONNotice(intl.locale, { page: 3 });
    // intl.locale == "zh"? data.articles.unshift(noticezhIEO):data.articles.unshift(noticeenIEO);
@@ -218,10 +218,10 @@ export default class Home extends Component {
     //clearConstellations();
     //this.listener && this.listener.close();
     let { account, websocket }  = this.props;
-    if(websocket){
-        websocket.close();
-        Lockr.set("websocket", 'close')
-    }
+    // if(websocket){
+    //     websocket.close();
+    //     Lockr.set("websocket", 'close')
+    // }
   }
 
   reconnect() {

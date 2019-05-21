@@ -50,9 +50,9 @@ export const loadRecentTransactions = (address) => async (dispatch) => {
 
 
 export const setWebsocket = () => async (dispatch) => {
-  if(Lockr.get("websocket") === 'open'){
-    return;
-  }
+  // if(Lockr.get("websocket") === 'open'){
+  //   return;
+  // }
   var wsUri = "wss://apilist.tronscan.org/api/tronsocket";
   // var wsUri = "wss://api.shasta.tronscan.org/api/tronsocket";
   // var wsUri = "ws://172.16.20.200:6688/api/tronsocket";

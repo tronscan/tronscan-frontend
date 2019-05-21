@@ -181,7 +181,7 @@ class TokenBalances extends React.Component {
                 title:  upperFirst(intl.formatMessage({id: 'address_balance_token_price_TRX'})),
                 dataIndex: 'TRXBalance',
                 key: 'TRXBalance',
-                align: 'right',
+                align: 'left',
                 className: 'ant_table',
                 render: (text, record, index) => {
                     return (<span>

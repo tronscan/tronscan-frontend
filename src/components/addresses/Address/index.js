@@ -12,6 +12,7 @@ import {AddressLink, ExternalLink} from "../../common/Links";
 import {TRXPrice} from "../../common/Price";
 import {TronLoader} from "../../common/loaders";
 import Transactions from "../../common/Transactions";
+import NewTransactions from "../../common/NewTransactions";
 import Votes from "../../common/Votes";
 import Transfers from "../../common/Transfers";
 import TransfersTrc20 from "../../common/TransfersTrc20";
@@ -252,7 +253,7 @@ class Address extends React.Component {
             // icon: "fas fa-handshake",
             path: "/transactions",
             label: <span>{tu("transactions")}</span>,
-            cmp: () => <Transactions filter={{address: id}} address/>
+            cmp: () => <NewTransactions filter={{address: id}} address/>
           },
           intransactions: {
             id: "intransactions",
@@ -328,7 +329,7 @@ class Address extends React.Component {
             // icon: "fas fa-handshake",
             path: "/transactions",
             label: <span>{tu("transactions")}</span>,
-            cmp: () => <Transactions filter={{address: id}} address/>
+            cmp: () => <NewTransactions filter={{address: id}} address/>
           },
           intransactions: {
             id: "intransactions",
@@ -390,7 +391,7 @@ class Address extends React.Component {
         energyLimit:address.bandwidth.energyLimit,
         energyRemaining:address.bandwidth.energyRemaining,
         energyPercentage:address.bandwidth.energyPercentage * 100,
-        availableEnergyPercentage:(1- address.bandwidth.energyPercentage) * 100,
+        availableEnergyPercentage:address.bandwidth.energyRemaining ?(1- address.bandwidth.energyPercentage) * 100 : 0,
     });
 
   }
