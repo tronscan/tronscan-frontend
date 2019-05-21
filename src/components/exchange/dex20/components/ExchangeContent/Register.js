@@ -359,7 +359,7 @@ class RegisterList extends Component {
           data.map(v=>{
             return(
               <div className="list-item" key={v.key}>
-                <div className="item-detail" onClick={() => this.handlePriceObj(v,type)}>
+                <div className="item-detail" onClick={() => this.handlePriceObj(v,type=='sell'?'buy':'sell')}>
                   <span className={type}>{v.price}</span>
                   <span>{v.amount}</span>
                   <span>{v.cje}</span>

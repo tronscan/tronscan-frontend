@@ -43,7 +43,7 @@ class ExchangeContent extends React.Component {
                 <div className="chart-select">
                   <Select
                     defaultValue="kchart"
-                    style={{ width: 80 }}
+                    style={{ width: 100 }}
                     onChange={this.handleChange}
                   >
                     <Option value="kchart">{tu("trc20_kchart")}</Option>

@@ -1,6 +1,7 @@
 .exchange20 {
   padding: 0 0.5rem;
   min-width: 1300px;
+  font-family: 'Arial';
   .exchange-list {
     background: none;
   }
@@ -35,7 +36,7 @@
       margin-bottom: 0;
       padding-left: 0;
       li{
-        width: 310px;
+        width: 300px;
         height: 60px;
         line-height: 60px;
         padding-left: 16px;
@@ -121,7 +122,7 @@
   }
 
   .register {
-    width: 310px;
+    width: 300px;
     font-size: 12px;
     color: #333333;
     background: #fff;
@@ -172,7 +173,7 @@
           span{
             flex: 1;
             text-align: right;
-            font-family: Helvetica;
+            // font-family: Helvetica;
             &:first-child{
               flex: 0.8;
               text-align: left;
@@ -187,6 +188,9 @@
               flex: 1.2;
             }
           }
+        }
+        &:hover{
+          background: #f3f3f3;
         }
       }
     }
@@ -234,7 +238,7 @@
     // }
   }
   .exchange-tranlist{
-    width: 310px;
+    width: 300px;
     // margin-left: 0.5rem;
     background: #fff;
     .ant-table{
@@ -259,6 +263,9 @@
       }
       .ant-table-placeholder{
         border-bottom: 0;
+      }
+      .ant-table-thead > tr.ant-table-row-hover:not(.ant-table-expanded-row) > td, .ant-table-tbody > tr.ant-table-row-hover:not(.ant-table-expanded-row) > td, .ant-table-thead > tr:hover:not(.ant-table-expanded-row) > td, .ant-table-tbody > tr:hover:not(.ant-table-expanded-row) > td{
+        background: #F3F3F3;
       }
     }
     
