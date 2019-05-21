@@ -1527,6 +1527,10 @@ export const messages = {
   "trc20_top_Volume":"لیست بازرگانی",
   "trc20_top_Rising":"لیست در حال افزایش است",
 
+  "trc20_history":"معاملات بازار",
+  "trc20_register":"سفارش کتاب",
+  "trc20_24h_h":"24H بالا",
+  "trc20_24h_l":"24H کم",
 /*
 *  2018-12-18
 * */

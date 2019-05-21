@@ -13,7 +13,7 @@ import {upperFirst} from 'lodash'
 import {dateFormat} from '../../../../../utils/DateTime'
 import {setLastprice} from '../../../../../actions/exchange'
 import {TronLoader} from "../../../../common/loaders";
-
+import moment from 'moment'
 class TranList extends Component {
   constructor(props) {
     super(props);
@@ -99,12 +99,13 @@ class TranList extends Component {
         render: (text, record, index) => {
           return <span>
           {/* <FormattedDate value={Number(record.orderTime)}/> &nbsp; */}
-          <FormattedTime 
+          {/* <FormattedTime 
             value={Number(record.orderTime)} 
             hour='numeric'
             minute="numeric"
             second='numeric'
-            hour12={false}/>&nbsp;
+            hour12={false}/>&nbsp; */}
+          {moment().format('HH:MM:SS')}
         </span>
         }
       },

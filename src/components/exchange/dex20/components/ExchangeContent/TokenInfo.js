@@ -15,6 +15,7 @@ import { Client20 } from "../../../../../services/api";
 import { change10lock, setWidget } from "../../../../../actions/exchange";
 import { TokenTRC20Link } from "../../../../common/Links";
 import { Icon, Modal } from "antd";
+import {toThousands} from '../../../../../utils/number'
 
 class Tokeninfo extends React.Component {
   constructor() {
@@ -176,16 +177,16 @@ class Tokeninfo extends React.Component {
               </p>
             </div>
             <div className="item">
-              <p>{tu("H")}</p>
+              <p>{tu("trc20_24h_h")}</p>
               <p>{selectData.high}</p>
             </div>
             <div className="item">
-              <p>{tu("L")}</p>
+              <p>{tu("trc20_24h_l")}</p>
               <p>{selectData.low}</p>
             </div>
             <div className="item">
               <p>{tu("24H_VOL")}</p>
-              <p>{selectData.volume} {selectData.fShortName}</p>
+              <p>{toThousands(selectData.volume)} {selectData.fShortName}</p>
             </div>
             {/* <div className="item">
               <p>{tu("24H_VOL")}</p>
@@ -229,7 +230,7 @@ class Tokeninfo extends React.Component {
                 </span>
               </div>
               <div>
-                <span>{tu("trc20_top_IssuedAmount")}</span>
+                <span>{tu("trc20_token_info_Circulating_Supply")}</span>
                 <span>
                   {tokeninfoItem.issued ? (
                     <FormattedNumber
@@ -244,7 +245,7 @@ class Tokeninfo extends React.Component {
                 </span>
               </div>
               <div>
-                <span>{tu("trc20_top_nrOfTokenHolders")}</span>
+                <span>{tu("token_holders")}</span>
                 <span>
                   {tokeninfoItem.nrOfTokenHolders ? (
                     <FormattedNumber
@@ -256,7 +257,7 @@ class Tokeninfo extends React.Component {
                 </span>
               </div>
               <div>
-                <span>{tu("trc20_top_CreateTime")}</span>
+                <span>{tu("created")}</span>
                 <span>
                   {tokeninfoItem.startTime ? (
                     <span>
@@ -289,7 +290,7 @@ class Tokeninfo extends React.Component {
                 </span>
               </div>
               <div>
-                <span>{tu("trc20_top_WhitePaper")}</span>
+                <span>{tu("white_paper")}</span>
                 <span>
                   {tokeninfoItem.white_paper == "no_message" ||
                   tokeninfoItem.white_paper == "" ? (
@@ -314,7 +315,7 @@ class Tokeninfo extends React.Component {
                   }
                   target="_blank"
                 >
-                  {tu("trc20_top_More")}>
+                  {tu("learn_more")}>
                 </a>
               </div>
             )}
