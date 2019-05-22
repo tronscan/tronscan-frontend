@@ -32,6 +32,7 @@ class Exchange extends React.Component {
       const data = await Client20.getNotice(intl.locale, { page: 3 });
       this.setState({ notice: data.articles });
     }
+    
   }
 
   componentWillUnmount() {
