@@ -1717,7 +1717,7 @@
     #                                                                                #
     ##################################################################################
 */
-    "footer_fellow_us":"Fellow Us",
+    "footer_fellow_us":"Follow Us",
     "footer_developer_resources":"Developer Resources",
     "footer_support_center":"Support Center",
     "footer_tron_network":"TRON"

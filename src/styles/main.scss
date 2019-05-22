@@ -3328,3 +3328,39 @@ h5 {
     }
   }
 }
+
+.footer-icon{
+  position:relative;
+  .code_wrap{
+    width:120px;
+    height:120px;
+    background:#fff;
+    position:absolute;
+    left: 110px;
+    top: -50px;
+    display:none;
+    z-index:100;
+    img{
+      width:100%;
+      height:100%;
+    }
+    &:before{
+      width:0;
+      height:0;
+      border-top:7px solid transparent;
+      border-bottom:7px solid transparent;
+      border-left:12px solid transparent;
+      border-right:12px solid #fff;
+      content:'';
+      position:absolute;
+      left:-24px;
+      top:53px;
+    }
+  }
+  &:hover .code_wrap{
+    display:block;
+  }
+  &:active .code_wrap{
+    display:block;
+  }
+}
