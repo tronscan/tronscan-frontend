@@ -85,6 +85,7 @@ export class resultInfo extends Component {
     render() {
         let { intl } = this.props;
         let { type, res, errorInfo } = this.state;
+        console.log('res',res)
         console.log('errorInfo2222',errorInfo)
         console.log('type',type)
         return (

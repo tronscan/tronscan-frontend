@@ -225,7 +225,7 @@ export const routes = [
         path: "/tokens/update/:id",
         icon: "fa fa-plus-square",
         component: TokensUpdateAsync,
-       // showInMenu: false
+        showInMenu: false
 
       },
 

@@ -115,12 +115,14 @@ const { TextArea } = Input;
     };
 
     redirectToTokenList = () => {
+
         this.setState({
             modal: null,
         }, () => {
             window.location.hash = "#/tokens/list";
         });
     };
+
 
     //Confirm Token Issue
     confirmSubmit = () => {
@@ -288,56 +290,30 @@ const { TextArea } = Input;
                 }
 
 
-                let hash = tronWeb.toHex(JSON.stringify(data),false);
-                let sig =  await tronWeb.trx.sign(hash);
-
                 if (Lockr.get("islogin")) {
-                    // if (this.props.walletType.type === "ACCOUNT_LEDGER") {
-                    //     const unSignTransaction = await tronWebLedger.transactionBuilder.createToken({
-                    //         name: this.tokenState('name'),
-                    //         abbreviation: this.tokenState('abbreviation'),
-                    //         description: this.tokenState('description'),
-                    //         url: this.tokenState('url'),
-                    //         totalSupply: this.tokenState('totalSupply'),
-                    //         tokenRatio: this.tokenState('tokenRatio'),
-                    //         trxRatio: this.tokenState('trxRatio'),
-                    //         saleStart: this.tokenState('saleStart'),
-                    //         saleEnd: this.tokenState('saleEnd'),
-                    //         freeBandwidth: 1,
-                    //         freeBandwidthLimit: 1,
-                    //         frozenAmount: this.tokenState('frozenAmount'),
-                    //         frozenDuration: this.tokenState('frozenDuration'),
-                    //         precision:  this.tokenState('precision'),
-                    //     }, tronWebLedger.defaultAddress.hex).catch(function (e) {
-                    //         errorInfo = e;
-                    //     })
-                    //     if (!unSignTransaction) {
-                    //         res = false;
-                    //     } else {
-                    //         const {result} = await transactionResultManager(unSignTransaction, tronWebLedger);
-                    //         res = result;
-                    //     }
-                    // }
 
-                    if(this.props.walletType.type === "ACCOUNT_TRONLINK"){
+                    //TRONLINK Login  or PRIVATE_KEY Login
+                    if (this.props.walletType.type === "ACCOUNT_TRONLINK" || this.props.walletType.type === "ACCOUNT_PRIVATE_KEY") {
+                        let hash = tronWeb.toHex(JSON.stringify(data), false);
+                        let sig = await tronWeb.trx.sign(hash);
                         let unSignTransaction = '';
+
+                        //Judge update Token or create Token
                         if(this.state.isUpdate){
-                            console.log(111)
                             unSignTransaction = await Client.updateToken20({
                                 "content":JSON.stringify(data),
-                                sig:sig
+                                "sig": sig
                             })
                         }else{
-                            console.log(222)
                             unSignTransaction = await Client.createToken20({
                                 "content":JSON.stringify(data),
-                                sig:sig
+                                "sig": sig
                             })
                         }
 
                         console.log('unSignTransaction',unSignTransaction)
 
-                        if (!unSignTransaction.retCode) {
+                        if (unSignTransaction.retCode === "0") {
                             res = true;
 
                         } else {
@@ -346,24 +322,31 @@ const { TextArea } = Input;
                         }
                     }
 
-                }else {
+                } else if (this.props.walletType.type === "ACCOUNT_LEDGER") {
+                    let hash = tronWebLedger.toHex(JSON.stringify(data), false);
+                    let sig = await tronWebLedger.trx.sign(hash);
+                    let unSignTransaction = '';
+                    if (this.state.isUpdate) {
+                        unSignTransaction = await Client.updateToken20({
+                            "content": JSON.stringify(data),
+                            "sig": sig
+                        })
+                    } else {
+                        unSignTransaction = await Client.createToken20({
+                            "content": JSON.stringify(data),
+                            "sig": sig
+                        })
+                    }
+                    console.log('unSignTransaction222', unSignTransaction)
 
-                    createInfo = await Client.createToken20({
-                        address: account.address,
-                        name: this.tokenState('name'),
-                        shortName: this.tokenState('abbreviation'),
-                        description: this.tokenState('description'),
-                        url: this.tokenState('url'),
-                        totalSupply: this.tokenState('totalSupply'),
-                        num: this.tokenState('tokenRatio'),
-                        trxNum: this.tokenState('trxRatio'),
-                        startTime: this.tokenState('startTime'),
-                        endTime: this.tokenState('endTime'),
-                        frozenSupply: this.tokenState('frozenSupply'),
-                        precision:  this.tokenState('precision'),
-                    })(account.key);
-                    res = createInfo.success;
-                    errorInfo = createInfo.message.indexOf(':')?createInfo.message.split(':')[1]:createInfo.message;
+                    if (unSignTransaction.retCode === "0") {
+                        res = true;
+
+                    } else {
+                        res = false;
+                        errorInfo = unSignTransaction.retMsg
+                    }
+
                 }
 
                 this.setState({
@@ -620,4 +603,3 @@ const mapDispatchToProps = {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(injectIntl(SubmitInfo));
-
