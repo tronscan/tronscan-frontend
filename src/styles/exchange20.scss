@@ -126,6 +126,9 @@
     font-size: 12px;
     color: #333333;
     background: #fff;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
     .register-list-header{
       display: flex;
       padding: 10px 16px;
@@ -143,10 +146,13 @@
       }
     }
     .register-list{
+      flex: 1;
       &.buy {
         padding-top: 10px;
       }
       &.sell {
+        display: flex;
+        flex-direction: column-reverse;
         padding-bottom: 10px;
       }
       .list-item{
