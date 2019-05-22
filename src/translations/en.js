@@ -1583,8 +1583,8 @@ export const messages = {
   "trc20_top_Rising":"Rising",
   "trc20_history":"Market Trades",
   "trc20_register":"Order Book",
-  "trc20_24h_h":"24H High",
-  "trc20_24h_l":"24H Low",
+  "trc20_24h_h":"24h High",
+  "trc20_24h_l":"24h Low",
   
 
   "create_deal_pair": "Create Trading Pairs",

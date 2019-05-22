@@ -1529,8 +1529,8 @@ export const messages = {
 
   "trc20_history":"معاملات بازار",
   "trc20_register":"سفارش کتاب",
-  "trc20_24h_h":"24H بالا",
-  "trc20_24h_l":"24H کم",
+  "trc20_24h_h":"24h بالا",
+  "trc20_24h_l":"24h کم",
 /*
 *  2018-12-18
 * */

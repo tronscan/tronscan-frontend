@@ -1524,8 +1524,8 @@ export const messages = {
 
   "trc20_history":"市場取引",
   "trc20_register":"注文書",
-  "trc20_24h_h":"24H 高い",
-  "trc20_24h_l":"24H 低い",
+  "trc20_24h_h":"24h 高い",
+  "trc20_24h_l":"24h 低い",
 
     /*
       *  2018-12-18

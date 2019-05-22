@@ -126,7 +126,7 @@ class Kline extends React.Component {
       overrides: {
         // "symbolWatermarkProperties.color": "rgba(0, 0, 0, 0)",
         volumePaneSize: "medium", //成交量大小的显示
-        "paneProperties.legendProperties.showLegend": false //关闭左上角
+        "paneProperties.legendProperties.showLegend": false, //关闭左上角
         // //背景色，
         // "paneProperties.background": "#fff",
         // "paneProperties.vertGridProperties.color": "#2c3450",
@@ -134,7 +134,7 @@ class Kline extends React.Component {
         // "paneProperties.horzGridProperties.color": "#2c3450",
         // "paneProperties.horzGridProperties.style": 0,
         // "symbolWatermarkProperties.transparency": 90,
-        // "scalesProperties.textColor": "#AAA",
+        "scalesProperties.textColor": "#999",
         // "paneProperties.topMargin": 5,
         // "paneProperties.bottomMargin": 5,
         // //蜡烛的样式

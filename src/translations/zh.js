@@ -1531,8 +1531,8 @@ export const messages = {
 
   "trc20_history":"最近成交",
   "trc20_register":"交易委托",
-  "trc20_24h_h":"24H最高价",
-  "trc20_24h_l":"24H最低价",
+  "trc20_24h_h":"24h最高价",
+  "trc20_24h_l":"24h最低价",
 
     /*
     *  2018-12-18
