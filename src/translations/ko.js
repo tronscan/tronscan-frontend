@@ -1525,8 +1525,8 @@ export const messages = {
 
   "trc20_history":"시장 거래",
   "trc20_register":"주문 도서",
-  "trc20_24h_h":"24H 높은",
-  "trc20_24h_l":"24H 낮은",
+  "trc20_24h_h":"24h 높은",
+  "trc20_24h_l":"24h 낮은",
   /*
    *  2018-12-18
    * */

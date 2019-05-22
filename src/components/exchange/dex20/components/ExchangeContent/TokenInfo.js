@@ -145,7 +145,7 @@ class Tokeninfo extends React.Component {
           <div className="info-wrap">
             <div className="item">
               <p>
-                <span>{selectData.fShortName}</span>/{selectData.sShortName}
+                <span>{selectData.fShortName}</span> / {selectData.sShortName}
               </p>
               <p>
                 <a
@@ -165,7 +165,7 @@ class Tokeninfo extends React.Component {
                 <p>
                   ≈
                   <span>
-                    {price_convert} {activeCurrency.toLocaleUpperCase()}
+                    &nbsp;{price_convert} {activeCurrency.toLocaleUpperCase()}
                   </span>
                 </p>
               )}
