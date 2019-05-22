@@ -28,22 +28,22 @@ class Footer extends Component {
                 <ul className="list-unstyled">
                   <li className="d-flex">
                     <HrefLink href="https://t.me/tronscan_org">
-                      <i class="fab fa-telegram mr-1"></i>Telegram
+                      <i className="fab fa-telegram mr-1"></i>Telegram
                     </HrefLink>
                   </li>
                   <li>
                     <HrefLink href="https://twitter.com/TRONSCAN_ORG">
-                      <i class="fab fa-twitter mr-1"></i>Twitter
+                      <i className="fab fa-twitter mr-1"></i>Twitter
                     </HrefLink>
                   </li>
                   <li>
                     <HrefLink href="https://medium.com/@TRONSCAN_ORG">
-                      <i class="fab fa-medium-m mr-1"></i>Medium
+                      <i className="fab fa-medium-m mr-1"></i>Medium
                     </HrefLink>
                   </li>
                   <li>
                     <HrefLink href="https://discordapp.com/invite/GsRgsTD">
-                      <i class="fab fa-discord mr-1"></i>Discord
+                      <i className="fab fa-discord mr-1"></i>Discord
                     </HrefLink>
                   </li>
 
@@ -51,6 +51,14 @@ class Footer extends Component {
                     <HrefLink href="https://www.weibo.com/tronscan?refer_flag=1005055013_&is_hot=1">
                       <i className="fab fa-weibo mr-1" />Weibo
                     </HrefLink>
+                  </li>
+                  <li>
+                    <a target="_blank" className="footer-icon">
+                      <i className="fab fa-weixin mr-1"></i>WeChat
+                      <div className="code_wrap">
+                        <img src={require("../../images/footer/tronscan_wechat.png")} />
+                      </div>
+                    </a>
                   </li>
                 </ul>
               </div>
@@ -99,7 +107,9 @@ class Footer extends Component {
                     </Link>
                   </li>
                   <li>
-                    <a href='mailto:feedback@tronscan.org'>{tu('contact_us')}</a>
+                    <HrefLink href={activeLanguage == 'zh'?"https://support.tronscan.org/hc/zh-cn/requests/new":"https://support.tronscan.org/hc/en-us/requests/new"}>
+                      {tu('contact_us')}
+                    </HrefLink>
                   </li>
                   <li>
                     <HrefLink href={activeLanguage == 'zh'?"https://tronscanorg.zendesk.com/hc/zh-cn":"https://tronscanorg.zendesk.com/hc/en-us"}>
@@ -176,22 +186,22 @@ class Footer extends Component {
                 <ul className="list-unstyled quick-links pt-3">
                   <li className="p-2">
                     <HrefLink href="https://t.me/tronscan_org">
-                      <i class="fab fa-telegram mr-4"></i>Telegram
+                      <i className="fab fa-telegram mr-4"></i>Telegram
                     </HrefLink>
                   </li>
                   <li className="p-2">
                     <HrefLink href="https://twitter.com/TRONSCAN_ORG">
-                      <i class="fab fa-twitter mr-4"></i>Twitter
+                      <i className="fab fa-twitter mr-4"></i>Twitter
                     </HrefLink>
                   </li>
                   <li className="p-2">
                     <HrefLink href="https://medium.com/@TRONSCAN_ORG">
-                      <i class="fab fa-medium-m mr-4"></i>Medium
+                      <i className="fab fa-medium-m mr-4"></i>Medium
                     </HrefLink>
                   </li>
                   <li className="p-2">
                     <HrefLink href="https://discordapp.com/invite/GsRgsTD">
-                      <i class="fab fa-discord mr-4"></i>Discord
+                      <i className="fab fa-discord mr-4"></i>Discord
                     </HrefLink>
                   </li>
                   <li className="p-2">
@@ -199,6 +209,15 @@ class Footer extends Component {
                       <i className="fab fa-weibo mr-4" />Weibo
                     </HrefLink>
                   </li>
+                  <li className="p-2">
+                    <a target="_blank" className="footer-icon">
+                      <i className="fab fa-weixin mr-4"></i>WeChat
+                      <div className="code_wrap">
+                        <img src={require("../../images/footer/tronscan_wechat.png")} />
+                      </div>
+                    </a>
+                  </li>
+
                     {/*<li className="p-2">*/}
                     {/*<HrefLink href="https://twitter.com/tronscan3">*/}
                     {/*<i className="fa fa-angle-right mr-4" /> Twitter-tronscan*/}
@@ -279,7 +298,9 @@ class Footer extends Component {
                     </Link>
                   </li>
                   <li className="p-2">
-                    <a href='mailto:feedback@tronscan.org'>{tu('contact_us')}</a>
+                    <HrefLink href={activeLanguage == 'zh'?"https://support.tronscan.org/hc/zh-cn/requests/new":"https://support.tronscan.org/hc/en-us/requests/new"}>
+                        {tu('contact_us')}
+                    </HrefLink>
                   </li>
                   <li className="p-2">
                     <HrefLink href={activeLanguage == 'zh'?"https://tronscanorg.zendesk.com/hc/zh-cn":"https://tronscanorg.zendesk.com/hc/en-us"}>
