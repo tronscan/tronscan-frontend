@@ -156,7 +156,7 @@ class ExchangeTable extends Component {
             return index;
           }}
           rowClassName={this.setActiveClass}
-          scroll={{ y: true}}
+          scroll={{ y: 1250}}
           className="tab-pdr"
           onRow={record => {
             return {
