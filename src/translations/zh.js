@@ -1223,7 +1223,7 @@ export const messages = {
     "L": "低",
     "O": "开",
     "C": "收",
-    "24H_VOL": "24H成交量",
+    "24H_VOL": "24h成交量",
     "token_application_instructions_title": "上币",
     "token_application_instructions_1": "申请DEX上币需要填写表单，审核通过的TOKEN会上架DEX列表显示。未经过审核的TOKEN，只能搜索后进行交易。",
     "click_here_to_apply": "点击申请",
