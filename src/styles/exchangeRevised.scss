@@ -31,6 +31,13 @@
     }
   }
   .dex-tab {
+    &.font12{
+      .btn{
+        font-size:12px;
+        color: #666666;
+      }
+      
+    }
     .ant-tabs-nav .ant-tabs-tab {
       margin: 0;
       padding: 12px 18px;
@@ -74,9 +81,11 @@
     display: block;
     text-align: center;
     float: right;
+    height:26px;
+    line-height: 26px;
   }
   .bg-color.col-red {
-    padding: 2px 0;
+    // padding: 2px 0;
     background: rgba(230, 8, 21, 0.1);
     border-radius: 4px;
     font-size: 14px;
@@ -127,6 +136,7 @@
       height: 30px;
       &> tr > th{
         background:#fff;
+        color: #999999;
       }
       th{
         &:first-child{
@@ -156,5 +166,6 @@
     .ant-table {
       font-family: Arial;
   }
+  
   
 }

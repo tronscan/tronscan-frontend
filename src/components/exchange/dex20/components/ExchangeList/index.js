@@ -430,7 +430,7 @@ class ExchangeList extends React.Component {
               />
             </Tabs>
           </div>
-          <div className="dex-tab tab-pr-100">
+          <div className="dex-tab tab-pr-100 font12">
             <div
               className={"btn btn-sm" + (activedId === 0 ? " active" : "")}
               // onClick={() => this.handleSelectData(true)}

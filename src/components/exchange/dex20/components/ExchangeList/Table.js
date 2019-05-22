@@ -36,7 +36,7 @@ class ExchangeTable extends Component {
       {
         title: upperFirst(intl.formatMessage({ id: "trc20_price" })),
         key: "first_token_id",
-        width: 100,
+        width: 120,
         render: (text, record, index) => {
           return (
             <div className="position-relative" style={{ display: "flex" }}>
@@ -70,11 +70,13 @@ class ExchangeTable extends Component {
                     className="exchange-abbr-name"
                     style={{ textDecoration: "line-through" }}
                   >
-                    {record.exchange_abbr_name}
+                    {/* {record.exchange_abbr_name} */}
+                    <span style={{color:"#333333"}}>{record.fShortName}</span>/<span style={{color:"#999999"}}>{record.sShortName}</span>
                   </p>
                 ) : (
                   <p className="exchange-abbr-name">
-                    {record.exchange_abbr_name}
+                    {/* {record.exchange_abbr_name} */}
+                    <span style={{color:"#333333"}}>{record.fShortName}</span>/<span style={{color:"#999999"}}>{record.sShortName}</span>
                   </p>
                 )}
 
@@ -102,7 +104,7 @@ class ExchangeTable extends Component {
          
           return (
             <div className="textRight ">
-              <FormattedNumber value={Number(record.trxVolume24h / Math.pow(10, record.sPrecision)).toFixed(0) ? Number(record.trxVolume24h / Math.pow(10, record.sPrecision)).toFixed(0)  : 0} />{" "}
+              <FormattedNumber value={Number(record.volume24h / Math.pow(10, record.sPrecision)).toFixed(0) ? Number(record.volume24h / Math.pow(10, record.sPrecision)).toFixed(0)  : 0} />{" "}
               {record.second_token_abbr}
               <br />
               <span className="font-grey">
