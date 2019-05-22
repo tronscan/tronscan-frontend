@@ -74,7 +74,7 @@ const { TextArea } = Input;
             'address':author,
             'logoUrl':logo_url,
             'contractAddress':contract_address,
-            'contractCreatedRatio':contract_created_date.valueOf(),
+            'contractCreatedRatio':contract_created_date?contract_created_date.valueOf():'',
             'contractCode':contract_code,
             'tokenRatio': token_amount * Math.pow(10, Number(precision)),
             'trxRatio': trx_amount * ONE_TRX,
@@ -291,7 +291,7 @@ const { TextArea } = Input;
                 let hash = tronWeb.toHex(JSON.stringify(data),false);
                 let sig =  await tronWeb.trx.sign(hash);
 
-                if (Lockr.get("islogin")||this.props.walletType.type==="ACCOUNT_LEDGER"||this.props.walletType.type==="ACCOUNT_TRONLINK") {
+                if (Lockr.get("islogin")) {
                     // if (this.props.walletType.type === "ACCOUNT_LEDGER") {
                     //     const unSignTransaction = await tronWebLedger.transactionBuilder.createToken({
                     //         name: this.tokenState('name'),
@@ -320,11 +320,21 @@ const { TextArea } = Input;
                     // }
 
                     if(this.props.walletType.type === "ACCOUNT_TRONLINK"){
-                        if()
-                        const unSignTransaction = await Client.createToken20({
-                            "content":JSON.stringify(data),
-                            sig:sig
-                        })
+                        let unSignTransaction = '';
+                        if(this.state.isUpdate){
+                            console.log(111)
+                            unSignTransaction = await Client.updateToken20({
+                                "content":JSON.stringify(data),
+                                sig:sig
+                            })
+                        }else{
+                            console.log(222)
+                            unSignTransaction = await Client.createToken20({
+                                "content":JSON.stringify(data),
+                                sig:sig
+                            })
+                        }
+
                         console.log('unSignTransaction',unSignTransaction)
 
                         if (!unSignTransaction.retCode) {
