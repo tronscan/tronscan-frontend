@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from "react";
-import { Table,Icon } from "antd";
+import { Table, Icon } from "antd";
 import { QuestionMark } from "../../../../common/QuestionMark";
 import { withRouter } from "react-router-dom";
 import queryString from "query-string";
@@ -58,9 +58,13 @@ class ExchangeTable extends Component {
                 >
                   {favList.includes(record.id) ? (
                     // <i className="star_red" />
-                    <Icon type="star" style={{color:"#C53028"}} theme="filled"/>
+                    <Icon
+                      type="star"
+                      style={{ color: "#C53028" }}
+                      theme="filled"
+                    />
                   ) : (
-                    <Icon type="star"/>
+                    <Icon type="star" />
                   )}
                 </span>
               </span>
@@ -71,12 +75,24 @@ class ExchangeTable extends Component {
                     style={{ textDecoration: "line-through" }}
                   >
                     {/* {record.exchange_abbr_name} */}
-                    <span style={{color:"#333333"}}>{record.fShortName}</span>/<span style={{color:"#999999"}}>{record.sShortName}</span>
+                    <span style={{ color: "#333333" }}>
+                      {record.fShortName}
+                    </span>
+                    /
+                    <span style={{ color: "#999999" }}>
+                      {record.sShortName}
+                    </span>
                   </p>
                 ) : (
                   <p className="exchange-abbr-name">
                     {/* {record.exchange_abbr_name} */}
-                    <span style={{color:"#333333"}}>{record.fShortName}</span>/<span style={{color:"#999999"}}>{record.sShortName}</span>
+                    <span style={{ color: "#333333" }}>
+                      {record.fShortName}
+                    </span>
+                    /
+                    <span style={{ color: "#999999" }}>
+                      {record.sShortName}
+                    </span>
                   </p>
                 )}
 
@@ -101,13 +117,22 @@ class ExchangeTable extends Component {
         key: "price",
         // width: 120,
         render: (text, record) => {
-         
           return (
             <div className="textRight ">
-              <FormattedNumber value={Number(record.volume24h / Math.pow(10, record.sPrecision)).toFixed(0) ? Number(record.volume24h / Math.pow(10, record.sPrecision)).toFixed(0)  : 0} />{" "}
+              <FormattedNumber
+                value={
+                  Number(
+                    record.volume24h / Math.pow(10, record.sPrecision)
+                  ).toFixed(0)
+                    ? Number(
+                        record.volume24h / Math.pow(10, record.sPrecision)
+                      ).toFixed(0)
+                    : 0
+                }
+              />{" "}
               {record.second_token_abbr}
               <br />
-              <span className="font-grey">
+              {/* <span className="font-grey">
                 {activeCurrency.toUpperCase() === "TRX" ? (
                   <FormattedNumber
                     value={Number(record.trxVolume24h / Math.pow(10, record.sPrecision)).toFixed(0)}
@@ -126,6 +151,28 @@ class ExchangeTable extends Component {
                   />
                 )}{" "}
                 {activeCurrency.toUpperCase()}
+              </span> */}
+              <span className="font-grey">
+                {record.second_token_id === "USDT" ? (
+                  <FormattedNumber
+                    value={Number(
+                      record.volume24h / Math.pow(10, record.sPrecision)
+                    ).toFixed(0)}
+                  />
+                ) : (
+                  <FormattedNumber
+                    value={(
+                      Number(
+                        price && price.trxToOther && price.usdtToOther
+                          ? record.second_token_id === "TRX"
+                            ? price.trxToOther["usd"]
+                            : price.usdtToOther["usd"]
+                          : ""
+                      ) * record.svolume
+                    ).toFixed(0)}
+                  />
+                )}{" "}
+                USD
               </span>
             </div>
           );
@@ -138,11 +185,14 @@ class ExchangeTable extends Component {
         align: "right",
         // width: 100,
         render: (text, record, index) => {
-        
           return text.indexOf("-") != -1 ? (
-            <div className="tab-pr-50"><span className="col-red bg-color">{text}</span></div>
+            <div className="tab-pr-50">
+              <span className="col-red bg-color">{text}</span>
+            </div>
           ) : (
-            <div className="tab-pr-50"><span className="col-green bg-color">{text}</span></div>
+            <div className="tab-pr-50">
+              <span className="col-green bg-color">{text}</span>
+            </div>
           );
         }
       }
@@ -158,7 +208,7 @@ class ExchangeTable extends Component {
             return index;
           }}
           rowClassName={this.setActiveClass}
-          scroll={{ y: 1250}}
+          scroll={{ y: 1250 }}
           className="tab-pdr"
           onRow={record => {
             return {
