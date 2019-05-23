@@ -237,7 +237,7 @@ class Register extends Component {
         this.setState(
           {
             buyList: buyObj.listN,
-            sellList: sellObj.listN.reverse()
+            sellList: sellObj.listN
           }
           // () => {
           // setRegister({
