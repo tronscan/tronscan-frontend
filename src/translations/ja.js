@@ -16,7 +16,7 @@ export const messages = {
     #         Template for translating the tronscan.org website                      #
     #         Version: 1.6-13082018                                                  #
     #         Update Date: 06.12.2018                                                #
-    #         Language: English                                                      #
+    #         Language: japanese 日语                                                      #
     #         Status: Approved Version                                               #
     #         Number of checks: 4                                                    #
     #         Participants: Rovak,PMD3VSolution,DrKaradenizli,Harry                        #
@@ -1518,7 +1518,14 @@ export const messages = {
    "trc20_depth":"DEPTH",
    "trc20_trade_win_content":"Current network is unstable , please check later",
   "trc20_trade_win_confirm":"Confirm",
+  "trc20_hot":"人気の",
+  "trc20_top_Volume":"取引リスト",
+  "trc20_top_Rising":"上昇リスト",
 
+  "trc20_history":"市場取引",
+  "trc20_register":"注文書",
+  "trc20_24h_h":"24h 高い",
+  "trc20_24h_l":"24h 低い",
 
     /*
       *  2018-12-18

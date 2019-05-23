@@ -13,7 +13,7 @@ import {upperFirst} from 'lodash'
 import {dateFormat} from '../../../../../utils/DateTime'
 import {setLastprice} from '../../../../../actions/exchange'
 import {TronLoader} from "../../../../common/loaders";
-
+import moment from 'moment'
 class TranList extends Component {
   constructor(props) {
     super(props);
@@ -67,7 +67,7 @@ class TranList extends Component {
   getData = async () => {
     const {selectData,setLastprice} = this.props
     if(selectData.exchange_id){
-      const {code,data} = await Client20.getTransactionList({limit: 20,start:0, pairID: selectData.exchange_id});
+      const {code,data} = await Client20.getTransactionList({limit: 40,start:0, pairID: selectData.exchange_id});
       this.setState({
         isLoading:false
       })
@@ -90,6 +90,7 @@ class TranList extends Component {
     let {dataSource,isLoading} = this.state;
     let {intl,selectData} = this.props;
     let first_token =  selectData.fShortName ? '(' + selectData.fShortName + ')' : '';
+    let second_token =  selectData.sShortName ? '(' + selectData.sShortName + ')' : '';
     const columns = [
       {
         title: upperFirst(intl.formatMessage({id: 'trc20_trans_record_header_time'})),
@@ -97,26 +98,33 @@ class TranList extends Component {
         key: 'orderTime',
         render: (text, record, index) => {
           return <span>
-          <FormattedDate value={Number(record.orderTime)}/> &nbsp;
-          <FormattedTime value={Number(record.orderTime)}/>&nbsp;
+          {/* <FormattedDate value={Number(record.orderTime)}/> &nbsp; */}
+          {/* <FormattedTime 
+            value={Number(record.orderTime)} 
+            hour='numeric'
+            minute="numeric"
+            second='numeric'
+            hour12={false}/>&nbsp; */}
+          {moment().format('HH:MM:SS')}
         </span>
         }
       },
       {
-        title: upperFirst(intl.formatMessage({id: 'trc20_trans_record_header_price'})),
+        title: upperFirst(intl.formatMessage({id: 'trc20_trans_record_header_price'})+second_token),
         dataIndex: 'price',
         key: 'price',
+        align: 'right',
         render: (text, record, index) => {
-          return  <span className={[record.order_type === 1 ? 'col-red':'col-green']}>{record.price}</span>
+          return  <span className={[record.order_type === 1 ? 'col-red':'col-green']}>{record.price.toFixed(selectData.sPrecision)}</span>
         }
       },
       {
         title: upperFirst(intl.formatMessage({id: 'trc20_trans_record_header_amount'})+first_token),
         dataIndex: 'volume',
         key: 'volume',
-        align: 'center',
+        align: 'right',
         render: (text, record, index) => {
-          return  record.volume + ' ' + record.unit
+          return  record.volume.toFixed(selectData.fPrecision) + ' ' + record.unit
         }
       }
     ]
@@ -132,6 +140,8 @@ class TranList extends Component {
             rowKey={(record, index) => {
                 return index
             }}
+            locale={{emptyText:tu("no_transactions")}}
+            scroll={{ y: 741 }}
         />
       }
       </div>
@@ -141,13 +151,15 @@ class TranList extends Component {
 
   render() {
     let {dataSource, columns} = this.state;
-    if (!dataSource || dataSource.length === 0) {
-      return (
-        <div className="p-3 text-center no-data">{tu("no_transactions")}</div>
-      );
-    }
+    // if (!dataSource || dataSource.length === 0) {
+    //   return (
+    //     <div className="exchange-tranlist">
+    //       <div className="p-3 text-center no-data">{tu("no_transactions")}</div>
+    //     </div>
+    //   );
+    // }
     return (
-      <div className="exchange__tranlist">
+      <div className="exchange-tranlist">
           {this.getColumns()}
     </div>)
   }

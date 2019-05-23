@@ -34,7 +34,7 @@ class Depth extends React.Component {
   }
 
   async componentDidMount() {
-    const { tokeninfo, tvWidget } = this.state;
+    const { tokeninfo, tvWidget, myChart } = this.state;
     const { selectData } = this.props;
     await this.getData();
     this.createWidget();
@@ -46,6 +46,7 @@ class Depth extends React.Component {
     this.setState({
       timer: timer
     });
+    
   }
 
   async componentDidUpdate(prevProps) {
@@ -358,6 +359,9 @@ class Depth extends React.Component {
         myChart.hideLoading();
       }
     );
+    window.onresize = function () {
+      myChart.resize();
+    };
   }
 
   resetOption() {

@@ -9,6 +9,8 @@ import Kline from "./Kline";
 import Depth from "./Depth";
 import Transaction from "./Transaction";
 import Tokeninfo from "./TokenInfo";
+import Notice from "./Notice";
+import Explain  from "./Explain";
 
 import { Input, Select } from "antd";
 const Search = Input.Search;
@@ -19,9 +21,9 @@ class ExchangeContent extends React.Component {
     super();
 
     this.state = {
-      select:'kchart'
+      select: "kchart"
     };
-    this.handleChange = this.handleChange.bind(this)
+    this.handleChange = this.handleChange.bind(this);
   }
 
   componentDidMount() {}
@@ -31,36 +33,42 @@ class ExchangeContent extends React.Component {
 
     return (
       <div className="exchange-content">
-        {/* k 线 */}
-        {/* <Kline/> */}
-        <div className="exchange__kline p-3 mb-2">
-          <Tokeninfo />
-          <div className="mb-2">
-            <Select
-              defaultValue="kchart"
-              style={{ width: 120 }}
-              onChange={this.handleChange}
-            >
-              <Option value="kchart">{tu('trc20_kchart')}</Option>
-              <Option value="depth">{tu('trc20_depth')}</Option>
-            </Select>
-          </div>
-          {
-            select === 'kchart' ? <Kline /> :  <Depth />
-          }
-        
-        </div>
+        <Notice />
+        <div className="exchange-right">
+          <div className="exchange__kline mb-2 mr-2">
+            <div className="exchange__kline__wrap">
+              <Tokeninfo />
+              
+              <div className="p-3 mb-2">
+                <div className="chart-select">
+                  <Select
+                    defaultValue="kchart"
+                    style={{ width: 100 }}
+                    onChange={this.handleChange}
+                  >
+                    <Option value="kchart">{tu("trc20_kchart")}</Option>
+                    <Option value="depth">{tu("trc20_depth")}</Option>
+                  </Select>
+                </div>
+                {select === "kchart" ? <Kline /> : <Depth />}
+              </div>
+            </div>
 
-        {/* transaction */}
-        <Transaction />
+            {/* transaction */}
+            <Transaction />
+          </div>
+          <div className="exchange-register mb-2">
+            <Explain />
+          </div>
+        </div>
       </div>
     );
   }
 
-  handleChange(value){
+  handleChange(value) {
     this.setState({
-      select:value
-    })
+      select: value
+    });
   }
 }
 

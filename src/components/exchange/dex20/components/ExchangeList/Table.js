@@ -1,16 +1,20 @@
-import React from "react";
-import { Table } from "antd";
+import React, { Component, Fragment } from "react";
+import { Table, Icon } from "antd";
 import { QuestionMark } from "../../../../common/QuestionMark";
 import { withRouter } from "react-router-dom";
 import queryString from "query-string";
 import { connect } from "react-redux";
-import { getSelectData } from "../../../../../actions/exchange";
+import {
+  getSelectData,
+  setPriceConvert
+} from "../../../../../actions/exchange";
 import { filter, map, upperFirst, remove } from "lodash";
-import { injectIntl } from "react-intl";
+import { injectIntl, FormattedNumber } from "react-intl";
 import Lockr from "lockr";
 import _ from "lodash";
+import { Client20 } from "../../../../../services/api";
 
-class ExchangeTable extends React.Component {
+class ExchangeTable extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -24,18 +28,19 @@ class ExchangeTable extends React.Component {
   }
 
   getColumns() {
-    let { intl } = this.props;
+    let { intl, price, activeCurrency } = this.props;
     let { dataSource, offlineToken } = this.state;
     let isfov = Lockr.get("DEX") == "GEM";
+    let favList = Lockr.get("dex20") || [];
     const columns = [
       {
-        title: upperFirst(intl.formatMessage({ id: "pairs" })),
+        title: upperFirst(intl.formatMessage({ id: "trc20_price" })),
         key: "first_token_id",
         width: 120,
         render: (text, record, index) => {
           return (
-            <div className="position-relative">
-              {isfov && (
+            <div className="position-relative" style={{ display: "flex" }}>
+              {/* {isfov && (
                 <div className="fov_tip">
                   {record.token_type == "dex20" ? (
                     <img src={require("../../../../../images/svg/20.svg")} />
@@ -43,7 +48,7 @@ class ExchangeTable extends React.Component {
                     <img src={require("../../../../../images/svg/10.svg")} />
                   )}
                 </div>
-              )}
+              )} */}
 
               <span className="optional-star">
                 <span
@@ -51,73 +56,169 @@ class ExchangeTable extends React.Component {
                     this.setFavorites(ev, record, index);
                   }}
                 >
-                  {record.isChecked ? (
-                    <i className="star_red" />
+                  {favList.includes(record.id) ? (
+                    // <i className="star_red" />
+                    <Icon
+                      type="star"
+                      style={{ color: "#C53028" }}
+                      theme="filled"
+                    />
                   ) : (
-                    <i className="star" />
+                    <Icon type="star" />
                   )}
                 </span>
               </span>
-              {offlineToken.includes(record.id) ? (
-                <span
-                  className="exchange-abbr-name"
-                  style={{ textDecoration: "line-through" }}
+              <div className="">
+                {offlineToken.includes(record.id) ? (
+                  <p
+                    className="exchange-abbr-name"
+                    style={{ textDecoration: "line-through" }}
+                  >
+                    {/* {record.exchange_abbr_name} */}
+                    <span style={{ color: "#333333" }}>
+                      {record.fShortName}
+                    </span>
+                    /
+                    <span style={{ color: "#999999" }}>
+                      {record.sShortName}
+                    </span>
+                  </p>
+                ) : (
+                  <p className="exchange-abbr-name">
+                    {/* {record.exchange_abbr_name} */}
+                    <span style={{ color: "#333333" }}>
+                      {record.fShortName}
+                    </span>
+                    /
+                    <span style={{ color: "#999999" }}>
+                      {record.sShortName}
+                    </span>
+                  </p>
+                )}
+
+                <p
+                  className={
+                    record.up_down_percent.indexOf("-") != -1
+                      ? "col-red"
+                      : "col-green"
+                  }
                 >
-                  {record.exchange_abbr_name}
-                </span>
-              ) : (
-                <span className="exchange-abbr-name">
-                  {record.exchange_abbr_name}
-                </span>
-              )}
+                  {record.price.toFixed(record.sPrecision)}
+                </p>
+              </div>
             </div>
           );
         }
       },
       {
-        title: upperFirst(intl.formatMessage({ id: "last_price" })),
+        title: upperFirst(intl.formatMessage({ id: "trc20_24H_Total" })),
         align: "right",
         dataIndex: "price",
         key: "price",
+        // width: 120,
         render: (text, record) => {
           return (
-            <div className="textRight">{text.toFixed(record.sPrecision)}</div>
+            <div className="textRight ">
+              <FormattedNumber
+                value={
+                  Number(
+                    record.volume24h / Math.pow(10, record.sPrecision)
+                  ).toFixed(0)
+                    ? Number(
+                        record.volume24h / Math.pow(10, record.sPrecision)
+                      ).toFixed(0)
+                    : 0
+                }
+              />{" "}
+              {record.second_token_abbr}
+              <br />
+              {/* <span className="font-grey">
+                {activeCurrency.toUpperCase() === "TRX" ? (
+                  <FormattedNumber
+                    value={Number(record.trxVolume24h / Math.pow(10, record.sPrecision)).toFixed(0)}
+                  />
+                ) : (
+                  <FormattedNumber
+                    value={(
+                      Number(
+                        price && price.trxToOther && price.usdtToOther
+                          ? record.second_token_id === "TRX"
+                            ? price.trxToOther[activeCurrency]
+                            : price.usdtToOther[activeCurrency]
+                          : ""
+                      ) * record.svolume
+                    ).toFixed(0)}
+                  />
+                )}{" "}
+                {activeCurrency.toUpperCase()}
+              </span> */}
+              <span className="font-grey">
+                {record.second_token_id === "USDT" ? (
+                  <FormattedNumber
+                    value={Number(
+                      record.volume24h / Math.pow(10, record.sPrecision)
+                    ).toFixed(0)}
+                  />
+                ) : (
+                  <FormattedNumber
+                    value={(
+                      Number(
+                        price && price.trxToOther && price.usdtToOther
+                          ? record.second_token_id === "TRX"
+                            ? price.trxToOther["usd"]
+                            : price.usdtToOther["usd"]
+                          : ""
+                      ) * record.svolume
+                    ).toFixed(0)}
+                  />
+                )}{" "}
+                USD
+              </span>
+            </div>
           );
         }
       },
       {
-        title: upperFirst(intl.formatMessage({ id: "pairs_change" })),
+        title: upperFirst(intl.formatMessage({ id: "trc20_token_info_ths_3" })),
         dataIndex: "up_down_percent",
         key: "up_down_percent",
         align: "right",
-        width: 100,
+        // width: 100,
         render: (text, record, index) => {
           return text.indexOf("-") != -1 ? (
-            <span className="col-red">{text}</span>
+            <div className="tab-pr-50">
+              <span className="col-red bg-color">{text}</span>
+            </div>
           ) : (
-            <span className="col-green">{text}</span>
+            <div className="tab-pr-50">
+              <span className="col-green bg-color">{text}</span>
+            </div>
           );
         }
       }
     ];
 
     return (
-      <Table
-        dataSource={dataSource}
-        columns={columns}
-        pagination={false}
-        rowKey={(record, index) => {
-          return index;
-        }}
-        rowClassName={this.setActiveClass}
-        onRow={record => {
-          return {
-            onClick: () => {
-              this.docodUrl(record);
-            }
-          };
-        }}
-      />
+      <Fragment>
+        <Table
+          dataSource={dataSource}
+          columns={columns}
+          pagination={false}
+          rowKey={(record, index) => {
+            return index;
+          }}
+          rowClassName={this.setActiveClass}
+          scroll={{ y: 1250 }}
+          className="tab-pdr"
+          onRow={record => {
+            return {
+              onClick: () => {
+                this.docodUrl(record);
+              }
+            };
+          }}
+        />
+      </Fragment>
     );
   }
   setFavorites(ev, record) {
@@ -177,7 +278,7 @@ class ExchangeTable extends React.Component {
     });
 
     // 更新数据
-    if (dataSource.length) {
+    if (dataSource && dataSource.length) {
       if (!parsed || !currentData.length) {
         this.onSetUrl(dataSource[0]);
       } else {
@@ -196,20 +297,23 @@ class ExchangeTable extends React.Component {
 
   onSetUrl(record, type) {
     const { getSelectData } = this.props;
+    const { trxToOther, usdtToOther } = this.state;
 
-    if (record.token_type != "dex20") {
-      this.props.history.push(
-        "/exchange/trc10?token=" +
-          record.exchange_name +
-          "&id=" +
-          record.exchange_id
-      );
-      return;
-    }
+    // if (record.token_type != "dex20") {
+    //   this.props.history.push(
+    //     "/exchange/trc10?token=" +
+    //       record.exchange_name +
+    //       "&id=" +
+    //       record.exchange_id
+    //   );
+    //   return;
+    // }
     this.setState({
       activeIndex: record.exchange_id //获取点击行的索引
     });
+
     getSelectData(record, true);
+
     if (!type) {
       this.props.history.push(
         "/exchange/trc20?token=" +
@@ -231,7 +335,7 @@ class ExchangeTable extends React.Component {
     // }, 500);
   }
 
-  componentDidMount() {}
+  async componentDidMount() {}
 
   componentDidUpdate(prevProps) {
     let { dataSource } = this.props;
@@ -268,7 +372,9 @@ class ExchangeTable extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    klineLock: state.exchange.klineLock
+    klineLock: state.exchange.klineLock,
+    activeCurrency: state.app.activeCurrency,
+    price: state.exchange.price
   };
 }
 

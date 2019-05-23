@@ -1426,8 +1426,8 @@ export const messages = {
   "trc20_L": "L",
   "trc20_O": "O",
   "trc20_C": "C",
-  "trc20_24H_VOL": "24H 거래 성사량",
-  "trc20_24H_Total":"24H 거래 성사 금액",
+  "trc20_24H_VOL": "24h 거래 성사량",
+  "trc20_24H_Total":"24h 거래 성사 금액",
   "trc20_price": "가격",
   "trc20_amount": "수량",
   "trc20_enter_the_trading_amount": "거래 수량을 입력해주세요.",
@@ -1517,9 +1517,16 @@ export const messages = {
   "trc20_second_token": "이름",
   "trc20_kchart":"K Line",
   "trc20_depth":"DEPTH",
-  "trc20_trade_win_content":"Current network is unstable , please check later",
-  "trc20_trade_win_confirm":"Confirm",
+  "trc20_trade_win_content":"현재 네트워크가 불안정합니다. 나중에 확인해 주시기 바랍니다.",
+  "trc20_trade_win_confirm":"확인",
+  "trc20_hot":"인기",
+  "trc20_top_Volume":"거래리스트",
+  "trc20_top_Rising":"상승 목록",
 
+  "trc20_history":"시장 거래",
+  "trc20_register":"주문 도서",
+  "trc20_24h_h":"24h 높은",
+  "trc20_24h_l":"24h 낮은",
   /*
    *  2018-12-18
    * */

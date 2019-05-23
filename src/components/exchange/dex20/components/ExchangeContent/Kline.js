@@ -126,7 +126,7 @@ class Kline extends React.Component {
       overrides: {
         // "symbolWatermarkProperties.color": "rgba(0, 0, 0, 0)",
         volumePaneSize: "medium", //成交量大小的显示
-        "paneProperties.legendProperties.showLegend": false //关闭左上角
+        "paneProperties.legendProperties.showLegend": false, //关闭左上角
         // //背景色，
         // "paneProperties.background": "#fff",
         // "paneProperties.vertGridProperties.color": "#2c3450",
@@ -134,7 +134,7 @@ class Kline extends React.Component {
         // "paneProperties.horzGridProperties.color": "#2c3450",
         // "paneProperties.horzGridProperties.style": 0,
         // "symbolWatermarkProperties.transparency": 90,
-        // "scalesProperties.textColor": "#AAA",
+        "scalesProperties.textColor": "#999",
         // "paneProperties.topMargin": 5,
         // "paneProperties.bottomMargin": 5,
         // //蜡烛的样式
@@ -195,27 +195,27 @@ class Kline extends React.Component {
         //     chartType: 3
         // },
         {
-          label: "5min",
+          label: "5m",
           resolution: "5",
           chartType: 2
         },
         {
-          label: "30min",
+          label: "30m",
           resolution: "30",
           chartType: 2
         },
         {
-          label: "1hour",
+          label: "1h",
           resolution: "60",
           chartType: 2
         },
         {
-          label: "4hour",
+          label: "4h",
           resolution: "240",
           chartType: 2
         },
         {
-          label: "1day",
+          label: "1d",
           resolution: "D",
           chartType: 2
         },

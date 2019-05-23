@@ -16,7 +16,7 @@ export const messages = {
 #         Template for translating the tronscan.org website                      #
 #         Version: 1.6-13082018                                                  #
 #         Update Date: 13.08.2018                                                #
-#         Language: English                                                      #
+#         Language: Farsi 波斯语                                                      #
 #         Status: Approved Version                                               #
 #         Number of checks: 4                                                    #
 #         Participants: Rovak,PMD3VSolution,DrKaradenizli                        #
@@ -1430,8 +1430,8 @@ export const messages = {
     "trc20_L": "L",
     "trc20_O": "O",
     "trc20_C": "C",
-    "trc20_24H_VOL": "24H VOL",
-    "trc20_24H_Total":"24H TOTAL",
+    "trc20_24H_VOL": "24h VOL",
+    "trc20_24H_Total":"24h Total",
     "trc20_price": "قیمت",
     "trc20_amount": "مقدار",
     "trc20_enter_the_trading_amount": "مقدار معامله را وارد کنید",
@@ -1523,8 +1523,14 @@ export const messages = {
    "trc20_depth":"DEPTH",
    "trc20_trade_win_content":"Current network is unstable , please check later",
   "trc20_trade_win_confirm":"Confirm",
+  "trc20_hot":"محبوب",
+  "trc20_top_Volume":"لیست بازرگانی",
+  "trc20_top_Rising":"لیست در حال افزایش است",
 
-
+  "trc20_history":"معاملات بازار",
+  "trc20_register":"سفارش کتاب",
+  "trc20_24h_h":"24h بالا",
+  "trc20_24h_l":"24h کم",
 /*
 *  2018-12-18
 * */
