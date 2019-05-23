@@ -18,6 +18,7 @@ import {t, tu} from "../../../utils/i18n";
 import {TronLoader} from "../../common/loaders";
 import {API_URL, ASSET_ISSUE_COST, ONE_TRX} from "../../../constants";
 
+
 import {
     Form, Row, Col, Input, Button, Icon,
 } from 'antd';
@@ -30,6 +31,7 @@ const { TextArea } = Input;
  class SubmitInfo extends Component {
 
     constructor(props) {
+
         super(props);
         this.state = {
             ...this.props.state,
@@ -58,12 +60,14 @@ const { TextArea } = Input;
 
     tokenState = (value) => {
         let {iconList, modal, checkbox, errors, captcha_code, type, paramData:{ token_name, token_abbr, token_introduction, token_supply, precision, author, logo_url, contract_address, contract_created_date, contract_code, token_amount, trx_amount, freeze_amount, freeze_date, freeze_type, participation_start_date, participation_end_date, participation_type, website, email, white_paper }} = this.state;
+
         let frozenSupplyAmount = freeze_amount * Math.pow(10,Number(precision))
         let frozenSupply =  [{amount: frozenSupplyAmount, days: freeze_date }];
         if( !participation_type ){
             participation_start_date = moment(new Date().getTime() + 60*1000)
             participation_end_date = moment(new Date().getTime() + 120*1000)
         }
+        console.log('contract_created_date',contract_created_date);
         let orderState = {
             'name':token_name,
             'abbreviation':token_abbr,
@@ -290,7 +294,7 @@ const { TextArea } = Input;
                 }
 
 
-                if (Lockr.get("islogin")) {
+                if (account.isLoggedIn) {
 
                     //TRONLINK Login  or PRIVATE_KEY Login
                     if (this.props.walletType.type === "ACCOUNT_TRONLINK" || this.props.walletType.type === "ACCOUNT_PRIVATE_KEY") {
@@ -368,7 +372,9 @@ const { TextArea } = Input;
         const isTrc20 = type === 'trc20'
         let startTime = participation_start_date? participation_start_date.valueOf() :'';
         let endTime = participation_end_date?participation_end_date.valueOf():'';
+        console.log('contract_created_date',contract_created_date)
         let contractCreateTime = contract_created_date ? contract_created_date.valueOf() : contract_created_date;
+        console.log('contractCreateTime',contractCreateTime)
         return (
             <main className="token-submit">
                 {modal}

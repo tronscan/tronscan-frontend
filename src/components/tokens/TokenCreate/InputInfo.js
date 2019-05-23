@@ -6,6 +6,7 @@ import SweetAlert from "react-bootstrap-sweetalert";
 import 'moment/min/locales';
 import NumericInput from '../../common/NumericInput';
 import {TRXPrice} from "../../common/Price";
+import moment from 'moment';
 import {
   Form, Row, Col, Input, InputNumber, AutoComplete, DatePicker, Icon, Switch
 } from 'antd';
@@ -13,11 +14,11 @@ const { TextArea } = Input;
 const AutoCompleteOption = AutoComplete.Option;
 
 // let leave_lock = false
-export class TokenCreate extends Component {
+ class TokenCreate extends Component {
 
   constructor(props) {
     super(props);
-      console.log('this.props.state11111',this.props.state)
+
     this.state = {
       autoCompleteResult: [],
       social_total: 20,
@@ -27,6 +28,7 @@ export class TokenCreate extends Component {
       token_trx_order: true,
       ...this.props.state
     };
+      console.log('this.props.state11111',this.props.state)
   }
 
   componentDidMount() {
@@ -118,6 +120,7 @@ export class TokenCreate extends Component {
     const {intl, nextStep} = this.props
     const { getFieldDecorator, getFieldsValue } = this.props.form;
     console.log('isUpdate12312312313',isUpdate)
+      alert(1213)
     const isTrc10 = type === 'trc10'
     const isTrc20 = type === 'trc20'
 
@@ -477,12 +480,14 @@ export class TokenCreate extends Component {
 
 function mapPropsToFields(props) {
   let data = props.state.paramData
+   console.log('data',data)
   let params = {}
   Object.keys(data).map(key => {
     params[key] = Form.createFormField({
       value: data[key],
     })
   })
+  console.log('params',params)
   return  params
 }
 

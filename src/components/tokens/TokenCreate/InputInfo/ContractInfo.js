@@ -24,7 +24,7 @@ export function ContractInfo({form, intl, state}) {
           </Col>
           <Col  span={24} md={11}>
           <Form.Item label={tu('contract_created_date')}>
-            {getFieldDecorator('contract_date')(
+            {getFieldDecorator('contract_created_date')(
               <DatePicker className="w-100" placeholder={intl.formatMessage({id: 'contract_created_date'})}/>
             )}
             </Form.Item>
