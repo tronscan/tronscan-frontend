@@ -2675,6 +2675,12 @@ h5 {
       }
     }
   }
+  .login-privatekey-warn{
+    font-size: 12px;
+    transform: scale(.7);
+    width: 140%;
+    margin-left: -70px;
+  }
   @media only screen and (max-width: 768px) {
     .login-import,
     .login-tronlink {
