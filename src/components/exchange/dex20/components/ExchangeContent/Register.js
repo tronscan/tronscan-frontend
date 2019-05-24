@@ -194,7 +194,7 @@ class Register extends Component {
               {lastPrice.type === 0 ? (
                 <span>
                 <span className="col-green up">
-                  {lastPrice.value} 
+                  {lastPrice.value&&lastPrice.value.toFixed(pairs.sPrecision)} 
                   <Icon type="arrow-up" />
                 </span>
                 <span style={{fontSize: '14px',color: '#666666',marginLeft:'20px'}}>≈ {price_convert} {activeCurrency.toLocaleUpperCase()}</span>
@@ -202,7 +202,7 @@ class Register extends Component {
               ) : (
                 <span>
                 <span className="col-red down">
-                  {lastPrice.value}
+                  {lastPrice.value&&lastPrice.value.toFixed(pairs.sPrecision)}
                   <Icon type="arrow-down" />
                 </span>
                 <span style={{fontSize: '14px',color: '#666666',marginLeft:'20px'}}>≈ {price_convert} {activeCurrency.toLocaleUpperCase()}</span>
@@ -237,7 +237,7 @@ class Register extends Component {
         this.setState(
           {
             buyList: buyObj.listN,
-            sellList: sellObj.listN.reverse()
+            sellList: sellObj.listN
           }
           // () => {
           // setRegister({
