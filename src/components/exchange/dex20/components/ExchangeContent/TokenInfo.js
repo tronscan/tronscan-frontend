@@ -159,7 +159,7 @@ class Tokeninfo extends React.Component {
             </div>
             <div className="item">
               <p className={selectData.isUp ? "col-green" : "col-red"}>
-                {selectData.price}
+                {selectData.price&&selectData.price.toFixed(selectData.sPrecision)}
               </p>
               {price_convert && (
                 <p>
