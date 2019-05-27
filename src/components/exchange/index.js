@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { injectIntl } from "react-intl";
 import { Client, Client20 } from "../../services/api";
 import { tu } from "../../utils/i18n";
+
 import { TronLoader } from "../common/loaders";
 import { withRouter } from "react-router";
 import { connect } from "react-redux";
@@ -31,6 +32,7 @@ class Exchange extends React.Component {
       const data = await Client20.getNotice(intl.locale, { page: 3 });
       this.setState({ notice: data.articles });
     }
+    
   }
 
   componentWillUnmount() {
@@ -48,43 +50,40 @@ class Exchange extends React.Component {
       lg = "EN";
     }
     return (
-      <div className="container header-overlap">
+      <div className="container-all header-overlap">
         <main className="exchange">
-            {
-                this.state.notice.length > 0 &&  <div className="notice">
-                  <img src={require("../../images/announcement-logo.png")} alt="" />
-                  <div className="notice-wrap">
-                      {this.state.notice.map((v, i) => (
-                          <a
-                              className="item"
-                              key={v.id}
-                              href={v.html_url}
-                              target="_blank"
-                          >
+          {/* <div className="notice">
+            <img src={require("../../images/announcement-logo.png")} alt="" />
+            <div className="notice-wrap">
+              {this.state.notice.map((v, i) => (
+                <a
+                  className="item"
+                  key={v.id}
+                  href={v.html_url}
+                  target="_blank"
+                >
                   <span title={v.name} className="title">
                     {v.name}
                   </span>
                             <span className="date">
                     ({v.created_at.substring(5, 10)})
                   </span>
-                          </a>
-                      ))}
-                  </div>
-                    {this.state.notice.length > 0 ? (
-                        <a
-                            href={
-                                lg == "CN"
-                                    ? "https://support.trx.market/hc/zh-cn/categories/360001523732-Announcements"
-                                    : "https://support.trx.market/hc/en-us/categories/360001523732-Announcements"
-                            }
-                            target="_blank"
-                        >
-                            {tu("learn_more")}>
-                        </a>
-                    ) : null}
-                </div>
-            }
-
+                </a>
+              ))}
+            </div>
+            {this.state.notice.length > 0 ? (
+              <a
+                href={
+                  lg == "CN"
+                    ? "https://support.trx.market/hc/zh-cn/categories/360001523732-Announcements"
+                    : "https://support.trx.market/hc/en-us/categories/360001523732-Announcements"
+                }
+                target="_blank"
+              >
+                {tu("learn_more")}>
+              </a>
+            ) : null}
+          </div> */}
 
           {match.params.type === "trc10" && <Trc10 />}
           {match.params.type === "trc20" && <Trc20 />}

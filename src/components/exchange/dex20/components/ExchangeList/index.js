@@ -1,3 +1,4 @@
+/* eslint-disable default-case */
 import React, { Fragment } from "react";
 import { injectIntl } from "react-intl";
 import { Client } from "../../../../../services/api";
@@ -7,7 +8,7 @@ import { tu } from "../../../../../utils/i18n";
 import xhr from "axios/index";
 import { map, concat } from "lodash";
 import ExchangeTable from "./Table";
-import SearchTable from "./SearchTable";
+// import SearchTable from "./SearchTable";
 import { Explain } from "./Explain";
 import "react-perfect-scrollbar/dist/css/styles.css";
 import PerfectScrollbar from "react-perfect-scrollbar";
@@ -18,16 +19,24 @@ import {
   getSelectData,
   getExchanges20,
   getExchanges,
-  getExchangesAllList
+  getExchangesAllList,
+  setPriceConvert,
+  getExchanges20Volume,
+  getExchanges20UpDown,
+  getExchanges20Search
 } from "../../../../../actions/exchange";
 import { connect } from "react-redux";
 import Lockr from "lockr";
 import { QuestionMark } from "../../../../common/QuestionMark";
-import { Input, Radio } from "antd";
+import { Input, Radio, Icon, Tabs } from "antd";
 import queryString from "query-string";
 import { Tooltip } from "reactstrap";
 import { alpha } from "../../../../../utils/str";
+import { Client20 } from "../../../../../services/api";
+import { TronLoader } from "../../../../common/loaders";
+
 const Search = Input.Search;
+const TabPane = Tabs.TabPane;
 
 class ExchangeList extends React.Component {
   constructor() {
@@ -60,26 +69,50 @@ class ExchangeList extends React.Component {
       sec: "",
       AdClose: true,
       adURL: "https://trx.market/launchBase?utm_source=TS2",
-      adchURL: "https://trx.market/zh/launchBase?utm_source=TS2"
+      adchURL: "https://trx.market/zh/launchBase?utm_source=TS2",
+      activedId: 0,
+      activedTab: "hot",
+      priceObj: {},
+      loading: true,
+      timeVolume: null,
+      timeupDown: null,
+      timeSearch: null,
+      inputValue: ""
     };
+    this.tabChange = this.tabChange.bind(this);
+    this.onInputChange = this.onInputChange.bind(this);
   }
 
-  componentDidMount() {
-    const { getExchanges20, getExchangesAllList } = this.props;
+  async componentDidMount() {
+    const {
+      getExchanges20,
+      getExchanges20Volume,
+      getExchanges20UpDown
+    } = this.props;
+    //获取各个币的兑换价格
+    await this.getCovert("trx");
+    await this.getCovert("usdt");
+
     getExchanges20();
-    getExchangesAllList();
+    getExchanges20Volume();
+    getExchanges20UpDown();
+
+    this.setState({
+      loading: false
+    });
+
     const getDataTime = setInterval(() => {
       getExchanges20();
-      getExchangesAllList();
     }, 10000);
     this.setState({ time: getDataTime });
     const dex = Lockr.get("DEX");
     if (!dex) {
       Lockr.set("DEX", "Main");
     }
-    if (dex == "GEM") {
-      this.setState({ tokenAudited: false });
-    }
+    // if (dex == "GEM") {
+    //   this.setState({ tokenAudited: false });
+    // }
+
     //this.countdown();
   }
 
@@ -89,10 +122,38 @@ class ExchangeList extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    let { exchange20List } = this.props;
-    let { tokenAudited } = this.state;
-    if (exchange20List != prevProps.exchange20List) {
-      this.setData(tokenAudited);
+    let {
+      exchange20List,
+      exchange20VolumeList,
+      exchange20UpDownList,
+      exchanges20SearchList
+    } = this.props;
+    let { tokenAudited, activedTab, inputValue, activedId } = this.state;
+    if (inputValue) {
+      if (exchanges20SearchList !== prevProps.exchanges20SearchList) {
+        this.setSearchList(activedTab,activedId)
+        // this.setState({
+        //   dataSource: exchanges20SearchList
+        // });
+      }
+      return;
+    }
+    if (activedTab === "hot" && exchange20List !== prevProps.exchange20List) {
+      this.setData(tokenAudited, activedTab);
+    }
+
+    if (
+      activedTab === "volume" &&
+      exchange20VolumeList !== prevProps.exchange20VolumeList
+    ) {
+      this.setData(tokenAudited, activedTab);
+    }
+
+    if (
+      activedTab === "up_and_down" &&
+      exchange20UpDownList !== prevProps.exchange20UpDownList
+    ) {
+      this.setData(tokenAudited, activedTab);
     }
   }
 
@@ -151,22 +212,48 @@ class ExchangeList extends React.Component {
       AdClose: true
     });
   };
-  setData(type) {
-    let { exchange20List, exchangeallList } = this.props;
+  keyObj(activeKey) {
+    let {
+      exchange20List,
+      exchange20VolumeList,
+      exchange20UpDownList
+    } = this.props;
+
+    let list = [];
+    switch (activeKey) {
+      case "hot":
+        list = exchange20List;
+        break;
+      case "volume":
+        list = exchange20VolumeList;
+        break;
+      case "up_and_down":
+        list = exchange20UpDownList;
+        break;
+      default:
+        let listIds = Lockr.get("dex20") || [];
+        list = exchange20List.filter(item => listIds.includes(item.id));
+        break;
+    }
+    return list;
+  }
+  setData(type, activeKey) {
+    let { exchange20List } = this.props;
+    let list = this.keyObj(activeKey);
+
     if (type) {
-      this.setState({ dataSource: exchange20List });
+      this.fiterData(list);
     } else {
-      let new20List = exchange20List.filter(item => item.isChecked);
-      let newallList = exchangeallList
-        ? exchangeallList.filter(item => item.isChecked)
-        : [];
-      let unreviewedTokenList = _(new20List)
-        .concat(newallList)
-        .value();
-      this.setState({ dataSource: unreviewedTokenList });
+      let list = Lockr.get("dex20") || [];
+      let new20List = exchange20List.filter(item => list.includes(item.id));
+      // let unreviewedTokenList = _(new20List).value();
+      let unreviewedTokenList = new20List;
+      // this.setState({ dataSource: unreviewedTokenList });
+
+      this.fiterData(unreviewedTokenList);
     }
   }
-  handleSelectData = type => {
+  handleSelectData = (type, activeKey) => {
     const { tagLock } = this.state;
     try {
       const { klineLock } = this.props;
@@ -177,7 +264,8 @@ class ExchangeList extends React.Component {
         } else {
           Lockr.set("DEX", "Main");
         }
-        this.setData(type);
+        this.setData(type, activeKey);
+
         setTimeout(() => {
           this.setState({ tagLock: true });
         }, 500);
@@ -215,8 +303,13 @@ class ExchangeList extends React.Component {
       sec,
       AdClose,
       adURL,
-      adchURL
+      adchURL,
+      activedId,
+      loading,
+      inputValue,
+      activedTab
     } = this.state;
+
     let { intl } = this.props;
     return (
       <div className="exchange-list mr-2">
@@ -254,15 +347,15 @@ class ExchangeList extends React.Component {
               </i>
             </a>
           )}
-          <div className="d-flex  justify-content-between align-items-center w-100 mb-3">
-            <h6 className="m-0">
-              {/* {tu("marks")} */}
+          <div className="d-flex  justify-content-between align-items-center w-100 tab-pr-100">
+            {/* <h6 className="m-0">
+              
               <a href="https://trx.market" target="_blank" className="">
                 TRXMarket
               </a>
-            </h6>
+            </h6> */}
 
-            <div className="d-flex f-12">
+            {/* <div className="d-flex f-12">
               <a
                 href={
                   intl.locale == "zh"
@@ -292,59 +385,304 @@ class ExchangeList extends React.Component {
               >
                 {tu("token_application_instructions_title")}
               </a>
-            </div>
+            </div>*/}
+            <Input
+              placeholder={intl.formatMessage({ id: "dex_search_dec" })}
+              prefix={<Icon type="search" style={{ color: "#333" }} />}
+              value={inputValue}
+              allowClear
+              onChange={e => {
+                this.onInputChange(e);
+                // this.setState({
+                //   inputValue: e.target.value
+                // });
+              }}
+              onPressEnter={() => this.onPressEnter()}
+            />
+            {/* <div className="collapse-icon">
+              <Icon type="arrow-left" />
+            </div> */}
           </div>
 
           {/* filter 筛选 */}
-          <div className="dex-tab">
-            {/*<div*/}
-            {/*className={"btn-sm disabled dex-tab-TRC20"}*/}
-            {/*//className={"btn btn-sm" + (tokenAudited? ' active' : '')}*/}
-            {/*//onClick={() => this.handleSelectData(true)}*/}
-            {/*id={this.state.id}*/}
-            {/*onMouseOver={() => this.setState({open: true})}*/}
-            {/*onMouseOut={() => this.setState({open: false})}*/}
-            {/*>*/}
-
-            {/*<i></i>*/}
+          <div className={intl.locale !== "en" ? "dex-tab tab-lar tab-pr-100" : "dex-tab tab-lar tab-pr-100 tab-en"}>
+            <Tabs onChange={this.tabChange} activeKey={activedTab}>
+              <TabPane
+                tab={
+                  <span>
+                    {/* <Icon type="star" /> */}
+                    {tu("Favorites")}
+                  </span>
+                }
+                key="fav"
+              />
+              <TabPane
+                tab={intl.formatMessage({ id: "trc20_hot" })}
+                key="hot"
+              />
+              <TabPane
+                tab={intl.formatMessage({ id: "trc20_top_Volume" })}
+                key="volume"
+              />
+              <TabPane
+                tab={intl.formatMessage({ id: "trc20_top_Rising" })}
+                key="up_and_down"
+              />
+            </Tabs>
+          </div>
+          <div className="dex-tab tab-pr-100 font12">
             <div
-              className={"btn btn-sm" + (tokenAudited ? " active" : "")}
-              onClick={() => this.handleSelectData(true)}
+              className={"btn btn-sm" + (activedId === 0 ? " active" : "")}
+              // onClick={() => this.handleSelectData(true)}
+              onClick={() => this.selcetSort(0)}
             >
-              Market
-            </div>
-            {/*<Tooltip placement="top" isOpen={open} target={id}>*/}
-            {/*<span className="text-capitalize">{tu("TRC20_under_maintenance")}</span>*/}
-            {/*</Tooltip>*/}
-            <div className={"btn btn-sm"} onClick={() => this.gotoTrc10()}>
-              Bancor
+              {tu("all")}
             </div>
             <div
-              className={"btn btn-sm" + (tokenAudited ? " " : " active")}
-              onClick={() => this.handleSelectData(false)}
+              className={"btn btn-sm" + (activedId === "TRX" ? " active" : "")}
+              // onClick={() => this.gotoTrc10()}
+              onClick={() => this.selcetSort("TRX")}
             >
-              <i>
-                <i className="fas fa-star" /> {tu("Favorites")}
-              </i>
+              TRX
+            </div>
+            <div
+              className={"btn btn-sm" + (activedId === "USDT" ? " active" : "")}
+              onClick={() => this.selcetSort("USDT")}
+            >
+              USDT
             </div>
           </div>
           <div className="dex-search" />
           {
-            <PerfectScrollbar>
+            <div>
               <div
                 className="exchange-list__table"
                 style={AdClose ? styles.list : styles.adlist}
               >
-                <ExchangeTable dataSource={dataSource} />
+                {loading ? (
+                  <TronLoader />
+                ) : (
+                  <ExchangeTable dataSource={dataSource} />
+                )}
               </div>
-            </PerfectScrollbar>
+            </div>
           }
         </div>
 
         {/* 说明 */}
-        <Explain />
+        {/* <Explain /> */}
       </div>
     );
+  }
+  fiterData(list) {
+    let { activedId } = this.state;
+    let fiterData = list;
+
+    if (activedId !== 0) {
+      fiterData = list.filter((item, index) => {
+        return item.second_token_id === activedId;
+      });
+    }
+    this.setState({
+      dataSource: fiterData
+    });
+  }
+  tabChange(activeKey) {
+    const { time, timeVolume, timeupDown, inputValue,timeSearch } = this.state;
+    const {
+      getExchanges20,
+      getExchanges20Volume,
+      getExchanges20UpDown
+    } = this.props;
+    clearInterval(time);
+    clearInterval(timeVolume);
+    clearInterval(timeupDown);
+    clearInterval(timeSearch);
+    if (inputValue) {
+      this.setState({
+        activedTab: activeKey,
+        // activedId: 0
+      });
+      this.setSearchList(activeKey, 0);
+      return;
+    }
+    this.setState(
+      {
+        activedTab: activeKey,
+        activedId: 0
+      },
+      () => {
+        switch (activeKey) {
+          case "fav":
+            this.handleSelectData(false);
+            break;
+          case "hot":
+            getExchanges20();
+            this.setState({
+              time: setInterval(() => {
+                getExchanges20();
+              }, 10000)
+            });
+            this.handleSelectData(true, activeKey);
+
+            break;
+          case "volume":
+            getExchanges20Volume();
+            this.setState({
+              timeVolume: setInterval(() => {
+                getExchanges20Volume();
+              }, 10000)
+            });
+
+            this.handleSelectData(true, activeKey);
+            break;
+          case "up_and_down":
+            getExchanges20UpDown();
+            this.setState({
+              timeupDown: setInterval(() => {
+                getExchanges20UpDown();
+              }, 10000)
+            });
+            this.handleSelectData(true, activeKey);
+            break;
+          default:
+            this.handleSelectData(true, activeKey);
+            break;
+        }
+      }
+    );
+  }
+  selcetSort(type) {
+    let { activedTab, inputValue } = this.state;
+    if (inputValue) {
+      this.setState({
+        activedId: type
+      });
+      this.setSearchList(activedTab, type);
+      return;
+    }
+    this.setState(
+      {
+        activedId: type
+      },
+      () => {
+        this.fiterData(this.keyObj(activedTab));
+      }
+    );
+  }
+  async getCovert(type) {
+    const { setPriceConvert } = this.props;
+    let { priceObj } = this.state;
+    let data = await Client20.coinMarketCap(type, "eth");
+    let data1 = await Client20.coinMarketCap(type, "eur");
+    if (type === "trx") {
+      let trxToOther = {};
+
+      trxToOther = {
+        usd: data[0].price_usd,
+        btc: data[0].price_btc,
+        eth: data[0].price_eth,
+        eur: data1[0].price_eur,
+        trx: 1
+      };
+      priceObj.trxToOther = trxToOther;
+    } else if (type === "usdt") {
+      let usdtToOther = {};
+
+      let data2 = await Client20.coinMarketCap(type, "trx");
+      usdtToOther = {
+        trx: data2[0].price_trx,
+        btc: data[0].price_btc,
+        eth: data[0].price_eth,
+        eur: data1[0].price_eur,
+        usd: 1
+      };
+      priceObj.usdtToOther = usdtToOther;
+    }
+    setPriceConvert(priceObj);
+  }
+
+  onInputChange(e) {
+    const { activedId, activedTab, timeSearch } = this.state;
+    this.setState({
+      inputValue: e.target.value
+    });
+    console.log(e.target.value)
+    if (!e.target.value) {
+      clearInterval(timeSearch);
+      this.setState({
+        // activedTab: "hot",
+        activedId: activedId,
+        dataSource: this.keyObj(activedTab)
+      });
+    }else{
+      this.getSearchList(e.target.value);
+    }
+  }
+
+  onPressEnter() {
+    const { inputValue, activedTab } = this.state;
+    if (inputValue === "") {
+      this.setState({
+        dataSource: this.keyObj(activedTab)
+      });
+    } else {
+      // this.setState({
+      //   activedTab: "hot",
+      //   activedId: 0
+      // });
+      this.getSearchList(inputValue);
+    }
+  }
+
+  getSearchList(val) {
+    const { time, timeVolume, timeupDown, timeSearch } = this.state;
+    const { getExchanges20Search } = this.props;
+
+    clearInterval(time);
+    clearInterval(timeVolume);
+    clearInterval(timeupDown);
+    clearInterval(timeSearch);
+    getExchanges20Search({ key: val });
+    this.setState({
+      timeSearch: setInterval(() => {
+        getExchanges20Search({ key: val });
+      }, 10000)
+    });
+  }
+  setSearchList(tab, id) {
+    let { exchanges20SearchList } = this.props;
+    let list = [...exchanges20SearchList];
+    switch (tab) {
+      case "fav":
+        let _list = Lockr.get("dex20") || [];
+        list = list.filter(item => _list.includes(item.id));
+        break;
+      case "hot":
+        list = list;
+        break;
+      case "volume":
+        list = list.sort((a, b) => {
+          return b.trxVolume24h - a.trxVolume24h;
+        });
+        break;
+      case "up_and_down":
+        list = list.sort((a, b) => {
+          return b.gain - a.gain;
+        });
+        break;
+    }
+    if (id !== 0) {
+      list = list.filter(v => {
+        return v.second_token_abbr == id;
+      });
+    }
+    // console.log(tab,id,list)
+    this.setState(()=>{
+      return {
+        dataSource: list
+      }
+    });
   }
 }
 
@@ -352,9 +690,13 @@ function mapStateToProps(state) {
   return {
     activeLanguage: state.app.activeLanguage,
     exchange20List: state.exchange.list_20,
+    exchange20VolumeList: state.exchange.volumeList,
+    exchange20UpDownList: state.exchange.upDownList,
     exchange10List: state.exchange.list_10,
     exchangeallList: state.exchange.list_all,
-    klineLock: state.exchange.klineLock
+    klineLock: state.exchange.klineLock,
+    price: state.exchange.price,
+    exchanges20SearchList: state.exchange.searchList
   };
 }
 
@@ -362,7 +704,11 @@ const mapDispatchToProps = {
   getSelectData,
   getExchanges20,
   getExchangesAllList,
-  getExchanges
+  getExchanges,
+  setPriceConvert,
+  getExchanges20Volume,
+  getExchanges20UpDown,
+  getExchanges20Search
 };
 
 export default connect(
@@ -372,7 +718,7 @@ export default connect(
 
 const styles = {
   list: {
-    height: 350
+    // height: 350
   },
   adlist: {
     height: 106

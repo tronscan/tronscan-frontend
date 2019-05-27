@@ -16,7 +16,7 @@
     #         Template for translating the tronscan.org website                      #
     #         Version: 1.6-13082018                                                  #
     #         Update Date: 13.08.2018                                                #
-    #         Language: Chinese                                                      #
+    #         Language: Arabic 阿拉伯语                                                      #
     #         Status: Approved Version                                               #
     #         Number of checks: 5                                                    #
     #                                                                                #
@@ -1426,8 +1426,8 @@
    "trc20_L":"منخفض",
    "trc20_O":"فتح",
    "trc20_C":"قبول",
-   "trc20_24H_VOL":"24H VOL",
-   "trc20_24H_Total":"24H TOTAL",
+   "trc20_24H_VOL":"24h VOL",
+   "trc20_24H_Total":"24h Total",
    "trc20_price":"السعر",
    "trc20_amount":"الكمية",
    "trc20_enter_the_trading_amount":"يرجى إدخال عدد المعاملات",
@@ -1519,7 +1519,15 @@
   "trc20_depth":"DEPTH",
   "trc20_trade_win_content":"Current network is unstable , please check later",
   "trc20_trade_win_confirm":"Confirm",
+  "trc20_hot":"شعبي",
+  "trc20_top_Volume":"قائمة التداول",
+  "trc20_top_Rising":"قائمة ارتفاع",
 
+
+  "trc20_history":"صفقات السوق",
+  "trc20_register":"سجل الطلبيات",
+  "trc20_24h_h":"24h متوسط",
+  "trc20_24h_l":"24h منخفض",
 
     /*
     *  2018-12-18
@@ -1709,10 +1717,12 @@
     #                                                                                #
     ##################################################################################
 */
-    "footer_fellow_us":"Fellow Us",
+    "footer_fellow_us":"Follow Us",
     "footer_developer_resources":"Developer Resources",
     "footer_support_center":"Support Center",
-    "footer_tron_network":"TRON"
+    "footer_tron_network":"TRON",
+    "login_privatekey_warn":"In order to ensure account security and avoid asset loss, please take good care of your private key and never give it away to anyone. It is recommended to use ",
+    "login_privatekey_warn_safe":" to login",
 
 
 };

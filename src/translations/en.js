@@ -1484,8 +1484,8 @@ export const messages = {
   "trc20_L": "L",
   "trc20_O": "O",
   "trc20_C": "C",
-  "trc20_24H_VOL": "24H VOL",
-  "trc20_24H_Total":"24H TOTAL",
+  "trc20_24H_VOL": "24h VOL",
+  "trc20_24H_Total":"24h Total",
   "trc20_price": "Price",
   "trc20_amount": "Amount",
   "trc20_enter_the_trading_amount": "Enter the Trading Amount",
@@ -1575,6 +1575,17 @@ export const messages = {
   "trc20_second_token": "Second Token",
   "trc20_kchart":"K Line",
   "trc20_depth":"DEPTH",
+  "trc20_trade_win_content":"Current network is unstable , please check later",
+  "trc20_trade_win_confirm":"Confirm",
+ 
+  "trc20_hot":"Hot",
+  "trc20_top_Volume":"Top VOL",
+  "trc20_top_Rising":"Rising",
+  "trc20_history":"Market Trades",
+  "trc20_register":"Order Book",
+  "trc20_24h_h":"24h High",
+  "trc20_24h_l":"24h Low",
+  
 
   "create_deal_pair": "Create Trading Pairs",
   "add_deal_pair_desc": "Trading pair creation is available.",
@@ -1777,9 +1788,11 @@ export const messages = {
      #                                                                                #
      ##################################################################################
  */
-  "footer_fellow_us":"Fellow Us",
+  "footer_fellow_us":"Follow Us",
   "footer_developer_resources":"Developer Resources",
   "footer_support_center":"Support Center",
-  "footer_tron_network":"TRON"
+  "footer_tron_network":"TRON",
+  "login_privatekey_warn":"In order to ensure account security and avoid asset loss, please take good care of your private key and never give it away to anyone. It is recommended to use ",
+  "login_privatekey_warn_safe":" to login",
 
 };

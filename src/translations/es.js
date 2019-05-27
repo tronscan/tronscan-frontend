@@ -16,7 +16,7 @@ export const messages = {
   #         Template for translating the tronscan.org website                      #
   #         Version: 1.6-13082018                                                  #
   #         Update Date: 13.08.2018                                                #
-  #         Language: Spanish                                                      #
+  #         Language: Spanish  西班牙语                                                    #
   #         Status: xxxxxxx  Version                                               #
   #         Number of checks:                                                      #
   #         Participants:                                                           #
@@ -1577,7 +1577,14 @@ export const messages = {
   "trc20_depth":"DEPTH",
   "trc20_trade_win_content":"Current network is unstable , please check later",
   "trc20_trade_win_confirm":"Confirm",
+  "trc20_hot":"Popular",
+  "trc20_top_Volume":"Lista de comercio",
+  "trc20_top_Rising":"Lista creciente",
 
+  "trc20_history":"Transacciones",
+  "trc20_register":"orden de compra",
+  "trc20_24h_h":"24h Alto",
+  "trc20_24h_l":"24h bajo",
   /*
    *  2018-12-18
    * */
@@ -1763,10 +1770,12 @@ export const messages = {
     #                                                                                #
     ##################################################################################
   */
-  "footer_fellow_us":"Fellow Us",
+  "footer_fellow_us":"Follow Us",
   "footer_developer_resources":"Developer Resources",
   "footer_support_center":"Support Center",
-  "footer_tron_network":"TRON"
+  "footer_tron_network":"TRON",
+  "login_privatekey_warn":"In order to ensure account security and avoid asset loss, please take good care of your private key and never give it away to anyone. It is recommended to use ",
+  "login_privatekey_warn_safe":" to login",
 
 
 

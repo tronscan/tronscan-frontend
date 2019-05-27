@@ -27,7 +27,7 @@ export function channel(path, options) {
 class ApiClient20 {
   constructor() {
     this.apiUrl = "https://api.trx.market";
-    // this.apiUrl = "https://testapi.trx.market";
+    // this.apiUrl = "http://52.15.171.70:21111";
     this.ZDUrl = "https://tron274.zendesk.com";
     this.SCANUrl = "https://tronscanorg.zendesk.com";
   }
@@ -143,6 +143,17 @@ class ApiClient20 {
     return data;
   }
 
+  async getExchanges20SearchList(options = {}) {
+    let { data } = await xhr.get(
+      // `http://52.15.171.70:21110/api/exchange/marketPair/searchList`,
+      `${this.apiUrl}/api/exchange/marketPair/searchList`,
+      {
+        params: options
+      }
+    );
+    return data;
+  }
+
   /**
    * 添加订单渠道ID
    */
@@ -201,6 +212,28 @@ class ApiClient20 {
       }/api/v2/help_center/${langauage}/categories/${id}/articles.json?sort_by=created_at&sort_order=desc&per_page=${
         query.page
       }`
+    });
+    return data;
+  }
+
+  //币之间的换算
+  async coinMarketCap(secend_token, covert) {
+    let type = "tronix";
+    if (secend_token === "usdt") {
+      type = "tether";
+    }
+    let { data } = await xhr({
+      method: "get",
+      url: `https://api.coinmarketcap.com/v1/ticker/${type}/?convert=${covert}`
+    });
+    return data;
+  }
+
+  //market新接口，sortType=0 24小时交易额 sortType=1 热门 sortType=2 涨跌幅
+  async getMarketNew(sortType) {
+    let { data } = await xhr({
+      method: "get",
+      url: `${this.apiUrl}/api/exchange/marketPair/list?sortType=${sortType}`
     });
     return data;
   }

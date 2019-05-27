@@ -52,6 +52,14 @@ class Footer extends Component {
                       <i className="fab fa-weibo mr-1" />Weibo
                     </HrefLink>
                   </li>
+                  <li>
+                    <a target="_blank" className="footer-icon">
+                      <i className="fab fa-weixin mr-1"></i>WeChat
+                      <div className="code_wrap">
+                        <img src={require("../../images/footer/tronscan_wechat.png")} />
+                      </div>
+                    </a>
+                  </li>
                 </ul>
               </div>
 
@@ -99,7 +107,9 @@ class Footer extends Component {
                     </Link>
                   </li>
                   <li>
-                    <a href='mailto:feedback@tronscan.org'>{tu('contact_us')}</a>
+                    <HrefLink href={activeLanguage == 'zh'?"https://support.tronscan.org/hc/zh-cn/requests/new":"https://support.tronscan.org/hc/en-us/requests/new"}>
+                      {tu('contact_us')}
+                    </HrefLink>
                   </li>
                   <li>
                     <HrefLink href={activeLanguage == 'zh'?"https://tronscanorg.zendesk.com/hc/zh-cn":"https://tronscanorg.zendesk.com/hc/en-us"}>
@@ -199,6 +209,15 @@ class Footer extends Component {
                       <i className="fab fa-weibo mr-4" />Weibo
                     </HrefLink>
                   </li>
+                  <li className="p-2">
+                    <a target="_blank" className="footer-icon">
+                      <i className="fab fa-weixin mr-4"></i>WeChat
+                      <div className="code_wrap">
+                        <img src={require("../../images/footer/tronscan_wechat.png")} />
+                      </div>
+                    </a>
+                  </li>
+
                     {/*<li className="p-2">*/}
                     {/*<HrefLink href="https://twitter.com/tronscan3">*/}
                     {/*<i className="fa fa-angle-right mr-4" /> Twitter-tronscan*/}
@@ -279,7 +298,9 @@ class Footer extends Component {
                     </Link>
                   </li>
                   <li className="p-2">
-                    <a href='mailto:feedback@tronscan.org'>{tu('contact_us')}</a>
+                    <HrefLink href={activeLanguage == 'zh'?"https://support.tronscan.org/hc/zh-cn/requests/new":"https://support.tronscan.org/hc/en-us/requests/new"}>
+                        {tu('contact_us')}
+                    </HrefLink>
                   </li>
                   <li className="p-2">
                     <HrefLink href={activeLanguage == 'zh'?"https://tronscanorg.zendesk.com/hc/zh-cn":"https://tronscanorg.zendesk.com/hc/en-us"}>

@@ -383,7 +383,7 @@ export default class Home extends Component {
                 </div>
               </div>
               :
-              <div className="row text-center mr-0 ml-0">
+              <div className="row text-center mr-0 ml-0 mt-3">
                 <div className="col-12  card  pt-1 pl-0 pr-0" style={{border: 'none', borderRadius: 0}}>
                   <div className="card-body d-flex pt-4 pb-4 home-stats">
                     <div className="col-md-2 col-sm-12 col-xs-12 ">

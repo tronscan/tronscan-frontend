@@ -740,7 +740,15 @@ class Navigation extends React.Component {
                                 onChange={ev => this.setState({privateKey: ev.target.value})}
                                 placeholder=""/>
                           </div>
-                          <button className="btn btn-danger btn-block mt-3"
+                          <div className="login-privatekey-warn pt-2">
+                              <i class="fas fa-exclamation-triangle mr-2" style={{color:"#FF8C00"}}></i>
+                              {tu("login_privatekey_warn")}
+                              <a href="https://chrome.google.com/webstore/detail/tronlink/ibnejdfjmmkpcnlpebklmnkoeoihofec" target="_blank">
+                                 TronLink
+                              </a>
+                              {tu("login_privatekey_warn_safe")}
+                          </div>
+                          <button className="btn btn-danger btn-block mt-2"
                                   disabled={!this.isLoginValid()}
                                   onClick={(e) => {
                                     this.login(e)
