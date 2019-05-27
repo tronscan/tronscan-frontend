@@ -34,6 +34,7 @@ import QRCode from "qrcode.react";
 import {byteArray2hexStr} from "@tronscan/client/src/utils/bytes";
 import { FormatNumberByDecimals } from '../../utils/number'
 import { getQueryString } from "../../utils/url";
+import IssuedToken from './IssuedToken'
 
 @connect(
     state => {
@@ -1599,6 +1600,7 @@ export default class Account extends Component {
               </div>
             </div>
           </div>
+          <IssuedToken issuedAsset={issuedAsset}/>
           {
             issuedAsset &&
             <div className="row mt-3">
