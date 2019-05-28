@@ -192,7 +192,8 @@ class Sell extends Component {
       <div className="exchange__transaction__item p-3">
         {modal}
         <h5 className="mr-3 exchange__transaction__header">
-          <span>{exchangeData.fShortName}</span><span> / {exchangeData.sShortName}</span> ≈{" "}
+          <span>{exchangeData.fShortName}</span>
+          <span> / {exchangeData.sShortName}</span> ≈{" "}
           {exchangeData.price && (
             <span>{Number(exchangeData.price).toFixed(6)}</span>
           )}
@@ -350,8 +351,8 @@ class Sell extends Component {
     let tokenB = exchangeData.sTokenAddr;
     let pairType = exchangeData.pairType;
 
-    const firstPrecision = Math.pow(10, exchangeData.fPrecision || 8);
-    const secondPrecision = Math.pow(10, exchangeData.sPrecision || 8);
+    const firstPrecision = Math.pow(10, exchangeData.fPrecision || 0);
+    const secondPrecision = Math.pow(10, exchangeData.sPrecision || 0);
     let amountA = Math.round(amount * firstPrecision);
     // await authorization(this.account.address, tokenA, 0)
     this.transFun(

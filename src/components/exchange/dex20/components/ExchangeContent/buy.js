@@ -179,7 +179,8 @@ class Buy extends Component {
       <div className="exchange__transaction__item mr-2 p-3">
         {modal}
         <h5 className="mr-3 exchange__transaction__header">
-          <span>{exchangeData.fShortName}</span><span> / {exchangeData.sShortName}</span> ≈{" "}
+          <span>{exchangeData.fShortName}</span>
+          <span> / {exchangeData.sShortName}</span> ≈{" "}
           {exchangeData.price && (
             <span>{Number(exchangeData.price).toFixed(6)}</span>
           )}
@@ -346,8 +347,9 @@ class Buy extends Component {
     ) {
       tronWeb = account.tronWeb;
     }
-    const firstPrecision = Math.pow(10, exchangeData.fPrecision || 8);
-    const secondPrecision = Math.pow(10, exchangeData.sPrecision || 8);
+
+    const firstPrecision = Math.pow(10, exchangeData.fPrecision || 0);
+    const secondPrecision = Math.pow(10, exchangeData.sPrecision || 0);
 
     const data = {
       _user: account.address,
@@ -392,6 +394,7 @@ class Buy extends Component {
           });
 
           _times += 1;
+
           if (event.length > 0) {
             for (var i = 0; i < event.length; i++) {
               const k = event[i];
