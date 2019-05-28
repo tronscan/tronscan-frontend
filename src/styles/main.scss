@@ -30,6 +30,7 @@ $color-grey: #d2d1d1;
 @import "exchange";
 @import "exchange20";
 @import "tokencreated";
+@import "exchangeRevised";
 
 body {
   overflow-y: scroll;
@@ -2233,7 +2234,7 @@ h5 {
 
   .byte-code_error {
     font-size: 14px;
-    color: #e60815
+    color: #e60815;
   }
 
   .btn-start-over {
@@ -2241,7 +2242,7 @@ h5 {
   }
 
   .click-here-to_view {
-    white-space: nowrap
+    white-space: nowrap;
   }
 
 }
@@ -3011,6 +3012,13 @@ h5 {
         text-decoration: underline;
       }
     }
+  }
+
+  .login-privatekey-warn {
+    font-size: 12px;
+    transform: scale(.7);
+    width: 140%;
+    margin-left: -70px;
   }
 
   @media only screen and (max-width: 768px) {
@@ -3831,6 +3839,47 @@ h5 {
   }
 }
 
+.footer-icon {
+  position: relative;
+
+  .code_wrap {
+    width: 120px;
+    height: 120px;
+    background: #fff;
+    position: absolute;
+    left: 110px;
+    top: -50px;
+    display: none;
+    z-index: 100;
+
+    img {
+      width: 100%;
+      height: 100%;
+    }
+
+    &:before {
+      width: 0;
+      height: 0;
+      border-top: 7px solid transparent;
+      border-bottom: 7px solid transparent;
+      border-left: 12px solid transparent;
+      border-right: 12px solid #fff;
+      content: '';
+      position: absolute;
+      left: -24px;
+      top: 53px;
+    }
+  }
+
+  &:hover .code_wrap {
+    display: block;
+  }
+
+  &:active .code_wrap {
+    display: block;
+  }
+}
+
 .tf {
   &-card {
     position: relative;
@@ -3853,7 +3902,8 @@ h5 {
       padding-top: 3px;
       font-family: initial;
     }
-    &.token20::after{
+
+    &.token20::after {
       content: '20';
     }
 
@@ -3893,7 +3943,8 @@ h5 {
           margin-top: 23px;
           height: 31px;
           width: 100px;
-          img{
+
+          img {
             width: 100%;
           }
         }
@@ -3923,7 +3974,8 @@ h5 {
         padding-bottom: 1.5em;
         vertical-align: middle;
       }
-      tr td:first-child{
+
+      tr td:first-child {
         padding-left: 2.5em;
       }
 
@@ -3956,10 +4008,10 @@ h5 {
           }
         }
 
-        &-2 {
-        }
+        &-2 {}
+
         &-3 {
-          td{
+          td {
             border-top: none;
             padding-top: 0;
           }
@@ -3976,37 +4028,41 @@ h5 {
   }
 }
 
-.appeal-modal{
-  .ant-modal{
+.appeal-modal {
+  .ant-modal {
     max-width: 720px;
   }
-  .text-small{
-    font-size:12px;
-    color:#b0b0b0;
+
+  .text-small {
+    font-size: 12px;
+    color: #b0b0b0;
   }
-  h3{
+
+  h3 {
     font-size: 16px;
     font-weight: 500;
 
     &.col_red {
-      color:#c23631;
+      color: #c23631;
     }
 
-    .text-small{
-      font-size:12px;
-      color:#b0b0b0;
+    .text-small {
+      font-size: 12px;
+      color: #b0b0b0;
     }
   }
-  p{
+
+  p {
     font-size: 14px;
-    color:#b0b0b0;
+    color: #b0b0b0;
     margin-bottom: 26px;
   }
 
-  .btn{
+  .btn {
     min-width: 90px;
   }
-  .ant-checkbox-wrapper span{
-    color:#b0b0b0;
+
+  .ant-checkbox-wrapper span {
+    color: #b0b0b0;
   }
 }
