@@ -367,7 +367,7 @@ const { TextArea } = Input;
 
     render() {
         let {intl, nextStep} = this.props;
-        let {iconList, modal, checkbox, errors, captcha_code, type, paramData:{ token_name, token_abbr, token_introduction, token_supply, precision, author, logo_url, contract_address, contract_created_date, contract_code, token_amount, trx_amount, freeze_amount, freeze_date, freeze_type, participation_start_date, participation_end_date, participation_type, website, email, white_paper }} = this.state;
+        let {iconList, modal, checkbox, errors, captcha_code, type, paramData:{ token_name, token_abbr, token_introduction, token_supply, precision, author, logo_url, contract_address, contract_created_date, contract_code, token_amount, trx_amount, freeze_amount, freeze_date, freeze_type, participation_start_date, participation_end_date, participation_type, website, email, white_paper,github_url }} = this.state;
         const isTrc10 = type === 'trc10'
         const isTrc20 = type === 'trc20'
         let startTime = participation_start_date? participation_start_date.valueOf() :'';
@@ -427,7 +427,8 @@ const { TextArea } = Input;
                         </Col>
                     </Row>
                     <Row type="flex"  gutter={64}>
-                        <Col span={24} md={12} className={ isTrc20? 'd-block': 'd-none'}>
+                        <Col span={24} md={12}>
+                        {/*<Col span={24} md={12} className={ isTrc20? 'd-block': 'd-none'}>*/}
                             <label>{tu('token_logo')}</label>
                             <img className="d-block mt-2" src={logo_url} alt="" width={100} height={100}/>
                         </Col>
@@ -505,15 +506,22 @@ const { TextArea } = Input;
                                 {website}
                             </p>
                         </Col>
+                        <Col span={24} md={12}>
+                            <label>{tu('GitHub')}</label>
+                            <p className="border-dashed">
+                                {github_url}
+                            </p>
+                        </Col>
+
+                    </Row>
+                    <Row type="flex" gutter={64} className={ isTrc20? 'd-flex': 'd-none'}>
                         <Col span={24} md={12} className={ isTrc20? 'd-block': 'd-none'}>
                             <label>{tu('email')}</label>
                             <p className="border-dashed">
                                 {email}
                             </p>
                         </Col>
-                    </Row>
-                    <Row type="flex" gutter={64} className={ isTrc20? 'd-flex': 'd-none'}>
-                        <Col span={24} md={24}>
+                        <Col span={24} md={12}>
                             <label>{tu('whitepaper_address')}</label>
                             <p className="border-dashed">
                                 {white_paper}

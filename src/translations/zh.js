@@ -495,6 +495,7 @@ export const messages = {
     "supply_message": "创建的代币数量，如：比特币的发行总量为2100万",
     "description_message": "发行通证目的简述",
     "url_message": "展示更多通证信息的网址",
+    "github_url_message": "展示更多通证信息的github地址",
     "exchange_rate_message_0": "规定单位通证的价值，明确每一TRX可以换取的通证数量。",
     "exchange_rate_message_1": "参与者可以获得",
     "exchange_rate_message_2": "每",

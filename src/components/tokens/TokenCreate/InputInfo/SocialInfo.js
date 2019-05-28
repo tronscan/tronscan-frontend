@@ -102,6 +102,15 @@ export class SocialInfo extends Component {
                 )}
               </Form.Item>
             </Col>
+            <Col  span={24} md={11}>
+              <Form.Item label={tu('GitHub')}>
+                  {getFieldDecorator('github_url', {
+                      rules: [{ required: false, message: tu('no_url_error'), whitespace: true}],
+                  })(
+                      <Input placeholder={intl.formatMessage({id: 'github_url_message'})}/>
+                  )}
+              </Form.Item>
+            </Col>
             <Col span={24} className={ isTrc20? 'd-block': 'd-none'}>
               <Form.Item label={tu('whitepaper_address')}>
                 {getFieldDecorator('white_paper', {})(

@@ -17,6 +17,8 @@ import { Modal, Button } from 'antd';
 import NavigationPrompt from "react-router-navigation-prompt";
 import xhr from "axios/index";
 import {API_URL, ONE_TRX, CONTRACT_ADDRESS_USDT} from "../../../constants";
+import {TronLoader} from "../../common/loaders";
+import {Client} from "../../../services/api";
 
 const confirm = Modal.confirm;
 
@@ -37,7 +39,7 @@ export class TokenCreate extends Component {
     super(props);
      this.state = {
       step:0,
-      type: '',
+      type: 'trc20',
       modal: null,
       isUpdate:false,
       leave_lock: true,
@@ -55,7 +57,7 @@ export class TokenCreate extends Component {
         website: '',
         email: '',
         white_paper: '',
-
+        github_url:'',
         trx_amount: '',
         token_amount: '',
         participation_type: true,
@@ -66,17 +68,17 @@ export class TokenCreate extends Component {
         freeze_date: '',
       },
       iconList: [
-        {name: 'twitter', active: true, links: []},
-        {name: 'Facebook', active: true, links: []},
-        {name: 'telegram', active: true, links: []},
-        {name: 'weibo', active: true, links: []},
-        {name: 'reddit', active: true, links: []},
-        {name: 'Medium', active: true, links: []},
-        {name: 'steemit', active: true, links: []},
-        {name: 'Instagram', active: true, links: []},
-        {name: 'weixin', active: true, links: []},
-        {name: 'Group', active: true, links: []},
-        {name: 'discord', active: true, links: []}
+        {name: 'twitter', active: true, links: ['']},
+        {name: 'Facebook', active: true, links: ['']},
+        {name: 'telegram', active: true, links: ['']},
+        {name: 'weibo', active: true, links: ['']},
+        {name: 'reddit', active: false, links: []},
+        {name: 'Medium', active: false, links: []},
+        {name: 'steemit', active: false, links: []},
+        {name: 'Instagram', active: false, links: []},
+        {name: 'weixin', active: false, links: []},
+        {name: 'Group', active: false, links: []},
+        {name: 'discord', active: false, links: []}
       ],
       res:'',
       errorInfo:'',
@@ -345,9 +347,9 @@ export class TokenCreate extends Component {
     if(this.isLoggedIn()){
         if(match.path !=='/tokens/create' && match.params.id){
             if(!isNaN(match.params.id)){
-
+                this.loadToken10(match.params.id)
             }else{
-                this.loadToken(match.params.id)
+                this.loadToken20(match.params.id)
             }
         }else{
 
@@ -356,12 +358,57 @@ export class TokenCreate extends Component {
     }
   }
 
-  loadToken = async (address) => {
+  loadToken10 = async (id) => {
+      this.setState({ loading: true, isUpdate:true });
+      let result = await xhr.get(API_URL+"/api/token?id=" + id + "&showAll=1");
+      let token = result.data.data[0];
+      console.log('token10',token);
+      if(!token){
+          this.setState({loading: false,token: null});
+          this.props.history.push('/tokens/list')
+          return;
+      }
+      let { frozen_supply } = await Client.getAccountByAddressNew(token.ownerAddress);
 
-        this.setState({loading: true});
-        let result = await xhr.get(API_URL+"/api/token_trc20?contract="+address);
+      this.setState({
+          loading: false,
+          step: 1,
+          type: 'trc10',
+          isUpdate:true,
+          paramData: {
+              token_name: token.name,
+              token_abbr: token.abbr,
+              token_introduction: token.description,
+              token_supply: (token.totalSupply/ Math.pow(10,token.precision)).toString(),
+              precision: token.precision,
+              logo_url: token.imgUrl,
+              author: token.ownerAddress,
+              trx_amount: token.trxNum.toString(),
+              token_amount:token.num.toString(),
+              participation_type: token.endTime - token.startTime > 1000 ? true: false,
+              participation_start_date: moment(token.startTime),
+              participation_end_date:  moment(token.endTime),
+              freeze_type: frozen_supply.length > 0 ? true : false,
+              freeze_amount: frozen_supply.length > 0 ? frozen_supply[0].amount.toString(): '',
+              freeze_date: frozen_supply.length > 0 ?frozen_supply[0].expires:'',
+              website: token.url,
+              email: token.email?token.email:'',
+              white_paper: token.white_paper,
+              github_url:token.github,
+
+          },
+          iconList: [
+              {name: 'twitter', active: true, links: ['https://twitter.com/111','https://twitter.com/222']},
+          ],
+
+      });
+  };
+
+  loadToken20 = async (id) => {
+        this.setState({loading: true,  isUpdate:true});
+        let result = await xhr.get(API_URL+"/api/token_trc20?contract="+id);
         let token = result.data.trc20_tokens[0];
-        console.log('token',token);
+        console.log('token20',token);
         this.setState({
             step: 1,
             type: 'trc20',
@@ -656,74 +703,82 @@ contract TRONAce is SafeMath,Ownable{
   };
 
   render() {
-    let {step, modal, paramData, leave_lock} = this.state;
-
+    let {step, modal, paramData, leave_lock, isUpdate, loading} = this.state;
+    //let info = !isUpdate ?['type', 'input', 'confirm', 'result']:['update_token', 'confirm', 'result'];
+    let info = ['type', 'input', 'confirm', 'result'];
     return (
       <main  className="container pb-3 token-create header-overlap tokencreated token_black">
-        <div className="steps mb-4 py-2">
-            {
-              ['type', 'input', 'confirm', 'result'].map((item, index) => {
-                let stepclass = ''
-                if(index < step){ stepclass = 'is-success' }
-                if(index == step){ stepclass = 'is-process' }
-                if(index > step){ stepclass = 'is-wait' }
-                return <div className={`${stepclass} steps-item`} key={index}>{index + 1}. {tu(item)}</div>
-              })
-            }
-          </div>
-          <div className="row">
-            <div className="col-sm-12">
-              <div className="card">
-                <div className="card-body">
-                  { step === 0 && 
-                    <SelectTrc 
-                      state={this.state} 
-                      nextStep={(number) => {
-                        this.changeStep(number)
-                      }} 
-                      nextState={(params) => {
-                        this.changeState(params)
-                      }}
-                      isLoggedInFn={this.isLoggedIn}
-                    /> 
-                  }
-                  { step === 1 && 
-                    <InputInfo 
-                      state={this.state} 
-                      nextStep={(number) => {
-                        this.changeStep(number)
-                      }} 
-                      nextState={(params) => {
-                        this.changeState(params)
-                      }}
-                    /> 
-                  }
-                  { step === 2 &&
-                    <SubmitInfo
-                        state={this.state}
-                        nextStep={(number) => {
-                            this.changeStep(number)
-                        }}
-                        nextState={(params) => {
-                            this.changeState(params)
-                        }}
-                    />
-                  }
-                    { step === 3 &&
-                    <ResultInfo
-                        state={this.state}
-                         nextStep={(number) => {
-                             this.changeStep(number)
-                         }}
-                         nextState={(params) => {
-                             this.changeState(params)
-                         }}
-                    />
-                    }
-                </div>
+      <div className="steps mb-4 py-2">
+        {
+          info.map((item, index) => {
+            let stepclass = ''
+            if(index < step){ stepclass = 'is-success' }
+            if(index == step){ stepclass = 'is-process' }
+            if(index > step){ stepclass = 'is-wait' }
+            return <div className={`${stepclass} steps-item`} key={index}>{index + 1}. {tu(item)}</div>
+          })
+        }
+      </div>
+          {
+              loading ? <div className="card">
+                  <TronLoader>
+                      {tu("loading_token")}
+                  </TronLoader>
+              </div> : <div className="row">
+                  <div className="col-sm-12">
+                      <div className="card">
+                          <div className="card-body">
+                              { step === 0 &&
+                              <SelectTrc
+                                  state={this.state}
+                                  nextStep={(number) => {
+                                      this.changeStep(number)
+                                  }}
+                                  nextState={(params) => {
+                                      this.changeState(params)
+                                  }}
+                                  isLoggedInFn={this.isLoggedIn}
+                              />
+                              }
+                              { step === 1 &&
+                              <InputInfo
+                                  state={this.state}
+                                  nextStep={(number) => {
+                                      this.changeStep(number)
+                                  }}
+                                  nextState={(params) => {
+                                      this.changeState(params)
+                                  }}
+                              />
+                              }
+                              { step === 2 &&
+                              <SubmitInfo
+                                  state={this.state}
+                                  nextStep={(number) => {
+                                      this.changeStep(number)
+                                  }}
+                                  nextState={(params) => {
+                                      this.changeState(params)
+                                  }}
+                              />
+                              }
+                              { step === 3 &&
+                              <ResultInfo
+                                  state={this.state}
+                                  nextStep={(number) => {
+                                      this.changeStep(number)
+                                  }}
+                                  nextState={(params) => {
+                                      this.changeState(params)
+                                  }}
+                              />
+                              }
+                          </div>
+                      </div>
+                  </div>
               </div>
-            </div>
-          </div>
+          }
+
           {modal}
           <NavigationPrompt when={leave_lock && step < 3}>
             {({ onConfirm, onCancel }) => (
