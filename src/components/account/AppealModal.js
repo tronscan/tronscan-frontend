@@ -3,6 +3,7 @@ import {tu, t} from "../../utils/i18n";
 import { Modal, Form, Checkbox, Input } from 'antd';
 import xhr from "axios/index";
 import {injectIntl} from "react-intl";
+import {API_URL} from "../../constants";
 const { TextArea } = Input;
 
 class ChangeNameModal extends Component {
@@ -33,7 +34,8 @@ class ChangeNameModal extends Component {
     const { appealInfo, account: {address,tronWeb} } = this.props
     let content = {
       issuer_addr: address,
-      content: contenttext
+      content: contenttext,
+      timestamp: new Date().getTime()
     }
     const content_str = JSON.stringify(content)
     let hash = tronWeb.toHex(content_str);
@@ -43,12 +45,12 @@ class ChangeNameModal extends Component {
     console.log(hash);
     console.log(sig);
 
-    const { data } = await xhr.post(`http://172.16.22.245:10086/trc_appeals/${appealInfo.id}/update`, {
+    const { data } = await xhr.post(`${API_URL}/trc_appeals/${appealInfo.id}/update`, {
       content: content_str,
       sig
     })
     
-    if(data.retCode == 1){
+    if(data.retCode == 0){
       this.handleCancel()
 
     }

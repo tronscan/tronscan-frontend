@@ -1602,7 +1602,7 @@ export default class Account extends Component {
           </div>
           <IssuedToken issuedAsset={issuedAsset}/>
           {
-            issuedAsset &&
+            false &&
             <div className="row mt-3">
               <div className="col-md-12">
                 <div className="card">

@@ -3,7 +3,6 @@ import React from "react";
 import {Modal, ModalBody, ModalHeader} from "reactstrap";
 import {tu, t,option_t} from "../../utils/i18n";
 import {Client} from "../../services/api";
-import {ONE_TRX} from "../../constants";
 import {reloadWallet} from "../../actions/wallet";
 import {NumberField} from "../common/Fields";
 import _ from "lodash";
@@ -12,6 +11,7 @@ import {TokenLink, TokenTRC20Link} from "../common/Links";
 import AppealModal from './AppealModal'
 import xhr from "axios/index";
 import {FormattedDate, FormattedNumber, FormattedRelative, FormattedTime, injectIntl} from "react-intl";
+import {API_URL} from "../../constants";
 
 const blackMap = [
   '有盗用其他已上线币种名称的嫌疑',
@@ -57,7 +57,7 @@ class IssuedToken extends React.PureComponent{
     }
 
     async getAppealRecent(address){
-      const {data: {data, retCode}} = await xhr.get('http://172.16.22.245:10086/trc_appeals/recent?address='+ address)
+      const {data: {data, retCode}} = await xhr.get(API_URL+'/trc_appeals/recent?address='+ address)
       if(retCode == 0){
         let appealInfo = {errorInfo: [], ...data.appeal}
         if(data.appeal){
@@ -81,16 +81,13 @@ class IssuedToken extends React.PureComponent{
         const data = await this.getAppealRecent(element.contract_address)
         arr.push(data)
       }
-     
-      console.log(arr)
       this.setState({appealInfo20: arr})
     }
 
     // get 20eoken
     async get20token() {
       const { address } = this.props.account
-      const {data: {data, retCode}} = await xhr.get('http://172.16.22.245:10086/trc20tokens?issuer_addr='+ address)
-      console.log(data, retCode);
+      const {data: {data, retCode}} = await xhr.get(API_URL+'/trc20tokens?issuer_addr='+ address)
       if(retCode == 0){
         this.setState({token20List: data.tokens})
         this.getAppealRecent20(data.tokens)
@@ -119,7 +116,7 @@ class IssuedToken extends React.PureComponent{
       const {appealInfo, token20List, appealInfo20} = this.state
       const { account } = this.props
 
-      const status10 = issuedAsset && {
+      let status10 = issuedAsset && {
         isPassed: (issuedAsset.canShow == 0 || issuedAsset.canShow == 1 || issuedAsset.canShow == 2),
         isFailed: issuedAsset.canShow == 3,
         isAppealing: appealInfo && appealInfo.status == 2
@@ -151,22 +148,22 @@ class IssuedToken extends React.PureComponent{
                 </div>
                 <div className="tf-card__header-item">
                   <div className="tf-card__header-title">{tu('day_add_holder')}</div>
-                  <div className="tf-card__header-text">100000</div>
+                  <div className="tf-card__header-text">-</div>
                   <div className="dor-img"><img src={require("../../images/issuedasset/2.png")} alt=""/></div>
                 </div>
                 <div className="tf-card__header-item">
                   <div className="tf-card__header-title">{tu('day_transiction')}</div>
-                  <div className="tf-card__header-text">100000</div>
+                  <div className="tf-card__header-text">-</div>
                   <div className="dor-img"><img src={require("../../images/issuedasset/3.png")} alt=""/></div>
                 </div>
                 <div className="tf-card__header-item">
                   <div className="tf-card__header-title">{tu('last_price')}</div>
-                  <div className="tf-card__header-text">100000</div>
+                  <div className="tf-card__header-text">-</div>
                   <div className="dor-img"><img src={require("../../images/issuedasset/4.png")} alt=""/></div>
                 </div>
                 <div className="tf-card__header-item">
                   <div className="tf-card__header-title">{tu('total_value')}</div>
-                  <div className="tf-card__header-text">100000</div>
+                  <div className="tf-card__header-text">-</div>
                   <div className="dor-img"><img src={require("../../images/issuedasset/5.png")} alt=""/></div>
                 </div>
               </div>
@@ -204,9 +201,7 @@ class IssuedToken extends React.PureComponent{
                     <td></td>
                     <td className="text-light">{tu('pass_time')}:2019-03-04 20:00:00</td>
                     <td></td>
-                    <td><TokenLink 
-                    name={tu('check_token_detail')} 
-                    id={issuedAsset && issuedAsset.id}/></td>
+                    <td><a >{tu('check_market_detail')}</a></td>
                   </tr>
                   <tr className="line-3">
                     <td></td>
@@ -215,9 +210,7 @@ class IssuedToken extends React.PureComponent{
                     <td></td>
                     <td className="text-light">{tu('pass_time')}:2019-03-04 20:00:00</td>
                     <td></td>
-                    <td><TokenLink 
-                    name={tu('check_token_detail')} 
-                    id={issuedAsset && issuedAsset.id}/></td>
+                    <td><a >{tu('check_abcc_detail')}</a></td>
                   </tr>
                   <tr className="line-4">
                     <td><div className="tip">3</div></td>
@@ -226,19 +219,26 @@ class IssuedToken extends React.PureComponent{
                     <td></td>
                     <td></td>
                     <td></td>
-                    <td></td>
+                    <td><a >{tu('check_cmc_detail')}</a></td>
                   </tr>
                 </tbody>
               </table>
             </div>}
 
-            {token20List.length && 
+            {Boolean(token20List.length) && 
               token20List.map((token20Item, index) => {
-                const status20 = {
-                  isPassed: token20Item.status == 0 || token20Item.status == 1 || token20Item.status == 2,
+                
+                let status20 = {
+                  isPassed:  token20Item.status == 0 || token20Item.status == 1 || token20Item.status == 2,
                   isFailed: token20Item.status == 3,
-                  isAppealing: appealInfo20[index] && (appealInfo20[index].status == 2)
+                  isAppealing: false
                 }
+                const appealItem = appealInfo20[index]
+                if(appealItem){
+                  status20.isFailed = token20Item.status == 3 && appealItem.status == 0
+                  status20.isAppealing = appealItem.status == 2
+                }
+                
                 return <div className="tf-card mt-3 token20" key={token20Item.contract_address}>
                   <div className="d-flex justify-content-between pl-3">
                     <h3 className="m-0 ">
