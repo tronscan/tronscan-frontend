@@ -1841,4 +1841,33 @@ export const messages = {
     "login_privatekey_warn_safe":"安全登录",
 
 
+
+
+    "updata_token_info": "更新token信息",
+    "input_transcan": "录入tronscan",
+    "pass_time": "通过时间",
+    "black_time": "拉黑时间",
+    "appeal_time": "申诉时间",
+    "check_token_detail": "查看token详情",
+    "check_market_detail": "查看market详情",
+    "check_abcc_detail": "查看abcc详情",
+    "check_cmc_detail": "查看cmc详情",
+    "type_black": "已拉黑",
+    "type_pass": "已通过",
+    "type_appeal": "申述处理中",
+    "Appeal": "申诉",
+    "input_market": "录入trx.market交易所(只需再填写10项信息)",
+    "input_abcc": "录入abcc交易所(只需再填写12项信息)",
+    "input_cmc": "上CMC(只需再填写10项信息)",
+    "holder_amount": "持有者数量",
+    "day_add_holder": "日新增持有者",
+    "day_transiction": "日交易量(手)",
+    "total_value": "总市值",
+    "black_reason": "拉黑原因",
+    "appeal_reason": "申诉理由",
+    "handle_time": "平均处理时间:48h",
+    "i_know_black": "我已对拉黑的情况做了处理，申请恢复",
+    "appeal_format": "申诉理由必须填写",
+    "passed": "已通过",
+
 };

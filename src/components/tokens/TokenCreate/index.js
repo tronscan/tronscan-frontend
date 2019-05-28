@@ -37,8 +37,9 @@ export class TokenCreate extends Component {
 
   constructor(props) {
     super(props);
-     this.state = {
-      step:0,
+
+    this.state = {
+      step: 0,
       type: 'trc20',
       modal: null,
       isUpdate:false,
@@ -410,6 +411,7 @@ export class TokenCreate extends Component {
         let token = result.data.trc20_tokens[0];
         console.log('token20',token);
         this.setState({
+            loading: false,
             step: 1,
             type: 'trc20',
             isUpdate:true,
