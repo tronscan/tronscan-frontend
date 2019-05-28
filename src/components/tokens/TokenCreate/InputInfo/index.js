@@ -46,7 +46,6 @@ export class TokenCreate extends Component {
       <main className="">
         <Form
           className="ant-advanced-search-form"
-          onSubmit={this.submit}
         >
           {/* base info */}
           <BaseInfo form={form} intl={intl} state={this.state}/>
@@ -61,8 +60,8 @@ export class TokenCreate extends Component {
           <SocialInfo form={form} intl={intl} state={this.state}/>
           
           <div className="text-right px-2">
-            <button className="btn btn-default btn-lg" onClick={() => nextStep(0)}>{tu('prev_step')}</button>
-            <button className="ml-4 btn btn-danger btn-lg" htmltype="submit">{tu('next')}</button>
+            <a className="btn btn-default btn-lg" onClick={() => nextStep(0)}>{tu('prev_step')}</a>
+            <button className="ml-4 btn btn-danger btn-lg" onClick={this.submit}>{tu('next')}</button>
           </div>
           
         </Form>
