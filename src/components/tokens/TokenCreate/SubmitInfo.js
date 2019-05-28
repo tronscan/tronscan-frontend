@@ -88,8 +88,8 @@ const { TextArea } = Input;
             'endTime': participation_end_date.toDate(),
             'freeBandwidth': 0,
             'freeBandwidthLimit': 0,
-            'frozenAmount': frozenSupplyAmount + 1,
-            'frozenDuration': freeze_date + 1 ,
+            'frozenAmount': frozenSupplyAmount,
+            'frozenDuration': freeze_date,
             //'frozenAmount': '',
             //'frozenDuration': '',
             'frozenSupply': filter(frozenSupply, fs => fs.amount > 0),
@@ -220,30 +220,61 @@ const { TextArea } = Input;
                     }
 
                     if(this.props.walletType.type === "ACCOUNT_TRONLINK"){
-                        const unSignTransaction = await tronWeb.transactionBuilder.createToken({
-                            name: this.tokenState('name'),
-                            abbreviation: this.tokenState('abbreviation'),
-                            description: this.tokenState('description'),
-                            url: this.tokenState('url'),
-                            totalSupply: this.tokenState('totalSupply'),
-                            tokenRatio: this.tokenState('tokenRatio'),
-                            trxRatio: this.tokenState('trxRatio'),
-                            saleStart: this.tokenState('saleStart'),
-                            saleEnd: this.tokenState('saleEnd'),
-                            freeBandwidth: 1,
-                            freeBandwidthLimit: 1,
-                            frozenAmount: this.tokenState('frozenAmount'),
-                            frozenDuration: this.tokenState('frozenDuration'),
-                            precision:  this.tokenState('precision'),
-                        }, tronWeb.defaultAddress.hex).catch(function (e) {
-                            errorInfo = e.indexOf(':')?e.split(':')[1]:e
-                        })
-                        if (!unSignTransaction) {
-                            res = false;
-                        } else {
-                            const {result} = await transactionResultManager(unSignTransaction, tronWeb);
-                            res = result;
+                       let unSignTransaction = '';
+                        if(this.state.isUpdate){
+                            let data  = {
+                                "address":this.tokenState('address'),
+                                "issuer_addr": 'TA561MxvhxM4f81mU7bx9oipGP5zowTbhL',
+                                "logo_url":this.tokenState('logoUrl'),
+                                "website": this.tokenState('url'),
+                                "email":this.tokenState('email'),
+                                "white_paper":this.tokenState('whitePaper'),
+                                "social_media":this.tokenState('socialList'),
+                                "github":this.tokenState('github_url'),
+                                "issue_time":this.tokenState('issueTime'),
+                                "timestamp":this.tokenState('issueTime'),
+                            }
+                            let hash = tronWeb.toHex(JSON.stringify(data), false);
+                            let sig = await tronWeb.trx.sign(hash);
+                             unSignTransaction = await Client.updateToken10({
+                                "content":JSON.stringify(data),
+                                "sig": sig
+                            })
+
+                            if (unSignTransaction.retCode === "0") {
+                                res = true;
+
+                            } else {
+                                res = false;
+                                errorInfo = unSignTransaction.retMsg
+                            }
+                        }else{
+                             unSignTransaction = await tronWeb.transactionBuilder.createToken({
+                                name: this.tokenState('name'),
+                                abbreviation: this.tokenState('abbreviation'),
+                                description: this.tokenState('description'),
+                                url: this.tokenState('url'),
+                                totalSupply: this.tokenState('totalSupply'),
+                                tokenRatio: this.tokenState('tokenRatio'),
+                                trxRatio: this.tokenState('trxRatio'),
+                                saleStart: this.tokenState('saleStart'),
+                                saleEnd: this.tokenState('saleEnd'),
+                                freeBandwidth: 1,
+                                freeBandwidthLimit: 1,
+                                frozenAmount: this.tokenState('frozenAmount'),
+                                frozenDuration: this.tokenState('frozenDuration'),
+                                precision:  this.tokenState('precision'),
+                            }, tronWeb.defaultAddress.hex).catch(function (e) {
+                                errorInfo = e.indexOf(':')?e.split(':')[1]:e
+                            })
+                            if (!unSignTransaction) {
+                                res = false;
+                            } else {
+                                const {result} = await transactionResultManager(unSignTransaction, tronWeb);
+                                res = result;
+                            }
                         }
+
                     }
 
                 }else {
@@ -264,6 +295,8 @@ const { TextArea } = Input;
                     res = createInfo.success;
                     errorInfo = createInfo.message.indexOf(':')?createInfo.message.split(':')[1]:createInfo.message;
                 }
+
+
                 this.setState({
                     res,
                     errorInfo
@@ -552,12 +585,12 @@ const { TextArea } = Input;
                                     return <Col  span={24} md={12} key={index}>
                                         <div className="d-flex justify-content-between mb-2 pr-4">
                                             <div className="d-flex align-items-center">
-                                                <i className={`${item.name}-active`}></i>
-                                                <span className="text-capitalize ml-2">{item.name}</span>
+                                                <i className={`${item.method}-active`}></i>
+                                                <span className="text-capitalize ml-2">{item.method}</span>
                                             </div>
                                         </div>
                                         {
-                                            item.links.map( (link, link_index) => {
+                                            item.link.map( (link, link_index) => {
                                                 return <div className="d-flex align-items-center mb-4" key={link_index}>
                                                     {/*<Input value={link} onChange={(e) => this.setLinks(index, link_index, e)}/>*/}
                                                     <p className="border-dashed" style={{width:'100%'}}>

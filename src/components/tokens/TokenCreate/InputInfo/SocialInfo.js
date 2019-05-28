@@ -143,13 +143,13 @@ export class SocialInfo extends Component {
                   return <Col  span={24} md={11} key={index}>
                   <div className="d-flex justify-content-between mb-2 pr-4">
                     <div className="d-flex align-items-center">
-                      <i className={`${item.name}-active`}></i>
-                      <span className="text-capitalize ml-2">{item.name}</span>
+                      <i className={`${item.method}-active`}></i>
+                      <span className="text-capitalize ml-2">{item.method}</span>
                     </div>
                     <a href="javascript:;" className="text-lighter" onClick={() => this.addSocalItem(index)}>{tu('so_add')} +</a>
                   </div>
                   {
-                    item.links.map( (link, link_index) => {
+                    item.link.map( (link, link_index) => {
                       return <div className="d-flex align-items-center mb-4" key={link_index}>
                         <Input value={link} onChange={(e) => this.setLinks(index, link_index, e)}/>
                         {link_index> 0? 

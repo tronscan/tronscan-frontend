@@ -68,17 +68,17 @@ export class TokenCreate extends Component {
         freeze_date: '',
       },
       iconList: [
-        {name: 'twitter', active: true, links: ['']},
-        {name: 'Facebook', active: true, links: ['']},
-        {name: 'telegram', active: true, links: ['']},
-        {name: 'weibo', active: true, links: ['']},
-        {name: 'reddit', active: false, links: []},
-        {name: 'Medium', active: false, links: []},
-        {name: 'steemit', active: false, links: []},
-        {name: 'Instagram', active: false, links: []},
-        {name: 'weixin', active: false, links: []},
-        {name: 'Group', active: false, links: []},
-        {name: 'discord', active: false, links: []}
+        {method: 'Twitter', active: true, link: ['']},
+        {method: 'Facebook', active: true, link: ['']},
+        {method: 'Telegram', active: true, link: ['']},
+        {method: 'Weibo', active: true, link: ['']},
+        {method: 'Reddit', active: false, link: []},
+        {method: 'Medium', active: false, link: []},
+        {method: 'Steemit', active: false, link: []},
+        {method: 'Instagram', active: false, link: []},
+        {method: 'Wechat', active: false, link: []},
+        {method: 'Group', active: false, link: []},
+        {method: 'Discord', active: false, link: []}
       ],
       res:'',
       errorInfo:'',
@@ -398,7 +398,7 @@ export class TokenCreate extends Component {
 
           },
           iconList: [
-              {name: 'twitter', active: true, links: ['https://twitter.com/111','https://twitter.com/222']},
+              {method: 'twitter', active: true, link: ['https://twitter.com/111','https://twitter.com/222']},
           ],
 
       });
@@ -653,7 +653,7 @@ contract TRONAce is SafeMath,Ownable{
                 white_paper: 'https://666.pdf',
             },
             iconList: [
-                {name: 'twitter', active: true, links: ['https://twitter.com/111','https://twitter.com/222']},
+                {method: 'twitter', active: true, link: ['https://twitter.com/111','https://twitter.com/222']},
             ],
 
         });

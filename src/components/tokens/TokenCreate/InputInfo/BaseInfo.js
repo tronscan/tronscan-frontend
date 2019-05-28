@@ -19,10 +19,10 @@ export class BaseInfo extends Component {
 
   handleLogoChange = (value) => {
     let autoCompleteResult;
-    if (!value || /\.jpg|\.png|\.PNG|\.JPG$/.test(value)) {
+    if (!value || /\.jpg|\.png|\.PNG|\.JPG|\.jpeg$/.test(value)) {
       autoCompleteResult = [];
     }else {
-      autoCompleteResult = ['.jpg', '.png','.PNG','.JPG'].map(domain => `${value}${domain}`);
+      autoCompleteResult = ['.jpg', '.png','.PNG','.JPG','.jpeg'].map(domain => `${value}${domain}`);
     }
     this.setState({ autoCompleteResult });
   }
@@ -97,7 +97,7 @@ export class BaseInfo extends Component {
           <Form.Item label={tu('token_logo')}>
             {getFieldDecorator('logo_url', {
               rules: [{ required: isTrc20, message: tu('logo_v_required'), whitespace: true},
-                      {pattern: /\.jpg|\.png|\.PNG|\.JPG$/, message: tu('logo_v_format')}],
+                      {pattern: /\.jpg|\.png|\.PNG|\.JPG|\.jpeg$/, message: tu('logo_v_format')}],
             })(
               <AutoComplete
                 dataSource={logoOptions}

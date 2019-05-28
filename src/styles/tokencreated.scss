@@ -37,17 +37,17 @@
     }
   }
 
-  @each $name in weibo,
-  weixin,
-  discord,
+  @each $name in Weibo,
+  Wechat,
+  Discord,
   Facebook,
   Group,
-  steemit,
+  Steemit,
   Instagram,
   Medium,
-  reddit,
-  telegram,
-  twitter,
+  Reddit,
+  Telegram,
+  Twitter,
   delete {
     .#{$name} {
       width: 20px;
