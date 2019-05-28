@@ -97,12 +97,11 @@ export class TokenCreate extends Component {
   };
 
   render() {
-    let {type, step} = this.props.state
+    let {type} = this.props.state
     const { locale } = this.props.intl
     const url = locale == 'zh'?
     'https://support.tronscan.org/hc/zh-cn/articles/360027103591-%E4%BB%80%E4%B9%88%E6%98%AFTRC10%E5%92%8CTRC20%E9%80%9A%E8%AF%81':
     'https://support.tronscan.org/hc/en-us/articles/360027103751-What-s-the-differences-between-TRC10-and-TRC20-Tokens-';
-    console.log(step)
     return (
         <main className="text-center">
           {this.state.modal}
