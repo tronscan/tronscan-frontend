@@ -36,7 +36,7 @@ class IssuedToken extends React.PureComponent{
             appealInfo: {},
             appealInfo10: {},
             appealInfo20: [],
-            token20List: [],
+            token20List: []
         };
     }
     async showModal(type, index){
@@ -94,12 +94,23 @@ class IssuedToken extends React.PureComponent{
       }
     }
 
+    updateData(){
+      console.log(this.props);
+      const {loadAccount, issuedAsset} = this.props
+      if(issuedAsset){
+        loadAccount()
+      }else{
+        this.get20token()
+      }
+    }
+
     componentDidUpdate(prevProps) {
       const {issuedAsset, account} = this.props
-      if(issuedAsset && !prevProps.issuedAsset){
+      if(issuedAsset && (issuedAsset != prevProps.issuedAsset)){
+        console.log('issuedAsset is start');
         this.getAppealRecent10(issuedAsset.ownerAddress)
       }
-      if(account && !prevProps.account){
+      if(account != prevProps.account){
         this.get20token()
       }
     }
@@ -119,7 +130,7 @@ class IssuedToken extends React.PureComponent{
       let status10 = issuedAsset && {
         isPassed: (issuedAsset.canShow == 0 || issuedAsset.canShow == 1 || issuedAsset.canShow == 2),
         isFailed: issuedAsset.canShow == 3,
-        isAppealing: appealInfo && appealInfo.status == 2
+        isAppealing: appealInfo && appealInfo.status == 2,
       }
 
         return (
@@ -130,7 +141,7 @@ class IssuedToken extends React.PureComponent{
                   <TokenLink id={issuedAsset.id} name={issuedAsset.name} address={issuedAsset.ownerAddress} namePlus={issuedAsset.name + ' (' + issuedAsset.abbr + ')'}/>
                   <span style={{color:"#999"}}>[{issuedAsset.id}]</span>
                </h2>
-                <a href={"#//tokens/update/"+ issuedAsset.id}>
+                <a href={"#/tokens/update/"+ issuedAsset.id}>
                 <button type="button" className="btn btn-outline-danger">{tu('updata_token_info')}</button>
                 </a>
                 </div>
@@ -238,6 +249,7 @@ class IssuedToken extends React.PureComponent{
                   status20.isFailed = token20Item.status == 3 && appealItem.status == 0
                   status20.isAppealing = appealItem.status == 2
                 }
+              
                 
                 return <div className="tf-card mt-3 token20" key={token20Item.contract_address}>
                   <div className="d-flex justify-content-between pl-3">
@@ -302,7 +314,10 @@ class IssuedToken extends React.PureComponent{
                           {status20.isPassed && tu('pass_time') }
                           {status20.isFailed && tu('black_time') }
                           {status20.isAppealing && tu('appeal_time') }
-                          :2019-03-04 20:00:00
+                          : 
+                          <FormattedDate value={token20Item.update_time} className="ml-1"/>
+                          {' '}
+                          <FormattedTime value={token20Item.update_time}  hour='numeric' minute="numeric" second='numeric' hour12={false}/>
                         </td>
                         <td>
                           { status20.isFailed && <Tag color="#4a90e2" onClick={() => this.showModal('trx20', index)}>{tu('Appeal')}</Tag> }
@@ -343,7 +358,13 @@ class IssuedToken extends React.PureComponent{
                 </div>
               })
             }
-            <AppealModal hiddenModal={() => this.hiddenModal()} modalStatus={this.state.modalStatus} appealInfo={appealInfo} account={account}/>
+            <AppealModal 
+              hiddenModal={() => this.hiddenModal()} 
+              modalStatus={this.state.modalStatus} 
+              appealInfo={appealInfo} 
+              account={account} 
+              toAppealing={() => this.updateData()}
+            />
           </div>
         )
     }
