@@ -2,7 +2,7 @@
   "10.svg": "7b00f7c4e78ed9cfc676c64c040965e8.svg",
   "20.svg": "8b13bad9e9381c9866a96fc4ef728bbf.svg",
   "About.js": "static/js/About.b507c997.chunk.js",
-  "Account.js": "static/js/Account.807af46b.chunk.js",
+  "Account.js": "static/js/Account.02b3cc39.chunk.js",
   "Accounts.js": "static/js/Accounts.5491b59f.chunk.js",
   "AddSignatureModal.js": "static/js/AddSignatureModal.35313bc8.chunk.js",
   "CopyrightAsync.js": "static/js/CopyrightAsync.41b3ed1e.chunk.js",
@@ -27,7 +27,7 @@
   "TokenDetail.js": "static/js/TokenDetail.718532c1.chunk.js",
   "TokenList.js": "static/js/TokenList.1c8bf931.chunk.js",
   "TokenOverview.js": "static/js/TokenOverview.245c1c3a.chunk.js",
-  "TokensCreate.js": "static/js/TokensCreate.e50f4338.chunk.js",
+  "TokensCreate.js": "static/js/TokensCreate.4e146896.chunk.js",
   "TransactionViewer.js": "static/js/TransactionViewer.082eb9b6.chunk.js",
   "TronConvertTool.js": "static/js/TronConvertTool.e1f03985.chunk.js",
   "VerifyContractCode.js": "static/js/VerifyContractCode.e9cec7f2.chunk.js",
@@ -36,9 +36,9 @@
   "WalletWizard.js": "static/js/WalletWizard.4a1cedb9.chunk.js",
   "bootstrap.css": "d59729439a203fc474f5677b8d18d8bb.css",
   "info.svg": "ce0369650e23ec7e420a8af6750d8a87.svg",
-  "languages.js": "static/js/languages.e112ae0a.chunk.js",
+  "languages.js": "static/js/languages.041fc08c.chunk.js",
   "main.css": "static/css/main.3969c3f1.css",
-  "main.js": "static/js/main.79987c0b.js",
+  "main.js": "static/js/main.3fe203fe.js",
   "static/media/24-Hour-Trading-Volume.png": "static/media/24-Hour-Trading-Volume.b6ff215b.png",
   "static/media/Average-Price.png": "static/media/Average-Price.fca4d71b.png",
   "static/media/Block-Producer-Chart.png": "static/media/Block-Producer-Chart.3369eae3.png",
@@ -84,5 +84,5 @@
   "static/media/tron-logo.jpg": "static/media/tron-logo.f142f640.jpg",
   "static/media/tronscan_wechat.png": "static/media/tronscan_wechat.1e828828.png",
   "static/media/wallet-preview.png": "static/media/wallet-preview.d53c0b10.png",
-  "vendors.js": "static/js/vendors.47a9bae1.js"
+  "vendors.js": "static/js/vendors.cbae0c27.js"
 }

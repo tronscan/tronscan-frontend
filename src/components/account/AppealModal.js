@@ -31,7 +31,7 @@ class ChangeNameModal extends Component {
   };
 
   async submitAppeal(contenttext){
-    const { appealInfo, account: {address,tronWeb} } = this.props
+    const { appealInfo,toAppealing, account: {address,tronWeb} } = this.props
     let content = {
       issuer_addr: address,
       content: contenttext,
@@ -41,10 +41,6 @@ class ChangeNameModal extends Component {
     let hash = tronWeb.toHex(content_str);
     let sig =  await tronWeb.trx.sign(hash)
 
-    console.log(content_str);
-    console.log(hash);
-    console.log(sig);
-
     const { data } = await xhr.post(`http://52.15.68.74:10086/trc_appeals/${appealInfo.id}/update`, {
       content: content_str,
       sig
@@ -52,9 +48,8 @@ class ChangeNameModal extends Component {
     
     if(data.retCode == 0){
       this.handleCancel()
-
+        toAppealing()
     }
-    console.log(data);
   }
   componentDidUpdate(prevProps) {
     const {getFieldsValue} = this.props.form;

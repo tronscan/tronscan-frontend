@@ -29,15 +29,15 @@ export function ContractInfo({form, intl, state}) {
             )}
             </Form.Item>
           </Col>
-          <Col  span={24}>
-            <Form.Item label={tu('contract_code')}>
-            {getFieldDecorator('contract_code', {
-              rules: [{ required: isTrc20, message: tu('contract_address_required'), whitespace: true}],
-            })(
-              <TextArea rows={6}  placeholder={intl.formatMessage({id: 'contract_code_placeholder'})} />
-            )}
-            </Form.Item>
-          </Col>
+          {/*<Col  span={24}>*/}
+            {/*<Form.Item label={tu('contract_code')}>*/}
+            {/*{getFieldDecorator('contract_code', {*/}
+              {/*rules: [{ required: isTrc20, message: tu('contract_address_required'), whitespace: true}],*/}
+            {/*})(*/}
+              {/*<TextArea rows={6}  placeholder={intl.formatMessage({id: 'contract_code_placeholder'})} />*/}
+            {/*)}*/}
+            {/*</Form.Item>*/}
+          {/*</Col>*/}
 
         </Row>
       </div>

@@ -1747,6 +1747,7 @@ export const messages = {
   "description_v_required":"通证简介必须填写",
   "description_v_length":"通证简介最大500个字符",
   "supply_v_required":"发行总量必须填写",
+  "decimals_v_required":"通证精度必须填写",
   "logo_v_required":"Logo必须填写",
   "logo_v_format":"logo格式不符合要求",
   "contract_info":"合约信息",

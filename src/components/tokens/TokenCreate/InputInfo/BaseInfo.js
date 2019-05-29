@@ -88,7 +88,7 @@ export class BaseInfo extends Component {
         <Col  span={24} md={11}>
           <Form.Item label={tu('TRC20_decimals')}>
             {getFieldDecorator('precision',{
-              rules: [{ required: true, message: ''}],
+              rules: [{ required: true, message: tu('decimals_v_required')}],
             })(
               <InputNumber min={0} max={ isTrc20? precision_20: 6} className="w-100" disabled={isUpdate}/>
             )}
