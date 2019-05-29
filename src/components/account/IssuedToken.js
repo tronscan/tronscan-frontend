@@ -124,13 +124,22 @@ class IssuedToken extends React.PureComponent{
 
     render() {
       const issuedAsset = this.props.issuedAsset
-      const {appealInfo, token20List, appealInfo20} = this.state
+      const {appealInfo,appealInfo10, token20List, appealInfo20} = this.state
       const { account } = this.props
 
-      let status10 = issuedAsset && {
-        isPassed: (issuedAsset.canShow == 0 || issuedAsset.canShow == 1 || issuedAsset.canShow == 2),
-        isFailed: issuedAsset.canShow == 3,
-        isAppealing: appealInfo && appealInfo.status == 2,
+      let status10;
+      let token10Time;
+      if(issuedAsset){
+        status10 = {
+          isPassed: (issuedAsset.canShow == 0 || issuedAsset.canShow == 1 || issuedAsset.canShow == 2),
+          isFailed: issuedAsset.canShow == 3,
+          isAppealing: appealInfo && appealInfo.status == 2,
+        }
+        token10Time = issuedAsset.dateCreated
+
+        if(appealInfo10){
+          token10Time = appealInfo10.update_time
+        }
       }
 
         return (
@@ -196,7 +205,9 @@ class IssuedToken extends React.PureComponent{
                       {status10.isPassed && tu('pass_time') }
                       {status10.isFailed && tu('black_time') }
                       {status10.isAppealing && tu('appeal_time') }
-                      :2019-03-04 20:00:00
+                      :<FormattedDate value={token10Time} className="ml-1"/>
+                      {' '}
+                      <FormattedTime value={token10Time}  hour='numeric' minute="numeric" second='numeric' hour12={false}/>
                     </td>
                     <td>
                       { status10.isFailed && <Tag color="#4a90e2" onClick={() => this.showModal('trx10')}>{tu('Appeal')}</Tag> }
@@ -205,7 +216,8 @@ class IssuedToken extends React.PureComponent{
                     name={tu('check_token_detail')} 
                     id={issuedAsset && issuedAsset.id}/></td>
                   </tr>
-                  <tr className="line-2">
+                  
+                 {/* <tr className="line-2">
                     <td><div className="tip">2</div></td>
                     <td><Tag color="blue">{tu('application_entry')}</Tag></td>
                     <td>{tu('input_market')}</td>
@@ -231,7 +243,7 @@ class IssuedToken extends React.PureComponent{
                     <td></td>
                     <td></td>
                     <td><a >{tu('check_cmc_detail')}</a></td>
-                  </tr>
+                  </tr> */}
                 </tbody>
               </table>
             </div>}
@@ -326,6 +338,7 @@ class IssuedToken extends React.PureComponent{
                           <TokenTRC20Link name={tu('check_token_detail')} address={token20Item.contract_address}/>
                         </td>
                       </tr>
+                      {/**
                       <tr className="line-2">
                         <td><div className="tip">2</div></td>
                         <td><Tag color="blue">{tu('application_entry')}</Tag></td>
@@ -352,7 +365,7 @@ class IssuedToken extends React.PureComponent{
                         <td></td>
                         <td></td>
                         <td><a >{tu('check_cmc_detail')}</a></td>
-                      </tr>
+                      </tr> */}
                     </tbody>
                   </table>
                 </div>

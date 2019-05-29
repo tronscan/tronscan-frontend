@@ -43,7 +43,7 @@ export class TokenCreate extends Component {
       type: 'trc20',
       modal: null,
       isUpdate:false,
-      leave_lock: true,
+      leave_lock: false,
       paramData: {
         token_name: '',
         token_abbr: '',
@@ -363,7 +363,9 @@ export class TokenCreate extends Component {
       this.setState({ loading: true, isUpdate:true });
       let result = await xhr.get(API_URL+"/api/token?id=" + id + "&showAll=1");
       let token = result.data.data[0];
-      console.log('token10',token);
+      Object.keys(token).map(key => {
+        if(token[key] == 'no_message') token[key] = ''
+      })
       if(!token){
           this.setState({loading: false,token: null});
           this.props.history.push('/tokens/list')
