@@ -21,14 +21,14 @@ export class SocialInfo extends Component {
       iconList[index].active = true
     }else{
       iconList[index].active = false
-      iconList[index].links = ['']
+      iconList[index].link = ['']
     }
     this.setState({ iconList: iconList })
   }
   addSocalItem = (index) => {
-    let {iconList, social_current} = this.state
+    let {iconList, social_current} = this.state;
     this.checkAmount().then(() => {
-      iconList[index].links.push('')
+      iconList[index].link.push('')
       this.setState({ iconList: iconList, social_current:  ++social_current })
     })
    
@@ -36,7 +36,7 @@ export class SocialInfo extends Component {
 
   subSocalItem = (index, link_index) => {
     let {iconList, social_current} = this.state
-    iconList[index].links.splice(link_index, 1)
+    iconList[index].link.splice(link_index, 1)
     this.setState({ iconList: iconList, social_current:  --social_current})
   }
 
@@ -67,14 +67,14 @@ export class SocialInfo extends Component {
     e.preventDefault();
     let {iconList} = this.state
 
-    iconList[index].links.splice(link_index, 1, e.target.value)
+    iconList[index].link.splice(link_index, 1, e.target.value)
     this.setState({ iconList: iconList })
   }
 
   render() {
     const { getFieldDecorator } = this.props.form
     const { intl } = this.props
-    const {isTrc20, iconList, } =  this.props.state
+    const {isTrc20, iconList, isUpdate } =  this.props.state
     const {modal} = this.state
 
     return (
@@ -92,7 +92,7 @@ export class SocialInfo extends Component {
                 )}
               </Form.Item>
             </Col>
-            <Col  span={24} md={11} className={ isTrc20? 'd-block': 'd-none'}>
+            <Col  span={24} md={11} className={ isTrc20 || isUpdate? 'd-block': 'd-none'}>
               <Form.Item label={tu('email')}>
                 {getFieldDecorator('email', {
                   rules: [{ required: isTrc20, message: tu('email_v_required'), whitespace: true},
@@ -111,7 +111,7 @@ export class SocialInfo extends Component {
                   )}
               </Form.Item>
             </Col>
-            <Col span={24} className={ isTrc20? 'd-block': 'd-none'}>
+            <Col span={24} className={ isTrc20 || isUpdate? 'd-block': 'd-none'}>
               <Form.Item label={tu('whitepaper_address')}>
                 {getFieldDecorator('white_paper', {})(
                   <Input placeholder={intl.formatMessage({id: 'whitepaper_address'})}/>
@@ -121,14 +121,14 @@ export class SocialInfo extends Component {
           </Row>
         </div>
         
-        <div className={ isTrc20? 'd-block px-2 mb-3': 'd-none'}>
+        <div className={ isTrc20 || isUpdate? 'd-block px-2 mb-3': 'd-none'}>
           <div className="d-flex mb-3">
             <h5>{tu('select_socoal_link')}</h5>
             <div className="d-flex icon-list ml-3">
               {
                 iconList.map( (item, index) => {
                   return <div key={index} 
-                              className={`${item.active? item.name+'-active': item.name} icon-list-item mr-2`}
+                              className={`${item.active? item.method+'-active': item.method} icon-list-item mr-2`}
                               onClick={() => this.addSocal(index)}
                         ></div>
                 })

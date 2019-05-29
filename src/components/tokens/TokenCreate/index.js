@@ -73,13 +73,13 @@ export class TokenCreate extends Component {
         {method: 'Facebook', active: true, link: ['']},
         {method: 'Telegram', active: true, link: ['']},
         {method: 'Weibo', active: true, link: ['']},
-        {method: 'Reddit', active: false, link: []},
-        {method: 'Medium', active: false, link: []},
-        {method: 'Steemit', active: false, link: []},
-        {method: 'Instagram', active: false, link: []},
-        {method: 'Wechat', active: false, link: []},
-        {method: 'Group', active: false, link: []},
-        {method: 'Discord', active: false, link: []}
+        {method: 'Reddit', active: false, link: ['']},
+        {method: 'Medium', active: false, link: ['']},
+        {method: 'Steemit', active: false, link: ['']},
+        {method: 'Instagram', active: false, link: ['']},
+        {method: 'Wechat', active: false, link: ['']},
+        {method: 'Group', active: false, link: ['']},
+        {method: 'Discord', active: false, link: ['']}
       ],
       res:'',
       errorInfo:'',
@@ -363,6 +363,8 @@ export class TokenCreate extends Component {
       this.setState({ loading: true, isUpdate:true });
       let result = await xhr.get(API_URL+"/api/token?id=" + id + "&showAll=1");
       let token = result.data.data[0];
+      let new_social_media = [];
+      let socialMedia = [];
       console.log('token10',token);
       if(!token){
           this.setState({loading: false,token: null});
@@ -370,6 +372,32 @@ export class TokenCreate extends Component {
           return;
       }
       let { frozen_supply } = await Client.getAccountByAddressNew(token.ownerAddress);
+      if(token.new_social_media && token.new_social_media.length > 0){
+          new_social_media = token.new_social_media;
+      }else{
+          let icon_list = [
+              {method: 'Instagram', active: false, link: ['']},
+              {method: 'Group', active: false, link: ['']},
+              {method: 'Discord', active: false, link: ['']}
+          ]
+          let icon_active_list = ['Twitter','Facebook','Telegram','Weibo']
+
+          token.social_media.map((item, index) => {
+              console.log('item',item)
+              new_social_media.push({method:item.name , active: item.url?true:false, link: [item.url]})
+          });
+
+          socialMedia = new_social_media.concat(icon_list)
+          socialMedia.map((item, index) => {
+              icon_active_list.map((name,icon_index) => {
+                  if(item.method == name  && item.active == false){
+                      item.active = true
+                  }
+              })
+          })
+      }
+
+
 
       this.setState({
           loading: false,
@@ -396,11 +424,21 @@ export class TokenCreate extends Component {
               email: token.email?token.email:'',
               white_paper: token.white_paper,
               github_url:token.github,
-
           },
-          iconList: [
-              {method: 'twitter', active: true, link: ['https://twitter.com/111','https://twitter.com/222']},
-          ],
+          // iconList: [
+          //     {method: 'Twitter', active: true, link: ['https://twitter.com/111','https://twitter.com/222']},
+          //     {method: 'Facebook', active: true, link: ['']},
+          //     {method: 'Telegram', active: true, link: ['']},
+          //     {method: 'Weibo', active: true, link: ['']},
+          //     {method: 'Reddit', active: false, link: []},
+          //     {method: 'Medium', active: false, link: []},
+          //     {method: 'Steemit', active: false, link: []},
+          //     {method: 'Instagram', active: false, link: []},
+          //     {method: 'Wechat', active: false, link: []},
+          //     {method: 'Group', active: false, link: []},
+          //     {method: 'Discord', active: false, link: []}
+          // ],
+          iconList:socialMedia,
 
       });
   };

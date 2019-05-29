@@ -19,9 +19,9 @@ export class PriceInfo extends Component {
   }
 
   render() {
-    const { getFieldDecorator, getFieldsValue } = this.props.form
-    const { token_trx_order } = this.state
-    const {isTrc10 } =  this.props.state
+    const { getFieldDecorator, getFieldsValue } = this.props.form;
+    const { token_trx_order } = this.state;
+    const { isTrc10, isUpdate } =  this.props.state;
 
     let first = {}
     let last = {}
@@ -39,13 +39,13 @@ export class PriceInfo extends Component {
         name: 'token_amount'
       }
       last = {
-        abbr: 'trx',
+        abbr: 'TRX',
         name: 'trx_amount'
       }
       abbrAmount = parseInt((trx_amount / token_amount)*100) / 100
     }else{
       first = {
-        abbr: 'trx',
+        abbr: 'TRX',
         name: 'trx_amount'
       }
       last = {
@@ -67,7 +67,7 @@ export class PriceInfo extends Component {
                         {getFieldDecorator(first.name, {
                           rules: [{ required: isTrc10, message: tu('enter_the_amount'), whitespace: true}]
                         })(
-                          <NumericInput style={{width: '80px'}} className="mr-2"/>
+                          <NumericInput style={{width: '200px'}} className="mr-2" disabled={isUpdate}/>
                         )}
                         {first.abbr}
                         </Form.Item>
@@ -78,7 +78,7 @@ export class PriceInfo extends Component {
                         {getFieldDecorator(last.name, { 
                           rules: [{ required: isTrc10, message: tu('enter_the_amount'), whitespace: true}]
                         })(
-                          <NumericInput style={{width: '80px'}} className="mr-2"/>
+                          <NumericInput style={{width: '200px'}} className="mr-2" disabled={isUpdate}/>
                         )}
                         {last.abbr}
                         </Form.Item>
@@ -92,7 +92,7 @@ export class PriceInfo extends Component {
                   <div className="part_title mb-3">
                     <span className="part_title_name">{tu('participation')}</span>
                     {getFieldDecorator('participation_type', {valuePropName: 'checked'})(
-                      <Switch checkedChildren={tu('freeze_on')} unCheckedChildren={tu('freeze_off')} />
+                      <Switch checkedChildren={tu('freeze_on')} unCheckedChildren={tu('freeze_off')} disabled={isUpdate}/>
                     )}
                   </div>
                   <div style={{marginBottom: '36px'}}>
@@ -106,14 +106,14 @@ export class PriceInfo extends Component {
                     <Col  span={11}>
                       <Form.Item label={tu('start_time')}>
                         {getFieldDecorator('participation_start_date', {})(
-                          <DatePicker style={{ width: '100%' }} />
+                          <DatePicker style={{ width: '100%' }} disabled={isUpdate}/>
                         )}
                       </Form.Item>
                     </Col>
                     <Col  span={11}>
                       <Form.Item label={tu('end_time')}>
                         {getFieldDecorator('participation_end_date', {})(
-                          <DatePicker style={{ width: '100%' }} />
+                          <DatePicker style={{ width: '100%' }} disabled={isUpdate}/>
                         )}
                       </Form.Item>
                     </Col>
@@ -125,7 +125,7 @@ export class PriceInfo extends Component {
                   <div className="part_title mb-3">
                     <span className="part_title_name">{tu('frozen_supply')}</span>
                     {getFieldDecorator('freeze_type', {valuePropName: 'checked'})(
-                      <Switch checkedChildren={tu('freeze_on')} unCheckedChildren={tu('freeze_off')} />
+                      <Switch checkedChildren={tu('freeze_on')} unCheckedChildren={tu('freeze_off')} disabled={isUpdate}/>
                     )}
                   </div>
                   <div className="mb-3">{tu('frozen_supply_message_0')}</div>
@@ -133,14 +133,14 @@ export class PriceInfo extends Component {
                     <Col  span={8}>
                       <Form.Item label={tu('amount')}>
                         {getFieldDecorator('freeze_amount', {})(
-                          <NumericInput className="w-100"/>
+                          <NumericInput className="w-100"  disabled={isUpdate}/>
                         )}
                       </Form.Item>
                     </Col>
                     <Col  span={6}>
                       <Form.Item label={tu('days_to_freeze')}>
                         {getFieldDecorator('freeze_date', {})(
-                          <NumericInput className="w-100"/>
+                          <NumericInput className="w-100"  disabled={isUpdate}/>
                         )}
                       </Form.Item>
                     </Col>
