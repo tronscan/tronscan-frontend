@@ -130,7 +130,7 @@ class IssuedToken extends React.PureComponent{
                   <TokenLink id={issuedAsset.id} name={issuedAsset.name} address={issuedAsset.ownerAddress} namePlus={issuedAsset.name + ' (' + issuedAsset.abbr + ')'}/>
                   <span style={{color:"#999"}}>[{issuedAsset.id}]</span>
                </h2>
-                <a href={"#//tokens/update/"+ issuedAsset.id}>
+                <a href={"#/tokens/update/"+ issuedAsset.id}>
                 <button type="button" className="btn btn-outline-danger">{tu('updata_token_info')}</button>
                 </a>
                 </div>
