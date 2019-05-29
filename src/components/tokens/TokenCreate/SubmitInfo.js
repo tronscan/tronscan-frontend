@@ -191,7 +191,8 @@ const { TextArea } = Input;
         });
         switch (type){
             case 'trc10':
-                if (Lockr.get("islogin")||this.props.walletType.type==="ACCOUNT_LEDGER"||this.props.walletType.type==="ACCOUNT_TRONLINK") {
+                if (account.isLoggedIn){
+
                     if (this.props.walletType.type === "ACCOUNT_LEDGER") {
                         // const unSignTransaction = await tronWebLedger.transactionBuilder.createToken({
                         //     name: this.tokenState('name'),
@@ -217,14 +218,12 @@ const { TextArea } = Input;
                         //     const {result} = await transactionResultManager(unSignTransaction, tronWebLedger);
                         //     res = result;
                         // }
-                    }
-
-                    if(this.props.walletType.type === "ACCOUNT_TRONLINK"){
-                       let unSignTransaction = '';
+                    } else if(this.props.walletType.type === "ACCOUNT_TRONLINK"){
+                        let unSignTransaction = '';
                         if(this.state.isUpdate){
                             let data  = {
                                 "address":this.tokenState('address'),
-                                "issuer_addr": 'TA561MxvhxM4f81mU7bx9oipGP5zowTbhL',
+                                "issuer_addr": this.tokenState('address'),
                                 "logo_url":this.tokenState('logoUrl'),
                                 "website": this.tokenState('url'),
                                 "email":this.tokenState('email'),
@@ -236,7 +235,7 @@ const { TextArea } = Input;
                             }
                             let hash = tronWeb.toHex(JSON.stringify(data), false);
                             let sig = await tronWeb.trx.sign(hash);
-                             unSignTransaction = await Client.updateToken10({
+                            unSignTransaction = await Client.updateToken10({
                                 "content":JSON.stringify(data),
                                 "sig": sig
                             })
@@ -249,7 +248,7 @@ const { TextArea } = Input;
                                 errorInfo = unSignTransaction.retMsg
                             }
                         }else{
-                             unSignTransaction = await tronWeb.transactionBuilder.createToken({
+                            unSignTransaction = await tronWeb.transactionBuilder.createToken({
                                 name: this.tokenState('name'),
                                 abbreviation: this.tokenState('abbreviation'),
                                 description: this.tokenState('description'),
@@ -277,25 +276,56 @@ const { TextArea } = Input;
 
                     }
 
-                }else {
-                    createInfo = await Client.createToken20({
-                        address: account.address,
-                        name: this.tokenState('name'),
-                        shortName: this.tokenState('abbreviation'),
-                        description: this.tokenState('description'),
-                        url: this.tokenState('url'),
-                        totalSupply: this.tokenState('totalSupply'),
-                        num: this.tokenState('tokenRatio'),
-                        trxNum: this.tokenState('trxRatio'),
-                        startTime: this.tokenState('startTime'),
-                        endTime: this.tokenState('endTime'),
-                        frozenSupply: this.tokenState('frozenSupply'),
-                        precision:  this.tokenState('precision'),
-                    })(account.key);
-                    res = createInfo.success;
-                    errorInfo = createInfo.message.indexOf(':')?createInfo.message.split(':')[1]:createInfo.message;
-                }
+                }else if(this.props.walletType.type === "ACCOUNT_PRIVATE_KEY") {
 
+                    if(this.state.isUpdate){
+                        let unSignTransaction = '';
+                        let data  = {
+                            "address":this.tokenState('address'),
+                            "issuer_addr": this.tokenState('address'),
+                            "logo_url":this.tokenState('logoUrl'),
+                            "website": this.tokenState('url'),
+                            "email":this.tokenState('email'),
+                            "white_paper":this.tokenState('whitePaper'),
+                            "social_media":this.tokenState('socialList'),
+                            "github":this.tokenState('github_url'),
+                            "issue_time":this.tokenState('issueTime'),
+                            "timestamp":this.tokenState('issueTime'),
+                        }
+                        let hash = tronWeb.toHex(JSON.stringify(data), false);
+                        let sig = await tronWeb.trx.sign(hash);
+                        unSignTransaction = await Client.updateToken10({
+                            "content":JSON.stringify(data),
+                            "sig": sig
+                        })
+
+                        if (unSignTransaction.retCode === "0") {
+                            res = true;
+
+                        } else {
+                            res = false;
+                            errorInfo = unSignTransaction.retMsg
+                        }
+                    }else{
+                        createInfo = await Client.createToken20({
+                            address: account.address,
+                            name: this.tokenState('name'),
+                            shortName: this.tokenState('abbreviation'),
+                            description: this.tokenState('description'),
+                            url: this.tokenState('url'),
+                            totalSupply: this.tokenState('totalSupply'),
+                            num: this.tokenState('tokenRatio'),
+                            trxNum: this.tokenState('trxRatio'),
+                            startTime: this.tokenState('startTime'),
+                            endTime: this.tokenState('endTime'),
+                            frozenSupply: this.tokenState('frozenSupply'),
+                            precision:  this.tokenState('precision'),
+                        })(account.key);
+                        res = createInfo.success;
+                        errorInfo = createInfo.message.indexOf(':')?createInfo.message.split(':')[1]:createInfo.message;
+                    }
+
+                }
 
                 this.setState({
                     res,
