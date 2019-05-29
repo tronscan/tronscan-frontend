@@ -23,8 +23,8 @@ class Register extends Component {
       },
       isLoading: true,
       limit: 14,
-      buyMax:0,
-      sellMax:0
+      buyMax: 0,
+      sellMax: 0
     };
   }
 
@@ -65,13 +65,35 @@ class Register extends Component {
   }
 
   render() {
-    let { sellList, buyList, isLoading, limit,buyMax,sellMax } = this.state;
-    let { intl, pairs, lastPrice, setQuickSelect,price,activeCurrency } = this.props;
+    let { sellList, buyList, isLoading, limit, buyMax, sellMax } = this.state;
+    let {
+      intl,
+      pairs,
+      lastPrice,
+      setQuickSelect,
+      price,
+      activeCurrency
+    } = this.props;
 
-    let price_convert = 0
-    if(price && price[pairs.sShortName == 'TRX' ? 'trxToOther' : 'usdtToOther']){
-      price_convert =(price[pairs.sShortName == 'TRX' ? 'trxToOther' : 'usdtToOther'][activeCurrency && activeCurrency.toLocaleLowerCase()] * pairs.price).toFixed(activeCurrency == 'trx' ? 6 : 8)
+    /*
+     * 根据当前选择货币换算单位
+     */
+    // let price_convert = 0
+    // if(price && price[pairs.sShortName == 'TRX' ? 'trxToOther' : 'usdtToOther']){
+    //   price_convert =(price[pairs.sShortName == 'TRX' ? 'trxToOther' : 'usdtToOther'][activeCurrency && activeCurrency.toLocaleLowerCase()] * pairs.price).toFixed(activeCurrency == 'trx' ? 6 : 8)
+    // }
+
+    let price_convert = 0;
+    if (
+      price &&
+      price[pairs.sShortName == "TRX" ? "trxToOther" : "usdtToOther"]
+    ) {
+      price_convert = (
+        price[pairs.sShortName == "TRX" ? "trxToOther" : "usdtToOther"]["usd"] *
+        pairs.price
+      ).toFixed(8);
     }
+    console.log("price_convert", price, price_convert);
 
     let first_token = pairs.fShortName ? "(" + pairs.fShortName + ")" : "";
     let second_token = pairs.sShortName ? "(" + pairs.sShortName + ")" : "";
@@ -151,7 +173,7 @@ class Register extends Component {
       }
     ];
 
-    const maxAmount = Math.max(buyMax,sellMax)
+    const maxAmount = Math.max(buyMax, sellMax);
     return (
       <div className="ant-table-content register">
         {isLoading ? (
@@ -188,34 +210,63 @@ class Register extends Component {
               <span>{trc20_amount}</span>
               <span>{trc20_accumulative}</span>
             </div>
-            <RegisterList data={sellList} type="sell" max={maxAmount} setQuickSelect={setQuickSelect}></RegisterList>
+            <RegisterList
+              data={sellList}
+              type="sell"
+              max={maxAmount}
+              setQuickSelect={setQuickSelect}
+            />
             <div className="new_price">
               {/* {tu('trc20_new_price')}:  */}
               {lastPrice.type === 0 ? (
                 <span>
-                <span className="col-green up">
-                  {lastPrice.value&&lastPrice.value.toFixed(pairs.sPrecision)} 
-                  <Icon type="arrow-up" />
-                </span>
-                <span style={{fontSize: '14px',color: '#666666',marginLeft:'20px'}}>≈ {price_convert} {activeCurrency.toLocaleUpperCase()}</span>
+                  <span className="col-green up">
+                    {lastPrice.value &&
+                      lastPrice.value.toFixed(pairs.sPrecision)}
+                    <Icon type="arrow-up" />
+                  </span>
+                  <span
+                    style={{
+                      fontSize: "14px",
+                      color: "#666666",
+                      marginLeft: "20px"
+                    }}
+                  >
+                    ≈ {price_convert} USD
+                    {/* {activeCurrency.toLocaleUpperCase()} */}
+                  </span>
                 </span>
               ) : (
                 <span>
-                <span className="col-red down">
-                  {lastPrice.value&&lastPrice.value.toFixed(pairs.sPrecision)}
-                  <Icon type="arrow-down" />
-                </span>
-                <span style={{fontSize: '14px',color: '#666666',marginLeft:'20px'}}>≈ {price_convert} {activeCurrency.toLocaleUpperCase()}</span>
+                  <span className="col-red down">
+                    {lastPrice.value &&
+                      lastPrice.value.toFixed(pairs.sPrecision)}
+                    <Icon type="arrow-down" />
+                  </span>
+                  <span
+                    style={{
+                      fontSize: "14px",
+                      color: "#666666",
+                      marginLeft: "20px"
+                    }}
+                  >
+                    ≈ {price_convert} USD
+                    {/* {activeCurrency.toLocaleUpperCase()} */}
+                  </span>
                 </span>
               )}
             </div>
-            <RegisterList data={buyList} type="buy" max={maxAmount} setQuickSelect={setQuickSelect}></RegisterList>
+            <RegisterList
+              data={buyList}
+              type="buy"
+              max={maxAmount}
+              setQuickSelect={setQuickSelect}
+            />
           </Fragment>
         )}
       </div>
     );
   }
-
 
   async getData() {
     let { pairs, setRegister } = this.props;
@@ -281,7 +332,7 @@ class Register extends Component {
         .sort((a, b) => {
           return type ? b - a : a - b;
         });
-      
+
       list.length > limit && (list.length = limit);
       let amount_list = [];
       let amountSum = 0;
@@ -307,17 +358,17 @@ class Register extends Component {
         ];
         arr.push(item);
       });
-      
-      const _max = Math.max.apply(null, amount_list)
+
+      const _max = Math.max.apply(null, amount_list);
       if (type === 1) {
         // this.buyMax = _max
         this.setState({
           buyMax: _max
-        })
+        });
       } else {
         this.setState({
           sellMax: _max
-        })
+        });
         // this.sellMax = _max
       }
     }
@@ -339,9 +390,9 @@ class Register extends Component {
 class RegisterList extends Component {
   constructor() {
     super();
-    this.handlePriceObj = this.handlePriceObj.bind(this)
+    this.handlePriceObj = this.handlePriceObj.bind(this);
   }
-  handlePriceObj(v,type){
+  handlePriceObj(v, type) {
     let obj = {
       b: {
         price: Number(v.price),
@@ -352,28 +403,32 @@ class RegisterList extends Component {
     this.props.setQuickSelect(obj);
   }
   render() {
-    let {data,type,setQuickSelect,max} = this.props;
-    return(
+    let { data, type, setQuickSelect, max } = this.props;
+    return (
       <div className={`register-list ${type}`}>
-        {
-          data.map(v=>{
-            return(
-              <div className="list-item" key={v.key}>
-                <div className="item-detail" onClick={() => this.handlePriceObj(v,type=='sell'?'buy':'sell')}>
-                  <span className={type}>{v.price}</span>
-                  <span>{v.amount}</span>
-                  <span>{v.cje}</span>
-                </div>
-                <div className={`item-pre ${type}`} style={{width:(v.amount/max)*100+'%'}}/>
+        {data.map(v => {
+          return (
+            <div className="list-item" key={v.key}>
+              <div
+                className="item-detail"
+                onClick={() =>
+                  this.handlePriceObj(v, type == "sell" ? "buy" : "sell")
+                }
+              >
+                <span className={type}>{v.price}</span>
+                <span>{v.amount}</span>
+                <span>{v.cje}</span>
               </div>
-            )
-          })
-        }
-        
+              <div
+                className={`item-pre ${type}`}
+                style={{ width: (v.amount / max) * 100 + "%" }}
+              />
+            </div>
+          );
+        })}
       </div>
-    )
+    );
   }
-
 }
 
 function mapStateToProps(state) {

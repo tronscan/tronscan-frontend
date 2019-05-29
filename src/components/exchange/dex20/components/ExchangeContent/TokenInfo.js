@@ -15,7 +15,7 @@ import { Client20 } from "../../../../../services/api";
 import { change10lock, setWidget } from "../../../../../actions/exchange";
 import { TokenTRC20Link } from "../../../../common/Links";
 import { Icon, Modal } from "antd";
-import {toThousands} from '../../../../../utils/number'
+import { toThousands } from "../../../../../utils/number";
 
 class Tokeninfo extends React.Component {
   constructor() {
@@ -127,11 +127,16 @@ class Tokeninfo extends React.Component {
       price &&
       price[selectData.sShortName == "TRX" ? "trxToOther" : "usdtToOther"]
     ) {
+      // price_convert = (
+      //   price[selectData.sShortName == "TRX" ? "trxToOther" : "usdtToOther"][
+      //     activeCurrency && activeCurrency.toLocaleLowerCase()
+      //   ] * selectData.price
+      // ).toFixed(activeCurrency == "trx" ? 6 : 8);
       price_convert = (
         price[selectData.sShortName == "TRX" ? "trxToOther" : "usdtToOther"][
-          activeCurrency && activeCurrency.toLocaleLowerCase()
+          "usd"
         ] * selectData.price
-      ).toFixed(activeCurrency == "trx" ? 6 : 8);
+      ).toFixed(8);
     }
     return (
       <div>
@@ -159,13 +164,15 @@ class Tokeninfo extends React.Component {
             </div>
             <div className="item">
               <p className={selectData.isUp ? "col-green" : "col-red"}>
-                {selectData.price&&selectData.price.toFixed(selectData.sPrecision)}
+                {selectData.price &&
+                  selectData.price.toFixed(selectData.sPrecision)}
               </p>
               {price_convert && (
                 <p>
                   ≈
                   <span>
-                    &nbsp;{price_convert} {activeCurrency.toLocaleUpperCase()}
+                    &nbsp;{price_convert} USD
+                    {/* {activeCurrency.toLocaleUpperCase()} */}
                   </span>
                 </p>
               )}
@@ -186,7 +193,9 @@ class Tokeninfo extends React.Component {
             </div>
             <div className="item">
               <p>{tu("trc20_24H_Total")}</p>
-              <p>{toThousands(selectData.volume)} {selectData.fShortName}</p>
+              <p>
+                {toThousands(selectData.volume)} {selectData.fShortName}
+              </p>
             </div>
             {/* <div className="item">
               <p>{tu("24H_VOL")}</p>
