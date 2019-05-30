@@ -102,7 +102,7 @@ export class SocialInfo extends Component {
                 )}
               </Form.Item>
             </Col>
-            <Col  span={24} md={11}>
+            <Col  span={24} md={11} className={ isTrc20 || isUpdate? 'd-block': 'd-none'}>
               <Form.Item label={tu('GitHub')}>
                   {getFieldDecorator('github_url', {
                       rules: [{ required: false, message: tu('no_url_error'), whitespace: true}],

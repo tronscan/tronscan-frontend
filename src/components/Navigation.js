@@ -271,9 +271,11 @@ class Navigation extends React.Component {
   unlockKeyFile = (password, contents) => {
 
     let {key, address, salt} = JSON.parse(bytesToString(hexStr2byteArray(contents)));
-
+      console.log('key',key)
+      console.log('address',address)
+      console.log('salt',salt)
     let privateKey = decryptString(password, salt, key);
-
+      console.log(privateKey)
     if (validatePrivateKey(privateKey) && pkToAddress(privateKey) === address) {
       this.setState({
         popup: (

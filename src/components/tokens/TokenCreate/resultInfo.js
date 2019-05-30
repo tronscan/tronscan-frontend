@@ -88,6 +88,7 @@ export class resultInfo extends Component {
         console.log('res',res)
         console.log('errorInfo2222',errorInfo)
         console.log('type',type)
+
         return (
             <main className="token-result">
                 {
@@ -97,7 +98,12 @@ export class resultInfo extends Component {
                         <div className="mt-3 d-flex failure-reason">
                             <span>{tu('token_input_failure_reason')}</span>
                             <div>
-                                <p>1.{this.setErrorMsg(errorInfo)}</p>
+                                {
+                                    errorInfo.map((item,index) => {
+                                        return <p key={index}>{index +1 }. {this.setErrorMsg(item)}</p>
+                                    })
+                                }
+
                             </div>
                         </div>
                         <div className="d-flex mt-3">

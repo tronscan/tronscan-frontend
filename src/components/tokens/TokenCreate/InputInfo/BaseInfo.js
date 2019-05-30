@@ -72,7 +72,7 @@ export class BaseInfo extends Component {
               rules: [{ required: true, message: tu('description_v_required'), whitespace: true},
                       {min: 1, max: 500, message: tu('description_v_length')}],
             })(
-              <TextArea autosize={{ minRows: 4, maxRows: 6 }}  placeholder={intl.formatMessage({id: 'description_message'})} disabled={isUpdate}/>
+              <TextArea autosize={{ minRows: 4, maxRows: 6 }}  placeholder={intl.formatMessage({id: 'description_message'})} disabled={isUpdate && !isTrc20}/>
             )}
           </Form.Item>
         </Col>
@@ -104,7 +104,7 @@ export class BaseInfo extends Component {
               <AutoComplete
                 dataSource={logoOptions}
                 onChange={this.handleLogoChange}
-                placeholder={intl.formatMessage({id: 'image_restraint_desc'})}
+                placeholder={intl.formatMessage({id: 'token_logo_input_placeholder'})}
               >
               </AutoComplete>
             )}

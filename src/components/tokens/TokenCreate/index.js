@@ -75,7 +75,7 @@ export class TokenCreate extends Component {
         {method: 'Weibo', active: true, link: ['']},
         {method: 'Reddit', active: false, link: ['']},
         {method: 'Medium', active: false, link: ['']},
-        {method: 'Steemit', active: false, link: ['']},
+        {method: 'Steem', active: false, link: ['']},
         {method: 'Instagram', active: false, link: ['']},
         {method: 'Wechat', active: false, link: ['']},
         {method: 'Group', active: false, link: ['']},
@@ -190,7 +190,7 @@ export class TokenCreate extends Component {
         this.setState({loading: true,  isUpdate:true});
         let result = await xhr.get(API_URL+"/api/token_trc20?contract="+id);
         let token = result.data.trc20_tokens[0];
-        console.log('token20',token);
+        console.log('token20', moment(token.issue_time));
         let new_social_media = [];
         let socialMedia = [];
         if(!token){
@@ -228,11 +228,13 @@ export class TokenCreate extends Component {
                  logo_url: token.icon_url,
                  author: token.issue_address,
                  contract_address: token.contract_address,
-                 contract_created_date: moment().startOf('day'),
+                 contract_created_date: moment(token.issue_time),
                  website: token.home_page,
                  email: token.email?token.email:'',
                  white_paper: token.white_paper,
-                 contract_code:'',
+
+
+
              },
             iconList: new_social_media,
 

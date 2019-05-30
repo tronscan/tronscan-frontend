@@ -5,7 +5,7 @@ const { TextArea } = Input;
 
 export function ContractInfo({form, intl, state}) {
     const { getFieldDecorator } = form
-    const {isTrc20 } =  state
+    const {isTrc20,isUpdate } =  state
 
     return (
       <div className={ isTrc20? 'd-block': 'd-none'}>
@@ -18,14 +18,14 @@ export function ContractInfo({form, intl, state}) {
                 rules: [{ required: isTrc20, message: tu('contract_address_required'), whitespace: true},
                         {pattern: /^T[a-zA-Z0-9]{33}$/, message: tu('contract_address_format')}],
               })(
-                <Input placeholder={intl.formatMessage({id: 'contract_address_placeholder'})}/>
+                <Input placeholder={intl.formatMessage({id: 'contract_address_placeholder'})} disabled={isUpdate}/>
               )}
             </Form.Item>
           </Col>
           <Col  span={24} md={11}>
           <Form.Item label={tu('contract_created_date')}>
             {getFieldDecorator('contract_created_date')(
-              <DatePicker className="w-100" placeholder={intl.formatMessage({id: 'contract_created_date'})}/>
+              <DatePicker className="w-100" placeholder={intl.formatMessage({id: 'contract_created_date'})} disabled={isUpdate}/>
             )}
             </Form.Item>
           </Col>

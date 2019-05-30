@@ -347,7 +347,7 @@ const { TextArea } = Input;
                      "icon_url":this.tokenState('logoUrl'),
                      "contract_address":this.tokenState('contractAddress'),
                      "contract_created_ratio":this.tokenState('contractCreatedRatio'),
-                     "contract_code":this.tokenState('contractCode'),
+                    // "contract_code":this.tokenState('contractCode'),
                      "home_page": this.tokenState('url'),
                      "email":this.tokenState('email'),
                      "white_paper":this.tokenState('whitePaper'),
@@ -515,15 +515,15 @@ const { TextArea } = Input;
                             </p>
                         </Col>
                     </Row>
-                    <Row type="flex">
-                        <Col span={24} md={24}>
-                            <label>{tu('contract_code')}</label>
-                            <TextArea rows={4}
-                             disabled={true}
-                             defaultValue={contract_code}
-                            />
-                        </Col>
-                    </Row>
+                    {/*<Row type="flex">*/}
+                        {/*<Col span={24} md={24}>*/}
+                            {/*<label>{tu('contract_code')}</label>*/}
+                            {/*<TextArea rows={4}*/}
+                             {/*disabled={true}*/}
+                             {/*defaultValue={contract_code}*/}
+                            {/*/>*/}
+                        {/*</Col>*/}
+                    {/*</Row>*/}
                 </section>
                 <section className={ isTrc10? 'd-block mt-4': 'd-none'}>
                     <h4 className="mb-3">{tu('price_info')}</h4>
@@ -649,7 +649,7 @@ const { TextArea } = Input;
                                    this.setState({checkbox: e.target.checked, errors: {confirm: null}})
                                }}/>
                         <label className="form-check-label">
-                            {tu("token_spend_confirm")}
+                            {tu("token_spend_confirm_new")}
                         </label>
                     </div>
                     {this.ErrorLabel(errors.confirm)}

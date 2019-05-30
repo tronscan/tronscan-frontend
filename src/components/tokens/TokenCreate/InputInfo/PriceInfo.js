@@ -62,7 +62,7 @@ export class PriceInfo extends Component {
                 <Col span={24}>
                   <Form.Item label={tu('token_price')}  required className="m-0">
                     <div className="d-flex">
-                      <span className="mr-3">trx{tu('trc20_last_price')}: <TRXPrice amount={1} currency="USD" source="home"/></span>
+
                       <Form.Item  className="d-flex align-items-center">
                         {getFieldDecorator(first.name, {
                           rules: [{ required: isTrc10, message: tu('enter_the_amount'), whitespace: true}]
@@ -82,8 +82,8 @@ export class PriceInfo extends Component {
                         )}
                         {last.abbr}
                         </Form.Item>
-
                         <span className={isNaN(abbrAmount)? 'd-none': ''} style={{color: '#9e9e9e'}}>(1 {first.abbr} = {`${abbrAmount} ${last.abbr}`})</span>
+                        <span className="mr-3">TRX{tu('trc20_last_price')}: <TRXPrice amount={1} currency="USD" source="home"/></span>
                     </div>
                  </Form.Item>
                 </Col>
