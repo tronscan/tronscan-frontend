@@ -88,16 +88,23 @@ export class resultInfo extends Component {
         console.log('res',res)
         console.log('errorInfo2222',errorInfo)
         console.log('type',type)
+
         return (
             <main className="token-result">
                 {
-                    !res? <div className="result-failure">
+                    res? <div className="result-failure">
                         <img src={require("../../../images/token/result_failure.png")} alt=""/>
                         <h5>{tu('token_input_failure')}</h5>
                         <div className="mt-3 d-flex failure-reason">
                             <span>{tu('token_input_failure_reason')}</span>
                             <div>
-                                <p>1.{this.setErrorMsg(errorInfo)}</p>
+                                {
+                                    type == 'trc20' && errorInfo? errorInfo.map((item,index) => {
+                                        return <p key={index}>{index +1 }. {this.setErrorMsg(item)}</p>
+                                    }):
+                                        <p>1. {errorInfo}</p>
+                                }
+
                             </div>
                         </div>
                         <div className="d-flex mt-3">
@@ -113,7 +120,8 @@ export class resultInfo extends Component {
                             {tu('token_input_success_you_can')}
                             <span className="mytoken-wallet">{tu('token_input_success_wallet')}</span>
                             ->
-                            <span className="mytoken-wallet">{tu('token_input_success_find_it')}</span>
+                            <span className="mytoken-wallet">{tu('token_input_success_myaccount')}</span>
+                            <span>{tu('token_input_success_find_it')}</span>
                         </p>
                         <p className="result-success-info">
                             {tu('token_input_success_tip')}

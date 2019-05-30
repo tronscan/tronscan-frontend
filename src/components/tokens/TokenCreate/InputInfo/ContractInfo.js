@@ -3,9 +3,11 @@ import {t, tu} from "../../../../utils/i18n";
 import {Form, Row, Col, Input, DatePicker} from 'antd';
 const { TextArea } = Input;
 
-export function ContractInfo({form, intl, state}) {
-    const { getFieldDecorator } = form
-    const {isTrc20 } =  state
+
+export function ContractInfo({form, intl, state, loadContractCode}) {
+    const { getFieldDecorator } = form;
+    const {isTrc20,isUpdate } =  state;
+        console.log('state',state)
 
     return (
       <div className={ isTrc20? 'd-block': 'd-none'}>
@@ -18,26 +20,37 @@ export function ContractInfo({form, intl, state}) {
                 rules: [{ required: isTrc20, message: tu('contract_address_required'), whitespace: true},
                         {pattern: /^T[a-zA-Z0-9]{33}$/, message: tu('contract_address_format')}],
               })(
-                <Input placeholder={intl.formatMessage({id: 'contract_address_placeholder'})}/>
+                <Input
+                    placeholder={intl.formatMessage({id: 'contract_address_placeholder'})}
+                    disabled={isUpdate}
+                    onChange={(ev)=> loadContractCode(ev.target.value)}
+                />
               )}
             </Form.Item>
           </Col>
           <Col  span={24} md={11}>
           <Form.Item label={tu('contract_created_date')}>
             {getFieldDecorator('contract_created_date')(
-              <DatePicker className="w-100" placeholder={intl.formatMessage({id: 'contract_created_date'})}/>
+              <DatePicker className="w-100" placeholder={intl.formatMessage({id: 'contract_created_date'})} disabled={true}/>
             )}
             </Form.Item>
           </Col>
-          <Col  span={24}>
-            <Form.Item label={tu('contract_code')}>
-            {getFieldDecorator('contract_code', {
-              rules: [{ required: isTrc20, message: tu('contract_address_required'), whitespace: true}],
-            })(
-              <TextArea rows={6}  placeholder={intl.formatMessage({id: 'contract_code_placeholder'})} />
-            )}
-            </Form.Item>
-          </Col>
+            <Col  span={24} md={11}>
+                <Form.Item label={tu('contract_created_address')}>
+                    {getFieldDecorator('contract_created_address')(
+                        <Input placeholder={intl.formatMessage({id: 'contract_created_address'})} disabled={true}/>
+                    )}
+                </Form.Item>
+            </Col>
+          {/*<Col  span={24}>*/}
+            {/*<Form.Item label={tu('contract_code')}>*/}
+            {/*{getFieldDecorator('contract_code', {*/}
+              {/*rules: [{ required: isTrc20, message: tu('contract_address_required'), whitespace: true}],*/}
+            {/*})(*/}
+              {/*<TextArea rows={6}  placeholder={intl.formatMessage({id: 'contract_code_placeholder'})} />*/}
+            {/*)}*/}
+            {/*</Form.Item>*/}
+          {/*</Col>*/}
 
         </Row>
       </div>
