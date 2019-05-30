@@ -74,7 +74,7 @@ const { TextArea } = Input;
             'description':token_introduction,
             'url':website,
             'totalSupply': token_supply * Math.pow(10, Number(precision)),
-            'totalSupplyTRC20':token_supply,
+            'totalSupplyTRC20':token_supply* Math.pow(10, Number(precision)),
             'address':author,
             'logoUrl':logo_url,
             'contractAddress':contract_address,
