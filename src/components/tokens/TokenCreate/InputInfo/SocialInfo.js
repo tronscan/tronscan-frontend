@@ -111,7 +111,7 @@ export class SocialInfo extends Component {
                   )}
               </Form.Item>
             </Col>
-            <Col span={24} className={ isTrc20 || isUpdate? 'd-block': 'd-none'}>
+            <Col span={24}  md={11} className={ isTrc20 || isUpdate? 'd-block': 'd-none'}>
               <Form.Item label={tu('whitepaper_address')}>
                 {getFieldDecorator('white_paper', {})(
                   <Input placeholder={intl.formatMessage({id: 'whitepaper_address'})}/>
@@ -119,6 +119,10 @@ export class SocialInfo extends Component {
               </Form.Item>
             </Col>
           </Row>
+          <div className={ !isTrc20 && !isUpdate? 'd-block': 'd-none'}>
+            <i class="fas fa-exclamation-circle mr-2" style={{color:"#FF8C00"}}></i>
+              {tu("token_input_trc10_tip")}
+          </div>
         </div>
         
         <div className={ isTrc20 || isUpdate? 'd-block px-2 mb-3': 'd-none'}>

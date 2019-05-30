@@ -39,7 +39,7 @@ export class TokenCreate extends Component {
     super(props);
 
     this.state = {
-      step: 0,
+      step: 3,
       type: 'trc20',
       modal: null,
       isUpdate:false,
@@ -53,7 +53,8 @@ export class TokenCreate extends Component {
         logo_url: '',
         author: '',
         contract_address: '',
-        contract_created_date: moment().startOf('day'),
+        contract_created_date: '',
+        contract_created_address:'',
         contract_code: '',
         website: '',
         email: '',
@@ -187,17 +188,21 @@ export class TokenCreate extends Component {
   };
 
   loadToken20 = async (id) => {
-        this.setState({loading: true,  isUpdate:true});
-        let result = await xhr.get(API_URL+"/api/token_trc20?contract="+id);
-        let token = result.data.trc20_tokens[0];
-        console.log('token20', moment(token.issue_time));
-        let new_social_media = [];
-        let socialMedia = [];
-        if(!token){
-            this.setState({loading: false,token: null});
-            this.props.history.push('/tokens/list')
-            return;
-        }
+      this.setState({loading: true,  isUpdate:true});
+      let result = await xhr.get(API_URL+"/api/token_trc20?contract="+id);
+      let token = result.data.trc20_tokens[0];
+      let contractCode;
+      console.log('token20', moment(token.issue_time));
+      let new_social_media = [];
+      let socialMedia = [];
+      if(!token){
+          this.setState({loading: false,token: null});
+          this.props.history.push('/tokens/list')
+          return;
+      }else{
+          contractCode = await Client.getContractCode(token.contract_address);
+      }
+
 
       if(token.new_social_media && token.new_social_media.length > 0){
           new_social_media = token.new_social_media;
@@ -228,18 +233,18 @@ export class TokenCreate extends Component {
                  logo_url: token.icon_url,
                  author: token.issue_address,
                  contract_address: token.contract_address,
-                 contract_created_date: moment(token.issue_time),
+                 //contract_created_date: moment(token.issue_time),
+                 contract_created_date:contractCode.data.date_created ? moment(contractCode.data.date_created): '',
+                 contract_created_address: contractCode.data.creator.address?contractCode.data.creator.address: '',
                  website: token.home_page,
                  email: token.email?token.email:'',
                  white_paper: token.white_paper,
 
-
-
-             },
+            },
             iconList: new_social_media,
 
-        });
-    };
+      });
+  };
 
   componentDidUpdate(prevProps, prevState) {
     let {wallet} = this.props;

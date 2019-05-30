@@ -92,7 +92,7 @@ export class resultInfo extends Component {
         return (
             <main className="token-result">
                 {
-                    !res? <div className="result-failure">
+                    res? <div className="result-failure">
                         <img src={require("../../../images/token/result_failure.png")} alt=""/>
                         <h5>{tu('token_input_failure')}</h5>
                         <div className="mt-3 d-flex failure-reason">
@@ -120,7 +120,8 @@ export class resultInfo extends Component {
                             {tu('token_input_success_you_can')}
                             <span className="mytoken-wallet">{tu('token_input_success_wallet')}</span>
                             ->
-                            <span className="mytoken-wallet">{tu('token_input_success_find_it')}</span>
+                            <span className="mytoken-wallet">{tu('token_input_success_myaccount')}</span>
+                            <span>{tu('token_input_success_find_it')}</span>
                         </p>
                         <p className="result-success-info">
                             {tu('token_input_success_tip')}
