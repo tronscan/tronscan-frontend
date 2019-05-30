@@ -3921,7 +3921,7 @@ h5 {
           width: 1px;
           height: 53px;
           position: absolute;
-          top: 34px;
+          top: 16px;
           right: 20%;
           background: rgba(218, 218, 218, 0.60);
         }
@@ -3960,6 +3960,11 @@ h5 {
         font-size: 20px;
         color: #1f2534;
 
+      }
+      .question{
+        // position: absolute;
+        // top: 0;
+        // right: 52px;
       }
     }
 
@@ -4065,4 +4070,7 @@ h5 {
   .ant-checkbox-wrapper span {
     color: #b0b0b0;
   }
+}
+.flex-1{
+  flex: 1;
 }

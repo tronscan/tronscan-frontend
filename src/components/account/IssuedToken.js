@@ -6,12 +6,13 @@ import {Client} from "../../services/api";
 import {reloadWallet} from "../../actions/wallet";
 import {NumberField} from "../common/Fields";
 import _ from "lodash";
-import { Tag } from 'antd';
-import {TokenLink, TokenTRC20Link} from "../common/Links";
+import { Tag, Tooltip } from 'antd';
+import {TokenLink, TokenTRC20Link, HrefLink} from "../common/Links";
 import AppealModal from './AppealModal'
 import xhr from "axios/index";
 import {FormattedDate, FormattedNumber, FormattedRelative, FormattedTime, injectIntl} from "react-intl";
 import {API_URL} from "../../constants";
+import { getTime} from "date-fns";
 
 const blackMap = [
   '有盗用其他已上线币种名称的嫌疑',
@@ -71,7 +72,6 @@ class IssuedToken extends React.PureComponent{
     }
     async getAppealRecent10 (address) {
       const data = await this.getAppealRecent(address)
-      console.log(data)
       this.setState({appealInfo10: data})
     }
     async getAppealRecent20 (list) {
@@ -84,21 +84,46 @@ class IssuedToken extends React.PureComponent{
       this.setState({appealInfo20: arr})
     }
 
+
+
+    // get 20 token transfer amount
+    async getToken20Transfer(contract_address){
+      const data = await Client.getAssetTransfers({limit: 0, start: 0, contract_address})
+      return data.rangeTotal
+    }
+
+    // get 20 token holder
+    async getToken20Holder(contract_address){
+      const {data} = await xhr.get(API_URL +'/api/token_trc20/holders', {params: {limit: 0, start: 0, contract_address}})
+      return data.rangeTotal
+    }
+
+
     // get 20eoken
     async get20token() {
       const { address } = this.props.account
       const {data: {data, retCode}} = await xhr.get('http://52.15.68.74:10086'+'/trc20tokens?issuer_addr='+ address)
       if(retCode == 0){
-        this.setState({token20List: data.tokens})
+        let arr = []
         this.getAppealRecent20(data.tokens)
+
+        for (let i = 0; i < data.tokens.length; i++) {
+          let element = data.tokens[i];
+          const holder = await this.getToken20Holder(element.contract_address)
+          const transfer20 = await this.getToken20Transfer(element.contract_address)
+          
+          element = {holder, transfer20, ...element}
+          arr.push(element)
+        }
+        this.setState({token20List: arr})
       }
     }
 
     updateData(){
-      console.log(this.props);
       const {loadAccount, issuedAsset} = this.props
       if(issuedAsset){
         loadAccount()
+        this.getToken10Transfer()
       }else{
         this.get20token()
       }
@@ -107,7 +132,6 @@ class IssuedToken extends React.PureComponent{
     componentDidUpdate(prevProps) {
       const {issuedAsset, account} = this.props
       if(issuedAsset && (issuedAsset != prevProps.issuedAsset)){
-        console.log('issuedAsset is start');
         this.getAppealRecent10(issuedAsset.ownerAddress)
       }
       if(account != prevProps.account){
@@ -125,7 +149,7 @@ class IssuedToken extends React.PureComponent{
     render() {
       const issuedAsset = this.props.issuedAsset
       const {appealInfo,appealInfo10, token20List, appealInfo20} = this.state
-      const { account } = this.props
+      const { account, intl, currentWallet, unfreezeAssetsConfirmation } = this.props
 
       let status10;
       let token10Time;
@@ -155,7 +179,7 @@ class IssuedToken extends React.PureComponent{
                 </a>
                 </div>
               <hr/>
-              <div className="d-flex justify-content-between tf-card__header">
+              <div className="d-flex justify-content-between tf-card__header position-relative">
                 <div className="tf-card__header-item">
                   <div className="tf-card__header-title">{tu('trc20_token_info_Total_Supply')}</div>
                   <div className="tf-card__header-text"><FormattedNumber value={issuedAsset.totalSupply / 10 ** issuedAsset.precision}/></div>
@@ -164,29 +188,105 @@ class IssuedToken extends React.PureComponent{
                 <div className="tf-card__header-item">
                   <div className="tf-card__header-title">{tu('holder_amount')}</div>
                   <div className="tf-card__header-text"><FormattedNumber value={issuedAsset.nrOfTokenHolders}/></div>
-                  <div className="dor-img"><img src={require("../../images/issuedasset/1.png")} alt=""/></div>
+                  {/** <div className="dor-img"><img src={require("../../images/issuedasset/1.png")} alt=""/></div>*/}
                 </div>
                 <div className="tf-card__header-item">
-                  <div className="tf-card__header-title">{tu('day_add_holder')}</div>
-                  <div className="tf-card__header-text">-</div>
-                  <div className="dor-img"><img src={require("../../images/issuedasset/2.png")} alt=""/></div>
+                  <div className="tf-card__header-title">{tu('nr_of_Transfers')}</div>
+                  <div className="tf-card__header-text"><FormattedNumber value={issuedAsset.rangeTotal}/></div>
+                  {/** <div className="dor-img"><img src={require("../../images/issuedasset/2.png")} alt=""/></div>*/}
                 </div>
                 <div className="tf-card__header-item">
                   <div className="tf-card__header-title">{tu('day_transiction')}</div>
                   <div className="tf-card__header-text">-</div>
-                  <div className="dor-img"><img src={require("../../images/issuedasset/3.png")} alt=""/></div>
+                  {/** <div className="dor-img"><img src={require("../../images/issuedasset/3.png")} alt=""/></div>*/}
                 </div>
                 <div className="tf-card__header-item">
                   <div className="tf-card__header-title">{tu('last_price')}</div>
                   <div className="tf-card__header-text">-</div>
-                  <div className="dor-img"><img src={require("../../images/issuedasset/4.png")} alt=""/></div>
+                  {/** <div className="dor-img"><img src={require("../../images/issuedasset/4.png")} alt=""/></div>*/}
                 </div>
                 <div className="tf-card__header-item">
                   <div className="tf-card__header-title">{tu('total_value')}</div>
                   <div className="tf-card__header-text">-</div>
-                  <div className="dor-img"><img src={require("../../images/issuedasset/5.png")} alt=""/></div>
+                  {/** <div className="dor-img"><img src={require("../../images/issuedasset/5.png")} alt=""/></div>*/}
                 </div>
               </div>
+              
+              <div className="question d-flex justify-content-end mb-2">
+                  <div className="ml-1">
+                    <span className="small">
+                      {tu('address_total_balance_info_sources')}：
+                    </span>
+                    <span className="small">
+                        <HrefLink
+                            href={
+                                intl.locale == "zh"
+                                    ? "https://trx.market/zh/"
+                                    : "https://trx.market/"
+                            }
+                        >TRXMarket</HrefLink>
+                    </span>
+                    <img width={15} height={15}  style={{marginLeft:5}} src={require("../../images/svg/market.png")} alt=""/>
+                  </div>
+                </div>
+              
+
+                <div className="iocInfo mb-4  w-75">
+                    <div className="iocInfo-content">
+                        <h4>{tu('ico_infomation')}</h4>
+                        <div className="d-flex justify-content-between mb-2">
+                          <div>{tu("start_date")}:
+                            <span>{issuedAsset.endTime - issuedAsset.startTime > 1000 ?
+                                <span><FormattedDate value={issuedAsset.startTime}/>{' '}<FormattedTime
+                                    value={issuedAsset.startTime}  hour='numeric' minute="numeric" second='numeric' hour12={false}/></span> : "-"}
+                            </span>
+                          </div>
+                          <div>{tu("end_date")}:
+                            <span> {issuedAsset.endTime - issuedAsset.startTime > 1000 ?
+                              <span><FormattedDate value={issuedAsset.endTime}/>{' '}<FormattedTime
+                                  value={issuedAsset.endTime}  hour='numeric' minute="numeric" second='numeric' hour12={false}/></span> : "-"}
+                            </span>
+                          </div>
+                        </div>
+                        <div className="d-flex mb-2">
+                        {tu("progress")}:
+                          <span className="d-flex flex-1">
+                            <div className="progress mt-1" style={{width: '95%'}}>
+                              <div className="progress-bar bg-success"
+                                  style={{width: issuedAsset.issuedPercentage + '%'}}/>
+                            </div>
+                            <div className="ml-2">{issuedAsset.issuedPercentage.toFixed(3) + '%'}</div>
+                          </span>
+                        </div>
+                    </div>
+                    <div>{
+                      currentWallet && currentWallet.frozen_supply.length > 0 &&
+                      <div>
+                        <a href="javascript:" className="float-right text-primary"
+                            onClick={() => {
+                              unfreezeAssetsConfirmation()
+                            }}>
+                          {tu("unfreeze_assets")}
+                        </a>
+                        {
+                            currentWallet.frozen_supply.map((frozen, index) => (
+                              <div key={index}>
+                                {frozen.amount / Math.pow(10, issuedAsset.precision)}
+                                {
+                                  (frozen.expires > getTime(new Date())) ?
+                                      <span>
+                                      <span> {tu("can_be_unlocked")}&nbsp;</span>
+                                      <FormattedRelative
+                                          value={frozen.expires}/>
+                                  </span> : <span> {tu("can_be_unlocked_now")}&nbsp;</span>
+                                }
+                              </div>
+                          ))
+                        }
+                      </div>
+                    }</div>
+                </div>
+
               <table className="table tf-card-table">
                 <tbody>
                   <tr className="line-1">
@@ -282,32 +382,46 @@ class IssuedToken extends React.PureComponent{
                     </div>
                     <div className="tf-card__header-item">
                       <div className="tf-card__header-title">{tu('holder_amount')}</div>
-                      <div className="tf-card__header-text">-
-                        {/* <FormattedNumber value={token20Item.nrOfTokenHolders}/> */} 
+                      <div className="tf-card__header-text">
+                        <FormattedNumber value={token20Item.holder}/>
                       </div>
-                      <div className="dor-img"><img src={require("../../images/issuedasset/1.png")} alt=""/></div>
                     </div>
                     <div className="tf-card__header-item">
-                      <div className="tf-card__header-title">{tu('day_add_holder')}</div>
-                      <div className="tf-card__header-text">-</div>
-                      <div className="dor-img"><img src={require("../../images/issuedasset/2.png")} alt=""/></div>
+                      <div className="tf-card__header-title">{tu('nr_of_Transfers')}</div>
+                      <div className="tf-card__header-text"><FormattedNumber value={token20Item.transfer20}/></div>
                     </div>
                     <div className="tf-card__header-item">
                       <div className="tf-card__header-title">{tu('day_transiction')}</div>
                       <div className="tf-card__header-text">-</div>
-                      <div className="dor-img"><img src={require("../../images/issuedasset/3.png")} alt=""/></div>
                     </div>
                     <div className="tf-card__header-item">
                       <div className="tf-card__header-title">{tu('last_price')}</div>
                       <div className="tf-card__header-text">-</div>
-                      <div className="dor-img"><img src={require("../../images/issuedasset/4.png")} alt=""/></div>
                     </div>
                     <div className="tf-card__header-item">
                       <div className="tf-card__header-title">{tu('total_value')}</div>
                       <div className="tf-card__header-text">-</div>
-                      <div className="dor-img"><img src={require("../../images/issuedasset/5.png")} alt=""/></div>
                     </div>
                   </div>
+
+                  <div className="question d-flex justify-content-end mb-2">
+                    <div className="ml-1">
+                      <span className="small">
+                        {tu('address_total_balance_info_sources')}：
+                      </span>
+                      <span className="small">
+                          <HrefLink
+                              href={
+                                  intl.locale == "zh"
+                                      ? "https://trx.market/zh/"
+                                      : "https://trx.market/"
+                              }
+                          >TRXMarket</HrefLink>
+                      </span>
+                      <img width={15} height={15}  style={{marginLeft:5}} src={require("../../images/svg/market.png")} alt=""/>
+                    </div>
+                  </div>
+
                   <table className="table tf-card-table">
                     <tbody>
                       <tr className="line-1">
