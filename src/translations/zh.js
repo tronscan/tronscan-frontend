@@ -1863,7 +1863,7 @@ export const messages = {
     "input_cmc": "上CMC(只需再填写10项信息)",
     "holder_amount": "持有者数量",
     "day_add_holder": "日新增持有者",
-    "day_transiction": "日交易量(手)",
+    "day_transiction": "日交易量",
     "total_value": "总市值",
     "black_reason": "拉黑原因",
     "appeal_reason": "申诉理由",
@@ -1871,5 +1871,6 @@ export const messages = {
     "i_know_black": "我已对拉黑的情况做了处理，申请恢复",
     "appeal_format": "申诉理由必须填写",
     "passed": "已通过",
+    "ico_infomation": "ICO信息"
 
 };
