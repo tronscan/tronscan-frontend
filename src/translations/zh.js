@@ -1854,7 +1854,7 @@ export const messages = {
     "check_cmc_detail": "查看cmc详情",
     "type_black": "已拉黑",
     "type_pass": "已通过",
-    "type_appeal": "申述处理中",
+    "type_appeal": "申诉处理中",
     "Appeal": "申诉",
     "input_market": "录入trx.market交易所(只需再填写10项信息)",
     "input_abcc": "录入abcc交易所(只需再填写12项信息)",
