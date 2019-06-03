@@ -84,11 +84,11 @@ export class SocialInfo extends Component {
           <hr/>
           <Row gutter={24} type="flex" justify="space-between" className="px-2">
             <Col  span={24} md={11}>
-              <Form.Item label={tu('trc20_token_info_Website')}>
+              <Form.Item label={tu('project_website')}>
                 {getFieldDecorator('website', {
                   rules: [{ required: true, message: tu('no_url_error'), whitespace: true}],
                 })(
-                  <Input placeholder={intl.formatMessage({id: 'url_message'})}/>
+                  <Input placeholder={intl.formatMessage({id: 'project_website'})}/>
                 )}
               </Form.Item>
             </Col>
