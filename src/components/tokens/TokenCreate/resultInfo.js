@@ -92,7 +92,7 @@ export class resultInfo extends Component {
         return (
             <main className="token-result">
                 {
-                    res? <div className="result-failure">
+                    !res? <div className="result-failure">
                         <img src={require("../../../images/token/result_failure.png")} alt=""/>
                         <h5>{tu('token_input_failure')}</h5>
                         <div className="mt-3 d-flex failure-reason">
