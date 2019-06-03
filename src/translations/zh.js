@@ -1781,7 +1781,7 @@ export const messages = {
   "select_trx_tip1":"推荐发行20通证",
   "select_trx_tip2":"单击此处",
   "select_trx_tip3":"了解更多10，20通证的区别",
-  "select_tip1":"10通证不需要合约，1024个Trx",
+  "select_tip1":"10通证不需要合约，需要1024个Trx",
   "select_tip2":"20通证由智能合约发行，不需要Trx",
   "leave_tip":"你当前有未录完的表单，是否放弃录入",
   "already_add_social_link_":"已添加社交媒体链接",

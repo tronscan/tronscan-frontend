@@ -157,7 +157,7 @@ class IssuedToken extends React.PureComponent{
         status10 = {
           isPassed: (issuedAsset.canShow == 0 || issuedAsset.canShow == 1 || issuedAsset.canShow == 2),
           isFailed: issuedAsset.canShow == 3,
-          isAppealing: appealInfo && appealInfo.status == 2,
+          isAppealing: appealInfo && issuedAsset.canShow == 3 && appealInfo.status == 2,
         }
         token10Time = issuedAsset.dateCreated
 
@@ -359,7 +359,7 @@ class IssuedToken extends React.PureComponent{
                 const appealItem = appealInfo20[index]
                 if(appealItem){
                   status20.isFailed = token20Item.status == 3 && appealItem.status == 0
-                  status20.isAppealing = appealItem.status == 2
+                  status20.isAppealing = token20Item.status == 3 && appealItem.status == 2
                 }
               
                 
