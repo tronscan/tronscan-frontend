@@ -1782,15 +1782,9 @@ export const messages = {
   "token_input_failure_submit":"再次提交",
   "select_trx_tip1":"推荐发行TRC20通证",
   "select_trx_tip2":"单击此处",
-<<<<<<< HEAD
-  "select_trx_tip3":"了解更多10，20通证的区别",
-  "select_tip1":"10通证不需要合约，需要1024个Trx",
-  "select_tip2":"20通证由智能合约发行，不需要Trx",
-=======
   "select_trx_tip3":"了解更多TRC10，TRC20通证的区别",
   "select_tip1":"发行TRC10通证不需要智能合约，只需消耗1024个TRX",
   "select_tip2":"发行TRC20通证需要智能合约，不需要消耗TRX",
->>>>>>> ab1097c848cfb9633eea8f23c1328026df7062ab
   "leave_tip":"你当前有未录完的表单，是否放弃录入",
   "already_add_social_link_":"已添加社交媒体链接",
   "token_spend_confirm_new":"我已获知发行通证需一次性消耗1024TRX。",
