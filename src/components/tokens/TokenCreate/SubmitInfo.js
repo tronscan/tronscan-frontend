@@ -74,7 +74,7 @@ const { TextArea } = Input;
             'description':token_introduction,
             'url':website,
             'totalSupply': token_supply * Math.pow(10, Number(precision)),
-            'totalSupplyTRC20':token_supply,
+            'totalSupplyTRC20':token_supply* Math.pow(10, Number(precision)),
             'address':author,
             'logoUrl':logo_url,
             'contractAddress':contract_address,
@@ -347,7 +347,7 @@ const { TextArea } = Input;
                      "icon_url":this.tokenState('logoUrl'),
                      "contract_address":this.tokenState('contractAddress'),
                      "contract_created_ratio":this.tokenState('contractCreatedRatio'),
-                     "contract_code":this.tokenState('contractCode'),
+                    // "contract_code":this.tokenState('contractCode'),
                      "home_page": this.tokenState('url'),
                      "email":this.tokenState('email'),
                      "white_paper":this.tokenState('whitePaper'),
@@ -430,7 +430,7 @@ const { TextArea } = Input;
 
     render() {
         let {intl, nextStep} = this.props;
-        let {iconList, modal, checkbox, errors, captcha_code, type, paramData:{ token_name, token_abbr, token_introduction, token_supply, precision, author, logo_url, contract_address, contract_created_date, contract_code, token_amount, trx_amount, freeze_amount, freeze_date, freeze_type, participation_start_date, participation_end_date, participation_type, website, email, white_paper,github_url }} = this.state;
+        let {iconList, modal, checkbox, errors, captcha_code, type, paramData:{ token_name, token_abbr, token_introduction, token_supply, precision, author, logo_url, contract_address, contract_created_date, contract_code, token_amount, trx_amount, freeze_amount, freeze_date, freeze_type, participation_start_date, participation_end_date, participation_type, website, email, white_paper,github_url,contract_created_address }} = this.state;
         const isTrc10 = type === 'trc10'
         const isTrc20 = type === 'trc20'
         let startTime = participation_start_date? participation_start_date.valueOf() :'';
@@ -514,16 +514,23 @@ const { TextArea } = Input;
                                 <FormattedDate value={contractCreateTime}/>
                             </p>
                         </Col>
-                    </Row>
-                    <Row type="flex">
-                        <Col span={24} md={24}>
-                            <label>{tu('contract_code')}</label>
-                            <TextArea rows={4}
-                             disabled={true}
-                             defaultValue={contract_code}
-                            />
+                        <Col span={24} md={12}>
+                            <label>{tu('contract_created_address')}</label>
+                            <p className="border-dashed">
+                                {contract_created_address}
+                            </p>
                         </Col>
+
                     </Row>
+                    {/*<Row type="flex">*/}
+                        {/*<Col span={24} md={24}>*/}
+                            {/*<label>{tu('contract_code')}</label>*/}
+                            {/*<TextArea rows={4}*/}
+                             {/*disabled={true}*/}
+                             {/*defaultValue={contract_code}*/}
+                            {/*/>*/}
+                        {/*</Col>*/}
+                    {/*</Row>*/}
                 </section>
                 <section className={ isTrc10? 'd-block mt-4': 'd-none'}>
                     <h4 className="mb-3">{tu('price_info')}</h4>
@@ -649,7 +656,7 @@ const { TextArea } = Input;
                                    this.setState({checkbox: e.target.checked, errors: {confirm: null}})
                                }}/>
                         <label className="form-check-label">
-                            {tu("token_spend_confirm")}
+                            {tu("token_spend_confirm_new")}
                         </label>
                     </div>
                     {this.ErrorLabel(errors.confirm)}

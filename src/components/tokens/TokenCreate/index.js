@@ -39,7 +39,7 @@ export class TokenCreate extends Component {
     super(props);
 
     this.state = {
-      step: 0,
+      step: 3,
       type: 'trc20',
       modal: null,
       isUpdate:false,
@@ -53,7 +53,8 @@ export class TokenCreate extends Component {
         logo_url: '',
         author: '',
         contract_address: '',
-        contract_created_date: moment().startOf('day'),
+        contract_created_date: '',
+        contract_created_address:'',
         contract_code: '',
         website: '',
         email: '',
@@ -73,273 +74,16 @@ export class TokenCreate extends Component {
         {method: 'Facebook', active: true, link: ['']},
         {method: 'Telegram', active: true, link: ['']},
         {method: 'Weibo', active: true, link: ['']},
-        {method: 'Reddit', active: false, link: []},
-        {method: 'Medium', active: false, link: []},
-        {method: 'Steemit', active: false, link: []},
-        {method: 'Instagram', active: false, link: []},
-        {method: 'Wechat', active: false, link: []},
-        {method: 'Group', active: false, link: []},
-        {method: 'Discord', active: false, link: []}
+        {method: 'Reddit', active: false, link: ['']},
+        {method: 'Medium', active: false, link: ['']},
+        {method: 'Steem', active: false, link: ['']},
+        {method: 'Instagram', active: false, link: ['']},
+        {method: 'Wechat', active: false, link: ['']},
+        {method: 'Group', active: false, link: ['']},
+        {method: 'Discord', active: false, link: ['']}
       ],
       res:'',
       errorInfo:'',
-
-//           step:1,
-//           type: 'trc20',
-//           modal: null,
-//           isUpdate:false,
-//           leave_lock: true,
-//           paramData: {
-//           token_name: 'IseriCoin',
-//               token_abbr: 'IRC',
-//               token_introduction: "The most secure collaboration platform powered by Tron Foundation. All protected with end to end encryption.",
-//               token_supply: '100000000000000000',
-//               precision: 6,
-//               logo_url: 'https://s2.coinmarketcap.com/static/img/coins/64x64/825.png',
-//               author: 'TA561MxvhxM4f81mU7bx9oipGP5zowTbhL',
-//               contract_address: 'TC6o5RdXrvSQGtCedYja1KvnZTtSy681uS',
-//               contract_created_date: moment().startOf('day'),
-//               contract_code: `pragma solidity ^0.4.24;
-//
-// interface tokenRecipient {
-//     function receiveApproval(address _from, uint256 _value, bytes _extraData) external;
-// }
-//
-//
-// contract Ownable  {
-//     address  public  _owner;
-//     bool  public  paused  =  false;
-//     bool  public  burned  =  false;
-//     bool  public  ceased  =  false;
-//     event  OwnershipTransferred(address  indexed  previousOwner,  address  indexed  newOwner);
-//
-//     constructor ()  internal  {
-//         _owner  =  msg.sender;
-//     }
-//
-//     function  owner()  public  view  returns  (address)  {
-//         return  _owner;
-//     }
-//
-//     modifier  onlyOwner()  {
-//         require(msg.sender  ==  _owner);
-//         _;
-//     }
-//
-//     function  transferOwnership(address  newOwner)  public  onlyOwner  {
-//         require(newOwner  !=  address(0));
-//         emit  OwnershipTransferred(_owner,  newOwner);
-//         _owner  =  newOwner;
-//     }
-//
-//     modifier  whenNotPaused()  {
-//         require(!paused);
-//         _;
-//     }
-//
-//     modifier  whenPaused  {
-//         require(paused);
-//         _;
-//     }
-//
-//     modifier  whenBurn  {
-//         require(burned);
-//         _;
-//     }
-//
-//     modifier whenNotCease {
-//         require(!ceased);
-//         _;
-//     }
-//
-//     function  pause()  external  onlyOwner  whenNotPaused  {
-//         paused  =  true;
-//     }
-//
-//     function  unPause()  public  onlyOwner  whenPaused  {
-//         paused  =  false;
-//     }
-//
-//     function openBurn() public onlyOwner{
-//         burned = true;
-//     }
-//
-//     function closeBurn() public onlyOwner{
-//          burned = false;
-//     }
-//
-//     function  cease()  external onlyOwner {
-//         ceased  =  true;
-//     }
-//
-//     function  unCease()  public onlyOwner {
-//         ceased  =  false;
-//     }
-//
-// }
-//
-// contract TRONAce is SafeMath,Ownable{
-//     string public name = "TRONAce";
-//     string public symbol = "ACE";
-//     uint8 constant public decimals = 6;
-//     mapping(address => uint256)  _balances;
-//     mapping(address => mapping(address => uint256)) public _allowed;
-//     mapping(address => uint256) public freezeBalance;
-//     mapping(address => uint256) public lockBalance;
-//     mapping(address => uint256) public unfreezeTime;
-//
-//     uint256 constant public precision = 1000000;
-//     uint256 constant public yi = 100000000;
-//     uint256 constant public daySec = 24 * 60 * 60;
-//
-//     uint256  public totalSupply = 1000 * yi * precision;
-//     bool public stopped = false;
-//
-//     uint256 public Manydays = 2;
-//
-//
-//     constructor () public{
-//         _owner = msg.sender;
-//         _balances[_owner] = totalSupply;
-//         emit Transfer(0x0, _owner, totalSupply);
-//     }
-//
-//     function balanceOf(address addr) public view returns (uint256) {
-//         return _balances[addr];
-//     }
-//
-//
-//
-//     function transfer(address _to, uint256 _value)  public returns (bool) {
-//         require(_to != address(0));
-//         require(_balances[msg.sender] >= _value && _value > 0);
-//         require(_balances[_to] + _value >= _balances[_to]);
-//
-//         _balances[msg.sender] = safeSub(_balances[msg.sender], _value);
-//         _balances[_to] = safeAdd(_balances[_to], _value);
-//         emit Transfer(msg.sender, _to, _value);
-//         return true;
-//     }
-//
-//     function transferFrom(address _from, address _to, uint256 _value)  public returns (bool) {
-//         require(_to != address(0));
-//         require(_balances[_from] >= _value && _value > 0);
-//         require(_balances[_to] + _value >= _balances[_to]);
-//
-//         require(_allowed[_from][msg.sender] >= _value);
-//
-//         _balances[_to] = safeAdd(_balances[_to], _value);
-//         _balances[_from] = safeSub(_balances[_from], _value);
-//         _allowed[_from][msg.sender] = safeSub(_allowed[_from][msg.sender], _value);
-//         emit Transfer(_from, _to, _value);
-//         return true;
-//     }
-//
-//     function approve(address spender, uint256 value)  public returns (bool) {
-//         require(spender != address(0));
-//         _allowed[msg.sender][spender] = value;
-//         emit Approval(msg.sender, spender, value);
-//         return true;
-//     }
-//
-//     function allowance(address _master, address _spender) public view returns (uint256) {
-//         return _allowed[_master][_spender];
-//     }
-//
-//
-//     function burn(uint256 _value) whenBurn public returns (bool success) {
-//         require(_balances[msg.sender] >= _value && totalSupply > _value);
-//         _balances[msg.sender] = safeSub(_balances[msg.sender],_value);
-//         totalSupply = safeSub(totalSupply, _value);
-//         emit Burn(msg.sender, _value);
-//         return true;
-//     }
-//
-//     function approveAndCall(address _spender, uint256 _value, bytes _extraData) whenNotCease external returns (bool success) {
-//         tokenRecipient spender = tokenRecipient(_spender);
-//         if (approve(_spender, _value)) {
-//             spender.receiveApproval(msg.sender, _value, _extraData);
-//             return true;
-//         }
-//     }
-//
-//
-//     function freeze(uint256 value) whenNotPaused public {
-//         require(_balances[msg.sender] >= value  && value > 0);
-//         _balances[msg.sender] = safeSub(_balances[msg.sender], value);
-//         freezeBalance[msg.sender] = safeAdd(freezeBalance[msg.sender], value);
-//         emit Freeze(msg.sender, value);
-//     }
-//
-//     function unfreeze(uint256 value) whenNotPaused public {
-//         require(value  > 0 && freezeBalance[msg.sender] >= value);
-//         freezeBalance[msg.sender] = safeSub(freezeBalance[msg.sender], value);
-//         lockBalance[msg.sender] = safeAdd(lockBalance[msg.sender], value);
-//         unfreezeTime[msg.sender] = now;
-//         emit Unfreeze(msg.sender, value);
-//     }
-//
-//     function unlock(uint256 value) whenNotPaused public {
-//         require(value > 0 && lockBalance[msg.sender] >= value);
-//         require(now - unfreezeTime[msg.sender] >= daySec * Manydays);
-//         lockBalance[msg.sender] = safeSub(lockBalance[msg.sender], value);
-//         _balances[msg.sender] = safeAdd(_balances[msg.sender], value);
-//         emit Unlock(msg.sender, value);
-//     }
-//
-//     function setDaySec (uint256 value) public onlyOwner{
-//         require(value >= 0);
-//         Manydays = value;
-//     }
-//
-//
-//     function withdraw(address addr, uint256 amount) public onlyOwner {
-//         addr.transfer(amount);
-//         emit WithDraw(addr, amount);
-//     }
-//
-//     function setName(string _name) onlyOwner public {
-//         name = _name;
-//     }
-//
-//     event Approval(address indexed _owner, address indexed _spender, uint256 _value);
-//     event Transfer(address indexed _from, address indexed _to, uint256 value);
-//     event Burn(address indexed _from, uint256 _value);
-//
-//     event WithDraw(address _addr, uint256 _amount);
-//     event Freeze(address addr, uint256 value);
-//     event Unfreeze(address addr, uint256 value);
-//     event Unlock(address addr, uint256 value);
-// }`,
-//               website: 'www.baidu.com',
-//               email: '431027103@qq.com',
-//               white_paper: 'https://tether.to/wp-content/uploads/2016/06/TetherWhitePaper.pdf',
-//
-//               trx_amount: '',
-//               token_amount: '',
-//               participation_type: true,
-//               participation_start_date:  moment().add(1, 'days').startOf('day'),
-//               participation_end_date:  moment().add(2, 'days').startOf('day'),
-//               freeze_type: false,
-//               freeze_amount: '',
-//               freeze_date: '',
-//       },
-//       iconList: [
-//           {name: 'twitter', active: false, links: ['https://twitter.com/TRONSCAN_ORG','https://twitter.com/TRONSCAN_ORG']},
-//           {name: 'Facebook', active: true, links: ['https://twitter.com/TRONSCAN_ORG','https://twitter.com/TRONSCAN_ORG']},
-//           {name: 'telegram', active: true, links: ['https://twitter.com/TRONSCAN_ORG','https://twitter.com/TRONSCAN_ORG']},
-//           {name: 'weibo', active: true, links: ['https://twitter.com/TRONSCAN_ORG','https://twitter.com/TRONSCAN_ORG']},
-//           {name: 'reddit', active: true, links: ['https://twitter.com/TRONSCAN_ORG','https://twitter.com/TRONSCAN_ORG']},
-//           {name: 'Medium', active: true, links: ['https://twitter.com/TRONSCAN_ORG','https://twitter.com/TRONSCAN_ORG']},
-//           {name: 'steemit', active: true, links: ['https://twitter.com/TRONSCAN_ORG','https://twitter.com/TRONSCAN_ORG']},
-//           {name: 'Instagram', active: true, links: ['https://twitter.com/TRONSCAN_ORG','https://twitter.com/TRONSCAN_ORG']},
-//           {name: 'weixin', active: true, links: ['https://twitter.com/TRONSCAN_ORG','https://twitter.com/TRONSCAN_ORG']},
-//           {name: 'Group', active: true, links: ['https://twitter.com/TRONSCAN_ORG','https://twitter.com/TRONSCAN_ORG']},
-//           {name: 'discord', active: true, links: ['https://twitter.com/TRONSCAN_ORG','https://twitter.com/TRONSCAN_ORG']}
-//       ],
-//           res:'',
-//           errorInfo:'',
-
     };
   }
 
@@ -363,6 +107,9 @@ export class TokenCreate extends Component {
       this.setState({ loading: true, isUpdate:true });
       let result = await xhr.get(API_URL+"/api/token?id=" + id + "&showAll=1");
       let token = result.data.data[0];
+      let new_social_media = [];
+      let socialMedia = [];
+      console.log('token10',token);
       Object.keys(token).map(key => {
         if(token[key] == 'no_message') token[key] = ''
       })
@@ -372,6 +119,42 @@ export class TokenCreate extends Component {
           return;
       }
       let { frozen_supply } = await Client.getAccountByAddressNew(token.ownerAddress);
+      if(token.new_social_media && token.new_social_media.length > 0){
+          new_social_media = token.new_social_media;
+      }else{
+          // let icon_list = [
+          //     {method: 'Instagram', active: false, link: ['']},
+          //     {method: 'Group', active: false, link: ['']},
+          //     {method: 'Discord', active: false, link: ['']}
+          // ]
+          // let icon_active_list = ['Twitter','Facebook','Telegram','Weibo']
+          //
+          // token.social_media.map((item, index) => {
+          //     console.log('item',item)
+          //     socialMedia.push({method:item.name , active: item.url?true:false, link: [item.url]})
+          // });
+          //
+          // new_social_media =  socialMedia.concat(icon_list)
+          // new_social_media.map((item, index) => {
+          //     icon_active_list.map((name,icon_index) => {
+          //         if(item.method == name  && item.active == false){
+          //             item.active = true
+          //         }
+          //     })
+          // })
+
+          new_social_media = this.state.iconList;
+          new_social_media.map((item, index) => {
+              token.social_media.map((name,icon_index) => {
+                  console.log('name',name)
+                  if(item.method == name.name){
+                      item.link[0] = name.url
+                  }
+              })
+          })
+      }
+
+
 
       this.setState({
           loading: false,
@@ -398,270 +181,70 @@ export class TokenCreate extends Component {
               email: token.email?token.email:'',
               white_paper: token.white_paper,
               github_url:token.github,
-
           },
-          iconList: [
-              {method: 'twitter', active: true, link: ['https://twitter.com/111','https://twitter.com/222']},
-          ],
+          iconList:new_social_media,
 
       });
   };
 
   loadToken20 = async (id) => {
-        this.setState({loading: true,  isUpdate:true});
-        let result = await xhr.get(API_URL+"/api/token_trc20?contract="+id);
-        let token = result.data.trc20_tokens[0];
-        console.log('token20',token);
-        this.setState({
+      this.setState({loading: true,  isUpdate:true});
+      let result = await xhr.get(API_URL+"/api/token_trc20?contract="+id);
+      let token = result.data.trc20_tokens[0];
+      let contractCode;
+      console.log('token20', moment(token.issue_time));
+      let new_social_media = [];
+      let socialMedia = [];
+      if(!token){
+          this.setState({loading: false,token: null});
+          this.props.history.push('/tokens/list')
+          return;
+      }else{
+          contractCode = await Client.getContractCode(token.contract_address);
+      }
+
+
+      if(token.new_social_media && token.new_social_media.length > 0){
+          new_social_media = token.new_social_media;
+      }else{
+          new_social_media = this.state.iconList
+          new_social_media.map((item, index) => {
+              token.social_media_list.map((name,icon_index) => {
+                  console.log('name',name)
+                  if(item.method == name.name){
+                      item.link[0] = name.url
+                  }
+              })
+          })
+          console.log('new_social_media',new_social_media)
+      }
+
+      this.setState({
             loading: false,
             step: 1,
             type: 'trc20',
             isUpdate:true,
             paramData: {
-                // token_name: token.name,
-                // token_abbr: token.symbol,
-                // token_introduction:token.token_desc,
-                // token_supply: (token.total_supply_with_decimals/ Math.pow(10,token.decimals)).toString(),
-                // precision: token.decimals,
-                // logo_url: token.icon_url,
-                // author: token.issue_address,
-                // contract_address: token.contract_address,
-                // contract_created_date: moment().startOf('day'),
-                // website: token.home_page,
-                // email: '123123123123123@qq.com',
-                // white_paper: token.white_paper,
-                // contract_code:'123123',
-                token_name: 'IseriCoin',
-                token_abbr: 'IRC',
-                token_introduction: "encryption.",
-                token_supply: '100000000000000000',
-                precision: 6,
-                logo_url: 'https://imgur.com/P4LkpL4.png',
-                author: 'TA561MxvhxM4f81mU7bx9oipGP5zowTbhL',
-                contract_address: 'TC6o5RdXrvSQGtCedYja1KvnZTtSy681uS',
-                contract_created_date: moment().startOf('day'),
-                contract_code: `pragma solidity ^0.4.24;
+                 token_name: token.name,
+                 token_abbr: token.symbol,
+                 token_introduction:token.token_desc,
+                 token_supply: (token.total_supply_with_decimals/ Math.pow(10,token.decimals)).toString(),
+                 precision: token.decimals,
+                 logo_url: token.icon_url,
+                 author: token.issue_address,
+                 contract_address: token.contract_address,
+                 //contract_created_date: moment(token.issue_time),
+                 contract_created_date:contractCode.data.date_created ? moment(contractCode.data.date_created): '',
+                 contract_created_address: contractCode.data.creator.address?contractCode.data.creator.address: '',
+                 website: token.home_page,
+                 email: token.email?token.email:'',
+                 white_paper: token.white_paper,
 
-interface tokenRecipient { 
-    function receiveApproval(address _from, uint256 _value, bytes _extraData) external;
-}
-
-
-contract Ownable  {
-    address  public  _owner;
-    bool  public  paused  =  false;
-    bool  public  burned  =  false;
-    bool  public  ceased  =  false;
-    event  OwnershipTransferred(address  indexed  previousOwner,  address  indexed  newOwner);
-
-    constructor ()  internal  {
-        _owner  =  msg.sender;
-    }
-
-    function  owner()  public  view  returns  (address)  {
-        return  _owner;
-    }
-
-    modifier  onlyOwner()  {
-        require(msg.sender  ==  _owner);
-        _;
-    }
-
-    function  transferOwnership(address  newOwner)  public  onlyOwner  {
-        require(newOwner  !=  address(0));
-        emit  OwnershipTransferred(_owner,  newOwner);
-        _owner  =  newOwner;
-    }
-
-    modifier  whenNotPaused()  {
-        require(!paused);
-        _;
-    }
-
-    modifier  whenPaused  {
-        require(paused);
-        _;
-    }
-
-    modifier  whenBurn  {
-        require(burned);
-        _;
-    }
-    
-    modifier whenNotCease {
-        require(!ceased);
-        _;
-    }
-    
-    function  pause()  external  onlyOwner  whenNotPaused  {
-        paused  =  true;
-    }
-
-    function  unPause()  public  onlyOwner  whenPaused  {
-        paused  =  false;
-    }
-    
-    function openBurn() public onlyOwner{
-        burned = true;
-    }
-    
-    function closeBurn() public onlyOwner{
-         burned = false;
-    }
-    
-    function  cease()  external onlyOwner {
-        ceased  =  true;
-    }
-
-    function  unCease()  public onlyOwner {
-        ceased  =  false;
-    }
-
-}
-
-contract TRONAce is SafeMath,Ownable{
-    string public name = "TRONAce"; 
-    string public symbol = "ACE";       
-    uint8 constant public decimals = 6;        
-    mapping(address => uint256)  _balances;
-    mapping(address => mapping(address => uint256)) public _allowed;
-    mapping(address => uint256) public freezeBalance;
-    mapping(address => uint256) public lockBalance;
-    mapping(address => uint256) public unfreezeTime;
-    
-    uint256 constant public precision = 1000000;
-    uint256 constant public yi = 100000000;
-    uint256 constant public daySec = 24 * 60 * 60;
-    
-    uint256  public totalSupply = 1000 * yi * precision;
-    bool public stopped = false;
-
-    uint256 public Manydays = 2;
-    
-
-    constructor () public{
-        _owner = msg.sender;
-        _balances[_owner] = totalSupply;
-        emit Transfer(0x0, _owner, totalSupply);
-    }
-
-    function balanceOf(address addr) public view returns (uint256) {
-        return _balances[addr];
-    }
-    
-    
-
-    function transfer(address _to, uint256 _value)  public returns (bool) {
-        require(_to != address(0));
-        require(_balances[msg.sender] >= _value && _value > 0);
-        require(_balances[_to] + _value >= _balances[_to]);
-        
-        _balances[msg.sender] = safeSub(_balances[msg.sender], _value);
-        _balances[_to] = safeAdd(_balances[_to], _value);
-        emit Transfer(msg.sender, _to, _value);
-        return true;
-    }
-
-    function transferFrom(address _from, address _to, uint256 _value)  public returns (bool) {
-        require(_to != address(0));
-        require(_balances[_from] >= _value && _value > 0);
-        require(_balances[_to] + _value >= _balances[_to]);
-        
-        require(_allowed[_from][msg.sender] >= _value);
-        
-        _balances[_to] = safeAdd(_balances[_to], _value);
-        _balances[_from] = safeSub(_balances[_from], _value);
-        _allowed[_from][msg.sender] = safeSub(_allowed[_from][msg.sender], _value);
-        emit Transfer(_from, _to, _value);
-        return true;
-    }
-
-    function approve(address spender, uint256 value)  public returns (bool) {
-        require(spender != address(0));
-        _allowed[msg.sender][spender] = value;
-        emit Approval(msg.sender, spender, value);
-        return true;
-    }
-
-    function allowance(address _master, address _spender) public view returns (uint256) {
-        return _allowed[_master][_spender];
-    }
-
-    
-    function burn(uint256 _value) whenBurn public returns (bool success) {
-        require(_balances[msg.sender] >= _value && totalSupply > _value);
-        _balances[msg.sender] = safeSub(_balances[msg.sender],_value);
-        totalSupply = safeSub(totalSupply, _value);                              
-        emit Burn(msg.sender, _value);
-        return true;
-    }
-
-    function approveAndCall(address _spender, uint256 _value, bytes _extraData) whenNotCease external returns (bool success) {
-        tokenRecipient spender = tokenRecipient(_spender);
-        if (approve(_spender, _value)) {
-            spender.receiveApproval(msg.sender, _value, _extraData);
-            return true;
-        }
-    }
-
-
-    function freeze(uint256 value) whenNotPaused public {
-        require(_balances[msg.sender] >= value  && value > 0);
-        _balances[msg.sender] = safeSub(_balances[msg.sender], value);
-        freezeBalance[msg.sender] = safeAdd(freezeBalance[msg.sender], value);
-        emit Freeze(msg.sender, value);
-    }
-
-    function unfreeze(uint256 value) whenNotPaused public {
-        require(value  > 0 && freezeBalance[msg.sender] >= value);
-        freezeBalance[msg.sender] = safeSub(freezeBalance[msg.sender], value);
-        lockBalance[msg.sender] = safeAdd(lockBalance[msg.sender], value);
-        unfreezeTime[msg.sender] = now;
-        emit Unfreeze(msg.sender, value);
-    }
-
-    function unlock(uint256 value) whenNotPaused public {
-        require(value > 0 && lockBalance[msg.sender] >= value);
-        require(now - unfreezeTime[msg.sender] >= daySec * Manydays);
-        lockBalance[msg.sender] = safeSub(lockBalance[msg.sender], value);
-        _balances[msg.sender] = safeAdd(_balances[msg.sender], value);
-        emit Unlock(msg.sender, value);
-    }
-      
-    function setDaySec (uint256 value) public onlyOwner{
-        require(value >= 0);
-        Manydays = value;
-    }
-    
-
-    function withdraw(address addr, uint256 amount) public onlyOwner {
-        addr.transfer(amount);
-        emit WithDraw(addr, amount);
-    }
-    
-    function setName(string _name) onlyOwner public {
-        name = _name;
-    }
-
-    event Approval(address indexed _owner, address indexed _spender, uint256 _value);
-    event Transfer(address indexed _from, address indexed _to, uint256 value);
-    event Burn(address indexed _from, uint256 _value);
-    
-    event WithDraw(address _addr, uint256 _amount);
-    event Freeze(address addr, uint256 value);
-    event Unfreeze(address addr, uint256 value);
-    event Unlock(address addr, uint256 value);
-}`,
-                website: 'www.taobao.com',
-                email: '2222222@qq.com',
-                white_paper: 'https://666.pdf',
             },
-            iconList: [
-                {method: 'twitter', active: true, link: ['https://twitter.com/111','https://twitter.com/222']},
-            ],
+            iconList: new_social_media,
 
-        });
-    };
+      });
+  };
 
   componentDidUpdate(prevProps, prevState) {
     let {wallet} = this.props;

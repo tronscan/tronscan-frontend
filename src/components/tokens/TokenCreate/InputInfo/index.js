@@ -6,6 +6,8 @@ import { ContractInfo } from './ContractInfo';
 import { PriceInfo } from './PriceInfo';
 import { SocialInfo } from './SocialInfo';
 import {Form} from 'antd';
+import {Client} from "../../../../services/api";
+import moment from 'moment';
 
 export class TokenCreate extends Component {
 
@@ -39,6 +41,20 @@ export class TokenCreate extends Component {
     });
   }
 
+    async loadContractCode(id) {
+        this.setState({loading: true});
+        let contractCode = await Client.getContractCode(id);
+        console.log('contractCode',contractCode)
+        this.setState({
+            contract_created_date:moment(contractCode.data.date_created) || '1111',
+            contract_created_address: contractCode.data.creator.address || '',
+        }, () => {
+            this.props.form.setFieldsValue({ contract_created_date:contractCode.data.date_created?moment(contractCode.data.date_created) : moment(1539204941000)});
+            this.props.form.setFieldsValue({ contract_created_address:contractCode.data.creator.address || '1111' });
+        });
+
+    }
+
   render() {
     const {intl, nextStep} = this.props
     const { form } = this.props
@@ -52,7 +68,7 @@ export class TokenCreate extends Component {
           <BaseInfo form={form} intl={intl} state={this.state}/>
 
           {/* contract info */}
-          <ContractInfo form={form} intl={intl} state={this.state}/>
+          <ContractInfo form={form} intl={intl} state={this.state} loadContractCode={(id) => { this.loadContractCode(id) }}/>
           
           {/* price info */}
           <PriceInfo form={form} intl={intl} state={this.state}/>
