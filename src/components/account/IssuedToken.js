@@ -7,12 +7,13 @@ import {reloadWallet} from "../../actions/wallet";
 import {NumberField} from "../common/Fields";
 import _ from "lodash";
 import { Tag, Tooltip } from 'antd';
-import {TokenLink, TokenTRC20Link, HrefLink} from "../common/Links";
+import {TokenLink, TokenTRC20Link, HrefLink, AddressLink} from "../common/Links";
 import AppealModal from './AppealModal'
 import xhr from "axios/index";
 import {FormattedDate, FormattedNumber, FormattedRelative, FormattedTime, injectIntl} from "react-intl";
 import {API_URL} from "../../constants";
 import { getTime} from "date-fns";
+import {CopyToClipboard} from "react-copy-to-clipboard";
 
 const blackMap = [
   '有盗用其他已上线币种名称的嫌疑',
@@ -157,7 +158,7 @@ class IssuedToken extends React.PureComponent{
         status10 = {
           isPassed: (issuedAsset.canShow == 0 || issuedAsset.canShow == 1 || issuedAsset.canShow == 2),
           isFailed: issuedAsset.canShow == 3,
-          isAppealing: appealInfo && appealInfo.status == 2,
+          isAppealing: appealInfo && issuedAsset.canShow == 3 && appealInfo.status == 2,
         }
         token10Time = issuedAsset.dateCreated
 
@@ -167,12 +168,14 @@ class IssuedToken extends React.PureComponent{
       }
 
         return (
+          <div className="mt-4">
+          <h4>{tu('my_token')}</h4>
           <div>{issuedAsset && 
-            <div className="tf-card mt-3">
+            <div className="tf-card">
               <div className="d-flex justify-content-between pl-3">
                 <h2>
                   <TokenLink id={issuedAsset.id} name={issuedAsset.name} address={issuedAsset.ownerAddress} namePlus={issuedAsset.name + ' (' + issuedAsset.abbr + ')'}/>
-                  <span style={{color:"#999"}}>[{issuedAsset.id}]</span>
+                  <span style={{color:"#999", fontSize: '18px'}}>[{issuedAsset.id}]</span>
                </h2>
                 <a href={"#/tokens/update/"+ issuedAsset.id}>
                 <button type="button" className="btn btn-outline-danger">{tu('updata_token_info')}</button>
@@ -183,7 +186,7 @@ class IssuedToken extends React.PureComponent{
                 <div className="tf-card__header-item">
                   <div className="tf-card__header-title">{tu('trc20_token_info_Total_Supply')}</div>
                   <div className="tf-card__header-text"><FormattedNumber value={issuedAsset.totalSupply / 10 ** issuedAsset.precision}/></div>
-                  <div className="dor_line"></div>
+                   {/** <div className="dor_line"></div>*/}
                 </div>
                 <div className="tf-card__header-item">
                   <div className="tf-card__header-title">{tu('holder_amount')}</div>
@@ -359,15 +362,21 @@ class IssuedToken extends React.PureComponent{
                 const appealItem = appealInfo20[index]
                 if(appealItem){
                   status20.isFailed = token20Item.status == 3 && appealItem.status == 0
-                  status20.isAppealing = appealItem.status == 2
+                  status20.isAppealing = token20Item.status == 3 && appealItem.status == 2
                 }
               
                 
-                return <div className="tf-card mt-3 token20" key={token20Item.contract_address}>
+                return <div className="tf-card token20" key={token20Item.contract_address}>
                   <div className="d-flex justify-content-between pl-3">
                     <h3 className="m-0 ">
                       <TokenTRC20Link name={token20Item.name} namePlus={token20Item.name + ' (' + token20Item.symbol + ')'} address={token20Item.contract_address}/>
-                      <span style={{color:"#999"}}>[{token20Item.contract_address}]</span>
+                      <span style={{color:"#999", fontSize: '18px'}}>[{token20Item.contract_address}]
+                        <CopyToClipboard text={token20Item.contract_address}>
+                        <span className="ml-1" style={{cursor: 'pointer'}}>
+                          <i className="fa fa-paste"/>
+                        </span>
+                        </CopyToClipboard>
+                      </span>
                   </h3>
                     <a href={"#/tokens/update/"+ token20Item.contract_address}>
                     <button type="button" className="btn btn-outline-danger">{tu('updata_token_info')}</button>
@@ -378,7 +387,6 @@ class IssuedToken extends React.PureComponent{
                     <div className="tf-card__header-item">
                       <div className="tf-card__header-title">{tu('trc20_token_info_Total_Supply')}</div>
                       <div className="tf-card__header-text"><FormattedNumber value={token20Item.total_supply / 10 ** token20Item.decimals}/></div>
-                      <div className="dor_line"></div>
                     </div>
                     <div className="tf-card__header-item">
                       <div className="tf-card__header-title">{tu('holder_amount')}</div>
@@ -493,7 +501,7 @@ class IssuedToken extends React.PureComponent{
               toAppealing={() => this.updateData()}
             />
           </div>
-        )
+          </div>)
     }
 }
 

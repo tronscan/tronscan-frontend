@@ -935,7 +935,7 @@ export const messages = {
     "brief_info": "简介",
     "website_official": "官方网站",
     "white_paper": "白皮书",
-    "GitHub": "GitHub",
+    "GitHub": "GitHub地址",
     "country": "国家",
     "social_link": "社交媒体链接",
     "download_excel": "下载模板",
@@ -1739,10 +1739,10 @@ export const messages = {
   "select_type": "请选择通证类型",
   "name_v_required": '通证名称必须填写',
   "name_v_format": "通证名称必须由字母，数字和空格组成",
-  "name_v_length": "通证名称最大30个字符",
+  "name_v_length": "通证名称2-30个字符",
   "abbr_v_required":"通证简称必须填写",
   "abbr_v_format":"通证简称必须由字母，数字组成",
-  "abbr_v_length":"通证简称最大10个字符",
+  "abbr_v_length":"通证简称2-10个字符",
   "token_description":"通证简介",
   "description_v_required":"通证简介必须填写",
   "description_v_length":"通证简介最大500个字符",
@@ -1790,7 +1790,7 @@ export const messages = {
   "token_spend_confirm_new":"我已获知发行通证需一次性消耗1024TRX。",
   "token_logo_input_placeholder":"请提交图片链接，支持jpg/jpeg/png格式,尺寸比例1:1",
   "contract_created_address":"合约创建者地址",
-  "token_input_trc10_tip":"通证Logo、GitHub、设计媒体链接请在更新Token时填写",
+  "token_input_trc10_tip":"通证Logo、GitHub、社交媒体链接请在更新Token时填写",
   "":"",
   "":"",
   "":"",
@@ -1846,12 +1846,12 @@ export const messages = {
 
 
 
-    "updata_token_info": "更新token信息",
-    "input_transcan": "录入tronscan",
+    "updata_token_info": "更新TOKEN信息",
+    "input_transcan": "录入TRONSCAN",
     "pass_time": "通过时间",
     "black_time": "拉黑时间",
     "appeal_time": "申诉时间",
-    "check_token_detail": "查看token详情",
+    "check_token_detail": "查看TOKEN详情",
     "check_market_detail": "查看market详情",
     "check_abcc_detail": "查看abcc详情",
     "check_cmc_detail": "查看cmc详情",
@@ -1872,6 +1872,7 @@ export const messages = {
     "i_know_black": "我已对拉黑的情况做了处理，申请恢复",
     "appeal_format": "申诉理由必须填写",
     "passed": "已通过",
-    "ico_infomation": "ICO信息"
+    "ico_infomation": "ICO信息",
+    "project_website": "项目官网"
 
 };
