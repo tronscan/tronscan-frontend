@@ -96,7 +96,7 @@ export function Information({token,currentTotalSupply}) {
                         token['market_info'].sShortName == 'TRX'? <div className="d-flex">
                             {token['market_info'].priceInTrx}  {token['market_info'].sShortName}
                             <span className={token['market_info'].gain<0? 'col-red ml-3':'col-green ml-3'}>{token['market_info'].gain >0 ?  <span>{'+' + parseInt(token['market_info'].gain * 10000) / 100 + '%'}</span>:<span>{ parseInt(token['market_info'].gain * 10000) / 100 + '%'}</span>}</span>
-                            <Link to={`/exchange/trc20?id=${token['market_info'].pairId}`} className="token-details btn ml-3"> {tu('transactions')}</Link>
+                            <Link to={`/exchange/trc20?id=${token['market_info'].pairId}`} className="token-details btn ml-3"> {tu('token_trade')}</Link>
                         </div>:'-'
                     }
 

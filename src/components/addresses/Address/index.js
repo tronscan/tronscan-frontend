@@ -240,15 +240,15 @@ class Address extends React.Component {
             // icon: "fa fa-exchange-alt",
             path: "/transfers",
             label: <span>{tu("transfers")}</span>,
-            cmp: () => <TransfersAll filter={{address: id}} address/>
+            cmp: () => <TransfersAll id={{address: id}} address/>
           },
-          transfers20: {
-            id: "transfers20",
-            // icon: "fa fa-exchange-alt",
-            path: "/20transfers",
-            label: <span>{tu("20_transfers")}</span>,
-            cmp: () => <TransfersTrc20 filter={{address: id}}/>
-          },
+          // transfers20: {
+          //   id: "transfers20",
+          //   // icon: "fa fa-exchange-alt",
+          //   path: "/20transfers",
+          //   label: <span>{tu("20_transfers")}</span>,
+          //   cmp: () => <TransfersTrc20 filter={{address: id}}/>
+          // },
           transactions: {
             id: "transactions",
             // icon: "fas fa-handshake",
@@ -316,15 +316,15 @@ class Address extends React.Component {
             // icon: "fa fa-exchange-alt",
             path: "/transfers",
             label: <span>{tu("transfers")}</span>,
-            cmp: () => <TransfersAll filter={{address: id}} address/>
+            cmp: () => <TransfersAll id={{address: id}} address/>
           },
-          transfers20: {
-            id: "transfers20",
-            // icon: "fa fa-exchange-alt",
-            path: "/20transfers",
-            label: <span>{tu("20_transfers")}</span>,
-            cmp: () => <TransfersTrc20 filter={{address: id}}/>
-          },
+          // transfers20: {
+          //   id: "transfers20",
+          //   // icon: "fa fa-exchange-alt",
+          //   path: "/20transfers",
+          //   label: <span>{tu("20_transfers")}</span>,
+          //   cmp: () => <TransfersTrc20 filter={{address: id}}/>
+          // },
           transactions: {
             id: "transactions",
             // icon: "fas fa-handshake",

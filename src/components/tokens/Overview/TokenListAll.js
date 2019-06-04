@@ -288,15 +288,14 @@ class TokenList extends Component {
               {
                 record.extra ? <a href={record.extra.url} className="token-active-details btn mt-2">{tu(record.extra.desc)}</a>
                     : record.pairId?
-                    <Link to={`/exchange/trc20?id=${record.pairId}`} className="token-details btn mt-2"> {tu('transactions')}</Link>
+                    <Link to={`/exchange/trc20?id=${record.pairId}`} className="token-details btn mt-2"> {tu('token_trade')}</Link>
                     : <div>
                       <a href="javascript:;"
                          className="token-disabled-exchange btn mt-2"
                          id={record.tokenType == "trc20"?"exchange_"+record.contractAddress:"exchange_"+record.tokenId}
                          onMouseOver={(prevS,props) => this.setState({[record.abbr]: true})}
                          onMouseOut={() => this.setState({[record.abbr]: false})}>
-
-                          {tu('transactions')}
+                          {tu('token_trade')}
                       </a>
                       <Tooltip placement="top" target={record.tokenType == "trc20"?"exchange_"+record.contractAddress:"exchange_"+record.tokenId} isOpen={this.state[record.abbr]}> <span className="text-capitalize">{tu("token_does_not_support_exchange")}</span></Tooltip>
                     </div>

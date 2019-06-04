@@ -2,7 +2,7 @@ import React, {Fragment} from "react";
 import {FormattedDate, FormattedNumber, FormattedTime, injectIntl} from "react-intl";
 import {Sticky, StickyContainer} from "react-sticky";
 import {Client} from "../../services/api";
-import {AddressLink, TransactionHashLink} from "./Links";
+import {AddressLink, TransactionHashLink, BlockNumberLink, TokenLink, TokenTRC20Link} from "./Links";
 import {tu} from "../../utils/i18n";
 import TimeAgo from "react-timeago";
 import {Truncate} from "./text";
@@ -11,6 +11,7 @@ import SmartTable from "./SmartTable.js"
 import {upperFirst,upperCase} from "lodash";
 import {TronLoader} from "./loaders";
 import rebuildList from "../../utils/rebuildList";
+import rebuildToken20List from "../../utils/rebuildToken20List";
 import {SwitchToken} from "./Switch";
 import TotalInfo from "./TableTotal";
 import DateRange from "./DateRange";
@@ -19,6 +20,8 @@ import moment from 'moment';
 import {NameWithId} from "./names";
 import _ from "lodash";
 import { Button,Table, Radio } from 'antd';
+
+
 
 class Transfers extends React.Component {
     constructor(props) {
@@ -63,8 +66,8 @@ class Transfers extends React.Component {
 
     load = async (page = 1, pageSize = 20) => {
         let transfersTRX;
-        let {filter, istrc20=false} = this.props;
-        let {showTotal,hideSmallCurrency,tokenName} = this.state;
+        let {id,istrc20=false} = this.props;
+        let {showTotal,hideSmallCurrency,tokenNam,filter} = this.state;
         this.setState(
             {
                 loading: true,
@@ -83,33 +86,39 @@ class Transfers extends React.Component {
             start_timestamp:this.start,
             end_timestamp:this.end,
             ...filter,
+            ...id,
         });
         list = transfers
         total = totaldata
         range = rangeTotal
+        console.log('transfers',transfers)
+        let transfersTRC10 = _(transfers).filter(tb => tb.type === "trc10" ).value();
+        let transfersTRC20 = _(transfers).filter(tb => tb.type === "trc20" ).value();
 
-        const rebuildRransfers = rebuildList(list, 'tokenName', 'amount');
+        let rebuildRransfersTRC10 = rebuildList(transfersTRC10, 'token_id', 'amount');
+        let rebuildRransfersTRC20  = rebuildToken20List(transfersTRC20, 'contract_address', 'amount');
+        console.log('rebuildRransfersTRC10',rebuildRransfersTRC10);
+        console.log('rebuildRransfersTRC20',rebuildRransfersTRC20);
+        let rebuildRransfers = rebuildRransfersTRC10.concat(rebuildRransfersTRC20);
+        rebuildRransfers =  _(rebuildRransfers).sortBy(tb => -tb.date_created).value();
+        console.log('rebuildRransfers',rebuildRransfers)
         rebuildRransfers.map( item => {
-            if(filter.address){
-                item.fromtip = !(item.transferFromAddress == filter.address)
-                item.totip = !(item.transferToAddress == filter.address)
+            if(item.map_token_id === '_'){
+                item.map_amount_logo = 'https://s2.coinmarketcap.com/static/img/coins/64x64/1958.png';
+                //item.type = '-';
+            }
+            if(id.address){
+                item.fromtip = !(item.owner_address == id.address)
+                item.totip = !(item.to_address == id.address)
             }else{
                 item.fromtip = true
                 item.totip = true
             }
         })
 
-        if(hideSmallCurrency){
-            transfersTRX = _(transfers)
-                .filter(tb => tb.tokenName === "_" || upperCase(tb.tokenName) === "TRX")
-                .value();
-        }else{
-            transfersTRX = transfers
-        }
-
         this.setState({
             page,
-            transfers:transfersTRX,
+            transfers:rebuildRransfers,
             total:total,
             rangeTotal:range,
             loading: false,
@@ -140,10 +149,10 @@ class Transfers extends React.Component {
 
             {
                 title: upperFirst(intl.formatMessage({id: 'hash'})),
-                dataIndex: 'transactionHash',
-                key: 'transactionHash',
+                dataIndex: 'hash',
+                key: 'hash',
                 align: 'left',
-                width: '20%',
+                width: '10%',
                 className: 'ant_table',
                 render: (text, record, index) => {
                     return <Truncate>
@@ -154,9 +163,50 @@ class Transfers extends React.Component {
                 }
             },
             {
+                title: upperFirst(intl.formatMessage({id: 'status'})),
+                dataIndex: 'status',
+                key: 'status',
+                align: 'left',
+                className: 'ant_table',
+                render: (text, record, index) => {
+                    return (
+                        <div>
+                            {
+                                record.confirmed ?
+                                    <span className="badge badge-success text-uppercase">{tu("Confirmed")}</span> :
+                                    <span className="badge badge-danger text-uppercase">{tu("Unconfirmed")}</span>
+                            }
+                        </div>
+
+                    )
+                }
+            },
+            {
+                title: upperFirst(intl.formatMessage({id: 'result' })),
+                dataIndex: 'contractRet',
+                key: 'contractRet',
+                align: 'left',
+                className: 'ant_table',
+                width: '10%',
+                render: (text, record, index) => {
+                    return <span>{text}</span>
+                }
+            },
+            {
+                title: upperFirst(intl.formatMessage({id: 'block' })),
+                dataIndex: 'block',
+                key: 'block',
+                align: 'left',
+                className: 'ant_table',
+                width: '10%',
+                render: (text, record, index) => {
+                    return <BlockNumberLink number={record.block}/>
+                }
+            },
+            {
                 title: upperFirst(intl.formatMessage({id: 'age'})),
-                dataIndex: 'timestamp',
-                key: 'timestamp',
+                dataIndex: 'date_created',
+                key: 'date_created',
                 align: 'left',
                 className: 'ant_table',
                 width: '14%',
@@ -166,28 +216,39 @@ class Transfers extends React.Component {
             },
             {
                 title: upperFirst(intl.formatMessage({id: 'from'})),
-                dataIndex: 'transferFromAddress',
-                key: 'transferFromAddress',
+                dataIndex: 'owner_address',
+                key: 'owner_address',
                 align: 'left',
                 className: 'ant_table',
                 render: (text, record, index) => {
-                    return record.fromtip?
-                        <AddressLink address={text}/>:
-                        <Truncate><span>{text}</span></Truncate>
+                    return <div>
+                        {
+                            record.type == 'trc10' && record.fromtip ?
+                                <AddressLink address={text}/>:
+                                <Truncate><span>{text}</span></Truncate>
+                        }
+                        {
+                            record.type == 'trc20' && record.fromtip ?
+                                <AddressLink address={record.from_address}/>:
+                                <Truncate><span>{record.from_address}</span></Truncate>
+                        }
+
+                    </div>
+
                 }
             },
             {
                 title: '',
                 className: 'ant_table',
-                width: '30px',
+                width: '25px',
                 render: (text, record, index) => {
-                    return <img src={require("../../images/arrow.png")}/>
+                    return record.fromtip?<img width={40} height={22} src={require("../../images/address/in.png")}/>:<img  width={40} height={22} src={require("../../images/address/out.png")}/>
                 }
             },
             {
                 title: upperFirst(intl.formatMessage({id: 'to'})),
-                dataIndex: 'transferToAddress',
-                key: 'transferToAddress',
+                dataIndex: 'to_address',
+                key: 'to_address',
                 align: 'left',
                 className: 'ant_table',
                 render: (text, record, index) => {
@@ -200,24 +261,97 @@ class Transfers extends React.Component {
                 title: upperFirst(intl.formatMessage({id: 'amount'})),
                 dataIndex: 'amount',
                 key: 'amount',
-                align: 'right',
+                align: 'left',
                 className: 'ant_table _text_nowrap',
                 render: (text, record, index) => {
-                    return <NameWithId value={record}/>
+                    return <span>{record.map_amount}</span>
+                }
+            },
+            {
+                title: upperFirst(intl.formatMessage({id: 'token'})),
+                dataIndex: 'map_token_name',
+                key: 'map_token_name',
+                width: '10%',
+                align: 'left',
+                className: 'ant_table',
+                render: (text, record, index) => {
+                    return (
+
+                        record.map_token_id == 1002000  || record.map_token_id == 'TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t'?<div>
+                                <b className="token-img-top" style={{marginRight: 5}}>
+                                    <img width={20} height={20} src={record.map_amount_logo} />
+                                    <i style={{width: 10, height: 10, bottom: -5}}></i>
+                                </b>
+                                {
+                                    record.tokenType == 'TRC20'?
+                                        <TokenTRC20Link name={record.map_token_id} address={record.contract_address} namePlus={record.map_token_name_abbr}/>
+                                        :
+                                        <TokenLink id={record.map_token_id} name={record.map_token_name_abbr} address={record.address}/>
+
+
+                                }
+                            </div>
+                            :
+                            <div>
+                                <img width={20} height={20} src={record.map_amount_logo} style={{marginRight: 5}}/>
+                                {
+                                    record.tokenType == 'TRC20'?
+                                        <TokenTRC20Link name={record.map_token_id} address={record.contract_address} namePlus={record.map_token_name_abbr}/>
+                                        :
+                                        <TokenLink id={record.map_token_id} name={record.map_token_name_abbr} address={record.address}/>
+
+
+                                }
+                            </div>
+
+
+                    )
                 }
             },
             // {
-            //     title: upperFirst(intl.formatMessage({id: 'status'})),
-            //     dataIndex: 'confirmed',
-            //     key: 'confirmed',
-            //     align: 'center',
+            //     title: upperFirst(intl.formatMessage({id: 'address_balance_token_type'})),
+            //     dataIndex: 'type',
+            //     key: 'type',
+            //     align: 'left',
             //     className: 'ant_table',
             //     render: (text, record, index) => {
-            //         return record.confirmed?
-            //             <span className="badge badge-success text-uppercase">{intl.formatMessage({id:'Confirmed'})}</span> :
-            //             <span className="badge badge-danger text-uppercase">{intl.formatMessage({id: 'Unconfirmed'})}</span>
-            //     },
-            // }
+            //         return <div className="text-uppercase">{text}</div>
+            //     }
+            // },
+            // {
+            //     title: upperFirst(intl.formatMessage({id: 'address_net_fee'})),
+            //     dataIndex: 'address_net_fee',
+            //     key: 'address_net_fee',
+            //     align: 'left',
+            //     className: 'ant_table',
+            //     render: (text, record, index) => {
+            //         return <span>
+            //             {
+            //                 record.cost?
+            //                     <FormattedNumber value={record.cost.net_usage + record.cost.net_fee/10 }/>
+            //                     : <span>-</span>
+            //
+            //
+            //             }
+            //         </span>
+            //     }
+            // },
+            // {
+            //     title: upperFirst(intl.formatMessage({id: 'address_energy_fee'})),
+            //     dataIndex: 'address_energy_fee',
+            //     key: 'address_energy_fee',
+            //     align: 'left',
+            //     className: 'ant_table',
+            //     render: (text, record, index) => {
+            //         return <span>
+            //             {
+            //                 record.cost?
+            //                     <FormattedNumber value={record.cost.energy_usage_total}/>
+            //                     : <span>-</span>
+            //             }
+            //         </span>
+            //     }
+            // },
         ];
         return column;
     }
