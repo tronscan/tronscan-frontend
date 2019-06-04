@@ -1586,6 +1586,8 @@ export const messages = {
   "trc20_24h_h":"24h High",
   "trc20_24h_l":"24h Low",
   
+  "trc20_fire_token":"SCC & SCT Trading Competition – 1,500,000 SCT to Win!",
+  
 
   "create_deal_pair": "Create Trading Pairs",
   "add_deal_pair_desc": "Trading pair creation is available.",

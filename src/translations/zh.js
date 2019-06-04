@@ -1534,6 +1534,8 @@ export const messages = {
   "trc20_24h_h":"24h最高价",
   "trc20_24h_l":"24h最低价",
 
+  "trc20_fire_token":"SCC & SCT 联合交易投注赛 – 1,500,000 SCT 等你来拿!",
+  
     /*
     *  2018-12-18
     * */

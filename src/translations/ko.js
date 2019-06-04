@@ -1527,6 +1527,9 @@ export const messages = {
   "trc20_register":"주문 도서",
   "trc20_24h_h":"24h 높은",
   "trc20_24h_l":"24h 낮은",
+
+  "trc20_fire_token":"SCC & SCT Trading Competition – 1,500,000 SCT to Win!",
+
   /*
    *  2018-12-18
    * */

@@ -13,6 +13,8 @@ import { injectIntl, FormattedNumber } from "react-intl";
 import Lockr from "lockr";
 import _ from "lodash";
 import { Client20 } from "../../../../../services/api";
+import { Popover } from "antd";
+import { tu } from "../../../../../utils/i18n";
 
 class ExchangeTable extends Component {
   constructor(props) {
@@ -28,16 +30,40 @@ class ExchangeTable extends Component {
   }
 
   getColumns() {
-    let { intl, price, activeCurrency } = this.props;
+    let { intl, price, activeCurrency, activeLanguage } = this.props;
     let { dataSource, offlineToken } = this.state;
     let isfov = Lockr.get("DEX") == "GEM";
     let favList = Lockr.get("dex20") || [];
+
     const columns = [
       {
         title: upperFirst(intl.formatMessage({ id: "trc20_price" })),
         key: "first_token_id",
         width: 120,
         render: (text, record, index) => {
+          let content = (
+            <div style={{ width: "150px" }}>
+              <p>{tu("trc20_fire_token")}</p>
+              <p style={{ textAlign: "right", color: "#C53028" }}>
+                {activeLanguage === "zh" ? (
+                  <a
+                    href="https://support.trx.market/hc/zh-cn/articles/360029062571-SCC-SCT-%E8%81%94%E5%90%88%E4%BA%A4%E6%98%93%E6%8A%95%E6%B3%A8%E8%B5%9B-1-500-000-SCT-%E7%AD%89%E4%BD%A0%E6%9D%A5%E6%8B%BF-"
+                    target="_blank"
+                  >
+                    {tu("learn_more")}
+                  </a>
+                ) : (
+                  <a
+                    href="https://support.trx.market/hc/en-us/articles/360029062571-SCC-SCT-Trading-Competition-1-500-000-SCT-to-Win-"
+                    target="_blank"
+                  >
+                    {tu("learn_more")}
+                  </a>
+                )}{" "}
+                >
+              </p>
+            </div>
+          );
           return (
             <div className="position-relative" style={{ display: "flex" }}>
               {/* {isfov && (
@@ -106,6 +132,21 @@ class ExchangeTable extends Component {
                   {record.price.toFixed(record.sPrecision)}
                 </p>
               </div>
+
+              {(record.id === 59 || record.id === 60) && (
+                <div>
+                  <Popover content={content} title="">
+                    <img
+                      src={require("../../../../../images/fire.svg")}
+                      style={{
+                        width: "15px",
+                        marginLeft: "5px"
+                      }}
+                      alt="fire"
+                    />
+                  </Popover>
+                </div>
+              )}
             </div>
           );
         }
@@ -374,7 +415,8 @@ function mapStateToProps(state) {
   return {
     klineLock: state.exchange.klineLock,
     activeCurrency: state.app.activeCurrency,
-    price: state.exchange.price
+    price: state.exchange.price,
+    activeLanguage: state.app.activeLanguage
   };
 }
 

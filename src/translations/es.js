@@ -1585,6 +1585,9 @@ export const messages = {
   "trc20_register":"orden de compra",
   "trc20_24h_h":"24h Alto",
   "trc20_24h_l":"24h bajo",
+
+  "trc20_fire_token":"SCC & SCT Trading Competition – 1,500,000 SCT to Win!",
+
   /*
    *  2018-12-18
    * */

@@ -16,6 +16,7 @@ import { change10lock, setWidget } from "../../../../../actions/exchange";
 import { TokenTRC20Link } from "../../../../common/Links";
 import { Icon, Modal } from "antd";
 import { toThousands } from "../../../../../utils/number";
+import { Popover } from "antd";
 
 class Tokeninfo extends React.Component {
   constructor() {
@@ -120,7 +121,13 @@ class Tokeninfo extends React.Component {
 
   render() {
     const { tokeninfoItem, detailShow, tvStatus } = this.state;
-    const { selectData, widget, price, activeCurrency } = this.props;
+    const {
+      selectData,
+      widget,
+      price,
+      activeCurrency,
+      activeLanguage
+    } = this.props;
     let imgDefault = require("../../../../../images/logo_default.png");
     let price_convert = 0;
     if (
@@ -138,6 +145,29 @@ class Tokeninfo extends React.Component {
         ] * selectData.price
       ).toFixed(8);
     }
+    let content = (
+      <div style={{ width: "150px" }}>
+        <p>{tu("trc20_fire_token")}</p>
+        <p style={{ textAlign: "right", color: "#C53028" }}>
+          {activeLanguage === "zh" ? (
+            <a
+              href="https://support.trx.market/hc/zh-cn/articles/360029062571-SCC-SCT-%E8%81%94%E5%90%88%E4%BA%A4%E6%98%93%E6%8A%95%E6%B3%A8%E8%B5%9B-1-500-000-SCT-%E7%AD%89%E4%BD%A0%E6%9D%A5%E6%8B%BF-"
+              target="_blank"
+            >
+              {tu("learn_more")}
+            </a>
+          ) : (
+            <a
+              href="https://support.trx.market/hc/en-us/articles/360029062571-SCC-SCT-Trading-Competition-1-500-000-SCT-to-Win-"
+              target="_blank"
+            >
+              {tu("learn_more")}
+            </a>
+          )}{" "}
+          >
+        </p>
+      </div>
+    );
     return (
       <div>
         {/* title 信息 */}
@@ -150,6 +180,19 @@ class Tokeninfo extends React.Component {
           <div className="info-wrap">
             <div className="item">
               <p>
+                {(selectData.id === 59 || selectData.id === 60) && (
+                  <Popover content={content} title="">
+                    <img
+                      src={require("../../../../../images/fire.svg")}
+                      style={{
+                        width: "15px",
+                        marginRight: "5px",
+                        marginTop: "-5px"
+                      }}
+                      alt="fire"
+                    />
+                  </Popover>
+                )}
                 <span>{selectData.fShortName}</span> / {selectData.sShortName}
               </p>
               <p>

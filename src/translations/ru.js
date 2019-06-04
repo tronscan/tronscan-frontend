@@ -1542,6 +1542,9 @@ export const messages = {
   "trc20_register":"Книга заказов",
   "trc20_24h_h":"24h Высоко",
   "trc20_24h_l":"24h низкий",
+
+  "trc20_fire_token":"SCC & SCT Trading Competition – 1,500,000 SCT to Win!",
+
   /*
     *  2018-12-18
   * */

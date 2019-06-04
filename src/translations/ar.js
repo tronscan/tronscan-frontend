@@ -1529,6 +1529,9 @@
   "trc20_24h_h":"24h متوسط",
   "trc20_24h_l":"24h منخفض",
 
+  "trc20_fire_token":"SCC & SCT Trading Competition – 1,500,000 SCT to Win!",
+
+
     /*
     *  2018-12-18
     * */
