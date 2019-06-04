@@ -39,7 +39,7 @@
   "info.svg": "ce0369650e23ec7e420a8af6750d8a87.svg",
   "languages.js": "static/js/languages.e44857b1.chunk.js",
   "main.css": "static/css/main.4f93961b.css",
-  "main.js": "static/js/main.d5a9954b.js",
+  "main.js": "static/js/main.7f04d318.js",
   "static/media/24-Hour-Trading-Volume.png": "static/media/24-Hour-Trading-Volume.b6ff215b.png",
   "static/media/Average-Price.png": "static/media/Average-Price.fca4d71b.png",
   "static/media/Block-Producer-Chart.png": "static/media/Block-Producer-Chart.3369eae3.png",
@@ -81,5 +81,5 @@
   "static/media/tron-logo.jpg": "static/media/tron-logo.f142f640.jpg",
   "static/media/tronscan_wechat.png": "static/media/tronscan_wechat.1e828828.png",
   "static/media/wallet-preview.png": "static/media/wallet-preview.d53c0b10.png",
-  "vendors.js": "static/js/vendors.ada2f709.js"
+  "vendors.js": "static/js/vendors.1af3f339.js"
 }

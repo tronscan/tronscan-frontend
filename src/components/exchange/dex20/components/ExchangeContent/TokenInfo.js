@@ -186,7 +186,7 @@ class Tokeninfo extends React.Component {
                       src={require("../../../../../images/fire.svg")}
                       style={{
                         width: "15px",
-                        marginLeft: "5px",
+                        marginRight: "5px",
                         marginTop: "-5px"
                       }}
                       alt="fire"
