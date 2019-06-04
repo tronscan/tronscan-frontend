@@ -378,7 +378,7 @@ class IssuedToken extends React.PureComponent{
                 }
               
                 
-                return <div className="tf-card token20" key={token20Item.contract_address}>
+                return <div className={`${index > 0 && 'mt-3'} tf-card token20`} key={token20Item.contract_address}>
                   <div className="d-flex justify-content-between pl-3">
                     <h3 className="m-0 ">
                       <TokenTRC20Link name={token20Item.name} namePlus={token20Item.name + ' (' + token20Item.symbol + ')'} address={token20Item.contract_address}/>
