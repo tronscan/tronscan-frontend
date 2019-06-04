@@ -108,8 +108,14 @@ class Transfers extends React.Component {
                 //item.type = '-';
             }
             if(id.address){
-                item.fromtip = !(item.owner_address == id.address)
-                item.totip = !(item.to_address == id.address)
+                if(item.type == 'trc10'){
+                    item.fromtip = !(item.owner_address == id.address)
+                    item.totip = !(item.to_address == id.address)
+                }else{
+                    item.fromtip = !(item.from_address == id.address)
+                    item.totip = !(item.to_address == id.address)
+                }
+
             }else{
                 item.fromtip = true
                 item.totip = true
@@ -223,14 +229,9 @@ class Transfers extends React.Component {
                 render: (text, record, index) => {
                     return <div>
                         {
-                            record.type == 'trc10' && record.fromtip ?
-                                <AddressLink address={text}/>:
-                                <Truncate><span>{text}</span></Truncate>
-                        }
-                        {
-                            record.type == 'trc20' && record.fromtip ?
-                                <AddressLink address={record.from_address}/>:
-                                <Truncate><span>{record.from_address}</span></Truncate>
+                            record.fromtip ?
+                                <AddressLink address={record.type == 'trc10'?text:record.from_address}/>:
+                                <Truncate><span>{record.type == 'trc10'?text:record.from_address}</span></Truncate>
                         }
 
                     </div>
@@ -419,7 +420,7 @@ class Transfers extends React.Component {
                     </div>
                 }
                 {
-                    transfers.length &&  <div className="d-flex align-items-center">
+                    transfers.length > 0 &&  <div className="d-flex align-items-center">
                         <div className="address-transfers-radio">
                             <Radio.Group size="Small" value={filter.direction}  onChange={this.onRadioChange}>
                                 <Radio.Button value="all">{tu('all')}</Radio.Button>
