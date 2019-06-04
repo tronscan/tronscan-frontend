@@ -2,11 +2,12 @@ import {connect} from "react-redux";
 import React from "react";
 import {Modal, ModalBody, ModalHeader} from "reactstrap";
 import {tu, t,option_t} from "../../utils/i18n";
+import {alpha} from "../../utils/str";
 import {Client} from "../../services/api";
 import {reloadWallet} from "../../actions/wallet";
 import {NumberField} from "../common/Fields";
 import _ from "lodash";
-import { Tag, Tooltip } from 'antd';
+import { Tag } from 'antd';
 import {TokenLink, TokenTRC20Link, HrefLink, AddressLink} from "../common/Links";
 import AppealModal from './AppealModal'
 import xhr from "axios/index";
@@ -14,6 +15,7 @@ import {FormattedDate, FormattedNumber, FormattedRelative, FormattedTime, inject
 import {API_URL} from "../../constants";
 import { getTime} from "date-fns";
 import {CopyToClipboard} from "react-copy-to-clipboard";
+import {Tooltip} from "reactstrap";
 
 const blackMap = [
   '有盗用其他已上线币种名称的嫌疑',
@@ -38,7 +40,9 @@ class IssuedToken extends React.PureComponent{
             appealInfo: {},
             appealInfo10: {},
             appealInfo20: [],
-            token20List: []
+            token20List: [],
+            copied: false,
+            id: alpha(24)
         };
     }
     async showModal(type, index){
@@ -130,6 +134,14 @@ class IssuedToken extends React.PureComponent{
       }
     }
 
+    setCopied = () => {
+      this.setState({
+        copied: true,
+      });
+  
+      setTimeout(() => this.setState({ copied: false }), 1200);
+    };
+
     componentDidUpdate(prevProps) {
       const {issuedAsset, account} = this.props
       if(issuedAsset && (issuedAsset != prevProps.issuedAsset)){
@@ -149,7 +161,7 @@ class IssuedToken extends React.PureComponent{
 
     render() {
       const issuedAsset = this.props.issuedAsset
-      const {appealInfo,appealInfo10, token20List, appealInfo20} = this.state
+      const {appealInfo,appealInfo10, token20List, appealInfo20, copied, id} = this.state
       const { account, intl, currentWallet, unfreezeAssetsConfirmation } = this.props
 
       let status10;
@@ -371,10 +383,13 @@ class IssuedToken extends React.PureComponent{
                     <h3 className="m-0 ">
                       <TokenTRC20Link name={token20Item.name} namePlus={token20Item.name + ' (' + token20Item.symbol + ')'} address={token20Item.contract_address}/>
                       <span style={{color:"#999", fontSize: '18px'}}>[{token20Item.contract_address}]
-                        <CopyToClipboard text={token20Item.contract_address}>
-                        <span className="ml-1" style={{cursor: 'pointer'}}>
-                          <i className="fa fa-paste"/>
-                        </span>
+                        <CopyToClipboard text={token20Item.contract_address}  onCopy={this.setCopied}>
+                          <span id={id} className="ml-1" style={{cursor: 'pointer'}}>
+                            <i className="fa fa-paste"/>
+                            <Tooltip placement="top" isOpen={copied} target={id}>
+                              {tu("copied_to_clipboard")}
+                            </Tooltip>
+                          </span>
                         </CopyToClipboard>
                       </span>
                   </h3>

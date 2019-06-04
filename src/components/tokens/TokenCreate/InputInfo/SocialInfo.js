@@ -107,7 +107,7 @@ export class SocialInfo extends Component {
                   {getFieldDecorator('github_url', {
                       rules: [{ required: false, message: tu('no_url_error'), whitespace: true}],
                   })(
-                      <Input placeholder={intl.formatMessage({id: 'github_url_message'})}/>
+                      <Input placeholder={intl.formatMessage({id: 'GitHub'})}/>
                   )}
               </Form.Item>
             </Col>
