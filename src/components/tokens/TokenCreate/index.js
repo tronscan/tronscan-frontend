@@ -66,8 +66,8 @@ export class TokenCreate extends Component {
         participation_start_date:  moment().add(1, 'days').startOf('day'),
         participation_end_date:  moment().add(2, 'days').startOf('day'),
         freeze_type: false,
-        freeze_amount: '',
-        freeze_date: '',
+        freeze_amount: 0,
+        freeze_date: 0,
       },
       iconList: [
         {method: 'Twitter', active: true, link: ['']},

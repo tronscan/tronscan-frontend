@@ -17,14 +17,14 @@ import {transactionResultManager} from "../../../utils/tron";
 import {t, tu} from "../../../utils/i18n";
 import {TronLoader} from "../../common/loaders";
 import {API_URL, ASSET_ISSUE_COST, ONE_TRX} from "../../../constants";
-
+import BigNumber from "bignumber.js";
 
 import {
     Form, Row, Col, Input, Button, Icon,
 } from 'antd';
 
 const { TextArea } = Input;
-
+BigNumber.config({ EXPONENTIAL_AT: [-20, 30] });
 @withTronWeb
 
 
@@ -74,7 +74,7 @@ const { TextArea } = Input;
             'description':token_introduction,
             'url':website,
             'totalSupply': token_supply * Math.pow(10, Number(precision)),
-            'totalSupplyTRC20':(token_supply* Math.pow(10, Number(precision))).toString(),
+            'totalSupplyTRC20':new BigNumber(token_supply).shiftedBy(precision).toString(),
             'address':author,
             'logoUrl':logo_url,
             'contractAddress':contract_address,
@@ -220,7 +220,10 @@ const { TextArea } = Input;
                         // }
                     } else if(this.props.walletType.type === "ACCOUNT_TRONLINK"){
                         let unSignTransaction = '';
+
+
                         if(this.state.isUpdate){
+                            //Update
                             let data  = {
                                 "address":this.tokenState('address'),
                                 "issuer_addr": this.tokenState('address'),
@@ -248,6 +251,8 @@ const { TextArea } = Input;
                                 errorInfo = unSignTransaction.retMsg
                             }
                         }else{
+                            //Create
+                            this.tokenState('frozenAmount')>0 && this.tokenState('frozenDuration') > 0 ?
                             unSignTransaction = await tronWeb.transactionBuilder.createToken({
                                 name: this.tokenState('name'),
                                 abbreviation: this.tokenState('abbreviation'),
@@ -258,14 +263,32 @@ const { TextArea } = Input;
                                 trxRatio: this.tokenState('trxRatio'),
                                 saleStart: this.tokenState('saleStart'),
                                 saleEnd: this.tokenState('saleEnd'),
-                                freeBandwidth: 1,
-                                freeBandwidthLimit: 1,
+                                freeBandwidth: 0,
+                                freeBandwidthLimit: 0,
                                 frozenAmount: this.tokenState('frozenAmount'),
                                 frozenDuration: this.tokenState('frozenDuration'),
                                 precision:  this.tokenState('precision'),
                             }, tronWeb.defaultAddress.hex).catch(function (e) {
                                 errorInfo = e.indexOf(':')?e.split(':')[1]:e
                             })
+                            :
+                            unSignTransaction = await tronWeb.transactionBuilder.createToken({
+                                name: this.tokenState('name'),
+                                abbreviation: this.tokenState('abbreviation'),
+                                description: this.tokenState('description'),
+                                url: this.tokenState('url'),
+                                totalSupply: this.tokenState('totalSupply'),
+                                tokenRatio: this.tokenState('tokenRatio'),
+                                trxRatio: this.tokenState('trxRatio'),
+                                saleStart: this.tokenState('saleStart'),
+                                saleEnd: this.tokenState('saleEnd'),
+                                freeBandwidth: 0,
+                                freeBandwidthLimit: 0,
+                                precision:  this.tokenState('precision'),
+                            }, tronWeb.defaultAddress.hex).catch(function (e) {
+                                errorInfo = e.indexOf(':')?e.split(':')[1]:e
+                            })
+
                             if (!unSignTransaction) {
                                 res = false;
                             } else {
