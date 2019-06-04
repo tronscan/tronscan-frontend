@@ -51,7 +51,7 @@ export class BaseInfo extends Component {
                       {min: 2, max: 30, message: tu('name_v_length')},
                       {pattern: /^[a-zA-Z0-9 ]+$/, message: tu('name_v_format')}],
             })(
-              <Input placeholder={intl.formatMessage({id: 'token_message'})}  disabled={isUpdate}/>
+              <Input placeholder={intl.formatMessage({id: 'name_v_length'})}  disabled={isUpdate}/>
             )}
           </Form.Item>
         </Col>
@@ -62,7 +62,7 @@ export class BaseInfo extends Component {
                       {min: 2, max: 10, message: tu('abbr_v_length')},
                       {pattern: /^[a-zA-Z0-9]+$/, message: tu('abbr_v_format')}],
             })(
-              <Input placeholder={intl.formatMessage({id: 'abbr_message'})} disabled={isUpdate}/>
+              <Input placeholder={intl.formatMessage({id: 'abbr_v_length'})} disabled={isUpdate}/>
             )}
           </Form.Item>
         </Col>
