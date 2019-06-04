@@ -492,7 +492,7 @@ export const messages = {
     "abbreviation": "缩写",
     "exchange_rate": "发行汇率",
     "token_price": "通证价格",
-    "supply_message": "创建的代币数量，如：比特币的发行总量为2100万",
+    "supply_message": "创建的代币数量（不带精度）",
     "description_message": "发行通证目的简述",
     "url_message": "展示更多通证信息的网址",
     "github_url_message": "展示更多通证信息的github地址",

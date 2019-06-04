@@ -77,6 +77,7 @@ class IssuedToken extends React.PureComponent{
     }
     async getAppealRecent10 (address) {
       const data = await this.getAppealRecent(address)
+      console.log(data);
       this.setState({appealInfo10: data})
     }
     async getAppealRecent20 (list) {
@@ -174,16 +175,16 @@ class IssuedToken extends React.PureComponent{
         }
         token10Time = issuedAsset.dateCreated
 
-        if(appealInfo10){
+        if(appealInfo10.update_time){
           token10Time = appealInfo10.update_time
         }
       }
 
         return (
           <div className="mt-4">
-          {(Boolean(token20List.length) || issuedAsset) && <h4>{tu('my_token')}</h4>}
+          {(Boolean(token20List.length) || issuedAsset) && <h4 style={{ marginBottom: '-0.5rem' }}>{tu('my_token')}</h4>}
           <div>{issuedAsset && 
-            <div className="tf-card">
+            <div className="tf-card mt-3">
               <div className="d-flex justify-content-between pl-3">
                 <h2>
                   <TokenLink id={issuedAsset.id} name={issuedAsset.name} address={issuedAsset.ownerAddress} namePlus={issuedAsset.name + ' (' + issuedAsset.abbr + ')'}/>
@@ -265,8 +266,8 @@ class IssuedToken extends React.PureComponent{
                         </div>
                         <div className="d-flex mb-2">
                         {tu("progress")}:
-                          <span className="d-flex flex-1">
-                            <div className="progress mt-1" style={{width: '95%'}}>
+                          <span className="d-flex flex-1 align-items-center">
+                            <div className="progress ml-1" style={{width: '95%'}}>
                               <div className="progress-bar bg-success"
                                   style={{width: issuedAsset.issuedPercentage + '%'}}/>
                             </div>
@@ -378,7 +379,7 @@ class IssuedToken extends React.PureComponent{
                 }
               
                 
-                return <div className={`${index > 0 && 'mt-3'} tf-card token20`} key={token20Item.contract_address}>
+                return <div className={`mt-3 tf-card token20`} key={token20Item.contract_address}>
                   <div className="d-flex justify-content-between pl-3">
                     <h3 className="m-0 ">
                       <TokenTRC20Link name={token20Item.name} namePlus={token20Item.name + ' (' + token20Item.symbol + ')'} address={token20Item.contract_address}/>
