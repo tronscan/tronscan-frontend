@@ -169,7 +169,7 @@ class IssuedToken extends React.PureComponent{
 
         return (
           <div className="mt-4">
-          <h4>{tu('my_token')}</h4>
+          {(Boolean(token20List.length) || issuedAsset) && <h4>{tu('my_token')}</h4>}
           <div>{issuedAsset && 
             <div className="tf-card">
               <div className="d-flex justify-content-between pl-3">
