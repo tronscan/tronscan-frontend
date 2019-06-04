@@ -74,6 +74,20 @@ export function Information({token}) {
                 <ExternalLink url={token.git_hub} _url={token.git_hub}/> :
                 <span style={{color: '#d8d8d8'}}>-</span>
     },
+    {
+      name: 'pice_per_1trx',
+      content:  <div className="d-flex token-list-action">
+        {
+          token['market_info']?
+            <div className="d-flex">
+                {token['market_info'].priceInTrx}  TRX
+              <span className={token['market_info'].gain<0? 'col-red ml-3':'col-green ml-3'}>{token['market_info'].gain >0 ?  <span>{'+' + parseInt(token['market_info'].gain * 10000) / 100 + '%'}</span>:<span>{ parseInt(token['market_info'].gain * 10000) / 100 + '%'}</span>}</span>
+              <Link to={`/exchange/trc20?id=${token['market_info'].pairId}`} className="token-details btn ml-3"> {tu('transactions')}</Link>
+            </div>
+            :'-'
+        }
+      </div>
+    },
 
   ]
 

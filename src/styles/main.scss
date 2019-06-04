@@ -3370,3 +3370,39 @@ h5 {
     display:block;
   }
 }
+
+.token-list-action{
+  a{
+    width:5rem;
+    height: 1.2rem;
+    border-radius: 4px;
+    text-align: center;
+    line-height: 0.4rem;
+    display: block;
+    background-color: #C23631;
+    color: #ffffff!important;
+    font-size: 12px;
+    span{
+
+    }
+    &:hover{
+      color: #ffffff!important;
+    }
+  }
+  .token-active-details{
+    background-color: #C23631;
+  }
+  .token-disabled-exchange{
+    background-color: #d1d3df;
+  }
+}
+
+.tooltip.show{
+  opacity: 1;
+}
+
+.address-transfers-radio{
+  position: absolute;
+  top:84px;
+  z-index: 999;
+}

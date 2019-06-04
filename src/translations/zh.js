@@ -1738,4 +1738,7 @@ export const messages = {
     "login_privatekey_warn":"为确保您的账户安全，请您妥善保管好私钥，以防资产丢失。建议您使用",
     "login_privatekey_warn_safe":"安全登录",
 
+
+    "token_does_not_support_exchange":"币种暂不支持交易"
+
 };

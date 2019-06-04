@@ -16,6 +16,7 @@ import NewTransactions from "../../common/NewTransactions";
 import Votes from "../../common/Votes";
 import Transfers from "../../common/Transfers";
 import TransfersTrc20 from "../../common/TransfersTrc20";
+import TransfersAll from "../../common/TransfersAll";
 import PieReact from "../../common/PieChart";
 import xhr from "axios/index";
 import {sortBy, toUpper} from "lodash";
@@ -239,7 +240,7 @@ class Address extends React.Component {
             // icon: "fa fa-exchange-alt",
             path: "/transfers",
             label: <span>{tu("transfers")}</span>,
-            cmp: () => <Transfers filter={{address: id}} address/>
+            cmp: () => <TransfersAll filter={{address: id}} address/>
           },
           transfers20: {
             id: "transfers20",
@@ -315,7 +316,7 @@ class Address extends React.Component {
             // icon: "fa fa-exchange-alt",
             path: "/transfers",
             label: <span>{tu("transfers")}</span>,
-            cmp: () => <Transfers filter={{address: id}} address/>
+            cmp: () => <TransfersAll filter={{address: id}} address/>
           },
           transfers20: {
             id: "transfers20",
@@ -677,8 +678,9 @@ class Address extends React.Component {
                               <div className="circle-info">
                                 <div>{tu('address_netRemaining')}</div>
                                 <h2>
-                                  <FormattedNumber
-                                      value={netRemaining}/>
+                                     <FormattedNumber
+                                        value={netRemaining?netRemaining:0}/>
+
                                 </h2>
                               </div>
                             </div>
@@ -698,7 +700,7 @@ class Address extends React.Component {
                               <div className="circle-info">
                                 <div>{tu('address_energyRemaining')}</div>
                                 <h2>
-                                  <FormattedNumber value={energyRemaining}/>
+                                  <FormattedNumber value={energyRemaining?energyRemaining:0}/>
                                 </h2>
                               </div>
                             </div>
