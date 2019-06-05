@@ -126,11 +126,49 @@ BigNumber.config({ EXPONENTIAL_AT: [-20, 30] });
             window.location.hash = "#/tokens/list";
         });
     };
-
+    renderSubmit = () => {
+        let {intl,currentWallet} = this.props;
+        if (!currentWallet) {
+            this.setState({
+                    modal:
+                        <SweetAlert
+                            error
+                            confirmBtnText={intl.formatMessage({id: 'confirm'})}
+                            confirmBtnBsStyle="success"
+                            onConfirm={this.hideModal}
+                            style={{marginLeft: '-240px', marginTop: '-195px'}}
+                        >
+                            {tu("trx_token_wallet_requirement")}
+                        </SweetAlert>
+                }
+            );
+            return false
+        }
+        if (currentWallet.balance < ASSET_ISSUE_COST) {
+            this.setState({
+                    modal:
+                        <SweetAlert
+                            error
+                            confirmBtnText={intl.formatMessage({id: 'confirm'})}
+                            confirmBtnBsStyle="success"
+                            onConfirm={this.hideModal}
+                            style={{marginLeft: '-240px', marginTop: '-195px'}}
+                        >
+                            {tu("trx_token_fee_message")}
+                        </SweetAlert>
+                }
+            );
+            return false
+        }
+        return true
+    };
 
     //Confirm Token Issue
     confirmSubmit = () => {
         let {intl} = this.props;
+        let {isUpdate} = this.state;
+        if (!this.renderSubmit() && !isUpdate)
+            return;
         this.setState({
             modal: (
                 <SweetAlert
@@ -153,21 +191,27 @@ BigNumber.config({ EXPONENTIAL_AT: [-20, 30] });
         let newErrors = {
             confirm: null,
         };
-        let {checkbox, type} = this.state;
+        let {checkbox, type, isUpdate} = this.state;
         console.log('type',type)
         let {intl} = this.props;
         if(type == 'trc10'){
-            if (checkbox)
+            if(!isUpdate){
+                if (checkbox)
+                    this.confirmSubmit();
+                else {
+                    newErrors.confirm = intl.formatMessage({id: 'tick_checkbox'});
+                    this.setState({errors: newErrors});
+                }
+            }else{
                 this.confirmSubmit();
-            else {
-                newErrors.confirm = intl.formatMessage({id: 'tick_checkbox'});
-                this.setState({errors: newErrors});
             }
         }else if(type == 'trc20'){
             this.confirmSubmit();
         }
 
     }
+
+
 
     createToken = async () => {
         let {account, intl} = this.props;
@@ -192,7 +236,7 @@ BigNumber.config({ EXPONENTIAL_AT: [-20, 30] });
         switch (type){
             case 'trc10':
                 if (account.isLoggedIn){
-
+                    console.log('this.props.walletType.type',this.props.walletType.type)
                     if (this.props.walletType.type === "ACCOUNT_LEDGER") {
                         // const unSignTransaction = await tronWebLedger.transactionBuilder.createToken({
                         //     name: this.tokenState('name'),
@@ -220,8 +264,6 @@ BigNumber.config({ EXPONENTIAL_AT: [-20, 30] });
                         // }
                     } else if(this.props.walletType.type === "ACCOUNT_TRONLINK"){
                         let unSignTransaction = '';
-
-
                         if(this.state.isUpdate){
                             //Update
                             let data  = {
@@ -238,6 +280,7 @@ BigNumber.config({ EXPONENTIAL_AT: [-20, 30] });
                             }
                             let hash = tronWeb.toHex(JSON.stringify(data), false);
                             let sig = await tronWeb.trx.sign(hash);
+                            console.log('trc10-update-data-ACCOUNT_TRONLINK',data)
                             unSignTransaction = await Client.updateToken10({
                                 "content":JSON.stringify(data),
                                 "sig": sig
@@ -297,55 +340,58 @@ BigNumber.config({ EXPONENTIAL_AT: [-20, 30] });
                             }
                         }
 
-                    }
+                    }else if(this.props.walletType.type == "ACCOUNT_PRIVATE_KEY") {
+                        alert(111)
+                        console.log('ACCOUNT_PRIVATE_KEY-update')
+                        console.log('this.state.isUpdate',this.state.isUpdate)
+                        if(this.state.isUpdate){
+                            let unSignTransaction = '';
+                            let data  = {
+                                "address":this.tokenState('address'),
+                                "issuer_addr": this.tokenState('address'),
+                                "logo_url":this.tokenState('logoUrl'),
+                                "website": this.tokenState('url'),
+                                "email":this.tokenState('email'),
+                                "white_paper":this.tokenState('whitePaper'),
+                                "social_media":this.tokenState('socialList'),
+                                "github":this.tokenState('github_url'),
+                                "issue_time":this.tokenState('issueTime'),
+                                "timestamp":this.tokenState('issueTime'),
+                            }
+                            let hash = tronWeb.toHex(JSON.stringify(data), false);
+                            let sig = await tronWeb.trx.sign(hash);
+                            console.log('trc10-update-data-ACCOUNT_PRIVATE_KEY',data)
+                            unSignTransaction = await Client.updateToken10({
+                                "content":JSON.stringify(data),
+                                "sig": sig
+                            })
 
-                }else if(this.props.walletType.type === "ACCOUNT_PRIVATE_KEY") {
+                            if (unSignTransaction.retCode === "0") {
+                                res = true;
 
-                    if(this.state.isUpdate){
-                        let unSignTransaction = '';
-                        let data  = {
-                            "address":this.tokenState('address'),
-                            "issuer_addr": this.tokenState('address'),
-                            "logo_url":this.tokenState('logoUrl'),
-                            "website": this.tokenState('url'),
-                            "email":this.tokenState('email'),
-                            "white_paper":this.tokenState('whitePaper'),
-                            "social_media":this.tokenState('socialList'),
-                            "github":this.tokenState('github_url'),
-                            "issue_time":this.tokenState('issueTime'),
-                            "timestamp":this.tokenState('issueTime'),
+                            } else {
+                                res = false;
+                                errorInfo = unSignTransaction.retMsg
+                            }
+                        }else{
+                            createInfo = await Client.createToken20({
+                                address: account.address,
+                                name: this.tokenState('name'),
+                                shortName: this.tokenState('abbreviation'),
+                                description: this.tokenState('description'),
+                                url: this.tokenState('url'),
+                                totalSupply: this.tokenState('totalSupply'),
+                                num: this.tokenState('tokenRatio'),
+                                trxNum: this.tokenState('trxRatio'),
+                                startTime: this.tokenState('startTime'),
+                                endTime: this.tokenState('endTime'),
+                                frozenSupply: this.tokenState('frozenSupply'),
+                                precision:  this.tokenState('precision'),
+                            })(account.key);
+                            res = createInfo.success;
+                            errorInfo = createInfo.message.indexOf(':')?createInfo.message.split(':')[1]:createInfo.message;
                         }
-                        let hash = tronWeb.toHex(JSON.stringify(data), false);
-                        let sig = await tronWeb.trx.sign(hash);
-                        unSignTransaction = await Client.updateToken10({
-                            "content":JSON.stringify(data),
-                            "sig": sig
-                        })
 
-                        if (unSignTransaction.retCode === "0") {
-                            res = true;
-
-                        } else {
-                            res = false;
-                            errorInfo = unSignTransaction.retMsg
-                        }
-                    }else{
-                        createInfo = await Client.createToken20({
-                            address: account.address,
-                            name: this.tokenState('name'),
-                            shortName: this.tokenState('abbreviation'),
-                            description: this.tokenState('description'),
-                            url: this.tokenState('url'),
-                            totalSupply: this.tokenState('totalSupply'),
-                            num: this.tokenState('tokenRatio'),
-                            trxNum: this.tokenState('trxRatio'),
-                            startTime: this.tokenState('startTime'),
-                            endTime: this.tokenState('endTime'),
-                            frozenSupply: this.tokenState('frozenSupply'),
-                            precision:  this.tokenState('precision'),
-                        })(account.key);
-                        res = createInfo.success;
-                        errorInfo = createInfo.message.indexOf(':')?createInfo.message.split(':')[1]:createInfo.message;
                     }
 
                 }
@@ -453,7 +499,7 @@ BigNumber.config({ EXPONENTIAL_AT: [-20, 30] });
 
     render() {
         let {intl, nextStep} = this.props;
-        let {iconList, modal, checkbox, errors, captcha_code, type, paramData:{ token_name, token_abbr, token_introduction, token_supply, precision, author, logo_url, contract_address, contract_created_date, contract_code, token_amount, trx_amount, freeze_amount, freeze_date, freeze_type, participation_start_date, participation_end_date, participation_type, website, email, white_paper,github_url,contract_created_address }} = this.state;
+        let {iconList, modal, checkbox, errors, captcha_code, type, isUpdate, paramData:{ token_name, token_abbr, token_introduction, token_supply, precision, author, logo_url, contract_address, contract_created_date, contract_code, token_amount, trx_amount, freeze_amount, freeze_date, freeze_type, participation_start_date, participation_end_date, participation_type, website, email, white_paper,github_url,contract_created_address }} = this.state;
         const isTrc10 = type === 'trc10'
         const isTrc20 = type === 'trc20'
         let startTime = participation_start_date? participation_start_date.valueOf() :'';
@@ -672,7 +718,7 @@ BigNumber.config({ EXPONENTIAL_AT: [-20, 30] });
                     </div>
                 </section>
 
-                <section className={ isTrc10? 'd-block mt-4': 'd-none'}>
+                <section className={ isTrc10 && !isUpdate ? 'd-block mt-4': 'd-none'}>
                     <div className="form-check d-flex">
                         <input type="checkbox" className="form-check-input" value={checkbox}
                                onChange={(e) => {
