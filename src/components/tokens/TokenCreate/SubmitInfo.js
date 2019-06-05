@@ -453,7 +453,7 @@ BigNumber.config({ EXPONENTIAL_AT: [-20, 30] });
 
     render() {
         let {intl, nextStep} = this.props;
-        let {iconList, modal, checkbox, errors, captcha_code, type, paramData:{ token_name, token_abbr, token_introduction, token_supply, precision, author, logo_url, contract_address, contract_created_date, contract_code, token_amount, trx_amount, freeze_amount, freeze_date, freeze_type, participation_start_date, participation_end_date, participation_type, website, email, white_paper,github_url,contract_created_address }} = this.state;
+        let {iconList, modal, checkbox, errors, captcha_code, type, isUpdate, paramData:{ token_name, token_abbr, token_introduction, token_supply, precision, author, logo_url, contract_address, contract_created_date, contract_code, token_amount, trx_amount, freeze_amount, freeze_date, freeze_type, participation_start_date, participation_end_date, participation_type, website, email, white_paper,github_url,contract_created_address }} = this.state;
         const isTrc10 = type === 'trc10'
         const isTrc20 = type === 'trc20'
         let startTime = participation_start_date? participation_start_date.valueOf() :'';
@@ -672,7 +672,7 @@ BigNumber.config({ EXPONENTIAL_AT: [-20, 30] });
                     </div>
                 </section>
 
-                <section className={ isTrc10? 'd-block mt-4': 'd-none'}>
+                <section className={ isTrc10 && !isUpdate ? 'd-block mt-4': 'd-none'}>
                     <div className="form-check d-flex">
                         <input type="checkbox" className="form-check-input" value={checkbox}
                                onChange={(e) => {
