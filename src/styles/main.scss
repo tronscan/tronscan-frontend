@@ -3885,18 +3885,18 @@ h5 {
     position: relative;
     background: #ffffff;
     width: 100%;
-    padding: 26px 58px 36px;
+    padding: 1rem 58px 1rem;
 
     &::after {
       content: '10';
       position: absolute;
       top: 0;
       left: 18px;
-      width: 35px;
-      height: 34px;
+      width: 30px;
+      height: 30px;
       text-align: center;
       color: #fff;
-      font-size: 18px;
+      font-size: 16px;
       background: url(../images/issuedasset/flag.png);
       background-size: 100% 100%;
       padding-top: 3px;
@@ -3906,6 +3906,13 @@ h5 {
     &.token20::after {
       content: '20';
     }
+    h4{
+      font-size: 16px;
+      margin: 0;
+      a{
+        font-weight: 500;
+      }
+    }
 
     &__header {
       padding: 0 15px;
@@ -3914,14 +3921,14 @@ h5 {
       &-item {
         position: relative;
         width: 20%;
-        margin-bottom: 18px;
+        margin-bottom: 0.75rem;
 
         &::after {
           content: '';
           width: 1px;
-          height: 53px;
+          height: 2rem;
           position: absolute;
-          top: 16px;
+          top: 10px;
           right: 20%;
           background: rgba(218, 218, 218, 0.60);
         }
@@ -3951,13 +3958,13 @@ h5 {
       }
 
       &-title {
-        font-size: 16px;
+        // font-size: 16px;
         color: #bfc0c4;
-        margin-bottom: 5px;
+        // margin-bottom: 5px;
       }
 
       &-text {
-        font-size: 20px;
+        font-size: 16px;
         color: #1f2534;
 
       }
@@ -3975,13 +3982,13 @@ h5 {
       th,
       td {
         border-color: #eee;
-        padding-top: 1.5em;
-        padding-bottom: 1.5em;
+        // padding-top: 1.5em;
+        // padding-bottom: 1.5em;
         vertical-align: middle;
       }
 
       tr td:first-child {
-        padding-left: 2.5em;
+        padding-left: 1rem;
       }
 
       .text-light {
@@ -3990,12 +3997,12 @@ h5 {
       }
 
       .tip {
-        height: 26px;
-        width: 26px;
-        line-height: 26px;
+        height: 20px;
+        width: 20px;
+        line-height: 20px;
         text-align: center;
         color: #fff;
-        font-size: 16px;
+        font-size: 14px;
         border-radius: 50%;
       }
 
@@ -4008,7 +4015,7 @@ h5 {
 
           i,
           svg {
-            font-size: 26px;
+            font-size: 20px;
             color: #28a745;
           }
         }

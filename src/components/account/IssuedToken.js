@@ -185,16 +185,16 @@ class IssuedToken extends React.PureComponent{
           {(Boolean(token20List.length) || issuedAsset) && <h4 style={{ marginBottom: '-0.5rem' }}>{tu('my_token')}</h4>}
           <div>{issuedAsset && 
             <div className="tf-card mt-3">
-              <div className="d-flex justify-content-between pl-3">
-                <h2>
+              <div className="d-flex justify-content-between align-items-center pl-3">
+                <h4>
                   <TokenLink id={issuedAsset.id} name={issuedAsset.name} address={issuedAsset.ownerAddress} namePlus={issuedAsset.name + ' (' + issuedAsset.abbr + ')'}/>
-                  <span style={{color:"#999", fontSize: '18px'}}>[{issuedAsset.id}]</span>
-               </h2>
+                  <span style={{color:"#999", fontSize: '12px'}}>[{issuedAsset.id}]</span>
+               </h4>
                 <a href={"#/tokens/update/"+ issuedAsset.id}>
-                <button type="button" className="btn btn-outline-danger">{tu('updata_token_info')}</button>
+                  <button type="button" className="btn btn-outline-danger btn-sm">{tu('updata_token_info')}</button>
                 </a>
                 </div>
-              <hr/>
+              <hr className="my-3"/>
               <div className="d-flex justify-content-between tf-card__header position-relative">
                 <div className="tf-card__header-item">
                   <div className="tf-card__header-title">{tu('trc20_token_info_Total_Supply')}</div>
@@ -248,8 +248,8 @@ class IssuedToken extends React.PureComponent{
               
 
                 <div className="iocInfo mb-4  w-75">
-                    <div className="iocInfo-content">
-                        <h4>{tu('ico_infomation')}</h4>
+                    <div className="iocInfo-content ml-3">
+                        <h4 className="mb-1">{tu('ico_infomation')}</h4>
                         <div className="d-flex justify-content-between mb-2">
                           <div>{tu("start_date")}:
                             <span>{issuedAsset.endTime - issuedAsset.startTime > 1000 ?
@@ -380,10 +380,10 @@ class IssuedToken extends React.PureComponent{
               
                 
                 return <div className={`mt-3 tf-card token20`} key={token20Item.contract_address}>
-                  <div className="d-flex justify-content-between pl-3">
-                    <h3 className="m-0 ">
+                  <div className="d-flex justify-content-between align-items-center pl-3">
+                    <h4 className="m-0 ">
                       <TokenTRC20Link name={token20Item.name} namePlus={token20Item.name + ' (' + token20Item.symbol + ')'} address={token20Item.contract_address}/>
-                      <span style={{color:"#999", fontSize: '18px'}}>[{token20Item.contract_address}]
+                      <span style={{color:"#999", fontSize: '12px'}}>[{token20Item.contract_address}]
                         <CopyToClipboard text={token20Item.contract_address}  onCopy={this.setCopied}>
                           <span id={id} className="ml-1" style={{cursor: 'pointer'}}>
                             <i className="fa fa-paste"/>
@@ -393,12 +393,12 @@ class IssuedToken extends React.PureComponent{
                           </span>
                         </CopyToClipboard>
                       </span>
-                  </h3>
+                  </h4>
                     <a href={"#/tokens/update/"+ token20Item.contract_address}>
-                    <button type="button" className="btn btn-outline-danger">{tu('updata_token_info')}</button>
+                    <button type="button" className="btn btn-outline-danger btn-sm">{tu('updata_token_info')}</button>
                     </a>
                     </div>
-                  <hr/>
+                  <hr className="my-3"/>
                   <div className="d-flex justify-content-between tf-card__header">
                     <div className="tf-card__header-item">
                       <div className="tf-card__header-title">{tu('trc20_token_info_Total_Supply')}</div>
