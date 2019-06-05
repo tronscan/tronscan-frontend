@@ -1791,7 +1791,7 @@ export const messages = {
   "token_logo_input_placeholder":"请提交图片链接，支持jpg/jpeg/png格式,尺寸比例1:1",
   "contract_created_address":"合约创建者地址",
   "token_input_trc10_tip":"通证Logo、GitHub、社交媒体链接请在更新Token时填写",
-  "":"",
+  "token_create_auther_different":"登录账户与发行者不一致，无法更新",
   "":"",
   "":"",
   "":"",
@@ -1873,6 +1873,6 @@ export const messages = {
     "appeal_format": "申诉理由必须填写",
     "passed": "已通过",
     "ico_infomation": "ICO信息",
-    "project_website": "项目官网"
+    "project_website": "项目官网",
 
 };

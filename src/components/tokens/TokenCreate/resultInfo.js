@@ -84,11 +84,11 @@ export class resultInfo extends Component {
 
     render() {
         let { intl } = this.props;
-        let { type, res, errorInfo } = this.state;
+        let { type, res, errorInfo, isUpdate } = this.state;
         console.log('res',res)
         console.log('errorInfo2222',errorInfo)
         console.log('type',type)
-
+        console.log('isUpdate',isUpdate)
         return (
             <main className="token-result">
                 {
@@ -99,7 +99,7 @@ export class resultInfo extends Component {
                             <span>{tu('token_input_failure_reason')}</span>
                             <div>
                                 {
-                                    type == 'trc20' && errorInfo? errorInfo.map((item,index) => {
+                                    type == 'trc20' && errorInfo || isUpdate && errorInfo ?errorInfo.map((item,index) => {
                                         return <p key={index}>{index +1 }. {this.setErrorMsg(item)}</p>
                                     }):
                                         <p>1. {errorInfo}</p>
@@ -123,13 +123,13 @@ export class resultInfo extends Component {
                             <span className="mytoken-wallet">{tu('token_input_success_myaccount')}</span>
                             <span>{tu('token_input_success_find_it')}</span>
                         </p>
-                        <p className="result-success-info">
-                            {tu('token_input_success_tip')}
-                        </p>
-                        <p className="mt-4 submit-market">
-                            {tu('token_input_success_trx_market')}
-                            {tu('token_input_success_trx_market_input')}
-                        </p>
+                        {/*<p className="result-success-info">*/}
+                            {/*{tu('token_input_success_tip')}*/}
+                        {/*</p>*/}
+                        {/*<p className="mt-4 submit-market">*/}
+                            {/*{tu('token_input_success_trx_market')}*/}
+                            {/*{tu('token_input_success_trx_market_input')}*/}
+                        {/*</p>*/}
                     </div>
                 }
 
