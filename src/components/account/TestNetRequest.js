@@ -20,9 +20,10 @@ export default class TestNetRequest extends React.Component {
     };
   }
 
-  onVerify = (code) => {
+  onVerify = (response) => {
+    console.log(response)
     this.setState({
-      verificationCode: code,
+      verificationCode: response,
     });
   };
 
