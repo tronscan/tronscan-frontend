@@ -4038,7 +4038,13 @@ h5 {
       }
     }
     .progress{
-      height: 0.6rem;
+      // height: 0.6rem;
+      border-radius: 0.2rem;
+      background-color: #eaecef;
+
+      &-bar{
+        background-color: #6081df;
+      }
     }
   }
 }

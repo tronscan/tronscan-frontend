@@ -128,7 +128,6 @@ export class resultInfo extends Component {
                         {/*</p>*/}
                         {/*<p className="mt-4 submit-market">*/}
                             {/*{tu('token_input_success_trx_market')}*/}
-                            {/*{tu('token_input_success_trx_market_input')}*/}
                         {/*</p>*/}
                     </div>
                 }

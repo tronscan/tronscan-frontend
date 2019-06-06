@@ -251,18 +251,18 @@ class IssuedToken extends React.PureComponent{
                 </div>
               
 
-                <div className="iocInfo mb-4  w-75">
+                <div className="iocInfo mb-4  w-100">
                     <div className="iocInfo-content ml-3">
-                        <h4 className="mb-1">{tu('ico_infomation')}</h4>
-                        <div className="d-flex justify-content-between mb-2">
-                          <div>{tu("start_date")}:
-                            <span>{issuedAsset.endTime - issuedAsset.startTime > 1000 ?
+                        <h4 className="mb-2" style={{fontWeight: '500'}}>{tu('ico_infomation')}</h4>
+                        <div className="d-flex justify-content-between mb-1" style={{fontSize: '12px'}}>
+                          <div>{tu("start_date")}
+                            <span className="ml-1">{issuedAsset.endTime - issuedAsset.startTime > 1000 ?
                                 <span><FormattedDate value={issuedAsset.startTime}/>{' '}<FormattedTime
                                     value={issuedAsset.startTime}  hour='numeric' minute="numeric" second='numeric' hour12={false}/></span> : "-"}
                             </span>
                           </div>
-                          <div>{tu("end_date")}:
-                            <span> {issuedAsset.endTime - issuedAsset.startTime > 1000 ?
+                          <div>{tu("end_date")}
+                            <span className="ml-1"> {issuedAsset.endTime - issuedAsset.startTime > 1000 ?
                               <span><FormattedDate value={issuedAsset.endTime}/>{' '}<FormattedTime
                                   value={issuedAsset.endTime}  hour='numeric' minute="numeric" second='numeric' hour12={false}/></span> : "-"}
                             </span>
@@ -271,11 +271,17 @@ class IssuedToken extends React.PureComponent{
                         <div className="d-flex mb-2">
                         {tu("progress")}:
                           <span className="d-flex flex-1 align-items-center">
-                            <div className="progress ml-1" style={{width: '95%'}}>
+                            {/** <div className="progress ml-1" style={{width: '95%'}}>
                               <div className="progress-bar bg-success"
                                   style={{width: issuedAsset.issuedPercentage + '%'}}/>
+                            </div>*/}
+                            <div className="progress ml-1 w-100">
+                              <div className="progress-bar progress-bar-striped progress-bar-animated d-flex justify-content-center align-items-center" 
+                              style={{width: issuedAsset.issuedPercentage + '%'}}>
+                               <div className="text-white">{issuedAsset.issuedPercentage.toFixed(3) + '%'}</div>
+                              </div>
                             </div>
-                            <div className="ml-2">{issuedAsset.issuedPercentage.toFixed(3) + '%'}</div>
+                            
                           </span>
                         </div>
                     </div>

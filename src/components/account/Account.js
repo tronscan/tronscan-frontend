@@ -1605,7 +1605,7 @@ export default class Account extends Component {
               </div>
             </div>
           </div>
-          <IssuedToken issuedAsset={issuedAsset} loadAccount={this.loadAccount} currentWallet={currentWallet} unfreezeAssetsConfirmation={this.unfreezeAssetsConfirmation}/>
+          <IssuedToken issuedAsset={issuedAsset} loadAccount={this.loadAccount} unfreezeAssetsConfirmation={this.unfreezeAssetsConfirmation}/>
           {
             false &&
             <div className="row mt-3">
