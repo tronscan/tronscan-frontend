@@ -3403,6 +3403,13 @@ h5 {
 
 .address-transfers-radio{
   position: absolute;
-  top:84px;
+  top:82px;
   z-index: 999;
+  @media only screen and (max-width: 768px) {
+    position: absolute;
+    top:-65px;
+    left:-4px;
+    z-index: 999;
+  }
+
 }
