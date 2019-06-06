@@ -14,7 +14,6 @@ export class resultInfo extends Component {
 
     constructor(props) {
         super(props);
-        console.log('this.props.state',this.props.state)
         this.state = {
             ...this.props.state,
         };

@@ -67,7 +67,6 @@ BigNumber.config({ EXPONENTIAL_AT: [-20, 30] });
             participation_start_date = moment(new Date().getTime() + 60*1000)
             participation_end_date = moment(new Date().getTime() + 120*1000)
         }
-        console.log('contract_created_date',contract_created_date);
         let orderState = {
             'name':token_name,
             'abbreviation':token_abbr,
@@ -192,7 +191,6 @@ BigNumber.config({ EXPONENTIAL_AT: [-20, 30] });
             confirm: null,
         };
         let {checkbox, type, isUpdate} = this.state;
-        console.log('type',type)
         let {intl} = this.props;
         if(type == 'trc10'){
             if(!isUpdate){
@@ -216,7 +214,6 @@ BigNumber.config({ EXPONENTIAL_AT: [-20, 30] });
     createToken = async () => {
         let {account, intl} = this.props;
         let { type } = this.state;
-        console.log('account',account)
         let res,createInfo,errorInfo;
         const tronWebLedger = this.props.tronWeb();
         const { tronWeb } = this.props.account;
@@ -504,9 +501,7 @@ BigNumber.config({ EXPONENTIAL_AT: [-20, 30] });
         const isTrc20 = type === 'trc20'
         let startTime = participation_start_date? participation_start_date.valueOf() :'';
         let endTime = participation_end_date?participation_end_date.valueOf():'';
-        console.log('contract_created_date',contract_created_date)
         let contractCreateTime = contract_created_date ? contract_created_date.valueOf() : contract_created_date;
-        console.log('contractCreateTime',contractCreateTime)
         return (
             <main className="token-submit">
                 {modal}

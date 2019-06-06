@@ -677,7 +677,6 @@ class ExchangeList extends React.Component {
         return v.second_token_abbr == id;
       });
     }
-    // console.log(tab,id,list)
     this.setState(()=>{
       return {
         dataSource: list

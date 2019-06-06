@@ -28,7 +28,6 @@ const AutoCompleteOption = AutoComplete.Option;
       token_trx_order: true,
       ...this.props.state
     };
-      console.log('this.props.state11111',this.props.state)
   }
 
   componentDidMount() {
@@ -119,8 +118,6 @@ const AutoCompleteOption = AutoComplete.Option;
     const { autoCompleteResult, type, isUpdate, iconList,modal, precision_20, token_trx_order } = this.state;
     const {intl, nextStep} = this.props
     const { getFieldDecorator, getFieldsValue } = this.props.form;
-    console.log('isUpdate12312312313',isUpdate)
-      alert(1213)
     const isTrc10 = type === 'trc10'
     const isTrc20 = type === 'trc20'
 

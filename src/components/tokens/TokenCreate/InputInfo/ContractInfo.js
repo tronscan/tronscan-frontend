@@ -7,7 +7,6 @@ const { TextArea } = Input;
 export function ContractInfo({form, intl, state, loadContractCode}) {
     const { getFieldDecorator } = form;
     const {isTrc20,isUpdate } =  state;
-        console.log('state',state)
 
     return (
       <div className={ isTrc20? 'd-block': 'd-none'}>
