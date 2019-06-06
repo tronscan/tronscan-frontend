@@ -17,15 +17,22 @@ export const WitnessLink = ({address}) => (
 );
 
 export const TokenLink = ({id, name, namePlus, address, children, ...props}) => {
+
   if(id == '_'){
+      console.log('111',id)
       return <a href="javascript:;" >{children || name}</a>
   }
   if (name && !namePlus) {
-    return <Link to={`/token/${encodeURI(id)}`} {...props}>{children || name}</Link>
+    return (
+        <Link to={`/token/${encodeURI(id)}`} {...props}>{children || name}</Link>
+    )
   }
   if (namePlus && name) {
-    return <Link to={`/token/${encodeURI(id)}`} {...props}>{children || namePlus}</Link>
+    return  (
+        <Link to={`/token/${encodeURI(id)}`} {...props}>{children || namePlus}</Link>
+    )
   }
+
 };
 
 export const TokenTRC20Link = ({name, namePlus, address, children, ...props}) => {

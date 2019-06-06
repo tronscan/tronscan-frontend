@@ -1725,6 +1725,9 @@ export const messages = {
     "address_percentage":"占比",
     "address_net_fee":"消耗带宽",
     "address_energy_fee":"消耗能量",
+    "address_transfer_all":"全部",
+    "address_transfer_in":"转入",
+    "address_transfer_out":"转出",
 
     /*
        ##################################################################################
@@ -1741,6 +1744,7 @@ export const messages = {
     "login_privatekey_warn_safe":"安全登录",
     "token_does_not_support_exchange":"币种暂不支持交易",
     "token_trade":"交易",
+
 
 
 };

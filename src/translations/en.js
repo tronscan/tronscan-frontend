@@ -1782,6 +1782,9 @@ export const messages = {
   "address_percentage":"Percentage",
   "address_net_fee":"Bandwidth Cost",
   "address_energy_fee":"Energy Cost",
+  "address_transfer_all":"ALL",
+  "address_transfer_in":"IN",
+  "address_transfer_out":"OUT",
 
   /*
      ##################################################################################

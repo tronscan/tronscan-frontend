@@ -18,12 +18,13 @@ import DateRange from "./DateRange";
 import {DatePicker} from 'antd';
 import moment from 'moment';
 import {NameWithId} from "./names";
+import { toThousands } from '../../utils/number'
 import _ from "lodash";
 import { Button,Table, Radio } from 'antd';
 
 
 
-class Transfers extends React.Component {
+class TransfersAll extends React.Component {
     constructor(props) {
         super(props);
 
@@ -97,11 +98,8 @@ class Transfers extends React.Component {
 
         let rebuildRransfersTRC10 = rebuildList(transfersTRC10, 'token_id', 'amount');
         let rebuildRransfersTRC20  = rebuildToken20List(transfersTRC20, 'contract_address', 'amount');
-        console.log('rebuildRransfersTRC10',rebuildRransfersTRC10);
-        console.log('rebuildRransfersTRC20',rebuildRransfersTRC20);
         let rebuildRransfers = rebuildRransfersTRC10.concat(rebuildRransfersTRC20);
         rebuildRransfers =  _(rebuildRransfers).sortBy(tb => -tb.date_created).value();
-        console.log('rebuildRransfers',rebuildRransfers)
         rebuildRransfers.map( item => {
             if(item.map_token_id === '_'){
                 item.map_amount_logo = 'https://s2.coinmarketcap.com/static/img/coins/64x64/1958.png';
@@ -152,7 +150,6 @@ class Transfers extends React.Component {
     customizedColumn = () => {
         let {intl} = this.props;
         let column = [
-
             {
                 title: upperFirst(intl.formatMessage({id: 'hash'})),
                 dataIndex: 'hash',
@@ -265,7 +262,7 @@ class Transfers extends React.Component {
                 align: 'left',
                 className: 'ant_table _text_nowrap',
                 render: (text, record, index) => {
-                    return <span>{record.map_amount}</span>
+                    return <span>{toThousands(record.map_amount)}</span>
                 }
             },
             {
@@ -276,37 +273,35 @@ class Transfers extends React.Component {
                 align: 'left',
                 className: 'ant_table',
                 render: (text, record, index) => {
-                    return (
-
-                        record.map_token_id == 1002000  || record.map_token_id == 'TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t'?<div>
-                                <b className="token-img-top" style={{marginRight: 5}}>
-                                    <img width={20} height={20} src={record.map_amount_logo} />
-                                    <i style={{width: 10, height: 10, bottom: -5}}></i>
-                                </b>
-                                {
-                                    record.tokenType == 'TRC20'?
-                                        <TokenTRC20Link name={record.map_token_id} address={record.contract_address} namePlus={record.map_token_name_abbr}/>
-                                        :
-                                        <TokenLink id={record.map_token_id} name={record.map_token_name_abbr} address={record.address}/>
-
-
-                                }
-                            </div>
-                            :
-                            <div>
-                                <img width={20} height={20} src={record.map_amount_logo} style={{marginRight: 5}}/>
-                                {
-                                    record.tokenType == 'TRC20'?
-                                        <TokenTRC20Link name={record.map_token_id} address={record.contract_address} namePlus={record.map_token_name_abbr}/>
-                                        :
-                                        <TokenLink id={record.map_token_id} name={record.map_token_name_abbr} address={record.address}/>
+                    console.log('record',record)
+                    return <div>
+                            {
+                                record.map_token_id == 1002000  || record.map_token_id == 'TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t'?<div>
+                                        <b className="token-img-top" style={{marginRight: 5}}>
+                                            <img width={20} height={20} src={record.map_amount_logo} />
+                                            <i style={{width: 10, height: 10, bottom: -5}}></i>
+                                        </b>
+                                        {
+                                            record.type == 'trc20'?
+                                                <TokenTRC20Link name={record.map_token_id} address={record.contract_address} namePlus={record.map_token_name_abbr}/>
+                                                :
+                                                <TokenLink id={record.map_token_id} name={record.map_token_name_abbr}/>
 
 
-                                }
-                            </div>
-
-
-                    )
+                                        }
+                                    </div>
+                                    :
+                                    <div>
+                                        <img width={20} height={20} src={record.map_amount_logo} style={{marginRight: 5}}/>
+                                        {
+                                            record.type == 'trc20'?
+                                                <TokenTRC20Link name={record.map_token_id} address={record.contract_address} namePlus={record.map_token_name_abbr}/>
+                                                :
+                                                <TokenLink id={record.map_token_id} name={record.map_token_name_abbr?record.map_token_name_abbr:record.token_name}/>
+                                        }
+                                    </div>
+                            }
+                        </div>
                 }
             },
             // {
@@ -423,9 +418,9 @@ class Transfers extends React.Component {
                     transfers.length > 0 &&  <div className="d-flex align-items-center">
                         <div className="address-transfers-radio">
                             <Radio.Group size="Small" value={filter.direction}  onChange={this.onRadioChange}>
-                                <Radio.Button value="all">{tu('all')}</Radio.Button>
-                                <Radio.Button value="in">IN</Radio.Button>
-                                <Radio.Button value="out">OUT</Radio.Button>
+                                <Radio.Button value="all">{tu('address_transfer_all')}</Radio.Button>
+                                <Radio.Button value="in">{tu('address_transfer_in')}</Radio.Button>
+                                <Radio.Button value="out">{tu('address_transfer_out')}</Radio.Button>
                             </Radio.Group>
                         </div>
                     </div>
@@ -448,4 +443,4 @@ class Transfers extends React.Component {
     }
 }
 
-export default withTimers(injectIntl(Transfers));
+export default withTimers(injectIntl(TransfersAll));
