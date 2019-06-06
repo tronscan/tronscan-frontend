@@ -28,7 +28,7 @@ const blackMap = [
   '项目白皮书信息与实际不符，有抄袭、作假等嫌疑',
   '项目方私自更改白皮书，合约等关键信息，造成严重后果',
   '智能合约存在漏洞，造成用户实际财产受损或存在导致用户财产损失的潜在风险',
-  '其他原因'
+  '通证名称或简称中包含敏感词xxxxx，请等待审核'
 ]
 class IssuedToken extends React.PureComponent{
     constructor() {
@@ -66,12 +66,21 @@ class IssuedToken extends React.PureComponent{
       const {data: {data, retCode}} = await xhr.get('http://52.15.68.74:10086'+'/trc_appeals/recent?address='+ address)
       if(retCode == 0){
         let appealInfo = {errorInfo: [], ...data.appeal}
+        appealInfo.reasons = [{"value":"test","id":1,"active":true}]
         if(data.appeal){
-          const appealArr = JSON.parse(data.appeal.reasons)
+          // const appealArr = JSON.parse(data.appeal.reasons)
+          const appealArr = appealInfo.reasons
           appealArr.map(item => {
-            appealInfo.errorInfo.push(blackMap[item.id-1])
+            if(item.id == 11){
+              appealInfo.errorInfo.push(blackMap[item.id-1].replace('xxxxx', item.value))
+            }else{
+              appealInfo.errorInfo.push(blackMap[item.id-1])
+            }
           })
         }
+
+
+        console.log(appealInfo);
        return appealInfo
       }
     }
@@ -182,7 +191,7 @@ class IssuedToken extends React.PureComponent{
 
         return (
           <div className="mt-4">
-          {(Boolean(token20List.length) || issuedAsset) && <h4 style={{ marginBottom: '-0.5rem' }}>{tu('my_token')}</h4>}
+          {(Boolean(token20List.length) || issuedAsset) && <h4 style={{ marginBottom: '-0.5rem' }}>{tu('my_created_token')}</h4>}
           <div>{issuedAsset && 
             <div className="tf-card mt-3">
               <div className="d-flex justify-content-between align-items-center pl-3">
