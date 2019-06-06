@@ -66,10 +66,8 @@ class IssuedToken extends React.PureComponent{
       const {data: {data, retCode}} = await xhr.get('http://52.15.68.74:10086'+'/trc_appeals/recent?address='+ address)
       if(retCode == 0){
         let appealInfo = {errorInfo: [], ...data.appeal}
-        appealInfo.reasons = [{"value":"test","id":1,"active":true}]
         if(data.appeal){
-          // const appealArr = JSON.parse(data.appeal.reasons)
-          const appealArr = appealInfo.reasons
+          const appealArr = JSON.parse(data.appeal.reasons)
           appealArr.map(item => {
             if(item.id == 11){
               appealInfo.errorInfo.push(blackMap[item.id-1].replace('xxxxx', item.value))
@@ -78,9 +76,6 @@ class IssuedToken extends React.PureComponent{
             }
           })
         }
-
-
-        console.log(appealInfo);
        return appealInfo
       }
     }
