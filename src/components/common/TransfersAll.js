@@ -92,7 +92,6 @@ class TransfersAll extends React.Component {
         list = transfers
         total = totaldata
         range = rangeTotal
-        console.log('transfers',transfers)
         let transfersTRC10 = _(transfers).filter(tb => tb.type === "trc10" ).value();
         let transfersTRC20 = _(transfers).filter(tb => tb.type === "trc20" ).value();
 
@@ -273,7 +272,6 @@ class TransfersAll extends React.Component {
                 align: 'left',
                 className: 'ant_table',
                 render: (text, record, index) => {
-                    console.log('record',record)
                     return <div>
                             {
                                 record.map_token_id == 1002000  || record.map_token_id == 'TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t'?<div>

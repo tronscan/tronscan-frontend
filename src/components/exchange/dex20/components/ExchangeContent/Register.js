@@ -93,7 +93,6 @@ class Register extends Component {
         pairs.price
       ).toFixed(8);
     }
-    console.log("price_convert", price, price_convert);
 
     let first_token = pairs.fShortName ? "(" + pairs.fShortName + ")" : "";
     let second_token = pairs.sShortName ? "(" + pairs.sShortName + ")" : "";

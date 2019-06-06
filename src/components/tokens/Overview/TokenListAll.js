@@ -275,7 +275,6 @@ class TokenList extends Component {
           key: 'abbr',
           width: '10%',
           render: (text, record, index) => {
-            console.log(record)
             return <div>
               {
                   record.tokenType == 'trc10'&&

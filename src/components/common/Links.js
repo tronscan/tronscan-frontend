@@ -19,7 +19,6 @@ export const WitnessLink = ({address}) => (
 export const TokenLink = ({id, name, namePlus, address, children, ...props}) => {
 
   if(id == '_'){
-      console.log('111',id)
       return <a href="javascript:;" >{children || name}</a>
   }
   if (name && !namePlus) {
