@@ -294,7 +294,7 @@ export class TokenCreate extends Component {
 
   navigationchange (nextLocation){
     const {leave_lock, step} = this.state
-    return nextLocation.pathname.indexOf('/tokens/create') == -1 && leave_lock && step < 3
+    return nextLocation && nextLocation.pathname.indexOf('/tokens/create') == -1 && leave_lock && step < 3
   }
 
   render() {
