@@ -59,6 +59,7 @@ class IssuedToken extends React.Component{
     }
 
     async getAppealRecent(address){
+      const { intl } = this.props
       const {data: {data, retCode}} = await xhr.get('http://52.15.68.74:10086'+'/trc_appeals/recent?address='+ address)
       if(retCode == 0){
         let appealInfo = {errorInfo: [], ...data.appeal}
@@ -68,6 +69,7 @@ class IssuedToken extends React.Component{
             if(item.id == 11){
               appealInfo.errorInfo.push(blackMap[item.id-1].replace('xxxxx', item.value))
             }else{
+              console.log(intl.formatMessage({ id: `black_${item.id}` }))
               appealInfo.errorInfo.push(blackMap[item.id-1])
             }
           })
@@ -144,13 +146,17 @@ class IssuedToken extends React.Component{
     };
 
     componentDidUpdate(prevProps) {
-      const {issuedAsset, account} = this.props
+      const {issuedAsset, account, activeLanguage} = this.props
       if(issuedAsset && (issuedAsset != prevProps.issuedAsset)){
         this.getAppealRecent10(issuedAsset.ownerAddress)
       }
       if(account != prevProps.account){
         this.get20token()
       }
+      if(activeLanguage  != prevProps.activeLanguage){
+        this.getAppealRecent(account.address)
+      }
+      
     }
 
     componentDidMount() {
@@ -184,7 +190,7 @@ class IssuedToken extends React.Component{
 
         return (
           <div className="mt-4">
-          {(Boolean(token20List.length) || issuedAsset) && <h4 style={{ marginBottom: '-0.5rem' }}>{tu('my_created_token')}</h4>}
+          {(Boolean(token20List.length) || issuedAsset) && <h4 style={{ marginBottom: '-0.5rem' }}>{tu('token_input_success_myaccount')}</h4>}
           <div>{issuedAsset && 
             <div className="tf-card mt-3">
               <div className="d-flex justify-content-between align-items-center pl-3">
