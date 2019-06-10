@@ -126,6 +126,7 @@ BigNumber.config({ EXPONENTIAL_AT: [-20, 30] });
         });
     };
     renderSubmit = () => {
+
         let {intl,currentWallet} = this.props;
         if (!currentWallet) {
             this.setState({
@@ -165,8 +166,8 @@ BigNumber.config({ EXPONENTIAL_AT: [-20, 30] });
     //Confirm Token Issue
     confirmSubmit = () => {
         let {intl} = this.props;
-        let {isUpdate} = this.state;
-        if (!this.renderSubmit() && !isUpdate)
+        let { isUpdate, isTrc10 } = this.state;
+        if (!this.renderSubmit() && !isUpdate && isTrc10)
             return;
         this.setState({
             modal: (
@@ -338,9 +339,6 @@ BigNumber.config({ EXPONENTIAL_AT: [-20, 30] });
                         }
 
                     }else if(this.props.walletType.type == "ACCOUNT_PRIVATE_KEY") {
-                        alert(111)
-                        console.log('ACCOUNT_PRIVATE_KEY-update')
-                        console.log('this.state.isUpdate',this.state.isUpdate)
                         if(this.state.isUpdate){
                             let unSignTransaction = '';
                             let data  = {
@@ -727,7 +725,7 @@ BigNumber.config({ EXPONENTIAL_AT: [-20, 30] });
                 </section>
                 <section className="text-right px-2" >
                     <button className="btn btn-default btn-lg" onClick={() => nextStep(1)}>{tu('trc20_token_return')}</button>
-                    <button className="ml-4 btn btn-danger btn-lg" htmltype="submit" disabled={captcha_code} onClick={this.submit}>{tu('submit')}</button>
+                    <button className="ml-4 btn btn-danger btn-lg" htmltype="submit" disabled={!captcha_code} onClick={this.submit}>{tu('submit')}</button>
                 </section>
             </main>
         )
