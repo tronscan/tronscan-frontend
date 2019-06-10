@@ -19,8 +19,11 @@ function formatNumber(value) {
 
 class NumericInput extends React.Component {
   onChange = (e) => {
+    console.log('this.props',this.props)
     const { value } = e.target;
-    const reg = /^[1-9][0-9]*$/;
+    const regNum = /^[1-9][0-9]*$/;
+    const regDecimal = /^([1-9][0-9]*)(\.[0-9]*)?$/;
+    let reg = this.props.decimal?regDecimal:regNum
     if ((!Number.isNaN(value) && reg.test(value)) || value === '' || value === '-') {
       this.props.onChange(value);
     }
@@ -49,7 +52,7 @@ class NumericInput extends React.Component {
         {...this.props}
         onChange={this.onChange}
         onBlur={this.onBlur}
-        maxLength={25}
+        maxLength={30}
       />
     );
   }
