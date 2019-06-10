@@ -100,10 +100,7 @@ export class TokenCreate extends Component {
             this.setDefaultData()
         }
     }
-    if(match.params.step){
-      this.setState({step: typeMap.indexOf(match.params.step)})
-    }
-    // location.href = '#/tokens/create/Type'
+    location.href = '#/tokens/create/Type'
     
   }
 

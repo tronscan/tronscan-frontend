@@ -1892,7 +1892,7 @@ export const messages = {
   "black_8": "Whitepaper provides false information and is suspected of plagrism ",
   "black_9": "Project makes unauthorized changes to the whitepaper or other key information and results in severe consequences",
   "black_10": "Smart contract contins security risks and could or has already led to financial loss of the users",
-  "black_11": "Token names or abbreviations contain sensitive words. Pending for review.",
+  "black_11": "Token names or abbreviations contain sensitive words xxxxx. Pending for review.",
 
   "str_1": "Token names or abbreviations contain sensitive words.",
   "str_2": "Token names or abbreviations different from the ones in the contract.",
