@@ -1842,8 +1842,6 @@ export const messages = {
     "leave_tip":"您当前有未录完的表单，是否放弃录入",
     "already_add_social_link_":"已添加社交媒体链接",
     
-
-    //TODO 存在问题，等待翻译重新替换
     "token_input_success_you_can":"您可以在",
     "token_input_success_wallet":"钱包",
     "token_input_success_myaccount":"我发行的通证",

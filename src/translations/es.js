@@ -1851,7 +1851,7 @@ export const messages = {
   "token_input_success_you_can": "you can find it in",
   "token_input_success_wallet": "Wallet",
   "token_input_success_myaccount": "Token(s) issued by me",
-  "token_input_success_find_it": "",
+  "token_input_success_find_it": " ",
   "token_input_success_trx_market": "Los token registrados correctamente se encuentran listados; se registrarán automáticamente en la cartera y en TronLink. Pueden ser buscados.",
   "token_input_success_tip": "complete 10 campos más para registrarse en trx.market",
   "token_spend_confirm_new":"I have learned that issuing a token requires a one-time consumption of 1024TRX.",

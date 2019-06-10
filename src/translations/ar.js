@@ -1798,7 +1798,7 @@
   "token_input_success_you_can": "you can find it in",
   "token_input_success_wallet": "Wallet",
   "token_input_success_myaccount": "Token(s) issued by me",
-  "token_input_success_find_it": "",
+  "token_input_success_find_it": " ",
   "token_input_success_trx_market": "قم بإضافة 10 أُخرى من البيانات لضم  trx.market",
   "token_input_success_tip": "يمكن العثور على إدخال الرموز الناجحة في قائمة المحفظة وسيتم تضمين tronlink تلقائيًا ويمكن البحث فيه",
   "token_spend_confirm_new":"I have learned that issuing a token requires a one-time consumption of 1024TRX.",

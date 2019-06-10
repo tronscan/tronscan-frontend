@@ -39,7 +39,7 @@ export class TokenCreate extends Component {
     super(props);
 
     this.state = {
-      step: 0,
+      step: 3,
       type: 'trc20',
       modal: null,
       isUpdate:false,

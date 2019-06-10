@@ -1796,7 +1796,7 @@ export const messages = {
     "token_input_success_you_can": "you can find it in",
     "token_input_success_wallet": "Wallet",
     "token_input_success_myaccount": "Token(s) issued by me",
-    "token_input_success_find_it": "",
+    "token_input_success_find_it": " ",
     "token_input_success_trx_market": "توکن (هایی) که با موفقیت ضبط شده است می تواند در لیست پیدا کرد به طور خودکار در کیف پول و tronlink ثبت می شود؛ می توان جستجو کرد",
     "token_input_success_tip": "۱۰ آیتم  دیگر را برای ورود به  trx.market پر کنید .",
 

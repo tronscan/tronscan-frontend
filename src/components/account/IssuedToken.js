@@ -1,11 +1,8 @@
 import {connect} from "react-redux";
 import React from "react";
-import {Modal, ModalBody, ModalHeader} from "reactstrap";
 import {tu, t,option_t} from "../../utils/i18n";
 import {alpha} from "../../utils/str";
 import {Client} from "../../services/api";
-import {reloadWallet} from "../../actions/wallet";
-import {NumberField} from "../common/Fields";
 import _ from "lodash";
 import { Tag } from 'antd';
 import {TokenLink, TokenTRC20Link, HrefLink, AddressLink} from "../common/Links";
@@ -28,12 +25,11 @@ const blackMap = [
   '项目白皮书信息与实际不符，有抄袭、作假等嫌疑',
   '项目方私自更改白皮书，合约等关键信息，造成严重后果',
   '智能合约存在漏洞，造成用户实际财产受损或存在导致用户财产损失的潜在风险',
-  '通证名称或简称中包含敏感词xxxxx，请等待审核'
+  '通证名称或简称中包含敏感词 xxxxx，请等待审核'
 ]
-class IssuedToken extends React.PureComponent{
+class IssuedToken extends React.Component{
     constructor() {
         super();
-
         this.state = {
             disabled: false,
             modalStatus: false,
@@ -160,6 +156,8 @@ class IssuedToken extends React.PureComponent{
     componentDidMount() {
       this.get20token()
     }
+
+
     
 
 
@@ -323,7 +321,7 @@ class IssuedToken extends React.PureComponent{
                     <td></td>
                     <td>{tu('input_transcan')}</td>
                     <td>
-                      { status10.isPassed && <Tag color="#28a745">{tu('passed')}</Tag> }
+                      { status10.isPassed && <Tag color="#28a745">{tu('type_pass')}</Tag> }
                       { status10.isFailed && <Tag color="#3d3d3d">{tu('type_black')}</Tag> }
                       { status10.isAppealing && <Tag color="#f5a623">{tu('type_appeal')}</Tag> }
                     </td>
@@ -466,7 +464,7 @@ class IssuedToken extends React.PureComponent{
                         <td></td>
                         <td>{tu('input_transcan')}</td>
                         <td>
-                          { status20.isPassed && <Tag color="#28a745">{tu('passed')}</Tag> }
+                          { status20.isPassed && <Tag color="#28a745">{tu('type_pass')}</Tag> }
                           { status20.isFailed && <Tag color="#3d3d3d">{tu('type_black')}</Tag> }
                           { status20.isAppealing && <Tag color="#f5a623">{tu('type_appeal')}</Tag> }
                         </td>
@@ -536,11 +534,11 @@ function mapStateToProps(state) {
         account: state.app.account,
         wallet: state.wallet,
         currentWallet: state.wallet.current,
+        activeLanguage: state.app.activeLanguage,
     };
 }
 
 const mapDispatchToProps = {
-    reloadWallet
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(injectIntl(IssuedToken))

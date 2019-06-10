@@ -1804,7 +1804,7 @@ export const messages = {
   "token_input_success_you_can": "you can find it in",
   "token_input_success_wallet": "Wallet",
   "token_input_success_myaccount": "Token(s) issued by me",
-  "token_input_success_find_it": "",
+  "token_input_success_find_it": " ",
   "token_input_success_trx_market": "もう情報を10点補充すれば、trx.marketに入力できます。",
   "token_input_success_tip": "入力できたトークンをリストで見つかることができます。ウォレットとTronLinkも自動的に収納しますので、見つかられます。",
 
