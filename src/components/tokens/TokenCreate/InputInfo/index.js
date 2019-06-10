@@ -81,7 +81,6 @@ export class TokenCreate extends Component {
     async loadContractCode(id) {
         this.setState({loading: true});
         let contractCode = await Client.getContractCode(id);
-        console.log('contractCode',contractCode)
         this.setState({
             contract_created_date: moment(contractCode.data.date_created) || '',
             contract_created_address: contractCode.data.creator.address || '',

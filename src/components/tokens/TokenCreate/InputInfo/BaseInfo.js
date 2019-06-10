@@ -31,10 +31,7 @@ export class BaseInfo extends Component {
     const { getFieldDecorator } = this.props.form
     const { intl } = this.props
     const { precision_20, autoCompleteResult } =  this.state;
-
     const { isTrc20, isUpdate } = this.props.state;
-      console.log('isUpdate',isUpdate);
-
     const logoOptions = autoCompleteResult.map(logo => (
       <AutoCompleteOption key={logo}>{logo}</AutoCompleteOption>
     ));

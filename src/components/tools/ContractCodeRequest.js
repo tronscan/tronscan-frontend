@@ -104,7 +104,7 @@ export default class TestNetRequest extends React.Component {
     // };
 
     canRequest = () => {
-        let {verificationCode, } = this.state;
+        let {verificationCode } = this.state;
         return   verificationCode
     };
 
@@ -114,7 +114,7 @@ export default class TestNetRequest extends React.Component {
                 <React.Fragment>
                     <div className="d-flex justify-content-center">
                         <RecaptchaAsync
-                            sitekey="6LeaxJ0UAAAAAFEa6VoFNWWD6jJSiwWOYnlbqn3G"
+                            sitekey="6LejYqQUAAAAADMEfCJkRyZdvzxtqdX5-83yUUjH"
                             render="explicit"
                             onloadCallback={this.onLoad}
                             expiredCallback={this.onExpired}
