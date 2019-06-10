@@ -1738,8 +1738,8 @@ export const messages = {
   "footer_developer_resources":"Developer Resources",
   "footer_support_center":"Support Center",
   "footer_tron_network":"TRON",
-  "login_privatekey_warn":"In order to ensure account security and avoid asset loss, please take good care of your private key and never give it away to anyone. It is recommended to use ",
-  "login_privatekey_warn_safe":" to login",
+  "login_privatekey_warn":"Чтобы обеспечить безопасность учетной записи и избежать потери активов, пожалуйста сохраните и хорошо следите за своим приватным ключом и никогда никому не отдавайте его. Для входа рекомендуется Tronlink",
+  "login_privatekey_warn_safe":" использовать",
   "token_does_not_support_exchange":"Token doesn't support trading now",
   "token_trade":"сделка",
 

@@ -23,6 +23,7 @@ class TokenList extends Component {
       loading: false,
       total: 0,
       totalAll: 0,
+      countTop:2,
       filter: {
         order: 'desc',
         filter: 'all',
@@ -41,19 +42,25 @@ class TokenList extends Component {
 
   loadPage = async (page = 1, pageSize = 20) => {
     this.setState({loading: true})
-    const {filter} = this.state
+    const { filter, countTop } = this.state
     const {data: {tokens, total, totalAll}} = await xhr.get(API_URL+"/api/tokens/overview", {params: {
       start:  (page - 1) * pageSize,
       limit: pageSize,
       ...filter
     }});
-    let count = 0
+    let count = 0;
+    let Top = 0;
+
     tokens.map((item,index) => {
       if(!item.isTop){
-        item.index = count + 1
+        if(page == 1){
+            item.index = count + 1 + (page-1)*pageSize
+        }else{
+            item.index = count + 1 + (page-1)*pageSize - countTop
+        }
         count++
       }else{
-        item.c_index = index +1
+        item.c_index = index + 1
       }
      
       item.marketcap = item.marketcap || 0
@@ -292,11 +299,11 @@ class TokenList extends Component {
                       <a href="javascript:;"
                          className="token-disabled-exchange btn mt-2"
                          id={record.tokenType == "trc20"?"exchange_"+record.contractAddress:"exchange_"+record.tokenId}
-                         onMouseOver={(prevS,props) => this.setState({[record.abbr]: true})}
-                         onMouseOut={() => this.setState({[record.abbr]: false})}>
+                         onMouseOver={(prevS,props) => this.setState({[record.abbr + record.tokenId]: true})}
+                         onMouseOut={() => this.setState({[record.abbr+record.tokenId]: false})}>
                           {tu('token_trade')}
                       </a>
-                      <Tooltip placement="top" target={record.tokenType == "trc20"?"exchange_"+record.contractAddress:"exchange_"+record.tokenId} isOpen={this.state[record.abbr]}> <span className="text-capitalize">{tu("token_does_not_support_exchange")}</span></Tooltip>
+                      <Tooltip placement="top" target={record.tokenType == "trc20"?"exchange_"+record.contractAddress:"exchange_"+record.tokenId} isOpen={this.state[record.abbr+record.tokenId]}> <span className="text-capitalize">{tu("token_does_not_support_exchange")}</span></Tooltip>
                     </div>
               }
 

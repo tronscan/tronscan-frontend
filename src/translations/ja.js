@@ -1733,8 +1733,8 @@ export const messages = {
     "footer_developer_resources":"Developer Resources",
     "footer_support_center":"Support Center",
     "footer_tron_network":"TRON",
-    "login_privatekey_warn":"In order to ensure account security and avoid asset loss, please take good care of your private key and never give it away to anyone. It is recommended to use ",
-    "login_privatekey_warn_safe":" to login",
+    "login_privatekey_warn":"アカウントアセットの安全を守るため、紛失しないように、秘密鍵を大事に保存してください。",
+    "login_privatekey_warn_safe":"でログインをお薦めします。",
     "token_does_not_support_exchange":"Token doesn't support trading now",
     "token_trade":"取引",
 

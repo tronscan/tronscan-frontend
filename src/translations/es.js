@@ -1780,8 +1780,8 @@ export const messages = {
   "footer_developer_resources":"Developer Resources",
   "footer_support_center":"Support Center",
   "footer_tron_network":"TRON",
-  "login_privatekey_warn":"In order to ensure account security and avoid asset loss, please take good care of your private key and never give it away to anyone. It is recommended to use ",
-  "login_privatekey_warn_safe":" to login",
+  "login_privatekey_warn":"Para garantizar la seguridad de su cuenta y evitar la pérdida de activos, cuide su private key y nunca se la entregue a nadie. Se recomienda utilizar ",
+  "login_privatekey_warn_safe":" para iniciar sesión.",
   "token_does_not_support_exchange":"Token doesn't support trading now",
   "token_trade":"comercio",
 

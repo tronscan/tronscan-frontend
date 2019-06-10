@@ -89,14 +89,19 @@ class TransfersAll extends React.Component {
             ...filter,
             ...id,
         });
-        list = transfers
-        total = totaldata
-        range = rangeTotal
+        list = transfers;
+        total = totaldata;
+        range = rangeTotal;
+        transfers.map(item => {
+            if (!item.amount_str) {
+                item.amount_str = item.amount;
+            }
+        })
         let transfersTRC10 = _(transfers).filter(tb => tb.type === "trc10" ).value();
         let transfersTRC20 = _(transfers).filter(tb => tb.type === "trc20" ).value();
 
-        let rebuildRransfersTRC10 = rebuildList(transfersTRC10, 'token_id', 'amount');
-        let rebuildRransfersTRC20  = rebuildToken20List(transfersTRC20, 'contract_address', 'amount');
+        let rebuildRransfersTRC10 = rebuildList(transfersTRC10, 'token_id', 'amount_str');
+        let rebuildRransfersTRC20  = rebuildToken20List(transfersTRC20, 'contract_address', 'amount_str');
         let rebuildRransfers = rebuildRransfersTRC10.concat(rebuildRransfersTRC20);
         rebuildRransfers =  _(rebuildRransfers).sortBy(tb => -tb.date_created).value();
         rebuildRransfers.map( item => {

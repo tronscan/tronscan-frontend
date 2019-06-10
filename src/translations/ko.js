@@ -1736,8 +1736,8 @@ export const messages = {
     "footer_developer_resources":"Developer Resources",
     "footer_support_center":"Support Center",
     "footer_tron_network":"TRON",
-    "login_privatekey_warn":"In order to ensure account security and avoid asset loss, please take good care of your private key and never give it away to anyone. It is recommended to use ",
-    "login_privatekey_warn_safe":" to login",
+    "login_privatekey_warn":"계정 보안을 유지 및 자산 손실을 방지하기 위해서는 개인 키 (private key)를 잘 보관하고 다른 사람에게 절대 제공하지 마십시오. 또한 ",
+    "login_privatekey_warn_safe":"를 사용하여 로그인하는 것을 권장합니다.",
     "token_does_not_support_exchange":"Token doesn't support trading now",
     "token_trade":"거래",
 
