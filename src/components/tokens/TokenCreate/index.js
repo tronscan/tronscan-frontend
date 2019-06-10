@@ -195,7 +195,8 @@ export class TokenCreate extends Component {
       this.setState({loading: true,  isUpdate:true});
       let result = await xhr.get(API_URL+"/api/token_trc20?contract="+id);
       let token = result.data.trc20_tokens[0];
-      let contractCode;
+      let contractInfo;
+      console.log(222222)
       console.log('token20', moment(token.issue_time));
       let new_social_media = [];
       let socialMedia = [];
@@ -204,7 +205,7 @@ export class TokenCreate extends Component {
           this.props.history.push('/tokens/list')
           return;
       }else{
-          contractCode = await Client.getContractCode(token.contract_address);
+          contractInfo = await Client.getContractInfo(token.contract_address);
       }
 
 
@@ -238,8 +239,8 @@ export class TokenCreate extends Component {
                  author: token.issue_address,
                  contract_address: token.contract_address,
                  //contract_created_date: moment(token.issue_time),
-                 contract_created_date:contractCode.data.date_created ? moment(contractCode.data.date_created): '',
-                 contract_created_address: contractCode.data.creator.address?contractCode.data.creator.address: '',
+                 contract_created_date:contractInfo.data[0].date_created ? moment(contractInfo.data[0].date_created): '',
+                 contract_created_address: contractInfo.data[0].creator.address?contractInfo.data[0].creator.address: '',
                  website: token.home_page,
                  email: token.email?token.email:'',
                  white_paper: token.white_paper,

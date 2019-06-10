@@ -80,13 +80,13 @@ export class TokenCreate extends Component {
 
     async loadContractCode(id) {
         this.setState({loading: true});
-        let contractCode = await Client.getContractCode(id);
+        let contractInfo = await Client.getContractInfo(id);
         this.setState({
-            contract_created_date: moment(contractCode.data.date_created) || '',
-            contract_created_address: contractCode.data.creator.address || '',
+            contract_created_date: moment(contractInfo.data[0].date_created) || '',
+            contract_created_address: contractInfo.data[0].creator.address || '',
         }, () => {
-            this.props.form.setFieldsValue({ contract_created_date:contractCode.data.date_created?moment(contractCode.data.date_created) : moment(1539204941000)});
-            this.props.form.setFieldsValue({ contract_created_address:contractCode.data.creator.address || '1111' });
+            this.props.form.setFieldsValue({ contract_created_date:contractInfo.data[0].date_created?moment(contractInfo.data[0].date_created) : moment(1539204941000)});
+            this.props.form.setFieldsValue({ contract_created_address:contractInfo.data[0].creator.address || '' });
         });
 
     }
