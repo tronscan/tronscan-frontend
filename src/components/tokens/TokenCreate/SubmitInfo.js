@@ -167,8 +167,11 @@ BigNumber.config({ EXPONENTIAL_AT: [-20, 30] });
     confirmSubmit = () => {
         let {intl} = this.props;
         let { isUpdate, isTrc10 } = this.state;
+         console.log(isTrc10)
         if (!this.renderSubmit() && !isUpdate && isTrc10)
+            console.log(1111)
             return;
+        console.log(22222)
         this.setState({
             modal: (
                 <SweetAlert
@@ -234,7 +237,7 @@ BigNumber.config({ EXPONENTIAL_AT: [-20, 30] });
         switch (type){
             case 'trc10':
                 if (account.isLoggedIn){
-                    console.log('this.props.walletType.type',this.props.walletType.type)
+                    console.log('this.props.walletType.type----TRC10',this.props.walletType.type)
                     if (this.props.walletType.type === "ACCOUNT_LEDGER") {
                         // const unSignTransaction = await tronWebLedger.transactionBuilder.createToken({
                         //     name: this.tokenState('name'),
@@ -261,6 +264,7 @@ BigNumber.config({ EXPONENTIAL_AT: [-20, 30] });
                         //     res = result;
                         // }
                     } else if(this.props.walletType.type === "ACCOUNT_TRONLINK"){
+
                         let unSignTransaction = '';
                         if(this.state.isUpdate){
                             //Update
@@ -293,7 +297,7 @@ BigNumber.config({ EXPONENTIAL_AT: [-20, 30] });
                             }
                         }else{
                             //Create
-                            this.tokenState('frozenAmount')>0 && this.tokenState('frozenDuration') > 0 ?
+
                             unSignTransaction = await tronWeb.transactionBuilder.createToken({
                                 name: this.tokenState('name'),
                                 abbreviation: this.tokenState('abbreviation'),
@@ -312,24 +316,7 @@ BigNumber.config({ EXPONENTIAL_AT: [-20, 30] });
                             }, tronWeb.defaultAddress.hex).catch(function (e) {
                                 errorInfo = e.indexOf(':')?e.split(':')[1]:e
                             })
-                            :
-                            unSignTransaction = await tronWeb.transactionBuilder.createToken({
-                                name: this.tokenState('name'),
-                                abbreviation: this.tokenState('abbreviation'),
-                                description: this.tokenState('description'),
-                                url: this.tokenState('url'),
-                                totalSupply: this.tokenState('totalSupply'),
-                                tokenRatio: this.tokenState('tokenRatio'),
-                                trxRatio: this.tokenState('trxRatio'),
-                                saleStart: this.tokenState('saleStart'),
-                                saleEnd: this.tokenState('saleEnd'),
-                                freeBandwidth: 0,
-                                freeBandwidthLimit: 0,
-                                precision:  this.tokenState('precision'),
-                            }, tronWeb.defaultAddress.hex).catch(function (e) {
-                                errorInfo = e.indexOf(':')?e.split(':')[1]:e
-                            })
-
+                            console.log('trc10-Create-unSignTransaction-ACCOUNT_TRONLINK',unSignTransaction)
                             if (!unSignTransaction) {
                                 res = false;
                             } else {
@@ -395,8 +382,10 @@ BigNumber.config({ EXPONENTIAL_AT: [-20, 30] });
                     res,
                     errorInfo
                 },() => {
-                    this.props.nextState({res, errorInfo})
-                    this.props.nextStep(3)
+                    if(res == true || res == false){
+                        this.props.nextState({res, errorInfo})
+                        this.props.nextStep(3)
+                    }
                 });
             break;
 

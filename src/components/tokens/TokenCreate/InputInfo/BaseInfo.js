@@ -78,7 +78,7 @@ export class BaseInfo extends Component {
             {getFieldDecorator('token_supply', {
               rules: [{ required: true, message: tu('supply_v_required'), whitespace: true}],
             })(
-              <NumericInput placeholder={intl.formatMessage({id: 'supply_message'})} disabled={isUpdate} />
+              <NumericInput placeholder={intl.formatMessage({id: 'supply_message'})} disabled={isUpdate} decimal={!isTrc20}/>
             )}
           </Form.Item>
         </Col>

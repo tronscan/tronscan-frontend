@@ -47,31 +47,31 @@ export class resultInfo extends Component {
         let str = ''
         switch (error) {
             case "1":
-                str = '通证名称或者简称涉及敏感词'
+                str = 'str_1'
             break;
             case "2":
-                str = '通证名称或者简称与合约里定义的不符'
+                str = 'str_2'
             break;
             case "3":
-                str = '发行总量与合约里的totalsupply不符'
+                str = 'str_3'
             break;
             case "4":
-                str = '合约代码含有assert，不通过'
+                str = 'str_4'
             break;
             case "5":
-                str = '通证精度与合约里定义的不符'
+                str = 'str_5'
             break;
             case "6":
-                str = '签名验证失败'
+                str = 'str_6'
             break;
             case "7":
-                str = '数据过期'
+                str = 'str_7'
             break;
             case "8":
-                str = '合约已经录入'
+                str = 'str_8'
                 break;
             case "9":
-                str = '参数校验未通过'
+                str = 'str_9'
             break;
             default:
                 str = error;
@@ -95,16 +95,22 @@ export class resultInfo extends Component {
                         <img src={require("../../../images/token/result_failure.png")} alt=""/>
                         <h5>{tu('token_input_failure')}</h5>
                         <div className="mt-3 d-flex failure-reason">
-                            <span>{tu('token_input_failure_reason')}</span>
-                            <div>
-                                {
-                                    type == 'trc20' && errorInfo || isUpdate && errorInfo ?errorInfo.map((item,index) => {
-                                        return <p key={index}>{index +1 }. {this.setErrorMsg(item)}</p>
-                                    }):
-                                        <p>1. {errorInfo}</p>
-                                }
+                            {
+                                errorInfo &&  <div>
+                                    <span>{tu('token_input_failure_reason')}</span>
+                                    <div>
+                                        {
+                                            type == 'trc20' && errorInfo || isUpdate && errorInfo ?errorInfo.map((item,index) => {
+                                                    return <p key={index}>{index +1 }. {tu(this.setErrorMsg(item))}</p>
+                                                }):
+                                                <p>{errorInfo ? <span>1.{errorInfo}</span>:'' }</p>
+                                        }
 
-                            </div>
+                                    </div>
+                                </div>
+                            }
+
+
                         </div>
                         <div className="d-flex mt-3">
                             <button className="btn btn-default btn-lg" onClick={this.goToTokensList}>{tu('token_input_failure_no_submit')}</button>
