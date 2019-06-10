@@ -23,7 +23,7 @@ import {Client} from "../../../services/api";
 const confirm = Modal.confirm;
 
 const Step = Steps.Step;
-
+const typeMap = ['Type', 'Record', 'Confirm', 'Result']
 @connect(
   state => ({
     account: state.app.account,
@@ -32,14 +32,13 @@ const Step = Steps.Step;
 )
 
 // @reactMixin.decorate(Lifecycle)
-
 export class TokenCreate extends Component {
 
   constructor(props) {
     super(props);
 
     this.state = {
-      step: 3,
+      step: 0,
       type: 'trc20',
       modal: null,
       isUpdate:false,
@@ -101,6 +100,11 @@ export class TokenCreate extends Component {
             this.setDefaultData()
         }
     }
+    if(match.params.step){
+      this.setState({step: typeMap.indexOf(match.params.step)})
+    }
+    // location.href = '#/tokens/create/Type'
+    
   }
 
   loadToken10 = async (id) => {
@@ -266,6 +270,7 @@ export class TokenCreate extends Component {
 
   changeStep = (step) => {
     this.setState({step: step});
+    location.href = `#/tokens/create/${typeMap[step]}`
   }
   changeState = (params) => {
     this.setState(params);
@@ -288,6 +293,11 @@ export class TokenCreate extends Component {
     }
     return account.isLoggedIn;
   };
+
+  navigationchange (nextLocation){
+    const {leave_lock, step} = this.state
+    return nextLocation.pathname.indexOf('/tokens/create') == -1 && leave_lock && step < 3
+  }
 
   render() {
     let {step, modal, paramData, leave_lock, isUpdate, loading} = this.state;
@@ -367,7 +377,7 @@ export class TokenCreate extends Component {
           }
 
           {modal}
-          <NavigationPrompt when={leave_lock && step < 3}>
+          <NavigationPrompt when={(currentLocation, nextLocation) => this.navigationchange(nextLocation)}>
             {({ onConfirm, onCancel }) => (
               <SweetAlert
                 info

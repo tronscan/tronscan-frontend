@@ -221,6 +221,11 @@ export const routes = [
         component: TokensCreateAsync
       },
       {
+        path: "/tokens/create/:step",
+        component: TokensCreateAsync,
+        showInMenu: false
+      },
+      {
         label: "update_token",
         path: "/tokens/update/:id",
         icon: "fa fa-plus-square",
