@@ -144,7 +144,7 @@ BigNumber.config({ EXPONENTIAL_AT: [-20, 30] });
             );
             return false
         }
-        if (currentWallet.balance < ASSET_ISSUE_COST) {
+        if (currentWallet.balance > ASSET_ISSUE_COST) {
             this.setState({
                     modal:
                         <SweetAlert
@@ -166,11 +166,14 @@ BigNumber.config({ EXPONENTIAL_AT: [-20, 30] });
     //Confirm Token Issue
     confirmSubmit = () => {
         let {intl} = this.props;
-        let { isUpdate, isTrc10 } = this.state;
-         console.log(isTrc10)
-        if (!this.renderSubmit() && !isUpdate && isTrc10)
+        let { isUpdate, type } = this.state;
+        console.log('this.renderSubmit()',!this.renderSubmit())
+         console.log('isTrc10',type)
+        console.log('isUpdate',!isUpdate)
+        if (!this.renderSubmit() && !isUpdate && type == 'trc10'){
             console.log(1111)
             return;
+        }
         console.log(22222)
         this.setState({
             modal: (
@@ -287,11 +290,11 @@ BigNumber.config({ EXPONENTIAL_AT: [-20, 30] });
                                 "content":JSON.stringify(data),
                                 "sig": sig
                             })
-
+                            console.log('unSignTransaction',unSignTransaction)
                             if (unSignTransaction.retCode === "0") {
                                 res = true;
 
-                            } else {
+                            } else if(unSignTransaction.retCode === "1"){
                                 res = false;
                                 errorInfo = unSignTransaction.retMsg
                             }
@@ -299,25 +302,27 @@ BigNumber.config({ EXPONENTIAL_AT: [-20, 30] });
                             //Create
 
                             unSignTransaction = await tronWeb.transactionBuilder.createToken({
-                                name: this.tokenState('name'),
-                                abbreviation: this.tokenState('abbreviation'),
-                                description: this.tokenState('description'),
-                                url: this.tokenState('url'),
-                                totalSupply: this.tokenState('totalSupply'),
-                                tokenRatio: this.tokenState('tokenRatio'),
-                                trxRatio: this.tokenState('trxRatio'),
-                                saleStart: this.tokenState('saleStart'),
-                                saleEnd: this.tokenState('saleEnd'),
-                                freeBandwidth: 0,
-                                freeBandwidthLimit: 0,
-                                frozenAmount: this.tokenState('frozenAmount'),
-                                frozenDuration: this.tokenState('frozenDuration'),
-                                precision:  this.tokenState('precision'),
+                                "name": this.tokenState('name'),
+                                "abbreviation": this.tokenState('abbreviation'),
+                                "description": this.tokenState('description'),
+                                "url": this.tokenState('url'),
+                                "totalSupply": this.tokenState('totalSupply'),
+                                "tokenRatio": this.tokenState('tokenRatio'),
+                                "trxRatio": this.tokenState('trxRatio'),
+                                "saleStart": this.tokenState('saleStart'),
+                                "saleEnd": this.tokenState('saleEnd'),
+                                "freeBandwidth": 0,
+                                "freeBandwidthLimit": 0,
+                                "frozenAmount": this.tokenState('frozenAmount'),
+                                "frozenDuration": this.tokenState('frozenDuration'),
+                                "precision":  this.tokenState('precision'),
                             }, tronWeb.defaultAddress.hex).catch(function (e) {
-                                errorInfo = e.indexOf(':')?e.split(':')[1]:e
+                                console.log('trc10-Create-error',e)
+                                errorInfo = e.indexOf(':') != -1 ? e.split(':')[1] : e
                             })
                             console.log('trc10-Create-unSignTransaction-ACCOUNT_TRONLINK',unSignTransaction)
-                            if (!unSignTransaction) {
+                            console.log('trc10-Create',unSignTransaction)
+                            if (!unSignTransaction && unSignTransaction != '') {
                                 res = false;
                             } else {
                                 const {result} = await transactionResultManager(unSignTransaction, tronWeb);
@@ -357,27 +362,28 @@ BigNumber.config({ EXPONENTIAL_AT: [-20, 30] });
                             }
                         }else{
                             createInfo = await Client.createToken20({
-                                address: account.address,
-                                name: this.tokenState('name'),
-                                shortName: this.tokenState('abbreviation'),
-                                description: this.tokenState('description'),
-                                url: this.tokenState('url'),
-                                totalSupply: this.tokenState('totalSupply'),
-                                num: this.tokenState('tokenRatio'),
-                                trxNum: this.tokenState('trxRatio'),
-                                startTime: this.tokenState('startTime'),
-                                endTime: this.tokenState('endTime'),
-                                frozenSupply: this.tokenState('frozenSupply'),
-                                precision:  this.tokenState('precision'),
+                                "address": account.address,
+                                "name": this.tokenState('name'),
+                                "shortName": this.tokenState('abbreviation'),
+                                "description": this.tokenState('description'),
+                                "url": this.tokenState('url'),
+                                "totalSupply": this.tokenState('totalSupply'),
+                                "num": this.tokenState('tokenRatio'),
+                                "trxNum": this.tokenState('trxRatio'),
+                                "startTime": this.tokenState('startTime'),
+                                "endTime": this.tokenState('endTime'),
+                                "frozenSupply": this.tokenState('frozenSupply'),
+                                "precision":  this.tokenState('precision'),
                             })(account.key);
                             res = createInfo.success;
-                            errorInfo = createInfo.message.indexOf(':')?createInfo.message.split(':')[1]:createInfo.message;
+                            errorInfo = createInfo.message.indexOf(':') != -1 ?createInfo.message.split(':')[1]:createInfo.message;
                         }
 
                     }
 
                 }
 
+                console.log('errorInfo----create',errorInfo)
                 this.setState({
                     res,
                     errorInfo
