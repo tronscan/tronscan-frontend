@@ -1883,5 +1883,6 @@ export const messages = {
   "str_7": "Fecha de expiración",
   "str_8": "Contrato formalizado",
   "str_9": "No se pueden verificar los parámetros.",
+  "type": "Tipo",
 
 };
