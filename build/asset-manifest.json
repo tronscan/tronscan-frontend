@@ -36,7 +36,7 @@
   "WalletWizard.js": "static/js/WalletWizard.4e15dfe7.chunk.js",
   "bootstrap.css": "d59729439a203fc474f5677b8d18d8bb.css",
   "info.svg": "ce0369650e23ec7e420a8af6750d8a87.svg",
-  "languages.js": "static/js/languages.77af3ea4.chunk.js",
+  "languages.js": "static/js/languages.cd02099e.chunk.js",
   "main.css": "static/css/main.3969c3f1.css",
   "main.js": "static/js/main.ef718774.js",
   "static/media/24-Hour-Trading-Volume.png": "static/media/24-Hour-Trading-Volume.b6ff215b.png",
@@ -84,5 +84,5 @@
   "static/media/tron-logo.jpg": "static/media/tron-logo.f142f640.jpg",
   "static/media/tronscan_wechat.png": "static/media/tronscan_wechat.1e828828.png",
   "static/media/wallet-preview.png": "static/media/wallet-preview.d53c0b10.png",
-  "vendors.js": "static/js/vendors.39d09399.js"
+  "vendors.js": "static/js/vendors.0cca18c1.js"
 }
