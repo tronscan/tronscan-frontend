@@ -96,11 +96,11 @@ export class TokenCreate extends Component {
                 this.loadToken20(match.params.id)
             }
         }else{
-
             this.setDefaultData()
+            location.href = '#/tokens/create/Type'
         }
     }
-    location.href = '#/tokens/create/Type'
+
     
   }
 
