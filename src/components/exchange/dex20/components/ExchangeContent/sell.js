@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Form, Input, Button, Radio } from "antd";
+import { Form, Input, Button, Radio, Icon, Popover } from "antd";
 import { QuestionMark } from "../../../../common/QuestionMark";
 import { withRouter } from "react-router";
 import { Client, Client20 } from "../../../../../services/api";
@@ -188,6 +188,14 @@ class Sell extends Component {
       offlineToken
     } = this.state;
 
+    const content = (
+      <div style={{width:200}}>
+        {intl.formatMessage({
+          id:'trc20_vena_tip'
+        })}
+      </div>
+    );
+
     return (
       <div className="exchange__transaction__item p-3">
         {modal}
@@ -197,6 +205,12 @@ class Sell extends Component {
           {exchangeData.price && (
             <span>{Number(exchangeData.price).toFixed(6)}</span>
           )}
+          <span style={{ float: "right" }}>
+            <Popover content={content} title="">
+              <Icon type="question-circle" />
+            </Popover>
+            
+          </span>
           {/* { (secondBalance&& secondBalance.name)&&<span className=" text-sm d-block">{tu("TxAvailable")} {secondBalance.balance+' '+secondBalance.name}</span>} */}
         </h5>
         <hr />

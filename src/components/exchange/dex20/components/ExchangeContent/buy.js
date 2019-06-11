@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button, Form, Slider } from "antd";
+import { Button, Form, Slider, Icon } from "antd";
 import { withRouter } from "react-router";
 import { Client20 } from "../../../../../services/api";
 import SweetAlert from "react-bootstrap-sweetalert";

@@ -1535,6 +1535,7 @@ export const messages = {
   "trc20_24h_l":"24h最低价",
 
   "trc20_fire_token":"SCC & SCT 联合交易投注赛 – 1,500,000 SCT 等你来拿!",
+  "trc20_vena_tip":"由于 VENA 的智能合约的特殊性，当您卖出 VENA 时，需要对额外的 0.1 VENA 进行授权，但不会进行扣除。",
   
     /*
     *  2018-12-18
