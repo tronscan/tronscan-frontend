@@ -40,7 +40,7 @@ class ChangeNameModal extends Component {
     let hash = tronWeb.toHex(content_str);
     let sig =  await tronWeb.trx.sign(hash)
 
-    const { data } = await xhr.post(`http://52.15.68.74:10086/trc_appeals/${appealInfo.id}/update`, {
+    const { data } = await xhr.post(`http://52.15.68.74:10086/external/trc_appeals/${appealInfo.id}/update`, {
       content: content_str,
       sig
     })
