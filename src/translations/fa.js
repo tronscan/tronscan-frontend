@@ -1664,7 +1664,7 @@ export const messages = {
     'all': 'همه',
     "market_capitalization_trx": "ارزش بازار (TRX)",
     "token_txs_info": "Token",
-    "result": "Result",
+    "result": "نتیجه",
 
     /*
      ##################################################################################

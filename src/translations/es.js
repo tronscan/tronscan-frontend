@@ -1718,7 +1718,7 @@ export const messages = {
   'all': 'TODO',
   "market_capitalization_trx": "Capitalización de mercado (TRX) ",
   "token_txs_info": "Token",
-  "result": "Result",
+  "result": "Resultado",
 
   /*
       ##################################################################################

@@ -1675,7 +1675,7 @@ export const messages = {
   'all': '모두',
   "market_capitalization_trx": "시장 가치 (TRX)",
   "token_txs_info": "Token",
-  "result": "Result",
+  "result": "결과",
 
   /*
      ##################################################################################
