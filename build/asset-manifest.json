@@ -27,7 +27,7 @@
   "TokenDetail.js": "static/js/TokenDetail.76e20a81.chunk.js",
   "TokenList.js": "static/js/TokenList.3735abae.chunk.js",
   "TokenOverview.js": "static/js/TokenOverview.d9038c15.chunk.js",
-  "TokensCreate.js": "static/js/TokensCreate.e0294f43.chunk.js",
+  "TokensCreate.js": "static/js/TokensCreate.97599a48.chunk.js",
   "TransactionViewer.js": "static/js/TransactionViewer.bffdd9c9.chunk.js",
   "TronConvertTool.js": "static/js/TronConvertTool.d20b756a.chunk.js",
   "VerifyContractCode.js": "static/js/VerifyContractCode.0bec0bc4.chunk.js",
@@ -38,7 +38,7 @@
   "info.svg": "ce0369650e23ec7e420a8af6750d8a87.svg",
   "languages.js": "static/js/languages.77af3ea4.chunk.js",
   "main.css": "static/css/main.3969c3f1.css",
-  "main.js": "static/js/main.68c00511.js",
+  "main.js": "static/js/main.ef718774.js",
   "static/media/24-Hour-Trading-Volume.png": "static/media/24-Hour-Trading-Volume.b6ff215b.png",
   "static/media/Average-Price.png": "static/media/Average-Price.fca4d71b.png",
   "static/media/Block-Producer-Chart.png": "static/media/Block-Producer-Chart.3369eae3.png",
@@ -84,5 +84,5 @@
   "static/media/tron-logo.jpg": "static/media/tron-logo.f142f640.jpg",
   "static/media/tronscan_wechat.png": "static/media/tronscan_wechat.1e828828.png",
   "static/media/wallet-preview.png": "static/media/wallet-preview.d53c0b10.png",
-  "vendors.js": "static/js/vendors.31dd7841.js"
+  "vendors.js": "static/js/vendors.9a3b080b.js"
 }
