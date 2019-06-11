@@ -363,7 +363,12 @@ class ApiTW {
       let allowAmount = await this.authorization(
         _user,
         _tokenA,
-        Math.round(_amountA),
+        // Math.round(_amountA),
+        Math.round(
+          _tokenA == "TUL5yxRKeSWvceLZ3BSU5iNJcQmNxkWayh"
+            ? _amountA + 100000
+            : _amountA
+        ),
         _pairType,
         tronWeb
       );
