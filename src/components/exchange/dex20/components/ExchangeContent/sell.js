@@ -189,9 +189,9 @@ class Sell extends Component {
     } = this.state;
 
     const content = (
-      <div style={{width:200}}>
+      <div style={{ width: 200 }}>
         {intl.formatMessage({
-          id:'trc20_vena_tip'
+          id: "trc20_vena_tip"
         })}
       </div>
     );
@@ -205,7 +205,6 @@ class Sell extends Component {
           {exchangeData.price && (
             <span>{Number(exchangeData.price).toFixed(6)}</span>
           )}
-          
           {/* { (secondBalance&& secondBalance.name)&&<span className=" text-sm d-block">{tu("TxAvailable")} {secondBalance.balance+' '+secondBalance.name}</span>} */}
         </h5>
         <hr />
@@ -260,12 +259,13 @@ class Sell extends Component {
                 </span>
               </span>
             }
-            <span style={{ float: "right" }}>
-            <Popover content={content} title="">
-              <Icon type="question-circle" />
-            </Popover>
-            
-          </span>
+            {exchangeData.id === 61 && (
+              <span style={{ float: "right" }}>
+                <Popover content={content} title="">
+                  <Icon type="question-circle" />
+                </Popover>
+              </span>
+            )}
           </div>
 
           <div className="mb-3">
