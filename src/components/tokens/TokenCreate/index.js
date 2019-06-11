@@ -38,7 +38,7 @@ export class TokenCreate extends Component {
     super(props);
 
     this.state = {
-      step: 1,
+      step: 0,
       type: 'trc20',
       modal: null,
       isUpdate:false,
@@ -110,7 +110,6 @@ export class TokenCreate extends Component {
       let token = result.data.data[0];
       let new_social_media = [];
       let socialMedia = [];
-      console.log('token10',token);
       Object.keys(token).map(key => {
         if(token[key] == 'no_message') token[key] = ''
       })
@@ -147,7 +146,6 @@ export class TokenCreate extends Component {
           new_social_media = this.state.iconList;
           new_social_media.map((item, index) => {
               token.social_media.map((name,icon_index) => {
-                  console.log('name',name)
                   if(item.method == name.name){
                       item.link[0] = name.url
                   }
@@ -193,8 +191,6 @@ export class TokenCreate extends Component {
       let result = await xhr.get(API_URL+"/api/token_trc20?contract="+id);
       let token = result.data.trc20_tokens[0];
       let contractInfo;
-      console.log(222222)
-      console.log('token20', moment(token.issue_time));
       let new_social_media = [];
       let socialMedia = [];
       if(!token){
@@ -212,13 +208,11 @@ export class TokenCreate extends Component {
           new_social_media = this.state.iconList
           new_social_media.map((item, index) => {
               token.social_media_list.map((name,icon_index) => {
-                  console.log('name',name)
                   if(item.method == name.name){
                       item.link[0] = name.url
                   }
               })
           })
-          console.log('new_social_media',new_social_media)
       }
 
       this.setState({

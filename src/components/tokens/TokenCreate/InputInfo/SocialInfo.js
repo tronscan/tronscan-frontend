@@ -119,7 +119,7 @@ export class SocialInfo extends Component {
               </Form.Item>
             </Col>
           </Row>
-          <div className={ !isTrc20 && !isUpdate? 'd-block': 'd-none'}>
+          <div className={`${!isTrc20 && !isUpdate? 'd-block': 'd-none'} pl-2`}>
             <i className="fas fa-exclamation-circle mr-2" style={{color:"#FF8C00"}}></i>
               {tu("token_input_trc10_tip")}
           </div>

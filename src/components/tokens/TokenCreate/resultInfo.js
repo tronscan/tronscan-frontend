@@ -84,10 +84,6 @@ export class resultInfo extends Component {
     render() {
         let { intl } = this.props;
         let { type, res, errorInfo, isUpdate } = this.state;
-        console.log('res',res)
-        console.log('errorInfo2222',errorInfo)
-        console.log('type',type)
-        console.log('isUpdate',isUpdate)
         return (
             <main className="token-result">
                 {
@@ -96,7 +92,7 @@ export class resultInfo extends Component {
                         <h5>{tu('token_input_failure')}</h5>
                         <div className="mt-3 d-flex failure-reason">
                             {
-                                errorInfo &&  <div>
+                                errorInfo &&  <div className="d-flex">
                                     <span>{tu('token_input_failure_reason')}</span>
                                     <div>
                                         {

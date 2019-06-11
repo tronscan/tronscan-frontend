@@ -477,14 +477,12 @@ const AutoCompleteOption = AutoComplete.Option;
 
 function mapPropsToFields(props) {
   let data = props.state.paramData
-   console.log('data',data)
   let params = {}
   Object.keys(data).map(key => {
     params[key] = Form.createFormField({
       value: data[key],
     })
   })
-  console.log('params',params)
   return  params
 }
 

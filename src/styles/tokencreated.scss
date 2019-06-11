@@ -92,6 +92,7 @@
       height: 45px;
       line-height: 45px;
       color: #fff;
+      font-size: 1.23rem;
 
       @each $name, $tip in (success, d), (process, w), (wait, t){
         &.is-#{$name} {

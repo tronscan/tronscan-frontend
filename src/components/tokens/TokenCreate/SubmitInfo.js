@@ -547,13 +547,13 @@ BigNumber.config({ EXPONENTIAL_AT: [-20, 30] });
                             </p>
                         </Col>
                     </Row>
-                    <Row type="flex"  gutter={64}>
+                    {isTrc20 &&<Row type="flex"  gutter={64}>
                         <Col span={24} md={12}>
                         {/*<Col span={24} md={12} className={ isTrc20? 'd-block': 'd-none'}>*/}
                             <label>{tu('token_logo')}</label>
                             <img className="d-block mt-2" src={logo_url} alt="" width={100} height={100}/>
                         </Col>
-                    </Row>
+                    </Row>}
 
                 </section>
                 <section className={ isTrc20? 'd-block mt-4': 'd-none'}>
@@ -629,17 +629,17 @@ BigNumber.config({ EXPONENTIAL_AT: [-20, 30] });
                     <hr/>
                     <Row type="flex"  gutter={64}>
                         <Col span={24} md={12}>
-                            <label>{tu('trc20_token_info_Website')}</label>
+                            <label>{tu('project_website')}</label>
                             <p className="border-dashed">
                                 {website}
                             </p>
                         </Col>
-                        <Col span={24} md={12}>
+                        {isTrc20 &&<Col span={24} md={12}>
                             <label>{tu('GitHub')}</label>
                             <p className="border-dashed">
                                 {github_url}
                             </p>
-                        </Col>
+                        </Col>}
 
                     </Row>
                     <Row type="flex" gutter={64} className={ isTrc20? 'd-flex': 'd-none'}>
@@ -673,7 +673,7 @@ BigNumber.config({ EXPONENTIAL_AT: [-20, 30] });
                             </div>
                         </div>
                     </Row>
-                    <Row gutter={24} type="flex" justify="space-between">
+                    {isTrc20 &&<Row gutter={64} type="flex" justify="space-between">
                         {
                             iconList.map( (item, index) => {
                                 if(item.active){
@@ -698,10 +698,9 @@ BigNumber.config({ EXPONENTIAL_AT: [-20, 30] });
                                 }
                             })
                         }
-                    </Row>
+                    </Row>}
                 </section>
                 <section>
-                    <hr/>
                     <div className="mt-4">
                         <ContractCodeRequest  handleCaptchaCode={this.handleCaptchaCode} />
                     </div>

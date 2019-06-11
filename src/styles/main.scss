@@ -3739,6 +3739,9 @@ h5 {
   .failure-reason {
     color: #979797;
     font-size: 1rem;
+    p{
+      color: #979797;
+    }
   }
 }
 
@@ -3755,7 +3758,7 @@ h5 {
     color: #979797;
 
     .mytoken-wallet {
-      color: red;
+      color: #f5a623;
     }
   }
 
