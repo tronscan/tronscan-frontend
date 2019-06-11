@@ -144,15 +144,16 @@ BigNumber.config({ EXPONENTIAL_AT: [-20, 30] });
             );
             return false
         }
-        if (currentWallet.balance > ASSET_ISSUE_COST) {
+        if (currentWallet.balance < ASSET_ISSUE_COST) {
             this.setState({
                     modal:
                         <SweetAlert
-                            error
+                            info
                             confirmBtnText={intl.formatMessage({id: 'confirm'})}
                             confirmBtnBsStyle="success"
                             onConfirm={this.hideModal}
                             style={{marginLeft: '-240px', marginTop: '-195px'}}
+
                         >
                             {tu("trx_token_fee_message")}
                         </SweetAlert>
@@ -720,7 +721,7 @@ BigNumber.config({ EXPONENTIAL_AT: [-20, 30] });
                 </section>
                 <section className="text-right px-2" >
                     <button className="btn btn-default btn-lg" onClick={() => nextStep(1)}>{tu('trc20_token_return')}</button>
-                    <button className="ml-4 btn btn-danger btn-lg" htmltype="submit" disabled={!captcha_code} onClick={this.submit}>{tu('submit')}</button>
+                    <button className="ml-4 btn btn-danger btn-lg" htmltype="submit" disabled={captcha_code} onClick={this.submit}>{tu('submit')}</button>
                 </section>
             </main>
         )

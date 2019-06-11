@@ -32,6 +32,7 @@ export class BaseInfo extends Component {
     const { intl } = this.props
     const { precision_20, autoCompleteResult } =  this.state;
     const { isTrc20, isUpdate } = this.props.state;
+    console.log('isTrc20',isTrc20)
     const logoOptions = autoCompleteResult.map(logo => (
       <AutoCompleteOption key={logo}>{logo}</AutoCompleteOption>
     ));
@@ -78,7 +79,7 @@ export class BaseInfo extends Component {
             {getFieldDecorator('token_supply', {
               rules: [{ required: true, message: tu('supply_v_required'), whitespace: true}],
             })(
-              <NumericInput placeholder={intl.formatMessage({id: 'supply_message'})} disabled={isUpdate} decimal={!isTrc20}/>
+              <NumericInput placeholder={intl.formatMessage({id: 'supply_message'})} disabled={isUpdate} decimal={isTrc20}/>
             )}
           </Form.Item>
         </Col>
