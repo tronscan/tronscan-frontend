@@ -493,7 +493,7 @@ export const messages = {
   "abbreviation": "Abbreviations",
   "exchange_rate": "Issuing Exchange Rate",
   "token_price": "Token Price",
-  "supply_message": "Total token issuance, e.g. Total bitcoin issuance  21 million",
+  "supply_message": "Total token issuance(without precision)",
   "description_message": "A short description of the purpose of the token",
   "url_message": "A website address that shows more information about the token",
   "exchange_rate_message_0": "Specify the price of a single token by defining how many tokens a participant will receive for every TRX they spend.",
@@ -1873,6 +1873,8 @@ export const messages = {
   "token_input_success_find_it": " ",
   "token_input_success_trx_market": "fill in 10 more items to be recorded in trx.market",
   "token_input_success_tip": "token(s) that have been successfully recorded can be found in the list; will be automatically recorded in wallet and tronlink; can be searched",
+  
+  
   "token_spend_confirm_new": "I have learned that issuing a token requires a one-time consumption of 1024TRX.",
   "token_logo_input_placeholder": "Please submit image link, jpg/jpeg/png are supported, size ratio 1:1",
   "contract_created_address": "Address of contract creator",

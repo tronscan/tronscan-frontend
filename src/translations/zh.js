@@ -1849,14 +1849,16 @@ export const messages = {
   "token_input_success_trx_market": "再提交10项信息就可以录入trx.market",
   "token_input_success_tip": "录入成功的token可以在列表中找到；wallet和tronlink会自动收录；可以被搜索到",
 
-  "token_spend_confirm_new": "我已获知发行通证需一次性消耗1024TRX。",
-  "token_logo_input_placeholder": "请提交图片链接，支持jpg/jpeg/png格式,尺寸比例1:1",
-  "contract_created_address": "合约创建者地址",
-  "token_input_trc10_tip": "通证Logo、GitHub、社交媒体链接请在更新Token时填写",
-  "token_create_auther_different": "登录账户与发行者不一致，无法更新",
-
-  "ico_infomation": "ICO信息",
+  
+  "token_logo_input_placeholder": "请提交图片链接，支持jpg/jpeg/png格式，尺寸比例1:1",
   "project_website": "项目官网",
+  "token_input_trc10_tip": "通证Logo、GitHub、社交媒体链接请在更新Token时填写",
+  "token_spend_confirm_new": "我已获知发行通证需一次性消耗1024TRX。",
+  "token_create_auther_different": "登录账户与发行者不一致，无法更新",
+  "contract_created_address": "合约创建者地址",
+  "ico_infomation": "ICO信息",
+  
+  
 
   "black_1": "有盗用其他已上线币种名称的嫌疑",
   "black_2": "遭社区用户投诉涉嫌欺诈、携款跑路",
