@@ -1804,8 +1804,8 @@ export const messages = {
   "leave_tip": "귀하의 정보가 불완전합니다. 양식 입력 과정을 끝내시겠습니까?",
   "already_add_social_link_": "소셜 미디어 링크 추가됨",
 
-  "token_input_success_you_can": "you can find it in",
-  "token_input_success_wallet": "Wallet",
+  "token_input_success_you_can": "에서 찾을 수 있습니다",
+  "token_input_success_wallet": "지갑",
   "token_input_success_myaccount": "나에 의해 발행 된 토큰",
   "token_input_success_find_it": " ",
   "token_input_success_trx_market": "trx.market에 입력할 10개 정보 추가",

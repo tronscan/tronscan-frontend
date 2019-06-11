@@ -1795,8 +1795,8 @@
   "leave_tip": "لديك حاليًا نموذج غير مسجل ، هل تريد التخلي عن الإدخال؟",
   "already_add_social_link_": "إضافة رابط وسائل التواصل الاجتماعي",
 
-  "token_input_success_you_can": "you can find it in",
-  "token_input_success_wallet": "Wallet",
+  "token_input_success_you_can": "يمكنك العثور عليه في",
+  "token_input_success_wallet": "المحفظة",
   "token_input_success_myaccount": "رمز (رموز) صادرة عني",
   "token_input_success_find_it": " ",
   "token_input_success_trx_market": "قم بإضافة 10 أُخرى من البيانات لضم  trx.market",

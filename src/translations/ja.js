@@ -1801,8 +1801,8 @@ export const messages = {
   "leave_tip": "まだ完成していないシートがあります、廃棄しますか？",
   "already_add_social_link_": "ソーシャルメディアリンクを添加済になります",
 
-  "token_input_success_you_can": "you can find it in",
-  "token_input_success_wallet": "Wallet",
+  "token_input_success_you_can": "あなたはそれを見つけることができます",
+  "token_input_success_wallet": "ウォレット",
   "token_input_success_myaccount": "私が発行したトークン",
   "token_input_success_find_it": " ",
   "token_input_success_trx_market": "もう情報を10点補充すれば、trx.marketに入力できます。",

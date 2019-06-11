@@ -1806,8 +1806,8 @@ export const messages = {
   "leave_tip": "ваша информация не завершена; Вы хотели бы закончить процесс заполнения формы?",
   "already_add_social_link_": "добавлены ссылка(и) в социальных сетях",
 
-  "token_input_success_you_can": "you can find it in",
-  "token_input_success_wallet": "Wallet",
+  "token_input_success_you_can": "Вы можете найти это в",
+  "token_input_success_wallet": "КОШЕЛЕК",
   "token_input_success_myaccount": "Токены, выданные мной",
   "token_input_success_find_it": " ",
   "token_input_success_trx_market": "токены, которые были успешно записаны, можно найти в списке; будет автоматически записываться в кошельке и tronlink; могут быть найдены",

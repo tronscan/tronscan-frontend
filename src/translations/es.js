@@ -1848,8 +1848,8 @@ export const messages = {
   "leave_tip": "su información es incompleta; ¿quiere terminar de completar el formulario?",
   "already_add_social_link_": "enlaces a redes sociales añadidos",
 
-  "token_input_success_you_can": "you can find it in",
-  "token_input_success_wallet": "Wallet",
+  "token_input_success_you_can": "Puedes encontrarlo en",
+  "token_input_success_wallet": "CARTERA",
   "token_input_success_myaccount": "Token (s) emitidos por mi",
   "token_input_success_find_it": " ",
   "token_input_success_trx_market": "Los token registrados correctamente se encuentran listados; se registrarán automáticamente en la cartera y en TronLink. Pueden ser buscados.",
