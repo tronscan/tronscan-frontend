@@ -60,7 +60,7 @@ class IssuedToken extends React.Component{
 
     async getAppealRecent(address){
       const { intl } = this.props
-      const {data: {data, retCode}} = await xhr.get('http://52.15.68.74:10086'+'/external/trc_appeals/recent?address='+ address)
+      const {data: {data, retCode}} = await xhr.get(API_URL+'/external/trc_appeals/recent?address='+ address)
       if(retCode == 0){
         let appealInfo = {errorInfo: [], ...data.appeal}
         if(data.appeal){
@@ -110,7 +110,7 @@ class IssuedToken extends React.Component{
     // get 20eoken
     async get20token() {
       const { address } = this.props.account
-      const {data: {data, retCode}} = await xhr.get('http://52.15.68.74:10086'+'/external/trc20tokens?issuer_addr='+ address)
+      const {data: {data, retCode}} = await xhr.get(API_URL+'/external/trc20tokens?issuer_addr='+ address)
       if(retCode == 0){
         let arr = []
         this.getAppealRecent20(data.tokens)
