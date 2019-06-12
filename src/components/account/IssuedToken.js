@@ -169,9 +169,9 @@ class IssuedToken extends React.Component{
 
 
     render() {
-      const issuedAsset = this.props.issuedAsset
-      const {appealInfo,appealInfo10, token20List, appealInfo20, copied, id} = this.state
-      const { account, intl, currentWallet, unfreezeAssetsConfirmation } = this.props
+      const issuedAsset = this.props.issuedAsset;
+      const {appealInfo,appealInfo10, token20List, appealInfo20, copied, id} = this.state;
+      const { account, intl, currentWallet, unfreezeAssetsConfirmation } = this.props;
 
       let status10;
       let token10Time;

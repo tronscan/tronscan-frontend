@@ -1787,7 +1787,7 @@ export const messages = {
   "token_does_not_support_exchange":"Token doesn't support trading now",
   "token_trade":"Trade",
   "updata_token_info": "update token information",
-  "input_transcan": "log in to TRONSCAN",
+  "input_transcan": "Record into TRONSCAN",
   "pass_time": "approved at",
   "black_time": "blacklisted at",
   "appeal_time": "request received at",
@@ -1803,7 +1803,6 @@ export const messages = {
   "input_abcc": "log in to abcc (12 more items to fill in)",
   "input_cmc": "get listed on CMC (10 more items to fill in)",
   "holder_amount": "Token holders",
-
   "day_trade": "daily trade volume",
   "total_value": "total market value",
   "black_reason": "reason for being blacklisted",

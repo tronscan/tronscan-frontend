@@ -88,14 +88,15 @@ export class TokenCreate extends Component {
 
   componentDidMount() {
     let {match} = this.props;
+    console.log('match',match)
     if(this.isLoggedIn()){
-        if(match.path !=='/tokens/create' && match.params.id){
+        if(match.path ==='/tokens/update/:id' &&  match.params.id){
             if(!isNaN(match.params.id)){
                 this.loadToken10(match.params.id)
             }else{
                 this.loadToken20(match.params.id)
             }
-        }else{
+        }else {
             this.setDefaultData()
             location.href = '#/tokens/create/Type'
         }
@@ -261,8 +262,12 @@ export class TokenCreate extends Component {
   }
 
   changeStep = (step) => {
+    let { isUpdate } = this.state;
     this.setState({step: step});
-    location.href = `#/tokens/create/${typeMap[step]}`
+    if(!isUpdate){
+        location.href = `#/tokens/create/${typeMap[step]}`
+    }
+
   }
   changeState = (params) => {
     this.setState(params);
