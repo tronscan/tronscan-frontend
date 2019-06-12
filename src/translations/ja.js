@@ -1749,7 +1749,7 @@ export const messages = {
   "input_abcc": "abcc取引所に入力します（情報を12点のみ補充します）",
   "input_cmc": "CMCに上場します（情報を10点のみ補充します）",
   "holder_amount": "所有者数量",
-  "day_transiction": "日々取引量",
+  "day_trade": "日々取引量",
   "total_value": "市価総額",
   "black_reason": "ブロック原因",
   "appeal_reason": "報告理由",

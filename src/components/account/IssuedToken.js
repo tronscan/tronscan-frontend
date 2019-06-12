@@ -220,7 +220,7 @@ class IssuedToken extends React.Component{
                   {/** <div className="dor-img"><img src={require("../../images/issuedasset/2.png")} alt=""/></div>*/}
                 </div>
                 <div className="tf-card__header-item">
-                  <div className="tf-card__header-title">{tu('day_transiction')}</div>
+                  <div className="tf-card__header-title">{tu('day_trade')}</div>
                   <div className="tf-card__header-text">-</div>
                   {/** <div className="dor-img"><img src={require("../../images/issuedasset/3.png")} alt=""/></div>*/}
                 </div>
@@ -429,7 +429,7 @@ class IssuedToken extends React.Component{
                       <div className="tf-card__header-text"><FormattedNumber value={token20Item.transfer20}/></div>
                     </div>
                     <div className="tf-card__header-item">
-                      <div className="tf-card__header-title">{tu('day_transiction')}</div>
+                      <div className="tf-card__header-title">{tu('day_trade')}</div>
                       <div className="tf-card__header-text">-</div>
                     </div>
                     <div className="tf-card__header-item">

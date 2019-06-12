@@ -1744,7 +1744,7 @@ export const messages = {
     "input_abcc": "جهت ورود به abcc (12 مورد دیگر را پر کنید).",
     "input_cmc": "جهت اضافه شدن در لیست  CMC ذکر شده (10 مورد دیگررا پر کنید).",
     "holder_amount": "تعداد دارندگان توکن",
-    "day_transiction": "حجم معاملات روزانه",
+    "day_trade": "حجم معاملات روزانه",
     "total_value": "ارزش کل بازار",
     "black_reason": "دلیل قرار گرفتن در لیست سیاه",
     "appeal_reason": "دلیل تجدید نظر",

@@ -1781,7 +1781,7 @@ export const messages = {
   "input_abcc": "录入abcc交易所(只需再填写12项信息)",
   "input_cmc": "上CMC(只需再填写10项信息)",
   "holder_amount": "持有者数量",
-  "day_transiction": "日交易量",
+  "day_trade": "日交易量",
   "total_value": "总市值",
   "black_reason": "拉黑原因",
   "appeal_reason": "申诉理由",

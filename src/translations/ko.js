@@ -1737,7 +1737,7 @@ export const messages = {
   "input_abcc": "abcc 거래소 입력(12개 정보 추가 입력)",
   "input_cmc": "CMC에 상장합니다(10개 정보 추가 입력)",
   "holder_amount": "보유자 수량",
-  "day_transiction": "일일 거래량",
+  "day_trade": "일일 거래량",
   "total_value": "시가총액",
   "black_reason": "차단 이유",
   "appeal_reason": "컴플레인 이유",

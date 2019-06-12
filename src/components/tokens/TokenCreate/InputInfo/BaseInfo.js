@@ -92,10 +92,10 @@ export class BaseInfo extends Component {
           </Form.Item>
         </Col>
         {/*<Col  span={24} md={11} className={ isTrc20? 'd-block': 'd-none'}>*/}
-        <Col  span={24} md={11}>
+        <Col span={24} md={11} className={ isTrc20 || isUpdate? 'd-block': 'd-none'}>
           <Form.Item label={tu('token_logo')}>
             {getFieldDecorator('logo_url', {
-              rules: [{ required: isTrc20, message: tu('logo_v_required'), whitespace: true},
+              rules: [{ required: isTrc20 || isUpdate, message: tu('logo_v_required'), whitespace: true},
                       {pattern: /\.jpg|\.png|\.PNG|\.JPG|\.jpeg$/, message: tu('logo_v_format')}],
             })(
               <AutoComplete
