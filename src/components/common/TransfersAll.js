@@ -298,7 +298,7 @@ class TransfersAll extends React.Component {
                                     :
                                     <div>
                                         {
-                                            isAddressValid(record.map_token_id)?<span>{tu('address_transfer_unrecorded_token')}</span>:
+                                            isAddressValid(record.map_token_name_abbr)?<span>{tu('address_transfer_unrecorded_token')}</span>:
                                             <div>
                                                 <img width={20} height={20} src={record.map_amount_logo} style={{marginRight: 5}}/>
                                                 {
