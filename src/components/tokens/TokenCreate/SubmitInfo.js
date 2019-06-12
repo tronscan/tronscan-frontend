@@ -362,7 +362,7 @@ BigNumber.config({ EXPONENTIAL_AT: [-20, 30] });
                                 errorInfo = unSignTransaction.retMsg
                             }
                         }else{
-                            createInfo = await Client.createToken20({
+                            createInfo = await Client.createToken({
                                 "address": account.address,
                                 "name": this.tokenState('name'),
                                 "shortName": this.tokenState('abbreviation'),
