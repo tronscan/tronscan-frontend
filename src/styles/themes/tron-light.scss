@@ -461,7 +461,9 @@ $color-grey-border:#979797;
 $color:#C23631;
 .tron-light {
   background-color: #F3F3F3;
-
+  .container{
+      position: relative;
+  }
   @media (min-width:1200px) {
     .container{
       max-width:1200px;
@@ -566,6 +568,9 @@ $color:#C23631;
   }
   .home .color-transfers-hash .truncate-ellipsis span{
     color:$color !important;
+  }
+  .footer-compontent{
+      position: relative;
   }
   .home-footer{
     background-color: $color-grey-100;

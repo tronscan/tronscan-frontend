@@ -17,7 +17,7 @@ class Footer extends Component {
     const donate_address = 'TTzPiwbBedv7E8p4FkyPyeqq4RVoqRL3TW';
     let { intl, activeLanguage } = this.props;
     return (
-      <main className="home pb-0">
+      <div className="footer-compontent pb-0">
         <div className="pt-5 home-footer">
         {
           isMobile?
@@ -408,7 +408,7 @@ class Footer extends Component {
         }
           
         </div>
-      </main>
+      </div>
     );
   }
 }

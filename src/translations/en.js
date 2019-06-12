@@ -1577,7 +1577,6 @@ export const messages = {
   "trc20_depth": "DEPTH",
   "trc20_trade_win_content": "Current network is unstable , please check later",
   "trc20_trade_win_confirm": "Confirm",
-
   "trc20_hot": "Hot",
   "trc20_top_Volume": "Top VOL",
   "trc20_top_Rising": "Rising",
@@ -1585,8 +1584,8 @@ export const messages = {
   "trc20_register": "Order Book",
   "trc20_24h_h": "24h High",
   "trc20_24h_l": "24h Low",
-
-
+  "trc20_fire_token":"SCC & SCT Trading Competition – 1,500,000 SCT to Win!",
+  "trc20_vena_tip":"Due to the particularity of VENA contract, extra 0.1 VENA will be authorized but not deducted.",
   "create_deal_pair": "Create Trading Pairs",
   "add_deal_pair_desc": "Trading pair creation is available.",
   "click_create": "click here to create",
@@ -1626,7 +1625,6 @@ export const messages = {
   "Please_contact_us": "Please contact us.",
   "ok_confirm": "OK",
   "high_risk": "High Risk",
-
   "delegate_list": "Rental List",
   "type": "Type",
   "delegate_other": "Freeze by Others",
@@ -1636,7 +1634,6 @@ export const messages = {
   "my_account": "My Account",
   "receive_list": "Recipient Address",
   "unfreeze_warning": "You can only unfreeze TRX frozen by yourself. Do you wish to continue unfreezing?",
-
   "contract_method": "Contract Method",
   "contract_parameters": "Method Parameters",
   "energy_fee": "Burning TRX Number to Get Energy",
@@ -1659,15 +1656,9 @@ export const messages = {
   "BTT_supply": "BTT Supply",
   "BTT_Token_Release_Schedule": "BTT Token Release Schedule",
   "source_btt_team": "Source: BTT Management Team",
-
-  "20_transfers": "TRC-20 transfers",
-  "internal_transactions": "internal transactions",
-
   "EnergyConsume_title": "TRON Daily EnergyUsed History",
   "EnergyConsume_subtitle": "Click and drag in the point area to zoom in",
   "EnergyConsume_yaxis": "energy",
-
-
   "total_energy_used_chart": "total energy used chart",
   "total_used_energy": "total used energy",
   "energy_used_by_freezing_TRX": "energy used by freezing TRX",
@@ -1677,14 +1668,12 @@ export const messages = {
   "burning_energy": "burning energy",
   "energy_scale": "energy consumption ratio",
   "range": "range",
-
   "call": "call",
   "caller": "caller",
   "call_time": "call times",
   "call_scale": "call time ratio",
   "call_address_time": "call address",
   "call_address_scale": "call address ratio",
-
   "contract_call_chart": "contract call chart",
   "call_address_number": "address number",
   "contract_call_per_day": "Contract Call Per Day",
@@ -1693,14 +1682,11 @@ export const messages = {
   "tron_contract_call_chart": "contract call per day",
   "day_contract_energy_distribution": "energy consumption distribution per day",
   "day_contract_call_distribution": "contract call distribution per day",
-
   "a_total": "A total",
   "with_the_proportion_of": "with the proportion of",
   "uesd_by_the": "uesd by the",
   "contracts_from_the_total_used_of": "contracts from the total used of",
   "Contract_times_calls": "Contract times calls(Sorted by Contract times value in descending order)",
-  "BTT_Token_Release_Schedule": "BTT Token Release Schedule",
-  "source_btt_team": "Source: BTT Management Team",
   "20_transfers": "TRC-20 transfers",
   "internal_transactions": "internal transactions",
 
@@ -1780,6 +1766,10 @@ export const messages = {
   "address_percentage": "Percentage",
   "address_net_fee": "Bandwidth Cost",
   "address_energy_fee": "Energy Cost",
+  "address_transfer_all":"ALL",
+  "address_transfer_in":"IN",
+  "address_transfer_out":"OUT",
+  "address_transfer_unrecorded_token":"unrecorded Token",
 
   /*
      ##################################################################################
@@ -1794,8 +1784,8 @@ export const messages = {
   "footer_tron_network": "TRON",
   "login_privatekey_warn": "In order to ensure account security and avoid asset loss, please take good care of your private key and never give it away to anyone. It is recommended to use ",
   "login_privatekey_warn_safe": " to login",
-
-
+  "token_does_not_support_exchange":"Token doesn't support trading now",
+  "token_trade":"Trade",
   "updata_token_info": "update token information",
   "input_transcan": "log in to TRONSCAN",
   "pass_time": "approved at",
@@ -1820,7 +1810,6 @@ export const messages = {
   "handle_time": "average processing time: 48h",
   "i_know_black": "I am aware of being blacklisted, and I would like to be removed from the blacklist",
   "appeal_format": "reason for your request is required",
-  "": "",
   "token_input": "token record",
   "input": "record",
   "select_type": "please select token type",
@@ -1866,24 +1855,19 @@ export const messages = {
   "token_input_failure_submit": "submit again",
   "leave_tip": "your information is incomplete; would you like to end the process of filling in the form? ",
   "already_add_social_link_": "social media link(s) added",
-
   "token_input_success_you_can": "you can find it in",
   "token_input_success_wallet": "Wallet",
   "token_input_success_myaccount": "Token(s) issued by me",
   "token_input_success_find_it": " ",
   "token_input_success_trx_market": "fill in 10 more items to be recorded in trx.market",
   "token_input_success_tip": "token(s) that have been successfully recorded can be found in the list; will be automatically recorded in wallet and tronlink; can be searched",
-  
-  
   "token_spend_confirm_new": "I have learned that issuing a token requires a one-time consumption of 1024TRX.",
   "token_logo_input_placeholder": "Please submit image link, jpg/jpeg/png are supported, size ratio 1:1",
   "contract_created_address": "Address of contract creator",
   "token_input_trc10_tip": "Please fill in the Logo, GitHub, Social media links when updating Token",
   "token_create_auther_different": "The login account is inconsistent with the publisher and cannot be updated",
-
   "ico_infomation": "ICO information",
   "project_website": "Project offical website",
-
   "black_1": "Suspected of misappropriating other token names ",
   "black_2": "Allegedly committed fraud and run away with the fund",
   "black_3": "Suspected of violating the law and could face major law enforcement ",
@@ -1895,7 +1879,6 @@ export const messages = {
   "black_9": "Project makes unauthorized changes to the whitepaper or other key information and results in severe consequences",
   "black_10": "Smart contract contins security risks and could or has already led to financial loss of the users",
   "black_11": "Token names or abbreviations contain sensitive words xxxxx. Pending for review.",
-
   "str_1": "Token names or abbreviations contain sensitive words.",
   "str_2": "Token names or abbreviations different from the ones in the contract.",
   "str_3": "Volume of total issuance different from total supply in the contract.",

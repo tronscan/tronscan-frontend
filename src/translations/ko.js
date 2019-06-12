@@ -1522,11 +1522,12 @@ export const messages = {
   "trc20_hot": "인기",
   "trc20_top_Volume": "거래리스트",
   "trc20_top_Rising": "상승 목록",
-
-  "trc20_history": "시장 거래",
-  "trc20_register": "주문 도서",
-  "trc20_24h_h": "24h 높은",
-  "trc20_24h_l": "24h 낮은",
+  "trc20_history":"시장 거래",
+  "trc20_register":"주문 도서",
+  "trc20_24h_h":"24h 높은",
+  "trc20_24h_l":"24h 낮은",
+  "trc20_fire_token":"SCC & SCT Trading Competition – 1,500,000 SCT to Win!",
+  "trc20_vena_tip":"VENA 계약의 특수성으로 인해 추가 0.1 VENA 는 승인되지만 공제되지 않습니다.",
   /*
    *  2018-12-18
    * */
@@ -1593,7 +1594,6 @@ export const messages = {
   "source_btt_team": "정보 출처：BTT 관리팀",
   "20_transfers": "TRC-20 transfers",
   "internal_transactions": "internal transactions",
-
   "total_energy_used_chart": "일일 컨트랙트 에너지 소모 차트",
   "total_used_energy": "총 소모한 에너지",
   "energy_used_by_freezing_TRX": " TRX 동결에 사용되는 에너지",
@@ -1603,14 +1603,12 @@ export const messages = {
   "burning_energy": "TRX 에너지 소각",
   "energy_scale": "에너지 소비 비율",
   "range": "range",
-
   "call": " 콜",
   "caller": " 콜러",
   "call_time": " 콜 횟수",
   "call_scale": " 콜 횟수 비율",
   "call_address_time": " call_address_time",
   "call_address_scale": " call_address_scale",
-
   "contract_call_chart": "TRON 컨트랙트 사용 상황표",
   "call_address_number": "주소 번호",
   "contract_call_per_day": "Contract Call Per Day",
@@ -1619,31 +1617,14 @@ export const messages = {
   "tron_contract_call_chart": "TRON일일 컨트랙트 사용 차트",
   "day_contract_energy_distribution": "일일 컨트랙트 에너지 소모 분포",
   "day_contract_call_distribution": "일일 컨트랙트 사용 분포",
-
   "a_total": "총",
   "with_the_proportion_of": "의 비율로",
   "uesd_by_the": "에 의해 사용되는",
   "contracts_from_the_total_used_of": "총 사용량에서 컨트랙트",
   "Contract_times_calls": "컨트랙트 타임 콜 (계약 시간 값을 내림차순으로 정렬)",
-
-
-
-
   "EnergyConsume_title": "TRON 일일 에너지 사용 내역",
   "EnergyConsume_subtitle": "포인트 영역을 클릭하고 드래그하여 확대하십시오",
   "EnergyConsume_yaxis": "에너지",
-
-
-
-
-
-
-
-
-
-
-
-
 
   /*
       ##################################################################################
@@ -1699,6 +1680,7 @@ export const messages = {
        ##################################################################################
    */
 
+
   "address_balance_token_type": "토큰 종류",
   "address_balance_token_price_TRX": "가격",
   "address_transactions_tip": "거래수 에는 전송 횟수가 포함됩니다.",
@@ -1718,6 +1700,10 @@ export const messages = {
   "address_percentage": "비율",
   "address_net_fee": "Bandwidth Cost",
   "address_energy_fee": "Energy Cost",
+  "address_transfer_all":"ALL",
+  "address_transfer_in":"IN",
+  "address_transfer_out":"OUT",
+  "address_transfer_unrecorded_token":"unrecorded Token",
 
   /*
   ##################################################################################
@@ -1726,13 +1712,14 @@ export const messages = {
   #                                                                                #
   ##################################################################################
   */
-  "footer_fellow_us": "Follow Us",
-  "footer_developer_resources": "Developer Resources",
-  "footer_support_center": "Support Center",
-  "footer_tron_network": "TRON",
-  "login_privatekey_warn": "In order to ensure account security and avoid asset loss, please take good care of your private key and never give it away to anyone. It is recommended to use",
-  "login_privatekey_warn_safe": " to login",
-
+  "footer_fellow_us":"Follow Us",
+  "footer_developer_resources":"Developer Resources",
+  "footer_support_center":"Support Center",
+  "footer_tron_network":"TRON",
+  "login_privatekey_warn":"계정 보안을 유지 및 자산 손실을 방지하기 위해서는 개인 키 (private key)를 잘 보관하고 다른 사람에게 절대 제공하지 마십시오. 또한 ",
+  "login_privatekey_warn_safe":"를 사용하여 로그인하는 것을 권장합니다.",
+  "token_does_not_support_exchange":"Token doesn't support trading now",
+  "token_trade":"거래",
   "updata_token_info": "TOKEN 정보 업데이트",
   "input_transcan": "TRONSCAN 입력",
   "pass_time": "통과 시간",
@@ -1757,7 +1744,6 @@ export const messages = {
   "handle_time": "평균 처리 시간: 48h",
   "i_know_black": "이미 차단된 상황 처리, 회복 신청",
   "appeal_format": "컴플레인 이유를 반드시 기재해주세요.",
-  "": "",
   "token_input": "토큰 입력",
   "input": "입력",
   "select_type": "토큰 유형 선택",
@@ -1803,7 +1789,6 @@ export const messages = {
   "token_input_failure_submit": "다시 제출하기",
   "leave_tip": "귀하의 정보가 불완전합니다. 양식 입력 과정을 끝내시겠습니까?",
   "already_add_social_link_": "소셜 미디어 링크 추가됨",
-
   "token_input_success_you_can": "에서 찾을 수 있습니다",
   "token_input_success_wallet": "지갑",
   "token_input_success_myaccount": "나에 의해 발행 된 토큰",
@@ -1811,6 +1796,15 @@ export const messages = {
   "token_input_success_trx_market": "trx.market에 입력할 10개 정보 추가",
   "token_input_success_tip": "성공적으로 입력된 토큰은 목록에서 찾을 수 있으며  wallet 및  tronlink는 자동으로 포함되어 검색할 수 있습니다.",
 
+
+
+    /*
+    ##################################################################################
+    #                                                                                #
+    # footer  2019-05-20                                    #
+    #                                                                                #
+    ##################################################################################
+    */
   "token_logo_input_placeholder": "이미지 링크 제출, jpg / jpeg / png 지원, 크기 비율 1 : 1",
   "project_website": "프로젝트 공식 웹사이트",
   "token_input_trc10_tip": "토큰을 업데이트 시 Logo, GitHub, 소셜 미디어 링크를 입력하십시오.",
