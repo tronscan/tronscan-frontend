@@ -148,7 +148,7 @@ export class TokenCreate extends Component {
           new_social_media.map((item, index) => {
               token.social_media.map((name,icon_index) => {
                   if(item.method == name.name){
-                      item.link[0] = name.url
+                      item.link[0] = JSON.parse(name.url)
                   }
               })
           })
@@ -210,7 +210,7 @@ export class TokenCreate extends Component {
           new_social_media.map((item, index) => {
               token.social_media_list.map((name,icon_index) => {
                   if(item.method == name.name){
-                      item.link[0] = name.url
+                      item.link[0] = JSON.parse(name.url)
                   }
               })
           })

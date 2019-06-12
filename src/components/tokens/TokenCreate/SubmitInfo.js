@@ -547,7 +547,7 @@ BigNumber.config({ EXPONENTIAL_AT: [-20, 30] });
                             </p>
                         </Col>
                     </Row>
-                    {isTrc20 &&<Row type="flex"  gutter={64}>
+                    {(isTrc20 || isUpdate )&&<Row type="flex"  gutter={64}>
                         <Col span={24} md={12}>
                         {/*<Col span={24} md={12} className={ isTrc20? 'd-block': 'd-none'}>*/}
                             <label>{tu('token_logo')}</label>
@@ -673,7 +673,7 @@ BigNumber.config({ EXPONENTIAL_AT: [-20, 30] });
                             </div>
                         </div>
                     </Row>
-                    {isTrc20 &&<Row gutter={64} type="flex" justify="space-between">
+                    {(isTrc20 || isUpdate)&&<Row gutter={64} type="flex" justify="space-between">
                         {
                             iconList.map( (item, index) => {
                                 if(item.active){
