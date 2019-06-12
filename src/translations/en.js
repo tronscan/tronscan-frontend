@@ -1787,14 +1787,14 @@ export const messages = {
   "address_transfer_all":"ALL",
   "address_transfer_in":"IN",
   "address_transfer_out":"OUT",
-
+  "address_transfer_unrecorded_token":"unrecorded Token",
   /*
-     ##################################################################################
-     #                                                                                #
-     # footer  2019-05-20                                    #
-     #                                                                                #
-     ##################################################################################
- */
+       ##################################################################################
+       #                                                                                #
+       # footer  2019-05-20                                    #
+       #                                                                                #
+       ##################################################################################
+   */
   "footer_fellow_us":"Follow Us",
   "footer_developer_resources":"Developer Resources",
   "footer_support_center":"Support Center",
@@ -1803,5 +1803,6 @@ export const messages = {
   "login_privatekey_warn_safe":" to login",
   "token_does_not_support_exchange":"Token doesn't support trading now",
   "token_trade":"Trade",
+
 
 };

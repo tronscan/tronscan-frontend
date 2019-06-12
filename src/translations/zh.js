@@ -1729,7 +1729,7 @@ export const messages = {
     "address_transfer_all":"全部",
     "address_transfer_in":"转入",
     "address_transfer_out":"转出",
-
+    "address_transfer_unrecorded_token":"未收录通证",
     /*
        ##################################################################################
        #                                                                                #
