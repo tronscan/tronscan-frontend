@@ -41,12 +41,24 @@ $dark-red: #c53027;
 html,
 body {
   height: 100%;
+  min-height:100%;
+}
+
+#root{
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 main {
   padding-bottom: 25px;
+  flex: 1;
+  -ms-flex: 1 1 auto;
 }
 
+.footer-compontent{
+  flex-basic:auto;
+}
 a {
   color: #333;
   transition: color 0.5s ease;
@@ -1091,6 +1103,7 @@ th {
   z-index: 9999999;
   left: 50%;
   top: 50%;
+  transform: translate(-50%,-40%);
 }
 
 .logo_upload {

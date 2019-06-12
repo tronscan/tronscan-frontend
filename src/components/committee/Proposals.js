@@ -446,7 +446,7 @@ class Proposal extends React.Component {
             <main className="container header-overlap committee">
                 <div className="token_black table_pos">
                     {loading && <div className="loading-style"><TronLoader/></div>}
-                    {!loading&&<SmartTable bordered={true} column={column} data={dataSource} total={dataSource.length} locale={locale} addr="address"/>}
+                    {!loading&&<SmartTable bordered={true} column={column} data={dataSource} total={dataSource.length} locale={locale} />}
                 </div>
             </main>
         )

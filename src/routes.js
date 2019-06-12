@@ -290,13 +290,13 @@ export const routes = [
       },
       {
           url: "https://www.tronbet.io/#/?utm_source=TS",
-          icon: "fas fa-dice",
+          icon: "fas fa-dice-six",
           label: "TRONbet"
       },
       {
           url: "https://dapp.review/explore/tron?gclid=EAIaIQobChMIx-fB8KH04QIVlHZgCh0ybA1hEAAYASAAEgIad_D_BwE",
           icon: "fas fa-ellipsis-h",
-          label: "learn_more"
+          label: "nav_more"
       },
     ]
   },
