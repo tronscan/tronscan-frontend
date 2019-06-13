@@ -15,15 +15,17 @@ export class SocialInfo extends Component {
   }
 
   addSocal = (index) => {
-    let {iconList} = this.state
+    let {iconList, social_current} = this.state
 
     if(!iconList[index].active){
       iconList[index].active = true
+      social_current++
     }else{
       iconList[index].active = false
       iconList[index].link = ['']
+      social_current--
     }
-    this.setState({ iconList: iconList })
+    this.setState({ iconList, social_current })
   }
   addSocalItem = (index) => {
     let {iconList, social_current} = this.state;
