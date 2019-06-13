@@ -1881,6 +1881,7 @@ export const messages = {
   "str_8": "Contrato formalizado",
   "str_9": "No se pueden verificar los parámetros.",
   "type": "Tipo",
+  "token_login_no_updated":"El inicio de sesión de la cuenta no coincide con lo publicado y no se puede actualizar",
 
 
 };

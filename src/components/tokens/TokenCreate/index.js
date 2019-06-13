@@ -106,11 +106,31 @@ export class TokenCreate extends Component {
   }
 
   loadToken10 = async (id) => {
+      let {account, intl} = this.props;
+      console.log(account)
       this.setState({ loading: true, isUpdate:true });
       let result = await xhr.get(API_URL+"/api/token?id=" + id + "&showAll=1");
       let token = result.data.data[0];
       let new_social_media = [];
-      let socialMedia = [];
+      if(token.ownerAddress !== account.address){
+          this.setState({
+              //step: 0,
+              loading:false,
+              modal: <SweetAlert
+                  warning
+                  title={tu("token_login_no_updated")}
+                  confirmBtnText={intl.formatMessage({id: 'confirm'})}
+                  confirmBtnBsStyle="danger"
+                  onConfirm={() => this.setState({modal: null})}
+                  style={{marginLeft: '-240px', marginTop: '-195px'}}
+              >
+              </SweetAlert>,
+
+          })
+          console.log('modal',this.state.modal)
+          return;
+      }
+
       Object.keys(token).map(key => {
         if(token[key] == 'no_message') token[key] = ''
       })
@@ -123,27 +143,6 @@ export class TokenCreate extends Component {
       if(token.new_social_media && token.new_social_media.length > 0){
           new_social_media = token.new_social_media;
       }else{
-          // let icon_list = [
-          //     {method: 'Instagram', active: false, link: ['']},
-          //     {method: 'Group', active: false, link: ['']},
-          //     {method: 'Discord', active: false, link: ['']}
-          // ]
-          // let icon_active_list = ['Twitter','Facebook','Telegram','Weibo']
-          //
-          // token.social_media.map((item, index) => {
-          //     console.log('item',item)
-          //     socialMedia.push({method:item.name , active: item.url?true:false, link: [item.url]})
-          // });
-          //
-          // new_social_media =  socialMedia.concat(icon_list)
-          // new_social_media.map((item, index) => {
-          //     icon_active_list.map((name,icon_index) => {
-          //         if(item.method == name  && item.active == false){
-          //             item.active = true
-          //         }
-          //     })
-          // })
-
           new_social_media = this.state.iconList;
           new_social_media.map((item, index) => {
               token.social_media.map((name,icon_index) => {

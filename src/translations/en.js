@@ -1888,4 +1888,6 @@ export const messages = {
   "str_7": "Data expired ",
   "str_8": "Contract has been entered.",
   "str_9": "Unable to verify the parameters",
+  "token_login_no_updated":"The login account is inconsistent with the publisher and cannot be updated",
+
 };

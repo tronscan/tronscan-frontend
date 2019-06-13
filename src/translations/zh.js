@@ -1867,5 +1867,6 @@ export const messages = {
   "str_7": "数据过期",
   "str_8": "合约已经录入",
   "str_9": "参数校验未通过",
+  "token_login_no_updated":"登录账户与发行者不一致，无法更新",
 
 };
