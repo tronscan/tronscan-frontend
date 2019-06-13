@@ -1522,19 +1522,14 @@ export const messages = {
    "trc20_depth":"深度",
   "trc20_trade_win_content":"当前网络状况不佳，请稍后查看",
   "trc20_trade_win_confirm":"确定",
-
-  
-
   "trc20_hot":"热门",
   "trc20_top_Volume":"成交额榜",
   "trc20_top_Rising":"涨幅榜",
-
   "trc20_history":"最近成交",
   "trc20_register":"交易委托",
   "trc20_24h_h":"24h最高价",
   "trc20_24h_l":"24h最低价",
-
-  "trc20_fire_token":"SCC & SCT 联合交易投注赛 – 1,500,000 SCT 等你来拿!",
+  "trc20_fire_token":"寻找稳拿锦鲤，稳拿100,000VENA！",
   "trc20_vena_tip":"由于 VENA 的智能合约的特殊性，当您卖出 VENA 时，需要对额外的 0.1 VENA 进行授权，但不会进行扣除。",
   
     /*
