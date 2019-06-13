@@ -1593,7 +1593,7 @@ export const messages = {
   "BTT_Token_Release_Schedule": "BTT 토큰 해동 타임라인",
   "source_btt_team": "정보 출처：BTT 관리팀",
   "20_transfers": "TRC-20 transfers",
-  "internal_transactions": "internal transactions",
+  "internal_transactions": "컨트랙트 내 거래",
   "total_energy_used_chart": "일일 컨트랙트 에너지 소모 차트",
   "total_used_energy": "총 소모한 에너지",
   "energy_used_by_freezing_TRX": " TRX 동결에 사용되는 에너지",
@@ -1698,12 +1698,12 @@ export const messages = {
   "address_energyRemaining": "사용 가능한 에너지",
   "address_energyUsed": "사용 된 에너지",
   "address_percentage": "비율",
-  "address_net_fee": "Bandwidth Cost",
-  "address_energy_fee": "Energy Cost",
-  "address_transfer_all":"ALL",
-  "address_transfer_in":"IN",
-  "address_transfer_out":"OUT",
-  "address_transfer_unrecorded_token":"unrecorded Token",
+  "address_net_fee": "대역폭 비용",
+  "address_energy_fee": "에너지 비용",
+  "address_transfer_all":"모두",
+  "address_transfer_in":"전송",
+  "address_transfer_out":"전송",
+  "address_transfer_unrecorded_token":"Unrecorded Token",
 
   /*
   ##################################################################################

@@ -1769,7 +1769,7 @@ export const messages = {
   "address_transfer_all":"ALL",
   "address_transfer_in":"IN",
   "address_transfer_out":"OUT",
-  "address_transfer_unrecorded_token":"unrecorded Token",
+  "address_transfer_unrecorded_token":"Unrecorded Token",
 
   /*
      ##################################################################################

@@ -707,7 +707,7 @@
   #                                                                                #
   ##################################################################################
   */
-  "hash": "Hash",
+  "hash": "هش",
   "time": "الوقت",
   "parenthash": "Parent Hash",
   "size": "الحجم",
@@ -1627,7 +1627,7 @@
   "EnergyConsume_subtitle": "انقر واسحب في المنطقة ومن ثم قم بالتأشير للتكبير",
   "EnergyConsume_yaxis": "الطاقة",
   "20_transfers": "TRC-20 transfers",
-  "internal_transactions": "internal transactions",
+  "internal_transactions": "المعاملات الداخلية",
 
   /*
       ##################################################################################
@@ -1702,12 +1702,12 @@
     "address_energyRemaining":"الطاقة المتاحة",
     "address_energyUsed":"الطاقة المستخدمة",
     "address_percentage":"النسبة",
-    "address_net_fee":"Bandwidth Cost",
-    "address_energy_fee":"Energy Cost",
-    "address_transfer_all":"ALL",
-    "address_transfer_in":"IN",
-    "address_transfer_out":"OUT",
-    "address_transfer_unrecorded_token":"unrecorded Token",
+    "address_net_fee":"تكلفة النطاق الترددي",
+    "address_energy_fee":"تكلفة الطاقة",
+    "address_transfer_all":"الكل",
+    "address_transfer_in":"الدخل",
+    "address_transfer_out":"الانفاق",
+    "address_transfer_unrecorded_token":"Unrecorded Token",
 
 
   /*

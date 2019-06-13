@@ -1608,7 +1608,7 @@ export const messages = {
   "BTT_Token_Release_Schedule": "График выпуска токенов BTT",
   "source_btt_team": "Источник: команда управления BTT",
   "20_transfers": "TRC-20 transfers",
-  "internal_transactions": "internal transactions",
+  "internal_transactions": "ВНУТРЕННИЕ ТРАНЗАКЦИИ",
   "total_energy_used_chart": "диаграмма общей использованной энергии",
   "total_used_energy": "общая использованная энергия ",
   "energy_used_by_freezing_TRX": " энергия, используемая при замораживание TRX ",
@@ -1713,12 +1713,12 @@ export const messages = {
   "address_energyRemaining":"Доступная энергия",
   "address_energyUsed":"Использованная энергия",
   "address_percentage":"Соотношение",
-  "address_net_fee":"Bandwidth Cost",
-  "address_energy_fee":"Energy Cost",
-  "address_transfer_all":"ALL",
-  "address_transfer_in":"IN",
-  "address_transfer_out":"OUT",
-  "address_transfer_unrecorded_token":"unrecorded Token",
+  "address_net_fee":"Стоимость пропускной способности",
+  "address_energy_fee":"Стоимость энергии",
+  "address_transfer_all":"ВСЕ",
+  "address_transfer_in":"В",
+  "address_transfer_out":"ИЗ",
+  "address_transfer_unrecorded_token":"Unrecorded Token",
 
   /*
   ##################################################################################

@@ -1683,7 +1683,7 @@ export const messages = {
   "EnergyConsume_subtitle": "Click and drag in the point area to zoom in",
   "EnergyConsume_yaxis": "energy",
   "20_transfers": "TRC-20 transfers",
-  "internal_transactions": "internal transactions",
+  "internal_transactions": "Transacciones internas",
 
   /*
       ##################################################################################
@@ -1754,12 +1754,12 @@ export const messages = {
   "address_energyRemaining":"Available Energy",
   "address_energyUsed":"Used Energy",
   "address_percentage":"Percentage",
-  "address_net_fee":"Bandwidth Cost",
-  "address_energy_fee":"Energy Cost",
-  "address_transfer_all":"ALL",
-  "address_transfer_in":"IN",
-  "address_transfer_out":"OUT",
-  "address_transfer_unrecorded_token":"unrecorded Token",
+  "address_net_fee":"Costo de Bandwidth",
+  "address_energy_fee":"Costo de Energía",
+  "address_transfer_all":"TODO",
+  "address_transfer_in":"EN",
+  "address_transfer_out":"FUERA",
+  "address_transfer_unrecorded_token":"Unrecorded Token",
 
 
   /*
