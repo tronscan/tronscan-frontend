@@ -43,6 +43,8 @@ export class TokenCreate extends Component {
       modal: null,
       isUpdate:false,
       leave_lock: false,
+      social_total: 20,
+      social_current: 4,
       paramData: {
         token_name: '',
         token_abbr: '',

@@ -195,9 +195,13 @@ class IssuedToken extends React.Component{
                   <TokenLink id={issuedAsset.id} name={issuedAsset.name} address={issuedAsset.ownerAddress} namePlus={issuedAsset.name + ' (' + issuedAsset.abbr + ')'}/>
                   <span style={{color:"#999", fontSize: '12px'}}>[{issuedAsset.id}]</span>
                </h4>
-                <a href={"#/tokens/update/"+ issuedAsset.id}>
-                  <button type="button" className="btn btn-outline-danger btn-sm">{tu('updata_token_info')}</button>
-                </a>
+               {
+                status10.isPassed?
+                   <a href={"#/tokens/update/"+ issuedAsset.id}>
+                    <button type="button" className="btn btn-outline-danger btn-sm">{tu('updata_token_info')}</button>
+                  </a>:
+                  <button type="button" className="btn btn-outline-secondary btn-sm" disabled>{tu('updata_token_info')}</button>
+               }
                 </div>
               <hr className="my-3"/>
               <div className="d-flex justify-content-between tf-card__header position-relative">
@@ -286,7 +290,7 @@ class IssuedToken extends React.Component{
                           </span>
                         </div>
                     </div>
-                    <div>{
+                    <div className=" ml-3">{
                       currentWallet && currentWallet.frozen_supply.length > 0 &&
                       <div>
                         <a href="javascript:" className="float-right text-primary"
@@ -404,10 +408,13 @@ class IssuedToken extends React.Component{
                           </span>
                         </CopyToClipboard>
                       </span>
-                  </h4>
+                  </h4>{
+                  status20.isPassed?
                     <a href={"#/tokens/update/"+ token20Item.contract_address}>
-                    <button type="button" className="btn btn-outline-danger btn-sm">{tu('updata_token_info')}</button>
-                    </a>
+                      <button type="button" className="btn btn-outline-danger btn-sm">{tu('updata_token_info')}</button>
+                    </a>:
+                    <button type="button" className="btn btn-outline-secondary btn-sm" disabled>{tu('updata_token_info')}</button>
+                  }
                     </div>
                   <hr className="my-3"/>
                   <div className="d-flex justify-content-between tf-card__header">

@@ -4061,6 +4061,12 @@ h5 {
         background-color: #6081df;
       }
     }
+    .btn-outline-secondary {
+      
+      &:hover{
+        border-color: #8E8C84;
+      }
+    }  
   }
 }
 

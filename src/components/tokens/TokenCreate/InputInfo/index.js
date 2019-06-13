@@ -10,6 +10,7 @@ import {Form} from 'antd';
 import {Client} from "../../../../services/api";
 import moment from 'moment';
 import SweetAlert from "react-bootstrap-sweetalert";
+import { cloneDeep } from 'lodash'
 
 @connect(
     state => ({
@@ -25,6 +26,7 @@ export class TokenCreate extends Component {
         this.state = {
             isTrc10: false,
             isTrc20: false,
+            count: 0,
             ...this.props.state
         };
     }
@@ -66,16 +68,20 @@ export class TokenCreate extends Component {
         });
     };
     submit = (e) => {
-        const {paramData: {author}, iconList, isUpdate} = this.state;
+        const {paramData: {author}, iconList, isUpdate, count} = this.state;
         e.preventDefault();
         if (!this.renderSubmit() && isUpdate)
             return;
         this.props.form.validateFields((err, values) => {
             if (!err) {
-                this.props.nextState({paramData: values, iconList})
+                this.props.nextState({paramData: values, iconList, social_current: count})
                 this.props.nextStep(2)
             }
         });
+    }
+
+    changeCount =(count) => {
+      this.setState({count})
     }
 
     async loadContractCode(id) {
@@ -112,7 +118,7 @@ export class TokenCreate extends Component {
                     <PriceInfo form={form} intl={intl} state={this.state}/>
 
                     {/* social info */}
-                    <SocialInfo form={form} intl={intl} state={this.state}/>
+                    <SocialInfo form={form} intl={intl} state={this.state} changeCount={ (num) => this.changeCount(num)}/>
 
                     <div className="text-right px-2">
                         {!isUpdate && <a className="btn btn-default btn-lg" onClick={() => nextStep(0)}>{tu('prev_step')}</a>}

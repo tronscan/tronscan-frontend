@@ -7,8 +7,6 @@ export class SocialInfo extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      social_total: 20,
-      social_current: 4,
       modal: null,
       ...this.props.state
     };
@@ -16,22 +14,28 @@ export class SocialInfo extends Component {
 
   addSocal = (index) => {
     let {iconList, social_current} = this.state
-
-    if(!iconList[index].active){
-      iconList[index].active = true
-      social_current++
-    }else{
-      iconList[index].active = false
-      iconList[index].link = ['']
-      social_current--
-    }
-    this.setState({ iconList, social_current })
+   
+      if(!iconList[index].active){
+        this.checkAmount().then(() => {
+          iconList[index].active = true
+          social_current++
+          this.setState({ iconList, social_current })
+          this.props.changeCount(social_current)
+        })
+      }else{
+        iconList[index].active = false
+        iconList[index].link = ['']
+        social_current--
+        this.setState({ iconList, social_current })
+        this.props.changeCount(social_current)
+      }
   }
   addSocalItem = (index) => {
     let {iconList, social_current} = this.state;
     this.checkAmount().then(() => {
       iconList[index].link.push('')
-      this.setState({ iconList: iconList, social_current:  ++social_current })
+      this.setState({ iconList: iconList, social_current:  social_current+ 1 })
+      this.props.changeCount(social_current + 1)
     })
    
   }
@@ -39,7 +43,8 @@ export class SocialInfo extends Component {
   subSocalItem = (index, link_index) => {
     let {iconList, social_current} = this.state
     iconList[index].link.splice(link_index, 1)
-    this.setState({ iconList: iconList, social_current:  --social_current})
+    this.setState({ iconList: iconList, social_current:  social_current - 1})
+    this.props.changeCount(social_current - 1)
   }
 
   checkAmount(amount){
