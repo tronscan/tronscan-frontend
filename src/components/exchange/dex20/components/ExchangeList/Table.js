@@ -25,13 +25,18 @@ class ExchangeTable extends Component {
       activeIndex: props.activeIndex,
       optional: [],
       optionalBok: false,
-      offlineToken: [30]
+      offlineToken: [30],
+      transcationToken: [61], // 交易赛标识
+      linkUrl:{
+        en:'https://support.trx.market/hc/en-us/articles/360029414871-50-lucky-draws-to-win-100-000-VENA-',
+        zh:'https://support.trx.market/hc/zh-cn/articles/360029414871-%E5%AF%BB%E6%89%BE%E7%A8%B3%E6%8B%BF%E9%94%A6%E9%B2%A4-%E7%A8%B3%E6%8B%BF100-000VENA-'
+      }
     };
   }
 
   getColumns() {
     let { intl, price, activeCurrency, activeLanguage } = this.props;
-    let { dataSource, offlineToken } = this.state;
+    let { dataSource, offlineToken, transcationToken,linkUrl } = this.state;
     let isfov = Lockr.get("DEX") == "GEM";
     let favList = Lockr.get("dex20") || [];
 
@@ -42,19 +47,19 @@ class ExchangeTable extends Component {
         width: 120,
         render: (text, record, index) => {
           let content = (
-            <div style={{ width: "150px" }}>
+            <div style={{ width: "180px" }}>
               <p>{tu("trc20_fire_token")}</p>
               <p style={{ textAlign: "right", color: "#C53028" }}>
                 {activeLanguage === "zh" ? (
                   <a
-                    href="https://support.trx.market/hc/zh-cn/articles/360029062571-SCC-SCT-%E8%81%94%E5%90%88%E4%BA%A4%E6%98%93%E6%8A%95%E6%B3%A8%E8%B5%9B-1-500-000-SCT-%E7%AD%89%E4%BD%A0%E6%9D%A5%E6%8B%BF-"
+                    href={linkUrl['zh']}
                     target="_blank"
                   >
                     {tu("learn_more")}
                   </a>
                 ) : (
                   <a
-                    href="https://support.trx.market/hc/en-us/articles/360029062571-SCC-SCT-Trading-Competition-1-500-000-SCT-to-Win-"
+                  href={linkUrl['en']}
                     target="_blank"
                   >
                     {tu("learn_more")}
@@ -133,14 +138,14 @@ class ExchangeTable extends Component {
                 </p>
               </div>
 
-              {(record.id === 59 || record.id === 60) && (
+              {transcationToken.includes(record.id) && (
                 <div>
                   <Popover content={content} title="">
                     <img
                       src={require("../../../../../images/fire.svg")}
                       style={{
                         width: "15px",
-                        marginLeft: "5px"
+                        marginLeft: "5px"                    
                       }}
                       alt="fire"
                     />
