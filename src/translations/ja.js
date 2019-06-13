@@ -1521,11 +1521,12 @@ export const messages = {
   "trc20_hot": "人気の",
   "trc20_top_Volume": "取引リスト",
   "trc20_top_Rising": "上昇リスト",
-
   "trc20_history": "市場取引",
   "trc20_register": "注文書",
   "trc20_24h_h": "24h 高い",
   "trc20_24h_l": "24h 低い",
+  "trc20_fire_token":"SCC & SCT Trading Competition – 1,500,000 SCT to Win!",
+  "trc20_vena_tip":"Due to the particularity of VENA contract, extra 0.1 VENA will be authorized but not deducted.",
 
   /*
    *  2018-12-18
@@ -1602,8 +1603,6 @@ export const messages = {
   "source_btt_team": "出典：BTT管理チーム",
   "20_transfers": "TRC-20 transfers",
   "internal_transactions": "internal transactions",
-
-
   "total_energy_used_chart": "毎日コントラクト・エネルギー使用の図",
   "total_used_energy": "消耗された総エネルギー",
   "energy_used_by_freezing_TRX": "TRX凍結用のエネルギー",
@@ -1613,14 +1612,12 @@ export const messages = {
   "burning_energy": "焼却されたエネルギー",
   "energy_scale": "エネルギーの割合",
   "range": "range",
-
   "call": "コール",
   "caller": "コーラー",
   "call_time": "コール回数",
   "call_scale": "コール回数の割合",
   "call_address_time": "コールされたアドレス数",
   "call_address_scale": "コールされたアドレス数の割合",
-
   "contract_call_chart": "TRONコントラクトのコール状況表",
   "call_address_number": "アドレス数",
   "contract_call_per_day": "毎日のコントラクト・コール",
@@ -1629,13 +1626,11 @@ export const messages = {
   "tron_contract_call_chart": "TRON1日平均コントラクト・コールの図表",
   "day_contract_energy_distribution": "毎日のコントラクトより消耗されたエネルギーの分布",
   "day_contract_call_distribution": "毎日のコントラクト・コールの分布",
-
   "a_total": "総額",
   "with_the_proportion_of": "割当て",
   "uesd_by_the": "に使われた",
   "contracts_from_the_total_used_of": "_合計使用量からのコントラクト",
   "Contract_times_calls": "コントラクトのコール回数",
-
   "EnergyConsume_title": "TRON日々エネルギー消費の履歴",
   "EnergyConsume_subtitle": "描画領域をドラッグしてズームインする",
   "EnergyConsume_yaxis": "エネルギー",
@@ -1689,47 +1684,54 @@ export const messages = {
   "ledger_click_help": "ここをクリックしてヘルプを獲得します",
 
   /*
-         ##################################################################################
-         #                                                                                #
-         # new variables    address 2019-05-13                                    #
-         #                                                                                #
-         ##################################################################################
-     */
+     ##################################################################################
+     #                                                                                #
+     # new variables    address 2019-05-13                                    #
+     #                                                                                #
+     ##################################################################################
+  */
 
-  "address_balance_token_type": "トークン種類",
-  "address_balance_token_price_TRX": "価値",
-  "address_transactions_tip": "取引数は振替数を含めます",
-  "address_tron_power_tip": "TRXを凍結することで、投票権をもらえます",
-  "address_total_balance_tip": "総残高はすべて価値があるトークンを含めます",
-  "address_tron_power_used": "使用済",
-  "address_tron_power_remaining": "残り",
-  "address_total_balance_info_sources": "情報出典",
+
+
+  "address_balance_token_type":"トークン種類",
+  "address_balance_token_price_TRX":"価値",
+  "address_transactions_tip":"取引数は振替数を含めます",
+  "address_tron_power_tip":"TRXを凍結することで、投票権をもらえます",
+  "address_total_balance_tip":"総残高はすべて価値があるトークンを含めます",
+  "address_tron_power_used":"使用済",
+  "address_tron_power_remaining":"残り",
+  "address_total_balance_info_sources":"情報出典",
   "address_info_transfers": "振替",
   "address_info_transactions": "取引",
-  "address_netLimit": "バンド幅総量",
-  "address_netRemaining": "ご利用可能のバンド幅",
-  "address_netUsed": "利用済のバンド幅",
-  "address_energyLimit": "エネルギー総量",
-  "address_energyRemaining": "ご利用可能のエネルギー",
-  "address_energyUsed": "利用済のエネルギー",
-  "address_percentage": "比率",
-  "address_net_fee": "Bandwidth Cost",
-  "address_energy_fee": "Energy Cost",
+  "address_netLimit":"バンド幅総量",
+  "address_netRemaining":"ご利用可能のバンド幅",
+  "address_netUsed":"利用済のバンド幅",
+  "address_energyLimit":"エネルギー総量",
+  "address_energyRemaining":"ご利用可能のエネルギー",
+  "address_energyUsed":"利用済のエネルギー",
+  "address_percentage":"比率",
+  "address_net_fee":"Bandwidth Cost",
+  "address_energy_fee":"Energy Cost",
+  "address_transfer_all":"ALL",
+  "address_transfer_in":"IN",
+  "address_transfer_out":"OUT",
+  "address_transfer_unrecorded_token":"unrecorded Token",
+    /*
+      ##################################################################################
+      #                                                                                #
+      # footer  2019-05-20                                    #
+      #                                                                                #
+      ##################################################################################
+    */
 
-  /*
-    ##################################################################################
-    #                                                                                #
-    # footer  2019-05-20                                    #
-    #                                                                                #
-    ##################################################################################
-*/
-  "footer_fellow_us": "Follow Us",
-  "footer_developer_resources": "Developer Resources",
-  "footer_support_center": "Support Center",
-  "footer_tron_network": "TRON",
-  "login_privatekey_warn": "In order to ensure account security and avoid asset loss, please take good care of your private key and never give it away to anyone. It is recommended to use ",
-  "login_privatekey_warn_safe": " to login",
-
+  "footer_fellow_us":"Follow Us",
+  "footer_developer_resources":"Developer Resources",
+  "footer_support_center":"Support Center",
+  "footer_tron_network":"TRON",
+  "login_privatekey_warn":"アカウントアセットの安全を守るため、紛失しないように、秘密鍵を大事に保存してください。",
+  "login_privatekey_warn_safe":"でログインをお薦めします。",
+  "token_does_not_support_exchange":"Token doesn't support trading now",
+  "token_trade":"取引",
   "updata_token_info": "トークン情報をアップデートします",
   "input_transcan": "TRONSCANに入力します",
   "pass_time": "承認時間",
@@ -1747,14 +1749,13 @@ export const messages = {
   "input_abcc": "abcc取引所に入力します（情報を12点のみ補充します）",
   "input_cmc": "CMCに上場します（情報を10点のみ補充します）",
   "holder_amount": "所有者数量",
-  "day_transiction": "日々取引量",
+  "day_trade": "日々取引量",
   "total_value": "市価総額",
   "black_reason": "ブロック原因",
   "appeal_reason": "報告理由",
   "handle_time": "平均処理時間:48時間",
   "i_know_black": "ブロック状況に応じて処理しました。元に戻すと申込みます。",
   "appeal_format": "報告理由を書くのは必要となります",
-  "": "",
   "token_input": "トークンを入力します",
   "input": "入力します",
   "select_type": "トークンのタイプを選んでください",
@@ -1800,14 +1801,12 @@ export const messages = {
   "token_input_failure_submit": "再度提出します",
   "leave_tip": "まだ完成していないシートがあります、廃棄しますか？",
   "already_add_social_link_": "ソーシャルメディアリンクを添加済になります",
-
   "token_input_success_you_can": "あなたはそれを見つけることができます",
   "token_input_success_wallet": "ウォレット",
   "token_input_success_myaccount": "私が発行したトークン",
   "token_input_success_find_it": " ",
   "token_input_success_trx_market": "もう情報を10点補充すれば、trx.marketに入力できます。",
   "token_input_success_tip": "入力できたトークンをリストで見つかることができます。ウォレットとTronLinkも自動的に収納しますので、見つかられます。",
-
   "token_logo_input_placeholder": "画像リンクをご提供ください、サイズが1:1のjpg/jpeg/png格式をサポートします。",
   "project_website": "プロジェクト公式サイト",
   "token_input_trc10_tip": "トークンをアップデートする時、トークンのLogo、GitHub、ソーシャルメディアリンクを書いてください。",

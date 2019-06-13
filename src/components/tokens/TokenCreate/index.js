@@ -88,14 +88,15 @@ export class TokenCreate extends Component {
 
   componentDidMount() {
     let {match} = this.props;
+    console.log('match',match)
     if(this.isLoggedIn()){
-        if(match.path !=='/tokens/create' && match.params.id){
+        if(match.path ==='/tokens/update/:id' &&  match.params.id){
             if(!isNaN(match.params.id)){
                 this.loadToken10(match.params.id)
             }else{
                 this.loadToken20(match.params.id)
             }
-        }else{
+        }else {
             this.setDefaultData()
             location.href = '#/tokens/create/Type'
         }
@@ -147,7 +148,7 @@ export class TokenCreate extends Component {
           new_social_media.map((item, index) => {
               token.social_media.map((name,icon_index) => {
                   if(item.method == name.name){
-                      item.link[0] = name.url
+                      item.link[0] = JSON.parse(name.url)
                   }
               })
           })
@@ -164,12 +165,12 @@ export class TokenCreate extends Component {
               token_name: token.name,
               token_abbr: token.abbr,
               token_introduction: token.description,
-              token_supply: (token.totalSupply/ Math.pow(10,token.precision)).toString(),
+              token_supply: (token.totalSupply / Math.pow(10,token.precision)).toString(),
               precision: token.precision,
               logo_url: token.imgUrl,
               author: token.ownerAddress,
-              trx_amount: token.trxNum.toString(),
-              token_amount:token.num.toString(),
+              trx_amount: (token.trxNum / ONE_TRX).toString(),
+              token_amount:(token.num.toString() / Math.pow(10,token.precision)).toString(),
               participation_type: token.endTime - token.startTime > 1000 ? true: false,
               participation_start_date: moment(token.startTime),
               participation_end_date:  moment(token.endTime),
@@ -209,7 +210,7 @@ export class TokenCreate extends Component {
           new_social_media.map((item, index) => {
               token.social_media_list.map((name,icon_index) => {
                   if(item.method == name.name){
-                      item.link[0] = name.url
+                      item.link[0] = JSON.parse(name.url)
                   }
               })
           })
@@ -261,8 +262,12 @@ export class TokenCreate extends Component {
   }
 
   changeStep = (step) => {
+    let { isUpdate } = this.state;
     this.setState({step: step});
-    location.href = `#/tokens/create/${typeMap[step]}`
+    if(!isUpdate){
+        location.href = `#/tokens/create/${typeMap[step]}`
+    }
+
   }
   changeState = (params) => {
     this.setState(params);

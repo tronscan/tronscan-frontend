@@ -1580,11 +1580,13 @@ export const messages = {
   "trc20_hot": "Popular",
   "trc20_top_Volume": "Lista de comercio",
   "trc20_top_Rising": "Lista creciente",
+  "trc20_history":"Transacciones",
+  "trc20_register":"orden de compra",
+  "trc20_24h_h":"24h Alto",
+  "trc20_24h_l":"24h bajo",
+  "trc20_fire_token":"SCC & SCT Trading Competition – 1,500,000 SCT to Win!",
+  "trc20_vena_tip":"Due to the particularity of VENA contract, extra 0.1 VENA will be authorized but not deducted.",
 
-  "trc20_history": "Transacciones",
-  "trc20_register": "orden de compra",
-  "trc20_24h_h": "24h Alto",
-  "trc20_24h_l": "24h bajo",
   /*
    *  2018-12-18
    * */
@@ -1649,8 +1651,6 @@ export const messages = {
   "BTT_supply": "Suministro BTT",
   "BTT_Token_Release_Schedule": "Horario de lanzamiento de token BTT",
   "source_btt_team": "Fuente: Equipo de Gestión de BTT.",
-
-
   "total_energy_used_chart": "Gráfico diario de consumo de energía por contrato",
   "total_used_energy": "Energía usada total",
   "energy_used_by_freezing_TRX": " Energía usada por congelar TRX",
@@ -1660,7 +1660,6 @@ export const messages = {
   "burning_energy": " Energía conseguida por quemar TRX",
   "energy_scale": "Ratio de consumo de energía",
   "range": " Intervalo",
-
   "call": "Llamada",
   "caller": "Llamador",
   "call_time": " Número de llamada",
@@ -1675,19 +1674,14 @@ export const messages = {
   "tron_contract_call_chart": "Gráfico diario de contratos llamados en TRON",
   "day_contract_energy_distribution": " Distribución diaria de consumo de energía por contrato",
   "day_contract_call_distribution": "Distribución diaría de llamadas",
-
   "a_total": "Un total",
   "with_the_proportion_of": "con la proporción de",
   "uesd_by_the": "usado por  ",
   "contracts_from_the_total_used_of": "total de contratos usados de",
   "Contract_times_calls": "Tiempo de llamada de contrato(Ordenadas por tiempos en orden descendente)",
-
-
   "EnergyConsume_title": "TRON Daily EnergyUsed History",
   "EnergyConsume_subtitle": "Click and drag in the point area to zoom in",
   "EnergyConsume_yaxis": "energy",
-  "BTT_Token_Release_Schedule": "Horario de lanzamiento de token BTT",
-  "source_btt_team": "Fuente: Equipo de Gestión de BTT.",
   "20_transfers": "TRC-20 transfers",
   "internal_transactions": "internal transactions",
 
@@ -1753,15 +1747,20 @@ export const messages = {
   "address_total_balance_info_sources": "Fuentes",
   "address_info_transfers": "Transferencias",
   "address_info_transactions": "transacciones",
-  "address_netLimit": "Total Bandwidth",
-  "address_netRemaining": "Available Bandwidth",
-  "address_netUsed": "Used Bandwidth",
-  "address_energyLimit": "Total Energy",
-  "address_energyRemaining": "Available Energy",
-  "address_energyUsed": "Used Energy",
-  "address_percentage": "Percentage",
-  "address_net_fee": "Bandwidth Cost",
-  "address_energy_fee": "Energy Cost",
+  "address_netLimit":"Total Bandwidth",
+  "address_netRemaining":"Available Bandwidth",
+  "address_netUsed":"Used Bandwidth",
+  "address_energyLimit":"Total Energy",
+  "address_energyRemaining":"Available Energy",
+  "address_energyUsed":"Used Energy",
+  "address_percentage":"Percentage",
+  "address_net_fee":"Bandwidth Cost",
+  "address_energy_fee":"Energy Cost",
+  "address_transfer_all":"ALL",
+  "address_transfer_in":"IN",
+  "address_transfer_out":"OUT",
+  "address_transfer_unrecorded_token":"unrecorded Token",
+
 
   /*
     ##################################################################################
@@ -1770,19 +1769,21 @@ export const messages = {
     #                                                                                #
     ##################################################################################
   */
-  "footer_fellow_us": "Follow Us",
-  "footer_developer_resources": "Developer Resources",
-  "footer_support_center": "Support Center",
-  "footer_tron_network": "TRON",
-  "login_privatekey_warn": "In order to ensure account security and avoid asset loss, please take good care of your private key and never give it away to anyone. It is recommended to use ",
-  "login_privatekey_warn_safe": " to login",
 
+  "footer_fellow_us":"Follow Us",
+  "footer_developer_resources":"Developer Resources",
+  "footer_support_center":"Support Center",
+  "footer_tron_network":"TRON",
+  "login_privatekey_warn":"Para garantizar la seguridad de su cuenta y evitar la pérdida de activos, cuide su private key y nunca se la entregue a nadie. Se recomienda utilizar ",
+  "login_privatekey_warn_safe":" para iniciar sesión.",
+  "token_does_not_support_exchange":"Token doesn't support trading now",
+  "token_trade":"comercio",
   "updata_token_info": "actualizar información del token",
-  "input_transcan": "inicia sesión en tronscan",
+  "input_transcan": "inicia sesión en TRONSCAN",
   "pass_time": "aprobado el:",
   "black_time": "en lista negra desde el:",
   "appeal_time": "solicitud recibida el:",
-  "check_token_detail": "ver detalles de token",
+  "check_token_detail": "ver detalles de TOKEN",
   "check_market_detail": "ver detalles del mercado",
   "check_abcc_detail": "ver detalles de abcc",
   "check_cmc_detail": "ver detalles de cmc",
@@ -1794,14 +1795,13 @@ export const messages = {
   "input_abcc": "inicia sesión en abcc (12 campos más a completar)",
   "input_cmc": "listar en CMC (10 campos más a completar)",
   "holder_amount": "número de holders del token",
-  "day_transiction": "volumen de transacciones diarias",
+  "day_trade": "volumen de transacciones diarias",
   "total_value": "valor total del mercado",
   "black_reason": "motivo de inclusión en lista negra",
   "appeal_reason": "motivo de la solicitud",
   "handle_time": "tiempo medio de procesamiento: 48h",
   "i_know_black": "soy consciente de que estoy en la lista negra, y me gustaría ser eliminado de la lista negra",
   "appeal_format": "se requiere el motivo de su solicitud",
-  "": "",
   "token_input": "resgistro del token",
   "input": "registro",
   "select_type": "Por favor, seleccione tipo de token",
@@ -1847,15 +1847,12 @@ export const messages = {
   "token_input_failure_submit": "enviar otra vez",
   "leave_tip": "su información es incompleta; ¿quiere terminar de completar el formulario?",
   "already_add_social_link_": "enlaces a redes sociales añadidos",
-
   "token_input_success_you_can": "Puedes encontrarlo en",
   "token_input_success_wallet": "CARTERA",
   "token_input_success_myaccount": "Token (s) emitidos por mi",
   "token_input_success_find_it": " ",
   "token_input_success_trx_market": "Los token registrados correctamente se encuentran listados; se registrarán automáticamente en la cartera y en TronLink. Pueden ser buscados.",
   "token_input_success_tip": "complete 10 campos más para registrarse en trx.market",
-
-
   "token_logo_input_placeholder": "Por favor envía el enlace de la imagen, se admite jpg/jpeg/png, relación de tamaño 1:1",
   "project_website": "Web oficial del proyecto",
   "token_input_trc10_tip": "Complete el logo, GitHub y enlaces a redes sociales al actualizar el Token",
@@ -1884,5 +1881,6 @@ export const messages = {
   "str_8": "Contrato formalizado",
   "str_9": "No se pueden verificar los parámetros.",
   "type": "Tipo",
+
 
 };

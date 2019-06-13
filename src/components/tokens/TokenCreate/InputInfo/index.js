@@ -93,7 +93,7 @@ export class TokenCreate extends Component {
 
     render() {
         const {intl, nextStep} = this.props;
-        const { modal } = this.state;
+        const { modal,isUpdate } = this.state;
         const {form} = this.props;
 
         return (
@@ -115,7 +115,7 @@ export class TokenCreate extends Component {
                     <SocialInfo form={form} intl={intl} state={this.state}/>
 
                     <div className="text-right px-2">
-                        <a className="btn btn-default btn-lg" onClick={() => nextStep(0)}>{tu('prev_step')}</a>
+                        {!isUpdate && <a className="btn btn-default btn-lg" onClick={() => nextStep(0)}>{tu('prev_step')}</a>}
                         <button className="ml-4 btn btn-danger btn-lg" onClick={this.submit}>{tu('next')}</button>
                     </div>
 

@@ -2,6 +2,7 @@ import React from "react";
 import {tu} from "../../../utils/i18n";
 import {FormattedDate, FormattedNumber, FormattedTime } from "react-intl";
 import {AddressLink, ExternalLink} from "../../common/Links";
+import {TRXPrice} from "../../common/Price";
 import {Link} from "react-router-dom";
 import {toLower} from "lodash";
 
@@ -62,7 +63,8 @@ export function Information({token,currentTotalSupply}) {
                   {' '}
                   <FormattedTime value={token.dateCreated}  hour='numeric' minute="numeric" second='numeric' hour12={false}/>
                 </div>
-    },{ 
+    },
+    {
       name: 'GitHub', 
       content:  token.github !== 'no_message' ?
                 <ExternalLink url={token.github && tu(token.github)} _url={token.github}/> :
@@ -84,7 +86,25 @@ export function Information({token,currentTotalSupply}) {
                   })}
                   { !social_display && <span style={{color: '#d8d8d8'}}>-</span> }
                 </div>
-    }]
+    },
+    {
+        name: 'pice_per_1trx',
+        content:  <div className="d-flex token-list-action">
+            {
+                token['market_info'] && <div>
+                    {
+                        token['market_info'].sShortName == 'TRX'? <div className="d-flex">
+                            {token['market_info'].priceInTrx}  {token['market_info'].sShortName}
+                            <span className={token['market_info'].gain<0? 'col-red ml-3':'col-green ml-3'}>{token['market_info'].gain >0 ?  <span>{'+' + parseInt(token['market_info'].gain * 10000) / 100 + '%'}</span>:<span>{ parseInt(token['market_info'].gain * 10000) / 100 + '%'}</span>}</span>
+                            <Link to={`/exchange/trc20?id=${token['market_info'].pairId}`} className="token-details btn ml-3"> {tu('token_trade')}</Link>
+                        </div>:'-'
+                    }
+
+                </div>
+            }
+        </div>
+    },
+  ]
 
     return (
       <div className="information-bg">{

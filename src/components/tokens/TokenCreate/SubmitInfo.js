@@ -362,7 +362,7 @@ BigNumber.config({ EXPONENTIAL_AT: [-20, 30] });
                                 errorInfo = unSignTransaction.retMsg
                             }
                         }else{
-                            createInfo = await Client.createToken20({
+                            createInfo = await Client.createToken({
                                 "address": account.address,
                                 "name": this.tokenState('name'),
                                 "shortName": this.tokenState('abbreviation'),
@@ -547,7 +547,7 @@ BigNumber.config({ EXPONENTIAL_AT: [-20, 30] });
                             </p>
                         </Col>
                     </Row>
-                    {isTrc20 &&<Row type="flex"  gutter={64}>
+                    {(isTrc20 || isUpdate )&&<Row type="flex"  gutter={64}>
                         <Col span={24} md={12}>
                         {/*<Col span={24} md={12} className={ isTrc20? 'd-block': 'd-none'}>*/}
                             <label>{tu('token_logo')}</label>
@@ -673,7 +673,7 @@ BigNumber.config({ EXPONENTIAL_AT: [-20, 30] });
                             </div>
                         </div>
                     </Row>
-                    {isTrc20 &&<Row gutter={64} type="flex" justify="space-between">
+                    {(isTrc20 || isUpdate)&&<Row gutter={64} type="flex" justify="space-between">
                         {
                             iconList.map( (item, index) => {
                                 if(item.active){
@@ -720,7 +720,7 @@ BigNumber.config({ EXPONENTIAL_AT: [-20, 30] });
                 </section>
                 <section className="text-right px-2" >
                     <button className="btn btn-default btn-lg" onClick={() => nextStep(1)}>{tu('trc20_token_return')}</button>
-                    <button className="ml-4 btn btn-danger btn-lg" htmltype="submit" disabled={captcha_code} onClick={this.submit}>{tu('submit')}</button>
+                    <button className="ml-4 btn btn-danger btn-lg" htmltype="submit" disabled={!captcha_code} onClick={this.submit}>{tu('submit')}</button>
                 </section>
             </main>
         )

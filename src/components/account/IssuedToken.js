@@ -166,9 +166,9 @@ class IssuedToken extends React.Component{
 
 
     render() {
-      const issuedAsset = this.props.issuedAsset
-      const {appealInfo,appealInfo10, token20List, appealInfo20, copied, id} = this.state
-      const { account, intl, currentWallet, unfreezeAssetsConfirmation } = this.props
+      const issuedAsset = this.props.issuedAsset;
+      const {appealInfo,appealInfo10, token20List, appealInfo20, copied, id} = this.state;
+      const { account, intl, currentWallet, unfreezeAssetsConfirmation } = this.props;
 
       let status10;
       let token10Time;
@@ -217,7 +217,7 @@ class IssuedToken extends React.Component{
                   {/** <div className="dor-img"><img src={require("../../images/issuedasset/2.png")} alt=""/></div>*/}
                 </div>
                 <div className="tf-card__header-item">
-                  <div className="tf-card__header-title">{tu('day_transiction')}</div>
+                  <div className="tf-card__header-title">{tu('day_trade')}</div>
                   <div className="tf-card__header-text">-</div>
                   {/** <div className="dor-img"><img src={require("../../images/issuedasset/3.png")} alt=""/></div>*/}
                 </div>
@@ -426,7 +426,7 @@ class IssuedToken extends React.Component{
                       <div className="tf-card__header-text"><FormattedNumber value={token20Item.transfer20}/></div>
                     </div>
                     <div className="tf-card__header-item">
-                      <div className="tf-card__header-title">{tu('day_transiction')}</div>
+                      <div className="tf-card__header-title">{tu('day_trade')}</div>
                       <div className="tf-card__header-text">-</div>
                     </div>
                     <div className="tf-card__header-item">
