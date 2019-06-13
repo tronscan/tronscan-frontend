@@ -220,7 +220,8 @@ export class TokenCreate extends Component {
 
       }
 
-
+      console.log('token.new_social_media',token.social_media_list)
+      console.log('new_social_media',JSON.stringify(token.social_media_list))
       if(token.new_social_media && token.new_social_media.length > 0){
           new_social_media = token.new_social_media;
       }else{
@@ -228,12 +229,13 @@ export class TokenCreate extends Component {
           new_social_media.map((item, index) => {
               token.social_media_list.map((name,icon_index) => {
                   if(item.method == name.name){
-                      item.link[0] = JSON.parse(name.url)
+                      item.link = JSON.parse(name.url)
                   }
               })
           })
       }
-
+      console.log('new_social_media',new_social_media)
+      console.log('new_social_media',JSON.stringify(new_social_media))
       this.setState({
             loading: false,
             step: 1,

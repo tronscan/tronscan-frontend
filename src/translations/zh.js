@@ -1829,6 +1829,8 @@ export const messages = {
   "trc20_token_return": "返回",
   "token_input_success": "Token录入成功",
   "token_input_failure": "Token录入失败",
+  "token_update_success": "Token更新成功",
+  "token_update_failure": "Token更新失败",
   "token_input_failure_reason": "失败原因：",
   "token_input_failure_no_submit": "暂不提交",
   "token_input_failure_submit": "再次提交",

@@ -1791,6 +1791,8 @@ export const messages = {
     "trc20_token_return": "بازگشت ",
     "token_input_success": "توکن با موفقیت وارد شد",
     "token_input_failure": "توکن رد شد",
+    "token_update_success": "Token updated successfully",
+    "token_update_failure": "fail to update Token",
     "token_input_failure_reason": "دلیل رد شدن",
     "token_input_failure_no_submit": "آماده ارسال نیست",
     "token_input_failure_submit": "دوباره ارسال کنید",

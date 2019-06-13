@@ -1788,6 +1788,8 @@
   "trc20_token_return": "العودة",
   "token_input_success": "تم إدخال الرمز بنجاح",
   "token_input_failure": "فشل إدخال الرمز",
+  "token_update_success": "Token updated successfully",
+  "token_update_failure": "fail to update Token",
   "token_input_failure_reason": "سبب الفشل",
   "token_input_failure_no_submit": "لم ترفع بعد السبب",
   "token_input_failure_submit": "التقديم مرة أخرى",

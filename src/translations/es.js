@@ -1842,6 +1842,8 @@ export const messages = {
   "trc20_token_return": "volver",
   "token_input_success": "token registrado satisfactoriamente",
   "token_input_failure": "fallo registrando token",
+  "token_update_success": "Token updated successfully",
+  "token_update_failure": "fail to update Token",
   "token_input_failure_reason": "motivo del fallo",
   "token_input_failure_no_submit": "no disponible para envío",
   "token_input_failure_submit": "enviar otra vez",

@@ -1784,6 +1784,8 @@ export const messages = {
   "trc20_token_return": "되돌아가기",
   "token_input_success": "토큰 입력 성공",
   "token_input_failure": "토큰 입력 실패",
+  "token_update_success": "Token updated successfully",
+  "token_update_failure": "fail to update Token",
   "token_input_failure_reason": "실패 원인",
   "token_input_failure_no_submit": "잠시 제출하지 않음",
   "token_input_failure_submit": "다시 제출하기",

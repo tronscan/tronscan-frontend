@@ -1796,6 +1796,8 @@ export const messages = {
   "trc20_token_return": "戻す",
   "token_input_success": "トークンが成功的に入力されました",
   "token_input_failure": "トークンの入力が失敗しました",
+  "token_update_success": "Token updated successfully",
+  "token_update_failure": "fail to update Token",
   "token_input_failure_reason": "失敗原因",
   "token_input_failure_no_submit": "一旦に提出しません",
   "token_input_failure_submit": "再度提出します",

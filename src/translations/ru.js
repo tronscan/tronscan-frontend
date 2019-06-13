@@ -1800,6 +1800,8 @@ export const messages = {
   "trc20_token_return": "вернуть",
   "token_input_success": "токен успешно записан",
   "token_input_failure": "не удается записать токен",
+  "token_update_success": "Token updated successfully",
+  "token_update_failure": "fail to update Token",
   "token_input_failure_reason": "причина неудачи",
   "token_input_failure_no_submit": "не готовность подачи",
   "token_input_failure_submit": "отправить снова",
