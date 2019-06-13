@@ -277,6 +277,30 @@ export const routes = [
     none: true
   },
   {
+    label: "DAPP",
+    path: "/dapp",
+    icon: "fas fa-gamepad",
+    component: null,
+    showInMenu: true,
+    routes: [
+      {
+          url: "https://www.tronace.com/?utm_source=TS",
+          icon: "fas fa-dollar-sign",
+          label: "TRONAce"
+      },
+      {
+          url: "https://www.tronbet.io/#/?utm_source=TS",
+          icon: "fas fa-dice-six",
+          label: "TRONbet"
+      },
+      {
+          url: "https://dapp.review/explore/tron?gclid=EAIaIQobChMIx-fB8KH04QIVlHZgCh0ybA1hEAAYASAAEgIad_D_BwE",
+          icon: "fas fa-ellipsis-h",
+          label: "nav_more"
+      },
+    ]
+  },
+  {
     label: "notice",
     path: "/notice/:id",
     //icon: "fas fa-exchange-alt",

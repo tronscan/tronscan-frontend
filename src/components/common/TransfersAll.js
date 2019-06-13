@@ -21,6 +21,8 @@ import {NameWithId} from "./names";
 import { toThousands } from '../../utils/number'
 import _ from "lodash";
 import { Button,Table, Radio } from 'antd';
+import {isAddressValid} from "@tronscan/client/src/utils/crypto";
+
 
 
 
@@ -123,7 +125,7 @@ class TransfersAll extends React.Component {
                 item.totip = true
             }
         })
-
+        console.log('rebuildRransfers',rebuildRransfers)
         this.setState({
             page,
             transfers:rebuildRransfers,
@@ -295,13 +297,20 @@ class TransfersAll extends React.Component {
                                     </div>
                                     :
                                     <div>
-                                        <img width={20} height={20} src={record.map_amount_logo} style={{marginRight: 5}}/>
                                         {
-                                            record.type == 'trc20'?
-                                                <TokenTRC20Link name={record.map_token_id} address={record.contract_address} namePlus={record.map_token_name_abbr}/>
-                                                :
-                                                <TokenLink id={record.map_token_id} name={record.map_token_name_abbr?record.map_token_name_abbr:record.token_name}/>
+                                            isAddressValid(record.map_token_name_abbr)?<span>{tu('address_transfer_unrecorded_token')}</span>:
+                                            <div>
+                                                <img width={20} height={20} src={record.map_amount_logo} style={{marginRight: 5}}/>
+                                                {
+                                                    record.type == 'trc20'?
+
+                                                        <TokenTRC20Link name={record.map_token_id} address={record.contract_address} namePlus={record.map_token_name_abbr}/>
+                                                        :
+                                                        <TokenLink id={record.map_token_id} name={record.map_token_name_abbr?record.map_token_name_abbr:record.token_name}/>
+                                                }
+                                            </div>
                                         }
+
                                     </div>
                             }
                         </div>

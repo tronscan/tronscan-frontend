@@ -3,7 +3,7 @@ import {FormattedDate, FormattedNumber, FormattedTime, injectIntl} from "react-i
 import {Sticky, StickyContainer} from "react-sticky";
 import Paging from "./Paging";
 import {Client} from "../../services/api";
-import {TransactionHashLink, AddressLink} from "./Links";
+import {TransactionHashLink, AddressLink, BlockNumberLink} from "./Links";
 import {tu} from "../../utils/i18n";
 import TimeAgo from "react-timeago";
 import {TronLoader} from "./loaders";
@@ -124,9 +124,8 @@ class Transactions extends React.Component {
   };
 
   customizedColumn = () => {
-    let {intl} = this.props;
+      let {intl, isinternal = false} = this.props;
     let column = [
-      
       {
         title: upperFirst(intl.formatMessage({id: 'hash'})),
         dataIndex: 'hash',
@@ -197,17 +196,28 @@ class Transactions extends React.Component {
           </Truncate>
         }
       },
-      // {
-      //   title: upperFirst(intl.formatMessage({id: 'age'})),
-      //   dataIndex: 'timestamp',
-      //   key: 'timestamp',
-      //   align: 'left',
-      //   className: 'ant_table',
-      //   width: '14%',
-      //   render: (text, record, index) => {
-      //     return <TimeAgo date={text}/>
-      //   }
-      // },
+        {
+            title: upperFirst(intl.formatMessage({id: 'block'})),
+            dataIndex: 'block',
+            key: 'block',
+            align: 'left',
+            className: 'ant_table',
+            width: '10%',
+            render: (text, record, index) => {
+                return <BlockNumberLink number={record.block}/>
+            }
+        },
+        {
+            title: upperFirst(intl.formatMessage({id: 'age'})),
+            dataIndex: 'timestamp',
+            key: 'timestamp',
+            align: 'left',
+            className: 'ant_table',
+            width: '14%',
+            render: (text, record, index) => {
+                return <TimeAgo date={text} title={moment(text).format("MMM-DD-YYYY HH:mm:ss A")}/>
+            }
+        },
       {
         title: upperFirst(intl.formatMessage({id: 'from'})),
         dataIndex: 'from',
