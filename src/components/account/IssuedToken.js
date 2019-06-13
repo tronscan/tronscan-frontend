@@ -60,7 +60,7 @@ class IssuedToken extends React.Component{
 
     async getAppealRecent(address){
       const { intl } = this.props
-      const {data: {data, retCode}} = await xhr.get('http://52.15.68.74:10086'+'/external/trc_appeals/recent?address='+ address)
+      const {data: {data, retCode}} = await xhr.get(API_URL+'/external/trc_appeals/recent?address='+ address)
       if(retCode == 0){
         let appealInfo = {errorInfo: [], ...data.appeal}
         if(data.appeal){
@@ -96,7 +96,7 @@ class IssuedToken extends React.Component{
 
     // get 20 token transfer amount
     async getToken20Transfer(contract_address){
-      const data = await Client.getAssetTransfers({limit: 0, start: 0, contract_address})
+      const data = await Client.getTRC20tfs({limit: 0, start: 0, contract_address})
       return data.rangeTotal
     }
 
@@ -110,7 +110,7 @@ class IssuedToken extends React.Component{
     // get 20eoken
     async get20token() {
       const { address } = this.props.account
-      const {data: {data, retCode}} = await xhr.get('http://52.15.68.74:10086'+'/external/trc20tokens?issuer_addr='+ address)
+      const {data: {data, retCode}} = await xhr.get(API_URL+'/external/trc20tokens?issuer_addr='+ address)
       if(retCode == 0){
         let arr = []
         this.getAppealRecent20(data.tokens)
@@ -119,6 +119,7 @@ class IssuedToken extends React.Component{
           let element = data.tokens[i];
           const holder = await this.getToken20Holder(element.contract_address)
           const transfer20 = await this.getToken20Transfer(element.contract_address)
+          console.log(transfer20);
           
           element = {holder, transfer20, ...element}
           arr.push(element)
@@ -162,10 +163,6 @@ class IssuedToken extends React.Component{
     componentDidMount() {
       this.get20token()
     }
-
-
-    
-
 
 
     render() {
