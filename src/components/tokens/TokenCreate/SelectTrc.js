@@ -57,11 +57,10 @@ export class TokenCreate extends Component {
 
   goToNextStep =() => {
     const {nextStep, isLoggedInFn, wallet, isAuthorFn} = this.props
-    const {issuedAsset} = this.state;
+    const {issuedAsset, isUpdate} = this.state;
     const {type} = this.props.state;
     if(!isLoggedInFn()) return;
-    if(!isAuthorFn()) return;
-
+    if( isUpdate  && !isAuthorFn()  ) return;
     if(!issuedAsset && (type == 'trc10')){
       this.setModal('trx_token_account_limit')
       return

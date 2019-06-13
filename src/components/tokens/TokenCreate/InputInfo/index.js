@@ -36,9 +36,6 @@ export class TokenCreate extends Component {
             isTrc10 : (type === 'trc10'),
             isTrc20 : (type === 'trc20')
         })
-        if (!this.renderSubmit() && isUpdate){
-            this.props.nextStep(0)
-        }
 
     }
 
@@ -72,8 +69,8 @@ export class TokenCreate extends Component {
     submit = (e) => {
         const {paramData: {author}, iconList, isUpdate} = this.state;
         e.preventDefault();
-        if (!this.renderSubmit() && isUpdate)
-            return;
+        // if (!this.renderSubmit() && isUpdate)
+        //     return;
         this.props.form.validateFields((err, values) => {
             if (!err) {
                 this.props.nextState({paramData: values, iconList})

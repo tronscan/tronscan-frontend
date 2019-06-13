@@ -258,7 +258,11 @@ export class TokenCreate extends Component {
     this.setState(params);
   }
     isAuthor = (author) => {
+
         let {intl, account} = this.props;
+        if(author == ''){
+            author = account.address;
+        }
         if (account.address !== author) {
             this.setState({
                 loading:false,
