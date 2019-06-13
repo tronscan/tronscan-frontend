@@ -30,12 +30,16 @@ export class TokenCreate extends Component {
     }
 
     componentDidMount() {
-        const {type} = this.props.state
+        const { type,isUpdate } = this.props.state
         this.props.nextState({leave_lock: true})
         this.setState({
             isTrc10 : (type === 'trc10'),
             isTrc20 : (type === 'trc20')
         })
+        if (!this.renderSubmit() && isUpdate){
+            this.props.nextStep(0)
+        }
+
     }
 
     renderSubmit = () => {

@@ -20,7 +20,7 @@ export class TokenCreate extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      modal: null,
+      modalSelect: null,
       issuedAsset: null,
       ...this.props.state
     };
@@ -56,10 +56,12 @@ export class TokenCreate extends Component {
   }
 
   goToNextStep =() => {
-    const {nextStep, isLoggedInFn, wallet} = this.props
-    const {issuedAsset} = this.state
-    const {type} = this.props.state
-    if(!isLoggedInFn()) return
+    const {nextStep, isLoggedInFn, wallet, isAuthorFn} = this.props
+    const {issuedAsset} = this.state;
+    const {type} = this.props.state;
+    if(!isLoggedInFn()) return;
+    if(!isAuthorFn()) return;
+
     if(!issuedAsset && (type == 'trc10')){
       this.setModal('trx_token_account_limit')
       return
@@ -74,12 +76,12 @@ export class TokenCreate extends Component {
   setModal = (msg) => {
     let {intl} = this.props;
     this.setState({
-      modal: <SweetAlert
+      modalSelect: <SweetAlert
         error
         title={tu(msg)}
         confirmBtnText={intl.formatMessage({id: 'confirm'})}
         confirmBtnBsStyle="danger"
-        onConfirm={() => this.setState({modal: null})}
+        onConfirm={() => this.setState({modalSelect: null})}
         style={{marginLeft: '-240px', marginTop: '-195px'}}
       >
       </SweetAlert>
@@ -104,7 +106,7 @@ export class TokenCreate extends Component {
     'https://support.tronscan.org/hc/en-us/articles/360027103751-What-s-the-differences-between-TRC10-and-TRC20-Tokens-';
     return (
         <main className="text-center">
-          {this.state.modal}
+          {this.state.modalSelect}
           <h2 className="mb-4 font-weight-bold">{tu('select_type')}</h2>
           <h5 className="f-18 mb-4 d-block">
             {tu('select_trx_tip1')}
