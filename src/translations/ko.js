@@ -1528,7 +1528,7 @@ export const messages = {
   "trc20_24h_h":"24h 높은",
   "trc20_24h_l":"24h 낮은",
 
-  "trc20_fire_token":"SCC & SCT Trading Competition – 1,500,000 SCT to Win!",
+  "trc20_fire_token":"50 lucky draws to win 100,000 VENA!",
   "trc20_vena_tip":"VENA 계약의 특수성으로 인해 추가 0.1 VENA 는 승인되지만 공제되지 않습니다.",
 
   /*

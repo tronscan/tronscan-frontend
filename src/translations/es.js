@@ -1586,7 +1586,7 @@ export const messages = {
   "trc20_24h_h":"24h Alto",
   "trc20_24h_l":"24h bajo",
 
-  "trc20_fire_token":"SCC & SCT Trading Competition – 1,500,000 SCT to Win!",
+  "trc20_fire_token":"50 lucky draws to win 100,000 VENA!",
   "trc20_vena_tip":"Due to the particularity of VENA contract, extra 0.1 VENA will be authorized but not deducted.",
 
 
