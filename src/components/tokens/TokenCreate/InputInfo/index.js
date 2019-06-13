@@ -32,12 +32,13 @@ export class TokenCreate extends Component {
     }
 
     componentDidMount() {
-        const {type} = this.props.state
+        const { type,isUpdate } = this.props.state
         this.props.nextState({leave_lock: true})
         this.setState({
             isTrc10 : (type === 'trc10'),
             isTrc20 : (type === 'trc20')
         })
+
     }
 
     renderSubmit = () => {
@@ -70,8 +71,8 @@ export class TokenCreate extends Component {
     submit = (e) => {
         const {paramData: {author}, iconList, isUpdate, count} = this.state;
         e.preventDefault();
-        if (!this.renderSubmit() && isUpdate)
-            return;
+        // if (!this.renderSubmit() && isUpdate)
+        //     return;
         this.props.form.validateFields((err, values) => {
             if (!err) {
                 this.props.nextState({paramData: values, iconList, social_current: count})

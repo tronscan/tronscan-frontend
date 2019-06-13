@@ -36,7 +36,6 @@ export class TokenCreate extends Component {
 
   constructor(props) {
     super(props);
-
     this.state = {
       step: 0,
       type: 'trc20',
@@ -109,29 +108,10 @@ export class TokenCreate extends Component {
 
   loadToken10 = async (id) => {
       let {account, intl} = this.props;
-      console.log(account)
       this.setState({ loading: true, isUpdate:true });
       let result = await xhr.get(API_URL+"/api/token?id=" + id + "&showAll=1");
       let token = result.data.data[0];
       let new_social_media = [];
-      if(token.ownerAddress !== account.address){
-          this.setState({
-              //step: 0,
-              loading:false,
-              modal: <SweetAlert
-                  warning
-                  title={tu("token_login_no_updated")}
-                  confirmBtnText={intl.formatMessage({id: 'confirm'})}
-                  confirmBtnBsStyle="danger"
-                  onConfirm={() => this.setState({modal: null})}
-                  style={{marginLeft: '-240px', marginTop: '-195px'}}
-              >
-              </SweetAlert>,
-
-          })
-          console.log('modal',this.state.modal)
-          return;
-      }
 
       Object.keys(token).map(key => {
         if(token[key] == 'no_message') token[key] = ''
@@ -139,6 +119,9 @@ export class TokenCreate extends Component {
       if(!token){
           this.setState({loading: false,token: null});
           this.props.history.push('/tokens/list')
+          return;
+      }
+      if(!this.isAuthor(token.ownerAddress)){
           return;
       }
       let { frozen_supply } = await Client.getAccountByAddressNew(token.ownerAddress);
@@ -154,8 +137,6 @@ export class TokenCreate extends Component {
               })
           })
       }
-
-
 
       this.setState({
           loading: false,
@@ -189,18 +170,23 @@ export class TokenCreate extends Component {
   };
 
   loadToken20 = async (id) => {
+      let {account, intl} = this.props;
       this.setState({loading: true,  isUpdate:true});
       let result = await xhr.get(API_URL+"/api/token_trc20?contract="+id);
       let token = result.data.trc20_tokens[0];
       let contractInfo;
       let new_social_media = [];
-      let socialMedia = [];
       if(!token){
           this.setState({loading: false,token: null});
           this.props.history.push('/tokens/list')
           return;
       }else{
-          contractInfo = await Client.getContractInfo(token.contract_address);
+          if(!this.isAuthor(token.issue_address)){
+              return;
+          }else{
+              contractInfo = await Client.getContractInfo(token.contract_address);
+          }
+
       }
 
 
@@ -243,6 +229,7 @@ export class TokenCreate extends Component {
       });
   };
 
+
   componentDidUpdate(prevProps, prevState) {
     let {wallet} = this.props;
     if (wallet !== null) {
@@ -272,6 +259,34 @@ export class TokenCreate extends Component {
   changeState = (params) => {
     this.setState(params);
   }
+    isAuthor = (author) => {
+        let {intl, account} = this.props;
+        if (account.address !== author) {
+            this.setState({
+                loading:false,
+                step:0,
+                modal:
+                    <SweetAlert
+                        error
+                        confirmBtnText={intl.formatMessage({id: 'confirm'})}
+                        confirmBtnBsStyle="success"
+                        onConfirm={this.hideModal}
+                        style={{marginLeft: '-240px', marginTop: '-195px'}}
+                    >
+                        {tu("token_create_auther_different")}
+                    </SweetAlert>
+                }
+            );
+            return false
+        }
+        return true
+    };
+
+    hideModal = () => {
+        this.setState({
+            modal: null,
+        });
+    };
 
   isLoggedIn = () => {
     let {account, intl} = this.props;
@@ -332,6 +347,7 @@ export class TokenCreate extends Component {
                                       this.changeState(params)
                                   }}
                                   isLoggedInFn={this.isLoggedIn}
+                                  isAuthorFn={this.isAuthor}
                               />
                               }
                               { step === 1 &&
