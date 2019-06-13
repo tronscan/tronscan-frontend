@@ -1835,5 +1835,8 @@ export const messages = {
   "str_8": "コントラクトが既に入力されました",
   "str_9": "パラメータ検証結果が不合格となります",
   "token_login_no_updated":"ログインしたアカウントと発行者が一致しないため、アップデートできません",
+  "information_is_being_confirmed":"Information is being confirmed, this process may take 10 minutes, please try again later",
+
+
 
 }

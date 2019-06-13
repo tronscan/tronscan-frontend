@@ -1882,6 +1882,7 @@ export const messages = {
   "str_9": "No se pueden verificar los parámetros.",
   "type": "Tipo",
   "token_login_no_updated":"El inicio de sesión de la cuenta no coincide con lo publicado y no se puede actualizar",
+  "information_is_being_confirmed":"Information is being confirmed, this process may take 10 minutes, please try again later",
 
 
 };

@@ -1834,6 +1834,7 @@ export const messages = {
   "str_9": "매개 변수를 확인할 수 없습니다.",
   "type": "유형",
   "token_login_no_updated":"로그인 계정이 발행자와 일치하지 않아 업데이트할 수 없습니다",
+  "information_is_being_confirmed":"Information is being confirmed, this process may take 10 minutes, please try again later",
 
 
 };

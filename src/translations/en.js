@@ -1889,5 +1889,7 @@ export const messages = {
   "str_8": "Contract has been entered.",
   "str_9": "Unable to verify the parameters",
   "token_login_no_updated":"The login account is inconsistent with the publisher and cannot be updated",
+  "information_is_being_confirmed":"Information is being confirmed, this process may take 10 minutes, please try again later",
+
 
 };

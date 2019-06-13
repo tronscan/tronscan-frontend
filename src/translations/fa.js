@@ -1831,6 +1831,7 @@ export const messages = {
     "str_9": "تأیید پارامتر انجام نشده است .",
     "type": "تایپ",
     "token_login_no_updated":"حساب کاربری با صادر کننده ناسازگار است و نمی تواند به روز شود",
+    "information_is_being_confirmed":"Information is being confirmed, this process may take 10 minutes, please try again later",
 
 
 

@@ -1840,7 +1840,7 @@ export const messages = {
   "str_9": "Невозможно проверить параметры",
   "type": "Тип",
   "token_login_no_updated":"Учетная запись не соответствует издателю и не может быть обновлена",
-
+  "information_is_being_confirmed":"Information is being confirmed, this process may take 10 minutes, please try again later",
 
 
 };

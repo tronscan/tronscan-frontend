@@ -117,13 +117,30 @@ export class TokenCreate extends Component {
         if(token[key] == 'no_message') token[key] = ''
       })
       if(!token){
-          this.setState({loading: false,token: null});
-          this.props.history.push('/tokens/list')
+          this.setState({
+              loading:false,
+              token: null,
+              modal:
+                  <SweetAlert
+                      info
+                      confirmBtnText={intl.formatMessage({id: 'confirm'})}
+                      confirmBtnBsStyle="success"
+                      onConfirm={this.goAccount}
+                      style={{marginLeft: '-240px', marginTop: '-195px'}}
+                  >
+                      {tu("information_is_being_confirmed")}
+                  </SweetAlert>
+              }
+          );
           return;
+      }else {
+          if(!this.isAuthor(token.ownerAddress)){
+              return;
+          }
       }
-      if(!this.isAuthor(token.ownerAddress)){
-          return;
-      }
+
+
+
       let { frozen_supply } = await Client.getAccountByAddressNew(token.ownerAddress);
       if(token.new_social_media && token.new_social_media.length > 0){
           new_social_media = token.new_social_media;
@@ -177,8 +194,22 @@ export class TokenCreate extends Component {
       let contractInfo;
       let new_social_media = [];
       if(!token){
-          this.setState({loading: false,token: null});
-          this.props.history.push('/tokens/list')
+          this.setState({
+              loading:false,
+              token: null,
+              modal:
+                  <SweetAlert
+                      info
+                      confirmBtnText={intl.formatMessage({id: 'confirm'})}
+                      confirmBtnBsStyle="success"
+                      onConfirm={this.goAccount}
+                      style={{marginLeft: '-240px', marginTop: '-195px'}}
+                  >
+                      {tu("information_is_being_confirmed")}
+                  </SweetAlert>
+              }
+          );
+
           return;
       }else{
           if(!this.isAuthor(token.issue_address)){
@@ -260,6 +291,7 @@ export class TokenCreate extends Component {
     this.setState(params);
   }
     isAuthor = (author) => {
+        console.log('token.ownerAddress',author)
         let {intl, account} = this.props;
         if (account.address !== author) {
             this.setState({
@@ -287,6 +319,10 @@ export class TokenCreate extends Component {
             modal: null,
         });
     };
+
+    goAccount = () => {
+        this.props.history.push('/account')
+    }
 
   isLoggedIn = () => {
     let {account, intl} = this.props;

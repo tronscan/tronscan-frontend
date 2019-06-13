@@ -1828,6 +1828,8 @@
   "str_9": "غير قادر على التحقق من المعلمات",
   "type": "نوع",
   "token_login_no_updated":"حساب تسجيل الدخول غير متوافق مع الناشر ولا يمكن تحديثه",
+  "information_is_being_confirmed":"Information is being confirmed, this process may take 10 minutes, please try again later",
+
 
 
 };

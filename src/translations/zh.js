@@ -1868,5 +1868,6 @@ export const messages = {
   "str_8": "合约已经录入",
   "str_9": "参数校验未通过",
   "token_login_no_updated":"登录账户与发行者不一致，无法更新",
+  "information_is_being_confirmed":"信息正在确认中，此过程可能需要10分钟，请稍后再试",
 
 };
