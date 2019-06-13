@@ -210,7 +210,7 @@ export class TokenCreate extends Component {
           new_social_media.map((item, index) => {
               token.social_media_list.map((name,icon_index) => {
                   if(item.method == name.name){
-                      item.link[0] = JSON.parse(name.url)
+                      item.link[0] = name.url
                   }
               })
           })
@@ -293,7 +293,7 @@ export class TokenCreate extends Component {
 
   navigationchange (nextLocation){
     const {leave_lock, step} = this.state
-    return nextLocation && nextLocation.pathname.indexOf('/tokens/create') == -1 && leave_lock && step < 3
+    return nextLocation && (nextLocation.pathname.indexOf('/tokens/create') == -1 || nextLocation.pathname.indexOf('/tokens/update') == -1) && leave_lock && step < 3
   }
 
   render() {
