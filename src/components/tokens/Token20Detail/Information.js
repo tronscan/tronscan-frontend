@@ -7,10 +7,11 @@ import {SocialMedia} from "../../common/SocialMedia";
 import {Link} from "react-router-dom";
 import {toLower} from "lodash";
 import { Popover } from 'antd';
+import {cloneDeep} from 'lodash'
 
 
-export function Information({token}) {
-
+export function Information({token: tokens}) {
+  let token = cloneDeep(tokens)
   let social_display = 0;
   let lowerText = token.reputation? toLower(token.reputation) + '_active.png': '';
 
@@ -22,8 +23,14 @@ export function Information({token}) {
   // token.social_media_list = JSON.parse(token.social_media_list)
 
   token.social_media_list && token.social_media_list.map(item => {
-    item.url = JSON.parse(item.url)
+    try {
+      item.url = JSON.parse(item.url)
+    } catch (error) {
+      item.url = [item.url]
+    }
+    
   })
+  console.log( token.social_media_list);
 
   const tokenList = [
     { 
