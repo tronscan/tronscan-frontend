@@ -144,6 +144,15 @@ export class TokenCreate extends Component {
       let { frozen_supply } = await Client.getAccountByAddressNew(token.ownerAddress);
       if(token.new_social_media && token.new_social_media.length > 0){
           new_social_media = JSON.parse(token.new_social_media)
+          new_social_media.map((item,index)=>{
+              this.state.iconList.map((icon,icon_index)=>{
+                  if(item.method !== icon.item){
+                      
+                  }
+              })
+
+
+          })
       }else{
           new_social_media = this.state.iconList;
           new_social_media.map((item, index) => {
