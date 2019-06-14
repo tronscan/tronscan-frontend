@@ -3,8 +3,10 @@ import {tu} from "../../../utils/i18n";
 import {toThousands} from "../../../utils/number";
 import {FormattedDate, FormattedNumber, FormattedTime } from "react-intl";
 import {AddressLink, ExternalLink} from "../../common/Links";
+import {SocialMedia} from "../../common/SocialMedia";
 import {Link} from "react-router-dom";
 import {toLower} from "lodash";
+import { Popover } from 'antd';
 
 
 export function Information({token}) {
@@ -17,7 +19,11 @@ export function Information({token}) {
   //     social_display++;
   //   }
   // })
+  // token.social_media_list = JSON.parse(token.social_media_list)
 
+  token.social_media_list && token.social_media_list.map(item => {
+    item.url = JSON.parse(item.url)
+  })
 
   const tokenList = [
     { 
@@ -55,18 +61,7 @@ export function Information({token}) {
     },
     {
         name: 'social_link',
-        content:
-             token.social_media_list.length>0? <div className="d-flex">
-             {token['social_media_list'] && token['social_media_list'].map((media, index) => {
-                return (media.url !== "" && <div key={index} style={{marginRight: '10px'}}>
-                   <a href={media.url}>
-                     <img  src={require('../../../images/' + media.name.substring(0,1).toUpperCase()+media.name.substring(1) + '.png')}
-                           style={{width:20,height:20}}/>
-                   </a>
-                 </div>)
-             })}
-         </div>:<span style={{color: '#d8d8d8'}}>-</span>
-
+        content: <SocialMedia mediaList={token.social_media_list}/>
     },
     {
       name: 'GitHub', 

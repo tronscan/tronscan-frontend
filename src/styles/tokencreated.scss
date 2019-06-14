@@ -37,32 +37,7 @@
     }
   }
 
-  @each $name in Weibo,
-  Wechat,
-  Discord,
-  Facebook,
-  Group,
-  Steem,
-  Instagram,
-  Medium,
-  Reddit,
-  Telegram,
-  Twitter,
-  delete {
-    .#{$name} {
-      width: 20px;
-      height: 20px;
-      background-image: url(../images/socoal_links/#{$name}.png);
-      background-size: 100% 100%;
-    }
 
-    .#{$name}-active {
-      width: 20px;
-      height: 20px;
-      background-image: url(../images/socoal_links/#{$name}-active.png);
-      background-size: 100% 100%;
-    }
-  }
 
   i {
     display: inline-block;

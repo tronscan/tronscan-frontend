@@ -2,21 +2,39 @@ import React from "react";
 import {tu} from "../../../utils/i18n";
 import {FormattedDate, FormattedNumber, FormattedTime } from "react-intl";
 import {AddressLink, ExternalLink} from "../../common/Links";
+import {SocialMedia} from "../../common/SocialMedia";
 import {TRXPrice} from "../../common/Price";
 import {Link} from "react-router-dom";
 import {toLower} from "lodash";
+import {cloneDeep} from 'lodash'
 
 
-export function Information({token,currentTotalSupply}) {
-
-  let social_display = 0;
+export function Information({token: tokens,currentTotalSupply}) {
+  let token = cloneDeep(tokens)
   let lowerText = token.reputation? toLower(token.reputation) + '_active.png': '';
   let issuer_address = token.id == 1002000?<span>{token.ownerAddress}</span>:<AddressLink address={token.ownerAddress} includeCopy={true}/>
-  token && token['social_media'] && token['social_media'].map((media, index) => {
-    if (media.url) {
-      social_display++;
-    }
-  })
+  if(token && token['new_social_media']){
+    const str = token['new_social_media'].replace(/method/g, 'name').replace(/link/g, 'url')
+    let mediaArr = JSON.parse(str)
+    let arr = [] 
+    mediaArr.map(item =>{
+      if(!(item.url.length == 1 && item.url[0] == '')){
+        arr.push(item)
+      }
+    })
+    token.new_media = arr
+  }
+  if(token && !token['new_social_media']){
+    let arr = [] 
+    token['social_media'].map(item => {
+      if(item.url != ''){
+        item.url = [item.url]
+        arr.push(item)
+      }
+    })
+    token.new_media = arr
+  }
+  
   let  issued = token.precision ? token.issued / Math.pow(10,token.precision) :token.issued
   let currentTotal =  token.id == 1002000? currentTotalSupply : issued;
 
@@ -76,16 +94,8 @@ export function Information({token,currentTotalSupply}) {
     // },
     {
       name: 'social_link', 
-      content:  <div className="d-flex">
-                  {token['social_media'] && token['social_media'].map((media, index) => {
-                    return (media.url !== "" && <div key={index} style={{marginRight: '10px'}}>
-                      <a href={media.url}>
-                        <img  src={require('../../../images/' + media.name + '.png')}/>
-                      </a>
-                    </div>)
-                  })}
-                  { !social_display && <span style={{color: '#d8d8d8'}}>-</span> }
-                </div>
+      content: <SocialMedia mediaList={token.new_media}/>
+       
     },
     {
         name: 'pice_per_1trx',
