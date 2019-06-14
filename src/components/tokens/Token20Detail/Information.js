@@ -30,7 +30,6 @@ export function Information({token: tokens}) {
     }
     
   })
-  console.log( token.social_media_list);
 
   const tokenList = [
     { 
