@@ -60,7 +60,6 @@ BigNumber.config({ EXPONENTIAL_AT: [-20, 30] });
 
     tokenState = (value) => {
         let {iconList, modal, checkbox, errors, captcha_code, type, paramData:{ token_name, token_abbr, token_introduction, token_supply, precision, author, logo_url, contract_address, contract_created_date, contract_code, token_amount, trx_amount, freeze_amount, freeze_date, freeze_type, participation_start_date, participation_end_date, participation_type, website, email, white_paper,github_url }} = this.state;
-         console.log('github_url',github_url)
         let frozenSupplyAmount = freeze_amount * Math.pow(10,Number(precision))
         let frozenSupply =  [{amount: frozenSupplyAmount, days: freeze_date }];
         if( !participation_type ){
@@ -169,14 +168,9 @@ BigNumber.config({ EXPONENTIAL_AT: [-20, 30] });
     confirmSubmit = () => {
         let {intl} = this.props;
         let { isUpdate, type } = this.state;
-        console.log('this.renderSubmit()',!this.renderSubmit())
-         console.log('isTrc10',type)
-        console.log('isUpdate',!isUpdate)
         if (!this.renderSubmit() && !isUpdate && type == 'trc10'){
-            console.log(1111)
             return;
         }
-        console.log(22222)
         this.setState({
             modal: (
                 <SweetAlert
@@ -242,7 +236,6 @@ BigNumber.config({ EXPONENTIAL_AT: [-20, 30] });
         switch (type){
             case 'trc10':
                 if (account.isLoggedIn){
-                    console.log('this.props.walletType.type----TRC10',this.props.walletType.type)
                     if (this.props.walletType.type === "ACCOUNT_LEDGER") {
                         // const unSignTransaction = await tronWebLedger.transactionBuilder.createToken({
                         //     name: this.tokenState('name'),
@@ -287,12 +280,10 @@ BigNumber.config({ EXPONENTIAL_AT: [-20, 30] });
                             }
                             let hash = tronWeb.toHex(JSON.stringify(data), false);
                             let sig = await tronWeb.trx.sign(hash);
-                            console.log('trc10-update-data-ACCOUNT_TRONLINK',data)
                             unSignTransaction = await Client.updateToken10({
                                 "content":JSON.stringify(data),
                                 "sig": sig
                             })
-                            console.log('unSignTransaction',unSignTransaction)
                             if (unSignTransaction.retCode === "0") {
                                 res = true;
 
@@ -319,11 +310,8 @@ BigNumber.config({ EXPONENTIAL_AT: [-20, 30] });
                                 "frozenDuration": this.tokenState('frozenDuration'),
                                 "precision":  this.tokenState('precision'),
                             }, tronWeb.defaultAddress.hex).catch(function (e) {
-                                console.log('trc10-Create-error',e)
                                 errorInfo = e.indexOf(':') != -1 ? e.split(':')[1] : e
                             })
-                            console.log('trc10-Create-unSignTransaction-ACCOUNT_TRONLINK',unSignTransaction)
-                            console.log('trc10-Create',unSignTransaction)
                             if (!unSignTransaction && unSignTransaction != '') {
                                 res = false;
                             } else {
@@ -349,7 +337,6 @@ BigNumber.config({ EXPONENTIAL_AT: [-20, 30] });
                             }
                             let hash = tronWeb.toHex(JSON.stringify(data), false);
                             let sig = await tronWeb.trx.sign(hash);
-                            console.log('trc10-update-data-ACCOUNT_PRIVATE_KEY',data)
                             unSignTransaction = await Client.updateToken10({
                                 "content":JSON.stringify(data),
                                 "sig": sig
@@ -385,7 +372,6 @@ BigNumber.config({ EXPONENTIAL_AT: [-20, 30] });
 
                 }
 
-                console.log('errorInfo----create',errorInfo)
                 this.setState({
                     res,
                     errorInfo
@@ -441,8 +427,6 @@ BigNumber.config({ EXPONENTIAL_AT: [-20, 30] });
                             })
                         }
 
-                        console.log('unSignTransaction',unSignTransaction)
-
                         if (unSignTransaction.retCode === "0") {
                             res = true;
 
@@ -467,7 +451,6 @@ BigNumber.config({ EXPONENTIAL_AT: [-20, 30] });
                             "sig": sig
                         })
                     }
-                    console.log('unSignTransaction222', unSignTransaction)
 
                     if (unSignTransaction.retCode === "0") {
                         res = true;
@@ -509,9 +492,6 @@ BigNumber.config({ EXPONENTIAL_AT: [-20, 30] });
                 item.active = false;
             }
         })
-        console.log('iconList',iconList)
-        console.log('iconList222',JSON.stringify(iconList))
-
 
         return (
             <main className="token-submit">

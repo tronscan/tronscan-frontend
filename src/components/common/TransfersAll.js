@@ -125,7 +125,6 @@ class TransfersAll extends React.Component {
                 item.totip = true
             }
         })
-        console.log('rebuildRransfers',rebuildRransfers)
         this.setState({
             page,
             transfers:rebuildRransfers,

@@ -23,7 +23,6 @@ export class TokenCreate extends Component {
 
     constructor(props) {
         super(props);
-        console.log('this.props.state2222',this.props.state)
         this.state = {
             isTrc10: false,
             isTrc20: false,

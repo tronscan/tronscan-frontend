@@ -90,7 +90,6 @@ export class TokenCreate extends Component {
 
   componentDidMount() {
     let {match} = this.props;
-    console.log('match',match)
     if(this.isLoggedIn()){
         if(match.path ==='/tokens/update/:id' &&  match.params.id){
             if(!isNaN(match.params.id)){
@@ -147,7 +146,6 @@ export class TokenCreate extends Component {
       if(token.new_social_media && token.new_social_media.length > 0){
           new_social_media = JSON.parse(token.new_social_media)
           for(let icon in this.state.iconList){
-              console.log('icon',icon)
               let hasMethod = false
               for(let item in new_social_media){
                   if(new_social_media[item].method === this.state.iconList[icon].method){
@@ -155,7 +153,6 @@ export class TokenCreate extends Component {
                   }
               }
               if(!hasMethod){
-                  console.log('hasMethod',hasMethod)
                   new_social_media.push({method:this.state.iconList[icon].method, active: false, link: ['']})
 
               }
@@ -238,12 +235,9 @@ export class TokenCreate extends Component {
 
       }
 
-      console.log('token.new_social_media',token.social_media_list)
-      console.log('new_social_media',JSON.stringify(token.social_media_list))
       if(token.new_social_media && token.new_social_media.length > 0){
           new_social_media = JSON.parse(token.new_social_media)
           for(let icon in this.state.iconList){
-              console.log('icon',icon)
               let hasMethod = false
               for(let item in new_social_media){
                   if(new_social_media[item].method === this.state.iconList[icon].method){
@@ -251,7 +245,6 @@ export class TokenCreate extends Component {
                   }
               }
               if(!hasMethod){
-                  console.log('hasMethod',hasMethod)
                   new_social_media.push({method:this.state.iconList[icon].method, active: false, link: ['']})
 
               }
@@ -267,8 +260,6 @@ export class TokenCreate extends Component {
               })
           })
       }
-      console.log('new_social_media',new_social_media)
-      console.log('new_social_media',JSON.stringify(new_social_media))
       this.setState({
             loading: false,
             step: 1,
@@ -326,7 +317,6 @@ export class TokenCreate extends Component {
     this.setState(params);
   }
     isAuthor = (author) => {
-        console.log('token.ownerAddress',author)
         let {intl, account} = this.props;
         if (account.address !== author) {
             this.setState({

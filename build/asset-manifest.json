@@ -2,7 +2,7 @@
   "10.svg": "7b00f7c4e78ed9cfc676c64c040965e8.svg",
   "20.svg": "8b13bad9e9381c9866a96fc4ef728bbf.svg",
   "About.js": "static/js/About.1c293da0.chunk.js",
-  "Account.js": "static/js/Account.7533203a.chunk.js",
+  "Account.js": "static/js/Account.ea0d9240.chunk.js",
   "Accounts.js": "static/js/Accounts.0250e80a.chunk.js",
   "AddSignatureModal.js": "static/js/AddSignatureModal.d802ec84.chunk.js",
   "CopyrightAsync.js": "static/js/CopyrightAsync.cb2a3dc2.chunk.js",
@@ -27,7 +27,7 @@
   "TokenDetail.js": "static/js/TokenDetail.92b880e5.chunk.js",
   "TokenList.js": "static/js/TokenList.d2748d7c.chunk.js",
   "TokenOverview.js": "static/js/TokenOverview.d5ddf89a.chunk.js",
-  "TokensCreate.js": "static/js/TokensCreate.97b71fda.chunk.js",
+  "TokensCreate.js": "static/js/TokensCreate.5f81e3bd.chunk.js",
   "TransactionViewer.js": "static/js/TransactionViewer.5abf5663.chunk.js",
   "TronConvertTool.js": "static/js/TronConvertTool.03e10c14.chunk.js",
   "VerifyContractCode.js": "static/js/VerifyContractCode.75a90c69.chunk.js",
@@ -39,7 +39,7 @@
   "info.svg": "ce0369650e23ec7e420a8af6750d8a87.svg",
   "languages.js": "static/js/languages.144645e6.chunk.js",
   "main.css": "static/css/main.3ad2e1c1.css",
-  "main.js": "static/js/main.c696238e.js",
+  "main.js": "static/js/main.cf17a449.js",
   "static/media/24-Hour-Trading-Volume.png": "static/media/24-Hour-Trading-Volume.b6ff215b.png",
   "static/media/Average-Price.png": "static/media/Average-Price.fca4d71b.png",
   "static/media/Block-Producer-Chart.png": "static/media/Block-Producer-Chart.3369eae3.png",
@@ -85,5 +85,5 @@
   "static/media/tron-logo.jpg": "static/media/tron-logo.f142f640.jpg",
   "static/media/tronscan_wechat.png": "static/media/tronscan_wechat.1e828828.png",
   "static/media/wallet-preview.png": "static/media/wallet-preview.d53c0b10.png",
-  "vendors.js": "static/js/vendors.a0ba77e4.js"
+  "vendors.js": "static/js/vendors.fe83e23a.js"
 }

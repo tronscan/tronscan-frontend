@@ -53,12 +53,10 @@ class IssuedToken extends React.Component{
         if(data.appeal){
           const appealArr = JSON.parse(data.appeal.reasons)
           appealArr.map(item => {
-            console.log(item)
             let blackMap = intl.formatMessage({ id: `black_${item.id}` })
             if(item.id == 11){
               appealInfo.errorInfo.push(blackMap.replace('xxxxx', item.value.replace(/,$/, '')))
             }else{
-              console.log(intl.formatMessage({ id: `black_${item.id}` }))
               appealInfo.errorInfo.push(blackMap)
             }
           })
@@ -68,7 +66,6 @@ class IssuedToken extends React.Component{
     }
     async getAppealRecent10 (address) {
       const data = await this.getAppealRecent(address)
-      console.log(data);
       this.setState({appealInfo10: data})
     }
     async getAppealRecent20 (list) {
@@ -108,7 +105,6 @@ class IssuedToken extends React.Component{
           let element = data.tokens[i];
           const holder = await this.getToken20Holder(element.contract_address)
           const transfer20 = await this.getToken20Transfer(element.contract_address)
-          console.log(transfer20);
           
           element = {holder, transfer20, ...element}
           arr.push(element)
