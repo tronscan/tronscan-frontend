@@ -59,8 +59,8 @@ BigNumber.config({ EXPONENTIAL_AT: [-20, 30] });
     }
 
     tokenState = (value) => {
-        let {iconList, modal, checkbox, errors, captcha_code, type, paramData:{ token_name, token_abbr, token_introduction, token_supply, precision, author, logo_url, contract_address, contract_created_date, contract_code, token_amount, trx_amount, freeze_amount, freeze_date, freeze_type, participation_start_date, participation_end_date, participation_type, website, email, white_paper }} = this.state;
-
+        let {iconList, modal, checkbox, errors, captcha_code, type, paramData:{ token_name, token_abbr, token_introduction, token_supply, precision, author, logo_url, contract_address, contract_created_date, contract_code, token_amount, trx_amount, freeze_amount, freeze_date, freeze_type, participation_start_date, participation_end_date, participation_type, website, email, white_paper,github_url }} = this.state;
+         console.log('github_url',github_url)
         let frozenSupplyAmount = freeze_amount * Math.pow(10,Number(precision))
         let frozenSupply =  [{amount: frozenSupplyAmount, days: freeze_date }];
         if( !participation_type ){
@@ -97,6 +97,7 @@ BigNumber.config({ EXPONENTIAL_AT: [-20, 30] });
             'whitePaper':white_paper,
             'socialList': _.filter(iconList, function(o) { return o.active }),
             'issueTime': moment(new Date().getTime()).valueOf(),
+            'github_url':github_url
         }
         return orderState[value]
     }
@@ -648,7 +649,7 @@ BigNumber.config({ EXPONENTIAL_AT: [-20, 30] });
                                 {website}
                             </p>
                         </Col>
-                        {isTrc20 &&<Col span={24} md={12}>
+                        {(isTrc20|| isUpdate) &&<Col span={24} md={12}>
                             <label>{tu('GitHub')}</label>
                             <p className="border-dashed">
                                 {github_url}
@@ -656,8 +657,8 @@ BigNumber.config({ EXPONENTIAL_AT: [-20, 30] });
                         </Col>}
 
                     </Row>
-                    <Row type="flex" gutter={64} className={ isTrc20? 'd-flex': 'd-none'}>
-                        <Col span={24} md={12} className={ isTrc20? 'd-block': 'd-none'}>
+                    <Row type="flex" gutter={64} className={ isTrc20 || isUpdate? 'd-flex': 'd-none'}>
+                        <Col span={24} md={12} className={ isTrc20 || isUpdate? 'd-block': 'd-none'}>
                             <label>{tu('email')}</label>
                             <p className="border-dashed">
                                 {email}

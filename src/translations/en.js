@@ -1858,7 +1858,7 @@ export const messages = {
   "leave_tip": "your information is incomplete; would you like to end the process of filling in the form? ",
   "already_add_social_link_": "social media link(s) added",
   "token_input_success_you_can": "you can find it in",
-  "token_input_success_wallet": "Wallet",
+  "token_input_success_wallet": " Wallet",
   "token_input_success_myaccount": "Token(s) issued by me",
   "token_input_success_find_it": " ",
   "token_input_success_trx_market": "fill in 10 more items to be recorded in trx.market",
