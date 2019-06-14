@@ -19,7 +19,7 @@ function formatNumber(value) {
 
 class NumericInput extends React.Component {
   onChange = (e) => {
-    console.log('this.props',this.props)
+    console.log('this.props666666666',this.props)
     const { value } = e.target;
     const regNum = /^[1-9][0-9]*$/;
     const regDecimal = /^([1-9][0-9]*)(\.[0-9]*)?$/;

@@ -32,6 +32,7 @@ export class BaseInfo extends Component {
     const { intl } = this.props
     const { precision_20, autoCompleteResult } =  this.state;
     const { isTrc20, isUpdate } = this.props.state;
+    console.log('isTrc2066',typeof isTrc20)
     const logoOptions = autoCompleteResult.map(logo => (
       <AutoCompleteOption key={logo}>{logo}</AutoCompleteOption>
     ));

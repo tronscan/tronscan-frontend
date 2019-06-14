@@ -19,6 +19,7 @@ import xhr from "axios/index";
 import {API_URL, ONE_TRX, CONTRACT_ADDRESS_USDT} from "../../../constants";
 import {TronLoader} from "../../common/loaders";
 import {Client} from "../../../services/api";
+import _ from "lodash";
 
 const confirm = Modal.confirm;
 
@@ -70,7 +71,7 @@ export class TokenCreate extends Component {
         freeze_date: 0,
       },
       iconList: [
-        {method: 'Twitter', active: true, link: ['']},
+        {method: "Twitter", active: true, link: ['']},
         {method: 'Facebook', active: true, link: ['']},
         {method: 'Telegram', active: true, link: ['']},
         {method: 'Weibo', active: true, link: ['']},
@@ -142,17 +143,25 @@ export class TokenCreate extends Component {
 
 
       let { frozen_supply } = await Client.getAccountByAddressNew(token.ownerAddress);
+
       if(token.new_social_media && token.new_social_media.length > 0){
           new_social_media = JSON.parse(token.new_social_media)
-          new_social_media.map((item,index)=>{
-              this.state.iconList.map((icon,icon_index)=>{
-                  if(item.method !== icon.item){
-                      
+          for(let icon in this.state.iconList){
+              console.log('icon',icon)
+              let hasMethod = false
+              for(let item in new_social_media){
+                  if(new_social_media[item].method === this.state.iconList[icon].method){
+                      hasMethod = true;
                   }
-              })
+              }
+              if(!hasMethod){
+                  console.log('hasMethod',hasMethod)
+                  new_social_media.push({method:this.state.iconList[icon].method, active: false, link: ['']})
+
+              }
+          }
 
 
-          })
       }else{
           new_social_media = this.state.iconList;
           new_social_media.map((item, index) => {
@@ -233,6 +242,21 @@ export class TokenCreate extends Component {
       console.log('new_social_media',JSON.stringify(token.social_media_list))
       if(token.new_social_media && token.new_social_media.length > 0){
           new_social_media = JSON.parse(token.new_social_media)
+          for(let icon in this.state.iconList){
+              console.log('icon',icon)
+              let hasMethod = false
+              for(let item in new_social_media){
+                  if(new_social_media[item].method === this.state.iconList[icon].method){
+                      hasMethod = true;
+                  }
+              }
+              if(!hasMethod){
+                  console.log('hasMethod',hasMethod)
+                  new_social_media.push({method:this.state.iconList[icon].method, active: false, link: ['']})
+
+              }
+          }
+
       }else{
           new_social_media = this.state.iconList
           new_social_media.map((item, index) => {
