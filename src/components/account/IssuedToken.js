@@ -197,7 +197,9 @@ class IssuedToken extends React.Component{
               <div className="d-flex justify-content-between tf-card__header position-relative">
                 <div className="tf-card__header-item">
                   <div className="tf-card__header-title">{tu('trc20_token_info_Total_Supply')}</div>
-                  <div className="tf-card__header-text"><FormattedNumber value={issuedAsset.totalSupply / 10 ** issuedAsset.precision}/></div>
+                  <div className="tf-card__header-text">
+                    <FormattedNumber value={issuedAsset.totalSupply / 10 ** issuedAsset.precision} maximumSignificantDigits={18}/>
+                  </div>
                    {/** <div className="dor_line"></div>*/}
                 </div>
                 <div className="tf-card__header-item">
@@ -414,7 +416,9 @@ class IssuedToken extends React.Component{
                   <div className="d-flex justify-content-between tf-card__header">
                     <div className="tf-card__header-item">
                       <div className="tf-card__header-title">{tu('trc20_token_info_Total_Supply')}</div>
-                      <div className="tf-card__header-text"><FormattedNumber value={token20Item.total_supply / 10 ** token20Item.decimals}/></div>
+                      <div className="tf-card__header-text">
+                        <FormattedNumber value={token20Item.total_supply / 10 ** token20Item.decimals} maximumSignificantDigits={18}/>
+                      </div>
                     </div>
                     <div className="tf-card__header-item">
                       <div className="tf-card__header-title">{tu('holder_amount')}</div>
