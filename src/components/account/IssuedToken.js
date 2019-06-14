@@ -381,6 +381,11 @@ class IssuedToken extends React.Component{
                   status20.isFailed = token20Item.status == 3 && appealItem.status == 0
                   status20.isAppealing = token20Item.status == 3 && appealItem.status == 2
                 }
+
+                let token20Time = token20Time
+                if(appealItem.update_time){
+                  token20Time = appealItem.update_time
+                }
               
                 
                 return <div className={`mt-3 tf-card token20`} key={token20Item.contract_address}>
@@ -472,9 +477,9 @@ class IssuedToken extends React.Component{
                           {status20.isFailed && tu('black_time') }
                           {status20.isAppealing && tu('appeal_time') }
                           : 
-                          <FormattedDate value={token20Item.update_time} className="ml-1"/>
+                          <FormattedDate value={token20Time} className="ml-1"/>
                           {' '}
-                          <FormattedTime value={token20Item.update_time}  hour='numeric' minute="numeric" second='numeric' hour12={false}/>
+                          <FormattedTime value={token20Time}  hour='numeric' minute="numeric" second='numeric' hour12={false}/>
                         </td>
                         <td>
                           { status20.isFailed && <Tag color="#4a90e2" onClick={() => this.showModal('trx20', index)}>{tu('Appeal')}</Tag> }
