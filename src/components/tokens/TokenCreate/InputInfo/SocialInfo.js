@@ -81,9 +81,8 @@ export class SocialInfo extends Component {
   render() {
     const { getFieldDecorator } = this.props.form
     const { intl } = this.props
-    const {isTrc20, iconList, isUpdate } =  this.props.state
+    let  {isTrc20, iconList, isUpdate } =  this.props.state
     const {modal} = this.state
-
     return (
       <div>
         <div>
@@ -137,7 +136,7 @@ export class SocialInfo extends Component {
             <h5>{tu('select_socoal_link')}</h5>
             <div className="d-flex icon-list ml-3">
               {
-                iconList.map( (item, index) => {
+                  iconList.map((item, index) => {
                   return <div key={index} 
                               className={`${item.active? item.method+'-active': item.method} icon-list-item mr-2`}
                               onClick={() => this.addSocal(index)}
@@ -149,7 +148,7 @@ export class SocialInfo extends Component {
 
           <Row gutter={24} type="flex" justify="space-between">
             {
-              iconList.map( (item, index) => {
+               iconList.map((item, index) => {
                 if(item.active){
                   return <Col  span={24} md={11} key={index}>
                   <div className="d-flex justify-content-between mb-2 pr-4">
