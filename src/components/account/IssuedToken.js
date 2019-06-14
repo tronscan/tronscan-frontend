@@ -14,19 +14,6 @@ import { getTime} from "date-fns";
 import {CopyToClipboard} from "react-copy-to-clipboard";
 import {Tooltip} from "reactstrap";
 
-const blackMap = [
-  '有盗用其他已上线币种名称的嫌疑',
-  '遭社区用户投诉涉嫌欺诈、携款跑路',
-  '项目团队涉嫌违法行为，面临重大法律制裁',
-  '项目发展进度与计划严重不符',
-  '项目通证总量恶意增发',
-  '项目团队解散，官方网站、社区、社交平台超过30天无人维护',
-  '由于战略调整和发展需要，项目团队主动要求下线',
-  '项目白皮书信息与实际不符，有抄袭、作假等嫌疑',
-  '项目方私自更改白皮书，合约等关键信息，造成严重后果',
-  '智能合约存在漏洞，造成用户实际财产受损或存在导致用户财产损失的潜在风险',
-  '通证名称或简称中包含敏感词 xxxxx，请等待审核'
-]
 class IssuedToken extends React.Component{
     constructor() {
         super();
@@ -66,11 +53,13 @@ class IssuedToken extends React.Component{
         if(data.appeal){
           const appealArr = JSON.parse(data.appeal.reasons)
           appealArr.map(item => {
+            console.log(item)
+            let blackMap = intl.formatMessage({ id: `black_${item.id}` })
             if(item.id == 11){
-              appealInfo.errorInfo.push(blackMap[item.id-1].replace('xxxxx', item.value))
+              appealInfo.errorInfo.push(blackMap.replace('xxxxx', item.value))
             }else{
               console.log(intl.formatMessage({ id: `black_${item.id}` }))
-              appealInfo.errorInfo.push(blackMap[item.id-1])
+              appealInfo.errorInfo.push(blackMap)
             }
           })
         }
@@ -155,7 +144,8 @@ class IssuedToken extends React.Component{
         this.get20token()
       }
       if(activeLanguage  != prevProps.activeLanguage){
-        this.getAppealRecent(account.address)
+        this.getAppealRecent10(account.address)
+        this.get20token()
       }
       
     }
@@ -286,7 +276,6 @@ class IssuedToken extends React.Component{
                                <div className="text-white">{issuedAsset.issuedPercentage.toFixed(3) + '%'}</div>
                               </div>
                             </div>
-                            
                           </span>
                         </div>
                     </div>
@@ -392,6 +381,7 @@ class IssuedToken extends React.Component{
                   status20.isFailed = token20Item.status == 3 && appealItem.status == 0
                   status20.isAppealing = token20Item.status == 3 && appealItem.status == 2
                 }
+                status10.isFailed = true
               
                 
                 return <div className={`mt-3 tf-card token20`} key={token20Item.contract_address}>
