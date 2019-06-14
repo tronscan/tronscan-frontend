@@ -127,12 +127,9 @@ class IssuedToken extends React.Component{
       }
     }
 
-    setCopied = () => {
-      this.setState({
-        copied: true,
-      });
-  
-      setTimeout(() => this.setState({ copied: false }), 1200);
+    setCopied = (copied) => {
+     this.setState({[copied]: true})
+      setTimeout(() => this.setState({[copied]: false }), 1200);
     };
 
     componentDidUpdate(prevProps) {
@@ -372,7 +369,6 @@ class IssuedToken extends React.Component{
 
             {Boolean(token20List.length) && 
               token20List.map((token20Item, index) => {
-                
                 let status20 = {
                   isPassed:  token20Item.status == 0 || token20Item.status == 1 || token20Item.status == 2,
                   isFailed: token20Item.status == 3,
@@ -384,21 +380,21 @@ class IssuedToken extends React.Component{
                   status20.isAppealing = token20Item.status == 3 && appealItem.status == 2
                 }
 
-                let token20Time = token20Time
+                let token20Time = token20Item.update_time
                 if(appealItem.update_time){
                   token20Time = appealItem.update_time
                 }
-              
+
                 
                 return <div className={`mt-3 tf-card token20`} key={token20Item.contract_address}>
                   <div className="d-flex justify-content-between align-items-center pl-3">
                     <h4 className="m-0 ">
                       <TokenTRC20Link name={token20Item.name} namePlus={token20Item.name + ' (' + token20Item.symbol + ')'} address={token20Item.contract_address}/>
                       <span style={{color:"#999", fontSize: '12px'}}>[{token20Item.contract_address}]
-                        <CopyToClipboard text={token20Item.contract_address}  onCopy={this.setCopied}>
-                          <span id={id} className="ml-1" style={{cursor: 'pointer'}}>
+                        <CopyToClipboard text={token20Item.contract_address}  onCopy={() => this.setCopied('id'+index)}>
+                          <span id={'id'+index} className="ml-1" style={{cursor: 'pointer'}}>
                             <i className="fa fa-paste"/>
-                            <Tooltip placement="top" isOpen={copied} target={id}>
+                            <Tooltip placement="top" isOpen={this.state['id'+index]} target={'id'+index}>
                               {tu("copied_to_clipboard")}
                             </Tooltip>
                           </span>

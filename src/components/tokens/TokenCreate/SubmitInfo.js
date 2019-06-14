@@ -406,6 +406,7 @@ BigNumber.config({ EXPONENTIAL_AT: [-20, 30] });
                      "decimals":  this.tokenState('precision'),
                      "issuer_addr": this.tokenState('address'),
                      "icon_url":this.tokenState('logoUrl'),
+                     "git_hub":this.tokenState('github_url'),
                      "contract_address":this.tokenState('contractAddress'),
                      "contract_created_ratio":this.tokenState('contractCreatedRatio'),
                     // "contract_code":this.tokenState('contractCode'),
@@ -415,6 +416,7 @@ BigNumber.config({ EXPONENTIAL_AT: [-20, 30] });
                      "social_media":this.tokenState('socialList'),
                      "issue_time":this.tokenState('issueTime'),
                      "timestamp":this.tokenState('issueTime'),
+
                 }
 
 
