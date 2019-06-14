@@ -56,7 +56,7 @@ class IssuedToken extends React.Component{
             console.log(item)
             let blackMap = intl.formatMessage({ id: `black_${item.id}` })
             if(item.id == 11){
-              appealInfo.errorInfo.push(blackMap.replace('xxxxx', item.value))
+              appealInfo.errorInfo.push(blackMap.replace('xxxxx', item.value.replace(/,$/, '')))
             }else{
               console.log(intl.formatMessage({ id: `black_${item.id}` }))
               appealInfo.errorInfo.push(blackMap)
@@ -381,7 +381,6 @@ class IssuedToken extends React.Component{
                   status20.isFailed = token20Item.status == 3 && appealItem.status == 0
                   status20.isAppealing = token20Item.status == 3 && appealItem.status == 2
                 }
-                status10.isFailed = true
               
                 
                 return <div className={`mt-3 tf-card token20`} key={token20Item.contract_address}>
