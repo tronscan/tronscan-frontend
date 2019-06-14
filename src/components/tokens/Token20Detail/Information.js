@@ -1,5 +1,5 @@
 import React from "react";
-import {tu} from "../../../utils/i18n";
+import {tu, t} from "../../../utils/i18n";
 import {toThousands} from "../../../utils/number";
 import {FormattedDate, FormattedNumber, FormattedTime } from "react-intl";
 import {AddressLink, ExternalLink} from "../../common/Links";
@@ -62,7 +62,7 @@ export function Information({token: tokens}) {
     {
         name: 'white_paper',
         content:  token.white_paper?
-            <ExternalLink url={token.white_paper && tu(token.white_paper)} _url={token.white_paper}/> :
+            <ExternalLink url={token.white_paper && t(token.white_paper)} _url={token.white_paper}/> :
             <span style={{color: '#d8d8d8'}}>-</span>
     },
     {

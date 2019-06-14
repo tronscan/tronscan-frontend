@@ -1,5 +1,5 @@
 import React from "react";
-import {tu} from "../../../utils/i18n";
+import {tu, t} from "../../../utils/i18n";
 import {FormattedDate, FormattedNumber, FormattedTime } from "react-intl";
 import {AddressLink, ExternalLink} from "../../common/Links";
 import {SocialMedia} from "../../common/SocialMedia";
@@ -72,7 +72,7 @@ export function Information({token: tokens,currentTotalSupply}) {
     },{ 
       name: 'white_paper', 
       content:  token.white_paper !== 'no_message'?
-                <ExternalLink url={token.white_paper && tu(token.white_paper)} _url={token.white_paper}/> :
+                <ExternalLink url={token.white_paper && t(token.white_paper)} _url={token.white_paper}/> :
                 <span style={{color: '#d8d8d8'}}>-</span>
     },{ 
       name: 'created', 
@@ -85,7 +85,7 @@ export function Information({token: tokens,currentTotalSupply}) {
     {
       name: 'GitHub', 
       content:  token.github !== 'no_message' ?
-                <ExternalLink url={token.github && tu(token.github)} _url={token.github}/> :
+                <ExternalLink url={token.github && t(token.github)} _url={token.github}/> :
                 <span style={{color: '#d8d8d8'}}>-</span>
     },
     // {
