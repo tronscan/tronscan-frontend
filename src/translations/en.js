@@ -395,7 +395,7 @@ export const messages = {
   "testnet": "Testnet",
   "days_to_freeze": "Days to freeze",
   "trx_token_fee_message": "1024 TRX is required to issue a new token",
-  "trx_token_account_limit": "You may create only one token per account",
+  "trx_token_account_limit": "You may create only one TRC10 token per account",
   "trx_token_wallet_requirement": "You need to open a wallet to be able to create a token",
   "invalid_address": "invalid address",
   "insufficient_tokens": "Insufficient tokens",

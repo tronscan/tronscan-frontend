@@ -392,7 +392,7 @@ export const messages = {
   "testnet": "테스트넷",
   "days_to_freeze": "동결 일",
   "trx_token_fee_message": "새로운 토큰을 발행하려면 1024TRX가 필요합니다.",
-  "trx_token_account_limit": "계정당 한가지 유형의 토큰을 발행할 수 있습니다.",
+  "trx_token_account_limit": "계정 당 하나의 TRC10 토큰 만 생성 할 수 있습니다",
   "trx_token_wallet_requirement": "토큰 발행하기 전 지갑을 열어주세요.",
   "invalid_address": "잘못된 주소",
   "insufficient_tokens": "토큰 부족",

@@ -392,7 +392,7 @@ export const messages = {
   "testnet": "测试网",
   "days_to_freeze": "冻结天数",
   "trx_token_fee_message": "发行新通证将花费1024TRX",
-  "trx_token_account_limit": "每个账户只能发行1种通证",
+  "trx_token_account_limit": "每个账户只能发行一个TRC10通证",
   "trx_token_wallet_requirement": "发行通证需要首先打开钱包",
   "invalid_address": "无效地址",
   "insufficient_tokens": "通证不足",

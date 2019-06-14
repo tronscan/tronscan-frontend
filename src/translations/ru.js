@@ -395,7 +395,7 @@ export const messages = {
   "testnet": "Тестнет",
   "days_to_freeze": "Дни заморозки",
   "trx_token_fee_message": "1024 TRX требуется для выпуска нового токена",
-  "trx_token_account_limit": "Вы можете создать только один токен для каждой учетной записи",
+  "trx_token_account_limit": "Вы можете создать только один токен TRC10 для каждой учетной записи",
   "trx_token_wallet_requirement": "Вам нужно открыть кошелек, чтобы создать токен",
   "invalid_address": "неверный адрес",
   "insufficient_tokens": "Недостаточно токенов",

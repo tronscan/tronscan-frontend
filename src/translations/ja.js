@@ -393,7 +393,7 @@ export const messages = {
   "testnet": "テストネット",
   "days_to_freeze": "凍結日数",
   "trx_token_fee_message": "新しいトークンを発行するには1024TRXがかかる",
-  "trx_token_account_limit": "各アカウントは1種のトークンしか発行できない",
+  "trx_token_account_limit": "アカウントごとに作成できるTRC10トークンは1つだけです",
   "trx_token_wallet_requirement": "トークンを発行するにはウォレットを開けることが必要",
   "invalid_address": "無効なアドレス",
   "insufficient_tokens": "トークン不足",

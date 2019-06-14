@@ -393,7 +393,7 @@ export const messages = {
     "testnet": "تست سریع شبکه",
     "days_to_freeze": "روزهای فریز شده",
     "trx_token_fee_message": " ۱۰۲۴تی آر ایکس برای صدور یک توکن جدید لازم است",
-    "trx_token_account_limit": "شما می توانید تنها یک توکن را در هر حساب ایجاد کنید",
+    "trx_token_account_limit": "شما فقط می توانید یک شناسه TRC10 را برای هر حساب ایجاد کنید",
     "trx_token_wallet_requirement": "شما باید یک کیف پول داشته باشید تا بتوانید یک توکن ایجاد کنید",
     "invalid_address": "آدرس معتبر نیست",
     "insufficient_tokens": "توکن کافی نیست",

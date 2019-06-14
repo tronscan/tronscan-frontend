@@ -393,7 +393,7 @@
   "testnet": "اختبار الشبكة",
   "days_to_freeze": "عدد الايام المجمده",
   "trx_token_fee_message": "مطلوب 1024 ترون لإصدار رمز مميز جديد",
-  "trx_token_account_limit": "يمكنك إنشاء رمز مميز واحد فقط لكل حساب",
+  "trx_token_account_limit": "يمكنك إنشاء رمز TRC10 واحد فقط لكل حساب",
   "trx_token_wallet_requirement": "تحتاج إلى فتح المحفظة لتكون قادر على إنشاء رمز مميز",
   "invalid_address": "عنوان غير صالح",
   "insufficient_tokens": "الرموز غير كافية",
