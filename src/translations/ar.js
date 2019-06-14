@@ -1788,6 +1788,8 @@
   "trc20_token_return": "العودة",
   "token_input_success": "تم إدخال الرمز بنجاح",
   "token_input_failure": "فشل إدخال الرمز",
+  "token_update_success": "Token updated successfully",
+  "token_update_failure": "fail to update Token",
   "token_input_failure_reason": "سبب الفشل",
   "token_input_failure_no_submit": "لم ترفع بعد السبب",
   "token_input_failure_submit": "التقديم مرة أخرى",
@@ -1828,6 +1830,8 @@
   "str_9": "غير قادر على التحقق من المعلمات",
   "type": "نوع",
   "token_login_no_updated":"حساب تسجيل الدخول غير متوافق مع الناشر ولا يمكن تحديثه",
+  "information_is_being_confirmed":"Information is being confirmed, this process may take 10 minutes, please try again later",
+
 
 
 };

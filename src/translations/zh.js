@@ -1829,6 +1829,8 @@ export const messages = {
   "trc20_token_return": "返回",
   "token_input_success": "Token录入成功",
   "token_input_failure": "Token录入失败",
+  "token_update_success": "Token更新成功",
+  "token_update_failure": "Token更新失败",
   "token_input_failure_reason": "失败原因：",
   "token_input_failure_no_submit": "暂不提交",
   "token_input_failure_submit": "再次提交",
@@ -1868,5 +1870,6 @@ export const messages = {
   "str_8": "合约已经录入",
   "str_9": "参数校验未通过",
   "token_login_no_updated":"登录账户与发行者不一致，无法更新",
+  "information_is_being_confirmed":"信息正在确认中，此过程可能需要10分钟，请稍后再试",
 
 };

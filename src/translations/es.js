@@ -1842,6 +1842,8 @@ export const messages = {
   "trc20_token_return": "volver",
   "token_input_success": "token registrado satisfactoriamente",
   "token_input_failure": "fallo registrando token",
+  "token_update_success": "Token updated successfully",
+  "token_update_failure": "fail to update Token",
   "token_input_failure_reason": "motivo del fallo",
   "token_input_failure_no_submit": "no disponible para envío",
   "token_input_failure_submit": "enviar otra vez",
@@ -1882,6 +1884,7 @@ export const messages = {
   "str_9": "No se pueden verificar los parámetros.",
   "type": "Tipo",
   "token_login_no_updated":"El inicio de sesión de la cuenta no coincide con lo publicado y no se puede actualizar",
+  "information_is_being_confirmed":"Information is being confirmed, this process may take 10 minutes, please try again later",
 
 
 };

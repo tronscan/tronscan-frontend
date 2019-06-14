@@ -1784,6 +1784,8 @@ export const messages = {
   "trc20_token_return": "되돌아가기",
   "token_input_success": "토큰 입력 성공",
   "token_input_failure": "토큰 입력 실패",
+  "token_update_success": "Token updated successfully",
+  "token_update_failure": "fail to update Token",
   "token_input_failure_reason": "실패 원인",
   "token_input_failure_no_submit": "잠시 제출하지 않음",
   "token_input_failure_submit": "다시 제출하기",
@@ -1834,6 +1836,7 @@ export const messages = {
   "str_9": "매개 변수를 확인할 수 없습니다.",
   "type": "유형",
   "token_login_no_updated":"로그인 계정이 발행자와 일치하지 않아 업데이트할 수 없습니다",
+  "information_is_being_confirmed":"Information is being confirmed, this process may take 10 minutes, please try again later",
 
 
 };

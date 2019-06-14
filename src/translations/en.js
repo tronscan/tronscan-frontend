@@ -1850,6 +1850,8 @@ export const messages = {
   "trc20_token_return": "return",
   "token_input_success": "token recorded successfully",
   "token_input_failure": "fail to record token",
+  "token_update_success": "Token updated successfully",
+  "token_update_failure": "fail to update Token",
   "token_input_failure_reason": "reason for failure",
   "token_input_failure_no_submit": "not ready to submit",
   "token_input_failure_submit": "submit again",
@@ -1889,5 +1891,7 @@ export const messages = {
   "str_8": "Contract has been entered.",
   "str_9": "Unable to verify the parameters",
   "token_login_no_updated":"The login account is inconsistent with the publisher and cannot be updated",
+  "information_is_being_confirmed":"Information is being confirmed, this process may take 10 minutes, please try again later",
+
 
 };

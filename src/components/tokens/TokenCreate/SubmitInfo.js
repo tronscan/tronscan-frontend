@@ -496,6 +496,20 @@ BigNumber.config({ EXPONENTIAL_AT: [-20, 30] });
         let startTime = participation_start_date? participation_start_date.valueOf() :'';
         let endTime = participation_end_date?participation_end_date.valueOf():'';
         let contractCreateTime = contract_created_date ? contract_created_date.valueOf() : contract_created_date;
+        iconList.map((item, index) => {
+            item.link.map((link, link_index) => {
+                if(!link){
+                    item.link.splice(link_index,1)
+                }
+            })
+            if(item.link.length == 0){
+                item.active = false;
+            }
+        })
+        console.log('iconList',iconList)
+        console.log('iconList222',JSON.stringify(iconList))
+
+
         return (
             <main className="token-submit">
                 {modal}
@@ -664,7 +678,7 @@ BigNumber.config({ EXPONENTIAL_AT: [-20, 30] });
                                     iconList.map( (item, index) => {
                                         if(item.active){
                                             return <div key={index}
-                                                        className={`${item.active? item.name+'-active': item.name} icon-list-item mr-2`}
+                                                        className={`${item.active? item.method+'-active': item.method} icon-list-item mr-2`}
                                             ></div>
                                         }
 

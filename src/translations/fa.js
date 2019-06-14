@@ -1791,6 +1791,8 @@ export const messages = {
     "trc20_token_return": "بازگشت ",
     "token_input_success": "توکن با موفقیت وارد شد",
     "token_input_failure": "توکن رد شد",
+    "token_update_success": "Token updated successfully",
+    "token_update_failure": "fail to update Token",
     "token_input_failure_reason": "دلیل رد شدن",
     "token_input_failure_no_submit": "آماده ارسال نیست",
     "token_input_failure_submit": "دوباره ارسال کنید",
@@ -1831,6 +1833,7 @@ export const messages = {
     "str_9": "تأیید پارامتر انجام نشده است .",
     "type": "تایپ",
     "token_login_no_updated":"حساب کاربری با صادر کننده ناسازگار است و نمی تواند به روز شود",
+    "information_is_being_confirmed":"Information is being confirmed, this process may take 10 minutes, please try again later",
 
 
 
