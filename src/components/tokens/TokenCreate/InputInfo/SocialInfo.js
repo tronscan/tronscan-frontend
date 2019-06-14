@@ -82,7 +82,7 @@ export class SocialInfo extends Component {
     const { getFieldDecorator } = this.props.form
     const { intl } = this.props
     let  {isTrc20, iconList, isUpdate } =  this.props.state
-    const {modal} = this.state
+    const {modal} = this.state;
     return (
       <div>
         <div>
