@@ -59,7 +59,7 @@ class NewTransactions extends React.Component {
 
     loadTransactions = async (page = 1, pageSize = 20) => {
 
-        let {filter, isinternal=false, address=false} = this.props;
+        let {filter, isinternal=false, address=false, isContract=false} = this.props;
 
         this.setState(
             {
@@ -73,7 +73,9 @@ class NewTransactions extends React.Component {
 
         if(!isinternal ){
             if(address){
-                let data = await Client.getTransactions({
+                let getTransactions = isContract? 'getTransactionsByContract': 'getTransactions'
+                console.log(isContract);
+                let data = await Client[getTransactions]({
                     sort: '-timestamp',
                     limit: pageSize,
                     start: (page - 1) * pageSize,

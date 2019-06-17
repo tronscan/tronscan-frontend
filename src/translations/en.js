@@ -1893,5 +1893,6 @@ export const messages = {
   "token_login_no_updated":"The login account is inconsistent with the publisher and cannot be updated",
   "information_is_being_confirmed":"Information is being confirmed, this process may take 10 minutes, please try again later",
 
-
+  "interTrx_tip": "Internal Transactions is an operation which a general address calls a Smart Contract， and the Smart Contract transfers token to other address.",
+  "event_tip": "Events is to let the programmer or external interface provider use it to pay attention to contract operations and audits.",
 };

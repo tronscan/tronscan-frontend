@@ -1872,4 +1872,7 @@ export const messages = {
   "token_login_no_updated":"登录账户与发行者不一致，无法更新",
   "information_is_being_confirmed":"信息正在确认中，此过程可能需要10分钟，请稍后再试",
 
+  "interTrx_tip": "内部交易是指普通地址调用智能合约，由合约向其它地址转移通证的一种操作",
+  "event_tip": "事件是让程序编写人员或外部界面提供者使用它来注意合约操作动向和审计",
+
 };

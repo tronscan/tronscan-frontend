@@ -104,9 +104,9 @@ class Transactions extends React.Component {
         let data = await Client.getInternalTransaction({
             limit: pageSize,
             start: (page - 1) * pageSize,
-            address: filter.address,
             start_timestamp: this.start,
             end_timestamp: this.end,
+            ...filter
         });
 
         let newdata = rebuildList(data.list, 'tokenId', 'callValue', 'valueInfoList')
@@ -299,7 +299,7 @@ class Transactions extends React.Component {
   render() {
 
     let {transactions, total, rangeTotal, loading, EmptyState = null} = this.state;
-    let {intl, isinternal, address = false} = this.props;
+    let {intl, isinternal, address = false, filter: {contract}} = this.props;
     let column = !isinternal? this.customizedColumn():
                               this.trc20CustomizedColumn();
     let tableInfo = intl.formatMessage({id: 'view_total'}) + ' ' + total + ' ' + intl.formatMessage({id: 'transactions_unit'})
@@ -312,10 +312,14 @@ class Transactions extends React.Component {
     //   }
     //   return <EmptyState/>;
     // }
+    console.log(loading, contract, isinternal);
 
     return (
       <div className={"token_black table_pos " + (address?"mt-5":"")}>
           {loading && <div className="loading-style"><TronLoader/></div>}
+          {(total && contract && isinternal)? <div className="d-flex align-items-center" style={{position: "absolute", left: 0, top: '-28px'}}>
+            <div className="question-mark mr-2"><i>?</i></div>{tu('interTrx_tip')}
+          </div>: ''}
           {total ? <TotalInfo total={total} rangeTotal={rangeTotal} typeText="transactions_unit" common={!address}/>:""}
           {
               address ? <DateRange onDateOk={(start,end) => this.onDateOk(start,end)}  dateClass="date-range-box-address" />: ''

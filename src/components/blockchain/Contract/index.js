@@ -9,7 +9,8 @@ import {AddressLink, TransactionHashLink, TokenTRC20Link} from "../../common/Lin
 import {TRXPrice} from "../../common/Price";
 import {ONE_TRX} from "../../../constants";
 import {TronLoader} from "../../common/loaders";
-import Transactions from "./Txs";
+import Transactions from "../../common/Transactions";
+import NewTransactions from "../../common/NewTransactions";
 import Code from "./Code";
 import Txhash from "./Txhash";
 import Events from "./Events";
@@ -21,7 +22,7 @@ import {Truncate} from "../../common/text";
 import xhr from "axios/index";
 import {API_URL, CONTRACT_ADDRESS_USDT} from "../../../constants";
 import { Tooltip } from 'antd'
-import TokenBalances from '../../addresses/Address/index.js'
+import TokenBalances from './Balance.js'
 
 
 class SmartContract extends React.Component {
@@ -80,19 +81,18 @@ class SmartContract extends React.Component {
                     id: "transactions",
                     path: "",
                     label: <span>{tu("transactions")}</span>,
-                    cmp: () => <Transactions filter={{contract: id}}  count={{trxCount:contract.data[0].trxCount}}/>
+                    cmp: () => <NewTransactions filter={{contract: id}}  address isContract/>
                 },
                 // Txns: {
                 //   id: "Txns",
                 //   path: "/Txns",
                 //   label: <span>{tu('token_txns')}</span>,
                 //   cmp: () => <Txhash filter={{address: id}} />,
-                // },
                 token_balances: {
                   id: "token_balances",
-                  path:"",
+                  path: "/token-balances",
                   label: <span>{tu("token_balances")}</span>,
-                  cmp: () => <TokenBalances tokenBalances={tokenBalances} intl={intl}/>,
+                  cmp: () => <TokenBalances id={id}/>,
                 },
                 Transfers: {
                     id: "Transfers",
@@ -105,6 +105,13 @@ class SmartContract extends React.Component {
                     path: "/code",
                     label: <span>{tu("Code")}</span>,
                     cmp: () => <Code filter={{address: id}} />,
+                },
+                intransactions: {
+                  id: "intransactions",
+                  // icon: "fas fa-handshake",
+                  path: "/internal-transactions",
+                  label: <span>{tu("internal_transactions")}</span>,
+                  cmp: () => <Transactions filter={{contract: id}} isinternal />
                 },
                 events: {
                     id: "events",
@@ -137,7 +144,7 @@ class SmartContract extends React.Component {
                     id: "transactions",
                     path: "",
                     label: <span>{tu("transactions")}</span>,
-                    cmp: () => <Transactions filter={{contract: id}}  count={{trxCount:contract.data[0].trxCount}}/>
+                    cmp: () => <NewTransactions filter={{contract: id}}  address isContract/>
                 },
                 // Txns: {
                 //   id: "Txns",
@@ -151,11 +158,25 @@ class SmartContract extends React.Component {
                 //     label: <span>{tu('TRC20_transfers')}</span>,
                 //     cmp: () => <Transfers filter={{token: id}} token={token20}/>,
                 // },
+                token_balances: {
+                  id: "token_balances",
+                  // icon: "fa fa-piggy-bank",
+                  path: "/token-balances",
+                  label: <span>{tu("token_balances")}</span>,
+                  cmp: () => <TokenBalances id={id}/>,
+                },
                 voters: {
                     id: "code",
                     path: "/code",
                     label: <span>{tu("Code")}</span>,
                     cmp: () => <Code filter={{address: id}} />,
+                },
+                intransactions: {
+                  id: "intransactions",
+                  // icon: "fas fa-handshake",
+                  path: "/internal-transactions",
+                  label: <span>{tu("internal_transactions")}</span>,
+                  cmp: () => <Transactions filter={{contract: id}} isinternal/>
                 },
                 events: {
                     id: "events",
