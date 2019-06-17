@@ -21,6 +21,7 @@ import {Truncate} from "../../common/text";
 import xhr from "axios/index";
 import {API_URL, CONTRACT_ADDRESS_USDT} from "../../../constants";
 import { Tooltip } from 'antd'
+import TokenBalances from '../../addresses/Address/index.js'
 
 
 class SmartContract extends React.Component {
@@ -87,6 +88,12 @@ class SmartContract extends React.Component {
                 //   label: <span>{tu('token_txns')}</span>,
                 //   cmp: () => <Txhash filter={{address: id}} />,
                 // },
+                token_balances: {
+                  id: "token_balances",
+                  path:"",
+                  label: <span>{tu("token_balances")}</span>,
+                  cmp: () => <TokenBalances tokenBalances={tokenBalances} intl={intl}/>,
+                },
                 Transfers: {
                     id: "Transfers",
                     path: "/transfers",
