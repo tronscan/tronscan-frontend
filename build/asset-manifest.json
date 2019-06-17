@@ -27,7 +27,7 @@
   "TokenDetail.js": "static/js/TokenDetail.92b880e5.chunk.js",
   "TokenList.js": "static/js/TokenList.d2748d7c.chunk.js",
   "TokenOverview.js": "static/js/TokenOverview.d5ddf89a.chunk.js",
-  "TokensCreate.js": "static/js/TokensCreate.5f81e3bd.chunk.js",
+  "TokensCreate.js": "static/js/TokensCreate.0798b188.chunk.js",
   "TransactionViewer.js": "static/js/TransactionViewer.5abf5663.chunk.js",
   "TronConvertTool.js": "static/js/TronConvertTool.03e10c14.chunk.js",
   "VerifyContractCode.js": "static/js/VerifyContractCode.75a90c69.chunk.js",
@@ -37,15 +37,9 @@
   "bootstrap.css": "d59729439a203fc474f5677b8d18d8bb.css",
   "fire.svg": "451873ec01a84fb259d1410a46e1d82d.svg",
   "info.svg": "ce0369650e23ec7e420a8af6750d8a87.svg",
-<<<<<<< HEAD
-  "languages.js": "static/js/languages.144645e6.chunk.js",
+  "languages.js": "static/js/languages.baf61e6d.chunk.js",
   "main.css": "static/css/main.3ad2e1c1.css",
-  "main.js": "static/js/main.cf17a449.js",
-=======
-  "languages.js": "static/js/languages.9cb237a1.chunk.js",
-  "main.css": "static/css/main.4f93961b.css",
-  "main.js": "static/js/main.98844556.js",
->>>>>>> origin/dev2019
+  "main.js": "static/js/main.cffc5abe.js",
   "static/media/24-Hour-Trading-Volume.png": "static/media/24-Hour-Trading-Volume.b6ff215b.png",
   "static/media/Average-Price.png": "static/media/Average-Price.fca4d71b.png",
   "static/media/Block-Producer-Chart.png": "static/media/Block-Producer-Chart.3369eae3.png",
@@ -91,9 +85,5 @@
   "static/media/tron-logo.jpg": "static/media/tron-logo.f142f640.jpg",
   "static/media/tronscan_wechat.png": "static/media/tronscan_wechat.1e828828.png",
   "static/media/wallet-preview.png": "static/media/wallet-preview.d53c0b10.png",
-<<<<<<< HEAD
-  "vendors.js": "static/js/vendors.fe83e23a.js"
-=======
-  "vendors.js": "static/js/vendors.ab8f4dba.js"
->>>>>>> origin/dev2019
+  "vendors.js": "static/js/vendors.31476faf.js"
 }
