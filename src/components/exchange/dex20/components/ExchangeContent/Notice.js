@@ -20,6 +20,7 @@ class Notice extends React.Component {
 
   async componentDidMount() {
     let { intl, match } = this.props;
+    
     const data = await Client20.getNotice(intl.locale, { page: 3 });
 
     // const { data } = await Client.getNotices({ limit: 3, sort: "-timestamp" });
@@ -27,9 +28,11 @@ class Notice extends React.Component {
   }
 
   async componentDidUpdate(prevProps) {
-    let { intl } = this.props;
+    let { intl} = this.props;
+   
     if (prevProps.intl.locale !== intl.locale) {
       const data = await Client20.getNotice(intl.locale, { page: 3 });
+      
       this.setState({ notice: data.articles });
     }
   }
@@ -74,6 +77,7 @@ class Notice extends React.Component {
                 : "https://support.trx.market/hc/en-us/categories/360001523732-Announcements"
             }
             target="_blank"
+            style={{width:'100px'}}
           >
             {tu("learn_more")}>
           </a>
@@ -85,6 +89,7 @@ class Notice extends React.Component {
 
 function mapStateToProps(state) {
   return {
+    activeLanguage: state.app.activeLanguage
     // widget10: state.exchange.trc10,
     // widget20: state.exchange.trc20
   };
