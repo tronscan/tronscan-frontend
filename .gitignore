@@ -26,3 +26,5 @@ yarn-error.log*
 update-to-*
 
 /web.tar*
+
+.history
