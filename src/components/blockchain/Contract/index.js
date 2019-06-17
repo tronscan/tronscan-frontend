@@ -10,7 +10,7 @@ import {TRXPrice} from "../../common/Price";
 import {ONE_TRX} from "../../../constants";
 import {TronLoader} from "../../common/loaders";
 import Transactions from "../../common/Transactions";
-import NewTransactions from "../../common/NewTransactions";
+import Txs from "./Txs";
 import Code from "./Code";
 import Txhash from "./Txhash";
 import Events from "./Events";
@@ -81,7 +81,7 @@ class SmartContract extends React.Component {
                     id: "transactions",
                     path: "",
                     label: <span>{tu("transactions")}</span>,
-                    cmp: () => <NewTransactions filter={{contract: id}}  address isContract/>
+                    cmp: () => <Txs filter={{contract: id}}  address isContract/>
                 },
                 // Txns: {
                 //   id: "Txns",
@@ -111,7 +111,7 @@ class SmartContract extends React.Component {
                   // icon: "fas fa-handshake",
                   path: "/internal-transactions",
                   label: <span>{tu("internal_transactions")}</span>,
-                  cmp: () => <Transactions filter={{contract: id}} isinternal />
+                  cmp: () => <Transactions filter={{contract: id}} isinternal address/>
                 },
                 events: {
                     id: "events",
@@ -144,7 +144,7 @@ class SmartContract extends React.Component {
                     id: "transactions",
                     path: "",
                     label: <span>{tu("transactions")}</span>,
-                    cmp: () => <NewTransactions filter={{contract: id}}  address isContract/>
+                    cmp: () => <Txs filter={{contract: id}}  address isContract/>
                 },
                 // Txns: {
                 //   id: "Txns",
@@ -176,7 +176,7 @@ class SmartContract extends React.Component {
                   // icon: "fas fa-handshake",
                   path: "/internal-transactions",
                   label: <span>{tu("internal_transactions")}</span>,
-                  cmp: () => <Transactions filter={{contract: id}} isinternal/>
+                  cmp: () => <Transactions filter={{contract: id}} isinternal address/>
                 },
                 events: {
                     id: "events",
