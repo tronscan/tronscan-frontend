@@ -268,9 +268,9 @@ class Transactions extends React.Component {
         align: 'right',
         className: 'ant_table _text_nowrap',
         render: (text, record, index) => {
-          return record.valueInfoList.map((item,index) => {
+          return record.valueInfoList.length ?record.valueInfoList.map((item,index) => {
             return <span key={index}><NameWithId value={item}/><span className={index == record.valueInfoList.length -1? 'd-none': ''}>, </span></span>
-          })
+          }): '-'
         }
       },
       // {
@@ -312,7 +312,6 @@ class Transactions extends React.Component {
     //   }
     //   return <EmptyState/>;
     // }
-    console.log(loading, contract, isinternal);
 
     return (
       <div className={"token_black table_pos " + (address?"mt-5":"")}>
