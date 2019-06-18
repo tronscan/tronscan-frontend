@@ -1840,5 +1840,8 @@ export const messages = {
   "information_is_being_confirmed":"Information is being confirmed, this process may take 10 minutes, please try again later",
 
 
+  "interTrx_tip": "内部取引は、一般住所がスマート契約を呼び出し、スマート契約が他のアドレスにトークンを転送する操作です。",
+  "event_tip": "イベントは、プログラマや外部インタフェースプロバイダが契約業務や監査に注意を払うためにそれを使用できるようにすることです。",
+
 
 }
