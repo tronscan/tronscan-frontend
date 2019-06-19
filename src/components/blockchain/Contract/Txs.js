@@ -252,7 +252,7 @@ class Transactions extends React.Component {
           {loading && <div className="loading-style" style={{marginTop: '-20px'}}><TronLoader/></div>}
           <div className="row">
             <div className="col-md-12 table_pos mt-5">
-              {total ? <TotalInfo total={total} rangeTotal={rangeTotal} typeText="transactions_unit"/>:""}
+              {total ? <TotalInfo total={total} rangeTotal={rangeTotal} top="-28px" typeText="transactions_unit"/>:""}
               <DateRange onDateOk={(start,end) => this.onDateOk(start,end)} />
               {
                   (!loading && transactions.length === 0)? <div className="p-3 text-center no-data">{tu("no_tnx")}</div>:
