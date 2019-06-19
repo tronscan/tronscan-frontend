@@ -13,6 +13,7 @@ import {API_URL} from "../../constants";
 import { getTime} from "date-fns";
 import {CopyToClipboard} from "react-copy-to-clipboard";
 import {Tooltip} from "reactstrap";
+import { Popover } from 'antd';
 
 class IssuedToken extends React.Component{
     constructor() {
@@ -168,6 +169,23 @@ class IssuedToken extends React.Component{
         }
       }
 
+      const content = (
+        <div className="ml-1">
+          <span className="small">
+            {tu('address_total_balance_info_sources')}：
+          </span>
+          <span className="small">
+              <HrefLink
+                  href={
+                      intl.locale == "zh"
+                          ? "https://trx.market/zh/"
+                          : "https://trx.market/"
+                  }
+              >TRXMarket</HrefLink>
+          </span>
+        </div>
+      )
+
         return (
           <div className="mt-4">
           {(Boolean(token20List.length) || issuedAsset) && <h4 style={{ marginBottom: '-0.5rem' }}>{tu('token_input_success_myaccount')}</h4>}
@@ -206,39 +224,25 @@ class IssuedToken extends React.Component{
                   {/** <div className="dor-img"><img src={require("../../images/issuedasset/2.png")} alt=""/></div>*/}
                 </div>
                 <div className="tf-card__header-item">
-                  <div className="tf-card__header-title">{tu('day_trade')}</div>
+                  <div className="tf-card__header-title">{tu('day_trade')} 
+                    <Popover  content={content} trigger="hover"><img width={15} height={15}  style={{marginLeft:5}} src={require("../../images/svg/market.png")} alt=""/></Popover>
+                  </div>
                   <div className="tf-card__header-text">-</div>
                   {/** <div className="dor-img"><img src={require("../../images/issuedasset/3.png")} alt=""/></div>*/}
                 </div>
                 <div className="tf-card__header-item">
-                  <div className="tf-card__header-title">{tu('last_price')}</div>
+                  <div className="tf-card__header-title">{tu('last_price')}
+                  <Popover  content={content} trigger="hover"><img width={15} height={15}  style={{marginLeft:5}} src={require("../../images/svg/market.png")} alt=""/></Popover></div>
                   <div className="tf-card__header-text">-</div>
                   {/** <div className="dor-img"><img src={require("../../images/issuedasset/4.png")} alt=""/></div>*/}
                 </div>
                 <div className="tf-card__header-item">
-                  <div className="tf-card__header-title">{tu('total_value')}</div>
+                  <div className="tf-card__header-title">{tu('total_value')}
+                  <Popover  content={content} trigger="hover"><img width={15} height={15}  style={{marginLeft:5}} src={require("../../images/svg/market.png")} alt=""/></Popover></div>
                   <div className="tf-card__header-text">-</div>
                   {/** <div className="dor-img"><img src={require("../../images/issuedasset/5.png")} alt=""/></div>*/}
                 </div>
               </div>
-              
-              <div className="question d-flex justify-content-end mb-2">
-                  <div className="ml-1">
-                    <span className="small">
-                      {tu('address_total_balance_info_sources')}：
-                    </span>
-                    <span className="small">
-                        <HrefLink
-                            href={
-                                intl.locale == "zh"
-                                    ? "https://trx.market/zh/"
-                                    : "https://trx.market/"
-                            }
-                        >TRXMarket</HrefLink>
-                    </span>
-                    <img width={15} height={15}  style={{marginLeft:5}} src={require("../../images/svg/market.png")} alt=""/>
-                  </div>
-                </div>
               
 
                 <div className="iocInfo mb-4  w-100">
@@ -423,36 +427,23 @@ class IssuedToken extends React.Component{
                       <div className="tf-card__header-text"><FormattedNumber value={token20Item.transfer20}/></div>
                     </div>
                     <div className="tf-card__header-item">
-                      <div className="tf-card__header-title">{tu('day_trade')}</div>
+                      <div className="tf-card__header-title">{tu('day_trade')}
+                      <Popover  content={content} trigger="hover"><img width={15} height={15}  style={{marginLeft:5}} src={require("../../images/svg/market.png")} alt=""/></Popover></div>
                       <div className="tf-card__header-text">-</div>
                     </div>
                     <div className="tf-card__header-item">
-                      <div className="tf-card__header-title">{tu('last_price')}</div>
+                      <div className="tf-card__header-title">{tu('last_price')}
+                      <Popover  content={content} trigger="hover"><img width={15} height={15}  style={{marginLeft:5}} src={require("../../images/svg/market.png")} alt=""/></Popover></div>
                       <div className="tf-card__header-text">-</div>
                     </div>
                     <div className="tf-card__header-item">
-                      <div className="tf-card__header-title">{tu('total_value')}</div>
+                      <div className="tf-card__header-title">{tu('total_value')}
+                      <Popover  content={content} trigger="hover"><img width={15} height={15}  style={{marginLeft:5}} src={require("../../images/svg/market.png")} alt=""/></Popover></div>
                       <div className="tf-card__header-text">-</div>
                     </div>
                   </div>
 
-                  <div className="question d-flex justify-content-end mb-2">
-                    <div className="ml-1">
-                      <span className="small">
-                        {tu('address_total_balance_info_sources')}：
-                      </span>
-                      <span className="small">
-                          <HrefLink
-                              href={
-                                  intl.locale == "zh"
-                                      ? "https://trx.market/zh/"
-                                      : "https://trx.market/"
-                              }
-                          >TRXMarket</HrefLink>
-                      </span>
-                      <img width={15} height={15}  style={{marginLeft:5}} src={require("../../images/svg/market.png")} alt=""/>
-                    </div>
-                  </div>
+                 
 
                   <table className="table tf-card-table">
                     <tbody>

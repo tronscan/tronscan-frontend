@@ -3409,6 +3409,11 @@ h5 {
   position: absolute;
   right: 0px;
   top: -28px;
+  &-unset{
+    position: unset;
+    width: 600px;
+    text-align: right;
+  }
 
   @media only screen and (max-width: 768px) {
     top: -22px;
@@ -3900,7 +3905,7 @@ h5 {
     position: relative;
     background: #ffffff;
     width: 100%;
-    padding: 1rem 58px 1rem;
+    padding: 1rem 1rem 1rem 58px ;
 
     &::after {
       content: '10';
@@ -3932,6 +3937,7 @@ h5 {
     &__header {
       padding: 0 15px;
       margin-right: -50px;
+      margin-bottom: 1rem;
 
       &-item {
         position: relative;

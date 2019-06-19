@@ -316,13 +316,16 @@ class Transactions extends React.Component {
     return (
       <div className={"token_black table_pos " + (address?"mt-5":"")}>
           {loading && <div className="loading-style"><TronLoader/></div>}
-          {(total && contract && isinternal)? <div className="d-flex align-items-center" style={{position: "absolute", left: 0, top: '-28px'}}>
-            <div className="question-mark mr-2"><i>?</i></div>{tu('interTrx_tip')}
-          </div>: ''}
-          {total ? <TotalInfo total={total} rangeTotal={rangeTotal} typeText="transactions_unit" common={!address}/>:""}
-          {
-              address ? <DateRange onDateOk={(start,end) => this.onDateOk(start,end)}  dateClass="date-range-box-address" />: ''
-          }
+          
+          <div class="d-flex justify-content-between"  style={{position: "absolute", left: 0, top: '-28px'}}>
+            {(total && contract && isinternal)? <div className="d-flex align-items-center">
+              <div className="question-mark mr-2"><i>?</i></div><span className="flex-1">{tu('interTrx_tip')}</span>
+            </div>: ''}
+            
+            {address ? <DateRange onDateOk={(start,end) => this.onDateOk(start,end)}  dateClass="date-range-box-address-unset" />: ''}
+          </div>
+          {total? <TotalInfo total={total} rangeTotal={rangeTotal} typeText="transactions_unit" common={!address}/>: ''}
+          
           {
               (!loading && transactions.length === 0)?
                   <div className="p-3 text-center no-data">{tu("no_transactions")}</div>:
