@@ -3926,6 +3926,9 @@ h5 {
     &.token20::after {
       content: '20';
     }
+
+    
+
     h4{
       font-size: 16px;
       margin: 0;
@@ -3937,7 +3940,7 @@ h5 {
     &__header {
       padding: 0 15px;
       margin-right: -50px;
-      margin-bottom: 1rem;
+      margin-bottom: 0.5rem;
 
       &-item {
         position: relative;

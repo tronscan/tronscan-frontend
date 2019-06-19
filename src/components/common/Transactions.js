@@ -322,7 +322,7 @@ class Transactions extends React.Component {
               <div className="question-mark mr-2"><i>?</i></div><span className="flex-1">{tu('interTrx_tip')}</span>
             </div>: ''}
             
-            {address ? <DateRange onDateOk={(start,end) => this.onDateOk(start,end)}  dateClass="date-range-box-address-unset" />: ''}
+            {(total && address) ? <DateRange onDateOk={(start,end) => this.onDateOk(start,end)}  dateClass="date-range-box-address-unset" />: ''}
           </div>
           {total? <TotalInfo total={total} rangeTotal={rangeTotal} typeText="transactions_unit" common={!address}/>: ''}
           
