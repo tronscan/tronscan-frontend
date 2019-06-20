@@ -74,7 +74,6 @@ class NewTransactions extends React.Component {
         if(!isinternal ){
             if(address){
                 let getTransactions = isContract? 'getContractTxs': 'getTransactions'
-                console.log(isContract);
                 let data = await Client[getTransactions]({
                     sort: '-timestamp',
                     limit: pageSize,

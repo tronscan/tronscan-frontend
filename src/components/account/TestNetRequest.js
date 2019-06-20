@@ -21,7 +21,6 @@ export default class TestNetRequest extends React.Component {
   }
 
   onVerify = (response) => {
-    console.log(response)
     this.setState({
       verificationCode: response,
     });
