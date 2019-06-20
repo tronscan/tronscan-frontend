@@ -317,12 +317,12 @@ class Transactions extends React.Component {
       <div className={"token_black table_pos " + (address?"mt-5":"")}>
           {loading && <div className="loading-style"><TronLoader/></div>}
           
-          <div class="d-flex justify-content-between"  style={{position: "absolute", left: 0, top: '-28px'}}>
+          <div class="d-flex justify-content-between w-100"  style={{position: "absolute", left: 0, top: '-28px'}}>
             {(total && contract && isinternal)? <div className="d-flex align-items-center">
               <div className="question-mark mr-2"><i>?</i></div><span className="flex-1">{tu('interTrx_tip')}</span>
             </div>: ''}
-            
-            {(total && address) ? <DateRange onDateOk={(start,end) => this.onDateOk(start,end)}  dateClass="date-range-box-address-unset" />: ''}
+              
+            {( address) ? <DateRange onDateOk={(start,end) => this.onDateOk(start,end)}  dateClass={`top-0 date-range-box-address${(total && contract)?'-unset': ''}`}/>: ''}
           </div>
           {total? <TotalInfo total={total} rangeTotal={rangeTotal} typeText="transactions_unit" common={!address}/>: ''}
           
