@@ -156,7 +156,8 @@
     "desktop:start:test": "DEV=true electron ./desktop",
     "desktop:build:full": "yarn desktop:build && yarn run desktop:prepare && yarn desktop:build:win && yarn desktop:build:linux && yarn desktop:build:mac",
     "test": "node scripts/test.js --env=jsdom",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d build",
+    "analyz": "NODE_ENV=production npm_config_report=true npm run build"
   },
   "jest": {
     "collectCoverageFrom": [

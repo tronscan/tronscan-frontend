@@ -85,5 +85,9 @@
   "static/media/tron-logo.jpg": "static/media/tron-logo.f142f640.jpg",
   "static/media/tronscan_wechat.png": "static/media/tronscan_wechat.1e828828.png",
   "static/media/wallet-preview.png": "static/media/wallet-preview.d53c0b10.png",
+<<<<<<< HEAD
   "vendors.js": "static/js/vendors.04b31ca0.js"
+=======
+  "vendors.js": "static/js/vendors.b2bdcf3b.js"
+>>>>>>> dev2019
 }

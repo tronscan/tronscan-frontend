@@ -89,7 +89,7 @@ export class resultInfo extends Component {
                 {
                     !res? <div className="result-failure">
                         <img src={require("../../../images/token/result_failure.png")} alt=""/>
-                        <h5>{tu('token_input_failure')}</h5>
+                        <h5>{!isUpdate? tu('token_input_failure'):tu('token_update_failure')}</h5>
                         <div className="mt-3 d-flex failure-reason">
                             {
                                 errorInfo &&  <div className="d-flex">
@@ -116,7 +116,7 @@ export class resultInfo extends Component {
                         :
                     <div className="result-success">
                         <img src={require("../../../images/token/result_success.png")} alt=""/>
-                        <h5>{tu('token_input_success')}</h5>
+                        <h5>{!isUpdate? tu('token_input_success'): tu('token_update_success')}</h5>
                         <p className="mytoken result-success-info">
                             {tu('token_input_success_you_can')}
                             <span className="mytoken-wallet">{tu('token_input_success_wallet')}</span>
