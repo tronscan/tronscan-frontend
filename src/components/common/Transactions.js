@@ -317,7 +317,7 @@ class Transactions extends React.Component {
       <div className={"token_black table_pos " + (address?"mt-5":"")}>
           {loading && <div className="loading-style"><TronLoader/></div>}
           
-          <div class="d-flex justify-content-between w-100"  style={{position: "absolute", left: 0, top: '-28px'}}>
+          <div className="d-flex justify-content-between w-100"  style={{position: "absolute", left: 0, top: '-28px'}}>
             {(total && contract && isinternal)? <div className="d-flex align-items-center">
               <div className="question-mark mr-2"><i>?</i></div><span className="flex-1">{tu('interTrx_tip')}</span>
             </div>: ''}
