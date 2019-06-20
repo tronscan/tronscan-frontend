@@ -34,6 +34,7 @@ import QRCode from "qrcode.react";
 import {byteArray2hexStr} from "@tronscan/client/src/utils/bytes";
 import { FormatNumberByDecimals } from '../../utils/number'
 import { getQueryString } from "../../utils/url";
+import IssuedToken from './IssuedToken'
 
 @connect(
     state => {
@@ -133,11 +134,16 @@ export default class Account extends Component {
       });
     }
 
-    Client.getIssuedAsset(account.address).then(({token}) => {
+    const {token} =  await Client.getIssuedAsset(account.address)
+
+    if(token){
+      const { rangeTotal } = await Client.getAssetTransfers({limit: 0, start: 0, issueAddress: account.address})
+      token.rangeTotal =  rangeTotal
       this.setState({
         issuedAsset: token,
       });
-    });
+    }
+    
 
     // if (currentWallet && currentWallet.allowExchange.length) {
     //     let {data,total} = await Client.getExchangesList({'address':currentWallet.address});
@@ -1599,8 +1605,9 @@ export default class Account extends Component {
               </div>
             </div>
           </div>
+          <IssuedToken issuedAsset={issuedAsset} loadAccount={this.loadAccount} unfreezeAssetsConfirmation={this.unfreezeAssetsConfirmation}/>
           {
-            issuedAsset &&
+            false &&
             <div className="row mt-3">
               <div className="col-md-12">
                 <div className="card">

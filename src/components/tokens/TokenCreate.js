@@ -24,6 +24,8 @@ import Lockr from "lockr";
 import {withTronWeb} from "../../utils/tronWeb";
 
 @withTronWeb
+
+
 class TokenCreate extends Component {
 
   constructor(props) {
@@ -95,8 +97,8 @@ class TokenCreate extends Component {
   preSubmit = () => {
     let {intl} = this.props;
     let {checkbox} = this.state;
-    if (!this.renderSubmit())
-      return;
+    // if (this.renderSubmit())
+    //   return;
     this.setState({
       modal: (
           <SweetAlert
@@ -113,7 +115,6 @@ class TokenCreate extends Component {
           >
           </SweetAlert>)
     });
-
   };
 
   submit = async () => {
@@ -164,6 +165,7 @@ class TokenCreate extends Component {
             res = result;
           }
         }
+
         if(this.props.walletType.type === "ACCOUNT_TRONLINK"){
           const unSignTransaction = await tronWeb.transactionBuilder.createToken({
             name: trim(this.state.name),

@@ -98,9 +98,14 @@ export default class TestNetRequest extends React.Component {
         // }
     };
 
+    // canRequest = () => {
+    //     let {verificationCode, waitingForTrx} = this.state;
+    //     return !waitingForTrx && !!verificationCode;
+    // };
+
     canRequest = () => {
-        let {verificationCode, waitingForTrx} = this.state;
-        return !waitingForTrx && !!verificationCode;
+        let {verificationCode } = this.state;
+        return   verificationCode
     };
 
     render() {
@@ -109,7 +114,7 @@ export default class TestNetRequest extends React.Component {
                 <React.Fragment>
                     <div className="d-flex justify-content-center">
                         <RecaptchaAsync
-                            sitekey="6Lds9nQUAAAAAAMMUjLOyu4KL_XQROPLBoHi8rTr"
+                            sitekey="6LejYqQUAAAAADMEfCJkRyZdvzxtqdX5-83yUUjH"
                             render="explicit"
                             onloadCallback={this.onLoad}
                             expiredCallback={this.onExpired}

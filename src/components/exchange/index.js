@@ -50,7 +50,7 @@ class Exchange extends React.Component {
       lg = "EN";
     }
     return (
-      <div className="container-all header-overlap">
+      <div className="container-all header-overlap" style={{ position: "relative", zIndex: 1}}>
         <main className="exchange">
           {/* <div className="notice">
             <img src={require("../../images/announcement-logo.png")} alt="" />

@@ -607,7 +607,6 @@ class ExchangeList extends React.Component {
     this.setState({
       inputValue: e.target.value
     });
-    console.log(e.target.value)
     if (!e.target.value) {
       clearInterval(timeSearch);
       this.setState({
@@ -677,7 +676,6 @@ class ExchangeList extends React.Component {
         return v.second_token_abbr == id;
       });
     }
-    // console.log(tab,id,list)
     this.setState(()=>{
       return {
         dataSource: list

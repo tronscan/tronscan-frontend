@@ -77,6 +77,7 @@ class Notice extends React.Component {
                 : "https://support.trx.market/hc/en-us/categories/360001523732-Announcements"
             }
             target="_blank"
+            style={{width:'100px'}}
           >
             {tu("learn_more")}>
           </a>

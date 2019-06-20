@@ -6,7 +6,7 @@
     "@fortawesome/fontawesome-free-solid": "^5.0.12",
     "@fortawesome/react-fontawesome": "^0.0.19",
     "@ledgerhq/hw-transport-u2f": "^4.31.0",
-    "@tronscan/client": "0.2.48",
+    "@tronscan/client": "0.2.50",
     "@tweenjs/tween.js": "^17.2.0",
     "aes-js": "^3.1.1",
     "animate.css": "^3.6.1",
@@ -70,6 +70,7 @@
     "leaflet.markercluster.placementstrategies": "^0.1.6",
     "lockr": "^0.8.4",
     "lodash": "^4.17.5",
+    "md5": "^2.2.1",
     "moment": "^2.22.2",
     "natty-storage": "^2.2.0",
     "node-sass": "^4.8.3",
@@ -110,6 +111,7 @@
     "react-responsive": "^4.1.0",
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",
+    "react-router-navigation-prompt": "^1.8.5",
     "react-router-redux": "^5.0.0-alpha.9",
     "react-scrollspy": "^3.3.5",
     "react-spinners": "^0.2.6",
@@ -154,7 +156,8 @@
     "desktop:start:test": "DEV=true electron ./desktop",
     "desktop:build:full": "yarn desktop:build && yarn run desktop:prepare && yarn desktop:build:win && yarn desktop:build:linux && yarn desktop:build:mac",
     "test": "node scripts/test.js --env=jsdom",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d build",
+    "analyz": "NODE_ENV=production npm_config_report=true npm run build"
   },
   "jest": {
     "collectCoverageFrom": [

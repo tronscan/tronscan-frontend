@@ -1,14 +1,17 @@
 import React from "react";
-import {tu} from "../../../utils/i18n";
+import {tu, t} from "../../../utils/i18n";
 import {toThousands} from "../../../utils/number";
 import {FormattedDate, FormattedNumber, FormattedTime } from "react-intl";
 import {AddressLink, ExternalLink} from "../../common/Links";
+import {SocialMedia} from "../../common/SocialMedia";
 import {Link} from "react-router-dom";
 import {toLower} from "lodash";
+import { Popover } from 'antd';
+import {cloneDeep} from 'lodash'
 
 
-export function Information({token}) {
-
+export function Information({token: tokens}) {
+  let token = cloneDeep(tokens)
   let social_display = 0;
   let lowerText = token.reputation? toLower(token.reputation) + '_active.png': '';
 
@@ -17,7 +20,16 @@ export function Information({token}) {
   //     social_display++;
   //   }
   // })
+  // token.social_media_list = JSON.parse(token.social_media_list)
 
+  token.social_media_list && token.social_media_list.map(item => {
+    try {
+      item.url = JSON.parse(item.url)
+    } catch (error) {
+      item.url = [item.url]
+    }
+    
+  })
 
   const tokenList = [
     { 
@@ -50,23 +62,12 @@ export function Information({token}) {
     {
         name: 'white_paper',
         content:  token.white_paper?
-            <ExternalLink url={token.white_paper && tu(token.white_paper)} _url={token.white_paper}/> :
+            <ExternalLink url={token.white_paper && t(token.white_paper)} _url={token.white_paper}/> :
             <span style={{color: '#d8d8d8'}}>-</span>
     },
     {
         name: 'social_link',
-        content:
-             token.social_media_list.length>0? <div className="d-flex">
-             {token['social_media_list'] && token['social_media_list'].map((media, index) => {
-                return (media.url !== "" && <div key={index} style={{marginRight: '10px'}}>
-                   <a href={media.url}>
-                     <img  src={require('../../../images/' + media.name.substring(0,1).toUpperCase()+media.name.substring(1) + '.png')}
-                           style={{width:20,height:20}}/>
-                   </a>
-                 </div>)
-             })}
-         </div>:<span style={{color: '#d8d8d8'}}>-</span>
-
+        content: <SocialMedia mediaList={token.social_media_list}/>
     },
     {
       name: 'GitHub', 
