@@ -383,7 +383,7 @@ class NewTransactions extends React.Component {
         return (
             <div className={"token_black table_pos " + (address?"mt-5":"")}>
                 {loading && <div className="loading-style"><TronLoader/></div>}
-                {total ? <TotalInfo total={total} rangeTotal={rangeTotal} typeText="transactions_unit" common={!address}/>:""}
+                {total ? <TotalInfo total={total} rangeTotal={rangeTotal} typeText="transactions_unit" common={!address} top={address? '-28px': '26'}/>:""}
                 {
                     address ? <DateRange onDateOk={(start,end) => this.onDateOk(start,end)}  dateClass="date-range-box-address" />: ''
                 }

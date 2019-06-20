@@ -324,7 +324,7 @@ class Transactions extends React.Component {
               
             {( address) ? <DateRange onDateOk={(start,end) => this.onDateOk(start,end)}  dateClass={`top-0 date-range-box-address${(total && contract)?'-unset': ''}`}/>: ''}
           </div>
-          {total? <TotalInfo total={total} rangeTotal={rangeTotal} typeText="transactions_unit" common={!address}/>: ''}
+          {total? <TotalInfo total={total} rangeTotal={rangeTotal} typeText="transactions_unit" common={!address} top={(!contract && address)? '-28px': '26'}/>: ''}
           
           {
               (!loading && transactions.length === 0)?
