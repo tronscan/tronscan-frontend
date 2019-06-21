@@ -164,7 +164,7 @@ class IssuedToken extends React.Component{
         }
         token10Time = issuedAsset.dateCreated
 
-        if(appealInfo10.update_time){
+        if(appealInfo10 && appealInfo10.update_time){
           token10Time = appealInfo10.update_time
         }
       }
@@ -377,7 +377,7 @@ class IssuedToken extends React.Component{
                 }
 
                 let token20Time = token20Item.update_time
-                if(appealItem.update_time){
+                if(appealItem && appealItem.update_time){
                   token20Time = appealItem.update_time
                 }
 
