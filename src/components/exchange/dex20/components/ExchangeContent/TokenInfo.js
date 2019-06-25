@@ -27,10 +27,19 @@ class Tokeninfo extends React.Component {
       tokeninfoItem: {},
       detailShow: false,
       tvStatus: true,
-      transcationToken: [61], // 交易赛标识
-      linkUrl:{
-        en:'https://support.trx.market/hc/en-us/articles/360029414871-50-lucky-draws-to-win-100-000-VENA-',
-        zh:'https://support.trx.market/hc/zh-cn/articles/360029414871-%E5%AF%BB%E6%89%BE%E7%A8%B3%E6%8B%BF%E9%94%A6%E9%B2%A4-%E7%A8%B3%E6%8B%BF100-000VENA-'
+      // 交易赛对象
+      transcationObj: {
+        id: [63],
+        linkUrl: {
+          en:
+            "https://support.trx.market/hc/en-us/articles/360029524032-VCOIN-Trading-Competition-10-000-VCOIN-to-Win-",
+          zh:
+            "https://support.trx.market/hc/zh-cn/articles/360029524032-VCOIN%E7%A4%BE%E5%8C%BA%E5%9B%9E%E9%A6%88-10-000-VCOIN%E5%A4%A7%E6%94%BE%E9%80%81"
+        },
+        text: {
+          en: "VCOIN Trading Competition—10,000 VCOIN to Win!",
+          zh: "VCOIN社区回馈，10,000 VCOIN大放送"
+        }
       }
     };
   }
@@ -125,7 +134,7 @@ class Tokeninfo extends React.Component {
   }
 
   render() {
-    const { tokeninfoItem, detailShow, tvStatus,transcationToken,linkUrl } = this.state;
+    const { tokeninfoItem, detailShow, tvStatus, transcationObj } = this.state;
     const {
       selectData,
       widget,
@@ -151,26 +160,26 @@ class Tokeninfo extends React.Component {
       ).toFixed(8);
     }
     let content = (
-      <div style={{ width: "180px" }}>
-        <p>{tu("trc20_fire_token")}</p>
-        <p style={{ textAlign: "right", color: "#C53028" }}>
-          {activeLanguage === "zh" ? (
-            <a
-              href={linkUrl['zh']}
-              target="_blank"
-            >
-              {tu("learn_more")}
-            </a>
-          ) : (
-            <a
-            href={linkUrl['en']}
-              target="_blank"
-            >
-              {tu("learn_more")}
-            </a>
-          )}{" "}
-          >
-        </p>
+      <div>
+        {activeLanguage === "zh" ? (
+          <div style={{ width: "180px" }}>
+            <p>{transcationObj.text["zh"]}</p>
+            <p style={{ textAlign: "right", color: "#C53028" }}>
+              <a href={transcationObj.linkUrl["zh"]} target="_blank">
+                {tu("learn_more")}
+              </a>
+            </p>
+          </div>
+        ) : (
+          <div style={{ width: "180px" }}>
+            <p>{transcationObj.text["en"]}</p>
+            <p style={{ textAlign: "right", color: "#C53028" }}>
+              <a href={transcationObj.linkUrl["en"]} target="_blank">
+                {tu("learn_more")}
+              </a>
+            </p>
+          </div>
+        )}
       </div>
     );
     return (
@@ -185,7 +194,7 @@ class Tokeninfo extends React.Component {
           <div className="info-wrap">
             <div className="item">
               <p>
-                {transcationToken.includes(selectData.id) && (
+                {transcationObj.id.includes(selectData.id) && (
                   <Popover content={content} title="">
                     <img
                       src={require("../../../../../images/fire.svg")}
@@ -193,7 +202,7 @@ class Tokeninfo extends React.Component {
                         width: "15px",
                         marginRight: "3px",
                         marginTop: "-5px",
-                        height:'15px'
+                        height: "15px"
                       }}
                       alt="fire"
                     />
