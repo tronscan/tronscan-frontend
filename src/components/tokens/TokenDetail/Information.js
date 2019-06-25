@@ -17,7 +17,7 @@ export function Information({token: tokens,currentTotalSupply}) {
     const str = token['new_social_media'].replace(/method/g, 'name').replace(/link/g, 'url')
     let mediaArr = JSON.parse(str)
     let arr = [] 
-    mediaArr.map(item =>{
+    mediaArr && mediaArr.map(item =>{
       if(!(item.url.length == 1 && item.url[0] == '')){
         arr.push(item)
       }
