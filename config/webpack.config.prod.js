@@ -16,7 +16,7 @@ const getClientEnvironment = require('./env');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const CompressionWebpackPlugin = require('compression-webpack-plugin');
 const UglifyJSPlugin = require('webpack/lib/optimize/UglifyJsPlugin');
-
+const DllReferencePlugin = require('webpack/lib/DllReferencePlugin');
 
 // Webpack uses `publicPath` to determine where the app is being served from.
 // It requires a trailing slash, or the file assets will get an incorrect path.
@@ -67,16 +67,6 @@ module.exports = {
   // In production, we only want to load the polyfills and the app code.
   entry: {
     main: [require.resolve('./polyfills'), paths.appIndexJs],
-    vendor: [
-        "react",
-        "react-dom",
-        "redux",
-        "react-router-dom",
-        "redux-thunk",
-        "react-router-redux",
-        "react-redux",
-    ]
-
   },
   output: {
     // The build folder.
@@ -327,6 +317,21 @@ module.exports = {
     // <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
     // In production, it will be an empty string unless you specify "homepage"
     // in `package.json`, in which case it will be the pathname of that URL.
+    new DllReferencePlugin({
+        manifest:require('./../mainfest/base-manifest.json')
+    }),
+    new DllReferencePlugin({
+        manifest:require('./../mainfest/charts-manifest.json')
+    }),
+    new DllReferencePlugin({
+        manifest:require('./../mainfest/polyfill-manifest.json')
+    }),
+    new DllReferencePlugin({
+        manifest:require('./../mainfest/react-manifest.json')
+    }),
+    new DllReferencePlugin({
+        manifest:require('./../mainfest/ui-manifest.json')
+    }),
     new UglifyJSPlugin({
         compress: {
             warnings: false,  //删除无用代码时不输出警告

@@ -7,7 +7,6 @@ module.exports = {
         ui: ["antd"],
         base: ["lodash", "moment"],
         charts:["echarts","highcharts"],
-
     },
     output:{
         path: path.join(__dirname, "../public/dll"),

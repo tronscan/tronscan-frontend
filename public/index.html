@@ -23,26 +23,8 @@
     <meta property="og:image" content="https://coin.top/production/js/2018-08-22-09-02-22_share-logo.png"/>
     <title>TRONSCAN | TRON BlockChain Explorer | 波场区块链浏览器 </title>
     <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-117929022-4"></script>
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'UA-117929022-4');
-    </script>
-    <script>
-//        var description;
-//        var lang = navigator.language||navigator.userLanguage;
-//        lang = lang.substr(0, 2);
-//        if(lang == 'zh'){
-//            description = "TRONSCAN 是您最值得信赖的波场区块链浏览器，支持搜索波场交易、账户、代币、节点、超级代表投票和市场信息；TRONSCAN 兼容钱包功能，支持冷热钱包两种登录方式，可以享受波场网络上免费即时的转账、充提。"
-//        }else{
-//            description = "TRONSCAN is your most trusted blockchain explorer of TRON network. It supports searching for transactions, accounts, tokens, nodes, SR's votes and market information based on TRON. TRONSCAN is compatible with wallet function that supports Tronlink and Ledger login. Users are able to  enjoy free and instant transfer on TRON network."
-//        }
-//         var meta = document.getElementById("description")
-//         meta.setAttribute("content",description);
-    </script>
+
+
 
 
   </head>
@@ -52,5 +34,19 @@
     </noscript>
 
     <div id="root" class="h-100"></div>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-117929022-4"></script>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-117929022-4');
+    </script>
+    <script src="./dll/base.dll.js"></script>
+    <script src="./dll/charts.dll.js"></script>
+    <script src="./dll/polyfill.dll.js"></script>
+    <script src="./dll/react.dll.js"></script>
+    <script src="./dll/ui.dll.js"></script>
+
   </body>
 </html>
