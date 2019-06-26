@@ -1886,5 +1886,9 @@ export const messages = {
   "token_login_no_updated":"El inicio de sesión de la cuenta no coincide con lo publicado y no se puede actualizar",
   "information_is_being_confirmed":"Information is being confirmed, this process may take 10 minutes, please try again later",
 
-
+  "my_account":"Mi cuenta",
+  "delegate_other":"Congelar por Otros",
+  "freeze_self":"Congelar por mi mismo",
+  "total_amount":"Cantidad total",
+  "unfreeze_time": "Fecha de descongelación",
 };

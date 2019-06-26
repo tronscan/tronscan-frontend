@@ -1838,5 +1838,9 @@ export const messages = {
   "token_login_no_updated":"로그인 계정이 발행자와 일치하지 않아 업데이트할 수 없습니다",
   "information_is_being_confirmed":"Information is being confirmed, this process may take 10 minutes, please try again later",
 
-
+  "my_account":"내 계정",
+  "delegate_other":"다른 사람에 의하여 동결",
+  "freeze_self":"나 자신에 의해 고정",
+  "total_amount":"총액",
+  "unfreeze_time": "해동 시간",
 };

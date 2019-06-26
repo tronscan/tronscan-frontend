@@ -1835,7 +1835,11 @@ export const messages = {
     "token_login_no_updated":"حساب کاربری با صادر کننده ناسازگار است و نمی تواند به روز شود",
     "information_is_being_confirmed":"Information is being confirmed, this process may take 10 minutes, please try again later",
 
-
+    "my_account":"حساب من",
+    "delegate_other":" فریز توسط دیگران",
+    "freeze_self":" فریز توسط من",
+    "total_amount":"مقدار کل",
+    "unfreeze_time": "زمان آزاد کردن",
 
 
 };
