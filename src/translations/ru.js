@@ -1846,4 +1846,7 @@ export const messages = {
   "information_is_being_confirmed":"Information is being confirmed, this process may take 10 minutes, please try again later",
 
 
+  "interTrx_tip": "Внутренние транзакции - это операция, которая по общему адресу называется смарт-контрактом, а смарт-контракт передает токен на другой адрес.",
+  "event_tip": "События позволяют программисту или провайдеру внешнего интерфейса использовать его, чтобы обратить внимание на контрактные операции и аудиты.",
+
 };

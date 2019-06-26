@@ -9,7 +9,8 @@ import {AddressLink, TransactionHashLink, TokenTRC20Link} from "../../common/Lin
 import {TRXPrice} from "../../common/Price";
 import {ONE_TRX} from "../../../constants";
 import {TronLoader} from "../../common/loaders";
-import Transactions from "./Txs";
+import Transactions from "../../common/Transactions";
+import Txs from "./Txs";
 import Code from "./Code";
 import Txhash from "./Txhash";
 import Events from "./Events";
@@ -21,6 +22,7 @@ import {Truncate} from "../../common/text";
 import xhr from "axios/index";
 import {API_URL, CONTRACT_ADDRESS_USDT} from "../../../constants";
 import { Tooltip } from 'antd'
+import TokenBalances from './Balance.js'
 
 
 class SmartContract extends React.Component {
@@ -79,14 +81,19 @@ class SmartContract extends React.Component {
                     id: "transactions",
                     path: "",
                     label: <span>{tu("transactions")}</span>,
-                    cmp: () => <Transactions filter={{contract: id}}  count={{trxCount:contract.data[0].trxCount}}/>
+                    cmp: () => <Txs filter={{contract: id}}  address isContract/>
                 },
                 // Txns: {
                 //   id: "Txns",
                 //   path: "/Txns",
                 //   label: <span>{tu('token_txns')}</span>,
                 //   cmp: () => <Txhash filter={{address: id}} />,
-                // },
+                token_balances: {
+                  id: "token_balances",
+                  path: "/token-balances",
+                  label: <span>{tu("token_balances")}</span>,
+                  cmp: () => <TokenBalances id={id}/>,
+                },
                 Transfers: {
                     id: "Transfers",
                     path: "/transfers",
@@ -98,6 +105,13 @@ class SmartContract extends React.Component {
                     path: "/code",
                     label: <span>{tu("Code")}</span>,
                     cmp: () => <Code filter={{address: id}} />,
+                },
+                intransactions: {
+                  id: "intransactions",
+                  // icon: "fas fa-handshake",
+                  path: "/internal-transactions",
+                  label: <span>{tu("internal_transactions")}</span>,
+                  cmp: () => <Transactions filter={{contract: id}} isinternal address/>
                 },
                 events: {
                     id: "events",
@@ -130,7 +144,7 @@ class SmartContract extends React.Component {
                     id: "transactions",
                     path: "",
                     label: <span>{tu("transactions")}</span>,
-                    cmp: () => <Transactions filter={{contract: id}}  count={{trxCount:contract.data[0].trxCount}}/>
+                    cmp: () => <Txs filter={{contract: id}}  address isContract/>
                 },
                 // Txns: {
                 //   id: "Txns",
@@ -144,11 +158,25 @@ class SmartContract extends React.Component {
                 //     label: <span>{tu('TRC20_transfers')}</span>,
                 //     cmp: () => <Transfers filter={{token: id}} token={token20}/>,
                 // },
+                token_balances: {
+                  id: "token_balances",
+                  // icon: "fa fa-piggy-bank",
+                  path: "/token-balances",
+                  label: <span>{tu("token_balances")}</span>,
+                  cmp: () => <TokenBalances id={id}/>,
+                },
                 voters: {
                     id: "code",
                     path: "/code",
                     label: <span>{tu("Code")}</span>,
                     cmp: () => <Code filter={{address: id}} />,
+                },
+                intransactions: {
+                  id: "intransactions",
+                  // icon: "fas fa-handshake",
+                  path: "/internal-transactions",
+                  label: <span>{tu("internal_transactions")}</span>,
+                  cmp: () => <Transactions filter={{contract: id}} isinternal address/>
                 },
                 events: {
                     id: "events",
@@ -220,10 +248,10 @@ class SmartContract extends React.Component {
                                     {
                                         token20.contract_address == CONTRACT_ADDRESS_USDT?
                                             <b className="token-img-top" style={{marginRight:10}}>
-                                                <img width={20} height={20} src={token20.icon_url} alt={token20.name} />
+                                                <img width={20} height={20} src={token20.icon_url} alt='' />
                                                 <i style={{width:10,height:10}}></i>
                                             </b>
-                                            : <img width={20} height={20} src={token20.icon_url} alt={token20.name} style={{marginRight:10}}/>
+                                            : <img width={20} height={20} src={token20.icon_url} alt=' ' style={{marginRight:10}}/>
 
                                     }
                                   <TokenTRC20Link name={token20.name} address={token20.contract_address} namePlus={token20.name + ' (' + token20.symbol + ')'} />

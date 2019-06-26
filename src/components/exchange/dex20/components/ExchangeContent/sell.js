@@ -443,7 +443,6 @@ class Sell extends Component {
                 });
               }
             });
-          console.log(event);
           _times += 1;
           if (event.length > 0) {
             for (var i = 0; i < event.length; i++) {

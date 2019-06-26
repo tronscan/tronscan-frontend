@@ -13,6 +13,7 @@ import {API_URL} from "../../constants";
 import { getTime} from "date-fns";
 import {CopyToClipboard} from "react-copy-to-clipboard";
 import {Tooltip} from "reactstrap";
+import { Popover } from 'antd';
 
 class IssuedToken extends React.Component{
     constructor() {
@@ -163,10 +164,27 @@ class IssuedToken extends React.Component{
         }
         token10Time = issuedAsset.dateCreated
 
-        if(appealInfo10.update_time){
+        if(appealInfo10 && appealInfo10.update_time){
           token10Time = appealInfo10.update_time
         }
       }
+
+      const content = (
+        <div className="ml-1">
+          <span className="small">
+            {tu('address_total_balance_info_sources')}：
+          </span>
+          <span className="small">
+              <HrefLink
+                  href={
+                      intl.locale == "zh"
+                          ? "https://trx.market/zh/"
+                          : "https://trx.market/"
+                  }
+              >TRXMarket</HrefLink>
+          </span>
+        </div>
+      )
 
         return (
           <div className="mt-4">
@@ -187,7 +205,7 @@ class IssuedToken extends React.Component{
                }
                 </div>
               <hr className="my-3"/>
-              <div className="d-flex justify-content-between tf-card__header position-relative">
+              <div className="d-flex justify-content-between tf-card__header mb-0 position-relative">
                 <div className="tf-card__header-item">
                   <div className="tf-card__header-title">{tu('trc20_token_info_Total_Supply')}</div>
                   <div className="tf-card__header-text">
@@ -206,82 +224,65 @@ class IssuedToken extends React.Component{
                   {/** <div className="dor-img"><img src={require("../../images/issuedasset/2.png")} alt=""/></div>*/}
                 </div>
                 <div className="tf-card__header-item">
-                  <div className="tf-card__header-title">{tu('day_trade')}</div>
+                  <div className="tf-card__header-title">{tu('day_trade')} 
+                    <Popover  content={content} trigger="hover"><img width={15} height={15}  style={{marginLeft:5}} src={require("../../images/svg/market.png")} alt=""/></Popover>
+                  </div>
                   <div className="tf-card__header-text">-</div>
                   {/** <div className="dor-img"><img src={require("../../images/issuedasset/3.png")} alt=""/></div>*/}
                 </div>
                 <div className="tf-card__header-item">
-                  <div className="tf-card__header-title">{tu('last_price')}</div>
+                  <div className="tf-card__header-title">{tu('last_price')}
+                  <Popover  content={content} trigger="hover"><img width={15} height={15}  style={{marginLeft:5}} src={require("../../images/svg/market.png")} alt=""/></Popover></div>
                   <div className="tf-card__header-text">-</div>
                   {/** <div className="dor-img"><img src={require("../../images/issuedasset/4.png")} alt=""/></div>*/}
                 </div>
                 <div className="tf-card__header-item">
-                  <div className="tf-card__header-title">{tu('total_value')}</div>
+                  <div className="tf-card__header-title">{tu('total_value')}
+                  <Popover  content={content} trigger="hover"><img width={15} height={15}  style={{marginLeft:5}} src={require("../../images/svg/market.png")} alt=""/></Popover></div>
                   <div className="tf-card__header-text">-</div>
                   {/** <div className="dor-img"><img src={require("../../images/issuedasset/5.png")} alt=""/></div>*/}
                 </div>
               </div>
-              
-              <div className="question d-flex justify-content-end mb-2">
-                  <div className="ml-1">
-                    <span className="small">
-                      {tu('address_total_balance_info_sources')}：
-                    </span>
-                    <span className="small">
-                        <HrefLink
-                            href={
-                                intl.locale == "zh"
-                                    ? "https://trx.market/zh/"
-                                    : "https://trx.market/"
-                            }
-                        >TRXMarket</HrefLink>
-                    </span>
-                    <img width={15} height={15}  style={{marginLeft:5}} src={require("../../images/svg/market.png")} alt=""/>
-                  </div>
-                </div>
+
+              <hr className="mt-2"/>
               
 
                 <div className="iocInfo mb-4  w-100">
                     <div className="iocInfo-content ml-3">
-                        <h4 className="mb-2" style={{fontWeight: '500'}}>{tu('ico_infomation')}</h4>
                         <div className="d-flex justify-content-between mb-1" style={{fontSize: '12px'}}>
-                          <div>{tu("start_date")}
-                            <span className="ml-1">{issuedAsset.endTime - issuedAsset.startTime > 1000 ?
-                                <span><FormattedDate value={issuedAsset.startTime}/>{' '}<FormattedTime
-                                    value={issuedAsset.startTime}  hour='numeric' minute="numeric" second='numeric' hour12={false}/></span> : "-"}
-                            </span>
-                          </div>
-                          <div>{tu("end_date")}
-                            <span className="ml-1"> {issuedAsset.endTime - issuedAsset.startTime > 1000 ?
-                              <span><FormattedDate value={issuedAsset.endTime}/>{' '}<FormattedTime
-                                  value={issuedAsset.endTime}  hour='numeric' minute="numeric" second='numeric' hour12={false}/></span> : "-"}
-                            </span>
+                          <h4 className="mb-2" style={{fontWeight: '500'}}>{tu('ico_infomation')}</h4>
+                          <div className="d-flex">
+                            <div className="mr-3">{tu("start_date")}
+                              <span className="ml-1">{issuedAsset.endTime - issuedAsset.startTime > 1000 ?
+                                  <span><FormattedDate value={issuedAsset.startTime}/>{' '}<FormattedTime
+                                      value={issuedAsset.startTime}  hour='numeric' minute="numeric" second='numeric' hour12={false}/></span> : "-"}
+                              </span>
+                            </div>
+                            <div>{tu("end_date")}
+                              <span className="ml-1"> {issuedAsset.endTime - issuedAsset.startTime > 1000 ?
+                                <span><FormattedDate value={issuedAsset.endTime}/>{' '}<FormattedTime
+                                    value={issuedAsset.endTime}  hour='numeric' minute="numeric" second='numeric' hour12={false}/></span> : "-"}
+                              </span>
+                            </div>
                           </div>
                         </div>
                         <div className="d-flex mb-2">
-                        {tu("progress")}:
                           <span className="d-flex flex-1 align-items-center">
-                            {/** <div className="progress ml-1" style={{width: '95%'}}>
-                              <div className="progress-bar bg-success"
-                                  style={{width: issuedAsset.issuedPercentage + '%'}}/>
-                            </div>*/}
-                            <div className="progress ml-1 w-100">
+                            <div className="progress w-100">
                               <div className="progress-bar progress-bar-striped progress-bar-animated d-flex justify-content-center align-items-center" 
-                              style={{width: issuedAsset.issuedPercentage + '%'}}>
-                               <div className="text-white">{issuedAsset.issuedPercentage.toFixed(3) + '%'}</div>
+                              style={{width: issuedAsset.issuedPercentage + '%', backgroundColor: '#d93649'}}>
+                               <div className="text-white">{issuedAsset.issuedPercentage > 5 ?issuedAsset.issuedPercentage.toFixed(3) + '%' :''}</div>
                               </div>
                             </div>
                           </span>
                         </div>
                     </div>
                     <div className=" ml-3">{
-                      currentWallet && currentWallet.frozen_supply.length > 0 &&
-                      <div>
-                        <a href="javascript:" className="float-right text-primary"
-                            onClick={() => {
-                              unfreezeAssetsConfirmation()
-                            }}>
-                          {tu("unfreeze_assets")}
+                      (currentWallet && currentWallet.frozen_supply.length > 0) &&
+                      <div classNmae="clearfix">
+                        <a href="javascript:;" className="float-right"
+                            onClick={() => {unfreezeAssetsConfirmation()}}>
+                            <Tag className="ant-tag-default m-0">{tu("unfreeze_assets")}</Tag>
                         </a>
                         {
                             currentWallet.frozen_supply.map((frozen, index) => (
@@ -294,8 +295,7 @@ class IssuedToken extends React.Component{
                                       <FormattedRelative
                                           value={frozen.expires}/>
                                   </span> : <span> {tu("can_be_unlocked_now")}&nbsp;</span>
-                                }
-                              </div>
+                                }</div>
                           ))
                         }
                       </div>
@@ -377,7 +377,7 @@ class IssuedToken extends React.Component{
                 }
 
                 let token20Time = token20Item.update_time
-                if(appealItem.update_time){
+                if(appealItem && appealItem.update_time){
                   token20Time = appealItem.update_time
                 }
 
@@ -423,36 +423,23 @@ class IssuedToken extends React.Component{
                       <div className="tf-card__header-text"><FormattedNumber value={token20Item.transfer20}/></div>
                     </div>
                     <div className="tf-card__header-item">
-                      <div className="tf-card__header-title">{tu('day_trade')}</div>
+                      <div className="tf-card__header-title">{tu('day_trade')}
+                      <Popover  content={content} trigger="hover"><img width={15} height={15}  style={{marginLeft:5}} src={require("../../images/svg/market.png")} alt=""/></Popover></div>
                       <div className="tf-card__header-text">-</div>
                     </div>
                     <div className="tf-card__header-item">
-                      <div className="tf-card__header-title">{tu('last_price')}</div>
+                      <div className="tf-card__header-title">{tu('last_price')}
+                      <Popover  content={content} trigger="hover"><img width={15} height={15}  style={{marginLeft:5}} src={require("../../images/svg/market.png")} alt=""/></Popover></div>
                       <div className="tf-card__header-text">-</div>
                     </div>
                     <div className="tf-card__header-item">
-                      <div className="tf-card__header-title">{tu('total_value')}</div>
+                      <div className="tf-card__header-title">{tu('total_value')}
+                      <Popover  content={content} trigger="hover"><img width={15} height={15}  style={{marginLeft:5}} src={require("../../images/svg/market.png")} alt=""/></Popover></div>
                       <div className="tf-card__header-text">-</div>
                     </div>
                   </div>
 
-                  <div className="question d-flex justify-content-end mb-2">
-                    <div className="ml-1">
-                      <span className="small">
-                        {tu('address_total_balance_info_sources')}：
-                      </span>
-                      <span className="small">
-                          <HrefLink
-                              href={
-                                  intl.locale == "zh"
-                                      ? "https://trx.market/zh/"
-                                      : "https://trx.market/"
-                              }
-                          >TRXMarket</HrefLink>
-                      </span>
-                      <img width={15} height={15}  style={{marginLeft:5}} src={require("../../images/svg/market.png")} alt=""/>
-                    </div>
-                  </div>
+                 
 
                   <table className="table tf-card-table">
                     <tbody>

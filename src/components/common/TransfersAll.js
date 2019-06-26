@@ -371,7 +371,6 @@ class TransfersAll extends React.Component {
     }
 
     onRadioChange = (e) => {
-        console.log('e',e)
         this.setState({
             filter: {
                 direction: e.target.value,

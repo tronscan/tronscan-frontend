@@ -1887,4 +1887,7 @@ export const messages = {
   "information_is_being_confirmed":"Information is being confirmed, this process may take 10 minutes, please try again later",
 
 
+  "interTrx_tip": "Transacciones internas es una operación que una dirección general llama un Contrato inteligente, y el Contrato inteligente transfiere el token a otra dirección.",
+  "event_tip": "Los eventos son para permitir que el programador o el proveedor de la interfaz externa lo utilicen para prestar atención a las operaciones y auditorías del contrato.",
+
 };

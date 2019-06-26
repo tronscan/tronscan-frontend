@@ -255,7 +255,10 @@ export class TokenCreate extends Component {
           new_social_media.map((item, index) => {
               token.social_media_list.map((name,icon_index) => {
                   if(item.method == name.name){
-                      item.link = JSON.parse(name.url)
+                      if(!(name.url.includes('[') && name.url.includes(']'))){
+                          name.url = '["' + name.url + '"]'
+                      }
+                      item.link =  JSON.parse(name.url)
                   }
               })
           })

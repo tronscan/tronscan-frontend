@@ -59,7 +59,7 @@ class NewTransactions extends React.Component {
 
     loadTransactions = async (page = 1, pageSize = 20) => {
 
-        let {filter, isinternal=false, address=false} = this.props;
+        let {filter, isinternal=false, address=false, isContract=false} = this.props;
 
         this.setState(
             {
@@ -73,7 +73,8 @@ class NewTransactions extends React.Component {
 
         if(!isinternal ){
             if(address){
-                let data = await Client.getTransactions({
+                let getTransactions = isContract? 'getContractTxs': 'getTransactions'
+                let data = await Client[getTransactions]({
                     sort: '-timestamp',
                     limit: pageSize,
                     start: (page - 1) * pageSize,
@@ -382,7 +383,7 @@ class NewTransactions extends React.Component {
         return (
             <div className={"token_black table_pos " + (address?"mt-5":"")}>
                 {loading && <div className="loading-style"><TronLoader/></div>}
-                {total ? <TotalInfo total={total} rangeTotal={rangeTotal} typeText="transactions_unit" common={!address}/>:""}
+                {total ? <TotalInfo total={total} rangeTotal={rangeTotal} typeText="transactions_unit" common={!address} top={address? '-28px': '26'}/>:""}
                 {
                     address ? <DateRange onDateOk={(start,end) => this.onDateOk(start,end)}  dateClass="date-range-box-address" />: ''
                 }
