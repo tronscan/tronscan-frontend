@@ -219,12 +219,9 @@ export default class Home extends Component {
 
 
   async loadTps() {
-    console.log('this.state.blockHeight',this.state.blockHeight)
     if(!this.state.blockHeight){
-        let date = new Date();
+        let date =  parseInt(new Date().getTime());
         let info =  await Client.getTps(date);
-        console.log('info',info)
-
         this.setState({
             maxTps:info.data.maxTps?info.data.maxTps:0,
             tps:info.data.currentTps?info.data.currentTps:0,
