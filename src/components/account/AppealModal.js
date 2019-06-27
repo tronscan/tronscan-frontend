@@ -4,7 +4,9 @@ import { Modal, Form, Checkbox, Input } from 'antd';
 import xhr from "axios/index";
 import {injectIntl} from "react-intl";
 import {API_URL} from "../../constants";
+import SweetAlert from "react-bootstrap-sweetalert";
 const { TextArea } = Input;
+
 
 class ChangeNameModal extends Component {
   constructor() {
@@ -53,6 +55,7 @@ class ChangeNameModal extends Component {
   async submitAppeal(contenttext){
     const { toAppealing, account: {address,tronWeb} } = this.props
     const {appealInfo} = this.state
+   
     let content = {
       issuer_addr: address,
       address: appealInfo.address,
@@ -67,15 +70,22 @@ class ChangeNameModal extends Component {
       content: content_str,
       sig
     })
-    
+
     if(data.retCode == 0){
       this.handleCancel()
         toAppealing()
     }else{
-      // this.setState({modal: 
-      //   <SweetAlert warning title={tu("not_enough_trx")} onConfirm={this.hideModal}>
-      //     {tu("freeze_trx_least")}
-      //   </SweetAlert>})
+      if(data.retMsg.length){
+        const content = data.retMsg.map(item => <p className="mb-0">{tu("str_"+ item)}</p>)
+        this.setState({modal: 
+          <SweetAlert
+            danger  
+            onConfirm={() => this.setState({modal: null})}>
+            {content} 
+          </SweetAlert>
+        })
+      }
+      
     }
   }
 
@@ -100,9 +110,11 @@ class ChangeNameModal extends Component {
 
   render() {
     const { getFieldDecorator } = this.props.form;
-    const {disabled, appealInfo} = this.state
-
+    const {disabled, appealInfo, modal} = this.state
+   
     return (
+      <div>
+      {modal}
       <Modal
       title={tu('Appeal')}
       width="100%"
@@ -135,6 +147,7 @@ class ChangeNameModal extends Component {
           </div>
       </Form>
     </Modal>
+    </div>
     )
   }
 }
