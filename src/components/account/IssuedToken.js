@@ -21,65 +21,28 @@ class IssuedToken extends React.Component{
         this.state = {
             disabled: false,
             modalStatus: false,
-            appealInfo: {},
-            appealInfo10: {},
-            appealInfo20: [],
             token20List: [],
+            appealInfo: '',
             copied: false,
-            id: alpha(24)
+            id: alpha(24),
+            address: ''
         };
     }
-    async showModal(type, index){
-      const {appealInfo10, appealInfo20} = this.state
-      let data = {}
-      if(type == 'trx10') data = appealInfo10
-      if(type == 'trx20'){
-        data = appealInfo20[index]
-      } 
-      
-      this.setState({appealInfo: data}, () => {
+    async showModal(address){
+      this.setState({address: address}, () => {
         this.setState({modalStatus: true})
       })
-      
     }
     hiddenModal(){
       this.setState({modalStatus: false})
     }
 
-    async getAppealRecent(address){
-      const { intl } = this.props
+    async getAppealRecent10(address){
       const {data: {data, retCode}} = await xhr.get(API_URL+'/external/trc_appeals/recent?address='+ address)
       if(retCode == 0){
-        let appealInfo = {errorInfo: [], ...data.appeal}
-        if(data.appeal){
-          const appealArr = JSON.parse(data.appeal.reasons)
-          appealArr.map(item => {
-            let blackMap = intl.formatMessage({ id: `black_${item.id}` })
-            if(item.id == 11){
-              appealInfo.errorInfo.push(blackMap.replace('xxxxx', item.value.replace(/,$/, '')))
-            }else{
-              appealInfo.errorInfo.push(blackMap)
-            }
-          })
-        }
-       return appealInfo
+        this.setState({appealInfo: data.appeal})
       }
     }
-    async getAppealRecent10 (address) {
-      const data = await this.getAppealRecent(address)
-      this.setState({appealInfo10: data})
-    }
-    async getAppealRecent20 (list) {
-      let arr = []
-      for (let i = 0; i < list.length; i++) {
-        const element = list[i];
-        const data = await this.getAppealRecent(element.contract_address)
-        arr.push(data)
-      }
-      this.setState({appealInfo20: arr})
-    }
-
-
 
     // get 20 token transfer amount
     async getToken20Transfer(contract_address){
@@ -100,7 +63,6 @@ class IssuedToken extends React.Component{
       const {data: {data, retCode}} = await xhr.get(API_URL+'/external/trc20tokens?issuer_addr='+ address)
       if(retCode == 0){
         let arr = []
-        this.getAppealRecent20(data.tokens)
 
         for (let i = 0; i < data.tokens.length; i++) {
           let element = data.tokens[i];
@@ -118,7 +80,7 @@ class IssuedToken extends React.Component{
       const {loadAccount, issuedAsset} = this.props
       if(issuedAsset){
         loadAccount()
-        this.getToken10Transfer()
+        // this.getToken10Transfer()
       }else{
         this.get20token()
       }
@@ -130,18 +92,14 @@ class IssuedToken extends React.Component{
     };
 
     componentDidUpdate(prevProps) {
-      const {issuedAsset, account, activeLanguage} = this.props
-      if(issuedAsset && (issuedAsset != prevProps.issuedAsset)){
-        this.getAppealRecent10(issuedAsset.ownerAddress)
-      }
+      const {issuedAsset, account} = this.props
+
       if(account != prevProps.account){
         this.get20token()
       }
-      if(activeLanguage  != prevProps.activeLanguage){
-        this.getAppealRecent10(account.address)
-        this.get20token()
+      if(issuedAsset && issuedAsset != prevProps.issuedAsset){
+        this.getAppealRecent10(issuedAsset.ownerAddress)
       }
-      
     }
 
     componentDidMount() {
@@ -151,21 +109,21 @@ class IssuedToken extends React.Component{
 
     render() {
       const issuedAsset = this.props.issuedAsset;
-      const {appealInfo,appealInfo10, token20List, appealInfo20, copied, id} = this.state;
+      const { token20List, appealInfo, copied, id} = this.state;
       const { account, intl, currentWallet, unfreezeAssetsConfirmation } = this.props;
 
       let status10;
       let token10Time;
       if(issuedAsset){
         status10 = {
-          isPassed: (issuedAsset.canShow == 0 || issuedAsset.canShow == 1 || issuedAsset.canShow == 2),
+          isPassed: issuedAsset.canShow == 1,
           isFailed: issuedAsset.canShow == 3,
-          isAppealing: appealInfo && issuedAsset.canShow == 3 && appealInfo.status == 2,
+          isAppealing: issuedAsset.canShow == 2,
         }
+        
         token10Time = issuedAsset.dateCreated
-
-        if(appealInfo10 && appealInfo10.update_time){
-          token10Time = appealInfo10.update_time
+        if(appealInfo){
+          token10Time = appealInfo.update_time
         }
       }
 
@@ -325,7 +283,7 @@ class IssuedToken extends React.Component{
                       <FormattedTime value={token10Time}  hour='numeric' minute="numeric" second='numeric' hour12={false}/>
                     </td>
                     <td>
-                      { status10.isFailed && <Tag color="#4a90e2" onClick={() => this.showModal('trx10')}>{tu('Appeal')}</Tag> }
+                      { status10.isFailed && <Tag color="#4a90e2" onClick={() => this.showModal(issuedAsset.ownerAddress)}>{tu('Appeal')}</Tag> }
                     </td>
                     <td><TokenLink 
                     name={tu('check_token_detail')} 
@@ -365,22 +323,11 @@ class IssuedToken extends React.Component{
 
             {Boolean(token20List.length) && 
               token20List.map((token20Item, index) => {
-                let status20 = {
-                  isPassed:  token20Item.status == 0 || token20Item.status == 1 || token20Item.status == 2,
+                 let status20 = {
+                  isPassed:  token20Item.status == 1,
                   isFailed: token20Item.status == 3,
-                  isAppealing: false
+                  isAppealing: token20Item.status == 2
                 }
-                const appealItem = appealInfo20[index]
-                if(appealItem){
-                  status20.isFailed = token20Item.status == 3 && appealItem.status == 0
-                  status20.isAppealing = token20Item.status == 3 && appealItem.status == 2
-                }
-
-                let token20Time = token20Item.update_time
-                if(appealItem && appealItem.update_time){
-                  token20Time = appealItem.update_time
-                }
-
                 
                 return <div className={`mt-3 tf-card token20`} key={token20Item.contract_address}>
                   <div className="d-flex justify-content-between align-items-center pl-3">
@@ -460,12 +407,12 @@ class IssuedToken extends React.Component{
                           {status20.isFailed && tu('black_time') }
                           {status20.isAppealing && tu('appeal_time') }
                           : 
-                          <FormattedDate value={token20Time} className="ml-1"/>
+                          <FormattedDate value={token20Item.update_time} className="ml-1"/>
                           {' '}
-                          <FormattedTime value={token20Time}  hour='numeric' minute="numeric" second='numeric' hour12={false}/>
+                          <FormattedTime value={token20Item.update_time}  hour='numeric' minute="numeric" second='numeric' hour12={false}/>
                         </td>
                         <td>
-                          { status20.isFailed && <Tag color="#4a90e2" onClick={() => this.showModal('trx20', index)}>{tu('Appeal')}</Tag> }
+                          { status20.isFailed && <Tag color="#4a90e2" onClick={() => this.showModal(token20Item.contract_address)}>{tu('Appeal')}</Tag> }
                         </td>
                         <td>
                           <TokenTRC20Link name={tu('check_token_detail')} address={token20Item.contract_address}/>
@@ -507,7 +454,7 @@ class IssuedToken extends React.Component{
             <AppealModal 
               hiddenModal={() => this.hiddenModal()} 
               modalStatus={this.state.modalStatus} 
-              appealInfo={appealInfo} 
+              address={this.state.address} 
               account={account} 
               toAppealing={() => this.updateData()}
             />

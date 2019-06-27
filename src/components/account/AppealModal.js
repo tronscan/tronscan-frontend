@@ -11,7 +11,9 @@ class ChangeNameModal extends Component {
     super();
 
     this.state = {
-      disabled: true
+      disabled: true,
+      modal: null,
+      appealInfo: {}
     };
   }
 
@@ -28,11 +30,32 @@ class ChangeNameModal extends Component {
       }
     });
   };
+  async getAppealRecent(){
+    const { intl, address } = this.props
+    const {data: {data, retCode}} = await xhr.get(API_URL+'/external/trc_appeals/recent?address='+ address)
+    if(retCode == 0){
+      let appealInfo = {errorInfo: [], ...data.appeal}
+      if(data.appeal){
+        const appealArr = JSON.parse(data.appeal.reasons)
+        appealArr.map(item => {
+          let blackMap = intl.formatMessage({ id: `black_${item.id}` })
+          if(item.id == 11){
+            appealInfo.errorInfo.push(blackMap.replace('xxxxx', item.value.replace(/,$/, '')))
+          }else{
+            appealInfo.errorInfo.push(blackMap)
+          }
+        })
+      }
+      this.setState({appealInfo})
+    }
+  }
 
   async submitAppeal(contenttext){
-    const { appealInfo,toAppealing, account: {address,tronWeb} } = this.props
+    const { toAppealing, account: {address,tronWeb} } = this.props
+    const {appealInfo} = this.state
     let content = {
       issuer_addr: address,
+      address: appealInfo.address,
       content: contenttext,
       timestamp: new Date().getTime()
     }
@@ -48,9 +71,16 @@ class ChangeNameModal extends Component {
     if(data.retCode == 0){
       this.handleCancel()
         toAppealing()
+    }else{
+      // this.setState({modal: 
+      //   <SweetAlert warning title={tu("not_enough_trx")} onConfirm={this.hideModal}>
+      //     {tu("freeze_trx_least")}
+      //   </SweetAlert>})
     }
   }
+
   componentDidUpdate(prevProps) {
+    const {modalStatus, address} = this.props
     const {getFieldsValue} = this.props.form;
     if(prevProps.form !== this.props.form){
       const data = getFieldsValue(['reason', 'remember'])
@@ -60,15 +90,17 @@ class ChangeNameModal extends Component {
       })
       this.setState({disabled: !lock})
     }
-    
+
+    if(modalStatus && modalStatus !=  prevProps.modalStatus && address){
+      this.getAppealRecent()
+    }
   }
 
 
 
   render() {
     const { getFieldDecorator } = this.props.form;
-    const {disabled} = this.state
-    const { appealInfo } = this.props
+    const {disabled, appealInfo} = this.state
 
     return (
       <Modal
@@ -82,7 +114,9 @@ class ChangeNameModal extends Component {
       maskClosable={false}
     >
       <h3 className="col_red">{t('black_reason')}</h3>
-      <p>{appealInfo.errorInfo && appealInfo.errorInfo.join(',')}</p>
+      <p>{appealInfo.errorInfo && appealInfo.errorInfo.map(item => {
+        return <span className="d-block pl-3" key={item}>{item}</span>
+      })}</p>
       <h3>{t('appeal_reason')} <span className="text-small">（{t('handle_time')}）</span></h3>
       <Form onSubmit={this.handleSubmit}>
         <Form.Item>
