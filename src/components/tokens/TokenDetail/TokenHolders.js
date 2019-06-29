@@ -63,9 +63,10 @@ class TokenHolders extends React.Component {
     if(addresses.length){
       addresses.map(item => {
         exchangeFlag.map(exchange => {
-          exchange.addressList.map(address => {
+          exchange.addressList.map((address, index) => {
             if(item.address == address){
               item.ico = exchange.name
+              item.tagName = upperFirst(exchange.name) +' '+ (index+1)
             }
           })
         })
@@ -114,9 +115,9 @@ class TokenHolders extends React.Component {
       },
       {
         title: 'Name Tag',
-        dataIndex: 'ico',
-        key: 'ico',
-        align: 'center'
+        dataIndex: 'tagName',
+        key: 'tagName',
+        align: 'center',
       },
       {
         title: upperFirst(intl.formatMessage({id: 'quantity'})),

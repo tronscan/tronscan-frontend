@@ -42,12 +42,13 @@ class Accounts extends Component {
       limit: pageSize,
       start: (page - 1) * pageSize
     })
-    const map = ['TMuA6YqfCeX8EhbfYEg5y7S4DqzSJireY9', 'TWd4WrZ9wn84f5x1hZhL4DHvk738ns5jwb', 'TAUN6FwrnwwmaEqYcckffC7wYmbaS6cBiX']
+
+    const map = ['TMuA6YqfCeX8EhbfYEg5y7S4DqzSJireY9', 'TAUN6FwrnwwmaEqYcckffC7wYmbaS6cBiX', 'TWd4WrZ9wn84f5x1hZhL4DHvk738ns5jwb']
       accounts.map(item => {
         for (let i = 0; i < map.length; i++) {
           const address = map[i];
           if(address == item.address){
-            item.tagName = 'binance'
+            item.tagName = 'Binance '+ (i+1)
             return
           }else{
             item.tagName = ''
