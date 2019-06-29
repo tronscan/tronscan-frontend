@@ -12,13 +12,14 @@ import {NumberField} from "../common/Fields";
 import {transactionResultManager} from "../../utils/tron";
 import Lockr from "lockr";
 import {withTronWeb} from "../../utils/tronWeb";
+import { Tooltip } from 'antd';
 
 @connect(
   state => ({
     account: state.app.account,
     wallet: state.app.wallet,
     tokenBalances: state.account.tokens,
-    trxBalance: state.account.trxBalance || state.account.balance,
+    trxBalance: state.account.trxBalance || state.account.balance
   }),
   {
     reloadWallet
@@ -46,12 +47,21 @@ export default class FreezeBalanceModal extends React.PureComponent {
         }
       ],
       selectedResource:0,
-      receiver:''
+      receiver:'',
+      oneEnergy: 0,
+      oneBandwidth: 0,
+      getcalculate: 0
     };
   }
 
   componentDidMount() {
     this.props.reloadWallet();
+    this.getFrozenEnergy(1)
+    this.getFrozenBandwidth(1)
+    
+  }
+  async getdata(){
+    var amount = await this.props.account.tronStationSDK.calculateFrozenEnergy(10000)
   }
 
   hideModal = () => {
@@ -68,9 +78,7 @@ export default class FreezeBalanceModal extends React.PureComponent {
   };
 
   onAmountChanged = (value) => {
-
     let {trxBalance} = this.props;
-
 
     let amount = parseInt(value);
     if (!isNaN(amount)) {
@@ -80,10 +88,14 @@ export default class FreezeBalanceModal extends React.PureComponent {
       amount = "";
     }
 
-
-
     this.setState({
       amount,
+    }, () => {
+      if(amount){
+        this.getCalculat()
+      }else{
+        this.setState({getcalculate: 0})
+      }
     });
   };
 
@@ -156,10 +168,43 @@ export default class FreezeBalanceModal extends React.PureComponent {
     }
 
   };
+  async getFrozenEnergy(one){
+    const {account: {tronStationSDK}} = this.props
+    const { amount } = this.state
+    if(one){
+      const data = await tronStationSDK.calculateFrozenEnergy(ONE_TRX);
+      this.setState({oneEnergy: data})
+    }else{
+      if(amount){
+        const data = await tronStationSDK.calculateFrozenEnergy(amount * ONE_TRX);
+        this.setState({getcalculate: data})
+      }
+    }
+  }
+  async getFrozenBandwidth(one){
+    const {account: {tronStationSDK}} = this.props
+    const { amount } = this.state
+    if(one){
+      const {bp} = await tronStationSDK.calculateFrozenBandwidth(ONE_TRX);
+      this.setState({oneBandwidth: bp})
+    }else{
+      if(amount){
+        const {bp} = await tronStationSDK.calculateFrozenBandwidth(amount * ONE_TRX);
+        this.setState({getcalculate: bp})
+      }
+    }
+  }
+  getCalculat() {
+    const { selectedResource } = this.state
+    const map = ['getFrozenBandwidth', 'getFrozenEnergy']
+    this[map[selectedResource]]()
+  }
 
   resourceSelectChange = (value) => {
     this.setState({
         selectedResource: Number(value)
+    },() => {
+      this.getCalculat()
     });
   };
   setReceiverAddress = (address) => {
@@ -167,7 +212,7 @@ export default class FreezeBalanceModal extends React.PureComponent {
   };
   render() {
 
-    let {receiver, amount, confirmed, loading, resources, selectedResource} = this.state;
+    let {receiver, amount, confirmed, loading, resources, selectedResource, oneEnergy, oneBandwidth, getcalculate} = this.state;
     let {trxBalance, frozenTrx, intl} = this.props;
     trxBalance = !trxBalance ? 0 :  trxBalance;
     let isValid =  (amount > 0 && trxBalance >= amount && confirmed);
@@ -220,6 +265,22 @@ export default class FreezeBalanceModal extends React.PureComponent {
                     }
                 </select>
               </div>
+              {Boolean(selectedResource == 0 && getcalculate) &&
+                <p className="text-left d-flex align-items-center">
+                  <span className="col-red mr-2">1TRX ≈ <FormattedNumber value={oneBandwidth}/>{tu('bandwidth')}, {tu('Expected_acquisition')}<FormattedNumber value={getcalculate}/>{tu('bandwidth')}</span>
+                  <Tooltip placement="top" title={tu('bandwidth_more')} overlayStyle={{ maxWidth: '320px'}}>
+                    <div className="question-mark"><i>?</i></div>
+                  </Tooltip>
+                </p>
+              }
+              {Boolean(selectedResource == 1&& getcalculate) &&
+                <p className="text-left d-flex align-items-center">
+                  <span className="col-red mr-2">1TRX ≈ <FormattedNumber value={oneEnergy}/>{tu('energy')}, {tu('Expected_acquisition')}<FormattedNumber value={getcalculate}/>{tu('energy')}</span>
+                  <Tooltip placement="top" title={tu('energy_more')} overlayStyle={{maxWidth: '320px'}}>
+                    <div className="question-mark"><i>?</i></div>
+                  </Tooltip>
+                </p>
+              }
               <div className="form-check">
                 <input type="checkbox"
                        className="form-check-input"

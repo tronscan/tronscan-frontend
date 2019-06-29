@@ -1872,4 +1872,7 @@ export const messages = {
   "token_login_no_updated":"登录账户与发行者不一致，无法更新",
   "information_is_being_confirmed":"信息正在确认中，此过程可能需要10分钟，请稍后再试",
 
+  "Expected_acquisition": "预计获得",
+  "energy_more": `Energy can only be obtained by freezing the TRX. Energy obtained = TRX frozen for gaining Energy / total TRX frozen for gaining Energy in the entire network * total energy limit. (which is the equally-divided fixed Energy for all users based on the frozen TRX.)`,
+  "bandwidth_more": `Bandwidth points can be gained in two ways: Freezing TRX. The quota = the TRX frozen for gaining bandwidth points / the total TRX frozen in the network for gaining bandwidth points * 43_200_000_000, which is the equally-divided fixed bandwidth points quota for all users based on the frozen TRX. Or Fixed 5,000 free TRX quota daily for each account.`
 };

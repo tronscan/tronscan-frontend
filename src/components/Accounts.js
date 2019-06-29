@@ -44,6 +44,7 @@ class Accounts extends Component {
     })
 
      // let {txOverviewStats} = await Client.getTxOverviewStats();
+
     this.setState({
       loading: false,
       accounts: accounts,
