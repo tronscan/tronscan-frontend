@@ -42,7 +42,17 @@ class Accounts extends Component {
       limit: pageSize,
       start: (page - 1) * pageSize
     })
-
+    const map = ['TMuA6YqfCeX8EhbfYEg5y7S4DqzSJireY9', 'TWd4WrZ9wn84f5x1hZhL4DHvk738ns5jwb', 'TAUN6FwrnwwmaEqYcckffC7wYmbaS6cBiX']
+      accounts.map(item => {
+        map.map(address => {
+          if(address === item.address){
+            item.tagName = 'binance'
+          }else{
+            item.tagName = ''
+          }
+        })
+     })
+    console.log(accounts);
      // let {txOverviewStats} = await Client.getTxOverviewStats();
     this.setState({
       loading: false,
@@ -150,6 +160,12 @@ class Accounts extends Component {
             </span> :
               <AddressLink address={text}/>
         }
+      },
+      {
+        title: 'Name Tag',
+        dataIndex: 'tagName',
+        key: 'tagName',
+        align: 'center'
       },
       {
         title: upperFirst(intl.formatMessage({id: 'supply'})),

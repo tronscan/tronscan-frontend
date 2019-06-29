@@ -25,6 +25,9 @@ class TokenHolders extends React.Component {
       page: 0,
       total: 0,
       pageSize: 25,
+      exchangeFlag: [
+        {name: 'binance', addressList: ['TMuA6YqfCeX8EhbfYEg5y7S4DqzSJireY9', 'TAUN6FwrnwwmaEqYcckffC7wYmbaS6cBiX', 'TWd4WrZ9wn84f5x1hZhL4DHvk738ns5jwb']}
+      ]
     };
   }
 
@@ -58,6 +61,19 @@ class TokenHolders extends React.Component {
       addresses[index].index = parseInt(index) + 1 + (page-1)*pageSize;
     }
 
+    if(addresses.length){
+      addresses.map(item => {
+        this.state.exchangeFlag.map(exchange => {
+          exchange.addressList.map(address => {
+            if(item.address == address){
+              item.ico = exchange.name
+            }
+          })
+        })
+      })
+    }
+    
+
     this.setState({
       page,
       addresses,
@@ -85,6 +101,12 @@ class TokenHolders extends React.Component {
         render: (text, record, index) => {
           return <AddressLink address={record.holder_address}/>
         }
+      },
+      {
+        title: 'Name Tag',
+        dataIndex: 'ico',
+        key: 'ico',
+        align: 'center'
       },
       {
         title: upperFirst(intl.formatMessage({id: 'quantity'})),

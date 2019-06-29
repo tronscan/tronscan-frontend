@@ -24,7 +24,7 @@ class TokenHolders extends React.Component {
       total: 0,
       pageSize: 25,
       exchangeFlag: [
-        {name: 'binance', addressList: ['TMuA6YqfCeX8EhbfYEg5y7S4DqzSJireY9', 'TAUN6FwrnwwmaEqYcckffC7wYmbaS6cBiX']}
+        {name: 'binance', addressList: ['TMuA6YqfCeX8EhbfYEg5y7S4DqzSJireY9', 'TAUN6FwrnwwmaEqYcckffC7wYmbaS6cBiX', 'TWd4WrZ9wn84f5x1hZhL4DHvk738ns5jwb']}
       ]
     };
   }
@@ -60,7 +60,7 @@ class TokenHolders extends React.Component {
     // }
    
 
-    if(addresses.length && addresses[0].name == 'BitTorrent'){
+    if(addresses.length){
       addresses.map(item => {
         exchangeFlag.map(exchange => {
           exchange.addressList.map(address => {
@@ -111,6 +111,12 @@ class TokenHolders extends React.Component {
             <AddressLink address={record.address}/>
           
         }
+      },
+      {
+        title: 'Name Tag',
+        dataIndex: 'ico',
+        key: 'ico',
+        align: 'center'
       },
       {
         title: upperFirst(intl.formatMessage({id: 'quantity'})),
