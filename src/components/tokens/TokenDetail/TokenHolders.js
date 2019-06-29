@@ -24,7 +24,10 @@ class TokenHolders extends React.Component {
       total: 0,
       pageSize: 25,
       exchangeFlag: [
-        {name: 'binance', addressList: ['TMuA6YqfCeX8EhbfYEg5y7S4DqzSJireY9', 'TAUN6FwrnwwmaEqYcckffC7wYmbaS6cBiX', 'TWd4WrZ9wn84f5x1hZhL4DHvk738ns5jwb']}
+        {name: 'binance', addressList: {
+          Cold: ['TMuA6YqfCeX8EhbfYEg5y7S4DqzSJireY9', 'TWd4WrZ9wn84f5x1hZhL4DHvk738ns5jwb'],
+          Hot: ['TAUN6FwrnwwmaEqYcckffC7wYmbaS6cBiX']}
+        }
       ]
     };
   }
@@ -62,15 +65,24 @@ class TokenHolders extends React.Component {
 
     if(addresses.length){
       addresses.map(item => {
-        exchangeFlag.map(exchange => {
-          exchange.addressList.map((address, index) => {
-            if(item.address == address){
-              item.ico = exchange.name
-              item.tagName = upperFirst(exchange.name) +' '+ (index+1)
+        item.tagName = ''
+        exchangeFlag.map(coin => {
+          const typeList = Object.keys(coin.addressList)
+          typeList.map(type => {
+            if(coin.addressList[type].length == 1){
+              if(coin.addressList[type][0] === item.address){
+                item.tagName = `${upperFirst(coin.name)}-${type}`
+              }
+            }else if(coin.addressList[type].length > 1){
+              coin.addressList[type].map((address, index) => {
+                if(address === item.address){
+                  item.tagName = `${upperFirst(coin.name)}-${type} ${index + 1}`
+                }
+              })
             }
           })
         })
-      })
+       })
     }
     
 
@@ -117,7 +129,7 @@ class TokenHolders extends React.Component {
         title: 'Name Tag',
         dataIndex: 'tagName',
         key: 'tagName',
-        align: 'center',
+        width: '200px'
       },
       {
         title: upperFirst(intl.formatMessage({id: 'quantity'})),
