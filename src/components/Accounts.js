@@ -52,7 +52,6 @@ class Accounts extends Component {
           }
         })
      })
-    console.log(accounts);
      // let {txOverviewStats} = await Client.getTxOverviewStats();
     this.setState({
       loading: false,
