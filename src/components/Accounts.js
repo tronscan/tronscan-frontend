@@ -44,13 +44,15 @@ class Accounts extends Component {
     })
     const map = ['TMuA6YqfCeX8EhbfYEg5y7S4DqzSJireY9', 'TWd4WrZ9wn84f5x1hZhL4DHvk738ns5jwb', 'TAUN6FwrnwwmaEqYcckffC7wYmbaS6cBiX']
       accounts.map(item => {
-        map.map(address => {
-          if(address === item.address){
+        for (let i = 0; i < map.length; i++) {
+          const address = map[i];
+          if(address == item.address){
             item.tagName = 'binance'
+            return
           }else{
             item.tagName = ''
           }
-        })
+        }
      })
      // let {txOverviewStats} = await Client.getTxOverviewStats();
     this.setState({
