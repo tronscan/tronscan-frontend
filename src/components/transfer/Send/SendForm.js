@@ -6,7 +6,7 @@ import {tu} from "../../../utils/i18n";
 import {Client} from "../../../services/api";
 import {isAddressValid} from "@tronscan/client/src/utils/crypto";
 import _, {find, round} from "lodash";
-import {ACCOUNT_TRONLINK, API_URL, ONE_TRX} from "../../../constants";
+import {ACCOUNT_LEDGER, ACCOUNT_PRIVATE_KEY, ACCOUNT_TRONLINK, API_URL, ONE_TRX} from "../../../constants";
 import {Alert} from "reactstrap";
 import {reloadWallet} from "../../../actions/wallet";
 import SweetAlert from "react-bootstrap-sweetalert";
@@ -17,12 +17,13 @@ import xhr from "axios";
 import {Select} from 'antd';
 import isMobile from '../../../utils/isMobile';
 import {withTronWeb} from "../../../utils/tronWeb";
-import { FormatNumberByDecimals } from '../../../utils/number'
+import {FormatNumberByDecimals} from '../../../utils/number'
 import {transactionResultManager} from "../../../utils/tron"
 import BigNumber from "bignumber.js"
-BigNumber.config({ EXPONENTIAL_AT: [-20, 30] });
 
-const { Option, OptGroup } = Select;
+BigNumber.config({EXPONENTIAL_AT: [-20, 30]});
+
+const {Option, OptGroup} = Select;
 
 @withTronWeb
 class SendForm extends React.Component {
@@ -40,9 +41,9 @@ class SendForm extends React.Component {
       isLoading: false,
       toAccount: null,
       modal: null,
-      tokens20:[],
-      decimals:'',
-      balance:'',
+      tokens20: [],
+      decimals: '',
+      balance: '',
     };
   }
 
@@ -51,7 +52,7 @@ class SendForm extends React.Component {
    * @returns {*|boolean}
    */
   isValid = () => {
-    let {to, token, amount, privateKey,balance} = this.state;
+    let {to, token, amount, privateKey, balance} = this.state;
     let {account} = this.props;
     /*
        if (!privateKey || privateKey.length !== 64) {
@@ -73,7 +74,7 @@ class SendForm extends React.Component {
     let TokenType = token.substr(token.length - 5, 5);
     switch (TokenType) {
       case 'TRC10':
-        if (Lockr.get("islogin") || this.props.wallet.type==="ACCOUNT_LEDGER" || this.props.wallet.type==="ACCOUNT_TRONLINK") {
+        if (Lockr.get("islogin") || this.props.wallet.type === "ACCOUNT_LEDGER" || this.props.wallet.type === "ACCOUNT_TRONLINK") {
           await this.tokenSendWithTronLink();
         } else {
           await this.token10Send();
@@ -85,23 +86,23 @@ class SendForm extends React.Component {
     }
   };
 
-  tokenSendWithTronLink = async() => {
+  tokenSendWithTronLink = async () => {
     let {to, token, amount, decimals} = this.state;
     let list = token.split('-');
     let TokenName = list[1];
-    let { onSend, wallet} = this.props;
+    let {onSend, wallet} = this.props;
 
     let result, success;
     this.setState({isLoading: true, modal: null});
 
     if (TokenName === "_") {
-      amount = this.Mul(amount,ONE_TRX);
-      if(this.props.wallet.type==="ACCOUNT_LEDGER") {
+      amount = this.Mul(amount, ONE_TRX);
+      if (this.props.wallet.type === "ACCOUNT_LEDGER") {
         result = await this.props.tronWeb().trx.sendTransaction(to, amount, {address: wallet.address}, false).catch(function (e) {
           console.log(e)
         });
       }
-      if(this.props.wallet.type==="ACCOUNT_TRONLINK"){
+      if (this.props.wallet.type === "ACCOUNT_TRONLINK") {
         result = await this.props.account.tronWeb.trx.sendTransaction(to, amount, {address: wallet.address}, false).catch(function (e) {
           console.log(e)
         });
@@ -113,26 +114,24 @@ class SendForm extends React.Component {
       }
 
     } else {
-        //amount = amount * Math.pow(10, decimals);
-        amount = this.Mul(amount,Math.pow(10, decimals));
-        if(this.props.wallet.type==="ACCOUNT_LEDGER") {
-            result = await this.props.tronWeb().trx.sendToken(to, amount, TokenName, {address:wallet.address}, false).catch(function (e) {
-                console.log(e)
-            });
-        }
-        if(this.props.wallet.type==="ACCOUNT_TRONLINK"){
-            result = await this.props.account.tronWeb.trx.sendToken(to, amount, TokenName, {address:wallet.address}, false).catch(function (e) {
-                console.log(e)
-            });
-        }
-        if (result) {
-            success = result.result;
-         } else {
-           success = false;
-        }
+      //amount = amount * Math.pow(10, decimals);
+      amount = this.Mul(amount, Math.pow(10, decimals));
+      if (this.props.wallet.type === "ACCOUNT_LEDGER") {
+        result = await this.props.tronWeb().trx.sendToken(to, amount, TokenName, {address: wallet.address}, false).catch(function (e) {
+          console.log(e)
+        });
+      }
+      if (this.props.wallet.type === "ACCOUNT_TRONLINK") {
+        result = await this.props.account.tronWeb.trx.sendToken(to, amount, TokenName, {address: wallet.address}, false).catch(function (e) {
+          console.log(e)
+        });
+      }
+      if (result) {
+        success = result.result;
+      } else {
+        success = false;
+      }
     }
-
-    //let {success} = await Client.sendWithNote(TokenName, account.address, to, amount, note)(account.key);
 
     if (success) {
       this.refreshTokenBalances();
@@ -158,25 +157,25 @@ class SendForm extends React.Component {
     }
   };
 
-  Mul (arg1, arg2) {
-      let r1 = arg1.toString(), r2 = arg2.toString(), m, resultVal, d = arguments[2];
-      m = (r1.split(".")[1] ? r1.split(".")[1].length : 0) + (r2.split(".")[1] ? r2.split(".")[1].length : 0);
-      resultVal = Number(r1.replace(".", "")) * Number(r2.replace(".", "")) / Math.pow(10, m);
-      return typeof d !== "number" ? Number(resultVal) : Number(resultVal.toFixed(parseInt(d)));
+  Mul(arg1, arg2) {
+    let r1 = arg1.toString(), r2 = arg2.toString(), m, resultVal, d = arguments[2];
+    m = (r1.split(".")[1] ? r1.split(".")[1].length : 0) + (r2.split(".")[1] ? r2.split(".")[1].length : 0);
+    resultVal = Number(r1.replace(".", "")) * Number(r2.replace(".", "")) / Math.pow(10, m);
+    return typeof d !== "number" ? Number(resultVal) : Number(resultVal.toFixed(parseInt(d)));
   }
+
   token10Send = async () => {
     let {to, token, amount, note, decimals} = this.state;
     let list = token.split('-');
-    let TokenName =  list[1];
+    let TokenName = list[1];
     let {account, onSend} = this.props;
 
     this.setState({isLoading: true, modal: null});
 
     if (TokenName === '_') {
-      amount = this.Mul(amount,ONE_TRX);
-    }else{
-
-      amount = this.Mul(amount,Math.pow(10, decimals))
+      amount = this.Mul(amount, ONE_TRX);
+    } else {
+      amount = this.Mul(amount, Math.pow(10, decimals))
     }
 
     let {success} = await Client.sendWithNote(TokenName, account.address, to, amount, note)(account.key);
@@ -209,43 +208,55 @@ class SendForm extends React.Component {
 
     let {to, token, amount, decimals} = this.state;
     let TokenName = token.substring(0, token.length - 6);
-    let {onSend,tokens20} = this.props;
+    let {onSend, tokens20} = this.props;
     let tronWeb;
     let transactionId;
-    this.setState({ isLoading: true, modal: null });
+    this.setState({isLoading: true, modal: null});
     let contractAddress = find(tokens20, t => t.name === TokenName).contract_address;
 
-    if (this.props.wallet.type === "ACCOUNT_LEDGER"){
-      tronWeb = this.props.tronWeb();
-      // Send TRC20
-      let unSignTransaction = await tronWeb.transactionBuilder.triggerSmartContract(
-                  tronWeb.address.toHex(contractAddress),
-                  'transfer(address,uint256)',
-                  10000000, 0,
-                  [
-                  { type: 'address', value: tronWeb.address.toHex(to)},
-                  { type: 'uint256', value: new BigNumber(amount).shiftedBy(decimals).toString()}
-                  ],
-                  tronWeb.address.toHex(this.props.wallet.address),
-              );
-      if (unSignTransaction.transaction !== undefined)
-        unSignTransaction = unSignTransaction.transaction;
-      unSignTransaction.extra = {
-            to: to,
-            decimals: decimals,
-            token_name: TokenName,
-            amount: amount,
-      }
-      transactionId = await transactionResultManager(unSignTransaction, tronWeb)
-    }else if(this.props.wallet.type === "ACCOUNT_TRONLINK" || this.props.wallet.type === "ACCOUNT_PRIVATE_KEY"){
-      tronWeb = this.props.account.tronWeb;
-      let contractInstance = await tronWeb.contract().at(contractAddress);
-      transactionId = await contractInstance.transfer(to, new BigNumber(amount).shiftedBy(decimals).toString()).send();
+    switch (this.props.wallet.type) {
+      case ACCOUNT_LEDGER:
+
+        tronWeb = this.props.tronWeb();
+        // Send TRC20
+        let unSignTransaction = await tronWeb.transactionBuilder.triggerSmartContract(
+          tronWeb.address.toHex(contractAddress),
+          'transfer(address,uint256)',
+          10000000, 0,
+          [
+            {type: 'address', value: tronWeb.address.toHex(to)},
+            {type: 'uint256', value: new BigNumber(amount).shiftedBy(decimals).toString()}
+          ],
+          tronWeb.address.toHex(this.props.wallet.address),
+        );
+
+        if (unSignTransaction.transaction !== undefined)
+          unSignTransaction = unSignTransaction.transaction;
+
+        unSignTransaction.extra = {
+          to: to,
+          decimals: decimals,
+          token_name: TokenName,
+          amount: amount,
+        };
+
+        transactionId = await transactionResultManager(unSignTransaction, tronWeb);
+        break;
+
+      case ACCOUNT_TRONLINK:
+      case ACCOUNT_PRIVATE_KEY:
+        tronWeb = this.props.account.tronWeb;
+        let contractInstance = await tronWeb.contract().at(contractAddress);
+        transactionId = await contractInstance.transfer(to, new BigNumber(amount).shiftedBy(decimals).toString()).send();
+        break;
+      default:
+        // nothing
+        break;
     }
+
     if (transactionId) {
       this.refreshTokenBalances();
       onSend && onSend();
-      //two work flows!
 
       this.setState({
         sendStatus: 'success',
@@ -269,37 +280,37 @@ class SendForm extends React.Component {
 
     let {to, token, amount} = this.state;
     let list = token.split('-');
-    let TokenName =  list[0];
+    let TokenName = list[0];
     let TokenID;
-    const style = isMobile? {}: {marginLeft: '-240px', marginTop: '-195px'};
+    const style = isMobile ? {} : {marginLeft: '-240px', marginTop: '-195px'};
     if (list[1] !== '_' && list[1] !== 'TRC20') {
       TokenID = list[1];
     }
     this.setState({
       modal: (
-          <SweetAlert
-              info
-              showCancel
-              cancelBtnText={tu("cancel")}
-              confirmBtnText={tu("confirm")}
-              cancelBtnBsStyle="default"
-              title={tu("confirm_transaction")}
-              onConfirm={this.send}
-              onCancel={this.hideModal}
-              style={style}
-          >
-            {tu("transfer_confirm_info")}<br/>
-            <span className="font-weight-bold">{' '}
-              <FormattedNumber
-                  maximumFractionDigits={7}
-                  minimunFractionDigits={7}
-                  value={amount}/>{' '}
-              {TokenName}
-              {TokenID && '[' + TokenID + ']'}
+        <SweetAlert
+          info
+          showCancel
+          cancelBtnText={tu("cancel")}
+          confirmBtnText={tu("confirm")}
+          cancelBtnBsStyle="default"
+          title={tu("confirm_transaction")}
+          onConfirm={this.send}
+          onCancel={this.hideModal}
+          style={style}
+        >
+          {tu("transfer_confirm_info")}<br/>
+          <span className="font-weight-bold">{' '}
+            <FormattedNumber
+              maximumFractionDigits={7}
+              minimunFractionDigits={7}
+              value={amount}/>{' '}
+            {TokenName}
+            {TokenID && '[' + TokenID + ']'}
           </span><br/>
-            {tu("to")}<br/>
-            <div className="text-truncate">{to}</div>
-          </SweetAlert>
+          {tu("to")}<br/>
+          <div className="text-truncate">{to}</div>
+        </SweetAlert>
       )
     });
   };
@@ -313,7 +324,7 @@ class SendForm extends React.Component {
   setAmount = (amount) => {
     let {token, decimals} = this.state;
     let list = token.split('-');
-    let TokenName =  list[1];
+    let TokenName = list[1];
     let TokenType = list[2];
     if (token && TokenType === 'TRC10') {
       if (TokenName === '_') {
@@ -350,40 +361,40 @@ class SendForm extends React.Component {
   };
 
   getSelectedTokenBalance = () => {
-    let {tokenBalances,tokens20} = this.props;
+    let {tokenBalances, tokens20} = this.props;
     let {token} = this.state;
-    let TokenType =  token.substr(token.length-5,5);
+    let TokenType = token.substr(token.length - 5, 5);
     let list = token.split('-')
     if (token && TokenType == 'TRC10') {
-        let TokenName =  list[1];
-        let balance = parseFloat(find(tokenBalances, t => t.map_token_id === TokenName).map_amount);
-        let TokenDecimals = parseFloat(find(tokenBalances, t => t.map_token_id === TokenName).map_token_precision);
-        if(TokenName == 'TRX'){
-            this.setState({
-                decimals: 6,
-                balance:balance
-            })
-        }else{
-            this.setState({
-                decimals: TokenDecimals,
-                balance:balance
-            })
-        }
-    }else if(token && TokenType == 'TRC20'){
-        let TokenName =  list[0];
-        let balance = parseFloat(find(tokens20, t => t.name === TokenName).token20_balance_decimals);
-        let TokenDecimals = parseFloat(find(tokens20, t => t.name === TokenName).decimals);
+      let TokenName = list[1];
+      let balance = parseFloat(find(tokenBalances, t => t.map_token_id === TokenName).map_amount);
+      let TokenDecimals = parseFloat(find(tokenBalances, t => t.map_token_id === TokenName).map_token_precision);
+      if (TokenName == 'TRX') {
         this.setState({
-            decimals: TokenDecimals,
-            balance:balance
+          decimals: 6,
+          balance: balance
         })
+      } else {
+        this.setState({
+          decimals: TokenDecimals,
+          balance: balance
+        })
+      }
+    } else if (token && TokenType == 'TRC20') {
+      let TokenName = list[0];
+      let balance = parseFloat(find(tokens20, t => t.name === TokenName).token20_balance_decimals);
+      let TokenDecimals = parseFloat(find(tokens20, t => t.name === TokenName).decimals);
+      this.setState({
+        decimals: TokenDecimals,
+        balance: balance
+      })
     }
 
     return 0;
   };
 
   isAmountValid = () => {
-    let {amount,balance} = this.state;
+    let {amount, balance} = this.state;
     let selectedTokenBalance = balance;
     return amount !== 0 && amount !== '' && selectedTokenBalance >= amount;
   };
@@ -404,14 +415,14 @@ class SendForm extends React.Component {
   };
 
   componentDidUpdate() {
-    let {tokenBalances,tokens20} = this.props;
+    let {tokenBalances, tokens20} = this.props;
     tokenBalances = _.filter(tokenBalances, tb => tb.balance > 0);
 
     let {token} = this.state;
     if (!token && tokenBalances.length > 0) {
       this.setState(
         {
-        token: tokenBalances[0].map_token_name + '-' + tokenBalances[0].map_token_id + '-TRC10',
+          token: tokenBalances[0].map_token_name + '-' + tokenBalances[0].map_token_id + '-TRC10',
         },
         () => this.getSelectedTokenBalance())
 
@@ -430,32 +441,32 @@ class SendForm extends React.Component {
 
     if (sendStatus === 'success') {
       return (
-          <Alert color="success" className="text-center">
-            {tu("successful_send")}
-          </Alert>
+        <Alert color="success" className="text-center">
+          {tu("successful_send")}
+        </Alert>
       )
     }
 
     if (sendStatus === 'failure') {
       return (
-          <Alert color="danger" className="text-center">
-            Something went wrong while submitting the transaction
-          </Alert>
+        <Alert color="danger" className="text-center">
+          Something went wrong while submitting the transaction
+        </Alert>
       )
     }
 
     return (
-        <Fragment>
+      <Fragment>
 
-          {/*<Alert color="warning" className="text-center">*/}
-          {/*{tu("address_warning")}*/}
-          {/*</Alert>*/}
-          <button
-              type="button"
-              disabled={!this.isValid() || isLoading}
-              className="btn btn-primary btn-block btn-lg"
-              onClick={this.confirmSend}>{tu("send")}</button>
-        </Fragment>
+        {/*<Alert color="warning" className="text-center">*/}
+        {/*{tu("address_warning")}*/}
+        {/*</Alert>*/}
+        <button
+          type="button"
+          disabled={!this.isValid() || isLoading}
+          className="btn btn-primary btn-block btn-lg"
+          onClick={this.confirmSend}>{tu("send")}</button>
+      </Fragment>
     )
   }
 
@@ -490,220 +501,224 @@ class SendForm extends React.Component {
   };
 
   handleTokenChange = (value) => {
-      this.setState({ token: value },() =>{
-          this.getSelectedTokenBalance();
-      });
+    this.setState({token: value}, () => {
+      this.getSelectedTokenBalance();
+    });
 
   }
 
-  async getTRC20Tokens(){
-      let {account} = this.props;
-      let result = await xhr.get(API_URL+"/api/token_trc20?sort=issue_time&start=0&limit=50");
-      let tokens20 = result.data.trc20_tokens;
-      const tronWebLedger = this.props.tronWeb();
-      const { tronWeb } = this.props.account;
-      if (this.props.wallet.type === "ACCOUNT_LEDGER"){
-          for (let i = 0; i < tokens20.length; i++) {
-              const item = tokens20[i];
-              item.token20_name = item.name + '(' + item.symbol + ')';
-              item.token_name_type = item.name + '-TRC20';
-              let  contractInstance = await tronWebLedger.contract().at(item.contract_address);
-              let  balanceData = await contractInstance.balanceOf(account.address).call();
-              if(balanceData.balance){
-                  item.balance = parseFloat(balanceData.balance.toString()) / Math.pow(10,item.decimals);
-              }else{
-                  item.balance = parseFloat(balanceData.toString()) / Math.pow(10,item.decimals);
-              }
-          }
-          let tokens = _(tokens20)
-              .filter(tb => tb.balance > 0)
-              .sortBy(tb => -tb.balance)
-              .value();
-
-          this.setState({
-              tokens20: tokens
-          });
+  async getTRC20Tokens() {
+    let {account} = this.props;
+    let result = await xhr.get(API_URL + "/api/token_trc20?sort=issue_time&start=0&limit=50");
+    let tokens20 = result.data.trc20_tokens;
+    const tronWebLedger = this.props.tronWeb();
+    const {tronWeb} = this.props.account;
+    if (this.props.wallet.type === "ACCOUNT_LEDGER") {
+      for (let i = 0; i < tokens20.length; i++) {
+        const item = tokens20[i];
+        item.token20_name = item.name + '(' + item.symbol + ')';
+        item.token_name_type = item.name + '-TRC20';
+        let contractInstance = await tronWebLedger.contract().at(item.contract_address);
+        let balanceData = await contractInstance.balanceOf(account.address).call();
+        if (balanceData.balance) {
+          item.balance = parseFloat(balanceData.balance.toString()) / Math.pow(10, item.decimals);
+        } else {
+          item.balance = parseFloat(balanceData.toString()) / Math.pow(10, item.decimals);
+        }
       }
-      if(this.props.wallet.type === "ACCOUNT_TRONLINK" || this.props.wallet.type === "ACCOUNT_PRIVATE_KEY"){
-          for (let i = 0; i < tokens20.length; i++) {
-              const item = tokens20[i];
-              item.token20_name = item.name + '(' + item.symbol + ')';
-              item.token_name_type = item.name + '-TRC20';
-              let  contractInstance = await tronWeb.contract().at(item.contract_address);
-              let  balanceData = await contractInstance.balanceOf(account.address).call();
-              if(balanceData.balance){
+      let tokens = _(tokens20)
+        .filter(tb => tb.balance > 0)
+        .sortBy(tb => -tb.balance)
+        .value();
 
-                  //item.balance = parseFloat(balanceData.balance.toString()) / Math.pow(10,item.decimals);
-                  item.balance = FormatNumberByDecimals(balanceData.balance.toString() , item.decimals);
-              }else{
-                  item.balance = FormatNumberByDecimals(balanceData.toString() , item.decimals);
-                  //item.balance = parseFloat(balanceData.toString()) / Math.pow(10,item.decimals);
-              }
-          }
-          let tokens = _(tokens20)
-              .filter(tb => tb.balance > 0)
-              .sortBy(tb => -tb.balance)
-              .value();
-
-          this.setState({
-              tokens20: tokens
-          });
-      }
+      this.setState({
+        tokens20: tokens
+      });
     }
+    if (this.props.wallet.type === "ACCOUNT_TRONLINK" || this.props.wallet.type === "ACCOUNT_PRIVATE_KEY") {
+      for (let i = 0; i < tokens20.length; i++) {
+        const item = tokens20[i];
+        item.token20_name = item.name + '(' + item.symbol + ')';
+        item.token_name_type = item.name + '-TRC20';
+        let contractInstance = await tronWeb.contract().at(item.contract_address);
+        let balanceData = await contractInstance.balanceOf(account.address).call();
+        if (balanceData.balance) {
+
+          //item.balance = parseFloat(balanceData.balance.toString()) / Math.pow(10,item.decimals);
+          item.balance = FormatNumberByDecimals(balanceData.balance.toString(), item.decimals);
+        } else {
+          item.balance = FormatNumberByDecimals(balanceData.toString(), item.decimals);
+          //item.balance = parseFloat(balanceData.toString()) / Math.pow(10,item.decimals);
+        }
+      }
+      let tokens = _(tokens20)
+        .filter(tb => tb.balance > 0)
+        .sortBy(tb => -tb.balance)
+        .value();
+
+      this.setState({
+        tokens20: tokens
+      });
+    }
+  }
 
   render() {
 
-    let {intl, tokenBalances, account, tokens20 } = this.props;
-    let {isLoading, sendStatus, modal, to, note, toAccount, token, amount, privateKey,decimals} = this.state;
+    let {intl, tokenBalances, account, tokens20} = this.props;
+    let {isLoading, sendStatus, modal, to, note, toAccount, token, amount, privateKey, decimals} = this.state;
     tokenBalances = _(tokenBalances)
-        .filter(tb => tb.balance > 0)
-        .filter(tb => tb.map_token_id > 0 || tb.map_token_id == '_')
-        .value();
-    tokenBalances.map(item =>{
-        item.token_name_type = item.map_token_name + '-' + item.map_token_id + '-TRC10';
-        return item
+      .filter(tb => tb.balance > 0)
+      .filter(tb => tb.map_token_id > 0 || tb.map_token_id == '_')
+      .value();
+    tokenBalances.map(item => {
+      item.token_name_type = item.map_token_name + '-' + item.map_token_id + '-TRC10';
+      return item
     });
-    tokens20.map(item =>{
-        item.token_name_type =  item.name + '-TRC20';
-        return item
+    tokens20.map(item => {
+      item.token_name_type = item.name + '-TRC20';
+      return item
     });
     let placeholder = '0.000000';
     let num = 0;
-    if(decimals || decimals == 0){
-       placeholder =num.toFixed(decimals)
+    if (decimals || decimals == 0) {
+      placeholder = num.toFixed(decimals)
     }
 
     let isToValid = to.length !== 0 && isAddressValid(to);
-   // let isPrivateKeyValid = privateKey && privateKey.length === 64 && pkToAddress(privateKey) === account.address;
+    // let isPrivateKeyValid = privateKey && privateKey.length === 64 && pkToAddress(privateKey) === account.address;
     let isAmountValid = this.isAmountValid();
 
     if (sendStatus === 'success') {
       return (
-          <Fragment>
-            <div className="alert alert-success text-center">
-              {tu("successful_send")}
-            </div>
-            <div className="justify-content-center">
-              <button className="btn btn-primary btn-block" onClick={this.resetForm}>
-                {tu("make_another_transaction")}
-              </button>
-            </div>
-          </Fragment>
+        <Fragment>
+          <div className="alert alert-success text-center">
+            {tu("successful_send")}
+          </div>
+          <div className="justify-content-center">
+            <button className="btn btn-primary btn-block" onClick={this.resetForm}>
+              {tu("make_another_transaction")}
+            </button>
+          </div>
+        </Fragment>
       )
     }
 
     return (
-        <form>
-          {modal}
-          {isLoading && <TronLoader/>}
-          <div className="form-group">
-            <label>{tu("to")}</label>
-            <div className="input-group mb-3">
-              <input type="text"
-                     onChange={(ev) => this.setAddress(ev.target.value)}
-                     className={"form-control " + (!isToValid ? "is-invalid" : "")}
-                     value={to}/>
-              <div className="invalid-feedback">
-                {tu("fill_a_valid_address")}
-                {/* tu("invalid_address") */}
-              </div>
+      <form>
+        {modal}
+        {isLoading && <TronLoader/>}
+        <div className="form-group">
+          <label>{tu("to")}</label>
+          <div className="input-group mb-3">
+            <input type="text"
+                   onChange={(ev) => this.setAddress(ev.target.value)}
+                   className={"form-control " + (!isToValid ? "is-invalid" : "")}
+                   value={to}/>
+            <div className="invalid-feedback">
+              {tu("fill_a_valid_address")}
+              {/* tu("invalid_address") */}
             </div>
           </div>
-          {
-            (toAccount && toAccount.name) && <Alert color="info">
-              <b>{toAccount.name}</b>
-            </Alert>
-          }
-          <div className="form-group">
-            <label>{tu("token")}</label>
-            <div className="input-group mb-3"  style={{height:36}}>
-              {/*<select*/}
-                  {/*className="form-control"*/}
-                  {/*onChange={(ev) => this.setState({token: ev.target.value})}*/}
-                  {/*value={token}>*/}
-                {/*{*/}
-                  {/*tokenBalances.map((tokenBalance, index) => (*/}
-                      {/*<SendOption key={index}*/}
-                                  {/*name={tokenBalance.name}*/}
-                                  {/*balance={tokenBalance.balance}/>*/}
-                  {/*))*/}
-                {/*}*/}
-              {/*</select>*/}
-              <Select
-                  onChange={this.handleTokenChange}
-                  value={token}
+        </div>
+        {
+          (toAccount && toAccount.name) && <Alert color="info">
+            <b>{toAccount.name}</b>
+          </Alert>
+        }
+        <div className="form-group">
+          <label>{tu("token")}</label>
+          <div className="input-group mb-3" style={{height: 36}}>
+            {/*<select*/}
+            {/*className="form-control"*/}
+            {/*onChange={(ev) => this.setState({token: ev.target.value})}*/}
+            {/*value={token}>*/}
+            {/*{*/}
+            {/*tokenBalances.map((tokenBalance, index) => (*/}
+            {/*<SendOption key={index}*/}
+            {/*name={tokenBalance.name}*/}
+            {/*balance={tokenBalance.balance}/>*/}
+            {/*))*/}
+            {/*}*/}
+            {/*</select>*/}
+            <Select
+              onChange={this.handleTokenChange}
+              value={token}
 
-              >
-                <OptGroup label={tu('TRC10_token')} key="TRC10">
-                    {
-                        tokenBalances.map((tokenBalance, index) => (
-                            <Option value={tokenBalance.token_name_type} key={index}>
+            >
+              <OptGroup label={tu('TRC10_token')} key="TRC10">
+                {
+                  tokenBalances.map((tokenBalance, index) => (
+                    <Option value={tokenBalance.token_name_type} key={index}>
                                 <span> {tokenBalance.map_token_name}
-                                    {
-                                        tokenBalance.map_token_id !== '_'?
-                                            <span style={{fontSize:12,color:'#999',margin:'2px 4px 8px'}}>[ID:{tokenBalance.map_token_id}]</span>
-                                            :""
-                                    }
-                                    ({tokenBalance.map_amount} {intl.formatMessage({id: "available"})})</span>
+                                  {
+                                    tokenBalance.map_token_id !== '_' ?
+                                      <span style={{
+                                        fontSize: 12,
+                                        color: '#999',
+                                        margin: '2px 4px 8px'
+                                      }}>[ID:{tokenBalance.map_token_id}]</span>
+                                      : ""
+                                  }
+                                  ({tokenBalance.map_amount} {intl.formatMessage({id: "available"})})</span>
 
-                            </Option>
-                        ))
-                    }
-                </OptGroup>
+                    </Option>
+                  ))
+                }
+              </OptGroup>
 
-                <OptGroup label={tu('TRC20_token')} key="TRC20">
-                    {
-                        tokens20.map((token, index) => (
-                            <Option value={token.token_name_type} key={index}>
-                                {/*<span>{token.name}</span>*/}
-                                {/*({token.token20_balance} {intl.formatMessage({id: "available"})})*/}
-                                {token.name} ({token.token20_balance_decimals} {intl.formatMessage({id: "available"})})
-                            </Option>
-                        ))
-                    }
-                </OptGroup>
-              </Select>
-            </div>
+              <OptGroup label={tu('TRC20_token')} key="TRC20">
+                {
+                  tokens20.map((token, index) => (
+                    <Option value={token.token_name_type} key={index}>
+                      {/*<span>{token.name}</span>*/}
+                      {/*({token.token20_balance} {intl.formatMessage({id: "available"})})*/}
+                      {token.name} ({token.token20_balance_decimals} {intl.formatMessage({id: "available"})})
+                    </Option>
+                  ))
+                }
+              </OptGroup>
+            </Select>
           </div>
-          <div className="form-group">
-            <label>{tu("amount")}</label>
-            <div className="input-group mb-3">
-              <input type="number"
-                     onChange={(ev) => this.setAmount(ev.target.value)}
-                     className={"form-control " + (!isAmountValid ? "is-invalid" : "")}
-                     value={amount}
-                     placeholder={placeholder}
-              />
-              <div className="input-group-append">
-                <button className="btn btn-outline-secondary"
-                        type="button"
-                        onClick={this.setMaxAmount}>
-                  MAX
-                </button>
-              </div>
-              <div className="invalid-feedback">
-                {tu("fill_a_valid_number")}
-                {/* tu("insufficient_tokens") */}
-              </div>
-            </div>
-          </div>
-
-          <div className="form-group">
-            <label>{tu("note")}</label>
-            <div className="input-group mb-3">
-            <textarea
-                onChange={(ev) => this.setNote(ev.target.value)}
-                className={"form-control"}
-                value={note}
+        </div>
+        <div className="form-group">
+          <label>{tu("amount")}</label>
+          <div className="input-group mb-3">
+            <input type="number"
+                   onChange={(ev) => this.setAmount(ev.target.value)}
+                   className={"form-control " + (!isAmountValid ? "is-invalid" : "")}
+                   value={amount}
+                   placeholder={placeholder}
             />
-              <div className="invalid-feedback">
-                {tu("fill_a_valid_address")}
-                {/* tu("invalid_address") */}
-              </div>
+            <div className="input-group-append">
+              <button className="btn btn-outline-secondary"
+                      type="button"
+                      onClick={this.setMaxAmount}>
+                MAX
+              </button>
+            </div>
+            <div className="invalid-feedback">
+              {tu("fill_a_valid_number")}
+              {/* tu("insufficient_tokens") */}
             </div>
           </div>
-          {this.renderFooter()}
-        </form>
+        </div>
+
+        <div className="form-group">
+          <label>{tu("note")}</label>
+          <div className="input-group mb-3">
+            <textarea
+              onChange={(ev) => this.setNote(ev.target.value)}
+              className={"form-control"}
+              value={note}
+            />
+            <div className="invalid-feedback">
+              {tu("fill_a_valid_address")}
+              {/* tu("invalid_address") */}
+            </div>
+          </div>
+        </div>
+        {this.renderFooter()}
+      </form>
     )
   }
 }

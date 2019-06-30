@@ -1,60 +1,64 @@
 import React, {Component} from 'react';
 import {withRouter} from "react-router-dom";
-import {connect} from "react-redux";
-import LedgerDevice from "./LedgerBridge";
-import {delay} from "../../utils/promises";
 import {PulseLoader} from "react-spinners";
-import {loginWithLedger} from "../../actions/app";
-import {tu, t} from "../../utils/i18n";
+import {t, tu} from "../../utils/i18n";
+import TrezorConnect from "trezor-connect";
 
-@connect(
-  null,
-  {
-    loginWithLedger
-  }
-)
+window.__TREZOR_CONNECT_SRC = 'https://localhost:8088/';
+
 @withRouter
-export default class LedgerAccess extends Component {
+export default class TrezorAccess extends Component {
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       loading: false,
       connected: false,
       confirmed: false,
       address: "",
     };
-    this.ledger = new LedgerDevice();
+
   };
 
   componentDidMount() {
     this._isMounted = true;
-    this.checkForConnection();
+    this.getAddress();
   }
 
   componentWillUnmount() {
     this._isMounted = false;
-    // this.ledger.close();
   }
 
-  checkForConnection = async () => {
-    this.setState({ loading: true });
+  getAddress = async () => {
 
-    while (this._isMounted) {
+    TrezorConnect.manifest({
+      email: 'dev@tronscan.org',
+      appUrl: 'https://tronscan.org'
+    });
 
-      let {connected, address} = await this.ledger.checkForConnection(true);
+    console.log("getting address!");
+    try {
+      let {payload, success} = await TrezorConnect.tronGetAddress({
+        "path": "m/44'/195'/0'/0/0",
+        "showOnTrezor": true
+      });
 
-      if (connected) {
+      console.log("result",  {
+        payload,
+        success,
+      });
+
+      if (success) {
         this.setState({
-          connected,
-          address,
+          loading: false,
+          connected: true,
+          address: payload.address
         });
-        break;
       }
-      await delay(300);
+    } catch (e) {
+      console.error("trezor error", e);
     }
 
-    this.setState({ loading: false });
   };
 
   openWallet = () => {
@@ -88,7 +92,7 @@ export default class LedgerAccess extends Component {
           </div>
         </div>
         <div className="text-center pt-5 mx-5">
-          <img src={require("./ledger-nano-s.png")} style={{ height: 65 }} />
+          <img src={require("./trezor-logo-black.png")} style={{ height: 65 }} />
             { loading &&
             <div className="mt-4">
               <div className="text-muted">

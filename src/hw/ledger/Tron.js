@@ -155,7 +155,7 @@ export default class Trx {
    * @param tokenSignatures Tokens Signatures array
    * @return a signature as hex string
    * example
-   */send
+   */
   async signTransactionWithTokenName(
     path: string,
     rawTxHex: string,
@@ -172,15 +172,15 @@ export default class Trx {
         let maxChunkSize = offset === 0 ?
           CHUNK_SIZE - PATHS_LENGTH_SIZE - (paths.length * PATH_SIZE)
           : CHUNK_SIZE;
-  
+
         let chunkSize = offset + maxChunkSize > rawTx.length
             ? rawTx.length - offset
             : maxChunkSize;
-  
+
         let buffer = new Buffer.alloc(
           offset === 0 ? 1 + paths.length * PATH_SIZE + chunkSize : chunkSize
         );
-  
+
         if (offset === 0) {
           buffer[0] = paths.length;
           paths.forEach((element, index) => {
@@ -190,19 +190,19 @@ export default class Trx {
         } else {
           rawTx.copy(buffer, 0, offset, offset + chunkSize);
         }
-  
+
         buffers.push(buffer);
         offset += chunkSize;
     }
-    
+
     if (tokenSignatures!== undefined){
       for (let i=0; i < tokenSignatures.length; i++){
         let buffer = new Buffer(
           tokenSignatures[i], "hex"
         );
-        buffers.push(buffer)  
+        buffers.push(buffer)
       }
-    }  
+    }
 
     if (buffers.length === 1) {
         buffers = [
@@ -216,7 +216,7 @@ export default class Trx {
             } else if (buffers.length > 1 && i === buffers.length - 1) {
                 if (tokenSignatures!== undefined){
                     startByte = 0xA8|(tokenSignatures.length-1);
-                }else {  
+                }else {
                     startByte = 0x90;
                 }
             } else {
@@ -227,7 +227,7 @@ export default class Trx {
                   startByte = 0x80;
                 }
             }
-    
+
             return [startByte, p];
         });
     }

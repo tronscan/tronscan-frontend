@@ -1,6 +1,6 @@
 /*eslint-disable no-script-url*/
-import React, {Fragment, PureComponent} from 'react'
-import {injectIntl} from "react-intl";
+import React, {Fragment} from 'react'
+import {FormattedNumber, injectIntl} from "react-intl";
 import logo from '../images/tron-banner-inverted.png'
 import tronLogoBlue from '../images/tron-banner-tronblue.png'
 import tronLogoDark from '../images/tron-banner-1.png'
@@ -8,8 +8,8 @@ import tronLogoTestNet from "../images/tron-logo-testnet.png";
 import tronLogoInvertedTestNet from "../images/tron-logo-inverted-testnet.png";
 import {flatRoutes, routes} from "../routes"
 import {Link, NavLink, withRouter} from "react-router-dom"
-import {filter, find, isString, isUndefined, trim, toUpper,debounce} from "lodash"
-import {tu, t} from "../utils/i18n"
+import {debounce, filter, find, isString, isUndefined, toUpper, trim} from "lodash"
+import {tu} from "../utils/i18n"
 import {
   enableFlag,
   login,
@@ -20,15 +20,12 @@ import {
   setLanguage,
   setTheme
 } from "../actions/app"
-import { setWebsocket } from '../actions/account';
+import {setWebsocket} from '../actions/account';
 import {connect} from "react-redux"
-import {Badge, Modal, ModalBody, ModalFooter, ModalHeader} from "reactstrap"
-import Avatar from "./common/Avatar"
-import {AddressLink, HrefLink} from "./common/Links"
-import {FormattedNumber} from "react-intl"
+import {Badge, Modal, ModalBody, ModalHeader} from "reactstrap"
+import {HrefLink} from "./common/Links"
 import {API_URL, IS_TESTNET, ONE_TRX} from "../constants"
 import {matchPath} from 'react-router'
-import {doSearch, getSearchType} from "../services/search"
 import {readFileContentsFromEvent} from "../services/file"
 import {decryptString, validatePrivateKey} from "../services/secureKey";
 import SweetAlert from "react-bootstrap-sweetalert";
@@ -37,11 +34,9 @@ import Notifications from "./account/Notifications";
 import SendModal from "./transfer/Send/SendModal";
 import {bytesToString} from "@tronscan/client/src/utils/bytes";
 import {hexStr2byteArray} from "@tronscan/client/src/lib/code";
-import {isAddressValid} from "@tronscan/client/src/utils/crypto";
 import ReceiveModal from "./transfer/Receive/ReceiveModal";
 import {toastr} from 'react-redux-toastr'
 import Lockr from "lockr";
-import {BarLoader} from "./common/loaders";
 import {Truncate} from "./common/text";
 import {Icon} from 'antd';
 import isMobile from '../utils/isMobile';
@@ -49,7 +44,8 @@ import {Client} from '../services/api';
 import $ from 'jquery';
 import xhr from "axios/index";
 import LedgerAccess from "../hw/ledger/LedgerAccess";
-import { getQueryString } from "../utils/url";
+import {getQueryString} from "../utils/url";
+import TrezorAccess from "../hw/trezor/trezorAccess";
 
 class Navigation extends React.Component {
 
@@ -100,7 +96,8 @@ class Navigation extends React.Component {
         _this.setState({address: e.data.message.data});
 
       }
-    })
+    });
+
     //this.getAnnouncement();
      setWebsocket();
     $(document).click(() => {
@@ -109,7 +106,7 @@ class Navigation extends React.Component {
   }
 
   componentWillUpdate(nextProps, nextState) {
-      if (nextState.address !== this.state.address && this.isString(nextState.address) && this.isString(this.state.address)) {
+    if (nextState.address !== this.state.address && isString(nextState.address) && isString(this.state.address)) {
       this.reLoginWithTronLink();
     }
   }
@@ -120,17 +117,6 @@ class Navigation extends React.Component {
           websocket.close();
           Lockr.set("websocket", 'close')
       }
-  }
-
-  componentDidUpdate(prevProps) {
-    const {activeLanguage} = this.props
-    if (activeLanguage != prevProps.activeLanguage) {
-     // this.getAnnouncement()
-    }
-  }
-
-  isString(str){
-     return (typeof str==='string')&&str.constructor==String;
   }
 
   async getAnnouncement() {
@@ -213,7 +199,7 @@ class Navigation extends React.Component {
     if (privateKey.length !== 64) {
       return false;
     }
-    
+
     const HAS_LIST = '0123456789ABCDEF'.split('');
     for (let i = 0; i < privateKey.length; i++) {
       const element = toUpper(privateKey[i]);
@@ -221,7 +207,7 @@ class Navigation extends React.Component {
         return false
       }
     }
-    
+
 
     return true;
   };
@@ -487,20 +473,35 @@ class Navigation extends React.Component {
     this.openLedgerModal();
   };
 
+
+  loginWithTrezor = () => {
+    this.openTrezorModal();
+  };
+
   openLedgerModal = () => {
     this.setState({
       popup: (
           <Modal isOpen={true} fade={false} keyboard={false} size="lg" className="modal-dialog-centered">
             <ModalHeader className="text-center" toggle={this.hideModal}>
               {tu("open_ledger")}&nbsp;&nbsp;
-              {/*<Link to="/help/ledger" onClick={this.hideModal} style={{fontSize:12,marginTop:6}}>*/}
-                {/*<small>*/}
-                    {/*{tu("ledger_user_guide")}*/}
-                {/*</small>*/}
-              {/*</Link>*/}
             </ModalHeader>
             <ModalBody className="p-0">
               <LedgerAccess onClose={this.hideModal} />
+            </ModalBody>
+          </Modal>
+      )
+    });
+  };
+
+  openTrezorModal = () => {
+    this.setState({
+      popup: (
+          <Modal isOpen={true} fade={false} keyboard={false} size="lg" className="modal-dialog-centered">
+            <ModalHeader className="text-center" toggle={this.hideModal}>
+              Open Trezor
+            </ModalHeader>
+            <ModalBody className="p-0">
+              <TrezorAccess onClose={this.hideModal} />
             </ModalBody>
           </Modal>
       )
@@ -693,23 +694,29 @@ class Navigation extends React.Component {
                   }}>
                     {tu("open_wallet")}
                     <ul className="dropdown-menu dropdown-menu-right nav-login-wallet" style={{minWidth: style_width}}>
-                      <li className="px-2 py-1 border-bottom-0" onClick={(e) => {
-                        this.clickLoginWithTronLink(e)
-                      }}>
+                      <li className="px-2 py-1 border-bottom-0"
+                          onClick={(e) => this.clickLoginWithTronLink(e)}>
                         <div className="dropdown-item text-uppercase d-flex align-items-center text-muted">
                           <img src={require("../images/login/tronlink.png")} width="16px" height="16px" className="mr-2"/>
                           {tu('sign_in_with_TRONlink')}
                         </div>
                       </li>
-                      <li className="px-2 py-1 border-bottom-0" onClick={(e) => this.loginWithLedger(e)}>
+                      <li className="px-2 py-1 border-bottom-0"
+                          onClick={(e) => this.loginWithLedger(e)}>
                         <div className="dropdown-item text-uppercase d-flex  align-items-center text-muted">
                           <img src={require("../images/login/ledger.png")} width="16px" height="16px" className="mr-2"/>
                           {tu('sign_in_with_ledger')}
                         </div>
                       </li>
-                      <li className="px-2 py-1" onClick={(e) => {
-                        this.clickLoginWithPk(e)
-                      }}>
+                      <li className="px-2 py-1 border-bottom-0"
+                          onClick={(e) => this.loginWithTrezor(e)}>
+                        <div className="dropdown-item text-uppercase d-flex  align-items-center text-muted">
+                          <img src={require("../images/login/trezor.png")} width="16px" height="16px" className="mr-2"/>
+                          Trezor
+                        </div>
+                      </li>
+                      <li className="px-2 py-1"
+                          onClick={(e) => this.clickLoginWithPk(e)}>
                         <div className="dropdown-item text-uppercase d-flex align-items-center text-muted">
                           <div className="d-flex justify-content-center mr-2" style={{width: '16px', height: '16px'}}>
                           <img src={require("../images/login/kp.png")} width="11px" height="16px"/>
