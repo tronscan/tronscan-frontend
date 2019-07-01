@@ -343,18 +343,18 @@ class TokenList extends Component {
                       </div>
                     </div> : ''}
                     <div className="d-md-flex apply-trc20 apply-all align-items-center">
-                      <div className="d-flex align-items-center mr-md-4 mb-2 mb-md-0">
+                      <div className="d-flex align-items-center mb-2 mb-md-0">
                         <Radio.Group size="Small" value={filter.filter}  onChange={this.onChange}>
                           <Radio.Button value="all">{tu('all')}</Radio.Button>
                           <Radio.Button value="trc10">TRC10</Radio.Button>
                           <Radio.Button value="trc20">TRC20</Radio.Button>
                         </Radio.Group>
                       </div>
-                      <a className="ml-md-2" href="https://goo.gl/forms/PiyLiDeaXv3uesSE3" target="_blank" style={{color:'#C23631'}}>
-                      <button className="btn btn-danger" style={{lineHeight: '18px'}}>
-                          {tu('application_entry')}
-                      </button>
-                    </a>
+                      {/**<a className="pl-2 md-2 ml-4" href="https://goo.gl/forms/PiyLiDeaXv3uesSE3" target="_blank" style={{color:'#C23631'}}>
+                        <button className="btn btn-danger" style={{lineHeight: '18px'}}>
+                            {tu('application_entry')}
+                        </button>
+                      </a> */}
                     </div>
                     
                 <Table

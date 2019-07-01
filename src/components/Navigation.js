@@ -738,7 +738,7 @@ class Navigation extends React.Component {
                                 placeholder=""/>
                           </div>
                           <div className="login-privatekey-warn pt-2">
-                              <i class="fas fa-exclamation-triangle mr-2" style={{color:"#FF8C00"}}></i>
+                              <i className="fas fa-exclamation-triangle mr-2" style={{color:"#FF8C00"}}></i>
                               {tu("login_privatekey_warn")}
                               <a href="https://chrome.google.com/webstore/detail/tronlink/ibnejdfjmmkpcnlpebklmnkoeoihofec" target="_blank">
                                  TronLink

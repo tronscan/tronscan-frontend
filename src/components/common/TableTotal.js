@@ -13,7 +13,7 @@ class TotalInfo extends React.Component {
     }
 
     render() {
-        let {total, rangeTotal, typeText,common = false, intl, markName='table-question-mark'} = this.props;
+        let {total, rangeTotal, typeText,common = false, intl, markName='table-question-mark', top="26px"} = this.props;
         let tableInfoSmall = intl.formatMessage({id: 'view_total'}) + ' ' + rangeTotal + ' ' + intl.formatMessage({id: typeText});
         let tableInfoBig = intl.formatMessage({id: 'view_total'}) + ' ' + rangeTotal + ' ' + intl.formatMessage({id: typeText}) + '<br/>' +  '(' + intl.formatMessage({id: 'table_info_big'}) + ')';
         let tableInfo =  rangeTotal > 10000? tableInfoBig : tableInfoSmall;
@@ -22,11 +22,11 @@ class TotalInfo extends React.Component {
         return (
             <Fragment>
                 {
-                    common? <div className="table_pos_info d-none d-md-block" style={{left: 'auto'}}>{tableInfo}
+                    common? <div className="table_pos_info d-none d-md-block" style={{left: 'auto', top}}>{tableInfo}
                     <span>
                             <QuestionMark placement="top" text="to_provide_a_better_experience"></QuestionMark>
                     </span>
-                    </div>:<div className="table_pos_info d-none d-md-block" style={{left: 'auto'}}>
+                    </div>:<div className="table_pos_info d-none d-md-block" style={{left: 'auto', top}}>
                         {
                             rangeTotal > 10000?
                                <div>{tu('view_total')} {rangeTotal} {tu(typeText)} <QuestionMark placement="top" info={tableInfoTip} ></QuestionMark> <br/> <span>({tu('table_info_big')})</span></div>

@@ -1844,10 +1844,12 @@ export const messages = {
   "type": "Тип",
   "token_login_no_updated":"Учетная запись не соответствует издателю и не может быть обновлена",
   "information_is_being_confirmed":"Information is being confirmed, this process may take 10 minutes, please try again later",
-
   "my_account":"Мой аккаунт",
   "delegate_other":"Заморозка другими",
   "freeze_self":"Заморозить сам",
   "total_amount":"Итого",
   "unfreeze_time": "Время разморозки",
+  "interTrx_tip": "Внутренние транзакции - это операция, которая по общему адресу называется смарт-контрактом, а смарт-контракт передает токен на другой адрес.",
+  "event_tip": "События позволяют программисту или провайдеру внешнего интерфейса использовать его, чтобы обратить внимание на контрактные операции и аудиты.",
+    
 };

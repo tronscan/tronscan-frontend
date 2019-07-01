@@ -1885,10 +1885,11 @@ export const messages = {
   "type": "Tipo",
   "token_login_no_updated":"El inicio de sesión de la cuenta no coincide con lo publicado y no se puede actualizar",
   "information_is_being_confirmed":"Information is being confirmed, this process may take 10 minutes, please try again later",
-
   "my_account":"Mi cuenta",
   "delegate_other":"Congelar por Otros",
   "freeze_self":"Congelar por mi mismo",
   "total_amount":"Cantidad total",
   "unfreeze_time": "Fecha de descongelación",
+  "interTrx_tip": "Transacciones internas es una operación que una dirección general llama un Contrato inteligente, y el Contrato inteligente transfiere el token a otra dirección.",
+  "event_tip": "Los eventos son para permitir que el programador o el proveedor de la interfaz externa lo utilicen para prestar atención a las operaciones y auditorías del contrato.",
 };

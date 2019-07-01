@@ -104,9 +104,9 @@ class Transactions extends React.Component {
         let data = await Client.getInternalTransaction({
             limit: pageSize,
             start: (page - 1) * pageSize,
-            address: filter.address,
             start_timestamp: this.start,
             end_timestamp: this.end,
+            ...filter
         });
 
         let newdata = rebuildList(data.list, 'tokenId', 'callValue', 'valueInfoList')
@@ -268,9 +268,9 @@ class Transactions extends React.Component {
         align: 'right',
         className: 'ant_table _text_nowrap',
         render: (text, record, index) => {
-          return record.valueInfoList.map((item,index) => {
+          return record.valueInfoList.length ?record.valueInfoList.map((item,index) => {
             return <span key={index}><NameWithId value={item}/><span className={index == record.valueInfoList.length -1? 'd-none': ''}>, </span></span>
-          })
+          }): '-'
         }
       },
       // {
@@ -299,7 +299,7 @@ class Transactions extends React.Component {
   render() {
 
     let {transactions, total, rangeTotal, loading, EmptyState = null} = this.state;
-    let {intl, isinternal, address = false} = this.props;
+    let {intl, isinternal, address = false, filter: {contract}} = this.props;
     let column = !isinternal? this.customizedColumn():
                               this.trc20CustomizedColumn();
     let tableInfo = intl.formatMessage({id: 'view_total'}) + ' ' + total + ' ' + intl.formatMessage({id: 'transactions_unit'})
@@ -316,10 +316,16 @@ class Transactions extends React.Component {
     return (
       <div className={"token_black table_pos " + (address?"mt-5":"")}>
           {loading && <div className="loading-style"><TronLoader/></div>}
-          {total ? <TotalInfo total={total} rangeTotal={rangeTotal} typeText="transactions_unit" common={!address}/>:""}
-          {
-              address ? <DateRange onDateOk={(start,end) => this.onDateOk(start,end)}  dateClass="date-range-box-address" />: ''
-          }
+          
+          <div className="d-flex justify-content-between w-100"  style={{position: "absolute", left: 0, top: '-28px'}}>
+            {(total && contract && isinternal)? <div className="d-flex align-items-center">
+              <div className="question-mark mr-2"><i>?</i></div><span className="flex-1">{tu('interTrx_tip')}</span>
+            </div>: ''}
+              
+            {( address) ? <DateRange onDateOk={(start,end) => this.onDateOk(start,end)}  dateClass={`top-0 date-range-box-address${(total && contract)?'-unset': ''}`}/>: ''}
+          </div>
+          {total? <TotalInfo total={total} rangeTotal={rangeTotal} typeText="transactions_unit" common={!address} top={(!contract && address)? '-28px': '26'}/>: ''}
+          
           {
               (!loading && transactions.length === 0)?
                   <div className="p-3 text-center no-data">{tu("no_transactions")}</div>:
