@@ -231,11 +231,6 @@ export default class Home extends Component {
 
   }
 
-
-
-
-
-
   componentWillUnmount() {
     //clearConstellations();
     //this.listener && this.listener.close();
