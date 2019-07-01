@@ -6,7 +6,14 @@ import {tu} from "../../../utils/i18n";
 import {Client} from "../../../services/api";
 import {isAddressValid} from "@tronscan/client/src/utils/crypto";
 import _, {find, round} from "lodash";
-import {ACCOUNT_LEDGER, ACCOUNT_PRIVATE_KEY, ACCOUNT_TRONLINK, API_URL, ONE_TRX} from "../../../constants";
+import {
+  ACCOUNT_LEDGER,
+  ACCOUNT_PRIVATE_KEY,
+  ACCOUNT_TREZOR,
+  ACCOUNT_TRONLINK,
+  API_URL,
+  ONE_TRX
+} from "../../../constants";
 import {Alert} from "reactstrap";
 import {reloadWallet} from "../../../actions/wallet";
 import SweetAlert from "react-bootstrap-sweetalert";
@@ -74,7 +81,11 @@ class SendForm extends React.Component {
     let TokenType = token.substr(token.length - 5, 5);
     switch (TokenType) {
       case 'TRC10':
-        if (Lockr.get("islogin") || this.props.wallet.type === "ACCOUNT_LEDGER" || this.props.wallet.type === "ACCOUNT_TRONLINK") {
+        if (Lockr.get("islogin")
+          || this.props.wallet.type === ACCOUNT_LEDGER
+          || this.props.wallet.type === ACCOUNT_TREZOR
+          || this.props.wallet.type === ACCOUNT_TRONLINK
+        ) {
           await this.tokenSendWithTronLink();
         } else {
           await this.token10Send();
@@ -92,21 +103,27 @@ class SendForm extends React.Component {
     let TokenName = list[1];
     let {onSend, wallet} = this.props;
 
-    let result, success;
+    let result = null;
+    let success = false;
     this.setState({isLoading: true, modal: null});
 
     if (TokenName === "_") {
       amount = this.Mul(amount, ONE_TRX);
-      if (this.props.wallet.type === "ACCOUNT_LEDGER") {
-        result = await this.props.tronWeb().trx.sendTransaction(to, amount, {address: wallet.address}, false).catch(function (e) {
-          console.log(e)
-        });
+
+      switch (this.props.wallet.type) {
+        case ACCOUNT_LEDGER:
+        case ACCOUNT_TREZOR:
+          result = await this.props.tronWeb().trx.sendTransaction(to, amount, {address: wallet.address}, false).catch(function (e) {
+            console.log(e)
+          });
+          break;
+        case ACCOUNT_TRONLINK:
+          result = await this.props.account.tronWeb.trx.sendTransaction(to, amount, {address: wallet.address}, false).catch(function (e) {
+            console.log(e)
+          });
+          break;
       }
-      if (this.props.wallet.type === "ACCOUNT_TRONLINK") {
-        result = await this.props.account.tronWeb.trx.sendTransaction(to, amount, {address: wallet.address}, false).catch(function (e) {
-          console.log(e)
-        });
-      }
+
       if (result) {
         success = result.result;
       } else {
@@ -116,16 +133,20 @@ class SendForm extends React.Component {
     } else {
       //amount = amount * Math.pow(10, decimals);
       amount = this.Mul(amount, Math.pow(10, decimals));
-      if (this.props.wallet.type === "ACCOUNT_LEDGER") {
-        result = await this.props.tronWeb().trx.sendToken(to, amount, TokenName, {address: wallet.address}, false).catch(function (e) {
-          console.log(e)
-        });
+      switch (this.props.wallet.type) {
+        case ACCOUNT_LEDGER:
+        case ACCOUNT_TREZOR:
+          result = await this.props.tronWeb().trx.sendToken(to, amount, TokenName, {address: wallet.address}, false).catch(function (e) {
+            console.log(e)
+          });
+          break;
+        case ACCOUNT_TRONLINK:
+          result = await this.props.account.tronWeb.trx.sendToken(to, amount, TokenName, {address: wallet.address}, false).catch(function (e) {
+            console.log(e)
+          });
+          break;
       }
-      if (this.props.wallet.type === "ACCOUNT_TRONLINK") {
-        result = await this.props.account.tronWeb.trx.sendToken(to, amount, TokenName, {address: wallet.address}, false).catch(function (e) {
-          console.log(e)
-        });
-      }
+
       if (result) {
         success = result.result;
       } else {

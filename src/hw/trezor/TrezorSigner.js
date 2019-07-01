@@ -1,8 +1,6 @@
 import React from "react";
 import TrezorConnect from "trezor-connect";
-import {byteArray2hexStr} from "@tronscan/client/src/utils/bytes";
-import {Client} from "../../services/api";
-import {hexStr2byteArray} from "@tronscan/client/src/lib/code";
+import TronWeb from "tronweb";
 
 function toHex(str) {
   let hex = '';
@@ -15,28 +13,25 @@ function toHex(str) {
 
 export default class TrezorSigner {
 
-  constructor() {
-
-  }
-
   serializeContract(contract) {
 
-    switch (contract.contractType.toUpperCase()) {
+    const values = contract.parameter.value;
+
+    switch (contract.type.toUpperCase()) {
 
       case "TRANSFERCONTRACT":
         return {
           transfer_contract: {
-            owner_address: toHex(contract.from),
-            to_address: toHex(contract.to),
-            amount: contract.amount,
-          }
+            to_address: TronWeb.address.fromHex(values.to_address),
+            amount: values.amount,
+          },
         };
 
       case "TRANSFERASSETCONTRACT":
         return {
           transfer_asset_contract: {
             owner_address: toHex(contract.from),
-            to_address: toHex(contract.to),
+            to_address: TronWeb.address.fromHex(values.to_address),
             asset_name: toHex(contract.token),
             amount: contract.amount,
           }
@@ -141,66 +136,12 @@ export default class TrezorSigner {
 
   async serializeTransaction(transaction) {
 
-    // let t = {
-    //   ref_block_bytes: "C565",
-    //   ref_block_hash: "6CD623DBE83075D8",
-    //   expiration: 1528768890000,
-    //   timestamp: 1528768831987,
-    //   contract: [{
-    //     type: 1,
-    //     parameter: {
-    //       api: "type.googleapis.com/protocol.TransferContract",
-    //       payload: {
-    //         transfer_contract: {
-    //           owner_address: toHex('TUEZSdKsoDHQMeZwihtdoBiN46zxhGWYdH'),
-    //           to_address: toHex('TKSXDA8HfE9E1y39RczVQ1ZascUEtaSToF'),
-    //           amount: 1000000,
-    //         },
-    //       },
-    //     },
-    //   }],
-    // };
-
-    // {
-    //   "ref_block_bytes": "C565",
-    //   "ref_block_hash": "6CD623DBE83075D8",
-    //   "expiration": 1528768890000,
-    //   "timestamp": 1528768831987,
-    //   "contract": {
-    //   "transfer_contract": {
-    //     "to_address": "41684fdb264c9c65cdac2a7ef0f8b902eadfb4d8d1",
-    //       "amount": 1000000
-    //   }
-    // }
-    // }
-
-    // return t;
-
-    let {transaction: transactionJson} = await Client.readTransaction(byteArray2hexStr(transaction.serializeBinary()));
-    console.log("JSON RESPONSE", transactionJson);
-    let raw = transaction.getRawData();
-
-    let contract = transactionJson.contracts[0];
-
-    // let rawBytes = raw.serializeBinary();
-    // console.log("HASHING", rawBytes);
-    // let hashBytes = SHA256(rawBytes);
-    // console.log("HASH BYTES", byteArray2hexStr(hashBytes));
-
     return {
-      ref_block_bytes: byteArray2hexStr(raw.getRefBlockBytes()),
-      ref_block_hash: byteArray2hexStr(raw.getRefBlockHash()),
-      expiration: raw.getExpiration(),
-      timestamp: raw.getTimestamp(),
-      contract: [{
-        type: contract.contractTypeId,
-        parameter: {
-          api: `type.googleapis.com/protocol.${contract.contractType}`,
-          payload: {
-            ...this.serializeContract(contract),
-          }
-        }
-      }],
+      ref_block_bytes: transaction.raw_data.ref_block_bytes,
+      ref_block_hash: transaction.raw_data.ref_block_hash,
+      expiration: transaction.raw_data.expiration,
+      timestamp: transaction.raw_data.timestamp,
+      contract: this.serializeContract(transaction.raw_data.contract[0]),
     };
   }
 
@@ -214,26 +155,28 @@ export default class TrezorSigner {
 
       console.log("transactionJson", transactionJson);
 
-      let result = await TrezorConnect.tronSignTx({
+      let result = await TrezorConnect.tronSignTransaction({
         "path": "m/44'/195'/0'/0/0",
         "transaction": transactionJson,
       });
 
-      let {success, payload} = result;
       console.log("RETURN", result);
 
+      let {success, payload} = result;
+
       if (success) {
-        let raw = transaction.getRawData();
-        let uint8Array = Uint8Array.from(hexStr2byteArray(payload.signature));
-        console.log("SIGNATURE", payload.signature, uint8Array);
-        let count = raw.getContractList().length;
-        for (let i = 0; i < count; i++) {
-          transaction.addSignature(uint8Array);
-        }
+        // let raw = transaction.getRawData();
+        // let uint8Array = Uint8Array.from(hexStr2byteArray(payload.signature));
+        // console.log("SIGNATURE", payload.signature, uint8Array);
+        // let count = raw.getContractList().length;
+        // for (let i = 0; i < count; i++) {
+        //   transaction.addSignature(uint8Array);
+        // }
 
         return {
-          transaction,
-          hex: byteArray2hexStr(transaction.serializeBinary()),
+          ...transaction,
+          signature: [payload.signature],
+          // hex: byteArray2hexStr(transaction.serializeBinary()),
         };
       }
 

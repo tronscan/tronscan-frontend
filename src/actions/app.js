@@ -5,7 +5,6 @@ import {reloadWallet, setWalletLoading} from "./wallet";
 import Lockr from "lockr";
 
 export const SET_ACCOUNTS = "SET_ACCOUNTS";
-export const LOGIN_LEDGER = 'LOGIN_LEDGER';
 export const SET_PRICE = "SET_PRICE";
 export const SET_CURRENCY = "SET_CURRENCY";
 export const SET_LANGUAGE = "SET_LANGUAGE";
@@ -13,6 +12,8 @@ export const LOGIN = "LOGIN";
 export const LOGIN_PK = "LOGIN_PK";
 export const LOGIN_ADDRESS = "LOGIN_ADDRESS";
 export const LOGIN_TRONLINK = "LOGIN_TRONLINK";
+export const LOGIN_LEDGER = 'LOGIN_LEDGER';
+export const LOGIN_TREZOR = 'LOGIN_TREZOR';
 export const LOGOUT = "LOGOUT";
 export const ENABLE_FLAG = "ENABLE_FLAG";
 export const DISABLE_FLAG = "DISABLE_FLAG";
@@ -21,6 +22,11 @@ export const SET_SYNC_STATUS = "SET_SYNC_STATUS";
 
 export const setLoginWithLedger = (address) => ({
   type: LOGIN_LEDGER,
+  address,
+});
+
+export const setLoginWithTrezor = (address) => ({
+  type: LOGIN_TREZOR,
   address,
 });
 
@@ -122,6 +128,17 @@ export const loginWithLedger = (address) => async (dispatch, getState) => {
     setWebsocketContent(getState, address)
   }, 50);
 };
+export const loginWithTrezor = (address) => async (dispatch, getState) => {
+
+  dispatch(setLoginWithTrezor(address));
+
+  setTimeout(() => {
+    dispatch(reloadWallet());
+    dispatch(loadRecentTransactions(address));
+  //.dispatch(setWebsocket());
+    setWebsocketContent(getState, address)
+  }, 50);
+};
 
 export const loginWithTronLink = (address,tronWeb) => async (dispatch, getState) => {
 
@@ -164,22 +181,22 @@ export const disableFlag = flag => ({
 });
 
 
-async  function setWebsocketContent(getState, address){
-  let { account, app } = getState()
+async  function setWebsocketContent(getState, address) {
+  let {account, app} = getState()
   const localAddress = Lockr.get('localAddress')
   // if(!account.websocket && Lockr.get("websocket") === 'open'){
   //     //console.log(456)
   //     Lockr.set("websocket","close")
   //     setWebsocket()
   // }
-  if(app.wallet.type === 'ACCOUNT_TRONLINK' && account.websocket ){
-    if(localAddress !== address && account.websocket){
-      await account.websocket.send('cancel:'+localAddress)
+  if (app.wallet.type === 'ACCOUNT_TRONLINK' && account.websocket) {
+    if (localAddress !== address && account.websocket) {
+      await account.websocket.send('cancel:' + localAddress)
     }
   }
-  if(account.websocket){
-      await account.websocket.send(address)
-      Lockr.set('localAddress', address)
-  }
 
+  if (account.websocket) {
+    await account.websocket.send(address)
+    Lockr.set('localAddress', address)
+  }
 }

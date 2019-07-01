@@ -3,9 +3,17 @@ import {withRouter} from "react-router-dom";
 import {PulseLoader} from "react-spinners";
 import {t, tu} from "../../utils/i18n";
 import TrezorConnect from "trezor-connect";
+import {connect} from "react-redux";
+import {loginWithTrezor} from "../../actions/app";
 
 window.__TREZOR_CONNECT_SRC = 'https://localhost:8088/';
 
+@connect(
+  null,
+  {
+    loginWithTrezor
+  }
+)
 @withRouter
 export default class TrezorAccess extends Component {
 
@@ -64,7 +72,7 @@ export default class TrezorAccess extends Component {
   openWallet = () => {
     let {address} = this.state;
     let {history, onClose} = this.props;
-    this.props.loginWithLedger(address);
+    this.props.loginWithTrezor(address);
 
     history.push("/account");
 
@@ -79,14 +87,18 @@ export default class TrezorAccess extends Component {
           <div>{tu('latest_version_chrome')}</div>
           <div>{tu('ledger_support_version')}</div>
           <div className="mt-3">{tu('ledger_you_can')}
-            <a target="_blank" href="https://www.ledger.com/">
+            <a target="_blank"
+               href="https://www.ledger.com/"
+               rel="noopener noreferrer">
                 {tu('ledger_website')}
             </a>
             {t('ledger_website_download')}
 
           </div>
           <div>
-            <a target="_blank" href="https://support.tronscan.org/hc/en-us/articles/360025936472-LEDGER-GUIDE">
+            <a target="_blank"
+               href="https://support.tronscan.org/hc/en-us/articles/360025936472-LEDGER-GUIDE"
+               rel="noopener noreferrer">
                 {tu('ledger_click_help')}>
             </a>
           </div>

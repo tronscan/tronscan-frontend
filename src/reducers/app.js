@@ -7,6 +7,7 @@ import {
   LOGIN_ADDRESS,
   LOGIN_TRONLINK,
   LOGIN_LEDGER,
+  LOGIN_TREZOR,
   LOGIN_PK,
   LOGOUT,
   SET_ACCOUNTS,
@@ -17,7 +18,14 @@ import {
 } from "../actions/app";
 import {passwordToAddress, pkToAddress} from "@tronscan/client/src/utils/crypto";
 import {base64DecodeFromString} from "@tronscan/client/src/lib/code";
-import {ACCOUNT_ADDRESS, ACCOUNT_LEDGER, ACCOUNT_PRIVATE_KEY, IS_DESKTOP, ACCOUNT_TRONLINK} from "../constants";
+import {
+  ACCOUNT_ADDRESS,
+  ACCOUNT_LEDGER,
+  ACCOUNT_PRIVATE_KEY,
+  IS_DESKTOP,
+  ACCOUNT_TRONLINK,
+  ACCOUNT_TREZOR
+} from "../constants";
 
 const initialState = {
   theme: Lockr.get("theme", "light"),
@@ -239,6 +247,23 @@ export function appReducer(state = initialState, action) {
         },
         wallet: {
           type: ACCOUNT_LEDGER,
+          address: action.address,
+          isOpen: true,
+        },
+      };
+    }
+    case LOGIN_TREZOR: {
+
+      return {
+        ...state,
+        account: {
+          type: ACCOUNT_TREZOR,
+          key: false,
+          isLoggedIn: true,
+          address: action.address,
+        },
+        wallet: {
+          type: ACCOUNT_TREZOR,
           address: action.address,
           isOpen: true,
         },
