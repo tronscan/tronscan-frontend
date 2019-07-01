@@ -19,9 +19,10 @@ export const DISABLE_FLAG = "DISABLE_FLAG";
 export const SET_THEME = "SET_THEME";
 export const SET_SYNC_STATUS = "SET_SYNC_STATUS";
 
-export const setLoginWithLedger = (address) => ({
+export const setLoginWithLedger = (address, tronWeb) => ({
   type: LOGIN_LEDGER,
   address,
+  tronWeb
 });
 
 export const setLanguage = (language = "en") => ({
@@ -111,9 +112,9 @@ export const loginWithAddress = address => async (dispatch, getState) => {
   }, 50);
 };
 
-export const loginWithLedger = (address) => async (dispatch, getState) => {
+export const loginWithLedger = (address, tronWeb) => async (dispatch, getState) => {
 
-  dispatch(setLoginWithLedger(address));
+  dispatch(setLoginWithLedger(address, tronWeb));
 
   setTimeout(() => {
     dispatch(reloadWallet());
