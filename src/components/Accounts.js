@@ -3,12 +3,11 @@ import {connect} from "react-redux";
 import {loadAccounts} from "../actions/app";
 import {tu} from "../utils/i18n";
 import {FormattedNumber, injectIntl} from "react-intl";
-import {filter} from "lodash";
+import {filter, upperFirst} from "lodash";
 import {AddressLink} from "./common/Links";
 import {CIRCULATING_SUPPLY, ONE_TRX} from "../constants";
 import {TRXPrice} from "./common/Price";
 import SmartTable from "./common/SmartTable.js"
-import {upperFirst} from "lodash";
 import {TronLoader} from "./common/loaders";
 import {QuestionMark} from "./common/QuestionMark";
 import xhr from "axios/index";
@@ -26,6 +25,12 @@ class Accounts extends Component {
       searchString: "",
       accounts: [],
       total: 0,
+      exchangeFlag: [
+        {name: 'binance', addressList: {
+          Cold: ['TMuA6YqfCeX8EhbfYEg5y7S4DqzSJireY9', 'TWd4WrZ9wn84f5x1hZhL4DHvk738ns5jwb'],
+          Hot: ['TAUN6FwrnwwmaEqYcckffC7wYmbaS6cBiX']}
+        }
+      ]
     }
   }
 
@@ -34,6 +39,7 @@ class Accounts extends Component {
   }
 
   loadAccounts = async (page = 1, pageSize = 20) => {
+    const { exchangeFlag } = this.state
 
     this.setState({loading: true});
 
@@ -43,6 +49,25 @@ class Accounts extends Component {
       start: (page - 1) * pageSize
     })
 
+    accounts.map(item => {
+      item.tagName = ''
+      exchangeFlag.map(coin => {
+        const typeList = Object.keys(coin.addressList)
+        typeList.map(type => {
+          if(coin.addressList[type].length == 1){
+            if(coin.addressList[type][0] === item.address){
+              item.tagName = `${upperFirst(coin.name)}-${type}`
+            }
+          }else if(coin.addressList[type].length > 1){
+            coin.addressList[type].map((address, index) => {
+              if(address === item.address){
+                item.tagName = `${upperFirst(coin.name)}-${type} ${index + 1}`
+              }
+            })
+          }
+        })
+      })
+     })
      // let {txOverviewStats} = await Client.getTxOverviewStats();
     this.setState({
       loading: false,
@@ -150,6 +175,12 @@ class Accounts extends Component {
             </span> :
               <AddressLink address={text}/>
         }
+      },
+      {
+        title: 'Name Tag',
+        dataIndex: 'tagName',
+        key: 'tagName',
+        align: 'left'
       },
       {
         title: upperFirst(intl.formatMessage({id: 'supply'})),
