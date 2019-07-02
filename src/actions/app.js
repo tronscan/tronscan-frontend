@@ -143,8 +143,7 @@ export const loadAccounts = () => async dispatch => {
 };
 
 export const loadSyncStatus = () => async dispatch => {
-  let status = await Client.getSystemStatus();
-  console.log('status',status)
+  let status = await Client.getSystemStatus()
   dispatch(setSyncStatus(status));
 };
 

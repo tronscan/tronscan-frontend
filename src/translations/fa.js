@@ -1526,17 +1526,17 @@ export const messages = {
     "trc20_hot": "محبوب",
     "trc20_top_Volume": "لیست بازرگانی",
     "trc20_top_Rising": "لیست در حال افزایش است",
-    "trc20_history":"معاملات بازار",
-    "trc20_register":"سفارش کتاب",
-    "trc20_24h_h":"24h بالا",
-    "trc20_24h_l":"24h کم",
-    "trc20_fire_token":"50 lucky draws to win 100,000 VENA!",
-    "trc20_vena_tip":"Due to the particularity of VENA contract, extra 0.1 VENA will be authorized but not deducted.",
+    "trc20_history": "معاملات بازار",
+    "trc20_register": "سفارش کتاب",
+    "trc20_24h_h": "24h بالا",
+    "trc20_24h_l": "24h کم",
+    "trc20_fire_token": "50 lucky draws to win 100,000 VENA!",
+    "trc20_vena_tip": "Due to the particularity of VENA contract, extra 0.1 VENA will be authorized but not deducted.",
 
 
     /*
-    *  2018-12-18
-    * */
+     *  2018-12-18
+     * */
     "create_deal_pair": "ایجاد جفت های معاملاتی",
     "add_deal_pair_desc": "ایجاد جفت معاملاتی در دسترس است",
     "click_create": "برای ایجاد اینجا کلیک کنید",
@@ -1697,19 +1697,19 @@ export const messages = {
     "address_total_balance_info_sources": "منبع اطلاعات",
     "address_info_transfers": "انتقال",
     "address_info_transactions": "معاملات",
-    "address_netLimit":"کل پهنای باند",
-    "address_netRemaining":"پهنای موجود",
-    "address_netUsed":"پهنای باند استفاده شده",
-    "address_energyLimit":"کل انرژی",
-    "address_energyRemaining":"انرژی موجود",
-    "address_energyUsed":"انرژی استفاده شده",
-    "address_percentage":"نسبت",
-    "address_net_fee":"هزینه پهنای باند",
-    "address_energy_fee":"هزینه انرژی",
-    "address_transfer_all":"همه",
-    "address_transfer_in":"وارد",
-    "address_transfer_out":"خارج",
-    "address_transfer_unrecorded_token":"Unrecorded Token",
+    "address_netLimit": "کل پهنای باند",
+    "address_netRemaining": "پهنای موجود",
+    "address_netUsed": "پهنای باند استفاده شده",
+    "address_energyLimit": "کل انرژی",
+    "address_energyRemaining": "انرژی موجود",
+    "address_energyUsed": "انرژی استفاده شده",
+    "address_percentage": "نسبت",
+    "address_net_fee": "هزینه پهنای باند",
+    "address_energy_fee": "هزینه انرژی",
+    "address_transfer_all": "همه",
+    "address_transfer_in": "وارد",
+    "address_transfer_out": "خارج",
+    "address_transfer_unrecorded_token": "Unrecorded Token",
 
     /*
     ##################################################################################
@@ -1719,14 +1719,14 @@ export const messages = {
     ##################################################################################
 */
 
-    "footer_fellow_us":"Follow Us",
-    "footer_developer_resources":"Developer Resources",
-    "footer_support_center":"Support Center",
-    "footer_tron_network":"TRON",
-    "login_privatekey_warn":"برای اطمینان از امنیت حساب خود، لطفا از کلید خصوصی خود مراقبت کنید ، برای جلوگیری از از دست دادن دارایی. توصیه می شود از ",
-    "login_privatekey_warn_safe":"  برای ورود امن استفاده کنید.",
-    "token_does_not_support_exchange":"Token doesn't support trading now",
-    "token_trade":"تبادل",
+    "footer_fellow_us": "Follow Us",
+    "footer_developer_resources": "Developer Resources",
+    "footer_support_center": "Support Center",
+    "footer_tron_network": "TRON",
+    "login_privatekey_warn": "برای اطمینان از امنیت حساب خود، لطفا از کلید خصوصی خود مراقبت کنید ، برای جلوگیری از از دست دادن دارایی. توصیه می شود از ",
+    "login_privatekey_warn_safe": "  برای ورود امن استفاده کنید.",
+    "token_does_not_support_exchange": "Token doesn't support trading now",
+    "token_trade": "تبادل",
     "updata_token_info": "به روز رسانی اطلاعات توکن",
     "input_transcan": "وارد ترون اسکن شوید",
     "pass_time": "زمان تایید شدن ",
@@ -1832,17 +1832,19 @@ export const messages = {
     "str_8": "قرارداد وارد شده است .",
     "str_9": "تأیید پارامتر انجام نشده است .",
     "type": "تایپ",
-    "token_login_no_updated":"حساب کاربری با صادر کننده ناسازگار است و نمی تواند به روز شود",
-    "information_is_being_confirmed":"Information is being confirmed, this process may take 10 minutes, please try again later",
+    "token_login_no_updated": "حساب کاربری با صادر کننده ناسازگار است و نمی تواند به روز شود",
+    "information_is_being_confirmed": "Information is being confirmed, this process may take 10 minutes, please try again later",
 
-    "my_account":"حساب من",
-    "delegate_other":" فریز توسط دیگران",
-    "freeze_self":" فریز توسط من",
-    "total_amount":"مقدار کل",
+    "my_account": "حساب من",
+    "delegate_other": " فریز توسط دیگران",
+    "freeze_self": " فریز توسط من",
+    "total_amount": "مقدار کل",
     "unfreeze_time": "زمان آزاد کردن",
 
     "interTrx_tip": "معاملات داخلی عملیاتی است که یک آدرس کلی آدرس یک قرارداد هوشمند را فراخوانی می کند و قرارداد هوشمند نقل قول را به آدرس دیگری انتقال می دهد.",
     "event_tip": "رویدادها این است که اجازه دهید برنامهنویس یا ارائه دهنده رابط خارجی از آن برای توجه به عملیات قرارداد و ممیزی استفاده کند.",
-  
+    "Expected_acquisition": "برآورد سود",
+    "energy_more": "پهنای باند به دست آمده = TRX فریز شده برای رسیدن به پهنای باند / کل TRX فریز شده در شبکه برای به دست آوردن پهنای باند .",
+    "bandwidth_more": "انرژی به دست آمده = TRX فریز شده برای به دست آوردن انرژی / کل TRXفریز شده برای به دست آوردن انرژی در کل شبکه * محدودیت کل انرژی.",
 
 };

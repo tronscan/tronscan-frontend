@@ -1522,12 +1522,12 @@ export const messages = {
   "trc20_hot": "인기",
   "trc20_top_Volume": "거래리스트",
   "trc20_top_Rising": "상승 목록",
-  "trc20_history":"시장 거래",
-  "trc20_register":"주문 도서",
-  "trc20_24h_h":"24h 높은",
-  "trc20_24h_l":"24h 낮은",
-  "trc20_fire_token":"50 lucky draws to win 100,000 VENA!",
-  "trc20_vena_tip":"VENA 계약의 특수성으로 인해 추가 0.1 VENA 는 승인되지만 공제되지 않습니다.",
+  "trc20_history": "시장 거래",
+  "trc20_register": "주문 도서",
+  "trc20_24h_h": "24h 높은",
+  "trc20_24h_l": "24h 낮은",
+  "trc20_fire_token": "50 lucky draws to win 100,000 VENA!",
+  "trc20_vena_tip": "VENA 계약의 특수성으로 인해 추가 0.1 VENA 는 승인되지만 공제되지 않습니다.",
   /*
    *  2018-12-18
    * */
@@ -1700,10 +1700,10 @@ export const messages = {
   "address_percentage": "비율",
   "address_net_fee": "대역폭 비용",
   "address_energy_fee": "에너지 비용",
-  "address_transfer_all":"모두",
-  "address_transfer_in":"전송",
-  "address_transfer_out":"전송",
-  "address_transfer_unrecorded_token":"Unrecorded Token",
+  "address_transfer_all": "모두",
+  "address_transfer_in": "전송",
+  "address_transfer_out": "전송",
+  "address_transfer_unrecorded_token": "Unrecorded Token",
 
   /*
   ##################################################################################
@@ -1712,14 +1712,14 @@ export const messages = {
   #                                                                                #
   ##################################################################################
   */
-  "footer_fellow_us":"Follow Us",
-  "footer_developer_resources":"Developer Resources",
-  "footer_support_center":"Support Center",
-  "footer_tron_network":"TRON",
-  "login_privatekey_warn":"계정 보안을 유지 및 자산 손실을 방지하기 위해서는 개인 키 (private key)를 잘 보관하고 다른 사람에게 절대 제공하지 마십시오. 또한 ",
-  "login_privatekey_warn_safe":"를 사용하여 로그인하는 것을 권장합니다.",
-  "token_does_not_support_exchange":"Token doesn't support trading now",
-  "token_trade":"거래",
+  "footer_fellow_us": "Follow Us",
+  "footer_developer_resources": "Developer Resources",
+  "footer_support_center": "Support Center",
+  "footer_tron_network": "TRON",
+  "login_privatekey_warn": "계정 보안을 유지 및 자산 손실을 방지하기 위해서는 개인 키 (private key)를 잘 보관하고 다른 사람에게 절대 제공하지 마십시오. 또한 ",
+  "login_privatekey_warn_safe": "를 사용하여 로그인하는 것을 권장합니다.",
+  "token_does_not_support_exchange": "Token doesn't support trading now",
+  "token_trade": "거래",
   "updata_token_info": "TOKEN 정보 업데이트",
   "input_transcan": "TRONSCAN 입력",
   "pass_time": "통과 시간",
@@ -1800,13 +1800,13 @@ export const messages = {
 
 
 
-    /*
-    ##################################################################################
-    #                                                                                #
-    # footer  2019-05-20                                    #
-    #                                                                                #
-    ##################################################################################
-    */
+  /*
+  ##################################################################################
+  #                                                                                #
+  # footer  2019-05-20                                    #
+  #                                                                                #
+  ##################################################################################
+  */
   "token_logo_input_placeholder": "이미지 링크 제출, jpg / jpeg / png 지원, 크기 비율 1 : 1",
   "project_website": "프로젝트 공식 웹사이트",
   "token_input_trc10_tip": "토큰을 업데이트 시 Logo, GitHub, 소셜 미디어 링크를 입력하십시오.",
@@ -1835,13 +1835,16 @@ export const messages = {
   "str_8": "컨트랙트는 이미 입력되었습니다.",
   "str_9": "매개 변수를 확인할 수 없습니다.",
   "type": "유형",
-  "token_login_no_updated":"로그인 계정이 발행자와 일치하지 않아 업데이트할 수 없습니다",
-  "information_is_being_confirmed":"Information is being confirmed, this process may take 10 minutes, please try again later",
-  "my_account":"내 계정",
-  "delegate_other":"다른 사람에 의하여 동결",
-  "freeze_self":"나 자신에 의해 고정",
-  "total_amount":"총액",
+  "token_login_no_updated": "로그인 계정이 발행자와 일치하지 않아 업데이트할 수 없습니다",
+  "information_is_being_confirmed": "Information is being confirmed, this process may take 10 minutes, please try again later",
+  "my_account": "내 계정",
+  "delegate_other": "다른 사람에 의하여 동결",
+  "freeze_self": "나 자신에 의해 고정",
+  "total_amount": "총액",
   "unfreeze_time": "해동 시간",
   "interTrx_tip": "내부 트랜잭션은 일반 주소가 스마트 계약을 호출하고 스마트 계약이 토큰을 다른 주소로 전송하는 작업입니다.",
   "event_tip": "이벤트는 프로그래머 또는 외부 인터페이스 제공 업체가 계약 작업 및 감사에주의를 기울일 수있게하는 것입니다.",
+  "Expected_acquisition": "예상 이익",
+  "energy_more": "대역폭 획득= 대역폭 확보를 위해 TRX 동결 / 대역폭 확보를 위해 네트워크에서 동결된 총 TRX",
+  "bandwidth_more": "에너지 획득 = 에너지 획득을 위해 TRX 동결/에너지 획들을 위해 전체 네트워크에서 동결된 총 TRX 수 * 총 에너지 제한",
 };
