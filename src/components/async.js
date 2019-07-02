@@ -570,6 +570,23 @@ export const ProposalDetailAsync = asyncComponent({
     )
 });
 
+export const ContractCompilerAsync = asyncComponent({
+    LoadingComponent: () => <TronLoader />,
+    resolve: () =>
+        new Promise(resolve =>
+            // Webpack's code splitting API w/naming
+            require.ensure(
+                [],
+                require => {
+                    $script("", () => {
+                        resolve(require("./blockchain/Compiler/index"));
+                    });
+                },
+                "ContractCompiler"
+            )
+        )
+});
+
 export const AboutAsync = asyncComponent({
   LoadingComponent: () => <TronLoader />,
   resolve: () =>

@@ -5,37 +5,38 @@ import Transaction from "./components/blockchain/Transaction";
 import Address from "./components/addresses/Address";
 import Home from "./components/Home";
 import {
-  AboutAsync,
-  AccountAsync,
-  AccountsAsync,
-  CopyrightAsync,
-  DemoAsync,
-  FaqAsync,
-  FoundationAsync,
-  LedgerHelpAsync,
-  LiveAsync,
-  MyTokenAsync,
-  NodesAsync,
-  NodeTesterAsync,
-  ProposalDetailAsync,
-  RepresentativesAsync,
-  SingleChartAsync,
-  StatisticsAsync,
-  SystemAsync,
-  Token20DetailAsync,
-  TokenDetailAsync,
-  TokenListAsync,
-  TokenOverviewAsync,
-  TokensCreateAsync,
-  TokensUpdateAsync,
-  TokenTRC20ListAsync,
-  TokenAllAsync,
-  TransactionViewerAsync,
-  TronConvertToolAsync,
-  TRONRatingAsync,
-  VoteLiveAsync,
-  VoteOverviewAsync,
-  WalletWizardAsync
+    AboutAsync,
+    AccountAsync,
+    AccountsAsync,
+    CopyrightAsync,
+    DemoAsync,
+    FaqAsync,
+    FoundationAsync,
+    LedgerHelpAsync,
+    LiveAsync,
+    MyTokenAsync,
+    NodesAsync,
+    NodeTesterAsync,
+    ProposalDetailAsync,
+    RepresentativesAsync,
+    SingleChartAsync,
+    StatisticsAsync,
+    SystemAsync,
+    Token20DetailAsync,
+    TokenDetailAsync,
+    TokenListAsync,
+    TokenOverviewAsync,
+    TokensCreateAsync,
+    TokensUpdateAsync,
+    TokenTRC20ListAsync,
+    TokenAllAsync,
+    TransactionViewerAsync,
+    TronConvertToolAsync,
+    TRONRatingAsync,
+    VoteLiveAsync,
+    VoteOverviewAsync,
+    WalletWizardAsync,
+    ContractCompilerAsync
 } from "./components/async";
 import Blocks from "./components/blockchain/Blocks";
 import Transactions from "./components/blockchain/Transactions";
@@ -53,6 +54,7 @@ import Proposals from "./components/committee/Proposals";
 import { Redirect } from "react-router-dom";
 import { LedgerComponent } from "./hw/ledger/LedgerComponent";
 import BTTSupplyTemp from "./components/tokens/TokenDetail/tempBtt.js";
+import ContractCompiler from "./components/blockchain/Compiler/index";
 
 export const routes = [
   {
@@ -155,6 +157,12 @@ export const routes = [
         label: "trigger",
         icon: "fa fa-users-cog",
         component: ContractTrans
+      },
+      {
+        path: "/contracts/contract-Compiler",
+        label: "contract_compiler",
+        icon: "fa fa-users-cog",
+        component: ContractCompilerAsync
       }
     ]
   },
