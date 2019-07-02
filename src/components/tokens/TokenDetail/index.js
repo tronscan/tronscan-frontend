@@ -19,6 +19,7 @@ import {transactionResultManager} from "../../../utils/tron";
 import xhr from "axios/index";
 import Lockr from "lockr";
 import {withTronWeb} from "../../../utils/tronWeb";
+import {CsvExport} from "../../common/CsvExport";
 
 
 @withTronWeb
@@ -445,7 +446,13 @@ class TokenDetail extends React.Component {
 
     let {match, wallet} = this.props;
     let {token, tabs, loading, buyAmount, alert,currentTotalSupply} = this.state;
-
+    let uploadURL = API_URL + "/api/v2/node/info_upload?address=" + match.params.id
+    let pathname = this.props.location.pathname;
+    let tabName = ''
+    let rex = /[a-zA-Z0-9]{7}\/?([a-zA-Z\\-]+)$/
+    pathname.replace(rex, function (a, b) {
+      tabName = b
+    })
     return (
         <main className="container header-overlap token_black mc-donalds-coin">
           {alert}
@@ -517,6 +524,11 @@ class TokenDetail extends React.Component {
                         </Switch>
                       </div>
                     </div>
+                      {
+                          tabName === 'transfers' ?
+                              <CsvExport downloadURL={uploadURL}/>
+                              : ''
+                      }
                   </div>
                   }
                 </div>

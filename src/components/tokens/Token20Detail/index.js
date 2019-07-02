@@ -19,6 +19,8 @@ import {Link} from "react-router-dom";
 import {some, toLower} from "lodash";
 import xhr from "axios/index";
 import _ from "lodash";
+import {CsvExport} from "../../common/CsvExport";
+
 
 class Token20Detail extends React.Component {
 
@@ -357,7 +359,13 @@ class Token20Detail extends React.Component {
 
     let {match, wallet} = this.props;
     let {token, tabs, loading, buyAmount, alert} = this.state;
-
+    let uploadURL = API_URL + "/api/v2/node/info_upload?address=" + match.params.id
+    let pathname = this.props.location.pathname;
+    let tabName = ''
+    let rex = /[a-zA-Z0-9]{34}\/?([a-zA-Z\\-]+)$/
+    pathname.replace(rex, function (a, b) {
+        tabName = b
+    })
     return (
         <main className="container header-overlap token_black mc-donalds-coin">
           {alert}
@@ -429,6 +437,11 @@ class Token20Detail extends React.Component {
                         </Switch>
                       </div>
                     </div>
+                      {
+                          tabName === 'transfers' ?
+                              <CsvExport downloadURL={uploadURL}/>
+                              : ''
+                      }
                   </div>
                   }
                 </div>

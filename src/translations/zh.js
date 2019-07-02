@@ -1675,7 +1675,8 @@ export const messages = {
       #                                                                                #
       ##################################################################################
   */
-    "table_info_big": "仅展示前10,000条数据",
+    "table_info_big1": "仅展示前",
+    "table_info_big2": "条数据",
     "table_info_big_tip1": "所选时间内共",
     "table_info_big_tip2": "条数据，",
     "table_info_big_tip3": "目前只展示前10,000个数据。",
@@ -1873,7 +1874,7 @@ export const messages = {
   "information_is_being_confirmed":"信息正在确认中，此过程可能需要10分钟，请稍后再试",
   "Expected_acquisition": "预计获得",
   "energy_more": `Energy can only be obtained by freezing the TRX. Energy obtained = TRX frozen for gaining Energy / total TRX frozen for gaining Energy in the entire network * total energy limit. (which is the equally-divided fixed Energy for all users based on the frozen TRX.)`,
-  "bandwidth_more": `Bandwidth points can be gained in two ways: Freezing TRX. The quota = the TRX frozen for gaining bandwidth points / the total TRX frozen in the network for gaining bandwidth points * 43_200_000_000, which is the equally-divided fixed bandwidth points quota for all users based on the frozen TRX. Or Fixed 5,000 free TRX quota daily for each account.`
+  "bandwidth_more": `Bandwidth points can be gained in two ways: Freezing TRX. The quota = the TRX frozen for gaining bandwidth points / the total TRX frozen in the network for gaining bandwidth points * 43_200_000_000, which is the equally-divided fixed bandwidth points quota for all users based on the frozen TRX. Or Fixed 5,000 free TRX quota daily for each account.`,
   "interTrx_tip": "内部交易是指普通地址调用智能合约，由合约向其它地址转移通证的一种操作",
   "event_tip": "事件是让程序编写人员或外部界面提供者使用它来注意合约操作动向和审计",
 

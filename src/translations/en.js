@@ -1698,7 +1698,8 @@ export const messages = {
      #                                                                                #
      ##################################################################################
   */
-  "table_info_big": "only the first 10,000 data are displayed",
+  "table_info_big1": "only the first ",
+  "table_info_big2": " data are displayed",
   "table_info_big_tip1": "There are altogether ",
   "table_info_big_tip2": "data within the selected time ",
   "table_info_big_tip3": "Only 10,000 pieces of data are displayed.",

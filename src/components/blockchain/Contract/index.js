@@ -23,6 +23,7 @@ import xhr from "axios/index";
 import {API_URL, CONTRACT_ADDRESS_USDT} from "../../../constants";
 import { Tooltip } from 'antd'
 import TokenBalances from './Balance.js'
+import { CsvExport } from "../../common/CsvExport";
 
 
 class SmartContract extends React.Component {
@@ -213,7 +214,13 @@ class SmartContract extends React.Component {
     if (!contract) {
       return null;
     }
-
+    let uploadURL = API_URL + "/api/v2/node/info_upload?address=" + match.params.id
+    let pathname = this.props.location.pathname;
+    let tabName = ''
+    let rex = /[a-zA-Z0-9]{34}\/?([a-zA-Z\\-]+)$/
+    pathname.replace(rex, function (a, b) {
+        tabName = b
+    })
     return (
         <main className="container header-overlap token_black">
           <div className="row">
@@ -308,6 +315,16 @@ class SmartContract extends React.Component {
                           </Switch>
                         </div>
                       </div>
+                        {
+                            tabName === '' ?
+                                <CsvExport downloadURL={uploadURL}/>
+                                : ''
+                        }
+                        {
+                            tabName === 'internal-transactions' ?
+                                <CsvExport downloadURL={uploadURL}/>
+                                : ''
+                        }
                     </Fragment>
               }
             </div>

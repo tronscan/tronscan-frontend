@@ -31,6 +31,7 @@ import { Progress, Tooltip } from 'antd'
 import BigNumber from "bignumber.js"
 import {HrefLink} from "../../common/Links";
 import {QuestionMark} from "../../common/QuestionMark";
+import {CsvExport} from "../../common/CsvExport";
 BigNumber.config({ EXPONENTIAL_AT: [-20, 30] });
 
 
@@ -462,14 +463,14 @@ class Address extends React.Component {
     let {totalPower, address, tabs, stats, loading, blocksProduced, media, candidates, rank, totalVotes, netRemaining, bandWidthPercentage, energyRemaining, energyPercentage, TRXBalanceTotal,availableBandWidthPercentage,availableEnergyPercentage} = this.state;
     let {match,intl} = this.props;
     let addr = match.params.id;
-    let uploadURL = API_URL + "/api/v2/node/info_upload?address=" + match.params.id
+
 
     if (!address) {
       return null;
     }
 
 
-
+    let uploadURL = API_URL + "/api/v2/node/info_upload?address=" + match.params.id
     let pathname = this.props.location.pathname;
     let tabName = ''
     let rex = /[a-zA-Z0-9]{34}\/?([a-zA-Z\\-]+)$/
@@ -750,11 +751,19 @@ class Address extends React.Component {
 
                       </div>
                       {
-                        tabName === '' ?
-                            <div style={{marginTop: 20, float: 'right'}}><i size="1" style={{fontStyle: 'normal'}}>[
-                              Download <a href={uploadURL} style={{color: '#C23631'}}><b>CSV Export</b></a>&nbsp;<span
-                                  className="glyphicon glyphicon-download-alt"></span> ]</i>&nbsp;
-                            </div> : null
+                        tabName === 'transfers' ?
+                          <CsvExport downloadURL={uploadURL}/>
+                          : ''
+                      }
+                      {
+                        tabName === 'transactions' ?
+                          <CsvExport downloadURL={uploadURL}/>
+                          : ''
+                      }
+                      {
+                        tabName === 'internal-transactions' ?
+                          <CsvExport downloadURL={uploadURL}/>
+                          : ''
                       }
 
                     </Fragment>

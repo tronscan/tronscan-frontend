@@ -1633,7 +1633,8 @@ export const messages = {
       #                                                                                #
       ##################################################################################
   */
-  "table_info_big": "처음 10,000 개의 데이터 만 표시됨",
+  "table_info_big1": "처음 ",
+  "table_info_big2":" 개의 데이터 만 표시됨",
   "table_info_big_tip1": "선택한 기간에는 총",
   "table_info_big_tip2": "개의 데이터가 있으며",
   "table_info_big_tip3": "현재 처음 10,000 개의 데이터 만 표시됩니다.",
