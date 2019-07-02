@@ -147,7 +147,7 @@ class ExchangeTable extends Component {
                 </p>
               </div>
 
-              {transcationObj.id.includes(record.id) && (
+              {/* {transcationObj.id.includes(record.id) && (
                 <div>
                   <Popover content={content} title="">
                     <img
@@ -160,7 +160,7 @@ class ExchangeTable extends Component {
                     />
                   </Popover>
                 </div>
-              )}
+              )} */}
             </div>
           );
         }
