@@ -231,7 +231,6 @@ export function appReducer(state = initialState, action) {
     }
 
     case LOGIN_LEDGER: {
-
       return {
         ...state,
         account: {
@@ -239,6 +238,8 @@ export function appReducer(state = initialState, action) {
           key: false,
           isLoggedIn: true,
           address: action.address,
+          tronWeb:action.tronWeb,
+          tronStationSDK: new TronStationSDK(action.tronWeb, true)
         },
         wallet: {
           type: ACCOUNT_LEDGER,

@@ -266,20 +266,20 @@ export default class FreezeBalanceModal extends React.PureComponent {
                 </select>
               </div>
               {Boolean(selectedResource == 0 && getcalculate) &&
-                <p className="text-left d-flex align-items-center">
+                <div className="text-left d-flex align-items-center">
                   <span className="col-red mr-2">1TRX ≈ <FormattedNumber value={oneBandwidth}/>{tu('bandwidth')}, {tu('Expected_acquisition')}<FormattedNumber value={getcalculate}/>{tu('bandwidth')}</span>
                   <Tooltip placement="top" title={tu('bandwidth_more')} overlayStyle={{ maxWidth: '320px'}}>
                     <div className="question-mark"><i>?</i></div>
                   </Tooltip>
-                </p>
+                </div>
               }
               {Boolean(selectedResource == 1&& getcalculate) &&
-                <p className="text-left d-flex align-items-center">
+                <div className="text-left d-flex align-items-center">
                   <span className="col-red mr-2">1TRX ≈ <FormattedNumber value={oneEnergy}/>{tu('energy')}, {tu('Expected_acquisition')}<FormattedNumber value={getcalculate}/>{tu('energy')}</span>
                   <Tooltip placement="top" title={tu('energy_more')} overlayStyle={{maxWidth: '320px'}}>
                     <div className="question-mark"><i>?</i></div>
                   </Tooltip>
-                </p>
+                </div>
               }
               <div className="form-check">
                 <input type="checkbox"
