@@ -20,6 +20,7 @@ import {NameWithId} from "./names";
 import rebuildList from "../../utils/rebuildList";
 import xhr from "axios/index";
 import {API_URL} from '../../constants.js'
+import qs from 'qs'
 
 const RangePicker = DatePicker.RangePicker;
 
@@ -59,7 +60,7 @@ class Transactions extends React.Component {
 
   loadTransactions = async (page = 1, pageSize = 20) => {
 
-    let {filter, isinternal=false, address=false} = this.props;
+    let {filter, isinternal=false, address=false, getCsvUrl} = this.props;
 
     this.setState(
         {
@@ -87,11 +88,11 @@ class Transactions extends React.Component {
           rangeTotal = data.rangeTotal
       }else{
           let data = await Client.getTransactions({
-              sort: '-timestamp',
               limit: pageSize,
               start: (page - 1) * pageSize,
+              sort: '-timestamp',
               total: this.state.total,
-              ...filter,
+              ...filter
           });
           transactions = data.transactions;
           total = data.total,
@@ -99,14 +100,17 @@ class Transactions extends React.Component {
       }
 
     }else {
-        // TODO internal transctions
-
+        const params = {
+          start_timestamp: this.start,
+          end_timestamp: this.end,
+          ...filter
+        }
+        const query = qs.stringify({ format: 'csv',...params})
+        getCsvUrl(`${'http://52.15.68.74:10000'}/api/internal-transaction?${query}`)
         let data = await Client.getInternalTransaction({
             limit: pageSize,
             start: (page - 1) * pageSize,
-            start_timestamp: this.start,
-            end_timestamp: this.end,
-            ...filter
+            ...params
         });
 
         let newdata = rebuildList(data.list, 'tokenId', 'callValue', 'valueInfoList')

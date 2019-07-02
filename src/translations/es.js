@@ -1692,7 +1692,8 @@ export const messages = {
       #                                                                                #
       ##################################################################################
   */
-  "table_info_big": "Sólo se muestran los primeros 10.000 datos",
+  "table_info_big1": "Sólo se muestran los primeros ",
+  "table_info_big2":"datos",
   "table_info_big_tip1": "Hubo",
   "table_info_big_tip2": "datos en el pero de tiempo seleccionado y ",
   "table_info_big_tip3": "solo se mostraron 10,000 datos.",
