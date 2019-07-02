@@ -330,6 +330,7 @@ class Address extends React.Component {
             // icon: "fas fa-handshake",
             path: "/transactions",
             label: <span>{tu("transactions")}</span>,
+            isHidden: true,
             cmp: () => <NewTransactions filter={{address: id}} address/>
           },
           intransactions: {

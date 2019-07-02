@@ -1871,8 +1871,10 @@ export const messages = {
   "str_9": "参数校验未通过",
   "token_login_no_updated":"登录账户与发行者不一致，无法更新",
   "information_is_being_confirmed":"信息正在确认中，此过程可能需要10分钟，请稍后再试",
-
   "Expected_acquisition": "预计获得",
   "energy_more": `Energy can only be obtained by freezing the TRX. Energy obtained = TRX frozen for gaining Energy / total TRX frozen for gaining Energy in the entire network * total energy limit. (which is the equally-divided fixed Energy for all users based on the frozen TRX.)`,
   "bandwidth_more": `Bandwidth points can be gained in two ways: Freezing TRX. The quota = the TRX frozen for gaining bandwidth points / the total TRX frozen in the network for gaining bandwidth points * 43_200_000_000, which is the equally-divided fixed bandwidth points quota for all users based on the frozen TRX. Or Fixed 5,000 free TRX quota daily for each account.`
+  "interTrx_tip": "内部交易是指普通地址调用智能合约，由合约向其它地址转移通证的一种操作",
+  "event_tip": "事件是让程序编写人员或外部界面提供者使用它来注意合约操作动向和审计",
+
 };

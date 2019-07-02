@@ -1,8 +1,12 @@
 .tokencreated {
-  .card-body{background: #fff;}
-  hr{
-    margin: 1rem auto 1.4rem!important;
+  .card-body {
+    background: #fff;
   }
+
+  hr {
+    margin: 1rem auto 1.4rem !important;
+  }
+
   .ant-input {
 
     &,
@@ -69,18 +73,25 @@
       color: #fff;
       font-size: 1.23rem;
 
-      @each $name, $tip in (success, d), (process, w), (wait, t){
+      @each $name,
+      $tip in (success, d),
+      (process, w),
+      (wait, t) {
         &.is-#{$name} {
           background-image: url(../images/step_icon/center-#{$tip}.png)
         }
+
         &:first-child.is-#{$name} {
           background-image: url(../images/step_icon/first-#{$tip}.png)
         }
+
         &:last-child.is-#{$name} {
           background-image: url(../images/step_icon/last-#{$tip}.png);
         }
       }
+
       background-size: 100% 100%;
+
       &.is-wait {
         color: #9b9b9b;
       }
@@ -135,8 +146,8 @@
   }
 
   .part {
-    background:#fcfcfc;
-    box-shadow:0 2px 4px 0 rgba(232,232,232,0.50);
+    background: #fcfcfc;
+    box-shadow: 0 2px 4px 0 rgba(232, 232, 232, 0.50);
 
     &_title {
       display: flex;
@@ -163,16 +174,21 @@
     }
 
   }
-  .frozen-supply-tip{
-    color:#9e9e9e!important;
+
+  .frozen-supply-tip {
+    color: #9e9e9e !important;
     margin-top: 20px;
   }
-  .col-red{
-    &, & *{
-      color: #C23631!important;
+
+  .col-red {
+
+    &,
+    & * {
+      color: #C23631 !important;
     }
   }
-  .btn-w{
+
+  .btn-w {
     height: 50px;
     font-weight: normal;
     font-size: 22px;
@@ -180,27 +196,30 @@
 
   @media only screen and (max-width: 768px) {
 
-    .select-trc{
+    .select-trc {
       width: 100%;
 
-      &-item{
+      &-item {
         width: 45%;
         height: 78px;
         font-size: 12px;
 
-        div{
+        div {
           margin-left: 106px
         }
-        h1{
+
+        h1 {
           font-size: 20px;
         }
       }
     }
-    .steps-item{
+
+    .steps-item {
       height: 30px;
       line-height: 30px;
     }
-    .btn-w{
+
+    .btn-w {
       font-size: 14px;
       height: 40px;
     }

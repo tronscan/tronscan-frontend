@@ -80,8 +80,12 @@ export default class Home extends Component {
     })
   }
 
+
+
   async loadAccounts() {
-    let { rangeTotal } = await Client.getAccounts();
+    let { rangeTotal } = await Client.getAccounts({
+        limit: 1,
+    });
     this.setState({
       totalAccounts: rangeTotal
     })
@@ -183,6 +187,7 @@ export default class Home extends Component {
     this.load();
     this.loadAccounts();
     this.reconnect();
+    this.loadTps();
     // if(!account.isLoggedIn){
     //     if(Lockr.get('websocket') === 'close' || !Lockr.get('websocket')) {
     //         setWebsocket();
@@ -213,6 +218,18 @@ export default class Home extends Component {
   }
 
 
+  async loadTps() {
+    if(!this.state.blockHeight){
+        let date =  parseInt(new Date().getTime());
+        let info =  await Client.getTps(date);
+        this.setState({
+            maxTps:info.data.maxTps?info.data.maxTps:0,
+            tps:info.data.currentTps?info.data.currentTps:0,
+            blockHeight:info.data.blockHeight?info.data.blockHeight:0,
+        })
+    }
+
+  }
 
   componentWillUnmount() {
     //clearConstellations();
@@ -227,11 +244,14 @@ export default class Home extends Component {
   reconnect() {
     const {wsdata,websocket,setWebsocket} = this.props;
     const info = wsdata.type === 'tps'&& wsdata.data;
-    this.setState({
-      maxTps:info.maxTps?info.maxTps:0,
-      tps:info.currentTps?info.currentTps:0,
-      blockHeight:info.blockHeight?info.blockHeight:0,
-    })
+    if(info.maxTps)  {
+        this.setState({
+            maxTps:info.maxTps?info.maxTps:0,
+            tps:info.currentTps?info.currentTps:0,
+            blockHeight:info.blockHeight?info.blockHeight:0,
+        })
+    }
+
   }
 
   getLogo = () => {

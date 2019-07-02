@@ -217,7 +217,8 @@ class Transactions extends React.Component {
       <Fragment>
        
         {loading && <div className="loading-style" style={{marginTop: '-20px'}}><TronLoader/></div>}
-        <p className="m-0 pt-3" style={{color: '#999999'}}>{tableInfo}</p>
+        <div className="d-flex align-items-center  pt-3 pb-2"> <div className="question-mark mr-2"><i>?</i></div>{tu('event_tip')}</div>
+        <p className="m-0" style={{color: '#999999'}}>{tableInfo}</p>
         <div className="row py-3">
           <div className="col-md-12 event-main">
               <SmartTable bordered={true} loading={loading}

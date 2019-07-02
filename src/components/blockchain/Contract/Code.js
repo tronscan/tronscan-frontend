@@ -1,5 +1,4 @@
 import React from "react";
-import ReactAce from 'react-ace-editor';
 import {CopyText} from "../../common/Copy";
 import {tu, tv} from "../../../utils/i18n";
 import {Client} from "../../../services/api";
@@ -70,8 +69,8 @@ export default class Code extends React.Component {
            {loading && <div className="loading-style" style={{marginTop: '-20px'}}><TronLoader/></div>}
           <div className="row">
             <div className="col-md-12 contract-header">
-              <br/>
-              {/* <div className="pb-3 verified"><i className="fa fa-check-circle mr-1"></i>{tu('contract_code_verified')}}</div> */}
+              {/*<br/>*/}
+              {/*<div className="pb-3 verified"><i className="fa fa-check-circle mr-1"></i>('contract_code_verified')</div> */}
 
               <div className="d-flex justify-content-between">
                 <div className="contract-header__item">
@@ -111,7 +110,7 @@ export default class Code extends React.Component {
           </div> */}
 
           <div className="row mt-3">
-            <div className="col-md-12 ">
+            <div className="col-md-12">
               <div className="d-flex mb-1">
                 <span><i className="fa fa-cogs"></i> {tu('Contract_ABI')}</span>
                 <CopyText text={abi} className="ml-auto ml-1"/>
@@ -121,12 +120,11 @@ export default class Code extends React.Component {
                         readOnly="readonly"
                         value={abi}
                         onChange={ev => this.setState({abi: ev.target.value})}/>
-
             </div>
           </div>
 
           <div className="row mt-3">
-            <div className="col-md-12 ">
+            <div className="col-md-12">
               <div className="d-flex mb-1">
                 <span><i className="fas fa-file-invoice"></i> {tu('Byte_code')}</span>
                 <CopyText text={byteCode} className="ml-auto ml-1"/>
@@ -136,7 +134,6 @@ export default class Code extends React.Component {
                         readOnly="readonly"
                         value={byteCode}
                         onChange={ev => this.setState({byteCode: ev.target.value})}/>
-
             </div>
           </div>
           

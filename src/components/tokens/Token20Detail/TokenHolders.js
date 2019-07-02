@@ -25,6 +25,12 @@ class TokenHolders extends React.Component {
       page: 0,
       total: 0,
       pageSize: 25,
+      exchangeFlag: [
+        {name: 'binance', addressList: {
+          Cold: ['TMuA6YqfCeX8EhbfYEg5y7S4DqzSJireY9', 'TWd4WrZ9wn84f5x1hZhL4DHvk738ns5jwb'],
+          Hot: ['TAUN6FwrnwwmaEqYcckffC7wYmbaS6cBiX']}
+        }
+      ]
     };
   }
 
@@ -43,6 +49,7 @@ class TokenHolders extends React.Component {
   loadTokenHolders = async (page = 1, pageSize = 20) => {
     let {filter} = this.props;
     this.setState({loading: true});
+    let {exchangeFlag} = this.state;
 
     // let {addresses, total} = await Client.getTokenHolders(filter.token, {
     //   sort: '-balance',
@@ -57,6 +64,30 @@ class TokenHolders extends React.Component {
     for (let index in addresses) {
       addresses[index].index = parseInt(index) + 1 + (page-1)*pageSize;
     }
+
+    
+    if(addresses.length){
+      addresses.map(item => {
+        item.tagName = ''
+        exchangeFlag.map(coin => {
+          const typeList = Object.keys(coin.addressList)
+          typeList.map(type => {
+            if(coin.addressList[type].length == 1){
+              if(coin.addressList[type][0] === item.address){
+                item.tagName = `${upperFirst(coin.name)}-${type}`
+              }
+            }else if(coin.addressList[type].length > 1){
+              coin.addressList[type].map((address, index) => {
+                if(address === item.address){
+                  item.tagName = `${upperFirst(coin.name)}-${type} ${index + 1}`
+                }
+              })
+            }
+          })
+        })
+       })
+    }
+    
 
     this.setState({
       page,
@@ -85,6 +116,12 @@ class TokenHolders extends React.Component {
         render: (text, record, index) => {
           return <AddressLink address={record.holder_address}/>
         }
+      },
+      {
+        title: 'Name Tag',
+        dataIndex: 'tagName',
+        key: 'tagName',
+        width: '200px'
       },
       {
         title: upperFirst(intl.formatMessage({id: 'quantity'})),

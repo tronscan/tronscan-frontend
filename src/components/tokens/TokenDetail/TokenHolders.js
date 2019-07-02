@@ -24,7 +24,10 @@ class TokenHolders extends React.Component {
       total: 0,
       pageSize: 25,
       exchangeFlag: [
-        {name: 'binance', addressList: ['TMuA6YqfCeX8EhbfYEg5y7S4DqzSJireY9', 'TAUN6FwrnwwmaEqYcckffC7wYmbaS6cBiX']}
+        {name: 'binance', addressList: {
+          Cold: ['TMuA6YqfCeX8EhbfYEg5y7S4DqzSJireY9', 'TWd4WrZ9wn84f5x1hZhL4DHvk738ns5jwb'],
+          Hot: ['TAUN6FwrnwwmaEqYcckffC7wYmbaS6cBiX']}
+        }
       ]
     };
   }
@@ -60,16 +63,26 @@ class TokenHolders extends React.Component {
     // }
    
 
-    if(addresses.length && addresses[0].name == 'BitTorrent'){
+    if(addresses.length){
       addresses.map(item => {
-        exchangeFlag.map(exchange => {
-          exchange.addressList.map(address => {
-            if(item.address == address){
-              item.ico = exchange.name
+        item.tagName = ''
+        exchangeFlag.map(coin => {
+          const typeList = Object.keys(coin.addressList)
+          typeList.map(type => {
+            if(coin.addressList[type].length == 1){
+              if(coin.addressList[type][0] === item.address){
+                item.tagName = `${upperFirst(coin.name)}-${type}`
+              }
+            }else if(coin.addressList[type].length > 1){
+              coin.addressList[type].map((address, index) => {
+                if(address === item.address){
+                  item.tagName = `${upperFirst(coin.name)}-${type} ${index + 1}`
+                }
+              })
             }
           })
         })
-      })
+       })
     }
     
 
@@ -111,6 +124,12 @@ class TokenHolders extends React.Component {
             <AddressLink address={record.address}/>
           
         }
+      },
+      {
+        title: 'Name Tag',
+        dataIndex: 'tagName',
+        key: 'tagName',
+        width: '200px'
       },
       {
         title: upperFirst(intl.formatMessage({id: 'quantity'})),

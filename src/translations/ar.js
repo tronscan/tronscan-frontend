@@ -1832,11 +1832,12 @@
   "type": "نوع",
   "token_login_no_updated":"حساب تسجيل الدخول غير متوافق مع الناشر ولا يمكن تحديثه",
   "information_is_being_confirmed":"Information is being confirmed, this process may take 10 minutes, please try again later",
-  
   "my_account":"حسابي",
   "delegate_other":"تجميد بواسطة الآخرين",
   "freeze_self":"تجميد نفسي",
   "total_amount":"المبلغ الإجمالي",
-  "unfreeze_time": "وقت الغاء التجميد	",
+  "unfreeze_time":  "  وقت الغاء التجميد ",
+  "interTrx_tip": "المعاملات الداخلية هي عملية يطلق عليها عنوان عام العقد الذكي transfers وينقل العقد الذكي الرمز المميز إلى عنوان آخر.",
+  "event_tip": "الأحداث هي السماح للمبرمج أو موفر الواجهة الخارجية باستخدامه للانتباه إلى عمليات التعاقد والتدقيق.",
 
 };
