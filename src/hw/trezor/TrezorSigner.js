@@ -1,13 +1,9 @@
-import React from "react";
 import TrezorConnect from "trezor-connect";
 import TronWeb from "tronweb";
+import { pickBy, pick } from "lodash";
 
 function toHex(str) {
-  let hex = '';
-  for (let i = 0; i < str.length; i++) {
-    hex += '' + str.charCodeAt(i).toString(16);
-  }
-  return hex;
+  return TronWeb.address.toHex(str);
 }
 
 
@@ -30,7 +26,6 @@ export default class TrezorSigner {
       case "TRANSFERASSETCONTRACT":
         return {
           transfer_asset_contract: {
-            owner_address: toHex(contract.from),
             to_address: TronWeb.address.fromHex(values.to_address),
             asset_name: toHex(contract.token),
             amount: contract.amount,
@@ -94,19 +89,33 @@ export default class TrezorSigner {
           }
         };
 
+        // "parameter": {
+        // "value": {
+        //   "resource": "ENERGY",
+        //     "frozen_duration": 3,
+        //     "frozen_balance": 1000000,
+        //     "receiver_address": "41fa63d2b302d8186abebac68c5ae0344a58aeb5a4",
+        //     "owner_address": "4182dd6b9966724ae2fdc79b416c7588da67ff1b35"
+        // },
+
       case "FREEZEBALANCECONTRACT":
+
+
+
         return {
-          freeze_balance_contract: {
-            owner_address: toHex(contract.ownerAddress),
-            frozen_balance: contract.frozenBalance,
-            frozen_duration: contract.frozenDuration,
-          }
+          freeze_balance_contract: pickBy({
+            frozen_balance: values.frozen_balance,
+            frozen_duration: values.frozen_duration,
+            resource: values.resource === "ENERGY" ? 1 : null,
+            receiver_address: values.receiver_address || null,
+          }, (value) => value !== null),
         };
 
       case "UNFREEZEBALANCECONTRACT":
         return {
           unfreeze_balance_contract: {
-            owner_address: toHex(contract.ownerAddress),
+            resource: values.resource === "ENERGY" ? 1 : 0,
+            ...pick(values, ['receiver_address']),
           }
         };
 
@@ -121,10 +130,9 @@ export default class TrezorSigner {
       case "VOTEWITNESSCONTRACT":
         return {
           vote_witness_contract: {
-            owner_address: toHex(contract.ownerAddress),
-            votes: contract.votes.map(vote => ({
-              vote_address: toHex(vote.voteAddress),
-              vote_count: vote.voteCount,
+            votes: values.votes.map(vote => ({
+              vote_address: TronWeb.address.fromHex(vote.vote_address),
+              vote_count: vote.vote_count,
             })),
           }
         };

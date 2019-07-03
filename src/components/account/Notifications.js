@@ -3,7 +3,6 @@ import {ONE_TRX} from "../../constants";
 import {AddressLink} from "../common/Links";
 import {getNotifyPermission, requestNotifyPermissions, sendNotification} from "../../services/notifications";
 import SweetAlert from "react-bootstrap-sweetalert";
-import {channel} from "../../services/api";
 import {connect} from "react-redux";
 import {reloadWallet} from "../../actions/wallet";
 import {tu} from "../../utils/i18n";
@@ -102,13 +101,13 @@ class Notifications extends React.Component {
     if(wsdata && wsdata.type=== 'transfer'){
      const trx = rebuildList([wsdata.data], 'token_id', 'amount')[0]
 
-      trx.timestamp = trx.date_created
-      trx.tokenName = trx.token_name
-      trx.transactionHash = trx.hash
-      trx.transferFromAddress = trx.owner_address
-      trx.transferToAddress = trx.to_address
-     
-      
+      trx.timestamp = trx.date_created;
+      trx.tokenName = trx.token_name;
+      trx.transactionHash = trx.hash;
+      trx.transferFromAddress = trx.owner_address;
+      trx.transferToAddress = trx.to_address;
+
+
       let amount = trx.amount;
       if (trx.tokenName.toUpperCase() === "TRX") {
         amount = amount / ONE_TRX;
@@ -122,22 +121,21 @@ class Notifications extends React.Component {
         });
       }
 
-      
-      this.setState(state => {
-        const list = [{
-          id: trx.transactionHash,
-          type: "transfer",
-          ...trx,
-        }, ...this.state.notifications.slice(0, 9)]
-        const newtrx = list
-        return {
-          notifications: newtrx
-        }
-      });
+
+      this.setState(state => ({
+        notifications: [
+          {
+            id: trx.transactionHash,
+            type: "transfer",
+            ...trx,
+          },
+          ...state.notifications.slice(0, 9)
+        ]
+      }));
       this.props.reloadWallet();
     }
 
-    //TODO vote Ws 
+    //TODO vote Ws
     // this.listener.on("vote", vote => {
     //   if (vote.candidateAddress === wallet.current.address) {
     //     sendNotification(`Received ${vote.votes} votes from ${vote.voterAddress}`, {
