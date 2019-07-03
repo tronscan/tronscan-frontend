@@ -1848,4 +1848,5 @@ export const messages = {
   "Expected_acquisition": "예상 이익",
   "energy_more": "대역폭 획득= 대역폭 확보를 위해 TRX 동결 / 대역폭 확보를 위해 네트워크에서 동결된 총 TRX",
   "bandwidth_more": "에너지 획득 = 에너지 획득을 위해 TRX 동결/에너지 획들을 위해 전체 네트워크에서 동결된 총 TRX 수 * 총 에너지 제한",
+  "table_info_big": "처음 10,000 개의 데이터 만 표시됨",
 };

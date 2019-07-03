@@ -1846,5 +1846,5 @@ export const messages = {
   "Expected_acquisition": "獲得見込み",
   "energy_more": "獲得したバンド幅＝エネルギーを獲得するために凍結したTRX/ネット全体がバンド幅を獲得するために凍結したTRX総額",
   "bandwidth_more": "獲得したエネルギー＝エネルギーを獲得するために凍結したTRX/ネット全体がエネルギーを獲得するために凍結したTRX総額*エネルギー総額制限",
-
+  "table_info_big": "最初の10,000個データの表示されています",
 }

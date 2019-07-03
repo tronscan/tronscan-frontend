@@ -39,7 +39,7 @@ class Accounts extends Component {
   }
 
   loadAccounts = async (page = 1, pageSize = 20) => {
-    const { exchangeFlag } = this.state
+    // const { exchangeFlag } = this.state
 
     this.setState({loading: true});
 
@@ -48,6 +48,7 @@ class Accounts extends Component {
       limit: pageSize,
       start: (page - 1) * pageSize
     })
+    let exchangeFlag = await Client.getTagNameList()
 
     accounts.map(item => {
       item.tagName = ''
