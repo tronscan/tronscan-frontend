@@ -525,11 +525,11 @@ class TokenDetail extends React.Component {
                         </Switch>
                       </div>
                     </div>
-                      {
+                      {/*
                           tabName === 'transfers' ?
                               <CsvExport downloadURL={csvurl}/>
                               : ''
-                      }
+                      */}
                   </div>
                   }
                 </div>

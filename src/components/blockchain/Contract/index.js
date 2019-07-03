@@ -315,10 +315,10 @@ class SmartContract extends React.Component {
                           </Switch>
                         </div>
                       </div>
-                        {
+                        {/*
                             ['', 'internal-transactions'].indexOf(tabName) !== -1 ?
                             <CsvExport downloadURL={csvurl}/>: ''
-                        }
+                        */}
                     </Fragment>
               }
             </div>
