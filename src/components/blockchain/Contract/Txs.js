@@ -20,6 +20,7 @@ import DateRange from "../../common/DateRange";
 import {Tooltip} from 'antd'
 import moment from 'moment';
 import {DatePicker} from "antd/lib/index";
+import qs from 'qs'
 
 const RangePicker = DatePicker.RangePicker;
 
@@ -51,7 +52,7 @@ class Transactions extends React.Component {
 
   loadTransactions = async (page = 1, pageSize = 20) => {
 
-    let {filter, intl, isInternal = false} = this.props;
+    let {filter, intl, isInternal = false, getCsvUrl} = this.props;
 
     this.setState(
         {
@@ -60,14 +61,19 @@ class Transactions extends React.Component {
             pageSize: pageSize,
         }
     );
-
-    let transactions = await Client.getContractTxs({
+    const params = {
       sort: '-timestamp',
-      limit: pageSize,
-      start: (page - 1) * pageSize,
       start_timestamp: this.start,
       end_timestamp: this.end,
       ...filter,
+    }
+    const query = qs.stringify({ format: 'csv',...params})
+    getCsvUrl(`${'http://52.15.68.74:10000'}/api/contracts/transaction?${query}`)
+
+    let transactions = await Client.getContractTxs({
+      limit: pageSize,
+      start: (page - 1) * pageSize,
+      ...params,
     });
 
     transactions.data.map(item => {

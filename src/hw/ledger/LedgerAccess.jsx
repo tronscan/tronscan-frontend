@@ -6,6 +6,7 @@ import {delay} from "../../utils/promises";
 import {PulseLoader} from "react-spinners";
 import {loginWithLedger} from "../../actions/app";
 import {tu, t} from "../../utils/i18n";
+import {withTronWeb} from "../../utils/tronWeb";
 
 @connect(
   null,
@@ -14,6 +15,7 @@ import {tu, t} from "../../utils/i18n";
   }
 )
 @withRouter
+@withTronWeb
 export default class LedgerAccess extends Component {
 
   constructor() {
@@ -60,7 +62,10 @@ export default class LedgerAccess extends Component {
   openWallet = () => {
     let {address} = this.state;
     let {history, onClose} = this.props;
-    this.props.loginWithLedger(address);
+    const tronWebLedger = this.props.tronWeb();
+    const defaultAddress = {hex: tronWebLedger.address.toHex(address), base58: address}
+    tronWebLedger.defaultAddress = defaultAddress
+    this.props.loginWithLedger(address, tronWebLedger);
 
     history.push("/account");
 

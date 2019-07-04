@@ -31,6 +31,7 @@ import { Progress, Tooltip } from 'antd'
 import BigNumber from "bignumber.js"
 import {HrefLink} from "../../common/Links";
 import {QuestionMark} from "../../common/QuestionMark";
+import {CsvExport} from "../../common/CsvExport";
 BigNumber.config({ EXPONENTIAL_AT: [-20, 30] });
 
 
@@ -55,6 +56,7 @@ class Address extends React.Component {
       stats: {
         transactions: 0,
       },
+      csvurl: "",
       media: null,
       tabs: {
         transfers: {
@@ -240,7 +242,7 @@ class Address extends React.Component {
             // icon: "fa fa-exchange-alt",
             path: "/transfers",
             label: <span>{tu("transfers")}</span>,
-            cmp: () => <TransfersAll id={{address: id}} address/>
+            cmp: () => <TransfersAll id={{address: id}} getCsvUrl={(csvurl) => this.setState({csvurl})} address/>
           },
           // transfers20: {
           //   id: "transfers20",
@@ -254,14 +256,14 @@ class Address extends React.Component {
             // icon: "fas fa-handshake",
             path: "/transactions",
             label: <span>{tu("transactions")}</span>,
-            cmp: () => <NewTransactions filter={{address: id}} address/>
+            cmp: () => <NewTransactions getCsvUrl={(csvurl) => this.setState({csvurl})} filter={{address: id}} address/>
           },
           intransactions: {
             id: "intransactions",
             // icon: "fas fa-handshake",
             path: "/internal-transactions",
             label: <span>{tu("internal_transactions")}</span>,
-            cmp: () => <Transactions filter={{address: id}} isinternal />
+            cmp: () => <Transactions getCsvUrl={(csvurl) => this.setState({csvurl})} filter={{address: id}} isinternal />
           },
 
           blocks_produced: {
@@ -316,7 +318,7 @@ class Address extends React.Component {
             // icon: "fa fa-exchange-alt",
             path: "/transfers",
             label: <span>{tu("transfers")}</span>,
-            cmp: () => <TransfersAll id={{address: id}} address/>
+            cmp: () => <TransfersAll getCsvUrl={(csvurl) => this.setState({csvurl})} id={{address: id}} address/>
           },
           // transfers20: {
           //   id: "transfers20",
@@ -331,14 +333,14 @@ class Address extends React.Component {
             path: "/transactions",
             label: <span>{tu("transactions")}</span>,
             isHidden: true,
-            cmp: () => <NewTransactions filter={{address: id}} address/>
+            cmp: () => <NewTransactions getCsvUrl={(csvurl) => this.setState({csvurl})} filter={{address: id}} address/>
           },
           intransactions: {
             id: "intransactions",
             // icon: "fas fa-handshake",
             path: "/internal-transactions",
             label: <span>{tu("internal_transactions")}</span>,
-            cmp: () => <Transactions filter={{address: id}} isinternal address/>
+            cmp: () => <Transactions getCsvUrl={(csvurl) => this.setState({csvurl})} filter={{address: id}} isinternal address/>
           },
           votes: {
             id: "votes",
@@ -459,17 +461,21 @@ class Address extends React.Component {
 
   render() {
 
-    let {totalPower, address, tabs, stats, loading, blocksProduced, media, candidates, rank, totalVotes, netRemaining, bandWidthPercentage, energyRemaining, energyPercentage, TRXBalanceTotal,availableBandWidthPercentage,availableEnergyPercentage} = this.state;
+    let {totalPower, address, tabs, stats, 
+        loading, blocksProduced, media, candidates, 
+        rank, totalVotes, netRemaining, bandWidthPercentage, 
+        energyRemaining, energyPercentage, TRXBalanceTotal,
+        availableBandWidthPercentage,availableEnergyPercentage, csvurl} = this.state;
     let {match,intl} = this.props;
     let addr = match.params.id;
-    let uploadURL = API_URL + "/api/v2/node/info_upload?address=" + match.params.id
+
 
     if (!address) {
       return null;
     }
 
 
-
+    let uploadURL = API_URL + "/api/v2/node/info_upload?address=" + match.params.id
     let pathname = this.props.location.pathname;
     let tabName = ''
     let rex = /[a-zA-Z0-9]{34}\/?([a-zA-Z\\-]+)$/
@@ -749,13 +755,10 @@ class Address extends React.Component {
                         </div>
 
                       </div>
-                      {
-                        tabName === '' ?
-                            <div style={{marginTop: 20, float: 'right'}}><i size="1" style={{fontStyle: 'normal'}}>[
-                              Download <a href={uploadURL} style={{color: '#C23631'}}><b>CSV Export</b></a>&nbsp;<span
-                                  className="glyphicon glyphicon-download-alt"></span> ]</i>&nbsp;
-                            </div> : null
-                      }
+                      {/*
+                        ['transfers', 'transactions', 'internal-transactions'].indexOf(tabName) !== -1?
+                        <CsvExport downloadURL={csvurl}/>: ''
+                      */}
 
                     </Fragment>
               }

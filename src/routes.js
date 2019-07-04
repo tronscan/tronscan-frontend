@@ -633,11 +633,11 @@ export const routes = [
           icon: "fa fa-recycle",
           label: "link_test_fauct"
         },
-        {
-          url: "https://dapphouse.org",
-          icon: "fa fa-archive",
-          label: "DApps"
-        },
+        // {
+        //   url: "https://dapphouse.org",
+        //   icon: "fa fa-archive",
+        //   label: "DApps"
+        // },
         {
           path: "/markets",
           label: "markets",
