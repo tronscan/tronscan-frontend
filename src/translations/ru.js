@@ -748,7 +748,7 @@ export const messages = {
   "using_ledger_to_sign_transactions_message_0": "Убедитесь в том, что Ledger подключен, а приложение TRON открыто для подписания транзакций с использованием Ledger при использовании Tronscan.",
   "using_ledger_to_sign_transactions_message_1": "Tronscan покажет всплывающее окно с деталями транзакции, когда потребуется подпись транзакции. Подписи требуются, когда вы голосуете, отправляете TRX, меняете имя аккаунта и т.д.",
   "ledger_note": "Заметка",
-  "ledger_note_message_1": "пока поддерживает только Ledger Nano S.",
+  "ledger_note_message_1": "пока поддерживает только Ledger Nano S,Ledger Nano X,Ledger Blue.",
   "ledger_note_message_2": "используйте Chrome Explorer.",
   "ledger_note_message_3": "Мы поддерживаем: передачу токенов TRX и TRC10, передача токена TRC20, замораживание и размораживание TRX, голосование, настройку имени",
   "ledger_note_message_4": "В настоящее время недоступны следующие функции: размораживание токенов TRC10, создание токена, trxmarket, подачу заявки на SR, обановление Github, создание торговых пар, ввод и снятие капитала.",

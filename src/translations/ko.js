@@ -738,7 +738,7 @@ export const messages = {
   "using_ledger_to_sign_transactions_message_0": "Ledger과 TRON 블록체인 브라우저를 이용하여 거래 서명을 진행 과정 중, Ledger 링크를 끊지 마시고, TRON APP를 열어두세요.",
   "using_ledger_to_sign_transactions_message_1": "거래 서명 시 블록체인 브라우저에 거래 정보 표시 파업을 해야 하며. 투표, TRX 발송, 계정 이름 변경들의 과정에서 모두 거래 서명이 필요합니다.",
   "ledger_note": "주의",
-  "ledger_note_message_1": "현재는 ledger nano S 만 지원됩니다.",
+  "ledger_note_message_1": "현재는 Ledger Nano S,Ledger Nano X,Ledger Blue 만 지원됩니다.",
   "ledger_note_message_2": "구글 chrome 브라우저 사용",
   "ledger_note_message_3": "지원 기능: TRX 전송, TRC 10 토큰 전송, TRC 20 토큰 전송, TRX 동결, TRX 해동， 투표, 계정 이름 설정.",
   "ledger_note_message_4": "현재 지원 불가능한 기능 ： 토큰 생성, 거래소 거래, 슈퍼 대표 신청, 락업한 토큰 해제, 블록 상금 수령, github링크 업데이트, 거래 조합 생성, 거래 조합 자본 투자, 거래조합 자본 회수.",
