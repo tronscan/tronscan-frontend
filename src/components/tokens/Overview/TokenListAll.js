@@ -27,7 +27,7 @@ class TokenList extends Component {
       filter: {
         order: 'desc',
         filter: 'all',
-        sort: 'marketcap',
+        sort: 'volume24hInTrx',
         order_current: "descend"
       },
       pagination: {
@@ -138,7 +138,7 @@ class TokenList extends Component {
       pagination: pager,
       filter: {
         ...this.state.filter,
-        sort: sortMap[sorter.columnKey] || 'marketcap',
+        sort: sortMap[sorter.columnKey] || 'volume24hInTrx',
         order: map[sorter.order] || 'desc',
         order_current: sorter.order
       }
