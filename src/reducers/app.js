@@ -1,6 +1,6 @@
 import Lockr from "lockr";
 import TronWeb from 'tronweb';
-// import TronStationSDK from 'tron-station-sdk';
+import TronStationSDK from 'tron-station-sdk';
 import {
   DISABLE_FLAG,
   ENABLE_FLAG,
@@ -179,7 +179,7 @@ export function appReducer(state = initialState, action) {
           isLoggedIn: true,
           address: pkToAddress(action.privateKey),
           tronWeb: tronWeb,
-          // tronStationSDK: new TronStationSDK(tronWeb, true)
+          tronStationSDK: new TronStationSDK(tronWeb, true)
         },
         wallet: {
           type: ACCOUNT_PRIVATE_KEY,
@@ -220,7 +220,7 @@ export function appReducer(state = initialState, action) {
           isLoggedIn: true,
           address: action.address,
           tronWeb:action.tronWeb,
-          // tronStationSDK: new TronStationSDK(action.tronWeb, true)
+          tronStationSDK: new TronStationSDK(action.tronWeb, true)
         },
         wallet: {
           type: ACCOUNT_TRONLINK,
@@ -239,7 +239,7 @@ export function appReducer(state = initialState, action) {
           isLoggedIn: true,
           address: action.address,
           tronWeb:action.tronWeb,
-          // tronStationSDK: new TronStationSDK(action.tronWeb, true)
+          tronStationSDK: new TronStationSDK(action.tronWeb, true)
         },
         wallet: {
           type: ACCOUNT_LEDGER,

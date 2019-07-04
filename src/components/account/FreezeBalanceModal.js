@@ -56,8 +56,8 @@ export default class FreezeBalanceModal extends React.PureComponent {
 
   componentDidMount() {
     this.props.reloadWallet();
-    // this.getFrozenEnergy(1)
-    // this.getFrozenBandwidth(1)
+    this.getFrozenEnergy(1)
+    this.getFrozenBandwidth(1)
     
   }
   async getdata(){
@@ -92,7 +92,7 @@ export default class FreezeBalanceModal extends React.PureComponent {
       amount,
     }, () => {
       if(amount){
-        // this.getCalculat()
+        this.getCalculat()
       }else{
         this.setState({getcalculate: 0})
       }
@@ -204,7 +204,7 @@ export default class FreezeBalanceModal extends React.PureComponent {
     this.setState({
         selectedResource: Number(value)
     },() => {
-      // this.getCalculat()
+      this.getCalculat()
     });
   };
   setReceiverAddress = (address) => {
