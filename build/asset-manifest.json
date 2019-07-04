@@ -25,7 +25,7 @@
   "TRONRating.js": "static/js/TRONRating.a9b70cbe.chunk.js",
   "Token20Detail.js": "static/js/Token20Detail.e93e45da.chunk.js",
   "TokenDetail.js": "static/js/TokenDetail.3bad3c1e.chunk.js",
-  "TokenList.js": "static/js/TokenList.f400858a.chunk.js",
+  "TokenList.js": "static/js/TokenList.fdc85412.chunk.js",
   "TokenOverview.js": "static/js/TokenOverview.df5c5d07.chunk.js",
   "TokensCreate.js": "static/js/TokensCreate.71336a80.chunk.js",
   "TransactionViewer.js": "static/js/TransactionViewer.47885c50.chunk.js",
@@ -36,7 +36,7 @@
   "WalletWizard.js": "static/js/WalletWizard.377c8ca2.chunk.js",
   "bootstrap.css": "d59729439a203fc474f5677b8d18d8bb.css",
   "info.svg": "ce0369650e23ec7e420a8af6750d8a87.svg",
-  "languages.js": "static/js/languages.6966c74d.chunk.js",
+  "languages.js": "static/js/languages.4e99e919.chunk.js",
   "main.css": "static/css/main.924b6361.css",
   "main.js": "static/js/main.5f1ce030.js",
   "static/media/Block-Producer-Chart.png": "static/media/Block-Producer-Chart.a94b882b.png",
@@ -73,5 +73,5 @@
   "static/media/tron-logo.jpg": "static/media/tron-logo.f142f640.jpg",
   "static/media/tronscan_wechat.png": "static/media/tronscan_wechat.1225c09a.png",
   "static/media/wallet-preview.png": "static/media/wallet-preview.85fad9b8.png",
-  "vendors.js": "static/js/vendors.3295ab23.js"
+  "vendors.js": "static/js/vendors.fc6ad808.js"
 }
