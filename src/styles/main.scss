@@ -4207,3 +4207,29 @@ delete {
 .top-0{
   top: 0;
 }
+
+.contract-compiler {
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+
+  &-console{
+    width: 800px;
+    overflow-y: scroll;
+    height: 100px;
+    background: #000;
+  }
+  &-button{
+    display: flex;
+    justify-content: center;
+    //align-items: center;
+    margin-top: 20px;
+  }
+  &-console-log{
+    border-left: 2px solid;
+    padding: 0px 0px 0px 10px;
+    white-space: pre-wrap;
+    font-family: SFMono-Regular, Menlo, Monaco, Consolas;
+    font-size: x-small;
+  }
+}
