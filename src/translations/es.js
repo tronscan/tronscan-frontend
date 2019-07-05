@@ -1351,6 +1351,7 @@ export const messages = {
   "propose_24": "Límite de energía promedia",
   "propose_25": "Actualizar costo para dar más permiso de la cuenta",
   "propose_26": "Recomienda que modificar costo de multi-firma",
+  "propose_27": "Propose to support the new features of TRON Virtual Machine 0.5.4",
   "propose_unactivate": "No abierto",
   "propose_minute": "min",
   "propose_not_allowed": "No permitido",

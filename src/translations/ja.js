@@ -1292,6 +1292,7 @@ export const messages = {
   "propose_24": "平均エネルギー上限",
   "propose_25": "アカウント権限を更新する費用",
   "propose_26": "複数署名を変更することを提案する",
+  "propose_27": "Propose to support the new features of TRON Virtual Machine 0.5.4",
   "propose_minute": "min",
   "propose_unactivate": "開かない",
   "propose_not_allowed": "不許可です",

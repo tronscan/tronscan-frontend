@@ -66,6 +66,9 @@ class Proposal extends React.Component {
             //'getTotalEnergyAverageUsage',
             'getUpdateAccountPermissionFee',
             'getMultiSignFee',
+            '',
+            '',
+            'getAllowTvmConstantinople'
         ];
         for(let item in proposal){
             for(let j in proposal[item]['paramters']){
@@ -345,6 +348,18 @@ class Proposal extends React.Component {
                             <span>TRX</span>
                         </div>
                     }
+                    {
+                        record.key == 'getAllowTvmConstantinople' &&
+                        <div>
+                            <span>{ intl.formatMessage({id: 'propose_27'})}</span>
+                            <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
+                            {
+                                text? <span>{tu('propose_allowed')}</span>:
+                                    <span>{tu('propose_not_allowed')}</span>
+                            }
+                        </div>
+                    }
+
                 </div>
             }
         },

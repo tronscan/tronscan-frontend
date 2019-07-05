@@ -1293,6 +1293,7 @@ export const messages = {
   "propose_24": "평균 에너지 상한선",
   "propose_25": "계정 권한 업데이트 비용",
   "propose_26": "다중 서명 비용 수정 제안",
+  "propose_27": "Propose to support the new features of TRON Virtual Machine 0.5.4",
   "propose_minute": "분",
   "propose_unactivate": "열리지 않음",
   "propose_not_allowed": "허락되지 않음",
