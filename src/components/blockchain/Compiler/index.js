@@ -10,6 +10,7 @@ import MonacoEditor from 'react-monaco-editor';
 import {tu} from "../../../utils/i18n";
 import CompilerConsole from "./CompilerConsole";
 import CompilerJsoninfo from "./CompilerJsonInfo";
+import VerifyContractCode from "./VerifyContractCode";
 import { Base64 } from 'js-base64';
 import xhr from "axios/index";
 import SweetAlert from "react-bootstrap-sweetalert";
@@ -273,7 +274,7 @@ contract TRONAce is SafeMath,Ownable{
     event Unlock(address addr, uint256 value);
 }`,
             filter: {
-                direction:'compiler'
+                direction:'compiler1'
             },
             CompileStatus:[],
             modal: null,
@@ -382,7 +383,7 @@ contract TRONAce is SafeMath,Ownable{
                 compileLoading: false
             });
             if(data.errmsg){
-                if(typeof data.errmsg == 'string'){
+                if(typeof data.errmsg === 'string'){
                     console.log('data.errmsg',data.errmsg)
                     let errorData = [{
                         type: "error",
@@ -500,7 +501,7 @@ contract TRONAce is SafeMath,Ownable{
                                             </div>
                                             :
                                             <div>
-                                                合约验证
+                                                <VerifyContractCode/>
                                             </div>
                                     }
 

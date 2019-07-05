@@ -1884,6 +1884,9 @@ export const messages = {
    ##################################################################################
   */
   "contract_compiler":"合约部署",
+  "please_enter_address": 'Please enter contract address',
+  "please_enter_name": 'Please enter contract name',
+  "please_enter_code": 'Please enter contract Code',
 
 
 };
