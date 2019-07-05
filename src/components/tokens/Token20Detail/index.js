@@ -19,6 +19,8 @@ import {Link} from "react-router-dom";
 import {some, toLower} from "lodash";
 import xhr from "axios/index";
 import _ from "lodash";
+import {CsvExport} from "../../common/CsvExport";
+
 
 class Token20Detail extends React.Component {
 
@@ -32,6 +34,7 @@ class Token20Detail extends React.Component {
       tabs: [],
       buyAmount: 0,
       alert: null,
+      csvurl: ''
     };
   }
 
@@ -69,7 +72,7 @@ class Token20Detail extends React.Component {
           icon: "",
           path: "/transfers",
           label: <span>{tu("token_transfers")}</span>,
-          cmp: () => <Transfers filter={{token: address}} token={token}/>
+          cmp: () => <Transfers filter={{token: address}} getCsvUrl={(csvurl) => this.setState({csvurl})} token={token}/>
         },
         {
           id: "holders",
@@ -356,8 +359,13 @@ class Token20Detail extends React.Component {
   render() {
 
     let {match, wallet} = this.props;
-    let {token, tabs, loading, buyAmount, alert} = this.state;
-
+    let {token, tabs, loading, buyAmount, alert, csvurl} = this.state;
+    let pathname = this.props.location.pathname;
+    let tabName = ''
+    let rex = /[a-zA-Z0-9]{34}\/?([a-zA-Z\\-]+)$/
+    pathname.replace(rex, function (a, b) {
+        tabName = b
+    })
     return (
         <main className="container header-overlap token_black mc-donalds-coin">
           {alert}
@@ -429,6 +437,11 @@ class Token20Detail extends React.Component {
                         </Switch>
                       </div>
                     </div>
+                      {/*
+                          tabName === 'transfers' ?
+                              <CsvExport downloadURL={csvurl}/>
+                              : ''
+                      */}
                   </div>
                   }
                 </div>

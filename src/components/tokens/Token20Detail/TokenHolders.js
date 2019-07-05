@@ -5,7 +5,7 @@ import {Client} from "../../../services/api";
 import SmartTable from "../../common/SmartTable.js"
 import {FormattedNumber, injectIntl} from "react-intl";
 import {TronLoader} from "../../common/loaders";
-import {upperFirst} from "lodash";
+import {upperFirst, lowerCase} from "lodash";
 import xhr from "axios/index";
 import {API_URL, ONE_TRX} from "../../../constants";
 import {toastr} from 'react-redux-toastr'
@@ -25,12 +25,6 @@ class TokenHolders extends React.Component {
       page: 0,
       total: 0,
       pageSize: 25,
-      exchangeFlag: [
-        {name: 'binance', addressList: {
-          Cold: ['TMuA6YqfCeX8EhbfYEg5y7S4DqzSJireY9', 'TWd4WrZ9wn84f5x1hZhL4DHvk738ns5jwb'],
-          Hot: ['TAUN6FwrnwwmaEqYcckffC7wYmbaS6cBiX']}
-        }
-      ]
     };
   }
 
@@ -49,7 +43,6 @@ class TokenHolders extends React.Component {
   loadTokenHolders = async (page = 1, pageSize = 20) => {
     let {filter} = this.props;
     this.setState({loading: true});
-    let {exchangeFlag} = this.state;
 
     // let {addresses, total} = await Client.getTokenHolders(filter.token, {
     //   sort: '-balance',
@@ -65,7 +58,7 @@ class TokenHolders extends React.Component {
       addresses[index].index = parseInt(index) + 1 + (page-1)*pageSize;
     }
 
-    
+    let exchangeFlag = await Client.getTagNameList()
     if(addresses.length){
       addresses.map(item => {
         item.tagName = ''
@@ -75,11 +68,17 @@ class TokenHolders extends React.Component {
             if(coin.addressList[type].length == 1){
               if(coin.addressList[type][0] === item.address){
                 item.tagName = `${upperFirst(coin.name)}-${type}`
+                if(lowerCase(coin.name) === 'binance'){
+                  item.ico = lowerCase(coin.name)
+                }
               }
             }else if(coin.addressList[type].length > 1){
               coin.addressList[type].map((address, index) => {
                 if(address === item.address){
                   item.tagName = `${upperFirst(coin.name)}-${type} ${index + 1}`
+                  if(lowerCase(coin.name) === 'binance'){
+                    item.ico = lowerCase(coin.name)
+                  }
                 }
               })
             }

@@ -194,7 +194,7 @@ class Tokeninfo extends React.Component {
           <div className="info-wrap">
             <div className="item">
               <p>
-                {transcationObj.id.includes(selectData.id) && (
+                {/* {transcationObj.id.includes(selectData.id) && (
                   <Popover content={content} title="">
                     <img
                       src={require("../../../../../images/fire.svg")}
@@ -207,7 +207,7 @@ class Tokeninfo extends React.Component {
                       alt="fire"
                     />
                   </Popover>
-                )}
+                )} */}
                 <span>{selectData.fShortName}</span> / {selectData.sShortName}
               </p>
               <p>
