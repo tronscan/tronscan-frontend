@@ -58,6 +58,7 @@
     "history": "^4.7.2",
     "hover.css": "^2.3.1",
     "html-webpack-plugin": "2.29.0",
+    "htmr": "^0.8.4",
     "instascan": "^1.0.0",
     "jdenticon": "^2.1.0",
     "jest": "20.0.4",

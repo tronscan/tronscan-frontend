@@ -4231,5 +4231,17 @@ delete {
     white-space: pre-wrap;
     font-family: SFMono-Regular, Menlo, Monaco, Consolas;
     font-size: x-small;
+    margin-bottom: 0;
+  }
+  &-console-info{
+    display: inline-block;
+    .info-btn{
+      border: 0.1px solid white;
+      border-radius: 5px;
+      background: rgba(255,255,255,0.3);
+      cursor: pointer;
+      padding: 0px 10px 0px 10px;
+      margin-left: 10px;
+    }
   }
 }
