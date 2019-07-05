@@ -1308,6 +1308,7 @@ export const messages = {
   "propose_24": "Средний предел энергии",
   "propose_25": "Плата за обновление разрешения учетной записи",
   "propose_26": "Предлагаю изменить плату за мультиподпись",
+  "propose_27": "Propose to support the new features of TRON Virtual Machine 0.5.4",
   "propose_minute": "мин",
   "propose_unactivate": "Не активирован",
   "propose_not_allowed": "Не разрешено",

@@ -1325,6 +1325,7 @@ export const messages = {
   "propose_24": "平均能量上限",
   "propose_25": "提议修改更新账户权限的费用",
   "propose_26": "提议修改多重签名的费用",
+  "propose_27": "提议支持波场虚拟机0.5.4的新功能",
   "propose_minute": "分钟",
   "propose_unactivate": "未开启",
   "propose_not_allowed": "不允许",

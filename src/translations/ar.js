@@ -1293,6 +1293,7 @@
   "propose_24": "الحد الأعلى لمتوسط الطاقة",
   "propose_25": "رسوم ضبط تحديث إمتيازات الحساب",
   "propose_26": "يوصى بتعديل تكلفة التوقيعات المتعددة",
+  "propose_27": "Propose to support the new features of TRON Virtual Machine 0.5.4",
   "propose_minute": "دقيقة",
   "propose_unactivate": "غير مفتوح",
   "propose_not_allowed": "غير مسموح",
