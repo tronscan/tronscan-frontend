@@ -1896,4 +1896,7 @@ export const messages = {
 
   "interTrx_tip": "Internal Transactions is an operation which a general address calls a Smart Contract， and the Smart Contract transfers token to other address.",
   "event_tip": "Events is to let the programmer or external interface provider use it to pay attention to contract operations and audits.",
+
+  /* 2019-07-06*/
+  "trc20_free_orders":"0 trading fee for all orders"
 };

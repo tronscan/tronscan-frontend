@@ -1889,5 +1889,7 @@ export const messages = {
 
   "interTrx_tip": "Transacciones internas es una operación que una dirección general llama un Contrato inteligente, y el Contrato inteligente transfiere el token a otra dirección.",
   "event_tip": "Los eventos son para permitir que el programador o el proveedor de la interfaz externa lo utilicen para prestar atención a las operaciones y auditorías del contrato.",
+  /* 2019-07-06*/
+  "trc20_free_orders":"0 trading fee for all orders"
 
 };

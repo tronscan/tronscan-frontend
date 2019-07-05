@@ -1840,4 +1840,7 @@ export const messages = {
 
   "interTrx_tip": "내부 트랜잭션은 일반 주소가 스마트 계약을 호출하고 스마트 계약이 토큰을 다른 주소로 전송하는 작업입니다.",
   "event_tip": "이벤트는 프로그래머 또는 외부 인터페이스 제공 업체가 계약 작업 및 감사에주의를 기울일 수있게하는 것입니다.",
+
+  /* 2019-07-06*/
+  "trc20_free_orders":"0 trading fee for all orders"
 };
