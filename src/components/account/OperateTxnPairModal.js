@@ -102,63 +102,63 @@ class OperateTxnPairModal extends React.PureComponent{
             <div>
 
                 <Modal isOpen={true} toggle={this.cancel} fade={false} size="md" className="modal-dialog-centered">
-            <ModalHeader className="text-center" toggle={this.cancel}>
-                {inject? tu("capital_injection"):tu("capital_withdrawal")}
-            </ModalHeader>
-            <ModalBody>
-                <div className="row">
-                    <div className="col-md-12">
-                        {inject? <label>{tu("choose_a_Token_for_capital_injection")}</label>:<label>{tu("choose_a_Token_for_capital_withdrawal")}</label>}
-                        <select className="custom-select"
-                                defaultValue="TRX"
-                                onChange={(e) => {this.tokenIdChange(e.target.value)}}
-                        >
-                            {
-                                //tokenId?"":option_t("select_the_name_of_the_Token")
-                            }
-                            {
-                                // exchangeToken.map((token, index) => {
-                                //     return (
-                                //         <option key={index} value={token}>{token}</option>
-                                //     )
-                                // })
-                                <option value="TRX">TRX</option>
-                            }
-                        </select>
-                    </div>
-                </div>
-                <div className="row mt-3">
-                    <div className="col-md-12">
-                        {inject? <label>{tu("injection_amount")}</label>:<label>{tu("withdrawal_amount")}</label>}
-                        <input className={"form-control text-center " + ((tokenQuant.length !== 0 && !isValid) ? " is-invalid" : "")}
-                               type="text"
-                               placeholder={intl.formatMessage({id: 'enter_the_amount'})}
-                               defaultValue={tokenQuant}
-                               onInput={(ev) => this.setState({tokenQuant: ev.target.value})}/>
-                        <div className="invalid-feedback text-center text-danger">
-                            {errorMessage}
+                    <ModalHeader className="text-center" toggle={this.cancel}>
+                        {inject? tu("capital_injection"):tu("capital_withdrawal")}
+                    </ModalHeader>
+                    <ModalBody>
+                        <div className="row">
+                            <div className="col-md-12">
+                                {inject? <label>{tu("choose_a_Token_for_capital_injection")}</label>:<label>{tu("choose_a_Token_for_capital_withdrawal")}</label>}
+                                <select className="custom-select"
+                                        defaultValue="TRX"
+                                        onChange={(e) => {this.tokenIdChange(e.target.value)}}
+                                >
+                                    {
+                                        //tokenId?"":option_t("select_the_name_of_the_Token")
+                                    }
+                                    {
+                                        // exchangeToken.map((token, index) => {
+                                        //     return (
+                                        //         <option key={index} value={token}>{token}</option>
+                                        //     )
+                                        // })
+                                        <option value="TRX">TRX</option>
+                                    }
+                                </select>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div className="pt-4">
-                    <p className="text-center">
-                        {
-                            inject?
-                                <button
-                                    disabled={disabled || !isValid}
-                                    className="btn btn-success"
-                                    style={{width:'100%'}}
-                                    onClick={this.inject}>{tu("capital_injection")}</button>:
-                                <button
-                                    disabled={this.state.tokenQuant === '' ||  this.state.tokenQuant > exchange.second_token_balance - dealPairTrxLimit}
-                                    className="btn btn-warning"
-                                    style={{width:'100%'}}
-                                    onClick={this.withdraw}>{tu("capital_withdrawal")}</button>
-                        }
-                    </p>
-                </div>
-            </ModalBody>
-        </Modal>
+                        <div className="row mt-3">
+                            <div className="col-md-12">
+                                {inject? <label>{tu("injection_amount")}</label>:<label>{tu("withdrawal_amount")}</label>}
+                                <input className={"form-control text-center " + ((tokenQuant.length !== 0 && !isValid) ? " is-invalid" : "")}
+                                       type="text"
+                                       placeholder={intl.formatMessage({id: 'enter_the_amount'})}
+                                       defaultValue={tokenQuant}
+                                       onInput={(ev) => this.setState({tokenQuant: ev.target.value})}/>
+                                <div className="invalid-feedback text-center text-danger">
+                                    {errorMessage}
+                                </div>
+                            </div>
+                        </div>
+                        <div className="pt-4">
+                            <p className="text-center">
+                                {
+                                    inject?
+                                        <button
+                                            disabled={disabled || !isValid}
+                                            className="btn btn-success"
+                                            style={{width:'100%'}}
+                                            onClick={this.inject}>{tu("capital_injection")}</button>:
+                                        <button
+                                            disabled={this.state.tokenQuant === '' ||  this.state.tokenQuant > exchange.second_token_balance - dealPairTrxLimit}
+                                            className="btn btn-warning"
+                                            style={{width:'100%'}}
+                                            onClick={this.withdraw}>{tu("capital_withdrawal")}</button>
+                                }
+                            </p>
+                        </div>
+                    </ModalBody>
+                </Modal>
             </div>
 
 

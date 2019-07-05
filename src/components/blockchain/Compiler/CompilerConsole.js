@@ -25,6 +25,7 @@ class CompilerConsole extends React.Component {
     render() {
         let {loading, html, color} = this.state;
         let { CompileStatus } = this.props;
+        console.log('CompileStatus',CompileStatus)
         return (
            <div>
                {CompileStatus.map((log, i) => (
@@ -33,8 +34,7 @@ class CompilerConsole extends React.Component {
                            log.type == "success" && log.class == "compile"?
                                <p  className="contract-compiler-console-log"
                                    style={{color: color[log.type]}}>
-                                   Compiled success: Contract
-                                   {log.contractName}
+                                   Compiled success: Contract {log.contract.contractName} &nbsp;
                                    <CompilerJsoninfo title="Show ABI" json={JSON.stringify(log.contract.abi)} />
                                    <CompilerJsoninfo title="Show Bytecode" json={JSON.stringify(log.contract.byteCode)}/>
                                </p> :

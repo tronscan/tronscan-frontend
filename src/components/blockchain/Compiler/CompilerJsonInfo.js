@@ -5,7 +5,9 @@ import React from "react";
 import {Modal, ModalBody, ModalHeader} from "reactstrap";
 import {tu, t} from "../../../utils/i18n";
 import {FormattedNumber} from "react-intl";
+import ReactJson from 'react-json-view'
 import JSONTree from 'react-json-tree'
+import {CopyToClipboard} from "react-copy-to-clipboard";
 
 @connect(
     state => ({
@@ -23,6 +25,7 @@ export default class FreezeBalanceModal extends React.PureComponent {
 
         this.state = {
             confirmed: false,
+            showModal:false
     };
     }
 
@@ -30,13 +33,15 @@ export default class FreezeBalanceModal extends React.PureComponent {
 
     }
     showInfoModal = () => {
-        let {onShow} = this.props;
-        onShow && onShow();
+        this.setState({
+            showModal: true,
+        });
     }
 
     hideInfoModal = () => {
-        let {onHide} = this.props;
-        onHide && onHide();
+        this.setState({
+            showModal: false,
+        });
     };
 
     confirmModal = () => {
@@ -49,26 +54,43 @@ export default class FreezeBalanceModal extends React.PureComponent {
 
 
     render() {
-        let { theme } = this.state;
-        let { title, json, showModal} = this.props;
+        let { theme,showModal } = this.state;
+        let { title, json } = this.props;
+        let jsonObj = JSON.parse(json);
+
+        console.log('showModal',showModal)
+        console.log('json', json)
         return (
             <div className="contract-compiler-console-info">
                 <span className="info-btn" onClick={this.showInfoModal} >{title}</span>
                 {
-                    showModal?<Modal isOpen={true} toggle={this.hideModal} fade={false} className="modal-dialog-centered _freezeContent">
+                    showModal? <Modal isOpen={true} toggle={this.hideInfoModal} fade={false} className="modal-dialog-centered _freezeContent">
                         <ModalHeader className="text-center _freezeHeader" toggle={this.hideInfoModal}>
                             {title}
                         </ModalHeader>
-                        <ModalBody className="text-center _freezeBody">
+                        <ModalBody className="_freezeBody">
                             <div>
-                                <JSONTree data={json} theme={theme} invertTheme={false} />
+                                {
+                                    typeof jsonObj == 'string'?
+                                    <JSONTree data={jsonObj} theme={theme} invertTheme={false} />:
+                                    <ReactJson src={jsonObj}  theme="summerfruit:inverted" iconStyle="square" name={false} displayDataTypes={false}/>
+                                }
+
                             </div>
-                            <p className="mt-3">
-                                <button className="btn btn-primary col-sm"
-                                        style={{background: '#4A90E2', borderRadius: '0px', border: '0px'}}
+                            <p className="mt-3 compile-modal-btn">
+                                <CopyToClipboard text={json}>
+                                    <button className="btn btn-primary col-sm"
+                                            style={{background: '#4A90E2', borderRadius: '2px', border: '0px'}}
+                                    >
+                                        {tu("Copy")}
+                                    </button>
+                                </CopyToClipboard>
+
+                                <button className="btn btn-primary col-sm ml-4"
+                                        style={{background: '#C23631', borderRadius: '2px', border: '0px'}}
+                                        onClick={this.hideInfoModal}
                                 >
-                                    <i className="fa fa-snowflake mr-2"/>
-                                    {tu("freeze")}
+                                    {tu("Close")}
                                 </button>
                             </p>
                         </ModalBody>

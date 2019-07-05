@@ -9,7 +9,7 @@ import { Radio, Button } from 'antd'
 import MonacoEditor from 'react-monaco-editor';
 import {tu} from "../../../utils/i18n";
 import CompilerConsole from "./CompilerConsole";
-import CompilerJsoninfo from "./CompilerJsonInfo";
+import CompilerModal from "./CompilerModal";
 import { Base64 } from 'js-base64';
 import xhr from "axios/index";
 import SweetAlert from "react-bootstrap-sweetalert";
@@ -273,7 +273,7 @@ contract TRONAce is SafeMath,Ownable{
     event Unlock(address addr, uint256 value);
 }`,
             filter: {
-                direction:'compiler'
+                direction:'compile'
             },
             CompileStatus:[],
             modal: null,
@@ -313,10 +313,10 @@ contract TRONAce is SafeMath,Ownable{
 
     }
 
-    onRadioChange = (e) => {
+    onRadioChange = (val) => {
         this.setState({
             filter: {
-                direction: e.target.value,
+                direction: val,
             }
         })
     };
@@ -343,22 +343,30 @@ contract TRONAce is SafeMath,Ownable{
         return account.isLoggedIn;
     };
 
-    showInfoModal = () => {
+    hideModal = () => {
         this.setState({
-            showModal: true,
-        });
-    }
-
-    hideInfoModal = () => {
-        this.setState({
-            showModal: false,
+            modal: null,
         });
     };
+
+    compileModal = () => {
+        this.setState({
+            modal: (
+                <CompilerModal
+                    onHide={this.hideModal}
+                    onConfirm={this.compile}
+                />
+            )
+        });
+    }
 
     compile = async () => {
         if(!this.isLoggedIn()) return;
         let { CompileStatus } = this.state;
-        this.setState({ compileLoading: true });
+        this.setState({
+            compileLoading: true,
+            CompileStatus:[],
+        });
         let {data} = await xhr.post(`http://172.16.21.246:9016/v1/api/contract/compile`, {
             "compiler": "solidity-0.4.25_Odyssey_v3.2.3",
             "optimizer": "1",
@@ -381,20 +389,6 @@ contract TRONAce is SafeMath,Ownable{
             this.setState({
                 compileLoading: false
             });
-            if(data.errmsg){
-                if(typeof data.errmsg == 'string'){
-                    console.log('data.errmsg',data.errmsg)
-                    let errorData = [{
-                        type: "error",
-                        content: `Compiled error: ${data.errmsg}`
-                    }]
-                    let error = errorData.concat(CompileStatus)
-                    this.setState({
-                        CompileStatus:error,
-                        compileLoading: false
-                    });
-                }
-            }
             if(data.errmsg == null && data.data !=={}){
                 let successData = [];
                 let contractNameList = [];
@@ -429,20 +423,23 @@ contract TRONAce is SafeMath,Ownable{
                 })
             }
         }else{
-            this.setState({
-                compileLoading: false
-            });
-            alert(data.errmsg)
-            console.log(data)
+            if(data.errmsg){
+                if(typeof data.errmsg == 'string'){
+                    console.log('data.errmsg',data.errmsg)
+                    let errorData = [{
+                        type: "error",
+                        content: `Compiled error: ${data.errmsg}`
+                    }]
+                    let error = errorData.concat(CompileStatus)
+                    this.setState({
+                        CompileStatus:error,
+                        compileLoading: false
+                    });
+                }
+            }
         }
 
     };
-
-
-
-
-
-
 
 
     render() {
@@ -455,21 +452,22 @@ contract TRONAce is SafeMath,Ownable{
                 {modal}
                 <div className="row">
                     <div className="col-sm-12">
-                        <div className="card">
+                        <div className="compile-button-box">
+                            <div className={filter.direction == 'compile'?'compile-button active':'compile-button'} onClick={() => this.onRadioChange('compile')}> {tu('合约部署')}</div>
+                            <div className={filter.direction == 'verify'?'compile-button active ml-4':'compile-button ml-4'} onClick={() => this.onRadioChange('verify')}>{tu('合约验证')}</div>
+                        </div>
+                        <div className="compile-text mt-4">
+                            {tu('Put your single file of smart contract here')}
+                        </div>
+                        <div className="card mt-4">
                             <div className="card-body">
                                 <div className="d-flex contract-compiler">
-                                    <div>
-                                        <Radio.Group size="large" value={filter.direction}  onChange={this.onRadioChange}>
-                                            <Radio.Button value="compiler">{tu('合约部署')}</Radio.Button>
-                                            <Radio.Button value="verify">{tu('合约验证')}</Radio.Button>
-                                        </Radio.Group>
-                                    </div>
                                     {
-                                        filter.direction == 'compiler' ?
-                                            <div className="pt-4">
+                                        filter.direction == 'compile' ?
+                                            <div className="pt-3">
                                                 <MonacoEditor
-                                                    width="800"
-                                                    height="600"
+                                                    width="1110"
+                                                    height="760"
                                                     language="sol"
                                                     theme="vs-dark"
                                                     value={code}
@@ -484,7 +482,8 @@ contract TRONAce is SafeMath,Ownable{
                                                     <Button
                                                         type="primary"
                                                         loading={compileLoading}
-                                                        onClick={this.compile}
+                                                        onClick={this.compileModal}
+                                                        className="compile-button compile"
                                                     >
                                                         {tu('编译')}
                                                     </Button>
@@ -492,7 +491,7 @@ contract TRONAce is SafeMath,Ownable{
                                                         type="primary"
                                                         loading={deployLoading}
                                                         onClick={this.deployLoading}
-                                                        className="ml-5"
+                                                        className="compile-button active ml-4"
                                                     >
                                                         {tu('部署')}
                                                     </Button>

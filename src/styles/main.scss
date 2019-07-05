@@ -4214,10 +4214,10 @@ delete {
   align-items: center;
 
   &-console{
-    width: 800px;
+    width: 1110px;
     overflow-y: scroll;
-    height: 100px;
-    background: #000;
+    height: 120px;
+    background: #1e1e1e;
   }
   &-button{
     display: flex;
@@ -4245,3 +4245,43 @@ delete {
     }
   }
 }
+.compile-button-box,.contract-compiler-button{
+  display: flex;
+  justify-content: center;
+  .compile-button{
+    width: 140px;
+    height: 52px;
+    background: #FFFFFF;
+    border-radius: 3px;
+    font-size: 18px;
+    color: #ABADC3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border-color:#ffffff;
+  }
+  .compile-button.active{
+    color: #FFFFFF;
+    background: #C23631;
+  }
+  .compile-button.compile{
+    color: #FFFFFF;
+    background: #84DC25;
+  }
+}
+
+.compile-text{
+  font-size: 20px;
+  color: #A4A4A4;
+  text-align: center;
+}
+
+.compile-modal-btn{
+  display: flex;
+  justify-content: center;
+  .btn{
+    max-width: 80px;
+  }
+}
+
