@@ -1,41 +1,6 @@
 {
   "10.svg": "7b00f7c4e78ed9cfc676c64c040965e8.svg",
   "20.svg": "8b13bad9e9381c9866a96fc4ef728bbf.svg",
-<<<<<<< HEAD
-  "About.js": "static/js/About.d15cc1f0.chunk.js",
-  "Account.js": "static/js/Account.de560953.chunk.js",
-  "Accounts.js": "static/js/Accounts.d7f59b98.chunk.js",
-  "AddSignatureModal.js": "static/js/AddSignatureModal.d9cb3421.chunk.js",
-  "CopyrightAsync.js": "static/js/CopyrightAsync.109d705a.chunk.js",
-  "DemoAsync.js": "static/js/DemoAsync.d07b16b9.chunk.js",
-  "FaqAsync.js": "static/js/FaqAsync.6ca84e45.chunk.js",
-  "Foundation.js": "static/js/Foundation.08ac6d31.chunk.js",
-  "LedgerHelp.js": "static/js/LedgerHelp.21ffa083.chunk.js",
-  "Live.js": "static/js/Live.f5f1c873.chunk.js",
-  "Markets.js": "static/js/Markets.a4ad7553.chunk.js",
-  "MyToken.js": "static/js/MyToken.17eb634f.chunk.js",
-  "NodeMap.js": "static/js/NodeMap.2a5b3ad9.chunk.js",
-  "NodeTester.js": "static/js/NodeTester.ad089361.chunk.js",
-  "Nodes.js": "static/js/Nodes.ea4145f5.chunk.js",
-  "ProposalDetail.js": "static/js/ProposalDetail.3b480b7a.chunk.js",
-  "Recaptcha.js": "static/js/Recaptcha.8e8bcec4.chunk.js",
-  "Representatives.js": "static/js/Representatives.58966c96.chunk.js",
-  "SingleStats.js": "static/js/SingleStats.3c860677.chunk.js",
-  "Stats.js": "static/js/Stats.10178232.chunk.js",
-  "System.js": "static/js/System.0c9e3ebf.chunk.js",
-  "TRONRating.js": "static/js/TRONRating.345c7a28.chunk.js",
-  "Token20Detail.js": "static/js/Token20Detail.f9dbc865.chunk.js",
-  "TokenDetail.js": "static/js/TokenDetail.5c8ecfa9.chunk.js",
-  "TokenList.js": "static/js/TokenList.dce03107.chunk.js",
-  "TokenOverview.js": "static/js/TokenOverview.edc51d45.chunk.js",
-  "TokensCreate.js": "static/js/TokensCreate.9d91dbd5.chunk.js",
-  "TransactionViewer.js": "static/js/TransactionViewer.c2314810.chunk.js",
-  "TronConvertTool.js": "static/js/TronConvertTool.269f023b.chunk.js",
-  "VerifyContractCode.js": "static/js/VerifyContractCode.7da9f1fa.chunk.js",
-  "VoteLive.js": "static/js/VoteLive.4dd56582.chunk.js",
-  "VoteOverview.js": "static/js/VoteOverview.03424b7e.chunk.js",
-  "WalletWizard.js": "static/js/WalletWizard.41dcab00.chunk.js",
-=======
   "About.js": "static/js/About.1b88e694.chunk.js",
   "Account.js": "static/js/Account.1a23a2c7.chunk.js",
   "Accounts.js": "static/js/Accounts.98ab439c.chunk.js",
@@ -51,7 +16,7 @@
   "NodeMap.js": "static/js/NodeMap.9b918e60.chunk.js",
   "NodeTester.js": "static/js/NodeTester.6e0fb33d.chunk.js",
   "Nodes.js": "static/js/Nodes.fb90f0ab.chunk.js",
-  "ProposalDetail.js": "static/js/ProposalDetail.2cb84a3e.chunk.js",
+  "ProposalDetail.js": "static/js/ProposalDetail.88bfa892.chunk.js",
   "Recaptcha.js": "static/js/Recaptcha.391fcb8c.chunk.js",
   "Representatives.js": "static/js/Representatives.c39baf0e.chunk.js",
   "SingleStats.js": "static/js/SingleStats.cd0a98b6.chunk.js",
@@ -69,18 +34,11 @@
   "VoteLive.js": "static/js/VoteLive.95154d47.chunk.js",
   "VoteOverview.js": "static/js/VoteOverview.65ed3dde.chunk.js",
   "WalletWizard.js": "static/js/WalletWizard.377c8ca2.chunk.js",
->>>>>>> origin/master
   "bootstrap.css": "d59729439a203fc474f5677b8d18d8bb.css",
   "info.svg": "ce0369650e23ec7e420a8af6750d8a87.svg",
-<<<<<<< HEAD
-  "languages.js": "static/js/languages.e35169e7.chunk.js",
+  "languages.js": "static/js/languages.78b3c7d9.chunk.js",
   "main.css": "static/css/main.924b6361.css",
-  "main.js": "static/js/main.13305c03.js",
-=======
-  "languages.js": "static/js/languages.4e99e919.chunk.js",
-  "main.css": "static/css/main.924b6361.css",
-  "main.js": "static/js/main.5f1ce030.js",
->>>>>>> origin/master
+  "main.js": "static/js/main.6b92c42e.js",
   "static/media/Block-Producer-Chart.png": "static/media/Block-Producer-Chart.a94b882b.png",
   "static/media/ContractInvocationDistribution.png": "static/media/ContractInvocationDistribution.fd18e048.png",
   "static/media/EnergyConsume.png": "static/media/EnergyConsume.79c227d0.png",
@@ -115,9 +73,5 @@
   "static/media/tron-logo.jpg": "static/media/tron-logo.f142f640.jpg",
   "static/media/tronscan_wechat.png": "static/media/tronscan_wechat.1225c09a.png",
   "static/media/wallet-preview.png": "static/media/wallet-preview.85fad9b8.png",
-<<<<<<< HEAD
-  "vendors.js": "static/js/vendors.b5178206.js"
-=======
-  "vendors.js": "static/js/vendors.fc6ad808.js"
->>>>>>> origin/master
+  "vendors.js": "static/js/vendors.a0d5b9d6.js"
 }
