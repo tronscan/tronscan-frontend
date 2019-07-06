@@ -275,7 +275,7 @@ contract TRONAce is SafeMath,Ownable{
     event Unlock(address addr, uint256 value);
 }`,
             filter: {
-                direction:'compile'
+                direction:'compile1'
             },
             CompileStatus:[],
             modal: null,
