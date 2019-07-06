@@ -31,6 +31,7 @@ $color-grey: #d2d1d1;
 @import "exchange20";
 @import "tokencreated";
 @import "exchangeRevised";
+@import "contractRead.scss";
 
 body {
   overflow-y: scroll;
@@ -44,10 +45,10 @@ $dark-red: #c53027;
 html,
 body {
   height: 100%;
-  min-height:100%;
+  min-height: 100%;
 }
 
-#root{
+#root {
   min-height: 100%;
   display: flex;
   flex-direction: column;
@@ -59,9 +60,10 @@ main {
   -ms-flex: 1 1 auto;
 }
 
-.footer-compontent{
-  flex-basic:auto;
+.footer-compontent {
+  flex-basic: auto;
 }
+
 a {
   color: #333;
   transition: color 0.5s ease;
@@ -1220,7 +1222,7 @@ th {
   z-index: 9999999;
   left: 50%;
   top: 50%;
-  transform: translate(-50%,-40%);
+  transform: translate(-50%, -40%);
 }
 
 .logo_upload {
@@ -1535,7 +1537,7 @@ $border-color-dark: #d8d8d8;
 
     th:first-child,
     td:first-child,
-    {
+      {
       padding-left: 0 !important;
     }
 
@@ -1599,7 +1601,7 @@ $border-color-dark: #d8d8d8;
 
       th:first-child,
       td:first-child,
-      {
+        {
         padding-left: 13px !important;
       }
 
@@ -1868,6 +1870,7 @@ h5 {
   padding-left: 20px;
   padding-right: 20px;
   // margin-top: -100px;
+  margin: 0 auto;
 }
 
 .contract-body {
@@ -3409,7 +3412,8 @@ h5 {
   position: absolute;
   right: 0px;
   top: -28px;
-  &-unset{
+
+  &-unset {
     position: unset;
     width: 600px;
     text-align: right;
@@ -3724,7 +3728,7 @@ h5 {
     text-align: left;
     border-bottom: 1px dashed #eeeeee;
     line-height: 22px;
-   // height: 2.375rem;
+    // height: 2.375rem;
   }
 
   .border-dashed-textarea {
@@ -3756,7 +3760,8 @@ h5 {
   .failure-reason {
     color: #979797;
     font-size: 1rem;
-    p{
+
+    p {
       color: #979797;
     }
   }
@@ -3905,7 +3910,7 @@ h5 {
     position: relative;
     background: #ffffff;
     width: 100%;
-    padding: 1rem 1rem 1rem 58px ;
+    padding: 1rem 1rem 1rem 58px;
 
     &::after {
       content: '10';
@@ -3927,12 +3932,13 @@ h5 {
       content: '20';
     }
 
-    
 
-    h4{
+
+    h4 {
       font-size: 16px;
       margin: 0;
-      a{
+
+      a {
         font-weight: 500;
       }
     }
@@ -3992,7 +3998,8 @@ h5 {
         color: #1f2534;
 
       }
-      .question{
+
+      .question {
         // position: absolute;
         // top: 0;
         // right: 52px;
@@ -4061,21 +4068,23 @@ h5 {
 
       }
     }
-    .progress{
+
+    .progress {
       // height: 0.6rem;
       border-radius: 0.2rem;
       background-color: #eaecef;
 
-      &-bar{
+      &-bar {
         background-color: #6081df;
       }
     }
+
     .btn-outline-secondary {
-      
-      &:hover{
+
+      &:hover {
         border-color: #8E8C84;
       }
-    }  
+    }
   }
 }
 
@@ -4118,13 +4127,13 @@ h5 {
   }
 }
 
-.flex-1{
+.flex-1 {
   flex: 1;
 }
 
 
-.token-list-action{
-  a{
+.token-list-action {
+  a {
     padding: 3px 8px;
     height: 1.2rem;
     border-radius: 2px;
@@ -4132,45 +4141,50 @@ h5 {
     line-height: 0.8rem;
     display: block;
     background-color: #C23631;
-    color: #ffffff!important;
+    color: #ffffff !important;
     font-size: 12px;
-    span{
 
-    }
-    &:hover{
-      color: #ffffff!important;
+    span {}
+
+    &:hover {
+      color: #ffffff !important;
     }
   }
-  .btn{
-    span{
-      color: #ffffff!important;
+
+  .btn {
+    span {
+      color: #ffffff !important;
     }
 
   }
-  .token-active-details{
+
+  .token-active-details {
     background-color: #C23631;
   }
-  .token-disabled-exchange{
+
+  .token-disabled-exchange {
     background-color: #d1d3df;
   }
 }
 
-.tooltip.show{
+.tooltip.show {
   opacity: 1;
 }
 
-.address-transfers-radio{
+.address-transfers-radio {
   position: absolute;
-  top:82px;
+  top: 82px;
   z-index: 999;
+
   @media only screen and (max-width: 768px) {
     position: absolute;
-    top:-65px;
-    left:-4px;
+    top: -65px;
+    left: -4px;
     z-index: 999;
   }
 
 }
+
 @each $name in Weibo,
 Wechat,
 Discord,
@@ -4200,11 +4214,11 @@ delete {
   }
 }
 
-.popover_text{
+.popover_text {
   color: #666;
 }
 
-.top-0{
+.top-0 {
   top: 0;
 }
 
@@ -4219,13 +4233,15 @@ delete {
     height: 120px;
     background: #1e1e1e;
   }
-  &-button{
+
+  &-button {
     display: flex;
     justify-content: center;
     //align-items: center;
     margin-top: 20px;
   }
-  &-console-log{
+
+  &-console-log {
     border-left: 2px solid;
     padding: 0px 0px 0px 10px;
     white-space: pre-wrap;
@@ -4245,7 +4261,7 @@ delete {
     }
   }
 }
-.compile-button-box,.contract-compiler-button{
+.compile-button-box,.contract-compiler-button,{
   display: flex;
   justify-content: center;
   .compile-button{
@@ -4260,6 +4276,22 @@ delete {
     align-items: center;
     cursor: pointer;
     border-color:#ffffff;
+  }
+  .compile-button-small{
+    width: 120px;
+    height: 38px;
+    background: #C23631;
+    border-radius: 3px;
+    font-size: 14px;
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border-color:#ffffff;
+  }
+  .compile-button-small.cancel{
+    background: rgba(194,54,49,0.5);
   }
   .compile-button.active{
     color: #FFFFFF;
@@ -4283,5 +4315,14 @@ delete {
   .btn{
     max-width: 80px;
   }
+}
+.compile-select{
+  width: 62%;
+  margin-top: -7px;
+  margin-left: 30px;
+}
+
+.compile-switch{
+  margin-left: 48px;
 }
 

@@ -66,9 +66,9 @@ export default class FreezeBalanceModal extends React.PureComponent {
                     {tu("Compile Params")}
                 </ModalHeader>
                 <ModalBody className="text-center _freezeBody">
-                    <div className="form-group">
+                    <div className="form-group d-flex p-3">
                         <label>{tu("Solidity Version")}</label>
-                        <select className="custom-select"
+                        <select className="custom-select compile-select"
                                 value={selectedResource}
                                 onChange={(e) => {this.resourceSelectChange(e.target.value)}}>
                             {
@@ -80,18 +80,26 @@ export default class FreezeBalanceModal extends React.PureComponent {
                             }
                         </select>
                     </div>
-                    <div className="form-group">
+                    <div className="form-group d-flex pl-3 pr-3 pb-3">
                         <label>{tu("Optimization")}</label>
-                        <Switch checked={hideSmallCurrency} onChange={this.handleToggle('hideSmallCurrency')} />
+                        <div className="compile-switch">
+                            <Switch checked={hideSmallCurrency} onChange={this.handleToggle('hideSmallCurrency')} />
+                        </div>
                     </div>
-                    <p className="mt-3">
-                        <button className="btn btn-primary col-sm"
-                                style={{background: '#4A90E2', borderRadius: '0px', border: '0px'}}
+                    <div className="ontract-compiler-button">
+                        <button
+                            onClick={this.hideModal}
+                            className="compile-button-small cancel"
                         >
-                            <i className="fa fa-snowflake mr-2"/>
-                            {tu("freeze")}
+                            {tu('取消')}
                         </button>
-                    </p>
+                        <button
+                            onClick={this.prop.onConfirm()}
+                            className="compile-button-small ml-5"
+                        >
+                            {tu('确认')}
+                        </button>
+                    </div>
                 </ModalBody>
             </Modal>
         )

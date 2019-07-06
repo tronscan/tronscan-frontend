@@ -17,6 +17,7 @@ import Events from "./Events";
 import Transfers from "./Transfers";
 import Energy from "./Energy";
 import Call from "./Call";
+import ContractPage from "./ContractPage";
 import {upperFirst, filter} from "lodash";
 import {Truncate} from "../../common/text";
 import xhr from "axios/index";
@@ -103,7 +104,7 @@ class SmartContract extends React.Component {
                 voters: {
                     id: "code",
                     path: "/code",
-                    label: <span>{tu("Code")}</span>,
+                  label: <span>{tu("contract_title")}</span>,
                     cmp: () => <Code filter={{address: id}} />,
                 },
                 intransactions: {
@@ -168,7 +169,7 @@ class SmartContract extends React.Component {
                 voters: {
                     id: "code",
                     path: "/code",
-                    label: <span>{tu("Code")}</span>,
+                    label: <span>{tu("contract_title")}</span>,
                     cmp: () => <Code filter={{address: id}} />,
                 },
                 intransactions: {

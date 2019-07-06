@@ -1889,4 +1889,20 @@ export const messages = {
   "please_enter_code": 'Please enter contract Code',
 
 
+  /*
+  ##################################################################################
+  #                                                                                #
+  # read contract info   2019-07-02                                    #
+  #                                                                                #
+  ##################################################################################
+*/
+  "contract_title": "合约",
+  "contract_code_choice": "代码",
+  "contract_read": "阅读合约",
+  "contract_write": "编写合约",
+  "contract_tip": "提示",
+  "contract_name": "合约名称",
+  "contract_version": "编译器版本",
+  "contract_optimize": "优化"
+
 };
