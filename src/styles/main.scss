@@ -1870,6 +1870,7 @@ h5 {
   padding-left: 20px;
   padding-right: 20px;
   // margin-top: -100px;
+  margin: 0 auto;
 }
 
 .contract-body {
@@ -4226,11 +4227,11 @@ delete {
   flex-direction: column;
   align-items: center;
 
-  &-console {
-    width: 800px;
+  &-console{
+    width: 1110px;
     overflow-y: scroll;
-    height: 100px;
-    background: #000;
+    height: 120px;
+    background: #1e1e1e;
   }
 
   &-button {
@@ -4246,5 +4247,82 @@ delete {
     white-space: pre-wrap;
     font-family: SFMono-Regular, Menlo, Monaco, Consolas;
     font-size: x-small;
+    margin-bottom: 0;
+  }
+  &-console-info{
+    display: inline-block;
+    .info-btn{
+      border: 0.1px solid white;
+      border-radius: 5px;
+      background: rgba(255,255,255,0.3);
+      cursor: pointer;
+      padding: 0px 10px 0px 10px;
+      margin-left: 10px;
+    }
   }
 }
+.compile-button-box,.contract-compiler-button,{
+  display: flex;
+  justify-content: center;
+  .compile-button{
+    width: 140px;
+    height: 52px;
+    background: #FFFFFF;
+    border-radius: 3px;
+    font-size: 18px;
+    color: #ABADC3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border-color:#ffffff;
+  }
+  .compile-button-small{
+    width: 120px;
+    height: 38px;
+    background: #C23631;
+    border-radius: 3px;
+    font-size: 14px;
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border-color:#ffffff;
+  }
+  .compile-button-small.cancel{
+    background: rgba(194,54,49,0.5);
+  }
+  .compile-button.active{
+    color: #FFFFFF;
+    background: #C23631;
+  }
+  .compile-button.compile{
+    color: #FFFFFF;
+    background: #84DC25;
+  }
+}
+
+.compile-text{
+  font-size: 20px;
+  color: #A4A4A4;
+  text-align: center;
+}
+
+.compile-modal-btn{
+  display: flex;
+  justify-content: center;
+  .btn{
+    max-width: 80px;
+  }
+}
+.compile-select{
+  width: 62%;
+  margin-top: -7px;
+  margin-left: 30px;
+}
+
+.compile-switch{
+  margin-left: 48px;
+}
+

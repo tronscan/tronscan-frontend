@@ -2,14 +2,14 @@ import React from "react";
 import {FormattedNumber, injectIntl} from "react-intl";
 import { TronLoader } from "../../common/loaders";
 import { upperFirst } from 'lodash'
-import moment from 'moment';
+import convert from 'htmr';
+import CompilerJsoninfo from "./CompilerJsonInfo";
 
 class CompilerConsole extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             loading: true,
-            html:'<i>77</i>',
             color: {
                 error: "orangered",
                 success: "limegreen",
@@ -25,16 +25,26 @@ class CompilerConsole extends React.Component {
     render() {
         let {loading, html, color} = this.state;
         let { CompileStatus } = this.props;
+        console.log('CompileStatus',CompileStatus)
         return (
            <div>
                {CompileStatus.map((log, i) => (
-                   <p
-                        className="contract-compiler-console-log"
-                        style={{color: color[log.type]}}
-                        dangerouslySetInnerHTML={{ __html: log.content}}
-                   />
+                   <div key={i}>
+                       {
+                           log.type == "success" && log.class == "compile"?
+                               <p  className="contract-compiler-console-log"
+                                   style={{color: color[log.type]}}>
+                                   Compiled success: Contract {log.contract.contractName} &nbsp;
+                                   <CompilerJsoninfo title="Show ABI" json={JSON.stringify(log.contract.abi)} />
+                                   <CompilerJsoninfo title="Show Bytecode" json={JSON.stringify(log.contract.byteCode)}/>
+                               </p> :
+                               <p   className="contract-compiler-console-log"
+                                    style={{color: color[log.type]}}>
+                                   {convert(log.content)}
+                               </p>
+                       }
+                   </div>
                ))}
-
            </div>
         )
     }
