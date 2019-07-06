@@ -1868,6 +1868,7 @@ h5 {
   padding-left: 20px;
   padding-right: 20px;
   // margin-top: -100px;
+  margin: 0 auto;
 }
 
 .contract-body {
@@ -4245,7 +4246,7 @@ delete {
     }
   }
 }
-.compile-button-box,.contract-compiler-button{
+.compile-button-box,.contract-compiler-button,{
   display: flex;
   justify-content: center;
   .compile-button{
@@ -4260,6 +4261,22 @@ delete {
     align-items: center;
     cursor: pointer;
     border-color:#ffffff;
+  }
+  .compile-button-small{
+    width: 120px;
+    height: 38px;
+    background: #C23631;
+    border-radius: 3px;
+    font-size: 14px;
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border-color:#ffffff;
+  }
+  .compile-button-small.cancel{
+    background: rgba(194,54,49,0.5);
   }
   .compile-button.active{
     color: #FFFFFF;
@@ -4283,5 +4300,14 @@ delete {
   .btn{
     max-width: 80px;
   }
+}
+.compile-select{
+  width: 62%;
+  margin-top: -7px;
+  margin-left: 30px;
+}
+
+.compile-switch{
+  margin-left: 48px;
 }
 

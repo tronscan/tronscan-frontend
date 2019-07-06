@@ -9,9 +9,9 @@ import { Radio, Button } from 'antd'
 import MonacoEditor from 'react-monaco-editor';
 import {tu} from "../../../utils/i18n";
 import CompilerConsole from "./CompilerConsole";
-import CompilerJsoninfo from "./CompilerJsonInfo";
 import VerifyContractCode from "./VerifyContractCode";
-import CompilerModal from "./CompilerModal";
+import CompilerModal from "./CompilerCompileModal";
+import DeployModal from "./CompilerDeployModal";
 import { Base64 } from 'js-base64';
 import xhr from "axios/index";
 import SweetAlert from "react-bootstrap-sweetalert";
@@ -362,14 +362,27 @@ contract TRONAce is SafeMath,Ownable{
         });
     }
 
+    deployModal = () => {
+        this.setState({
+            modal: (
+                <DeployModal
+                    onHide={this.hideModal}
+                    onConfirm={this.compile}
+                />
+            )
+        });
+    }
+
     compile = async () => {
         if(!this.isLoggedIn()) return;
         let { CompileStatus } = this.state;
+        let error;
         this.setState({
             compileLoading: true,
+            modal: null,
             CompileStatus:[],
         });
-        let {data} = await xhr.post(`http://172.16.21.246:9016/v1/api/contract/compile`, {
+        let data = await xhr.post(`http://172.16.21.246:9016/v1/api/contract/compile`, {
             "compiler": "solidity-0.4.25_Odyssey_v3.2.3",
             "optimizer": "1",
             "solidity":this.state.solidity,
@@ -380,13 +393,16 @@ contract TRONAce is SafeMath,Ownable{
                 type: "error",
                 content: `Compiled error: ${e.toString()}`
             }]
-            let error = errorData.concat(CompileStatus)
-            // this.setState({
-            //     CompileStatus:error,
-            //     compileLoading: false
-            // });
+            error = errorData.concat(CompileStatus)
+
         });
-        console.log('data',data)
+        if(!data){
+            this.setState({
+                CompileStatus:error,
+                compileLoading: false
+            });
+            return;
+        }
         if(data.code == 200){
             this.setState({
                 compileLoading: false
@@ -492,7 +508,7 @@ contract TRONAce is SafeMath,Ownable{
                                                     <Button
                                                         type="primary"
                                                         loading={deployLoading}
-                                                        onClick={this.deployLoading}
+                                                        onClick={this.deployModal}
                                                         className="compile-button active ml-4"
                                                     >
                                                         {tu('部署')}
