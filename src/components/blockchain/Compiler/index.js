@@ -31,6 +31,8 @@ class ContractCompiler extends React.Component {
             loading: false,
             compileLoading:false,
             deployLoading:false,
+            compilerVersion:'',
+            optimizer:'',
             code: `pragma solidity ^0.4.24;
 
 interface tokenRecipient { 
@@ -275,11 +277,12 @@ contract TRONAce is SafeMath,Ownable{
     event Unlock(address addr, uint256 value);
 }`,
             filter: {
-                direction:'compile1'
+                direction:'compile'
             },
             CompileStatus:[],
             modal: null,
             showModal:false,
+            contractNameList:[],
         }
         this.onChange = this.onChange.bind(this)
     }
@@ -344,7 +347,25 @@ contract TRONAce is SafeMath,Ownable{
         }
         return account.isLoggedIn;
     };
-
+    isCompile = () => {
+        let { contractNameList } = this.state;
+        let { intl } = this.props;
+        if(contractNameList.length == 0){
+            this.setState({
+                modal: <SweetAlert
+                    warning
+                    title={tu("请先编译")}
+                    confirmBtnText={intl.formatMessage({id: 'confirm'})}
+                    confirmBtnBsStyle="danger"
+                    onConfirm={() => this.setState({modal: null})}
+                    style={{marginLeft: '-240px', marginTop: '-195px'}}
+                >
+                </SweetAlert>
+            })
+            return false;
+        }
+        return true;
+    };
     hideModal = () => {
         this.setState({
             modal: null,
@@ -352,40 +373,60 @@ contract TRONAce is SafeMath,Ownable{
     };
 
     compileModal = () => {
+        if(!this.isLoggedIn()) return;
         this.setState({
             modal: (
                 <CompilerModal
                     onHide={this.hideModal}
-                    onConfirm={this.compile}
+                    onConfirm={(version, optimizer) => this.compile(version,optimizer)}
+
                 />
             )
         });
     }
 
     deployModal = () => {
+        if(!this.isLoggedIn()) return;
+        // if(!this.isCompile()) return;
         this.setState({
             modal: (
                 <DeployModal
                     onHide={this.hideModal}
                     onConfirm={this.compile}
+                    contractNameList={this.state.contractNameList}
                 />
             )
         });
     }
 
-    compile = async () => {
-        if(!this.isLoggedIn()) return;
-        let { CompileStatus } = this.state;
+    compilerVersionMsg(version) {
+        console.log('version',version)
+        this.setState({
+            compilerVersion:version
+        });
+    }
+    optimizerMsg(value) {
+        console.log('optimizer',value)
+        this.setState({
+            optimizer:value
+        });
+    }
+
+    compile = async (compilerVersion,optimizer) => {
+
+        let { CompileStatus, solidity } = this.state;
         let error;
         this.setState({
             compileLoading: true,
             modal: null,
             CompileStatus:[],
         });
-        let data = await xhr.post(`http://172.16.21.246:9016/v1/api/contract/compile`, {
-            "compiler": "solidity-0.4.25_Odyssey_v3.2.3",
-            "optimizer": "1",
-            "solidity":this.state.solidity,
+        console.log('compilerVersion',compilerVersion)
+        console.log('compilerVersion',optimizer)
+        let {data} = await xhr.post(`http://18.219.114.60:9083/v1/api/contract/compile`, {
+            "compiler": compilerVersion,
+            "optimizer": optimizer,
+            "solidity":solidity,
             "runs":200
         }).catch(function (e) {
             console.log(e)
