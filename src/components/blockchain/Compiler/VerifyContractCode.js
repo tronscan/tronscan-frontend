@@ -20,7 +20,7 @@ import SweetAlert from "react-bootstrap-sweetalert";
 import {TronLoader} from "../../common/loaders";
 import CompilerConsole from "./CompilerConsole";
 import {
-  Form, Row, Col, Input, Select
+  Form, Row, Col, Input, Select, Button
 } from 'antd'
 import { LineReactHighChartBlockchainSize } from '../../common/LineCharts';
 const { Option } = Select;
@@ -78,7 +78,7 @@ class VerifyContractCode extends Component {
           if(data.data.status === 2001){
             CompileStatus.push({
               type: "info", 
-              content: `The Contract Source code for <span class="">${fieldata.contractAddress}</span> has alreadly been verified. Click here to view the <a href=" http://localhost:3000/#/contract/${fieldata.contractAddress}/code" class="info_link">Verified Contract Source Code</a>`
+              content: `The Contract Source code for <span class="">${fieldata.contractAddress}</span> has alreadly been verified. Click here to view the <a href="/#/contract/${fieldata.contractAddress}/code" class="info_link">Verified Contract Source Code</a>`
             })
             this.setState({
               CompileStatus:CompileStatus
@@ -211,7 +211,14 @@ class VerifyContractCode extends Component {
 
                 <div className="text-center" >
                   <ContractCodeRequest  handleCaptchaCode={this.handleCaptchaCode} />
-                  <button type="button" className="btn btn-lg btn-danger text-capitalize mt-lg-3 mb-lg-4" onClick={this.handleVerifyCode} disabled={!captcha_code}>{tu('verify_and_publish')}</button>
+                  <div className="contract-compiler-button  mt-lg-3 mb-lg-4">
+                    <Button
+                        type="primary"
+                        loading={!captcha_code}
+                        onClick={this.handleVerifyCode}
+                        className="compile-button active ml-4"
+                    >{tu('verify_and_publish')}</Button>
+                  </div>
                 </div>
               </div>
             </div>
