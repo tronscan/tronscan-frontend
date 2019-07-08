@@ -2,7 +2,7 @@ import React from "react";
 import {CopyText} from "../../common/Copy";
 import {tu, tv} from "../../../utils/i18n";
 import {Client} from "../../../services/api";
-import xhr from "axios";
+import xhr from "axios/index";
 import {API_URL} from "../../../constants";
 import { AddressLink} from "../../common/Links";
 import {TronLoader} from "../../common/loaders";
@@ -24,10 +24,11 @@ export default class Code extends React.Component {
 
   constructor(props) {
     super(props);
+    // https://api.shasta.trongrid.io   https://api.trongrid.io
     this.tronWeb = new tronWeb({
-      fullNode: 'https://api.trongrid.io',
-      solidityNode: 'https://api.trongrid.io',
-      eventServer: 'https://api.trongrid.io',
+      fullNode: 'https://api.shasta.trongrid.io',
+      solidityNode: 'https://api.shasta.trongrid.io',
+      eventServer: 'https://api.shasta.trongrid.io',
     })
     this.state = {
       loading: true,
@@ -43,20 +44,71 @@ export default class Code extends React.Component {
   }
 
   async componentDidMount() {
-    this.getContractTokenList()
-    await this.getContractInfos()
-    this.viewFuntions()
-    this.payableFuntions()
-    this.nonePayableFuntions()
+    const { contractVerifyState } = this.state
+    this.getContractVerifyStatus()
     
   }
+  async getContractVerifyStatus () {
+    let { filter } = this.props;
+    let { data } = await xhr.post(`http://172.16.21.246:9016/v1/api/contract/info`, {
+      "contractAddress": filter.address,
+    }).catch(function (e) {
+      console.log(e)
+      let errorData = [{
+        type: "error",
+        content: `Compiled error: ${e.toString()}`
+      }]
+      console.log('errorData: ', errorData);
+      // error = errorData.concat(CompileStatus)
+
+    });
+    console.log('data.data.status: ', data.data.status);
+    console.log('data: ', data.data);
+    let dataInfo = data.data
+    if (data.data.status === 3 || data.data.status === 1) {
+      this.setState({
+        contractVerifyState: false
+      }, async() => {
+          // this.getContractTokenList()
+          await this.getContractInfos()
+          // this.viewFuntions()
+          // this.payableFuntions()
+          // this.nonePayableFuntions()
+      })
+    } else {
+      let infoObj
+      infoObj = {
+        abi: dataInfo.abi || '',
+        name: dataInfo.contract_name || '',
+        bytecode: dataInfo.byte_code || '',
+        contractCode: dataInfo.contract_code || '',
+        constructorParams: dataInfo.constructor_params || '',
+        optimizer: dataInfo.optimizer == 1 ? '已优化' : '未优化',
+        compiler: dataInfo.compiler
+      }
+      console.log('infoObj: ', infoObj);
+      this.setState({
+        contractVerifyState: true,
+        contractInfoList: infoObj,
+      }, () => {
+          this.getContractTokenList()
+          // await this.getContractInfos()
+          this.viewFuntions()
+          this.payableFuntions()
+          this.nonePayableFuntions()
+      })
+    }
+  }
   async getContractInfos() {
+    const { contractVerifyState } = this.state
     let smartcontract = await this.tronWeb.trx.getContract(
       this.props.filter.address
     );
-    this.setState({
-      contractInfoList: smartcontract
-    })
+    // if ( !contractVerifyState ) {
+      this.setState({
+        contractInfoList: smartcontract
+      })
+    // }
   }
   onChange = e => {
     this.setState({
@@ -65,43 +117,49 @@ export default class Code extends React.Component {
   }
   viewFuntions() {
     let { contractInfoList } = this.state;
-    let list = contractInfoList.abi.entrys.filter(
-      entry =>
-        entry.type == "Function" &&
-        (entry.stateMutability == "View" || entry.stateMutability == "Pure")
-    );
-    this.setState({
-      viewContractList: list
-    },() => {
-        console.log('viewContractList: ', this.state.viewContractList);
-    })
-    
+    if (contractInfoList.abi) {
+      let list = contractInfoList.abi.entrys.filter(
+        entry =>
+          entry.type == "Function" &&
+          (entry.stateMutability == "View" || entry.stateMutability == "Pure")
+      );
+      this.setState({
+        viewContractList: list
+      },() => {
+          console.log('viewContractList: ', this.state.viewContractList);
+      })
+    }
   }
   payableFuntions() {
     let { contractInfoList } = this.state;
-    let list = contractInfoList.abi.entrys.filter(
-      entry => entry.type == "Function" && entry.stateMutability == "Payable"
-    );
-    this.setState({
-      payableContractList: list
-    }, () => {
-        console.log('payableContractList: ', this.state.payableContractList);
-    })
+    if (contractInfoList.abi) {
+      let list = contractInfoList.abi.entrys.filter(
+        entry => entry.type == "Function" && entry.stateMutability == "Payable"
+      );
+      this.setState({
+        payableContractList: list
+      }, () => {
+          console.log('payableContractList: ', this.state.payableContractList);
+      })
+    }
   }
   nonePayableFuntions() {
     let { contractInfoList } = this.state;
-    let list = contractInfoList.abi.entrys.filter(
-      entry =>
-        entry.type == "Function" && entry.stateMutability == "Nonpayable"
-    );
-    this.setState({
-      nonePayableContractList: list
-    }, () => {
-        console.log('nonePayableContractList: ', this.state.nonePayableContractList);
-    })
+    if (contractInfoList.abi) {
+      let list = contractInfoList.abi.entrys.filter(
+        entry =>
+          entry.type == "Function" && entry.stateMutability == "Nonpayable"
+      );
+      this.setState({
+        nonePayableContractList: list
+      }, () => {
+          console.log('nonePayableContractList: ', this.state.nonePayableContractList);
+      })
+    }
   }
   events() {
     let { contractInfoList } = this.state;
+
     return contractInfoList.abi.entrys.filter(entry => entry.type == "Event");
   }
 
@@ -168,9 +226,9 @@ export default class Code extends React.Component {
       tabContent = (
         <div>
           {
-            payableContractList ?
+            payableContractList.length != 0 ?
             <div>
-                <div>Run these functions with Trx or Token</div>
+                <div className="write-title">{tu('write_payable')}</div>
                 {
                   payableContractList.map((val, key) => {
                     return (
@@ -184,9 +242,9 @@ export default class Code extends React.Component {
             : null
           }
           {
-            nonePayableContractList ?
+            nonePayableContractList.length != 0 ?
               <div>
-                <div>Run these functions will consume Trx or Energy</div>
+                <div className="write-title">{tu('write_nonePayable')}</div>
                 {
                   nonePayableContractList.map((val, key) => {
                     return (
@@ -212,13 +270,13 @@ export default class Code extends React.Component {
                 <Radio.Button value="read">{tu('contract_read')}</Radio.Button>
                 <Radio.Button value="write">{tu('contract_write')}</Radio.Button>
               </Radio.Group>
-              <p>{tu('contract_name')}: <span>合约名称</span></p>
-              <p>{tu('contract_version')}: <span>合约名称</span></p>
-              <p>{tu('contract_optimize')}: <span>合约名称</span></p>
+              <p>{tu('contract_name')}: <span>{contractInfoList.name ? contractInfoList.name : ''}</span></p>
+              <p>{tu('contract_version')}: <span>{contractInfoList.compiler ? contractInfoList.compiler : ''}</span></p>
+              <p>{tu('contract_optimize')}: <span>{contractInfoList.optimizer ? contractInfoList.optimizer : ''}</span></p>
             </div>
             : 
             <div className="contrat-verify">
-              该合约未验证，点击此处<a>去验证</a>
+            该合约未验证，点击此处<a href="/#/contracts/contract-Compiler/verify">去验证</a>
             </div>
           }
           

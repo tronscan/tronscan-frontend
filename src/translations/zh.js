@@ -1903,6 +1903,8 @@ export const messages = {
   "contract_tip": "提示",
   "contract_name": "合约名称",
   "contract_version": "编译器版本",
-  "contract_optimize": "优化"
-
+  "contract_optimize": "优化",
+  "contract_code": "合约代码",
+  "write_payable": "Run these functions with Trx or Token",
+  "write_nonePayable": "Run these functions will consume Trx or Energy"
 };

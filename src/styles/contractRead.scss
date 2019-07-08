@@ -8,7 +8,8 @@
   .tab-choice {
     // margin-bottom: 20px;
     padding-left: 15px;
-    p> span {
+
+    p>span {
       margin-left: 10px;
     }
   }
@@ -55,4 +56,9 @@
     color: #C23631 !important;
     text-decoration: underline !important;
   }
+}
+
+.write-title {
+  margin-bottom: 20px;
+  text-align: center;
 }

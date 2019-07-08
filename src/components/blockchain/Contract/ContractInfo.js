@@ -6,6 +6,7 @@ import xhr from "axios";
 import { API_URL } from "../../../constants";
 import { AddressLink } from "../../common/Links";
 import { TronLoader } from "../../common/loaders";
+import { Base64 } from 'js-base64';
 
 
 export default class Code extends React.Component {
@@ -24,12 +25,20 @@ export default class Code extends React.Component {
       byteCode: "",
       isSetting: 'Yes',
       librarys: null,
-      loading: true
+      loading: true,
+      contractInfos: ''
     };
   }
 
   componentDidMount() {
     let { filter } = this.props;
+    if (filter.contractInfoList.contractCode) {
+      let contractInfo = filter.contractInfoList.contractCode
+      let contractInfos = Base64.decode(contractInfo);
+      this.setState({
+        contractInfos: contractInfos
+      })
+    }
     this.setState({
       name: filter.contractInfoList.name || "-",
       abi: JSON.stringify(filter.contractInfoList.abi),
@@ -68,7 +77,7 @@ export default class Code extends React.Component {
   }
 
   render() {
-    let { name, compilerVersion, sourceCode, abi, abiEncoded, address, byteCode, isSetting, librarys, loading } = this.state;
+    let { name, compilerVersion, sourceCode, abi, abiEncoded, address, byteCode, isSetting, librarys, loading, contractInfos } = this.state;
 
     return (
       <main className="container">
@@ -114,7 +123,23 @@ export default class Code extends React.Component {
 
             </div>
           </div> */}
-
+        {
+          contractInfos ? 
+            <div className="row mt-3">
+              <div className="col-md-12">
+                <div className="d-flex mb-1">
+                  <span><i className="fa fa-cogs"></i> {tu('contract_code')}</span>
+                  <CopyText text={contractInfos} className="ml-auto ml-1" />
+                </div>
+                <textarea className="w-100 form-control"
+                  rows="7"
+                  readOnly="readonly"
+                  value={contractInfos}
+                  onChange={ev => this.setState({ contractInfos: ev.target.value })} />
+              </div>
+            </div>
+            : ''
+        }
         <div className="row mt-3">
           <div className="col-md-12">
             <div className="d-flex mb-1">

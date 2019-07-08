@@ -3,7 +3,6 @@ import { injectIntl } from "react-intl";
 import { CopyText } from "../../common/Copy";
 import { tu, tv } from "../../../utils/i18n";
 import { Client } from "../../../services/api";
-import xhr from "axios";
 import { API_URL } from "../../../constants";
 import { AddressLink } from "../../common/Links";
 import { TronLoader } from "../../common/loaders";
@@ -13,6 +12,7 @@ import { connect } from "react-redux";
 import tronWeb from 'tronweb';
 import { getTronExplorer, formatOutput, formatInput } from '../../../utils/readContract'
 import SweetAlert from "react-bootstrap-sweetalert";
+
 
 const { Panel } = Collapse;
 const { Option } = Select;
@@ -177,18 +177,18 @@ class Code extends React.Component {
       try {
         console.log('this.submitValueFormat(): ', this.submitValueFormat());
         let options = {};
-        if (totalValue) {
+        // if (totalValue) {
           if (!(tokenId) || tokenId == 0) {
             options = { callValue: totalValue };
           } else {
             options = { tokenId: tokenId, tokenValue: totalValue };
           }
-        } else {
-          throw new Error("synchronized fail")
-        }
+        // } else {
+        //   throw new Error("synchronized fail")
+        // }
         let signedTransaction = await contract[contractItem.name](
           ...this.submitValueFormat()
-        ).send(options);
+        ).send(options)
         console.log('signedTransaction: ', signedTransaction);
         let retValue = await this.getTxResult(signedTransaction);
         console.log('retValue: ', retValue);
@@ -197,9 +197,7 @@ class Code extends React.Component {
         })
       } catch (e) {
         console.log('e: ', e);
-        let error = e.Error
-        console.log('error: ', error);
-        if (error.error == "REVERT opcode executed") {
+        if (e.error == "REVERT opcode executed") {
           var res = e.output["contractResult"][0];
           let result =
             "REVERT opcode executed. " +
@@ -214,15 +212,16 @@ class Code extends React.Component {
           })
         } else {
           this.setState({
-            modal: <SweetAlert
-              warning
-              title={error}
-              confirmBtnText={intl.formatMessage({ id: 'confirm' })}
-              confirmBtnBsStyle="danger"
-              onConfirm={() => this.setState({ modal: null })}
-              style={{ marginLeft: '-240px', marginTop: '-195px' }}
-            >
-            </SweetAlert>
+            result: JSON.stringify(e)
+            // modal: <SweetAlert
+            //   warning
+            //   title={e}
+            //   confirmBtnText={intl.formatMessage({ id: 'confirm' })}
+            //   confirmBtnBsStyle="danger"
+            //   onConfirm={() => this.setState({ modal: null })}
+            //   style={{ marginLeft: '-240px', marginTop: '-195px' }}
+            // >
+            // </SweetAlert>
           })
         }
       }
@@ -286,7 +285,7 @@ class Code extends React.Component {
 
 
   render() {
-    let { choiceContractItem, contractInfoList, submitValues, modal, result, totalValue } = this.state;
+    let { choiceContractItem, contractInfoList, submitValues, modal, result, totalValue, tokenId } = this.state;
     const { getFieldDecorator } = this.props.form
     let { contractItem, index, currentTokens } = this.props;
     let contractList
@@ -308,10 +307,15 @@ class Code extends React.Component {
                 }
               </Select>
             </div>
-            <Input style={{ width: 200, display: 'inline' }} 
-              placeholder="Amount token to Send" 
-              value={totalValue} 
-              onChange={(e) => this.setState({ totalValue: e.target.value})}/>
+            {
+              tokenId ? 
+                <Input style={{ width: 200, display: 'inline' }}
+                  placeholder="Amount token to Send"
+                  value={totalValue}
+                  onChange={(e) => this.setState({ totalValue: e.target.value })} />
+                : null
+            }
+            
           </div>
           <div className="search-btn" onClick={() => this.Send()}>Send</div>
           <div>{result}</div>
