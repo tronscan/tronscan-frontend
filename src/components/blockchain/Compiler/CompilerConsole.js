@@ -84,6 +84,13 @@ class CompilerConsole extends React.Component {
                                {convert(log.content)}
                            </p>
                        }
+                       {
+                           (log.type == "error" && log.class == "deploy") &&
+                           <p  className="contract-compiler-console-log"
+                               style={{color: color[log.type]}}>
+                               {convert(log.content)}
+                           </p>
+                       }
 
                    </div>
                ))}

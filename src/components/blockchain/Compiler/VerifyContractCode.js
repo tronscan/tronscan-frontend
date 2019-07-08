@@ -73,7 +73,7 @@ class VerifyContractCode extends Component {
       }else{
         this.setState({loading: true})
         const solidity = Base64.encode(contract_code);
-        const { data } = await xhr.post('http://172.16.21.246:9016/v1/api/contract/verify',{solidity,runs: '0', ...fieldata})
+        const { data } = await xhr.post('http://18.219.114.60:9016//v1/api/contract/verify',{solidity,runs: '0', ...fieldata})
         if(data.code === 200){
          
           if(data.data.status === 2001){

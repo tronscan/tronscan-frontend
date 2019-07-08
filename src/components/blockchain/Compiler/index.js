@@ -226,12 +226,14 @@ contract Greeter is Mortal  {
             compileLoading: true,
             modal: null,
             CompileStatus:[],
+            optimizer,
+            compilerVersion,
         });
-        let {data} = await xhr.post(`http://18.219.114.60:9083/v1/api/contract/compile`, {
+        let {data} = await xhr.post(`http://18.219.114.60:9016/v1/api/contract/compile`, {
             "compiler": compilerVersion,
             "optimizer": optimizer,
             "solidity":solidity,
-            "runs":0
+            "runs":'0'
         }).catch(function (e) {
             console.log(e)
             let errorData = [{
@@ -299,13 +301,18 @@ contract Greeter is Mortal  {
         let currentContractName = options.name;
         let { CompileStatus } = this.state;
         const {tronWeb} = this.props.account;
+
+        this.setState({
+            modal:null,
+            deployLoading: true,
+        });
         try {
             let infoData =  [{
                 type: "info",
                 content: "Deploy " + options.name + "\n"
             }]
             CompileStatus.push.apply(CompileStatus,infoData)
-            await this.setState({
+            this.setState({
                 CompileStatus,
                 compileLoading: false
             });
@@ -380,31 +387,41 @@ contract Greeter is Mortal  {
                             }];
 
                             CompileStatus.push.apply(CompileStatus,infoData);
-                            console.log('CompileStatus22222222============',CompileStatus)
-                            await this.setState({
-                                CompileStatus,
-                            });
+
                             let base58Adress = tronWeb.address.fromHex(
                                 signed.contract_address
                             );
-                            console.log('base58Adress',base58Adress)
                             infoData = [{
                                 type: "success",
                                 class:"deploy",
                                 content: `Contract address: <a href="/#/contract/${base58Adress}/code" target='_blank' class="info_link"> ${base58Adress}</a>`
                             }];
                             CompileStatus.push.apply(CompileStatus,infoData)
-                            await this.setState({
-                                CompileStatus,
-                            });
 
 
+                            let {data} = await xhr.post(`http://18.219.114.60:9016/v1/api/contract/deploy`, {
+                                "contractAddress":base58Adress,
+                                "contractName":options.name,
+                                "optimizer":this.state.optimizer,
+                                "runs":'0',
+                                "compiler":this.state.compilerVersion,
+                                "encodedSolidity":this.state.solidity,
+                                "byteCode":options.bytecode,
+                                "abi":JSON.stringify(options.abi)
+
+                            })
+
+                            if(data.code == 200){
+                                this.setState({
+                                    CompileStatus,
+                                    deployLoading: false,
+                                });
+                            }
                         } else if (transactionInfo.receipt.result == "OUT_OF_ENERGY") {
-                            this.updateDeployStatus({
+                            infoData = [{
                                 type: "error",
-                                content: `FAILED deploying ${
-                                    this.currentContractDeployName
-                                    }. You lost: ${
+                                class:"deploy",
+                                content: `FAILED deploying ${currentContractName}. You lost: ${
                                     transactionInfo.receipt.energy_fee
                                         ? toThousands(
                                         transactionInfo.receipt.energy_fee / 1000000
@@ -412,18 +429,23 @@ contract Greeter is Mortal  {
                                         : 0
                                     } TRX\nReason: ${tronWeb.toUtf8(
                                     transactionInfo.resMessage
-                                )}. Transaction here <a href="/#/transaction/${transactionInfo.id}" class="info_link">
-                                        Verified Contract Source Code
-                                    </a>`
+                                )}. Transaction here <a href="/#/transaction/${transactionInfo.id}" class="info_link">${transactionInfo.id}</a>`
+                            }];
+                            CompileStatus.push.apply(CompileStatus,infoData);
+                            this.setState({
+                                CompileStatus,
+                                deployLoading: false,
                             });
+
                         } else {
-                            this.updateDeployStatus({
+                            infoData = [{
                                 type: "error",
-                                content: `FAILED deploying ${
-                                    this.currentContractDeployName
-                                    }.\nView transaction here <a href="/#/transaction/${transactionInfo.id}" class="info_link">
-                                        Verified Contract Source Code
-                                    </a>`
+                                content: `FAILED deploying ${currentContractName}.\nView transaction here <a href="/#/transaction/${transactionInfo.id}" class="info_link">${transactionInfo.id}</a>`
+                            }];
+                            CompileStatus.push.apply(CompileStatus,infoData);
+                            this.setState({
+                                CompileStatus,
+                                deployLoading: false,
                             });
                         }
                     }
@@ -453,7 +475,7 @@ contract Greeter is Mortal  {
             CompileStatus.push.apply(CompileStatus,errorData)
             this.setState({
                 CompileStatus,
-                compileLoading: false
+                deployLoading: false,
             });
         }
         this.statusDeploying = false;
