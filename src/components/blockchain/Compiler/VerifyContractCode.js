@@ -34,7 +34,7 @@ class VerifyContractCode extends Component {
             compilers: ['solidity-0.4.25_Odyssey_v3.2.3'],
             deaultCompiler: 'solidity-0.4.25_Odyssey_v3.2.3',
             contract_code: '',
-            captcha_code: true,
+            captcha_code: null,
             CompileStatus: [],
             loading: false
         };
@@ -63,7 +63,7 @@ class VerifyContractCode extends Component {
       const { contract_code, CompileStatus } = this.state
       const fieldata = getFieldsValue()
       
-      this.setState({loading: true})
+     
       if(!fieldata.contractAddress){
         this.showModal(tu('please_enter_address'))
       }else if(!fieldata.contractName){
@@ -71,6 +71,7 @@ class VerifyContractCode extends Component {
       }else if(!contract_code){
         this.showModal(tu('please_enter_code'))
       }else{
+        this.setState({loading: true})
         const solidity = Base64.encode(contract_code);
         const { data } = await xhr.post('http://172.16.21.246:9016/v1/api/contract/verify',{solidity,runs: '0', ...fieldata})
         if(data.code === 200){
@@ -97,8 +98,8 @@ class VerifyContractCode extends Component {
             CompileStatus:CompileStatus
           });
         }
-      }
-      this.setState({loading: false})
+        this.setState({loading: false})
+      }``
     }
 
     
@@ -117,7 +118,6 @@ class VerifyContractCode extends Component {
     return (
         <div className="pt-4 w-100 verify-contranct">
           {modal}
-          {loading && <div  style={styles.loading}><TronLoader/></div>}
           <Form layout="horizontal">
             <div style={styles.verify_header_box}>
               <div style={styles.verify_header}>
@@ -214,9 +214,10 @@ class VerifyContractCode extends Component {
                   <div className="contract-compiler-button  mt-lg-3 mb-lg-4">
                     <Button
                         type="primary"
-                        loading={!captcha_code}
+                        loading={loading}
                         onClick={this.handleVerifyCode}
                         className="compile-button active ml-4"
+                        disabled={!captcha_code}
                     >{tu('verify_and_publish')}</Button>
                   </div>
                 </div>

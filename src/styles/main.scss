@@ -4301,6 +4301,9 @@ delete {
     color: #FFFFFF;
     background: #84DC25;
   }
+  .compile-button.active[disabled]{
+    background: rgba(194,54,49,0.5);
+  }
 }
 
 .compile-text{
