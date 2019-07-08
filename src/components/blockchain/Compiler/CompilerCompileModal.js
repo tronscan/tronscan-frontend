@@ -15,14 +15,15 @@ export default class FreezeBalanceModal extends React.PureComponent {
         super(props);
         this.state = {
             loading: false,
-            optimizer:1,
             resources: [
                 {
                     label:"solidity-0.4.25_Odyssey_v3.2.3",
                     value:"solidity-0.4.25_Odyssey_v3.2.3"
                 }
             ],
+            selectedResource:'solidity-0.4.25_Odyssey_v3.2.3',
             hideSmallCurrency: true,
+            optimizer:'1',
         };
     }
 
@@ -37,8 +38,8 @@ export default class FreezeBalanceModal extends React.PureComponent {
 
     confirmModal = () => {
         let {onConfirm} = this.props;
-        let {amount} = this.state;
-        onConfirm && onConfirm();
+        let { optimizer,selectedResource } = this.state;
+        onConfirm && onConfirm(selectedResource,optimizer);
     };
 
     resourceSelectChange = (value) => {
@@ -48,11 +49,18 @@ export default class FreezeBalanceModal extends React.PureComponent {
     };
 
     handleToggle = (prop) => {
+        let {onOptimizerMsg} = this.props;
         return (enable) => {
-            this.setState({ [prop]: enable });
-            //this.props.handleSwitch(enable);
+            console.log('enable',enable)
+            this.setState({
+                [prop]: enable,
+                'optimizer':enable?'1':'0'
+            });
+
         };
     }
+
+
 
 
     render() {

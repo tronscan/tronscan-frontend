@@ -4326,3 +4326,31 @@ delete {
   margin-left: 48px;
 }
 
+.contract-deploy{
+  display: flex;
+  flex-direction: column;
+  .deploy-select{
+    background: #F3F3F3;
+  }
+  .deploy-input{
+    width: 100%;
+    border-radius:0.25rem !important;
+  }
+}
+
+.deploy-input-box{
+  display: flex;
+  .input-box-sec{
+    width: 60%;
+  }
+  select{
+    background: #F3F3F3;
+  }
+}
+
+.deploy-token-balance-select{
+  width: 100%;
+  background: #F3F3F3;
+  max-width: 243px;
+}
+

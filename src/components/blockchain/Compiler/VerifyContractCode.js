@@ -67,7 +67,7 @@ class VerifyContractCode extends Component {
           // Verification success
           console.log(data.data);
         }else{
-          
+
         }
         console.log(data);
       }
@@ -92,8 +92,11 @@ class VerifyContractCode extends Component {
             <div>
               <div className="card-body contract-body">
                 <div>
-                  <h5 className="card-title text-left contract-title">{tu("verify_and_publish_your_solidity_source_code")}</h5>
-                  <p>{tu("step")} 1 : {tu("step_1")}</p>
+                  <p>Source code verification provides transparency for users interacting with smart contracts. </p>
+                  <p>By uploading the source code, Transcan will match the compiled code with that on the blockchain. </p>
+                  <p>Just like contracts, a "smart contract" should provide end users with more information on 
+                  what they are "digitally signing" for and give users an opportunity to audit the code to independently 
+                  verify that it actually does what it is supposed to do.</p>
                 </div>
               </div>
               <hr style={styles.hr}/>
