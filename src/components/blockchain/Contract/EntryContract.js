@@ -175,15 +175,17 @@ class Code extends React.Component {
     const { tronWeb } = this.props.account;
     if (this.isLoggedIn()) {
       try {
-        console.log(1111);
         console.log('this.submitValueFormat(): ', this.submitValueFormat());
         let options = {};
-        if (!(tokenId) || tokenId == 0) {
-          options = { callValue: totalValue };
+        if (totalValue) {
+          if (!(tokenId) || tokenId == 0) {
+            options = { callValue: totalValue };
+          } else {
+            options = { tokenId: tokenId, tokenValue: totalValue };
+          }
         } else {
-          options = { tokenId: tokenId, tokenValue: totalValue };
+          throw new Error("synchronized fail")
         }
-        console.log(2222);
         let signedTransaction = await contract[contractItem.name](
           ...this.submitValueFormat()
         ).send(options);
@@ -195,7 +197,9 @@ class Code extends React.Component {
         })
       } catch (e) {
         console.log('e: ', e);
-        if (e.error == "REVERT opcode executed") {
+        let error = e.Error
+        console.log('error: ', error);
+        if (error.error == "REVERT opcode executed") {
           var res = e.output["contractResult"][0];
           let result =
             "REVERT opcode executed. " +
@@ -212,7 +216,7 @@ class Code extends React.Component {
           this.setState({
             modal: <SweetAlert
               warning
-              title={e}
+              title={error}
               confirmBtnText={intl.formatMessage({ id: 'confirm' })}
               confirmBtnBsStyle="danger"
               onConfirm={() => this.setState({ modal: null })}
