@@ -9,7 +9,7 @@ import { Switch } from 'antd';
 
 
 @injectIntl
-export default class FreezeBalanceModal extends React.PureComponent {
+export default class CompilerModal extends React.PureComponent {
 
     constructor(props) {
         super(props);

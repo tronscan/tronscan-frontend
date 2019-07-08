@@ -57,14 +57,11 @@ export default class FreezeBalanceModal extends React.PureComponent {
         let { theme,showModal } = this.state;
         let { title, json } = this.props;
         let jsonObj = JSON.parse(json);
-
-        console.log('showModal',showModal)
-        console.log('json', json)
         return (
             <div className="contract-compiler-console-info">
                 <span className="info-btn" onClick={this.showInfoModal} >{title}</span>
                 {
-                    showModal? <Modal isOpen={true} toggle={this.hideInfoModal} fade={false} className="modal-dialog-centered _freezeContent">
+                    showModal? <Modal isOpen={true} toggle={this.hideInfoModal} fade={false} className="modal-dialog-centered contract-compiler-modal-content" >
                         <ModalHeader className="text-center _freezeHeader" toggle={this.hideInfoModal}>
                             {title}
                         </ModalHeader>
@@ -77,7 +74,7 @@ export default class FreezeBalanceModal extends React.PureComponent {
                                 }
 
                             </div>
-                            <p className="mt-3 compile-modal-btn">
+                            <div className="mt-3 compile-modal-btn">
                                 <CopyToClipboard text={json}>
                                     <button className="btn btn-primary col-sm"
                                             style={{background: '#4A90E2', borderRadius: '2px', border: '0px'}}
@@ -92,7 +89,7 @@ export default class FreezeBalanceModal extends React.PureComponent {
                                 >
                                     {tu("Close")}
                                 </button>
-                            </p>
+                            </div>
                         </ModalBody>
                     </Modal>:''
                 }

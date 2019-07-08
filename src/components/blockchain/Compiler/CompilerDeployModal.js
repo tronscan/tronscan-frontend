@@ -6,32 +6,37 @@ import {Modal, ModalBody, ModalHeader} from "reactstrap";
 import {tu, t} from "../../../utils/i18n";
 import {FormattedNumber} from "react-intl";
 import { Switch } from 'antd';
-import SweetAlert from "react-bootstrap-sweetalert";
+import _, {find, round, filter } from "lodash";
+
 
 import TokenBalanceSelect from "../../common/TokenBalanceSelect";
 
 @injectIntl
-export default class FreezeBalanceModal extends React.PureComponent {
+export default class DeployModal extends React.PureComponent {
 
     constructor(props) {
         super(props);
         this.state = {
             loading: false,
-            optimizer:1,
-            resources: [
-                {
-                    label:"solidity-0.4.25_Odyssey_v3.2.3",
-                    value:"solidity-0.4.25_Odyssey_v3.2.3"
-                }
-            ],
-            hideSmallCurrency: true,
             feeLimit:1000000000,
-            modal:null,
+            userfeepercentage:0,
+            originEnergyLimit:10000000,
+            sendTokenAmount:0,
+            constructorParams:[],
         };
     }
 
     componentDidMount() {
+        this.init()
+    }
 
+    init = () => {
+        let {contractNameList} = this.props;
+        this.setState({
+            currentContractName : contractNameList[0]
+        },()=>{
+            this.setConstructorParams(contractNameList[0]);
+        });
     }
 
     hideModal = () => {
@@ -39,28 +44,61 @@ export default class FreezeBalanceModal extends React.PureComponent {
         onHide && onHide();
     };
 
+    Mul (arg1, arg2) {
+        let r1 = arg1.toString(), r2 = arg2.toString(), m, resultVal, d = arguments[2];
+        m = (r1.split(".")[1] ? r1.split(".")[1].length : 0) + (r2.split(".")[1] ? r2.split(".")[1].length : 0);
+        resultVal = Number(r1.replace(".", "")) * Number(r2.replace(".", "")) / Math.pow(10, m);
+        return typeof d !== "number" ? Number(resultVal) : Number(resultVal.toFixed(parseInt(d)));
+    }
+
     confirmModal = () => {
-        let {onConfirm} = this.props;
-        onConfirm && onConfirm();
+        let { currentContractName, feeLimit, userfeepercentage, originEnergyLimit, constructorParams, currentContractABI, currentContractByteCode,sendTokenId, sendTokenAmount,sendTokenDecimals } = this.state;
+        let { onConfirm } = this.props;
+        let optionsPayable = {};
+         sendTokenId = 0;
+        if (!sendTokenId || sendTokenId == 0) {
+            optionsPayable = { callValue: sendTokenAmount };
+        } else {
+            optionsPayable = {
+                tokenId: sendTokenId,
+                tokenValue:  this.Mul(sendTokenAmount,Math.pow(10, sendTokenDecimals))
+            };
+        }
+        let parameters = [];
+        for(var i in constructorParams) {
+            parameters.push(constructorParams[i].name)
+        }
+
+        console.log('parameters',parameters)
+        let form = {
+            abi:currentContractABI,
+            bytecode:currentContractByteCode,
+            feeLimit: feeLimit,
+            name: currentContractName,
+            originEnergyLimit: originEnergyLimit,
+            parameters: parameters,
+            userFeePercentage: userfeepercentage,
+            ...optionsPayable
+        }
+        console.log('form22222222======',form)
+        onConfirm && onConfirm(form);
     };
 
     resourceSelectChange = (value) => {
+        console.log('value',value)
         this.setState({
-            selectedResource: value
+            currentContractName : value
+        },()=>{
+            this.setConstructorParams(value);
         });
+
     };
 
-    handleToggle = (prop) => {
-        return (enable) => {
-            this.setState({ [prop]: enable });
-            //this.props.handleSwitch(enable);
-        };
+    handleToggle = (prop,value) => {
+        this.setState({ [prop]: value });
     };
 
     tokenBalanceSelectChange(name, decimals, balance){
-        console.log('name',name)
-        console.log('decimals',decimals)
-        console.log('balance',balance)
         this.setState({
             sendTokenId:name,
             sendTokenDecimals:decimals,
@@ -68,12 +106,38 @@ export default class FreezeBalanceModal extends React.PureComponent {
         });
     }
 
+    setConstructorParams = (currentContractName) =>{
+        let constructorParams = [];
+        let { compileInfo } = this.props;
+        let currentContract = _(compileInfo)
+            .filter(tb => tb.contractName == currentContractName)
+            .value();
+        let currentContractABI = currentContract[0].abi;
+        let currentContractByteCode = currentContract[0].byteCode;
+        currentContractABI && currentContractABI.map((item,index) =>{
+            if(item.type === 'constructor'){
+                if(item.inputs){
+                    constructorParams.push.apply(constructorParams,item.inputs)
+                }
+                console.log('constructorParams============',constructorParams)
+            }
+        });
+        this.setState({
+            constructorParams,
+            currentContractABI,
+            currentContractByteCode
+        });
+
+    };
+
+
+
 
 
 
     render() {
-        let {resources, selectedResource,hideSmallCurrency, feeLimit,modal} = this.state;
-        let {contractNameList, frozenTrx, intl} = this.props;
+        let { currentContractName, feeLimit, userfeepercentage, originEnergyLimit, sendTokenAmount,constructorParams} = this.state;
+        let { contractNameList, intl } = this.props;
         console.log('contractNameList',contractNameList);
         return (
             <Modal isOpen={true}  fade={false} className="modal-dialog-centered _freezeContent">
@@ -87,7 +151,7 @@ export default class FreezeBalanceModal extends React.PureComponent {
                    <div className="form-group contract-deploy">
                        <label>{tu("合约名称")}</label>
                        <select className="custom-select deploy-select"
-                               value={selectedResource}
+                               value={currentContractName}
                                onChange={(e) => {this.resourceSelectChange(e.target.value)}}>
                            {
                                contractNameList.map((resource, index) => {
@@ -101,27 +165,27 @@ export default class FreezeBalanceModal extends React.PureComponent {
                    <div className="form-group contract-deploy">
                        <label>{tu("Fee Limit")}</label>
                        <input type="text"
-                              onChange={(ev) => this.setAddress(ev.target.value)}
+                              onChange={(ev) => this.handleToggle('feeLimit', ev.target.value)}
                               className="form-control deploy-input"
-                              value={feeLimit}
+                              value={ feeLimit }
                        />
                    </div>
 
                    <div className="form-group contract-deploy">
                        <label>{tu("User Fee Percentage")}</label>
                        <input type="text"
-                              onChange={(ev) => this.setAddress(ev.target.value)}
+                              onChange={(ev) => this.handleToggle('userfeepercentage', ev.target.value)}
                               className="form-control deploy-input"
-                              value={feeLimit}
+                              value={ userfeepercentage }
                        />
 
                    </div>
                    <div className="form-group contract-deploy">
                        <label>{tu("Origin Energy Limit")}</label>
                        <input type="text"
-                              onChange={(ev) => this.setAddress(ev.target.value)}
+                              onChange={(ev) => this.handleToggle('originEnergyLimit', ev.target.value)}
                               className="form-control deploy-input"
-                              value={feeLimit}
+                              value={originEnergyLimit}
                        />
 
                    </div>
@@ -129,31 +193,40 @@ export default class FreezeBalanceModal extends React.PureComponent {
                        <label>{tu("Select TRX or token to send")}</label>
                        <div className="deploy-input-box">
                            <TokenBalanceSelect
-                               value={selectedResource}
                                tokenBalanceSelectChange={(name, decimals,balance) => {this.tokenBalanceSelectChange(name, decimals,balance)}}>
                            </TokenBalanceSelect>
                            <input type="text"
-                                  onChange={(ev) => this.setAddress(ev.target.value)}
+                                  onChange={(ev) => this.handleToggle('tokenAmount', ev.target.value)}
                                   className="form-control deploy-input ml-4 input-box-sec"
-                                  value={feeLimit}
+                                  value={sendTokenAmount}
                            />
                        </div>
                    </div>
-                   <div className="form-group">
-                       <label>{tu("Params for constructor")}</label>
-                       <div className="deploy-input-box">
-                           <input type="text"
-                                  onChange={(ev) => this.setAddress(ev.target.value)}
-                                  className="form-control deploy-input"
-                                  value={feeLimit}
-                           />
-                           <input type="text"
-                                  onChange={(ev) => this.setAddress(ev.target.value)}
-                                  className="form-control deploy-input ml-4 input-box-sec"
-                                  value={feeLimit}
-                           />
+                   {
+                       constructorParams.length > 0 && <div className="form-group">
+                           <label>{tu("Params for constructor")}</label>
+                           {
+                               constructorParams.map((item, index) => {
+                                   return (
+                                       <div className="deploy-input-box" key={index}>
+                                           <input type="text"
+                                               // onChange={(ev) => this.setAddress(ev.target.value)}
+                                                  className="form-control deploy-input"
+                                                  value={item.name}
+                                                  disabled={true}
+                                           />
+                                           <input type="text"
+                                               //onChange={(ev) => this.setAddress(ev.target.value)}
+                                                  className="form-control deploy-input ml-4 input-box-sec"
+                                                  value={item.type}
+                                                  disabled={true}
+                                           />
+                                       </div>
+                                   )
+                               })
+                           }
                        </div>
-                   </div>
+                   }
                    <div className="contract-compiler-button">
                        <button
                            onClick={this.hideModal}
