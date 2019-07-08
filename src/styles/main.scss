@@ -4301,6 +4301,9 @@ delete {
     color: #FFFFFF;
     background: #84DC25;
   }
+  .compile-button.active[disabled]{
+    background: rgba(194,54,49,0.5);
+  }
 }
 
 .compile-text{
@@ -4324,6 +4327,39 @@ delete {
 
 .compile-switch{
   margin-left: 48px;
+}
+
+.verify-contranct{
+  .ant-form-item-label{
+    text-align: left;
+    height: 36px;
+    line-height: 36px;
+  }
+  .contract-body-input {
+    padding-top: 2;
+    padding-bottom: 0;
+  }
+  .ant-input,.ant-select-selection{
+    border-radius: 0;
+  }
+  textarea{
+    border: 0;
+    outline: none;
+    border-radius: 0;
+    background-color: #F3F3F3;
+  }
+  .info_address{
+    color: #84DC25!important;
+  }
+}
+.info_link{
+  color: #4A90E2!important;
+  cursor: pointer;
+  text-decoration: underline!important;
+
+  &:hover{
+    color: #4A90E2!important;
+  }
 }
 
 .contract-deploy{
@@ -4352,5 +4388,15 @@ delete {
   width: 100%;
   background: #F3F3F3;
   max-width: 243px;
+}
+.contract-compiler-modal-content{
+  .modal-content{
+    overflow-y: auto;
+    border-radius: 2px;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin: 0 auto;
+  }
+
 }
 

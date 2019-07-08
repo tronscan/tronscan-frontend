@@ -1906,5 +1906,9 @@ export const messages = {
   "contract_optimize": "优化",
   "contract_code": "合约代码",
   "write_payable": "Run these functions with Trx or Token",
-  "write_nonePayable": "Run these functions will consume Trx or Energy"
+  "write_nonePayable": "Run these functions will consume Trx or Energy",
+  "verify_code1": "Source code verification provides transparency for users interacting with smart contracts.",
+  "verify_code2": "By uploading the source code, Transcan will match the compiled code with that on the blockchain.",
+  "verify_code3": `Just like contracts, a "smart contract" should provide end users with more information on what they are "digitally signing" for and give users an opportunity to audit the code to independently verify that it actually does what it is supposed to do.`,
+
 };

@@ -125,7 +125,6 @@ class TokenBalanceSelect extends React.Component {
             item.token_name_type =  item.name + '-TRC20';
             return item
         });
-        console.log('tokenBalances',tokenBalances)
         return (
             <Select
                 onChange={this.handleTokenChange}

@@ -17,9 +17,12 @@ import MonacoEditor from 'react-monaco-editor';
 import xhr from "axios/index";
 import { Base64 } from 'js-base64';
 import SweetAlert from "react-bootstrap-sweetalert";
+import {TronLoader} from "../../common/loaders";
+import CompilerConsole from "./CompilerConsole";
 import {
-  Form, Row, Col, Input, Select
+  Form, Row, Col, Input, Select, Button
 } from 'antd'
+import { LineReactHighChartBlockchainSize } from '../../common/LineCharts';
 const { Option } = Select;
 
 var compile;
@@ -31,13 +34,19 @@ class VerifyContractCode extends Component {
             compilers: ['solidity-0.4.25_Odyssey_v3.2.3'],
             deaultCompiler: 'solidity-0.4.25_Odyssey_v3.2.3',
             contract_code: '',
-            captcha_code: true
+            captcha_code: null,
+            CompileStatus: [],
+            loading: false
         };
     }
 
     handleCaptchaCode = (val) => {
       this.setState({captcha_code: val});
     };
+
+    editorDidMount(editor, monaco) {
+      editor.focus();
+    }
 
     showModal(content){
       this.setState({modal: 
@@ -51,9 +60,10 @@ class VerifyContractCode extends Component {
 
     handleVerifyCode = async (e) =>{
       const { getFieldsValue } = this.props.form
-      const { contract_code } = this.state
+      const { contract_code, CompileStatus } = this.state
       const fieldata = getFieldsValue()
-      console.log(fieldata);
+      
+     
       if(!fieldata.contractAddress){
         this.showModal(tu('please_enter_address'))
       }else if(!fieldata.contractName){
@@ -61,112 +71,133 @@ class VerifyContractCode extends Component {
       }else if(!contract_code){
         this.showModal(tu('please_enter_code'))
       }else{
+        this.setState({loading: true})
         const solidity = Base64.encode(contract_code);
         const { data } = await xhr.post('http://172.16.21.246:9016/v1/api/contract/verify',{solidity,runs: '0', ...fieldata})
         if(data.code === 200){
-          // Verification success
-          console.log(data.data);
+         
+          if(data.data.status === 2001){
+            CompileStatus.push({
+              type: "info", 
+              content: `The Contract Source code for <span class="">${fieldata.contractAddress}</span> has alreadly been verified. Click here to view the <a href="/#/contract/${fieldata.contractAddress}/code" class="info_link">Verified Contract Source Code</a>`
+            })
+            this.setState({
+              CompileStatus:CompileStatus
+            });
+          }else{
+             // Verification success
+            location.href = `/#/contract/${fieldata.contractAddress}/code`
+          }
+          
         }else{
-
+          CompileStatus.push({
+            type: "error", 
+            content: `<span class="">${fieldata.contractAddress}</span> is not a existing contract. Please confirm and try again`
+          })
+          this.setState({
+            CompileStatus:CompileStatus
+          });
         }
-        console.log(data);
-      }
-      
+        this.setState({loading: false})
+      }``
     }
 
     
   render() {
-    let {compilers, deaultCompiler, contract_code, modal, captcha_code} = this.state;
+    let {compilers, deaultCompiler, contract_code, modal, captcha_code, CompileStatus, loading} = this.state;
     let {intl} = this.props;
-    console.log(contract_code);
     const options = {
       selectOnLineNumbers: true
     };
     const { getFieldDecorator } = this.props.form
+    const formItemLayout = {
+      labelCol: {span: 8},
+      wrapperCol: {span: 16}
+    }
 
     return (
-        <main className="pt-4">
+        <div className="pt-4 w-100 verify-contranct">
           {modal}
-          <Form>
-          <div className="card" style={styles.card}>
-            <div>
-              <div className="card-body contract-body">
-                <div>
-                  <p>Source code verification provides transparency for users interacting with smart contracts. </p>
-                  <p>By uploading the source code, Transcan will match the compiled code with that on the blockchain. </p>
-                  <p>Just like contracts, a "smart contract" should provide end users with more information on 
-                  what they are "digitally signing" for and give users an opportunity to audit the code to independently 
-                  verify that it actually does what it is supposed to do.</p>
+          <Form layout="horizontal">
+            <div style={styles.verify_header_box}>
+              <div style={styles.verify_header}>
+                <div className="mb-4">
+                  <p>{tu('verify_code1')}</p>
+                  <p>{tu('verify_code2')}</p>
+                  <p>{tu('verify_code3')}</p>
                 </div>
-              </div>
-              <hr style={styles.hr}/>
-              <div className={"card-body contract-body-input contract-hide"}>
-                 
-                <Row gutter={24} type="flex" justify="space-between" className="px-2">
-                  <Form.Item label={tu('contract_address')}>
-                    {getFieldDecorator('contractAddress', {
-                      rules: [{ required: true, message: tu('name_v_required'), whitespace: true}],
-                    })(
-                      <Input placeholder={intl.formatMessage({id: 'contract_address'})}/>
-                    )}
-                  </Form.Item>
-                  <Form.Item label={tu('contract_name')}>
-                    {getFieldDecorator('contractName', {
-                      rules: [{ required: true, message: tu('name_v_required'), whitespace: true}],
-                    })(
-                      <Input placeholder={intl.formatMessage({id: 'contract_name'})}/>
-                    )}
-                  </Form.Item>
-                  <Form.Item label={tu('compiler')}>
-                    {getFieldDecorator('compiler', {
-                      initialValue: deaultCompiler,
-                      rules: [{ required: true, message: tu('name_v_required'), whitespace: true}],
-                    })(
-                      <Select style={{ width: 120 }} >
-                        {compilers.map((compiler, index) => {
-                          return  <Option value={compiler} key={index}>{compiler}</Option>
-                        })}
-                      </Select>
-                    )}
-                  </Form.Item>
-                  <Form.Item label={tu('contract_optimization')}>
-                    {getFieldDecorator('optimizer', {
-                      initialValue: 1,
-                      rules: [{ required: true, message: tu('name_v_required'), whitespace: true}],
-                    })(
-                      <Select style={{ width: 120 }}>
-                        <Option value={1}>Yes</Option>
-                        <Option value={0}>No</Option>
-                      </Select>
-                    )}
-                  </Form.Item>
-                </Row>
 
-                <div className="row mt-3 contract-code">
-                  <div className="col-md-12 ">
-                    <div className="d-flex mb-1">
-                      <span className="mb-3">{tu("enter_contract_code")}</span>
-                    </div>
+                <Row gutter={24} type="flex" justify="space-between" className="px-2">
+                  <Col span={12}>
+                    <Form.Item label={tu('contract_address')} {...formItemLayout}>
+                      {getFieldDecorator('contractAddress', {})(
+                        <Input placeholder={intl.formatMessage({id: 'contract_address'})}/>
+                      )}
+                    </Form.Item>
+                  </Col>
+                  <Col span={12}>
+                    <Form.Item label={tu('contract_name')}  {...formItemLayout}>
+                      {getFieldDecorator('contractName', {})(
+                        <Input placeholder={intl.formatMessage({id: 'contract_name'})}/>
+                      )}
+                    </Form.Item>
+                  </Col>
+                  <Col span={12}>
+                    <Form.Item label={tu('compiler')} {...formItemLayout}>
+                      {getFieldDecorator('compiler', {
+                        initialValue: deaultCompiler
+                      })(
+                        <Select className='w-100' >
+                          {compilers.map((compiler, index) => {
+                            return  <Option value={compiler} key={index}>{compiler}</Option>
+                          })}
+                        </Select>
+                      )}
+                    </Form.Item>
+                  </Col>
+                  <Col span={12}>
+                    <Form.Item label={tu('contract_optimization')} {...formItemLayout}>
+                      {getFieldDecorator('optimizer', {
+                        initialValue: 1
+                      })(
+                        <Select className='w-100'>
+                          <Option value={1}>Yes</Option>
+                          <Option value={0}>No</Option>
+                        </Select>
+                      )}
+                    </Form.Item>
+                  </Col>
+                </Row>
+              </div>
+            </div>
+            <p className="text-center">{tu("enter_contract_code")}</p>
+          <div className="card text-center" style={styles.card}>
+            <div>
+              <div className={"card-body"}>
+                <div className="row">
+                  <div className="col-md-12 text-left">
                     <MonacoEditor
-                      width="800"
                       height="600"
                       language="sol"
                       theme="vs-dark"
                       options={options}
                       value={contract_code}
-                      onChange={(value) => this.setState({contract_code: value})}/>
-                    
+                      onChange={(value) => this.setState({contract_code: value})}
+                      editorDidMount={this.editorDidMount}
+                    />
+                    <div className="contract-compiler-console text-left w-100">
+                      <CompilerConsole  CompileStatus={CompileStatus}/>
+                  </div>
                   </div>
                 </div>
-                <hr style={styles.hr_32}/>
                 <div className="row mt-3 contract-ABI">
                   <div className="col-md-12 ">
-                    <p className="mb-3">
+                    {/** <p className="mb-3">
                         {tu("following_optional_parameters")}
-                    </p>
-                    <div className="d-flex">
+                    </p>*/}
+                    <div className="d-flex justify-content-center pt-3">
                       <p style={styles.s_title}>{tu("constructor_arguments_ABIencoded")}</p>
-                      <div className="mt-1 ml-2">
+                      <div className="ml-1">
                         <QuestionMark placement="top" text="constructor_arguments_ABIencoded_tip"/>
                       </div>
                     </div>
@@ -177,26 +208,43 @@ class VerifyContractCode extends Component {
                     </Form.Item>
                   </div>
                 </div>
-                <hr/>
 
                 <div className="text-center" >
                   <ContractCodeRequest  handleCaptchaCode={this.handleCaptchaCode} />
-                  <button type="button" className="btn btn-lg btn-success text-capitalize mt-lg-3 mb-lg-4" onClick={this.handleVerifyCode} disabled={!captcha_code}>{tu('verify_and_publish')}</button>
+                  <div className="contract-compiler-button  mt-lg-3 mb-lg-4">
+                    <Button
+                        type="primary"
+                        loading={loading}
+                        onClick={this.handleVerifyCode}
+                        className="compile-button active ml-4"
+                        disabled={!captcha_code}
+                    >{tu('verify_and_publish')}</Button>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
           </Form>
-        </main>
+        </div>
     );
 }
 }
 
 const styles = {
+    loading: {
+      position: 'fixed',
+      top: 0,
+      left: 0,
+      right: 0,
+      bottom: 0,
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      zIndex: 9999,
+      background: 'rgba(255,255,255,0.5)'
+    },
     card: {
-        borderLeft: 'none',
-        borderRight: 'none',
-        borderBottom:'none',
+        border: 'none',
         borderRadius: 0
     },
     hr:{
@@ -208,13 +256,21 @@ const styles = {
         marginBottom:'2rem'
     },
     s_title:{
-        fontSize:16
+      fontSize: '16px',
+      color: '#353535'
     },
     rowRight:{
         marginRight:'1.25rem'
     },
     addressWidth:{
         width:"27%"
+    },
+    verify_header_box: {
+    },
+    verify_header: {
+      maxWidth: '884px',
+      width: '100%',
+      margin: '0 auto'
     }
 
 }

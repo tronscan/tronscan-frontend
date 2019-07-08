@@ -190,11 +190,11 @@ class Code extends React.Component {
           ...this.submitValueFormat()
         ).send(options)
         console.log('signedTransaction: ', signedTransaction);
-        let retValue = await this.getTxResult(signedTransaction);
-        console.log('retValue: ', retValue);
-        this.setState({
-          result: this.formatOutputs(retValue)
-        })
+        // let retValue = await this.getTxResult(signedTransaction);
+        // console.log('retValue: ', retValue);
+        // this.setState({
+        //   result: this.formatOutputs(retValue)
+        // })
       } catch (e) {
         console.log('e: ', e);
         if (e.error == "REVERT opcode executed") {

@@ -15,7 +15,8 @@ import DeployModal from "./CompilerDeployModal";
 import { Base64 } from 'js-base64';
 import xhr from "axios/index";
 import SweetAlert from "react-bootstrap-sweetalert";
-import _ from "lodash";
+import _, {find, round, filter } from "lodash";
+import {toThousands} from "../../../utils/number";
 
 @connect(
     state => ({
@@ -33,248 +34,35 @@ class ContractCompiler extends React.Component {
             deployLoading:false,
             compilerVersion:'',
             optimizer:'',
-            code: `pragma solidity ^0.4.24;
+            code: `//KhanhND: Your entry file here! When you run compiled this file, files declare with import keyword is loaded automatically.
+//File Mortal.sol must exist in this Project. 
 
-interface tokenRecipient { 
-    function receiveApproval(address _from, uint256 _value, bytes _extraData) external;
+pragma solidity ^0.4.25;
+
+contract Mortal {
+    /* Define variable owner of the type address */
+    address owner;
+
+    /* This constructor is executed at initialization and sets the owner of the contract */
+    constructor() public { owner = msg.sender; }
+
+    /* Function to recover the funds on the contract */
+    function kill() public { if (msg.sender == owner) selfdestruct(msg.sender); }
 }
 
-contract SafeMath {
-    function safeMul(uint256 a, uint256 b) internal pure returns (uint256) {
-        uint256 c = a * b;
-        _assert(a == 0 || c / a == b);
-        return c;
+contract Greeter is Mortal  {
+    /* Define variable greeting of the type string */
+    string greeting;
+
+    /* This runs when the contract is executed */
+    constructor(string memory _greeting) public {
+        greeting = _greeting;
     }
 
-    function safeDiv(uint256 a, uint256 b) internal pure returns (uint256) {
-        _assert(b > 0);
-        uint256 c = a / b;
-        _assert(a == b * c + a % b);
-        return c;
+    /* Main function */
+    function greet() public view returns (string memory) {
+        return greeting;
     }
-
-    function safeSub(uint256 a, uint256 b) internal pure returns (uint256) {
-        _assert(b <= a);
-        return a - b;
-    }
-
-    function safeAdd(uint256 a, uint256 b) internal pure returns (uint256) {
-        uint256 c = a + b;
-        _assert(c >= a && c >= b);
-        return c;
-    }
-
-    function _assert(bool assertion) internal pure {
-        if (!assertion) {
-            revert();
-        }
-    }
-}
-
-contract Ownable  {
-    address  public  _owner;
-    bool  public  paused  =  false;
-    bool  public  burned  =  false;
-    bool  public  ceased  =  false;
-    event  OwnershipTransferred(address  indexed  previousOwner,  address  indexed  newOwner);
-
-    constructor ()  internal  {
-        _owner  =  msg.sender;
-    }
-
-    function  owner()  public  view  returns  (address)  {
-        return  _owner;
-    }
-
-    modifier  onlyOwner()  {
-        require(msg.sender  ==  _owner);
-        _;
-    }
-
-    function  transferOwnership(address  newOwner)  public  onlyOwner  {
-        require(newOwner  !=  address(0));
-        emit  OwnershipTransferred(_owner,  newOwner);
-        _owner  =  newOwner;
-    }
-
-    modifier  whenNotPaused()  {
-        require(!paused);
-        _;
-    }
-
-    modifier  whenPaused  {
-        require(paused);
-        _;
-    }
-
-    modifier  whenBurn  {
-        require(burned);
-        _;
-    }
-    
-    modifier whenNotCease {
-        require(!ceased);
-        _;
-    }
-    
-    function  pause()  external  onlyOwner  whenNotPaused  {
-        paused  =  true;
-    }
-
-    function  unPause()  public  onlyOwner  whenPaused  {
-        paused  =  false;
-    }
-    
-    function openBurn() public onlyOwner{
-        burned = true;
-    }
-    
-    function closeBurn() public onlyOwner{
-         burned = false;
-    }
-    
-    function  cease()  external onlyOwner {
-        ceased  =  true;
-    }
-
-    function  unCease()  public onlyOwner {
-        ceased  =  false;
-    }
-
-}
-
-contract TRONAce is SafeMath,Ownable{
-    string public name = "TRONAce"; 
-    string public symbol = "ACE";       
-    uint8 constant public decimals = 6;        
-    mapping(address => uint256)  _balances;
-    mapping(address => mapping(address => uint256)) public _allowed;
-    mapping(address => uint256) public freezeBalance;
-    mapping(address => uint256) public lockBalance;
-    mapping(address => uint256) public unfreezeTime;
-    
-    uint256 constant public precision = 1000000;
-    uint256 constant public yi = 100000000;
-    uint256 constant public daySec = 24 * 60 * 60;
-    
-    uint256  public totalSupply = 1000 * yi * precision;
-    bool public stopped = false;
-
-    uint256 public Manydays = 2;
-    
-
-    constructor () public{
-        _owner = msg.sender;
-        _balances[_owner] = totalSupply;
-        emit Transfer(0x0, _owner, totalSupply);
-    }
-
-    function balanceOf(address addr) public view returns (uint256) {
-        return _balances[addr];
-    }
-    
-    
-
-    function transfer(address _to, uint256 _value)  public returns (bool) {
-        require(_to != address(0));
-        require(_balances[msg.sender] >= _value && _value > 0);
-        require(_balances[_to] + _value >= _balances[_to]);
-        
-        _balances[msg.sender] = safeSub(_balances[msg.sender], _value);
-        _balances[_to] = safeAdd(_balances[_to], _value);
-        emit Transfer(msg.sender, _to, _value);
-        return true;
-    }
-
-    function transferFrom(address _from, address _to, uint256 _value)  public returns (bool) {
-        require(_to != address(0));
-        require(_balances[_from] >= _value && _value > 0);
-        require(_balances[_to] + _value >= _balances[_to]);
-        
-        require(_allowed[_from][msg.sender] >= _value);
-        
-        _balances[_to] = safeAdd(_balances[_to], _value);
-        _balances[_from] = safeSub(_balances[_from], _value);
-        _allowed[_from][msg.sender] = safeSub(_allowed[_from][msg.sender], _value);
-        emit Transfer(_from, _to, _value);
-        return true;
-    }
-
-    function approve(address spender, uint256 value)  public returns (bool) {
-        require(spender != address(0));
-        _allowed[msg.sender][spender] = value;
-        emit Approval(msg.sender, spender, value);
-        return true;
-    }
-
-    function allowance(address _master, address _spender) public view returns (uint256) {
-        return _allowed[_master][_spender];
-    }
-
-    
-    function burn(uint256 _value) whenBurn public returns (bool success) {
-        require(_balances[msg.sender] >= _value && totalSupply > _value);
-        _balances[msg.sender] = safeSub(_balances[msg.sender],_value);
-        totalSupply = safeSub(totalSupply, _value);                              
-        emit Burn(msg.sender, _value);
-        return true;
-    }
-
-    function approveAndCall(address _spender, uint256 _value, bytes _extraData) whenNotCease external returns (bool success) {
-        tokenRecipient spender = tokenRecipient(_spender);
-        if (approve(_spender, _value)) {
-            spender.receiveApproval(msg.sender, _value, _extraData);
-            return true;
-        }
-    }
-
-
-    function freeze(uint256 value) whenNotPaused public {
-        require(_balances[msg.sender] >= value  && value > 0);
-        _balances[msg.sender] = safeSub(_balances[msg.sender], value);
-        freezeBalance[msg.sender] = safeAdd(freezeBalance[msg.sender], value);
-        emit Freeze(msg.sender, value);
-    }
-
-    function unfreeze(uint256 value) whenNotPaused public {
-        require(value  > 0 && freezeBalance[msg.sender] >= value);
-        freezeBalance[msg.sender] = safeSub(freezeBalance[msg.sender], value);
-        lockBalance[msg.sender] = safeAdd(lockBalance[msg.sender], value);
-        unfreezeTime[msg.sender] = now;
-        emit Unfreeze(msg.sender, value);
-    }
-
-    function unlock(uint256 value) whenNotPaused public {
-        require(value > 0 && lockBalance[msg.sender] >= value);
-        require(now - unfreezeTime[msg.sender] >= daySec * Manydays);
-        lockBalance[msg.sender] = safeSub(lockBalance[msg.sender], value);
-        _balances[msg.sender] = safeAdd(_balances[msg.sender], value);
-        emit Unlock(msg.sender, value);
-    }
-      
-    function setDaySec (uint256 value) public onlyOwner{
-        require(value >= 0);
-        Manydays = value;
-    }
-    
-
-    function withdraw(address addr, uint256 amount) public onlyOwner {
-        addr.transfer(amount);
-        emit WithDraw(addr, amount);
-    }
-    
-    function setName(string _name) onlyOwner public {
-        name = _name;
-    }
-
-    event Approval(address indexed _owner, address indexed _spender, uint256 _value);
-    event Transfer(address indexed _from, address indexed _to, uint256 value);
-    event Burn(address indexed _from, uint256 _value);
-    
-    event WithDraw(address _addr, uint256 _amount);
-    event Freeze(address addr, uint256 value);
-    event Unfreeze(address addr, uint256 value);
-    event Unlock(address addr, uint256 value);
 }`,
             filter: {
                 direction:'compile'
@@ -307,6 +95,11 @@ contract TRONAce is SafeMath,Ownable{
     componentDidMount() {
         let {match} = this.props;
        // this.loadContract(match.params.id);
+       if(match.params && match.params.type == 'verify'){
+        this.setState({
+            filter: { direction: 'verify'}
+        })
+       }
 
     }
 
@@ -319,6 +112,11 @@ contract TRONAce is SafeMath,Ownable{
     }
 
     onRadioChange = (val) => {
+        if(val == 'verify'){
+            location.href = '/#/contracts/contract-Compiler/verify'
+        }else{
+            location.href = '/#/contracts/contract-Compiler'
+        }
         this.setState({
             filter: {
                 direction: val,
@@ -392,13 +190,19 @@ contract TRONAce is SafeMath,Ownable{
             modal: (
                 <DeployModal
                     onHide={this.hideModal}
-                    onConfirm={this.compile}
+                    onConfirm={(options) => this.deploy(options)}
                     contractNameList={this.state.contractNameList}
+                    compileInfo={this.state.compileInfo}
                 />
             )
         });
     }
-
+    onDeployParams (form) {
+        console.log('form',form)
+        this.setState({
+            ...form
+        })
+    }
     compilerVersionMsg(version) {
         console.log('version',version)
         this.setState({
@@ -412,6 +216,8 @@ contract TRONAce is SafeMath,Ownable{
         });
     }
 
+
+
     compile = async (compilerVersion,optimizer) => {
 
         let { CompileStatus, solidity } = this.state;
@@ -421,13 +227,11 @@ contract TRONAce is SafeMath,Ownable{
             modal: null,
             CompileStatus:[],
         });
-        console.log('compilerVersion',compilerVersion)
-        console.log('compilerVersion',optimizer)
         let {data} = await xhr.post(`http://18.219.114.60:9083/v1/api/contract/compile`, {
             "compiler": compilerVersion,
             "optimizer": optimizer,
             "solidity":solidity,
-            "runs":200
+            "runs":0
         }).catch(function (e) {
             console.log(e)
             let errorData = [{
@@ -455,28 +259,19 @@ contract TRONAce is SafeMath,Ownable{
                 let compileInfo = _(data.data.abiArr).map(m => _.merge({}, m, mapArr[m.contractName]))
                     .concat(_.differenceBy(data.data.abiArr, data.data.byteCodeArr, "contractName"))
                     .value();
-                 console.log('compileInfo',compileInfo)
                 for (let i in compileInfo) {
                     let contract = compileInfo[i];
                     let contractName = contract.contractName
                     contractNameList.push(contractName)
-                    console.log('contract',contract)
-                    // successData.push({
-                    //     type: "success",
-                    //     content: `Compiled success: Contract '${contractName}' <CompilerJsoninfo data-component="CompilerJsoninfo" public:key={${i}_ABI} public:title="Show ABI" public:json='${JSON.stringify(
-                    //         contract.abi
-                    //     )}'/> <CompilerJsoninfo data-component="CompilerJsoninfo" public:key={${i}_Bytecode} public:title="Show Bytecode" public:json='${JSON.stringify(
-                    //         contract.byteCode
-                    //     )}'/>`
-                    // })
                     successData.push({
                         type: "success",
                         class:"compile",
-                        content: `Compiled success: Contract '${contractName}' <span id="${i}_ABI" >Show ABI</span> <span id="${i}_Bytecode">Show Bytecode</span>`,
+                        content: `Compiled success: Contract '${contractName}' <span>Show ABI</span> <span>Show Bytecode</span>`,
                         contract:contract
                     })
                 }
                 this.setState({
+                    compileInfo,
                     contractNameList,
                     CompileStatus:successData,
                 })
@@ -499,7 +294,170 @@ contract TRONAce is SafeMath,Ownable{
         }
 
     };
+    deploy = async (options) => {
+        console.log('options',options)
+        let currentContractName = options.name;
+        let { CompileStatus } = this.state;
+        const {tronWeb} = this.props.account;
+        try {
+            let infoData =  [{
+                type: "info",
+                content: "Deploy " + options.name + "\n"
+            }]
+            CompileStatus.push.apply(CompileStatus,infoData)
+            await this.setState({
+                CompileStatus,
+                compileLoading: false
+            });
 
+            const unsigned = await tronWeb.transactionBuilder.createSmartContract(
+                options
+            );
+            infoData = [{
+                type: "info",
+                class:"unsigned",
+                content:`Transaction unsigned.`,
+                contract:unsigned
+            }];
+            CompileStatus.push.apply(CompileStatus,infoData)
+            console.log('CompileStatus',CompileStatus)
+            await this.setState({
+                CompileStatus,
+            });
+
+            const signed = await tronWeb.trx.sign(unsigned);
+            infoData = [{
+                type: "info",
+                class:"signed",
+                content:`Transaction signed!`,
+                contract:signed
+            }];
+            CompileStatus.push.apply(CompileStatus,infoData)
+            await this.setState({
+                CompileStatus,
+            });
+
+            const broadcastResult = await tronWeb.trx.sendRawTransaction(
+                signed
+            );
+            if (broadcastResult.result === true) {
+
+                infoData = [{
+                    type: "info",
+                    class:"broadcast",
+                    content:`Broadcast transaction success!`,
+                    contract:broadcastResult
+                }];
+                CompileStatus.push.apply(CompileStatus,infoData)
+                await this.setState({
+                    CompileStatus,
+                });
+
+
+                let transactionInfo = {};
+                do {
+                    transactionInfo = await tronWeb.trx.getTransactionInfo(
+                        signed.txID
+                    );
+
+                    if (transactionInfo.id) {
+                        console.log('transactionInfo.receipt.result',transactionInfo.receipt.result)
+                        if (transactionInfo.receipt.result == "SUCCESS") {
+                            infoData = [{
+                                type: "success",
+                                class:"deploy",
+                                content: `Successful deployed contract '${currentContractName}'. Cost: ${
+                                    transactionInfo.receipt.energy_fee
+                                        ? toThousands(
+                                        transactionInfo.receipt.energy_fee / 1000000
+                                        )
+                                        : 0
+                                    } TRX, ${
+                                    transactionInfo.receipt.energy_usage
+                                        ? toThousands(transactionInfo.receipt.energy_usage)
+                                        : 0
+                                    } energy. Transaction confirm here <a href="/#/transaction/${transactionInfo.id}" class="info_link">${transactionInfo.id}</a>`
+                            }];
+
+                            CompileStatus.push.apply(CompileStatus,infoData);
+                            console.log('CompileStatus22222222============',CompileStatus)
+                            await this.setState({
+                                CompileStatus,
+                            });
+                            let base58Adress = tronWeb.address.fromHex(
+                                signed.contract_address
+                            );
+                            console.log('base58Adress',base58Adress)
+                            infoData = [{
+                                type: "success",
+                                class:"deploy",
+                                content: `Contract address: <a href="/#/contract/${base58Adress}/code" target='_blank' class="info_link"> ${base58Adress}</a>`
+                            }];
+                            CompileStatus.push.apply(CompileStatus,infoData)
+                            await this.setState({
+                                CompileStatus,
+                            });
+
+
+                        } else if (transactionInfo.receipt.result == "OUT_OF_ENERGY") {
+                            this.updateDeployStatus({
+                                type: "error",
+                                content: `FAILED deploying ${
+                                    this.currentContractDeployName
+                                    }. You lost: ${
+                                    transactionInfo.receipt.energy_fee
+                                        ? toThousands(
+                                        transactionInfo.receipt.energy_fee / 1000000
+                                        )
+                                        : 0
+                                    } TRX\nReason: ${tronWeb.toUtf8(
+                                    transactionInfo.resMessage
+                                )}. Transaction here <a href="/#/transaction/${transactionInfo.id}" class="info_link">
+                                        Verified Contract Source Code
+                                    </a>`
+                            });
+                        } else {
+                            this.updateDeployStatus({
+                                type: "error",
+                                content: `FAILED deploying ${
+                                    this.currentContractDeployName
+                                    }.\nView transaction here <a href="/#/transaction/${transactionInfo.id}" class="info_link">
+                                        Verified Contract Source Code
+                                    </a>`
+                            });
+                        }
+                    }
+                } while (!transactionInfo.id);
+            } else {
+                this.updateDeployStatus({
+                    type: "error",
+                    content: `FAILED to broadcast ${
+                        this.currentContractName
+                        } deploy transaction \n${
+                        broadcastResult.code
+                        }\n${window.tronWeb.toUtf8(
+                        broadcastResult.message
+                    )}.\n<obj title="View Broadcast Result" json='${JSON.stringify(
+                        broadcastResult
+                    )}'/>`
+                });
+            }
+
+        } catch (e) {
+
+            let errorData = [{
+                type: "error",
+                content: `Deploy fail! Error: ${e.toString()}`
+            }]
+
+            CompileStatus.push.apply(CompileStatus,errorData)
+            this.setState({
+                CompileStatus,
+                compileLoading: false
+            });
+        }
+        this.statusDeploying = false;
+    }
 
     render() {
         let {modal, loading, code, filter, compileLoading, deployLoading, CompileStatus } = this.state;
@@ -515,14 +473,16 @@ contract TRONAce is SafeMath,Ownable{
                             <div className={filter.direction == 'compile'?'compile-button active':'compile-button'} onClick={() => this.onRadioChange('compile')}> {tu('合约部署')}</div>
                             <div className={filter.direction == 'verify'?'compile-button active ml-4':'compile-button ml-4'} onClick={() => this.onRadioChange('verify')}>{tu('合约验证')}</div>
                         </div>
-                        <div className="compile-text mt-4">
-                            {tu('Put your single file of smart contract here')}
-                        </div>
+                       
+                        {
+                            filter.direction == 'compile' ?
+                        <div>
+                            <div className="compile-text mt-4">
+                                {tu('Put your single file of smart contract here')}
+                            </div>
                         <div className="card mt-4">
                             <div className="card-body">
                                 <div className="d-flex contract-compiler">
-                                    {
-                                        filter.direction == 'compile' ?
                                             <div className="pt-3">
                                                 <MonacoEditor
                                                     width="1110"
@@ -556,15 +516,13 @@ contract TRONAce is SafeMath,Ownable{
                                                     </Button>
                                                 </div>
                                             </div>
-                                            :
-                                            <div>
-                                                <VerifyContractCode/>
-                                            </div>
-                                    }
-
                                 </div>
                             </div>
                         </div>
+                        </div>
+                        :
+                                            <VerifyContractCode/>
+                                    }
                     </div>
                 </div>
             </main>
@@ -576,6 +534,7 @@ function mapStateToProps(state) {
 
 
     return {
+
     };
 }
 
