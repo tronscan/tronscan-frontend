@@ -35,9 +35,7 @@ class VerifyContractCode extends Component {
             deaultCompiler: 'solidity-0.4.25_Odyssey_v3.2.3',
             contract_code: '',
             captcha_code: true,
-            CompileStatus: [{
-              type: "error", content: `sfdfsdfsdf is not a existing contract. <span id="ABI" >Please confirm and try again</span>`
-          }],
+            CompileStatus: [],
             loading: false
         };
     }
@@ -76,20 +74,25 @@ class VerifyContractCode extends Component {
         const solidity = Base64.encode(contract_code);
         const { data } = await xhr.post('http://172.16.21.246:9016/v1/api/contract/verify',{solidity,runs: '0', ...fieldata})
         if(data.code === 200){
-          // Verification success
-          location.href = `/contract/${fieldata.contractAddress}/code`
+         
+          if(data.data.status === 2001){
+            CompileStatus.push({
+              type: "info", 
+              content: `The Contract Source code for <span class="">${fieldata.contractAddress}</span> has alreadly been verified. Click here to view the <a href=" http://localhost:3000/#/contract/${fieldata.contractAddress}/code" class="info_link">Verified Contract Source Code</a>`
+            })
+            this.setState({
+              CompileStatus:CompileStatus
+            });
+          }else{
+             // Verification success
+            location.href = `/#/contract/${fieldata.contractAddress}/code`
+          }
           
         }else{
-          let content =''
-          if(data.code == -1){
-            content = `${data.contractAddress} is not a existing contract. Please confirm and try again`
-          }else{
-            content = `The Contract Source code for ${data.contractAddress} has alreadly been verified. Click here to view the Verified Contract Source Code`
-          }
-          let errorData = {
-              type: "error", content
-          }
-          CompileStatus.push(errorData)
+          CompileStatus.push({
+            type: "error", 
+            content: `<span class="">${fieldata.contractAddress}</span> is not a existing contract. Please confirm and try again`
+          })
           this.setState({
             CompileStatus:CompileStatus
           });
@@ -115,7 +118,7 @@ class VerifyContractCode extends Component {
         <div className="pt-4 w-100 verify-contranct">
           {modal}
           {loading && <div  style={styles.loading}><TronLoader/></div>}
-          <Form layout="horizontal" labelAlign="left">
+          <Form layout="horizontal">
             <div style={styles.verify_header_box}>
               <div style={styles.verify_header}>
                 <div className="mb-4">
@@ -170,8 +173,8 @@ class VerifyContractCode extends Component {
             <p className="text-center">{tu("enter_contract_code")}</p>
           <div className="card text-center" style={styles.card}>
             <div>
-              <div className={"card-body contract-body-input contract-hide"}>
-                <div className="row contract-code">
+              <div className={"card-body"}>
+                <div className="row">
                   <div className="col-md-12 text-left">
                     <MonacoEditor
                       height="600"
@@ -182,7 +185,7 @@ class VerifyContractCode extends Component {
                       onChange={(value) => this.setState({contract_code: value})}
                       editorDidMount={this.editorDidMount}
                     />
-                    <div className="contract-compiler-console text-left">
+                    <div className="contract-compiler-console text-left w-100">
                       <CompilerConsole  CompileStatus={CompileStatus}/>
                   </div>
                   </div>
