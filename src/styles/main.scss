@@ -4351,14 +4351,14 @@ delete {
   .info_address{
     color: #84DC25!important;
   }
-  .info_link{
-    color: #4A90E2!important;
-    cursor: pointer;
-    text-decoration: underline!important;
+}
+.info_link{
+  color: #4A90E2!important;
+  cursor: pointer;
+  text-decoration: underline!important;
 
-    &:hover{
-      color: #4A90E2!important;
-    }
+  &:hover{
+    color: #4A90E2!important;
   }
 }
 

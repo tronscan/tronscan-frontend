@@ -16,7 +16,8 @@ import { Base64 } from 'js-base64';
 import xhr from "axios/index";
 import SweetAlert from "react-bootstrap-sweetalert";
 import _, {find, round, filter } from "lodash";
-import CompilerJsoninfo from "./CompilerJsonInfo";
+import {toThousands} from "../../../utils/number";
+
 @connect(
     state => ({
         account: state.app.account,
@@ -295,6 +296,7 @@ contract Greeter is Mortal  {
     };
     deploy = async (options) => {
         console.log('options',options)
+        let currentContractName = options.name;
         let { CompileStatus } = this.state;
         const {tronWeb} = this.props.account;
         try {
@@ -354,52 +356,49 @@ contract Greeter is Mortal  {
 
                 let transactionInfo = {};
                 do {
-                    transactionInfo = await window.tronWeb.trx.getTransactionInfo(
+                    transactionInfo = await tronWeb.trx.getTransactionInfo(
                         signed.txID
                     );
+
                     if (transactionInfo.id) {
+                        console.log('transactionInfo.receipt.result',transactionInfo.receipt.result)
                         if (transactionInfo.receipt.result == "SUCCESS") {
                             infoData = [{
                                 type: "success",
                                 class:"deploy",
-                                content:`Broadcast transaction success!`,
-                                contract:broadcastResult
-                            }];
-                            CompileStatus.push.apply(CompileStatus,infoData)
-                            await this.setState({
-                                CompileStatus,
-                            });
-                            this.updateDeployStatus({
-                                type: "success",
-                                content: `Successful deployed contract '${
-                                    this.currentContractDeployName
-                                    }'. Cost: ${
+                                content: `Successful deployed contract '${currentContractName}'. Cost: ${
                                     transactionInfo.receipt.energy_fee
-                                        ? FormatNumber(
+                                        ? toThousands(
                                         transactionInfo.receipt.energy_fee / 1000000
                                         )
                                         : 0
                                     } TRX, ${
                                     transactionInfo.receipt.energy_usage
-                                        ? FormatNumber(transactionInfo.receipt.energy_usage)
+                                        ? toThousands(transactionInfo.receipt.energy_usage)
                                         : 0
-                                    } energy. Transaction confirm here <tx id='${
-                                    transactionInfo.id
-                                    }'/>\n`
+                                    } energy. Transaction confirm here <a href="/#/transaction/${transactionInfo.id}" class="info_link">${transactionInfo.id}</a>`
+                            }];
+
+                            CompileStatus.push.apply(CompileStatus,infoData);
+                            console.log('CompileStatus22222222============',CompileStatus)
+                            await this.setState({
+                                CompileStatus,
                             });
-                            let base58Adress = window.tronWeb.address.fromHex(
+                            let base58Adress = tronWeb.address.fromHex(
                                 signed.contract_address
                             );
-
-                            window.gtag("event", "deployed", {
-                                event_category: "Deploy on " + window.tronWeb.fullNode.host,
-                                event_label: base58Adress
-                            });
-
-                            this.updateDeployStatus({
+                            console.log('base58Adress',base58Adress)
+                            infoData = [{
                                 type: "success",
-                                content: `Contract address: <a target='_blank' href='#/interact/${base58Adress}'>${base58Adress}</a>\n`
+                                class:"deploy",
+                                content: `Contract address: <a href="/#/contract/${base58Adress}/code" target='_blank' class="info_link"> ${base58Adress}</a>`
+                            }];
+                            CompileStatus.push.apply(CompileStatus,infoData)
+                            await this.setState({
+                                CompileStatus,
                             });
+
+
                         } else if (transactionInfo.receipt.result == "OUT_OF_ENERGY") {
                             this.updateDeployStatus({
                                 type: "error",
@@ -407,20 +406,24 @@ contract Greeter is Mortal  {
                                     this.currentContractDeployName
                                     }. You lost: ${
                                     transactionInfo.receipt.energy_fee
-                                        ? FormatNumber(
+                                        ? toThousands(
                                         transactionInfo.receipt.energy_fee / 1000000
                                         )
                                         : 0
-                                    } TRX\nReason: ${window.tronWeb.toUtf8(
+                                    } TRX\nReason: ${tronWeb.toUtf8(
                                     transactionInfo.resMessage
-                                )}. Transaction here <tx id='${transactionInfo.id}'/>`
+                                )}. Transaction here <a href="/#/transaction/${transactionInfo.id}" class="info_link">
+                                        Verified Contract Source Code
+                                    </a>`
                             });
                         } else {
                             this.updateDeployStatus({
                                 type: "error",
                                 content: `FAILED deploying ${
                                     this.currentContractDeployName
-                                    }.\nView transaction here <tx id='${transactionInfo.id}'/>`
+                                    }.\nView transaction here <a href="/#/transaction/${transactionInfo.id}" class="info_link">
+                                        Verified Contract Source Code
+                                    </a>`
                             });
                         }
                     }
