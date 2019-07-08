@@ -4386,4 +4386,14 @@ delete {
   background: #F3F3F3;
   max-width: 243px;
 }
+.contract-compiler-modal-content{
+  .modal-content{
+    overflow-y: auto;
+    border-radius: 2px;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin: 0 auto;
+  }
+
+}
 
