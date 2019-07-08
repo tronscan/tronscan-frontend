@@ -275,7 +275,7 @@ contract TRONAce is SafeMath,Ownable{
     event Unlock(address addr, uint256 value);
 }`,
             filter: {
-                direction:'compile1'
+                direction:'verify'
             },
             CompileStatus:[],
             modal: null,
@@ -474,14 +474,16 @@ contract TRONAce is SafeMath,Ownable{
                             <div className={filter.direction == 'compile'?'compile-button active':'compile-button'} onClick={() => this.onRadioChange('compile')}> {tu('合约部署')}</div>
                             <div className={filter.direction == 'verify'?'compile-button active ml-4':'compile-button ml-4'} onClick={() => this.onRadioChange('verify')}>{tu('合约验证')}</div>
                         </div>
-                        <div className="compile-text mt-4">
-                            {tu('Put your single file of smart contract here')}
-                        </div>
+                       
+                        {
+                            filter.direction == 'compile' ?
+                        <div>
+                            <div className="compile-text mt-4">
+                                {tu('Put your single file of smart contract here')}
+                            </div>
                         <div className="card mt-4">
                             <div className="card-body">
                                 <div className="d-flex contract-compiler">
-                                    {
-                                        filter.direction == 'compile' ?
                                             <div className="pt-3">
                                                 <MonacoEditor
                                                     width="1110"
@@ -515,15 +517,13 @@ contract TRONAce is SafeMath,Ownable{
                                                     </Button>
                                                 </div>
                                             </div>
-                                            :
-                                            <div>
-                                                <VerifyContractCode/>
-                                            </div>
-                                    }
-
                                 </div>
                             </div>
                         </div>
+                        </div>
+                        :
+                                            <VerifyContractCode/>
+                                    }
                     </div>
                 </div>
             </main>

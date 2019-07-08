@@ -4326,3 +4326,18 @@ delete {
   margin-left: 48px;
 }
 
+.verify-contranct{
+  .ant-form-item-label{
+    text-align: left;
+    height: 36px;
+    line-height: 36px;
+  }
+  .contract-body-input {
+    padding-top: 2;
+    padding-bottom: 0;
+  }
+  .ant-input,.ant-select-selection{
+    border-radius: 0;
+  }
+}
+

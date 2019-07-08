@@ -1903,6 +1903,9 @@ export const messages = {
   "contract_tip": "提示",
   "contract_name": "合约名称",
   "contract_version": "编译器版本",
-  "contract_optimize": "优化"
+  "contract_optimize": "优化",
+  "verify_code1": "Source code verification provides transparency for users interacting with smart contracts.",
+  "verify_code2": "By uploading the source code, Transcan will match the compiled code with that on the blockchain.",
+  "verify_code3": `Just like contracts, a "smart contract" should provide end users with more information on what they are "digitally signing" for and give users an opportunity to audit the code to independently verify that it actually does what it is supposed to do.`,
 
 };
