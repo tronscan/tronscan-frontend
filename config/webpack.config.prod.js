@@ -333,6 +333,12 @@ module.exports = {
     new DllReferencePlugin({
         manifest:require('./../mainfest/ui-manifest.json')
     }),
+    new DllReferencePlugin({
+        manifest:require('./../mainfest/leaflet-manifest.json')
+    }),
+    new DllReferencePlugin({
+        manifest:require('./../mainfest/editor-manifest.json')
+    }),
     new UglifyJSPlugin({
         compress: {
             warnings: false,  //删除无用代码时不输出警告
