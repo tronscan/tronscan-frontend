@@ -45,14 +45,11 @@ class Code extends React.Component {
 
   async componentDidMount() {
     let { contractItem, address, account } = this.props;
-    // console.log('account: ', account);
     let { contract } = this.state
     const { tronWeb } = this.props.account;
     if ( account.isLoggedIn ) {
-      // console.log('tronWeb: ', tronWeb);
       let addressHex = tronWeb.address.toHex(address)
       
-      // console.log('addressHex: ', addressHex);
       let initContract = await tronWeb.contract([contractItem], addressHex)
       this.setState({
         contract: initContract

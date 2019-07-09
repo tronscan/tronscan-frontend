@@ -46,6 +46,11 @@ export default class Code extends React.Component {
   async componentDidMount() {
     const { contractVerifyState } = this.state
     this.getContractVerifyStatus()
+    // this.getContractTokenList()
+    // await this.getContractInfos()
+    // this.viewFuntions()
+    // this.payableFuntions()
+    // this.nonePayableFuntions()
     
   }
   async getContractVerifyStatus () {
@@ -62,8 +67,7 @@ export default class Code extends React.Component {
       // error = errorData.concat(CompileStatus)
 
     });
-    console.log('data.data.status: ', data.data.status);
-    console.log('data: ', data.data);
+    // console.log('data: ', data.data);
     let dataInfo = data.data
     if (data.data.status === 3 || data.data.status === 1) {
       this.setState({
@@ -77,8 +81,9 @@ export default class Code extends React.Component {
       })
     } else {
       let infoObj
+      let abi = JSON.parse(dataInfo.abi)
       infoObj = {
-        abi: dataInfo.abi || '',
+        abi: abi.abi || '',
         name: dataInfo.contract_name || '',
         bytecode: dataInfo.byte_code || '',
         contractCode: dataInfo.contract_code || '',
@@ -86,7 +91,7 @@ export default class Code extends React.Component {
         optimizer: dataInfo.optimizer == 1 ? '已优化' : '未优化',
         compiler: dataInfo.compiler
       }
-      console.log('infoObj: ', infoObj);
+      // console.log('infoObj: ', infoObj);
       this.setState({
         contractVerifyState: true,
         contractInfoList: infoObj,
@@ -117,12 +122,22 @@ export default class Code extends React.Component {
   }
   viewFuntions() {
     let { contractInfoList } = this.state;
+    console.log('contractInfoList.abi: ', contractInfoList.abi);
+    let list
     if (contractInfoList.abi) {
-      let list = contractInfoList.abi.entrys.filter(
-        entry =>
-          entry.type == "Function" &&
-          (entry.stateMutability == "View" || entry.stateMutability == "Pure")
-      );
+      if (contractInfoList.abi.entrys) {
+        list = contractInfoList.abi.entrys.filter(
+          entry =>
+            entry.type == "Function" &&
+            (entry.stateMutability == "View" || entry.stateMutability == "Pure")
+        );
+      } else {
+        list = contractInfoList.abi.filter(
+          entry =>
+            entry.type == "function" &&
+            (entry.stateMutability == "view" || entry.stateMutability == "pure")
+        );
+      }
       this.setState({
         viewContractList: list
       },() => {
@@ -132,10 +147,17 @@ export default class Code extends React.Component {
   }
   payableFuntions() {
     let { contractInfoList } = this.state;
+    let list
     if (contractInfoList.abi) {
-      let list = contractInfoList.abi.entrys.filter(
-        entry => entry.type == "Function" && entry.stateMutability == "Payable"
-      );
+      if (contractInfoList.abi.entrys) {
+        list = contractInfoList.abi.entrys.filter(
+          entry => entry.type == "Function" && entry.stateMutability == "Payable"
+        );
+      } else {
+        list = contractInfoList.abi.filter(
+          entry => entry.type == "function" && entry.stateMutability == "payable"
+        );
+      }
       this.setState({
         payableContractList: list
       }, () => {
@@ -145,11 +167,19 @@ export default class Code extends React.Component {
   }
   nonePayableFuntions() {
     let { contractInfoList } = this.state;
+    let list
     if (contractInfoList.abi) {
-      let list = contractInfoList.abi.entrys.filter(
-        entry =>
-          entry.type == "Function" && entry.stateMutability == "Nonpayable"
-      );
+      if (contractInfoList.abi.entrys) {
+        list = contractInfoList.abi.entrys.filter(
+          entry =>
+            entry.type == "Function" && entry.stateMutability == "Nonpayable"
+        );
+      } else {
+        list = contractInfoList.abi.filter(
+          entry =>
+            entry.type == "function" && entry.stateMutability == "nonpayable"
+        );
+      }
       this.setState({
         nonePayableContractList: list
       }, () => {
