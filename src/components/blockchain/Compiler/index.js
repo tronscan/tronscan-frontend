@@ -438,16 +438,16 @@ class ContractCompiler extends React.Component {
 
         } catch (e) {
 
-            // let errorData = [{
-            //     type: "error",
-            //     content: `Deploy fail! Error: ${e.toString()}`
-            // }]
-            //
-            // CompileStatus.push.apply(CompileStatus,errorData)
-            // this.setState({
-            //     CompileStatus,
-            //     deployLoading: false,
-            // });
+            let errorData = [{
+                type: "error",
+                content: `Deploy fail! Error: ${e.toString()}`
+            }]
+
+            CompileStatus.push.apply(CompileStatus,errorData)
+            this.setState({
+                CompileStatus,
+                deployLoading: false,
+            });
         }
         this.setState({
             deployLoading: false,
