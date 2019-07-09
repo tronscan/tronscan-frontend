@@ -286,7 +286,7 @@ class Code extends React.Component {
     const { getFieldDecorator } = this.props.form
     let { contractItem, index, currentTokens } = this.props;
     let contractList
-    if (contractItem.stateMutability == 'Payable') {
+    if (contractItem.stateMutability == 'Payable' || contractItem.stateMutability == 'payable') {
       // Run these functions with Trx or Token
       contractList = (
         <div>
@@ -318,7 +318,7 @@ class Code extends React.Component {
           <div>{result}</div>
         </div>
       )
-    } else if (contractItem.stateMutability == 'Nonpayable') {
+    } else if (contractItem.stateMutability == 'Nonpayable' || contractItem.stateMutability == 'nonpayable') {
       // Run these functions will consume Trx or Energy
       contractList = (
         <div>
@@ -344,7 +344,7 @@ class Code extends React.Component {
             <Collapse defaultActiveKey={[`${index}`]} expandIconPosition="right">
               <Panel header={index+1 +'.' + contractItem.name} key={index}>
                 {
-                  contractItem.type != 'Event' ?
+                  contractItem.type != 'Event' || contractItem.type != 'event' ?
                     <div>
                       {contractItem.inputs ?
                         <div>
