@@ -39,7 +39,8 @@ export default class Code extends React.Component {
       nonePayableContractList: [],
       eventContractList: [],
       currentTokens: [],
-      contractVerifyState: true
+      contractVerifyState: true,
+      showStatus: 8,
     };
   }
 
@@ -71,7 +72,9 @@ export default class Code extends React.Component {
     let dataInfo = data.data
     if (data.data.status === 3 || data.data.status === 1) {
       this.setState({
-        contractVerifyState: false
+        contractVerifyState: false,
+        showStatus: 3,
+        loading: false
       }, async() => {
           // this.getContractTokenList()
           await this.getContractInfos()
@@ -82,19 +85,22 @@ export default class Code extends React.Component {
     } else {
       let infoObj
       let abi = JSON.parse(dataInfo.abi)
+      console.log('abi: ', abi);
       infoObj = {
-        abi: abi.abi || '',
+        abi: abi || '',
         name: dataInfo.contract_name || '',
         bytecode: dataInfo.byte_code || '',
         contractCode: dataInfo.contract_code || '',
         constructorParams: dataInfo.constructor_params || '',
-        optimizer: dataInfo.optimizer == 1 ? '已优化' : '未优化',
+        optimizer: dataInfo.optimizer,
         compiler: dataInfo.compiler
       }
       // console.log('infoObj: ', infoObj);
       this.setState({
         contractVerifyState: true,
         contractInfoList: infoObj,
+        showStatus: 2,
+        loading: false
       }, () => {
           this.getContractTokenList()
           // await this.getContractInfos()
@@ -235,7 +241,8 @@ export default class Code extends React.Component {
       payableContractList,
       nonePayableContractList,
       currentTokens,
-      contractVerifyState } = this.state;
+      contractVerifyState,
+      loading } = this.state;
     let { filter } = this.props;
     let tabContent;
     if (choiceContractItem === 'code' && contractInfoList) {
@@ -293,23 +300,28 @@ export default class Code extends React.Component {
 
     return (
         <main className="contract-container">
-          {contractVerifyState ?
-            <div className="tab-choice">
-              <Radio.Group className="choice-btn" size="Small" onChange={this.onChange} value={this.state.choiceContractItem}>
-                <Radio.Button value="code">{tu('contract_code_choice')}</Radio.Button>
-                <Radio.Button value="read">{tu('contract_read')}</Radio.Button>
-                <Radio.Button value="write">{tu('contract_write')}</Radio.Button>
-              </Radio.Group>
-              <p>{tu('contract_name')}: <span>{contractInfoList.name ? contractInfoList.name : ''}</span></p>
-              <p>{tu('contract_version')}: <span>{contractInfoList.compiler ? contractInfoList.compiler : ''}</span></p>
-              <p>{tu('contract_optimize')}: <span>{contractInfoList.optimizer ? contractInfoList.optimizer : ''}</span></p>
-            </div>
-            : 
-            <div className="contrat-verify">
-            该合约未验证，点击此处<a href="/#/contracts/contract-Compiler/verify">去验证</a>
-            </div>
-          }
-          
+        {loading ? 
+          <div className="loading-style" style={{ marginTop: '-20px' }}><TronLoader /></div>
+         : 
+          <div>
+            {contractVerifyState ?
+              <div className="tab-choice">
+                <Radio.Group className="choice-btn" size="Small" onChange={this.onChange} value={this.state.choiceContractItem}>
+                  <Radio.Button value="code">{tu('contract_code_choice')}</Radio.Button>
+                  <Radio.Button value="read">{tu('contract_read')}</Radio.Button>
+                  <Radio.Button value="write">{tu('contract_write')}</Radio.Button>
+                </Radio.Group>
+                <p>{tu('contract_name')}: <span>{contractInfoList.name ? contractInfoList.name : ''}</span></p>
+                <p>{tu('contract_version')}: <span>{contractInfoList.compiler ? contractInfoList.compiler : ''}</span></p>
+                <p>{tu('contract_optimize')}: <span>{contractInfoList.optimizer === 1 ? <span>{tu('contract_optimizered')}</span> : <span>{tu('contract_optimizer')}</span>}</span></p>
+              </div>
+              :
+              <div className="contrat-verify">
+                该合约未验证，点击此处<a href="/#/contracts/contract-Compiler/verify">去验证</a>
+              </div>
+            }
+          </div>
+         }
           <div className="tab-container">
             {tabContent}
           </div>

@@ -1905,6 +1905,8 @@ export const messages = {
   "contract_version": "编译器版本",
   "contract_optimize": "优化",
   "contract_code": "合约代码",
+  "contract_optimizer": "No",
+  "contract_optimizered": "Yes",
   "write_payable": "Run these functions with Trx or Token",
   "write_nonePayable": "Run these functions will consume Trx or Energy",
   "verify_code1": "Source code verification provides transparency for users interacting with smart contracts.",

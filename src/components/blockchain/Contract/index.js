@@ -234,7 +234,7 @@ class SmartContract extends React.Component {
                           <div className="contract-header__item">
                             <h6 className="contract-header__title">{tu('contract_overview')}</h6>
                             <ul>
-                              <li><p>{upperFirst(intl.formatMessage({id: 'balance'}))}: </p><TRXPrice amount={parseInt(contract.balance) / ONE_TRX}/></li>
+                            <li><p>{upperFirst(intl.formatMessage({ id: 'balance' }))}: </p><TRXPrice amount={contract.balance? parseInt(contract.balance) / ONE_TRX : 0}/></li>
                               {/* <li><p>{tu('trx_value')}: </p><TRXPrice amount={1} currency="USD" source="home"/></li> */}
                               <li><p>{upperFirst(intl.formatMessage({id: 'transactions'}))}: </p>
                                 <p className="contract_trx_count">
