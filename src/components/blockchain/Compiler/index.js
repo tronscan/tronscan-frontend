@@ -34,36 +34,7 @@ class ContractCompiler extends React.Component {
             deployLoading:false,
             compilerVersion:'',
             optimizer:'',
-            code: `//KhanhND: Your entry file here! When you run compiled this file, files declare with import keyword is loaded automatically.
-//File Mortal.sol must exist in this Project. 
-
-pragma solidity ^0.4.25;
-
-contract Mortal {
-    /* Define variable owner of the type address */
-    address owner;
-
-    /* This constructor is executed at initialization and sets the owner of the contract */
-    constructor() public { owner = msg.sender; }
-
-    /* Function to recover the funds on the contract */
-    function kill() public { if (msg.sender == owner) selfdestruct(msg.sender); }
-}
-
-contract Greeter is Mortal  {
-    /* Define variable greeting of the type string */
-    string greeting;
-
-    /* This runs when the contract is executed */
-    constructor(string memory _greeting) public {
-        greeting = _greeting;
-    }
-
-    /* Main function */
-    function greet() public view returns (string memory) {
-        return greeting;
-    }
-}`,
+            code:'// type your code...',
             filter: {
                 direction:'compile'
             },
@@ -467,18 +438,20 @@ contract Greeter is Mortal  {
 
         } catch (e) {
 
-            let errorData = [{
-                type: "error",
-                content: `Deploy fail! Error: ${e.toString()}`
-            }]
-
-            CompileStatus.push.apply(CompileStatus,errorData)
-            this.setState({
-                CompileStatus,
-                deployLoading: false,
-            });
+            // let errorData = [{
+            //     type: "error",
+            //     content: `Deploy fail! Error: ${e.toString()}`
+            // }]
+            //
+            // CompileStatus.push.apply(CompileStatus,errorData)
+            // this.setState({
+            //     CompileStatus,
+            //     deployLoading: false,
+            // });
         }
-        this.statusDeploying = false;
+        this.setState({
+            deployLoading: false,
+        });
     }
 
     render() {

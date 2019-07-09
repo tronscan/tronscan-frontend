@@ -23,6 +23,8 @@ export default class DeployModal extends React.PureComponent {
             originEnergyLimit:10000000,
             sendTokenAmount:0,
             constructorParams:[],
+            params:[],
+            params_aa:''
         };
     }
 
@@ -35,7 +37,7 @@ export default class DeployModal extends React.PureComponent {
         this.setState({
             currentContractName : contractNameList[0]
         },()=>{
-            this.setConstructorParams(contractNameList[0]);
+            this.getConstructorParams(contractNameList[0]);
         });
     }
 
@@ -52,7 +54,7 @@ export default class DeployModal extends React.PureComponent {
     }
 
     confirmModal = () => {
-        let { currentContractName, feeLimit, userfeepercentage, originEnergyLimit, constructorParams, currentContractABI, currentContractByteCode,sendTokenId, sendTokenAmount,sendTokenDecimals } = this.state;
+        let { currentContractName, feeLimit, userfeepercentage, originEnergyLimit, constructorParams, currentContractABI, currentContractByteCode,sendTokenId, sendTokenAmount,sendTokenDecimals,params } = this.state;
         let { onConfirm } = this.props;
         let optionsPayable = {};
          sendTokenId = 0;
@@ -65,18 +67,18 @@ export default class DeployModal extends React.PureComponent {
             };
         }
         let parameters = [];
-        for(var i in constructorParams) {
-            parameters.push(constructorParams[i].name)
+        for(let i in constructorParams) {
+            parameters.push(constructorParams[i].value)
         }
 
-        console.log('parameters',parameters)
+        console.log('parameters222',params)
         let form = {
             abi:currentContractABI,
             bytecode:currentContractByteCode,
             feeLimit: feeLimit,
             name: currentContractName,
             originEnergyLimit: originEnergyLimit,
-            parameters: parameters,
+            parameters: params,
             userFeePercentage: userfeepercentage,
             ...optionsPayable
         }
@@ -89,13 +91,21 @@ export default class DeployModal extends React.PureComponent {
         this.setState({
             currentContractName : value
         },()=>{
-            this.setConstructorParams(value);
+            this.getConstructorParams(value);
         });
 
     };
 
     handleToggle = (prop,value) => {
         this.setState({ [prop]: value });
+    };
+
+    setParams = (value) => {
+        let ConstructorParams = [];
+        ConstructorParams.push(value);
+        this.setState({
+            params : ConstructorParams
+        });
     };
 
     tokenBalanceSelectChange(name, decimals, balance){
@@ -106,7 +116,7 @@ export default class DeployModal extends React.PureComponent {
         });
     }
 
-    setConstructorParams = (currentContractName) =>{
+    getConstructorParams = (currentContractName) =>{
         let constructorParams = [];
         let { compileInfo } = this.props;
         let currentContract = _(compileInfo)
@@ -114,13 +124,16 @@ export default class DeployModal extends React.PureComponent {
             .value();
         let currentContractABI = currentContract[0].abi;
         let currentContractByteCode = currentContract[0].byteCode;
-        currentContractABI && currentContractABI.map((item,index) =>{
+        currentContractABI && currentContractABI.map((item,index) => {
             if(item.type === 'constructor'){
                 if(item.inputs){
                     constructorParams.push.apply(constructorParams,item.inputs)
                 }
                 console.log('constructorParams============',constructorParams)
             }
+        });
+        constructorParams && constructorParams.map((item,i) => {
+            item.value = ''
         });
         this.setState({
             constructorParams,
@@ -136,7 +149,7 @@ export default class DeployModal extends React.PureComponent {
 
 
     render() {
-        let { currentContractName, feeLimit, userfeepercentage, originEnergyLimit, sendTokenAmount,constructorParams} = this.state;
+        let { currentContractName, feeLimit, userfeepercentage, originEnergyLimit, sendTokenAmount,constructorParams,params,params_aa} = this.state;
         let { contractNameList, intl } = this.props;
         console.log('contractNameList',contractNameList);
         return (
@@ -210,10 +223,10 @@ export default class DeployModal extends React.PureComponent {
                                    return (
                                        <div className="deploy-input-box" key={index}>
                                            <input type="text"
-                                               // onChange={(ev) => this.setAddress(ev.target.value)}
+                                                  onChange={(ev) => this.setParams(ev.target.value)}
                                                   className="form-control deploy-input"
-                                                  value={item.name}
-                                                  disabled={true}
+                                                 // value={params_aa}
+                                                  placeholder={item.name}
                                            />
                                            <input type="text"
                                                //onChange={(ev) => this.setAddress(ev.target.value)}
