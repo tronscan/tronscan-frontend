@@ -99,14 +99,14 @@ export function Information({token: tokens,currentTotalSupply}) {
     },
     {
         name: 'pice_per_1trx',
-        content:  <div className="d-flex token-list-action">
+        content:  <div className="d-flex ">
             {
                 token['market_info'] && <div>
                     {
                         token['market_info'].sShortName == 'TRX'? <div className="d-flex">
                             {token['market_info'].priceInTrx}  {token['market_info'].sShortName}
                             <span className={token['market_info'].gain<0? 'col-red ml-3':'col-green ml-3'}>{token['market_info'].gain >0 ?  <span>{'+' + parseInt(token['market_info'].gain * 10000) / 100 + '%'}</span>:<span>{ parseInt(token['market_info'].gain * 10000) / 100 + '%'}</span>}</span>
-                            <Link to={`/exchange/trc20?id=${token['market_info'].pairId}`} className="token-details btn ml-3"> {tu('token_trade')}</Link>
+                            <Link to={`/exchange/trc20?id=${token['market_info'].pairId}`} className="btn btn-danger btn-sm ml-3" style={{height: '1.2rem', lineHeight: '0.6rem'}}> {tu('token_trade')}</Link>
                         </div>:'-'
                     }
 

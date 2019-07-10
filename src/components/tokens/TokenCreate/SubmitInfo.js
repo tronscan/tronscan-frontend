@@ -24,7 +24,7 @@ import {
 } from 'antd';
 
 const { TextArea } = Input;
-BigNumber.config({ EXPONENTIAL_AT: [-20, 30] });
+BigNumber.config({ EXPONENTIAL_AT: [-1e9, 1e9] });
 @withTronWeb
 
 
