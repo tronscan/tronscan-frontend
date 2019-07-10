@@ -1,6 +1,6 @@
 import Lockr from "lockr";
 import TronWeb from 'tronweb';
-import TronStationSDK from 'tron-station-sdk';
+import TronStationSDK from 'tronstation';
 import {
   DISABLE_FLAG,
   ENABLE_FLAG,
@@ -179,7 +179,7 @@ export function appReducer(state = initialState, action) {
           isLoggedIn: true,
           address: pkToAddress(action.privateKey),
           tronWeb: tronWeb,
-          tronStationSDK: new TronStationSDK(tronWeb, true)
+          tronStationSDK: new TronStationSDK(tronWeb)
         },
         wallet: {
           type: ACCOUNT_PRIVATE_KEY,
