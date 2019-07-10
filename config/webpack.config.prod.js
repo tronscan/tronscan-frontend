@@ -336,9 +336,6 @@ module.exports = {
     new DllReferencePlugin({
         manifest:require('./../mainfest/leaflet-manifest.json')
     }),
-    new DllReferencePlugin({
-        manifest:require('./../mainfest/editor-manifest.json')
-    }),
     new UglifyJSPlugin({
         compress: {
             warnings: false,  //删除无用代码时不输出警告
@@ -385,7 +382,7 @@ module.exports = {
     // Otherwise React will be compiled in the very slow development mode.
     new MonacoWebpackPlugin({
         // available options are documented at https://github.com/Microsoft/monaco-editor-webpack-plugin#options
-        languages: ['apex', 'azcli', 'bat', 'clojure', 'coffee', 'cpp', 'csharp', 'csp', 'css', 'dockerfile', 'fsharp', 'go', 'handlebars', 'html', 'ini', 'java', 'javascript', 'json', 'less', 'lua', 'markdown', 'msdax', 'mysql', 'objective', 'perl', 'pgsql', 'php', 'postiats', 'powerquery', 'powershell', 'pug', 'python', 'r', 'razor', 'redis', 'redshift', 'ruby', 'rust', 'sb', 'scheme', 'scss', 'shell', 'solidity', 'sql', 'st', 'swift', 'typescript', 'vb', 'xml', 'yaml']
+        languages: ['solidity']
     }),
     new webpack.DefinePlugin(env.stringified),
     // Minify the code.

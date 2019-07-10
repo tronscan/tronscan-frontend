@@ -8,7 +8,6 @@ module.exports = {
         ui: ["antd"],
         base: ["lodash", "moment"],
         charts:["echarts","highcharts"],
-        editor:["react-monaco-editor"],
         leaflet:["leaflet","leaflet-echarts","leaflet.gridlayer.googlemutant","leaflet.markercluster","leaflet.markercluster.placementstrategies"],
     },
     output:{
