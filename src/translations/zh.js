@@ -1907,6 +1907,8 @@ export const messages = {
   "contract_code": "合约代码",
   "contract_optimizer": "No",
   "contract_optimizered": "Yes",
+  "contract_verify_status": "该合约未验证，点击此处",
+  "contract_verify_btn": "去验证",
   "write_payable": "Run these functions with Trx or Token",
   "write_nonePayable": "Run these functions will consume Trx or Energy",
   "verify_code1": "Source code verification provides transparency for users interacting with smart contracts.",

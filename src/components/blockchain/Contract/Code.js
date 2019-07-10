@@ -317,7 +317,7 @@ export default class Code extends React.Component {
               </div>
               :
               <div className="contrat-verify">
-                该合约未验证，点击此处<a href="/#/contracts/contract-Compiler/verify">去验证</a>
+                {tu('contract_verify_status')}<a href="/#/contracts/contract-Compiler/verify">{tu('contract_verify_btn')}</a>
               </div>
             }
           </div>
