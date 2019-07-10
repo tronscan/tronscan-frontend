@@ -1901,10 +1901,8 @@ export const messages = {
   "contract_read": "阅读合约",
   "contract_write": "编写合约",
   "contract_tip": "提示",
-  "contract_name": "合约名称",
   "contract_version": "编译器版本",
   "contract_optimize": "优化",
-  "contract_code": "合约代码",
   "contract_optimizer": "No",
   "contract_optimizered": "Yes",
   "contract_verify_status": "该合约未验证，点击此处",
@@ -1914,5 +1912,38 @@ export const messages = {
   "verify_code1": "Source code verification provides transparency for users interacting with smart contracts.",
   "verify_code2": "By uploading the source code, Transcan will match the compiled code with that on the blockchain.",
   "verify_code3": `Just like contracts, a "smart contract" should provide end users with more information on what they are "digitally signing" for and give users an opportunity to audit the code to independently verify that it actually does what it is supposed to do.`,
+
+  /*
+   ##################################################################################
+   #                                                                                #
+   # deploy contract   2019-07-10                                    #
+   #                                                                                #
+   ##################################################################################
+  */
+  "contract_deployment":"合约部署",
+  "contract_verification":"合约验证",
+  "contract_deploy_info":"Put your single file of smart contract here",
+  "contract_deployment_btn_compile":"编译",
+  "contract_deployment_btn_deploy":"部署",
+  "contract_compile_params":"Compile Params",
+  "compile_params_version":"Solidity Version",
+  "compile_params_optimization":"Optimization",
+  "compile_params_runs":"Runs",
+  "compile_first":"请优先编译合约",
+  "contract_deploy_params":"Deploy Params",
+  "contract_deploy_modal_info":"Contract deployment will cost a certain amount of trx or energy",
+  "deploy_params_fee_limit":"Fee Limit",
+  "deploy_params_user_fee_percentage":"User Fee Percentage",
+  "deploy_params_energy_limit":"Origin Energy Limit",
+  "deploy_params_send_token":"Select TRX or token to send",
+  "deploy_params_constructor":"Params for constructor",
+
+
+
+
+
+
+
+
 
 };

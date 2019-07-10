@@ -1127,7 +1127,7 @@ export const messages = {
   "verify_and_publish": "確認して発表する",
   "txn": "txn",
   "contract_name_tip": "ソースコードのコントラクト名と一致する必要があります。マルチパート・コントラクトの場合は、展開したコントラクト名と一致する必要があります。",
-  "constructor_arguments_ABIencoded_tip": "这个选项只适用于含有构造函数参数的合约，如果你不确定是否含有那么你大概率不需要填这项。",
+  "constructor_arguments_ABIencoded_tip": "このオプションはコンストラクタの引数を含むコントラクトにのみ適用されますそれを持っているかどうかわからない場合は、これを記入する必要はありません。",
   "library_1_name_tip": "この選択肢はベースを使ったコントラクトのみに適用する",
   "library_contract_address_tip": "相对应的合约库地址",
   "contract_source_code_for": "The Contract Source code for",
@@ -1838,7 +1838,6 @@ export const messages = {
   "str_9": "パラメータ検証結果が不合格となります",
   "token_login_no_updated":"ログインしたアカウントと発行者が一致しないため、アップデートできません",
   "information_is_being_confirmed":"Information is being confirmed, this process may take 10 minutes, please try again later",
-
 
   "interTrx_tip": "内部取引は、一般住所がスマート契約を呼び出し、スマート契約が他のアドレスにトークンを転送する操作です。",
   "event_tip": "イベントは、プログラマや外部インタフェースプロバイダが契約業務や監査に注意を払うためにそれを使用できるようにすることです。",

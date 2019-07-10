@@ -120,7 +120,8 @@ class Code extends React.Component {
         })
         console.log('retValue: ', retValue);
       } catch (e) {
-        console.log("Error", e);
+        console.log("Error",e);
+
         this.setState({
           modal: <SweetAlert
             warning
