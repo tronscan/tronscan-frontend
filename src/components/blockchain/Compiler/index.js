@@ -147,7 +147,7 @@ class ContractCompiler extends React.Component {
             modal: (
                 <CompilerModal
                     onHide={this.hideModal}
-                    onConfirm={(version, optimizer) => this.compile(version,optimizer)}
+                    onConfirm={(version, optimizer, runs) => this.compile(version,optimizer,runs)}
 
                 />
             )
@@ -156,7 +156,7 @@ class ContractCompiler extends React.Component {
 
     deployModal = () => {
         if(!this.isLoggedIn()) return;
-        // if(!this.isCompile()) return;
+        if(!this.isCompile()) return;
         this.setState({
             modal: (
                 <DeployModal
@@ -189,7 +189,7 @@ class ContractCompiler extends React.Component {
 
 
 
-    compile = async (compilerVersion,optimizer) => {
+    compile = async (compilerVersion,optimizer, runs) => {
 
         let { CompileStatus, solidity } = this.state;
         let error;
@@ -204,7 +204,7 @@ class ContractCompiler extends React.Component {
             "compiler": compilerVersion,
             "optimizer": optimizer,
             "solidity":solidity,
-            "runs":'0'
+            "runs":runs
         }).catch(function (e) {
             console.log(e)
             let errorData = [{
@@ -354,7 +354,7 @@ class ContractCompiler extends React.Component {
                                     transactionInfo.receipt.energy_usage
                                         ? toThousands(transactionInfo.receipt.energy_usage)
                                         : 0
-                                    } energy. Transaction confirm here <a href="/#/transaction/${transactionInfo.id}" class="info_link">${transactionInfo.id}</a>`
+                                    } energy. Transaction confirm here <a href="/#/transaction/${transactionInfo.id}" target='_blank' class="info_link">${transactionInfo.id}</a>`
                             }];
 
                             CompileStatus.push.apply(CompileStatus,infoData);
@@ -465,15 +465,15 @@ class ContractCompiler extends React.Component {
                 <div className="row">
                     <div className="col-sm-12">
                         <div className="compile-button-box">
-                            <div className={filter.direction == 'compile'?'compile-button active':'compile-button'} onClick={() => this.onRadioChange('compile')}> {tu('合约部署')}</div>
-                            <div className={filter.direction == 'verify'?'compile-button active ml-4':'compile-button ml-4'} onClick={() => this.onRadioChange('verify')}>{tu('合约验证')}</div>
+                            <div className={filter.direction == 'compile'?'compile-button active':'compile-button'} onClick={() => this.onRadioChange('compile')}> {tu('contract_deployment')}</div>
+                            <div className={filter.direction == 'verify'?'compile-button active ml-4':'compile-button ml-4'} onClick={() => this.onRadioChange('verify')}>{tu('contract_verification')}</div>
                         </div>
                        
                         {
                             filter.direction == 'compile' ?
                         <div>
                             <div className="compile-text mt-4">
-                                {tu('Put your single file of smart contract here')}
+                                {tu('contract_deploy_info')}
                             </div>
                         <div className="card mt-4">
                             <div className="card-body">
@@ -499,7 +499,7 @@ class ContractCompiler extends React.Component {
                                                         onClick={this.compileModal}
                                                         className="compile-button compile"
                                                     >
-                                                        {tu('编译')}
+                                                        {tu('contract_deployment_btn_compile')}
                                                     </Button>
                                                     <Button
                                                         type="primary"
@@ -507,7 +507,7 @@ class ContractCompiler extends React.Component {
                                                         onClick={this.deployModal}
                                                         className="compile-button active ml-4"
                                                     >
-                                                        {tu('部署')}
+                                                        {tu('contract_deployment_btn_deploy')}
                                                     </Button>
                                                 </div>
                                             </div>

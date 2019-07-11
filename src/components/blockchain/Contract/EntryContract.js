@@ -113,7 +113,8 @@ class Code extends React.Component {
           result: this.formatOutputs(retValue)
         })
       } catch (e) {
-        console.log("Error", e);
+        console.log("Error",e);
+
         this.setState({
           modal: <SweetAlert
             warning

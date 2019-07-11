@@ -151,18 +151,17 @@ export default class DeployModal extends React.PureComponent {
     render() {
         let { currentContractName, feeLimit, userfeepercentage, originEnergyLimit, sendTokenAmount,constructorParams,params,params_aa} = this.state;
         let { contractNameList, intl } = this.props;
-        console.log('contractNameList',contractNameList);
         return (
             <Modal isOpen={true}  fade={false} className="modal-dialog-centered _freezeContent">
                <ModalHeader className="text-center _freezeHeader" toggle={this.hideModal}>
-                   {tu("Deploy Params")}
+                   {tu("contract_deploy_params")}
                </ModalHeader>
                <ModalBody className="_freezeBody">
                    <div className="form-group">
-                       <p>Contract deployment will cost a certain amount of trx or energy</p>
+                       <p>{tu('contract_deploy_modal_info')}</p>
                    </div>
                    <div className="form-group contract-deploy">
-                       <label>{tu("合约名称")}</label>
+                       <label>{tu("contract_name")}</label>
                        <select className="custom-select deploy-select"
                                value={currentContractName}
                                onChange={(e) => {this.resourceSelectChange(e.target.value)}}>
@@ -176,7 +175,7 @@ export default class DeployModal extends React.PureComponent {
                        </select>
                    </div>
                    <div className="form-group contract-deploy">
-                       <label>{tu("Fee Limit")}</label>
+                       <label>{tu("deploy_params_fee_limit")}</label>
                        <input type="text"
                               onChange={(ev) => this.handleToggle('feeLimit', ev.target.value)}
                               className="form-control deploy-input"
@@ -185,7 +184,7 @@ export default class DeployModal extends React.PureComponent {
                    </div>
 
                    <div className="form-group contract-deploy">
-                       <label>{tu("User Fee Percentage")}</label>
+                       <label>{tu("deploy_params_user_fee_percentage")}</label>
                        <input type="text"
                               onChange={(ev) => this.handleToggle('userfeepercentage', ev.target.value)}
                               className="form-control deploy-input"
@@ -194,7 +193,7 @@ export default class DeployModal extends React.PureComponent {
 
                    </div>
                    <div className="form-group contract-deploy">
-                       <label>{tu("Origin Energy Limit")}</label>
+                       <label>{tu("deploy_params_energy_limit")}</label>
                        <input type="text"
                               onChange={(ev) => this.handleToggle('originEnergyLimit', ev.target.value)}
                               className="form-control deploy-input"
@@ -203,7 +202,7 @@ export default class DeployModal extends React.PureComponent {
 
                    </div>
                    <div className="form-group">
-                       <label>{tu("Select TRX or token to send")}</label>
+                       <label>{tu("deploy_params_send_token")}</label>
                        <div className="deploy-input-box">
                            <TokenBalanceSelect
                                tokenBalanceSelectChange={(name, decimals,balance) => {this.tokenBalanceSelectChange(name, decimals,balance)}}>
@@ -217,7 +216,7 @@ export default class DeployModal extends React.PureComponent {
                    </div>
                    {
                        constructorParams.length > 0 && <div className="form-group">
-                           <label>{tu("Params for constructor")}</label>
+                           <label>{tu("deploy_params_constructor")}</label>
                            {
                                constructorParams.map((item, index) => {
                                    return (
@@ -240,18 +239,18 @@ export default class DeployModal extends React.PureComponent {
                            }
                        </div>
                    }
-                   <div className="contract-compiler-button">
+                   <div className="contract-compiler-button mt-3 mb-3">
                        <button
                            onClick={this.hideModal}
                            className="compile-button-small cancel"
                        >
-                           {tu('取消')}
+                           {tu('cancel')}
                        </button>
                        <button
                            onClick={this.confirmModal}
                            className="compile-button-small ml-5"
                        >
-                           {tu('确认')}
+                           {tu('confirm')}
                        </button>
                    </div>
                </ModalBody>
