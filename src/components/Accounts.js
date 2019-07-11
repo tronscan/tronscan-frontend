@@ -57,12 +57,12 @@ class Accounts extends Component {
         typeList.map(type => {
           if(coin.addressList[type].length == 1){
             if(coin.addressList[type][0] === item.address){
-              item.tagName = `${upperFirst(coin.name)}-${type}`
+              item.tagName = `${upperFirst(coin.name)}${type !== 'default'? `-${type}`: ''}`
             }
           }else if(coin.addressList[type].length > 1){
             coin.addressList[type].map((address, index) => {
               if(address === item.address){
-                item.tagName = `${upperFirst(coin.name)}-${type} ${index + 1}`
+                item.tagName = `${upperFirst(coin.name)}${type !== 'default'? `-${type} ${index + 1}`: ` ${index + 1}`}`
               }
             })
           }
