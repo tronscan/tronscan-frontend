@@ -56,15 +56,20 @@ export default class DeployModal extends React.PureComponent {
         let { currentContractName, feeLimit, userfeepercentage, originEnergyLimit, constructorParams, currentContractABI, currentContractByteCode,sendTokenId, sendTokenAmount,sendTokenDecimals,params } = this.state;
         let { onConfirm } = this.props;
         let optionsPayable = {};
-         sendTokenId = 0;
-        if (!sendTokenId || sendTokenId == 0 || sendTokenAmount == 0) {
-            optionsPayable = { callValue: sendTokenAmount };
+        console.log('sendTokenId',sendTokenId);
+        console.log('sendTokenAmount',sendTokenAmount);
+        console.log('sendTokenDecimals',sendTokenDecimals);
+
+
+        if (!sendTokenId || sendTokenId == '_') {
+            optionsPayable = { callValue: this.Mul(sendTokenAmount,Math.pow(10, sendTokenDecimals)) };
         } else {
             optionsPayable = {
-                tokenId: sendTokenId == '_'?'TRX':sendTokenId,
+                tokenId:sendTokenId,
                 tokenValue:  this.Mul(sendTokenAmount,Math.pow(10, sendTokenDecimals))
             };
         }
+        console.log('optionsPayable',optionsPayable)
         let parameters = [];
         for(let i in constructorParams) {
             parameters.push(constructorParams[i].value)
@@ -108,6 +113,7 @@ export default class DeployModal extends React.PureComponent {
     };
 
     tokenBalanceSelectChange(name, decimals, balance){
+        console.log('decimals',decimals)
         this.setState({
             sendTokenId:name,
             sendTokenDecimals:decimals,
@@ -209,7 +215,7 @@ export default class DeployModal extends React.PureComponent {
                                tokenBalanceSelectChange={(name, decimals,balance) => {this.tokenBalanceSelectChange(name, decimals,balance)}}>
                            </TokenBalanceSelect>
                            <input type="text"
-                                  onChange={(ev) => this.handleToggle('tokenAmount', ev.target.value)}
+                                  onChange={(ev) => this.handleToggle('sendTokenAmount', ev.target.value)}
                                   className="form-control deploy-input ml-4 input-box-sec"
                                   value={sendTokenAmount}
                            />
