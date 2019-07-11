@@ -39,16 +39,15 @@ export default class Code extends React.Component {
       nonePayableContractList: [],
       eventContractList: [],
       currentTokens: [],
-      contractVerifyState: true,
-      showStatus: 8,
+      contractVerifyState: true
     };
   }
 
   async componentDidMount() {
     const { contractVerifyState } = this.state
+    // await this.getContractInfos()
     this.getContractVerifyStatus()
     // this.getContractTokenList()
-    // await this.getContractInfos()
     // this.viewFuntions()
     // this.payableFuntions()
     // this.nonePayableFuntions()
@@ -73,7 +72,6 @@ export default class Code extends React.Component {
     if (data.data.status === 3 || data.data.status === 1) {
       this.setState({
         contractVerifyState: false,
-        showStatus: 3,
         loading: false
       }, async() => {
           // this.getContractTokenList()
@@ -87,7 +85,7 @@ export default class Code extends React.Component {
       let abi = JSON.parse(dataInfo.abi)
       console.log('abi: ', abi);
       infoObj = {
-        abi: abi || '',
+        interfaceAbi: abi || '',
         name: dataInfo.contract_name || '',
         bytecode: dataInfo.byte_code || '',
         contractCode: dataInfo.contract_code || '',
@@ -99,11 +97,10 @@ export default class Code extends React.Component {
       this.setState({
         contractVerifyState: true,
         contractInfoList: infoObj,
-        showStatus: 2,
         loading: false
-      }, () => {
+      }, async() => {
           this.getContractTokenList()
-          // await this.getContractInfos()
+          await this.getContractInfos()
           this.viewFuntions()
           this.payableFuntions()
           this.nonePayableFuntions()
@@ -111,15 +108,24 @@ export default class Code extends React.Component {
     }
   }
   async getContractInfos() {
-    const { contractVerifyState } = this.state
+    const { contractVerifyState, contractInfoList } = this.state
     let smartcontract = await this.tronWeb.trx.getContract(
       this.props.filter.address
     );
-    // if ( !contractVerifyState ) {
+    let obj = {
+      abi: smartcontract.abi
+    }
+    if ( contractVerifyState ) {
+      this.setState({
+        contractInfoList: { abi: smartcontract.abi, ...contractInfoList }
+      }, () => {
+          console.log('contractInfoList: ', this.state.contractInfoList);
+      })
+    } else {
       this.setState({
         contractInfoList: smartcontract
       })
-    // }
+    }
   }
   onChange = e => {
     this.setState({
@@ -128,22 +134,13 @@ export default class Code extends React.Component {
   }
   viewFuntions() {
     let { contractInfoList } = this.state;
-    console.log('contractInfoList.abi: ', contractInfoList.abi);
     let list
-    if (contractInfoList.abi) {
-      if (contractInfoList.abi.entrys) {
-        list = contractInfoList.abi.entrys.filter(
-          entry =>
-            entry.type == "Function" &&
-            (entry.stateMutability == "View" || entry.stateMutability == "Pure")
-        );
-      } else {
-        list = contractInfoList.abi.filter(
-          entry =>
-            entry.type == "function" &&
-            (entry.stateMutability == "view" || entry.stateMutability == "pure")
-        );
-      }
+    if (contractInfoList.abi.entrys) {
+      list = contractInfoList.abi.entrys.filter(
+        entry =>
+          entry.type == "Function" &&
+          (entry.stateMutability == "View" || entry.stateMutability == "Pure")
+      );
       this.setState({
         viewContractList: list
       },() => {
@@ -155,15 +152,9 @@ export default class Code extends React.Component {
     let { contractInfoList } = this.state;
     let list
     if (contractInfoList.abi) {
-      if (contractInfoList.abi.entrys) {
-        list = contractInfoList.abi.entrys.filter(
-          entry => entry.type == "Function" && entry.stateMutability == "Payable"
-        );
-      } else {
-        list = contractInfoList.abi.filter(
-          entry => entry.type == "function" && entry.stateMutability == "payable"
-        );
-      }
+      list = contractInfoList.abi.entrys.filter(
+        entry => entry.type == "Function" && entry.stateMutability == "Payable"
+      );
       this.setState({
         payableContractList: list
       }, () => {
@@ -175,17 +166,10 @@ export default class Code extends React.Component {
     let { contractInfoList } = this.state;
     let list
     if (contractInfoList.abi) {
-      if (contractInfoList.abi.entrys) {
-        list = contractInfoList.abi.entrys.filter(
-          entry =>
-            entry.type == "Function" && entry.stateMutability == "Nonpayable"
-        );
-      } else {
-        list = contractInfoList.abi.filter(
-          entry =>
-            entry.type == "function" && entry.stateMutability == "nonpayable"
-        );
-      }
+      list = contractInfoList.abi.entrys.filter(
+        entry =>
+          entry.type == "Function" && entry.stateMutability == "Nonpayable"
+      );
       this.setState({
         nonePayableContractList: list
       }, () => {
@@ -245,6 +229,7 @@ export default class Code extends React.Component {
       loading } = this.state;
     let { filter } = this.props;
     let tabContent;
+
     if (choiceContractItem === 'code' && contractInfoList) {
       tabContent = (
         <ContractInfo filter={{ address: filter.address, contractInfoList: contractInfoList }}/>
@@ -315,10 +300,10 @@ export default class Code extends React.Component {
                 <p>{tu('contract_version')}: <span>{contractInfoList.compiler ? contractInfoList.compiler : ''}</span></p>
                 <p>{tu('contract_optimize')}: <span>{contractInfoList.optimizer === 1 ? <span>{tu('contract_optimizered')}</span> : <span>{tu('contract_optimizer')}</span>}</span></p>
               </div>
-              :
+             :
               <div className="contrat-verify">
                 {tu('contract_verify_status')}<a href="/#/contracts/contract-Compiler/verify">{tu('contract_verify_btn')}</a>
-              </div>
+              </div> 
             }
           </div>
          }

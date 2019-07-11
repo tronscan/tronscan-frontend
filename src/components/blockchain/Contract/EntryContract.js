@@ -86,23 +86,17 @@ class Code extends React.Component {
     const { getFieldsValue } = this.props.form
     let submitValues = getFieldsValue()
     // let submitValues = fieldata.submitValues
-    console.log('submitValues: ', submitValues);
     // let submitValues = e.target.value
     // this.setState({
     //   submitValues: e.target.value
     // })
     let submitValueFormat = [];
     for (let i = 0 ; i < submitValues.length; i++ ) {
-      console.log('contractItem.inputs: ', contractItem.inputs);
       let inputType = contractItem.inputs[i].type;
-      console.log('inputType: ', inputType);
       let inputValue = submitValues[i];
-      console.log('inputValue: ', inputValue);
-      
       //bytes input
       submitValueFormat.push(formatInput(inputValue, inputType));
     }
-    console.log('submitValueFormat: ', submitValueFormat);
     return submitValueFormat;
   }
 
@@ -118,7 +112,6 @@ class Code extends React.Component {
         this.setState({
           result: this.formatOutputs(retValue)
         })
-        console.log('retValue: ', retValue);
       } catch (e) {
         console.log("Error", e);
         this.setState({
@@ -159,6 +152,7 @@ class Code extends React.Component {
         );
       }
       return formatOutput(retValue, contractItem.outputs[0].type);
+      
     } else {
       return "No value return";
     }
@@ -186,7 +180,6 @@ class Code extends React.Component {
         let signedTransaction = await contract[contractItem.name](
           ...this.submitValueFormat()
         ).send(options)
-        console.log('signedTransaction: ', signedTransaction);
         // let retValue = await this.getTxResult(signedTransaction);
         // console.log('retValue: ', retValue);
         // this.setState({
@@ -272,11 +265,8 @@ class Code extends React.Component {
   }
 
   getChoiceItem(value) {
-    console.log(`selected ${value}`)
     this.setState({
       tokenId: value
-    }, () => {
-        console.log('tokenId: 11', this.state.tokenId);
     })
   }
 
@@ -286,7 +276,7 @@ class Code extends React.Component {
     const { getFieldDecorator } = this.props.form
     let { contractItem, index, currentTokens } = this.props;
     let contractList
-    if (contractItem.stateMutability == 'Payable' || contractItem.stateMutability == 'payable') {
+    if (contractItem.stateMutability == 'Payable') {
       // Run these functions with Trx or Token
       contractList = (
         <div>
@@ -318,7 +308,7 @@ class Code extends React.Component {
           <div>{result}</div>
         </div>
       )
-    } else if (contractItem.stateMutability == 'Nonpayable' || contractItem.stateMutability == 'nonpayable') {
+    } else if (contractItem.stateMutability == 'Nonpayable') {
       // Run these functions will consume Trx or Energy
       contractList = (
         <div>
@@ -344,7 +334,7 @@ class Code extends React.Component {
             <Collapse defaultActiveKey={[`${index}`]} expandIconPosition="right">
               <Panel header={index+1 +'.' + contractItem.name} key={index}>
                 {
-                  contractItem.type != 'Event' || contractItem.type != 'event' ?
+                  contractItem.type != 'Event' ?
                     <div>
                       {contractItem.inputs ?
                         <div>

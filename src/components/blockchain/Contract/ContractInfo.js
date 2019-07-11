@@ -41,7 +41,7 @@ export default class Code extends React.Component {
     }
     this.setState({
       name: filter.contractInfoList.name || "-",
-      abi: JSON.stringify(filter.contractInfoList.abi),
+      abi: filter.contractInfoList.interfaceAbi ? JSON.stringify(filter.contractInfoList.interfaceAbi) : JSON.stringify(filter.contractInfoList.abi),
       byteCode: filter.contractInfoList.bytecode,
       loading: false
     })
