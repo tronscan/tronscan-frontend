@@ -119,7 +119,7 @@ export default class Code extends React.Component {
       this.setState({
         contractInfoList: { abi: smartcontract.abi, ...contractInfoList }
       }, () => {
-          console.log('contractInfoList: ', this.state.contractInfoList);
+          // console.log('contractInfoList: ', this.state.contractInfoList);
       })
     } else {
       this.setState({
@@ -186,7 +186,6 @@ export default class Code extends React.Component {
   async getContractTokenList () {
     let { filter, account } = this.props;
     const { tronWeb } = this.props.account;
-    console.log('tronWeb: ', tronWeb);
     if (tronWeb) {
       let myAccount = await tronWeb.trx.getAccount(
         tronWeb.defaultAddress.hex
