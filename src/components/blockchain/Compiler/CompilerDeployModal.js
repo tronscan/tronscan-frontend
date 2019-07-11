@@ -24,7 +24,6 @@ export default class DeployModal extends React.PureComponent {
             sendTokenAmount:0,
             constructorParams:[],
             params:[],
-            params_aa:''
         };
     }
 
@@ -58,11 +57,11 @@ export default class DeployModal extends React.PureComponent {
         let { onConfirm } = this.props;
         let optionsPayable = {};
          sendTokenId = 0;
-        if (!sendTokenId || sendTokenId == 0) {
+        if (!sendTokenId || sendTokenId == 0 || sendTokenAmount == 0) {
             optionsPayable = { callValue: sendTokenAmount };
         } else {
             optionsPayable = {
-                tokenId: sendTokenId,
+                tokenId: sendTokenId == '_'?'TRX':sendTokenId,
                 tokenValue:  this.Mul(sendTokenAmount,Math.pow(10, sendTokenDecimals))
             };
         }
@@ -70,15 +69,14 @@ export default class DeployModal extends React.PureComponent {
         for(let i in constructorParams) {
             parameters.push(constructorParams[i].value)
         }
-
-        console.log('parameters222',params)
+       
         let form = {
             abi:currentContractABI,
             bytecode:currentContractByteCode,
             feeLimit: feeLimit,
             name: currentContractName,
             originEnergyLimit: originEnergyLimit,
-            parameters: params,
+            parameters: parameters,
             userFeePercentage: userfeepercentage,
             ...optionsPayable
         }
@@ -100,11 +98,12 @@ export default class DeployModal extends React.PureComponent {
         this.setState({ [prop]: value });
     };
 
-    setParams = (value) => {
-        let ConstructorParams = [];
-        ConstructorParams.push(value);
+    setParams = (index,value) => {
+        let { constructorParams } = this.state;
+        let constructorParamsArr = constructorParams.slice(0)
+        constructorParamsArr[index].value = value;
         this.setState({
-            params : ConstructorParams
+            constructorParams:constructorParamsArr
         });
     };
 
@@ -135,6 +134,7 @@ export default class DeployModal extends React.PureComponent {
         constructorParams && constructorParams.map((item,i) => {
             item.value = ''
         });
+        console.log('constructorParams',constructorParams)
         this.setState({
             constructorParams,
             currentContractABI,
@@ -149,7 +149,8 @@ export default class DeployModal extends React.PureComponent {
 
 
     render() {
-        let { currentContractName, feeLimit, userfeepercentage, originEnergyLimit, sendTokenAmount,constructorParams,params,params_aa} = this.state;
+        let { currentContractName, feeLimit, userfeepercentage, originEnergyLimit, sendTokenAmount,constructorParams,params} = this.state;
+        console.log('constructorParams666========',constructorParams)
         let { contractNameList, intl } = this.props;
         return (
             <Modal isOpen={true}  fade={false} className="modal-dialog-centered _freezeContent">
@@ -220,11 +221,11 @@ export default class DeployModal extends React.PureComponent {
                            {
                                constructorParams.map((item, index) => {
                                    return (
-                                       <div className="deploy-input-box" key={index}>
+                                       <div className="deploy-input-box mb-1" key={index}>
                                            <input type="text"
-                                                  onChange={(ev) => this.setParams(ev.target.value)}
+                                                  onChange={(e) => this.setParams(index,e.target.value)}
                                                   className="form-control deploy-input"
-                                                 // value={params_aa}
+                                                  value={item.value}
                                                   placeholder={item.name}
                                            />
                                            <input type="text"
