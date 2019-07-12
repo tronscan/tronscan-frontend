@@ -32,7 +32,7 @@ import BigNumber from "bignumber.js"
 import {HrefLink} from "../../common/Links";
 import {QuestionMark} from "../../common/QuestionMark";
 import {CsvExport} from "../../common/CsvExport";
-BigNumber.config({ EXPONENTIAL_AT: [-20, 30] });
+BigNumber.config({ EXPONENTIAL_AT: [-1e9, 1e9] });
 
 
 class Address extends React.Component {

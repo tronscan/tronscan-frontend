@@ -64,7 +64,7 @@ class TokenHolders extends React.Component {
           typeList.map(type => {
             if(coin.addressList[type].length == 1){
               if(coin.addressList[type][0] === item.address){
-                item.tagName = `${upperFirst(coin.name)}-${type}`
+                item.tagName = `${upperFirst(coin.name)}${type !== 'default'? `-${type}`: ''}`
                 if(lowerCase(coin.name) === 'binance'){
                   item.ico = lowerCase(coin.name)
                 }
@@ -72,7 +72,7 @@ class TokenHolders extends React.Component {
             }else if(coin.addressList[type].length > 1){
               coin.addressList[type].map((address, index) => {
                 if(address === item.address){
-                  item.tagName = `${upperFirst(coin.name)}-${type} ${index + 1}`
+                  item.tagName = `${upperFirst(coin.name)}${type !== 'default'? `-${type} ${index + 1}`: ` ${index + 1}`}`
                   if(lowerCase(coin.name) === 'binance'){
                     item.ico = lowerCase(coin.name)
                   }
