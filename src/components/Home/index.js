@@ -295,7 +295,7 @@ export default class Home extends Component {
                     <div className="notice-wrap">
                         {this.state.notice.map((v, i) => (
                             <a
-                                className="item"
+                                className={`item-${i} item`}
                                 key={v.id}
                                 href={v.html_url}
                                 target="_blank"
@@ -412,41 +412,41 @@ export default class Home extends Component {
               :
               <div className="row text-center mr-0 ml-0 mt-3">
                 <div className="col-12  card  pt-1 pl-0 pr-0" style={{border: 'none', borderRadius: 0}}>
-                  <div className="card-body d-flex pt-4 pb-4 home-stats">
-                    <div className="col-md-2 col-sm-12 col-xs-12 ">
+                  <div className="card-body row pt-4 pb-4 home-stats">
+                    <div className="col-lg-2 col-md-4 col-xs-12 mb-lg-0  mb-md-3 ">
                       <Link to="/blockchain/nodes" className="hvr-underline-from-center hvr-underline-white text-muted">
                         <h2><CountUp start={0} end={onlineNodes} duration={1}/></h2>
                         <p className="m-0">{tu("online_nodes")}</p>
                       </Link>
                     </div>
-                    <div className="col-md-2 col-sm-12 col-xs-12">
+                    <div className="col-lg-2 col-md-4 col-xs-12 mb-lg-0 mb-md-3">
                       <Link to="/blockchain/blocks"
                             className="hvr-underline-from-center hvr-underline-white text-muted">
                         <h2><CountUp start={0} end={blockHeight} duration={1}/></h2>
                         <p className="m-0">{tu("block_height")}</p>
                       </Link>
                     </div>
-                    <div className="col-md-2 col-sm-12 col-xs-12">
+                    <div className="col-lg-2 col-md-4 col-xs-12 mb-lg-0  mb-md-3">
                       <div href="javascript:;" className="hvr-underline-from-center hvr-underline-white text-muted">
                         <h2><CountUp start={0} end={tps} duration={1}/>/<CountUp start={0} end={maxTps} duration={1}/></h2>
                         <p className="m-0">{tu("current_MaxTPS")}</p>
                       </div>
                     </div>
-                    <div className="col-md-2 col-sm-12 col-xs-12">
+                    <div className="col-lg-2 col-md-4 col-xs-12">
                       <Link to="/blockchain/transactions"
                             className="hvr-underline-from-center hvr-underline-white text-muted">
                         <h2><CountUp start={0} end={transactionPerDay} duration={1}/></h2>
                         <p className="m-0">{tu("transactions_last_day")}</p>
                       </Link>
                     </div>
-                    <div className="col-md-2 col-sm-12 col-xs-12">
+                    <div className="col-lg-2 col-md-4 col-xs-12">
                       <Link to="/blockchain/accounts"
                             className="hvr-underline-from-center hvr-underline-white text-muted">
                         <h2><CountUp start={0} end={totalAccounts} duration={1}/></h2>
                         <p className="m-0">{tu("total_accounts")}</p>
                       </Link>
                     </div>
-                    <div className="col-md-2 col-sm-12 col-xs-12">
+                    <div className="col-lg-2 col-md-4 col-xs-12">
                         <HrefLink href="https://coinmarketcap.com/currencies/tron/" target="_blank" className="hvr-underline-from-center hvr-underline-white text-muted">
                           <h2><TRXPrice amount={1} currency="USD" source="home"/></h2>
                           <p className="m-0">{tu("pice_per_1trx")}</p>
