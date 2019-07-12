@@ -261,6 +261,10 @@ export default class Code extends React.Component {
                 }
             </div>
             : null
+            // <div>
+            //     <div className="write-title">{tu('write_payable')}</div>
+            //     <div className="write-title">No function found</div>
+            // </div>
           }
           {
             nonePayableContractList.length != 0 ?
@@ -277,6 +281,10 @@ export default class Code extends React.Component {
                 }
               </div>
               : null
+              // <div>
+              //   <div className="write-title">{tu('write_nonePayable')}</div>
+              //   <div className="write-title">No function found</div>
+              // </div>
           }
         </div>
       );

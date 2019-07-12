@@ -174,7 +174,7 @@ class Code extends React.Component {
     const { tokenId, totalValue, contract } = this.state
     console.log('totalValue: ', totalValue);
     console.log('tokenId: ', tokenId);
-    let { contractItem, intl } = this.props;
+    const { contractItem, intl } = this.props;
     const { tronWeb } = this.props.account;
     if (this.isLoggedIn()) {
       try {
@@ -194,7 +194,7 @@ class Code extends React.Component {
           result: this.formatOutputs(retValue)
         })
       } catch (e) {
-        // console.log('e: ', e);
+        console.log(e);
         if (e.error == "REVERT opcode executed") {
           var res = e.output["contractResult"][0];
           let result =
@@ -226,7 +226,8 @@ class Code extends React.Component {
     }
   }
   getTxResult (txID) {
-    let self = this;
+    let { contractItem, intl } = this.props;
+    console.log('contractItem: ', contractItem);
     const { tronWeb } = this.props.account;
     return new Promise((reslove, reject) => {
       let checkResult = async function (txID) {
@@ -253,13 +254,13 @@ class Code extends React.Component {
             output
           });
         }
-        if (self.entry.outputs == undefined) {
+        if (contractItem.outputs == undefined) {
           return reslove(0);
         }
-        const names = self.entry.outputs
+        const names = contractItem.outputs
           .map(({ name }) => name)
           .filter(name => !!name);
-        const types = self.entry.outputs.map(({ type }) => type);
+        const types = contractItem.outputs.map(({ type }) => type);
         let decoded = window.tronWeb.utils.abi.decodeParams(
           names,
           types,
