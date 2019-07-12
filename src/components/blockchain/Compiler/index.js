@@ -190,9 +190,6 @@ class ContractCompiler extends React.Component {
 
 
     compile = async (compilerVersion,optimizer, runs) => {
-
-        let { CompileStatus, solidity } = this.state;
-        let error;
         this.setState({
             compileLoading: true,
             modal: null,
@@ -200,6 +197,8 @@ class ContractCompiler extends React.Component {
             optimizer,
             compilerVersion,
         });
+        let { CompileStatus, solidity } = this.state;
+        let error;
         let {data} = await xhr.post(`http://18.219.114.60:9016/v1/api/contract/compile`, {
             "compiler": compilerVersion,
             "optimizer": optimizer,

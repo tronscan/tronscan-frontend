@@ -167,6 +167,18 @@ class VerifyContractCode extends Component {
                       )}
                     </Form.Item>
                   </Col>
+                  <Col span={12}>
+                    <Form.Item label={tu('runs')} {...formItemLayout}>
+                        {getFieldDecorator('runs', {
+                            initialValue: '0'
+                        })(
+                            <Select className='w-100'>
+                                <Option value={'0'}>0</Option>
+                                <Option value={'200'}>200</Option>
+                            </Select>
+                        )}
+                    </Form.Item>
+                  </Col>
                 </Row>
               </div>
             </div>

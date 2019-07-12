@@ -24,7 +24,6 @@ export default class DeployModal extends React.PureComponent {
             sendTokenAmount:0,
             constructorParams:[],
             params:[],
-            params_aa:''
         };
     }
 
@@ -57,28 +56,32 @@ export default class DeployModal extends React.PureComponent {
         let { currentContractName, feeLimit, userfeepercentage, originEnergyLimit, constructorParams, currentContractABI, currentContractByteCode,sendTokenId, sendTokenAmount,sendTokenDecimals,params } = this.state;
         let { onConfirm } = this.props;
         let optionsPayable = {};
-         sendTokenId = 0;
-        if (!sendTokenId || sendTokenId == 0) {
-            optionsPayable = { callValue: sendTokenAmount };
+        console.log('sendTokenId',sendTokenId);
+        console.log('sendTokenAmount',sendTokenAmount);
+        console.log('sendTokenDecimals',sendTokenDecimals);
+
+
+        if (!sendTokenId || sendTokenId == '_') {
+            optionsPayable = { callValue: this.Mul(sendTokenAmount,Math.pow(10, sendTokenDecimals)) };
         } else {
             optionsPayable = {
-                tokenId: sendTokenId,
+                tokenId:sendTokenId,
                 tokenValue:  this.Mul(sendTokenAmount,Math.pow(10, sendTokenDecimals))
             };
         }
+        console.log('optionsPayable',optionsPayable)
         let parameters = [];
         for(let i in constructorParams) {
             parameters.push(constructorParams[i].value)
         }
-
-        console.log('parameters222',params)
+       
         let form = {
             abi:currentContractABI,
             bytecode:currentContractByteCode,
             feeLimit: feeLimit,
             name: currentContractName,
             originEnergyLimit: originEnergyLimit,
-            parameters: params,
+            parameters: parameters,
             userFeePercentage: userfeepercentage,
             ...optionsPayable
         }
@@ -100,15 +103,17 @@ export default class DeployModal extends React.PureComponent {
         this.setState({ [prop]: value });
     };
 
-    setParams = (value) => {
-        let ConstructorParams = [];
-        ConstructorParams.push(value);
+    setParams = (index,value) => {
+        let { constructorParams } = this.state;
+        let constructorParamsArr = constructorParams.slice(0)
+        constructorParamsArr[index].value = value;
         this.setState({
-            params : ConstructorParams
+            constructorParams:constructorParamsArr
         });
     };
 
     tokenBalanceSelectChange(name, decimals, balance){
+        console.log('decimals',decimals)
         this.setState({
             sendTokenId:name,
             sendTokenDecimals:decimals,
@@ -135,6 +140,7 @@ export default class DeployModal extends React.PureComponent {
         constructorParams && constructorParams.map((item,i) => {
             item.value = ''
         });
+        console.log('constructorParams',constructorParams)
         this.setState({
             constructorParams,
             currentContractABI,
@@ -149,7 +155,8 @@ export default class DeployModal extends React.PureComponent {
 
 
     render() {
-        let { currentContractName, feeLimit, userfeepercentage, originEnergyLimit, sendTokenAmount,constructorParams,params,params_aa} = this.state;
+        let { currentContractName, feeLimit, userfeepercentage, originEnergyLimit, sendTokenAmount,constructorParams,params} = this.state;
+        console.log('constructorParams666========',constructorParams)
         let { contractNameList, intl } = this.props;
         return (
             <Modal isOpen={true}  fade={false} className="modal-dialog-centered _freezeContent">
@@ -208,7 +215,7 @@ export default class DeployModal extends React.PureComponent {
                                tokenBalanceSelectChange={(name, decimals,balance) => {this.tokenBalanceSelectChange(name, decimals,balance)}}>
                            </TokenBalanceSelect>
                            <input type="text"
-                                  onChange={(ev) => this.handleToggle('tokenAmount', ev.target.value)}
+                                  onChange={(ev) => this.handleToggle('sendTokenAmount', ev.target.value)}
                                   className="form-control deploy-input ml-4 input-box-sec"
                                   value={sendTokenAmount}
                            />
@@ -220,11 +227,11 @@ export default class DeployModal extends React.PureComponent {
                            {
                                constructorParams.map((item, index) => {
                                    return (
-                                       <div className="deploy-input-box" key={index}>
+                                       <div className="deploy-input-box mb-1" key={index}>
                                            <input type="text"
-                                                  onChange={(ev) => this.setParams(ev.target.value)}
+                                                  onChange={(e) => this.setParams(index,e.target.value)}
                                                   className="form-control deploy-input"
-                                                 // value={params_aa}
+                                                  value={item.value}
                                                   placeholder={item.name}
                                            />
                                            <input type="text"
