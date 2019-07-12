@@ -2,30 +2,23 @@ import React, {Component} from 'react';
 import {trim, forIn} from "lodash";
 import {tu,t} from "../../../utils/i18n";
 import {connect} from "react-redux";
-import {CopyText} from "../../common/Copy";
 import {QuestionMark} from "../../common/QuestionMark";
 import {NavLink} from "react-router-dom";
 import {FormattedNumber, injectIntl} from "react-intl";
-import {alpha} from "../../../utils/str";
 import {Tooltip} from "reactstrap";
 import ContractCodeRequest from "../../tools/ContractCodeRequest";
-import getCompiler from "../../../utils/compiler";
-import {Client} from "../../../services/api";
 import {AddressLink} from "../../common/Links";
 import {Link} from "react-router-dom";
 import MonacoEditor from 'react-monaco-editor';
 import xhr from "axios/index";
 import { Base64 } from 'js-base64';
 import SweetAlert from "react-bootstrap-sweetalert";
-import {TronLoader} from "../../common/loaders";
 import CompilerConsole from "./CompilerConsole";
 import {
   Form, Row, Col, Input, Select, Button
 } from 'antd'
-import { LineReactHighChartBlockchainSize } from '../../common/LineCharts';
 const { Option } = Select;
 
-var compile;
 class VerifyContractCode extends Component {
 
     constructor(props) {
