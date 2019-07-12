@@ -33,6 +33,7 @@ export default class DeployModal extends React.PureComponent {
 
     init = () => {
         let {contractNameList} = this.props;
+        console.log('contractNameList',contractNameList)
         this.setState({
             currentContractName : contractNameList[0]
         },()=>{

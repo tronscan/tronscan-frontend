@@ -17,6 +17,7 @@ import xhr from "axios/index";
 import SweetAlert from "react-bootstrap-sweetalert";
 import _, {find, round, filter } from "lodash";
 import {toThousands} from "../../../utils/number";
+import Lockr from "lockr";
 
 @connect(
     state => ({
@@ -42,8 +43,34 @@ class ContractCompiler extends React.Component {
             modal: null,
             showModal:false,
             contractNameList:[],
+            compileInfo:[],
         }
         this.onChange = this.onChange.bind(this)
+    }
+    initCompile = () =>{
+        if(Lockr.get("CompileCode")){
+            let solidity = Base64.encode(Lockr.get("CompileCode"));
+            this.setState({
+                solidity,
+                code:Lockr.get("CompileCode")
+
+            })
+        }
+        if(Lockr.get("CompileStatus")){
+            this.setState({
+                CompileStatus:Lockr.get("CompileStatus")
+            })
+        }
+        if(Lockr.get("contractNameList")){
+            this.setState({
+                contractNameList:Lockr.get("contractNameList")
+            })
+        }
+        if(Lockr.get("compileInfo")){
+            this.setState({
+                compileInfo:Lockr.get("compileInfo")
+            })
+        }
     }
 
     editorDidMount(editor, monaco) {
@@ -52,34 +79,33 @@ class ContractCompiler extends React.Component {
     }
 
     onChange(newValue, e) {
-        console.log('onChange', e);
-        console.log("111",typeof newValue)
         let solidity = Base64.encode(newValue);
         this.setState({
             solidity,
             code:newValue
         })
 
-
     }
 
     componentDidMount() {
-        let {match} = this.props;
-       // this.loadContract(match.params.id);
+       let {match} = this.props;
        if(match.params && match.params.type == 'verify'){
         this.setState({
             filter: { direction: 'verify'}
         })
+       }else{
+            this.initCompile();
        }
-
     }
 
-    componentWillUnmount() { }
-
-
-    async loadContract(id) {
-        //this.setState({loading: true, address: {address: id} });
-
+    componentWillUnmount() {
+        let { code, CompileStatus, compileInfo, contractNameList } = this.state;
+        if(CompileStatus && code !== '// type your code...'){
+            Lockr.set("CompileCode",code);
+            Lockr.set("CompileStatus",CompileStatus);
+            Lockr.set("compileInfo",compileInfo);
+            Lockr.set("contractNameList",contractNameList);
+        }
     }
 
     onRadioChange = (val) => {
@@ -421,17 +447,14 @@ class ContractCompiler extends React.Component {
                     }
                 } while (!transactionInfo.id);
             } else {
-                this.updateDeployStatus({
+                infoData = [{
                     type: "error",
-                    content: `FAILED to broadcast ${
-                        this.currentContractName
-                        } deploy transaction \n${
-                        broadcastResult.code
-                        }\n${window.tronWeb.toUtf8(
-                        broadcastResult.message
-                    )}.\n<obj title="View Broadcast Result" json='${JSON.stringify(
-                        broadcastResult
-                    )}'/>`
+                    content: `FAILED to broadcast ${currentContractName} deploy transaction \n${broadcastResult.code}\n${tronWeb.toUtf8(broadcastResult.message)}./>`
+                }];
+                CompileStatus.push.apply(CompileStatus,infoData);
+                this.setState({
+                    CompileStatus,
+                    deployLoading: false,
                 });
             }
 
@@ -488,7 +511,7 @@ class ContractCompiler extends React.Component {
                                                     onChange={this.onChange}
                                                     editorDidMount={this.editorDidMount}
                                                 />
-                                                <div className="contract-compiler-console">
+                                                <div>
                                                     <CompilerConsole  CompileStatus={CompileStatus}/>
                                                 </div>
                                                 <div className="contract-compiler-button">
