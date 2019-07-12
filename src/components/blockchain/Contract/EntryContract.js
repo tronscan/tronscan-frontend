@@ -84,7 +84,8 @@ class Code extends React.Component {
     // const { submitValues } = this.state
     const { contractItem } = this.props;
     const { getFieldsValue } = this.props.form
-    let submitValues = getFieldsValue()
+    let submitValues = getFieldsValue().submitValues
+    console.log('submitValues: ', submitValues);
     // let submitValues = fieldata.submitValues
     // let submitValues = e.target.value
     // this.setState({
@@ -93,12 +94,28 @@ class Code extends React.Component {
     let submitValueFormat = [];
     for (let i = 0 ; i < submitValues.length; i++ ) {
       let inputType = contractItem.inputs[i].type;
+      console.log('inputType: ', inputType);
       let inputValue = submitValues[i];
+      console.log('inputValue: ', inputValue);
       //bytes input
       submitValueFormat.push(formatInput(inputValue, inputType));
     }
     return submitValueFormat;
   }
+  // submitValueFormat: function() {
+  //     let submitValueFormat = [];
+  //     console.log('this.submitValues: ', this.submitValues);
+  //     for (let i in this.submitValues) {
+  //       let inputType = this.entry.inputs[i].type;
+  //       let inputValue = this.submitValues[i];
+  //       //bytes input
+  //       submitValueFormat.push(formatInput(inputValue, inputType));
+        
+  //     }
+  //     console.log('submitValueFormat: ', submitValueFormat);
+  //     return submitValueFormat;
+  //   },
+
 
   async Call() {
     let { contractItem, intl } = this.props;
@@ -169,25 +186,21 @@ class Code extends React.Component {
       try {
         console.log('this.submitValueFormat(): ', this.submitValueFormat());
         let options = {};
-        // if (totalValue) {
-          if (!(tokenId) || tokenId == 0) {
-            options = { callValue: totalValue };
-          } else {
-            options = { tokenId: tokenId, tokenValue: totalValue };
-          }
-        // } else {
-        //   throw new Error("synchronized fail")
-        // }
+        if (!(tokenId) || tokenId == 0) {
+          options = { callValue: totalValue };
+        } else {
+          options = { tokenId: tokenId, tokenValue: totalValue };
+        }
         let signedTransaction = await contract[contractItem.name](
           ...this.submitValueFormat()
         ).send(options)
-        // let retValue = await this.getTxResult(signedTransaction);
-        // console.log('retValue: ', retValue);
-        // this.setState({
-        //   result: this.formatOutputs(retValue)
-        // })
+        let retValue = await this.getTxResult(signedTransaction);
+        console.log('retValue: ', retValue);
+        this.setState({
+          result: this.formatOutputs(retValue)
+        })
       } catch (e) {
-        console.log('e: ', e);
+        // console.log('e: ', e);
         if (e.error == "REVERT opcode executed") {
           var res = e.output["contractResult"][0];
           let result =
