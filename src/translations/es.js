@@ -1897,4 +1897,5 @@ export const messages = {
   "energy_more":"Ancho de banda obtenido = TRX congelado para obtener ancho de banda / el TRX total congelado en la red para ganar ancho de banda.",
   "bandwidth_more":"Energía obtenida = TRX congelado para obtener energía / TRX total congelado para obtener energía en toda la red * límite de energía total.",
   "table_info_big": "Sólo se muestran los primeros 10.000 datos",
+  "Download": "Descargar"
 };

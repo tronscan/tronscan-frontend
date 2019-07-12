@@ -1902,4 +1902,5 @@ export const messages = {
   "energy_more": "Bandwidth obtained = TRX frozen for gaining bandwidth / the total TRX frozen in the network for gaining bandwidth.",
   "bandwidth_more": "Energy obtained = TRX frozen for gaining Energy / total TRX frozen for gaining Energy in the entire network * total energy limit.",
   "table_info_big": "only the first 10,000 data are displayed",
+  "Download": "Download"
 };

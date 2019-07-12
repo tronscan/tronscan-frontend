@@ -1879,5 +1879,6 @@ export const messages = {
   "interTrx_tip": "内部交易是指普通地址调用智能合约，由合约向其它地址转移通证的一种操作",
   "event_tip": "事件是让程序编写人员或外部界面提供者使用它来注意合约操作动向和审计",
   "table_info_big": "仅展示前10,000条数据",
+  "Download": "下载"
 
 };
