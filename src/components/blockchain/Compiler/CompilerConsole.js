@@ -21,13 +21,19 @@ class CompilerConsole extends React.Component {
     componentDidMount() {
 
     }
+    componentWillReceiveProps(nextProps)  {
+        let compilerConsole = this.refs['compilerConsole'];
+        compilerConsole.scrollTop = compilerConsole.scrollHeight;
+    }
+
+
 
     render() {
         let {loading, html, color} = this.state;
         let { CompileStatus } = this.props;
         console.log('CompileStatus',CompileStatus)
         return (
-           <div>
+           <div ref="compilerConsole" className="contract-compiler-console">
                {CompileStatus.map((log, i) => (
                    <div key={i}>
                        {

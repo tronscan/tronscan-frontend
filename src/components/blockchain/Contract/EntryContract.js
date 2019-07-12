@@ -1,13 +1,7 @@
 import React from "react";
 import { injectIntl } from "react-intl";
-import { CopyText } from "../../common/Copy";
 import { tu, tv } from "../../../utils/i18n";
-import { Client } from "../../../services/api";
-import { API_URL } from "../../../constants";
-import { AddressLink } from "../../common/Links";
-import { TronLoader } from "../../common/loaders";
 import { Collapse, Input, Button, Form, Select } from 'antd';
-import ContractInfo from './ContractInfo'
 import { connect } from "react-redux";
 import tronWeb from 'tronweb';
 import { getTronExplorer, formatOutput, formatInput } from '../../../utils/readContract'
@@ -180,11 +174,11 @@ class Code extends React.Component {
       try {
         console.log('this.submitValueFormat(): ', this.submitValueFormat());
         let options = {};
-        if (!(tokenId) || tokenId == 0) {
-          options = { callValue: totalValue };
-        } else {
-          options = { tokenId: tokenId, tokenValue: totalValue };
-        }
+          if (!(tokenId) || tokenId == '_') {
+            options = { callValue: totalValue };
+          } else {
+            options = { tokenId: tokenId, tokenValue: totalValue };
+          }
         let signedTransaction = await contract[contractItem.name](
           ...this.submitValueFormat()
         ).send(options)
