@@ -84,7 +84,13 @@ class Code extends React.Component {
     // const { submitValues } = this.state
     const { contractItem } = this.props;
     const { getFieldsValue } = this.props.form
-    let submitValues = getFieldsValue().submitValues
+    let submitValues
+    console.log('getFieldsValue(): ', getFieldsValue());
+    if (getFieldsValue().submitValues) {
+      submitValues = getFieldsValue().submitValues
+    } else {
+      submitValues = getFieldsValue()
+    }
     console.log('submitValues: ', submitValues);
     // let submitValues = fieldata.submitValues
     // let submitValues = e.target.value
@@ -102,20 +108,6 @@ class Code extends React.Component {
     }
     return submitValueFormat;
   }
-  // submitValueFormat: function() {
-  //     let submitValueFormat = [];
-  //     console.log('this.submitValues: ', this.submitValues);
-  //     for (let i in this.submitValues) {
-  //       let inputType = this.entry.inputs[i].type;
-  //       let inputValue = this.submitValues[i];
-  //       //bytes input
-  //       submitValueFormat.push(formatInput(inputValue, inputType));
-        
-  //     }
-  //     console.log('submitValueFormat: ', submitValueFormat);
-  //     return submitValueFormat;
-  //   },
-
 
   async Call() {
     let { contractItem, intl } = this.props;
@@ -130,19 +122,21 @@ class Code extends React.Component {
           result: this.formatOutputs(retValue)
         })
       } catch (e) {
-        console.log("Error",e);
-
+        // console.log("Error",e);
         this.setState({
-          modal: <SweetAlert
-            warning
-            title={e}
-            confirmBtnText={intl.formatMessage({ id: 'confirm' })}
-            confirmBtnBsStyle="danger"
-            onConfirm={() => this.setState({ modal: null })}
-            style={{ marginLeft: '-240px', marginTop: '-195px' }}
-          >
-          </SweetAlert>
+          result: JSON.stringify(e)
         })
+        // this.setState({
+        //   modal: <SweetAlert
+        //     warning
+        //     title={e}
+        //     confirmBtnText={intl.formatMessage({ id: 'confirm' })}
+        //     confirmBtnBsStyle="danger"
+        //     onConfirm={() => this.setState({ modal: null })}
+        //     style={{ marginLeft: '-240px', marginTop: '-195px' }}
+        //   >
+        //   </SweetAlert>
+        // })
       }
     }
   }

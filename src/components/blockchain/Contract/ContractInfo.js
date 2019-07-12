@@ -78,31 +78,36 @@ export default class Code extends React.Component {
 
   render() {
     let { name, compilerVersion, sourceCode, abi, abiEncoded, address, byteCode, isSetting, librarys, loading, contractInfos } = this.state;
-
+    const { filter } = this.props
     return (
       <main className="container">
         {loading && <div className="loading-style" style={{ marginTop: '-20px' }}><TronLoader /></div>}
-        <div className="row">
-          <div className="col-md-12 contract-header">
-            {/*<br/>*/}
-            {/*<div className="pb-3 verified"><i className="fa fa-check-circle mr-1"></i>('contract_code_verified')</div> */}
+        {
+          filter.contractInfoList.interfaceAbi ? null
+          : 
+            <div className="row">
+              <div className="col-md-12 contract-header">
+                {/*<br/>*/}
+                {/*<div className="pb-3 verified"><i className="fa fa-check-circle mr-1"></i>('contract_code_verified')</div> */}
 
-            <div className="d-flex justify-content-between">
-              <div className="contract-header__item">
-                <ul>
-                  <li><p className="plus">{tu("contract_name")}:</p>{name}</li>
-                  {/* <li><p className="plus">{tu('Optimization_Enabled')}: </p>{isSetting}</li> */}
-                </ul>
-              </div>
-              <div className="contract-header__item">
-                <ul>
-                  {/* <li><p className="plus">{tu("Compiler_Text")}:</p>{compilerVersion}</li> */}
-                </ul>
+                <div className="d-flex justify-content-between">
+                  <div className="contract-header__item">
+                    <ul>
+                      <li><p className="plus">{tu("contract_name")}:</p>{name}</li>
+                      {/* <li><p className="plus">{tu('Optimization_Enabled')}: </p>{isSetting}</li> */}
+                    </ul>
+                  </div>
+                  <div className="contract-header__item">
+                    <ul>
+                      {/* <li><p className="plus">{tu("Compiler_Text")}:</p>{compilerVersion}</li> */}
+                    </ul>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
-        </div>
 
+        }
+        
 
         {/* <div className="row">
             <div className="col-md-12 ">
