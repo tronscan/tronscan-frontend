@@ -156,8 +156,7 @@ export default class DeployModal extends React.PureComponent {
 
 
     render() {
-        let { currentContractName, feeLimit, userfeepercentage, originEnergyLimit, sendTokenAmount,constructorParams,params} = this.state;
-        console.log('constructorParams666========',constructorParams)
+        let { currentContractName, feeLimit, userfeepercentage, originEnergyLimit, sendTokenAmount,constructorParams} = this.state;
         let { contractNameList, intl } = this.props;
         return (
             <Modal isOpen={true}  fade={false} className="modal-dialog-centered _freezeContent">
@@ -247,16 +246,16 @@ export default class DeployModal extends React.PureComponent {
                            }
                        </div>
                    }
-                   <div className="contract-compiler-button mt-3 mb-3">
-                       <button
-                           onClick={this.hideModal}
-                           className="compile-button-small cancel"
-                       >
-                           {tu('cancel')}
-                       </button>
+                   <div className="contract-compiler-button-modal mt-3 mb-2">
+                       {/*<button*/}
+                           {/*onClick={this.hideModal}*/}
+                           {/*className="compile-button-small cancel"*/}
+                       {/*>*/}
+                           {/*{tu('cancel')}*/}
+                       {/*</button>*/}
                        <button
                            onClick={this.confirmModal}
-                           className="compile-button-small ml-5"
+                           className="compile-button-large"
                        >
                            {tu('confirm')}
                        </button>

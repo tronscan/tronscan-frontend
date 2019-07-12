@@ -516,7 +516,6 @@ class ContractCompiler extends React.Component {
                                                 </div>
                                                 <div className="contract-compiler-button">
                                                     <Button
-                                                        type="primary"
                                                         loading={compileLoading}
                                                         onClick={this.compileModal}
                                                         className="compile-button compile"
@@ -524,7 +523,6 @@ class ContractCompiler extends React.Component {
                                                         {tu('contract_deployment_btn_compile')}
                                                     </Button>
                                                     <Button
-                                                        type="primary"
                                                         loading={deployLoading}
                                                         onClick={this.deployModal}
                                                         className="compile-button active ml-4"

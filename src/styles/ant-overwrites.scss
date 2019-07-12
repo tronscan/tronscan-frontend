@@ -225,6 +225,7 @@
             color: $main-red;
         }
     }
+    box-shadow: 0 0 0 rgba(0,0,0,.015);
 }
 
 .ant-table-thead > tr > th .ant-table-column-sorter-up.on, .ant-table-thead > tr > th .ant-table-column-sorter-down.on{

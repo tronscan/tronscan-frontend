@@ -39,7 +39,7 @@
   "info.svg": "ce0369650e23ec7e420a8af6750d8a87.svg",
   "languages.js": "static/js/languages.299fb0c8.chunk.js",
   "main.css": "static/css/main.247e3431.css",
-  "main.js": "static/js/main.e9a7f7ea.js",
+  "main.js": "static/js/main.24e93af4.js",
   "static/js/19.a4e75ceb.chunk.js": "static/js/19.a4e75ceb.chunk.js",
   "static/media/Block-Producer-Chart.png": "static/media/Block-Producer-Chart.a94b882b.png",
   "static/media/ContractInvocationDistribution.png": "static/media/ContractInvocationDistribution.fd18e048.png",
@@ -75,5 +75,5 @@
   "static/media/tron-logo.jpg": "static/media/tron-logo.f142f640.jpg",
   "static/media/tronscan_wechat.png": "static/media/tronscan_wechat.1225c09a.png",
   "static/media/wallet-preview.png": "static/media/wallet-preview.85fad9b8.png",
-  "vendors.js": "static/js/vendors.efa8ad90.js"
+  "vendors.js": "static/js/vendors.a24fb41a.js"
 }

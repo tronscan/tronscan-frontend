@@ -4237,8 +4237,8 @@ delete {
   &-button {
     display: flex;
     justify-content: center;
-    //align-items: center;
-    margin-top: 20px;
+    margin-top: 55px;
+    padding-bottom: 40px;
   }
 
   &-console-log {
@@ -4260,8 +4260,12 @@ delete {
       margin-left: 10px;
     }
   }
+  &-button-modal{
+    display: flex;
+    justify-content: center;
+  }
 }
-.compile-button-box,.contract-compiler-button,{
+.compile-button-box,.contract-compiler-button,.contract-compiler-button-modal{
   display: flex;
   justify-content: center;
   .compile-button{
@@ -4277,8 +4281,8 @@ delete {
     cursor: pointer;
     border-color:#ffffff;
   }
-  .compile-button-small{
-    width: 120px;
+  .compile-button-large{
+    width:100%;
     height: 38px;
     background: #C23631;
     border-radius: 3px;
@@ -4290,7 +4294,7 @@ delete {
     cursor: pointer;
     border-color:#ffffff;
   }
-  .compile-button-small.cancel{
+  .compile-button-large.cancel{
     background: rgba(194,54,49,0.5);
   }
   .compile-button.active{
@@ -4397,6 +4401,6 @@ delete {
     padding-right: 20px;
     margin: 0 auto;
   }
-
 }
+
 

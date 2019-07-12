@@ -90,7 +90,7 @@ export default class CompilerModal extends React.PureComponent {
                     {tu("contract_compile_params")}
                 </ModalHeader>
                 <ModalBody className="text-center _freezeBody">
-                    <div className="form-group d-flex p-3 justify-content-between">
+                    <div className="d-flex p-2 justify-content-between">
                         <label>{tu("compile_params_version")}</label>
                         <select className="custom-select compile-select"
                                 value={selectedResource}
@@ -104,7 +104,7 @@ export default class CompilerModal extends React.PureComponent {
                                 }
                         </select>
                     </div>
-                    <div className="form-group d-flex p-3 justify-content-between">
+                    <div className="d-flex p-2 justify-content-between">
                         <label>{tu("compile_params_runs")}</label>
                         <select className="custom-select compile-select"
                                 value={selectedRuns}
@@ -118,22 +118,22 @@ export default class CompilerModal extends React.PureComponent {
                                 }
                         </select>
                     </div>
-                    <div className="form-group d-flex pl-3 pr-3 pb-3">
+                    <div className="d-flex p-2">
                         <label>{tu("compile_params_optimization")}</label>
                         <div className="compile-switch">
                             <Switch checked={hideSmallCurrency} onChange={this.handleToggle('hideSmallCurrency')} />
                         </div>
                     </div>
-                    <div className="contract-compiler-button mt-3 mb-3">
-                        <button
-                            onClick={this.hideModal}
-                            className="compile-button-small cancel"
-                        >
-                            {tu('cancel')}
-                        </button>
+                    <div className="contract-compiler-button-modal mt-3 mb-2">
+                        {/*<button*/}
+                            {/*onClick={this.hideModal}*/}
+                            {/*className="compile-button-small cancel"*/}
+                        {/*>*/}
+                            {/*{tu('cancel')}*/}
+                        {/*</button>*/}
                         <button
                             onClick={this.confirmModal}
-                            className="compile-button-small ml-5"
+                            className="compile-button-large"
                         >
                             {tu('confirm')}
                         </button>
