@@ -14,6 +14,8 @@ import xhr from "axios/index";
 import { Base64 } from 'js-base64';
 import SweetAlert from "react-bootstrap-sweetalert";
 import CompilerConsole from "./CompilerConsole";
+import {API_URL} from "../../../constants";
+
 import {
   Form, Row, Col, Input, Select, Button
 } from 'antd'
@@ -66,7 +68,7 @@ class VerifyContractCode extends Component {
       }else{
         this.setState({loading: true})
         const solidity = Base64.encode(contract_code);
-        const { data } = await xhr.post('http://18.219.114.60:9016/v1/api/contract/verify',{solidity,runs: '0', ...fieldata})
+        const { data } = await xhr.post(`${API_URL}/api/solidity/contract/verify`,{solidity,runs: '0', ...fieldata})
         if(data.code === 200){
          
           if(data.data.status === 2001){

@@ -55,7 +55,7 @@ export default class Code extends React.Component {
   }
   async getContractVerifyStatus () {
     let { filter } = this.props;
-    let { data } = await xhr.post(`http://18.219.114.60:9016/v1/api/contract/info`, {
+    let { data } = await xhr.post(`${API_URL}/api/solidity/contract/info`, {
       "contractAddress": filter.address,
     }).catch(function (e) {
       let errorData = [{

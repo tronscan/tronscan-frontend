@@ -1902,5 +1902,65 @@ export const messages = {
   "energy_more": "Bandwidth obtained = TRX frozen for gaining bandwidth / the total TRX frozen in the network for gaining bandwidth.",
   "bandwidth_more": "Energy obtained = TRX frozen for gaining Energy / total TRX frozen for gaining Energy in the entire network * total energy limit.",
   "table_info_big": "only the first 10,000 data are displayed",
-  "Download": "Download"
+  "Download": "Download",
+
+  /*
+   ##################################################################################
+   #                                                                                #
+   # contract Compiler                                      #
+   #                                                                                #
+   ##################################################################################
+  */
+  "please_enter_address": 'Please enter contract address',
+  "please_enter_name": 'Please enter contract name',
+  "please_enter_code": 'Please enter contract Code',
+  /*
+  ##################################################################################
+  #                                                                                #
+  # read contract info   2019-07-02                                    #
+  #                                                                                #
+  ##################################################################################
+  */
+  "contract_title": "Contract",
+  "contract_code_choice": "Code",
+  "contract_read": "Read Contract",
+  "contract_write": "Write Contract",
+  "contract_tip": "Prompt",
+  "contract_version": "Compiler version",
+  "contract_optimize": "Optimization",
+  "contract_optimizer": "No",
+  "contract_optimizered": "Yes",
+  "contract_verify_status": "The contract has not been verified yet, click here",
+  "contract_verify_btn": "to verify",
+  "write_payable": "Run these functions with TRX or Token",
+  "write_nonePayable": "Run these functions will consume TRX or Energy",
+  "verify_code1": "Source code verification provides transparency for users interacting with smart contracts",
+  "verify_code2": "By uploading the source code, Tronscan will match the compiled code with that on the blockchain",
+  "verify_code3": `Just like contracts, a "smart contract" should provide end users with more information on what they are "digitally signing" for and give users an opportunity to audit the code to independently verify that it actually does what it is supposed to do.`,
+
+  /*
+   ##################################################################################
+   #                                                                                #
+   # deploy contract   2019-07-10                                    #
+   #                                                                                #
+   ##################################################################################
+  */
+  "contract_deployment":"Contract deployment",
+  "contract_verification":"Contract verification",
+  "contract_deploy_info":"Put your single file of smart contract here",
+  "contract_deployment_btn_compile":"Compile",
+  "contract_deployment_btn_deploy":"Deploy",
+  "contract_compile_params":"Compile Params",
+  "compile_params_version":"Solidity Version",
+  "compile_params_optimization":"Optimization",
+  "compile_params_runs":"Runs",
+  "compile_first":"Please compile your contract first",
+  "contract_deploy_params":"Deploy Params",
+  "contract_deploy_modal_info":"Contract deployment will cost a certain amount of TRX or energy",
+  "deploy_params_fee_limit":"Fee Limit",
+  "deploy_params_user_fee_percentage":"User Fee Percentage",
+  "deploy_params_energy_limit":"Origin Energy Limit",
+  "deploy_params_send_token":"Select TRX or token to send",
+  "deploy_params_constructor":"Params for constructor",
+
 };

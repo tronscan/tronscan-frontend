@@ -160,13 +160,13 @@ export const routes = [
       },
       {
         path: "/contracts/contract-Compiler",
-        label: "contract_compiler",
+        label: "contract_deployment",
         icon: "fa fa-users-cog",
         component: ContractCompilerAsync
       },
       {
         path: "/contracts/contract-Compiler/:type",
-        label: "contract_compiler",
+        label: "contract_deployment",
         icon: "fa fa-users-cog",
         component: ContractCompilerAsync,
         showInMenu: false

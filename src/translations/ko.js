@@ -1850,5 +1850,65 @@ export const messages = {
   "energy_more": "대역폭 획득= 대역폭 확보를 위해 TRX 동결 / 대역폭 확보를 위해 네트워크에서 동결된 총 TRX",
   "bandwidth_more": "에너지 획득 = 에너지 획득을 위해 TRX 동결/에너지 획들을 위해 전체 네트워크에서 동결된 총 TRX 수 * 총 에너지 제한",
   "table_info_big": "처음 10,000 개의 데이터 만 표시됨",
-  "Download": "다운로드"
+  "Download": "다운로드",
+
+  /*
+     ##################################################################################
+     #                                                                                #
+     # contract Compiler                                      #
+     #                                                                                #
+     ##################################################################################
+    */
+  "please_enter_address": '계약 주소를 입력하십시오',
+  "please_enter_name": '계약 이름을 입력하십시오',
+  "please_enter_code": '계약 코드를 입력하십시오',
+  /*
+  ##################################################################################
+  #                                                                                #
+  # read contract info   2019-07-02                                    #
+  #                                                                                #
+  ##################################################################################
+  */
+  "contract_title": "컨트랙트",
+  "contract_code_choice": "코드",
+  "contract_read": "컨트랙트 읽기",
+  "contract_write": "컨트랙트 작성",
+  "contract_tip": "프롬프트",
+  "contract_version": "컴파일러 버전",
+  "contract_optimize": "최적화",
+  "contract_optimizer": "No",
+  "contract_optimizered": "Yes",
+  "contract_verify_status": "컨트랙트가 확인되지 않았습니다. 여기를 클릭해주세요.",
+  "contract_verify_btn": "확인받기",
+  "write_payable": "TRX 또는 다른 토큰으로 기능들을 실행하십시오",
+  "write_nonePayable": "기능을 실행하면 TRX 또는 에너지가 소모됩니다",
+  "verify_code1": "소스 코드 검증은 스마트 컨트랙트와 상호 작용하는 사용자에게 투명성을 제공합니다",
+  "verify_code2": "소스 코드를 업로드하면 TRONSCAN이 컴파일 된 코드를 블록체인의 코드와 일치시킵니다",
+  "verify_code3": `계약과 마찬가지로 스마트 컨트랙트는 최종 사용자에게 "디지털 서명"에 대한 정보를 제공하고 사용자가 코드를 감사하여 실제로 수행해야 할 작업을 실제로 수행하는지 확인할 수 있는 기회를 제공합니다.`,
+
+  /*
+   ##################################################################################
+   #                                                                                #
+   # deploy contract   2019-07-10                                    #
+   #                                                                                #
+   ##################################################################################
+  */
+  "contract_deployment":"컨트랙트 배포",
+  "contract_verification":"컨트랙트 확인",
+  "contract_deploy_info":"스마트 컨트랙트 파일을 이곳에 제출하세요.",
+  "contract_deployment_btn_compile":"컴파일",
+  "contract_deployment_btn_deploy":"배포",
+  "contract_compile_params":"컴파일 Params",
+  "compile_params_version":"Solidity 버전",
+  "compile_params_optimization":"최적화",
+  "compile_params_runs":"Runs",
+  "compile_first":"먼저 컨트랙트를 작성해주세요",
+  "contract_deploy_params":"Params 배포",
+  "contract_deploy_modal_info":"컨트랙트 배포는 일정량의 TRX 또는 에너지를 소비합니다.",
+  "deploy_params_fee_limit":"수수료 한도",
+  "deploy_params_user_fee_percentage":"사용자 지출 비용",
+  "deploy_params_energy_limit":"에너지 한도",
+  "deploy_params_send_token":"전송할 TRX 또는 토큰 선택",
+  "deploy_params_constructor":"생성자를 위한 Params",
+
 };

@@ -1847,5 +1847,65 @@ export const messages = {
   "energy_more": "獲得したバンド幅＝エネルギーを獲得するために凍結したTRX/ネット全体がバンド幅を獲得するために凍結したTRX総額",
   "bandwidth_more": "獲得したエネルギー＝エネルギーを獲得するために凍結したTRX/ネット全体がエネルギーを獲得するために凍結したTRX総額*エネルギー総額制限",
   "table_info_big": "最初の10,000個データの表示されています",
-  "Download": "ダウンロード"
+  "Download": "ダウンロード",
+
+  /*
+    ##################################################################################
+    #                                                                                #
+    # contract Compiler                                      #
+    #                                                                                #
+    ##################################################################################
+   */
+  "please_enter_address": 'コントラクトアドレスを入力してください',
+  "please_enter_name": 'コントラクト名を入力してください',
+  "please_enter_code": 'コントラクトコードを入力してください',
+  /*
+  ##################################################################################
+  #                                                                                #
+  # read contract info   2019-07-02                                    #
+  #                                                                                #
+  ##################################################################################
+  */
+  "contract_title": "コントラクト",
+  "contract_code_choice": "コード",
+  "contract_read": "コントラクトを読みます",
+  "contract_write": "コントラクトを編集します",
+  "contract_tip": "ご注意",
+  "contract_version": "コンパイラバージョン",
+  "contract_optimize": "最適化",
+  "contract_optimizer": "ノー",
+  "contract_optimizered": "はい",
+  "contract_verify_status": "該当のコントラクトがまだ検証されないため、ここをクリックしてください",
+  "contract_verify_btn": "検証します",
+  "write_payable": "TRX、また他のトークンで機能を実行します",
+  "write_nonePayable": "これらの機能を実行するため、TRXとエネルギーの消費が必要となります",
+  "verify_code1": "ソースコードの検証はユーザーとスマートコントラクトのインタラクティブに透明度を提供します",
+  "verify_code2": "ソースコードのアップロードを通じて、Tronscanはブロックチェーンにおいてそれとコンパイラコードをマッチさせます",
+  "verify_code3": `コントラクトと同じように、スマートコントラクトは端末のユーザーにデジタルシグネチャーのわけについてより多くの情報を提供し、コードの審査権利を与えます。これでユーザーが独立的にコードの実際な役割と期待された役割を確認できます。`,
+
+  /*
+   ##################################################################################
+   #                                                                                #
+   # deploy contract   2019-07-10                                    #
+   #                                                                                #
+   ##################################################################################
+  */
+  "contract_deployment":"コントラクトデプロイメント",
+  "contract_verification":"コントラクト検証",
+  "contract_deploy_info":"スマートコントラクトのシングルファイルをここに入れてください",
+  "contract_deployment_btn_compile":"コンパイラ",
+  "contract_deployment_btn_deploy":"デプロイ",
+  "contract_compile_params":"コンパイラパラメーター",
+  "compile_params_version":"Solidityバージョン",
+  "compile_params_optimization":"最適化",
+  "compile_params_runs":"Runs",
+  "compile_first":"先にコントラクトをコンパイラしてください",
+  "contract_deploy_params":"デプロイパラメーター",
+  "contract_deploy_modal_info":"コントラクトデプロイメントには、TRX、あるいはエネルギーの消費が必要となります",
+  "deploy_params_fee_limit":"費用の限界",
+  "deploy_params_user_fee_percentage":"ユーザー費用の割合",
+  "deploy_params_energy_limit":"オリジナルエネルギーの限界",
+  "deploy_params_send_token":"TRX、あるいは他のトークンを選んで送ります",
+  "deploy_params_constructor":"コンストラクタのパラメーター",
+
 }

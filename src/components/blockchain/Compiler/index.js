@@ -18,6 +18,7 @@ import SweetAlert from "react-bootstrap-sweetalert";
 import _, {find, round, filter } from "lodash";
 import {toThousands} from "../../../utils/number";
 import Lockr from "lockr";
+import { API_URL } from "../../../constants";
 
 @connect(
     state => ({
@@ -44,6 +45,7 @@ class ContractCompiler extends React.Component {
             showModal:false,
             contractNameList:[],
             compileInfo:[],
+            runs:'0',
         }
         this.onChange = this.onChange.bind(this)
     }
@@ -218,10 +220,11 @@ class ContractCompiler extends React.Component {
             CompileStatus:[],
             optimizer,
             compilerVersion,
+            runs
         });
         let { CompileStatus, solidity } = this.state;
         let error;
-        let {data} = await xhr.post(`http://18.219.114.60:9016/v1/api/contract/compile`, {
+        let {data} = await xhr.post(`${API_URL}/api/solidity/contract/compile`, {
             "compiler": compilerVersion,
             "optimizer": optimizer,
             "solidity":solidity,
@@ -386,11 +389,11 @@ class ContractCompiler extends React.Component {
                             CompileStatus.push.apply(CompileStatus,infoData)
 
 
-                            let {data} = await xhr.post(`http://18.219.114.60:9016/v1/api/contract/deploy`, {
+                            let {data} = await xhr.post(`${API_URL}/api/solidity/contract/deploy`, {
                                 "contractAddress":base58Adress,
                                 "contractName":options.name,
                                 "optimizer":this.state.optimizer,
-                                "runs":'0',
+                                "runs":this.state.runs,
                                 "compiler":this.state.compilerVersion,
                                 "encodedSolidity":this.state.solidity,
                                 "byteCode":options.bytecode,
@@ -490,11 +493,10 @@ class ContractCompiler extends React.Component {
                             </div>
                         <div className="card mt-4">
                             <div className="card-body">
-                                <div className="d-flex contract-compiler">
+                                <div className="contract-compiler">
                                             <div className="pt-3">
                                                 <MonacoEditor
-                                                    width="1110"
-                                                    height="760"
+                                                    height="600"
                                                     language="sol"
                                                     theme="vs-dark"
                                                     value={code}

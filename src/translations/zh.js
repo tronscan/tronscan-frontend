@@ -1891,10 +1891,9 @@ export const messages = {
    #                                                                                #
    ##################################################################################
   */
-  "contract_compiler":"合约部署",
-  "please_enter_address": 'Please enter contract address',
-  "please_enter_name": 'Please enter contract name',
-  "please_enter_code": 'Please enter contract Code',
+  "please_enter_address": '请输入合约地址',
+  "please_enter_name": '请输入合约名称',
+  "please_enter_code": '请输入合约代码',
 
 
   /*
@@ -1915,10 +1914,11 @@ export const messages = {
   "contract_optimizered": "Yes",
   "contract_verify_status": "该合约未验证，点击此处",
   "contract_verify_btn": "去验证",
-  "write_payable": "Run these functions with Trx or Token",
-  "write_nonePayable": "Run these functions will consume Trx or Energy",
-  "verify_code1": "Source code verification provides transparency for users interacting with smart contracts.",
-  "verify_code2": "By uploading the source code, Transcan will match the compiled code with that on the blockchain.",
+  "write_payable": "用TRX或其它代币运行这些功能",
+  "write_nonePayable": "运行这些功能将消耗TRX或能量",
+  "verify_code1": "源代码验证为用户与智能合约交互提供透明度",
+  "verify_code2": "通过上传源代码，TRONSCAN会在区块链上将其与编译代码匹配",
+  "verify_code3": "与合约一样，智能合约为终端用户提供关于他们正在为何“电子签名”的更多信息，也让用户能够审核代码，独立地验证代码的实际作用和预期作用",
   "verify_code3": `Just like contracts, a "smart contract" should provide end users with more information on what they are "digitally signing" for and give users an opportunity to audit the code to independently verify that it actually does what it is supposed to do.`,
 
   /*
@@ -1930,21 +1930,21 @@ export const messages = {
   */
   "contract_deployment":"合约部署",
   "contract_verification":"合约验证",
-  "contract_deploy_info":"Put your single file of smart contract here",
+  "contract_deploy_info":"请将您智能合约的单一文件放在这里",
   "contract_deployment_btn_compile":"编译",
   "contract_deployment_btn_deploy":"部署",
-  "contract_compile_params":"Compile Params",
-  "compile_params_version":"Solidity Version",
-  "compile_params_optimization":"Optimization",
+  "contract_compile_params":"编译参数",
+  "compile_params_version":"Solidity版本",
+  "compile_params_optimization":"优化",
   "compile_params_runs":"Runs",
   "compile_first":"请优先编译合约",
-  "contract_deploy_params":"Deploy Params",
-  "contract_deploy_modal_info":"Contract deployment will cost a certain amount of trx or energy",
-  "deploy_params_fee_limit":"Fee Limit",
-  "deploy_params_user_fee_percentage":"User Fee Percentage",
-  "deploy_params_energy_limit":"Origin Energy Limit",
-  "deploy_params_send_token":"Select TRX or token to send",
-  "deploy_params_constructor":"Params for constructor",
+  "contract_deploy_params":"部署参数",
+  "contract_deploy_modal_info":"合约部署将消耗一定数量的TRX或能量",
+  "deploy_params_fee_limit":"费用限额",
+  "deploy_params_user_fee_percentage":"用户费用百分比",
+  "deploy_params_energy_limit":"原始能量限制",
+  "deploy_params_send_token":"选择TRX或其它代币发送",
+  "deploy_params_constructor":"构造器参数",
 
 
 
