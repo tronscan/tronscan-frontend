@@ -167,7 +167,6 @@ module.exports = {
               path.resolve(paths.appNodeModules, "instascan/src/camera.js"),
               path.resolve(paths.appNodeModules, "instascan/src/scanner.js"),
               path.resolve(paths.appNodeModules, "instascan/index.js"),
-              path.resolve(paths.appNodeModules, "tron-station-sdk/src"),
               '/home/rovak/workspace/tronscan-node-client/src',
             ],
             exclude:path.resolve(__dirname, 'node_modules'),
