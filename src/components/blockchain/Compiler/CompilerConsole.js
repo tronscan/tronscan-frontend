@@ -31,7 +31,7 @@ class CompilerConsole extends React.Component {
     render() {
         let {loading, html, color} = this.state;
         let { CompileStatus } = this.props;
-        console.log('CompileStatus',CompileStatus)
+
         return (
            <div ref="compilerConsole" className="contract-compiler-console">
                {CompileStatus.map((log, i) => (

@@ -74,7 +74,6 @@ class ContractCompiler extends React.Component {
     }
 
     editorDidMount(editor, monaco) {
-        console.log('editorDidMount', editor);
         editor.focus();
     }
 
@@ -195,19 +194,16 @@ class ContractCompiler extends React.Component {
         });
     }
     onDeployParams (form) {
-        console.log('form',form)
         this.setState({
             ...form
         })
     }
     compilerVersionMsg(version) {
-        console.log('version',version)
         this.setState({
             compilerVersion:version
         });
     }
     optimizerMsg(value) {
-        console.log('optimizer',value)
         this.setState({
             optimizer:value
         });
@@ -231,7 +227,6 @@ class ContractCompiler extends React.Component {
             "solidity":solidity,
             "runs":runs
         }).catch(function (e) {
-            console.log(e)
             let errorData = [{
                 type: "error",
                 content: `Compiled error: ${e.toString()}`
@@ -277,7 +272,6 @@ class ContractCompiler extends React.Component {
         }else{
             if(data.errmsg){
                 if(typeof data.errmsg === 'string'){
-                    console.log('data.errmsg',data.errmsg)
                     let errorData = [{
                         type: "error",
                         content: `Compiled error: ${data.errmsg}`
@@ -293,7 +287,6 @@ class ContractCompiler extends React.Component {
 
     };
     deploy = async (options) => {
-        console.log('options',options)
         let currentContractName = options.name;
         let { CompileStatus } = this.state;
         const {tronWeb} = this.props.account;
@@ -323,7 +316,6 @@ class ContractCompiler extends React.Component {
                 contract:unsigned
             }];
             CompileStatus.push.apply(CompileStatus,infoData)
-            console.log('CompileStatus',CompileStatus)
             await this.setState({
                 CompileStatus,
             });
@@ -364,7 +356,6 @@ class ContractCompiler extends React.Component {
                     );
 
                     if (transactionInfo.id) {
-                        console.log('transactionInfo.receipt.result',transactionInfo.receipt.result)
                         if (transactionInfo.receipt.result == "SUCCESS") {
                             infoData = [{
                                 type: "success",

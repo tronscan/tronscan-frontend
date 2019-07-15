@@ -54,7 +54,6 @@ class TokenBalanceSelect extends React.Component {
     }
 
     handleTokenChange = (value) => {
-        console.log('handleTokenChange',value)
         this.setState({ token: value },() =>{
             this.getSelectedTokenBalance();
         });

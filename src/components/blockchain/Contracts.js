@@ -56,7 +56,7 @@ class Contracts extends React.Component {
   }
 
   search = () => {
-    console.log("searching");
+
   }
 
   loadContracts = async (page = 1, pageSize = 20) => {

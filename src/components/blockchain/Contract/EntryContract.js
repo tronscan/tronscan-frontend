@@ -49,7 +49,7 @@ class Code extends React.Component {
       this.setState({
         contract: initContract
       }, () => {
-          // console.log('contract: ', this.state.contract);
+
       })
     }
   }
@@ -80,13 +80,11 @@ class Code extends React.Component {
     const { contractItem } = this.props;
     const { getFieldsValue } = this.props.form
     let submitValues
-    console.log('getFieldsValue(): ', getFieldsValue());
     if (getFieldsValue().submitValues) {
       submitValues = getFieldsValue().submitValues
     } else {
       submitValues = getFieldsValue()
     }
-    console.log('submitValues: ', submitValues);
     // let submitValues = fieldata.submitValues
     // let submitValues = e.target.value
     // this.setState({
@@ -95,9 +93,7 @@ class Code extends React.Component {
     let submitValueFormat = [];
     for (let i = 0 ; i < submitValues.length; i++ ) {
       let inputType = contractItem.inputs[i].type;
-      console.log('inputType: ', inputType);
       let inputValue = submitValues[i];
-      console.log('inputValue: ', inputValue);
       //bytes input
       submitValueFormat.push(formatInput(inputValue, inputType));
     }
@@ -116,10 +112,9 @@ class Code extends React.Component {
         this.setState({
           result: this.formatOutputs(retValue)
         },()=>{
-          console.log('this.state.result',this.state.result)
+
         })
       } catch (e) {
-        console.log("Error",e);
         this.setState({
           result: JSON.stringify(e)
         })
@@ -138,20 +133,16 @@ class Code extends React.Component {
     }
   }
   formatOutputs (retValue) {
-    console.log('retValue111',retValue)
     let { contractItem } = this.props;
     if (contractItem.outputs != undefined && contractItem.outputs.length > 1) {
-        console.log('retVal222')
       return contractItem.outputs.map((output, key) => {
         if (output.name != undefined) {
-            console.log('retVal333')
           return (
             output.name +
             ": " +
             formatOutput(retValue[output.name], output.type)
           );
         }
-          console.log('retVal444')
         return formatOutput(retValue[key], output.type);
       });
     } else if (
@@ -159,13 +150,11 @@ class Code extends React.Component {
       contractItem.outputs.length == 1
     ) {
       if (contractItem.outputs[0].name != undefined) {
-          console.log('retVal55')
         return formatOutput(
           retValue[contractItem.outputs[0].name],
           contractItem.outputs[0].type
         );
       }
-        console.log('retVal666')
       return formatOutput(retValue, contractItem.outputs[0].type);
       
     } else {
@@ -183,15 +172,11 @@ class Code extends React.Component {
 
   async Send () {
     const { tokenId, totalValue, contract ,sendTokenDecimals } = this.state
-    console.log('totalValue: ', totalValue);
-    console.log('tokenId: ', tokenId);
     const { contractItem, intl } = this.props;
     const { tronWeb } = this.props.account;
     if (this.isLoggedIn()) {
       try {
-        console.log('this.submitValueFormat(): ', this.submitValueFormat());
         let options = {};
-
           if (!tokenId || tokenId == '_') {
             options = { callValue: this.Mul(totalValue,Math.pow(10, sendTokenDecimals)) };
           } else {
@@ -204,12 +189,10 @@ class Code extends React.Component {
           ...this.submitValueFormat()
         ).send(options)
         let retValue = await this.getTxResult(signedTransaction);
-        console.log('retValue: ', retValue);
         this.setState({
           result: this.formatOutputs(retValue)
         })
       } catch (e) {
-        console.log(e);
         if (e.error == "REVERT opcode executed") {
           var res = e.output["contractResult"][0];
           let result =
@@ -242,12 +225,10 @@ class Code extends React.Component {
   }
   getTxResult (txID) {
     let { contractItem, intl } = this.props;
-    console.log('contractItem: ', contractItem);
     const { tronWeb } = this.props.account;
     return new Promise((reslove, reject) => {
       let checkResult = async function (txID) {
         const output = await tronWeb.trx.getTransactionInfo(txID);
-        console.log('output: ', output);
         if (!Object.keys(output).length) {
           return setTimeout(() => {
             checkResult(txID);
@@ -295,7 +276,6 @@ class Code extends React.Component {
   }
 
   tokenBalanceSelectChange(name, decimals, balance){
-      console.log('decimals',decimals)
       this.setState({
           tokenId:name,
           sendTokenDecimals:decimals,
@@ -346,7 +326,7 @@ class Code extends React.Component {
           </div>
           <div className="search-btn" onClick={() => this.Send()}>Send</div>
             {
-                result && <JSONTree data={result}  theme={theme} invertTheme={true}/>
+                result && <JSONTree data={result}  theme={theme} invertTheme={true} hide/>
             }
 
         </div>

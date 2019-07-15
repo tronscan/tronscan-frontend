@@ -70,9 +70,11 @@ export default class CompilerJsonInfo extends React.PureComponent {
                         </ModalHeader>
                         <ModalBody className="_freezeBody">
                             <div>
+
+
                                 {
                                     typeof jsonObj == 'string'?
-                                    <JSONTree data={jsonObj} theme={theme} invertTheme={true} />:
+                                    <JSONTree data={jsonObj} theme={theme} invertTheme={true}  hideRoot={true}  keyPath={[]}/>:
                                     <ReactJson src={jsonObj} theme="summerfruit:inverted" iconStyle="square" name={false} displayDataTypes={false}/>
                                 }
 

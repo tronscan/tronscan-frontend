@@ -36,7 +36,6 @@ export default class Code extends React.Component {
   async loadContractCode(id) {
     this.setState({loading: true});
     let contractCode = await Client.getContractCode(id);
-    console.log('contractCode: ', JSON.parse(contractCode.data.abi));
 
     this.setState({
       name: contractCode.data.name || "-",

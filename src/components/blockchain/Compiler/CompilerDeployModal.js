@@ -34,7 +34,6 @@ export default class DeployModal extends React.PureComponent {
 
     init = () => {
         let {contractNameList} = this.props;
-        console.log('contractNameList',contractNameList)
         this.setState({
             currentContractName : contractNameList[0]
         },()=>{
@@ -58,9 +57,6 @@ export default class DeployModal extends React.PureComponent {
         let { currentContractName, feeLimit, userfeepercentage, originEnergyLimit, constructorParams, currentContractABI, currentContractByteCode,sendTokenId, sendTokenAmount,sendTokenDecimals,params } = this.state;
         let { onConfirm } = this.props;
         let optionsPayable = {};
-        console.log('sendTokenId',sendTokenId);
-        console.log('sendTokenAmount',sendTokenAmount);
-        console.log('sendTokenDecimals',sendTokenDecimals);
 
 
         if (!sendTokenId || sendTokenId == '_') {
@@ -71,7 +67,6 @@ export default class DeployModal extends React.PureComponent {
                 tokenValue:  this.Mul(sendTokenAmount,Math.pow(10, sendTokenDecimals))
             };
         }
-        console.log('optionsPayable',optionsPayable)
         let parameters = [];
         for(let i in constructorParams) {
             parameters.push(constructorParams[i].value)
@@ -87,12 +82,10 @@ export default class DeployModal extends React.PureComponent {
             userFeePercentage: userfeepercentage,
             ...optionsPayable
         }
-        console.log('form22222222======',form)
         onConfirm && onConfirm(form);
     };
 
     resourceSelectChange = (value) => {
-        console.log('value123',value)
         this.setState({
             currentContractName : value
         },()=>{
@@ -115,7 +108,6 @@ export default class DeployModal extends React.PureComponent {
     };
 
     tokenBalanceSelectChange(name, decimals, balance){
-        console.log('decimals',decimals)
         this.setState({
             sendTokenId:name,
             sendTokenDecimals:decimals,
@@ -136,13 +128,11 @@ export default class DeployModal extends React.PureComponent {
                 if(item.inputs){
                     constructorParams.push.apply(constructorParams,item.inputs)
                 }
-                console.log('constructorParams============',constructorParams)
             }
         });
         constructorParams && constructorParams.map((item,i) => {
             item.value = ''
         });
-        console.log('constructorParams',constructorParams)
         this.setState({
             constructorParams,
             currentContractABI,

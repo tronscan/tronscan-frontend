@@ -58,7 +58,6 @@ export default class Code extends React.Component {
     let { data } = await xhr.post(`http://18.219.114.60:9016/v1/api/contract/info`, {
       "contractAddress": filter.address,
     }).catch(function (e) {
-      console.log(e)
       let errorData = [{
         type: "error",
         content: `Compiled error: ${e.toString()}`
@@ -67,7 +66,6 @@ export default class Code extends React.Component {
       // error = errorData.concat(CompileStatus)
 
     });
-    // console.log('data: ', data.data);
     let dataInfo = data.data
     if (data.data.status === 3 || data.data.status === 1) {
       this.setState({
@@ -83,7 +81,6 @@ export default class Code extends React.Component {
     } else {
       let infoObj
       let abi = JSON.parse(dataInfo.abi)
-      console.log('abi: ', abi);
       infoObj = {
         interfaceAbi: abi || '',
         name: dataInfo.contract_name || '',
@@ -93,7 +90,6 @@ export default class Code extends React.Component {
         optimizer: dataInfo.optimizer,
         compiler: dataInfo.compiler
       }
-      // console.log('infoObj: ', infoObj);
       this.setState({
         contractVerifyState: true,
         contractInfoList: infoObj,
@@ -119,7 +115,7 @@ export default class Code extends React.Component {
       this.setState({
         contractInfoList: { abi: smartcontract.abi, ...contractInfoList }
       }, () => {
-          // console.log('contractInfoList: ', this.state.contractInfoList);
+
       })
     } else {
       this.setState({
@@ -144,7 +140,6 @@ export default class Code extends React.Component {
       this.setState({
         viewContractList: list
       },() => {
-          console.log('viewContractList: ', this.state.viewContractList);
       })
     }
   }
@@ -158,7 +153,6 @@ export default class Code extends React.Component {
       this.setState({
         payableContractList: list
       }, () => {
-          console.log('payableContractList: ', this.state.payableContractList);
       })
     }
   }
@@ -173,7 +167,6 @@ export default class Code extends React.Component {
       this.setState({
         nonePayableContractList: list
       }, () => {
-          console.log('nonePayableContractList: ', this.state.nonePayableContractList);
       })
     }
   }
@@ -212,7 +205,6 @@ export default class Code extends React.Component {
       this.setState({
         currentTokens: currentTokens
       })
-      console.log('currentTokens: ', currentTokens);
     }
   }
 

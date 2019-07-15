@@ -50,9 +50,6 @@ export default class CompilerModal extends React.PureComponent {
     confirmModal = () => {
         let {onConfirm} = this.props;
         let { optimizer, selectedResource, selectedRuns } = this.state;
-        console.log('optimizer',optimizer)
-        console.log('selectedResource',selectedResource)
-        console.log('selectedRuns',selectedRuns)
         onConfirm && onConfirm(selectedResource, optimizer, selectedRuns);
     };
 
@@ -71,7 +68,6 @@ export default class CompilerModal extends React.PureComponent {
     handleToggle = (prop) => {
         let {onOptimizerMsg} = this.props;
         return (enable) => {
-            console.log('enable',enable)
             this.setState({
                 [prop]: enable,
                 'optimizer':enable?'1':'0'

@@ -33,17 +33,14 @@ class ContractShow extends React.Component {
   }
 
   componentDidMount() {
-    
-    console.log('this.props', this.props);
+
     this.getContractInfos()
   }
 
   async getContractInfos () {
-    console.log(this.tronWeb);
     let smartcontract = await this.tronWeb.trx.getContract(
       this.props.filter.address
     );
-    console.log('smartcontract: ', smartcontract);
   }
 
   render() {
