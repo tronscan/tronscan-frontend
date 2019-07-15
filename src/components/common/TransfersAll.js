@@ -22,6 +22,8 @@ import { toThousands } from '../../utils/number'
 import _ from "lodash";
 import { Button,Table, Radio } from 'antd';
 import {isAddressValid} from "@tronscan/client/src/utils/crypto";
+import {API_URL} from '../../constants.js'
+import qs from 'qs'
 
 
 
@@ -66,30 +68,31 @@ class TransfersAll extends React.Component {
         });
 
     };
-
     load = async (page = 1, pageSize = 20) => {
         let transfersTRX;
-        let {id,istrc20=false} = this.props;
+        let {id,istrc20=false, getCsvUrl} = this.props;
         let {showTotal,hideSmallCurrency,tokenNam,filter} = this.state;
-        this.setState(
-            {
-                loading: true,
-                page: page,
-                pageSize: pageSize,
-            }
-        );
-        let list,total,range = 0;
-        let {transfers, total:totaldata, rangeTotal} = await Client.getTransfersAll({
+        const params = {
             sort: '-timestamp',
-            limit: pageSize,
-            start: (page - 1) * pageSize,
             count: showTotal ? true : null,
             total: this.state.total,
-            //token: tokenName,
             start_timestamp:this.start,
             end_timestamp:this.end,
             ...filter,
             ...id,
+        }
+        this.setState({
+            loading: true,
+            page: page,
+            pageSize: pageSize,
+        });
+        const query = qs.stringify({ format: 'csv',...params})
+        getCsvUrl(`${'http://52.15.68.74:10000'}/api/trc10trc20-transfer?${query}`)
+        let list,total,range = 0;
+        let {transfers, total:totaldata, rangeTotal} = await Client.getTransfersAll({
+            limit: pageSize,
+            start: (page - 1) * pageSize,
+            ...params,
         });
         list = transfers;
         total = totaldata;
@@ -267,7 +270,7 @@ class TransfersAll extends React.Component {
                 align: 'left',
                 className: 'ant_table _text_nowrap',
                 render: (text, record, index) => {
-                    return <span>{toThousands(record.map_amount)}</span>
+                    return <span className="d-inline-block text-truncate"  style={{maxWidth: '200px'}}>{toThousands(record.map_amount)}</span>
                 }
             },
             {
@@ -444,10 +447,6 @@ class TransfersAll extends React.Component {
                                         this.onChange(page, pageSize)
                                     }}/>
                 }
-
-
-
-
             </div>
         )
     }

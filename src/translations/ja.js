@@ -737,7 +737,7 @@ export const messages = {
   "using_ledger_to_sign_transactions_message_0": "LedgerとTRONブロックチェーンエクスプローラーのを使って、トランザクションに署名する中では、接続を中断せずにTRON APPを開いたままにしてください。",
   "using_ledger_to_sign_transactions_message_1": "取引に署名する必要がある場合、ブロックチェーンエクスプローラーは取引情報を表示するウィンドウを表示します。 投票、TRXの送信、アカウント名の変更などの処理では、取引の署名が必要です。",
   "ledger_note": "ご注意",
-  "ledger_note_message_1": "現在ledger nano Sのみに対応しています",
+  "ledger_note_message_1": "現在Ledger Nano S,Ledger Nano X,Ledger Blueのみに対応しています",
   "ledger_note_message_2": "ブラウザはchromeをお使いください",
   "ledger_note_message_3": "現在利用可能な機能：TRXの送金、TRC‐10トークンの送金、TRC‐20トークンの送金、凍結、解凍、投票、アカウント名の編集。",
   "ledger_note_message_4": "現在利用不可な機能：トークン新規作成、取引所での取引、スーパー代表の申請、ロックされたトークンの解凍、ブロック生成報酬の受取、githubリンクの変更、取引ペアの作成、取引ペアへの入金、取引ペアからの出金。",
@@ -1292,6 +1292,7 @@ export const messages = {
   "propose_24": "平均エネルギー上限",
   "propose_25": "アカウント権限を更新する費用",
   "propose_26": "複数署名を変更することを提案する",
+  "propose_27": "Propose to support the new features of TRON Virtual Machine 0.5.4",
   "propose_minute": "min",
   "propose_unactivate": "開かない",
   "propose_not_allowed": "不許可です",
@@ -1514,19 +1515,19 @@ export const messages = {
   "trc20_first_token": "名称",
   "trc20_balance": "残高",
   "trc20_second_token": "名称",
-  "trc20_kchart":"K Line",
-  "trc20_depth":"DEPTH",
-  "trc20_trade_win_content":"Current network is unstable , please check later",
-  "trc20_trade_win_confirm":"Confirm",
-  "trc20_hot":"人気の",
-  "trc20_top_Volume":"取引リスト",
-  "trc20_top_Rising":"上昇リスト",
-  "trc20_history":"市場取引",
-  "trc20_register":"注文書",
-  "trc20_24h_h":"24h 高い",
-  "trc20_24h_l":"24h 低い",
-  "trc20_fire_token":"50 lucky draws to win 100,000 VENA!",
-  "trc20_vena_tip":"Due to the particularity of VENA contract, extra 0.1 VENA will be authorized but not deducted.",
+  "trc20_kchart": "K Line",
+  "trc20_depth": "DEPTH",
+  "trc20_trade_win_content": "Current network is unstable , please check later",
+  "trc20_trade_win_confirm": "Confirm",
+  "trc20_hot": "人気の",
+  "trc20_top_Volume": "取引リスト",
+  "trc20_top_Rising": "上昇リスト",
+  "trc20_history": "市場取引",
+  "trc20_register": "注文書",
+  "trc20_24h_h": "24h 高い",
+  "trc20_24h_l": "24h 低い",
+  "trc20_fire_token": "50 lucky draws to win 100,000 VENA!",
+  "trc20_vena_tip": "Due to the particularity of VENA contract, extra 0.1 VENA will be authorized but not deducted.",
 
   /*
    *  2018-12-18
@@ -1643,7 +1644,8 @@ export const messages = {
       #                                                                                #
       ##################################################################################
   */
-  "table_info_big": "最初の10,000個データの表示されています",
+  "table_info_big1": "最初の",
+  "table_info_big2":"個データの表示されています",
   "table_info_big_tip1": "選択した時間帯に",
   "table_info_big_tip2": "のデータがあり、",
   "table_info_big_tip3": "今、最初の10,000のデータのみが表示されています。",
@@ -1693,45 +1695,45 @@ export const messages = {
 
 
 
-  "address_balance_token_type":"トークン種類",
-  "address_balance_token_price_TRX":"価値",
-  "address_transactions_tip":"取引数は振替数を含めます",
-  "address_tron_power_tip":"TRXを凍結することで、投票権をもらえます",
-  "address_total_balance_tip":"総残高はすべて価値があるトークンを含めます",
-  "address_tron_power_used":"使用済",
-  "address_tron_power_remaining":"残り",
-  "address_total_balance_info_sources":"情報出典",
+  "address_balance_token_type": "トークン種類",
+  "address_balance_token_price_TRX": "価値",
+  "address_transactions_tip": "取引数は振替数を含めます",
+  "address_tron_power_tip": "TRXを凍結することで、投票権をもらえます",
+  "address_total_balance_tip": "総残高はすべて価値があるトークンを含めます",
+  "address_tron_power_used": "使用済",
+  "address_tron_power_remaining": "残り",
+  "address_total_balance_info_sources": "情報出典",
   "address_info_transfers": "振替",
   "address_info_transactions": "取引",
-  "address_netLimit":"バンド幅総量",
-  "address_netRemaining":"ご利用可能のバンド幅",
-  "address_netUsed":"利用済のバンド幅",
-  "address_energyLimit":"エネルギー総量",
-  "address_energyRemaining":"ご利用可能のエネルギー",
-  "address_energyUsed":"利用済のエネルギー",
-  "address_percentage":"比率",
-  "address_net_fee":"バンド幅コスト",
-  "address_energy_fee":"エネルギーコスト",
-  "address_transfer_all":"全て",
-  "address_transfer_in":"入金",
-  "address_transfer_out":"出金",
-  "address_transfer_unrecorded_token":"Unrecorded Token",
-    /*
-      ##################################################################################
-      #                                                                                #
-      # footer  2019-05-20                                    #
-      #                                                                                #
-      ##################################################################################
-    */
+  "address_netLimit": "バンド幅総量",
+  "address_netRemaining": "ご利用可能のバンド幅",
+  "address_netUsed": "利用済のバンド幅",
+  "address_energyLimit": "エネルギー総量",
+  "address_energyRemaining": "ご利用可能のエネルギー",
+  "address_energyUsed": "利用済のエネルギー",
+  "address_percentage": "比率",
+  "address_net_fee": "バンド幅コスト",
+  "address_energy_fee": "エネルギーコスト",
+  "address_transfer_all": "全て",
+  "address_transfer_in": "入金",
+  "address_transfer_out": "出金",
+  "address_transfer_unrecorded_token": "Unrecorded Token",
+  /*
+    ##################################################################################
+    #                                                                                #
+    # footer  2019-05-20                                    #
+    #                                                                                #
+    ##################################################################################
+  */
 
-  "footer_fellow_us":"Follow Us",
-  "footer_developer_resources":"Developer Resources",
-  "footer_support_center":"Support Center",
-  "footer_tron_network":"TRON",
-  "login_privatekey_warn":"アカウントアセットの安全を守るため、紛失しないように、秘密鍵を大事に保存してください。",
-  "login_privatekey_warn_safe":"でログインをお薦めします。",
-  "token_does_not_support_exchange":"Token doesn't support trading now",
-  "token_trade":"取引",
+  "footer_fellow_us": "Follow Us",
+  "footer_developer_resources": "Developer Resources",
+  "footer_support_center": "Support Center",
+  "footer_tron_network": "TRON",
+  "login_privatekey_warn": "アカウントアセットの安全を守るため、紛失しないように、秘密鍵を大事に保存してください。",
+  "login_privatekey_warn_safe": "でログインをお薦めします。",
+  "token_does_not_support_exchange": "Token doesn't support trading now",
+  "token_trade": "取引",
   "updata_token_info": "トークン情報をアップデートします",
   "input_transcan": "TRONSCANに入力します",
   "pass_time": "承認時間",
@@ -1836,11 +1838,13 @@ export const messages = {
   "str_7": "データが期限切れになりました",
   "str_8": "コントラクトが既に入力されました",
   "str_9": "パラメータ検証結果が不合格となります",
-  "token_login_no_updated":"ログインしたアカウントと発行者が一致しないため、アップデートできません",
-  "information_is_being_confirmed":"Information is being confirmed, this process may take 10 minutes, please try again later",
+  "token_login_no_updated": "ログインしたアカウントと発行者が一致しないため、アップデートできません",
+  "information_is_being_confirmed": "Information is being confirmed, this process may take 10 minutes, please try again later",
 
   "interTrx_tip": "内部取引は、一般住所がスマート契約を呼び出し、スマート契約が他のアドレスにトークンを転送する操作です。",
   "event_tip": "イベントは、プログラマや外部インタフェースプロバイダが契約業務や監査に注意を払うためにそれを使用できるようにすることです。",
-
-
+  "Expected_acquisition": "獲得見込み",
+  "energy_more": "獲得したバンド幅＝エネルギーを獲得するために凍結したTRX/ネット全体がバンド幅を獲得するために凍結したTRX総額",
+  "bandwidth_more": "獲得したエネルギー＝エネルギーを獲得するために凍結したTRX/ネット全体がエネルギーを獲得するために凍結したTRX総額*エネルギー総額制限",
+  "table_info_big": "最初の10,000個データの表示されています",
 }

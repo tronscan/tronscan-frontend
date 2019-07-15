@@ -20,7 +20,7 @@ import {withTronWeb} from "../../../utils/tronWeb";
 import { FormatNumberByDecimals } from '../../../utils/number'
 import {transactionResultManager} from "../../../utils/tron"
 import BigNumber from "bignumber.js"
-BigNumber.config({ EXPONENTIAL_AT: [-20, 30] });
+BigNumber.config({ EXPONENTIAL_AT: [-1e9, 1e9] });
 
 const { Option, OptGroup } = Select;
 

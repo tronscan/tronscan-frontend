@@ -142,7 +142,7 @@ module.exports = {
         include: paths.appSrc,
       },
       {
-        // "oneOf" will traverse all following loaders until one will
+        // "oneOf" will traverse all following loaders until one wil
         // match the requirements. When no loader matches it will fall
         // back to the "file" loader at the end of the loader list.
         oneOf: [
@@ -167,6 +167,7 @@ module.exports = {
               path.resolve(paths.appNodeModules, "instascan/src/camera.js"),
               path.resolve(paths.appNodeModules, "instascan/src/scanner.js"),
               path.resolve(paths.appNodeModules, "instascan/index.js"),
+              path.resolve(paths.appNodeModules, "tron-station-sdk/src"),
               '/home/rovak/workspace/tronscan-node-client/src',
             ],
             exclude:path.resolve(__dirname, 'node_modules'),

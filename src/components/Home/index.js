@@ -99,6 +99,10 @@ export default class Home extends Component {
     });
 
     let { txOverviewStats } = await Client.getTxOverviewStats();
+    console.log('txOverviewStats',txOverviewStats)
+    this.setState({
+        transactionPerDay: txOverviewStats[txOverviewStats.length - 2].newTransactionSeen,
+    });
     let temp = [];
     let addressesTemp = [];
     for (let txs in txOverviewStats) {
@@ -140,7 +144,7 @@ export default class Home extends Component {
     this.setState({
       txOverviewStats: temp.slice(0, 14),
       addressesStats: addressesTemp.slice(0, 14),
-      transactionPerDay: temp[temp.length - 2].totalTransaction,
+      //transactionPerDay: temp[temp.length - 2].totalTransaction,
      // blockHeight: blocks[0] ? blocks[0].number : 0,
      // totalAccounts: txOverviewStats[txOverviewStats.length-1].totalAddress,
     });
@@ -183,11 +187,14 @@ export default class Home extends Component {
 
   async componentDidMount() {
     const {wsdata, intl, setWebsocket, account} = this.props;
-    this.loadNodes();
     this.load();
+    this.loadNodes();
     this.loadAccounts();
     this.reconnect();
     this.loadTps();
+
+
+
     // if(!account.isLoggedIn){
     //     if(Lockr.get('websocket') === 'close' || !Lockr.get('websocket')) {
     //         setWebsocket();
