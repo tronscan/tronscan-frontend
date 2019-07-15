@@ -112,7 +112,7 @@ class TokenBalanceSelect extends React.Component {
 
     render() {
         let { token} = this.state;
-        let { tokenBalances, tokens20, intl } = this.props;
+        let { tokenBalances, tokens20, intl, className = '' } = this.props;
         tokenBalances = _(tokenBalances)
             .filter(tb => tb.balance > 0)
             .filter(tb => tb.map_token_id > 0 || tb.map_token_id == '_')
@@ -128,7 +128,7 @@ class TokenBalanceSelect extends React.Component {
         return (
             <Select
                 onChange={this.handleTokenChange}
-                className="deploy-token-balance-select"
+                className={className}
                 value={token}
             >
                 <OptGroup label={tu('TRC10_token')} key="TRC10">

@@ -6,7 +6,8 @@ import { connect } from "react-redux";
 import tronWeb from 'tronweb';
 import { getTronExplorer, formatOutput, formatInput } from '../../../utils/readContract'
 import SweetAlert from "react-bootstrap-sweetalert";
-
+import TokenBalanceSelect from "../../common/TokenBalanceSelect";
+import JSONTree from 'react-json-tree'
 
 const { Panel } = Collapse;
 const { Option } = Select;
@@ -114,9 +115,11 @@ class Code extends React.Component {
         ).call();
         this.setState({
           result: this.formatOutputs(retValue)
+        },()=>{
+          console.log('this.state.result',this.state.result)
         })
       } catch (e) {
-        // console.log("Error",e);
+        console.log("Error",e);
         this.setState({
           result: JSON.stringify(e)
         })
@@ -135,16 +138,20 @@ class Code extends React.Component {
     }
   }
   formatOutputs (retValue) {
+    console.log('retValue111',retValue)
     let { contractItem } = this.props;
     if (contractItem.outputs != undefined && contractItem.outputs.length > 1) {
+        console.log('retVal222')
       return contractItem.outputs.map((output, key) => {
         if (output.name != undefined) {
+            console.log('retVal333')
           return (
             output.name +
             ": " +
             formatOutput(retValue[output.name], output.type)
           );
         }
+          console.log('retVal444')
         return formatOutput(retValue[key], output.type);
       });
     } else if (
@@ -152,11 +159,13 @@ class Code extends React.Component {
       contractItem.outputs.length == 1
     ) {
       if (contractItem.outputs[0].name != undefined) {
+          console.log('retVal55')
         return formatOutput(
           retValue[contractItem.outputs[0].name],
           contractItem.outputs[0].type
         );
       }
+        console.log('retVal666')
       return formatOutput(retValue, contractItem.outputs[0].type);
       
     } else {
@@ -164,8 +173,16 @@ class Code extends React.Component {
     }
   }
 
+
+  Mul (arg1, arg2) {
+      let r1 = arg1.toString(), r2 = arg2.toString(), m, resultVal, d = arguments[2];
+      m = (r1.split(".")[1] ? r1.split(".")[1].length : 0) + (r2.split(".")[1] ? r2.split(".")[1].length : 0);
+      resultVal = Number(r1.replace(".", "")) * Number(r2.replace(".", "")) / Math.pow(10, m);
+      return typeof d !== "number" ? Number(resultVal) : Number(resultVal.toFixed(parseInt(d)));
+  }
+
   async Send () {
-    const { tokenId, totalValue, contract } = this.state
+    const { tokenId, totalValue, contract ,sendTokenDecimals } = this.state
     console.log('totalValue: ', totalValue);
     console.log('tokenId: ', tokenId);
     const { contractItem, intl } = this.props;
@@ -174,10 +191,14 @@ class Code extends React.Component {
       try {
         console.log('this.submitValueFormat(): ', this.submitValueFormat());
         let options = {};
-          if (!(tokenId) || tokenId == '_') {
-            options = { callValue: totalValue };
+
+          if (!tokenId || tokenId == '_') {
+            options = { callValue: this.Mul(totalValue,Math.pow(10, sendTokenDecimals)) };
           } else {
-            options = { tokenId: tokenId, tokenValue: totalValue };
+            options = {
+              tokenId: tokenId,
+              tokenValue: this.Mul(totalValue,Math.pow(10, sendTokenDecimals))
+            };
           }
         let signedTransaction = await contract[contractItem.name](
           ...this.submitValueFormat()
@@ -273,6 +294,15 @@ class Code extends React.Component {
     })
   }
 
+  tokenBalanceSelectChange(name, decimals, balance){
+      console.log('decimals',decimals)
+      this.setState({
+          tokenId:name,
+          sendTokenDecimals:decimals,
+          sendTokenBalance:balance
+      });
+  }
+
 
   render() {
     let { choiceContractItem, contractInfoList, submitValues, modal, result, totalValue, tokenId } = this.state;
@@ -285,30 +315,40 @@ class Code extends React.Component {
         <div>
           <div className="select-block">
             <div className="select-line">
-              <Select style={{ width: 240 }} 
-                onChange={(e) => this.getChoiceItem(e)} 
-                placeholder="Select TRX or token to send">
-                {
-                  currentTokens.map((val, key) => {
-                    return (
-                      <Option key={key} value={val.id}>{val.name}: {val.balance}</Option>
-                    )
-                  })
-                }
-              </Select>
+              {/*<Select style={{ width: 240 }} */}
+                {/*onChange={(e) => this.getChoiceItem(e)} */}
+                {/*placeholder="Select TRX or token to send">*/}
+                {/*{*/}
+                  {/*currentTokens.map((val, key) => {*/}
+                    {/*return (*/}
+                      {/*<Option key={key} value={val.id}>{val.name}: {val.balance}</Option>*/}
+                    {/*)*/}
+                  {/*})*/}
+                {/*}*/}
+              {/*</Select>*/}
+              <TokenBalanceSelect
+                  tokenBalanceSelectChange={(name, decimals,balance) => {this.tokenBalanceSelectChange(name, decimals,balance)}}
+              >
+              </TokenBalanceSelect>
             </div>
             {
               tokenId ? 
                 <Input style={{ width: 200, display: 'inline' }}
                   placeholder="Amount token to Send"
                   value={totalValue}
-                  onChange={(e) => this.setState({ totalValue: e.target.value })} />
+                  onChange={(e) => this.setState({ totalValue: e.target.value })}
+                  className="mt-2"
+                />
+
                 : null
             }
             
           </div>
           <div className="search-btn" onClick={() => this.Send()}>Send</div>
-          <div>{result}</div>
+            {
+                result && <JSONTree data={result}  theme={theme} invertTheme={true}/>
+            }
+
         </div>
       )
     } else if (contractItem.stateMutability == 'Nonpayable') {
@@ -316,14 +356,19 @@ class Code extends React.Component {
       contractList = (
         <div>
           <div className="search-btn" onClick={() => this.Send()}>Send</div>
-          <div>{result}</div>
+            {
+                result && <JSONTree data={result}  theme={theme} invertTheme={true}/>
+            }
+
         </div>
       )
     } else {
       contractList = (
         <div>
           <div className="search-btn" onClick={() => this.Call()}>Call</div>
-          <div>{result}</div>
+            {
+                result && <JSONTree data={result}  theme={theme} invertTheme={true}/>
+            }
         </div>
       )
       
@@ -372,3 +417,24 @@ class Code extends React.Component {
   }
 }
 export default Form.create({ name: 'contract_info' })(injectIntl(Code));
+
+const theme = {
+    scheme: 'summerfruit',
+    author: 'christopher corley (http://cscorley.github.io/)',
+    base00: '#151515',
+    base01: '#202020',
+    base02: '#303030',
+    base03: '#505050',
+    base04: '#B0B0B0',
+    base05: '#D0D0D0',
+    base06: '#E0E0E0',
+    base07: '#FFFFFF',
+    base08: '#FF0086',
+    base09: '#FD8900',
+    base0A: '#ABA800',
+    base0B: '#00C918',
+    base0C: '#1faaaa',
+    base0D: '#3777E6',
+    base0E: '#AD00A1',
+    base0F: '#cc6633'
+};

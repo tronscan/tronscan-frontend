@@ -4328,7 +4328,7 @@ delete {
 }
 
 .compile-switch{
-  margin-left: 65px;
+  margin-left: 70px;
 }
 
 .verify-contranct{
@@ -4368,6 +4368,7 @@ delete {
   display: flex;
   flex-direction: column;
   .deploy-select{
+    width: 100%;
     background: #F3F3F3;
   }
   .deploy-input{

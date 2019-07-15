@@ -5,11 +5,12 @@ import React from "react";
 import {Modal, ModalBody, ModalHeader} from "reactstrap";
 import {tu, t} from "../../../utils/i18n";
 import {FormattedNumber} from "react-intl";
-import { Switch } from 'antd';
+import { Switch, Select } from 'antd';
 import _, {find, round, filter } from "lodash";
-
-
 import TokenBalanceSelect from "../../common/TokenBalanceSelect";
+
+const { Option } = Select;
+
 
 @injectIntl
 export default class DeployModal extends React.PureComponent {
@@ -91,7 +92,7 @@ export default class DeployModal extends React.PureComponent {
     };
 
     resourceSelectChange = (value) => {
-        console.log('value',value)
+        console.log('value123',value)
         this.setState({
             currentContractName : value
         },()=>{
@@ -169,17 +170,18 @@ export default class DeployModal extends React.PureComponent {
                    </div>
                    <div className="form-group contract-deploy">
                        <label>{tu("contract_name")}</label>
-                       <select className="custom-select deploy-select"
+                       <Select className='compile-select deploy-select'
                                value={currentContractName}
-                               onChange={(e) => {this.resourceSelectChange(e.target.value)}}>
+                               onChange={this.resourceSelectChange}
+                       >
                            {
                                contractNameList.map((resource, index) => {
                                    return (
-                                       <option key={index} value={resource}>{intl.formatMessage({id: resource})}</option>
+                                       <Option key={index} value={resource}>{resource}</Option>
                                    )
                                })
                            }
-                       </select>
+                       </Select>
                    </div>
                    <div className="form-group contract-deploy">
                        <label>{tu("deploy_params_fee_limit")}</label>
@@ -212,7 +214,9 @@ export default class DeployModal extends React.PureComponent {
                        <label>{tu("deploy_params_send_token")}</label>
                        <div className="deploy-input-box">
                            <TokenBalanceSelect
-                               tokenBalanceSelectChange={(name, decimals,balance) => {this.tokenBalanceSelectChange(name, decimals,balance)}}>
+                               tokenBalanceSelectChange={(name, decimals,balance) => {this.tokenBalanceSelectChange(name, decimals,balance)}}
+                               className='deploy-token-balance-select'
+                           >
                            </TokenBalanceSelect>
                            <input type="text"
                                   onChange={(ev) => this.handleToggle('sendTokenAmount', ev.target.value)}

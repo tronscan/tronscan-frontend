@@ -80,7 +80,7 @@ export default class Code extends React.Component {
     let { name, compilerVersion, sourceCode, abi, abiEncoded, address, byteCode, isSetting, librarys, loading, contractInfos } = this.state;
     const { filter } = this.props
     return (
-      <main className="container">
+      <main className="container pl-0 pr-0">
         {loading && <div className="loading-style" style={{ marginTop: '-20px' }}><TronLoader /></div>}
         {
           filter.contractInfoList.interfaceAbi ? null

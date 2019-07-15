@@ -46,6 +46,8 @@ export function getCurrentNet() {
 }
 
 export function formatOutput(value, type) {
+  console.log('value22',value)
+    console.log('type22',type)
   if (type.indexOf("[") > -1) {
     return value.map(item => {
       let itemType = type.slice(0, type.indexOf("["))
@@ -55,10 +57,12 @@ export function formatOutput(value, type) {
   if (type == "address") {
     return window.tronWeb.address.fromHex(value);
   } else if (type.indexOf("uint") > -1) {
+      console.log('123',Number(value.toString()).toLocaleString())
     return Number(value.toString()).toLocaleString();
   } else if (type.indexOf("byte") > -1 || type == "string") {
     return value;
   } else {
+
     return JSON.stringify(value);
   }
 }

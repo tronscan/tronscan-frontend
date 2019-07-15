@@ -18,7 +18,7 @@ import {CopyToClipboard} from "react-copy-to-clipboard";
     }),
 )
 @injectIntl
-export default class FreezeBalanceModal extends React.PureComponent {
+export default class CompilerJsonInfo extends React.PureComponent {
 
     constructor(props) {
         super(props);
@@ -54,9 +54,12 @@ export default class FreezeBalanceModal extends React.PureComponent {
 
 
     render() {
-        let { theme,showModal } = this.state;
+        let { showModal } = this.state;
         let { title, json } = this.props;
         let jsonObj = JSON.parse(json);
+        if( typeof jsonObj == 'string' && jsonObj.length >100 ){
+            jsonObj = jsonObj.substr(0, 100) + '...'
+        }
         return (
             <div className="contract-compiler-console-info">
                 <span className="info-btn" onClick={this.showInfoModal} >{title}</span>
@@ -69,8 +72,8 @@ export default class FreezeBalanceModal extends React.PureComponent {
                             <div>
                                 {
                                     typeof jsonObj == 'string'?
-                                    <JSONTree data={jsonObj} theme={theme} invertTheme={false} />:
-                                    <ReactJson src={jsonObj}  theme="summerfruit:inverted" iconStyle="square" name={false} displayDataTypes={false}/>
+                                    <JSONTree data={jsonObj} theme={theme} invertTheme={true} />:
+                                    <ReactJson src={jsonObj} theme="summerfruit:inverted" iconStyle="square" name={false} displayDataTypes={false}/>
                                 }
 
                             </div>
@@ -101,22 +104,23 @@ export default class FreezeBalanceModal extends React.PureComponent {
 }
 
 const theme = {
-    scheme: 'monokai',
-    author: 'wimer hazenberg (http://www.monokai.nl)',
-    base00: '#272822',
-    base01: '#383830',
-    base02: '#49483e',
-    base03: '#75715e',
-    base04: '#a59f85',
-    base05: '#f8f8f2',
-    base06: '#f5f4f1',
-    base07: '#f9f8f5',
-    base08: '#f92672',
-    base09: '#fd971f',
-    base0A: '#f4bf75',
-    base0B: '#a6e22e',
-    base0C: '#a1efe4',
-    base0D: '#66d9ef',
-    base0E: '#ae81ff',
+    scheme: 'summerfruit',
+    author: 'christopher corley (http://cscorley.github.io/)',
+    base00: '#151515',
+    base01: '#202020',
+    base02: '#303030',
+    base03: '#505050',
+    base04: '#B0B0B0',
+    base05: '#D0D0D0',
+    base06: '#E0E0E0',
+    base07: '#FFFFFF',
+    base08: '#FF0086',
+    base09: '#FD8900',
+    base0A: '#ABA800',
+    base0B: '#00C918',
+    base0C: '#1faaaa',
+    base0D: '#3777E6',
+    base0E: '#AD00A1',
     base0F: '#cc6633'
 };
+
