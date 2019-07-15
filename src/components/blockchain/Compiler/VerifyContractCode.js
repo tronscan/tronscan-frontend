@@ -151,11 +151,11 @@ class VerifyContractCode extends Component {
                   <Col span={12}>
                     <Form.Item label={tu('contract_optimization')} {...formItemLayout}>
                       {getFieldDecorator('optimizer', {
-                        initialValue: 1
+                        initialValue: '1'
                       })(
                         <Select className='w-100'>
-                          <Option value={1}>Yes</Option>
-                          <Option value={0}>No</Option>
+                          <Option value={'1'}>Yes</Option>
+                          <Option value={'0'}>No</Option>
                         </Select>
                       )}
                     </Form.Item>
