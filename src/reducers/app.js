@@ -179,7 +179,7 @@ export function appReducer(state = initialState, action) {
           isLoggedIn: true,
           address: pkToAddress(action.privateKey),
           tronWeb: tronWeb,
-          tronStationSDK: new TronStationSDK(tronWeb, true)
+          tronStationSDK: new TronStationSDK(tronWeb)
         },
         wallet: {
           type: ACCOUNT_PRIVATE_KEY,

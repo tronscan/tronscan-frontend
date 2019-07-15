@@ -60,9 +60,6 @@ export default class FreezeBalanceModal extends React.PureComponent {
     this.getFrozenBandwidth(1)
     
   }
-  async getdata(){
-    var amount = await this.props.account.tronStationSDK.calculateFrozenEnergy(10000)
-  }
 
   hideModal = () => {
     let {onHide} = this.props;
@@ -172,11 +169,11 @@ export default class FreezeBalanceModal extends React.PureComponent {
     const {account: {tronStationSDK}} = this.props
     const { amount } = this.state
     if(one){
-      const data = await tronStationSDK.calculateFrozenEnergy(ONE_TRX);
+      const data = await tronStationSDK.energy.trx2FrozenEnergy(1);
       this.setState({oneEnergy: data})
     }else{
       if(amount){
-        const data = await tronStationSDK.calculateFrozenEnergy(amount * ONE_TRX);
+        const data = await tronStationSDK.energy.trx2FrozenEnergy(amount);
         this.setState({getcalculate: data})
       }
     }
@@ -185,12 +182,12 @@ export default class FreezeBalanceModal extends React.PureComponent {
     const {account: {tronStationSDK}} = this.props
     const { amount } = this.state
     if(one){
-      const {bp} = await tronStationSDK.calculateFrozenBandwidth(ONE_TRX);
-      this.setState({oneBandwidth: bp})
+      const data = await tronStationSDK.bp.trx2FrozenBandwidth(1);
+      this.setState({oneBandwidth: data})
     }else{
       if(amount){
-        const {bp} = await tronStationSDK.calculateFrozenBandwidth(amount * ONE_TRX);
-        this.setState({getcalculate: bp})
+        const data = await tronStationSDK.bp.trx2FrozenBandwidth(amount);
+        this.setState({getcalculate: data})
       }
     }
   }
