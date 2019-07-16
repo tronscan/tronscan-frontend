@@ -224,7 +224,7 @@ class VerifyContractCode extends Component {
                         loading={loading}
                         onClick={this.handleVerifyCode}
                         className="compile-button active ml-4"
-                        disabled={captcha_code}
+                        disabled={!captcha_code}
                     >{tu('verify_and_publish')}</Button>
                   </div>
                 </div>
