@@ -100,6 +100,16 @@ class CompilerConsole extends React.Component {
                                {convert(log.content)}
                            </div>
                        }
+                       {
+                           (log.type == "error" && log.class == "info-error") &&
+                           <div  className="contract-compiler-console-log"
+                                 style={{color: color[log.type]}}>
+                               {convert(log.content)}
+                               <span className="contract-compiler-console-info">
+                                   <span onClick={() => this.props.deploy()} className="info-btn ml-2">try again</span>
+                               </span>
+                           </div>
+                       }
 
                    </div>
                ))}
