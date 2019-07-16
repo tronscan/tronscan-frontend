@@ -19,7 +19,6 @@ import _, {find, round, filter } from "lodash";
 import {toThousands} from "../../../utils/number";
 import Lockr from "lockr";
 import { API_URL } from "../../../constants";
-
 @connect(
     state => ({
         account: state.app.account,
@@ -476,13 +475,13 @@ class ContractCompiler extends React.Component {
             selectOnLineNumbers: true
         };
         return (
-            <main className="container header-overlap ">
+            <main className="container header-overlap token_black tokencreated">
                 {modal}
                 <div className="row">
                     <div className="col-sm-12">
                         <div className="compile-button-box">
-                            <div className={filter.direction == 'compile'?'compile-button active':'compile-button'} onClick={() => this.onRadioChange('compile')}> {tu('contract_deployment')}</div>
-                            <div className={filter.direction == 'verify'?'compile-button active ml-4':'compile-button ml-4'} onClick={() => this.onRadioChange('verify')}>{tu('contract_verification')}</div>
+                            <div className={filter.direction == 'compile'?'compile-button p-3 active':'compile-button p-3'} onClick={() => this.onRadioChange('compile')}> {tu('contract_deployment')}</div>
+                            <div className={filter.direction == 'verify'?'compile-button p-3 active ml-4':'compile-button p-3 ml-4'} onClick={() => this.onRadioChange('verify')}>{tu('contract_verification')}</div>
                         </div>
                        
                         {
@@ -494,7 +493,7 @@ class ContractCompiler extends React.Component {
                         <div className="card mt-4">
                             <div className="card-body">
                                 <div className="contract-compiler">
-                                            <div className="pt-3">
+                                            <div>
                                                 <MonacoEditor
                                                     height="600"
                                                     language="sol"

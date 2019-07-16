@@ -4271,7 +4271,6 @@ delete {
   .compile-button{
     min-width: 140px;
     height: 52px;
-    line-height: 0;
     background: #FFFFFF;
     border-radius: 3px;
     font-size: 18px;
@@ -4281,7 +4280,6 @@ delete {
     align-items: center;
     cursor: pointer;
     border-color:#ffffff;
-    padding: 20px;
   }
   .compile-button-large{
     width:100%;

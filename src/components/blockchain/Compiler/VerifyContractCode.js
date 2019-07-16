@@ -194,7 +194,7 @@ class VerifyContractCode extends Component {
                     />
                     <div className="contract-compiler-console text-left w-100">
                       <CompilerConsole  CompileStatus={CompileStatus}/>
-                  </div>
+                    </div>
                   </div>
                 </div>
                 <div className="row mt-3 contract-ABI">
