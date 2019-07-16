@@ -1919,7 +1919,6 @@ export const messages = {
   "verify_code1": "源代码验证为用户与智能合约交互提供透明度",
   "verify_code2": "通过上传源代码，TRONSCAN会在区块链上将其与编译代码匹配",
   "verify_code3": "与合约一样，智能合约为终端用户提供关于他们正在为何“电子签名”的更多信息，也让用户能够审核代码，独立地验证代码的实际作用和预期作用",
-  "verify_code3": `Just like contracts, a "smart contract" should provide end users with more information on what they are "digitally signing" for and give users an opportunity to audit the code to independently verify that it actually does what it is supposed to do.`,
 
   /*
    ##################################################################################

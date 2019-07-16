@@ -4269,8 +4269,9 @@ delete {
   display: flex;
   justify-content: center;
   .compile-button{
-    width: 140px;
+    min-width: 140px;
     height: 52px;
+    line-height: 0;
     background: #FFFFFF;
     border-radius: 3px;
     font-size: 18px;
@@ -4280,6 +4281,7 @@ delete {
     align-items: center;
     cursor: pointer;
     border-color:#ffffff;
+    padding: 20px;
   }
   .compile-button-large{
     width:100%;
@@ -4328,7 +4330,9 @@ delete {
 }
 
 .compile-switch{
-  margin-left: 70px;
+  //margin-left: 70px;
+  position: absolute;
+  left: 162px;
 }
 
 .verify-contranct{
