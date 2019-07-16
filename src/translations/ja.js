@@ -1907,5 +1907,5 @@ export const messages = {
   "deploy_params_energy_limit":"オリジナルエネルギーの限界",
   "deploy_params_send_token":"TRX、あるいは他のトークンを選んで送ります",
   "deploy_params_constructor":"コンストラクタのパラメーター",
-
+  "compile_close":"閉じる",
 }

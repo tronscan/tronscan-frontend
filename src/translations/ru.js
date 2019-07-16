@@ -1916,5 +1916,5 @@ export const messages = {
   "deploy_params_energy_limit":"Предел энергии происхождения",
   "deploy_params_send_token":"Выберите TRX или токен для отправки",
   "deploy_params_constructor":"Params для конструктора",
-
+  "compile_close":"близко",
 };

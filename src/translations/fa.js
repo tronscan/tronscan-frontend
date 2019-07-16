@@ -1908,5 +1908,6 @@ export const messages = {
     "deploy_params_energy_limit":"حد مجاز انرژی",
     "deploy_params_send_token":"انتخاب TRX یا توکن برای ارسال.",
     "deploy_params_constructor":"پارامترهای سازنده",
+    "compile_close":"بستن",
 
 };

@@ -1910,5 +1910,5 @@ export const messages = {
   "deploy_params_energy_limit":"에너지 한도",
   "deploy_params_send_token":"전송할 TRX 또는 토큰 선택",
   "deploy_params_constructor":"생성자를 위한 Params",
-
+  "compile_close":"닫기",
 };

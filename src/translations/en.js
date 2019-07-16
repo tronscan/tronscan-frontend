@@ -1962,5 +1962,5 @@ export const messages = {
   "deploy_params_energy_limit":"Origin Energy Limit",
   "deploy_params_send_token":"Select TRX or token to send",
   "deploy_params_constructor":"Params for constructor",
-
+  "compile_close":"close",
 };

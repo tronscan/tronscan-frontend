@@ -1905,5 +1905,5 @@
   "deploy_params_energy_limit":"الحد من الطاقة الأصلية",
   "deploy_params_send_token":"حدد TRX أو الرمز المميز للإرسال",
   "deploy_params_constructor":"حجة المنشئ",
-
+  "compile_close":"أغلق",
 };
