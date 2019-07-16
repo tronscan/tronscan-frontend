@@ -194,21 +194,6 @@ class ContractCompiler extends React.Component {
             )
         });
     }
-    onDeployParams (form) {
-        this.setState({
-            ...form
-        })
-    }
-    compilerVersionMsg(version) {
-        this.setState({
-            compilerVersion:version
-        });
-    }
-    optimizerMsg(value) {
-        this.setState({
-            optimizer:value
-        });
-    }
 
 
 
