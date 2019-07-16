@@ -8,7 +8,6 @@ module.exports = {
         ui: ["antd"],
         base: ["lodash", "moment"],
         charts:["echarts","highcharts"],
-        leaflet:["leaflet","leaflet-echarts","leaflet.gridlayer.googlemutant","leaflet.markercluster","leaflet.markercluster.placementstrategies"],
     },
     output:{
         path: path.join(__dirname, "../public/dll"),
