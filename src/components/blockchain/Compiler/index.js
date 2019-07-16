@@ -203,22 +203,27 @@ class ContractCompiler extends React.Component {
         this.setState({
             deployLoading: true,
         });
+        let _this = this;
         try {
             do {
                 transactionInfo = await tronWeb.trx.getTransactionInfo(
                     txID
-                ).catch (function (e) {
+                ).catch ((e) => {
                     infoData = [{
                         type: "error",
                         class:"info-error",
                         content: `FAILED deploying ${currentContractName}.  Transaction here <a href="/#/transaction/${txID}" class="info_link" target='_blank'>${txID}</a>`
                     }];
                     CompileStatus.push.apply(CompileStatus,infoData);
-                    this.setState({
+                    _this.setState({
                         CompileStatus,
                         deployLoading: false,
                     });
                 });
+
+                if(!transactionInfo){
+                    throw new Error('Not getting transaction info!');
+                }
 
                 if (transactionInfo.id) {
                     if (transactionInfo.receipt.result == "SUCCESS") {
@@ -399,6 +404,7 @@ class ContractCompiler extends React.Component {
 
     };
     deploy = async (options) => {
+        let _this = this;
         let currentContractName = options.name;
         this.setState({
             currentContractName:currentContractName,
@@ -480,12 +486,14 @@ class ContractCompiler extends React.Component {
                                 content: `FAILED deploying ${currentContractName}.  Transaction here <a href="/#/transaction/${signed.txID}" class="info_link" target='_blank'>${signed.txID}</a>`
                             }];
                             CompileStatus.push.apply(CompileStatus,infoData);
-                            this.setState({
+                            _this.setState({
                                 CompileStatus,
                                 deployLoading: false,
                             });
                         });
-
+                        if(!transactionInfo){
+                            throw new Error('Not getting transaction info!');
+                        }
                         if (transactionInfo.id) {
                             if (transactionInfo.receipt.result == "SUCCESS") {
                                 infoData = [{
@@ -582,7 +590,7 @@ class ContractCompiler extends React.Component {
                 });
             }
 
-        } catch (e) {
+        } catch(e) {
 
             let errorData = [{
                 type: "error",
@@ -590,11 +598,11 @@ class ContractCompiler extends React.Component {
             }]
 
             CompileStatus.push.apply(CompileStatus,errorData)
-            this.setState({
-                CompileStatus,
-                deployLoading: false,
-            });
-        }
+            // _this.setState({
+            //     CompileStatus,
+            //     deployLoading: false,
+            // });
+        };
         this.setState({
             deployLoading: false,
         });
