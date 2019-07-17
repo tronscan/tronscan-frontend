@@ -36,9 +36,9 @@
   "WalletWizard.js": "static/js/WalletWizard.27eb15bc.chunk.js",
   "bootstrap.css": "d59729439a203fc474f5677b8d18d8bb.css",
   "info.svg": "ce0369650e23ec7e420a8af6750d8a87.svg",
-  "languages.js": "static/js/languages.d9329e31.chunk.js",
+  "languages.js": "static/js/languages.0c28960b.chunk.js",
   "main.css": "static/css/main.924b6361.css",
-  "main.js": "static/js/main.ccc88d77.js",
+  "main.js": "static/js/main.292b0017.js",
   "static/media/Block-Producer-Chart.png": "static/media/Block-Producer-Chart.a94b882b.png",
   "static/media/ContractInvocationDistribution.png": "static/media/ContractInvocationDistribution.fd18e048.png",
   "static/media/EnergyConsume.png": "static/media/EnergyConsume.79c227d0.png",
@@ -73,5 +73,5 @@
   "static/media/tron-logo.jpg": "static/media/tron-logo.f142f640.jpg",
   "static/media/tronscan_wechat.png": "static/media/tronscan_wechat.1225c09a.png",
   "static/media/wallet-preview.png": "static/media/wallet-preview.85fad9b8.png",
-  "vendors.js": "static/js/vendors.96bb441b.js"
+  "vendors.js": "static/js/vendors.88c0f4c1.js"
 }
