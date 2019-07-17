@@ -17,12 +17,14 @@ import Events from "./Events";
 import Transfers from "./Transfers";
 import Energy from "./Energy";
 import Call from "./Call";
+import ContractPage from "./ContractPage";
 import {upperFirst, filter} from "lodash";
 import {Truncate} from "../../common/text";
 import xhr from "axios/index";
 import {API_URL, CONTRACT_ADDRESS_USDT} from "../../../constants";
 import { Tooltip } from 'antd'
 import TokenBalances from './Balance.js'
+import { CsvExport } from "../../common/CsvExport";
 
 
 class SmartContract extends React.Component {
@@ -40,7 +42,8 @@ class SmartContract extends React.Component {
             balance: 0,
             tokenBalances: {},
         },
-        token20: null
+        token20: null,
+        csvurl: ''
     }
   }
 
@@ -81,7 +84,7 @@ class SmartContract extends React.Component {
                     id: "transactions",
                     path: "",
                     label: <span>{tu("transactions")}</span>,
-                    cmp: () => <Txs filter={{contract: id}}  address isContract/>
+                    cmp: () => <Txs getCsvUrl={(csvurl) => this.setState({csvurl})} filter={{contract: id}}  address isContract/>
                 },
                 // Txns: {
                 //   id: "Txns",
@@ -103,7 +106,7 @@ class SmartContract extends React.Component {
                 voters: {
                     id: "code",
                     path: "/code",
-                    label: <span>{tu("Code")}</span>,
+                  label: <span>{tu("contract_title")}</span>,
                     cmp: () => <Code filter={{address: id}} />,
                 },
                 intransactions: {
@@ -111,7 +114,7 @@ class SmartContract extends React.Component {
                   // icon: "fas fa-handshake",
                   path: "/internal-transactions",
                   label: <span>{tu("internal_transactions")}</span>,
-                  cmp: () => <Transactions filter={{contract: id}} isinternal address/>
+                  cmp: () => <Transactions getCsvUrl={(csvurl) => this.setState({csvurl})} filter={{contract: id}} isinternal address/>
                 },
                 events: {
                     id: "events",
@@ -144,7 +147,7 @@ class SmartContract extends React.Component {
                     id: "transactions",
                     path: "",
                     label: <span>{tu("transactions")}</span>,
-                    cmp: () => <Txs filter={{contract: id}}  address isContract/>
+                    cmp: () => <Txs getCsvUrl={(csvurl) => this.setState({csvurl})} filter={{contract: id}}  address isContract/>
                 },
                 // Txns: {
                 //   id: "Txns",
@@ -168,7 +171,7 @@ class SmartContract extends React.Component {
                 voters: {
                     id: "code",
                     path: "/code",
-                    label: <span>{tu("Code")}</span>,
+                    label: <span>{tu("contract_title")}</span>,
                     cmp: () => <Code filter={{address: id}} />,
                 },
                 intransactions: {
@@ -176,7 +179,7 @@ class SmartContract extends React.Component {
                   // icon: "fas fa-handshake",
                   path: "/internal-transactions",
                   label: <span>{tu("internal_transactions")}</span>,
-                  cmp: () => <Transactions filter={{contract: id}} isinternal address/>
+                  cmp: () => <Transactions getCsvUrl={(csvurl) => this.setState({csvurl})} filter={{contract: id}} isinternal address/>
                 },
                 events: {
                     id: "events",
@@ -207,13 +210,18 @@ class SmartContract extends React.Component {
 
   render() {
 
-    let {contract, tabs, loading, token20} = this.state;
+    let {contract, tabs, loading, token20, csvurl} = this.state;
     let {match, intl} = this.props;
 
     if (!contract) {
       return null;
     }
-
+    let pathname = this.props.location.pathname;
+    let tabName = ''
+    let rex = /[a-zA-Z0-9]{34}\/?([a-zA-Z\\-]+)$/
+    pathname.replace(rex, function (a, b) {
+        tabName = b
+    })
     return (
         <main className="container header-overlap token_black">
           <div className="row">
@@ -233,7 +241,7 @@ class SmartContract extends React.Component {
                           <div className="contract-header__item">
                             <h6 className="contract-header__title">{tu('contract_overview')}</h6>
                             <ul>
-                              <li><p>{upperFirst(intl.formatMessage({id: 'balance'}))}: </p><TRXPrice amount={parseInt(contract.balance) / ONE_TRX}/></li>
+                            <li><p>{upperFirst(intl.formatMessage({ id: 'balance' }))}: </p><TRXPrice amount={contract.balance? parseInt(contract.balance) / ONE_TRX : 0}/></li>
                               {/* <li><p>{tu('trx_value')}: </p><TRXPrice amount={1} currency="USD" source="home"/></li> */}
                               <li><p>{upperFirst(intl.formatMessage({id: 'transactions'}))}: </p>
                                 <p className="contract_trx_count">
@@ -308,6 +316,10 @@ class SmartContract extends React.Component {
                           </Switch>
                         </div>
                       </div>
+                        {/*
+                            ['', 'internal-transactions'].indexOf(tabName) !== -1 ?
+                            <CsvExport downloadURL={csvurl}/>: ''
+                        */}
                     </Fragment>
               }
             </div>

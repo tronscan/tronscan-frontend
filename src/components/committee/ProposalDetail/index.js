@@ -55,6 +55,9 @@ class ProposalDetail extends React.Component {
             //'getTotalEnergyAverageUsage',
             'getUpdateAccountPermissionFee',
             'getMultiSignFee',
+            '',
+            '',
+            'getAllowTvmConstantinople'
         ];
 
         for(let item in data.paramters){
@@ -363,6 +366,17 @@ class ProposalDetail extends React.Component {
                                                                             <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
                                                                             <span>{proposal.proposalVal / ONE_TRX}</span> &nbsp;
                                                                             <span>TRX</span>
+                                                                        </div>
+                                                                    }
+                                                                    {
+                                                                        proposal.key == 'getAllowTvmConstantinople' &&
+                                                                        <div>
+                                                                            <span>{ intl.formatMessage({id: 'propose_27'})}</span>
+                                                                            <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
+                                                                            {
+                                                                                proposal.proposalVal? <span>{tu('propose_allowed')}</span>:
+                                                                                    <span>{tu('propose_not_allowed')}</span>
+                                                                            }
                                                                         </div>
                                                                     }
                                                                 </td>

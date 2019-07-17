@@ -2,174 +2,313 @@ import React from "react";
 import {CopyText} from "../../common/Copy";
 import {tu, tv} from "../../../utils/i18n";
 import {Client} from "../../../services/api";
-import xhr from "axios";
+import xhr from "axios/index";
 import {API_URL} from "../../../constants";
 import { AddressLink} from "../../common/Links";
 import {TronLoader} from "../../common/loaders";
+import { Radio } from 'antd';
+import ContractInfo from './ContractInfo'
+import EntryContract from './EntryContract'
+import tronWeb from 'tronweb';
+import { connect } from "react-redux";
 
+@connect(
+  state => {
+    return {
+      account: state.app.account
+    }
+  }
+)
 
 export default class Code extends React.Component {
 
   constructor(props) {
     super(props);
-
+    // https://api.shasta.trongrid.io
+    this.tronWeb = new tronWeb({
+      fullNode: 'https://api.trongrid.io',
+      solidityNode: 'https://api.trongrid.io',
+      eventServer: 'https://api.trongrid.io',
+    })
     this.state = {
-      name: "",
-      compilerVersion: "",
-      sourceCode: "",
-      abi: "",
-      creationCode: "",
-      abiEncoded: "",
-      address: "",
-      byteCode: "",
-      isSetting: 'Yes',
-      librarys: null,
-      loading: true
+      loading: true,
+      choiceContractItem: 'code',
+      contractInfoList: '',
+      viewContractList: [],
+      payableContractList: [],
+      nonePayableContractList: [],
+      eventContractList: [],
+      currentTokens: [],
+      contractVerifyState: true
     };
   }
 
-  componentDidMount() {
-    let {filter} = this.props;
-    this.loadContractCode(filter.address);
+  async componentDidMount() {
+    const { contractVerifyState } = this.state
+    // await this.getContractInfos()
+    this.getContractVerifyStatus()
+    // this.getContractTokenList()
+    // this.viewFuntions()
+    // this.payableFuntions()
+    // this.nonePayableFuntions()
+    
   }
+  async getContractVerifyStatus () {
+    let { filter } = this.props;
+    let { data } = await xhr.post(`${API_URL}/api/solidity/contract/info`, {
+      "contractAddress": filter.address,
+    }).catch(function (e) {
+      let errorData = [{
+        type: "error",
+        content: `Compiled error: ${e.toString()}`
+      }]
+      console.log('errorData: ', errorData);
+      // error = errorData.concat(CompileStatus)
 
-  async loadContractCode(id) {
-    this.setState({loading: true});
-    let contractCode = await Client.getContractCode(id);
-
-    this.setState({
-      name: contractCode.data.name || "-",
-      compilerVersion: contractCode.data.compiler,
-      sourceCode: contractCode.data.source,
-      abi: contractCode.data.abi,
-      abiEncoded: contractCode.data.abiEncoded,
-      address: contractCode.data.address,
-      byteCode: contractCode.data.byteCode,
-      isSetting: contractCode.data.isSetting? 'Yes': 'No',
-      librarys: contractCode.data.librarys,
-      loading: false
-    }, () => {
-      // this.ace.editor.setValue(this.state.sourceCode);
-      // this.ace.editor.clearSelection();
     });
+    let dataInfo = data.data
+    if (data.data.status === 3 || data.data.status === 1) {
+      this.setState({
+        contractVerifyState: false,
+        loading: false
+      }, async() => {
+          // this.getContractTokenList()
+          await this.getContractInfos()
+          // this.viewFuntions()
+          // this.payableFuntions()
+          // this.nonePayableFuntions()
+      })
+    } else {
+      let infoObj
+      let abi = JSON.parse(dataInfo.abi)
+      infoObj = {
+        interfaceAbi: abi || '',
+        name: dataInfo.contract_name || '',
+        bytecode: dataInfo.byte_code || '',
+        contractCode: dataInfo.contract_code || '',
+        constructorParams: dataInfo.constructor_params || '',
+        optimizer: dataInfo.optimizer,
+        compiler: dataInfo.compiler
+      }
+      this.setState({
+        contractVerifyState: true,
+        contractInfoList: infoObj,
+        loading: false
+      }, async() => {
+          this.getContractTokenList()
+          await this.getContractInfos()
+          this.viewFuntions()
+          this.payableFuntions()
+          this.nonePayableFuntions()
+      })
+    }
+  }
+  async getContractInfos() {
+    const { contractVerifyState, contractInfoList } = this.state
+    let smartcontract = await this.tronWeb.trx.getContract(
+      this.props.filter.address
+    );
+    let obj = {
+      abi: smartcontract.abi
+    }
+    if ( contractVerifyState ) {
+      this.setState({
+        contractInfoList: { abi: smartcontract.abi, ...contractInfoList }
+      }, () => {
 
+      })
+    } else {
+      this.setState({
+        contractInfoList: smartcontract
+      })
+    }
+  }
+  onChange = e => {
+    this.setState({
+      choiceContractItem: e.target.value,
+    });
+  }
+  viewFuntions() {
+    let { contractInfoList } = this.state;
+    let list
+    if (contractInfoList.abi.entrys) {
+      list = contractInfoList.abi.entrys.filter(
+        entry =>
+          entry.type == "Function" &&
+          (entry.stateMutability == "View" || entry.stateMutability == "Pure")
+      );
+      this.setState({
+        viewContractList: list
+      },() => {
+      })
+    }
+  }
+  payableFuntions() {
+    let { contractInfoList } = this.state;
+    let list
+    if (contractInfoList.abi) {
+      list = contractInfoList.abi.entrys.filter(
+        entry => entry.type == "Function" && entry.stateMutability == "Payable"
+      );
+      this.setState({
+        payableContractList: list
+      }, () => {
+      })
+    }
+  }
+  nonePayableFuntions() {
+    let { contractInfoList } = this.state;
+    let list
+    if (contractInfoList.abi) {
+      list = contractInfoList.abi.entrys.filter(
+        entry =>
+          entry.type == "Function" && entry.stateMutability == "Nonpayable"
+      );
+      this.setState({
+        nonePayableContractList: list
+      }, () => {
+      })
+    }
+  }
+  events() {
+    let { contractInfoList } = this.state;
+
+    return contractInfoList.abi.entrys.filter(entry => entry.type == "Event");
   }
 
-  onChange = (newValue, e) => {
-
-    //const editor = this.ace.editor;
-
+  async getContractTokenList () {
+    let { filter, account } = this.props;
+    const { tronWeb } = this.props.account;
+    if (tronWeb) {
+      let myAccount = await tronWeb.trx.getAccount(
+        tronWeb.defaultAddress.hex
+      );
+      let listTokens = await tronWeb.trx.listTokens();
+      const balance = await tronWeb.trx.getBalance(
+        tronWeb.defaultAddress.hex
+      );
+      let currentTokens = [];
+      if (myAccount.assetV2 != undefined) {
+        myAccount.assetV2.forEach(item => {
+          let token = {};
+          token.id = item.key;
+          token.name = listTokens.find(i => i.id == token.id).abbr;
+          token.balance = item.value;
+          currentTokens.push(token);
+        });
+      }
+      currentTokens.push({
+        id : '0',
+        name: "TRX",
+        balance: balance / 100000
+      })
+      this.setState({
+        currentTokens: currentTokens
+      })
+    }
   }
+
 
   render() {
-    let {name, compilerVersion, sourceCode, abi, abiEncoded, address, byteCode, isSetting, librarys, loading} = this.state;
+    let { choiceContractItem,
+      contractInfoList,
+      viewContractList,
+      payableContractList,
+      nonePayableContractList,
+      currentTokens,
+      contractVerifyState,
+      loading } = this.state;
+    let { filter } = this.props;
+    let tabContent;
+
+    if (choiceContractItem === 'code' && contractInfoList) {
+      tabContent = (
+        <ContractInfo filter={{ address: filter.address, contractInfoList: contractInfoList }}/>
+      );
+    } else if (choiceContractItem === 'read' && viewContractList) {
+      tabContent = (
+          viewContractList.map((val, key) => {
+            return (
+              <div key={key}>
+                <EntryContract contractItem={val} index={key} address={filter.address} abi={contractInfoList.abi}/>
+              </div>
+            )
+          })
+      );
+    } else if (choiceContractItem === 'write') {
+      tabContent = (
+        <div>
+          {
+            payableContractList.length != 0 ?
+            <div>
+                <div className="write-title">{tu('write_payable')}</div>
+                {
+                  payableContractList.map((val, key) => {
+                    return (
+                      <div key={key}>
+                        <EntryContract contractItem={val} index={key} address={filter.address} currentTokens={currentTokens} />
+                      </div>
+                    )
+                  })
+                }
+            </div>
+            : null
+            // <div>
+            //     <div className="write-title">{tu('write_payable')}</div>
+            //     <div className="write-title">No function found</div>
+            // </div>
+          }
+          {
+            nonePayableContractList.length != 0 ?
+              <div>
+                <div className="write-title">{tu('write_nonePayable')}</div>
+                {
+                  nonePayableContractList.map((val, key) => {
+                    return (
+                      <div key={key}>
+                        <EntryContract contractItem={val} index={key} address={filter.address} abi={contractInfoList.abi} />
+                      </div>
+                    )
+                  })
+                }
+              </div>
+              : null
+              // <div>
+              //   <div className="write-title">{tu('write_nonePayable')}</div>
+              //   <div className="write-title">No function found</div>
+              // </div>
+          }
+        </div>
+      );
+    }
 
     return (
-        <main className="container">
-           {loading && <div className="loading-style" style={{marginTop: '-20px'}}><TronLoader/></div>}
-          <div className="row">
-            <div className="col-md-12 contract-header">
-              {/*<br/>*/}
-              {/*<div className="pb-3 verified"><i className="fa fa-check-circle mr-1"></i>('contract_code_verified')</div> */}
-
-              <div className="d-flex justify-content-between">
-                <div className="contract-header__item">
-                  <ul>
-                    <li><p className="plus">{tu("contract_name")}:</p>{name}</li>
-                    {/* <li><p className="plus">{tu('Optimization_Enabled')}: </p>{isSetting}</li> */}
-                  </ul>
-                </div>
-                <div className="contract-header__item">
-                  <ul>
-                    {/* <li><p className="plus">{tu("Compiler_Text")}:</p>{compilerVersion}</li> */}
-                  </ul>
-                </div>
+        <main className="contract-container">
+        {loading ? 
+          <div className="loading-style" style={{ marginTop: '-20px' }}><TronLoader /></div>
+         : 
+          <div>
+            {contractVerifyState ?
+              <div className="tab-choice">
+                <Radio.Group className="choice-btn" size="Small" onChange={this.onChange} value={this.state.choiceContractItem}>
+                  <Radio.Button value="code">{tu('contract_code_choice')}</Radio.Button>
+                  <Radio.Button value="read">{tu('contract_read')}</Radio.Button>
+                  <Radio.Button value="write">{tu('contract_write')}</Radio.Button>
+                </Radio.Group>
+                <p>{tu('contract_name')}: <span>{contractInfoList.name ? contractInfoList.name : ''}</span></p>
+                <p>{tu('contract_version')}: <span>{contractInfoList.compiler ? contractInfoList.compiler : ''}</span></p>
+                <p>{tu('contract_optimize')}: <span>{contractInfoList.optimizer === 1 ? <span>{tu('contract_optimizered')}</span> : <span>{tu('contract_optimizer')}</span>}</span></p>
               </div>
-            </div>
+             :
+              <div className="contrat-verify">
+                {tu('contract_verify_status')}<a href="/#/contracts/contract-Compiler/verify">{tu('contract_verify_btn')}</a>
+              </div> 
+            }
           </div>
-
-
-          {/* <div className="row">
-            <div className="col-md-12 ">
-              <div className="d-flex mb-1">
-                <span><i className="fa fa-code"></i> {tu('contract_source_code')}</span>
-                <CopyText text={sourceCode} className="ml-auto ml-1"/>
-              </div>
-              <ReactAce
-                  mode="text"
-                  theme="eclipse"
-                  setReadOnly={true}
-                  onChange={this.onChange}
-                  style={{height: '400px'}}
-                  ref={instance => {
-                    this.ace = instance;
-                  }}
-              />
-
-            </div>
-          </div> */}
-
-          <div className="row mt-3">
-            <div className="col-md-12">
-              <div className="d-flex mb-1">
-                <span><i className="fa fa-cogs"></i> {tu('Contract_ABI')}</span>
-                <CopyText text={abi} className="ml-auto ml-1"/>
-              </div>
-              <textarea className="w-100 form-control"
-                        rows="7"
-                        readOnly="readonly"
-                        value={abi}
-                        onChange={ev => this.setState({abi: ev.target.value})}/>
-            </div>
+         }
+          <div className="tab-container">
+            {tabContent}
           </div>
-
-          <div className="row mt-3">
-            <div className="col-md-12">
-              <div className="d-flex mb-1">
-                <span><i className="fas fa-file-invoice"></i> {tu('Byte_code')}</span>
-                <CopyText text={byteCode} className="ml-auto ml-1"/>
-              </div>
-              <textarea className="w-100 form-control"
-                        rows="7"
-                        readOnly="readonly"
-                        value={byteCode}
-                        onChange={ev => this.setState({byteCode: ev.target.value})}/>
-            </div>
-          </div>
-          
-          {/* { abiEncoded&&
-          <div className="row mt-3">
-            <div className="col-md-12 ">
-              <div className="d-flex mb-1">
-                <span><i className="far fa-dot-circle"></i> {tu('Constructor_Arguments')}</span>
-              </div>
-              <textarea className="w-100 form-control"
-                        rows="7"
-                        readOnly="readonly"
-                        value={abiEncoded}
-                        onChange={ev => this.setState({abiEncoded: ev.target.value})}/>
-
-            </div>
-          </div>}
-
-          { librarys&&(librarys.length !== 0)&&
-          <div className="row mt-3">
-            <div className="col-md-12 ">
-              <div className="d-flex mb-1">
-                <span><i className="fas fa-map-marker-alt"></i> {tu('Library_Used')}</span>
-              </div>
-              <div className="code-wapper">
-              { librarys.map( item => {
-                  return <div className="code-wapper-item d-flex">
-                    <p>{item.name}</p>
-                    <AddressLink address={item.address} isContract={true}/>
-                  </div>
-                })
-              }
-              </div>
-
-            </div>
-          </div>} */}
 
         </main>
 

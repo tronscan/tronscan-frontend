@@ -326,17 +326,17 @@ class ExchangeList extends React.Component {
               <img
                 src={
                   intl.locale == "zh"
-                    ? require("../../../../../images/market/ieo_zh.png")
-                    : require("../../../../../images/market/ieo_en.png")
+                    ? require("../../../../../images/market/ad_1_zh.png")
+                    : require("../../../../../images/market/ad_1_en.png")
                 }
-                alt="ieo"
+                alt="ad"
               />
-              <ul>
+              {/* <ul>
                 <li>{day}</li>
                 <li>{hr}</li>
                 <li>{min}</li>
                 <li>{sec}</li>
-              </ul>
+              </ul> */}
               <i
                 className="market-ad-close"
                 onClick={e => {

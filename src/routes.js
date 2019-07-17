@@ -5,37 +5,38 @@ import Transaction from "./components/blockchain/Transaction";
 import Address from "./components/addresses/Address";
 import Home from "./components/Home";
 import {
-  AboutAsync,
-  AccountAsync,
-  AccountsAsync,
-  CopyrightAsync,
-  DemoAsync,
-  FaqAsync,
-  FoundationAsync,
-  LedgerHelpAsync,
-  LiveAsync,
-  MyTokenAsync,
-  NodesAsync,
-  NodeTesterAsync,
-  ProposalDetailAsync,
-  RepresentativesAsync,
-  SingleChartAsync,
-  StatisticsAsync,
-  SystemAsync,
-  Token20DetailAsync,
-  TokenDetailAsync,
-  TokenListAsync,
-  TokenOverviewAsync,
-  TokensCreateAsync,
-  TokensUpdateAsync,
-  TokenTRC20ListAsync,
-  TokenAllAsync,
-  TransactionViewerAsync,
-  TronConvertToolAsync,
-  TRONRatingAsync,
-  VoteLiveAsync,
-  VoteOverviewAsync,
-  WalletWizardAsync
+    AboutAsync,
+    AccountAsync,
+    AccountsAsync,
+    CopyrightAsync,
+    DemoAsync,
+    FaqAsync,
+    FoundationAsync,
+    LedgerHelpAsync,
+    LiveAsync,
+    MyTokenAsync,
+    NodesAsync,
+    NodeTesterAsync,
+    ProposalDetailAsync,
+    RepresentativesAsync,
+    SingleChartAsync,
+    StatisticsAsync,
+    SystemAsync,
+    Token20DetailAsync,
+    TokenDetailAsync,
+    TokenListAsync,
+    TokenOverviewAsync,
+    TokensCreateAsync,
+    TokensUpdateAsync,
+    TokenTRC20ListAsync,
+    TokenAllAsync,
+    TransactionViewerAsync,
+    TronConvertToolAsync,
+    TRONRatingAsync,
+    VoteLiveAsync,
+    VoteOverviewAsync,
+    WalletWizardAsync,
+    ContractCompilerAsync
 } from "./components/async";
 import Blocks from "./components/blockchain/Blocks";
 import Transactions from "./components/blockchain/Transactions";
@@ -53,6 +54,7 @@ import Proposals from "./components/committee/Proposals";
 import { Redirect } from "react-router-dom";
 import { LedgerComponent } from "./hw/ledger/LedgerComponent";
 import BTTSupplyTemp from "./components/tokens/TokenDetail/tempBtt.js";
+import ContractCompiler from "./components/blockchain/Compiler/index";
 
 export const routes = [
   {
@@ -155,6 +157,19 @@ export const routes = [
         label: "trigger",
         icon: "fa fa-users-cog",
         component: ContractTrans
+      },
+      {
+        path: "/contracts/contract-Compiler",
+        label: "contract_deployment",
+        icon: "fas fa-file-signature",
+        component: ContractCompilerAsync
+      },
+      {
+        path: "/contracts/contract-Compiler/:type",
+        label: "contract_verification",
+        icon: "fas fa-file-signature",
+        component: ContractCompilerAsync,
+        showInMenu: false
       }
     ]
   },
@@ -307,6 +322,11 @@ export const routes = [
           url: "https://www.tronbet.io/#/?utm_source=TS",
           icon: "fas fa-dice-six",
           label: "TRONbet"
+      },
+      {
+          url: "https://tronlending.org/?utm_source=TS",
+          icon: "fas fa-hand-holding-usd",
+          label: "TronLending"
       },
       {
           url: "https://dapp.review/explore/tron?gclid=EAIaIQobChMIx-fB8KH04QIVlHZgCh0ybA1hEAAYASAAEgIad_D_BwE",
@@ -633,11 +653,11 @@ export const routes = [
           icon: "fa fa-recycle",
           label: "link_test_fauct"
         },
-        {
-          url: "https://dapphouse.org",
-          icon: "fa fa-archive",
-          label: "DApps"
-        },
+        // {
+        //   url: "https://dapphouse.org",
+        //   icon: "fa fa-archive",
+        //   label: "DApps"
+        // },
         {
           path: "/markets",
           label: "markets",

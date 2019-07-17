@@ -39,7 +39,7 @@ class Accounts extends Component {
   }
 
   loadAccounts = async (page = 1, pageSize = 20) => {
-    const { exchangeFlag } = this.state
+    // const { exchangeFlag } = this.state
 
     this.setState({loading: true});
 
@@ -48,6 +48,7 @@ class Accounts extends Component {
       limit: pageSize,
       start: (page - 1) * pageSize
     })
+    let exchangeFlag = await Client.getTagNameList()
 
     accounts.map(item => {
       item.tagName = ''
@@ -56,12 +57,12 @@ class Accounts extends Component {
         typeList.map(type => {
           if(coin.addressList[type].length == 1){
             if(coin.addressList[type][0] === item.address){
-              item.tagName = `${upperFirst(coin.name)}-${type}`
+              item.tagName = `${upperFirst(coin.name)}${type !== 'default'? `-${type}`: ''}`
             }
           }else if(coin.addressList[type].length > 1){
             coin.addressList[type].map((address, index) => {
               if(address === item.address){
-                item.tagName = `${upperFirst(coin.name)}-${type} ${index + 1}`
+                item.tagName = `${upperFirst(coin.name)}${type !== 'default'? `-${type} ${index + 1}`: ` ${index + 1}`}`
               }
             })
           }
@@ -69,6 +70,7 @@ class Accounts extends Component {
       })
      })
      // let {txOverviewStats} = await Client.getTxOverviewStats();
+
     this.setState({
       loading: false,
       accounts: accounts,

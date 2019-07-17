@@ -748,7 +748,7 @@ export const messages = {
   "using_ledger_to_sign_transactions_message_0": "Убедитесь в том, что Ledger подключен, а приложение TRON открыто для подписания транзакций с использованием Ledger при использовании Tronscan.",
   "using_ledger_to_sign_transactions_message_1": "Tronscan покажет всплывающее окно с деталями транзакции, когда потребуется подпись транзакции. Подписи требуются, когда вы голосуете, отправляете TRX, меняете имя аккаунта и т.д.",
   "ledger_note": "Заметка",
-  "ledger_note_message_1": "пока поддерживает только Ledger Nano S.",
+  "ledger_note_message_1": "пока поддерживает только Ledger Nano S,Ledger Nano X,Ledger Blue.",
   "ledger_note_message_2": "используйте Chrome Explorer.",
   "ledger_note_message_3": "Мы поддерживаем: передачу токенов TRX и TRC10, передача токена TRC20, замораживание и размораживание TRX, голосование, настройку имени",
   "ledger_note_message_4": "В настоящее время недоступны следующие функции: размораживание токенов TRC10, создание токена, trxmarket, подачу заявки на SR, обановление Github, создание торговых пар, ввод и снятие капитала.",
@@ -1308,6 +1308,7 @@ export const messages = {
   "propose_24": "Средний предел энергии",
   "propose_25": "Плата за обновление разрешения учетной записи",
   "propose_26": "Предлагаю изменить плату за мультиподпись",
+  "propose_27": "Propose to support the new features of TRON Virtual Machine 0.5.4",
   "propose_minute": "мин",
   "propose_unactivate": "Не активирован",
   "propose_not_allowed": "Не разрешено",
@@ -1541,8 +1542,8 @@ export const messages = {
   "trc20_register": "Книга заказов",
   "trc20_24h_h": "24h Высоко",
   "trc20_24h_l": "24h низкий",
-  "trc20_fire_token":"50 lucky draws to win 100,000 VENA!",
-  "trc20_vena_tip":"Due to the particularity of VENA contract, extra 0.1 VENA will be authorized but not deducted.",
+  "trc20_fire_token": "50 lucky draws to win 100,000 VENA!",
+  "trc20_vena_tip": "Due to the particularity of VENA contract, extra 0.1 VENA will be authorized but not deducted.",
 
   /*
    *  2018-12-18
@@ -1648,7 +1649,8 @@ export const messages = {
       #                                                                                #
       ##################################################################################
   */
-  "table_info_big": "Отображать только первые 10000",
+  "table_info_big1": "Отображать только первые ",
+  "table_info_big2": "",
   "table_info_big_tip1": "Всего в течение выбранного времени найдено",
   "table_info_big_tip2": "данных ,",
   "table_info_big_tip3": "и отображается только 10 000.",
@@ -1707,19 +1709,19 @@ export const messages = {
   "address_total_balance_info_sources": "Источник информации",
   "address_info_transfers": "Переводы",
   "address_info_transactions": "транзакции",
-  "address_netLimit":"Общая пропускная способность",
-  "address_netRemaining":"Доступная пропускная способность",
-  "address_netUsed":"Использованная пропускная способность",
-  "address_energyLimit":"Общая энергия",
-  "address_energyRemaining":"Доступная энергия",
-  "address_energyUsed":"Использованная энергия",
-  "address_percentage":"Соотношение",
-  "address_net_fee":"Стоимость пропускной способности",
-  "address_energy_fee":"Стоимость энергии",
-  "address_transfer_all":"ВСЕ",
-  "address_transfer_in":"В",
-  "address_transfer_out":"ИЗ",
-  "address_transfer_unrecorded_token":"Unrecorded Token",
+  "address_netLimit": "Общая пропускная способность",
+  "address_netRemaining": "Доступная пропускная способность",
+  "address_netUsed": "Использованная пропускная способность",
+  "address_energyLimit": "Общая энергия",
+  "address_energyRemaining": "Доступная энергия",
+  "address_energyUsed": "Использованная энергия",
+  "address_percentage": "Соотношение",
+  "address_net_fee": "Стоимость пропускной способности",
+  "address_energy_fee": "Стоимость энергии",
+  "address_transfer_all": "ВСЕ",
+  "address_transfer_in": "В",
+  "address_transfer_out": "ИЗ",
+  "address_transfer_unrecorded_token": "Unrecorded Token",
 
   /*
   ##################################################################################
@@ -1729,14 +1731,14 @@ export const messages = {
   ##################################################################################
   */
 
-  "footer_fellow_us":"Follow Us",
-  "footer_developer_resources":"Developer Resources",
-  "footer_support_center":"Support Center",
-  "footer_tron_network":"TRON",
-  "login_privatekey_warn":"Чтобы обеспечить безопасность учетной записи и избежать потери активов, пожалуйста сохраните и хорошо следите за своим приватным ключом и никогда никому не отдавайте его. Для входа рекомендуется Tronlink",
-  "login_privatekey_warn_safe":" использовать",
-  "token_does_not_support_exchange":"Token doesn't support trading now",
-  "token_trade":"сделка",
+  "footer_fellow_us": "Follow Us",
+  "footer_developer_resources": "Developer Resources",
+  "footer_support_center": "Support Center",
+  "footer_tron_network": "TRON",
+  "login_privatekey_warn": "Чтобы обеспечить безопасность учетной записи и избежать потери активов, пожалуйста сохраните и хорошо следите за своим приватным ключом и никогда никому не отдавайте его. Для входа рекомендуется Tronlink",
+  "login_privatekey_warn_safe": " использовать",
+  "token_does_not_support_exchange": "Token doesn't support trading now",
+  "token_trade": "сделка",
   "updata_token_info": "обновить информацию токена",
   "input_transcan": "войти в TRONSCAN",
   "pass_time": "одобрен в",
@@ -1842,14 +1844,78 @@ export const messages = {
   "str_8": "Контракт был заключен.",
   "str_9": "Невозможно проверить параметры",
   "type": "Тип",
-  "token_login_no_updated":"Учетная запись не соответствует издателю и не может быть обновлена",
-  "information_is_being_confirmed":"Information is being confirmed, this process may take 10 minutes, please try again later",
-
-
+  "token_login_no_updated": "Учетная запись не соответствует издателю и не может быть обновлена",
+  "information_is_being_confirmed": "Information is being confirmed, this process may take 10 minutes, please try again later",
+  "my_account": "Мой аккаунт",
+  "delegate_other": "Заморозка другими",
+  "freeze_self": "Заморозить сам",
+  "total_amount": "Итого",
+  "unfreeze_time": "Время разморозки",
   "interTrx_tip": "Внутренние транзакции - это операция, которая по общему адресу называется смарт-контрактом, а смарт-контракт передает токен на другой адрес.",
   "event_tip": "События позволяют программисту или провайдеру внешнего интерфейса использовать его, чтобы обратить внимание на контрактные операции и аудиты.",
-
-  /* 2019-07-06*/
-  "trc20_free_orders":"0 trading fee for all orders"
-
+  "Expected_acquisition": "Расчетная",
+  "energy_more": "Полученная пропускная способность = замороженные TRX для получения пропускной способности/ общее количество замороженных TRX в сети для получения пропускной способности.",
+  "bandwidth_more": "Полученная энергия = замороженные TRX для получения энергии / общее количество замороженных TRX для получения энергии во всей сети * предел общей энергии",
+  "table_info_big": "Отображать только первые 10000",
+  "Download": "Скачать",
+ /* 2019-07-06*/
+ "trc20_free_orders":"0 trading fee for all orders",
+  /*
+ ##################################################################################
+ #                                                                                #
+ # contract Compiler                                      #
+ #                                                                                #
+ ##################################################################################
+*/
+  "please_enter_address": 'Пожалуйста, введите адрес договора',
+  "please_enter_name": 'Пожалуйста, введите название контракта',
+  "please_enter_code": 'Пожалуйста, введите код договора',
+  /*
+  ##################################################################################
+  #                                                                                #
+  # read contract info   2019-07-02                                    #
+  #                                                                                #
+  ##################################################################################
+  */
+  "contract_title": "Контракт",
+  "contract_code_choice": "Код",
+  "contract_read": "Читать контракт",
+  "contract_write": "Написать контракт",
+  "contract_tip": "Подсказка",
+  "contract_version": "Версия compiler",
+  "contract_optimize": "Оптимизация",
+  "contract_optimizer": "не",
+  "contract_optimizered": "да",
+  "contract_verify_status": "Контракт еще не подтвержден, нажмите здесь",
+  "contract_verify_btn": "Проверить",
+  "write_payable": "Запустите эти функции с помощью TRX или Token",
+  "write_nonePayable": "Запуск этих функций будет потреблять TRX или энергию",
+  "verify_code1": "Проверка исходного кода обеспечивает прозрачность для пользователей, взаимодействующих со смарт-контрактами.",
+  "verify_code2": "Загружая исходный код, Tronscan будет сопоставлять скомпилированный код с кодом в блокчейне.",
+  "verify_code3":`Как и контракты, «смарт-контракт» должен предоставлять конечным пользователям больше информации о том, для чего они «подписывают цифровую подпись», и давать пользователям возможность проверять код, чтобы независимо проверить, действительно ли он выполняет то, что должен делать.`,
+  /*
+   ##################################################################################
+   #                                                                                #
+   # deploy contract   2019-07-10                                    #
+   #                                                                                #
+   ##################################################################################
+  */
+  "contract_deployment":"Выпуск контракта",
+  "contract_verification":"Проверка контракта",
+  "contract_deploy_info":"Разместите свой единственный файл смарт контракта здесь",
+  "contract_deployment_btn_compile":"Компилировать",
+  "contract_deployment_btn_deploy":"Выпускать",
+  "contract_compile_params":"Компиляция параметров",
+  "compile_params_version":"Версия Solidity",
+  "compile_params_optimization":"Оптимизация",
+  "compile_params_runs":"Runs",
+  "compile_first":"Пожалуйста, сначала составьте свой контракт",
+  "contract_deploy_params":"Выпуск параметров",
+  "contract_deploy_modal_info":"Выпуск контракта будет стоить определенное количество TRX или энергии",
+  "deploy_params_fee_limit":"Лимит комиссии",
+  "deploy_params_user_fee_percentage":"Процент комиссии пользователя",
+  "deploy_params_energy_limit":"Предел энергии происхождения",
+  "deploy_params_send_token":"Выберите TRX или токен для отправки",
+  "deploy_params_constructor":"Params для конструктора",
+  "compile_close":"близко",
 };

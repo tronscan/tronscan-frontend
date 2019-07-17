@@ -24,7 +24,7 @@ export class QuestionMark extends React.Component {
                      onMouseOut={() => this.setState({open: false})}>
                     <i>?</i>
                 </div>
-                <Tooltip placement={placement} isOpen={open} target={id} className={className}>
+                <Tooltip placement={placement} isOpen={open} target={id} className={className} innerClassName="w-100">
                     {text?t(text):""}
                     {testSecond? <span><br/> {t(testSecond)}</span> :""}
                     {info?info:""}

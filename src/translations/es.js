@@ -748,7 +748,7 @@ export const messages = {
   "using_ledger_to_sign_transactions_message_0": "Asegúrese de mantener el Ledger conectado y la aplicación TRON abierta para firmar transacciones en Tronscan",
   "using_ledger_to_sign_transactions_message_1": "Tronscan mostrará una ventana emergente con los detalles de la transacción cuando se requiera firmar la transacción. Se requiere siempre que vote, envíe TRX, cambie el nombre de la cuenta, etc.",
   "ledger_note": "Nota",
-  "ledger_note_message_1": "Compatible solo con Ledger Nano S por ahora.",
+  "ledger_note_message_1": "Compatible solo con Ledger Nano S,Ledger Nano X,Ledger Blue por ahora.",
   "ledger_note_message_2": "use el explorador Chrome.",
   "ledger_note_message_3": "Soportamos: Transferencias de TRX y TRC10 tokens,transferencia de tokens TRC20, congelar y descongelar TRX, votar y configurar nombre.",
   "ledger_note_message_4": "Características no disponibles actualmente: descongelar tokens TRC10, crear tokens, trxmarket, convertir en SR, solicitar recompensas de SR, actualizar Github, crear pares de trading, inyectar capital y retirar capital.",
@@ -1351,6 +1351,7 @@ export const messages = {
   "propose_24": "Límite de energía promedia",
   "propose_25": "Actualizar costo para dar más permiso de la cuenta",
   "propose_26": "Recomienda que modificar costo de multi-firma",
+  "propose_27": "Propose to support the new features of TRON Virtual Machine 0.5.4",
   "propose_unactivate": "No abierto",
   "propose_minute": "min",
   "propose_not_allowed": "No permitido",
@@ -1692,7 +1693,8 @@ export const messages = {
       #                                                                                #
       ##################################################################################
   */
-  "table_info_big": "Sólo se muestran los primeros 10.000 datos",
+  "table_info_big1": "Sólo se muestran los primeros ",
+  "table_info_big2":"datos",
   "table_info_big_tip1": "Hubo",
   "table_info_big_tip2": "datos en el pero de tiempo seleccionado y ",
   "table_info_big_tip3": "solo se mostraron 10,000 datos.",
@@ -1885,11 +1887,77 @@ export const messages = {
   "type": "Tipo",
   "token_login_no_updated":"El inicio de sesión de la cuenta no coincide con lo publicado y no se puede actualizar",
   "information_is_being_confirmed":"Information is being confirmed, this process may take 10 minutes, please try again later",
-
-
+  "my_account":"Mi cuenta",
+  "delegate_other":"Congelar por Otros",
+  "freeze_self":"Congelar por mi mismo",
+  "total_amount":"Cantidad total",
+  "unfreeze_time": "Fecha de descongelación",
   "interTrx_tip": "Transacciones internas es una operación que una dirección general llama un Contrato inteligente, y el Contrato inteligente transfiere el token a otra dirección.",
   "event_tip": "Los eventos son para permitir que el programador o el proveedor de la interfaz externa lo utilicen para prestar atención a las operaciones y auditorías del contrato.",
   /* 2019-07-06*/
-  "trc20_free_orders":"0 trading fee for all orders"
+  "trc20_free_orders": "0 trading fee for all orders",
+  "Expected_acquisition":"Ganancia estimada",
+  "energy_more":"Ancho de banda obtenido = TRX congelado para obtener ancho de banda / el TRX total congelado en la red para ganar ancho de banda.",
+  "bandwidth_more":"Energía obtenida = TRX congelado para obtener energía / TRX total congelado para obtener energía en toda la red * límite de energía total.",
+  "table_info_big": "Sólo se muestran los primeros 10.000 datos",
+  "Download": "Descargar",
 
+  /*
+ ##################################################################################
+ #                                                                                #
+ # contract Compiler                                      #
+ #                                                                                #
+ ##################################################################################
+*/
+  "please_enter_address": 'Por favor ingrese la dirección del contrato',
+  "please_enter_name": 'Por favor ingrese el nombre del contrato',
+  "please_enter_code": 'Por favor ingrese el código del contrato',
+  /*
+  ##################################################################################
+  #                                                                                #
+  # read contract info   2019-07-02                                    #
+  #                                                                                #
+  ##################################################################################
+  */
+  "contract_title": "Contrato",
+  "contract_code_choice": "Código",
+  "contract_read": "Leer contrato",
+  "contract_write": "Escribit contrato",
+  "contract_tip": "Apunto",
+  "contract_version": "Versión del compilador",
+  "contract_optimize": "optimización",
+  "contract_optimizer": "No",
+  "contract_optimizered": "Sí",
+  "contract_verify_status": "El contrato aún no ha sido verificado, haga clic aquí.",
+  "contract_verify_btn": "para verificar",
+  "write_payable": "Ejecuta estas funciones con TRX o otro token",
+  "write_nonePayable": "Ejecutar estas funciones consumirá TRX o Energía.",
+  "verify_code1": "Verificación del código fuente proporciona transparencia para los usuarios que interactúan con contratos inteligentes.",
+  "verify_code2": "Al cargar el código fuente, Tronscan comparará el código compilado con el de la cadena de bloques.",
+  "verify_code3": `Al igual que los contratos, un "contrato inteligente" debe proporcionar a los usuarios más información sobre lo que están "firmando digitalmente" y ofrecer a los usuarios la oportunidad de auditar el código para verificar de forma independiente que realmente hace lo que se supone que debe hacer.`,
+  /*
+   ##################################################################################
+   #                                                                                #
+   # deploy contract   2019-07-10                                    #
+   #                                                                                #
+   ##################################################################################
+  */
+  "contract_deployment":"Despliegue de contrato",
+  "contract_verification":"Verificación de contrato",
+  "contract_deploy_info":"Pon tu único archivo de smart contrato aquí",
+  "contract_deployment_btn_compile":"Compilar",
+  "contract_deployment_btn_deploy":"Desplegar",
+  "contract_compile_params":"Compilar params",
+  "compile_params_version":"Versión de solidez",
+  "compile_params_optimization":"Mejoramiento",
+  "compile_params_runs":"Runs",
+  "compile_first":"Por favor compila tu contrato de primero",
+  "contract_deploy_params":"Desplegar parámetros",
+  "contract_deploy_modal_info":"El despliegue del contrato costará un",
+  "deploy_params_fee_limit":"Límite de tarifa",
+  "deploy_params_user_fee_percentage":"Porcentaje de tarifa de usuario  ",
+  "deploy_params_energy_limit":"Límite de energía de origen",
+  "deploy_params_send_token":"Seleccione TRX o token para enviar ",
+  "deploy_params_constructor":"Parámetros para constructor",
+  "compile_close":"cerrar",
 };

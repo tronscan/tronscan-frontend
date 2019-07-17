@@ -738,7 +738,7 @@ export const messages = {
   "using_ledger_to_sign_transactions_message_0": "Ledger과 TRON 블록체인 브라우저를 이용하여 거래 서명을 진행 과정 중, Ledger 링크를 끊지 마시고, TRON APP를 열어두세요.",
   "using_ledger_to_sign_transactions_message_1": "거래 서명 시 블록체인 브라우저에 거래 정보 표시 파업을 해야 하며. 투표, TRX 발송, 계정 이름 변경들의 과정에서 모두 거래 서명이 필요합니다.",
   "ledger_note": "주의",
-  "ledger_note_message_1": "현재는 ledger nano S 만 지원됩니다.",
+  "ledger_note_message_1": "현재는 Ledger Nano S,Ledger Nano X,Ledger Blue 만 지원됩니다.",
   "ledger_note_message_2": "구글 chrome 브라우저 사용",
   "ledger_note_message_3": "지원 기능: TRX 전송, TRC 10 토큰 전송, TRC 20 토큰 전송, TRX 동결, TRX 해동， 투표, 계정 이름 설정.",
   "ledger_note_message_4": "현재 지원 불가능한 기능 ： 토큰 생성, 거래소 거래, 슈퍼 대표 신청, 락업한 토큰 해제, 블록 상금 수령, github링크 업데이트, 거래 조합 생성, 거래 조합 자본 투자, 거래조합 자본 회수.",
@@ -1293,6 +1293,7 @@ export const messages = {
   "propose_24": "평균 에너지 상한선",
   "propose_25": "계정 권한 업데이트 비용",
   "propose_26": "다중 서명 비용 수정 제안",
+  "propose_27": "Propose to support the new features of TRON Virtual Machine 0.5.4",
   "propose_minute": "분",
   "propose_unactivate": "열리지 않음",
   "propose_not_allowed": "허락되지 않음",
@@ -1522,12 +1523,12 @@ export const messages = {
   "trc20_hot": "인기",
   "trc20_top_Volume": "거래리스트",
   "trc20_top_Rising": "상승 목록",
-  "trc20_history":"시장 거래",
-  "trc20_register":"주문 도서",
-  "trc20_24h_h":"24h 높은",
-  "trc20_24h_l":"24h 낮은",
-  "trc20_fire_token":"50 lucky draws to win 100,000 VENA!",
-  "trc20_vena_tip":"VENA 계약의 특수성으로 인해 추가 0.1 VENA 는 승인되지만 공제되지 않습니다.",
+  "trc20_history": "시장 거래",
+  "trc20_register": "주문 도서",
+  "trc20_24h_h": "24h 높은",
+  "trc20_24h_l": "24h 낮은",
+  "trc20_fire_token": "50 lucky draws to win 100,000 VENA!",
+  "trc20_vena_tip": "VENA 계약의 특수성으로 인해 추가 0.1 VENA 는 승인되지만 공제되지 않습니다.",
   /*
    *  2018-12-18
    * */
@@ -1633,7 +1634,8 @@ export const messages = {
       #                                                                                #
       ##################################################################################
   */
-  "table_info_big": "처음 10,000 개의 데이터 만 표시됨",
+  "table_info_big1": "처음 ",
+  "table_info_big2":" 개의 데이터 만 표시됨",
   "table_info_big_tip1": "선택한 기간에는 총",
   "table_info_big_tip2": "개의 데이터가 있으며",
   "table_info_big_tip3": "현재 처음 10,000 개의 데이터 만 표시됩니다.",
@@ -1700,10 +1702,10 @@ export const messages = {
   "address_percentage": "비율",
   "address_net_fee": "대역폭 비용",
   "address_energy_fee": "에너지 비용",
-  "address_transfer_all":"모두",
-  "address_transfer_in":"전송",
-  "address_transfer_out":"전송",
-  "address_transfer_unrecorded_token":"Unrecorded Token",
+  "address_transfer_all": "모두",
+  "address_transfer_in": "전송",
+  "address_transfer_out": "전송",
+  "address_transfer_unrecorded_token": "Unrecorded Token",
 
   /*
   ##################################################################################
@@ -1712,14 +1714,14 @@ export const messages = {
   #                                                                                #
   ##################################################################################
   */
-  "footer_fellow_us":"Follow Us",
-  "footer_developer_resources":"Developer Resources",
-  "footer_support_center":"Support Center",
-  "footer_tron_network":"TRON",
-  "login_privatekey_warn":"계정 보안을 유지 및 자산 손실을 방지하기 위해서는 개인 키 (private key)를 잘 보관하고 다른 사람에게 절대 제공하지 마십시오. 또한 ",
-  "login_privatekey_warn_safe":"를 사용하여 로그인하는 것을 권장합니다.",
-  "token_does_not_support_exchange":"Token doesn't support trading now",
-  "token_trade":"거래",
+  "footer_fellow_us": "Follow Us",
+  "footer_developer_resources": "Developer Resources",
+  "footer_support_center": "Support Center",
+  "footer_tron_network": "TRON",
+  "login_privatekey_warn": "계정 보안을 유지 및 자산 손실을 방지하기 위해서는 개인 키 (private key)를 잘 보관하고 다른 사람에게 절대 제공하지 마십시오. 또한 ",
+  "login_privatekey_warn_safe": "를 사용하여 로그인하는 것을 권장합니다.",
+  "token_does_not_support_exchange": "Token doesn't support trading now",
+  "token_trade": "거래",
   "updata_token_info": "TOKEN 정보 업데이트",
   "input_transcan": "TRONSCAN 입력",
   "pass_time": "통과 시간",
@@ -1800,13 +1802,13 @@ export const messages = {
 
 
 
-    /*
-    ##################################################################################
-    #                                                                                #
-    # footer  2019-05-20                                    #
-    #                                                                                #
-    ##################################################################################
-    */
+  /*
+  ##################################################################################
+  #                                                                                #
+  # footer  2019-05-20                                    #
+  #                                                                                #
+  ##################################################################################
+  */
   "token_logo_input_placeholder": "이미지 링크 제출, jpg / jpeg / png 지원, 크기 비율 1 : 1",
   "project_website": "프로젝트 공식 웹사이트",
   "token_input_trc10_tip": "토큰을 업데이트 시 Logo, GitHub, 소셜 미디어 링크를 입력하십시오.",
@@ -1835,12 +1837,80 @@ export const messages = {
   "str_8": "컨트랙트는 이미 입력되었습니다.",
   "str_9": "매개 변수를 확인할 수 없습니다.",
   "type": "유형",
-  "token_login_no_updated":"로그인 계정이 발행자와 일치하지 않아 업데이트할 수 없습니다",
-  "information_is_being_confirmed":"Information is being confirmed, this process may take 10 minutes, please try again later",
-
+  "token_login_no_updated": "로그인 계정이 발행자와 일치하지 않아 업데이트할 수 없습니다",
+  "information_is_being_confirmed": "Information is being confirmed, this process may take 10 minutes, please try again later",
+  "my_account": "내 계정",
+  "delegate_other": "다른 사람에 의하여 동결",
+  "freeze_self": "나 자신에 의해 고정",
+  "total_amount": "총액",
+  "unfreeze_time": "해동 시간",
   "interTrx_tip": "내부 트랜잭션은 일반 주소가 스마트 계약을 호출하고 스마트 계약이 토큰을 다른 주소로 전송하는 작업입니다.",
   "event_tip": "이벤트는 프로그래머 또는 외부 인터페이스 제공 업체가 계약 작업 및 감사에주의를 기울일 수있게하는 것입니다.",
+   /* 2019-07-06*/
+   "trc20_free_orders":"0 trading fee for all orders",
+  "Expected_acquisition": "예상 이익",
+  "energy_more": "대역폭 획득= 대역폭 확보를 위해 TRX 동결 / 대역폭 확보를 위해 네트워크에서 동결된 총 TRX",
+  "bandwidth_more": "에너지 획득 = 에너지 획득을 위해 TRX 동결/에너지 획들을 위해 전체 네트워크에서 동결된 총 TRX 수 * 총 에너지 제한",
+  "table_info_big": "처음 10,000 개의 데이터 만 표시됨",
+  "Download": "다운로드",
 
-  /* 2019-07-06*/
-  "trc20_free_orders":"0 trading fee for all orders"
+  /*
+     ##################################################################################
+     #                                                                                #
+     # contract Compiler                                      #
+     #                                                                                #
+     ##################################################################################
+    */
+  "please_enter_address": '계약 주소를 입력하십시오',
+  "please_enter_name": '계약 이름을 입력하십시오',
+  "please_enter_code": '계약 코드를 입력하십시오',
+  /*
+  ##################################################################################
+  #                                                                                #
+  # read contract info   2019-07-02                                    #
+  #                                                                                #
+  ##################################################################################
+  */
+  "contract_title": "컨트랙트",
+  "contract_code_choice": "코드",
+  "contract_read": "컨트랙트 읽기",
+  "contract_write": "컨트랙트 작성",
+  "contract_tip": "프롬프트",
+  "contract_version": "컴파일러 버전",
+  "contract_optimize": "최적화",
+  "contract_optimizer": "No",
+  "contract_optimizered": "Yes",
+  "contract_verify_status": "컨트랙트가 확인되지 않았습니다. 여기를 클릭해주세요.",
+  "contract_verify_btn": "확인받기",
+  "write_payable": "TRX 또는 다른 토큰으로 기능들을 실행하십시오",
+  "write_nonePayable": "기능을 실행하면 TRX 또는 에너지가 소모됩니다",
+  "verify_code1": "소스 코드 검증은 스마트 컨트랙트와 상호 작용하는 사용자에게 투명성을 제공합니다",
+  "verify_code2": "소스 코드를 업로드하면 TRONSCAN이 컴파일 된 코드를 블록체인의 코드와 일치시킵니다",
+  "verify_code3": `계약과 마찬가지로 스마트 컨트랙트는 최종 사용자에게 "디지털 서명"에 대한 정보를 제공하고 사용자가 코드를 감사하여 실제로 수행해야 할 작업을 실제로 수행하는지 확인할 수 있는 기회를 제공합니다.`,
+
+  /*
+   ##################################################################################
+   #                                                                                #
+   # deploy contract   2019-07-10                                    #
+   #                                                                                #
+   ##################################################################################
+  */
+  "contract_deployment":"컨트랙트 배포",
+  "contract_verification":"컨트랙트 확인",
+  "contract_deploy_info":"스마트 컨트랙트 파일을 이곳에 제출하세요.",
+  "contract_deployment_btn_compile":"컴파일",
+  "contract_deployment_btn_deploy":"배포",
+  "contract_compile_params":"컴파일 Params",
+  "compile_params_version":"Solidity 버전",
+  "compile_params_optimization":"최적화",
+  "compile_params_runs":"Runs",
+  "compile_first":"먼저 컨트랙트를 작성해주세요",
+  "contract_deploy_params":"Params 배포",
+  "contract_deploy_modal_info":"컨트랙트 배포는 일정량의 TRX 또는 에너지를 소비합니다.",
+  "deploy_params_fee_limit":"수수료 한도",
+  "deploy_params_user_fee_percentage":"사용자 지출 비용",
+  "deploy_params_energy_limit":"에너지 한도",
+  "deploy_params_send_token":"전송할 TRX 또는 토큰 선택",
+  "deploy_params_constructor":"생성자를 위한 Params",
+  "compile_close":"닫기",
 };

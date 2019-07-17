@@ -17,6 +17,7 @@ const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPl
 const CompressionWebpackPlugin = require('compression-webpack-plugin');
 const UglifyJSPlugin = require('webpack/lib/optimize/UglifyJsPlugin');
 const DllReferencePlugin = require('webpack/lib/DllReferencePlugin');
+const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin');
 
 // Webpack uses `publicPath` to determine where the app is being served from.
 // It requires a trailing slash, or the file assets will get an incorrect path.
@@ -141,7 +142,7 @@ module.exports = {
         include: paths.appSrc,
       },
       {
-        // "oneOf" will traverse all following loaders until one will
+        // "oneOf" will traverse all following loaders until one wil
         // match the requirements. When no loader matches it will fall
         // back to the "file" loader at the end of the loader list.
         oneOf: [
@@ -166,6 +167,7 @@ module.exports = {
               path.resolve(paths.appNodeModules, "instascan/src/camera.js"),
               path.resolve(paths.appNodeModules, "instascan/src/scanner.js"),
               path.resolve(paths.appNodeModules, "instascan/index.js"),
+              path.resolve(paths.appNodeModules, "split-on-first/index.js"),
               '/home/rovak/workspace/tronscan-node-client/src',
             ],
             exclude:path.resolve(__dirname, 'node_modules'),
@@ -376,6 +378,10 @@ module.exports = {
     // if (process.env.NODE_ENV === 'production') { ... }. See `./env.js`.
     // It is absolutely essential that NODE_ENV was set to production here.
     // Otherwise React will be compiled in the very slow development mode.
+    new MonacoWebpackPlugin({
+        // available options are documented at https://github.com/Microsoft/monaco-editor-webpack-plugin#options
+        languages: ['solidity']
+    }),
     new webpack.DefinePlugin(env.stringified),
     // Minify the code.
     new webpack.optimize.UglifyJsPlugin({

@@ -1454,9 +1454,9 @@ export default class Account extends Component {
     }
     let hasFrozen = frozen.balances.length > 0;
     let hasResourceFrozen = accountResource.frozen_balance > 0
-    let url = 'https://trx.market/launchBase?utm_source=TS4'
+    let url = 'https://support.trx.market/hc/en-us/articles/360030644412-TRC20-USDT-Reloaded-with-Powerful-Aid-from-TRXMarket-15-000-USD-Awaits-'
     if(intl.locale == 'zh'){
-      url = 'https://trx.market/zh/launchBase?utm_source=TS4'
+      url = 'https://support.trx.market/hc/zh-cn/articles/360030644412-TRXMarket%E5%8A%A9%E5%8A%9BTRC20-USDT%E9%87%8D%E8%A3%85%E4%B8%8A%E9%98%B5-%E6%83%8A%E5%96%9C%E6%94%BE%E9%80%8110%E4%B8%87%E4%BA%BA%E6%B0%91%E5%B8%81'
     }
     return (
         <main className="container header-overlap token_black accounts">
@@ -1744,6 +1744,8 @@ export default class Account extends Component {
                        onClick={this.handleTRC20Token}>
                       {tu("TRC20_token")}
                     </a>
+                    <Link to={`/exchange/trc20`} className="ml-2 float-right"><span className="mr-1"  style={{textDecoration: 'underline'}}>{t("Trade_on_TRXMarket")}</span>></Link>
+                    
                   </div>
                   {
                     tokenTRC10 ? <div className="table-responsive-token">

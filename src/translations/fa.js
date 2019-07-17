@@ -737,7 +737,7 @@ export const messages = {
     "using_ledger_to_sign_transactions_message_0": "اطمینان حاصل کنید که لجررا متصل کرده و برنامه ترون را باز کنید تا با استفاده از لجر،در ترون اسکن معاملات را امضا کنید",
     "using_ledger_to_sign_transactions_message_1": "ترون اسکن هنگامی که یک امضا معامله مورد نیاز است، یک پنجره با جزئیات معامله نشان می دهد. هر زمان که شما رای دهید، ارسال تی آرایکس انجام دهید، تغییر نام حساب، و غیره  امضاها مورد نیاز است .",
     "ledger_note": "توجه",
-    "ledger_note_message_1": "فقط Ledger Nano S را پشتیبانی می کند.",
+    "ledger_note_message_1": "فقط Ledger Nano S,Ledger Nano X,Ledger Blue را پشتیبانی می کند.",
     "ledger_note_message_2": "از مرورگر گوگل کروم استفاده کنید",
     "ledger_note_message_3": "ما از TRX و TRC10 پشتیبانی می کنیم، معامله TRC20، فریز و آزاد کردن تی آرایکس، رای دادن، تنظیم نام.",
     "ledger_note_message_4": "در حال حاضر ویژگی های در دسترس نیست: معامله TRC20، آنفریز کردن TRC10، ایجاد توکن ، trxmarket، برنامه SR، برنامه پاداش SR، به روز رسانی Github، ایجاد جفت ارز، تزریق سرمایه و خروج سرمایه.",
@@ -1297,6 +1297,7 @@ export const messages = {
     "propose_24": "میانگین حد انرژی",
     "propose_25": "هزینه برای به روز رسانی مجوز های حساب",
     "propose_26": "پیشنهاد برای تغییر هزینه برای چند امضایی",
+    "propose_27": "Propose to support the new features of TRON Virtual Machine 0.5.4",
     "propose_minute": "دقیقه",
     "propose_unactivate": "فعال نشده است",
     "propose_not_allowed": "مجاز نیست",
@@ -1526,17 +1527,17 @@ export const messages = {
     "trc20_hot": "محبوب",
     "trc20_top_Volume": "لیست بازرگانی",
     "trc20_top_Rising": "لیست در حال افزایش است",
-    "trc20_history":"معاملات بازار",
-    "trc20_register":"سفارش کتاب",
-    "trc20_24h_h":"24h بالا",
-    "trc20_24h_l":"24h کم",
-    "trc20_fire_token":"50 lucky draws to win 100,000 VENA!",
-    "trc20_vena_tip":"Due to the particularity of VENA contract, extra 0.1 VENA will be authorized but not deducted.",
+    "trc20_history": "معاملات بازار",
+    "trc20_register": "سفارش کتاب",
+    "trc20_24h_h": "24h بالا",
+    "trc20_24h_l": "24h کم",
+    "trc20_fire_token": "50 lucky draws to win 100,000 VENA!",
+    "trc20_vena_tip": "Due to the particularity of VENA contract, extra 0.1 VENA will be authorized but not deducted.",
 
 
     /*
-    *  2018-12-18
-    * */
+     *  2018-12-18
+     * */
     "create_deal_pair": "ایجاد جفت های معاملاتی",
     "add_deal_pair_desc": "ایجاد جفت معاملاتی در دسترس است",
     "click_create": "برای ایجاد اینجا کلیک کنید",
@@ -1636,7 +1637,8 @@ export const messages = {
         #                                                                                #
         ##################################################################################
     */
-    "table_info_big": "فقط  10،000 صفحه اول نمایش داده می شود",
+    "table_info_big1": "  صفحه اول نمایش داده می شود",
+    "table_info_big2": "فقط ",
     "table_info_big_tip1": " داده در طول زمان مشخص شده انتخاب شده ",
     "table_info_big_tip2": "در مجموع، ",
     "table_info_big_tip3": "در حال حاضر تنها 10،000 صفحه نمایش داده می شود.",
@@ -1697,19 +1699,19 @@ export const messages = {
     "address_total_balance_info_sources": "منبع اطلاعات",
     "address_info_transfers": "انتقال",
     "address_info_transactions": "معاملات",
-    "address_netLimit":"کل پهنای باند",
-    "address_netRemaining":"پهنای موجود",
-    "address_netUsed":"پهنای باند استفاده شده",
-    "address_energyLimit":"کل انرژی",
-    "address_energyRemaining":"انرژی موجود",
-    "address_energyUsed":"انرژی استفاده شده",
-    "address_percentage":"نسبت",
-    "address_net_fee":"هزینه پهنای باند",
-    "address_energy_fee":"هزینه انرژی",
-    "address_transfer_all":"همه",
-    "address_transfer_in":"وارد",
-    "address_transfer_out":"خارج",
-    "address_transfer_unrecorded_token":"Unrecorded Token",
+    "address_netLimit": "کل پهنای باند",
+    "address_netRemaining": "پهنای موجود",
+    "address_netUsed": "پهنای باند استفاده شده",
+    "address_energyLimit": "کل انرژی",
+    "address_energyRemaining": "انرژی موجود",
+    "address_energyUsed": "انرژی استفاده شده",
+    "address_percentage": "نسبت",
+    "address_net_fee": "هزینه پهنای باند",
+    "address_energy_fee": "هزینه انرژی",
+    "address_transfer_all": "همه",
+    "address_transfer_in": "وارد",
+    "address_transfer_out": "خارج",
+    "address_transfer_unrecorded_token": "Unrecorded Token",
 
     /*
     ##################################################################################
@@ -1719,14 +1721,14 @@ export const messages = {
     ##################################################################################
 */
 
-    "footer_fellow_us":"Follow Us",
-    "footer_developer_resources":"Developer Resources",
-    "footer_support_center":"Support Center",
-    "footer_tron_network":"TRON",
-    "login_privatekey_warn":"برای اطمینان از امنیت حساب خود، لطفا از کلید خصوصی خود مراقبت کنید ، برای جلوگیری از از دست دادن دارایی. توصیه می شود از ",
-    "login_privatekey_warn_safe":"  برای ورود امن استفاده کنید.",
-    "token_does_not_support_exchange":"Token doesn't support trading now",
-    "token_trade":"تبادل",
+    "footer_fellow_us": "Follow Us",
+    "footer_developer_resources": "Developer Resources",
+    "footer_support_center": "Support Center",
+    "footer_tron_network": "TRON",
+    "login_privatekey_warn": "برای اطمینان از امنیت حساب خود، لطفا از کلید خصوصی خود مراقبت کنید ، برای جلوگیری از از دست دادن دارایی. توصیه می شود از ",
+    "login_privatekey_warn_safe": "  برای ورود امن استفاده کنید.",
+    "token_does_not_support_exchange": "Token doesn't support trading now",
+    "token_trade": "تبادل",
     "updata_token_info": "به روز رسانی اطلاعات توکن",
     "input_transcan": "وارد ترون اسکن شوید",
     "pass_time": "زمان تایید شدن ",
@@ -1832,15 +1834,82 @@ export const messages = {
     "str_8": "قرارداد وارد شده است .",
     "str_9": "تأیید پارامتر انجام نشده است .",
     "type": "تایپ",
-    "token_login_no_updated":"حساب کاربری با صادر کننده ناسازگار است و نمی تواند به روز شود",
-    "information_is_being_confirmed":"Information is being confirmed, this process may take 10 minutes, please try again later",
+    "token_login_no_updated": "حساب کاربری با صادر کننده ناسازگار است و نمی تواند به روز شود",
+    "information_is_being_confirmed": "Information is being confirmed, this process may take 10 minutes, please try again later",
 
-
+    "my_account": "حساب من",
+    "delegate_other": " فریز توسط دیگران",
+    "freeze_self": " فریز توسط من",
+    "total_amount": "مقدار کل",
+    "unfreeze_time": "زمان آزاد کردن",
 
     "interTrx_tip": "معاملات داخلی عملیاتی است که یک آدرس کلی آدرس یک قرارداد هوشمند را فراخوانی می کند و قرارداد هوشمند نقل قول را به آدرس دیگری انتقال می دهد.",
     "event_tip": "رویدادها این است که اجازه دهید برنامهنویس یا ارائه دهنده رابط خارجی از آن برای توجه به عملیات قرارداد و ممیزی استفاده کند.",
-  
     /* 2019-07-06*/
-  "trc20_free_orders":"0 trading fee for all orders"
+    "trc20_free_orders": "0 trading fee for all orders",
 
+    "Expected_acquisition": "برآورد سود",
+    "energy_more": "پهنای باند به دست آمده = TRX فریز شده برای رسیدن به پهنای باند / کل TRX فریز شده در شبکه برای به دست آوردن پهنای باند .",
+    "bandwidth_more": "انرژی به دست آمده = TRX فریز شده برای به دست آوردن انرژی / کل TRXفریز شده برای به دست آوردن انرژی در کل شبکه * محدودیت کل انرژی.",
+    "Download": "دانلود",
+
+
+    /*
+   ##################################################################################
+   #                                                                                #
+   # contract Compiler                                      #
+   #                                                                                #
+   ##################################################################################
+  */
+    "please_enter_address": 'لطفا آدرس قرارداد را وارد کنید',
+    "please_enter_name": 'لطفا نام قرارداد را وارد کنید',
+    "please_enter_code": 'لطفا کد قرارداد را وارد کنید',
+    /*
+    ##################################################################################
+    #                                                                                #
+    # read contract info   2019-07-02                                    #
+    #                                                                                #
+    ##################################################################################
+    */
+    "contract_title": "قرارداد",
+    "contract_code_choice": "کد",
+    "contract_read": "خواندن قرارداد",
+    "contract_write": "نوشتن قرارداد",
+    "contract_tip": "سریع",
+    "contract_version": "نسخه تکمیل شده ",
+    "contract_optimize": "بهینه سازی",
+    "contract_optimizer": "نه",
+    "contract_optimizered": "بله",
+    "contract_verify_status": "قرارداد تاکنون تأیید نشده است، اینجا کلیک کنید",
+    "contract_verify_btn": "به منظور بررسی ",
+    "write_payable": "این کار را با TRX یا Token اجرا کنید",
+    "write_nonePayable": "اجرای این عمل TRX یا انرژی مصرف می کند",
+    "verify_code1": "تأیید کد منبع، شفافیت را برای کاربران در تعامل با قراردادهای هوشمند را فراهم می کند",
+    "verify_code2": "با آپلود کردن کد منبع،کد وارد شده Transcan  در بلاکچین مطابقت خواهد یافت ",
+    "verify_code3":`درست مثل قرارداد، "قرارداد هوشمند" باید کاربران نهایی را با اطلاعات بیشتری در مورد آنچه که "امضای دیجیتالی"  فراهم می کند و به کاربران اجازه دهد که کد را به صورت مستقل بررسی کنند که در واقع آنچه را که قرار است انجام گیرد انجام دهد.`,
+    /*
+     ##################################################################################
+     #                                                                                #
+     # deploy contract   2019-07-10                                    #
+     #                                                                                #
+     ##################################################################################
+    */
+    "contract_deployment":"استقرار قرارداد",
+    "contract_verification":"تأیید قرارداد",
+    "contract_deploy_info":"فایل  قرارداد هوشمند خود را تک به تک در اینجا قرار دهید",
+    "contract_deployment_btn_compile":"گردآوری",
+    "contract_deployment_btn_deploy":"استقرار",
+    "contract_compile_params":"پارامترهای گرد آوردی",
+    "compile_params_version":"نسخه استحکام",
+    "compile_params_optimization":"بهينه سازي.",
+    "compile_params_runs":"Runs",
+    "compile_first":"لطفا ابتدا قرارداد خود را کامپایل کنید.",
+    "contract_deploy_params":"استقرار پارامترها",
+    "contract_deploy_modal_info":"استقرار قرارداد یک مقدار مشخصی از TRX یا انرژی هزینه خواهد داشت.",
+    "deploy_params_fee_limit":"محدودیت هزینه",
+    "deploy_params_user_fee_percentage":"درصد هزینه کاربر",
+    "deploy_params_energy_limit":"حد مجاز انرژی",
+    "deploy_params_send_token":"انتخاب TRX یا توکن برای ارسال.",
+    "deploy_params_constructor":"پارامترهای سازنده",
+    "compile_close":"بستن",
 };

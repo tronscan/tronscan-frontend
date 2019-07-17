@@ -739,7 +739,7 @@
   "using_ledger_to_sign_transactions_message_0": "تأكد من إبقاء ليدجر متصلاً وفتح تطبيق ترون لتوقيع المعاملات باستخدام ليدجر أثناء استخدام ترون سكان",
   "using_ledger_to_sign_transactions_message_1": "ستظهر ترون سكان نافذة منبثقة تحتوي على تفاصيل المعاملة عندما يكون توقيع الصفقة مطلوبًا ، والتوقيعات أيضا مطلوبة عند التصويت وعند وإرسال ترون وتغيير اسم الحساب وما إلى ذلك.",
   "ledger_note": "انتبه",
-  "ledger_note_message_1": "Ledger Nano S الآن فقط يوجد دعم لـ ",
+  "ledger_note_message_1": "Ledger Nano S,Ledger Nano X,Ledger Blue الآن فقط يوجد دعم لـ ",
   "ledger_note_message_2": "Google Chrome استخدم متصفح ",
   "ledger_note_message_3": "وظائف الدعم: نقل TRX ، نقل TRC 10 ، نقل TRC 20 ، تجميد TRX ، تجميد TRX ، التصويت ، تعيين اسم الحساب",
   "ledger_note_message_4": "الميزات غير متوفرة حاليًا:  إلغاء الرموز المميزة لتي ار سي 10 ، إنشاء الرمز المميز ، ترون ماركت ، تطبيق الممثل الممتاز ، تطبيق مكافآت الممثل الممتاز ، تحديث جيثيب ، إنشاء زوج التداول ، ضخ رأس المال وسحب رأس المال.",
@@ -1293,6 +1293,7 @@
   "propose_24": "الحد الأعلى لمتوسط الطاقة",
   "propose_25": "رسوم ضبط تحديث إمتيازات الحساب",
   "propose_26": "يوصى بتعديل تكلفة التوقيعات المتعددة",
+  "propose_27": "Propose to support the new features of TRON Virtual Machine 0.5.4",
   "propose_minute": "دقيقة",
   "propose_unactivate": "غير مفتوح",
   "propose_not_allowed": "غير مسموح",
@@ -1527,8 +1528,8 @@
   "trc20_register": "سجل الطلبيات",
   "trc20_24h_h": "24h متوسط",
   "trc20_24h_l": "24h منخفض",
-  "trc20_fire_token":"50 lucky draws to win 100,000 VENA!",
-  "trc20_vena_tip":"Due to the particularity of VENA contract, extra 0.1 VENA will be authorized but not deducted.",
+  "trc20_fire_token": "50 lucky draws to win 100,000 VENA!",
+  "trc20_vena_tip": "Due to the particularity of VENA contract, extra 0.1 VENA will be authorized but not deducted.",
 
 
   /*
@@ -1637,7 +1638,8 @@
       #                                                                                #
       ##################################################################################
   */
-  "table_info_big": "عرض أول 10000 بيانات فقط",
+  "table_info_big1": " بيانات فقط",
+  "table_info_big2": "عرض أول ",
   "table_info_big_tip1": "تم اختيار ما مجموعه",
   "table_info_big_tip2": "من البيانات خلال الوقت المحدد ، ",
   "table_info_big_tip3": "ولم يتم عرض سوى 10000",
@@ -1686,29 +1688,29 @@
       ##################################################################################
   */
 
-    "address_balance_token_type":"فئة التوكن",
-    "address_balance_token_price_TRX":"قيمة",
-    "address_transactions_tip":"عدد المعاملات يشمل عدد التحويلات",
-    "address_tron_power_tip":"قم بتجميد TRX للحصول على حقوق التصويت",
-    "address_total_balance_tip":"يتضمن الرصيد الكلي كل قيمة للتكون",
-    "address_tron_power_used":"تم استخدامه",
-    "address_tron_power_remaining":"الفائض",
-    "address_total_balance_info_sources":"مصادر المعلومات",
-    "address_info_transfers": "تحويل",
-    "address_info_transactions": "التداول",
-    "address_netLimit":"إجمالي النطاق الترددي",
-    "address_netRemaining":"النطاق الترددي المتاح",
-    "address_netUsed":"عرض النطاق الترددي مستخدم",
-    "address_energyLimit":"مجموع الطاقة",
-    "address_energyRemaining":"الطاقة المتاحة",
-    "address_energyUsed":"الطاقة المستخدمة",
-    "address_percentage":"النسبة",
-    "address_net_fee":"تكلفة النطاق الترددي",
-    "address_energy_fee":"تكلفة الطاقة",
-    "address_transfer_all":"الكل",
-    "address_transfer_in":"الدخل",
-    "address_transfer_out":"الانفاق",
-    "address_transfer_unrecorded_token":"Unrecorded Token",
+  "address_balance_token_type": "فئة التوكن",
+  "address_balance_token_price_TRX": "قيمة",
+  "address_transactions_tip": "عدد المعاملات يشمل عدد التحويلات",
+  "address_tron_power_tip": "قم بتجميد TRX للحصول على حقوق التصويت",
+  "address_total_balance_tip": "يتضمن الرصيد الكلي كل قيمة للتكون",
+  "address_tron_power_used": "تم استخدامه",
+  "address_tron_power_remaining": "الفائض",
+  "address_total_balance_info_sources": "مصادر المعلومات",
+  "address_info_transfers": "تحويل",
+  "address_info_transactions": "التداول",
+  "address_netLimit": "إجمالي النطاق الترددي",
+  "address_netRemaining": "النطاق الترددي المتاح",
+  "address_netUsed": "عرض النطاق الترددي مستخدم",
+  "address_energyLimit": "مجموع الطاقة",
+  "address_energyRemaining": "الطاقة المتاحة",
+  "address_energyUsed": "الطاقة المستخدمة",
+  "address_percentage": "النسبة",
+  "address_net_fee": "تكلفة النطاق الترددي",
+  "address_energy_fee": "تكلفة الطاقة",
+  "address_transfer_all": "الكل",
+  "address_transfer_in": "الدخل",
+  "address_transfer_out": "الانفاق",
+  "address_transfer_unrecorded_token": "Unrecorded Token",
 
 
   /*
@@ -1723,8 +1725,8 @@
   "footer_developer_resources": "Developer Resources",
   "footer_support_center": "Support Center",
   "footer_tron_network": "TRON",
-  "login_privatekey_warn":"للحفاظ على أمان حسابك يرجى الاحتفاظ بمفتاحك الخاص في حالة فقد الأصول الخاصة بك ، ويوصى باستخدام ",
-  "login_privatekey_warn_safe":"  لتسجيل الدخول الآمن.",
+  "login_privatekey_warn": "للحفاظ على أمان حسابك يرجى الاحتفاظ بمفتاحك الخاص في حالة فقد الأصول الخاصة بك ، ويوصى باستخدام ",
+  "login_privatekey_warn_safe": "  لتسجيل الدخول الآمن.",
   "updata_token_info": "تحديث بيانات الرموز",
   "input_transcan": "أدخل TRONSCAN",
   "pass_time": "بحلول الوقت",
@@ -1830,13 +1832,78 @@
   "str_8": "تم إدخال العقد",
   "str_9": "غير قادر على التحقق من المعلمات",
   "type": "نوع",
-  "token_login_no_updated":"حساب تسجيل الدخول غير متوافق مع الناشر ولا يمكن تحديثه",
-  "information_is_being_confirmed":"Information is being confirmed, this process may take 10 minutes, please try again later",
-
-
+  "token_login_no_updated": "حساب تسجيل الدخول غير متوافق مع الناشر ولا يمكن تحديثه",
+  "information_is_being_confirmed": "Information is being confirmed, this process may take 10 minutes, please try again later",
+  "my_account": "حسابي",
+  "delegate_other": "تجميد بواسطة الآخرين",
+  "freeze_self": "تجميد نفسي",
+  "total_amount": "المبلغ الإجمالي",
+  "unfreeze_time": "  وقت الغاء التجميد ",
   "interTrx_tip": "المعاملات الداخلية هي عملية يطلق عليها عنوان عام العقد الذكي transfers وينقل العقد الذكي الرمز المميز إلى عنوان آخر.",
   "event_tip": "الأحداث هي السماح للمبرمج أو موفر الواجهة الخارجية باستخدامه للانتباه إلى عمليات التعاقد والتدقيق.",
+  "Expected_acquisition": "الربح المقدر",
+  "energy_more": "عرض النطاق الترددي الذي تم الحصول عليه = TRX المجمدة لكسب عرض النطاق الترددي / إجمالي TRX المجمدة في الشبكة للحصول على عرض النطاق الترددي",
+  "bandwidth_more": "الطاقة التي تم الحصول عليها = TRX امجمدة للحصول على الطاقة / إجمالي TRX المجمدة للحصول على الطاقة في الشبكة بالكامل * الحد الإجمالي للطاقة.",
+  "table_info_big": "عرض أول 10000 بيانات فقط",
+  "Download": "تحميل",
+  "trc20_free_orders": "0 trading fee for all orders",
 
-  /* 2019-07-06*/
-  "trc20_free_orders":"0 trading fee for all orders"
+  /*
+  ##################################################################################
+  #                                                                                #
+  # contract Compiler                                      #
+  #                                                                                #
+  ##################################################################################
+ */
+  "please_enter_address": 'الرجاء إدخال عنوان العقد',
+  "please_enter_name": 'الرجاء إدخال اسم العقد',
+  "please_enter_code": 'الرجاء إدخال رمز العقد',
+  /*
+  ##################################################################################
+  #                                                                                #
+  # read contract info   2019-07-02                                    #
+  #                                                                                #
+  ##################################################################################
+  */
+  "contract_title": "العقد",
+  "contract_code_choice": "الشفرة",
+  "contract_read": "قراءة العقد",
+  "contract_write": "اكتب العقد",
+  "contract_tip": "المطلوب",
+  "contract_version": "إصدار المترجم",
+  "contract_optimize": "الأمثل",
+  "contract_optimizer": "لا",
+  "contract_optimizered": "نعم فعلا",
+  "contract_verify_status": "لم يتم التحقق من العقد بعد ، انقر هنا",
+  "contract_verify_btn": "للتحقق",
+  "write_payable": "قم بتشغيل هذه الوظائف باستخدام TRX أو الرمز المميز",
+  "write_nonePayable": "تشغيل هذه الوظائف سوف تستهلك TRX أو الطاقة",
+  "verify_code1": "يوفر التحقق من شفرة المصدر شفافية للمستخدمين الذين يتفاعلون مع العقود الذكية",
+  "verify_code2": "عن طريق تحميل الكود المصدري سوف يقوم Tronscan بمطابقة الكود المترجم مع الكود على البلوكشين",
+  "verify_code3":`تمامًا مثل العقود ، يجب أن يوفر "العقد الذكي" للمستخدمين مزيدًا من المعلومات حول ما "يوقعون عليه رقميًا" ويمنح المستخدمين فرصة لمراجعة الكود للتحقق بشكل مستقل من أنه يقوم بالفعل بما يفترض القيام به.`,
+  /*
+   ##################################################################################
+   #                                                                                #
+   # deploy contract   2019-07-10                                    #
+   #                                                                                #
+   ##################################################################################
+  */
+  "contract_deployment":"نشر العقد",
+  "contract_verification":"التحقق من العقد",
+  "contract_deploy_info":"ضَع المَلَف الوَحيد الخَاص بِك لِلعَقد الذَكِي هُنا",
+  "contract_deployment_btn_compile":"المترجم",
+  "contract_deployment_btn_deploy":"نشر",
+  "contract_compile_params":"ترجمة Params",
+  "compile_params_version":"إصدار صلب",
+  "compile_params_optimization":"الأمثل",
+  "compile_params_runs":"Runs",
+  "compile_first":"يرجى أولا ترجمة العقد الخاص بك",
+  "contract_deploy_params":"نشر Params",
+  "contract_deploy_modal_info":"سوف يكلف نشر العقد كمية معينة من TRX أو الطاقة",
+  "deploy_params_fee_limit":"حد الرسوم",
+  "deploy_params_user_fee_percentage":"نسبة رسوم المستخدم",
+  "deploy_params_energy_limit":"الحد من الطاقة الأصلية",
+  "deploy_params_send_token":"حدد TRX أو الرمز المميز للإرسال",
+  "deploy_params_constructor":"حجة المنشئ",
+  "compile_close":"أغلق",
 };

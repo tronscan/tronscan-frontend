@@ -874,7 +874,6 @@ class Navigation extends React.Component {
     let {search, popup, notifications, announcement, announId, annountime, searchResults} = this.state;
 
     let activeComponent = this.getActiveComponent();
-
     return (
         <div className="header-top">
           {popup}
