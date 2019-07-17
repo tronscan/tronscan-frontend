@@ -32,7 +32,7 @@ class ApiClient20 {
     this.SCANUrl = "https://tronscanorg.zendesk.com";
 
     // *** test
-    this.apiUrl = "https://testapi.trx.market";
+    // this.apiUrl = "https://testapi.trx.market";
   }
 
   async getexchanges20(options = {}) {
