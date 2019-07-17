@@ -67,7 +67,7 @@ class ExchangeList extends React.Component {
       hr: "",
       min: "",
       sec: "",
-      AdClose: true,
+      AdClose: false,
       adURL: "https://trx.market/launchBase?utm_source=TS2",
       adchURL: "https://trx.market/zh/launchBase?utm_source=TS2",
       activedId: 0,
