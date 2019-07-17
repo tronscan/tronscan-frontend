@@ -28,16 +28,17 @@ class ExchangeTable extends Component {
       offlineToken: [30],
       // 交易赛对象
       transcationObj: {
-        id: [63],
+        id: [48, 66],
         linkUrl: {
           en:
-            "https://support.trx.market/hc/en-us/articles/360029524032-VCOIN-Trading-Competition-10-000-VCOIN-to-Win-",
+            "https://support.trx.market/hc/en-us/articles/360030644412-TRC20-USDT-Reloaded-with-Powerful-Aid-from-TRXMarket-15-000-USD-Awaits-",
           zh:
-            "https://support.trx.market/hc/zh-cn/articles/360029524032-VCOIN%E7%A4%BE%E5%8C%BA%E5%9B%9E%E9%A6%88-10-000-VCOIN%E5%A4%A7%E6%94%BE%E9%80%81"
+            "https://support.trx.market/hc/zh-cn/articles/360030644412-TRXMarket%E5%8A%A9%E5%8A%9BTRC20-USDT%E9%87%8D%E8%A3%85%E4%B8%8A%E9%98%B5-%E6%83%8A%E5%96%9C%E6%94%BE%E9%80%8110%E4%B8%87%E4%BA%BA%E6%B0%91%E5%B8%81"
         },
         text: {
-          en: "VCOIN Trading Competition—10,000 VCOIN to Win!",
-          zh: "VCOIN社区回馈，10,000 VCOIN大放送"
+          en:
+            "TRC20-USDT Reloaded with Powerful Aid from TRXMarket - 15,000 USD Awaits!",
+          zh: "TRXMarket助力TRC20-USDT重装上阵，惊喜放送10万人民币"
         }
       }
     };
@@ -147,7 +148,7 @@ class ExchangeTable extends Component {
                 </p>
               </div>
 
-              {/* {transcationObj.id.includes(record.id) && (
+              {transcationObj.id.includes(record.id) && (
                 <div>
                   <Popover content={content} title="">
                     <img
@@ -160,7 +161,7 @@ class ExchangeTable extends Component {
                     />
                   </Popover>
                 </div>
-              )} */}
+              )}
             </div>
           );
         }

@@ -131,7 +131,7 @@ class ExchangeList extends React.Component {
     let { tokenAudited, activedTab, inputValue, activedId } = this.state;
     if (inputValue) {
       if (exchanges20SearchList !== prevProps.exchanges20SearchList) {
-        this.setSearchList(activedTab,activedId)
+        this.setSearchList(activedTab, activedId);
         // this.setState({
         //   dataSource: exchanges20SearchList
         // });
@@ -405,7 +405,13 @@ class ExchangeList extends React.Component {
           </div>
 
           {/* filter 筛选 */}
-          <div className={intl.locale !== "en" ? "dex-tab tab-lar tab-pr-100" : "dex-tab tab-lar tab-pr-100 tab-en"}>
+          <div
+            className={
+              intl.locale !== "en"
+                ? "dex-tab tab-lar tab-pr-100"
+                : "dex-tab tab-lar tab-pr-100 tab-en"
+            }
+          >
             <Tabs onChange={this.tabChange} activeKey={activedTab}>
               <TabPane
                 tab={
@@ -488,7 +494,7 @@ class ExchangeList extends React.Component {
     });
   }
   tabChange(activeKey) {
-    const { time, timeVolume, timeupDown, inputValue,timeSearch } = this.state;
+    const { time, timeVolume, timeupDown, inputValue, timeSearch } = this.state;
     const {
       getExchanges20,
       getExchanges20Volume,
@@ -500,7 +506,7 @@ class ExchangeList extends React.Component {
     clearInterval(timeSearch);
     if (inputValue) {
       this.setState({
-        activedTab: activeKey,
+        activedTab: activeKey
         // activedId: 0
       });
       this.setSearchList(activeKey, 0);
@@ -614,7 +620,7 @@ class ExchangeList extends React.Component {
         activedId: activedId,
         dataSource: this.keyObj(activedTab)
       });
-    }else{
+    } else {
       this.getSearchList(e.target.value);
     }
   }
@@ -676,10 +682,10 @@ class ExchangeList extends React.Component {
         return v.second_token_abbr == id;
       });
     }
-    this.setState(()=>{
+    this.setState(() => {
       return {
         dataSource: list
-      }
+      };
     });
   }
 }
