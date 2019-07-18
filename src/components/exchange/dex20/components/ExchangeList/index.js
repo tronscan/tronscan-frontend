@@ -468,7 +468,7 @@ class ExchangeList extends React.Component {
                 {loading ? (
                   <TronLoader />
                 ) : (
-                  <ExchangeTable dataSource={dataSource} />
+                  <ExchangeTable dataSource={dataSource} isAdClose={AdClose}/>
                 )}
               </div>
             </div>

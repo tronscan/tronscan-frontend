@@ -40,13 +40,14 @@ class ExchangeTable extends Component {
             "TRC20-USDT Reloaded with Powerful Aid from TRXMarket - 15,000 USD Awaits!",
           zh: "TRXMarket助力TRC20-USDT重装上阵，惊喜放送10万人民币"
         }
-      }
+      },
+      AdClose:props.isAdClose
     };
   }
 
   getColumns() {
     let { intl, price, activeCurrency, activeLanguage } = this.props;
-    let { dataSource, offlineToken, transcationObj } = this.state;
+    let { dataSource, offlineToken, transcationObj,AdClose } = this.state;
     let isfov = Lockr.get("DEX") == "GEM";
     let favList = Lockr.get("dex20") || [];
 
@@ -264,7 +265,7 @@ class ExchangeTable extends Component {
             return index;
           }}
           rowClassName={this.setActiveClass}
-          scroll={{ y: 1250 }}
+          scroll={{ y: 760 }}
           className="tab-pdr"
           onRow={record => {
             return {
