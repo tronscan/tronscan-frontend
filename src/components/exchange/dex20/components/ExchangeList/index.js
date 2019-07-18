@@ -463,7 +463,6 @@ class ExchangeList extends React.Component {
             <div>
               <div
                 className="exchange-list__table"
-                style={AdClose ? styles.list : styles.adlist}
               >
                 {loading ? (
                   <TronLoader />
@@ -720,11 +719,4 @@ export default connect(
   mapDispatchToProps
 )(withRouter(injectIntl(ExchangeList)));
 
-const styles = {
-  list: {
-    // height: 350
-  },
-  adlist: {
-    height: 106
-  }
-};
+
