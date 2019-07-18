@@ -1893,6 +1893,9 @@ export const messages = {
   "total_amount":"Cantidad total",
   "unfreeze_time": "Fecha de descongelación",
   "interTrx_tip": "Transacciones internas es una operación que una dirección general llama un Contrato inteligente, y el Contrato inteligente transfiere el token a otra dirección.",
+  "event_tip": "Los eventos son para permitir que el programador o el proveedor de la interfaz externa lo utilicen para prestar atención a las operaciones y auditorías del contrato.",
+  /* 2019-07-06*/
+  "trc20_free_orders": "0 trading fee for all orders",
   "Expected_acquisition":"Ganancia estimada",
   "energy_more":"Ancho de banda obtenido = TRX congelado para obtener ancho de banda / el TRX total congelado en la red para ganar ancho de banda.",
   "bandwidth_more":"Energía obtenida = TRX congelado para obtener energía / TRX total congelado para obtener energía en toda la red * límite de energía total.",

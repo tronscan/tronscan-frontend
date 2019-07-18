@@ -1948,4 +1948,7 @@ export const messages = {
 
 
 
+  /* 2019-07-06*/
+  "trc20_free_orders":"您在TRXMarket的所有交易都无需手续费"
+
 };

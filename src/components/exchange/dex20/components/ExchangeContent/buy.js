@@ -274,6 +274,11 @@ class Buy extends Component {
           >
             {tu("BUY")} &nbsp;{exchangeData.fShortName}
           </Button>
+          <div className="txt-center">
+           
+              {tu("trc20_free_orders")}
+            
+          </div>
           {/* </FormItem> */}
         </Form>
       </div>

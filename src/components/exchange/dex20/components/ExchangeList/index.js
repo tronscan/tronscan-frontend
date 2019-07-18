@@ -67,9 +67,9 @@ class ExchangeList extends React.Component {
       hr: "",
       min: "",
       sec: "",
-      AdClose: true,
-      adURL: "https://trx.market/launchBase?utm_source=TS2",
-      adchURL: "https://trx.market/zh/launchBase?utm_source=TS2",
+      AdClose: false,
+      adURL: "https://support.trx.market/hc/en-us/articles/360030644412-TRC20-USDT-Reloaded-with-Powerful-Aid-from-TRXMarket-15-000-USD-Awaits-",
+      adchURL: "https://support.trx.market/hc/zh-cn/articles/360030644412-TRXMarket%E5%8A%A9%E5%8A%9BTRC20-USDT%E9%87%8D%E8%A3%85%E4%B8%8A%E9%98%B5-%E6%83%8A%E5%96%9C%E6%94%BE%E9%80%8110%E4%B8%87%E4%BA%BA%E6%B0%91%E5%B8%81",
       activedId: 0,
       activedTab: "hot",
       priceObj: {},
@@ -131,7 +131,7 @@ class ExchangeList extends React.Component {
     let { tokenAudited, activedTab, inputValue, activedId } = this.state;
     if (inputValue) {
       if (exchanges20SearchList !== prevProps.exchanges20SearchList) {
-        this.setSearchList(activedTab,activedId)
+        this.setSearchList(activedTab, activedId);
         // this.setState({
         //   dataSource: exchanges20SearchList
         // });
@@ -326,17 +326,17 @@ class ExchangeList extends React.Component {
               <img
                 src={
                   intl.locale == "zh"
-                    ? require("../../../../../images/market/ieo_zh.png")
-                    : require("../../../../../images/market/ieo_en.png")
+                    ? require("../../../../../images/market/ad_1_zh.png")
+                    : require("../../../../../images/market/ad_1_en.png")
                 }
-                alt="ieo"
+                alt="ad"
               />
-              <ul>
+              {/* <ul>
                 <li>{day}</li>
                 <li>{hr}</li>
                 <li>{min}</li>
                 <li>{sec}</li>
-              </ul>
+              </ul> */}
               <i
                 className="market-ad-close"
                 onClick={e => {
@@ -405,7 +405,13 @@ class ExchangeList extends React.Component {
           </div>
 
           {/* filter 筛选 */}
-          <div className={intl.locale !== "en" ? "dex-tab tab-lar tab-pr-100" : "dex-tab tab-lar tab-pr-100 tab-en"}>
+          <div
+            className={
+              intl.locale !== "en"
+                ? "dex-tab tab-lar tab-pr-100"
+                : "dex-tab tab-lar tab-pr-100 tab-en"
+            }
+          >
             <Tabs onChange={this.tabChange} activeKey={activedTab}>
               <TabPane
                 tab={
@@ -457,12 +463,11 @@ class ExchangeList extends React.Component {
             <div>
               <div
                 className="exchange-list__table"
-                style={AdClose ? styles.list : styles.adlist}
               >
                 {loading ? (
                   <TronLoader />
                 ) : (
-                  <ExchangeTable dataSource={dataSource} />
+                  <ExchangeTable dataSource={dataSource} isAdClose={AdClose}/>
                 )}
               </div>
             </div>
@@ -488,7 +493,7 @@ class ExchangeList extends React.Component {
     });
   }
   tabChange(activeKey) {
-    const { time, timeVolume, timeupDown, inputValue,timeSearch } = this.state;
+    const { time, timeVolume, timeupDown, inputValue, timeSearch } = this.state;
     const {
       getExchanges20,
       getExchanges20Volume,
@@ -500,7 +505,7 @@ class ExchangeList extends React.Component {
     clearInterval(timeSearch);
     if (inputValue) {
       this.setState({
-        activedTab: activeKey,
+        activedTab: activeKey
         // activedId: 0
       });
       this.setSearchList(activeKey, 0);
@@ -614,7 +619,7 @@ class ExchangeList extends React.Component {
         activedId: activedId,
         dataSource: this.keyObj(activedTab)
       });
-    }else{
+    } else {
       this.getSearchList(e.target.value);
     }
   }
@@ -676,10 +681,10 @@ class ExchangeList extends React.Component {
         return v.second_token_abbr == id;
       });
     }
-    this.setState(()=>{
+    this.setState(() => {
       return {
         dataSource: list
-      }
+      };
     });
   }
 }
@@ -714,11 +719,4 @@ export default connect(
   mapDispatchToProps
 )(withRouter(injectIntl(ExchangeList)));
 
-const styles = {
-  list: {
-    // height: 350
-  },
-  adlist: {
-    height: 106
-  }
-};
+
