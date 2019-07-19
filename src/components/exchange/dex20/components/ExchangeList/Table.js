@@ -37,17 +37,17 @@ class ExchangeTable extends Component {
         },
         text: {
           en:
-            "TRC20-USDT Reloaded with Powerful Aid from TRXMarket - 15,000 USD Awaits!",
+            "TRC20-USDT Returns with Generous Rewards from TRXMarket - 15,000 USDT Awaits!",
           zh: "TRXMarket助力TRC20-USDT重装上阵，惊喜放送10万人民币"
         }
       },
-      AdClose:props.isAdClose
+      AdClose: props.isAdClose
     };
   }
 
   getColumns() {
     let { intl, price, activeCurrency, activeLanguage } = this.props;
-    let { dataSource, offlineToken, transcationObj,AdClose } = this.state;
+    let { dataSource, offlineToken, transcationObj, AdClose } = this.state;
     let isfov = Lockr.get("DEX") == "GEM";
     let favList = Lockr.get("dex20") || [];
 

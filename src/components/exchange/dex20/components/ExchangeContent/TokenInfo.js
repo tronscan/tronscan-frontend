@@ -38,7 +38,7 @@ class Tokeninfo extends React.Component {
         },
         text: {
           en:
-            "TRC20-USDT Reloaded with Powerful Aid from TRXMarket - 15,000 USD Awaits!",
+            "TRC20-USDT Returns with Generous Rewards from TRXMarket - 15,000 USDT Awaits!",
           zh: "TRXMarket助力TRC20-USDT重装上阵，惊喜放送10万人民币"
         }
       }

@@ -2,7 +2,7 @@
   "10.svg": "7b00f7c4e78ed9cfc676c64c040965e8.svg",
   "20.svg": "8b13bad9e9381c9866a96fc4ef728bbf.svg",
   "About.js": "static/js/About.e75b1ee8.chunk.js",
-  "Account.js": "static/js/Account.f79e6477.chunk.js",
+  "Account.js": "static/js/Account.e56ce22c.chunk.js",
   "Accounts.js": "static/js/Accounts.a2ea29b1.chunk.js",
   "AddSignatureModal.js": "static/js/AddSignatureModal.9314cae5.chunk.js",
   "CopyrightAsync.js": "static/js/CopyrightAsync.ac543904.chunk.js",
@@ -39,7 +39,7 @@
   "info.svg": "ce0369650e23ec7e420a8af6750d8a87.svg",
   "languages.js": "static/js/languages.9990a0b0.chunk.js",
   "main.css": "static/css/main.256ee90a.css",
-  "main.js": "static/js/main.734d08be.js",
+  "main.js": "static/js/main.69ef8cdb.js",
   "static/js/20.10b5d6a3.chunk.js": "static/js/20.10b5d6a3.chunk.js",
   "static/media/Block-Producer-Chart.png": "static/media/Block-Producer-Chart.be2de0b4.png",
   "static/media/ContractInvocationDistribution.png": "static/media/ContractInvocationDistribution.ad7caa97.png",
@@ -73,5 +73,5 @@
   "static/media/tron-logo.jpg": "static/media/tron-logo.f142f640.jpg",
   "static/media/tronscan_wechat.png": "static/media/tronscan_wechat.cda4b715.png",
   "static/media/wallet-preview.png": "static/media/wallet-preview.85fad9b8.png",
-  "vendors.js": "static/js/vendors.fd0e4558.js"
+  "vendors.js": "static/js/vendors.a4f09758.js"
 }
