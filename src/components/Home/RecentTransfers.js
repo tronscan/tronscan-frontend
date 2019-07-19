@@ -4,15 +4,19 @@ import {injectIntl} from "react-intl";
 import {loadTransactions} from "../../actions/blockchain";
 import {connect} from "react-redux";
 import {TronLoader} from "../common/loaders";
-import {ONE_TRX} from "../../constants";
+import {Truncate} from "../common/text";
 import {TRXPrice} from "../common/Price";
 import {AddressLink, TransactionHashLink} from "../common/Links";
 import TimeAgo from "react-timeago";
+import moment from 'moment';
 import {Link} from "react-router-dom";
 import {withTimers} from "../../utils/timing";
-import {Client} from "../../services/api";
 import 'react-perfect-scrollbar/dist/css/styles.css';
 import PerfectScrollbar from 'react-perfect-scrollbar'
+import {NameWithId} from "../common/names";
+import _ from "lodash";
+import isMobile from "../../utils/isMobile";
+
 
 class RecentTransfers extends Component {
 
@@ -28,76 +32,150 @@ class RecentTransfers extends Component {
     this.props.loadTransactions();
     this.props.setInterval(() => {
       this.props.loadTransactions();
-    }, 6000);
+    }, 10000);
   }
 
   render() {
-    let {transactions} = this.props;
+    let {transactions, isRightText} = this.props;
     if (transactions === null) {
       return (
-        <div className="text-center d-flex justify-content-center">
-          <TronLoader/>
-        </div>
+          <div className="text-center d-flex justify-content-center">
+            <TronLoader/>
+          </div>
       );
     }
 
     if (transactions.length === 0) {
       return (
-        <div className="text-center d-flex justify-content-center">
-          <TronLoader/>
-        </div>
+          <div className="text-center d-flex justify-content-center">
+            <TronLoader/>
+          </div>
       );
     }
 
     return (
-      <div className="card" style={styles.card}>
-        <div className="card-header bg-tron-light d-flex">
-          <i className="fa fa-server mr-3 fa_width_20 color-grey-100"></i>
-          <h5 className="m-0 lh-175 color-grey-100">{tu("transfers")}</h5>
-          <Link to="/blockchain/transfers" className="ml-auto btn btn-sm btn-outline-secondary color-grey-200 color-grey-border" style={{borderRadius:'0.15rem'}}>
-            {tu("view_all")}
-          </Link>
+        <div className="card" style={styles.card}>
+          <div className="card-header bg-tron-light d-flex">
+            <i className="fa fa-server mr-3 fa_width_20 color-grey-100"></i>
+            <h5 className="m-0 lh-175 color-grey-100">{tu("transfers")}</h5>
+            <Link to="/blockchain/transfers"
+                  className="ml-auto btn btn-sm btn-default"
+                  style={{borderRadius: '0.15rem'}}>
+              {tu("view_all")}
+            </Link>
+          </div>
+          {
+            isMobile?
+            <PerfectScrollbar>
+            <ul className="list-group list-group-flush" style={styles.list}>
+
+              {
+                transactions.map((transfer, i) => (
+                  transfer &&
+                    <li key={transfer.transactionHash} className="list-group-item overflow-h mobile-block">
+                      <div className="media">
+                        <div className=" mb-0 w-100 d-flex ">
+
+                          <div className="text-left pt-1 w-100">
+                            <div className="d-flex justify-content-between">
+                              <div className="pt-1 d-flex flex-1">
+                                <i className="fa fa-bars mr-2 mt-1 fa_width color-tron-100"></i>
+                                {/* <TransactionHashLink
+                                    hash={transfer.transactionHash}>{transfer.transactionHash.substr(0, 13)}...</TransactionHashLink> */}
+                                <div className="flex-1">
+                                <Truncate>
+                                <TransactionHashLink
+                                    hash={transfer.transactionHash}>{transfer.transactionHash}...</TransactionHashLink>
+                                </Truncate>
+                                    </div>
+                              </div>
+                              <div className="text-muted color-grey-300 small pt-2 pl-3">
+                                <TimeAgo date={transfer.timestamp} title={moment(transfer.timestamp).format("MMM-DD-YYYY HH:mm:ss A")}/>
+                              </div>
+                            </div>
+                            
+                            <div className={(isRightText? 'flex-row-reverse justify-content-end': '') + " d-flex align-items-center"}>
+                              <span className="color-grey-300 mr-2">{tu("from")}</span>
+                              <AddressLink className="color-tron-100 small" wrapClassName="d-inline-block w-50"
+                                            address={transfer.transferFromAddress}>
+                                {transfer.transferFromAddress}...
+                              </AddressLink>
+                            </div>
+                            <div className={(isRightText? 'flex-row-reverse justify-content-end': '') + " d-flex align-items-center"}>
+                              <span className="color-grey-300 mr-2">{tu("to")}</span>
+                              <AddressLink className="color-tron-100 small" wrapClassName="d-inline-block w-50"
+                                            address={transfer.transferToAddress}>
+                                {transfer.transferToAddress.substr(0, 20)}...
+                              </AddressLink>
+                            </div>
+                            <div className="color-grey-200 pb-2">
+                              <span className="color-grey-300 mr-2 d-inline-block">{tu("value")}</span>
+                              <NameWithId value={transfer} type="abbr" totoken/>
+                            </div>
+                          </div>
+
+                        </div>
+                      </div>
+                    </li>
+                ))
+              }
+
+            </ul>
+          </PerfectScrollbar>:
+
+          <PerfectScrollbar>
+          <ul className="list-group list-group-flush" style={styles.list}>
+
+            {
+              transactions.map((transfer, i) => (
+                transfer &&
+                  <li key={transfer.transactionHash} className="list-group-item overflow-h" style={{minHeight: '100px'}}>
+                    <div className="media">
+                      <div className="media-body mb-0">
+                        <div className="text-left pt-1 d-flex justify-content-between">
+                          <div className="pt-1 d-flex pr-2 color-transfers-hash" style={{flex: 1, maxWidth: '400px'}}>
+                            <i className="fa fa-bars mr-2 mt-1 fa_width color-tron-100"></i>
+                              <Truncate>
+                                  <TransactionHashLink hash={transfer.transactionHash}>{transfer.transactionHash}</TransactionHashLink>
+                              </Truncate>
+
+                          </div>
+                          <div className="color-grey-200 pt-1 " style={{fontSize:'1rem'}}>
+                            {/* <TRXPrice amount={transfer.amount} name={transfer.tokenName} source='transfers'/> */}
+                            <NameWithId value={transfer} type="abbr" totoken/>
+                          </div>
+                          
+                          
+                        </div>
+                        <div className="d-flex pt-2 list-item-word">
+                          <div className={(isRightText? 'flex-row-reverse justify-content-end': '') + " d-flex pt-2 text-left"} style={{fontSize: '0.8rem'}}>
+                            <span className="color-grey-300 mr-2">{tu("from")}</span>
+                              
+                            <AddressLink wrapClassName="d-inline-block mr-2" className="color-tron-100"
+                                        address={transfer.transferFromAddress} truncate={false}>
+                              {transfer.transferFromAddress.substr(0, 12)}...
+                            </AddressLink>
+                            
+                            <span className="color-grey-300 mr-2">{tu("to")}</span>
+                            <AddressLink wrapClassName="d-inline-block mr-2" className="color-tron-100"
+                                        address={transfer.transferToAddress} truncate={false}>
+                              {transfer.transferToAddress.substr(0, 12)}...
+                            </AddressLink>
+                          </div>
+                          <div className="text-muted text-right color-grey-300 small" style={styles.nowrap}>
+                            <TimeAgo date={transfer.timestamp} title={moment(transfer.timestamp).format("MMM-DD-YYYY HH:mm:ss A")}/>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+              ))
+            }
+
+          </ul>
+          </PerfectScrollbar>
+         }
         </div>
-        <PerfectScrollbar>
-        <ul className="list-group list-group-flush" style={styles.list}>
-
-        {
-            transactions.map((transfer, i) => (
-            <li key={transfer.transactionHash} className="list-group-item overflow-h" >
-              <div className="media">
-                <div className="media-body mb-0 d-flex">
-                  <div className="text-left pt-1">
-                    <div className="pt-1">
-                      <i className="fa fa-bars mr-2 mt-1 fa_width color-tron-100"></i>
-                      <TransactionHashLink hash={transfer.transactionHash}>{transfer.transactionHash.substr(0, 30)}...</TransactionHashLink>
-                    </div><br/>
-
-                    <span className="color-grey-300 mr-2">{tu("from")}</span>
-                    <AddressLink wrapClassName="d-inline-block mr-2" className="color-tron-100" address={transfer.transferFromAddress} truncate={false}>
-                      {transfer.transferFromAddress.substr(0, 15)}...
-                    </AddressLink>
-                    <span className="color-grey-300 mr-2">{tu("to")}</span>
-                    <AddressLink wrapClassName="d-inline-block mr-2" className="color-tron-100" address={transfer.transferToAddress} truncate={false}>
-                      {transfer.transferToAddress.substr(0, 15)}...
-                    </AddressLink><br/>
-                  </div>
-                  <div className="ml-auto text-right d-flex flex-column pt-2 list-item-word" style={styles.nowrap}>
-                    <div className="color-grey-200" style={{flex:1}}>
-                      <TRXPrice amount={transfer.amount} name={transfer.tokenName} source='transfers'/>
-                    </div>
-                    <div className="text-muted color-grey-300 small" style={styles.nowrap}>
-                      <TimeAgo date={transfer.timestamp} />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </li>
-          ))
-        }
-
-        </ul>
-      </PerfectScrollbar>
-      </div>
     )
   }
 }
@@ -107,6 +185,7 @@ function mapStateToProps(state) {
   return {
     transactions: state.blockchain.transactions,
     activeLanguage: state.app.activeLanguage,
+    isRightText: state.app.isRightText
   };
 }
 
@@ -121,12 +200,12 @@ const styles = {
     overflowX: 'none',
     height: 594,
   },
-  card:{
-    border:'none',
-    borderRadius:0
+  card: {
+    border: 'none',
+    borderRadius: 0
   },
-  nowrap:{
-      flex:1,
-      whiteSpace:'nowrap'
+  nowrap: {
+    flex: 1,
+    whiteSpace: 'nowrap'
   }
 };

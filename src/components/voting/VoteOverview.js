@@ -3,7 +3,7 @@ import {tu} from "../../utils/i18n";
 import React, {Fragment} from "react";
 import {AddressLink} from "../common/Links";
 import {FormattedNumber, injectIntl} from "react-intl";
-import {filter, isNaN, sortBy, sumBy, trim} from "lodash";
+import {filter, isNaN, sumBy, trim} from "lodash";
 import Countdown from "react-countdown-now";
 import {Sticky, StickyContainer} from "react-sticky";
 import {connect} from "react-redux";
@@ -14,45 +14,66 @@ import {ONE_TRX} from "../../constants";
 import {login} from "../../actions/app";
 import {reloadWallet} from "../../actions/wallet";
 import {Link} from "react-router-dom";
-import {WidgetIcon} from "../common/Icon";
 import palette from "google-palette";
 import {Truncate} from "../common/text";
 import {withTimers} from "../../utils/timing";
-import {loadVoteList, loadVoteTimer} from "../../actions/votes";
-import {pkToAddress} from "@tronscan/client/src/utils/crypto";
+import {loadVoteTimer} from "../../actions/votes";
+import {transactionResultManager} from "../../utils/tron";
+import Lockr from "lockr";
+import {withTronWeb} from "../../utils/tronWeb";
 
 function VoteChange({value, arrow = false}) {
   if (value > 0) {
     return (
-      <span className="text-success">
+        <span className="text-success">
         <span className="mr-1">+{value}</span>
-        { arrow && <i className="fa fa-arrow-up" /> }
+          {arrow && <i className="fa fa-arrow-up"/>}
       </span>
     )
   }
 
   if (value < 0) {
     return (
-      <span className="text-danger">
+        <span className="text-danger">
         <span className="mr-1">{value}</span>
-        { arrow && <i className="fa fa-arrow-down" /> }
+          {arrow && <i className="fa fa-arrow-down"/>}
       </span>
-      )
+    )
   }
 
   return (
-    <span>
+      <span>
       -
     </span>
   )
 }
 
-class VoteOverview extends React.Component {
+@withTronWeb
+@injectIntl
+@withTimers
+@connect(
+  state => ({
+    account: state.app.account,
+    tokenBalances: state.account.tokens,
+    wallet: state.wallet,
+    flags: state.app.flags,
+    voteList: state.voting.voteList,
+    voteTimer: state.voting.voteTimer,
+    walletType: state.app.wallet,
+    isRightText: state.app.isRightText
+  }),
+  {
+    login,
+    reloadWallet,
+    loadVoteTimer,
+  }
+)
+export default class VoteOverview extends React.Component {
 
   constructor() {
     super();
     this.state = {
-      privateKey:'',
+      privateKey: '',
       votingEnabled: false,
       votesSubmitted: false,
       submittingVotes: false,
@@ -62,6 +83,9 @@ class VoteOverview extends React.Component {
       modal: null,
       viewStats: false,
       colors: palette('mpn65', 20),
+      votesList: {},
+      liveVotes: null,
+      goSignedIn:false
     };
   }
 
@@ -140,14 +164,21 @@ class VoteOverview extends React.Component {
     }
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     let {account,} = this.props;
     if (account.isLoggedIn) {
       this.props.reloadWallet();
       this.loadCurrentVotes(account.address);
     }
-    this.loadVotes();
-    this.loadVoteTimer();
+    await this.loadVotes();
+    await this.loadVoteTimer();
+  }
+
+  loadVoteList = async () => {
+    let votesList = await Client.getVotesList()
+    this.setState({
+      votesList,
+    });
   }
 
   loadVoteTimer = async () => {
@@ -157,12 +188,13 @@ class VoteOverview extends React.Component {
   loadVotes = async () => {
 
     let {voteList} = this.props;
-    if (voteList.length === 0) {
-      this.setState({ loading: true });
-    }
 
-    await this.props.loadVoteList();
-    this.setState({ loading: false });
+    if (voteList.length === 0) {
+      this.setState({loading: true});
+    }
+    await this.loadVoteList();
+    this.setState({loading: false});
+
   };
 
   loadCurrentVotes = async (address) => {
@@ -179,28 +211,28 @@ class VoteOverview extends React.Component {
     switch (voteState) {
       case 0:
         return (
-          <span className="text-success">
+            <span className="text-success">
             {tu("all_votes_are_used_message")}
           </span>
         );
 
       case 1:
         return (
-          <span>
+            <span>
             {tu("votes_remaining_message")}:&nbsp;<b><FormattedNumber value={votesAvailable}/></b>
           </span>
         );
 
       case -1:
         return (
-          <span className="text-danger">
+            <span className="text-danger">
             {tu("to_much_votes_massage")}
           </span>
         );
 
       case -2:
         return (
-          <span className="text-danger">
+            <span className="text-danger">
             {tu("need_min_trx_to_vote_message")}
           </span>
         );
@@ -214,72 +246,99 @@ class VoteOverview extends React.Component {
   };
 
   renderVotingBar() {
-    let {votingEnabled, votesSubmitted, submittingVotes } = this.state;
+    let {votingEnabled, votesSubmitted, submittingVotes} = this.state;
     let {intl, account} = this.props;
-
     let {trxBalance} = this.getVoteStatus();
 
     if (!account.isLoggedIn) {
       return (
-        <div className="text-center">
-          {tu("open_wallet_start_voting_message")}
-        </div>
+          <div className="text-center">
+            {tu("open_wallet_start_voting_message")}
+          </div>
       );
     }
 
     if (votesSubmitted) {
       return (
-        <Alert color="success" className="text-center m-0">
-          {tu("thanks_submitting_vote_message")}
-        </Alert>
+          <Alert color="success" className="text-center m-0">
+            {tu("thanks_submitting_vote_message")}
+          </Alert>
       );
     }
 
-    if (trxBalance <= 0) {
+    if (votingEnabled && trxBalance <= 0) {
       return (
-        <div className="text-center">
-          {tu("warning_votes")}{' '}
-          <Link to="/account" className="text-primary">{tu("account_page")}</Link>
-        </div>
+          <div className="text-center">
+            {tu("warning_votes")}{' '}
+            <Link to="/account" className="text-primary">{tu("account_page")}</Link>
+          </div>
       );
     }
 
     if (submittingVotes) {
       return (
-        <div className="d-flex justify-content-center p-3" style={{lineHeight: '36px'}}>
-          <BarLoader width={160} />
-        </div>
+          <div className="d-flex justify-content-center p-3" style={{lineHeight: '36px'}}>
+            <BarLoader width={160}/>
+          </div>
       );
     }
-
     if (votingEnabled) {
       return (
-        <div className="d-flex" style={{lineHeight: '36px'}}>
-          <div>
-            <input type="text"
-                   className="form-control"
-                   placeholder={intl.formatMessage({id:'search'})}
-                   onChange={(ev) => this.onSearchChange(ev.target.value)} />
+          <div className="d-flex flex-wrap flex-sm-nowrap" style={{lineHeight: '36px'}}>
+            <div className="d-flex">
+              <div style={{width: '35px', height: '35px', paddingLeft: '10px'}}>
+                <i className="fa fa-search" aria-hidden="true"></i>
+              </div>
+              <input style={{background: '#F3F3F3'}} type="text"
+                     className="form-control"
+                     placeholder={intl.formatMessage({id: 'search'})}
+                     onChange={(ev) => this.onSearchChange(ev.target.value)}/>
+            </div>
+            <div className="ml-auto">
+              {this.renderVoteStatus()}
+            </div>
+            <div className="ml-2 mt-2 ml-sm-auto mt-sm-0">
+              <button className="btn btn-danger ml-auto _cancel" onClick={this.cancelVotes}>{tu("cancel")}</button>
+              <button className="btn btn-warning ml-1 _reset" onClick={this.resetVotes}>{tu("reset")}</button>
+              <button className="btn btn-success ml-1 _submit" onClick={this.submitVotes}>{tu("submit_votes")}</button>
+            </div>
           </div>
-          <div className="ml-auto">
-            {this.renderVoteStatus()}
-          </div>
-          <button className="btn btn-primary ml-auto" onClick={this.cancelVotes}>{tu("cancel")}</button>
-          <button className="btn btn-warning ml-1" onClick={this.resetVotes}>{tu("reset")}</button>
-          <button className="btn btn-success ml-1" onClick={this.submitVotes}>{tu("submit_votes")}</button>
-        </div>
       );
     }
 
-    return (
-      <div>
-        <button className="btn btn-tron btn-block" onClick={this.enableVoting}>
-          {tu("click_to_start_voting")}
-        </button>
-      </div>
-    );
-  }
+     return (
+         <div className="text-center">
+           <a className="" onClick={this.enableVoting} style={{color: '#C23631'}}>
+               {tu("click_to_start_voting")}
+           </a>
+         </div>
+     );
 
+
+
+  }
+  renderVotingBarFalse() {
+      let {intl, account} = this.props;
+      let { goSignedIn } = this.state;
+      if (!account.isLoggedIn) {
+          return (
+              <div className="text-center">
+                {
+                    goSignedIn ? <span style={{color: '#333333'}}>
+                        {tu("not_signed_in")}
+                    </span>:<a href="javascript:;" onClick={this.notSignedIn} >
+                        {tu("click_to_start_voting")}
+                    </a>
+                }
+              </div>
+          );
+      }
+  }
+  notSignedIn = () =>{
+      this.setState({
+          goSignedIn: true
+      });
+  }
   resetVotes = () => {
     this.setState({
       votes: {},
@@ -300,101 +359,69 @@ class VoteOverview extends React.Component {
     });
   };
 
-  onInputChange = (value) => {
-    let {account} = this.props;
-    if (value && value.length === 64) {
-      this.privateKey.className = "form-control";
-      if(pkToAddress(value)!==account.address)
-        this.privateKey.className = "form-control is-invalid";
-    }
-    else{
-      this.privateKey.className = "form-control is-invalid";
-    }
-    this.setState({privateKey: value})
-    this.privateKey.value = value;
-  }
-
-  confirmPrivateKey = (param) => {
-    let {privateKey} = this.state;
-    let {account} = this.props;
-
-    let reConfirm = ()=> {
-      if (this.privateKey.value && this.privateKey.value.length === 64) {
-        if(pkToAddress(this.privateKey.value)===account.address)
-          this.submitVotes();
-      }
-    }
-
-    this.setState({
-      modal: (
-          <SweetAlert
-              info
-              showCancel
-              cancelBtnText={tu("cancel")}
-              confirmBtnText={tu("confirm")}
-              confirmBtnBsStyle="success"
-              cancelBtnBsStyle="default"
-              title={tu("confirm_private_key")}
-              onConfirm={reConfirm}
-              onCancel={this.hideModal}
-              style={{marginLeft: '-240px', marginTop: '-195px'}}
-          >
-            <div className="form-group">
-              <div className="input-group mb-3">
-                <input type="text"
-                       ref={ref => this.privateKey = ref}
-                       onChange={(ev) => {
-                         this.onInputChange(ev.target.value)
-                       }}
-                       className="form-control is-invalid"
-                />
-                <div className="invalid-feedback">
-                  {tu("fill_a_valid_private_key")}
-                </div>
-              </div>
-            </div>
-          </SweetAlert>
-      )
-    });
-  }
   submitVotes = async () => {
     let {account} = this.props;
-    let {votes,privateKey} = this.state;
-
-    this.setState({ submittingVotes: true, });
-
+    let {votes } = this.state;
+    let res;
+    this.setState({submittingVotes: true,});
     let witnessVotes = {};
-
+    const tronWebLedger = this.props.tronWeb();
+    const { tronWeb } = this.props.account;
     for (let address of Object.keys(votes)) {
       witnessVotes[address] = parseInt(votes[address], 10);
     }
 
-    let {success} = await Client.voteForWitnesses(account.address, witnessVotes)(account.key);
 
-    if (success) {
+
+      if (this.props.walletType.type === "ACCOUNT_LEDGER"){
+          try {
+              const unSignTransaction = await tronWebLedger.transactionBuilder.vote(witnessVotes, account.address).catch(e=>false);
+              const {result} = await transactionResultManager(unSignTransaction,tronWebLedger);
+              res = result;
+          } catch (e) {
+              console.error('error',e)
+          }
+      }else if(this.props.walletType.type === "ACCOUNT_PRIVATE_KEY"){
+          let {success} = await Client.voteForWitnesses(account.address, witnessVotes)(account.key);
+          res = success
+      }else if(this.props.walletType.type === "ACCOUNT_TRONLINK"){
+          try {
+              const unSignTransaction = await tronWeb.transactionBuilder.vote(witnessVotes, account.address).catch(e=>false);
+              const {result} = await transactionResultManager(unSignTransaction,tronWeb);
+              res = result;
+          } catch (e) {
+              console.error(e)
+          }
+      }
+
+
+
+
+
+    if (res) {
       setTimeout(() => this.props.reloadWallet(), 1200);
-      setTimeout(() => this.setState({ votesSubmitted: false, }), 5000);
+      setTimeout(() => this.setState({votesSubmitted: false,}), 5000);
 
       this.setState({
         votesSubmitted: true,
         submittingVotes: false,
         votingEnabled: false,
         modal: (
-          <SweetAlert success title={tu("submissing_vote_message_title")} onConfirm={this.hideModal}>
-            {tu("submissing_vote_message_0")}<br/>
-            {tu("submissing_vote_message_1")}
-          </SweetAlert>
+            <SweetAlert success title={tu("submissing_vote_message_title")} onConfirm={this.hideModal}>
+              {tu("submissing_vote_message_0")}<br/>
+              {tu("submissing_vote_message_1")}
+            </SweetAlert>
         )
       });
     } else {
       this.setState({
-        votesSubmitted: true,
+        votesSubmitted: false,
         submittingVotes: false,
         votingEnabled: false,
         modal: (
-          <SweetAlert danger title={tu("error")} onConfirm={this.hideModal}>
-             {tu("submitting_vote_error_message")}
-          </SweetAlert>
+            <SweetAlert danger title={tu("error")} onConfirm={this.hideModal}>
+              {tu("submitting_vote_error_message")}
+            </SweetAlert>
         )
       });
     }
@@ -407,15 +434,13 @@ class VoteOverview extends React.Component {
 
   render() {
 
-    let {votingEnabled, votes, loading, modal, viewStats, colors, searchCriteria} = this.state;
-    let {wallet, voteList: candidates} = this.props;
+    let {votingEnabled, votes, votesList, loading, modal, viewStats, colors, searchCriteria} = this.state;
+    let {wallet, isRightText} = this.props;
+    let candidates = votesList.data || []
 
-
-    candidates = sortBy(candidates, c => c.votes * -1).map((c, index) => ({
-      ...c,
-      rank: index,
-    }));
-    let filteredCandidates = candidates;
+    let filteredCandidates = candidates.map((v, i) => Object.assign({
+      rank: i
+    }, v));
 
     if (searchCriteria !== "") {
       filteredCandidates = filter(candidates, c => {
@@ -431,239 +456,240 @@ class VoteOverview extends React.Component {
       });
     }
 
-    let totalVotes = sumBy(candidates, c => c.votes);
+    let totalVotes = votesList.totalVotes || 0;
 
-    let biggestGainer = sortBy(candidates, c => c.change_cycle * -1)[0] || {};
+    let biggestGainer = votesList.fastestRise || {}
     let {trxBalance} = this.getVoteStatus();
 
     let voteSize = Math.ceil(trxBalance / 20);
 
     return (
-      <main className="container header-overlap">
-        {modal}
-        <div className="row">
-          <div className="col-md-4 mt-3 mt-md-0">
-            <div className="card h-100 text-center widget-icon">
-              <WidgetIcon className="fa fa-clock text-primary"  style={{bottom: 10}}/>
-              <div className="card-body">
-                <h3 className="text-primary">
-                  <Countdown date={this.getNextCycle()} daysInHours={true} onComplete={() => {
-                    this.loadVotes();
-                    this.loadVoteTimer();
-                  }}/>
-                </h3>
-                {tu("next_round")}
+        <main className="container header-overlap _voteOverview">
+          {modal}
+          <div className="row _badge">
+            <div className="col-md-4 mt-3 mt-md-0">
+              <div className="card h-100 text-left widget-icon bg-line_red bg-image_nextRound">
+                <div className="card-body">
+                  <h3 className="text-primary">
+                    <Countdown date={this.getNextCycle()} daysInHours={true} onComplete={() => {
+                      this.loadVotes();
+                      this.loadVoteTimer();
+                    }}/>
+                  </h3>
+                  {tu("next_round")}
+                </div>
               </div>
             </div>
-          </div>
 
-          <div className="col-md-4 mt-3 mt-md-0 position-relative">
-            <div className="card h-100 widget-icon">
-              <WidgetIcon className="fa fa-check-circle text-secondary" style={{bottom: 10}}/>
-              <div className="card-body text-center">
-                <h3 className="text-secondary">
-                  <FormattedNumber value={totalVotes}/>
-                </h3>
-                {/*
+            <div className="col-md-4 mt-3 mt-md-0 position-relative">
+              <div className="card h-100 widget-icon bg-line_green bg-image_totalVotes">
+                <div className="card-body text-left">
+                  <h3 className="text-secondary">
+                    <FormattedNumber value={totalVotes}/>
+                  </h3>
+                  {/*
                   <a href="javascript:"
                      onClick={() => this.setState(state => ({viewStats: !state.viewStats}))}>{tu("total_votes")}</a>
                 */}
-                {tu("total_votes")}
+                  {tu("total_votes")}
+                </div>
               </div>
             </div>
-          </div>
 
-          <div className="col-md-4 mt-3 mt-md-0">
-            <div className="card h-100 widget-icon">
-              <WidgetIcon className="fa fa-arrow-up text-success" style={{bottom: 10}}  />
-              <div className="card-body text-center">
-                <h3 className="text-success">
-                  <VoteChange value={biggestGainer.change_cycle} arrow={true}/>
-                </h3>
-                {tu("most_ranks")}<br/>
-                <div className="text-nowrap text-truncate">
-                  <AddressLink address={biggestGainer.address}>
-                    {biggestGainer.name || biggestGainer.url}
-                  </AddressLink>
+            <div className="col-md-4 mt-3 mt-md-0">
+              <div className="card h-100 widget-icon bg-line_yellow bg-image_mostRank">
+                <div className="card-body text-left">
+                  <h3 className="text-success">
+                    <VoteChange value={biggestGainer.change_cycle} arrow={true}/>
+                  </h3>
+                  <div className={(isRightText? 'flex-row-reverse justify-content-end': '') +" d-flex"}>
+                    <div className="_ranks mr-2" style={{whiteSpace: 'nowrap'}}>{tu("most_ranks")}</div>
+                    {/* <div>--</div> */}
+                    <div className="" style={isRightText? {maxWidth: '110px'}: {}}>
+                        {
+                            Math.abs(biggestGainer.change_cycle)?<AddressLink address={biggestGainer.address}>
+                                {biggestGainer.name || biggestGainer.url}
+                            </AddressLink>:<span style={{color:"#999999"}}>-</span>
+                        }
+
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
 
-        <Link to="/votes-live" className="btn btn-secondary btn-block mt-3">
-          {tu("view_live_ranking")}
-        </Link>
-
-        {
-          loading ? <div className="card mt-2">
-              <TronLoader>
-                {tu("loading_super_representatives")}
-              </TronLoader>
-            </div> :
-            <div className="row mt-2">
-              <div className="col-md-12">
-                <StickyContainer>
-                  <div className="card mt-1">
-                    {
-                      wallet.isOpen &&
-                        <Sticky>
-                          {
-                            ({style}) => (
-                              <div style={{zIndex: 100, ...style}} className="card-body bg-white p-2 border-bottom">
-                                {this.renderVotingBar()}
-                              </div>
-                            )
-                          }
-                        </Sticky>
-                    }
-                    <div className="table-responsive">
-                      <table className="table vote-table table-hover table-striped m-0">
-                      <thead className="thead-dark">
-                        <tr>
-                          <th className="d-none d-sm-table-cell" style={{width: 25}}>#</th>
-                          <th>{tu("name")}</th>
-                          <th className="text-center d-none d-lg-table-cell" style={{width: 75}}>{tu("24h")}</th>
-                          <th className="text-center d-none d-lg-table-cell" style={{width: 25}}>{tu("6h")}</th>
-                          <th className="" style={{width: 100}}>{tu("votes")}</th>
-                          <th style={{width: 100}}>{tu("percentage")}</th>
-                          {
-                            votingEnabled && <th style={{width: 200}}>
-                              {tu("your vote")}
-                            </th>
-                          }
-                        </tr>
-                      </thead>
-                      <tbody>
-                      {
-                        (searchCriteria.length > 0 && filteredCandidates.length === 0) &&
-                          <tr>
-                            <td colSpan="6" className="p-3 text-center">
-                              No Super Representatives found for <b>{searchCriteria}</b>
-                            </td>
-                          </tr>
-                      }
-                      {
-                        filteredCandidates.map(candidate => (
-                          <tr key={candidate.address}>
+          {
+            loading ? <div className="card mt-2">
+                  <TronLoader>
+                    {tu("loading_super_representatives")}
+                  </TronLoader>
+                </div> :
+                <div className="row mt-2">
+                  <div className="col-md-12">
+                    <StickyContainer>
+                      <div className="card mt-1">
+                        {
+                          wallet.isOpen &&
+                          <Sticky>
                             {
-                              viewStats ?
-                                <th className="font-weight-bold d-none d-sm-table-cell pt-4" style={{backgroundColor: "#" + colors[candidate.rank]}}>
-                                  {candidate.rank + 1}
-                                </th> :
-                                <th className="font-weight-bold d-none d-sm-table-cell pt-4">
-                                  {candidate.rank + 1}
-                                </th>
+                              ({style}) => (
+                                  <div style={{borderBottom: "1px solid #D8D8D8", zIndex: 100, ...style}}
+                                       className="card-body bg-white p-3">
+                                    {this.renderVotingBar()}
+                                  </div>
+                              )
                             }
-                            <td className="d-flex flex-column flex-sm-row ">
-                              <div className="text-center text-sm-left">
-                                <Truncate>
-                                  <AddressLink address={candidate.address} className="font-weight-bold">{candidate.name || candidate.url}</AddressLink>
-                                </Truncate>
-                                <AddressLink className="small text-muted" address={candidate.address}/>
-                              </div>
-                              {
-                                candidate.hasPage && <div className="ml-0 ml-sm-auto">
-                                  <Link className="btn btn-lg btn-block btn-outline-secondary mt-1" to={`/representative/${candidate.address}`}>
-                                    {tu("open_team_page")}
-                                    <i className="fas fa-users ml-2"/>
-                                  </Link>
-                                </div>
-                              }
-                            </td>
-                            <td className="text-center d-none d-lg-table-cell align-middle">
-                              <VoteChange value={candidate.change_day}/>
-                            </td>
-                            <td className="text-center d-none d-lg-table-cell align-middle">
-                              <VoteChange value={candidate.change_cycle}/>
-                            </td>
-                            <td className="small text-center align-middle">
-                              {
-                                totalVotes > 0 &&
-                                <Fragment>
-                                  <FormattedNumber value={candidate.votes}/><br/>
-                                  {/*<div className="progress position-relative mt-1">*/}
-                                    {/*<div className="progress-bar"*/}
-                                         {/*style={{width: Math.round((candidate.votes / totalVotes) * 100) + '%'}}>*/}
-                                    {/*</div>*/}
-                                    {/*<span className="ml-auto mr-1 progress-bar-percentage">*/}
-                                  {/*<FormattedNumber*/}
-                                    {/*minimumFractionDigits={2}*/}
-                                    {/*maximumFractionDigits={2}*/}
-                                    {/*value={(candidate.votes / totalVotes) * 100}/>%*/}
-                                   {/*</span>*/}
-                                  {/*</div>*/}
-                                </Fragment>
-                              }
-                            </td>
-                            <td className="small text-center align-middle">
+                          </Sticky>
+                        }
+                        {
+                            !wallet.isOpen &&
+                            <Sticky>
                                 {
-                                    totalVotes > 0 &&
-                                    <Fragment>
-                                      <FormattedNumber value={(candidate.votes / totalVotes) * 100}
-                                         minimumFractionDigits={2}
-                                         maximumFractionDigits={2}
-                                      />%
-                                    </Fragment>
+                                    ({style}) => (
+                                        <div style={{borderBottom: "1px solid #D8D8D8", zIndex: 100, ...style}}
+                                             className="card-body bg-white p-3">
+                                            {this.renderVotingBarFalse()}
+                                        </div>
+                                    )
                                 }
-                            </td>
-                            {
-                              votingEnabled && <td className="vote-input-field">
-                                <div className="input-group">
-                                  <div className="input-group-prepend">
-                                    <button className="btn btn-outline-danger"
-                                            onClick={() => this.setVote(candidate.address, (votes[candidate.address] || 0) - voteSize)}
-                                            type="button">-
-                                    </button>
-                                  </div>
-                                  <input
-                                    type="text"
-                                    value={votes[candidate.address] || ""}
-                                    className="form-control form-control-sm text-center"
-                                    onChange={(ev) => this.setVote(candidate.address, ev.target.value)}/>
-                                  <div className="input-group-append">
-                                    <button className="btn btn-outline-success"
-                                            onClick={() => this.setVote(candidate.address, (votes[candidate.address] || 0) + voteSize)}
-                                            type="button">+
-                                    </button>
-                                  </div>
-                                </div>
-                              </td>
-                            }
-                          </tr>
-                        ))
-                      }
-                      </tbody>
-                    </table>
-                    </div>
-                  </div>
-                </StickyContainer>
-              </div>
-            </div>
-        }
+                            </Sticky>
+                        }
 
-      </main>
+                        <div className="table-responsive table-scroll">
+                          <table className="table vote-table table-hover m-0">
+                            <thead className="thead-light">
+                            <tr>
+                              <th className="text-center" style={{width: 50}}>#</th>
+                              <th>{tu("name")}</th>
+
+                              <th className="text-right" style={{width: 150}}>{tu("votes")}</th>
+                              <th className="text-right" style={{width: 150}}>{tu("live")}</th>
+                              <th className="text-right" style={{width: 100}}>{tu("percentage")}</th>
+                              {
+                                votingEnabled && trxBalance > 0 && <th style={{width: 200}}>
+                                  {tu("your_vote")}
+                                </th>
+                              }
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {
+                              (searchCriteria.length > 0 && filteredCandidates.length === 0) &&
+                              <tr>
+                                <td colSpan="6" className="p-3 text-center">
+                                  No Super Representatives found for <b>{searchCriteria}</b>
+                                </td>
+                              </tr>
+                            }
+                            {
+                              filteredCandidates.map(candidate => {
+                                    return (
+
+                                        <tr key={candidate.address}>
+                                          {
+                                            viewStats ?
+                                                <th className="font-weight-bold pt-4 text-center"
+                                                    style={{backgroundColor: "#" + colors[candidate.rank]}}>
+                                                  {candidate.lastRanking}
+                                                </th> :
+                                                <th className="font-weight-bold pt-4 text-center">
+                                                  {candidate.lastRanking}
+                                                </th>
+                                          }
+                                          <td className="d-flex flex-row ">
+                                            <div className="text-center text-sm-left" style={{minWidth: '150px'}}>
+                                              <Truncate>
+                                                <AddressLink address={candidate.address}
+                                                             className="font-weight-bold">{candidate.name || candidate.url}</AddressLink>
+                                              </Truncate>
+                                              <AddressLink className="small text-muted" address={candidate.address}/>
+                                            </div>
+                                            {
+                                              candidate.hasPage && <div className="_team ml-0 ml-sm-auto">
+                                                <Link className="btn btn-lg btn-block btn-default mt-1"
+                                                      to={`/representative/${candidate.address}`}>
+                                                  {tu("open_team_page")}
+                                                  <i className="fas fa-users ml-2"/>
+                                                </Link>
+                                              </div>
+                                            }
+                                          </td>
+                                          <td className="small text-right align-middle">
+                                            {
+                                              totalVotes > 0 &&
+                                              <Fragment>
+                                                <FormattedNumber value={candidate.lastCycleVotes}/><br/>
+                                              </Fragment>
+                                            }
+                                          </td>
+                                          <td className="small text-right align-middle _liveVotes">
+                                            {
+                                              totalVotes > 0 &&
+                                              <Fragment>
+                                                <FormattedNumber value={candidate.realTimeVotes}/><br/>
+                                                  {/* <span className={candidate.changeVotes > 0
+                                                    ? 'color-green'
+                                                    : 'color-red'}>
+                                                  </span> */}
+                                                {(candidate.changeVotes > 0) ?
+                                                    <span className="color-green">+<FormattedNumber
+                                                        value={candidate.changeVotes}/></span>
+                                                    : <span className="color-red"><FormattedNumber
+                                                        value={candidate.changeVotes}/></span>
+                                                }
+                                              </Fragment>
+                                            }
+                                          </td>
+                                          <td className="small text-right align-middle">
+                                            {
+                                              totalVotes > 0 &&
+                                              <Fragment>
+                                                <FormattedNumber value={candidate.votesPercentage}
+                                                                 minimumFractionDigits={2}
+                                                                 maximumFractionDigits={2}
+                                                />%
+                                              </Fragment>
+                                            }
+                                          </td>
+                                          {
+                                            votingEnabled && trxBalance > 0 && <td className="vote-input-field">
+                                              <div className="input-group">
+                                                <div className="input-group-prepend">
+                                                  <button className="btn btn-outline-danger"
+                                                          onClick={() => this.setVote(candidate.address, (votes[candidate.address] || 0) - voteSize)}
+                                                          type="button">-
+                                                  </button>
+                                                </div>
+                                                <input
+                                                    type="text"
+                                                    value={votes[candidate.address] || ""}
+                                                    className="form-control form-control-sm text-center"
+                                                    onChange={(ev) => this.setVote(candidate.address, ev.target.value)}/>
+                                                <div className="input-group-append">
+                                                  <button className="btn btn-outline-success"
+                                                          onClick={() => this.setVote(candidate.address, (votes[candidate.address] || 0) + voteSize)}
+                                                          type="button">+
+                                                  </button>
+                                                </div>
+                                              </div>
+                                            </td>
+                                          }
+                                        </tr>
+                                    )
+                                  }
+                              )
+                            }
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </StickyContainer>
+                  </div>
+                </div>
+          }
+
+        </main>
     );
   }
 }
-
-
-function mapStateToProps(state) {
-  return {
-    account: state.app.account,
-    tokenBalances: state.account.tokens,
-    wallet: state.wallet,
-    flags: state.app.flags,
-    voteList: state.voting.voteList,
-    voteTimer: state.voting.voteTimer,
-  };
-}
-
-const mapDispatchToProps = {
-  login,
-  reloadWallet,
-  loadVoteList,
-  loadVoteTimer,
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(withTimers(injectIntl(VoteOverview)))

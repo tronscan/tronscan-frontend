@@ -4,7 +4,7 @@ import {pkToAddress} from "@tronscan/client/src/utils/crypto";
 import {tu} from "../../utils/i18n";
 
 
-export function confirmPKey(confirm, address, onCancel, setState,test) {
+export function confirmPKey(confirm, address, onCancel, setState, test) {
 
   let onInputChange = (value) => {
     if (value && value.length === 64) {

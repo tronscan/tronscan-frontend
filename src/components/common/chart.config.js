@@ -235,6 +235,18 @@ module.exports = {
       text: '',
       x: 'center'
     },
+    color: [
+        '#F25C81',
+        '#7CB5EC',
+        '#F4A45D',
+        '#8085ED',
+        '#8FCACE',
+        '#424246',
+        '#348188',
+        '#F25C81',
+        '#E5D355',
+        '#96EE80',
+    ],
     legend: {
       type: 'scroll',
       orient: 'vertical',
@@ -499,10 +511,33 @@ module.exports = {
   overviewHighChart: {
     chart: {
       zoomType: '',
-      spacingTop: 20,
+      spacingTop: 5,
       spacingBottom: 0,
       spacingLeft: 0,
-      spacingRight: 0
+      spacingRight: 0,
+      resetZoomButton: {
+          position: {
+              align: 'right', // right by default
+              verticalAlign: 'top',
+              x: -55,
+              y: 0
+          },
+          relativeTo: 'chart',
+          theme: {
+              fill: 'white',
+              stroke: 'silver',
+              r: 0,
+              states: {
+                  hover: {
+                      fill: '#eeeeee',
+                      style: {
+                          color: 'red'
+                      }
+                  }
+              }
+          }
+
+      }
     },
     title: {
       text: ''
@@ -515,13 +550,17 @@ module.exports = {
       '#e7afad'
     ],
     exporting: {
-      enabled: false
+      enabled: true,
+      sourceWidth: 1072,
+      sourceHeight: 500,
+      filename:''
     },
     subtitle: {
       text: ''
     },
     xAxis: {
       type: 'datetime',
+      ordinal: false,
       dateTimeLabelFormats: {
         millisecond: '%H:%M:%S.%L',
         second: '%H:%M:%S',
@@ -533,15 +572,12 @@ module.exports = {
         year: '%Y'
       },
       gridLineColor: '#eeeeee',
-      categories: [],
-      // minTickInterval:1,
       labels: {
         style: {
           color: "#999999"
         },
         autoRotation: [-10, -20, -30, -40, -50, -60, -70, -80, -90]
       }
-
     },
     tooltip: {
       dateTimeLabelFormats: {
@@ -596,7 +632,7 @@ module.exports = {
         lineWidth: 1,
         states: {
           hover: {
-            lineWidth: 1
+            lineWidth: 2
           }
         },
         threshold: null,
@@ -610,11 +646,207 @@ module.exports = {
       type: 'area',
       name: '',
       data: [],
-      allowPointSelect: false,
+      //turboThreshold: 7000,
+      //allowPointSelect: false,
       marker: {
         enabled: true,
-        enabledThreshold: '7'
+        //enabledThreshold: '7'
       }
     }]
   },
+  ringPieHighChart3D: {
+        chart: {
+            type: 'pie',
+            options3d: {
+                enabled: true,
+                alpha: 45
+            },
+            spacingTop: 5,
+            spacingBottom: 0,
+            spacingLeft: 0,
+            spacingRight: 0,
+        },
+        title: {
+            text: ''
+        },
+        subtitle: {
+            text: ''
+        },
+        exporting: {
+            enabled: true,
+            sourceWidth: 1072,
+            sourceHeight: 500,
+            filename:''
+        },
+        credits: {
+            enabled: false
+        },
+        colors: [
+            '#424246',
+            '#96EE80',
+            '#F4A45D',
+            '#8085ED',
+            '#F25C81',
+            '#E5D355',
+            '#348188',
+            '#F25C81',
+            '#8FCACE',
+            '#7CB5EC'
+        ],
+        plotOptions: {
+            pie: {
+                allowPointSelect: true,
+                cursor: 'pointer',
+                showInLegend: true,
+                innerSize: 100,
+                depth: 60,
+            }
+        },
+        legend: {
+            // itemDistance: 20,
+            // symbolWidth: 20,
+            // symbolHeight: 12,
+            // symbolRadius: 0
+            itemStyle:{
+                fontWeight: 'normal',
+                color:'#666666'
+            }
+        },
+        tooltip: {
+            dateTimeLabelFormats: {
+                millisecond: '%H:%M:%S.%L',
+                second: '%H:%M:%S',
+                minute: '%H:%M',
+                hour: '%H:%M',
+                day: '%Y-%m-%d',
+                week: '%m-%d',
+                month: '%Y-%m',
+                year: '%Y'
+            }
+        },
+        series: [{
+            name: '',
+            data: []
+        }]
+    },
+  supplyPieHighChart: {
+      chart: {
+          plotBackgroundColor: null,
+          plotBorderWidth: null,
+          plotShadow: false,
+          type: 'pie'
+      },
+      title: {
+          text: ''
+      },
+      credits: {
+          enabled: false
+      },
+      exporting: {
+          enabled: true,
+          sourceWidth: 562,
+          sourceHeight: 400,
+          filename:''
+      },
+      tooltip: {
+          pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+      },
+      colors: [
+          '#c84a45',
+          '#e7afad'
+      ],
+      plotOptions: {
+          pie: {
+              allowPointSelect: true,
+              cursor: 'pointer',
+              dataLabels: {
+                  enabled: true
+              },
+              showInLegend: true
+          }
+      },
+      series: [{
+          name: '',
+          colorByPoint: true,
+          data: []
+      }]
+  },
+
+  supplyAreaHighChart:{
+      chart: {
+          type: 'area'
+      },
+      title: {
+          text: ''
+      },
+      subtitle: {
+          text: ''
+      },
+      credits: {
+          enabled: false
+      },
+      xAxis: {
+          type: 'datetime',
+          ordinal: false,
+          dateTimeLabelFormats: {
+              millisecond: '%H:%M:%S.%L',
+              second: '%H:%M:%S',
+              minute: '%H:%M',
+              hour: '%H:%M',
+              day: '%m-%d',
+              week: '%m-%d',
+              month: '%Y-%m',
+              year: '%Y'
+          },
+          gridLineColor: '#eeeeee',
+          labels: {
+              style: {
+                  color: "#999999"
+              },
+              autoRotation: [-10, -20, -30, -40, -50, -60, -70, -80, -90]
+          },
+          tickmarkPlacement: 'on',
+          title: {
+              enabled: false
+          },
+          //categories: ['1750', '1800', '1850', '1900', '1950', '1999', '2050'],
+      },
+
+      yAxis: {
+          title: {
+              text: ''
+          },
+          labels: {
+              style: {
+                  color: "#999999"
+              }
+          },
+      },
+    tooltip: {
+      shared: true,
+      valueSuffix:'%',
+    },
+      exporting: {
+          enabled: true,
+          sourceWidth: 1072,
+          sourceHeight: 500,
+          filename:''
+      },
+      plotOptions: {
+          area: {
+              stacking: 'normal',
+              lineColor: '#666666',
+              lineWidth: 1,
+              marker: {
+                  lineWidth: 1,
+                  lineColor: '#666666',
+                radius: 1
+              }
+          },
+
+      },
+      series: []
+
+  }
+
 };

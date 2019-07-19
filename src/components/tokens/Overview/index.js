@@ -11,13 +11,19 @@ import {TokenLink} from "../../common/Links";
 import SearchInput from "../../../utils/SearchInput";
 import {toastr} from 'react-redux-toastr'
 import SmartTable from "../../common/SmartTable.js"
-import {ONE_TRX} from "../../../constants";
+import {API_URL, ONE_TRX} from "../../../constants";
 import {login} from "../../../actions/app";
 import {reloadWallet} from "../../../actions/wallet";
 import {upperFirst} from "lodash";
 import {TronLoader} from "../../common/loaders";
+import {transactionResultManager} from "../../../utils/tron";
+import {round} from "lodash";
 import xhr from "axios/index";
+import Lockr from "lockr";
+import {withTronWeb} from "../../../utils/tronWeb";
 
+
+@withTronWeb
 class TokenOverview extends Component {
 
   constructor(props) {
@@ -28,16 +34,17 @@ class TokenOverview extends Component {
       buyAmount: 0,
       loading: false,
       total: 0,
+      amount: '',
       filter: {},
     };
 
     let nameQuery = trim(getQueryParam(props.location, "search"));
     if (nameQuery.length > 0) {
-      this.state.filter.name = `%25${nameQuery}%25`;
+      this.state.filter.name = `${nameQuery}`;
     }
   }
 
-  loadPage = async (page = 1, pageSize = 10) => {
+  loadPage = async (page = 1, pageSize = 20) => {
     let {filter} = this.state;
     let {intl} = this.props;
     this.setState({loading: true});
@@ -45,21 +52,12 @@ class TokenOverview extends Component {
     let result;
 
     if (filter.name)
-      result = await xhr.get("https://www.tronapp.co:9009/api/token?sort=-name&limit=" + pageSize + "&start=" + (page - 1) * pageSize + "&status=ico" + "&name=" + filter.name);
+      result = await xhr.get(API_URL + "/api/token?sort=rank&limit=" + pageSize + "&start=" + (page - 1) * pageSize + "&status=ico" + "&name=" + filter.name);
     else
-      result = await xhr.get("https://www.tronapp.co:9009/api/token?sort=-name&limit=" + pageSize + "&start=" + (page - 1) * pageSize + "&status=ico");
+      result = await xhr.get(API_URL + "/api/token?sort=rank&limit=" + pageSize + "&start=" + (page - 1) * pageSize + "&status=ico&showAll=2");
 
-    let total = result.data.data['Total'];
-    let tokens = result.data.data['Data'];
-    /*
-        let {tokens, total} = await Client.getTokens({
-          sort: '-name',
-          limit: pageSize,
-          start: (page - 1) * pageSize,
-          status: 'ico',
-          ...filter,
-        });
-    */
+    let total = result.data['total'];
+    let tokens = result.data['data'];
     if (tokens.length === 0) {
       toastr.warning(intl.formatMessage({id: 'warning'}), intl.formatMessage({id: 'record_not_found'}));
     }
@@ -81,7 +79,7 @@ class TokenOverview extends Component {
     if (nameQuery.length > 0) {
       this.setState({
         filter: {
-          name: `%25${nameQuery}%25`,
+          name: `${nameQuery}`,
         }
       });
     } else {
@@ -130,16 +128,18 @@ class TokenOverview extends Component {
     if (value > max) {
       value = max;
     }
+    value = value.replace(/^0|[^\d*]/g, '')
     this.setState({buyAmount: value});
     this.buyAmount.value = value;
-    let priceTRX = value * (price / ONE_TRX);
-    this.priceTRX.innerHTML = intl.formatNumber(priceTRX) + ' TRX';
+    let priceTRX = value * (price);
+    this.priceTRX.innerHTML = intl.formatNumber(priceTRX, {
+      maximumFractionDigits: 6,
+    }) + ' TRX';
   }
 
   preBuyTokens = (token) => {
-    let {buyAmount} = this.state;
+    let {buyAmount, amount} = this.state;
     let {currentWallet, wallet} = this.props;
-
     if (!wallet.isOpen) {
       this.setState({
         alert: (
@@ -183,8 +183,11 @@ class TokenOverview extends Component {
                       className="form-control"
                       max={token.remaining}
                       min={1}
+                      onKeyUp={(e) => {
+                        e.target.value = e.target.value.replace(/^0|[^\d*]/g, '')
+                      }}
                       onChange={(e) => {
-                        this.onBuyInputChange(e.target.value, token.price, token.remaining)
+                        this.onBuyInputChange(e.target.value, ((token.trxNum / token.num)*Math.pow(10, token.precision))/ONE_TRX, token.remaining)
                       }}
                   />
                 </div>
@@ -201,13 +204,13 @@ class TokenOverview extends Component {
     }
   }
   buyTokens = (token) => {
-
+    let price=((token.trxNum / token.num)*Math.pow(10, token.precision));
     let {buyAmount} = this.state;
     if (buyAmount <= 0) {
       return;
     }
     let {currentWallet, wallet} = this.props;
-    let tokenCosts = buyAmount * (token.price / ONE_TRX);
+    let tokenCosts = buyAmount * (price / ONE_TRX);
 
     if ((currentWallet.balance / ONE_TRX) < tokenCosts) {
       this.setState({
@@ -243,9 +246,9 @@ class TokenOverview extends Component {
                 <a style={{float: 'right', marginTop: '-155px'}} onClick={() => {
                   this.setState({alert: null})
                 }}><i className="fa fa-times" ariaHidden="true"></i></a>
-                <h5 style={{color: 'black'}}>{tu("buy_confirm_message_1")}</h5>
+                <p className="ml-auto buy_confirm_message">{tu("buy_confirm_message_1")}</p>
                 <span>
-                {buyAmount} {token.name} {t("for")} {buyAmount * (token.price / ONE_TRX)} TRX?
+                {buyAmount} {token.name} {t("for")} {parseFloat((buyAmount * (price / ONE_TRX)).toFixed(6))} TRX?
                 </span>
                 <button className="btn btn-danger btn-block mt-3" onClick={() => {
                   this.confirmTransaction(token)
@@ -257,21 +260,42 @@ class TokenOverview extends Component {
     }
   };
   submit = async (token) => {
-
+    let price=((token.trxNum / token.num)*Math.pow(10, token.precision));
     let {account, currentWallet} = this.props;
-    let {buyAmount, privateKey} = this.state;
+    let {buyAmount} = this.state;
+    let res;
+    if (Lockr.get("islogin") || this.props.walletType.type === "ACCOUNT_LEDGER" || this.props.walletType.type === "ACCOUNT_TRONLINK") {
+      const tronWebLedger = this.props.tronWeb();
+      const {tronWeb} = this.props.account;
+      try {
+        if (this.props.walletType.type === "ACCOUNT_LEDGER") {
+          const unSignTransaction = await tronWebLedger.transactionBuilder.purchaseToken(token.ownerAddress, token.id+"", parseInt((buyAmount * price).toFixed(0)), this.props.walletType.address);
+          const {result} = await transactionResultManager(unSignTransaction, tronWebLedger);
+          res = result;
+        }
+        if (this.props.walletType.type === "ACCOUNT_TRONLINK") {
+          const unSignTransaction = await tronWeb.transactionBuilder.purchaseToken(token.ownerAddress, token.id+"", parseInt((buyAmount * price).toFixed(0)), tronWeb.defaultAddress.hex).catch(e => false);
+          const {result} = await transactionResultManager(unSignTransaction, tronWeb);
+          res = result;
+        }
+      } catch (e) {
+        console.log(e)
+      }
+    } else {
+      let isSuccess = await Client.participateAsset(
+          currentWallet.address,
+          token.ownerAddress,
+          token.id+"",
+          parseInt((buyAmount * price).toFixed(0)))(account.key);
+      res = isSuccess.success
+    }
 
-    let isSuccess = await Client.participateAsset(
-        currentWallet.address,
-        token.ownerAddress,
-        token.name,
-        buyAmount * token.price)(account.key);
 
-    if (isSuccess.success) {
+    if (res) {
       this.setState({
         activeToken: null,
         confirmedParticipate: true,
-        participateSuccess: isSuccess.success,
+        participateSuccess: res,
         buyAmount: 0,
       });
       this.props.reloadWallet();
@@ -350,25 +374,40 @@ class TokenOverview extends Component {
         width: '40%',
         render: (text, record, index) => {
           return <div className="table-imgtext">
-            {record.imgUrl ?
-                <div style={{width: '42px', height: '42px', marginRight: '18px'}}><img
-                    style={{width: '42px', height: '42px'}} src={record.imgUrl}/></div> :
-                <div style={{width: '42px', height: '42px', marginRight: '18px'}}><img
-                    style={{width: '42px', height: '42px'}} src={require('../../../images/logo_default.png')}/></div>
-            }
+              {record.imgUrl ?
+                  <div style={{width: '42px', height: '42px', marginRight: '18px'}}>
+                      {
+                          record.id == 1002000? <div className="token-img-top">
+                            <img style={{width: '42px', height: '42px'}} src={record.imgUrl}/>
+                            <i></i>
+                          </div>:<img style={{width: '42px', height: '42px'}} src={record.imgUrl}/>
+                      }
+                  </div> :
+                  <div style={{width: '42px', height: '42px', marginRight: '18px'}}><img
+                      style={{width: '42px', height: '42px'}} src={require('../../../images/logo_default.png')}/></div>
+              }
+
             <div>
-              <h5><TokenLink name={record.name}
-                             namePlus={record.name + ' (' + record.abbr + ')'}/>
+              <h5><TokenLink name={record.name} id={record.id}
+                             namePlus={record.name + ' (' + record.abbr + ')'} address={record.ownerAddress}/>
               </h5>
-              <p>{record.description}</p>
+              <p style={{wordBreak: "break-all"}}>{record.description}</p>
             </div>
           </div>
         }
       },
       {
+        title: "ID",
+        render: (text, record, index) => {
+          return <div>{record.id}</div>
+        },
+        align: 'center',
+        className: 'ant_table d-none d-md-table-cell _text_nowrap'
+      },
+      {
         title: intl.formatMessage({id: 'fund_raised'}),
         render: (text, record, index) => {
-          return <div><FormattedNumber value={record.participated / ONE_TRX}/> TRX</div>
+          return <div><FormattedNumber value={record.participated / ONE_TRX} maximumFractionDigits={1}/> TRX</div>
         },
         align: 'center',
         className: 'ant_table d-none d-md-table-cell _text_nowrap'
@@ -381,7 +420,7 @@ class TokenOverview extends Component {
         render: (text, record, index) => {
           if (text === null)
             text = 0;
-          return <div><FormattedNumber value={text}/>%</div>
+          return <div><FormattedNumber value={text} maximumFractionDigits={1}/>%</div>
         },
         align: 'center',
         className: 'ant_table d-none d-sm-table-cell _text_nowrap'
@@ -401,7 +440,7 @@ class TokenOverview extends Component {
       {
         title: intl.formatMessage({id: 'issuing_price'}),
         render: (text, record, index) => {
-          return <div><FormattedNumber value={record.price / ONE_TRX} maximumFractionDigits={6}/> TRX</div>
+          return <div><FormattedNumber value={((record.trxNum / record.num)*Math.pow(10, record.precision))/ONE_TRX} maximumFractionDigits={6}/> TRX</div>
         },
         align: 'center',
         className: 'ant_table'
@@ -410,6 +449,9 @@ class TokenOverview extends Component {
         title: intl.formatMessage({id: 'participate'}),
         align: 'center',
         render: (text, record, index) => {
+          if (record.isBlack) {
+            return <button className="btn btn-secondary btn-block btn-sm" disabled>{tu("participate")}</button>
+          }
           if (record.endTime < new Date() || record.issuedPercentage === 100)
             return <span style={{fontWeight: 'normal'}}>{tu("finish")}</span>
           else if (record.startTime > new Date())
@@ -431,7 +473,7 @@ class TokenOverview extends Component {
     let {tokens, alert, loading, total} = this.state;
     let {match, intl} = this.props;
     let column = this.customizedColumn();
-    let tableInfo = intl.formatMessage({id: 'view_total'}) + ' ' + total + ' ' + intl.formatMessage({id: 'view_pass'})
+    let tableInfo = intl.formatMessage({id: 'view_total'}) + ' ' + (total - 1) + ' ' + intl.formatMessage({id: 'view_pass'})
 
     return (
         <main className="container header-overlap token_black">
@@ -441,7 +483,8 @@ class TokenOverview extends Component {
             <div className="row">
 
               <div className="col-md-12 table_pos">
-                {total ? <div className="table_pos_info" style={{left: 'auto'}}>{tableInfo}</div> : ''}
+                {total ?
+                    <div className="table_pos_info d-none d-md-block" style={{left: 'auto'}}>{tableInfo}</div> : ''}
                 <SmartTable bordered={true} loading={loading} column={column} data={tokens} total={total}
                             rowClassName="table-row" onPageChange={(page, pageSize) => {
                   this.loadPage(page, pageSize)
@@ -458,6 +501,7 @@ class TokenOverview extends Component {
 function mapStateToProps(state) {
   return {
     account: state.app.account,
+    walletType: state.app.wallet,
     tokens: state.tokens.tokens,
     wallet: state.wallet,
     currentWallet: state.wallet.current,

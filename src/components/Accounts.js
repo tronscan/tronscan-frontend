@@ -3,15 +3,17 @@ import {connect} from "react-redux";
 import {loadAccounts} from "../actions/app";
 import {tu} from "../utils/i18n";
 import {FormattedNumber, injectIntl} from "react-intl";
-import {filter} from "lodash";
+import {filter, upperFirst} from "lodash";
 import {AddressLink} from "./common/Links";
-import Paging from "./common/Paging";
-import {Client} from "../services/api";
 import {CIRCULATING_SUPPLY, ONE_TRX} from "../constants";
-import {Sticky, StickyContainer} from "react-sticky";
 import {TRXPrice} from "./common/Price";
-import {WidgetIcon} from "./common/Icon";
+import SmartTable from "./common/SmartTable.js"
+import {TronLoader} from "./common/loaders";
+import {QuestionMark} from "./common/QuestionMark";
 import xhr from "axios/index";
+import {Client} from "../services/api";
+import {Tooltip} from 'antd'
+
 
 class Accounts extends Component {
 
@@ -23,6 +25,12 @@ class Accounts extends Component {
       searchString: "",
       accounts: [],
       total: 0,
+      exchangeFlag: [
+        {name: 'binance', addressList: {
+          Cold: ['TMuA6YqfCeX8EhbfYEg5y7S4DqzSJireY9', 'TWd4WrZ9wn84f5x1hZhL4DHvk738ns5jwb'],
+          Hot: ['TAUN6FwrnwwmaEqYcckffC7wYmbaS6cBiX']}
+        }
+      ]
     }
   }
 
@@ -30,30 +38,53 @@ class Accounts extends Component {
     this.loadAccounts();
   }
 
-  loadAccounts = async (page = 1,pageSize=40) => {
+  loadAccounts = async (page = 1, pageSize = 20) => {
+    // const { exchangeFlag } = this.state
 
-    this.setState({ loading: true });
+    this.setState({loading: true});
 
-    // let {accounts, total} = await Client.getAccounts({
-    //   sort: '-balance',
-    //   limit: pageSize,
-    //   start: (page-1) * pageSize,
-    // });
-      let accountData = await xhr.get("https://assistapi.tronscan.org/api/account?sort=-balance&limit="+ pageSize + "&start=" + (page - 1) * pageSize);
-      let accountsTotal = accountData.data.total;
-      let accounts = accountData.data.data;
-      this.setState({
+    let {accounts, total, rangeTotal} = await Client.getAccounts({
+      sort: '-balance',
+      limit: pageSize,
+      start: (page - 1) * pageSize
+    })
+    let exchangeFlag = await Client.getTagNameList()
+
+    accounts.map(item => {
+      item.tagName = ''
+      exchangeFlag.map(coin => {
+        const typeList = Object.keys(coin.addressList)
+        typeList.map(type => {
+          if(coin.addressList[type].length == 1){
+            if(coin.addressList[type][0] === item.address){
+              item.tagName = `${upperFirst(coin.name)}${type !== 'default'? `-${type}`: ''}`
+            }
+          }else if(coin.addressList[type].length > 1){
+            coin.addressList[type].map((address, index) => {
+              if(address === item.address){
+                item.tagName = `${upperFirst(coin.name)}${type !== 'default'? `-${type} ${index + 1}`: ` ${index + 1}`}`
+              }
+            })
+          }
+        })
+      })
+     })
+     // let {txOverviewStats} = await Client.getTxOverviewStats();
+
+    this.setState({
       loading: false,
-      accounts:accounts,
-      total:accountsTotal
+      accounts: accounts,
+      total: total,
+      rangeTotal:rangeTotal,
     });
   };
 
   componentDidUpdate() {
     //checkPageChanged(this, this.loadAccounts);
   }
-  onChange = (page,pageSize) => {
-    this.loadAccounts(page,pageSize);
+
+  onChange = (page, pageSize) => {
+    this.loadAccounts(page, pageSize);
   };
   onSearchFieldChangeHandler = (e) => {
     this.setState({
@@ -83,23 +114,23 @@ class Accounts extends Component {
     }
 
     return (
-      <Fragment>
-        <div className="table-responsive">
-          <table className="table table-striped m-0">
-            <thead className="thead-dark">
-            <tr>
-              <th>{tu("address")}</th>
-              <th className="d-md-table-cell">{tu("supply")}</th>
-              <th className="d-md-table-cell">{tu("power")}</th>
-              <th>{tu("balance")}</th>
-            </tr>
-            </thead>
-            <tbody>
-            {
+        <Fragment>
+          <div className="table-responsive">
+            <table className="table table-striped m-0">
+              <thead className="thead-dark">
+              <tr>
+                <th>{tu("address")}</th>
+                <th className="d-md-table-cell">{tu("supply")}</th>
+                <th className="d-md-table-cell">{tu("power")}</th>
+                <th>{tu("balance")}</th>
+              </tr>
+              </thead>
+              <tbody>
+              {
                 accounts.map((account, index) => (
                     <tr key={account.address}>
                       <th>
-                        <AddressLink address={account.address} />
+                        <AddressLink address={account.address}/>
                       </th>
                       <td className="d-md-table-cell text-nowrap">
                         <FormattedNumber
@@ -116,55 +147,119 @@ class Accounts extends Component {
                       </td>
                     </tr>
                 ))
-            }
-            </tbody>
-          </table>
-        </div>
+              }
+              </tbody>
+            </table>
+          </div>
 
-      </Fragment>
+        </Fragment>
     )
+  }
+
+  customizedColumn = () => {
+    let {intl} = this.props;
+    let column = [
+      {
+        title: upperFirst(intl.formatMessage({id: 'address'})),
+        dataIndex: 'address',
+        key: 'address',
+        align: 'left',
+        className: 'ant_table',
+        width: '40%',
+        render: (text, record, index) => {
+          return record.accountType == 2 ?
+              <span className="d-flex">
+              <Tooltip placement="top" title={intl.formatMessage({id: 'contracts'})}>
+                <span><i className="far fa-file mr-1"></i></span>
+              </Tooltip>
+              
+              <AddressLink address={text} isContract={record.toAddressType == 2}/>
+            </span> :
+              <AddressLink address={text}/>
+        }
+      },
+      {
+        title: 'Name Tag',
+        dataIndex: 'tagName',
+        key: 'tagName',
+        align: 'left'
+      },
+      {
+        title: upperFirst(intl.formatMessage({id: 'supply'})),
+        dataIndex: 'balance',
+        key: 'supply',
+        align: 'left',
+        className: 'ant_table',
+        // width: '12%',
+        render: (text, record, index) => {
+          return <div><FormattedNumber
+              value={(((parseInt(text) / ONE_TRX) / CIRCULATING_SUPPLY) * 100)}
+              minimumFractionDigits={8}
+              maximumFractionDigits={8}
+          /> %</div>
+        }
+      },
+      {
+        title: upperFirst(intl.formatMessage({id: 'power'})),
+        dataIndex: 'power',
+        key: 'power',
+        align: 'center',
+        // width: '15%',
+        render: (text, record, index) => {
+          return <FormattedNumber value={parseInt(text) / ONE_TRX}/>
+        }
+      },
+      {
+        title: upperFirst(intl.formatMessage({id: 'balance'})),
+        dataIndex: 'balance',
+        key: 'balance',
+        align: 'right',
+        className: 'ant_table',
+        // width: '15%',
+        render: (text, record, index) => {
+          return <TRXPrice amount={parseInt(text) / ONE_TRX}/>
+        }
+      }
+    ];
+    return column;
   }
 
   render() {
 
-    let {match} = this.props;
-    let {total, loading} = this.state;
-
-    return (
-      <main className="container header-overlap pb-3">
-        <div className="row">
-          <div className="col-md-12">
-            <div className="card h-100 text-center widget-icon">
-              <WidgetIcon className="fa fa-users text-secondary"  />
-              <div className="card-body">
-                <h3 className="text-primary">
-                  <FormattedNumber value={total}/>
-                </h3>
-                {tu("total_accounts")}
+    let {match, intl} = this.props;
+    let {total, loading, rangeTotal = 0, accounts} = this.state;
+    let column = this.customizedColumn();
+    let tableInfo = intl.formatMessage({id: 'view_total'}) + ' ' + rangeTotal + ' ' + intl.formatMessage({id: 'account_unit'}) + '<br/>' +  '(' + intl.formatMessage({id: 'table_info_big'}) + ')';
+    let tableInfoTip = intl.formatMessage({id: 'table_info_account_tip1'}) + ' ' + rangeTotal + ' ' + intl.formatMessage({id: 'table_info_account_tip2'});
+      return (
+        <main className="container header-overlap pb-3 token_black">
+          <div className="row">
+            <div className="col-md-12">
+              <div className="card h-100 text-center widget-icon accout_unit">
+                {/* <WidgetIcon className="fa fa-users text-secondary"/> */}
+                <div className="card-body">
+                  <h3 className="text-primary">
+                    <FormattedNumber value={rangeTotal}/>
+                  </h3>
+                  {tu("total_accounts")}
+                </div>
               </div>
             </div>
-          </div>
 
-        </div>
+          </div>
+          {loading && <div className="loading-style"><TronLoader/></div>}
           <div className="row mt-2">
-            <div className="col-md-12">
-              <StickyContainer>
-                <div className="card mt-1">
-                  <Sticky>
-                    {
-                      ({style}) => (
-                        <div className="card-body bg-white py-3 border-bottom" style={{zIndex: 100, ...style}}>
-                          <Paging onChange={this.onChange} url={match.url} total={total} loading={loading} />
-                        </div>
-                      )
-                    }
-                  </Sticky>
-                  {this.renderAccounts()}
-                </div>
-              </StickyContainer>
+            <div className="col-md-12 table_pos">
+              {total ?<div className="table_pos_info d-none d-md-block" style={{left: 'auto'}}>
+                      <div>{tu('view_total')} {rangeTotal} {tu('account_unit')} <QuestionMark placement="top" info={tableInfoTip} ></QuestionMark> <br/> <span>({tu('table_info_big')})</span></div>
+              </div> : ''}
+              <SmartTable bordered={true} loading={loading} column={column} data={accounts} total={total}
+                          onPageChange={(page, pageSize) => {
+                            this.loadAccounts(page, pageSize)
+                          }}/>
             </div>
           </div>
-      </main>
+        </main>
     )
   }
 }

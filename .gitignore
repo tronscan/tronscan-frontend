@@ -7,7 +7,7 @@
 /coverage
 
 # production
-/build
+
 
 # misc
 .DS_Store
@@ -21,7 +21,10 @@ yarn-debug.log*
 yarn-error.log*
 
 /.idea
-build-desktop
-build-native
+
 
 update-to-*
+
+/web.tar*
+
+.history

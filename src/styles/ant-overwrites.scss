@@ -1,9 +1,9 @@
-.token_black {
+// .token_black {
     // 全局ant-table样式覆盖 ===============================
     .ant-table {
         font-family: Helvetica;
         .ant-table-thead > tr > th, .ant-table-tbody > tr > td{
-            padding: 16px;
+            padding: 13px;
         }
         .ant-table-tbody>tr {
             &>td {
@@ -15,9 +15,9 @@
                 border-bottom: none;
             }
         }
-        thead th {
+        thead tr th {
             color: $border-color;
-            border: none;
+            border: none!important;
         }
         h5,
         a {
@@ -45,6 +45,11 @@
                // flex: 1;
             }
         }
+        &-column-has-filters{
+            span, i{
+                color: $main-red!important;
+            }
+        }
     }
     
 
@@ -59,11 +64,18 @@
             border-radius: 1px;
         }
         .ant-pagination-item,
+        .ant-pagination-prev,
+        .ant-pagination-next,
         .ant-pagination-prev .ant-pagination-item-link,
         .ant-pagination-next .ant-pagination-item-link,
         .ant-pagination-jump-prev,
         .ant-pagination-jump-next {
+            box-sizing: content-box;
             @extend %pagination-default;
+        }
+        .ant-pagination-prev .ant-pagination-item-link,
+        .ant-pagination-next .ant-pagination-item-link{
+            border: none!important;
         }
         .ant-pagination-prev .ant-pagination-item-link:after,
         .ant-pagination-next .ant-pagination-item-link:after {
@@ -116,6 +128,7 @@
             }
         }
     }
+    
 
     // 全局ant-steps样式覆盖 ===============================
     .ant-steps {
@@ -143,7 +156,19 @@
             }
         }
     }
-
+    // 全局 table ant-switch 样式覆盖 ===============================
+    .table_pos_switch{
+        .ant-switch {
+            background-color: $border-color;
+            &-checked {
+                background-color: $main-red;
+            }
+            &-inner{
+                width: 2em;
+                text-align: center;
+            }
+        }
+    }
     // 全局ant-switch 样式覆盖 ===============================
     .ant-switch {
         background-color: $border-color;
@@ -154,6 +179,101 @@
             width: 3em;
             text-align: center;
         }
+    }
+
+    @media screen and (max-width: 750px) {
+        .ant-table { 
+            overflow-x: auto;
+            &-content{
+                width: 1000px;
+            }
+        }
+
+        .ant-pagination {
+            font-size: 10px;
+            text-align: center;
+            %pagination-default {
+                height: 26px;
+                line-height: 26px;
+                min-width: 26px;
+            }
+        }
         
     }
+// }
+
+.ant-spin-nested-loading > div > .ant-spin .ant-spin-dot {
+    display: none !important;
+}
+
+// 全局ant-checkbox 样式覆盖 ===============================
+.ant-checkbox{
+    &-wrapper:hover &-inner, &:hover &-inner, &-input:focus + &-inner{
+        border-color: $main-red;
+    }
+    &-checked &-inner{
+        background-color: $main-red;
+        border-color: $main-red;
+    }
+}
+
+.ant-btn{
+    &:hover, &:focus{
+        color: $main-red;
+        border-color:  $main-red;
+        span{
+            color: $main-red;
+        }
+    }
+    box-shadow: 0 0 0 rgba(0,0,0,.015);
+}
+.ant-select,.ant-select-selection{
+    &:hover, &:focus,&:active{
+        box-shadow: 0 0 0 rgba(0,0,0,.015);
+        border-color: #6f9dca;
+    }
+    box-shadow: 0 0 0 rgba(0,0,0,.015);
+}
+
+
+.ant-table-thead > tr > th .ant-table-column-sorter-up.on, .ant-table-thead > tr > th .ant-table-column-sorter-down.on{
+    color: $main-red;
+}
+
+.ant-radio-button-wrapper-checked:first-child{
+    border-color: $main-red;
+    &:hover{
+        border-color: $main-red;
+    }
+}
+.ant-radio-button-wrapper-checked{
+    color: $main-red;
+    border-color: $main-red;
+    box-shadow: -1px 0 0 0 $main-red;
+    &:hover{
+        color: $main-red;
+        border-color: $main-red;
+        box-shadow: -1px 0 0 0 $main-red;
+    }
+}
+.ant-radio-button-wrapper:hover{
+    color: $main-red;
+}
+.ant-radio-button-wrapper{
+    min-width: 80px;
+    text-align: center;
+}
+
+.ant-form-item-label{
+    line-height: 1.5;
+}
+
+.ant-tooltip-inner{
+    background: #000;
+}
+
+.ant-tag-default {
+    border-radius: 2px;
+    border-color: #1f2534;
+    color: #1f2534;
 }

@@ -1,4 +1,4 @@
-'use strict';
+
 
 const autoprefixer = require('autoprefixer');
 const path = require('path');
@@ -13,6 +13,11 @@ const eslintFormatter = require('react-dev-utils/eslintFormatter');
 const ModuleScopePlugin = require('react-dev-utils/ModuleScopePlugin');
 const paths = require('./paths');
 const getClientEnvironment = require('./env');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const CompressionWebpackPlugin = require('compression-webpack-plugin');
+const UglifyJSPlugin = require('webpack/lib/optimize/UglifyJsPlugin');
+const DllReferencePlugin = require('webpack/lib/DllReferencePlugin');
+const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin');
 
 // Webpack uses `publicPath` to determine where the app is being served from.
 // It requires a trailing slash, or the file assets will get an incorrect path.
@@ -53,6 +58,8 @@ const extractTextPluginOptions = shouldUseRelativeAssetPaths
 // The development configuration is different and lives in a separate file.
 
 module.exports = {
+  cache: true,
+  profile: true,
   // Don't attempt to continue if there are any errors.
   bail: true,
   // We generate sourcemaps in production. This is slow but gives good results.
@@ -60,7 +67,7 @@ module.exports = {
   devtool: shouldUseSourceMap ? 'source-map' : false,
   // In production, we only want to load the polyfills and the app code.
   entry: {
-    main: [require.resolve('./polyfills'), paths.appIndexJs]
+    main: [require.resolve('./polyfills'), paths.appIndexJs],
   },
   output: {
     // The build folder.
@@ -106,6 +113,7 @@ module.exports = {
       // To fix this, we prevent you from importing files out of src/ -- if you'd like to,
       // please link the files into your node_modules/ and let module-resolution kick in.
       // Make sure your source files are compiled, as they will not be processed in any way.
+
       new ModuleScopePlugin(paths.appSrc, [paths.appPackageJson]),
     ],
   },
@@ -134,7 +142,7 @@ module.exports = {
         include: paths.appSrc,
       },
       {
-        // "oneOf" will traverse all following loaders until one will
+        // "oneOf" will traverse all following loaders until one wil
         // match the requirements. When no loader matches it will fall
         // back to the "file" loader at the end of the loader list.
         oneOf: [
@@ -159,8 +167,10 @@ module.exports = {
               path.resolve(paths.appNodeModules, "instascan/src/camera.js"),
               path.resolve(paths.appNodeModules, "instascan/src/scanner.js"),
               path.resolve(paths.appNodeModules, "instascan/index.js"),
+              path.resolve(paths.appNodeModules, "split-on-first/index.js"),
               '/home/rovak/workspace/tronscan-node-client/src',
             ],
+            exclude:path.resolve(__dirname, 'node_modules'),
             loader: require.resolve('babel-loader'),
             options: {
               compact: true,
@@ -168,6 +178,7 @@ module.exports = {
                 "transform-class-properties",
                 "transform-async-to-generator",
                 "transform-object-rest-spread",
+                "transform-decorators-legacy",
                 ['import', [{ libraryName: "antd", style: 'css' }]]
               ],
               presets: [
@@ -308,6 +319,43 @@ module.exports = {
     // <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
     // In production, it will be an empty string unless you specify "homepage"
     // in `package.json`, in which case it will be the pathname of that URL.
+    new DllReferencePlugin({
+        manifest:require('./../mainfest/base-manifest.json')
+    }),
+    new DllReferencePlugin({
+        manifest:require('./../mainfest/charts-manifest.json')
+    }),
+    new DllReferencePlugin({
+        manifest:require('./../mainfest/polyfill-manifest.json')
+    }),
+    new DllReferencePlugin({
+        manifest:require('./../mainfest/react-manifest.json')
+    }),
+    new DllReferencePlugin({
+        manifest:require('./../mainfest/ui-manifest.json')
+    }),
+    new UglifyJSPlugin({
+        compress: {
+            warnings: false,  //删除无用代码时不输出警告
+            drop_console: true,  //删除所有console语句，可以兼容IE
+            collapse_vars: true,  //内嵌已定义但只使用一次的变量
+            reduce_vars: true,  //提取使用多次但没定义的静态值到变量
+        },
+        output: {
+            beautify: false, //最紧凑的输出，不保留空格和制表符
+            comments: false, //删除所有注释
+        }
+    }),
+    new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
+    new CompressionWebpackPlugin({
+        filename: '[path].gz[query]',
+        algorithm: 'gzip',
+        test: new RegExp('\\.(js|css)$'),
+        threshold: 10240,
+        minRatio: 0.8,
+        deleteOriginalAssets: false,
+    }),
+    new BundleAnalyzerPlugin(),
     new InterpolateHtmlPlugin(env.raw),
     // Generates an `index.html` file with the <script> injected.
     new HtmlWebpackPlugin({
@@ -330,6 +378,10 @@ module.exports = {
     // if (process.env.NODE_ENV === 'production') { ... }. See `./env.js`.
     // It is absolutely essential that NODE_ENV was set to production here.
     // Otherwise React will be compiled in the very slow development mode.
+    new MonacoWebpackPlugin({
+        // available options are documented at https://github.com/Microsoft/monaco-editor-webpack-plugin#options
+        languages: ['solidity']
+    }),
     new webpack.DefinePlugin(env.stringified),
     // Minify the code.
     new webpack.optimize.UglifyJsPlugin({

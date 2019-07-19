@@ -9,7 +9,8 @@ import "react-datetime/css/react-datetime.css";
 import {NumberField} from "../common/Fields";
 import 'moment/min/locales';
 import DateTimePicker from "react-datetime";
-
+import {Switch, Select} from 'antd';
+const Option = Select.Option;
 
 function ErrorLabel(error) {
   if (error !== null) {
@@ -31,12 +32,15 @@ export class ExchangeRate extends PureComponent {
     let endTime = new Date();
     endTime.setHours(0, 0, 0, 0);
     endTime.setDate(startTime.getDate() + 90);
-    this.state = this.props.state;
+    this.state = {
+      showTime: true,
+      ...this.props.state
+    }
   }
 
   isValid = () => {
 
-    let { numberOfCoins, numberOfTron, startTime, endTime } = this.state;
+    let { numberOfCoins, numberOfTron, startTime, endTime,showTime } = this.state;
 
     let newErrors = {
       tronAmount: null,
@@ -51,20 +55,21 @@ export class ExchangeRate extends PureComponent {
     if (numberOfCoins <= 0)
       newErrors.tokenAmount = tu("coin_value_error");
 
-    if (!startTime)
-      newErrors.startDate = tu("invalid_starttime_error");
+    if(showTime){
+      if (!startTime)
+        newErrors.startDate = tu("invalid_starttime_error");
 
-    let calculatedStartTime = new Date(startTime).getTime();
+      let calculatedStartTime = new Date(startTime).getTime();
 
-    if (calculatedStartTime < Date.now())
-      newErrors.startDate = tu("past_starttime_error");
+      if (calculatedStartTime < Date.now())
+        newErrors.startDate = tu("past_starttime_error");
 
-    if (!endTime)
-      newErrors.endDate = tu("invalid_endtime_error");
+      if (!endTime)
+        newErrors.endDate = tu("invalid_endtime_error");
 
-    if (new Date(endTime).getTime() <= calculatedStartTime)
-      newErrors.endDate = tu("date_error");
-
+      if (new Date(endTime).getTime() <= calculatedStartTime)
+        newErrors.endDate = tu("date_error");
+    }
 
     if (some(Object.values(newErrors), error => error !== null)) {
       this.setState({errors: newErrors});
@@ -77,6 +82,33 @@ export class ExchangeRate extends PureComponent {
 
   };
 
+  switchFreeze = (checked) => {
+    this.setState({showTime: checked});
+    if (!checked) {
+        let startTime = new Date();
+        startTime.setTime(startTime.getTime()+ 120*1000);
+        let endTime = new Date();
+        endTime.setTime(endTime.getTime() + 121*1000);
+        this.setState({
+            startTime,
+            endTime
+        });
+    }else{
+      let startTime = new Date();
+      startTime.setHours(0, 0, 0, 0);
+      startTime.setTime(startTime.getTime() + 24*60*60*1000);
+
+      let endTime = new Date();
+      endTime.setHours(0, 0, 0, 0);
+      endTime.setTime(endTime.getTime() + 24*60*60*1000*2);
+
+      this.setState({
+        startTime,
+        endTime
+      });
+    }
+  }
+
   componentDidMount() {
 
   }
@@ -85,14 +117,17 @@ export class ExchangeRate extends PureComponent {
 
   }
 
+  handleChange = (e) =>{
+     this.setState({precision: e.target.value})
+  }
 
   render() {
-    let {numberOfCoins, numberOfTron, name, startTime, endTime} = this.state;
+    let {numberOfCoins, numberOfTron, name, startTime, endTime, precision, showTime} = this.state;
 
     let {errors} = this.state;
 
     let exchangeRate = numberOfTron / numberOfCoins;
-    let {activeLanguage, language, nextStep} = this.props;
+    let {activeLanguage, language, nextStep, intl} = this.props;
 
     if (activeLanguage === "en") {
       language = 'en-gb';
@@ -117,11 +152,34 @@ export class ExchangeRate extends PureComponent {
           </p>
           <hr/>
           <form>
+            <fieldset className="mb-3">
+              <legend>
+                  {tu("token_precision")}
+              </legend>
+              <div className="form-row">
+                <p className="col-md-12">
+                    {tu("token_precision_message_0")}
+                </p>
+              </div>
+              <div className="form-row">
+                <div className="form-group col-md-6">
+                  <select className="form-control" onChange={this.handleChange} value={precision}>
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                  </select>
+                </div>
+              </div>
+
+            </fieldset>
             <fieldset>
               <legend>
                 {tu("exchange_rate")}
               </legend>
-
               <div className="form-row">
                 <p className="col-md-12">
                   {tu("exchange_rate_message_0")}
@@ -164,37 +222,52 @@ export class ExchangeRate extends PureComponent {
                 {tu("participation")}
               </legend>
 
-              <div className="form-row ">
-                <p className="col-md-12">
-                  {tu("participation_message_0")}{name}{tu("participation_message_1")}
-                </p>
+              <div className="form-row mb-3">
+
+                {showTime &&
+                  <p className="col-md-12">
+                      {tu("participation_message_0")}{name}{tu("participation_message_1")}
+                  </p>
+                }
+                {!showTime &&
+                  <p className="col-md-12">
+                      {tu("participation_message_2")}
+                  </p>
+                }
+                <Switch checkedChildren={intl.formatMessage({id: 'freeze_on'})}
+                        unCheckedChildren={intl.formatMessage({id: 'freeze_off'})}
+                        onChange={this.switchFreeze}
+                        checked={showTime}
+                />
               </div>
-              <div className="form-row">
-                <div className="form-group col-sm-12 col-md-12 col-lg-6">
-                  <label>{tu("start_date")}</label>
-                  <DateTimePicker
-                      locale={language}
-                      onChange={(data) => this.setState({startTime: data.toDate()})}
-                      isValidDate={this.isValidStartTime}
-                      value={startTime}
-                      closeOnSelect={true}
-                      input={true}
-                  />
-                  {ErrorLabel(errors.startDate)}
+              { showTime && 
+                <div className="form-row">
+                  <div className="form-group col-sm-12 col-md-12 col-lg-6">
+                    <label>{tu("start_date")}</label>
+                    <DateTimePicker
+                        locale={language}
+                        onChange={(data) => this.setState({startTime: data.toDate()})}
+                        isValidDate={this.isValidStartTime}
+                        value={startTime}
+                        //closeOnSelect={true}
+                        input={true}
+                    />
+                    {ErrorLabel(errors.startDate)}
+                  </div>
+                  <div className="form-group col-sm-12 col-md-12 col-lg-6">
+                    <label>{tu("end_date")}</label>
+                    <DateTimePicker
+                        locale={language}
+                        onChange={(data) => this.setState({endTime: data.toDate()})}
+                        isValidDate={this.isValidEndTime}
+                        value={endTime}
+                        //closeOnSelect={true}
+                        input={true}
+                    />
+                    {ErrorLabel(errors.endDate)}
+                  </div>
                 </div>
-                <div className="form-group col-sm-12 col-md-12 col-lg-6">
-                  <label>{tu("end_date")}</label>
-                  <DateTimePicker
-                      locale={language}
-                      onChange={(data) => this.setState({endTime: data.toDate()})}
-                      isValidDate={this.isValidEndTime}
-                      value={endTime}
-                      closeOnSelect={true}
-                      input={true}
-                  />
-                  {ErrorLabel(errors.endDate)}
-                </div>
-              </div>
+              }
             </fieldset>
             <div className="pt-2">
             <a className="btn btn-default btn-lg" onClick={()=>{nextStep(1)}}>{tu('prev_step')}</a>

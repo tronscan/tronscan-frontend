@@ -1,59 +1,57 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
-import {Client} from "../../services/api";
 import {tu} from "../../utils/i18n";
 import {loadTokens} from "../../actions/tokens";
 import {login} from "../../actions/app";
-import {FormattedNumber, FormattedDate, injectIntl} from "react-intl";
+import {injectIntl} from "react-intl";
 import {TokenLink} from "../common/Links";
 import xhr from "axios/index";
+import {API_URL} from "../../constants";
+import Address from '../addresses/Address';
+import {Client} from "../../services/api";
 
 class MyToken extends Component {
   constructor() {
     super();
     this.state = {
       issuedAsset: null,
+      addressStatus: false
     };
   }
 
   componentDidMount() {
-    this.checkExistingToken();
+    let {wallet} = this.props;
+    const address = this.props.location.search && this.props.location.search.split('?address=')[1]
+    let walletAddress = '';
+    if(address){
+      walletAddress = address
+    }else if(wallet){
+      walletAddress = wallet.address
+    }else{
+      return false
+    }
+
+    this.setState({addressStatus: walletAddress})
+    walletAddress && this.checkExistingToken(walletAddress);
+   
   }
 
   componentDidUpdate(prevProps) {
     let {wallet} = this.props;
     if (wallet) {
       if (prevProps.wallet === null || wallet.address !== prevProps.wallet.address) {
-        this.checkExistingToken();
+        this.checkExistingToken(wallet.address);
       }
     }
   }
 
-  checkExistingToken = () => {
 
-    let {wallet} = this.props;
-    if (wallet !== null) {
-
-      xhr.get("https://www.tronapp.co:9009/api/mytoken?owner=" + wallet.address).then((result) => {
-
-        if (result.data.data['Data'][0]) {
+  checkExistingToken = (walletAddress) => {
+      Client.getIssuedAsset(walletAddress).then(({token}) => {
           this.setState({
-            issuedAsset: result.data.data['Data'][0],
+              issuedAsset: token,
           });
-        }
       });
-
-
-      /*
-      Client.getIssuedAsset(wallet.address).then(({token}) => {
-         if (token) {
-           this.setState({
-             issuedAsset: token,
-           });
-         }
-       });
-      */
-    }
   };
 
   download = () => {
@@ -61,10 +59,10 @@ class MyToken extends Component {
   }
 
   render() {
-    let {issuedAsset} = this.state;
+    let {issuedAsset,addressStatus} = this.state;
     let {wallet} = this.props;
 
-    if (!wallet) {
+    if (!wallet && !addressStatus) {
       return (
           <main className="container pb-3 token-create header-overlap">
             <div className="row">
@@ -81,7 +79,7 @@ class MyToken extends Component {
           </main>
       );
     }
-    if (!issuedAsset) {
+    if (!addressStatus) {
       return (
           <main className="container pb-3 token-create header-overlap">
             <div className="row">
@@ -98,6 +96,7 @@ class MyToken extends Component {
           </main>
       );
     }
+    if(issuedAsset){
     return (
         <main className="container header-overlap news token_black mytoken">
           <div className="row">
@@ -105,7 +104,7 @@ class MyToken extends Component {
               <div className="card">
                 <div className="card-body">
                   <div className="news_unit">
-                    <h2>{tu('my_token')}</h2>
+                    <h2>{tu('update_token')}</h2>
                     <p>{tu("my_token_desc_1")}<a href="#/rating" style={{color: 'red'}}> "{tu('tron_rating')}"</a></p>
                     <p>{tu("my_token_desc_2")}</p>
                     <hr/>
@@ -116,7 +115,10 @@ class MyToken extends Component {
                       <tbody>
                       <tr>
                         <td style={{borderTop: '0px'}}>{tu("name_of_the_token")}:</td>
-                        <td style={{borderTop: '0px'}}><TokenLink name={issuedAsset.name}/></td>
+                        <td style={{borderTop: '0px'}}>
+                          <TokenLink id={issuedAsset.id} name={issuedAsset.name} address={issuedAsset.ownerAddress}/>
+                          <span style={{color:"#999",fontSize:12}}>[{issuedAsset.id}]</span>
+                        </td>
                       </tr>
                       <tr>
                         <td>{tu("brief_info")}:</td>
@@ -145,7 +147,7 @@ class MyToken extends Component {
                     <div className="row socialMedia" style={{width: '60%'}}>
                       {
                         issuedAsset['social_media'] && issuedAsset['social_media'].map((media, index) => {
-                          return <div className="col-md-5 mr-3 mb-2">
+                          return <div className="col-md-5 mr-3 mb-2" key={index}>
                             <img src={require('../../images/' + media.name + '.png')}/>
                             {!media.url ?
                                 <span>{media.name}</span> :
@@ -164,7 +166,8 @@ class MyToken extends Component {
             </div>
           </div>
         </main>
-    )
+    )}
+    return <div></div>
   }
 }
 

@@ -7,17 +7,26 @@ import {t, tu} from "../../../utils/i18n";
 import {trim} from "lodash";
 import {Client} from "../../../services/api";
 import {TokenLink} from "../../common/Links";
+import {QuestionMark} from "../../common/QuestionMark";
 import {getQueryParam} from "../../../utils/url";
 import SearchInput from "../../../utils/SearchInput";
 import {toastr} from 'react-redux-toastr'
 import SmartTable from "../../common/SmartTable.js"
-import {ONE_TRX} from "../../../constants";
+import {API_URL, ONE_TRX} from "../../../constants";
 import {login} from "../../../actions/app";
 import {reloadWallet} from "../../../actions/wallet";
-import {upperFirst} from "lodash";
+import {upperFirst, toLower} from "lodash";
 import {TronLoader} from "../../common/loaders";
+import {transactionResultManager} from "../../../utils/tron";
 import xhr from "axios/index";
+import Lockr from "lockr";
 
+import {withTronWeb} from "../../../utils/tronWeb";
+import {Link} from "react-router-dom";
+
+
+
+@withTronWeb
 class TokenList extends Component {
 
   constructor(props) {
@@ -28,52 +37,46 @@ class TokenList extends Component {
       buyAmount: 0,
       loading: false,
       total: 0,
+      totalAll:0,
       filter: {},
     };
 
     let nameQuery = trim(getQueryParam(props.location, "search"));
     if (nameQuery.length > 0) {
-      this.state.filter.name = `%25${nameQuery}%25`;
+      this.state.filter.name = `${nameQuery}`;
     }
   }
 
-  loadPage = async (page = 1, pageSize = 10) => {
+  loadPage = async (page = 1, pageSize = 20) => {
     let {filter} = this.state;
     let {intl} = this.props;
     this.setState({loading: true});
     let token;
     let result;
+    let total;
+    let totalAll;
 
-    if (filter.name)
-      result = await xhr.get("https://www.tronapp.co:9009/api/token?sort=-name&limit=" + pageSize + "&start=" + (page - 1) * pageSize + "&name=" + filter.name);
-    else
-      result = await xhr.get("https://www.tronapp.co:9009/api/token?sort=-name&limit=" + pageSize + "&start=" + (page - 1) * pageSize);
+    if (filter.name){
+      result = await xhr.get(API_URL+"/api/token?sort=rank&limit=" + pageSize + "&start=" + (page - 1) * pageSize + "&name=" + filter.name);
+      total = result.data['data'].length;
+      totalAll = result.data['totalAll'];
+    }else{
+      result = await xhr.get(API_URL+"/api/token?sort=rank&limit=" + pageSize + "&start=" + (page - 1) * pageSize + "&totalAll=1&showAll=2");
+      total = result.data['total'];
+      totalAll = result.data['totalAll'];
+    }
 
-    let total = result.data.data['Total'];
-    let tokens = result.data.data['Data'];
-    /*
-    let {tokens, total} = await Client.getTokens({
-       sort: '-name',
-       limit: pageSize,
-       start: (page - 1) * pageSize,
-       ...filter,
-     });
-     */
+    let tokens = result.data['data'];
+
     if (tokens.length === 0) {
       toastr.warning(intl.formatMessage({id: 'warning'}), intl.formatMessage({id: 'record_not_found'}));
-    }
-    try {
-      // token = await Client.getToken("McDonaldsCoin");
-      // if (page === 1)
-      //   tokens.splice(9, 1, token);
-    }
-    catch (e) {
     }
 
     this.setState({
       loading: false,
       tokens,
       total,
+      totalAll
     });
     return total;
   };
@@ -87,7 +90,7 @@ class TokenList extends Component {
     if (nameQuery.length > 0) {
       this.setState({
         filter: {
-          name: `%25${nameQuery}%25`,
+          name: `${nameQuery}`,
         }
       });
     } else {
@@ -135,10 +138,13 @@ class TokenList extends Component {
     if (value > max) {
       value = max;
     }
+    value =  value.replace(/^0|[^\d*]/g,'')
     this.setState({buyAmount: value});
     this.buyAmount.value = value;
-    let priceTRX = value * (price / ONE_TRX);
-    this.priceTRX.innerHTML = intl.formatNumber(priceTRX);
+    let priceTRX = value * (price);
+    this.priceTRX.innerHTML = intl.formatNumber(priceTRX,{
+      maximumFractionDigits: 6,
+    });
   }
 
   preBuyTokens = (token) => {
@@ -151,7 +157,7 @@ class TokenList extends Component {
             <SweetAlert
                 info
                 showConfirm={false}
-                style={{marginLeft: '-240px', marginTop: '-195px', width: '450px', height: '300px'}}
+                // style={{marginLeft: '-240px', marginTop: '-195px', width: '450px', height: '300px', left: "50%"}}
             >
               <div className="token-sweet-alert">
                 <a className="close" onClick={() => {
@@ -173,7 +179,7 @@ class TokenList extends Component {
         alert: (
             <SweetAlert
                 showConfirm={false}
-                style={{marginLeft: '-240px', marginTop: '-195px', width: '450px', height: '300px'}}
+                // style={{marginLeft: '-240px', marginTop: '-195px', width: '450px', height: '300px', left: "50%"}}
             >
               <div className="mt-5 token-sweet-alert" style={{textAlign:'left'}}>
                 <a style={{float: 'right', marginTop: '-45px'}} onClick={() => {
@@ -188,8 +194,9 @@ class TokenList extends Component {
                       className="form-control"
                       max={token.remaining}
                       min={1}
+                      onKeyUp={(e)=>{ e.target.value = e.target.value.replace(/^0|[^\d*]/g,'') }}
                       onChange={(e) => {
-                        this.onBuyInputChange(e.target.value, token.price, token.remaining)
+                        this.onBuyInputChange(e.target.value, ((token.trxNum / token.num)*Math.pow(10, token.precision))/ONE_TRX, token.remaining)
                       }}
                   />
                 </div>
@@ -207,13 +214,13 @@ class TokenList extends Component {
   }
 
   buyTokens = (token) => {
-
+    let price=((token.trxNum / token.num)*Math.pow(10, token.precision));
     let {buyAmount} = this.state;
     if (buyAmount <= 0) {
       return;
     }
     let {currentWallet, wallet} = this.props;
-    let tokenCosts = buyAmount * (token.price / ONE_TRX);
+    let tokenCosts = buyAmount * (price / ONE_TRX);
 
     if ((currentWallet.balance / ONE_TRX) < tokenCosts) {
       this.setState({
@@ -249,9 +256,9 @@ class TokenList extends Component {
                 <a style={{float: 'right', marginTop: '-155px'}} onClick={() => {
                   this.setState({alert: null})
                 }}><i className="fa fa-times" ariaHidden="true"></i></a>
-                <h5 style={{color: 'black'}}>{tu("buy_confirm_message_1")}</h5>
+                <p className="ml-auto buy_confirm_message">{tu("buy_confirm_message_1")}</p>
                 <span>
-                {buyAmount} {token.name} {t("for")} {buyAmount * (token.price / ONE_TRX)} TRX?
+                {buyAmount} {token.name} {t("for")} {parseFloat((buyAmount * (price / ONE_TRX)).toFixed(6))} TRX?
                 </span>
                 <button className="btn btn-danger btn-block mt-3" onClick={() => {
                   this.confirmTransaction(token)
@@ -263,21 +270,42 @@ class TokenList extends Component {
     }
   };
   submit = async (token) => {
-
+    let price=((token.trxNum / token.num)*Math.pow(10, token.precision));
     let {account, currentWallet} = this.props;
     let {buyAmount} = this.state;
+      let res;
+      if (Lockr.get("islogin") || this.props.walletType.type==="ACCOUNT_LEDGER" || this.props.walletType.type==="ACCOUNT_TRONLINK") {
+        const tronWebLedger = this.props.tronWeb();
+        const { tronWeb } = this.props.account;
+          try {
+            if (this.props.walletType.type === "ACCOUNT_LEDGER") {
+              const unSignTransaction = await tronWebLedger.transactionBuilder.purchaseToken(token.ownerAddress, token.id+"", parseInt((buyAmount * price).toFixed(0)), this.props.walletType.address).catch(e => false);
+              const {result} = await transactionResultManager(unSignTransaction, tronWebLedger);
+              res = result;
+            }
+            if(this.props.walletType.type === "ACCOUNT_TRONLINK"){
+              const unSignTransaction = await tronWeb.transactionBuilder.purchaseToken(token.ownerAddress, token.id+"", parseInt((buyAmount * price).toFixed(0)), tronWeb.defaultAddress.hex).catch(e => false);
+              const {result} = await transactionResultManager(unSignTransaction, tronWeb);
+              res = result;
+            }
+          } catch (e) {
+              console.log(e)
+          }
+      }else {
+          let isSuccess = await Client.participateAsset(
+              currentWallet.address,
+              token.ownerAddress,
+              token.id+"",
+              parseInt((buyAmount * price).toFixed(0)))(account.key);
+          res = isSuccess.success
+      }
 
-    let isSuccess = await Client.participateAsset(
-        currentWallet.address,
-        token.ownerAddress,
-        token.name,
-        buyAmount * token.price)(account.key);
 
-    if (isSuccess) {
+    if (res) {
       this.setState({
         activeToken: null,
         confirmedParticipate: true,
-        participateSuccess: isSuccess,
+        participateSuccess: res,
         buyAmount: 0,
       });
 
@@ -356,20 +384,42 @@ class TokenList extends Component {
         render: (text, record, index) => {
           return <div className="table-imgtext">
             {record.imgUrl ?
-                <div style={{width: '42px', height: '42px', marginRight: '18px'}}><img
-                    style={{width: '42px', height: '42px'}} src={record.imgUrl}/></div> :
+                <div style={{width: '42px', height: '42px', marginRight: '18px'}}>
+                    {
+                        record.id == 1002000? <div className="token-img-top">
+                          <img style={{width: '42px', height: '42px'}} src={record.imgUrl}/>
+                          <i></i>
+                        </div>:<img style={{width: '42px', height: '42px'}} src={record.imgUrl}/>
+                    }
+                </div> :
                 <div style={{width: '42px', height: '42px', marginRight: '18px'}}><img
                     style={{width: '42px', height: '42px'}} src={require('../../../images/logo_default.png')}/></div>
             }
 
             <div>
-              <h5><TokenLink name={record.name}
-                             namePlus={record.name + ' (' + record.abbr + ')'}/>
+              <h5><TokenLink name={record.name} id={record.id}
+                             namePlus={record.name + ' (' + record.abbr + ')'} address={record.ownerAddress}/>
               </h5>
-              <p>{record.description}</p>
+              <p style={{wordBreak: "break-all"}}>{record.description}</p>
             </div>
           </div>
         }
+      },
+      {
+        title: "ID",
+        render: (text, record, index) => {
+          return <div>{record.id}</div>
+        },
+        align: 'center',
+        className: 'ant_table d-none d-md-table-cell _text_nowrap'
+      },
+      {
+        title: intl.formatMessage({id: 'fund_raised'}),
+        render: (text, record, index) => {
+          return <div><FormattedNumber value={record.participated / ONE_TRX} maximumFractionDigits={1}/> TRX</div>
+        },
+        align: 'center',
+        className: 'ant_table d-none d-md-table-cell _text_nowrap'
       },
       {
         title: intl.formatMessage({id: 'reputation'}),
@@ -378,9 +428,9 @@ class TokenList extends Component {
         align: 'center',
         className: 'ant_table',
         render: (text, record, index) => {
+          let lowerText = toLower(text);
           return <div>
-            {text && intl.formatMessage({id: text})}
-            <img src={require('../../../images/state/' + text + '.png')} className="ml-1 faceico"/>
+            {lowerText && intl.formatMessage({id: lowerText})}
           </div>
         }
       },
@@ -391,13 +441,13 @@ class TokenList extends Component {
         render: (text, record, index) => {
           if (text === null)
             text = 0;
-          return <div><FormattedNumber value={text}/>%</div>
+          return <div><FormattedNumber value={text} maximumFractionDigits={1}/>%</div>
         },
         align: 'center',
         className: 'ant_table _text_nowrap'
       },
       {
-        title: intl.formatMessage({id: 'issue_time'}),
+        title: intl.formatMessage({id: 'created_token_time'}),
         dataIndex: 'dateCreated',
         key: 'dateCreated',
         render: (text, record, index) => {
@@ -410,6 +460,9 @@ class TokenList extends Component {
         title: intl.formatMessage({id: 'participate'}),
         align: 'center',
         render: (text, record, index) => {
+          if(record.isBlack){
+            return<button className="btn btn-secondary btn-sm" disabled>{tu("participate")}</button>
+          }
           if (record.endTime < new Date() || record.issuedPercentage === 100)
             return <span style={{fontWeight: 'normal'}}>{tu("finish")}</span>
           else if (record.startTime > new Date())
@@ -425,10 +478,10 @@ class TokenList extends Component {
   }
 
   render() {
-    let {tokens, alert, loading, total} = this.state;
+    let {tokens, alert, loading, total, totalAll} = this.state;
     let {match, intl} = this.props;
     let column = this.customizedColumn();
-    let tableInfo = intl.formatMessage({id: 'part_total'}) + ' ' + total + ' ' + intl.formatMessage({id: 'part_pass'})
+    let tableInfo = intl.formatMessage({id: 'part_total'}) + ' ' + total + '/' + totalAll + ' ' + intl.formatMessage({id: 'part_pass'})
     return (
         <main className="container header-overlap token_black">
           {alert}
@@ -436,11 +489,17 @@ class TokenList extends Component {
           {
             <div className="row">
               <div className="col-md-12 table_pos">
-                {total ? <div className="table_pos_info" style={{left: 'auto'}}>{tableInfo}</div> : ''}
+                {total ?<div className="table_pos_info d-none d-md-block" style={{left: 'auto'}}>{tableInfo} <span><QuestionMark placement="top" text="newly_issued_token_by_tronscan" className="token-list-info"></QuestionMark></span> &nbsp;&nbsp;  <Link to="/exchange/trc10">{t("Trade_on_TRXMarket")}></Link></div> : ''}
+                {/*<SmartTable bordered={true} loading={loading} column={column} data={tokens} total={total}*/}
+                            {/*onPageChange={(page, pageSize) => {*/}
+                              {/*this.loadPage(page, pageSize)*/}
+                            {/*}}/>*/}
+
                 <SmartTable bordered={true} loading={loading} column={column} data={tokens} total={total}
-                            onPageChange={(page, pageSize) => {
-                              this.loadPage(page, pageSize)
-                            }}/>
+                            rowClassName="table-row" onPageChange={(page, pageSize) => {
+                    this.loadPage(page, pageSize)
+                }}/>
+
               </div>
             </div>
           }
@@ -453,6 +512,7 @@ class TokenList extends Component {
 function mapStateToProps(state) {
   return {
     account: state.app.account,
+    walletType: state.app.wallet,
     tokens: state.tokens.tokens,
     wallet: state.wallet,
     currentWallet: state.wallet.current,

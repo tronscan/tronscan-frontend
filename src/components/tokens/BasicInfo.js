@@ -91,7 +91,6 @@ export class BasicInfo extends PureComponent {
     let reader = new FileReader();
     reader.readAsDataURL(file.files[0]);
     reader.onload = () => {
-      //console.log(reader.result);
       this.setState({logoData: reader.result});
     }
   }
@@ -103,6 +102,7 @@ export class BasicInfo extends PureComponent {
   }
 
   componentDidMount() {
+
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -184,32 +184,36 @@ export class BasicInfo extends PureComponent {
                   {ErrorLabel(errors.url)}
                 </div>
               </div>
-              <div className="form-row">
-                <div className="form-group col-md-12">
-                  <label>{tu("token_logo")}
-                    <small className="form-text text-muted ml-2" style={{display: 'inline'}}>
-                      ({tu("image_restraint_desc")})
-                    </small>
-                  </label>
-                  <div className="logo_upload">
-                    <a href="javascript:;" className="uploadLogo">
-                      <img src={require("../../images/Upload.png")}/>
-                      <input type="file" id="logo" onChange={this.previewLogo}
-                             accept="image/x-png, image/jpg, image/jpeg, image/gif"/>
-                    </a>
-                    { logoUrl &&
-                    <div>
-                      <img className="previewLogo" id="previewLogo" src={logoUrl}
-                          style={{width: '60px', height: '60px', marginTop: '-52px', marginLeft: '10px'}}/>
-                      <a className="close" onClick={this.resetLogo}>
-                        <i className="fa fa-times" aria-hidden="true"></i>
+              {
+                /*
+                <div className="form-row">
+                  <div className="form-group col-md-12">
+                    <label>{tu("token_logo")}
+                      <small className="form-text text-muted ml-2" style={{display: 'inline'}}>
+                        ({tu("image_restraint_desc")})
+                      </small>
+                    </label>
+                    <div className="logo_upload">
+                      <a href="javascript:;" className="uploadLogo">
+                        <img src={require("../../images/Upload.png")}/>
+                        <input type="file" id="logo" onChange={this.previewLogo}
+                               accept="image/x-png, image/jpg, image/jpeg, image/gif"/>
                       </a>
+                      {logoUrl &&
+                      <div>
+                        <img className="previewLogo" id="previewLogo" src={logoUrl}
+                             style={{width: '60px', height: '60px', marginTop: '-52px', marginLeft: '10px'}}/>
+                        <a className="close" onClick={this.resetLogo}>
+                          <i className="fa fa-times" aria-hidden="true"></i>
+                        </a>
+                      </div>
+                      }
                     </div>
-                    }
-                  </div>
 
+                  </div>
                 </div>
-              </div>
+                */
+              }
             </fieldset>
             <div className="pt-2">
             <a className="btn btn-danger btn-lg" onClick={() => {

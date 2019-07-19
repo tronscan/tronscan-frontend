@@ -14,17 +14,18 @@ const consoleError = console.error.bind(console);
 // eslint-disable-next-line
 console.error = (message, ...args) => {
   if (
-    typeof message === 'string' && (
-    message.startsWith('[React Intl] Missing message:') ||
-    message.startsWith('[React Intl] Cannot format message') )
+      typeof message === 'string' && (
+      message.startsWith('[React Intl] Missing message:') ||
+      message.startsWith('[React Intl] Cannot format message'))
   ) {
     return;
   }
   consoleError(message, ...args);
 };
 
-ReactDOM.render(<AppCmp />, document.getElementById('root'));
+ReactDOM.render(<AppCmp/>, document.getElementById('root'));
 
 if (IS_DESKTOP) {
   require("./desktop/bootstrap");
 }
+

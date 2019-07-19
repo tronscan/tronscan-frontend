@@ -55,7 +55,7 @@ class Confirm extends Component {
   }
 
   render() {
-    let {numberOfCoins, numberOfTron, name, abbr, frozenSupply, totalSupply, startTime, endTime, showFrozenSupply, checkbox} = this.state;
+    let {numberOfCoins, numberOfTron, name, abbr, frozenSupply, totalSupply, startTime, endTime, showFrozenSupply,precision, checkbox} = this.state;
     let {nextStep} = this.props;
     let {errors} = this.state;
     let exchangeRate = numberOfTron / numberOfCoins;
@@ -107,20 +107,23 @@ class Confirm extends Component {
               <table className="table confirm">
                 <tbody>
                 <tr>
-                  <td className="text-nowrap" style={{borderTop: '0px'}}>{tu("token_price")}:</td>
-                  <td style={{borderTop: '0px'}}> 1 {name || tu("token")} = <FormattedNumber
+                  <td className="text-nowrap" style={{borderTop: '0px'}}>{tu("token_precision")}:</td>
+                  <td style={{borderTop: '0px'}}>{precision}</td>
+                </tr>
+                <tr>
+                  <td className="text-nowrap">{tu("token_price")}:</td>
+                  <td > 1 {name || tu("token")} = <FormattedNumber
                       value={exchangeRate}/> TRX
                   </td>
                 </tr>
                 <tr>
                   <td className="text-nowrap">{tu("start_date")}:</td>
-                  <td><FormattedDate value={startTime}/></td>
+                  <td>{endTime - startTime > 1000 ?  <FormattedDate value={startTime}/> : "-"}</td>
                 </tr>
                 <tr>
                   <td className="text-nowrap borderBottom">{tu("end_date")}:</td>
-                  <td className="borderBottom"><FormattedDate value={endTime}/></td>
+                  <td className="borderBottom">{endTime - startTime > 1000 ?  <FormattedDate value={endTime}/> : "-"}</td>
                 </tr>
-
                 </tbody>
               </table>
 

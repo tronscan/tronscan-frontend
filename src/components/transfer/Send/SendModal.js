@@ -5,21 +5,24 @@ import {find} from "lodash";
 import SendForm from "./SendForm";
 import {Modal, ModalBody, ModalHeader} from "reactstrap";
 import SweetAlert from "react-bootstrap-sweetalert";
+import {tu} from "../../../utils/i18n";
+import {injectIntl} from "react-intl";
 
+@injectIntl
 class SendModal extends React.PureComponent {
 
-  constructor({ isOpen = false, to = "" }) {
+  constructor({isOpen = false, to = ""}) {
     super();
 
     this.state = {
       isOpen,
       modal: (
-        <Modal backdrop={false} isOpen={true} toggle={this.hideModal} fade={false} className="modal-dialog-centered">
-          <ModalHeader className="text-center" toggle={this.hideModal}>Send</ModalHeader>
-          <ModalBody className="text-center">
-            <SendForm to={to} onSend={this.onSend} />
-          </ModalBody>
-        </Modal>
+          <Modal backdrop="static" isOpen={true} toggle={this.hideModal} fade={false} className="modal-dialog-centered fiexd-none">
+            <ModalHeader className="text-center" toggle={this.hideModal}>Send</ModalHeader>
+            <ModalBody className="text-center">
+              <SendForm to={to} onSend={this.onSend}/>
+            </ModalBody>
+          </Modal>
       )
     };
   }
@@ -33,22 +36,22 @@ class SendModal extends React.PureComponent {
   onSend = () => {
     this.setState({
       modal: (
-        <SweetAlert success title="Successful Transaction" onConfirm={this.hideModal} />
+          <SweetAlert success title="Successful Transaction" onConfirm={this.hideModal}/>
       )
     });
   };
 
   render() {
 
-    let {account} = this.props;
+    let {intl, account} = this.props;
 
     let {modal} = this.state;
 
     if (!account.isLoggedIn) {
       return (
-        <SweetAlert danger title="Not logged in" onConfirm={this.hideModal}>
-          You have to be logged in to make transactions
-        </SweetAlert>
+          <SweetAlert danger title={intl.formatMessage({id: 'not_login'})} onConfirm={this.hideModal}>
+            {tu("login_first")}
+          </SweetAlert>
       )
     }
 
@@ -63,7 +66,6 @@ function mapStateToProps(state) {
   };
 }
 
-const mapDispatchToProps = {
-};
+const mapDispatchToProps = {};
 
 export default connect(mapStateToProps, mapDispatchToProps)(SendModal)

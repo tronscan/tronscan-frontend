@@ -10,6 +10,7 @@ import {ConnectedRouter} from 'react-router-redux'
 import {reduxHistory} from "../store";
 import SignModal from "./signing/SignModal";
 import {BackTop} from 'antd';
+import Footer from "./common/Footer";
 class MainWrap extends React.Component {
   constructor() {
     super();
@@ -60,6 +61,7 @@ class MainWrap extends React.Component {
                   <Navigation/>
                 }
                 <Content router={router}/>
+                <Footer/>
               </React.Fragment>
             </ConnectedRouter>
           </IntlProvider>

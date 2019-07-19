@@ -1,12 +1,12 @@
-import React, {Component, Fragment} from 'react';
-import {t, tu} from "../../utils/i18n";
+import React, {Component} from 'react';
+import {tu} from "../../utils/i18n";
 import {Client} from "../../services/api";
 import {connect} from "react-redux";
 import {loadTokens} from "../../actions/tokens";
 import {login} from "../../actions/app";
-import {filter, trim, some, sumBy} from "lodash";
-import {ASSET_ISSUE_COST, ONE_TRX} from "../../constants";
-import {FormattedNumber, FormattedDate, injectIntl} from "react-intl";
+import {filter, trim} from "lodash";
+import {API_URL, ASSET_ISSUE_COST, ONE_TRX} from "../../constants";
+import {injectIntl} from "react-intl";
 import {addDays, addHours, isAfter} from "date-fns";
 import "react-datetime/css/react-datetime.css";
 import {Link} from "react-router-dom";
@@ -19,30 +19,38 @@ import Confirm from "./Confirm.js"
 import xhr from "axios/index";
 import {TronLoader} from "../common/loaders";
 import {Steps} from 'antd';
+import {transactionResultManager} from "../../utils/tron";
+import Lockr from "lockr";
+import {withTronWeb} from "../../utils/tronWeb";
+
+@withTronWeb
+
 
 class TokenCreate extends Component {
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     let startTime = new Date();
     startTime.setHours(0, 0, 0, 0);
+    startTime.setTime(startTime.getTime() + 24*60*60*1000)
 
     let endTime = new Date();
     endTime.setHours(0, 0, 0, 0);
-    endTime.setDate(startTime.getDate() + 90);
+    endTime.setTime(endTime.getTime() + 24*60*60*1000*2)
 
     this.state = {
       privateKey: "",
       name: "",
       abbr: "",
-      totalSupply: null,
+      totalSupply: '',
       numberOfCoins: 1,
       numberOfTron: 1,
       startTime: startTime,
       endTime: endTime,
       description: "",
       url: "",
+      precision:"0",
       confirmed: false,
       loading: false,
       isTokenCreated: false,
@@ -50,7 +58,7 @@ class TokenCreate extends Component {
       issuedAsset: null,
       errors: {
         name: null,
-        totalSupply: null,
+        totalSupply: '',
         description: null,
         url: null,
         tronAmount: null,
@@ -83,14 +91,14 @@ class TokenCreate extends Component {
     this.setState({
       modal: null,
     }, () => {
-      window.location.hash = "#/myToken";
+      window.location.hash = "#/tokens/list";
     });
   }
   preSubmit = () => {
     let {intl} = this.props;
     let {checkbox} = this.state;
-    if (!this.renderSubmit())
-      return;
+    // if (this.renderSubmit())
+    //   return;
     this.setState({
       modal: (
           <SweetAlert
@@ -103,17 +111,18 @@ class TokenCreate extends Component {
               title={intl.formatMessage({id: 'confirm_token_issue'})}
               onConfirm={this.submit}
               onCancel={this.hideModal}
-              style={{marginLeft: '-240px', marginTop: '-195px'}}
+              //style={{marginLeft: '-240px', marginTop: '-195px'}}
           >
           </SweetAlert>)
     });
-
-  }
+  };
 
   submit = async () => {
     let {account, intl} = this.props;
     let {logoData} = this.state;
-
+    let res,createInfo,errorInfo;
+    const tronWebLedger = this.props.tronWeb();
+    const { tronWeb } = this.props.account;
     this.setState({
       modal:
           <SweetAlert
@@ -121,35 +130,92 @@ class TokenCreate extends Component {
               showCancel={false}
               cancelBtnBsStyle="default"
               title={intl.formatMessage({id: 'in_progress'})}
-              style={{marginLeft: '-240px', marginTop: '-195px', width: '450px', height: '300px'}}
+              //style={{marginLeft: '-240px', marginTop: '-195px', width: '450px', height: '300px'}}
           >
             <TronLoader/>
           </SweetAlert>,
       loading: true
     });
+    let frozenSupplyAmount =  this.state.frozenSupply[0].amount * Math.pow(10,Number(this.state.precision));
+    let frozenSupply =  [{amount: frozenSupplyAmount, days:  this.state.frozenSupply[0].days}];
+      if (Lockr.get("islogin")||this.props.walletType.type==="ACCOUNT_LEDGER"||this.props.walletType.type==="ACCOUNT_TRONLINK") {
+        if (this.props.walletType.type === "ACCOUNT_LEDGER") {
+          const unSignTransaction = await tronWebLedger.transactionBuilder.createToken({
+            name: trim(this.state.name),
+            abbreviation: trim(this.state.abbr),
+            description: this.state.description,
+            url: this.state.url,
+            totalSupply: this.state.totalSupply * Math.pow(10, Number(this.state.precision)),
+            tokenRatio: this.state.numberOfCoins * Math.pow(10, Number(this.state.precision)),
+            trxRatio: this.state.numberOfTron * ONE_TRX,
+            saleStart: Date.parse(this.state.startTime),
+            saleEnd: Date.parse(this.state.endTime),
+            freeBandwidth: 0,
+            freeBandwidthLimit: 0,
+            frozenAmount: frozenSupplyAmount,
+            frozenDuration: this.state.frozenSupply[0].days,
+            precision: Number(this.state.precision),
+          }, tronWebLedger.defaultAddress.hex).catch(function (e) {
+            errorInfo = e;
+          })
+          if (!unSignTransaction) {
+            res = false;
+          } else {
+            const {result} = await transactionResultManager(unSignTransaction, tronWebLedger);
+            res = result;
+          }
+        }
 
-    try {
-      let result = await Client.createToken({
-        address: account.address,
-        name: trim(this.state.name),
-        shortName: trim(this.state.abbr),
-        totalSupply: this.state.totalSupply,
-        num: this.state.numberOfCoins,
-        trxNum: this.state.numberOfTron * ONE_TRX,
-        startTime: this.state.startTime,
-        endTime: this.state.endTime,
-        description: this.state.description,
-        url: this.state.url,
-        frozenSupply: filter(this.state.frozenSupply, fs => fs.amount > 0),
-      })(account.key);
+        if(this.props.walletType.type === "ACCOUNT_TRONLINK"){
+          const unSignTransaction = await tronWeb.transactionBuilder.createToken({
+            name: trim(this.state.name),
+            abbreviation: trim(this.state.abbr),
+            description: this.state.description,
+            url: this.state.url,
+            totalSupply: this.state.totalSupply * Math.pow(10, Number(this.state.precision)),
+            tokenRatio: this.state.numberOfCoins*Math.pow(10, Number(this.state.precision)),
+            trxRatio: this.state.numberOfTron * ONE_TRX,
+            saleStart: Date.parse(this.state.startTime),
+            saleEnd: Date.parse(this.state.endTime),
+            freeBandwidth: 0,
+            freeBandwidthLimit: 0,
+            frozenAmount: frozenSupplyAmount,
+            frozenDuration: this.state.frozenSupply[0].days,
+            precision: Number(this.state.precision),
+          }, tronWeb.defaultAddress.hex).catch(function (e) {
+            errorInfo = e;
+          })
+          if (!unSignTransaction) {
+            res = false;
+          } else {
+            const {result} = await transactionResultManager(unSignTransaction, tronWeb);
+            res = result;
+          }
+        }
 
-      if (result.success) {
-        let result_img = await xhr.post("https://www.tronapp.co:9009/api/uploadLogo", {
-          imageData: logoData,
-          owner_address: account.address
-        });
+      }else {
+           createInfo = await Client.createToken({
+              address: account.address,
+              name: trim(this.state.name),
+              shortName: trim(this.state.abbr),
+              totalSupply: this.state.totalSupply * Math.pow(10,Number(this.state.precision)),
+              num: this.state.numberOfCoins*Math.pow(10, Number(this.state.precision)),
+              trxNum: this.state.numberOfTron * ONE_TRX,
+              startTime: this.state.startTime?this.state.startTime:"",
+              endTime: this.state.endTime?this.state.endTime:"",
+              description: this.state.description,
+              url: this.state.url,
+              frozenSupply: filter(frozenSupply, fs => fs.amount > 0),
+              precision:Number(this.state.precision),
+          })(account.key);
+          res = createInfo.success
+          errorInfo = createInfo.message;
+      }
 
+
+      if (res) {
         this.setState({
+          loading: false,
           isTokenCreated: true,
           modal:
               <SweetAlert
@@ -157,16 +223,27 @@ class TokenCreate extends Component {
                   confirmBtnText={intl.formatMessage({id: 'confirm'})}
                   confirmBtnBsStyle="success"
                   onConfirm={this.redirectToTokenList}
-                  style={{marginLeft: '-240px', marginTop: '-195px'}}
+                  style={{ marginTop: '-240px'}}
               >
-                {tu("token_issued_successfully")}<br/>
-                {tu("token_link_message_0")}
-                {tu("token_link_message_1")}
-                {tu("token_link_message_2")}
+                {tu("token_issued_successfully")}<br/><br/>
+                {/*{tu("Create_token_link_message_0")}<br/>*/}
+                  <Link to="/account" className="mt-2 check_my_token" style={{color: "#C23631 !important" }}>
+                      {tu("check_my_token")}>>
+                  </Link><br/><br/>
+                <p className="token_wait_few_minutes">
+                  *{tu("the_token_wait_few_minutes")}
+                </p>
               </SweetAlert>
         });
+        if(logoData){
+            let result_img = await xhr.post(API_URL+ "/api/uploadLogo", {
+                imageData: logoData,
+                owner_address: account.address
+            });
+        }
       } else {
         this.setState({
+          loading: false,
           modal: (
               <SweetAlert
                   error
@@ -175,15 +252,11 @@ class TokenCreate extends Component {
                   onConfirm={this.hideModal}
                   style={{marginLeft: '-240px', marginTop: '-195px'}}
               >
-                {result.message}
+                  {errorInfo}
               </SweetAlert>
           )
         });
       }
-
-    } finally {
-      this.setState({loading: false});
-    }
   };
 
   isLoggedIn = () => {
@@ -192,17 +265,15 @@ class TokenCreate extends Component {
   };
 
   componentDidMount() {
-    this.setStartTime();
+    // this.setStartTime();
     this.checkExistingToken();
   }
 
   checkExistingToken = () => {
 
     let {wallet} = this.props;
-
     if (wallet !== null) {
       Client.getIssuedAsset(wallet.address).then(({token}) => {
-
         if (token) {
           this.setState({
             issuedAsset: token,
@@ -240,8 +311,8 @@ class TokenCreate extends Component {
 
   componentDidUpdate(prevProps) {
     let {wallet} = this.props;
-
     if (wallet !== null) {
+
       if (prevProps.wallet === null || wallet.address !== prevProps.wallet.address) {
         this.checkExistingToken();
       }
@@ -249,11 +320,8 @@ class TokenCreate extends Component {
   }
 
   renderSubmit = () => {
-    let {account, intl} = this.props;
-
-    let {wallet} = this.props;
-
-    if (!wallet) {
+    let {account, intl, wallet,currentWallet} = this.props;
+    if (!currentWallet) {
       this.setState({
             modal:
                 <SweetAlert
@@ -269,8 +337,7 @@ class TokenCreate extends Component {
       );
       return false
     }
-
-    if (wallet.balance < ASSET_ISSUE_COST) {
+    if (currentWallet.balance < ASSET_ISSUE_COST) {
       this.setState({
             modal:
                 <SweetAlert
@@ -405,7 +472,9 @@ function mapStateToProps(state) {
     activeLanguage: state.app.activeLanguage,
     tokens: state.tokens.tokens,
     account: state.app.account,
+    walletType: state.app.wallet,
     wallet: state.wallet.current,
+    currentWallet: state.wallet.current,
   };
 }
 

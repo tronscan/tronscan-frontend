@@ -30,9 +30,9 @@ export function withTimers(WrapperComponent) {
 
     render() {
       return <WrapperComponent
-        setInterval={this.setInterval}
-        setTimeout={this.setTimeout}
-        {...this.props} />;
+          setInterval={this.setInterval}
+          setTimeout={this.setTimeout}
+          {...this.props} />;
     }
   };
 }

@@ -12,8 +12,11 @@ export default class SmartTable extends Component {
       searchText: '',
       filtered: false,
       pagination: {
+        showQuickJumper:true,
         position: 'both',
         showSizeChanger: true,
+        defaultPageSize:20,
+
         // showTotal: function (total) {
         //   return <div>{total} {tu('records')}</div>
         // }
@@ -29,7 +32,7 @@ export default class SmartTable extends Component {
   loadDatas = async (page = 1, pageSize = 40) => {
     let {filter} = this.state;
     let result = await Client.getTokens({
-      sort: '-name',
+      sort: 'rank',
       limit: pageSize,
       start: (page - 1) * pageSize,
       ...filter,
@@ -54,6 +57,12 @@ export default class SmartTable extends Component {
 
   fetch = (params = {}) => {
     this.setState({loading: true});
+    if (!this.props.onPageChange) {
+      this.setState({
+        loading: false,
+      });
+      return;
+    }
     this.props.onPageChange(params.page, params.pageSize);
     this.setState({
       loading: false,
@@ -162,25 +171,44 @@ export default class SmartTable extends Component {
 
   render() {
 
-    let {total, loading, data, column, bordered} = this.props;
+    let {total, loading, data, column, bordered, pagination=true, scroll,locale,addr,transfers,contractAddress} = this.props;
     let columns = this.setColumn(column);
-
+    const paginationStatus = pagination? {total: total, ...this.state.pagination}: pagination;
+    
     return (
+        <div>
+            {
+                addr?<div className={"card table_pos table_pos_addr "+ (data.length == 0?"table_pos_addr_data":"") + (transfers == "address"?" transfer-mt-100":" transfer-pt-100")}>
+                  <Table
+                      bordered={bordered}
+                      columns={columns}
+                      rowKey={(record, index) => {
+                          return index
+                      }}
+                      dataSource={data}
+                      locale={locale}
+                      scroll={scroll}
+                      pagination={paginationStatus}
+                      loading={loading}
+                      onChange={this.handleTableChange}
+                  /> </div>:<div className="card table_pos">
+                  <Table
 
-        <div className="card table_pos">
-          
-          <Table
-              bordered={bordered}
-              columns={columns}
-              rowKey={record => record.index}
-              dataSource={data}
-              pagination={{total: total, ...this.state.pagination}}
-              loading={loading}
-              onChange={this.handleTableChange}
-          />
-
+                      bordered={bordered}
+                      columns={columns}
+                      rowKey={(record, index) => {
+                          return index
+                      }}
+                      dataSource={data}
+                      locale={locale}
+                      scroll={scroll}
+                      pagination={paginationStatus}
+                      loading={loading}
+                      onChange={this.handleTableChange}
+                  />
+                </div>
+            }
         </div>
-
     )
   }
 }
