@@ -274,11 +274,7 @@ class Buy extends Component {
           >
             {tu("BUY")} &nbsp;{exchangeData.fShortName}
           </Button>
-          <div className="txt-center">
-           
-              {tu("trc20_free_orders")}
-            
-          </div>
+          <div className="txt-center">{tu("trc20_free_orders")}</div>
           {/* </FormItem> */}
         </Form>
       </div>
@@ -434,26 +430,26 @@ class Buy extends Component {
                 }
                 clearInterval(timer);
                 break;
-              } else {
-                if (_times > 20) {
-                  clearInterval(timer);
-                  // this.$message.error(this.$t('exchange.order_fail'))
-                  this.setState({
-                    modal: (
-                      <SweetAlert
-                        error
-                        title={tu("trc20_trade_win_content")}
-                        onConfirm={this.hideModal}
-                      >
-                        {/* {tu("trc20_trade_win_content")} */}
-                      </SweetAlert>
-                    )
-                  });
-                  this.setState({
-                    buttonLoading: false
-                  });
-                }
               }
+            }
+          } else {
+            if (_times > 20) {
+              clearInterval(timer);
+              // this.$message.error(this.$t('exchange.order_fail'))
+              this.setState({
+                modal: (
+                  <SweetAlert
+                    error
+                    title={tu("trc20_trade_win_content")}
+                    onConfirm={this.hideModal}
+                  >
+                    {/* {tu("trc20_trade_win_content")} */}
+                  </SweetAlert>
+                )
+              });
+              this.setState({
+                buttonLoading: false
+              });
             }
           }
 
