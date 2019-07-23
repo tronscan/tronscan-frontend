@@ -16,6 +16,7 @@ import TotalInfo from "../../common/TableTotal";
 import DateRange from "../../common/DateRange";
 import xhr from "axios/index";
 import { FormatNumberByDecimals } from '../../../utils/number'
+import qs from 'qs'
 
 class Transfers extends React.Component {
 
@@ -50,10 +51,13 @@ class Transfers extends React.Component {
 
   loadPage = async (page = 1, pageSize = 20) => {
 
-    let {filter} = this.props;
-
+    let {filter, getCsvUrl} = this.props;
     let {showTotal} = this.state;
-
+    const params = {
+        contract_address: filter.token,
+        start_timestamp:this.start,
+        end_timestamp:this.end,
+    }
     this.setState(
         {
             loading: true,
@@ -62,12 +66,12 @@ class Transfers extends React.Component {
         }
     );
 
+    const query = qs.stringify({ format: 'csv',...params})
+   // getCsvUrl(`${'http://52.15.68.74:10000'}/api/token_trc20/transfers?${query}`)
     let {list, total, rangeTotal} = await Client.getTokenTRC20Transfers({
         limit: pageSize,
         start: (page - 1) * pageSize,
-        contract_address: filter.token,
-        start_timestamp:this.start,
-        end_timestamp:this.end,
+        ...params
     });
     let transfers = list;
 

@@ -1,5 +1,4 @@
 import React from "react";
-import ReactAce from 'react-ace-editor';
 import {CopyText} from "../../common/Copy";
 import {tu, tv} from "../../../utils/i18n";
 import {Client} from "../../../services/api";

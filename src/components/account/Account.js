@@ -34,6 +34,7 @@ import QRCode from "qrcode.react";
 import {byteArray2hexStr} from "@tronscan/client/src/utils/bytes";
 import { FormatNumberByDecimals } from '../../utils/number'
 import { getQueryString } from "../../utils/url";
+import IssuedToken from './IssuedToken'
 
 @connect(
     state => {
@@ -71,7 +72,7 @@ export default class Account extends Component {
       privateKey: "",
       temporaryName: "",
       selectedResource: null,
-      hideSmallCurrency: true,
+      hideSmallCurrency: false,
       tokenTRC10: true,
       tokens20: [],
       dealPairTrxLimit: 100000,
@@ -110,6 +111,7 @@ export default class Account extends Component {
     }
   }
 
+
   scrollToAnchor = () => {
 
       let anchorElement = document.getElementById('tronPower');
@@ -132,11 +134,16 @@ export default class Account extends Component {
       });
     }
 
-    Client.getIssuedAsset(account.address).then(({token}) => {
+    const {token} =  await Client.getIssuedAsset(account.address)
+
+    if(token){
+      const { rangeTotal } = await Client.getAssetTransfers({limit: 0, start: 0, issueAddress: account.address})
+      token.rangeTotal =  rangeTotal
       this.setState({
         issuedAsset: token,
       });
-    });
+    }
+    
 
     // if (currentWallet && currentWallet.allowExchange.length) {
     //     let {data,total} = await Client.getExchangesList({'address':currentWallet.address});
@@ -474,7 +481,7 @@ export default class Account extends Component {
               {frozen.balances.length > 0 ? <td className="text-right">
                 <span className="mr-1">{tu('After')}</span>
                 <FormattedDate value={frozen.balances[0].expires}/>&nbsp;
-                <FormattedTime value={frozen.balances[0].expires}/>
+                <FormattedTime value={frozen.balances[0].expires}  hour='numeric' minute="numeric" second='numeric' hour12={false}/>
               </td>:<td></td>}
               <td className="text-right">
 
@@ -507,7 +514,7 @@ export default class Account extends Component {
               {accountResource.frozen_balance > 0?<td className="text-right">
                 <span className="mr-1">{tu('After')}</span>
                 <FormattedDate value={accountResource.expire_time}/>&nbsp;
-                <FormattedTime value={accountResource.expire_time}/>
+                <FormattedTime value={accountResource.expire_time}  hour='numeric' minute="numeric" second='numeric' hour12={false}/>
               </td>:<td></td>
               }
               <td className="text-right">
@@ -566,7 +573,7 @@ export default class Account extends Component {
                 <td className="text-right">
                   <span className="mr-1">{tu('After')}</span>
                   <FormattedDate value={item.expire_time_for_bandwidth}/>&nbsp;
-                  <FormattedTime value={item.expire_time_for_bandwidth}/>
+                  <FormattedTime value={item.expire_time_for_bandwidth}  hour='numeric' minute="numeric" second='numeric' hour12={false}/>
                 </td>
                   <td className="text-right">
                     {
@@ -584,8 +591,8 @@ export default class Account extends Component {
             })
           }
           {
-            delegated&&delegated.sentDelegatedResource&&delegated.sentDelegatedResource.map((item)=>{
-              return <tr>
+            delegated&&delegated.sentDelegatedResource&&delegated.sentDelegatedResource.map((item,index)=>{
+              return <tr key={index}>
                 <td>
                   <AddressLink address={item.to} truncate={false}>
                     <span className="color-tron-100">{item.to}</span>
@@ -600,7 +607,7 @@ export default class Account extends Component {
                 <td className="text-right">
                   <span className="mr-1">{tu('After')}</span>
                   <FormattedDate value={item.expire_time_for_energy}/>&nbsp;
-                  <FormattedTime value={item.expire_time_for_energy}/>
+                  <FormattedTime value={item.expire_time_for_energy}  hour='numeric' minute="numeric" second='numeric' hour12={false}/>
                 </td>
                 <td className="text-right">
                   {
@@ -1447,21 +1454,25 @@ export default class Account extends Component {
     }
     let hasFrozen = frozen.balances.length > 0;
     let hasResourceFrozen = accountResource.frozen_balance > 0
-    let url = 'https://trx.market/launchBase?utm_source=TS4'
+    let url = 'https://support.trx.market/hc/en-us/articles/360030644412-TRC20-USDT-Reloaded-with-Powerful-Aid-from-TRXMarket-15-000-USD-Awaits-'
+    let title = 'TRC20-USDT Returns with Generous Rewards from TRXMarket - 15,000 USDT Awaits!'
     if(intl.locale == 'zh'){
-      url = 'https://trx.market/zh/launchBase?utm_source=TS4'
+      url = 'https://support.trx.market/hc/zh-cn/articles/360030644412-TRXMarket%E5%8A%A9%E5%8A%9BTRC20-USDT%E9%87%8D%E8%A3%85%E4%B8%8A%E9%98%B5-%E6%83%8A%E5%96%9C%E6%94%BE%E9%80%8110%E4%B8%87%E4%BA%BA%E6%B0%91%E5%B8%81'
+      title = 'TRXMarket助力TRC20-USDT重装上阵，惊喜放送10万人民币'
     }
+   
     return (
         <main className="container header-overlap token_black accounts">
           {modal}
-          {/*<div className="text-center alert alert-light alert-dismissible fade show" role="alert">*/}
-            {/*<a href={url} target="_blank" style={{textDecoration: 'none'}}>*/}
-              {/*{tu("accunt_ad_tip")}*/}
-            {/*</a>*/}
-            {/*<button type="button" className="close" data-dismiss="alert" aria-label="Close">*/}
-              {/*<span aria-hidden="true">&times;</span>*/}
-            {/*</button>*/}
-          {/*</div>*/}
+          {/* 广告位文字 */}
+          <div className="text-center alert alert-light alert-dismissible fade show" role="alert">
+            <a href={url} target="_blank" style={{textDecoration: 'none'}}>
+              {title}
+            </a>
+            <button type="button" className="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
           <div className="row">
             <div className="col-md-3">
               <div className="card h-100 bg-line_red bg-image_band">
@@ -1598,8 +1609,9 @@ export default class Account extends Component {
               </div>
             </div>
           </div>
+          <IssuedToken issuedAsset={issuedAsset} loadAccount={this.loadAccount} unfreezeAssetsConfirmation={this.unfreezeAssetsConfirmation}/>
           {
-            issuedAsset &&
+            false &&
             <div className="row mt-3">
               <div className="col-md-12">
                 <div className="card">
@@ -1650,7 +1662,7 @@ export default class Account extends Component {
                         <td>
                           {issuedAsset.endTime - issuedAsset.startTime > 1000 ?
                               <span><FormattedDate value={issuedAsset.startTime}/>{' '}<FormattedTime
-                                  value={issuedAsset.startTime}/></span> : "-"}
+                                  value={issuedAsset.startTime}  hour='numeric' minute="numeric" second='numeric' hour12={false}/></span> : "-"}
                         </td>
                       </tr>
                       <tr>
@@ -1658,7 +1670,7 @@ export default class Account extends Component {
                         <td>
                           {issuedAsset.endTime - issuedAsset.startTime > 1000 ?
                               <span><FormattedDate value={issuedAsset.endTime}/>{' '}<FormattedTime
-                                  value={issuedAsset.endTime}/></span> : "-"}
+                                  value={issuedAsset.endTime}  hour='numeric' minute="numeric" second='numeric' hour12={false}/></span> : "-"}
                         </td>
                       </tr>
                       <tr>
@@ -1735,6 +1747,8 @@ export default class Account extends Component {
                        onClick={this.handleTRC20Token}>
                       {tu("TRC20_token")}
                     </a>
+                    <Link to={`/exchange/trc20`} className="ml-2 float-right"><span className="mr-1"  style={{textDecoration: 'underline'}}>{t("Trade_on_TRXMarket")}</span>></Link>
+                    
                   </div>
                   {
                     tokenTRC10 ? <div className="table-responsive-token">

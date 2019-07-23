@@ -66,6 +66,9 @@ class Proposal extends React.Component {
             //'getTotalEnergyAverageUsage',
             'getUpdateAccountPermissionFee',
             'getMultiSignFee',
+            '',
+            '',
+            'getAllowTvmConstantinople'
         ];
         for(let item in proposal){
             for(let j in proposal[item]['paramters']){
@@ -345,6 +348,18 @@ class Proposal extends React.Component {
                             <span>TRX</span>
                         </div>
                     }
+                    {
+                        record.key == 'getAllowTvmConstantinople' &&
+                        <div>
+                            <span>{ intl.formatMessage({id: 'propose_27'})}</span>
+                            <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
+                            {
+                                text? <span>{tu('propose_allowed')}</span>:
+                                    <span>{tu('propose_not_allowed')}</span>
+                            }
+                        </div>
+                    }
+
                 </div>
             }
         },
@@ -369,7 +384,7 @@ class Proposal extends React.Component {
             render: (text, record, index) => {
                 return <span>
                         <FormattedDate value={Number(text)}/>&nbsp;
-                        <FormattedTime value={Number(text)}/>&nbsp;
+                        <FormattedTime value={Number(text)}  hour='numeric' minute="numeric" second='numeric' hour12={false}/>&nbsp;
                 </span>
             }
 
@@ -446,7 +461,7 @@ class Proposal extends React.Component {
             <main className="container header-overlap committee">
                 <div className="token_black table_pos">
                     {loading && <div className="loading-style"><TronLoader/></div>}
-                    {!loading&&<SmartTable bordered={true} column={column} data={dataSource} total={dataSource.length} locale={locale} addr="address"/>}
+                    {!loading&&<SmartTable bordered={true} column={column} data={dataSource} total={dataSource.length} locale={locale} />}
                 </div>
             </main>
         )

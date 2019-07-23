@@ -225,7 +225,16 @@
             color: $main-red;
         }
     }
+    box-shadow: 0 0 0 rgba(0,0,0,.015);
 }
+.ant-select,.ant-select-selection{
+    &:hover, &:focus,&:active{
+        box-shadow: 0 0 0 rgba(0,0,0,.015);
+        border-color: #6f9dca;
+    }
+    box-shadow: 0 0 0 rgba(0,0,0,.015);
+}
+
 
 .ant-table-thead > tr > th .ant-table-column-sorter-up.on, .ant-table-thead > tr > th .ant-table-column-sorter-down.on{
     color: $main-red;
@@ -253,4 +262,18 @@
 .ant-radio-button-wrapper{
     min-width: 80px;
     text-align: center;
+}
+
+.ant-form-item-label{
+    line-height: 1.5;
+}
+
+.ant-tooltip-inner{
+    background: #000;
+}
+
+.ant-tag-default {
+    border-radius: 2px;
+    border-color: #1f2534;
+    color: #1f2534;
 }

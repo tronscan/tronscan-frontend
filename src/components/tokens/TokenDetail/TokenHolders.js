@@ -6,7 +6,7 @@ import {ONE_TRX} from "../../../constants";
 import SmartTable from "../../common/SmartTable.js"
 import {FormattedNumber, injectIntl} from "react-intl";
 import {TronLoader} from "../../common/loaders";
-import {upperFirst, upperCase} from "lodash";
+import {upperFirst, upperCase, lowerCase} from "lodash";
 import { Tooltip } from 'antd';
 import { FormatNumberByDecimals } from '../../../utils/number';
 import {QuestionMark} from "../../common/QuestionMark";
@@ -22,10 +22,7 @@ class TokenHolders extends React.Component {
       addresses: [],
       page: 0,
       total: 0,
-      pageSize: 25,
-      exchangeFlag: [
-        {name: 'binance', addressList: ['TMuA6YqfCeX8EhbfYEg5y7S4DqzSJireY9', 'TAUN6FwrnwwmaEqYcckffC7wYmbaS6cBiX']}
-      ]
+      pageSize: 25
     };
   }
 
@@ -43,7 +40,6 @@ class TokenHolders extends React.Component {
 
   loadTokenHolders = async (page = 1, pageSize = 20) => {
     let {filter} = this.props;
-    let {exchangeFlag} = this.state;
 
     this.setState({loading: true});
 
@@ -58,18 +54,34 @@ class TokenHolders extends React.Component {
     // for (let index in addresses) {
     //   addresses[index].index = parseInt(index) + 1;
     // }
-   
+    let exchangeFlag = await Client.getTagNameList()
 
-    if(addresses.length && addresses[0].name == 'BitTorrent'){
+    if(addresses.length){
       addresses.map(item => {
-        exchangeFlag.map(exchange => {
-          exchange.addressList.map(address => {
-            if(item.address == address){
-              item.ico = exchange.name
+        item.tagName = ''
+        exchangeFlag.map(coin => {
+          const typeList = Object.keys(coin.addressList)
+          typeList.map(type => {
+            if(coin.addressList[type].length == 1){
+              if(coin.addressList[type][0] === item.address){
+                item.tagName = `${upperFirst(coin.name)}${type !== 'default'? `-${type}`: ''}`
+                if(lowerCase(coin.name) === 'binance'){
+                  item.ico = lowerCase(coin.name)
+                }
+              }
+            }else if(coin.addressList[type].length > 1){
+              coin.addressList[type].map((address, index) => {
+                if(address === item.address){
+                  item.tagName = `${upperFirst(coin.name)}${type !== 'default'? `-${type} ${index + 1}`: ` ${index + 1}`}`
+                  if(lowerCase(coin.name) === 'binance'){
+                    item.ico = lowerCase(coin.name)
+                  }
+                }
+              })
             }
           })
         })
-      })
+       })
     }
     
 
@@ -111,6 +123,12 @@ class TokenHolders extends React.Component {
             <AddressLink address={record.address}/>
           
         }
+      },
+      {
+        title: 'Name Tag',
+        dataIndex: 'tagName',
+        key: 'tagName',
+        width: '200px'
       },
       {
         title: upperFirst(intl.formatMessage({id: 'quantity'})),

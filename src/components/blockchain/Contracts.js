@@ -56,7 +56,7 @@ class Contracts extends React.Component {
   }
 
   search = () => {
-    console.log("searching");
+
   }
 
   loadContracts = async (page = 1, pageSize = 20) => {
@@ -106,8 +106,8 @@ class Contracts extends React.Component {
       },
       // {
       //   title: upperFirst(intl.formatMessage({id: 'Compiler'})),
-      //   dataIndex: 'compiler',
-      //   key: 'compiler',
+      //   dataIndex: 'Compiler',
+      //   key: 'Compiler',
       //   align: 'left',
       //   render: (text, record, index) => {
       //     return <span>{text}</span>

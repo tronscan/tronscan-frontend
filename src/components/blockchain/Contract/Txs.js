@@ -20,6 +20,7 @@ import DateRange from "../../common/DateRange";
 import {Tooltip} from 'antd'
 import moment from 'moment';
 import {DatePicker} from "antd/lib/index";
+import qs from 'qs'
 
 const RangePicker = DatePicker.RangePicker;
 
@@ -51,7 +52,7 @@ class Transactions extends React.Component {
 
   loadTransactions = async (page = 1, pageSize = 20) => {
 
-    let {filter, intl, isInternal = false} = this.props;
+    let {filter, intl, isInternal = false, getCsvUrl} = this.props;
 
     this.setState(
         {
@@ -60,14 +61,19 @@ class Transactions extends React.Component {
             pageSize: pageSize,
         }
     );
-
-    let transactions = await Client.getContractTxs({
+    const params = {
       sort: '-timestamp',
-      limit: pageSize,
-      start: (page - 1) * pageSize,
       start_timestamp: this.start,
       end_timestamp: this.end,
       ...filter,
+    }
+    const query = qs.stringify({ format: 'csv',...params})
+    //getCsvUrl(`${'http://52.15.68.74:10000'}/api/contracts/transaction?${query}`)
+
+    let transactions = await Client.getContractTxs({
+      limit: pageSize,
+      start: (page - 1) * pageSize,
+      ...params,
     });
 
     transactions.data.map(item => {
@@ -100,6 +106,8 @@ class Transactions extends React.Component {
           </Truncate>
         }
       },
+
+
       {
         title: upperFirst(intl.formatMessage({id: 'block'})),
         dataIndex: 'block',
@@ -167,6 +175,36 @@ class Transactions extends React.Component {
         }
       },
       {
+        title: upperFirst(intl.formatMessage({id: 'status'})),
+        dataIndex: 'status',
+        key: 'status',
+        align: 'left',
+        className: 'ant_table',
+        render: (text, record, index) => {
+            return (
+                <div>
+                    {
+                        record.confirmed ?
+                            <span className="badge badge-success text-uppercase">{tu("Confirmed")}</span> :
+                            <span className="badge badge-danger text-uppercase">{tu("Unconfirmed")}</span>
+                    }
+                </div>
+
+            )
+        }
+    },
+    {
+        title: upperFirst(intl.formatMessage({id: 'result' })),
+        dataIndex: 'contractRet',
+        key: 'contractRet',
+        align: 'left',
+        className: 'ant_table',
+        width: '10%',
+        render: (text, record, index) => {
+            return <span>{text}</span>
+        }
+    },
+      {
         title: upperFirst(intl.formatMessage({id: 'value'})),
         dataIndex: 'value',
         key: 'value',
@@ -220,7 +258,7 @@ class Transactions extends React.Component {
           {loading && <div className="loading-style" style={{marginTop: '-20px'}}><TronLoader/></div>}
           <div className="row">
             <div className="col-md-12 table_pos mt-5">
-              {total ? <TotalInfo total={total} rangeTotal={rangeTotal} typeText="transactions_unit"/>:""}
+              {total ? <TotalInfo total={total} rangeTotal={rangeTotal} top="-28px" typeText="transactions_unit"/>:""}
               <DateRange onDateOk={(start,end) => this.onDateOk(start,end)} />
               {
                   (!loading && transactions.length === 0)? <div className="p-3 text-center no-data">{tu("no_tnx")}</div>:

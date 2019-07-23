@@ -37,10 +37,10 @@ class TokenInfo extends React.Component {
               <th style={{borderTop: '0px'}}>{tu("start_date")}:</th>
               {
                 token.id == '1002000'? <td style={{borderTop: '0px'}}>
-                      <span><FormattedDate value={1548658800000}/>{' '}<FormattedTime value={1548658800000}/></span>
+                      <span><FormattedDate value={1548658800000}/>{' '}<FormattedTime value={1548658800000} hour='numeric' minute="numeric" second='numeric' hour12={false}/></span>
                     </td>:
                     <td style={{borderTop: '0px'}}>
-                        {token.endTime - token.startTime >1000 ? <span><FormattedDate value={token.startTime}/>{' '}<FormattedTime value={token.startTime}/></span>:"-"}
+                        {token.endTime - token.startTime >1000 ? <span><FormattedDate value={token.startTime}/>{' '}<FormattedTime value={token.startTime} hour='numeric' minute="numeric" second='numeric' hour12={false}/></span>:"-"}
                     </td>
 
               }
@@ -50,10 +50,10 @@ class TokenInfo extends React.Component {
               <th>{tu("end_date")}:</th>
                 {
                     token.id == '1002000'? <td>
-                          <span><FormattedDate value={1548659681000}/>{' '}<FormattedTime value={1548659681000}/></span>
+                          <span><FormattedDate value={1548659681000}/>{' '}<FormattedTime value={1548659681000}  hour='numeric' minute="numeric" second='numeric' hour12={false}/></span>
                     </td>:
                     <td>
-                    {token.endTime - token.startTime >1000 ? <span><FormattedDate value={token.endTime}/>{' '}<FormattedTime value={token.endTime}/></span>:"-"}
+                    {token.endTime - token.startTime >1000 ? <span><FormattedDate value={token.endTime}/>{' '}<FormattedTime value={token.endTime} hour='numeric' minute="numeric" second='numeric' hour12={false}/></span>:"-"}
                     </td>
                 }
 
@@ -118,12 +118,12 @@ class TokenInfo extends React.Component {
                 }
               </td>
             </tr>
-            <tr>
-              <td colSpan="2">
-                <i className="fa fa-exclamation-circle" aria-hidden="true"
-                   style={{color: '#999999', marginRight: '10px'}}></i>
-                <span style={{color: '#999999', fontSize: '12px'}}>{tu('change_info')}</span>&nbsp;<a href='mailto:token@tronscan.org' style={{color:'red',fontSize: '12px'}}>{tu('contact_us')}</a></td>
-            </tr>
+            {/*<tr>*/}
+              {/*<td colSpan="2">*/}
+                {/*<i className="fa fa-exclamation-circle" aria-hidden="true"*/}
+                   {/*style={{color: '#999999', marginRight: '10px'}}></i>*/}
+                {/*<span style={{color: '#999999', fontSize: '12px'}}>{tu('change_info')}</span>&nbsp;<a href='mailto:token@tronscan.org' style={{color:'red',fontSize: '12px'}}>{tu('contact_us')}</a></td>*/}
+            {/*</tr>*/}
 
             </tbody>
           </table>

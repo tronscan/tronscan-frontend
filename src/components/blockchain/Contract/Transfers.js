@@ -136,6 +136,36 @@ class Transfers extends React.Component {
                 },
             },
             {
+                title: upperFirst(intl.formatMessage({id: 'status'})),
+                dataIndex: 'status',
+                key: 'status',
+                align: 'left',
+                className: 'ant_table',
+                render: (text, record, index) => {
+                    return (
+                        <div>
+                            {
+                                record.confirmed ?
+                                    <span className="badge badge-success text-uppercase">{tu("Confirmed")}</span> :
+                                    <span className="badge badge-danger text-uppercase">{tu("Unconfirmed")}</span>
+                            }
+                        </div>
+
+                    )
+                }
+            },
+            {
+                title: upperFirst(intl.formatMessage({id: 'result' })),
+                dataIndex: 'contractRet',
+                key: 'contractRet',
+                align: 'left',
+                className: 'ant_table',
+                width: '10%',
+                render: (text, record, index) => {
+                    return <span>{text}</span>
+                }
+            },
+            {
                 title: upperFirst(intl.formatMessage({id: 'amount'})),
                 dataIndex: 'amount',
                 key: 'amount',
@@ -151,7 +181,7 @@ class Transfers extends React.Component {
                 </span>
 
                 },
-            }
+            },
 
         ];
 

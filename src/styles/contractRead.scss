@@ -1,0 +1,63 @@
+.contract-container {
+  padding-top: 20px;
+
+  .choice-btn {
+    margin-bottom: 20px;
+  }
+
+  .tab-choice {
+    margin-bottom: 20px;
+
+    p>span {
+      // margin-left: 10px;
+    }
+  }
+
+  .contract-item {
+    margin-bottom: 6px;
+
+    .ant-form-item {
+      margin-bottom: 0 !important;
+    }
+  }
+
+  .search-btn {
+    height: 30px;
+    width: 60px;
+    line-height: 30px;
+    text-align: center;
+    cursor: pointer;
+    border: 1px solid #aaa;
+    border-radius: 4px;
+    margin-bottom: 6px;
+
+    &:hover {
+      color: #C23631 !important;
+      border: 1px solid #C23631;
+    }
+  }
+
+  .select-block {
+    margin-bottom: 10px;
+  }
+
+  .select-line {
+    margin-bottom: 10px;
+    display: inline;
+    margin-right: 10px;
+  }
+}
+
+.contrat-verify {
+  padding-left: 15px;
+
+  a {
+    color: #C23631 !important;
+    text-decoration: underline !important;
+  }
+}
+
+.write-title {
+  margin-bottom: 20px;
+  text-align: center;
+}

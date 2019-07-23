@@ -17,6 +17,7 @@ import {NameWithId} from "../../common/names";
 import TotalInfo from "../../common/TableTotal";
 import DateRange from "../../common/DateRange";
 import rebuildList from "../../../utils/rebuildList";
+import qs from 'qs'
 
 class Transfers extends React.Component {
 
@@ -50,8 +51,14 @@ class Transfers extends React.Component {
   };
 
   loadPage = async (page = 1, pageSize = 20) => {
-    let {filter} = this.props;
+    let {filter, getCsvUrl} = this.props;
     let {showTotal} = this.state;
+    const params = {
+      name: filter.token,
+      issueAddress:filter.address,
+      start_timestamp:this.start,
+      end_timestamp:this.end,
+    }
     this.setState(
         {
             loading: true,
@@ -59,14 +66,12 @@ class Transfers extends React.Component {
             pageSize: pageSize,
         }
     );
-
+    const query = qs.stringify({ format: 'csv',...params})
+   // getCsvUrl(`${'http://52.15.68.74:10000'}/api/asset/transfer?${query}`)
     let {list, total, rangeTotal} = await Client.getAssetTransfers({
         limit: pageSize,
         start: (page - 1) * pageSize,
-        name: filter.token,
-        issueAddress:filter.address,
-        start_timestamp:this.start,
-        end_timestamp:this.end,
+        ...params
     });
     let transfers = rebuildList(list,'tokenName','amount');
 
@@ -145,7 +150,7 @@ class Transfers extends React.Component {
         align: 'right',
         className: 'ant_table',
         render: (text, record, index) => {
-          return <NameWithId value={record}/>
+          return <NameWithId value={record} br/>
 
         },
       }

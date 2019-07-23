@@ -110,7 +110,6 @@ class Transaction extends Component {
         (err, values) => {
           values.second_quant_buy = buy_amount
           if (!err) {
-            console.log(!err)
             let token_id =
                 exchangeData.second_token_id == "TRX"
                     ? "_"

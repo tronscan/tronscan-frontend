@@ -1,5 +1,6 @@
 import Lockr from "lockr";
 import TronWeb from 'tronweb';
+import TronStationSDK from 'tronstation';
 import {
   DISABLE_FLAG,
   ENABLE_FLAG,
@@ -63,6 +64,7 @@ const initialState = {
     {
       name: 'USD',
       id: 'usd',
+      fractions: 3,
     },
     {
       name: 'EUR',
@@ -156,7 +158,7 @@ export function appReducer(state = initialState, action) {
     case LOGIN_PK: {
 
       Lockr.set("islogin", 0);
-      const ServerNode =  "https://api.trongrid.io";
+      const ServerNode =  "https://api.shasta.trongrid.io";
       const HttpProvider = TronWeb.providers.HttpProvider; // This provider is optional, you can just use a url for the nodes instead
       const fullNode = new HttpProvider(ServerNode); // Full node http endpoint
       const solidityNode = new HttpProvider(ServerNode); // Solidity node http endpoint
@@ -177,6 +179,7 @@ export function appReducer(state = initialState, action) {
           isLoggedIn: true,
           address: pkToAddress(action.privateKey),
           tronWeb: tronWeb,
+          tronStationSDK: new TronStationSDK(tronWeb)
         },
         wallet: {
           type: ACCOUNT_PRIVATE_KEY,
@@ -217,6 +220,7 @@ export function appReducer(state = initialState, action) {
           isLoggedIn: true,
           address: action.address,
           tronWeb:action.tronWeb,
+          tronStationSDK: new TronStationSDK(action.tronWeb, true)
         },
         wallet: {
           type: ACCOUNT_TRONLINK,
@@ -227,7 +231,6 @@ export function appReducer(state = initialState, action) {
     }
 
     case LOGIN_LEDGER: {
-
       return {
         ...state,
         account: {
@@ -235,6 +238,8 @@ export function appReducer(state = initialState, action) {
           key: false,
           isLoggedIn: true,
           address: action.address,
+          tronWeb:action.tronWeb,
+          tronStationSDK: new TronStationSDK(action.tronWeb, true)
         },
         wallet: {
           type: ACCOUNT_LEDGER,

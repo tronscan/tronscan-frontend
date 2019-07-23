@@ -13,37 +13,18 @@
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
-
-    <meta property="og:site_name" content="Tron">
-    <meta name="twitter:title" property="og:title" content="TRON BlockChain Explorer"/>
+    <meta property="og:site_name" content="TRON">
+    <meta name="twitter:title" property="og:title" content="TRONSCAN | TRON BlockChain Explorer"/>
     <meta name="robots" content="noodp,noydir"/>
     <meta property="og:url" content="https://tronscan.org"/>
-    <meta name="keywords" content="tronscan,explorer,trx,search,blockchain,crypto,currency,tron浏览器,孙宇晨,Justin sun,波场浏览器,波场区块链浏览器,区块链浏览器, 论坛,tron forums,trx forums,eos,qtum,neo,eth,Crypt">
-    <meta name="description" property="og:description" id="description" content="Tronscan allows you to explore and search the TRON blockchain for transactions,accounts,tokens,nodes,votes and market information.">
+    <meta name="keywords" content="tronscan,tron explorer,tron scan, tron blockchain, trx explorer, 波场区块链浏览器,trx浏览器,区块链浏览器">
+    <meta name="description" property="og:description" id="description" content="TRONSCAN is the first blockchain browser in the tron community. It supports multiple login methods and provides a complete browsing and search experience. Experience the tron-ecology in the TRONSCAN blockchain browser.TRONSCAN是首款社区型波场区块链浏览器，它支持多种登录方式，提供完善的浏览和查找体验。体验波场生态尽在TRONSCAN波场区块链浏览器。">
     <meta name="twitter:image" content="https://coin.top/production/js/2018-08-22-09-02-22_share-logo.png"/>
     <meta property="og:image" content="https://coin.top/production/js/2018-08-22-09-02-22_share-logo.png"/>
-    <title>TRON BlockChain Explorer</title>
+    <title>TRONSCAN | TRON BlockChain Explorer | 波场区块链浏览器 </title>
     <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-117929022-4"></script>
 
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'UA-117929022-4');
-    </script>
-    <script>
-        var description;
-        var lang = navigator.language||navigator.userLanguage;
-        lang = lang.substr(0, 2);
-        if(lang == 'zh'){
-            description = "Tronscan是波场的区块浏览器，让您探索、使用波场TRON区块链，实现交易、账户、代币、节点、投票和市场信息的相关功能。"
-        }else{
-            description = "Tronscan allows you to explore and search the TRON blockchain for transactions,accounts,tokens,nodes,votes and market information."
-        }
-         var meta = document.getElementById("description")
-         meta.setAttribute("content",description);
-    </script>
+
 
 
   </head>
@@ -53,5 +34,20 @@
     </noscript>
 
     <div id="root" class="h-100"></div>
+
+    <script src="./dll/base.dll.js"></script>
+    <script src="./dll/charts.dll.js"></script>
+    <script src="./dll/polyfill.dll.js"></script>
+    <script src="./dll/react.dll.js"></script>
+    <script src="./dll/ui.dll.js"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-117929022-4"></script>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-117929022-4');
+    </script>
+
   </body>
 </html>

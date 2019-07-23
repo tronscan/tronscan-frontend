@@ -461,7 +461,9 @@ $color-grey-border:#979797;
 $color:#C23631;
 .tron-light {
   background-color: #F3F3F3;
-
+  .container{
+      position: relative;
+  }
   @media (min-width:1200px) {
     .container{
       max-width:1200px;
@@ -523,26 +525,26 @@ $color:#C23631;
   }
   .home{
     position: relative;
-    .main-icon-left{
-      position:absolute;
-      display: block;
-      width: 180px;
-      height: 370px;
-      top:156px;
-      left: 0;
-      background: url("../images/main/mian_bg_left.png") no-repeat;
-      background-size: 100% 100%;
-    }
-    .main-icon-right{
-      position:absolute;
-      display: block;
-      width: 200px;
-      height: 140px;
-      right:40px;
-      bottom: 440px;
-      background: url("../images/main/mian_bg_right.png") no-repeat;
-      background-size: 100% 100%;
-    }
+    //.main-icon-left{
+    //  position:absolute;
+    //  display: block;
+    //  width: 180px;
+    //  height: 370px;
+    //  top:156px;
+    //  left: 0;
+    //  background: url("../images/main/mian_bg_left.png") no-repeat;
+    //  background-size: 100% 100%;
+    //}
+    //.main-icon-right{
+    //  position:absolute;
+    //  display: block;
+    //  width: 200px;
+    //  height: 140px;
+    //  right:40px;
+    //  bottom: 440px;
+    //  background: url("../images/main/mian_bg_right.png") no-repeat;
+    //  background-size: 100% 100%;
+    //}
   }
   .home .color-grey-100{
     color: $color-grey-100 !important;
@@ -567,6 +569,9 @@ $color:#C23631;
   .home .color-transfers-hash .truncate-ellipsis span{
     color:$color !important;
   }
+  .footer-compontent{
+      position: relative;
+  }
   .home-footer{
     background-color: $color-grey-100;
   }
@@ -587,7 +592,7 @@ $color:#C23631;
     color: $white;
   }
   .home-footer .line{
-    width: 95%;
+    width: 80%;
     height: 1px;
     background-color: #FFFFFF;
   }

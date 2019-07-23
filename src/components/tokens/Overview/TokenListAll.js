@@ -8,7 +8,7 @@ import {API_URL, ONE_TRX} from "../../../constants";
 import {upperFirst, toLower} from "lodash";
 import {TronLoader} from "../../common/loaders";
 import xhr from "axios/index";
-
+import {Tooltip} from "reactstrap";
 import {withTronWeb} from "../../../utils/tronWeb";
 import {Link} from "react-router-dom";
 import { Button,Table, Radio } from 'antd';
@@ -23,10 +23,11 @@ class TokenList extends Component {
       loading: false,
       total: 0,
       totalAll: 0,
+      countTop:2,
       filter: {
         order: 'desc',
         filter: 'all',
-        sort: 'marketcap',
+        sort: 'volume24hInTrx',
         order_current: "descend"
       },
       pagination: {
@@ -41,19 +42,25 @@ class TokenList extends Component {
 
   loadPage = async (page = 1, pageSize = 20) => {
     this.setState({loading: true})
-    const {filter} = this.state
+    const { filter, countTop } = this.state
     const {data: {tokens, total, totalAll}} = await xhr.get(API_URL+"/api/tokens/overview", {params: {
       start:  (page - 1) * pageSize,
       limit: pageSize,
       ...filter
     }});
-    let count = 0
+    let count = 0;
+    let Top = 0;
+
     tokens.map((item,index) => {
       if(!item.isTop){
-        item.index = count + 1
+        if(page == 1){
+            item.index = count + 1 + (page-1)*pageSize
+        }else{
+            item.index = count + 1 + (page-1)*pageSize - countTop
+        }
         count++
       }else{
-        item.c_index = index +1
+        item.c_index = index + 1
       }
      
       item.marketcap = item.marketcap || 0
@@ -103,7 +110,7 @@ class TokenList extends Component {
       filter: {
         ...this.state.filter,
         order: 'desc',
-        sort: 'marketcap',
+        sort: 'volume24hInTrx',
         filter: e.target.value,
         order_current: "descend"
       }
@@ -131,7 +138,7 @@ class TokenList extends Component {
       pagination: pager,
       filter: {
         ...this.state.filter,
-        sort: sortMap[sorter.columnKey] || 'marketcap',
+        sort: sortMap[sorter.columnKey] || 'volume24hInTrx',
         order: map[sorter.order] || 'desc',
         order_current: sorter.order
       }
@@ -264,10 +271,47 @@ class TokenList extends Component {
         sorter: true,
         sortOrder: filter.sort === 'holderCount' && filter.order_current,
         render: (text, record, index) => {
-          return text>0? <FormattedNumber value={text}/>: '-'
+            return text>0? <FormattedNumber value={text}/>: '-'
         },
         align: 'center',
         className: 'ant_table d-none d-sm-table-cell'
+      },
+      {
+          title: intl.formatMessage({id: 'trc20_cur_order_header_action'}),
+          dataIndex: 'abbr',
+          key: 'abbr',
+          width: '10%',
+          render: (text, record, index) => {
+            return <div>
+              {
+                  record.tokenType == 'trc10'&&
+                  <Link to={`/token/${encodeURI(record.tokenId)}`} className="token-details btn">{tu('details')}</Link>
+              }
+              {
+                  record.tokenType == 'trc20'&&
+                  <Link to={`/token20/${encodeURI(record.contractAddress)}`} className="token-details btn">{tu('details')}</Link>
+              }
+              {
+                record.extra ? <a href={record.extra.url} className="token-active-details btn mt-2">{tu(record.extra.desc)}</a>
+                    : record.pairId?
+                    <Link to={`/exchange/trc20?id=${record.pairId}`} className="token-details btn mt-2"> {tu('token_trade')}</Link>
+                    : <div>
+                      <a href="javascript:;"
+                         className="token-disabled-exchange btn mt-2"
+                         id={record.tokenType == "trc20"?"exchange_"+record.contractAddress:"exchange_"+record.tokenId}
+                         onMouseOver={(prevS,props) => this.setState({[record.abbr + record.tokenId]: true})}
+                         onMouseOut={() => this.setState({[record.abbr+record.tokenId]: false})}>
+                          {tu('token_trade')}
+                      </a>
+                      <Tooltip placement="top" target={record.tokenType == "trc20"?"exchange_"+record.contractAddress:"exchange_"+record.tokenId} isOpen={this.state[record.abbr+record.tokenId]}> <span className="text-capitalize">{tu("token_does_not_support_exchange")}</span></Tooltip>
+                    </div>
+              }
+
+            </div>
+
+          },
+          align: 'center',
+          className: 'ant_table d-sm-table-cell token-list-action'
       }
     ];
     return column;
@@ -299,18 +343,18 @@ class TokenList extends Component {
                       </div>
                     </div> : ''}
                     <div className="d-md-flex apply-trc20 apply-all align-items-center">
-                      <div className="d-flex align-items-center mr-md-4 mb-2 mb-md-0">
+                      <div className="d-flex align-items-center mb-2 mb-md-0">
                         <Radio.Group size="Small" value={filter.filter}  onChange={this.onChange}>
                           <Radio.Button value="all">{tu('all')}</Radio.Button>
                           <Radio.Button value="trc10">TRC10</Radio.Button>
                           <Radio.Button value="trc20">TRC20</Radio.Button>
                         </Radio.Group>
                       </div>
-                      <a className="ml-md-2" href="https://goo.gl/forms/PiyLiDeaXv3uesSE3" target="_blank" style={{color:'#C23631'}}>
-                      <button className="btn btn-danger" style={{lineHeight: '18px'}}>
-                          {tu('application_entry')}
-                      </button>
-                    </a>
+                      {/**<a className="pl-2 md-2 ml-4" href="https://goo.gl/forms/PiyLiDeaXv3uesSE3" target="_blank" style={{color:'#C23631'}}>
+                        <button className="btn btn-danger" style={{lineHeight: '18px'}}>
+                            {tu('application_entry')}
+                        </button>
+                      </a> */}
                     </div>
                     
                 <Table

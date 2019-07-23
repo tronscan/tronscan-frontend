@@ -19,6 +19,8 @@ import isMobile from '../../../utils/isMobile';
 import {withTronWeb} from "../../../utils/tronWeb";
 import { FormatNumberByDecimals } from '../../../utils/number'
 import {transactionResultManager} from "../../../utils/tron"
+import BigNumber from "bignumber.js"
+BigNumber.config({ EXPONENTIAL_AT: [-1e9, 1e9] });
 
 const { Option, OptGroup } = Select;
 
@@ -222,7 +224,7 @@ class SendForm extends React.Component {
                   10000000, 0,
                   [
                   { type: 'address', value: tronWeb.address.toHex(to)},
-                  { type: 'uint256', value: this.Mul(amount,Math.pow(10, decimals))}
+                  { type: 'uint256', value: new BigNumber(amount).shiftedBy(decimals).toString()}
                   ],
                   tronWeb.address.toHex(this.props.wallet.address),
               );
@@ -238,9 +240,8 @@ class SendForm extends React.Component {
     }else if(this.props.wallet.type === "ACCOUNT_TRONLINK" || this.props.wallet.type === "ACCOUNT_PRIVATE_KEY"){
       tronWeb = this.props.account.tronWeb;
       let contractInstance = await tronWeb.contract().at(contractAddress);
-      transactionId = await contractInstance.transfer(to, this.Mul(amount,Math.pow(10, decimals))).send();
+      transactionId = await contractInstance.transfer(to, new BigNumber(amount).shiftedBy(decimals).toString()).send();
     }
-    
     if (transactionId) {
       this.refreshTokenBalances();
       onSend && onSend();

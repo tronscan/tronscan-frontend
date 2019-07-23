@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Form, Input, Button, Radio } from "antd";
+import { Form, Input, Button, Radio, Icon, Popover } from "antd";
 import { QuestionMark } from "../../../../common/QuestionMark";
 import { withRouter } from "react-router";
 import { Client, Client20 } from "../../../../../services/api";
@@ -188,11 +188,20 @@ class Sell extends Component {
       offlineToken
     } = this.state;
 
+    const content = (
+      <div style={{ width: 200 }}>
+        {intl.formatMessage({
+          id: "trc20_vena_tip"
+        })}
+      </div>
+    );
+
     return (
       <div className="exchange__transaction__item p-3">
         {modal}
-        <h5 className="mr-3">
-          {exchangeData.fShortName}/{exchangeData.sShortName} ≈{" "}
+        <h5 className="mr-3 exchange__transaction__header">
+          <span>{exchangeData.fShortName}</span>
+          <span> / {exchangeData.sShortName}</span> ≈{" "}
           {exchangeData.price && (
             <span>{Number(exchangeData.price).toFixed(6)}</span>
           )}
@@ -250,6 +259,13 @@ class Sell extends Component {
                 </span>
               </span>
             }
+            {exchangeData.id === 61 && (
+              <span style={{ float: "right" }}>
+                <Popover content={content} title="">
+                  <Icon type="question-circle" />
+                </Popover>
+              </span>
+            )}
           </div>
 
           <div className="mb-3">
@@ -284,6 +300,11 @@ class Sell extends Component {
           >
             {tu("trc20_SELL")}&nbsp; {exchangeData.fShortName}
           </Button>
+          <div className="txt-center">
+           
+              {tu("trc20_free_orders")}
+            
+          </div>
           {/* </FormItem> */}
         </Form>
       </div>
@@ -302,12 +323,24 @@ class Sell extends Component {
 
     let { intl, exchangeData } = this.props;
     let secondTokenName = exchangeData.sShortName;
-    if (price * amount < 10) {
-      this.setState({
-        secondError: intl.formatMessage({ id: "trc20_enter_10" })
-      });
-      return;
+    let pairType = exchangeData.pairType;
+
+    if (pairType == 1 || pairType == 2) {
+      if (price * amount < 10) {
+        this.setState({
+          secondError: intl.formatMessage({ id: "trc20_enter_10" })
+        });
+        return;
+      }
+    } else {
+      if (price * amount < 1) {
+        this.setState({
+          secondError: intl.formatMessage({ id: "trc20_enter_1" })
+        });
+        return;
+      }
     }
+
     if (!price || !amount || firstError || secondError || limitError) {
       return;
     }
@@ -338,8 +371,8 @@ class Sell extends Component {
     let tokenB = exchangeData.sTokenAddr;
     let pairType = exchangeData.pairType;
 
-    const firstPrecision = Math.pow(10, exchangeData.fPrecision || 8);
-    const secondPrecision = Math.pow(10, exchangeData.sPrecision || 8);
+    const firstPrecision = Math.pow(10, exchangeData.fPrecision || 0);
+    const secondPrecision = Math.pow(10, exchangeData.sPrecision || 0);
     let amountA = Math.round(amount * firstPrecision);
     // await authorization(this.account.address, tokenA, 0)
     this.transFun(
@@ -384,63 +417,63 @@ class Sell extends Component {
       _pairType: pairType,
       tronWeb: tronWebOBJ
     };
+
     try {
       const id = await TW.sellByContract(data);
+
       if (id) {
-        this.setState({
-          modal: (
-            <SweetAlert
-              success
-              title={tu("trc20_order_success")}
-              onConfirm={this.hideModal}
-            >
-              {/*{tu("trc20_order_success")}*/}
-            </SweetAlert>
-          )
-        });
-        this.setState({
-          buttonLoading: false
-        });
-        this.setBalance();
-
-        let timer = setInterval(() => {
-          this.setBalance();
-        }, 1000);
-        this.setState({
-          balanceTimer: timer
-        });
-        let tronWeb;
-        if (this.props.walletType.type === "ACCOUNT_LEDGER") {
-          tronWeb = this.props.tronWeb();
-        } else if (
-          this.props.walletType.type === "ACCOUNT_TRONLINK" ||
-          this.props.walletType.type === "ACCOUNT_PRIVATE_KEY"
-        ) {
-          tronWeb = account.tronWeb;
-        }
-
         let _times = 0;
-        const timer2 = setInterval(async () => {
-          const info = await tronWeb.trx.getTransactionInfo(id);
+        const timer = setInterval(async () => {
+          const event = await tronWebOBJ
+            .getEventByTransactionID(id)
+            .catch(e => {
+              if (_times > 20) {
+                clearInterval(timer);
+                // this.$alert(this.$t("exchange.trade_win.content"), "", {
+                //   confirmButtonText: this.$t("exchange.trade_win.confirm")
+                // });
+                this.setState({
+                  modal: (
+                    <SweetAlert
+                      error
+                      title={tu("trc20_trade_win_content")}
+                      onConfirm={this.hideModal}
+                    >
+                      {/* {tu("trc20_trade_win_content")} */}
+                    </SweetAlert>
+                  )
+                });
+                this.setState({
+                  buttonLoading: false
+                });
+              }
+            });
           _times += 1;
-          if (info.log && info.log.length > 0) {
-            let c_id;
-            for (let i = 0; i < info.log.length; i++) {
-              const _addr = tronWeb.address.fromHex("41" + info.log[i].address);
-              if (
-                _addr === "TSMbPm5mUsaTDSEjHCd55ZJaib3Ysvjyc5" ||
-                _addr === "THnCkTX1GfDArAuyzzv2nGpDt4vChm8t2e"
-              ) {
-                c_id = parseInt(
-                  info.log[i].data.toString().substring(0, 64),
-                  16
-                );
-                clearInterval(timer2);
-                if (c_id) {
+          if (event.length > 0) {
+            for (var i = 0; i < event.length; i++) {
+              const k = event[i];
+              if (k.name.indexOf("Order") > -1) {
+                this.setState({
+                  modal: (
+                    <SweetAlert
+                      success
+                      title={tu("trc20_order_success")}
+                      onConfirm={this.hideModal}
+                    >
+                      {/*{tu("trc20_order_success")}*/}
+                    </SweetAlert>
+                  )
+                });
+                this.setBalance();
+                this.setState({
+                  buttonLoading: false
+                });
+
+                if (k.result && k.result.orderID) {
                   Client20.addChannelId(
                     {
                       hash: id,
-                      orderId: c_id.toString(),
+                      orderId: k.result.orderID,
                       channelId: "10000"
                     },
                     {
@@ -448,15 +481,101 @@ class Sell extends Component {
                     }
                   ).then(res => {});
                 }
+                clearInterval(timer);
                 break;
               }
             }
           } else {
-            if (_times > 6) {
-              clearInterval(timer2);
+            if (_times > 20) {
+              clearInterval(timer);
+
+              this.setState({
+                modal: (
+                  <SweetAlert
+                    error
+                    title={tu("trc20_trade_win_content")}
+                    onConfirm={this.hideModal}
+                  >
+                    {/* {tu("trc20_trade_win_content")} */}
+                  </SweetAlert>
+                )
+              });
+              this.setState({
+                buttonLoading: false
+              });
             }
           }
-        }, 20000);
+        }, 1000);
+        // this.setState({
+        //   modal: (
+        //     <SweetAlert
+        //       success
+        //       title={tu("trc20_order_success")}
+        //       onConfirm={this.hideModal}
+        //     >
+        //       {/*{tu("trc20_order_success")}*/}
+        //     </SweetAlert>
+        //   )
+        // });
+        // this.setState({
+        //   buttonLoading: false
+        // });
+        // this.setBalance();
+
+        // let timer = setInterval(() => {
+        //   this.setBalance();
+        // }, 1000);
+        // this.setState({
+        //   balanceTimer: timer
+        // });
+        // let tronWeb;
+        // if (this.props.walletType.type === "ACCOUNT_LEDGER") {
+        //   tronWeb = this.props.tronWeb();
+        // } else if (
+        //   this.props.walletType.type === "ACCOUNT_TRONLINK" ||
+        //   this.props.walletType.type === "ACCOUNT_PRIVATE_KEY"
+        // ) {
+        //   tronWeb = account.tronWeb;
+        // }
+
+        // let _times = 0;
+        // const timer2 = setInterval(async () => {
+        //   const info = await tronWeb.trx.getTransactionInfo(id);
+        //   _times += 1;
+        //   if (info.log && info.log.length > 0) {
+        //     let c_id;
+        //     for (let i = 0; i < info.log.length; i++) {
+        //       const _addr = tronWeb.address.fromHex("41" + info.log[i].address);
+        //       if (
+        //         _addr === "TSMbPm5mUsaTDSEjHCd55ZJaib3Ysvjyc5" ||
+        //         _addr === "THnCkTX1GfDArAuyzzv2nGpDt4vChm8t2e"
+        //       ) {
+        //         c_id = parseInt(
+        //           info.log[i].data.toString().substring(0, 64),
+        //           16
+        //         );
+        //         clearInterval(timer2);
+        //         if (c_id) {
+        //           Client20.addChannelId(
+        //             {
+        //               hash: id,
+        //               orderId: c_id.toString(),
+        //               channelId: "10000"
+        //             },
+        //             {
+        //               Key: "Tron@123456"
+        //             }
+        //           ).then(res => {});
+        //         }
+        //         break;
+        //       }
+        //     }
+        //   } else {
+        //     if (_times > 6) {
+        //       clearInterval(timer2);
+        //     }
+        //   }
+        // }, 20000);
       }
     } catch (error) {
       console.log(error);
@@ -496,23 +615,50 @@ class Sell extends Component {
     ) {
       tronWebOBJ = account.tronWeb;
     }
+
     let _b = 0;
 
-    if (currentWallet && !isNaN(parseInt(exchangeData.fTokenAddr))) {
-      var result = find(currentWallet.tokenBalances, function(o) {
-        return o["name"] + "" === exchangeData.fTokenAddr + "";
-      });
+    // if (currentWallet && !isNaN(parseInt(exchangeData.fTokenAddr))) {
+    //   var result = find(currentWallet.tokenBalances, function(o) {
+    //     return o["name"] + "" === exchangeData.fTokenAddr + "";
+    //   });
 
-      if (result) {
-        _b = result.balance / Math.pow(10, result["map_token_precision"]);
+    //   if (result) {
+    //     _b = result.balance / Math.pow(10, result["map_token_precision"]);
+    //   }
+    // } else
+    if (account.address && exchangeData.fTokenAddr) {
+      if (exchangeData.fTokenAddr === "T9yD14Nj9j7xAB4dbGeiX9h8unkKHxuWwb") {
+        _b =
+          (await tronWebOBJ.trx.getUnconfirmedBalance(this.address)) /
+          Math.pow(10, exchangeData.fPrecision);
+      } else {
+        if (exchangeData.pairType === 1 || exchangeData.pairType === 4) {
+          if (account.address && exchangeData.fTokenAddr) {
+            _b = await TW.getV10Balance({
+              _tokenA: exchangeData.fTokenAddr,
+              _uToken: account.address,
+              _precision: exchangeData.fPrecision,
+              tronWeb: tronWebOBJ
+            });
+          }
+        } else {
+          if (account.address && exchangeData.fTokenAddr) {
+            _b = await TW.getBalance({
+              _tokenA: exchangeData.fTokenAddr,
+              _uToken: account.address,
+              _precision: exchangeData.fPrecision,
+              tronWeb: tronWebOBJ
+            });
+          }
+        }
       }
-    } else if (account.address && exchangeData.fTokenAddr) {
-      _b = await TW.getBalance({
-        _tokenA: exchangeData.fTokenAddr,
-        _uToken: account.address,
-        _precision: exchangeData.fPrecision,
-        tronWeb: tronWebOBJ
-      });
+      // _b = await TW.getBalance({
+      //   _tokenA: exchangeData.fTokenAddr,
+      //   _uToken: account.address,
+      //   _precision: exchangeData.fPrecision,
+      //   tronWeb: tronWebOBJ
+      // });
     }
 
     if (_b !== firstBalance) {

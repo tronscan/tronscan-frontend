@@ -3,8 +3,9 @@ import io from "socket.io-client";
 import TronWeb from "tronweb";
 import xhr from "axios/index";
 import { API_URL } from "../constants.js";
+import { setLoginWithAddress } from "../actions/app.js";
 
-const ServerNode = "https://api.trongrid.io";
+const ServerNode = "https://api.shasta.trongrid.io";
 const HttpProvider = TronWeb.providers.HttpProvider; // This provider is optional, you can just use a url for the nodes instead
 const fullNode = new HttpProvider(ServerNode); // Full node http endpoint
 const solidityNode = new HttpProvider(ServerNode); // Solidity node http endpoint
@@ -26,8 +27,12 @@ export function channel(path, options) {
 class ApiClient20 {
   constructor() {
     this.apiUrl = "https://api.trx.market";
+    // this.apiUrl = "http://52.15.171.70:21111";
     this.ZDUrl = "https://tron274.zendesk.com";
     this.SCANUrl = "https://tronscanorg.zendesk.com";
+
+    // *** test
+    // this.apiUrl = "https://testapi.trx.market";
   }
 
   async getexchanges20(options = {}) {
@@ -49,9 +54,13 @@ class ApiClient20 {
   }
 
   async getCurrentList(query) {
-    let { data } = await xhr.get(`${this.apiUrl}/api/exchange/user/order`, {
-      params: query
-    });
+    let { data } = await xhr.get(
+      `${this.apiUrl}/api/exchange/user/order`,
+      // `http://13.58.63.31:21110/api/exchange/user/order`,
+      {
+        params: query
+      }
+    );
 
     return data;
   }
@@ -101,6 +110,53 @@ class ApiClient20 {
     return data;
   }
 
+  async getTokenInfoItem(contract, type) {
+    // https://apilist.tronscan.org/api/token_trc20?contract=TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t
+    let params = {};
+    let url = `${API_URL}/api/token_trc20`;
+    switch (type) {
+      case 1:
+        params = {
+          id: contract
+        };
+        url = `${API_URL}/api/token`;
+        break;
+      case 2:
+        params = {
+          contract: contract
+        };
+        break;
+      case 4:
+        params = {
+          id: contract
+        };
+        url = `${API_URL}/api/token`;
+        break;
+      case 3:
+        params = {
+          contract: contract
+        };
+        break;
+      default:
+        break;
+    }
+    let { data } = await xhr.get(url, {
+      params: params
+    });
+    return data;
+  }
+
+  async getExchanges20SearchList(options = {}) {
+    let { data } = await xhr.get(
+      // `http://52.15.171.70:21110/api/exchange/marketPair/searchList`,
+      `${this.apiUrl}/api/exchange/marketPair/searchList`,
+      {
+        params: options
+      }
+    );
+    return data;
+  }
+
   /**
    * 添加订单渠道ID
    */
@@ -116,7 +172,19 @@ class ApiClient20 {
   }
 
   /**
-   * 获取zendesk TRXMarket消息系统
+   * 深度图
+   */
+  async depthChart(id) {
+    let { data } = await xhr({
+      method: "get",
+      url: `${this.apiUrl}/api/exchange/common/deepgraph/${id}`
+      // url: `http://18.222.178.103:3006/dex/exchange/common/deepgraph/${id}`
+    });
+    return data;
+  }
+
+  /**
+   * 获取zendesk消息系统
    */
   async getNotice(lan, query) {
     let langauage = "en-us";
@@ -132,24 +200,46 @@ class ApiClient20 {
     return data;
   }
 
-    /**
-     * 获取zendesk TRONSCAN消息系统
-     */
-    async getTRONNotice(lan, query) {
-        let langauage = "en-us";
-        let id = "360001621692";
-        lan == "zh" ? (langauage = "zh-cn") : (langauage = "en-us");
-        lan == "zh" ? (id = "360001618172") : (id = "360001621692");
-        let { data } = await xhr({
-            method: "get",
-            url: `${
-                this.SCANUrl
-                }/api/v2/help_center/${langauage}/categories/${id}/articles.json?sort_by=created_at&sort_order=desc&per_page=${
-                query.page
-                }`
-        });
-        return data;
+  /**
+   * 获取zendesk TRONSCAN消息系统
+   */
+  async getTRONNotice(lan, query) {
+    let langauage = "en-us";
+    let id = "360001621692";
+    lan == "zh" ? (langauage = "zh-cn") : (langauage = "en-us");
+    lan == "zh" ? (id = "360001618172") : (id = "360001621692");
+    let { data } = await xhr({
+      method: "get",
+      url: `${
+        this.SCANUrl
+      }/api/v2/help_center/${langauage}/categories/${id}/articles.json?sort_by=created_at&sort_order=desc&per_page=${
+        query.page
+      }`
+    });
+    return data;
+  }
+
+  //币之间的换算
+  async coinMarketCap(secend_token, covert) {
+    let type = "tronix";
+    if (secend_token === "usdt") {
+      type = "tether";
     }
+    let { data } = await xhr({
+      method: "get",
+      url: `https://api.coinmarketcap.com/v1/ticker/${type}/?convert=${covert}`
+    });
+    return data;
+  }
+
+  //market新接口，sortType=0 24小时交易额 sortType=1 热门 sortType=2 涨跌幅
+  async getMarketNew(sortType) {
+    let { data } = await xhr({
+      method: "get",
+      url: `${this.apiUrl}/api/exchange/marketPair/list?sortType=${sortType}`
+    });
+    return data;
+  }
 }
 
 export const Client20 = new ApiClient20();

@@ -18,12 +18,20 @@ export const WitnessLink = ({address}) => (
 
 export const TokenLink = ({id, name, namePlus, address, children, ...props}) => {
 
+  if(id == '_'){
+      return <a href="javascript:;" >{children || name}</a>
+  }
   if (name && !namePlus) {
-    return <Link to={`/token/${encodeURI(id)}`} {...props}>{children || name}</Link>
+    return (
+        <Link to={`/token/${encodeURI(id)}`} {...props}>{children || name}</Link>
+    )
   }
   if (namePlus && name) {
-    return <Link to={`/token/${encodeURI(id)}`} {...props}>{children || namePlus}</Link>
+    return  (
+        <Link to={`/token/${encodeURI(id)}`} {...props}>{children || namePlus}</Link>
+    )
   }
+
 };
 
 export const TokenTRC20Link = ({name, namePlus, address, children, ...props}) => {
@@ -132,7 +140,8 @@ export class AddressLink extends React.PureComponent {
           {
             !isContract ?
               <Link
-                  to={`/address/${address}/token-balances`}
+                  //to={`/address/${address}/token-balances`}
+                  to={`/address/${address}`}
                   style={style}
                   className={"text-truncate address-link  " + className}
                   {...props}>
@@ -307,7 +316,8 @@ export const ContractLink = ({address, children = null}) => {
     if(data instanceof Array){
       location.href = '/#/contract/'+address+'/code'
     }else{
-      location.href = '/#/address/'+address+'/token-balances'
+     // location.href = '/#/address/'+address+'/token-balances'
+        location.href = '/#/address/'+ address
     }
   }
   return (

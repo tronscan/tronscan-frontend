@@ -27,7 +27,7 @@ export function withTronWeb(InnerComponent) {
     getTronWeb = () => {
 
       // if (typeof window.tronWeb === 'undefined') {
-      const networkUrl = `https://api.trongrid.io`;
+      const networkUrl = `https://api.shasta.trongrid.io`;
 
       const tronWeb = new TronWeb(
         networkUrl,
@@ -177,7 +177,7 @@ export function withTronWeb(InnerComponent) {
 
     async getTokenExtraInfo(ID){
       let tokenID = ID;
-      if (typeof tokenID != "number") {
+      if (typeof tokenID !== "number") {
         tokenID = TronWeb.toUtf8(tokenID);
         if (tokenID==="_")
           return {id: 0, decimals: 6, token_name: "TRX"};
@@ -194,7 +194,7 @@ export function withTronWeb(InnerComponent) {
 
     getLedgerTokenInfo(ID){
       let tokenID = ID;
-      if (typeof tokenID != "number") {
+      if (typeof tokenID !== "number") {
         if (tokenID==="_")
           tokenID = 0;
         else
@@ -205,7 +205,7 @@ export function withTronWeb(InnerComponent) {
 
     getLedgerExchangeInfo(ID){
       let exchangeID = ID;
-      if (typeof exchangeID != "number") {
+      if (typeof exchangeID !== "number") {
         exchangeID = parseInt(exchangeID);
       }
       return ledgerExchangeList.exchangeList.find(o => o.id === exchangeID );
@@ -221,7 +221,6 @@ export function withTronWeb(InnerComponent) {
         error();
         this.hideModal();
       };
-      //console.log(extra);
 
       return (
         <Modal isOpen={true} fade={false} keyboard={false} size="lg" className="modal-dialog-centered" zIndex="9999">

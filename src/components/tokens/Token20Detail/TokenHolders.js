@@ -5,7 +5,7 @@ import {Client} from "../../../services/api";
 import SmartTable from "../../common/SmartTable.js"
 import {FormattedNumber, injectIntl} from "react-intl";
 import {TronLoader} from "../../common/loaders";
-import {upperFirst} from "lodash";
+import {upperFirst, lowerCase} from "lodash";
 import xhr from "axios/index";
 import {API_URL, ONE_TRX} from "../../../constants";
 import {toastr} from 'react-redux-toastr'
@@ -58,6 +58,36 @@ class TokenHolders extends React.Component {
       addresses[index].index = parseInt(index) + 1 + (page-1)*pageSize;
     }
 
+    let exchangeFlag = await Client.getTagNameList()
+    if(addresses.length){
+      addresses.map(item => {
+        item.tagName = ''
+        exchangeFlag.map(coin => {
+          const typeList = Object.keys(coin.addressList)
+          typeList.map(type => {
+            if(coin.addressList[type].length == 1){
+              if(coin.addressList[type][0] === item.address){
+                item.tagName = `${upperFirst(coin.name)}${type !== 'default'? `-${type}`: ''}`
+                if(lowerCase(coin.name) === 'binance'){
+                  item.ico = lowerCase(coin.name)
+                }
+              }
+            }else if(coin.addressList[type].length > 1){
+              coin.addressList[type].map((address, index) => {
+                if(address === item.address){
+                  item.tagName = `${upperFirst(coin.name)}${type !== 'default'? `-${type} ${index + 1}`: ` ${index + 1}`}`
+                  if(lowerCase(coin.name) === 'binance'){
+                    item.ico = lowerCase(coin.name)
+                  }
+                }
+              })
+            }
+          })
+        })
+       })
+    }
+    
+
     this.setState({
       page,
       addresses,
@@ -85,6 +115,12 @@ class TokenHolders extends React.Component {
         render: (text, record, index) => {
           return <AddressLink address={record.holder_address}/>
         }
+      },
+      {
+        title: 'Name Tag',
+        dataIndex: 'tagName',
+        key: 'tagName',
+        width: '200px'
       },
       {
         title: upperFirst(intl.formatMessage({id: 'quantity'})),

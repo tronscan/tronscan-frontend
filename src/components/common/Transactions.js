@@ -3,7 +3,7 @@ import {FormattedDate, FormattedNumber, FormattedTime, injectIntl} from "react-i
 import {Sticky, StickyContainer} from "react-sticky";
 import Paging from "./Paging";
 import {Client} from "../../services/api";
-import {TransactionHashLink, AddressLink} from "./Links";
+import {TransactionHashLink, AddressLink, BlockNumberLink} from "./Links";
 import {tu} from "../../utils/i18n";
 import TimeAgo from "react-timeago";
 import {TronLoader} from "./loaders";
@@ -20,6 +20,7 @@ import {NameWithId} from "./names";
 import rebuildList from "../../utils/rebuildList";
 import xhr from "axios/index";
 import {API_URL} from '../../constants.js'
+import qs from 'qs'
 
 const RangePicker = DatePicker.RangePicker;
 
@@ -59,7 +60,7 @@ class Transactions extends React.Component {
 
   loadTransactions = async (page = 1, pageSize = 20) => {
 
-    let {filter, isinternal=false, address=false} = this.props;
+    let {filter, isinternal=false, address=false, getCsvUrl} = this.props;
 
     this.setState(
         {
@@ -87,11 +88,11 @@ class Transactions extends React.Component {
           rangeTotal = data.rangeTotal
       }else{
           let data = await Client.getTransactions({
-              sort: '-timestamp',
               limit: pageSize,
               start: (page - 1) * pageSize,
+              sort: '-timestamp',
               total: this.state.total,
-              ...filter,
+              ...filter
           });
           transactions = data.transactions;
           total = data.total,
@@ -99,14 +100,17 @@ class Transactions extends React.Component {
       }
 
     }else {
-        // TODO internal transctions
-
+        const params = {
+          start_timestamp: this.start,
+          end_timestamp: this.end,
+          ...filter
+        }
+        const query = qs.stringify({ format: 'csv',...params})
+        //getCsvUrl(`${'http://52.15.68.74:10000'}/api/internal-transaction?${query}`)
         let data = await Client.getInternalTransaction({
             limit: pageSize,
             start: (page - 1) * pageSize,
-            address: filter.address,
-            start_timestamp: this.start,
-            end_timestamp: this.end,
+            ...params
         });
 
         let newdata = rebuildList(data.list, 'tokenId', 'callValue', 'valueInfoList')
@@ -124,9 +128,8 @@ class Transactions extends React.Component {
   };
 
   customizedColumn = () => {
-    let {intl} = this.props;
+      let {intl, isinternal = false} = this.props;
     let column = [
-      
       {
         title: upperFirst(intl.formatMessage({id: 'hash'})),
         dataIndex: 'hash',
@@ -197,17 +200,28 @@ class Transactions extends React.Component {
           </Truncate>
         }
       },
-      // {
-      //   title: upperFirst(intl.formatMessage({id: 'age'})),
-      //   dataIndex: 'timestamp',
-      //   key: 'timestamp',
-      //   align: 'left',
-      //   className: 'ant_table',
-      //   width: '14%',
-      //   render: (text, record, index) => {
-      //     return <TimeAgo date={text}/>
-      //   }
-      // },
+        {
+            title: upperFirst(intl.formatMessage({id: 'block'})),
+            dataIndex: 'block',
+            key: 'block',
+            align: 'left',
+            className: 'ant_table',
+            width: '10%',
+            render: (text, record, index) => {
+                return <BlockNumberLink number={record.block}/>
+            }
+        },
+        {
+            title: upperFirst(intl.formatMessage({id: 'age'})),
+            dataIndex: 'timestamp',
+            key: 'timestamp',
+            align: 'left',
+            className: 'ant_table',
+            width: '14%',
+            render: (text, record, index) => {
+                return <TimeAgo date={text} title={moment(text).format("MMM-DD-YYYY HH:mm:ss A")}/>
+            }
+        },
       {
         title: upperFirst(intl.formatMessage({id: 'from'})),
         dataIndex: 'from',
@@ -258,9 +272,9 @@ class Transactions extends React.Component {
         align: 'right',
         className: 'ant_table _text_nowrap',
         render: (text, record, index) => {
-          return record.valueInfoList.map((item,index) => {
+          return record.valueInfoList.length ?record.valueInfoList.map((item,index) => {
             return <span key={index}><NameWithId value={item}/><span className={index == record.valueInfoList.length -1? 'd-none': ''}>, </span></span>
-          })
+          }): '-'
         }
       },
       // {
@@ -289,7 +303,7 @@ class Transactions extends React.Component {
   render() {
 
     let {transactions, total, rangeTotal, loading, EmptyState = null} = this.state;
-    let {intl, isinternal, address = false} = this.props;
+    let {intl, isinternal, address = false, filter: {contract}} = this.props;
     let column = !isinternal? this.customizedColumn():
                               this.trc20CustomizedColumn();
     let tableInfo = intl.formatMessage({id: 'view_total'}) + ' ' + total + ' ' + intl.formatMessage({id: 'transactions_unit'})
@@ -306,10 +320,16 @@ class Transactions extends React.Component {
     return (
       <div className={"token_black table_pos " + (address?"mt-5":"")}>
           {loading && <div className="loading-style"><TronLoader/></div>}
-          {total ? <TotalInfo total={total} rangeTotal={rangeTotal} typeText="transactions_unit" common={!address}/>:""}
-          {
-              address ? <DateRange onDateOk={(start,end) => this.onDateOk(start,end)}  dateClass="date-range-box-address" />: ''
-          }
+          
+          <div className="d-flex justify-content-between w-100"  style={{position: "absolute", left: 0, top: '-28px'}}>
+            {(total && contract && isinternal)? <div className="d-flex align-items-center">
+              <div className="question-mark mr-2"><i>?</i></div><span className="flex-1">{tu('interTrx_tip')}</span>
+            </div>: ''}
+              
+            {( address) ? <DateRange onDateOk={(start,end) => this.onDateOk(start,end)}  dateClass={`top-0 date-range-box-address${(total && contract)?'-unset': ''}`}/>: ''}
+          </div>
+          {total? <TotalInfo total={total} rangeTotal={rangeTotal} typeText="transactions_unit" common={!address} top={(!contract && address)? '-28px': '26'}/>: ''}
+          
           {
               (!loading && transactions.length === 0)?
                   <div className="p-3 text-center no-data">{tu("no_transactions")}</div>:

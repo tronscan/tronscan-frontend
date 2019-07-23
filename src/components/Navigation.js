@@ -95,7 +95,6 @@ class Navigation extends React.Component {
     let {account,setWebsocket} = this.props;
     let _this = this;
 
-    setWebsocket()
     window.addEventListener('message', function (e) {
       if (e.data.message) {
         _this.setState({address: e.data.message.data});
@@ -103,6 +102,7 @@ class Navigation extends React.Component {
       }
     })
     //this.getAnnouncement();
+     setWebsocket();
     $(document).click(() => {
       $('#_searchBox').css({display: 'none'});
     });
@@ -115,7 +115,11 @@ class Navigation extends React.Component {
   }
 
   componentWillUnmount() {
-    this.listener && this.listener.close();
+      let { account, websocket }  = this.props;
+      if(!account.isLoggedIn && websocket){
+          websocket.close();
+          Lockr.set("websocket", 'close')
+      }
   }
 
   componentDidUpdate(prevProps) {
@@ -265,11 +269,8 @@ class Navigation extends React.Component {
   };
 
   unlockKeyFile = (password, contents) => {
-
     let {key, address, salt} = JSON.parse(bytesToString(hexStr2byteArray(contents)));
-
     let privateKey = decryptString(password, salt, key);
-
     if (validatePrivateKey(privateKey) && pkToAddress(privateKey) === address) {
       this.setState({
         popup: (
@@ -394,7 +395,7 @@ class Navigation extends React.Component {
   }
 
   afterSearch = (hash) => {
-    window.location.hash = hash;
+    hash && (window.location.hash = hash);
     this.setState({searchResults: []});
     this.setState({search: ""});
   }
@@ -492,9 +493,9 @@ class Navigation extends React.Component {
           <Modal isOpen={true} fade={false} keyboard={false} size="lg" className="modal-dialog-centered">
             <ModalHeader className="text-center" toggle={this.hideModal}>
               {tu("open_ledger")}&nbsp;&nbsp;
-              {/*<Link to="/help/ledger">*/}
+              {/*<Link to="/help/ledger" onClick={this.hideModal} style={{fontSize:12,marginTop:6}}>*/}
                 {/*<small>*/}
-                    {/*{tu("beginners_guide")}*/}
+                    {/*{tu("ledger_user_guide")}*/}
                 {/*</small>*/}
               {/*</Link>*/}
             </ModalHeader>
@@ -736,7 +737,15 @@ class Navigation extends React.Component {
                                 onChange={ev => this.setState({privateKey: ev.target.value})}
                                 placeholder=""/>
                           </div>
-                          <button className="btn btn-danger btn-block mt-3"
+                          <div className="login-privatekey-warn pt-2">
+                              <i className="fas fa-exclamation-triangle mr-2" style={{color:"#FF8C00"}}></i>
+                              {tu("login_privatekey_warn")}
+                              <a href="https://chrome.google.com/webstore/detail/tronlink/ibnejdfjmmkpcnlpebklmnkoeoihofec" target="_blank">
+                                 TronLink
+                              </a>
+                              {tu("login_privatekey_warn_safe")}
+                          </div>
+                          <button className="btn btn-danger btn-block mt-2"
                                   disabled={!this.isLoginValid()}
                                   onClick={(e) => {
                                     this.login(e)
@@ -865,7 +874,6 @@ class Navigation extends React.Component {
     let {search, popup, notifications, announcement, announId, annountime, searchResults} = this.state;
 
     let activeComponent = this.getActiveComponent();
-
     return (
         <div className="header-top">
           {popup}
@@ -918,40 +926,40 @@ class Navigation extends React.Component {
                         {
                           searchResults && searchResults.map((result, index) => {
                                 if (result.desc === 'Block') {
-                                  return <a className="dropdown-item text-uppercase" onClick={() => {
-                                    this.afterSearch("#/block/" + trim(result.value))
+                                  return <Link className="dropdown-item text-uppercase" to={"/block/" + trim(result.value)} onClick={() => {
+                                    this.afterSearch()
                                   }}
-                                            key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></a>
+                                            key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></Link>
                                 }
                                 if (result.desc === 'Token-TRC20') {
-                                  return <a className="dropdown-item text-uppercase" onClick={() => {
-                                    this.afterSearch("#/token20/" + trim(result.value.split(' ')[result.value.split(' ').length-1]))
+                                  return <Link className="dropdown-item text-uppercase" to={"/token20/" + trim(result.value.split(' ')[result.value.split(' ').length-1])} onClick={() => {
+                                    this.afterSearch()
                                   }}
-                                            key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></a>
+                                            key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></Link>
                                 }
                                 if (result.desc === 'Token-TRC10') {
-                                  return <a className="dropdown-item text-uppercase" onClick={() => {
-                                    this.afterSearch("#/token/" + trim(result.value.split(' ')[result.value.split(' ').length-1]))
+                                  return <Link className="dropdown-item text-uppercase" to={"/token/" + trim(result.value.split(' ')[result.value.split(' ').length-1])} onClick={() => {
+                                    this.afterSearch()
                                   }}
-                                            key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></a>
+                                            key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></Link>
                                 }
                                 if (result.desc === 'Address') {
-                                  return <a className="dropdown-item text-uppercase" onClick={() => {
-                                    this.afterSearch("#/address/" + trim(result.value))
+                                  return <Link className="dropdown-item text-uppercase" to={"/address/" + trim(result.value)} onClick={() => {
+                                    this.afterSearch()
                                   }}
-                                            key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></a>
+                                            key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></Link>
                                 }
                                 if (result.desc === 'Contract') {
-                                  return <a className="dropdown-item text-uppercase" onClick={() => {
-                                    this.afterSearch("#/contract/" + trim(result.value))
+                                  return <Link className="dropdown-item text-uppercase" to={"/contract/" + trim(result.value)} onClick={() => {
+                                    this.afterSearch()
                                   }}
-                                            key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></a>
+                                            key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></Link>
                                 }
                                 if (result.desc === 'TxHash') {
-                                  return <a className="dropdown-item text-uppercase" onClick={() => {
-                                    this.afterSearch("#/transaction/" + trim(result.value))
+                                  return <Link className="dropdown-item text-uppercase" to={"/transaction/" + trim(result.value)} onClick={() => {
+                                    this.afterSearch()
                                   }}
-                                            key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></a>
+                                            key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></Link>
                                 }
                               }
                           )
@@ -990,40 +998,40 @@ class Navigation extends React.Component {
                 {
                   searchResults && searchResults.map((result, index) => {
                         if (result.desc === 'Block') {
-                          return <a className="dropdown-item text-uppercase" onClick={() => {
-                            this.afterSearch("#/block/" + trim(result.value))
+                          return <Link className="dropdown-item text-uppercase" to={"/block/" + trim(result.value)} onClick={() => {
+                            this.afterSearch()
                           }}
-                                    key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></a>
+                                    key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></Link>
                         }
                         if (result.desc === 'Token-TRC20') {
-                          return <a className="dropdown-item text-uppercase" onClick={() => {
-                            this.afterSearch("#/token20/" + trim(result.value.split(' ')[result.value.split(' ').length-1]))
+                          return <Link className="dropdown-item text-uppercase" to={"/token20/" + trim(result.value.split(' ')[result.value.split(' ').length-1])} onClick={() => {
+                            this.afterSearch()
                           }}
-                                    key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></a>
+                                    key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></Link>
                         }
                         if (result.desc === 'Token-TRC10') {
-                          return <a className="dropdown-item text-uppercase" onClick={() => {
-                            this.afterSearch("#/token/" + trim(result.value.split(' ')[result.value.split(' ').length-1]))
+                          return <Link className="dropdown-item text-uppercase" to={"/token/" + trim(result.value.split(' ')[result.value.split(' ').length-1])} onClick={() => {
+                            this.afterSearch()
                           }}
-                                    key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></a>
+                                    key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></Link>
                         }
                         if (result.desc === 'Address') {
-                          return <a className="dropdown-item text-uppercase" onClick={() => {
-                            this.afterSearch("#/address/" + trim(result.value))
+                          return <Link className="dropdown-item text-uppercase" to={"/address/" + trim(result.value)} onClick={() => {
+                            this.afterSearch()
                           }}
-                                    key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></a>
+                                    key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></Link>
                         }
                         if (result.desc === 'Contract') {
-                          return <a className="dropdown-item text-uppercase" onClick={() => {
-                            this.afterSearch("#/contract/" + trim(result.value))
+                          return <Link className="dropdown-item text-uppercase" to={"/contract/" + trim(result.value)} onClick={() => {
+                            this.afterSearch()
                           }}
-                                    key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></a>
+                                    key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></Link>
                         }
                         if (result.desc === 'TxHash') {
-                          return <a className="dropdown-item text-uppercase" onClick={() => {
-                            this.afterSearch("#/transaction/" + trim(result.value))
+                          return <Link className="dropdown-item text-uppercase" to={"/transaction/" + trim(result.value)} onClick={() => {
+                            this.afterSearch()
                           }}
-                                    key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></a>
+                                    key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></Link>
                         }
                       }
                   )

@@ -17,55 +17,54 @@ class Footer extends Component {
     const donate_address = 'TTzPiwbBedv7E8p4FkyPyeqq4RVoqRL3TW';
     let { intl, activeLanguage } = this.props;
     return (
-      <main className="home pb-0">
+      <div className="footer-compontent pb-0">
         <div className="pt-5 home-footer">
         {
           isMobile?
           <div className="container mobile-footer">
             <div className="row text-center text-xs-center text-sm-left text-md-left list">
-              <div className="col-7 col-md-3">
-                <h5>Tronscan</h5>
+              <div className="col-6 col-md-3">
+                <h5>{tu('footer_fellow_us')}</h5>
                 <ul className="list-unstyled">
-                  <li>
-                    <Link to="/help/about">
-                      {tu('about_us')}
-                    </Link>
-                  </li>
-                  <li>
-                    <HrefLink href={activeLanguage == 'zh'?"https://tronscanorg.zendesk.com/hc/zh-cn":"https://tronscanorg.zendesk.com/hc/en-us"}>
-                      Support center
+                  <li className="d-flex">
+                    <HrefLink href="https://t.me/tronscan_org">
+                      <i className="fab fa-telegram mr-1"></i>Telegram
                     </HrefLink>
                   </li>
                   <li>
-                    <HrefLink href={activeLanguage == 'zh'?"https://tronscanorg.zendesk.com/hc/zh-cn/categories/360001616871-%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98":"https://tronscanorg.zendesk.com/hc/en-us/categories/360001621712-FAQ"}>
-                      FAQ
+                    <HrefLink href="https://twitter.com/TRONSCAN_ORG">
+                      <i className="fab fa-twitter mr-1"></i>Twitter
                     </HrefLink>
                   </li>
+                  <li>
+                    <HrefLink href="https://medium.com/@TRONSCAN_ORG">
+                      <i className="fab fa-medium-m mr-1"></i>Medium
+                    </HrefLink>
+                  </li>
+                  <li>
+                    <HrefLink href="https://discordapp.com/invite/GsRgsTD">
+                      <i className="fab fa-discord mr-1"></i>Discord
+                    </HrefLink>
+                  </li>
+
+                  <li>
+                    <HrefLink href="https://www.weibo.com/tronscan?refer_flag=1005055013_&is_hot=1">
+                      <i className="fab fa-weibo mr-1" />Weibo
+                    </HrefLink>
+                  </li>
+                  <li>
+                    <a target="_blank" className="footer-icon">
+                      <i className="fab fa-weixin mr-1"></i>WeChat
+                      <div className="code_wrap">
+                        <img src={require("../../images/footer/tronscan_wechat.png")} />
+                      </div>
+                    </a>
+                  </li>
                 </ul>
               </div>
-             
 
-              <div className="col-7 col-md-3">
-                <h5>{tu('social_link')}</h5>
-                <ul className="list-unstyled">
-                  <li>
-                    <HrefLink href="https://t.me/tronscan_org">Telegram</HrefLink>
-                  </li>
-                 
-                  <li>
-                    <HrefLink href="https://twitter.com/TRONSCAN_ORG">Twitter</HrefLink>
-                  </li>
-                  <li>
-                    <HrefLink href="https://medium.com/@TRONSCAN_ORG">Medium</HrefLink>
-                  </li>
-                  <li>
-                    <HrefLink href="https://discordapp.com/invite/GsRgsTD">Discord</HrefLink>
-                  </li>
-                </ul>
-              </div>
-
-              <div className="col-5 col-md-3">
-                <h5>Development</h5>
+              <div className="col-6 col-md-3">
+                <h5>{tu('footer_developer_resources')}</h5>
                 <ul className="list-unstyled">
                   <li>
                     <HrefLink href="https://github.com/tronprotocol">Github</HrefLink>
@@ -82,20 +81,45 @@ class Footer extends Component {
                 </ul>
               </div>
 
-              <div className="col-5 col-md-3">
+              <div className="col-6 col-md-3">
                 <h5>{tu('TRON_ecosystem')}</h5>
                 <ul className="list-unstyled">
                   <li>
-                    <HrefLink href="https://tron.network">tron.network</HrefLink>
+                    <HrefLink href="https://tron.network"> {tu('footer_tron_network')}</HrefLink>
                   </li>
                   <li>
-                    <HrefLink href="https://trx.market">Exchanges</HrefLink>
+                    <HrefLink href="https://trx.market">{tu('exchange')}</HrefLink>
                   </li>
                   <li>
-                    <HrefLink href="https://www.tronlink.org">wallet</HrefLink>
+                    <HrefLink href="https://www.tronlink.org"> {tu('wallet')}</HrefLink>
                   </li>
                   <li>
                     <HrefLink href="https://tron.app">Dapps</HrefLink>
+                  </li>
+                </ul>
+              </div>
+              <div className="col-6 col-md-3">
+                <h5 className="text-uppercase">Tronscan</h5>
+                <ul className="list-unstyled">
+                  <li>
+                    <Link to="/help/about">
+                        {tu('about_us')}
+                    </Link>
+                  </li>
+                  <li>
+                    <HrefLink href={activeLanguage == 'zh'?"https://support.tronscan.org/hc/zh-cn/requests/new":"https://support.tronscan.org/hc/en-us/requests/new"}>
+                      {tu('contact_us')}
+                    </HrefLink>
+                  </li>
+                  <li>
+                    <HrefLink href={activeLanguage == 'zh'?"https://tronscanorg.zendesk.com/hc/zh-cn":"https://tronscanorg.zendesk.com/hc/en-us"}>
+                        {tu('footer_support_center')}
+                    </HrefLink>
+                  </li>
+                  <li>
+                    <HrefLink href={activeLanguage == 'zh'?"https://tronscanorg.zendesk.com/hc/zh-cn/categories/360001616871-%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98":"https://tronscanorg.zendesk.com/hc/en-us/categories/360001621712-FAQ"}>
+                        {tu('frequently_asked_questions')}
+                    </HrefLink>
                   </li>
                 </ul>
               </div>
@@ -157,90 +181,83 @@ class Footer extends Component {
           <div className="container">
             <div className="row text-center text-xs-center text-sm-left text-md-left">
               <div className="col-xs-12 col-sm-3 col-md-3">
-                <h5>Tronscan</h5>
-                <div className="line" />
-                <ul className="list-unstyled quick-links pt-3">
-                  <li className="p-2">
-                    <Link to="/help/about">
-                      <i className="fa fa-angle-right mr-4" /> {tu('about_us')}
-                    </Link>
-                  </li>
-                  <li className="p-2">
-                    <HrefLink href={activeLanguage == 'zh'?"https://tronscanorg.zendesk.com/hc/zh-cn":"https://tronscanorg.zendesk.com/hc/en-us"}>
-                      <i className="fa fa-angle-right mr-4" /> Support center
-                    </HrefLink>
-                  </li>
-                  <li className="p-2">
-                    <HrefLink href={activeLanguage == 'zh'?"https://tronscanorg.zendesk.com/hc/zh-cn/categories/360001616871-%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98":"https://tronscanorg.zendesk.com/hc/en-us/categories/360001621712-FAQ"}>
-                      <i className="fa fa-angle-right mr-4" /> FAQ
-                    </HrefLink>
-                  </li>
-                </ul>
-              </div>
-              <div className="col-xs-12 col-sm-3 col-md-3">
-                <h5>{tu('social_link')}</h5>
+                <h5>{tu('footer_fellow_us')}</h5>
                 <div className="line" />
                 <ul className="list-unstyled quick-links pt-3">
                   <li className="p-2">
                     <HrefLink href="https://t.me/tronscan_org">
-                      <i className="fa fa-angle-right mr-4" /> Telegram
+                      <i className="fab fa-telegram mr-4"></i>Telegram
                     </HrefLink>
                   </li>
                   <li className="p-2">
                     <HrefLink href="https://twitter.com/TRONSCAN_ORG">
-                      <i className="fa fa-angle-right mr-4" /> Twitter
+                      <i className="fab fa-twitter mr-4"></i>Twitter
                     </HrefLink>
                   </li>
                   <li className="p-2">
                     <HrefLink href="https://medium.com/@TRONSCAN_ORG">
-                      <i className="fa fa-angle-right mr-4" /> Medium
+                      <i className="fab fa-medium-m mr-4"></i>Medium
                     </HrefLink>
                   </li>
                   <li className="p-2">
                     <HrefLink href="https://discordapp.com/invite/GsRgsTD">
-                      <i className="fa fa-angle-right mr-4" /> Discord
+                      <i className="fab fa-discord mr-4"></i>Discord
                     </HrefLink>
                   </li>
-                  {/*<li className="p-2">*/}
+                  <li className="p-2">
+                    <HrefLink href="https://www.weibo.com/tronscan?refer_flag=1005055013_&is_hot=1">
+                      <i className="fab fa-weibo mr-4" />Weibo
+                    </HrefLink>
+                  </li>
+                  <li className="p-2">
+                    <a target="_blank" className="footer-icon">
+                      <i className="fab fa-weixin mr-4"></i>WeChat
+                      <div className="code_wrap">
+                        <img src={require("../../images/footer/tronscan_wechat.png")} />
+                      </div>
+                    </a>
+                  </li>
+
+                    {/*<li className="p-2">*/}
                     {/*<HrefLink href="https://twitter.com/tronscan3">*/}
-                      {/*<i className="fa fa-angle-right mr-4" /> Twitter-tronscan*/}
+                    {/*<i className="fa fa-angle-right mr-4" /> Twitter-tronscan*/}
                     {/*</HrefLink>*/}
-                  {/*</li>*/}
-                  {/*<li className="p-2">*/}
+                    {/*</li>*/}
+                    {/*<li className="p-2">*/}
                     {/*<HrefLink href="https://github.com/tronscan/tronscan-frontend/issues/new">*/}
-                      {/*<i className="fa fa-angle-right mr-4" /> {tu('report_an_error')}*/}
+                    {/*<i className="fa fa-angle-right mr-4" /> {tu('report_an_error')}*/}
                     {/*</HrefLink>*/}
-                  {/*</li>*/}
-                  {/*<li className="p-2">*/}
+                    {/*</li>*/}
+                    {/*<li className="p-2">*/}
                     {/*<HrefLink href="https://github.com/tronscan/tronscan-frontend">*/}
-                      {/*<i className="fa fa-angle-right mr-4" /> Tronscan Github*/}
+                    {/*<i className="fa fa-angle-right mr-4" /> Tronscan Github*/}
                     {/*</HrefLink>*/}
-                  {/*</li>*/}
+                    {/*</li>*/}
 
                 </ul>
               </div>
               <div className="col-xs-12 col-sm-3 col-md-3">
-                <h5>Development</h5>
+                <h5>{tu('footer_developer_resources')}</h5>
                 <div className="line" />
                 <ul className="list-unstyled quick-links pt-3">
                   <li className="p-2">
                     <HrefLink href="https://github.com/tronprotocol">
-                      <i className="fa fa-angle-right mr-4" /> Github
+                     Github
                     </HrefLink>
                   </li>
                   <li className="p-2">
                     <HrefLink href="https://github.com/tronprotocol/java-tron">
-                      <i className="fa fa-angle-right mr-4" /> java-tron
+                     java-tron
                     </HrefLink>
                   </li>
                   <li className="p-2">
                     <HrefLink href="https://github.com/tronprotocol/Documentation">
-                      <i className="fa fa-angle-right mr-4" /> Documentation
+                      Documentation
                     </HrefLink>
                   </li>
                   <li className="p-2">
                     <HrefLink href="https://developers.tron.network/">
-                      <i className="fa fa-angle-right mr-4" /> Developer Hub
+                      Developer Hub
                     </HrefLink>
                   </li>
                 </ul>
@@ -251,22 +268,48 @@ class Footer extends Component {
                 <ul className="list-unstyled quick-links pt-3">
                   <li className="p-2">
                     <HrefLink href="https://tron.network">
-                      <i className="fa fa-angle-right mr-4" /> tron.network
+                        {tu('footer_tron_network')}
                     </HrefLink>
                   </li>
                   <li className="p-2">
                     <HrefLink href="https://trx.market">
-                      <i className="fa fa-angle-right mr-4" /> Exchanges
+                        {tu('exchange')}
                     </HrefLink>
                   </li>
                   <li className="p-2">
                     <HrefLink href="https://www.tronlink.org">
-                      <i className="fa fa-angle-right mr-4" /> wallet
+                        {tu('wallet')}
                     </HrefLink>
                   </li>
                   <li className="p-2">
                     <HrefLink href="https://tron.app">
-                      <i className="fa fa-angle-right mr-4" /> Dapps
+                      Dapps
+                    </HrefLink>
+                  </li>
+                </ul>
+              </div>
+              <div className="col-xs-12 col-sm-3 col-md-3">
+                <h5 className="text-uppercase">TRONSCAN</h5>
+                <div className="line" />
+                <ul className="list-unstyled quick-links pt-3">
+                  <li className="p-2">
+                    <Link to="/help/about">
+                        {tu('about_us')}
+                    </Link>
+                  </li>
+                  <li className="p-2">
+                    <HrefLink href={activeLanguage == 'zh'?"https://support.tronscan.org/hc/zh-cn/requests/new":"https://support.tronscan.org/hc/en-us/requests/new"}>
+                        {tu('contact_us')}
+                    </HrefLink>
+                  </li>
+                  <li className="p-2">
+                    <HrefLink href={activeLanguage == 'zh'?"https://tronscanorg.zendesk.com/hc/zh-cn":"https://tronscanorg.zendesk.com/hc/en-us"}>
+                        {tu('footer_support_center')}
+                    </HrefLink>
+                  </li>
+                  <li className="p-2">
+                    <HrefLink href={activeLanguage == 'zh'?"https://tronscanorg.zendesk.com/hc/zh-cn/categories/360001616871-%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98":"https://tronscanorg.zendesk.com/hc/en-us/categories/360001621712-FAQ"}>
+                        {tu('frequently_asked_questions')}
                     </HrefLink>
                   </li>
                 </ul>
@@ -307,7 +350,7 @@ class Footer extends Component {
                 {/*</ul>*/}
               {/*</div>*/}
             </div>
-            <div className="row donate mt-4">
+            <div className="row donate mt-5">
                 <div>
                     <div className="before">
                         <img src={require('../../images/footer/icon-heart.png')} alt=""/>
@@ -365,7 +408,7 @@ class Footer extends Component {
         }
           
         </div>
-      </main>
+      </div>
     );
   }
 }

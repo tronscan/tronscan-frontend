@@ -19,6 +19,7 @@ import {transactionResultManager} from "../../../utils/tron";
 import xhr from "axios/index";
 import Lockr from "lockr";
 import {withTronWeb} from "../../../utils/tronWeb";
+import {CsvExport} from "../../common/CsvExport";
 
 
 @withTronWeb
@@ -35,6 +36,7 @@ class TokenDetail extends React.Component {
       buyAmount: 0,
       alert: null,
       currentTotalSupply:'',
+      csvurl: ''
     };
   }
 
@@ -95,7 +97,7 @@ class TokenDetail extends React.Component {
                     icon: "",
                     path: "/transfers",
                     label: <span>{tu("token_transfers")}</span>,
-                    cmp: () => <Transfers filter={{token: token.name, address: token.ownerAddress}}/>
+                    cmp: () => <Transfers getCsvUrl={(csvurl) => this.setState({csvurl})} filter={{token: token.name, address: token.ownerAddress}}/>
                 },
                 {
                     id: "holders",
@@ -444,8 +446,14 @@ class TokenDetail extends React.Component {
   render() {
 
     let {match, wallet} = this.props;
-    let {token, tabs, loading, buyAmount, alert,currentTotalSupply} = this.state;
-
+    let {token, tabs, loading, buyAmount, alert,currentTotalSupply, csvurl} = this.state;
+    let uploadURL = API_URL + "/api/v2/node/info_upload?address=" + match.params.id
+    let pathname = this.props.location.pathname;
+    let tabName = ''
+    let rex = /[a-zA-Z0-9]{7}\/?([a-zA-Z\\-]+)$/
+    pathname.replace(rex, function (a, b) {
+      tabName = b
+    })
     return (
         <main className="container header-overlap token_black mc-donalds-coin">
           {alert}
@@ -485,7 +493,7 @@ class TokenDetail extends React.Component {
                             <button className="btn btn-default btn-xs d-inline-block"
                                     onClick={() => this.preBuyTokens(token)}>{tu("participate")}</button>
                             }
-                            <a href={"#/myToken?address="+ token.ownerAddress} className="btn btn-danger btn-xs d-inline-block token-detail-btn">{tu("update_token")}</a>
+                            {/**<a href={"#/myToken?address="+ token.ownerAddress} className="btn btn-danger btn-xs d-inline-block token-detail-btn">{tu("update_token")}</a> */}
                           </div>
                         </div>
                       </div>
@@ -517,6 +525,11 @@ class TokenDetail extends React.Component {
                         </Switch>
                       </div>
                     </div>
+                      {/*
+                          tabName === 'transfers' ?
+                              <CsvExport downloadURL={csvurl}/>
+                              : ''
+                      */}
                   </div>
                   }
                 </div>
