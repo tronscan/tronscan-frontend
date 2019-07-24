@@ -4,7 +4,7 @@ import { TronLoader } from "components/common/loaders";
 
 export default (loader,loading = TronLoader)=>{
     return Loadable({
-        loader: () => loader,
+        loader: loader,
         loading
     });
 }

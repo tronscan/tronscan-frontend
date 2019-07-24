@@ -672,9 +672,10 @@ class Buy extends Component {
         price >
           (exchangeData.price * 1.1) / Math.pow(10, exchangeData.sPrecision)
       ) {
+        let t = null
         clearTimeout(t);
         let transTip = true;
-        const t = setTimeout(() => {
+        t = setTimeout(() => {
           transTip = false;
           this.setState({
             transTip: transTip

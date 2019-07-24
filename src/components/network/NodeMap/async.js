@@ -5,7 +5,7 @@ import loadable from "@/utils/loadable"
 
 
 export const NodeMapAsync = 
-  loadable(import(/* webpackChunkName: "NodeMap" */ './NodeMap'), () =>{
+  loadable(() => import(/* webpackChunkName: "NodeMap" */ './NodeMap'), () =>{
     return (<div className="card">
     <TronLoader>
       {tu("loading_map")}

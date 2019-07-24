@@ -281,7 +281,7 @@ class ExchangeTable extends Component {
     if (record.token_type == "dex20") {
       let list = Lockr.get("dex20") || [];
       if (list.indexOf(record.id) != -1) {
-        var a = remove(list, o => o == record.id);
+        remove(list, o => o == record.id);
       } else {
         list.push(record.id);
       }
@@ -291,7 +291,7 @@ class ExchangeTable extends Component {
       // let {dataSource} = this.state
       let list = Lockr.get("optional") || [];
       if (list.indexOf(record.exchange_id) != -1) {
-        var a = remove(list, o => o == record.exchange_id);
+        remove(list, o => o == record.exchange_id);
       } else {
         list.push(record.exchange_id);
       }

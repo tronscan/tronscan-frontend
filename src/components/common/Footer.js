@@ -8,9 +8,7 @@ import { HrefLink } from "../common/Links";
 import isMobile from "../../utils/isMobile";
 
 class Footer extends Component {
-  constructor() {
-    super();
-  }
+
   render() {
     const donate_address = 'TTzPiwbBedv7E8p4FkyPyeqq4RVoqRL3TW';
     let { intl, activeLanguage } = this.props;

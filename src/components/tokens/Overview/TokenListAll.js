@@ -130,7 +130,6 @@ class TokenList extends Component {
       nrOfTokenHolders: 'holderCount',
       gain: 'gain',
       priceInTrx: 'priceInTrx',
-      gain :'gain',
       volume24hInTrx: 'volume24hInTrx',
       marketcap: 'marketcap'
     }

@@ -52,7 +52,7 @@ class TokenOverview extends Component {
     let result;
 
     if (filter.name)
-      result = await xhr.get(API_URL + "/api/token?sort=rank&limit=" + pageSize + "&start=" + (page - 1) * pageSize + "&status=ico" + "&name=" + filter.name);
+      result = await xhr.get(API_URL + "/api/token?sort=rank&limit=" + pageSize + "&start=" + (page - 1) * pageSize + "&status=ico&name=" + filter.name);
     else
       result = await xhr.get(API_URL + "/api/token?sort=rank&limit=" + pageSize + "&start=" + (page - 1) * pageSize + "&status=ico&showAll=2");
 

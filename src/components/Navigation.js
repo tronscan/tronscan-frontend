@@ -1140,7 +1140,7 @@ class Navigation extends React.Component {
                                         className="dropdown-item text-uppercase"
                                         to={subRoute.path}>
                                       {subRoute.icon &&
-                                      <i className={subRoute.icon + " mr-2" + " fa_width"}/>}
+                                      <i className={subRoute.icon + " mr-2 fa_width"}/>}
                                       {tu(subRoute.label)}
                                       {subRoute.badge && <Badge value={subRoute.badge}/>}
                                     </Link>
@@ -1204,7 +1204,7 @@ class Navigation extends React.Component {
                                               className="dropdown-item text-uppercase"
                                               to={Route.path}>
                                             {Route.icon &&
-                                            <i className={Route.icon + " mr-2" + " fa_width"}/>}
+                                            <i className={Route.icon + " mr-2 fa_width"}/>}
                                             {tu(Route.label)}
                                             {Route.badge && <Badge value={Route.badge}/>}
                                           </Link>

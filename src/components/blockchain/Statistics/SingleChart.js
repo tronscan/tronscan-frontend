@@ -1307,8 +1307,4 @@ const
         loadPriceData,
     };
 
-export default connect(mapStateToProps, mapDispatchToProps)
-
-(
-    injectIntl(Statistics)
-)
+export default connect(mapStateToProps, mapDispatchToProps)(injectIntl(Statistics))

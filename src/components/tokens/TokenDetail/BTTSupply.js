@@ -260,8 +260,4 @@ const
         loadPriceData,
     };
 
-export default connect(mapStateToProps, mapDispatchToProps)
-
-(
-    injectIntl(BTTSupply)
-)
+export default connect(mapStateToProps, mapDispatchToProps)(injectIntl(BTTSupply))

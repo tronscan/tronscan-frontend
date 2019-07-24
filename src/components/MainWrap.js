@@ -34,8 +34,8 @@ class MainWrap extends React.Component {
   componentDidUpdate({theme}) {
     /* eslint-disable no-undef */
 
-    document.body.classList.remove("tron-" + 'light');
-    document.body.classList.add("tron-" + 'light');
+    document.body.classList.remove("tron-light");
+    document.body.classList.add("tron-light");
 
   }
 

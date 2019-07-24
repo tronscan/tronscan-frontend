@@ -658,7 +658,7 @@ class ExchangeList extends React.Component {
         list = list.filter(item => _list.includes(item.id));
         break;
       case "hot":
-        list = list;
+        // list = list;
         break;
       case "volume":
         list = list.sort((a, b) => {

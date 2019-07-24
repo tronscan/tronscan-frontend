@@ -224,7 +224,7 @@ export class SupplyTypesTRXPieChart extends React.Component {
         _config.exporting.filename = intl.formatMessage({id: message.id});
         _config.tooltip.formatter = function () {
             return (
-                intl.formatMessage({id: this.point.name}) + ' (' + intl.formatNumber(this.point.y) + ' TRX' + ')<br/>' +
+                intl.formatMessage({id: this.point.name}) + ' (' + intl.formatNumber(this.point.y) + ' TRX)<br/>' +
                 intl.formatMessage({id: '_percentage'}) + ' : ' + this.point.percentage.toFixed(2) + '%'
             )
         }

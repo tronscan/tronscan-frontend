@@ -15,7 +15,7 @@ class TotalInfo extends React.Component {
     render() {
         let {total, rangeTotal, typeText,common = false, intl, markName='table-question-mark', top="26px"} = this.props;
         let tableInfoSmall = intl.formatMessage({id: 'view_total'}) + ' ' + rangeTotal + ' ' + intl.formatMessage({id: typeText});
-        let tableInfoBig = intl.formatMessage({id: 'view_total'}) + ' ' + rangeTotal + ' ' + intl.formatMessage({id: typeText}) + '<br/>' +  '(' + intl.formatMessage({id: 'table_info_big'}) + ')';
+        let tableInfoBig = intl.formatMessage({id: 'view_total'}) + ' ' + rangeTotal + ' ' + intl.formatMessage({id: typeText}) + '<br/>(' + intl.formatMessage({id: 'table_info_big'}) + ')';
         let tableInfo =  rangeTotal > 10000? tableInfoBig : tableInfoSmall;
         //let tableInfoTipSmall = intl.formatMessage({id: 'table_info_big_tip1'}) + ' ' + rangeTotal + ' ' + intl.formatMessage({id: 'table_info_big_tip2'}) + intl.formatMessage({id: 'table_info_big_tip4'});
         let tableInfoTip = intl.formatMessage({id: 'table_info_new_tip'})

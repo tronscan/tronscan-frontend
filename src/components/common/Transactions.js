@@ -79,7 +79,7 @@ class Transactions extends React.Component {
               ...filter,
           });
           transactions = data.transactions;
-          total = data.total,
+          total = data.total
           rangeTotal = data.rangeTotal
       }else{
           let data = await Client.getTransactions({
@@ -90,7 +90,7 @@ class Transactions extends React.Component {
               ...filter
           });
           transactions = data.transactions;
-          total = data.total,
+          total = data.total
           rangeTotal = data.rangeTotal
       }
 
@@ -110,7 +110,7 @@ class Transactions extends React.Component {
 
         let newdata = rebuildList(data.list, 'tokenId', 'callValue', 'valueInfoList')
         transactions = newdata;
-        total = data.total,
+        total = data.total
             rangeTotal = data.rangeTotal
     }
 
