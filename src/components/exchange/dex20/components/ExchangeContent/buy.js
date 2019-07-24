@@ -694,12 +694,12 @@ class Buy extends Component {
   }
 
   onpress(e) {
-    var charCode = e.keyCode;
-    if (charCode > 31 && (charCode < 48 || charCode > 57) && charCode !== 46) {
-      e.preventDefault();
-    } else {
-      return true;
-    }
+    // var charCode = e.keyCode;
+    // if (charCode > 31 && (charCode < 48 || charCode > 57) && charCode !== 46) {
+    //   e.preventDefault();
+    // } else {
+    //   return true;
+    // }
   }
 
   slideChange(value) {
