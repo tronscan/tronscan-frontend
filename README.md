@@ -1,68 +1,61 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<h1 align="center">
+  <br>
+  <img width="40%" src="https://raw.githubusercontent.com/tron-explorer/docs/master/images/tron-banner.png">
+  <br>
+  Tronscan Frontend
+  <br>
+</h1>
 
-## Available Scripts
+<h4 align="center">
+  React.js Frontend for <a href="https://tronscan.org">Tronscan.org</a>
+</h4>
 
-In the project directory, you can run:
+<p align="center">
+  <a href="#requirements">Requirements</a> •
+  <a href="#installation">Running</a> •
+  <a href="https://tronscan.org">tronscan.org</a>
+</p>
 
-### `npm start`
+## Features
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+* All information from the blockchain viewable
+* Web Wallet
+* Super Representative Voting
+* Node Tester
+* Transaction Debugger
+* Notifications
+* Market Information
+* News
+* Node Overview
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+# Requirements
 
-### `npm test`
+* node.js
+* yarn
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+# Running
 
-### `npm run build`
+```bash
+> yarn install
+> yarn start
+```
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Configuring API URL
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+By default the Explorer will connect to https://api.tronscan.org for its data. 
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+When developing locally the url can be changed by defining the `API_URL` environment variable
 
-### `npm run eject`
+```bash
+> API_URL=http://127.0.0.0:9000 yarn start
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Building Desktop Apps
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Tronscan.org can be published as a Desktop app wrapped in Electron.
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+To build a Windows, Mac and Linux app run the following command:
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+```bash
+> yarn run desktop:build:full
+```
