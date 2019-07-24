@@ -287,7 +287,7 @@ export default class VoteOverview extends React.Component {
           <div className="d-flex flex-wrap flex-sm-nowrap" style={{lineHeight: '36px'}}>
             <div className="d-flex">
               <div style={{width: '35px', height: '35px', paddingLeft: '10px'}}>
-                <i className="fa fa-search" aria-hidden="true"></i>
+                <i className="fa fa-search" ></i>
               </div>
               <input style={{background: '#F3F3F3'}} type="text"
                      className="form-control"

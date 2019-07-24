@@ -17,12 +17,11 @@ class MainWrap extends React.Component {
     this.state = {
       languages: null
     };
-    require.ensure([], (require) => {
-      let {languages} = require('../translations');
+    import('../translations').then(({languages}) => {
       this.setState({
         languages: languages
       });
-    }, "languages");
+    })
 
   }
 

@@ -1,7 +1,5 @@
-import React, {Fragment} from "react";
-import {FormattedDate, FormattedNumber, FormattedTime, injectIntl} from "react-intl";
-import {Sticky, StickyContainer} from "react-sticky";
-import Paging from "./Paging";
+import React from "react";
+import { injectIntl} from "react-intl";
 import {Client} from "../../services/api";
 import {TransactionHashLink, AddressLink, BlockNumberLink} from "./Links";
 import {tu} from "../../utils/i18n";
@@ -11,15 +9,12 @@ import {Truncate} from "./text";
 import {ContractTypes} from "../../utils/protocol";
 import SmartTable from "./SmartTable.js"
 import {upperFirst} from "lodash";
-import {QuestionMark} from "./QuestionMark";
 import TotalInfo from "./TableTotal";
 import DateRange from "./DateRange";
 import {DatePicker} from 'antd';
 import moment from 'moment';
 import {NameWithId} from "./names";
 import rebuildList from "../../utils/rebuildList";
-import xhr from "axios/index";
-import {API_URL} from '../../constants.js'
 import qs from 'qs'
 
 const RangePicker = DatePicker.RangePicker;
@@ -106,7 +101,7 @@ class Transactions extends React.Component {
           ...filter
         }
         const query = qs.stringify({ format: 'csv',...params})
-        //getCsvUrl(`${'http://52.15.68.74:10000'}/api/internal-transaction?${query}`)
+        getCsvUrl(`${'http://52.15.68.74:10000'}/api/internal-transaction?${query}`)
         let data = await Client.getInternalTransaction({
             limit: pageSize,
             start: (page - 1) * pageSize,

@@ -300,11 +300,6 @@ class Sell extends Component {
           >
             {tu("trc20_SELL")}&nbsp; {exchangeData.fShortName}
           </Button>
-          <div className="txt-center">
-           
-              {tu("trc20_free_orders")}
-            
-          </div>
           {/* </FormItem> */}
         </Form>
       </div>

@@ -4,8 +4,6 @@ import { TronLoader } from "../../common/loaders";
 import { upperFirst } from 'lodash'
 import convert from 'htmr';
 import CompilerJsoninfo from "./CompilerJsonInfo";
-import PerfectScrollbar from 'react-perfect-scrollbar'
-
 
 class CompilerConsole extends React.Component {
     constructor(props) {
@@ -35,8 +33,7 @@ class CompilerConsole extends React.Component {
         let { CompileStatus } = this.props;
 
         return (
-            <PerfectScrollbar>
-                <div ref="compilerConsole" className="contract-compiler-console">
+           <div ref="compilerConsole" className="contract-compiler-console">
                {CompileStatus.map((log, i) => (
                    <div key={i}>
                        {
@@ -100,21 +97,10 @@ class CompilerConsole extends React.Component {
                                {convert(log.content)}
                            </div>
                        }
-                       {
-                           (log.type == "error" && log.class == "info-error") &&
-                           <div  className="contract-compiler-console-log"
-                                 style={{color: color[log.type]}}>
-                               {convert(log.content)}
-                               <span className="contract-compiler-console-info">
-                                   <span onClick={() => this.props.deploy()} className="info-btn ml-2">try again</span>
-                               </span>
-                           </div>
-                       }
 
                    </div>
                ))}
            </div>
-            </PerfectScrollbar>
         )
     }
 }

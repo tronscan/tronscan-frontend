@@ -1944,11 +1944,8 @@ export const messages = {
   "deploy_params_energy_limit":"原始能量限制",
   "deploy_params_send_token":"选择TRX或其它代币发送",
   "deploy_params_constructor":"构造器参数",
-  "compile_close":"关闭",
 
 
 
-  /* 2019-07-06*/
-  "trc20_free_orders":"您在TRXMarket的所有交易都无需手续费"
 
 };

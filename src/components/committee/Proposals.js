@@ -1,7 +1,6 @@
-import React, {Fragment} from "react";
+import React from "react";
 import {tu} from "../../utils/i18n";
-import { Table } from 'antd';
-import { filter, map ,upperFirst} from 'lodash'
+import {upperFirst} from 'lodash'
 import {Client} from "../../services/api";
 import {Link} from "react-router-dom";
 import SmartTable from "../common/SmartTable.js"

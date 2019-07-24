@@ -1,11 +1,8 @@
 /* eslint-disable no-undef */
-import React, {Fragment} from "react";
+import React from "react";
 import {injectIntl} from "react-intl";
-import {NavLink, Route, Switch} from "react-router-dom";
 import {connect} from "react-redux";
-import {FormattedNumber} from "react-intl";
-import {TronLoader} from "../../common/loaders";
-import { Radio, Button } from 'antd'
+import { Button } from 'antd'
 import MonacoEditor from 'react-monaco-editor';
 import {tu} from "../../../utils/i18n";
 import CompilerConsole from "./CompilerConsole";
@@ -15,10 +12,11 @@ import DeployModal from "./CompilerDeployModal";
 import { Base64 } from 'js-base64';
 import xhr from "axios/index";
 import SweetAlert from "react-bootstrap-sweetalert";
-import _, {find, round, filter } from "lodash";
+import _ from "lodash";
 import {toThousands} from "../../../utils/number";
 import Lockr from "lockr";
 import { API_URL } from "../../../constants";
+
 @connect(
     state => ({
         account: state.app.account,
@@ -110,9 +108,9 @@ class ContractCompiler extends React.Component {
 
     onRadioChange = (val) => {
         if(val == 'verify'){
-            location.href = '/#/contracts/contract-Compiler/verify'
+            window.location.href = '/#/contracts/contract-Compiler/verify'
         }else{
-            location.href = '/#/contracts/contract-Compiler'
+            window.location.href = '/#/contracts/contract-Compiler'
         }
         this.setState({
             filter: {
@@ -194,138 +192,23 @@ class ContractCompiler extends React.Component {
             )
         });
     }
-
-    getTransactionInfo = async ()  => {
-        let { txID,currentContractName, CompileStatus, signed,options } = this.state;
-        let transactionInfo = {};
-        let infoData = [];
-        const {tronWeb} = this.props.account;
+    onDeployParams (form) {
         this.setState({
-            deployLoading: true,
-        });
-        let _this = this;
-        try {
-            do {
-                transactionInfo = await tronWeb.trx.getTransactionInfo(
-                    txID
-                ).catch ((e) => {
-                    infoData = [{
-                        type: "error",
-                        class:"info-error",
-                        content: `FAILED deploying ${currentContractName}.  Transaction here <a href="/#/transaction/${txID}" class="info_link" target='_blank'>${txID}</a>`
-                    }];
-                    CompileStatus.push.apply(CompileStatus,infoData);
-                    _this.setState({
-                        CompileStatus,
-                        deployLoading: false,
-                    });
-                });
-
-                if(!transactionInfo){
-                    throw new Error('Not getting transaction info!');
-                }
-
-                if (transactionInfo.id) {
-                    if (transactionInfo.receipt.result == "SUCCESS") {
-                        infoData = [{
-                            type: "success",
-                            class:"deploy",
-                            content: `Successful deployed contract '${currentContractName}'. Cost: ${
-                                transactionInfo.receipt.energy_fee
-                                    ? toThousands(
-                                    transactionInfo.receipt.energy_fee / 1000000
-                                    )
-                                    : 0
-                                } TRX, ${
-                                transactionInfo.receipt.energy_usage
-                                    ? toThousands(transactionInfo.receipt.energy_usage)
-                                    : 0
-                                } energy. Transaction confirm here <a href="/#/transaction/${transactionInfo.id}" target='_blank' class="info_link">${transactionInfo.id}</a>`
-                        }];
-
-                        CompileStatus.push.apply(CompileStatus,infoData);
-
-                        let base58Adress = tronWeb.address.fromHex(
-                            signed.contract_address
-                        );
-                        infoData = [{
-                            type: "success",
-                            class:"deploy",
-                            content: `Contract address: <a href="/#/contract/${base58Adress}/code" target='_blank' class="info_link"> ${base58Adress}</a>`
-                        }];
-                        CompileStatus.push.apply(CompileStatus,infoData)
-
-
-                        let {data} = await xhr.post(`${API_URL}/api/solidity/contract/deploy`, {
-                            "contractAddress":base58Adress,
-                            "contractName":this.state.currentContractName,
-                            "optimizer":this.state.optimizer,
-                            "runs":this.state.runs,
-                            "compiler":this.state.compilerVersion,
-                            "encodedSolidity":this.state.solidity,
-                            "byteCode":this.state.options.bytecode,
-                            "abi":JSON.stringify(this.state.options.abi)
-
-                        })
-
-                        if(data.code == 200){
-                            this.setState({
-                                CompileStatus,
-                                deployLoading: false,
-                            });
-                        }
-                    } else if (transactionInfo.receipt.result == "OUT_OF_ENERGY") {
-                        infoData = [{
-                            type: "error",
-                            class:"deploy",
-                            content: `FAILED deploying ${currentContractName}. You lost: ${
-                                transactionInfo.receipt.energy_fee
-                                    ? toThousands(
-                                    transactionInfo.receipt.energy_fee / 1000000
-                                    )
-                                    : 0
-                                } TRX\nReason: ${tronWeb.toUtf8(
-                                transactionInfo.resMessage
-                            )}. Transaction here <a href="/#/transaction/${transactionInfo.id}" class="info_link" target='_blank'>${transactionInfo.id}</a>`
-                        }];
-                        CompileStatus.push.apply(CompileStatus,infoData);
-                        this.setState({
-                            CompileStatus,
-                            deployLoading: false,
-                        });
-
-                    } else {
-                        infoData = [{
-                            type: "error",
-                            content: `FAILED deploying ${currentContractName}.\nView transaction here <a href="/#/transaction/${transactionInfo.id}" class="info_link" target='_blank'>${transactionInfo.id}</a>`
-                        }];
-                        CompileStatus.push.apply(CompileStatus,infoData);
-                        this.setState({
-                            CompileStatus,
-                            deployLoading: false,
-                        });
-                    }
-                }
-            } while (!transactionInfo.id);
-        } catch (e) {
-
-            let errorData = [{
-                type: "error",
-                content: `Deploy fail! Error: ${e.toString()}`
-            }]
-
-            CompileStatus.push.apply(CompileStatus,errorData)
-            this.setState({
-                CompileStatus,
-                deployLoading: false,
-            });
-        }
-        this.setState({
-            deployLoading: false,
-        });
-
-
+            ...form
+        })
     }
+    compilerVersionMsg(version) {
+        this.setState({
+            compilerVersion:version
+        });
+    }
+    optimizerMsg(value) {
+        this.setState({
+            optimizer:value
+        });
+    }
+
+
 
     compile = async (compilerVersion,optimizer, runs) => {
         this.setState({
@@ -404,12 +287,7 @@ class ContractCompiler extends React.Component {
 
     };
     deploy = async (options) => {
-        let _this = this;
         let currentContractName = options.name;
-        this.setState({
-            currentContractName:currentContractName,
-            options
-        });
         let { CompileStatus } = this.state;
         const {tronWeb} = this.props.account;
 
@@ -438,7 +316,7 @@ class ContractCompiler extends React.Component {
                 contract:unsigned
             }];
             CompileStatus.push.apply(CompileStatus,infoData)
-            this.setState({
+            await this.setState({
                 CompileStatus,
             });
 
@@ -450,17 +328,13 @@ class ContractCompiler extends React.Component {
                 contract:signed
             }];
             CompileStatus.push.apply(CompileStatus,infoData)
-            this.setState({
+            await this.setState({
                 CompileStatus,
             });
 
             const broadcastResult = await tronWeb.trx.sendRawTransaction(
                 signed
             );
-            this.setState({
-                txID:signed.txID,
-                signed
-            });
             if (broadcastResult.result === true) {
 
                 infoData = [{
@@ -470,114 +344,99 @@ class ContractCompiler extends React.Component {
                     contract:broadcastResult
                 }];
                 CompileStatus.push.apply(CompileStatus,infoData)
-                this.setState({
+                await this.setState({
                     CompileStatus,
                 });
 
 
                 let transactionInfo = {};
                 do {
-                        transactionInfo = await tronWeb.trx.getTransactionInfo(
-                            signed.txID
-                        ).catch (function (e) {
+                    transactionInfo = await tronWeb.trx.getTransactionInfo(
+                        signed.txID
+                    );
+
+                    if (transactionInfo.id) {
+                        if (transactionInfo.receipt.result == "SUCCESS") {
                             infoData = [{
-                                type: "error",
-                                class:"info-error",
-                                content: `FAILED deploying ${currentContractName}.  Transaction here <a href="/#/transaction/${signed.txID}" class="info_link" target='_blank'>${signed.txID}</a>`
+                                type: "success",
+                                class:"deploy",
+                                content: `Successful deployed contract '${currentContractName}'. Cost: ${
+                                    transactionInfo.receipt.energy_fee
+                                        ? toThousands(
+                                        transactionInfo.receipt.energy_fee / 1000000
+                                        )
+                                        : 0
+                                    } TRX, ${
+                                    transactionInfo.receipt.energy_usage
+                                        ? toThousands(transactionInfo.receipt.energy_usage)
+                                        : 0
+                                    } energy. Transaction confirm here <a href="/#/transaction/${transactionInfo.id}" target='_blank' class="info_link">${transactionInfo.id}</a>`
                             }];
+
                             CompileStatus.push.apply(CompileStatus,infoData);
-                            _this.setState({
-                                CompileStatus,
-                                deployLoading: false,
-                            });
-                        });
-                        if(!transactionInfo){
-                            throw new Error('Not getting transaction info!');
-                        }
-                        if (transactionInfo.id) {
-                            if (transactionInfo.receipt.result == "SUCCESS") {
-                                infoData = [{
-                                    type: "success",
-                                    class:"deploy",
-                                    content: `Successful deployed contract '${currentContractName}'. Cost: ${
-                                        transactionInfo.receipt.energy_fee
-                                            ? toThousands(
-                                            transactionInfo.receipt.energy_fee / 1000000
-                                            )
-                                            : 0
-                                        } TRX, ${
-                                        transactionInfo.receipt.energy_usage
-                                            ? toThousands(transactionInfo.receipt.energy_usage)
-                                            : 0
-                                        } energy. Transaction confirm here <a href="/#/transaction/${transactionInfo.id}" target='_blank' class="info_link">${transactionInfo.id}</a>`
-                                }];
 
-                                CompileStatus.push.apply(CompileStatus,infoData);
-
-                                let base58Adress = tronWeb.address.fromHex(
-                                    signed.contract_address
-                                );
-                                infoData = [{
-                                    type: "success",
-                                    class:"deploy",
-                                    content: `Contract address: <a href="/#/contract/${base58Adress}/code" target='_blank' class="info_link"> ${base58Adress}</a>`
-                                }];
-                                CompileStatus.push.apply(CompileStatus,infoData)
+                            let base58Adress = tronWeb.address.fromHex(
+                                signed.contract_address
+                            );
+                            infoData = [{
+                                type: "success",
+                                class:"deploy",
+                                content: `Contract address: <a href="/#/contract/${base58Adress}/code" target='_blank' class="info_link"> ${base58Adress}</a>`
+                            }];
+                            CompileStatus.push.apply(CompileStatus,infoData)
 
 
-                                let {data} = await xhr.post(`${API_URL}/api/solidity/contract/deploy`, {
-                                    "contractAddress":base58Adress,
-                                    "contractName":options.name,
-                                    "optimizer":this.state.optimizer,
-                                    "runs":this.state.runs,
-                                    "compiler":this.state.compilerVersion,
-                                    "encodedSolidity":this.state.solidity,
-                                    "byteCode":options.bytecode,
-                                    "abi":JSON.stringify(options.abi)
+                            let {data} = await xhr.post(`${API_URL}/api/solidity/contract/deploy`, {
+                                "contractAddress":base58Adress,
+                                "contractName":options.name,
+                                "optimizer":this.state.optimizer,
+                                "runs":this.state.runs,
+                                "compiler":this.state.compilerVersion,
+                                "encodedSolidity":this.state.solidity,
+                                "byteCode":options.bytecode,
+                                "abi":JSON.stringify(options.abi)
 
-                                })
+                            })
 
-                                if(data.code == 200){
-                                    this.setState({
-                                        CompileStatus,
-                                        deployLoading: false,
-                                    });
-                                }
-                            } else if (transactionInfo.receipt.result == "OUT_OF_ENERGY") {
-                                infoData = [{
-                                    type: "error",
-                                    class:"deploy",
-                                    content: `FAILED deploying ${currentContractName}. You lost: ${
-                                        transactionInfo.receipt.energy_fee
-                                            ? toThousands(
-                                            transactionInfo.receipt.energy_fee / 1000000
-                                            )
-                                            : 0
-                                        } TRX\nReason: ${tronWeb.toUtf8(
-                                        transactionInfo.resMessage
-                                    )}. Transaction here <a href="/#/transaction/${transactionInfo.id}" class="info_link" target='_blank'>${transactionInfo.id}</a>`
-                                }];
-                                CompileStatus.push.apply(CompileStatus,infoData);
-                                this.setState({
-                                    CompileStatus,
-                                    deployLoading: false,
-                                });
-
-                            } else {
-                                infoData = [{
-                                    type: "error",
-                                    content: `FAILED deploying ${currentContractName}.\nView transaction here <a href="/#/transaction/${transactionInfo.id}" class="info_link" target='_blank'>${transactionInfo.id}</a>`
-                                }];
-                                CompileStatus.push.apply(CompileStatus,infoData);
+                            if(data.code == 200){
                                 this.setState({
                                     CompileStatus,
                                     deployLoading: false,
                                 });
                             }
+                        } else if (transactionInfo.receipt.result == "OUT_OF_ENERGY") {
+                            infoData = [{
+                                type: "error",
+                                class:"deploy",
+                                content: `FAILED deploying ${currentContractName}. You lost: ${
+                                    transactionInfo.receipt.energy_fee
+                                        ? toThousands(
+                                        transactionInfo.receipt.energy_fee / 1000000
+                                        )
+                                        : 0
+                                    } TRX\nReason: ${tronWeb.toUtf8(
+                                    transactionInfo.resMessage
+                                )}. Transaction here <a href="/#/transaction/${transactionInfo.id}" class="info_link">${transactionInfo.id}</a>`
+                            }];
+                            CompileStatus.push.apply(CompileStatus,infoData);
+                            this.setState({
+                                CompileStatus,
+                                deployLoading: false,
+                            });
+
+                        } else {
+                            infoData = [{
+                                type: "error",
+                                content: `FAILED deploying ${currentContractName}.\nView transaction here <a href="/#/transaction/${transactionInfo.id}" class="info_link">${transactionInfo.id}</a>`
+                            }];
+                            CompileStatus.push.apply(CompileStatus,infoData);
+                            this.setState({
+                                CompileStatus,
+                                deployLoading: false,
+                            });
                         }
-                    } while (!transactionInfo.id);
-
-
+                    }
+                } while (!transactionInfo.id);
             } else {
                 infoData = [{
                     type: "error",
@@ -590,7 +449,7 @@ class ContractCompiler extends React.Component {
                 });
             }
 
-        } catch(e) {
+        } catch (e) {
 
             let errorData = [{
                 type: "error",
@@ -598,11 +457,11 @@ class ContractCompiler extends React.Component {
             }]
 
             CompileStatus.push.apply(CompileStatus,errorData)
-            // _this.setState({
-            //     CompileStatus,
-            //     deployLoading: false,
-            // });
-        };
+            this.setState({
+                CompileStatus,
+                deployLoading: false,
+            });
+        }
         this.setState({
             deployLoading: false,
         });
@@ -614,13 +473,13 @@ class ContractCompiler extends React.Component {
             selectOnLineNumbers: true
         };
         return (
-            <main className="container header-overlap token_black tokencreated">
+            <main className="container header-overlap ">
                 {modal}
                 <div className="row">
                     <div className="col-sm-12">
                         <div className="compile-button-box">
-                            <div className={filter.direction == 'compile'?'compile-button p-3 active':'compile-button p-3'} onClick={() => this.onRadioChange('compile')}> {tu('contract_deployment')}</div>
-                            <div className={filter.direction == 'verify'?'compile-button p-3 active ml-4':'compile-button p-3 ml-4'} onClick={() => this.onRadioChange('verify')}>{tu('contract_verification')}</div>
+                            <div className={filter.direction == 'compile'?'compile-button active':'compile-button'} onClick={() => this.onRadioChange('compile')}> {tu('contract_deployment')}</div>
+                            <div className={filter.direction == 'verify'?'compile-button active ml-4':'compile-button ml-4'} onClick={() => this.onRadioChange('verify')}>{tu('contract_verification')}</div>
                         </div>
                        
                         {
@@ -632,7 +491,7 @@ class ContractCompiler extends React.Component {
                         <div className="card mt-4">
                             <div className="card-body">
                                 <div className="contract-compiler">
-                                            <div>
+                                            <div className="pt-3">
                                                 <MonacoEditor
                                                     height="600"
                                                     language="sol"
@@ -643,7 +502,7 @@ class ContractCompiler extends React.Component {
                                                     editorDidMount={this.editorDidMount}
                                                 />
                                                 <div>
-                                                    <CompilerConsole  CompileStatus={CompileStatus} deploy={this.getTransactionInfo}/>
+                                                    <CompilerConsole  CompileStatus={CompileStatus}/>
                                                 </div>
                                                 <div className="contract-compiler-button">
                                                     <Button

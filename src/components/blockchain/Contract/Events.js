@@ -1,19 +1,14 @@
 import React, {Fragment} from "react";
-import {Sticky, StickyContainer} from "react-sticky";
-import Paging from "../../common/Paging";
-import {Client} from "../../../services/api";
 import {TransactionHashLink, BlockNumberLink, AddressLink} from "../../common/Links";
-import {FormattedNumber, injectIntl} from "react-intl";
+import { injectIntl} from "react-intl";
 import {tu} from "../../../utils/i18n";
 import TimeAgo from "react-timeago";
 import moment from 'moment';
 import {TronLoader} from "../../common/loaders";
 import {Truncate} from "../../common/text";
-import {ContractTypes} from "../../../utils/protocol";
 import SmartTable from "../../common/SmartTable"
 import {upperFirst, forIn, uniqWith, isEqual} from "lodash";
 import xhr from "axios/index";
-import {API_URL} from "../../../constants";
 import tronWeb from 'tronweb';
 import { Select } from 'antd';
 const Option = Select.Option;
@@ -184,7 +179,7 @@ class Transactions extends React.Component {
                           <Option value="Number">Number</Option>
                           <Option value="Address">Address</Option>
                         </Select>
-                        <i className="fa fa-arrow-right mx-2" aria-hidden="true"></i>
+                        <i className="fa fa-arrow-right mx-2" ></i>
                         <span id={'select_'+index} className="event-hex">{ record.row.data}</span>
                       </span>
                     }

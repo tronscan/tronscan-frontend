@@ -4,7 +4,7 @@ import xhr from "axios/index";
 import {injectIntl} from "react-intl";
 import {doSearch, getSearchType} from "../../services/search";
 import CountUp from 'react-countup';
-import {channel, Client, Client20} from "../../services/api";
+import { Client, Client20} from "../../services/api";
 import {Link} from "react-router-dom";
 import {TRXPrice} from "../common/Price";
 import RecentBlocks from "./RecentBlocks";
@@ -19,7 +19,7 @@ import {TronLoader} from "../common/loaders";
 import {LineReactHighChartAdd, LineReactHighChartTx} from "../common/LineCharts";
 import {API_URL} from "../../constants";
 import { setWebsocket } from '../../actions/account';
-import Lockr from "lockr";
+// import Lockr from "lockr";
 
 @connect(
   state => {
@@ -48,6 +48,7 @@ export default class Home extends Component {
       isShaking: false,
       hasFound: false,
       totalAccounts: 0,
+      startblockHeight: 0,
       onlineNodes: 0,
       blockHeight: 0,
       transactionPerDay: 0,
@@ -55,6 +56,7 @@ export default class Home extends Component {
       addressesStats: null,
       maxTps: 0,
       tps: 0,
+      startTps: 0,
       notice: [],
       noticezhIEO:{
           id:1,
@@ -72,7 +74,6 @@ export default class Home extends Component {
   }
 
   async loadNodes() {
-
     // let {total} = await Client.getNodeLocations();
     let {data} = await xhr.get(`${API_URL}/api/node`);
     this.setState({
@@ -250,12 +251,15 @@ export default class Home extends Component {
 
   reconnect() {
     const {wsdata,websocket,setWebsocket} = this.props;
+    const { blockHeight, tps } = this.state
     const info = wsdata.type === 'tps'&& wsdata.data;
     if(info.maxTps)  {
         this.setState({
             maxTps:info.maxTps?info.maxTps:0,
             tps:info.currentTps?info.currentTps:0,
             blockHeight:info.blockHeight?info.blockHeight:0,
+            startblockHeight: blockHeight,
+            startTps: tps
         })
     }
 
@@ -273,9 +277,11 @@ export default class Home extends Component {
 
   render() {
     let {intl, activeLanguage} = this.props;
-    let {search, isShaking, hasFound, onlineNodes, blockHeight, transactionPerDay, totalAccounts, txOverviewStats, addressesStats,maxTps,tps} = this.state;
+    let {search, isShaking, hasFound, onlineNodes, startblockHeight, startTps, blockHeight, transactionPerDay, totalAccounts, txOverviewStats, addressesStats,maxTps,tps} = this.state;
     return (
         <main className="home pb-0">
+          {/* <i className="main-icon-left"></i>
+          <i className="main-icon-right"></i> */}
           <div className="container-fluid position-relative d-flex pt-3 pt-md-4 mx-auto flex-column">
             {/*<div ref={(el) => this.$ref = el} style={{*/}
             {/*zIndex: 0,*/}
@@ -368,7 +374,7 @@ export default class Home extends Component {
                       <Link to="/blockchain/blocks"
                             className="hvr-underline-from-center hvr-underline-white text-muted">
                         <img src={require('../../images/home/block.png')}/>
-                        <h2><CountUp start={0} end={blockHeight} duration={1}/></h2>
+                        <h2><CountUp start={startblockHeight} end={blockHeight} duration={1}/></h2>
                         <p className="m-0">{tu("block_height")}</p>
                       </Link>
                     </div>
@@ -420,13 +426,13 @@ export default class Home extends Component {
                     <div className="col-lg-2 col-md-4 col-xs-12 mb-lg-0 mb-md-3">
                       <Link to="/blockchain/blocks"
                             className="hvr-underline-from-center hvr-underline-white text-muted">
-                        <h2><CountUp start={0} end={blockHeight} duration={1}/></h2>
+                        <h2><CountUp start={startblockHeight} end={blockHeight} duration={2}/></h2>
                         <p className="m-0">{tu("block_height")}</p>
                       </Link>
                     </div>
                     <div className="col-lg-2 col-md-4 col-xs-12 mb-lg-0  mb-md-3">
                       <div href="javascript:;" className="hvr-underline-from-center hvr-underline-white text-muted">
-                        <h2><CountUp start={0} end={tps} duration={1}/>/<CountUp start={0} end={maxTps} duration={1}/></h2>
+                        <h2><CountUp start={startTps} end={tps} duration={2}/>/<CountUp start={0} end={maxTps} duration={1}/></h2>
                         <p className="m-0">{tu("current_MaxTPS")}</p>
                       </div>
                     </div>

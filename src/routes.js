@@ -1,10 +1,9 @@
 import React from "react";
 import { flatten } from "lodash";
-import Block from "./components/blockchain/Block";
-import Transaction from "./components/blockchain/Transaction";
-import Address from "./components/addresses/Address";
-import Home from "./components/Home";
+import { Redirect } from "react-router-dom";
+
 import {
+    HomeAsync,
     AboutAsync,
     AccountAsync,
     AccountsAsync,
@@ -24,11 +23,8 @@ import {
     SystemAsync,
     Token20DetailAsync,
     TokenDetailAsync,
-    TokenListAsync,
     TokenOverviewAsync,
     TokensCreateAsync,
-    TokensUpdateAsync,
-    TokenTRC20ListAsync,
     TokenAllAsync,
     TransactionViewerAsync,
     TronConvertToolAsync,
@@ -36,25 +32,23 @@ import {
     VoteLiveAsync,
     VoteOverviewAsync,
     WalletWizardAsync,
-    ContractCompilerAsync
+    ContractCompilerAsync,
+    Exchangetrc,
+    SmartContract,
+    Representative,
+    BTTSupplyTemp,
+    Blocks,
+    Transactions,
+    Transfers,
+    Contracts,
+    Notice,
+    ContractTrans,
+    Committee,
+    Proposals,
+    Block,
+    Transaction,
+    Address
 } from "./components/async";
-import Blocks from "./components/blockchain/Blocks";
-import Transactions from "./components/blockchain/Transactions";
-import Transfers from "./components/blockchain/Transfers";
-import Representative from "./components/representatives/representative";
-import Contracts from "./components/blockchain/Contracts";
-import SmartContract from "./components/blockchain/Contract";
-import Exchangetrc from "./components/exchange/index";
-import Exchange from "./components/exchange/dex10/index";
-import Exchange20 from "./components/exchange/dex20/index";
-import Notice from "./components/exchange/notice";
-import ContractTrans from "./components/blockchain/ContractTrans";
-import Committee from "./components/committee/index";
-import Proposals from "./components/committee/Proposals";
-import { Redirect } from "react-router-dom";
-import { LedgerComponent } from "./hw/ledger/LedgerComponent";
-import BTTSupplyTemp from "./components/tokens/TokenDetail/tempBtt.js";
-import ContractCompiler from "./components/blockchain/Compiler/index";
 
 export const routes = [
   {
@@ -161,13 +155,13 @@ export const routes = [
       {
         path: "/contracts/contract-Compiler",
         label: "contract_deployment",
-        icon: "fas fa-file-signature",
+        icon: "fa fa-users-cog",
         component: ContractCompilerAsync
       },
       {
         path: "/contracts/contract-Compiler/:type",
-        label: "contract_verification",
-        icon: "fas fa-file-signature",
+        label: "contract_deployment",
+        icon: "fa fa-users-cog",
         component: ContractCompilerAsync,
         showInMenu: false
       }
@@ -244,7 +238,7 @@ export const routes = [
         label: "update_token",
         path: "/tokens/update/:id",
         icon: "fa fa-plus-square",
-        component: TokensUpdateAsync,
+        component: TokensCreateAsync,
         showInMenu: false
 
       },
@@ -322,11 +316,6 @@ export const routes = [
           url: "https://www.tronbet.io/#/?utm_source=TS",
           icon: "fas fa-dice-six",
           label: "TRONbet"
-      },
-      {
-          url: "https://tronlending.org/?utm_source=TS",
-          icon: "fas fa-hand-holding-usd",
-          label: "TronLending"
       },
       {
           url: "https://dapp.review/explore/tron?gclid=EAIaIQobChMIx-fB8KH04QIVlHZgCh0ybA1hEAAYASAAEgIad_D_BwE",
@@ -713,7 +702,7 @@ export const routes = [
     showSubMenu: false,
     showSubHeader: false,
     component: DemoAsync
-  },
+  }, 
   {
     path: "/test/btt/supply",
     label: "supply",
@@ -728,7 +717,7 @@ export const routes = [
     showInMenu: false,
     showSubMenu: false,
     showSubHeader: false,
-    component: Home
+    component: HomeAsync
   }
 ];
 

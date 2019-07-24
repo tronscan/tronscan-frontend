@@ -89,7 +89,7 @@ class Representatives extends Component {
             <tbody>
             <tr style={{height: '72px'}}>
               <td colSpan="9" className="font-weight-bold">
-                <i className="fa fa-trophy mr-2 ml-2" aria-hidden="true" style={{color: '#666'}}></i>
+                <i className="fa fa-trophy mr-2 ml-2"  style={{color: '#666'}}></i>
                 {tu("Super Representatives")}
               </td>
             </tr>
@@ -97,7 +97,7 @@ class Representatives extends Component {
                                                                key={account.address} account={account}/>)}
             <tr style={{height: '72px'}}>
               <td colSpan="9" className="font-weight-bold">
-                <i className="fa fa-user mr-2 ml-2" aria-hidden="true" style={{color: '#666'}}></i>
+                <i className="fa fa-user mr-2 ml-2"  style={{color: '#666'}}></i>
                 {tu("Super Representative Candidates")}
               </td>
             </tr>

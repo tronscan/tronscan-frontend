@@ -212,7 +212,7 @@ class Statistics extends React.Component {
           {/*<div className="text-center alert alert-light alert-dismissible fade show" role="alert">*/}
             {/*{tu("click_the_chart_title_to_find_more")}*/}
             {/*<button type="button" className="close" data-dismiss="alert" aria-label="Close">*/}
-              {/*<span aria-hidden="true">&times;</span>*/}
+              {/*<span >&times;</span>*/}
             {/*</button>*/}
           {/*</div>*/}
           <div className="card statistics-chart" style={styles.card}>

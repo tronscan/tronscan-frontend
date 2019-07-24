@@ -1,14 +1,9 @@
 import React, {Component} from 'react';
-import {trim, forIn} from "lodash";
-import {tu,t} from "../../../utils/i18n";
+import {tu} from "../../../utils/i18n";
 import {connect} from "react-redux";
 import {QuestionMark} from "../../common/QuestionMark";
-import {NavLink} from "react-router-dom";
-import {FormattedNumber, injectIntl} from "react-intl";
-import {Tooltip} from "reactstrap";
+import { injectIntl} from "react-intl";
 import ContractCodeRequest from "../../tools/ContractCodeRequest";
-import {AddressLink} from "../../common/Links";
-import {Link} from "react-router-dom";
 import MonacoEditor from 'react-monaco-editor';
 import xhr from "axios/index";
 import { Base64 } from 'js-base64';
@@ -122,7 +117,7 @@ class VerifyContractCode extends Component {
                   <p>{tu('verify_code3')}</p>
                 </div>
 
-                <Row gutter={24} type="flex" justify="space-between">
+                <Row gutter={24} type="flex" justify="space-between" className="px-2">
                   <Col span={12}>
                     <Form.Item label={tu('contract_address')} {...formItemLayout}>
                       {getFieldDecorator('contractAddress', {})(
@@ -194,7 +189,7 @@ class VerifyContractCode extends Component {
                     />
                     <div className="contract-compiler-console text-left w-100">
                       <CompilerConsole  CompileStatus={CompileStatus}/>
-                    </div>
+                  </div>
                   </div>
                 </div>
                 <div className="row mt-3 contract-ABI">
@@ -275,7 +270,7 @@ const styles = {
     verify_header_box: {
     },
     verify_header: {
-      maxWidth: '900px',
+      maxWidth: '884px',
       width: '100%',
       margin: '0 auto'
     }

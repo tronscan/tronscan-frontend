@@ -622,7 +622,7 @@ class Navigation extends React.Component {
                             <Truncate><span>{account.address}</span></Truncate>
                           </div>
                           {/* <Link to="/account" className="col-lg-4 d-flex justify-content-end align-items-center"> */}
-                          <i className="fa fa-angle-right ml-3" aria-hidden="true"></i>
+                          <i className="fa fa-angle-right ml-3" ></i>
                           {/* </Link> */}
                         </Link>
                       </div>
@@ -639,40 +639,40 @@ class Navigation extends React.Component {
                     <Link className="dropdown-item" to="/account">
                       <i className="fa fa-credit-card mr-2"/>
                       <FormattedNumber value={wallet.current.balance / ONE_TRX}/> TRX
-                      <i className="fa fa-angle-right float-right" aria-hidden="true"></i>
+                      <i className="fa fa-angle-right float-right" ></i>
                     </Link>
                     <Link className="dropdown-item" to="/account">
                       <i className="fa fa-bolt mr-2"/>
                       <FormattedNumber value={wallet.current.frozenTrx / ONE_TRX}/> TRON {tu("power")}
-                      <i className="fa fa-angle-right float-right" aria-hidden="true"></i>
+                      <i className="fa fa-angle-right float-right" ></i>
                     </Link>
                     <Link className="dropdown-item" to="/account">
                       <i className="fa fa-tachometer-alt mr-2"/>
                       <FormattedNumber
                           value={wallet.current.bandwidth.netRemaining + wallet.current.bandwidth.freeNetRemaining}/> {tu("bandwidth")}
-                      <i className="fa fa-angle-right float-right" aria-hidden="true"></i>
+                      <i className="fa fa-angle-right float-right" ></i>
                     </Link>
                     <Link className="dropdown-item" to="/account">
                       <i className="fa fa-server mr-2"/>
                       <FormattedNumber value={wallet.current.bandwidth.energyRemaining}/> {tu("energy")}
-                      <i className="fa fa-angle-right float-right" aria-hidden="true"></i>
+                      <i className="fa fa-angle-right float-right" ></i>
                     </Link>
                     <Link className="dropdown-item"
                           to={"/blockchain/transactions?address=" + account.address}>
                       <i className="fa fa-exchange-alt mr-2"/>
                       <FormattedNumber value={totalTransactions}/> {tu("transactions")}
-                      <i className="fa fa-angle-right float-right" aria-hidden="true"></i>
+                      <i className="fa fa-angle-right float-right" ></i>
                     </Link>
                     <li className="dropdown-divider"/>
                     <a className="dropdown-item" href="javascript:;" onClick={this.newTransaction}>
                       <i className="fa fa-paper-plane mr-2"/>
                       {tu("send")}
-                      <i className="fa fa-angle-right float-right" aria-hidden="true"></i>
+                      <i className="fa fa-angle-right float-right" ></i>
                     </a>
                     <a className="dropdown-item" href="javascript:;" onClick={this.showReceive}>
                       <i className="fa fa-qrcode mr-2"/>
                       {tu("receive")}
-                      <i className="fa fa-angle-right float-right" aria-hidden="true"></i>
+                      <i className="fa fa-angle-right float-right" ></i>
                     </a>
                     {/*<Link className="dropdown-item" to={"/blockchain/transactions?address=" + account.address}>*/}
                     {/*<i className="fa fa-qrcode mr-2"/>*/}
@@ -874,6 +874,7 @@ class Navigation extends React.Component {
     let {search, popup, notifications, announcement, announId, annountime, searchResults} = this.state;
 
     let activeComponent = this.getActiveComponent();
+
     return (
         <div className="header-top">
           {popup}

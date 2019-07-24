@@ -29,17 +29,16 @@ class Tokeninfo extends React.Component {
       tvStatus: true,
       // 交易赛对象
       transcationObj: {
-        id: [48, 66],
+        id: [63],
         linkUrl: {
           en:
-            "https://support.trx.market/hc/en-us/articles/360030644412-TRC20-USDT-Reloaded-with-Powerful-Aid-from-TRXMarket-15-000-USD-Awaits-",
+            "https://support.trx.market/hc/en-us/articles/360029524032-VCOIN-Trading-Competition-10-000-VCOIN-to-Win-",
           zh:
-            "https://support.trx.market/hc/zh-cn/articles/360030644412-TRXMarket%E5%8A%A9%E5%8A%9BTRC20-USDT%E9%87%8D%E8%A3%85%E4%B8%8A%E9%98%B5-%E6%83%8A%E5%96%9C%E6%94%BE%E9%80%8110%E4%B8%87%E4%BA%BA%E6%B0%91%E5%B8%81"
+            "https://support.trx.market/hc/zh-cn/articles/360029524032-VCOIN%E7%A4%BE%E5%8C%BA%E5%9B%9E%E9%A6%88-10-000-VCOIN%E5%A4%A7%E6%94%BE%E9%80%81"
         },
         text: {
-          en:
-            "TRC20-USDT Returns with Generous Rewards from TRXMarket - 15,000 USDT Awaits!",
-          zh: "TRXMarket助力TRC20-USDT重装上阵，惊喜放送10万人民币"
+          en: "VCOIN Trading Competition—10,000 VCOIN to Win!",
+          zh: "VCOIN社区回馈，10,000 VCOIN大放送"
         }
       }
     };
@@ -195,7 +194,7 @@ class Tokeninfo extends React.Component {
           <div className="info-wrap">
             <div className="item">
               <p>
-                {transcationObj.id.includes(selectData.id) && (
+                {/* {transcationObj.id.includes(selectData.id) && (
                   <Popover content={content} title="">
                     <img
                       src={require("../../../../../images/fire.svg")}
@@ -208,7 +207,7 @@ class Tokeninfo extends React.Component {
                       alt="fire"
                     />
                   </Popover>
-                )}
+                )} */}
                 <span>{selectData.fShortName}</span> / {selectData.sShortName}
               </p>
               <p>

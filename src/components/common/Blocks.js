@@ -1,6 +1,4 @@
 import React from "react";
-import {Sticky, StickyContainer} from "react-sticky";
-import Paging from "./Paging";
 import {Client} from "../../services/api";
 import {BlockNumberLink} from "./Links";
 import {t, tu} from "../../utils/i18n";

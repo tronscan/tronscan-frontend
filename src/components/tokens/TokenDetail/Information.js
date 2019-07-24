@@ -50,14 +50,9 @@ export function Information({token: tokens,currentTotalSupply}) {
       content: <span>{token.precision == 0 || token.precision ? token.precision : '_'}</span>
     },{ 
       name: 'reputation', 
-      content: <div>
-          {token.canShow == 1 && <span>{tu('ok')}</span>}
-          {token.canShow == 2 && <span>{tu('neutral')}</span>}
-          {token.canShow == 3 && <span>{tu('high_risk')}</span>}
-      </div>
-
-          // <Link to={`/rating`} style={{display: 'flex', alignItems: 'center'}}>
-                // </Link>
+      content:  <Link to={`/rating`} style={{display: 'flex', alignItems: 'center'}}>
+                  {tu(toLower(token.reputation))}
+                </Link>
     },{ 
       name: 'circulating_supply', 
       content: <FormattedNumber value={currentTotal}/>

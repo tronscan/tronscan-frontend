@@ -1898,8 +1898,6 @@ export const messages = {
 
   "interTrx_tip": "Internal Transactions is an operation which a general address calls a Smart Contract， and the Smart Contract transfers token to other address.",
   "event_tip": "Events is to let the programmer or external interface provider use it to pay attention to contract operations and audits.",
-  /* 2019-07-06*/
-  "trc20_free_orders": "0 trading fee for all orders",
   "Expected_acquisition": "Estimated gain",
   "energy_more": "Bandwidth obtained = TRX frozen for gaining bandwidth / the total TRX frozen in the network for gaining bandwidth.",
   "bandwidth_more": "Energy obtained = TRX frozen for gaining Energy / total TRX frozen for gaining Energy in the entire network * total energy limit.",
@@ -1964,5 +1962,5 @@ export const messages = {
   "deploy_params_energy_limit":"Origin Energy Limit",
   "deploy_params_send_token":"Select TRX or token to send",
   "deploy_params_constructor":"Params for constructor",
-  "compile_close":"close",
+
 };

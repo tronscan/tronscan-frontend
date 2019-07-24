@@ -1846,8 +1846,6 @@ export const messages = {
   "unfreeze_time": "해동 시간",
   "interTrx_tip": "내부 트랜잭션은 일반 주소가 스마트 계약을 호출하고 스마트 계약이 토큰을 다른 주소로 전송하는 작업입니다.",
   "event_tip": "이벤트는 프로그래머 또는 외부 인터페이스 제공 업체가 계약 작업 및 감사에주의를 기울일 수있게하는 것입니다.",
-   /* 2019-07-06*/
-   "trc20_free_orders":"0 trading fee for all orders",
   "Expected_acquisition": "예상 이익",
   "energy_more": "대역폭 획득= 대역폭 확보를 위해 TRX 동결 / 대역폭 확보를 위해 네트워크에서 동결된 총 TRX",
   "bandwidth_more": "에너지 획득 = 에너지 획득을 위해 TRX 동결/에너지 획들을 위해 전체 네트워크에서 동결된 총 TRX 수 * 총 에너지 제한",
@@ -1912,5 +1910,5 @@ export const messages = {
   "deploy_params_energy_limit":"에너지 한도",
   "deploy_params_send_token":"전송할 TRX 또는 토큰 선택",
   "deploy_params_constructor":"생성자를 위한 Params",
-  "compile_close":"닫기",
+
 };

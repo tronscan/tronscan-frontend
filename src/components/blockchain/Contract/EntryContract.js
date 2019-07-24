@@ -1,16 +1,16 @@
 import React from "react";
 import { injectIntl } from "react-intl";
-import { tu, tv } from "../../../utils/i18n";
-import { Collapse, Input, Button, Form, Select } from 'antd';
+import { tu } from "../../../utils/i18n";
+import { Collapse, Input, Form, Select } from 'antd';
 import { connect } from "react-redux";
-import tronWeb from 'tronweb';
-import { getTronExplorer, formatOutput, formatInput } from '../../../utils/readContract'
+import { formatOutput, formatInput } from '../../../utils/readContract'
 import SweetAlert from "react-bootstrap-sweetalert";
 import TokenBalanceSelect from "../../common/TokenBalanceSelect";
 import JSONTree from 'react-json-tree'
 
 const { Panel } = Collapse;
-const { Option } = Select;
+// const { Option } = Select;
+
 @connect(
   state => {
     return {
@@ -313,7 +313,7 @@ class Code extends React.Component {
             </div>
             {
               tokenId ? 
-                <Input style={{ width: '100%', display: 'inline' }}
+                <Input style={{ width: 200, display: 'inline' }}
                   placeholder="Amount token to Send"
                   value={totalValue}
                   onChange={(e) => this.setState({ totalValue: e.target.value })}

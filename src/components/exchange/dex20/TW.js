@@ -393,8 +393,7 @@ class ApiTW {
           _user,
           _tokenA,
           Math.round(_amountA),
-          _pairType,
-          tronWeb
+          _pairType
         );
       }
       if (!allowAmount) return;

@@ -3,8 +3,7 @@ import {connect} from "react-redux";
 import {injectIntl} from "react-intl";
 import React from "react";
 import {Modal, ModalBody, ModalHeader} from "reactstrap";
-import {tu, t} from "../../../utils/i18n";
-import {FormattedNumber} from "react-intl";
+import {tu} from "../../../utils/i18n";
 import ReactJson from 'react-json-view'
 import JSONTree from 'react-json-tree'
 import {CopyToClipboard} from "react-copy-to-clipboard";
@@ -74,7 +73,7 @@ export default class CompilerJsonInfo extends React.PureComponent {
 
                                 {
                                     typeof jsonObj == 'string'?
-                                    <JSONTree data={jsonObj} theme={theme} invertTheme={true}/>:
+                                    <JSONTree data={jsonObj} theme={theme} invertTheme={true}  hideRoot={true}  keyPath={[]}/>:
                                     <ReactJson src={jsonObj} theme="summerfruit:inverted" iconStyle="square" name={false} displayDataTypes={false}/>
                                 }
 
@@ -92,7 +91,7 @@ export default class CompilerJsonInfo extends React.PureComponent {
                                         style={{background: '#C23631', borderRadius: '2px', border: '0px'}}
                                         onClick={this.hideInfoModal}
                                 >
-                                    {tu("compile_close")}
+                                    {tu("Close")}
                                 </button>
                             </div>
                         </ModalBody>

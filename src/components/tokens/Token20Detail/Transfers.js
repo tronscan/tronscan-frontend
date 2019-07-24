@@ -67,7 +67,7 @@ class Transfers extends React.Component {
     );
 
     const query = qs.stringify({ format: 'csv',...params})
-   // getCsvUrl(`${'http://52.15.68.74:10000'}/api/token_trc20/transfers?${query}`)
+    getCsvUrl(`${'http://52.15.68.74:10000'}/api/token_trc20/transfers?${query}`)
     let {list, total, rangeTotal} = await Client.getTokenTRC20Transfers({
         limit: pageSize,
         start: (page - 1) * pageSize,

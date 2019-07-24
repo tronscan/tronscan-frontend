@@ -1,18 +1,4 @@
-import React from "react";
-import {asyncComponent} from "react-async-component";
+import loadable from "@/utils/loadable";
 
-export const AddSignatureModalAsync = asyncComponent({
-  LoadingComponent: () => (
-      null
-  ),
-  resolve: () => new Promise(resolve =>
-      // Webpack's code splitting API w/naming
-      require.ensure(
-          [],
-          (require) => {
-            resolve(require("./AddSignatureModal"));
-          },
-          'AddSignatureModal',
-      )
-  )
-});
+export const AddSignatureModalAsync = 
+  loadable(import(/* webpackChunkName: "AddSignatureModal" */ './AddSignatureModal'))

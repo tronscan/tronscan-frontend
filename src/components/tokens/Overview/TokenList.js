@@ -162,7 +162,7 @@ class TokenList extends Component {
               <div className="token-sweet-alert">
                 <a className="close" onClick={() => {
                   this.setState({alert: null})
-                }}><i className="fa fa-times" aria-hidden="true"></i></a>
+                }}><i className="fa fa-times" ></i></a>
                 <span>{tu('login_first')}</span>
                 <button className="btn btn-danger btn-block mt-3" onClick={() => {
                   this.setState({alert: null})
@@ -184,7 +184,7 @@ class TokenList extends Component {
               <div className="mt-5 token-sweet-alert" style={{textAlign:'left'}}>
                 <a style={{float: 'right', marginTop: '-45px'}} onClick={() => {
                   this.setState({alert: null})
-                }}><i className="fa fa-times" aria-hidden="true"></i></a>
+                }}><i className="fa fa-times" ></i></a>
                 <h5 style={{color: 'black'}}>{tu('buy_token_info')}</h5>
                 {token.remaining === 0 && <span> {tu('no_token_to_buy')}</span>}
                 <div className="input-group mt-5">

@@ -2,9 +2,19 @@
   "extends": "react-app",
   "env": {
     "amd": true
-},
+  },
+  "parserOptions": {
+    "ecmaFeatures": {
+      "legacyDecorators": true
+    }
+  },
   "rules": {
     "import/no-webpack-loader-syntax": "off",
-    "no-restricted-globals": ["error", "event", "fdescribe"]
+    "no-restricted-properties": 0,
+    "no-unused-expressions": 0,
+    "eqeqeq": 0,
+    "no-unused-vars": 0,
+    "no-restricted-globals": 0
   }
+
 }

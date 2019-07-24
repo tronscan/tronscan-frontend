@@ -110,7 +110,7 @@ class TokenList extends Component {
       filter: {
         ...this.state.filter,
         order: 'desc',
-        sort: 'volume24hInTrx',
+        sort: 'marketcap',
         filter: e.target.value,
         order_current: "descend"
       }

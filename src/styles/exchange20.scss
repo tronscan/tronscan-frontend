@@ -307,7 +307,7 @@
   .exchange-right {
     display: flex;
     justify-content: space-between;
-    height: 867px;
+    height: 847px;
   }
   .exchange-register {
     // background: #fff;
@@ -409,14 +409,6 @@
       }
     }
   }
-  .market-ad {
-    padding-right:16px;
-    padding-bottom:10px;
-  }
-  .market-ad .market-ad-close{
-    right:19px;
-    top:5px;
-  }
 }
 .ant-modal-wrap {
   .token-info-wrap{
@@ -471,8 +463,6 @@
       }
     }
   }
-
- 
 }
 @media screen and (max-width: 1600px) {
   .exchange20 {
