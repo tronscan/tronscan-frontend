@@ -96,7 +96,7 @@ export class resultInfo extends Component {
                                     <span>{tu('token_input_failure_reason')}</span>
                                     <div>
                                         {
-                                            type == 'trc20' && errorInfo || isUpdate && errorInfo ?errorInfo.map((item,index) => {
+                                            (type == 'trc20' && errorInfo)|| (isUpdate && errorInfo)?errorInfo.map((item,index) => {
                                                     return <p key={index}>{index +1 }. {tu(this.setErrorMsg(item))}</p>
                                                 }):
                                                 <p>{errorInfo ? <span>1.{errorInfo}</span>:'' }</p>
