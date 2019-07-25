@@ -100,7 +100,6 @@ export default class Home extends Component {
     });
 
     let { txOverviewStats } = await Client.getTxOverviewStats();
-    console.log('txOverviewStats',txOverviewStats)
     this.setState({
         transactionPerDay: txOverviewStats[txOverviewStats.length - 2].newTransactionSeen,
     });
@@ -251,7 +250,7 @@ export default class Home extends Component {
 
   reconnect() {
     const {wsdata,websocket,setWebsocket} = this.props;
-    const { blockHeight, tps } = this.state
+    const { blockHeight, tps } = this.state;
     const info = wsdata.type === 'tps'&& wsdata.data;
     if(info.maxTps)  {
         this.setState({
@@ -259,7 +258,7 @@ export default class Home extends Component {
             tps:info.currentTps?info.currentTps:0,
             blockHeight:info.blockHeight?info.blockHeight:0,
             startblockHeight: blockHeight,
-            startTps: tps
+            startTps: tps,
         })
     }
 

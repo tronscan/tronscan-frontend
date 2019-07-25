@@ -36,8 +36,8 @@ class ContractCompiler extends React.Component {
             compilerVersion:'',
             optimizer:'',
             code:'// type your code...',
-            filter: {
-                direction:'compile'
+            filters: {
+                "direction":'compile'
             },
             CompileStatus:[],
             modal: null,
@@ -89,9 +89,10 @@ class ContractCompiler extends React.Component {
 
     componentDidMount() {
        let {match} = this.props;
+       console.log('match',match)
        if(match.params && match.params.type == 'verify'){
         this.setState({
-            filter: { direction: 'verify'}
+            filters: { "direction": 'verify'}
         })
        }else{
             this.initCompile();
@@ -110,13 +111,13 @@ class ContractCompiler extends React.Component {
 
     onRadioChange = (val) => {
         if(val == 'verify'){
-            location.href = '/#/contracts/contract-Compiler/verify'
+            window.location.href = '/#/contracts/contract-compiler/verify'
         }else{
-            location.href = '/#/contracts/contract-Compiler'
+            window.location.href = '/#/contracts/contract-compiler'
         }
         this.setState({
-            filter: {
-                direction: val,
+            filters: {
+                "direction": val,
             }
         })
     };
@@ -609,82 +610,72 @@ class ContractCompiler extends React.Component {
     }
 
     render() {
-        let {modal, loading, code, filter, compileLoading, deployLoading, CompileStatus } = this.state;
+        let {modal, loading, code, filters, compileLoading, deployLoading, CompileStatus } = this.state;
         const options = {
             selectOnLineNumbers: true
         };
+
         return (
             <main className="container header-overlap token_black tokencreated">
                 {modal}
                 <div className="row">
                     <div className="col-sm-12">
                         <div className="compile-button-box">
-                            <div className={filter.direction == 'compile'?'compile-button p-3 active':'compile-button p-3'} onClick={() => this.onRadioChange('compile')}> {tu('contract_deployment')}</div>
-                            <div className={filter.direction == 'verify'?'compile-button p-3 active ml-4':'compile-button p-3 ml-4'} onClick={() => this.onRadioChange('verify')}>{tu('contract_verification')}</div>
+                            <div className={filters.direction == 'compile'?'compile-button p-3 active':'compile-button p-3'} onClick={() => this.onRadioChange('compile')}> {tu('contract_deployment')}</div>
+                            <div className={filters.direction == 'verify'?'compile-button p-3 active ml-4':'compile-button p-3 ml-4'} onClick={() => this.onRadioChange('verify')}>{tu('contract_verification')}</div>
                         </div>
                        
                         {
-                            filter.direction == 'compile' ?
-                        <div>
-                            <div className="compile-text mt-4">
-                                {tu('contract_deploy_info')}
-                            </div>
-                        <div className="card mt-4">
-                            <div className="card-body">
-                                <div className="contract-compiler">
+                            filters.direction === "compile" ?
+                            <div>
+                                <div className="compile-text mt-4">
+                                    {tu('contract_deploy_info')}
+                                </div>
+                                <div className="card mt-4">
+                                <div className="card-body">
+                                    <div className="contract-compiler">
+                                        <div>
+                                            <MonacoEditor
+                                                height="600"
+                                                language="sol"
+                                                theme="vs-dark"
+                                                value={code}
+                                                options={options}
+                                                onChange={this.onChange}
+                                                editorDidMount={this.editorDidMount}
+                                            />
                                             <div>
-                                                <MonacoEditor
-                                                    height="600"
-                                                    language="sol"
-                                                    theme="vs-dark"
-                                                    value={code}
-                                                    options={options}
-                                                    onChange={this.onChange}
-                                                    editorDidMount={this.editorDidMount}
-                                                />
-                                                <div>
-                                                    <CompilerConsole  CompileStatus={CompileStatus} deploy={this.getTransactionInfo}/>
-                                                </div>
-                                                <div className="contract-compiler-button">
-                                                    <Button
-                                                        loading={compileLoading}
-                                                        onClick={this.compileModal}
-                                                        className="compile-button compile"
-                                                    >
-                                                        {tu('contract_deployment_btn_compile')}
-                                                    </Button>
-                                                    <Button
-                                                        loading={deployLoading}
-                                                        onClick={this.deployModal}
-                                                        className="compile-button active ml-4"
-                                                    >
-                                                        {tu('contract_deployment_btn_deploy')}
-                                                    </Button>
-                                                </div>
+                                                <CompilerConsole  CompileStatus={CompileStatus} deploy={this.getTransactionInfo}/>
                                             </div>
+                                            <div className="contract-compiler-button">
+                                                <Button
+                                                    loading={compileLoading}
+                                                    onClick={this.compileModal}
+                                                    className="compile-button compile"
+                                                >
+                                                    {tu('contract_deployment_btn_compile')}
+                                                </Button>
+                                                <Button
+                                                    loading={deployLoading}
+                                                    onClick={this.deployModal}
+                                                    className="compile-button active ml-4"
+                                                >
+                                                    {tu('contract_deployment_btn_deploy')}
+                                                </Button>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        </div>
-                        :
-                                            <VerifyContractCode/>
-                                    }
+                            </div>
+                            :
+                            <VerifyContractCode/>
+                        }
                     </div>
                 </div>
             </main>
         )
     }
 }
-
-function mapStateToProps(state) {
-
-
-    return {
-
-    };
-}
-
-const mapDispatchToProps = {
-};
 
 export default injectIntl(ContractCompiler);

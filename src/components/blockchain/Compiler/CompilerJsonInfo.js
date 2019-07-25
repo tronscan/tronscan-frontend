@@ -3,7 +3,8 @@ import {connect} from "react-redux";
 import {injectIntl} from "react-intl";
 import React from "react";
 import {Modal, ModalBody, ModalHeader} from "reactstrap";
-import {tu} from "../../../utils/i18n";
+import {tu, t} from "../../../utils/i18n";
+import {FormattedNumber} from "react-intl";
 import ReactJson from 'react-json-view'
 import JSONTree from 'react-json-tree'
 import {CopyToClipboard} from "react-copy-to-clipboard";

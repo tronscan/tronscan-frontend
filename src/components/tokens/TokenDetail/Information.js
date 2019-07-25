@@ -51,9 +51,9 @@ export function Information({token: tokens,currentTotalSupply}) {
     },{ 
       name: 'reputation', 
       content: <div>
-          {token.canShow == 1 && <span>{tu('ok')}</span>}
-          {token.canShow == 2 && <span>{tu('neutral')}</span>}
-          {token.canShow == 3 && <span>{tu('high_risk')}</span>}
+          {token.canShow == 1 && <img src={require("../../../images/svg/ok.svg")} title="OK" />}
+          {token.canShow == 2 && <img src={require("../../../images/svg/neutral.svg")} title="Neutral" />}
+          {token.canShow == 3 && <img src={require("../../../images/svg/high_risk.svg")} title="High Risk" />}
       </div>
 
           // <Link to={`/rating`} style={{display: 'flex', alignItems: 'center'}}>

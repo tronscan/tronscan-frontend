@@ -153,13 +153,13 @@ export const routes = [
         component: ContractTrans
       },
       {
-        path: "/contracts/contract-Compiler",
+        path: "/contracts/contract-compiler",
         label: "contract_deployment",
         icon: "fas fa-file-signature",
         component: ContractCompilerAsync
       },
       {
-        path: "/contracts/contract-Compiler/:type",
+        path: "/contracts/contract-compiler/:type",
         label: "contract_verification",
         icon: "fas fa-file-signature",
         component: ContractCompilerAsync,

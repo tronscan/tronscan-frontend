@@ -97,6 +97,7 @@ export const ProposalDetailAsync =
 export const ContractCompilerAsync = 
   loadable(() => import(/* webpackChunkName: "ContractCompiler" */ './blockchain/Compiler/index'))
 
+
 export const AboutAsync = 
   loadable(() => import(/* webpackChunkName: "About" */ './Pages/About'))
 

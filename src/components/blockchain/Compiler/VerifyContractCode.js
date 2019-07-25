@@ -1,9 +1,13 @@
 import React, {Component} from 'react';
-import {tu} from "../../../utils/i18n";
+import {trim, forIn} from "lodash";
+import {tu,t} from "../../../utils/i18n";
 import {connect} from "react-redux";
 import {QuestionMark} from "../../common/QuestionMark";
-import { injectIntl} from "react-intl";
+import {NavLink} from "react-router-dom";
+import {FormattedNumber, injectIntl} from "react-intl";
+import {Tooltip} from "reactstrap";
 import ContractCodeRequest from "../../tools/ContractCodeRequest";
+import {Link} from "react-router-dom";
 import MonacoEditor from 'react-monaco-editor';
 import xhr from "axios/index";
 import { Base64 } from 'js-base64';
@@ -212,7 +216,7 @@ class VerifyContractCode extends Component {
                 </div>
 
                 <div className="text-center" >
-                  <ContractCodeRequest  handleCaptchaCode={this.handleCaptchaCode} />
+                  <ContractCodeRequest  />
                   <div className="contract-compiler-button  mt-lg-3 mb-lg-4">
                     <Button
                         type="primary"
