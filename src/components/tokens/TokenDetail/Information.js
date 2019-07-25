@@ -52,6 +52,7 @@ export function Information({token: tokens,currentTotalSupply}) {
       name: 'reputation', 
       content:  <Link to={`/rating`} style={{display: 'flex', alignItems: 'center'}}>
                   {tu(toLower(token.reputation))}
+
                 </Link>
     },{ 
       name: 'circulating_supply', 
