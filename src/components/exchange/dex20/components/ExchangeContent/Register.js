@@ -8,6 +8,7 @@ import { withRouter } from "react-router-dom";
 import { Icon } from "antd";
 import { setQuickSelect, setRegister } from "../../../../../actions/exchange";
 import { TronLoader } from "../../../../common/loaders";
+import Column from "antd/lib/table/Column";
 
 class Register extends Component {
   constructor() {
@@ -391,11 +392,15 @@ class RegisterList extends Component {
     super();
     this.handlePriceObj = this.handlePriceObj.bind(this);
   }
-  handlePriceObj(v, type) {
+  handlePriceObj(v, type, column) {
+    let amount = "";
+    if (column == 2) {
+      amount = parseInt(v.amount);
+    }
     let obj = {
       b: {
         price: Number(v.price),
-        amount: parseInt(v.amount)
+        amount: amount
       },
       type: type
     };
@@ -408,14 +413,22 @@ class RegisterList extends Component {
         {data.map(v => {
           return (
             <div className="list-item" key={v.key}>
-              <div
-                className="item-detail"
-                onClick={() =>
-                  this.handlePriceObj(v, type == "sell" ? "buy" : "sell")
-                }
-              >
-                <span className={type}>{v.price}</span>
-                <span>{v.amount}</span>
+              <div className="item-detail">
+                <span
+                  className={type}
+                  onClick={() =>
+                    this.handlePriceObj(v, type == "sell" ? "buy" : "sell", 1)
+                  }
+                >
+                  {v.price}
+                </span>
+                <span
+                  onClick={() =>
+                    this.handlePriceObj(v, type == "sell" ? "buy" : "sell", 2)
+                  }
+                >
+                  {v.amount}
+                </span>
                 <span>{v.cje}</span>
               </div>
               <div

@@ -19,6 +19,7 @@ import {
   onlyInputNumAndPoint
 } from "../../../../../utils/number";
 import { withTronWeb } from "../../../../../utils/tronWeb";
+import { fixed } from "../../TokenPre";
 
 const marks = {
   0: "",
@@ -102,7 +103,7 @@ class Sell extends Component {
     if (quickSelect && quickSelect != prevProps.quickSelect && quickSelect.b) {
       let n = quickSelect.b;
       let newPrice = 0;
-      let newAmount = 0;
+      let newAmount = "";
       if (quickSelect.type != "sell") {
         return;
       }
@@ -111,11 +112,17 @@ class Sell extends Component {
         !prevProps.quickSelect.price ||
         prevProps.quickSelect.price != n.price
       ) {
-        newPrice = n.price;
+        newPrice = fixed(n.price, exchangeData.fix_precision);
         if (n.amount <= firstBalance) {
-          newAmount = n.amount;
+          newAmount = fixed(
+            n.amount,
+            exchangeData.sPrecision - exchangeData.fix_precision
+          );
         } else {
-          newAmount = parseInt(firstBalance);
+          newAmount = fixed(
+            firstBalance,
+            exchangeData.sPrecision - exchangeData.fix_precision
+          );
         }
 
         firstBalance && this.setSlider() && this.transTotal();
@@ -124,7 +131,7 @@ class Sell extends Component {
             secondError: "",
             firstError: "",
             price: newPrice,
-            amount: newAmount
+            amount: n.amount ? newAmount : ""
           },
           () => {
             firstBalance && (this.setSlider() || this.transTotal());
@@ -133,16 +140,22 @@ class Sell extends Component {
 
         this.props.form.setFieldsValue({
           first_quant_sell: newPrice,
-          second_quant_sell: newAmount
+          second_quant_sell: n.amount ? newAmount : ""
         });
       } else {
         if (n.amount != amount) {
-          newPrice = n.price;
+          newPrice = fixed(n.price, exchangeData.fix_precision);
 
           if (n.amount <= firstBalance) {
-            newAmount = n.amount;
+            newAmount = fixed(
+              n.amount,
+              exchangeData.sPrecision - exchangeData.fix_precision
+            );
           } else {
-            newAmount = parseInt(firstBalance);
+            newAmount = fixed(
+              firstBalance,
+              exchangeData.sPrecision - exchangeData.fix_precision
+            );
           }
 
           this.setState(
@@ -150,7 +163,7 @@ class Sell extends Component {
               secondError: "",
               firstError: "",
               price: newPrice,
-              amount: newAmount
+              amount: n.amount ? newAmount : ""
             },
             () => {
               firstBalance && (this.setSlider() || this.transTotal());
@@ -159,7 +172,7 @@ class Sell extends Component {
 
           this.props.form.setFieldsValue({
             first_quant_sell: newPrice,
-            second_quant_sell: newAmount
+            second_quant_sell: n.amount ? newAmount : ""
           });
         }
       }
@@ -300,11 +313,7 @@ class Sell extends Component {
           >
             {tu("trc20_SELL")}&nbsp; {exchangeData.fShortName}
           </Button>
-          <div className="txt-center">
-           
-              {tu("trc20_free_orders")}
-            
-          </div>
+          <div className="txt-center">{tu("trc20_free_orders")}</div>
           {/* </FormItem> */}
         </Form>
       </div>
@@ -696,11 +705,11 @@ class Sell extends Component {
     let { exchangeData } = this.props;
     let { price, firstBalance, amount } = this.state;
 
-    let precision = exchangeData.sPrecision;
-    if (amount) {
-      const _p = getDecimalsNum(+amount);
-      precision = precision - _p;
-    }
+    let precision = exchangeData.fix_precision;
+    // if (amount) {
+    //   const _p = getDecimalsNum(+amount);
+    //   precision = precision - _p;
+    // }
     let value1 = onlyInputNumAndPoint(value, precision);
 
     this.setState(
@@ -720,12 +729,12 @@ class Sell extends Component {
   handleValueBuy1 = value => {
     let { exchangeData } = this.props;
     let { price, firstBalance, amount } = this.state;
-    let precision = exchangeData.sPrecision;
-    if (price) {
-      const _p = getDecimalsNum(+price);
+    let precision = exchangeData.sPrecision - exchangeData.fix_precision;
+    // if (price) {
+    //   const _p = getDecimalsNum(+price);
 
-      precision = precision - _p;
-    }
+    //   precision = precision - _p;
+    // }
     let value1 = onlyInputNumAndPoint(value, precision);
 
     // this.setMaxLen(value, precision)
@@ -854,9 +863,15 @@ class Sell extends Component {
     Client20.getCurrentPrice(id).then(res => {
       if (res.code === 0 && res.data) {
         if (res.data.buyHighPrice) {
-          price = res.data.buyHighPrice / secondPrecision;
+          price = fixed(
+            res.data.buyHighPrice / secondPrecision,
+            exchangeData.fix_precision
+          );
         } else {
-          price = exchangeData.price;
+          price = fixed(
+            exchangeData.price / secondPrecision,
+            exchangeData.fix_precision
+          );
         }
         this.setState(
           {
