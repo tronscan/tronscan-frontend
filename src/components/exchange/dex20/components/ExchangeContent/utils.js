@@ -65,7 +65,7 @@ export function getDecimalsNum(priceTickSize) {
 //科学计数法转字符串
 export function scientificToNumber(num) {
     var str = num.toString();
-    var reg = /^(\d+\.?\d*)(e)([-]?\d+)$/;
+    var reg = /^(\d+\.?\d*)(e)([\-]?\d+)$/;
     var arr, len,
         zero = '';
 

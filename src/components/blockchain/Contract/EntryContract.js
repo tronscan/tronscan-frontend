@@ -313,7 +313,7 @@ class Code extends React.Component {
             </div>
             {
               tokenId ? 
-                <Input style={{ width: 200, display: 'inline' }}
+                <Input style={{ width: '100%', display: 'inline' }}
                   placeholder="Amount token to Send"
                   value={totalValue}
                   onChange={(e) => this.setState({ totalValue: e.target.value })}

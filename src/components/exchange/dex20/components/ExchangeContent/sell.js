@@ -300,6 +300,11 @@ class Sell extends Component {
           >
             {tu("trc20_SELL")}&nbsp; {exchangeData.fShortName}
           </Button>
+          <div className="txt-center">
+           
+              {tu("trc20_free_orders")}
+            
+          </div>
           {/* </FormItem> */}
         </Form>
       </div>
@@ -769,10 +774,9 @@ class Sell extends Component {
         price >
           (exchangeData.price * 1.1) / Math.pow(10, exchangeData.sPrecision)
       ) {
-        let t = null
         clearTimeout(t);
         let transTip = true;
-        t = setTimeout(() => {
+        const t = setTimeout(() => {
           transTip = false;
           this.setState({
             transTip: transTip

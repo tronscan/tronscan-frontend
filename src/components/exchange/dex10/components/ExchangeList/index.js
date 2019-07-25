@@ -153,6 +153,7 @@ class ExchangeList extends React.Component {
       item.first_token_id = item.map_token_name;
       item.second_token_id = item.map_token_name1;
       item.exchange_name = item.map_token_name + "/" + item.map_token_name1;
+      item.exchange_abbr_name = item.exchange_abbr_name;
       return item;
     });
 
@@ -201,6 +202,7 @@ class ExchangeList extends React.Component {
       item.first_token_id = item.map_token_name;
       item.second_token_id = item.map_token_name1;
       item.exchange_name = item.map_token_name + "/" + item.map_token_name1;
+      item.exchange_abbr_name = item.exchange_abbr_name;
       return item;
     });
 

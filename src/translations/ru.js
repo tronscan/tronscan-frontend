@@ -1858,7 +1858,8 @@ export const messages = {
   "bandwidth_more": "Полученная энергия = замороженные TRX для получения энергии / общее количество замороженных TRX для получения энергии во всей сети * предел общей энергии",
   "table_info_big": "Отображать только первые 10000",
   "Download": "Скачать",
-
+ /* 2019-07-06*/
+ "trc20_free_orders":"0 trading fee for all orders",
   /*
  ##################################################################################
  #                                                                                #
@@ -1916,5 +1917,5 @@ export const messages = {
   "deploy_params_energy_limit":"Предел энергии происхождения",
   "deploy_params_send_token":"Выберите TRX или токен для отправки",
   "deploy_params_constructor":"Params для конструктора",
-
+  "compile_close":"близко",
 };

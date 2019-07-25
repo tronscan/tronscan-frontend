@@ -155,13 +155,13 @@ export const routes = [
       {
         path: "/contracts/contract-Compiler",
         label: "contract_deployment",
-        icon: "fa fa-users-cog",
+        icon: "fas fa-file-signature",
         component: ContractCompilerAsync
       },
       {
         path: "/contracts/contract-Compiler/:type",
-        label: "contract_deployment",
-        icon: "fa fa-users-cog",
+        label: "contract_verification",
+        icon: "fas fa-file-signature",
         component: ContractCompilerAsync,
         showInMenu: false
       }
@@ -316,6 +316,11 @@ export const routes = [
           url: "https://www.tronbet.io/#/?utm_source=TS",
           icon: "fas fa-dice-six",
           label: "TRONbet"
+      },
+      {
+          url: "https://tronlending.org/?utm_source=TS",
+          icon: "fas fa-hand-holding-usd",
+          label: "TronLending"
       },
       {
           url: "https://dapp.review/explore/tron?gclid=EAIaIQobChMIx-fB8KH04QIVlHZgCh0ybA1hEAAYASAAEgIad_D_BwE",

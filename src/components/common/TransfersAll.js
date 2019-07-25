@@ -83,7 +83,7 @@ class TransfersAll extends React.Component {
             pageSize: pageSize,
         });
         const query = qs.stringify({ format: 'csv',...params})
-        getCsvUrl(`${'http://52.15.68.74:10000'}/api/trc10trc20-transfer?${query}`)
+        //getCsvUrl(`${'http://52.15.68.74:10000'}/api/trc10trc20-transfer?${query}`)
         let list,total,range = 0;
         let {transfers, total:totaldata, rangeTotal} = await Client.getTransfersAll({
             limit: pageSize,

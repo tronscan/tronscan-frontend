@@ -117,7 +117,7 @@ class VerifyContractCode extends Component {
                   <p>{tu('verify_code3')}</p>
                 </div>
 
-                <Row gutter={24} type="flex" justify="space-between" className="px-2">
+                <Row gutter={24} type="flex" justify="space-between">
                   <Col span={12}>
                     <Form.Item label={tu('contract_address')} {...formItemLayout}>
                       {getFieldDecorator('contractAddress', {})(
@@ -189,7 +189,7 @@ class VerifyContractCode extends Component {
                     />
                     <div className="contract-compiler-console text-left w-100">
                       <CompilerConsole  CompileStatus={CompileStatus}/>
-                  </div>
+                    </div>
                   </div>
                 </div>
                 <div className="row mt-3 contract-ABI">
@@ -270,7 +270,7 @@ const styles = {
     verify_header_box: {
     },
     verify_header: {
-      maxWidth: '884px',
+      maxWidth: '900px',
       width: '100%',
       margin: '0 auto'
     }

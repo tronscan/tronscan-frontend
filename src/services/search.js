@@ -61,6 +61,13 @@ async function searchTxHash(criteria) {
     return `#/transaction/${transaction.hash}`;
   }
 }
+async function searchTxHash(criteria) {
+     let transaction = await Client.getTransactionByHash(criteria);
+     if (transaction['hash']) {
+        return `#/transaction/${transaction.hash}`;
+     }
+}
+
 
 async function searchBlockHash(criteria) {
 

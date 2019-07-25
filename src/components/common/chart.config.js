@@ -260,6 +260,7 @@ export default {
         'CoinExchange': false,
         'CoinFalcon': false,
         'Cryptomate': false,
+        'Gatecoin': false,
         'IDEX': false,
         'LiteBit.eu': false,
         'Stocks.Exchange': false,

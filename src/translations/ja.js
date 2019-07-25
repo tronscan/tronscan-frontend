@@ -1848,6 +1848,8 @@ export const messages = {
   "bandwidth_more": "獲得したエネルギー＝エネルギーを獲得するために凍結したTRX/ネット全体がエネルギーを獲得するために凍結したTRX総額*エネルギー総額制限",
   "table_info_big": "最初の10,000個データの表示されています",
   "Download": "ダウンロード",
+  /* 2019-07-06*/
+  "trc20_free_orders":"0 trading fee for all orders",
 
   /*
     ##################################################################################
@@ -1907,5 +1909,5 @@ export const messages = {
   "deploy_params_energy_limit":"オリジナルエネルギーの限界",
   "deploy_params_send_token":"TRX、あるいは他のトークンを選んで送ります",
   "deploy_params_constructor":"コンストラクタのパラメーター",
-
+  "compile_close":"閉じる",
 }
