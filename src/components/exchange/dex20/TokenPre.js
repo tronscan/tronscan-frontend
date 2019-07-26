@@ -36,8 +36,13 @@ export const precisions = {
 export function fixed(value, n) {
   // return Math.floor(value * Math.pow(10, n)) / Math.pow(10, sn)
   value = value + "";
-  if (value.lastIndexOf(".") > -1) {
-    value = value.substring(0, value.lastIndexOf(".") + n + 1);
+  if (n === 0) {
+    value = parseInt(value);
+  } else {
+    if (value.lastIndexOf(".") > -1) {
+      value = value.substring(0, value.lastIndexOf(".") + n + 1);
+    }
   }
+
   return Number(value);
 }

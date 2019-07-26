@@ -104,6 +104,9 @@ class Sell extends Component {
       let n = quickSelect.b;
       let newPrice = 0;
       let newAmount = "";
+      const a_precision = exchangeData.fPrecision
+        ? exchangeData.sPrecision - exchangeData.fix_precision
+        : 0;
       if (quickSelect.type != "sell") {
         return;
       }
@@ -114,15 +117,9 @@ class Sell extends Component {
       ) {
         newPrice = fixed(n.price, exchangeData.fix_precision);
         if (n.amount <= firstBalance) {
-          newAmount = fixed(
-            n.amount,
-            exchangeData.sPrecision - exchangeData.fix_precision
-          );
+          newAmount = fixed(n.amount, a_precision);
         } else {
-          newAmount = fixed(
-            firstBalance,
-            exchangeData.sPrecision - exchangeData.fix_precision
-          );
+          newAmount = fixed(firstBalance, a_precision);
         }
 
         firstBalance && this.setSlider() && this.transTotal();
@@ -147,15 +144,9 @@ class Sell extends Component {
           newPrice = fixed(n.price, exchangeData.fix_precision);
 
           if (n.amount <= firstBalance) {
-            newAmount = fixed(
-              n.amount,
-              exchangeData.sPrecision - exchangeData.fix_precision
-            );
+            newAmount = fixed(n.amount, a_precision);
           } else {
-            newAmount = fixed(
-              firstBalance,
-              exchangeData.sPrecision - exchangeData.fix_precision
-            );
+            newAmount = fixed(firstBalance, a_precision);
           }
 
           this.setState(
@@ -735,8 +726,15 @@ class Sell extends Component {
 
     //   precision = precision - _p;
     // }
-    let value1 = onlyInputNumAndPoint(value, precision);
+    precision =
+      precision <= exchangeData.fPrecision
+        ? precision
+        : exchangeData.fPrecision;
 
+    let value1 = onlyInputNumAndPoint(value, precision);
+    if (precision == 0 && value1) {
+      value1 = Number(value1);
+    }
     // this.setMaxLen(value, precision)
     this.setState(
       {
@@ -819,12 +817,12 @@ class Sell extends Component {
       return;
     }
 
-    let precision = exchangeData.sPrecision;
-    if (price) {
-      const _s = price.toString().split(".")[1];
-      const _p = (_s && _s.length) || 0;
-      precision = precision - _p;
-    }
+    let precision = exchangeData.sPrecision - exchangeData.fix_precision;
+    // if (price) {
+    //   const _s = price.toString().split(".")[1];
+    //   const _p = (_s && _s.length) || 0;
+    //   precision = precision - _p;
+    // }
     let _a = (firstBalance * value) / 100;
     const _l = getDecimalsNum(_a);
     if (_l <= precision) {
