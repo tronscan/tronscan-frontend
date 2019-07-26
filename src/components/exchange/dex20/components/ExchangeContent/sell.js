@@ -823,6 +823,12 @@ class Sell extends Component {
     //   const _p = (_s && _s.length) || 0;
     //   precision = precision - _p;
     // }
+    if (price) {
+      precision =
+        precision <= exchangeData.fPrecision
+          ? precision
+          : exchangeData.fPrecision;
+    }
     let _a = (firstBalance * value) / 100;
     const _l = getDecimalsNum(_a);
     if (_l <= precision) {

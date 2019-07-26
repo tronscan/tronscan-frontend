@@ -731,6 +731,13 @@ class Buy extends Component {
     //   // precision = precision - _p;
     // }
 
+    if (price) {
+      precision =
+        precision <= exchangeData.fPrecision
+          ? precision
+          : exchangeData.fPrecision;
+    }
+
     let _a = (firstBalance * value) / (100 * price);
     const _l = getDecimalsNum(_a);
     if (_l <= precision) {
