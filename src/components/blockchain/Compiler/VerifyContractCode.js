@@ -216,7 +216,7 @@ class VerifyContractCode extends Component {
                 </div>
 
                 <div className="text-center" >
-                  <ContractCodeRequest  />
+                  <ContractCodeRequest  handleCaptchaCode={this.handleCaptchaCode} />
                   <div className="contract-compiler-button  mt-lg-3 mb-lg-4">
                     <Button
                         type="primary"
