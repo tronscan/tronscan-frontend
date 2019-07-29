@@ -1465,14 +1465,14 @@ export default class Account extends Component {
         <main className="container header-overlap token_black accounts">
           {modal}
           {/* 广告位文字 */}
-          <div className="text-center alert alert-light alert-dismissible fade show" role="alert">
+          {/* <div className="text-center alert alert-light alert-dismissible fade show" role="alert">
             <a href={url} target="_blank" style={{textDecoration: 'none'}}>
               {title}
             </a>
             <button type="button" className="close" data-dismiss="alert" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
-          </div>
+          </div> */}
           <div className="row">
             <div className="col-md-3">
               <div className="card h-100 bg-line_red bg-image_band">
