@@ -67,9 +67,11 @@ class ExchangeList extends React.Component {
       hr: "",
       min: "",
       sec: "",
-      AdClose: false,
-      adURL: "https://support.trx.market/hc/en-us/articles/360030644412-TRC20-USDT-Reloaded-with-Powerful-Aid-from-TRXMarket-15-000-USD-Awaits-",
-      adchURL: "https://support.trx.market/hc/zh-cn/articles/360030644412-TRXMarket%E5%8A%A9%E5%8A%9BTRC20-USDT%E9%87%8D%E8%A3%85%E4%B8%8A%E9%98%B5-%E6%83%8A%E5%96%9C%E6%94%BE%E9%80%8110%E4%B8%87%E4%BA%BA%E6%B0%91%E5%B8%81",
+      AdClose: true,
+      adURL:
+        "https://support.trx.market/hc/en-us/articles/360030644412-TRC20-USDT-Reloaded-with-Powerful-Aid-from-TRXMarket-15-000-USD-Awaits-",
+      adchURL:
+        "https://support.trx.market/hc/zh-cn/articles/360030644412-TRXMarket%E5%8A%A9%E5%8A%9BTRC20-USDT%E9%87%8D%E8%A3%85%E4%B8%8A%E9%98%B5-%E6%83%8A%E5%96%9C%E6%94%BE%E9%80%8110%E4%B8%87%E4%BA%BA%E6%B0%91%E5%B8%81",
       activedId: 0,
       activedTab: "hot",
       priceObj: {},
@@ -461,13 +463,11 @@ class ExchangeList extends React.Component {
           <div className="dex-search" />
           {
             <div>
-              <div
-                className="exchange-list__table"
-              >
+              <div className="exchange-list__table">
                 {loading ? (
                   <TronLoader />
                 ) : (
-                  <ExchangeTable dataSource={dataSource} isAdClose={AdClose}/>
+                  <ExchangeTable dataSource={dataSource} isAdClose={AdClose} />
                 )}
               </div>
             </div>
@@ -718,5 +718,3 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(withRouter(injectIntl(ExchangeList)));
-
-

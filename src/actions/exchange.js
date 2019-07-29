@@ -2,6 +2,7 @@ import { Client, Client20 } from "../services/api";
 import Lockr from "lockr";
 import { cloneDeep, map } from "lodash";
 import rebuildList from "../utils/rebuildList";
+import { precisions } from "../components/exchange/dex20/TokenPre";
 
 export const SET_SELECT_DATA = "SET_SELECT_DATA";
 export const SET_SELECT_STATUS = "SET_SELECT_STATUS";
@@ -128,6 +129,11 @@ export const getExchanges20 = () => async dispatch => {
     item.low = item.lowestPrice24h;
     item.token_type = "dex20";
 
+    let key =
+      item.fShortName.toLowerCase() + "_" + item.sShortName.toLowerCase();
+
+    item.fix_precision = precisions[key];
+
     if (item.gain.indexOf("-") != -1) {
       item.up_down_percent = Number(item.gain * 100).toFixed(2) + "%";
       item.isUp = false;
@@ -252,6 +258,11 @@ export const getExchanges20Volume = () => async dispatch => {
     item.low = item.lowestPrice24h;
     item.token_type = "dex20";
 
+    let key =
+      item.fShortName.toLowerCase() + "_" + item.sShortName.toLowerCase();
+
+    item.fix_precision = precisions[key] || item.fPrecision;
+
     if (item.gain.indexOf("-") != -1) {
       item.up_down_percent = Number(item.gain * 100).toFixed(2) + "%";
       item.isUp = false;
@@ -295,6 +306,11 @@ export const getExchanges20UpDown = () => async dispatch => {
     item.low = item.lowestPrice24h;
     item.token_type = "dex20";
 
+    let key =
+      item.fShortName.toLowerCase() + "_" + item.sShortName.toLowerCase();
+
+    item.fix_precision = precisions[key] || item.fPrecision;
+
     if (item.gain.indexOf("-") != -1) {
       item.up_down_percent = Number(item.gain * 100).toFixed(2) + "%";
       item.isUp = false;
@@ -315,12 +331,12 @@ export const getExchanges20UpDown = () => async dispatch => {
 };
 
 //获取20列表涨幅榜，及对数据整理
-export const getExchanges20Search = (query) => async dispatch => {
+export const getExchanges20Search = query => async dispatch => {
   let { data } = await Client20.getExchanges20SearchList(query);
 
   let f20_list = Lockr.get("dex20") || [];
-  let newList =[]
-  if(data.rows && data.rows.length > 0){
+  let newList = [];
+  if (data.rows && data.rows.length > 0) {
     newList = cloneDeep(data.rows).map((item, index) => {
       item.exchange_id = item.id;
       item.exchange_name = item.fTokenName + "/" + item.sTokenName;
@@ -337,6 +353,11 @@ export const getExchanges20Search = (query) => async dispatch => {
       item.high = item.highestPrice24h;
       item.low = item.lowestPrice24h;
       item.token_type = "dex20";
+
+      let key =
+        item.fShortName.toLowerCase() + "_" + item.sShortName.toLowerCase();
+
+      item.fix_precision = precisions[key] || item.fPrecision;
 
       if (item.gain.indexOf("-") != -1) {
         item.up_down_percent = Number(item.gain * 100).toFixed(2) + "%";

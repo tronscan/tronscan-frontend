@@ -28,7 +28,7 @@ class ExchangeTable extends Component {
       offlineToken: [30],
       // 交易赛对象
       transcationObj: {
-        id: [48, 66],
+        id: [],
         linkUrl: {
           en:
             "https://support.trx.market/hc/en-us/articles/360030644412-TRC20-USDT-Reloaded-with-Powerful-Aid-from-TRXMarket-15-000-USD-Awaits-",
