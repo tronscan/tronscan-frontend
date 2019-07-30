@@ -2,7 +2,7 @@ import React from "react";
 import {injectIntl} from "react-intl";
 import {connect} from "react-redux";
 import {tu} from "../../utils/i18n";
-import _, {find, round, filter } from "lodash";
+import _, {find } from "lodash";
 import { Select } from 'antd';
 import {reloadWallet} from "../../actions/wallet";
 const { Option, OptGroup } = Select;

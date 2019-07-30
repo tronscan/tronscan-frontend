@@ -2,10 +2,10 @@
 import React from "react";
 import {loadTokens} from "../../../actions/tokens";
 import {connect} from "react-redux";
-import {Link, NavLink, Route, Switch} from "react-router-dom";
+import {NavLink, Route, Switch} from "react-router-dom";
 import {Client} from "../../../services/api";
 import {tu, tv} from "../../../utils/i18n";
-import TimeAgoI18N from "../../common/TimeAgoI18N";
+// import TimeAgoI18N from "../../common/TimeAgoI18N";
 import {FormattedDate, FormattedNumber, FormattedTime} from "react-intl";
 import {AddressLink, BlockNumberLink} from "../../common/Links";
 import {CopyText} from "../../common/Copy";

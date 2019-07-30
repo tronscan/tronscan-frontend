@@ -1,7 +1,5 @@
-import React, {Fragment} from "react";
-import {FormattedDate, FormattedNumber, FormattedTime, injectIntl} from "react-intl";
-import {Sticky, StickyContainer} from "react-sticky";
-import Paging from "./Paging";
+import React from "react";
+import { injectIntl} from "react-intl";
 import {Client} from "../../services/api";
 import {TransactionHashLink, AddressLink, BlockNumberLink} from "./Links";
 import {tu} from "../../utils/i18n";
@@ -11,15 +9,12 @@ import {Truncate} from "./text";
 import {ContractTypes} from "../../utils/protocol";
 import SmartTable from "./SmartTable.js"
 import {upperFirst} from "lodash";
-import {QuestionMark} from "./QuestionMark";
 import TotalInfo from "./TableTotal";
 import DateRange from "./DateRange";
 import {DatePicker} from 'antd';
 import moment from 'moment';
 import {NameWithId} from "./names";
 import rebuildList from "../../utils/rebuildList";
-import xhr from "axios/index";
-import {API_URL} from '../../constants.js'
 import qs from 'qs'
 
 const RangePicker = DatePicker.RangePicker;
@@ -84,7 +79,7 @@ class Transactions extends React.Component {
               ...filter,
           });
           transactions = data.transactions;
-          total = data.total,
+          total = data.total
           rangeTotal = data.rangeTotal
       }else{
           let data = await Client.getTransactions({
@@ -95,7 +90,7 @@ class Transactions extends React.Component {
               ...filter
           });
           transactions = data.transactions;
-          total = data.total,
+          total = data.total
           rangeTotal = data.rangeTotal
       }
 
@@ -115,7 +110,7 @@ class Transactions extends React.Component {
 
         let newdata = rebuildList(data.list, 'tokenId', 'callValue', 'valueInfoList')
         transactions = newdata;
-        total = data.total,
+        total = data.total
             rangeTotal = data.rangeTotal
     }
 

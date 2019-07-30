@@ -1,5 +1,4 @@
 import React from "react";
-import {tu, tv} from "../../../utils/i18n";
 import {Client} from "../../../services/api";
 import { injectIntl } from "react-intl";
 import TokenBalances from '../../addresses/Address/TokenBalances.js'

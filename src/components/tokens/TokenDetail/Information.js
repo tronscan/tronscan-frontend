@@ -51,9 +51,9 @@ export function Information({token: tokens,currentTotalSupply}) {
     },{ 
       name: 'reputation', 
       content: <div>
-          {token.canShow == 1 && <span>{tu('ok')}</span>}
-          {token.canShow == 2 && <span>{tu('neutral')}</span>}
-          {token.canShow == 3 && <span>{tu('high_risk')}</span>}
+          {token.canShow == 1 && <img src={require("../../../images/svg/ok.svg")} title="OK" />}
+          {token.canShow == 2 && <img src={require("../../../images/svg/neutral.svg")} title="Neutral" />}
+          {token.canShow == 3 && <img src={require("../../../images/svg/high_risk.svg")} title="High Risk" />}
       </div>
 
           // <Link to={`/rating`} style={{display: 'flex', alignItems: 'center'}}>
@@ -111,7 +111,7 @@ export function Information({token: tokens,currentTotalSupply}) {
                         token['market_info'].sShortName == 'TRX'? <div className="d-flex">
                             {token['market_info'].priceInTrx}  {token['market_info'].sShortName}
                             <span className={token['market_info'].gain<0? 'col-red ml-3':'col-green ml-3'}>{token['market_info'].gain >0 ?  <span>{'+' + parseInt(token['market_info'].gain * 10000) / 100 + '%'}</span>:<span>{ parseInt(token['market_info'].gain * 10000) / 100 + '%'}</span>}</span>
-                            <Link to={`/exchange/trc20?id=${token['market_info'].pairId}`} className="btn btn-danger btn-sm ml-3" style={{height: '1.2rem', lineHeight: '0.6rem'}}> {tu('token_trade')}</Link>
+                            <a href={`https://trx.market/exchange?id=${token['market_info'].pairId}`}  target="_blank" className="btn btn-danger btn-sm ml-3" style={{height: '1.2rem', lineHeight: '0.6rem'}}> {tu('token_trade')}</a>
                         </div>:'-'
                     }
 

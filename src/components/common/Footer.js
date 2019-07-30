@@ -4,15 +4,11 @@ import { injectIntl } from "react-intl";
 import { Link } from "react-router-dom";
 import { withTimers } from "../../utils/timing";
 import { tu,pure_t } from "../../utils/i18n";
-import { toastr } from "react-redux-toastr";
 import { HrefLink } from "../common/Links";
 import isMobile from "../../utils/isMobile";
-import {Truncate} from "./text";
 
 class Footer extends Component {
-  constructor() {
-    super();
-  }
+
   render() {
     const donate_address = 'TTzPiwbBedv7E8p4FkyPyeqq4RVoqRL3TW';
     let { intl, activeLanguage } = this.props;

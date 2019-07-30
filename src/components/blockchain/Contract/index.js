@@ -4,7 +4,6 @@ import {injectIntl} from "react-intl";
 import {NavLink, Route, Switch} from "react-router-dom";
 import {Client} from "../../../services/api";
 import {tu} from "../../../utils/i18n";
-import {FormattedNumber} from "react-intl";
 import {AddressLink, TransactionHashLink, TokenTRC20Link} from "../../common/Links";
 import {TRXPrice} from "../../common/Price";
 import {ONE_TRX} from "../../../constants";
@@ -12,19 +11,18 @@ import {TronLoader} from "../../common/loaders";
 import Transactions from "../../common/Transactions";
 import Txs from "./Txs";
 import Code from "./Code";
-import Txhash from "./Txhash";
+// import Txhash from "./Txhash";
 import Events from "./Events";
 import Transfers from "./Transfers";
 import Energy from "./Energy";
 import Call from "./Call";
-import ContractPage from "./ContractPage";
-import {upperFirst, filter} from "lodash";
+import {upperFirst} from "lodash";
 import {Truncate} from "../../common/text";
 import xhr from "axios/index";
 import {API_URL, CONTRACT_ADDRESS_USDT} from "../../../constants";
 import { Tooltip } from 'antd'
 import TokenBalances from './Balance.js'
-import { CsvExport } from "../../common/CsvExport";
+// import { CsvExport } from "../../common/CsvExport";
 
 
 class SmartContract extends React.Component {

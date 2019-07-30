@@ -1,10 +1,7 @@
 import React from "react";
 import { CopyText } from "../../common/Copy";
-import { tu, tv } from "../../../utils/i18n";
+import { tu } from "../../../utils/i18n";
 import { Client } from "../../../services/api";
-import xhr from "axios";
-import { API_URL } from "../../../constants";
-import { AddressLink } from "../../common/Links";
 import { TronLoader } from "../../common/loaders";
 import { Base64 } from 'js-base64';
 

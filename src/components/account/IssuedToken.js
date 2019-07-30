@@ -237,7 +237,7 @@ class IssuedToken extends React.Component{
                     </div>
                     <div className=" ml-3">{
                       (currentWallet && currentWallet.frozen_supply.length > 0) &&
-                      <div classNmae="clearfix">
+                      <div className="clearfix">
                         <a href="javascript:;" className="float-right"
                             onClick={() => {unfreezeAssetsConfirmation()}}>
                             <Tag className="ant-tag-default m-0">{tu("unfreeze_assets")}</Tag>

@@ -1,17 +1,5 @@
 import React from "react";
-import {CopyText} from "../../common/Copy";
-import {tu, tv} from "../../../utils/i18n";
-import {Client} from "../../../services/api";
-import xhr from "axios";
-import {API_URL} from "../../../constants";
-import { AddressLink} from "../../common/Links";
-import {FormattedNumber, injectIntl} from "react-intl";
-import { TronLoader } from "../../common/loaders";
-import { ContractInvocationChart } from "../../common/LineCharts";
-import { upperFirst } from 'lodash'
-import SmartTable from "../../common/SmartTable.js"
-import { DatePicker } from 'antd';
-import moment from 'moment';
+import {injectIntl} from "react-intl";
 import tronWeb from 'tronweb';
 
 class ContractShow extends React.Component {

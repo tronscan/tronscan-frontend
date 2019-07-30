@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   pieChart: {
     color: [
       '#98C8EB',

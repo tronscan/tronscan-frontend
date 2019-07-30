@@ -1,7 +1,7 @@
 import React from "react";
 import {tu} from "../../../utils/i18n";
 import {FormattedNumber, injectIntl} from "react-intl";
-import {filter,toUpper,sortBy} from "lodash";
+import {toUpper} from "lodash";
 import {TokenLink, TokenTRC20Link} from "../../common/Links";
 import {SwitchToken} from "../../common/Switch";
 import SmartTable from "../../common/SmartTable.js"
@@ -10,7 +10,6 @@ import _ from "lodash";
 import { CONTRACT_ADDRESS_USDT } from "../../../constants";
 import {TRXPrice} from "../../common/Price";
 
-import rebuildList from "../../../utils/rebuildList";
 
 class TokenBalances extends React.Component {
 

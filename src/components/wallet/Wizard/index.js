@@ -281,8 +281,6 @@ class Wizard extends React.PureComponent {
 
   render() {
 
-    let {} = this.props;
-
     let {step} = this.state;
 
     return (

@@ -23,7 +23,7 @@ class TokenList extends Component {
       loading: false,
       total: 0,
       totalAll: 0,
-      countTop:2,
+      countTop:0,
       filter: {
         order: 'desc',
         filter: 'all',
@@ -50,7 +50,6 @@ class TokenList extends Component {
     }});
     let count = 0;
     let Top = 0;
-
     tokens.map((item,index) => {
       if(!item.isTop){
         if(page == 1){
@@ -60,7 +59,12 @@ class TokenList extends Component {
         }
         count++
       }else{
-        item.c_index = index + 1
+          Top = Top + 1
+          this.setState({
+              countTop:Top
+          },()=>{
+              item.index = count + 1 + (page-1)*pageSize - countTop
+          });
       }
      
       item.marketcap = item.marketcap || 0
@@ -130,7 +134,6 @@ class TokenList extends Component {
       nrOfTokenHolders: 'holderCount',
       gain: 'gain',
       priceInTrx: 'priceInTrx',
-      gain :'gain',
       volume24hInTrx: 'volume24hInTrx',
       marketcap: 'marketcap'
     }
@@ -294,7 +297,7 @@ class TokenList extends Component {
               {
                 record.extra ? <a href={record.extra.url} className="token-active-details btn mt-2">{tu(record.extra.desc)}</a>
                     : record.pairId?
-                    <Link to={`/exchange/trc20?id=${record.pairId}`} className="token-details btn mt-2"> {tu('token_trade')}</Link>
+                    <a href={`https://trx.market/exchange?id=${record.pairId}`} className="token-details btn mt-2" target="_blank"> {tu('token_trade')}</a>
                     : <div>
                       <a href="javascript:;"
                          className="token-disabled-exchange btn mt-2"
@@ -339,7 +342,7 @@ class TokenList extends Component {
                         {tableInfo} <span>
                           <QuestionMark placement="top" text="newly_issued_token_by_tronscan" className="token-list-info"></QuestionMark>
                         </span> &nbsp;&nbsp;  
-                        <Link to="/exchange/trc10">{t("Trade_on_TRXMarket")}></Link>
+                        <a href={`https://trx.market`} target="_blank" >{t("Trade_on_TRXMarket")}></a>
                       </div>
                     </div> : ''}
                     <div className="d-md-flex apply-trc20 apply-all align-items-center">

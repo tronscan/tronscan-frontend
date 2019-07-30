@@ -125,7 +125,6 @@ class Demo extends Component {
                         float: 'left',
                         width: '100px',
                         height: '100px',
-                        float: 'left',
                         marginTop: '5px',
                         marginRight: '20px',
                         marginLeft: '10px'
@@ -147,7 +146,6 @@ class Demo extends Component {
                         float: 'left',
                         width: '100px',
                         height: '100px',
-                        float: 'left',
                         marginTop: '5px',
                         marginRight: '20px',
                         marginLeft: '10px'
@@ -171,7 +169,6 @@ class Demo extends Component {
                         float: 'left',
                         width: '100px',
                         height: '100px',
-                        float: 'left',
                         marginTop: '5px',
                         marginRight: '20px',
                         marginLeft: '10px'

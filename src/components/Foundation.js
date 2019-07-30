@@ -1,14 +1,12 @@
-import React, {Component, Fragment} from 'react';
+import React, {Component} from 'react';
 import {connect} from "react-redux";
 import {loadAccounts} from "../actions/app";
 import {tu} from "../utils/i18n";
 import {FormattedNumber, injectIntl} from "react-intl";
-import {filter} from "lodash";
 import {AddressLink} from "./common/Links";
 import {TronLoader} from "./common/loaders";
 import {Table, Input, Button, Icon} from 'antd';
 import xhr from "axios/index";
-import {trim} from "lodash";
 import {Tooltip} from "reactstrap";
 import {TRXPrice} from "./common/Price";
 import {ONE_TRX,API_URL} from "../constants";

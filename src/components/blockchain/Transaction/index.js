@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 import React from "react";
 import {connect} from "react-redux";
-import {NavLink, Route, Switch} from "react-router-dom";
+import { Route, Switch} from "react-router-dom";
 import {Client} from "../../../services/api";
 import {tu} from "../../../utils/i18n";
 import {FormattedDate, FormattedTime} from "react-intl";
@@ -11,8 +11,6 @@ import {TronLoader} from "../../common/loaders";
 import {Truncate} from "../../common/text";
 import Contract from "../../tools/TransactionViewer/Contract";
 import {ContractTypes} from "../../../utils/protocol";
-import {trim} from "lodash";
-import {hextoString} from "@tronscan/client/src/utils/bytes";
 import {Alert} from "reactstrap";
 import {setLanguage} from "../../../actions/app"
 import queryString from 'query-string';

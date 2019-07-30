@@ -1,12 +1,11 @@
-import React, {Fragment} from "react";
+import React from "react";
 import {tu} from "../../utils/i18n";
 import {injectIntl} from "react-intl";
 import { Table } from 'antd';
-import { filter, map ,upperFirst} from 'lodash'
+import {upperFirst} from 'lodash'
 import {Client} from "../../services/api";
 import {Link} from "react-router-dom";
 import {ONE_TRX} from "../../constants";
-import {TronLoader} from "../common/loaders";
 
 
 class Committee extends React.Component {

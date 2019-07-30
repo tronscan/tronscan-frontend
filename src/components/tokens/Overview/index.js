@@ -52,7 +52,7 @@ class TokenOverview extends Component {
     let result;
 
     if (filter.name)
-      result = await xhr.get(API_URL + "/api/token?sort=rank&limit=" + pageSize + "&start=" + (page - 1) * pageSize + "&status=ico" + "&name=" + filter.name);
+      result = await xhr.get(API_URL + "/api/token?sort=rank&limit=" + pageSize + "&start=" + (page - 1) * pageSize + "&status=ico&name=" + filter.name);
     else
       result = await xhr.get(API_URL + "/api/token?sort=rank&limit=" + pageSize + "&start=" + (page - 1) * pageSize + "&status=ico&showAll=2");
 
@@ -319,6 +319,13 @@ class TokenOverview extends Component {
           >
           </SweetAlert>
       ),
+    });
+
+    window.gtag('event', 'participate', {
+        'event_category': 'Token10',
+        'event_label': token.name,
+        'referrer':window.location.origin,
+        'value': account.address
     });
 
     if (await this.submit(token)) {
