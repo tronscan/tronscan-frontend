@@ -1747,7 +1747,7 @@ export default class Account extends Component {
                        onClick={this.handleTRC20Token}>
                       {tu("TRC20_token")}
                     </a>
-                    <Link to={`/exchange/trc20`} className="ml-2 float-right"><span className="mr-1"  style={{textDecoration: 'underline'}}>{t("Trade_on_TRXMarket")}</span>></Link>
+                    <a href={`https://trx.market`} className="ml-2 float-right" target="_blank"><span className="mr-1"  style={{textDecoration: 'underline'}}>{t("Trade_on_TRXMarket")}</span>></a>
                     
                   </div>
                   {

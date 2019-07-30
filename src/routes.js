@@ -292,14 +292,14 @@ export const routes = [
   //   component: Exchange20,
   //   none: true
   // },
-  {
-    label: "TRXMarket",
-    path: "/exchange/:type",
-    redirect: "/exchange/trc20",
-    icon: "fas fa-exchange-alt",
-    component: Exchangetrc,
-    none: true
-  },
+  // {
+  //   label: "TRXMarket",
+  //   path: "/exchange/:type",
+  //   redirect: "/exchange/trc20",
+  //   icon: "fas fa-exchange-alt",
+  //   component: Exchangetrc,
+  //   none: true
+  // },
   {
     label: "DAPP",
     path: "/dapp",

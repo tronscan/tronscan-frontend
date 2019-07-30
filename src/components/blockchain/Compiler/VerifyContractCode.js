@@ -53,10 +53,17 @@ class VerifyContractCode extends Component {
     }
 
     handleVerifyCode = async (e) =>{
-      const { getFieldsValue } = this.props.form
-      const { contract_code, CompileStatus } = this.state
-      const fieldata = getFieldsValue()
-      
+
+        window.gtag('event', 'verify', {
+            'event_category': 'contract',
+            'event_label': this.props.account.address,
+            'referrer':window.location.origin,
+            'value': this.props.account.address
+        });
+        const { getFieldsValue } = this.props.form
+        const { contract_code, CompileStatus } = this.state
+        const fieldata = getFieldsValue()
+
      
       if(!fieldata.contractAddress){
         this.showModal(tu('please_enter_address'))
@@ -281,7 +288,9 @@ const styles = {
 
 }
 function mapStateToProps(state) {
-    return {};
+    return {
+        account: state.app.account,
+    };
 }
 
 const mapDispatchToProps = {};

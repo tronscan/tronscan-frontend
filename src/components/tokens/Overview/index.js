@@ -321,6 +321,13 @@ class TokenOverview extends Component {
       ),
     });
 
+    window.gtag('event', 'participate', {
+        'event_category': 'Token10',
+        'event_label': token.name,
+        'referrer':window.location.origin,
+        'value': account.address
+    });
+
     if (await this.submit(token)) {
 
       this.setState({

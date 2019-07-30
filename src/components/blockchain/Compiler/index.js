@@ -329,6 +329,14 @@ class ContractCompiler extends React.Component {
     }
 
     compile = async (compilerVersion,optimizer, runs) => {
+        let {account} = this.props;
+
+        gtag('event', 'compile', {
+            'event_category': 'contract',
+            'event_label': account.address,
+            'referrer':window.location.origin,
+            'value': account.address
+        });
         this.setState({
             compileLoading: true,
             modal: null,
@@ -405,6 +413,13 @@ class ContractCompiler extends React.Component {
 
     };
     deploy = async (options) => {
+        let {account} = this.props;
+        gtag('event', 'deploy', {
+            'event_category': 'contract',
+            'event_label': account.address,
+            'referrer':window.location.origin,
+            'value': account.address
+        });
         let _this = this;
         let currentContractName = options.name;
         this.setState({
