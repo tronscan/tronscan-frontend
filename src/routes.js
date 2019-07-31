@@ -307,16 +307,16 @@ export const routes = [
     component: null,
     showInMenu: true,
     routes: [
-      {
-          url: "https://www.tronace.com/?utm_source=TS",
-          icon: "fas fa-dollar-sign",
-          label: "TRONAce"
-      },
-      {
-          url: "https://www.tronbet.io/#/?utm_source=TS",
-          icon: "fas fa-dice-six",
-          label: "TRONbet"
-      },
+      // {
+      //     url: "https://www.tronace.com/?utm_source=TS",
+      //     icon: "fas fa-dollar-sign",
+      //     label: "TRONAce"
+      // },
+      // {
+      //     url: "https://www.tronbet.io/#/?utm_source=TS",
+      //     icon: "fas fa-dice-six",
+      //     label: "TRONbet"
+      // },
       {
           url: "https://tronlending.org/?utm_source=TS",
           icon: "fas fa-hand-holding-usd",
