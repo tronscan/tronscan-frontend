@@ -68,9 +68,13 @@ class LedgerAccess extends Component {
     const defaultAddress = {hex: tronWebLedger.address.toHex(address), base58: address}
     tronWebLedger.defaultAddress = defaultAddress
     this.props.loginWithLedger(address, tronWebLedger);
-
     history.push("/account");
-
+    window.gtag('event', 'login', {
+        'event_category': 'Ledger',
+        'event_label': this.props.account.address,
+        'referrer':window.location.origin,
+        'value': this.props.account.address
+    });
     onClose && onClose();
   };
   render() {
