@@ -7,7 +7,7 @@ import {SwitchToken} from "../../common/Switch";
 import SmartTable from "../../common/SmartTable.js"
 import {upperFirst} from "lodash";
 import _ from "lodash";
-import { CONTRACT_ADDRESS_USDT } from "../../../constants";
+import { CONTRACT_ADDRESS_USDT, CONTRACT_ADDRESS_WIN } from "../../../constants";
 import {TRXPrice} from "../../common/Price";
 
 
@@ -49,8 +49,8 @@ class TokenBalances extends React.Component {
                 .filter(tb => tb.map_amount > 0)
                 .value();
         }
-
-        this.setTop(tokens,'TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t')
+        this.setTop(tokens,CONTRACT_ADDRESS_WIN)
+        this.setTop(tokens,CONTRACT_ADDRESS_USDT)
         this.setTop(tokens,'1002000');
         this.setTop(tokens,'_');
         this.setState({
@@ -94,7 +94,7 @@ class TokenBalances extends React.Component {
                 render: (text, record, index) => {
                     return (
 
-                            record.map_token_id == 1002000  || record.map_token_id == 'TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t'?<div>
+                            record.map_token_id == 1002000  || record.map_token_id == CONTRACT_ADDRESS_USDT || record.map_token_id == CONTRACT_ADDRESS_WIN ?<div>
                                 <b className="token-img-top" style={{marginRight: 5}}>
                                     <img width={20} height={20} src={record.map_amount_logo} />
                                     <i style={{width: 10, height: 10, bottom: -5}}></i>
@@ -216,7 +216,7 @@ class TokenBalances extends React.Component {
                 className: 'ant_table',
                 render: (text, record, index) => {
                     return (
-                        record.contract_address == CONTRACT_ADDRESS_USDT?<div className="map-token-top">
+                        record.contract_address == CONTRACT_ADDRESS_USDT || record.contract_address == CONTRACT_ADDRESS_WIN ?<div className="map-token-top">
                             <TokenTRC20Link name={record.name} address={record.contract_address} namePlus={record.name + ' (' + record.symbol + ')'}/>
                             <i></i>
                         </div>: <TokenTRC20Link name={record.name} address={record.contract_address} namePlus={record.name + ' (' + record.symbol + ')'}/>

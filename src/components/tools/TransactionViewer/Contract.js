@@ -1,5 +1,5 @@
 import React, {Fragment} from "react";
-import {ONE_TRX, CONTRACT_ADDRESS_USDT} from "../../../constants";
+import {ONE_TRX, CONTRACT_ADDRESS_USDT, CONTRACT_ADDRESS_WIN} from "../../../constants";
 import {AddressLink, ExternalLink, ContractLink, TokenTRC20Link} from "../../common/Links";
 import Field from "./Field";
 import {TRXPrice} from "../../common/Price";
@@ -383,7 +383,7 @@ export default function Contract({contract}) {
                                             <div className="content_name" >{tu('token_txs_info')}:</div>
                                             <div className="flex1">
                                                 {
-                                                    contract.tokenTransferInfo['contract_address'] == CONTRACT_ADDRESS_USDT?
+                                                    contract.tokenTransferInfo['contract_address'] == CONTRACT_ADDRESS_USDT || contract.tokenTransferInfo['contract_address'] == CONTRACT_ADDRESS_WIN?
                                                         <b className="token-img-top" style={{marginRight:5}}>
                                                             <img width={20} height={20} src={contract.tokenTransferInfo['icon_url']} alt={contract.tokenTransferInfo['name']} />
                                                             <i style={{width:10,height:10,bottom:-5}}></i>
