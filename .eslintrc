@@ -1,30 +1,126 @@
 {
-  "extends": "react-app",
-  "env": {
-    "amd": true
-  },
-  "parserOptions": {
-    "ecmaFeatures": {
-      "legacyDecorators": true
+    "extends": "react-app",
+    "env": {
+        "amd": true
+    },
+    "parserOptions": {
+        "ecmaFeatures": {
+            "legacyDecorators": true
+        }
+    },
+    "parser": "babel-eslint",
+    "rules": {
+        "no-restricted-properties": 0,
+        "no-unused-expressions": 0,
+        "eqeqeq": 0,
+        "no-unused-vars": 0,
+        "no-restricted-globals": 0,
+        "array-callback-return": 0,
+        "no-unreachable": 0,
+        "jsx-a11y/alt-text": 0,
+        "jsx-a11y/anchor-is-valid": 0,
+        "default-case": 0,
+        "no-script-url": 0,
+        "react/jsx-no-target-blank": 0,
+        "no-eval": 0,
+        "no-throw-literal": 0,
+        "max-len": [
+            2,
+            120,
+            2
+        ],
+        "object-curly-spacing": [
+            2,
+            "always"
+        ],
+        "semi": [
+            2,
+            "always"
+        ],
+        "spaced-comment": [
+            2,
+            "always",
+            {
+                "markers": ["/"]
+            }
+        ],
+        "space-in-parens": [
+            2,
+            "never"
+        ],
+        "camelcase": [
+            2,
+            {
+                "properties": "always"
+            }
+        ],
+        "quotes": [
+            2,
+            "single"
+        ],
+        "jsx-quotes": [
+            2,
+            "prefer-double"
+        ],
+        "keyword-spacing": [
+            2,
+            {
+                "after": true
+            }
+        ],
+        "space-before-function-paren": [
+            2,
+            "never"
+        ],
+        "no-var": 2,
+        "brace-style": 2,
+        "indent": ["error", 4, {
+            "SwitchCase": 1,
+            "ArrayExpression": 1,
+            "ObjectExpression": 1
+        }],
+        "no-alert": 2,
+        "lines-between-class-members": [
+            2,
+            "always"
+        ],
+        "no-confusing-arrow": 0,
+        "no-underscore-dangle": 0,
+        "react/jsx-closing-bracket-location": 0,
+        "jsx-closing-bracket-location": 0,
+        "react/display-name": 2,
+        "react/jsx-indent": ["error", 4],
+        "no-empty": [
+            2,
+            {
+                "allowEmptyCatch": true
+            }
+        ],
+        "require-await": 2,
+        "react/prefer-stateless-function": 0,
+        "react/jsx-curly-spacing": 0,
+        "react/jsx-indent-props": ["error", 4],
+        "react/jsx-equals-spacing": 0,
+        "react/jsx-boolean-value": 0,
+        "react/no-multi-comp": 0,
+        "react/jsx-no-bind": 0,
+        "no-multi-spaces": 0,
+        "padded-blocks": 0,
+        "prefer-promise-reject-errors": 0,
+        "comma-dangle": 0,
+        "standard/no-callback-literal": 0,
+        "no-multiple-empty-lines": 0,
+        "no-mixed-operators": 0,
+        "import/first": 0,
+        "no-useless-return": 0,
+        "no-extra-semi": 2, //禁止多余的冒号
+        "no-irregular-whitespace": 2, //不能有不规则的空格
+        "no-trailing-spaces": 1, //一行结束后面不要有空格
+        "no-undef": 1, //不能有未定义的变量
+        "comma-spacing": 0, //逗号前后的空格
+        "key-spacing": [0, {
+            "beforeColon": false,
+            "afterColon": true
+        }], //对象字面量中冒号的前后空格
     }
-  },
-  "rules": {
-    "import/no-webpack-loader-syntax": "off",
-    "no-restricted-properties": 0,
-    "no-unused-expressions": 0,
-    "eqeqeq": 0,
-    "no-unused-vars": 0,
-    "no-restricted-globals": 0,
-    "array-callback-return": 0,
-    "no-unreachable": 0,
-    "jsx-a11y/alt-text": 0,
-    "jsx-a11y/anchor-is-valid": 0,
-    "default-case": 0,
-    "no-script-url": 0,
-    "react/jsx-no-target-blank": 0,
-    "no-eval": 0,
-    "no-throw-literal": 0,
-    "jsx-a11y/anchor-has-content": 0
-  }
-
 }
