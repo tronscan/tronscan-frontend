@@ -19,7 +19,7 @@ import {TronLoader} from "../common/loaders";
 import {LineReactHighChartAdd, LineReactHighChartTx} from "../common/LineCharts";
 import {API_URL} from "../../constants";
 import { setWebsocket } from '../../actions/account';
-// import Lockr from "lockr";
+import Lockr from "lockr";
 
 @connect(
   state => {
@@ -81,6 +81,21 @@ export default class Home extends Component {
     })
   }
 
+  async loadHomepageBundle() {
+      let {data} = await xhr.get(`${API_URL}/api/system/homepage-bundle`);
+      Lockr.set("dataEth",data.priceETH)
+      Lockr.set("dataEur",data.priceEUR)
+      this.setState({
+          onlineNodes: data.node.total,
+          maxTps:data.tps.data.maxTps?data.tps.data.maxTps:0,
+          tps:data.tps.data.currentTps?data.tps.data.currentTps:0,
+          blockHeight:data.tps.data.blockHeight?data.tps.data.blockHeight:0,
+          transactionPerDay: data.yesterdayStat.data[0].newTransactionSeen,
+      })
+  }
+
+
+
 
 
   async loadAccounts() {
@@ -94,15 +109,15 @@ export default class Home extends Component {
 
   async load() {
 
-    let {blocks} = await Client.getBlocks({
-      limit: 1,
-      sort: '-number',
-    });
+    // let {blocks} = await Client.getBlocks({
+    //   limit: 1,
+    //   sort: '-number',
+    // });
 
     let { txOverviewStats } = await Client.getTxOverviewStats();
-    this.setState({
-        transactionPerDay: txOverviewStats[txOverviewStats.length - 2].newTransactionSeen,
-    });
+    // this.setState({
+    //     transactionPerDay: txOverviewStats[txOverviewStats.length - 2].newTransactionSeen,
+    // });
     let temp = [];
     let addressesTemp = [];
     for (let txs in txOverviewStats) {
@@ -186,29 +201,15 @@ export default class Home extends Component {
   };
 
   async componentDidMount() {
-    const {wsdata, intl, setWebsocket, account} = this.props;
+    const { intl } = this.props;
     this.load();
-    this.loadNodes();
     this.loadAccounts();
     this.reconnect();
-    this.loadTps();
-
-
-
-    // if(!account.isLoggedIn){
-    //     if(Lockr.get('websocket') === 'close' || !Lockr.get('websocket')) {
-    //         setWebsocket();
-    //     }
-    // }
+    this.loadHomepageBundle();
     let { noticezhIEO, noticeenIEO } = this.state;
     const data = await Client20.getTRONNotice(intl.locale, { page: 3 });
    // intl.locale == "zh"? data.articles.unshift(noticezhIEO):data.articles.unshift(noticeenIEO);
     this.setState({ notice: data.articles });
-    // constellationPreset(this.$ref, "Hot Sparks");
-
-    // this.props.setInterval(() => {
-    //   this.load();
-    // }, 6000);
   }
 
   async  componentDidUpdate(prevProps) {

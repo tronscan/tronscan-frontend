@@ -11,12 +11,11 @@ import SubmitInfo from './SubmitInfo';
 import ResultInfo from './resultInfo';
 import { Prompt } from 'react-router'
 import { BrowserRouter } from 'react-router-dom'
-import ReactDOM from 'react-dom'
 import SweetAlert from "react-bootstrap-sweetalert";
 import { Modal, Button } from 'antd';
 import NavigationPrompt from "react-router-navigation-prompt";
 import xhr from "axios/index";
-import {API_URL, ONE_TRX, CONTRACT_ADDRESS_USDT} from "../../../constants";
+import {API_URL, ONE_TRX} from "../../../constants";
 import {TronLoader} from "../../common/loaders";
 import {Client} from "../../../services/api";
 import _ from "lodash";

@@ -391,6 +391,7 @@ export const routes = [
     path: "/tools",
     label: "tools",
     icon: "fa fa-wrench",
+    component: null,
     showInMenu: false,
     routes: [
       // {
@@ -723,7 +724,15 @@ export const routes = [
     showSubMenu: false,
     showSubHeader: false,
     component: HomeAsync
-  }
+  },
+  // {
+  //   path: "/error",
+  //   showInMenu: false,
+  //   showSubMenu: false,
+  //   showSubHeader: false,
+  //   component: DemoAsync
+  // }
+
 ];
 
 export const flatRoutes = flatten(

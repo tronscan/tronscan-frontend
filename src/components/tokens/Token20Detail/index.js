@@ -9,7 +9,7 @@ import {TronLoader} from "../../common/loaders";
 import Transfers from "./Transfers.js";
 import TokenInfo from "./TokenInfo.js";
 import {Information} from "./Information.js";
-import {API_URL, ONE_TRX, CONTRACT_ADDRESS_USDT, CONTRACT_ADDRESS_WIN} from "../../../constants";
+import {API_URL, ONE_TRX, CONTRACT_ADDRESS_USDT, CONTRACT_ADDRESS_WIN, CONTRACT_ADDRESS_GGC} from "../../../constants";
 import {login} from "../../../actions/app";
 import {reloadWallet} from "../../../actions/wallet";
 import {connect} from "react-redux";
@@ -384,7 +384,7 @@ class Token20Detail extends React.Component {
                           {token && token.icon_url ?
                               <div>
                                   {
-                                      token.contract_address == CONTRACT_ADDRESS_USDT ||  token.contract_address == CONTRACT_ADDRESS_WIN?
+                                      token.contract_address == CONTRACT_ADDRESS_USDT ||  token.contract_address == CONTRACT_ADDRESS_WIN ||  token.contract_address == CONTRACT_ADDRESS_GGC?
                                           <div className="token-img-top">
                                             <img className='token-logo' src={token.icon_url}/>
                                             <i></i>

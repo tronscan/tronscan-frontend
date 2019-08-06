@@ -5,6 +5,7 @@ import { Tooltip } from "reactstrap";
 import { alpha } from "../../utils/str";
 import { connect } from "react-redux";
 import { ONE_TRX } from "../../constants";
+import Lockr from "lockr";
 let PriceContext = React.createContext({
   priceBTC: 0,
   priceUSD: 0
@@ -41,17 +42,25 @@ class PriceProviderCmp extends React.PureComponent {
   }
 
   async loadPrices() {
-    let { data } = await xhr.get(
-      `https://api.coinmarketcap.com/v1/ticker/tronix/?convert=EUR`
-    );
-    let { data: dataEth } = await xhr.get(
-      `https://api.coinmarketcap.com/v1/ticker/tronix/?convert=ETH`
-    );
+    var dataEur = Lockr.get('dataEur');
+    var dataEth = Lockr.get('dataEth');
+    if(!Lockr.get('dataEur')){
+        var { data:dataEur } = await xhr.get(
+            `https://api.coinmarketcap.com/v1/ticker/tronix/?convert=EUR`
+        );
+    }
+
+    if(!Lockr.get('dataEth')){
+        var { data: dataEth } = await xhr.get(
+            `https://api.coinmarketcap.com/v1/ticker/tronix/?convert=ETH`
+        );
+    }
+
 
     let newPrices = {
-      BTC: parseFloat(data[0].price_btc),
-      EUR: parseFloat(data[0].price_eur),
-      USD: parseFloat(data[0].price_usd),
+      BTC: parseFloat(dataEur[0].price_btc),
+      EUR: parseFloat(dataEur[0].price_eur),
+      USD: parseFloat(dataEur[0].price_usd),
       ETH: parseFloat(dataEth[0].price_eth),
       TRX: 1
     };

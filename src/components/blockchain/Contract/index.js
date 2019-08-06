@@ -19,7 +19,7 @@ import Call from "./Call";
 import {upperFirst} from "lodash";
 import {Truncate} from "../../common/text";
 import xhr from "axios/index";
-import {API_URL, CONTRACT_ADDRESS_USDT, CONTRACT_ADDRESS_WIN} from "../../../constants";
+import {API_URL, CONTRACT_ADDRESS_USDT, CONTRACT_ADDRESS_WIN, CONTRACT_ADDRESS_GGC} from "../../../constants";
 import { Tooltip } from 'antd'
 import TokenBalances from './Balance.js'
 // import { CsvExport } from "../../common/CsvExport";
@@ -252,7 +252,7 @@ class SmartContract extends React.Component {
                               {
                                 token20&& <li><p>{tu('token_tracker')}: </p>
                                     {
-                                        token20.contract_address == CONTRACT_ADDRESS_USDT || token20.contract_address == CONTRACT_ADDRESS_WIN?
+                                        token20.contract_address == CONTRACT_ADDRESS_USDT || token20.contract_address == CONTRACT_ADDRESS_WIN || token20.contract_address ==CONTRACT_ADDRESS_GGC?
                                             <b className="token-img-top" style={{marginRight:10}}>
                                                 <img width={20} height={20} src={token20.icon_url} alt='' />
                                                 <i style={{width:10,height:10}}></i>
