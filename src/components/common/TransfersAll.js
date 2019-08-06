@@ -19,7 +19,7 @@ import { toThousands } from '../../utils/number'
 import _ from "lodash";
 import { Radio } from 'antd';
 import {isAddressValid} from "@tronscan/client/src/utils/crypto";
-import { CONTRACT_ADDRESS_USDT, CONTRACT_ADDRESS_WIN } from "../../constants";
+import { CONTRACT_ADDRESS_USDT, CONTRACT_ADDRESS_WIN, CONTRACT_ADDRESS_GGC } from "../../constants";
 import qs from 'qs'
 
 
@@ -279,7 +279,7 @@ class TransfersAll extends React.Component {
                 render: (text, record, index) => {
                     return <div>
                             {
-                                record.map_token_id == 1002000  || record.map_token_id == CONTRACT_ADDRESS_USDT || record.map_token_id == CONTRACT_ADDRESS_WIN?<div>
+                                record.map_token_id == 1002000  || record.map_token_id == CONTRACT_ADDRESS_USDT || record.map_token_id == CONTRACT_ADDRESS_WIN || record.map_token_id == CONTRACT_ADDRESS_GGC?<div>
                                         <b className="token-img-top" style={{marginRight: 5}}>
                                             <img width={20} height={20} src={record.map_amount_logo} />
                                             <i style={{width: 10, height: 10, bottom: -5}}></i>
