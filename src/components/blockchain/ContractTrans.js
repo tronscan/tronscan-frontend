@@ -190,10 +190,10 @@ class ContractTrans extends React.Component {
                 {loading && <div className="loading-style"><TronLoader/></div>}
                 <div className="row">
                     <div className="col-md-12 table_pos">
-                        {total ?<TotalInfo total={total} rangeTotal={rangeTotal} typeText="contract_triggers_total" markName="table-question-mark-triggers"/>:""}
-                        {
-                          total ? <DateRange onDateOk={(start,end) => this.onDateOk(start,end)} /> :''
-                        }
+                        {total ?<TotalInfo total={total} rangeTotal={rangeTotal} typeText="contract_triggers_total" markName="table-question-mark-triggers" isQuestionMark={false} />:""}
+                        {/*{*/}
+                          {/*total ? <DateRange onDateOk={(start,end) => this.onDateOk(start,end)} /> :''*/}
+                        {/*}*/}
                         <SmartTable bordered={true} loading={loading}
                                     column={column} data={transactions} total={total}
                                     onPageChange={(page, pageSize) => {
