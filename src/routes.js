@@ -10,6 +10,7 @@ import {
     CopyrightAsync,
     DemoAsync,
     FaqAsync,
+    ErrorAsync,
     FoundationAsync,
     LedgerHelpAsync,
     LiveAsync,
@@ -725,13 +726,13 @@ export const routes = [
     showSubHeader: false,
     component: HomeAsync
   },
-  // {
-  //   path: "/error",
-  //   showInMenu: false,
-  //   showSubMenu: false,
-  //   showSubHeader: false,
-  //   component: DemoAsync
-  // }
+  {
+    path: "/error",
+    showInMenu: false,
+    showSubMenu: false,
+    showSubHeader: false,
+    component: ErrorAsync
+  }
 
 ];
 
