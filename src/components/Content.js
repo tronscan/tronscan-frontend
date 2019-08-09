@@ -54,6 +54,7 @@ export default class Content extends Component {
             <Route
               key={route.path}
               path={route.path}
+              exact={route.isExact}
               render={props => (
                 <React.Fragment>
                   <Switch>

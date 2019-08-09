@@ -718,19 +718,20 @@ export const routes = [
     showSubHeader: false,
     component: BTTSupplyTemp
   },
-  {
-      path: "/error",
-      showInMenu: false,
-      showSubMenu: false,
-      showSubHeader: false,
-      component: ErrorAsync
-  },
+  // {
+  //     path: "/error",
+  //     showInMenu: false,
+  //     showSubMenu: false,
+  //     showSubHeader: false,
+  //     component: ErrorAsync
+  // },
   {
     path: "/",
     label: "home",
     showInMenu: false,
     showSubMenu: false,
     showSubHeader: false,
+    isExact: true,
     component: HomeAsync
   },
 
