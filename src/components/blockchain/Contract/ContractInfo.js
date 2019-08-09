@@ -3,6 +3,7 @@ import { CopyText } from '../../common/Copy';
 import { tu } from '../../../utils/i18n';
 import { Client } from '../../../services/api';
 import { TronLoader } from '../../common/loaders';
+import { Base64 } from 'js-base64';
 
 export default class Code extends React.Component {
 
@@ -78,6 +79,7 @@ export default class Code extends React.Component {
         const { filter: { contractInfoList: { interfaceAbi } } } = this.props;
         // 合约代码
         const code = contractCode || (contractInfos && contractInfos.length > 0 && contractInfos[0].code);
+        const base64Code = code && Base64.decode(code);
 
         // 合约名称Item
         const contractNameItem = (
@@ -100,7 +102,7 @@ export default class Code extends React.Component {
 
                 <div className="d-flex mb-1">
                     <span><i className="fa fa-cogs mb-2"></i> {tu('contract_code')}</span>
-                    <CopyText text={code} className="ml-auto ml-1" />
+                    <CopyText text={base64Code} className="ml-auto ml-1" />
                 </div>
                 <div className="row">
                     <div className="col-md-2 pr-0">
@@ -114,7 +116,7 @@ export default class Code extends React.Component {
                         <textarea className="w-100 form-control"
                             rows="7"
                             readOnly="readonly"
-                            value={code} />
+                            value={base64Code} />
                     </div>
                 </div>
             </div>
@@ -158,7 +160,7 @@ export default class Code extends React.Component {
             <main className="container pl-0 pr-0">
                 {loading && <div className="loading-style" style={{ marginTop: '-20px' }}><TronLoader /></div>}
                 {interfaceAbi && contractNameItem}
-                {contractInfos && contractCodeItem}
+                {contractInfos && contractInfos.length > 0 && contractCodeItem}
                 {contractAbiItem}
                 {byteCodeItem}
             </main>
