@@ -15,6 +15,7 @@ export const ASSET_ISSUE_COST = 1024 * ONE_TRX;
 
 export const PUBLIC_URL = process.env.PUBLIC_URL || window.location.origin;
 export const API_URL = process.env.API_URL;
+// export const API_URL_TEST = 'http://172.16.20.52:9016';
 
 export const ACCOUNT_PRIVATE_KEY = 'ACCOUNT_PRIVATE_KEY';
 export const ACCOUNT_ADDRESS = 'ACCOUNT_ADDRESS';
@@ -23,3 +24,6 @@ export const ACCOUNT_TRONLINK = 'ACCOUNT_TRONLINK';
 
 export const CONTRACT_ADDRESS_USDT = 'TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t';
 export const CONTRACT_ADDRESS_WIN = 'TLa2f6VPqDgRE67v1736s7bJ8Ray5wYjU7';
+
+// 部署编译
+export const FILE_MAX_SIZE = 5 * 1024 * 1024;
