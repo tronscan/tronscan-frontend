@@ -94,7 +94,7 @@ class Representatives extends Component {
               </td>
             </tr>
             {superRepresentatives.map((account, index) => <Row index={index} state={this.state} props={this.props}
-                                                               key={account.address} account={account}/>)}
+                                                               key={account.address + index} account={account}/>)}
             <tr style={{height: '72px'}}>
               <td colSpan="9" className="font-weight-bold">
                 <i className="fa fa-user mr-2 ml-2"  style={{color: '#666'}}></i>
@@ -102,7 +102,7 @@ class Representatives extends Component {
               </td>
             </tr>
             {candidateRepresentatives.map((account, index) => <Row index={index + 27} state={this.state}
-                                                                   props={this.props} key={account.address}
+                                                                   props={this.props} key={account.address + index}
                                                                    account={account} showSync={false}/>)}
             </tbody>
           </table>

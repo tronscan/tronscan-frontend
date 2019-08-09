@@ -1,13 +1,14 @@
 import React, {Component} from 'react';
 import {routes} from "../routes";
-import {Route, Switch} from "react-router-dom";
+import {Route, Switch, Redirect} from "react-router-dom";
 import {filter, isUndefined} from "lodash";
 import {doSearch} from "../services/search";
-
-
+import { BTTSupplyTemp } from "components/async";
 /*function Badge({value}) {
   return <span className="badge badge-pill bg-light align-text-bottom">{value}</span>;
 }*/
+
+const redirectRoute= <Redirect to="/error" />;
 
 export default class Content extends Component {
 
@@ -64,7 +65,9 @@ export default class Content extends Component {
                               ))
                             }
                             <Route component={route.component}/>
+                            {/*<Route path="*" component={BTTSupplyTemp} />*/}
                           </Switch>
+
 
                         </React.Fragment>
                     )}/>
