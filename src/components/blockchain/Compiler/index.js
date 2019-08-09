@@ -62,9 +62,9 @@ class ContractCompiler extends React.Component {
 
         this.setState({
             code: compileCode && compileCode,
-            CompileStatus: compileStatus && compileStatus,
-            contractNameList: contractNameList && contractNameList,
-            compileInfo: compileInfo && compileInfo,
+            CompileStatus: compileStatus || [],
+            contractNameList: contractNameList || [],
+            compileInfo: compileInfo || [],
             compileFiles: files || [],
         });
     }
