@@ -1,16 +1,22 @@
 import React, {Component} from 'react';
 import {t, tu} from "../../../../utils/i18n";
 import NumericInput from '../../../common/NumericInput';
+import SweetAlert from "react-bootstrap-sweetalert";
+
 import {
-  Form, Row, Col, Input, InputNumber, AutoComplete
+  Form, Row, Col, Input, InputNumber, AutoComplete, Upload, Icon, message
 } from 'antd';
 const { TextArea } = Input;
 const AutoCompleteOption = AutoComplete.Option;
+
+
+
 
 export class BaseInfo extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      logoLoading: false,
       autoCompleteResult: [],
       precision_20: 18,
       ...this.props.state
@@ -27,14 +33,81 @@ export class BaseInfo extends Component {
     this.setState({ autoCompleteResult });
   }
 
+  getBase64 = (img, callback) => {
+      const reader = new FileReader();
+      reader.addEventListener('load', () => callback(reader.result));
+      reader.readAsDataURL(img);
+  }
+  checkImageWH = (file, width, height) => {
+      return new Promise(function (resolve, reject) {
+          let filereader = new FileReader();
+          filereader.onload = e => {
+              let src = e.target.result;
+              const image = new Image();
+
+              image.onload = function () {
+                  if (width && this.width != width) {
+                      message.error('请上传宽为' + width + '的图片');
+                      reject();
+                  } else if (height && this.height != height) {
+                      message.error('请上传宽为' + height + '的图片');
+                      reject();
+                  } else {
+                      resolve();
+                  }
+              };
+              image.onerror = reject;
+              image.src = src;
+          };
+          filereader.readAsDataURL(file);
+      });
+  }
+
+   beforeUpload = (file) => {
+     let { intl, showModal } = this.props;
+      const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png';
+      if (!isJpgOrPng) {
+           showModal('You can only upload JPG/JPEG/PNG file!')
+          //message.error('You can only upload JPG/PNG file!');
+      }
+      console.log('file.size',file.size)
+      const isLt2M = file.size / 1024  < 200;
+      if (!isLt2M) {
+          message.error('Image must smaller than 200KB!');
+      }
+      return isJpgOrPng && isLt2M && this.checkImageWH(file, 100, 100);
+  }
+  handleChange = info => {
+      console.log('info',info)
+      if (info.file.status === 'uploading') {
+          this.setState({ logoLoading: true });
+          return;
+      }
+      if (info.file.status === 'done') {
+          // Get this url from response in real world.
+          this.getBase64(info.file.originFileObj, imageUrl =>
+              this.setState({
+                  imageUrl,
+                  logoLoading: false,
+              }),
+          );
+      }
+  };
+
   render() {
     const { getFieldDecorator } = this.props.form
     const { intl } = this.props
-    const { precision_20, autoCompleteResult } =  this.state;
+    const { precision_20, autoCompleteResult, imageUrl } =  this.state;
     const { isTrc20, isUpdate } = this.props.state;
     const logoOptions = autoCompleteResult.map(logo => (
       <AutoCompleteOption key={logo}>{logo}</AutoCompleteOption>
     ));
+    const uploadButton = (
+        <div>
+          <Icon type={this.state.loading ? 'loading' : 'plus'} />
+          <div className="ant-upload-text">Upload</div>
+        </div>
+    );
 
     return (
       <div>
@@ -98,12 +171,17 @@ export class BaseInfo extends Component {
               rules: [{ required: isTrc20 || isUpdate, message: tu('logo_v_required'), whitespace: true},
                       {pattern: /\.jpg|\.png|\.PNG|\.JPG|\.jpeg$/, message: tu('logo_v_format')}],
             })(
-              <AutoComplete
-                dataSource={logoOptions}
-                onChange={this.handleLogoChange}
-                placeholder={intl.formatMessage({id: 'token_logo_input_placeholder'})}
-              >
-              </AutoComplete>
+                <Upload
+                  name="avatar"
+                  listType="picture-card"
+                  className="avatar-uploader"
+                  showUploadList={false}
+                  action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+                  beforeUpload={this.beforeUpload}
+                  onChange={this.handleChange}
+                  >
+                  {imageUrl ? <img src={imageUrl} alt="Logo" style={{ width: '100%' }} /> : uploadButton}
+                </Upload>
             )}
           </Form.Item>
         </Col>

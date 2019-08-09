@@ -20,9 +20,16 @@ class Error extends Component {
 
         let { intl } = this.props;
         return (
-            <main className="container header-overlap pb-3 token_black">
-                <div className="row d-flex" style={{color:'#C23631','fontSize':'50px'}}>
-                    404
+            <main className="container pb-3 token_black">
+                <div className="row d-flex error-info">
+                    <img src={require('../images/home/error.png')}/>
+                    <div className="d-flex flex-column ml-5">
+                        <div className="error-info-404">404</div>
+                        <div className="error-info-font">
+                            The page you visited does not exist
+                        </div>
+                    </div>
+
                 </div>
             </main>
         )

@@ -62,6 +62,23 @@ export class TokenCreate extends Component {
         }
         return true
     };
+    showModal = (msg) => {
+        console.log('msg',msg)
+        let { intl } = this.props;
+        this.setState({
+            modal:
+                <SweetAlert
+                    error
+                    confirmBtnText={intl.formatMessage({id: 'confirm'})}
+                    confirmBtnBsStyle="success"
+                    onConfirm={this.hideModal}
+                    style={{marginLeft: '-240px', marginTop: '-195px'}}
+                >
+                    {tu(msg)}
+                </SweetAlert>
+            }
+        );
+    }
 
     hideModal = () => {
         this.setState({
@@ -110,7 +127,7 @@ export class TokenCreate extends Component {
         const {intl, nextStep} = this.props;
         const { modal,isUpdate } = this.state;
         const {form} = this.props;
-
+        console.log('modal',modal)
         return (
             <main className="">
                 {modal}
@@ -118,7 +135,7 @@ export class TokenCreate extends Component {
                     className="ant-advanced-search-form"
                 >
                     {/* base info */}
-                    <BaseInfo form={form} intl={intl} state={this.state}/>
+                    <BaseInfo form={form} intl={intl} state={this.state} showModal={(msg) => {this.showModal(msg)}}/>
 
                     {/* contract info */}
                     <ContractInfo form={form} intl={intl} state={this.state} loadContractCode={(id) => { this.loadContractCode(id) }}/>

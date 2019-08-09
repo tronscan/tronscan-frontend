@@ -4407,3 +4407,24 @@ delete {
 .fa, .fas {
   font-weight: 900!important;
 }
+
+.error-info{
+  margin-top: 150px;
+  padding-bottom: 150px;
+  justify-content: center;
+  align-items: center;
+  img{
+    display: block;
+  }
+  &-404{
+    font-size: 170px;
+    color: rgba(48,44,72,0.27);
+    letter-spacing: 0;
+    line-height: 1.2;
+  }
+  &-font{
+    font-size: 20px;
+    color: rgba(48,44,72,0.53);
+    line-height: 40px;
+  }
+}
