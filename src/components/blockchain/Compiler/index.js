@@ -89,7 +89,6 @@ class ContractCompiler extends React.Component {
 
     componentDidMount() {
        let {match} = this.props;
-       console.log('match',match)
        if(match.params && match.params.type == 'verify'){
         this.setState({
             filters: { "direction": 'verify'}

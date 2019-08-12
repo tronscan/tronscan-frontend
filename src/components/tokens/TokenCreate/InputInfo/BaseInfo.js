@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import {t, tu} from "../../../../utils/i18n";
 import NumericInput from '../../../common/NumericInput';
-import SweetAlert from "react-bootstrap-sweetalert";
+import {connect} from "react-redux";
+import {injectIntl} from "react-intl";
 
 import {
   Form, Row, Col, Input, InputNumber, AutoComplete, Upload, Icon, message
@@ -12,7 +13,7 @@ const AutoCompleteOption = AutoComplete.Option;
 
 
 
-export class BaseInfo extends Component {
+class BaseInfo extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -22,7 +23,9 @@ export class BaseInfo extends Component {
       ...this.props.state
     };
   }
+  componentDidMount () {
 
+  }
   handleLogoChange = (value) => {
     let autoCompleteResult;
     if (!value || /\.jpg|\.png|\.PNG|\.JPG|\.jpeg$/.test(value)) {
@@ -39,6 +42,8 @@ export class BaseInfo extends Component {
       reader.readAsDataURL(img);
   }
   checkImageWH = (file, width, height) => {
+      let { intl, showModal } = this.props;
+      let _this = this;
       return new Promise(function (resolve, reject) {
           let filereader = new FileReader();
           filereader.onload = e => {
@@ -47,13 +52,28 @@ export class BaseInfo extends Component {
 
               image.onload = function () {
                   if (width && this.width != width) {
-                      message.error('请上传宽为' + width + '的图片');
+                      showModal('请上传宽为' + width + 'px的图片')
                       reject();
                   } else if (height && this.height != height) {
-                      message.error('请上传宽为' + height + '的图片');
+                      showModal('请上传宽为' + height + 'px的图片')
                       reject();
                   } else {
-                      resolve();
+                      _this.setBodyParameter();
+                      let timer = null;
+                      let count = 0;
+                      timer = setInterval(() => {
+                          if (_this.state.body) {
+                              resolve();
+                              clearInterval(timer)
+                          } else {
+                              count++
+                              if (count > 30) {
+                                  count = 0
+                                  clearInterval(timer)
+                              }
+                          }
+                      }, 100)
+
                   }
               };
               image.onerror = reject;
@@ -63,41 +83,80 @@ export class BaseInfo extends Component {
       });
   }
 
-   beforeUpload = (file) => {
-     let { intl, showModal } = this.props;
+    beforeUpload = (file) => {
+      let { intl, showModal } = this.props;
       const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png';
       if (!isJpgOrPng) {
-           showModal('You can only upload JPG/JPEG/PNG file!')
-          //message.error('You can only upload JPG/PNG file!');
+          showModal('You can only upload JPG/JPEG/PNG file!')
       }
-      console.log('file.size',file.size)
-      const isLt2M = file.size / 1024  < 200;
-      if (!isLt2M) {
-          message.error('Image must smaller than 200KB!');
+      const isLt200KB = file.size / 1024  < 200;
+
+      if (!isLt200KB) {
+          showModal('Image must smaller than 200KB!')
       }
-      return isJpgOrPng && isLt2M && this.checkImageWH(file, 100, 100);
-  }
+
+      return isJpgOrPng && isLt200KB &&  this.checkImageWH(file, 100, 100)
+
+    }
+
   handleChange = info => {
-      console.log('info',info)
+      let {file} = info;
       if (info.file.status === 'uploading') {
           this.setState({ logoLoading: true });
           return;
       }
-      if (info.file.status === 'done') {
-          // Get this url from response in real world.
-          this.getBase64(info.file.originFileObj, imageUrl =>
-              this.setState({
-                  imageUrl,
-                  logoLoading: false,
-              }),
-          );
+      if(file.response){
+        if(file.response.retCode == 0){
+            this.props.form.setFieldsValue({
+                logo_url:file.response.data.logo_url
+            })
+            this.setState({
+                logoLoading: false,
+                paramData:{
+                    logo_url:file.response.data.logo_url
+                },
+            })
+        }
       }
+      // if (info.file.status === 'done') {
+      //     // Get this url from response in real world.
+      //     this.getBase64(info.file.originFileObj, imageUrl =>
+      //         this.setState({
+      //             logo_url:imageUrl,
+      //             logoLoading: false,
+      //         }),
+      //     );
+      //
+      // }
   };
+
+  setBodyParameter = async (file) => {
+    const { tronWeb } = this.props.account;
+    let data  = {
+        "issuer_addr": this.state.paramData.author,
+        "id":this.state.paramData.token_id,
+        "type": this.state.type,
+
+    }
+    let hash = tronWeb.toHex(JSON.stringify(data), false);
+    let sig = await tronWeb.trx.sign(hash);
+    let body = {
+        "content":JSON.stringify(data),
+        "sig": sig
+    }
+    this.setState({
+        body,
+    },()=>{
+
+    });
+  }
+
+
 
   render() {
     const { getFieldDecorator } = this.props.form
-    const { intl } = this.props
-    const { precision_20, autoCompleteResult, imageUrl } =  this.state;
+    const { intl } = this.props;
+    let { precision_20, autoCompleteResult, paramData:{ logo_url } ,body } =  this.state;
     const { isTrc20, isUpdate } = this.props.state;
     const logoOptions = autoCompleteResult.map(logo => (
       <AutoCompleteOption key={logo}>{logo}</AutoCompleteOption>
@@ -108,7 +167,8 @@ export class BaseInfo extends Component {
           <div className="ant-upload-text">Upload</div>
         </div>
     );
-
+    logo_url = logo_url + '?' + new Date().getTime()
+    let bodyData = {'body':JSON.stringify(body)}
     return (
       <div>
       <h4 className="mb-3">{tu('basic_info')}</h4>
@@ -165,24 +225,30 @@ export class BaseInfo extends Component {
           </Form.Item>
         </Col>
         {/*<Col  span={24} md={11} className={ isTrc20? 'd-block': 'd-none'}>*/}
-        <Col span={24} md={11} className={ isTrc20 || isUpdate? 'd-block': 'd-none'}>
+        <Col span={24} md={11} className={isUpdate? 'd-block': 'd-none'}>
           <Form.Item label={tu('token_logo')}>
             {getFieldDecorator('logo_url', {
-              rules: [{ required: isTrc20 || isUpdate, message: tu('logo_v_required'), whitespace: true},
+                rules: [{ required: isTrc20 || isUpdate, message: tu('logo_v_required'), whitespace: true},
                       {pattern: /\.jpg|\.png|\.PNG|\.JPG|\.jpeg$/, message: tu('logo_v_format')}],
             })(
-                <Upload
-                  name="avatar"
-                  listType="picture-card"
-                  className="avatar-uploader"
-                  showUploadList={false}
-                  action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
-                  beforeUpload={this.beforeUpload}
-                  onChange={this.handleChange}
+                <div>
+                  <Upload
+                      name="file"
+                      listType="picture-card"
+                      className="avatar-uploader"
+                      showUploadList={false}
+                      action="https://scantest.tronscan.org/external/upload/logo"
+                      data={bodyData}
+                      beforeUpload={this.beforeUpload}
+                      onChange={this.handleChange}
                   >
-                  {imageUrl ? <img src={imageUrl} alt="Logo" style={{ width: '100%' }} /> : uploadButton}
-                </Upload>
-            )}
+                      {logo_url ? <img src={logo_url} alt="Logo" style={{ width: '100%' }} /> : uploadButton}
+                  </Upload>
+                  <Input disabled  className='d-block'/>
+                </div>
+
+
+                )}
           </Form.Item>
         </Col>
         <Col  span={24} md={11}>
@@ -199,3 +265,16 @@ export class BaseInfo extends Component {
     )
   }
 }
+
+function mapStateToProps(state) {
+    return {
+        account: state.app.account,
+    };
+}
+
+const mapDispatchToProps = {
+
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(injectIntl(BaseInfo));
+

@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {injectIntl} from "react-intl";
 import {connect} from "react-redux";
 import {t, tu} from "../../../../utils/i18n";
-import {BaseInfo} from './BaseInfo'
+import BaseInfo from './BaseInfo'
 import { ContractInfo } from './ContractInfo';
 import { PriceInfo } from './PriceInfo';
 import { SocialInfo } from './SocialInfo';
@@ -63,7 +63,6 @@ export class TokenCreate extends Component {
         return true
     };
     showModal = (msg) => {
-        console.log('msg',msg)
         let { intl } = this.props;
         this.setState({
             modal:
@@ -127,7 +126,6 @@ export class TokenCreate extends Component {
         const {intl, nextStep} = this.props;
         const { modal,isUpdate } = this.state;
         const {form} = this.props;
-        console.log('modal',modal)
         return (
             <main className="">
                 {modal}

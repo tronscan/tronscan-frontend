@@ -106,7 +106,7 @@ export class TokenCreate extends Component {
   }
 
   loadToken10 = async (id) => {
-      let {account, intl} = this.props;
+      let {account, intl } = this.props;
       this.setState({ loading: true, isUpdate:true });
       let result = await xhr.get(API_URL+"/api/token?id=" + id + "&showAll=1");
       let token = result.data.data[0];
@@ -175,6 +175,7 @@ export class TokenCreate extends Component {
           type: 'trc10',
           isUpdate:true,
           paramData: {
+              token_id:id,
               token_name: token.name,
               token_abbr: token.abbr,
               token_introduction: token.description,
@@ -268,6 +269,7 @@ export class TokenCreate extends Component {
             type: 'trc20',
             isUpdate:true,
             paramData: {
+                 token_id:id,
                  token_name: token.name,
                  token_abbr: token.symbol,
                  token_introduction:token.token_desc,

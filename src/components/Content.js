@@ -44,7 +44,6 @@ export default class Content extends Component {
     //let {search} = this.state;
     //let {router} = this.props;
     // let location = router.location ? router.location.key : "";
-    console.log('routes',routes);
 
 
     return (
