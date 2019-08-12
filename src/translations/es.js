@@ -1932,9 +1932,8 @@ export const messages = {
   "contract_verify_btn": "para verificar",
   "write_payable": "Ejecuta estas funciones con TRX o otro token",
   "write_nonePayable": "Ejecutar estas funciones consumirá TRX o Energía.",
-  "verify_code1": "Verificación del código fuente proporciona transparencia para los usuarios que interactúan con contratos inteligentes.",
-  "verify_code2": "Al cargar el código fuente, Tronscan comparará el código compilado con el de la cadena de bloques.",
-  "verify_code3": `Al igual que los contratos, un "contrato inteligente" debe proporcionar a los usuarios más información sobre lo que están "firmando digitalmente" y ofrecer a los usuarios la oportunidad de auditar el código para verificar de forma independiente que realmente hace lo que se supone que debe hacer.`,
+  "verify_code1": "La verificación del contrato se comprueba cuando coincide el código de contrato inteligente escrito con el código de contrato inteligente publicado en la blockchain comprobando la autenticidad y la transparencia del contrato inteligente.",
+  "verify_code2": "Se puede verificar un contrato inteligente en TRONSCAN cargando el archivo del contrato inteligente y revisándolo.",
   /*
    ##################################################################################
    #                                                                                #
@@ -1942,9 +1941,14 @@ export const messages = {
    #                                                                                #
    ##################################################################################
   */
+  "select_contract_file":"Cargar archivos de contrato",
+  "selected_contract_file_left":" ",
+  "selected_contract_file_right":"Archivos cargados",
+  "selected_file_max_size": "El tamaño del archivo no debe superar los 5 MB",
   "contract_deployment":"Despliegue de contrato",
   "contract_verification":"Verificación de contrato",
-  "contract_deploy_info":"Pon tu único archivo de smart contrato aquí",
+  "contract_deploy_info1":"Implementar un contrato significa publicar el código del contrato inteligente en una red blockchain. Puedes compilar e implementar contratos inteligentes en TRONSCAN subiendo los archivos de los contratos inteligentes.",
+  "contract_deploy_info2":"Ten en cuenta que la implementación del contrato consume una cierta cantidad de TRX, asegúrate de que el saldo de tu cuenta sea suficiente.",
   "contract_deployment_btn_compile":"Compilar",
   "contract_deployment_btn_deploy":"Desplegar",
   "contract_compile_params":"Compilar params",

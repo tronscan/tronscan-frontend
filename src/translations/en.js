@@ -1946,11 +1946,10 @@ export const messages = {
    #                                                                                #
    ##################################################################################
   */
-  "select_contract_file":"Select contract file(s)",
-  "no_select_contract_file":"No selected file(s)",
-  "selected_contract_file_left":"",
-  "selected_contract_file_right":" file(s) had been selected",
-  "selected_file_max_size": "File size should not exceed 5 M",
+  "select_contract_file":"Upload contract file(s)",
+  "selected_contract_file_left":" ",
+  "selected_contract_file_right":" file(s) had been uploaded",
+  "selected_file_max_size": "File size should not exceed 5 MB",
   "contract_deployment":"Contract deployment",
   "contract_verification":"Contract verification",
   "contract_deploy_info1":"Contract deployment means publishing your smart contract code to a blockchain network. You can compile and deploy smart contracts on TRONSCAN by uploading smart contract files. ",

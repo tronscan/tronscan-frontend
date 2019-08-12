@@ -1926,9 +1926,8 @@ export const messages = {
    #                                                                                #
    ##################################################################################
   */
-  "select_contract_file":"选择合约文件",
-  "no_select_contract_file":"未选择任何文件",
-  "selected_contract_file_left":"已选择",
+  "select_contract_file":"上传合约文件",
+  "selected_contract_file_left":"已上传",
   "selected_contract_file_right":"个文件",
   "selected_file_max_size": "文件大小不得超过 5 M",
   "contract_deployment":"合约部署",
