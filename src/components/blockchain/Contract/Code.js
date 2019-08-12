@@ -15,9 +15,9 @@ class Code extends React.Component {
         super(props);
         // https://api.shasta.trongrid.io
         this.tronWeb = new tronWeb({
-            fullNode: 'https://api.trongrid.io',
-            solidityNode: 'https://api.trongrid.io',
-            eventServer: 'https://api.trongrid.io',
+            fullNode: 'https://api.shasta.trongrid.io',
+            solidityNode: 'https://api.shasta.trongrid.io',
+            eventServer: 'https://api.shasta.trongrid.io',
         });
         this.state = {
             loading: true,
