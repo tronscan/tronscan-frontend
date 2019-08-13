@@ -46,7 +46,7 @@ BigNumber.config({ EXPONENTIAL_AT: [-1e9, 1e9] });
     }
 
     componentDidMount() {
-
+        console.log('this.props.state=====',this.state)
     }
 
     ErrorLabel = (error) => {
@@ -59,7 +59,8 @@ BigNumber.config({ EXPONENTIAL_AT: [-1e9, 1e9] });
     }
 
     tokenState = (value) => {
-        let {iconList, modal, checkbox, errors, captcha_code, type, paramData:{ token_name, token_abbr, token_introduction, token_supply, precision, author, logo_url, contract_address, contract_created_date, contract_code, token_amount, trx_amount, freeze_amount, freeze_date, freeze_type, participation_start_date, participation_end_date, participation_type, website, email, white_paper,github_url }} = this.state;
+        let {iconList, modal, checkbox, errors, captcha_code, type, paramData:{ token_name, token_abbr, token_introduction, token_supply, precision, author, logo_url, contract_address, contract_created_date, contract_code, token_amount, trx_amount, freeze_amount, freeze_date, freeze_type, participation_start_date, participation_end_date, participation_type, website, email, white_paper,github_url, file_name }} = this.state;
+        console.log('file_name===============',file_name)
         let frozenSupplyAmount = freeze_amount * Math.pow(10,Number(precision))
         let frozenSupply =  [{amount: frozenSupplyAmount, days: freeze_date }];
         if( !participation_type ){
@@ -96,7 +97,8 @@ BigNumber.config({ EXPONENTIAL_AT: [-1e9, 1e9] });
             'whitePaper':white_paper,
             'socialList': _.filter(iconList, function(o) { return o.active }),
             'issueTime': moment(new Date().getTime()).valueOf(),
-            'github_url':github_url
+            'github_url':github_url,
+            'fileName':file_name
         }
         return orderState[value]
     }
@@ -277,6 +279,7 @@ BigNumber.config({ EXPONENTIAL_AT: [-1e9, 1e9] });
                                 "github":this.tokenState('github_url'),
                                 "issue_time":this.tokenState('issueTime'),
                                 "timestamp":this.tokenState('issueTime'),
+                                "file_name":this.tokenState('fileName'),
                             }
                             let hash = tronWeb.toHex(JSON.stringify(data), false);
                             let sig = await tronWeb.trx.sign(hash);
@@ -334,6 +337,7 @@ BigNumber.config({ EXPONENTIAL_AT: [-1e9, 1e9] });
                                 "github":this.tokenState('github_url'),
                                 "issue_time":this.tokenState('issueTime'),
                                 "timestamp":this.tokenState('issueTime'),
+                                "file_name":this.tokenState('file_name'),
                             }
                             let hash = tronWeb.toHex(JSON.stringify(data), false);
                             let sig = await tronWeb.trx.sign(hash);
@@ -377,6 +381,7 @@ BigNumber.config({ EXPONENTIAL_AT: [-1e9, 1e9] });
                     errorInfo
                 },() => {
                     if(res == true || res == false){
+                        Lockr.rm("TokenLogo");
                         this.props.nextState({res, errorInfo})
                         this.props.nextStep(3)
                     }
@@ -402,7 +407,7 @@ BigNumber.config({ EXPONENTIAL_AT: [-1e9, 1e9] });
                      "social_media":this.tokenState('socialList'),
                      "issue_time":this.tokenState('issueTime'),
                      "timestamp":this.tokenState('issueTime'),
-
+                     "file_name":this.tokenState('fileName'),
                 }
 
 
@@ -482,6 +487,7 @@ BigNumber.config({ EXPONENTIAL_AT: [-1e9, 1e9] });
         let startTime = participation_start_date? participation_start_date.valueOf() :'';
         let endTime = participation_end_date?participation_end_date.valueOf():'';
         let contractCreateTime = contract_created_date ? contract_created_date.valueOf() : contract_created_date;
+        logo_url =  Lockr.get("TokenLogo", logo_url);
         iconList.map((item, index) => {
             item.link.map((link, link_index) => {
                 if(!link){
@@ -544,13 +550,14 @@ BigNumber.config({ EXPONENTIAL_AT: [-1e9, 1e9] });
                             </p>
                         </Col>
                     </Row>
-                    {(isTrc20 || isUpdate )&&<Row type="flex"  gutter={64}>
+                    { isUpdate &&<Row type="flex"  gutter={64}>
                         <Col span={24} md={12}>
                         {/*<Col span={24} md={12} className={ isTrc20? 'd-block': 'd-none'}>*/}
                             <label>{tu('token_logo')}</label>
                             <img className="d-block mt-2" src={logo_url} alt="" width={100} height={100}/>
                         </Col>
-                    </Row>}
+                    </Row>
+                    }
 
                 </section>
                 <section className={ isTrc20? 'd-block mt-4': 'd-none'}>

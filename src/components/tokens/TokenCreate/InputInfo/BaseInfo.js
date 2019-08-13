@@ -3,6 +3,7 @@ import {t, tu} from "../../../../utils/i18n";
 import NumericInput from '../../../common/NumericInput';
 import {connect} from "react-redux";
 import {injectIntl} from "react-intl";
+import Lockr from "lockr";
 
 import {
   Form, Row, Col, Input, InputNumber, AutoComplete, Upload, Icon, message
@@ -24,8 +25,15 @@ class BaseInfo extends Component {
     };
   }
   componentDidMount () {
-
+      let { paramData:{logo_url} } = this.state;
+      if(!Lockr.get("TokenLogo")){
+          Lockr.set("TokenLogo", logo_url);
+      }
+      this.setState({
+          logoUrl:logo_url,
+      })
   }
+
   handleLogoChange = (value) => {
     let autoCompleteResult;
     if (!value || /\.jpg|\.png|\.PNG|\.JPG|\.jpeg$/.test(value)) {
@@ -108,27 +116,34 @@ class BaseInfo extends Component {
       if(file.response){
         if(file.response.retCode == 0){
             this.props.form.setFieldsValue({
-                logo_url:file.response.data.logo_url
+                logo_url:file.response.data.logo_url,
+                file_name:file.response.data.file_name,
+                token_id:this.state.paramData.token_id
             })
             this.setState({
                 logoLoading: false,
                 paramData:{
-                    logo_url:file.response.data.logo_url
+                    logo_url:file.response.data.logo_url,
+                    file_name:file.response.data.file_name
                 },
             })
         }
+          if (info.file.status === 'done') {
+              // Get this url from response in real world.
+              this.getBase64(info.file.originFileObj, imageUrl =>
+                    this.setimageUrl(imageUrl)
+              );
+          }
       }
-      // if (info.file.status === 'done') {
-      //     // Get this url from response in real world.
-      //     this.getBase64(info.file.originFileObj, imageUrl =>
-      //         this.setState({
-      //             logo_url:imageUrl,
-      //             logoLoading: false,
-      //         }),
-      //     );
-      //
-      // }
+
   };
+
+  setimageUrl = (imageUrl) => {
+      Lockr.set("TokenLogo", imageUrl);
+      this.setState({
+          logoUrl: imageUrl,
+      })
+  }
 
   setBodyParameter = async (file) => {
     const { tronWeb } = this.props.account;
@@ -156,7 +171,7 @@ class BaseInfo extends Component {
   render() {
     const { getFieldDecorator } = this.props.form
     const { intl } = this.props;
-    let { precision_20, autoCompleteResult, paramData:{ logo_url } ,body } =  this.state;
+    let { precision_20, autoCompleteResult, paramData:{ logo_url } ,body, logoUrl } =  this.state;
     const { isTrc20, isUpdate } = this.props.state;
     const logoOptions = autoCompleteResult.map(logo => (
       <AutoCompleteOption key={logo}>{logo}</AutoCompleteOption>
@@ -242,15 +257,16 @@ class BaseInfo extends Component {
                       beforeUpload={this.beforeUpload}
                       onChange={this.handleChange}
                   >
-                      {logo_url ? <img src={logo_url} alt="Logo" style={{ width: '100%' }} /> : uploadButton}
+                      {logoUrl ? <img src={logoUrl} alt="Logo" style={{ width: '100%' }} /> : uploadButton}
                   </Upload>
-                  <Input disabled  className='d-block'/>
+                  <Input disabled  className='d-none'/>
                 </div>
 
 
                 )}
           </Form.Item>
         </Col>
+
         <Col  span={24} md={11}>
           <Form.Item label={tu('issuer')} required>
             {getFieldDecorator('author',{
@@ -258,6 +274,20 @@ class BaseInfo extends Component {
             })(
               <Input disabled/>
             )}
+          </Form.Item>
+        </Col>
+        <Col  span={24} md={11}>
+          <Form.Item>
+              {getFieldDecorator('file_name')(
+                  <Input disabled/>
+              )}
+          </Form.Item>
+        </Col>
+        <Col  span={24} md={11}>
+          <Form.Item>
+              {getFieldDecorator('token_id')(
+                  <Input disabled/>
+              )}
           </Form.Item>
         </Col>
       </Row>
