@@ -3204,6 +3204,10 @@ h5 {
   }
 }
 
+.flex {
+  display: flex;
+}
+
 .mobile-footer {
   h5 {
     color: #d8d8d8 !important;
@@ -3292,6 +3296,29 @@ h5 {
 }
 
 @media (max-width: 767.98px) {
+  .no-select-contract .upload-button, .no-select-contract .upload-button:hover, .no-select-contract .upload-button:focus {
+    font-size: 16px !important;
+  }
+
+  .compile-text-container {
+    flex-direction: column;
+    padding: 10px !important;
+
+    .compile-icon {
+      width: 20px;
+      height: 26px;
+      margin-left: 0;
+    }
+
+    .compile-text {
+      font-size: 12px;
+      text-align: left;
+      margin-left: 0;
+      padding: 10px 0 0 0;
+      border-left: none;
+    }
+  }
+
   .content {
     overflow-x: scroll;
 
@@ -4243,11 +4270,18 @@ delete {
   height: 600px;
   font-size: 14px;
   color: #C9C9C9;
-  padding: 18px 38px;
+  // padding: 18px 38px;
+  padding: .18rem .38rem;
   text-align: left;
 
   p {
+    width: 100%;
     margin-bottom: .5em;
+    cursor: pointer;
+    text-overflow: ellipsis;
+    // word-wrap: break-word;
+    white-space: nowrap;
+    overflow: hidden;
   }
 }
 
