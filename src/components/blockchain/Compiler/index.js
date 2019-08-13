@@ -775,7 +775,7 @@ class ContractCompiler extends React.Component {
                 {uploadItem}
                 <div className="contract-compiler">
                     <div>
-                        <Row>
+                        <Row className="flex">
                             <Col span={4} className="contract-compiler-tab">
                                 {isSelectContract && compileFiles.map(v => (
                                     <p onClick={() => this.changeEditor(v)} key={v.uid + v.name}>{v.name}</p>

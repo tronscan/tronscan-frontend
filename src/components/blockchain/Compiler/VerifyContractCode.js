@@ -330,7 +330,7 @@ class VerifyContractCode extends Component {
         // solidity合约代码
         const contractCodeItem = (
             <div>
-                <Row>
+                <Row className="flex">
                     <Col span={4} className="contract-compiler-tab">
                         {isSelectContract && compileFiles.map(v => (
                             <p onClick={() => this.changeEditor(v)} key={v.name}>{v.name}</p>
