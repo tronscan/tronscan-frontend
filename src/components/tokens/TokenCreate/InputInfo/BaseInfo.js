@@ -4,6 +4,8 @@ import NumericInput from '../../../common/NumericInput';
 import {connect} from "react-redux";
 import {injectIntl} from "react-intl";
 import Lockr from "lockr";
+import { API_URL } from '../../../../constants';
+
 
 import {
   Form, Row, Col, Input, InputNumber, AutoComplete, Upload, Icon, message
@@ -182,7 +184,7 @@ class BaseInfo extends Component {
           <div className="ant-upload-text">Upload</div>
         </div>
     );
-    logo_url = logo_url + '?' + new Date().getTime()
+    let actionUrl = `${API_URL}/external/upload/logo`
     let bodyData = {'body':JSON.stringify(body)}
     return (
       <div>
@@ -252,7 +254,7 @@ class BaseInfo extends Component {
                       listType="picture-card"
                       className="avatar-uploader"
                       showUploadList={false}
-                      action="https://scantest.tronscan.org/external/upload/logo"
+                      action={actionUrl}
                       data={bodyData}
                       beforeUpload={this.beforeUpload}
                       onChange={this.handleChange}
