@@ -14,7 +14,7 @@ import SweetAlert from 'react-bootstrap-sweetalert';
 import _ from 'lodash';
 import { toThousands } from '../../../utils/number';
 import Lockr from 'lockr';
-import { API_URL, FILE_MAX_SIZE } from '../../../constants';
+import { API_URL, FILE_MAX_SIZE, FILE_MAX_NUM } from '../../../constants';
 import cx from 'classnames';
 
 import WARNIMG from './../../../images/compiler/warning.png';
@@ -614,7 +614,12 @@ class ContractCompiler extends React.Component {
     /**
      * 上传之前
      */
-    beforeUpload = (file) => {
+    beforeUpload = (file, fileList) => {
+        // 文件数量不超过10个
+        if (fileList.length > FILE_MAX_NUM) {
+            this.showModal(tu('selected_file_max_num'));
+            return false;
+        }
         // 文件大小不得超过5M
         if (file.size > FILE_MAX_SIZE) {
             this.showModal(tu('selected_file_max_size'));

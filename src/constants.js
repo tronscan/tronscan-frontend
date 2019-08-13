@@ -29,3 +29,4 @@ export const CONTRACT_ADDRESS_GGC = 'TB95FFYRJMLY6mWZqv4JUMqAqsHF4JCXga';
 
 // 部署编译
 export const FILE_MAX_SIZE = 5 * 1024 * 1024;
+export const FILE_MAX_NUM = 10;
