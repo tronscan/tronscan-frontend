@@ -1936,9 +1936,8 @@ export const messages = {
   "contract_verify_btn": "to verify",
   "write_payable": "Run these functions with TRX or Token",
   "write_nonePayable": "Run these functions will consume TRX or Energy",
-  "verify_code1": "Source code verification provides transparency for users interacting with smart contracts",
-  "verify_code2": "By uploading the source code, Tronscan will match the compiled code with that on the blockchain",
-  "verify_code3": `Just like contracts, a "smart contract" should provide end users with more information on what they are "digitally signing" for and give users an opportunity to audit the code to independently verify that it actually does what it is supposed to do.`,
+  "verify_code1": "Contract verification is the matching of the smart contract code you write with the smart contract code posted on the blockchain network to check the authenticity and transparency of the smart contract.",
+  "verify_code2": "You can verify your smart contract on TRONSCAN by uploading the smart contract file and review it.",
 
   /*
    ##################################################################################
@@ -1947,9 +1946,15 @@ export const messages = {
    #                                                                                #
    ##################################################################################
   */
+  "select_contract_file":"Upload contract file(s)",
+  "selected_contract_file_left":" ",
+  "selected_contract_file_right":" file(s) had been uploaded",
+  "selected_file_max_size": "Single file size must not exceed 5MB",
+  "selected_file_max_num": "The number of selected files must not exceed 10",
   "contract_deployment":"Contract deployment",
   "contract_verification":"Contract verification",
-  "contract_deploy_info":"Put your single file of smart contract here",
+  "contract_deploy_info1":"Contract deployment means publishing your smart contract code to a blockchain network. You can compile and deploy smart contracts on TRONSCAN by uploading smart contract files. ",
+  "contract_deploy_info2":"Note that contract deployment consumes a certain amount of TRX, please ensure that your account balance is sufficient.",
   "contract_deployment_btn_compile":"Compile",
   "contract_deployment_btn_deploy":"Deploy",
   "contract_compile_params":"Compile Params",

@@ -4222,6 +4222,35 @@ delete {
   top: 0;
 }
 
+.pl-0 {
+  padding-left: 0;
+}
+
+.pr-0 {
+  padding-right: 0;
+}
+
+.contract-code-tab {
+  background: #eee;
+  border-right: 1px #fff solid;
+  height: 100%;
+  cursor: pointer;
+}
+
+.contract-compiler-tab {
+  background: #1E1E1E;
+  border-right: 1px #fff solid;
+  height: 600px;
+  font-size: 14px;
+  color: #C9C9C9;
+  padding: 18px 38px;
+  text-align: left;
+
+  p {
+    margin-bottom: .5em;
+  }
+}
+
 .contract-compiler {
   justify-content: center;
   flex-direction: column;
@@ -4232,12 +4261,14 @@ delete {
     overflow-y: scroll;
     height: 120px;
     background: #1e1e1e;
+    border-top: 1px #fff solid;
+    padding: 10px 0;
   }
 
   &-button {
     display: flex;
     justify-content: center;
-    margin-top: 55px;
+    margin-top: 50px;
     padding-bottom: 40px;
   }
 
@@ -4272,8 +4303,8 @@ delete {
     min-width: 140px;
     height: 52px;
     background: #FFFFFF;
-    border-radius: 3px;
-    font-size: 18px;
+    border-radius: 2px;
+    font-size: 20px;
     color: #ABADC3;
     display: flex;
     justify-content: center;
@@ -4310,10 +4341,32 @@ delete {
   }
 }
 
-.compile-text{
-  font-size: 20px;
-  color: #A4A4A4;
-  text-align: center;
+.compile-text-container {
+  background: #fff;
+  opacity: .6;
+  padding: 41px 35px;
+  margin-top: 42px;
+  display: flex;
+  align-items: center;
+}
+
+.compile-icon {
+  width: 39px;
+  height: 52px;
+  margin-left: 30px;
+
+  img {
+    height: 100%;
+  }
+}
+
+.compile-text {
+  font-size: 16px;
+  color: #8E8E8E;
+  text-align: left;
+  margin-left: 37px;
+  padding-left: 42px;
+  border-left: 1px rgba(211, 133, 133, .3) solid;
 }
 
 .compile-modal-btn{
@@ -4331,6 +4384,53 @@ delete {
   //margin-left: 70px;
   position: absolute;
   left: 162px;
+}
+
+.no-select-contract {
+  padding: 10rem 0;
+  text-align: center;
+
+  > span {
+    margin: 0 auto;
+  }
+
+  img {
+    width: 97px;
+    height: 87px;
+    margin: 0 auto 25px;
+  }
+
+  .upload-button, .upload-button:hover, .upload-button:focus {
+    color: #FFF !important;
+    font-size: 26px;
+    padding: 5px 28px;
+    border: 1px solid #C23631;
+    background: #C23631;
+    border-radius: 2px;
+    margin: 0 auto;
+    height: auto;
+
+    span {
+      color: #FFF !important;
+    }
+  }
+}
+
+.upload-button, .upload-button:hover, .upload-button:focus {
+  color: #9B9B9B !important;
+  font-size: 16px;
+  padding: 5px 17px;
+  border: 1px solid #9B9B9B;
+  border-radius: 2px;
+
+  span {
+    color: #9B9B9B !important;
+  }
+}
+
+.upload-file-text {
+  padding: 5px 8px;
+  color: rgba(142, 142, 142, .6);
 }
 
 .verify-contranct{

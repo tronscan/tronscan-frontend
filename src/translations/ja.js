@@ -1881,9 +1881,8 @@ export const messages = {
   "contract_verify_btn": "検証します",
   "write_payable": "TRX、また他のトークンで機能を実行します",
   "write_nonePayable": "これらの機能を実行するため、TRXとエネルギーの消費が必要となります",
-  "verify_code1": "ソースコードの検証はユーザーとスマートコントラクトのインタラクティブに透明度を提供します",
-  "verify_code2": "ソースコードのアップロードを通じて、Tronscanはブロックチェーンにおいてそれとコンパイラコードをマッチさせます",
-  "verify_code3": `コントラクトと同じように、スマートコントラクトは端末のユーザーにデジタルシグネチャーのわけについてより多くの情報を提供し、コードの審査権利を与えます。これでユーザーが独立的にコードの実際な役割と期待された役割を確認できます。`,
+  "verify_code1": "コントラクト検証とは、編集したスマートコントラクトコードとブロックチェーンネットワークに発布したスマートコントラクトコードを照合して、スマートコントラクトの真実性と透明度を確認することです。",
+  "verify_code2": "スマートコントラクトファィルのアップロードを通じて、TRONSCANでスマートコントラクトを検証および審査することができます。",
 
   /*
    ##################################################################################
@@ -1892,9 +1891,15 @@ export const messages = {
    #                                                                                #
    ##################################################################################
   */
+  "select_contract_file":"コントラクトファイルをアップロードします",
+  "selected_contract_file_left":"ファイルを",
+  "selected_contract_file_right":"個アップロードしました",
+  "selected_file_max_size": "Single file size must not exceed 5MB",
+  "selected_file_max_num": "The number of selected files must not exceed 10",
   "contract_deployment":"コントラクトデプロイメント",
   "contract_verification":"コントラクト検証",
-  "contract_deploy_info":"スマートコントラクトのシングルファイルをここに入れてください",
+  "contract_deploy_info1":"コントラクトデプロイとは、編集したスマートコントラクトコードをブロックチェーンネットワークに発布することです。スマートコントラクトのアップロードを通じて、TRONSCANでスマートコントラクトをコンパイルおよびデプロイすることができます。",
+  "contract_deploy_info2":"下記一点をご注意ください。コントラクトデプロイの場合、TRXを消費しますので、アカウントの残高をご確認した上、続けてください。",
   "contract_deployment_btn_compile":"コンパイラ",
   "contract_deployment_btn_deploy":"デプロイ",
   "contract_compile_params":"コンパイラパラメーター",

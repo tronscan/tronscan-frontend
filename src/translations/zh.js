@@ -1916,9 +1916,8 @@ export const messages = {
   "contract_verify_btn": "去验证",
   "write_payable": "用TRX或其它代币运行这些功能",
   "write_nonePayable": "运行这些功能将消耗TRX或能量",
-  "verify_code1": "源代码验证为用户与智能合约交互提供透明度",
-  "verify_code2": "通过上传源代码，TRONSCAN会在区块链上将其与编译代码匹配",
-  "verify_code3": "与合约一样，智能合约为终端用户提供关于他们正在为何“电子签名”的更多信息，也让用户能够审核代码，独立地验证代码的实际作用和预期作用",
+  "verify_code1": "合约验证是指将您编写好的智能合约代码与发布到区块链网络上的智能合约代码进行匹配，以核对智能合约的真实性及其透明度。",
+  "verify_code2": "您可以通过上传智能合约文件，在TRONSCAN上验证智能合约，对其进行审核。",
 
   /*
    ##################################################################################
@@ -1927,9 +1926,15 @@ export const messages = {
    #                                                                                #
    ##################################################################################
   */
+  "select_contract_file":"上传合约文件",
+  "selected_contract_file_left":"已上传",
+  "selected_contract_file_right":"个文件",
+  "selected_file_max_size": "单个文件大小不得超过5MB",
+  "selected_file_max_num": "所选文件数量不得超过10个",
   "contract_deployment":"合约部署",
   "contract_verification":"合约验证",
-  "contract_deploy_info":"请将您智能合约的单一文件放在这里",
+  "contract_deploy_info1":"合约部署是指将您编写好的智能合约代码发布到区块链网络。您可以通过上传智能合约文件，在TRONSCAN上编译并部署智能合约。",
+  "contract_deploy_info2":"注意，合约部署会消耗一定数量的TRX，请确保您的账户余额充足。",
   "contract_deployment_btn_compile":"编译",
   "contract_deployment_btn_deploy":"部署",
   "contract_compile_params":"编译参数",

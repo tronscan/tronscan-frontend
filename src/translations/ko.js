@@ -1884,9 +1884,8 @@ export const messages = {
   "contract_verify_btn": "확인받기",
   "write_payable": "TRX 또는 다른 토큰으로 기능들을 실행하십시오",
   "write_nonePayable": "기능을 실행하면 TRX 또는 에너지가 소모됩니다",
-  "verify_code1": "소스 코드 검증은 스마트 컨트랙트와 상호 작용하는 사용자에게 투명성을 제공합니다",
-  "verify_code2": "소스 코드를 업로드하면 TRONSCAN이 컴파일 된 코드를 블록체인의 코드와 일치시킵니다",
-  "verify_code3": `계약과 마찬가지로 스마트 컨트랙트는 최종 사용자에게 "디지털 서명"에 대한 정보를 제공하고 사용자가 코드를 감사하여 실제로 수행해야 할 작업을 실제로 수행하는지 확인할 수 있는 기회를 제공합니다.`,
+  "verify_code1": "컨트랙트 확인은 스마트 컨트랙트 코드가 블록체인 네트워크에 게시된 스마트 컨트랙트 코드와 일치하여 스마트 컨트랙트의 진위 및 투명성을 확인합니다.",
+  "verify_code2": "스마트 컨트랙트 파일을 업로드하여 TRONSCAN에서 스마트 컨트랙트를 확인하고 검토할 수 있습니다.",
 
   /*
    ##################################################################################
@@ -1895,9 +1894,15 @@ export const messages = {
    #                                                                                #
    ##################################################################################
   */
+  "select_contract_file":"컨트랙트 파일 업로드",
+  "selected_contract_file_left":" ",
+  "selected_contract_file_right":" 개의 파일이 업로드되었습니다",
+  "selected_file_max_size": "Single file size must not exceed 5MB",
+  "selected_file_max_num": "The number of selected files must not exceed 10",
   "contract_deployment":"컨트랙트 배포",
   "contract_verification":"컨트랙트 확인",
-  "contract_deploy_info":"스마트 컨트랙트 파일을 이곳에 제출하세요.",
+  "contract_deploy_info1":"컨트랙트 배포는 스마트 계약 코드를 블록체인 네트워크에 게시하는 것을 의미합니다. 스마트 컨트랙트 파일을 업로드하여 TRONSCAN에서 스마트 컨트랙트를 컴파일하고 배포할 수 있습니다.",
+  "contract_deploy_info2":"컨트랙트 배포는 일정량의 TRX를 소비하므로 계정 잔액이 충분한지 확인하십시오.",
   "contract_deployment_btn_compile":"컴파일",
   "contract_deployment_btn_deploy":"배포",
   "contract_compile_params":"컴파일 Params",

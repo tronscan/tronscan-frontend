@@ -1,320 +1,250 @@
 /* eslint-disable no-undef */
-import React, {Fragment} from "react";
-import {injectIntl} from "react-intl";
-import {NavLink, Route, Switch} from "react-router-dom";
-import {connect} from "react-redux";
-import {FormattedNumber} from "react-intl";
-import {TronLoader} from "../../common/loaders";
-import { Radio, Button } from 'antd'
+import React from 'react';
+import { injectIntl } from 'react-intl';
+import { connect } from 'react-redux';
+import { Button, Upload, Row, Col, Message } from 'antd';
 import MonacoEditor from 'react-monaco-editor';
-import {tu} from "../../../utils/i18n";
-import CompilerConsole from "./CompilerConsole";
-import VerifyContractCode from "./VerifyContractCode";
-import CompilerModal from "./CompilerCompileModal";
-import DeployModal from "./CompilerDeployModal";
-import { Base64 } from 'js-base64';
-import xhr from "axios/index";
-import SweetAlert from "react-bootstrap-sweetalert";
-import _, {find, round, filter } from "lodash";
-import {toThousands} from "../../../utils/number";
-import Lockr from "lockr";
-import { API_URL } from "../../../constants";
-@connect(
-    state => ({
-        account: state.app.account,
-        wallet: state.wallet.current,
-    })
-)
-class ContractCompiler extends React.Component {
-    constructor({match}) {
-        super();
+import { tu } from '../../../utils/i18n';
+import CompilerConsole from './CompilerConsole';
+import VerifyContractCode from './VerifyContractCode';
+import CompilerModal from './CompilerCompileModal';
+import DeployModal from './CompilerDeployModal';
+import xhr from 'axios/index';
+import SweetAlert from 'react-bootstrap-sweetalert';
+import _ from 'lodash';
+import { toThousands } from '../../../utils/number';
+import Lockr from 'lockr';
+import { API_URL, FILE_MAX_SIZE, FILE_MAX_NUM } from '../../../constants';
+import cx from 'classnames';
 
+import WARNIMG from './../../../images/compiler/warning.png';
+import UPLOADICON from './../../../images/compiler/upload_icon.png';
+
+let list = [];
+class ContractCompiler extends React.Component {
+    constructor() {
+        super();
         this.state = {
             loading: false,
-            compileLoading:false,
-            deployLoading:false,
-            compilerVersion:'',
-            optimizer:'',
-            code:'// type your code...',
-            filters: {
-                "direction":'compile'
+            compileLoading: false,
+            deployLoading: false,
+            compilerVersion: '',
+            optimizer: '',
+            code: '// type your code...',
+            filter: {
+                direction: 'compile'
             },
-            CompileStatus:[],
+            CompileStatus: [],
             modal: null,
-            showModal:false,
-            contractNameList:[],
-            compileInfo:[],
-            runs:'0',
-        }
-        this.onChange = this.onChange.bind(this)
-    }
-    initCompile = () =>{
-        if(Lockr.get("CompileCode")){
-            let solidity = Base64.encode(Lockr.get("CompileCode"));
-            this.setState({
-                solidity,
-                code:Lockr.get("CompileCode")
-
-            })
-        }
-        if(Lockr.get("CompileStatus")){
-            this.setState({
-                CompileStatus:Lockr.get("CompileStatus")
-            })
-        }
-        if(Lockr.get("contractNameList")){
-            this.setState({
-                contractNameList:Lockr.get("contractNameList")
-            })
-        }
-        if(Lockr.get("compileInfo")){
-            this.setState({
-                compileInfo:Lockr.get("compileInfo")
-            })
-        }
+            showModal: false,
+            contractNameList: [],
+            compileInfo: [],
+            runs: '0',
+            compileFiles: [],
+        };
     }
 
-    editorDidMount(editor, monaco) {
+    /**
+     * 初始化页面数据
+     */
+    initCompile = () => {
+        // code
+        const compileCode = Lockr.get('CompileCode');
+        // 编译状态
+        const compileStatus = Lockr.get('CompileStatus');
+        // contractNameList
+        const contractNameList = Lockr.get('contractNameList');
+        // compileInfo
+        const compileInfo = Lockr.get('compileInfo');
+        // 编译文件列表
+        const compileFiles = Lockr.get('compileFiles');
+        const files = compileFiles && this.dataUrlToFile(compileFiles);
+
+        this.setState({
+            code: compileCode && compileCode,
+            CompileStatus: compileStatus || [],
+            contractNameList: contractNameList || [],
+            compileInfo: compileInfo || [],
+            compileFiles: files || [],
+        });
+    }
+
+    /**
+     * 加载editor时触发事件
+     * @param editor
+     */
+    editorDidMount(editor) {
         editor.focus();
     }
 
-    onChange(newValue, e) {
-        let solidity = Base64.encode(newValue);
+    /**
+     * 代码编辑onChange
+     */
+    onChange = () => {
+        const { code } = this.state;
         this.setState({
-            solidity,
-            code:newValue
-        })
-
+            code,
+        });
     }
 
     componentDidMount() {
-       let {match} = this.props;
-       if(match.params && match.params.type == 'verify'){
-        this.setState({
-            filters: { "direction": 'verify'}
-        })
-       }else{
+
+        let { match } = this.props;
+        if (match.params && match.params.type === 'verify'){
+            this.setState({
+                filter: { direction: 'verify' }
+            });
+        } else {
+            // 初始化数据
             this.initCompile();
-       }
+        }
     }
 
     componentWillUnmount() {
-        let { code, CompileStatus, compileInfo, contractNameList } = this.state;
-        if(CompileStatus && code !== '// type your code...'){
-            Lockr.set("CompileCode",code);
-            Lockr.set("CompileStatus",CompileStatus);
-            Lockr.set("compileInfo",compileInfo);
-            Lockr.set("contractNameList",contractNameList);
+        let { code, CompileStatus, compileInfo, contractNameList, compileFiles } = this.state;
+        if (CompileStatus && code !== '// type your code...'){
+            Lockr.set('CompileCode', code);
+            Lockr.set('CompileStatus', CompileStatus);
+            Lockr.set('compileInfo', compileInfo);
+            Lockr.set('contractNameList', contractNameList);
+
+            // file转base64保存
+            let list = [];
+            compileFiles.map(v => {
+                let reader = new FileReader();
+                const isFile = v instanceof File;
+                reader.readAsDataURL(isFile ? v : v.originFileObj, 'UTF-8');
+                reader.onloadend = (evt) => {
+                    const dataUrl = evt.target.result;
+                    list.push({ dataUrl, name: v.name });
+                    Lockr.set('compileFiles', list);
+                };
+            });
         }
     }
 
+    /**
+    * 合约验证、合约部署切换
+    * @param val 按钮类型
+    */
     onRadioChange = (val) => {
-        if(val == 'verify'){
-            window.location.href = '/#/contracts/contract-compiler/verify'
-        }else{
-            window.location.href = '/#/contracts/contract-compiler'
+        // 合约验证
+        if (val === 'verify'){
+            location.href = '/#/contracts/contract-Compiler/verify';
+        } else {
+            // 合约部署
+            location.href = '/#/contracts/contract-Compiler';
         }
         this.setState({
             filters: {
-                "direction": val,
+                'direction': val,
             }
-        })
+        });
     };
 
-    enterIconLoading = () => {
-        this.setState({ deployLoading: true });
-    };
+    // enterIconLoading = () => {
+    //     this.setState({ deployLoading: true });
+    // };
 
+    /**
+     * 是否登陆
+     */
     isLoggedIn = () => {
-        let {account, intl} = this.props;
-        if(!account.isLoggedIn){
+        let { account, intl } = this.props;
+        if (!account.isLoggedIn){
             this.setState({
                 modal: <SweetAlert
                     warning
-                    title={tu("not_signed_in")}
-                    confirmBtnText={intl.formatMessage({id: 'confirm'})}
+                    title={tu('not_signed_in')}
+                    confirmBtnText={intl.formatMessage({ id: 'confirm' })}
                     confirmBtnBsStyle="danger"
-                    onConfirm={() => this.setState({modal: null})}
-                    style={{marginLeft: '-240px', marginTop: '-195px'}}
+                    onConfirm={() => this.setState({ modal: null })}
+                    style={{ marginLeft: '-240px', marginTop: '-195px' }}
                 >
                 </SweetAlert>
-            })
+            });
         }
         return account.isLoggedIn;
     };
+
+    /**
+     * 是否编译
+     */
     isCompile = () => {
         let { contractNameList } = this.state;
         let { intl } = this.props;
-        if(contractNameList.length == 0){
+        if (contractNameList.length === 0){
             this.setState({
                 modal: <SweetAlert
                     warning
-                    title={tu("请先编译")}
-                    confirmBtnText={intl.formatMessage({id: 'confirm'})}
+                    title={tu('请先编译')}
+                    confirmBtnText={intl.formatMessage({ id: 'confirm' })}
                     confirmBtnBsStyle="danger"
-                    onConfirm={() => this.setState({modal: null})}
-                    style={{marginLeft: '-240px', marginTop: '-195px'}}
+                    onConfirm={() => this.setState({ modal: null })}
+                    style={{ marginLeft: '-240px', marginTop: '-195px' }}
                 >
                 </SweetAlert>
-            })
+            });
             return false;
         }
         return true;
     };
+
+    /**
+    * 隐藏modal
+    */
     hideModal = () => {
         this.setState({
             modal: null,
         });
     };
 
+    /**
+     * 点击编译
+     */
     compileModal = () => {
-        if(!this.isLoggedIn()) return;
+        if (!this.isLoggedIn()) return;
         this.setState({
-            modal: (
-                <CompilerModal
-                    onHide={this.hideModal}
-                    onConfirm={(version, optimizer, runs) => this.compile(version,optimizer,runs)}
-
-                />
-            )
+            modal: <CompilerModal
+                onHide={this.hideModal}
+                onConfirm={(version, optimizer, runs) => this.compile(version,optimizer,runs)}
+            />
         });
-    }
+    };
 
+    /**
+     * 点击部署
+     */
     deployModal = () => {
-        if(!this.isLoggedIn()) return;
-        if(!this.isCompile()) return;
+        if (!this.isLoggedIn()) return;
+        if (!this.isCompile()) return;
         this.setState({
-            modal: (
-                <DeployModal
-                    onHide={this.hideModal}
-                    onConfirm={(options) => this.deploy(options)}
-                    contractNameList={this.state.contractNameList}
-                    compileInfo={this.state.compileInfo}
-                />
-            )
+            modal: <DeployModal
+                onHide={this.hideModal}
+                onConfirm={(options) => this.deploy(options)}
+                contractNameList={this.state.contractNameList}
+                compileInfo={this.state.compileInfo}
+            />
         });
     }
 
-    getTransactionInfo = async ()  => {
-        let { txID,currentContractName, CompileStatus, signed,options } = this.state;
-        let transactionInfo = {};
-        let infoData = [];
-        const {tronWeb} = this.props.account;
+    /**
+     * 点击日志输出
+     */
+    getTransactionInfo = async() => {
+        let { CompileStatus } = this.state;
         this.setState({
             deployLoading: true,
         });
-        let _this = this;
         try {
-            do {
-                transactionInfo = await tronWeb.trx.getTransactionInfo(
-                    txID
-                ).catch ((e) => {
-                    infoData = [{
-                        type: "error",
-                        class:"info-error",
-                        content: `FAILED deploying ${currentContractName}.  Transaction here <a href="/#/transaction/${txID}" class="info_link" target='_blank'>${txID}</a>`
-                    }];
-                    CompileStatus.push.apply(CompileStatus,infoData);
-                    _this.setState({
-                        CompileStatus,
-                        deployLoading: false,
-                    });
-                });
-
-                if(!transactionInfo){
-                    throw new Error('Not getting transaction info!');
-                }
-
-                if (transactionInfo.id) {
-                    if (transactionInfo.receipt.result == "SUCCESS") {
-                        infoData = [{
-                            type: "success",
-                            class:"deploy",
-                            content: `Successful deployed contract '${currentContractName}'. Cost: ${
-                                transactionInfo.receipt.energy_fee
-                                    ? toThousands(
-                                    transactionInfo.receipt.energy_fee / 1000000
-                                    )
-                                    : 0
-                                } TRX, ${
-                                transactionInfo.receipt.energy_usage
-                                    ? toThousands(transactionInfo.receipt.energy_usage)
-                                    : 0
-                                } energy. Transaction confirm here <a href="/#/transaction/${transactionInfo.id}" target='_blank' class="info_link">${transactionInfo.id}</a>`
-                        }];
-
-                        CompileStatus.push.apply(CompileStatus,infoData);
-
-                        let base58Adress = tronWeb.address.fromHex(
-                            signed.contract_address
-                        );
-                        infoData = [{
-                            type: "success",
-                            class:"deploy",
-                            content: `Contract address: <a href="/#/contract/${base58Adress}/code" target='_blank' class="info_link"> ${base58Adress}</a>`
-                        }];
-                        CompileStatus.push.apply(CompileStatus,infoData)
-
-
-                        let {data} = await xhr.post(`${API_URL}/api/solidity/contract/deploy`, {
-                            "contractAddress":base58Adress,
-                            "contractName":this.state.currentContractName,
-                            "optimizer":this.state.optimizer,
-                            "runs":this.state.runs,
-                            "compiler":this.state.compilerVersion,
-                            "encodedSolidity":this.state.solidity,
-                            "byteCode":this.state.options.bytecode,
-                            "abi":JSON.stringify(this.state.options.abi)
-
-                        })
-
-                        if(data.code == 200){
-                            this.setState({
-                                CompileStatus,
-                                deployLoading: false,
-                            });
-                        }
-                    } else if (transactionInfo.receipt.result == "OUT_OF_ENERGY") {
-                        infoData = [{
-                            type: "error",
-                            class:"deploy",
-                            content: `FAILED deploying ${currentContractName}. You lost: ${
-                                transactionInfo.receipt.energy_fee
-                                    ? toThousands(
-                                    transactionInfo.receipt.energy_fee / 1000000
-                                    )
-                                    : 0
-                                } TRX\nReason: ${tronWeb.toUtf8(
-                                transactionInfo.resMessage
-                            )}. Transaction here <a href="/#/transaction/${transactionInfo.id}" class="info_link" target='_blank'>${transactionInfo.id}</a>`
-                        }];
-                        CompileStatus.push.apply(CompileStatus,infoData);
-                        this.setState({
-                            CompileStatus,
-                            deployLoading: false,
-                        });
-
-                    } else {
-                        infoData = [{
-                            type: "error",
-                            content: `FAILED deploying ${currentContractName}.\nView transaction here <a href="/#/transaction/${transactionInfo.id}" class="info_link" target='_blank'>${transactionInfo.id}</a>`
-                        }];
-                        CompileStatus.push.apply(CompileStatus,infoData);
-                        this.setState({
-                            CompileStatus,
-                            deployLoading: false,
-                        });
-                    }
-                }
-            } while (!transactionInfo.id);
+            // 部署并更新合约
+            await this.deployContract();
         } catch (e) {
-
             let errorData = [{
-                type: "error",
+                type: 'error',
                 content: `Deploy fail! Error: ${e.toString()}`
-            }]
-
-            CompileStatus.push.apply(CompileStatus,errorData)
+            }];
+            CompileStatus.push.apply(CompileStatus,errorData);
             this.setState({
                 CompileStatus,
                 deployLoading: false,
@@ -324,18 +254,15 @@ class ContractCompiler extends React.Component {
             deployLoading: false,
         });
 
-
     }
 
-    compile = async (compilerVersion,optimizer, runs) => {
-        let {account} = this.props;
+    /**
+     * 编译
+     */
+    compile = async(compilerVersion, optimizer, runs) => {
+        // 代码统计
+        this.gTagHandler('compile');
 
-        gtag('event', 'compile', {
-            'event_category': 'contract',
-            'event_label': account.address,
-            'referrer':window.location.origin,
-            'value': account.address
-        });
         this.setState({
             compileLoading: true,
             modal: null,
@@ -344,259 +271,208 @@ class ContractCompiler extends React.Component {
             compilerVersion,
             runs
         });
-        let { CompileStatus, solidity } = this.state;
-        let error;
-        let {data} = await xhr.post(`${API_URL}/api/solidity/contract/compile`, {
-            "compiler": compilerVersion,
-            "optimizer": optimizer,
-            "solidity":solidity,
-            "runs":runs
-        }).catch(function (e) {
-            let errorData = [{
-                type: "error",
-                content: `Compiled error: ${e.toString()}`
-            }]
-            error = errorData.concat(CompileStatus)
 
-        });
-        if(!data){
+        const { CompileStatus, compileFiles } = this.state;
+        let error;
+
+        // 编译参数
+        const params = {
+            compiler: compilerVersion,
+            optimizer: optimizer,
+            runs: runs,
+            files: compileFiles,
+        };
+
+        let formData = new FormData();
+
+        for (let key in params) {
+            if (params[key] === undefined) {
+                continue;
+            }
+            if (key === 'files') {
+                params[key].map(v =>
+                    (v instanceof File) ? formData.append('files', v) : formData.append('files', v.originFileObj));
+            } else {
+                formData.append(key, params[key]);
+            }
+        }
+
+        // 编译
+        const { data } = await xhr.post(`${API_URL}/api/solidity/contract/compile`, formData)
+            .catch(e => {
+                const errorData = [{
+                    type: 'error',
+                    content: `Compiled error: ${e.toString()}`
+                }];
+                error = errorData.concat(CompileStatus);
+            });
+
+        // 错误
+        if (!data){
             this.setState({
-                CompileStatus:error,
+                CompileStatus: error,
                 compileLoading: false
             });
             return;
         }
-        if(data.code == 200){
+
+        const { code, errmsg } = data;
+
+        if (code === 200){
             this.setState({
                 compileLoading: false
             });
-            if(data.errmsg == null && data.data !=={}){
-                let successData = [];
-                let contractNameList = [];
-                let mapArr = _.keyBy(data.data.byteCodeArr, "contractName");
-                let compileInfo = _(data.data.abiArr).map(m => _.merge({}, m, mapArr[m.contractName]))
-                    .concat(_.differenceBy(data.data.abiArr, data.data.byteCodeArr, "contractName"))
-                    .value();
-                for (let i in compileInfo) {
-                    let contract = compileInfo[i];
-                    let contractName = contract.contractName
-                    contractNameList.push(contractName)
-                    successData.push({
-                        type: "success",
-                        class:"compile",
-                        content: `Compiled success: Contract '${contractName}' <span>Show ABI</span> <span>Show Bytecode</span>`,
-                        contract:contract
-                    })
-                }
-                this.setState({
-                    compileInfo,
-                    contractNameList,
-                    CompileStatus:successData,
-                })
+            // 编译成功
+            if (errmsg === null && data.data !== {}){
+                this.compileSuccess(data.data);
             }
-        }else{
-            if(data.errmsg){
-                if(typeof data.errmsg === 'string'){
-                    let errorData = [{
-                        type: "error",
-                        content: `Compiled error: ${data.errmsg}`
-                    }]
-                    let error = errorData.concat(CompileStatus)
+        } else {
+            // 失败
+            if (errmsg) {
+                if (typeof errmsg === 'string') {
+
+                    const errorData = [{
+                        type: 'error',
+                        content: `Compiled error: ${errmsg}`
+                    }];
+                    const error = errorData.concat(CompileStatus);
+
                     this.setState({
-                        CompileStatus:error,
+                        CompileStatus: error,
                         compileLoading: false
                     });
                 }
             }
         }
-
     };
-    deploy = async (options) => {
-        let {account} = this.props;
-        gtag('event', 'deploy', {
-            'event_category': 'contract',
-            'event_label': account.address,
-            'referrer':window.location.origin,
-            'value': account.address
-        });
-        let _this = this;
-        let currentContractName = options.name;
-        this.setState({
-            currentContractName:currentContractName,
-            options
-        });
-        let { CompileStatus } = this.state;
-        const {tronWeb} = this.props.account;
+
+    /**
+     * 编译成功
+     * @param data:编译结果
+     */
+    compileSuccess = data => {
+        const { byteCodeArr, abiArr } = data;
+
+        let successData = [];
+        let contractNameList = [];
+
+        const mapArr = _.keyBy(byteCodeArr, 'contractName');
+        const compileInfo = _(abiArr).map(m => _.merge({}, m, mapArr[m.contractName]))
+            .concat(_.differenceBy(abiArr, byteCodeArr, 'contractName'))
+            .value();
+
+        for (const i in compileInfo) {
+            const contract = compileInfo[i];
+            const contractName = contract.contractName;
+            contractNameList.push(contractName);
+
+            successData.push({
+                type: 'success',
+                class: 'compile',
+                content: `Compiled success: Contract '${
+                    contractName}' <span>Show ABI</span> <span>Show Bytecode</span>`,
+                contract,
+            });
+        }
 
         this.setState({
-            modal:null,
+            compileInfo,
+            contractNameList,
+            CompileStatus:successData,
+        });
+    }
+
+    /**
+     * 点击部署确认
+     */
+    deploy = async(options) => {
+        const { account: { tronWeb } } = this.props;
+        const { name } = options;
+
+        // 统计代码
+        this.gTagHandler('deploy');
+
+        const { CompileStatus } = this.state;
+
+        this.setState({
+            currentContractName: name,
+            options,
+            modal: null,
             deployLoading: true,
         });
+
         try {
-            let infoData =  [{
-                type: "info",
-                content: "Deploy " + options.name + "\n"
-            }]
-            CompileStatus.push.apply(CompileStatus,infoData)
+            let infoData = [{
+                type: 'info',
+                content: 'Deploy ' + name + '\n'
+            }];
+
+            CompileStatus.push.apply(CompileStatus, infoData);
+
             this.setState({
                 CompileStatus,
                 compileLoading: false
             });
 
-            const unsigned = await tronWeb.transactionBuilder.createSmartContract(
-                options
-            );
+            const unsigned = await tronWeb.transactionBuilder.createSmartContract(options);
+
             infoData = [{
-                type: "info",
-                class:"unsigned",
-                content:`Transaction unsigned.`,
-                contract:unsigned
+                type: 'info',
+                class: 'unsigned',
+                content: 'Transaction unsigned.',
+                contract: unsigned,
             }];
-            CompileStatus.push.apply(CompileStatus,infoData)
+
+            CompileStatus.push.apply(CompileStatus, infoData);
+
             this.setState({
                 CompileStatus,
             });
 
             const signed = await tronWeb.trx.sign(unsigned);
+
             infoData = [{
-                type: "info",
-                class:"signed",
-                content:`Transaction signed!`,
-                contract:signed
+                type: 'info',
+                class: 'signed',
+                content: 'Transaction signed!',
+                contract: signed
             }];
-            CompileStatus.push.apply(CompileStatus,infoData)
+
+            CompileStatus.push.apply(CompileStatus, infoData);
+
             this.setState({
                 CompileStatus,
             });
 
-            const broadcastResult = await tronWeb.trx.sendRawTransaction(
-                signed
-            );
+            const broadcastResult = await tronWeb.trx.sendRawTransaction(signed);
+
             this.setState({
-                txID:signed.txID,
+                txID: signed.txID,
                 signed
             });
-            if (broadcastResult.result === true) {
 
+            if (broadcastResult.result) {
                 infoData = [{
-                    type: "info",
-                    class:"broadcast",
-                    content:`Broadcast transaction success!`,
-                    contract:broadcastResult
+                    type: 'info',
+                    class: 'broadcast',
+                    content: 'Broadcast transaction success!',
+                    contract: broadcastResult
                 }];
-                CompileStatus.push.apply(CompileStatus,infoData)
+
+                CompileStatus.push.apply(CompileStatus, infoData);
+
                 this.setState({
                     CompileStatus,
                 });
 
-
-                let transactionInfo = {};
-                do {
-                        transactionInfo = await tronWeb.trx.getTransactionInfo(
-                            signed.txID
-                        ).catch (function (e) {
-                            infoData = [{
-                                type: "error",
-                                class:"info-error",
-                                content: `FAILED deploying ${currentContractName}.  Transaction here <a href="/#/transaction/${signed.txID}" class="info_link" target='_blank'>${signed.txID}</a>`
-                            }];
-                            CompileStatus.push.apply(CompileStatus,infoData);
-                            _this.setState({
-                                CompileStatus,
-                                deployLoading: false,
-                            });
-                        });
-                        if(!transactionInfo){
-                            throw new Error('Not getting transaction info!');
-                        }
-                        if (transactionInfo.id) {
-                            if (transactionInfo.receipt.result == "SUCCESS") {
-                                infoData = [{
-                                    type: "success",
-                                    class:"deploy",
-                                    content: `Successful deployed contract '${currentContractName}'. Cost: ${
-                                        transactionInfo.receipt.energy_fee
-                                            ? toThousands(
-                                            transactionInfo.receipt.energy_fee / 1000000
-                                            )
-                                            : 0
-                                        } TRX, ${
-                                        transactionInfo.receipt.energy_usage
-                                            ? toThousands(transactionInfo.receipt.energy_usage)
-                                            : 0
-                                        } energy. Transaction confirm here <a href="/#/transaction/${transactionInfo.id}" target='_blank' class="info_link">${transactionInfo.id}</a>`
-                                }];
-
-                                CompileStatus.push.apply(CompileStatus,infoData);
-
-                                let base58Adress = tronWeb.address.fromHex(
-                                    signed.contract_address
-                                );
-                                infoData = [{
-                                    type: "success",
-                                    class:"deploy",
-                                    content: `Contract address: <a href="/#/contract/${base58Adress}/code" target='_blank' class="info_link"> ${base58Adress}</a>`
-                                }];
-                                CompileStatus.push.apply(CompileStatus,infoData)
-
-
-                                let {data} = await xhr.post(`${API_URL}/api/solidity/contract/deploy`, {
-                                    "contractAddress":base58Adress,
-                                    "contractName":options.name,
-                                    "optimizer":this.state.optimizer,
-                                    "runs":this.state.runs,
-                                    "compiler":this.state.compilerVersion,
-                                    "encodedSolidity":this.state.solidity,
-                                    "byteCode":options.bytecode,
-                                    "abi":JSON.stringify(options.abi)
-
-                                })
-
-                                if(data.code == 200){
-                                    this.setState({
-                                        CompileStatus,
-                                        deployLoading: false,
-                                    });
-                                }
-                            } else if (transactionInfo.receipt.result == "OUT_OF_ENERGY") {
-                                infoData = [{
-                                    type: "error",
-                                    class:"deploy",
-                                    content: `FAILED deploying ${currentContractName}. You lost: ${
-                                        transactionInfo.receipt.energy_fee
-                                            ? toThousands(
-                                            transactionInfo.receipt.energy_fee / 1000000
-                                            )
-                                            : 0
-                                        } TRX\nReason: ${tronWeb.toUtf8(
-                                        transactionInfo.resMessage
-                                    )}. Transaction here <a href="/#/transaction/${transactionInfo.id}" class="info_link" target='_blank'>${transactionInfo.id}</a>`
-                                }];
-                                CompileStatus.push.apply(CompileStatus,infoData);
-                                this.setState({
-                                    CompileStatus,
-                                    deployLoading: false,
-                                });
-
-                            } else {
-                                infoData = [{
-                                    type: "error",
-                                    content: `FAILED deploying ${currentContractName}.\nView transaction here <a href="/#/transaction/${transactionInfo.id}" class="info_link" target='_blank'>${transactionInfo.id}</a>`
-                                }];
-                                CompileStatus.push.apply(CompileStatus,infoData);
-                                this.setState({
-                                    CompileStatus,
-                                    deployLoading: false,
-                                });
-                            }
-                        }
-                    } while (!transactionInfo.id);
-
+                // 部署并更新合约
+                await this.deployContract(options);
 
             } else {
                 infoData = [{
-                    type: "error",
-                    content: `FAILED to broadcast ${currentContractName} deploy transaction \n${broadcastResult.code}\n${tronWeb.toUtf8(broadcastResult.message)}./>`
+                    type: 'error',
+                    content: `FAILED to broadcast ${name} deploy transaction \n${
+                        broadcastResult.code}\n${tronWeb.toUtf8(broadcastResult.message)}./>`
                 }];
                 CompileStatus.push.apply(CompileStatus,infoData);
                 this.setState({
@@ -604,92 +480,379 @@ class ContractCompiler extends React.Component {
                     deployLoading: false,
                 });
             }
-
-        } catch(e) {
-
+        } catch (e) {
             let errorData = [{
-                type: "error",
+                type: 'error',
                 content: `Deploy fail! Error: ${e.toString()}`
-            }]
-
-            CompileStatus.push.apply(CompileStatus,errorData)
+            }];
+            CompileStatus.push.apply(CompileStatus,errorData);
             // _this.setState({
-            //     CompileStatus,
-            //     deployLoading: false,
+            // CompileStatus,
+            // deployLoading: false,
             // });
-        };
+        }
         this.setState({
             deployLoading: false,
         });
     }
 
+    /**
+     * 部署并更新合约
+     */
+    deployContract = async(optionsParam) => {
+        const { account: { tronWeb } } = this.props;
+        let { txID, currentContractName, optimizer, runs, compilerVersion, options,
+            CompileStatus, signed } = this.state;
+
+        const { bytecode, abi, name } = optionsParam || options;
+        const contractName = name || currentContractName;
+
+        let infoData = [];
+
+        let transactionInfo;
+        do {
+            // 部署合约
+            transactionInfo = await tronWeb.trx.getTransactionInfo(txID)
+                .catch (e => {
+                    infoData = [{
+                        type: 'error',
+                        class: 'info-error',
+                        content: `FAILED deploying ${contractName}. Transaction here <a href="/#/transaction/${
+                            txID}" class="info_link" target='_blank'>${txID}</a>`
+                    }];
+                    CompileStatus.push.apply(CompileStatus, infoData);
+                    this.setState({
+                        CompileStatus,
+                        deployLoading: false,
+                    });
+                });
+
+            if (!transactionInfo){
+                throw new Error('Not getting transaction info!');
+            }
+
+            const { id, receipt, resMessage } = transactionInfo;
+
+            if (id) {
+                if (receipt.result === 'SUCCESS') {
+                    infoData = [{
+                        type: 'success',
+                        class: 'deploy',
+                        content: `Successful deployed contract '${contractName}'. Cost: ${
+                            receipt.energy_fee
+                                ? toThousands(receipt.energy_fee / 1000000)
+                                : 0
+                        } TRX, ${
+                            receipt.energy_usage
+                                ? toThousands(receipt.energy_usage)
+                                : 0
+                        } energy. Transaction confirm here <a href="/#/transaction/${
+                            id}" target='_blank' class="info_link">${id}</a>`
+                    }];
+                    CompileStatus.push.apply(CompileStatus, infoData);
+                    const base58Adress = tronWeb.address.fromHex(signed.contract_address);
+                    infoData = [{
+                        type: 'success',
+                        class: 'deploy',
+                        content: `Contract address: <a href="/#/contract/${
+                            base58Adress}/code" target='_blank' class="info_link"> ${
+                            base58Adress}</a>`
+                    }];
+                    CompileStatus.push.apply(CompileStatus,infoData);
+
+                    const params = {
+                        contractAddress: base58Adress,
+                        contractName,
+                        optimizer,
+                        runs,
+                        compiler: compilerVersion,
+                        byteCode: bytecode,
+                        abi: JSON.stringify(abi)
+                    };
+
+                    // 部署后更新合约
+                    const { data } = await xhr.post(`${API_URL}/api/solidity/contract/deploy`, params);
+                    const { code } = data;
+                    if (code == 200){
+                        this.setState({
+                            CompileStatus,
+                            deployLoading: false,
+                        });
+                    }
+                } else if (receipt.result == 'OUT_OF_ENERGY') {
+                    infoData = [{
+                        type: 'error',
+                        class:'deploy',
+                        content: `FAILED deploying ${name}. You lost: ${
+                            receipt.energy_fee
+                                ? toThousands(receipt.energy_fee / 1000000)
+                                : 0
+                        } TRX\nReason: ${
+                            tronWeb.toUtf8(resMessage)}. Transaction here <a href="/#/transaction/${
+                            id}" class="info_link" target='_blank'>${id}</a>`
+                    }];
+                    CompileStatus.push.apply(CompileStatus, infoData);
+                    this.setState({
+                        CompileStatus,
+                        deployLoading: false,
+                    });
+                } else {
+                    infoData = [{
+                        type: 'error',
+                        content: `FAILED deploying ${contractName}.\nView transaction here <a href="/#/transaction/${
+                            id}" class="info_link" target='_blank'>${id}</a>`
+                    }];
+                    CompileStatus.push.apply(CompileStatus, infoData);
+                    this.setState({
+                        CompileStatus,
+                        deployLoading: false,
+                    });
+                }
+            }
+        } while (!transactionInfo.id);
+    }
+
+    /**
+     * 上传之前
+     */
+    beforeUpload = (file, fileList) => {
+        // 文件数量不超过10个
+        if (fileList.length > FILE_MAX_NUM) {
+            this.showModal(tu('selected_file_max_num'));
+            return false;
+        }
+        // 文件大小不得超过5M
+        if (file.size > FILE_MAX_SIZE) {
+            this.showModal(tu('selected_file_max_size'));
+            return false;
+        }
+
+        list.push(file);
+    };
+
+    /**
+    * 点击上传
+    * @param file
+    */
+    handleChange = ({ file }) => {
+        if (list.length > 0 && file.uid === list[list.length - 1].uid) {
+            this.setState({ compileFiles: [...list] });
+
+            // 默认展示第一个文件
+            this.changeEditor(list[0]);
+            list = [];
+        }
+    };
+
+    /**
+    * 点击左侧菜单文件
+    * @param file:目标文件
+    */
+    changeEditor = file => {
+        let reader = new FileReader();
+        const fileReader = (file instanceof File) ? file : file.originFileObj;
+        reader.readAsText(fileReader, 'UTF-8');
+        reader.onloadend = (evt) => {
+            const fileString = evt.target.result;
+            this.setState({
+                code: fileString,
+            });
+        };
+    }
+
+    /**
+     * base64转file
+     */
+    dataUrlToFile = files => {
+        let fileList = [];
+        files.map(v => {
+            const arr = v.dataUrl.split(',');
+            const bstr = atob(arr[1]);
+            let n = bstr.length;
+            const u8arr = new Uint8Array(n);
+            while (n--) {
+                u8arr[n] = bstr.charCodeAt(n);
+            }
+            const file = new File([u8arr], v.name);
+            fileList.push(file);
+        });
+
+        return fileList;
+    };
+
+    /**
+     * 代码统计
+     */
+    gTagHandler = eventName => {
+        const { account } = this.props;
+
+        gtag('event', eventName, {
+            'event_category': 'contract',
+            'event_label': account.address,
+            'referrer': window.location.origin,
+            'value': account.address
+        });
+    }
+
+    /**
+     * 展示modal
+     */
+    showModal(content){
+        this.setState({
+            modal: <SweetAlert
+                danger
+                title=""
+                onConfirm={() => this.setState({ modal: null })}>
+                {content}
+            </SweetAlert>
+        });
+    }
+
     render() {
-        let {modal, loading, code, filters, compileLoading, deployLoading, CompileStatus } = this.state;
+        let { modal, code, filter, compileLoading, deployLoading, CompileStatus, compileFiles } = this.state;
         const options = {
             selectOnLineNumbers: true
         };
+
+        // 是否上传文件
+        const isSelectContract = compileFiles && compileFiles.length > 0;
+
+        // 合约部署、合约验证button
+        const buttonItem = (
+            <div className="compile-button-box">
+                <div className={filter.direction === 'compile' ? 'compile-button p-3 active' : 'compile-button p-3'}
+                    onClick={() => this.onRadioChange('compile')}>{tu('contract_deployment')}</div>
+                <div onClick={() => this.onRadioChange('verify')}
+                    className={filter.direction === 'verify'
+                        ? 'compile-button p-3 active ml-3' : 'compile-button p-3 ml-3'}>
+                    {tu('contract_verification')}</div>
+            </div>
+        );
+
+        // uploadItem
+        const uploadItem = (
+            <div className={cx('row p-3 mb-2', !isSelectContract && 'no-select-contract')}
+                style={{ marginTop: '-.5em' }}>
+                <Upload
+                    multiple
+                    accept=".sol"
+                    customRequest={() => {}}
+                    beforeUpload={this.beforeUpload}
+                    onChange={this.handleChange}
+                    showUploadList={false}>
+                    <Button className="upload-button">
+                        {tu('select_contract_file')}
+                    </Button>
+                </Upload>
+                {isSelectContract && <span className="upload-file-text">
+                    {tu('selected_contract_file_left')}
+                    {compileFiles.length}
+                    {tu('selected_contract_file_right')}
+                </span>}
+            </div>
+        );
+
+        // 编译、部署按钮
+        const compilerButtonItem = (
+            <div className="contract-compiler-button">
+                <Button
+                    loading={compileLoading}
+                    onClick={this.compileModal}
+                    className="compile-button compile">
+                    {tu('contract_deployment_btn_compile')}
+                </Button>
+                <Button
+                    loading={deployLoading}
+                    onClick={this.deployModal}
+                    className="compile-button active ml-5">
+                    {tu('contract_deployment_btn_deploy')}
+                </Button>
+            </div>
+        );
+
+        // 已上传合约Item
+        const selectedContractItem = (
+            <div className="card-body">
+                {uploadItem}
+                <div className="contract-compiler">
+                    <div>
+                        <Row>
+                            <Col span={4} className="contract-compiler-tab">
+                                {isSelectContract && compileFiles.map(v => (
+                                    <p onClick={() => this.changeEditor(v)} key={v.uid + v.name}>{v.name}</p>
+                                ))}
+                            </Col>
+                            <Col span={20}>
+                                <MonacoEditor
+                                    height="600"
+                                    language="sol"
+                                    theme="vs-dark"
+                                    value={code}
+                                    options={options}
+                                    onChange={this.onChange}
+                                    editorDidMount={this.editorDidMount}
+                                />
+                            </Col>
+                        </Row>
+                        <div>
+                            <CompilerConsole CompileStatus={CompileStatus} deploy={this.getTransactionInfo}/>
+                        </div>
+                        {compilerButtonItem}
+                    </div>
+                </div>
+            </div>
+
+        );
+
+        // 未上传合约Item
+        const noSelectContractItem = (
+            <div className="card-body no-select-contract">
+                <div className="row">
+                    <img src={UPLOADICON} />
+                </div>
+                {uploadItem}
+            </div>
+        );
+
+        // 合约部署文案Item
+        const contractTextItem = (
+            <div className="compile-text-container">
+                <div className="compile-icon">
+                    <img src={WARNIMG} />
+                </div>
+                <div className="compile-text">
+                    {filter.direction === 'compile' ? tu('contract_deploy_info1') : tu('verify_code1')}<br />
+                    {filter.direction === 'compile' ? tu('contract_deploy_info2') : tu('verify_code2')}
+                </div>
+            </div>
+        );
+
+        // 合约部署内容Item
+        const contractDeployItem = (
+            <div className="card">
+                {isSelectContract ? selectedContractItem : noSelectContractItem}
+            </div>
+        );
 
         return (
             <main className="container header-overlap token_black tokencreated">
                 {modal}
                 <div className="row">
                     <div className="col-sm-12">
-                        <div className="compile-button-box">
-                            <div className={filters.direction == 'compile'?'compile-button p-3 active':'compile-button p-3'} onClick={() => this.onRadioChange('compile')}> {tu('contract_deployment')}</div>
-                            <div className={filters.direction == 'verify'?'compile-button p-3 active ml-4':'compile-button p-3 ml-4'} onClick={() => this.onRadioChange('verify')}>{tu('contract_verification')}</div>
-                        </div>
-                       
-                        {
-                            filters.direction === "compile" ?
-                            <div>
-                                <div className="compile-text mt-4">
-                                    {tu('contract_deploy_info')}
-                                </div>
-                                <div className="card mt-4">
-                                <div className="card-body">
-                                    <div className="contract-compiler">
-                                        <div>
-                                            <MonacoEditor
-                                                height="600"
-                                                language="sol"
-                                                theme="vs-dark"
-                                                value={code}
-                                                options={options}
-                                                onChange={this.onChange}
-                                                editorDidMount={this.editorDidMount}
-                                            />
-                                            <div>
-                                                <CompilerConsole  CompileStatus={CompileStatus} deploy={this.getTransactionInfo}/>
-                                            </div>
-                                            <div className="contract-compiler-button">
-                                                <Button
-                                                    loading={compileLoading}
-                                                    onClick={this.compileModal}
-                                                    className="compile-button compile"
-                                                >
-                                                    {tu('contract_deployment_btn_compile')}
-                                                </Button>
-                                                <Button
-                                                    loading={deployLoading}
-                                                    onClick={this.deployModal}
-                                                    className="compile-button active ml-4"
-                                                >
-                                                    {tu('contract_deployment_btn_deploy')}
-                                                </Button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            </div>
-                            :
-                            <VerifyContractCode/>
-                        }
+                        {buttonItem}
+                        {contractTextItem}
+                        {filter.direction === 'compile'
+                            ? contractDeployItem
+                            : <VerifyContractCode/>}
                     </div>
                 </div>
             </main>
-        )
+        );
     }
 }
-
-export default injectIntl(ContractCompiler);
+function mapStateToProps(state) {
+    return {
+        account: state.app.account,
+    };
+}
+export default connect(mapStateToProps, null)(injectIntl(ContractCompiler));

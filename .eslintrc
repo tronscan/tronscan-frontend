@@ -1,30 +1,30 @@
 {
-  "extends": "react-app",
-  "env": {
-    "amd": true
-  },
-  "parserOptions": {
-    "ecmaFeatures": {
-      "legacyDecorators": true
+    "extends": "react-app",
+    "env": {
+      "amd": true
+    },
+    "parserOptions": {
+      "ecmaFeatures": {
+        "legacyDecorators": true
+      }
+    },
+    "rules": {
+      "import/no-webpack-loader-syntax": "off",
+      "no-restricted-properties": 0,
+      "no-unused-expressions": 0,
+      "eqeqeq": 0,
+      "no-unused-vars": 0,
+      "no-restricted-globals": 0,
+      "array-callback-return": 0,
+      "no-unreachable": 0,
+      "jsx-a11y/alt-text": 0,
+      "jsx-a11y/anchor-is-valid": 0,
+      "default-case": 0,
+      "no-script-url": 0,
+      "react/jsx-no-target-blank": 0,
+      "no-eval": 0,
+      "no-throw-literal": 0,
+      "jsx-a11y/anchor-has-content": 0
     }
-  },
-  "rules": {
-    "import/no-webpack-loader-syntax": "off",
-    "no-restricted-properties": 0,
-    "no-unused-expressions": 0,
-    "eqeqeq": 0,
-    "no-unused-vars": 0,
-    "no-restricted-globals": 0,
-    "array-callback-return": 0,
-    "no-unreachable": 0,
-    "jsx-a11y/alt-text": 0,
-    "jsx-a11y/anchor-is-valid": 0,
-    "default-case": 0,
-    "no-script-url": 0,
-    "react/jsx-no-target-blank": 0,
-    "no-eval": 0,
-    "no-throw-literal": 0,
-    "jsx-a11y/anchor-has-content": 0
-  }
-
+  
 }
