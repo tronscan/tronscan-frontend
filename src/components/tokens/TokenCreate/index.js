@@ -51,7 +51,7 @@ export class TokenCreate extends Component {
         token_introduction: "",
         token_supply: '',
         precision: 0,
-        logo_url: 'https://shasta.tronscan.org/upload/logo/default.png',
+        logo_url: 'https://coin.top/production/upload/logo/default.png',
         file_name: '',
         author: '',
         contract_address: '',

@@ -60,10 +60,10 @@ class BaseInfo extends Component {
 
               image.onload = function () {
                   if (width && this.width != width) {
-                      showModal('请上传宽为' + width + 'px的图片')
+                      showModal('Please upload the width to' + width + 'PX picture')
                       reject();
                   } else if (height && this.height != height) {
-                      showModal('请上传宽为' + height + 'px的图片')
+                      showModal('Please upload the height to' + height + 'PX picture')
                       reject();
                   } else {
                       _this.setBodyParameter();
@@ -241,7 +241,7 @@ class BaseInfo extends Component {
         </Col>
         {/*<Col  span={24} md={11} className={ isTrc20? 'd-block': 'd-none'}>*/}
         <Col span={24} md={11} className={isUpdate? 'd-block': 'd-none'}>
-          <Form.Item label={tu('token_logo')}>
+          <Form.Item label={tu('token_logo')} extra={tu('token_logo_upload_tip')}>
             {getFieldDecorator('logo_url', {
                 rules: [{ required: isTrc20 || isUpdate, message: tu('logo_v_required'), whitespace: true},
                       {pattern: /\.jpg|\.png|\.PNG|\.JPG|\.jpeg$/, message: tu('logo_v_format')}],

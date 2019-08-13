@@ -1807,6 +1807,7 @@
   "token_logo_input_placeholder": "يرجى تقديم رابط الصورة ، مدعوم من jpg / jpeg / png ، بنسبة حجم 1: 1",
   "project_website": "الموقع الرسمي للمشروع",
   "token_input_trc10_tip": "يرجى إدخال الشعار و GitHub وروابط الوسائط الاجتماعية عند تحديث الرمز",
+  "token_input_trc20_tip": "يرجى إدخال الشعار عند تحديث الكود",
   "token_spend_confirm_new": "لقد إطلعت على أنه لإصدار رمز مميز يتطلب دفع رسوم لمرة واحدة ما مقدارة 1024 TRX",
   "token_create_auther_different": "حساب تسجيل الدخول غير متوافق مع الناشر ولا يمكن تحديثه",
   "contract_created_address": "عنوان منشئ العقد",
@@ -1911,4 +1912,7 @@
   "deploy_params_send_token":"حدد TRX أو الرمز المميز للإرسال",
   "deploy_params_constructor":"حجة المنشئ",
   "compile_close":"أغلق",
+
+  "token_logo_upload_tip":"يدعم فقط التنسيقات الثلاثة png و jpg و jpeg ، ولا يجب أن يتجاوز الحجم 200 كيلو بايت ، والبيكسل يجب ان يكون بقياس 100 * 100",
+
 };

@@ -1812,6 +1812,7 @@ export const messages = {
   "token_logo_input_placeholder": "이미지 링크 제출, jpg / jpeg / png 지원, 크기 비율 1 : 1",
   "project_website": "프로젝트 공식 웹사이트",
   "token_input_trc10_tip": "토큰을 업데이트 시 Logo, GitHub, 소셜 미디어 링크를 입력하십시오.",
+  "token_input_trc20_tip": "토큰을 업데이트 할 때 로고를 입력하십시오.",
   "token_spend_confirm_new": "저는 토큰을 발행 시 1024TRX의 1 회 소비가 필요하다는 것을 알고있습니다.",
   "token_create_auther_different": "로그인 계정이 발행자와 일치하지 않아 업데이트할 수 없습니다.",
   "contract_created_address": "계약 작성자의 주소",
@@ -1832,8 +1833,8 @@ export const messages = {
   "str_3": "총 발행한 수량과 컨트랙의 totalsupply에 부합되지 않습니다. ",
   "str_4": "계약 코드에 assert가 포함되어 있으며, 통과 할 수 없습니다. ",
   "str_5": "토큰 정밀도 와 컨트랙트의 정의가 부합되지 않습니다. ",
-  "str_6": "서명 검증 실패",
-  "str_7": "데이터가 만료됨",
+  "str_6": "서명 검증 실패.",
+  "str_7": "데이터가 만료되었습니다. 컴퓨터 시스템 시계가 정확한지 확인하십시오.",
   "str_8": "컨트랙트는 이미 입력되었습니다.",
   "str_9": "매개 변수를 확인할 수 없습니다.",
   "type": "유형",
@@ -1918,4 +1919,7 @@ export const messages = {
   "deploy_params_send_token":"전송할 TRX 또는 토큰 선택",
   "deploy_params_constructor":"생성자를 위한 Params",
   "compile_close":"닫기",
+
+  "token_logo_upload_tip":"PNG, jpg, jpeg 3 가지 형식만 지원하며 크기는 200K를 초과하지 않으며 픽셀은 100 * 100입니다.",
+
 };
