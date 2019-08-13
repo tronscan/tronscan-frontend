@@ -1814,6 +1814,7 @@ export const messages = {
   "token_logo_input_placeholder": "画像リンクをご提供ください、サイズが1:1のjpg/jpeg/png格式をサポートします。",
   "project_website": "プロジェクト公式サイト",
   "token_input_trc10_tip": "トークンをアップデートする時、トークンのLogo、GitHub、ソーシャルメディアリンクを書いてください。",
+  "token_input_trc20_tip": "トークンを更新するときは、トークンのロゴを書きます。",
   "token_spend_confirm_new": "トークンの発行には、1024TRXを消費すると承知しました",
   "token_create_auther_different": "ログインしたアカウントと発行者が一致しないため、アップデートできません。",
   "contract_created_address": "契約作成者のアドレス",
@@ -1835,7 +1836,7 @@ export const messages = {
   "str_4": "コントラクトコードにはassertがあるため、不合格となります",
   "str_5": "トークンンの精度はコントラクトにある定義と合わないです",
   "str_6": "シグネチャー検証が失敗しました",
-  "str_7": "データが期限切れになりました",
+  "str_7": "データの有効期限が切れています。コンピューターのシステムクロックが正しいことを確認してください",
   "str_8": "コントラクトが既に入力されました",
   "str_9": "パラメータ検証結果が不合格となります",
   "token_login_no_updated": "ログインしたアカウントと発行者が一致しないため、アップデートできません",
@@ -1915,4 +1916,7 @@ export const messages = {
   "deploy_params_send_token":"TRX、あるいは他のトークンを選んで送ります",
   "deploy_params_constructor":"コンストラクタのパラメーター",
   "compile_close":"閉じる",
+
+  "token_logo_upload_tip":"png,jpg,jpeg形式のみをサポートします。大きさが200k以下、サイズ100*100にしてください。",
+
 }

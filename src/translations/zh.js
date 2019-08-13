@@ -1847,6 +1847,7 @@ export const messages = {
   "token_logo_input_placeholder": "请提交图片链接，支持jpg/jpeg/png格式，尺寸比例1:1",
   "project_website": "项目官网",
   "token_input_trc10_tip": "通证Logo、GitHub、社交媒体链接请在更新Token时填写",
+  "token_input_trc20_tip": "通证Logo请在更新Token时填写",
   "token_spend_confirm_new": "我已获知发行通证需一次性消耗1024TRX。",
   "token_create_auther_different": "登录账户与发行者不一致，无法更新",
   "contract_created_address": "合约创建者地址",
@@ -1868,13 +1869,13 @@ export const messages = {
   "str_4": "合约代码含有assert，不通过",
   "str_5": "通证精度与合约里定义的不符",
   "str_6": "签名验证失败",
-  "str_7": "数据过期",
+  "str_7": "数据过期,请确认您的计算机系统时钟正确",
   "str_8": "合约已经录入",
   "str_9": "参数校验未通过",
 
   "token_login_no_updated": "登录账户与发行者不一致，无法更新",
   "information_is_being_confirmed": "信息正在确认中，此过程可能需要10分钟，请稍后再试",
-  "Expected_acquisition": "预计获得",
+  "Expected_acquisiqtion": "预计获得",
   "energy_more": "获得带宽 = 为获取带宽冻结的TRX / 整个网络当中为获取带宽而冻结的TRX总数",
   "bandwidth_more": "获得能量 = 为获取能量冻结的TRX / 整个网络当中为获取能量而冻结的TRX总数*总能量限制",
   "interTrx_tip": "内部交易是指普通地址调用智能合约，由合约向其它地址转移通证的一种操作",
@@ -1954,6 +1955,7 @@ export const messages = {
 
 
   /* 2019-07-06*/
-  "trc20_free_orders":"您在TRXMarket的所有交易都无需手续费"
+  "trc20_free_orders":"您在TRXMarket的所有交易都无需手续费",
+  "token_logo_upload_tip":"仅支持png,jpg,jpeg三种格式，大小不超过200K，尺寸为100*100",
 
 };

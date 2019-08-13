@@ -1870,6 +1870,7 @@ export const messages = {
   "token_logo_input_placeholder": "Please submit image link, jpg/jpeg/png are supported, size ratio 1:1",
   "contract_created_address": "Address of contract creator",
   "token_input_trc10_tip": "Please fill in the Logo, GitHub, Social media links when updating Token",
+  "token_input_trc20_tip": "Please fill in the Logo when updating Token",
   "token_create_auther_different": "The login account is inconsistent with the publisher and cannot be updated",
   "ico_infomation": "ICO information",
   "project_website": "Project offical website",
@@ -1890,7 +1891,7 @@ export const messages = {
   "str_4": "Failed. Contract code contains assert.",
   "str_5": "Token accuracy does not match the one in the contract.",
   "str_6": "Unable to verify the signature",
-  "str_7": "Data expired ",
+  "str_7": "Data expires, please make sure your computer system clock is correct",
   "str_8": "Contract has been entered.",
   "str_9": "Unable to verify the parameters",
   "token_login_no_updated": "The login account is inconsistent with the publisher and cannot be updated",
@@ -1970,4 +1971,7 @@ export const messages = {
   "deploy_params_send_token":"Select TRX or token to send",
   "deploy_params_constructor":"Params for constructor",
   "compile_close":"close",
+
+  "token_logo_upload_tip":"Only supports png, jpg, jpeg three formats, the size does not exceed 200K, the pixel is 100*100",
+
 };

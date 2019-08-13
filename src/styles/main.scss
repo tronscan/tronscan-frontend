@@ -4507,3 +4507,53 @@ delete {
 .fa, .fas {
   font-weight: 900!important;
 }
+
+.error-info{
+  margin-top: 150px;
+  padding-bottom: 150px;
+  justify-content: center;
+  align-items: center;
+  img{
+    display: block;
+  }
+  &-box{
+    margin-left: 3rem;
+  }
+  &-404{
+    font-size: 170px;
+    color: rgba(48,44,72,0.27);
+    letter-spacing: 0;
+    line-height: 1.2;
+  }
+  &-font{
+    font-size: 20px;
+    color: rgba(48,44,72,0.53);
+    line-height: 40px;
+  }
+  @media only screen and (max-width: 768px) {
+    margin-top: 4rem;
+    padding-bottom: 4rem;
+    justify-content: center;
+    align-items: center;
+    &-box{
+      margin-left: 0;
+    }
+    img{
+      width: 50%;
+      display: block;
+    }
+    &-404{
+      font-size: 60px;
+      color: rgba(48,44,72,0.27);
+      letter-spacing: 0;
+      line-height: 1.2;
+      text-align: center;
+      margin-top: 2rem;
+    }
+    &-font{
+      font-size: 12px;
+      color: rgba(48,44,72,0.53);
+      line-height: 24px;
+    }
+  }
+}

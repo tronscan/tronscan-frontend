@@ -1860,6 +1860,7 @@ export const messages = {
   "token_logo_input_placeholder": "Por favor envía el enlace de la imagen, se admite jpg/jpeg/png, relación de tamaño 1:1",
   "project_website": "Web oficial del proyecto",
   "token_input_trc10_tip": "Complete el logo, GitHub y enlaces a redes sociales al actualizar el Token",
+  "token_input_trc20_tip": "Complete el logo al actualizar el token",
   "token_spend_confirm_new": "Acepto que emitir un token requiere un consumo único de 1024 TRX.",
   "token_create_auther_different": "El inicio de sesión de la cuenta no coincide con lo publicado y no se puede actualizar",
   "contract_created_address": "Dirección del creador del contrato",
@@ -1881,7 +1882,7 @@ export const messages = {
   "str_4": "Error. El código del contrato contiene assert.",
   "str_5": "La precisión del token no coincide con la del contrato.",
   "str_6": "No se puede verificar la firma.",
-  "str_7": "Fecha de expiración",
+  "str_7": "Los datos caducan, asegúrese de que el reloj de su computadora sea correcto",
   "str_8": "Contrato formalizado",
   "str_9": "No se pueden verificar los parámetros.",
   "type": "Tipo",
@@ -1965,4 +1966,7 @@ export const messages = {
   "deploy_params_send_token":"Seleccione TRX o token para enviar ",
   "deploy_params_constructor":"Parámetros para constructor",
   "compile_close":"cerrar",
+
+  "token_logo_upload_tip":"Solo es compatible con los tres formatos png, jpg, jpeg y el tamaño no debe superar los 200K ni 100*100 pixels.",
+
 };

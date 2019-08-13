@@ -149,3 +149,6 @@ export const Committee =
 
 export const Proposals = 
   loadable(() => import(/* webpackChunkName: "Proposals" */ './committee/Proposals'))
+
+export const ErrorAsync =
+    loadable(() => import(/* webpackChunkName: "ErrorAsync" */ './Error'))

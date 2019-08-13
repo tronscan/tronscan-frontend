@@ -129,6 +129,7 @@ export class SocialInfo extends Component {
             <i className="fas fa-exclamation-circle mr-2" style={{color:"#FF8C00"}}></i>
               {tu("token_input_trc10_tip")}
           </div>
+
         </div>
         
         <div className={ isTrc20 || isUpdate? 'd-block px-2 mb-3': 'd-none'}>
@@ -174,6 +175,10 @@ export class SocialInfo extends Component {
               })
             }
           </Row>
+          <div className={`${isTrc20 && !isUpdate? 'd-block': 'd-none'} pl-2`}>
+            <i className="fas fa-exclamation-circle mr-2" style={{color:"#FF8C00"}}></i>
+              {tu("token_input_trc20_tip")}
+          </div>
         </div>
         {modal}
       </div>

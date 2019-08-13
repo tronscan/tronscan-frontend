@@ -77,9 +77,10 @@ function getClientEnvironment(publicUrl) {
         // images into the `src` and `import` them in code to get their paths.
         PUBLIC_URL: publicUrl,
 
-        //API_URL: process.env.API_URL || `http://52.15.68.74:10000`,
-        API_URL: process.env.API_URL || `https://apilist.tronscan.org`,
-        //API_URL: process.env.API_URL || `https://api.shasta.tronscan.org`,
+        
+        // API_URL: process.env.API_URL || `http://52.15.68.74:10000`,
+        //API_URL: process.env.API_URL || `https://apilist.tronscan.org`,
+        API_URL: process.env.API_URL || `https://api.shasta.tronscan.org`,
         //API_URL: process.env.API_URL || `https://testapi.tronscan.org`,
 
         NET: process.env.NET || `mainnet`,
