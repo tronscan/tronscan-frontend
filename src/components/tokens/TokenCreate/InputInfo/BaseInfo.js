@@ -276,14 +276,14 @@ class BaseInfo extends Component {
             )}
           </Form.Item>
         </Col>
-        <Col  span={24} md={11}>
+        <Col  span={24} md={11} className='d-none'>
           <Form.Item>
               {getFieldDecorator('file_name')(
                   <Input disabled/>
               )}
           </Form.Item>
         </Col>
-        <Col  span={24} md={11}>
+        <Col  span={24} md={11} className='d-none'>
           <Form.Item>
               {getFieldDecorator('token_id')(
                   <Input disabled/>

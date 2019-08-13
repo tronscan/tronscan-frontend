@@ -724,7 +724,7 @@ BigNumber.config({ EXPONENTIAL_AT: [-1e9, 1e9] });
                 </section>
                 <section className="text-right px-2" >
                     <button className="btn btn-default btn-lg" onClick={() => nextStep(1)}>{tu('trc20_token_return')}</button>
-                    <button className="ml-4 btn btn-danger btn-lg" htmltype="submit" disabled={captcha_code} onClick={this.submit}>{tu('submit')}</button>
+                    <button className="ml-4 btn btn-danger btn-lg" htmltype="submit" disabled={!captcha_code} onClick={this.submit}>{tu('submit')}</button>
                 </section>
             </main>
         )
