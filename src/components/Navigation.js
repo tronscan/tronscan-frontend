@@ -43,14 +43,16 @@ import {toastr} from 'react-redux-toastr'
 import Lockr from "lockr";
 import {BarLoader} from "./common/loaders";
 import {Truncate} from "./common/text";
-import {Icon} from 'antd';
+import { Icon, Select } from 'antd';
 import isMobile from '../utils/isMobile';
 import {Client} from '../services/api';
 import $ from 'jquery';
 import xhr from "axios/index";
 import LedgerAccess from "../hw/ledger/LedgerAccess";
 import { getQueryString } from "../utils/url";
+import { IS_MAINNET } from "../constants";
 
+const { Option } = Select;
 class Navigation extends React.Component {
 
   constructor() {
@@ -72,7 +74,19 @@ class Navigation extends React.Component {
       address: '',
       announcement: '',
       annountime: '1-1',
-      announId: 83
+      announId: 83,
+      nets: [
+          {
+              label:"主链",
+              value:"mainnet"
+          },
+          {
+              label:"侧链",
+              value:"sunnet"
+          },
+      ],
+      selectedNet:'',
+
     };
   }
 
@@ -106,6 +120,11 @@ class Navigation extends React.Component {
     $(document).click(() => {
       $('#_searchBox').css({display: 'none'});
     });
+    this.setState({
+        selectedNet: IS_MAINNET?'mainnet':'sunnet'
+    });
+    Lockr.set("NET", IS_MAINNET?'mainnet':'sunnet')
+
   }
 
   componentWillUpdate(nextProps, nextState) {
@@ -129,6 +148,12 @@ class Navigation extends React.Component {
     }
   }
 
+  netSelectChange = (value) => {
+      Lockr.set("NET", value)
+      this.setState({
+          selectedNet: value
+      });
+  };
   isString(str){
      return (typeof str==='string')&&str.constructor==String;
   }
@@ -871,7 +896,7 @@ class Navigation extends React.Component {
       syncStatus,
     } = this.props;
 
-    let {search, popup, notifications, announcement, announId, annountime, searchResults} = this.state;
+    let {search, popup, notifications, announcement, announId, annountime, searchResults, selectedNet, nets } = this.state;
 
     let activeComponent = this.getActiveComponent();
 
@@ -907,6 +932,19 @@ class Navigation extends React.Component {
                 {/*</div>*/}
               {/*}*/}
               <div className="ml-auto d-flex">
+                {
+                  <Select value={selectedNet}
+                          onChange={this.netSelectChange}
+                  >
+                      {
+                          nets.map((net, index) => {
+                              return (
+                                  <Option key={index} value={net.value}>{net.label}</Option>
+                              )
+                          })
+                      }
+                  </Select>
+                }
                 {
                   <div className="hidden-mobile nav-searchbar">
                     <div className="input-group dropdown">
