@@ -26,7 +26,7 @@ import {Badge, Modal, ModalBody, ModalFooter, ModalHeader} from "reactstrap"
 import Avatar from "./common/Avatar"
 import {AddressLink, HrefLink} from "./common/Links"
 import {FormattedNumber} from "react-intl"
-import {API_URL, IS_TESTNET, ONE_TRX} from "../constants"
+import {API_URL, IS_TESTNET, ONE_TRX, IS_MAINNET} from "../constants"
 import {matchPath} from 'react-router'
 import {doSearch, getSearchType} from "../services/search"
 import {readFileContentsFromEvent} from "../services/file"
@@ -50,7 +50,7 @@ import $ from 'jquery';
 import xhr from "axios/index";
 import LedgerAccess from "../hw/ledger/LedgerAccess";
 import { getQueryString } from "../utils/url";
-import { IS_MAINNET } from "../constants";
+
 
 const { Option } = Select;
 class Navigation extends React.Component {
@@ -153,7 +153,9 @@ class Navigation extends React.Component {
       this.setState({
           selectedNet: value
       });
-  };
+      console.log('API_URL',API_URL)
+      window.location.reload();
+  }
   isString(str){
      return (typeof str==='string')&&str.constructor==String;
   }
