@@ -24,6 +24,7 @@ export async function transactionResultManager(transaction, tronWeb) {
 }
 
 
+
 export function FormattedTRX(props) {
   return (
     <FormattedNumber
