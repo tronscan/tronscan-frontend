@@ -1969,4 +1969,10 @@ export const messages = {
 
   "token_logo_upload_tip":"Solo es compatible con los tres formatos png, jpg, jpeg y el tamaño no debe superar los 200K ni 100*100 pixels.",
 
+  "price_per_1000_WIN": "PRICE PER 1000 WIN",
+  "WIN_distribution_overview": "WIN DISTRIBUTION OVERVIEW",
+  "total_WIN_supply": "Total WIN Supply",
+  "WIN_supply": "WIN Supply",
+  "WIN_Token_Release_Schedule": "WIN Token Release Schedule",
+  "source_WIN_team": "Source: WIN Management Team",
 };
