@@ -1927,4 +1927,10 @@ export const messages = {
 
   "token_logo_upload_tip":"Поддерживаются только три формата - png, jpg, jpeg, размер не превышает 200 Кб, 100*100 пикселей",
 
+  "price_per_1000_WIN": "PRICE PER 1000 WIN",
+  "WIN_distribution_overview": "WIN DISTRIBUTION OVERVIEW",
+  "total_WIN_supply": "Total WIN Supply",
+  "WIN_supply": "WIN Supply",
+  "WIN_Token_Release_Schedule": "WIN Token Release Schedule",
+  "source_WIN_team": "Source: WIN Management Team",
 };

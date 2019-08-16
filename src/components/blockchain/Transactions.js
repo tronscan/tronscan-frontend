@@ -118,12 +118,12 @@ class Transactions extends React.Component {
       
 
     }
-
+console.log(result);
     this.setState({
       transactions: result.transactions,
       loading: false,
       total: result.total,
-      rangeTotal: result.rangeTotal,
+      rangeTotal: result.wholeChainTxCount,
     });
   };
 
@@ -218,7 +218,7 @@ class Transactions extends React.Component {
             <div className="col-md-12 table_pos">
               {total ? <TotalInfo total={total} rangeTotal={rangeTotal} typeText="transactions_unit" common={addressLock}/>:""}
               {
-                   !addressLock && total?  <DateRange onDateOk={(start,end) => this.onDateOk(start,end)} /> : ''
+                   false && !addressLock && total?  <DateRange onDateOk={(start,end) => this.onDateOk(start,end)} /> : ''
               }
               <SmartTable bordered={true} loading={loading}
                           column={column} data={transactions} total={total}

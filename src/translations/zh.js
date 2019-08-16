@@ -1958,4 +1958,11 @@ export const messages = {
   "trc20_free_orders":"您在TRXMarket的所有交易都无需手续费",
   "token_logo_upload_tip":"仅支持png,jpg,jpeg三种格式，大小不超过200K，尺寸为100*100",
 
+  "price_per_1000_WIN": "WIN价格（每1000WIN）",
+  "WIN_distribution_overview": "WIN分布概览",
+  "total_WIN_supply": "WIN总流通量",
+  "WIN_supply": "WIN 流通量",
+  "WIN_Token_Release_Schedule": "WIN 代币解锁时间表",
+  "source_WIN_team": "信息来源：WIN管理团队",
+
 };

@@ -19,6 +19,7 @@ import {Link} from "react-router-dom";
 import {some, toLower} from "lodash";
 import xhr from "axios/index";
 import _ from "lodash";
+import WinkSupply from "./winkSupply.js";
 import {CsvExport} from "../../common/CsvExport";
 
 
@@ -52,6 +53,39 @@ class Token20Detail extends React.Component {
   }
 
   loadToken = async (address) => {
+    const tabs = [
+      {
+        id: "tokenInfo",
+        icon: "",
+        path: "",
+        label: <span>{tu("issue_info")}</span>,
+        cmp: () => <TokenInfo token={token}/>
+      },
+      {
+        id: "transfers",
+        icon: "",
+        path: "/transfers",
+        label: <span>{tu("token_transfers")}</span>,
+        cmp: () => <Transfers filter={{token: address}} getCsvUrl={(csvurl) => this.setState({csvurl})} token={token}/>
+      },
+      {
+        id: "holders",
+        icon: "",
+        path: "/holders",
+        label: <span>{tu("token_holders")}</span>,
+        cmp: () => <TokenHolders filter={{token: address}} token={token}/>
+      },
+    ]
+
+    if(address === 'TLa2f6VPqDgRE67v1736s7bJ8Ray5wYjU7'){
+      tabs.push({
+        id: "WinkSupply",
+        icon: "",
+        path: "/supply",
+        label: <span>{tu("wink_supply")}</span>,
+        cmp: () => <WinkSupply token={token}/>
+      })
+    }
 
     this.setState({loading: true});
       let result = await xhr.get(API_URL+"/api/token_trc20?contract="+address+'&showAll=1');
@@ -59,29 +93,7 @@ class Token20Detail extends React.Component {
       this.setState({
       loading: false,
       token,
-      tabs: [
-        {
-          id: "tokenInfo",
-          icon: "",
-          path: "",
-          label: <span>{tu("issue_info")}</span>,
-          cmp: () => <TokenInfo token={token}/>
-        },
-        {
-          id: "transfers",
-          icon: "",
-          path: "/transfers",
-          label: <span>{tu("token_transfers")}</span>,
-          cmp: () => <Transfers filter={{token: address}} getCsvUrl={(csvurl) => this.setState({csvurl})} token={token}/>
-        },
-        {
-          id: "holders",
-          icon: "",
-          path: "/holders",
-          label: <span>{tu("token_holders")}</span>,
-          cmp: () => <TokenHolders filter={{token: address}} token={token}/>
-        },
-      ]
+      tabs
     });
   };
 

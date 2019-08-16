@@ -1920,5 +1920,10 @@ export const messages = {
     "compile_close":"بستن",
 
     "token_logo_upload_tip":"فقط از سه قالب png ، jpg ، jpeg پشتیبانی می کند ، اندازه از 200K تجاوز نکند ، دارای  پیکسل 100 * 100 باشد .",
-
+    "price_per_1000_WIN": "PRICE PER 1000 WIN",
+    "WIN_distribution_overview": "WIN DISTRIBUTION OVERVIEW",
+    "total_WIN_supply": "Total WIN Supply",
+    "WIN_supply": "WIN Supply",
+    "WIN_Token_Release_Schedule": "WIN Token Release Schedule",
+    "source_WIN_team": "Source: WIN Management Team",
 };

@@ -76,13 +76,14 @@ class BTTSupply extends React.Component {
 
     loadTotalTRXSupply = async() =>{
         let {intl} = this.props;
-        const {funds} = await Client.getBttFundsSupply();
-        let total = 990000000000;
-        let result=await xhr.get(`${API_URL}/api/bittorrent/graphic`);
+        // const {funds} = await Client.getBttFundsSupply();
+        const {data: funds} = await xhr.get('https://api.shasta.tronscan.org/api/wink/fund')
+        let total = 999000000000;
+        let result=await xhr.get(`${'https://api.shasta.tronscan.org'}/api/wink/graphic`);
 
       let supplyTypesChartData = result.data;
 
-        let trxPriceData = await xhr.get(`https://api.coinmarketcap.com/v1/ticker/bittorrent/?convert=EUR`);
+        let trxPriceData = await xhr.get(`https://api.coinmarketcap.com/v1/ticker/wink-tronbet/?convert=EUR`);
         let priceUSD = ((parseFloat(trxPriceData.data[0].price_usd))*1000).toFixed(3);
         let priceBTC = ((parseFloat(trxPriceData.data[0].price_btc))*1000).toFixed(5);
         let marketCapitalization = ((parseFloat(trxPriceData.data[0].price_usd)*(funds.totalTurnOver))).toFixed(2);
@@ -125,7 +126,6 @@ class BTTSupply extends React.Component {
             pieChart: pieChartData
         });
     }
-
     getDateByYear(yearArr, initMonth){
         var newdata = yearArr.map((yaer, index) => {
             let startMonth = 1
@@ -137,7 +137,6 @@ class BTTSupply extends React.Component {
                 endMonth = initMonth
             }
             for (let month = startMonth; month <= endMonth; month++) {
-                console.log(month);
                 date.push(`${yaer}-${month}`) 
             }
             return date
@@ -150,11 +149,12 @@ class BTTSupply extends React.Component {
         let {supplyTypesChart,genesisNum,blockProduceRewardsNum,nodeRewardsNum,independenceDayBurned,feeBurnedNum,currentTotalSupply,priceUSD,priceBTC,marketCapitalization,foundationFreeze,circulatingNum} = this.state;
         let supplyURL = "https://ex.bnbstatic.com/images/20190128/c015d0e0-f442-4245-a963-b3e2ad50617b.jpg";
         const chartData = {
-            title: intl.formatMessage({id: 'BTT_Token_Release_Schedule'}),
-            subtitle: intl.formatMessage({id: 'source_btt_team'}),
-            exporting: intl.formatMessage({id: 'BTT_Token_Release_Schedule'}),
-            xAxis: ['2019-01','2019-02','2019-03','2019-04','2019-05','2019-06','2019-07','2019-08','2019-09','2019-10','2019-11','2019-12','2020-01', '2020-02', '2020-03','2020-04','2020-05','2020-06','2020-07','2020-08','2020-09','2020-10','2020-11','2020-12','2021-01','2021-02','2021-03','2021-04','2021-05','2021-06','2021-07','2021-08','2021-09','2021-10','2021-11','2021-12','2022-01','2022-02','2022-03','2022-04','2022-05','2022-06','2022-07','2022-08','2022-09','2022-10','2022-11','2022-12']
+            title: intl.formatMessage({id: 'WIN_Token_Release_Schedule'}),
+            subtitle: intl.formatMessage({id: 'source_WIN_team'}),
+            exporting: intl.formatMessage({id: 'WIN_Token_Release_Schedule'}),
+            xAxis: this.getDateByYear(['2019', '2020', '2021', '2022'], 8)
         }
+        
         return (
 
                 <div className="row">
@@ -174,7 +174,7 @@ class BTTSupply extends React.Component {
                                                                 <tr>
                                                                     <th style={{border:0}}>
                                                                         <i className="fa fa-puzzle-piece" ></i>
-                                                                        <span style={{marginTop:2}}>{tu('BTT_distribution_overview')}</span>
+                                                                        <span style={{marginTop:2}}>{tu('WIN_distribution_overview')}</span>
                                                                     </th>
                                                                 </tr>
                                                                 </thead>
@@ -184,7 +184,7 @@ class BTTSupply extends React.Component {
                                                                         {tu('genesis')}:
                                                                     </td>
                                                                     <td className="text-nowrap">
-                                                                        {genesisNum} BTT
+                                                                        {genesisNum} WIN
                                                                     </td>
                                                                 </tr>
 
@@ -192,7 +192,7 @@ class BTTSupply extends React.Component {
                                                                     <td><b>{tu('current_total_supply')}:</b><br/>
                                                                     </td>
                                                                     <td className="text-nowrap">
-                                                                        <b>{intl.formatNumber(currentTotalSupply)} BTT</b>
+                                                                        <b>{intl.formatNumber(currentTotalSupply)} WIN</b>
                                                                     </td>
                                                                 </tr>
 
@@ -204,7 +204,7 @@ class BTTSupply extends React.Component {
                                                             <table className="table" style={{marginBottom:0}}>
                                                                 <thead>
                                                                 <tr>
-                                                                    <th style={{border:0}}><br/><i className="fa fa-coins" ></i> {tu('price_per_1000_btt')}</th>
+                                                                    <th style={{border:0}}><br/><i className="fa fa-coins" ></i> {tu('price_per_1000_WIN')}</th>
                                                                 </tr>
                                                                 </thead>
                                                                 <tbody><tr>
@@ -234,7 +234,7 @@ class BTTSupply extends React.Component {
                                                             <div className="counters col-md-6 col-sm-6">
                                                                 <span className="counter">
                                                                     <CountUp start={0} end={currentTotalSupply} duration={2}  separator="," decimals={0} />
-                                                                    &nbsp; BTT
+                                                                    &nbsp; WIN
                                                                 </span>
                                                                 <h4>{tu('circulating_supply')}</h4>
                                                             </div>
@@ -250,15 +250,15 @@ class BTTSupply extends React.Component {
                                                           <div className="card-body">
                                                             <SupplyAreaHighChart
                                                                 intl={intl}
-                                                                chartData={chartData}
                                                                 data={supplyTypesChart}
+                                                                chartData={chartData}
                                                                 style={{height: 400, marginTop: 10}}
                                                             />
                                                           </div>
                                                         </div>
                                                       }
                                                     </div>
-                                                    <a href='https://support.binance.com/hc/en-us/articles/360022340552'>Binance Launchpad Public Sale</a>
+                                                    <a href='https://info.binance.com/en/research/WIN-2019-07-22.html'>Binance Launchpad Public Sale</a>
                                                 </div>
                                         }
                                     </div>

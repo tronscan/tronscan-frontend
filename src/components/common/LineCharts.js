@@ -39,7 +39,7 @@ export class SupplyAreaHighChart extends React.Component {
     initArea(id) {
         let total = 990000000000;
         let _config = cloneDeep(config.supplyAreaHighChart);
-        let {intl, data, source} = this.props;
+        let {intl, data, source, chartData} = this.props;
         if (data && data.length === 0) {
             _config.title.text = "No data";
         }
@@ -56,10 +56,10 @@ export class SupplyAreaHighChart extends React.Component {
         }
         _config.chart.zoomType = 'x';
         _config.chart.marginTop = 80;
-        _config.title.text = intl.formatMessage({id: 'BTT_Token_Release_Schedule'});
-        _config.subtitle.text = intl.formatMessage({id: 'source_btt_team'});
-        _config.exporting.filename = intl.formatMessage({id: 'BTT_Token_Release_Schedule'});
-        _config.xAxis.categories = ['2019-01','2019-02','2019-03','2019-04','2019-05','2019-06','2019-07','2019-08','2019-09','2019-10','2019-11','2019-12','2020-01', '2020-02', '2020-03','2020-04','2020-05','2020-06','2020-07','2020-08','2020-09','2020-10','2020-11','2020-12','2021-01','2021-02','2021-03','2021-04','2021-05','2021-06','2021-07','2021-08','2021-09','2021-10','2021-11','2021-12','2022-01','2022-02','2022-03','2022-04','2022-05','2022-06','2022-07','2022-08','2022-09','2022-10','2022-11','2022-12'];
+        _config.title.text = chartData.title;
+        _config.subtitle.text = chartData.subtitle;
+        _config.exporting.filename = chartData.exporting;
+        _config.xAxis.categories = chartData.xAxis;
         // _config.xAxis.tickPixelInterval = 100;
         // _config.xAxis.minRange=24 * 3600 * 1000;
         // _config.yAxis.title.text = intl.formatMessage({id: 'addresses_amount'});
