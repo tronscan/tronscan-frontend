@@ -82,7 +82,7 @@ class Token20Detail extends React.Component {
         id: "WinkSupply",
         icon: "",
         path: "/supply",
-        label: <span>{tu("wink_supply")}</span>,
+        label: <span>{tu("WIN_supply")}</span>,
         cmp: () => <WinkSupply token={token}/>
       })
     }
