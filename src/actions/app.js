@@ -169,7 +169,6 @@ async  function setWebsocketContent(getState, address){
   let { account, app } = getState()
   const localAddress = Lockr.get('localAddress')
   // if(!account.websocket && Lockr.get("websocket") === 'open'){
-  //     //console.log(456)
   //     Lockr.set("websocket","close")
   //     setWebsocket()
   // }

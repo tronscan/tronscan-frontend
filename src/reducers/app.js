@@ -1,5 +1,6 @@
 import Lockr from "lockr";
 import TronWeb from 'tronweb';
+import SunWeb from 'sunweb';
 import TronStationSDK from 'tronstation';
 import {
   DISABLE_FLAG,
@@ -170,6 +171,22 @@ export function appReducer(state = initialState, action) {
           eventServer,
           privateKey
       );
+      const sunWeb = new SunWeb(
+          {
+              fullNode: 'http://47.252.84.158:8090',
+              solidityNode: 'http://47.252.84.158:8090',
+              eventServer: 'http://47.252.84.141:8080'
+          },
+          {
+              fullNode: 'http://47.252.85.90:8090',
+              solidityNode: 'http://47.252.85.90:8091',
+              eventServer: 'http://47.252.85.90:8090'
+          },
+          'TGHxhFu4jV4XqMGmk3tEQdSeihWVHE9kBP',
+          'TBHr5KpbA7oACUysTKxHiAD7c6X6nkZii1',
+          '41455CB714D762DC46D490EAB37BBA67B0BA910A59',
+          privateKey
+      );
 
       return {
         ...state,
@@ -179,7 +196,8 @@ export function appReducer(state = initialState, action) {
           isLoggedIn: true,
           address: pkToAddress(action.privateKey),
           tronWeb: tronWeb,
-          tronStationSDK: new TronStationSDK(tronWeb)
+          sunWeb:sunWeb,
+          tronStationSDK: new TronStationSDK(tronWeb),
         },
         wallet: {
           type: ACCOUNT_PRIVATE_KEY,
