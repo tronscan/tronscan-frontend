@@ -118,7 +118,7 @@ class Transactions extends React.Component {
       
 
     }
-console.log(result);
+    
     this.setState({
       transactions: result.transactions,
       loading: false,

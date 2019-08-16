@@ -137,7 +137,6 @@ class BTTSupply extends React.Component {
                 endMonth = initMonth
             }
             for (let month = startMonth; month <= endMonth; month++) {
-                console.log(month);
                 date.push(`${yaer}-${month}`) 
             }
             return date

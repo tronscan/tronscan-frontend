@@ -76,10 +76,10 @@ class BTTSupply extends React.Component {
 
     loadTotalTRXSupply = async() =>{
         let {intl} = this.props;
-        // const {funds} = await Client.getBttFundsSupply();
-        const {data: funds} = await xhr.get('https://api.shasta.tronscan.org/api/wink/fund')
+        const {funds} = await Client.getBttFundsSupply('wink');
+        // const {data: funds} = await xhr.get('https://api.shasta.tronscan.org/api/wink/fund')
         let total = 999000000000;
-        let result=await xhr.get(`${'https://api.shasta.tronscan.org'}/api/wink/graphic`);
+        let result=await xhr.get(`${API_URL}/api/wink/graphic`);
 
       let supplyTypesChartData = result.data;
 
