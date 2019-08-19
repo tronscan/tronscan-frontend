@@ -18,6 +18,7 @@ export const ENABLE_FLAG = "ENABLE_FLAG";
 export const DISABLE_FLAG = "DISABLE_FLAG";
 export const SET_THEME = "SET_THEME";
 export const SET_SYNC_STATUS = "SET_SYNC_STATUS";
+export const SET_SIDECHAINS = 'SET_SIDECHAINS';
 
 export const setLoginWithLedger = (address, tronWeb) => ({
   type: LOGIN_LEDGER,
@@ -164,6 +165,15 @@ export const disableFlag = flag => ({
   flag
 });
 
+// Set side link data
+export const setSideChains = sideChains => ({
+  type: SET_SIDECHAINS,
+  sideChains
+});
+
+export const loadSideChains = sideChains => (dispatch) => {
+  dispatch(setSideChains(sideChains));
+};
 
 async  function setWebsocketContent(getState, address){
   let { account, app } = getState()

@@ -1958,4 +1958,23 @@ export const messages = {
   "trc20_free_orders":"您在TRXMarket的所有交易都无需手续费",
   "token_logo_upload_tip":"仅支持png,jpg,jpeg三种格式，大小不超过200K，尺寸为100*100",
 
+  // Backbone - account - mapping
+  "main_account_mapping_title":"映射到DappChain",
+  "main_account_mapping_text":"DappChain是基于波场主链开发的侧链网络，扩展了波场主网的使用。映射之后你将获得：",
+  "main_account_mapping_text_1":"1.更高的tps，更低的能量消耗",
+  "main_account_mapping_text_2":"2.映射过程完成免费",
+  "main_account_mapping_btn":"映射",
+  "main_account_mapping_success_btn":"已映射",
+  "main_account_mapping_desc1": "token映射到侧链上，会在侧链上产生同名的token",
+  "main_account_mapping_desc2": "映射完成之后，用户可以质押此币种到侧链上",
+
+  // Sidechain - account - pledge
+  "sidechain_account_pledge_btn":"质押",
+  "sidechain_account_sign_btn":"解押",
+  "pledge_currency":"币种",
+  "pledge_sidechain":"侧链",
+  "pledge_num":"数量",
+  'pledge_num_error':"数量不能超过最大可用余额",
+  "pledge_text":"质押会消耗一定量的能量",
+  "pledge_mapping_text":"资产尚未映射到DappChain.不支持质押",
 };

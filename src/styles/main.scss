@@ -4112,6 +4112,16 @@ h5 {
         border-color: #8E8C84;
       }
     }
+
+    .mapping-title {
+      font-size: 16px;
+    }
+
+    .mapping-btn:hover,
+    .mapping-btn:focus {
+      border: 1px #1890ff solid;
+      color: #fff;
+    }
   }
 }
 

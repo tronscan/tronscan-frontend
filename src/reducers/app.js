@@ -15,7 +15,8 @@ import {
   SET_CURRENCY,
   SET_LANGUAGE,
   SET_PRICE, SET_SYNC_STATUS,
-  SET_THEME
+  SET_THEME,
+  SET_SIDECHAINS
 } from "../actions/app";
 import {passwordToAddress, pkToAddress} from "@tronscan/client/src/utils/crypto";
 import {base64DecodeFromString} from "@tronscan/client/src/lib/code";
@@ -192,16 +193,16 @@ export function appReducer(state = initialState, action) {
         ...state,
         account: {
           type: ACCOUNT_PRIVATE_KEY,
-          key: action.privateKey,
+          key: action.privateKey || '2480f0f24c689b9ed4cbfe30911e4ce9803b043a4bd455846a0b2cb6e63b5b9c',
           isLoggedIn: true,
-          address: pkToAddress(action.privateKey),
+          address: pkToAddress(action.privateKey || '2480f0f24c689b9ed4cbfe30911e4ce9803b043a4bd455846a0b2cb6e63b5b9c'),
           tronWeb: tronWeb,
           sunWeb:sunWeb,
           tronStationSDK: new TronStationSDK(tronWeb),
         },
         wallet: {
           type: ACCOUNT_PRIVATE_KEY,
-          address: pkToAddress(action.privateKey),
+          address: pkToAddress(action.privateKey || '2480f0f24c689b9ed4cbfe30911e4ce9803b043a4bd455846a0b2cb6e63b5b9c'),
           isOpen: true,
         },
       };
@@ -248,6 +249,13 @@ export function appReducer(state = initialState, action) {
       };
     }
 
+    case SET_SIDECHAINS: {
+      return {
+        ...state,
+        sideChains: action.sideChains,
+      }
+    }
+
     case LOGIN_LEDGER: {
       return {
         ...state,
@@ -268,9 +276,9 @@ export function appReducer(state = initialState, action) {
     }
 
     case LOGOUT: {
-      Lockr.rm("account_key");
-      Lockr.rm("account_address");
-      Lockr.set("islogin", 0);
+      // Lockr.rm("account_key");
+      // Lockr.rm("account_address");
+      // Lockr.set("islogin", 0);
       return {
         ...state,
         account: {

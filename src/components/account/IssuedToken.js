@@ -13,7 +13,9 @@ import {API_URL} from "../../constants";
 import { getTime} from "date-fns";
 import {CopyToClipboard} from "react-copy-to-clipboard";
 import {Tooltip} from "reactstrap";
-import { Popover } from 'antd';
+import { Popover, Button } from 'antd';
+import { IS_SUNNET } from './../../constants';
+import MappingModal from './MappingModal';
 
 class IssuedToken extends React.Component{
     constructor() {
@@ -25,7 +27,8 @@ class IssuedToken extends React.Component{
             appealInfo: '',
             copied: false,
             id: alpha(24),
-            address: ''
+            address: '',
+            isShowMappingModal: false,
         };
     }
     async showModal(address){
@@ -106,10 +109,31 @@ class IssuedToken extends React.Component{
       this.get20token()
     }
 
+    /**
+     * open MappingModal
+     * @param address: symbol:currency
+     */
+    openMappingModal = (address, symbol, mappedToSideChains) => {
+      this.setState({
+        isShowMappingModal: true,
+        address,
+        currency: symbol,
+        mappedToSideChains
+      });
+    }
+
+    /**
+     * close MappingModal
+     */
+    closeMappingModal = () => {
+      this.setState({ isShowMappingModal: false });
+    }
+
 
     render() {
       const issuedAsset = this.props.issuedAsset;
-      const { token20List, appealInfo, copied, id} = this.state;
+      const { token20List, appealInfo, copied, id, isShowMappingModal, currency,
+        address, mappedToSideChains } = this.state;
       const { account, intl, currentWallet, unfreezeAssetsConfirmation } = this.props;
 
       let status10;
@@ -141,6 +165,27 @@ class IssuedToken extends React.Component{
                   }
               >TRXMarket</HrefLink>
           </span>
+        </div>
+      )
+
+      // DAppChain Mapping Item
+      const mppingItem = (id, currency, mappedToSideChains) => (
+        <div className="row">
+          <div className="col-md-12">
+            <hr className="my-4"/>
+            <p className="mapping-title">{tu('main_account_mapping_title')}</p>
+          </div>
+          <div className="col-md-12 d-flex justify-content-between">
+            <div>
+              <p>{tu('main_account_mapping_text')}</p>
+              <p>{tu('main_account_mapping_text_1')}</p>
+              <p>{tu('main_account_mapping_text_2')}</p>
+            </div>
+            <div>
+              <Button type="primary" size="small" className="mapping-btn" onClick={() => this.openMappingModal(id, currency, mappedToSideChains)}>
+                {tu('main_account_mapping_btn')}</Button>
+            </div>
+          </div>
         </div>
       )
 
@@ -448,6 +493,7 @@ class IssuedToken extends React.Component{
                       </tr> */}
                     </tbody>
                   </table>
+                  {!IS_SUNNET && mppingItem(token20Item.contract_address, token20Item.symbol, token20Item.mappedToSideChains)}
                 </div>
               })
             }
@@ -459,6 +505,8 @@ class IssuedToken extends React.Component{
               toAppealing={() => this.updateData()}
             />
           </div>
+          {isShowMappingModal && <MappingModal onCancel={this.closeMappingModal} onConfirm={this.openMappingModal}
+            address={address} currency={currency} />}
           </div>)
     }
 }
