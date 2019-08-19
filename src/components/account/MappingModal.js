@@ -11,6 +11,8 @@ class MappingModal extends Component {
     static propTypes = {
         address: PropTypes.string.isRequired,
         currency: PropTypes.string.isRequired,
+        sideChains: PropTypes.array,
+        account: PropTypes.object,
     };
 
     constructor() {
@@ -47,10 +49,17 @@ class MappingModal extends Component {
      * Form confirm
      */
     confirm = () => {
-        const { onConfirm } = this.props;
-        const { name } = this.state;
-        onConfirm && onConfirm(name);
+        const { form: { validateFields }, account: { sunWeb }, onCancel,
+            option: { address } } = this.props;
+
         this.setState({ disabled: true });
+
+        validateFields(async(err, values) => {
+            if (!err) {
+                const data = await sunWeb.mappingTrc20(address, 0, 10000);
+                onCancel();
+            }
+        });
     };
 
     /**
@@ -63,7 +72,8 @@ class MappingModal extends Component {
 
     render() {
         const { getFieldDecorator } = this.props.form;
-        const { currency } = this.props;
+        const { currency, sideChains } = this.props;
+        const isHasSideChainsData = sideChains && sideChains.length > 0;
 
         // mappingTextItem
         const mappingTextItem = (
@@ -86,13 +96,9 @@ class MappingModal extends Component {
         const sideChainItem = (
             <Form.Item label={tu('pledge_sidechain')}>
                 {getFieldDecorator('sidechain', {
-                    rules: [
-                        {
-                            message: 'XXX',
-                        }
-                    ],
+                    initialValue: isHasSideChainsData && sideChains[0].gatewayAddress,
                 })(<Select>
-                    <Option value="86">+86</Option>
+                    {sideChains.map(v => (<Option key={v.gatewayAddress} value={v.gatewayAddress}>{v.name}</Option>))}
                 </Select>)}
             </Form.Item>
         );
@@ -125,6 +131,8 @@ function mapStateToProps(state, ownProp) {
     return {
         address: ownProp.address,
         currency: ownProp.currency,
+        sideChains: state.app.sideChains,
+        account: state.app.account,
     };
 }
 

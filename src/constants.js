@@ -35,6 +35,13 @@ export const CONTRACT_ADDRESS_USDT = 'TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t';
 export const CONTRACT_ADDRESS_WIN = 'TLa2f6VPqDgRE67v1736s7bJ8Ray5wYjU7';
 export const CONTRACT_ADDRESS_GGC = 'TB95FFYRJMLY6mWZqv4JUMqAqsHF4JCXga';
 
-// 部署编译
+// Deployment to compile
 export const FILE_MAX_SIZE = 5 * 1024 * 1024;
 export const FILE_MAX_NUM = 10;
+
+// currency type
+export const CURRENCYTYPE = {
+    TRX: 'TRX',
+    TRX10: 'TRX10',
+    TRX20: 'TRX20',
+};

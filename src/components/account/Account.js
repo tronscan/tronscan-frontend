@@ -9,7 +9,7 @@ import {SwitchToken} from "../common/Switch";
 import FreezeBalanceModal from "./FreezeBalanceModal";
 import {AddressLink, HrefLink, TokenLink, TokenTRC20Link} from "../common/Links";
 import SweetAlert from "react-bootstrap-sweetalert";
-import {API_URL, IS_TESTNET, ONE_TRX, CONTRACT_ADDRESS_USDT, CONTRACT_ADDRESS_WIN, CONTRACT_ADDRESS_GGC, IS_SUNNET} from "../../constants";
+import {API_URL, IS_TESTNET, ONE_TRX, CONTRACT_ADDRESS_USDT, CONTRACT_ADDRESS_WIN, CONTRACT_ADDRESS_GGC, IS_SUNNET, CURRENCYTYPE } from "../../constants";
 import {Client} from "../../services/api";
 import ApplyForDelegate from "./ApplyForDelegate";
 import _, {trim} from "lodash";
@@ -25,7 +25,7 @@ import {decode58Check, pkToAddress} from "@tronscan/client/src/utils/crypto";
 import {QuestionMark} from "../common/QuestionMark";
 import Lockr from "lockr";
 import {withTronWeb} from "../../utils/tronWeb";
-import {login} from "../../actions/app";
+import { login, loadSideChains } from "../../actions/app";
 import {loadRecentTransactions} from "../../actions/account";
 import {reloadWallet} from "../../actions/wallet";
 import {connect} from "react-redux";
@@ -57,6 +57,7 @@ import MappingMessageModal from './MappingMessageModal';
       login,
       loadRecentTransactions,
       reloadWallet,
+      loadSideChains,
     }
 )
 @injectIntl
@@ -84,11 +85,12 @@ export default class Account extends Component {
       delegateValue: '',
       isShowPledgeModel: false,
       isShowMappingModal: false,
+      type: CURRENCYTYPE.TRX10,
     };
 
   }
 
-  componentDidMount() {
+  async componentDidMount() {
 
     let {account,match} = this.props;
 
@@ -103,6 +105,9 @@ export default class Account extends Component {
           },3000)
       }
     }
+
+    // gets the list of side chains
+    await this.getSideChains();
   }
 
   componentDidUpdate(prevProps) {
@@ -237,9 +242,10 @@ export default class Account extends Component {
 
 
     // pledgeItem
-    const pledgeItem = id => (
+    const pledgeItem = (address, currency, balance, precision) => (
       <td className="text-right">
-        <button className="btn btn-danger" onClick={() => this.openMappingModal(id)}>
+        <button className="btn btn-danger"
+          onClick={() => this.openMappingModal({ address, currency, balance, precision, type: CURRENCYTYPE.TRX20 })}>
           {tu('sidechain_account_pledge_btn')}
         </button>
       </td>
@@ -251,7 +257,8 @@ export default class Account extends Component {
           <tr>
             <th>{tu("name")}</th>
             <th className="text-right">{tu("balance")}</th>
-            {IS_SUNNET && <th className="text-right">{tu("trc20_cur_order_header_action")}</th>}
+            {/* {IS_SUNNET && <th className="text-right">{tu("trc20_cur_order_header_action")}</th>} */}
+            {<th className="text-right">{tu("trc20_cur_order_header_action")}</th>}
           </tr>
           </thead>
           <tbody>
@@ -273,7 +280,8 @@ export default class Account extends Component {
                     <span>{token.token20_balance}</span>
                     {/*<FormattedNumber value={token.token20_balance} maximumFractionDigits={20}/>*/}
                   </td>
-                  {IS_SUNNET && pledgeItem(token)}
+                  {pledgeItem(token.contract_address, token.symbol, Number(token.token20_balance), token.map_token_precision)}
+                  {/* {IS_SUNNET && pledgeItem(token)} */}
                 </tr>
             ))
           }
@@ -305,9 +313,10 @@ export default class Account extends Component {
     }
 
     // pledgeItem
-    const pledgeItem = id => (
+    const pledgeItem = (id, currency, balance, precision) => (
       <td className="text-right">
-        <button className="btn btn-danger" onClick={() => this.openPledgeModel(id)}>
+        <button className="btn btn-danger"
+          onClick={() => this.openPledgeModel({ id, currency, balance, precision, type: CURRENCYTYPE.TRX10 })}>
           {tu('sidechain_account_pledge_btn')}
         </button>
       </td>
@@ -321,7 +330,8 @@ export default class Account extends Component {
             <th>ID</th>
             <th>{tu("TRC20_decimals")}</th>
             <th className="text-right">{tu("balance")}</th>
-            {IS_SUNNET && <th className="text-right">{tu('trc20_cur_order_header_action')}</th>}
+            {/* {IS_SUNNET && <th className="text-right">{tu('trc20_cur_order_header_action')}</th>} */}
+            {<th className="text-right">{tu('trc20_cur_order_header_action')}</th>}
           </tr>
           </thead>
           <tbody>
@@ -347,7 +357,8 @@ export default class Account extends Component {
                     <FormattedNumber value={token.map_amount}
                                      maximumFractionDigits={Number(token.map_token_precision)}/>
                   </td>
-                  {IS_SUNNET && pledgeItem(token.map_token_id)}
+                  {/* {IS_SUNNET && pledgeItem(token.map_token_id)} */}
+                  {pledgeItem(token.map_token_id, token.map_token_name_abbr, Number(token.map_amount), token.map_token_precision)}
                 </tr>
             ))
           }
@@ -1470,10 +1481,19 @@ export default class Account extends Component {
 
   /**
    * open PledgeModel
-   * @param id
+   * @param address, currency, balance, precision
    */
-  openPledgeModel = id => {
-    this.setState({ isShowPledgeModel: true, id });
+  openPledgeModel = option => {
+    const { address, currency, balance, precision, id, type } = option;
+    this.setState({
+      isShowPledgeModel: true,
+      address,
+      currency,
+      balance,
+      precision,
+      id,
+      type,
+    });
   }
 
   /**
@@ -1491,11 +1511,30 @@ export default class Account extends Component {
     this.setState({ isShowMappingModal: true, id });
   }
 
-  
+  /**
+   * Gets the list of side chains
+   */
+  getSideChains = async () => {
+    const { loadSideChains } = this.props;
+    // const sideChains = await xhr.get(API_URL + '/api/getSideChainList');
+    const sideChains = await xhr.get('https://1d91c6c4-9d7e-4853-a89f-61b4beba9030.mock.pstmn.io' + '/api/getSideChainList');
+    const { data: { list } } = sideChains;
+    loadSideChains(list);
+  }
 
   render() {
     let { modal, sr, issuedAsset, showBandwidth, showBuyTokens, temporaryName, hideSmallCurrency, tokenTRC10,
-      isShowPledgeModel, isShowMappingModal } = this.state;
+      isShowPledgeModel, isShowMappingModal, address, currency, balance, precision, id, type } = this.state;
+
+      // pledge param
+      const option = {
+        address,
+        currency,
+        balance,
+        precision,
+        id,
+        type
+      };
 
     let {account, frozen, totalTransactions, currentWallet, wallet, accountResource, trxBalance, intl} = this.props;
 
@@ -2094,8 +2133,8 @@ export default class Account extends Component {
                   </div>
                 </div>
           }
-          {isShowPledgeModel && <PledgeModal onCancel={this.closePledgeModel} onConfirm={() => {}} />}
-          {isShowMappingModal && <MappingMessageModal onCancel={this.closeMappingModal} onConfirm={() => {}} />}
+          {isShowPledgeModel && <PledgeModal onCancel={this.closePledgeModel} onConfirm={() => {}} option={option} />}
+          {isShowMappingModal && <MappingMessageModal onCancel={this.closeMappingModal} />}
         </main>
     )
   }

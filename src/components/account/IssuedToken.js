@@ -113,11 +113,12 @@ class IssuedToken extends React.Component{
      * open MappingModal
      * @param address: symbol:currency
      */
-    openMappingModal = (address, symbol) => {
+    openMappingModal = (address, symbol, mappedToSideChains) => {
       this.setState({
         isShowMappingModal: true,
         address,
-        currency: symbol
+        currency: symbol,
+        mappedToSideChains
       });
     }
 
@@ -132,7 +133,7 @@ class IssuedToken extends React.Component{
     render() {
       const issuedAsset = this.props.issuedAsset;
       const { token20List, appealInfo, copied, id, isShowMappingModal, currency,
-        address } = this.state;
+        address, mappedToSideChains } = this.state;
       const { account, intl, currentWallet, unfreezeAssetsConfirmation } = this.props;
 
       let status10;
@@ -168,7 +169,7 @@ class IssuedToken extends React.Component{
       )
 
       // DAppChain Mapping Item
-      const mppingItem = (id, currency) => (
+      const mppingItem = (id, currency, mappedToSideChains) => (
         <div className="row">
           <div className="col-md-12">
             <hr className="my-4"/>
@@ -181,7 +182,7 @@ class IssuedToken extends React.Component{
               <p>{tu('main_account_mapping_text_2')}</p>
             </div>
             <div>
-              <Button type="primary" size="small" className="mapping-btn" onClick={() => this.openMappingModal(id, currency)}>
+              <Button type="primary" size="small" className="mapping-btn" onClick={() => this.openMappingModal(id, currency, mappedToSideChains)}>
                 {tu('main_account_mapping_btn')}</Button>
             </div>
           </div>
@@ -492,7 +493,7 @@ class IssuedToken extends React.Component{
                       </tr> */}
                     </tbody>
                   </table>
-                  {!IS_SUNNET && mppingItem(token20Item.contract_address, token20Item.symbol)}
+                  {!IS_SUNNET && mppingItem(token20Item.contract_address, token20Item.symbol, token20Item.mappedToSideChains)}
                 </div>
               })
             }

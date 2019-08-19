@@ -2,49 +2,49 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { tu } from '../../utils/i18n';
 import { Modal, Form, Input, Select } from 'antd';
+import PropTypes from 'prop-types';
+import { CURRENCYTYPE } from './../../constants';
 
 const { Option } = Select;
 
 class PledgeModal extends Component {
 
+    static propTypes = {
+        option: PropTypes.object,
+        sideChains: PropTypes.array,
+        account: PropTypes.object,
+        type: PropTypes.string,
+    };
+
     constructor() {
         super();
 
         this.state = {
-            name: '',
             disabled: false,
         };
     }
 
     /**
-     * Form validation
-     */
-    isValid = () => {
-        let { name } = this.state;
-
-        if (name.length < 8) {
-            return [false, tu('name_to_short')];
-        }
-
-        if (name.length > 32) {
-            return [false, tu('name_to_long')];
-        }
-
-        if (!/^[a-zA-Z0-9_-]+$/.test(name)) {
-            return [false, tu('permitted_characters_message')];
-        }
-
-        return [true];
-    };
-
-    /**
      * Form confirm
      */
     confirm = () => {
-        const { onConfirm } = this.props;
-        const { name } = this.state;
-        onConfirm && onConfirm(name);
-        this.setState({ disabled: true });
+        const { form: { validateFields }, account: { sunWeb }, onCancel,
+            option: { id, address, precision, type } } = this.props;
+
+        validateFields(async(err, values) => {
+            if (!err) {
+                const num = values.Num * Math.pow(10, Number(precision));
+                // trc10
+                if (CURRENCYTYPE.TRX10) {
+                    const data = await sunWeb.depositTrc10(id, num, 100000);
+                } else if (CURRENCYTYPE.TRX20) {
+                    // trc20
+                    const data = await sunWeb.depositTrc20(num, 1000000, address);
+                }
+                this.setState({ disabled: true });
+                onCancel();
+            }
+        });
     };
 
     /**
@@ -57,17 +57,15 @@ class PledgeModal extends Component {
 
     render() {
         const { getFieldDecorator } = this.props.form;
+        const { option: { currency, balance, precision }, sideChains } = this.props;
+        const isHasSideChainsData = sideChains && sideChains.length > 0;
 
         // currencyItem
         const currencyItem = (
             <Form.Item label={tu('pledge_currency')}>
                 {getFieldDecorator('currency', {
-                    rules: [
-                        {
-                            message: 'XXX',
-                        }
-                    ],
-                })(<Input />)}
+                    initialValue: currency
+                })(<Input disabled />)}
             </Form.Item>
         );
 
@@ -75,13 +73,9 @@ class PledgeModal extends Component {
         const sideChainItem = (
             <Form.Item label={tu('pledge_sidechain')}>
                 {getFieldDecorator('sidechain', {
-                    rules: [
-                        {
-                            message: 'XXX',
-                        }
-                    ],
+                    initialValue: isHasSideChainsData && sideChains[0].gatewayAddress,
                 })(<Select>
-                    <Option value="86">+86</Option>
+                    {sideChains.map(v => (<Option key={v.gatewayAddress} value={v.gatewayAddress}>{v.name}</Option>))}
                 </Select>)}
             </Form.Item>
         );
@@ -89,10 +83,15 @@ class PledgeModal extends Component {
         // numItem
         const numItem = (
             <Form.Item label={tu('pledge_num')}>
-                {getFieldDecorator('num', {
+                {getFieldDecorator('Num', {
                     rules: [
                         {
-                            message: 'XXX',
+                            pattern: /^(0|[1-9][0-9]*)(\.\d+)?$/,
+                            message: <span>{tu('pledge_num_error')}</span>,
+                        },
+                        {
+                            validator: (rule, value) => value <= balance,
+                            message: <span>{tu('pledge_num_error')}</span>,
                         }
                     ],
                 })(<Input />)}
@@ -101,7 +100,7 @@ class PledgeModal extends Component {
 
         // available_balance Item
         const balanceItem = (
-            <p className="text-right">{tu('available_balance')}:XXXABC</p>
+            <p className="text-right">{tu('available_balance')}:{balance + currency}</p>
         );
 
         // btnItem
@@ -135,10 +134,15 @@ class PledgeModal extends Component {
     }
 }
 
-function mapStateToProps(state) {
-    return {};
+function mapStateToProps(state, ownProp) {
+    return {
+        option: ownProp.option,
+        sideChains: state.app.sideChains,
+        account: state.app.account,
+    };
 }
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = {
+};
 
 export default Form.create({ name: 'pledge' })(connect(mapStateToProps, mapDispatchToProps)(PledgeModal));
