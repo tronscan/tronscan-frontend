@@ -1,6 +1,7 @@
 import React from "react";
 import { flatten } from "lodash";
 import { Redirect } from "react-router-dom";
+import { IS_MAINNET } from "./constants"
 
 import {
     HomeAsync,
@@ -105,7 +106,8 @@ export const routes = [
         label: "statistics",
         icon: `fa fa-chart-pie`,
         path: "/blockchain/stats",
-        component: StatisticsAsync
+        component: StatisticsAsync,
+        showInMenu: IS_MAINNET?true:false,
       },
       {
         label: "statistics",
@@ -131,6 +133,7 @@ export const routes = [
         path: "/blockchain/foundation",
         label: "foundation",
         icon: "fa fa-address-book",
+        showInMenu: IS_MAINNET?true:false,
         component: FoundationAsync
       }
     ]
@@ -157,7 +160,8 @@ export const routes = [
         path: "/contracts/contract-compiler",
         label: "contract_deployment",
         icon: "fas fa-file-signature",
-        component: ContractCompilerAsync
+        component: ContractCompilerAsync,
+        showInMenu:IS_MAINNET?true:false
       },
       {
         path: "/contracts/contract-compiler/:type",
@@ -222,13 +226,15 @@ export const routes = [
         label: "participate",
         path: "/tokens/view",
         icon: "fas fa-coins",
-        component: TokenOverviewAsync
+        component: TokenOverviewAsync,
+        showInMenu:IS_MAINNET?true:false
       },
       {
         label: "token_input",
         path: "/tokens/create",
         icon: "fa fa-plus-square",
-        component: TokensCreateAsync
+        component: TokensCreateAsync,
+        showInMenu:IS_MAINNET?true:false
       },
       {
         path: "/tokens/create/:step",
@@ -241,7 +247,6 @@ export const routes = [
         icon: "fa fa-plus-square",
         component: TokensCreateAsync,
         showInMenu: false
-
       },
 
     ]
