@@ -1,6 +1,7 @@
 import React from 'react'
 import moment from 'moment';
 import config from './chart.config.js'
+import { IS_MAINNET } from "../../constants"
 
 import echarts from 'echarts/lib/echarts'
 import 'echarts/lib/chart/line'
@@ -130,14 +131,21 @@ export class LineReactHighChartAdd extends React.Component {
             _config.chart.spacingTop = 20;
             _config.exporting.enabled = false;
             _config.yAxis.min = data[0].total - 100000;
-            _config.yAxis.tickInterval = 100000;
+            if(IS_MAINNET){
+                _config.yAxis.tickInterval = 100000;
+            }else{
+                _config.yAxis.tickInterval = 10
+            }
+            _config.yAxis.min = 0;
             _config.yAxis.tickAmount = 4;
             _config.yAxis.allowDecimals = true;
-            _config.yAxis.labels.formatter = function() {
-                if(this.value < 1000000){
-                    return this.value/1000 + 'k'
-                }else if(this.value >= 1000000){
-                    return this.value/1000000 + 'M'
+            if(IS_MAINNET) {
+                _config.yAxis.labels.formatter = function () {
+                    if (this.value < 1000000) {
+                        return this.value / 1000 + 'k'
+                    } else if (this.value >= 1000000) {
+                        return this.value / 1000000 + 'M'
+                    }
                 }
             }
             _config.tooltip.formatter = function () {
@@ -241,15 +249,21 @@ export class LineReactHighChartTx extends React.Component {
             _config.yAxis.tickAmount = 4;
             _config.yAxis.allowDecimals = true;
             _config.exporting.enabled = false;
-            _config.yAxis.tickInterval = 1000000;
+            if(IS_MAINNET){
+                _config.yAxis.tickInterval = 100000;
+            }else{
+                _config.yAxis.tickInterval = 10
+            }
             _config.yAxis.min = 0;
-            _config.yAxis.labels.formatter = function() {
-                if(this.value < 1000000 && this.value >= 1000 ){
-                    return this.value/1000 + 'k'
-                }else if(this.value >= 1000000){
-                    return this.value/1000000 + 'M'
-                }else if(this.value <1000){
-                    return this.value
+            if(IS_MAINNET) {
+                _config.yAxis.labels.formatter = function () {
+                    if (this.value < 1000000 && this.value >= 1000) {
+                        return this.value / 1000 + 'k'
+                    } else if (this.value >= 1000000) {
+                        return this.value / 1000000 + 'M'
+                    } else if (this.value < 1000) {
+                        return this.value
+                    }
                 }
             }
             _config.tooltip.formatter = function () {
