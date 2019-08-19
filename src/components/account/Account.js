@@ -9,7 +9,7 @@ import {SwitchToken} from "../common/Switch";
 import FreezeBalanceModal from "./FreezeBalanceModal";
 import {AddressLink, HrefLink, TokenLink, TokenTRC20Link} from "../common/Links";
 import SweetAlert from "react-bootstrap-sweetalert";
-import {API_URL, IS_TESTNET, ONE_TRX, CONTRACT_ADDRESS_USDT, CONTRACT_ADDRESS_WIN, CONTRACT_ADDRESS_GGC} from "../../constants";
+import {API_URL, IS_TESTNET, ONE_TRX, CONTRACT_ADDRESS_USDT, CONTRACT_ADDRESS_WIN, CONTRACT_ADDRESS_GGC, IS_SUNNET} from "../../constants";
 import {Client} from "../../services/api";
 import ApplyForDelegate from "./ApplyForDelegate";
 import _, {trim} from "lodash";
@@ -34,7 +34,9 @@ import QRCode from "qrcode.react";
 import {byteArray2hexStr} from "@tronscan/client/src/utils/bytes";
 import { FormatNumberByDecimals } from '../../utils/number'
 import { getQueryString } from "../../utils/url";
-import IssuedToken from './IssuedToken'
+import IssuedToken from './IssuedToken';
+import PledgeModal from './PledgeModal';
+import MappingMessageModal from './MappingMessageModal';
 
 @connect(
     state => {
@@ -79,7 +81,9 @@ export default class Account extends Component {
       isTronLink: 0,
       delegateType: 0,
       delegate: false,
-      delegateValue: ''
+      delegateValue: '',
+      isShowPledgeModel: false,
+      isShowMappingModal: false,
     };
 
   }
@@ -230,12 +234,24 @@ export default class Account extends Component {
           </div>
       );
     }
+
+
+    // pledgeItem
+    const pledgeItem = id => (
+      <td className="text-right">
+        <button className="btn btn-danger" onClick={() => this.openMappingModal(id)}>
+          {tu('sidechain_account_pledge_btn')}
+        </button>
+      </td>
+    );
+    
     return (
         <table className="table mt-3 temp-table">
           <thead className="thead-light">
           <tr>
             <th>{tu("name")}</th>
             <th className="text-right">{tu("balance")}</th>
+            {IS_SUNNET && <th className="text-right">{tu("trc20_cur_order_header_action")}</th>}
           </tr>
           </thead>
           <tbody>
@@ -257,6 +273,7 @@ export default class Account extends Component {
                     <span>{token.token20_balance}</span>
                     {/*<FormattedNumber value={token.token20_balance} maximumFractionDigits={20}/>*/}
                   </td>
+                  {IS_SUNNET && pledgeItem(token)}
                 </tr>
             ))
           }
@@ -287,6 +304,15 @@ export default class Account extends Component {
       );
     }
 
+    // pledgeItem
+    const pledgeItem = id => (
+      <td className="text-right">
+        <button className="btn btn-danger" onClick={() => this.openPledgeModel(id)}>
+          {tu('sidechain_account_pledge_btn')}
+        </button>
+      </td>
+    );
+
     return (
         <table className="table mt-3 temp-table">
           <thead className="thead-light">
@@ -295,6 +321,7 @@ export default class Account extends Component {
             <th>ID</th>
             <th>{tu("TRC20_decimals")}</th>
             <th className="text-right">{tu("balance")}</th>
+            {IS_SUNNET && <th className="text-right">{tu('trc20_cur_order_header_action')}</th>}
           </tr>
           </thead>
           <tbody>
@@ -320,6 +347,7 @@ export default class Account extends Component {
                     <FormattedNumber value={token.map_amount}
                                      maximumFractionDigits={Number(token.map_token_precision)}/>
                   </td>
+                  {IS_SUNNET && pledgeItem(token.map_token_id)}
                 </tr>
             ))
           }
@@ -1433,8 +1461,41 @@ export default class Account extends Component {
     this.setState({tokenTRC10: false});
   }
 
+  /**
+   * close PledgeModel
+   */
+  closePledgeModel = () => {
+    this.setState({ isShowPledgeModel: false });
+  }
+
+  /**
+   * open PledgeModel
+   * @param id
+   */
+  openPledgeModel = id => {
+    this.setState({ isShowPledgeModel: true, id });
+  }
+
+  /**
+   * close MappingModal
+   */
+  closeMappingModal = () => {
+    this.setState({ isShowMappingModal: false });
+  }
+
+  /**
+   * open MappingModal
+   * @param id
+   */
+  openMappingModal = id => {
+    this.setState({ isShowMappingModal: true, id });
+  }
+
+  
+
   render() {
-    let {modal, sr, issuedAsset, showBandwidth, showBuyTokens, temporaryName, hideSmallCurrency, tokenTRC10} = this.state;
+    let { modal, sr, issuedAsset, showBandwidth, showBuyTokens, temporaryName, hideSmallCurrency, tokenTRC10,
+      isShowPledgeModel, isShowMappingModal } = this.state;
 
     let {account, frozen, totalTransactions, currentWallet, wallet, accountResource, trxBalance, intl} = this.props;
 
@@ -2033,56 +2094,8 @@ export default class Account extends Component {
                   </div>
                 </div>
           }
-          {/*
-            IS_TESTNET && <div className="row mt-3">
-              <div className="col-md-12">
-                <div className="card">
-                  <div className="card-body text-center">
-                    <h5 className="card-title border-bottom-0 m-0">
-                      {tu("testnet")}
-                    </h5>
-                    <TestNetRequest
-                        account={account}
-                        onRequested={() => setTimeout(() => this.reloadTokens(), 1500)}/>
-                  </div>
-                </div>
-              </div>
-            </div>
-            */
-          }
-          {/*
-        <div className="row mt-3">
-            <div className="col-md-12">
-              <div className="card">
-                <div className="card-body">
-                  <h5 className="card-title text-center m-0">
-                    {t("buy_trx")}
-                  </h5>
-                  <div className="py-3">
-                    {t("buy_trx_message_0")}
-                    <HrefLink href={"https://changelly.com/faq"}
-                              target="_blank">{"changelly.com/faq"}</HrefLink>{"."}
-                  </div>
-                  <div className="text-center">
-                    {
-                      !showBuyTokens && <button className="btn btn-danger"
-                                                onClick={() => this.setState(state => ({showBuyTokens: !state.showBuyTokens}))}>
-                        {t("buy_trx_using_changelly")}
-                      </button>
-                    }
-                  </div>
-                  {
-                    showBuyTokens && <iframe
-                        src={"https://changelly.com/widget/v1?auth=email&from=USD&to=TRX&merchant_id=9i8693nbi7bzkyrr&address=" + currentWallet.address + "&amount=100&ref_id=9i8693nbi7bzkyrr&color=28cf00"}
-                        height="500" className="changelly" scrolling="no"
-                        style={{overflowY: 'hidden', border: 'none', width: '100%'}}> {t("cant_load_widget")}
-                    </iframe>
-                  }
-                </div>
-              </div>
-            </div>
-          </div>
-          */}
+          {isShowPledgeModel && <PledgeModal onCancel={this.closePledgeModel} onConfirm={() => {}} />}
+          {isShowMappingModal && <MappingMessageModal onCancel={this.closeMappingModal} onConfirm={() => {}} />}
         </main>
     )
   }
