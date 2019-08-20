@@ -25,7 +25,7 @@ import { Progress, Tooltip } from 'antd'
 import BigNumber from "bignumber.js"
 import {HrefLink} from "../../common/Links";
 import {QuestionMark} from "../../common/QuestionMark";
-// import {CsvExport} from "../../common/CsvExport";
+import {CsvExport} from "../../common/CsvExport";
 BigNumber.config({ EXPONENTIAL_AT: [-1e9, 1e9] });
 
 
@@ -749,10 +749,10 @@ class Address extends React.Component {
                         </div>
 
                       </div>
-                      {/**
+                      {
                         ['transfers', 'transactions', 'internal-transactions'].indexOf(tabName) !== -1?
                         <CsvExport downloadURL={csvurl}/>: ''
-                       */}
+                      }
 
                     </Fragment>
               }

@@ -20,6 +20,7 @@ export class CsvExport extends React.Component {
        window.location.href = downloadURL
     };
     handleCaptchaCode = (val) => {
+        console.log(val);
         this.setState({captcha_code: val});
     };
 
