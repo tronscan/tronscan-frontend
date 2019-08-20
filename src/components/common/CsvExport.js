@@ -2,6 +2,7 @@ import React, {Fragment} from "react";
 import { Modal, Button } from 'antd';
 import ContractCodeRequest from "../tools/ContractCodeRequest";
 import {tu} from "../../utils/i18n";
+import xhr from "axios/index";
 
 
 
@@ -21,6 +22,7 @@ export class CsvExport extends React.Component {
     };
     handleCaptchaCode = (val) => {
         console.log(val);
+        xhr.get(`http://52.15.68.74:10000/api/recaptcha?g-recaptcha-response=${val}`)
         this.setState({captcha_code: val});
     };
 
