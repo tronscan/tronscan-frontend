@@ -14,7 +14,7 @@ export function configureStore() {
       thunk,
       routerMiddleware(reduxHistory)
     ),
-    // window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
   );
 
   return createStore(
@@ -22,7 +22,8 @@ export function configureStore() {
       ...reducers,
       router: routerReducer,
     }),
-    enhancer);
+    enhancer,
+  );
 }
 
 export const store = configureStore();
