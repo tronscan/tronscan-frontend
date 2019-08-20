@@ -283,6 +283,14 @@ class SmartContract extends React.Component {
                                   </div>
                                 }
                               </li>
+
+                              <li>
+                                <p>{tu('main_account_mapping_btn')}: </p>
+                                <span>
+                                  {tu('sidechain_contract_left')}XXX
+                                  {tu('sidechain_contract_right')}
+                                </span>
+                              </li>
                             </ul>
                           </div>
                         </div>

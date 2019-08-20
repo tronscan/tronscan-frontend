@@ -56,7 +56,7 @@ class MappingModal extends Component {
 
         validateFields(async(err, values) => {
             if (!err) {
-                const data = await sunWeb.mappingTrc20(address, 0, 10000);
+                const mappingData = await sunWeb.mappingTrc20(address, 0, 10000);
                 onCancel();
             }
         });

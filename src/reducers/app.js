@@ -174,13 +174,13 @@ export function appReducer(state = initialState, action) {
       );
       const sunWeb = new SunWeb(
           {
-              fullNode: 'http://47.252.84.158:8090',
-              solidityNode: 'http://47.252.84.158:8090',
+              fullNode: 'http://47.252.84.158:8070',
+              solidityNode: 'http://47.252.84.158:8071',
               eventServer: 'http://47.252.84.141:8080'
           },
           {
-              fullNode: 'http://47.252.85.90:8090',
-              solidityNode: 'http://47.252.85.90:8091',
+              fullNode: 'http://47.252.85.90:8070',
+              solidityNode: 'http://47.252.85.90:8071',
               eventServer: 'http://47.252.85.90:8090'
           },
           'TGHxhFu4jV4XqMGmk3tEQdSeihWVHE9kBP',
@@ -193,16 +193,16 @@ export function appReducer(state = initialState, action) {
         ...state,
         account: {
           type: ACCOUNT_PRIVATE_KEY,
-          key: action.privateKey || '2480f0f24c689b9ed4cbfe30911e4ce9803b043a4bd455846a0b2cb6e63b5b9c',
+          key: action.privateKey,
           isLoggedIn: true,
-          address: pkToAddress(action.privateKey || '2480f0f24c689b9ed4cbfe30911e4ce9803b043a4bd455846a0b2cb6e63b5b9c'),
+          address: pkToAddress(action.privateKey),
           tronWeb: tronWeb,
           sunWeb:sunWeb,
           tronStationSDK: new TronStationSDK(tronWeb),
         },
         wallet: {
           type: ACCOUNT_PRIVATE_KEY,
-          address: pkToAddress(action.privateKey || '2480f0f24c689b9ed4cbfe30911e4ce9803b043a4bd455846a0b2cb6e63b5b9c'),
+          address: pkToAddress(action.privateKey),
           isOpen: true,
         },
       };
