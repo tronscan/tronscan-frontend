@@ -20,11 +20,12 @@ export class CsvExport extends React.Component {
         let {downloadURL} = this.props;
        window.location.href = downloadURL
     };
-    handleCaptchaCode = (val) => {
-        console.log(val);
-        xhr.get(`http://52.15.68.74:10000/api/recaptcha?g-recaptcha-response=${val}`)
-        this.setState({captcha_code: val});
+    handleCaptchaCode = async (val) => {
+        const {data} = await xhr.get(`http://52.15.68.74:10000/api/recaptcha?g-recaptcha-response=${val}`)
+        console.log(data);
+        this.setState({captcha_code: data.success});
     };
+    
 
     render() {
         return (
