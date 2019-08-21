@@ -48,8 +48,12 @@ export class CsvExport extends React.Component {
                     onCancel={() => this.setState({ visible: false})}
                     // centered
                 >   
-                    <div className="pt-3">
-                        <ContractCodeRequest  handleCaptchaCode={this.handleCaptchaCode}/>
+                    <div className="pt-3">{
+                        this.state.visible?
+                        <ContractCodeRequest  handleCaptchaCode={this.handleCaptchaCode} className={this.state.visible? 'd-block': 'd-none'}/>
+                        :''
+                    }
+                        
                     </div>
                     
                     {/**<button 
