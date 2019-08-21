@@ -23,15 +23,14 @@ export class CsvExport extends React.Component {
     handleCaptchaCode = async (val) => {
         let {downloadURL} = this.props;
         console.log(downloadURL);
-        const {data} = await xhr.get(`downloadURL?g-recaptcha-response=${val}`)
+        console.log(val);
+    const {data} = await xhr.get(`${downloadURL}?g-recaptcha-response=${val}`)
         console.log(data);
         this.setState({captcha_code: data != 'Recaptcha check fail'});
     };
     
 
     render() {
-        // let {downloadURL} = this.props;
-        // console.log(downloadURL);
         return (
             <Fragment>
                 <div style={{marginTop: 20, float: 'right'}}><i size="1" style={{fontStyle: 'normal'}}>[
@@ -49,10 +48,10 @@ export class CsvExport extends React.Component {
                         <ContractCodeRequest  handleCaptchaCode={this.handleCaptchaCode}/>
                     </div>
                     
-                    <button 
+                    {/**<button 
                         className="btn btn-danger d-block mx-auto mt-3" 
-                        // disabled={!this.state.captcha_code}
-                        onClick={this.handleOk}>{tu('Download')}</button>
+                        disabled={!this.state.captcha_code}
+                        onClick={this.handleOk}>{tu('Download')}</button> */}
                 </Modal>
             </Fragment>
 
