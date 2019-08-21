@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { tu } from '../../utils/i18n';
-import { Modal, Form, Input, Select } from 'antd';
+import { Modal, Form, Input, Select, message } from 'antd';
 import PropTypes from 'prop-types';
-import { CURRENCYTYPE } from './../../constants';
+import { CURRENCYTYPE, FEELIMIT } from './../../constants';
+import { injectIntl } from 'react-intl';
 
 const { Option } = Select;
 
@@ -20,7 +21,7 @@ class PledgeModal extends Component {
         super();
 
         this.state = {
-            disabled: false,
+            isDisabled: false,
         };
     }
 
@@ -28,22 +29,48 @@ class PledgeModal extends Component {
      * Form confirm
      */
     confirm = () => {
-        const { form: { validateFields }, account: { sunWeb }, onCancel,
+        const { form: { validateFields }, intl, account: { sunWeb }, onCancel,
             option: { id, address, precision, type } } = this.props;
-        this.setState({ disabled: true });
+        this.setState({ isDisabled: true });
         validateFields(async(err, values) => {
             if (!err) {
                 const num = values.Num * Math.pow(10, Number(precision));
+                // todo wangyan
+                sunWeb.setSideGatewayAddress('TJ4apMhB5fhmAwqPcgX9i43SUJZuK6eZj4');
+                sunWeb.setChainId('410A6DBD0780EA9B136E3E9F04EBE80C6C288B80EE');
                 // trc10
                 if (CURRENCYTYPE.TRX10 === type) {
-                    const txid = await sunWeb.depositTrc10(id, num, 100000);
+                    // todo wangyan
+                    const txid = await sunWeb.depositTrc10(id, num, FEELIMIT);
+                    if (txid) {
+                        message.success(intl.formatMessage({ id: 'success' }), 3, () => onCancel());
+                    } else {
+                        message.error(intl.formatMessage({ id: 'error' }));
+                    }
                 } else if (CURRENCYTYPE.TRX20 === type) {
-                    const approveData = await sunWeb.approveTrc20(num, 100000, address);
-                    // trc20
-                    const data = await sunWeb.depositTrc20(num, 100000, address);
+                    const approveData = await sunWeb.approveTrc20(num, FEELIMIT, address);
+                    if (approveData) {
+                        // todo wangyan
+                        // trc20
+                        const data = await sunWeb.depositTrc20(num, FEELIMIT, address);
+                        if (data) {
+                            message.success(intl.formatMessage({ id: 'success' }), 3, () => onCancel());
+                        } else {
+                            message.error(intl.formatMessage({ id: 'error' }));
+                        }
+                    } else {
+                        message.error(intl.formatMessage({ id: 'error' }));
+                    }
+                } else if (CURRENCYTYPE.TRX === type) {
+                    const data = await sunWeb.depositTrx(num, FEELIMIT);
+                    if (data) {
+                        message.success(intl.formatMessage({ id: 'success' }), 3, () => onCancel());
+                    } else {
+                        message.error(intl.formatMessage({ id: 'error' }));
+                    }
                 }
-                onCancel();
             }
+            this.setState({ isDisabled: true });
         });
     };
 
@@ -58,6 +85,7 @@ class PledgeModal extends Component {
     render() {
         const { getFieldDecorator } = this.props.form;
         const { option: { currency, balance, precision }, sideChains } = this.props;
+        const { isDisabled } = this.state;
         const isHasSideChainsData = sideChains && sideChains.length > 0;
 
         // currencyItem
@@ -79,6 +107,7 @@ class PledgeModal extends Component {
                 </Select>)}
             </Form.Item>
         );
+
         // numItem
         let reg = Number(precision) > 0
             ? `^(0|[1-9][0-9]*)(\.\d{1,${Number(precision)}})?$` : '^(0|[1-9][0-9]*)(\.\d+)?$';
@@ -106,7 +135,7 @@ class PledgeModal extends Component {
 
         // btnItem
         const btnItem = (
-            <button className="btn btn-danger" style={{ width: '100%' }}
+            <button className="btn btn-danger" style={{ width: '100%' }} disabled={isDisabled}
                 onClick={this.confirm}>{tu('sidechain_account_pledge_btn')}</button>
         );
 
@@ -146,4 +175,4 @@ function mapStateToProps(state, ownProp) {
 const mapDispatchToProps = {
 };
 
-export default Form.create({ name: 'pledge' })(connect(mapStateToProps, mapDispatchToProps)(PledgeModal));
+export default Form.create({ name: 'pledge' })(connect(mapStateToProps, mapDispatchToProps)(injectIntl(PledgeModal)));

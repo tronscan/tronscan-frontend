@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { tu } from '../../utils/i18n';
-import { Modal, Form, Input, Select } from 'antd';
+import { Modal, Form, Input, message } from 'antd';
 import PropTypes from 'prop-types';
-import { CURRENCYTYPE } from './../../constants';
-
-const { Option } = Select;
+import { CURRENCYTYPE, FEELIMIT, WITHDRAWFEE } from './../../constants';
+import { injectIntl } from 'react-intl';
 
 class SignModal extends Component {
 
@@ -20,7 +19,7 @@ class SignModal extends Component {
         super();
 
         this.state = {
-            disabled: false,
+            isDisabled: false,
         };
     }
 
@@ -28,22 +27,43 @@ class SignModal extends Component {
      * Form confirm
      */
     confirm = () => {
-        const { form: { validateFields }, account: { sunWeb }, onCancel,
+        const { form: { validateFields }, intl, account: { sunWeb }, onCancel,
             option: { id, address, precision, type } } = this.props;
 
+        this.setState({ isDisabled: true });
         validateFields(async(err, values) => {
             if (!err) {
                 const num = values.Num * Math.pow(10, Number(precision));
+                // todo wangyan
+                sunWeb.setSideGatewayAddress('TJ4apMhB5fhmAwqPcgX9i43SUJZuK6eZj4');
+                sunWeb.setChainId('410A6DBD0780EA9B136E3E9F04EBE80C6C288B80EE');
                 // trc10
                 if (CURRENCYTYPE.TRX10 === type) {
-                    const data = await sunWeb.withdrawTrc10(id, num, 0, 100000);
+                    const data = await sunWeb.withdrawTrc10(id, num, WITHDRAWFEE, FEELIMIT);
+                    if (data) {
+                        message.success(intl.formatMessage({ id: 'success' }), 3, () => onCancel());
+                    } else {
+                        message.error(intl.formatMessage({ id: 'error' }));
+                    }
                 } else if (CURRENCYTYPE.TRX20 === type) {
                     // trc20
-                    const data = await sunWeb.depositTrc20(num, 0, 1000000, address);
+                    const data = await sunWeb.withdrawTrc20(num, WITHDRAWFEE, FEELIMIT, address);
+                    if (data) {
+                        message.success(intl.formatMessage({ id: 'success' }), 3, () => onCancel());
+                    } else {
+                        message.error(intl.formatMessage({ id: 'error' }));
+                    }
+                } else if (CURRENCYTYPE.TRX === type) {
+                    // todo wangyan
+                    const data = await sunWeb.withdrawTrx(num, WITHDRAWFEE, FEELIMIT);
+                    if (data) {
+                        message.success(intl.formatMessage({ id: 'success' }), 3, () => onCancel());
+                    } else {
+                        message.error(intl.formatMessage({ id: 'error' }));
+                    }
                 }
-                this.setState({ disabled: true });
-                onCancel();
             }
+            this.setState({ isDisabled: false });
         });
     };
 
@@ -57,7 +77,8 @@ class SignModal extends Component {
 
     render() {
         const { getFieldDecorator } = this.props.form;
-        const { option: { currency, balance, precision }, sideChains } = this.props;
+        const { option: { currency, balance, precision } } = this.props;
+        const { isDisabled } = this.state;
 
         // currencyItem
         const currencyItem = (
@@ -95,7 +116,7 @@ class SignModal extends Component {
 
         // btnItem
         const btnItem = (
-            <button className="btn btn-danger" style={{ width: '100%' }}
+            <button className="btn btn-danger" style={{ width: '100%' }} disabled={isDisabled}
                 onClick={this.confirm}>{tu('sidechain_account_sign_btn')}</button>
         );
 
@@ -133,4 +154,4 @@ function mapStateToProps(state, ownProp) {
 const mapDispatchToProps = {
 };
 
-export default Form.create({ name: 'sign' })(connect(mapStateToProps, mapDispatchToProps)(SignModal));
+export default Form.create({ name: 'sign' })(connect(mapStateToProps, mapDispatchToProps)(injectIntl(SignModal)));

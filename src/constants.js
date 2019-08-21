@@ -45,3 +45,10 @@ export const CURRENCYTYPE = {
     TRX10: 'TRX10',
     TRX20: 'TRX20',
 };
+
+// mapping energy
+export const MAPPINGFEE = 100000;
+// feeLimit
+export const FEELIMIT = 10000000;
+// withdrawFee
+export const WITHDRAWFEE = 100000;

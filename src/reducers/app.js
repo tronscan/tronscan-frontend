@@ -176,18 +176,20 @@ export function appReducer(state = initialState, action) {
           {
               fullNode: 'http://47.252.84.158:8070',
               solidityNode: 'http://47.252.84.158:8071',
-              eventServer: 'http://47.252.84.141:8080'
+              eventServer: 'http://47.252.81.14:8070'
           },
           {
               fullNode: 'http://47.252.85.90:8070',
               solidityNode: 'http://47.252.85.90:8071',
-              eventServer: 'http://47.252.85.90:8090'
+              eventServer: 'http://47.252.87.129:8070'
           },
-          'TGHxhFu4jV4XqMGmk3tEQdSeihWVHE9kBP',
-          'TBHr5KpbA7oACUysTKxHiAD7c6X6nkZii1',
-          '41455CB714D762DC46D490EAB37BBA67B0BA910A59',
+          'TAvMDjZpb3MNUJNjXmnYo17MHkLChAu5nT',
+          'TJ4apMhB5fhmAwqPcgX9i43SUJZuK6eZj4',
+          '410A6DBD0780EA9B136E3E9F04EBE80C6C288B80EE',
           privateKey
       );
+
+      window.sunWeb = sunWeb;
 
       return {
         ...state,
