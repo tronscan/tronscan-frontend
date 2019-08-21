@@ -24,9 +24,13 @@ export class CsvExport extends React.Component {
         let {downloadURL} = this.props;
         console.log(downloadURL);
         console.log(val);
-    const {data} = await xhr.get(`${downloadURL}?g-recaptcha-response=${val}`)
+        console.log(`${downloadURL.replace('http://52.15.68.74:10000', 'http://172.16.22.110:8899')}&g-recaptcha-response=${val}`);
+    const {data} = await xhr.get(`${downloadURL}&g-recaptcha-response=${val}`)
         console.log(data);
-        this.setState({captcha_code: data != 'Recaptcha check fail'});
+        this.setState({
+            captcha_code: data != 'Recaptcha check fail',
+            visible: false,
+        });
     };
     
 
