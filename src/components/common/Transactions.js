@@ -101,7 +101,7 @@ class Transactions extends React.Component {
           ...filter
         }
         const query = qs.stringify({ format: 'csv',...params})
-        //getCsvUrl(`${'http://52.15.68.74:10000'}/api/internal-transaction?${query}`)
+        getCsvUrl(`${'http://52.15.68.74:10000'}/api/internal-transaction?${query}`)
         let data = await Client.getInternalTransaction({
             limit: pageSize,
             start: (page - 1) * pageSize,
