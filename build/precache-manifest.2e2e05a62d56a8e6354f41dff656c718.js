@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/editor.worker.js"
   },
   {
-    "revision": "dda207c3d82be0abba2157faa3dbaac2",
+    "revision": "e0945cf50ab116fc4d9bbbd113ae783e",
     "url": "/index.html"
   },
   {
@@ -148,8 +148,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/js/AddSignatureModal.7f2a297e.chunk.js"
   },
   {
-    "revision": "606e15d11847e9212962",
-    "url": "/static/js/Address.e60a1a34.chunk.js"
+    "revision": "9d26b8ad3a2cbf2cd629",
+    "url": "/static/js/Address.108b18ac.chunk.js"
   },
   {
     "revision": "d8e4cd12d51889b30b0b",
@@ -220,8 +220,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/js/Markets.9b05c87e.chunk.js"
   },
   {
-    "revision": "0b57a14a4897c798bce8",
-    "url": "/static/js/MyToken.bc5ec931.chunk.js"
+    "revision": "7c46daf0fc527dd3dce7",
+    "url": "/static/js/MyToken.4e01481d.chunk.js"
   },
   {
     "revision": "cd6b61cc19a61a3e2010",
@@ -348,8 +348,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/js/main.4c8a545c.chunk.js"
   },
   {
-    "revision": "c1f628d21c08b4182c6b",
-    "url": "/static/js/runtime~main.859e8f34.js"
+    "revision": "2a709b07ff9a2259e1ba",
+    "url": "/static/js/runtime~main.52086b80.js"
   },
   {
     "revision": "7b00f7c4e78ed9cfc676c64c040965e8",

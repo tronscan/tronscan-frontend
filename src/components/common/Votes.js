@@ -50,7 +50,7 @@ class Votes extends React.Component {
       ...filter,
     }
     const query = qs.stringify({ format: 'csv',...params})
-    getCsvUrl(`${API_URL}/api/vote/witness?${query}`)
+    getCsvUrl(`${API_URL}/api/vote?${query}`)
 
     let {votes, total, totalVotes} = await Client.getVotes(params);
 
