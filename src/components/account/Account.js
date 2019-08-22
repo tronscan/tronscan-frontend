@@ -88,6 +88,7 @@ export default class Account extends Component {
       isShowMappingModal: false,
       isShowSignModal: false,
       type: CURRENCYTYPE.TRX10,
+      tokenTRX: false,
     };
 
   }
@@ -242,12 +243,22 @@ export default class Account extends Component {
       );
     }
 
+    // todo wangyan
     // pledgeItem
+    // const pledgeItem = (address, currency, balance, precision) => {
+    //   const option = { address, currency, balance, precision, type: CURRENCYTYPE.TRX20 };
+    //   return <td className="text-right">
+    //           <button className="btn btn-danger"
+    //             onClick={IS_SUNNET ? () => this.openSignModal(option) : () => this.openMappingModal(option)}>
+    //             {IS_SUNNET ? tu('sidechain_account_sign_btn') : tu('sidechain_account_pledge_btn')}
+    //           </button>
+    //         </td>
+    // };
     const pledgeItem = (address, currency, balance, precision) => {
       const option = { address, currency, balance, precision, type: CURRENCYTYPE.TRX20 };
       return <td className="text-right">
               <button className="btn btn-danger"
-                onClick={IS_SUNNET ? () => this.openSignModal(option) : () => this.openMappingModal(option)}>
+                onClick={IS_SUNNET ? () => this.openSignModal(option) : () => this.openPledgeModel(option)}>
                 {IS_SUNNET ? tu('sidechain_account_sign_btn') : tu('sidechain_account_pledge_btn')}
               </button>
             </td>
@@ -282,7 +293,7 @@ export default class Account extends Component {
                     <span>{token.token20_balance}</span>
                     {/*<FormattedNumber value={token.token20_balance} maximumFractionDigits={20}/>*/}
                   </td>
-                  {pledgeItem(token.contract_address, token.symbol, Number(token.token20_balance), token.map_token_precision)}
+                  {pledgeItem(token.contract_address, token.symbol, Number(token.token20_balance_decimals), token.map_token_precision)}
                   {/* {IS_SUNNET && pledgeItem(token)} */}
                 </tr>
             ))
@@ -317,6 +328,84 @@ export default class Account extends Component {
     // pledgeItem
     const pledgeItem = (id, currency, balance, precision) => {
       const option = { id, currency, balance, precision, type: CURRENCYTYPE.TRX10 };
+      return <td className="text-right">
+              <button className="btn btn-danger"
+                onClick={IS_SUNNET ? () => this.openSignModal(option) : () => this.openPledgeModel(option)}>
+                {IS_SUNNET ? tu('sidechain_account_sign_btn') : tu('sidechain_account_pledge_btn')}
+              </button>
+            </td>
+    };
+
+    return (
+        <table className="table mt-3 temp-table">
+          <thead className="thead-light">
+          <tr>
+            <th width="40%">{tu("name")}</th>
+            <th>ID</th>
+            <th>{tu("TRC20_decimals")}</th>
+            <th className="text-right">{tu("balance")}</th>
+            {/* {IS_SUNNET && <th className="text-right">{tu('trc20_cur_order_header_action')}</th>} */}
+            {<th className="text-right">{tu('trc20_cur_order_header_action')}</th>}
+          </tr>
+          </thead>
+          <tbody>
+          {
+            tokenBalances.map((token) => (
+                <tr key={token.name}>
+                  <td className="text-nowrap">
+                      {
+                          token.map_token_id == 1002000?<div className="map-token-top">
+                            <TokenLink id={token.map_token_id} name={token.map_token_name+' ('+token.map_token_name_abbr+")"} address={token.address}/>
+                            <i></i>
+                          </div>: <TokenLink id={token.map_token_id} name={token.map_token_name+' ('+token.map_token_name_abbr+")"} address={token.address}/>
+                      }
+
+                  </td>
+                  <td>
+                    <div className="tokenBalances_id">{token.map_token_id}</div>
+                  </td>
+                  <td>
+                    <div>{token.map_token_precision}</div>
+                  </td>
+                  <td className="text-right">
+                    <FormattedNumber value={token.map_amount}
+                                     maximumFractionDigits={Number(token.map_token_precision)}/>
+                  </td>
+                  {/* {IS_SUNNET && pledgeItem(token.map_token_id)} */}
+                  {pledgeItem(token.map_token_id, token.map_token_name_abbr, Number(token.map_amount), token.map_token_precision)}
+                </tr>
+            ))
+          }
+          </tbody>
+        </table>
+    )
+  }
+
+  renderTRX() {
+    let {hideSmallCurrency} = this.state;
+    let {tokenBalances = []} = this.props;
+    if (hideSmallCurrency) {
+      tokenBalances = _(tokenBalances)
+          .filter(tb => tb.name.toUpperCase() === "_")
+          .filter(tb => tb.map_amount >= 10)
+          .value();
+    } else {
+      tokenBalances = _(tokenBalances)
+          .filter(tb => tb.name.toUpperCase() === "_")
+          .filter(tb => tb.map_amount > 0)
+          .value();
+    }
+    if (tokenBalances.length === 0) {
+      return (
+          <div className="text-center d-flex justify-content-center p-4">
+            {tu("no_tokens")}
+          </div>
+      );
+    }
+
+    // pledgeItem
+    const pledgeItem = (id, currency, balance, precision) => {
+      const option = { id, currency, balance, precision, type: CURRENCYTYPE.TRX };
       return <td className="text-right">
               <button className="btn btn-danger"
                 onClick={IS_SUNNET ? () => this.openSignModal(option) : () => this.openPledgeModel(option)}>
@@ -1468,11 +1557,19 @@ export default class Account extends Component {
   }
 
   handleTRC10Token = () => {
-    this.setState({tokenTRC10: true});
+    // todo wangyan
+    // this.setState({tokenTRC10: true});
+    this.setState({tokenTRC10: true, tokenTRX: false});
   }
 
   handleTRC20Token = () => {
-    this.setState({tokenTRC10: false});
+    // todo wangyan
+    // this.setState({tokenTRC10: false});
+    this.setState({tokenTRC10: false, tokenTRX: false});
+  }
+
+  handleTRXToken = () => {
+    this.setState({tokenTRX: true});
   }
 
   /**
@@ -1551,7 +1648,7 @@ export default class Account extends Component {
 
   render() {
     let { modal, sr, issuedAsset, showBandwidth, showBuyTokens, temporaryName, hideSmallCurrency, tokenTRC10,
-      isShowPledgeModal, isShowMappingModal, address, currency, balance, precision, id, type, isShowSignModal } = this.state;
+      isShowPledgeModal, isShowMappingModal, address, currency, balance, precision, id, type, isShowSignModal, tokenTRX } = this.state;
 
       // pledge param
       const option = {
@@ -1866,19 +1963,24 @@ export default class Account extends Component {
                   </div>
                   <div className="account-token-tab">
                     <a href="javascript:;"
-                       className={"btn btn-default btn-sm" + (tokenTRC10 ? ' active' : '')}
+                       className={"btn btn-default btn-sm" + (tokenTRC10 && !tokenTRX ? ' active' : '')}
                        onClick={this.handleTRC10Token}>
                       {tu("TRC10_token")}
                     </a>
                     <a href="javascript:;"
-                       className={"btn btn-default btn-sm ml-2" + (tokenTRC10 ? '' : ' active')}
+                       className={"btn btn-default btn-sm ml-2" + (tokenTRC10 || tokenTRX ? '' : ' active')}
                        onClick={this.handleTRC20Token}>
                       {tu("TRC20_token")}
+                    </a>
+                    <a href="javascript:;"
+                       className={"btn btn-default btn-sm ml-2" + (tokenTRX ? ' active' : '')}
+                       onClick={this.handleTRXToken}>
+                      TRX
                     </a>
                     <a href={`https://trx.market`} className="ml-2 float-right" target="_blank"><span className="mr-1"  style={{textDecoration: 'underline'}}>{t("Trade_on_TRXMarket")}</span>></a>
                     
                   </div>
-                  {
+                  {/* {
                     tokenTRC10 ? <div className="table-responsive-token">
                           {this.renderTokens()}
                         </div>
@@ -1886,6 +1988,20 @@ export default class Account extends Component {
                         <div className="table-responsive-token">
                           {this.renderTRC20Tokens()}
                         </div>
+                  } */}
+                  {
+                    tokenTRC10 && !tokenTRX
+                      ? <div className="table-responsive-token">
+                          {this.renderTokens()}
+                        </div>
+                      : (!tokenTRX
+                            ? <div className="table-responsive-token">
+                                {this.renderTRC20Tokens()}
+                              </div>
+                            : <div className="table-responsive-token">
+                              {this.renderTRX()}
+                            </div>
+                      )
                   }
                 </div>
               </div>

@@ -2,7 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { tu } from '../../utils/i18n';
 import PropTypes from 'prop-types';
-import { Modal, Form, Input, Select } from 'antd';
+import { Modal, Form, Input, Select, message } from 'antd';
+import { API_URL, MAPPINGFEE, FEELIMIT } from './../../constants';
+import xhr from 'axios';
+import { injectIntl } from 'react-intl';
 
 const { Option } = Select;
 
@@ -20,44 +23,34 @@ class MappingModal extends Component {
 
         this.state = {
             name: '',
-            disabled: false,
+            isDisabled: false,
         };
     }
 
-    /**
-     * Form validation
-     */
-    isValid = () => {
-        let { name } = this.state;
-
-        if (name.length < 8) {
-            return [false, tu('name_to_short')];
-        }
-
-        if (name.length > 32) {
-            return [false, tu('name_to_long')];
-        }
-
-        if (!/^[a-zA-Z0-9_-]+$/.test(name)) {
-            return [false, tu('permitted_characters_message')];
-        }
-
-        return [true];
-    };
+    async componentWillMount() {
+        await this.getTrxHash();
+    }
 
     /**
      * Form confirm
      */
     confirm = () => {
-        const { form: { validateFields }, account: { sunWeb }, onCancel,
-            option: { address } } = this.props;
+        const { form: { validateFields }, intl, account: { sunWeb }, onCancel } = this.props;
+        const { txHash } = this.state;
 
-        this.setState({ disabled: true });
+        this.setState({ isDisabled: true });
 
         validateFields(async(err, values) => {
             if (!err) {
-                const mappingData = await sunWeb.mappingTrc20(address, 0, 10000);
-                onCancel();
+                // todo wangyan
+                sunWeb.setSideGatewayAddress('TJ4apMhB5fhmAwqPcgX9i43SUJZuK6eZj4');
+                sunWeb.setChainId('410A6DBD0780EA9B136E3E9F04EBE80C6C288B80EE');
+                const mappingData = await sunWeb.mappingTrc20(txHash, MAPPINGFEE, FEELIMIT);
+                if (mappingData) {
+                    message.success(intl.formatMessage({ id: 'success' }), 3, () => onCancel());
+                } else {
+                    message.error(intl.formatMessage({ id: 'error' }));
+                }
             }
         });
     };
@@ -70,9 +63,23 @@ class MappingModal extends Component {
         onCancel && onCancel();
     };
 
+    /**
+     * get trxHash
+     */
+    getTrxHash = async() => {
+        const { address } = this.props;
+        const contractData = await xhr.get(API_URL + `/api/contract?contract=${address}`);
+        const { data } = contractData;
+        this.setState({
+            txHash: (data && data.data && data.data.length > 0 && data.data[0].creator && data.data[0].creator.txHash)
+                || ''
+        });
+    };
+
     render() {
         const { getFieldDecorator } = this.props.form;
         const { currency, sideChains } = this.props;
+        const { isDisabled } = this.state;
         const isHasSideChainsData = sideChains && sideChains.length > 0;
 
         // mappingTextItem
@@ -105,7 +112,7 @@ class MappingModal extends Component {
 
         // btnItem
         const btnItem = (
-            <button className="btn btn-danger mt-4 mb-3" style={{ width: '100%' }}
+            <button className="btn btn-danger mt-4 mb-3" style={{ width: '100%' }} disabled={isDisabled}
                 onClick={this.confirm}>{tu('main_account_mapping_btn')}</button>
         );
 
@@ -138,4 +145,4 @@ function mapStateToProps(state, ownProp) {
 
 const mapDispatchToProps = {};
 
-export default Form.create({ name: 'mapping' })(connect(mapStateToProps, mapDispatchToProps)(MappingModal));
+export default Form.create({ name: 'mapping' })(connect(mapStateToProps, mapDispatchToProps)(injectIntl(MappingModal)));
