@@ -2,7 +2,7 @@ import React, {Fragment} from "react";
 import {tu} from "../../../utils/i18n";
 import {AddressLink} from "../../common/Links";
 import {Client} from "../../../services/api";
-import {ONE_TRX} from "../../../constants";
+import {ONE_TRX, API_URL} from "../../../constants";
 import SmartTable from "../../common/SmartTable.js"
 import {FormattedNumber, injectIntl} from "react-intl";
 import {TronLoader} from "../../common/loaders";
@@ -50,7 +50,7 @@ class TokenHolders extends React.Component {
       address: filter.address
     }
     const query = qs.stringify({ format: 'csv',...params})
-    getCsvUrl(`${'https://api.shasta.tronscan.org'}/api/tokenholders?${query}`)
+    getCsvUrl(`${API_URL}/api/tokenholders?${query}`)
 
     let {addresses, total, rangeTotal} = await Client.getTokenHolders(filter.token, params);
 

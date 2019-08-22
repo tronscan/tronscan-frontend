@@ -15,6 +15,7 @@ import {DatePicker} from 'antd';
 import moment from 'moment';
 import {NameWithId} from "./names";
 import rebuildList from "../../utils/rebuildList";
+import {API_URL} from "../../constants";
 import qs from 'qs'
 
 const RangePicker = DatePicker.RangePicker;
@@ -101,7 +102,7 @@ class Transactions extends React.Component {
           ...filter
         }
         const query = qs.stringify({ format: 'csv',...params})
-        getCsvUrl(`${'https://api.shasta.tronscan.org'}/api/internal-transaction?${query}`)
+        getCsvUrl(`${API_URL}/api/internal-transaction?${query}`)
         let data = await Client.getInternalTransaction({
             limit: pageSize,
             start: (page - 1) * pageSize,

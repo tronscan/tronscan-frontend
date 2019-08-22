@@ -11,6 +11,7 @@ import {upperFirst} from "lodash";
 import {TronLoader} from "./loaders";
 import {withTimers} from "../../utils/timing";
 import qs from 'qs'
+import {API_URL} from "../../constants";
 
 class Votes extends React.Component {
 
@@ -49,7 +50,7 @@ class Votes extends React.Component {
       ...filter,
     }
     const query = qs.stringify({ format: 'csv',...params})
-    getCsvUrl(`${'https://api.shasta.tronscan.org'}/api/vote/witness?${query}`)
+    getCsvUrl(`${API_URL}/api/vote/witness?${query}`)
 
     let {votes, total, totalVotes} = await Client.getVotes(params);
 

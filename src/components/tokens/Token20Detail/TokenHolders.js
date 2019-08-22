@@ -58,7 +58,7 @@ class TokenHolders extends React.Component {
       contract_address: filter.token
     }
     const query = qs.stringify({ format: 'csv',...params})
-    getCsvUrl(`${'https://api.shasta.tronscan.org'}/api/trc10trc20-transfer?${query}`)
+    getCsvUrl(`${API_URL}/api/trc10trc20-transfer?${query}`)
     let { data } = await xhr.get(API_URL+"/api/token_trc20/holders",{params});
     let addresses = data.trc20_tokens;
     let total= data.total;

@@ -67,7 +67,7 @@ class Transfers extends React.Component {
         }
     );
     const query = qs.stringify({ format: 'csv',...params})
-   getCsvUrl(`${'https://api.shasta.tronscan.org'}/api/asset/transfer?${query}`)
+   getCsvUrl(`${API_URL}/api/asset/transfer?${query}`)
     let {list, total, rangeTotal} = await Client.getAssetTransfers({
         limit: pageSize,
         start: (page - 1) * pageSize,

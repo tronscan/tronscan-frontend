@@ -3,6 +3,7 @@ import {Client} from "../../services/api";
 import {BlockNumberLink} from "./Links";
 import {t, tu} from "../../utils/i18n";
 import {FormattedNumber,injectIntl} from "react-intl";
+import {API_URL} from "../../constants";
 import TimeAgo from "react-timeago";
 import moment from 'moment';
 import SmartTable from "./SmartTable.js"
@@ -47,7 +48,7 @@ class Blocks extends React.Component {
       ...filter,
     }
     const query = qs.stringify({ format: 'csv',...params})
-    getCsvUrl(`${'https://api.shasta.tronscan.org'}/api/block?${query}`)
+    getCsvUrl(`${API_URL}/api/block?${query}`)
 
     let {blocks, total} = await Client.getBlocks(params);
 

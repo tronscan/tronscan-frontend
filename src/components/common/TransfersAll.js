@@ -21,6 +21,7 @@ import { Radio } from 'antd';
 import {isAddressValid} from "@tronscan/client/src/utils/crypto";
 import { CONTRACT_ADDRESS_USDT, CONTRACT_ADDRESS_WIN, CONTRACT_ADDRESS_GGC } from "../../constants";
 import qs from 'qs'
+import {API_URL} from "../../constants";
 
 
 
@@ -83,7 +84,7 @@ class TransfersAll extends React.Component {
             pageSize: pageSize,
         });
         const query = qs.stringify({ format: 'csv',...params})
-        getCsvUrl(`${'https://api.shasta.tronscan.org'}/api/trc10trc20-transfer?${query}`)
+        getCsvUrl(`${API_URL}/api/trc10trc20-transfer?${query}`)
         let list,total,range = 0;
         let {transfers, total:totaldata, rangeTotal} = await Client.getTransfersAll({
             limit: pageSize,
