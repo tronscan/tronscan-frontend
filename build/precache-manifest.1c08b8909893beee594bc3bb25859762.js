@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/editor.worker.js"
   },
   {
-    "revision": "6cf8699cfc1763d1f27044cf83cd61ce",
+    "revision": "dda207c3d82be0abba2157faa3dbaac2",
     "url": "/index.html"
   },
   {
@@ -148,8 +148,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/js/AddSignatureModal.7f2a297e.chunk.js"
   },
   {
-    "revision": "9d2cd32039d1383d3fdd",
-    "url": "/static/js/Address.82f5e469.chunk.js"
+    "revision": "606e15d11847e9212962",
+    "url": "/static/js/Address.e60a1a34.chunk.js"
   },
   {
     "revision": "d8e4cd12d51889b30b0b",
@@ -220,8 +220,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/js/Markets.9b05c87e.chunk.js"
   },
   {
-    "revision": "f25dc7d311e92a2ea6a5",
-    "url": "/static/js/MyToken.6623124c.chunk.js"
+    "revision": "0b57a14a4897c798bce8",
+    "url": "/static/js/MyToken.bc5ec931.chunk.js"
   },
   {
     "revision": "cd6b61cc19a61a3e2010",
@@ -264,8 +264,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/js/SingleStats.ba3bf2d3.chunk.js"
   },
   {
-    "revision": "6cae6e195865f0dbfd14",
-    "url": "/static/js/SmartContract.7146b60f.chunk.js"
+    "revision": "d4c3faa5f76f2786cd6a",
+    "url": "/static/js/SmartContract.960c588d.chunk.js"
   },
   {
     "revision": "d97a62e8af3e1897cbc7",
@@ -280,12 +280,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/js/TRONRating.c4fafab1.chunk.js"
   },
   {
-    "revision": "0b1d9afbb135d8706c2d",
-    "url": "/static/js/Token20Detail.325038ff.chunk.js"
+    "revision": "558b5a63841a3fd868dc",
+    "url": "/static/js/Token20Detail.28abea17.chunk.js"
   },
   {
-    "revision": "706e4c19d109796a5cc7",
-    "url": "/static/js/TokenDetail.9317f0fb.chunk.js"
+    "revision": "e73d1b0044f4dd182d41",
+    "url": "/static/js/TokenDetail.7c652d80.chunk.js"
   },
   {
     "revision": "2b54fb97abb95fe845ea",
@@ -348,8 +348,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/js/main.4c8a545c.chunk.js"
   },
   {
-    "revision": "284501b25883de3dc516",
-    "url": "/static/js/runtime~main.d21b0dac.js"
+    "revision": "c1f628d21c08b4182c6b",
+    "url": "/static/js/runtime~main.859e8f34.js"
   },
   {
     "revision": "7b00f7c4e78ed9cfc676c64c040965e8",

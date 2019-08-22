@@ -26,12 +26,14 @@ export class CsvExport extends React.Component {
         // console.log(data);
         if(val){
             window.location.href = `${downloadURL}&g-recaptcha-response=${val}`
-            this.setState({visible: false});
-        }else{
-            this.setState({captcha_code: false}, () => {
-                this.setState({captcha_code: true})
-            });
+            setTimeout(() => {
+                this.setState({visible: false});
+            }, 300);
+            
         }
+        this.setState({captcha_code: false}, () => {
+            this.setState({captcha_code: true})
+        });
     };
     
 
