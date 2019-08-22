@@ -10,6 +10,7 @@ import SmartTable from "./SmartTable.js"
 import {upperFirst} from "lodash";
 import {TronLoader} from "./loaders";
 import {withTimers} from "../../utils/timing";
+import qs from 'qs'
 
 class Votes extends React.Component {
 
@@ -37,16 +38,20 @@ class Votes extends React.Component {
 
   load = async (page = 1, pageSize = 20) => {
 
-    let {filter} = this.props;
+    let {filter, getCsvUrl} = this.props;
 
     this.setState({loading: true});
 
-    let {votes, total, totalVotes} = await Client.getVotes({
+    const params = {
       sort: '-votes',
       limit: pageSize,
       start: (page - 1) * pageSize,
       ...filter,
-    });
+    }
+    const query = qs.stringify({ format: 'csv',...params})
+    getCsvUrl(`${'https://api.shasta.tronscan.org'}/api/vote/witness?${query}`)
+
+    let {votes, total, totalVotes} = await Client.getVotes(params);
 
     this.setState({
       page,

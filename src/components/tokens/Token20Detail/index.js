@@ -73,7 +73,7 @@ class Token20Detail extends React.Component {
         icon: "",
         path: "/holders",
         label: <span>{tu("token_holders")}</span>,
-        cmp: () => <TokenHolders filter={{token: address}} token={token}/>
+        cmp: () => <TokenHolders filter={{token: address}} getCsvUrl={(csvurl) => this.setState({csvurl})} token={token} />
       },
     ]
 
@@ -448,11 +448,10 @@ class Token20Detail extends React.Component {
                           }
                         </Switch>
                       </div>
-                    </div>
+                    </div>1·
                       {
-                          tabName === 'transfers' ?
-                              <CsvExport downloadURL={csvurl}/>
-                              : ''
+                        ['transfers', 'holders'].indexOf(tabName) !== -1?
+                        <CsvExport downloadURL={csvurl}/>: ''
                       }
                   </div>
                   }

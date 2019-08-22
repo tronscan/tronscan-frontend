@@ -10,6 +10,7 @@ import {upperFirst, upperCase, lowerCase} from "lodash";
 import { Tooltip } from 'antd';
 import { FormatNumberByDecimals } from '../../../utils/number';
 import {QuestionMark} from "../../common/QuestionMark";
+import qs from 'qs'
 
 
 class TokenHolders extends React.Component {
@@ -39,17 +40,19 @@ class TokenHolders extends React.Component {
   };
 
   loadTokenHolders = async (page = 1, pageSize = 20) => {
-    let {filter} = this.props;
-
+    let {filter, getCsvUrl} = this.props;
     this.setState({loading: true});
-
-    let {addresses, total, rangeTotal} = await Client.getTokenHolders(filter.token, {
+    const params = {
       sort: '-balance',
       limit: pageSize,
       start: (page - 1) * pageSize,
       count: true,
       address: filter.address
-    });
+    }
+    const query = qs.stringify({ format: 'csv',...params})
+    getCsvUrl(`${'https://api.shasta.tronscan.org'}/api/tokenholders?${query}`)
+
+    let {addresses, total, rangeTotal} = await Client.getTokenHolders(filter.token, params);
 
     // for (let index in addresses) {
     //   addresses[index].index = parseInt(index) + 1;

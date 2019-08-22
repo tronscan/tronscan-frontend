@@ -265,7 +265,7 @@ class Address extends React.Component {
             // icon: "fa fa-cube",
             path: "/blocks",
             label: <span>{tu("produced_blocks")}</span>,
-            cmp: () => <Blocks filter={{producer: id}} intl={intl}/>,
+            cmp: () => <Blocks filter={{producer: id}} intl={intl} getCsvUrl={(csvurl) => this.setState({csvurl})}/>,
           },
           votes: {
             id: "votes",
@@ -286,6 +286,7 @@ class Address extends React.Component {
             cmp: () => <Votes
                 filter={{candidate: id}}
                 showCandidate={false}
+                getCsvUrl={(csvurl) => this.setState({csvurl})}
             />,
           },
         }
@@ -750,7 +751,7 @@ class Address extends React.Component {
 
                       </div>
                       {
-                        ['transfers', 'transactions', 'internal-transactions'].indexOf(tabName) !== -1?
+                        ['transfers', 'transactions', 'internal-transactions', 'blocks', 'voters'].indexOf(tabName) !== -1?
                         <CsvExport downloadURL={csvurl}/>: ''
                       }
 
