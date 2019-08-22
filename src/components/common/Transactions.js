@@ -320,7 +320,6 @@ class Transactions extends React.Component {
             {(total && contract && isinternal)? <div className="d-flex align-items-center">
               <div className="question-mark mr-2"><i>?</i></div><span className="flex-1">{tu('interTrx_tip')}</span>
             </div>: ''}
-              
             {( address) ? <DateRange onDateOk={(start,end) => this.onDateOk(start,end)}  dateClass={`top-0 date-range-box-address${(total && contract)?'-unset': ''}`}/>: ''}
           </div>
           {total? <TotalInfo total={total} rangeTotal={rangeTotal} typeText="transactions_unit" common={!address} top={(!contract && address)? '-28px': '26'}/>: ''}

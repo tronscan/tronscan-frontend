@@ -191,7 +191,7 @@ class Transfers extends React.Component {
             <div className="col-md-12 table_pos">
               {total ?<TotalInfo total={total} rangeTotal={rangeTotal}  typeText="transfers_unit"/>:""}
               {
-                total? <DateRange onDateOk={(start,end) => this.onDateOk(start,end)} /> :''
+                false && total? <DateRange onDateOk={(start,end) => this.onDateOk(start,end)} /> :''
               }
               <SmartTable bordered={true} loading={loading} column={column} data={transfers} total={total}
                           onPageChange={(page, pageSize) => {
