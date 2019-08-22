@@ -448,7 +448,7 @@ class Token20Detail extends React.Component {
                           }
                         </Switch>
                       </div>
-                    </div>1·
+                    </div>
                       {
                         ['transfers', 'holders'].indexOf(tabName) !== -1?
                         <CsvExport downloadURL={csvurl}/>: ''

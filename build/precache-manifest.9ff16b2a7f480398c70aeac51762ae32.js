@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/editor.worker.js"
   },
   {
-    "revision": "e0945cf50ab116fc4d9bbbd113ae783e",
+    "revision": "13cebad1d87b1f728ad6ad36ce840b1a",
     "url": "/index.html"
   },
   {
@@ -280,12 +280,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/js/TRONRating.c4fafab1.chunk.js"
   },
   {
-    "revision": "558b5a63841a3fd868dc",
-    "url": "/static/js/Token20Detail.28abea17.chunk.js"
+    "revision": "0bdde86688e1b3db4991",
+    "url": "/static/js/Token20Detail.40988ab8.chunk.js"
   },
   {
-    "revision": "e73d1b0044f4dd182d41",
-    "url": "/static/js/TokenDetail.7c652d80.chunk.js"
+    "revision": "663456cf4dcfff25ead8",
+    "url": "/static/js/TokenDetail.4c74863e.chunk.js"
   },
   {
     "revision": "2b54fb97abb95fe845ea",
@@ -348,8 +348,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/js/main.4c8a545c.chunk.js"
   },
   {
-    "revision": "2a709b07ff9a2259e1ba",
-    "url": "/static/js/runtime~main.52086b80.js"
+    "revision": "4957f4973a4f6339e8dd",
+    "url": "/static/js/runtime~main.f448d6ff.js"
   },
   {
     "revision": "7b00f7c4e78ed9cfc676c64c040965e8",
