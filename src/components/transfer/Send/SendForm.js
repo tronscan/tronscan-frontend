@@ -6,7 +6,7 @@ import {tu} from "../../../utils/i18n";
 import {Client} from "../../../services/api";
 import {isAddressValid} from "@tronscan/client/src/utils/crypto";
 import _, {find, round} from "lodash";
-import {ACCOUNT_TRONLINK, API_URL, ONE_TRX} from "../../../constants";
+import { ACCOUNT_TRONLINK, API_URL, ONE_TRX, IS_MAINNET } from "../../../constants";
 import {Alert} from "reactstrap";
 import {reloadWallet} from "../../../actions/wallet";
 import SweetAlert from "react-bootstrap-sweetalert";
@@ -164,22 +164,46 @@ class SendForm extends React.Component {
       resultVal = Number(r1.replace(".", "")) * Number(r2.replace(".", "")) / Math.pow(10, m);
       return typeof d !== "number" ? Number(resultVal) : Number(resultVal.toFixed(parseInt(d)));
   }
+
   token10Send = async () => {
     let {to, token, amount, note, decimals} = this.state;
     let list = token.split('-');
     let TokenName =  list[1];
-    let {account, onSend} = this.props;
+    let {account, onSend, wallet } = this.props;
 
     this.setState({isLoading: true, modal: null});
 
     if (TokenName === '_') {
       amount = this.Mul(amount,ONE_TRX);
     }else{
-
       amount = this.Mul(amount,Math.pow(10, decimals))
     }
+    let result, success;
+    if(IS_MAINNET){
+        result= await Client.sendWithNote(TokenName, account.address, to, amount, note)(account.key);
+        if (result) {
+            success = result.success;
+        } else {
+            success = false;
+        }
+    } else{
+        if (TokenName === "_") {
+            result = await this.props.account.sunWeb.sidechain.trx.sendTransaction(to, amount, {address: wallet.address}, false).catch(function (e) {
+                console.log(e)
+            });
+            console.log('result',result)
+        }else{
+            result = await this.props.account.sunWeb.sidechain.trx.sendToken(to, amount, TokenName, {address:wallet.address}, false).catch(function (e) {
+                console.log(e)
+            });
+        }
+        if (result) {
+            success = result.result;
+        } else {
+            success = false;
+        }
+    }
 
-    let {success} = await Client.sendWithNote(TokenName, account.address, to, amount, note)(account.key);
 
     if (success) {
       this.refreshTokenBalances();

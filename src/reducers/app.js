@@ -20,7 +20,7 @@ import {
 } from "../actions/app";
 import {passwordToAddress, pkToAddress} from "@tronscan/client/src/utils/crypto";
 import {base64DecodeFromString} from "@tronscan/client/src/lib/code";
-import {ACCOUNT_ADDRESS, ACCOUNT_LEDGER, ACCOUNT_PRIVATE_KEY, IS_DESKTOP, ACCOUNT_TRONLINK} from "../constants";
+import {ACCOUNT_ADDRESS, ACCOUNT_LEDGER, ACCOUNT_PRIVATE_KEY, IS_DESKTOP, ACCOUNT_TRONLINK, IS_MAINNET} from "../constants";
 
 const initialState = {
   theme: Lockr.get("theme", "light"),
@@ -188,9 +188,7 @@ export function appReducer(state = initialState, action) {
           '410A6DBD0780EA9B136E3E9F04EBE80C6C288B80EE',
           privateKey
       );
-
       window.sunWeb = sunWeb;
-
       return {
         ...state,
         account: {
@@ -200,7 +198,7 @@ export function appReducer(state = initialState, action) {
           address: pkToAddress(action.privateKey),
           tronWeb: tronWeb,
           sunWeb:sunWeb,
-          tronStationSDK: new TronStationSDK(tronWeb),
+          tronStationSDK: IS_MAINNET? new TronStationSDK(tronWeb): new TronStationSDK(sunWeb.sidechain),
         },
         wallet: {
           type: ACCOUNT_PRIVATE_KEY,
