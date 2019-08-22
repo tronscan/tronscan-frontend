@@ -12,7 +12,7 @@ export class CsvExport extends React.Component {
         super(props);
         this.state = {
             visible: false,
-            captcha_code:null,
+            captcha_code:true,
         };
     }
 
@@ -22,12 +22,16 @@ export class CsvExport extends React.Component {
     };
     handleCaptchaCode = async (val) => {
         let {downloadURL} = this.props;
-        const {data} = await xhr.get(`${downloadURL}&g-recaptcha-response=${val}`)
-        console.log(data);
-        this.setState({
-            captcha_code: data != 'Recaptcha check fail',
-            visible: false,
-        });
+        // const {data} = await xhr.get(`${downloadURL}&g-recaptcha-response=${val}`)
+        // console.log(data);
+        if(val){
+            window.location.href = `${downloadURL}&g-recaptcha-response=${val}`
+            this.setState({visible: false});
+        }else{
+            this.setState({captcha_code: false}, () => {
+                this.setState({captcha_code: true})
+            });
+        }
     };
     
 
@@ -46,7 +50,7 @@ export class CsvExport extends React.Component {
                     // centered
                 >   
                     <div className="pt-3">{
-                        this.state.visible?
+                        this.state.captcha_code?
                         <ContractCodeRequest  handleCaptchaCode={this.handleCaptchaCode} className={this.state.visible? 'd-block': 'd-none'}/>
                         :''
                     }
