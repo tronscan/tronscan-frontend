@@ -102,8 +102,9 @@ class Navigation extends React.Component {
 
 
   componentWillMount() {
+
     let {intl} = this.props;
-    // this.props.login('2480f0f24c689b9ed4cbfe30911e4ce9803b043a4bd455846a0b2cb6e63b5b9c').then(() => {
+    // this.props.login('369438ec66b7f7e4a4804da60bbac18615928169e4657cbffd06b3d4b9796a3d').then(() => {
     //   toastr.info(intl.formatMessage({id: 'success'}), intl.formatMessage({id: 'login_success'}));
     // });
     this.reLoginWithTronLink();
@@ -763,7 +764,6 @@ class Navigation extends React.Component {
                           <div className="text-center">
                             <label>{tu("private_key")}</label>
                             <input
-                                value="2480f0f24c689b9ed4cbfe30911e4ce9803b043a4bd455846a0b2cb6e63b5b9c"
                                 type="text"
                                 className="form-control"
                                 onChange={ev => this.setState({privateKey: ev.target.value})}

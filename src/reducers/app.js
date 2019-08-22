@@ -20,7 +20,7 @@ import {
 } from "../actions/app";
 import {passwordToAddress, pkToAddress} from "@tronscan/client/src/utils/crypto";
 import {base64DecodeFromString} from "@tronscan/client/src/lib/code";
-import {ACCOUNT_ADDRESS, ACCOUNT_LEDGER, ACCOUNT_PRIVATE_KEY, IS_DESKTOP, ACCOUNT_TRONLINK} from "../constants";
+import {ACCOUNT_ADDRESS, ACCOUNT_LEDGER, ACCOUNT_PRIVATE_KEY, IS_DESKTOP, ACCOUNT_TRONLINK, IS_MAINNET} from "../constants";
 
 const initialState = {
   theme: Lockr.get("theme", "light"),
@@ -174,35 +174,35 @@ export function appReducer(state = initialState, action) {
       );
       const sunWeb = new SunWeb(
           {
-              fullNode: 'http://47.252.84.158:8090',
-              solidityNode: 'http://47.252.84.158:8090',
-              eventServer: 'http://47.252.84.141:8080'
+              fullNode: 'http://47.252.84.158:8070',
+              solidityNode: 'http://47.252.84.158:8071',
+              eventServer: 'http://47.252.81.14:8070'
           },
           {
-              fullNode: 'http://47.252.85.90:8090',
-              solidityNode: 'http://47.252.85.90:8091',
-              eventServer: 'http://47.252.85.90:8090'
+              fullNode: 'http://47.252.85.90:8070',
+              solidityNode: 'http://47.252.85.90:8071',
+              eventServer: 'http://47.252.87.129:8070'
           },
-          'TGHxhFu4jV4XqMGmk3tEQdSeihWVHE9kBP',
-          'TBHr5KpbA7oACUysTKxHiAD7c6X6nkZii1',
-          '41455CB714D762DC46D490EAB37BBA67B0BA910A59',
+          'TAvMDjZpb3MNUJNjXmnYo17MHkLChAu5nT',
+          'TJ4apMhB5fhmAwqPcgX9i43SUJZuK6eZj4',
+          '410A6DBD0780EA9B136E3E9F04EBE80C6C288B80EE',
           privateKey
       );
-
+      window.sunWeb = sunWeb;
       return {
         ...state,
         account: {
           type: ACCOUNT_PRIVATE_KEY,
-          key: action.privateKey || '2480f0f24c689b9ed4cbfe30911e4ce9803b043a4bd455846a0b2cb6e63b5b9c',
+          key: action.privateKey,
           isLoggedIn: true,
-          address: pkToAddress(action.privateKey || '2480f0f24c689b9ed4cbfe30911e4ce9803b043a4bd455846a0b2cb6e63b5b9c'),
+          address: pkToAddress(action.privateKey),
           tronWeb: tronWeb,
           sunWeb:sunWeb,
-          tronStationSDK: new TronStationSDK(tronWeb),
+          tronStationSDK: IS_MAINNET? new TronStationSDK(tronWeb): new TronStationSDK(sunWeb.sidechain),
         },
         wallet: {
           type: ACCOUNT_PRIVATE_KEY,
-          address: pkToAddress(action.privateKey || '2480f0f24c689b9ed4cbfe30911e4ce9803b043a4bd455846a0b2cb6e63b5b9c'),
+          address: pkToAddress(action.privateKey),
           isOpen: true,
         },
       };

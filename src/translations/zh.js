@@ -1967,6 +1967,10 @@ export const messages = {
   "main_account_mapping_success_btn":"已映射",
   "main_account_mapping_desc1": "token映射到侧链上，会在侧链上产生同名的token",
   "main_account_mapping_desc2": "映射完成之后，用户可以质押此币种到侧链上",
+  
+  // sidechain - contract - mapping
+  "sidechain_contract_left":"来自Mainnet合约",
+  "sidechain_contract_right":"的映射",
 
   // Sidechain - account - pledge
   "sidechain_account_pledge_btn":"质押",

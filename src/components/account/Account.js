@@ -37,6 +37,7 @@ import { getQueryString } from "../../utils/url";
 import IssuedToken from './IssuedToken';
 import PledgeModal from './PledgeModal';
 import MappingMessageModal from './MappingMessageModal';
+import SignModal from './SignModal';
 
 @connect(
     state => {
@@ -83,8 +84,9 @@ export default class Account extends Component {
       delegateType: 0,
       delegate: false,
       delegateValue: '',
-      isShowPledgeModel: false,
+      isShowPledgeModal: false,
       isShowMappingModal: false,
+      isShowSignModal: false,
       type: CURRENCYTYPE.TRX10,
     };
 
@@ -240,16 +242,16 @@ export default class Account extends Component {
       );
     }
 
-
     // pledgeItem
-    const pledgeItem = (address, currency, balance, precision) => (
-      <td className="text-right">
-        <button className="btn btn-danger"
-          onClick={() => this.openMappingModal({ address, currency, balance, precision, type: CURRENCYTYPE.TRX20 })}>
-          {tu('sidechain_account_pledge_btn')}
-        </button>
-      </td>
-    );
+    const pledgeItem = (address, currency, balance, precision) => {
+      const option = { address, currency, balance, precision, type: CURRENCYTYPE.TRX20 };
+      return <td className="text-right">
+              <button className="btn btn-danger"
+                onClick={IS_SUNNET ? () => this.openSignModal(option) : () => this.openMappingModal(option)}>
+                {IS_SUNNET ? tu('sidechain_account_sign_btn') : tu('sidechain_account_pledge_btn')}
+              </button>
+            </td>
+    };
     
     return (
         <table className="table mt-3 temp-table">
@@ -313,14 +315,15 @@ export default class Account extends Component {
     }
 
     // pledgeItem
-    const pledgeItem = (id, currency, balance, precision) => (
-      <td className="text-right">
-        <button className="btn btn-danger"
-          onClick={() => this.openPledgeModel({ id, currency, balance, precision, type: CURRENCYTYPE.TRX10 })}>
-          {tu('sidechain_account_pledge_btn')}
-        </button>
-      </td>
-    );
+    const pledgeItem = (id, currency, balance, precision) => {
+      const option = { id, currency, balance, precision, type: CURRENCYTYPE.TRX10 };
+      return <td className="text-right">
+              <button className="btn btn-danger"
+                onClick={IS_SUNNET ? () => this.openSignModal(option) : () => this.openPledgeModel(option)}>
+                {IS_SUNNET ? tu('sidechain_account_sign_btn') : tu('sidechain_account_pledge_btn')}
+              </button>
+            </td>
+    };
 
     return (
         <table className="table mt-3 temp-table">
@@ -1476,17 +1479,17 @@ export default class Account extends Component {
    * close PledgeModel
    */
   closePledgeModel = () => {
-    this.setState({ isShowPledgeModel: false });
+    this.setState({ isShowPledgeModal: false });
   }
 
   /**
    * open PledgeModel
-   * @param address, currency, balance, precision
+   * @param option
    */
   openPledgeModel = option => {
     const { address, currency, balance, precision, id, type } = option;
     this.setState({
-      isShowPledgeModel: true,
+      isShowPledgeModal: true,
       address,
       currency,
       balance,
@@ -1512,6 +1515,30 @@ export default class Account extends Component {
   }
 
   /**
+   * close SignModal
+   */
+  closeSignModal = () => {
+    this.setState({ isShowSignModal: false });
+  }
+
+  /**
+   * open SignModal
+   * @param option
+   */
+  openSignModal = option => {
+    const { address, currency, balance, precision, id, type } = option;
+    this.setState({
+      isShowSignModal: true,
+      address,
+      currency,
+      balance,
+      precision,
+      id,
+      type,
+    });
+  }
+
+  /**
    * Gets the list of side chains
    */
   getSideChains = async () => {
@@ -1524,7 +1551,7 @@ export default class Account extends Component {
 
   render() {
     let { modal, sr, issuedAsset, showBandwidth, showBuyTokens, temporaryName, hideSmallCurrency, tokenTRC10,
-      isShowPledgeModel, isShowMappingModal, address, currency, balance, precision, id, type } = this.state;
+      isShowPledgeModal, isShowMappingModal, address, currency, balance, precision, id, type, isShowSignModal } = this.state;
 
       // pledge param
       const option = {
@@ -2133,8 +2160,9 @@ export default class Account extends Component {
                   </div>
                 </div>
           }
-          {isShowPledgeModel && <PledgeModal onCancel={this.closePledgeModel} onConfirm={() => {}} option={option} />}
+          {isShowPledgeModal && <PledgeModal onCancel={this.closePledgeModel} option={option} />}
           {isShowMappingModal && <MappingMessageModal onCancel={this.closeMappingModal} />}
+          {isShowSignModal && <SignModal onCancel={this.closeSignModal} option={option} />}
         </main>
     )
   }

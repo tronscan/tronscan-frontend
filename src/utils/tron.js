@@ -23,6 +23,21 @@ export async function transactionResultManager(transaction, tronWeb) {
   }
 }
 
+export async function transactionResultManagerSun(transaction, sunWeb) {
+    //sign((transaction = false), (privateKey = this.sidechain.defaultPrivateKey), (useTronHeader = true), (multisig = false));
+    const signedTransaction = await sunWeb.sidechain.trx.sign(transaction, sunWeb.sidechain.defaultPrivateKey).catch(e => {
+        return false;
+    });
+    if (signedTransaction) {
+        const broadcast = await sunWeb.sidechain.trx.sendRawTransaction(signedTransaction);
+        if (!broadcast.result) {
+            broadcast.result = false;
+        }
+        return broadcast;
+    } else {
+        return false;
+    }
+}
 
 
 export function FormattedTRX(props) {
