@@ -22,7 +22,6 @@ class MappingModal extends Component {
         super();
 
         this.state = {
-            name: '',
             isDisabled: false,
         };
     }
@@ -43,7 +42,7 @@ class MappingModal extends Component {
         validateFields(async(err, values) => {
             if (!err) {
                 // todo wangyan
-                sunWeb.setSideGatewayAddress('TJ4apMhB5fhmAwqPcgX9i43SUJZuK6eZj4');
+                sunWeb.setSideGatewayAddress('TDdo671JXH5S74iVvXEDyUXSgADYtg5ns7');
                 sunWeb.setChainId('410A6DBD0780EA9B136E3E9F04EBE80C6C288B80EE');
                 const mappingData = await sunWeb.mappingTrc20(txHash, MAPPINGFEE, FEELIMIT);
                 if (mappingData) {
@@ -51,7 +50,9 @@ class MappingModal extends Component {
                 } else {
                     message.error(intl.formatMessage({ id: 'error' }));
                 }
+                this.setState({ isDisabled: false });
             }
+            this.setState({ isDisabled: false });
         });
     };
 

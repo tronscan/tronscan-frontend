@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { tu } from '../../utils/i18n';
 import { Modal, Form, Input, Select, message } from 'antd';
 import PropTypes from 'prop-types';
-import { CURRENCYTYPE, FEELIMIT } from './../../constants';
+import { CURRENCYTYPE, FEELIMIT, DEPOSITFEE } from './../../constants';
 import { injectIntl } from 'react-intl';
 
 const { Option } = Select;
@@ -41,7 +41,7 @@ class PledgeModal extends Component {
                 // trc10
                 if (CURRENCYTYPE.TRX10 === type) {
                     // todo wangyan
-                    const txid = await sunWeb.depositTrc10(id, num, FEELIMIT);
+                    const txid = await sunWeb.depositTrc10(id, num, DEPOSITFEE, FEELIMIT);
                     if (txid) {
                         message.success(intl.formatMessage({ id: 'success' }), 3, () => onCancel());
                     } else {
@@ -52,7 +52,7 @@ class PledgeModal extends Component {
                     if (approveData) {
                         // todo wangyan
                         // trc20
-                        const data = await sunWeb.depositTrc20(num, FEELIMIT, address);
+                        const data = await sunWeb.depositTrc20(num, DEPOSITFEE, FEELIMIT, address);
                         if (data) {
                             message.success(intl.formatMessage({ id: 'success' }), 3, () => onCancel());
                         } else {
@@ -62,15 +62,16 @@ class PledgeModal extends Component {
                         message.error(intl.formatMessage({ id: 'error' }));
                     }
                 } else if (CURRENCYTYPE.TRX === type) {
-                    const data = await sunWeb.depositTrx(num, FEELIMIT);
+                    const data = await sunWeb.depositTrx(num, DEPOSITFEE, FEELIMIT);
                     if (data) {
                         message.success(intl.formatMessage({ id: 'success' }), 3, () => onCancel());
                     } else {
                         message.error(intl.formatMessage({ id: 'error' }));
                     }
                 }
+                this.setState({ isDisabled: false });
             }
-            this.setState({ isDisabled: true });
+            this.setState({ isDisabled: false });
         });
     };
 

@@ -52,3 +52,5 @@ export const MAPPINGFEE = 100000;
 export const FEELIMIT = 10000000;
 // withdrawFee
 export const WITHDRAWFEE = 100000;
+// depositFee
+export const DEPOSITFEE = 100000;

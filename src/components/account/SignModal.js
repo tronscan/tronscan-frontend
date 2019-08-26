@@ -62,6 +62,7 @@ class SignModal extends Component {
                         message.error(intl.formatMessage({ id: 'error' }));
                     }
                 }
+                this.setState({ isDisabled: false });
             }
             this.setState({ isDisabled: false });
         });
