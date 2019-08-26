@@ -160,17 +160,18 @@ export function appReducer(state = initialState, action) {
     case LOGIN_PK: {
 
       Lockr.set("islogin", 0);
-      const ServerNode =  "https://api.trongrid.io";
-      const HttpProvider = TronWeb.providers.HttpProvider; // This provider is optional, you can just use a url for the nodes instead
-      const fullNode = new HttpProvider(ServerNode); // Full node http endpoint
-      const solidityNode = new HttpProvider(ServerNode); // Solidity node http endpoint
-      const eventServer = ServerNode; // Contract events http endpoint
+      // const ServerNode =  "https://api.trongrid.io";
+      // const HttpProvider = TronWeb.providers.HttpProvider; // This provider is optional, you can just use a url for the nodes instead
+      // const fullNode = new HttpProvider(ServerNode); // Full node http endpoint
+      // const solidityNode = new HttpProvider(ServerNode); // Solidity node http endpoint
+      // const eventServer = ServerNode; // Contract events http endpoint
       const privateKey = action.privateKey;
-      const tronWeb = new TronWeb(
-          fullNode,
-          solidityNode,
-          eventServer,
-          privateKey
+      const tronWeb = new TronWeb({
+              fullNode:'http://47.252.84.158:8070',
+              solidityNode:'http://47.252.84.158:8071',
+              eventServer:'http://47.252.81.14:8070',
+              privateKey
+          }
       );
       const sunWeb = new SunWeb(
           {

@@ -159,7 +159,6 @@ class Navigation extends React.Component {
       this.setState({
           selectedNet: value
       });
-      console.log('API_URL',API_URL)
       window.location.reload();
   }
   isString(str){

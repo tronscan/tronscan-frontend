@@ -158,7 +158,6 @@ export default class FreezeBalanceModal extends React.PureComponent {
               }
               result = await transactionResultManagerSun(unSignTransaction,sunWeb)
               res = result;
-              console.log('res22333',res)
           }
       }
         console.log('res666',res)

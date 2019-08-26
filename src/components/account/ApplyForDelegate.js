@@ -49,13 +49,15 @@ class ApplyForDelegate extends Component {
             }
 
             // const unSignTransaction = await tronWeb.transactionBuilder.applyForSR(tronWeb.defaultAddress.hex, url).catch(e => false);
+
+
             const unSignTransaction = await tronWeb.transactionBuilder.applyForSR(tronWeb.defaultAddress.hex, url);
             const {result} = await transactionResultManager(unSignTransaction, tronWeb);
 
             res = result;
         } else {
-            let {success} = await Client.applyForDelegate(account.address, url)(account.key);
-            res = success;
+           let {success} = await Client.applyForDelegate(account.address, url)(account.key);
+           res = success;
         }
     }else{
         if (isTronLink === 1) {
@@ -67,7 +69,10 @@ class ApplyForDelegate extends Component {
             }
 
             // const unSignTransaction = await tronWeb.transactionBuilder.applyForSR(tronWeb.defaultAddress.hex, url).catch(e => false);
+
+
             const unSignTransaction = await tronWeb.transactionBuilder.applyForSR(tronWeb.defaultAddress.hex, url);
+
             const {result} = await transactionResultManager(unSignTransaction, tronWeb);
 
             res = result;
@@ -76,7 +81,6 @@ class ApplyForDelegate extends Component {
             const unSignTransaction = await account.sunWeb.sidechain.transactionBuilder.applyForSR(account.sunWeb.sidechain.defaultAddress.hex, url);
             const {result} = await transactionResultManagerSun(unSignTransaction, account.sunWeb);
             res = result;
-            console.log('result213123',result)
         }
     }
 

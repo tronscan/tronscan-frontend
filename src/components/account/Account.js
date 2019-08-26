@@ -1,6 +1,6 @@
 import React, {Component, Fragment} from 'react';
 import {t, tu} from "../../utils/i18n";
-import {transactionResultManager} from "../../utils/tron";
+import {transactionResultManager, transactionResultManagerSun} from "../../utils/tron";
 import xhr from "axios";
 import {FormattedDate, FormattedNumber, FormattedRelative, FormattedTime, injectIntl} from "react-intl";
 import {Link} from "react-router-dom";
@@ -9,7 +9,7 @@ import {SwitchToken} from "../common/Switch";
 import FreezeBalanceModal from "./FreezeBalanceModal";
 import {AddressLink, HrefLink, TokenLink, TokenTRC20Link} from "../common/Links";
 import SweetAlert from "react-bootstrap-sweetalert";
-import {API_URL, IS_TESTNET, ONE_TRX, CONTRACT_ADDRESS_USDT, CONTRACT_ADDRESS_WIN, CONTRACT_ADDRESS_GGC, IS_SUNNET, CURRENCYTYPE } from "../../constants";
+import {API_URL, IS_TESTNET, ONE_TRX, CONTRACT_ADDRESS_USDT, CONTRACT_ADDRESS_WIN, CONTRACT_ADDRESS_GGC, IS_SUNNET, CURRENCYTYPE, IS_MAINNET } from "../../constants";
 import {Client} from "../../services/api";
 import ApplyForDelegate from "./ApplyForDelegate";
 import _, {trim} from "lodash";
@@ -1127,29 +1127,46 @@ export default class Account extends Component {
     let res;
     let {account, currentWallet, onError} = this.props;
 
-    try {
-      if (this.props.walletType.type === "ACCOUNT_LEDGER") {
-        let tronWebLedger = this.props.tronWeb();
+    if(IS_MAINNET) {
+        try {
+            if (this.props.walletType.type === "ACCOUNT_LEDGER") {
+                let tronWebLedger = this.props.tronWeb();
 
-        const unSignTransaction = await tronWebLedger.transactionBuilder.updateAccount(name, this.props.walletType.address);
-        const {result} = await transactionResultManager(unSignTransaction, tronWebLedger);
-        res = result;
+                const unSignTransaction = await tronWebLedger.transactionBuilder.updateAccount(name, this.props.walletType.address);
+                const {result} = await transactionResultManager(unSignTransaction, tronWebLedger);
+                res = result;
 
-      } else if (this.props.walletType.type === "ACCOUNT_TRONLINK") {
-        let tronWeb = account.tronWeb;
-        const unSignTransaction = await tronWeb.fullNode.request('wallet/updateaccount', {
-          account_name: tronWeb.fromUtf8(name),
-          owner_address: tronWeb.defaultAddress.hex
-        }, 'post').catch(e => false);
-        const {result} = await  transactionResultManager(unSignTransaction, tronWeb);
-        res = result;
-      } else {
-        let {success} = await Client.updateAccountName(currentWallet.address, name)(account.key);
-        res = success;
+            } else if (this.props.walletType.type === "ACCOUNT_TRONLINK") {
+                let tronWeb = account.tronWeb;
+                const unSignTransaction = await tronWeb.fullNode.request('wallet/updateaccount', {
+                    account_name: tronWeb.fromUtf8(name),
+                    owner_address: tronWeb.defaultAddress.hex
+                }, 'post').catch(e => false);
+                const {result} = await  transactionResultManager(unSignTransaction, tronWeb);
+                res = result;
+            } else {
+                let {success} = await Client.updateAccountName(currentWallet.address, name)(account.key);
+                res = success;
+            }
+        } catch (e) {
+            console.error(e);
+            onError && onError();
+        }
+    } else{
+      try{
+          if (this.props.walletType.type === "ACCOUNT_PRIVATE_KEY") {
+              let sunWeb = account.sunWeb;
+              const unSignTransaction = await sunWeb.sidechain.fullNode.request('wallet/updateaccount', {
+                  account_name: sunWeb.sidechain.fromUtf8(name),
+                  owner_address: sunWeb.sidechain.defaultAddress.hex
+              }, 'post').catch(e => false);
+              const {result} = await  transactionResultManagerSun(unSignTransaction, sunWeb);
+              res = result;
+          }
+      } catch (e) {
+          console.error(e);
+          onError && onError();
       }
-    } catch (e) {
-      console.error(e);
-      onError && onError();
     }
     if (res) {
       this.setState({

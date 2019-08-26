@@ -90,8 +90,7 @@ class SignModal extends Component {
         );
 
         // numItem
-        let reg = Number(precision) > 0
-            ? `^(0|[1-9][0-9]*)(\.\d{1,${Number(precision)}})?$` : '^(0|[1-9][0-9]*)(\.\d+)?$';
+        let reg = Number(precision) > 0 ? `^(0|[1-9][0-9]*)(\.\d{1,${Number(precision)}})?$` : '^(0|[1-9][0-9]*)(\.\d+)?$';
         const numItem = (
             <Form.Item label={tu('pledge_num')}>
                 {getFieldDecorator('Num', {

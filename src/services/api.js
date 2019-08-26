@@ -12,7 +12,6 @@ const solidityNode = new HttpProvider(ServerNode); // Solidity node http endpoin
 const eventServer = ServerNode; // Contract events http endpoint
 export const tronWeb = new TronWeb(fullNode, solidityNode, eventServer);
 
-console.log('API_URL=====',API_URL)
 export const Client = new ApiClient(API_URL);
 
 export function buildClient(account) {

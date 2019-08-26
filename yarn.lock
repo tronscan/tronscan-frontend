@@ -11607,7 +11607,6 @@ stylis@^3.3.2:
 sunweb@^1.0.6:
   version "1.0.6"
   resolved "https://registry.yarnpkg.com/sunweb/-/sunweb-1.0.6.tgz#2d0311fc9b01e0b125a0e5f13cce08cbc6befe3d"
-  integrity sha512-Y8OjhLvJqsvJxkIJz2+recK+9EZ7EE/u40v2W277VupexQTecPp+8KpyKpj2n0CE0MdL/12WcyPFJFDmJ9v9kw==
   dependencies:
     "@babel/runtime" "^7.4.5"
     babel-runtime "^6.26.0"
@@ -11965,9 +11964,9 @@ tronstation@^1.0.1:
     "@babel/runtime" "^7.0.0"
     babel-runtime "^6.26.0"
 
-tronweb@^2.5.0:
-  version "2.6.6"
-  resolved "https://registry.yarnpkg.com/tronweb/-/tronweb-2.6.6.tgz#f7b693919b3a1a2e1f13bd2ec4e7c4e391088ef5"
+tronweb@2.7.1:
+  version "2.7.1"
+  resolved "https://registry.yarnpkg.com/tronweb/-/tronweb-2.7.1.tgz#714547728a2e6e87e808da91b7a5b1e178179503"
   dependencies:
     "@babel/runtime" "^7.0.0"
     axios "^0.19.0"
@@ -11976,6 +11975,7 @@ tronweb@^2.5.0:
     elliptic "^6.4.1"
     ethers "^4.0.7"
     eventemitter3 "^3.1.0"
+    lodash "^4.17.14"
     semver "^5.6.0"
     validator "^10.7.1"
 
