@@ -6,6 +6,7 @@ import { Modal, Form, Input, Select, message } from 'antd';
 import { API_URL, MAPPINGFEE, FEELIMIT } from './../../constants';
 import xhr from 'axios';
 import { injectIntl } from 'react-intl';
+import SweetAlert from "react-bootstrap-sweetalert";
 
 const { Option } = Select;
 
@@ -31,26 +32,62 @@ class MappingModal extends Component {
     }
 
     /**
+     * show result
+     */
+    openModal = data => {
+        const isSuccess = !!data;
+        this.setState({
+            modal: (
+                <SweetAlert
+                    type={isSuccess ? 'success' : 'error'}
+                    confirmBtnText={tu("trc20_confirm")}
+                    confirmBtnBsStyle="danger"
+                    title={isSuccess ? tu("mapping_success") : tu("mapping_error")}
+                    onConfirm={this.hideModal}
+                    style={{height: '300px', top: '30%', marginLeft: '-240px'}}
+                >
+                  <div className="form-group" style={{marginBottom: '36px'}}>
+                    <div className="mt-3 mb-2 text-left" style={{color: '#666'}}>
+      
+                    </div>
+                  </div>
+      
+                </SweetAlert>
+            ),
+        });
+    };
+
+    /**
+     * clsoe result
+     */
+    hideModal = () => {
+        this.setState({
+            modal: null,
+        });
+    };
+
+    /**
      * Form confirm
      */
     confirm = () => {
-        const { form: { validateFields }, intl, account: { sunWeb }, onCancel } = this.props;
+        const { form: { validateFields }, account: { sunWeb } } = this.props;
         const { txHash } = this.state;
 
         this.setState({ isDisabled: true });
 
         validateFields(async(err, values) => {
             if (!err) {
-                // todo wangyan
-                sunWeb.setSideGatewayAddress('TDdo671JXH5S74iVvXEDyUXSgADYtg5ns7');
-                sunWeb.setChainId('410A6DBD0780EA9B136E3E9F04EBE80C6C288B80EE');
-                const mappingData = await sunWeb.mappingTrc20(txHash, MAPPINGFEE, FEELIMIT);
-                if (mappingData) {
-                    message.success(intl.formatMessage({ id: 'success' }), 3, () => onCancel());
-                } else {
-                    message.error(intl.formatMessage({ id: 'error' }));
+                try {
+                    // todo wangyan
+                    sunWeb.setSideGatewayAddress('TDdo671JXH5S74iVvXEDyUXSgADYtg5ns7');
+                    sunWeb.setChainId('410A6DBD0780EA9B136E3E9F04EBE80C6C288B80EE');
+                    const mappingData = await sunWeb.mappingTrc20(txHash, MAPPINGFEE, FEELIMIT);
+                    this.openModal(mappingData);
+                    this.setState({ isDisabled: false });
+                } catch (e) {
+                    this.openModal();
+                    this.setState({ isDisabled: false });
                 }
-                this.setState({ isDisabled: false });
             }
             this.setState({ isDisabled: false });
         });
@@ -80,7 +117,7 @@ class MappingModal extends Component {
     render() {
         const { getFieldDecorator } = this.props.form;
         const { currency, sideChains } = this.props;
-        const { isDisabled } = this.state;
+        const { isDisabled, modal } = this.state;
         const isHasSideChainsData = sideChains && sideChains.length > 0;
 
         // mappingTextItem
@@ -130,6 +167,7 @@ class MappingModal extends Component {
                     {sideChainItem}
                     {btnItem}
                 </Form>
+                {modal}
             </Modal>
         );
     }

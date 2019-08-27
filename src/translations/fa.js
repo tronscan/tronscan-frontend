@@ -1944,5 +1944,12 @@ export const messages = {
     'pledge_num_error':"این عدد نمی تواند از میزان موجودی فراتر رود.",
     "pledge_text":"سپرده مقدار مشخصی از انرژی را مصرف می کند.",
     "pledge_mapping_text":"دارایی های شما در DAppChain نقشه برداری نشده است ، بنابراین نمی تواند واریز شود.",
-
+    // success
+    "pledge_success": "Deposit Success",
+    "sign_success": "Withdraw Success",
+    "mapping_success": "Mapping Success",
+    // error
+    "pledge_error": "Deposit Error",
+    "sign_error": "Withdraw Error",
+    "mapping_error": "Mapping Error",
 };

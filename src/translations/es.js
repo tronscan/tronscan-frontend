@@ -1992,5 +1992,12 @@ export const messages = {
   'pledge_num_error':"El número nunca excede el saldo máximo disponible",
   "pledge_text":"El depósito consumirá una cierta cantidad de energía.",
   "pledge_mapping_text":"Sus activos no se han reflectado a DAppChain y, por lo tanto, no se pueden depositar.",
-
+  // success
+  "pledge_success": "Deposit Success",
+  "sign_success": "Withdraw Success",
+  "mapping_success": "Mapping Success",
+  // error
+  "pledge_error": "Deposit Error",
+  "sign_error": "Withdraw Error",
+  "mapping_error": "Mapping Error",
 };

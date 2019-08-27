@@ -1997,4 +1997,13 @@ export const messages = {
   'pledge_num_error':"The number cannot exceed the maximum available balance",
   "pledge_text":"Deposit will consume a certain amount of energy",
   "pledge_mapping_text":"Your assets have not been mapped to DAppChain, and therefore cannot be deposited.",
+
+  // success
+  "pledge_success": "Deposit Success",
+  "sign_success": "Withdraw Success",
+  "mapping_success": "Mapping Success",
+  // error
+  "pledge_error": "Deposit Error",
+  "sign_error": "Withdraw Error",
+  "mapping_error": "Mapping Error",
 };

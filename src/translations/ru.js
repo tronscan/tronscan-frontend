@@ -1950,5 +1950,12 @@ export const messages = {
   'pledge_num_error':"Количество не может превышать максимально доступный баланс",
   "pledge_text":"Вклад будет потреблять определенное количество энергии",
   "pledge_mapping_text":"Ваши активы не были маппированы с DAppChain и поэтому вклад не может быть совершен.",
-
+  // success
+  "pledge_success": "Deposit Success",
+  "sign_success": "Withdraw Success",
+  "mapping_success": "Mapping Success",
+  // error
+  "pledge_error": "Deposit Error",
+  "sign_error": "Withdraw Error",
+  "mapping_error": "Mapping Error",
 };

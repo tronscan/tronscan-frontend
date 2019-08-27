@@ -1942,4 +1942,12 @@ export const messages = {
   'pledge_num_error':"数量は使用可能な最大残高を超えないでください",
   "pledge_text":"抵当にはエネルギーの消費が必要となります",
   "pledge_mapping_text":"資産をまだDappChainにマップされていないため、抵当できません。",
+  // success
+  "pledge_success": "Deposit Success",
+  "sign_success": "Withdraw Success",
+  "mapping_success": "Mapping Success",
+  // error
+  "pledge_error": "Deposit Error",
+  "sign_error": "Withdraw Error",
+  "mapping_error": "Mapping Error",
 }

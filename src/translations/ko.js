@@ -1945,4 +1945,12 @@ export const messages = {
   'pledge_num_error':"수량이 사용 가능한 최대 잔액을 초과 할 수 없습니다",
   "pledge_text":"서약은 일정량의 에너지를 소비",
   "pledge_mapping_text":"아직 DappChain에 매핑되지 않은 자산, 서약을 지원하지 않습니다",
+  // success
+  "pledge_success": "Deposit Success",
+  "sign_success": "Withdraw Success",
+  "mapping_success": "Mapping Success",
+  // error
+  "pledge_error": "Deposit Error",
+  "sign_error": "Withdraw Error",
+  "mapping_error": "Mapping Error",
 };

@@ -1938,5 +1938,12 @@
   'pledge_num_error':"لا يمكن أن يتجاوز العدد الحد الأقصى للرصيد المتاح",
   "pledge_text":"سوف تستهلك الودائع كمية معينة من الطاقة",
   "pledge_mapping_text":"لم يتم تعيين الأصول الخاصة بك إلى DAppChain ، وبالتالي لا يمكن إيداعها.",
-
+  // success
+  "pledge_success": "Deposit Success",
+  "sign_success": "Withdraw Success",
+  "mapping_success": "Mapping Success",
+  // error
+  "pledge_error": "Deposit Error",
+  "sign_error": "Withdraw Error",
+  "mapping_error": "Mapping Error",
 };

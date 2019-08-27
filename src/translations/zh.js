@@ -1983,7 +1983,11 @@ export const messages = {
   "pledge_mapping_text":"资产尚未映射到DappChain.不支持质押",
 
   // success
-  "success": "success",
+  "pledge_success": "质押成功",
+  "sign_success": "解押成功",
+  "mapping_success": "映射成功",
   // error
-  "error": "error",
+  "pledge_error": "质押失败",
+  "sign_error": "解押失败",
+  "mapping_error": "映射失败",
 };
