@@ -1919,4 +1919,27 @@ export const messages = {
 
   "token_logo_upload_tip":"png,jpg,jpeg形式のみをサポートします。大きさが200k以下、サイズ100*100にしてください。",
 
+  // Backbone - account - mapping
+  "main_account_mapping_title":"DappChainへマップ",
+  "main_account_mapping_text":"DappChainはTRONメインネットをベースに開発されたサイドチェーンで、メインネットの使用を拡張しました。マップした後、xxxが獲得できます。",
+  "main_account_mapping_text_1":"1.より高いtps、より低いエネルギー消費",
+  "main_account_mapping_text_2":"2.マップは一切無料になります",
+  "main_account_mapping_btn":"マップ",
+  "main_account_mapping_success_btn":"マップ済",
+  "main_account_mapping_desc1": "トークンをサイドチェーンにマップしたら、サイドチェーンに同名なトークンを生成します。",
+  "main_account_mapping_desc2": "マップできましたら、ユーザーはこのトークンをサイドチェーンに抵当することができます",
+
+  // sidechain - contract - mapping
+  "sidechain_contract_left":"メインネットコントラクトからのマップ",
+  "sidechain_contract_right":" ",
+
+  // Sidechain - account - pledge
+  "sidechain_account_pledge_btn":"抵当",
+  "sidechain_account_sign_btn":"撤回",
+  "pledge_currency":"トークン",
+  "pledge_sidechain":"サイドチェーン",
+  "pledge_num":"数量",
+  'pledge_num_error':"数量は使用可能な最大残高を超えないでください",
+  "pledge_text":"抵当にはエネルギーの消費が必要となります",
+  "pledge_mapping_text":"資産をまだDappChainにマップされていないため、抵当できません。",
 }

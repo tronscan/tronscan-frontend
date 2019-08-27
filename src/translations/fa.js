@@ -1921,4 +1921,28 @@ export const messages = {
 
     "token_logo_upload_tip":"فقط از سه قالب png ، jpg ، jpeg پشتیبانی می کند ، اندازه از 200K تجاوز نکند ، دارای  پیکسل 100 * 100 باشد .",
 
+    // Backbone - account - mapping
+    "main_account_mapping_title":"نقشه به DAppChain",
+    "main_account_mapping_text":"DAppChain یک شبکه زنجیره ای جانبی است که براساس زنجیره اصلی ترون ایجاد شده است ، یک راه حل مقیاس گذاری برای TRON MainNet. با نقشه برداری در DAppChain ، TPS بالاتری را با مصرف انرژی کمتری به دست می آورید.",
+    "main_account_mapping_text_1":"1.هرچه tps بالاتر ، مصرف انرژی پایین تر است.",
+    "main_account_mapping_text_2":"2.فرایند نقشه برداری کاملا رایگان است.",
+    "main_account_mapping_btn":"نقشه برداری",
+    "main_account_mapping_success_btn":"نقشه برداری",
+    "main_account_mapping_desc1": "هنگامی که توکن به زنجیره جانبی نقشه برداری وارد می شود ، یک توکن با همین نام در زنجیره جانبی ایجاد می شود.",
+    "main_account_mapping_desc2": "پس از اتمام نقشه برداری ، کاربران می توانند نشانه را به زنجیره جانبی واریز کنند.",
+
+    // sidechain - contract - mapping
+    "sidechain_contract_left":"نقشه برداری از قرارداد MainNet.",
+    "sidechain_contract_right":" ",
+
+    // Sidechain - account - pledge
+    "sidechain_account_pledge_btn":"سپرده",
+    "sidechain_account_sign_btn":"کنار کشیدن",
+    "pledge_currency":"توکن",
+    "pledge_sidechain":"زنجیره جانبی",
+    "pledge_num":"میزان",
+    'pledge_num_error':"این عدد نمی تواند از میزان موجودی فراتر رود.",
+    "pledge_text":"سپرده مقدار مشخصی از انرژی را مصرف می کند.",
+    "pledge_mapping_text":"دارایی های شما در DAppChain نقشه برداری نشده است ، بنابراین نمی تواند واریز شود.",
+
 };

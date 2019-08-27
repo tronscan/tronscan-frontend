@@ -1914,5 +1914,29 @@
   "compile_close":"أغلق",
 
   "token_logo_upload_tip":"يدعم فقط التنسيقات الثلاثة png و jpg و jpeg ، ولا يجب أن يتجاوز الحجم 200 كيلو بايت ، والبيكسل يجب ان يكون بقياس 100 * 100",
+  
+  // Backbone - account - mapping
+  "main_account_mapping_title":"الخريطة إلى DAppChain",
+  "main_account_mapping_text":"DAppChain هي عبارة عن شبكة سلسلة جانبية تم تطويرها استنادًا إلى سلسلة ترون الرئيسية ، وهي حل للتحجيم لشبكة TRON MainNet.",
+  "main_account_mapping_text_1":"1.مقدار أعلى من tps بالمقابل الحصول على استهلاك أقل للطاقة",
+  "main_account_mapping_text_2":"2.استكمال عملية رسم التعيين",
+  "main_account_mapping_btn":"جاري التعيين",
+  "main_account_mapping_success_btn":"تم استكمال التعيين",
+  "main_account_mapping_desc1": "عند تعيين الرمز المميز على السلسلة الجانبية ، سيتم إنشاء رمز مميز يحمل نفس الاسم في السلسلة الجانبية",
+  "main_account_mapping_desc2": "بعد اكتمال التعيين ، يمكن للمستخدمين إيداع الرمز المميز في السلسلة الجانبية.",
+  
+  // sidechain - contract - mapping
+  "sidechain_contract_left":"التعيين من عقد MainNet",
+  "sidechain_contract_right":" ",
+
+  // Sidechain - account - pledge
+  "sidechain_account_pledge_btn":"الوديعة",
+  "sidechain_account_sign_btn":"السحب",
+  "pledge_currency":"الرمز",
+  "pledge_sidechain":"Sidechain",
+  "pledge_num":"الكمية",
+  'pledge_num_error':"لا يمكن أن يتجاوز العدد الحد الأقصى للرصيد المتاح",
+  "pledge_text":"سوف تستهلك الودائع كمية معينة من الطاقة",
+  "pledge_mapping_text":"لم يتم تعيين الأصول الخاصة بك إلى DAppChain ، وبالتالي لا يمكن إيداعها.",
 
 };
