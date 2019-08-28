@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { tu } from '../../utils/i18n';
-import { Modal, Form, Input, Select, message } from 'antd';
+import { Modal, Form, Input, Select } from 'antd';
 import PropTypes from 'prop-types';
 import { CURRENCYTYPE, FEELIMIT, DEPOSITFEE } from './../../constants';
 import { injectIntl } from 'react-intl';
+import SweetAlert from "react-bootstrap-sweetalert";
 
 const { Option } = Select;
 
@@ -26,50 +27,80 @@ class PledgeModal extends Component {
     }
 
     /**
+     * show result
+     */
+    openModal = data => {
+        const isSuccess = !!data;
+        this.setState({
+            modal: (
+                <SweetAlert
+                    type={isSuccess ? 'success' : 'error'}
+                    confirmBtnText={tu("trc20_confirm")}
+                    confirmBtnBsStyle="danger"
+                    title={isSuccess ? tu("pledge_success") : tu("pledge_error")}
+                    onConfirm={this.hideModal}
+                    style={{height: '300px', top: '30%', marginLeft: '-240px'}}
+                >
+                  <div className="form-group" style={{marginBottom: '36px'}}>
+                    <div className="mt-3 mb-2 text-left" style={{color: '#666'}}>
+      
+                    </div>
+                  </div>
+      
+                </SweetAlert>
+            ),
+        });
+    };
+
+    /**
+     * clsoe result
+     */
+    hideModal = () => {
+        this.setState({
+            modal: null,
+        });
+    };
+
+    /**
      * Form confirm
      */
     confirm = () => {
-        const { form: { validateFields }, intl, account: { sunWeb }, onCancel,
+        const { form: { validateFields }, account: { sunWeb },
             option: { id, address, precision, type } } = this.props;
         this.setState({ isDisabled: true });
         validateFields(async(err, values) => {
             if (!err) {
-                const num = values.Num * Math.pow(10, Number(precision));
-                // todo wangyan
-                sunWeb.setSideGatewayAddress('TJ4apMhB5fhmAwqPcgX9i43SUJZuK6eZj4');
-                sunWeb.setChainId('410A6DBD0780EA9B136E3E9F04EBE80C6C288B80EE');
-                // trc10
-                if (CURRENCYTYPE.TRX10 === type) {
+                try {
+                    const num = values.Num * Math.pow(10, Number(precision));
+                    const sideChain = values.sidechain;
+                    const list = sideChain && sideChain.split('-');
                     // todo wangyan
-                    const txid = await sunWeb.depositTrc10(id, num, DEPOSITFEE, FEELIMIT);
-                    if (txid) {
-                        message.success(intl.formatMessage({ id: 'success' }), 3, () => onCancel());
-                    } else {
-                        message.error(intl.formatMessage({ id: 'error' }));
-                    }
-                } else if (CURRENCYTYPE.TRX20 === type) {
-                    const approveData = await sunWeb.approveTrc20(num, FEELIMIT, address);
-                    if (approveData) {
+                    sunWeb.setChainId(list[0]);
+                    sunWeb.setSideGatewayAddress(list[1]);
+                    // trc10
+                    if (CURRENCYTYPE.TRX10 === type) {
                         // todo wangyan
-                        // trc20
-                        const data = await sunWeb.depositTrc20(num, DEPOSITFEE, FEELIMIT, address);
-                        if (data) {
-                            message.success(intl.formatMessage({ id: 'success' }), 3, () => onCancel());
+                        const txid = await sunWeb.depositTrc10(id, num, DEPOSITFEE, FEELIMIT);
+                        this.openModal(txid);
+                    } else if (CURRENCYTYPE.TRX20 === type) {
+                        const approveData = await sunWeb.approveTrc20(num, FEELIMIT, address);
+                        if (approveData) {
+                            // todo wangyan
+                            // trc20
+                            const data = await sunWeb.depositTrc20(num, DEPOSITFEE, FEELIMIT, address);
+                            this.openModal(data);
                         } else {
-                            message.error(intl.formatMessage({ id: 'error' }));
+                            this.openModal();
                         }
-                    } else {
-                        message.error(intl.formatMessage({ id: 'error' }));
+                    } else if (CURRENCYTYPE.TRX === type) {
+                        const data = await sunWeb.depositTrx(num, DEPOSITFEE, FEELIMIT);
+                        this.openModal(data);
                     }
-                } else if (CURRENCYTYPE.TRX === type) {
-                    const data = await sunWeb.depositTrx(num, DEPOSITFEE, FEELIMIT);
-                    if (data) {
-                        message.success(intl.formatMessage({ id: 'success' }), 3, () => onCancel());
-                    } else {
-                        message.error(intl.formatMessage({ id: 'error' }));
-                    }
+                    this.setState({ isDisabled: false });
+                } catch(e) {
+                    this.openModal();
+                    this.setState({ isDisabled: false });
                 }
-                this.setState({ isDisabled: false });
             }
             this.setState({ isDisabled: false });
         });
@@ -83,11 +114,25 @@ class PledgeModal extends Component {
         onCancel && onCancel();
     };
 
+    /**
+     * get trc20 sideChains
+     */
+    getSideChains = () => {
+        const { option: { trx20MappingAddress }, sideChains } = this.props;
+        trx20MappingAddress.map(v => {
+            v.name = v.chainName;
+            v.sidechain_gateway = v.sidechainGateway;
+        })
+        return trx20MappingAddress;
+    }
+
     render() {
         const { getFieldDecorator } = this.props.form;
-        const { option: { currency, balance, precision }, sideChains } = this.props;
-        const { isDisabled } = this.state;
-        const isHasSideChainsData = sideChains && sideChains.length > 0;
+        const { option: { currency, balance, precision, trx20MappingAddress, type }, sideChains } = this.props;
+        const { isDisabled, modal } = this.state;
+
+        const sideChainList = type === CURRENCYTYPE.TRX20 ? this.getSideChains() : sideChains;
+        const isHasSideChainsData = sideChainList && sideChainList.length > 0;
 
         // currencyItem
         const currencyItem = (
@@ -102,9 +147,9 @@ class PledgeModal extends Component {
         const sideChainItem = (
             <Form.Item label={tu('pledge_sidechain')}>
                 {getFieldDecorator('sidechain', {
-                    initialValue: isHasSideChainsData && sideChains[0].gatewayAddress,
+                    initialValue: isHasSideChainsData && `${sideChainList[0].chainid}-${sideChainList[0].sidechain_gateway}`,
                 })(<Select>
-                    {sideChains.map(v => (<Option key={v.gatewayAddress} value={v.gatewayAddress}>{v.name}</Option>))}
+                    {sideChainList.map(v => (<Option key={v.chainid} value={`${v.chainid}-${v.sidechain_gateway}`}>{v.name}</Option>))}
                 </Select>)}
             </Form.Item>
         );
@@ -121,7 +166,7 @@ class PledgeModal extends Component {
                             message: <span>{tu('pledge_num_error')}</span>,
                         },
                         {
-                            validator: (rule, value) => value <= balance,
+                            validator: (rule, value) => value <= Number(balance),
                             message: <span>{tu('pledge_num_error')}</span>,
                         }
                     ],
@@ -160,6 +205,7 @@ class PledgeModal extends Component {
                     {btnItem}
                     {pledgeTextItem}
                 </Form>
+                {modal}
             </Modal>
         );
     }

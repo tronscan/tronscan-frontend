@@ -1969,4 +1969,35 @@ export const messages = {
 
   "token_logo_upload_tip":"Solo es compatible con los tres formatos png, jpg, jpeg y el tamaño no debe superar los 200K ni 100*100 pixels.",
 
+  // Backbone - account - mapping
+  "main_account_mapping_title":"reflectar a DAppChain",
+  "main_account_mapping_text":"DAppChain es una cadena lateral desarrollada basada en la mainnet de TRON, una solución de escala para la red principal de TRON. Al reflectar a DAppChain, se obtendrá un TPS más alto con un menor consumo de energía.",
+  "main_account_mapping_text_1":"1.obtengan tps con menor consumo de energía.",
+  "main_account_mapping_text_2":"2.proceso de reflexión completamente gratuito",
+  "main_account_mapping_btn":"Cartografía",
+  "main_account_mapping_success_btn":"reflexión",
+  "main_account_mapping_desc1": "Cuando el token se reflecta a la cadena lateral, se generará un token con el mismo nombre en la cadena lateral",
+  "main_account_mapping_desc2": "Una vez se completa la reflexión, los usuarios pueden depositar el token en la cadena lateral.",
+  
+  // sidechain - contract - mapping
+  "sidechain_contract_left":"reflexión del contrato de MainNet",
+  "sidechain_contract_right":" ",
+
+  // Sidechain - account - pledge
+  "sidechain_account_pledge_btn":"Depositar",
+  "sidechain_account_sign_btn":"Retirar",
+  "pledge_currency":"Tipo",
+  "pledge_sidechain":"Cadena lateral",
+  "pledge_num":"Cantidad",
+  'pledge_num_error':"El número nunca excede el saldo máximo disponible",
+  "pledge_text":"El depósito consumirá una cierta cantidad de energía.",
+  "pledge_mapping_text":"Sus activos no se han reflectado a DAppChain y, por lo tanto, no se pueden depositar.",
+  // success
+  "pledge_success": "Deposit Success",
+  "sign_success": "Withdraw Success",
+  "mapping_success": "Mapping Success",
+  // error
+  "pledge_error": "Deposit Error",
+  "sign_error": "Withdraw Error",
+  "mapping_error": "Mapping Error",
 };

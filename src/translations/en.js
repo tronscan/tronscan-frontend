@@ -1974,4 +1974,36 @@ export const messages = {
 
   "token_logo_upload_tip":"Only supports png, jpg, jpeg three formats, the size does not exceed 200K, the pixel is 100*100",
 
+  // Backbone - account - mapping
+  "main_account_mapping_title":"Map to DAppChain",
+  "main_account_mapping_text":"DAppChain is a side chain network developed based on the TRON main chain, a scaling solution for the TRON MainNet. By mapping to DAppChain, you will gain higher TPS with lower energy consumption.",
+  "main_account_mapping_text_1":"1.更高的tps，更低的能量消耗",
+  "main_account_mapping_text_2":"2.completely free mapping process",
+  "main_account_mapping_btn":"Mapping",
+  "main_account_mapping_success_btn":"Mapped",
+  "main_account_mapping_desc1": "When the token is mapped to the side chain, a token with the same name will be generated on the side chain",
+  "main_account_mapping_desc2": "After the mapping is completed, users can deposit the token to the side chain.",
+  
+  // sidechain - contract - mapping
+  "sidechain_contract_left":"Mapping from MainNet contract",
+  "sidechain_contract_right":" ",
+
+  // Sidechain - account - pledge
+  "sidechain_account_pledge_btn":"Deposit",
+  "sidechain_account_sign_btn":"Withdraw",
+  "pledge_currency":"Token",
+  "pledge_sidechain":"Sidechain",
+  "pledge_num":"Amount",
+  'pledge_num_error':"The number cannot exceed the maximum available balance",
+  "pledge_text":"Deposit will consume a certain amount of energy",
+  "pledge_mapping_text":"Your assets have not been mapped to DAppChain, and therefore cannot be deposited.",
+
+  // success
+  "pledge_success": "Deposit Success",
+  "sign_success": "Withdraw Success",
+  "mapping_success": "Mapping Success",
+  // error
+  "pledge_error": "Deposit Error",
+  "sign_error": "Withdraw Error",
+  "mapping_error": "Mapping Error",
 };

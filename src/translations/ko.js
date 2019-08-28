@@ -1922,4 +1922,35 @@ export const messages = {
 
   "token_logo_upload_tip":"PNG, jpg, jpeg 3 가지 형식만 지원하며 크기는 200K를 초과하지 않으며 픽셀은 100 * 100입니다.",
 
+  // Backbone - account - mapping
+  "main_account_mapping_title":"DappChain에지도",
+  "main_account_mapping_text":"DappChain은 TRON 메인 체인에 기반하여 개발된 사이드 체인 네트워크 이며. TRON 메인넷 확장에 사용됩니다. ",
+  "main_account_mapping_text_1":"1.높은 tps, 낮은 에너지 소비",
+  "main_account_mapping_text_2":"2.매핑 프로세스는 완전 무료입니다",
+  "main_account_mapping_btn":"매핑",
+  "main_account_mapping_success_btn":"매핑됨",
+  "main_account_mapping_desc1": "Token은 사이드 체인에 매핑되며 사이드 체인에서 동일한 이름의 토큰을 생성합니다.",
+  "main_account_mapping_desc2": "매핑이 완료된 후 사용자는 코인을 사이드 체인에 저당 할 수 있습니다.",
+
+  // sidechain - contract - mapping
+  "sidechain_contract_left":"메인 넷 컨트랙트에서 매핑",
+  "sidechain_contract_right":" ",
+
+  // Sidechain - account - pledge
+  "sidechain_account_pledge_btn":"deposit",
+  "sidechain_account_sign_btn":"withdraw",
+  "pledge_currency":"토큰",
+  "pledge_sidechain":"사이드 체인",
+  "pledge_num":"양",
+  'pledge_num_error':"수량이 사용 가능한 최대 잔액을 초과 할 수 없습니다",
+  "pledge_text":"서약은 일정량의 에너지를 소비",
+  "pledge_mapping_text":"아직 DappChain에 매핑되지 않은 자산, 서약을 지원하지 않습니다",
+  // success
+  "pledge_success": "Deposit Success",
+  "sign_success": "Withdraw Success",
+  "mapping_success": "Mapping Success",
+  // error
+  "pledge_error": "Deposit Error",
+  "sign_error": "Withdraw Error",
+  "mapping_error": "Mapping Error",
 };

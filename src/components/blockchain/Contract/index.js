@@ -19,7 +19,7 @@ import Call from "./Call";
 import {upperFirst} from "lodash";
 import {Truncate} from "../../common/text";
 import xhr from "axios/index";
-import {API_URL, CONTRACT_ADDRESS_USDT, CONTRACT_ADDRESS_WIN, CONTRACT_ADDRESS_GGC} from "../../../constants";
+import {API_URL, CONTRACT_ADDRESS_USDT, CONTRACT_ADDRESS_WIN, CONTRACT_ADDRESS_GGC, IS_SUNNET, CONTRACT_MAINNET_API_URL} from "../../../constants";
 import { Tooltip } from 'antd'
 import TokenBalances from './Balance.js'
 // import { CsvExport } from "../../common/CsvExport";
@@ -46,9 +46,13 @@ class SmartContract extends React.Component {
   }
 
   componentDidMount() {
-    let {match} = this.props;
+    let { match, walletType } = this.props;
     this.loadContract(match.params.id);
-
+    const isPrivateKey =  walletType.type === "ACCOUNT_PRIVATE_KEY";
+    isPrivateKey && IS_SUNNET && this.getMappingBySidechainAddress(match.params.id);
+    this.setState({
+      isPrivateKey
+    })
   }
 
   componentDidUpdate(prevProps) {
@@ -205,10 +209,25 @@ class SmartContract extends React.Component {
    
   }
 
+  /**
+   * get Mainnet contract address
+   */
+  getMappingBySidechainAddress = async (id) => {
+    const mainchainAddressData = await xhr.get(`${CONTRACT_MAINNET_API_URL}/external/sidechain/getMappingBySidechainAddress?sidechainAddress=${id}`);
+    
+    const { data: { retCode, data } } = mainchainAddressData;
+    if (retCode === '0') {
+      const { mainchainAddress } = data;
+      this.setState({
+        mainchainAddress,
+      })
+    }
+  }
+
 
   render() {
 
-    let {contract, tabs, loading, token20, csvurl} = this.state;
+    let {contract, tabs, loading, token20, csvurl, mainchainAddress, isPrivateKey} = this.state;
     let {match, intl} = this.props;
 
     if (!contract) {
@@ -283,14 +302,17 @@ class SmartContract extends React.Component {
                                   </div>
                                 }
                               </li>
-
+                              {
+                                isPrivateKey && IS_SUNNET && mainchainAddress &&
                               <li>
                                 <p>{tu('main_account_mapping_btn')}: </p>
                                 <span>
-                                  {tu('sidechain_contract_left')}XXX
+                                    {tu('sidechain_contract_left')}
+                                    {mainchainAddress}
                                   {tu('sidechain_contract_right')}
                                 </span>
                               </li>
+                              }
                             </ul>
                           </div>
                         </div>
@@ -343,6 +365,7 @@ function mapStateToProps(state) {
 }
 
 const mapDispatchToProps = {
+  walletType: state.app.wallet,
 };
 
 export default injectIntl(SmartContract);

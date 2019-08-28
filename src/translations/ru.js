@@ -1927,4 +1927,35 @@ export const messages = {
 
   "token_logo_upload_tip":"Поддерживаются только три формата - png, jpg, jpeg, размер не превышает 200 Кб, 100*100 пикселей",
 
+  // Backbone - account - mapping
+  "main_account_mapping_title":"Маппинг DAppChain",
+  "main_account_mapping_text":"DAppChain - это сайдчейн сеть, разработанная на основе цепи TRON, масштабируемое решения для сети TRON. При сопоставлении с DAppChain вы получите более высокий TPS с меньшим энергопотреблением.",
+  "main_account_mapping_text_1":"1.Более высокий TPS с меньшим энергопотреблением",
+  "main_account_mapping_text_2":"2.совершенно бесплатный процесс картирования",
+  "main_account_mapping_btn":"Маппинг",
+  "main_account_mapping_success_btn":"Маппиравано",
+  "main_account_mapping_desc1": "Когда токен маппирован с сайдчейн, токен с тем же именем будет создан на сайдчейн",
+  "main_account_mapping_desc2": "После завершения маппирования, пользователи могут вкладывать токен в сайдчейн.",
+
+  // sidechain - contract - mapping
+  "sidechain_contract_left":"Отображение из контракта Главной Сети",
+  "sidechain_contract_right":" ",
+
+  // Sidechain - account - pledge
+  "sidechain_account_pledge_btn":"Вкладывать",
+  "sidechain_account_sign_btn":"Снимать",
+  "pledge_currency":"Токен",
+  "pledge_sidechain":"Сайдчейн",
+  "pledge_num":"Количество",
+  'pledge_num_error':"Количество не может превышать максимально доступный баланс",
+  "pledge_text":"Вклад будет потреблять определенное количество энергии",
+  "pledge_mapping_text":"Ваши активы не были маппированы с DAppChain и поэтому вклад не может быть совершен.",
+  // success
+  "pledge_success": "Deposit Success",
+  "sign_success": "Withdraw Success",
+  "mapping_success": "Mapping Success",
+  // error
+  "pledge_error": "Deposit Error",
+  "sign_error": "Withdraw Error",
+  "mapping_error": "Mapping Error",
 };

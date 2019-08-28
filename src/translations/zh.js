@@ -1962,7 +1962,7 @@ export const messages = {
   "main_account_mapping_title":"映射到DappChain",
   "main_account_mapping_text":"DappChain是基于波场主链开发的侧链网络，扩展了波场主网的使用。映射之后你将获得：",
   "main_account_mapping_text_1":"1.更高的tps，更低的能量消耗",
-  "main_account_mapping_text_2":"2.映射过程完成免费",
+  "main_account_mapping_text_2":"2.映射过程完全免费",
   "main_account_mapping_btn":"映射",
   "main_account_mapping_success_btn":"已映射",
   "main_account_mapping_desc1": "token映射到侧链上，会在侧链上产生同名的token",
@@ -1983,7 +1983,11 @@ export const messages = {
   "pledge_mapping_text":"资产尚未映射到DappChain.不支持质押",
 
   // success
-  "success": "success",
+  "pledge_success": "质押成功",
+  "sign_success": "解押成功",
+  "mapping_success": "映射成功",
   // error
-  "error": "error",
+  "pledge_error": "质押失败",
+  "sign_error": "解押失败",
+  "mapping_error": "映射失败",
 };

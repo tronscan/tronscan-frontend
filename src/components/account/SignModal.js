@@ -5,6 +5,7 @@ import { Modal, Form, Input, message } from 'antd';
 import PropTypes from 'prop-types';
 import { CURRENCYTYPE, FEELIMIT, WITHDRAWFEE } from './../../constants';
 import { injectIntl } from 'react-intl';
+import SweetAlert from "react-bootstrap-sweetalert";
 
 class SignModal extends Component {
 
@@ -24,45 +25,72 @@ class SignModal extends Component {
     }
 
     /**
+     * show result
+     */
+    openModal = data => {
+        const isSuccess = !!data;
+        this.setState({
+            modal: (
+                <SweetAlert
+                    type={isSuccess ? 'success' : 'error'}
+                    confirmBtnText={tu("trc20_confirm")}
+                    confirmBtnBsStyle="danger"
+                    title={isSuccess ? tu("sign_success") : tu("sign_error")}
+                    onConfirm={this.hideModal}
+                    style={{height: '300px', top: '30%', marginLeft: '-240px'}}
+                >
+                  <div className="form-group" style={{marginBottom: '36px'}}>
+                    <div className="mt-3 mb-2 text-left" style={{color: '#666'}}>
+      
+                    </div>
+                  </div>
+      
+                </SweetAlert>
+            ),
+        });
+    };
+
+    /**
+     * clsoe result
+     */
+    hideModal = () => {
+        this.setState({
+            modal: null,
+        });
+    };
+
+    /**
      * Form confirm
      */
     confirm = () => {
-        const { form: { validateFields }, intl, account: { sunWeb }, onCancel,
+        const { form: { validateFields }, account: { sunWeb },
             option: { id, address, precision, type } } = this.props;
 
         this.setState({ isDisabled: true });
         validateFields(async(err, values) => {
             if (!err) {
-                const num = values.Num * Math.pow(10, Number(precision));
-                // todo wangyan
-                sunWeb.setSideGatewayAddress('TJ4apMhB5fhmAwqPcgX9i43SUJZuK6eZj4');
-                sunWeb.setChainId('410A6DBD0780EA9B136E3E9F04EBE80C6C288B80EE');
-                // trc10
-                if (CURRENCYTYPE.TRX10 === type) {
-                    const data = await sunWeb.withdrawTrc10(id, num, WITHDRAWFEE, FEELIMIT);
-                    if (data) {
-                        message.success(intl.formatMessage({ id: 'success' }), 3, () => onCancel());
-                    } else {
-                        message.error(intl.formatMessage({ id: 'error' }));
-                    }
-                } else if (CURRENCYTYPE.TRX20 === type) {
-                    // trc20
-                    const data = await sunWeb.withdrawTrc20(num, WITHDRAWFEE, FEELIMIT, address);
-                    if (data) {
-                        message.success(intl.formatMessage({ id: 'success' }), 3, () => onCancel());
-                    } else {
-                        message.error(intl.formatMessage({ id: 'error' }));
-                    }
-                } else if (CURRENCYTYPE.TRX === type) {
+                try {
+                    const num = values.Num * Math.pow(10, Number(precision));
                     // todo wangyan
-                    const data = await sunWeb.withdrawTrx(num, WITHDRAWFEE, FEELIMIT);
-                    if (data) {
-                        message.success(intl.formatMessage({ id: 'success' }), 3, () => onCancel());
-                    } else {
-                        message.error(intl.formatMessage({ id: 'error' }));
+                    sunWeb.setSideGatewayAddress('TJ4apMhB5fhmAwqPcgX9i43SUJZuK6eZj4');
+                    sunWeb.setChainId('410A6DBD0780EA9B136E3E9F04EBE80C6C288B80EE');
+                    let data;
+                    // trc10
+                    if (CURRENCYTYPE.TRX10 === type) {
+                        data = await sunWeb.withdrawTrc10(id, num, WITHDRAWFEE, FEELIMIT);
+                    } else if (CURRENCYTYPE.TRX20 === type) {
+                        // trc20
+                        data = await sunWeb.withdrawTrc20(num, WITHDRAWFEE, FEELIMIT, address);
+                    } else if (CURRENCYTYPE.TRX === type) {
+                        // todo wangyan
+                        data = await sunWeb.withdrawTrx(num, WITHDRAWFEE, FEELIMIT);
                     }
+                    this.openModal(data);
+                    this.setState({ isDisabled: false });
+                } catch(e) {
+                    this.openModal();
+                    this.setState({ isDisabled: false });
                 }
-                this.setState({ isDisabled: false });
             }
             this.setState({ isDisabled: false });
         });
@@ -79,7 +107,7 @@ class SignModal extends Component {
     render() {
         const { getFieldDecorator } = this.props.form;
         const { option: { currency, balance, precision } } = this.props;
-        const { isDisabled } = this.state;
+        const { isDisabled, modal } = this.state;
 
         // currencyItem
         const currencyItem = (
@@ -139,6 +167,7 @@ class SignModal extends Component {
                     {btnItem}
                     {pledgeTextItem}
                 </Form>
+                {modal}
             </Modal>
         );
     }
