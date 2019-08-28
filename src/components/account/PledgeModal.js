@@ -72,9 +72,11 @@ class PledgeModal extends Component {
             if (!err) {
                 try {
                     const num = values.Num * Math.pow(10, Number(precision));
+                    const sideChain = values.sidechain;
+                    const list = sideChain && sideChain.split('-');
                     // todo wangyan
-                    sunWeb.setSideGatewayAddress('TJ4apMhB5fhmAwqPcgX9i43SUJZuK6eZj4');
-                    sunWeb.setChainId('410A6DBD0780EA9B136E3E9F04EBE80C6C288B80EE');
+                    sunWeb.setChainId(list[0]);
+                    sunWeb.setSideGatewayAddress(list[1]);
                     // trc10
                     if (CURRENCYTYPE.TRX10 === type) {
                         // todo wangyan
@@ -112,11 +114,25 @@ class PledgeModal extends Component {
         onCancel && onCancel();
     };
 
+    /**
+     * get trc20 sideChains
+     */
+    getSideChains = () => {
+        const { option: { trx20MappingAddress }, sideChains } = this.props;
+        trx20MappingAddress.map(v => {
+            v.name = v.chainName;
+            v.sidechain_gateway = v.sidechainGateway;
+        })
+        return trx20MappingAddress;
+    }
+
     render() {
         const { getFieldDecorator } = this.props.form;
-        const { option: { currency, balance, precision }, sideChains } = this.props;
+        const { option: { currency, balance, precision, trx20MappingAddress, type }, sideChains } = this.props;
         const { isDisabled, modal } = this.state;
-        const isHasSideChainsData = sideChains && sideChains.length > 0;
+
+        const sideChainList = type === CURRENCYTYPE.TRX20 ? this.getSideChains() : sideChains;
+        const isHasSideChainsData = sideChainList && sideChainList.length > 0;
 
         // currencyItem
         const currencyItem = (
@@ -131,9 +147,9 @@ class PledgeModal extends Component {
         const sideChainItem = (
             <Form.Item label={tu('pledge_sidechain')}>
                 {getFieldDecorator('sidechain', {
-                    initialValue: isHasSideChainsData && sideChains[0].gatewayAddress,
+                    initialValue: isHasSideChainsData && `${sideChainList[0].chainid}-${sideChainList[0].sidechain_gateway}`,
                 })(<Select>
-                    {sideChains.map(v => (<Option key={v.gatewayAddress} value={v.gatewayAddress}>{v.name}</Option>))}
+                    {sideChainList.map(v => (<Option key={v.chainid} value={`${v.chainid}-${v.sidechain_gateway}`}>{v.name}</Option>))}
                 </Select>)}
             </Form.Item>
         );
@@ -150,7 +166,7 @@ class PledgeModal extends Component {
                             message: <span>{tu('pledge_num_error')}</span>,
                         },
                         {
-                            validator: (rule, value) => value <= balance,
+                            validator: (rule, value) => value <= Number(balance),
                             message: <span>{tu('pledge_num_error')}</span>,
                         }
                     ],

@@ -78,9 +78,11 @@ class MappingModal extends Component {
         validateFields(async(err, values) => {
             if (!err) {
                 try {
+                    const sideChain = values.sidechain;
+                    const list = sideChain && sideChain.split('-');
                     // todo wangyan
-                    sunWeb.setSideGatewayAddress('TDdo671JXH5S74iVvXEDyUXSgADYtg5ns7');
-                    sunWeb.setChainId('410A6DBD0780EA9B136E3E9F04EBE80C6C288B80EE');
+                    sunWeb.setChainId(list[0]);
+                    sunWeb.setSideGatewayAddress(list[1]);
                     const mappingData = await sunWeb.mappingTrc20(txHash, MAPPINGFEE, FEELIMIT);
                     this.openModal(mappingData);
                     this.setState({ isDisabled: false });
@@ -141,9 +143,9 @@ class MappingModal extends Component {
         const sideChainItem = (
             <Form.Item label={tu('pledge_sidechain')}>
                 {getFieldDecorator('sidechain', {
-                    initialValue: isHasSideChainsData && sideChains[0].gatewayAddress,
+                    initialValue: isHasSideChainsData && `${sideChains[0].chainid}-${sideChains[0].sidechain_gateway}`,
                 })(<Select>
-                    {sideChains.map(v => (<Option key={v.gatewayAddress} value={v.gatewayAddress}>{v.name}</Option>))}
+                    {sideChains.map(v => (<Option key={v.chainid} value={`${v.chainid}-${v.sidechain_gateway}`}>{v.name}</Option>))}
                 </Select>)}
             </Form.Item>
         );

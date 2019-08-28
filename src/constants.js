@@ -21,6 +21,7 @@ export const PUBLIC_URL = process.env.PUBLIC_URL || window.location.origin;
 export const API_URL_SUNNET = 'http://52.15.125.153:9000';
 export const API_URL_MAINNET = 'https://apilist.tronscan.org';
 export const API_URL = IS_SUNNET?API_URL_SUNNET:process.env.API_URL;
+export const CONTRACT_MAINNET_API_URL = process.env.API_URL; 
 
 
 

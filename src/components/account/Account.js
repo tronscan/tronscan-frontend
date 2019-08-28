@@ -95,8 +95,12 @@ export default class Account extends Component {
 
   async componentDidMount() {
 
-    let {account,match} = this.props;
+    let { account,match,walletType } = this.props;
 
+    const isPrivateKey =  walletType.type === "ACCOUNT_PRIVATE_KEY";
+    this.setState({
+      isPrivateKey
+    })
 
     if (account.isLoggedIn) {
       this.setState({isTronLink: Lockr.get("islogin")});
@@ -108,9 +112,8 @@ export default class Account extends Component {
           },3000)
       }
     }
-
     // gets the list of side chains
-    await this.getSideChains();
+    isPrivateKey && await this.getSideChains();
   }
 
   componentDidUpdate(prevProps) {
@@ -218,7 +221,7 @@ export default class Account extends Component {
   }
 
   renderTRC20Tokens() {
-    let { hideSmallCurrency } = this.state;
+    let { hideSmallCurrency, isPrivateKey } = this.state;
     let { tokens20 } = this.props;
     if (hideSmallCurrency) {
       tokens20 = _(tokens20)
@@ -243,22 +246,12 @@ export default class Account extends Component {
       );
     }
 
-    // todo wangyan
     // pledgeItem
-    // const pledgeItem = (address, currency, balance, precision) => {
-    //   const option = { address, currency, balance, precision, type: CURRENCYTYPE.TRX20 };
-    //   return <td className="text-right">
-    //           <button className="btn btn-danger"
-    //             onClick={IS_SUNNET ? () => this.openSignModal(option) : () => this.openMappingModal(option)}>
-    //             {IS_SUNNET ? tu('sidechain_account_sign_btn') : tu('sidechain_account_pledge_btn')}
-    //           </button>
-    //         </td>
-    // };
     const pledgeItem = (address, currency, balance, precision) => {
       const option = { address, currency, balance, precision, type: CURRENCYTYPE.TRX20 };
       return <td className="text-right">
               <button className="btn btn-danger"
-                onClick={IS_SUNNET ? () => this.openSignModal(option) : () => this.openPledgeModel(option)}>
+                onClick={IS_SUNNET ? () => this.openSignModal(option) : () => this.getTrx20MappingSideChains(option)}>
                 {IS_SUNNET ? tu('sidechain_account_sign_btn') : tu('sidechain_account_pledge_btn')}
               </button>
             </td>
@@ -270,8 +263,7 @@ export default class Account extends Component {
           <tr>
             <th>{tu("name")}</th>
             <th className="text-right">{tu("balance")}</th>
-            {/* {IS_SUNNET && <th className="text-right">{tu("trc20_cur_order_header_action")}</th>} */}
-            {<th className="text-right">{tu("trc20_cur_order_header_action")}</th>}
+            {isPrivateKey && <th className="text-right">{tu("trc20_cur_order_header_action")}</th>}
           </tr>
           </thead>
           <tbody>
@@ -293,8 +285,7 @@ export default class Account extends Component {
                     <span>{token.token20_balance}</span>
                     {/*<FormattedNumber value={token.token20_balance} maximumFractionDigits={20}/>*/}
                   </td>
-                  {pledgeItem(token.contract_address, token.symbol, Number(token.token20_balance_decimals), token.map_token_precision)}
-                  {/* {IS_SUNNET && pledgeItem(token)} */}
+                  {isPrivateKey && pledgeItem(token.contract_address, token.symbol, token.token20_balance_decimals, token.map_token_precision)}
                 </tr>
             ))
           }
@@ -304,7 +295,7 @@ export default class Account extends Component {
   }
 
   renderTokens() {
-    let {hideSmallCurrency} = this.state;
+    let {hideSmallCurrency, isPrivateKey} = this.state;
     let {tokenBalances = []} = this.props;
     if (hideSmallCurrency) {
       tokenBalances = _(tokenBalances)
@@ -344,8 +335,7 @@ export default class Account extends Component {
             <th>ID</th>
             <th>{tu("TRC20_decimals")}</th>
             <th className="text-right">{tu("balance")}</th>
-            {/* {IS_SUNNET && <th className="text-right">{tu('trc20_cur_order_header_action')}</th>} */}
-            {<th className="text-right">{tu('trc20_cur_order_header_action')}</th>}
+            {isPrivateKey && <th className="text-right">{tu('trc20_cur_order_header_action')}</th>}
           </tr>
           </thead>
           <tbody>
@@ -371,8 +361,7 @@ export default class Account extends Component {
                     <FormattedNumber value={token.map_amount}
                                      maximumFractionDigits={Number(token.map_token_precision)}/>
                   </td>
-                  {/* {IS_SUNNET && pledgeItem(token.map_token_id)} */}
-                  {pledgeItem(token.map_token_id, token.map_token_name_abbr, Number(token.map_amount), token.map_token_precision)}
+                  {isPrivateKey && pledgeItem(token.map_token_id, token.map_token_name_abbr, token.map_amount, token.map_token_precision)}
                 </tr>
             ))
           }
@@ -382,7 +371,7 @@ export default class Account extends Component {
   }
 
   renderTRX() {
-    let {hideSmallCurrency} = this.state;
+    let {hideSmallCurrency, isPrivateKey} = this.state;
     let {tokenBalances = []} = this.props;
     if (hideSmallCurrency) {
       tokenBalances = _(tokenBalances)
@@ -422,8 +411,7 @@ export default class Account extends Component {
             <th>ID</th>
             <th>{tu("TRC20_decimals")}</th>
             <th className="text-right">{tu("balance")}</th>
-            {/* {IS_SUNNET && <th className="text-right">{tu('trc20_cur_order_header_action')}</th>} */}
-            {<th className="text-right">{tu('trc20_cur_order_header_action')}</th>}
+            {isPrivateKey && <th className="text-right">{tu('trc20_cur_order_header_action')}</th>}
           </tr>
           </thead>
           <tbody>
@@ -449,8 +437,7 @@ export default class Account extends Component {
                     <FormattedNumber value={token.map_amount}
                                      maximumFractionDigits={Number(token.map_token_precision)}/>
                   </td>
-                  {/* {IS_SUNNET && pledgeItem(token.map_token_id)} */}
-                  {pledgeItem(token.map_token_id, token.map_token_name_abbr, Number(token.map_amount), token.map_token_precision)}
+                  {isPrivateKey && pledgeItem(token.map_token_id, token.map_token_name_abbr, token.map_amount, token.map_token_precision)}
                 </tr>
             ))
           }
@@ -1657,15 +1644,39 @@ export default class Account extends Component {
    */
   getSideChains = async () => {
     const { loadSideChains } = this.props;
-    // const sideChains = await xhr.get(API_URL + '/api/getSideChainList');
-    const sideChains = await xhr.get('https://1d91c6c4-9d7e-4853-a89f-61b4beba9030.mock.pstmn.io' + '/api/getSideChainList');
-    const { data: { list } } = sideChains;
-    loadSideChains(list);
+    const sideChains = await xhr.get(`${API_URL}/external/sidechain/getSideChainList`);
+    const { data: { retCode, data }  } = sideChains;
+    if (retCode === '0') {
+      const { chains } = data;
+      loadSideChains(chains);
+    }
   }
+
+  /**
+   * trx20 get map address
+   */
+  getTrx20MappingSideChains = async (option) => {
+    const { address } = option;
+    const sideChains = await xhr.get(`${API_URL}/external/sidechain/getMappingByMainchainAddress?mainchainAddress=${address}`);
+    const { data: { retCode, data }  } = sideChains;
+    if (retCode === '0') {
+      const { sidechains } = data;
+      if (sidechains && sidechains.length > 0) {
+        this.setState({
+          trx20MappingAddress: sidechains,
+        });
+        this.openPledgeModel(option);
+      } else {
+        this.openMappingModal();
+      }
+    } else {
+      this.openMappingModal();
+    }
+  } 
 
   render() {
     let { modal, sr, issuedAsset, showBandwidth, showBuyTokens, temporaryName, hideSmallCurrency, tokenTRC10,
-      isShowPledgeModal, isShowMappingModal, address, currency, balance, precision, id, type, isShowSignModal, tokenTRX } = this.state;
+      isShowPledgeModal, isShowMappingModal, address, currency, balance, precision, id, type, isShowSignModal, tokenTRX, trx20MappingAddress } = this.state;
 
       // pledge param
       const option = {
@@ -1674,7 +1685,8 @@ export default class Account extends Component {
         balance,
         precision,
         id,
-        type
+        type,
+        trx20MappingAddress
       };
 
     let {account, frozen, totalTransactions, currentWallet, wallet, accountResource, trxBalance, intl} = this.props;
