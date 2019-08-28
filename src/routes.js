@@ -647,12 +647,14 @@ export const routes = [
         {
           url: "https://shasta.tronscan.org",
           icon: "fa fa-link",
-          label: "link_test_server"
+          label: "link_test_server",
+          sidechain:false,
         },
         {
           url: "https://www.trongrid.io/shasta",
           icon: "fa fa-recycle",
-          label: "link_test_fauct"
+          label: "link_test_fauct",
+          sidechain:false,
         },
         // {
         //   url: "https://dapphouse.org",
@@ -674,7 +676,13 @@ export const routes = [
           enurl: "https://tron.network/exchangesList?lng=en",
           zhurl: "https://tron.network/exchangesList?lng=zh",
           linkHref: true
-        }
+        },
+        {
+          icon: "fas fa-columns",
+          label: "侧链浏览器（DappChain）",
+          //label: "SideChain Browser(DappChain)",
+          sidechain:true,
+        },
       ]
     ]
   },

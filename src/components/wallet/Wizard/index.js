@@ -63,6 +63,7 @@ class Wizard extends React.PureComponent {
 
   generateAccount = () => {
     let account = generateAccount();
+    console.log('account',account)
     this.setState({
       address: account.address,
       privateKey: account.privateKey,

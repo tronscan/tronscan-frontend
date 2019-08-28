@@ -19,7 +19,6 @@ import ChangeNameModal from "./ChangeNameModal";
 import CreateTxnPairModal from "./CreateTxnPairModal";
 import OperateTxnPairModal from "./OperateTxnPairModal";
 import {addDays, getTime} from "date-fns";
-import TestNetRequest from "./TestNetRequest";
 import Transactions from "../common/Transactions";
 import {decode58Check, pkToAddress} from "@tronscan/client/src/utils/crypto";
 import {QuestionMark} from "../common/QuestionMark";
@@ -999,52 +998,78 @@ export default class Account extends Component {
     let {privateKey} = this.state;
     let res;
     this.hideModal();
-    if (Lockr.get("islogin") || this.props.walletType.type === "ACCOUNT_LEDGER" || this.props.walletType.type === "ACCOUNT_TRONLINK") {
-      const tronWebLedger = this.props.tronWeb();
+    if(IS_MAINNET){
+        if (Lockr.get("islogin") || this.props.walletType.type === "ACCOUNT_LEDGER" || this.props.walletType.type === "ACCOUNT_TRONLINK") {
+            const tronWebLedger = this.props.tronWeb();
 
 
-      const {tronWeb} = this.props.account;
+            const {tronWeb} = this.props.account;
 
-      if (!delegateType) {
-        delegateType = 'BANDWIDTH';
-      } else {
-        delegateType = 'ENERGY';
-      }
+            if (!delegateType) {
+                delegateType = 'BANDWIDTH';
+            } else {
+                delegateType = 'ENERGY';
+            }
 
-      try {
-        if (this.props.walletType.type === "ACCOUNT_LEDGER") {
-          let unSignTransaction;
-          if(!delegate) {
-             unSignTransaction = await tronWebLedger.transactionBuilder.unfreezeBalance(delegateType, walletType.address).catch(e => false);
-          }else{
-             unSignTransaction = await tronWebLedger.transactionBuilder.unfreezeBalance(delegateType, walletType.address, delegateValue).catch(e => false);
-          }
-          const {result} = await transactionResultManager(unSignTransaction, tronWebLedger);
-          res = result;
+            try {
+                if (this.props.walletType.type === "ACCOUNT_LEDGER") {
+                    let unSignTransaction;
+                    if(!delegate) {
+                        unSignTransaction = await tronWebLedger.transactionBuilder.unfreezeBalance(delegateType, walletType.address).catch(e => false);
+                    }else{
+                        unSignTransaction = await tronWebLedger.transactionBuilder.unfreezeBalance(delegateType, walletType.address, delegateValue).catch(e => false);
+                    }
+                    const {result} = await transactionResultManager(unSignTransaction, tronWebLedger);
+                    res = result;
+                }
+                if (this.props.walletType.type === "ACCOUNT_TRONLINK") {
+                    let unSignTransaction;
+                    if(!delegate) {
+                        unSignTransaction = await tronWeb.transactionBuilder.unfreezeBalance(delegateType, tronWeb.defaultAddress.base58).catch(e => false);
+                    }else{
+                        unSignTransaction = await tronWeb.transactionBuilder.unfreezeBalance(delegateType, tronWeb.defaultAddress.base58,delegateValue).catch(e => false);
+                    }
+                    const {result} = await transactionResultManager(unSignTransaction, tronWeb);
+                    res = result;
+                }
+
+            } catch (e) {
+                console.log(e)
+            }
+        } else {
+            if(!delegate) {
+                let {success} = await Client.unfreezeBalance(account.address, delegateType, '')(account.key);
+                res = success
+            }else{
+                let {success} = await Client.unfreezeBalance(account.address, delegateType, delegateValue)(account.key);
+                res = success
+            }
         }
-        if (this.props.walletType.type === "ACCOUNT_TRONLINK") {
-          let unSignTransaction;
-          if(!delegate) {
-             unSignTransaction = await tronWeb.transactionBuilder.unfreezeBalance(delegateType, tronWeb.defaultAddress.base58).catch(e => false);
-          }else{
-             unSignTransaction = await tronWeb.transactionBuilder.unfreezeBalance(delegateType, tronWeb.defaultAddress.base58,delegateValue).catch(e => false);
-          }
-          const {result} = await transactionResultManager(unSignTransaction, tronWeb);
-          res = result;
+    }else{
+        const {tronWeb, sunWeb} = this.props.account;
+        if (!delegateType) {
+            delegateType = 'BANDWIDTH';
+        } else {
+            delegateType = 'ENERGY';
         }
+        try {
 
-      } catch (e) {
-        console.log(e)
-      }
-    } else {
-      if(!delegate) {
-        let {success} = await Client.unfreezeBalance(account.address, delegateType, '')(account.key);
-        res = success
-      }else{
-        let {success} = await Client.unfreezeBalance(account.address, delegateType, delegateValue)(account.key);
-        res = success
-      }
+            if (this.props.walletType.type === "ACCOUNT_PRIVATE_KEY") {
+                let unSignTransaction;
+                if(!delegate) {
+                    unSignTransaction = await sunWeb.sidechain.transactionBuilder.unfreezeBalance(delegateType, sunWeb.sidechain.defaultAddress.base58).catch(e => false);
+                }else{
+                    unSignTransaction = await sunWeb.sidechain.transactionBuilder.unfreezeBalance(delegateType, sunWeb.sidechain.defaultAddress.base58,delegateValue).catch(e => false);
+                }
+                const {result} = await transactionResultManagerSun(unSignTransaction, sunWeb);
+                res = result;
+            }
+
+        } catch (e) {
+            console.log(e)
+        }
     }
+
 
     if (res) {
       this.setState({
@@ -1160,7 +1185,7 @@ export default class Account extends Component {
                   account_name: sunWeb.sidechain.fromUtf8(name),
                   owner_address: sunWeb.sidechain.defaultAddress.hex
               }, 'post').catch(e => false);
-              const {result} = await  transactionResultManagerSun(unSignTransaction, sunWeb);
+              const {result} = await transactionResultManagerSun(unSignTransaction, sunWeb);
               res = result;
           }
       } catch (e) {
@@ -2176,7 +2201,7 @@ export default class Account extends Component {
             </div>
           </div>
           {
-            currentWallet.representative.enabled ?
+              (currentWallet.representative.enabled  && IS_MAINNET) &&
                 <div className="row mt-3">
                   <div className="col-md-12">
                     <div className="card">
@@ -2267,32 +2292,37 @@ export default class Account extends Component {
                     </div>
                   </div>
                 </div>
-                :
-                <div className="row mt-3">
-                  <div className="col-md-12">
-                    <div className="card">
-                      <div className="card-body">
-                        <h5 className="card-title text-center m-0">
+            }
+            {
+              !currentWallet.representative.enabled &&
+              <div className="row mt-3">
+                <div className="col-md-12">
+                  <div className="card">
+                    <div className="card-body">
+                      <h5 className="card-title text-center m-0">
                           {tu("Super Representatives")}
-                        </h5>
-                        <p className="pt-3">
+                      </h5>
+                      <p className="pt-3">
                           {tu("apply_for_delegate_predescription")}
-                        </p>
-                        <div className="text-center">
+                      </p>
+                      <div className="text-center">
                           {
-                            !IS_TESTNET && <button className="apply-super-btn btn btn-success"
-                                    onClick={() => {
-                                      this.applyForDelegate()
-                                    }}>
-                              {tu("apply_super_representative_candidate")}
-                            </button>
+                              !IS_TESTNET && <button className="apply-super-btn btn btn-success"
+                                                     onClick={() => {
+                                                         this.applyForDelegate()
+                                                     }}>
+                                  {tu("apply_super_representative_candidate")}
+                              </button>
                           }
-                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
-          }
+              </div>
+            }
+
+
+
           {isShowPledgeModal && <PledgeModal onCancel={this.closePledgeModel} option={option} />}
           {isShowMappingModal && <MappingMessageModal onCancel={this.closeMappingModal} />}
           {isShowSignModal && <SignModal onCancel={this.closeSignModal} option={option} />}

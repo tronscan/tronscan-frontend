@@ -160,7 +160,6 @@ export default class FreezeBalanceModal extends React.PureComponent {
               res = result;
           }
       }
-        console.log('res666',res)
       if (res) {
         this.confirmModal({amount});
         this.setState({loading: false});

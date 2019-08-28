@@ -103,10 +103,10 @@ class Navigation extends React.Component {
 
   componentWillMount() {
 
-    // let {intl} = this.props;
-    // this.props.login('441d39fa209abf368a5f51191319d58dc2d4ef94f8f51514812bb4c036582079').then(() => {
-    //   toastr.info(intl.formatMessage({id: 'success'}), intl.formatMessage({id: 'login_success'}));
-    // });
+    let {intl} = this.props;
+    this.props.login('369438ec66b7f7e4a4804da60bbac18615928169e4657cbffd06b3d4b9796a3d').then(() => {
+      toastr.info(intl.formatMessage({id: 'success'}), intl.formatMessage({id: 'login_success'}));
+    });
     this.reLoginWithTronLink();
 
   }
@@ -126,6 +126,7 @@ class Navigation extends React.Component {
     $(document).click(() => {
       $('#_searchBox').css({display: 'none'});
     });
+
     this.setState({
         selectedNet: IS_MAINNET?'mainnet':'sunnet'
     });
@@ -155,12 +156,14 @@ class Navigation extends React.Component {
   }
 
   netSelectChange = (value) => {
+    console.log('value1111',value)
       Lockr.set("NET", value)
       this.setState({
           selectedNet: value
       });
       window.location.reload();
   }
+
   isString(str){
      return (typeof str==='string')&&str.constructor==String;
   }
@@ -725,20 +728,24 @@ class Navigation extends React.Component {
                   }}>
                     {tu("open_wallet")}
                     <ul className="dropdown-menu dropdown-menu-right nav-login-wallet" style={{minWidth: style_width}}>
-                      <li className="px-2 py-1 border-bottom-0" onClick={(e) => {
-                        this.clickLoginWithTronLink(e)
-                      }}>
-                        <div className="dropdown-item text-uppercase d-flex align-items-center text-muted">
-                          <img src={require("../images/login/tronlink.png")} width="16px" height="16px" className="mr-2"/>
-                          {tu('sign_in_with_TRONlink')}
-                        </div>
-                      </li>
-                      <li className="px-2 py-1 border-bottom-0" onClick={(e) => this.loginWithLedger(e)}>
-                        <div className="dropdown-item text-uppercase d-flex  align-items-center text-muted">
-                          <img src={require("../images/login/ledger.png")} width="16px" height="16px" className="mr-2"/>
-                          {tu('sign_in_with_ledger')}
-                        </div>
-                      </li>
+                      {
+                          IS_MAINNET && <li className="px-2 py-1 border-bottom-0" onClick={(e) => {
+                              this.clickLoginWithTronLink(e)
+                          }}>
+                            <div className="dropdown-item text-uppercase d-flex align-items-center text-muted">
+                              <img src={require("../images/login/tronlink.png")} width="16px" height="16px" className="mr-2"/>
+                                {tu('sign_in_with_TRONlink')}
+                            </div>
+                          </li>
+                      }
+                      {
+                          IS_MAINNET &&  <li className="px-2 py-1 border-bottom-0" onClick={(e) => this.loginWithLedger(e)}>
+                          <div className="dropdown-item text-uppercase d-flex  align-items-center text-muted">
+                            <img src={require("../images/login/ledger.png")} width="16px" height="16px" className="mr-2"/>
+                              {tu('sign_in_with_ledger')}
+                          </div>
+                        </li>
+                      }
                       <li className="px-2 py-1" onClick={(e) => {
                         this.clickLoginWithPk(e)
                       }}>
@@ -1214,7 +1221,7 @@ class Navigation extends React.Component {
                                         return null;
                                       }
 
-                                      if (!isUndefined(Route.url)) {
+                                      if (!isUndefined(Route.url) && !Route.sidechain) {
                                         return (
                                             <HrefLink
                                                 key={Route.url}
@@ -1227,6 +1234,19 @@ class Navigation extends React.Component {
                                               <Badge value={Route.badge}/>}
                                             </HrefLink>
                                         );
+                                      }
+                                      if (isUndefined(Route.url) && Route.sidechain) {
+                                          return (
+                                              <a href="javascript:;"
+                                                 key={Route.label}
+                                                 className="dropdown-item text-uppercase"
+                                                 onClick={() => this.netSelectChange(IS_MAINNET?'sunnet':'mainnet')}
+                                              >
+                                                {Route.icon &&
+                                                <i className={Route.icon + " mr-2"}/>}
+                                                  {IS_MAINNET?tu('侧链浏览器（DappChain）'):tu('主链浏览器（MainChain）')}
+                                              </a>
+                                          );
                                       }
                                       if (!isUndefined(Route.enurl) || !isUndefined(Route.zhurl)) {
                                         return (

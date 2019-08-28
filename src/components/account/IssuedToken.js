@@ -14,7 +14,7 @@ import { getTime} from "date-fns";
 import {CopyToClipboard} from "react-copy-to-clipboard";
 import {Tooltip} from "reactstrap";
 import { Popover, Button } from 'antd';
-import { IS_SUNNET } from './../../constants';
+import { IS_SUNNET, IS_MAINNET } from './../../constants';
 import MappingModal from './MappingModal';
 
 class IssuedToken extends React.Component{
@@ -106,7 +106,9 @@ class IssuedToken extends React.Component{
     }
 
     componentDidMount() {
-      this.get20token()
+      if(IS_MAINNET){
+          this.get20token()
+      }
     }
 
     /**
