@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/editor.worker.js"
   },
   {
-    "revision": "6d504cd911a2ed82703e320257435a6d",
+    "revision": "be4e2fe381bf0e0a833e5af5e3453fa9",
     "url": "/index.html"
   },
   {
@@ -116,8 +116,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/js/75.28f5713a.chunk.js"
   },
   {
-    "revision": "9132a6dd349976f21fad",
-    "url": "/static/js/76.6a389a96.chunk.js"
+    "revision": "9ce338921f6b3c34f16c",
+    "url": "/static/js/76.9318e91d.chunk.js"
   },
   {
     "revision": "a149a395a81affd80774",
@@ -164,8 +164,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/js/Blocks.86edfcce.chunk.js"
   },
   {
-    "revision": "b72be8204789ffdaabe0",
-    "url": "/static/js/Committee.4bdbada0.chunk.js"
+    "revision": "934213159cab0d7e5d1b",
+    "url": "/static/js/Committee.bc6094fa.chunk.js"
   },
   {
     "revision": "76606ccc1fb2277f9291",
@@ -240,12 +240,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/js/Notice.529ba4b3.chunk.js"
   },
   {
-    "revision": "7ff9b8cd71577d52ddbb",
-    "url": "/static/js/ProposalDetail.920a6807.chunk.js"
+    "revision": "5b9801a6c07ab9977707",
+    "url": "/static/js/ProposalDetail.a638e9de.chunk.js"
   },
   {
-    "revision": "447dfc1bd7bb01ae7beb",
-    "url": "/static/js/Proposals.27087e0e.chunk.js"
+    "revision": "df44acaa6c08131ec398",
+    "url": "/static/js/Proposals.a5f95501.chunk.js"
   },
   {
     "revision": "988d53abcf90a927533f",
@@ -336,8 +336,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/js/VoteLive.f897d3f3.chunk.js"
   },
   {
-    "revision": "3cc5f77c1aa9bde71ef7",
-    "url": "/static/js/VoteOverview.5440f71c.chunk.js"
+    "revision": "f0f9544ad8b6d7f64092",
+    "url": "/static/js/VoteOverview.70dc2935.chunk.js"
   },
   {
     "revision": "02d47e440cab0c268b96",
@@ -348,8 +348,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/js/main.235b8f30.chunk.js"
   },
   {
-    "revision": "d54b29f5c96e14c565a6",
-    "url": "/static/js/runtime~main.326f61be.js"
+    "revision": "ba86309330a51c795c07",
+    "url": "/static/js/runtime~main.63bcbf26.js"
   },
   {
     "revision": "7b00f7c4e78ed9cfc676c64c040965e8",
