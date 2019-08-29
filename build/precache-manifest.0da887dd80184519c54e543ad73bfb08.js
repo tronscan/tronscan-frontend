@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/editor.worker.js"
   },
   {
-    "revision": "be4e2fe381bf0e0a833e5af5e3453fa9",
+    "revision": "37dc030dea0545f507bfe4173d5dca90",
     "url": "/index.html"
   },
   {
@@ -304,8 +304,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/js/TokenOverview.ffb265bf.chunk.js"
   },
   {
-    "revision": "eb9160656f88a6430b57",
-    "url": "/static/js/TokensCreate.e134a423.chunk.js"
+    "revision": "4274176177826ed6d596",
+    "url": "/static/js/TokensCreate.bb19918d.chunk.js"
   },
   {
     "revision": "17dbc54baa50d54937ce",
@@ -348,8 +348,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/js/main.235b8f30.chunk.js"
   },
   {
-    "revision": "ba86309330a51c795c07",
-    "url": "/static/js/runtime~main.63bcbf26.js"
+    "revision": "158b1d3ec221eb294dd3",
+    "url": "/static/js/runtime~main.934f2333.js"
   },
   {
     "revision": "7b00f7c4e78ed9cfc676c64c040965e8",
