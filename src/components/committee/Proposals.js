@@ -65,7 +65,7 @@ class Proposal extends React.Component {
             //'getTotalEnergyAverageUsage',
             'getUpdateAccountPermissionFee',
             'getMultiSignFee',
-            '',
+            'getAllowProtoFilterNum',
             '',
             'getAllowTvmConstantinople'
         ];
@@ -347,10 +347,22 @@ class Proposal extends React.Component {
                             <span>TRX</span>
                         </div>
                     }
+
+                    {
+                        record.key == 'getAllowProtoFilterNum' &&
+                        <div>
+                            <span>{ intl.formatMessage({id: 'propose_27'})}</span>
+                            <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
+                            {
+                                text? <span>{tu('propose_activate')}</span>:
+                                    <span>{tu('propose_unactivate')}</span>
+                            }
+                        </div>
+                    }
                     {
                         record.key == 'getAllowTvmConstantinople' &&
                         <div>
-                            <span>{ intl.formatMessage({id: 'propose_27'})}</span>
+                            <span>{ intl.formatMessage({id: 'propose_28'})}</span>
                             <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
                             {
                                 text? <span>{tu('propose_allowed')}</span>:

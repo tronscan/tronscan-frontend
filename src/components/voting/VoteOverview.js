@@ -442,13 +442,14 @@ export default class VoteOverview extends React.Component {
       rank: i
     }, v));
 
+
     if (searchCriteria !== "") {
       filteredCandidates = filter(candidates, c => {
-        if (trim(c.url.toLowerCase()).indexOf(searchCriteria.toLowerCase()) !== -1) {
-          return true;
-        }
+        // if (c.url && trim(c.url.toLowerCase()).indexOf(searchCriteria.toLowerCase()) !== -1) {
+        //   return true;
+        // }
 
-        if (c.name.length > 0 && trim(c.name.toLowerCase()).indexOf(searchCriteria.toLowerCase()) !== -1) {
+        if (c.name && trim(c.name.toLowerCase()).indexOf(searchCriteria.toLowerCase()) !== -1) {
           return true;
         }
 
