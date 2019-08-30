@@ -15,7 +15,7 @@ import {TronLoader} from "../../common/loaders";
 import xhr from "axios/index";
 import {NameWithId} from "../../common/names";
 import TotalInfo from "../../common/TableTotal";
-import DateRange from "../../common/DateRange";
+import DateSelect from "../../common/dateSelect";
 import rebuildList from "../../../utils/rebuildList";
 import qs from 'qs'
 
@@ -190,14 +190,14 @@ class Transfers extends React.Component {
         <div className="row transfers">
           <div className="col-md-12 table_pos">
             <div className="d-flex justify-content-between pl-3 pr-3" style={{left: 'auto'}}>
-                {total ?<TotalInfo total={total} rangeTotal={rangeTotal} typeText="transaction_info" divClass="table_pos_info_addr"/> :""}
-                <DateRange onDateOk={(start,end) => this.onDateOk(start,end)} dateClass="date-range-box-token"/>
+                {total ?<TotalInfo total={total} rangeTotal={rangeTotal} typeText="transaction_info" divClass="table_pos_info_addr" selected/> :""}
+                <DateSelect onDateOk={(start,end) => this.onDateOk(start,end)}  dataStyle={{right: '35px'}}/>
             </div>
               {
                   (!loading && transfers.length === 0)?
                       <div className="pt-5 pb-5 text-center no-data transfers-bg-white">{tu("no_transfers")}</div>
                       :
-                      <SmartTable border={false} loading={loading} column={column} data={transfers} total={total} addr="address" transfers="token"
+                      <SmartTable border={false} loading={loading} column={column} data={transfers} total={rangeTotal>2000? 2000: rangeTotal} addr="address" transfers="token"
                                   onPageChange={(page, pageSize) => {
                                       this.loadPage(page, pageSize)
                                   }}/>

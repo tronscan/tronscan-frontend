@@ -13,7 +13,7 @@ import SmartTable from "./SmartTable.js"
 import {upperFirst} from "lodash";
 import {QuestionMark} from "./QuestionMark";
 import TotalInfo from "./TableTotal";
-import DateRange from "./DateRange";
+import DateSelect from './dateSelect'
 import {DatePicker} from 'antd';
 import moment from 'moment';
 import {NameWithId} from "./names";
@@ -394,14 +394,14 @@ class NewTransactions extends React.Component {
         return (
             <div className={"token_black table_pos " + (address?"mt-5":"")}>
                 {loading && <div className="loading-style"><TronLoader/></div>}
-                {total ? <TotalInfo total={total} rangeTotal={rangeTotal} typeText="transactions_unit" common={!address} top={address? '-28px': '26'}/>:""}
+                {total ? <TotalInfo total={total} rangeTotal={rangeTotal} typeText="transactions_unit" common={!address} top={address? '-28px': '26'} selected/>:""}
                 {
-                    address ? <DateRange onDateOk={(start,end) => this.onDateOk(start,end)}  dateClass="date-range-box-address" />: ''
+                    address ? <DateSelect onDateOk={(start,end) => this.onDateOk(start,end)} dataStyle={{marginTop: '-3.3rem'}} />: ''
                 }
                 {
                     (!loading && transactions.length === 0)?
                         <div className="p-3 text-center no-data">{tu("no_transactions")}</div>:
-                        <SmartTable bordered={true} loading={loading} column={column} data={transactions} total={total}
+                        <SmartTable bordered={true} loading={loading} column={column} data={transactions} total={rangeTotal> 2000? 2000: rangeTotal}
                                     onPageChange={(page, pageSize) => {
                                         this.loadTransactions(page, pageSize)
                                     }}/>

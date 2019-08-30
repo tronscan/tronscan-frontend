@@ -1965,4 +1965,11 @@ export const messages = {
   "WIN_Token_Release_Schedule": "WIN 代币解锁时间表",
   "source_WIN_team": "信息来源：WIN管理团队",
 
+  "7day": "7天",
+  "14day": "14天",
+  "30day": "30天",
+  "select_tip": "如果要查看2000条之外的数据可以手动调整时间窗口",
+  "date_number_tip": "当前时间范围内有{total}条记录",
+  "date_list_tip": "列表仅展示2000条记录",
+
 };

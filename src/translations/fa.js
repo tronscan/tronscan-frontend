@@ -1926,4 +1926,11 @@ export const messages = {
     "WIN_supply": "WIN Supply",
     "WIN_Token_Release_Schedule": "WIN Token Release Schedule",
     "source_WIN_team": "Source: WIN Management Team",
+
+    "7day": "one week",
+  "14day": "two weeks",
+  "30day": "one month",
+  "select_tip": "To view data other than 2000 You can manually adjust the time window",
+  "date_number_tip": "{total} records in the current time range",
+  "date_list_tip": "Only the first 2000 data are displayed",
 };

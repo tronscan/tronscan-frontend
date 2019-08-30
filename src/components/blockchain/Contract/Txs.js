@@ -16,7 +16,7 @@ import {API_URL} from "../../../constants";
 import {TRXPrice} from "../../common/Price";
 import {ONE_TRX} from "../../../constants";
 import TotalInfo from "../../common/TableTotal";
-import DateRange from "../../common/DateRange";
+import DateSelect from "../../common/dateSelect";
 import {Tooltip} from 'antd'
 import moment from 'moment';
 import {DatePicker} from "antd/lib/index";
@@ -258,12 +258,12 @@ class Transactions extends React.Component {
           {loading && <div className="loading-style" style={{marginTop: '-20px'}}><TronLoader/></div>}
           <div className="row">
             <div className="col-md-12 table_pos mt-5">
-              {total ? <TotalInfo total={total} rangeTotal={rangeTotal} top="-28px" typeText="transactions_unit"/>:""}
-              <DateRange onDateOk={(start,end) => this.onDateOk(start,end)} />
+              {total ? <TotalInfo total={total} rangeTotal={rangeTotal} top="-28px" typeText="transactions_unit" selected/>:""}
+              <DateSelect onDateOk={(start,end) => this.onDateOk(start,end)} dataStyle={{marginTop: '-3.3rem', right: '15px'}}/>
               {
                   (!loading && transactions.length === 0)? <div className="p-3 text-center no-data">{tu("no_tnx")}</div>:
                     <SmartTable bordered={true} loading={loading}
-                                column={column} data={transactions} total={total}
+                                column={column} data={transactions} total={rangeTotal>2000? 2000: rangeTotal}
                                 onPageChange={(page, pageSize) => {
                                    this.loadTransactions(page, pageSize)
                   }}/>

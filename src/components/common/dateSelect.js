@@ -1,31 +1,75 @@
 import React from "react";
 import { injectIntl } from "react-intl";
 import moment from 'moment';
-import { Button, Radio, Icon } from 'antd';
+import { cloneDeep } from 'lodash';
+import { Button, Radio, DatePicker } from 'antd';
+import {tu} from "../../utils/i18n";
 
-class DateRange extends React.Component {
+const { RangePicker } = DatePicker;
+
+class DateSelect extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            
+            dataItemList: [7, 14, 30],
+            dataItem: 7,
+            RangePickerStatus: false
         };
     }
+    changeDateByItem(item){
+        const { onDateOk } = this.props
+        const { dataItem } = this.state
+        item = item || dataItem
+        const start = moment().hour(0).minute(0).second(0);
+        const end = cloneDeep(start).add(item,'days');
+        onDateOk(start, end)
+    }
+    handleSizeChange = e => {
+        const value = e.target.value
+        if(value === 'more'){
+            this.setState({RangePickerStatus: true})
+            this.setState({dataItem: 'none'})
+        }else{
+            this.changeDateByItem(value)
+            this.setState({dataItem: value})
+        }
+    }
+    onOk = (value) => {
+        const { onDateOk } = this.props
+        this.setState({RangePickerStatus: false})
+        onDateOk(value[0], value[1])
+    }
 
-   
+    componentDidMount(){
+        this.changeDateByItem()
+    }
 
     render() {
+        const { dataItemList, dataItem, RangePickerStatus } = this.state
+        const { dataStyle } = this.props
+
         return (
-            <div>
-            <Radio.Group value="small" onChange={this.handleSizeChange}>
-              <Radio.Button>7</Radio.Button>
-              <Radio.Button>14</Radio.Button>
-              <Radio.Button>30</Radio.Button>
-              <Radio.Button>更多</Radio.Button>
-            </Radio.Group>
+            <div style={{position: "absolute", top: '30px', textAlign: 'right',zIndex: '1', right: 0, ...dataStyle}}>
+                <Radio.Group value={dataItem} onChange={this.handleSizeChange}>
+                    {dataItemList.map(dateItem =>  (
+                        <Radio.Button value={dateItem} key={dateItem}>{tu(`${dateItem}day`)}</Radio.Button>
+                    ))}
+                    <Radio.Button value="more">{tu('nav_more')}</Radio.Button>
+                </Radio.Group>
+                <br/>
+                <RangePicker
+                    showTime={{ format: 'HH:mm' }}
+                    format="YYYY-MM-DD HH:mm"
+                    placeholder={['Start Time', 'End Time']}
+                    onOk={this.onOk}
+                    open={RangePickerStatus}
+                    className={`position-absolute`}
+                    style={{top: 0, right: 0, zIndex: -1, opacity: 0}}
+                    />
             </div>
         );
     }
 }
 
-export default injectIntl(DateRange);
+export default injectIntl(DateSelect);

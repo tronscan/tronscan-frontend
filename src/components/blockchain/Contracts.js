@@ -5,6 +5,7 @@ import {connect} from "react-redux";
 import {Client} from "../../services/api";
 import {AddressLink} from "../common/Links";
 import {Truncate} from "../common/text";
+import TotalInfo from "../common/TableTotal";
 import SmartTable from "../common/SmartTable.js"
 import {TronLoader} from "../common/loaders";
 import {upperFirst} from "lodash";
@@ -43,6 +44,7 @@ class Contracts extends React.Component {
     this.state = {
       contracts: [],
       total: 0,
+      rangeTotal: 0,
       loading: true
     };
   }
@@ -65,12 +67,14 @@ class Contracts extends React.Component {
       confirm: 0,
       limit: pageSize,
       start: (page - 1) * pageSize
-    }).then(({data, total}) => {
+    }).then(({data, total, rangeTotal}) => {
       if (data) {
+        console.log(data);
         this.setState({
           contracts: data,
           loading: false,
-          total
+          total,
+          rangeTotal
         });
       }
     });
@@ -164,7 +168,7 @@ class Contracts extends React.Component {
 
   render() {
 
-    let {contracts, total, loading} = this.state;
+    let {contracts, total, loading, rangeTotal} = this.state;
     let {match, intl} = this.props;
     let column = this.customizedColumn();
     let tableInfo = intl.formatMessage({id: 'view_total'}) + ' ' + total + ' ' + intl.formatMessage({id: 'contract_source_codes_found'})
@@ -178,7 +182,12 @@ class Contracts extends React.Component {
       {loading && <div className="loading-style"><TronLoader/></div>}
       <div className="row">
         <div className="col-md-12 table_pos">
-          {total ? <div className="table_pos_info d-none d-md-block" style={{left: 'auto'}}>{tableInfo}<span> <QuestionMark placement="top" text="to_provide_a_better_experience"></QuestionMark></span></div> : ''}
+
+          {total ? 
+            
+            <TotalInfo total={total} rangeTotal={rangeTotal} typeText="contract_source_codes_found" top="10px" />
+             : ''}
+             {/**<div className="table_pos_info d-none d-md-block" style={{left: 'auto'}}>{tableInfo}<span> <QuestionMark placement="top" text="to_provide_a_better_experience"></QuestionMark></span></div> */}
           <SmartTable bordered={true} loading={loading}
                       column={column} data={contracts} total={total}
                       onPageChange={(page, pageSize) => {

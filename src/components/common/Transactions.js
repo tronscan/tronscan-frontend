@@ -10,7 +10,7 @@ import {ContractTypes} from "../../utils/protocol";
 import SmartTable from "./SmartTable.js"
 import {upperFirst} from "lodash";
 import TotalInfo from "./TableTotal";
-import DateRange from "./DateRange";
+import DateSelect from './dateSelect'
 import {DatePicker} from 'antd';
 import moment from 'moment';
 import {NameWithId} from "./names";
@@ -313,21 +313,21 @@ class Transactions extends React.Component {
     // }
 
     return (
-      <div className={"token_black table_pos " + (address?"mt-5":"")}>
+      <div className={"token_black table_pos mt-5" }>
           {loading && <div className="loading-style"><TronLoader/></div>}
           
           <div className="d-flex justify-content-between w-100"  style={{position: "absolute", left: 0, top: '-28px'}}>
             {(total && contract && isinternal)? <div className="d-flex align-items-center">
               <div className="question-mark mr-2"><i>?</i></div><span className="flex-1">{tu('interTrx_tip')}</span>
             </div>: ''}
-            {( address) ? <DateRange onDateOk={(start,end) => this.onDateOk(start,end)}  dateClass={`top-0 date-range-box-address${(total && contract)?'-unset': ''}`}/>: ''}
+            <DateSelect onDateOk={(start,end) => this.onDateOk(start,end)} dataStyle={{marginTop: '-1.6rem'}}/>
           </div>
-          {total? <TotalInfo total={total} rangeTotal={rangeTotal} typeText="transactions_unit" common={!address} top={(!contract && address)? '-28px': '26'}/>: ''}
+          {total? <TotalInfo total={total} rangeTotal={rangeTotal} typeText="transactions_unit" common={!address} top={(!contract)? '-28px': '10px'} selected/>: ''}
           
           {
               (!loading && transactions.length === 0)?
                   <div className="p-3 text-center no-data">{tu("no_transactions")}</div>:
-                  <SmartTable bordered={true} loading={loading} column={column} data={transactions} total={total}
+                  <SmartTable bordered={true} loading={loading} column={column} data={transactions} total={rangeTotal> 2000? 2000: rangeTotal}
                               onPageChange={(page, pageSize) => {
                                   this.loadTransactions(page, pageSize)
                               }}/>
