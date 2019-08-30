@@ -1,6 +1,7 @@
 /* eslint-disable no-undef */
 import React, {Fragment} from "react";
 import {injectIntl} from "react-intl";
+import {connect} from "react-redux";
 import {NavLink, Route, Switch} from "react-router-dom";
 import {Client} from "../../../services/api";
 import {tu} from "../../../utils/i18n";
@@ -358,14 +359,12 @@ class SmartContract extends React.Component {
 }
 
 function mapStateToProps(state) {
-
-
   return {
+    walletType: state.app.wallet,
   };
 }
 
 const mapDispatchToProps = {
-  walletType: state.app.wallet,
 };
 
-export default injectIntl(SmartContract);
+export default connect(mapStateToProps, mapDispatchToProps)(injectIntl(SmartContract));
