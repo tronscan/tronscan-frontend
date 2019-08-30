@@ -23,6 +23,7 @@ class PledgeModal extends Component {
 
         this.state = {
             isDisabled: false,
+            isShowModal: true,
         };
     }
 
@@ -32,6 +33,7 @@ class PledgeModal extends Component {
     openModal = data => {
         const isSuccess = !!data;
         this.setState({
+            isShowModal: false,
             modal: (
                 <SweetAlert
                     type={isSuccess ? 'success' : 'error'}
@@ -59,6 +61,7 @@ class PledgeModal extends Component {
         this.setState({
             modal: null,
         });
+        this.cancel();
     };
 
     /**
@@ -74,7 +77,6 @@ class PledgeModal extends Component {
                     const num = values.Num * Math.pow(10, Number(precision));
                     const sideChain = values.sidechain;
                     const list = sideChain && sideChain.split('-');
-                    // todo wangyan
                     sunWeb.setChainId(list[0]);
                     sunWeb.setSideGatewayAddress(list[1]);
                     // trc10
@@ -118,7 +120,7 @@ class PledgeModal extends Component {
      * get trc20 sideChains
      */
     getSideChains = () => {
-        const { option: { trx20MappingAddress }, sideChains } = this.props;
+        const { option: { trx20MappingAddress } } = this.props;
         trx20MappingAddress.map(v => {
             v.name = v.chainName;
             v.sidechain_gateway = v.sidechainGateway;
@@ -128,8 +130,8 @@ class PledgeModal extends Component {
 
     render() {
         const { getFieldDecorator } = this.props.form;
-        const { option: { currency, balance, precision, trx20MappingAddress, type }, sideChains } = this.props;
-        const { isDisabled, modal } = this.state;
+        const { option: { currency, balance, precision, type }, sideChains } = this.props;
+        const { isDisabled, modal, isShowModal } = this.state;
 
         const sideChainList = type === CURRENCYTYPE.TRX20 ? this.getSideChains() : sideChains;
         const isHasSideChainsData = sideChainList && sideChainList.length > 0;
@@ -156,7 +158,7 @@ class PledgeModal extends Component {
 
         // numItem
         let reg = Number(precision) > 0
-            ? `^(0|[1-9][0-9]*)(\.\d{1,${Number(precision)}})?$` : '^(0|[1-9][0-9]*)(\.\d+)?$';
+            ? `^(0|[1-9][0-9]*)(\\.\\d{1,${Number(precision)}})?$` : '^(0|[1-9][0-9]*)(\\.\\d+)?$';
         const numItem = (
             <Form.Item label={tu('pledge_num')}>
                 {getFieldDecorator('Num', {
@@ -191,22 +193,24 @@ class PledgeModal extends Component {
         );
 
         return (
-            <Modal
-                title={tu('sidechain_account_pledge_btn')}
-                visible={true}
-                onCancel={this.cancel}
-                footer={null}
-            >
-                <Form onSubmit={this.handleSubmit}>
-                    {currencyItem}
-                    {sideChainItem}
-                    {numItem}
-                    {balanceItem}
-                    {btnItem}
-                    {pledgeTextItem}
-                </Form>
+            <div>
+                <Modal
+                    title={tu('sidechain_account_pledge_btn')}
+                    visible={isShowModal}
+                    onCancel={this.cancel}
+                    footer={null}
+                >
+                    <Form onSubmit={this.handleSubmit}>
+                        {currencyItem}
+                        {sideChainItem}
+                        {numItem}
+                        {balanceItem}
+                        {btnItem}
+                        {pledgeTextItem}
+                    </Form>
+                </Modal>
                 {modal}
-            </Modal>
+            </div>
         );
     }
 }

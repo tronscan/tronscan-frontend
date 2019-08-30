@@ -24,6 +24,7 @@ class MappingModal extends Component {
 
         this.state = {
             isDisabled: false,
+            isShowModal: true,
         };
     }
 
@@ -37,6 +38,7 @@ class MappingModal extends Component {
     openModal = data => {
         const isSuccess = !!data;
         this.setState({
+            isShowModal: false,
             modal: (
                 <SweetAlert
                     type={isSuccess ? 'success' : 'error'}
@@ -64,6 +66,7 @@ class MappingModal extends Component {
         this.setState({
             modal: null,
         });
+        this.cancel();
     };
 
     /**
@@ -80,7 +83,6 @@ class MappingModal extends Component {
                 try {
                     const sideChain = values.sidechain;
                     const list = sideChain && sideChain.split('-');
-                    // todo wangyan
                     sunWeb.setChainId(list[0]);
                     sunWeb.setSideGatewayAddress(list[1]);
                     const mappingData = await sunWeb.mappingTrc20(txHash, MAPPINGFEE, FEELIMIT);
@@ -119,7 +121,7 @@ class MappingModal extends Component {
     render() {
         const { getFieldDecorator } = this.props.form;
         const { currency, sideChains } = this.props;
-        const { isDisabled, modal } = this.state;
+        const { isDisabled, modal, isShowModal } = this.state;
         const isHasSideChainsData = sideChains && sideChains.length > 0;
 
         // mappingTextItem
@@ -157,20 +159,22 @@ class MappingModal extends Component {
         );
 
         return (
-            <Modal
-                title={tu('main_account_mapping_btn')}
-                visible={true}
-                onCancel={this.cancel}
-                footer={null}
-            >
-                <Form onSubmit={this.handleSubmit}>
-                    {mappingTextItem}
-                    {currencyItem}
-                    {sideChainItem}
-                    {btnItem}
-                </Form>
+            <div>
+                <Modal
+                    title={tu('main_account_mapping_btn')}
+                    visible={isShowModal}
+                    onCancel={this.cancel}
+                    footer={null}
+                >
+                    <Form onSubmit={this.handleSubmit}>
+                        {mappingTextItem}
+                        {currencyItem}
+                        {sideChainItem}
+                        {btnItem}
+                    </Form>
+                </Modal>
                 {modal}
-            </Modal>
+            </div>
         );
     }
 }

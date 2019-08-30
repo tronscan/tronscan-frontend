@@ -21,6 +21,7 @@ class SignModal extends Component {
 
         this.state = {
             isDisabled: false,
+            isShowModal: true,
         };
     }
 
@@ -30,6 +31,7 @@ class SignModal extends Component {
     openModal = data => {
         const isSuccess = !!data;
         this.setState({
+            isShowModal: false,
             modal: (
                 <SweetAlert
                     type={isSuccess ? 'success' : 'error'}
@@ -57,6 +59,7 @@ class SignModal extends Component {
         this.setState({
             modal: null,
         });
+        this.cancel();
     };
 
     /**
@@ -71,9 +74,6 @@ class SignModal extends Component {
             if (!err) {
                 try {
                     const num = values.Num * Math.pow(10, Number(precision));
-                    // todo wangyan
-                    sunWeb.setSideGatewayAddress('TJ4apMhB5fhmAwqPcgX9i43SUJZuK6eZj4');
-                    sunWeb.setChainId('410A6DBD0780EA9B136E3E9F04EBE80C6C288B80EE');
                     let data;
                     // trc10
                     if (CURRENCYTYPE.TRX10 === type) {
@@ -107,7 +107,7 @@ class SignModal extends Component {
     render() {
         const { getFieldDecorator } = this.props.form;
         const { option: { currency, balance, precision } } = this.props;
-        const { isDisabled, modal } = this.state;
+        const { isDisabled, modal, isShowModal } = this.state;
 
         // currencyItem
         const currencyItem = (
@@ -119,7 +119,7 @@ class SignModal extends Component {
         );
 
         // numItem
-        let reg = Number(precision) > 0 ? `^(0|[1-9][0-9]*)(\.\d{1,${Number(precision)}})?$` : '^(0|[1-9][0-9]*)(\.\d+)?$';
+        let reg = Number(precision) > 0 ? `^(0|[1-9][0-9]*)(\\.\\d{1,${Number(precision)}})?$` : '^(0|[1-9][0-9]*)(\\.\\d+)?$';
         const numItem = (
             <Form.Item label={tu('pledge_num')}>
                 {getFieldDecorator('Num', {
@@ -154,21 +154,23 @@ class SignModal extends Component {
         );
 
         return (
-            <Modal
-                title={tu('sidechain_account_sign_btn')}
-                visible={true}
-                onCancel={this.cancel}
-                footer={null}
-            >
-                <Form onSubmit={this.handleSubmit}>
-                    {currencyItem}
-                    {numItem}
-                    {balanceItem}
-                    {btnItem}
-                    {pledgeTextItem}
-                </Form>
+            <div>
+                <Modal
+                    title={tu('sidechain_account_sign_btn')}
+                    visible={isShowModal}
+                    onCancel={this.cancel}
+                    footer={null}
+                >
+                    <Form onSubmit={this.handleSubmit}>
+                        {currencyItem}
+                        {numItem}
+                        {balanceItem}
+                        {btnItem}
+                        {pledgeTextItem}
+                    </Form>
+                </Modal>
                 {modal}
-            </Modal>
+            </div>
         );
     }
 }
