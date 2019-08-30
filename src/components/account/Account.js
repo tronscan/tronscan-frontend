@@ -1033,7 +1033,7 @@ export default class Account extends Component {
             }
         }
     }else{
-        const {tronWeb, sunWeb} = this.props.account;
+        const {sunWeb} = this.props.account;
         if (!delegateType) {
             delegateType = 'BANDWIDTH';
         } else {

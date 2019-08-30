@@ -10,7 +10,7 @@ import {connect} from "react-redux";
 import {Alert} from "reactstrap";
 import {BarLoader, TronLoader} from "../common/loaders";
 import SweetAlert from "react-bootstrap-sweetalert";
-import {ONE_TRX} from "../../constants";
+import {ONE_TRX, IS_MAINNET} from "../../constants";
 import {login} from "../../actions/app";
 import {reloadWallet} from "../../actions/wallet";
 import {Link} from "react-router-dom";
@@ -18,7 +18,7 @@ import palette from "google-palette";
 import {Truncate} from "../common/text";
 import {withTimers} from "../../utils/timing";
 import {loadVoteTimer} from "../../actions/votes";
-import {transactionResultManager} from "../../utils/tron";
+import {transactionResultManager, transactionResultManagerSun} from "../../utils/tron";
 import Lockr from "lockr";
 import {withTronWeb} from "../../utils/tronWeb";
 
@@ -366,37 +366,42 @@ export default class VoteOverview extends React.Component {
     this.setState({submittingVotes: true,});
     let witnessVotes = {};
     const tronWebLedger = this.props.tronWeb();
-    const { tronWeb } = this.props.account;
+    const { tronWeb, sunWeb } = this.props.account;
     for (let address of Object.keys(votes)) {
       witnessVotes[address] = parseInt(votes[address], 10);
     }
-
-
-
-      if (this.props.walletType.type === "ACCOUNT_LEDGER"){
-          try {
-              const unSignTransaction = await tronWebLedger.transactionBuilder.vote(witnessVotes, account.address).catch(e=>false);
-              const {result} = await transactionResultManager(unSignTransaction,tronWebLedger);
-              res = result;
-          } catch (e) {
-              console.error('error',e)
-          }
-      }else if(this.props.walletType.type === "ACCOUNT_PRIVATE_KEY"){
-          let {success} = await Client.voteForWitnesses(account.address, witnessVotes)(account.key);
-          res = success
-      }else if(this.props.walletType.type === "ACCOUNT_TRONLINK"){
-          try {
-              const unSignTransaction = await tronWeb.transactionBuilder.vote(witnessVotes, account.address).catch(e=>false);
-              const {result} = await transactionResultManager(unSignTransaction,tronWeb);
-              res = result;
-          } catch (e) {
-              console.error(e)
-          }
-      }
-
-
-
-
+    if(IS_MAINNET){
+        if (this.props.walletType.type === "ACCOUNT_LEDGER"){
+            try {
+                const unSignTransaction = await tronWebLedger.transactionBuilder.vote(witnessVotes, account.address).catch(e=>false);
+                const {result} = await transactionResultManager(unSignTransaction,tronWebLedger);
+                res = result;
+            } catch (e) {
+                console.error('error',e)
+            }
+        }else if(this.props.walletType.type === "ACCOUNT_PRIVATE_KEY"){
+            let {success} = await Client.voteForWitnesses(account.address, witnessVotes)(account.key);
+            res = success
+        }else if(this.props.walletType.type === "ACCOUNT_TRONLINK"){
+            try {
+                const unSignTransaction = await tronWeb.transactionBuilder.vote(witnessVotes, account.address).catch(e=>false);
+                const {result} = await transactionResultManager(unSignTransaction,tronWeb);
+                res = result;
+            } catch (e) {
+                console.error(e)
+            }
+        }
+    }else{
+        if(this.props.walletType.type === "ACCOUNT_PRIVATE_KEY"){
+            try {
+                const unSignTransaction = await sunWeb.sidechain.transactionBuilder.vote(witnessVotes, account.address).catch(e=>false);
+                const {result} = await transactionResultManagerSun(unSignTransaction,sunWeb);
+                res = result;
+            } catch (e) {
+                console.error(e)
+            }
+        }
+    }
 
     if (res) {
       setTimeout(() => this.props.reloadWallet(), 1200);
