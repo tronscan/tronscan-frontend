@@ -160,7 +160,7 @@
     "vivus": "^0.4.3",
     "webpack": "4.29.6",
     "webpack-build-notifier": "^1.0.3",
-    "webpack-bundle-analyzer": "^2.11.2",
+    "webpack-bundle-analyzer": "^3.3.2",
     "webpack-dev-server": "3.2.1",
     "webpack-manifest-plugin": "2.0.4",
     "webpack-merge": "^4.2.1",
