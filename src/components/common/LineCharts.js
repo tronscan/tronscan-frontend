@@ -129,17 +129,17 @@ export class LineReactHighChartAdd extends React.Component {
             }
             _config.chart.spacingTop = 20;
             _config.exporting.enabled = false;
-            _config.yAxis.min = data[0].total - 100000;
-            _config.yAxis.tickInterval = 100000;
+            _config.yAxis.min = 0
+            _config.yAxis.tickInterval = 100;
             _config.yAxis.tickAmount = 4;
             _config.yAxis.allowDecimals = true;
-            _config.yAxis.labels.formatter = function() {
-                if(this.value < 1000000){
-                    return this.value/1000 + 'k'
-                }else if(this.value >= 1000000){
-                    return this.value/1000000 + 'M'
-                }
-            }
+            // _config.yAxis.labels.formatter = function() {
+            //     if(this.value < 1000000){
+            //         return this.value/1000 + 'k'
+            //     }else if(this.value >= 1000000){
+            //         return this.value/1000000 + 'M'
+            //     }
+            // }
             _config.tooltip.formatter = function () {
                 let date = intl.formatDate((parseInt(this.point.date)));
                 return (
@@ -241,17 +241,17 @@ export class LineReactHighChartTx extends React.Component {
             _config.yAxis.tickAmount = 4;
             _config.yAxis.allowDecimals = true;
             _config.exporting.enabled = false;
-            _config.yAxis.tickInterval = 1000000;
+            _config.yAxis.tickInterval = 10000;
             _config.yAxis.min = 0;
-            _config.yAxis.labels.formatter = function() {
-                if(this.value < 1000000 && this.value >= 1000 ){
-                    return this.value/1000 + 'k'
-                }else if(this.value >= 1000000){
-                    return this.value/1000000 + 'M'
-                }else if(this.value <1000){
-                    return this.value
-                }
-            }
+            // _config.yAxis.labels.formatter = function() {
+            //     if(this.value < 1000000 && this.value >= 1000 ){
+            //         return this.value/1000 + 'k'
+            //     }else if(this.value >= 1000000){
+            //         return this.value/1000000 + 'M'
+            //     }else if(this.value <1000){
+            //         return this.value
+            //     }
+            // }
             _config.tooltip.formatter = function () {
                 let date = intl.formatDate(this.point.date);
                 return (
