@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { tu } from '../../utils/i18n';
-import { Modal, Form, Input, message } from 'antd';
+import { Modal, Form, Input } from 'antd';
 import PropTypes from 'prop-types';
 import { CURRENCYTYPE, FEELIMIT, WITHDRAWFEE } from './../../constants';
 import { injectIntl } from 'react-intl';
-import SweetAlert from "react-bootstrap-sweetalert";
+import SweetAlert from 'react-bootstrap-sweetalert';
+import { mul } from './../../utils/calculation';
 
 class SignModal extends Component {
 
@@ -35,18 +36,18 @@ class SignModal extends Component {
             modal: (
                 <SweetAlert
                     type={isSuccess ? 'success' : 'error'}
-                    confirmBtnText={tu("trc20_confirm")}
+                    confirmBtnText={tu('trc20_confirm')}
                     confirmBtnBsStyle="danger"
-                    title={isSuccess ? tu("sign_success") : tu("sign_error")}
+                    title={isSuccess ? tu('sign_success') : tu('sign_error')}
                     onConfirm={this.hideModal}
-                    style={{height: '300px', top: '30%', marginLeft: '-240px'}}
+                    style={{ height: '300px', top: '30%', marginLeft: '-240px' }}
                 >
-                  <div className="form-group" style={{marginBottom: '36px'}}>
-                    <div className="mt-3 mb-2 text-left" style={{color: '#666'}}>
-      
+                    <div className="form-group" style={{ marginBottom: '36px' }}>
+                        <div className="mt-3 mb-2 text-left" style={{ color: '#666' }}>
+
+                        </div>
                     </div>
-                  </div>
-      
+
                 </SweetAlert>
             ),
         });
@@ -68,12 +69,13 @@ class SignModal extends Component {
     confirm = () => {
         const { form: { validateFields }, account: { sunWeb },
             option: { id, address, precision, type } } = this.props;
+        const { numValue, errorMess } = this.state;
 
         this.setState({ isDisabled: true });
         validateFields(async(err, values) => {
-            if (!err) {
+            if (!err && !errorMess) {
                 try {
-                    const num = values.Num * Math.pow(10, Number(precision));
+                    const num = mul(numValue,  Math.pow(10, Number(precision)));
                     let data;
                     // trc10
                     if (CURRENCYTYPE.TRX10 === type) {
@@ -87,7 +89,7 @@ class SignModal extends Component {
                     }
                     this.openModal(data);
                     this.setState({ isDisabled: false });
-                } catch(e) {
+                } catch (e) {
                     this.openModal();
                     this.setState({ isDisabled: false });
                 }
@@ -104,10 +106,28 @@ class SignModal extends Component {
         onCancel && onCancel();
     };
 
+    /**
+     * num change
+     */
+    onChangeNum = e => {
+        const { option: { precision, balance } } = this.props;
+        const numValue = e.target && e.target.value;
+        let reg = Number(precision) > 0
+            ? `^(0|[1-9][0-9]*)(\\.\\d{0,${Number(precision)}})?$` : '^(0|[1-9][0-9]*)(\\.\\d+)?$';
+        if (!!numValue && !new RegExp(reg).test(numValue)) {
+            return;
+        }
+
+        this.setState({
+            numValue,
+            errorMess: !!numValue && Number(numValue) > Number(balance) ? tu('pledge_num_error') : ''
+        });
+    }
+
     render() {
         const { getFieldDecorator } = this.props.form;
-        const { option: { currency, balance, precision } } = this.props;
-        const { isDisabled, modal, isShowModal } = this.state;
+        const { option: { currency, balance } } = this.props;
+        const { isDisabled, modal, isShowModal, numValue, errorMess } = this.state;
 
         // currencyItem
         const currencyItem = (
@@ -119,21 +139,10 @@ class SignModal extends Component {
         );
 
         // numItem
-        let reg = Number(precision) > 0 ? `^(0|[1-9][0-9]*)(\\.\\d{1,${Number(precision)}})?$` : '^(0|[1-9][0-9]*)(\\.\\d+)?$';
         const numItem = (
             <Form.Item label={tu('pledge_num')}>
-                {getFieldDecorator('Num', {
-                    rules: [
-                        {
-                            pattern: new RegExp(reg),
-                            message: <span>{tu('pledge_num_error')}</span>,
-                        },
-                        {
-                            validator: (rule, value) => value <= balance,
-                            message: <span>{tu('pledge_num_error')}</span>,
-                        }
-                    ],
-                })(<Input />)}
+                <Input value={numValue} onChange={this.onChangeNum} />
+                <span style={{ color: 'red' }}>{errorMess}</span>
             </Form.Item>
         );
 
