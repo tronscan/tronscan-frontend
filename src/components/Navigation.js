@@ -5,6 +5,7 @@ import logo from '../images/tron-banner-inverted.png'
 import tronLogoBlue from '../images/tron-banner-tronblue.png'
 import tronLogoDark from '../images/tron-banner-1.png'
 import tronLogoTestNet from "../images/tron-logo-testnet.png";
+import tronLogoSunNet from "../images/tron-logo-sunnet.png";
 import tronLogoInvertedTestNet from "../images/tron-logo-inverted-testnet.png";
 import {flatRoutes, routes} from "../routes"
 import {Link, NavLink, withRouter} from "react-router-dom"
@@ -75,16 +76,6 @@ class Navigation extends React.Component {
       announcement: '',
       annountime: '1-1',
       announId: 83,
-      nets: [
-          {
-              label:"主链",
-              value:"mainnet"
-          },
-          {
-              label:"侧链",
-              value:"sunnet"
-          },
-      ],
       selectedNet:'',
 
     };
@@ -506,7 +497,14 @@ class Navigation extends React.Component {
         default:
           return tronLogoInvertedTestNet;
       }
-    } else {
+    } else if(!IS_MAINNET){
+        switch (theme) {
+            case "light":
+                return tronLogoSunNet;
+            default:
+                return tronLogoSunNet;
+        }
+    } {
       switch (theme) {
         case "tron":
           return tronLogoBlue;
@@ -910,7 +908,7 @@ class Navigation extends React.Component {
       syncStatus,
     } = this.props;
 
-    let {search, popup, notifications, announcement, announId, annountime, searchResults, selectedNet, nets } = this.state;
+    let {search, popup, notifications, announcement, announId, annountime, searchResults, selectedNet } = this.state;
 
     let activeComponent = this.getActiveComponent();
 
@@ -946,19 +944,6 @@ class Navigation extends React.Component {
                 {/*</div>*/}
               {/*}*/}
               <div className="ml-auto d-flex">
-                {
-                  <Select value={selectedNet}
-                          onChange={this.netSelectChange}
-                  >
-                      {
-                          nets.map((net, index) => {
-                              return (
-                                  <Option key={index} value={net.value}>{net.label}</Option>
-                              )
-                          })
-                      }
-                  </Select>
-                }
                 {
                   <div className="hidden-mobile nav-searchbar">
                     <div className="input-group dropdown">
