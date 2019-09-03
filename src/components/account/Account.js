@@ -88,6 +88,7 @@ export default class Account extends Component {
       isShowSignModal: false,
       type: CURRENCYTYPE.TRX10,
       tokenTRX: false,
+      trx20MappingAddress: [],
     };
 
   }
@@ -115,13 +116,19 @@ export default class Account extends Component {
     isPrivateKey && !IS_SUNNET && await this.getSideChains();
   }
 
-  componentDidUpdate(prevProps) {
-    let {account} = this.props;
+  async componentDidUpdate(prevProps) {
+    let {account, walletType} = this.props;
     if (((prevProps.account.isLoggedIn !== account.isLoggedIn) && account.isLoggedIn) || ((prevProps.account.address !== account.address) && account.isLoggedIn)) {
       this.setState({isTronLink: Lockr.get("islogin")});
       this.reloadTokens();
       this.loadAccount();
       //this.getTRC20Tokens();
+      // gets the list of side chains
+      const isPrivateKey =  walletType.type === "ACCOUNT_PRIVATE_KEY";
+      this.setState({
+        isPrivateKey
+      });
+      isPrivateKey && !IS_SUNNET && await this.getSideChains();
     }
   }
 

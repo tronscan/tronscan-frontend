@@ -61,6 +61,7 @@ export const TRADINGMAP = {
     MAPPING: 'mapping',
     WITHDRAW: 'withdraw',
     DEPOSIT: 'deposit',
+    APPROVE: 'approve',
 };
 
 // SunWeb config

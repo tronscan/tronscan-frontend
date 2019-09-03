@@ -34,6 +34,10 @@ const getTitle = contract => {
             // mapping
             title = tu('mapping_trigger_smart_contract');
             smartTitle = tu('mapping_normal_trigger_smart_contract');
+        } else if (contract_address === SUNWEBCONFIG.MAINNET && method.includes(TRADINGMAP.APPROVE)) {
+            // approve
+            title = tu('approve_trigger_smart_contract');
+            smartTitle = tu('approve_normal_trigger_smart_contract');
         }
     }
     return <h5>

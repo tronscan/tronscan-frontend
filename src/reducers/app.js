@@ -83,7 +83,8 @@ const initialState = {
     showSr: false,
     scanTransactionQr: false,
   },
-  isRightText: false
+  isRightText: false,
+  sideChains: [],
 };
 
 export function appReducer(state = initialState, action) {

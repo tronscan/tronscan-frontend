@@ -135,17 +135,17 @@ class IssuedToken extends React.Component{
      */
     isMapping = (mappedToSideChains) => {
       const { sidechains } = this.props;
-      if (mappedToSideChains.length !== sidechains.length) {
+      if (mappedToSideChains && sidechains && mappedToSideChains.length !== sidechains.length) {
         return false;
       } else {
-        const sidechainList = sidechains.map(v => {
+        const sidechainList = sidechains && sidechains.map(v => {
           return {
             chainid: v.chainid,
             mainchain_address: v.mainchain_gateway,
             sidechain_address: v.sidechain_gateway,
           };
         });
-        const mappedToSideChainList = mappedToSideChains.map(v => {
+        const mappedToSideChainList = mappedToSideChains && mappedToSideChains.map(v => {
           return {
             chainid: v.chainid,
             mainchain_address: v.mainchain_address,
