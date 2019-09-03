@@ -1190,6 +1190,12 @@ export const messages = {
   */
   "trigger_smart_contract": "调用智能合约",
   "normal_address_trigger_smart_contract": "普通地址调用合约",
+  "pledge_trigger_smart_contract": "pledge",
+  "pledge_normal_trigger_smart_contract": "pledge_normal",
+  "mapping_trigger_smart_contract": "mapping",
+  "mapping_normal_trigger_smart_contract": "mapping_normal",
+  "sign_trigger_smart_contract": "sign",
+  "sign_normal_trigger_smart_contract": "sign_normal",
   "trigger": "合约调用",
   "contract_triggers_total": "次合约调用",
   "contract_triggers_owner": "调用者",

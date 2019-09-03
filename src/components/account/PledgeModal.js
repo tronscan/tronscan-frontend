@@ -5,7 +5,8 @@ import { Modal, Form, Input, Select } from 'antd';
 import PropTypes from 'prop-types';
 import { CURRENCYTYPE, FEELIMIT, DEPOSITFEE } from './../../constants';
 import { injectIntl } from 'react-intl';
-import SweetAlert from "react-bootstrap-sweetalert";
+import SweetAlert from 'react-bootstrap-sweetalert';
+import { mul } from './../../utils/calculation';
 
 const { Option } = Select;
 
@@ -37,18 +38,18 @@ class PledgeModal extends Component {
             modal: (
                 <SweetAlert
                     type={isSuccess ? 'success' : 'error'}
-                    confirmBtnText={tu("trc20_confirm")}
+                    confirmBtnText={tu('trc20_confirm')}
                     confirmBtnBsStyle="danger"
-                    title={isSuccess ? tu("pledge_success") : tu("pledge_error")}
+                    title={isSuccess ? tu('pledge_success') : tu('pledge_error')}
                     onConfirm={this.hideModal}
-                    style={{height: '300px', top: '30%', marginLeft: '-240px'}}
+                    style={{ height: '300px', top: '30%', marginLeft: '-240px' }}
                 >
-                  <div className="form-group" style={{marginBottom: '36px'}}>
-                    <div className="mt-3 mb-2 text-left" style={{color: '#666'}}>
-      
+                    <div className="form-group" style={{ marginBottom: '36px' }}>
+                        <div className="mt-3 mb-2 text-left" style={{ color: '#666' }}>
+
+                        </div>
                     </div>
-                  </div>
-      
+
                 </SweetAlert>
             ),
         });
@@ -70,11 +71,12 @@ class PledgeModal extends Component {
     confirm = () => {
         const { form: { validateFields }, account: { sunWeb },
             option: { id, address, precision, type } } = this.props;
+        const { numValue, errorMess } = this.state;
         this.setState({ isDisabled: true });
         validateFields(async(err, values) => {
-            if (!err) {
+            if (!err && !errorMess) {
                 try {
-                    const num = values.Num * Math.pow(10, Number(precision));
+                    const num = mul(numValue, Math.pow(10, Number(precision)));
                     const sideChain = values.sidechain;
                     const list = sideChain && sideChain.split('-');
                     sunWeb.setChainId(list[0]);
@@ -99,7 +101,7 @@ class PledgeModal extends Component {
                         this.openModal(data);
                     }
                     this.setState({ isDisabled: false });
-                } catch(e) {
+                } catch (e) {
                     this.openModal();
                     this.setState({ isDisabled: false });
                 }
@@ -124,14 +126,32 @@ class PledgeModal extends Component {
         trx20MappingAddress.map(v => {
             v.name = v.chainName;
             v.sidechain_gateway = v.sidechainGateway;
-        })
+        });
         return trx20MappingAddress;
+    }
+
+    /**
+     * num change
+     */
+    onChangeNum = e => {
+        const { option: { precision, balance } } = this.props;
+        const numValue = e.target && e.target.value;
+        let reg = Number(precision) > 0
+            ? `^(0|[1-9][0-9]*)(\\.\\d{0,${Number(precision)}})?$` : '^(0|[1-9][0-9]*)(\\.\\d+)?$';
+        if (!!numValue && !new RegExp(reg).test(numValue)) {
+            return;
+        }
+
+        this.setState({
+            numValue,
+            errorMess: !!numValue && Number(numValue) > Number(balance) ? tu('pledge_num_error') : ''
+        });
     }
 
     render() {
         const { getFieldDecorator } = this.props.form;
         const { option: { currency, balance, precision, type }, sideChains } = this.props;
-        const { isDisabled, modal, isShowModal } = this.state;
+        const { isDisabled, modal, isShowModal, numValue, errorMess } = this.state;
 
         const sideChainList = type === CURRENCYTYPE.TRX20 ? this.getSideChains() : sideChains;
         const isHasSideChainsData = sideChainList && sideChainList.length > 0;
@@ -157,22 +177,10 @@ class PledgeModal extends Component {
         );
 
         // numItem
-        let reg = Number(precision) > 0
-            ? `^(0|[1-9][0-9]*)(\\.\\d{1,${Number(precision)}})?$` : '^(0|[1-9][0-9]*)(\\.\\d+)?$';
         const numItem = (
             <Form.Item label={tu('pledge_num')}>
-                {getFieldDecorator('Num', {
-                    rules: [
-                        {
-                            pattern: new RegExp(reg),
-                            message: <span>{tu('pledge_num_error')}</span>,
-                        },
-                        {
-                            validator: (rule, value) => value <= Number(balance),
-                            message: <span>{tu('pledge_num_error')}</span>,
-                        }
-                    ],
-                })(<Input />)}
+                <Input value={numValue} onChange={this.onChangeNum} />
+                <span style={{ color: 'red' }}>{errorMess}</span>
             </Form.Item>
         );
 

@@ -112,7 +112,7 @@ export default class Account extends Component {
       }
     }
     // gets the list of side chains
-    isPrivateKey && await this.getSideChains();
+    isPrivateKey && !IS_SUNNET && await this.getSideChains();
   }
 
   componentDidUpdate(prevProps) {
