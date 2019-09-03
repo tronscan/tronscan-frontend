@@ -1293,7 +1293,8 @@
   "propose_24": "الحد الأعلى لمتوسط الطاقة",
   "propose_25": "رسوم ضبط تحديث إمتيازات الحساب",
   "propose_26": "يوصى بتعديل تكلفة التوقيعات المتعددة",
-  "propose_27": "Propose to support the new features of TRON Virtual Machine 0.5.4",
+  "propose_27": "Propose to enable protocol optimization",
+  "propose_28": "Propose to support the new features of TRON Virtual Machine 0.5.4",
   "propose_minute": "دقيقة",
   "propose_unactivate": "غير مفتوح",
   "propose_not_allowed": "غير مسموح",
@@ -1912,7 +1913,6 @@
   "deploy_params_send_token":"حدد TRX أو الرمز المميز للإرسال",
   "deploy_params_constructor":"حجة المنشئ",
   "compile_close":"أغلق",
-
   "token_logo_upload_tip":"يدعم فقط التنسيقات الثلاثة png و jpg و jpeg ، ولا يجب أن يتجاوز الحجم 200 كيلو بايت ، والبيكسل يجب ان يكون بقياس 100 * 100",
   
   // Backbone - account - mapping
@@ -1946,4 +1946,12 @@
   "pledge_error": "Deposit Error",
   "sign_error": "Withdraw Error",
   "mapping_error": "Mapping Error",
+  "price_per_1000_WIN": "PRICE PER 1000 WIN",
+  "WIN_distribution_overview": "WIN DISTRIBUTION OVERVIEW",
+  "total_WIN_supply": "Total WIN Supply",
+  "WIN_supply": "WIN Supply",
+  "WIN_Token_Release_Schedule": "WIN Token Release Schedule",
+  "source_WIN_team": "Source: WIN Management Team",
+  "Side_Chain":"Side chain browser(DappChain)",
+  "Main_Chain":"Main chain browser(MainChain)",
 };

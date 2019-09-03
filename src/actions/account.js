@@ -1,6 +1,7 @@
 import {Client} from "../services/api";
 import Lockr from "lockr";
 import ReconnectingWebSocket from 'reconnecting-websocket'
+import { IS_MAINNET } from "../constants";
 
 export const SET_TOKEN_BALANCES = 'SET_TOKEN_BALANCES';
 export const SET_RECENT_TRANSACTIONS = 'SET_RECENT_TRANSACTIONS';
@@ -53,13 +54,22 @@ export const setWebsocket = () => async (dispatch) => {
   // if(Lockr.get("websocket") === 'open'){
   //   return;
   // }
-  var wsUri = "wss://apilist.tronscan.org/api/tronsocket";
+  // var wsUri = "wss://apilist.tronscan.org/api/tronsocket";
   // var wsUri = "wss://api.shasta.tronscan.org/api/tronsocket";
- // var wsUri = "ws://52.15.125.153:9000/api/tronsocket";
-  let websocket = new ReconnectingWebSocket(wsUri, [], {
+  let wsUrl;
+  let wsUrlMain = "ws://3.14.14.175:9000/api/tronsocket";
+  let wsUrlSun = "ws://3.15.181.169:9000/api/tronsocket";
+  if(IS_MAINNET){
+      wsUrl = wsUrlMain
+  }else{
+      wsUrl =  wsUrlSun
+  }
+
+  let websocket = new ReconnectingWebSocket(wsUrl, [], {
     minReconnectionDelay: 500
   })
   websocket.onopen = res => {
+
   }
 
   websocket.onmessage = res => {

@@ -1331,7 +1331,8 @@ export const messages = {
   "propose_24": "平均能量上限",
   "propose_25": "提议修改更新账户权限的费用",
   "propose_26": "提议修改多重签名的费用",
-  "propose_27": "提议支持波场虚拟机0.5.4的新功能",
+  "propose_27": "提议开启协议优化功能",
+  "propose_28": "提议支持波场虚拟机0.5.4的新功能",
   "propose_minute": "分钟",
   "propose_unactivate": "未开启",
   "propose_not_allowed": "不允许",
@@ -1996,4 +1997,13 @@ export const messages = {
   "pledge_error": "质押失败",
   "sign_error": "解押失败",
   "mapping_error": "映射失败",
+  "price_per_1000_WIN": "WIN价格（每1000WIN）",
+  "WIN_distribution_overview": "WIN分布概览",
+  "total_WIN_supply": "WIN总流通量",
+  "WIN_supply": "WIN 流通量",
+  "WIN_Token_Release_Schedule": "WIN 代币解锁时间表",
+  "source_WIN_team": "信息来源：WIN管理团队",
+  "Side_Chain":"侧链浏览器（DappChain）",
+  "Main_Chain":"主链浏览器（MainChain）",
+
 };

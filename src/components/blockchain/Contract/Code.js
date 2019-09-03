@@ -8,20 +8,26 @@ import ContractInfo from './ContractInfo';
 import EntryContract from './EntryContract';
 import tronWeb from 'tronweb';
 import { connect } from 'react-redux';
+import { IS_MAINNET, SUNWEBCONFIG } from "../../../constants";
+
 
 class Code extends React.Component {
 
     constructor(props) {
         super(props);
-        // https://api.shasta.trongrid.io
-        this.tronWeb = new tronWeb({
-            // fullNode: 'https://api.shasta.trongrid.io',
-            // solidityNode: 'https://api.shasta.trongrid.io',
-            // eventServer: 'https://api.shasta.trongrid.io',
-            fullNode: 'https://api.trongrid.io',
-            solidityNode: 'https://api.trongrid.io',
-            eventServer: 'https://api.trongrid.io',
-        });
+        if(IS_MAINNET){
+            this.tronWeb = new tronWeb({
+                fullNode: SUNWEBCONFIG.MAINFULLNODE,
+                solidityNode: SUNWEBCONFIG.MAINSOLIDITYNODE,
+                eventServer: SUNWEBCONFIG.MAINEVENTSERVER,
+            });
+        }else{
+            this.tronWeb = new tronWeb({
+                fullNode: SUNWEBCONFIG.SUNFULLNODE,
+                solidityNode: SUNWEBCONFIG.SUNSOLIDITYNODE,
+                eventServer: SUNWEBCONFIG.SUNEVENTSERVER,
+            });
+        }
         this.state = {
             loading: true,
             choiceContractItem: 'code',
@@ -44,13 +50,18 @@ class Code extends React.Component {
         const params = {
             contractAddress: address
         };
-        let { data } = await xhr.post(`${API_URL}/api/solidity/contract/info`, params)
+       // let { data } = await xhr.post(`${API_URL}/api/solidity/contract/info`, params)
+        let { data } = await xhr.post(`http://3.14.14.175:9004/api/solidity/contract/info`, params)
             .catch(function(e) {
-                const errorData = [{
-                    type: 'error',
-                    content: `Compiled error: ${e.toString()}`
-                }];
+                console.log(e)
             });
+        this.setState({
+            contractVerifyState: false,
+            loading: false
+        }, async() => {
+            await this.getContractInfos();
+        });
+        return
         const dataInfo = data.data;
         // eslint-disable-next-line
         const { status, contract_name, byte_code, contract_code, constructor_params, optimizer, compiler } = dataInfo;
