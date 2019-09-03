@@ -1977,7 +1977,7 @@ export const messages = {
   // Backbone - account - mapping
   "main_account_mapping_title":"Map to DAppChain",
   "main_account_mapping_text":"DAppChain is a side chain network developed based on the TRON main chain, a scaling solution for the TRON MainNet. By mapping to DAppChain, you will gain higher TPS with lower energy consumption.",
-  "main_account_mapping_text_1":"1.更高的tps，更低的能量消耗",
+  "main_account_mapping_text_1":"1.Higher TPS，lower energy consumption",
   "main_account_mapping_text_2":"2.completely free mapping process",
   "main_account_mapping_btn":"Mapping",
   "main_account_mapping_success_btn":"Mapped",

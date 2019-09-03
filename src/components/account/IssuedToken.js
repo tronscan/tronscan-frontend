@@ -130,6 +130,32 @@ class IssuedToken extends React.Component{
       this.setState({ isShowMappingModal: false });
     }
 
+    /**
+     * Whether the mapping
+     */
+    isMapping = (mappedToSideChains) => {
+      const { sidechains } = this.props;
+      if (mappedToSideChains.length !== sidechains.length) {
+        return false;
+      } else {
+        const sidechainList = sidechains.map(v => {
+          return {
+            chainid: v.chainid,
+            mainchain_address: v.mainchain_gateway,
+            sidechain_address: v.sidechain_gateway,
+          };
+        });
+        const mappedToSideChainList = mappedToSideChains.map(v => {
+          return {
+            chainid: v.chainid,
+            mainchain_address: v.mainchain_address,
+            sidechain_address: v.sidechain_address,
+          }
+        })
+        return _.isEqual(mappedToSideChainList, sidechainList);
+      }
+    }
+
 
     render() {
       const issuedAsset = this.props.issuedAsset;
@@ -196,7 +222,7 @@ class IssuedToken extends React.Component{
             </div>
             <div>
               {
-                _.isEqual(mappedToSideChains, sidechains) ? mappedBtnItem : mappingBtnItem(id, currency)
+                this.isMapping(mappedToSideChains) ? mappedBtnItem : mappingBtnItem(id, currency)
               }
             </div>
           </div>

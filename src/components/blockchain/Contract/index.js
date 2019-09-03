@@ -309,7 +309,7 @@ class SmartContract extends React.Component {
                                 <p>{tu('main_account_mapping_btn')}: </p>
                                 <span>
                                     {tu('sidechain_contract_left')}
-                                    {mainchainAddress}
+                                    {` ${mainchainAddress} `}
                                   {tu('sidechain_contract_right')}
                                 </span>
                               </li>
