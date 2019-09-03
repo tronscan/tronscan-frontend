@@ -1957,4 +1957,6 @@ export const messages = {
   "WIN_supply": "WIN Supply",
   "WIN_Token_Release_Schedule": "WIN Token Release Schedule",
   "source_WIN_team": "Source: WIN Management Team",
+  "Side_Chain":"Side chain browser(DappChain)",
+  "Main_Chain":"Main chain browser(MainChain)",
 }

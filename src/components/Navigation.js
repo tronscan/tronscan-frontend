@@ -95,9 +95,9 @@ class Navigation extends React.Component {
   componentWillMount() {
 
     let {intl} = this.props;
-    this.props.login('441d39fa209abf368a5f51191319d58dc2d4ef94f8f51514812bb4c036582079').then(() => {
-      toastr.info(intl.formatMessage({id: 'success'}), intl.formatMessage({id: 'login_success'}));
-     });
+    // this.props.login('441d39fa209abf368a5f51191319d58dc2d4ef94f8f51514812bb4c036582079').then(() => {
+    //   toastr.info(intl.formatMessage({id: 'success'}), intl.formatMessage({id: 'login_success'}));
+    //  });
     this.reLoginWithTronLink();
 
   }
@@ -147,8 +147,8 @@ class Navigation extends React.Component {
   }
 
   netSelectChange = (value) => {
-    console.log('value1111',value)
       Lockr.set("NET", value)
+      Lockr.set("islogin", 0)
       this.setState({
           selectedNet: value
       });
@@ -1229,7 +1229,7 @@ class Navigation extends React.Component {
                                               >
                                                 {Route.icon &&
                                                 <i className={Route.icon + " mr-2"}/>}
-                                                  {IS_MAINNET?tu('侧链浏览器（DappChain）'):tu('主链浏览器（MainChain）')}
+                                                  {IS_MAINNET?tu('Side_Chain'):tu('Main_Chain')}
                                               </a>
                                           );
                                       }
