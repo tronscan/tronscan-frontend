@@ -53,13 +53,14 @@ export const setWebsocket = () => async (dispatch) => {
   // if(Lockr.get("websocket") === 'open'){
   //   return;
   // }
-  var wsUri = "wss://apilist.tronscan.org/api/tronsocket";
+  // var wsUri = "wss://apilist.tronscan.org/api/tronsocket";
   // var wsUri = "wss://api.shasta.tronscan.org/api/tronsocket";
- // var wsUri = "ws://52.15.125.153:9000/api/tronsocket";
+  var wsUri = "ws://3.14.14.175:9000/api/tronsocket";
   let websocket = new ReconnectingWebSocket(wsUri, [], {
     minReconnectionDelay: 500
   })
   websocket.onopen = res => {
+
   }
 
   websocket.onmessage = res => {
