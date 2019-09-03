@@ -1297,7 +1297,8 @@ export const messages = {
     "propose_24": "میانگین حد انرژی",
     "propose_25": "هزینه برای به روز رسانی مجوز های حساب",
     "propose_26": "پیشنهاد برای تغییر هزینه برای چند امضایی",
-    "propose_27": "Propose to support the new features of TRON Virtual Machine 0.5.4",
+    "propose_27": "Propose to enable protocol optimization",
+    "propose_28": "Propose to support the new features of TRON Virtual Machine 0.5.4",
     "propose_minute": "دقیقه",
     "propose_unactivate": "فعال نشده است",
     "propose_not_allowed": "مجاز نیست",
@@ -1918,7 +1919,6 @@ export const messages = {
     "deploy_params_send_token":"انتخاب TRX یا توکن برای ارسال.",
     "deploy_params_constructor":"پارامترهای سازنده",
     "compile_close":"بستن",
-
     "token_logo_upload_tip":"فقط از سه قالب png ، jpg ، jpeg پشتیبانی می کند ، اندازه از 200K تجاوز نکند ، دارای  پیکسل 100 * 100 باشد .",
 
     // Backbone - account - mapping
@@ -1952,4 +1952,10 @@ export const messages = {
     "pledge_error": "Deposit Error",
     "sign_error": "Withdraw Error",
     "mapping_error": "Mapping Error",
+    "price_per_1000_WIN": "PRICE PER 1000 WIN",
+    "WIN_distribution_overview": "WIN DISTRIBUTION OVERVIEW",
+    "total_WIN_supply": "Total WIN Supply",
+    "WIN_supply": "WIN Supply",
+    "WIN_Token_Release_Schedule": "WIN Token Release Schedule",
+    "source_WIN_team": "Source: WIN Management Team",
 };

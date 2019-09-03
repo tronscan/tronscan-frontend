@@ -1331,7 +1331,8 @@ export const messages = {
   "propose_24": "平均能量上限",
   "propose_25": "提议修改更新账户权限的费用",
   "propose_26": "提议修改多重签名的费用",
-  "propose_27": "提议支持波场虚拟机0.5.4的新功能",
+  "propose_27": "提议开启协议优化功能",
+  "propose_28": "提议支持波场虚拟机0.5.4的新功能",
   "propose_minute": "分钟",
   "propose_unactivate": "未开启",
   "propose_not_allowed": "不允许",
@@ -1963,7 +1964,7 @@ export const messages = {
   /* 2019-07-06*/
   "trc20_free_orders":"您在TRXMarket的所有交易都无需手续费",
   "token_logo_upload_tip":"仅支持png,jpg,jpeg三种格式，大小不超过200K，尺寸为100*100",
-
+    
   // Backbone - account - mapping
   "main_account_mapping_title":"映射到DappChain",
   "main_account_mapping_text":"DappChain是基于波场主链开发的侧链网络，扩展了波场主网的使用。映射之后你将获得：",
@@ -1996,4 +1997,11 @@ export const messages = {
   "pledge_error": "质押失败",
   "sign_error": "解押失败",
   "mapping_error": "映射失败",
+  "price_per_1000_WIN": "WIN价格（每1000WIN）",
+  "WIN_distribution_overview": "WIN分布概览",
+  "total_WIN_supply": "WIN总流通量",
+  "WIN_supply": "WIN 流通量",
+  "WIN_Token_Release_Schedule": "WIN 代币解锁时间表",
+  "source_WIN_team": "信息来源：WIN管理团队",
+
 };

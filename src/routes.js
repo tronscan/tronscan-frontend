@@ -466,12 +466,12 @@ export const routes = [
         component: FaqAsync,
         path: "/help/faq"
       },
-      {
-        label: "copyright",
-        component: CopyrightAsync,
-        path: "/help/copyright",
-        showInMenu: false
-      },
+      // {
+      //   label: "copyright",
+      //   component: CopyrightAsync,
+      //   path: "/help/copyright",
+      //   showInMenu: false
+      // },
       {
         label: "about",
         component: AboutAsync,

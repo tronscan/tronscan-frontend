@@ -79,6 +79,7 @@ class TokenDetail extends React.Component {
       this.props.history.push('/tokens/list')
       return;
     }
+    // console.log(token);
       if(token.tokenID == 1002000){
         this.loadTotalTRXSupply();
         this.setState({
