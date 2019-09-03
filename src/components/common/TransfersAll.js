@@ -91,8 +91,12 @@ class TransfersAll extends React.Component {
             start: (page - 1) * pageSize,
             ...params,
         });
+        let {count} = await Client.getCountByType({
+            type: 'trc10trc20', 
+            ...filter,
+            ...id,})
         list = transfers;
-        total = totaldata;
+        total = count || totaldata;
         range = rangeTotal;
         transfers.map(item => {
             if (!item.amount_str) {
@@ -364,7 +368,6 @@ class TransfersAll extends React.Component {
     }
 
     onDateOk (start,end) {
-        console.log(start,end);
         this.start = start.valueOf();
         this.end = end.valueOf();
         let {page, pageSize} = this.state;

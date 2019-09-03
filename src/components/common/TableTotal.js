@@ -42,13 +42,13 @@ class TotalInfo extends React.Component {
                     </div>:
                     <div className="table_pos_info d-none d-md-block" style={{left: 'auto', top}}>
                         {
-                            rangeTotal > 2000?
+                            total !== 0?
                                <div>{tu('a_totle')} {total} {tu(typeText)} 
                                {isQuestionMark? <span className="ml-1"><QuestionMark placement="top" info={intl.formatMessage({id: 'select_tip'})}/></span>:''}
                                 <br/>
                                 <span>{tv('date_number_tip', {total: rangeTotal})}
-                                    {total>2000?<span>, {tu('date_list_tip')}</span>: ''}</span></div>
-                             : <span>{tu('a_totle')} {rangeTotal} {tu(typeText)}</span>
+                                    {rangeTotal>2000?<span>, {tu('date_list_tip')}</span>: ''}</span></div>
+                             : <span>{tu('a_totle')} {total} {tu(typeText)}</span>
                         }
                        {/** <span className={rangeTotal > 10000? markName:"select_tip"}></span> */}
                     </div>
