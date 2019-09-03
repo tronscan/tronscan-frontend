@@ -20,7 +20,7 @@ import {
 } from "../actions/app";
 import {passwordToAddress, pkToAddress} from "@tronscan/client/src/utils/crypto";
 import {base64DecodeFromString} from "@tronscan/client/src/lib/code";
-import {ACCOUNT_ADDRESS, ACCOUNT_LEDGER, ACCOUNT_PRIVATE_KEY, IS_DESKTOP, ACCOUNT_TRONLINK, IS_MAINNET} from "../constants";
+import {ACCOUNT_ADDRESS, ACCOUNT_LEDGER, ACCOUNT_PRIVATE_KEY, IS_DESKTOP, ACCOUNT_TRONLINK, IS_MAINNET, SUNWEBCONFIG} from "../constants";
 
 const initialState = {
   theme: Lockr.get("theme", "light"),
@@ -184,9 +184,9 @@ export function appReducer(state = initialState, action) {
               solidityNode: 'http://47.252.85.90:8071',
               eventServer: 'http://47.252.87.129:8070'
           },
-          'TFLtPoEtVJBMcj6kZPrQrwEdM3W3shxsBU',
-          'TRDepx5KoQ8oNbFVZ5sogwUxtdYmATDRgX',
-          '413AF23F37DA0D48234FDD43D89931E98E1144481B',
+          SUNWEBCONFIG.MAINNET,
+          SUNWEBCONFIG.SIDECHAIN,
+          SUNWEBCONFIG.SIDEID,
           privateKey
       );
       window.sunWeb = sunWeb;

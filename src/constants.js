@@ -55,3 +55,17 @@ export const FEELIMIT = 10000000;
 export const WITHDRAWFEE = 100000;
 // depositFee
 export const DEPOSITFEE = 100000;
+
+// trading type
+export const TRADINGMAP = {
+    MAPPING: 'mapping',
+    WITHDRAW: 'withdraw',
+    DEPOSIT: 'deposit',
+};
+
+// SunWeb config
+export const SUNWEBCONFIG = {
+    MAINNET: 'TFLtPoEtVJBMcj6kZPrQrwEdM3W3shxsBU',
+    SIDECHAIN: 'TRDepx5KoQ8oNbFVZ5sogwUxtdYmATDRgX',
+    SIDEID: '413AF23F37DA0D48234FDD43D89931E98E1144481B',
+};
