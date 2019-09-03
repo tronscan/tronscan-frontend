@@ -69,7 +69,6 @@ class Contracts extends React.Component {
       start: (page - 1) * pageSize
     }).then(({data, total, rangeTotal}) => {
       if (data) {
-        console.log(data);
         this.setState({
           contracts: data,
           loading: false,

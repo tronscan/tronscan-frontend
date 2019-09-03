@@ -21,8 +21,8 @@ class DateSelect extends React.Component {
         const { onDateOk } = this.props
         const { dataItem } = this.state
         item = item || dataItem
-        const start = moment().hour(0).minute(0).second(0);
-        const end = cloneDeep(start).add(item,'days');
+        const end = moment().hour(0).minute(0).second(0);
+        const start = cloneDeep(end).subtract(item,'days');
         onDateOk(start, end)
     }
     handleSizeChange = e => {

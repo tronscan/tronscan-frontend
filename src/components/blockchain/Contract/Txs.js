@@ -43,7 +43,7 @@ class Transactions extends React.Component {
   }
 
   componentDidMount() {
-    this.loadTransactions();
+    // this.loadTransactions();
   }
 
   onChange = (page, pageSize) => {
@@ -76,12 +76,17 @@ class Transactions extends React.Component {
       ...params,
     });
 
+    const { count } = await Client.getCountByType({
+      type: 'contract', 
+      ...filter
+    })
+
     transactions.data.map(item => {
       item.tip = item.ownAddress == filter.contract ? 'out' : 'in'
     })
     this.setState({
       transactions: transactions.data,
-      total: transactions.total,
+      total: count || transactions.total,
       rangeTotal :transactions.rangeTotal,
       loading: false
     });
@@ -233,8 +238,7 @@ class Transactions extends React.Component {
   onDateOk (start,end) {
       this.start = start.valueOf();
       this.end = end.valueOf();
-      let {page, pageSize} = this.state;
-      this.loadTransactions(page,pageSize);
+      this.loadTransactions();
   }
 
   render() {
@@ -258,7 +262,7 @@ class Transactions extends React.Component {
           {loading && <div className="loading-style" style={{marginTop: '-20px'}}><TronLoader/></div>}
           <div className="row">
             <div className="col-md-12 table_pos mt-5">
-              {total ? <TotalInfo total={total} rangeTotal={rangeTotal} top="-28px" typeText="transactions_unit" selected/>:""}
+              <TotalInfo total={total} rangeTotal={rangeTotal} top="-28px" typeText="transactions_unit" selected/>
               <DateSelect onDateOk={(start,end) => this.onDateOk(start,end)} dataStyle={{marginTop: '-3.3rem', right: '15px'}}/>
               {
                   (!loading && transactions.length === 0)? <div className="p-3 text-center no-data">{tu("no_tnx")}</div>:

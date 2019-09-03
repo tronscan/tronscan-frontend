@@ -28,9 +28,9 @@ class Transfers extends React.Component {
     this.state = {
       filter: {},
       transfers: [],
-      page: 0,
+      page: 1,
       total: 0,
-      pageSize: 25,
+      pageSize: 20,
       showTotal: props.showTotal !== false,
       emptyState: props.emptyState,
       autoRefresh: props.autoRefresh || false
@@ -38,7 +38,7 @@ class Transfers extends React.Component {
   }
 
   componentDidMount() {
-    this.loadPage();
+    // this.loadPage();
 
     if (this.state.autoRefresh !== false) {
       this.props.setInterval(() => this.load(), this.state.autoRefresh);
@@ -72,7 +72,12 @@ class Transfers extends React.Component {
         start: (page - 1) * pageSize,
         ...params
     });
-    let transfers = list;
+    let transfers = list || [];
+
+    const { count } = await Client.getCountByType({
+      type: 'trc20', 
+      contract: filter.token
+    })
 
     // let {transfers, total} = await Client.getTransfers({
     //   sort: '-timestamp',
@@ -89,7 +94,7 @@ class Transfers extends React.Component {
     this.setState({
       page,
       transfers,
-      total,
+      total: count,
       rangeTotal,
       loading: false,
     });
@@ -204,7 +209,7 @@ class Transfers extends React.Component {
         <div className="row transfers">
           <div className="col-md-12 table_pos">
             <div className="d-flex justify-content-between pl-3 pr-3" style={{left: 'auto'}}>
-                {total ?<TotalInfo total={total} rangeTotal={rangeTotal} typeText="transaction_info" divClass="table_pos_info_addr" selected/> :""}
+              <TotalInfo total={total} rangeTotal={rangeTotal} typeText="transaction_info" divClass="table_pos_info_addr" selected/>
               <DateSelect onDateOk={(start,end) => this.onDateOk(start,end)} dataStyle={{right: '35px'}}/>
             </div>
             {

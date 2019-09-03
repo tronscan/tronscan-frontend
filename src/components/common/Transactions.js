@@ -40,7 +40,7 @@ class Transactions extends React.Component {
   }
 
   componentDidMount() {
-    this.loadTransactions();
+    // this.loadTransactions();
   }
 
   componentDidUpdate(prevProps) {
@@ -109,10 +109,15 @@ class Transactions extends React.Component {
             ...params
         });
 
+        const { count } = await Client.getCountByType({
+          type: 'internal', 
+          ...filter
+        })
+
         let newdata = rebuildList(data.list, 'tokenId', 'callValue', 'valueInfoList')
         transactions = newdata;
-        total = data.total
-            rangeTotal = data.rangeTotal
+        total = count || data.total
+        rangeTotal = data.rangeTotal
     }
 
     this.setState({
@@ -291,8 +296,7 @@ class Transactions extends React.Component {
   onDateOk (start,end) {
       this.start = start.valueOf();
       this.end = end.valueOf();
-      let {page, pageSize} = this.state;
-      this.loadTransactions(page,pageSize);
+      this.loadTransactions();
   }
 
 
@@ -323,7 +327,7 @@ class Transactions extends React.Component {
             </div>: ''}
             <DateSelect onDateOk={(start,end) => this.onDateOk(start,end)} dataStyle={{marginTop: '-1.6rem'}}/>
           </div>
-          {total? <TotalInfo total={total} rangeTotal={rangeTotal} typeText="transactions_unit" common={!address} top={(!contract)? '-28px': '10px'} selected/>: ''}
+          <TotalInfo total={total} rangeTotal={rangeTotal} typeText="transactions_unit" common={!address} top={(!contract)? '-28px': '10px'} selected/>
           
           {
               (!loading && transactions.length === 0)?
