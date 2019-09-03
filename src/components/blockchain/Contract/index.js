@@ -22,7 +22,7 @@ import xhr from "axios/index";
 import {API_URL, CONTRACT_ADDRESS_USDT, CONTRACT_ADDRESS_WIN, CONTRACT_ADDRESS_GGC} from "../../../constants";
 import { Tooltip } from 'antd'
 import TokenBalances from './Balance.js'
-// import { CsvExport } from "../../common/CsvExport";
+import { CsvExport } from "../../common/CsvExport";
 
 
 class SmartContract extends React.Component {
@@ -314,10 +314,10 @@ class SmartContract extends React.Component {
                           </Switch>
                         </div>
                       </div>
-                        {/*
+                        {
                             ['', 'internal-transactions'].indexOf(tabName) !== -1 ?
                             <CsvExport downloadURL={csvurl}/>: ''
-                        */}
+                        }
                     </Fragment>
               }
             </div>

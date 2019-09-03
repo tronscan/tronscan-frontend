@@ -25,7 +25,7 @@ import { Progress, Tooltip } from 'antd'
 import BigNumber from "bignumber.js"
 import {HrefLink} from "../../common/Links";
 import {QuestionMark} from "../../common/QuestionMark";
-// import {CsvExport} from "../../common/CsvExport";
+import {CsvExport} from "../../common/CsvExport";
 BigNumber.config({ EXPONENTIAL_AT: [-1e9, 1e9] });
 
 
@@ -265,7 +265,7 @@ class Address extends React.Component {
             // icon: "fa fa-cube",
             path: "/blocks",
             label: <span>{tu("produced_blocks")}</span>,
-            cmp: () => <Blocks filter={{producer: id}} intl={intl}/>,
+            cmp: () => <Blocks filter={{producer: id}} intl={intl} getCsvUrl={(csvurl) => this.setState({csvurl})}/>,
           },
           votes: {
             id: "votes",
@@ -286,6 +286,7 @@ class Address extends React.Component {
             cmp: () => <Votes
                 filter={{candidate: id}}
                 showCandidate={false}
+                getCsvUrl={(csvurl) => this.setState({csvurl})}
             />,
           },
         }
@@ -749,10 +750,10 @@ class Address extends React.Component {
                         </div>
 
                       </div>
-                      {/**
-                        ['transfers', 'transactions', 'internal-transactions'].indexOf(tabName) !== -1?
+                      {
+                        ['transfers', 'transactions', 'internal-transactions', 'blocks', 'voters'].indexOf(tabName) !== -1?
                         <CsvExport downloadURL={csvurl}/>: ''
-                       */}
+                      }
 
                     </Fragment>
               }

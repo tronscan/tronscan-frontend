@@ -86,7 +86,7 @@ class NewTransactions extends React.Component {
                 if(isContract){
 
                 }else{
-                   // getCsvUrl(`${'http://52.15.68.74:10000'}/api/transaction?${query}`)
+                   getCsvUrl(`${API_URL}/api/transaction?${query}`)
                 }
                 
                 let data = await Client[getTransactions]({

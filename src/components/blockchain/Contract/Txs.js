@@ -68,7 +68,7 @@ class Transactions extends React.Component {
       ...filter,
     }
     const query = qs.stringify({ format: 'csv',...params})
-    //getCsvUrl(`${'http://52.15.68.74:10000'}/api/contracts/transaction?${query}`)
+    getCsvUrl(`${API_URL}/api/contracts/transaction?${query}`)
 
     let transactions = await Client.getContractTxs({
       limit: pageSize,
