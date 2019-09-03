@@ -163,7 +163,7 @@ class Navigation extends React.Component {
     const {announId} = this.state
     let {activeLanguage} = this.props;
 
-    const {data} = await Client.getNotices({sort: '-timestamp'});
+    const {data} = await Client. getNotices({sort: '-timestamp'});
     if (data.length) {
       const list = data.filter(o => o.id == announId)[0]
       if(list){

@@ -1964,7 +1964,7 @@ export const messages = {
   /* 2019-07-06*/
   "trc20_free_orders":"您在TRXMarket的所有交易都无需手续费",
   "token_logo_upload_tip":"仅支持png,jpg,jpeg三种格式，大小不超过200K，尺寸为100*100",
-    
+
   // Backbone - account - mapping
   "main_account_mapping_title":"映射到DappChain",
   "main_account_mapping_text":"DappChain是基于波场主链开发的侧链网络，扩展了波场主网的使用。映射之后你将获得：",
