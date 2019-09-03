@@ -419,7 +419,7 @@ export default class Home extends Component {
                   <div className="card-body row pt-4 pb-4 home-stats">
                     <div className="col-lg-2 col-md-4 col-xs-12 mb-lg-0  mb-md-3 ">
                       <div className="hvr-underline-from-center hvr-underline-white text-muted">
-                        <h2><CountUp start={0} end={27} duration={1}/></h2>
+                        <h2><CountUp start={0} end={130} duration={1}/></h2>
                         <p className="m-0">{tu("online_nodes")}</p>
                       </div>
                     </div>
