@@ -143,9 +143,8 @@ class RecentBlocks extends Component {
                               </div>
                             }
 
-                            <div className="text-muted color-grey-300 small mt-5" style={styles.nowrap}>
+                            <div className="text-muted color-grey-300 small" style={styles.nowrap}>
                               <TimeAgo date={block.timestamp} title={moment(block.timestamp).format("MMM-DD-YYYY HH:mm:ss A")}/>
-
                             </div>
                           </div>
                         </div>
