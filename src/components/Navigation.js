@@ -367,11 +367,11 @@ class Navigation extends React.Component {
   callAjax = async (value) => {
     this.isSearching = true;
     let {search} = this.state;
-    if (search === "") {
+    if (search === "" || search==="%") {
       this.setState({searchResults: []});
       $('#_searchBox').css({display: 'none'});
       return;
-    }
+    } 
 
     let result = await xhr.get(API_URL+"/api/search?term=" + trim(search));
     let results = result.data;
