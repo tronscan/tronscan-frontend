@@ -4155,6 +4155,10 @@ h5 {
   @media only screen and (max-width: 768px) {
     &-card {
       overflow-x: scroll;
+
+      .mobile-width {
+        width: 600px;
+      }
     }
   }
 }

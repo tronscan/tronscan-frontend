@@ -1895,7 +1895,9 @@ export default class Account extends Component {
               </div>
             </div>
           </div>
-          <IssuedToken issuedAsset={issuedAsset} loadAccount={this.loadAccount} unfreezeAssetsConfirmation={this.unfreezeAssetsConfirmation}/>
+          {
+            !IS_SUNNET && <IssuedToken issuedAsset={issuedAsset} loadAccount={this.loadAccount} unfreezeAssetsConfirmation={this.unfreezeAssetsConfirmation}/>
+          }
           {
             false &&
             <div className="row mt-3">
@@ -2068,91 +2070,93 @@ export default class Account extends Component {
               </div>
             </div>
           </div>
-          <div className="row mt-3">
-            <div className="col-md-12">
-              <div className="card">
-                <div className="card-body">
-                  <div className="d-flex justify-content-between trade_pair_title">
-                    <h5 className="card-title text-center">
-                      {tu("my_trading_pairs")}
-                      {tu("deal_pair_tip")}
-                    </h5>
-                    <p className="card-text">
-                      <a href="javascript:"
-                         className={trxBalance >= this.state.dealPairTrxLimit ? "btn btn-default btn-sm btn-plus-square" : "float-right btn btn-default btn-sm btn-plus-square disabled"}
-                         onClick={() => {
-                           this.changeTxnPair()
-                         }}>
-                        <i className="fa fa-plus-square"></i>
-                        &nbsp;
-                        {tu("create_trading_pairs")}
-                      </a>
-                    </p>
-                  </div>
-                  <div style={{overflowX: 'auto'}}>
-                    <table className="table m-0 temp-table mt-4">
-                      <thead className="thead-light">
-                      <tr>
-                        <th>{tu("pairs")}</th>
-                        <th>{tu("balance")}</th>
-                        <th className="text-right"></th>
-                      </tr>
-                      </thead>
-                      <tbody>
-                      {
-                        currentWallet.exchanges.length ? currentWallet.exchanges.map((exchange, index) => {
-                          return (
-                              <tr key={index}>
-                                <td style={{position: 'relative'}}>
-                                  {exchange.map_token_name === "_" ? "TRX" : exchange.map_token_name}/{exchange.map_token_name1 === "_" ? "TRX" : exchange.map_token_name1}
-                                  <div style={{
-                                    fontSize: 12,
-                                    color: '#999',
-                                    position: 'absolute',
-                                    bottom: 0
-                                  }}>[ID:{exchange.map_token_id}]
-                                  </div>
-                                </td>
-                                <td>
-                                  <FormattedNumber value={exchange.map_amount}/>
-                                  /
-                                  <FormattedNumber value={exchange.map_amount1}/>
-                                </td>
-                                <td className="text-right"
-                                    style={{display: 'flex', flexDirection: 'row', justifyContent: 'flex-end'}}>
-                                  <div className="dex-inject" style={{whiteSpace: 'nowrap'}}
-                                       onClick={() => {
-                                         this.injectTxnPair(exchange)
-                                       }}
-                                  >
-                                    {tu("capital_injection")}
-                                  </div>
-                                  |
-                                  <div className="dex-divestment" style={{whiteSpace: 'nowrap'}}
-                                       onClick={() => {
-                                         this.withdrawTxnPair(exchange)
-                                       }}
-                                  >
-                                    {tu("capital_withdrawal")}
-                                  </div>
-                                </td>
-                              </tr>
-                          )
-                        }) : <tr>
-                          <td></td>
-                          <td>
-                            {tu('no_pairs')}
-                          </td>
-                          <td></td>
+          { !IS_SUNNET &&
+            <div className="row mt-3">
+              <div className="col-md-12">
+                <div className="card">
+                  <div className="card-body">
+                    <div className="d-flex justify-content-between trade_pair_title">
+                      <h5 className="card-title text-center">
+                        {tu("my_trading_pairs")}
+                        {tu("deal_pair_tip")}
+                      </h5>
+                      <p className="card-text">
+                        <a href="javascript:"
+                          className={trxBalance >= this.state.dealPairTrxLimit ? "btn btn-default btn-sm btn-plus-square" : "float-right btn btn-default btn-sm btn-plus-square disabled"}
+                          onClick={() => {
+                            this.changeTxnPair()
+                          }}>
+                          <i className="fa fa-plus-square"></i>
+                          &nbsp;
+                          {tu("create_trading_pairs")}
+                        </a>
+                      </p>
+                    </div>
+                    <div style={{overflowX: 'auto'}}>
+                      <table className="table m-0 temp-table mt-4">
+                        <thead className="thead-light">
+                        <tr>
+                          <th>{tu("pairs")}</th>
+                          <th>{tu("balance")}</th>
+                          <th className="text-right"></th>
                         </tr>
-                      }
-                      </tbody>
-                    </table>
+                        </thead>
+                        <tbody>
+                        {
+                          currentWallet.exchanges.length ? currentWallet.exchanges.map((exchange, index) => {
+                            return (
+                                <tr key={index}>
+                                  <td style={{position: 'relative'}}>
+                                    {exchange.map_token_name === "_" ? "TRX" : exchange.map_token_name}/{exchange.map_token_name1 === "_" ? "TRX" : exchange.map_token_name1}
+                                    <div style={{
+                                      fontSize: 12,
+                                      color: '#999',
+                                      position: 'absolute',
+                                      bottom: 0
+                                    }}>[ID:{exchange.map_token_id}]
+                                    </div>
+                                  </td>
+                                  <td>
+                                    <FormattedNumber value={exchange.map_amount}/>
+                                    /
+                                    <FormattedNumber value={exchange.map_amount1}/>
+                                  </td>
+                                  <td className="text-right"
+                                      style={{display: 'flex', flexDirection: 'row', justifyContent: 'flex-end'}}>
+                                    <div className="dex-inject" style={{whiteSpace: 'nowrap'}}
+                                        onClick={() => {
+                                          this.injectTxnPair(exchange)
+                                        }}
+                                    >
+                                      {tu("capital_injection")}
+                                    </div>
+                                    |
+                                    <div className="dex-divestment" style={{whiteSpace: 'nowrap'}}
+                                        onClick={() => {
+                                          this.withdrawTxnPair(exchange)
+                                        }}
+                                    >
+                                      {tu("capital_withdrawal")}
+                                    </div>
+                                  </td>
+                                </tr>
+                            )
+                          }) : <tr>
+                            <td></td>
+                            <td>
+                              {tu('no_pairs')}
+                            </td>
+                            <td></td>
+                          </tr>
+                        }
+                        </tbody>
+                      </table>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
+          }
           {/*<div className="row mt-3">*/}
           {/*<div className="col-md-12">*/}
           {/*<div className="card">*/}
