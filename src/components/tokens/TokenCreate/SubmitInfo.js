@@ -336,7 +336,7 @@ BigNumber.config({ EXPONENTIAL_AT: [-1e9, 1e9] });
                                 "github":this.tokenState('github_url'),
                                 "issue_time":this.tokenState('issueTime'),
                                 "timestamp":this.tokenState('issueTime'),
-                                "file_name":this.tokenState('file_name'),
+                                "file_name":this.tokenState('fileName'),
                             }
                             let hash = tronWeb.toHex(JSON.stringify(data), false);
                             let sig = await tronWeb.trx.sign(hash);
