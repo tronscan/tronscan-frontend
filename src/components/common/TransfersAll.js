@@ -404,25 +404,14 @@ class TransfersAll extends React.Component {
         return (
             <div className="token_black table_pos">
                 {loading && <div className="loading-style"><TronLoader/></div>}
-                {
-                    transfers.length? <div className="d-flex justify-content-between" style={{right: 'auto'}}>
-                        <TotalInfo total={total} rangeTotal={rangeTotal} typeText="transactions_unit" divClass="table_pos_info_addr" selected/>
-                        {
-                            address ?  <div>
-                                <DateSelect onDateOk={(start,end) => this.onDateOk(start,end)}  />
-                            </div> : ''
-                        }
-                    </div>:<div className="d-flex justify-content-between" style={{left: 'auto'}}>
-                        <TotalInfo total={total} rangeTotal={rangeTotal} typeText="transactions_unit" common={!address} divClass="table_pos_info_addr2"/>
-                        
-                        {
-                            address ?  <div>
-                                <DateSelect  onDateOk={(start,end) => this.onDateOk(start,end)}/>
-                            </div> : ''
-
-                        }
-                    </div>
-                }
+                <div className="d-flex justify-content-between" style={{right: 'auto'}}>
+                    <TotalInfo total={total} rangeTotal={rangeTotal} typeText="transactions_unit" divClass="table_pos_info_addr" selected/>
+                    {
+                        address ?  <div>
+                            <DateSelect onDateOk={(start,end) => this.onDateOk(start,end)}  />
+                        </div> : ''
+                    }
+                </div>
                 {
                     transfers.length > 0 &&  <div className="d-flex align-items-center">
                         <div className="address-transfers-radio">
