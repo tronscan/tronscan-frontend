@@ -4,7 +4,7 @@ import NumericInput from '../../../common/NumericInput';
 import {connect} from "react-redux";
 import {injectIntl} from "react-intl";
 import Lockr from "lockr";
-import { API_URL } from '../../../../constants';
+import { API_URL,CONTRACT_MAINNET_API_URL } from '../../../../constants';
 
 
 import {
@@ -184,7 +184,7 @@ class BaseInfo extends Component {
           <div className="ant-upload-text">Upload</div>
         </div>
     );
-    let actionUrl = `${API_URL}/external/upload/logo`
+    let actionUrl = `${CONTRACT_MAINNET_API_URL}/external/upload/logo`
     let bodyData = {'body':JSON.stringify(body)}
     return (
       <div>
