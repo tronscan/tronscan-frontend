@@ -59,6 +59,16 @@ BigNumber.config({ EXPONENTIAL_AT: [-1e9, 1e9] });
 
     tokenState = (value) => {
         let {iconList, modal, checkbox, errors, captcha_code, type, paramData:{ token_name, token_abbr, token_introduction, token_supply, precision, author, logo_url, contract_address, contract_created_date, contract_code, token_amount, trx_amount, freeze_amount, freeze_date, freeze_type, participation_start_date, participation_end_date, participation_type, website, email, white_paper,github_url, file_name }} = this.state;
+<<<<<<< HEAD
+=======
+        console.log('file_name===============',file_name)
+        let logoURL;
+        if(file_name){
+             logoURL =  logo_url + '?t=' + new Date().getTime()
+        }else{
+             logoURL =  logo_url
+        }
+>>>>>>> master
         let frozenSupplyAmount = freeze_amount * Math.pow(10,Number(precision))
         let frozenSupply =  [{amount: frozenSupplyAmount, days: freeze_date }];
         if( !participation_type ){
@@ -74,7 +84,7 @@ BigNumber.config({ EXPONENTIAL_AT: [-1e9, 1e9] });
             'totalSupplyTRC20':new BigNumber(token_supply).shiftedBy(precision).toString(),
             'address':author,
             'logoUrl':logo_url,
-            'updateLogoUrl':logo_url + '?t=' + new Date().getTime(),
+            'updateLogoUrl':logoURL,
             'contractAddress':contract_address,
             'contractCreatedRatio':contract_created_date?contract_created_date.valueOf():'',
             'contractCode':contract_code,

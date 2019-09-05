@@ -126,9 +126,13 @@ class Committee extends React.Component {
                 case "getMultiSignFee":
                     item.name = 'propose_26';
                 break;
-                case "getAllowTvmConstantinople":
+                case "getAllowProtoFilterNum":
                     item.name = 'propose_27';
                 break;
+                case "getAllowTvmConstantinople":
+                    item.name = 'propose_28';
+                break;
+
             }
         });
         let tronParametersNew = [];
@@ -154,10 +158,10 @@ class Committee extends React.Component {
             render: (text, record, index) => {
                 return <span>
                     {
-                        index == 25?'#'+ (index+1):'#'+ index
+                        '#'+ index
                     }
                 </span>
-                return  '#' + (index)
+
             }
         }, {
             title: upperFirst(intl.formatMessage({id: 'propose_parameters'})),
@@ -334,6 +338,15 @@ class Committee extends React.Component {
                         record.key == 'getMultiSignFee' && <div>
                             <span>{text / ONE_TRX}</span> &nbsp;
                             <span>TRX</span></div>
+                    }
+
+                    {
+                        record.key == 'getAllowProtoFilterNum' && <div>
+                            {
+                                text? <span>{tu('propose_activate')}</span>:
+                                    <span>{tu('propose_unactivate')}</span>
+                            }
+                        </div>
                     }
                     {
                         record.key == 'getAllowTvmConstantinople' && <div>

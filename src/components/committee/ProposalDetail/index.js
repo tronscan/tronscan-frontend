@@ -52,7 +52,7 @@ class ProposalDetail extends React.Component {
             //'getTotalEnergyAverageUsage',
             'getUpdateAccountPermissionFee',
             'getMultiSignFee',
-            '',
+            'getAllowProtoFilterNum',
             '',
             'getAllowTvmConstantinople'
         ];
@@ -366,9 +366,21 @@ class ProposalDetail extends React.Component {
                                                                         </div>
                                                                     }
                                                                     {
-                                                                        proposal.key == 'getAllowTvmConstantinople' &&
+                                                                        proposal.key == 'getAllowProtoFilterNum' &&
                                                                         <div>
                                                                             <span>{ intl.formatMessage({id: 'propose_27'})}</span>
+                                                                            <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
+                                                                            {
+                                                                                proposal.proposalVal? <span>{tu('propose_activate')}</span>:
+                                                                                    <span>{tu('propose_unactivate')}</span>
+                                                                            }
+
+                                                                        </div>
+                                                                    }
+                                                                    {
+                                                                        proposal.key == 'getAllowTvmConstantinople' &&
+                                                                        <div>
+                                                                            <span>{ intl.formatMessage({id: 'propose_28'})}</span>
                                                                             <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
                                                                             {
                                                                                 proposal.proposalVal? <span>{tu('propose_allowed')}</span>:
