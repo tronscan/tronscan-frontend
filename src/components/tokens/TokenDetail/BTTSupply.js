@@ -59,7 +59,7 @@ class BTTSupply extends React.Component {
         this.loadTotalTRXSupply();
         setInterval(() => {
             this.loadTotalTRXSupply();
-        }, 30000);
+        }, 60000);
     }
 
     compare (property) {
@@ -81,8 +81,8 @@ class BTTSupply extends React.Component {
         let result=await xhr.get(`${API_URL}/api/bittorrent/graphic`);
 
       let supplyTypesChartData = result.data;
-
-        let trxPriceData = await xhr.get(`https://api.coinmarketcap.com/v1/ticker/bittorrent/?convert=EUR`);
+        let eurBittorrentURL = encodeURI(`https://api.coinmarketcap.com/v1/ticker/bittorrent/?convert=EUR`);
+        let trxPriceData = await xhr.get(`${API_URL}/api/system/proxy?url=${eurBittorrentURL}`);
         let priceUSD = ((parseFloat(trxPriceData.data[0].price_usd))*1000).toFixed(3);
         let priceBTC = ((parseFloat(trxPriceData.data[0].price_btc))*1000).toFixed(5);
         let marketCapitalization = ((parseFloat(trxPriceData.data[0].price_usd)*(funds.totalTurnOver))).toFixed(2);
