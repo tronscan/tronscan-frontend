@@ -4,7 +4,7 @@ import { FormattedNumber } from "react-intl";
 import { Tooltip } from "reactstrap";
 import { alpha } from "../../utils/str";
 import { connect } from "react-redux";
-import { ONE_TRX } from "../../constants";
+import { ONE_TRX, API_URL } from "../../constants";
 import Lockr from "lockr";
 let PriceContext = React.createContext({
   priceBTC: 0,
@@ -44,16 +44,21 @@ class PriceProviderCmp extends React.PureComponent {
   async loadPrices() {
     var dataEur = Lockr.get('dataEur');
     var dataEth = Lockr.get('dataEth');
+    let eurURL = encodeURI(`https://api.coinmarketcap.com/v1/ticker/tronix/?convert=EUR`)
+    let ethURL = encodeURI(`https://api.coinmarketcap.com/v1/ticker/tronix/?convert=ETH`)
     if(!Lockr.get('dataEur')){
         var { data:dataEur } = await xhr.get(
-            `https://api.coinmarketcap.com/v1/ticker/tronix/?convert=EUR`
+            `${API_URL}/api/system/proxy?url=${eurURL}`
+
         );
     }
 
+
     if(!Lockr.get('dataEth')){
         var { data: dataEth } = await xhr.get(
-            `https://api.coinmarketcap.com/v1/ticker/tronix/?convert=ETH`
+            `${API_URL}/api/system/proxy?url=${ethURL}`
         );
+
     }
 
 
