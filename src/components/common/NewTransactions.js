@@ -405,8 +405,8 @@ class NewTransactions extends React.Component {
 
         return (
             <div className={"token_black table_pos " + (address?"mt-5":"")}>
-                {loading && <div className="loading-style"><TronLoader/></div>}
-                <TotalInfo total={total} rangeTotal={rangeTotal} typeText="transactions_unit" common={!address} top={address? '-28px': '26'} selected/>
+                { loading && <div className="loading-style"><TronLoader/></div>}
+                { !loading && <TotalInfo total={total} rangeTotal={rangeTotal} typeText="transactions_unit" common={!address} top={address? '-28px': '26'} selected/>}
                 {
                     address ? <DateSelect onDateOk={(start,end) => this.onDateOk(start,end)} dataStyle={{marginTop: '-3.3rem'}} />: ''
                 }

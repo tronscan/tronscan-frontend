@@ -405,7 +405,7 @@ class TransfersAll extends React.Component {
             <div className="token_black table_pos">
                 {loading && <div className="loading-style"><TronLoader/></div>}
                 <div className="d-flex justify-content-between" style={{right: 'auto'}}>
-                    <TotalInfo total={total} rangeTotal={rangeTotal} typeText="transactions_unit" divClass="table_pos_info_addr" selected/>
+                    {!loading && <TotalInfo total={total} rangeTotal={rangeTotal} typeText="transactions_unit" divClass="table_pos_info_addr" selected/> }
                     {
                         address ?  <div>
                             <DateSelect onDateOk={(start,end) => this.onDateOk(start,end)}  />

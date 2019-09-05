@@ -327,7 +327,7 @@ class Transactions extends React.Component {
             </div>: ''}
             <DateSelect onDateOk={(start,end) => this.onDateOk(start,end)} dataStyle={{marginTop: '-1.6rem'}}/>
           </div>
-          <TotalInfo total={total} rangeTotal={rangeTotal} typeText="transactions_unit" common={!address} top={(!contract)? '-28px': '10px'} selected/>
+          {!loading && <TotalInfo total={total} rangeTotal={rangeTotal} typeText="transactions_unit" common={!address} top={(!contract)? '-28px': '10px'} selected/>}
           
           {
               (!loading && transactions.length === 0)?

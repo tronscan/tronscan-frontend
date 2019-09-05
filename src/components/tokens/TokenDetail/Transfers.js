@@ -198,7 +198,7 @@ class Transfers extends React.Component {
         <div className="row transfers">
           <div className="col-md-12 table_pos">
             <div className="d-flex justify-content-between pl-3 pr-3" style={{left: 'auto'}}>
-            <TotalInfo total={total} rangeTotal={rangeTotal} typeText="transaction_info" divClass="table_pos_info_addr" selected/>
+            {!loading && <TotalInfo total={total} rangeTotal={rangeTotal} typeText="transaction_info" divClass="table_pos_info_addr" selected/>}
                 <DateSelect onDateOk={(start,end) => this.onDateOk(start,end)}  dataStyle={{right: '35px'}}/>
             </div>
               {
