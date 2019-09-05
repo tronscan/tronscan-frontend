@@ -129,7 +129,7 @@ class TokenHolders extends React.Component {
       },
       {
         title: 'Name Tag',
-        dataIndex: 'tagName',
+        dataIndex: 'name',
         key: 'tagName',
         width: '200px'
       },
