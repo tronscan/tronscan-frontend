@@ -60,8 +60,8 @@ class DateSelect extends React.Component {
                 </Radio.Group>
                 <br/>
                 <RangePicker
-                    showTime={{ format: 'HH:mm' }}
-                    format="YYYY-MM-DD HH:mm"
+                    showTime={{ format: 'HH:mm:ss' }}
+                    format="YYYY-MM-DD HH:mm:ss"
                     placeholder={['Start Time', 'End Time']}
                     onOk={this.onOk}
                     open={RangePickerStatus}
