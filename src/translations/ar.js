@@ -1937,6 +1937,7 @@
   "pledge_num":"الكمية",
   'pledge_num_error':"لا يمكن أن يتجاوز العدد الحد الأقصى للرصيد المتاح",
   "pledge_text":"سوف تستهلك الودائع كمية معينة من الطاقة",
+  "sign_text":"سوف تستهلك الودائع كمية معينة من الطاقة",
   "pledge_mapping_text":"لم يتم تعيين الأصول الخاصة بك إلى DAppChain ، وبالتالي لا يمكن إيداعها.",
   // success
   "pledge_success": "Deposit Success",

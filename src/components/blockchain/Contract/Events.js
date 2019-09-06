@@ -212,19 +212,21 @@ class Transactions extends React.Component {
       <Fragment>
        
         {loading && <div className="loading-style" style={{marginTop: '-20px'}}><TronLoader/></div>}
-        <div className="d-flex align-items-center  pt-3 pb-2"> <div className="question-mark mr-2"><i>?</i></div>{tu('event_tip')}</div>
-        <p className="m-0" style={{color: '#999999'}}>{tableInfo}</p>
-        <div className="row py-3">
-          <div className="col-md-12 event-main">
-              <SmartTable bordered={true} loading={loading}
-                          pagination={false}
-                          scroll={{ x: 1000 }}
-                          column={column} data={transactions} total={total}
-                          onPageChange={(page, pageSize) => {
-                            this.loadTransactions(page, pageSize)
-                          }}/>
+        {EmptyState && <div>
+          <div className="d-flex align-items-center  pt-3 pb-2"> <div className="question-mark mr-2"><i>?</i></div>{tu('event_tip')}</div>
+          <p className="m-0" style={{color: '#999999'}}>{tableInfo}</p>
+          <div className="row py-3">
+            <div className="col-md-12 event-main">
+                <SmartTable bordered={true} loading={loading}
+                            pagination={false}
+                            scroll={{ x: 1000 }}
+                            column={column} data={transactions} total={total}
+                            onPageChange={(page, pageSize) => {
+                              this.loadTransactions(page, pageSize)
+                            }}/>
+            </div>
           </div>
-        </div>
+        </div>}
       </Fragment>
     )}
 }

@@ -27,7 +27,7 @@ import {Badge, Modal, ModalBody, ModalFooter, ModalHeader} from "reactstrap"
 import Avatar from "./common/Avatar"
 import {AddressLink, HrefLink} from "./common/Links"
 import {FormattedNumber} from "react-intl"
-import {API_URL, IS_TESTNET, ONE_TRX, IS_MAINNET} from "../constants"
+import {API_URL, IS_TESTNET, ONE_TRX, IS_MAINNET, IS_SUNNET} from "../constants"
 import {matchPath} from 'react-router'
 import {doSearch, getSearchType} from "../services/search"
 import {readFileContentsFromEvent} from "../services/file"
@@ -909,11 +909,14 @@ class Navigation extends React.Component {
       activeCurrency,
       wallet,
       syncStatus,
+      walletType: { type },
     } = this.props;
 
     let {search, popup, notifications, announcement, announId, annountime, searchResults, selectedNet } = this.state;
 
     let activeComponent = this.getActiveComponent();
+
+    const isShowSideChain = !type || (type && IS_SUNNET) || (IS_MAINNET && type && type === 'ACCOUNT_PRIVATE_KEY');
 
     return (
         <div className="header-top">
@@ -1224,17 +1227,17 @@ class Navigation extends React.Component {
                                         );
                                       }
                                       if (isUndefined(Route.url) && Route.sidechain) {
-                                          return (
-                                              <a href="javascript:;"
-                                                 key={Route.label}
-                                                 className="dropdown-item text-uppercase"
-                                                 onClick={() => this.netSelectChange(IS_MAINNET?'sunnet':'mainnet')}
-                                              >
-                                                {Route.icon &&
-                                                <i className={Route.icon + " mr-2"}/>}
-                                                  {IS_MAINNET?tu('Side_Chain'):tu('Main_Chain')}
-                                              </a>
-                                          );
+                                        const sidechainTab = (
+                                          <a href="javascript:;"
+                                            key={Route.label}
+                                            className="dropdown-item text-uppercase"
+                                            onClick={() => this.netSelectChange(IS_MAINNET?'sunnet':'mainnet')}
+                                          >
+                                            {Route.icon && <i className={Route.icon + " mr-2"}/>}
+                                            {IS_MAINNET?tu('Side_Chain'):tu('Main_Chain')}
+                                          </a>
+                                        );
+                                        return isShowSideChain ? sidechainTab : null;
                                       }
                                       if (!isUndefined(Route.enurl) || !isUndefined(Route.zhurl)) {
                                         return (
@@ -1356,6 +1359,7 @@ function mapStateToProps(state) {
     router: state.router,
     languages: state.app.availableLanguages,
     account: state.app.account,
+    walletType: state.app.wallet,
     tokenBalances: state.account.tokens,
     frozen: state.account.frozen,
     totalTransactions: state.account.totalTransactions,

@@ -1949,6 +1949,7 @@ export const messages = {
   "pledge_num":"Cantidad",
   'pledge_num_error':"El número nunca excede el saldo máximo disponible",
   "pledge_text":"El depósito consumirá una cierta cantidad de energía.",
+  "sign_text":"El depósito consumirá una cierta cantidad de energía.",
   "pledge_mapping_text":"Sus activos no se han reflectado a DAppChain y, por lo tanto, no se pueden depositar.",
   // success
   "pledge_success": "Deposit Success",
