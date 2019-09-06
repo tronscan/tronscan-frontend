@@ -2,6 +2,7 @@ import React, {Fragment} from "react";
 import { Modal, Button } from 'antd';
 import ContractCodeRequest from "../tools/ContractCodeRequest";
 import {tu} from "../../utils/i18n";
+import xhr from "axios/index";
 
 
 
@@ -11,7 +12,7 @@ export class CsvExport extends React.Component {
         super(props);
         this.state = {
             visible: false,
-            captcha_code:null,
+            captcha_code:true,
         };
     }
 
@@ -19,9 +20,22 @@ export class CsvExport extends React.Component {
         let {downloadURL} = this.props;
        window.location.href = downloadURL
     };
-    handleCaptchaCode = (val) => {
-        this.setState({captcha_code: val});
+    handleCaptchaCode = async (val) => {
+        let {downloadURL} = this.props;
+        // const {data} = await xhr.get(`${downloadURL}&g-recaptcha-response=${val}`)
+        // console.log(data);
+        if(val){
+            window.location.href = `${downloadURL}&g-recaptcha-response=${val}`
+            setTimeout(() => {
+                this.setState({visible: false});
+            }, 300);
+            
+        }
+        this.setState({captcha_code: false}, () => {
+            this.setState({captcha_code: true})
+        });
     };
+    
 
     render() {
         return (
@@ -37,14 +51,18 @@ export class CsvExport extends React.Component {
                     onCancel={() => this.setState({ visible: false})}
                     // centered
                 >   
-                    <div className="pt-3">
-                        <ContractCodeRequest  handleCaptchaCode={this.handleCaptchaCode}/>
+                    <div className="pt-3">{
+                        this.state.captcha_code?
+                        <ContractCodeRequest  handleCaptchaCode={this.handleCaptchaCode} className={this.state.visible? 'd-block': 'd-none'}/>
+                        :''
+                    }
+                        
                     </div>
                     
-                    <button 
+                    {/**<button 
                         className="btn btn-danger d-block mx-auto mt-3" 
                         disabled={!this.state.captcha_code}
-                        onClick={this.handleOk}>{tu('Download')}</button>
+                        onClick={this.handleOk}>{tu('Download')}</button> */}
                 </Modal>
             </Fragment>
 

@@ -397,10 +397,13 @@ class Navigation extends React.Component {
       this.setState({searchResults: []});
       $('#_searchBox').css({display: 'none'});
       return;
-    }
+    } 
 
     let result = await xhr.get(API_URL+"/api/search?term=" + trim(search));
     let results = result.data;
+    if(results.Error){
+      results = []
+    }
     this.isSearching = false;
     /*let results = [
       {desc: 'Token-TRC10', value: "IGG 1000029"},

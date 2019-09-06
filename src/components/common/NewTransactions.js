@@ -13,7 +13,7 @@ import SmartTable from "./SmartTable.js"
 import {upperFirst} from "lodash";
 import {QuestionMark} from "./QuestionMark";
 import TotalInfo from "./TableTotal";
-import DateRange from "./DateRange";
+import DateSelect from './dateSelect'
 import {DatePicker} from 'antd';
 import moment from 'moment';
 import {NameWithId} from "./names";
@@ -44,7 +44,7 @@ class NewTransactions extends React.Component {
     }
 
     componentDidMount() {
-        this.loadTransactions();
+        // this.loadTransactions();
     }
 
     componentDidUpdate(prevProps) {
@@ -74,7 +74,6 @@ class NewTransactions extends React.Component {
 
         if(!isinternal ){
             if(address){
-                let getTransactions = isContract? 'getContractTxs': 'getTransactions'
                 const params = {
                     sort: '-timestamp',
                     total: this.state.total,
@@ -82,20 +81,34 @@ class NewTransactions extends React.Component {
                     end_timestamp:this.end,
                     ...filter,
                 }
+                let data = {}
+                let countData = {}
                 const query = qs.stringify({ format: 'csv',...params})
                 if(isContract){
-
+                    getCsvUrl(`${API_URL}/api/contracts/transaction?${query}`)
+                    data = await Client.getContractTxs({
+                        limit: pageSize,
+                        start: (page - 1) * pageSize,
+                        ...params,
+                    });
+                    countData = await Client.getCountByType({
+                        type: 'contract', 
+                        ...filter
+                    })
                 }else{
-                   // getCsvUrl(`${'http://52.15.68.74:10000'}/api/transaction?${query}`)
+                   getCsvUrl(`${API_URL}/api/transaction?${query}`)
+                   data = await Client.getTransactions({
+                        limit: pageSize,
+                        start: (page - 1) * pageSize,
+                        ...params,
+                    });
+                    countData = await Client.getCountByType({
+                        type: 'transaction', 
+                        ...filter
+                    })
                 }
-                
-                let data = await Client[getTransactions]({
-                    limit: pageSize,
-                    start: (page - 1) * pageSize,
-                    ...params,
-                });
                 transactions = data.transactions;
-             //   total = data.total,
+                total = countData.count
                 rangeTotal = data.rangeTotal
             }else{
                 let data = await Client.getTransactions({
@@ -369,8 +382,7 @@ class NewTransactions extends React.Component {
     onDateOk (start,end) {
         this.start = start.valueOf();
         this.end = end.valueOf();
-        let {page, pageSize} = this.state;
-        this.loadTransactions(page,pageSize);
+        this.loadTransactions();
     }
 
 
@@ -393,15 +405,15 @@ class NewTransactions extends React.Component {
 
         return (
             <div className={"token_black table_pos " + (address?"mt-5":"")}>
-                {loading && <div className="loading-style"><TronLoader/></div>}
-                {total ? <TotalInfo total={total} rangeTotal={rangeTotal} typeText="transactions_unit" common={!address} top={address? '-28px': '26'}/>:""}
+                { loading && <div className="loading-style"><TronLoader/></div>}
+                { !loading && <TotalInfo total={total} rangeTotal={rangeTotal} typeText="transactions_unit" common={!address} top={address? '-28px': '26'} selected/>}
                 {
-                    address ? <DateRange onDateOk={(start,end) => this.onDateOk(start,end)}  dateClass="date-range-box-address" />: ''
+                    address ? <DateSelect onDateOk={(start,end) => this.onDateOk(start,end)} dataStyle={{marginTop: '-3.3rem'}} />: ''
                 }
                 {
                     (!loading && transactions.length === 0)?
                         <div className="p-3 text-center no-data">{tu("no_transactions")}</div>:
-                        <SmartTable bordered={true} loading={loading} column={column} data={transactions} total={total}
+                        <SmartTable bordered={true} loading={loading} column={column} data={transactions} total={rangeTotal> 2000? 2000: rangeTotal}
                                     onPageChange={(page, pageSize) => {
                                         this.loadTransactions(page, pageSize)
                                     }}/>
