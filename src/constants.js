@@ -48,13 +48,17 @@ export const CURRENCYTYPE = {
 };
 
 // mapping energy
-export const MAPPINGFEE = 100000;
+export const MAPPINGFEE = 1000000000;
 // feeLimit
 export const FEELIMIT = 10000000;
 // withdrawFee
-export const WITHDRAWFEE = 100000;
+export const WITHDRAWFEE = 10000000;
 // depositFee
-export const DEPOSITFEE = 100000;
+export const DEPOSITFEE = 0;
+// deposi min
+export const DEPOSITMIN = 10;
+// withdraw min
+export const WITHDRAWMIN = 10;
 
 // trading type
 export const TRADINGMAP = {
