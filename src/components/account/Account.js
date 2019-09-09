@@ -9,7 +9,7 @@ import {SwitchToken} from "../common/Switch";
 import FreezeBalanceModal from "./FreezeBalanceModal";
 import {AddressLink, HrefLink, TokenLink, TokenTRC20Link} from "../common/Links";
 import SweetAlert from "react-bootstrap-sweetalert";
-import {API_URL, IS_TESTNET, ONE_TRX, CONTRACT_ADDRESS_USDT, CONTRACT_ADDRESS_WIN, CONTRACT_ADDRESS_GGC, IS_SUNNET, CURRENCYTYPE, IS_MAINNET } from "../../constants";
+import {API_URL,CONTRACT_MAINNET_API_URL, IS_TESTNET, ONE_TRX, CONTRACT_ADDRESS_USDT, CONTRACT_ADDRESS_WIN, CONTRACT_ADDRESS_GGC, IS_SUNNET, CURRENCYTYPE, IS_MAINNET } from "../../constants";
 import {Client} from "../../services/api";
 import ApplyForDelegate from "./ApplyForDelegate";
 import _, {trim} from "lodash";
@@ -1676,7 +1676,7 @@ export default class Account extends Component {
    */
   getSideChains = async () => {
     const { loadSideChains } = this.props;
-    const sideChains = await xhr.get(`${API_URL}/external/sidechain/getSideChainList`);
+    const sideChains = await xhr.get(`${CONTRACT_MAINNET_API_URL}/external/sidechain/getSideChainList`);
     const { data: { retCode, data }  } = sideChains;
     if (retCode === '0') {
       const { chains } = data;
@@ -1689,7 +1689,7 @@ export default class Account extends Component {
    */
   getTrx20MappingSideChains = async (option) => {
     const { address } = option;
-    const sideChains = await xhr.get(`${API_URL}/external/sidechain/getMappingByMainchainAddress?mainchainAddress=${address}`);
+    const sideChains = await xhr.get(`${CONTRACT_MAINNET_API_URL}/external/sidechain/getMappingByMainchainAddress?mainchainAddress=${address}`);
     const { data: { retCode, data }  } = sideChains;
     if (retCode === '0') {
       const { sidechains } = data;

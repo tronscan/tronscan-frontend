@@ -10,6 +10,7 @@ import moment from 'moment';
 import {Link} from "react-router-dom";
 import {TRXPrice} from "../common/Price";
 import {withTimers} from "../../utils/timing";
+import {IS_MAINNET} from "../../constants";
 import 'react-perfect-scrollbar/dist/css/styles.css';
 import PerfectScrollbar from 'react-perfect-scrollbar'
 
@@ -88,10 +89,13 @@ class RecentBlocks extends Component {
                                 <span className="color-tron-100">{block.witnessName}</span>
                               </AddressLink>
                             </div>
-                            <div className="text-gray-dark break-word color-grey-200 list-item-word"
-                                 style={styles.nowrap}>
-                              <span className="small color-grey-300 d-inline-block">{tu("block_reward")}:</span> <TRXPrice amount={32}/>
-                            </div>
+                              {
+                                  IS_MAINNET && <div className="text-gray-dark break-word color-grey-200 list-item-word"
+                                     style={styles.nowrap}>
+                                  <span className="small color-grey-300 d-inline-block">{tu("block_reward")}:</span> <TRXPrice amount={32}/>
+                                </div>
+                              }
+
 
                           </div>
                           <div className="ml-auto text-right d-flex flex-column pt-2">
@@ -133,14 +137,14 @@ class RecentBlocks extends Component {
 
                           </div>
                           <div className="ml-auto text-right d-flex flex-column pt-2">
+                            {
+                              IS_MAINNET &&  <div className="text-gray-dark break-word color-grey-200 list-item-word"
+                                                  style={styles.nowrap}><span className="d-inline-block">{tu("block_reward")}:</span> <TRXPrice amount={32}/>
+                              </div>
+                            }
 
-                            <div className="text-gray-dark break-word color-grey-200 list-item-word"
-                                 style={styles.nowrap}>
-                              <span className="d-inline-block">{tu("block_reward")}:</span> <TRXPrice amount={32}/>
-                            </div>
                             <div className="text-muted color-grey-300 small" style={styles.nowrap}>
                               <TimeAgo date={block.timestamp} title={moment(block.timestamp).format("MMM-DD-YYYY HH:mm:ss A")}/>
-
                             </div>
                           </div>
                         </div>

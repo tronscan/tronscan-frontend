@@ -50,7 +50,7 @@ class SmartContract extends React.Component {
     let { match, walletType } = this.props;
     this.loadContract(match.params.id);
     const isPrivateKey =  walletType.type === "ACCOUNT_PRIVATE_KEY";
-    isPrivateKey && IS_SUNNET && this.getMappingBySidechainAddress(match.params.id);
+    IS_SUNNET && this.getMappingBySidechainAddress(match.params.id);
     this.setState({
       isPrivateKey
     })
@@ -304,7 +304,7 @@ class SmartContract extends React.Component {
                                 }
                               </li>
                               {
-                                isPrivateKey && IS_SUNNET && mainchainAddress &&
+                                  IS_SUNNET && mainchainAddress &&
                               <li>
                                 <p>{tu('main_account_mapping_btn')}: </p>
                                 <span>

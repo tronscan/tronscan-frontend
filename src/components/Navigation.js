@@ -147,8 +147,10 @@ class Navigation extends React.Component {
   }
 
   netSelectChange = (value) => {
-      Lockr.set("NET", value)
-      Lockr.set("islogin", 0)
+      Lockr.set("NET", value);
+      Lockr.set("islogin", 0);
+      Lockr.rm('tokensMap');
+      Lockr.rm('tokens20Map');
       this.setState({
           selectedNet: value
       });
