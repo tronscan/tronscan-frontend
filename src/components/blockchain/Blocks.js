@@ -180,7 +180,7 @@ class Blocks extends React.Component {
             <div className="row">
               <div className="col-md-12 table_pos">
                 {total ?<TotalInfo total={total} rangeTotal={rangeTotal} typeText="block_unit" /> :""}
-                <DateRange onDateOk={(start,end) => this.onDateOk(start,end)} />
+                {/**<DateRange onDateOk={(start,end) => this.onDateOk(start,end)} /> */}
                 <SmartTable bordered={true} loading={loading} column={column} data={blocks} total={total}
                             onPageChange={(page, pageSize) => {
                               this.loadBlocks(page, pageSize)

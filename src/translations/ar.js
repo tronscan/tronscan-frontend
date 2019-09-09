@@ -1937,6 +1937,7 @@
   "pledge_num":"الكمية",
   'pledge_num_error':"لا يمكن أن يتجاوز العدد الحد الأقصى للرصيد المتاح",
   "pledge_text":"سوف تستهلك الودائع كمية معينة من الطاقة",
+  "sign_text":"سوف تستهلك الودائع كمية معينة من الطاقة",
   "pledge_mapping_text":"لم يتم تعيين الأصول الخاصة بك إلى DAppChain ، وبالتالي لا يمكن إيداعها.",
   // success
   "pledge_success": "Deposit Success",
@@ -1954,4 +1955,12 @@
   "source_WIN_team": "Source: WIN Management Team",
   "Side_Chain":"Side chain browser(DappChain)",
   "Main_Chain":"Main chain browser(MainChain)",
+
+
+  "7day": "one week",
+  "14day": "two weeks",
+  "30day": "one month",
+  "select_tip": "To view data other than 2000 You can manually adjust the time window",
+  "date_number_tip": "{total} records in the current time range",
+  "date_list_tip": "Only the first 2000 data are displayed",
 };

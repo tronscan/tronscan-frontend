@@ -2,7 +2,7 @@ import React, {Fragment} from "react";
 import { injectIntl} from "react-intl";
 import {Client} from "../../services/api";
 import {AddressLink, TransactionHashLink, BlockNumberLink, TokenLink, TokenTRC20Link} from "./Links";
-import {tu} from "../../utils/i18n";
+import {tu, tv} from "../../utils/i18n";
 import TimeAgo from "react-timeago";
 import {Truncate} from "./text";
 import {withTimers} from "../../utils/timing";
@@ -21,6 +21,8 @@ import { Radio } from 'antd';
 import {isAddressValid} from "@tronscan/client/src/utils/crypto";
 import { CONTRACT_ADDRESS_USDT, CONTRACT_ADDRESS_WIN, CONTRACT_ADDRESS_GGC } from "../../constants";
 import qs from 'qs'
+import DateSelect from './dateSelect'
+import {API_URL} from "../../constants";
 
 
 
@@ -48,7 +50,7 @@ class TransfersAll extends React.Component {
 
     componentDidMount() {
         let {page, pageSize} = this.state;
-        this.load(page,pageSize);
+        // this.load(page,pageSize);
 
         if (this.state.autoRefresh !== false) {
             this.props.setInterval(() => this.load(page,pageSize), this.state.autoRefresh);
@@ -83,15 +85,19 @@ class TransfersAll extends React.Component {
             pageSize: pageSize,
         });
         const query = qs.stringify({ format: 'csv',...params})
-        //getCsvUrl(`${'http://52.15.68.74:10000'}/api/trc10trc20-transfer?${query}`)
+        getCsvUrl(`${API_URL}/api/trc10trc20-transfer?${query}`)
         let list,total,range = 0;
         let {transfers, total:totaldata, rangeTotal} = await Client.getTransfersAll({
             limit: pageSize,
             start: (page - 1) * pageSize,
             ...params,
         });
+        let {count} = await Client.getCountByType({
+            type: 'trc10trc20', 
+            ...filter,
+            ...id,})
         list = transfers;
-        total = totaldata;
+        total = count || totaldata;
         range = rangeTotal;
         transfers.map(item => {
             if (!item.amount_str) {
@@ -398,31 +404,14 @@ class TransfersAll extends React.Component {
         return (
             <div className="token_black table_pos">
                 {loading && <div className="loading-style"><TronLoader/></div>}
-                {
-                    transfers.length? <div className="d-flex justify-content-between" style={{left: 'auto'}}>
-                        <TotalInfo total={total} rangeTotal={rangeTotal} typeText="transactions_unit" common={!address} divClass="table_pos_info_addr"/>
-                        {/*<div className="table_pos_switch d-md-block table_pos_switch_addr table_pos_switch_addr_transfers">*/}
-                            {/*<SwitchToken  handleSwitch={this.handleSwitch} text="only_TRX_transfers" isHide={false}/>*/}
-                        {/*</div>*/}
-                        {
-                            address ?  <div className="transactions-rangePicker table_pos_picker transfers_pos_picker" style={{width: "360px"}}>
-                                <DateRange onDateOk={(start,end) => this.onDateOk(start,end)} dateClass="date-range-box-address-transfer"/>
-                            </div> : ''
-                        }
-                    </div>:<div className="d-flex justify-content-between" style={{left: 'auto'}}>
-                        {/*<div className="table_pos_info d-md-block table_pos_info_addr2">{tableInfo}<span> <QuestionMark placement="top" text="to_provide_a_better_experience"></QuestionMark></span></div>*/}
-                        <TotalInfo total={total} rangeTotal={rangeTotal} typeText="transactions_unit" common={!address} divClass="table_pos_info_addr2"/>
-                        {/*<div className="table_pos_switch d-md-block table_pos_switch_addr2">*/}
-                            {/*<SwitchToken  handleSwitch={this.handleSwitch} text="only_TRX_transfers" isHide={false}/>*/}
-                        {/*</div>*/}
-                        {
-                            address ?  <div className="transactions-rangePicker table_pos_picker" style={{width: "360px"}}>
-                                <DateRange onDateOk={(start,end) => this.onDateOk(start,end)} dateClass="date-range-box-address-nodata" />
-                            </div> : ''
-
-                        }
-                    </div>
-                }
+                <div className="d-flex justify-content-between" style={{right: 'auto'}}>
+                    {!loading && <TotalInfo total={total} rangeTotal={rangeTotal} typeText="transactions_unit" divClass="table_pos_info_addr" selected/> }
+                    {
+                        address ?  <div>
+                            <DateSelect onDateOk={(start,end) => this.onDateOk(start,end)}  />
+                        </div> : ''
+                    }
+                </div>
                 {
                     transfers.length > 0 &&  <div className="d-flex align-items-center">
                         <div className="address-transfers-radio">
@@ -438,7 +427,7 @@ class TransfersAll extends React.Component {
                     (!loading && transfers.length === 0)?
                         <div className="p-3 text-center no-data">{tu("no_transfers")}</div>
                         :
-                        <SmartTable bordered={true} loading={loading} column={column} data={transfers} total={total} locale={locale} addr="address" transfers="address"
+                        <SmartTable bordered={true} loading={loading} column={column} data={transfers} total={rangeTotal> 2000? 2000: rangeTotal} locale={locale} addr="address" transfers="address"
                                     onPageChange={(page, pageSize) => {
                                         this.onChange(page, pageSize)
                                     }}/>

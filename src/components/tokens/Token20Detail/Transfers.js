@@ -13,7 +13,7 @@ import SmartTable from "../../common/SmartTable.js"
 import {upperFirst} from "lodash";
 import {TronLoader} from "../../common/loaders";
 import TotalInfo from "../../common/TableTotal";
-import DateRange from "../../common/DateRange";
+import DateSelect from "../../common/dateSelect";
 import xhr from "axios/index";
 import { FormatNumberByDecimals } from '../../../utils/number'
 import qs from 'qs'
@@ -28,9 +28,9 @@ class Transfers extends React.Component {
     this.state = {
       filter: {},
       transfers: [],
-      page: 0,
+      page: 1,
       total: 0,
-      pageSize: 25,
+      pageSize: 20,
       showTotal: props.showTotal !== false,
       emptyState: props.emptyState,
       autoRefresh: props.autoRefresh || false
@@ -38,7 +38,7 @@ class Transfers extends React.Component {
   }
 
   componentDidMount() {
-    this.loadPage();
+    // this.loadPage();
 
     if (this.state.autoRefresh !== false) {
       this.props.setInterval(() => this.load(), this.state.autoRefresh);
@@ -65,15 +65,19 @@ class Transfers extends React.Component {
             pageSize: pageSize,
         }
     );
-
     const query = qs.stringify({ format: 'csv',...params})
-   // getCsvUrl(`${'http://52.15.68.74:10000'}/api/token_trc20/transfers?${query}`)
+    getCsvUrl(`${API_URL}/api/token_trc20/transfers?${query}`)
     let {list, total, rangeTotal} = await Client.getTokenTRC20Transfers({
         limit: pageSize,
         start: (page - 1) * pageSize,
         ...params
     });
-    let transfers = list;
+    let transfers = list || [];
+
+    const { count } = await Client.getCountByType({
+      type: 'trc20', 
+      contract: filter.token
+    })
 
     // let {transfers, total} = await Client.getTransfers({
     //   sort: '-timestamp',
@@ -90,7 +94,7 @@ class Transfers extends React.Component {
     this.setState({
       page,
       transfers,
-      total,
+      total: count,
       rangeTotal,
       loading: false,
     });
@@ -205,13 +209,13 @@ class Transfers extends React.Component {
         <div className="row transfers">
           <div className="col-md-12 table_pos">
             <div className="d-flex justify-content-between pl-3 pr-3" style={{left: 'auto'}}>
-                {total ?<TotalInfo total={total} rangeTotal={rangeTotal} typeText="transaction_info" divClass="table_pos_info_addr"/> :""}
-              <DateRange onDateOk={(start,end) => this.onDateOk(start,end)} dateClass="date-range-box-token"/>
+            {!loading && <TotalInfo total={total} rangeTotal={rangeTotal} typeText="transaction_info" divClass="table_pos_info_addr" selected/>}
+              <DateSelect onDateOk={(start,end) => this.onDateOk(start,end)} dataStyle={{right: '35px'}}/>
             </div>
             {
               (!loading && transfers.length === 0)?
                   <div className="pt-5 pb-5 text-center no-data transfers-bg-white">{tu("no_transfers")}</div>
-                  : <SmartTable border={false} loading={loading} column={column} data={transfers} total={total} addr="address" transfers="token"
+                  : <SmartTable border={false} loading={loading} column={column} data={transfers} total={rangeTotal>2000? 2000: rangeTotal} addr="address" transfers="token"
                                 onPageChange={(page, pageSize) => {
                                     this.loadPage(page, pageSize)
                                 }}/>

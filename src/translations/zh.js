@@ -1989,6 +1989,7 @@ export const messages = {
   "pledge_num":"数量",
   'pledge_num_error':"数量不能超过最大可用余额",
   "pledge_text":"质押会消耗一定量的能量",
+  "sign_text":"解押会消耗一定量的能量",
   "pledge_mapping_text":"资产尚未映射到DappChain.不支持质押",
 
   // success
@@ -2007,5 +2008,12 @@ export const messages = {
   "source_WIN_team": "信息来源：WIN管理团队",
   "Side_Chain":"侧链浏览器（DappChain）",
   "Main_Chain":"主链浏览器（MainChain）",
+
+  "7day": "7天",
+  "14day": "14天",
+  "30day": "30天",
+  "select_tip": "如果要查看2000条之外的数据可以手动调整时间窗口",
+  "date_number_tip": "当前时间范围内有{total}条记录",
+  "date_list_tip": "列表仅展示2000条记录",
 
 };

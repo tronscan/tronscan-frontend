@@ -1953,6 +1953,7 @@ export const messages = {
   "pledge_num":"Amount",
   'pledge_num_error':"The number cannot exceed the maximum available balance",
   "pledge_text":"Deposit will consume a certain amount of energy",
+  "sign_text":"Withdraw will consume a certain amount of energy",
   "pledge_mapping_text":"Your assets have not been mapped to DAppChain, and therefore cannot be deposited.",
 
   // success
@@ -1972,4 +1973,11 @@ export const messages = {
   "Side_Chain":"Side chain browser(DappChain)",
   "Main_Chain":"Main chain browser(MainChain)",
 
+
+  "7day": "one week",
+  "14day": "two weeks",
+  "30day": "one month",
+  "select_tip": "To view data other than 2000 You can manually adjust the time window",
+  "date_number_tip": "{total} records in the current time range",
+  "date_list_tip": "Only the first 2000 data are displayed",
 };

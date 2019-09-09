@@ -1942,6 +1942,7 @@ export const messages = {
   "pledge_num":"数量",
   'pledge_num_error':"数量は使用可能な最大残高を超えないでください",
   "pledge_text":"抵当にはエネルギーの消費が必要となります",
+  "sign_text":"撤回にはエネルギーの消費が必要となります",
   "pledge_mapping_text":"資産をまだDappChainにマップされていないため、抵当できません。",
   // success
   "pledge_success": "Deposit Success",
@@ -1959,4 +1960,11 @@ export const messages = {
   "source_WIN_team": "Source: WIN Management Team",
   "Side_Chain":"Side chain browser(DappChain)",
   "Main_Chain":"Main chain browser(MainChain)",
+
+  "7day": "one week",
+  "14day": "two weeks",
+  "30day": "one month",
+  "select_tip": "To view data other than 2000 You can manually adjust the time window",
+  "date_number_tip": "{total} records in the current time range",
+  "date_list_tip": "Only the first 2000 data are displayed",
 }

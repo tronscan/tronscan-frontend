@@ -159,7 +159,7 @@ class SignModal extends Component {
 
         // pledgeTextItem
         const pledgeTextItem = (
-            <p className="mt-2">{tu('pledge_text')}</p>
+            <p className="mt-2">{tu('sign_text')}</p>
         );
 
         return (

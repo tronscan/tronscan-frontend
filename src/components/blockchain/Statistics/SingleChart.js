@@ -102,7 +102,7 @@ class Statistics extends React.Component {
                 this.loadTotalTRXSupply();
                 setInterval(() => {
                     this.loadTotalTRXSupply();
-                }, 30000);
+                }, 60000);
                 break;
             case 'pieChart':
                 this.loadPieChart();
@@ -171,9 +171,10 @@ class Statistics extends React.Component {
             {value: funds.turnOver, name: 'circulating_supply', selected: true,sliced: true},
             {value: funds.fundTrx, name: 'total_frozen', selected: false,sliced: false},
         ]
-        let trxPriceData = await xhr.get(`https://api.coinmarketcap.com/v1/ticker/tronix/?convert=EUR`);
+        let eurURL = encodeURI(`https://api.coinmarketcap.com/v1/ticker/tronix/?convert=EUR`);
+        let trxPriceData = await xhr.get(`${API_URL}/api/system/proxy?url=${eurURL}`);
         let priceUSD = ((parseFloat(trxPriceData.data[0].price_usd))*1000).toFixed(2);
-        let priceBTC = ((parseFloat(trxPriceData.data[0].price_btc))*1000).toFixed(5);
+        let priceBTC = ((parseFloat(trxPriceData.data[0].price_btc))*1000).toFixed(5)
         let marketCapitalization = ((parseFloat(trxPriceData.data[0].price_usd)*(funds.totalTurnOver))).toFixed(2);
         this.setState({
             supplyTypesChart: supplyTypesChartData,

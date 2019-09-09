@@ -3,11 +3,13 @@ import {Client} from "../../services/api";
 import {BlockNumberLink} from "./Links";
 import {t, tu} from "../../utils/i18n";
 import {FormattedNumber,injectIntl} from "react-intl";
+import {API_URL} from "../../constants";
 import TimeAgo from "react-timeago";
 import moment from 'moment';
 import SmartTable from "./SmartTable.js"
 import {upperFirst} from "lodash";
 import {TronLoader} from "./loaders";
+import qs from 'qs'
 
 class Blocks extends React.Component {
 
@@ -35,16 +37,20 @@ class Blocks extends React.Component {
 
   load = async (page = 1, pageSize = 20) => {
 
-    let {filter} = this.props;
+    let {filter, getCsvUrl} = this.props;
 
     this.setState({ loading: true });
 
-    let {blocks, total} = await Client.getBlocks({
+    const params = {
       sort: '-number',
       limit: pageSize,
       start: (page-1) * pageSize,
       ...filter,
-    });
+    }
+    const query = qs.stringify({ format: 'csv',...params})
+    getCsvUrl(`${API_URL}/api/block?${query}`)
+
+    let {blocks, total} = await Client.getBlocks(params);
 
     this.setState({
       page,

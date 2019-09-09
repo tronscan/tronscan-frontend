@@ -454,7 +454,7 @@ export default class VoteOverview extends React.Component {
         //   return true;
         // }
 
-        if (c.name && trim(c.name.toLowerCase()).indexOf(searchCriteria.toLowerCase()) !== -1) {
+        if (c.address && trim(c.address.toLowerCase()).indexOf(searchCriteria.toLowerCase()) !== -1) {
           return true;
         }
 

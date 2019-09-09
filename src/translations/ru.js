@@ -1950,6 +1950,7 @@ export const messages = {
   "pledge_num":"Количество",
   'pledge_num_error':"Количество не может превышать максимально доступный баланс",
   "pledge_text":"Вклад будет потреблять определенное количество энергии",
+  "sign_text":"Снимать будет потреблять определенное количество энергии",
   "pledge_mapping_text":"Ваши активы не были маппированы с DAppChain и поэтому вклад не может быть совершен.",
   // success
   "pledge_success": "Deposit Success",
@@ -1967,4 +1968,11 @@ export const messages = {
   "source_WIN_team": "Source: WIN Management Team",
   "Side_Chain":"Side chain browser(DappChain)",
   "Main_Chain":"Main chain browser(MainChain)",
+
+  "7day": "one week",
+  "14day": "two weeks",
+  "30day": "one month",
+  "select_tip": "To view data other than 2000 You can manually adjust the time window",
+  "date_number_tip": "{total} records in the current time range",
+  "date_list_tip": "Only the first 2000 data are displayed",
 };

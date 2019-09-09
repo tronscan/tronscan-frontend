@@ -13,6 +13,7 @@ import {isAddressValid} from "@tronscan/client/src/utils/crypto";
 import { trim } from 'lodash'
 import { FormatNumberByDecimals } from '../../../utils/number'
 import {QuestionMark} from "../../common/QuestionMark";
+import qs from 'qs'
 
 class TokenHolders extends React.Component {
     constructor(props) {
@@ -41,7 +42,7 @@ class TokenHolders extends React.Component {
   };
 
   loadTokenHolders = async (page = 1, pageSize = 20) => {
-    let {filter} = this.props;
+    let {filter, getCsvUrl} = this.props;
     this.setState({loading: true});
 
     // let {addresses, total} = await Client.getTokenHolders(filter.token, {
@@ -50,7 +51,15 @@ class TokenHolders extends React.Component {
     //   start: (page - 1) * pageSize,
     //   count: true
     // });
-    let { data } = await xhr.get(API_URL+"/api/token_trc20/holders?sort=-balance&start=" +(page - 1) * pageSize+ "&limit="+pageSize+"&contract_address=" + filter.token);
+    const params = {
+      sort: '-balance',
+      start:(page - 1) * pageSize,
+      limit: pageSize,
+      contract_address: filter.token
+    }
+    const query = qs.stringify({ format: 'csv',...params})
+    getCsvUrl(`${API_URL}/api/trc10trc20-transfer?${query}`)
+    let { data } = await xhr.get(API_URL+"/api/token_trc20/holders",{params});
     let addresses = data.trc20_tokens;
     let total= data.total;
     let rangeTotal = data.rangeTotal;
