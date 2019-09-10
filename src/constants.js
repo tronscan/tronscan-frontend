@@ -55,10 +55,14 @@ export const FEELIMIT = 10000000;
 export const WITHDRAWFEE = 10000000;
 // depositFee
 export const DEPOSITFEE = 0;
-// deposi min
-export const DEPOSITMIN = 10;
-// withdraw min
-export const WITHDRAWMIN = 10;
+// deposi min trx
+export const TRXDEPOSITMIN = 10;
+// withdraw min trx
+export const TRXWITHDRAWMIN = 10;
+// deposi min trc
+export const TRCDEPOSITMIN = 1;
+// withdraw min trc
+export const TRCWITHDRAWMIN = 1;
 
 // trading type
 export const TRADINGMAP = {

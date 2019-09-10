@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { tu } from '../../utils/i18n';
 import { Modal, Form, Input } from 'antd';
 import PropTypes from 'prop-types';
-import { CURRENCYTYPE, FEELIMIT, WITHDRAWFEE, DEPOSITMIN } from './../../constants';
+import { CURRENCYTYPE, FEELIMIT, WITHDRAWFEE, TRXWITHDRAWMIN, TRCWITHDRAWMIN } from './../../constants';
 import { injectIntl } from 'react-intl';
 import SweetAlert from 'react-bootstrap-sweetalert';
 import { mul } from './../../utils/calculation';
@@ -110,7 +110,7 @@ class SignModal extends Component {
      * num change
      */
     onChangeNum = e => {
-        const { option: { precision, balance, currency }, intl } = this.props;
+        const { option: { precision, balance, currency, type }, intl } = this.props;
         const numValue = e.target && e.target.value;
         let errorMess = '';
         let reg = Number(precision) > 0
@@ -123,8 +123,9 @@ class SignModal extends Component {
             }
 
             // min value
-            if (mul(numValue, Math.pow(10, Number(precision))) < DEPOSITMIN) {
-                errorMess = `${intl.formatMessage({id: 'pledge_num_min_error'})}${DEPOSITMIN}${currency}`;
+            const minAmount = type === CURRENCYTYPE.TRX ? TRXWITHDRAWMIN : TRCWITHDRAWMIN;
+            if (mul(numValue, Math.pow(10, Number(precision))) < minAmount) {
+                errorMess = `${intl.formatMessage({id: 'pledge_num_min_error'})}${minAmount}${currency}`;
             }
 
             // max value
