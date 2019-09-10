@@ -17,7 +17,7 @@ import {toastr} from "react-redux-toastr";
 import {HrefLink} from "../common/Links";
 import {TronLoader} from "../common/loaders";
 import {LineReactHighChartAdd, LineReactHighChartTx} from "../common/LineCharts";
-import {API_URL} from "../../constants";
+import {API_URL,IS_MAINNET} from "../../constants";
 import { setWebsocket } from '../../actions/account';
 import Lockr from "lockr";
 
@@ -364,11 +364,20 @@ export default class Home extends Component {
                 <div className="col-12  card  pt-1 mb-0" style={{border: 'none', borderRadius: 0}}>
                   <div className="row pt-3">
                     <div className="col-6 ">
-                      <Link to="/blockchain/nodes" className="hvr-underline-from-center hvr-underline-white text-muted">
-                        <img src={require('../../images/home/node.png')}/>
-                        <h2><CountUp start={0} end={onlineNodes} duration={1}/></h2>
-                        <p className="m-0">{tu("online_nodes")}</p>
-                      </Link>
+
+                        {
+                            IS_MAINNET?
+                                <Link to="/blockchain/nodes" className="hvr-underline-from-center hvr-underline-white text-muted">
+                                    <img src={require('../../images/home/node.png')}/>
+                                    <h2><CountUp start={0} end={onlineNodes} duration={1}/></h2>
+                                    <p className="m-0">{tu("online_nodes")}</p>
+                                </Link>:
+                                <div className="hvr-underline-from-center hvr-underline-white text-muted">
+                                    <img src={require('../../images/home/node.png')}/>
+                                    <h2><CountUp start={0} end={onlineNodes} duration={1}/></h2>
+                                    <p className="m-0">{tu("online_nodes")}</p>
+                                </div>
+                        }
                     </div>
                     <div className="col-6">
                       <Link to="/blockchain/blocks"
@@ -418,10 +427,17 @@ export default class Home extends Component {
                 <div className="col-12  card  pt-1 pl-0 pr-0" style={{border: 'none', borderRadius: 0}}>
                   <div className="card-body row pt-4 pb-4 home-stats">
                     <div className="col-lg-2 col-md-4 col-xs-12 mb-lg-0  mb-md-3 ">
-                      <Link to="/blockchain/nodes" className="hvr-underline-from-center hvr-underline-white text-muted">
-                        <h2><CountUp start={0} end={onlineNodes} duration={1}/></h2>
-                        <p className="m-0">{tu("online_nodes")}</p>
-                      </Link>
+                        {
+                            IS_MAINNET?
+                            <Link to="/blockchain/nodes" className="hvr-underline-from-center hvr-underline-white text-muted">
+                                <h2><CountUp start={0} end={onlineNodes} duration={1}/></h2>
+                                <p className="m-0">{tu("online_nodes")}</p>
+                            </Link>:
+                            <div className="hvr-underline-from-center hvr-underline-white text-muted">
+                                <h2><CountUp start={0} end={onlineNodes} duration={1}/></h2>
+                                <p className="m-0">{tu("online_nodes")}</p>
+                            </div>
+                        }
                     </div>
                     <div className="col-lg-2 col-md-4 col-xs-12 mb-lg-0 mb-md-3">
                       <Link to="/blockchain/blocks"
