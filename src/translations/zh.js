@@ -1988,6 +1988,7 @@ export const messages = {
   "pledge_sidechain":"侧链",
   "pledge_num":"数量",
   'pledge_num_error':"数量不能超过最大可用余额",
+  'pledge_num_min_error':"数量不能小于",
   "pledge_text":"质押会消耗一定量的能量",
   "sign_text":"解押会消耗一定量的能量",
   "pledge_mapping_text":"资产尚未映射到DappChain.不支持质押",

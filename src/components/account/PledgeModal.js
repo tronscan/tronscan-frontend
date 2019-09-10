@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { tu } from '../../utils/i18n';
 import { Modal, Form, Input, Select } from 'antd';
 import PropTypes from 'prop-types';
-import { CURRENCYTYPE, FEELIMIT, DEPOSITFEE } from './../../constants';
+import { CURRENCYTYPE, FEELIMIT, DEPOSITFEE, TRXDEPOSITMIN, TRCDEPOSITMIN } from './../../constants';
 import { injectIntl } from 'react-intl';
 import SweetAlert from 'react-bootstrap-sweetalert';
 import { mul } from './../../utils/calculation';
@@ -134,17 +134,33 @@ class PledgeModal extends Component {
      * num change
      */
     onChangeNum = e => {
-        const { option: { precision, balance } } = this.props;
+        const { option: { precision, balance, currency, type }, intl } = this.props;
         const numValue = e.target && e.target.value;
+        let errorMess = '';
         let reg = Number(precision) > 0
             ? `^(0|[1-9][0-9]*)(\\.\\d{0,${Number(precision)}})?$` : '^(0|[1-9][0-9]*)(\\.\\d+)?$';
-        if (!!numValue && !new RegExp(reg).test(numValue)) {
-            return;
+        
+        if (!!numValue) {
+            // format
+            if (!new RegExp(reg).test(numValue)) {
+                return;
+            }
+
+            // min value
+            const minAmount = type === CURRENCYTYPE.TRX ? TRXDEPOSITMIN : TRCDEPOSITMIN;
+            if (mul(numValue, Math.pow(10, Number(precision))) < minAmount) {
+                errorMess = `${intl.formatMessage({id: 'pledge_num_min_error'})}${minAmount}${currency}`;
+            }
+
+            // max value
+            if (Number(numValue) > Number(balance)) {
+                errorMess = tu('pledge_num_error');
+            }
         }
 
         this.setState({
             numValue,
-            errorMess: !!numValue && Number(numValue) > Number(balance) ? tu('pledge_num_error') : ''
+            errorMess,
         });
     }
 

@@ -26,19 +26,20 @@ const getTitle = contract => {
         }
     } else {
         // mainnet
-        if (contract_address === SUNWEBCONFIG.MAINNET && method.includes(TRADINGMAP.DEPOSIT)) {
-            // deposit
-            title = tu('pledge_trigger_smart_contract');
-            smartTitle = tu('pledge_normal_trigger_smart_contract');
-        } else if (contract_address === SUNWEBCONFIG.MAINNET && method.includes(TRADINGMAP.MAPPING)) {
-            // mapping
-            title = tu('mapping_trigger_smart_contract');
-            smartTitle = tu('mapping_normal_trigger_smart_contract');
-        } else if (contract_address === SUNWEBCONFIG.MAINNET && method.includes(TRADINGMAP.APPROVE)) {
-            // approve
-            title = tu('approve_trigger_smart_contract');
-            smartTitle = tu('approve_normal_trigger_smart_contract');
-        }
+        //     smartTitle = tu('pledge_normal_trigger_smart_contract');
+        // if (contract_address === SUNWEBCONFIG.MAINNET && method.includes(TRADINGMAP.DEPOSIT)) {
+        //     // deposit
+        //     title = tu('pledge_trigger_smart_contract');
+        //     smartTitle = tu('pledge_normal_trigger_smart_contract');
+        // } else if (contract_address === SUNWEBCONFIG.MAINNET && method.includes(TRADINGMAP.MAPPING)) {
+        //     // mapping
+        //     title = tu('mapping_trigger_smart_contract');
+        //     smartTitle = tu('mapping_normal_trigger_smart_contract');
+        // } else if (contract_address === SUNWEBCONFIG.MAINNET && method.includes(TRADINGMAP.APPROVE)) {
+        //     // approve
+        //     title = tu('approve_trigger_smart_contract');
+        //     smartTitle = tu('approve_normal_trigger_smart_contract');
+        // }
     }
     return <h5>
         <i className="fa fa-exchange-alt"></i>
