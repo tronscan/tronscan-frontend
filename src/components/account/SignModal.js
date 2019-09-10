@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import { CURRENCYTYPE, FEELIMIT, WITHDRAWFEE, TRXWITHDRAWMIN, TRCWITHDRAWMIN } from './../../constants';
 import { injectIntl } from 'react-intl';
 import SweetAlert from 'react-bootstrap-sweetalert';
-import { mul } from './../../utils/calculation';
+import { mul, division } from './../../utils/calculation';
 
 class SignModal extends Component {
 
@@ -123,8 +123,8 @@ class SignModal extends Component {
             }
 
             // min value
-            const minAmount = type === CURRENCYTYPE.TRX ? TRXWITHDRAWMIN : TRCWITHDRAWMIN;
-            if (mul(numValue, Math.pow(10, Number(precision))) < minAmount) {
+            const minAmount = division(type === CURRENCYTYPE.TRX ? TRXWITHDRAWMIN : TRCWITHDRAWMIN, Math.pow(10, Number(precision)));
+            if (Number(numValue) < minAmount) {
                 errorMess = `${intl.formatMessage({id: 'pledge_num_min_error'})}${minAmount}${currency}`;
             }
 

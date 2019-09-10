@@ -17,7 +17,7 @@ export const add = (a, b) => {
         d = 0;
     }
     e = Math.pow(10, Math.max(c, d));
-    return (this.mul(a, e) + this.mul(b, e)) / e;
+    return (mul(a, e) + mul(b, e)) / e;
 };
 
 /**
@@ -39,7 +39,7 @@ export const sub = (a, b) => {
         d = 0;
     }
     e = Math.pow(10, Math.max(c, d));
-    return (this.mul(a, e) - this.mul(b, e)) / e;
+    return (mul(a, e) - mul(b, e)) / e;
 };
 
 /**
@@ -83,5 +83,5 @@ export const division = (a, b) => {
     }
     c = Number(a.toString().replace('.', ''));
     d = Number(b.toString().replace('.', ''));
-    return this.mul(c / d, Math.pow(10, f - e));
+    return mul(c / d, Math.pow(10, f - e));
 };

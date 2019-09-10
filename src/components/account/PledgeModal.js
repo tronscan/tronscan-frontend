@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import { CURRENCYTYPE, FEELIMIT, DEPOSITFEE, TRXDEPOSITMIN, TRCDEPOSITMIN } from './../../constants';
 import { injectIntl } from 'react-intl';
 import SweetAlert from 'react-bootstrap-sweetalert';
-import { mul } from './../../utils/calculation';
+import { mul, division } from './../../utils/calculation';
 
 const { Option } = Select;
 
@@ -147,8 +147,8 @@ class PledgeModal extends Component {
             }
 
             // min value
-            const minAmount = type === CURRENCYTYPE.TRX ? TRXDEPOSITMIN : TRCDEPOSITMIN;
-            if (mul(numValue, Math.pow(10, Number(precision))) < minAmount) {
+            const minAmount = division(type === CURRENCYTYPE.TRX ? TRXDEPOSITMIN : TRCDEPOSITMIN, Math.pow(10, Number(precision)));
+            if (Number(numValue) < minAmount) {
                 errorMess = `${intl.formatMessage({id: 'pledge_num_min_error'})}${minAmount}${currency}`;
             }
 
