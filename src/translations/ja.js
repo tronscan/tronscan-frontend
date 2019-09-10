@@ -1953,6 +1953,8 @@ export const messages = {
   "pledge_text":"抵当にはエネルギーの消費が必要となります",
   "sign_text":"撤回にはエネルギーの消費が必要となります",
   "pledge_mapping_text":"資産をまだDappChainにマップされていないため、抵当できません。",
+  "lack_of_balance":"TRX has insufficient balance",
+  "mapping_text":"Mapping operations consume:",
   // success
   "pledge_success": "Deposit Success",
   "sign_success": "Withdraw Success",

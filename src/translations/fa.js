@@ -1954,6 +1954,8 @@ export const messages = {
     "pledge_text":"سپرده مقدار مشخصی از انرژی را مصرف می کند.",
     "sign_text":"کنار کشیدن مقدار مشخصی از انرژی را مصرف می کند.",
     "pledge_mapping_text":"دارایی های شما در DAppChain نقشه برداری نشده است ، بنابراین نمی تواند واریز شود.",
+    "lack_of_balance":"TRX has insufficient balance",
+    "mapping_text":"Mapping operations consume:",
     // success
     "pledge_success": "Deposit Success",
     "sign_success": "Withdraw Success",

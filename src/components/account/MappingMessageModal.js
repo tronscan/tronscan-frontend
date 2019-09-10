@@ -5,36 +5,6 @@ import { Modal } from 'antd';
 
 class MappingMessageModal extends Component {
 
-    constructor() {
-        super();
-
-        this.state = {
-            name: '',
-            disabled: false,
-        };
-    }
-
-    /**
-     * Form validation
-     */
-    isValid = () => {
-        let { name } = this.state;
-
-        if (name.length < 8) {
-            return [false, tu('name_to_short')];
-        }
-
-        if (name.length > 32) {
-            return [false, tu('name_to_long')];
-        }
-
-        if (!/^[a-zA-Z0-9_-]+$/.test(name)) {
-            return [false, tu('permitted_characters_message')];
-        }
-
-        return [true];
-    };
-
     /**
      * Modal cancel
      */

@@ -1956,6 +1956,8 @@ export const messages = {
   "pledge_text":"서약은 일정량의 에너지를 소비",
   "sign_text":"서약은 일정량의 에너지를 소비",
   "pledge_mapping_text":"아직 DappChain에 매핑되지 않은 자산, 서약을 지원하지 않습니다",
+  "lack_of_balance":"TRX has insufficient balance",
+  "mapping_text":"Mapping operations consume:",
   // success
   "pledge_success": "Deposit Success",
   "sign_success": "Withdraw Success",

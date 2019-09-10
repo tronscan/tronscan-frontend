@@ -1960,6 +1960,8 @@ export const messages = {
   "pledge_text":"El depósito consumirá una cierta cantidad de energía.",
   "sign_text":"El depósito consumirá una cierta cantidad de energía.",
   "pledge_mapping_text":"Sus activos no se han reflectado a DAppChain y, por lo tanto, no se pueden depositar.",
+  "lack_of_balance":"TRX has insufficient balance",
+  "mapping_text":"Mapping operations consume:",
   // success
   "pledge_success": "Deposit Success",
   "sign_success": "Withdraw Success",

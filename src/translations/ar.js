@@ -1948,6 +1948,8 @@
   "pledge_text":"سوف تستهلك الودائع كمية معينة من الطاقة",
   "sign_text":"سوف تستهلك الودائع كمية معينة من الطاقة",
   "pledge_mapping_text":"لم يتم تعيين الأصول الخاصة بك إلى DAppChain ، وبالتالي لا يمكن إيداعها.",
+  "lack_of_balance":"TRX has insufficient balance",
+  "mapping_text":"Mapping operations consume:",
   // success
   "pledge_success": "Deposit Success",
   "sign_success": "Withdraw Success",

@@ -3,10 +3,10 @@ import { connect } from 'react-redux';
 import { tu } from '../../utils/i18n';
 import { Modal, Form, Input } from 'antd';
 import PropTypes from 'prop-types';
-import { CURRENCYTYPE, FEELIMIT, WITHDRAWFEE, TRXWITHDRAWMIN, TRCWITHDRAWMIN } from './../../constants';
+import { CURRENCYTYPE, FEELIMIT, ONE_TRX, TRXWITHDRAWMIN, TRCWITHDRAWMIN } from './../../constants';
 import { injectIntl } from 'react-intl';
 import SweetAlert from 'react-bootstrap-sweetalert';
-import { mul, division } from './../../utils/calculation';
+import { mul, division, add } from './../../utils/calculation';
 
 class SignModal extends Component {
 
@@ -15,6 +15,8 @@ class SignModal extends Component {
         sideChains: PropTypes.array,
         account: PropTypes.object,
         type: PropTypes.string,
+        fees: PropTypes.object,
+        currentWallet: PropTypes.object,
     };
 
     constructor() {
@@ -23,6 +25,7 @@ class SignModal extends Component {
         this.state = {
             isDisabled: false,
             isShowModal: true,
+            feeError: '',
         };
     }
 
@@ -68,24 +71,26 @@ class SignModal extends Component {
      */
     confirm = () => {
         const { form: { validateFields }, account: { sunWeb },
-            option: { id, address, precision, type } } = this.props;
+            option: { id, address, precision, type }, fees: { withdrawFee } } = this.props;
         const { numValue, errorMess } = this.state;
 
         this.setState({ isDisabled: true });
+        const isSubmit = this.validateNum();
         validateFields(async(err, values) => {
-            if (!err && !errorMess) {
+            if (!err && !errorMess && isSubmit) {
                 try {
+                    const fee = mul(withdrawFee, ONE_TRX);
                     const num = mul(numValue,  Math.pow(10, Number(precision)));
                     let data;
                     // trc10
                     if (CURRENCYTYPE.TRX10 === type) {
-                        data = await sunWeb.withdrawTrc10(id, num, WITHDRAWFEE, FEELIMIT);
+                        data = await sunWeb.withdrawTrc10(id, num, fee, FEELIMIT);
                     } else if (CURRENCYTYPE.TRX20 === type) {
                         // trc20
-                        data = await sunWeb.withdrawTrc20(num, WITHDRAWFEE, FEELIMIT, address);
+                        data = await sunWeb.withdrawTrc20(num, fee, FEELIMIT, address);
                     } else if (CURRENCYTYPE.TRX === type) {
-                        // todo wangyan
-                        data = await sunWeb.withdrawTrx(num, WITHDRAWFEE, FEELIMIT);
+                        // trx
+                        data = await sunWeb.withdrawTrx(num, fee, FEELIMIT);
                     }
                     this.openModal(data);
                     this.setState({ isDisabled: false });
@@ -140,10 +145,40 @@ class SignModal extends Component {
         });
     }
 
+    /**
+     * Lack of balance validate
+     */
+    validateNum = () => {
+        const { option: { type }, fees: { withdrawFee }, currentWallet: { balance }, intl } = this.props;
+        const { numValue } = this.state;
+        
+        const num = Number(numValue);
+        // trc10
+        if (CURRENCYTYPE.TRX === type) {
+            if (balance < add(num, withdrawFee)) {
+                this.setState({
+                    feeError: `${intl.formatMessage({id: 'lack_of_balance'})}`
+                });
+                return false;
+            }
+        } else {
+            if (balance < num) {
+                this.setState({
+                    feeError: `${intl.formatMessage({id: 'lack_of_balance'})}`
+                });
+                return false;
+            }
+        }
+        this.setState({
+            feeError: '',
+        });
+        return true;
+    }
+
     render() {
         const { getFieldDecorator } = this.props.form;
-        const { option: { currency, balance } } = this.props;
-        const { isDisabled, modal, isShowModal, numValue, errorMess } = this.state;
+        const { option: { currency, balance }, fees: { withdrawFee } } = this.props;
+        const { isDisabled, modal, isShowModal, numValue, errorMess, feeError } = this.state;
 
         // currencyItem
         const currencyItem = (
@@ -169,13 +204,18 @@ class SignModal extends Component {
 
         // btnItem
         const btnItem = (
-            <button className="btn btn-danger" style={{ width: '100%' }} disabled={isDisabled}
+            <button className="btn btn-danger" style={{ width: '100%' }} disabled={!numValue || isDisabled}
                 onClick={this.confirm}>{tu('sidechain_account_sign_btn')}</button>
         );
 
         // pledgeTextItem
         const pledgeTextItem = (
-            <p className="mt-2">{tu('sign_text')}</p>
+            <p className="mt-2">{tu('sign_text')}{withdrawFee}trx</p>
+        );
+
+        // feeError
+        const feeErrorItem = (
+            <span className="pt-2" style={{ color: 'red', display: 'block' }}>{feeError}</span>
         );
 
         return (
@@ -190,8 +230,9 @@ class SignModal extends Component {
                         {currencyItem}
                         {numItem}
                         {balanceItem}
-                        {btnItem}
                         {pledgeTextItem}
+                        {btnItem}
+                        {feeError && feeErrorItem}
                     </Form>
                 </Modal>
                 {modal}
@@ -204,6 +245,8 @@ function mapStateToProps(state, ownProp) {
     return {
         option: ownProp.option,
         account: state.app.account,
+        fees: state.app.fees,
+        currentWallet: state.wallet.current,
     };
 }
 
