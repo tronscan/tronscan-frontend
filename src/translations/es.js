@@ -1974,4 +1974,13 @@ export const messages = {
   "select_tip": "To view data other than 2000 You can manually adjust the time window",
   "date_number_tip": "{total} records in the current time range",
   "date_list_tip": "Only the first 2000 data are displayed",
+  "sun_propose_1": "Cambio de tarifa de transacción: la tarifa de transacción se cobrará normalmente cuando la propuesta se establezca en 1.",
+  "sun_propose_2": "Establecer la dirección del contrato para la puerta de enlace en la cadena lateral",
+  "sun_propose_3": "Establecer el tiempo de vencimiento de la propuesta",
+  "sun_propose_4": "Comience a votar por Testigo",
+  "sun_propose_5": "La dirección para el grupo de incentivos de la cadena lateral es la dirección (0) de forma predeterminada. ",
+  "sun_propose_6": "Administre si el interruptor de incentivo para testigo en la cadena lateral está activado / desactivado",
+  "sun_propose_7": "Métricas de distribución del grupo de incentivos de la cadena lateral",
+  "sun_propose_8": "Proporción de ingresos del testigo en la cadena lateral",
+  "day":"día",
 };

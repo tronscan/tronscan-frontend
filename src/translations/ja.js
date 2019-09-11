@@ -1967,4 +1967,14 @@ export const messages = {
   "select_tip": "To view data other than 2000 You can manually adjust the time window",
   "date_number_tip": "{total} records in the current time range",
   "date_list_tip": "Only the first 2000 data are displayed",
+
+  "sun_propose_1": "トランザクションリクエストの切り替え",
+  "sun_propose_2": "サイドチェーンgatewayのコントラクトアドレスを設置します",
+  "sun_propose_3": "提案の締め切り時間を設定します",
+  "sun_propose_4": "Witnessに投票をスタートします",
+  "sun_propose_5": "サイドチェーンインセンティブ奨金プールアドレスはデフォルトですべてゼロアドレスです ",
+  "sun_propose_6": "サイドチェーン witnessインセンティブスイッチがデフォルトではオフとなります",
+  "sun_propose_7": "サイドチェーンインセンティブ奨金プールの分配パラメーター",
+  "sun_propose_8": "サイドチェーンの収益はインセンティブ奨金プールで蓄積された割合",
+  "day":"日",
 }

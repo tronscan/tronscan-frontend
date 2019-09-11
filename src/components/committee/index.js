@@ -160,7 +160,6 @@ class Committee extends React.Component {
             let sunsideparameters = tronParameters.filter(function(v){
                 return sunside.indexOf(v.key)!==-1
             })
-            console.log('sunsideparameters',sunsideparameters)
 
             sunsideparameters.map(item => {
                 switch (item['key']){
@@ -196,9 +195,9 @@ class Committee extends React.Component {
                     tronParametersNew.push(item)
                 }
             })
-            console.log('tronParametersNew',tronParametersNew)
+
             this.setState({
-                dataSource: tronParametersNew
+                dataSource: tronParametersNew.slice(0,2)
             })
 
         }
@@ -468,16 +467,14 @@ class Committee extends React.Component {
                                     {
                                         record.key == 'getDayToSustainByFund' && <div>
                                             {
-                                                text? <span>{tu('propose_activate')}</span>:
-                                                    <span>{tu('propose_unactivate')}</span>
+                                                <span>{record.value} {tu('day')}</span>
                                             }
                                         </div>
                                     }
                                     {
                                         record.key == 'getPercentToPayWitness' && <div>
                                             {
-                                                text? <span>{tu('propose_activate')}</span>:
-                                                    <span>{tu('propose_unactivate')}</span>
+                                                <span>{record.value} %</span>
                                             }
                                         </div>
                                     }

@@ -1975,4 +1975,13 @@ export const messages = {
   "select_tip": "To view data other than 2000 You can manually adjust the time window",
   "date_number_tip": "{total} records in the current time range",
   "date_list_tip": "Only the first 2000 data are displayed",
+  "sun_propose_1": "Переключатель комиссии за транзакцию: комиссия за транзакцию будет взиматься, как правило, если для предложения установлено значение 1.",
+  "sun_propose_2": "Установите адрес контракта для gateway на боковой цепи",
+  "sun_propose_3": "Установите срок действия предложения",
+  "sun_propose_4": "Начните голосовать за Witness",
+  "sun_propose_5": "Адрес для побудительного пула сайдчейн - это адрес (0) по умолчанию. ",
+  "sun_propose_6": "Управлять включением/выключением стимула для witness на сайдчейн",
+  "sun_propose_7": "Метрики распределения стимулирующего пула сайдчейн",
+  "sun_propose_8": "Коэффициент прибыли witness на сайдчейн",
+  "day":"день",
 };
