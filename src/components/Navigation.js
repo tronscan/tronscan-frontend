@@ -918,7 +918,7 @@ class Navigation extends React.Component {
 
     let activeComponent = this.getActiveComponent();
 
-    const isShowSideChain = !type || (type && IS_SUNNET) || (IS_MAINNET && type && type === 'ACCOUNT_PRIVATE_KEY');
+    const isShowSideChain = !type || (type && IS_SUNNET);
 
     return (
         <div className="header-top">
@@ -1104,7 +1104,7 @@ class Navigation extends React.Component {
               <div className="collapse navbar-collapse" id="navbar-top">
                 <ul className="navbar-nav mr-auto">
                   {filter(routes, r => r.showInMenu !== false).map(route => (
-                      <li key={route.path} className="nav-item dropdown">
+                      <li key={route.path}  className={IS_MAINNET? 'nav-item dropdown': 'nav-item dropdown pr-3'}>
                         {
                           route.linkHref === true ?
                               <HrefLink
@@ -1239,7 +1239,7 @@ class Navigation extends React.Component {
                                             {IS_MAINNET?tu('Side_Chain'):tu('Main_Chain')}
                                           </a>
                                         );
-                                        return isShowSideChain ? sidechainTab : null;
+                                        return sidechainTab
                                       }
                                       if (!isUndefined(Route.enurl) || !isUndefined(Route.zhurl)) {
                                         return (

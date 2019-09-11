@@ -1277,9 +1277,9 @@ export const messages = {
   */
   "committee": "TRON Comité",
   "committee_dec_1": "El Comité TRON es para modificar los parámetros dinámicos en la red TRON, por ejemplo. Recompensas de generación de bloque, tarifas de transacción, etc.",
-  "committee_dec_2": "El Comité está formado por los actuales 27 Super Representantes (SR).",
+  "committee_dec_2": "El Comité está formado por los actuales {total} Super Representantes (SR).",
   "committee_dec_3": "Cada SR tiene el derecho de proponer y votar sobre las propuestas.",
-  "committee_dec_4": "Cuando una propuesta recibe 19 votos o más de los SR dentro del período de tiempo válido, la propuesta será aprobada y sus parámetros de red se modificarán en el próximo período de mantenimiento.",
+  "committee_dec_4": "Cuando una propuesta recibe {total} votos o más de los SR dentro del período de tiempo válido, la propuesta será aprobada y sus parámetros de red se modificarán en el próximo período de mantenimiento.",
   "get_committee_proposal": "Revisar las propuestas del comité.",
   "TRON_network_parameters": "Parámetros de la red de TRON",
   "commission_proposed": "Propuestas del comité",

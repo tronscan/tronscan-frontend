@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/editor.worker.js"
   },
   {
-    "revision": "51694bd7631b9b9a14f56c7e24aeddc2",
+    "revision": "cb70404cd4a3658ac398302e62509f4d",
     "url": "/index.html"
   },
   {
@@ -36,7 +36,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/css/NodeMap.aab5afec.chunk.css"
   },
   {
-    "revision": "0b485ed193df4ffae41a",
+    "revision": "6a34136b99ba547649bc",
     "url": "/static/css/main.7753652e.chunk.css"
   },
   {
@@ -116,8 +116,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/js/75.f657541f.chunk.js"
   },
   {
-    "revision": "cbdfcfbd5a1fc0a03381",
-    "url": "/static/js/76.3c0c988c.chunk.js"
+    "revision": "02f56d0e3d2d26b079e4",
+    "url": "/static/js/76.f1de6e9f.chunk.js"
   },
   {
     "revision": "c9822a160e6f124a85be",
@@ -164,8 +164,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/js/Blocks.413dbb56.chunk.js"
   },
   {
-    "revision": "a985674a12b36e28b79a",
-    "url": "/static/js/Committee.cd27bdac.chunk.js"
+    "revision": "bf49d938827170ee39ee",
+    "url": "/static/js/Committee.59f9808e.chunk.js"
   },
   {
     "revision": "2190e7962af8d93f744f",
@@ -344,12 +344,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/js/WalletWizard.45ae0690.chunk.js"
   },
   {
-    "revision": "0b485ed193df4ffae41a",
-    "url": "/static/js/main.a6e34089.chunk.js"
+    "revision": "6a34136b99ba547649bc",
+    "url": "/static/js/main.c6e314a7.chunk.js"
   },
   {
-    "revision": "a94421531c075dad0512",
-    "url": "/static/js/runtime~main.988daa50.js"
+    "revision": "dc6d4ec5af201f52be1f",
+    "url": "/static/js/runtime~main.1555f003.js"
   },
   {
     "revision": "7b00f7c4e78ed9cfc676c64c040965e8",
@@ -508,8 +508,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/media/tron-banner-tronblue.3eac9df6.png"
   },
   {
-    "revision": "b0e74c0d4760b7ea8906475cdae74f3b",
-    "url": "/static/media/tron-logo-sunnet.b0e74c0d.png"
+    "revision": "cd58e2b6e0249580841b2410709dfeb7",
+    "url": "/static/media/tron-logo-sunnet.cd58e2b6.png"
   },
   {
     "revision": "adcc95079765da885ce718ba718f0920",

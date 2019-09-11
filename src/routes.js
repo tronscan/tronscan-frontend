@@ -312,7 +312,7 @@ export const routes = [
     path: "/dapp",
     icon: "fas fa-gamepad",
     component: null,
-    showInMenu: true,
+    showInMenu: IS_MAINNET?true:false,
     routes: [
       // {
       //     url: "https://www.tronace.com/?utm_source=TS",
@@ -681,8 +681,7 @@ export const routes = [
         },
         {
           icon: "fas fa-columns",
-          label: "侧链浏览器（DappChain）",
-          //label: "SideChain Browser(DappChain)",
+          label: "Main_Chain",
           sidechain:true,
         },
       ]

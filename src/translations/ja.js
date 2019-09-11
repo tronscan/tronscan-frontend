@@ -1261,9 +1261,9 @@ export const messages = {
   */
   "committee": "TRON委員会",
   "committee_dec_1": "委員会の機能はTRONのネット動的パラメーター。",
-  "committee_dec_2": "委員会は27位のスーパー代表よりなりました。",
+  "committee_dec_2": "委員会は{total}位のスーパー代表よりなりました。",
   "committee_dec_3": "各スーパー代表には提議権と意見いついての投票権があります。",
-  "committee_dec_4": "提議は有効期限で19位のスーパー代表の賛成を得る場合、提議有効とみられます。次の修正期で、ネットパラメーターを修正します。",
+  "committee_dec_4": "提議は有効期限で{total}位のスーパー代表の賛成を得る場合、提議有効とみられます。次の修正期で、ネットパラメーターを修正します。",
   "get_committee_proposal": "委員会提議をチェックします",
   "TRON_network_parameters": "TRONネットパラメーター",
   "commission_proposed": "委員会の提議",

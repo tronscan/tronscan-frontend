@@ -1294,9 +1294,9 @@ export const messages = {
   */
   "committee": "TRON委员会",
   "committee_dec_1": "委员会用于修改TRON网络动态参数，如出块奖励、交易费用等等。",
-  "committee_dec_2": "委员会由当前的27个超级代表组成。",
+  "committee_dec_2": "委员会由当前的{total}个超级代表组成。",
   "committee_dec_3": "每个超级代表都具有提议权、对提议的投票权。",
-  "committee_dec_4": "当提议在有效期内获得19个代表及以上的赞成票时，该提议获得通过，并在下个维护期内进行网络参数修改。",
+  "committee_dec_4": "当提议在有效期内获得{total}个代表及以上的赞成票时，该提议获得通过，并在下个维护期内进行网络参数修改。",
   "get_committee_proposal": "查看委员会提议",
   "TRON_network_parameters": "TRON网络参数",
   "commission_proposed": "委员会提议",
