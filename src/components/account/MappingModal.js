@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { tu } from '../../utils/i18n';
 import PropTypes from 'prop-types';
-import { Modal, Form, Input, Select, message } from 'antd';
-import { API_URL, MAPPINGFEE, FEELIMIT } from './../../constants';
+import { Modal, Form, Input, Select } from 'antd';
+import { API_URL, ONE_TRX, FEELIMIT } from './../../constants';
 import xhr from 'axios';
 import { injectIntl } from 'react-intl';
 import SweetAlert from "react-bootstrap-sweetalert";
+import { mul } from './../../utils/calculation';
 
 const { Option } = Select;
 
@@ -17,6 +18,8 @@ class MappingModal extends Component {
         currency: PropTypes.string.isRequired,
         sideChains: PropTypes.array,
         account: PropTypes.object,
+        fees: PropTypes.object,
+        currentWallet: PropTypes.object,
     };
 
     constructor() {
@@ -25,6 +28,7 @@ class MappingModal extends Component {
         this.state = {
             isDisabled: false,
             isShowModal: true,
+            feeError: '',
         };
     }
 
@@ -73,19 +77,21 @@ class MappingModal extends Component {
      * Form confirm
      */
     confirm = () => {
-        const { form: { validateFields }, account: { sunWeb } } = this.props;
+        const { form: { validateFields }, account: { sunWeb }, fees: { mappingFee } } = this.props;
         const { txHash } = this.state;
 
         this.setState({ isDisabled: true });
 
+        const isSubmit = this.validateNum();
         validateFields(async(err, values) => {
-            if (!err) {
+            if (!err && isSubmit) {
+                const fee = mul(mappingFee, ONE_TRX);
                 try {
                     const sideChain = values.sidechain;
                     const list = sideChain && sideChain.split('-');
                     sunWeb.setChainId(list[0]);
                     sunWeb.setSideGatewayAddress(list[1]);
-                    const mappingData = await sunWeb.mappingTrc20(txHash, MAPPINGFEE, FEELIMIT);
+                    const mappingData = await sunWeb.mappingTrc20(txHash, fee, FEELIMIT);
                     this.openModal(mappingData);
                     this.setState({ isDisabled: false });
                 } catch (e) {
@@ -118,10 +124,28 @@ class MappingModal extends Component {
         });
     };
 
+    /**
+     * Lack of balance validate
+     */
+    validateNum = () => {
+        const { fees: { mappingFee }, currentWallet: { balance }, intl } = this.props;
+        
+        if (balance < mappingFee) {
+            this.setState({
+                feeError: `${intl.formatMessage({id: 'lack_of_balance'})}`
+            });
+            return false;
+        }
+        this.setState({
+            feeError: '',
+        });
+        return true;
+    }
+
     render() {
         const { getFieldDecorator } = this.props.form;
-        const { currency, sideChains } = this.props;
-        const { isDisabled, modal, isShowModal } = this.state;
+        const { currency, sideChains, fees: { mappingFee } } = this.props;
+        const { isDisabled, modal, isShowModal, feeError } = this.state;
         const isHasSideChainsData = sideChains && sideChains.length > 0;
 
         // mappingTextItem
@@ -154,8 +178,18 @@ class MappingModal extends Component {
 
         // btnItem
         const btnItem = (
-            <button className="btn btn-danger mt-4 mb-3" style={{ width: '100%' }} disabled={isDisabled}
+            <button className="btn btn-danger mb-2" style={{ width: '100%' }} disabled={isDisabled}
                 onClick={this.confirm}>{tu('main_account_mapping_btn')}</button>
+        );
+
+        // mappingFeeTextItem
+        const mappingFeeTextItem = (
+            <p className="mt-4 mb-2">{tu('mapping_text')}{mappingFee}trx</p>
+        );
+
+        // feeError
+        const feeErrorItem = (
+            <span className="pb-2" style={{ color: 'red', display: 'block' }}>{feeError}</span>
         );
 
         return (
@@ -170,7 +204,9 @@ class MappingModal extends Component {
                         {mappingTextItem}
                         {currencyItem}
                         {sideChainItem}
+                        {mappingFeeTextItem}
                         {btnItem}
+                        {feeError && feeErrorItem}
                     </Form>
                 </Modal>
                 {modal}
@@ -185,6 +221,8 @@ function mapStateToProps(state, ownProp) {
         currency: ownProp.currency,
         sideChains: state.app.sideChains,
         account: state.app.account,
+        fees: state.app.fees,
+        currentWallet: state.wallet.current,
     };
 }
 

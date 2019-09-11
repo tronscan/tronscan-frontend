@@ -19,6 +19,7 @@ export const DISABLE_FLAG = "DISABLE_FLAG";
 export const SET_THEME = "SET_THEME";
 export const SET_SYNC_STATUS = "SET_SYNC_STATUS";
 export const SET_SIDECHAINS = 'SET_SIDECHAINS';
+export const SET_FEES = 'SET_FEES';
 
 export const setLoginWithLedger = (address, tronWeb) => ({
   type: LOGIN_LEDGER,
@@ -173,6 +174,16 @@ export const setSideChains = sideChains => ({
 
 export const loadSideChains = sideChains => (dispatch) => {
   dispatch(setSideChains(sideChains));
+};
+
+// set account fee
+export const setFees = fees => ({
+  type: SET_FEES,
+  fees
+});
+
+export const loadFees = fees => (dispatch) => {
+  dispatch(setFees(fees));
 };
 
 async  function setWebsocketContent(getState, address){

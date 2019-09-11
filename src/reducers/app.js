@@ -16,11 +16,13 @@ import {
   SET_LANGUAGE,
   SET_PRICE, SET_SYNC_STATUS,
   SET_THEME,
-  SET_SIDECHAINS
+  SET_SIDECHAINS,
+  SET_FEES,
 } from "../actions/app";
 import {passwordToAddress, pkToAddress} from "@tronscan/client/src/utils/crypto";
 import {base64DecodeFromString} from "@tronscan/client/src/lib/code";
-import {ACCOUNT_ADDRESS, ACCOUNT_LEDGER, ACCOUNT_PRIVATE_KEY, IS_DESKTOP, ACCOUNT_TRONLINK, IS_MAINNET, SUNWEBCONFIG} from "../constants";
+import {ACCOUNT_ADDRESS, ACCOUNT_LEDGER, ACCOUNT_PRIVATE_KEY, IS_DESKTOP, ACCOUNT_TRONLINK, IS_MAINNET, SUNWEBCONFIG,
+  MAPPINGFEE, WITHDRAWFEE, DEPOSITFEE, RETRYFEE, TRXDEPOSITMIN, TRXWITHDRAWMIN, TRCDEPOSITMIN, TRCWITHDRAWMIN } from "../constants";
 
 const initialState = {
   theme: Lockr.get("theme", "light"),
@@ -85,6 +87,14 @@ const initialState = {
   },
   isRightText: false,
   sideChains: [],
+  fees: {
+    retryFee: RETRYFEE,
+    mappingFee: MAPPINGFEE,
+    trxDepositMinValue: TRXDEPOSITMIN,
+    depositFee: DEPOSITFEE,
+    withdrawFee: WITHDRAWFEE,
+    trxWithdrawMinValue: TRXWITHDRAWMIN,
+  }
 };
 
 export function appReducer(state = initialState, action) {
@@ -257,6 +267,13 @@ export function appReducer(state = initialState, action) {
       return {
         ...state,
         sideChains: action.sideChains,
+      }
+    }
+
+    case SET_FEES: {
+      return {
+        ...state,
+        fees: action.fees,
       }
     }
 

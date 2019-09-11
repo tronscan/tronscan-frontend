@@ -24,7 +24,7 @@ import {decode58Check, pkToAddress} from "@tronscan/client/src/utils/crypto";
 import {QuestionMark} from "../common/QuestionMark";
 import Lockr from "lockr";
 import {withTronWeb} from "../../utils/tronWeb";
-import { login, loadSideChains } from "../../actions/app";
+import { login, loadSideChains, loadFees } from "../../actions/app";
 import {loadRecentTransactions} from "../../actions/account";
 import {reloadWallet} from "../../actions/wallet";
 import {connect} from "react-redux";
@@ -58,6 +58,7 @@ import SignModal from './SignModal';
       loadRecentTransactions,
       reloadWallet,
       loadSideChains,
+      loadFees,
     }
 )
 @injectIntl
@@ -111,9 +112,12 @@ export default class Account extends Component {
               this.scrollToAnchor()
           },3000)
       }
+
+      // gets the list of side chains
+      isPrivateKey && !IS_SUNNET && await this.getSideChains();
+      // get fees
+      isPrivateKey && await this.getFees();
     }
-    // gets the list of side chains
-    isPrivateKey && !IS_SUNNET && await this.getSideChains();
   }
 
   async componentDidUpdate(prevProps) {
@@ -128,7 +132,10 @@ export default class Account extends Component {
       this.setState({
         isPrivateKey
       });
+      // gets the list of side chains
       isPrivateKey && !IS_SUNNET && await this.getSideChains();
+      // get fees
+      isPrivateKey && await this.getFees();
     }
   }
 
@@ -1681,6 +1688,18 @@ export default class Account extends Component {
     if (retCode === '0') {
       const { chains } = data;
       loadSideChains(chains);
+    }
+  }
+
+  /**
+   * get fees
+   */
+  getFees = async () => {
+    const { loadFees } = this.props;
+    const sideChains = await xhr.get(`${CONTRACT_MAINNET_API_URL}/external/sidechain/getMappingFees`);
+    const { data: { retCode, data }  } = sideChains;
+    if (retCode === '0') {
+      loadFees(data);
     }
   }
 

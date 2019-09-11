@@ -1990,8 +1990,10 @@ export const messages = {
   'pledge_num_error':"数量不能超过最大可用余额",
   'pledge_num_min_error':"数量不能小于",
   "pledge_text":"质押会消耗一定量的能量",
-  "sign_text":"解押会消耗一定量的能量",
+  "sign_text":"解押操作会消耗:",
   "pledge_mapping_text":"资产尚未映射到DappChain.不支持质押",
+  "lack_of_balance":"TRX余额不足",
+  "mapping_text":"映射操作会消耗:",
 
   // success
   "pledge_success": "质押成功",

@@ -3,10 +3,10 @@ import { connect } from 'react-redux';
 import { tu } from '../../utils/i18n';
 import { Modal, Form, Input, Select } from 'antd';
 import PropTypes from 'prop-types';
-import { CURRENCYTYPE, FEELIMIT, DEPOSITFEE, TRXDEPOSITMIN, TRCDEPOSITMIN } from './../../constants';
+import { CURRENCYTYPE, FEELIMIT, TRXDEPOSITMIN, TRCDEPOSITMIN, ONE_TRX } from './../../constants';
 import { injectIntl } from 'react-intl';
 import SweetAlert from 'react-bootstrap-sweetalert';
-import { mul } from './../../utils/calculation';
+import { mul, division } from './../../utils/calculation';
 
 const { Option } = Select;
 
@@ -17,6 +17,7 @@ class PledgeModal extends Component {
         sideChains: PropTypes.array,
         account: PropTypes.object,
         type: PropTypes.string,
+        fees: PropTypes.object,
     };
 
     constructor() {
@@ -70,12 +71,13 @@ class PledgeModal extends Component {
      */
     confirm = () => {
         const { form: { validateFields }, account: { sunWeb },
-            option: { id, address, precision, type } } = this.props;
+            option: { id, address, precision, type }, fees: { depositFee } } = this.props;
         const { numValue, errorMess } = this.state;
         this.setState({ isDisabled: true });
         validateFields(async(err, values) => {
             if (!err && !errorMess) {
                 try {
+                    const fee = mul(depositFee, ONE_TRX);
                     const num = mul(numValue, Math.pow(10, Number(precision)));
                     const sideChain = values.sidechain;
                     const list = sideChain && sideChain.split('-');
@@ -84,20 +86,20 @@ class PledgeModal extends Component {
                     // trc10
                     if (CURRENCYTYPE.TRX10 === type) {
                         // todo wangyan
-                        const txid = await sunWeb.depositTrc10(id, num, DEPOSITFEE, FEELIMIT);
+                        const txid = await sunWeb.depositTrc10(id, num, fee, FEELIMIT);
                         this.openModal(txid);
                     } else if (CURRENCYTYPE.TRX20 === type) {
                         const approveData = await sunWeb.approveTrc20(num, FEELIMIT, address);
                         if (approveData) {
                             // todo wangyan
                             // trc20
-                            const data = await sunWeb.depositTrc20(num, DEPOSITFEE, FEELIMIT, address);
+                            const data = await sunWeb.depositTrc20(num, fee, FEELIMIT, address);
                             this.openModal(data);
                         } else {
                             this.openModal();
                         }
                     } else if (CURRENCYTYPE.TRX === type) {
-                        const data = await sunWeb.depositTrx(num, DEPOSITFEE, FEELIMIT);
+                        const data = await sunWeb.depositTrx(num, fee, FEELIMIT);
                         this.openModal(data);
                     }
                     this.setState({ isDisabled: false });
@@ -147,8 +149,8 @@ class PledgeModal extends Component {
             }
 
             // min value
-            const minAmount = type === CURRENCYTYPE.TRX ? TRXDEPOSITMIN : TRCDEPOSITMIN;
-            if (mul(numValue, Math.pow(10, Number(precision))) < minAmount) {
+            const minAmount = division(type === CURRENCYTYPE.TRX ? TRXDEPOSITMIN : TRCDEPOSITMIN, Math.pow(10, Number(precision)));
+            if (Number(numValue) < minAmount) {
                 errorMess = `${intl.formatMessage({id: 'pledge_num_min_error'})}${minAmount}${currency}`;
             }
 
@@ -166,7 +168,7 @@ class PledgeModal extends Component {
 
     render() {
         const { getFieldDecorator } = this.props.form;
-        const { option: { currency, balance, precision, type }, sideChains } = this.props;
+        const { option: { currency, balance, type }, sideChains } = this.props;
         const { isDisabled, modal, isShowModal, numValue, errorMess } = this.state;
 
         const sideChainList = type === CURRENCYTYPE.TRX20 ? this.getSideChains() : sideChains;
@@ -192,29 +194,33 @@ class PledgeModal extends Component {
             </Form.Item>
         );
 
-        // numItem
-        const numItem = (
-            <Form.Item label={tu('pledge_num')}>
-                <Input value={numValue} onChange={this.onChangeNum} />
-                <span style={{ color: 'red' }}>{errorMess}</span>
-            </Form.Item>
-        );
-
         // available_balance Item
         const balanceItem = (
-            <p className="text-right">{tu('available_balance')}:{balance + currency}</p>
+            <div className="flex justify-content-between">
+                <p className="text-left mb-2">{tu('pledge_num')}</p>
+                <p className="text-right mb-2">{tu('available_balance')}:{balance + currency}</p>
+            </div>
+        );
+
+        // numItem
+        const numItem = (
+            <div>
+                {balanceItem}
+                <Input value={numValue} onChange={this.onChangeNum} />
+                <span className="mt-1" style={{ color: 'red', display: 'block' }}>{errorMess}</span>
+            </div>
         );
 
         // btnItem
         const btnItem = (
-            <button className="btn btn-danger" style={{ width: '100%' }} disabled={isDisabled}
+            <button className="btn btn-danger mt-4" style={{ width: '100%' }} disabled={!numValue || isDisabled}
                 onClick={this.confirm}>{tu('sidechain_account_pledge_btn')}</button>
         );
 
         // pledgeTextItem
-        const pledgeTextItem = (
-            <p className="mt-2">{tu('pledge_text')}</p>
-        );
+        // const pledgeTextItem = (
+        //     <p className="mt-2">{tu('pledge_text')}{depositFee}trx</p>
+        // );
 
         return (
             <div>
@@ -228,9 +234,8 @@ class PledgeModal extends Component {
                         {currencyItem}
                         {sideChainItem}
                         {numItem}
-                        {balanceItem}
                         {btnItem}
-                        {pledgeTextItem}
+                        {/* {depositFee > 0 && pledgeTextItem} */}
                     </Form>
                 </Modal>
                 {modal}
@@ -244,6 +249,7 @@ function mapStateToProps(state, ownProp) {
         option: ownProp.option,
         sideChains: state.app.sideChains,
         account: state.app.account,
+        fees: state.app.fees,
     };
 }
 
