@@ -1974,4 +1974,14 @@
   "select_tip": "To view data other than 2000 You can manually adjust the time window",
   "date_number_tip": "{total} records in the current time range",
   "date_list_tip": "Only the first 2000 data are displayed",
+  "sun_propose_1": "تبديل رسوم المعاملة: سيتم فرض رسوم المعاملة بشكل طبيعي عندما يتم تعيين الاقتراح على 1.",
+  "sun_propose_2": "قم بتعيين عنوان العقد الخاص بالبوابة على السلسلة الجانبية",
+  "sun_propose_3": "حدد وقت انتهاء الصلاحية للمقترح",
+  "sun_propose_4": "بَدأ التصويت لصالح Witness",
+  "sun_propose_5": "عنوان تجمع حوافز السلسلة الجانبية هو العنوان (0) افتراضيًا ",
+  "sun_propose_6": "إدارة إذا كان مفتاح الحوافز لـ witness على السلسلة الجانبية هو فعال / مغلق",
+  "sun_propose_7": "مقاييس التوزيع لمجموعة حوافز السلسلة الجانبية",
+  "sun_propose_8": "نسبة إيرادات witness على السلسلة الجانبية",
+  "day":"يوم",
+
 };

@@ -2018,13 +2018,13 @@ export const messages = {
   "select_tip": "如果要查看2000条之外的数据可以手动调整时间窗口",
   "date_number_tip": "当前时间范围内有{total}条记录",
   "date_list_tip": "列表仅展示2000条记录",
-  "sun_propose_1": "交易计费开关，当提案设置为1时，正常收取交易费",
+  "sun_propose_1": "交易计费开关",
   "sun_propose_2": "设置侧链gateway合约地址",
   "sun_propose_3": "设置提案过期时间",
   "sun_propose_4": "开启给 Witness 投票",
-  "sun_propose_5": "侧链激励池地址, 默认为全零地址 ",
-  "sun_propose_6": "侧链 witness 激励开关，默认关闭",
+  "sun_propose_5": "设置侧链激励池地址 ",
+  "sun_propose_6": "侧链 witness 激励开关",
   "sun_propose_7": "侧链激励池分发系数",
   "sun_propose_8": "侧链收益累积到激励池的比例",
-
+  "day":"天",
 };
