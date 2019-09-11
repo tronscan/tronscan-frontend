@@ -87,15 +87,23 @@ class TransfersAll extends React.Component {
         const query = qs.stringify({ format: 'csv',...params})
         getCsvUrl(`${API_URL}/api/trc10trc20-transfer?${query}`)
         let list,total,range = 0;
-        let {transfers, total:totaldata, rangeTotal} = await Client.getTransfersAll({
-            limit: pageSize,
-            start: (page - 1) * pageSize,
-            ...params,
+
+        const allData = await Promise.all([
+            Client.getTransfersAll({
+                limit: pageSize,
+                start: (page - 1) * pageSize,
+                ...params,
+            }),
+            Client.getCountByType({
+                type: 'trc10trc20', 
+                ...filter,
+                ...id,})
+        ]).catch(e => {
+            console.log('error:' + e);
         });
-        let {count} = await Client.getCountByType({
-            type: 'trc10trc20', 
-            ...filter,
-            ...id,})
+
+        const [{ transfers, total:totaldata, rangeTotal }, { count } ] = allData;
+
         list = transfers;
         total = count || totaldata;
         range = rangeTotal;

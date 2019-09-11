@@ -103,16 +103,22 @@ class Transactions extends React.Component {
         }
         const query = qs.stringify({ format: 'csv',...params})
         getCsvUrl(`${API_URL}/api/internal-transaction?${query}`)
-        let data = await Client.getInternalTransaction({
-            limit: pageSize,
-            start: (page - 1) * pageSize,
-            ...params
+
+        const allData = await Promise.all([
+            Client.getInternalTransaction({
+                limit: pageSize,
+                start: (page - 1) * pageSize,
+                ...params
+            }),
+            Client.getCountByType({
+                type: 'internal', 
+                ...filter
+            })
+        ]).catch(e => {
+            console.log('error:' + e);
         });
 
-        const { count } = await Client.getCountByType({
-          type: 'internal', 
-          ...filter
-        })
+        const [data, { count } ] = allData;
 
         let newdata = rebuildList(data.list, 'tokenId', 'callValue', 'valueInfoList')
         transactions = newdata;

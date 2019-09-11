@@ -70,16 +70,21 @@ class Transactions extends React.Component {
     const query = qs.stringify({ format: 'csv',...params})
     getCsvUrl(`${API_URL}/api/contracts/transaction?${query}`)
 
-    let transactions = await Client.getContractTxs({
-      limit: pageSize,
-      start: (page - 1) * pageSize,
-      ...params,
+    const allData = await Promise.all([
+        Client.getContractTxs({
+            limit: pageSize,
+            start: (page - 1) * pageSize,
+            ...params,
+        }),
+        Client.getCountByType({
+            type: 'contract', 
+            ...filter
+        })
+    ]).catch(e => {
+        console.log('error:' + e);
     });
 
-    const { count } = await Client.getCountByType({
-      type: 'contract', 
-      ...filter
-    })
+    const [transactions, { count } ] = allData;
 
     transactions.data.map(item => {
       item.tip = item.ownAddress == filter.contract ? 'out' : 'in'

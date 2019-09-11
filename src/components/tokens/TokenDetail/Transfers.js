@@ -70,19 +70,24 @@ class Transfers extends React.Component {
 
     const query = qs.stringify({ format: 'csv',...params})
     getCsvUrl(`${API_URL}/api/asset/transfer?${query}`)
-    let {list, total, rangeTotal} = await Client.getAssetTransfers({
-        limit: pageSize,
-        start: (page - 1) * pageSize,
-        ...params
+
+    const allData = await Promise.all([
+        Client.getAssetTransfers({
+            limit: pageSize,
+            start: (page - 1) * pageSize,
+            ...params
+        }),
+        Client.getCountByType({
+            type: 'asset', 
+            issueName: filter.address
+        })
+    ]).catch(e => {
+        console.log('error:' + e);
     });
 
-    const { count } = await Client.getCountByType({
-      type: 'asset', 
-      issueName: filter.address
-    })
+    const [{list, total, rangeTotal}, { count } ] = allData;
 
     let transfers = rebuildList(list,'tokenName','amount');
-
 
     for (let index in transfers) {
       transfers[index].index = parseInt(index) + 1;

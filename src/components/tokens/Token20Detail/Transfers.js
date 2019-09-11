@@ -67,18 +67,23 @@ class Transfers extends React.Component {
     );
     const query = qs.stringify({ format: 'csv',...params})
     getCsvUrl(`${API_URL}/api/token_trc20/transfers?${query}`)
-    let {list, total, rangeTotal} = await Client.getTokenTRC20Transfers({
-        limit: pageSize,
-        start: (page - 1) * pageSize,
-        ...params
+    
+    const allData = await Promise.all([
+        Client.getTokenTRC20Transfers({
+            limit: pageSize,
+            start: (page - 1) * pageSize,
+            ...params
+        }),
+        Client.getCountByType({
+            type: 'trc20', 
+            contract: filter.token
+        })
+    ]).catch(e => {
+        console.log('error:' + e);
     });
+
+    const [{list, rangeTotal}, { count } ] = allData;
     let transfers = list || [];
-
-    const { count } = await Client.getCountByType({
-      type: 'trc20', 
-      contract: filter.token
-    })
-
     // let {transfers, total} = await Client.getTransfers({
     //   sort: '-timestamp',
     //   limit: pageSize,
