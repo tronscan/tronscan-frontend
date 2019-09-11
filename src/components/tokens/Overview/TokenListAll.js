@@ -322,11 +322,140 @@ class TokenList extends Component {
     ];
     return column;
   }
+  suncustomizedColumn = () => {
+        let {filter} = this.state
+        let {intl} = this.props;
+        let column = [
+            {
+                title: '#',
+                dataIndex: 'index',
+                key: 'index',
+                width: '48px',
+                align: 'center',
+                className: 'ant_table _text_nowrap',
+                render: (text, record, index) => {
+                    return <span>
+                {
+                    record.isTop?
+                        <div>
+                          <span className="starbeat"><i className="fas fa-star"></i> </span>
+                          <span className="star-tip"></span>
+                        </div>
+                        :
+                        <span>{text}</span>
+                }
+
+            </span>
+                }
+            },
+            {
+                title: upperFirst(intl.formatMessage({id: 'token'})),
+                dataIndex: 'name',
+                key: 'name',
+                width: '50%',
+                render: (text, record, index) => {
+                    return <div className="table-imgtext">
+                        {record.imgUrl ?
+                            <div style={{width: '42px', height: '42px', marginRight: '18px'}}>
+                                {
+                                    (record.abbr == 'USDT' || record.abbr == 'BTT' || record.abbr == 'WIN') ? <div className="token-img-top">
+                                      <img style={{width: '42px', height: '42px'}} src={record.imgUrl}/>
+                                      <i></i>
+                                    </div>:<img style={{width: '42px', height: '42px'}} src={record.imgUrl}/>
+                                }
+                            </div> :
+                            <div style={{width: '42px', height: '42px', marginRight: '18px'}}><img
+                                style={{width: '42px', height: '42px'}} src={require('../../../images/logo_default.png')}/></div>
+                        }
+
+                      <div>
+                        <h5>
+                            {
+                                (record.isTop && record.contractAddress == "TNYNLRkqq956bQc2buvoLbaLgh25RkJMiN")?
+                                    <a href="javascript:;">{record.name + ' (' + record.abbr + ')'}</a>:
+                                    <div>
+                                        {
+                                            record.tokenType == 'trc10'&&
+                                            <TokenLink
+                                                name={record.name}
+                                                id={record.tokenId}
+                                                namePlus={record.name + ' (' + record.abbr + ')'}/>
+                                        }
+                                        {
+                                            record.tokenType == 'trc20'&&
+                                            <TokenTRC20Link
+                                                name={record.name}
+                                                namePlus={record.name + ' (' + record.abbr + ')'}
+                                                address={record.contractAddress}/>
+                                        }
+                                    </div>
+                            }
+                        </h5>
+                        <p style={{wordBreak: "break-all"}}>{record.description}</p>
+                      </div>
+                    </div>
+                }
+            },
+            {
+                title: intl.formatMessage({id: 'token_holders'}),
+                dataIndex: 'nrOfTokenHolders',
+                key: 'nrOfTokenHolders',
+                sorter: true,
+                sortOrder: filter.sort === 'holderCount' && filter.order_current,
+                render: (text, record, index) => {
+                    return text>0? <FormattedNumber value={text}/>: '-'
+                },
+                align: 'center',
+                className: 'ant_table d-none d-sm-table-cell'
+            },
+            {
+                title: intl.formatMessage({id: 'trc20_cur_order_header_action'}),
+                dataIndex: 'abbr',
+                key: 'abbr',
+                width: '10%',
+                render: (text, record, index) => {
+                    return <div>
+                        {
+                            record.tokenType == 'trc10'&&
+                            <Link to={`/token/${encodeURI(record.tokenId)}`} className="token-details btn">{tu('details')}</Link>
+                        }
+                        {
+                            record.tokenType == 'trc20'&&
+                            <Link to={`/token20/${encodeURI(record.contractAddress)}`} className="token-details btn">{tu('details')}</Link>
+                        }
+                        {
+                            IS_MAINNET&& <span>
+                    {record.extra ? <a href={record.extra.url} className="token-active-details btn mt-2">{tu(record.extra.desc)}</a>
+                        : (record.pairId )?
+                            <a href={`https://trx.market/exchange?id=${record.pairId}`} className="token-details btn mt-2" target="_blank"> {tu('token_trade')}</a>
+                            : <div>
+                              <a href="javascript:;"
+                                 className="token-disabled-exchange btn mt-2"
+                                 id={record.tokenType == "trc20"?"exchange_"+record.contractAddress:"exchange_"+record.tokenId}
+                                 onMouseOver={(prevS,props) => this.setState({[record.abbr + record.tokenId]: true})}
+                                 onMouseOut={() => this.setState({[record.abbr+record.tokenId]: false})}>
+                                  {tu('token_trade')}
+                              </a>
+                              <Tooltip placement="top" target={record.tokenType == "trc20"?"exchange_"+record.contractAddress:"exchange_"+record.tokenId} isOpen={this.state[record.abbr+record.tokenId]}> <span className="text-capitalize">{tu("token_does_not_support_exchange")}</span></Tooltip>
+                            </div>}
+                </span>
+
+                        }
+
+                    </div>
+
+                },
+                align: 'center',
+                className: 'ant_table d-sm-table-cell token-list-action'
+            }
+        ];
+        return column;
+    }
 
   render() {
     let {tokens, alert, loading, total, totalAll, filter} = this.state;
     let {match, intl} = this.props;
-    let column = this.customizedColumn();
+    let column = IS_MAINNET?this.customizedColumn():this.suncustomizedColumn();
     let tableInfo = intl.formatMessage({id: 'part_total'}) + ' ' + total + '/' + totalAll + ' ' + intl.formatMessage({id: 'part_pass'})
     let url = 'https://trx.market/launchBase?utm_source=TS3'
     if(intl.locale == 'zh'){
