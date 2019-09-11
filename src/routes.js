@@ -63,7 +63,8 @@ export const routes = [
         label: "nodes",
         icon: "fa fa-server",
         path: "/blockchain/nodes",
-        component: NodesAsync
+        component: NodesAsync,
+        showInMenu: IS_MAINNET?true:false,
       },
       {
         path: "/blockchain/blocks",
@@ -358,7 +359,8 @@ export const routes = [
         label: "votes",
         path: "/sr/votes",
         icon: "fas fa-comment",
-        component: VoteOverviewAsync
+        component: VoteOverviewAsync,
+        showInMenu: IS_MAINNET?true:false,
       },
       {
         label: "committee",

@@ -189,17 +189,21 @@ class SignModal extends Component {
             </Form.Item>
         );
 
-        // numItem
-        const numItem = (
-            <Form.Item label={tu('pledge_num')}>
-                <Input value={numValue} onChange={this.onChangeNum} />
-                <span style={{ color: 'red' }}>{errorMess}</span>
-            </Form.Item>
-        );
-
         // available_balance Item
         const balanceItem = (
-            <p className="text-right">{tu('available_balance')}:{balance + currency}</p>
+            <div className="flex justify-content-between">
+                <p className="text-left mb-2">{tu('pledge_num')}</p>
+                <p className="text-right mb-2">{tu('available_balance')}:{balance + currency}</p>
+            </div>
+        );
+
+        // numItem
+        const numItem = (
+            <div>
+                {balanceItem}
+                <Input value={numValue} onChange={this.onChangeNum} />
+                <span className="mt-1" style={{ color: 'red', display: 'block' }}>{errorMess}</span>
+            </div>
         );
 
         // btnItem
@@ -210,7 +214,7 @@ class SignModal extends Component {
 
         // pledgeTextItem
         const pledgeTextItem = (
-            <p className="mt-2">{tu('sign_text')}{withdrawFee}trx</p>
+            <p className="mt-5">{tu('sign_text')}{withdrawFee}trx</p>
         );
 
         // feeError
@@ -229,7 +233,6 @@ class SignModal extends Component {
                     <Form onSubmit={this.handleSubmit}>
                         {currencyItem}
                         {numItem}
-                        {balanceItem}
                         {pledgeTextItem}
                         {btnItem}
                         {feeError && feeErrorItem}

@@ -194,22 +194,26 @@ class PledgeModal extends Component {
             </Form.Item>
         );
 
-        // numItem
-        const numItem = (
-            <Form.Item label={tu('pledge_num')}>
-                <Input value={numValue} onChange={this.onChangeNum} />
-                <span style={{ color: 'red' }}>{errorMess}</span>
-            </Form.Item>
-        );
-
         // available_balance Item
         const balanceItem = (
-            <p className="text-right">{tu('available_balance')}:{balance + currency}</p>
+            <div className="flex justify-content-between">
+                <p className="text-left mb-2">{tu('pledge_num')}</p>
+                <p className="text-right mb-2">{tu('available_balance')}:{balance + currency}</p>
+            </div>
+        );
+
+        // numItem
+        const numItem = (
+            <div>
+                {balanceItem}
+                <Input value={numValue} onChange={this.onChangeNum} />
+                <span className="mt-1" style={{ color: 'red', display: 'block' }}>{errorMess}</span>
+            </div>
         );
 
         // btnItem
         const btnItem = (
-            <button className="btn btn-danger" style={{ width: '100%' }} disabled={!numValue || isDisabled}
+            <button className="btn btn-danger mt-4" style={{ width: '100%' }} disabled={!numValue || isDisabled}
                 onClick={this.confirm}>{tu('sidechain_account_pledge_btn')}</button>
         );
 
@@ -230,7 +234,6 @@ class PledgeModal extends Component {
                         {currencyItem}
                         {sideChainItem}
                         {numItem}
-                        {balanceItem}
                         {btnItem}
                         {/* {depositFee > 0 && pledgeTextItem} */}
                     </Form>

@@ -1952,7 +1952,7 @@ export const messages = {
     'pledge_num_error':"این عدد نمی تواند از میزان موجودی فراتر رود.",
     'pledge_num_min_error':"The quantity cannot be less than",
     "pledge_text":"سپرده مقدار مشخصی از انرژی را مصرف می کند.",
-    "sign_text":"کنار کشیدن مقدار مشخصی از انرژی را مصرف می کند.",
+    "sign_text":"Withdraw operation will consume",
     "pledge_mapping_text":"دارایی های شما در DAppChain نقشه برداری نشده است ، بنابراین نمی تواند واریز شود.",
     "lack_of_balance":"TRX has insufficient balance",
     "mapping_text":"Mapping operations consume:",

@@ -1962,7 +1962,7 @@ export const messages = {
   'pledge_num_error':"The number cannot exceed the maximum available balance",
   'pledge_num_min_error':"The quantity cannot be less than",
   "pledge_text":"Deposit will consume a certain amount of energy",
-  "sign_text":"Withdraw will consume a certain amount of energy",
+  "sign_text":"Withdraw operation will consume",
   "pledge_mapping_text":"Your assets have not been mapped to DAppChain, and therefore cannot be deposited.",
   "lack_of_balance":"TRX has insufficient balance",
   "mapping_text":"Mapping operations consume:",

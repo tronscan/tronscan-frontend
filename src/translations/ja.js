@@ -1951,7 +1951,7 @@ export const messages = {
   'pledge_num_error':"数量は使用可能な最大残高を超えないでください",
   'pledge_num_min_error':"The quantity cannot be less than",
   "pledge_text":"抵当にはエネルギーの消費が必要となります",
-  "sign_text":"撤回にはエネルギーの消費が必要となります",
+  "sign_text":"Withdraw operation will consume",
   "pledge_mapping_text":"資産をまだDappChainにマップされていないため、抵当できません。",
   "lack_of_balance":"TRX has insufficient balance",
   "mapping_text":"Mapping operations consume:",

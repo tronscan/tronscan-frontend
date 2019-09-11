@@ -1958,7 +1958,7 @@ export const messages = {
   'pledge_num_error':"El número nunca excede el saldo máximo disponible",
   'pledge_num_min_error':"The quantity cannot be less than",
   "pledge_text":"El depósito consumirá una cierta cantidad de energía.",
-  "sign_text":"El depósito consumirá una cierta cantidad de energía.",
+  "sign_text":"Withdraw operation will consume",
   "pledge_mapping_text":"Sus activos no se han reflectado a DAppChain y, por lo tanto, no se pueden depositar.",
   "lack_of_balance":"TRX has insufficient balance",
   "mapping_text":"Mapping operations consume:",

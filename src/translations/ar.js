@@ -1946,7 +1946,7 @@
   'pledge_num_error':"لا يمكن أن يتجاوز العدد الحد الأقصى للرصيد المتاح",
   'pledge_num_min_error':"The quantity cannot be less than",
   "pledge_text":"سوف تستهلك الودائع كمية معينة من الطاقة",
-  "sign_text":"سوف تستهلك الودائع كمية معينة من الطاقة",
+  "sign_text":"Withdraw operation will consume",
   "pledge_mapping_text":"لم يتم تعيين الأصول الخاصة بك إلى DAppChain ، وبالتالي لا يمكن إيداعها.",
   "lack_of_balance":"TRX has insufficient balance",
   "mapping_text":"Mapping operations consume:",
