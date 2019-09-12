@@ -1262,9 +1262,9 @@ export const messages = {
   */
   "committee": "TRON 위원회",
   "committee_dec_1": "위원회는 TRON 네트워크 동적 매개변수, 블록생성 보상, 거래 수수료 등을  수정하는데 사용됩니다.",
-  "committee_dec_2": "위원회는 현재 27 명의 슈퍼대표로 구성되었습니다.",
+  "committee_dec_2": "위원회는 현재 {total} 명의 슈퍼대표로 구성되었습니다.",
   "committee_dec_3": "각 슈펴대표는 제안서를 제안하고 투표할 권리가 있습니다.",
-  "committee_dec_4": "제안서가 유효기간내에 19명의 대표이상이 승인되가나 이상의 동의 표를 얻을시 제안서가 승인되고 네트워크 매개변수가 다음 유지 보수기간 동안 수정됩니다.",
+  "committee_dec_4": "제안서가 유효기간내에 {total} 명의 대표이상이 승인되가나 이상의 동의 표를 얻을시 제안서가 승인되고 네트워크 매개변수가 다음 유지 보수기간 동안 수정됩니다.",
   "get_committee_proposal": "위원회 제안서 보기",
   "TRON_network_parameters": "TRON 네트워크 매개변수",
   "commission_proposed": "위원회 제안서",

@@ -1,5 +1,5 @@
 import React from "react";
-import {tu} from "../../utils/i18n";
+import {tu,tv} from "../../utils/i18n";
 import {injectIntl} from "react-intl";
 import { Table } from 'antd';
 import {upperFirst} from 'lodash'
@@ -516,7 +516,11 @@ class Committee extends React.Component {
                         </div>
                         <div className="col-md-3 col-sm-6 col-xs-12">
                             <img src={require("../../images/proposals/proposal_2.png")}  className="m-auto"/>
-                            <p className="mt-4 p-2">{tu("committee_dec_2")}</p>
+                            {
+                                IS_MAINNET? <p className="mt-4 p-2">{tv('committee_dec_2', {total: 27})}</p>:
+                                    <p className="mt-4 p-2">{tv('committee_dec_2', {total: 5})}</p>
+                            }
+
                         </div>
                         <div className="col-md-3 col-sm-6 col-xs-12">
                             <img src={require("../../images/proposals/proposal_3.png")}  className="m-auto"/>
@@ -524,7 +528,10 @@ class Committee extends React.Component {
                         </div>
                         <div className="col-md-3 col-sm-6 col-xs-12">
                             <img src={require("../../images/proposals/proposal_4.png")}  className="m-auto"/>
-                            <p className="mt-4 p-2">{tu("committee_dec_4")}</p>
+                            {
+                                IS_MAINNET? <p className="mt-4 p-2">{tv('committee_dec_4', {total: 19})}</p>:
+                                    <p className="mt-4 p-2">{tv('committee_dec_4', {total: 4})}</p>
+                            }
                         </div>
                     </div>
                     <div className="m-auto">
