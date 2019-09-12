@@ -149,7 +149,7 @@ class PledgeModal extends Component {
             }
 
             // min value
-            const minAmount = division(type === CURRENCYTYPE.TRX ? TRXDEPOSITMIN : TRCDEPOSITMIN, Math.pow(10, Number(precision)));
+            const minAmount = type === CURRENCYTYPE.TRX ? TRXDEPOSITMIN : division(TRCDEPOSITMIN, Math.pow(10, Number(precision)));
             if (Number(numValue) < minAmount) {
                 errorMess = `${intl.formatMessage({id: 'pledge_num_min_error'})}${minAmount}${currency}`;
             }

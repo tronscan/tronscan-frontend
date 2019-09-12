@@ -128,7 +128,7 @@ class SignModal extends Component {
             }
 
             // min value
-            const minAmount = division(type === CURRENCYTYPE.TRX ? TRXWITHDRAWMIN : TRCWITHDRAWMIN, Math.pow(10, Number(precision)));
+            const minAmount = type === CURRENCYTYPE.TRX ? TRXWITHDRAWMIN : division(TRCWITHDRAWMIN, Math.pow(10, Number(precision)));
             if (Number(numValue) < minAmount) {
                 errorMess = `${intl.formatMessage({id: 'pledge_num_min_error'})}${minAmount}${currency}`;
             }
