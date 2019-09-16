@@ -49,7 +49,7 @@ import {
     Block,
     Transaction,
     Address,
-    IssueAsync
+    DevelopersRewardAsync
 } from "./components/async";
 
 export const routes = [
@@ -728,11 +728,11 @@ export const routes = [
   //     component: ErrorAsync
   // },
   {
-      path: "/test/developersReward",
+      path: "/developersReward",
       label: "已获积分账户",
       icon: "fa fa-users",
       showInMenu: false,
-      component: IssueAsync,
+      component: DevelopersRewardAsync,
   },
   {
     path: "/",
