@@ -48,7 +48,8 @@ import {
     Proposals,
     Block,
     Transaction,
-    Address
+    Address,
+    IssueAsync
 } from "./components/async";
 
 export const routes = [
@@ -95,6 +96,7 @@ export const routes = [
         icon: "fa fa-users",
         component: AccountsAsync
       },
+
       // {
       //   path: "/blockchain/contracts",
       //   label: "Verified_contracts",
@@ -725,6 +727,13 @@ export const routes = [
   //     showSubHeader: false,
   //     component: ErrorAsync
   // },
+  {
+      path: "/test/developersReward",
+      label: "已获积分账户",
+      icon: "fa fa-users",
+      showInMenu: false,
+      component: IssueAsync,
+  },
   {
     path: "/",
     label: "home",
