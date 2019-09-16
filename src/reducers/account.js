@@ -1,4 +1,5 @@
-import {SET_RECENT_TRANSACTIONS, SET_TOKEN_BALANCES, SET_TOTAL_TRANSACTIONS, SET_WEBSOCKET, SET_WS_DATA} from "../actions/account";
+import {SET_RECENT_TRANSACTIONS, SET_TOKEN_BALANCES, SET_TOTAL_TRANSACTIONS, SET_WEBSOCKET, SET_WS_DATA,
+  SET_TOKEN20_MAP, SET_TOKEN_MAP} from "../actions/account";
 import {LOGIN} from "../actions/app";
 import {find, sortBy, toUpper} from "lodash";
 import _ from "lodash";
@@ -14,7 +15,9 @@ const initialState = {
   },
   accountResource:{},
   delegated:{},
-  wsdata: []
+  wsdata: [],
+  tokensMap: {},
+  tokens20Map: {},
 };
 
 export function accountReducer(state = initialState, action) {
@@ -83,6 +86,20 @@ export function accountReducer(state = initialState, action) {
       return {
         ...state,
         wsdata: action.wsdata,
+      }
+    }
+
+    case SET_TOKEN20_MAP: {
+      return {
+        ...state,
+        token20Map: action.token20Map,
+      }
+    }
+
+    case SET_TOKEN_MAP: {
+      return {
+        ...state,
+        tokenMap: action.tokenMap,
       }
     }
 
