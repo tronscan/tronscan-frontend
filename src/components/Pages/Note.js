@@ -59,7 +59,7 @@ export default class NoteModal extends React.PureComponent {
                 key: 'address',
                 align: 'left',
                 className: 'ant_table',
-                width: '40%',
+                width: '80%',
                 render: (text, record, index) => {
                     return <HrefLink href={record.url} target="_blank" className="text-muted">
                            <span>{record.url}</span>
@@ -90,14 +90,12 @@ export default class NoteModal extends React.PureComponent {
         let total = notes.length;
         let column = this.customizedColumn();
         return (
-            <Modal isOpen={true} toggle={this.hideModal} fade={false} className="modal-dialog-centered _freezeContent">
+            <Modal isOpen={true} toggle={this.hideModal} fade={false} className="modal-dialog-centered _freezeContent developers_note">
                 <ModalHeader className="text-center _freezeHeader" toggle={this.hideModal}>
                     {tu("积分明细")}
                 </ModalHeader>
                 <ModalBody className="text-center _freezeBody token_black">
-                    <SmartTable bordered={true} loading={loading} column={column} data={notes} total={total} position='bottom'  onPageChange={(page, pageSize) => {
-                        this.loadAccounts(page, pageSize)
-                    }}/>
+                    <SmartTable bordered={true} loading={loading} column={column} data={notes} total={total} position='bottom'/>
                 </ModalBody>
             </Modal>
         )

@@ -503,7 +503,8 @@ nextvote, node, nodest, sr, totle, up, vote, accounts, nextRound, totalVotes, mo
       border-color: #C23631 !important;
     }
     @media screen and (max-width: 768px) {
-      top: 43px;
+      top: 0px;
+      width: 345px;
     }
   }
   &_switch{

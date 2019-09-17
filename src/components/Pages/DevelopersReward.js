@@ -3,7 +3,7 @@ import {connect} from "react-redux";
 import {loadAccounts} from "../../actions/app";
 import {tu} from "../../utils/i18n";
 import {FormattedNumber, injectIntl} from "react-intl";
-import {filter, upperFirst,trim} from "lodash";
+import {upperFirst, trim } from "lodash";
 import {AddressLink} from "../common/Links";
 import {CIRCULATING_SUPPLY, ONE_TRX} from "../../constants";
 import {TRXPrice} from "../common/Price";
@@ -12,7 +12,7 @@ import {TronLoader} from "../common/loaders";
 import {QuestionMark} from "../common/QuestionMark";
 import xhr from "axios/index";
 import {Client} from "../../services/api";
-import {Tooltip,Input} from 'antd'
+import {Tooltip,Input,Table} from 'antd'
 import Note from "./Note";
 import {NameWithId} from "../common/names";
 const { Search } = Input;
@@ -29,6 +29,18 @@ class developersReward extends Component {
             developers: [],
             total: 0,
             searchCriteria:"",
+            pagination: {
+                showQuickJumper:true,
+                position: 'bottom',
+                showSizeChanger: true,
+                defaultPageSize:20,
+                total: 0
+            },
+            filter: {
+                sortField:'currentMonth',
+                userSort: -1,
+                order_current: 'descend'
+            },
         }
     }
 
@@ -37,32 +49,57 @@ class developersReward extends Component {
     }
 
     loadAccounts = async (page = 1, pageSize = 20) => {
-        const { searchCriteria } = this.state
-
+        const { searchCriteria,filter} = this.state
         this.setState({loading: true});
 
         let {data, total} = await Client.getUserList({
             "search": searchCriteria,
-            "userSort": "",
             'pageSize': pageSize,
-            'page':1
+            'page':page,
+             ...filter
         })
 
         data.map((item,index) => {
             item.index = index +1;
 
         })
-
         this.setState({
             loading: false,
             developers: data,
             total: total,
+            pagination: {
+                ...this.state.pagination,
+                total
+            },
         });
     };
 
-    componentDidUpdate() {
+    handleTableChange = (pagination, filters, sorter) => {
+        const pager = { ...this.state.pagination};
+        pager.current = pagination.current;
+        pager.pageSize = pagination.pageSize;
 
+        const map = {
+            descend: -1,
+            ascend: 1
+        }
+        const sortMap = {
+            currentYear: 'currentYear',
+            currentQuarter: 'currentQuarter',
+            currentMonth: 'currentMonth',
+        }
+        this.setState({
+            pagination: pager,
+            filter: {
+                ...this.state.filter,
+                sortField: sortMap[sorter.columnKey] || 'currentMonth',
+                userSort: map[sorter.order] || '-1',
+                order_current: sorter.order
+            }
+        }, () => this.loadAccounts(pager.current, pager.pageSize));
     }
+
+
     hideModal = () => {
         this.setState({
             modal: null,
@@ -70,7 +107,6 @@ class developersReward extends Component {
     };
 
     showNote = (index) => {
-        console.log('this.state.developers[index].note',this.state.developers[index].note)
         let notes = (new Function("return " + this.state.developers[index].note))();;
         this.setState({
             modal: (
@@ -144,9 +180,10 @@ class developersReward extends Component {
 
     customizedColumn = () => {
         let {intl} = this.props;
+        let {filter} = this.state;
         let column = [
             {
-                title: '序号',
+                title: '排名',
                 dataIndex: 'tagName',
                 align: 'left',
                 render: (text, record, index) => {
@@ -155,58 +192,59 @@ class developersReward extends Component {
             },
             {
                 title: upperFirst(intl.formatMessage({id: '用户名'})),
-                dataIndex: 'address',
-                key: 'address',
+                dataIndex: 'name',
+                key: 'name',
                 align: 'left',
                 className: 'ant_table',
                 width: '40%',
                 render: (text, record, index) => {
-                    return <div>{record.name}{`(${record.email})`}</div>
+                    return <div>{record.name}</div>
                 }
             },
 
             {
                 title: upperFirst(intl.formatMessage({id: '本年度积分'})),
-                dataIndex: 'balance',
-                key: 'supply',
+                dataIndex: 'currentYear',
+                key: 'currentYear',
                 align: 'center',
                 className: 'ant_table',
-                // width: '12%',
+                sorter: true,
+                sortOrder: filter.sortField === 'currentYear' && filter.order_current,
                 render: (text, record, index) => {
                     return <div><FormattedNumber value={record.currentYear}/></div>
                 }
             },
             {
                 title: upperFirst(intl.formatMessage({id: '本季度积分'})),
-                dataIndex: 'power',
-                key: 'power',
+                dataIndex: 'currentQuarter',
+                key: 'currentQuarter',
                 align: 'center',
-                // width: '15%',
+                sorter: true,
+                sortOrder: filter.sortField === 'currentQuarter' && filter.order_current,
                 render: (text, record, index) => {
                     return <div><FormattedNumber value={record.currentQuarter}/></div>
                 }
             },
             {
                 title: upperFirst(intl.formatMessage({id: '本月度积分'})),
-                dataIndex: 'balance',
-                key: 'balance111',
+                dataIndex: 'currentMonth',
+                key: 'currentMonth',
                 align: 'center',
                 className: 'ant_table',
-                // width: '15%',
+                sorter: true,
+                sortOrder: filter.sortField === 'currentMonth' && filter.order_current,
                 render: (text, record, index) => {
                     return <div><FormattedNumber value={record.currentMonth}/></div>
                 }
             },
             {
-                title: upperFirst(intl.formatMessage({id: '操作'})),
-                dataIndex: 'balance',
-                key: 'balance222',
+                title: upperFirst(intl.formatMessage({id: 'trc20_cur_order_header_action'})),
+                dataIndex: 'action',
+                key: 'action',
                 align: 'right',
                 className: 'ant_table',
                 // width: '15%',
                 render: (text, record, index) => {
-                    console.log('record',record)
-                    console.log('index',index)
                     return <a href="javascript:;" onClick={() => {
                         this.showNote(index)
                     }}>查看积分明细</a>
@@ -229,22 +267,35 @@ class developersReward extends Component {
                 {modal}
                 {loading && <div className="loading-style"><TronLoader/></div>}
                 <div className="row mt-2">
-                    <div className="col-md-12 table_pos">
+                    <div className="col-md-12 table_pos trc20-ad-bg">
                         {total ?<div className="table_pos_info d-none d-md-block" style={{left: 'auto'}}>
                             <div>{tu('view_total')} {total} {tu('account_unit')}</div>
                         </div> : ''}
                          <div className="table_pos_search" style={{right: '15px',}}>
                              <Search
-                                 placeholder="input search text"
+                                 placeholder="搜索用户名"
                                  enterButton="Search"
                                  size="large"
                                  onSearch={value => this.onSearchChange(value)}
                              />
                          </div>
-                        <SmartTable bordered={true} loading={loading} column={column} data={developers} total={total} position='bottom' addr
-                                    onPageChange={(page, pageSize) => {
-                                        this.loadAccounts(page, pageSize)
-                                    }}/>
+                        <div className="card table_pos table_pos_addr table_pos_addr_data">
+                            <Table
+                                columns={column}
+                                rowKey={(record, index) => index}
+                                dataSource={developers}
+                                loading={loading}
+                                onChange={this.handleTableChange}
+                                pagination={this.state.pagination}
+                                bordered={true}
+                                rowClassName={ (record, index) => {
+                                    if(record.index<6){
+                                        return 'trc20-star-ad'
+                                    }
+                                }}
+                            />
+                        </div>
+
                     </div>
                 </div>
             </main>
