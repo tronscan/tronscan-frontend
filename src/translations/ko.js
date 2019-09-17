@@ -1945,4 +1945,5 @@ export const messages = {
   "developers_points_details": "Points details",
   "developers_contribution_link":"Contribution content corresponding link",
   "developers_earn_points":"Earn points",
+  "developers_search":" Search username",
 };
