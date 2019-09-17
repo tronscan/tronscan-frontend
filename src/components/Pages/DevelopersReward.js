@@ -182,16 +182,16 @@ class developersReward extends Component {
         let {intl} = this.props;
         let {filter} = this.state;
         let column = [
+            // {
+            //     title: upperFirst(intl.formatMessage({id: 'rank'})),
+            //     dataIndex: 'tagName',
+            //     align: 'left',
+            //     render: (text, record, index) => {
+            //         return <div>{record.index}</div>
+            //     }
+            // },
             {
-                title: '排名',
-                dataIndex: 'tagName',
-                align: 'left',
-                render: (text, record, index) => {
-                    return <div>{record.index}</div>
-                }
-            },
-            {
-                title: upperFirst(intl.formatMessage({id: '用户名'})),
+                title: upperFirst(intl.formatMessage({id: 'developers_username'})),
                 dataIndex: 'name',
                 key: 'name',
                 align: 'left',
@@ -203,7 +203,7 @@ class developersReward extends Component {
             },
 
             {
-                title: upperFirst(intl.formatMessage({id: '本年度积分'})),
+                title: upperFirst(intl.formatMessage({id: 'developers_current_year'})),
                 dataIndex: 'currentYear',
                 key: 'currentYear',
                 align: 'center',
@@ -215,7 +215,7 @@ class developersReward extends Component {
                 }
             },
             {
-                title: upperFirst(intl.formatMessage({id: '本季度积分'})),
+                title: upperFirst(intl.formatMessage({id: 'developers_current_quarter'})),
                 dataIndex: 'currentQuarter',
                 key: 'currentQuarter',
                 align: 'center',
@@ -226,7 +226,7 @@ class developersReward extends Component {
                 }
             },
             {
-                title: upperFirst(intl.formatMessage({id: '本月度积分'})),
+                title: upperFirst(intl.formatMessage({id: 'developers_current_month'})),
                 dataIndex: 'currentMonth',
                 key: 'currentMonth',
                 align: 'center',
@@ -247,7 +247,7 @@ class developersReward extends Component {
                 render: (text, record, index) => {
                     return <a href="javascript:;" onClick={() => {
                         this.showNote(index)
-                    }}>查看积分明细</a>
+                    }}>{tu('developers_view_points')}</a>
                 }
             }
         ];

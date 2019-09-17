@@ -46,7 +46,7 @@ export default class NoteModal extends React.PureComponent {
         let {intl} = this.props;
         let column = [
             {
-                title: '序号',
+                title: upperFirst(intl.formatMessage({id: 'propose_number'})),
                 dataIndex: 'index',
                 align: 'left',
                 render: (text, record, index) => {
@@ -54,7 +54,7 @@ export default class NoteModal extends React.PureComponent {
                 }
             },
             {
-                title: upperFirst(intl.formatMessage({id: '贡献内容对应链接'})),
+                title: upperFirst(intl.formatMessage({id: 'developers_contribution_link'})),
                 dataIndex: 'address',
                 key: 'address',
                 align: 'left',
@@ -68,7 +68,7 @@ export default class NoteModal extends React.PureComponent {
             },
 
             {
-                title: upperFirst(intl.formatMessage({id: '获得积分'})),
+                title: upperFirst(intl.formatMessage({id: 'developers_earn_points'})),
                 dataIndex: 'balance',
                 key: 'supply',
                 align: 'left',
@@ -92,7 +92,7 @@ export default class NoteModal extends React.PureComponent {
         return (
             <Modal isOpen={true} toggle={this.hideModal} fade={false} className="modal-dialog-centered _freezeContent developers_note">
                 <ModalHeader className="text-center _freezeHeader" toggle={this.hideModal}>
-                    {tu("积分明细")}
+                    {tu("developers_points_details")}
                 </ModalHeader>
                 <ModalBody className="text-center _freezeBody token_black">
                     <SmartTable bordered={true} loading={loading} column={column} data={notes} total={total} position='bottom'/>
