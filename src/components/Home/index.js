@@ -363,22 +363,15 @@ export default class Home extends Component {
               <div className="row text-center mr-0 ml-0 mobile-home-state">
                 <div className="col-12  card  pt-1 mb-0" style={{border: 'none', borderRadius: 0}}>
                   <div className="row pt-3">
-                    <div className="col-6 ">
-
-                        {
-                            IS_MAINNET?
-                                <Link to="/blockchain/nodes" className="hvr-underline-from-center hvr-underline-white text-muted">
-                                    <img src={require('../../images/home/node.png')}/>
-                                    <h2><CountUp start={0} end={onlineNodes} duration={1}/></h2>
-                                    <p className="m-0">{tu("online_nodes")}</p>
-                                </Link>:
-                                <div className="hvr-underline-from-center hvr-underline-white text-muted">
-                                    <img src={require('../../images/home/node.png')}/>
-                                    <h2><CountUp start={0} end={onlineNodes} duration={1}/></h2>
-                                    <p className="m-0">{tu("online_nodes")}</p>
-                                </div>
-                        }
-                    </div>
+                      {
+                          IS_MAINNET?<div className="col-6 ">
+                              <Link to="/blockchain/nodes" className="hvr-underline-from-center hvr-underline-white text-muted">
+                                  <img src={require('../../images/home/node.png')}/>
+                                  <h2><CountUp start={0} end={onlineNodes} duration={1}/></h2>
+                                  <p className="m-0">{tu("online_nodes")}</p>
+                              </Link>
+                          </div>:null
+                      }
                     <div className="col-6">
                       <Link to="/blockchain/blocks"
                             className="hvr-underline-from-center hvr-underline-white text-muted">
@@ -426,20 +419,16 @@ export default class Home extends Component {
               <div className="row text-center mr-0 ml-0 mt-3">
                 <div className="col-12  card  pt-1 pl-0 pr-0" style={{border: 'none', borderRadius: 0}}>
                   <div className="card-body row pt-4 pb-4 home-stats">
-                    <div className="col-lg-2 col-md-4 col-xs-12 mb-lg-0  mb-md-3 ">
-                        {
-                            IS_MAINNET?
-                            <Link to="/blockchain/nodes" className="hvr-underline-from-center hvr-underline-white text-muted">
-                                <h2><CountUp start={0} end={onlineNodes} duration={1}/></h2>
-                                <p className="m-0">{tu("online_nodes")}</p>
-                            </Link>:
-                            <div className="hvr-underline-from-center hvr-underline-white text-muted">
-                                <h2><CountUp start={0} end={onlineNodes} duration={1}/></h2>
-                                <p className="m-0">{tu("online_nodes")}</p>
-                            </div>
-                        }
-                    </div>
-                    <div className="col-lg-2 col-md-4 col-xs-12 mb-lg-0 mb-md-3">
+                      {
+                          IS_MAINNET?<div className="col-lg-2 col-md-4 col-xs-12 mb-lg-0  mb-md-3 ">
+                              <Link to="/blockchain/nodes" className="hvr-underline-from-center hvr-underline-white text-muted">
+                                  <h2><CountUp start={0} end={onlineNodes} duration={1}/></h2>
+                                  <p className="m-0">{tu("online_nodes")}</p>
+                              </Link>
+                          </div>:null
+                      }
+
+                    <div className={IS_MAINNET?"col-lg-2 col-md-4 col-xs-12 mb-lg-0 mb-md-3":"col-lg-3 col-md-4 col-xs-12 mb-lg-0 mb-md-3"}>
                       <Link to="/blockchain/blocks"
                             className="hvr-underline-from-center hvr-underline-white text-muted">
                         <h2><CountUp start={startblockHeight} end={blockHeight} duration={2}/></h2>
@@ -466,8 +455,9 @@ export default class Home extends Component {
                         <p className="m-0">{tu("total_accounts")}</p>
                       </Link>
                     </div>
-                    <div className="col-lg-2 col-md-4 col-xs-12">
-                        <HrefLink href="https://coinmarketcap.com/currencies/tron/" target="_blank" className="hvr-underline-from-center hvr-underline-white text-muted">
+                      <div className={IS_MAINNET?"col-lg-2 col-md-4 col-xs-12":"col-lg-3 col-md-4 col-xs-12"}>
+
+                      <HrefLink href="https://coinmarketcap.com/currencies/tron/" target="_blank" className="hvr-underline-from-center hvr-underline-white text-muted">
                           <h2><TRXPrice amount={1} currency="USD" source="home"/></h2>
                           <p className="m-0">{tu("pice_per_1trx")}</p>
                         </HrefLink>
