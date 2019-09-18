@@ -20,7 +20,7 @@ import CreateTxnPairModal from "./CreateTxnPairModal";
 import OperateTxnPairModal from "./OperateTxnPairModal";
 import {addDays, getTime} from "date-fns";
 import Transactions from "../common/Transactions";
-import {decode58Check, pkToAddress} from "@tronscan/client/src/utils/crypto";
+import {decode58Check, pkToAddress, isAddressValid} from "@tronscan/client/src/utils/crypto";
 import {QuestionMark} from "../common/QuestionMark";
 import Lockr from "lockr";
 import {withTronWeb} from "../../utils/tronWeb";
@@ -763,15 +763,15 @@ export default class Account extends Component {
 
   renderTransactions() {
 
-    let {currentWallet} = this.props;
-    return (
+    let {currentWallet,account} = this.props;
+      return (
         <Transactions
             theadClass="thead-light"
             showTotal={false}
             autoRefresh={30000}
             pagingProps={{showPageSize: false}}
             EmptyState={() => <p className="text-center">No transactions yet</p>}
-            filter={{address: currentWallet.address}}
+            filter={{address: isAddressValid(currentWallet.address)?currentWallet.address:account.address}}
             page={{router:'account'}}
         />
     )

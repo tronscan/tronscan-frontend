@@ -788,7 +788,7 @@ class Navigation extends React.Component {
                               {tu("login_privatekey_warn_safe")}
                           </div>
                           <button className="btn btn-danger btn-block mt-2"
-                                  // disabled={!this.isLoginValid()}
+                                  disabled={!this.isLoginValid()}
                                   onClick={(e) => {
                                     this.login(e)
                                   }}>

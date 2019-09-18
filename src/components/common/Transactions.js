@@ -135,7 +135,7 @@ class Transactions extends React.Component {
   };
 
   customizedColumn = () => {
-      let {intl, isinternal = false} = this.props;
+    let {intl, isinternal = false} = this.props;
     let column = [
       {
         title: upperFirst(intl.formatMessage({id: 'hash'})),
