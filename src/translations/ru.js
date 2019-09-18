@@ -1986,6 +1986,7 @@ export const messages = {
   "select_tip": "To view data other than 2000 You can manually adjust the time window",
   "date_number_tip": "{total} records in the current time range",
   "date_list_tip": "Only the first 2000 data are displayed",
+
   "sun_propose_1": "Переключатель комиссии за транзакцию: комиссия за транзакцию будет взиматься, как правило, если для предложения установлено значение 1.",
   "sun_propose_2": "Установите адрес контракта для gateway на боковой цепи",
   "sun_propose_3": "Установите срок действия предложения",
@@ -1995,4 +1996,17 @@ export const messages = {
   "sun_propose_7": "Метрики распределения стимулирующего пула сайдчейн",
   "sun_propose_8": "Коэффициент прибыли witness на сайдчейн",
   "day":"день",
+
+
+  "developers_username": "username",
+  "developers_current_year":"year's points",
+  "developers_current_quarter": "quarter's points",
+  "developers_current_month":"month's points",
+  "developers_view_points":"View Points Details",
+  "developers_points_details": "Points details",
+  "developers_contribution_link":"Contribution content corresponding link",
+  "developers_earn_points":"Earn points",
+  "developers_search":"Search username",
+  "developers_scored_users":"Scored Users",
+
 };

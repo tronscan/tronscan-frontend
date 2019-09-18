@@ -1985,6 +1985,7 @@ export const messages = {
   "select_tip": "To view data other than 2000 You can manually adjust the time window",
   "date_number_tip": "{total} records in the current time range",
   "date_list_tip": "Only the first 2000 data are displayed",
+
   "sun_propose_1": "Cambio de tarifa de transacción: la tarifa de transacción se cobrará normalmente cuando la propuesta se establezca en 1.",
   "sun_propose_2": "Establecer la dirección del contrato para la puerta de enlace en la cadena lateral",
   "sun_propose_3": "Establecer el tiempo de vencimiento de la propuesta",
@@ -1994,4 +1995,17 @@ export const messages = {
   "sun_propose_7": "Métricas de distribución del grupo de incentivos de la cadena lateral",
   "sun_propose_8": "Proporción de ingresos del testigo en la cadena lateral",
   "day":"día",
+
+
+
+  "developers_username": "username",
+  "developers_current_year":"year's points",
+  "developers_current_quarter": "quarter's points",
+  "developers_current_month":"month's points",
+  "developers_view_points":"View Points Details",
+  "developers_points_details": "Points details",
+  "developers_contribution_link":"Contribution content corresponding link",
+  "developers_earn_points":"Earn points",
+  "developers_search":" Search username",
+  "developers_scored_users":"Scored Users",
 };

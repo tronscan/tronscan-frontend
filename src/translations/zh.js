@@ -2018,6 +2018,7 @@ export const messages = {
   "select_tip": "如果要查看2000条之外的数据可以手动调整时间窗口",
   "date_number_tip": "当前时间范围内有{total}条记录",
   "date_list_tip": "列表仅展示2000条记录",
+
   "sun_propose_1": "交易计费开关",
   "sun_propose_2": "设置侧链gateway合约地址",
   "sun_propose_3": "设置提案过期时间",
@@ -2027,4 +2028,16 @@ export const messages = {
   "sun_propose_7": "侧链激励池分发系数",
   "sun_propose_8": "侧链收益累积到激励池的比例",
   "day":"天",
+
+
+  "developers_username": "用户名",
+  "developers_current_year":"本年度积分",
+  "developers_current_quarter":"本季度积分",
+  "developers_current_month":"本月度积分",
+  "developers_view_points":"查看积分明细",
+  "developers_points_details": "积分明细",
+  "developers_contribution_link":"贡献内容对应链接",
+  "developers_earn_points":"获得积分",
+  "developers_search":"搜索用户名",
+  "developers_scored_users":"已获积分账户",
 };

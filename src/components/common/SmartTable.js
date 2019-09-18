@@ -6,6 +6,7 @@ import {Table, Input, Button, Icon} from 'antd';
 export default class SmartTable extends Component {
   constructor(props) {
     super(props);
+    console.log(props)
     this.state = {
       filterDropdownVisible: false,
       data: [],
@@ -13,7 +14,7 @@ export default class SmartTable extends Component {
       filtered: false,
       pagination: {
         showQuickJumper:true,
-        position: 'both',
+        position: props.position || 'both',
         showSizeChanger: true,
         defaultPageSize:20,
 

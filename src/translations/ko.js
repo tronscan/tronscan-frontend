@@ -1982,6 +1982,7 @@ export const messages = {
   "date_number_tip": "{total} records in the current time range",
   "date_list_tip": "Only the first 2000 data are displayed",
 
+
   "sun_propose_1": "거래 비용 청구 스위치에 대한 제안 설치가 1일 경우 거래 비용을 정상적으로 받습니다.",
   "sun_propose_2": "사이드 체인 gateway 계약 주소 설정",
   "sun_propose_3": "제안 기한 만료 시간 설정",
@@ -1991,4 +1992,16 @@ export const messages = {
   "sun_propose_7": "사이드체인 인센티브 풀 분배 계수",
   "sun_propose_8": "사이드 체인 수익이 인센티브 풀로 누적되는 비율",
   "day":"일",
+
+  "developers_username": "username",
+  "developers_current_year":"year's points",
+  "developers_current_quarter": "quarter's points",
+  "developers_current_month":"month's points",
+  "developers_view_points":"View Points Details",
+  "developers_points_details": "Points details",
+  "developers_contribution_link":"Contribution content corresponding link",
+  "developers_earn_points":"Earn points",
+  "developers_search":" Search username",
+  "developers_scored_users":"Scored Users",
+
 };

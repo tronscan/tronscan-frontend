@@ -1991,6 +1991,7 @@ export const messages = {
   "select_tip": "To view data other than 2000 You can manually adjust the time window",
   "date_number_tip": "{total} records in the current time range",
   "date_list_tip": "Only the first 2000 data are displayed",
+
   "sun_propose_1": "Transaction fee switch",
   "sun_propose_2": "Set the contract address for gateway on the side chain",
   "sun_propose_3": "Set the expiration time for the proposal",
@@ -2000,4 +2001,15 @@ export const messages = {
   "sun_propose_7": "Distribution metrics of the side chain incentive pool",
   "sun_propose_8": "Revenue ratio of witness on the side chain",
   "day":"day",
+
+  "developers_username": "username",
+  "developers_current_year":"year's points",
+  "developers_current_quarter": "quarter's points",
+  "developers_current_month":"month's points",
+  "developers_view_points":"View Points Details",
+  "developers_points_details": "Points details",
+  "developers_contribution_link":"Contribution content corresponding link",
+  "developers_earn_points":"Earn points",
+  "developers_search":" Search username",
+  "developers_scored_users":"Scored Users",
 };

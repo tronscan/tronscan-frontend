@@ -1979,6 +1979,7 @@ export const messages = {
   "date_number_tip": "{total} records in the current time range",
   "date_list_tip": "Only the first 2000 data are displayed",
 
+
   "sun_propose_1": "トランザクションリクエストの切り替え",
   "sun_propose_2": "サイドチェーンgatewayのコントラクトアドレスを設置します",
   "sun_propose_3": "提案の締め切り時間を設定します",
@@ -1988,4 +1989,16 @@ export const messages = {
   "sun_propose_7": "サイドチェーンインセンティブ奨金プールの分配パラメーター",
   "sun_propose_8": "サイドチェーンの収益はインセンティブ奨金プールで蓄積された割合",
   "day":"日",
+
+  "developers_username": "username",
+  "developers_current_year":"year's points",
+  "developers_current_quarter": "quarter's points",
+  "developers_current_month":"month's points",
+  "developers_view_points":"View Points Details",
+  "developers_points_details": "Points details",
+  "developers_contribution_link":"Contribution content corresponding link",
+  "developers_earn_points":"Earn points",
+  "developers_search":" Search username",
+  "developers_scored_users":"Scored Users",
+
 }

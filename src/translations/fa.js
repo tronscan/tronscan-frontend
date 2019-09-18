@@ -1973,13 +1973,14 @@ export const messages = {
     "Side_Chain":"Side chain browser(DappChain)",
     "Main_Chain":"Main chain browser(MainChain)",
 
+
     "7day": "one week",
     "14day": "two weeks",
     "30day": "one month",
     "select_tip": "To view data other than 2000 You can manually adjust the time window",
     "date_number_tip": "{total} records in the current time range",
     "date_list_tip": "Only the first 2000 data are displayed",
-
+    "day":"روز",
     "sun_propose_1": "سوئیچ مبلغ معامله: هنگام تنظیم پیشنهاد 1 ، هزینه معامله به طور عادی شارژ می شود.",
     "sun_propose_2": "آدرس  قرارداد برای گیت را روی زنجیره جانبی تنظیم کنید",
     "sun_propose_3": "زمان انقضاء پیشنهاد را تعیین کنید",
@@ -1988,5 +1989,16 @@ export const messages = {
     "sun_propose_6": "مدیریت سوئیچ تشویقی برای شاهد در زنجیره جانبی روشن یا خاموش ",
     "sun_propose_7": "معیارهای توزیع استخر تشویقی زنجیره جانبی را وارد کنید .",
     "sun_propose_8": "نسبت درآمد حاصل از شاهد در زنجیره جانبی.",
-    "day":"روز",
+
+
+    "developers_username": "username",
+    "developers_current_year":"year's points",
+    "developers_current_quarter": "quarter's points",
+    "developers_current_month":"month's points",
+    "developers_view_points":"View Points Details",
+    "developers_points_details": "Points details",
+    "developers_contribution_link":"Contribution content corresponding link",
+    "developers_earn_points":"Earn points",
+    "developers_search":" Search username",
+    "developers_scored_users":"Scored Users",
 };

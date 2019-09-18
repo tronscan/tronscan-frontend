@@ -1984,4 +1984,15 @@
   "sun_propose_8": "نسبة إيرادات witness على السلسلة الجانبية",
   "day":"يوم",
 
+
+  "developers_username": "username",
+  "developers_current_year":"year's points",
+  "developers_current_quarter": "quarter's points",
+  "developers_current_month":"month's points",
+  "developers_view_points":"View Points Details",
+  "developers_points_details": "Points details",
+  "developers_contribution_link":"Contribution content corresponding link",
+  "developers_earn_points":"Earn points",
+  "developers_search":" Search username",
+  "developers_scored_users":"Scored Users",
 };

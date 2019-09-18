@@ -76,6 +76,8 @@ export const TokensCreateAsync =
 export const AccountsAsync = 
   loadable(() => import(/* webpackChunkName: "Accounts" */ './Accounts'))
 
+export const DevelopersRewardAsync =
+    loadable(() => import(/* webpackChunkName: "Accounts" */ './Pages/DevelopersReward'))
 export const FoundationAsync = 
   loadable(() => import(/* webpackChunkName: "Foundation" */ './Foundation'))
 
