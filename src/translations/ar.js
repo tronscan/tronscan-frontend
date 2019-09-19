@@ -1158,6 +1158,14 @@
   */
   "trigger_smart_contract": "دعوة العقد الذكية",
   "normal_address_trigger_smart_contract": "عقد الاتصال بالعنوان العادي",
+  "approve_trigger_smart_contract": "Deposit authorization",
+  "approve_normal_trigger_smart_contract": "Token transfer between the main chain and the sidechain are allowed",
+  "pledge_trigger_smart_contract": "Token deposit",
+  "pledge_normal_trigger_smart_contract": "Transfer from main chain to sidechain",
+  "mapping_trigger_smart_contract": "Token mapping",
+  "mapping_normal_trigger_smart_contract": "Main chain and sidechain mapping",
+  "sign_trigger_smart_contract": "Token withdraw",
+  "sign_normal_trigger_smart_contract": "Transfer from sidechain to main chain",
   "trigger": "دعوة العقد",
   "contract_triggers_total": "دعوة عقد ثانوي",
   "contract_triggers_owner": "المالك",
@@ -1254,9 +1262,9 @@
   */
   "committee": "لجنة ترون ",
   "committee_dec_1": "تستخدم اللجنة لتعديل المعلمات الديناميكية لشبكة ترون ، مثل مكافآت توليد الكتلة ، ورسوم المعاملات ، إلخ",
-  "committee_dec_2": "تتكون اللجنة من الممثلين الـ 27 الحاليين",
+  "committee_dec_2": "تتكون اللجنة من الممثلين الـ {total} الحاليين",
   "committee_dec_3": "كل ممثل ممتاز لديه الحق في الاقتراح والتصويت",
-  "committee_dec_4": "عندما يحصل الاقتراح على 19 صوتًا أو أكثر من الممثلين الممتازين ضمن الإطار الزمني الصالح ، سيتم الموافقة على الاقتراح وسيتم تعديل مواصفات الشبكة في فترة الصيانة التالية",
+  "committee_dec_4": "عندما يحصل الاقتراح على {total} صوتًا أو أكثر من الممثلين الممتازين ضمن الإطار الزمني الصالح ، سيتم الموافقة على الاقتراح وسيتم تعديل مواصفات الشبكة في فترة الصيانة التالية",
   "get_committee_proposal": "تحقق من اقتراحات اللجنة",
   "TRON_network_parameters": "مواصفات شبكة ترون",
   "commission_proposed": "مقترحات اللجنة",
@@ -1913,14 +1921,51 @@
   "deploy_params_send_token":"حدد TRX أو الرمز المميز للإرسال",
   "deploy_params_constructor":"حجة المنشئ",
   "compile_close":"أغلق",
-
   "token_logo_upload_tip":"يدعم فقط التنسيقات الثلاثة png و jpg و jpeg ، ولا يجب أن يتجاوز الحجم 200 كيلو بايت ، والبيكسل يجب ان يكون بقياس 100 * 100",
+  
+  // Backbone - account - mapping
+  "main_account_mapping_title":"الخريطة إلى DAppChain",
+  "main_account_mapping_text":"DAppChain هي عبارة عن شبكة سلسلة جانبية تم تطويرها استنادًا إلى سلسلة ترون الرئيسية ، وهي حل للتحجيم لشبكة TRON MainNet.",
+  "main_account_mapping_text_1":"1.مقدار أعلى من tps بالمقابل الحصول على استهلاك أقل للطاقة",
+  "main_account_mapping_text_2":"2.Mapping operation consumes 1000TRX",
+  "main_account_mapping_btn":"جاري التعيين",
+  "main_account_mapping_success_btn":"تم استكمال التعيين",
+  "main_account_mapping_desc1": "عند تعيين الرمز المميز على السلسلة الجانبية ، سيتم إنشاء رمز مميز يحمل نفس الاسم في السلسلة الجانبية",
+  "main_account_mapping_desc2": "بعد اكتمال التعيين ، يمكن للمستخدمين إيداع الرمز المميز في السلسلة الجانبية.",
+  
+  // sidechain - contract - mapping
+  "sidechain_contract_left":"التعيين من عقد MainNet",
+  "sidechain_contract_right":" ",
+
+  // Sidechain - account - pledge
+  "sidechain_account_pledge_btn":"الوديعة",
+  "sidechain_account_sign_btn":"السحب",
+  "pledge_currency":"الرمز",
+  "pledge_sidechain":"Sidechain",
+  "pledge_num":"الكمية",
+  'pledge_num_error':"لا يمكن أن يتجاوز العدد الحد الأقصى للرصيد المتاح",
+  'pledge_num_min_error':"The quantity cannot be less than",
+  "pledge_text":"سوف تستهلك الودائع كمية معينة من الطاقة",
+  "sign_text":"Withdraw operation will consume",
+  "pledge_mapping_text":"لم يتم تعيين الأصول الخاصة بك إلى DAppChain ، وبالتالي لا يمكن إيداعها.",
+  "lack_of_balance":"TRX has insufficient balance",
+  "mapping_text":"Mapping operations consume:",
+  // success
+  "pledge_success": "Deposit Success",
+  "sign_success": "Withdraw Success",
+  "mapping_success": "Mapping Success",
+  // error
+  "pledge_error": "Deposit Error",
+  "sign_error": "Withdraw Error",
+  "mapping_error": "Mapping Error",
   "price_per_1000_WIN": "PRICE PER 1000 WIN",
   "WIN_distribution_overview": "WIN DISTRIBUTION OVERVIEW",
   "total_WIN_supply": "Total WIN Supply",
   "WIN_supply": "WIN Supply",
   "WIN_Token_Release_Schedule": "WIN Token Release Schedule",
   "source_WIN_team": "Source: WIN Management Team",
+  "Side_Chain":"Side chain browser(DappChain)",
+  "Main_Chain":"Main chain browser(MainChain)",
 
 
   "7day": "one week",
@@ -1929,6 +1974,16 @@
   "select_tip": "To view data other than 2000 You can manually adjust the time window",
   "date_number_tip": "{total} records in the current time range",
   "date_list_tip": "Only the first 2000 data are displayed",
+  "sun_propose_1": "تبديل رسوم المعاملة: سيتم فرض رسوم المعاملة بشكل طبيعي عندما يتم تعيين الاقتراح على 1.",
+  "sun_propose_2": "قم بتعيين عنوان العقد الخاص بالبوابة على السلسلة الجانبية",
+  "sun_propose_3": "حدد وقت انتهاء الصلاحية للمقترح",
+  "sun_propose_4": "بَدأ التصويت لصالح Witness",
+  "sun_propose_5": "عنوان تجمع حوافز السلسلة الجانبية هو العنوان (0) افتراضيًا ",
+  "sun_propose_6": "إدارة إذا كان مفتاح الحوافز لـ witness على السلسلة الجانبية هو فعال / مغلق",
+  "sun_propose_7": "مقاييس التوزيع لمجموعة حوافز السلسلة الجانبية",
+  "sun_propose_8": "نسبة إيرادات witness على السلسلة الجانبية",
+  "day":"يوم",
+
 
   "developers_username": "username",
   "developers_current_year":"year's points",
@@ -1940,6 +1995,5 @@
   "developers_earn_points":"Earn points",
   "developers_search":" Search username",
   "developers_scored_users":"Scored Users",
-
 
 };

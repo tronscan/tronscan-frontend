@@ -2589,6 +2589,30 @@ h5 {
       color: #69C265;
     }
   }
+
+  a:nth-child(3) {
+    color: #C23631;
+
+    border-color: #C23631;
+
+    &:hover {
+      background-color: #C23631;
+      color: #ffffff;
+    }
+
+    &.active {
+      background-color: #C23631;
+      color: #ffffff;
+
+      span {
+        color: #ffffff;
+      }
+    }
+
+    span {
+      color: #C23631;
+    }
+  }
 }
 
 .token20-input-group {
@@ -4123,6 +4147,26 @@ h5 {
 
       &:hover {
         border-color: #8E8C84;
+      }
+    }
+
+    .mapping-title {
+      font-size: 16px;
+    }
+
+    .mapping-btn:hover,
+    .mapping-btn:focus {
+      border: 1px #1890ff solid;
+      color: #fff;
+    }
+  }
+
+  @media only screen and (max-width: 768px) {
+    &-card {
+      overflow-x: scroll;
+
+      .mobile-width {
+        width: 600px;
       }
     }
   }

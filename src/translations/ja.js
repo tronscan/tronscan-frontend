@@ -1156,6 +1156,14 @@ export const messages = {
   */
   "trigger_smart_contract": "スマートコントラクトを調達する",
   "normal_address_trigger_smart_contract": "普通アドレス調達のコントラクト",
+  "approve_trigger_smart_contract": "Deposit authorization",
+  "approve_normal_trigger_smart_contract": "Token transfer between the main chain and the sidechain are allowed",
+  "pledge_trigger_smart_contract": "Token deposit",
+  "pledge_normal_trigger_smart_contract": "Transfer from main chain to sidechain",
+  "mapping_trigger_smart_contract": "Token mapping",
+  "mapping_normal_trigger_smart_contract": "Main chain and sidechain mapping",
+  "sign_trigger_smart_contract": "Token withdraw",
+  "sign_normal_trigger_smart_contract": "Transfer from sidechain to main chain",
   "trigger": "コントラクトの調達",
   "contract_triggers_total": "コントラクトの調達",
   "contract_triggers_owner": "調達者",
@@ -1253,9 +1261,9 @@ export const messages = {
   */
   "committee": "TRON委員会",
   "committee_dec_1": "委員会の機能はTRONのネット動的パラメーター。",
-  "committee_dec_2": "委員会は27位のスーパー代表よりなりました。",
+  "committee_dec_2": "委員会は{total}位のスーパー代表よりなりました。",
   "committee_dec_3": "各スーパー代表には提議権と意見いついての投票権があります。",
-  "committee_dec_4": "提議は有効期限で19位のスーパー代表の賛成を得る場合、提議有効とみられます。次の修正期で、ネットパラメーターを修正します。",
+  "committee_dec_4": "提議は有効期限で{total}位のスーパー代表の賛成を得る場合、提議有効とみられます。次の修正期で、ネットパラメーターを修正します。",
   "get_committee_proposal": "委員会提議をチェックします",
   "TRON_network_parameters": "TRONネットパラメーター",
   "commission_proposed": "委員会の提議",
@@ -1920,12 +1928,49 @@ export const messages = {
 
   "token_logo_upload_tip":"png,jpg,jpeg形式のみをサポートします。大きさが200k以下、サイズ100*100にしてください。",
 
+  // Backbone - account - mapping
+  "main_account_mapping_title":"DappChainへマップ",
+  "main_account_mapping_text":"DappChainはTRONメインネットをベースに開発されたサイドチェーンで、メインネットの使用を拡張しました。マップした後、xxxが獲得できます。",
+  "main_account_mapping_text_1":"1.より高いtps、より低いエネルギー消費",
+  "main_account_mapping_text_2":"2.Mapping operation consumes 1000TRX",
+  "main_account_mapping_btn":"マップ",
+  "main_account_mapping_success_btn":"マップ済",
+  "main_account_mapping_desc1": "トークンをサイドチェーンにマップしたら、サイドチェーンに同名なトークンを生成します。",
+  "main_account_mapping_desc2": "マップできましたら、ユーザーはこのトークンをサイドチェーンに抵当することができます",
+
+  // sidechain - contract - mapping
+  "sidechain_contract_left":"メインネットコントラクトからのマップ",
+  "sidechain_contract_right":" ",
+
+  // Sidechain - account - pledge
+  "sidechain_account_pledge_btn":"抵当",
+  "sidechain_account_sign_btn":"撤回",
+  "pledge_currency":"トークン",
+  "pledge_sidechain":"サイドチェーン",
+  "pledge_num":"数量",
+  'pledge_num_error':"数量は使用可能な最大残高を超えないでください",
+  'pledge_num_min_error':"The quantity cannot be less than",
+  "pledge_text":"抵当にはエネルギーの消費が必要となります",
+  "sign_text":"Withdraw operation will consume",
+  "pledge_mapping_text":"資産をまだDappChainにマップされていないため、抵当できません。",
+  "lack_of_balance":"TRX has insufficient balance",
+  "mapping_text":"Mapping operations consume:",
+  // success
+  "pledge_success": "Deposit Success",
+  "sign_success": "Withdraw Success",
+  "mapping_success": "Mapping Success",
+  // error
+  "pledge_error": "Deposit Error",
+  "sign_error": "Withdraw Error",
+  "mapping_error": "Mapping Error",
   "price_per_1000_WIN": "PRICE PER 1000 WIN",
   "WIN_distribution_overview": "WIN DISTRIBUTION OVERVIEW",
   "total_WIN_supply": "Total WIN Supply",
   "WIN_supply": "WIN Supply",
   "WIN_Token_Release_Schedule": "WIN Token Release Schedule",
   "source_WIN_team": "Source: WIN Management Team",
+  "Side_Chain":"Side chain browser(DappChain)",
+  "Main_Chain":"Main chain browser(MainChain)",
 
   "7day": "one week",
   "14day": "two weeks",
@@ -1933,6 +1978,17 @@ export const messages = {
   "select_tip": "To view data other than 2000 You can manually adjust the time window",
   "date_number_tip": "{total} records in the current time range",
   "date_list_tip": "Only the first 2000 data are displayed",
+
+
+  "sun_propose_1": "トランザクションリクエストの切り替え",
+  "sun_propose_2": "サイドチェーンgatewayのコントラクトアドレスを設置します",
+  "sun_propose_3": "提案の締め切り時間を設定します",
+  "sun_propose_4": "Witnessに投票をスタートします",
+  "sun_propose_5": "サイドチェーンインセンティブ奨金プールアドレスはデフォルトですべてゼロアドレスです ",
+  "sun_propose_6": "サイドチェーン witnessインセンティブスイッチがデフォルトではオフとなります",
+  "sun_propose_7": "サイドチェーンインセンティブ奨金プールの分配パラメーター",
+  "sun_propose_8": "サイドチェーンの収益はインセンティブ奨金プールで蓄積された割合",
+  "day":"日",
 
   "developers_username": "username",
   "developers_current_year":"year's points",

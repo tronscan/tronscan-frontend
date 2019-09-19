@@ -826,7 +826,7 @@
   dependencies:
     regenerator-runtime "^0.13.2"
 
-"@babel/runtime@^7.0.0", "@babel/runtime@^7.1.2", "@babel/runtime@^7.3.4", "@babel/runtime@^7.4.2":
+"@babel/runtime@^7.0.0", "@babel/runtime@^7.1.2", "@babel/runtime@^7.3.4", "@babel/runtime@^7.4.2", "@babel/runtime@^7.4.5":
   version "7.5.5"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.5.5.tgz#74fba56d35efbeca444091c7850ccd494fd2f132"
   dependencies:
@@ -4719,7 +4719,7 @@ etag@~1.8.1:
   version "1.8.1"
   resolved "https://registry.yarnpkg.com/etag/-/etag-1.8.1.tgz#41ae2eeb65efa62268aebfea83ac7d79299b0887"
 
-ethers@^4.0.7:
+ethers@^4.0.32, ethers@^4.0.7:
   version "4.0.33"
   resolved "https://registry.yarnpkg.com/ethers/-/ethers-4.0.33.tgz#f7b88d2419d731a39aefc37843a3f293e396f918"
   dependencies:
@@ -11615,6 +11615,15 @@ stylis@^3.3.2:
   version "3.5.4"
   resolved "https://registry.yarnpkg.com/stylis/-/stylis-3.5.4.tgz#f665f25f5e299cf3d64654ab949a57c768b73fbe"
 
+sunweb@1.0.7:
+  version "1.0.7"
+  resolved "https://registry.yarnpkg.com/sunweb/-/sunweb-1.0.7.tgz#9a4d09e0b5848060c60b8e99740076132c91f49c"
+  dependencies:
+    "@babel/runtime" "^7.4.5"
+    babel-runtime "^6.26.0"
+    ethers "^4.0.32"
+    tronweb "^2.7.1"
+
 supports-color@5.4.0:
   version "5.4.0"
   resolved "https://registry.yarnpkg.com/supports-color/-/supports-color-5.4.0.tgz#1c6b337402c2137605efe19f10fec390f6faab54"
@@ -11966,9 +11975,9 @@ tronstation@^1.0.1:
     "@babel/runtime" "^7.0.0"
     babel-runtime "^6.26.0"
 
-tronweb@^2.5.0:
-  version "2.6.6"
-  resolved "https://registry.yarnpkg.com/tronweb/-/tronweb-2.6.6.tgz#f7b693919b3a1a2e1f13bd2ec4e7c4e391088ef5"
+tronweb@2.7.1, tronweb@^2.7.1:
+  version "2.7.1"
+  resolved "https://registry.yarnpkg.com/tronweb/-/tronweb-2.7.1.tgz#714547728a2e6e87e808da91b7a5b1e178179503"
   dependencies:
     "@babel/runtime" "^7.0.0"
     axios "^0.19.0"
@@ -11977,6 +11986,7 @@ tronweb@^2.5.0:
     elliptic "^6.4.1"
     ethers "^4.0.7"
     eventemitter3 "^3.1.0"
+    lodash "^4.17.14"
     semver "^5.6.0"
     validator "^10.7.1"
 

@@ -18,6 +18,8 @@ export const ENABLE_FLAG = "ENABLE_FLAG";
 export const DISABLE_FLAG = "DISABLE_FLAG";
 export const SET_THEME = "SET_THEME";
 export const SET_SYNC_STATUS = "SET_SYNC_STATUS";
+export const SET_SIDECHAINS = 'SET_SIDECHAINS';
+export const SET_FEES = 'SET_FEES';
 
 export const setLoginWithLedger = (address, tronWeb) => ({
   type: LOGIN_LEDGER,
@@ -164,12 +166,30 @@ export const disableFlag = flag => ({
   flag
 });
 
+// Set side link data
+export const setSideChains = sideChains => ({
+  type: SET_SIDECHAINS,
+  sideChains
+});
+
+export const loadSideChains = sideChains => (dispatch) => {
+  dispatch(setSideChains(sideChains));
+};
+
+// set account fee
+export const setFees = fees => ({
+  type: SET_FEES,
+  fees
+});
+
+export const loadFees = fees => (dispatch) => {
+  dispatch(setFees(fees));
+};
 
 async  function setWebsocketContent(getState, address){
   let { account, app } = getState()
   const localAddress = Lockr.get('localAddress')
   // if(!account.websocket && Lockr.get("websocket") === 'open'){
-  //     //console.log(456)
   //     Lockr.set("websocket","close")
   //     setWebsocket()
   // }

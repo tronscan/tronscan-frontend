@@ -1157,7 +1157,15 @@ export const messages = {
    ##################################################################################
   */
   "trigger_smart_contract": "트리거(trigger) 스마트 컨트랙트",
-  "normal_address_trigger_smart_contract": " 일반 주소 트리거(trigger) 스마트 컨트랙트普通地址调用合约",
+  "normal_address_trigger_smart_contract": " 일반 주소 트리거(trigger) 스마트 컨트랙트",
+  "approve_trigger_smart_contract": "Deposit authorization",
+  "approve_normal_trigger_smart_contract": "Token transfer between the main chain and the sidechain are allowed",
+  "pledge_trigger_smart_contract": "Token deposit",
+  "pledge_normal_trigger_smart_contract": "Transfer from main chain to sidechain",
+  "mapping_trigger_smart_contract": "Token mapping",
+  "mapping_normal_trigger_smart_contract": "Main chain and sidechain mapping",
+  "sign_trigger_smart_contract": "Token withdraw",
+  "sign_normal_trigger_smart_contract": "Transfer from sidechain to main chain",
   "trigger": "트리거(trigger) 컨트랙트",
   "contract_triggers_total": "개 트리거(trigger) 스마트 컨트랙트",
   "contract_triggers_owner": "트리거(trigger) 사용자",
@@ -1254,9 +1262,9 @@ export const messages = {
   */
   "committee": "TRON 위원회",
   "committee_dec_1": "위원회는 TRON 네트워크 동적 매개변수, 블록생성 보상, 거래 수수료 등을  수정하는데 사용됩니다.",
-  "committee_dec_2": "위원회는 현재 27 명의 슈퍼대표로 구성되었습니다.",
+  "committee_dec_2": "위원회는 현재 {total} 명의 슈퍼대표로 구성되었습니다.",
   "committee_dec_3": "각 슈펴대표는 제안서를 제안하고 투표할 권리가 있습니다.",
-  "committee_dec_4": "제안서가 유효기간내에 19명의 대표이상이 승인되가나 이상의 동의 표를 얻을시 제안서가 승인되고 네트워크 매개변수가 다음 유지 보수기간 동안 수정됩니다.",
+  "committee_dec_4": "제안서가 유효기간내에 {total} 명의 대표이상이 승인되가나 이상의 동의 표를 얻을시 제안서가 승인되고 네트워크 매개변수가 다음 유지 보수기간 동안 수정됩니다.",
   "get_committee_proposal": "위원회 제안서 보기",
   "TRON_network_parameters": "TRON 네트워크 매개변수",
   "commission_proposed": "위원회 제안서",
@@ -1923,12 +1931,49 @@ export const messages = {
 
   "token_logo_upload_tip":"PNG, jpg, jpeg 3 가지 형식만 지원하며 크기는 200K를 초과하지 않으며 픽셀은 100 * 100입니다.",
 
+  // Backbone - account - mapping
+  "main_account_mapping_title":"DappChain에지도",
+  "main_account_mapping_text":"DappChain은 TRON 메인 체인에 기반하여 개발된 사이드 체인 네트워크 이며. TRON 메인넷 확장에 사용됩니다. ",
+  "main_account_mapping_text_1":"1.높은 tps, 낮은 에너지 소비",
+  "main_account_mapping_text_2":"2.Mapping operation consumes 1000TRX",
+  "main_account_mapping_btn":"매핑",
+  "main_account_mapping_success_btn":"매핑됨",
+  "main_account_mapping_desc1": "Token은 사이드 체인에 매핑되며 사이드 체인에서 동일한 이름의 토큰을 생성합니다.",
+  "main_account_mapping_desc2": "매핑이 완료된 후 사용자는 코인을 사이드 체인에 저당 할 수 있습니다.",
+
+  // sidechain - contract - mapping
+  "sidechain_contract_left":"메인 넷 컨트랙트에서 매핑",
+  "sidechain_contract_right":" ",
+
+  // Sidechain - account - pledge
+  "sidechain_account_pledge_btn":"deposit",
+  "sidechain_account_sign_btn":"withdraw",
+  "pledge_currency":"토큰",
+  "pledge_sidechain":"사이드 체인",
+  "pledge_num":"양",
+  'pledge_num_error':"수량이 사용 가능한 최대 잔액을 초과 할 수 없습니다",
+  'pledge_num_min_error':"The quantity cannot be less than",
+  "pledge_text":"서약은 일정량의 에너지를 소비",
+  "sign_text":"Withdraw operation will consume",
+  "pledge_mapping_text":"아직 DappChain에 매핑되지 않은 자산, 서약을 지원하지 않습니다",
+  "lack_of_balance":"TRX has insufficient balance",
+  "mapping_text":"Mapping operations consume:",
+  // success
+  "pledge_success": "Deposit Success",
+  "sign_success": "Withdraw Success",
+  "mapping_success": "Mapping Success",
+  // error
+  "pledge_error": "Deposit Error",
+  "sign_error": "Withdraw Error",
+  "mapping_error": "Mapping Error",
   "price_per_1000_WIN": "PRICE PER 1000 WIN",
   "WIN_distribution_overview": "WIN DISTRIBUTION OVERVIEW",
   "total_WIN_supply": "Total WIN Supply",
   "WIN_supply": "WIN Supply",
   "WIN_Token_Release_Schedule": "WIN Token Release Schedule",
   "source_WIN_team": "Source: WIN Management Team",
+  "Side_Chain":"Side chain browser(DappChain)",
+  "Main_Chain":"Main chain browser(MainChain)",
 
   "7day": "one week",
   "14day": "two weeks",
@@ -1936,6 +1981,17 @@ export const messages = {
   "select_tip": "To view data other than 2000 You can manually adjust the time window",
   "date_number_tip": "{total} records in the current time range",
   "date_list_tip": "Only the first 2000 data are displayed",
+
+
+  "sun_propose_1": "거래 비용 청구 스위치에 대한 제안 설치가 1일 경우 거래 비용을 정상적으로 받습니다.",
+  "sun_propose_2": "사이드 체인 gateway 계약 주소 설정",
+  "sun_propose_3": "제안 기한 만료 시간 설정",
+  "sun_propose_4": "Witness 에 투표 시작",
+  "sun_propose_5": "사이드 체인 인센티브 풀 주소는 전부 0인 주소로 묵인합니다",
+  "sun_propose_6": "사이드 체인 인센티브 스위치는 닫힌 것으로 묵인합니다",
+  "sun_propose_7": "사이드체인 인센티브 풀 분배 계수",
+  "sun_propose_8": "사이드 체인 수익이 인센티브 풀로 누적되는 비율",
+  "day":"일",
 
   "developers_username": "username",
   "developers_current_year":"year's points",

@@ -1,5 +1,6 @@
 import Lockr from "lockr";
 import TronWeb from 'tronweb';
+import SunWeb from 'sunweb';
 import TronStationSDK from 'tronstation';
 import {
   DISABLE_FLAG,
@@ -14,11 +15,14 @@ import {
   SET_CURRENCY,
   SET_LANGUAGE,
   SET_PRICE, SET_SYNC_STATUS,
-  SET_THEME
+  SET_THEME,
+  SET_SIDECHAINS,
+  SET_FEES,
 } from "../actions/app";
 import {passwordToAddress, pkToAddress} from "@tronscan/client/src/utils/crypto";
 import {base64DecodeFromString} from "@tronscan/client/src/lib/code";
-import {ACCOUNT_ADDRESS, ACCOUNT_LEDGER, ACCOUNT_PRIVATE_KEY, IS_DESKTOP, ACCOUNT_TRONLINK} from "../constants";
+import {ACCOUNT_ADDRESS, ACCOUNT_LEDGER, ACCOUNT_PRIVATE_KEY, IS_DESKTOP, ACCOUNT_TRONLINK, IS_MAINNET, SUNWEBCONFIG,
+  MAPPINGFEE, WITHDRAWFEE, DEPOSITFEE, RETRYFEE, TRXDEPOSITMIN, TRXWITHDRAWMIN, TRCDEPOSITMIN, TRCWITHDRAWMIN } from "../constants";
 
 const initialState = {
   theme: Lockr.get("theme", "light"),
@@ -81,7 +85,16 @@ const initialState = {
     showSr: false,
     scanTransactionQr: false,
   },
-  isRightText: false
+  isRightText: false,
+  sideChains: [],
+  fees: {
+    retryFee: RETRYFEE,
+    mappingFee: MAPPINGFEE,
+    trxDepositMinValue: TRXDEPOSITMIN,
+    depositFee: DEPOSITFEE,
+    withdrawFee: WITHDRAWFEE,
+    trxWithdrawMinValue: TRXWITHDRAWMIN,
+  }
 };
 
 export function appReducer(state = initialState, action) {
@@ -158,18 +171,39 @@ export function appReducer(state = initialState, action) {
     case LOGIN_PK: {
 
       Lockr.set("islogin", 0);
-      const ServerNode =  "https://api.trongrid.io";
-      const HttpProvider = TronWeb.providers.HttpProvider; // This provider is optional, you can just use a url for the nodes instead
-      const fullNode = new HttpProvider(ServerNode); // Full node http endpoint
-      const solidityNode = new HttpProvider(ServerNode); // Solidity node http endpoint
-      const eventServer = ServerNode; // Contract events http endpoint
-      const privateKey = action.privateKey;
-      const tronWeb = new TronWeb(
-          fullNode,
-          solidityNode,
-          eventServer,
+       const ServerNode =  "https://api.trongrid.io";
+       const HttpProvider = TronWeb.providers.HttpProvider; // This provider is optional, you can just use a url for the nodes instead
+       const fullNode = new HttpProvider(ServerNode); // Full node http endpoint
+       const solidityNode = new HttpProvider(ServerNode); // Solidity node http endpoint
+       const eventServer = ServerNode; // Contract events http endpoint
+       const sunFullNode =  "https://sun.tronex.io/wallet";    //DappChain fullNode
+       const sunSolidityNode =  "https://sun.tronex.io/walletsolidity";  //DappChain solidityNode
+       const sunEventServer = "https://sun.tronex.io/event";  //DappChain eventServer
+       const privateKey = action.privateKey;
+       const tronWeb = new TronWeb({
+              fullNode,
+              solidityNode,
+              eventServer,
+              privateKey
+          }
+       );
+       const sunWeb = new SunWeb(
+          {
+              fullNode: ServerNode,
+              solidityNode: ServerNode,
+              eventServer: ServerNode
+          },
+          {
+              fullNode: SUNWEBCONFIG.SUNFULLNODE,
+              solidityNode: SUNWEBCONFIG.SUNSOLIDITYNODE,
+              eventServer: SUNWEBCONFIG.SUNEVENTSERVER
+          },
+          SUNWEBCONFIG.MAINNET,
+          SUNWEBCONFIG.SIDECHAIN,
+          SUNWEBCONFIG.SIDEID,
           privateKey
-      );
+       );
+
 
       return {
         ...state,
@@ -179,7 +213,8 @@ export function appReducer(state = initialState, action) {
           isLoggedIn: true,
           address: pkToAddress(action.privateKey),
           tronWeb: tronWeb,
-          tronStationSDK: new TronStationSDK(tronWeb)
+          sunWeb:sunWeb,
+          tronStationSDK: IS_MAINNET? new TronStationSDK(tronWeb): new TronStationSDK(sunWeb.sidechain),
         },
         wallet: {
           type: ACCOUNT_PRIVATE_KEY,
@@ -230,6 +265,20 @@ export function appReducer(state = initialState, action) {
       };
     }
 
+    case SET_SIDECHAINS: {
+      return {
+        ...state,
+        sideChains: action.sideChains,
+      }
+    }
+
+    case SET_FEES: {
+      return {
+        ...state,
+        fees: action.fees,
+      }
+    }
+
     case LOGIN_LEDGER: {
       return {
         ...state,
@@ -250,9 +299,9 @@ export function appReducer(state = initialState, action) {
     }
 
     case LOGOUT: {
-      Lockr.rm("account_key");
-      Lockr.rm("account_address");
-      Lockr.set("islogin", 0);
+      // Lockr.rm("account_key");
+      // Lockr.rm("account_address");
+      // Lockr.set("islogin", 0);
       return {
         ...state,
         account: {

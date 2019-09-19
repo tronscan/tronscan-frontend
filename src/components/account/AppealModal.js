@@ -3,7 +3,7 @@ import {tu, t} from "../../utils/i18n";
 import { Modal, Form, Checkbox, Input } from 'antd';
 import xhr from "axios/index";
 import {injectIntl} from "react-intl";
-import {API_URL} from "../../constants";
+import {API_URL,CONTRACT_MAINNET_API_URL} from "../../constants";
 import SweetAlert from "react-bootstrap-sweetalert";
 const { TextArea } = Input;
 
@@ -34,7 +34,7 @@ class ChangeNameModal extends Component {
   };
   async getAppealRecent(){
     const { intl, address } = this.props
-    const {data: {data, retCode}} = await xhr.get(API_URL+'/external/trc_appeals/recent?address='+ address)
+    const {data: {data, retCode}} = await xhr.get(CONTRACT_MAINNET_API_URL+'/external/trc_appeals/recent?address='+ address)
     if(retCode == 0){
       let appealInfo = {errorInfo: [], ...data.appeal}
       if(data.appeal){
@@ -66,7 +66,7 @@ class ChangeNameModal extends Component {
     let hash = tronWeb.toHex(content_str);
     let sig =  await tronWeb.trx.sign(hash)
 
-    const { data } = await xhr.post(API_URL+`/external/trc_appeals/${appealInfo.id}/update`, {
+    const { data } = await xhr.post(CONTRACT_MAINNET_API_URL+`/external/trc_appeals/${appealInfo.id}/update`, {
       content: content_str,
       sig
     })

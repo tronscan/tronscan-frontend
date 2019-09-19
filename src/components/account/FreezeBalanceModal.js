@@ -6,10 +6,10 @@ import {Modal, ModalBody, ModalHeader} from "reactstrap";
 import {tu, t} from "../../utils/i18n";
 import {FormattedNumber} from "react-intl";
 import {Client} from "../../services/api";
-import {ONE_TRX} from "../../constants";
+import {ONE_TRX, IS_MAINNET} from "../../constants";
 import {reloadWallet} from "../../actions/wallet";
 import {NumberField} from "../common/Fields";
-import {transactionResultManager} from "../../utils/tron";
+import { transactionResultManager, transactionResultManagerSun} from "../../utils/tron";
 import Lockr from "lockr";
 import {withTronWeb} from "../../utils/tronWeb";
 import { Tooltip } from 'antd';
@@ -107,51 +107,59 @@ export default class FreezeBalanceModal extends React.PureComponent {
     this.setState({loading: true});
 
     try {
-
-      if (Lockr.get("islogin") || this.props.wallet.type==="ACCOUNT_LEDGER" || this.props.wallet.type==="ACCOUNT_TRONLINK") {
         const tronWebLedger = this.props.tronWeb();
-        const { tronWeb } = this.props.account;
+        const { tronWeb, sunWeb } = this.props.account;
         if (!selectedResource) {
-          type = 'BANDWIDTH';
+            type = 'BANDWIDTH';
         } else {
-          type = 'ENERGY';
+            type = 'ENERGY';
         }
+        if(IS_MAINNET){
+            if (Lockr.get("islogin") || this.props.wallet.type==="ACCOUNT_LEDGER" || this.props.wallet.type==="ACCOUNT_TRONLINK") {
 
-
-        if(this.props.wallet.type==="ACCOUNT_LEDGER") {
-          let unSignTransaction;
-          if(receiver==="") {
-             unSignTransaction = await tronWebLedger.transactionBuilder.freezeBalance(
-                amount * ONE_TRX,
-                3,
-                type,
-                wallet.address);
-          }else{
-             unSignTransaction = await tronWebLedger.transactionBuilder.freezeBalance(
-                amount * ONE_TRX,
-                3,
-                type,
-                wallet.address, receiver);
+              if(this.props.wallet.type==="ACCOUNT_LEDGER") {
+                  let unSignTransaction;
+                  if(receiver==="") {
+                      unSignTransaction = await tronWebLedger.transactionBuilder.freezeBalance(
+                          amount * ONE_TRX,
+                          3,
+                          type,
+                          wallet.address);
+                  }else{
+                      unSignTransaction = await tronWebLedger.transactionBuilder.freezeBalance(
+                          amount * ONE_TRX,
+                          3,
+                          type,
+                          wallet.address, receiver);
+                  }
+                  result = await transactionResultManager(unSignTransaction, tronWebLedger);
+              }
+              if(this.props.wallet.type==="ACCOUNT_TRONLINK"){
+                  let unSignTransaction;
+                  if(receiver==="") {
+                      unSignTransaction = await tronWeb.transactionBuilder.freezeBalance(amount * ONE_TRX, 3, type, tronWeb.defaultAddress.base58).catch(e => false);
+                  }else{
+                      unSignTransaction = await tronWeb.transactionBuilder.freezeBalance(amount * ONE_TRX, 3, type, tronWeb.defaultAddress.base58,receiver).catch(e => false);
+                  }
+                  result = await transactionResultManager(unSignTransaction,tronWeb)
+              }
+              res = result;
+          } else {
+              let {success} = await Client.freezeBalance(account.address, amount * ONE_TRX, 3, selectedResource, receiver)(account.key);
+              res = success
           }
-           result = await transactionResultManager(unSignTransaction, tronWebLedger);
-        }
-        if(this.props.wallet.type==="ACCOUNT_TRONLINK"){
-          let unSignTransaction;
-          if(receiver==="") {
-             unSignTransaction = await tronWeb.transactionBuilder.freezeBalance(amount * ONE_TRX, 3, type, tronWeb.defaultAddress.base58).catch(e => false);
-          }else{
-             unSignTransaction = await tronWeb.transactionBuilder.freezeBalance(amount * ONE_TRX, 3, type, tronWeb.defaultAddress.base58,receiver).catch(e => false);
+      }else{
+          if(this.props.wallet.type==="ACCOUNT_TRONLINK" || this.props.wallet.type==="ACCOUNT_PRIVATE_KEY"){
+              let unSignTransaction;
+              if(receiver==="") {
+                  unSignTransaction = await sunWeb.sidechain.transactionBuilder.freezeBalance(amount * ONE_TRX, 3, type, sunWeb.sidechain.defaultAddress.base58).catch(e => false);
+              }else{
+                  unSignTransaction = await sunWeb.sidechain.transactionBuilder.freezeBalance(amount * ONE_TRX, 3, type, sunWeb.sidechain.defaultAddress.base58, receiver).catch(e => false);
+              }
+              result = await transactionResultManagerSun(unSignTransaction,sunWeb)
+              res = result;
           }
-           result = await transactionResultManager(unSignTransaction,tronWeb)
-        }
-
-        res = result;
-      } else {
-        let {success} = await Client.freezeBalance(account.address, amount * ONE_TRX, 3, selectedResource, receiver)(account.key);
-        res = success
       }
-
-
       if (res) {
         this.confirmModal({amount});
         this.setState({loading: false});

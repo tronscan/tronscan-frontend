@@ -135,8 +135,10 @@ export class RepresentativesRingPieReact extends React.Component {
       let _config = cloneDeep(config.ringPieHighChart3D);
       if (data.length) {
           for (let index in data) {
-              if (data[index].name.indexOf("http://") > -1) {
-                  data[index].name = data[index].name.substring(7).split('.com')[0];
+              if(data[index].name){
+                  if (data[index].name.indexOf("http://") > -1) {
+                      data[index].name = data[index].name.substring(7).split('.com')[0];
+                  }
               }
           }
       }

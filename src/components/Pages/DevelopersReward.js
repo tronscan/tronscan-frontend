@@ -274,7 +274,7 @@ class developersReward extends Component {
                          <div className="table_pos_search" style={{right: '15px',}}>
                              <Search
                                  placeholder={intl.formatMessage({ id: "developers_search" })}
-                                 enterButton="Search"
+                                 enterButton={intl.formatMessage({ id: "search" })}
                                  size="large"
                                  onSearch={value => this.onSearchChange(value)}
                              />

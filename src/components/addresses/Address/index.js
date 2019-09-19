@@ -679,11 +679,11 @@ class Address extends React.Component {
 
                               <div className="circle-info">
                                 <div>{tu('address_netRemaining')}</div>
-                                <h2>
+                                <h5>
                                      <FormattedNumber
                                         value={netRemaining?netRemaining:0}/>
 
-                                </h2>
+                                </h5>
                               </div>
                             </div>
                             <div className="address-circle-line"></div>
@@ -701,9 +701,9 @@ class Address extends React.Component {
                               </Tooltip>
                               <div className="circle-info">
                                 <div>{tu('address_energyRemaining')}</div>
-                                <h2>
+                                <h5>
                                   <FormattedNumber value={energyRemaining?energyRemaining:0}/>
-                                </h2>
+                                </h5>
                               </div>
                             </div>
                           </div>

@@ -83,33 +83,45 @@ class NewTransactions extends React.Component {
                 }
                 let data = {}
                 let countData = {}
+                let allData = [];
                 const query = qs.stringify({ format: 'csv',...params})
                 if(isContract){
-                    getCsvUrl(`${API_URL}/api/contracts/transaction?${query}`)
-                    data = await Client.getContractTxs({
-                        limit: pageSize,
-                        start: (page - 1) * pageSize,
-                        ...params,
+                    getCsvUrl(`${API_URL}/api/contracts/transaction?${query}`);
+
+                    allData = await Promise.all([
+                        Client.getContractTxs({
+                            limit: pageSize,
+                            start: (page - 1) * pageSize,
+                            ...params,
+                        }),
+                        Client.getCountByType({
+                            type: 'contract', 
+                            ...filter
+                        })
+                    ]).catch(e => {
+                        console.log('error:' + e);
                     });
-                    countData = await Client.getCountByType({
-                        type: 'contract', 
-                        ...filter
-                    })
                 }else{
-                   getCsvUrl(`${API_URL}/api/transaction?${query}`)
-                   data = await Client.getTransactions({
-                        limit: pageSize,
-                        start: (page - 1) * pageSize,
-                        ...params,
+                    getCsvUrl(`${API_URL}/api/transaction?${query}`);
+
+                    allData = await Promise.all([
+                        Client.getTransactions({
+                            limit: pageSize,
+                            start: (page - 1) * pageSize,
+                            ...params,
+                        }),
+                        Client.getCountByType({
+                            type: 'transaction', 
+                            ...filter
+                        })
+                    ]).catch(e => {
+                        console.log('error:' + e);
                     });
-                    countData = await Client.getCountByType({
-                        type: 'transaction', 
-                        ...filter
-                    })
                 }
+                [data, countData] = allData;
                 transactions = data.transactions;
-                total = countData.count
-                rangeTotal = data.rangeTotal
+                total = countData.count;
+                rangeTotal = data.rangeTotal;
             }else{
                 let data = await Client.getTransactions({
                     sort: '-timestamp',
@@ -119,8 +131,8 @@ class NewTransactions extends React.Component {
                     ...filter,
                 });
                 transactions = data.transactions;
-                total = data.total,
-                    rangeTotal = data.rangeTotal
+                total = data.total;
+                rangeTotal = data.rangeTotal;
             }
 
         }else {
@@ -136,8 +148,8 @@ class NewTransactions extends React.Component {
 
             let newdata = rebuildList(data.list, 'tokenId', 'callValue', 'valueInfoList')
             transactions = newdata;
-            total = data.total,
-                rangeTotal = data.rangeTotal
+            total = data.total;
+            rangeTotal = data.rangeTotal
         }
 
         this.setState({
@@ -392,7 +404,7 @@ class NewTransactions extends React.Component {
         let {intl, isinternal, address = false} = this.props;
         let column = !isinternal? this.customizedColumn():
             this.trc20CustomizedColumn();
-        let tableInfo = intl.formatMessage({id: 'view_total'}) + ' ' + total + ' ' + intl.formatMessage({id: 'transactions_unit'})
+       // let tableInfo = intl.formatMessage({id: 'view_total'}) + ' ' + total + ' ' + intl.formatMessage({id: 'transactions_unit'})
 
         // if (!loading && transactions && transactions.length === 0) {
         //   if (!EmptyState) {

@@ -1171,6 +1171,14 @@ export const messages = {
   */
   "trigger_smart_contract": "Запустить смарт-контракт",
   "normal_address_trigger_smart_contract": "Обычный адрес запускает смарт-контракт",
+  "approve_trigger_smart_contract": "Deposit authorization",
+  "approve_normal_trigger_smart_contract": "Token transfer between the main chain and the sidechain are allowed",
+  "pledge_trigger_smart_contract": "Token deposit",
+  "pledge_normal_trigger_smart_contract": "Transfer from main chain to sidechain",
+  "mapping_trigger_smart_contract": "Token mapping",
+  "mapping_normal_trigger_smart_contract": "Main chain and sidechain mapping",
+  "sign_trigger_smart_contract": "Token withdraw",
+  "sign_normal_trigger_smart_contract": "Transfer from sidechain to main chain",
   "trigger": "Запуск контрактов",
   "contract_triggers_total": "Контрактов запущенно",
   "contract_triggers_owner": "Владелец",
@@ -1269,9 +1277,9 @@ export const messages = {
   */
   "committee": "Комитет TRON",
   "committee_dec_1": "Комитет TRON предназначен для изменения динамических параметров на сети TRON, например, вознаграждения за генерацию блоков, комиссионные за транзакции и т. д.",
-  "committee_dec_2": "Комитет состоит из нынешних 27 супер-представителей (SR).",
+  "committee_dec_2": "Комитет состоит из нынешних {total} супер-представителей (SR).",
   "committee_dec_3": "Каждый SR имеет право предлагать и голосовать за предложения.",
-  "committee_dec_4": "Если предложение получает 19 или более голосов от SR в течение действующего периода времени, предложение будет одобрено, и его параметры сети будут изменены в следующем периоде обслуживания.",
+  "committee_dec_4": "Если предложение получает {total} или более голосов от SR в течение действующего периода времени, предложение будет одобрено, и его параметры сети будут изменены в следующем периоде обслуживания.",
   "get_committee_proposal": "Проверьте предложения комитета",
   "TRON_network_parameters": "Параметры сети TRON",
   "commission_proposed": "Комитет предложений",
@@ -1928,12 +1936,49 @@ export const messages = {
 
   "token_logo_upload_tip":"Поддерживаются только три формата - png, jpg, jpeg, размер не превышает 200 Кб, 100*100 пикселей",
 
+  // Backbone - account - mapping
+  "main_account_mapping_title":"Маппинг DAppChain",
+  "main_account_mapping_text":"DAppChain - это сайдчейн сеть, разработанная на основе цепи TRON, масштабируемое решения для сети TRON. При сопоставлении с DAppChain вы получите более высокий TPS с меньшим энергопотреблением.",
+  "main_account_mapping_text_1":"1.Более высокий TPS с меньшим энергопотреблением",
+  "main_account_mapping_text_2":"2.Mapping operation consumes 1000TRX",
+  "main_account_mapping_btn":"Маппинг",
+  "main_account_mapping_success_btn":"Маппиравано",
+  "main_account_mapping_desc1": "Когда токен маппирован с сайдчейн, токен с тем же именем будет создан на сайдчейн",
+  "main_account_mapping_desc2": "После завершения маппирования, пользователи могут вкладывать токен в сайдчейн.",
+
+  // sidechain - contract - mapping
+  "sidechain_contract_left":"Отображение из контракта Главной Сети",
+  "sidechain_contract_right":" ",
+
+  // Sidechain - account - pledge
+  "sidechain_account_pledge_btn":"Вкладывать",
+  "sidechain_account_sign_btn":"Снимать",
+  "pledge_currency":"Токен",
+  "pledge_sidechain":"Сайдчейн",
+  "pledge_num":"Количество",
+  'pledge_num_error':"Количество не может превышать максимально доступный баланс",
+  'pledge_num_min_error':"The quantity cannot be less than",
+  "pledge_text":"Вклад будет потреблять определенное количество энергии",
+  "sign_text":"Withdraw operation will consume",
+  "pledge_mapping_text":"Ваши активы не были маппированы с DAppChain и поэтому вклад не может быть совершен.",
+  "lack_of_balance":"TRX has insufficient balance",
+  "mapping_text":"Mapping operations consume:",
+  // success
+  "pledge_success": "Deposit Success",
+  "sign_success": "Withdraw Success",
+  "mapping_success": "Mapping Success",
+  // error
+  "pledge_error": "Deposit Error",
+  "sign_error": "Withdraw Error",
+  "mapping_error": "Mapping Error",
   "price_per_1000_WIN": "PRICE PER 1000 WIN",
   "WIN_distribution_overview": "WIN DISTRIBUTION OVERVIEW",
   "total_WIN_supply": "Total WIN Supply",
   "WIN_supply": "WIN Supply",
   "WIN_Token_Release_Schedule": "WIN Token Release Schedule",
   "source_WIN_team": "Source: WIN Management Team",
+  "Side_Chain":"Side chain browser(DappChain)",
+  "Main_Chain":"Main chain browser(MainChain)",
 
   "7day": "one week",
   "14day": "two weeks",
@@ -1941,6 +1986,17 @@ export const messages = {
   "select_tip": "To view data other than 2000 You can manually adjust the time window",
   "date_number_tip": "{total} records in the current time range",
   "date_list_tip": "Only the first 2000 data are displayed",
+
+  "sun_propose_1": "Переключатель комиссии за транзакцию: комиссия за транзакцию будет взиматься, как правило, если для предложения установлено значение 1.",
+  "sun_propose_2": "Установите адрес контракта для gateway на боковой цепи",
+  "sun_propose_3": "Установите срок действия предложения",
+  "sun_propose_4": "Начните голосовать за Witness",
+  "sun_propose_5": "Адрес для побудительного пула сайдчейн - это адрес (0) по умолчанию. ",
+  "sun_propose_6": "Управлять включением/выключением стимула для witness на сайдчейн",
+  "sun_propose_7": "Метрики распределения стимулирующего пула сайдчейн",
+  "sun_propose_8": "Коэффициент прибыли witness на сайдчейн",
+  "day":"день",
+
 
   "developers_username": "username",
   "developers_current_year":"year's points",

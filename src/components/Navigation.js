@@ -5,6 +5,7 @@ import logo from '../images/tron-banner-inverted.png'
 import tronLogoBlue from '../images/tron-banner-tronblue.png'
 import tronLogoDark from '../images/tron-banner-1.png'
 import tronLogoTestNet from "../images/tron-logo-testnet.png";
+import tronLogoSunNet from "../images/tron-logo-sunnet.png";
 import tronLogoInvertedTestNet from "../images/tron-logo-inverted-testnet.png";
 import {flatRoutes, routes} from "../routes"
 import {Link, NavLink, withRouter} from "react-router-dom"
@@ -26,7 +27,7 @@ import {Badge, Modal, ModalBody, ModalFooter, ModalHeader} from "reactstrap"
 import Avatar from "./common/Avatar"
 import {AddressLink, HrefLink} from "./common/Links"
 import {FormattedNumber} from "react-intl"
-import {API_URL, IS_TESTNET, ONE_TRX} from "../constants"
+import {API_URL, IS_TESTNET, ONE_TRX, IS_MAINNET, IS_SUNNET} from "../constants"
 import {matchPath} from 'react-router'
 import {doSearch, getSearchType} from "../services/search"
 import {readFileContentsFromEvent} from "../services/file"
@@ -43,7 +44,7 @@ import {toastr} from 'react-redux-toastr'
 import Lockr from "lockr";
 import {BarLoader} from "./common/loaders";
 import {Truncate} from "./common/text";
-import {Icon} from 'antd';
+import { Icon, Select } from 'antd';
 import isMobile from '../utils/isMobile';
 import {Client} from '../services/api';
 import $ from 'jquery';
@@ -51,6 +52,8 @@ import xhr from "axios/index";
 import LedgerAccess from "../hw/ledger/LedgerAccess";
 import { getQueryString } from "../utils/url";
 
+
+const { Option } = Select;
 class Navigation extends React.Component {
 
   constructor() {
@@ -72,7 +75,9 @@ class Navigation extends React.Component {
       address: '',
       announcement: '',
       annountime: '1-1',
-      announId: 83
+      announId: 83,
+      selectedNet:'',
+
     };
   }
 
@@ -88,7 +93,13 @@ class Navigation extends React.Component {
 
 
   componentWillMount() {
+
+    let {intl} = this.props;
+    // this.props.login('441d39fa209abf368a5f51191319d58dc2d4ef94f8f51514812bb4c036582079').then(() => {
+    //   toastr.info(intl.formatMessage({id: 'success'}), intl.formatMessage({id: 'login_success'}));
+    //  });
     this.reLoginWithTronLink();
+
   }
 
   componentDidMount() {
@@ -106,6 +117,12 @@ class Navigation extends React.Component {
     $(document).click(() => {
       $('#_searchBox').css({display: 'none'});
     });
+
+    this.setState({
+        selectedNet: IS_MAINNET?'mainnet':'sunnet'
+    });
+    Lockr.set("NET", IS_MAINNET?'mainnet':'sunnet')
+
   }
 
   componentWillUpdate(nextProps, nextState) {
@@ -129,6 +146,17 @@ class Navigation extends React.Component {
     }
   }
 
+  netSelectChange = (value) => {
+      Lockr.set("NET", value);
+      Lockr.set("islogin", 0);
+      Lockr.rm('tokensMap');
+      Lockr.rm('tokens20Map');
+      this.setState({
+          selectedNet: value
+      });
+      window.location.reload();
+  }
+
   isString(str){
      return (typeof str==='string')&&str.constructor==String;
   }
@@ -137,7 +165,7 @@ class Navigation extends React.Component {
     const {announId} = this.state
     let {activeLanguage} = this.props;
 
-    const {data} = await Client.getNotices({sort: '-timestamp'});
+    const {data} = await Client. getNotices({sort: '-timestamp'});
     if (data.length) {
       const list = data.filter(o => o.id == announId)[0]
       if(list){
@@ -474,7 +502,14 @@ class Navigation extends React.Component {
         default:
           return tronLogoInvertedTestNet;
       }
-    } else {
+    } else if(!IS_MAINNET){
+        switch (theme) {
+            case "light":
+                return tronLogoSunNet;
+            default:
+                return tronLogoSunNet;
+        }
+    } {
       switch (theme) {
         case "tron":
           return tronLogoBlue;
@@ -696,20 +731,24 @@ class Navigation extends React.Component {
                   }}>
                     {tu("open_wallet")}
                     <ul className="dropdown-menu dropdown-menu-right nav-login-wallet" style={{minWidth: style_width}}>
-                      <li className="px-2 py-1 border-bottom-0" onClick={(e) => {
-                        this.clickLoginWithTronLink(e)
-                      }}>
-                        <div className="dropdown-item text-uppercase d-flex align-items-center text-muted">
-                          <img src={require("../images/login/tronlink.png")} width="16px" height="16px" className="mr-2"/>
-                          {tu('sign_in_with_TRONlink')}
-                        </div>
-                      </li>
-                      <li className="px-2 py-1 border-bottom-0" onClick={(e) => this.loginWithLedger(e)}>
-                        <div className="dropdown-item text-uppercase d-flex  align-items-center text-muted">
-                          <img src={require("../images/login/ledger.png")} width="16px" height="16px" className="mr-2"/>
-                          {tu('sign_in_with_ledger')}
-                        </div>
-                      </li>
+                      {
+                          IS_MAINNET && <li className="px-2 py-1 border-bottom-0" onClick={(e) => {
+                              this.clickLoginWithTronLink(e)
+                          }}>
+                            <div className="dropdown-item text-uppercase d-flex align-items-center text-muted">
+                              <img src={require("../images/login/tronlink.png")} width="16px" height="16px" className="mr-2"/>
+                                {tu('sign_in_with_TRONlink')}
+                            </div>
+                          </li>
+                      }
+                      {
+                          IS_MAINNET &&  <li className="px-2 py-1 border-bottom-0" onClick={(e) => this.loginWithLedger(e)}>
+                          <div className="dropdown-item text-uppercase d-flex  align-items-center text-muted">
+                            <img src={require("../images/login/ledger.png")} width="16px" height="16px" className="mr-2"/>
+                              {tu('sign_in_with_ledger')}
+                          </div>
+                        </li>
+                      }
                       <li className="px-2 py-1" onClick={(e) => {
                         this.clickLoginWithPk(e)
                       }}>
@@ -872,11 +911,14 @@ class Navigation extends React.Component {
       activeCurrency,
       wallet,
       syncStatus,
+      walletType: { type },
     } = this.props;
 
-    let {search, popup, notifications, announcement, announId, annountime, searchResults} = this.state;
+    let {search, popup, notifications, announcement, announId, annountime, searchResults, selectedNet } = this.state;
 
     let activeComponent = this.getActiveComponent();
+
+    const isShowSideChain = !type || (type && IS_SUNNET);
 
     return (
         <div className="header-top">
@@ -1062,7 +1104,7 @@ class Navigation extends React.Component {
               <div className="collapse navbar-collapse" id="navbar-top">
                 <ul className="navbar-nav mr-auto">
                   {filter(routes, r => r.showInMenu !== false).map(route => (
-                      <li key={route.path} className="nav-item dropdown">
+                      <li key={route.path}  className={IS_MAINNET? 'nav-item dropdown': 'nav-item dropdown pr-3'}>
                         {
                           route.linkHref === true ?
                               <HrefLink
@@ -1172,7 +1214,7 @@ class Navigation extends React.Component {
                                         return null;
                                       }
 
-                                      if (!isUndefined(Route.url)) {
+                                      if (!isUndefined(Route.url) && !Route.sidechain) {
                                         return (
                                             <HrefLink
                                                 key={Route.url}
@@ -1185,6 +1227,19 @@ class Navigation extends React.Component {
                                               <Badge value={Route.badge}/>}
                                             </HrefLink>
                                         );
+                                      }
+                                      if (isUndefined(Route.url) && Route.sidechain) {
+                                        const sidechainTab = (
+                                          <a href="javascript:;"
+                                            key={Route.label}
+                                            className="dropdown-item text-uppercase"
+                                            onClick={() => this.netSelectChange(IS_MAINNET?'sunnet':'mainnet')}
+                                          >
+                                            {Route.icon && <i className={Route.icon + " mr-2"}/>}
+                                            {IS_MAINNET?tu('Side_Chain'):tu('Main_Chain')}
+                                          </a>
+                                        );
+                                        return sidechainTab
                                       }
                                       if (!isUndefined(Route.enurl) || !isUndefined(Route.zhurl)) {
                                         return (
@@ -1306,6 +1361,7 @@ function mapStateToProps(state) {
     router: state.router,
     languages: state.app.availableLanguages,
     account: state.app.account,
+    walletType: state.app.wallet,
     tokenBalances: state.account.tokens,
     frozen: state.account.frozen,
     totalTransactions: state.account.totalTransactions,

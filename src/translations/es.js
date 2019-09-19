@@ -1171,6 +1171,14 @@ export const messages = {
   */
   "trigger_smart_contract": "Activar contrato inteligente",
   "normal_address_trigger_smart_contract": "Dirección normal de activación de contrato inteligente",
+  "approve_trigger_smart_contract": "Deposit authorization",
+  "approve_normal_trigger_smart_contract": "Token transfer between the main chain and the sidechain are allowed",
+  "pledge_trigger_smart_contract": "Token deposit",
+  "pledge_normal_trigger_smart_contract": "Transfer from main chain to sidechain",
+  "mapping_trigger_smart_contract": "Token mapping",
+  "mapping_normal_trigger_smart_contract": "Main chain and sidechain mapping",
+  "sign_trigger_smart_contract": "Token withdraw",
+  "sign_normal_trigger_smart_contract": "Transfer from sidechain to main chain",
   "trigger": "Activación de contrato",
   "contract_triggers_total": "Activación de contrato secundario",
   "contract_triggers_owner": "Activador",
@@ -1269,9 +1277,9 @@ export const messages = {
   */
   "committee": "TRON Comité",
   "committee_dec_1": "El Comité TRON es para modificar los parámetros dinámicos en la red TRON, por ejemplo. Recompensas de generación de bloque, tarifas de transacción, etc.",
-  "committee_dec_2": "El Comité está formado por los actuales 27 Super Representantes (SR).",
+  "committee_dec_2": "El Comité está formado por los actuales {total} Super Representantes (SR).",
   "committee_dec_3": "Cada SR tiene el derecho de proponer y votar sobre las propuestas.",
-  "committee_dec_4": "Cuando una propuesta recibe 19 votos o más de los SR dentro del período de tiempo válido, la propuesta será aprobada y sus parámetros de red se modificarán en el próximo período de mantenimiento.",
+  "committee_dec_4": "Cuando una propuesta recibe {total} votos o más de los SR dentro del período de tiempo válido, la propuesta será aprobada y sus parámetros de red se modificarán en el próximo período de mantenimiento.",
   "get_committee_proposal": "Revisar las propuestas del comité.",
   "TRON_network_parameters": "Parámetros de la red de TRON",
   "commission_proposed": "Propuestas del comité",
@@ -1927,6 +1935,41 @@ export const messages = {
 
   "token_logo_upload_tip":"Solo es compatible con los tres formatos png, jpg, jpeg y el tamaño no debe superar los 200K ni 100*100 pixels.",
 
+  // Backbone - account - mapping
+  "main_account_mapping_title":"reflectar a DAppChain",
+  "main_account_mapping_text":"DAppChain es una cadena lateral desarrollada basada en la mainnet de TRON, una solución de escala para la red principal de TRON. Al reflectar a DAppChain, se obtendrá un TPS más alto con un menor consumo de energía.",
+  "main_account_mapping_text_1":"1.obtengan tps con menor consumo de energía.",
+  "main_account_mapping_text_2":"2.Mapping operation consumes 1000TRX",
+  "main_account_mapping_btn":"Cartografía",
+  "main_account_mapping_success_btn":"reflexión",
+  "main_account_mapping_desc1": "Cuando el token se reflecta a la cadena lateral, se generará un token con el mismo nombre en la cadena lateral",
+  "main_account_mapping_desc2": "Una vez se completa la reflexión, los usuarios pueden depositar el token en la cadena lateral.",
+  
+  // sidechain - contract - mapping
+  "sidechain_contract_left":"reflexión del contrato de MainNet",
+  "sidechain_contract_right":" ",
+
+  // Sidechain - account - pledge
+  "sidechain_account_pledge_btn":"Depositar",
+  "sidechain_account_sign_btn":"Retirar",
+  "pledge_currency":"Tipo",
+  "pledge_sidechain":"Cadena lateral",
+  "pledge_num":"Cantidad",
+  'pledge_num_error':"El número nunca excede el saldo máximo disponible",
+  'pledge_num_min_error':"The quantity cannot be less than",
+  "pledge_text":"El depósito consumirá una cierta cantidad de energía.",
+  "sign_text":"Withdraw operation will consume",
+  "pledge_mapping_text":"Sus activos no se han reflectado a DAppChain y, por lo tanto, no se pueden depositar.",
+  "lack_of_balance":"TRX has insufficient balance",
+  "mapping_text":"Mapping operations consume:",
+  // success
+  "pledge_success": "Deposit Success",
+  "sign_success": "Withdraw Success",
+  "mapping_success": "Mapping Success",
+  // error
+  "pledge_error": "Deposit Error",
+  "sign_error": "Withdraw Error",
+  "mapping_error": "Mapping Error",
   "price_per_1000_WIN": "PRICE PER 1000 WIN",
   "WIN_distribution_overview": "WIN DISTRIBUTION OVERVIEW",
   "total_WIN_supply": "Total WIN Supply",
@@ -1934,12 +1977,25 @@ export const messages = {
   "WIN_Token_Release_Schedule": "WIN Token Release Schedule",
   "source_WIN_team": "Source: WIN Management Team",
 
+  "Side_Chain":"Side chain browser(DappChain)",
+  "Main_Chain":"Main chain browser(MainChain)",
   "7day": "one week",
   "14day": "two weeks",
   "30day": "one month",
   "select_tip": "To view data other than 2000 You can manually adjust the time window",
   "date_number_tip": "{total} records in the current time range",
   "date_list_tip": "Only the first 2000 data are displayed",
+
+  "sun_propose_1": "Cambio de tarifa de transacción: la tarifa de transacción se cobrará normalmente cuando la propuesta se establezca en 1.",
+  "sun_propose_2": "Establecer la dirección del contrato para la puerta de enlace en la cadena lateral",
+  "sun_propose_3": "Establecer el tiempo de vencimiento de la propuesta",
+  "sun_propose_4": "Comience a votar por Testigo",
+  "sun_propose_5": "La dirección para el grupo de incentivos de la cadena lateral es la dirección (0) de forma predeterminada. ",
+  "sun_propose_6": "Administre si el interruptor de incentivo para testigo en la cadena lateral está activado / desactivado",
+  "sun_propose_7": "Métricas de distribución del grupo de incentivos de la cadena lateral",
+  "sun_propose_8": "Proporción de ingresos del testigo en la cadena lateral",
+  "day":"día",
+
 
 
   "developers_username": "username",

@@ -1,6 +1,7 @@
 /* eslint-disable no-undef */
 import React, {Fragment} from "react";
 import {injectIntl} from "react-intl";
+import {connect} from "react-redux";
 import {NavLink, Route, Switch} from "react-router-dom";
 import {Client} from "../../../services/api";
 import {tu} from "../../../utils/i18n";
@@ -19,7 +20,7 @@ import Call from "./Call";
 import {upperFirst} from "lodash";
 import {Truncate} from "../../common/text";
 import xhr from "axios/index";
-import {API_URL, CONTRACT_ADDRESS_USDT, CONTRACT_ADDRESS_WIN, CONTRACT_ADDRESS_GGC} from "../../../constants";
+import {API_URL, CONTRACT_ADDRESS_USDT, CONTRACT_ADDRESS_WIN, CONTRACT_ADDRESS_GGC, IS_SUNNET, CONTRACT_MAINNET_API_URL} from "../../../constants";
 import { Tooltip } from 'antd'
 import TokenBalances from './Balance.js'
 import { CsvExport } from "../../common/CsvExport";
@@ -46,9 +47,13 @@ class SmartContract extends React.Component {
   }
 
   componentDidMount() {
-    let {match} = this.props;
+    let { match, walletType } = this.props;
     this.loadContract(match.params.id);
-
+    const isPrivateKey =  walletType.type === "ACCOUNT_PRIVATE_KEY";
+    IS_SUNNET && this.getMappingBySidechainAddress(match.params.id);
+    this.setState({
+      isPrivateKey
+    })
   }
 
   componentDidUpdate(prevProps) {
@@ -205,10 +210,25 @@ class SmartContract extends React.Component {
    
   }
 
+  /**
+   * get Mainnet contract address
+   */
+  getMappingBySidechainAddress = async (id) => {
+    const mainchainAddressData = await xhr.get(`${CONTRACT_MAINNET_API_URL}/external/sidechain/getMappingBySidechainAddress?sidechainAddress=${id}`);
+    
+    const { data: { retCode, data } } = mainchainAddressData;
+    if (retCode === '0') {
+      const { mainchainAddress } = data;
+      this.setState({
+        mainchainAddress,
+      })
+    }
+  }
+
 
   render() {
 
-    let {contract, tabs, loading, token20, csvurl} = this.state;
+    let {contract, tabs, loading, token20, csvurl, mainchainAddress, isPrivateKey} = this.state;
     let {match, intl} = this.props;
 
     if (!contract) {
@@ -283,6 +303,17 @@ class SmartContract extends React.Component {
                                   </div>
                                 }
                               </li>
+                              {
+                                  IS_SUNNET && mainchainAddress &&
+                              <li>
+                                <p>{tu('main_account_mapping_btn')}: </p>
+                                <span>
+                                    {tu('sidechain_contract_left')}
+                                    {` ${mainchainAddress} `}
+                                  {tu('sidechain_contract_right')}
+                                </span>
+                              </li>
+                              }
                             </ul>
                           </div>
                         </div>
@@ -328,13 +359,12 @@ class SmartContract extends React.Component {
 }
 
 function mapStateToProps(state) {
-
-
   return {
+    walletType: state.app.wallet,
   };
 }
 
 const mapDispatchToProps = {
 };
 
-export default injectIntl(SmartContract);
+export default connect(mapStateToProps, mapDispatchToProps)(injectIntl(SmartContract));

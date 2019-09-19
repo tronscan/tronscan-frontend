@@ -1,6 +1,8 @@
 import {API_URL} from "../constants";
 import xhr from "axios/index";
 import {tokensMap, tokens20Map} from "../utils/tokensMap.js";
+import { store } from './../store';
+import { setToken20Map, setTokenMap } from './../actions/account';
 
 export default class App {
 
@@ -13,7 +15,7 @@ export default class App {
   }
 
   async getTokensMap() {
-    let {data} = await xhr.get(`${API_URL}/api/token?showAll=1&limit=500&id_gt=1002400&fields=id,name,precision,abbr,imgUrl`);
+    let {data} = await xhr.get(`${API_URL}/api/token?showAll=1&limit=5000&id_gt=1000000&fields=id,name,precision,abbr,imgUrl`);
     let imgUrl;
     for (var i = 0; i < data.data.length; i++) {
       if (!tokensMap[data.data[i].id]) {
@@ -25,7 +27,8 @@ export default class App {
         tokensMap[data.data[i].id] = data.data[i].name + '_&&_' + data.data[i].id + '_&&_' + data.data[i].precision+'_&&_'+data.data[i].abbr+'_&&_'+imgUrl;
       }
     }
-    localStorage.setItem('tokensMap', JSON.stringify(tokensMap));
+    // localStorage.setItem('tokensMap', JSON.stringify(tokensMap));
+    store.dispatch(setTokenMap(tokensMap));
   }
 
   async getTokens20Map() {
@@ -41,7 +44,8 @@ export default class App {
               tokens20Map[data.tokens[i].contractAddress] = data.tokens[i].name + '_&&_' + data.tokens[i].contractAddress + '_&&_' + data.tokens[i].decimal+'_&&_'+data.tokens[i].abbr+'_&&_'+imgUrl;
           }
       }
-      localStorage.setItem('tokens20Map', JSON.stringify(tokens20Map));
+      // localStorage.setItem('tokens20Map', JSON.stringify(tokens20Map));
+      store.dispatch(setToken20Map(tokens20Map));
   }
 
 

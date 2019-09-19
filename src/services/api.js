@@ -12,10 +12,11 @@ const solidityNode = new HttpProvider(ServerNode); // Solidity node http endpoin
 const eventServer = ServerNode; // Contract events http endpoint
 export const tronWeb = new TronWeb(fullNode, solidityNode, eventServer);
 
-export const Client = new ApiClient();
+export const Client = new ApiClient(API_URL);
 
 export function buildClient(account) {
-  return new ApiClient();
+
+  return new ApiClient(API_URL);
 }
 
 export function channel(path, options) {

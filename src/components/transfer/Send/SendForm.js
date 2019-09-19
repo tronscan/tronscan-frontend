@@ -6,7 +6,7 @@ import {tu} from "../../../utils/i18n";
 import {Client} from "../../../services/api";
 import {isAddressValid} from "@tronscan/client/src/utils/crypto";
 import _, {find, round} from "lodash";
-import {ACCOUNT_TRONLINK, API_URL, ONE_TRX} from "../../../constants";
+import { ACCOUNT_TRONLINK, API_URL, ONE_TRX, IS_MAINNET } from "../../../constants";
 import {Alert} from "reactstrap";
 import {reloadWallet} from "../../../actions/wallet";
 import SweetAlert from "react-bootstrap-sweetalert";
@@ -18,7 +18,7 @@ import {Select} from 'antd';
 import isMobile from '../../../utils/isMobile';
 import {withTronWeb} from "../../../utils/tronWeb";
 import { FormatNumberByDecimals } from '../../../utils/number'
-import {transactionResultManager} from "../../../utils/tron"
+import { transactionResultManager, transactionResultManagerSun } from "../../../utils/tron"
 import BigNumber from "bignumber.js"
 BigNumber.config({ EXPONENTIAL_AT: [-1e9, 1e9] });
 
@@ -164,22 +164,45 @@ class SendForm extends React.Component {
       resultVal = Number(r1.replace(".", "")) * Number(r2.replace(".", "")) / Math.pow(10, m);
       return typeof d !== "number" ? Number(resultVal) : Number(resultVal.toFixed(parseInt(d)));
   }
+
   token10Send = async () => {
     let {to, token, amount, note, decimals} = this.state;
     let list = token.split('-');
     let TokenName =  list[1];
-    let {account, onSend} = this.props;
+    let {account, onSend, wallet } = this.props;
 
     this.setState({isLoading: true, modal: null});
 
     if (TokenName === '_') {
       amount = this.Mul(amount,ONE_TRX);
     }else{
-
       amount = this.Mul(amount,Math.pow(10, decimals))
     }
+    let result, success;
+    if(IS_MAINNET){
+        result= await Client.sendWithNote(TokenName, account.address, to, amount, note)(account.key);
+        if (result) {
+            success = result.success;
+        } else {
+            success = false;
+        }
+    } else{
+        if (TokenName === "_") {
+            result = await this.props.account.sunWeb.sidechain.trx.sendTransaction(to, amount, {address: wallet.address}, false).catch(function (e) {
+                console.log(e)
+            });
+        }else{
+            result = await this.props.account.sunWeb.sidechain.trx.sendToken(to, amount, TokenName, {address:wallet.address}, false).catch(function (e) {
+                console.log(e)
+            });
+        }
+        if (result) {
+            success = result.result;
+        } else {
+            success = false;
+        }
+    }
 
-    let {success} = await Client.sendWithNote(TokenName, account.address, to, amount, note)(account.key);
 
     if (success) {
       this.refreshTokenBalances();
@@ -214,33 +237,42 @@ class SendForm extends React.Component {
     let transactionId;
     this.setState({ isLoading: true, modal: null });
     let contractAddress = find(tokens20, t => t.name === TokenName).contract_address;
-
-    if (this.props.wallet.type === "ACCOUNT_LEDGER"){
-      tronWeb = this.props.tronWeb();
-      // Send TRC20
-      let unSignTransaction = await tronWeb.transactionBuilder.triggerSmartContract(
-                  tronWeb.address.toHex(contractAddress),
-                  'transfer(address,uint256)',
-                  10000000, 0,
-                  [
-                  { type: 'address', value: tronWeb.address.toHex(to)},
-                  { type: 'uint256', value: new BigNumber(amount).shiftedBy(decimals).toString()}
-                  ],
-                  tronWeb.address.toHex(this.props.wallet.address),
-              );
-      if (unSignTransaction.transaction !== undefined)
-        unSignTransaction = unSignTransaction.transaction;
-      unSignTransaction.extra = {
-            to: to,
-            decimals: decimals,
-            token_name: TokenName,
-            amount: amount,
-      }
-      transactionId = await transactionResultManager(unSignTransaction, tronWeb)
-    }else if(this.props.wallet.type === "ACCOUNT_TRONLINK" || this.props.wallet.type === "ACCOUNT_PRIVATE_KEY"){
-      tronWeb = this.props.account.tronWeb;
-      let contractInstance = await tronWeb.contract().at(contractAddress);
-      transactionId = await contractInstance.transfer(to, new BigNumber(amount).shiftedBy(decimals).toString()).send();
+    if(IS_MAINNET) {
+        if (this.props.wallet.type === "ACCOUNT_LEDGER") {
+            tronWeb = this.props.tronWeb();
+            // Send TRC20
+            let unSignTransaction = await tronWeb.transactionBuilder.triggerSmartContract(
+                tronWeb.address.toHex(contractAddress),
+                'transfer(address,uint256)',
+                10000000, 0,
+                [
+                    {type: 'address', value: tronWeb.address.toHex(to)},
+                    {type: 'uint256', value: new BigNumber(amount).shiftedBy(decimals).toString()}
+                ],
+                tronWeb.address.toHex(this.props.wallet.address),
+            );
+            if (unSignTransaction.transaction !== undefined)
+                unSignTransaction = unSignTransaction.transaction;
+            unSignTransaction.extra = {
+                to: to,
+                decimals: decimals,
+                token_name: TokenName,
+                amount: amount,
+            }
+            transactionId = await transactionResultManager(unSignTransaction, tronWeb)
+        } else if (this.props.wallet.type === "ACCOUNT_TRONLINK" || this.props.wallet.type === "ACCOUNT_PRIVATE_KEY") {
+            tronWeb = this.props.account.tronWeb;
+            let contractInstance = await tronWeb.contract().at(contractAddress);
+            transactionId = await contractInstance.transfer(to, new BigNumber(amount).shiftedBy(decimals).toString()).send();
+        }
+    }else{
+     if (this.props.wallet.type === "ACCOUNT_TRONLINK" || this.props.wallet.type === "ACCOUNT_PRIVATE_KEY") {
+         let sunWeb = this.props.account.sunWeb;
+         let sendNum = new BigNumber(amount).shiftedBy(decimals).toString();
+         let sendContractAddress = sunWeb.sidechain.address.toHex(contractAddress)
+         let { transaction } = await sunWeb.sidechain.transactionBuilder.triggerSmartContract(sendContractAddress,'transfer(address,uint256)',{feeLimit:1000000},[{'type':'address','value':to},{'type':'uint256','value':sendNum}])
+         transactionId = await transactionResultManagerSun(transaction,sunWeb)
+     }
     }
     if (transactionId) {
       this.refreshTokenBalances();

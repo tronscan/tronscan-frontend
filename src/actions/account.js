@@ -1,12 +1,15 @@
 import {Client} from "../services/api";
 import Lockr from "lockr";
 import ReconnectingWebSocket from 'reconnecting-websocket'
+import { IS_MAINNET } from "../constants";
 
 export const SET_TOKEN_BALANCES = 'SET_TOKEN_BALANCES';
 export const SET_RECENT_TRANSACTIONS = 'SET_RECENT_TRANSACTIONS';
 export const SET_TOTAL_TRANSACTIONS = 'SET_TOTAL_TRANSACTIONS';
 export const SET_WEBSOCKET = 'SET_WEBSOCKET';
 export const SET_WS_DATA = 'SET_WS_DATA';
+export const SET_TOKEN20_MAP = 'SET_TOKEN20_MAP';
+export const SET_TOKEN_MAP = 'SET_TOKEN_MAP';
 
 export const setTokenBalances = (tokens = [], trc20token = [], frozen = {}, accountResource = {}, delegated={} ) => ({
   type: SET_TOKEN_BALANCES,
@@ -53,13 +56,22 @@ export const setWebsocket = () => async (dispatch) => {
   // if(Lockr.get("websocket") === 'open'){
   //   return;
   // }
-  var wsUri = "wss://apilist.tronscan.org/api/tronsocket";
+  // var wsUri = "wss://apilist.tronscan.org/api/tronsocket";
   // var wsUri = "wss://api.shasta.tronscan.org/api/tronsocket";
-  // var wsUri = "ws://172.16.20.200:6688/api/tronsocket";
-  let websocket = new ReconnectingWebSocket(wsUri, [], {
+  let wsUrl;
+  let wsUrlMain = "wss://apilist.tronscan.org/api/tronsocket";
+  let wsUrlSun = "wss://dappchainapi.tronscan.org/api/tronsocket";
+  if(IS_MAINNET){
+      wsUrl = wsUrlMain
+  }else{
+      wsUrl =  wsUrlSun
+  }
+
+  let websocket = new ReconnectingWebSocket(wsUrl, [], {
     minReconnectionDelay: 500
   })
   websocket.onopen = res => {
+
   }
 
   websocket.onmessage = res => {
@@ -77,3 +89,16 @@ export const setWebsocket = () => async (dispatch) => {
   dispatch(setWebsocketFn(websocket))
   Lockr.set("websocket", 'open')
 };
+
+// token20Map
+export const setToken20Map = (token20Map = {}) => ({
+  type: SET_TOKEN20_MAP,
+  token20Map
+});
+
+// tokenMap
+export const setTokenMap = (tokenMap = {}) => ({
+  type: SET_TOKEN_MAP,
+  tokenMap
+});
+

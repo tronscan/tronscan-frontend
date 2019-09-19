@@ -1190,6 +1190,14 @@ export const messages = {
   */
   "trigger_smart_contract": "调用智能合约",
   "normal_address_trigger_smart_contract": "普通地址调用合约",
+  "approve_trigger_smart_contract": "质押授权",
+  "approve_normal_trigger_smart_contract": "允许token在主链和侧链之间转移",
+  "pledge_trigger_smart_contract": "Token质押",
+  "pledge_normal_trigger_smart_contract": "从主链转移到侧链",
+  "mapping_trigger_smart_contract": "Token映射",
+  "mapping_normal_trigger_smart_contract": "主链与侧链映射",
+  "sign_trigger_smart_contract": "Token解押",
+  "sign_normal_trigger_smart_contract": "从侧链转移到主链",
   "trigger": "合约调用",
   "contract_triggers_total": "次合约调用",
   "contract_triggers_owner": "调用者",
@@ -1286,9 +1294,9 @@ export const messages = {
   */
   "committee": "TRON委员会",
   "committee_dec_1": "委员会用于修改TRON网络动态参数，如出块奖励、交易费用等等。",
-  "committee_dec_2": "委员会由当前的27个超级代表组成。",
+  "committee_dec_2": "委员会由当前的{total}个超级代表组成。",
   "committee_dec_3": "每个超级代表都具有提议权、对提议的投票权。",
-  "committee_dec_4": "当提议在有效期内获得19个代表及以上的赞成票时，该提议获得通过，并在下个维护期内进行网络参数修改。",
+  "committee_dec_4": "当提议在有效期内获得{total}个代表及以上的赞成票时，该提议获得通过，并在下个维护期内进行网络参数修改。",
   "get_committee_proposal": "查看委员会提议",
   "TRON_network_parameters": "TRON网络参数",
   "commission_proposed": "委员会提议",
@@ -1959,12 +1967,50 @@ export const messages = {
   "trc20_free_orders":"您在TRXMarket的所有交易都无需手续费",
   "token_logo_upload_tip":"仅支持png,jpg,jpeg三种格式，大小不超过200K，尺寸为100*100",
 
+  // Backbone - account - mapping
+  "main_account_mapping_title":"映射到DappChain",
+  "main_account_mapping_text":"DappChain是基于波场主链开发的侧链网络，扩展了波场主网的使用。映射之后你将获得：",
+  "main_account_mapping_text_1":"1.更高的tps，更低的能量消耗",
+  "main_account_mapping_text_2":"2.映射操作消耗1000TRX",
+  "main_account_mapping_btn":"映射",
+  "main_account_mapping_success_btn":"已映射",
+  "main_account_mapping_desc1": "token映射到侧链上，会在侧链上产生同名的token",
+  "main_account_mapping_desc2": "映射完成之后，用户可以质押此币种到侧链上",
+  
+  // sidechain - contract - mapping
+  "sidechain_contract_left":"来自Mainnet合约",
+  "sidechain_contract_right":"的映射",
+
+  // Sidechain - account - pledge
+  "sidechain_account_pledge_btn":"质押",
+  "sidechain_account_sign_btn":"解押",
+  "pledge_currency":"币种",
+  "pledge_sidechain":"侧链",
+  "pledge_num":"数量",
+  'pledge_num_error':"数量不能超过最大可用余额",
+  'pledge_num_min_error':"数量不能小于",
+  "pledge_text":"质押会消耗一定量的能量",
+  "sign_text":"解押操作会消耗:",
+  "pledge_mapping_text":"资产尚未映射到DappChain.不支持质押",
+  "lack_of_balance":"TRX余额不足",
+  "mapping_text":"映射操作会消耗:",
+
+  // success
+  "pledge_success": "质押成功",
+  "sign_success": "解押成功",
+  "mapping_success": "映射成功",
+  // error
+  "pledge_error": "质押失败",
+  "sign_error": "解押失败",
+  "mapping_error": "映射失败",
   "price_per_1000_WIN": "WIN价格（每1000WIN）",
   "WIN_distribution_overview": "WIN分布概览",
   "total_WIN_supply": "WIN总流通量",
   "WIN_supply": "WIN 流通量",
   "WIN_Token_Release_Schedule": "WIN 代币解锁时间表",
   "source_WIN_team": "信息来源：WIN管理团队",
+  "Side_Chain":"侧链浏览器（DappChain）",
+  "Main_Chain":"主链浏览器（MainChain）",
 
   "7day": "7天",
   "14day": "14天",
@@ -1972,6 +2018,17 @@ export const messages = {
   "select_tip": "如果要查看2000条之外的数据可以手动调整时间窗口",
   "date_number_tip": "当前时间范围内有{total}条记录",
   "date_list_tip": "列表仅展示2000条记录",
+
+  "sun_propose_1": "交易计费开关",
+  "sun_propose_2": "设置侧链gateway合约地址",
+  "sun_propose_3": "设置提案过期时间",
+  "sun_propose_4": "开启给 Witness 投票",
+  "sun_propose_5": "设置侧链激励池地址 ",
+  "sun_propose_6": "侧链 witness 激励开关",
+  "sun_propose_7": "侧链激励池分发系数",
+  "sun_propose_8": "侧链收益累积到激励池的比例",
+  "day":"天",
+
 
   "developers_username": "用户名",
   "developers_current_year":"本年度积分",

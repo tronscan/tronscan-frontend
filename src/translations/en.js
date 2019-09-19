@@ -1171,6 +1171,14 @@ export const messages = {
   */
   "trigger_smart_contract": "Trigger Smart Contract",
   "normal_address_trigger_smart_contract": "Normal address trigger smart contract",
+  "approve_trigger_smart_contract": "Deposit authorization",
+  "approve_normal_trigger_smart_contract": "Token transfer between the main chain and the sidechain are allowed",
+  "pledge_trigger_smart_contract": "Token deposit",
+  "pledge_normal_trigger_smart_contract": "Transfer from main chain to sidechain",
+  "mapping_trigger_smart_contract": "Token mapping",
+  "mapping_normal_trigger_smart_contract": "Main chain and sidechain mapping",
+  "sign_trigger_smart_contract": "Token withdraw",
+  "sign_normal_trigger_smart_contract": "Transfer from sidechain to main chain",
   "trigger": "Contract Triggers",
   "contract_triggers_total": "Contract Triggers",
   "contract_triggers_owner": "Owner",
@@ -1269,9 +1277,9 @@ export const messages = {
   */
   "committee": "TRON Committee",
   "committee_dec_1": "TRON Committee is for modifying the dynamic parameters on the TRON network, e.g. block generation rewards, transaction fees, etc.",
-  "committee_dec_2": "The Committee consists of the current 27 Super Representatives (SRs).",
+  "committee_dec_2": "The Committee consists of the current {total} Super Representatives (SRs).",
   "committee_dec_3": "Each SR has the right to propose and vote on proposals.",
-  "committee_dec_4": "When a proposal receives 19 votes or more from the SRs within the valid time frame, the proposal will be approved and its network parameters will be modified in the next maintenance period.",
+  "committee_dec_4": "When a proposal receives {total} votes or more from the SRs within the valid time frame, the proposal will be approved and its network parameters will be modified in the next maintenance period.",
   "get_committee_proposal": "Check committee proposals",
   "TRON_network_parameters": "TRON network parameters",
   "commission_proposed": "Committee proposals",
@@ -1929,15 +1937,53 @@ export const messages = {
   "deploy_params_send_token":"Select TRX or token to send",
   "deploy_params_constructor":"Params for constructor",
   "compile_close":"close",
-
   "token_logo_upload_tip":"Only supports png, jpg, jpeg three formats, the size does not exceed 200K, the pixel is 100*100",
 
+  // Backbone - account - mapping
+  "main_account_mapping_title":"Map to DAppChain",
+  "main_account_mapping_text":"DAppChain is a side chain network developed based on the TRON main chain, a scaling solution for the TRON MainNet. By mapping to DAppChain, you will gain higher TPS with lower energy consumption.",
+  "main_account_mapping_text_1":"1.Higher TPS，lower energy consumption",
+  "main_account_mapping_text_2":"2.Mapping operation consumes 1000TRX",
+  "main_account_mapping_btn":"Mapping",
+  "main_account_mapping_success_btn":"Mapped",
+  "main_account_mapping_desc1": "When the token is mapped to the side chain, a token with the same name will be generated on the side chain",
+  "main_account_mapping_desc2": "After the mapping is completed, users can deposit the token to the side chain.",
+
+  // sidechain - contract - mapping
+  "sidechain_contract_left":"Mapping from MainNet contract",
+  "sidechain_contract_right":" ",
+
+  // Sidechain - account - pledge
+  "sidechain_account_pledge_btn":"Deposit",
+  "sidechain_account_sign_btn":"Withdraw",
+  "pledge_currency":"Token",
+  "pledge_sidechain":"Sidechain",
+  "pledge_num":"Amount",
+  'pledge_num_error':"The number cannot exceed the maximum available balance",
+  'pledge_num_min_error':"The quantity cannot be less than",
+  "pledge_text":"Deposit will consume a certain amount of energy",
+  "sign_text":"Withdraw operation will consume",
+  "pledge_mapping_text":"Your assets have not been mapped to DAppChain, and therefore cannot be deposited.",
+  "lack_of_balance":"TRX has insufficient balance",
+  "mapping_text":"Mapping operations consume:",
+
+  // success
+  "pledge_success": "Deposit Success",
+  "sign_success": "Withdraw Success",
+  "mapping_success": "Mapping Success",
+  // error
+  "pledge_error": "Deposit Error",
+  "sign_error": "Withdraw Error",
+  "mapping_error": "Mapping Error",
   "price_per_1000_WIN": "PRICE PER 1000 WIN",
   "WIN_distribution_overview": "WIN DISTRIBUTION OVERVIEW",
   "total_WIN_supply": "Total WIN Supply",
   "WIN_supply": "WIN Supply",
   "WIN_Token_Release_Schedule": "WIN Token Release Schedule",
   "source_WIN_team": "Source: WIN Management Team",
+  "Side_Chain":"Side chain browser(DappChain)",
+  "Main_Chain":"Main chain browser(MainChain)",
+
 
   "7day": "one week",
   "14day": "two weeks",
@@ -1945,6 +1991,16 @@ export const messages = {
   "select_tip": "To view data other than 2000 You can manually adjust the time window",
   "date_number_tip": "{total} records in the current time range",
   "date_list_tip": "Only the first 2000 data are displayed",
+
+  "sun_propose_1": "Transaction fee switch",
+  "sun_propose_2": "Set the contract address for gateway on the side chain",
+  "sun_propose_3": "Set the expiration time for the proposal",
+  "sun_propose_4": "Start voting for Witness",
+  "sun_propose_5": "The address for the side chain incentive pool is address(0) by default. ",
+  "sun_propose_6": "Manage if the incentive switch for witness on the side chain is on/off ",
+  "sun_propose_7": "Distribution metrics of the side chain incentive pool",
+  "sun_propose_8": "Revenue ratio of witness on the side chain",
+  "day":"day",
 
   "developers_username": "username",
   "developers_current_year":"year's points",
