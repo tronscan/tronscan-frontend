@@ -1943,7 +1943,7 @@ export const messages = {
   "main_account_mapping_title":"Map to DAppChain",
   "main_account_mapping_text":"DAppChain is a side chain network developed based on the TRON main chain, a scaling solution for the TRON MainNet. By mapping to DAppChain, you will gain higher TPS with lower energy consumption.",
   "main_account_mapping_text_1":"1.Higher TPS，lower energy consumption",
-  "main_account_mapping_text_2":"2.completely free mapping process",
+  "main_account_mapping_text_2":"2.Mapping operation consumes 1000TRX",
   "main_account_mapping_btn":"Mapping",
   "main_account_mapping_success_btn":"Mapped",
   "main_account_mapping_desc1": "When the token is mapped to the side chain, a token with the same name will be generated on the side chain",

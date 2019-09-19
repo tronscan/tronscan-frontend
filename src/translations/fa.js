@@ -1933,7 +1933,7 @@ export const messages = {
     "main_account_mapping_title":"نقشه به DAppChain",
     "main_account_mapping_text":"DAppChain یک شبکه زنجیره ای جانبی است که براساس زنجیره اصلی ترون ایجاد شده است ، یک راه حل مقیاس گذاری برای TRON MainNet. با نقشه برداری در DAppChain ، TPS بالاتری را با مصرف انرژی کمتری به دست می آورید.",
     "main_account_mapping_text_1":"1.هرچه tps بالاتر ، مصرف انرژی پایین تر است.",
-    "main_account_mapping_text_2":"2.فرایند نقشه برداری کاملا رایگان است.",
+    "main_account_mapping_text_2":"2.Mapping operation consumes 1000TRX",
     "main_account_mapping_btn":"نقشه برداری",
     "main_account_mapping_success_btn":"نقشه برداری",
     "main_account_mapping_desc1": "هنگامی که توکن به زنجیره جانبی نقشه برداری وارد می شود ، یک توکن با همین نام در زنجیره جانبی ایجاد می شود.",

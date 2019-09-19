@@ -1940,7 +1940,7 @@ export const messages = {
   "main_account_mapping_title":"Маппинг DAppChain",
   "main_account_mapping_text":"DAppChain - это сайдчейн сеть, разработанная на основе цепи TRON, масштабируемое решения для сети TRON. При сопоставлении с DAppChain вы получите более высокий TPS с меньшим энергопотреблением.",
   "main_account_mapping_text_1":"1.Более высокий TPS с меньшим энергопотреблением",
-  "main_account_mapping_text_2":"2.совершенно бесплатный процесс картирования",
+  "main_account_mapping_text_2":"2.Mapping operation consumes 1000TRX",
   "main_account_mapping_btn":"Маппинг",
   "main_account_mapping_success_btn":"Маппиравано",
   "main_account_mapping_desc1": "Когда токен маппирован с сайдчейн, токен с тем же именем будет создан на сайдчейн",

@@ -1927,7 +1927,7 @@
   "main_account_mapping_title":"الخريطة إلى DAppChain",
   "main_account_mapping_text":"DAppChain هي عبارة عن شبكة سلسلة جانبية تم تطويرها استنادًا إلى سلسلة ترون الرئيسية ، وهي حل للتحجيم لشبكة TRON MainNet.",
   "main_account_mapping_text_1":"1.مقدار أعلى من tps بالمقابل الحصول على استهلاك أقل للطاقة",
-  "main_account_mapping_text_2":"2.استكمال عملية رسم التعيين",
+  "main_account_mapping_text_2":"2.Mapping operation consumes 1000TRX",
   "main_account_mapping_btn":"جاري التعيين",
   "main_account_mapping_success_btn":"تم استكمال التعيين",
   "main_account_mapping_desc1": "عند تعيين الرمز المميز على السلسلة الجانبية ، سيتم إنشاء رمز مميز يحمل نفس الاسم في السلسلة الجانبية",

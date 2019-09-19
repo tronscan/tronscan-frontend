@@ -1935,7 +1935,7 @@ export const messages = {
   "main_account_mapping_title":"DappChain에지도",
   "main_account_mapping_text":"DappChain은 TRON 메인 체인에 기반하여 개발된 사이드 체인 네트워크 이며. TRON 메인넷 확장에 사용됩니다. ",
   "main_account_mapping_text_1":"1.높은 tps, 낮은 에너지 소비",
-  "main_account_mapping_text_2":"2.매핑 프로세스는 완전 무료입니다",
+  "main_account_mapping_text_2":"2.Mapping operation consumes 1000TRX",
   "main_account_mapping_btn":"매핑",
   "main_account_mapping_success_btn":"매핑됨",
   "main_account_mapping_desc1": "Token은 사이드 체인에 매핑되며 사이드 체인에서 동일한 이름의 토큰을 생성합니다.",

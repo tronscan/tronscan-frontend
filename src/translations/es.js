@@ -1939,7 +1939,7 @@ export const messages = {
   "main_account_mapping_title":"reflectar a DAppChain",
   "main_account_mapping_text":"DAppChain es una cadena lateral desarrollada basada en la mainnet de TRON, una solución de escala para la red principal de TRON. Al reflectar a DAppChain, se obtendrá un TPS más alto con un menor consumo de energía.",
   "main_account_mapping_text_1":"1.obtengan tps con menor consumo de energía.",
-  "main_account_mapping_text_2":"2.proceso de reflexión completamente gratuito",
+  "main_account_mapping_text_2":"2.Mapping operation consumes 1000TRX",
   "main_account_mapping_btn":"Cartografía",
   "main_account_mapping_success_btn":"reflexión",
   "main_account_mapping_desc1": "Cuando el token se reflecta a la cadena lateral, se generará un token con el mismo nombre en la cadena lateral",
