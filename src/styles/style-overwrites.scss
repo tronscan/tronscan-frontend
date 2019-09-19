@@ -491,6 +491,22 @@ nextvote, node, nodest, sr, totle, up, vote, accounts, nextRound, totalVotes, mo
       top: 43px;
     }
   }
+  &_search{
+    position: absolute;
+    top: 6px;
+    right: 0px;
+    color: $text-block-dark;
+    z-index: 1;
+    width: 400px;
+    button{
+      background-color: #C23631 !important;
+      border-color: #C23631 !important;
+    }
+    @media screen and (max-width: 768px) {
+      top: 0px;
+      width: 345px;
+    }
+  }
   &_switch{
     position: absolute;
     top: 26px;

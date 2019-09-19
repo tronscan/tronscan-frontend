@@ -149,7 +149,7 @@ class TokenList extends Component {
   }
 
   customizedColumn = () => {
-    let {filter} = this.state
+    let {filter} = this.state;
     let {intl} = this.props;
     let column = [
       {
