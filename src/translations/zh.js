@@ -1982,5 +1982,5 @@ export const messages = {
   "developers_contribution_link":"贡献内容对应链接",
   "developers_earn_points":"获得积分",
   "developers_search":"搜索用户名",
-
+  "developers_scored_users":"已获积分账户",
 };

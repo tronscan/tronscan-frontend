@@ -729,7 +729,7 @@ export const routes = [
   // },
   {
       path: "/developersReward",
-      label: "已获积分账户",
+      label: "developers_scored_users",
       icon: "fa fa-users",
       showInMenu: false,
       component: DevelopersRewardAsync,
