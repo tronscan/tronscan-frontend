@@ -59,8 +59,8 @@ export const setWebsocket = () => async (dispatch) => {
   // var wsUri = "wss://apilist.tronscan.org/api/tronsocket";
   // var wsUri = "wss://api.shasta.tronscan.org/api/tronsocket";
   let wsUrl;
-  let wsUrlMain = "ws://3.14.14.175:9000/api/tronsocket";
-  let wsUrlSun = "ws://3.15.181.169:9000/api/tronsocket";
+  let wsUrlMain = "wss://apilist.tronscan.org/api/tronsocket";
+  let wsUrlSun = "wss://dappchainapi.tronscan.org/api/tronsocket";
   if(IS_MAINNET){
       wsUrl = wsUrlMain
   }else{

@@ -171,36 +171,38 @@ export function appReducer(state = initialState, action) {
     case LOGIN_PK: {
 
       Lockr.set("islogin", 0);
-      // const ServerNode =  "https://api.trongrid.io";
-      // const HttpProvider = TronWeb.providers.HttpProvider; // This provider is optional, you can just use a url for the nodes instead
-      // const fullNode = new HttpProvider(ServerNode); // Full node http endpoint
-      // const solidityNode = new HttpProvider(ServerNode); // Solidity node http endpoint
-      // const eventServer = ServerNode; // Contract events http endpoint
-      const privateKey = action.privateKey;
-      const tronWeb = new TronWeb({
-              fullNode:'http://47.252.84.158:8070',
-              solidityNode:'http://47.252.84.158:8071',
-              eventServer:'http://47.252.81.14:8070',
+       const ServerNode =  "https://api.trongrid.io";
+       const HttpProvider = TronWeb.providers.HttpProvider; // This provider is optional, you can just use a url for the nodes instead
+       const fullNode = new HttpProvider(ServerNode); // Full node http endpoint
+       const solidityNode = new HttpProvider(ServerNode); // Solidity node http endpoint
+       const eventServer = ServerNode; // Contract events http endpoint
+       const sunFullNode =  "https://sun.tronex.io/wallet";    //DappChain fullNode
+       const sunSolidityNode =  "https://sun.tronex.io/walletsolidity";  //DappChain solidityNode
+       const sunEventServer = "https://sun.tronex.io/event";  //DappChain eventServer
+       const privateKey = action.privateKey;
+       const tronWeb = new TronWeb({
+              fullNode,
+              solidityNode,
+              eventServer,
               privateKey
           }
-      );
-      const sunWeb = new SunWeb(
+       );
+       const sunWeb = new SunWeb(
           {
-              fullNode: 'http://47.252.84.158:8070',
-              solidityNode: 'http://47.252.84.158:8071',
-              eventServer: 'http://47.252.81.14:8070'
+              fullNode: ServerNode,
+              solidityNode: ServerNode,
+              eventServer: ServerNode
           },
           {
-              fullNode: 'http://47.252.85.90:8070',
-              solidityNode: 'http://47.252.85.90:8071',
-              eventServer: 'http://47.252.87.129:8070'
+              fullNode: SUNWEBCONFIG.SUNFULLNODE,
+              solidityNode: SUNWEBCONFIG.SUNSOLIDITYNODE,
+              eventServer: SUNWEBCONFIG.SUNEVENTSERVER
           },
           SUNWEBCONFIG.MAINNET,
           SUNWEBCONFIG.SIDECHAIN,
           SUNWEBCONFIG.SIDEID,
           privateKey
-      );
-      window.sunWeb = sunWeb;
+       );
 
 
       return {

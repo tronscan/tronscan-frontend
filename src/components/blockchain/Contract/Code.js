@@ -50,18 +50,10 @@ class Code extends React.Component {
         const params = {
             contractAddress: address
         };
-       // let { data } = await xhr.post(`${API_URL}/api/solidity/contract/info`, params)
-        let { data } = await xhr.post(`http://3.14.14.175:9004/api/solidity/contract/info`, params)
+        let { data } = await xhr.post(`${API_URL}/api/solidity/contract/info`, params)
             .catch(function(e) {
                 console.log(e)
             });
-        this.setState({
-            contractVerifyState: false,
-            loading: false
-        }, async() => {
-            await this.getContractInfos();
-        });
-        return
         const dataInfo = data.data;
         // eslint-disable-next-line
         const { status, contract_name, byte_code, contract_code, constructor_params, optimizer, compiler } = dataInfo;
