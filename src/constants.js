@@ -74,10 +74,6 @@ export const TRADINGMAP = {
     APPROVE: 'approve',
 };
 
-
-const sunFullNode =  "https://sun.tronex.io/wallet";    //DappChain fullNode
-const sunSolidityNode =  "https://sun.tronex.io/wallet";  //DappChain solidityNode
-const sunEventServer = "https://sun.tronex.io/event";  //DappChain eventServer
 // SunWeb config
 export const SUNWEBCONFIG = {
     MAINFULLNODE: "https://api.trongrid.io",

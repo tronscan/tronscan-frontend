@@ -86,7 +86,7 @@ class RecentBlocks extends Component {
                             <div className="text-gray-dark break-word d-flex list-item-word small">
                               <span className="mr-2 color-grey-300">{tu("produced_by")}:</span>
                               <AddressLink address={block.witnessAddress} truncate={false}>
-                                <span className="color-tron-100">{block.witnessName}</span>
+                                <span className="color-tron-100">{block.witnessName?block.witnessName:block.witnessAddress}</span>
                               </AddressLink>
                             </div>
                               {
@@ -131,7 +131,7 @@ class RecentBlocks extends Component {
                             <div className="text-gray-dark break-word d-flex list-item-word">
                               <span className="mr-2 color-grey-300">{tu("produced_by")}:</span>
                               <AddressLink address={block.witnessAddress} truncate={false}>
-                                <span className="color-tron-100">{block.witnessName}</span>
+                                <span className="color-tron-100">{block.witnessName?block.witnessName:block.witnessAddress}</span>
                               </AddressLink>
                             </div>
 

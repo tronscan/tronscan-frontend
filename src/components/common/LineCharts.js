@@ -134,7 +134,7 @@ export class LineReactHighChartAdd extends React.Component {
             if(IS_MAINNET){
                 _config.yAxis.tickInterval = 100000;
             }else{
-                _config.yAxis.tickInterval = 10
+                _config.yAxis.tickInterval = 1000
             }
             _config.yAxis.min = 0;
             _config.yAxis.tickAmount = 4;
@@ -252,7 +252,7 @@ export class LineReactHighChartTx extends React.Component {
             if(IS_MAINNET){
                 _config.yAxis.tickInterval = 100000;
             }else{
-                _config.yAxis.tickInterval = 10
+                _config.yAxis.tickInterval = 10000
             }
             _config.yAxis.min = 0;
             if(IS_MAINNET) {
