@@ -1977,8 +1977,8 @@ export const messages = {
   "WIN_Token_Release_Schedule": "WIN Token Release Schedule",
   "source_WIN_team": "Source: WIN Management Team",
 
-  "Side_Chain":"Side chain browser(DAppChain)",
-  "Main_Chain":"Main chain browser(MainChain)",
+  "Side_Chain":"DAppChain",
+  "Main_Chain":"MainChain",
   "7day": "one week",
   "14day": "two weeks",
   "30day": "one month",
@@ -1995,8 +1995,6 @@ export const messages = {
   "sun_propose_7": "Métricas de distribución del grupo de incentivos de la cadena lateral",
   "sun_propose_8": "Proporción de ingresos del testigo en la cadena lateral",
   "day":"día",
-
-
 
   "developers_username": "username",
   "developers_current_year":"year's points",

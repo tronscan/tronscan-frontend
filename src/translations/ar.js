@@ -1964,8 +1964,8 @@
   "WIN_supply": "WIN Supply",
   "WIN_Token_Release_Schedule": "WIN Token Release Schedule",
   "source_WIN_team": "Source: WIN Management Team",
-  "Side_Chain":"Side chain browser(DAppChain)",
-  "Main_Chain":"Main chain browser(MainChain)",
+  "Side_Chain":"DAppChain",
+  "Main_Chain":"MainChain",
 
 
   "7day": "one week",

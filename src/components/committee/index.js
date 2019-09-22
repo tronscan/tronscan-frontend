@@ -42,6 +42,9 @@ class Committee extends React.Component {
     async getChainparameters() {
         if(IS_MAINNET){
             let { tronParameters } = await Client.getChainparameters();
+            if(!tronParameters){
+                return
+            }
             let EnergyLimitNew   = {key: "getTotalEnergyLimitNew", value: 100000000000};
             tronParameters.splice(19, 0, EnergyLimitNew);
             tronParameters.map(item => {
@@ -147,6 +150,10 @@ class Committee extends React.Component {
             })
         }else{
             let { tronParameters } = await Client.getChainparameters();
+            if(!tronParameters){
+                return
+            }
+
             let sunside = [
                 'getChargingSwitch',
                 'getSideChainGateWayList',
@@ -223,7 +230,7 @@ class Committee extends React.Component {
             render: (text, record, index) => {
                 return <span>
                     {
-                        '#'+ record.id
+                        IS_MAINNET? '#'+ index :'#'+ record.id
                     }
                 </span>
 
