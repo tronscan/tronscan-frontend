@@ -1055,7 +1055,7 @@ export default class Account extends Component {
         }
         try {
 
-            if (this.props.walletType.type === "ACCOUNT_PRIVATE_KEY") {
+            if(this.props.wallet.type==="ACCOUNT_TRONLINK" || this.props.wallet.type==="ACCOUNT_PRIVATE_KEY"){
                 let unSignTransaction;
                 if(!delegate) {
                     unSignTransaction = await sunWeb.sidechain.transactionBuilder.unfreezeBalance(delegateType, sunWeb.sidechain.defaultAddress.base58).catch(e => false);
@@ -1180,7 +1180,7 @@ export default class Account extends Component {
         }
     } else{
       try{
-          if (this.props.walletType.type === "ACCOUNT_PRIVATE_KEY") {
+          if (this.props.walletType.type === "ACCOUNT_PRIVATE_KEY" || this.props.wallet.type==="ACCOUNT_TRONLINK") {
               let sunWeb = account.sunWeb;
               const unSignTransaction = await sunWeb.sidechain.fullNode.request('wallet/updateaccount', {
                   account_name: sunWeb.sidechain.fromUtf8(name),
@@ -2122,7 +2122,7 @@ export default class Account extends Component {
                         </thead>
                         <tbody>
                         {
-                          currentWallet.exchanges.length ? currentWallet.exchanges.map((exchange, index) => {
+                          currentWallet.exchanges  ? currentWallet.exchanges.map((exchange, index) => {
                             return (
                                 <tr key={index}>
                                   <td style={{position: 'relative'}}>

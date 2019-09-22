@@ -48,9 +48,6 @@ class ApplyForDelegate extends Component {
                 tronWeb = account.tronWeb;
             }
 
-            // const unSignTransaction = await tronWeb.transactionBuilder.applyForSR(tronWeb.defaultAddress.hex, url).catch(e => false);
-
-
             const unSignTransaction = await tronWeb.transactionBuilder.applyForSR(tronWeb.defaultAddress.hex, url);
             const {result} = await transactionResultManager(unSignTransaction, tronWeb);
 
@@ -61,24 +58,13 @@ class ApplyForDelegate extends Component {
         }
     }else{
         if (isTronLink === 1) {
-            let tronWeb;
-            if (this.props.walletType.type === "ACCOUNT_LEDGER"){
-                tronWeb = this.props.tronWeb();
-            }else if(this.props.walletType.type === "ACCOUNT_TRONLINK"){
-                tronWeb = account.tronWeb;
-            }
-
-            // const unSignTransaction = await tronWeb.transactionBuilder.applyForSR(tronWeb.defaultAddress.hex, url).catch(e => false);
-
-
-            const unSignTransaction = await tronWeb.transactionBuilder.applyForSR(tronWeb.defaultAddress.hex, url);
-
-            const {result} = await transactionResultManager(unSignTransaction, tronWeb);
-
+            //tronlink
+            const unSignTransaction = await account.sunWeb.sidechain.transactionBuilder.applyForSR(account.sunWeb.sidechain.defaultAddress.hex, url).catch(e => console.log(e));
+            const {result} = await transactionResultManagerSun(unSignTransaction, account.sunWeb);
             res = result;
         } else {
-
-            const unSignTransaction = await account.sunWeb.sidechain.transactionBuilder.applyForSR(account.sunWeb.sidechain.defaultAddress.hex, url);
+            //pk
+            const unSignTransaction = await account.sunWeb.sidechain.transactionBuilder.applyForSR(account.sunWeb.sidechain.defaultAddress.hex, url).catch(e => console.log(e));
             const {result} = await transactionResultManagerSun(unSignTransaction, account.sunWeb);
             res = result;
         }

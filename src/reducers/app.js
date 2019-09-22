@@ -176,9 +176,6 @@ export function appReducer(state = initialState, action) {
        const fullNode = new HttpProvider(ServerNode); // Full node http endpoint
        const solidityNode = new HttpProvider(ServerNode); // Solidity node http endpoint
        const eventServer = ServerNode; // Contract events http endpoint
-       const sunFullNode =  "https://sun.tronex.io/wallet";    //DappChain fullNode
-       const sunSolidityNode =  "https://sun.tronex.io/walletsolidity";  //DappChain solidityNode
-       const sunEventServer = "https://sun.tronex.io/event";  //DappChain eventServer
        const privateKey = action.privateKey;
        const tronWeb = new TronWeb({
               fullNode,
@@ -255,7 +252,8 @@ export function appReducer(state = initialState, action) {
           isLoggedIn: true,
           address: action.address,
           tronWeb:action.tronWeb,
-          tronStationSDK: new TronStationSDK(action.tronWeb, true)
+          sunWeb:action.sunWeb,
+          tronStationSDK: IS_MAINNET? new TronStationSDK(action.tronWeb,true): new TronStationSDK(action.sunWeb.sidechain,true),
         },
         wallet: {
           type: ACCOUNT_TRONLINK,
