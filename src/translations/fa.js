@@ -1970,7 +1970,7 @@ export const messages = {
     "WIN_supply": "WIN Supply",
     "WIN_Token_Release_Schedule": "WIN Token Release Schedule",
     "source_WIN_team": "Source: WIN Management Team",
-    "Side_Chain":"Side chain browser(DappChain)",
+    "Side_Chain":"Side chain browser(DAppChain)",
     "Main_Chain":"Main chain browser(MainChain)",
 
 
@@ -2001,5 +2001,6 @@ export const messages = {
     "developers_earn_points":"Earn points",
     "developers_search":" Search username",
     "developers_scored_users":"Scored Users",
+    "DAppChain_holders":"DAppChain Holders",
 
 };

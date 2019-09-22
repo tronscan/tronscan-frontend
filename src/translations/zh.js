@@ -2009,7 +2009,7 @@ export const messages = {
   "WIN_supply": "WIN 流通量",
   "WIN_Token_Release_Schedule": "WIN 代币解锁时间表",
   "source_WIN_team": "信息来源：WIN管理团队",
-  "Side_Chain":"侧链浏览器（DappChain）",
+  "Side_Chain":"侧链浏览器（DAppChain）",
   "Main_Chain":"主链浏览器（MainChain）",
 
   "7day": "7天",
@@ -2040,5 +2040,5 @@ export const messages = {
   "developers_earn_points":"获得积分",
   "developers_search":"搜索用户名",
   "developers_scored_users":"已获积分账户",
-  "sidechain_holder":"侧链持有者",
+  "DAppChain_holders":"侧链持有者",
 };

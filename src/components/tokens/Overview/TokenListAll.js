@@ -397,7 +397,7 @@ class TokenList extends Component {
                 }
             },
             {
-                title:intl.formatMessage({id: 'sidechain_holder'}),
+                title:intl.formatMessage({id: 'DAppChain_holders'}),
                 dataIndex: 'nrOfTokenHolders',
                 key: 'nrOfTokenHolders',
                 sorter: true,
