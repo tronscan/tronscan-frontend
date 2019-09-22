@@ -913,7 +913,6 @@ class Navigation extends React.Component {
       syncStatus,
       walletType: { type },
     } = this.props;
-
     let {search, popup, notifications, announcement, announId, annountime, searchResults, selectedNet } = this.state;
 
     let activeComponent = this.getActiveComponent();
@@ -937,7 +936,7 @@ class Navigation extends React.Component {
                 </div>
               }
               {
-                (syncStatus && syncStatus.sync.progress < 95) &&
+                (syncStatus && syncStatus.sync && syncStatus.sync.progress < 95) &&
                 <div className="col text-danger text-center py-2">
                   Tronscan is syncing, data might not be up-to-date ({Math.round(syncStatus.sync.progress)}%)
                 </div>

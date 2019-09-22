@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/editor.worker.js"
   },
   {
-    "revision": "ad1e1563db647becbc84776f7e8b5b77",
+    "revision": "864b45fc32918ebe3fb3a637018cb736",
     "url": "/index.html"
   },
   {
@@ -36,7 +36,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/css/NodeMap.aab5afec.chunk.css"
   },
   {
-    "revision": "2973e0f840309ee762bc",
+    "revision": "87219affa2e276246aa5",
     "url": "/static/css/main.f10a386b.chunk.css"
   },
   {
@@ -216,8 +216,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/js/Live.aad84a8e.chunk.js"
   },
   {
-    "revision": "6d17793788d51a845bd4",
-    "url": "/static/js/Markets.fe5ae198.chunk.js"
+    "revision": "03b878274c85114c2ff4",
+    "url": "/static/js/Markets.b942405d.chunk.js"
   },
   {
     "revision": "b8c121e40ee82755bc50",
@@ -256,12 +256,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/js/Representative.e19f6049.chunk.js"
   },
   {
-    "revision": "5606b3030da8d32ec127",
-    "url": "/static/js/Representatives.0f239f1a.chunk.js"
+    "revision": "fec206cb3797395082e3",
+    "url": "/static/js/Representatives.56a2764b.chunk.js"
   },
   {
-    "revision": "ecd31c5b7b17264d0d97",
-    "url": "/static/js/SingleStats.01abbc46.chunk.js"
+    "revision": "b580c9d375a4040b98c2",
+    "url": "/static/js/SingleStats.368f78d9.chunk.js"
   },
   {
     "revision": "27c8a8c4d86daa9860ec",
@@ -344,12 +344,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/js/WalletWizard.8912a2f9.chunk.js"
   },
   {
-    "revision": "2973e0f840309ee762bc",
-    "url": "/static/js/main.1ae7cea3.chunk.js"
+    "revision": "87219affa2e276246aa5",
+    "url": "/static/js/main.83571cfe.chunk.js"
   },
   {
-    "revision": "cbe381f58bd782334ac2",
-    "url": "/static/js/runtime~main.8458e354.js"
+    "revision": "ec5887472c92fb2c2195",
+    "url": "/static/js/runtime~main.1439620d.js"
   },
   {
     "revision": "7b00f7c4e78ed9cfc676c64c040965e8",
