@@ -102,14 +102,15 @@ class Navigation extends React.Component {
     let _this = this;
 
     window.addEventListener('message', function (e) {
+      console.log(e.data.message)
       if (e.data.message && e.data.message.action == "setAccount") {
         _this.setState({address: e.data.message.data.address});
       }
       if (e.data.message && e.data.message.action == "setNode") {
-        if(e.data.message.data.fullNode == SUNWEBCONFIG.MAINFULLNODE){
+        if(e.data.message.data.fullNode == 'https://api.trongrid.io'){
             _this.setState({selectedNet: 'mainnet'});
             Lockr.set("NET", 'mainnet')
-        }else if(e.data.message.data.fullNode == SUNWEBCONFIG.SUNFULLNODE){
+        }else if(e.data.message.data.fullNode == 'https://sun.tronex.io'){
             _this.setState({selectedNet: 'sunnet'});
             Lockr.set("NET", 'sunnet')
         }
@@ -133,6 +134,8 @@ class Navigation extends React.Component {
         if (nextState.address !== this.state.address && this.isString(nextState.address) && this.isString(this.state.address)) {
             this.reLoginWithTronLink();
         }
+        console.log('nextState.selectedNet',nextState.selectedNet)
+      console.log('this.state.selectedNet',this.state.selectedNet)
         if(nextState.selectedNet !== this.state.selectedNet && this.state.selectedNet && nextState.selectedNet && this.props.account.isLoggedIn){
             window.location.reload();
         }
