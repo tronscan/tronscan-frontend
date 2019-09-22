@@ -157,35 +157,43 @@ class Committee extends React.Component {
                 'getDayToSustainByFund',
                 'getPercentToPayWitness',
             ]
+
             let sunsideparameters = tronParameters.filter(function(v){
                 return sunside.indexOf(v.key)!==-1
             })
-
             sunsideparameters.map(item => {
                 switch (item['key']){
                     case "getChargingSwitch":
                         item.name = 'sun_propose_1';
+                        item.id= '1000000';
                         break;
                     case "getSideChainGateWayList":
                         item.name = 'sun_propose_2';
+                        item.id = '1000001';
                         break;
                     case "getProposalExpireTime":
                         item.name = 'sun_propose_3';
+                        item.id = '1000003';
                         break;
                     case "getVoteWitnessSwitch":
                         item.name = 'sun_propose_4';
+                        item.id =  '1000004';
                         break;
                     case "getFundInjectAddress":
                         item.name = 'sun_propose_5';
+                        item.id = '1000007';
                         break;
                     case "getFundDistributeEnableSwitch":
                         item.name = 'sun_propose_6';
+                        item.id = '1000008';
                         break;
                     case "getDayToSustainByFund":
                         item.name = 'sun_propose_7';
+                        item.id = '1000009';
                         break;
                     case "getPercentToPayWitness":
                         item.name = 'sun_propose_8';
+                        item.id = '1000010';
                         break;
                 }
             });
@@ -215,7 +223,7 @@ class Committee extends React.Component {
             render: (text, record, index) => {
                 return <span>
                     {
-                        '#'+ index
+                        '#'+ record.id
                     }
                 </span>
 

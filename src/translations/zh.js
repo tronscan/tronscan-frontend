@@ -2040,4 +2040,5 @@ export const messages = {
   "developers_earn_points":"获得积分",
   "developers_search":"搜索用户名",
   "developers_scored_users":"已获积分账户",
+  "sidechain_holder":"侧链持有者",
 };
