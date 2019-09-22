@@ -26,6 +26,8 @@ class SignModal extends Component {
             isDisabled: false,
             isShowModal: true,
             feeError: '',
+            ENERGYMIN:10000,
+            TRXBALANCEMIN:11,
         };
     }
 
@@ -33,6 +35,8 @@ class SignModal extends Component {
      * show result
      */
     openModal = data => {
+        const { option: { energyRemaining, trxBalanceRemaining }} = this.props;
+        let { ENERGYMIN, TRXBALANCEMIN }  = this.state;
         const isSuccess = !!data;
         this.setState({
             isShowModal: false,
@@ -47,7 +51,9 @@ class SignModal extends Component {
                 >
                     <div className="form-group" style={{ marginBottom: '36px' }}>
                         <div className="mt-3 mb-2 text-left" style={{ color: '#666' }}>
-
+                            {
+                                !isSuccess && energyRemaining < ENERGYMIN && trxBalanceRemaining < TRXBALANCEMIN && <h5 style={{color: 'black'}}>{tu('buy_token_info')}</h5>
+                            }
                         </div>
                     </div>
 
@@ -66,16 +72,19 @@ class SignModal extends Component {
         this.cancel();
     };
 
+
     /**
      * Form confirm
      */
     confirm = () => {
+
+
         const { form: { validateFields }, account: { sunWeb },
             option: { id, address, precision, type }, fees: { withdrawFee } } = this.props;
         const { numValue, errorMess } = this.state;
-
         this.setState({ isDisabled: true });
         const isSubmit = this.validateNum();
+
         validateFields(async(err, values) => {
             if (!err && !errorMess && isSubmit) {
                 try {
@@ -95,6 +104,7 @@ class SignModal extends Component {
                     this.openModal(data);
                     this.setState({ isDisabled: false });
                 } catch (e) {
+
                     this.openModal();
                     this.setState({ isDisabled: false });
                 }
