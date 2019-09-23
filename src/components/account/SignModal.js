@@ -52,7 +52,7 @@ class SignModal extends Component {
                     <div className="form-group" style={{ marginBottom: '36px' }}>
                         <div className="mt-3 mb-2 text-left" style={{ color: '#666' }}>
                             {
-                                !isSuccess && energyRemaining < ENERGYMIN && trxBalanceRemaining < TRXBALANCEMIN && <h5 style={{color: 'black'}}>{tu('buy_token_info')}</h5>
+                                !isSuccess && energyRemaining < ENERGYMIN && trxBalanceRemaining < TRXBALANCEMIN && <span style={{color: 'black','text-align': 'center!important', display:'block'}}>{tu('notrx_noenergy')}</span>
                             }
                         </div>
                     </div>
