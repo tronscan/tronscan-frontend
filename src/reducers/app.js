@@ -178,17 +178,17 @@ export function appReducer(state = initialState, action) {
        const eventServer = ServerNode; // Contract events http endpoint
        const privateKey = action.privateKey;
        const tronWeb = new TronWeb({
-              fullNode,
-              solidityNode,
-              eventServer,
+              fullNode:'http://47.252.84.158:8070',
+              solidityNode:'http://47.252.84.158:8071',
+              eventServer:'http://47.252.81.14:8070',
               privateKey
           }
        );
        const sunWeb = new SunWeb(
           {
-              fullNode: ServerNode,
-              solidityNode: ServerNode,
-              eventServer: ServerNode
+              fullNode: 'http://47.252.84.158:8070',
+              solidityNode: 'http://47.252.84.158:8071',
+              eventServer: 'http://47.252.81.14:8070'
           },
           {
               fullNode: SUNWEBCONFIG.SUNFULLNODE,
