@@ -11,7 +11,10 @@ export const IS_DESKTOP = process.env.DESKTOP === 'true';
 //export const IS_MAINNET = Lockr.get('NET') === 'mainnet' || !Lockr.get('NET');
 export const IS_SUNNET =  window.location.origin === 'http://18.217.215.94:89';
 export const IS_MAINNET = window.location.origin === 'http://18.217.215.94:86';
-
+export const NETURL = {
+    MAINNET:'http://18.217.215.94:86',
+    SUNNET:'http://18.217.215.94:89',
+}
 export const BLOCK_REWARD = 32;
 export const SR_MAX_COUNT = 27;
 export const WITNESS_CREATE_COST = 9999;

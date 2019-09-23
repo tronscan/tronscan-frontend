@@ -27,7 +27,7 @@ import {Badge, Modal, ModalBody, ModalFooter, ModalHeader} from "reactstrap"
 import Avatar from "./common/Avatar"
 import {AddressLink, HrefLink} from "./common/Links"
 import {FormattedNumber} from "react-intl"
-import {API_URL, IS_TESTNET, ONE_TRX, IS_MAINNET, IS_SUNNET, SUNWEBCONFIG} from "../constants"
+import {API_URL, IS_TESTNET, ONE_TRX, IS_MAINNET, IS_SUNNET, SUNWEBCONFIG, NETURL} from "../constants"
 import {matchPath} from 'react-router'
 import {doSearch, getSearchType} from "../services/search"
 import {readFileContentsFromEvent} from "../services/file"
@@ -107,12 +107,15 @@ class Navigation extends React.Component {
         _this.setState({address: e.data.message.data.address});
       }
       if (e.data.message && e.data.message.action == "setNode") {
-        if(e.data.message.data.fullNode == 'http://47.252.84.158:8070'){
+        if(e.data.message.data.fullNode == SUNWEBCONFIG.MAINFULLNODE){
             _this.setState({selectedNet: 'mainnet'});
             Lockr.set("NET", 'mainnet')
-        }else if(e.data.message.data.fullNode == 'http://47.252.85.90:8070'){
+            window.location.href= NETURL.MAINNET;
+
+        }else if(e.data.message.data.fullNode == SUNWEBCONFIG.SUNFULLNODE){
             _this.setState({selectedNet: 'sunnet'});
             Lockr.set("NET", 'sunnet')
+            window.location.href= NETURL.SUNNET;
         }
       }
 
@@ -162,7 +165,12 @@ class Navigation extends React.Component {
       this.setState({
           selectedNet: value
       });
-      window.location.reload();
+      if(value === 'mainnet'){
+          window.location.href= NETURL.MAINNET;
+      }else if(value === 'sunnet'){
+          window.location.href= NETURL.SUNNET;
+      }
+     // window.location.reload();
   }
 
   isString(str){
