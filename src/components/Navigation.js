@@ -131,11 +131,12 @@ class Navigation extends React.Component {
   }
 
   componentWillUpdate(nextProps, nextState) {
+      let { account,match,walletType } = this.props;
           console.log('nextState.selectedNet',nextState.selectedNet)
-        if (nextState.address !== this.state.address && this.isString(nextState.address) && this.isString(this.state.address)) {
+        if ((nextState.address !== this.state.address) && this.isString(nextState.address) && this.isString(this.state.address) && walletType.type === "ACCOUNT_TRONLINK") {
             this.reLoginWithTronLink();
         }
-        if(nextState.selectedNet !== this.state.selectedNet && this.state.selectedNet && nextState.selectedNet && this.props.account.isLoggedIn){
+        if((nextState.selectedNet !== this.state.selectedNet) && this.state.selectedNet && nextState.selectedNet && this.props.account.isLoggedIn && walletType.type === "ACCOUNT_TRONLINK"){
             if(nextState.selectedNet === 'mainnet'){
                 window.location.href= NETURL.MAINNET;
             }else if(nextState.selectedNet === 'sunnet'){
@@ -160,14 +161,17 @@ class Navigation extends React.Component {
   }
 
   netSelectChange = (value) => {
+      console.log('value',value)
       Lockr.set("NET", value);
       Lockr.set("islogin", 0);
-      console.log('value',value)
-      if(value === 'mainnet'){
-          window.location.href= NETURL.MAINNET;
-      }else if(value === 'sunnet'){
-          window.location.href= NETURL.SUNNET;
-      }
+      this.setState({selectedNet: 'value'},()=>{
+          if(value === 'mainnet'){
+              window.location.href= NETURL.MAINNET;
+          }else if(value === 'sunnet'){
+              window.location.href= NETURL.SUNNET;
+          }
+      })
+
   }
 
   isString(str){
@@ -178,7 +182,7 @@ class Navigation extends React.Component {
     const {announId} = this.state
     let {activeLanguage} = this.props;
 
-    const {data} = await Client. getNotices({sort: '-timestamp'});
+    const {data} = await Client.getNotices({sort: '-timestamp'});
     if (data.length) {
       const list = data.filter(o => o.id == announId)[0]
       if(list){
