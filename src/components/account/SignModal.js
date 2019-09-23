@@ -52,7 +52,8 @@ class SignModal extends Component {
                     <div className="form-group" style={{ marginBottom: '36px' }}>
                         <div className="mt-3 mb-2 text-left" style={{ color: '#666' }}>
                             {
-                                !isSuccess && energyRemaining < ENERGYMIN && trxBalanceRemaining < TRXBALANCEMIN && <span style={{color: 'black','text-align': 'center!important', display:'block'}}>{tu('notrx_noenergy')}</span>
+
+                                !isSuccess && energyRemaining < ENERGYMIN && trxBalanceRemaining < TRXBALANCEMIN && <span  className="text-center d-block" style={{color: 'black'}}>{tu('notrx_noenergy')}</span>
                             }
                         </div>
                     </div>
@@ -224,7 +225,7 @@ class SignModal extends Component {
 
         // pledgeTextItem
         const pledgeTextItem = (
-            <p className="mt-5">{tu('sign_text')}{withdrawFee}trx</p>
+            <p className="mt-5">{tu('sign_text')}{withdrawFee} TRX</p>
         );
 
         // feeError
