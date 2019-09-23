@@ -132,7 +132,6 @@ class Navigation extends React.Component {
 
   componentWillUpdate(nextProps, nextState) {
       let { account,match,walletType } = this.props;
-          console.log('nextState.selectedNet',nextState.selectedNet)
         if ((nextState.address !== this.state.address) && this.isString(nextState.address) && this.isString(this.state.address) && walletType.type === "ACCOUNT_TRONLINK") {
             this.reLoginWithTronLink();
         }
@@ -161,7 +160,6 @@ class Navigation extends React.Component {
   }
 
   netSelectChange = (value) => {
-      console.log('value',value)
       Lockr.set("NET", value);
       Lockr.set("islogin", 0);
       this.setState({selectedNet: 'value'},()=>{
