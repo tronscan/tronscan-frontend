@@ -130,21 +130,22 @@ export class LineReactHighChartAdd extends React.Component {
             }
             _config.chart.spacingTop = 20;
             _config.exporting.enabled = false;
-            _config.yAxis.min = data[0].total - 100000;
+            _config.yAxis.min = (data[0].total - 100000)< 0  ? 0 : data[0].total - 100000 ;
             if(IS_MAINNET){
                 _config.yAxis.tickInterval = 100000;
             }else{
                 _config.yAxis.tickInterval = 1000
             }
-            _config.yAxis.min = 0;
             _config.yAxis.tickAmount = 4;
             _config.yAxis.allowDecimals = true;
             if(IS_MAINNET) {
                 _config.yAxis.labels.formatter = function () {
-                    if (this.value < 1000000) {
+                    if (this.value < 1000000 && this.value >= 1000) {
                         return this.value / 1000 + 'k'
                     } else if (this.value >= 1000000) {
                         return this.value / 1000000 + 'M'
+                    } else if (this.value < 1000) {
+                        return this.value
                     }
                 }
             }
