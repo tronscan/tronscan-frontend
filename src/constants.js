@@ -86,3 +86,9 @@ export const SUNWEBCONFIG = {
     SIDECHAIN: 'TRDepx5KoQ8oNbFVZ5sogwUxtdYmATDRgX',
     SIDEID: '413AF23F37DA0D48234FDD43D89931E98E1144481B',
 };
+
+// Socket config
+export const TORNSOCKET = {
+     WSSURLMAIN: "ws://3.14.14.175:9000/api/tronsocket",
+     WSSURLSUN: "ws://3.15.181.169:9000/api/tronsocket",
+}

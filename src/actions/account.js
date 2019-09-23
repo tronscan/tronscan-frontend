@@ -1,7 +1,7 @@
 import {Client} from "../services/api";
 import Lockr from "lockr";
 import ReconnectingWebSocket from 'reconnecting-websocket'
-import { IS_MAINNET } from "../constants";
+import { IS_MAINNET, TORNSOCKET } from "../constants";
 
 export const SET_TOKEN_BALANCES = 'SET_TOKEN_BALANCES';
 export const SET_RECENT_TRANSACTIONS = 'SET_RECENT_TRANSACTIONS';
@@ -59,12 +59,11 @@ export const setWebsocket = () => async (dispatch) => {
   // var wsUri = "wss://apilist.tronscan.org/api/tronsocket";
   // var wsUri = "wss://api.shasta.tronscan.org/api/tronsocket";
   let wsUrl;
-  let wsUrlMain = "wss://apilist.tronscan.org/api/tronsocket";
-  let wsUrlSun = "wss://dappchainapi.tronscan.org/api/tronsocket";
+
   if(IS_MAINNET){
-      wsUrl = wsUrlMain
+      wsUrl = TORNSOCKET.WSSURLMAIN;
   }else{
-      wsUrl =  wsUrlSun
+      wsUrl =  TORNSOCKET.WSSURLSUN;
   }
 
   let websocket = new ReconnectingWebSocket(wsUrl, [], {
