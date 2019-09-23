@@ -104,15 +104,21 @@ export default class Account extends Component {
     })
 
     if (account.isLoggedIn) {
-      this.setState({isTronLink: Lockr.get("islogin")});
+      this.setState({
+          isTronLink: Lockr.get("islogin"),
+      });
       this.reloadTokens();
       this.loadAccount();
+
       if(getQueryString('from') == 'tronlink' && getQueryString('type') == 'frozen'){
           setTimeout(()=>{
               this.scrollToAnchor()
           },3000)
       }
-
+      let isActivate =  await this.isActivateAccount(account.address)
+        this.setState({
+            isActivate
+        });
       // gets the list of side chains
       isPrivateKey && !IS_SUNNET && await this.getSideChains();
       // get fees
@@ -126,11 +132,15 @@ export default class Account extends Component {
       this.setState({isTronLink: Lockr.get("islogin")});
       this.reloadTokens();
       this.loadAccount();
+
       //this.getTRC20Tokens();
+      let isActivate =  await this.isActivateAccount(account.address)
+
       // gets the list of side chains
       const isPrivateKey =  walletType.type === "ACCOUNT_PRIVATE_KEY" || walletType.type === "ACCOUNT_TRONLINK";
       this.setState({
-        isPrivateKey
+        isPrivateKey,
+        isActivate
       });
       // gets the list of side chains
       isPrivateKey && !IS_SUNNET && await this.getSideChains();
@@ -1664,10 +1674,24 @@ export default class Account extends Component {
    * @param option
    */
   openSignModal = option => {
-    if(!this.isActivateAccount(this.props.account.address)){
+    const { account: { sunWeb },intl} = this.props;
+    let { isActivate } = this.state;
+    if(!isActivate){
+        this.setState({
+            isShowSignModal: false,
+            modal:
+                <SweetAlert
+                    error
+                    confirmBtnText={intl.formatMessage({id: 'confirm'})}
+                    confirmBtnBsStyle="success"
+                    onConfirm={this.hideModal}
+                    style={{marginLeft: '-240px', marginTop: '-195px'}}
+                >
+                    {tu("inactive_MainChain_account")}
+                </SweetAlert>
+        });
         return;
     }
-
     const { address, currency, balance, precision, id, type } = option;
     this.setState({
       isShowSignModal: true,
@@ -1685,19 +1709,6 @@ export default class Account extends Component {
       let data  = await sunWeb.mainchain.trx.getUnconfirmedAccount(address);
       let isAccount = JSON.stringify(data) == "{}";
       if (isAccount) {
-          this.setState({
-              isShowModal: false,
-              modal:
-                  <SweetAlert
-                      error
-                      confirmBtnText={intl.formatMessage({id: 'confirm'})}
-                      confirmBtnBsStyle="success"
-                      onConfirm={this.hideModal}
-                      style={{marginLeft: '-240px', marginTop: '-195px'}}
-                  >
-                      {tu("token_create_auther_different")}
-                  </SweetAlert>
-          });
           return false
       }
       return true
