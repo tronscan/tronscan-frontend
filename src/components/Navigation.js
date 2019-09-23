@@ -110,12 +110,10 @@ class Navigation extends React.Component {
         if(e.data.message.data.fullNode == SUNWEBCONFIG.MAINFULLNODE){
             _this.setState({selectedNet: 'mainnet'});
             Lockr.set("NET", 'mainnet')
-            window.location.href= NETURL.MAINNET;
 
         }else if(e.data.message.data.fullNode == SUNWEBCONFIG.SUNFULLNODE){
             _this.setState({selectedNet: 'sunnet'});
             Lockr.set("NET", 'sunnet')
-            window.location.href= NETURL.SUNNET;
         }
       }
 
@@ -133,12 +131,16 @@ class Navigation extends React.Component {
   }
 
   componentWillUpdate(nextProps, nextState) {
-
+          console.log('nextState.selectedNet',nextState.selectedNet)
         if (nextState.address !== this.state.address && this.isString(nextState.address) && this.isString(this.state.address)) {
             this.reLoginWithTronLink();
         }
         if(nextState.selectedNet !== this.state.selectedNet && this.state.selectedNet && nextState.selectedNet && this.props.account.isLoggedIn){
-            window.location.reload();
+            if(nextState.selectedNet === 'mainnet'){
+                window.location.href= NETURL.MAINNET;
+            }else if(nextState.selectedNet === 'sunnet'){
+                window.location.href= NETURL.SUNNET;
+            }
         }
   }
 
@@ -160,17 +162,12 @@ class Navigation extends React.Component {
   netSelectChange = (value) => {
       Lockr.set("NET", value);
       Lockr.set("islogin", 0);
-      Lockr.rm('tokensMap');
-      Lockr.rm('tokens20Map');
-      this.setState({
-          selectedNet: value
-      });
+      console.log('value',value)
       if(value === 'mainnet'){
           window.location.href= NETURL.MAINNET;
       }else if(value === 'sunnet'){
           window.location.href= NETURL.SUNNET;
       }
-     // window.location.reload();
   }
 
   isString(str){
