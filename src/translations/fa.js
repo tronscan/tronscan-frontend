@@ -2002,7 +2002,7 @@ export const messages = {
     "developers_search":" Search username",
     "developers_scored_users":"Scored Users",
     "DAppChain_holders":"DAppChain Holders",
-    "notrx_noenergy":"Please make sure your trx is not less than 10 and a certain amount of energy",
-    "inactive_MainChain_account":"Inactive MainChain account, please activate in the MainChain first",
+    "notrx_noenergy":"Please make sure your TRX is not less than 10 and a certain amount of energy",
+    "inactive_MainChain_account":"Submission Failed.This address has not been activated on TRON.Please activate first and try again",
 
 };

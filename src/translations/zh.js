@@ -2041,6 +2041,7 @@ export const messages = {
   "developers_search":"搜索用户名",
   "developers_scored_users":"已获积分账户",
   "DAppChain_holders":"侧链持有者",
-  "notrx_noenergy":"请确认trx数量大于10或有一定的能量",
-  "inactive_MainChain_account":"未激活的主链账户,请先在主链激活",
+  "notrx_noenergy":"请确认TRX数量大于10或有一定的能量",
+  "inactive_MainChain_account":"该地址未在TRON主网激活，无法完成此操作，请激活后重试",
+
 };

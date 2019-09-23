@@ -71,7 +71,7 @@ export function Information({token: tokens,currentTotalSupply}) {
       content: <ExternalLink url={token.url}/>
     },
     {
-      name: 'token_holders', 
+      name: 'token_holders',
       content: <FormattedNumber value={token.nrOfTokenHolders}/>
     },
     {
@@ -167,7 +167,7 @@ export function Information({token: tokens,currentTotalSupply}) {
             content: <ExternalLink url={token.url}/>
         },
         {
-            name: 'token_holders',
+            name: 'DAppChain_holders',
             content: <FormattedNumber value={token.nrOfTokenHolders}/>
         },
         {
