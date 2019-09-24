@@ -17,8 +17,9 @@ export const reloadWallet = () => async (dispatch, getState) => {
 
   if (app.account.isLoggedIn) {
       let {balances, trc20token_balances, frozen, accountResource, delegated, tokenBalances, exchanges, ...wallet} = await Client.getAccountByAddressNew(app.account.address);
-      // let result = await xhr.get(API_URL+"/api/token_trc20?sort=issue_time&start=0&limit=50");
-      wallet.frozenEnergy = accountResource.frozen_balance_for_energy.frozen_balance ? accountResource.frozen_balance_for_energy.frozen_balance : 0;
+
+      await new Promise(resolve => setTimeout(resolve, 1500));
+    wallet.frozenEnergy = accountResource.frozen_balance_for_energy.frozen_balance ? accountResource.frozen_balance_for_energy.frozen_balance : 0;
 
     let sentDelegateBandwidth = 0;
     if(delegated&&delegated.sentDelegatedBandwidth) {
