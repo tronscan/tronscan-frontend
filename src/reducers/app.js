@@ -171,14 +171,11 @@ export function appReducer(state = initialState, action) {
     case LOGIN_PK: {
 
       Lockr.set("islogin", 0);
-       const ServerNode =  "https://api.trongrid.io";
+       const ServerNode =  SUNWEBCONFIG.MAINFULLNODE;
        const HttpProvider = TronWeb.providers.HttpProvider; // This provider is optional, you can just use a url for the nodes instead
        const fullNode = new HttpProvider(ServerNode); // Full node http endpoint
        const solidityNode = new HttpProvider(ServerNode); // Solidity node http endpoint
        const eventServer = ServerNode; // Contract events http endpoint
-       const sunFullNode =  "https://sun.tronex.io/wallet";    //DappChain fullNode
-       const sunSolidityNode =  "https://sun.tronex.io/walletsolidity";  //DappChain solidityNode
-       const sunEventServer = "https://sun.tronex.io/event";  //DappChain eventServer
        const privateKey = action.privateKey;
        const tronWeb = new TronWeb({
               fullNode,
@@ -255,7 +252,8 @@ export function appReducer(state = initialState, action) {
           isLoggedIn: true,
           address: action.address,
           tronWeb:action.tronWeb,
-          tronStationSDK: new TronStationSDK(action.tronWeb, true)
+          sunWeb:action.sunWeb,
+          tronStationSDK: IS_MAINNET? new TronStationSDK(action.tronWeb,true): new TronStationSDK(action.sunWeb.sidechain,true),
         },
         wallet: {
           type: ACCOUNT_TRONLINK,
@@ -299,9 +297,9 @@ export function appReducer(state = initialState, action) {
     }
 
     case LOGOUT: {
-      // Lockr.rm("account_key");
-      // Lockr.rm("account_address");
-      // Lockr.set("islogin", 0);
+      Lockr.rm("account_key");
+      Lockr.rm("account_address");
+      Lockr.set("islogin", 0);
       return {
         ...state,
         account: {

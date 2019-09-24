@@ -95,7 +95,6 @@ class Transactions extends React.Component {
     else {
 
      const address = queryString.parse(location.search).address;
-
      if(address){
       result = await Client.getTransactions({
         sort: '-timestamp',
@@ -103,7 +102,10 @@ class Transactions extends React.Component {
         start: (page - 1) * pageSize,
         ...searchParams,
       });
-      this.setState({addressLock: true})
+      this.setState({
+          addressLock: true,
+          rangeTotal: result.rangeTotal
+      })
      }else{
       result = await Client.getTransactions({
         sort: '-timestamp',
@@ -113,7 +115,10 @@ class Transactions extends React.Component {
         end_timestamp:this.end,
         ...searchParams,
       });
-      this.setState({addressLock: false})
+      this.setState({
+          addressLock: false,
+          rangeTotal: result.wholeChainTxCount
+      })
      }
       
 
@@ -123,7 +128,7 @@ class Transactions extends React.Component {
       transactions: result.transactions,
       loading: false,
       total: result.total,
-      rangeTotal: result.wholeChainTxCount,
+
     });
   };
 

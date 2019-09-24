@@ -26,7 +26,6 @@ class Code extends React.Component {
     //   fullNode: 'https://api.trongrid.io',
     //   solidityNode: 'https://api.trongrid.io',
     //   eventServer: 'https://api.trongrid.io',
-    //   // privateKey: 'BBB063B5C94DC51DD028484B76984F8933DCF195C4476F2285CF3A256CB4FC15'
     // })
     this.state = {
       result: '',

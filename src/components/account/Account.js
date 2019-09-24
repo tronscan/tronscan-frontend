@@ -98,21 +98,27 @@ export default class Account extends Component {
 
     let { account,match,walletType } = this.props;
 
-    const isPrivateKey =  walletType.type === "ACCOUNT_PRIVATE_KEY";
+    const isPrivateKey =  walletType.type === "ACCOUNT_PRIVATE_KEY" || walletType.type === "ACCOUNT_TRONLINK";
     this.setState({
       isPrivateKey
     })
 
     if (account.isLoggedIn) {
-      this.setState({isTronLink: Lockr.get("islogin")});
+      this.setState({
+          isTronLink: Lockr.get("islogin"),
+      });
       this.reloadTokens();
       this.loadAccount();
+
       if(getQueryString('from') == 'tronlink' && getQueryString('type') == 'frozen'){
           setTimeout(()=>{
               this.scrollToAnchor()
           },3000)
       }
-
+      let isActivate =  await this.isActivateAccount(account.address)
+        this.setState({
+            isActivate
+        });
       // gets the list of side chains
       isPrivateKey && !IS_SUNNET && await this.getSideChains();
       // get fees
@@ -126,11 +132,15 @@ export default class Account extends Component {
       this.setState({isTronLink: Lockr.get("islogin")});
       this.reloadTokens();
       this.loadAccount();
+
       //this.getTRC20Tokens();
+      let isActivate =  await this.isActivateAccount(account.address)
+
       // gets the list of side chains
-      const isPrivateKey =  walletType.type === "ACCOUNT_PRIVATE_KEY";
+      const isPrivateKey =  walletType.type === "ACCOUNT_PRIVATE_KEY" || walletType.type === "ACCOUNT_TRONLINK";
       this.setState({
-        isPrivateKey
+        isPrivateKey,
+        isActivate
       });
       // gets the list of side chains
       isPrivateKey && !IS_SUNNET && await this.getSideChains();
@@ -229,8 +239,6 @@ export default class Account extends Component {
         tokens20: tokens20
       });
     }
-
-
   }
 
   renderTRC20Tokens() {
@@ -1055,7 +1063,7 @@ export default class Account extends Component {
         }
         try {
 
-            if (this.props.walletType.type === "ACCOUNT_PRIVATE_KEY") {
+            if(this.props.wallet.type==="ACCOUNT_TRONLINK" || this.props.wallet.type==="ACCOUNT_PRIVATE_KEY"){
                 let unSignTransaction;
                 if(!delegate) {
                     unSignTransaction = await sunWeb.sidechain.transactionBuilder.unfreezeBalance(delegateType, sunWeb.sidechain.defaultAddress.base58).catch(e => false);
@@ -1180,7 +1188,7 @@ export default class Account extends Component {
         }
     } else{
       try{
-          if (this.props.walletType.type === "ACCOUNT_PRIVATE_KEY") {
+          if (this.props.walletType.type === "ACCOUNT_PRIVATE_KEY" || this.props.wallet.type==="ACCOUNT_TRONLINK") {
               let sunWeb = account.sunWeb;
               const unSignTransaction = await sunWeb.sidechain.fullNode.request('wallet/updateaccount', {
                   account_name: sunWeb.sidechain.fromUtf8(name),
@@ -1666,6 +1674,24 @@ export default class Account extends Component {
    * @param option
    */
   openSignModal = option => {
+    const { account: { sunWeb },intl} = this.props;
+    let { isActivate } = this.state;
+    if(!isActivate){
+        this.setState({
+            isShowSignModal: false,
+            modal:
+                <SweetAlert
+                    error
+                    confirmBtnText={intl.formatMessage({id: 'confirm'})}
+                    confirmBtnBsStyle="success"
+                    onConfirm={this.hideModal}
+                    style={{marginLeft: '-240px', marginTop: '-195px'}}
+                >
+                    {tu("inactive_MainChain_account")}
+                </SweetAlert>
+        });
+        return;
+    }
     const { address, currency, balance, precision, id, type } = option;
     this.setState({
       isShowSignModal: true,
@@ -1677,6 +1703,16 @@ export default class Account extends Component {
       type,
     });
   }
+
+  isActivateAccount = async (address) => {
+      const { account: { sunWeb },intl} = this.props;
+      let data  = await sunWeb.mainchain.trx.getUnconfirmedAccount(address);
+      let isAccount = JSON.stringify(data) == "{}";
+      if (isAccount) {
+          return false
+      }
+      return true
+  };
 
   /**
    * Gets the list of side chains
@@ -1729,19 +1765,26 @@ export default class Account extends Component {
     let { modal, sr, issuedAsset, showBandwidth, showBuyTokens, temporaryName, hideSmallCurrency, tokenTRC10,
       isShowPledgeModal, isShowMappingModal, address, currency, balance, precision, id, type, isShowSignModal, tokenTRX, trx20MappingAddress } = this.state;
 
-      // pledge param
-      const option = {
-        address,
-        currency,
-        balance,
-        precision,
-        id,
-        type,
-        trx20MappingAddress
-      };
+
 
     let {account, frozen, totalTransactions, currentWallet, wallet, accountResource, trxBalance, intl} = this.props;
 
+    let energyRemaining = currentWallet && currentWallet.bandwidth.energyRemaining;
+
+    let trxBalanceRemaining = currentWallet && currentWallet.balance / ONE_TRX;
+
+      // pledge param
+      const option = {
+          address,
+          currency,
+          balance,
+          precision,
+          id,
+          type,
+          trx20MappingAddress,
+          energyRemaining,
+          trxBalanceRemaining
+      };
     if (!wallet.isOpen || !currentWallet) {
       return (
           <main className="container header-overlap">
@@ -2059,8 +2102,10 @@ export default class Account extends Component {
                        onClick={this.handleTRXToken}>
                       TRX
                     </a>
-                    <a href={`https://trx.market`} className="ml-2 float-right" target="_blank"><span className="mr-1"  style={{textDecoration: 'underline'}}>{t("Trade_on_TRXMarket")}</span>></a>
-                    
+                      {
+                          IS_MAINNET?  <a href={`https://trx.market`} className="ml-2 float-right" target="_blank"><span className="mr-1"  style={{textDecoration: 'underline'}}>{t("Trade_on_TRXMarket")}</span>></a>
+                          :''
+                      }
                   </div>
                   {/* {
                     tokenTRC10 ? <div className="table-responsive-token">
@@ -2100,7 +2145,8 @@ export default class Account extends Component {
                         {tu("deal_pair_tip")}
                       </h5>
                       <p className="card-text">
-                        <a href="javascript:"
+                        <a href="javascript:;"
+                          style={{color:'#c23631'}}
                           className={trxBalance >= this.state.dealPairTrxLimit ? "btn btn-default btn-sm btn-plus-square" : "float-right btn btn-default btn-sm btn-plus-square disabled"}
                           onClick={() => {
                             this.changeTxnPair()
@@ -2122,7 +2168,7 @@ export default class Account extends Component {
                         </thead>
                         <tbody>
                         {
-                          currentWallet.exchanges.length ? currentWallet.exchanges.map((exchange, index) => {
+                          currentWallet.exchanges  ? currentWallet.exchanges.map((exchange, index) => {
                             return (
                                 <tr key={index}>
                                   <td style={{position: 'relative'}}>

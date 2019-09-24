@@ -397,7 +397,7 @@ class TokenList extends Component {
                 }
             },
             {
-                title: intl.formatMessage({id: 'token_holders'}),
+                title:intl.formatMessage({id: 'DAppChain_holders'}),
                 dataIndex: 'nrOfTokenHolders',
                 key: 'nrOfTokenHolders',
                 sorter: true,
@@ -474,7 +474,7 @@ class TokenList extends Component {
                         {tableInfo} <span>
                           <QuestionMark placement="top" text="newly_issued_token_by_tronscan" className="token-list-info"></QuestionMark>
                         </span> &nbsp;&nbsp;  
-                        <a href={`https://trx.market`} target="_blank" >{t("Trade_on_TRXMarket")}></a>
+                          {IS_MAINNET?<a href={`https://trx.market`} target="_blank" >{t("Trade_on_TRXMarket")}></a>:''}
                       </div>
                     </div> : ''}
                     <div className="d-md-flex apply-trc20 apply-all align-items-center">

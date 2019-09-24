@@ -292,48 +292,49 @@ export default class Home extends Component {
             {/*}} className="position-absolute"/>*/}
 
             <div className="container home-splash p-0 p-md-3">
-              <div className="row justify-content-center text-center">
-                <div className="col-12 exchange">
-                  <div className="notice">
-                    <img src={require("../../images/announcement-logo.png")} alt="" />
-                    <div className="notice-wrap">
-                        {this.state.notice.map((v, i) => (
-                            <a
-                                className={`item-${i} item`}
-                                key={v.id}
-                                href={v.html_url}
-                                target="_blank"
-                            >
+              {
+                  IS_MAINNET? <div className="row justify-content-center text-center">
+                      <div className="col-12 exchange">
+                          <div className="notice">
+                              <img src={require("../../images/announcement-logo.png")} alt="" />
+                              <div className="notice-wrap">
+                                  {this.state.notice.map((v, i) => (
+                                      <a
+                                          className={`item-${i} item`}
+                                          key={v.id}
+                                          href={v.html_url}
+                                          target="_blank"
+                                      >
                   <span title={v.name} className="title">
                     {v.name}
                   </span>
-                              <span className="date">
+                                          <span className="date">
                     ({v.created_at.substring(5, 10)})
                   </span>
-                            </a>
-                        ))}
-                    </div>
-                      {this.state.notice.length > 0 ? (
-                          <a
-                              href={
-                                  intl.locale == "zh"
-                                      ? "https://support.tronscan.org/hc/zh-cn/categories/360001618172-%E5%85%AC%E5%91%8A%E4%B8%AD%E5%BF%83"
-                                      : "https://support.tronscan.org/hc/en-us/categories/360001621692-Announcements"
-                              }
-                              target="_blank"
-                          >
-                              {tu("learn_more")}>
-                          </a>
-                      ) : null}
-                  </div>
-                  {/*<p className="mt-5 mt-5-logo">*/}
-                  {/*<img src={this.getLogo()}*/}
-                  {/*className="animated ad-600ms zoomIn"/>*/}
-                  {/*</p>*/}
-                  {/*<h2 className="mb-5 text-muted animated fadeIn ad-1600ms" style={{fontSize: 32}}>*/}
-                  {/*{tu("tron_main_message")}*/}
-                  {/*</h2>*/}
-                  {/*
+                                      </a>
+                                  ))}
+                              </div>
+                              {this.state.notice.length > 0 ? (
+                                  <a
+                                      href={
+                                          intl.locale == "zh"
+                                              ? "https://support.tronscan.org/hc/zh-cn/categories/360001618172-%E5%85%AC%E5%91%8A%E4%B8%AD%E5%BF%83"
+                                              : "https://support.tronscan.org/hc/en-us/categories/360001621692-Announcements"
+                                      }
+                                      target="_blank"
+                                  >
+                                      {tu("learn_more")}>
+                                  </a>
+                              ) : null}
+                          </div>
+                          {/*<p className="mt-5 mt-5-logo">*/}
+                          {/*<img src={this.getLogo()}*/}
+                          {/*className="animated ad-600ms zoomIn"/>*/}
+                          {/*</p>*/}
+                          {/*<h2 className="mb-5 text-muted animated fadeIn ad-1600ms" style={{fontSize: 32}}>*/}
+                          {/*{tu("tron_main_message")}*/}
+                          {/*</h2>*/}
+                          {/*
                     <div className={
                       "input-group input-group-lg mb-4" +
                       (isShaking ? " animated shake " : "") +
@@ -355,9 +356,11 @@ export default class Home extends Component {
                       </div>
                     </div>
                     */
-                  }
-                </div>
-              </div>
+                          }
+                      </div>
+                  </div>:''
+              }
+
               {
                 isMobile?
               <div className="row text-center mr-0 ml-0 mobile-home-state">

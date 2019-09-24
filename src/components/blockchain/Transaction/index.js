@@ -43,7 +43,6 @@ class Transaction extends React.Component {
   componentDidMount() {
     document.documentElement.scrollTop = 0;
     let {match,location} = this.props;
-
     let lang = queryString.parse(location.search).lang;
     if(lang){
         this.props.setLanguage(lang);
@@ -71,7 +70,6 @@ class Transaction extends React.Component {
     }
 
     this.setState({
-      loading: false,
       transaction,
       tabs: {
         contracts: {
@@ -92,6 +90,12 @@ class Transaction extends React.Component {
           ),
         },
       }
+    },()=>{
+        setTimeout(()=>{
+            this.setState({
+                loading: false
+            })
+        },1200)
     });
   }
 

@@ -1977,8 +1977,8 @@ export const messages = {
   "WIN_Token_Release_Schedule": "WIN Token Release Schedule",
   "source_WIN_team": "Source: WIN Management Team",
 
-  "Side_Chain":"Side chain browser(DappChain)",
-  "Main_Chain":"Main chain browser(MainChain)",
+  "Side_Chain":"DAppChain",
+  "Main_Chain":"MainChain",
   "7day": "one week",
   "14day": "two weeks",
   "30day": "one month",
@@ -1996,8 +1996,6 @@ export const messages = {
   "sun_propose_8": "Proporción de ingresos del testigo en la cadena lateral",
   "day":"día",
 
-
-
   "developers_username": "username",
   "developers_current_year":"year's points",
   "developers_current_quarter": "quarter's points",
@@ -2008,5 +2006,9 @@ export const messages = {
   "developers_earn_points":"Earn points",
   "developers_search":" Search username",
   "developers_scored_users":"Scored Users",
+  "DAppChain_holders":"DAppChain Holders",
+  "notrx_noenergy":"Please make sure your TRX is not less than 10 and a certain amount of energy",
+  "inactive_MainChain_account":"Submission Failed.This address has not been activated on TRON.Please activate first and try again",
+  "mapping_warning":"This operation must be done by the token contract creator",
 
 };
