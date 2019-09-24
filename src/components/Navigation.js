@@ -27,7 +27,7 @@ import {Badge, Modal, ModalBody, ModalFooter, ModalHeader} from "reactstrap"
 import Avatar from "./common/Avatar"
 import {AddressLink, HrefLink} from "./common/Links"
 import {FormattedNumber} from "react-intl"
-import {API_URL, IS_TESTNET, ONE_TRX, IS_MAINNET, IS_SUNNET, SUNWEBCONFIG} from "../constants"
+import {API_URL, IS_TESTNET, ONE_TRX, IS_MAINNET, IS_SUNNET, SUNWEBCONFIG, NETURL} from "../constants"
 import {matchPath} from 'react-router'
 import {doSearch, getSearchType} from "../services/search"
 import {readFileContentsFromEvent} from "../services/file"
@@ -129,12 +129,16 @@ class Navigation extends React.Component {
   }
 
   componentWillUpdate(nextProps, nextState) {
-
-        if (nextState.address !== this.state.address && this.isString(nextState.address) && this.isString(this.state.address)) {
+      let { account,match,walletType } = this.props;
+        if ((nextState.address !== this.state.address) && this.isString(nextState.address) && this.isString(this.state.address) && walletType.type === "ACCOUNT_TRONLINK") {
             this.reLoginWithTronLink();
         }
-        if(nextState.selectedNet !== this.state.selectedNet && this.state.selectedNet && nextState.selectedNet && this.props.account.isLoggedIn){
-            window.location.reload();
+        if((nextState.selectedNet !== this.state.selectedNet) && this.state.selectedNet && nextState.selectedNet && this.props.account.isLoggedIn && walletType.type === "ACCOUNT_TRONLINK"){
+            if(nextState.selectedNet === 'mainnet'){
+                window.location.href= NETURL.MAINNET;
+            }else if(nextState.selectedNet === 'sunnet'){
+                window.location.href= NETURL.SUNNET;
+            }
         }
   }
 
@@ -156,12 +160,14 @@ class Navigation extends React.Component {
   netSelectChange = (value) => {
       Lockr.set("NET", value);
       Lockr.set("islogin", 0);
-      Lockr.rm('tokensMap');
-      Lockr.rm('tokens20Map');
-      this.setState({
-          selectedNet: value
-      });
-      window.location.reload();
+      this.setState({selectedNet: 'value'},()=>{
+          if(value === 'mainnet'){
+              window.location.href= NETURL.MAINNET;
+          }else if(value === 'sunnet'){
+              window.location.href= NETURL.SUNNET;
+          }
+      })
+
   }
 
   isString(str){
@@ -172,7 +178,7 @@ class Navigation extends React.Component {
     const {announId} = this.state
     let {activeLanguage} = this.props;
 
-    const {data} = await Client. getNotices({sort: '-timestamp'});
+    const {data} = await Client.getNotices({sort: '-timestamp'});
     if (data.length) {
       const list = data.filter(o => o.id == announId)[0]
       if(list){

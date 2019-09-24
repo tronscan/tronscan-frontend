@@ -159,7 +159,7 @@ class IssuedToken extends React.Component{
         address } = this.state;
       const { account, intl, currentWallet, unfreezeAssetsConfirmation, sidechains, walletType } = this.props;
 
-      const isPrivateKey =  walletType.type === "ACCOUNT_PRIVATE_KEY";
+      const isPrivateKey =  walletType.type === "ACCOUNT_PRIVATE_KEY" || walletType.type === "ACCOUNT_TRONLINK";
       let status10;
       let token10Time;
       if(issuedAsset){
