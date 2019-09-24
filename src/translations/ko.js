@@ -1932,8 +1932,8 @@ export const messages = {
   "token_logo_upload_tip":"PNG, jpg, jpeg 3 가지 형식만 지원하며 크기는 200K를 초과하지 않으며 픽셀은 100 * 100입니다.",
 
   // Backbone - account - mapping
-  "main_account_mapping_title":"DappChain에지도",
-  "main_account_mapping_text":"DappChain은 TRON 메인 체인에 기반하여 개발된 사이드 체인 네트워크 이며. TRON 메인넷 확장에 사용됩니다. ",
+  "main_account_mapping_title":"DAppChain에지도",
+  "main_account_mapping_text":"DAppChain은 TRON 메인 체인에 기반하여 개발된 사이드 체인 네트워크 이며. TRON 메인넷 확장에 사용됩니다. ",
   "main_account_mapping_text_1":"1.높은 tps, 낮은 에너지 소비",
   "main_account_mapping_text_2":"2.Mapping operation consumes 1000TRX",
   "main_account_mapping_btn":"매핑",
@@ -1955,7 +1955,7 @@ export const messages = {
   'pledge_num_min_error':"The quantity cannot be less than",
   "pledge_text":"서약은 일정량의 에너지를 소비",
   "sign_text":"Withdraw operation will consume",
-  "pledge_mapping_text":"아직 DappChain에 매핑되지 않은 자산, 서약을 지원하지 않습니다",
+  "pledge_mapping_text":"아직 DAppChain에 매핑되지 않은 자산, 서약을 지원하지 않습니다",
   "lack_of_balance":"TRX has insufficient balance",
   "mapping_text":"Mapping operations consume:",
   // success

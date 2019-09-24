@@ -1968,8 +1968,8 @@ export const messages = {
   "token_logo_upload_tip":"仅支持png,jpg,jpeg三种格式，大小不超过200K，尺寸为100*100",
 
   // Backbone - account - mapping
-  "main_account_mapping_title":"映射到DappChain",
-  "main_account_mapping_text":"DappChain是基于波场主链开发的侧链网络，扩展了波场主网的使用。映射之后你将获得：",
+  "main_account_mapping_title":"映射到DAppChain",
+  "main_account_mapping_text":"DAppChain是基于波场主链开发的侧链网络，扩展了波场主网的使用。映射之后你将获得：",
   "main_account_mapping_text_1":"1.更高的tps，更低的能量消耗",
   "main_account_mapping_text_2":"2.映射操作消耗1000TRX",
   "main_account_mapping_btn":"映射",
@@ -1991,7 +1991,7 @@ export const messages = {
   'pledge_num_min_error':"数量不能小于",
   "pledge_text":"转入会消耗一定量的能量",
   "sign_text":"转出操作会消耗:",
-  "pledge_mapping_text":"资产尚未映射到DappChain.不支持转入",
+  "pledge_mapping_text":"资产尚未映射到DAppChain.不支持转入",
   "lack_of_balance":"TRX余额不足",
   "mapping_text":"映射操作会消耗:",
 
