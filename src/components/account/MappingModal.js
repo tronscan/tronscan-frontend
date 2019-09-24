@@ -184,7 +184,7 @@ class MappingModal extends Component {
 
         // mappingFeeTextItem
         const mappingFeeTextItem = (
-            <p className="mt-4 mb-2">{tu('mapping_text')}{mappingFee}trx</p>
+            <p className="mt-4 mb-2">{tu('mapping_text')}{mappingFee}TRX</p>
         );
 
         // feeError

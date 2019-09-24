@@ -6,7 +6,6 @@ import {Table, Input, Button, Icon} from 'antd';
 export default class SmartTable extends Component {
   constructor(props) {
     super(props);
-    console.log(props)
     this.state = {
       filterDropdownVisible: false,
       data: [],

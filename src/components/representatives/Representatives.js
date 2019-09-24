@@ -34,7 +34,8 @@ class Representatives extends Component {
         pieChartData.push({
           key: i + 1,
           name: val.name ? val.name : val.url,
-          volumeValue: intl.formatNumber(val.blockProduced),
+          address:  val.address,
+          volumeValue: val.blockProduced,
           volumePercentage: intl.formatNumber(val.percentage * 100, {
             maximumFractionDigits: 2,
             minimumFractionDigits: 2

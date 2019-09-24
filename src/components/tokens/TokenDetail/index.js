@@ -105,7 +105,7 @@ class TokenDetail extends React.Component {
                     id: "holders",
                     icon: "",
                     path: "/holders",
-                    label: <span>{tu("token_holders")}</span>,
+                    label: <span>{IS_MAINNET?tu("token_holders"):tu("DAppChain_holders")}</span>,
                     cmp: () => <TokenHolders filter={{token: token.name, address: token.ownerAddress}} token={{totalSupply: token.totalSupply}} tokenPrecision ={{precision:token.precision}}  getCsvUrl={(csvurl) => this.setState({csvurl})}/>
                 },
                 {
@@ -140,7 +140,7 @@ class TokenDetail extends React.Component {
                     id: "holders",
                     icon: "",
                     path: "/holders",
-                    label: <span>{tu("token_holders")}</span>,
+                    label: <span>{IS_MAINNET?tu("token_holders"):tu("DAppChain_holders")}</span>,
                     cmp: () => <TokenHolders filter={{token: token.name, address: token.ownerAddress}} token={{totalSupply: token.totalSupply}} tokenPrecision ={{precision:token.precision}}  getCsvUrl={(csvurl) => this.setState({csvurl})}/>
                 },
             ]

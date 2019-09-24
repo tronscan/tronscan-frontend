@@ -9,7 +9,7 @@ import {TronLoader} from "../../common/loaders";
 import Transfers from "./Transfers.js";
 import TokenInfo from "./TokenInfo.js";
 import {Information} from "./Information.js";
-import {API_URL, ONE_TRX, CONTRACT_ADDRESS_USDT, CONTRACT_ADDRESS_WIN, CONTRACT_ADDRESS_GGC} from "../../../constants";
+import {API_URL, ONE_TRX, CONTRACT_ADDRESS_USDT, CONTRACT_ADDRESS_WIN, CONTRACT_ADDRESS_GGC, IS_MAINNET} from "../../../constants";
 import {login} from "../../../actions/app";
 import {reloadWallet} from "../../../actions/wallet";
 import {connect} from "react-redux";
@@ -72,7 +72,7 @@ class Token20Detail extends React.Component {
         id: "holders",
         icon: "",
         path: "/holders",
-        label: <span>{tu("token_holders")}</span>,
+        label: <span>{IS_MAINNET?tu("token_holders"):tu("DAppChain_holders")}</span>,
         cmp: () => <TokenHolders filter={{token: address}} getCsvUrl={(csvurl) => this.setState({csvurl})} token={token} />
       },
     ]

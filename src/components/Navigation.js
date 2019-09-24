@@ -27,7 +27,7 @@ import {Badge, Modal, ModalBody, ModalFooter, ModalHeader} from "reactstrap"
 import Avatar from "./common/Avatar"
 import {AddressLink, HrefLink} from "./common/Links"
 import {FormattedNumber} from "react-intl"
-import {API_URL, IS_TESTNET, ONE_TRX, IS_MAINNET, IS_SUNNET} from "../constants"
+import {API_URL, IS_TESTNET, ONE_TRX, IS_MAINNET, IS_SUNNET, SUNWEBCONFIG, NETURL} from "../constants"
 import {matchPath} from 'react-router'
 import {doSearch, getSearchType} from "../services/search"
 import {readFileContentsFromEvent} from "../services/file"
@@ -93,13 +93,8 @@ class Navigation extends React.Component {
 
 
   componentWillMount() {
-
     let {intl} = this.props;
-    // this.props.login('441d39fa209abf368a5f51191319d58dc2d4ef94f8f51514812bb4c036582079').then(() => {
-    //   toastr.info(intl.formatMessage({id: 'success'}), intl.formatMessage({id: 'login_success'}));
-    //  });
     this.reLoginWithTronLink();
-
   }
 
   componentDidMount() {
@@ -107,13 +102,21 @@ class Navigation extends React.Component {
     let _this = this;
 
     window.addEventListener('message', function (e) {
-      if (e.data.message) {
-        _this.setState({address: e.data.message.data});
-
+      if (e.data.message && e.data.message.action == "setAccount") {
+        _this.setState({address: e.data.message.data.address});
       }
+      if (e.data.message && e.data.message.action == "setNode") {
+        if(e.data.message.data.fullNode == SUNWEBCONFIG.MAINFULLNODE){
+            _this.setState({selectedNet: 'mainnet'});
+            Lockr.set("NET", 'mainnet')
+        }else if(e.data.message.data.fullNode == SUNWEBCONFIG.SUNFULLNODE){
+            _this.setState({selectedNet: 'sunnet'});
+            Lockr.set("NET", 'sunnet')
+        }
+      }
+
     })
-    //this.getAnnouncement();
-     setWebsocket();
+    setWebsocket();
     $(document).click(() => {
       $('#_searchBox').css({display: 'none'});
     });
@@ -126,9 +129,17 @@ class Navigation extends React.Component {
   }
 
   componentWillUpdate(nextProps, nextState) {
-      if (nextState.address !== this.state.address && this.isString(nextState.address) && this.isString(this.state.address)) {
-      this.reLoginWithTronLink();
-    }
+      let { account,match,walletType } = this.props;
+        if ((nextState.address !== this.state.address) && this.isString(nextState.address) && this.isString(this.state.address) && walletType.type === "ACCOUNT_TRONLINK") {
+            this.reLoginWithTronLink();
+        }
+        if((nextState.selectedNet !== this.state.selectedNet) && this.state.selectedNet && nextState.selectedNet && this.props.account.isLoggedIn && walletType.type === "ACCOUNT_TRONLINK"){
+            if(nextState.selectedNet === 'mainnet'){
+                window.location.href= NETURL.MAINNET;
+            }else if(nextState.selectedNet === 'sunnet'){
+                window.location.href= NETURL.SUNNET;
+            }
+        }
   }
 
   componentWillUnmount() {
@@ -149,12 +160,14 @@ class Navigation extends React.Component {
   netSelectChange = (value) => {
       Lockr.set("NET", value);
       Lockr.set("islogin", 0);
-      Lockr.rm('tokensMap');
-      Lockr.rm('tokens20Map');
-      this.setState({
-          selectedNet: value
-      });
-      window.location.reload();
+      this.setState({selectedNet: 'value'},()=>{
+          if(value === 'mainnet'){
+              window.location.href= NETURL.MAINNET;
+          }else if(value === 'sunnet'){
+              window.location.href= NETURL.SUNNET;
+          }
+      })
+
   }
 
   isString(str){
@@ -165,7 +178,7 @@ class Navigation extends React.Component {
     const {announId} = this.state
     let {activeLanguage} = this.props;
 
-    const {data} = await Client. getNotices({sort: '-timestamp'});
+    const {data} = await Client.getNotices({sort: '-timestamp'});
     if (data.length) {
       const list = data.filter(o => o.id == announId)[0]
       if(list){
@@ -187,8 +200,9 @@ class Navigation extends React.Component {
       let count = 0;
       timer = setInterval(() => {
         const tronWeb = window.tronWeb;
+        const sunWeb = window.sunWeb;
         if (tronWeb && tronWeb.defaultAddress.base58) {
-          this.props.loginWithTronLink(tronWeb.defaultAddress.base58, tronWeb).then(() => {
+          this.props.loginWithTronLink(tronWeb.defaultAddress.base58, tronWeb, sunWeb).then(() => {
             toastr.info(intl.formatMessage({id: 'success'}), intl.formatMessage({id: 'login_success'}));
           });
           this.setState({address: tronWeb.defaultAddress.base58});
@@ -554,8 +568,9 @@ class Navigation extends React.Component {
     e.stopPropagation();
     const {loginWarning, signInWarning} = this.state;
     const tronWeb = window.tronWeb;
+    const sunWeb = window.sunWeb;
     // 没有下载 tronlink
-    if (!tronWeb) {
+    if (!tronWeb || !sunWeb) {
       this.setState({loginWarning: true});
       // this.loading = false
       return
@@ -574,7 +589,7 @@ class Navigation extends React.Component {
     if (address) {
       //this.isauot = true
       Lockr.set("islogin", 1);
-      this.props.loginWithTronLink(address, tronWeb).then(() => {
+      this.props.loginWithTronLink(address, tronWeb, sunWeb).then(() => {
         toastr.info(intl.formatMessage({id: 'success'}), intl.formatMessage({id: 'login_success'}));
         this.setState({isImportAccount: false})
       });
@@ -731,16 +746,14 @@ class Navigation extends React.Component {
                   }}>
                     {tu("open_wallet")}
                     <ul className="dropdown-menu dropdown-menu-right nav-login-wallet" style={{minWidth: style_width}}>
-                      {
-                          IS_MAINNET && <li className="px-2 py-1 border-bottom-0" onClick={(e) => {
-                              this.clickLoginWithTronLink(e)
-                          }}>
-                            <div className="dropdown-item text-uppercase d-flex align-items-center text-muted">
-                              <img src={require("../images/login/tronlink.png")} width="16px" height="16px" className="mr-2"/>
-                                {tu('sign_in_with_TRONlink')}
-                            </div>
-                          </li>
-                      }
+                        <li className="px-2 py-1 border-bottom-0" onClick={(e) => {
+                            this.clickLoginWithTronLink(e)
+                        }}>
+                          <div className="dropdown-item text-uppercase d-flex align-items-center text-muted">
+                            <img src={require("../images/login/tronlink.png")} width="16px" height="16px" className="mr-2"/>
+                              {tu('sign_in_with_TRONlink')}
+                          </div>
+                        </li>
                       {
                           IS_MAINNET &&  <li className="px-2 py-1 border-bottom-0" onClick={(e) => this.loginWithLedger(e)}>
                           <div className="dropdown-item text-uppercase d-flex  align-items-center text-muted">
@@ -913,7 +926,6 @@ class Navigation extends React.Component {
       syncStatus,
       walletType: { type },
     } = this.props;
-
     let {search, popup, notifications, announcement, announId, annountime, searchResults, selectedNet } = this.state;
 
     let activeComponent = this.getActiveComponent();
@@ -937,7 +949,7 @@ class Navigation extends React.Component {
                 </div>
               }
               {
-                (syncStatus && syncStatus.sync.progress < 95) &&
+                (syncStatus && syncStatus.sync && syncStatus.sync.progress < 95) &&
                 <div className="col text-danger text-center py-2">
                   Tronscan is syncing, data might not be up-to-date ({Math.round(syncStatus.sync.progress)}%)
                 </div>

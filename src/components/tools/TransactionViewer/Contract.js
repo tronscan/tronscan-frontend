@@ -81,8 +81,11 @@ export default function Contract({contract}) {
     }
 
     let TokenIDList = [];
+    let tokenIdData;
     TokenIDList.push(contract)
-    let tokenIdData  = rebuildList(TokenIDList,'asset_name','amount')[0]
+    if(TokenIDList){
+        tokenIdData  = rebuildList(TokenIDList,'asset_name','amount')[0]
+    }
     if(contract.contractType){
         switch (contract.contractType.toUpperCase()) {
             case "TRANSFERCONTRACT":
