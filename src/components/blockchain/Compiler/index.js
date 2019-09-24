@@ -507,7 +507,6 @@ class ContractCompiler extends React.Component {
         const { account: { tronWeb } } = this.props;
         let { txID, currentContractName, optimizer, runs, compilerVersion, options,
             CompileStatus, signed } = this.state;
-        console.log('signed.contract_address',signed.contract_address)
         const { bytecode, abi, name } = optionsParam || options;
         const contractName = name || currentContractName;
 

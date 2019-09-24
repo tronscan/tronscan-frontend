@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/editor.worker.js"
   },
   {
-    "revision": "9bac09eae2ad0fb4d41d03dae103bf69",
+    "revision": "fc5f8cef5bb97b8b44b5e6121bf61fa3",
     "url": "/index.html"
   },
   {
@@ -116,8 +116,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/js/75.b9541163.chunk.js"
   },
   {
-    "revision": "926f44433a166b290ccc",
-    "url": "/static/js/76.1551d79c.chunk.js"
+    "revision": "778a7aebe340300dc7ca",
+    "url": "/static/js/76.b51bed93.chunk.js"
   },
   {
     "revision": "3feab0f96f603f39096c",
@@ -136,8 +136,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/js/About.43724a9f.chunk.js"
   },
   {
-    "revision": "12b8f703afe244db7e1d",
-    "url": "/static/js/Account.61dcd9ff.chunk.js"
+    "revision": "21b82770ebcf444b7b67",
+    "url": "/static/js/Account.0c5ac5a0.chunk.js"
   },
   {
     "revision": "586a353576e3c4fa686d",
@@ -168,8 +168,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/js/Committee.f4c1e9cb.chunk.js"
   },
   {
-    "revision": "a772018beffcfd5b2977",
-    "url": "/static/js/ContractCompiler.334f9788.chunk.js"
+    "revision": "e9204b6b38a66534330f",
+    "url": "/static/js/ContractCompiler.d2bd8307.chunk.js"
   },
   {
     "revision": "4271e51edf3eb2c92a51",
@@ -340,16 +340,16 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/js/VoteOverview.743f46df.chunk.js"
   },
   {
-    "revision": "d4e04d777f467831853b",
-    "url": "/static/js/WalletWizard.8912a2f9.chunk.js"
+    "revision": "b7d02de3c5afc027c2e5",
+    "url": "/static/js/WalletWizard.151f1e51.chunk.js"
   },
   {
     "revision": "94e867c7e1ddddf8d33d",
     "url": "/static/js/main.3914b0c1.chunk.js"
   },
   {
-    "revision": "2a9b734214571ce8845c",
-    "url": "/static/js/runtime~main.c3fad2d3.js"
+    "revision": "273c39e123b1233e839d",
+    "url": "/static/js/runtime~main.103917bd.js"
   },
   {
     "revision": "7b00f7c4e78ed9cfc676c64c040965e8",
