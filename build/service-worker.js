@@ -14,11 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-<<<<<<< HEAD
-  "/precache-manifest.6dbc57b976b9187237b21da77f99e32c.js"
-=======
-  "/precache-manifest.ccd2f682ae1dae32f7be73345a284ed7.js"
->>>>>>> origin/feature/sun-network-test
+  "/precache-manifest.f0d8171a702698246f7c975035ba3c6e.js"
 );
 
 self.addEventListener('message', (event) => {

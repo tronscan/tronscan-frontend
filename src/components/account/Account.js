@@ -2145,7 +2145,8 @@ export default class Account extends Component {
                         {tu("deal_pair_tip")}
                       </h5>
                       <p className="card-text">
-                        <a href="javascript:"
+                        <a href="javascript:;"
+                          style={{color:'#c23631'}}
                           className={trxBalance >= this.state.dealPairTrxLimit ? "btn btn-default btn-sm btn-plus-square" : "float-right btn btn-default btn-sm btn-plus-square disabled"}
                           onClick={() => {
                             this.changeTxnPair()
