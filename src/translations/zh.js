@@ -1190,9 +1190,9 @@ export const messages = {
   */
   "trigger_smart_contract": "调用智能合约",
   "normal_address_trigger_smart_contract": "普通地址调用合约",
-  "approve_trigger_smart_contract": "转出授权",
+  "approve_trigger_smart_contract": "转入授权",
   "approve_normal_trigger_smart_contract": "允许token在主链和侧链之间转移",
-  "pledge_trigger_smart_contract": "Token转出",
+  "pledge_trigger_smart_contract": "Token转入",
   "pledge_normal_trigger_smart_contract": "从主链转移到侧链",
   "mapping_trigger_smart_contract": "Token映射",
   "mapping_normal_trigger_smart_contract": "主链与侧链映射",
@@ -1982,7 +1982,7 @@ export const messages = {
   "sidechain_contract_right":"的映射",
 
   // Sidechain - account - pledge
-  "sidechain_account_pledge_btn":"转出",
+  "sidechain_account_pledge_btn":"转入",
   "sidechain_account_sign_btn":"转出",
   "pledge_currency":"币种",
   "pledge_sidechain":"侧链",
