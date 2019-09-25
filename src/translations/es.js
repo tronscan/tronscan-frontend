@@ -1858,6 +1858,7 @@ export const messages = {
   "delegate_other":"Congelar por Otros",
   "freeze_self":"Congelar por mi mismo",
   "total_amount":"Cantidad total",
+  "receive_address": "Dirección de recepción (la dirección predeterminada es la suya)",
   "unfreeze_time": "Fecha de descongelación",
   "interTrx_tip": "Transacciones internas es una operación que una dirección general llama un Contrato inteligente, y el Contrato inteligente transfiere el token a otra dirección.",
   "event_tip": "Los eventos son para permitir que el programador o el proveedor de la interfaz externa lo utilicen para prestar atención a las operaciones y auditorías del contrato.",
