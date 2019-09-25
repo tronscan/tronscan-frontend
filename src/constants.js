@@ -10,12 +10,12 @@ export const IS_DESKTOP = process.env.DESKTOP === 'true';
 //export const IS_MAINNET = Lockr.get('NET') === 'mainnet' || !Lockr.get('NET');
 //export const IS_SUNNET =  Lockr.get('NET') === 'sunnet';
 export const NETURL = {
-    MAINNET:'https://debug.tronscan.org',
-    SUNNET:'https://debugdappchain.tronscan.org',
+    MAINNET:'https://tronscan.org',
+    SUNNET:'https://dappchain.tronscan.org',
 }
 export const IS_MAINNET = window.location.origin === NETURL.MAINNET;
 export const IS_SUNNET =  window.location.origin === NETURL.SUNNET;
-console.log('NETURL',NETURL)
+
 export const BLOCK_REWARD = 32;
 export const SR_MAX_COUNT = 27;
 export const WITNESS_CREATE_COST = 9999;
