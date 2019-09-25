@@ -90,12 +90,6 @@ class Transaction extends React.Component {
           ),
         },
       }
-    },()=>{
-        setTimeout(()=>{
-            this.setState({
-                loading: false
-            })
-        },1200)
     });
   }
 
