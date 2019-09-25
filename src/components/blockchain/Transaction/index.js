@@ -70,6 +70,7 @@ class Transaction extends React.Component {
     }
 
     this.setState({
+      loading: false,
       transaction,
       tabs: {
         contracts: {
@@ -90,12 +91,6 @@ class Transaction extends React.Component {
           ),
         },
       }
-    },()=>{
-        setTimeout(()=>{
-            this.setState({
-                loading: false
-            })
-        },1200)
     });
   }
 
