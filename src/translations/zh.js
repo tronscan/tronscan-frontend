@@ -1965,6 +1965,7 @@ export const messages = {
 
   /* 2019-07-06*/
   "trc20_free_orders":"您在TRXMarket的所有交易都无需手续费",
+  "Expected_acquisition": "预计获得",
   "token_logo_upload_tip":"仅支持png,jpg,jpeg三种格式，大小不超过200K，尺寸为100*100",
 
   // Backbone - account - mapping

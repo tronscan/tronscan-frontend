@@ -1853,6 +1853,7 @@ export const messages = {
   "delegate_other": "다른 사람에 의하여 동결",
   "freeze_self": "나 자신에 의해 고정",
   "total_amount": "총액",
+  "receive_address":"수신 주소 (기본 주소는 자신의 주소입니다)",
   "unfreeze_time": "해동 시간",
   "interTrx_tip": "내부 트랜잭션은 일반 주소가 스마트 계약을 호출하고 스마트 계약이 토큰을 다른 주소로 전송하는 작업입니다.",
   "event_tip": "이벤트는 프로그래머 또는 외부 인터페이스 제공 업체가 계약 작업 및 감사에주의를 기울일 수있게하는 것입니다.",
