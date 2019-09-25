@@ -70,6 +70,7 @@ class Transaction extends React.Component {
     }
 
     this.setState({
+      loading: false,
       transaction,
       tabs: {
         contracts: {
