@@ -589,10 +589,10 @@ export default class VoteOverview extends React.Component {
                               </tr>
                             }
                             {
-                              filteredCandidates.map(candidate => {
+                              filteredCandidates.map((candidate,index) => {
                                     return (
 
-                                        <tr key={candidate.address}>
+                                        <tr key={candidate.address + '_' + index}>
                                           {
                                             viewStats ?
                                                 <th className="font-weight-bold pt-4 text-center"

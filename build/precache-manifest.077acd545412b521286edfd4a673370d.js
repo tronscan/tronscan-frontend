@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/editor.worker.js"
   },
   {
-    "revision": "398915ee9b403da7ec7b286313d8a459",
+    "revision": "4ad2ceeed4c532a879d85185450a1740",
     "url": "/index.html"
   },
   {
@@ -36,7 +36,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/css/NodeMap.aab5afec.chunk.css"
   },
   {
-    "revision": "8cfb81da3e4170c6a5bc",
+    "revision": "98dffa9f3bc043966146",
     "url": "/static/css/main.672c7672.chunk.css"
   },
   {
@@ -244,8 +244,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/js/ProposalDetail.75a943f4.chunk.js"
   },
   {
-    "revision": "aea0cc3918b357a042b8",
-    "url": "/static/js/Proposals.35bd68f1.chunk.js"
+    "revision": "b6d80d81e2edc15d2c14",
+    "url": "/static/js/Proposals.e1c76b75.chunk.js"
   },
   {
     "revision": "abb98e417e67d7b4c491",
@@ -336,20 +336,20 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/js/VoteLive.9ed69512.chunk.js"
   },
   {
-    "revision": "f718d41dba470ff0de46",
-    "url": "/static/js/VoteOverview.5b005b95.chunk.js"
+    "revision": "7dca3c97473b27fbd45c",
+    "url": "/static/js/VoteOverview.82c1c05f.chunk.js"
   },
   {
     "revision": "9051ce945140ad868329",
     "url": "/static/js/WalletWizard.52c64ada.chunk.js"
   },
   {
-    "revision": "8cfb81da3e4170c6a5bc",
-    "url": "/static/js/main.189e9727.chunk.js"
+    "revision": "98dffa9f3bc043966146",
+    "url": "/static/js/main.a9f801aa.chunk.js"
   },
   {
-    "revision": "124338c18c0d1167f232",
-    "url": "/static/js/runtime~main.2b646156.js"
+    "revision": "b965583d1d95fdc52833",
+    "url": "/static/js/runtime~main.d0daf753.js"
   },
   {
     "revision": "7b00f7c4e78ed9cfc676c64c040965e8",
