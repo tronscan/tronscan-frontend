@@ -1929,8 +1929,8 @@ export const messages = {
   "token_logo_upload_tip":"png,jpg,jpeg形式のみをサポートします。大きさが200k以下、サイズ100*100にしてください。",
 
   // Backbone - account - mapping
-  "main_account_mapping_title":"DappChainへマップ",
-  "main_account_mapping_text":"DappChainはTRONメインネットをベースに開発されたサイドチェーンで、メインネットの使用を拡張しました。マップした後、xxxが獲得できます。",
+  "main_account_mapping_title":"DAppChainへマップ",
+  "main_account_mapping_text":"DAppChainはTRONメインネットをベースに開発されたサイドチェーンで、メインネットの使用を拡張しました。マップした後、xxxが獲得できます。",
   "main_account_mapping_text_1":"1.より高いtps、より低いエネルギー消費",
   "main_account_mapping_text_2":"2.Mapping operation consumes 1000TRX",
   "main_account_mapping_btn":"マップ",
@@ -1952,7 +1952,7 @@ export const messages = {
   'pledge_num_min_error':"The quantity cannot be less than",
   "pledge_text":"抵当にはエネルギーの消費が必要となります",
   "sign_text":"Withdraw operation will consume",
-  "pledge_mapping_text":"資産をまだDappChainにマップされていないため、抵当できません。",
+  "pledge_mapping_text":"資産をまだDAppChainにマップされていないため、抵当できません。",
   "lack_of_balance":"TRX has insufficient balance",
   "mapping_text":"Mapping operations consume:",
   // success
@@ -2003,4 +2003,6 @@ export const messages = {
   "DAppChain_holders":"DAppChain Holders",
   "notrx_noenergy":"Please make sure your TRX is not less than 10 and a certain amount of energy",
   "inactive_MainChain_account":"Submission Failed.This address has not been activated on TRON.Please activate first and try again",
+  "mapping_warning":"This operation must be done by the token contract creator",
+
 }

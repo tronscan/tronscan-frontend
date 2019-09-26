@@ -1,14 +1,13 @@
 import React from 'react';
 import { tu } from '../../../utils/i18n';
 import xhr from 'axios/index';
-import { API_URL } from '../../../constants';
 import { TronLoader } from '../../common/loaders';
 import { Radio } from 'antd';
 import ContractInfo from './ContractInfo';
 import EntryContract from './EntryContract';
 import tronWeb from 'tronweb';
 import { connect } from 'react-redux';
-import { IS_MAINNET, SUNWEBCONFIG } from "../../../constants";
+import { API_URL, IS_MAINNET, SUNWEBCONFIG } from "../../../constants";
 
 
 class Code extends React.Component {
@@ -273,23 +272,32 @@ class Code extends React.Component {
 
         // 已验证合约信息Item
         const contractMessItem = (
-            <div className="tab-choice">
-                {radioBtnItem}
-                <p>{tu('contract_name')}: <span>{name || ''}</span></p>
-                <p>{tu('contract_version')}: <span>{compiler || ''}</span></p>
-                <p>{tu('contract_optimize')}: <span>
+            <div>
+                {
+                    IS_MAINNET? <div className="tab-choice">
+                        {radioBtnItem}
+                        <p>{tu('contract_name')}: <span>{name || ''}</span></p>
+                        <p>{tu('contract_version')}: <span>{compiler || ''}</span></p>
+                        <p>{tu('contract_optimize')}: <span>
                     {optimizer === 1
                         ? <span>{tu('contract_optimizered')}</span>
                         : <span>{tu('contract_optimizer')}</span>}
                 </span></p>
+                    </div>:''
+                }
             </div>
+
         );
 
         // 去验证合约Item
         const contractVerifyBtnItem = (
             <div className="contrat-verify">
-                {tu('contract_verify_status')}
-                <a href="/#/contracts/contract-Compiler/verify">{tu('contract_verify_btn')}</a>
+                {
+                    IS_MAINNET? <div>
+                        {tu('contract_verify_status')}
+                        <a href="/#/contracts/contract-Compiler/verify">{tu('contract_verify_btn')}</a>
+                    </div>:''
+                }
             </div>
         );
 

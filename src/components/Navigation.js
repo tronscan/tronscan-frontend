@@ -102,7 +102,6 @@ class Navigation extends React.Component {
     let _this = this;
 
     window.addEventListener('message', function (e) {
-
       if (e.data.message && e.data.message.action == "setAccount") {
         _this.setState({address: e.data.message.data.address});
       }
@@ -110,7 +109,6 @@ class Navigation extends React.Component {
         if(e.data.message.data.fullNode == SUNWEBCONFIG.MAINFULLNODE){
             _this.setState({selectedNet: 'mainnet'});
             Lockr.set("NET", 'mainnet')
-
         }else if(e.data.message.data.fullNode == SUNWEBCONFIG.SUNFULLNODE){
             _this.setState({selectedNet: 'sunnet'});
             Lockr.set("NET", 'sunnet')

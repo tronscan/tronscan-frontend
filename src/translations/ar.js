@@ -1848,6 +1848,7 @@
   "delegate_other": "تجميد بواسطة الآخرين",
   "freeze_self": "تجميد نفسي",
   "total_amount": "المبلغ الإجمالي",
+  "receive_address": "تلقي عنوان (العنوان الافتراضي هو الخاص بك)",
   "unfreeze_time": "  وقت الغاء التجميد ",
   "interTrx_tip": "المعاملات الداخلية هي عملية يطلق عليها عنوان عام العقد الذكي transfers وينقل العقد الذكي الرمز المميز إلى عنوان آخر.",
   "event_tip": "الأحداث هي السماح للمبرمج أو موفر الواجهة الخارجية باستخدامه للانتباه إلى عمليات التعاقد والتدقيق.",
@@ -1998,4 +1999,5 @@
   "DAppChain_holders":"DAppChain Holders",
   "notrx_noenergy":"Please make sure your TRX is not less than 10 and a certain amount of energy",
   "inactive_MainChain_account":"Submission Failed.This address has not been activated on TRON.Please activate first and try again",
+  "mapping_warning":"This operation must be done by the token contract creator",
 };

@@ -1852,6 +1852,7 @@ export const messages = {
     "freeze_self": " فریز توسط من",
     "total_amount": "مقدار کل",
     "unfreeze_time": "زمان آزاد کردن",
+    "receive_address": "دریافت آدرس (آدرس پیش فرض شخصی شماست)",
 
     "interTrx_tip": "معاملات داخلی عملیاتی است که یک آدرس کلی آدرس یک قرارداد هوشمند را فراخوانی می کند و قرارداد هوشمند نقل قول را به آدرس دیگری انتقال می دهد.",
     "event_tip": "رویدادها این است که اجازه دهید برنامهنویس یا ارائه دهنده رابط خارجی از آن برای توجه به عملیات قرارداد و ممیزی استفاده کند.",
@@ -2004,5 +2005,6 @@ export const messages = {
     "DAppChain_holders":"DAppChain Holders",
     "notrx_noenergy":"Please make sure your TRX is not less than 10 and a certain amount of energy",
     "inactive_MainChain_account":"Submission Failed.This address has not been activated on TRON.Please activate first and try again",
+    "mapping_warning":"This operation must be done by the token contract creator",
 
 };

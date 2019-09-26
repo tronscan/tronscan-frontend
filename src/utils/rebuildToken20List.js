@@ -7,10 +7,10 @@ import { store } from './../store';
 export default (list = [], tokenId, amount, infolist=false) => {
     let IDmap = {};
     let newList = list.map(item => item);
-    const { account: { token20Map } } = store.getState();
-    IDmap = token20Map;
-    // const tokenmap = localStorage.getItem('tokens20Map');
-    // IDmap = JSON.parse(tokenmap);
+    // const { account: { token20Map } } = store.getState();
+    // IDmap = token20Map;
+    const tokenmap = localStorage.getItem('tokens20Map');
+    IDmap = JSON.parse(tokenmap);
     
     if(!IDmap){
         getTokensMap().then( date => {

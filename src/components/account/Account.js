@@ -1768,7 +1768,9 @@ export default class Account extends Component {
 
 
     let {account, frozen, totalTransactions, currentWallet, wallet, accountResource, trxBalance, intl} = this.props;
-    let energyRemaining =  currentWallet && currentWallet.bandwidth.energyRemaining;
+
+    let energyRemaining = currentWallet && currentWallet.bandwidth.energyRemaining;
+
     let trxBalanceRemaining = currentWallet && currentWallet.balance / ONE_TRX;
 
       // pledge param
