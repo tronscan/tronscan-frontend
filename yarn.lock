@@ -1357,10 +1357,10 @@
     "@svgr/plugin-svgo" "^4.0.3"
     loader-utils "^1.1.0"
 
-"@tronscan/client@^0.2.52":
-  version "0.2.52"
-  resolved "https://registry.yarnpkg.com/@tronscan/client/-/client-0.2.52.tgz#ee48e2f123e2e41ce55920ca0b7e91b65612f945"
-  integrity sha512-qpIcLdggRxbt92wc4GqCrHwm7IHy8woWm4aRl+fYk32fmKLa7ldqXu2HDycyKU6zVUyDEdXQG2dV6YqUnhiIHg==
+"@tronscan/client@^0.2.53":
+  version "0.2.53"
+  resolved "https://registry.yarnpkg.com/@tronscan/client/-/client-0.2.53.tgz#a4b1f7756126f12f6fc63c9213ce1ba2bc790d71"
+  integrity sha512-yJS2z17mnZxQAqYpOkMrT4lfN3HPLKeWsO7QTuuksi0MVBuGz43ax6tzF3X4BsQdc9yi+GdQx+P3BYXjgH6eFg==
   dependencies:
     axios "^0.18.0"
     babel-plugin-transform-class-properties "^6.24.1"
@@ -12085,11 +12085,6 @@ reduce-function-call@^1.0.1:
   integrity sha1-WiAL+S4ON3UXUv5FsKszD9S2vpk=
   dependencies:
     balanced-match "^0.4.2"
-
-redux-persist@^6.0.0:
-  version "6.0.0"
-  resolved "https://registry.yarnpkg.com/redux-persist/-/redux-persist-6.0.0.tgz#b4d2972f9859597c130d40d4b146fecdab51b3a8"
-  integrity sha512-71LLMbUq2r02ng2We9S215LtPu3fY0KgaGE0k8WRgl6RkqxtGfl7HUozz1Dftwsb0D/5mZ8dwAaPbtnzfvbEwQ==
 
 redux-thunk@^2.2.0:
   version "2.3.0"

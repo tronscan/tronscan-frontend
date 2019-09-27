@@ -30,7 +30,7 @@ class Curorder extends Component {
     super(props);
     this.state = {
       start: 0,
-      limit: 2,
+      limit: 10,
       list: [],
       total: 0,
       timer: null,
@@ -66,17 +66,17 @@ class Curorder extends Component {
   }
 
   componentDidMount() {
-    let { timer } = this.state;
+    let { timer, start } = this.state;
     const {
       setUnConfirmOrderObj,
       unConfirmOrderList,
       cancelOrderList,
-      app
+      account
     } = this.props;
     setUnConfirmOrderObj({}, 1);
     setDelegateFailureObj({}, 1);
 
-    this.getData({ current: 1, pageSize: 15 });
+    this.getData(0);
     this.get2and8Data();
     clearInterval(timer);
     this.setState({
@@ -86,7 +86,7 @@ class Curorder extends Component {
       }, 3000)
     });
 
-    let uAddr = app.account ? app.account.address : "";
+    let uAddr = account ? account.address : "";
 
     if (unConfirmOrderList && unConfirmOrderList.length > 0) {
       this.watchUnCOnfirmOrderList();
@@ -113,9 +113,8 @@ class Curorder extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    let { timer } = this.state;
+    let { timer, start } = this.state;
     let { wallet, unConfirmOrderList, showCurrent, account } = this.props;
-    console.log(prevProps.account.address, account.address);
     // 切换钱包或者只看当前交易对
     if (
       prevProps.account.address != account.address ||
@@ -126,7 +125,7 @@ class Curorder extends Component {
       this.setState({
         isLoading: true
       });
-      this.getData();
+      this.getData(0);
       this.get2and8Data();
       this.setState({
         timer: setInterval(() => {
@@ -366,21 +365,16 @@ class Curorder extends Component {
   }
 
   onChangePage(page) {
-    let { limit, timer } = this.state;
-    clearInterval(timer);
-
-    this.getData();
-    this.get2and8Data();
+    let { limit, timer, start } = this.state;
+    this.getData((page - 1) * limit);
     this.setState({
-      timer: setInterval(() => {
-        this.getData();
-        this.get2and8Data();
-      }, 2000),
       start: (page - 1) * limit
     });
   }
-  async getData() {
-    let { start, limit } = this.state;
+  async getData(startPage) {
+    let start = startPage || this.state.start;
+
+    let { limit } = this.state;
     let { account, showCurrent, exchangeData } = this.props;
     let uAddr = account ? account.address : "";
     if (!uAddr) {
@@ -450,8 +444,8 @@ class Curorder extends Component {
 
   setDeleteFail() {
     let { contain28List } = this.state;
-    let { setDelegateFailureObj, app } = this.props;
-    let address = app.account ? app.account.address : "";
+    let { setDelegateFailureObj, account } = this.props;
+    let address = account ? account.address : "";
     let curTime = new Date().getTime();
     let delegateFailureList = contain28List.map(item => {
       if (
@@ -573,8 +567,8 @@ class Curorder extends Component {
   }
 
   filterCurrentPairs() {
-    let { unConfirmOrderList, showCurrent, app, exchangeData } = this.props;
-    let uAddr = app.account ? app.account.address : "";
+    let { unConfirmOrderList, showCurrent, account, exchangeData } = this.props;
+    let uAddr = account ? account.address : "";
 
     //只看当前交易对
     let list = [...unConfirmOrderList];
