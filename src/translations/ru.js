@@ -1877,6 +1877,7 @@ export const messages = {
   "delegate_other": "Заморозка другими",
   "freeze_self": "Заморозить сам",
   "total_amount": "Итого",
+  "receive_address":"Получите адрес (адрес по умолчанию ваш собственный)",
   "unfreeze_time": "Время разморозки",
   "interTrx_tip": "Внутренние транзакции - это операция, которая по общему адресу называется смарт-контрактом, а смарт-контракт передает токен на другой адрес.",
   "event_tip": "События позволяют программисту или провайдеру внешнего интерфейса использовать его, чтобы обратить внимание на контрактные операции и аудиты.",
@@ -1994,8 +1995,8 @@ export const messages = {
   "WIN_supply": "WIN Supply",
   "WIN_Token_Release_Schedule": "WIN Token Release Schedule",
   "source_WIN_team": "Source: WIN Management Team",
-  "Side_Chain":"Side chain browser(DappChain)",
-  "Main_Chain":"Main chain browser(MainChain)",
+  "Side_Chain":"DAppChain",
+  "Main_Chain":"MainChain",
 
   "7day": "one week",
   "14day": "two weeks",
@@ -2025,5 +2026,9 @@ export const messages = {
   "developers_earn_points":"Earn points",
   "developers_search":"Search username",
   "developers_scored_users":"Scored Users",
+  "DAppChain_holders":"DAppChain Holders",
+  "notrx_noenergy":"Please make sure your TRX is not less than 10 and a certain amount of energy",
+  "inactive_MainChain_account":"Submission Failed.This address has not been activated on TRON.Please activate first and try again",
+  "mapping_warning":"This operation must be done by the token contract creator",
 
 };

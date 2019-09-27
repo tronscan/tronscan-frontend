@@ -43,7 +43,6 @@ class Transaction extends React.Component {
   componentDidMount() {
     document.documentElement.scrollTop = 0;
     let {match,location} = this.props;
-
     let lang = queryString.parse(location.search).lang;
     if(lang){
         this.props.setLanguage(lang);

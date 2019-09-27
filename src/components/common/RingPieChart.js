@@ -139,7 +139,10 @@ export class RepresentativesRingPieReact extends React.Component {
                   if (data[index].name.indexOf("http://") > -1) {
                       data[index].name = data[index].name.substring(7).split('.com')[0];
                   }
+              }else{
+                  data[index].name =  data[index].address
               }
+
           }
       }
       if (data && data.length === 0) {

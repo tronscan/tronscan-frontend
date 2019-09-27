@@ -1875,6 +1875,7 @@ export const messages = {
   "delegate_other":"Congelar por Otros",
   "freeze_self":"Congelar por mi mismo",
   "total_amount":"Cantidad total",
+  "receive_address": "Dirección de recepción (la dirección predeterminada es la suya)",
   "unfreeze_time": "Fecha de descongelación",
   "interTrx_tip": "Transacciones internas es una operación que una dirección general llama un Contrato inteligente, y el Contrato inteligente transfiere el token a otra dirección.",
   "event_tip": "Los eventos son para permitir que el programador o el proveedor de la interfaz externa lo utilicen para prestar atención a las operaciones y auditorías del contrato.",
@@ -1994,8 +1995,8 @@ export const messages = {
   "WIN_Token_Release_Schedule": "WIN Token Release Schedule",
   "source_WIN_team": "Source: WIN Management Team",
 
-  "Side_Chain":"Side chain browser(DappChain)",
-  "Main_Chain":"Main chain browser(MainChain)",
+  "Side_Chain":"DAppChain",
+  "Main_Chain":"MainChain",
   "7day": "one week",
   "14day": "two weeks",
   "30day": "one month",
@@ -2013,8 +2014,6 @@ export const messages = {
   "sun_propose_8": "Proporción de ingresos del testigo en la cadena lateral",
   "day":"día",
 
-
-
   "developers_username": "username",
   "developers_current_year":"year's points",
   "developers_current_quarter": "quarter's points",
@@ -2025,5 +2024,9 @@ export const messages = {
   "developers_earn_points":"Earn points",
   "developers_search":" Search username",
   "developers_scored_users":"Scored Users",
+  "DAppChain_holders":"DAppChain Holders",
+  "notrx_noenergy":"Please make sure your TRX is not less than 10 and a certain amount of energy",
+  "inactive_MainChain_account":"Submission Failed.This address has not been activated on TRON.Please activate first and try again",
+  "mapping_warning":"This operation must be done by the token contract creator",
 
 };

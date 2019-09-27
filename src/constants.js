@@ -7,8 +7,14 @@ export const ONE_TRX = 1000000;
 
 export const IS_TESTNET = process.env.NET === 'testnet';
 export const IS_DESKTOP = process.env.DESKTOP === 'true';
-export const IS_SUNNET =  Lockr.get('NET') === 'sunnet';
-export const IS_MAINNET = Lockr.get('NET') === 'mainnet' || !Lockr.get('NET');
+//export const IS_MAINNET = Lockr.get('NET') === 'mainnet' || !Lockr.get('NET');
+//export const IS_SUNNET =  Lockr.get('NET') === 'sunnet';
+export const NETURL = {
+    MAINNET:'https://tronscan.org',
+    SUNNET:'https://dappchain.tronscan.org',
+}
+export const IS_MAINNET = window.location.origin === NETURL.MAINNET;
+export const IS_SUNNET =  window.location.origin === NETURL.SUNNET;
 
 export const BLOCK_REWARD = 32;
 export const SR_MAX_COUNT = 27;
@@ -74,19 +80,21 @@ export const TRADINGMAP = {
     APPROVE: 'approve',
 };
 
-
-const sunFullNode =  "https://sun.tronex.io/wallet";    //DappChain fullNode
-const sunSolidityNode =  "https://sun.tronex.io/wallet";  //DappChain solidityNode
-const sunEventServer = "https://sun.tronex.io/event";  //DappChain eventServer
 // SunWeb config
 export const SUNWEBCONFIG = {
     MAINFULLNODE: "https://api.trongrid.io",
     MAINSOLIDITYNODE: "https://api.trongrid.io",
     MAINEVENTSERVER: "https://api.trongrid.io",
-    SUNFULLNODE: 'https://sun.tronex.io/wallet',
-    SUNSOLIDITYNODE: 'https://sun.tronex.io/walletsolidity',
-    SUNEVENTSERVER: 'https://sun.tronex.io/event',
-    MAINNET: 'TDDs9MPcj3PVjpui7XzBqqb4XWkXwDMUqv',
-    SIDECHAIN: 'TPtpbcBL4i4byBziP48nNf2McMY8dbw3ko',
-    SIDEID: '4123AE0A7DAE104020CB076E4517538747AAFAF862',
+    SUNFULLNODE: 'https://sun.tronex.io',
+    SUNSOLIDITYNODE: 'https://sun.tronex.io',
+    SUNEVENTSERVER: 'https://sun.tronex.io',
+    MAINNET: 'TWaPZru6PR5VjgT4sJrrZ481Zgp3iJ8Rfo',
+    SIDECHAIN: 'TGKotco6YoULzbYisTBuP6DWXDjEgJSpYz',
+    SIDEID: '41E209E4DE650F0150788E8EC5CAFA240A23EB8EB7',
 };
+
+// Socket config
+export const TORNSOCKET = {
+     WSSURLMAIN: "wss://apilist.tronscan.org/api/tronsocket",
+     WSSURLSUN: "wss://dappchainapi.tronscan.org/api/tronsocket",
+}

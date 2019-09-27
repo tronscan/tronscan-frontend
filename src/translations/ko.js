@@ -1870,6 +1870,7 @@ export const messages = {
   "delegate_other": "다른 사람에 의하여 동결",
   "freeze_self": "나 자신에 의해 고정",
   "total_amount": "총액",
+  "receive_address":"수신 주소 (기본 주소는 자신의 주소입니다)",
   "unfreeze_time": "해동 시간",
   "interTrx_tip": "내부 트랜잭션은 일반 주소가 스마트 계약을 호출하고 스마트 계약이 토큰을 다른 주소로 전송하는 작업입니다.",
   "event_tip": "이벤트는 프로그래머 또는 외부 인터페이스 제공 업체가 계약 작업 및 감사에주의를 기울일 수있게하는 것입니다.",
@@ -1949,8 +1950,8 @@ export const messages = {
   "token_logo_upload_tip":"PNG, jpg, jpeg 3 가지 형식만 지원하며 크기는 200K를 초과하지 않으며 픽셀은 100 * 100입니다.",
 
   // Backbone - account - mapping
-  "main_account_mapping_title":"DappChain에지도",
-  "main_account_mapping_text":"DappChain은 TRON 메인 체인에 기반하여 개발된 사이드 체인 네트워크 이며. TRON 메인넷 확장에 사용됩니다. ",
+  "main_account_mapping_title":"DAppChain에지도",
+  "main_account_mapping_text":"DAppChain은 TRON 메인 체인에 기반하여 개발된 사이드 체인 네트워크 이며. TRON 메인넷 확장에 사용됩니다. ",
   "main_account_mapping_text_1":"1.높은 tps, 낮은 에너지 소비",
   "main_account_mapping_text_2":"2.Mapping operation consumes 1000TRX",
   "main_account_mapping_btn":"매핑",
@@ -1972,7 +1973,7 @@ export const messages = {
   'pledge_num_min_error':"The quantity cannot be less than",
   "pledge_text":"서약은 일정량의 에너지를 소비",
   "sign_text":"Withdraw operation will consume",
-  "pledge_mapping_text":"아직 DappChain에 매핑되지 않은 자산, 서약을 지원하지 않습니다",
+  "pledge_mapping_text":"아직 DAppChain에 매핑되지 않은 자산, 서약을 지원하지 않습니다",
   "lack_of_balance":"TRX has insufficient balance",
   "mapping_text":"Mapping operations consume:",
   // success
@@ -1989,8 +1990,8 @@ export const messages = {
   "WIN_supply": "WIN Supply",
   "WIN_Token_Release_Schedule": "WIN Token Release Schedule",
   "source_WIN_team": "Source: WIN Management Team",
-  "Side_Chain":"Side chain browser(DappChain)",
-  "Main_Chain":"Main chain browser(MainChain)",
+  "Side_Chain":"DAppChain",
+  "Main_Chain":"MainChain",
 
   "7day": "one week",
   "14day": "two weeks",
@@ -2020,5 +2021,9 @@ export const messages = {
   "developers_earn_points":"Earn points",
   "developers_search":" Search username",
   "developers_scored_users":"Scored Users",
+  "DAppChain_holders":"DAppChain Holders",
+  "notrx_noenergy":"Please make sure your TRX is not less than 10 and a certain amount of energy",
+  "inactive_MainChain_account":"Submission Failed.This address has not been activated on TRON.Please activate first and try again",
+  "mapping_warning":"This operation must be done by the token contract creator",
 
 };

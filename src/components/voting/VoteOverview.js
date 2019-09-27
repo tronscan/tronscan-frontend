@@ -392,7 +392,7 @@ export default class VoteOverview extends React.Component {
             }
         }
     }else{
-        if(this.props.walletType.type === "ACCOUNT_PRIVATE_KEY"){
+        if(this.props.walletType.type === "ACCOUNT_PRIVATE_KEY" || this.props.walletType.type === "ACCOUNT_TRONLINK"){
             try {
                 const unSignTransaction = await sunWeb.sidechain.transactionBuilder.vote(witnessVotes, account.address).catch(e=>false);
                 const {result} = await transactionResultManagerSun(unSignTransaction,sunWeb);
@@ -589,10 +589,10 @@ export default class VoteOverview extends React.Component {
                               </tr>
                             }
                             {
-                              filteredCandidates.map(candidate => {
+                              filteredCandidates.map((candidate,index) => {
                                     return (
 
-                                        <tr key={candidate.address}>
+                                        <tr key={candidate.address + '_' + index}>
                                           {
                                             viewStats ?
                                                 <th className="font-weight-bold pt-4 text-center"

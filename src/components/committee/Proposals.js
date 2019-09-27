@@ -108,7 +108,7 @@ class Proposal extends React.Component {
         if(IS_MAINNET){
             for(let item in proposal){
                 for(let j in proposal[item]['paramters']){
-                    proposal[item]['key'] = sunsideArr[j]['key'];
+                    proposal[item]['key'] = parametersArr[j];
                     proposal[item]['proposalVal'] = proposal[item]['paramters'][j];
                 }
             }

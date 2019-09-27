@@ -1190,13 +1190,13 @@ export const messages = {
   */
   "trigger_smart_contract": "调用智能合约",
   "normal_address_trigger_smart_contract": "普通地址调用合约",
-  "approve_trigger_smart_contract": "质押授权",
+  "approve_trigger_smart_contract": "转入授权",
   "approve_normal_trigger_smart_contract": "允许token在主链和侧链之间转移",
-  "pledge_trigger_smart_contract": "Token质押",
+  "pledge_trigger_smart_contract": "Token转入",
   "pledge_normal_trigger_smart_contract": "从主链转移到侧链",
   "mapping_trigger_smart_contract": "Token映射",
   "mapping_normal_trigger_smart_contract": "主链与侧链映射",
-  "sign_trigger_smart_contract": "Token解押",
+  "sign_trigger_smart_contract": "Token转出",
   "sign_normal_trigger_smart_contract": "从侧链转移到主链",
   "trigger": "合约调用",
   "contract_triggers_total": "次合约调用",
@@ -1981,43 +1981,44 @@ export const messages = {
 
   /* 2019-07-06*/
   "trc20_free_orders":"您在TRXMarket的所有交易都无需手续费",
+  "Expected_acquisition": "预计获得",
   "token_logo_upload_tip":"仅支持png,jpg,jpeg三种格式，大小不超过200K，尺寸为100*100",
 
   // Backbone - account - mapping
-  "main_account_mapping_title":"映射到DappChain",
-  "main_account_mapping_text":"DappChain是基于波场主链开发的侧链网络，扩展了波场主网的使用。映射之后你将获得：",
+  "main_account_mapping_title":"映射到DAppChain",
+  "main_account_mapping_text":"DAppChain是基于波场主链开发的侧链网络，扩展了波场主网的使用。映射之后你将获得：",
   "main_account_mapping_text_1":"1.更高的tps，更低的能量消耗",
   "main_account_mapping_text_2":"2.映射操作消耗1000TRX",
   "main_account_mapping_btn":"映射",
   "main_account_mapping_success_btn":"已映射",
   "main_account_mapping_desc1": "token映射到侧链上，会在侧链上产生同名的token",
-  "main_account_mapping_desc2": "映射完成之后，用户可以质押此币种到侧链上",
+  "main_account_mapping_desc2": "映射完成之后，用户可以转出此币种到侧链上",
   
   // sidechain - contract - mapping
   "sidechain_contract_left":"来自Mainnet合约",
   "sidechain_contract_right":"的映射",
 
   // Sidechain - account - pledge
-  "sidechain_account_pledge_btn":"质押",
-  "sidechain_account_sign_btn":"解押",
+  "sidechain_account_pledge_btn":"转入",
+  "sidechain_account_sign_btn":"转出",
   "pledge_currency":"币种",
   "pledge_sidechain":"侧链",
   "pledge_num":"数量",
   'pledge_num_error':"数量不能超过最大可用余额",
   'pledge_num_min_error':"数量不能小于",
-  "pledge_text":"质押会消耗一定量的能量",
-  "sign_text":"解押操作会消耗:",
-  "pledge_mapping_text":"资产尚未映射到DappChain.不支持质押",
+  "pledge_text":"转入会消耗一定量的能量",
+  "sign_text":"转出操作会消耗:",
+  "pledge_mapping_text":"资产尚未映射到DAppChain.不支持转入",
   "lack_of_balance":"TRX余额不足",
   "mapping_text":"映射操作会消耗:",
 
   // success
-  "pledge_success": "质押成功",
-  "sign_success": "解押成功",
+  "pledge_success": "转入成功",
+  "sign_success": "转出成功",
   "mapping_success": "映射成功",
   // error
-  "pledge_error": "质押失败",
-  "sign_error": "解押失败",
+  "pledge_error": "转入失败",
+  "sign_error": "转出失败",
   "mapping_error": "映射失败",
   "price_per_1000_WIN": "WIN价格（每1000WIN）",
   "WIN_distribution_overview": "WIN分布概览",
@@ -2025,8 +2026,8 @@ export const messages = {
   "WIN_supply": "WIN 流通量",
   "WIN_Token_Release_Schedule": "WIN 代币解锁时间表",
   "source_WIN_team": "信息来源：WIN管理团队",
-  "Side_Chain":"侧链浏览器（DappChain）",
-  "Main_Chain":"主链浏览器（MainChain）",
+  "Side_Chain":"侧链浏览器",
+  "Main_Chain":"主链浏览器",
 
   "7day": "7天",
   "14day": "14天",
@@ -2056,4 +2057,8 @@ export const messages = {
   "developers_earn_points":"获得积分",
   "developers_search":"搜索用户名",
   "developers_scored_users":"已获积分账户",
+  "DAppChain_holders":"侧链持有者",
+  "notrx_noenergy":"请确认TRX数量大于10或有一定的能量",
+  "inactive_MainChain_account":"该地址未在TRON主网激活，无法完成此操作，请激活后重试",
+  "mapping_warning":"此操作须由token的合约创建者完成",
 };
