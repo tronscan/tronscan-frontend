@@ -224,8 +224,8 @@ class ApiClient20 {
       type = "tether";
     }
     let { data } = await xhr({
-      method: "get",
-      url: `https://api.coinmarketcap.com/v1/ticker/${type}/?convert=${covert}`
+      method: "get",  
+      url: `https://apilist.tronscan.org/api/system/proxy?url=https://api.coinmarketcap.com/v1/ticker/${type}/?convert=${covert}`
     });
     return data;
   }
@@ -237,6 +237,22 @@ class ApiClient20 {
       url: `${this.apiUrl}/api/exchange/marketPair/list?sortType=${sortType}`
     });
     return data;
+  }
+
+  /**
+ * 异常订单处理
+ * @param {string} action_type   挂单"entry" or 撤单"cancel"
+ * @param {string} entry_txid   挂单的hash
+ * @param {string} cancel_txid   撤单的hash
+ * @param {number} order_id 订单ID
+ */
+ async abnormalOrderStatus(query) {
+  let { data } = await xhr({
+    method: "get",
+    url: `${this.apiUrl}/exchange/common/abnormalOrderStatus`,
+    params: query
+  });
+  return data;
   }
 }
 

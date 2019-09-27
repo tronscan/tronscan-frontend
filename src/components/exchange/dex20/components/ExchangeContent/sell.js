@@ -11,7 +11,7 @@ import { ONE_TRX } from "../../../../../constants";
 import { find } from "lodash";
 import { TW } from "../../TW";
 import { Slider } from "antd";
-import { setUpdateTran } from "../../../../../actions/exchange";
+import { setUpdateTran, setUnConfirmOrderObj} from "../../../../../actions/exchange";
 
 import NumericInput from "./NumericInput";
 import {
@@ -420,163 +420,178 @@ class Sell extends Component {
 
     try {
       const id = await TW.sellByContract(data);
+      if(id){
+        this.setState({
+          modal: (
+            <SweetAlert
+            success
+            title={tu("trc20_order_success")}
+            onConfirm={this.hideModal}
+            >
+              {/* {tu("trc20_trade_win_content")} */}
+            </SweetAlert>
+          ),
+          buttonLoading: false
+        });
 
-      if (id) {
-        let _times = 0;
-        const timer = setInterval(async () => {
-          const event = await tronWebOBJ
-            .getEventByTransactionID(id)
-            .catch(e => {
-              if (_times > 20) {
-                clearInterval(timer);
-                // this.$alert(this.$t("exchange.trade_win.content"), "", {
-                //   confirmButtonText: this.$t("exchange.trade_win.confirm")
-                // });
-                this.setState({
-                  modal: (
-                    <SweetAlert
-                      error
-                      title={tu("trc20_trade_win_content")}
-                      onConfirm={this.hideModal}
-                    >
-                      {/* {tu("trc20_trade_win_content")} */}
-                    </SweetAlert>
-                  )
-                });
-                this.setState({
-                  buttonLoading: false
-                });
-              }
-            });
-          _times += 1;
-          if (event.length > 0) {
-            for (var i = 0; i < event.length; i++) {
-              const k = event[i];
-              if (k.name.indexOf("Order") > -1) {
-                this.setState({
-                  modal: (
-                    <SweetAlert
-                      success
-                      title={tu("trc20_order_success")}
-                      onConfirm={this.hideModal}
-                    >
-                      {/*{tu("trc20_order_success")}*/}
-                    </SweetAlert>
-                  )
-                });
-                this.setBalance();
-                this.setState({
-                  buttonLoading: false
-                });
-
-                if (k.result && k.result.orderID) {
-                  Client20.addChannelId(
-                    {
-                      hash: id,
-                      orderId: k.result.orderID,
-                      channelId: "10000"
-                    },
-                    {
-                      Key: "Tron@123456"
-                    }
-                  ).then(res => {});
-                }
-                clearInterval(timer);
-                break;
-              }
-            }
-          } else {
-            if (_times > 20) {
-              clearInterval(timer);
-
-              this.setState({
-                modal: (
-                  <SweetAlert
-                    error
-                    title={tu("trc20_trade_win_content")}
-                    onConfirm={this.hideModal}
-                  >
-                    {/* {tu("trc20_trade_win_content")} */}
-                  </SweetAlert>
-                )
-              });
-              this.setState({
-                buttonLoading: false
-              });
-            }
-          }
-        }, 1000);
-        // this.setState({
-        //   modal: (
-        //     <SweetAlert
-        //       success
-        //       title={tu("trc20_order_success")}
-        //       onConfirm={this.hideModal}
-        //     >
-        //       {/*{tu("trc20_order_success")}*/}
-        //     </SweetAlert>
-        //   )
-        // });
-        // this.setState({
-        //   buttonLoading: false
-        // });
-        // this.setBalance();
-
-        // let timer = setInterval(() => {
-        //   this.setBalance();
-        // }, 1000);
-        // this.setState({
-        //   balanceTimer: timer
-        // });
-        // let tronWeb;
-        // if (this.props.walletType.type === "ACCOUNT_LEDGER") {
-        //   tronWeb = this.props.tronWeb();
-        // } else if (
-        //   this.props.walletType.type === "ACCOUNT_TRONLINK" ||
-        //   this.props.walletType.type === "ACCOUNT_PRIVATE_KEY"
-        // ) {
-        //   tronWeb = account.tronWeb;
-        // }
-
-        // let _times = 0;
-        // const timer2 = setInterval(async () => {
-        //   const info = await tronWeb.trx.getTransactionInfo(id);
-        //   _times += 1;
-        //   if (info.log && info.log.length > 0) {
-        //     let c_id;
-        //     for (let i = 0; i < info.log.length; i++) {
-        //       const _addr = tronWeb.address.fromHex("41" + info.log[i].address);
-        //       if (
-        //         _addr === "TSMbPm5mUsaTDSEjHCd55ZJaib3Ysvjyc5" ||
-        //         _addr === "THnCkTX1GfDArAuyzzv2nGpDt4vChm8t2e"
-        //       ) {
-        //         c_id = parseInt(
-        //           info.log[i].data.toString().substring(0, 64),
-        //           16
-        //         );
-        //         clearInterval(timer2);
-        //         if (c_id) {
-        //           Client20.addChannelId(
-        //             {
-        //               hash: id,
-        //               orderId: c_id.toString(),
-        //               channelId: "10000"
-        //             },
-        //             {
-        //               Key: "Tron@123456"
-        //             }
-        //           ).then(res => {});
-        //         }
-        //         break;
-        //       }
-        //     }
-        //   } else {
-        //     if (_times > 6) {
-        //       clearInterval(timer2);
-        //     }
-        //   }
-        // }, 20000);
+        this.orderQuickShow(id, data)
       }
+      // if (id) {
+      //   let _times = 0;
+      //   const timer = setInterval(async () => {
+      //     const event = await tronWebOBJ
+      //       .getEventByTransactionID(id)
+      //       .catch(e => {
+      //         if (_times > 20) {
+      //           clearInterval(timer);
+      //           // this.$alert(this.$t("exchange.trade_win.content"), "", {
+      //           //   confirmButtonText: this.$t("exchange.trade_win.confirm")
+      //           // });
+      //           this.setState({
+      //             modal: (
+      //               <SweetAlert
+      //                 error
+      //                 title={tu("trc20_trade_win_content")}
+      //                 onConfirm={this.hideModal}
+      //               >
+      //                 {/* {tu("trc20_trade_win_content")} */}
+      //               </SweetAlert>
+      //             )
+      //           });
+      //           this.setState({
+      //             buttonLoading: false
+      //           });
+      //         }
+      //       });
+      //     _times += 1;
+      //     if (event.length > 0) {
+      //       for (var i = 0; i < event.length; i++) {
+      //         const k = event[i];
+      //         if (k.name.indexOf("Order") > -1) {
+      //           this.setState({
+      //             modal: (
+      //               <SweetAlert
+      //                 success
+      //                 title={tu("trc20_order_success")}
+      //                 onConfirm={this.hideModal}
+      //               >
+      //                 {/*{tu("trc20_order_success")}*/}
+      //               </SweetAlert>
+      //             )
+      //           });
+      //           this.setBalance();
+      //           this.setState({
+      //             buttonLoading: false
+      //           });
+
+      //           if (k.result && k.result.orderID) {
+      //             Client20.addChannelId(
+      //               {
+      //                 hash: id,
+      //                 orderId: k.result.orderID,
+      //                 channelId: "10000"
+      //               },
+      //               {
+      //                 Key: "Tron@123456"
+      //               }
+      //             ).then(res => {});
+      //           }
+      //           clearInterval(timer);
+      //           break;
+      //         }
+      //       }
+      //     } else {
+      //       if (_times > 20) {
+      //         clearInterval(timer);
+
+      //         this.setState({
+      //           modal: (
+      //             <SweetAlert
+      //               error
+      //               title={tu("trc20_trade_win_content")}
+      //               onConfirm={this.hideModal}
+      //             >
+      //               {/* {tu("trc20_trade_win_content")} */}
+      //             </SweetAlert>
+      //           )
+      //         });
+      //         this.setState({
+      //           buttonLoading: false
+      //         });
+      //       }
+      //     }
+      //   }, 1000);
+      //   // this.setState({
+      //   //   modal: (
+      //   //     <SweetAlert
+      //   //       success
+      //   //       title={tu("trc20_order_success")}
+      //   //       onConfirm={this.hideModal}
+      //   //     >
+      //   //       {/*{tu("trc20_order_success")}*/}
+      //   //     </SweetAlert>
+      //   //   )
+      //   // });
+      //   // this.setState({
+      //   //   buttonLoading: false
+      //   // });
+      //   // this.setBalance();
+
+      //   // let timer = setInterval(() => {
+      //   //   this.setBalance();
+      //   // }, 1000);
+      //   // this.setState({
+      //   //   balanceTimer: timer
+      //   // });
+      //   // let tronWeb;
+      //   // if (this.props.walletType.type === "ACCOUNT_LEDGER") {
+      //   //   tronWeb = this.props.tronWeb();
+      //   // } else if (
+      //   //   this.props.walletType.type === "ACCOUNT_TRONLINK" ||
+      //   //   this.props.walletType.type === "ACCOUNT_PRIVATE_KEY"
+      //   // ) {
+      //   //   tronWeb = account.tronWeb;
+      //   // }
+
+      //   // let _times = 0;
+      //   // const timer2 = setInterval(async () => {
+      //   //   const info = await tronWeb.trx.getTransactionInfo(id);
+      //   //   _times += 1;
+      //   //   if (info.log && info.log.length > 0) {
+      //   //     let c_id;
+      //   //     for (let i = 0; i < info.log.length; i++) {
+      //   //       const _addr = tronWeb.address.fromHex("41" + info.log[i].address);
+      //   //       if (
+      //   //         _addr === "TSMbPm5mUsaTDSEjHCd55ZJaib3Ysvjyc5" ||
+      //   //         _addr === "THnCkTX1GfDArAuyzzv2nGpDt4vChm8t2e"
+      //   //       ) {
+      //   //         c_id = parseInt(
+      //   //           info.log[i].data.toString().substring(0, 64),
+      //   //           16
+      //   //         );
+      //   //         clearInterval(timer2);
+      //   //         if (c_id) {
+      //   //           Client20.addChannelId(
+      //   //             {
+      //   //               hash: id,
+      //   //               orderId: c_id.toString(),
+      //   //               channelId: "10000"
+      //   //             },
+      //   //             {
+      //   //               Key: "Tron@123456"
+      //   //             }
+      //   //           ).then(res => {});
+      //   //         }
+      //   //         break;
+      //   //       }
+      //   //     }
+      //   //   } else {
+      //   //     if (_times > 6) {
+      //   //       clearInterval(timer2);
+      //   //     }
+      //   //   }
+      //   // }, 20000);
+      // }
     } catch (error) {
       console.log(error);
       //   this.isOrder = false
@@ -781,7 +796,7 @@ class Sell extends Component {
         price >
           (exchangeData.price * 1.1) / Math.pow(10, exchangeData.sPrecision)
       ) {
-        clearTimeout(t);
+        // clearTimeout(t);
         let transTip = true;
         const t = setTimeout(() => {
           transTip = false;
@@ -890,6 +905,40 @@ class Sell extends Component {
       }
     });
   }
+  orderQuickShow(hash, data){
+    const {setUnConfirmOrderObj,exchangeData,account} = this.props;
+    const {amount,price} = this.state;
+    let confirmObj = {
+      fShortName: exchangeData.fShortName,
+      sShortName: exchangeData.sShortName,
+      orderTime: new Date().getTime(),
+      pairType: exchangeData.pairType,
+      volume: amount,
+      curTurnover: 0,
+      price: price,
+      hash: hash,
+      user: account.address,
+      orderStatus: -1,
+      transactionType: 1,
+      parisId: exchangeData.id,
+      created_by: new Date().getTime(),
+
+      transaction_id: hash,
+      secondToken: exchangeData.sTokenAddr,
+      orderType: 1,
+      firstToken: exchangeData.fTokenAddr,
+      secondAmount: data._amountB,
+      _price: data._price,
+      firstAmount: data._amountA,
+      transType: 1, // 1限价 0市价
+      exchangeId: exchangeData.id,
+      parisIdStr: exchangeData.fShortName + '-' + exchangeData.sShortName,
+      status: -1,
+      schedule:0
+    }
+
+    setUnConfirmOrderObj(confirmObj)
+  }
 }
 
 function mapStateToProps(state) {
@@ -903,12 +952,15 @@ function mapStateToProps(state) {
     is_update_tran: state.exchange.is_update_tran
       ? state.exchange.is_update_tran
       : false,
-    walletType: state.app.wallet
+    walletType: state.app.wallet,
+    unConfirmOrderList:state.exchange.unConfirmOrderList
+
   };
 }
 
 const mapDispatchToProps = {
-  setUpdateTran
+  setUpdateTran,
+  setUnConfirmOrderObj
 };
 
 export default connect(

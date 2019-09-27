@@ -21,6 +21,7 @@ export const precisions = {
   ace_trx: 5,
   igg_trx: 5,
   win_trx: 5,
+  win_usdt: 6,
   att_trx: 5,
   twj_trx: 5,
   tone_trx: 5,
@@ -30,7 +31,10 @@ export const precisions = {
   igg_usdt: 6,
   lvh_trx: 6,
   truc_trx: 6,
-  nfun_trx: 6
+  nfun_trx: 6,
+  blaze_trx: 4,
+  hora_trx: 6,
+  mlt_trx: 6
 };
 
 export function fixed(value, n) {

@@ -13,7 +13,11 @@ import {
   SET_PRICE_CONVERT,
   SET_EXCHANGE20VOLUME_LIST,
   SET_EXCHANGE20UPDOWN_LIST,
-  SET_EXCHANGE20SEARCH_LIST
+  SET_EXCHANGE20SEARCH_LIST,
+  SET_UNFIRM_ORDER_LIST,
+  SET_CANCEL_ORDER_LIST,
+  SET_DELEGATE_FAILURE_LIST,
+  SET_REDIRCT_PAIR
 } from "../actions/exchange";
 
 const initialState = {
@@ -118,6 +122,33 @@ export function exchangeReducer(state = initialState, action) {
       };
     }
 
+    case SET_UNFIRM_ORDER_LIST: {
+      return {
+        ...state,
+        unConfirmOrderList: action.unConfirmOrderList
+      };
+    }
+
+    case SET_CANCEL_ORDER_LIST: {
+      return {
+        ...state,
+        cancelOrderList: action.cancelOrderList
+      };
+    }
+
+    case SET_DELEGATE_FAILURE_LIST: {
+      return {
+        ...state,
+        delegateFailureList: action.delegateFailureList
+      };
+    }
+
+    case SET_REDIRCT_PAIR: {
+      return {
+        ...state,
+        redirctPair: action.redirctPair
+      };
+    }
     default:
       return state;
   }

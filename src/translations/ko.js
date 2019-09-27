@@ -1493,6 +1493,7 @@ export const messages = {
   "trc20_trans_record_header_price": "가격",
   "trc20_my_trans_header_time": "시간",
   "trc20_my_trans_header_type": "유형",
+  "trc20_my_trans_header_pair": '거래 페어',
   "trc20_my_trans_header_price": "가격",
   "trc20_my_trans_header_amount": "수량",
   "trc20_my_trans_header_volume": "거래액",
@@ -1538,6 +1539,22 @@ export const messages = {
   "trc20_24h_l": "24h 낮은",
   "trc20_fire_token": "50 lucky draws to win 100,000 VENA!",
   "trc20_vena_tip": "VENA 계약의 특수성으로 인해 추가 0.1 VENA 는 승인되지만 공제되지 않습니다.",
+  "trc20_status_-1":'주문 확인중',
+  "trc20_status_0":'거래중',
+  "trc20_status_1":'거래중',
+  "trc20_status_2":'거래 완성',
+  "trc20_status_3":'',
+  "trc20_status_4":'',
+  "trc20_status_5":'거래 완성',
+  "trc20_status_6":"취소 확인중",
+  "trc20_status_7":"취소 완성",
+  "trc20_status_8":"위탁 실패",
+  "trc20_status_9":"취소 실패",
+  "trc20_status_100":"일부 취소",
+  "trc20_failed_order": "거래 실패 설명",
+  "trc20_ignore": '무시',
+  "trc20_see_currentParis": '현재 거래만 보기',
+
   /*
    *  2018-12-18
    * */

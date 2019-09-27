@@ -1508,6 +1508,7 @@ export const messages = {
   "trc20_trans_record_header_price": "Цена",
   "trc20_my_trans_header_time": "Время",
   "trc20_my_trans_header_type": "Тип",
+  "trc20_my_trans_header_pair": 'Pair',
   "trc20_my_trans_header_price": "Цена",
   "trc20_my_trans_header_amount": "Количество",
   "trc20_my_trans_header_volume": "Объем",
@@ -1553,6 +1554,22 @@ export const messages = {
   "trc20_24h_l": "24h низкий",
   "trc20_fire_token": "50 lucky draws to win 100,000 VENA!",
   "trc20_vena_tip": "Due to the particularity of VENA contract, extra 0.1 VENA will be authorized but not deducted.",
+  "trc20_status_-1":'Pending',
+  "trc20_status_0":'Open',
+  "trc20_status_1":'Open',
+  "trc20_status_2":'Completed',
+  "trc20_status_3":'',
+  "trc20_status_4":'',
+  "trc20_status_5":'Completed',
+  "trc20_status_6":"Canceling",
+  "trc20_status_7":"Canceled",
+  "trc20_status_8":"Submit Failed",
+  "trc20_status_9":"",
+  "trc20_status_100":"Partially cancel",
+  "trc20_failed_order": "Order wasn't confirmed by blockchain",
+  "trc20_ignore": 'Ignore',
+  "trc20_see_currentParis": 'Hide other pairs',
+
 
   /*
    *  2018-12-18
