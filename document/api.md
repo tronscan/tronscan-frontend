@@ -16,10 +16,11 @@ Demo: curl -X Get  https://apilist.tronscan.org/api/block/latest
 # 3
 **/api/account/list**  
 Desc: List all the accounts in the blockchain (only 10,000 accounts are displayed, sorted by TRX balance from high to low) 
-Demo: curl -X Get  https://apilist.tronscan.org/api/account/list?sort=-balance&limit=20&start=0  
+Demo: curl -X Get  https://apilist.tronscan.org/api/account/list?sort=-balance&limit=20&start=0&address=TMuA6YqfCeX8EhbfYEg5y7S4DqzSJireY9
 @param sort: define the sequence of the records return;  
 @param limit: page size for pagination;  
-@param start: query index for pagination;  
+@param start: query index for pagination;
+@param address: query address
 @return: accounts list;  
 
 # 4
@@ -32,7 +33,7 @@ Demo: curl -X Get  https://apilist.tronscan.org/api/account?address=TWd4WrZ9wn84
 # 5
 **/api/block**  
 Desc: List the blocks in the blockchain(only display the latest 10,000 data records in the query time range)  
-Demo: curl -X Get  https://apilist.tronscan.org/api/block?sort=-number&limit=20&count=true&start=20&start_timestamp=1551715200000&end_timestamp=1551772172616 
+Demo: curl -X Get  https://apilist.tronscan.org/api/block?sort=-number&limit=20&start=20&start_timestamp=1551715200000&end_timestamp=1551772172616 
 @param sort: define the sequence of the records return;  
 @param limit: page size for pagination;  
 @param start: query index for pagination;  
@@ -75,7 +76,7 @@ Demo: curl -X Get  https://apilist.tronscan.org/api/transaction?sort=-timestamp&
 
 # 9
 **/api/transaction**  
-Desc: List the transactions related to a specified account  
+Desc: List the transactions related to a specified account(only display the latest 2,000 data records in the query time range)
 Demo: curl -X Get  https://apilist.tronscan.org/api/transaction?sort=-timestamp&count=true&limit=20&start=0&address=TMuA6YqfCeX8EhbfYEg5y7S4DqzSJireY9  
 @param sort: define the sequence of the records return;  
 @param limit: page size for pagination;  
@@ -87,12 +88,10 @@ Demo: curl -X Get  https://apilist.tronscan.org/api/transaction?sort=-timestamp&
 @return: transactions list;
 
 # 10
-**/api/contracts/transaction**(only display the latest 10,000 data records in the query time range)
-Desc: List the transactions related to an smart contract(only display the latest 10,000 data records in the query time range)  Demo: curl -X Get  https://apilist.tronscan.org/api/contracts/transaction?sort=-timestamp&count=true&limit=20&start=0&contract=TGfbkJww3x5cb9u4ekLtZ9hXvJo48nUSi4  
-@param sort: define the sequence of the records return;  
+**/api/contracts/transaction**
+Desc: List the transactions related to an smart contract(only display the latest 2,000 data records in the query time range)  Demo: curl -X Get  https://apilist.tronscan.org/api/contracts/transaction?&limit=20&start=0&contract=TEEXEWrkMFKapSMJ6mErg39ELFKDqEs6w3&start_timestamp=1568798788872&end_timestamp=1569403588872
 @param limit: page size for pagination;  
 @param start: query index for pagination;  
-@param count: total number of records;  
 @param start_timestamp: query date range;  
 @param end_timestamp: query date range;  
 @param contract: contract address;  
@@ -119,7 +118,7 @@ Demo: curl -X Get  https://apilist.tronscan.org/api/transfer?sort=-timestamp&cou
 
 # 13
 **/api/transfer**  
-Desc: List the transfers related to an specified account(only display the latest 10,000 data records in the query time range)
+Desc: List the transfers related to an specified account(only display the latest 2,000 data records in the query time range)
 Demo: curl -X Get  https://apilist.tronscan.org/api/transfer?sort=-timestamp&count=true&limit=20&start=0&token=_&address=TMuA6YqfCeX8EhbfYEg5y7S4DqzSJireY9  
 @param sort: define the sequence of the records return;  
 @param limit: page size for pagination;  
@@ -151,7 +150,7 @@ Desc: List all the foundation addresses
 Demo: curl -X Get  https://apilist.tronscan.org/api/fund?page_index=1&per_page=20  
 @param page_index: query index for pagination;  
 @param per_page: page size for pagination;  
-@return: all the foundation addresses;  
+@return: all the foundation addresses and balance;  
 
 # 17
 **/api/funds**  
@@ -163,10 +162,13 @@ Demo: curl -X Get  https://apilist.tronscan.org/api/funds
 # 18
 **/api/contracts**  
 Desc: List all the contracts in the blockchain  
-Demo: curl -X Get  https://apilist.tronscan.org/api/contracts?count=true&limit=20&start=0  
+Demo: curl -X Get  https://apilist.tronscan.org/api/contracts?count=true&limit=20&start=0&sort=-timestamp&start_timestamp=1568884835489&end_timestamp=1569489635489
 @param limit: page size for pagination;  
 @param start: query index for pagination;  
 @param count: total number of records;  
+@param start_timestamp: query date range;  
+@param end_timestamp: query date range;  
+@param sort: define the sequence of the records return;  
 @return: contracts list;  
 
 # 19
@@ -186,33 +188,32 @@ Demo: curl -X Get  https://apilist.tronscan.org/api/contracts/code?contract=TEEX
 # 21
 **/api/contracts/trigger**  
 Desc: List all the triggers of the contracts in the blockchain(only display the latest 10,000 data records in the query time range)  
-Demo: curl -X Get  https://apilist.tronscan.org/api/contracts/trigger?sort=-timestamp&count=true&limit=20&start=0&start_timestamp=1548000000000&end_timestamp=1548060167540  
-@param sort: define the sequence of the records return;  
+Demo: curl -X Get  https://apilist.tronscan.org/api/contracts/trigger?limit=20&start=0&start_timestamp=1529856000000&end_timestamp=1569490226162
 @param limit: page size for pagination;  
 @param start: query index for pagination;  
-@param count: total number of records;  
 @param start_timestamp: query date range;  
 @param end_timestamp: query date range;  
-@return: a single contract's trigger detail;  
+@return: all contracts' trigger detail;  
 
 # 22
-**/api/token_trc20**  
-Desc: List all the trc20 tokens in the blockchain  
-Demo: curl -X Get  https://apilist.tronscan.org/api/token_trc20?limit=20&start=0  
+**/api/tokens/overview**  
+Desc: List all the tokens in the blockchain (including trc10 and trc20 tokens)  
+Demo: curl -X Get  https://apilist.tronscan.org/api/tokens/overview?start=0&limit=20&order=desc&filter=all&sort=volume24hInTrx&order_current=descend
 @param limit: page size for pagination;  
 @param start: query index for pagination;  
-@return: trc20 tokens list;  
+@param order: define the sequence order of the records return; 
+@param start_timestamp: query date range;  
+@param end_timestamp: query date range;  
+@param sort: define the sorting rule;
+@param filter: define the tokens return. "trc10" for trc10 tokens, "trc20" for trc20 tokens; "all" for all trc10 and trc20 tokens
+@return: tokens list;  
 
 # 23
-**/api/token**  
-Desc: List all the trc10 tokens in the blockchain  
-Demo: curl -X Get  https://apilist.tronscan.org/api/token?sort=-name&limit=20&start=0&totalAll=1&status=ico  
-@param sort: define the sequence of the records return;  
-@param limit: page size for pagination;  
-@param start: query index for pagination;  
-@param totalAll: the total number of the trc10 tokens(audited and Unaudited tokens both included);  
-@param status: if equals 'ico', only returns the tokens that can be participated;  
-@return: trc10 tokens list(only audited tokens);  
+**/api/token_trc20**  
+Desc: List a single trc20 token's detail  
+Demo: curl -X Get  https://apilist.tronscan.org/api/token_trc20?contract=TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t&showAll=1
+@param contract: token address 
+@return: a single trc20 token's detail;  
 
 # 24
 **/api/token**  
@@ -282,8 +283,8 @@ Demo: curl -X Get  https://apilist.tronscan.org/api/proposal?id=16
 # 32
 **/api/exchanges/list**  
 Desc: List all the audited exchange pairs  
-Demo: curl -X Get  https://apilist.tronscan.org/api/exchanges/list?sort=-balance  
-@param sort: define the sequence of the records return;  
+Demo: curl -X Get  https://apilist.tronscan.org/api/exchanges/list 
+@param: null;  
 @return: all the audited exchange pairs;  
 
 # 33
@@ -296,11 +297,14 @@ Demo: curl -X Get  https://apilist.tronscan.org/api/exchanges/listall
 # 34
 **/api/exchange/transaction**  
 Desc: List a single the exchange pair's transaction records  
-Demo: curl -X Get  https://apilist.tronscan.org/api/exchange/transaction?sort=-timestamp&start=0&limit=15&exchangeID=9  
+Demo: curl -X Get  https://apilist.tronscan.org/api/exchange/transaction?sort=-timestamp&start=0&limit=15&exchangeID=9&address=TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t&start_timestamp=1529856000000&end_timestamp=1569490226162
 @param sort: define the sequence of the records return;  
 @param limit: page size for pagination;  
 @param start: query index for pagination;  
 @param exchangeID: exchange id;  
+@param address: query address;
+@param start_timestamp: query date range;  
+@param end_timestamp: query date range;  
 @return: a single the exchange pair's transaction records;  
 
 # 35
@@ -314,43 +318,45 @@ Demo: curl -X Get  https://apilist.tronscan.org/api/exchange/kgraph?exchange_id=
 @return: a single the exchange pair's trade chart data;  
 
 # 36
-**/api/exchange/kgraph**  
-Desc: List a single the exchange pair's trade chart data  
-Demo: curl -X Get  https://apilist.tronscan.org/api/exchange/kgraph?exchange_id=9&granularity=1h&time_start=1547510400&time_end=1548062933  
-@param start_timestamp: query date range;  
-@param end_timestamp: query date range;  
-@param granularity: data statistics time interval;  
-@param exchange_id: exchange id;  
-@return: a single the exchange pair's trade chart data;  
-
-# 37
 **/api/stats/overview**  
 Desc: Blockchain data overview in history  
-Demo: curl -X Get  https://apilist.tronscan.org/api/stats/overview  
-@param: null;  
+Demo: curl -X Get  https://apilist.tronscan.org/api/stats/overview?days=2
+@param days: days of statistic data, default 15
 @return: list of avgBlockTime, blockchainSize, newAddressSeen, newBlockSeen, newTransactionSeen, totalAddress, totalBlockCount, totalTransaction;  
 
-# 38
+# 37
 **/api/broadcast**  
 Desc: Broadcast a transaction to the blockchain  
 Demo: curl -X Post  https://apilist.tronscan.org/api/broadcast  
 @param: transaction: signature generated hex;  
 @return: broadcast result;  
 
-# 39
+# 38
 **/api/contract/events**   
 Desc: List the TRC-20 transfers related to a specified account(only display the latest 10,000 data records in the query time range)   
-Demo: curl -X Get  https://apilist.tronscan.org/api/contract/events?address=TSbJFbH8sSayRFMavwohY2P6QfKwQEWcaz&start=0&limit=20&start_timestamp=1548000000000&end_timestamp=1548056638507   
+Demo: curl -X Get  https://apilist.tronscan.org/api/contract/events?address=TSbJFbH8sSayRFMavwohY2P6QfKwQEWcaz&start=0&limit=20&start_timestamp=1529856000000&end_timestamp=1569490226162&contract=TNisVGhbxrJiEHyYUMPxRzgytUtGM7vssZ
 @param limit: page size for pagination;   
 @param start: query index for pagination;   
 @param start_timestamp: query date range;   
 @param end_timestamp: query date range;   
 @param address: an account;   
+@param contract: contractaddress
 @return: TRC-20 transfers list;   
+
+# 39
+**/api/internal-transaction**   
+Desc: List the internal transactions related to a specified contract (only display the latest 2,000 data records in the query time range)    
+Demo: curl -X Get  https://apilist.tronscan.org/api/internal-transaction?limit=20&start=0&contract=TWmhXhXjgXTj87trBufmWFuXtQP8sCWZZV&start_timestamp=1529856000000&end_timestamp=1552549684954    
+@param limit: page size for pagination;   
+@param start: query index for pagination;    
+@param start_timestamp: query date range;    
+@param end_timestamp: query date range;    
+@param contract: contract address;    
+@return: contract internal transactions list;   
 
 # 40
 **/api/internal-transaction**   
-Desc: List the internal transactions related to a specified account(only display the latest 10,000 data records in the query time range)    
+Desc: List the internal transactions related to a specified account (only display the latest 2,000 data records in the query time range)    
 Demo: curl -X Get  https://apilist.tronscan.org/api/internal-transaction?limit=20&start=0&address=TBTzh1N24TUinHHrnxZoAv7ouWrNe6M9n2&start_timestamp=1529856000000&end_timestamp=1552549684954    
 @param limit: page size for pagination;   
 @param start: query index for pagination;    
@@ -361,7 +367,7 @@ Demo: curl -X Get  https://apilist.tronscan.org/api/internal-transaction?limit=2
 
 # 41
 **/api/asset/transfer**   
-Desc: List the transfers related to a specified TRC10 token(only display the latest 10,000 data records in the query time range)   
+Desc: List the transfers related to a specified TRC10 token(only display the latest 2,000 data records in the query time range)   
 Demo: curl -X Get  https://apilist.tronscan.org/api/asset/transfer?limit=20&start=0&name=IGG&issueAddress=TSbhZijH2t7Qn1UAHAu7PBHQdVAvRwSyYr&start_timestamp=1529856000000&end_timestamp=1552549912537   
 @param limit: page size for pagination;   
 @param start: query index for pagination;   
@@ -373,7 +379,7 @@ Demo: curl -X Get  https://apilist.tronscan.org/api/asset/transfer?limit=20&star
 
 # 42
 **/api/token_trc20/transfers**   
-Desc: List the transfers related to a specified TRC20 token(only display the latest 10,000 data records in the query time range)   
+Desc: List the transfers related to a specified TRC20 token(only display the latest 2,000 data records in the query time range)   
 Demo: curl -X Get  https://apilist.tronscan.org/api/token_trc20/transfers?limit=20&start=0&contract_address=TCN77KWWyUyi2A4Cu7vrh5dnmRyvUuME1E&start_timestamp=1529856000000&end_timestamp=1552550375474   
 @param limit: page size for pagination;   
 @param start: query index for pagination;   
