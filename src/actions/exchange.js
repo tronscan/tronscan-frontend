@@ -196,7 +196,9 @@ export const setDelegateFailureObj = (item, type) => async (
   let localDelegate = Lockr.get("delegateFailureList");
   let obj = {};
   if (type == 1) {
-    obj = localDelegate;
+    if (localDelegate) {
+      obj = localDelegate;
+    }
   } else {
     obj = { ...exchange.delegateFailureList };
     obj[item.address] = item.delegateFailureList;

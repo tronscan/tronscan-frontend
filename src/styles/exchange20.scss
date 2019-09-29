@@ -30,6 +30,7 @@
     .exchange__transactionlist {
       flex: 1;
       position: relative;
+      max-width: 1084px;
       .filter-btn {
         position: absolute;
         font-size: 14px;

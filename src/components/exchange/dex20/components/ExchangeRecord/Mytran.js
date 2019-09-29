@@ -14,6 +14,7 @@ import { dateFormat } from "../../../../../utils/DateTime";
 import { setUpdateTran, setRedirctPair } from "../../../../../actions/exchange";
 import { TronLoader } from "../../../../common/loaders";
 import { Popover, Icon } from "antd";
+import { precisions } from "../../TokenPre";
 
 class Mytran extends Component {
   constructor(props) {
@@ -91,8 +92,17 @@ class Mytran extends Component {
       this.setState({
         isLoading: false
       });
+      let rows = data.rows || [];
+      rows = rows.filter(item => {
+        let key =
+          item.fShortName.toLowerCase() + "_" + item.sShortName.toLowerCase();
+        item.precisionPrice = precisions[key];
+        item.precisionAmount =
+          6 - precisions[key] < 0 ? 0 : 6 - precisions[key] < 0;
+        return item;
+      });
       if (code === 0) {
-        this.setState({ dataSource: data.rows, total: data.total });
+        this.setState({ dataSource: rows, total: data.total });
       }
     }
   };
@@ -112,7 +122,13 @@ class Mytran extends Component {
           return (
             <span>
               <FormattedDate value={Number(record.orderTime)} /> &nbsp;
-              <FormattedTime value={Number(record.orderTime)} />
+              <FormattedTime
+                value={Number(record.orderTime)}
+                hour="numeric"
+                minute="numeric"
+                second="numeric"
+                hour12={false}
+              />
               &nbsp;
             </span>
           );
@@ -154,7 +170,10 @@ class Mytran extends Component {
           intl.formatMessage({ id: "trc20_my_trans_header_price" })
         ),
         dataIndex: "price",
-        key: "price"
+        key: "price",
+        render: (text, record, index) => {
+          return <span>{record.price.toFixed(record.precisionPrice)}</span>;
+        }
       },
       {
         title: upperFirst(
@@ -165,7 +184,8 @@ class Mytran extends Component {
         render: (text, record, index) => {
           return (
             <span>
-              {record.volume} {record.fShortName}
+              {record.volume.toFixed(record.precisionAmount)}{" "}
+              {record.fShortName}
             </span>
           );
         }
@@ -179,7 +199,7 @@ class Mytran extends Component {
         render: (text, record, index) => {
           return (
             <span>
-              {this.numFormat(record.curTurnover.toFixed(4))}
+              {/* {this.numFormat(record.curTurnover.toFixed(4))} */}
               {record.sShortName}
             </span>
           );
@@ -191,7 +211,6 @@ class Mytran extends Component {
         ),
         dataIndex: "schedule",
         key: "schedule",
-
         render: (text, record, index) => {
           return record.orderType === 0 ? (
             <span className="col-green">

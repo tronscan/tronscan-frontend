@@ -30,7 +30,6 @@ class TransactionList extends Component {
 
     let oldList = prevProps.delegateFailureList[uAddr] || [];
     let newList = delegateFailureList[uAddr] || [];
-
     if (newList && oldList) {
       if (newList[0] && !oldList.includes(newList[0])) {
         this.setState({

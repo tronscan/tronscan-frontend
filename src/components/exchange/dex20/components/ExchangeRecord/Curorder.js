@@ -21,6 +21,7 @@ import { TronLoader } from "../../../../common/loaders";
 import { withTronWeb } from "../../../../../utils/tronWeb";
 import { Popover, Icon } from "antd";
 import { compare } from "../../../../../utils/exchanges";
+import { precisions } from "../../TokenPre";
 
 const confirm = Modal.confirm;
 
@@ -30,7 +31,7 @@ class Curorder extends Component {
     super(props);
     this.state = {
       start: 0,
-      limit: 10,
+      limit: 15,
       list: [],
       total: 0,
       timer: null,
@@ -74,7 +75,6 @@ class Curorder extends Component {
       account
     } = this.props;
     setUnConfirmOrderObj({}, 1);
-    setDelegateFailureObj({}, 1);
 
     this.getData(0);
     this.get2and8Data();
@@ -155,6 +155,10 @@ class Curorder extends Component {
     let { timer } = this.state;
     clearInterval(timer);
   }
+  async componentWillMount() {
+    const { setDelegateFailureObj } = this.props;
+    await setDelegateFailureObj({}, 1);
+  }
 
   render() {
     let { list, modal, isLoading, statusOp, total, limit } = this.state;
@@ -225,7 +229,10 @@ class Curorder extends Component {
           intl.formatMessage({ id: "trc20_cur_order_header_price" })
         ),
         dataIndex: "price",
-        key: "price"
+        key: "price",
+        render: (text, record, index) => {
+          return <span>{record.price.toFixed(record.precisionPrice)}</span>;
+        }
       },
       {
         title: upperFirst(
@@ -236,7 +243,7 @@ class Curorder extends Component {
         render: (text, record, index) => {
           return (
             <span>
-              {record.volume}
+              {record.volume.toFixed(record.precisionAmount)}
               {record.fShortName}
             </span>
           );
@@ -373,7 +380,6 @@ class Curorder extends Component {
   }
   async getData(startPage) {
     let start = startPage || this.state.start;
-
     let { limit } = this.state;
     let { account, showCurrent, exchangeData } = this.props;
     let uAddr = account ? account.address : "";
@@ -450,7 +456,7 @@ class Curorder extends Component {
     let delegateFailureList = contain28List.map(item => {
       if (
         curTime - item.orderTime < 7 * 24 * 60 * 60 * 1000 &&
-        item.orderStatus === 8
+        item.orderStatus === 7
       ) {
         return item.hash;
       }
@@ -611,6 +617,11 @@ class Curorder extends Component {
             item.orderStatus = 6;
           }
         });
+      let key =
+        item.fShortName.toLowerCase() + "_" + item.sShortName.toLowerCase();
+      item.precisionPrice = precisions[key];
+      item.precisionAmount =
+        6 - precisions[key] < 0 ? 0 : 6 - precisions[key] < 0;
       return item;
     });
 
