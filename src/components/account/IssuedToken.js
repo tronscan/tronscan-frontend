@@ -1,4 +1,5 @@
 import {connect} from "react-redux";
+import { Link } from 'react-router-dom';
 import React from "react";
 import {tu, t,option_t} from "../../utils/i18n";
 import {alpha} from "../../utils/str";
@@ -9,21 +10,24 @@ import {TokenLink, TokenTRC20Link, HrefLink, AddressLink} from "../common/Links"
 import AppealModal from './AppealModal'
 import xhr from "axios/index";
 import {FormattedDate, FormattedNumber, FormattedRelative, FormattedTime, injectIntl} from "react-intl";
-import {API_URL,CONTRACT_MAINNET_API_URL} from "../../constants";
+import { API_URL, CONTRACT_MAINNET_API_URL, TOKENTYPE, MARKET_API_URL, VERIFYSTATUS } from "../../constants";
 import { getTime} from "date-fns";
 import {CopyToClipboard} from "react-copy-to-clipboard";
 import {Tooltip} from "reactstrap";
 import { Popover, Button } from 'antd';
 import { IS_SUNNET, IS_MAINNET } from './../../constants';
 import MappingModal from './MappingModal';
+import SweetAlert from 'react-bootstrap-sweetalert';
 
 class IssuedToken extends React.Component{
     constructor() {
         super();
         this.state = {
+            modal: null,
             disabled: false,
             modalStatus: false,
             token20List: [],
+            marketInfoToken20: [],
             appealInfo: '',
             copied: false,
             id: alpha(24),
@@ -75,7 +79,9 @@ class IssuedToken extends React.Component{
           element = {holder, transfer20, ...element}
           arr.push(element)
         }
+        this.getMarketInfoToken20(arr);
         this.setState({token20List: arr})
+
       }
     }
 
@@ -96,12 +102,14 @@ class IssuedToken extends React.Component{
 
     componentDidUpdate(prevProps) {
       const {issuedAsset, account} = this.props
+      const { marketInfoToken10 } = this.state;
 
       if(account != prevProps.account){
         this.get20token()
       }
       if(issuedAsset && issuedAsset != prevProps.issuedAsset){
         this.getAppealRecent10(issuedAsset.ownerAddress)
+        this.getMarketInfoToken10();
       }
     }
 
@@ -109,6 +117,57 @@ class IssuedToken extends React.Component{
       if(IS_MAINNET){
           this.get20token()
       }
+    }
+
+    /**
+     * get market information token10
+     */
+    getMarketInfoToken10 = async() => {
+        const { issuedAsset } = this.props;
+        const { id } = issuedAsset || {};
+        if (!!id) {
+            const param = {
+                tokenIdOrAddr: id
+            };
+    
+            let { data: { data = {} } } = await xhr.post(`${MARKET_API_URL}/api/token/getTokenInfoByTokenIdOrAddr`, param);
+            const { tokenOtherInfo, description } = data;
+            const tokenOtherInfoObj = !!tokenOtherInfo ? JSON.parse(tokenOtherInfo) : {};
+            data.description = window.decodeURIComponent(description);
+            data = Object.assign(data, tokenOtherInfoObj);
+            this.setState({
+                marketInfoToken10: data,
+            });
+        }
+    }
+
+    /**
+     * get market information token20
+     */
+    getMarketInfoToken20 = async(token20List) => {
+        const addressArr = token20List && token20List.map(v => {
+            const param = {
+                tokenIdOrAddr: v.contract_address
+            };
+            return xhr.post(`${MARKET_API_URL}/api/token/getTokenInfoByTokenIdOrAddr`, param);
+        })
+        Promise.all([...addressArr])
+            .then(v => v && v.length === addressArr.length ? Promise.resolve(v) : Promise.reject(v))
+            .then(v => {
+                const token20Infos = v.map(item => {
+                    let { data: { data = {} } } = item;
+                    const { tokenOtherInfo, description } = data;
+                    const tokenOtherInfoObj = !!tokenOtherInfo ? JSON.parse(tokenOtherInfo) : {};
+                    data.description = window.decodeURIComponent(description);
+                    data = Object.assign(data, tokenOtherInfoObj);
+                    return data;
+                })
+
+                this.setState({
+                    marketInfoToken20: token20Infos,
+                })
+            })
+            .catch(e => { console.log(e); });
     }
 
     /**
@@ -151,12 +210,168 @@ class IssuedToken extends React.Component{
         return _.isEqual(mappedToSideChainList, sidechainList);
       }
     }
+    
+    /**
+     * get market token20 html
+     */
+    getMarketToken20Html = (index, item) => {
+        const { contract_address: address, decimals } = item;
+        const { marketInfoToken20 } = this.state;
+        const hasMarketToken20Data = marketInfoToken20 && marketInfoToken20.length > index;
+        const data = marketInfoToken20[index];
+        const { updateTime, verifyStatus } = data || {};
+        const { isShowEntry, isShowView, isShowUpdate } = this.getMarketBtnStatus(verifyStatus);
 
+        const enterItem = (
+            <a href='javascript:;' onClick={() => this.jumpPage(decimals, `/tokens/markets/create/${TOKENTYPE.TOKEN20}/${address}`)}>
+                <Tag color="blue">{tu('application_entry')}</Tag>
+            </a>
+        );
+
+        const updateItem = (
+            <a href='javascript:;' onClick={() => this.jumpPage(decimals, `/tokens/markets/update/${TOKENTYPE.TOKEN20}/${address}`, data)}>
+                <Tag color="blue">{tu('market_update')}</Tag>
+            </a>
+        );
+
+        return <tr className="line-2">
+            <td><div className="tip">2</div></td>
+            <td>
+                {isShowEntry && enterItem}
+                {isShowUpdate && updateItem}
+            </td>
+            <td>{tu('input_market')}</td>
+            <td></td>
+            <td className="text-light">
+                {hasMarketToken20Data && verifyStatus === VERIFYSTATUS.APPROVED && verifyStatus === VERIFYSTATUS.RECOMMENDED &&
+                    <div>
+                        {tu('pass_time')}:
+                        <FormattedDate value={updateTime}/>
+                        <FormattedTime value={updateTime}  hour='numeric' minute="numeric" second='numeric' hour12={false}/>
+                    </div>}
+            </td>
+            <td></td>
+            <td>
+                {isShowView && <a >{tu('check_market_detail')}</a>}
+            </td>
+        </tr>
+    }
+
+    /**
+     * get market token10 html
+     */
+    getMarketToken10Html = () => {
+        const { marketInfoToken10 } = this.state;
+        const { issuedAsset } = this.props;
+        const { id, precision } = issuedAsset || {};
+        const { updateTime, verifyStatus } = marketInfoToken10 || {};
+        const { isShowEntry, isShowView, isShowUpdate } = this.getMarketBtnStatus(verifyStatus);
+
+        const enterItem = (
+            <a href='javascript:;' onClick={() => this.jumpPage(precision, `/tokens/markets/create/${TOKENTYPE.TOKEN10}/${id}`)}>
+                <Tag color="blue">{tu('application_entry')}</Tag>
+            </a>
+        );
+
+        const updateItem = (
+            <a href='javascript:;' onClick={() => this.jumpPage(precision, `/tokens/markets/update/${TOKENTYPE.TOKEN10}/${id}`, marketInfoToken10)}>
+                <Tag color="blue">{tu('market_update')}</Tag>
+            </a>
+        );
+        return <tr className="line-2">
+            <td><div className="tip">2</div></td>
+            <td>
+                {isShowEntry && enterItem}
+                {isShowUpdate && updateItem}
+            </td>
+            <td>{tu('input_market')}</td>
+            <td></td>
+            <td className="text-light">
+                {verifyStatus === VERIFYSTATUS.APPROVED && verifyStatus === VERIFYSTATUS.RECOMMENDED &&
+                    <div>
+                        {tu('pass_time')}:
+                        <FormattedDate value={updateTime}/>
+                        <FormattedTime value={updateTime}  hour='numeric' minute="numeric" second='numeric' hour12={false}/>
+                    </div>}
+            </td>
+            <td></td>
+            <td>
+                {isShowView && <a >{tu('check_market_detail')}</a>}
+            </td>
+        </tr>
+    };
+
+    /**
+     * precision error
+     */
+    showPrecisionModal = () => {
+        const { intl } = this.props;
+        this.setState({
+            loading: false,
+            step:0,
+            modal: <SweetAlert
+                error
+                title=""
+                confirmBtnText={intl.formatMessage({ id: 'confirm' })}
+                confirmBtnBsStyle="danger"
+                onConfirm={this.hidePrecisionModal}
+                style={{ marginLeft: '-240px', marginTop: '-195px' }}
+            >
+                {tu('precision_error')}
+            </SweetAlert>
+        });
+    }
+
+    /**
+     * close
+     */
+    hidePrecisionModal = () => {
+        this.setState({
+            modal: null,
+        });
+    };
+
+    /**
+     * jump page
+     */
+    jumpPage = (precision, url, tokenInfo) => {
+        const { history } = this.props;
+
+        if (precision > 8) {
+          this.showPrecisionModal();
+          return false;
+        }
+
+        if (!history) {
+            return false;
+        }
+
+        if (Number(precision) > 8) {
+            return false;
+        }
+        history.push({
+            pathname: url,
+            state: {
+                tokenInfo
+            }
+        });
+    }
+
+    /**
+     * get market button status
+     */
+    getMarketBtnStatus = (verifyStatus) => {
+        return {
+            isShowEntry: !verifyStatus && verifyStatus !== 0,
+            isShowView: verifyStatus > VERIFYSTATUS.ENTRY && verifyStatus !== VERIFYSTATUS.REJECTED && verifyStatus !== VERIFYSTATUS.SHELVES,
+            isShowUpdate: verifyStatus < VERIFYSTATUS.APPROVED 
+        };
+    }
 
     render() {
       const issuedAsset = this.props.issuedAsset;
       const { token20List, appealInfo, copied, id, isShowMappingModal, currency,
-        address } = this.state;
+        address, modal } = this.state;
       const { account, intl, currentWallet, unfreezeAssetsConfirmation, sidechains, walletType } = this.props;
 
       const isPrivateKey =  walletType.type === "ACCOUNT_PRIVATE_KEY";
@@ -227,6 +442,7 @@ class IssuedToken extends React.Component{
 
         return (
           <div className="mt-4">
+          {modal}
           {(Boolean(token20List.length) || issuedAsset) && <h4 style={{ marginBottom: '-0.5rem' }}>{tu('token_input_success_myaccount')}</h4>}
           <div>{issuedAsset && 
             <div className="tf-card mt-3">
@@ -372,16 +588,8 @@ class IssuedToken extends React.Component{
                       id={issuedAsset && issuedAsset.id}/></td>
                     </tr>
                     
-                  {/* <tr className="line-2">
-                      <td><div className="tip">2</div></td>
-                      <td><Tag color="blue">{tu('application_entry')}</Tag></td>
-                      <td>{tu('input_market')}</td>
-                      <td></td>
-                      <td className="text-light">{tu('pass_time')}:2019-03-04 20:00:00</td>
-                      <td></td>
-                      <td><a >{tu('check_market_detail')}</a></td>
-                    </tr>
-                    <tr className="line-3">
+                    {this.getMarketToken10Html()}
+                    {/* <tr className="line-3">
                       <td></td>
                       <td><Tag color="blue">{tu('application_entry')}</Tag></td>
                       <td>{tu('input_abcc')}</td>
@@ -503,17 +711,8 @@ class IssuedToken extends React.Component{
                             <TokenTRC20Link name={tu('check_token_detail')} address={token20Item.contract_address}/>
                           </td>
                         </tr>
-                        {/**
-                        <tr className="line-2">
-                          <td><div className="tip">2</div></td>
-                          <td><Tag color="blue">{tu('application_entry')}</Tag></td>
-                          <td>{tu('input_market')}</td>
-                          <td></td>
-                          <td className="text-light">{tu('pass_time')}:2019-03-04 20:00:00</td>
-                          <td></td>
-                          <td><a >{tu('check_market_detail')}</a></td>
-                        </tr>
-                        <tr className="line-3">
+                        {this.getMarketToken20Html(index, token20Item)}
+                        {/* <tr className="line-3">
                           <td></td>
                           <td><Tag color="blue">{tu('application_entry')}</Tag></td>
                           <td>{tu('input_abcc')}</td>

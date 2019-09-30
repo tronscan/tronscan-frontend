@@ -50,7 +50,9 @@ import {
     Block,
     Transaction,
     Address,
-    DevelopersRewardAsync
+    DevelopersRewardAsync,
+    TokensMarketsCreateAsync,
+    TokensMarketsAddListAsync
 } from "./components/async";
 
 export const routes = [
@@ -251,7 +253,20 @@ export const routes = [
         component: TokensCreateAsync,
         showInMenu: false
       },
-
+      {
+        label: "token_markets_input",
+        path: "/tokens/markets/add/:page/:id",
+        icon: "fa fa-plus-square",
+        component: TokensMarketsAddListAsync,
+        showInMenu: IS_MAINNET ? true : false
+      },
+      {
+        label: "token_markets_input",
+        path: "/tokens/markets/:page/:type/:id",
+        icon: "fa fa-plus-square",
+        component: TokensMarketsCreateAsync,
+        showInMenu: IS_MAINNET ? true : false
+      },
     ]
   },
   {

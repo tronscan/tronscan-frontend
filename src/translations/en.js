@@ -1768,7 +1768,7 @@ export const messages = {
   "type_pass": "approved",
   "type_appeal": "request processing",
   "Appeal": "request",
-  "input_market": "log in to trx.market (10 more items to fill in)",
+  "input_market": "log in to TRXMARKET",
   "input_abcc": "log in to abcc (12 more items to fill in)",
   "input_cmc": "get listed on CMC (10 more items to fill in)",
   "holder_amount": "Token holders",

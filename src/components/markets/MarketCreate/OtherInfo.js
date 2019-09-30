@@ -66,12 +66,11 @@ export class OtherInfo extends Component {
     }
 
     render() {
-        const { params: { tokenAdditionalInfoN3 = {} } } = this.props;
-        const { otherInformation = {} } = tokenAdditionalInfoN3;
+        const { params } = this.props;
         const { keyBusDevAndPart, linkToAllTronWallet, relationshipWithAnyTronSR, whichExchangesTradedOn,
             yourAvg24HVolume, theTop3ReasonsYouShouldBeListed, citeYourSources, top3Things,
             youSupportYourCoinProjectTime, productDemoLink, allYourProductsLink, circulatingSupply,
-            top5HoldersOfYourToken } = otherInformation;
+            top5HoldersOfYourToken } = params;
         const { modal } = this.state;
         const { form: { getFieldDecorator } } = this.props;
 

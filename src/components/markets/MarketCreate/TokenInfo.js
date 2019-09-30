@@ -54,48 +54,14 @@ export class TokenInfo extends Component {
     };
 
     render() {
-        const { params: { tokenAdditionalInfoN1 = {} } } = this.props;
-        const { tokenInformation = {}, saleInformatiom = {}  } = tokenAdditionalInfoN1;
-        const { tokenType, totalSupply, tokenProceedsUsage, tokenReleaseSchedule, currentTokenUtility,
-            futureTokenUtility } = tokenInformation;
-        const { seedSaleTokenPrice, amountRaisedInSeedSale, seedSaleStartAndEndDate, seedSaleDisPlan,
+        const { params } = this.props;
+        const { tokenProceedsUsage, tokenReleaseSchedule, currentTokenUtility,
+            futureTokenUtility, seedSaleTokenPrice, amountRaisedInSeedSale, seedSaleStartAndEndDate, seedSaleDisPlan,
             privateSaleTokenPrice, amountRaisedInPrivateSale, privateSaleStartAndCompletionDate, privateSaleDisPlan,
             publicSaleTokenPrice, publicSaleTargetAmount, publicSaleStartAndEndDate, publicSaleDisPlan,
-            totalAmountOfFundsRaised, initialCirculatingSupply } = saleInformatiom;
-        const { modal } = this.state;
+            totalAmountOfFundsRaised, initialCirculatingSupply } = params;
         const { form: { getFieldDecorator } } = this.props;
-        // token type item
-        const tokenTypeItem = (
-            <Col span={24} md={11}>
-                <Form.Item label="Token Type">
-                    {getFieldDecorator('tokenType', {
-                        initialValue: tokenType,
-                        rules: [
-                            { required: true, message: 'Token Type is required', whitespace: true },
-                        ]
-                    })(
-                        <Input placeholder="TRC10/TRC20" />
-                    )}
-                </Form.Item>
-            </Col>
-        );
-
-        // Total Supply item
-        const totalSupplyItem = (
-            <Col span={24} md={11}>
-                <Form.Item label="Total Supply">
-                    {getFieldDecorator('totalSupply', {
-                        initialValue: totalSupply,
-                        rules: [
-                            { required: true, message: 'Total Supply is required', whitespace: true },
-                        ]
-                    })(
-                        <Input />
-                    )}
-                </Form.Item>
-            </Col>
-        );
-
+        
         // Token Proceeds Uage item
         const tokenProceedsItem = (
             <Col span={24} md={24}>
@@ -334,8 +300,6 @@ export class TokenInfo extends Component {
                 <h4 className="mb-3 mt-3">Token Information</h4>
                 <hr/>
                 <Row gutter={24} type="flex" justify="space-between" className="px-2">
-                    {tokenTypeItem}
-                    {totalSupplyItem}
                     {tokenProceedsItem}
                     {tokenReleaseItem}
                     {currentTokenItem}

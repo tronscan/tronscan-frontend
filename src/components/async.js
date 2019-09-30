@@ -73,6 +73,12 @@ export const TokenAllAsync =
 export const TokensCreateAsync = 
   loadable(() => import(/* webpackChunkName: "TokensCreate" */ './tokens/TokenCreate/index'))
 
+export const TokensMarketsCreateAsync = 
+    loadable(() => import(/* webpackChunkName: "TokensCreate" */ './markets/TokenCreate/index'))
+
+export const TokensMarketsAddListAsync = 
+    loadable(() => import(/* webpackChunkName: "MarketCreate" */ './markets/MarketCreate/index'))
+
 export const AccountsAsync = 
   loadable(() => import(/* webpackChunkName: "Accounts" */ './Accounts'))
 

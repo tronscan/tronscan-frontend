@@ -19,9 +19,10 @@ export const ASSET_ISSUE_COST = 1024 * ONE_TRX;
 export const PUBLIC_URL = process.env.PUBLIC_URL || window.location.origin;
 //export const API_URL = process.env.API_URL;
 export const API_URL_SUNNET = 'https://dappchainapi.tronscan.org';
-export const API_URL_MAINNET = 'https://apilist.tronscan.org';
+// export const API_URL_MAINNET = 'https://apilist.tronscan.org';
 export const API_URL = IS_SUNNET?API_URL_SUNNET:process.env.API_URL;
 export const CONTRACT_MAINNET_API_URL = process.env.API_URL; 
+export const MARKET_API_URL = 'http://172.16.21.165:7001';
 
 
 
@@ -90,3 +91,32 @@ export const SUNWEBCONFIG = {
     SIDECHAIN: 'TPtpbcBL4i4byBziP48nNf2McMY8dbw3ko',
     SIDEID: '4123AE0A7DAE104020CB076E4517538747AAFAF862',
 };
+
+// token type
+export const TOKENTYPE = {
+    TOKEN10: 'trc10',
+    TOKEN20: 'trc20',
+};
+
+// market basic page
+export const MARKETPAGE = {
+    CREATE: 'create',
+    UPDATE: 'update',
+};
+
+// market token verify status
+export const VERIFYSTATUS = {
+    ENTRY: 0, // entry
+    NOTRECOMMENDED: 1, // not recommended
+    TOAUDIT: 2, // to audit
+    APPROVED: 3, // reviewed for recommendation
+    RECOMMENDED: 4, // reviewed and recommended
+    REJECTED: 5, // rejected
+    SHELVES: 6, // the shelves
+};
+
+// JSEncrypt key
+export const JSENCRYPTKEY = `-----BEGIN PUBLIC KEY-----MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCezlJJy/F7LO5+fmIcUjWq0APOILbzUEAcMyK/1VK7d5G0vb58thDtG0rK72uzFA1e0SByI2Hdqy0JbE8a2+cSIBN1y9iKw4WW5MJLBZXrMZmUjcgHYCbH7yjbDOOGCXtmINaNeLOcieLVvf7fDQaRAJniNuDgNtqjqtMuOFfApQIDAQAB-----END PUBLIC KEY-----`;
+
+// market token entry fromId
+export const FROMID = 1;

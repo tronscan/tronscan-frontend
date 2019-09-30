@@ -1761,7 +1761,7 @@ export const messages = {
   "type_pass": "одобрен ",
   "type_appeal": "заявка обрабатывается",
   "Appeal": "заявка",
-  "input_market": "войти в trx.market (еще 10 пунктов для заполнения)",
+  "input_market": "войти в TRXMARKET",
   "input_abcc": "войти в abcc (еще 10 пунктов для заполнения)",
   "input_cmc": "войти в CMC (еще 10 пунктов для заполнения)",
   "holder_amount": "количество владельцев токенов",

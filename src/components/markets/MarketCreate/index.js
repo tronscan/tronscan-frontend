@@ -10,8 +10,9 @@ import { Form } from 'antd';
 import { Client } from './../../../services/api';
 import moment from 'moment';
 import SweetAlert from 'react-bootstrap-sweetalert';
-import { MARKETPAGE, API_URL } from './../../../constants';
+import { MARKETPAGE, API_URL, MARKET_API_URL } from './../../../constants';
 import xhr from 'axios/index';
+import NavigationPrompt from 'react-router-navigation-prompt';
 
 @connect(
     (state, ownProp) => ({
@@ -41,17 +42,36 @@ export class MarketCreate extends Component {
     componentDidMount() {
     }
 
-    showModal = (msg) => {
+    showSucessModal = () => {
+        let { intl } = this.props;
+        this.setState({
+            modal: <SweetAlert
+                success
+                title=""
+                confirmBtnText={intl.formatMessage({ id: 'confirm' })}
+                confirmBtnBsStyle="danger"
+                onConfirm={this.hideModal}
+                style={{ marginLeft: '-240px', marginTop: '-195px' }}
+            >
+                <p>{tu('market_other_success')}</p>
+                <p>{tu('market_other_success_desc')}</p>
+            </SweetAlert>
+        }
+        );
+    }
+
+    showErrorModal = (msg) => {
         let { intl } = this.props;
         this.setState({
             modal: <SweetAlert
                 error
+                title=""
                 confirmBtnText={intl.formatMessage({ id: 'confirm' })}
-                confirmBtnBsStyle="success"
+                confirmBtnBsStyle="danger"
                 onConfirm={this.hideModal}
                 style={{ marginLeft: '-240px', marginTop: '-195px' }}
             >
-                {tu(msg)}
+                {msg}
             </SweetAlert>
         }
         );
@@ -73,6 +93,7 @@ export class MarketCreate extends Component {
                 break;
             case 0:
             default:
+                this.props.history.replace('/account');
                 break;
         }
 
@@ -82,37 +103,24 @@ export class MarketCreate extends Component {
     };
 
     submit = (e) => {
-        const { page, form: { validateFields, getFieldsValue }, history } = this.props;
-        const { step, params } = this.state;
+        const { form: { getFieldsValue } } = this.props;
+        const { step, params, leave_lock } = this.state;
         const values = getFieldsValue();
-
-        let newParams = params;
+        let newParams = Object.assign(params, values);
         let newStep = step;
         switch (step) {
             case 1:
-                validateFields((err, values) => {
-                    newParams = Object.assign({}, values);
-                    newStep += 1;
-                });
+                newStep += 1;
                 break;
             case 2:
-
+                this.additionalInfo();
                 break;
             case 0:
             default:
-                validateFields((err, values) => {
-                    const tokenInformation = {
-
-                    };
-                    const saleInformatiom = {
-
-                    };
-                    newParams = Object.assign({}, values);
-                    newStep += 1;
-                });
+                newStep += 1;
                 break;
-        }
-
+            }
+        
         this.setState({
             step: newStep,
             params: newParams,
@@ -136,10 +144,140 @@ export class MarketCreate extends Component {
         }
     }
 
-    additionalInfo = async() => {
+    /**
+     * the assembly data
+     */
+    assemblyData = () => {
+        const { id } = this.props;
         const { params } = this.state;
-        //
-        const { data } = await xhr.post(`${API_URL}/api/solidity/contract/verify`, params);
+        const { tokenProceedsUsage, tokenReleaseSchedule, currentTokenUtility,
+            futureTokenUtility, seedSaleTokenPrice, amountRaisedInSeedSale, seedSaleStartAndEndDate,
+            seedSaleDisPlan, privateSaleTokenPrice, amountRaisedInPrivateSale,
+            privateSaleStartAndCompletionDate, privateSaleDisPlan, publicSaleTokenPrice,
+            publicSaleTargetAmount, publicSaleStartAndEndDate, publicSaleDisPlan, totalAmountOfFundsRaised,
+            initialCirculatingSupply, teamOverview, howDidYourTeamMeet, teamMembersBased, teamMemberFullTime,
+            teamLockUpPlan,technicalOverview, topGithubRep, socialCommunityOverview, competitorOverview,
+            DappRadarOrDappReviewRanking, productUsage, roadmap, marketingPlan, keyBusDevAndPart, linkToAllTronWallet,
+            relationshipWithAnyTronSR, whichExchangesTradedOn, yourAvg24HVolume, theTop3ReasonsYouShouldBeListed,
+            citeYourSources, top3Things, youSupportYourCoinProjectTime, productDemoLink, allYourProductsLink,
+            circulatingSupply, top5HoldersOfYourToken } = params;
+
+        const tokenInformation = {
+            tokenProceedsUsage,
+            tokenReleaseSchedule,
+            currentTokenUtility,
+            futureTokenUtility
+        };
+        const saleInformatiom = {
+            seedSaleTokenPrice,
+            amountRaisedInSeedSale,
+            seedSaleStartAndEndDate,
+            seedSaleDisPlan,
+            privateSaleTokenPrice,
+            amountRaisedInPrivateSale,
+            privateSaleStartAndCompletionDate,
+            privateSaleDisPlan,
+            publicSaleTokenPrice,
+            publicSaleTargetAmount,
+            publicSaleStartAndEndDate,
+            publicSaleDisPlan,
+            totalAmountOfFundsRaised,
+            initialCirculatingSupply,
+        };
+
+        const tokenAdditionalInfoN1 = {
+            tokenInformation,
+            saleInformatiom
+        };
+
+
+        const teamInfomation = {
+            teamOverview,
+            howDidYourTeamMeet,
+            teamMembersBased,
+            teamMemberFullTime,
+            teamLockUpPlan
+        };
+        const overview = {
+            technicalOverview,
+            topGithubRep,
+            socialCommunityOverview,
+            competitorOverview,
+            DappRadarOrDappReviewRanking,
+            productUsage,
+            roadmap,
+            marketingPlan
+        };
+        const tokenAdditionalInfoN2 = {
+            teamInfomation,
+            overview
+        };
+
+        const otherInformation = {
+            keyBusDevAndPart,
+            linkToAllTronWallet,
+            relationshipWithAnyTronSR,
+            whichExchangesTradedOn,
+            yourAvg24HVolume,
+            theTop3ReasonsYouShouldBeListed,
+            citeYourSources,
+            top3Things,
+            youSupportYourCoinProjectTime,
+            productDemoLink,
+            allYourProductsLink,
+            circulatingSupply,
+            top5HoldersOfYourToken,
+        };
+
+        const tokenAdditionalInfoN3 = {
+            otherInformation,
+        };
+
+        return {
+            tokenAdditionalInfoN1,
+            tokenAdditionalInfoN2,
+            tokenAdditionalInfoN3,
+            id,
+        };
+    }
+
+    /**
+     * submit form
+     */
+    additionalInfo = async() => {
+        let { intl } = this.props;
+        const isSubmit = this.validateForm();
+        if (!isSubmit) {
+            this.showErrorModal(intl.formatMessage({ id: 'market_other_v_required' }));
+            return false;
+        }
+        const infoData = this.assemblyData();
+        const { data: { code } } = await xhr.post(`${MARKET_API_URL}/api/token/additionalInfo`, infoData);
+        if (code === 200) {
+            this.showSucessModal();
+        } else {
+            this.showErrorModal(intl.formatMessage({ id: 'market_other_error' }));
+        }
+    }
+
+    /**
+     * validate form
+     */
+    validateForm = () => {
+        const { params } = this.state;
+        const arr = params && Object.keys(params);
+        let isSubmit = false;
+        for (let i = 0; i < arr.length; i++) {
+            if (!!params[arr[i]]) {
+                isSubmit = true;
+                break;
+            }
+        }
+        return isSubmit;
+    }
+
+    navigationchange(nextLocation){
+        return nextLocation && nextLocation.pathname.indexOf('/tokens/markets/add') == -1;
     }
 
     render() {
@@ -157,6 +295,23 @@ export class MarketCreate extends Component {
                         <button className="ml-4 btn btn-danger btn-lg" onClick={this.submit}>{tu('next')}</button>
                     </div>
                 </Form>
+                <NavigationPrompt when={(currentLocation, nextLocation) => this.navigationchange(nextLocation)}>
+                    {({ onConfirm, onCancel }) => (
+                        <SweetAlert
+                            info
+                            showCancel
+                            title={tu('leave_tip')}
+                            confirmBtnText={tu('confirm')}
+                            cancelBtnText={tu('cancel')}
+                            cancelBtnBsStyle="default"
+                            confirmBtnBsStyle="danger"
+                            onConfirm={onConfirm}
+                            onCancel={onCancel}
+                            style={{ marginLeft: '-240px', marginTop: '-195px' }}
+                        >
+                        </SweetAlert>
+                    )}
+                </NavigationPrompt>
             </main>
         );
     }

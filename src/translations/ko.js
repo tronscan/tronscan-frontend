@@ -1744,7 +1744,7 @@ export const messages = {
   "type_pass": "통과됨",
   "type_appeal": "컴플레인 처리 중",
   "Appeal": "컴플레인",
-  "input_market": "trx.market 거래소 입력(10개 정보 추가 입력)",
+  "input_market": "TRXMARKET 거래소 입력",
   "input_abcc": "abcc 거래소 입력(12개 정보 추가 입력)",
   "input_cmc": "CMC에 상장합니다(10개 정보 추가 입력)",
   "holder_amount": "보유자 수량",

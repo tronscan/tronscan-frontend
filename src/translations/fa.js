@@ -1751,7 +1751,7 @@ export const messages = {
     "type_pass": "تایید شده",
     "type_appeal": "روند درخواست تجدید نظر",
     "Appeal": "درخواست",
-    "input_market": "جهت ورود به trx.market (10 مورد دیگر را پر کنید).",
+    "input_market": "جهت ورود به TRXMARKET",
     "input_abcc": "جهت ورود به abcc (12 مورد دیگر را پر کنید).",
     "input_cmc": "جهت اضافه شدن در لیست  CMC ذکر شده (10 مورد دیگررا پر کنید).",
     "holder_amount": "تعداد دارندگان توکن",

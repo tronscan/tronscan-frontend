@@ -1759,7 +1759,7 @@ export const messages = {
   "type_pass": "aprobado",
   "type_appeal": "solicitud en proceso",
   "Appeal": "solicitud",
-  "input_market": "inicia sesión en trx.market (10 campos más a completar)",
+  "input_market": "inicia sesión en TRXMARKET",
   "input_abcc": "inicia sesión en abcc (12 campos más a completar)",
   "input_cmc": "listar en CMC (10 campos más a completar)",
   "holder_amount": "número de holders del token",

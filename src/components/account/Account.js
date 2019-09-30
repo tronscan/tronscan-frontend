@@ -64,8 +64,8 @@ import SignModal from './SignModal';
 @injectIntl
 @withTronWeb
 export default class Account extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       modal: null,
       showFreezeBalance: false,
@@ -1915,7 +1915,7 @@ export default class Account extends Component {
             </div>
           </div>
           {
-            !IS_SUNNET && <IssuedToken issuedAsset={issuedAsset} loadAccount={this.loadAccount} unfreezeAssetsConfirmation={this.unfreezeAssetsConfirmation}/>
+            !IS_SUNNET && <IssuedToken {...this.props} issuedAsset={issuedAsset} loadAccount={this.loadAccount} unfreezeAssetsConfirmation={this.unfreezeAssetsConfirmation} />
           }
           {
             false &&

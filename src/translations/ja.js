@@ -1756,7 +1756,7 @@ export const messages = {
   "type_pass": "承認済",
   "type_appeal": "報告処理中",
   "Appeal": "報告",
-  "input_market": "trx.market取引所に入力します（情報を10点のみ補充します）",
+  "input_market": "TRXMARKET取引所に入力します",
   "input_abcc": "abcc取引所に入力します（情報を12点のみ補充します）",
   "input_cmc": "CMCに上場します（情報を10点のみ補充します）",
   "holder_amount": "所有者数量",

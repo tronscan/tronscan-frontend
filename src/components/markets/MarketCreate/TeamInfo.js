@@ -54,12 +54,10 @@ export class TeamInfo extends Component {
     };
 
     render() {
-        const { params: { tokenAdditionalInfoN2 = {} } } = this.props;
-        const { teamInfomation = {}, overview = {} } = tokenAdditionalInfoN2;
+        const { params } = this.props;
         const { teamOverview, howDidYourTeamMeet, teamMembersBased, teamMemberFullTime,
-            teamLockUpPlan } = teamInfomation;
-        const { technicalOverview, topGithubRep, socialCommunityOverview, competitorOverview,
-            DappRadarOrDappReviewRanking, productUsage, roadmap, marketingPlan } = overview;
+            teamLockUpPlan, technicalOverview, topGithubRep, socialCommunityOverview, competitorOverview,
+            DappRadarOrDappReviewRanking, productUsage, roadmap, marketingPlan } = params;
         const { modal } = this.state;
         const { form: { getFieldDecorator } } = this.props;
 
