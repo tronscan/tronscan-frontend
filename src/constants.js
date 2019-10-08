@@ -10,8 +10,8 @@ export const IS_DESKTOP = process.env.DESKTOP === 'true';
 //export const IS_MAINNET = Lockr.get('NET') === 'mainnet' || !Lockr.get('NET');
 //export const IS_SUNNET =  Lockr.get('NET') === 'sunnet';
 export const NETURL = {
-    MAINNET:'https://debug.tronscan.org',
-    SUNNET:'https://debugdappchain.tronscan.org',
+    MAINNET:'https://tronscan.org',
+    SUNNET:'https://dappchain.tronscan.org',
 }
 export const IS_MAINNET = window.location.origin === NETURL.MAINNET;
 export const IS_SUNNET =  window.location.origin === NETURL.SUNNET;
@@ -28,6 +28,9 @@ export const API_URL_SUNNET = 'https://dappchainapi.tronscan.org';
 export const API_URL_MAINNET = 'https://apilist.tronscan.org';
 export const API_URL = IS_SUNNET?API_URL_SUNNET:process.env.API_URL;
 export const CONTRACT_MAINNET_API_URL = process.env.API_URL; 
+
+
+
 
 
 
