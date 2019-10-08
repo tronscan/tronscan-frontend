@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/editor.worker.js"
   },
   {
-    "revision": "6cfe5600a2a6cfee26f8c5bccc5b89f5",
+    "revision": "fed3610fcf800c73074758da8e72ec2e",
     "url": "/index.html"
   },
   {
