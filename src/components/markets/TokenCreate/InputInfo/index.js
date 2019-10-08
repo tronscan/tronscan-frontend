@@ -37,7 +37,6 @@ export class InputInfo extends Component {
                 confirmBtnText={intl.formatMessage({ id: 'confirm' })}
                 confirmBtnBsStyle="success"
                 onConfirm={this.hideModal}
-                style={{ marginLeft: '-240px', marginTop: '-195px' }}
             >
                 {tu(msg)}
             </SweetAlert>
@@ -66,7 +65,7 @@ export class InputInfo extends Component {
     }
 
     render() {
-        const { intl, nextStep } = this.props;
+        const { intl } = this.props;
         const { modal } = this.state;
         const { form } = this.props;
         return (

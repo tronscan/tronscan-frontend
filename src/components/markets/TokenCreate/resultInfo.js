@@ -37,7 +37,7 @@ export class resultInfo extends Component {
      * to TRXMarket trading
      */
     toTrading = () => {
-        window.location.href = '#/tokens/markets/add/team/3';
+        window.location.href = 'https://trx.market/';
     }
 
     /**
@@ -50,7 +50,6 @@ export class resultInfo extends Component {
 
     render() {
         let { id, msg } = this.state;
-        console.log(id, '====')
 
         // error item
         const errorItem = (

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { tu } from '../../../../utils/i18n';
 import { Form, Row, Col, Input } from 'antd';
+import { URLREGEXP } from './../../../../constants';
 
 export class SocialInfo extends Component {
     constructor(props) {
@@ -23,7 +24,7 @@ export class SocialInfo extends Component {
                     {getFieldDecorator('home_page', {
                         rules: [
                             { required: true, message: tu('no_url_error'), whitespace: true },
-                            { pattern: /^((ht|f)tps?):\/\/[\w\-]+(\.[\w\-]+)+([\w\-.,@?^=%&:\\/~+#]*[\w\-@?^=%&\\/~+#])?$/, message: tu('no_url_error'), whitespace: true },
+                            { pattern: URLREGEXP, message: tu('url_v_format'), whitespace: true },
                         ],
                     })(
                         <Input placeholder={intl.formatMessage({ id: 'project_website' })}/>
@@ -76,7 +77,11 @@ export class SocialInfo extends Component {
         const whitepaperAddressItem = (
             <Col span={24}  md={11} className='d-block'>
                 <Form.Item label={tu('white_paper')}>
-                    {getFieldDecorator('white_paper', {})(
+                    {getFieldDecorator('white_paper', {
+                        rules: [
+                            { pattern: URLREGEXP, message: tu('white_paper_v_format'), whitespace: true }
+                        ]
+                    })(
                         <Input placeholder={intl.formatMessage({ id: 'whitepaper_address' })}/>
                     )}
                 </Form.Item>
@@ -87,7 +92,11 @@ export class SocialInfo extends Component {
         const constractCodeLinkItem = (
             <Col  span={24} md={11}>
                 <Form.Item label={tu('constract_code_link')}>
-                    {getFieldDecorator('contractCodeUrl')(
+                    {getFieldDecorator('contractCodeUrl', {
+                        rules: [
+                            { pattern: URLREGEXP, message: tu('constract_code_link_v_format'), whitespace: true }
+                        ]
+                    })(
                         <Input placeholder={intl.formatMessage({ id: 'constract_code_link' })}/>
                     )}
                 </Form.Item>
@@ -98,7 +107,11 @@ export class SocialInfo extends Component {
         const redditAccountItem = (
             <Col  span={24} md={11}>
                 <Form.Item label={tu('reddit_account')}>
-                    {getFieldDecorator('reddit')(
+                    {getFieldDecorator('reddit', {
+                        rules: [
+                            { pattern: URLREGEXP, message: tu('reddit_account_v_format'), whitespace: true }
+                        ]
+                    })(
                         <Input placeholder={intl.formatMessage({ id: 'reddit_account' })}/>
                     )}
                 </Form.Item>
@@ -109,7 +122,11 @@ export class SocialInfo extends Component {
         const icoAddressItem = (
             <Col  span={24} md={11}>
                 <Form.Item label={tu('ico_address')}>
-                    {getFieldDecorator('icoAddress')(
+                    {getFieldDecorator('icoAddress', {
+                        rules: [
+                            { pattern: URLREGEXP, message: tu('ico_address_v_format'), whitespace: true }
+                        ]
+                    })(
                         <Input placeholder={intl.formatMessage({ id: 'ico_address' })}/>
                     )}
                 </Form.Item>
@@ -131,7 +148,11 @@ export class SocialInfo extends Component {
         const coinMarketCap = (
             <Col  span={24} md={11}>
                 <Form.Item label={tu('coin_market_cap')}>
-                    {getFieldDecorator('coinMarketCapUrl')(
+                    {getFieldDecorator('coinMarketCapUrl', {
+                        rules: [
+                            { pattern: URLREGEXP, message: tu('coin_market_v_format'), whitespace: true }
+                        ]
+                    })(
                         <Input placeholder={intl.formatMessage({ id: 'coin_market_cap' })}/>
                     )}
                 </Form.Item>

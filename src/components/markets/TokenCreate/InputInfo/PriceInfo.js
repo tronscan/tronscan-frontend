@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import { t, tu } from '../../../../utils/i18n';
-import { FormattedNumber } from 'react-intl';
 import 'moment/min/locales';
-import NumericInput from '../../../common/NumericInput';
 import { TRXPrice } from '../../../common/Price';
 import {
-    Form, Row, Col, DatePicker, Icon, Switch
+    Form, Row, Col, Icon, Input
 } from 'antd';
 
 export class PriceInfo extends Component {
@@ -35,21 +33,25 @@ export class PriceInfo extends Component {
         if (token_trx_order){
             first = {
                 abbr: tokenSymbol,
-                name: 'fprice'
+                name: 'fprice',
+                disabled: true,
             };
             last = {
                 abbr: 'TRX',
-                name: 'sprice'
+                name: 'sprice',
+                disabled: false,
             };
             abbrAmount = parseInt((sprice / fprice)*100) / 100;
         } else {
             first = {
                 abbr: 'TRX',
-                name: 'sprice'
+                name: 'sprice',
+                disabled: isTrc10,
             };
             last = {
                 abbr: tokenSymbol,
-                name: 'fprice'
+                name: 'fprice',
+                disabled: true,
             };
             abbrAmount = parseInt((fprice / sprice)*100) / 100;
         }
@@ -65,11 +67,11 @@ export class PriceInfo extends Component {
         // token price left item
         const tokenPriceLeftItem = (
             <Form.Item  className="d-flex align-items-center">
-                {getFieldDecorator('fprice', {
+                {getFieldDecorator(first.name, {
                     rules: [
                         { required: true, message: tu('enter_the_amount'), whitespace: true }]
                 })(
-                    <NumericInput decimal={!!isTrc10} style={{ width: '200px' }} className="mr-2" disabled={!!isTrc10 || isUpdate ? true : false} />
+                    <Input type="number" style={{ width: '200px' }} className="mr-2" disabled={first.disabled} />
                 )}
                 {first.abbr}
             </Form.Item>
@@ -78,19 +80,26 @@ export class PriceInfo extends Component {
         // token price right item
         const tokenPriceRightItem = (
             <Form.Item  className="d-flex align-items-center mr-4">
-                {getFieldDecorator('sprice', {
+                {getFieldDecorator(last.name, {
                     rules: [
-                        { required: true, message: tu('enter_the_amount'), whitespace: true }]
+                        { required: true, message: tu('enter_the_amount'), whitespace: true },
+                        { validator: function(rule, value, callback) {
+                            if (value && (!/^(0|[1-9][0-9]*)(\.\d{0,6})?$/.test(value) || value > 4200000000)) {
+                                return false;
+                            }
+                            callback();
+                        }, message: tu('initial_price_v_format'), whitespace: true }
+                    ]
                 })(
-                    <NumericInput decimal={!!isTrc10} style={{ width: '200px' }} className="mr-2" disabled={!!isTrc10 || isUpdate ? true : false } />
+                    <Input type="number" style={{ width: '200px' }} className="mr-2" disabled={!!isTrc10 || isUpdate ? true : last.disabled } />
                 )}
                 {last.abbr}
             </Form.Item>);
 
         // token price item
         const tokenPrice = (
-            <Form.Item label={tu('initial_price')}  required className="m-0">
-                <div className="d-flex">
+            <Form.Item label={tu('initial_price')} required className="m-0">
+                <div className="d-flex" style={{ flexWrap: 'wrap'}}>
                     {tokenPriceLeftItem}
                     <Icon type="swap" className="mx-2 fix_form ordericon"
                         onClick={() => this.setState({ token_trx_order: !token_trx_order })}/>

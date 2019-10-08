@@ -28,31 +28,6 @@ export class TokenInfo extends Component {
         };
     }
 
-    componentDidMount() {
-    }
-
-    showModal = (msg) => {
-        let { intl } = this.props;
-        this.setState({
-            modal: <SweetAlert
-                error
-                confirmBtnText={intl.formatMessage({ id: 'confirm' })}
-                confirmBtnBsStyle="success"
-                onConfirm={this.hideModal}
-                style={{ marginLeft: '-240px', marginTop: '-195px' }}
-            >
-                {tu(msg)}
-            </SweetAlert>
-        }
-        );
-    }
-
-    hideModal = () => {
-        this.setState({
-            modal: null,
-        });
-    };
-
     render() {
         const { params } = this.props;
         const { tokenProceedsUsage, tokenReleaseSchedule, currentTokenUtility,

@@ -30,7 +30,7 @@ export class TokenCreate extends Component {
     static propTypes = {
         id: PropTypes.string.isRequired,
         type: PropTypes.string.isRequired,
-        page: PropTypes.string.isRequired,
+        page: PropTypes.string,
     };
 
     constructor(props) {
@@ -53,11 +53,11 @@ export class TokenCreate extends Component {
                 description: '',
                 logo: 'https://coin.top/production/upload/logo/default.png',
                 exchangePair: '',
-                fprice: 0,
+                fprice: 1,
                 sprice: 0,
                 home_page: '',
                 email: '',
-                isInOtherMarket: false,
+                isInOtherMarket: '',
                 tokenIssScheme: '',
                 white_paper: '',
                 contractCodeUrl: '',
@@ -111,7 +111,6 @@ export class TokenCreate extends Component {
                     confirmBtnText={intl.formatMessage({ id: 'confirm' })}
                     confirmBtnBsStyle="success"
                     onConfirm={this.goAccount}
-                    style={{ marginLeft: '-240px', marginTop: '-195px' }}
                 >
                     {tu('information_is_being_confirmed')}
                 </SweetAlert>
@@ -131,12 +130,12 @@ export class TokenCreate extends Component {
                 tokenName: token.name,
                 tokenSymbol: token.abbr,
                 description: token.description,
-                totalSupply: (token.totalSupply / Math.pow(10,token.precision)).toString(),
+                totalSupply: (token.totalSupply / Math.pow(10, token.precision)).toString(),
                 precision: token.precision,
                 logo: token.imgUrl,
                 ownerAddress: token.ownerAddress,
                 sprice: (token.trxNum / ONE_TRX).toString(),
-                fprice: (token.num.toString() / Math.pow(10,token.precision)).toString(),
+                fprice: (token.num.toString() / Math.pow(10, token.precision)).toString(),
                 home_page: token.url,
                 email: token.email ? token.email : '',
                 white_paper: token.white_paper,
@@ -158,7 +157,6 @@ export class TokenCreate extends Component {
                     confirmBtnText={intl.formatMessage({ id: 'confirm' })}
                     confirmBtnBsStyle="success"
                     onConfirm={this.goAccount}
-                    style={{ marginLeft: '-240px', marginTop: '-195px' }}
                 >
                     {tu('information_is_being_confirmed')}
                 </SweetAlert>
@@ -182,7 +180,7 @@ export class TokenCreate extends Component {
                 precision: token.precision,
                 logo: token.icon_url,
                 ownerAddress: token.issue_address,
-                fprice: '',
+                fprice: 1,
                 sprice: '',
                 token_id: id,
                 author: token.issue_address,
@@ -260,8 +258,7 @@ export class TokenCreate extends Component {
                     title={tu('not_signed_in')}
                     confirmBtnText={intl.formatMessage({ id: 'confirm' })}
                     confirmBtnBsStyle="danger"
-                    onConfirm={() => this.setState({ modal: null })}
-                    style={{ marginLeft: '-240px', marginTop: '-195px' }}
+                    onConfirm={() => { this.setState({ modal: null }); this.goAccount(); }}
                 >
                 </SweetAlert>
             });
@@ -270,9 +267,10 @@ export class TokenCreate extends Component {
     };
 
     navigationchange(nextLocation){
+        let { account, intl } = this.props;
         const { leave_lock, step } = this.state;
         return nextLocation && nextLocation.pathname.indexOf('/tokens/markets/create') == -1
-        && nextLocation.pathname.indexOf('/tokens/markets/update') == -1 && leave_lock && step < 3;
+        && nextLocation.pathname.indexOf('/tokens/markets/update') == -1 && leave_lock && step < 2 && account.isLoggedIn;
     }
 
     /**
@@ -323,7 +321,7 @@ export class TokenCreate extends Component {
     }
 
     render() {
-        let { step, modal, loading } = this.state;
+        let { step, modal, loading, isUpdate } = this.state;
         // loadItem
         const loadItem = (
             <div className="card">
@@ -372,7 +370,7 @@ export class TokenCreate extends Component {
 
         return (
             <main  className="container pb-3 token-create header-overlap tokencreated token_black">
-                {this.getStatus()}
+                {!isUpdate && this.getStatus()}
                 {loading ? loadItem : contentItem}
                 {modal}
                 <NavigationPrompt when={(currentLocation, nextLocation) => this.navigationchange(nextLocation)}>
@@ -387,7 +385,6 @@ export class TokenCreate extends Component {
                             confirmBtnBsStyle="danger"
                             onConfirm={onConfirm}
                             onCancel={onCancel}
-                            style={{ marginLeft: '-240px', marginTop: '-195px' }}
                         >
                         </SweetAlert>
                     )}

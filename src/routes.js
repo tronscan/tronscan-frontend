@@ -258,14 +258,22 @@ export const routes = [
         path: "/tokens/markets/add/:page/:id",
         icon: "fa fa-plus-square",
         component: TokensMarketsAddListAsync,
-        showInMenu: IS_MAINNET ? true : false
+        showInMenu: false
       },
       {
         label: "token_markets_input",
+        path: "/tokens/markets/create/:type/:id",
+        icon: "fa fa-plus-square",
+        component: TokensMarketsCreateAsync,
+        showInMenu: false
+      },
+      {
+        /* Write two is to solve the updated copy */
+        label: "token_markets_update",
         path: "/tokens/markets/:page/:type/:id",
         icon: "fa fa-plus-square",
         component: TokensMarketsCreateAsync,
-        showInMenu: IS_MAINNET ? true : false
+        showInMenu: false
       },
     ]
   },

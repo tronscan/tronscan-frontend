@@ -51,7 +51,6 @@ export class MarketCreate extends Component {
                 confirmBtnText={intl.formatMessage({ id: 'confirm' })}
                 confirmBtnBsStyle="danger"
                 onConfirm={this.hideModal}
-                style={{ marginLeft: '-240px', marginTop: '-195px' }}
             >
                 <p>{tu('market_other_success')}</p>
                 <p>{tu('market_other_success_desc')}</p>
@@ -69,7 +68,6 @@ export class MarketCreate extends Component {
                 confirmBtnText={intl.formatMessage({ id: 'confirm' })}
                 confirmBtnBsStyle="danger"
                 onConfirm={this.hideModal}
-                style={{ marginLeft: '-240px', marginTop: '-195px' }}
             >
                 {msg}
             </SweetAlert>
@@ -102,9 +100,9 @@ export class MarketCreate extends Component {
         });
     };
 
-    submit = (e) => {
+    submit = () => {
         const { form: { getFieldsValue } } = this.props;
-        const { step, params, leave_lock } = this.state;
+        const { step, params } = this.state;
         const values = getFieldsValue();
         let newParams = Object.assign(params, values);
         let newStep = step;
@@ -133,15 +131,36 @@ export class MarketCreate extends Component {
     getPage = () => {
         const { form } = this.props;
         const { step, params } = this.state;
+
+        let buttonPrev = tu('sign_out');
+        let buttonNext = tu('next');
+        let page = (<TokenInfo form={form} params={params} />);
         switch (step) {
             case 1:
-                return <TeamInfo form={form} params={params} />;
+                buttonPrev = tu('prev_step');
+                buttonNext = tu('next');
+                page = (<TeamInfo form={form} params={params} />);
+                break;
             case 2:
-                return <OtherInfo form={form} params={params} />;
+                buttonPrev = tu('prev_step');
+                buttonNext = tu('submit');
+                page = (<OtherInfo form={form} params={params} />);
+                break;
             case 0:
             default:
-                return <TokenInfo form={form} params={params} />;
+                buttonPrev = tu('sign_out');
+                buttonNext = tu('next');
+                page = (<TokenInfo form={form} params={params} />);
+                break;
         }
+
+        return <div>
+            {page}
+            <div className="text-right px-2">
+                {<a className="btn btn-default btn-lg" onClick={this.prevStep}>{buttonPrev}</a>}
+                <button className="ml-4 btn btn-danger btn-lg" onClick={this.submit}>{buttonNext}</button>
+            </div>
+        </div>;
     }
 
     /**
@@ -290,10 +309,6 @@ export class MarketCreate extends Component {
                     className="ant-advanced-search-form"
                 >
                     {this.getPage()}
-                    <div className="text-right px-2">
-                        {<a className="btn btn-default btn-lg" onClick={this.prevStep}>{tu('sign_out')}</a>}
-                        <button className="ml-4 btn btn-danger btn-lg" onClick={this.submit}>{tu('next')}</button>
-                    </div>
                 </Form>
                 <NavigationPrompt when={(currentLocation, nextLocation) => this.navigationchange(nextLocation)}>
                     {({ onConfirm, onCancel }) => (
@@ -307,7 +322,6 @@ export class MarketCreate extends Component {
                             confirmBtnBsStyle="danger"
                             onConfirm={onConfirm}
                             onCancel={onCancel}
-                            style={{ marginLeft: '-240px', marginTop: '-195px' }}
                         >
                         </SweetAlert>
                     )}
