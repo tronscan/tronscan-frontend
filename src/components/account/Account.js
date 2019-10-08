@@ -781,6 +781,7 @@ export default class Account extends Component {
             EmptyState={() => <p className="text-center">No transactions yet</p>}
             filter={{address: isAddressValid(currentWallet.address)?currentWallet.address:account.address}}
             page={{router:'account'}}
+            address
         />
     )
   }
@@ -1845,7 +1846,7 @@ export default class Account extends Component {
               <div className="card h-100 bg-line_blue bg-image_engry">
                 <div className="card-body">
                   <h3 style={{color: '#4A90E2'}}>
-                    <FormattedNumber value={currentWallet.bandwidth.energyRemaining}/>
+                    <FormattedNumber value={currentWallet.bandwidth.energyRemaining<0?0:currentWallet.bandwidth.energyRemaining}/>
                   </h3>
                   {tu("energy")}
                   <span className="ml-2">

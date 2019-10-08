@@ -32,6 +32,9 @@ export const CONTRACT_MAINNET_API_URL = process.env.API_URL;
 
 
 
+
+
+
 export const ACCOUNT_PRIVATE_KEY = 'ACCOUNT_PRIVATE_KEY';
 export const ACCOUNT_ADDRESS = 'ACCOUNT_ADDRESS';
 export const ACCOUNT_LEDGER = 'ACCOUNT_LEDGER';
