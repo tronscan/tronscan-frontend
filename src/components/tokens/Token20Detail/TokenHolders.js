@@ -83,7 +83,7 @@ class TokenHolders extends React.Component {
               }
             }else if(coin.addressList[type].length > 1){
               coin.addressList[type].map((address, index) => {
-                if(address === item.address){
+                if(address === item.holder_address){
                   item.tagName = `${upperFirst(coin.name)}${type !== 'default'? `-${type} ${index + 1}`: ` ${index + 1}`}`
                   if(lowerCase(coin.name) === 'binance'){
                     item.ico = lowerCase(coin.name)
@@ -164,16 +164,49 @@ class TokenHolders extends React.Component {
   }
   doSearch = async () => {
       let {intl,filter} = this.props;
-      let {search,addresses} = this.state;
+      let {search} = this.state;
 
       if (isAddressValid(search)){
           let result = await  xhr.get(API_URL+"/api/token_trc20/holders?contract_address=" + filter.token +"&holder_address=" + search);
-          result.data.trc20_tokens[0].index = 1
+          let exchangeFlag = await Client.getTagNameList()
+          let addresses = result.data.trc20_tokens;
+          if(addresses.length){
+              addresses.map(item => {
+                  item.tagName = '';
+                  exchangeFlag.map(coin => {
+                      const typeList = Object.keys(coin.addressList)
+                      typeList.map(type => {
+                          if(coin.addressList[type].length == 1){
+
+                              if(coin.addressList[type][0] === item.holder_address){
+                                  item.tagName = `${upperFirst(coin.name)}${type !== 'default'? `-${type}`: ''}`
+                                  if(lowerCase(coin.name) === 'binance'){
+                                      item.ico = lowerCase(coin.name)
+                                  }
+                              }
+                          }else if(coin.addressList[type].length > 1){
+                              coin.addressList[type].map((address, index) => {
+                                  if(address === item.holder_address){
+                                      item.tagName = `${upperFirst(coin.name)}${type !== 'default'? `-${type} ${index + 1}`: ` ${index + 1}`}`
+                                      if(lowerCase(coin.name) === 'binance'){
+                                          item.ico = lowerCase(coin.name)
+                                      }
+                                  }
+                              })
+                          }
+                      })
+                  })
+              })
+          }
+
+          addresses[0].index = 1
+
           this.setState({
-              addresses:result.data.trc20_tokens,
+              addresses:addresses,
               total:1,
               search: ""
           });
+
       }else {
           toastr.warning(intl.formatMessage({id: 'warning'}), intl.formatMessage({id: 'search_TRC20_error'}));
           this.setState({
