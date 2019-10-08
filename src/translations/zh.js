@@ -2045,4 +2045,5 @@ export const messages = {
   "notrx_noenergy":"请确认TRX数量大于10或有一定的能量",
   "inactive_MainChain_account":"该地址未在TRON主网激活，无法完成此操作，请激活后重试",
   "mapping_warning":"此操作须由token的合约创建者完成",
+  "freeze_balance_limit":"余额不足，请重新输入",
 };
