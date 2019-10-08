@@ -11,7 +11,7 @@ export const IS_DESKTOP = process.env.DESKTOP === 'true';
 //export const IS_SUNNET =  Lockr.get('NET') === 'sunnet';
 export const NETURL = {
     MAINNET:'https://debug.tronscan.org',
-    SUNNET:'https://debug.dappchain.tronscan.org',
+    SUNNET:'https://debugdappchain.tronscan.org',
 }
 export const IS_MAINNET = window.location.origin === NETURL.MAINNET;
 export const IS_SUNNET =  window.location.origin === NETURL.SUNNET;
