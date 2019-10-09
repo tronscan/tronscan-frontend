@@ -4648,3 +4648,23 @@ delete {
     }
   }
 }
+.ellipsis_box{
+  max-width: 100%;
+  display:inline-flex;
+  flex-wrap:nowrap;
+
+  &_start{
+    flex: 0 1 auto;
+    text-overflow: ellipsis;
+    overflow:hidden;
+    white-space:nowrap;
+  }
+  &_end{
+    flex: 1 0 auto;
+    white-space: nowrap;
+    margin-left: -2px;
+  }
+}
+.address_max_width{
+  max-width: 100px;
+}

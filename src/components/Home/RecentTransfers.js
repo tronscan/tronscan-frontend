@@ -151,15 +151,15 @@ class RecentTransfers extends Component {
                           <div className={(isRightText? 'flex-row-reverse justify-content-end': '') + " d-flex pt-2 text-left"} style={{fontSize: '0.8rem'}}>
                             <span className="color-grey-300 mr-2">{tu("from")}</span>
                               
-                            <AddressLink wrapClassName="d-inline-block mr-2" className="color-tron-100"
+                            <AddressLink wrapClassName="d-inline-block mr-2 address_max_width" className="color-tron-100"
                                         address={transfer.transferFromAddress} truncate={false}>
-                              {transfer.transferFromAddress.substr(0, 12)}...
+                              {transfer.transferFromAddress}
                             </AddressLink>
                             
                             <span className="color-grey-300 mr-2">{tu("to")}</span>
-                            <AddressLink wrapClassName="d-inline-block mr-2" className="color-tron-100"
+                            <AddressLink wrapClassName="d-inline-block mr-2 address_max_width" className="color-tron-100"
                                         address={transfer.transferToAddress} truncate={false}>
-                              {transfer.transferToAddress.substr(0, 12)}...
+                              {transfer.transferToAddress}
                             </AddressLink>
                           </div>
                           <div className="text-muted text-right color-grey-300 small" style={styles.nowrap}>
