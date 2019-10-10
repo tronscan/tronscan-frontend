@@ -1,6 +1,6 @@
 import React, {Fragment} from "react";
 import {Link} from "react-router-dom";
-import {sampleSize} from "lodash";
+import {sampleSize, isString} from "lodash";
 import {Button, Modal, ModalBody, ModalFooter, ModalHeader} from "reactstrap";
 import {ContextMenu, ContextMenuTrigger} from "react-contextmenu";
 import SendModal from "../transfer/Send/SendModal";
@@ -135,7 +135,6 @@ export class AddressLink extends React.PureComponent {
     if (width !== -1) {
       style.maxWidth = width;
     }
-    console.log('children',children)
     let children_start = children && isAddressValid(children) ? children.substring(0,29) : address.substring(0,29);
     let children_end  =  children && isAddressValid(children) ? children.substring(29,34) : address.substring(29,34);
     let wrap = (
@@ -321,8 +320,9 @@ export const BlockHashLink = ({hash}) => (
 );
 
 export const TransactionHashLink = ({hash, children}) => {
-    let children_start = children.substring(0,59);
-    let children_end  = children.substring(59,64);
+
+    let children_start = isString(children)? children.substring(0,59): hash.substring(0,59);
+    let children_end  =  isString(children)? children.substring(59,64): hash.substring(59,64);
 
     return(
         <Link className="color-tron-100 list-item-word" to={`/transaction/${hash}`}>

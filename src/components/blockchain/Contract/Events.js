@@ -197,7 +197,6 @@ class Transactions extends React.Component {
     let {match, intl} = this.props;
     let column = this.customizedColumn();
     let tableInfo = intl.formatMessage({id: 'view_total'}) + ' ' + total + ' ' + intl.formatMessage({id: 'Events'})
-    console.log('transactions',transactions)
     if (!loading && transactions.length === 0) {
         return (
             <div className="p-3 text-center no-data">{tu("no_event")}</div>

@@ -85,7 +85,7 @@ class RecentTransfers extends Component {
                                 <div className="flex-1">
                                 <Truncate>
                                 <TransactionHashLink
-                                    hash={transfer.transactionHash}>{transfer.transactionHash}...</TransactionHashLink>
+                                    hash={transfer.transactionHash}>{transfer.transactionHash}</TransactionHashLink>
                                 </Truncate>
                                     </div>
                               </div>

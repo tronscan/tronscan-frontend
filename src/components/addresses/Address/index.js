@@ -470,7 +470,6 @@ class Address extends React.Component {
     let {match,intl} = this.props;
     let addr = match.params.id;
 
-      console.log('address',address)
     if (!address) {
       return null;
     }
