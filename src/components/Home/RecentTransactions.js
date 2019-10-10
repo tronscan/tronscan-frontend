@@ -65,10 +65,10 @@ class RecentTransactions extends Component {
                       <div className="media-body mb-0 d-flex">
                         <div className="text-left">
                           <TransactionHashLink
-                              hash={transaction.hash}>{transaction.hash.substr(0, 20)}...</TransactionHashLink>
+                              hash={transaction.hash}>{transaction.hash}</TransactionHashLink>
                           <br/>
                           <AddressLink wrapClass="d-inline-block" address={transaction.transferFromAddress}>
-                            {transaction.transferFromAddress}...
+                            {transaction.transferFromAddress}
                           </AddressLink>
                           <i className="fas fa-arrow-right mr-1 ml-1"/>
                           <AddressLink wrapClass="d-inline-block" address={transaction.transferToAddress}>

@@ -115,7 +115,7 @@ class Transfers extends React.Component {
                 key: 'transferFromAddress',
                 className: 'ant_table',
                 render: (text, record, index) => {
-                    return <AddressLink address={record.from_address}/>
+                    return <AddressLink address={record.from_address}>{record.from_address}</AddressLink>
                 }
             },
             {
@@ -132,7 +132,7 @@ class Transfers extends React.Component {
                 key: 'transferToAddress',
                 className: 'ant_table',
                 render: (text, record, index) => {
-                    return <AddressLink address={record.to_address}/>
+                    return <AddressLink address={record.to_address}>{record.to_address}</AddressLink>
                 },
             },
             {

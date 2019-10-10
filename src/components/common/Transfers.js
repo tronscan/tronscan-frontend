@@ -4,7 +4,7 @@ import {Client} from "../../services/api";
 import {AddressLink, TransactionHashLink} from "./Links";
 import {tu} from "../../utils/i18n";
 import TimeAgo from "react-timeago";
-import {Truncate} from "./text";
+import {Truncate,TruncateAddress} from "./text";
 import {withTimers} from "../../utils/timing";
 import SmartTable from "./SmartTable.js"
 import {upperFirst,upperCase} from "lodash";
@@ -167,8 +167,8 @@ class Transfers extends React.Component {
         className: 'ant_table',
         render: (text, record, index) => {
           return record.fromtip?
-          <AddressLink address={text}/>:
-          <Truncate><span>{text}</span></Truncate>
+              <AddressLink address={text}>{text}</AddressLink>:
+              <TruncateAddress>{text}</TruncateAddress>
         }
       },
       {
@@ -187,8 +187,8 @@ class Transfers extends React.Component {
         className: 'ant_table',
         render: (text, record, index) => {
           return record.totip?
-          <AddressLink address={text}/>:
-          <Truncate><span>{text}</span></Truncate>
+              <AddressLink address={text}>{text}</AddressLink>:
+              <TruncateAddress>{text}</TruncateAddress>
         }
       },
       {

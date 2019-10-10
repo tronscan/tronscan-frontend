@@ -50,12 +50,3 @@ When developing locally the url can be changed by defining the `API_URL` environ
 > API_URL=http://127.0.0.0:9000 yarn start
 ```
 
-## Building Desktop Apps
-
-Tronscan.org can be published as a Desktop app wrapped in Electron.
-
-To build a Windows, Mac and Linux app run the following command:
-
-```bash
-> yarn run desktop:build:full
-```
