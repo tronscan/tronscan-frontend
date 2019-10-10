@@ -1455,7 +1455,7 @@ export const messages = {
   "trc20_CurOrder": "現在のオーダー",
   "trc20_TxBuy": "買う",
   "trc20_TxSell": "売り出す",
-  "trc20_my_transaction": "マイ取引",
+  "trc20_my_transaction": "オーダー歴史",
   "trc20_estimated_cost": "予定コスト",
   "trc20_estimated_revenue": "予定の収益",
   "trc20_slightly_cost": "予定コストを少し増やせば、取り組み率を高められます。",

@@ -1456,7 +1456,7 @@ export const messages = {
   "trc20_CurOrder": "현재 주문",
   "trc20_TxBuy": "매수",
   "trc20_TxSell": "매도",
-  "trc20_my_transaction": "나의 거래",
+  "trc20_my_transaction": "위탁 기록",
   "trc20_estimated_cost": "예상 비용",
   "trc20_estimated_revenue": "예상 수입",
   "trc20_slightly_cost": "예상 비용을 늘리면, 거래 확률이 높아집니다.。",

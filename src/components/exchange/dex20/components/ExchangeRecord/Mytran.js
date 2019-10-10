@@ -96,9 +96,17 @@ class Mytran extends Component {
       rows = rows.filter(item => {
         let key =
           item.fShortName.toLowerCase() + "_" + item.sShortName.toLowerCase();
-        item.precisionPrice = precisions[key];
-        item.precisionAmount =
-          6 - precisions[key] < 0 ? 0 : 6 - precisions[key] < 0;
+        let precisions_key = precisions[key] || 6;
+        item.precisionPrice = precisions_key;
+        item.precisionAmount = 6 - precisions_key < 0 ? 0 : 6 - precisions_key;
+
+        if (
+          Number(item.schedule) > 0 &&
+          Number(item.schedule) < 1 &&
+          item.orderStatus == 7
+        ) {
+          item.orderStatus = 100;
+        }
         return item;
       });
       if (code === 0) {
@@ -172,7 +180,9 @@ class Mytran extends Component {
         dataIndex: "price",
         key: "price",
         render: (text, record, index) => {
-          return <span>{record.price.toFixed(record.precisionPrice)}</span>;
+          return (
+            <span>{Number(record.price).toFixed(record.precisionPrice)}</span>
+          );
         }
       },
       {
@@ -184,7 +194,7 @@ class Mytran extends Component {
         render: (text, record, index) => {
           return (
             <span>
-              {record.volume.toFixed(record.precisionAmount)}{" "}
+              {Number(record.volume).toFixed(record.precisionAmount)}{" "}
               {record.fShortName}
             </span>
           );
@@ -199,7 +209,7 @@ class Mytran extends Component {
         render: (text, record, index) => {
           return (
             <span>
-              {/* {this.numFormat(record.curTurnover.toFixed(4))} */}
+              {this.numFormat(record.curTurnover.toFixed(4))}
               {record.sShortName}
             </span>
           );

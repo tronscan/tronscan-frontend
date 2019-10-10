@@ -70,11 +70,13 @@ class Curorder extends Component {
     let { timer, start } = this.state;
     const {
       setUnConfirmOrderObj,
+      setCancelOrderObj,
       unConfirmOrderList,
       cancelOrderList,
       account
     } = this.props;
     setUnConfirmOrderObj({}, 1);
+    setCancelOrderObj({}, 1);
 
     this.getData(0);
     this.get2and8Data();
@@ -98,7 +100,7 @@ class Curorder extends Component {
 
     let confirmList = unConfirmOrderList
       ? unConfirmOrderList.filter(item => {
-          return item.user == uAddr;
+          return uAddr && item.user == uAddr;
         })
       : [];
 
@@ -231,7 +233,9 @@ class Curorder extends Component {
         dataIndex: "price",
         key: "price",
         render: (text, record, index) => {
-          return <span>{record.price.toFixed(record.precisionPrice)}</span>;
+          return (
+            <span>{Number(record.price).toFixed(record.precisionPrice)}</span>
+          );
         }
       },
       {
@@ -243,7 +247,7 @@ class Curorder extends Component {
         render: (text, record, index) => {
           return (
             <span>
-              {record.volume.toFixed(record.precisionAmount)}
+              {Number(record.volume).toFixed(record.precisionAmount)}
               {record.fShortName}
             </span>
           );
@@ -302,7 +306,13 @@ class Curorder extends Component {
             </div>
           );
           return (
-            <span>
+            <span
+              className={
+                statusOp[record.orderStatus]
+                  ? statusOp[record.orderStatus].class
+                  : ""
+              }
+            >
               {tu(`trc20_status_${record.orderStatus}`)}
               {record.orderStatus === 8 && (
                 <Popover content={content} title="">
@@ -384,6 +394,9 @@ class Curorder extends Component {
     let { account, showCurrent, exchangeData } = this.props;
     let uAddr = account ? account.address : "";
     if (!uAddr) {
+      this.setState({
+        isLoading: false
+      });
       return;
     }
 
@@ -456,7 +469,7 @@ class Curorder extends Component {
     let delegateFailureList = contain28List.map(item => {
       if (
         curTime - item.orderTime < 7 * 24 * 60 * 60 * 1000 &&
-        item.orderStatus === 7
+        item.orderStatus === 8
       ) {
         return item.hash;
       }
@@ -477,6 +490,7 @@ class Curorder extends Component {
       content: intl.formatMessage({ id: "trc20_cancel_order_confirm" }),
       okText: intl.formatMessage({ id: "trc20_confirm" }),
       cancelText: intl.formatMessage({ id: "trc20_cancel" }),
+      className: "exchange-modal-content",
       onOk() {
         if (record.orderID) {
           _this.cancleOrderFun(record, index);
@@ -582,8 +596,10 @@ class Curorder extends Component {
     if (showCurrent) {
       let arr = list.filter(item => {
         return (
+          item.fShortName &&
           item.fShortName === exchangeData.fShortName &&
-          item.sShortName === this.pairs.sShortName &&
+          item.sShortName &&
+          item.sShortName === exchangeData.sShortName &&
           item.user == uAddr
         );
       });
@@ -608,6 +624,7 @@ class Curorder extends Component {
     let { initData, confirmList, start } = this.state;
     let { cancelOrderList } = this.props;
     let list = [...initData];
+
     let filterList = list.filter(item => {
       //  取消确认中的订单
       cancelOrderList &&
@@ -619,9 +636,9 @@ class Curorder extends Component {
         });
       let key =
         item.fShortName.toLowerCase() + "_" + item.sShortName.toLowerCase();
-      item.precisionPrice = precisions[key];
-      item.precisionAmount =
-        6 - precisions[key] < 0 ? 0 : 6 - precisions[key] < 0;
+      let precisions_key = precisions[key] || 6;
+      item.precisionPrice = precisions_key;
+      item.precisionAmount = 6 - precisions_key < 0 ? 0 : 6 - precisions_key;
       return item;
     });
 
@@ -645,6 +662,7 @@ class Curorder extends Component {
         item.orderStatus === -1 &&
         current_time - item.created_by > 1 * 60 * 1000
       ) {
+        console.log(123, item);
         this.getOrderId(item.hash);
       }
     });
@@ -665,7 +683,7 @@ class Curorder extends Component {
     const event = await tronWeb.getEventByTransactionID(id).catch(e => {
       // 委托失败
       this.currentFaile(id);
-      console.log("委托失败1");
+      console.log("委托失败--请求事件服务器失败");
     });
 
     if (event.length > 0) {
@@ -679,7 +697,7 @@ class Curorder extends Component {
 
             let obj = { action_type, order_id, entry_txid };
             // todo 请求接口告诉服务端状态
-            console.log("告诉服务端", entry_txid, order_id);
+            console.log("委托失败--从服务端查询", entry_txid, order_id);
             Client20.abnormalOrderStatus(obj).then(res => {
               if (res.order_status !== 0) {
                 this.currentFaile(id);
@@ -690,7 +708,7 @@ class Curorder extends Component {
         }
       }
     } else {
-      console.log("委托失败2");
+      console.log("委托失败--事件服务器没有返回");
       this.currentFaile(id);
       // 委托失败
     }
@@ -710,6 +728,7 @@ class Curorder extends Component {
     let { cancelOrderList, deleteCancelOrderObj } = this.props;
     cancelOrderList.map((item, index) => {
       let current_time = new Date().getTime();
+      console.log(index);
       if (
         item.orderStatus === 6 &&
         current_time - item.created_by > 1 * 60 * 1000

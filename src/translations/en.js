@@ -1471,7 +1471,7 @@ export const messages = {
   "trc20_CurOrder": "Current Order",
   "trc20_TxBuy": "Expected to buy",
   "trc20_TxSell": "Amount want to sell",
-  "trc20_my_transaction": "My Tradings",
+  "trc20_my_transaction": "Order History",
   "trc20_estimated_cost": "Estimated Cost",
   "trc20_estimated_revenue": "Estimated Revenue",
   "trc20_slightly_cost": "Slightly increase the estimated cost, and the turnover rate will be higher.",

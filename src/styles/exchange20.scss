@@ -27,10 +27,11 @@
   .exchange-box-right {
     display: flex;
     flex-direction: column;
+    width: calc(100vw - 360px);
     .exchange__transactionlist {
       flex: 1;
       position: relative;
-      max-width: 1084px;
+      // max-width: 1084px;
       .filter-btn {
         position: absolute;
         font-size: 14px;
@@ -533,6 +534,13 @@
   .failed {
     color: #f15454 !important;
   }
+}
+
+.exchange-modal-content .ant-btn:hover span {
+  color: red !important;
+}
+.exchange-modal-content .ant-btn-primary:hover span {
+  color: #fff !important;
 }
 
 @media screen and (max-width: 768px) {

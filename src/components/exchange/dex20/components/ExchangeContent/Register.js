@@ -127,7 +127,7 @@ class Register extends Component {
         key: "amount",
         align: "right",
         render: text => {
-          return <span>{Number(text).toFixed(2)}</span>;
+          return <span>{text && Number(text).toFixed(2)}</span>;
         }
       },
       {
@@ -162,7 +162,7 @@ class Register extends Component {
         key: "amount",
         align: "right",
         render: text => {
-          return <span>{Number(text).toFixed(2)}</span>;
+          return <span>{text && Number(text).toFixed(2)}</span>;
         }
       },
       {
@@ -303,29 +303,28 @@ class Register extends Component {
   }
 
   getNewList(data, type) {
-    let list = data
+    let list = data || [];
     let { limit } = this.state;
 
     let { pairs } = this.props;
     let sPrecision = pairs.sPrecision ? pairs.sPrecision : 6;
 
-
-    let amount_list = []
-    let listN = []
+    let amount_list = [];
+    let listN = [];
     let arr = [];
-    
-    list.length > limit && (list.length = limit)
-    
+
+    list.length > limit && (list.length = limit);
+
     list.map(v => {
-      let cje = v.Amount * v.Price
+      let cje = v.Amount * v.Price;
       listN.push({
         price: (+v.Price).toFixed(sPrecision),
-        amount: v.Amount.toFixed(2),
-        cje: cje.toFixed(sPrecision)
-      })
-      amount_list.push(v.Amount)
-    })
-    const _max = Math.max.apply(null, amount_list)
+        amount: Number(v.Amount).toFixed(2),
+        cje: Number(cje).toFixed(sPrecision)
+      });
+      amount_list.push(v.Amount);
+    });
+    const _max = Math.max.apply(null, amount_list);
     if (type === 1) {
       // this.buyMax = _max
       this.setState({

@@ -14,7 +14,8 @@ class TransactionList extends Component {
     this.state = {
       isLoad: false,
       showCurrent: Lockr.get("showCurrent") || false,
-      isDot: false
+      isDot: false,
+      flag: true
     };
 
     this.changeCheckbox = this.changeCheckbox.bind(this);
@@ -26,11 +27,12 @@ class TransactionList extends Component {
 
   componentDidUpdate(prevProps) {
     let { delegateFailureList, app } = this.props;
+    let { flag } = this.state;
     let uAddr = app.account ? app.account.address : "";
 
     let oldList = prevProps.delegateFailureList[uAddr] || [];
     let newList = delegateFailureList[uAddr] || [];
-    if (newList && oldList) {
+    if (newList && oldList && oldList.length > 0) {
       if (newList[0] && !oldList.includes(newList[0])) {
         this.setState({
           isDot: true
