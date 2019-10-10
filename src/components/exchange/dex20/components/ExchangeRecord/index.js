@@ -79,7 +79,7 @@ class TransactionList extends Component {
             >
               <Mytran
                 props={this.props}
-                isLoad={true}
+                isLoad={isLoad}
                 showCurrent={showCurrent}
               />
             </TabPane>

@@ -48,6 +48,7 @@ class Mytran extends Component {
 
   componentDidUpdate(prevProps) {
     let { is_update_tran, isLoad, showCurrent } = this.props;
+
     if (
       prevProps.is_update_tran != is_update_tran ||
       (isLoad && prevProps.isLoad != isLoad)
