@@ -344,6 +344,8 @@ export const BlockNumberLink = ({number, children = null}) => {
 };
 
 export const ContractLink = ({address, children = null}) => {
+  let children_start = children && isAddressValid(children) ? children.substring(0,29) : address.substring(0,29);
+  let children_end  =  children && isAddressValid(children) ? children.substring(29,34) : address.substring(29,34);
   async function pushto(){
     let {data} = await Client.getContractOverview(address);
     if(data instanceof Array){
@@ -354,8 +356,21 @@ export const ContractLink = ({address, children = null}) => {
     }
   }
   return (
-    <div className="text-truncate">
-      <a href="javascript:;" onClick={pushto}>{children || address}</a>
-    </div>
+      <div>
+          {
+              children ?
+                  isAddressValid(children)?<a href="javascript:;" className="ellipsis_box" onClick={pushto}>
+                      <div className="ellipsis_box_start">{children_start}</div>
+                      <div className="ellipsis_box_end">{children_end}</div>
+                  </a>:<div>{children}</div>
+                  :
+                  <div className="text-truncate">
+                      <a href="javascript:;" onClick={pushto}>{children || address}</a>
+                  </div>
+
+          }
+
+      </div>
+
   );
 };
