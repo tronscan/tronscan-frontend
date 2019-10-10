@@ -608,6 +608,11 @@ class Curorder extends Component {
       confirmList = arr.sort(compare("orderTime"));
     } else {
       confirmList = list.filter(item => {
+        let key =
+          item.fShortName.toLowerCase() + "_" + item.sShortName.toLowerCase();
+        let precisions_key = precisions[key] || 6;
+        item.precisionPrice = precisions_key;
+        item.precisionAmount = 6 - precisions_key < 0 ? 0 : 6 - precisions_key;
         return item.user == uAddr;
       });
     }
