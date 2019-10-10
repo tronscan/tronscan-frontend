@@ -98,14 +98,14 @@ class RecentTransfers extends Component {
                               <span className="color-grey-300 mr-2">{tu("from")}</span>
                               <AddressLink className="color-tron-100 small" wrapClassName="d-inline-block w-50"
                                             address={transfer.transferFromAddress}>
-                                {transfer.transferFromAddress}...
+                                  {transfer.transferToAddress}
                               </AddressLink>
                             </div>
                             <div className={(isRightText? 'flex-row-reverse justify-content-end': '') + " d-flex align-items-center"}>
                               <span className="color-grey-300 mr-2">{tu("to")}</span>
                               <AddressLink className="color-tron-100 small" wrapClassName="d-inline-block w-50"
                                             address={transfer.transferToAddress}>
-                                {transfer.transferToAddress.substr(0, 20)}...
+                                  {transfer.transferToAddress}
                               </AddressLink>
                             </div>
                             <div className="color-grey-200 pb-2">
