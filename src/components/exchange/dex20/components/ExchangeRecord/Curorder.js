@@ -22,6 +22,7 @@ import { withTronWeb } from "../../../../../utils/tronWeb";
 import { Popover, Icon } from "antd";
 import { compare } from "../../../../../utils/exchanges";
 import { precisions } from "../../TokenPre";
+import Lockr from "lockr";
 
 const confirm = Modal.confirm;
 
@@ -31,7 +32,7 @@ class Curorder extends Component {
     super(props);
     this.state = {
       start: 0,
-      limit: 15,
+      limit: 12,
       list: [],
       total: 0,
       timer: null,
@@ -58,7 +59,8 @@ class Curorder extends Component {
       contain28List: [],
       //过滤后的订单
       confirmList: [],
-      showCurrent: props.showCurrent
+      showCurrent: props.showCurrent,
+      n: 0
     };
 
     this.cancelOrder = this.cancelOrder.bind(this);
@@ -90,14 +92,6 @@ class Curorder extends Component {
 
     let uAddr = account ? account.address : "";
 
-    if (unConfirmOrderList && unConfirmOrderList.length > 0) {
-      this.watchUnCOnfirmOrderList();
-    }
-
-    if (cancelOrderList && cancelOrderList.length > 0) {
-      this.watchCancelOrderIds();
-    }
-
     let confirmList = unConfirmOrderList
       ? unConfirmOrderList.filter(item => {
           return uAddr && item.user == uAddr;
@@ -112,11 +106,20 @@ class Curorder extends Component {
         this.setNewList();
       }
     );
+
+    if (unConfirmOrderList && unConfirmOrderList.length > 0) {
+      this.watchUnCOnfirmOrderList();
+    }
+
+    if (cancelOrderList && cancelOrderList.length > 0) {
+      this.watchCancelOrderIds();
+    }
   }
 
   componentDidUpdate(prevProps) {
     let { timer, start } = this.state;
     let { wallet, unConfirmOrderList, showCurrent, account } = this.props;
+
     // 切换钱包或者只看当前交易对
     if (
       prevProps.account.address != account.address ||
@@ -146,11 +149,6 @@ class Curorder extends Component {
         this.watchUnCOnfirmOrderList();
       }, 60 * 1000);
     }
-
-    // 只看当前交易对
-    // if(prevProps.showCurrent != showCurrent){
-
-    // }
   }
 
   componentWillUnmount() {
@@ -277,7 +275,7 @@ class Curorder extends Component {
         render: (text, record, index) => {
           return (
             <span>
-              {record.schedule ? (+record.schedule * 100).toFixed(2) : 0}%
+              {record.schedule ? (+record.schedule * 100).toFixed(2) : "0.00"}%
             </span>
           );
         }
@@ -421,16 +419,13 @@ class Curorder extends Component {
       list = list.sort(compare("orderTime"));
       this.filterData();
       this.setState({ initData: list, total });
-      if (showCurrent) {
-        this.filterCurrentPairs();
-      }
     }
   }
 
   async get2and8Data() {
     let { start, limit } = this.state;
-    let { app } = this.props;
-    let uAddr = app.account ? app.account.address : "";
+    let { account } = this.props;
+    let uAddr = account ? account.address : "";
 
     if (!uAddr) {
       return;
@@ -572,6 +567,7 @@ class Curorder extends Component {
   filterData() {
     let { initData, contain28List } = this.state;
     let { unConfirmOrderList, deleteUnConfirmOrderObj } = this.props;
+
     //从本地存储列表和服务端列表进行对比
     let contactList = initData.concat(contain28List);
     unConfirmOrderList.map((item, index) => {
@@ -583,6 +579,7 @@ class Curorder extends Component {
         }
       });
     });
+
     this.filterCurrentPairs();
   }
 
@@ -595,6 +592,11 @@ class Curorder extends Component {
     let confirmList = [];
     if (showCurrent) {
       let arr = list.filter(item => {
+        let key =
+          item.fShortName.toLowerCase() + "_" + item.sShortName.toLowerCase();
+        let precisions_key = precisions[key] || 6;
+        item.precisionPrice = precisions_key;
+        item.precisionAmount = 6 - precisions_key < 0 ? 0 : 6 - precisions_key;
         return (
           item.fShortName &&
           item.fShortName === exchangeData.fShortName &&
@@ -662,7 +664,6 @@ class Curorder extends Component {
         item.orderStatus === -1 &&
         current_time - item.created_by > 1 * 60 * 1000
       ) {
-        console.log(123, item);
         this.getOrderId(item.hash);
       }
     });
@@ -726,29 +727,30 @@ class Curorder extends Component {
 
   watchCancelOrderIds() {
     let { cancelOrderList, deleteCancelOrderObj } = this.props;
-    cancelOrderList.map((item, index) => {
-      let current_time = new Date().getTime();
-      console.log(index);
-      if (
-        item.orderStatus === 6 &&
-        current_time - item.created_by > 1 * 60 * 1000
-      ) {
-        // todo 告诉服务端长期未取消的订单残留
-        let action_type = "cancel";
-        let entry_txid = item.hash;
-        let order_id = item.orderID;
-        let cancel_txid = item.cancel_hash;
-        let obj = { action_type, entry_txid, cancel_txid, order_id };
-        console.log("告诉服务端", entry_txid, order_id, cancel_txid, index);
-        Client20.abnormalOrderStatus(obj)
-          .then(res => {
-            deleteCancelOrderObj(index);
-          })
-          .catch(err => {
-            // this.clear_cancelOrderIds(index)
-          });
-      }
-    });
+
+    cancelOrderList &&
+      cancelOrderList.map((item, index) => {
+        let current_time = new Date().getTime();
+        if (
+          item.orderStatus === 6 &&
+          current_time - item.created_by > 1 * 60 * 1000
+        ) {
+          // todo 告诉服务端长期未取消的订单残留
+          let action_type = "cancel";
+          let entry_txid = item.hash;
+          let order_id = item.orderID;
+          let cancel_txid = item.cancel_hash;
+          let obj = { action_type, entry_txid, cancel_txid, order_id };
+          console.log("告诉服务端", entry_txid, order_id, cancel_txid, index);
+          Client20.abnormalOrderStatus(obj)
+            .then(res => {
+              deleteCancelOrderObj(index);
+            })
+            .catch(err => {
+              // this.clear_cancelOrderIds(index)
+            });
+        }
+      });
   }
   ignore(hash) {
     let { unConfirmOrderList, deleteUnConfirmOrderObj } = this.props;

@@ -161,6 +161,7 @@ export const deleteUnConfirmOrderObj = index => async (dispatch, getState) => {
 // 本地存储 取消但未确认的订单
 export const setCancelOrderObj = (obj, type) => async (dispatch, getState) => {
   const { exchange } = getState();
+  console.log(1111);
   let cancelOrderList = [];
   let localCancelOrderList = Lockr.get("cancelOrderList");
   if (type == 1 && localCancelOrderList) {
@@ -169,9 +170,9 @@ export const setCancelOrderObj = (obj, type) => async (dispatch, getState) => {
     cancelOrderList = [...exchange.cancelOrderList];
   }
   type != 1 && cancelOrderList.push(obj);
-  Lockr.set("cancelOrderList", cancelOrderList);
-
   dispatch(setCancelOrderlist(cancelOrderList));
+
+  Lockr.set("cancelOrderList", cancelOrderList);
 };
 
 // 本地存储 删除掉已取消确认的订单

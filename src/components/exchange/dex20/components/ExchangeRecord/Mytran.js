@@ -43,20 +43,21 @@ class Mytran extends Component {
 
   componentDidMount() {
     this.getColumns();
-    this.getData({ current: 1, pageSize: 15 });
+    this.getData({ current: 1, pageSize: 12 });
   }
 
   componentDidUpdate(prevProps) {
-    let { is_update_tran, isLoad, showCurrent } = this.props;
+    let { is_update_tran, isLoad, showCurrent, account } = this.props;
 
     if (
       prevProps.is_update_tran != is_update_tran ||
+      prevProps.account.address != account.address ||
       (isLoad && prevProps.isLoad != isLoad)
     ) {
       this.setState({
         isLoading: true
       });
-      this.getData({ current: 1, pageSize: 15 });
+      this.getData({ current: 1, pageSize: 12 });
       setUpdateTran(false);
     }
 
@@ -66,7 +67,7 @@ class Mytran extends Component {
           start: 0
         },
         () => {
-          this.getData({ current: 1, pageSize: 15 });
+          this.getData({ current: 1, pageSize: 12 });
         }
       );
     }
@@ -291,7 +292,7 @@ class Mytran extends Component {
         // pagination={false}
         onChange={pagination => this.getData(pagination)}
         pagination={{
-          defaultPageSize: 15,
+          defaultPageSize: 12,
           total
         }}
         rowKey={(record, index) => {
