@@ -203,7 +203,9 @@ export function Information({token: tokens,currentTotalSupply}) {
         {
             name: 'GitHub',
             content:  token.github !== 'no_message' ?
-                <ExternalLink url={token.github && t(token.github)} _url={token.github}/> :
+                <HrefLink style={{whiteSpace:'nowrap',overflow:'hidden',textOverflow:'ellipsis',display: 'block'}} href={token.github}>
+                    {token.github}
+                </HrefLink> :
                 <span style={{color: '#d8d8d8'}}>-</span>
         },
         // {
