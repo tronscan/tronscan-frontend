@@ -14,7 +14,7 @@ import { API_URL, CONTRACT_MAINNET_API_URL, TOKENTYPE, MARKET_API_URL, VERIFYSTA
 import { getTime} from "date-fns";
 import {CopyToClipboard} from "react-copy-to-clipboard";
 import {Tooltip} from "reactstrap";
-import { Popover, Button } from 'antd';
+import { Popover, Button, Tooltip as AntdTip } from 'antd';
 import { IS_SUNNET, IS_MAINNET } from './../../constants';
 import MappingModal from './MappingModal';
 import SweetAlert from 'react-bootstrap-sweetalert';
@@ -102,7 +102,6 @@ class IssuedToken extends React.Component{
 
     componentDidUpdate(prevProps) {
       const {issuedAsset, account} = this.props
-      const { marketInfoToken10 } = this.state;
 
       if(account != prevProps.account){
         this.get20token()
@@ -131,10 +130,10 @@ class IssuedToken extends React.Component{
             };
     
             let { data: { data = {} } } = await xhr.post(`${MARKET_API_URL}/api/token/getTokenInfoByTokenIdOrAddr`, param);
-            const { tokenOtherInfo, description } = data;
+            const { tokenOtherInfo, description, sprice, fprice } = data;
             const tokenOtherInfoObj = !!tokenOtherInfo ? JSON.parse(tokenOtherInfo) : {};
             data.description = window.decodeURIComponent(description);
-            data = Object.assign(data, tokenOtherInfoObj);
+            data = Object.assign(data, tokenOtherInfoObj, { sprice: `${sprice}`, fprice: `${fprice}` });
             this.setState({
                 marketInfoToken10: data,
             });
@@ -156,10 +155,10 @@ class IssuedToken extends React.Component{
             .then(v => {
                 const token20Infos = v.map(item => {
                     let { data: { data = {} } } = item;
-                    const { tokenOtherInfo, description } = data;
+                    const { tokenOtherInfo, description, sprice, fprice } = data;
                     const tokenOtherInfoObj = !!tokenOtherInfo ? JSON.parse(tokenOtherInfo) : {};
                     data.description = window.decodeURIComponent(description);
-                    data = Object.assign(data, tokenOtherInfoObj);
+                    data = Object.assign(data, tokenOtherInfoObj, { sprice: `${sprice}`, fprice: `${fprice}` });
                     return data;
                 })
 
@@ -220,30 +219,41 @@ class IssuedToken extends React.Component{
         const hasMarketToken20Data = marketInfoToken20 && marketInfoToken20.length > index;
         const data = marketInfoToken20[index];
         const { updateTime, verifyStatus } = data || {};
-        const { isShowEntry, isShowView, isShowUpdate } = this.getMarketBtnStatus(verifyStatus);
-
-        const enterItem = (
-            <a href='javascript:;' onClick={() => this.jumpPage(decimals, `/tokens/markets/create/${TOKENTYPE.TOKEN20}/${address}`)}>
-                <Tag color="blue">{tu('application_entry')}</Tag>
-            </a>
-        );
-
-        const updateItem = (
-            <a href='javascript:;' onClick={() => this.jumpPage(decimals, `/tokens/markets/update/${TOKENTYPE.TOKEN20}/${address}`, data)}>
-                <Tag color="blue">{tu('market_update')}</Tag>
-            </a>
-        );
+        const { marketNoEntry, isListNoEntry, isToAudit, isNotThrough, isThrough, isShelves } = this.getMarketBtnStatus(verifyStatus);
 
         return <tr className="line-2">
             <td><div className="tip">2</div></td>
             <td>
-                {isShowEntry && enterItem}
-                {isShowUpdate && updateItem}
             </td>
             <td>{tu('input_market')}</td>
-            <td></td>
+            <td>
+                {marketNoEntry
+                    ? <AntdTip title={<span>{tu('not_entry_tip')}</span>}>
+                        <Tag color="#A4A3A3">
+                            {tu('not_entry')}
+                        </Tag>
+                      </AntdTip>
+                    : (!isThrough && !isShelves && <div><AntdTip title={<span>{tu('type_pass_market_tip')}</span>}>
+                        <Tag color="#219236">{tu('type_pass')}</Tag>
+                        </AntdTip></div>) }
+                {isListNoEntry && <AntdTip title={<span>{tu('not_entry_list_tip')}</span>}>
+                        <Tag color="#A4A3A3">{tu('not_entry')}</Tag>
+                    </AntdTip>}
+                {isToAudit && <AntdTip title={<span>{tu('to_audit_tip')}</span>}>
+                        <Tag color="#E69F4E">{tu('to_audit')}</Tag>
+                    </AntdTip>}
+                {isNotThrough && <AntdTip title={<span>{tu('not_through_tip')}</span>}>
+                        <Tag color="#C34339">{tu('not_through')}</Tag>
+                    </AntdTip>}
+                {isThrough && <AntdTip title={<span>{tu('type_pass_tip')}</span>}>
+                        <Tag color="#609645">{tu('type_pass')}</Tag>
+                    </AntdTip>}
+                {isShelves && <AntdTip title={<span>{tu('shelves_market_tip')}</span>}>
+                        <Tag color="#171717">{tu('shelves')}</Tag>
+                    </AntdTip>}
+            </td>
             <td className="text-light">
-                {hasMarketToken20Data && verifyStatus === VERIFYSTATUS.APPROVED && verifyStatus === VERIFYSTATUS.RECOMMENDED &&
+                {hasMarketToken20Data && !marketNoEntry &&
                     <div>
                         {tu('pass_time')}:
                         <FormattedDate value={updateTime}/>
@@ -252,7 +262,13 @@ class IssuedToken extends React.Component{
             </td>
             <td></td>
             <td>
-                {isShowView && <a >{tu('check_market_detail')}</a>}
+                {!marketNoEntry && !isShelves && <div><a >{tu('check_market_detail')}</a></div>}
+                {marketNoEntry && <div><Tag color="#3E76EE"
+                        onClick={() => this.jumpPage(decimals, `/tokens/markets/create/${TOKENTYPE.TOKEN20}/${address}`)}>
+                        {tu('search_trading_area')}</Tag></div>}
+                {(isToAudit || marketNoEntry) && <div><Tag color="#A4A3A3">{tu('list_trading_area')}</Tag></div>}
+                {(isNotThrough || isListNoEntry) && <div><Tag color="#3E76EE"
+                    onClick={() => this.jumpListEntry(data, address)}>{tu('list_trading_area')}</Tag></div>}
             </td>
         </tr>
     }
@@ -265,29 +281,41 @@ class IssuedToken extends React.Component{
         const { issuedAsset } = this.props;
         const { id, precision } = issuedAsset || {};
         const { updateTime, verifyStatus } = marketInfoToken10 || {};
-        const { isShowEntry, isShowView, isShowUpdate } = this.getMarketBtnStatus(verifyStatus);
+        const { marketNoEntry, isListNoEntry, isToAudit, isNotThrough, isThrough, isShelves } = this.getMarketBtnStatus(verifyStatus);
 
-        const enterItem = (
-            <a href='javascript:;' onClick={() => this.jumpPage(precision, `/tokens/markets/create/${TOKENTYPE.TOKEN10}/${id}`)}>
-                <Tag color="blue">{tu('application_entry')}</Tag>
-            </a>
-        );
-
-        const updateItem = (
-            <a href='javascript:;' onClick={() => this.jumpPage(precision, `/tokens/markets/update/${TOKENTYPE.TOKEN10}/${id}`, marketInfoToken10)}>
-                <Tag color="blue">{tu('market_update')}</Tag>
-            </a>
-        );
         return <tr className="line-2">
             <td><div className="tip">2</div></td>
             <td>
-                {isShowEntry && enterItem}
-                {isShowUpdate && updateItem}
             </td>
             <td>{tu('input_market')}</td>
-            <td></td>
+            <td>
+                {marketNoEntry
+                    ? <AntdTip title={<span>{tu('not_entry_tip')}</span>}>
+                        <Tag color="#A4A3A3">
+                            {tu('not_entry')}
+                        </Tag>
+                      </AntdTip>
+                    : (!isThrough && !isShelves && <div><AntdTip title={<span>{tu('type_pass_market_tip')}</span>}>
+                        <Tag color="#219236">{tu('type_pass')}</Tag>
+                        </AntdTip></div>) }
+                {isListNoEntry && <AntdTip title={<span>{tu('not_entry_list_tip')}</span>}>
+                        <Tag color="#A4A3A3">{tu('not_entry')}</Tag>
+                    </AntdTip>}
+                {isToAudit && <AntdTip title={<span>{tu('to_audit_tip')}</span>}>
+                        <Tag color="#E69F4E">{tu('to_audit')}</Tag>
+                    </AntdTip>}
+                {isNotThrough && <AntdTip title={<span>{tu('not_through_tip')}</span>}>
+                        <Tag color="#C34339">{tu('not_through')}</Tag>
+                    </AntdTip>}
+                {isThrough && <AntdTip title={<span>{tu('type_pass_tip')}</span>}>
+                        <Tag color="#609645">{tu('type_pass')}</Tag>
+                    </AntdTip>}
+                {isShelves && <AntdTip title={<span>{tu('shelves_market_tip')}</span>}>
+                        <Tag color="#171717">{tu('shelves')}</Tag>
+                    </AntdTip>}
+            </td>
             <td className="text-light">
-                {verifyStatus === VERIFYSTATUS.APPROVED && verifyStatus === VERIFYSTATUS.RECOMMENDED &&
+                {!marketNoEntry &&
                     <div>
                         {tu('pass_time')}:
                         <FormattedDate value={updateTime}/>
@@ -296,7 +324,14 @@ class IssuedToken extends React.Component{
             </td>
             <td></td>
             <td>
-                {isShowView && <a >{tu('check_market_detail')}</a>}
+                {!marketNoEntry && !isShelves && <div><a >{tu('check_market_detail')}</a></div>}
+                {marketNoEntry && <div><Tag color="#3E76EE"
+                        onClick={() => this.jumpPage(precision, `/tokens/markets/create/${TOKENTYPE.TOKEN10}/${id}`)}>
+                        {tu('search_trading_area')}</Tag></div>}
+                {(isToAudit || marketNoEntry) && <div><Tag color="#A4A3A3">{tu('list_trading_area')}</Tag></div>}
+                {(isNotThrough || isListNoEntry) && <div><Tag color="#3E76EE"
+                    onClick={() => this.jumpListEntry(marketInfoToken10, id)}>
+                    {tu('list_trading_area')}</Tag></div>}
             </td>
         </tr>
     };
@@ -356,15 +391,32 @@ class IssuedToken extends React.Component{
             }
         });
     }
+    
+    jumpListEntry = (tokenInfo, tokenId) => {
+        console.log(tokenInfo, '=====')
+        const { history } = this.props;
+        const { id } = tokenInfo;
+        history.push({
+            pathname: `/tokens/markets/add/team/${tokenId}/${id}`,
+            state: {
+                tokenInfo
+            }
+        });
+    }
 
     /**
      * get market button status
      */
     getMarketBtnStatus = (verifyStatus) => {
         return {
-            isShowEntry: !verifyStatus && verifyStatus !== 0,
-            isShowView: verifyStatus > VERIFYSTATUS.ENTRY && verifyStatus !== VERIFYSTATUS.REJECTED && verifyStatus !== VERIFYSTATUS.SHELVES,
-            isShowUpdate: verifyStatus < VERIFYSTATUS.APPROVED 
+            marketNoEntry: (!verifyStatus && verifyStatus !== VERIFYSTATUS.HASBEENSUBMITTED) || verifyStatus === VERIFYSTATUS.NOTRECORDED,
+            isListNoEntry: verifyStatus == VERIFYSTATUS.NOTRECOMMENDED,
+            isToAudit: verifyStatus == VERIFYSTATUS.HASBEENRECORDED || verifyStatus === VERIFYSTATUS.HASBEENSUBMITTED
+                || verifyStatus === VERIFYSTATUS.TOAUDIT || verifyStatus === VERIFYSTATUS.APPROVED
+                || verifyStatus === VERIFYSTATUS.RECOMMENDEDFAILED,
+            isNotThrough: verifyStatus === VERIFYSTATUS.REJECTED,
+            isThrough: verifyStatus === VERIFYSTATUS.RECOMMENDED || verifyStatus === VERIFYSTATUS.CONFIRMED,
+            isShelves: verifyStatus === VERIFYSTATUS.SHELVES
         };
     }
 

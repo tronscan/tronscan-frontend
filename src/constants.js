@@ -106,13 +106,17 @@ export const MARKETPAGE = {
 
 // market token verify status
 export const VERIFYSTATUS = {
-    ENTRY: 0, // entry
+    NOTRECORDED: -2, // No entry
+    HASBEENRECORDED: -1, // Has been recorded
+    HASBEENSUBMITTED: 0, // Has been submitted
     NOTRECOMMENDED: 1, // not recommended
     TOAUDIT: 2, // to audit
     APPROVED: 3, // reviewed for recommendation
     RECOMMENDED: 4, // reviewed and recommended
     REJECTED: 5, // rejected
-    SHELVES: 6, // the shelves
+    SHELVES: 6, // Has been off the shelves
+    CONFIRMED: 7, // Have been confirmed
+    RECOMMENDEDFAILED: 8, // Review recommendation failed
 };
 
 // JSEncrypt key

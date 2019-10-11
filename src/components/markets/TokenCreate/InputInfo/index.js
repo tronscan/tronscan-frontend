@@ -76,8 +76,7 @@ export class InputInfo extends Component {
                 >
                     {/* base info */}
                     <BaseInfo form={form} intl={intl} state={this.state} showModal={(msg) => {
-                        this.showModal(msg)
-                        ;
+                        this.showModal(msg);
                     }}/>
 
                     {/* price info */}

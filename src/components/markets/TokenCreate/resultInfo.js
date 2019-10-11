@@ -44,8 +44,8 @@ export class resultInfo extends Component {
      * Continue to enter
      */
     submit = () => {
-        const { id } = this.state;
-        this.props.history.push(`/tokens/markets/add/team/${id}`);
+        const { id, tokenId } = this.state;
+        this.props.history.push(`/tokens/markets/add/team/${tokenId}/${id}`);
     }
 
     render() {

@@ -108,7 +108,7 @@ class SubmitInfo extends Component {
                 sprice: Number(sprice),
             };
 
-            basiInfo = type === 'trc10' ? Object.assign({ tokenId }) : Object.assign({ tokenAddress });
+            basiInfo = type === 'trc10' ? Object.assign(basiInfo, { tokenId }) : Object.assign(basiInfo, { tokenAddress });
 
             const infoData = {
                 id: updateId,
@@ -121,10 +121,11 @@ class SubmitInfo extends Component {
             if (!isSubmit) {
                 return false;
             }
+            const tokenIdOrAddress = type === 'trc10' ? tokenId : tokenAddress;
             if (isUpdate) {
-                this.updateToken({ data: jsencrypt(JSON.stringify(infoData)) });
+                this.updateToken({ data: jsencrypt(JSON.stringify(infoData)) }, tokenIdOrAddress);
             } else {
-                this.createToken({ data: jsencrypt(JSON.stringify({...infoData, ...basiInfo})) });
+                this.createToken({ data: jsencrypt(JSON.stringify({...infoData, ...basiInfo})) }, tokenIdOrAddress);
             }
         }
     }
@@ -140,7 +141,6 @@ class SubmitInfo extends Component {
             id: tokenId,
             type,
         };
-        debugger
         const hash = tronWeb.toHex(JSON.stringify(data), false);
         const sig = await tronWeb.trx.sign(hash);
         if (!sig) {
@@ -153,7 +153,7 @@ class SubmitInfo extends Component {
     /**
      * create market token
      */
-    createToken = async(infoData) => {
+    createToken = async(infoData, tokenId) => {
         const { data: { msg, data = {} } } = await xhr.post(`${MARKET_API_URL}/api/token/addBasicInfo`, infoData);
         const { id } = data;
 
@@ -164,7 +164,8 @@ class SubmitInfo extends Component {
             Lockr.rm('TokenLogo');
             this.props.nextState({
                 msg,
-                id
+                id,
+                tokenId,
             });
             this.props.nextStep(2);
         });
@@ -173,7 +174,7 @@ class SubmitInfo extends Component {
     /**
      * update market token
      */
-    updateToken = async(infoData) => {
+    updateToken = async(infoData, tokenId) => {
 
         const { updateId  } = this.state;
 
@@ -185,6 +186,7 @@ class SubmitInfo extends Component {
             this.props.nextState({
                 msg,
                 id: code === 200 && data && updateId,
+                tokenId,
             });
             this.props.nextStep(2);
         });

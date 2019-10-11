@@ -10,15 +10,17 @@ import { Form } from 'antd';
 import { Client } from './../../../services/api';
 import moment from 'moment';
 import SweetAlert from 'react-bootstrap-sweetalert';
-import { MARKETPAGE, API_URL, MARKET_API_URL } from './../../../constants';
+import { MARKETPAGE, API_URL, MARKET_API_URL, TOKENTYPE } from './../../../constants';
 import xhr from 'axios/index';
 import NavigationPrompt from 'react-router-navigation-prompt';
+import { jsencrypt } from './../../../utils/jsencrypt';
 
 @connect(
     (state, ownProp) => ({
         account: state.app.account,
         wallet: state.wallet.current,
         page: ownProp.match.params.page,
+        tokenId: ownProp.match.params.tokenId,
         id: ownProp.match.params.id,
     })
 )
@@ -36,10 +38,67 @@ export class MarketCreate extends Component {
             step: 0,
             params: {
             },
+            isSubmitSuccess: false,
         };
     }
 
     componentDidMount() {
+        const { location: { state } } = this.props;
+        if (this.isLoggedIn()){
+            if (!!state && !!state.tokenInfo) {
+                this.setState({
+                    params: this.formatData(state.tokenInfo),
+                });
+            } else {
+                this.getMarketInfoToken();
+            }
+        }
+    }
+
+    isLoggedIn = () => {
+        let { account, intl } = this.props;
+        if (!account.isLoggedIn){
+            this.setState({
+                modal: <SweetAlert
+                    warning
+                    title={tu('not_signed_in')}
+                    confirmBtnText={intl.formatMessage({ id: 'confirm' })}
+                    confirmBtnBsStyle="danger"
+                    onConfirm={() => { this.setState({ modal: null }); this.goAccount(); }}
+                >
+                </SweetAlert>
+            });
+        }
+        return account.isLoggedIn;
+    };
+
+    goAccount = () => {
+        this.props.history.push('/account');
+    }
+
+    /**
+     * get market token
+     */
+    getMarketInfoToken = async() => {
+        const { tokenId } = this.props;
+        const param = {
+            tokenIdOrAddr: tokenId
+        };
+
+        let { data: { data = {} } } = await xhr.post(`${MARKET_API_URL}/api/token/getTokenInfoByTokenIdOrAddr`, param);
+        
+        this.setState({
+            params: this.formatData(data),
+        });
+    }
+
+    formatData = data => {
+        const { additionalInfoN1, additionalInfoN2, additionalInfoN3 } = data;
+        const { saleInformatiom, tokenInformation } = (additionalInfoN1 && JSON.parse(additionalInfoN1)) || {};
+        const { overview, teamInfomation } = (additionalInfoN2 && JSON.parse(additionalInfoN2)) || {};
+        const { otherInformation } = (additionalInfoN3 && JSON.parse(additionalInfoN3)) || {};
+        const params = { ...saleInformatiom, ...tokenInformation, ...overview, ...teamInfomation, ...otherInformation };
+        return params;
     }
 
     showSucessModal = () => {
@@ -50,10 +109,15 @@ export class MarketCreate extends Component {
                 title=""
                 confirmBtnText={intl.formatMessage({ id: 'confirm' })}
                 confirmBtnBsStyle="danger"
-                onConfirm={this.hideModal}
+                onConfirm={this.goAccount}
             >
                 <p>{tu('market_other_success')}</p>
-                <p>{tu('market_other_success_desc')}</p>
+                <p>
+                    {tu('market_other_success_desc_left')}
+                    <a href="https://support.trx.market/hc/en-us/requests/new">
+                        <label className="color-red">{tu('market_other_success_desc_right')}</label>
+                    </a>
+                </p>
             </SweetAlert>
         }
         );
@@ -270,10 +334,15 @@ export class MarketCreate extends Component {
             this.showErrorModal(intl.formatMessage({ id: 'market_other_v_required' }));
             return false;
         }
-        const infoData = this.assemblyData();
+        const infoData = {
+            data: jsencrypt(JSON.stringify(this.assemblyData()))
+        };
         const { data: { code } } = await xhr.post(`${MARKET_API_URL}/api/token/additionalInfo`, infoData);
         if (code === 200) {
             this.showSucessModal();
+            this.setState({
+                isSubmitSuccess: true,
+            })
         } else {
             this.showErrorModal(intl.formatMessage({ id: 'market_other_error' }));
         }
@@ -296,7 +365,9 @@ export class MarketCreate extends Component {
     }
 
     navigationchange(nextLocation){
-        return nextLocation && nextLocation.pathname.indexOf('/tokens/markets/add') == -1;
+        const { account } = this.props;
+        const { isSubmitSuccess } = this.state;
+        return nextLocation && nextLocation.pathname.indexOf('/tokens/markets/add') == -1 && account.isLoggedIn && !isSubmitSuccess;
     }
 
     render() {

@@ -255,7 +255,7 @@ export const routes = [
       },
       {
         label: "token_markets_input",
-        path: "/tokens/markets/add/:page/:id",
+        path: "/tokens/markets/add/:page/:tokenId/:id",
         icon: "fa fa-plus-square",
         component: TokensMarketsAddListAsync,
         showInMenu: false

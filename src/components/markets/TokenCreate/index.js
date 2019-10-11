@@ -180,7 +180,7 @@ export class TokenCreate extends Component {
                 precision: token.precision,
                 logo: token.icon_url,
                 ownerAddress: token.issue_address,
-                fprice: 1,
+                fprice: '1',
                 sprice: '',
                 token_id: id,
                 author: token.issue_address,
@@ -267,10 +267,10 @@ export class TokenCreate extends Component {
     };
 
     navigationchange(nextLocation){
-        let { account, intl } = this.props;
+        let { account } = this.props;
         const { leave_lock, step } = this.state;
         return nextLocation && nextLocation.pathname.indexOf('/tokens/markets/create') == -1
-        && nextLocation.pathname.indexOf('/tokens/markets/update') == -1 && leave_lock && step < 2 && account.isLoggedIn;
+        && nextLocation.pathname.indexOf('/tokens/markets/update') == -1 && leave_lock && step < 3 && account.isLoggedIn;
     }
 
     /**
@@ -308,11 +308,11 @@ export class TokenCreate extends Component {
         };
 
         let { data: { data = {} } } = await xhr.post(`${MARKET_API_URL}/api/token/getTokenInfoByTokenIdOrAddr`, param);
-        const { tokenOtherInfo, description } = data;
+        const { tokenOtherInfo, description, sprice, fprice } = data;
         
         data.description = window.decodeURIComponent(description);
         const tokenOtherInfoObj = !!tokenOtherInfo ? JSON.parse(tokenOtherInfo) : {};
-        data = Object.assign(data, tokenOtherInfoObj);
+        data = Object.assign(data, tokenOtherInfoObj, { sprice: `${sprice}`, fprice: `${fprice}` });
 
         this.setState({
             paramData: data,
