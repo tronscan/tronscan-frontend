@@ -294,6 +294,9 @@ export class ExternalLink extends React.PureComponent {
 export function HrefLink({href, children, ...props}) {
 
   let urlHandler = App.getExternalLinkHandler();
+  if (href == 'www.bittorrent.com') {
+      href = 'https://' + href
+   }
   if (urlHandler) {
     return (
         <a href="javascript:;"
