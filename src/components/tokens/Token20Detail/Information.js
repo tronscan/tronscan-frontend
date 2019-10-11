@@ -2,12 +2,14 @@ import React from "react";
 import {tu, t} from "../../../utils/i18n";
 import {toThousands} from "../../../utils/number";
 import {FormattedDate, FormattedNumber, FormattedTime } from "react-intl";
-import {AddressLink, ExternalLink} from "../../common/Links";
+import {AddressLink, ExternalLink,HrefLink} from "../../common/Links";
 import {SocialMedia} from "../../common/SocialMedia";
 import {Link} from "react-router-dom";
 import {toLower} from "lodash";
 import { Popover } from 'antd';
 import {cloneDeep} from 'lodash'
+import {API_URL, ONE_TRX, CONTRACT_ADDRESS_USDT, CONTRACT_ADDRESS_WIN, CONTRACT_ADDRESS_GGC, IS_MAINNET} from "../../../constants";
+
 
 
 export function Information({token: tokens}) {
@@ -54,16 +56,25 @@ export function Information({token: tokens}) {
     },
     {
       name: 'website', 
-      content:  token.home_page?
-          <ExternalLink url={token.home_page}/> :
-          <span style={{color: '#d8d8d8'}}>-</span>
-
+      content:  <div>{
+          token.home_page?token.contract_address === CONTRACT_ADDRESS_USDT?
+              <HrefLink href={token.home_page}>
+                  {token.home_page}
+              </HrefLink>:
+              <ExternalLink url={token.home_page}/> :
+              <span style={{color: '#d8d8d8'}}>-</span>
+      }</div>
     },
     {
         name: 'white_paper',
-        content:  token.white_paper?
-            <ExternalLink url={token.white_paper && t(token.white_paper)} _url={token.white_paper}/> :
-            <span style={{color: '#d8d8d8'}}>-</span>
+        content:  <div>{
+            token.white_paper?token.contract_address === CONTRACT_ADDRESS_USDT?
+                <HrefLink style={{whiteSpace:'nowrap',overflow:'hidden',textOverflow:'ellipsis',display: 'block'}} href={token.white_paper}>
+                    {token.white_paper}
+                </HrefLink>:
+                <ExternalLink url={token.white_paper && t(token.white_paper)} _url={token.white_paper}/>  :
+                <span style={{color: '#d8d8d8'}}>-</span>
+        }</div>
     },
     {
         name: 'social_link',
@@ -72,7 +83,9 @@ export function Information({token: tokens}) {
     {
       name: 'GitHub', 
       content:  token.git_hub ?
-                <ExternalLink url={token.git_hub} _url={token.git_hub}/> :
+                <HrefLink style={{whiteSpace:'nowrap',overflow:'hidden',textOverflow:'ellipsis',display: 'block'}} href={token.git_hub}>
+                    {token.git_hub}
+                </HrefLink>:
                 <span style={{color: '#d8d8d8'}}>-</span>
     },
     {

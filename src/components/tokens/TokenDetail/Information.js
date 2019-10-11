@@ -1,7 +1,7 @@
 import React from "react";
 import {tu, t} from "../../../utils/i18n";
 import {FormattedDate, FormattedNumber, FormattedTime } from "react-intl";
-import {AddressLink, ExternalLink} from "../../common/Links";
+import {AddressLink, ExternalLink, HrefLink} from "../../common/Links";
 import {SocialMedia} from "../../common/SocialMedia";
 import {TRXPrice} from "../../common/Price";
 import {Link} from "react-router-dom";
@@ -105,8 +105,10 @@ export function Information({token: tokens,currentTotalSupply}) {
     {
       name: 'GitHub', 
       content:  token.github !== 'no_message' ?
-                <ExternalLink url={token.github && t(token.github)} _url={token.github}/> :
-                <span style={{color: '#d8d8d8'}}>-</span>
+                <HrefLink style={{whiteSpace:'nowrap',overflow:'hidden',textOverflow:'ellipsis',display: 'block'}} href={token.github}>
+                  {token.github}
+               </HrefLink>:
+                 <span style={{color: '#d8d8d8'}}>-</span>
     },
     // {
     //   name: 'contract_address',

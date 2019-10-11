@@ -338,6 +338,7 @@ export const messages = {
   "private_key_untrusted_website_message_0": "신뢰할 수 없는 웹사이트에 프라이빗키를 제공하지 마세요.",
   "no_official_tron_website": "TRON 공식 페이지가 아닙니다.",
   "continue_to_external_website": "외부 웹사이트로 이동",
+  "visit_third_party_website":"The page you visit will be redirected to a third-party website. There may be security risks. Are you sure you want to continue?",
   "url_changed": "URL 변경됨",
   "successfully_changed_website_message": "URL으로 전환했습니다.",
   "unable_to_change_website_title": "URL을 변경할 수 없습니다.",

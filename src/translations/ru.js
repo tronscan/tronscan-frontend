@@ -341,6 +341,7 @@ export const messages = {
   "private_key_untrusted_website_message_0": "Никогда не вводите свой приватный ключ на ненадежном веб-сайте.",
   "no_official_tron_website": "не является официальным сайтом TRON.",
   "continue_to_external_website": "Продолжить переход на внешний сайт",
+  "visit_third_party_website":"The page you visit will be redirected to a third-party website. There may be security risks. Are you sure you want to continue?",
   "url_changed": "URL изменен",
   "successfully_changed_website_message": "Сайт успешно изменен на",
   "unable_to_change_website_title": "Невозможно изменить URL",
