@@ -10,8 +10,8 @@ export const IS_DESKTOP = process.env.DESKTOP === 'true';
 //export const IS_MAINNET = Lockr.get('NET') === 'mainnet' || !Lockr.get('NET');
 //export const IS_SUNNET =  Lockr.get('NET') === 'sunnet';
 export const NETURL = {
-    MAINNET:'https://tronscan.org',
-    SUNNET:'https://dappchain.tronscan.org',
+    MAINNET:'https://debug.tronscan.org',
+    SUNNET:'https://debugdappchain.tronscan.org',
 }
 export const IS_MAINNET = window.location.origin === NETURL.MAINNET;
 export const IS_SUNNET =  window.location.origin === NETURL.SUNNET;
@@ -40,7 +40,7 @@ export const ACCOUNT_ADDRESS = 'ACCOUNT_ADDRESS';
 export const ACCOUNT_LEDGER = 'ACCOUNT_LEDGER';
 export const ACCOUNT_TRONLINK = 'ACCOUNT_TRONLINK';
 
-
+export const TOKEN_ID_BTT = '1002000';
 export const CONTRACT_ADDRESS_USDT = 'TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t';
 export const CONTRACT_ADDRESS_WIN = 'TLa2f6VPqDgRE67v1736s7bJ8Ray5wYjU7';
 export const CONTRACT_ADDRESS_GGC = 'TB95FFYRJMLY6mWZqv4JUMqAqsHF4JCXga';

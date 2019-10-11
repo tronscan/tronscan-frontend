@@ -57,7 +57,7 @@ export function Information({token: tokens}) {
     {
       name: 'website', 
       content:  <div>{
-          token.home_page?token.contract_address === CONTRACT_ADDRESS_USDT?
+          token.home_page?token.contract_address === CONTRACT_ADDRESS_USDT ||token.contract_address === CONTRACT_ADDRESS_WIN?
               <HrefLink href={token.home_page}>
                   {token.home_page}
               </HrefLink>:
@@ -68,7 +68,7 @@ export function Information({token: tokens}) {
     {
         name: 'white_paper',
         content:  <div>{
-            token.white_paper?token.contract_address === CONTRACT_ADDRESS_USDT?
+            token.white_paper?token.contract_address === CONTRACT_ADDRESS_USDT || token.contract_address === CONTRACT_ADDRESS_WIN?
                 <HrefLink style={{whiteSpace:'nowrap',overflow:'hidden',textOverflow:'ellipsis',display: 'block'}} href={token.white_paper}>
                     {token.white_paper}
                 </HrefLink>:
