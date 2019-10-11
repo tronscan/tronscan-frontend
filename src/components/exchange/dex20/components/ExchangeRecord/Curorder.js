@@ -111,15 +111,20 @@ class Curorder extends Component {
       this.watchUnCOnfirmOrderList();
     }
 
-    if (cancelOrderList && cancelOrderList.length > 0) {
-      this.watchCancelOrderIds();
-    }
+    // if (cancelOrderList && cancelOrderList.length > 0) {
+    this.watchCancelOrderIds();
+    // }
   }
 
   componentDidUpdate(prevProps) {
     let { timer, start } = this.state;
-    let { wallet, unConfirmOrderList, showCurrent, account } = this.props;
-
+    let {
+      wallet,
+      unConfirmOrderList,
+      showCurrent,
+      account,
+      cancelOrderList
+    } = this.props;
     // 切换钱包或者只看当前交易对
     if (
       prevProps.account.address != account.address ||
@@ -732,9 +737,9 @@ class Curorder extends Component {
 
   watchCancelOrderIds() {
     let { cancelOrderList, deleteCancelOrderObj } = this.props;
-
-    cancelOrderList &&
-      cancelOrderList.map((item, index) => {
+    let cancelOrderListLocal = Lockr.get("cancelOrderList");
+    cancelOrderListLocal &&
+      cancelOrderListLocal.map((item, index) => {
         let current_time = new Date().getTime();
         if (
           item.orderStatus === 6 &&

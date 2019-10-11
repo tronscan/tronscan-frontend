@@ -149,6 +149,7 @@ export function exchangeReducer(state = initialState, action) {
         redirctPair: action.redirctPair
       };
     }
+
     default:
       return state;
   }
