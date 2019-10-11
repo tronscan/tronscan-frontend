@@ -175,7 +175,7 @@ class Transactions extends React.Component {
         width: '30%',
         className: 'ant_table',
         render: (text, record, index) => {
-          return <AddressLink address={text}/>
+            return <AddressLink address={text}>{text}</AddressLink>
         }
       },
       {
