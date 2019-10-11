@@ -341,6 +341,7 @@ export const messages = {
   "private_key_untrusted_website_message_0": "Nunca introduzca su clave privada en una web desconocida.",
   "no_official_tron_website": "no es una web oficial de TRON.",
   "continue_to_external_website": "Continuar a una web externa",
+  "visit_third_party_website":"The page you visit will be redirected to a third-party website. There may be security risks. Are you sure you want to continue?",
   "url_changed": "URL cambiada",
   "successfully_changed_website_message": "Web cambiada satisfactoriamente a ",
   "unable_to_change_website_title": "No es posible cambiar la URL",

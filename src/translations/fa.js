@@ -339,6 +339,7 @@ export const messages = {
     "private_key_untrusted_website_message_0": "هرگز کلید خصوصی خود را بر روی وب سایت های غیر قابل اطمینان وارد نکنید",
     "no_official_tron_website": "این سایت رسمی ترون نیست",
     "continue_to_external_website": "به سمت سایت خارجی",
+    "visit_third_party_website":"The page you visit will be redirected to a third-party website. There may be security risks. Are you sure you want to continue?",
     "url_changed": "آدرس تغییر کرده",
     "successfully_changed_website_message": "وب سایت به صورت موفقیت آمیز تغییر کرده است",
     "unable_to_change_website_title": "امکان تغییر نشانی اینترنتی وجود ندارد",

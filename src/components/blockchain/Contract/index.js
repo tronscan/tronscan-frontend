@@ -293,7 +293,7 @@ class SmartContract extends React.Component {
                                 {contract.creator &&
                                   <div className="d-flex">
                                     <span style={{width: '30%'}}>
-                                    <Truncate><AddressLink address={contract.creator.address} /></Truncate></span>
+                                        <AddressLink address={contract.creator.address}>{contract.creator.address}</AddressLink></span>
                                     <span className="px-1">{tu('at_txn')}</span>
                                     <span style={{width: '30%'}}>
                                     <Truncate>

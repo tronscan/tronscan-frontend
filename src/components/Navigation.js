@@ -648,7 +648,6 @@ class Navigation extends React.Component {
     const style_width = STYLE_MAP[activeLanguage]?
                         STYLE_MAP[activeLanguage]:
                         STYLE_MAP['default'];
-
     return (
         <Fragment>
           {
@@ -665,14 +664,22 @@ class Navigation extends React.Component {
                           {/* <div className="col-lg-2">
                           <Avatar size={45} value={account.address}/>
                         </div> */}
-                          <div>
+                          <div style={{width: 252}}>
                             <b style={{color: '#333'}}>{wallet.current.name || tu("account")}</b>
                             <br/>
                             {/* <AddressLink
                               address={account.address}
                               className="small text-truncate text-nowrap d-sm-inline-block"
                               style={{width: 150}}/> */}
-                            <Truncate><span>{account.address}</span></Truncate>
+                              {
+                                  isAddressValid(account.address)?
+                                    <div className="ellipsis_box">
+                                      <div className="ellipsis_box_start">{account.address.substring(0,29)}</div>
+                                      <div className="ellipsis_box_end">{account.address.substring(29,34)}</div>
+                                    </div>
+                                  :<Truncate><span>{account.address}</span></Truncate>
+                              }
+
                           </div>
                           {/* <Link to="/account" className="col-lg-4 d-flex justify-content-end align-items-center"> */}
                           <i className="fa fa-angle-right ml-3" ></i>

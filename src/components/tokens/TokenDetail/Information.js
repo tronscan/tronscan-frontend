@@ -1,13 +1,13 @@
 import React from "react";
 import {tu, t} from "../../../utils/i18n";
 import {FormattedDate, FormattedNumber, FormattedTime } from "react-intl";
-import {AddressLink, ExternalLink} from "../../common/Links";
+import {AddressLink, ExternalLink, HrefLink} from "../../common/Links";
 import {SocialMedia} from "../../common/SocialMedia";
 import {TRXPrice} from "../../common/Price";
 import {Link} from "react-router-dom";
 import {toLower} from "lodash";
 import {cloneDeep} from 'lodash'
-import {IS_MAINNET} from "../../../constants";
+import {IS_MAINNET,TOKEN_ID_BTT} from "../../../constants";
 
 
 export function Information({token: tokens,currentTotalSupply}) {
@@ -68,7 +68,14 @@ export function Information({token: tokens,currentTotalSupply}) {
     },
     {
       name: 'website', 
-      content: <ExternalLink url={token.url}/>
+      content:<div>{
+          token.url ? token.id == TOKEN_ID_BTT ?
+              <HrefLink href={token.url}>
+                  {token.url}
+              </HrefLink> :
+              <ExternalLink url={token.url}/> :
+              <span style={{color: '#d8d8d8'}}>-</span>
+      }</div>
     },
     {
       name: 'token_holders',
@@ -83,10 +90,15 @@ export function Information({token: tokens,currentTotalSupply}) {
       content: <FormattedNumber value={token.totalTransactions}/>
     },
     {
-      name: 'white_paper', 
-      content:  token.white_paper !== 'no_message'?
-                <ExternalLink url={token.white_paper && t(token.white_paper)} _url={token.white_paper}/> :
-                <span style={{color: '#d8d8d8'}}>-</span>
+      name: 'white_paper',
+      content:  <div>{
+            token.white_paper !== 'no_message'?token.id == TOKEN_ID_BTT ?
+              <HrefLink style={{whiteSpace:'nowrap',overflow:'hidden',textOverflow:'ellipsis',display: 'block'}} href={token.white_paper}>
+                  {token.white_paper}
+              </HrefLink>:
+              <ExternalLink url={token.white_paper && t(token.white_paper)} _url={token.white_paper}/>  :
+              <span style={{color: '#d8d8d8'}}>-</span>
+      }</div>
     },
     {
       name: 'created', 
@@ -105,8 +117,10 @@ export function Information({token: tokens,currentTotalSupply}) {
     {
       name: 'GitHub', 
       content:  token.github !== 'no_message' ?
-                <ExternalLink url={token.github && t(token.github)} _url={token.github}/> :
-                <span style={{color: '#d8d8d8'}}>-</span>
+                <HrefLink style={{whiteSpace:'nowrap',overflow:'hidden',textOverflow:'ellipsis',display: 'block'}} href={token.github}>
+                  {token.github}
+               </HrefLink>:
+                 <span style={{color: '#d8d8d8'}}>-</span>
     },
     // {
     //   name: 'contract_address',
@@ -164,7 +178,14 @@ export function Information({token: tokens,currentTotalSupply}) {
         },
         {
             name: 'website',
-            content: <ExternalLink url={token.url}/>
+            content: <div>{
+                token.url ? token.id == TOKEN_ID_BTT ?
+                    <HrefLink href={token.url}>
+                        {token.url}
+                    </HrefLink> :
+                    <ExternalLink url={token.url}/> :
+                    <span style={{color: '#d8d8d8'}}>-</span>
+            }</div>
         },
         {
             name: 'DAppChain_holders',
@@ -180,9 +201,14 @@ export function Information({token: tokens,currentTotalSupply}) {
         },
         {
             name: 'white_paper',
-            content:  token.white_paper !== 'no_message'?
-                <ExternalLink url={token.white_paper && t(token.white_paper)} _url={token.white_paper}/> :
-                <span style={{color: '#d8d8d8'}}>-</span>
+            content:  <div>{
+                token.white_paper !== 'no_message'?token.id == TOKEN_ID_BTT ?
+                    <HrefLink style={{whiteSpace:'nowrap',overflow:'hidden',textOverflow:'ellipsis',display: 'block'}} href={token.white_paper}>
+                        {token.white_paper}
+                    </HrefLink>:
+                    <ExternalLink url={token.white_paper && t(token.white_paper)} _url={token.white_paper}/>  :
+                    <span style={{color: '#d8d8d8'}}>-</span>
+            }</div>
         },
         // {
         //     name: 'created',
@@ -201,7 +227,9 @@ export function Information({token: tokens,currentTotalSupply}) {
         {
             name: 'GitHub',
             content:  token.github !== 'no_message' ?
-                <ExternalLink url={token.github && t(token.github)} _url={token.github}/> :
+                <HrefLink style={{whiteSpace:'nowrap',overflow:'hidden',textOverflow:'ellipsis',display: 'block'}} href={token.github}>
+                    {token.github}
+                </HrefLink> :
                 <span style={{color: '#d8d8d8'}}>-</span>
         },
         // {

@@ -7,7 +7,7 @@ import {FormattedNumber, injectIntl} from "react-intl";
 import {tu} from "../../../utils/i18n";
 import TimeAgo from "react-timeago";
 import {TronLoader} from "../../common/loaders";
-import {Truncate} from "../../common/text";
+import {Truncate,TruncateAddress} from "../../common/text";
 import {ContractTypes} from "../../../utils/protocol";
 import SmartTable from "../../common/SmartTable.js"
 import {upperFirst, toUpper} from "lodash";
@@ -106,7 +106,7 @@ class Transactions extends React.Component {
         dataIndex: 'txHash',
         key: 'txHash',
         align: 'left',
-        // width: '150px',
+        width: '150px',
         className: 'ant_table',
         render: (text, record, index) => {
           return <Truncate>
@@ -145,6 +145,7 @@ class Transactions extends React.Component {
         dataIndex: 'ownAddress',
         key: 'ownAddress',
         align: 'left',
+        className: 'ant_table address_max_width',
         render: (text, record, index) => {
           return record.tip == 'in' ?
               <span className="d-flex">
@@ -153,9 +154,9 @@ class Transactions extends React.Component {
               <span><i className="far fa-file mr-1"></i></span>
             </Tooltip>}
 
-                <AddressLink address={text} isContract={record.ownAddressType == 2}/>
+                  <AddressLink address={text} isContract={record.ownAddressType == 2}>{text}</AddressLink>
           </span> :
-              <Truncate><span>{text}</span></Truncate>
+              <TruncateAddress>{text}</TruncateAddress>
         }
       },
       // {
@@ -171,6 +172,8 @@ class Transactions extends React.Component {
         dataIndex: 'toAddress',
         key: 'toAddress',
         align: 'left',
+        width:'150px',
+        className: 'ant_table address_max_width',
         render: (text, record, index) => {
           return record.tip == 'out' ?
               <span className="d-flex">
@@ -179,9 +182,9 @@ class Transactions extends React.Component {
               <span><i className="far fa-file mr-1"></i></span>
             </Tooltip>}
 
-                <AddressLink address={text} isContract={record.toAddressType == 2}/>
+                  <AddressLink address={text} isContract={record.toAddressType == 2}>{text}</AddressLink>
           </span> :
-              <Truncate><span>{text}</span></Truncate>
+              <TruncateAddress>{text}</TruncateAddress>
         }
       },
       {
