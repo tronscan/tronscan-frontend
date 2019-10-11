@@ -751,7 +751,7 @@ class Curorder extends Component {
           let order_id = item.orderID;
           let cancel_txid = item.cancel_hash;
           let obj = { action_type, entry_txid, cancel_txid, order_id };
-          console.log("告诉服务端", entry_txid, order_id, cancel_txid, index);
+          // console.log("告诉服务端", entry_txid, order_id, cancel_txid, index);
           Client20.abnormalOrderStatus(obj)
             .then(res => {
               deleteCancelOrderObj(index);
