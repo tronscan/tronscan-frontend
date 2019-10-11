@@ -265,8 +265,7 @@ export class ExternalLink extends React.PureComponent {
             </ModalHeader>
             <ModalBody className="text-center p-3" onClick={this.hideModal}>
               <span
-                  className="font-weight-bold text-truncate d-block">{url}</span> {t("no_official_tron_website")} &nbsp;
-              {tu("private_key_untrusted_website_message_0")}
+                  className="font-weight-bold text-truncate d-block">{url}</span>{tu("visit_third_party_website")}
             </ModalBody>
             <ModalFooter>
               {this.renderExternalLink()}
