@@ -294,8 +294,8 @@ export class ExternalLink extends React.PureComponent {
 export function HrefLink({href, children, ...props}) {
 
   let urlHandler = App.getExternalLinkHandler();
-  if (href.indexOf("http://") == -1 || href.indexOf("https://") == -1) {
-      href = 'http://' + href
+  if (href == 'www.bittorrent.com') {
+      href = 'https://' + href
    }
   if (urlHandler) {
     return (
