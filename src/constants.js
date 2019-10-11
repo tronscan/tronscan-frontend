@@ -98,6 +98,6 @@ export const SUNWEBCONFIG = {
 
 // Socket config
 export const TORNSOCKET = {
-    WSSURLMAIN: "wss://3.14.14.175:9000/api/tronsocket",
-    WSSURLSUN: "wss://3.15.181.169:9000/api/tronsocket",
+    WSSURLMAIN: "ws://3.14.14.175:9000/api/tronsocket",
+    WSSURLSUN: "ws://3.15.181.169:9000/api/tronsocket",
 }
