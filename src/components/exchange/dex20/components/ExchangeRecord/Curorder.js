@@ -112,7 +112,7 @@ class Curorder extends Component {
     }
 
     // if (cancelOrderList && cancelOrderList.length > 0) {
-    // this.watchCancelOrderIds();
+    this.watchCancelOrderIds();
     // }
   }
 
@@ -737,9 +737,9 @@ class Curorder extends Component {
 
   watchCancelOrderIds() {
     let { cancelOrderList, deleteCancelOrderObj } = this.props;
-    // let cancelOrderListLocal = Lockr.get("cancelOrderList");
-    cancelOrderList &&
-      cancelOrderList.map((item, index) => {
+    let cancelOrderListLocal = Lockr.get("cancelOrderList");
+    cancelOrderListLocal &&
+      cancelOrderListLocal.map((item, index) => {
         let current_time = new Date().getTime();
         if (
           item.orderStatus === 6 &&
