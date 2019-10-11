@@ -534,6 +534,12 @@
   .failed {
     color: #f15454 !important;
   }
+  .cancel {
+    color: #576b94 !important;
+    &:hover {
+      color: #f15454 !important;
+    }
+  }
 }
 
 .exchange-modal-content .ant-btn:hover span {

@@ -182,6 +182,7 @@ class Curorder extends Component {
         ),
         dataIndex: "orderTime",
         key: "orderTime",
+        width: "180px",
         render: (text, record, index) => {
           return (
             <span>
@@ -204,6 +205,7 @@ class Curorder extends Component {
         ),
         dataIndex: "fShortName",
         key: "fShortName",
+        width: "100px",
         render: (text, record, index) => {
           return (
             <span
@@ -219,8 +221,9 @@ class Curorder extends Component {
         title: upperFirst(
           intl.formatMessage({ id: "trc20_cur_order_header_order_type" })
         ),
-        dataIndex: "quant",
-        key: "quant",
+        dataIndex: "orderType",
+        key: "orderType",
+        width: "60px",
         render: (text, record, index) => {
           return record.orderType == 0 ? (
             <span className="col-green">{tu("trc20_BUY")}</span>
@@ -235,6 +238,7 @@ class Curorder extends Component {
         ),
         dataIndex: "price",
         key: "price",
+        width: "100px",
         render: (text, record, index) => {
           return (
             <span>{Number(record.price).toFixed(record.precisionPrice)}</span>
@@ -247,10 +251,11 @@ class Curorder extends Component {
         ),
         dataIndex: "volume",
         key: "volume",
+        width: "160px",
         render: (text, record, index) => {
           return (
             <span>
-              {Number(record.volume).toFixed(record.precisionAmount)}
+              {Number(record.volume).toFixed(record.precisionAmount)}&nbsp;
               {record.fShortName}
             </span>
           );
@@ -262,10 +267,11 @@ class Curorder extends Component {
         ),
         dataIndex: "curTurnover",
         key: "curTurnover",
+        width: "200px",
         render: (text, record, index) => {
           return (
             <span>
-              {this.numFormat(record.curTurnover.toFixed(4))}
+              {this.numFormat(record.curTurnover.toFixed(4))}&nbsp;
               {record.sShortName}
             </span>
           );
@@ -277,6 +283,7 @@ class Curorder extends Component {
         ),
         dataIndex: "schedule",
         key: "schedule",
+        width: "80px",
         render: (text, record, index) => {
           return (
             <span>
@@ -291,6 +298,7 @@ class Curorder extends Component {
         ),
         dataIndex: "orderStatus",
         key: "orderStatus",
+        width: "80px",
         render: (text, record, index) => {
           let content = (
             <div style={{ width: "180px" }}>
@@ -339,22 +347,23 @@ class Curorder extends Component {
         ),
         dataIndex: "cancel",
         key: "cancel",
+        width: "120px",
         render: (text, record, index) => {
           return (
             <span>
-              <a
+              <span
                 onClick={() => this.cancelOrder(record, index)}
-                style={{ color: "#409eff" }}
+                className="cancel"
               >
                 {record.orderStatus === 1
                   ? tu(`trc20_status_100`)
                   : statusOp[record.orderStatus]["operate"]
                   ? tu("trc20_cur_order_cancel")
                   : ""}
-              </a>
-              <a className="ignore" onClick={() => this.ignore(record.hash)}>
+              </span>
+              <span className="failed" onClick={() => this.ignore(record.hash)}>
                 {record.orderStatus === 8 ? tu(`trc20_ignore`) : ""}
-              </a>
+              </span>
             </span>
           );
         },

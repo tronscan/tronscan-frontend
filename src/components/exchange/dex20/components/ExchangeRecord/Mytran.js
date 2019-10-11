@@ -128,6 +128,7 @@ class Mytran extends Component {
         ),
         dataIndex: "orderTime",
         key: "orderTime",
+        width: "160px",
         render: (text, record, index) => {
           return (
             <span>
@@ -150,6 +151,7 @@ class Mytran extends Component {
         ),
         dataIndex: "fShortName",
         key: "fShortName",
+        width: "100px",
         render: (text, record, index) => {
           return (
             <span
@@ -167,6 +169,7 @@ class Mytran extends Component {
         ),
         dataIndex: "orderType",
         key: "orderType",
+        width: "60px",
         render: (text, record, index) => {
           return record.orderType === 0 ? (
             <span className="col-green">{tu("trc20_BUY")}</span>
@@ -181,6 +184,7 @@ class Mytran extends Component {
         ),
         dataIndex: "price",
         key: "price",
+        width: "100px",
         render: (text, record, index) => {
           return (
             <span>{Number(record.price).toFixed(record.precisionPrice)}</span>
@@ -193,6 +197,7 @@ class Mytran extends Component {
         ),
         dataIndex: "volume",
         key: "volume",
+        width: "160px",
         render: (text, record, index) => {
           return (
             <span>
@@ -208,6 +213,7 @@ class Mytran extends Component {
         ),
         dataIndex: "curTurnover",
         key: "curTurnover",
+        width: "180px",
         render: (text, record, index) => {
           return (
             <span>
@@ -223,6 +229,7 @@ class Mytran extends Component {
         ),
         dataIndex: "schedule",
         key: "schedule",
+        width: "80px",
         render: (text, record, index) => {
           return record.orderType === 0 ? (
             <span className="col-green">
@@ -242,6 +249,7 @@ class Mytran extends Component {
         dataIndex: "orderStatus",
         key: "orderStatus",
         align: "right",
+        width: "80px",
         render: (text, record, index) => {
           let content = (
             <div style={{ width: "180px" }}>
