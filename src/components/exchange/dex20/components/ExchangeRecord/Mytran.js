@@ -249,7 +249,7 @@ class Mytran extends Component {
         dataIndex: "orderStatus",
         key: "orderStatus",
         align: "right",
-        width: "80px",
+        width: "100px",
         render: (text, record, index) => {
           let content = (
             <div style={{ width: "180px" }}>
