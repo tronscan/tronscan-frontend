@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/editor.worker.js"
   },
   {
-    "revision": "d3619b5b20de72baee89a93994f25ffc",
+    "revision": "f7b3e2312c980f71413a24f457bda40e",
     "url": "/index.html"
   },
   {
@@ -24,11 +24,11 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/css/75.bd022918.chunk.css"
   },
   {
-    "revision": "6baf572ca92d52baec73",
+    "revision": "8aeb13dab9856f971788",
     "url": "/static/css/Exchange20.849a7a81.chunk.css"
   },
   {
-    "revision": "541f255cad04f1cff163",
+    "revision": "bd020ffb43713aa4c85d",
     "url": "/static/css/Exchangetrc.849a7a81.chunk.css"
   },
   {
@@ -40,8 +40,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/css/NodeMap.aab5afec.chunk.css"
   },
   {
-    "revision": "8e0491ba652cbbabb93c",
-    "url": "/static/css/main.2ae3826e.chunk.css"
+    "revision": "ac1d9590610a63d11bad",
+    "url": "/static/css/main.91a5d906.chunk.css"
   },
   {
     "revision": "d72cc4f2fdd7eb60e6b6",
@@ -196,12 +196,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/js/ErrorAsync.54f1baee.chunk.js"
   },
   {
-    "revision": "6baf572ca92d52baec73",
-    "url": "/static/js/Exchange20.2dd6400e.chunk.js"
+    "revision": "8aeb13dab9856f971788",
+    "url": "/static/js/Exchange20.afbe31f4.chunk.js"
   },
   {
-    "revision": "541f255cad04f1cff163",
-    "url": "/static/js/Exchangetrc.9f1995cc.chunk.js"
+    "revision": "bd020ffb43713aa4c85d",
+    "url": "/static/js/Exchangetrc.c04370f3.chunk.js"
   },
   {
     "revision": "72c00f166359a6b0395e",
@@ -352,12 +352,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/js/WalletWizard.f009c81b.chunk.js"
   },
   {
-    "revision": "8e0491ba652cbbabb93c",
+    "revision": "ac1d9590610a63d11bad",
     "url": "/static/js/main.071a3848.chunk.js"
   },
   {
-    "revision": "52298190682e67f4fb41",
-    "url": "/static/js/runtime~main.4af826be.js"
+    "revision": "ab51a4b49382e2b80f72",
+    "url": "/static/js/runtime~main.332550da.js"
   },
   {
     "revision": "7b00f7c4e78ed9cfc676c64c040965e8",

@@ -217,7 +217,7 @@ class Mytran extends Component {
         render: (text, record, index) => {
           return (
             <span>
-              {this.numFormat(record.curTurnover.toFixed(4))}
+              {this.numFormat(record.curTurnover.toFixed(4))}&nbsp;
               {record.sShortName}
             </span>
           );
