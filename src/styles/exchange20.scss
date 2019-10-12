@@ -437,6 +437,12 @@
     right: 19px;
     top: 5px;
   }
+  .cancel {
+    color: #576b94 !important;
+    &:hover {
+      color: #f15454 !important;
+    }
+  }
 }
 .ant-modal-wrap {
   .token-info-wrap {
@@ -491,6 +497,7 @@
       }
     }
   }
+  
 }
 @media screen and (max-width: 1600px) {
   .exchange20 {
@@ -534,12 +541,12 @@
   .failed {
     color: #f15454 !important;
   }
-  .cancel {
-    color: #576b94 !important;
-    &:hover {
-      color: #f15454 !important;
-    }
-  }
+  // .cancel {
+  //   color: #576b94 !important;
+  //   &:hover {
+  //     color: #f15454 !important;
+  //   }
+  // }
 }
 
 .exchange-modal-content .ant-btn:hover span {
