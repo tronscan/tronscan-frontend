@@ -110,6 +110,7 @@ class Transfers extends React.Component {
         dataIndex: 'transactionHash',
         key: 'transactionHash',
         className: 'ant_table',
+        width: '160px',
         render: (text, record, index) => {
           return <Truncate>
             <TransactionHashLink hash={record.transactionHash}>
@@ -134,8 +135,9 @@ class Transfers extends React.Component {
         dataIndex: 'transferFromAddress',
         key: 'transferFromAddress',
         className: 'ant_table',
+        width: '160px',
         render: (text, record, index) => {
-          return <AddressLink address={record.transferFromAddress}/>
+            return <AddressLink address={record.transferFromAddress}>{record.transferFromAddress}</AddressLink>
         }
       },
       {
@@ -151,8 +153,9 @@ class Transfers extends React.Component {
         dataIndex: 'transferToAddress',
         key: 'transferToAddress',
         className: 'ant_table',
+        width: '160px',
         render: (text, record, index) => {
-          return <AddressLink address={record.transferToAddress}/>
+            return <AddressLink address={record.transferToAddress}>{record.transferToAddress}</AddressLink>
         },
       },
       {

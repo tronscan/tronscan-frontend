@@ -41,7 +41,6 @@ class DateSelect extends React.Component {
         this.setState({RangePickerStatus: false})
         onDateOk(value[0], value[1])
     }
-
     componentDidMount(){
         this.changeDateByItem()
     }
@@ -66,6 +65,7 @@ class DateSelect extends React.Component {
                     onOk={this.onOk}
                     open={RangePickerStatus}
                     className={`position-absolute`}
+                    onBlur={() => {this.setState({RangePickerStatus: false})}}
                     style={{top: 0, right: 0, zIndex: -1, opacity: 0}}
                     />
             </div>

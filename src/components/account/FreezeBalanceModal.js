@@ -50,7 +50,8 @@ export default class FreezeBalanceModal extends React.PureComponent {
       receiver:'',
       oneEnergy: 0,
       oneBandwidth: 0,
-      getcalculate: 0
+      getcalculate: 0,
+      freezeError: '',
     };
   }
 
@@ -75,12 +76,20 @@ export default class FreezeBalanceModal extends React.PureComponent {
   };
 
   onAmountChanged = (value) => {
-    let {trxBalance} = this.props;
+    let {trxBalance,intl} = this.props;
 
     let amount = parseInt(value);
     if (!isNaN(amount)) {
+      if (amount > Math.floor(trxBalance)) {
+        this.setState({
+            freezeError: `${intl.formatMessage({id: 'freeze_balance_limit'})}`
+        });
+      }else{
+          this.setState({
+              freezeError: ''
+          });
+      }
       amount = amount > 0 ? Math.floor(amount) : Math.abs(amount);
-      // amount = amount < trxBalance ? amount : trxBalance;
     } else {
       amount = "";
     }
@@ -215,13 +224,17 @@ export default class FreezeBalanceModal extends React.PureComponent {
   setReceiverAddress = (address) => {
     this.setState({receiver: address});
   };
+
   render() {
 
-    let {receiver, amount, confirmed, loading, resources, selectedResource, oneEnergy, oneBandwidth, getcalculate} = this.state;
+    let {receiver, amount, confirmed, loading, resources, selectedResource, oneEnergy, oneBandwidth, getcalculate, freezeError} = this.state;
     let {trxBalance, frozenTrx, intl} = this.props;
     trxBalance = !trxBalance ? 0 :  trxBalance;
     let isValid =  (amount > 0 && trxBalance >= amount && confirmed);
-
+    // freezeError
+    const freezeErrorItem = (
+      <span className="pt-2 text-left" style={{ color: 'red', display: 'block' }}>{freezeError}</span>
+    );
     return (
         <Modal isOpen={true} toggle={this.hideModal} fade={false} className="modal-dialog-centered _freezeContent">
           <ModalHeader className="text-center _freezeHeader" toggle={this.hideModal}>
@@ -255,6 +268,7 @@ export default class FreezeBalanceModal extends React.PureComponent {
                       style={{marginTop: '12px', background: "#F3F3F3", border: "1px solid #EEEEEE"}}
                       onChange={this.onAmountChanged}/>
                 </div>
+                {freezeError && freezeErrorItem}
               </div>
               <div className="form-group">
                 <select className="custom-select"

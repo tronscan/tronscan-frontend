@@ -339,6 +339,7 @@
   "private_key_untrusted_website_message_0": "يرجى عدم إدخال مفتاحك الخاص على موقع ويب غير موثوق به.",
   "no_official_tron_website": "ليس الموقع الرسمي لترون",
   "continue_to_external_website": "الاستمرار في الاستخدام بالموقع الخارجي",
+  "visit_third_party_website":"The page you visit will be redirected to a third-party website. There may be security risks. Are you sure you want to continue?",
   "url_changed": "تم تغيير عنوان URL",
   "successfully_changed_website_message": "تم تبديل عنوان موقع الويب بنجاح",
   "unable_to_change_website_title": "غير قادر على تغيير موقع الويب",
@@ -2017,4 +2018,5 @@
   "notrx_noenergy":"Please make sure your TRX is not less than 10 and a certain amount of energy",
   "inactive_MainChain_account":"Submission Failed.This address has not been activated on TRON.Please activate first and try again",
   "mapping_warning":"This operation must be done by the token contract creator",
+  "freeze_balance_limit":"عدم كفاية الرصيد ، يرجى إعادة الدخول",
 };

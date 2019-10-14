@@ -76,7 +76,6 @@ class IssuedToken extends React.Component{
           element = {holder, transfer20, ...element}
           arr.push(element)
         }
-        console.log('arr',arr)
         this.setState({token20List: arr})
       }
     }

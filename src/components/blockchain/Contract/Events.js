@@ -197,22 +197,17 @@ class Transactions extends React.Component {
     let {match, intl} = this.props;
     let column = this.customizedColumn();
     let tableInfo = intl.formatMessage({id: 'view_total'}) + ' ' + total + ' ' + intl.formatMessage({id: 'Events'})
-
     if (!loading && transactions.length === 0) {
-      if (!EmptyState) {
         return (
             <div className="p-3 text-center no-data">{tu("no_event")}</div>
         );
-      }
-
-      return <EmptyState/>;
     }
 
     return (
       <Fragment>
        
         {loading && <div className="loading-style" style={{marginTop: '-20px'}}><TronLoader/></div>}
-        {EmptyState && <div>
+        <div>
           <div className="d-flex align-items-center  pt-3 pb-2"> <div className="question-mark mr-2"><i>?</i></div>{tu('event_tip')}</div>
           <p className="m-0" style={{color: '#999999'}}>{tableInfo}</p>
           <div className="row py-3">
@@ -226,7 +221,7 @@ class Transactions extends React.Component {
                             }}/>
             </div>
           </div>
-        </div>}
+        </div>
       </Fragment>
     )}
 }

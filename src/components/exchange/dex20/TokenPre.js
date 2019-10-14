@@ -34,7 +34,11 @@ export const precisions = {
   nfun_trx: 6,
   blaze_trx: 4,
   hora_trx: 6,
-  mlt_trx: 6
+  mlt_trx: 6,
+  live_trx: 4,
+  vcoin_usdt: 5,
+  poppy_usdt: 5,
+  "888_usdt": 5
 };
 
 export function fixed(value, n) {
