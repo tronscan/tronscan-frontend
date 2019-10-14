@@ -299,9 +299,9 @@ export function appReducer(state = initialState, action) {
     }
 
     case LOGOUT: {
-      // Lockr.rm("account_key");
-      // Lockr.rm("account_address");
-      // Lockr.set("islogin", 0);
+      Lockr.rm("account_key");
+      Lockr.rm("account_address");
+      Lockr.set("islogin", 0);
       return {
         ...state,
         account: {
