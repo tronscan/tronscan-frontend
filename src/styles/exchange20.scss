@@ -443,6 +443,15 @@
       color: #f15454 !important;
     }
   }
+  .confirming {
+    color: #d0ac6e !important;
+  }
+  .processOn {
+    color: #999999 !important;
+  }
+  .failed {
+    color: #f15454 !important;
+  }
 }
 .ant-modal-wrap {
   .token-info-wrap {
@@ -497,7 +506,6 @@
       }
     }
   }
-  
 }
 @media screen and (max-width: 1600px) {
   .exchange20 {
@@ -532,21 +540,6 @@
       }
     }
   }
-  .confirming {
-    color: #d0ac6e !important;
-  }
-  .processOn {
-    color: #999999 !important;
-  }
-  .failed {
-    color: #f15454 !important;
-  }
-  // .cancel {
-  //   color: #576b94 !important;
-  //   &:hover {
-  //     color: #f15454 !important;
-  //   }
-  // }
 }
 
 .exchange-modal-content .ant-btn:hover span {

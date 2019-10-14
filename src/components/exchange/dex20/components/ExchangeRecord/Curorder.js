@@ -267,7 +267,7 @@ class Curorder extends Component {
         ),
         dataIndex: "curTurnover",
         key: "curTurnover",
-        width: "200px",
+        width: "180px",
         render: (text, record, index) => {
           return (
             <span>
@@ -298,7 +298,7 @@ class Curorder extends Component {
         ),
         dataIndex: "orderStatus",
         key: "orderStatus",
-        width: "80px",
+        width: "100px",
         render: (text, record, index) => {
           let content = (
             <div style={{ width: "180px" }}>

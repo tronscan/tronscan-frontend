@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/editor.worker.js"
   },
   {
-    "revision": "2481e159f40406054c4ff2aa9b3288d5",
+    "revision": "bcaa5e1b81cecdaa35a7669ca7987bd6",
     "url": "/index.html"
   },
   {
@@ -24,11 +24,11 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/css/75.bd022918.chunk.css"
   },
   {
-    "revision": "75245d1cd5cc20c27d22",
+    "revision": "c1b419868edeaa9aadbe",
     "url": "/static/css/Exchange20.849a7a81.chunk.css"
   },
   {
-    "revision": "eeca5ef80d289c481170",
+    "revision": "138cdd3be3a1e4044769",
     "url": "/static/css/Exchangetrc.849a7a81.chunk.css"
   },
   {
@@ -40,8 +40,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/css/NodeMap.aab5afec.chunk.css"
   },
   {
-    "revision": "f166b318bfc37ccdf0d0",
-    "url": "/static/css/main.c54022ca.chunk.css"
+    "revision": "a84177b21653ec953a8c",
+    "url": "/static/css/main.45ff4ece.chunk.css"
   },
   {
     "revision": "bb03496b96c3fff594ad",
@@ -196,12 +196,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/js/ErrorAsync.54f1baee.chunk.js"
   },
   {
-    "revision": "75245d1cd5cc20c27d22",
-    "url": "/static/js/Exchange20.ede56277.chunk.js"
+    "revision": "c1b419868edeaa9aadbe",
+    "url": "/static/js/Exchange20.0e0ddaf1.chunk.js"
   },
   {
-    "revision": "eeca5ef80d289c481170",
-    "url": "/static/js/Exchangetrc.7f703444.chunk.js"
+    "revision": "138cdd3be3a1e4044769",
+    "url": "/static/js/Exchangetrc.c906a9f7.chunk.js"
   },
   {
     "revision": "72c00f166359a6b0395e",
@@ -352,12 +352,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/js/WalletWizard.914bad83.chunk.js"
   },
   {
-    "revision": "f166b318bfc37ccdf0d0",
+    "revision": "a84177b21653ec953a8c",
     "url": "/static/js/main.1c7b72bf.chunk.js"
   },
   {
-    "revision": "f0a21e9c7aa8bcd66452",
-    "url": "/static/js/runtime~main.bc0cebed.js"
+    "revision": "45232a2706830808e69e",
+    "url": "/static/js/runtime~main.da96ccb5.js"
   },
   {
     "revision": "7b00f7c4e78ed9cfc676c64c040965e8",
