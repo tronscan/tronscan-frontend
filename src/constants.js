@@ -6,14 +6,14 @@ export const ONE_TRX = 1000000;
 
 export const IS_TESTNET = process.env.NET === "testnet";
 export const IS_DESKTOP = process.env.DESKTOP === "true";
-export const IS_MAINNET = Lockr.get("NET") === "mainnet" || !Lockr.get("NET");
-export const IS_SUNNET = Lockr.get("NET") === "sunnet";
+// export const IS_MAINNET = Lockr.get("NET") === "mainnet" || !Lockr.get("NET");
+// export const IS_SUNNET = Lockr.get("NET") === "sunnet";
 export const NETURL = {
   MAINNET: "https://tronscan.org",
   SUNNET: "https://dappchain.tronscan.org"
 };
-// export const IS_MAINNET = window.location.origin === NETURL.MAINNET;
-// export const IS_SUNNET = window.location.origin === NETURL.SUNNET;
+export const IS_MAINNET = window.location.origin === NETURL.MAINNET;
+export const IS_SUNNET = window.location.origin === NETURL.SUNNET;
 
 export const BLOCK_REWARD = 32;
 export const SR_MAX_COUNT = 27;
