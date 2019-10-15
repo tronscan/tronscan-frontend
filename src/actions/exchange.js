@@ -236,7 +236,7 @@ export const getExchanges20 = () => async dispatch => {
     let key =
       item.fShortName.toLowerCase() + "_" + item.sShortName.toLowerCase();
 
-    item.fix_precision = precisions[key];
+    item.fix_precision = precisions[key] || item.fPrecision;
 
     if (item.gain.indexOf("-") != -1) {
       item.up_down_percent = Number(item.gain * 100).toFixed(2) + "%";
