@@ -236,7 +236,7 @@ export const getExchanges20 = () => async dispatch => {
     let key =
       item.fShortName.toLowerCase() + "_" + item.sShortName.toLowerCase();
 
-    item.fix_precision = precisions[key];
+    item.fix_precision = precisions[key] || item.sPrecision;
 
     if (item.gain.indexOf("-") != -1) {
       item.up_down_percent = Number(item.gain * 100).toFixed(2) + "%";
@@ -363,7 +363,7 @@ export const getExchanges20Volume = () => async dispatch => {
     let key =
       item.fShortName.toLowerCase() + "_" + item.sShortName.toLowerCase();
 
-    item.fix_precision = precisions[key] || item.fPrecision;
+    item.fix_precision = precisions[key] || item.sPrecision;
 
     if (item.gain.indexOf("-") != -1) {
       item.up_down_percent = Number(item.gain * 100).toFixed(2) + "%";
@@ -411,7 +411,7 @@ export const getExchanges20UpDown = () => async dispatch => {
     let key =
       item.fShortName.toLowerCase() + "_" + item.sShortName.toLowerCase();
 
-    item.fix_precision = precisions[key] || item.fPrecision;
+    item.fix_precision = precisions[key] || item.sPrecision;
 
     if (item.gain.indexOf("-") != -1) {
       item.up_down_percent = Number(item.gain * 100).toFixed(2) + "%";
@@ -459,7 +459,7 @@ export const getExchanges20Search = query => async dispatch => {
       let key =
         item.fShortName.toLowerCase() + "_" + item.sShortName.toLowerCase();
 
-      item.fix_precision = precisions[key] || item.fPrecision;
+      item.fix_precision = precisions[key] || item.sPrecision;
 
       if (item.gain.indexOf("-") != -1) {
         item.up_down_percent = Number(item.gain * 100).toFixed(2) + "%";
