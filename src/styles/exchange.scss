@@ -88,7 +88,7 @@ $green: #69c265;
             color: rgba(60, 9, 6, 0.8);
           }
         }
-        &-2{
+        &-2 {
           @media only screen and (max-width: 990px) {
             display: none;
           }
@@ -391,7 +391,7 @@ $green: #69c265;
         td,
         th {
           border-color: #fff;
-          padding: 4px 8px !important;
+          padding: 6px 8px !important;
         }
       }
     }
