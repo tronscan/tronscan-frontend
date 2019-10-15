@@ -395,9 +395,22 @@ class ExchangeTable extends Component {
   async componentDidMount() {}
 
   componentDidUpdate(prevProps) {
-    let { dataSource } = this.props;
+    let { dataSource, redirctPair } = this.props;
+
     if (dataSource != prevProps.dataSource) {
       this.getData();
+    }
+
+    if (redirctPair != prevProps.redirctPair) {
+      let currentPair = dataSource.find(v => {
+        return (
+          v.fShortName &&
+          v.fShortName.toUpperCase() === redirctPair.fShortName.toUpperCase() &&
+          v.sShortName &&
+          v.sShortName.toUpperCase() === redirctPair.sShortName.toUpperCase()
+        );
+      });
+      currentPair && this.onSetUrl(currentPair);
     }
   }
   componentWillReceiveProps(nextProps) {
@@ -432,7 +445,8 @@ function mapStateToProps(state) {
     klineLock: state.exchange.klineLock,
     activeCurrency: state.app.activeCurrency,
     price: state.exchange.price,
-    activeLanguage: state.app.activeLanguage
+    activeLanguage: state.app.activeLanguage,
+    redirctPair: state.exchange.redirctPair
   };
 }
 

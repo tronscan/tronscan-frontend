@@ -1495,6 +1495,7 @@
   "trc20_trans_record_header_price": "السعر",
   "trc20_my_trans_header_time": "الوقت",
   "trc20_my_trans_header_type": "النوع",
+  "trc20_my_trans_header_pair": 'أزواج التداول',
   "trc20_my_trans_header_price": "السعر",
   "trc20_my_trans_header_amount": "الكمية",
   "trc20_my_trans_header_volume": "قيمة التداول",
@@ -1540,6 +1541,22 @@
   "trc20_24h_l": "24h منخفض",
   "trc20_fire_token": "50 lucky draws to win 100,000 VENA!",
   "trc20_vena_tip": "Due to the particularity of VENA contract, extra 0.1 VENA will be authorized but not deducted.",
+  "trc20_status_-1":'جاري تأكيد الطلب',
+  "trc20_status_0":'في انتظار المعاملة',
+  "trc20_status_1":'في انتظار المعاملة',
+  "trc20_status_2":'تم الانتهاء',
+  "trc20_status_3":'',
+  "trc20_status_4":'',
+  "trc20_status_5":'تم الانتهاء',
+  "trc20_status_6":"جاري الإلغاء",
+  "trc20_status_7":"تم الالغاء",
+  "trc20_status_8":"فشل الإرسال",
+  "trc20_status_9":"",
+  "trc20_status_100":"إلغاء جزئي",
+  "trc20_failed_order": "لم يتم تأكيد الطلب من قبل البلوكشين",
+  "trc20_ignore": 'تجاهل',
+  "trc20_see_currentParis": 'فقط يمكنك الإتطلاع على أزواج التداول الحالية',
+
 
 
   /*

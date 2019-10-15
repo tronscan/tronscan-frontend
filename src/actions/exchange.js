@@ -20,6 +20,10 @@ export const SET_PRICE_CONVERT = "SET_PRICE_CONVERT";
 export const SET_EXCHANGE20VOLUME_LIST = "SET_EXCHANGE20VOLUME_LIST";
 export const SET_EXCHANGE20UPDOWN_LIST = "SET_EXCHANGE20UPDOWN_LIST";
 export const SET_EXCHANGE20SEARCH_LIST = "SET_EXCHANGE20SEARCH_LIST";
+export const SET_UNFIRM_ORDER_LIST = "SET_UNFIRM_ORDER_LIST";
+export const SET_CANCEL_ORDER_LIST = "SET_CANCEL_ORDER_LIST";
+export const SET_DELEGATE_FAILURE_LIST = "SET_DELEGATE_FAILURE_LIST";
+export const SET_REDIRCT_PAIR = "SET_REDIRCT_PAIR";
 
 export const setSelectData = data => ({
   type: SET_SELECT_DATA,
@@ -100,9 +104,109 @@ export const change10lock = type => async dispatch => {
   dispatch(change10lockstatus(type));
 };
 
+export const setUnfirmOrderlist = list => ({
+  type: SET_UNFIRM_ORDER_LIST,
+  unConfirmOrderList: list
+});
+
+export const setCancelOrderlist = list => ({
+  type: SET_CANCEL_ORDER_LIST,
+  cancelOrderList: list
+});
+
+export const setDelegateFailureList = list => ({
+  type: SET_DELEGATE_FAILURE_LIST,
+  delegateFailureList: list
+});
+
+export const setRedirctPair = obj => ({
+  type: SET_REDIRCT_PAIR,
+  redirctPair: obj
+});
+
 export const getSelectData = (data, isSelect = false) => async dispatch => {
   dispatch(setSelectData(data));
   dispatch(setSelectStatus(isSelect));
+};
+
+// 本地存储 未确认订单
+export const setUnConfirmOrderObj = (obj, type) => async (
+  dispatch,
+  getState
+) => {
+  const { exchange } = getState();
+  let unConfirmOrderList = [];
+  let localConfirm = Lockr.get("unConfirmOrderList");
+  if (type == 1 && localConfirm) {
+    unConfirmOrderList = localConfirm;
+  } else if (exchange.unConfirmOrderList) {
+    unConfirmOrderList = [...exchange.unConfirmOrderList];
+  }
+  type != 1 && unConfirmOrderList.unshift(obj);
+  Lockr.set("unConfirmOrderList", unConfirmOrderList);
+  dispatch(setUnfirmOrderlist(unConfirmOrderList));
+};
+
+// 本地存储 删除已经存在的订单
+export const deleteUnConfirmOrderObj = index => async (dispatch, getState) => {
+  const { exchange } = getState();
+  let unConfirmOrderList = [...exchange.unConfirmOrderList];
+  unConfirmOrderList.splice(index, 1);
+
+  Lockr.set("unConfirmOrderList", unConfirmOrderList);
+
+  dispatch(setUnfirmOrderlist(unConfirmOrderList));
+};
+
+// 本地存储 取消但未确认的订单
+export const setCancelOrderObj = (obj, type) => async (dispatch, getState) => {
+  const { exchange } = getState();
+  let cancelOrderList = [];
+  let localCancelOrderList = Lockr.get("cancelOrderList");
+  if (type == 1 && localCancelOrderList) {
+    cancelOrderList = localCancelOrderList;
+  } else if (exchange.cancelOrderList) {
+    cancelOrderList = [...exchange.cancelOrderList];
+  }
+  type != 1 && cancelOrderList.push(obj);
+
+  dispatch(setCancelOrderlist(cancelOrderList));
+
+  Lockr.set("cancelOrderList", cancelOrderList);
+};
+
+// 本地存储 删除掉已取消确认的订单
+export const deleteCancelOrderObj = index => async (dispatch, getState) => {
+  const { exchange } = getState();
+
+  let cancelOrderList = [...exchange.cancelOrderList];
+  cancelOrderList.splice(index, 1);
+
+  Lockr.set("cancelOrderList", cancelOrderList);
+
+  dispatch(setCancelOrderlist(cancelOrderList));
+};
+
+// 本地存储 委托失败一星期内的订单
+export const setDelegateFailureObj = (item, type) => async (
+  dispatch,
+  getState
+) => {
+  const { exchange } = getState();
+  let localDelegate = Lockr.get("delegateFailureList");
+  let obj = {};
+  if (type == 1) {
+    if (localDelegate) {
+      obj = localDelegate;
+    }
+  } else {
+    obj = { ...exchange.delegateFailureList };
+    obj[item.address] = item.delegateFailureList;
+  }
+
+  Lockr.set("delegateFailureList", obj);
+
+  dispatch(setDelegateFailureList(obj));
 };
 
 //获取20列表，及对数据整理

@@ -578,8 +578,8 @@ class ExchangeList extends React.Component {
   async getCovert(type) {
     const { setPriceConvert } = this.props;
     let { priceObj } = this.state;
-    let data = await Client20.coinMarketCap(type, "eth");
-    let data1 = await Client20.coinMarketCap(type, "eur");
+    let data = await Client20.coinMarketCap(type, "ETH");
+    let data1 = await Client20.coinMarketCap(type, "EUR");
     if (type === "trx") {
       let trxToOther = {};
 
@@ -594,7 +594,7 @@ class ExchangeList extends React.Component {
     } else if (type === "usdt") {
       let usdtToOther = {};
 
-      let data2 = await Client20.coinMarketCap(type, "trx");
+      let data2 = await Client20.coinMarketCap(type, "TRX");
       usdtToOther = {
         trx: data2[0].price_trx,
         btc: data[0].price_btc,

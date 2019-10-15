@@ -107,6 +107,7 @@ class Tokeninfo extends React.Component {
     }
 
     const fTokenAddr = selectData.fTokenAddr;
+   
     if (!fTokenAddr) {
       return;
     }
@@ -123,14 +124,19 @@ class Tokeninfo extends React.Component {
         newObj["white_paper"] = trc20_tokens[0].white_paper;
         newObj["precision"] = trc20_tokens[0].decimals;
         this.setState({ tokeninfoItem: newObj });
+        return;
       }
-
+      
       const { data } = res;
       if (data && data[0]) {
         const newObj = data[0];
         newObj["icon_url"] = data[0].imgUrl;
         this.setState({ tokeninfoItem: newObj });
+        return ;
       }
+
+      this.setState({ tokeninfoItem: {} });
+      
     });
   }
 
@@ -187,6 +193,7 @@ class Tokeninfo extends React.Component {
       <div>
         {/* title 信息 */}
         <div className="d-flex exchange__kline__title position-relative">
+          
           {tokeninfoItem && tokeninfoItem.icon_url ? (
             <img src={tokeninfoItem.icon_url} />
           ) : (
