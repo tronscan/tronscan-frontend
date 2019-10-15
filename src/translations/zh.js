@@ -2047,4 +2047,31 @@ export const messages = {
   "inactive_MainChain_account":"该地址未在TRON主网激活，无法完成此操作，请激活后重试",
   "mapping_warning":"此操作须由token的合约创建者完成",
   "freeze_balance_limit":"余额不足，请重新输入",
+  /*
+   ##################################################################################
+   #                                                                                #
+   # contract Compiler                                      #
+   #                                                                                #
+   ##################################################################################
+  */
+  "SR_set_brokerage":"设置选民分成比例",
+  "SR_brokerage_save_tip":"所得奖励中，分给投票者的比例，0%为不分给选民，100%为全部分给选民，每一轮结束投票时，按最后一次设置的比例将此轮奖励分给选民",
+  "SR_brokerage_save":"保存",
+  "SR_brokerage_save_verify":"请输入0~100之间的数值",
+  "SR_reward_available":"可领取",
+  "SR_set_github_learn_more":"了解更多",
+  "SR_vote_for_reward":"投票所获奖励",
+  "SR_receive_award_btn":"领取奖励",
+  "SR_receive_award_tip1":"暂不可领",
+  "SR_receive_award_tip2":"24小时内只能领取一次",
+  "SR_brokerage_save_result": "已保存选民分成比例！",
+  "successfully_brokerage_save": "设置选民分成比例成功",
+  "could_not_brokerage_save": "不能保存选民分成比例",
+  "brokerage_save_error_message": "在尝试设置选民分成比例时出现问题，请稍后再试。",
+  "rewards_claimed_submitted":"交易已提交",
+  "rewards_claimed_hash":"交易哈希值",
+  "rewards_claimed_hash_await":"稍后交易确认后可在账户页查看",
+  "voting_brokerage":"选民奖励分成比例",
+  "voting_brokerage_tip":"超级代表所获得的奖励中，分给投票者的比例。选民奖励=总奖励数*选民奖励分成比例*（选民票数/选民总票数）",
+  "SR_set_brokerage_contract":"超级代表设置奖励分成比例",
 };

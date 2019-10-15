@@ -9,6 +9,7 @@ import {Sticky, StickyContainer} from "react-sticky";
 import {connect} from "react-redux";
 import {Alert} from "reactstrap";
 import {BarLoader, TronLoader} from "../common/loaders";
+import {QuestionMark} from "../common/QuestionMark";
 import SweetAlert from "react-bootstrap-sweetalert";
 import {ONE_TRX, IS_MAINNET} from "../../constants";
 import {login} from "../../actions/app";
@@ -572,11 +573,17 @@ export default class VoteOverview extends React.Component {
                               <th className="text-right" style={{width: 150}}>{tu("votes")}</th>
                               <th className="text-right" style={{width: 150}}>{tu("live")}</th>
                               <th className="text-right" style={{width: 100}}>{tu("percentage")}</th>
+                              <th className="text-right" style={{width: 150}}>{tu("voting_brokerage")}
+                                <span className="ml-2">
+                                    <QuestionMark placement="top" text="voting_brokerage_tip"/>
+                                </span>
+                              </th>
                               {
                                 votingEnabled && trxBalance > 0 && <th style={{width: 200}}>
                                   {tu("your_vote")}
                                 </th>
                               }
+
                             </tr>
                             </thead>
                             <tbody>
@@ -657,6 +664,16 @@ export default class VoteOverview extends React.Component {
                                                 />%
                                               </Fragment>
                                             }
+                                          </td>
+                                          <td className="small text-right align-middle">
+                                              {
+                                                  <Fragment>
+                                                    <FormattedNumber value={candidate.brokerage?candidate.brokerage:0}
+                                                                     minimumFractionDigits={2}
+                                                                     maximumFractionDigits={2}
+                                                    />%
+                                                  </Fragment>
+                                              }
                                           </td>
                                           {
                                             votingEnabled && trxBalance > 0 && <td className="vote-input-field">

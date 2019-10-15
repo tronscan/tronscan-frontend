@@ -4668,3 +4668,14 @@ delete {
 .address_max_width{
   max-width: 100px;
 }
+
+.SR_brokerage{
+  &_line_height{
+     line-height: 30px;
+  }
+  &_save_tip{
+    margin-top: 2px;
+  }
+}
+
+
