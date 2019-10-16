@@ -201,6 +201,8 @@ export function appReducer(state = initialState, action) {
           privateKey
        );
 
+       window.sunWeb = sunWeb
+
 
       return {
         ...state,
