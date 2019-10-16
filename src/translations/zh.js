@@ -2062,7 +2062,7 @@ export const messages = {
   "SR_set_github_learn_more":"了解更多",
   "SR_vote_for_reward":"投票所获奖励",
   "SR_receive_award_btn":"领取奖励",
-  "SR_receive_award_tip1":"暂不可领",
+  "SR_receive_award_tip1":"暂不可领，",
   "SR_receive_award_tip2":"24小时内只能领取一次",
   "SR_brokerage_save_result": "已保存选民分成比例！",
   "successfully_brokerage_save": "设置选民分成比例成功",

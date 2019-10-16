@@ -91,7 +91,6 @@ export default class Account extends Component {
       type: CURRENCYTYPE.TRX10,
       tokenTRX: false,
       trx20MappingAddress: [],
-      rewardData:{},
       reward:false,
       accountReward:0,
       errorMess:'',
@@ -114,7 +113,7 @@ export default class Account extends Component {
       });
       this.reloadTokens();
       this.loadAccount();
-
+      this.getAddressReward();
 
       if(getQueryString('from') == 'tronlink' && getQueryString('type') == 'frozen'){
           setTimeout(()=>{
@@ -131,12 +130,11 @@ export default class Account extends Component {
       // get fees
       isPrivateKey && await this.getFees();
       //get SR Brokerage
-      await new Promise(resolve => setTimeout(resolve, 1500));
+      await new Promise(resolve => setTimeout(resolve, 1000));
       if(currentWallet && IS_MAINNET){
           if(currentWallet.representative.enabled){
               this.getSRBrokerage();
           }else{
-              this.getAddressReward();
               this.getAddressRewardBok();
           }
       }
@@ -149,7 +147,7 @@ export default class Account extends Component {
       this.setState({isTronLink: Lockr.get("islogin")});
       this.reloadTokens();
       this.loadAccount();
-
+      this.getAddressReward();
       //this.getTRC20Tokens();
       let isActivate =  await this.isActivateAccount(account.address)
 
@@ -169,7 +167,6 @@ export default class Account extends Component {
         if(currentWallet.representative.enabled){
             this.getSRBrokerage();
         }else{
-            this.getAddressReward();
             this.getAddressRewardBok();
         }
       }
@@ -182,29 +179,35 @@ export default class Account extends Component {
       const { data } =  await Client.getAddressReward({
           address:account.address
       })
+      console.log('data',data)
       this.setState({
-          rewardData:data,
-          reward: JSON.stringify(data) != '{}'? data.data.reward:''
+          reward: data.reward
       });
   }
 
   getAddressReward = async () => {
       let { account } = this.props;
       let tronWeb = account.tronWeb;
-      const  reward  =  await tronWeb.trx.getReward(tronWeb.defaultAddress.base58)
-      console.log('reward',reward)
+      //const  reward  =  await tronWeb.trx.getReward(tronWeb.defaultAddress.base58)
+      const  { data }  =  await Client.getAccountAddressReward({
+          address:account.address
+      })
+      console.log('reward22',data)
       this.setState({
-          accountReward:reward
+          accountReward:data.reward
       });
   }
 
   getSRBrokerage = async () =>{
       let { account } = this.props;
       let tronWeb = account.tronWeb;
-      const  brokerage  =  await tronWeb.trx.getBrokerage(tronWeb.defaultAddress.base58)
-      console.log('brokerage',brokerage)
+     // const  brokerage  =  await tronWeb.trx.getBrokerage(tronWeb.defaultAddress.base58)
+      const   { data } =  await Client.getSRBrokerage({
+          address:account.address
+      })
+      console.log('brokerage',data)
       this.setState({
-          brokerageValue:brokerage
+          brokerageValue:data.brokerage
       });
   }
 
@@ -1879,19 +1882,19 @@ export default class Account extends Component {
 
     // account claim rewards
     accountClaimRewards = async () => {
-        let res;
+        let res,hashid;
         let {account, currentWallet} = this.props;
         let tronWeb = account.tronWeb;
         const unSignTransaction = await tronWeb.transactionBuilder.withdrawBlockRewards(tronWeb.defaultAddress.base58).catch(e => false);
-        const {result} = await transactionResultManager(unSignTransaction, tronWeb)
+        const {result,txid} = await transactionResultManager(unSignTransaction, tronWeb)
         res = result;
+        hashid = txid
 
-
-        if (!res) {
+        if (res) {
             this.setState({
                 modal: (
                     <SweetAlert success title={tu("rewards_claimed_submitted")} onConfirm={this.hideModal}>
-                        {tu("rewards_claimed_hash")}:XXX
+                        {tu("rewards_claimed_hash")}:{hashid}
                         <br/>
                         {tu("rewards_claimed_hash_await")}
                     </SweetAlert>
@@ -2097,31 +2100,39 @@ export default class Account extends Component {
                         <FormattedNumber value={totalTransactions}/>
                       </td>
                     </tr>
-                    {!JSON.stringify(rewardData) != '{}'  && <tr>
-                      <th >{tu("SR_vote_for_reward")}:</th>
-                      <td>
-                          {accountReward} TRX
-                        <a href="javascript:" className="float-right text-primary btn btn-default btn-sm"
-                           onClick={this.accountClaimRewards}>
-                            {tu("SR_receive_award_btn")}
-                        </a>
-                      </td>
-                    </tr>
+                    {
+                        !currentWallet.representative.enabled && <tr>
+                          <th >{tu("SR_vote_for_reward")}:</th>
+                          <td>
+                            <TRXPrice amount={accountReward / ONE_TRX}
+                                      className="font-weight-bold"/>
+                            <a href="javascript:" className={"float-right text-primary btn btn-default btn-sm"+ (!reward?" accont_reward_disabled":"")}
+                               onClick={this.accountClaimRewards}
+                               disabled={!reward}
+                            >
+                                {tu("SR_receive_award_btn")}
+                            </a >
+                          </td>
+                        </tr>
                     }
-                    {!JSON.stringify(rewardData) != '{}' &&  <tr>
-                      <th style={{borderTop:'none'}}></th>
-                      <td style={{borderTop:'none',paddingTop:0,color:'#D8D8D8'}}>
-                        {
-                            !reward && <span className="float-right d-block">
-                            {tu("SR_receive_award_tip1")}
-                          </span>
-                        }
-                        <span className="float-right d-block">
+                    {
+                        !currentWallet.representative.enabled &&  <tr>
+                        <th style={{borderTop:'none'}}></th>
+                        <td style={{borderTop:'none',paddingTop:0,color:'#D8D8D8'}}>
+                          <span className="float-right d-block">
                             {tu("SR_receive_award_tip2")}
-                        </span>
-                      </td>
-                    </tr>
+                          </span>
+                            {
+                                !reward && <span className="float-right d-block">
+                                  {tu("SR_receive_award_tip1")}
+                              </span>
+                            }
+
+                        </td>
+                      </tr>
                     }
+
+
                     </tbody>
                   </table>
                 </div>
