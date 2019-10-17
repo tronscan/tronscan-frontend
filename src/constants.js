@@ -10,7 +10,7 @@ export const IS_DESKTOP = process.env.DESKTOP === 'true';
 //export const IS_MAINNET = Lockr.get('NET') === 'mainnet' || !Lockr.get('NET');
 //export const IS_SUNNET =  Lockr.get('NET') === 'sunnet';
 export const NETURL = {
-    MAINNET:'http://18.217.215.94:86',
+    MAINNET:'http://18.217.215.94:61',
     SUNNET:'http://18.217.215.94:89',
 }
 export const IS_MAINNET = window.location.origin === NETURL.MAINNET;

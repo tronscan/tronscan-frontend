@@ -114,6 +114,7 @@ export default class Account extends Component {
       this.reloadTokens();
       this.loadAccount();
       this.getAddressReward();
+      this.getAddressRewardBok();
 
       if(getQueryString('from') == 'tronlink' && getQueryString('type') == 'frozen'){
           setTimeout(()=>{
@@ -134,8 +135,6 @@ export default class Account extends Component {
       if(currentWallet && IS_MAINNET){
           if(currentWallet.representative.enabled){
               this.getSRBrokerage();
-          }else{
-              this.getAddressRewardBok();
           }
       }
     }
@@ -148,6 +147,7 @@ export default class Account extends Component {
       this.reloadTokens();
       this.loadAccount();
       this.getAddressReward();
+      this.getAddressRewardBok();
       //this.getTRC20Tokens();
       let isActivate =  await this.isActivateAccount(account.address)
 
@@ -166,8 +166,6 @@ export default class Account extends Component {
       if(currentWallet && IS_MAINNET){
         if(currentWallet.representative.enabled){
             this.getSRBrokerage();
-        }else{
-            this.getAddressRewardBok();
         }
       }
 
@@ -2505,7 +2503,7 @@ export default class Account extends Component {
                                   onClick={() => {
                                     this.claimRewards()
                                   }}
-                                  disabled={currentWallet.representative.allowance === 0}
+                                  disabled={currentWallet.representative.allowance === 0 || !reward }
                           >
                             {tu("claim_rewards")}
                           </button>
