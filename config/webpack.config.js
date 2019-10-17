@@ -29,6 +29,7 @@ const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin');
 const WorkboxPlugin = require('workbox-webpack-plugin');
 
 
+
 // Source maps are resource heavy and can cause out of memory issue for large source files.
 const shouldUseSourceMap = process.env.GENERATE_SOURCEMAP !== 'false';
 // Some apps do not need the benefits of saving a web request, so not inlining the chunk
@@ -229,6 +230,8 @@ module.exports = function(webpackEnv) {
         // This is only used in production mode
         new OptimizeCSSAssetsPlugin({
           cssProcessorOptions: {
+            assetNameRegExp: /\.css$/g,
+			      cssProcessor: require('cssnano'),
             parser: safePostCssParser,
             map: shouldUseSourceMap
               ? {
@@ -248,7 +251,20 @@ module.exports = function(webpackEnv) {
       // https://medium.com/webpack/webpack-4-code-splitting-chunk-graph-and-the-splitchunks-optimization-be739a861366
       splitChunks: {
         chunks: 'all',
-        name: false,
+        //name: false,
+        minSize: 30000,
+        minChunks: 1,
+        maxAsyncRequests: 5,
+        maxInitialRequests: 3,
+        name: true,
+        cacheGroups: {
+            styles: {
+                name: 'style',
+                test: /\.css$/,
+                chunks: 'all',
+                enforce: true
+            }
+        }
 
       },
       // Keep the runtime chunk separated to enable long term caching
