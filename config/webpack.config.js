@@ -26,6 +26,8 @@ const typescriptFormatter = require('react-dev-utils/typescriptFormatter');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const postcssNormalize = require('postcss-normalize');
 const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin');
+const WorkboxPlugin = require('workbox-webpack-plugin');
+
 
 // Source maps are resource heavy and can cause out of memory issue for large source files.
 const shouldUseSourceMap = process.env.GENERATE_SOURCEMAP !== 'false';
@@ -247,6 +249,7 @@ module.exports = function(webpackEnv) {
       splitChunks: {
         chunks: 'all',
         name: false,
+
       },
       // Keep the runtime chunk separated to enable long term caching
       // https://twitter.com/wSokra/status/969679223278505985
@@ -568,6 +571,16 @@ module.exports = function(webpackEnv) {
             files: manifestFiles,
           };
         },
+      }),
+
+      new WorkboxPlugin.GenerateSW({
+        // 这些选项帮助 ServiceWorkers 快速启用
+        // 不允许遗留任何“旧的” ServiceWorkers
+        clientsClaim: true,
+        skipWaiting: true,
+        importWorkboxFrom: 'local',  //打包到本地， 默认值是'cdn' 访问的是国外cdn需要翻墙
+        // include: [/\.html$/, /\.js$/, /\.css$/],  //包含资源
+        // exclude: [/\.(png|jpg|gif|svg)/]  //排除资源
       }),
       // Moment.js is an extremely popular library that bundles large locale files
       // by default due to how Webpack interprets its code. This is a practical
