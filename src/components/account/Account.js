@@ -176,10 +176,9 @@ export default class Account extends Component {
 
   getAddressRewardBok = async () => {
       let { account } = this.props;
-      const { data } =  await Client.getAddressReward({
+      const  data  =  await Client.getAddressReward({
           address:account.address
       })
-      console.log('data',data)
       this.setState({
           reward: data.reward
       });
@@ -188,26 +187,18 @@ export default class Account extends Component {
   getAddressReward = async () => {
       let { account } = this.props;
       let tronWeb = account.tronWeb;
-      //const  reward  =  await tronWeb.trx.getReward(tronWeb.defaultAddress.base58)
-      const  { data }  =  await Client.getAccountAddressReward({
-          address:account.address
-      })
-      console.log('reward22',data)
+      const  reward  =  await tronWeb.trx.getReward(tronWeb.defaultAddress.base58)
       this.setState({
-          accountReward:data.reward
+          accountReward:reward
       });
   }
 
   getSRBrokerage = async () =>{
       let { account } = this.props;
       let tronWeb = account.tronWeb;
-     // const  brokerage  =  await tronWeb.trx.getBrokerage(tronWeb.defaultAddress.base58)
-      const   { data } =  await Client.getSRBrokerage({
-          address:account.address
-      })
-      console.log('brokerage',data)
+      const  brokerage  =  await tronWeb.trx.getBrokerage(tronWeb.defaultAddress.base58)
       this.setState({
-          brokerageValue:data.brokerage
+          brokerageValue:brokerage
       });
   }
 
@@ -1915,7 +1906,6 @@ export default class Account extends Component {
     let { modal, sr, issuedAsset, showBandwidth, showBuyTokens, temporaryName, hideSmallCurrency, tokenTRC10,
         isShowPledgeModal, isShowMappingModal, address, currency, balance, precision, id, type, isShowSignModal,
         tokenTRX, trx20MappingAddress,brokerageValue, errorMess, reward, rewardData, accountReward} = this.state;
-    console.log('brokerageValue',brokerageValue)
     let {account, frozen, totalTransactions, currentWallet, wallet, accountResource, trxBalance, intl} = this.props;
 
     let energyRemaining = currentWallet && currentWallet.bandwidth.energyRemaining;
