@@ -38,7 +38,7 @@ class Footer extends Component {
                     </HrefLink>
                   </li>
                   <li>
-                    <HrefLink href="https://discordapp.com/invite/GsRgsTD">
+                    <HrefLink href="https://discord.gg/hqKvyAM">
                       <i className="fab fa-discord mr-1"></i>Discord
                     </HrefLink>
                   </li>
@@ -196,7 +196,7 @@ class Footer extends Component {
                     </HrefLink>
                   </li>
                   <li className="p-2">
-                    <HrefLink href="https://discordapp.com/invite/GsRgsTD">
+                    <HrefLink href="https://discord.gg/hqKvyAM">
                       <i className="fab fa-discord mr-4"></i>Discord
                     </HrefLink>
                   </li>
