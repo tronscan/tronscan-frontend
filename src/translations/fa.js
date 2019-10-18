@@ -2025,4 +2025,33 @@ export const messages = {
     "inactive_MainChain_account":"Submission Failed.This address has not been activated on TRON.Please activate first and try again",
     "mapping_warning":"This operation must be done by the token contract creator",
     "freeze_balance_limit":"موجودی کافی نیست، لطفا دوباره وارد کنید",
+
+    /*
+   ##################################################################################
+   #                                                                                #
+   # SR rewards                                   #
+   #                                                                                #
+   ##################################################################################
+  */
+    "SR_set_brokerage":"میزان پاداش رای دهنده را تعیین کنید",
+    "SR_brokerage_save_tip":"پس از هر دور از رای گیری ، بر اساس آخرین تنظیمات نرخ ، جوایز تعیین می شود.",
+    "SR_brokerage_save":"ذخیره کنید",
+    "SR_brokerage_save_verify":"از 0 تا 100 مقداری را وارد کنید",
+    "SR_reward_available":"در دسترس برای مجموعه",
+    "SR_set_github_learn_more":"کسب اطلاعات بیشتر",
+    "SR_vote_for_reward":"پاداش رای گیری",
+    "SR_receive_award_btn":"جمع آوری پاداش",
+    "SR_receive_award_tip1":"برای مجموعه در دسترس نیست，",
+    "SR_receive_award_tip2":"فقط یک بار در 24 ساعت قابل برداشت است",
+    "SR_brokerage_save_result": "اشتراک رای دهنده ذخیره شد!",
+    "successfully_brokerage_save": "رأی دهندگان را تنظیم کنید تا نسبت ها را با موفقیت به اشتراک بگذارند",
+    "could_not_brokerage_save": "اشتراک اشتراک کننده را نمی توان ذخیره کرد",
+    "brokerage_save_error_message": "هنگام تنظیم تنظیم تقسیم رای دهندگان مشکلی پیش آمد. لطفا بعداً دوباره امتحان کنید.",
+    "rewards_claimed_submitted":"معامله ارسال شده است ",
+    "rewards_claimed_hash":"مقدار هش تراکنش.",
+    "rewards_claimed_hash_await":"بعد از تأیید معامله بعداً می توانید آن را در صفحه حساب مشاهده کنید.",
+    "voting_brokerage":"سهم پاداش رای دهنده",
+    "voting_brokerage_tip":`درصد جوایزی که به نماینده فوق العاده به رای دهنده اعطا می شود. پاداش رأی = پاداش کل * * نسبت تقسیم پاداش رای دهنده * (رأی رای / تعداد رای آرا).`,
+    "SR_set_brokerage_contract":"نماینده عالی نسبت سهم پاداش را تعیین می کند",
+    "countdown_to_voting":"شمارش معکوس برای پایان این دور از رأی گیری",
 };

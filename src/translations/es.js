@@ -305,10 +305,10 @@ export const messages = {
   ##################################################################################
   */
   "apply_for_delegate": "Convertirse en Delegado",
-  "apply_super_representative_candidate": "Convertirse en candidato a Super Representante",
+  "apply_super_representative_candidate": "solicitar para ser un socio de Super Representante",
   "your_personal_website_address": "Dirección de tu web personal",
   "apply_for_delegate_predescription": "Todo Holder de TRON tiene la oportunidad de convertirse en Super Representante. Sin embargo, para que la red y la comunidad funcionen adecuadamente, hemos creado una serie de estándares y regulaciones para poder optar a ser candidato a SR. Promocionaremos a los SR más recomendados para aumentar sus posibilidades de ser elegidos. Las nuevas recomendaciones a SR serán publicadas y actualizadas una vez por semana.",
-  "apply_for_delegate_description": "Todos los holders pueden convertirse en candidato a Super Represente (SR) haciendo click en la página de cuenta; también se puede votar por candidatos haciendo click en la página de Votar. Cada usuario puede votar por múltiples candidatos, con un número de votos inferior o igual al total de TRX que tienen. Los resultados de las votaciones están basadas en la última ronda de votaciones de cada usuario. El número de votos será actualizado cada día a las 02:00(GMT+8),08:00(GMT+8),14:00(GMT+8),20:00(GMT+8); los usuarios también pueden ver en tiempo real el número de votos. Los 27 candidatos más votados se convertirán en Srs y serán responsables de generar bloques y agrupar transacciones, con una recompensa de 32 TRX por bloque generado. Los 27 SRs y los top 100 candidatos a SR pueden también recibir recompensas basadas en los votos que reciban. Se deducirán 9.999 TRX de tarifa para solicitar ser candidato a SR. Votar a los candidatos a SR no tendrá ningún coste para los usuarios.",
+  "apply_for_delegate_description":"Cada titular de token puede solicitar convertirse en un socio súper representativo a través de la página de administración de la cuenta o votar por un socio en la página de votación. Cada usuario puede votar por múltiples socios, y el número máximo de votos debe ser menor o igual que el número de TRX que se tienen. El resultado de la votación se basa en el resultado final de la votación de cada usuario.Los votos serán a las 02:00 (GMT + 8), 08:00 (GMT + 8), 14:00 (GMT + 8), 20:00 (GMT). +8) Actualizar, los usuarios también pueden ver la cantidad de tickets en tiempo real. Los 27 socios principales con el mayor número de votos pueden convertirse en súper representantes, y el súper representante es responsable de las transacciones de empaque y recompensa 32 TRX cada vez. Los 27 súper representantes y los 100 principales socios representantes también pueden recibir recompensas de nodos en función del número de votos. Para solicitar convertirse en socio, debe deducir una tarifa de 9,999 TRX a la vez. El usuario no consume TRX para el socio Super Representativo.",
   "unknown_error": "un error desconocido a ocurrido",
   "representative_understand": "Entiendo como convertirse en representante de TRON",
   "generate_account": "Click para generar la dirección de tu cuenta y contraseña",
@@ -319,7 +319,7 @@ export const messages = {
   "recent_transactions": "Transacciones recientes",
   "newest_account": "Cuenta más nueva",
   "representatives": "Respresentantes",
-  "representativesAcandidates": "Super Representantes y candidatos",
+  "representativesAcandidates": "Super representante y socio",
   "most_votes": "mayoría de votos",
   "start_end_time": "Hora de Comienzo / Finalización",
   "scan_qr_code": "Escanea el código QR con un lector de códigos",
@@ -355,7 +355,7 @@ export const messages = {
   "link_github": "Enlace Github",
   "you_must_enter_a_url": "Debe introducir una URL",
   "success": "Hecho",
-  "successfully_appied_sr_canidate_message_0": "Convertido satisfactoriamente en candidato a Super Respresentante.",
+  "successfully_appied_sr_canidate_message_0": "Aplicado con éxito para convertirse en un socio súper representativo.",
   "successfully_appied_sr_canidate_message_1": "Su cuenta será actualizada pronto.",
   "landing_page": "Página de Presentación",
   "show_more_information_publish_sr_page": "Mostrar más información sobre cómo publicar una página",
@@ -557,7 +557,7 @@ export const messages = {
   "highest_productivity": "Mayor productividad",
   "lowest_productivity": "Menor productividad",
   "Super Representatives": "Super Representantes",
-  "Super Representative Candidates": "Candidatos a Super Representantes",
+  "Super Representative Candidates": "Socios de Super Representantes",
   "loading_representatives": "Cargando Representantes",
   "address_not_super_representative": "Esta dirección no es de Super Representante",
   "unable_load_representatives_page_message": "Imposible cargar página, esto puede pasar si la dirección es errónea, la dirección no es de un Representante o el representante no ha configurado su página aún.",
@@ -596,7 +596,7 @@ export const messages = {
   "3_day_ranking": "Clasificación de 3 días (Top 10)",
   "live_ranking": "Clasificación en vivo",
   "live_ranking_msg": "Se actualiza cada 15 segundos. Los nuevos votos pueden tardar hasta 1-2 minutos antes de ser contados",
-  "candidate": "Candidato",
+  "candidate": "Socio",
   "current_votes": "Votos actuales",
   "click_to_start_voting": "Click aquí para empezar a votar",
   "votes_remaining_message": "Votos restantes",
@@ -773,7 +773,7 @@ export const messages = {
   ##################################################################################
   */
   "applied_for_super_representative": "Aplicado para ser Super Representante",
-  "sr_candidature": "Candidato Super Representante",
+  "sr_candidature": "Socios de Super Representante",
   "created_token": "Token creado",
   "token_creation": "Creación de token",
   "bought": "Comprado",
@@ -991,7 +991,7 @@ export const messages = {
   "block_unit": "Bloques",
   "record_unit": "Transacciones",
   "token_unit": "Tokens",
-  "vote_unit": "candidatos",
+  "vote_unit": "Socios",
   "voter_unit": "Votantes",
   "account_unit": "cuentas",
   "address_unit": "direcciones",
@@ -1296,7 +1296,7 @@ export const messages = {
   "propose_4": "Proponer modificar la cantidad de TRX utilizada para ganar ancho de banda adicional",
   "propose_5": "Proponer modificar la tasa de emisión de tarifas.",
   "propose_6": "Proponer modificar la recompensa de generación de bloque de los SR.",
-  "propose_7": "Proponer modificar las recompensas otorgadas a los 27 principales SR y los siguientes 100 candidatos",
+  "propose_7": "Proponer modificar las recompensas otorgadas a los 27 principales SR y los siguientes 100 socios principales",
   "propose_8": "Proponer modificar el coste de creación de cuenta",
   "propose_9": "Proponer modificar el consumo del ancho de banda",
   "propose_10": "Proponer activar la Máquina Virtual (VM)",
@@ -2031,4 +2031,32 @@ export const messages = {
   "mapping_warning":"This operation must be done by the token contract creator",
   "freeze_balance_limit":"Saldo insuficiente, vuelva a ingresar",
 
+  /*
+     ##################################################################################
+     #                                                                                #
+     # SR rewards                                   #
+     #                                                                                #
+     ##################################################################################
+    */
+  "SR_set_brokerage":"establecer la tasa de recompensa al votante",
+  "SR_brokerage_save_tip":"Después de cada ronda de votación, la recompensa del votante se asignará de acuerdo con la última configuración de tarifas.",
+  "SR_brokerage_save":"Guardar",
+  "SR_brokerage_save_verify":"ingrese un valor de 0 a 100",
+  "SR_reward_available":"disponible para colección",
+  "SR_set_github_learn_more":"Ver más",
+  "SR_vote_for_reward":"recompensa de votación",
+  "SR_receive_award_btn":"recoger la recompensa",
+  "SR_receive_award_tip1":"no disponible para colección,",
+  "SR_receive_award_tip2":"recolectar una vez cada 24 horas",
+  "SR_brokerage_save_result": "¡Votante guardado compartido!",
+  "successfully_brokerage_save": "Establecer votantes para compartir proporciones con éxito",
+  "could_not_brokerage_save": "No se puede guardar la participación de los votantes.",
+  "brokerage_save_error_message": "Se ha producido un problema al intentar establecer la proporción de división de votantes. Vuelva a intentarlo más tarde.",
+  "rewards_claimed_submitted":"transacción presentada",
+  "rewards_claimed_hash":"hash de transacción (txid)",
+  "rewards_claimed_hash_await":"Se aparece en la página de la cuenta después de confirmar la transacción",
+  "voting_brokerage":"tasa de recompensa del votante",
+  "voting_brokerage_tip":"Tasa de recompensa de SR que se distribuirá a sus votantes. Recompensa del votante = recompensa del SR * Tasa de recompensa de los votantes * (votos del votante / todos los votos para el SR).",
+  "SR_set_brokerage_contract":"Súper representante establece la proporción de bono compartido",
+  "countdown_to_voting":"Cuenta atrás para el final de esta ronda de votación",
 };

@@ -27,6 +27,7 @@ import {withTronWeb} from "../../utils/tronWeb";
 import { login, loadSideChains, loadFees } from "../../actions/app";
 import {loadRecentTransactions} from "../../actions/account";
 import {reloadWallet} from "../../actions/wallet";
+import {loadVoteTimer} from "../../actions/votes";
 import {connect} from "react-redux";
 import {CopyToClipboard} from "react-copy-to-clipboard";
 import QRCode from "qrcode.react";
@@ -38,6 +39,7 @@ import PledgeModal from './PledgeModal';
 import MappingMessageModal from './MappingMessageModal';
 import SignModal from './SignModal';
 import { Input } from 'antd';
+import Countdown from "react-countdown-now";
 
 @connect(
     state => {
@@ -53,6 +55,7 @@ import { Input } from 'antd';
       wallet: state.wallet,
       currentWallet: state.wallet.current,
       trxBalance: state.account.trxBalance,
+      voteTimer: state.voting.voteTimer,
     }},
     {
       login,
@@ -60,6 +63,7 @@ import { Input } from 'antd';
       reloadWallet,
       loadSideChains,
       loadFees,
+      loadVoteTimer
     }
 )
 @injectIntl
@@ -131,10 +135,11 @@ export default class Account extends Component {
       // get fees
       isPrivateKey && await this.getFees();
       //get SR Brokerage
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      await new Promise(resolve => setTimeout(resolve, 500));
       if(currentWallet && IS_MAINNET){
           if(currentWallet.representative.enabled){
               this.getSRBrokerage();
+              await this.loadVoteTimer();
           }
       }
     }
@@ -162,16 +167,24 @@ export default class Account extends Component {
       // get fees
       isPrivateKey && await this.getFees();
       //get SR Brokerage
-      await new Promise(resolve => setTimeout(resolve, 1500));
+      await new Promise(resolve => setTimeout(resolve, 500));
       if(currentWallet && IS_MAINNET){
         if(currentWallet.representative.enabled){
             this.getSRBrokerage();
+            await this.loadVoteTimer();
         }
       }
 
     }
   }
 
+  loadVoteTimer = async () => {
+      this.props.loadVoteTimer();
+  };
+  getNextCycle() {
+      let {voteTimer} = this.props;
+      return voteTimer;
+  }
   getAddressRewardBok = async () => {
       let { account } = this.props;
       const  data  =  await Client.getAddressReward({
@@ -196,7 +209,7 @@ export default class Account extends Component {
       let tronWeb = account.tronWeb;
       const  brokerage  =  await tronWeb.trx.getBrokerage(tronWeb.defaultAddress.base58)
       this.setState({
-          brokerageValue:brokerage
+          brokerageValue:(100 - brokerage)
       });
   }
 
@@ -1810,8 +1823,9 @@ export default class Account extends Component {
         } else if (this.props.walletType.type === "ACCOUNT_TRONLINK" || this.props.walletType.type === "ACCOUNT_PRIVATE_KEY") {
             tronWeb = account.tronWeb;
         }
+        let value = 100 - brokerageValue;
         // updateBrokerage
-        const unSignTransaction = await tronWeb.transactionBuilder.updateBrokerage(brokerageValue,tronWeb.defaultAddress.base58).catch(e => false);
+        const unSignTransaction = await tronWeb.transactionBuilder.updateBrokerage(value,tronWeb.defaultAddress.base58).catch(e => false);
         const {result} = await transactionResultManager(unSignTransaction, tronWeb)
         res = result;
         if (res) {
@@ -2089,7 +2103,7 @@ export default class Account extends Component {
                       </td>
                     </tr>
                     {
-                        (!currentWallet.representative.enabled  && accountReward !=0) && <tr>
+                        (!currentWallet.representative.enabled  && accountReward !=0 && IS_MAINNET) && <tr>
                           <th >{tu("SR_vote_for_reward")}:</th>
                           <td>
                             <TRXPrice amount={accountReward / ONE_TRX} className="font-weight-bold"/>
@@ -2103,7 +2117,7 @@ export default class Account extends Component {
                         </tr>
                     }
                     {
-                        (!currentWallet.representative.enabled && accountReward != 0) && <tr>
+                        (!currentWallet.representative.enabled && accountReward != 0 && IS_MAINNET) && <tr>
                         <th style={{borderTop:'none'}}></th>
                         <td style={{borderTop:'none',paddingTop:0,color:'#D8D8D8'}}>
                           <span className="float-right d-block">
@@ -2510,8 +2524,14 @@ export default class Account extends Component {
                                               <span className="ml-2 SR_brokerage_line_height">%</span>
                                           </div>
                                           {
-                                              errorMess? <span className="mt-1" style={{ color: 'red', display: 'block' }}>{errorMess}</span>:''
+                                              errorMess? <span className="mt-1" style={{ color: 'red', display: 'block',position: 'absolute' }}>{errorMess}</span>:''
                                           }
+                                      </div>
+                                      <div className="d-inline-block ml-5">
+                                          <span>{tu("countdown_to_voting")}：</span>
+                                          <Countdown date={this.getNextCycle()} daysInHours={true} onComplete={() => {
+                                              this.loadVoteTimer();
+                                          }}/>
                                       </div>
                                       <button className="btn btn-success float-right"
                                               onClick={() => {
