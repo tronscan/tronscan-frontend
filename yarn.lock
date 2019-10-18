@@ -1208,7 +1208,11 @@
     "@svgr/plugin-svgo" "^4.0.3"
     loader-utils "^1.1.0"
 
+<<<<<<< HEAD
 "@tronscan/client@^0.2.56":
+=======
+"@tronscan/client@^0.2.54":
+>>>>>>> origin/master
   version "0.2.56"
   resolved "https://registry.yarnpkg.com/@tronscan/client/-/client-0.2.56.tgz#60795143addf08fb0f365c562c066f9b2aa053cd"
   dependencies:

@@ -154,3 +154,6 @@ export const Proposals =
 
 export const ErrorAsync =
     loadable(() => import(/* webpackChunkName: "ErrorAsync" */ './Error'))
+
+export const Exchange20 = 
+  loadable(() => import(/* webpackChunkName: "Exchange20" */ './exchange/dex20/index'))
