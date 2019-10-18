@@ -1784,7 +1784,7 @@ export default class Account extends Component {
         const numValue = e.target && e.target.value;
         const MaxAmount  = 100;
         let errorMess = '';
-        let reg = `^([1-9][0-9]*){1,3}$`;
+        let reg = `^([1-9][0-9]*){1,3}|[0]{1,1}$`;
         if (numValue) {
             if (!new RegExp(reg).test(numValue)) {
                 return;
@@ -2089,12 +2089,11 @@ export default class Account extends Component {
                       </td>
                     </tr>
                     {
-                        !currentWallet.representative.enabled && <tr>
+                        (!currentWallet.representative.enabled  && accountReward !=0) && <tr>
                           <th >{tu("SR_vote_for_reward")}:</th>
                           <td>
-                            <TRXPrice amount={accountReward / ONE_TRX}
-                                      className="font-weight-bold"/>
-                            <a href="javascript:" className={"float-right text-primary btn btn-default btn-sm"+ (!reward?" accont_reward_disabled":"")}
+                            <TRXPrice amount={accountReward / ONE_TRX} className="font-weight-bold"/>
+                            <a href="javascript:;" className={"float-right text-primary btn btn-default btn-sm"+ (!reward?" accont_reward_disabled":"")}
                                onClick={this.accountClaimRewards}
                                disabled={!reward}
                             >
@@ -2104,7 +2103,7 @@ export default class Account extends Component {
                         </tr>
                     }
                     {
-                        !currentWallet.representative.enabled &&  <tr>
+                        (!currentWallet.representative.enabled && accountReward != 0) && <tr>
                         <th style={{borderTop:'none'}}></th>
                         <td style={{borderTop:'none',paddingTop:0,color:'#D8D8D8'}}>
                           <span className="float-right d-block">
@@ -2470,43 +2469,96 @@ export default class Account extends Component {
                         <p className="card-text">
                           {tu("sr_receive_reward_message_0")}
                         </p>
-                        <div className="text-left d-flex" style={{ height: '36px'}}>
-                            <span className="SR_brokerage_line_height">{tu("SR_set_brokerage")}：</span>
-                            <span className="ml-1 SR_brokerage_save_tip">
-                                <QuestionMark placement="top" text="SR_brokerage_save_tip"/>
-                            </span>
-                            <div className="ml-3">
-                              <div className="d-flex">
-                                <Input value={brokerageValue} onChange={this.onChangeBrokerage} />
-                                <span className="ml-2 SR_brokerage_line_height">%</span>
-                              </div>
-                                {
-                                    errorMess? <span className="mt-1" style={{ color: 'red', display: 'block' }}>{errorMess}</span>:''
-                                }
-                            </div>
-                            <button className="btn btn-success ml-5"
-                                    onClick={() => {
-                                        this.brokerageUpdate()
-                                    }}
-                                    disabled={errorMess !== '' && brokerageValue !== '' }
-                            >
-                            {tu("SR_brokerage_save")}
-                            </button>
-                        </div>
+                        {/*<div className="text-left d-flex justify-content-between" style={{ height: '36px'}}>*/}
+                            {/*<div>*/}
+                                {/*<span className="SR_brokerage_line_height">{tu("SR_set_brokerage")}：</span>*/}
+                                {/*<span className="ml-1 SR_brokerage_save_tip">*/}
+                                    {/*<QuestionMark placement="top" text="SR_brokerage_save_tip"/>*/}
+                                {/*</span>*/}
+                            {/*</div>*/}
+                            {/*<div className="">*/}
+                              {/*<div className="d-flex">*/}
+                                {/*<Input value={brokerageValue} onChange={this.onChangeBrokerage} />*/}
+                                {/*<span className="ml-2 SR_brokerage_line_height">%</span>*/}
+                              {/*</div>*/}
+                                {/*{*/}
+                                    {/*errorMess? <span className="mt-1" style={{ color: 'red', display: 'block' }}>{errorMess}</span>:''*/}
+                                {/*}*/}
+                            {/*</div>*/}
+                            {/*<button className="btn btn-success"*/}
+                                    {/*onClick={() => {*/}
+                                        {/*this.brokerageUpdate()*/}
+                                    {/*}}*/}
+                                    {/*disabled={errorMess !== '' && brokerageValue !== '' }*/}
+                            {/*>*/}
+                            {/*{tu("SR_brokerage_save")}*/}
+                            {/*</button>*/}
+                        {/*</div>*/}
+                      <table className="table m-0">
+                          <tbody>
+                              <tr>
+                                  <th style={{border: 'none',width:'30%',paddingLeft:0}}>
+                                      <span className="SR_brokerage_line_height">{tu("SR_set_brokerage")}：</span>
+                                      <span className="ml-1 SR_brokerage_save_tip">
+                                              <QuestionMark placement="top" text="SR_brokerage_save_tip"/>
+                                          </span>
+                                  </th>
+                                  <td style={{border: 'none',paddingRight:0}}>
+                                      <div className="d-inline-block" style={{width:'30%',paddingRight:0}}>
+                                          <div className="d-flex">
+                                              <Input value={brokerageValue} onChange={this.onChangeBrokerage} />
+                                              <span className="ml-2 SR_brokerage_line_height">%</span>
+                                          </div>
+                                          {
+                                              errorMess? <span className="mt-1" style={{ color: 'red', display: 'block' }}>{errorMess}</span>:''
+                                          }
+                                      </div>
+                                      <button className="btn btn-success float-right"
+                                              onClick={() => {
+                                                  this.brokerageUpdate()
+                                              }}
+                                              disabled={errorMess !== '' && brokerageValue !== '' }
+                                      >
+                                          {tu("SR_brokerage_save")}
+                                      </button>
+                                  </td>
+                              </tr>
+                              <tr>
+                                  <th style={{border: 'none',width:'30%',paddingLeft:0}}>
+                                      <span>{tu("claim_rewards")}：</span>
+                                  </th>
+                                  <td style={{border: 'none',paddingRight:0}}>
+                                       <span className="d-inline-block" style={{width:'50%',paddingRight:0}}>
+                                         <TRXPrice amount={currentWallet.representative.allowance / ONE_TRX} className="font-weight-bold"/>
+                                            &nbsp; {tu('SR_reward_available')}
+                                      </span>
+                                      <button className="btn btn-success float-right"
+                                              onClick={() => {
+                                                  this.claimRewards()
+                                              }}
+                                              disabled={currentWallet.representative.allowance === 0 || !reward }
+                                      >
+                                          {tu("claim_rewards")}
+                                      </button>
+                                  </td>
+                              </tr>
+                              <tr>
+                                  <th style={{borderTop:'none'}}></th>
+                                  <td style={{borderTop:'none',paddingTop:0,color:'#D8D8D8'}}>
+                                      <span className="float-right d-block">
+                                        {tu("SR_receive_award_tip2")}
+                                      </span>
+                                      {
+                                          !reward && <span className="float-right d-block">
+                                              {tu("SR_receive_award_tip1")}
+                                          </span>
+                                      }
+                                  </td>
+                              </tr>
+                          </tbody>
+                      </table>
+                        {/*<div className="text-left d-flex mt-3 justify-content-between">*/}
 
-                        <div className="text-left d-flex mt-5">
-                          <span>{tu("claim_rewards")}：</span>
-                          <span className="">
-                            <TRXPrice amount={currentWallet.representative.allowance / ONE_TRX}
-                                                       className="font-weight-bold"/>{tu('SR_reward_available')}</span>
-                          <button className="btn btn-success ml-5"
-                                  onClick={() => {
-                                    this.claimRewards()
-                                  }}
-                                  disabled={currentWallet.representative.allowance === 0 || !reward }
-                          >
-                            {tu("claim_rewards")}
-                          </button>
                           {/*{*/}
                             {/*currentWallet.representative.allowance > 0 ?*/}
                                 {/*<p className="m-0 mt-3 text-success">*/}
@@ -2517,16 +2569,16 @@ export default class Account extends Component {
                                   {/*No rewards to claim*/}
                                 {/*</p>*/}
                           {/*}*/}
-                        </div>
+                        {/*</div>*/}
                         <hr/>
                         <h5 className="card-title text-center">
                           {tu("landing_page")}
                         </h5>
                         <div className="d-flex">
-                          <p className="card-text SR_brokerage_line_height">
+                          <p className="card-text SR_brokerage_line_height flex-1">
                             {tu("create_sr_landing_page_message_0")}
                           </p>
-                          <p className="text-center ml-5">
+                          <p className="float-right">
                             <HrefLink className="btn btn-success"
                                       href="https://github.com/tronscan/tronsr-template#readme">
                               {tu("SR_set_github_learn_more")}
