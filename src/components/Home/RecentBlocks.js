@@ -92,7 +92,7 @@ class RecentBlocks extends Component {
                               {
                                   IS_MAINNET && <div className="text-gray-dark break-word color-grey-200 list-item-word"
                                      style={styles.nowrap}>
-                                  <span className="small color-grey-300 d-inline-block">{tu("block_reward")}:</span> <TRXPrice amount={32}/>
+                                  <span className="small color-grey-300 d-inline-block">{tu("block_reward")}:</span> <TRXPrice amount={16}/>
                                 </div>
                               }
 
@@ -139,7 +139,7 @@ class RecentBlocks extends Component {
                           <div className="ml-auto text-right d-flex flex-column pt-2">
                             {
                               IS_MAINNET &&  <div className="text-gray-dark break-word color-grey-200 list-item-word"
-                                                  style={styles.nowrap}><span className="d-inline-block">{tu("block_reward")}:</span> <TRXPrice amount={32}/>
+                                                  style={styles.nowrap}><span className="d-inline-block">{tu("block_reward")}:</span> <TRXPrice amount={16}/>
                               </div>
                             }
 
