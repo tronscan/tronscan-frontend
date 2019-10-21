@@ -43,7 +43,7 @@ class TokenList extends Component {
   loadPage = async (page = 1, pageSize = 20) => {
     this.setState({loading: true})
     const { filter, countTop } = this.state
-    const {data: {tokens, total, totalAll}} = await xhr.get(API_URL+"/api/tokens/overview", {params: {
+    const {data: {tokens, total, totalAll, all}} = await xhr.get(API_URL+"/api/tokens/overview", {params: {
       start:  (page - 1) * pageSize,
       limit: pageSize,
       ...filter
@@ -99,7 +99,8 @@ class TokenList extends Component {
         total
       },
       total: total,
-      totalAll
+      totalAll,
+      all
     });
     return total;
     
@@ -453,10 +454,10 @@ class TokenList extends Component {
     }
 
   render() {
-    let {tokens, alert, loading, total, totalAll, filter} = this.state;
+    let {tokens, alert, loading, total, totalAll, all, filter} = this.state;
     let {match, intl} = this.props;
     let column = IS_MAINNET?this.customizedColumn():this.suncustomizedColumn();
-    let tableInfo = intl.formatMessage({id: 'part_total'}) + ' ' + total + '/' + totalAll + ' ' + intl.formatMessage({id: 'part_pass'})
+    let tableInfo = intl.formatMessage({id: '列表数量'}) + ' ' +  total  + ',' + intl.formatMessage({id: '共收录'}) + ' ' + totalAll;
     let url = 'https://trx.market/launchBase?utm_source=TS3'
     if(intl.locale == 'zh'){
       url = 'https://trx.market/zh/launchBase?utm_source=TS3'
@@ -469,7 +470,8 @@ class TokenList extends Component {
             <div className="row">
               <div className="col-md-12 table_pos trc20-ad-bg pt-5 pt-md-0">
                 {total ?
-                  <div className="table_pos_info d-none d-md-block" style={{left: 'auto'}}>
+                  <div className="table_pos_info d-md-block" style={{left: 'auto'}}>
+                      <div className="tron-ecosystem-tokens">{tu('波场生态通证总数')}:{all}</div>
                       <div>
                         {tableInfo} <span>
                           <QuestionMark placement="top" text="newly_issued_token_by_tronscan" className="token-list-info"></QuestionMark>
@@ -491,7 +493,7 @@ class TokenList extends Component {
                         </button>
                       </a> */}
                     </div>
-                    
+
                 <Table
                   columns={column}
                   rowKey={(record, index) => index}
