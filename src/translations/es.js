@@ -2031,4 +2031,7 @@ export const messages = {
   "mapping_warning":"This operation must be done by the token contract creator",
   "freeze_balance_limit":"Saldo insuficiente, vuelva a ingresar",
 
+  "total_tron_ecosystem_tokens":"Total TRON-ecosystem tokens:",
+  "number_of_lists":"Number of lists:",
+  "total_in_tronscan":"Total in tronscan:"
 };
