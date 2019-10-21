@@ -80,15 +80,24 @@ export const TRADINGMAP = {
 
 // SunWeb config
 export const SUNWEBCONFIG = {
-  MAINFULLNODE: "https://api.trongrid.io",
-  MAINSOLIDITYNODE: "https://api.trongrid.io",
-  MAINEVENTSERVER: "https://api.trongrid.io",
-  SUNFULLNODE: "https://sun.tronex.io",
-  SUNSOLIDITYNODE: "https://sun.tronex.io",
-  SUNEVENTSERVER: "https://sun.tronex.io",
-  MAINNET: "TWaPZru6PR5VjgT4sJrrZ481Zgp3iJ8Rfo",
-  SIDECHAIN: "TGKotco6YoULzbYisTBuP6DWXDjEgJSpYz",
-  SIDEID: "41E209E4DE650F0150788E8EC5CAFA240A23EB8EB7"
+  // MAINFULLNODE: "https://api.trongrid.io",
+  // MAINSOLIDITYNODE: "https://api.trongrid.io",
+  // MAINEVENTSERVER: "https://api.trongrid.io",
+  // SUNFULLNODE: "https://sun.tronex.io",
+  // SUNSOLIDITYNODE: "https://sun.tronex.io",
+  // SUNEVENTSERVER: "https://sun.tronex.io",
+  // MAINNET: "TWaPZru6PR5VjgT4sJrrZ481Zgp3iJ8Rfo",
+  // SIDECHAIN: "TGKotco6YoULzbYisTBuP6DWXDjEgJSpYz",
+  // SIDEID: "41E209E4DE650F0150788E8EC5CAFA240A23EB8EB7"
+    MAINFULLNODE: 'http://47.252.84.158:8070',
+    MAINSOLIDITYNODE: 'http://47.252.84.158:8071',
+    MAINEVENTSERVER: 'http://47.252.81.14:8070',
+    SUNFULLNODE: 'http://47.252.85.90:8070',
+    SUNSOLIDITYNODE: 'http://47.252.85.90:8071',
+    SUNEVENTSERVER: 'http://47.252.87.129:8070',
+    MAINNET: 'TFLtPoEtVJBMcj6kZPrQrwEdM3W3shxsBU',
+    SIDECHAIN: 'TRDepx5KoQ8oNbFVZ5sogwUxtdYmATDRgX',
+    SIDEID: '413AF23F37DA0D48234FDD43D89931E98E1144481B',
 };
 
 // Socket config
