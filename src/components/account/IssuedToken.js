@@ -19,6 +19,7 @@ import { IS_SUNNET, IS_MAINNET } from './../../constants';
 import MappingModal from './MappingModal';
 import SweetAlert from 'react-bootstrap-sweetalert';
 
+
 class IssuedToken extends React.Component{
     constructor() {
         super();
@@ -33,6 +34,7 @@ class IssuedToken extends React.Component{
             id: alpha(24),
             address: '',
             isShowMappingModal: false,
+            modal: null,
         };
     }
     async showModal(address){
@@ -75,7 +77,6 @@ class IssuedToken extends React.Component{
           let element = data.tokens[i];
           const holder = await this.getToken20Holder(element.contract_address)
           const transfer20 = await this.getToken20Transfer(element.contract_address)
-          
           element = {holder, transfer20, ...element}
           arr.push(element)
         }
@@ -84,6 +85,19 @@ class IssuedToken extends React.Component{
 
       }
     }
+
+    getCeator = async (address) => {
+        const { account } = this.props;
+        const contractData = await xhr.get(API_URL + `/api/contract?contract=${address}`);
+        const { data } = contractData;
+        let ceator = (data && data.data && data.data.length > 0 && data.data[0].creator && data.data[0].creator.address) || ''
+        if(ceator !== account.address){
+            return false
+        }else{
+            return true
+        }
+
+    };
 
     updateData(){
       const {loadAccount, issuedAsset} = this.props
@@ -100,6 +114,7 @@ class IssuedToken extends React.Component{
       setTimeout(() => this.setState({[copied]: false }), 1200);
     };
 
+
     componentDidUpdate(prevProps) {
       const {issuedAsset, account} = this.props
 
@@ -112,12 +127,16 @@ class IssuedToken extends React.Component{
       }
     }
 
-    componentDidMount() {
+    async  componentDidMount() {
       if(IS_MAINNET){
           this.get20token()
       }
     }
-
+    hideModal = () => {
+        this.setState({
+            modal: null,
+        });
+    };
     /**
      * get market information token10
      */
@@ -173,11 +192,29 @@ class IssuedToken extends React.Component{
      * open MappingModal
      * @param address: symbol:currency
      */
-    openMappingModal = (address, symbol) => {
-      this.setState({
-        isShowMappingModal: true,
-        address,
-        currency: symbol,
+    openMappingModal = async (address, symbol) => {
+        const { intl } = this.props;
+        let isCreator = await this.getCeator(address);
+        if(!isCreator){
+            this.setState({
+                isShowSignModal: false,
+                modal:
+                    <SweetAlert
+                        error
+                        confirmBtnText={intl.formatMessage({id: 'confirm'})}
+                        confirmBtnBsStyle="success"
+                        onConfirm={this.hideModal}
+                        style={{marginLeft: '-240px', marginTop: '-195px'}}
+                    >
+                        {tu("mapping_warning")}
+                    </SweetAlert>
+            });
+            return;
+        }
+        this.setState({
+            isShowMappingModal: true,
+            address,
+            currency: symbol,
       });
     }
 
@@ -426,7 +463,7 @@ class IssuedToken extends React.Component{
         address, modal } = this.state;
       const { account, intl, currentWallet, unfreezeAssetsConfirmation, sidechains, walletType } = this.props;
 
-      const isPrivateKey =  walletType.type === "ACCOUNT_PRIVATE_KEY";
+      const isPrivateKey =  walletType.type === "ACCOUNT_PRIVATE_KEY" || walletType.type === "ACCOUNT_TRONLINK";
       let status10;
       let token10Time;
       if(issuedAsset){
@@ -796,7 +833,9 @@ class IssuedToken extends React.Component{
               account={account} 
               toAppealing={() => this.updateData()}
             />
+              {modal}
           </div>
+
           {isShowMappingModal && <MappingModal onCancel={this.closeMappingModal} onConfirm={this.openMappingModal}
             address={address} currency={currency} />}
           </div>)

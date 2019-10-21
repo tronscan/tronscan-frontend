@@ -127,7 +127,7 @@ class Register extends Component {
         key: "amount",
         align: "right",
         render: text => {
-          return <span>{Number(text).toFixed(2)}</span>;
+          return <span>{text && Number(text).toFixed(2)}</span>;
         }
       },
       {
@@ -162,7 +162,7 @@ class Register extends Component {
         key: "amount",
         align: "right",
         render: text => {
-          return <span>{Number(text).toFixed(2)}</span>;
+          return <span>{text && Number(text).toFixed(2)}</span>;
         }
       },
       {
@@ -281,8 +281,8 @@ class Register extends Component {
       isLoading: false
     });
 
-    let buyObj = await this.getList(data ? data.buy : [], 1);
-    let sellObj = await this.getList(data ? data.sell : []);
+    let buyObj = this.getNewList(data ? data.buy : [], 1);
+    let sellObj = this.getNewList(data ? data.sell : []);
     if (code === 0) {
       if (data) {
         this.setState(
@@ -300,6 +300,46 @@ class Register extends Component {
         );
       }
     }
+  }
+
+  getNewList(data, type) {
+    let list = data || [];
+    let { limit } = this.state;
+
+    let { pairs } = this.props;
+    let sPrecision = pairs.sPrecision ? pairs.sPrecision : 6;
+
+    let amount_list = [];
+    let listN = [];
+    let arr = [];
+
+    list.length > limit && (list.length = limit);
+
+    list.map(v => {
+      let cje = v.Amount * v.Price;
+      listN.push({
+        price: (+v.Price).toFixed(sPrecision),
+        amount: Number(v.Amount).toFixed(2),
+        cje: Number(cje).toFixed(sPrecision)
+      });
+      amount_list.push(v.Amount);
+    });
+    const _max = Math.max.apply(null, amount_list);
+    if (type === 1) {
+      // this.buyMax = _max
+      this.setState({
+        buyMax: _max
+      });
+    } else {
+      this.setState({
+        sellMax: _max
+      });
+      // this.sellMax = _max
+    }
+
+    return {
+      listN
+    };
   }
 
   async getList(data, type) {
@@ -412,7 +452,7 @@ class RegisterList extends Component {
       <div className={`register-list ${type}`}>
         {data.map(v => {
           return (
-            <div className="list-item" key={v.key}>
+            <div className="list-item" key={v.price}>
               <div className="item-detail">
                 <span
                   className={type}

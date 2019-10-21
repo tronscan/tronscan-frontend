@@ -129,7 +129,7 @@ class Transfers extends React.Component {
         align: 'left',
         className: 'ant_table',
         render: (text, record, index) => {
-          return <AddressLink address={text}/>
+          return <AddressLink address={text}>{text}</AddressLink>
         }
       },
       {
@@ -139,7 +139,7 @@ class Transfers extends React.Component {
         align: 'left',
         className: 'ant_table',
         render: (text, record, index) => {
-          return <AddressLink address={text}/>
+          return  <AddressLink address={text}>{text}</AddressLink>
         }
       },
       {

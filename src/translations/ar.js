@@ -339,6 +339,7 @@
   "private_key_untrusted_website_message_0": "يرجى عدم إدخال مفتاحك الخاص على موقع ويب غير موثوق به.",
   "no_official_tron_website": "ليس الموقع الرسمي لترون",
   "continue_to_external_website": "الاستمرار في الاستخدام بالموقع الخارجي",
+  "visit_third_party_website":"The page you visit will be redirected to a third-party website. There may be security risks. Are you sure you want to continue?",
   "url_changed": "تم تغيير عنوان URL",
   "successfully_changed_website_message": "تم تبديل عنوان موقع الويب بنجاح",
   "unable_to_change_website_title": "غير قادر على تغيير موقع الويب",
@@ -1494,6 +1495,7 @@
   "trc20_trans_record_header_price": "السعر",
   "trc20_my_trans_header_time": "الوقت",
   "trc20_my_trans_header_type": "النوع",
+  "trc20_my_trans_header_pair": 'أزواج التداول',
   "trc20_my_trans_header_price": "السعر",
   "trc20_my_trans_header_amount": "الكمية",
   "trc20_my_trans_header_volume": "قيمة التداول",
@@ -1539,6 +1541,22 @@
   "trc20_24h_l": "24h منخفض",
   "trc20_fire_token": "50 lucky draws to win 100,000 VENA!",
   "trc20_vena_tip": "Due to the particularity of VENA contract, extra 0.1 VENA will be authorized but not deducted.",
+  "trc20_status_-1":'جاري تأكيد الطلب',
+  "trc20_status_0":'في انتظار المعاملة',
+  "trc20_status_1":'في انتظار المعاملة',
+  "trc20_status_2":'تم الانتهاء',
+  "trc20_status_3":'',
+  "trc20_status_4":'',
+  "trc20_status_5":'تم الانتهاء',
+  "trc20_status_6":"جاري الإلغاء",
+  "trc20_status_7":"تم الالغاء",
+  "trc20_status_8":"فشل الإرسال",
+  "trc20_status_9":"",
+  "trc20_status_100":"إلغاء جزئي",
+  "trc20_failed_order": "لم يتم تأكيد الطلب من قبل البلوكشين",
+  "trc20_ignore": 'تجاهل',
+  "trc20_see_currentParis": 'فقط يمكنك الإتطلاع على أزواج التداول الحالية',
+
 
 
   /*
@@ -1848,6 +1866,7 @@
   "delegate_other": "تجميد بواسطة الآخرين",
   "freeze_self": "تجميد نفسي",
   "total_amount": "المبلغ الإجمالي",
+  "receive_address": "تلقي عنوان (العنوان الافتراضي هو الخاص بك)",
   "unfreeze_time": "  وقت الغاء التجميد ",
   "interTrx_tip": "المعاملات الداخلية هي عملية يطلق عليها عنوان عام العقد الذكي transfers وينقل العقد الذكي الرمز المميز إلى عنوان آخر.",
   "event_tip": "الأحداث هي السماح للمبرمج أو موفر الواجهة الخارجية باستخدامه للانتباه إلى عمليات التعاقد والتدقيق.",
@@ -1964,8 +1983,8 @@
   "WIN_supply": "WIN Supply",
   "WIN_Token_Release_Schedule": "WIN Token Release Schedule",
   "source_WIN_team": "Source: WIN Management Team",
-  "Side_Chain":"Side chain browser(DappChain)",
-  "Main_Chain":"Main chain browser(MainChain)",
+  "Side_Chain":"DAppChain",
+  "Main_Chain":"MainChain",
 
 
   "7day": "one week",
@@ -1995,5 +2014,9 @@
   "developers_earn_points":"Earn points",
   "developers_search":" Search username",
   "developers_scored_users":"Scored Users",
-
+  "DAppChain_holders":"DAppChain Holders",
+  "notrx_noenergy":"Please make sure your TRX is not less than 10 and a certain amount of energy",
+  "inactive_MainChain_account":"Submission Failed.This address has not been activated on TRON.Please activate first and try again",
+  "mapping_warning":"This operation must be done by the token contract creator",
+  "freeze_balance_limit":"عدم كفاية الرصيد ، يرجى إعادة الدخول",
 };

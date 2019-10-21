@@ -4,7 +4,7 @@ import {Client} from "../../services/api";
 import {AddressLink, TransactionHashLink, BlockNumberLink, TokenLink, TokenTRC20Link} from "./Links";
 import {tu, tv} from "../../utils/i18n";
 import TimeAgo from "react-timeago";
-import {Truncate} from "./text";
+import {Truncate,TruncateAddress} from "./text";
 import {withTimers} from "../../utils/timing";
 import SmartTable from "./SmartTable.js"
 import {upperFirst} from "lodash";
@@ -240,13 +240,14 @@ class TransfersAll extends React.Component {
                 dataIndex: 'owner_address',
                 key: 'owner_address',
                 align: 'left',
-                className: 'ant_table',
+                className: 'ant_table address_max_width',
+                width: '10%',
                 render: (text, record, index) => {
                     return <div>
                         {
                             record.fromtip ?
-                                <AddressLink address={record.type == 'trc10'?text:record.from_address}/>:
-                                <Truncate><span>{record.type == 'trc10'?text:record.from_address}</span></Truncate>
+                                <AddressLink address={record.type == 'trc10'?text:record.from_address}>{record.type == 'trc10'?text:record.from_address}</AddressLink>:
+                                <TruncateAddress>{record.type == 'trc10'?text:record.from_address}</TruncateAddress>
                         }
 
                     </div>
@@ -256,7 +257,7 @@ class TransfersAll extends React.Component {
             {
                 title: '',
                 className: 'ant_table',
-                width: '25px',
+                width: '5%',
                 render: (text, record, index) => {
                     return record.fromtip?<img width={40} height={22} src={require("../../images/address/in.png")}/>:<img  width={40} height={22} src={require("../../images/address/out.png")}/>
                 }
@@ -266,11 +267,12 @@ class TransfersAll extends React.Component {
                 dataIndex: 'to_address',
                 key: 'to_address',
                 align: 'left',
-                className: 'ant_table',
+                className: 'ant_table address_max_width',
+                width: '10%',
                 render: (text, record, index) => {
                     return record.totip?
-                        <AddressLink address={text}/>:
-                        <Truncate><span>{text}</span></Truncate>
+                        <AddressLink address={text}>{text}</AddressLink>:
+                        <TruncateAddress>{text}</TruncateAddress>
                 }
             },
             {

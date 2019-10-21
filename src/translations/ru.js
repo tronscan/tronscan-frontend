@@ -341,6 +341,7 @@ export const messages = {
   "private_key_untrusted_website_message_0": "Никогда не вводите свой приватный ключ на ненадежном веб-сайте.",
   "no_official_tron_website": "не является официальным сайтом TRON.",
   "continue_to_external_website": "Продолжить переход на внешний сайт",
+  "visit_third_party_website":"The page you visit will be redirected to a third-party website. There may be security risks. Are you sure you want to continue?",
   "url_changed": "URL изменен",
   "successfully_changed_website_message": "Сайт успешно изменен на",
   "unable_to_change_website_title": "Невозможно изменить URL",
@@ -1508,6 +1509,7 @@ export const messages = {
   "trc20_trans_record_header_price": "Цена",
   "trc20_my_trans_header_time": "Время",
   "trc20_my_trans_header_type": "Тип",
+  "trc20_my_trans_header_pair": 'Тороговая Пара',
   "trc20_my_trans_header_price": "Цена",
   "trc20_my_trans_header_amount": "Количество",
   "trc20_my_trans_header_volume": "Объем",
@@ -1553,6 +1555,22 @@ export const messages = {
   "trc20_24h_l": "24h низкий",
   "trc20_fire_token": "50 lucky draws to win 100,000 VENA!",
   "trc20_vena_tip": "Due to the particularity of VENA contract, extra 0.1 VENA will be authorized but not deducted.",
+  "trc20_status_-1":'В ожидании',
+  "trc20_status_0":'Открытый',
+  "trc20_status_1":'Открытый',
+  "trc20_status_2":'Завершенный',
+  "trc20_status_3":'',
+  "trc20_status_4":'',
+  "trc20_status_5":'Завершенный',
+  "trc20_status_6":"Отмена",
+  "trc20_status_7":"Отменен",
+  "trc20_status_8":"Заявка отменена",
+  "trc20_status_9":"",
+  "trc20_status_100":"Частично отменить",
+  "trc20_failed_order": "Ордер не был подтвержден блокчейном",
+  "trc20_ignore": 'Игнорировать',
+  "trc20_see_currentParis": 'Скрыть другие пары',
+
 
   /*
    *  2018-12-18
@@ -1860,6 +1878,7 @@ export const messages = {
   "delegate_other": "Заморозка другими",
   "freeze_self": "Заморозить сам",
   "total_amount": "Итого",
+  "receive_address":"Получите адрес (адрес по умолчанию ваш собственный)",
   "unfreeze_time": "Время разморозки",
   "interTrx_tip": "Внутренние транзакции - это операция, которая по общему адресу называется смарт-контрактом, а смарт-контракт передает токен на другой адрес.",
   "event_tip": "События позволяют программисту или провайдеру внешнего интерфейса использовать его, чтобы обратить внимание на контрактные операции и аудиты.",
@@ -1977,8 +1996,8 @@ export const messages = {
   "WIN_supply": "WIN Supply",
   "WIN_Token_Release_Schedule": "WIN Token Release Schedule",
   "source_WIN_team": "Source: WIN Management Team",
-  "Side_Chain":"Side chain browser(DappChain)",
-  "Main_Chain":"Main chain browser(MainChain)",
+  "Side_Chain":"DAppChain",
+  "Main_Chain":"MainChain",
 
   "7day": "one week",
   "14day": "two weeks",
@@ -2008,5 +2027,9 @@ export const messages = {
   "developers_earn_points":"Earn points",
   "developers_search":"Search username",
   "developers_scored_users":"Scored Users",
-
+  "DAppChain_holders":"DAppChain Holders",
+  "notrx_noenergy":"Please make sure your TRX is not less than 10 and a certain amount of energy",
+  "inactive_MainChain_account":"Submission Failed.This address has not been activated on TRON.Please activate first and try again",
+  "mapping_warning":"This operation must be done by the token contract creator",
+  "freeze_balance_limit":"Недостаточный баланс, пожалуйста, введите заново",
 };

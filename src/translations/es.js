@@ -341,6 +341,7 @@ export const messages = {
   "private_key_untrusted_website_message_0": "Nunca introduzca su clave privada en una web desconocida.",
   "no_official_tron_website": "no es una web oficial de TRON.",
   "continue_to_external_website": "Continuar a una web externa",
+  "visit_third_party_website":"The page you visit will be redirected to a third-party website. There may be security risks. Are you sure you want to continue?",
   "url_changed": "URL cambiada",
   "successfully_changed_website_message": "Web cambiada satisfactoriamente a ",
   "unable_to_change_website_title": "No es posible cambiar la URL",
@@ -1471,7 +1472,7 @@ export const messages = {
   "trc20_CurOrder": "Orden actual",
   "trc20_TxBuy": "Se espera que compre",
   "trc20_TxSell": "Cantidad que quiere vender",
-  "trc20_my_transaction": "Mis tradeos",
+  "trc20_my_transaction": "Historial de pedidos",
   "trc20_estimated_cost": "Coste Estimado",
   "trc20_estimated_revenue": "Ingresos estimados",
   "trc20_slightly_cost": "Un ligero aumento en los costes estimados puede aumentar la probabilidad de cierre.",
@@ -1508,6 +1509,7 @@ export const messages = {
   "trc20_trans_record_header_price": "Precio",
   "trc20_my_trans_header_time": "Tiempo",
   "trc20_my_trans_header_type": "Tipo",
+  "trc20_my_trans_header_pair": 'Par',
   "trc20_my_trans_header_price": "Precio",
   "trc20_my_trans_header_amount": "Cantidad",
   "trc20_my_trans_header_volume": "Volumen",
@@ -1553,6 +1555,22 @@ export const messages = {
   "trc20_24h_l":"24h bajo",
   "trc20_fire_token":"50 lucky draws to win 100,000 VENA!",
   "trc20_vena_tip":"Due to the particularity of VENA contract, extra 0.1 VENA will be authorized but not deducted.",
+  "trc20_status_-1":'Pendiente',
+  "trc20_status_0":'Abierto',
+  "trc20_status_1":'Abierto',
+  "trc20_status_2":'Terminado',
+  "trc20_status_3":'',
+  "trc20_status_4":'',
+  "trc20_status_5":'Terminado',
+  "trc20_status_6":"Cancelar confirmación",
+  "trc20_status_7":"Cancelado",
+  "trc20_status_8":"Envío fallido",
+  "trc20_status_9":"",
+  "trc20_status_100":"Cancelar parcialmente",
+  "trc20_failed_order": "El pedido no fue confirmado por blockchain",
+  "trc20_ignore": 'Ignorar',
+  "trc20_see_currentParis": 'Ocultar otros pares',
+
 
   /*
    *  2018-12-18
@@ -1858,6 +1876,7 @@ export const messages = {
   "delegate_other":"Congelar por Otros",
   "freeze_self":"Congelar por mi mismo",
   "total_amount":"Cantidad total",
+  "receive_address": "Dirección de recepción (la dirección predeterminada es la suya)",
   "unfreeze_time": "Fecha de descongelación",
   "interTrx_tip": "Transacciones internas es una operación que una dirección general llama un Contrato inteligente, y el Contrato inteligente transfiere el token a otra dirección.",
   "event_tip": "Los eventos son para permitir que el programador o el proveedor de la interfaz externa lo utilicen para prestar atención a las operaciones y auditorías del contrato.",
@@ -1977,8 +1996,8 @@ export const messages = {
   "WIN_Token_Release_Schedule": "WIN Token Release Schedule",
   "source_WIN_team": "Source: WIN Management Team",
 
-  "Side_Chain":"Side chain browser(DappChain)",
-  "Main_Chain":"Main chain browser(MainChain)",
+  "Side_Chain":"DAppChain",
+  "Main_Chain":"MainChain",
   "7day": "one week",
   "14day": "two weeks",
   "30day": "one month",
@@ -1996,8 +2015,6 @@ export const messages = {
   "sun_propose_8": "Proporción de ingresos del testigo en la cadena lateral",
   "day":"día",
 
-
-
   "developers_username": "username",
   "developers_current_year":"year's points",
   "developers_current_quarter": "quarter's points",
@@ -2008,5 +2025,10 @@ export const messages = {
   "developers_earn_points":"Earn points",
   "developers_search":" Search username",
   "developers_scored_users":"Scored Users",
+  "DAppChain_holders":"DAppChain Holders",
+  "notrx_noenergy":"Please make sure your TRX is not less than 10 and a certain amount of energy",
+  "inactive_MainChain_account":"Submission Failed.This address has not been activated on TRON.Please activate first and try again",
+  "mapping_warning":"This operation must be done by the token contract creator",
+  "freeze_balance_limit":"Saldo insuficiente, vuelva a ingresar",
 
 };

@@ -81,8 +81,11 @@ export default function Contract({contract}) {
     }
 
     let TokenIDList = [];
+    let tokenIdData;
     TokenIDList.push(contract)
-    let tokenIdData  = rebuildList(TokenIDList,'asset_name','amount')[0]
+    if(TokenIDList){
+        tokenIdData  = rebuildList(TokenIDList,'asset_name','amount')[0]
+    }
     if(contract.contractType){
         switch (contract.contractType.toUpperCase()) {
             case "TRANSFERCONTRACT":
@@ -99,8 +102,8 @@ export default function Contract({contract}) {
                         <div className="table-responsive">
                             <table className="table">
                                 <tbody>
-                                <Field label="from"><AddressLink address={contract['owner_address']}/></Field>
-                                <Field label="to"><AddressLink address={contract['to_address']}/></Field>
+                                <Field label="from"><AddressLink address={contract['owner_address']}>{contract['owner_address']}</AddressLink></Field>
+                                <Field label="to"><AddressLink address={contract['to_address']}>{contract['to_address']}</AddressLink></Field>
                                 <Field label="amount"><TRXPrice amount={contract.amount / ONE_TRX}/></Field>
                                 {contract.contract_note &&
                                 <Field label="note">{decodeURIComponent(contract.contract_note)}</Field>
@@ -124,8 +127,8 @@ export default function Contract({contract}) {
                         <div className="table-responsive">
                             <table className="table">
                                 <tbody>
-                                <Field label="from"><AddressLink address={contract['owner_address']}/></Field>
-                                <Field label="to"><AddressLink address={contract['to_address']}/></Field>
+                                <Field label="from"><AddressLink address={contract['owner_address']}>{contract['owner_address']}</AddressLink></Field>
+                                <Field label="to"><AddressLink address={contract['to_address']}>{contract['to_address']}</AddressLink></Field>
                                 <Field label="amount">{tokenIdData.map_amount}</Field>
                                 <Field label="token"><NameWithId value={contract} notamount totoken/></Field>
                                 </tbody>
@@ -147,8 +150,8 @@ export default function Contract({contract}) {
                         <div className="table-responsive">
                             <table className="table">
                                 <tbody>
-                                <Field label="to"><AddressLink address={contract['owner_address']}/></Field>
-                                <Field label="issuer"><AddressLink address={contract['to_address']}/></Field>
+                                <Field label="to"><AddressLink address={contract['owner_address']}>{contract['owner_address']}</AddressLink></Field>
+                                <Field label="issuer"><AddressLink address={contract['to_address']}>{contract['to_address']}</AddressLink></Field>
                                 <Field label="amount">{contract.amount / ONE_TRX}</Field>
                                 <Field label="token"><NameWithId value={contract} notamount totoken/></Field>
                                 </tbody>
@@ -390,11 +393,11 @@ export default function Contract({contract}) {
                                         <div className="flex1">
                                             <div className="d-flex border-bottom content_item">
                                                 <div className="content_name">{tu('contract_triggers_owner_address')}:</div>
-                                                <div className="flex1"><AddressLink address={contract['owner_address']}/></div>
+                                                <div className="flex1"><AddressLink address={contract['owner_address']}>{contract['owner_address']}</AddressLink></div>
                                             </div>
                                             <div className="d-flex border-bottom content_item">
                                                 <div className="content_name">{tu('contract_address')}:</div>
-                                                <div className="flex1"><AddressLink address={contract['contract_address']} isContract={true}/></div>
+                                                <div className="flex1"><AddressLink address={contract['contract_address']} isContract={true}>{contract['contract_address']}</AddressLink></div>
                                             </div>
                                             <div className="d-flex content_item">
                                                 <div className="content_name">{tu('value')}:</div>
@@ -411,11 +414,11 @@ export default function Contract({contract}) {
                                         <div className="flex1">
                                             <div className="d-flex border-bottom content_item">
                                                 <div className="content_name">{tu('from')}:</div>
-                                                <div className="flex1"><AddressLink address={contract.tokenTransferInfo['from_address']}/></div>
+                                                <div className="flex1"><AddressLink address={contract.tokenTransferInfo['from_address']}>{contract.tokenTransferInfo['from_address']}</AddressLink></div>
                                             </div>
                                             <div className="d-flex border-bottom content_item">
                                                 <div className="content_name">{tu('to')}:</div>
-                                                <div className="flex1"><AddressLink address={contract.tokenTransferInfo['to_address']}/></div>
+                                                <div className="flex1"><AddressLink address={contract.tokenTransferInfo['to_address']}>{contract.tokenTransferInfo['to_address']}</AddressLink></div>
                                             </div>
                                             <div className="d-flex border-bottom content_item">
                                                 <div className="content_name" >{tu('amount')}:</div>
@@ -462,9 +465,9 @@ export default function Contract({contract}) {
                                                                     <div className="mr-1">{tu('transfers')}</div>
                                                                     <div className="mr-1">{tokenInfo.map_amount +' '+tokenInfo.map_token_name_abbr}</div>
                                                                     <div className="mr-1">{tu('from')}</div>
-                                                                    <div className="mr-1" style={{width: '150px'}}><ContractLink address={item['caller_address']}/></div>
+                                                                    <div className="mr-1" style={{width: '150px'}}><ContractLink address={item['caller_address']}>{item['caller_address']}</ContractLink></div>
                                                                     <div className="mr-1">{tu('to')}</div>
-                                                                    <div className="mr-1" style={{width: '150px'}}><ContractLink address={item['transfer_to_address']}/></div>
+                                                                    <div className="mr-1" style={{width: '150px'}}><ContractLink address={item['transfer_to_address']}>{item['caller_address']}</ContractLink></div>
                                                                 </div>
                                                             </div>
                                                         )

@@ -7,7 +7,7 @@ import {FormattedNumber} from "react-intl";
 import {injectIntl} from "react-intl";
 import _, {filter, maxBy, sortBy, trim, sumBy} from "lodash";
 import {AddressLink, BlockNumberLink} from "../common/Links";
-import {SR_MAX_COUNT} from "../../constants";
+import {SR_MAX_COUNT,IS_MAINNET} from "../../constants";
 import {RepresentativesRingPieReact} from "../common/RingPieChart";
 import {Link} from "react-router-dom";
 import {Client} from "../../services/api";
@@ -34,7 +34,8 @@ class Representatives extends Component {
         pieChartData.push({
           key: i + 1,
           name: val.name ? val.name : val.url,
-          volumeValue: intl.formatNumber(val.blockProduced),
+          address:  val.address,
+          volumeValue: val.blockProduced,
           volumePercentage: intl.formatNumber(val.percentage * 100, {
             maximumFractionDigits: 2,
             minimumFractionDigits: 2
@@ -66,6 +67,7 @@ class Representatives extends Component {
 
     let superRepresentatives = sortBy(filter(witnesses, w => w.producer), w => w.votes * -1);
     let candidateRepresentatives = sortBy(filter(witnesses, w => !w.producer), w => w.votes * -1);
+
     superRepresentatives.map( account => {
         Number(latestBlock) -  account.latestBlockNumber  < 1000 ? account.representerStatus = true :  account.representerStatus = false;
     })
@@ -101,7 +103,7 @@ class Representatives extends Component {
                 {tu("Super Representative Candidates")}
               </td>
             </tr>
-            {candidateRepresentatives.map((account, index) => <Row index={index + 27} state={this.state}
+            {candidateRepresentatives.map((account, index) => <Row index={superRepresentatives ? index + superRepresentatives.length: IS_MAINNET?index+27:index+5} state={this.state}
                                                                    props={this.props} key={account.address + index}
                                                                    account={account} showSync={false}/>)}
             </tbody>

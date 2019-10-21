@@ -298,7 +298,7 @@ class TokenList extends Component {
                   IS_MAINNET&& <span>
                     {record.extra ? <a href={record.extra.url} className="token-active-details btn mt-2">{tu(record.extra.desc)}</a>
                         : (record.pairId )?
-                            <a href={`https://trx.market/exchange?id=${record.pairId}`} className="token-details btn mt-2" target="_blank"> {tu('token_trade')}</a>
+                            <Link to={`/exchange/trc20?id=${record.pairId}`} className="token-details btn mt-2" target="_blank"> {tu('token_trade')}</Link>
                             : <div>
                               <a href="javascript:;"
                                  className="token-disabled-exchange btn mt-2"
@@ -397,7 +397,7 @@ class TokenList extends Component {
                 }
             },
             {
-                title: intl.formatMessage({id: 'token_holders'}),
+                title:intl.formatMessage({id: 'DAppChain_holders'}),
                 dataIndex: 'nrOfTokenHolders',
                 key: 'nrOfTokenHolders',
                 sorter: true,
@@ -425,18 +425,18 @@ class TokenList extends Component {
                         }
                         {
                             IS_MAINNET&& <span>
-                    {record.extra ? <a href={record.extra.url} className="token-active-details btn mt-2">{tu(record.extra.desc)}</a>
-                        : (record.pairId )?
-                            <a href={`https://trx.market/exchange?id=${record.pairId}`} className="token-details btn mt-2" target="_blank"> {tu('token_trade')}</a>
+                           {record.extra ? <a href={record.extra.url} className="token-active-details btn mt-2">{tu(record.extra.desc)}</a>
+                            : (record.pairId )?
+                            <Link to={`/exchange/trc20?id=${record.pairId}`} className="token-details btn mt-2"> {tu('token_trade')}</Link>
                             : <div>
-                              <a href="javascript:;"
-                                 className="token-disabled-exchange btn mt-2"
-                                 id={record.tokenType == "trc20"?"exchange_"+record.contractAddress:"exchange_"+record.tokenId}
-                                 onMouseOver={(prevS,props) => this.setState({[record.abbr + record.tokenId]: true})}
-                                 onMouseOut={() => this.setState({[record.abbr+record.tokenId]: false})}>
-                                  {tu('token_trade')}
-                              </a>
-                              <Tooltip placement="top" target={record.tokenType == "trc20"?"exchange_"+record.contractAddress:"exchange_"+record.tokenId} isOpen={this.state[record.abbr+record.tokenId]}> <span className="text-capitalize">{tu("token_does_not_support_exchange")}</span></Tooltip>
+                                  <a href="javascript:;"
+                                     className="token-disabled-exchange btn mt-2"
+                                     id={record.tokenType == "trc20"?"exchange_"+record.contractAddress:"exchange_"+record.tokenId}
+                                     onMouseOver={(prevS,props) => this.setState({[record.abbr + record.tokenId]: true})}
+                                     onMouseOut={() => this.setState({[record.abbr+record.tokenId]: false})}>
+                                      {tu('token_trade')}
+                                  </a>
+                                  <Tooltip placement="top" target={record.tokenType == "trc20"?"exchange_"+record.contractAddress:"exchange_"+record.tokenId} isOpen={this.state[record.abbr+record.tokenId]}> <span className="text-capitalize">{tu("token_does_not_support_exchange")}</span></Tooltip>
                             </div>}
                 </span>
 
@@ -474,7 +474,7 @@ class TokenList extends Component {
                         {tableInfo} <span>
                           <QuestionMark placement="top" text="newly_issued_token_by_tronscan" className="token-list-info"></QuestionMark>
                         </span> &nbsp;&nbsp;  
-                        <a href={`https://trx.market`} target="_blank" >{t("Trade_on_TRXMarket")}></a>
+                          {IS_MAINNET?<a href={`https://trx.market`} target="_blank" >{t("Trade_on_TRXMarket")}></a>:''}
                       </div>
                     </div> : ''}
                     <div className="d-md-flex apply-trc20 apply-all align-items-center">

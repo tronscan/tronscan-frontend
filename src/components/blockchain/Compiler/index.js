@@ -496,6 +496,10 @@ class ContractCompiler extends React.Component {
         });
     }
 
+     timeout  = (ms) =>  {
+        return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
     /**
      * 部署并更新合约
      */
@@ -503,15 +507,17 @@ class ContractCompiler extends React.Component {
         const { account: { tronWeb } } = this.props;
         let { txID, currentContractName, optimizer, runs, compilerVersion, options,
             CompileStatus, signed } = this.state;
-
         const { bytecode, abi, name } = optionsParam || options;
         const contractName = name || currentContractName;
 
         let infoData = [];
 
-        let transactionInfo;
+        let transactionInfo = {};
+
         do {
+
             // 部署合约
+            await this.timeout(20000);
             transactionInfo = await tronWeb.trx.getTransactionInfo(txID)
                 .catch (e => {
                     infoData = [{
@@ -526,7 +532,6 @@ class ContractCompiler extends React.Component {
                         deployLoading: false,
                     });
                 });
-
             if (!transactionInfo){
                 throw new Error('Not getting transaction info!');
             }

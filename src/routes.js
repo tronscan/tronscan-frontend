@@ -53,7 +53,9 @@ import {
     DevelopersRewardAsync,
     TokensMarketsCreateAsync,
     TokensMarketsAddListAsync
+    Exchange20
 } from "./components/async";
+
 
 export const routes = [
   {
@@ -317,13 +319,14 @@ export const routes = [
   //   showInMenu: false,
   //   none: true
   // },
-  // {
-  //   label: "TRXMarket",
-  //   path: "/exchange20",
-  //   icon: "fas fa-exchange-alt",
-  //   component: Exchange20,
-  //   none: true
-  // },
+  {
+    label: "TRXMarket",
+    path: "/exchange/trc20",
+    icon: "fas fa-exchange-alt",
+    component: Exchange20,
+    isExact:true,
+    none: true
+  },
   // {
   //   label: "TRXMarket",
   //   path: "/exchange/:type",

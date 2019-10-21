@@ -338,6 +338,7 @@ export const messages = {
   "private_key_untrusted_website_message_0": "신뢰할 수 없는 웹사이트에 프라이빗키를 제공하지 마세요.",
   "no_official_tron_website": "TRON 공식 페이지가 아닙니다.",
   "continue_to_external_website": "외부 웹사이트로 이동",
+  "visit_third_party_website":"The page you visit will be redirected to a third-party website. There may be security risks. Are you sure you want to continue?",
   "url_changed": "URL 변경됨",
   "successfully_changed_website_message": "URL으로 전환했습니다.",
   "unable_to_change_website_title": "URL을 변경할 수 없습니다.",
@@ -1456,7 +1457,7 @@ export const messages = {
   "trc20_CurOrder": "현재 주문",
   "trc20_TxBuy": "매수",
   "trc20_TxSell": "매도",
-  "trc20_my_transaction": "나의 거래",
+  "trc20_my_transaction": "위탁 기록",
   "trc20_estimated_cost": "예상 비용",
   "trc20_estimated_revenue": "예상 수입",
   "trc20_slightly_cost": "예상 비용을 늘리면, 거래 확률이 높아집니다.。",
@@ -1493,6 +1494,7 @@ export const messages = {
   "trc20_trans_record_header_price": "가격",
   "trc20_my_trans_header_time": "시간",
   "trc20_my_trans_header_type": "유형",
+  "trc20_my_trans_header_pair": '거래 페어',
   "trc20_my_trans_header_price": "가격",
   "trc20_my_trans_header_amount": "수량",
   "trc20_my_trans_header_volume": "거래액",
@@ -1538,6 +1540,22 @@ export const messages = {
   "trc20_24h_l": "24h 낮은",
   "trc20_fire_token": "50 lucky draws to win 100,000 VENA!",
   "trc20_vena_tip": "VENA 계약의 특수성으로 인해 추가 0.1 VENA 는 승인되지만 공제되지 않습니다.",
+  "trc20_status_-1":'주문 확인중',
+  "trc20_status_0":'거래중',
+  "trc20_status_1":'거래중',
+  "trc20_status_2":'거래 완성',
+  "trc20_status_3":'',
+  "trc20_status_4":'',
+  "trc20_status_5":'거래 완성',
+  "trc20_status_6":"취소 확인중",
+  "trc20_status_7":"취소 완성",
+  "trc20_status_8":"위탁 실패",
+  "trc20_status_9":"취소 실패",
+  "trc20_status_100":"일부 취소",
+  "trc20_failed_order": "거래 실패 설명",
+  "trc20_ignore": '무시',
+  "trc20_see_currentParis": '현재 거래만 보기',
+
   /*
    *  2018-12-18
    * */
@@ -1853,6 +1871,7 @@ export const messages = {
   "delegate_other": "다른 사람에 의하여 동결",
   "freeze_self": "나 자신에 의해 고정",
   "total_amount": "총액",
+  "receive_address":"수신 주소 (기본 주소는 자신의 주소입니다)",
   "unfreeze_time": "해동 시간",
   "interTrx_tip": "내부 트랜잭션은 일반 주소가 스마트 계약을 호출하고 스마트 계약이 토큰을 다른 주소로 전송하는 작업입니다.",
   "event_tip": "이벤트는 프로그래머 또는 외부 인터페이스 제공 업체가 계약 작업 및 감사에주의를 기울일 수있게하는 것입니다.",
@@ -1932,8 +1951,8 @@ export const messages = {
   "token_logo_upload_tip":"PNG, jpg, jpeg 3 가지 형식만 지원하며 크기는 200K를 초과하지 않으며 픽셀은 100 * 100입니다.",
 
   // Backbone - account - mapping
-  "main_account_mapping_title":"DappChain에지도",
-  "main_account_mapping_text":"DappChain은 TRON 메인 체인에 기반하여 개발된 사이드 체인 네트워크 이며. TRON 메인넷 확장에 사용됩니다. ",
+  "main_account_mapping_title":"DAppChain에지도",
+  "main_account_mapping_text":"DAppChain은 TRON 메인 체인에 기반하여 개발된 사이드 체인 네트워크 이며. TRON 메인넷 확장에 사용됩니다. ",
   "main_account_mapping_text_1":"1.높은 tps, 낮은 에너지 소비",
   "main_account_mapping_text_2":"2.Mapping operation consumes 1000TRX",
   "main_account_mapping_btn":"매핑",
@@ -1955,7 +1974,7 @@ export const messages = {
   'pledge_num_min_error':"The quantity cannot be less than",
   "pledge_text":"서약은 일정량의 에너지를 소비",
   "sign_text":"Withdraw operation will consume",
-  "pledge_mapping_text":"아직 DappChain에 매핑되지 않은 자산, 서약을 지원하지 않습니다",
+  "pledge_mapping_text":"아직 DAppChain에 매핑되지 않은 자산, 서약을 지원하지 않습니다",
   "lack_of_balance":"TRX has insufficient balance",
   "mapping_text":"Mapping operations consume:",
   // success
@@ -1972,8 +1991,8 @@ export const messages = {
   "WIN_supply": "WIN Supply",
   "WIN_Token_Release_Schedule": "WIN Token Release Schedule",
   "source_WIN_team": "Source: WIN Management Team",
-  "Side_Chain":"Side chain browser(DappChain)",
-  "Main_Chain":"Main chain browser(MainChain)",
+  "Side_Chain":"DAppChain",
+  "Main_Chain":"MainChain",
 
   "7day": "one week",
   "14day": "two weeks",
@@ -2003,5 +2022,9 @@ export const messages = {
   "developers_earn_points":"Earn points",
   "developers_search":" Search username",
   "developers_scored_users":"Scored Users",
-
+  "DAppChain_holders":"DAppChain Holders",
+  "notrx_noenergy":"Please make sure your TRX is not less than 10 and a certain amount of energy",
+  "inactive_MainChain_account":"Submission Failed.This address has not been activated on TRON.Please activate first and try again",
+  "mapping_warning":"This operation must be done by the token contract creator",
+  "freeze_balance_limit":"잔액이 부족합니다. 다시 입력하십시오",
 };

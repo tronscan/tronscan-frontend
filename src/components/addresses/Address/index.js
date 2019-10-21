@@ -26,6 +26,7 @@ import BigNumber from "bignumber.js"
 import {HrefLink} from "../../common/Links";
 import {QuestionMark} from "../../common/QuestionMark";
 import {CsvExport} from "../../common/CsvExport";
+import moment from 'moment';
 BigNumber.config({ EXPONENTIAL_AT: [-1e9, 1e9] });
 
 
@@ -210,9 +211,10 @@ class Address extends React.Component {
 
     let stats = await Client.getAddressStats(id);
 
-    let {total: totalProducedBlocks} = await Client.getBlocks({
+    let {rangeTotal: totalProducedBlocks} = await Client.getBlocks({
       producer: id,
       limit: 1,
+      start_timestamp: moment([2018,5,24]).startOf('day').valueOf(),
     });
     if (address.representative.enabled) {
       this.setState(prevProps => ({
@@ -388,9 +390,9 @@ class Address extends React.Component {
         availableBandWidthPercentage:(1-(address.bandwidth.netUsed + address.bandwidth.freeNetUsed)/(address.bandwidth.netLimit + address.bandwidth.freeNetLimit))*100,
         energyUsed:address.bandwidth.energyUsed,
         energyLimit:address.bandwidth.energyLimit,
-        energyRemaining:address.bandwidth.energyRemaining,
+        energyRemaining:address.bandwidth.energyRemaining>= 0?address.bandwidth.energyRemaining:0,
         energyPercentage:address.bandwidth.energyPercentage * 100,
-        availableEnergyPercentage:address.bandwidth.energyRemaining ?(1- address.bandwidth.energyPercentage) * 100 : 0,
+        availableEnergyPercentage:address.bandwidth.energyRemaining > 0 ?(1- address.bandwidth.energyPercentage) * 100 : 0,
     });
 
   }
@@ -430,7 +432,7 @@ class Address extends React.Component {
   }
 
   energyCircle = () => {
-    let { energyLimit, energyRemaining, energyUsed, energyPercentage } = this.state;
+      let { energyLimit, energyRemaining, energyUsed, energyPercentage, address } = this.state;
       let {intl} = this.props;
       let address_percentage_remaining = new BigNumber(100 - Number(energyPercentage));
       let addressPercentageRemaining = energyRemaining?address_percentage_remaining.decimalPlaces(2) + '%': '0%';
@@ -443,11 +445,17 @@ class Address extends React.Component {
             </div>
             <div>
               <span>{intl.formatMessage({id: 'address_energyRemaining'}) + ' : ' + energyRemaining }</span>&nbsp;&nbsp;
-              <span>{intl.formatMessage({id: 'address_percentage'}) + ' : ' + addressPercentageRemaining }</span>
+                {
+                    address.bandwidth.energyRemaining>= 0 &&  <span>{intl.formatMessage({id: 'address_percentage'}) + ' : ' + addressPercentageRemaining }</span>
+                }
+
             </div>
             <div>
               <span>{intl.formatMessage({id: 'address_energyUsed'}) + ' : ' + energyUsed }</span>&nbsp;&nbsp;
-              <span>{intl.formatMessage({id: 'address_percentage'}) + ' : ' + addressPercentageUsed }</span>
+                {
+                    address.bandwidth.energyRemaining>= 0 &&  <span>{intl.formatMessage({id: 'address_percentage'}) + ' : ' + addressPercentageUsed }</span>
+                }
+
             </div>
           </div>
       )
@@ -463,7 +471,6 @@ class Address extends React.Component {
         availableBandWidthPercentage,availableEnergyPercentage, csvurl} = this.state;
     let {match,intl} = this.props;
     let addr = match.params.id;
-
 
     if (!address) {
       return null;

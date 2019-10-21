@@ -339,6 +339,7 @@ export const messages = {
     "private_key_untrusted_website_message_0": "هرگز کلید خصوصی خود را بر روی وب سایت های غیر قابل اطمینان وارد نکنید",
     "no_official_tron_website": "این سایت رسمی ترون نیست",
     "continue_to_external_website": "به سمت سایت خارجی",
+    "visit_third_party_website":"The page you visit will be redirected to a third-party website. There may be security risks. Are you sure you want to continue?",
     "url_changed": "آدرس تغییر کرده",
     "successfully_changed_website_message": "وب سایت به صورت موفقیت آمیز تغییر کرده است",
     "unable_to_change_website_title": "امکان تغییر نشانی اینترنتی وجود ندارد",
@@ -1497,9 +1498,10 @@ export const messages = {
     "trc20_trans_record_header_price": "قیمت",
     "trc20_my_trans_header_time": "زمان",
     "trc20_my_trans_header_type": "نوع",
+    "trc20_my_trans_header_pair": 'جفت',
     "trc20_my_trans_header_price": "قیمت",
     "trc20_my_trans_header_amount": "مقدار ",
-    "trc20_my_trans_header_volume": "Volume",
+    "trc20_my_trans_header_volume": "مقدار",
     "trc20_my_trans_header_status": "وضعیت",
     "trc20_my_trans_header_detail": "جزئیات",
     "trc20_my_trans_finish": "همه چیز",
@@ -1542,6 +1544,22 @@ export const messages = {
     "trc20_24h_l": "24h کم",
     "trc20_fire_token": "50 lucky draws to win 100,000 VENA!",
     "trc20_vena_tip": "Due to the particularity of VENA contract, extra 0.1 VENA will be authorized but not deducted.",
+    "trc20_status_-1":'در انتظار',
+  "trc20_status_0":'باز کن',
+  "trc20_status_1":'باز کن',
+  "trc20_status_2":'تکمیل شد',
+  "trc20_status_3":'',
+  "trc20_status_4":'',
+  "trc20_status_5":'تکمیل شد',
+  "trc20_status_6":"لغو",
+  "trc20_status_7":"لغو شد",
+  "trc20_status_8":"ارسال نشد",
+  "trc20_status_9":"",
+  "trc20_status_100":"تا حدی لغو کنید",
+  "trc20_failed_order": "این نماینده تأیید بلاک را دریافت نکرد",
+  "trc20_ignore": 'چشم پوشی',
+  "trc20_see_currentParis": 'جفت های دیگر را مخفی کنید',
+
 
 
     /*
@@ -1852,6 +1870,7 @@ export const messages = {
     "freeze_self": " فریز توسط من",
     "total_amount": "مقدار کل",
     "unfreeze_time": "زمان آزاد کردن",
+    "receive_address": "دریافت آدرس (آدرس پیش فرض شخصی شماست)",
 
     "interTrx_tip": "معاملات داخلی عملیاتی است که یک آدرس کلی آدرس یک قرارداد هوشمند را فراخوانی می کند و قرارداد هوشمند نقل قول را به آدرس دیگری انتقال می دهد.",
     "event_tip": "رویدادها این است که اجازه دهید برنامهنویس یا ارائه دهنده رابط خارجی از آن برای توجه به عملیات قرارداد و ممیزی استفاده کند.",
@@ -1970,8 +1989,8 @@ export const messages = {
     "WIN_supply": "WIN Supply",
     "WIN_Token_Release_Schedule": "WIN Token Release Schedule",
     "source_WIN_team": "Source: WIN Management Team",
-    "Side_Chain":"Side chain browser(DappChain)",
-    "Main_Chain":"Main chain browser(MainChain)",
+    "Side_Chain":"DAppChain",
+    "Main_Chain":"MainChain",
 
 
     "7day": "one week",
@@ -2001,5 +2020,9 @@ export const messages = {
     "developers_earn_points":"Earn points",
     "developers_search":" Search username",
     "developers_scored_users":"Scored Users",
-
+    "DAppChain_holders":"DAppChain Holders",
+    "notrx_noenergy":"Please make sure your TRX is not less than 10 and a certain amount of energy",
+    "inactive_MainChain_account":"Submission Failed.This address has not been activated on TRON.Please activate first and try again",
+    "mapping_warning":"This operation must be done by the token contract creator",
+    "freeze_balance_limit":"موجودی کافی نیست، لطفا دوباره وارد کنید",
 };

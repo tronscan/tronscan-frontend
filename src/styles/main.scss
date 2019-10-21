@@ -1525,7 +1525,7 @@ $border-color-dark: #d8d8d8;
       border: none !important;
     }
 
-    th {
+    th,td {
       background: #fff !important;
       border-top: 1px solid #eee !important;
     }
@@ -4647,4 +4647,24 @@ delete {
       line-height: 24px;
     }
   }
+}
+.ellipsis_box{
+  max-width: 100%;
+  display:inline-flex;
+  flex-wrap:nowrap;
+
+  &_start{
+    flex: 0 1 auto;
+    text-overflow: ellipsis;
+    overflow:hidden;
+    white-space:nowrap;
+  }
+  &_end{
+    flex: 1 0 auto;
+    white-space: nowrap;
+    margin-left: -1px;
+  }
+}
+.address_max_width{
+  max-width: 100px;
 }

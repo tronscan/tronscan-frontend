@@ -86,7 +86,6 @@ class TokenHolders extends React.Component {
         })
        })
     }
-    
 
     this.setState({
       page,
@@ -129,7 +128,7 @@ class TokenHolders extends React.Component {
       },
       {
         title: 'Name Tag',
-        dataIndex: 'name',
+        dataIndex: 'tagName',
         key: 'tagName',
         width: '200px'
       },
