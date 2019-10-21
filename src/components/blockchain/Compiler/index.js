@@ -298,8 +298,7 @@ class ContractCompiler extends React.Component {
         }
 
         // 编译
-        const { data } = await xhr.post(`http://3.14.14.175:9004/api/solidity/contract/compile`, formData)
-      //  const { data } = await xhr.post(`${API_URL}/api/solidity/contract/compile`, formData)
+        const { data } = await xhr.post(`${API_URL}/api/solidity/contract/compile`, formData)
             .catch(e => {
                 const errorData = [{
                     type: 'error',

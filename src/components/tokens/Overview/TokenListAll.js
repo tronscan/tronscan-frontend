@@ -457,7 +457,7 @@ class TokenList extends Component {
     let {tokens, alert, loading, total, totalAll, all, filter} = this.state;
     let {match, intl} = this.props;
     let column = IS_MAINNET?this.customizedColumn():this.suncustomizedColumn();
-    let tableInfo = intl.formatMessage({id: '列表数量'}) + ' ' +  total  + ',' + intl.formatMessage({id: '共收录'}) + ' ' + totalAll;
+    let tableInfo = intl.formatMessage({id: 'number_of_lists'}) + total  + ',' + intl.formatMessage({id: 'total_in_tronscan'}) + totalAll;
     let url = 'https://trx.market/launchBase?utm_source=TS3'
     if(intl.locale == 'zh'){
       url = 'https://trx.market/zh/launchBase?utm_source=TS3'
@@ -471,7 +471,7 @@ class TokenList extends Component {
               <div className="col-md-12 table_pos trc20-ad-bg pt-5 pt-md-0">
                 {total ?
                   <div className="table_pos_info d-md-block" style={{left: 'auto'}}>
-                      <div className="tron-ecosystem-tokens">{tu('波场生态通证总数')}:{all}</div>
+                      {all && <div className="tron-ecosystem-tokens">{tu('total_tron_ecosystem_tokens')}{all}</div>}
                       <div>
                         {tableInfo} <span>
                           <QuestionMark placement="top" text="newly_issued_token_by_tronscan" className="token-list-info"></QuestionMark>
