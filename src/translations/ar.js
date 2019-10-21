@@ -2019,4 +2019,8 @@
   "inactive_MainChain_account":"Submission Failed.This address has not been activated on TRON.Please activate first and try again",
   "mapping_warning":"This operation must be done by the token contract creator",
   "freeze_balance_limit":"عدم كفاية الرصيد ، يرجى إعادة الدخول",
+
+  "total_tron_ecosystem_tokens":"Total TRON-ecosystem tokens:",
+  "number_of_lists":"Number of lists:",
+  "total_in_tronscan":"Total in tronscan:"
 };
