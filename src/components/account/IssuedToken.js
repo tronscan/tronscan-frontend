@@ -257,7 +257,6 @@ class IssuedToken extends React.Component{
         const data = marketInfoToken20[index];
         const { updateTime, verifyStatus } = data || {};
         const { marketNoEntry, isListNoEntry, isToAudit, isNotThrough, isThrough, isShelves } = this.getMarketBtnStatus(verifyStatus);
-
         return <tr className="line-2">
             <td><div className="tip">2</div></td>
             <td>
@@ -271,7 +270,7 @@ class IssuedToken extends React.Component{
                         </Tag>
                       </AntdTip>
                     : (!isThrough && !isShelves && <div><AntdTip title={<span>{tu('type_pass_market_tip')}</span>}>
-                        <Tag color="#219236">{tu('type_pass')}</Tag>
+                        <Tag color="#28a745">{tu('type_pass')}</Tag>
                         </AntdTip></div>) }
                 {isListNoEntry && <AntdTip title={<span>{tu('not_entry_list_tip')}</span>}>
                         <Tag color="#A4A3A3">{tu('not_entry')}</Tag>
@@ -283,7 +282,7 @@ class IssuedToken extends React.Component{
                         <Tag color="#C34339">{tu('not_through')}</Tag>
                     </AntdTip>}
                 {isThrough && <AntdTip title={<span>{tu('type_pass_tip')}</span>}>
-                        <Tag color="#609645">{tu('type_pass')}</Tag>
+                        <Tag color="#28a745">{tu('type_pass')}</Tag>
                     </AntdTip>}
                 {isShelves && <AntdTip title={<span>{tu('shelves_market_tip')}</span>}>
                         <Tag color="#171717">{tu('shelves')}</Tag>
@@ -293,13 +292,13 @@ class IssuedToken extends React.Component{
                 {hasMarketToken20Data && !marketNoEntry &&
                     <div>
                         {tu('pass_time')}:
-                        <FormattedDate value={updateTime}/>
+                        <FormattedDate value={updateTime}/>&nbsp;
                         <FormattedTime value={updateTime}  hour='numeric' minute="numeric" second='numeric' hour12={false}/>
                     </div>}
             </td>
             <td></td>
             <td>
-                {!marketNoEntry && !isShelves && <div><a >{tu('check_market_detail')}</a></div>}
+                {!marketNoEntry && !isShelves && <div> <a href={`https://trx.market/exchange?id=${data.pairId}`} target="_blank"> {tu('check_market_detail')}</a></div>}
                 {marketNoEntry && <div><Tag color="#3E76EE"
                         onClick={() => this.jumpPage(decimals, `/tokens/markets/create/${TOKENTYPE.TOKEN20}/${address}`)}>
                         {tu('search_trading_area')}</Tag></div>}
@@ -333,7 +332,7 @@ class IssuedToken extends React.Component{
                         </Tag>
                       </AntdTip>
                     : (!isThrough && !isShelves && <div><AntdTip title={<span>{tu('type_pass_market_tip')}</span>}>
-                        <Tag color="#219236">{tu('type_pass')}</Tag>
+                        <Tag color="#28a745">{tu('type_pass')}</Tag>
                         </AntdTip></div>) }
                 {isListNoEntry && <AntdTip title={<span>{tu('not_entry_list_tip')}</span>}>
                         <Tag color="#A4A3A3">{tu('not_entry')}</Tag>
@@ -345,7 +344,7 @@ class IssuedToken extends React.Component{
                         <Tag color="#C34339">{tu('not_through')}</Tag>
                     </AntdTip>}
                 {isThrough && <AntdTip title={<span>{tu('type_pass_tip')}</span>}>
-                        <Tag color="#609645">{tu('type_pass')}</Tag>
+                        <Tag color="#28a745">{tu('type_pass')}</Tag>
                     </AntdTip>}
                 {isShelves && <AntdTip title={<span>{tu('shelves_market_tip')}</span>}>
                         <Tag color="#171717">{tu('shelves')}</Tag>
@@ -355,13 +354,13 @@ class IssuedToken extends React.Component{
                 {!marketNoEntry &&
                     <div>
                         {tu('pass_time')}:
-                        <FormattedDate value={updateTime}/>
+                        <FormattedDate value={updateTime}/>&nbsp;
                         <FormattedTime value={updateTime}  hour='numeric' minute="numeric" second='numeric' hour12={false}/>
                     </div>}
             </td>
             <td></td>
             <td>
-                {!marketNoEntry && !isShelves && <div><a >{tu('check_market_detail')}</a></div>}
+                {!marketNoEntry && !isShelves && <div><a href={`https://trx.market/exchange?id=${marketInfoToken10.pairId}`} target="_blank"> {tu('check_market_detail')}</a></div>}
                 {marketNoEntry && <div><Tag color="#3E76EE"
                         onClick={() => this.jumpPage(precision, `/tokens/markets/create/${TOKENTYPE.TOKEN10}/${id}`)}>
                         {tu('search_trading_area')}</Tag></div>}

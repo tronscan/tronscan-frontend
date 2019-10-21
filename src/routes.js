@@ -52,7 +52,7 @@ import {
     Address,
     DevelopersRewardAsync,
     TokensMarketsCreateAsync,
-    TokensMarketsAddListAsync
+    TokensMarketsAddListAsync,
     Exchange20
 } from "./components/async";
 
