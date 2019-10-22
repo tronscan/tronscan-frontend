@@ -325,7 +325,8 @@ export const routes = [
     icon: "fas fa-exchange-alt",
     component: Exchange20,
     isExact:true,
-    none: true
+    none: true,
+    showInMenu: IS_MAINNET?true:false,
   },
   // {
   //   label: "TRXMarket",

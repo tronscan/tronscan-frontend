@@ -2126,4 +2126,9 @@ export const messages = {
   "inactive_MainChain_account":"该地址未在TRON主网激活，无法完成此操作，请激活后重试",
   "mapping_warning":"此操作须由token的合约创建者完成",
   "freeze_balance_limit":"余额不足，请重新输入",
+
+  "total_tron_ecosystem_tokens":"波场生态通证总数：",
+  "number_of_lists":"列表数量：",
+  "total_in_tronscan":"共收录："
+
 };
