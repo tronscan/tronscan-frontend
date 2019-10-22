@@ -120,6 +120,7 @@ class Sell extends Component {
         prevProps.quickSelect.price != n.price
       ) {
         newPrice = fixed(n.price, exchangeData.fix_precision);
+        
         if (n.amount <= firstBalance) {
           newAmount = fixed(n.amount, a_precision);
         } else {
@@ -127,6 +128,7 @@ class Sell extends Component {
         }
 
         firstBalance && this.setSlider() && this.transTotal();
+
         this.setState(
           {
             secondError: "",
@@ -144,6 +146,8 @@ class Sell extends Component {
           second_quant_sell: n.amount ? newAmount : ""
         });
       } else {
+        console.log(12345, quickSelect);
+
         if (n.amount != amount) {
           newPrice = fixed(n.price, exchangeData.fix_precision);
 

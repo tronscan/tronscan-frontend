@@ -109,7 +109,7 @@ class Buy extends Component {
         prevProps.quickSelect.price != n.price
       ) {
         newPrice = fixed(n.price, exchangeData.fix_precision);
-        if (n.amount * n.price <= firstBalance) {
+        if (n.amount * newPrice <= firstBalance) {
           newAmount = fixed(n.amount, a_precision);
         } else {
           newAmount = fixed(firstBalance / n.price, a_precision);
@@ -136,7 +136,7 @@ class Buy extends Component {
         if (n.amount != amount) {
           newPrice = fixed(n.price, exchangeData.fix_precision);
 
-          if (n.amount * n.price <= firstBalance) {
+          if (n.amount * newPrice <= firstBalance) {
             newAmount = fixed(n.amount, a_precision);
           } else {
             newAmount = fixed(firstBalance / n.price, a_precision);

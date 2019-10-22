@@ -229,7 +229,7 @@ class Register extends Component {
                     style={{
                       fontSize: "14px",
                       color: "#666666",
-                      marginLeft: "20px"
+                      marginLeft: "7px"
                     }}
                   >
                     ≈ {price_convert} USD
@@ -247,7 +247,7 @@ class Register extends Component {
                     style={{
                       fontSize: "14px",
                       color: "#666666",
-                      marginLeft: "20px"
+                      marginLeft: "7px"
                     }}
                   >
                     ≈ {price_convert} USD
@@ -439,7 +439,7 @@ class RegisterList extends Component {
   handlePriceObj(v, type, column) {
     let amount = "";
     if (column == 2) {
-      amount = parseInt(v.amount);
+      amount = v.amount;
     }
     let obj = {
       b: {
