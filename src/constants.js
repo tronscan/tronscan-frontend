@@ -29,8 +29,9 @@ export const API_URL_SUNNET = 'https://dappchainapi.tronscan.org';
 export const API_URL = IS_SUNNET?API_URL_SUNNET:process.env.API_URL;
 export const CONTRACT_MAINNET_API_URL = process.env.API_URL; 
 //export const MARKET_API_URL = 'http://172.16.21.165:7001';
+//test
 export const MARKET_API_URL = 'http://3.15.229.178:7001';
-
+export const MARKET_HTTP_URL = 'http://18.222.178.103:83';
 
 
 export const ACCOUNT_PRIVATE_KEY = "ACCOUNT_PRIVATE_KEY";
@@ -114,6 +115,7 @@ export const MARKETPAGE = {
 
 // market token verify status
 export const VERIFYSTATUS = {
+    HASBEENSUBMITTEDTHREE:-3,
     NOTRECORDED: -2, // No recorded
     HASBEENRECORDED: -1, // Has been recorded
     HASBEENSUBMITTED: 0, // Has been submitted

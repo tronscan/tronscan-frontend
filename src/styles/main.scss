@@ -4107,7 +4107,6 @@ h5 {
 
       .line {
         &-1 {
-
           i,
           svg {
             font-size: 20px;
@@ -4115,7 +4114,13 @@ h5 {
           }
         }
 
-        &-2 {}
+        &-2 {
+          i,
+          svg {
+            font-size: 20px;
+            color: #28a745;
+          }
+        }
 
         &-3 {
           td {

@@ -10,7 +10,7 @@ import {TokenLink, TokenTRC20Link, HrefLink, AddressLink} from "../common/Links"
 import AppealModal from './AppealModal'
 import xhr from "axios/index";
 import {FormattedDate, FormattedNumber, FormattedRelative, FormattedTime, injectIntl} from "react-intl";
-import { API_URL, CONTRACT_MAINNET_API_URL, TOKENTYPE, MARKET_API_URL, VERIFYSTATUS } from "../../constants";
+import { API_URL, CONTRACT_MAINNET_API_URL, TOKENTYPE, MARKET_API_URL, VERIFYSTATUS, MARKET_HTTP_URL } from "../../constants";
 import { getTime} from "date-fns";
 import {CopyToClipboard} from "react-copy-to-clipboard";
 import {Tooltip} from "reactstrap";
@@ -255,10 +255,13 @@ class IssuedToken extends React.Component{
         const { marketInfoToken20 } = this.state;
         const hasMarketToken20Data = marketInfoToken20 && marketInfoToken20.length > index;
         const data = marketInfoToken20[index];
-        const { updateTime, verifyStatus } = data || {};
-        const { marketNoEntry, isListNoEntry, isToAudit, isNotThrough, isThrough, isShelves } = this.getMarketBtnStatus(verifyStatus);
+        const { updateTime, verifyStatus, isFirstRecommend } = data || {};
+        const { marketNoEntry, isListNoEntry, isToAudit, isNotThrough, isThrough, isShelves, isRemoved } = this.getMarketBtnStatus(verifyStatus, isFirstRecommend);
         return <tr className="line-2">
-            <td><div className="tip">2</div></td>
+            <td>
+                { isThrough && <i className="fas fa-check-circle"></i> }
+                { !isThrough && <div className="tip">2</div> }
+            </td>
             <td>
             </td>
             <td>{tu('input_market')}</td>
@@ -284,9 +287,13 @@ class IssuedToken extends React.Component{
                 {isThrough && <AntdTip title={<span>{tu('type_pass_tip')}</span>}>
                         <Tag color="#28a745">{tu('type_pass')}</Tag>
                     </AntdTip>}
+                {isRemoved && <AntdTip title={<span>{tu('removed_tip')}</span>}>
+                    <Tag color="#171717">{tu('removed')}</Tag>
+                </AntdTip>}
                 {isShelves && <AntdTip title={<span>{tu('shelves_market_tip')}</span>}>
                         <Tag color="#171717">{tu('shelves')}</Tag>
                     </AntdTip>}
+
             </td>
             <td className="text-light">
                 {hasMarketToken20Data && !marketNoEntry &&
@@ -298,7 +305,7 @@ class IssuedToken extends React.Component{
             </td>
             <td></td>
             <td>
-                {!marketNoEntry && !isShelves && <div> <a href={`https://trx.market/exchange?id=${data.pairId}`} target="_blank"> {tu('check_market_detail')}</a></div>}
+                {!marketNoEntry && !isShelves && <div> <a href={`${MARKET_HTTP_URL}/exchange?id=${data.pairId}`} target="_blank"> {tu('check_market_detail')}</a></div>}
                 {marketNoEntry && <div><Tag color="#3E76EE"
                         onClick={() => this.jumpPage(decimals, `/tokens/markets/create/${TOKENTYPE.TOKEN20}/${address}`)}>
                         {tu('search_trading_area')}</Tag></div>}
@@ -316,11 +323,14 @@ class IssuedToken extends React.Component{
         const { marketInfoToken10 } = this.state;
         const { issuedAsset } = this.props;
         const { id, precision } = issuedAsset || {};
-        const { updateTime, verifyStatus } = marketInfoToken10 || {};
-        const { marketNoEntry, isListNoEntry, isToAudit, isNotThrough, isThrough, isShelves } = this.getMarketBtnStatus(verifyStatus);
+        const { updateTime, verifyStatus, isFirstRecommend } = marketInfoToken10 || {};
+        const { marketNoEntry, isListNoEntry, isToAudit, isNotThrough, isThrough, isShelves, isRemoved } = this.getMarketBtnStatus(verifyStatus, isFirstRecommend);
 
         return <tr className="line-2">
-            <td><div className="tip">2</div></td>
+            <td>
+                { isThrough && <i className="fas fa-check-circle"></i> }
+                { !isThrough && <div className="tip">2</div> }
+            </td>
             <td>
             </td>
             <td>{tu('input_market')}</td>
@@ -346,6 +356,9 @@ class IssuedToken extends React.Component{
                 {isThrough && <AntdTip title={<span>{tu('type_pass_tip')}</span>}>
                         <Tag color="#28a745">{tu('type_pass')}</Tag>
                     </AntdTip>}
+                {isRemoved && <AntdTip title={<span>{tu('removed_tip')}</span>}>
+                    <Tag color="#171717">{tu('removed')}</Tag>
+                </AntdTip>}
                 {isShelves && <AntdTip title={<span>{tu('shelves_market_tip')}</span>}>
                         <Tag color="#171717">{tu('shelves')}</Tag>
                     </AntdTip>}
@@ -360,7 +373,7 @@ class IssuedToken extends React.Component{
             </td>
             <td></td>
             <td>
-                {!marketNoEntry && !isShelves && <div><a href={`https://trx.market/exchange?id=${marketInfoToken10.pairId}`} target="_blank"> {tu('check_market_detail')}</a></div>}
+                {!marketNoEntry && !isShelves && <div><a href={`${MARKET_HTTP_URL}/exchange?id=${marketInfoToken10.pairId}`} target="_blank"> {tu('check_market_detail')}</a></div>}
                 {marketNoEntry && <div><Tag color="#3E76EE"
                         onClick={() => this.jumpPage(precision, `/tokens/markets/create/${TOKENTYPE.TOKEN10}/${id}`)}>
                         {tu('search_trading_area')}</Tag></div>}
@@ -443,16 +456,17 @@ class IssuedToken extends React.Component{
     /**
      * get market button status
      */
-    getMarketBtnStatus = (verifyStatus) => {
+    getMarketBtnStatus = (verifyStatus,isFirstRecommend) => {
         return {
-            marketNoEntry: (!verifyStatus && verifyStatus !== VERIFYSTATUS.HASBEENSUBMITTED) || verifyStatus === VERIFYSTATUS.NOTRECORDED,
-            isListNoEntry: verifyStatus == VERIFYSTATUS.NOTRECOMMENDED,
-            isToAudit: verifyStatus == VERIFYSTATUS.HASBEENRECORDED || verifyStatus === VERIFYSTATUS.HASBEENSUBMITTED
+            marketNoEntry: (!verifyStatus && verifyStatus !== VERIFYSTATUS.HASBEENSUBMITTED) || (!verifyStatus && verifyStatus !== VERIFYSTATUS.HASBEENSUBMITTEDTHREE)|| verifyStatus === VERIFYSTATUS.NOTRECORDED,
+            isListNoEntry: verifyStatus == VERIFYSTATUS.NOTRECOMMENDE && isFirstRecommend != 0,
+            isToAudit: verifyStatus == VERIFYSTATUS.HASBEENRECORDED || verifyStatus === VERIFYSTATUS.HASBEENSUBMITTED || verifyStatus === VERIFYSTATUS.HASBEENSUBMITTEDTHREE
                 || verifyStatus === VERIFYSTATUS.TOAUDIT || verifyStatus === VERIFYSTATUS.APPROVED
                 || verifyStatus === VERIFYSTATUS.RECOMMENDEDFAILED,
             isNotThrough: verifyStatus === VERIFYSTATUS.REJECTED,
             isThrough: verifyStatus === VERIFYSTATUS.RECOMMENDED || verifyStatus === VERIFYSTATUS.CONFIRMED,
-            isShelves: verifyStatus === VERIFYSTATUS.SHELVES
+            isShelves: verifyStatus === VERIFYSTATUS.SHELVES,
+            isRemoved: verifyStatus == VERIFYSTATUS.NOTRECOMMENDED && isFirstRecommend == 0,
         };
     }
 
@@ -676,7 +690,7 @@ class IssuedToken extends React.Component{
                       id={issuedAsset && issuedAsset.id}/></td>
                     </tr>
                     
-                    {this.getMarketToken10Html()}
+                    { status10.isPassed && this.getMarketToken10Html()}
                     {/* <tr className="line-3">
                       <td></td>
                       <td><Tag color="blue">{tu('application_entry')}</Tag></td>
@@ -799,7 +813,7 @@ class IssuedToken extends React.Component{
                             <TokenTRC20Link name={tu('check_token_detail')} address={token20Item.contract_address}/>
                           </td>
                         </tr>
-                        {this.getMarketToken20Html(index, token20Item)}
+                        {status20.isPassed && this.getMarketToken20Html(index, token20Item)}
                         {/* <tr className="line-3">
                           <td></td>
                           <td><Tag color="blue">{tu('application_entry')}</Tag></td>

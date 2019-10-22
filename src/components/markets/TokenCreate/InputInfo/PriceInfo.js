@@ -84,7 +84,7 @@ export class PriceInfo extends Component {
                     rules: [
                         { required: true, message: tu('enter_the_amount'), whitespace: true },
                         { validator: function(rule, value, callback) {
-                            if (value && (!/^(0|[1-9][0-9]*)(\.\d{0,6})?$/.test(value) || value > 4200000000)) {
+                            if (value && (!/^(0|[1-9][0-9]*)(\.\d{0,6})?$/.test(value) || value > 4200000000 || value <= 0 )) {
                                 return false;
                             }
                             callback();

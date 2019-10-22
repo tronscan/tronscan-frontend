@@ -184,7 +184,6 @@ class BaseInfo extends Component {
         const { intl, form: { getFieldDecorator }, state: { isTrc20 } } = this.props;
         const { type, body, logoUrl, isUpdate } =  this.state;
         const isTrc10 = type === 'trc10';
-
         const uploadButton = (
             <div>
                 <Icon type={this.state.loading ? 'loading' : 'plus'} />
@@ -258,7 +257,13 @@ class BaseInfo extends Component {
                 <Form.Item label={tu('token_circulation')}>
                     {getFieldDecorator('circulation', {
                         rules: [{ required: true, message: tu('circulation_v_required'), whitespace: true },
-                        { pattern: /^\d+$/, message: tu('abbr_v_format') }],
+                                // { validator: function(rule, value, callback) {
+                                //     if (value > parseFloat(this.state.paramData.totalSupply)) {
+                                //         return false;
+                                //     }
+                                //     callback();
+                                // }, message: tu('token_circulation_format'), whitespace: true }
+                        ]
                     })(
                         <NumericInput placeholder={intl.formatMessage({ id: 'placeholder_circulation' })}
                             decimal={!!isTrc20} disabled={isUpdate} />

@@ -416,6 +416,7 @@ export const messages = {
   "token_circulation": "流通量",
   "placeholder_circulation": "代币的流通量",
   "circulation_v_required": "流通量必须填写",
+  "token_circulation_format":"流通量录入错误",
   "issuer_address": "发行者地址",
   "token_id": "Token ID",
   "attr_logo_v_required": "通证LOGO必须上传",
@@ -463,6 +464,7 @@ export const messages = {
   "to_audit": "待审核",
   "not_through": "未通过",
   "shelves": "已下架",
+  "removed":"已移除",
   "not_entry_tip": "尚未创建交易对",
   "not_entry_list_tip": "尚未申请正式上币",
   "type_pass_market_tip": "创建交易对已通过",
@@ -471,6 +473,7 @@ export const messages = {
   "type_pass_tip": "正式上币申请已通过审核",
   "shelves_list_tip": "正式币已下架",
   "shelves_market_tip": "通证已被下架",
+  "removed_tip":"交易对已被移除",
   /*
 
   ##################################################################################

@@ -36,6 +36,7 @@ class SubmitInfo extends Component {
     }
 
     componentDidMount() {
+        console.log('this.state',this.state)
         this.props.nextState({ leave_lock: true });
     }
 
@@ -200,7 +201,7 @@ class SubmitInfo extends Component {
                 home_page, email, isInOtherMarket, tokenIssScheme, white_paper,
                 contractCodeUrl, reddit, icoAddress, teamInfo, coinMarketCapUrl } } = this.state;
         const isTrc10 = type === 'trc10';
-        logo =  Lockr.get('TokenLogo', logo);
+       // logo =  Lockr.get('TokenLogo', logo);
         
         // token information
         const tokenInfoItem = (
@@ -243,7 +244,7 @@ class SubmitInfo extends Component {
                         </p>
                     </Col>
                     <Col span={24} md={12}>
-                        <label>{tu('contract_address_or_token_id')}</label>
+                        <label>{isTrc10?tu('Token ID'):tu('contract_address')}</label>
                         <p className="border-dashed">
                             {isTrc10 ? tokenId : tokenAddress}
                         </p>
@@ -282,7 +283,7 @@ class SubmitInfo extends Component {
                     <Col span={24} md={24}>
                         <label>{tu('token_price')}</label>
                         <p className="border-dashed">
-                            {fprice} {tokenSymbol}  = {sprice} trx
+                            {fprice} {tokenSymbol}  = {sprice} TRX
                             <span className="ml-4">
                                 TRX{tu('trc20_last_price')}: <TRXPrice amount={1} currency="USD" source="home"/>
                             </span>
