@@ -2050,7 +2050,7 @@ export const messages = {
   "could_not_brokerage_save": "유권자 공유를 저장할 수 없습니다",
   "brokerage_save_error_message": "유권자 분할 비율을 설정하는 중에 문제가 발생했습니다. 나중에 다시 시도하십시오.",
   "rewards_claimed_submitted":"거래 제출 완료",
-  "rewards_claimed_hash":"거래 해시",
+  "rewards_claimed_hash":"거래 해시：",
   "rewards_claimed_hash_await":"잠시후 거래 확인이 되면 계정 페이지에서 찾아 볼 수 있습니다",
   "voting_brokerage":"유권자 보상 배당 비율",
   "voting_brokerage_tip":"슈퍼대표가 받는 보상 중, 배당 투표자의 비율은. 유권자= 총 보상 수* 유권자 보상 배당 비율* (유권자 투표/ 유권자 총 투표)",

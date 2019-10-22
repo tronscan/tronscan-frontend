@@ -2045,7 +2045,7 @@ export const messages = {
   "could_not_brokerage_save": "割合を正しく共有するように有権者を設定する",
   "brokerage_save_error_message": "有権者分割比を設定しようとして問題が発生しました。後でもう一度やり直してください。",
   "rewards_claimed_submitted":"トランザクションは提出されました",
-  "rewards_claimed_hash":"トランザクションハッシュ値(txid）",
+  "rewards_claimed_hash":"トランザクションハッシュ値(txid）：",
   "rewards_claimed_hash_await":"取引が確認された後、アカウントページで表紙可能",
   "voting_brokerage":"有権者の褒賞率",
   "voting_brokerage_tip":"SRの有権者に分配される報酬の割合。投票者の報酬= SRの報酬*投票者の報酬率*（投票者の投票/ SRのすべての投票）。",

@@ -2053,7 +2053,7 @@ export const messages = {
   "could_not_brokerage_save": "No se puede guardar la participación de los votantes.",
   "brokerage_save_error_message": "Se ha producido un problema al intentar establecer la proporción de división de votantes. Vuelva a intentarlo más tarde.",
   "rewards_claimed_submitted":"transacción presentada",
-  "rewards_claimed_hash":"hash de transacción (txid)",
+  "rewards_claimed_hash":"hash de transacción (txid):",
   "rewards_claimed_hash_await":"Se aparece en la página de la cuenta después de confirmar la transacción",
   "voting_brokerage":"tasa de recompensa del votante",
   "voting_brokerage_tip":"Tasa de recompensa de SR que se distribuirá a sus votantes. Recompensa del votante = recompensa del SR * Tasa de recompensa de los votantes * (votos del votante / todos los votos para el SR).",

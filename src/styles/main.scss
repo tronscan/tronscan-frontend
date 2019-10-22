@@ -4685,9 +4685,21 @@ delete {
   span{
     color: #d8d8d8;
   }
+  &:hover{
+    border-color: #d8d8d8;
+    color: #d8d8d8!important;
+    background-color:#ffffff;
+    span{
+      color: #d8d8d8!important;
+    }
+  }
 }
 
 .tron-ecosystem-tokens{
   margin-top: -15px;
 }
 
+.SweetAlert_hashid{
+  font-size: 14px;
+  word-break: break-all;
+}

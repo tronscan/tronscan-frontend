@@ -2048,7 +2048,7 @@ export const messages = {
     "could_not_brokerage_save": "اشتراک اشتراک کننده را نمی توان ذخیره کرد",
     "brokerage_save_error_message": "هنگام تنظیم تنظیم تقسیم رای دهندگان مشکلی پیش آمد. لطفا بعداً دوباره امتحان کنید.",
     "rewards_claimed_submitted":"معامله ارسال شده است ",
-    "rewards_claimed_hash":"مقدار هش تراکنش.",
+    "rewards_claimed_hash":"مقدار هش تراکنش:",
     "rewards_claimed_hash_await":"بعد از تأیید معامله بعداً می توانید آن را در صفحه حساب مشاهده کنید.",
     "voting_brokerage":"سهم پاداش رای دهنده",
     "voting_brokerage_tip":`درصد جوایزی که به نماینده فوق العاده به رای دهنده اعطا می شود. پاداش رأی = پاداش کل * * نسبت تقسیم پاداش رای دهنده * (رأی رای / تعداد رای آرا).`,

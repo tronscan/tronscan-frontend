@@ -2042,7 +2042,7 @@
   "could_not_brokerage_save": "لا يمكن حفظ مشاركة الناخب",
   "brokerage_save_error_message": "حدثت مشكلة أثناء محاولة تعيين نسبة تقسيم الناخبين ، يرجى إعادة المحاولة لاحقًا.",
   "rewards_claimed_submitted":"تم تقديم المعاملة",
-  "rewards_claimed_hash":"تجزئة المعاملة (txid)",
+  "rewards_claimed_hash":"تجزئة المعاملة (txid):",
   "rewards_claimed_hash_await":"بعد تأكيد المعاملة يمكن الاطلاع عليها في صفحة الحساب",
   "voting_brokerage":"معدل مكافأة الناخبين",
   "voting_brokerage_tip":`نسبة الجوائز الممنوحة للممثل الممتاز لتوزيعها على الناخبين له / لها

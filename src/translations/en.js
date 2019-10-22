@@ -2059,7 +2059,7 @@ export const messages = {
   "could_not_brokerage_save": "Cannot save voter reward rate",
   "brokerage_save_error_message": "There was a problem trying to set the voter reward rate. Please try again later.",
   "rewards_claimed_submitted":"transaction submitted",
-  "rewards_claimed_hash":"transaction hash (txid)",
+  "rewards_claimed_hash":"transaction hash (txid):",
   "rewards_claimed_hash_await":"viewable on account page after transaction is confirmed",
   "voting_brokerage":"voter reward rate",
   "voting_brokerage_tip":"Rate of SR's reward to be distributed to his/her voters. Voter's reward = SR's reward * Voters' reward rate * (voter's votes/ all votes for the SR).",

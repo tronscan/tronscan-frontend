@@ -38,7 +38,8 @@ import IssuedToken from './IssuedToken';
 import PledgeModal from './PledgeModal';
 import MappingMessageModal from './MappingMessageModal';
 import SignModal from './SignModal';
-import { Input } from 'antd';
+import {Tooltip} from "reactstrap";
+import { Input, Tooltip as AntdTip } from 'antd';
 import Countdown from "react-countdown-now";
 
 @connect(
@@ -1797,14 +1798,14 @@ export default class Account extends Component {
         const numValue = e.target && e.target.value;
         const MaxAmount  = 100;
         let errorMess = '';
-        let reg = `^([1-9][0-9]*){1,3}|[0]{1,1}$`;
+        let reg =  /^(?:[1-9]?\d|100)$/
         if (numValue) {
-            if (!new RegExp(reg).test(numValue)) {
-                return;
-            }
-            // max value
             if (Number(numValue) > MaxAmount) {
                 errorMess = `${intl.formatMessage({id: 'SR_brokerage_save_verify'})}`;
+            }
+            if (!new RegExp(reg).test(numValue)) {
+                // max value
+                return;
             }
         }
         this.setState({
@@ -1887,6 +1888,11 @@ export default class Account extends Component {
     accountClaimRewards = async () => {
         let res,hashid;
         let {account, currentWallet} = this.props;
+        let {reward} = this.state;
+        if(!reward){
+           return
+        }
+
         let tronWeb = account.tronWeb;
         const unSignTransaction = await tronWeb.transactionBuilder.withdrawBlockRewards(tronWeb.defaultAddress.base58).catch(e => false);
         const {result,txid} = await transactionResultManager(unSignTransaction, tronWeb)
@@ -1897,7 +1903,10 @@ export default class Account extends Component {
             this.setState({
                 modal: (
                     <SweetAlert success title={tu("rewards_claimed_submitted")} onConfirm={this.hideModal}>
-                        {tu("rewards_claimed_hash")}:{hashid}
+                        <div>
+                            {tu("rewards_claimed_hash")}
+                            <span className="SweetAlert_hashid">{hashid}</span>
+                        </div>
                         <br/>
                         {tu("rewards_claimed_hash_await")}
                     </SweetAlert>
@@ -1918,6 +1927,7 @@ export default class Account extends Component {
     let { modal, sr, issuedAsset, showBandwidth, showBuyTokens, temporaryName, hideSmallCurrency, tokenTRC10,
         isShowPledgeModal, isShowMappingModal, address, currency, balance, precision, id, type, isShowSignModal,
         tokenTRX, trx20MappingAddress,brokerageValue, errorMess, reward, rewardData, accountReward} = this.state;
+
     let {account, frozen, totalTransactions, currentWallet, wallet, accountResource, trxBalance, intl} = this.props;
 
     let energyRemaining = currentWallet && currentWallet.bandwidth.energyRemaining;
@@ -2103,35 +2113,46 @@ export default class Account extends Component {
                       </td>
                     </tr>
                     {
-                        (!currentWallet.representative.enabled  && accountReward !=0 && IS_MAINNET) && <tr>
+                        (!currentWallet.representative.enabled  && IS_MAINNET) && <tr>
                           <th >{tu("SR_vote_for_reward")}:</th>
                           <td>
                             <TRXPrice amount={accountReward / ONE_TRX} className="font-weight-bold"/>
-                            <a href="javascript:;" className={"float-right text-primary btn btn-default btn-sm"+ (!reward?" accont_reward_disabled":"")}
-                               onClick={this.accountClaimRewards}
-                               disabled={!reward}
-                            >
-                                {tu("SR_receive_award_btn")}
-                            </a >
+                              {
+                                  accountReward == 0 ?  <AntdTip title={<span>{tu('no_rewards_available_yet')}</span>}>
+                                                            <a href="javascript:;"
+                                                               className="float-right text-primary btn btn-default btn-sm accont_reward_disabled"
+                                                            >
+                                                            {tu("SR_receive_award_btn")}
+                                                            </a>
+                                                        </AntdTip> :
+                                                        <AntdTip title={<span>{tu("SR_receive_award_tip1")}{tu("SR_receive_award_tip2")}</span>}>
+                                                            <a href="javascript:;"
+                                                               className={"float-right text-primary btn btn-default btn-sm"+ (!reward?" accont_reward_disabled":"")}
+                                                               onClick={this.accountClaimRewards}
+                                                            >
+                                                                {tu("SR_receive_award_btn")}
+                                                            </a>
+                                                        </AntdTip>
+                              }
                           </td>
                         </tr>
                     }
-                    {
-                        (!currentWallet.representative.enabled && accountReward != 0 && IS_MAINNET) && <tr>
-                        <th style={{borderTop:'none'}}></th>
-                        <td style={{borderTop:'none',paddingTop:0,color:'#D8D8D8'}}>
-                          <span className="float-right d-block">
-                            {tu("SR_receive_award_tip2")}
-                          </span>
-                            {
-                                !reward && <span className="float-right d-block">
-                                  {tu("SR_receive_award_tip1")}
-                              </span>
-                            }
+                    {/*{*/}
+                        {/*(!currentWallet.representative.enabled && IS_MAINNET) && <tr>*/}
+                        {/*<th style={{borderTop:'none'}}></th>*/}
+                        {/*<td style={{borderTop:'none',paddingTop:0,color:'#D8D8D8'}}>*/}
+                          {/*<span className="float-right d-block">*/}
+                            {/*{tu("SR_receive_award_tip2")}*/}
+                          {/*</span>*/}
+                            {/*{*/}
+                                {/*!reward && <span className="float-right d-block">*/}
+                                  {/*{tu("SR_receive_award_tip1")}*/}
+                              {/*</span>*/}
+                            {/*}*/}
 
-                        </td>
-                      </tr>
-                    }
+                        {/*</td>*/}
+                      {/*</tr>*/}
+                    {/*}*/}
 
 
                     </tbody>
