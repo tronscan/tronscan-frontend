@@ -257,6 +257,7 @@ class IssuedToken extends React.Component{
         const data = marketInfoToken20[index];
         const { updateTime, verifyStatus, isFirstRecommend } = data || {};
         const { marketNoEntry, isListNoEntry, isToAudit, isNotThrough, isThrough, isShelves, isRemoved } = this.getMarketBtnStatus(verifyStatus, isFirstRecommend);
+        console.log('isThrough',isThrough)
         return <tr className="line-2">
             <td>
                 { isThrough && <i className="fas fa-check-circle"></i> }
@@ -274,7 +275,8 @@ class IssuedToken extends React.Component{
                       </AntdTip>
                     : (!isThrough && !isShelves && <div><AntdTip title={<span>{tu('type_pass_market_tip')}</span>}>
                         <Tag color="#28a745">{tu('type_pass')}</Tag>
-                        </AntdTip></div>) }
+                        </AntdTip></div>)
+                }
                 {isListNoEntry && <AntdTip title={<span>{tu('not_entry_list_tip')}</span>}>
                         <Tag color="#A4A3A3">{tu('not_entry')}</Tag>
                     </AntdTip>}
@@ -458,8 +460,8 @@ class IssuedToken extends React.Component{
      */
     getMarketBtnStatus = (verifyStatus,isFirstRecommend) => {
         return {
-            marketNoEntry: (!verifyStatus && verifyStatus !== VERIFYSTATUS.HASBEENSUBMITTED) || (!verifyStatus && verifyStatus !== VERIFYSTATUS.HASBEENSUBMITTEDTHREE)|| verifyStatus === VERIFYSTATUS.NOTRECORDED,
-            isListNoEntry: verifyStatus == VERIFYSTATUS.NOTRECOMMENDE && isFirstRecommend != 0,
+            marketNoEntry: (!verifyStatus && verifyStatus !== VERIFYSTATUS.HASBEENSUBMITTED) || (!verifyStatus && verifyStatus !== VERIFYSTATUS.HASBEENSUBMITTEDTHREE) || verifyStatus === VERIFYSTATUS.NOTRECORDED,
+            isListNoEntry: verifyStatus == VERIFYSTATUS.NOTRECOMMENDED && isFirstRecommend != 0,
             isToAudit: verifyStatus == VERIFYSTATUS.HASBEENRECORDED || verifyStatus === VERIFYSTATUS.HASBEENSUBMITTED || verifyStatus === VERIFYSTATUS.HASBEENSUBMITTEDTHREE
                 || verifyStatus === VERIFYSTATUS.TOAUDIT || verifyStatus === VERIFYSTATUS.APPROVED
                 || verifyStatus === VERIFYSTATUS.RECOMMENDEDFAILED,
