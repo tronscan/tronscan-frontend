@@ -146,7 +146,6 @@ class Sell extends Component {
           second_quant_sell: n.amount ? newAmount : ""
         });
       } else {
-        console.log(12345, quickSelect);
 
         if (n.amount != amount) {
           newPrice = fixed(n.price, exchangeData.fix_precision);
