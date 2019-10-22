@@ -29,6 +29,7 @@ const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin');
 const WorkboxPlugin = require('workbox-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
+const CompressionPlugin = require('compression-webpack-plugin');
 
 
 
@@ -149,6 +150,7 @@ module.exports = function(webpackEnv) {
         require.resolve('react-dev-utils/webpackHotDevClient'),
       // Finally, this is your app's code:
       paths.appIndexJs,
+
       // We include the app code last so that if there is a runtime error during
       // initialization, it doesn't blow up the WebpackDevServer client, and
       // changing JS code would still trigger a refresh.
@@ -169,6 +171,7 @@ module.exports = function(webpackEnv) {
       chunkFilename: isEnvProduction
         ? 'static/js/[name].[contenthash:8].chunk.js'
         : isEnvDevelopment && 'static/js/[name].chunk.js',
+
       // We inferred the "public path" (such as / or /my-project) from homepage.
       // We use "/" in development.
       publicPath: publicPath,
@@ -197,6 +200,10 @@ module.exports = function(webpackEnv) {
           },
           cache: true,
           parallel: true,
+
+          uglifyOptions: {
+            compress: false
+          },
         }),
         // This is only used in production mode
         new TerserPlugin({
@@ -590,6 +597,13 @@ module.exports = function(webpackEnv) {
           };
         },
       }),
+
+
+          new CompressionPlugin({
+        asset:  '[path].gz[query]',
+        algorithm:  'gzip',
+        test:  /\.js$|\.css$|\.html$/
+}),
 
       new WorkboxPlugin.GenerateSW({
         // 这些选项帮助 ServiceWorkers 快速启用
