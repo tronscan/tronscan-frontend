@@ -26,8 +26,8 @@ export function channel(path, options) {
 
 class ApiClient20 {
   constructor() {
-    this.apiUrl = "https://api.trx.market";
-    // this.apiUrl = "https://testapi.trx.market";
+    // this.apiUrl = "https://api.trx.market";
+    this.apiUrl = "https://testapi.trx.market";
     this.ZDUrl = "https://tron274.zendesk.com";
     this.SCANUrl = "https://tronscanorg.zendesk.com";
   }

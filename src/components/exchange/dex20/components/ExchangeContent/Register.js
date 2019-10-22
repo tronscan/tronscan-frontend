@@ -127,7 +127,7 @@ class Register extends Component {
         key: "amount",
         align: "right",
         render: text => {
-          return <span>{text && Number(text).toFixed(2)}</span>;
+          return <span>{text && Number(text)}</span>;
         }
       },
       {
@@ -162,7 +162,7 @@ class Register extends Component {
         key: "amount",
         align: "right",
         render: text => {
-          return <span>{text && Number(text).toFixed(2)}</span>;
+          return <span>{text && Number(text)}</span>;
         }
       },
       {
@@ -308,7 +308,11 @@ class Register extends Component {
 
     let { pairs } = this.props;
     let sPrecision = pairs.sPrecision ? pairs.sPrecision : 6;
-
+    let amPrecision = pairs.fix_precision
+      ? pairs.fix_precision < 3
+        ? 4
+        : 2
+      : 2;
     let amount_list = [];
     let listN = [];
     let arr = [];
@@ -319,7 +323,7 @@ class Register extends Component {
       let cje = v.Amount * v.Price;
       listN.push({
         price: (+v.Price).toFixed(sPrecision),
-        amount: Number(v.Amount).toFixed(2),
+        amount: Number(v.Amount).toFixed(amPrecision),
         cje: Number(cje).toFixed(sPrecision)
       });
       amount_list.push(v.Amount);
