@@ -2051,4 +2051,9 @@ export const messages = {
   "voting_brokerage_tip":"SRの有権者に分配される報酬の割合。投票者の報酬= SRの報酬*投票者の報酬率*（投票者の投票/ SRのすべての投票）。",
   "SR_set_brokerage_contract":"スーパー代表がボーナス分配率を設定します",
   "countdown_to_voting":"この投票ラウンドの終わりまでのカウントダウン",
+
+  "total_tron_ecosystem_tokens":"Total TRON-ecosystem tokens:",
+  "number_of_lists":"Number of lists:",
+  "total_in_tronscan":"Total in tronscan:"
+
 }

@@ -2061,4 +2061,9 @@ export const messages = {
   "voting_brokerage_tip":"Размер вознаграждения SR, который будет распространен среди его избирателей. Вознаграждение избирателю = вознаграждение SR * Коэффициент вознаграждения избирателей * (голоса избирателей / все голоса за SR).",
   "SR_set_brokerage_contract":"Супер представитель устанавливает соотношение бонусов",
   "countdown_to_voting":"Обратный отсчет до конца этого тура голосования",
+
+  "total_tron_ecosystem_tokens":"Total TRON-ecosystem tokens:",
+  "number_of_lists":"Number of lists:",
+  "total_in_tronscan":"Total in tronscan:"
+
 };

@@ -2063,6 +2063,7 @@ export const messages = {
   "inactive_MainChain_account":"该地址未在TRON主网激活，无法完成此操作，请激活后重试",
   "mapping_warning":"此操作须由token的合约创建者完成",
   "freeze_balance_limit":"余额不足，请重新输入",
+
   /*
    ##################################################################################
    #                                                                                #
@@ -2091,6 +2092,10 @@ export const messages = {
   "voting_brokerage_tip":"超级代表所获得的奖励中，分给投票者的比例。选民奖励=总奖励数*选民奖励分成比例*（选民票数/选民总票数）",
   "SR_set_brokerage_contract":"超级代表设置奖励分成比例",
   "countdown_to_voting":"本轮投票结束倒计时",
+
+  "total_tron_ecosystem_tokens":"波场生态通证总数：",
+  "number_of_lists":"列表数量：",
+  "total_in_tronscan":"共收录："
 
 
 };

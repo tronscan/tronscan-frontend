@@ -182,6 +182,10 @@ export function appReducer(state = initialState, action) {
              solidityNode: SUNWEBCONFIG.MAINSOLIDITYNODE,
              eventServer: SUNWEBCONFIG.MAINEVENTSERVER,
              privateKey
+               // fullNode,
+               // solidityNode,
+               // eventServer,
+               // privateKey
           }
        );
        const sunWeb = new SunWeb(

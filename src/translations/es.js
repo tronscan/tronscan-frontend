@@ -2059,4 +2059,9 @@ export const messages = {
   "voting_brokerage_tip":"Tasa de recompensa de SR que se distribuirá a sus votantes. Recompensa del votante = recompensa del SR * Tasa de recompensa de los votantes * (votos del votante / todos los votos para el SR).",
   "SR_set_brokerage_contract":"Súper representante establece la proporción de bono compartido",
   "countdown_to_voting":"Cuenta atrás para el final de esta ronda de votación",
+
+  "total_tron_ecosystem_tokens":"Total TRON-ecosystem tokens:",
+  "number_of_lists":"Number of lists:",
+  "total_in_tronscan":"Total in tronscan:"
+
 };
