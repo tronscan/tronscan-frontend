@@ -26,8 +26,8 @@ export function channel(path, options) {
 
 class ApiClient20 {
   constructor() {
-    this.apiUrl = "https://api.trx.market";
-    // this.apiUrl = "https://testapi.trx.market";
+    // this.apiUrl = "https://api.trx.market";
+    this.apiUrl = "http://13.58.63.31:21111";
     this.ZDUrl = "https://tron274.zendesk.com";
     this.SCANUrl = "https://tronscanorg.zendesk.com";
   }
@@ -222,10 +222,12 @@ class ApiClient20 {
   }
 
   //market新接口，sortType=0 24小时交易额 sortType=1 热门 sortType=2 涨跌幅
-  async getMarketNew(sortType) {
+  async getMarketNew(sortType, pairType) {
+    let obj = { sortType, pairType };
     let { data } = await xhr({
       method: "get",
-      url: `${this.apiUrl}/api/exchange/marketPair/list?sortType=${sortType}`
+      url: `${this.apiUrl}/api/exchange/marketPair/list`,
+      params: obj
     });
     return data;
   }
@@ -242,6 +244,17 @@ class ApiClient20 {
       method: "get",
       url: `${this.apiUrl}/api/exchange/common/abnormalOrderStatus`,
       params: query
+    });
+    return data;
+  }
+
+  //根据ids去查交易列表
+  async marketSearchListById(ids) {
+    let obj = { ids };
+    let { data } = await xhr({
+      method: "get",
+      url: `${this.apiUrl}/api/exchange/marketPair/searchListByIds`,
+      params: obj
     });
     return data;
   }

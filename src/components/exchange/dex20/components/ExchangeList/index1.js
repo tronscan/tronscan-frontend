@@ -21,8 +21,9 @@ import {
   getExchanges,
   getExchangesAllList,
   setPriceConvert,
-  getExchanges20Search,
-  getExchangesByIds
+  getExchanges20Volume,
+  getExchanges20UpDown,
+  getExchanges20Search
 } from "../../../../../actions/exchange";
 import { connect } from "react-redux";
 import Lockr from "lockr";
@@ -72,7 +73,7 @@ class ExchangeList extends React.Component {
       adchURL:
         "https://support.trx.market/hc/zh-cn/articles/360030644412-TRXMarket%E5%8A%A9%E5%8A%9BTRC20-USDT%E9%87%8D%E8%A3%85%E4%B8%8A%E9%98%B5-%E6%83%8A%E5%96%9C%E6%94%BE%E9%80%8110%E4%B8%87%E4%BA%BA%E6%B0%91%E5%B8%81",
       activedId: 0,
-      activedTab: "1",
+      activedTab: "hot",
       priceObj: {},
       loading: true,
       timeVolume: null,
@@ -85,24 +86,25 @@ class ExchangeList extends React.Component {
   }
 
   async componentDidMount() {
-    // sortType=0 24小时交易额 sortType=1 热门 sortType=2 涨跌幅
-    const { getExchanges20, getExchangesByIds } = this.props;
+    const {
+      getExchanges20,
+      getExchanges20Volume,
+      getExchanges20UpDown
+    } = this.props;
     //获取各个币的兑换价格
     await this.getCovert("trx");
     await this.getCovert("usdt");
 
-    getExchanges20(1);
-    getExchanges20(0);
-    getExchanges20(2);
-    let ids = Lockr.get("dex20") || [];
-    getExchangesByIds(ids.join(","));
+    getExchanges20();
+    getExchanges20Volume();
+    getExchanges20UpDown();
 
     this.setState({
       loading: false
     });
 
     const getDataTime = setInterval(() => {
-      getExchanges20(1);
+      getExchanges20();
     }, 10000);
     this.setState({ time: getDataTime });
     const dex = Lockr.get("DEX");
@@ -138,19 +140,19 @@ class ExchangeList extends React.Component {
       }
       return;
     }
-    if (activedTab === "1" && exchange20List !== prevProps.exchange20List) {
+    if (activedTab === "hot" && exchange20List !== prevProps.exchange20List) {
       this.setData(tokenAudited, activedTab);
     }
 
     if (
-      activedTab === "0" &&
+      activedTab === "volume" &&
       exchange20VolumeList !== prevProps.exchange20VolumeList
     ) {
       this.setData(tokenAudited, activedTab);
     }
 
     if (
-      activedTab === "2" &&
+      activedTab === "up_and_down" &&
       exchange20UpDownList !== prevProps.exchange20UpDownList
     ) {
       this.setData(tokenAudited, activedTab);
@@ -216,38 +218,45 @@ class ExchangeList extends React.Component {
     let {
       exchange20List,
       exchange20VolumeList,
-      exchange20UpDownList,
-      exchanges20SearchListByIds
+      exchange20UpDownList
     } = this.props;
 
     let list = [];
-
-    switch (Number(activeKey)) {
-      case 1:
+    switch (activeKey) {
+      case "hot":
         list = exchange20List;
         break;
-      case 0:
+      case "volume":
         list = exchange20VolumeList;
         break;
-      case 2:
+      case "up_and_down":
         list = exchange20UpDownList;
         break;
       default:
-        list = exchanges20SearchListByIds;
+        let listIds = Lockr.get("dex20") || [];
+        list = exchange20List.filter(item => listIds.includes(item.id));
         break;
     }
     return list;
   }
   setData(type, activeKey) {
+    let { exchange20List } = this.props;
     let list = this.keyObj(activeKey);
 
-    this.setState({
-      dataSource: list
-    });
+    if (type) {
+      this.fiterData(list);
+    } else {
+      let list = Lockr.get("dex20") || [];
+      let new20List = exchange20List.filter(item => list.includes(item.id));
+      // let unreviewedTokenList = _(new20List).value();
+      let unreviewedTokenList = new20List;
+      // this.setState({ dataSource: unreviewedTokenList });
+
+      this.fiterData(unreviewedTokenList);
+    }
   }
   handleSelectData = (type, activeKey) => {
     const { tagLock } = this.state;
-
     try {
       const { klineLock } = this.props;
       if (klineLock && tagLock) {
@@ -257,7 +266,6 @@ class ExchangeList extends React.Component {
         } else {
           Lockr.set("DEX", "Main");
         }
-
         this.setData(type, activeKey);
 
         setTimeout(() => {
@@ -416,26 +424,31 @@ class ExchangeList extends React.Component {
                 }
                 key="fav"
               />
-              <TabPane tab={intl.formatMessage({ id: "trc20_hot" })} key="1" />
+              <TabPane
+                tab={intl.formatMessage({ id: "trc20_hot" })}
+                key="hot"
+              />
               <TabPane
                 tab={intl.formatMessage({ id: "trc20_top_Volume" })}
-                key="0"
+                key="volume"
               />
               <TabPane
                 tab={intl.formatMessage({ id: "trc20_top_Rising" })}
-                key="2"
+                key="up_and_down"
               />
             </Tabs>
           </div>
           <div className="dex-tab tab-pr-100 font12">
             <div
               className={"btn btn-sm" + (activedId === 0 ? " active" : "")}
+              // onClick={() => this.handleSelectData(true)}
               onClick={() => this.selcetSort(0)}
             >
               {tu("all")}
             </div>
             <div
               className={"btn btn-sm" + (activedId === "TRX" ? " active" : "")}
+              // onClick={() => this.gotoTrc10()}
               onClick={() => this.selcetSort("TRX")}
             >
               TRX
@@ -466,11 +479,30 @@ class ExchangeList extends React.Component {
       </div>
     );
   }
-  // 自选，热门，成交额榜，涨幅榜的切换
+  fiterData(list) {
+    let { activedId } = this.state;
+    let fiterData = list;
+
+    if (activedId !== 0) {
+      fiterData = list.filter((item, index) => {
+        return item.second_token_id === activedId;
+      });
+    }
+    this.setState({
+      dataSource: fiterData
+    });
+  }
   tabChange(activeKey) {
     const { time, timeVolume, timeupDown, inputValue, timeSearch } = this.state;
-
+    const {
+      getExchanges20,
+      getExchanges20Volume,
+      getExchanges20UpDown
+    } = this.props;
     clearInterval(time);
+    clearInterval(timeVolume);
+    clearInterval(timeupDown);
+    clearInterval(timeSearch);
     if (inputValue) {
       this.setState({
         activedTab: activeKey
@@ -487,48 +519,46 @@ class ExchangeList extends React.Component {
       () => {
         switch (activeKey) {
           case "fav":
-            this.changeFavData();
+            this.handleSelectData(false);
+            break;
+          case "hot":
+            getExchanges20();
+            this.setState({
+              time: setInterval(() => {
+                getExchanges20();
+              }, 10000)
+            });
+            this.handleSelectData(true, activeKey);
+
+            break;
+          case "volume":
+            getExchanges20Volume();
+            this.setState({
+              timeVolume: setInterval(() => {
+                getExchanges20Volume();
+              }, 10000)
+            });
+
+            this.handleSelectData(true, activeKey);
+            break;
+          case "up_and_down":
+            getExchanges20UpDown();
+            this.setState({
+              timeupDown: setInterval(() => {
+                getExchanges20UpDown();
+              }, 10000)
+            });
+            this.handleSelectData(true, activeKey);
             break;
           default:
-            this.changeData();
+            this.handleSelectData(true, activeKey);
             break;
         }
       }
     );
   }
-
-  // 改变数据
-  changeData() {
-    const { activedTab, activedId } = this.state;
-    const { getExchanges20 } = this.props;
-    getExchanges20(activedTab, activedId || "");
-    this.handleSelectData(true, activedTab);
-    this.setState({
-      time: setInterval(() => {
-        getExchanges20(activedTab, activedId || "");
-        this.handleSelectData(true, activedTab);
-      }, 10000)
-    });
-  }
-
-  // 自选数据
-  changeFavData() {
-    const { activedTab } = this.state;
-    const { getExchangesByIds } = this.props;
-    let ids = Lockr.get("dex20") || [];
-    getExchangesByIds(ids.join(","));
-    this.handleSelectData(false, activedTab);
-    this.setState({
-      time: setInterval(() => {
-        getExchangesByIds(ids.join(","));
-        this.handleSelectData(false, activedTab);
-      }, 10000)
-    });
-  }
-  //全部，trx,usdt切换
   selcetSort(type) {
-    let { activedTab, inputValue, time } = this.state;
-    let { exchanges20SearchListByIds } = this.props;
+    let { activedTab, inputValue } = this.state;
     if (inputValue) {
       this.setState({
         activedId: type
@@ -536,35 +566,15 @@ class ExchangeList extends React.Component {
       this.setSearchList(activedTab, type);
       return;
     }
-    clearInterval(time);
-    if (activedTab == "fav") {
-      let list = cloneDeep(exchanges20SearchListByIds);
-      let fiterData = list;
-      if (type != 0) {
-        fiterData = list.filter((item, index) => {
-          return item.second_token_id.toLowerCase() === type.toLowerCase();
-        });
-      }
-
-      this.setState({
-        dataSource: fiterData,
-        activedId: type
-      });
-
-      return;
-    }
     this.setState(
       {
         activedId: type
       },
       () => {
-        if (activedTab != "fav") {
-          this.changeData();
-        }
+        this.fiterData(this.keyObj(activedTab));
       }
     );
   }
-  // 各单位换算
   async getCovert(type) {
     const { setPriceConvert } = this.props;
     let { priceObj } = this.state;
@@ -596,7 +606,7 @@ class ExchangeList extends React.Component {
     }
     setPriceConvert(priceObj);
   }
-  // 输入框发生改变的时候
+
   onInputChange(e) {
     const { activedId, activedTab, timeSearch } = this.state;
     this.setState({
@@ -613,7 +623,7 @@ class ExchangeList extends React.Component {
       this.getSearchList(e.target.value);
     }
   }
-  // 输入框点击enter
+
   onPressEnter() {
     const { inputValue, activedTab } = this.state;
     if (inputValue === "") {
@@ -629,7 +639,6 @@ class ExchangeList extends React.Component {
     }
   }
 
-  //搜索函数
   getSearchList(val) {
     const { time, timeVolume, timeupDown, timeSearch } = this.state;
     const { getExchanges20Search } = this.props;
@@ -645,7 +654,6 @@ class ExchangeList extends React.Component {
       }, 10000)
     });
   }
-  //设置搜索出来的数据
   setSearchList(tab, id) {
     let { exchanges20SearchList } = this.props;
     let list = [...exchanges20SearchList];
@@ -654,15 +662,15 @@ class ExchangeList extends React.Component {
         let _list = Lockr.get("dex20") || [];
         list = list.filter(item => _list.includes(item.id));
         break;
-      case "1":
+      case "hot":
         list = list;
         break;
-      case "0":
+      case "volume":
         list = list.sort((a, b) => {
           return b.trxVolume24h - a.trxVolume24h;
         });
         break;
-      case "2":
+      case "up_and_down":
         list = list.sort((a, b) => {
           return b.gain - a.gain;
         });
@@ -691,8 +699,7 @@ function mapStateToProps(state) {
     exchangeallList: state.exchange.list_all,
     klineLock: state.exchange.klineLock,
     price: state.exchange.price,
-    exchanges20SearchList: state.exchange.searchList,
-    exchanges20SearchListByIds: state.exchange.searchListByIds
+    exchanges20SearchList: state.exchange.searchList
   };
 }
 
@@ -702,8 +709,9 @@ const mapDispatchToProps = {
   getExchangesAllList,
   getExchanges,
   setPriceConvert,
-  getExchanges20Search,
-  getExchangesByIds
+  getExchanges20Volume,
+  getExchanges20UpDown,
+  getExchanges20Search
 };
 
 export default connect(
