@@ -27,6 +27,8 @@ const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const postcssNormalize = require('postcss-normalize');
 const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin');
 const WorkboxPlugin = require('workbox-webpack-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+
 
 
 
@@ -182,6 +184,20 @@ module.exports = function(webpackEnv) {
     optimization: {
       minimize: isEnvProduction,
       minimizer: [
+        new UglifyJsPlugin({
+          test: /\.js(\?.*)?$/i,
+          include: /\/includes/,
+          chunkFilter: (chunk) => {
+            // Exclude uglification for the `vendor` chunk
+            if (chunk.name === 'vendor') {
+              return false;
+            }
+  
+            return true;
+          },
+          cache: true,
+          parallel: true,
+        }),
         // This is only used in production mode
         new TerserPlugin({
           terserOptions: {
