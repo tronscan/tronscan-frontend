@@ -7,6 +7,7 @@ import {Client} from "../../services/api";
 import _ from "lodash";
 import { Tag } from 'antd';
 import {TokenLink, TokenTRC20Link, HrefLink, AddressLink} from "../common/Links";
+import {QuestionMark} from "../common/QuestionMark";
 import AppealModal from './AppealModal'
 import xhr from "axios/index";
 import {FormattedDate, FormattedNumber, FormattedRelative, FormattedTime, injectIntl} from "react-intl";
@@ -256,7 +257,7 @@ class IssuedToken extends React.Component{
         const hasMarketToken20Data = marketInfoToken20 && marketInfoToken20.length > index;
         const data = marketInfoToken20[index];
         const { updateTime, verifyStatus, isFirstRecommend } = data || {};
-        const { marketNoEntry, isListNoEntry, isToAudit, isNotThrough, isThrough, isShelves, isRemoved } = this.getMarketBtnStatus(verifyStatus, isFirstRecommend);
+        const { marketNoEntry, marketNotThrough, isListNoEntry, isToAudit, isNotThrough, isThrough, isShelves, isRemoved } = this.getMarketBtnStatus(verifyStatus, isFirstRecommend);
         console.log('isThrough',isThrough)
         return <tr className="line-2">
             <td>
@@ -273,12 +274,16 @@ class IssuedToken extends React.Component{
                             {tu('not_entry')}
                         </Tag>
                       </AntdTip>
-                    : (!isThrough && !isShelves && <div><AntdTip title={<span>{tu('type_pass_market_tip')}</span>}>
+                    : marketNotThrough?
+                        <AntdTip title={<span>{tu('not_through_tip')}</span>}>
+                            <Tag color="#C34339">{tu('not_through')}</Tag>
+                        </AntdTip>
+                        :(!isThrough && !isShelves && <div><AntdTip title={<span>{tu('type_pass_market_tip')}</span>}>
                         <Tag color="#28a745">{tu('type_pass')}</Tag>
                         </AntdTip></div>)
                 }
                 {isListNoEntry && <AntdTip title={<span>{tu('not_entry_list_tip')}</span>}>
-                        <Tag color="#A4A3A3">{tu('not_entry')}</Tag>
+                        <Tag color="#A4A3A3">{tu('not_entry_list')}</Tag>
                     </AntdTip>}
                 {isToAudit && <AntdTip title={<span>{tu('to_audit_tip')}</span>}>
                         <Tag color="#E69F4E">{tu('to_audit')}</Tag>
@@ -310,10 +315,16 @@ class IssuedToken extends React.Component{
                 {!marketNoEntry && !isShelves && <div> <a href={`${MARKET_HTTP_URL}/exchange?id=${data.pairId}`} target="_blank"> {tu('check_market_detail')}</a></div>}
                 {marketNoEntry && <div><Tag color="#3E76EE"
                         onClick={() => this.jumpPage(decimals, `/tokens/markets/create/${TOKENTYPE.TOKEN20}/${address}`)}>
-                        {tu('search_trading_area')}</Tag></div>}
-                {(isToAudit || marketNoEntry) && <div><Tag color="#A4A3A3">{tu('list_trading_area')}</Tag></div>}
+                        {tu('search_trading_area')}</Tag><span className="ml-1">
+                      <QuestionMark placement="top" text="search_trading_area_tip"/>
+                  </span></div>}
+                {(isToAudit || marketNoEntry) && <div><Tag color="#A4A3A3">{tu('list_trading_area')}</Tag><span className="ml-1">
+                      <QuestionMark placement="top" text="list_trading_area_tip"/>
+                  </span></div>}
                 {(isNotThrough || isListNoEntry) && <div><Tag color="#3E76EE"
-                    onClick={() => this.jumpListEntry(data, address)}>{tu('list_trading_area')}</Tag></div>}
+                    onClick={() => this.jumpListEntry(data, address)}>{tu('list_trading_area')}</Tag><span className="ml-1">
+                      <QuestionMark placement="top" text="list_trading_area_tip"/>
+                  </span></div>}
             </td>
         </tr>
     }
@@ -347,7 +358,7 @@ class IssuedToken extends React.Component{
                         <Tag color="#28a745">{tu('type_pass')}</Tag>
                         </AntdTip></div>) }
                 {isListNoEntry && <AntdTip title={<span>{tu('not_entry_list_tip')}</span>}>
-                        <Tag color="#A4A3A3">{tu('not_entry')}</Tag>
+                        <Tag color="#A4A3A3">{tu('not_entry_list')}</Tag>
                     </AntdTip>}
                 {isToAudit && <AntdTip title={<span>{tu('to_audit_tip')}</span>}>
                         <Tag color="#E69F4E">{tu('to_audit')}</Tag>
@@ -378,11 +389,17 @@ class IssuedToken extends React.Component{
                 {!marketNoEntry && !isShelves && <div><a href={`${MARKET_HTTP_URL}/exchange?id=${marketInfoToken10.pairId}`} target="_blank"> {tu('check_market_detail')}</a></div>}
                 {marketNoEntry && <div><Tag color="#3E76EE"
                         onClick={() => this.jumpPage(precision, `/tokens/markets/create/${TOKENTYPE.TOKEN10}/${id}`)}>
-                        {tu('search_trading_area')}</Tag></div>}
-                {(isToAudit || marketNoEntry) && <div><Tag color="#A4A3A3">{tu('list_trading_area')}</Tag></div>}
+                        {tu('search_trading_area')}</Tag><span className="ml-1">
+                      <QuestionMark placement="top" text="search_trading_area_tip"/>
+                  </span> </div>}
+                {(isToAudit || marketNoEntry) && <div><Tag color="#A4A3A3">{tu('list_trading_area')}</Tag><span className="ml-1">
+                      <QuestionMark placement="top" text="list_trading_area_tip"/>
+                  </span></div>}
                 {(isNotThrough || isListNoEntry) && <div><Tag color="#3E76EE"
                     onClick={() => this.jumpListEntry(marketInfoToken10, id)}>
-                    {tu('list_trading_area')}</Tag></div>}
+                    {tu('list_trading_area')}</Tag><span className="ml-1">
+                      <QuestionMark placement="top" text="list_trading_area_tip"/>
+                  </span></div>}
             </td>
         </tr>
     };
@@ -461,14 +478,16 @@ class IssuedToken extends React.Component{
     getMarketBtnStatus = (verifyStatus,isFirstRecommend) => {
         return {
             marketNoEntry: (!verifyStatus && verifyStatus !== VERIFYSTATUS.HASBEENSUBMITTED) || (!verifyStatus && verifyStatus !== VERIFYSTATUS.HASBEENSUBMITTEDTHREE) || verifyStatus === VERIFYSTATUS.NOTRECORDED,
+            marketNotThrough: verifyStatus === VERIFYSTATUS.HASBEENSUBMITTEDTHREE,
             isListNoEntry: verifyStatus == VERIFYSTATUS.NOTRECOMMENDED && isFirstRecommend != 0,
-            isToAudit: verifyStatus == VERIFYSTATUS.HASBEENRECORDED || verifyStatus === VERIFYSTATUS.HASBEENSUBMITTED || verifyStatus === VERIFYSTATUS.HASBEENSUBMITTEDTHREE
+            isToAudit: verifyStatus == VERIFYSTATUS.HASBEENRECORDED || verifyStatus === VERIFYSTATUS.HASBEENSUBMITTED
                 || verifyStatus === VERIFYSTATUS.TOAUDIT || verifyStatus === VERIFYSTATUS.APPROVED
                 || verifyStatus === VERIFYSTATUS.RECOMMENDEDFAILED,
             isNotThrough: verifyStatus === VERIFYSTATUS.REJECTED,
             isThrough: verifyStatus === VERIFYSTATUS.RECOMMENDED || verifyStatus === VERIFYSTATUS.CONFIRMED,
             isShelves: verifyStatus === VERIFYSTATUS.SHELVES,
             isRemoved: verifyStatus == VERIFYSTATUS.NOTRECOMMENDED && isFirstRecommend == 0,
+
         };
     }
 

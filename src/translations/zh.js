@@ -459,8 +459,11 @@ export const messages = {
   "initial_price_v_format": "数据格式错误",
   "token_markets_update": "更新 TRXMarket",
   "search_trading_area": "创建交易对",
+  "search_trading_area_tip":"只需一些基础信息即可在TRXMarket创建交易对，用户将可以通过搜索进行交易",
   "list_trading_area": "申请正式上币",
+  "list_trading_area_tip":"提供通证详细信息并通过TRXMarket团队审核后，您的通证将在TRXMarket正式上线交易",
   "not_entry": "未创建",
+  "not_entry_list":"未录入",
   "to_audit": "待审核",
   "not_through": "未通过",
   "shelves": "已下架",
@@ -2132,6 +2135,7 @@ export const messages = {
 
   "total_tron_ecosystem_tokens":"波场生态通证总数：",
   "number_of_lists":"列表数量：",
-  "total_in_tronscan":"共收录："
+  "total_in_tronscan":"共收录：",
+
 
 };

@@ -2286,9 +2286,10 @@ h5 {
   cursor: pointer;
 
   i {
-    font-size: 10px;
+    font-size: 10px!important;
     font-style: normal;
     font-weight: 500;
+    color: #3E3F3A!important;
     //transform: scale(0.9);
   }
 }

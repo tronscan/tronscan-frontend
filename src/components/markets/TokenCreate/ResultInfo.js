@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { tu } from '../../../utils/i18n';
 import { injectIntl } from 'react-intl';
 import 'moment/min/locales';
+import { MARKET_HTTP_URL} from '../../../constants';
+
 
 export class resultInfo extends Component {
 
@@ -37,7 +39,7 @@ export class resultInfo extends Component {
      * to TRXMarket trading
      */
     toTrading = () => {
-        window.location.href = 'https://trx.market/';
+        window.open(MARKET_HTTP_URL)
     }
 
     /**

@@ -116,7 +116,7 @@ export class OtherInfo extends Component {
         // Which exchanges is it traded on item
         const exchangesItem = (
             <Col span={24} md={24}>
-                <Form.Item label="Which exchanges is it traded on?">
+                <Form.Item label="Which exchanges is it traded on">
                     {getFieldDecorator('whichExchangesTradedOn', {
                         initialValue: whichExchangesTradedOn,
                     })(
@@ -130,7 +130,7 @@ export class OtherInfo extends Component {
         const averageItem = (
             <Col span={24} md={24}>
                 <Form.Item
-                    label="If you have listed on other exchanges, what is your average 24H volume?">
+                    label="If you have listed on other exchanges, what is your average 24H volume">
                     {getFieldDecorator('yourAvg24HVolume', {
                         initialValue: yourAvg24HVolume,
                     })(
@@ -143,7 +143,7 @@ export class OtherInfo extends Component {
         // What are the top 3 reasons you should be listed item
         const reasonsItem = (
             <Col span={24} md={24}>
-                <Form.Item label="What are the top3 reasons you should be listed?">
+                <Form.Item label="What are the top3 reasons you should be listed">
                     {getFieldDecorator('theTop3ReasonsYouShouldBeListed', {
                         initialValue: theTop3ReasonsYouShouldBeListed,
                     })(
@@ -156,7 +156,7 @@ export class OtherInfo extends Component {
         // How big is the market that you are trying to target? ($M, $B)? Please cite your sources item
         const sourcesItem = (
             <Col span={24} md={24}>
-                <Form.Item label="How big is the market that you are trying to target? ($M, $B)? Please cite your sources.">
+                <Form.Item label="How big is the market that you are trying to target? ($M, $B)? Please cite your sources">
                     {getFieldDecorator('citeYourSources', {
                         initialValue: citeYourSources,
                     })(
@@ -169,7 +169,7 @@ export class OtherInfo extends Component {
         // How are the top 3 things that show that your metrics and company traction is growing item
         const growingItem = (
             <Col span={24} md={24}>
-                <Form.Item label="How are the top 3 things that show that your metrics and company traction is growing?">
+                <Form.Item label="How are the top 3 things that show that your metrics and company traction is growing">
                     {getFieldDecorator('top3Things', {
                         initialValue: top3Things,
                     })(
@@ -182,7 +182,7 @@ export class OtherInfo extends Component {
         // How do we know that you will support your coin project for the medium or long term item
         const mediumItem = (
             <Col span={24} md={24}>
-                <Form.Item label="How do we know that you will support your coin project for the medium or long term?">
+                <Form.Item label="How do we know that you will support your coin project for the medium or long term">
                     {getFieldDecorator('youSupportYourCoinProjectTime', {
                         initialValue: youSupportYourCoinProjectTime,
                     })(
@@ -195,7 +195,7 @@ export class OtherInfo extends Component {
         // Please give us a link to an intro video that explains your product or serves as product demo item
         const servesItem = (
             <Col span={24} md={24}>
-                <Form.Item label="Please give us a link to an intro video that explains your product or serves as product demo.">
+                <Form.Item label="Please give us a link to an intro video that explains your product or serves as product demo">
                     {getFieldDecorator('productDemoLink', {
                         initialValue: productDemoLink,
                     })(
@@ -209,7 +209,7 @@ export class OtherInfo extends Component {
         // on your website and how many users or downloads you have for each product item
         const downloadItem = (
             <Col span={24} md={24}>
-                <Form.Item label="Please link all you products that you have live on app store or on your website and how many users or downloads you have for each product.">
+                <Form.Item label="Please link all you products that you have live on app store or on your website and how many users or downloads you have for each product">
                     {getFieldDecorator('allYourProductsLink', {
                         initialValue: allYourProductsLink,
                     })(
@@ -222,7 +222,7 @@ export class OtherInfo extends Component {
         // Do you have > 10% circulating supply item
         const circulatingItem = (
             <Col span={24} md={24}>
-                <Form.Item label="Do you have > 10% circulating supply?">
+                <Form.Item label="Do you have > 10% circulating supply">
                     {getFieldDecorator('circulatingSupply', {
                         initialValue: circulatingSupply,
                     })(

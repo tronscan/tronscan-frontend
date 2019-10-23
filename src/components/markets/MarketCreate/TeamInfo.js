@@ -77,7 +77,7 @@ export class TeamInfo extends Component {
         // How did your team meet item
         const teamMeetItem = (
             <Col span={24} md={24}>
-                <Form.Item label="How did your team meet?">
+                <Form.Item label="How did your team meet">
                     {getFieldDecorator('howDidYourTeamMeet', {
                         initialValue: howDidYourTeamMeet,
                     })(
@@ -90,7 +90,7 @@ export class TeamInfo extends Component {
         // Where are all your team members based item
         const teamMembersItem = (
             <Col span={24} md={24}>
-                <Form.Item label="Where are all your team members based?">
+                <Form.Item label="Where are all your team members based">
                     {getFieldDecorator('teamMembersBased', {
                         initialValue: teamMembersBased,
                     })(
@@ -103,7 +103,7 @@ export class TeamInfo extends Component {
         // How many full-time team members do you have item
         const fullTimeItem = (
             <Col span={24} md={24}>
-                <Form.Item label="How many full-time team members do you have?">
+                <Form.Item label="How many full-time team members do you have">
                     {getFieldDecorator('teamMemberFullTime', {
                         initialValue: teamMemberFullTime,
                     })(
@@ -118,7 +118,7 @@ export class TeamInfo extends Component {
         const lockUpItem = (
             <Col span={24} md={24}>
                 <Form.Item
-                    label="What is your lock up plan for the team and are you willing to do a 1/12th per month lock up schedule for 12-24 months after TRX market listing.">
+                    label="What is your lock up plan for the team and are you willing to do a 1/12th per month lock up schedule for 12-24 months after TRX market listing">
                     {getFieldDecorator('teamLockUpPlan', {
                         initialValue: teamLockUpPlan,
                     })(
