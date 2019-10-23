@@ -2066,6 +2066,6 @@ export const messages = {
 
   "total_tron_ecosystem_tokens":"波场生态通证总数：",
   "number_of_lists":"列表数量：",
-  "total_in_tronscan":"共收录："
-
+  "total_in_tronscan":"共收录：",
+  "develpopers_reward_tip":"感谢所有帮助java-tron开发的开发者们，波场基金会欢迎并且感谢所有开发者们的贡献。",
 };
