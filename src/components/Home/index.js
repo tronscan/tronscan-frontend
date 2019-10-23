@@ -70,6 +70,7 @@ export default class Home extends Component {
           name:"TRXMarket LaunchBase grand open ACE is waiting for you",
           created_at: "2019-04-09T12:00:00Z"
       },
+      newNotice: [' ', ' ', ' ']
     };
   }
 
@@ -277,7 +278,7 @@ export default class Home extends Component {
 
   render() {
     let {intl, activeLanguage} = this.props;
-    let {search, isShaking, hasFound, onlineNodes, startblockHeight, startTps, blockHeight, transactionPerDay, totalAccounts, txOverviewStats, addressesStats,maxTps,tps} = this.state;
+    let { search, isShaking, hasFound, onlineNodes, startblockHeight, startTps, blockHeight, transactionPerDay, totalAccounts, txOverviewStats, addressesStats, maxTps, tps} = this.state;
     return (
         <main className="home pb-0">
           {/* <i className="main-icon-left"></i>
@@ -297,7 +298,18 @@ export default class Home extends Component {
                       <div className="col-12 exchange">
                           <div className="notice">
                               <img src={require("../../images/announcement-logo.png")} alt="" />
+                    
                               <div className="notice-wrap">
+                                  {
+                                    this.state.notice.length == 0 ? (
+                                      this.state.newNotice.map((v, i) => (
+                                        <a className="item" key={i}>
+                                          <span className="title"> - </span>
+                                          <span className="date"> </span>
+                                        </a>
+                                     ))
+                                     ) : null
+                                  } 
                                   {this.state.notice.map((v, i) => (
                                       <a
                                           className={`item-${i} item`}
@@ -305,12 +317,12 @@ export default class Home extends Component {
                                           href={v.html_url}
                                           target="_blank"
                                       >
-                  <span title={v.name} className="title">
-                    {v.name}
-                  </span>
-                                          <span className="date">
-                    ({v.created_at.substring(5, 10)})
-                  </span>
+                                      <span title={v.name} className="title">
+                                        {v.name}
+                                      </span>
+                                                              <span className="date">
+                                        ({v.created_at.substring(5, 10)})
+                                      </span>
                                       </a>
                                   ))}
                               </div>
@@ -370,7 +382,10 @@ export default class Home extends Component {
                           IS_MAINNET?<div className="col-6 ">
                               <Link to="/blockchain/nodes" className="hvr-underline-from-center hvr-underline-white text-muted">
                                   <img src={require('../../images/home/node.png')}/>
-                                  <h2><CountUp start={0} end={onlineNodes} duration={1}/></h2>
+                                  {
+                                    onlineNodes != 0 ? <h2><CountUp start={0} end={onlineNodes} duration={1} /></h2>
+                                      : <h2>-</h2>
+                                  }
                                   <p className="m-0">{tu("online_nodes")}</p>
                               </Link>
                           </div>:null
@@ -379,14 +394,21 @@ export default class Home extends Component {
                       <Link to="/blockchain/blocks"
                             className="hvr-underline-from-center hvr-underline-white text-muted">
                         <img src={require('../../images/home/block.png')}/>
-                        <h2><CountUp start={startblockHeight} end={blockHeight} duration={1}/></h2>
+                        
+                        {
+                            blockHeight != 0 ? <h2><CountUp start={startblockHeight} end={blockHeight} duration={1} /></h2>
+                            : <h2>-</h2>
+                        }
                         <p className="m-0">{tu("block_height")}</p>
                       </Link>
                     </div>
                     <div className="col-6">
                       <div href="javascript:;" className="hvr-underline-from-center hvr-underline-white text-muted">
                         <img src={require('../../images/home/tps.png')}/>
-                        <h2><CountUp start={0} end={tps} duration={1}/>/<CountUp start={0} end={maxTps} duration={1}/></h2>
+                        {
+                            maxTps ? <h2><CountUp start={0} end={tps} duration={1} />/<CountUp start={0} end={maxTps} duration={1} /></h2>
+                            : <h2>-</h2>
+                        }
                         <p className="m-0">{tu("current_MaxTPS")}</p>
                       </div>
                     </div>
@@ -395,7 +417,10 @@ export default class Home extends Component {
                       <Link to="/blockchain/transactions"
                             className="hvr-underline-from-center hvr-underline-white text-muted">
                         <img src={require('../../images/home/transctions.png')}/>
-                        <h2><CountUp start={0} end={transactionPerDay} duration={1}/></h2>
+                        {
+                            transactionPerDay != 0 ? <h2><CountUp start={0} end={transactionPerDay} duration={1} /></h2>
+                              : <h2>-</h2>
+                        }
                         <p className="m-0">{tu("transactions_last_day")}</p>
                       </Link>
                     </div>
@@ -403,7 +428,11 @@ export default class Home extends Component {
                       <Link to="/blockchain/accounts"
                             className="hvr-underline-from-center hvr-underline-white text-muted">
                         <img src={require('../../images/home/account.png')}/>
-                        <h2><CountUp start={0} end={totalAccounts} duration={1}/></h2>
+                        
+                        {
+                            totalAccounts != 0 ? <h2><CountUp start={0} end={totalAccounts} duration={1} /></h2>
+                              : <h2>-</h2>
+                        }
                         <p className="m-0">{tu("total_accounts")}</p>
                       </Link>
                     </div>
@@ -425,7 +454,10 @@ export default class Home extends Component {
                       {
                           IS_MAINNET?<div className="col-lg-2 col-md-4 col-xs-12 mb-lg-0  mb-md-3 ">
                               <Link to="/blockchain/nodes" className="hvr-underline-from-center hvr-underline-white text-muted">
-                                  <h2><CountUp start={0} end={onlineNodes} duration={1}/></h2>
+                                  {
+                                    onlineNodes != 0 ? <h2><CountUp start={0} end={onlineNodes} duration={1} /></h2>
+                                    : <h2>-</h2>
+                                  }
                                   <p className="m-0">{tu("online_nodes")}</p>
                               </Link>
                           </div>:null
@@ -434,27 +466,40 @@ export default class Home extends Component {
                     <div className={IS_MAINNET?"col-lg-2 col-md-4 col-xs-12 mb-lg-0 mb-md-3":"col-lg-3 col-md-4 col-xs-12 mb-lg-0 mb-md-3"}>
                       <Link to="/blockchain/blocks"
                             className="hvr-underline-from-center hvr-underline-white text-muted">
-                        <h2><CountUp start={startblockHeight} end={blockHeight} duration={2}/></h2>
+                          {
+                            blockHeight != 0 ? <h2><CountUp start={startblockHeight} end={blockHeight} duration={1} /></h2>
+                              : <h2>-</h2>
+                          }
                         <p className="m-0">{tu("block_height")}</p>
                       </Link>
                     </div>
                     <div className="col-lg-2 col-md-4 col-xs-12 mb-lg-0  mb-md-3">
                       <div href="javascript:;" className="hvr-underline-from-center hvr-underline-white text-muted">
-                        <h2><CountUp start={startTps} end={tps} duration={2}/>/<CountUp start={0} end={maxTps} duration={1}/></h2>
+                        {
+                            maxTps ? <h2><CountUp start={startTps} end={tps} duration={2} />/<CountUp start={0} end={maxTps} duration={1} /></h2>
+                            : <h2>-/-</h2>
+                        }
                         <p className="m-0">{tu("current_MaxTPS")}</p>
                       </div>
                     </div>
                     <div className="col-lg-2 col-md-4 col-xs-12">
                       <Link to="/blockchain/transactions"
                             className="hvr-underline-from-center hvr-underline-white text-muted">
-                        <h2><CountUp start={0} end={transactionPerDay} duration={1}/></h2>
+                        {
+                            transactionPerDay != 0 ? <h2><CountUp start={0} end={transactionPerDay} duration={1} /></h2>
+                            : <h2>-</h2>
+                        }
+                        
                         <p className="m-0">{tu("transactions_last_day")}</p>
                       </Link>
                     </div>
                     <div className="col-lg-2 col-md-4 col-xs-12">
                       <Link to="/blockchain/accounts"
                             className="hvr-underline-from-center hvr-underline-white text-muted">
-                        <h2><CountUp start={0} end={totalAccounts} duration={1}/></h2>
+                        {
+                            totalAccounts != 0 ? <h2><CountUp start={0} end={totalAccounts} duration={1} /></h2>
+                            : <h2>-</h2>
+                        }
                         <p className="m-0">{tu("total_accounts")}</p>
                       </Link>
                     </div>
