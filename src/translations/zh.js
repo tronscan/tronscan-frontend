@@ -405,11 +405,17 @@ export const messages = {
   "An_error_occurred": "发生错误",
   "create_a_token": "发行通证",
   "not_started_yet": "尚未开始",
-  // markets
-  "precision_error": "精度超过8位，暂不支持录入。",
   "participated": "成功参与通证发行！",
-  "token_information": "通证信息",
   "participated_error": "发生错误",
+  /*
+  ##################################################################################
+  #                                                                                #
+  # entry market      2019-10-24 14:56:52                                                          #
+  #                                                                                #
+  ##################################################################################
+  */
+  "precision_error": "精度超过8位，暂不支持录入。",
+  "token_information": "通证信息",
   "token_abbreviation": "通证简称",
   "token_introduction": "通证简介",
   "total_circulation": "发行总量",
@@ -418,7 +424,7 @@ export const messages = {
   "circulation_v_required": "流通量必须填写",
   "token_circulation_format":"流通量录入错误",
   "issuer_address": "发行者地址",
-  "token_id": "Token ID",
+  "token_id": "通证 ID",
   "attr_logo_v_required": "通证LOGO必须上传",
   "pair_message": "交易对信息",
   "pair_trading": "交易对",
@@ -449,7 +455,7 @@ export const messages = {
   "market_other_success_desc_right": "点击此处",
   "market_other_error": "提交失败，请稍后再试",
   "market_other_v_required": "提交失败，表单不能为空",
-  "market_update": "更新market信息",
+  "market_update": "更新Market信息",
   "url_v_format": "项目官网格式不符合要求",
   "white_paper_v_format": "白皮书地址不符合要求",
   "constract_code_link_v_format": "智能合约代码链接不符合要求",
@@ -478,9 +484,9 @@ export const messages = {
   "not_through_tip": "正式上币申请未通过审核",
   "not_through_entry_tip": "创建交易对未通过",
   "type_pass_tip": "正式上币申请已通过审核",
-  "shelves_list_tip": "正式币已下架",
   "shelves_market_tip": "通证已被下架",
   "removed_tip":"交易对已被移除",
+  "in_progress_tip":"创建交易对处理中",
   /*
 
   ##################################################################################

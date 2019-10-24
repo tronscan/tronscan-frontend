@@ -118,14 +118,16 @@ class IssuedToken extends React.Component{
 
     componentDidUpdate(prevProps) {
       const {issuedAsset, account} = this.props
+      if(IS_MAINNET){
+          if(account != prevProps.account){
+              this.get20token()
+          }
+          if(issuedAsset && issuedAsset != prevProps.issuedAsset){
+              this.getAppealRecent10(issuedAsset.ownerAddress)
+              this.getMarketInfoToken10();
+          }
+      }
 
-      if(account != prevProps.account){
-        this.get20token()
-      }
-      if(issuedAsset && issuedAsset != prevProps.issuedAsset){
-        this.getAppealRecent10(issuedAsset.ownerAddress)
-        this.getMarketInfoToken10();
-      }
     }
 
     async  componentDidMount() {
@@ -133,6 +135,7 @@ class IssuedToken extends React.Component{
           this.get20token()
       }
     }
+
     hideModal = () => {
         this.setState({
             modal: null,
@@ -142,6 +145,7 @@ class IssuedToken extends React.Component{
      * get market information token10
      */
     getMarketInfoToken10 = async() => {
+        console.log('111')
         const { issuedAsset } = this.props;
         const { id } = issuedAsset || {};
         if (!!id) {
@@ -256,9 +260,8 @@ class IssuedToken extends React.Component{
         const { marketInfoToken20 } = this.state;
         const hasMarketToken20Data = marketInfoToken20 && marketInfoToken20.length > index;
         const data = marketInfoToken20[index];
-        const { updateTime, verifyStatus, isFirstRecommend } = data || {};
-        const { marketNoEntry, marketNotThrough, isListNoEntry, isToAudit, isNotThrough, isThrough, isShelves, isRemoved } = this.getMarketBtnStatus(verifyStatus, isFirstRecommend);
-        console.log('isThrough',isThrough)
+        let { updateTime, verifyStatus, isFirstRecommend } = data || {};
+        const { marketNoEntry, marketNotThrough, MarketProcessing, isListNoEntry, isToAudit, isNotThrough, isThrough, isShelves, isRemoved } = this.getMarketBtnStatus(verifyStatus, isFirstRecommend);
         return <tr className="line-2">
             <td>
                 { isThrough && <i className="fas fa-check-circle"></i> }
@@ -269,7 +272,11 @@ class IssuedToken extends React.Component{
             <td>{tu('input_market')}</td>
             <td>
                 {marketNoEntry
-                    ? <AntdTip title={<span>{tu('not_entry_tip')}</span>}>
+                    ? MarketProcessing?<AntdTip title={<span>{tu('in_progress_tip')}</span>}>
+                        <Tag color="#E69F4E">
+                            {tu('in_progress')}
+                        </Tag>
+                    </AntdTip>:<AntdTip title={<span>{tu('not_entry_tip')}</span>}>
                         <Tag color="#A4A3A3">
                             {tu('not_entry')}
                         </Tag>
@@ -317,8 +324,12 @@ class IssuedToken extends React.Component{
             <td></td>
             <td>
                 {!marketNoEntry && !isShelves && !marketNotThrough && <div> <a href={`${MARKET_HTTP_URL}/exchange?id=${data.pairId}`} target="_blank"> {tu('check_market_detail')}</a></div>}
-                {marketNoEntry && <div><span style={{color:"#C23631",cursor:"pointer"}}
+                {(marketNoEntry && !MarketProcessing) && <div><span style={{color:"#C23631",cursor:"pointer"}}
                         onClick={() => this.jumpPage(decimals, `/tokens/markets/create/${TOKENTYPE.TOKEN20}/${address}`)}>
+                        {tu('search_trading_area')}</span><span className="float-right">
+                      <QuestionMark placement="top" text="search_trading_area_tip"/>
+                  </span></div>}
+                {(marketNoEntry && MarketProcessing) && <div><span style={{color:"#A4A3A3"}}>
                         {tu('search_trading_area')}</span><span className="float-right">
                       <QuestionMark placement="top" text="search_trading_area_tip"/>
                   </span></div>}
@@ -327,7 +338,7 @@ class IssuedToken extends React.Component{
                     {tu('search_trading_area_again')}</span><span className="float-right">
                       <QuestionMark placement="top" text="search_trading_area_tip"/>
                   </span></div>}
-                {(isToAudit || marketNoEntry || marketNotThrough || isRemoved) && <div><span style={{color:"#A4A3A3"}}>{tu('list_trading_area')}</span><span className="float-right">
+                {(isToAudit || marketNoEntry || marketNotThrough || isRemoved || MarketProcessing) && <div><span style={{color:"#A4A3A3"}}>{tu('list_trading_area')}</span><span className="float-right">
                       <QuestionMark placement="top" text="list_trading_area_tip"/>
                   </span></div>}
                 {(isNotThrough || isListNoEntry) && <div><span style={{color:"#C23631",cursor:"pointer"}}
@@ -346,7 +357,7 @@ class IssuedToken extends React.Component{
         const { issuedAsset } = this.props;
         const { id, precision } = issuedAsset || {};
         const { updateTime, verifyStatus, isFirstRecommend } = marketInfoToken10 || {};
-        const { marketNoEntry, isListNoEntry, isToAudit, isNotThrough, isThrough, isShelves, isRemoved, marketNotThrough } = this.getMarketBtnStatus(verifyStatus, isFirstRecommend);
+        const { marketNoEntry,marketNotThrough, MarketProcessing, isListNoEntry, isToAudit, isNotThrough, isThrough, isShelves, isRemoved } = this.getMarketBtnStatus(verifyStatus, isFirstRecommend);
 
         return <tr className="line-2">
             <td>
@@ -358,7 +369,12 @@ class IssuedToken extends React.Component{
             <td>{tu('input_market')}</td>
             <td>
                 {marketNoEntry
-                    ? <AntdTip title={<span>{tu('not_entry_tip')}</span>}>
+                    ? MarketProcessing?<AntdTip title={<span>{tu('in_progress_tip')}</span>}>
+                        <Tag color="#E69F4E">
+                            {tu('in_progress')}
+                        </Tag>
+                    </AntdTip>:
+                    <AntdTip title={<span>{tu('not_entry_tip')}</span>}>
                         <Tag color="#A4A3A3">
                             {tu('not_entry')}
                         </Tag>
@@ -405,18 +421,22 @@ class IssuedToken extends React.Component{
             <td></td>
             <td>
                 {!marketNoEntry && !isShelves && !marketNotThrough && <div><a href={`${MARKET_HTTP_URL}/exchange?id=${marketInfoToken10.pairId}`} target="_blank"> {tu('check_market_detail')}</a></div>}
-                {marketNoEntry && <div><span style={{color:"#C23631",cursor:"pointer"}}
+                {(marketNoEntry && !MarketProcessing) && <div><span style={{color:"#C23631",cursor:"pointer"}}
                         onClick={() => this.jumpPage(precision, `/tokens/markets/create/${TOKENTYPE.TOKEN10}/${id}`)}>
                         {tu('search_trading_area')}</span><span className="float-right">
                       <QuestionMark placement="top" text="search_trading_area_tip"/>
                   </span> </div>}
+                {(marketNoEntry && MarketProcessing) && <div><span style={{color:"#A4A3A3"}}>
+                        {tu('search_trading_area')}</span><span className="float-right">
+                      <QuestionMark placement="top" text="search_trading_area_tip"/>
+                  </span></div>}
                 {marketNotThrough && <div><span style={{color:"#C23631",cursor:"pointer"}}
                                             onClick={() => this.jumpPage(precision, `/tokens/markets/create/${TOKENTYPE.TOKEN10}/${id}`)}>
                     {tu('search_trading_area_again')}</span><span className="float-right">
                       <QuestionMark placement="top" text="search_trading_area_tip"/>
                   </span> </div>}
 
-                {(isToAudit || marketNoEntry || marketNotThrough || isRemoved) && <div><span style={{color:"#A4A3A3"}}>{tu('list_trading_area')}</span><span className="float-right">
+                {(isToAudit || marketNoEntry || marketNotThrough || isRemoved || MarketProcessing) && <div><span style={{color:"#A4A3A3"}}>{tu('list_trading_area')}</span><span className="float-right">
                       <QuestionMark placement="top" text="list_trading_area_tip"/>
                   </span></div>}
                 {(isNotThrough || isListNoEntry) && <div><span style={{color:"#C23631",cursor:"pointer"}}
@@ -503,8 +523,9 @@ class IssuedToken extends React.Component{
         return {
             marketNoEntry: (!verifyStatus && verifyStatus !== VERIFYSTATUS.HASBEENSUBMITTED) || (!verifyStatus && verifyStatus !== VERIFYSTATUS.HASBEENSUBMITTEDTHREE) || verifyStatus === VERIFYSTATUS.NOTRECORDED,
             marketNotThrough: verifyStatus === VERIFYSTATUS.HASBEENSUBMITTEDTHREE,
+            MarketProcessing: verifyStatus === VERIFYSTATUS.HASBEENSUBMITTED,
             isListNoEntry: verifyStatus == VERIFYSTATUS.NOTRECOMMENDED && isFirstRecommend != 0,
-            isToAudit: verifyStatus == VERIFYSTATUS.HASBEENRECORDED || verifyStatus === VERIFYSTATUS.HASBEENSUBMITTED
+            isToAudit: verifyStatus == VERIFYSTATUS.HASBEENRECORDED
                 || verifyStatus === VERIFYSTATUS.TOAUDIT || verifyStatus === VERIFYSTATUS.APPROVED
                 || verifyStatus === VERIFYSTATUS.RECOMMENDEDFAILED,
             isNotThrough: verifyStatus === VERIFYSTATUS.REJECTED,
@@ -518,7 +539,7 @@ class IssuedToken extends React.Component{
     render() {
       const issuedAsset = this.props.issuedAsset;
       const { token20List, appealInfo, copied, id, isShowMappingModal, currency,
-        address, modal } = this.state;
+        address, modal, marketInfoToken10, marketInfoToken20 } = this.state;
       const { account, intl, currentWallet, unfreezeAssetsConfirmation, sidechains, walletType } = this.props;
 
       const isPrivateKey =  walletType.type === "ACCOUNT_PRIVATE_KEY" || walletType.type === "ACCOUNT_TRONLINK";
@@ -858,7 +879,7 @@ class IssuedToken extends React.Component{
                             <TokenTRC20Link name={tu('check_token_detail')} address={token20Item.contract_address}/>
                           </td>
                         </tr>
-                        {status20.isPassed && this.getMarketToken20Html(index, token20Item)}
+                        { status20.isPassed && this.getMarketToken20Html(index, token20Item)}
                         {/* <tr className="line-3">
                           <td></td>
                           <td><Tag color="blue">{tu('application_entry')}</Tag></td>
