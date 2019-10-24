@@ -1554,6 +1554,13 @@ export const messages = {
   "trc20_failed_order": "オーダーがブロックチェーンに確認されません",
   "trc20_ignore": '無視',
   "trc20_see_currentParis": '他のペアを隠す',
+  "trc20_search_more_tokens":"トークンをさらに探す",
+  "trc20_token_name":"トークン名称",
+  "trc20_token_id":"トークンID",
+  "trc20_risk_token":"リスクトークン",
+  "trc20_risk_token_desc":"これらのトークンは公式にはリストされていません。潜在的なリスクがあるかもしれません。慎重に投資してください。",
+  "trc20_symbol_risk":"他のトークンと同じシンボル",
+  "trc20_hight_risk_token":"ハイリスクトークン",
 
   /*
    *  2018-12-18

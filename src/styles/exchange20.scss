@@ -452,6 +452,86 @@
   .failed {
     color: #f15454 !important;
   }
+  .market-table {
+    margin-top: 10px;
+    .table-header {
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      color: #999;
+      height: 42px;
+      line-height: 42px;
+      .table-1 {
+        width: 120px;
+        text-align: center;
+      }
+      .table-2 {
+        width: 100px;
+        text-align: right;
+      }
+      .table-3 {
+        flex: 1;
+        text-align: right;
+        padding-right: 1rem;
+      }
+    }
+    .table-content {
+      height: 1250px;
+      overflow-y: scroll;
+      .risk-token-title {
+        text-align: center;
+        height: 48px;
+        line-height: 48px;
+        background: #f8f8f8;
+      }
+      .content-item {
+        .line-1 {
+          display: flex;
+          justify-content: space-between;
+          height: 30px;
+        }
+        font-size: 12px;
+        margin-bottom: 1px;
+        padding: 8px 0 8px 5px;
+        &.exchange-table-row-active {
+          background: #f3f3f3;
+        }
+
+        // box-sizing: border-box;
+        &:hover {
+          background: #f3f3f3;
+        }
+        .table-1 {
+          width: 120px;
+          text-align: center;
+        }
+        .table-2 {
+          width: 100px;
+          text-align: right;
+        }
+        .table-3 {
+          flex: 1;
+          text-align: right;
+        }
+        .tokens {
+          height: 48px;
+        }
+        p {
+          margin-left: 0;
+          margin-bottom: 0;
+          text-align: left;
+        }
+        .exchange-abbr-name {
+          text-align: left;
+        }
+
+        .line-2 {
+          margin-top: 8px;
+          color: #ce3837;
+        }
+      }
+    }
+  }
 }
 .ant-modal-wrap {
   .token-info-wrap {

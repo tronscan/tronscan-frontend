@@ -1587,6 +1587,14 @@ export const messages = {
   "trc20_failed_order": '此委托未得到区块确认',
   "trc20_ignore": '忽略',
   "trc20_see_currentParis": '只看当前交易对',
+  "trc20_search_more_tokens":"搜索发现更多通证",
+  "trc20_token_name":"通证名称",
+  "trc20_token_id":"通证ID",
+  "trc20_risk_token":"风险通证",
+  "trc20_risk_token_desc":"这些通证尚未正式上币，可能存在潜在风险，请谨慎投资。",
+  "trc20_symbol_risk":"简称与其他通证重复",
+  "trc20_hight_risk_token":"高风险通证",
+
 
   /*
    *  2018-12-18
