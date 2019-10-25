@@ -25,7 +25,16 @@ class VerifyContractCode extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            compilers: ['solidity-0.4.25_Odyssey_v3.2.3'],
+            compilers: [
+                'solidity-0.4.25_Odyssey_v3.2.3',
+                'solidity-0.5.9_Odyssey_v3.6.5',
+                'solidity-0.5.8_Odyssey_v3.6.0',
+                'solidity-0.5.4_Odyssey_v3.6.0',
+                'solidity-0.4.24',
+                'tronbox_soljson_v1',
+                'tronbox_soljson_v2',
+                'tronbox_soljson_v3',
+            ],
             deaultCompiler: 'solidity-0.4.25_Odyssey_v3.2.3',
             contractCode: '',
             captchaCode: null,
@@ -95,12 +104,17 @@ class VerifyContractCode extends Component {
                 (v instanceof File) ? formData.append('files', v) : formData.append('files', v.originFileObj));
 
             this.setState({ loading: true });
-            const { data } = await xhr.post(`${API_URL}/api/solidity/contract/verify`, formData);
+
+           // const { data } = await xhr.post(`${API_URL}/api/solidity/contract/verify`, formData);
+            const { data } = await xhr.post(`http://172.16.20.96:9016/api/solidity/contract/verify`, formData);
+
+
             const { code, errmsg } = data;
             const { status } = data.data;
             if (code === 200){
 
                 if (status === 2001){
+                    // Verification failed
                     const mess = `The Contract Source code for <span class="">${contractAddress
                     }</span> has alreadly been verified. Click here to view the <a href="/#/contract/${
                         fieldata.contractAddress}/code" class="info_link">Verified Contract Source Code</a>`;
@@ -112,14 +126,39 @@ class VerifyContractCode extends Component {
                     this.setState({
                         CompileStatus,
                     });
-                } else {
+                } else if(status === 2007){
+                    // Verification failed
+                    const error = `<span>${
+                        contractAddress}</span> verification failed. Please confirm the correct parameters and try again`;
+
+                    CompileStatus.push({
+                        type: 'error',
+                        content: errmsg || error,
+                    });
+                    this.setState({
+                        CompileStatus,
+                    });
+                }else if(status === 2008){
+                    // Verification failed
+                    const error = `<span>${
+                        contractAddress}</span> verification failed. Please confirm the correct parameters and try again`;
+
+                    CompileStatus.push({
+                        type: 'error',
+                        content: errmsg || error,
+                    });
+                    this.setState({
+                        CompileStatus,
+                    });
+                }
+                else if(status === 2006){
                     // Verification success
                     location.href = `/#/contract/${contractAddress}/code`;
                 }
 
             } else {
                 const error = `<span>${
-                    contractAddress}</span> is not a existing contract. Please confirm and try again`;
+                    contractAddress}</span> verification failed. Please confirm the correct parameters and try again`;
                 // const errorMes = errmsg &&
                 //     typeof errmsg === 'string' && errmsg.indexOf('status') > -1 && JSON.parse(errmsg);
                 CompileStatus.push({
@@ -358,8 +397,8 @@ class VerifyContractCode extends Component {
 
         // 构造函数参数
         const constructorItem = (
-            <div className="row mt-3 contract-ABI">
-                <div className="col-md-12 ">
+            <div className="row mt-3 contract-ABI d-none">
+                <div className="col-md-12">
                     <div className="d-flex justify-content-center pt-3">
                         <p style={styles.s_title}>{tu('constructor_arguments_ABIencoded')}</p>
                         <div className="ml-1">
@@ -383,7 +422,7 @@ class VerifyContractCode extends Component {
                     loading={loading}
                     onClick={this.handleVerifyCode}
                     className="compile-button active ml-4"
-                    disabled={!captchaCode}
+                    disabled={captchaCode}
                 >{tu('verify_and_publish')}</Button>
             </div>
         );
@@ -394,7 +433,7 @@ class VerifyContractCode extends Component {
                 {uploadItem}
                 {contractCodeItem}
                 {constructorItem}
-                <div className="text-center" >
+                <div className="text-center mt-5" >
                     <ContractCodeRequest handleCaptchaCode={this.handleCaptchaCode} />
                     {verifyBtnItem}
                 </div>

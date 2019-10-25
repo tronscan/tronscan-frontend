@@ -19,7 +19,24 @@ export default class CompilerModal extends React.PureComponent {
                 {
                     label:"solidity-0.4.25_Odyssey_v3.2.3",
                     value:"solidity-0.4.25_Odyssey_v3.2.3"
-                }
+                },
+                {
+                    label:"solidity-0.5.9_Odyssey_v3.6.5",
+                    value:"solidity-0.5.9_Odyssey_v3.6.5"
+                },
+                {
+                    label:"solidity-0.5.8_Odyssey_v3.6.0",
+                    value:"solidity-0.5.8_Odyssey_v3.6.0"
+                },
+                {
+                    label:"solidity-0.5.4_Odyssey_v3.6.0",
+                    value:"solidity-0.5.4_Odyssey_v3.6.0"
+                },
+                {
+                    label:"solidity-0.4.24",
+                    value:"solidity-0.4.24"
+                },
+
             ],
             runs:[
                 {

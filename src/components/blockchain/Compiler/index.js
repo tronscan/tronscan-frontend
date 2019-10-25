@@ -48,6 +48,7 @@ class ContractCompiler extends React.Component {
      * 初始化页面数据
      */
     initCompile = () => {
+        console.log('123123123',123123)
         // code
         const compileCode = Lockr.get('CompileCode');
         // 编译状态
@@ -298,7 +299,8 @@ class ContractCompiler extends React.Component {
         }
 
         // 编译
-        const { data } = await xhr.post(`${API_URL}/api/solidity/contract/compile`, formData)
+        // const { data } = await xhr.post(`${API_URL}/api/solidity/contract/compile`, formData)
+        const { data } = await xhr.post(`http://172.16.20.96:9016/api/solidity/contract/compile`, formData)
             .catch(e => {
                 const errorData = [{
                     type: 'error',
@@ -322,12 +324,14 @@ class ContractCompiler extends React.Component {
             this.setState({
                 compileLoading: false
             });
+            console.log('编译成功')
             // 编译成功
             if (errmsg === null && data.data !== {}){
                 this.compileSuccess(data.data);
-            }
+            }``
         } else {
             // 失败
+            console.log('失败')
             if (errmsg) {
                 if (typeof errmsg === 'string') {
 
@@ -335,8 +339,9 @@ class ContractCompiler extends React.Component {
                         type: 'error',
                         content: `Compiled error: ${errmsg}`
                     }];
-                    const error = errorData.concat(CompileStatus);
-
+                    console.log('CompileStatus2222',CompileStatus)
+                    //const error = errorData.concat(CompileStatus);
+                    const  error = errorData;
                     this.setState({
                         CompileStatus: error,
                         compileLoading: false
