@@ -54,7 +54,11 @@ class ProposalDetail extends React.Component {
             'getMultiSignFee',
             'getAllowProtoFilterNum',
             '',
-            'getAllowTvmConstantinople'
+            'getAllowTvmConstantinople',
+            '',
+            '',
+            '',
+            'getChangeDelegation',
         ];
 
         let sunsideArr = [
@@ -435,6 +439,18 @@ class ProposalDetail extends React.Component {
                                                                                             proposal.proposalVal? <span>{tu('propose_allowed')}</span>:
                                                                                                 <span>{tu('propose_not_allowed')}</span>
                                                                                         }
+                                                                                    </div>
+                                                                                }
+                                                                                {
+                                                                                    proposal.key == 'getChangeDelegation' &&
+                                                                                    <div>
+                                                                                        <span>{ intl.formatMessage({id: 'propose_30'})}</span>
+                                                                                        <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
+                                                                                        {
+                                                                                            proposal.proposalVal? <span>{tu('propose_activate')}</span>:
+                                                                                                <span>{tu('propose_unactivate')}</span>
+                                                                                        }
+
                                                                                     </div>
                                                                                 }
 
