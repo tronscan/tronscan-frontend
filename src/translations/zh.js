@@ -1911,7 +1911,6 @@ export const messages = {
   "Download": "下载",
 
 
-
   /*
    ##################################################################################
    #                                                                                #
@@ -2069,5 +2068,9 @@ export const messages = {
   "number_of_lists":"列表数量：",
   "total_in_tronscan":"共收录：",
   "develpopers_reward_tip":"感谢所有帮助java-tron开发的开发者们，波场基金会欢迎并且感谢所有开发者们的贡献。",
+
+  "verifty_contract_result":"验证结果",
+  "main_contract_deployment":"（请选择主合约部署）",
+  "enter_main_contract":"请输入主合约的名称",
 
 };

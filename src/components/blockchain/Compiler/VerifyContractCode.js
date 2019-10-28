@@ -310,7 +310,7 @@ class VerifyContractCode extends Component {
             <Col span={12}>
                 <Form.Item label={tu('contract_name')}  {...formItemLayout}>
                     {getFieldDecorator('contractName', {})(
-                        <Input placeholder={intl.formatMessage({ id: 'contract_name' })}/>
+                        <Input placeholder={intl.formatMessage({ id: 'enter_main_contract' })}/>
                     )}
                 </Form.Item>
             </Col>

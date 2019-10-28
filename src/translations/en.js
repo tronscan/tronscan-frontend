@@ -2042,4 +2042,8 @@ export const messages = {
   "number_of_lists":"Number of lists:",
   "total_in_tronscan":"Total in tronscan:",
   "develpopers_reward_tip":"Thank you for considering to help out with the java-tron! TRON Foundation welcome contributions from anyone on the internet, and are grateful for your contributions.",
+  "verifty_contract_result":"Validation results",
+  "main_contract_deployment":"(Please select the main contract deployment)",
+  "enter_main_contract":"Please enter the name of the main contract",
+
 };

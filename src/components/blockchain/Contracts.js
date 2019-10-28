@@ -98,6 +98,21 @@ class Contracts extends React.Component {
         }
       },
       {
+          title: upperFirst(intl.formatMessage({id: 'verifty_contract_result'})),
+          dataIndex: 'verify_status',
+          key: 'verify_status',
+          align: 'left',
+          className: 'ant_table _text_nowrap',
+          render: (text, record, index) => {
+              return <span>
+            {
+                text == 2?<img style={{width: '20px', height: '20px'}} src={require("../../images/contract/Verified.png")}/>:<img style={{width: '20px', height: '20px'}} src={require("../../images/contract/Unverified.png")}/>
+            }
+        </span>
+          }
+
+      },
+      {
         title: upperFirst(intl.formatMessage({id: 'ContractName'})),
         dataIndex: 'name',
         key: 'name',
