@@ -2128,7 +2128,7 @@ export const messages = {
 
 
   "developers_username": "用户名",
-  "developers_current_year":"本年度积分",
+  "developers_current_year":"总积分",
   "developers_current_quarter":"本季度积分",
   "developers_current_month":"本月度积分",
   "developers_view_points":"查看积分明细",
@@ -2148,5 +2148,6 @@ export const messages = {
   "total_in_tronscan":"共收录：",
 
   "develpopers_reward_tip":"感谢所有帮助java-tron开发的开发者们，波场基金会欢迎并且感谢所有开发者们的贡献。",
+  "develpopers_niTron":"2020年，niTron全球开发者大会将于2月29日在韩国举办。 截止到2020年1月31日，总积分排名前五的开发者，每人都可以获赠门票两张。",
 
 };

@@ -276,14 +276,14 @@ class IssuedToken extends React.Component{
                         <Tag color="#E69F4E">
                             {tu('in_progress')}
                         </Tag>
-                    </AntdTip>:<AntdTip title={<span>{tu('not_entry_tip')}</span>}>
+                      </AntdTip>:<AntdTip title={<span>{tu('not_entry_tip')}</span>}>
                         <Tag color="#A4A3A3">
                             {tu('not_entry')}
                         </Tag>
                       </AntdTip>
                     : marketNotThrough?
-                        <AntdTip title={<span>{tu('not_through_entry_tip')}</span>}>
-                            <Tag color="#C34339">{tu('not_through')}</Tag>
+                        <AntdTip title={<span>{tu('in_progress_tip')}</span>}>
+                            <Tag color="#E69F4E">{tu('in_progress')}</Tag>
                         </AntdTip>
                         :(!isThrough && !isShelves && <div><AntdTip title={<span>{tu('type_pass_market_tip')}</span>}>
                         <Tag color="#28a745">{tu('type_pass_through')}</Tag>
@@ -310,7 +310,7 @@ class IssuedToken extends React.Component{
 
             </td>
             <td className="text-light">
-                {hasMarketToken20Data && !marketNoEntry && !marketNotThrough &&
+                {hasMarketToken20Data && !marketNoEntry && !marketNotThrough &&  !MarketProcessing&&
                     <div>
                         {isShelves?tu('shelves_time'):tu('pass_time')}:
                         <FormattedDate value={updateTime}/>&nbsp;
@@ -323,21 +323,21 @@ class IssuedToken extends React.Component{
             </td>
             <td></td>
             <td>
-                {!marketNoEntry && !isShelves && !marketNotThrough && <div> <a href={`${MARKET_HTTP_URL}/exchange?id=${data.pairId}`} target="_blank"> {tu('check_market_detail')}</a></div>}
-                {(marketNoEntry && !MarketProcessing) && <div><span style={{color:"#C23631",cursor:"pointer"}}
+                {!marketNoEntry && !isShelves && !marketNotThrough && !MarketProcessing && <div> <a href={`${MARKET_HTTP_URL}/exchange?id=${data.pairId}`} target="_blank"> {tu('check_market_detail')}</a></div>}
+                {(marketNoEntry && !MarketProcessing && !marketNotThrough) && <div><span style={{color:"#C23631",cursor:"pointer"}}
                         onClick={() => this.jumpPage(decimals, `/tokens/markets/create/${TOKENTYPE.TOKEN20}/${address}`)}>
                         {tu('search_trading_area')}</span><span className="float-right">
                       <QuestionMark placement="top" text="search_trading_area_tip"/>
                   </span></div>}
-                {(marketNoEntry && MarketProcessing) && <div><span style={{color:"#A4A3A3"}}>
+                {(MarketProcessing || marketNotThrough) && <div><span style={{color:"#A4A3A3"}}>
                         {tu('search_trading_area')}</span><span className="float-right">
                       <QuestionMark placement="top" text="search_trading_area_tip"/>
                   </span></div>}
-                {marketNotThrough && <div><span style={{color:"#C23631",cursor:"pointer"}}
-                                            onClick={() => this.jumpPage(decimals, `/tokens/markets/create/${TOKENTYPE.TOKEN20}/${address}`)}>
-                    {tu('search_trading_area_again')}</span><span className="float-right">
-                      <QuestionMark placement="top" text="search_trading_area_tip"/>
-                  </span></div>}
+                {/*{marketNotThrough && <div><span style={{color:"#C23631",cursor:"pointer"}}*/}
+                                            {/*onClick={() => this.jumpPage(decimals, `/tokens/markets/create/${TOKENTYPE.TOKEN20}/${address}`)}>*/}
+                    {/*{tu('search_trading_area_again')}</span><span className="float-right">*/}
+                      {/*<QuestionMark placement="top" text="search_trading_area_tip"/>*/}
+                  {/*</span></div>}*/}
                 {(isToAudit || marketNoEntry || marketNotThrough || isRemoved || MarketProcessing) && <div><span style={{color:"#A4A3A3"}}>{tu('list_trading_area')}</span><span className="float-right">
                       <QuestionMark placement="top" text="list_trading_area_tip"/>
                   </span></div>}
@@ -380,8 +380,8 @@ class IssuedToken extends React.Component{
                         </Tag>
                       </AntdTip>
                     : marketNotThrough?
-                        <AntdTip title={<span>{tu('not_through_entry_tip')}</span>}>
-                            <Tag color="#C34339">{tu('not_through')}</Tag>
+                        <AntdTip title={<span>{tu('in_progress_tip')}</span>}>
+                            <Tag color="#E69F4E">{tu('in_progress')}</Tag>
                         </AntdTip>
                         : (!isThrough && !isShelves && <div><AntdTip title={<span>{tu('type_pass_market_tip')}</span>}>
                             <Tag color="#28a745">{tu('type_pass_through')}</Tag>
@@ -420,21 +420,21 @@ class IssuedToken extends React.Component{
             </td>
             <td></td>
             <td>
-                {!marketNoEntry && !isShelves && !marketNotThrough && <div><a href={`${MARKET_HTTP_URL}/exchange?id=${marketInfoToken10.pairId}`} target="_blank"> {tu('check_market_detail')}</a></div>}
-                {(marketNoEntry && !MarketProcessing) && <div><span style={{color:"#C23631",cursor:"pointer"}}
+                {!marketNoEntry && !isShelves && !marketNotThrough && !MarketProcessing  && <div><a href={`${MARKET_HTTP_URL}/exchange?id=${marketInfoToken10.pairId}`} target="_blank"> {tu('check_market_detail')}</a></div>}
+                {(marketNoEntry && !MarketProcessing && !marketNotThrough) && <div><span style={{color:"#C23631",cursor:"pointer"}}
                         onClick={() => this.jumpPage(precision, `/tokens/markets/create/${TOKENTYPE.TOKEN10}/${id}`)}>
                         {tu('search_trading_area')}</span><span className="float-right">
                       <QuestionMark placement="top" text="search_trading_area_tip"/>
                   </span> </div>}
-                {(marketNoEntry && MarketProcessing) && <div><span style={{color:"#A4A3A3"}}>
+                {( MarketProcessing || marketNotThrough) && <div><span style={{color:"#A4A3A3"}}>
                         {tu('search_trading_area')}</span><span className="float-right">
                       <QuestionMark placement="top" text="search_trading_area_tip"/>
                   </span></div>}
-                {marketNotThrough && <div><span style={{color:"#C23631",cursor:"pointer"}}
-                                            onClick={() => this.jumpPage(precision, `/tokens/markets/create/${TOKENTYPE.TOKEN10}/${id}`)}>
-                    {tu('search_trading_area_again')}</span><span className="float-right">
-                      <QuestionMark placement="top" text="search_trading_area_tip"/>
-                  </span> </div>}
+                {/*{marketNotThrough && <div><span style={{color:"#C23631",cursor:"pointer"}}*/}
+                                            {/*onClick={() => this.jumpPage(precision, `/tokens/markets/create/${TOKENTYPE.TOKEN10}/${id}`)}>*/}
+                    {/*{tu('search_trading_area_again')}</span><span className="float-right">*/}
+                      {/*<QuestionMark placement="top" text="search_trading_area_tip"/>*/}
+                  {/*</span> </div>}*/}
 
                 {(isToAudit || marketNoEntry || marketNotThrough || isRemoved || MarketProcessing) && <div><span style={{color:"#A4A3A3"}}>{tu('list_trading_area')}</span><span className="float-right">
                       <QuestionMark placement="top" text="list_trading_area_tip"/>

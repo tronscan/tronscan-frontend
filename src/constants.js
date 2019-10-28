@@ -30,10 +30,12 @@ export const PUBLIC_URL = process.env.PUBLIC_URL || window.location.origin;
 export const API_URL_SUNNET = 'https://dappchainapi.tronscan.org';
 // export const API_URL_MAINNET = 'https://apilist.tronscan.org';
 export const API_URL = IS_SUNNET?API_URL_SUNNET:process.env.API_URL;
-export const CONTRACT_MAINNET_API_URL = process.env.API_URL; 
-//export const MARKET_API_URL = 'http://172.16.21.165:7001';
-//test
-export const MARKET_API_URL = 'http://3.15.229.178:7001';
+export const CONTRACT_MAINNET_API_URL = process.env.API_URL;
+
+//Token issued
+export const MARKET_API_URL = 'http://platform.tron.network';
+
+//trx.market
 export const MARKET_HTTP_URL = 'http://18.222.178.103:83';
 
 
