@@ -318,8 +318,8 @@ class developersReward extends Component {
                             />
                         </div>
                         {
-                            total?<p className="develpopers_reward_tip">
-                                {tu("develpopers_reward_tip")}
+                            total?<p>
+                                {tu("develpopers_niTron")}
                             </p>:''
                         }
 
