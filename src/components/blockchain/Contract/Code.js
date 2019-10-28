@@ -49,7 +49,7 @@ class Code extends React.Component {
         const params = {
             contractAddress: address
         };
-        let { data } = await xhr.post(`http://172.16.20.96:9016/api/solidity/contract/info`, params)
+        let { data } = await xhr.post(`http://52.15.126.154:9016/api/solidity/contract/info`, params)
             .catch(function(e) {
                 console.log(e)
             });

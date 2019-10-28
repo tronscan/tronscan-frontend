@@ -106,13 +106,11 @@ class VerifyContractCode extends Component {
             this.setState({ loading: true });
 
            // const { data } = await xhr.post(`${API_URL}/api/solidity/contract/verify`, formData);
-            const { data } = await xhr.post(`http://172.16.20.96:9016/api/solidity/contract/verify`, formData);
-
+            const { data } = await xhr.post(`http://52.15.126.154:9016/api/solidity/contract/verify`, formData);
 
             const { code, errmsg } = data;
             const { status } = data.data;
             if (code === 200){
-
                 if (status === 2001){
                     // Verification failed
                     const mess = `The Contract Source code for <span class="">${contractAddress
