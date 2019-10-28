@@ -1304,6 +1304,7 @@ export const messages = {
   "propose_26": "다중 서명 비용 수정 제안",
   "propose_27": "Propose to enable protocol optimization",
   "propose_28": "Propose to support the new features of TRON Virtual Machine 0.5.4",
+  "propose_30":"Propose to support the decentralized vote dividend",
   "propose_minute": "분",
   "propose_unactivate": "열리지 않음",
   "propose_not_allowed": "허락되지 않음",
