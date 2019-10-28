@@ -134,6 +134,7 @@ class ExchangeList extends React.Component {
     let { tokenAudited, activedTab, inputValue, activedId } = this.state;
     if (inputValue) {
       if (exchanges20SearchList !== prevProps.exchanges20SearchList) {
+        console.log(123);
         this.setSearchList(activedTab, activedId);
         // this.setState({
         //   dataSource: exchanges20SearchList
