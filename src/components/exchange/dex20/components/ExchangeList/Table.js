@@ -7,6 +7,8 @@ import { connect } from "react-redux";
 import {
   getSelectData,
   getExchangesByIds,
+  getExchangesByIdsContent,
+  organizeData,
   setPriceConvert
 } from "../../../../../actions/exchange";
 import { filter, map, upperFirst, remove } from "lodash";
@@ -47,7 +49,8 @@ class ExchangeTable extends Component {
       risk_href: {
         zh: "https://support.trx.market/hc/zh-cn/articles/360035045092",
         en: "https://support.trx.market/hc/en-us/articles/360035415811"
-      }
+      },
+      i: 0
     };
   }
 
@@ -514,8 +517,8 @@ class ExchangeTable extends Component {
     );
   }
   getContent() {
-    const { intl, unRecomendList, activeLanguage } = this.props;
-    const { dataSource, risk_href } = this.state;
+    const { intl, activeLanguage } = this.props;
+    const { dataSource, risk_href, unRecomendList } = this.state;
 
     const risk_token_desc = (
       <div style={{ width: "180px" }}>
@@ -838,14 +841,13 @@ class ExchangeTable extends Component {
     return (
       <div className="ant-table-placeholder">
         <div className="ant-empty ant-empty-normal">
-          
           <p className="ant-empty-description">No Data</p>
         </div>
       </div>
     );
   }
   setFavorites(ev, record) {
-    let { dataSource } = this.state;
+    let { dataSource, unRecomendList } = this.state;
     let { getExchangesByIds } = this.props;
     if (record.token_type == "dex20") {
       let list = Lockr.get("dex20") || [];
@@ -868,20 +870,34 @@ class ExchangeTable extends Component {
       Lockr.set("optional", list);
     }
     let newdataSource = dataSource.map(item => {
-      if (
-        record.exchange_id == item.exchange_id &&
-        record.exchange_name == item.exchange_name
-      ) {
+      if (record.exchange_id == item.exchange_id) {
         item.isChecked = !item.isChecked;
       }
       return item;
     });
-    if (Lockr.get("DEX") == "GEM") {
-      let new20List = dataSource.filter(item => item.isChecked);
-      this.setState({ dataSource: new20List });
-    } else {
-      this.setState({ dataSource: newdataSource });
+    let newUnRecomendList = unRecomendList.map(item => {
+      if (record.exchange_id == item.exchange_id) {
+        item.isChecked = !item.isChecked;
+      }
+      return item;
+    });
+    if (Lockr.get("DEX") != "GEM") {
+      this.setState({
+        dataSource: newdataSource,
+        unRecomendList: newUnRecomendList || []
+      });
     }
+
+    // if (Lockr.get("DEX") == "GEM") {
+    //   let new20List = dataSource.filter(item => item.isChecked);
+    //   let newUnrecoment = unRecomendList.filter(item => item.isChecked);
+    //   this.setState({
+    //     dataSource: new20List,
+    //     unRecomendList: newUnrecoment || []
+    //   });
+    // } else {
+    //   this.setState({ dataSource: newdataSource });
+    // }
 
     let ids = Lockr.get("dex20") || [];
     getExchangesByIds(ids.join(","));
@@ -895,16 +911,48 @@ class ExchangeTable extends Component {
       ? "exchange-table-row-active"
       : "";
   };
-  getData() {
-    const parsed = queryString.parse(this.props.location.search).id;
-    const { getSelectData, dataSource } = this.props;
 
-    const currentData = filter(dataSource, item => {
+  async getData() {
+    const parsed = queryString.parse(this.props.location.search).id;
+    let i = this.state.i;
+    let {
+      getSelectData,
+      dataSource,
+      unRecomendList,
+      getExchangesByIds,
+      getExchangesByIdsContent
+    } = this.props;
+
+    // 先去推荐列表查
+    let currentData = filter(dataSource, item => {
       return item.exchange_id == parsed;
     });
 
-    // 更新数据
-    if (dataSource && dataSource.length) {
+    // 再去非推荐列表查
+    if (currentData.length == 0) {
+      currentData = filter(unRecomendList, item => {
+        return item.exchange_id == parsed;
+      });
+    }
+
+    // // 再去从服务端拿
+    if (currentData.length == 0 && i == 0 && parsed) {
+      unRecomendList = await getExchangesByIdsContent(parsed);
+      // await getExchangesByIds(parsed);
+      // const { exchanges20SearchListByIds } = this.props;
+      // exchanges20SearchListByIds.length > 0 &&
+      //   (unRecomendList = exchanges20SearchListByIds);
+      this.setState({
+        i: ++i
+        // unRecomendList: unRecomendList
+      });
+    }
+
+    if (
+      (dataSource && dataSource.length) ||
+      (unRecomendList && unRecomendList.length)
+    ) {
+      // 更新数据
       if (!parsed || !currentData.length) {
         this.onSetUrl(dataSource[0]);
       } else {
@@ -912,13 +960,13 @@ class ExchangeTable extends Component {
       }
     }
 
-    // 获取选择状态
+    // 获取选择状态;
     map(dataSource, item => {
       if (item.exchange_id == parsed || !parsed) {
         item.isCurrent = true;
       }
     });
-    this.setState({ dataSource });
+    this.setState({ dataSource, unRecomendList });
   }
 
   onSetUrl(record, type) {
@@ -961,12 +1009,17 @@ class ExchangeTable extends Component {
     // }, 500);
   }
 
-  async componentDidMount() {}
+  async componentDidMount() {
+    // this.setData();
+  }
 
   componentDidUpdate(prevProps) {
-    let { dataSource, redirctPair } = this.props;
+    let { dataSource, redirctPair, unRecomendList } = this.props;
 
-    if (dataSource != prevProps.dataSource) {
+    if (
+      dataSource != prevProps.dataSource ||
+      unRecomendList != prevProps.unRecomendList
+    ) {
       this.getData();
     }
 
@@ -1022,13 +1075,16 @@ function mapStateToProps(state) {
     activeCurrency: state.app.activeCurrency,
     price: state.exchange.price,
     activeLanguage: state.app.activeLanguage,
-    redirctPair: state.exchange.redirctPair
+    redirctPair: state.exchange.redirctPair,
+    exchanges20SearchListByIds: state.exchange.searchListByIds
   };
 }
 
 const mapDispatchToProps = {
   getSelectData,
-  getExchangesByIds
+  getExchangesByIds,
+  getExchangesByIdsContent,
+  organizeData
 };
 
 export default connect(

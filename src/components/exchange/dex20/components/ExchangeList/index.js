@@ -128,7 +128,8 @@ class ExchangeList extends React.Component {
       exchange20List,
       exchange20VolumeList,
       exchange20UpDownList,
-      exchanges20SearchList
+      exchanges20SearchList,
+      exchanges20SearchListByIds
     } = this.props;
     let { tokenAudited, activedTab, inputValue, activedId } = this.state;
     if (inputValue) {
@@ -154,6 +155,13 @@ class ExchangeList extends React.Component {
     if (
       activedTab === "2" &&
       exchange20UpDownList !== prevProps.exchange20UpDownList
+    ) {
+      this.setData(tokenAudited, activedTab);
+    }
+
+    if (
+      activedTab === "fav" &&
+      exchanges20SearchListByIds !== prevProps.exchanges20SearchListByIds
     ) {
       this.setData(tokenAudited, activedTab);
     }
@@ -475,21 +483,31 @@ class ExchangeList extends React.Component {
   }
   // 自选，热门，成交额榜，涨幅榜的切换
   tabChange(activeKey) {
-    const { time, timeVolume, timeupDown, inputValue, timeSearch } = this.state;
+    const {
+      unRecomendList,
+      time,
+      timeVolume,
+      timeupDown,
+      inputValue,
+      timeSearch
+    } = this.state;
 
     clearInterval(time);
-    // if (inputValue) {
-    //   this.setState({
-    //     activedTab: activeKey
-    //     // activedId: 0
-    //   });
-    //   this.setSearchList(activeKey, 0);
-    //   return;
-    // }
+    clearInterval(timeSearch);
+    if (inputValue) {
+      this.setState(
+        {
+          activedTab: activeKey
+        },
+        () => {
+          this.getSearchList(inputValue);
+        }
+      );
+      return;
+    }
     this.setState(
       {
-        activedTab: activeKey,
-        activedId: 0
+        activedTab: activeKey
       },
       () => {
         switch (activeKey) {
@@ -534,16 +552,21 @@ class ExchangeList extends React.Component {
   }
   //全部，trx,usdt切换
   selcetSort(type) {
-    let { activedTab, inputValue, time } = this.state;
+    let { activedTab, inputValue, time, timeSearch } = this.state;
     let { exchanges20SearchListByIds } = this.props;
     if (inputValue) {
-      this.setState({
-        activedId: type
-      });
-      this.setSearchList(activedTab, type);
+      this.setState(
+        {
+          activedId: type
+        },
+        () => {
+          this.getSearchList(inputValue);
+        }
+      );
       return;
     }
     clearInterval(time);
+    clearInterval(timeSearch);
     if (activedTab == "fav") {
       let list = cloneDeep(exchanges20SearchListByIds);
       let fiterData = list;
@@ -605,33 +628,72 @@ class ExchangeList extends React.Component {
   }
   // 输入框发生改变的时候
   onInputChange(e) {
-    const { activedId, activedTab, timeSearch } = this.state;
-    const { setExchanges20Search } = this.props;
-
+    let { activedId, activedTab, timeSearch, time, dataSource } = this.state;
+    const { setExchanges20Search, exchanges20SearchList } = this.props;
+    let listAll = { ...exchanges20SearchList };
+    let { unRecomendList } = listAll;
     this.setState({
       inputValue: e.target.value
     });
     if (!e.target.value) {
+      clearInterval(time);
       clearInterval(timeSearch);
-      this.setState({
-        // activedTab: "hot",
-        activedId: activedId,
-        dataSource: this.keyObj(activedTab),
-        unRecomendList: []
-      });
-      setExchanges20Search();
+      let dataSourceNew = this.keyObj(activedTab);
+      console.log(1, dataSourceNew);
+      if (activedTab == "fav") {
+        dataSourceNew = dataSourceNew.filter(item => {
+          if (activedId == 0) {
+            return item;
+          } else {
+            return (
+              activedId.toLowerCase() == item.second_token_abbr.toLowerCase()
+            );
+          }
+        });
+      }
+      this.setState(
+        {
+          // activedTab: "hot",
+          activedId: activedId,
+          dataSource: dataSourceNew,
+          unRecomendList: []
+        },
+        () => {
+          setExchanges20Search();
+        }
+      );
     } else {
+      if (activedTab == "fav") {
+        let filterRecomment = dataSource.filter(item => {
+          if (activedId == 0) {
+            return item.fShortName.includes(e.target.value);
+          } else {
+            return (
+              item.fShortName.includes(e.target.value) &&
+              activedId.toLowerCase() == item.second_token_abbr.toLowerCase()
+            );
+          }
+        });
+
+        this.setState({
+          dataSource: filterRecomment || [],
+          unRecomendList: []
+        });
+        return;
+      }
       this.getSearchList(e.target.value);
     }
   }
   // 输入框点击enter
   onPressEnter() {
     const { inputValue, activedTab } = this.state;
-    const { setExchanges20Search } = this.props;
+    const { setExchanges20Search, exchanges20SearchList } = this.props;
+    let listAll = { ...exchanges20SearchList };
+    let { unRecomendList } = listAll;
     if (inputValue === "") {
       this.setState({
         dataSource: this.keyObj(activedTab),
-        unRecomendList: []
+        unRecomendList: unRecomendList
       });
       setExchanges20Search();
     } else {
@@ -642,6 +704,8 @@ class ExchangeList extends React.Component {
       this.getSearchList(inputValue);
     }
   }
+
+  searchEvent() {}
 
   //搜索函数
   getSearchList(val) {
@@ -675,25 +739,26 @@ class ExchangeList extends React.Component {
     let { exchanges20SearchList } = this.props;
     let listAll = { ...exchanges20SearchList };
     let { recomendList, unRecomendList } = listAll;
-    let list = [];
-    switch (tab) {
-      case "fav":
-        // todo 搜索本地处理
-        // let _list = Lockr.get("dex20") || [];
-        // list = list.filter(item => _list.includes(item.id));
-        break;
-      default:
-        break;
-    }
-    if (id !== 0) {
-      list = list.filter(v => {
-        return v.second_token_abbr == id;
+    let { activedId } = this.state;
+
+    if (tab == "fav") {
+      unRecomendList = [];
+      recomendList = recomendList.filter(item => {
+        if (activedId != 0) {
+          return (
+            item.isChecked &&
+            item.second_token_abbr.toLowerCase() == activedId.toLowerCase()
+          );
+        } else {
+          return item.isChecked;
+        }
       });
     }
+
     this.setState(() => {
       return {
         dataSource: recomendList,
-        unRecomendList
+        unRecomendList: unRecomendList
       };
     });
   }

@@ -332,6 +332,15 @@ export const getExchangesByIds = ids => async dispatch => {
   dispatch(setExchanges20ByIds(newList));
 };
 
+//根据ids去查询交易列表 但不存储
+export const getExchangesByIdsContent = ids => async dispatch => {
+  // let { data } = await Client20.getexchanges20();
+  let { data } = await Client20.marketSearchListById(ids);
+
+  let newList = organizeData(data ? data.rows : []);
+  return newList;
+};
+
 // 整理数据封装
 export const organizeData = data => {
   let f20_list = Lockr.get("dex20") || [];
