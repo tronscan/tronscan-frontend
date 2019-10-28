@@ -136,7 +136,9 @@ class Committee extends React.Component {
                     case "getAllowTvmConstantinople":
                         item.name = 'propose_28';
                         break;
-
+                    case "getChangeDelegation":
+                        item.name = 'propose_30';
+                        break;
                 }
             });
             let tronParametersNew = [];
@@ -429,6 +431,14 @@ class Committee extends React.Component {
                                             {
                                                 text? <span>{tu('propose_allowed')}</span>:
                                                     <span>{tu('propose_not_allowed')}</span>
+                                            }
+                                        </div>
+                                    }
+                                    {
+                                        record.key == 'getChangeDelegation' && <div>
+                                            {
+                                                text? <span>{tu('propose_activate')}</span>:
+                                                    <span>{tu('propose_unactivate')}</span>
                                             }
                                         </div>
                                     }
