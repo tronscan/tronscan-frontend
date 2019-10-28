@@ -48,7 +48,6 @@ class ContractCompiler extends React.Component {
      * 初始化页面数据
      */
     initCompile = () => {
-        console.log('123123123',123123)
         // code
         const compileCode = Lockr.get('CompileCode');
         // 编译状态
@@ -97,6 +96,21 @@ class ContractCompiler extends React.Component {
             });
         } else {
             // 初始化数据
+            if (!this.isLoggedIn()){
+                //  compileCode
+                Lockr.rm('CompileCode');
+                // compile status
+                Lockr.rm('CompileStatus');
+                // contractNameList
+                Lockr.rm('contractNameList');
+                // compileInfo
+                Lockr.rm('compileInfo');
+                // compile files
+                Lockr.rm('compileFiles');
+                return;
+            }
+
+
             this.initCompile();
         }
     }

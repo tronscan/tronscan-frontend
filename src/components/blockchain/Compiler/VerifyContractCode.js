@@ -70,11 +70,36 @@ class VerifyContractCode extends Component {
         });
     }
 
+    componentDidMount() {
+        this.isLoggedIn()
+    }
+
+    /**
+     * 是否登陆
+     */
+    isLoggedIn = () => {
+        let { account, intl } = this.props;
+        if (!account.isLoggedIn){
+            this.setState({
+                modal: <SweetAlert
+                    warning
+                    title={tu('not_signed_in')}
+                    confirmBtnText={intl.formatMessage({ id: 'confirm' })}
+                    confirmBtnBsStyle="danger"
+                    onConfirm={() => this.setState({ modal: null })}
+                    style={{ marginLeft: '-240px', marginTop: '-195px' }}
+                >
+                </SweetAlert>
+            });
+        }
+        return account.isLoggedIn;
+    };
+
     /**
      * 点击验证并发布
      */
     handleVerifyCode = async() => {
-
+        if (!this.isLoggedIn()) return;
         // 统计代码
         this.gTagHandler();
 
@@ -520,5 +545,4 @@ function mapStateToProps(state) {
     };
 }
 
-export default Form.create({ name: 'contract_verify' })(connect(mapStateToProps, null)(
-    injectIntl(VerifyContractCode)));
+export default Form.create({ name: 'contract_verify' })(connect(mapStateToProps, null)(injectIntl(VerifyContractCode)));

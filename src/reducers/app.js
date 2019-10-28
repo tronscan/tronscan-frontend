@@ -300,6 +300,16 @@ export function appReducer(state = initialState, action) {
       Lockr.rm("account_key");
       Lockr.rm("account_address");
       Lockr.set("islogin", 0);
+      //  compileCode
+      Lockr.rm('CompileCode');
+      // compile status
+      Lockr.rm('CompileStatus');
+      // contractNameList
+      Lockr.rm('contractNameList');
+      // compileInfo
+      Lockr.rm('compileInfo');
+      // compile files
+      Lockr.rm('compileFiles');
       return {
         ...state,
         account: {
