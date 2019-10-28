@@ -67,7 +67,11 @@ class Proposal extends React.Component {
             'getMultiSignFee',
             'getAllowProtoFilterNum',
             '',
-            'getAllowTvmConstantinople'
+            'getAllowTvmConstantinople',
+            '',
+            '',
+            '',
+            'getChangeDelegation',
         ];
 
         let sunsideArr = [
@@ -108,6 +112,7 @@ class Proposal extends React.Component {
         if(IS_MAINNET){
             for(let item in proposal){
                 for(let j in proposal[item]['paramters']){
+                    console.log(parametersArr[j])
                     proposal[item]['key'] = parametersArr[j];
                     proposal[item]['proposalVal'] = proposal[item]['paramters'][j];
                 }
@@ -143,14 +148,14 @@ class Proposal extends React.Component {
             dataIndex: 'index',
             key: 'index',
             render: (text, record, index) => {
-                return  '#' + (dataSource.length - index)
+                return  '#' +record.proposalId
             }
         },
         {
             title: upperFirst(intl.formatMessage({id: 'proposal_content_info'})),
             dataIndex: 'proposalVal',
             key: 'proposalVal',
-            width:'40%',
+            width:'35%',
             render: (text, record, index) => {
                 return  <div>
                     {
@@ -423,6 +428,17 @@ class Proposal extends React.Component {
                                     }
                                 </div>
                             }
+                            {
+                                record.key == 'getChangeDelegation' &&
+                                <div>
+                                    <span>{ intl.formatMessage({id: 'propose_30'})}</span>
+                                    <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
+                                    {
+                                        text? <span>{tu('propose_activate')}</span>:
+                                            <span>{tu('propose_unactivate')}</span>
+                                    }
+                                </div>
+                            }
                         </div>:<div>
                             {
                                 record.key == 'getChargingSwitch' && <div>
@@ -510,7 +526,7 @@ class Proposal extends React.Component {
             title: upperFirst(intl.formatMessage({id: 'proposer'})),
             dataIndex: 'name',
             key: 'name',
-            width:'200px',
+            width:'15%',
             render: (text, record, index) => {
                 return ( record.proposer.name?
                     <AddressLink address={record.proposer.address}>{record.proposer.name}</AddressLink>:
@@ -570,6 +586,7 @@ class Proposal extends React.Component {
             title:"",
             dataIndex: 'details',
             key: 'details',
+            width:'12%',
             render: (text, record, index) => {
                 return (
                     <Link
