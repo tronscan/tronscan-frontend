@@ -1336,7 +1336,7 @@ export const messages = {
   "propose_26": "提议修改多重签名的费用",
   "propose_27": "提议开启协议优化功能",
   "propose_28": "提议支持波场虚拟机0.5.4的新功能",
-  "propose_30": "提议开启更换委托机制开关",
+  "propose_30": "提议开启去中心化投票分红机制",
   "propose_minute": "分钟",
   "propose_unactivate": "未开启",
   "propose_not_allowed": "不允许",

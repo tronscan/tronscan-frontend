@@ -1304,6 +1304,7 @@
   "propose_26": "يوصى بتعديل تكلفة التوقيعات المتعددة",
   "propose_27": "Propose to enable protocol optimization",
   "propose_28": "Propose to support the new features of TRON Virtual Machine 0.5.4",
+  "propose_30":"Propose to support the decentralized vote dividend",
   "propose_minute": "دقيقة",
   "propose_unactivate": "غير مفتوح",
   "propose_not_allowed": "غير مسموح",
