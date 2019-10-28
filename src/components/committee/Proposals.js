@@ -155,7 +155,7 @@ class Proposal extends React.Component {
             title: upperFirst(intl.formatMessage({id: 'proposal_content_info'})),
             dataIndex: 'proposalVal',
             key: 'proposalVal',
-            width:'40%',
+            width:'35%',
             render: (text, record, index) => {
                 return  <div>
                     {
@@ -526,7 +526,7 @@ class Proposal extends React.Component {
             title: upperFirst(intl.formatMessage({id: 'proposer'})),
             dataIndex: 'name',
             key: 'name',
-            width:'200px',
+            width:'15%',
             render: (text, record, index) => {
                 return ( record.proposer.name?
                     <AddressLink address={record.proposer.address}>{record.proposer.name}</AddressLink>:
@@ -586,6 +586,7 @@ class Proposal extends React.Component {
             title:"",
             dataIndex: 'details',
             key: 'details',
+            width:'12%',
             render: (text, record, index) => {
                 return (
                     <Link
