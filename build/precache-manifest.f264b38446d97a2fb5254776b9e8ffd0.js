@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/editor.worker.js"
   },
   {
-    "revision": "e5bd8660632241c3da87ae786e0749ac",
+    "revision": "3790fb8f7784390053b729f1e0ecff2d",
     "url": "/index.html"
   },
   {
@@ -40,7 +40,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/css/NodeMap.aab5afec.chunk.css"
   },
   {
-    "revision": "3b54fc91f70f2b30bb02",
+    "revision": "8e1929b0a88a57bc7761",
     "url": "/static/css/main.894b1184.chunk.css"
   },
   {
@@ -140,12 +140,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/js/About.5f300022.chunk.js"
   },
   {
-    "revision": "4bbbbf8d1ee6db93feda",
-    "url": "/static/js/Account.bcb30c87.chunk.js"
+    "revision": "bbec285d264044b41516",
+    "url": "/static/js/Account.b2be42f9.chunk.js"
   },
   {
-    "revision": "6afe86391bfd11fdec18",
-    "url": "/static/js/Accounts.cc42f707.chunk.js"
+    "revision": "ac8ff9b24412fa049220",
+    "url": "/static/js/Accounts.f28e9727.chunk.js"
   },
   {
     "revision": "07a75db8ba84578911fc",
@@ -256,8 +256,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/js/ProposalDetail.161568f0.chunk.js"
   },
   {
-    "revision": "ff110a0d0353dde2ccdb",
-    "url": "/static/js/Proposals.72333b8b.chunk.js"
+    "revision": "00e4111660a5fb11e858",
+    "url": "/static/js/Proposals.edd6c849.chunk.js"
   },
   {
     "revision": "46920d89385847eee7a1",
@@ -316,8 +316,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/js/TokenOverview.d58f9cff.chunk.js"
   },
   {
-    "revision": "6fdeff20cf472be7cc35",
-    "url": "/static/js/TokensCreate.b863213e.chunk.js"
+    "revision": "92d5098a0a2e5507ed51",
+    "url": "/static/js/TokensCreate.5810bf08.chunk.js"
   },
   {
     "revision": "2613295fd5521887fc04",
@@ -356,12 +356,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/js/WalletWizard.0f315d31.chunk.js"
   },
   {
-    "revision": "3b54fc91f70f2b30bb02",
-    "url": "/static/js/main.1a480353.chunk.js"
+    "revision": "8e1929b0a88a57bc7761",
+    "url": "/static/js/main.1aa22617.chunk.js"
   },
   {
-    "revision": "2f6c77414fb7721dbb3e",
-    "url": "/static/js/runtime~main.dd83e3c8.js"
+    "revision": "46226c3cebe9e605be61",
+    "url": "/static/js/runtime~main.6c2d3dd7.js"
   },
   {
     "revision": "7b00f7c4e78ed9cfc676c64c040965e8",

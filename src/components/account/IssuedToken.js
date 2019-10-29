@@ -145,7 +145,6 @@ class IssuedToken extends React.Component{
      * get market information token10
      */
     getMarketInfoToken10 = async() => {
-        console.log('111')
         const { issuedAsset } = this.props;
         const { id } = issuedAsset || {};
         if (!!id) {
@@ -505,7 +504,6 @@ class IssuedToken extends React.Component{
     }
     
     jumpListEntry = (tokenInfo, tokenId) => {
-        console.log(tokenInfo, '=====')
         const { history } = this.props;
         const { id } = tokenInfo;
         history.push({

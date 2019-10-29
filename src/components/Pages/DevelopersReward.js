@@ -63,7 +63,6 @@ class developersReward extends Component {
             item.index = index +1;
             item.extraData = (new Function("return " + item.extra))();
         })
-        console.log('data',data)
         this.setState({
             loading: false,
             developers: data,
@@ -199,7 +198,6 @@ class developersReward extends Component {
                 className: 'ant_table',
                 width: '40%',
                 render: (text, record, index) => {
-                    console.log(record.extraData)
                     return <div>
                         {
                             record.extraData &&  record.extraData.imgUrl !== 'null' ?

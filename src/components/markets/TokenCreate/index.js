@@ -269,9 +269,6 @@ export class TokenCreate extends Component {
     navigationchange(nextLocation){
         let { account } = this.props;
         const { leave_lock, step } = this.state;
-        console.log('leave_lock',leave_lock)
-        console.log('step',step)
-        console.log('nextLocation',nextLocation)
         return nextLocation && nextLocation.pathname.indexOf('/tokens/markets/create') == -1
         && nextLocation.pathname.indexOf('/tokens/markets/update') == -1 && leave_lock && step < 2 && account.isLoggedIn;
     }

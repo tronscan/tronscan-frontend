@@ -36,7 +36,6 @@ class SubmitInfo extends Component {
     }
 
     componentDidMount() {
-        console.log('this.state',this.state)
         this.props.nextState({ leave_lock: true });
     }
 
