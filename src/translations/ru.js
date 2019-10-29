@@ -1400,6 +1400,7 @@ export const messages = {
   "propose_27": "Propose to enable protocol optimization",
   "propose_28": "Propose to support the new features of TRON Virtual Machine 0.5.4",
   "propose_30":"Propose to support the decentralized vote dividend",
+  "propose_31": "Propose to modify the block voting rewards given to the top 27 SRs and the following 100 candidates",
   "propose_minute": "мин",
   "propose_unactivate": "Не активирован",
   "propose_not_allowed": "Не разрешено",

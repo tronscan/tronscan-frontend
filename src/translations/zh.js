@@ -1416,6 +1416,7 @@ export const messages = {
   "propose_27": "提议开启协议优化功能",
   "propose_28": "提议支持波场虚拟机0.5.4的新功能",
   "propose_30": "提议开启去中心化投票分红机制",
+  "propose_31": "提议修改分给前127名超级代表及候选人的区块投票奖励",
   "propose_minute": "分钟",
   "propose_unactivate": "未开启",
   "propose_not_allowed": "不允许",

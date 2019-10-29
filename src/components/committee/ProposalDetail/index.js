@@ -111,7 +111,6 @@ class ProposalDetail extends React.Component {
                 }
             }
         }
-
         this.setState({
             proposal: data,
             loading: false,
@@ -221,12 +220,23 @@ class ProposalDetail extends React.Component {
                                                                                 }
                                                                                 {
                                                                                     proposal.key == 'getWitnessPayPerBlock' &&
-                                                                                    <div className="proposal-message">
-                                                                                        <span>{ intl.formatMessage({id: 'propose_6'})}</span>
-                                                                                        <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
-                                                                                        <span className='col-green'>{proposal.proposalVal / ONE_TRX}</span> &nbsp;
-                                                                                        <span>TRX</span>
+                                                                                    <div>
+                                                                                        <div className="proposal-message">
+                                                                                            <span>{ intl.formatMessage({id: 'propose_6'})}</span>
+                                                                                            <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
+                                                                                            <span className='col-green'>{proposal.proposalVal / ONE_TRX}</span> &nbsp;
+                                                                                            <span>TRX</span>
+                                                                                        </div>
+                                                                                        {
+                                                                                            proposal.proposalId == 23?<div className="mt-1">
+                                                                                                <span>{ intl.formatMessage({id: 'propose_31'})}</span>
+                                                                                                <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
+                                                                                                <span className='col-green'>{ 160000000 / ONE_TRX}</span> &nbsp;
+                                                                                                <span>TRX</span>
+                                                                                            </div>:''
+                                                                                        }
                                                                                     </div>
+
                                                                                 }
                                                                                 {
                                                                                     proposal.key == 'getWitnessStandbyAllowance' &&
