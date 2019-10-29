@@ -1415,6 +1415,7 @@ export const messages = {
   "propose_26": "提议修改多重签名的费用",
   "propose_27": "提议开启协议优化功能",
   "propose_28": "提议支持波场虚拟机0.5.4的新功能",
+  "propose_30": "提议开启去中心化投票分红机制",
   "propose_minute": "分钟",
   "propose_unactivate": "未开启",
   "propose_not_allowed": "不允许",
@@ -2149,5 +2150,6 @@ export const messages = {
 
   "develpopers_reward_tip":"感谢所有帮助java-tron开发的开发者们，波场基金会欢迎并且感谢所有开发者们的贡献。",
   "develpopers_niTron":"2020年，niTron全球开发者大会将于2月29日在韩国举办。 截止到2020年1月31日，总积分排名前五的开发者，每人都可以获赠门票两张。",
+
 
 };

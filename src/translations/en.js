@@ -1399,6 +1399,7 @@ export const messages = {
   "propose_26": "Propose to modify the fee for multi-signature",
   "propose_27": "Propose to enable protocol optimization",
   "propose_28": "Propose to support the new features of TRON Virtual Machine 0.5.4",
+  "propose_30":"Propose to support the decentralized vote dividend",
   "propose_minute": "minute",
   "propose_unactivate": "Not activated",
   "propose_not_allowed": "Not allowed",
