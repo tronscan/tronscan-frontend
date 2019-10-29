@@ -284,8 +284,8 @@ class developersReward extends Component {
                 {loading && <div className="loading-style"><TronLoader/></div>}
                 <div className="row mt-2">
                     {
-                        total? <p className="develpopers_reward_tip">
-                            {tu("develpopers_reward_tip")}
+                        total? <p className="developers_reward_tip">
+                            {tu("developers_reward_tip")}
                         </p>:''
                     }
 
@@ -318,8 +318,8 @@ class developersReward extends Component {
                             />
                         </div>
                         {
-                            total?<p>
-                                {tu("develpopers_niTron")}
+                            total?<p className="developers_tip_bottom">
+                                {tu("developers_niTron")}
                             </p>:''
                         }
 

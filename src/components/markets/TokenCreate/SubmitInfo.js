@@ -195,7 +195,7 @@ class SubmitInfo extends Component {
 
     render() {
         let { nextStep } = this.props;
-        let { modal, type,
+        let { modal, type, captcha_code,
             paramData:{ tokenName, tokenSymbol, tokenId, tokenAddress, totalSupply, circulation,
                 ownerAddress, description, logo, fprice, sprice,
                 home_page, email, isInOtherMarket, tokenIssScheme, white_paper,
@@ -387,7 +387,7 @@ class SubmitInfo extends Component {
                 <section className="text-right px-2" >
                     <button className="btn btn-default btn-lg" onClick={() => nextStep(0)}>{tu('prev_step')}</button>
                     <button className="ml-4 btn btn-danger btn-lg" htmltype="submit"
-                        // disabled={!captcha_code}
+                        disabled={!captcha_code}
                         onClick={this.confirmSubmit}>{tu('submit')}</button>
                 </section>
             </main>

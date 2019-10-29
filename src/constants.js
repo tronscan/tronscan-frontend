@@ -11,9 +11,10 @@ export const IS_DESKTOP = process.env.DESKTOP === "true";
 //export const IS_SUNNET = Lockr.get("NET") === "sunnet";
 
 export const NETURL = {
-    MAINNET:'http://18.217.215.94:86',
-    SUNNET:'http://18.217.215.94:89',
+    MAINNET: "https://debug.tronscan.org",
+    SUNNET: "https://debugdappchain.tronscan.org"
 };
+
 export const IS_MAINNET = window.location.origin === NETURL.MAINNET;
 export const IS_SUNNET = window.location.origin === NETURL.SUNNET;
 
@@ -33,10 +34,10 @@ export const API_URL = IS_SUNNET?API_URL_SUNNET:process.env.API_URL;
 export const CONTRACT_MAINNET_API_URL = process.env.API_URL;
 
 //Token issued
-export const MARKET_API_URL = 'http://platform.tron.network';
+export const MARKET_API_URL = 'https://platform.tron.network';
 
 //trx.market
-export const MARKET_HTTP_URL = 'http://18.222.178.103:83';
+export const MARKET_HTTP_URL = 'https://trx.market';
 
 
 export const ACCOUNT_PRIVATE_KEY = "ACCOUNT_PRIVATE_KEY";
