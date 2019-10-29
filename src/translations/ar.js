@@ -2028,4 +2028,6 @@
   "verifty_contract_result":"Validation results",
   "main_contract_deployment":"(Please select the main contract deployment)",
   "enter_main_contract":"Please enter the name of the main contract",
+  "contract_verifty_passed":"Verified",
+  "unverifty_passed":"Unverified",
 };

@@ -106,7 +106,7 @@ class Contracts extends React.Component {
           render: (text, record, index) => {
               return <span>
             {
-                text == 2?<img style={{width: '20px', height: '20px'}} src={require("../../images/contract/Verified.png")}/>:<img style={{width: '20px', height: '20px'}} src={require("../../images/contract/Unverified.png")}/>
+                text == 2?<span><img style={{width: '20px', height: '20px'}} src={require("../../images/contract/Verified.png")}/><span className="ml-1"> {upperFirst(intl.formatMessage({id: 'contract_verifty_passed'}))}</span></span>:<span><img style={{width: '20px', height: '20px'}} src={require("../../images/contract/Unverified.png")}/><span style={{color:'rgb(216, 216, 216)'}} className="ml-1">{upperFirst(intl.formatMessage({id: 'unverifty_passed'}))}</span></span>
             }
         </span>
           }

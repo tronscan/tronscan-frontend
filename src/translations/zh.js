@@ -2072,5 +2072,7 @@ export const messages = {
   "verifty_contract_result":"验证结果",
   "main_contract_deployment":"（请选择主合约部署）",
   "enter_main_contract":"请输入主合约的名称",
+  "contract_verifty_passed":"验证通过",
+  "unverifty_passed":"未验证",
 
 };
