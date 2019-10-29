@@ -63,7 +63,6 @@ class developersReward extends Component {
             item.index = index +1;
             item.extraData = (new Function("return " + item.extra))();
         })
-        console.log('data',data)
         this.setState({
             loading: false,
             developers: data,
@@ -199,7 +198,6 @@ class developersReward extends Component {
                 className: 'ant_table',
                 width: '40%',
                 render: (text, record, index) => {
-                    console.log(record.extraData)
                     return <div>
                         {
                             record.extraData &&  record.extraData.imgUrl !== 'null' ?
@@ -283,9 +281,12 @@ class developersReward extends Component {
                 {modal}
                 {loading && <div className="loading-style"><TronLoader/></div>}
                 <div className="row mt-2">
-                    <p className="develpopers_reward_tip">
-                        {tu("develpopers_reward_tip")}
-                    </p>
+                    {
+                        total? <p className="developers_reward_tip">
+                            {tu("developers_reward_tip")}
+                        </p>:''
+                    }
+
                     <div className="col-md-12 table_pos trc20-ad-bg">
                         {total ?<div className="table_pos_info d-none d-md-block" style={{left: 'auto'}}>
                             <div>{tu('view_total')} {total} {tu('account_unit')}</div>
@@ -314,8 +315,14 @@ class developersReward extends Component {
                                 }}
                             />
                         </div>
+                        {
+                            total?<p className="developers_tip_bottom">
+                                {tu("developers_niTron")}
+                            </p>:''
+                        }
 
                     </div>
+
                 </div>
             </main>
         )

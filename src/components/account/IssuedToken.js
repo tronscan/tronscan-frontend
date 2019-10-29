@@ -1,4 +1,5 @@
 import {connect} from "react-redux";
+import { Link } from 'react-router-dom';
 import React from "react";
 import {tu, t,option_t} from "../../utils/i18n";
 import {alpha} from "../../utils/str";
@@ -6,25 +7,29 @@ import {Client} from "../../services/api";
 import _ from "lodash";
 import { Tag } from 'antd';
 import {TokenLink, TokenTRC20Link, HrefLink, AddressLink} from "../common/Links";
+import {QuestionMark} from "../common/QuestionMark";
 import AppealModal from './AppealModal'
 import xhr from "axios/index";
 import {FormattedDate, FormattedNumber, FormattedRelative, FormattedTime, injectIntl} from "react-intl";
-import {API_URL,CONTRACT_MAINNET_API_URL} from "../../constants";
+import { API_URL, CONTRACT_MAINNET_API_URL, TOKENTYPE, MARKET_API_URL, VERIFYSTATUS, MARKET_HTTP_URL } from "../../constants";
 import { getTime} from "date-fns";
 import {CopyToClipboard} from "react-copy-to-clipboard";
 import {Tooltip} from "reactstrap";
-import { Popover, Button } from 'antd';
+import { Popover, Button, Tooltip as AntdTip } from 'antd';
 import { IS_SUNNET, IS_MAINNET } from './../../constants';
 import MappingModal from './MappingModal';
-import SweetAlert from "react-bootstrap-sweetalert";
+import SweetAlert from 'react-bootstrap-sweetalert';
+
 
 class IssuedToken extends React.Component{
     constructor() {
         super();
         this.state = {
+            modal: null,
             disabled: false,
             modalStatus: false,
             token20List: [],
+            marketInfoToken20: [],
             appealInfo: '',
             copied: false,
             id: alpha(24),
@@ -76,7 +81,9 @@ class IssuedToken extends React.Component{
           element = {holder, transfer20, ...element}
           arr.push(element)
         }
+        this.getMarketInfoToken20(arr);
         this.setState({token20List: arr})
+
       }
     }
 
@@ -111,13 +118,16 @@ class IssuedToken extends React.Component{
 
     componentDidUpdate(prevProps) {
       const {issuedAsset, account} = this.props
+      if(IS_MAINNET){
+          if(account != prevProps.account){
+              this.get20token()
+          }
+          if(issuedAsset && issuedAsset != prevProps.issuedAsset){
+              this.getAppealRecent10(issuedAsset.ownerAddress)
+              this.getMarketInfoToken10();
+          }
+      }
 
-      if(account != prevProps.account){
-        this.get20token()
-      }
-      if(issuedAsset && issuedAsset != prevProps.issuedAsset){
-        this.getAppealRecent10(issuedAsset.ownerAddress)
-      }
     }
 
     async  componentDidMount() {
@@ -125,11 +135,63 @@ class IssuedToken extends React.Component{
           this.get20token()
       }
     }
+
     hideModal = () => {
         this.setState({
             modal: null,
         });
     };
+    /**
+     * get market information token10
+     */
+    getMarketInfoToken10 = async() => {
+        const { issuedAsset } = this.props;
+        const { id } = issuedAsset || {};
+        if (!!id) {
+            const param = {
+                tokenIdOrAddr: id
+            };
+    
+            let { data: { data = {} } } = await xhr.post(`${MARKET_API_URL}/api/token/getTokenInfoByTokenIdOrAddr`, param);
+            const { tokenOtherInfo, description, sprice, fprice } = data;
+            const tokenOtherInfoObj = !!tokenOtherInfo ? JSON.parse(tokenOtherInfo) : {};
+            data.description = window.decodeURIComponent(description);
+            data = Object.assign(data, tokenOtherInfoObj, { sprice: `${sprice}`, fprice: `${fprice}` });
+            this.setState({
+                marketInfoToken10: data,
+            });
+        }
+    }
+
+    /**
+     * get market information token20
+     */
+    getMarketInfoToken20 = async(token20List) => {
+        const addressArr = token20List && token20List.map(v => {
+            const param = {
+                tokenIdOrAddr: v.contract_address
+            };
+            return xhr.post(`${MARKET_API_URL}/api/token/getTokenInfoByTokenIdOrAddr`, param);
+        })
+        Promise.all([...addressArr])
+            .then(v => v && v.length === addressArr.length ? Promise.resolve(v) : Promise.reject(v))
+            .then(v => {
+                const token20Infos = v.map(item => {
+                    let { data: { data = {} } } = item;
+                    const { tokenOtherInfo, description, sprice, fprice } = data;
+                    const tokenOtherInfoObj = !!tokenOtherInfo ? JSON.parse(tokenOtherInfo) : {};
+                    data.description = window.decodeURIComponent(description);
+                    data = Object.assign(data, tokenOtherInfoObj, { sprice: `${sprice}`, fprice: `${fprice}` });
+                    return data;
+                })
+
+                this.setState({
+                    marketInfoToken20: token20Infos,
+                })
+            })
+            .catch(e => { console.log(e); });
+    }
+
     /**
      * open MappingModal
      * @param address: symbol:currency
@@ -188,12 +250,294 @@ class IssuedToken extends React.Component{
         return _.isEqual(mappedToSideChainList, sidechainList);
       }
     }
+    
+    /**
+     * get market token20 html
+     */
+    getMarketToken20Html = (index, item) => {
+        const { contract_address: address, decimals } = item;
+        const { marketInfoToken20 } = this.state;
+        const hasMarketToken20Data = marketInfoToken20 && marketInfoToken20.length > index;
+        const data = marketInfoToken20[index];
+        let { updateTime, verifyStatus, isFirstRecommend } = data || {};
+        const { marketNoEntry, marketNotThrough, MarketProcessing, isListNoEntry, isToAudit, isNotThrough, isThrough, isShelves, isRemoved } = this.getMarketBtnStatus(verifyStatus, isFirstRecommend);
+        return <tr className="line-2">
+            <td>
+                { isThrough && <i className="fas fa-check-circle"></i> }
+                { !isThrough && <div className="tip">2</div> }
+            </td>
+            <td>
+            </td>
+            <td>{tu('input_market')}</td>
+            <td>
+                {marketNoEntry
+                    ? MarketProcessing?<AntdTip title={<span>{tu('in_progress_tip')}</span>}>
+                        <Tag color="#E69F4E">
+                            {tu('in_progress')}
+                        </Tag>
+                      </AntdTip>:<AntdTip title={<span>{tu('not_entry_tip')}</span>}>
+                        <Tag color="#A4A3A3">
+                            {tu('not_entry')}
+                        </Tag>
+                      </AntdTip>
+                    : marketNotThrough?
+                        <AntdTip title={<span>{tu('in_progress_tip')}</span>}>
+                            <Tag color="#E69F4E">{tu('in_progress')}</Tag>
+                        </AntdTip>
+                        :(!isThrough && !isShelves && <div><AntdTip title={<span>{tu('type_pass_market_tip')}</span>}>
+                        <Tag color="#28a745">{tu('type_pass_through')}</Tag>
+                        </AntdTip></div>)
+                }
+                {isListNoEntry && <AntdTip title={<span>{tu('not_entry_list_tip')}</span>}>
+                        <Tag color="#A4A3A3">{tu('not_entry_list')}</Tag>
+                    </AntdTip>}
+                {isToAudit && <AntdTip title={<span>{tu('to_audit_tip')}</span>}>
+                        <Tag color="#E69F4E">{tu('to_audit')}</Tag>
+                    </AntdTip>}
+                {isNotThrough && <AntdTip title={<span>{tu('not_through_tip')}</span>}>
+                        <Tag color="#C34339">{tu('not_through')}</Tag>
+                    </AntdTip>}
+                {isThrough && <AntdTip title={<span>{tu('type_pass_tip')}</span>}>
+                        <Tag color="#28a745">{tu('type_pass')}</Tag>
+                    </AntdTip>}
+                {isRemoved && <AntdTip title={<span>{tu('removed_tip')}</span>}>
+                    <Tag color="#171717">{tu('removed')}</Tag>
+                </AntdTip>}
+                {isShelves && <AntdTip title={<span>{tu('shelves_market_tip')}</span>}>
+                        <Tag color="#171717">{tu('shelves')}</Tag>
+                    </AntdTip>}
 
+            </td>
+            <td className="text-light">
+                {hasMarketToken20Data && !marketNoEntry && !marketNotThrough &&  !MarketProcessing&&
+                    <div>
+                        {isShelves?tu('shelves_time'):tu('pass_time')}:
+                        <FormattedDate value={updateTime}/>&nbsp;
+                        <FormattedTime value={updateTime}  hour='numeric' minute="numeric" second='numeric' hour12={false}/>
+                    </div>
+                }
+                {
+                    isListNoEntry || isRemoved || isToAudit || isNotThrough && <div style={{height:21}}></div>
+                }
+            </td>
+            <td></td>
+            <td>
+                {!marketNoEntry && !isShelves && !marketNotThrough && !MarketProcessing && <div> <a href={`${MARKET_HTTP_URL}/exchange?id=${data.pairId}`} target="_blank"> {tu('check_market_detail')}</a></div>}
+                {(marketNoEntry && !MarketProcessing && !marketNotThrough) && <div><span style={{color:"#C23631",cursor:"pointer"}}
+                        onClick={() => this.jumpPage(decimals, `/tokens/markets/create/${TOKENTYPE.TOKEN20}/${address}`)}>
+                        {tu('search_trading_area')}</span><span className="float-right">
+                      <QuestionMark placement="top" text="search_trading_area_tip"/>
+                  </span></div>}
+                {(MarketProcessing || marketNotThrough) && <div><span style={{color:"#A4A3A3"}}>
+                        {tu('search_trading_area')}</span><span className="float-right">
+                      <QuestionMark placement="top" text="search_trading_area_tip"/>
+                  </span></div>}
+                {/*{marketNotThrough && <div><span style={{color:"#C23631",cursor:"pointer"}}*/}
+                                            {/*onClick={() => this.jumpPage(decimals, `/tokens/markets/create/${TOKENTYPE.TOKEN20}/${address}`)}>*/}
+                    {/*{tu('search_trading_area_again')}</span><span className="float-right">*/}
+                      {/*<QuestionMark placement="top" text="search_trading_area_tip"/>*/}
+                  {/*</span></div>}*/}
+                {(isToAudit || marketNoEntry || marketNotThrough || isRemoved || MarketProcessing) && <div><span style={{color:"#A4A3A3"}}>{tu('list_trading_area')}</span><span className="float-right">
+                      <QuestionMark placement="top" text="list_trading_area_tip"/>
+                  </span></div>}
+                {(isNotThrough || isListNoEntry) && <div><span style={{color:"#C23631",cursor:"pointer"}}
+                    onClick={() => this.jumpListEntry(data, address)}>{tu('list_trading_area')}</span><span className="float-right">
+                      <QuestionMark placement="top" text="list_trading_area_tip"/>
+                  </span></div>}
+            </td>
+        </tr>
+    }
+
+    /**
+     * get market token10 html
+     */
+    getMarketToken10Html = () => {
+        const { marketInfoToken10 } = this.state;
+        const { issuedAsset } = this.props;
+        const { id, precision } = issuedAsset || {};
+        const { updateTime, verifyStatus, isFirstRecommend } = marketInfoToken10 || {};
+        const { marketNoEntry,marketNotThrough, MarketProcessing, isListNoEntry, isToAudit, isNotThrough, isThrough, isShelves, isRemoved } = this.getMarketBtnStatus(verifyStatus, isFirstRecommend);
+
+        return <tr className="line-2">
+            <td>
+                { isThrough && <i className="fas fa-check-circle"></i> }
+                { !isThrough && <div className="tip">2</div> }
+            </td>
+            <td>
+            </td>
+            <td>{tu('input_market')}</td>
+            <td>
+                {marketNoEntry
+                    ? MarketProcessing?<AntdTip title={<span>{tu('in_progress_tip')}</span>}>
+                        <Tag color="#E69F4E">
+                            {tu('in_progress')}
+                        </Tag>
+                    </AntdTip>:
+                    <AntdTip title={<span>{tu('not_entry_tip')}</span>}>
+                        <Tag color="#A4A3A3">
+                            {tu('not_entry')}
+                        </Tag>
+                      </AntdTip>
+                    : marketNotThrough?
+                        <AntdTip title={<span>{tu('in_progress_tip')}</span>}>
+                            <Tag color="#E69F4E">{tu('in_progress')}</Tag>
+                        </AntdTip>
+                        : (!isThrough && !isShelves && <div><AntdTip title={<span>{tu('type_pass_market_tip')}</span>}>
+                            <Tag color="#28a745">{tu('type_pass_through')}</Tag>
+                        </AntdTip></div>)
+                }
+                {isListNoEntry && <AntdTip title={<span>{tu('not_entry_list_tip')}</span>}>
+                        <Tag color="#A4A3A3">{tu('not_entry_list')}</Tag>
+                    </AntdTip>}
+                {isToAudit && <AntdTip title={<span>{tu('to_audit_tip')}</span>}>
+                        <Tag color="#E69F4E">{tu('to_audit')}</Tag>
+                    </AntdTip>}
+                {isNotThrough && <AntdTip title={<span>{tu('not_through_tip')}</span>}>
+                        <Tag color="#C34339">{tu('not_through')}</Tag>
+                    </AntdTip>}
+                {isThrough && <AntdTip title={<span>{tu('type_pass_tip')}</span>}>
+                        <Tag color="#28a745">{tu('type_pass')}</Tag>
+                    </AntdTip>}
+                {isRemoved && <AntdTip title={<span>{tu('removed_tip')}</span>}>
+                    <Tag color="#171717">{tu('removed')}</Tag>
+                </AntdTip>}
+                {isShelves && <AntdTip title={<span>{tu('shelves_market_tip')}</span>}>
+                        <Tag color="#171717">{tu('shelves')}</Tag>
+                    </AntdTip>}
+            </td>
+            <td className="text-light">
+                {!marketNoEntry &&
+                    <div>
+                        {isShelves?tu('shelves_time'):tu('pass_time')}:
+                        <FormattedDate value={updateTime}/>&nbsp;
+                        <FormattedTime value={updateTime}  hour='numeric' minute="numeric" second='numeric' hour12={false}/>
+                    </div>
+                }
+                {
+                    isListNoEntry || isRemoved || isToAudit || isNotThrough && <div style={{height:21}}></div>
+                }
+            </td>
+            <td></td>
+            <td>
+                {!marketNoEntry && !isShelves && !marketNotThrough && !MarketProcessing  && <div><a href={`${MARKET_HTTP_URL}/exchange?id=${marketInfoToken10.pairId}`} target="_blank"> {tu('check_market_detail')}</a></div>}
+                {(marketNoEntry && !MarketProcessing && !marketNotThrough) && <div><span style={{color:"#C23631",cursor:"pointer"}}
+                        onClick={() => this.jumpPage(precision, `/tokens/markets/create/${TOKENTYPE.TOKEN10}/${id}`)}>
+                        {tu('search_trading_area')}</span><span className="float-right">
+                      <QuestionMark placement="top" text="search_trading_area_tip"/>
+                  </span> </div>}
+                {( MarketProcessing || marketNotThrough) && <div><span style={{color:"#A4A3A3"}}>
+                        {tu('search_trading_area')}</span><span className="float-right">
+                      <QuestionMark placement="top" text="search_trading_area_tip"/>
+                  </span></div>}
+                {/*{marketNotThrough && <div><span style={{color:"#C23631",cursor:"pointer"}}*/}
+                                            {/*onClick={() => this.jumpPage(precision, `/tokens/markets/create/${TOKENTYPE.TOKEN10}/${id}`)}>*/}
+                    {/*{tu('search_trading_area_again')}</span><span className="float-right">*/}
+                      {/*<QuestionMark placement="top" text="search_trading_area_tip"/>*/}
+                  {/*</span> </div>}*/}
+
+                {(isToAudit || marketNoEntry || marketNotThrough || isRemoved || MarketProcessing) && <div><span style={{color:"#A4A3A3"}}>{tu('list_trading_area')}</span><span className="float-right">
+                      <QuestionMark placement="top" text="list_trading_area_tip"/>
+                  </span></div>}
+                {(isNotThrough || isListNoEntry) && <div><span style={{color:"#C23631",cursor:"pointer"}}
+                    onClick={() => this.jumpListEntry(marketInfoToken10, id)}>
+                    {tu('list_trading_area')}</span><span className="float-right">
+                      <QuestionMark placement="top" text="list_trading_area_tip"/>
+                  </span></div>}
+            </td>
+        </tr>
+    };
+
+    /**
+     * precision error
+     */
+    showPrecisionModal = () => {
+        const { intl } = this.props;
+        this.setState({
+            loading: false,
+            step:0,
+            modal: <SweetAlert
+                error
+                title=""
+                confirmBtnText={intl.formatMessage({ id: 'confirm' })}
+                confirmBtnBsStyle="danger"
+                onConfirm={this.hidePrecisionModal}
+                style={{ marginLeft: '-240px', marginTop: '-195px' }}
+            >
+                {tu('precision_error')}
+            </SweetAlert>
+        });
+    }
+
+    /**
+     * close
+     */
+    hidePrecisionModal = () => {
+        this.setState({
+            modal: null,
+        });
+    };
+
+    /**
+     * jump page
+     */
+    jumpPage = (precision, url, tokenInfo) => {
+        const { history } = this.props;
+
+        if (precision > 8) {
+          this.showPrecisionModal();
+          return false;
+        }
+
+        if (!history) {
+            return false;
+        }
+
+        if (Number(precision) > 8) {
+            return false;
+        }
+        history.push({
+            pathname: url,
+            state: {
+                tokenInfo
+            }
+        });
+    }
+    
+    jumpListEntry = (tokenInfo, tokenId) => {
+        const { history } = this.props;
+        const { id } = tokenInfo;
+        history.push({
+            pathname: `/tokens/markets/add/team/${tokenId}/${id}`,
+            state: {
+                tokenInfo
+            }
+        });
+    }
+
+    /**
+     * get market button status
+     */
+    getMarketBtnStatus = (verifyStatus,isFirstRecommend) => {
+        return {
+            marketNoEntry: (!verifyStatus && verifyStatus !== VERIFYSTATUS.HASBEENSUBMITTED) || (!verifyStatus && verifyStatus !== VERIFYSTATUS.HASBEENSUBMITTEDTHREE) || verifyStatus === VERIFYSTATUS.NOTRECORDED,
+            marketNotThrough: verifyStatus === VERIFYSTATUS.HASBEENSUBMITTEDTHREE,
+            MarketProcessing: verifyStatus === VERIFYSTATUS.HASBEENSUBMITTED,
+            isListNoEntry: verifyStatus == VERIFYSTATUS.NOTRECOMMENDED && isFirstRecommend != 0,
+            isToAudit: verifyStatus == VERIFYSTATUS.HASBEENRECORDED
+                || verifyStatus === VERIFYSTATUS.TOAUDIT || verifyStatus === VERIFYSTATUS.APPROVED
+                || verifyStatus === VERIFYSTATUS.RECOMMENDEDFAILED,
+            isNotThrough: verifyStatus === VERIFYSTATUS.REJECTED,
+            isThrough: verifyStatus === VERIFYSTATUS.RECOMMENDED || verifyStatus === VERIFYSTATUS.CONFIRMED,
+            isShelves: verifyStatus === VERIFYSTATUS.SHELVES,
+            isRemoved: verifyStatus == VERIFYSTATUS.NOTRECOMMENDED && isFirstRecommend == 0,
+
+        };
+    }
 
     render() {
       const issuedAsset = this.props.issuedAsset;
       const { token20List, appealInfo, copied, id, isShowMappingModal, currency,
-        address, modal } = this.state;
+        address, modal, marketInfoToken10, marketInfoToken20 } = this.state;
       const { account, intl, currentWallet, unfreezeAssetsConfirmation, sidechains, walletType } = this.props;
 
       const isPrivateKey =  walletType.type === "ACCOUNT_PRIVATE_KEY" || walletType.type === "ACCOUNT_TRONLINK";
@@ -264,6 +608,7 @@ class IssuedToken extends React.Component{
 
         return (
           <div className="mt-4">
+          {modal}
           {(Boolean(token20List.length) || issuedAsset) && <h4 style={{ marginBottom: '-0.5rem' }}>{tu('token_input_success_myaccount')}</h4>}
           <div>{issuedAsset && 
             <div className="tf-card mt-3">
@@ -409,16 +754,8 @@ class IssuedToken extends React.Component{
                       id={issuedAsset && issuedAsset.id}/></td>
                     </tr>
                     
-                  {/* <tr className="line-2">
-                      <td><div className="tip">2</div></td>
-                      <td><Tag color="blue">{tu('application_entry')}</Tag></td>
-                      <td>{tu('input_market')}</td>
-                      <td></td>
-                      <td className="text-light">{tu('pass_time')}:2019-03-04 20:00:00</td>
-                      <td></td>
-                      <td><a >{tu('check_market_detail')}</a></td>
-                    </tr>
-                    <tr className="line-3">
+                    { status10.isPassed && this.getMarketToken10Html()}
+                    {/* <tr className="line-3">
                       <td></td>
                       <td><Tag color="blue">{tu('application_entry')}</Tag></td>
                       <td>{tu('input_abcc')}</td>
@@ -540,17 +877,8 @@ class IssuedToken extends React.Component{
                             <TokenTRC20Link name={tu('check_token_detail')} address={token20Item.contract_address}/>
                           </td>
                         </tr>
-                        {/**
-                        <tr className="line-2">
-                          <td><div className="tip">2</div></td>
-                          <td><Tag color="blue">{tu('application_entry')}</Tag></td>
-                          <td>{tu('input_market')}</td>
-                          <td></td>
-                          <td className="text-light">{tu('pass_time')}:2019-03-04 20:00:00</td>
-                          <td></td>
-                          <td><a >{tu('check_market_detail')}</a></td>
-                        </tr>
-                        <tr className="line-3">
+                        { status20.isPassed && this.getMarketToken20Html(index, token20Item)}
+                        {/* <tr className="line-3">
                           <td></td>
                           <td><Tag color="blue">{tu('application_entry')}</Tag></td>
                           <td>{tu('input_abcc')}</td>

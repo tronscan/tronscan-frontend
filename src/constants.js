@@ -6,12 +6,15 @@ export const ONE_TRX = 1000000;
 
 export const IS_TESTNET = process.env.NET === "testnet";
 export const IS_DESKTOP = process.env.DESKTOP === "true";
+
 //export const IS_MAINNET = Lockr.get("NET") === "mainnet" || !Lockr.get("NET");
 //export const IS_SUNNET = Lockr.get("NET") === "sunnet";
+
 export const NETURL = {
-  MAINNET: "https://tronscan.org",
-  SUNNET: "https://dappchain.tronscan.org"
+    MAINNET: "https://tronscan.org",
+    SUNNET: "https://dappchain.tronscan.org"
 };
+
 export const IS_MAINNET = window.location.origin === NETURL.MAINNET;
 export const IS_SUNNET = window.location.origin === NETURL.SUNNET;
 
@@ -23,10 +26,19 @@ export const ASSET_ISSUE_COST = 1024 * ONE_TRX;
 
 export const PUBLIC_URL = process.env.PUBLIC_URL || window.location.origin;
 //export const API_URL = process.env.API_URL;
-export const API_URL_SUNNET = "https://dappchainapi.tronscan.org";
-export const API_URL_MAINNET = "https://apilist.tronscan.org";
-export const API_URL = IS_SUNNET ? API_URL_SUNNET : process.env.API_URL;
+//test
+//export const API_URL_SUNNET = 'http://3.15.181.169:9000';
+export const API_URL_SUNNET = 'https://dappchainapi.tronscan.org';
+// export const API_URL_MAINNET = 'https://apilist.tronscan.org';
+export const API_URL = IS_SUNNET?API_URL_SUNNET:process.env.API_URL;
 export const CONTRACT_MAINNET_API_URL = process.env.API_URL;
+
+//Token issued
+export const MARKET_API_URL = 'https://platform.tron.network';
+
+//trx.market
+export const MARKET_HTTP_URL = 'https://trx.market';
+
 
 export const ACCOUNT_PRIVATE_KEY = "ACCOUNT_PRIVATE_KEY";
 export const ACCOUNT_ADDRESS = "ACCOUNT_ADDRESS";
@@ -94,3 +106,40 @@ export const TORNSOCKET = {
   WSSURLMAIN: "wss://apilist.tronscan.org/api/tronsocket",
   WSSURLSUN: "wss://dappchainapi.tronscan.org/api/tronsocket"
 };
+
+// token type
+export const TOKENTYPE = {
+    TOKEN10: 'trc10',
+    TOKEN20: 'trc20',
+};
+
+// market basic page
+export const MARKETPAGE = {
+    CREATE: 'create',
+    UPDATE: 'update',
+};
+
+// market token verify status
+export const VERIFYSTATUS = {
+    HASBEENSUBMITTEDTHREE:-3,
+    NOTRECORDED: -2, // No recorded
+    HASBEENRECORDED: -1, // Has been recorded
+    HASBEENSUBMITTED: 0, // Has been submitted
+    NOTRECOMMENDED: 1, // not recommended
+    TOAUDIT: 2, // to audit
+    APPROVED: 3, // reviewed for recommendation
+    RECOMMENDED: 4, // reviewed and recommended
+    REJECTED: 5, // rejected
+    SHELVES: 6, // Has been off the shelves
+    CONFIRMED: 7, // Have been confirmed
+    RECOMMENDEDFAILED: 8, // Review recommendation failed
+};
+
+// JSEncrypt key
+export const JSENCRYPTKEY = `-----BEGIN PUBLIC KEY-----MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCezlJJy/F7LO5+fmIcUjWq0APOILbzUEAcMyK/1VK7d5G0vb58thDtG0rK72uzFA1e0SByI2Hdqy0JbE8a2+cSIBN1y9iKw4WW5MJLBZXrMZmUjcgHYCbH7yjbDOOGCXtmINaNeLOcieLVvf7fDQaRAJniNuDgNtqjqtMuOFfApQIDAQAB-----END PUBLIC KEY-----`;
+
+// market token entry fromId
+export const FROMID = 1;
+
+// url regexp
+export const URLREGEXP = /^((ht|f)tps?):\/\/[\w\-]+(\.[\w\-]+)+([\w\-.,@?^=%&:\\/~+#]*[\w\-@?^=%&\\/~+#])?$/;

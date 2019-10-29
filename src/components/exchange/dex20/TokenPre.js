@@ -42,7 +42,8 @@ export const precisions = {
   tshare_trx: 4,
   topia_trx: 3,
   dvs_trx: 2,
-  bnkr_trx: 3
+  bnkr_trx: 3,
+  btzc_trx: 4,
 };
 
 export function fixed(value, n) {
