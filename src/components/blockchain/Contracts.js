@@ -138,7 +138,7 @@ class Contracts extends React.Component {
         align: 'left',
         className: 'ant_table',
         render: (text, record, index) => {
-          return <TRXPrice amount={parseInt(text) / ONE_TRX}/>
+          return <TRXPrice amount={ (text || text== 0)? parseInt(text) / ONE_TRX : 0}/>
         }
       },
       {
