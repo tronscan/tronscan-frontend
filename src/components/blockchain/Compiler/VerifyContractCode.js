@@ -201,7 +201,6 @@ class VerifyContractCode extends Component {
      */
     gTagHandler = () => {
         const { account: { address } } = this.props;
-
         window.gtag('event', 'verify', {
             'event_category': 'contract',
             'event_label': address,
@@ -539,6 +538,7 @@ const styles = {
     }
 
 };
+
 function mapStateToProps(state) {
     return {
         account: state.app.account,

@@ -112,7 +112,6 @@ class Proposal extends React.Component {
         if(IS_MAINNET){
             for(let item in proposal){
                 for(let j in proposal[item]['paramters']){
-                    console.log(parametersArr[j])
                     proposal[item]['key'] = parametersArr[j];
                     proposal[item]['proposalVal'] = proposal[item]['paramters'][j];
                 }
@@ -155,7 +154,7 @@ class Proposal extends React.Component {
             title: upperFirst(intl.formatMessage({id: 'proposal_content_info'})),
             dataIndex: 'proposalVal',
             key: 'proposalVal',
-            width:'35%',
+            width:'40%',
             render: (text, record, index) => {
                 return  <div>
                     {
@@ -209,10 +208,21 @@ class Proposal extends React.Component {
                             {
                                 record.key == 'getWitnessPayPerBlock' &&
                                 <div>
-                                    <span>{ intl.formatMessage({id: 'propose_6'})}</span>
-                                    <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
-                                    <span>{text / ONE_TRX}</span> &nbsp;
-                                    <span>TRX</span>
+                                    <div>
+                                        <span>{ intl.formatMessage({id: 'propose_6'})}</span>
+                                        <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
+                                        <span>{text / ONE_TRX}</span> &nbsp;
+                                        <span>TRX</span>
+                                    </div>
+                                    {
+                                        record.proposalId == 23?<div className="mt-1">
+                                            <span>{ intl.formatMessage({id: 'propose_31'})}</span>
+                                            <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
+                                            <span>{ 160000000 / ONE_TRX}</span> &nbsp;
+                                            <span>TRX</span>
+                                        </div>:''
+                                    }
+
                                 </div>
                             }
                             {
