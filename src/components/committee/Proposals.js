@@ -67,7 +67,11 @@ class Proposal extends React.Component {
             'getMultiSignFee',
             'getAllowProtoFilterNum',
             '',
-            'getAllowTvmConstantinople'
+            'getAllowTvmConstantinople',
+            '',
+            '',
+            '',
+            'getChangeDelegation',
         ];
 
         let sunsideArr = [
@@ -143,7 +147,7 @@ class Proposal extends React.Component {
             dataIndex: 'index',
             key: 'index',
             render: (text, record, index) => {
-                return  '#' + (dataSource.length - index)
+                return  '#' +record.proposalId
             }
         },
         {
@@ -204,10 +208,21 @@ class Proposal extends React.Component {
                             {
                                 record.key == 'getWitnessPayPerBlock' &&
                                 <div>
-                                    <span>{ intl.formatMessage({id: 'propose_6'})}</span>
-                                    <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
-                                    <span>{text / ONE_TRX}</span> &nbsp;
-                                    <span>TRX</span>
+                                    <div>
+                                        <span>{ intl.formatMessage({id: 'propose_6'})}</span>
+                                        <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
+                                        <span>{text / ONE_TRX}</span> &nbsp;
+                                        <span>TRX</span>
+                                    </div>
+                                    {
+                                        record.proposalId == 23?<div className="mt-1">
+                                            <span>{ intl.formatMessage({id: 'propose_31'})}</span>
+                                            <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
+                                            <span>{ 160000000 / ONE_TRX}</span> &nbsp;
+                                            <span>TRX</span>
+                                        </div>:''
+                                    }
+
                                 </div>
                             }
                             {
@@ -423,6 +438,17 @@ class Proposal extends React.Component {
                                     }
                                 </div>
                             }
+                            {
+                                record.key == 'getChangeDelegation' &&
+                                <div>
+                                    <span>{ intl.formatMessage({id: 'propose_30'})}</span>
+                                    <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
+                                    {
+                                        text? <span>{tu('propose_activate')}</span>:
+                                            <span>{tu('propose_unactivate')}</span>
+                                    }
+                                </div>
+                            }
                         </div>:<div>
                             {
                                 record.key == 'getChargingSwitch' && <div>
@@ -510,7 +536,7 @@ class Proposal extends React.Component {
             title: upperFirst(intl.formatMessage({id: 'proposer'})),
             dataIndex: 'name',
             key: 'name',
-            width:'200px',
+            width:'15%',
             render: (text, record, index) => {
                 return ( record.proposer.name?
                     <AddressLink address={record.proposer.address}>{record.proposer.name}</AddressLink>:
@@ -570,6 +596,7 @@ class Proposal extends React.Component {
             title:"",
             dataIndex: 'details',
             key: 'details',
+            width:'12%',
             render: (text, record, index) => {
                 return (
                     <Link

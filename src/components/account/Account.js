@@ -70,8 +70,8 @@ import Countdown from "react-countdown-now";
 @injectIntl
 @withTronWeb
 export default class Account extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       modal: null,
       showFreezeBalance: false,
@@ -126,7 +126,6 @@ export default class Account extends Component {
               this.scrollToAnchor()
           },3000)
       }
-      console.log('currentWallet',currentWallet)
       let isActivate =  await this.isActivateAccount(account.address)
         this.setState({
             isActivate
@@ -137,11 +136,12 @@ export default class Account extends Component {
       isPrivateKey && await this.getFees();
       //get SR Brokerage
       await new Promise(resolve => setTimeout(resolve, 500));
-      if(currentWallet && IS_MAINNET){
-          if(currentWallet.representative.enabled){
-              this.getSRBrokerage();
+      if(IS_MAINNET){
+         // if(currentWallet.representative.enabled){
               await this.loadVoteTimer();
-          }
+              this.getSRBrokerage();
+
+          //}
       }
     }
   }
@@ -169,11 +169,12 @@ export default class Account extends Component {
       isPrivateKey && await this.getFees();
       //get SR Brokerage
       await new Promise(resolve => setTimeout(resolve, 500));
-      if(currentWallet && IS_MAINNET){
-        if(currentWallet.representative.enabled){
-            this.getSRBrokerage();
+      if(IS_MAINNET){
+        //if(currentWallet.representative.enabled){
             await this.loadVoteTimer();
-        }
+            this.getSRBrokerage();
+
+        //}
       }
 
     }
@@ -184,6 +185,7 @@ export default class Account extends Component {
   };
   getNextCycle() {
       let {voteTimer} = this.props;
+      console.log('voteTimer',voteTimer)
       return voteTimer;
   }
   getAddressRewardBok = async () => {
@@ -199,6 +201,7 @@ export default class Account extends Component {
   getAddressReward = async () => {
       let { account } = this.props;
       let tronWeb = account.tronWeb;
+      console.log(account.tronWeb)
       const  reward  =  await tronWeb.trx.getReward(tronWeb.defaultAddress.base58)
       this.setState({
           accountReward:reward
@@ -2162,7 +2165,7 @@ export default class Account extends Component {
             </div>
           </div>
           {
-            !IS_SUNNET && <IssuedToken issuedAsset={issuedAsset} loadAccount={this.loadAccount} unfreezeAssetsConfirmation={this.unfreezeAssetsConfirmation}/>
+            !IS_SUNNET && <IssuedToken {...this.props} issuedAsset={issuedAsset} loadAccount={this.loadAccount} unfreezeAssetsConfirmation={this.unfreezeAssetsConfirmation} />
           }
           {
             false &&
