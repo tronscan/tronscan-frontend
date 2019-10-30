@@ -36,6 +36,19 @@ export default class CompilerModal extends React.PureComponent {
                     label:"solidity-0.4.24",
                     value:"solidity-0.4.24"
                 },
+                {
+                    label:'tronbox_soljson_v1',
+                    value:"tronbox_soljson_v1"
+                },
+                {
+                    label:'tronbox_soljson_v2',
+                    value:"tronbox_soljson_v2"
+                },
+                {
+                    label:'tronbox_soljson_v3',
+                    value:"tronbox_soljson_v3"
+                },
+
 
             ],
             runs:[
