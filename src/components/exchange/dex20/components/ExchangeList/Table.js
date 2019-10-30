@@ -86,38 +86,47 @@ class ExchangeTable extends Component {
           </span>
         </section>
         <section className="table-content">
-          <div className="recommendList">
-            {dataSource.length > 0
-              ? dataSource.map((item, index) => {
+          {dataSource.length == 0 && unRecomendList.length == 0 ? (
+            this.noData()
+          ) : (
+            <div>
+              <div className="recommendList">
+                {dataSource.map((item, index) => {
                   return this.listItem(item, index);
-                })
-              : this.noData()}
-          </div>
-          {unRecomendList.length > 0 && (
-            <div className="risk-token-title">
-              {intl.formatMessage({ id: "trc20_risk_token" })}
-              <Popover content={risk_token_desc} title="">
-                <Icon
-                  type="question-circle"
-                  style={{ verticalAlign: "text-top", marginLeft: "5px" }}
-                />
-              </Popover>
+                })}
+              </div>
+
+              {unRecomendList.length > 0 && (
+                <div className="risk-token-title">
+                  {intl.formatMessage({ id: "trc20_risk_token" })}
+                  <Popover content={risk_token_desc} title="">
+                    <Icon
+                      type="question-circle"
+                      style={{ verticalAlign: "text-top", marginLeft: "5px" }}
+                    />
+                  </Popover>
+                </div>
+              )}
+              <div className="unRecommendList">
+                {unRecomendList.map((item, index) => {
+                  return this.listItem(item, index, "risk");
+                })}
+              </div>
             </div>
           )}
-          <div className="unRecommendList">
-            {unRecomendList.length > 0 &&
-              unRecomendList.map((item, index) => {
-                return this.listItem(item, index, "risk");
-              })}
-          </div>
         </section>
       </div>
     );
   }
   listItem(item, index, type) {
-    const { dataSource, transcationObj, offlineToken } = this.state;
+    const {
+      dataSource,
+      transcationObj,
+      offlineToken,
+      unRecomendList
+    } = this.state;
     const { activeLanguage, price, intl } = this.props;
-    if (dataSource.length == 0) {
+    if (dataSource.length == 0 && unRecomendList.length == 0) {
       return;
     }
 
@@ -482,7 +491,13 @@ class ExchangeTable extends Component {
       if (currentData && currentData.length) {
         this.onSetUrl(currentData[0], true);
       } else {
-        this.onSetUrl(dataSource[0] || []);
+        this.onSetUrl(
+          dataSource[0]
+            ? dataSource[0]
+            : unRecomendList[0]
+            ? unRecomendList[0]
+            : {}
+        );
       }
     }
 
