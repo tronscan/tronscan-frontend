@@ -2034,4 +2034,10 @@ export const messages = {
   "inactive_MainChain_account":"Submission Failed.This address has not been activated on TRON.Please activate first and try again",
   "mapping_warning":"This operation must be done by the token contract creator",
   "freeze_balance_limit":"잔액이 부족합니다. 다시 입력하십시오",
+
+  "total_tron_ecosystem_tokens":"Total TRON-ecosystem tokens:",
+  "number_of_lists":"Number of lists:",
+  "total_in_tronscan":"Total in tronscan:",
+  "develpopers_reward_tip":"Thank you for considering to help out with the java-tron! TRON Foundation welcome contributions from anyone on the internet, and are grateful for your contributions.",
+
 };

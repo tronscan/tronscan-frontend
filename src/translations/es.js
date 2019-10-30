@@ -1570,13 +1570,13 @@ export const messages = {
   "trc20_failed_order": "El pedido no fue confirmado por blockchain",
   "trc20_ignore": 'Ignorar',
   "trc20_see_currentParis": 'Ocultar otros pares',
-  "trc20_search_more_tokens":"搜索发现更多通证",
-  "trc20_token_name":"通证名称",
-  "trc20_token_id":"通证ID",
-  "trc20_risk_token":"风险通证",
-  "trc20_risk_token_desc":"这些通证尚未正式上币，可能存在潜在风险，请谨慎投资。",
-  "trc20_symbol_risk":"简称与其他通证重复",
-  "trc20_hight_risk_token":"高风险通证",
+  "trc20_search_more_tokens":"Busca más tokens",
+  "trc20_token_name":"Nombre de token",
+  "trc20_token_id":"ID de token",
+  "trc20_risk_token":"Token de riesgo",
+  "trc20_risk_token_desc":"Estas tokens no se han sido listado oficialmente. tendrían riesgos potenciales. Por favor haga sus inversiones con cautela.",
+  "trc20_symbol_risk":"El mismo símbolo que otra token",
+  "trc20_hight_risk_token":"Token de alto riesgo",
 
 
   /*
@@ -2037,5 +2037,10 @@ export const messages = {
   "inactive_MainChain_account":"Submission Failed.This address has not been activated on TRON.Please activate first and try again",
   "mapping_warning":"This operation must be done by the token contract creator",
   "freeze_balance_limit":"Saldo insuficiente, vuelva a ingresar",
+
+  "total_tron_ecosystem_tokens":"Total TRON-ecosystem tokens:",
+  "number_of_lists":"Number of lists:",
+  "total_in_tronscan":"Total in tronscan:",
+  "develpopers_reward_tip":"Thank you for considering to help out with the java-tron! TRON Foundation welcome contributions from anyone on the internet, and are grateful for your contributions.",
 
 };

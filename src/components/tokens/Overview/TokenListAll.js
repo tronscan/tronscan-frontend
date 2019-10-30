@@ -43,7 +43,7 @@ class TokenList extends Component {
   loadPage = async (page = 1, pageSize = 20) => {
     this.setState({loading: true})
     const { filter, countTop } = this.state
-    const {data: {tokens, total, totalAll}} = await xhr.get(API_URL+"/api/tokens/overview", {params: {
+    const {data: {tokens, total, totalAll, all}} = await xhr.get(API_URL+"/api/tokens/overview", {params: {
       start:  (page - 1) * pageSize,
       limit: pageSize,
       ...filter
@@ -99,7 +99,8 @@ class TokenList extends Component {
         total
       },
       total: total,
-      totalAll
+      totalAll,
+      all
     });
     return total;
     
@@ -298,7 +299,7 @@ class TokenList extends Component {
                   IS_MAINNET&& <span>
                     {record.extra ? <a href={record.extra.url} className="token-active-details btn mt-2">{tu(record.extra.desc)}</a>
                         : (record.pairId )?
-                            <a href={`https://trx.market/exchange?id=${record.pairId}`} className="token-details btn mt-2" target="_blank"> {tu('token_trade')}</a>
+                            <Link to={`/exchange/trc20?id=${record.pairId}`} className="token-details btn mt-2" target="_blank"> {tu('token_trade')}</Link>
                             : <div>
                               <a href="javascript:;"
                                  className="token-disabled-exchange btn mt-2"
@@ -425,18 +426,18 @@ class TokenList extends Component {
                         }
                         {
                             IS_MAINNET&& <span>
-                    {record.extra ? <a href={record.extra.url} className="token-active-details btn mt-2">{tu(record.extra.desc)}</a>
-                        : (record.pairId )?
-                            <a href={`https://trx.market/exchange?id=${record.pairId}`} className="token-details btn mt-2" target="_blank"> {tu('token_trade')}</a>
+                           {record.extra ? <a href={record.extra.url} className="token-active-details btn mt-2">{tu(record.extra.desc)}</a>
+                            : (record.pairId )?
+                            <Link to={`/exchange/trc20?id=${record.pairId}`} className="token-details btn mt-2"> {tu('token_trade')}</Link>
                             : <div>
-                              <a href="javascript:;"
-                                 className="token-disabled-exchange btn mt-2"
-                                 id={record.tokenType == "trc20"?"exchange_"+record.contractAddress:"exchange_"+record.tokenId}
-                                 onMouseOver={(prevS,props) => this.setState({[record.abbr + record.tokenId]: true})}
-                                 onMouseOut={() => this.setState({[record.abbr+record.tokenId]: false})}>
-                                  {tu('token_trade')}
-                              </a>
-                              <Tooltip placement="top" target={record.tokenType == "trc20"?"exchange_"+record.contractAddress:"exchange_"+record.tokenId} isOpen={this.state[record.abbr+record.tokenId]}> <span className="text-capitalize">{tu("token_does_not_support_exchange")}</span></Tooltip>
+                                  <a href="javascript:;"
+                                     className="token-disabled-exchange btn mt-2"
+                                     id={record.tokenType == "trc20"?"exchange_"+record.contractAddress:"exchange_"+record.tokenId}
+                                     onMouseOver={(prevS,props) => this.setState({[record.abbr + record.tokenId]: true})}
+                                     onMouseOut={() => this.setState({[record.abbr+record.tokenId]: false})}>
+                                      {tu('token_trade')}
+                                  </a>
+                                  <Tooltip placement="top" target={record.tokenType == "trc20"?"exchange_"+record.contractAddress:"exchange_"+record.tokenId} isOpen={this.state[record.abbr+record.tokenId]}> <span className="text-capitalize">{tu("token_does_not_support_exchange")}</span></Tooltip>
                             </div>}
                 </span>
 
@@ -453,10 +454,10 @@ class TokenList extends Component {
     }
 
   render() {
-    let {tokens, alert, loading, total, totalAll, filter} = this.state;
+    let {tokens, alert, loading, total, totalAll, all, filter} = this.state;
     let {match, intl} = this.props;
     let column = IS_MAINNET?this.customizedColumn():this.suncustomizedColumn();
-    let tableInfo = intl.formatMessage({id: 'part_total'}) + ' ' + total + '/' + totalAll + ' ' + intl.formatMessage({id: 'part_pass'})
+    let tableInfo = intl.formatMessage({id: 'number_of_lists'}) + total  + ',' + intl.formatMessage({id: 'total_in_tronscan'}) + totalAll;
     let url = 'https://trx.market/launchBase?utm_source=TS3'
     if(intl.locale == 'zh'){
       url = 'https://trx.market/zh/launchBase?utm_source=TS3'
@@ -469,7 +470,8 @@ class TokenList extends Component {
             <div className="row">
               <div className="col-md-12 table_pos trc20-ad-bg pt-5 pt-md-0">
                 {total ?
-                  <div className="table_pos_info d-none d-md-block" style={{left: 'auto'}}>
+                  <div className="table_pos_info d-md-block" style={{left: 'auto'}}>
+                      {all && <div className="tron-ecosystem-tokens">{tu('total_tron_ecosystem_tokens')}{all}</div>}
                       <div>
                         {tableInfo} <span>
                           <QuestionMark placement="top" text="newly_issued_token_by_tronscan" className="token-list-info"></QuestionMark>
@@ -491,7 +493,7 @@ class TokenList extends Component {
                         </button>
                       </a> */}
                     </div>
-                    
+
                 <Table
                   columns={column}
                   rowKey={(record, index) => index}

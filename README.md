@@ -27,6 +27,18 @@
 * Market Information
 * News
 * Node Overview
+* Basic info browser
+* Quick search token
+* Web wallet
+* TRXMarket
+* DApp Recommend
+* Vote for SR
+* TRON Committee
+* Token List
+* Contract Deploy& Verify
+* DAppChain
+* Node Tester
+* Transaction Debugger
 
 # Requirements
 

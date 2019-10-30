@@ -48,474 +48,12 @@ class ExchangeTable extends Component {
       AdClose: props.isAdClose,
       risk_href: {
         zh: "https://support.trx.market/hc/zh-cn/articles/360035045092",
-        en: "https://support.trx.market/hc/en-us/articles/360035415811"
+        en: "https://support.trx.market/hc/en-us/articles/360035045092"
       },
-      i: 0
+      unRecomendId: props.unRecomendId
     };
   }
 
-  getColumns() {
-    let { intl, price, activeCurrency, activeLanguage } = this.props;
-    let { dataSource, offlineToken, transcationObj, AdClose } = this.state;
-    let isfov = Lockr.get("DEX") == "GEM";
-    let favList = Lockr.get("dex20") || [];
-
-    const columns = [
-      {
-        title: upperFirst(intl.formatMessage({ id: "trc20_price" })),
-        key: "first_token_id",
-        width: 120,
-        render: (text, record, index) => {
-          let content = (
-            <div>
-              {activeLanguage === "zh" ? (
-                <div style={{ width: "180px" }}>
-                  <p>{transcationObj.text["zh"]}</p>
-                  <p style={{ textAlign: "right", color: "#C53028" }}>
-                    <a href={transcationObj.linkUrl["zh"]} target="_blank">
-                      {tu("learn_more")}
-                    </a>
-                  </p>
-                </div>
-              ) : (
-                <div style={{ width: "180px" }}>
-                  <p>{transcationObj.text["en"]}</p>
-                  <p style={{ textAlign: "right", color: "#C53028" }}>
-                    <a href={transcationObj.linkUrl["en"]} target="_blank">
-                      {tu("learn_more")}
-                    </a>
-                  </p>
-                </div>
-              )}
-            </div>
-          );
-          return (
-            <div className="position-relative" style={{ display: "flex" }}>
-              <span className="optional-star">
-                <span
-                  onClick={ev => {
-                    this.setFavorites(ev, record, index);
-                  }}
-                >
-                  {favList.includes(record.id) ? (
-                    // <i className="star_red" />
-                    <Icon
-                      type="star"
-                      style={{ color: "#C53028" }}
-                      theme="filled"
-                    />
-                  ) : (
-                    <Icon type="star" />
-                  )}
-                </span>
-              </span>
-              <div className="">
-                {offlineToken.includes(record.id) ? (
-                  <p
-                    className="exchange-abbr-name"
-                    style={{ textDecoration: "line-through" }}
-                  >
-                    {/* {record.exchange_abbr_name} */}
-                    <span style={{ color: "#333333" }}>
-                      {record.fShortName}
-                    </span>
-                    /
-                    <span style={{ color: "#999999" }}>
-                      {record.sShortName}
-                    </span>
-                  </p>
-                ) : (
-                  <p className="exchange-abbr-name">
-                    {/* {record.exchange_abbr_name} */}
-                    <span style={{ color: "#333333" }}>
-                      {record.fShortName}
-                    </span>
-                    /
-                    <span style={{ color: "#999999" }}>
-                      {record.sShortName}
-                    </span>
-                  </p>
-                )}
-
-                <p
-                  className={
-                    record.up_down_percent.indexOf("-") != -1
-                      ? "col-red"
-                      : "col-green"
-                  }
-                >
-                  {record.price.toFixed(record.sPrecision)}
-                </p>
-              </div>
-
-              {transcationObj.id.includes(record.id) && (
-                <div>
-                  <Popover content={content} title="">
-                    <img
-                      src={require("../../../../../images/fire.svg")}
-                      style={{
-                        width: "15px",
-                        marginLeft: "5px"
-                      }}
-                      alt="fire"
-                    />
-                  </Popover>
-                </div>
-              )}
-            </div>
-          );
-        }
-      },
-      {
-        title: upperFirst(intl.formatMessage({ id: "trc20_24H_Total" })),
-        align: "right",
-        dataIndex: "price",
-        key: "price",
-        // width: 120,
-        render: (text, record) => {
-          return (
-            <div className="textRight ">
-              <FormattedNumber
-                value={
-                  Number(
-                    record.volume24h / Math.pow(10, record.sPrecision)
-                  ).toFixed(0)
-                    ? Number(
-                        record.volume24h / Math.pow(10, record.sPrecision)
-                      ).toFixed(0)
-                    : 0
-                }
-              />{" "}
-              {record.second_token_abbr}
-              <br />
-              {/* <span className="font-grey">
-                {activeCurrency.toUpperCase() === "TRX" ? (
-                  <FormattedNumber
-                    value={Number(record.trxVolume24h / Math.pow(10, record.sPrecision)).toFixed(0)}
-                  />
-                ) : (
-                  <FormattedNumber
-                    value={(
-                      Number(
-                        price && price.trxToOther && price.usdtToOther
-                          ? record.second_token_id === "TRX"
-                            ? price.trxToOther[activeCurrency]
-                            : price.usdtToOther[activeCurrency]
-                          : ""
-                      ) * record.svolume
-                    ).toFixed(0)}
-                  />
-                )}{" "}
-                {activeCurrency.toUpperCase()}
-              </span> */}
-              <span className="font-grey">
-                {record.second_token_id === "USDT" ? (
-                  <FormattedNumber
-                    value={Number(
-                      record.volume24h / Math.pow(10, record.sPrecision)
-                    ).toFixed(0)}
-                  />
-                ) : (
-                  <FormattedNumber
-                    value={(
-                      Number(
-                        price && price.trxToOther && price.usdtToOther
-                          ? record.second_token_id === "TRX"
-                            ? price.trxToOther["usd"]
-                            : price.usdtToOther["usd"]
-                          : ""
-                      ) * record.svolume
-                    ).toFixed(0)}
-                  />
-                )}{" "}
-                USD
-              </span>
-            </div>
-          );
-        }
-      },
-      {
-        title: upperFirst(intl.formatMessage({ id: "trc20_token_info_ths_3" })),
-        dataIndex: "up_down_percent",
-        key: "up_down_percent",
-        align: "right",
-        // width: 100,
-        render: (text, record, index) => {
-          return text.indexOf("-") != -1 ? (
-            <div className="tab-pr-50">
-              <span className="col-red bg-color">{text}</span>
-            </div>
-          ) : (
-            <div className="tab-pr-50">
-              <span className="col-green bg-color">{text}</span>
-            </div>
-          );
-        }
-      }
-    ];
-
-    return (
-      <Fragment>
-        <Table
-          dataSource={dataSource}
-          columns={columns}
-          pagination={false}
-          rowKey={(record, index) => {
-            return index;
-          }}
-          rowClassName={this.setActiveClass}
-          scroll={{ y: 1250 }}
-          className="tab-pdr"
-          onRow={record => {
-            return {
-              onClick: () => {
-                this.docodUrl(record);
-              }
-            };
-          }}
-        />
-      </Fragment>
-    );
-  }
-  getColumnsHidden() {
-    let {
-      intl,
-      price,
-      activeCurrency,
-      activeLanguage,
-      unRecomendList
-    } = this.props;
-    let { dataSource, offlineToken, transcationObj, AdClose } = this.state;
-    let isfov = Lockr.get("DEX") == "GEM";
-    let favList = Lockr.get("dex20") || [];
-
-    const columns = [
-      {
-        title: upperFirst(intl.formatMessage({ id: "trc20_price" })),
-        key: "first_token_id",
-        width: 120,
-        render: (text, record, index) => {
-          let content = (
-            <div>
-              {activeLanguage === "zh" ? (
-                <div style={{ width: "180px" }}>
-                  <p>{transcationObj.text["zh"]}</p>
-                  <p style={{ textAlign: "right", color: "#C53028" }}>
-                    <a href={transcationObj.linkUrl["zh"]} target="_blank">
-                      {tu("learn_more")}
-                    </a>
-                  </p>
-                </div>
-              ) : (
-                <div style={{ width: "180px" }}>
-                  <p>{transcationObj.text["en"]}</p>
-                  <p style={{ textAlign: "right", color: "#C53028" }}>
-                    <a href={transcationObj.linkUrl["en"]} target="_blank">
-                      {tu("learn_more")}
-                    </a>
-                  </p>
-                </div>
-              )}
-            </div>
-          );
-          return (
-            <div className="position-relative" style={{ display: "flex" }}>
-              {/* {isfov && (
-                <div className="fov_tip">
-                  {record.token_type == "dex20" ? (
-                    <img src={require("../../../../../images/svg/20.svg")} />
-                  ) : (
-                    <img src={require("../../../../../images/svg/10.svg")} />
-                  )}
-                </div>
-              )} */}
-
-              <span className="optional-star">
-                <span
-                  onClick={ev => {
-                    this.setFavorites(ev, record, index);
-                  }}
-                >
-                  {favList.includes(record.id) ? (
-                    // <i className="star_red" />
-                    <Icon
-                      type="star"
-                      style={{ color: "#C53028" }}
-                      theme="filled"
-                    />
-                  ) : (
-                    <Icon type="star" />
-                  )}
-                </span>
-              </span>
-              <div className="">
-                {offlineToken.includes(record.id) ? (
-                  <p
-                    className="exchange-abbr-name"
-                    style={{ textDecoration: "line-through" }}
-                  >
-                    {/* {record.exchange_abbr_name} */}
-                    <span style={{ color: "#333333" }}>
-                      {record.fShortName}
-                    </span>
-                    /
-                    <span style={{ color: "#999999" }}>
-                      {record.sShortName}
-                    </span>
-                  </p>
-                ) : (
-                  <p className="exchange-abbr-name">
-                    {/* {record.exchange_abbr_name} */}
-                    <span style={{ color: "#333333" }}>
-                      {record.fShortName}
-                    </span>
-                    /
-                    <span style={{ color: "#999999" }}>
-                      {record.sShortName}
-                    </span>
-                  </p>
-                )}
-
-                <p
-                  className={
-                    record.up_down_percent.indexOf("-") != -1
-                      ? "col-red"
-                      : "col-green"
-                  }
-                >
-                  {record.price.toFixed(record.sPrecision)}
-                </p>
-              </div>
-
-              {transcationObj.id.includes(record.id) && (
-                <div>
-                  <Popover content={content} title="">
-                    <img
-                      src={require("../../../../../images/fire.svg")}
-                      style={{
-                        width: "15px",
-                        marginLeft: "5px"
-                      }}
-                      alt="fire"
-                    />
-                  </Popover>
-                </div>
-              )}
-            </div>
-          );
-        }
-      },
-      {
-        title: upperFirst(intl.formatMessage({ id: "trc20_24H_Total" })),
-        align: "right",
-        dataIndex: "price",
-        key: "price",
-        // width: 120,
-        render: (text, record) => {
-          return (
-            <div className="textRight ">
-              <FormattedNumber
-                value={
-                  Number(
-                    record.volume24h / Math.pow(10, record.sPrecision)
-                  ).toFixed(0)
-                    ? Number(
-                        record.volume24h / Math.pow(10, record.sPrecision)
-                      ).toFixed(0)
-                    : 0
-                }
-              />{" "}
-              {record.second_token_abbr}
-              <br />
-              {/* <span className="font-grey">
-                {activeCurrency.toUpperCase() === "TRX" ? (
-                  <FormattedNumber
-                    value={Number(record.trxVolume24h / Math.pow(10, record.sPrecision)).toFixed(0)}
-                  />
-                ) : (
-                  <FormattedNumber
-                    value={(
-                      Number(
-                        price && price.trxToOther && price.usdtToOther
-                          ? record.second_token_id === "TRX"
-                            ? price.trxToOther[activeCurrency]
-                            : price.usdtToOther[activeCurrency]
-                          : ""
-                      ) * record.svolume
-                    ).toFixed(0)}
-                  />
-                )}{" "}
-                {activeCurrency.toUpperCase()}
-              </span> */}
-              <span className="font-grey">
-                {record.second_token_id === "USDT" ? (
-                  <FormattedNumber
-                    value={Number(
-                      record.volume24h / Math.pow(10, record.sPrecision)
-                    ).toFixed(0)}
-                  />
-                ) : (
-                  <FormattedNumber
-                    value={(
-                      Number(
-                        price && price.trxToOther && price.usdtToOther
-                          ? record.second_token_id === "TRX"
-                            ? price.trxToOther["usd"]
-                            : price.usdtToOther["usd"]
-                          : ""
-                      ) * record.svolume
-                    ).toFixed(0)}
-                  />
-                )}{" "}
-                USD
-              </span>
-            </div>
-          );
-        }
-      },
-      {
-        title: upperFirst(intl.formatMessage({ id: "trc20_token_info_ths_3" })),
-        dataIndex: "up_down_percent",
-        key: "up_down_percent",
-        align: "right",
-        // width: 100,
-        render: (text, record, index) => {
-          return text.indexOf("-") != -1 ? (
-            <div className="tab-pr-50">
-              <span className="col-red bg-color">{text}</span>
-            </div>
-          ) : (
-            <div className="tab-pr-50">
-              <span className="col-green bg-color">{text}</span>
-            </div>
-          );
-        }
-      }
-    ];
-
-    return (
-      <Fragment>
-        <Table
-          dataSource={dataSource}
-          columns={columns}
-          pagination={false}
-          rowKey={(record, index) => {
-            return index;
-          }}
-          rowClassName={this.setActiveClass}
-          scroll={{ y: 1250 }}
-          className="tab-pdr"
-          onRow={record => {
-            return {
-              onClick: () => {
-                this.docodUrl(record);
-              }
-            };
-          }}
-        />
-      </Fragment>
-    );
-  }
   getContent() {
     const { intl, activeLanguage } = this.props;
     const { dataSource, risk_href, unRecomendList } = this.state;
@@ -632,7 +170,9 @@ class ExchangeTable extends Component {
         </section>
         <section>
           <p className="token-title">
-            {intl.formatMessage({ id: "trc20_token_id" })}
+            {item.pairType == 1 || item.pairType == 4
+              ? intl.formatMessage({ id: "trc20_token_id" })
+              : intl.formatMessage({ id: "contract_address" })}
           </p>
           <p>{item.fTokenAddr}</p>
         </section>
@@ -695,7 +235,7 @@ class ExchangeTable extends Component {
                   {offlineToken.includes(item.id) ? (
                     <p
                       className="exchange-abbr-name"
-                      style={{ textDecoration: "line-through" }}
+                      style={{ textDecoration: `line-through` }}
                     >
                       {/* {record.exchange_abbr_name} */}
                       <span style={{ color: "#333333" }}>
@@ -914,7 +454,7 @@ class ExchangeTable extends Component {
 
   async getData() {
     const parsed = queryString.parse(this.props.location.search).id;
-    let i = this.state.i;
+
     let {
       getSelectData,
       dataSource,
@@ -922,29 +462,15 @@ class ExchangeTable extends Component {
       getExchangesByIds,
       getExchangesByIdsContent
     } = this.props;
-
-    // 先去推荐列表查
+    // First go to the recommended list query
     let currentData = filter(dataSource, item => {
       return item.exchange_id == parsed;
     });
 
-    // 再去非推荐列表查
+    // Go to the non-recommended list
     if (currentData.length == 0) {
       currentData = filter(unRecomendList, item => {
         return item.exchange_id == parsed;
-      });
-    }
-
-    // // 再去从服务端拿
-    if (currentData.length == 0 && i == 0 && parsed) {
-      unRecomendList = await getExchangesByIdsContent(parsed);
-      // await getExchangesByIds(parsed);
-      // const { exchanges20SearchListByIds } = this.props;
-      // exchanges20SearchListByIds.length > 0 &&
-      //   (unRecomendList = exchanges20SearchListByIds);
-      this.setState({
-        i: ++i
-        // unRecomendList: unRecomendList
       });
     }
 
@@ -952,20 +478,21 @@ class ExchangeTable extends Component {
       (dataSource && dataSource.length) ||
       (unRecomendList && unRecomendList.length)
     ) {
-      // 更新数据
-      if (!parsed || !currentData.length) {
-        this.onSetUrl(dataSource[0]);
-      } else {
+      // update data
+      if (currentData && currentData.length) {
         this.onSetUrl(currentData[0], true);
+      } else {
+        this.onSetUrl(dataSource[0] || []);
       }
     }
 
-    // 获取选择状态;
-    map(dataSource, item => {
-      if (item.exchange_id == parsed || !parsed) {
-        item.isCurrent = true;
-      }
-    });
+    // get select status;
+    // map(dataSource, item => {
+    //   if (item.exchange_id == parsed || !parsed) {
+    //     item.isCurrent = true;
+    //   }
+    // });
+
     this.setState({ dataSource, unRecomendList });
   }
 
@@ -983,7 +510,7 @@ class ExchangeTable extends Component {
     //   return;
     // }
     this.setState({
-      activeIndex: record.exchange_id //获取点击行的索引
+      activeIndex: record.exchange_id
     });
 
     getSelectData(record, true);
@@ -1013,8 +540,14 @@ class ExchangeTable extends Component {
     // this.setData();
   }
 
-  componentDidUpdate(prevProps) {
-    let { dataSource, redirctPair, unRecomendList } = this.props;
+  async componentDidUpdate(prevProps) {
+    let {
+      dataSource,
+      redirctPair,
+      unRecomendList,
+      unRecomendId,
+      getExchangesByIdsContent
+    } = this.props;
 
     if (
       dataSource != prevProps.dataSource ||
@@ -1023,17 +556,23 @@ class ExchangeTable extends Component {
       this.getData();
     }
 
-    if (redirctPair != prevProps.redirctPair) {
-      let currentPair = dataSource.find(v => {
-        return (
-          v.fShortName &&
-          v.fShortName.toUpperCase() === redirctPair.fShortName.toUpperCase() &&
-          v.sShortName &&
-          v.sShortName.toUpperCase() === redirctPair.sShortName.toUpperCase()
-        );
-      });
-      currentPair && this.onSetUrl(currentPair);
+    if (unRecomendId != prevProps.unRecomendId) {
+      this.onSetUrl(unRecomendList[0]);
     }
+
+    // if (redirctPair != prevProps.redirctPair) {
+    //   let currentPair = redirctPair;
+    //   if (currentPair) {
+    //     const parsed = redirctPair.pairId || redirctPair.exchangeId;
+    //     if (parsed) {
+    //       let idsItems = await getExchangesByIdsContent(parsed);
+    //       if (idsItems[0].source == 2) {
+    //         this.props.handleValue(idsItems);
+    //       }
+    //     }
+    //     this.getData();
+    //   }
+    // }
   }
   componentWillReceiveProps(nextProps) {
     // const {getSelectData,setSearchAddId} = this.props;

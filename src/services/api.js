@@ -146,8 +146,8 @@ class ApiClient20 {
 
   async getExchanges20SearchList(options = {}) {
     let { data } = await xhr.get(
-      // `http://52.15.171.70:21110/api/exchange/marketPair/searchList`,
-      `${this.apiUrl}/api/exchange/marketPair/searchList`,
+      // `http://52.15.171.70:21110/api/exchange/marketPair/market/searchList`,
+      `${this.apiUrl}/api/exchange/marketPair/market/searchList`,
       {
         params: options
       }

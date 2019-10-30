@@ -485,6 +485,7 @@
         background: #f8f8f8;
       }
       .content-item {
+        cursor: pointer;
         .line-1 {
           display: flex;
           justify-content: space-between;
@@ -523,6 +524,7 @@
         }
         .exchange-abbr-name {
           text-align: left;
+          cursor: pointer;
         }
 
         .line-2 {
