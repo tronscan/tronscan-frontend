@@ -838,7 +838,7 @@ export const messages = {
   */
   "record_not_found": "未找到记录!",
   "warning": "警告",
-  "login_success": "登陆成功",
+  "login_success": "登录成功",
   "logout_success": "登出成功",
   /*
   ##################################################################################
