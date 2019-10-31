@@ -26,16 +26,15 @@ class VerifyContractCode extends Component {
         super(props);
         this.state = {
             compilers: [
-                'solidity-0.4.25_Odyssey_v3.2.3',
-                'solidity-0.5.9_Odyssey_v3.6.5',
-                'solidity-0.5.8_Odyssey_v3.6.0',
-                'solidity-0.5.4_Odyssey_v3.6.0',
-                'solidity-0.4.24',
+                'tron-0.4.25_Odyssey_v3.2.3',
+                'tron-0.5.8_Odyssey_v3.6.0',
+                'tron-0.5.4_Odyssey_v3.6.0',
+                'tron-0.4.24',
                 'tronbox_soljson_v1',
                 'tronbox_soljson_v2',
                 'tronbox_soljson_v3',
             ],
-            deaultCompiler: 'solidity-0.4.25_Odyssey_v3.2.3',
+            deaultCompiler: 'tron-0.4.25_Odyssey_v3.2.3',
             contractCode: '',
             captchaCode: null,
             CompileStatus: [],
