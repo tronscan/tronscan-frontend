@@ -365,7 +365,7 @@ export const messages = {
   "rewards_claimed": "リワード確認",
   "successfully_claimed_rewards": "リワードを得た",
   "claim_rewards": "リワードを得た",
-  "sr_receive_reward_message_0": "スーパー代表として、ブロックアウト・リワードが得られる。賞金は24時間おきに申し込むことができる。",
+  "sr_receive_reward_message_0": "スーパー代表として、ブロックアウト・リワードが得られる，賞金は24時間おきに申し込むことができる。",
   "intro": "紹介",
   "budget_expenses": "予算",
   "server_configuration": "サーバーの配置",

@@ -619,7 +619,7 @@ export default class VoteOverview extends React.Component {
                                               <AddressLink className="small text-muted" address={candidate.address}/>
                                             </div>
                                             {
-                                              candidate.hasPage && <div className="_team ml-0 ml-sm-auto">
+                                                (!votingEnabled && candidate.hasPage) && <div className="_team ml-0 ml-sm-auto">
                                                 <Link className="btn btn-lg btn-block btn-default mt-1"
                                                       to={`/representative/${candidate.address}`}>
                                                   {tu("open_team_page")}
@@ -687,7 +687,7 @@ export default class VoteOverview extends React.Component {
                                                 <input
                                                     type="text"
                                                     value={votes[candidate.address] || ""}
-                                                    className="form-control form-control-sm text-center"
+                                                    className="form-control text-center"
                                                     onChange={(ev) => this.setVote(candidate.address, ev.target.value)}/>
                                                 <div className="input-group-append">
                                                   <button className="btn btn-outline-success"

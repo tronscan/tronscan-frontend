@@ -1,5 +1,6 @@
 import React, {Component, Fragment} from 'react';
 import {t, tu} from "../../utils/i18n";
+import isMobile from "../../utils/isMobile";
 import {transactionResultManager, transactionResultManagerSun} from "../../utils/tron";
 import xhr from "axios";
 import {FormattedDate, FormattedNumber, FormattedRelative, FormattedTime, injectIntl} from "react-intl";
@@ -2499,7 +2500,7 @@ export default class Account extends Component {
             </div>
           </div>
           {
-              (currentWallet.representative.enabled  && IS_MAINNET) &&
+             // (currentWallet.representative.enabled  && IS_MAINNET) &&
                 <div className="row mt-3">
                   <div className="col-md-12">
                     <div className="card">
@@ -2535,95 +2536,99 @@ export default class Account extends Component {
                             {/*{tu("SR_brokerage_save")}*/}
                             {/*</button>*/}
                         {/*</div>*/}
-                      <table className="table m-0">
-                          <tbody>
-                              <tr>
-                                  <th style={{border: 'none',width:'30%',paddingLeft:0}}>
-                                      <span className="SR_brokerage_line_height">{tu("SR_set_brokerage")}：</span>
-                                      <span className="ml-1 SR_brokerage_save_tip">
+                        <div className="table-responsive">
+                            <table className={"table m-0" + (isMobile? " SR_set_brokerage" :"")}>
+                                <tbody>
+                                <tr>
+                                    <th style={{border: 'none',width:'30%',paddingLeft:0}}>
+                                        <span className="SR_brokerage_line_height">{tu("SR_set_brokerage")}：</span>
+                                        <span className="ml-1 SR_brokerage_save_tip">
                                               <QuestionMark placement="top" text="SR_brokerage_save_tip"/>
                                           </span>
-                                  </th>
-                                  <td style={{border: 'none',paddingRight:0}}>
-                                      <div className="d-inline-block" style={{width:'30%',paddingRight:0}}>
-                                          <div className="d-flex">
-                                              <Input value={brokerageValue} onChange={this.onChangeBrokerage} />
-                                              <span className="ml-2 SR_brokerage_line_height">%</span>
-                                          </div>
-                                          {
-                                              errorMess? <span className="mt-1" style={{ color: 'red', display: 'block',position: 'absolute' }}>{errorMess}</span>:''
-                                          }
-                                      </div>
-                                      <div className="d-inline-block ml-5">
-                                          <span>{tu("countdown_to_voting")}：</span>
-                                          <Countdown date={this.getNextCycle()} daysInHours={true} onComplete={() => {
-                                              this.loadVoteTimer();
-                                          }}/>
-                                      </div>
-                                      <button className="btn btn-success float-right"
-                                              onClick={() => {
-                                                  this.brokerageUpdate()
-                                              }}
-                                              disabled={errorMess !== '' && brokerageValue !== '' }
+                                    </th>
+                                    <td style={{border: 'none',paddingRight:0}}>
+                                        <div className="d-inline-block" style={{width:'30%',paddingRight:0}}>
+                                            <div className="d-flex">
+                                                <Input value={brokerageValue} onChange={this.onChangeBrokerage} />
+                                                <span className="ml-2 SR_brokerage_line_height">%</span>
+                                            </div>
+                                            {
+                                                errorMess? <span className="mt-1" style={{ color: 'red', display: 'block',position: 'absolute' }}>{errorMess}</span>:''
+                                            }
+                                        </div>
+                                        <div className="d-inline-block ml-5">
+                                            <span>{tu("countdown_to_voting")}：</span>
+                                            <Countdown date={this.getNextCycle()} daysInHours={true} onComplete={() => {
+                                                this.loadVoteTimer();
+                                            }}/>
+                                        </div>
+                                        <button className="btn btn-success float-right"
+                                                onClick={() => {
+                                                    this.brokerageUpdate()
+                                                }}
+                                                disabled={errorMess !== '' && brokerageValue !== '' }
 
-                                      >
-                                          {tu("SR_brokerage_save")}
-                                      </button>
-                                  </td>
-                              </tr>
-                              <tr>
-                                  <th style={{border: 'none',width:'30%',paddingLeft:0}}>
-                                      <span>{tu("claim_rewards")}：</span>
-                                  </th>
-                                  <td style={{border: 'none',paddingRight:0}}>
+                                        >
+                                            {tu("SR_brokerage_save")}
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th style={{border: 'none',width:'30%',paddingLeft:0}}>
+                                        <span>{tu("claim_rewards")}：</span>
+                                    </th>
+                                    <td style={{border: 'none',paddingRight:0}}>
                                        <span className="d-inline-block" style={{width:'50%',paddingRight:0}}>
                                          <TRXPrice amount={currentWallet.representative.allowance / ONE_TRX} className="font-weight-bold"/>
-                                            &nbsp; {tu('SR_reward_available')}
+                                           &nbsp; {tu('SR_reward_available')}
                                       </span>
-                                      {
-                                          currentWallet.representative.allowance == 0 ? <AntdTip title={<span>{tu('no_rewards_available_yet')}</span>}>
-                                              <button className="btn btn-success float-right claim_rewards_btn"
-                                                      disabled={currentWallet.representative.allowance === 0 || !reward }
-                                              >
-                                                  {tu("claim_rewards")}
-                                             </button>
-                                          </AntdTip>: <AntdTip title={!reward?<span>{tu("SR_receive_award_tip1")}{tu("SR_receive_award_tip2")}</span>:''}>
-                                              <button className={"btn btn-success float-right" + (!reward?" claim_rewards_btn":"")}
-                                                      onClick={() => {
-                                                          this.claimRewards()
-                                                      }}
-                                                      disabled={currentWallet.representative.allowance === 0 || !reward }
-                                              >
+                                        {
+                                            currentWallet.representative.allowance == 0 ? <AntdTip title={<span>{tu('no_rewards_available_yet')}</span>}>
+                                                <button className="btn btn-success float-right claim_rewards_btn"
+                                                        disabled={currentWallet.representative.allowance === 0 || !reward }
+                                                >
+                                                    {tu("claim_rewards")}
+                                                </button>
+                                            </AntdTip>: <AntdTip title={!reward?<span>{tu("SR_receive_award_tip1")}{tu("SR_receive_award_tip2")}</span>:''}>
+                                                <button className={"btn btn-success float-right" + (!reward?" claim_rewards_btn":"")}
+                                                        onClick={() => {
+                                                            this.claimRewards()
+                                                        }}
+                                                        disabled={currentWallet.representative.allowance === 0 || !reward }
+                                                >
 
-                                                  {tu("claim_rewards")}
-                                              </button>
-                                          </AntdTip>
-                                      }
-                                      {/*<button className="btn btn-success float-right"*/}
-                                              {/*onClick={() => {*/}
-                                                  {/*this.claimRewards()*/}
-                                              {/*}}*/}
-                                              {/*disabled={currentWallet.representative.allowance === 0 || !reward }*/}
-                                      {/*>*/}
-                                          {/*{tu("claim_rewards")}*/}
-                                      {/*</button>*/}
-                                  </td>
-                              </tr>
-                              {/*<tr>*/}
-                                  {/*<th style={{borderTop:'none'}}></th>*/}
-                                  {/*<td style={{borderTop:'none',paddingTop:0,color:'#D8D8D8'}}>*/}
-                                      {/*<span className="float-right d-block">*/}
-                                        {/*{tu("SR_receive_award_tip2")}*/}
-                                      {/*</span>*/}
-                                      {/*{*/}
-                                          {/*!reward && <span className="float-right d-block">*/}
-                                              {/*{tu("SR_receive_award_tip1")}*/}
-                                          {/*</span>*/}
-                                      {/*}*/}
-                                  {/*</td>*/}
-                              {/*</tr>*/}
-                          </tbody>
-                      </table>
+                                                    {tu("claim_rewards")}
+                                                </button>
+                                            </AntdTip>
+                                        }
+                                        {/*<button className="btn btn-success float-right"*/}
+                                        {/*onClick={() => {*/}
+                                        {/*this.claimRewards()*/}
+                                        {/*}}*/}
+                                        {/*disabled={currentWallet.representative.allowance === 0 || !reward }*/}
+                                        {/*>*/}
+                                        {/*{tu("claim_rewards")}*/}
+                                        {/*</button>*/}
+                                    </td>
+                                </tr>
+                                {/*<tr>*/}
+                                {/*<th style={{borderTop:'none'}}></th>*/}
+                                {/*<td style={{borderTop:'none',paddingTop:0,color:'#D8D8D8'}}>*/}
+                                {/*<span className="float-right d-block">*/}
+                                {/*{tu("SR_receive_award_tip2")}*/}
+                                {/*</span>*/}
+                                {/*{*/}
+                                {/*!reward && <span className="float-right d-block">*/}
+                                {/*{tu("SR_receive_award_tip1")}*/}
+                                {/*</span>*/}
+                                {/*}*/}
+                                {/*</td>*/}
+                                {/*</tr>*/}
+                                </tbody>
+                            </table>
+                        </div>
+
+
                         {/*<div className="text-left d-flex mt-3 justify-content-between">*/}
 
                           {/*{*/}

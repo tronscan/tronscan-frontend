@@ -364,7 +364,7 @@ export const messages = {
   "rewards_claimed": "보상 확인.",
   "successfully_claimed_rewards": "보상 획득 성공",
   "claim_rewards": "보상 획득",
-  "sr_receive_reward_message_0": "대표자 로서 귀한께서 블록 생산에 대한 보상을받습니다. 이러한 보상은 24 시간마다 청구될 수 있습니다.",
+  "sr_receive_reward_message_0": "대표자 로서 귀한께서 블록 생산에 대한 보상을받습니다, 이러한 보상은 24 시간마다 청구될 수 있습니다.",
   "intro": "소개",
   "budget_expenses": "예산 비용",
   "server_configuration": "서버 구성",

@@ -364,7 +364,7 @@ export const messages = {
   "rewards_claimed": "奖励确认！",
   "successfully_claimed_rewards": "成功获得奖励",
   "claim_rewards": "获得奖励",
-  "sr_receive_reward_message_0": "作为代表，您将获得出块奖励。 这些奖励可以每24小时申领一次",
+  "sr_receive_reward_message_0": "作为代表，您将获得出块奖励，这些奖励可以每24小时申领一次",
   "intro": "介绍",
   "budget_expenses": "预算费用",
   "server_configuration": "服务器配置",
