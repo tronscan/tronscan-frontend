@@ -344,7 +344,8 @@ export const getExchangesByIdsContent = ids => async dispatch => {
 // 整理数据封装
 export const organizeData = data => {
   let f20_list = Lockr.get("dex20") || [];
-  let newList = cloneDeep(data).map((item, index) => {
+  let neData = cloneDeep(data) || [];
+  let newList = cloneDeep(neData).map((item, index) => {
     item.exchange_id = item.id;
     item.exchange_name = item.fTokenName + "/" + item.sTokenName;
     item.exchange_abbr_name = item.fShortName + "/" + item.sShortName;

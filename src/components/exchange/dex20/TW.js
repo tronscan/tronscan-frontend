@@ -1,16 +1,16 @@
 class ApiTW {
   constructor() {
     // **** online
-    // this.contractAddress = "TSMbPm5mUsaTDSEjHCd55ZJaib3Ysvjyc5";
-    // this.contractAddress10 = "THnCkTX1GfDArAuyzzv2nGpDt4vChm8t2e";
-    // this.contractAddrUsdt20 = "TEpC1DGvDdfrDf83JZDUzdNZydeHz9w21H"; //'TWe4z3uRvUoG9VBgoC8iSgHRtvxa9MJJPv'
-    // this.contractAddrUsdt10 = "TCXvoCbb2ejaYHBRKKjtnkTCp8DFKTrLTj";
+    this.contractAddress = "TSMbPm5mUsaTDSEjHCd55ZJaib3Ysvjyc5";
+    this.contractAddress10 = "THnCkTX1GfDArAuyzzv2nGpDt4vChm8t2e";
+    this.contractAddrUsdt20 = "TEpC1DGvDdfrDf83JZDUzdNZydeHz9w21H"; //'TWe4z3uRvUoG9VBgoC8iSgHRtvxa9MJJPv'
+    this.contractAddrUsdt10 = "TCXvoCbb2ejaYHBRKKjtnkTCp8DFKTrLTj";
 
     // **** test
-    this.contractAddress = "TVpJQDbuuSwykezHDxGSK6wNhMUK1tXHzm";
-    this.contractAddress10 = "TVx9uwGT5ggZuv9mthofj9Vw6otYtZ1TNn";
-    this.contractAddrUsdt20 = "TRxMaG7CwSfZdfho9KXtayDJUQEvvoCeKo"; //'TWe4z3uRvUoG9VBgoC8iSgHRtvxa9MJJPv'
-    this.contractAddrUsdt10 = "TJyrPWWP3sit856yTCJrd3cg2Uo82aZ7JN";
+    // this.contractAddress = "TVpJQDbuuSwykezHDxGSK6wNhMUK1tXHzm";
+    // this.contractAddress10 = "TVx9uwGT5ggZuv9mthofj9Vw6otYtZ1TNn";
+    // this.contractAddrUsdt20 = "TRxMaG7CwSfZdfho9KXtayDJUQEvvoCeKo"; //'TWe4z3uRvUoG9VBgoC8iSgHRtvxa9MJJPv'
+    // this.contractAddrUsdt10 = "TJyrPWWP3sit856yTCJrd3cg2Uo82aZ7JN";
   }
 
   /**

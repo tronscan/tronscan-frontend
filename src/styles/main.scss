@@ -2274,9 +2274,10 @@ h5 {
   cursor: pointer;
 
   i {
-    font-size: 10px;
+    font-size: 10px !important;
     font-style: normal;
     font-weight: 500;
+    color: #3e3f3a !important;
     //transform: scale(0.9);
   }
 }
@@ -4090,6 +4091,11 @@ h5 {
         }
 
         &-2 {
+          i,
+          svg {
+            font-size: 20px;
+            color: #28a745;
+          }
         }
 
         &-3 {
@@ -4684,12 +4690,17 @@ h5 {
   }
 }
 
-.tron-ecosystem-tokens{
+.tron-ecosystem-tokens {
   margin-top: -15px;
 }
 
-.develpopers_reward_tip{
+.developers_reward_tip {
   padding-right: 15px;
   padding-left: 15px;
 }
 
+.developers_tip_bottom {
+  color: #c23631 !important;
+  font-size: 14px;
+  font-family: Helvetica-Bold;
+}

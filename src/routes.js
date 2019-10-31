@@ -51,6 +51,8 @@ import {
     Transaction,
     Address,
     DevelopersRewardAsync,
+    TokensMarketsCreateAsync,
+    TokensMarketsAddListAsync,
     Exchange20
 } from "./components/async";
 
@@ -253,7 +255,28 @@ export const routes = [
         component: TokensCreateAsync,
         showInMenu: false
       },
-
+      {
+        label: "token_markets_input",
+        path: "/tokens/markets/add/:page/:tokenId/:id",
+        icon: "fa fa-plus-square",
+        component: TokensMarketsAddListAsync,
+        showInMenu: false
+      },
+      {
+        label: "token_markets_input",
+        path: "/tokens/markets/create/:type/:id",
+        icon: "fa fa-plus-square",
+        component: TokensMarketsCreateAsync,
+        showInMenu: false
+      },
+      {
+        /* Write two is to solve the updated copy */
+        label: "token_markets_update",
+        path: "/tokens/markets/:page/:type/:id",
+        icon: "fa fa-plus-square",
+        component: TokensMarketsCreateAsync,
+        showInMenu: false
+      },
     ]
   },
   {
