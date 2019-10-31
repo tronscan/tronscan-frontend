@@ -266,7 +266,7 @@ class Transactions extends React.Component {
         render: (text, record, index) => {
           return <span>
               {
-                  text?<img style={{width: '20px', height: '20px'}} src={require("../../images/internal_error.png")}/>:<img style={{width: '20px', height: '20px'}} src={require("../../images/internal_success.png")}/>
+                  text?<img style={{width: '20px', height: '20px'}} src={require("../../images/contract/Unverified.png")}/>:<img style={{width: '20px', height: '20px'}} src={require("../../images/contract/Verified.png")}/>
               }
           </span>
         }

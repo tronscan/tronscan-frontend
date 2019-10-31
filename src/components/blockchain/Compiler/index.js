@@ -96,6 +96,21 @@ class ContractCompiler extends React.Component {
             });
         } else {
             // 初始化数据
+            if (!this.isLoggedIn()){
+                //  compileCode
+                Lockr.rm('CompileCode');
+                // compile status
+                Lockr.rm('CompileStatus');
+                // contractNameList
+                Lockr.rm('contractNameList');
+                // compileInfo
+                Lockr.rm('compileInfo');
+                // compile files
+                Lockr.rm('compileFiles');
+                return;
+            }
+
+
             this.initCompile();
         }
     }
@@ -298,7 +313,7 @@ class ContractCompiler extends React.Component {
         }
 
         // 编译
-        const { data } = await xhr.post(`${API_URL}/api/solidity/contract/compile`, formData)
+         const { data } = await xhr.post(`${API_URL}/api/solidity/contract/compile`, formData)
             .catch(e => {
                 const errorData = [{
                     type: 'error',
@@ -322,12 +337,14 @@ class ContractCompiler extends React.Component {
             this.setState({
                 compileLoading: false
             });
+            console.log('编译成功')
             // 编译成功
             if (errmsg === null && data.data !== {}){
                 this.compileSuccess(data.data);
-            }
+            }``
         } else {
             // 失败
+            console.log('失败')
             if (errmsg) {
                 if (typeof errmsg === 'string') {
 
@@ -335,8 +352,9 @@ class ContractCompiler extends React.Component {
                         type: 'error',
                         content: `Compiled error: ${errmsg}`
                     }];
-                    const error = errorData.concat(CompileStatus);
-
+                    console.log('CompileStatus2222',CompileStatus)
+                    //const error = errorData.concat(CompileStatus);
+                    const  error = errorData;
                     this.setState({
                         CompileStatus: error,
                         compileLoading: false

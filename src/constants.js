@@ -90,15 +90,16 @@ export const TRADINGMAP = {
 
 // SunWeb config
 export const SUNWEBCONFIG = {
-    MAINFULLNODE: "https://api.trongrid.io",
-    MAINSOLIDITYNODE: "https://api.trongrid.io",
-    MAINEVENTSERVER: "https://api.trongrid.io",
-    SUNFULLNODE: "https://sun.tronex.io",
-    SUNSOLIDITYNODE: "https://sun.tronex.io",
-    SUNEVENTSERVER: "https://sun.tronex.io",
-    MAINNET: "TWaPZru6PR5VjgT4sJrrZ481Zgp3iJ8Rfo",
-    SIDECHAIN: "TGKotco6YoULzbYisTBuP6DWXDjEgJSpYz",
-    SIDEID: "41E209E4DE650F0150788E8EC5CAFA240A23EB8EB7"
+  MAINFULLNODE: "https://api.trongrid.io",
+  MAINSOLIDITYNODE: "https://api.trongrid.io",
+  MAINEVENTSERVER: "https://api.trongrid.io",
+  SUNFULLNODE: "https://sun.tronex.io",
+  SUNSOLIDITYNODE: "https://sun.tronex.io",
+  SUNEVENTSERVER: "https://sun.tronex.io",
+  MAINNET: "TWaPZru6PR5VjgT4sJrrZ481Zgp3iJ8Rfo",
+  SIDECHAIN: "TGKotco6YoULzbYisTBuP6DWXDjEgJSpYz",
+  SIDEID: "41E209E4DE650F0150788E8EC5CAFA240A23EB8EB7"
+
 };
 
 // Socket config
