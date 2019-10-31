@@ -2500,7 +2500,7 @@ export default class Account extends Component {
             </div>
           </div>
           {
-             // (currentWallet.representative.enabled  && IS_MAINNET) &&
+              (currentWallet.representative.enabled  && IS_MAINNET) &&
                 <div className="row mt-3">
                   <div className="col-md-12">
                     <div className="card">
