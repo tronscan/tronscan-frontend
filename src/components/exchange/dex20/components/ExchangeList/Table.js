@@ -238,7 +238,7 @@ class ExchangeTable extends Component {
                 <Popover
                   content={tokenDetailContent}
                   title=""
-                  placement="topRight"
+                  placement="rightTop"
                   overlayClassName="token-detail-popover"
                 >
                   {offlineToken.includes(item.id) ? (
