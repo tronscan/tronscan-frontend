@@ -185,7 +185,6 @@ export default class Account extends Component {
   };
   getNextCycle() {
       let {voteTimer} = this.props;
-      console.log('voteTimer',voteTimer)
       return voteTimer;
   }
   getAddressRewardBok = async () => {
@@ -1853,6 +1852,10 @@ export default class Account extends Component {
     // SR claim rewards
     claimRewards = async () => {
         let res;
+        let {reward} = this.state;
+        if(!reward){
+            return
+        }
         let {account, currentWallet} = this.props;
         if (this.state.isTronLink === 1) {
             let tronWeb;
@@ -2128,7 +2131,7 @@ export default class Account extends Component {
                                                             {tu("SR_receive_award_btn")}
                                                             </a>
                                                         </AntdTip> :
-                                                        <AntdTip title={<span>{tu("SR_receive_award_tip1")}{tu("SR_receive_award_tip2")}</span>}>
+                                                        <AntdTip title={!reward?<span>{tu("SR_receive_award_tip1")}{tu("SR_receive_award_tip2")}</span>:''}>
                                                             <a href="javascript:;"
                                                                className={"float-right text-primary btn btn-default btn-sm"+ (!reward?" accont_reward_disabled":"")}
                                                                onClick={this.accountClaimRewards}
@@ -2576,29 +2579,48 @@ export default class Account extends Component {
                                          <TRXPrice amount={currentWallet.representative.allowance / ONE_TRX} className="font-weight-bold"/>
                                             &nbsp; {tu('SR_reward_available')}
                                       </span>
-                                      <button className="btn btn-success float-right"
-                                              onClick={() => {
-                                                  this.claimRewards()
-                                              }}
-                                              disabled={currentWallet.representative.allowance === 0 || !reward }
-                                      >
-                                          {tu("claim_rewards")}
-                                      </button>
-                                  </td>
-                              </tr>
-                              <tr>
-                                  <th style={{borderTop:'none'}}></th>
-                                  <td style={{borderTop:'none',paddingTop:0,color:'#D8D8D8'}}>
-                                      <span className="float-right d-block">
-                                        {tu("SR_receive_award_tip2")}
-                                      </span>
                                       {
-                                          !reward && <span className="float-right d-block">
-                                              {tu("SR_receive_award_tip1")}
-                                          </span>
+                                          currentWallet.representative.allowance == 0 ? <AntdTip title={<span>{tu('no_rewards_available_yet')}</span>}>
+                                              <button className="btn btn-success float-right"
+                                                      disabled={currentWallet.representative.allowance === 0 || !reward }
+                                              >
+                                                  {tu("claim_rewards")}
+                                             </button>
+                                          </AntdTip>: <AntdTip title={!reward?<span>{tu("SR_receive_award_tip1")}{tu("SR_receive_award_tip2")}</span>:''}>
+                                              <button className="btn btn-success float-right"
+                                                      onClick={() => {
+                                                          this.claimRewards()
+                                                      }}
+                                                      disabled={currentWallet.representative.allowance === 0 || !reward }
+                                              >
+
+                                                  {tu("claim_rewards")}
+                                              </button>
+                                          </AntdTip>
                                       }
+                                      {/*<button className="btn btn-success float-right"*/}
+                                              {/*onClick={() => {*/}
+                                                  {/*this.claimRewards()*/}
+                                              {/*}}*/}
+                                              {/*disabled={currentWallet.representative.allowance === 0 || !reward }*/}
+                                      {/*>*/}
+                                          {/*{tu("claim_rewards")}*/}
+                                      {/*</button>*/}
                                   </td>
                               </tr>
+                              {/*<tr>*/}
+                                  {/*<th style={{borderTop:'none'}}></th>*/}
+                                  {/*<td style={{borderTop:'none',paddingTop:0,color:'#D8D8D8'}}>*/}
+                                      {/*<span className="float-right d-block">*/}
+                                        {/*{tu("SR_receive_award_tip2")}*/}
+                                      {/*</span>*/}
+                                      {/*{*/}
+                                          {/*!reward && <span className="float-right d-block">*/}
+                                              {/*{tu("SR_receive_award_tip1")}*/}
+                                          {/*</span>*/}
+                                      {/*}*/}
+                                  {/*</td>*/}
+                              {/*</tr>*/}
                           </tbody>
                       </table>
                         {/*<div className="text-left d-flex mt-3 justify-content-between">*/}
