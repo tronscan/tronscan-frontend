@@ -1991,7 +1991,6 @@ export const messages = {
   "Download": "下载",
 
 
-
   /*
    ##################################################################################
    #                                                                                #
@@ -2148,8 +2147,12 @@ export const messages = {
   "total_tron_ecosystem_tokens":"波场生态通证总数：",
   "number_of_lists":"列表数量：",
   "total_in_tronscan":"共收录：",
-
   "developers_reward_tip":"感谢所有帮助java-tron开发的开发者们，波场基金会欢迎并且感谢所有开发者们的贡献。",
   "developers_niTron":"2020年，niTron全球开发者大会将于2月29日在韩国举办。 截止到2020年1月31日，总积分排名前五的开发者，每人都可以获赠门票两张。",
+  "verifty_contract_result":"验证结果",
+  "main_contract_deployment":"（请选择主合约部署）",
+  "enter_main_contract":"请输入主合约的名称",
+  "contract_verifty_passed":"验证通过",
+  "unverifty_passed":"未验证",
 
 };
