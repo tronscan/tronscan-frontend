@@ -2565,6 +2565,7 @@ export default class Account extends Component {
                                                   this.brokerageUpdate()
                                               }}
                                               disabled={errorMess !== '' && brokerageValue !== '' }
+
                                       >
                                           {tu("SR_brokerage_save")}
                                       </button>
@@ -2581,13 +2582,13 @@ export default class Account extends Component {
                                       </span>
                                       {
                                           currentWallet.representative.allowance == 0 ? <AntdTip title={<span>{tu('no_rewards_available_yet')}</span>}>
-                                              <button className="btn btn-success float-right"
+                                              <button className="btn btn-success float-right claim_rewards_btn"
                                                       disabled={currentWallet.representative.allowance === 0 || !reward }
                                               >
                                                   {tu("claim_rewards")}
                                              </button>
                                           </AntdTip>: <AntdTip title={!reward?<span>{tu("SR_receive_award_tip1")}{tu("SR_receive_award_tip2")}</span>:''}>
-                                              <button className="btn btn-success float-right"
+                                              <button className={"btn btn-success float-right" + (!reward?" claim_rewards_btn":"")}
                                                       onClick={() => {
                                                           this.claimRewards()
                                                       }}

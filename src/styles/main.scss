@@ -4719,3 +4719,28 @@ delete {
   font-size: 14px;
   font-family: Helvetica-Bold;
 }
+.claim_rewards_btn{
+  opacity: 0.65;
+  &:focus,
+  &:visited,
+  &:active,
+  &:hover{
+    background-color: #69C265;
+    border-color: #69C265;
+  }
+  button{
+    background-color: #69C265;
+    border-color: #69C265;
+    padding: 0;
+    &:focus,
+    &:visited,
+    &:active,
+    &:hover{
+      background-color: #79a736;
+      border-color: #729e33;
+    }
+  }
+  button:disabled{
+    opacity: 0.65;
+  }
+}
