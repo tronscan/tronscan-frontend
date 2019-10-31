@@ -129,8 +129,7 @@ class VerifyContractCode extends Component {
 
             this.setState({ loading: true });
 
-           // const { data } = await xhr.post(`${API_URL}/api/solidity/contract/verify`, formData);
-            const { data } = await xhr.post(`http://52.15.126.154:9016/api/solidity/contract/verify`, formData);
+            const { data } = await xhr.post(`${API_URL}/api/solidity/contract/verify`, formData);
 
             const { code, errmsg } = data;
             const { status } = data.data;
@@ -443,7 +442,7 @@ class VerifyContractCode extends Component {
                     loading={loading}
                     onClick={this.handleVerifyCode}
                     className="compile-button active ml-4"
-                    disabled={captchaCode}
+                    disabled={!captchaCode}
                 >{tu('verify_and_publish')}</Button>
             </div>
         );

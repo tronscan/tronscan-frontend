@@ -11,8 +11,8 @@ export const IS_DESKTOP = process.env.DESKTOP === "true";
 //export const IS_SUNNET = Lockr.get("NET") === "sunnet";
 
 export const NETURL = {
-  MAINNET: "http://18.217.215.94:61",
-  SUNNET: "http://18.217.215.94:62"
+    MAINNET: "https://debug.tronscan.org",
+    SUNNET: "https://debugdappchain.tronscan.org"
 };
 
 export const IS_MAINNET = window.location.origin === NETURL.MAINNET;
@@ -90,12 +90,9 @@ export const TRADINGMAP = {
 
 // SunWeb config
 export const SUNWEBCONFIG = {
-  // MAINFULLNODE: "https://api.trongrid.io",
-  // MAINSOLIDITYNODE: "https://api.trongrid.io",
-  // MAINEVENTSERVER: "https://api.trongrid.io",
-  MAINFULLNODE: "https://api.shasta.trongrid.io",
-  MAINSOLIDITYNODE: "https://api.shasta.trongrid.io",
-  MAINEVENTSERVER: "https://api.shasta.trongrid.io",
+  MAINFULLNODE: "https://api.trongrid.io",
+  MAINSOLIDITYNODE: "https://api.trongrid.io",
+  MAINEVENTSERVER: "https://api.trongrid.io",
   SUNFULLNODE: "https://sun.tronex.io",
   SUNSOLIDITYNODE: "https://sun.tronex.io",
   SUNEVENTSERVER: "https://sun.tronex.io",
