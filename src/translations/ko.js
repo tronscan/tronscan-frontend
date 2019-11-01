@@ -302,10 +302,10 @@ export const messages = {
   ##################################################################################
   */
   "apply_for_delegate": "슈퍼대표 신청",
-  "apply_super_representative_candidate": "슈퍼대표 후보자 신청",
+  "apply_super_representative_candidate": "최고 대표 파트너가 되려면 신청하십시오",
   "your_personal_website_address": "개인 웹 주소",
   "apply_for_delegate_predescription": "각 토큰 소유자는 TRON 슈퍼 대표가 될 수 있는 기회를 갖습니다. 그러나 네트워크와 커뮤니티가 보다 원활하고 효율적으로 운영되기 위해서는 자격을 갖춘 후보자가 추천된 슈퍼 대표가 될 수 있도록 일련의 표준 및 규정을 만들었으며, 새롭게 추천된 슈퍼 대표는 일주일에 한 번 업데이트되고 공개됩니다.",
-  "apply_for_delegate_description": "각 토큰 소유자는 계정 관리 페이지를 통해  슈퍼 대표로 신청하거나 투표 페이지에서 후보자에게 투표할 수 있습니다. 각 사용자는 여러 후보자에게 투표 할 수 있으며 최대 투표수는 보유한 TRX 수보다 작거나 같아야 합니다. 투표 결과는 각 사용자의 최종 투표 결과에 따라 결정되며, 투표 수 는 매일  02:00 (GMT + 8), 08:00 (GMT + 8), 14:00 (GMT + 8), 20:00 (GMT+8)에 갱신되며, 사용자는 실시간 티켓 수를 볼 수 있습니다. 최고 득표 수를 가진 후보자 27 위는 슈퍼 대표가 될 수 있으며 슈퍼 대표는 트랜잭션 패키징 및 블록 생성을 담당하며 블록 생성 당 32TRX의 보상을 받게 됩니다. 27 명의 슈퍼 대표와 상위 100 명의 대표는 투표수에 따라 노드 보상을 받을 수 있습니다. 후보자를 신청하려면 한 번에 9,999 TRX의 수수료를 공제해야 합니다. 사용자가 슈퍼 대표 후보자를 투표하는 데 TRX 비용이 들지 않습니다.",
+  "apply_for_delegate_description":"각 토큰 보유자는 계정 관리 페이지를 통해 최고 대표 파트너가되거나 투표 페이지에서 파트너에게 투표 할 수 있습니다. 각 사용자는 여러 파트너에 투표 할 수 있으며, 최대 투표 수는 보유한 TRX 수보다 적거나 같아야합니다. 투표 결과는 각 사용자의 최종 투표 결과에 따라 결정되며 투표는 02:00 (GMT + 8), 08:00 (GMT + 8), 14:00 (GMT + 8), 20:00 (GMT)입니다. +8) 새로 고침, 사용자는 실시간 티켓 수를 볼 수도 있습니다. 가장 많은 표를 얻은 상위 27 명의 파트너는 최고 대표가 될 수 있으며 최고 대표는 거래 패키징을 담당하고 매번 32 TRX를 보상합니다. 27 명의 최고 대표와 100 대 대표 파트너도 투표 수에 따라 노드 보상을받을 수 있습니다. 파트너가되기 위해 신청하려면 한 번에 9,999 TRX의 수수료를 공제해야합니다.",
   "unknown_error": "알 수 없는 오류가 발생했습니다.",
   "representative_understand": "저는 이미 TRON 슈퍼 대표가 되는 방법을 알고 있습니다.",
   "generate_account": "계정 비밀번호 및 주소를 생성하려면 클리 해주세요.",
@@ -316,7 +316,7 @@ export const messages = {
   "recent_transactions": "최근 거래",
   "newest_account": "최신 계정",
   "representatives": "슈퍼대표",
-  "representativesAcandidates": "슈퍼 대표 및 후보자",
+  "representativesAcandidates": "슈퍼 대표 및 파트너",
   "most_votes": "가장 많이 획득한 투표",
   "start_end_time": "시작/종료시간",
   "scan_qr_code": "QR코드 스캔",
@@ -352,7 +352,7 @@ export const messages = {
   "link_github": "Github 링크",
   "you_must_enter_a_url": "URL을 입력해주세요.",
   "success": "성공",
-  "successfully_appied_sr_canidate_message_0": "슈퍼대표 후보자 신청 성공",
+  "successfully_appied_sr_canidate_message_0": "슈퍼 대표 파트너가되기 위해 성공적으로 지원",
   "successfully_appied_sr_canidate_message_1": "곧 귀하의 계정이 업그레이드 될 것입니다.",
   "landing_page": "방문 페이지",
   "show_more_information_publish_sr_page": "페이지 게시 방법에 대한 추가 정보 표시",
@@ -364,7 +364,7 @@ export const messages = {
   "rewards_claimed": "보상 확인.",
   "successfully_claimed_rewards": "보상 획득 성공",
   "claim_rewards": "보상 획득",
-  "sr_receive_reward_message_0": "대표자 로서 귀한께서 블록 생산에 대한 보상을받습니다. 이러한 보상은 24 시간마다 청구될 수 있습니다.",
+  "sr_receive_reward_message_0": "대표자 로서 귀한께서 블록 생산에 대한 보상을받습니다, 이러한 보상은 24 시간마다 청구될 수 있습니다.",
   "intro": "소개",
   "budget_expenses": "예산 비용",
   "server_configuration": "서버 구성",
@@ -627,7 +627,7 @@ export const messages = {
   "highest_productivity": "블록 효율성 높음",
   "lowest_productivity": "블록 효율성 낮음",
   "Super Representatives": "슈퍼대표",
-  "Super Representative Candidates": "슈퍼대표 후보자",
+  "Super Representative Candidates": "슈퍼 대표 파트너 신청",
   "loading_representatives": "슈퍼대표 로딩중",
   "address_not_super_representative": "본 주소의 슈퍼 대표가 아닙니다.",
   "unable_load_representatives_page_message": "페이지 로딩 실패， 주소가 유효하지 않거나 슈퍼 대표 주소가 아니거나 슈퍼 대표가 본 페이지를 설정하지 않아서입니다. ",
@@ -666,7 +666,7 @@ export const messages = {
   "3_day_ranking": "3일 투표 랭킹 (상위 10 위)",
   "live_ranking": "실시간 랭킹",
   "live_ranking_msg": "투표수는 매 15초 갱신되며， 총 투표수에서 새 티켓을 계산하려면 1 ~ 2 분이 소요될 수 있습니다.",
-  "candidate": "후보자",
+  "candidate": "파트너",
   "current_votes": "현재 투표수",
   "click_to_start_voting": "클릭하여 투표하십시오.",
   "votes_remaining_message": "남은 투표수",
@@ -843,7 +843,7 @@ export const messages = {
   ##################################################################################
   */
   "applied_for_super_representative": "슈퍼 대표 신청 성공",
-  "sr_candidature": "슈퍼 대표 후보자",
+  "sr_candidature": "슈퍼 대표 파트너 신청",
   "created_token": "생성된 토큰",
   "token_creation": "토큰 생성",
   "bought": "구매",
@@ -1058,7 +1058,7 @@ export const messages = {
   "record_unit": "개 기록",
   "token_unit": "개 토큰",
   "voter_unit": "명  투표자",
-  "vote_unit": "명 후보자",
+  "vote_unit": "명 파트너",
   "account_unit": "개 계정",
   "address_unit": "개 주소",
   "contract_unit": "개 컨트랙트 인증함",
@@ -1361,7 +1361,7 @@ export const messages = {
   "propose_4": "TRX 대역폭 비용 공제 수정 제안",
   "propose_5": "토큰 발행 비용 수정 제안",
   "propose_6": "슈퍼대표 블록생산 보상 수정 제안",
-  "propose_7": "상위 127명의 슈퍼대표와 후보자에게 주어진 보상 수정 제안.",
+  "propose_7": "상위 127 명의 최고 대표 및 파트너에게 상 수정 제안",
   "propose_8": "계정 생성비용 수정 제안",
   "propose_9": "계정 생성시 대역폭의 소모 수정 제안",
   "propose_10": "비추얼머신 기능 작동 제안",
@@ -1385,7 +1385,7 @@ export const messages = {
   "propose_27": "Propose to enable protocol optimization",
   "propose_28": "Propose to support the new features of TRON Virtual Machine 0.5.4",
   "propose_30":"Propose to support the decentralized vote dividend",
-  "propose_31": "Propose to modify the block voting rewards given to the top 27 SRs and the following 100 candidates",
+  "propose_31": "Propose to modify the block voting rewards given to the top 27 SRs and the following 100 partners",
   "propose_minute": "분",
   "propose_unactivate": "열리지 않음",
   "propose_not_allowed": "허락되지 않음",
@@ -2110,6 +2110,35 @@ export const messages = {
   "mapping_warning":"This operation must be done by the token contract creator",
   "freeze_balance_limit":"잔액이 부족합니다. 다시 입력하십시오",
 
+  /*
+   ##################################################################################
+   #                                                                                #
+   # SR rewards                                   #
+   #                                                                                #
+   ##################################################################################
+  */
+  "SR_set_brokerage":"유권자 배당 설정",
+  "SR_brokerage_save_tip":"각 투표가 완료된 후 보상은 최종 설정된 비율로 유권자에게 분배됩니다.",
+  "SR_brokerage_save":"세이브",
+  "SR_brokerage_save_verify":"0~100 사이의 숫자를 입력하세요",
+  "SR_reward_available":"받을 수 있는",
+  "SR_set_github_learn_more":"더 보기",
+  "SR_vote_for_reward":"투표 보상",
+  "SR_receive_award_btn":"보상 받기",
+  "SR_receive_award_tip1":"아직 받을 수 없습니다，",
+  "SR_receive_award_tip2":"24시간 내에 단 한번만 받을 수 있습니다",
+  "SR_brokerage_save_result": "유권자 공유 저장！",
+  "successfully_brokerage_save": "유권자가 비율을 성공적으로 공유하도록 설정",
+  "could_not_brokerage_save": "유권자 공유를 저장할 수 없습니다",
+  "brokerage_save_error_message": "유권자 분할 비율을 설정하는 중에 문제가 발생했습니다. 나중에 다시 시도하십시오.",
+  "rewards_claimed_submitted":"거래 제출 완료",
+  "rewards_claimed_hash":"거래 해시：",
+  "rewards_claimed_hash_await":"잠시후 거래 확인이 되면 계정 페이지에서 찾아 볼 수 있습니다",
+  "voting_brokerage":"유권자 보상 배당 비율",
+  "voting_brokerage_tip":"슈퍼대표가 받는 보상 중, 배당 투표자의 비율은. 유권자= 총 보상 수* 유권자 보상 배당 비율* (유권자 투표/ 유권자 총 투표)",
+  "SR_set_brokerage_contract":"슈퍼 대표는 보너스 공유 비율을 설정",
+  "countdown_to_voting":"이 투표 라운드가 끝날 때까지의 카운트 다운",
+
   "total_tron_ecosystem_tokens":"Total TRON-ecosystem tokens:",
   "number_of_lists":"Number of lists:",
   "total_in_tronscan":"Total in tronscan:",
@@ -2121,5 +2150,6 @@ export const messages = {
   "unverifty_passed":"Unverified",
   "developers_reward_tip":"Thank you for considering to help out with the java-tron! TRON Foundation welcome contributions from anyone on the internet, and are grateful for your contributions.",
   "developers_niTron":"niTron global developer conference will be held in Korea at 29 Feb, 2020. By the end of  31 Jan, 2020, developers with the total points end up in Top 5 will be rewarded two tickets each.",
+
 
 };

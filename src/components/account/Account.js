@@ -1,5 +1,6 @@
 import React, {Component, Fragment} from 'react';
 import {t, tu} from "../../utils/i18n";
+import isMobile from "../../utils/isMobile";
 import {transactionResultManager, transactionResultManagerSun} from "../../utils/tron";
 import xhr from "axios";
 import {FormattedDate, FormattedNumber, FormattedRelative, FormattedTime, injectIntl} from "react-intl";
@@ -27,6 +28,7 @@ import {withTronWeb} from "../../utils/tronWeb";
 import { login, loadSideChains, loadFees } from "../../actions/app";
 import {loadRecentTransactions} from "../../actions/account";
 import {reloadWallet} from "../../actions/wallet";
+import {loadVoteTimer} from "../../actions/votes";
 import {connect} from "react-redux";
 import {CopyToClipboard} from "react-copy-to-clipboard";
 import QRCode from "qrcode.react";
@@ -37,6 +39,9 @@ import IssuedToken from './IssuedToken';
 import PledgeModal from './PledgeModal';
 import MappingMessageModal from './MappingMessageModal';
 import SignModal from './SignModal';
+import {Tooltip} from "reactstrap";
+import { Input, Tooltip as AntdTip } from 'antd';
+import Countdown from "react-countdown-now";
 
 @connect(
     state => {
@@ -52,6 +57,7 @@ import SignModal from './SignModal';
       wallet: state.wallet,
       currentWallet: state.wallet.current,
       trxBalance: state.account.trxBalance,
+      voteTimer: state.voting.voteTimer,
     }},
     {
       login,
@@ -59,6 +65,7 @@ import SignModal from './SignModal';
       reloadWallet,
       loadSideChains,
       loadFees,
+      loadVoteTimer
     }
 )
 @injectIntl
@@ -90,13 +97,16 @@ export default class Account extends Component {
       type: CURRENCYTYPE.TRX10,
       tokenTRX: false,
       trx20MappingAddress: [],
+      reward:false,
+      accountReward:0,
+      errorMess:'',
     };
 
   }
 
   async componentDidMount() {
 
-    let { account,match,walletType } = this.props;
+    let { account,match,walletType,currentWallet } = this.props;
 
     const isPrivateKey =  walletType.type === "ACCOUNT_PRIVATE_KEY" || walletType.type === "ACCOUNT_TRONLINK";
     this.setState({
@@ -109,6 +119,8 @@ export default class Account extends Component {
       });
       this.reloadTokens();
       this.loadAccount();
+      this.getAddressReward();
+      this.getAddressRewardBok();
 
       if(getQueryString('from') == 'tronlink' && getQueryString('type') == 'frozen'){
           setTimeout(()=>{
@@ -123,16 +135,26 @@ export default class Account extends Component {
       isPrivateKey && !IS_SUNNET && await this.getSideChains();
       // get fees
       isPrivateKey && await this.getFees();
+      //get SR Brokerage
+      await new Promise(resolve => setTimeout(resolve, 500));
+      if(IS_MAINNET){
+         // if(currentWallet.representative.enabled){
+              await this.loadVoteTimer();
+              this.getSRBrokerage();
+
+          //}
+      }
     }
   }
 
   async componentDidUpdate(prevProps) {
-    let {account, walletType} = this.props;
+    let {account, walletType, currentWallet} = this.props;
     if (((prevProps.account.isLoggedIn !== account.isLoggedIn) && account.isLoggedIn) || ((prevProps.account.address !== account.address) && account.isLoggedIn)) {
       this.setState({isTronLink: Lockr.get("islogin")});
       this.reloadTokens();
       this.loadAccount();
-
+      this.getAddressReward();
+      this.getAddressRewardBok();
       //this.getTRC20Tokens();
       let isActivate =  await this.isActivateAccount(account.address)
 
@@ -146,7 +168,53 @@ export default class Account extends Component {
       isPrivateKey && !IS_SUNNET && await this.getSideChains();
       // get fees
       isPrivateKey && await this.getFees();
+      //get SR Brokerage
+      await new Promise(resolve => setTimeout(resolve, 500));
+      if(IS_MAINNET){
+        //if(currentWallet.representative.enabled){
+            await this.loadVoteTimer();
+            this.getSRBrokerage();
+
+        //}
+      }
+
     }
+  }
+
+  loadVoteTimer = async () => {
+      this.props.loadVoteTimer();
+  };
+  getNextCycle() {
+      let {voteTimer} = this.props;
+      return voteTimer;
+  }
+  getAddressRewardBok = async () => {
+      let { account } = this.props;
+      const  data  =  await Client.getAddressReward({
+          address:account.address
+      })
+      this.setState({
+          reward: data.reward
+      });
+  }
+
+  getAddressReward = async () => {
+      let { account } = this.props;
+      let tronWeb = account.tronWeb;
+      console.log(account.tronWeb)
+      const  reward  =  await tronWeb.trx.getReward(tronWeb.defaultAddress.base58)
+      this.setState({
+          accountReward:reward
+      });
+  }
+
+  getSRBrokerage = async () =>{
+      let { account } = this.props;
+      let tronWeb = account.tronWeb;
+      const  brokerage  =  await tronWeb.trx.getBrokerage(tronWeb.defaultAddress.base58)
+      this.setState({
+          brokerageValue:(100 - brokerage)
+      });
   }
 
 
@@ -468,9 +536,7 @@ export default class Account extends Component {
   }
 
   renderBandwidth() {
-
     let {currentWallet} = this.props;
-
     return (
         <div className="row mt-3">
           <div className="col-md-12">
@@ -624,7 +690,6 @@ export default class Account extends Component {
                 <FormattedTime value={frozen.balances[0].expires}  hour='numeric' minute="numeric" second='numeric' hour12={false}/>
               </td>:<td></td>}
               <td className="text-right">
-
                   {
                     frozenBandwidth!==0 && <button className="btn btn-danger mr-2" style={{marginTop: '-5px',
                       marginBottom: '-5px'}} onClick={() => {
@@ -966,41 +1031,7 @@ export default class Account extends Component {
     })
   };
 
-  claimRewards = async () => {
-    let res;
-    let {account, currentWallet} = this.props;
-    if (this.state.isTronLink === 1) {
-      let tronWeb;
-      if (this.props.walletType.type === "ACCOUNT_LEDGER") {
-        tronWeb = this.props.tronWeb();
-      } else if (this.props.walletType.type === "ACCOUNT_TRONLINK") {
-        tronWeb = account.tronWeb;
-      }
-      const unSignTransaction = await tronWeb.transactionBuilder.withdrawBlockRewards(tronWeb.defaultAddress.base58).catch(e => false);
-      const {result} = await transactionResultManager(unSignTransaction, tronWeb)
-      res = result;
-    } else {
-      let {success, code} = await Client.withdrawBalance(currentWallet.address)(account.key);
-      res = success;
-    }
-    if (res) {
-      this.setState({
-        modal: (
-            <SweetAlert success title={tu("rewards_claimed")} onConfirm={this.hideModal}>
-              {tu("successfully_claimed_rewards")}
-            </SweetAlert>
-        )
-      });
-    } else {
-      this.setState({
-        modal: (
-            <SweetAlert danger title={tu("could_not_claim_rewards")} onConfirm={this.hideModal}>
-              {tu("claim_rewards_error_message")}
-            </SweetAlert>
-        )
-      });
-    }
-  };
+
 
   unfreeze = async () => {
     let {delegateType, delegate, delegateValue}=this.state;
@@ -1760,13 +1791,149 @@ export default class Account extends Component {
     } else {
       this.openMappingModal();
     }
-  } 
+  }
+
+    /**
+     * num change
+     */
+    onChangeBrokerage = e => {
+        const { intl } = this.props;
+        const numValue = e.target && e.target.value;
+        const MaxAmount  = 100;
+        let errorMess = '';
+        let reg =  /^(?:[1-9]?\d|100)$/
+        if (numValue) {
+            if (Number(numValue) > MaxAmount) {
+                errorMess = `${intl.formatMessage({id: 'SR_brokerage_save_verify'})}`;
+            }
+            if (!new RegExp(reg).test(numValue)) {
+                // max value
+                return;
+            }
+        }
+        this.setState({
+            brokerageValue:numValue,
+            errorMess,
+        });
+    }
+
+    // update brokerage
+    brokerageUpdate = async () => {
+        let res,tronWeb;
+        let {account, currentWallet} = this.props;
+        let {brokerageValue} = this.state;
+        if (this.props.walletType.type === "ACCOUNT_LEDGER") {
+            tronWeb = this.props.tronWeb();
+        } else if (this.props.walletType.type === "ACCOUNT_TRONLINK" || this.props.walletType.type === "ACCOUNT_PRIVATE_KEY") {
+            tronWeb = account.tronWeb;
+        }
+        let value = 100 - brokerageValue;
+        // updateBrokerage
+        const unSignTransaction = await tronWeb.transactionBuilder.updateBrokerage(value,tronWeb.defaultAddress.base58).catch(e => false);
+        const {result} = await transactionResultManager(unSignTransaction, tronWeb)
+        res = result;
+        if (res) {
+            this.setState({
+                modal: (
+                    <SweetAlert success title={tu("SR_brokerage_save_result")} onConfirm={this.hideModal}>
+                        {tu("successfully_brokerage_save")}
+                    </SweetAlert>
+                )
+            });
+        } else {
+            this.setState({
+                modal: (
+                    <SweetAlert danger title={tu("could_not_brokerage_save")} onConfirm={this.hideModal}>
+                        {tu("brokerage_save_error_message")}
+                    </SweetAlert>
+                )
+            });
+        }
+    };
+    // SR claim rewards
+    claimRewards = async () => {
+        let res;
+        let {reward} = this.state;
+        if(!reward){
+            return
+        }
+        let {account, currentWallet} = this.props;
+        if (this.state.isTronLink === 1) {
+            let tronWeb;
+            if (this.props.walletType.type === "ACCOUNT_LEDGER") {
+                tronWeb = this.props.tronWeb();
+            } else if (this.props.walletType.type === "ACCOUNT_TRONLINK") {
+                tronWeb = account.tronWeb;
+            }
+            const unSignTransaction = await tronWeb.transactionBuilder.withdrawBlockRewards(tronWeb.defaultAddress.base58).catch(e => false);
+            const {result} = await transactionResultManager(unSignTransaction, tronWeb)
+            res = result;
+        } else {
+            let {success, code} = await Client.withdrawBalance(currentWallet.address)(account.key);
+            res = success;
+        }
+        if (res) {
+            this.setState({
+                modal: (
+                    <SweetAlert success title={tu("rewards_claimed")} onConfirm={this.hideModal}>
+                        {tu("successfully_claimed_rewards")}
+                    </SweetAlert>
+                )
+            });
+        } else {
+            this.setState({
+                modal: (
+                    <SweetAlert danger title={tu("could_not_claim_rewards")} onConfirm={this.hideModal}>
+                        {tu("claim_rewards_error_message")}
+                    </SweetAlert>
+                )
+            });
+        }
+    };
+
+    // account claim rewards
+    accountClaimRewards = async () => {
+        let res,hashid;
+        let {account, currentWallet} = this.props;
+        let {reward} = this.state;
+        if(!reward){
+           return
+        }
+
+        let tronWeb = account.tronWeb;
+        const unSignTransaction = await tronWeb.transactionBuilder.withdrawBlockRewards(tronWeb.defaultAddress.base58).catch(e => false);
+        const {result} = await transactionResultManager(unSignTransaction, tronWeb)
+        res = result;
+        //hashid = txid
+
+        if (res) {
+            this.setState({
+                modal: (
+                    <SweetAlert success title={tu("rewards_claimed_submitted")} onConfirm={this.hideModal}>
+                        {/*<div>*/}
+                            {/*{tu("rewards_claimed_hash")}*/}
+                            {/*<span className="SweetAlert_hashid">{hashid}</span>*/}
+                        {/*</div>*/}
+                        {/*<br/>*/}
+                        {tu("rewards_claimed_hash_await")}
+                    </SweetAlert>
+                )
+            });
+        } else {
+            this.setState({
+                modal: (
+                    <SweetAlert danger title={tu("could_not_claim_rewards")} onConfirm={this.hideModal}>
+                        {tu("claim_rewards_error_message")}
+                    </SweetAlert>
+                )
+            });
+        }
+    };
 
   render() {
     let { modal, sr, issuedAsset, showBandwidth, showBuyTokens, temporaryName, hideSmallCurrency, tokenTRC10,
-      isShowPledgeModal, isShowMappingModal, address, currency, balance, precision, id, type, isShowSignModal, tokenTRX, trx20MappingAddress } = this.state;
-
-
+        isShowPledgeModal, isShowMappingModal, address, currency, balance, precision, id, type, isShowSignModal,
+        tokenTRX, trx20MappingAddress,brokerageValue, errorMess, reward, rewardData, accountReward} = this.state;
 
     let {account, frozen, totalTransactions, currentWallet, wallet, accountResource, trxBalance, intl} = this.props;
 
@@ -1952,6 +2119,49 @@ export default class Account extends Component {
                         <FormattedNumber value={totalTransactions}/>
                       </td>
                     </tr>
+                    {
+                        (!currentWallet.representative.enabled  && IS_MAINNET) && <tr>
+                          <th >{tu("SR_vote_for_reward")}:</th>
+                          <td>
+                            <TRXPrice amount={accountReward / ONE_TRX} className="font-weight-bold"/>
+                              {
+                                  accountReward == 0 ?  <AntdTip title={<span>{tu('no_rewards_available_yet')}</span>}>
+                                                            <a href="javascript:;"
+                                                               className="float-right text-primary btn btn-default btn-sm accont_reward_disabled"
+                                                            >
+                                                            {tu("SR_receive_award_btn")}
+                                                            </a>
+                                                        </AntdTip> :
+                                                        <AntdTip title={!reward?<span>{tu("SR_receive_award_tip1")}{tu("SR_receive_award_tip2")}</span>:''}>
+                                                            <a href="javascript:;"
+                                                               className={"float-right text-primary btn btn-default btn-sm"+ (!reward?" accont_reward_disabled":"")}
+                                                               onClick={this.accountClaimRewards}
+                                                            >
+                                                                {tu("SR_receive_award_btn")}
+                                                            </a>
+                                                        </AntdTip>
+                              }
+                          </td>
+                        </tr>
+                    }
+                    {/*{*/}
+                        {/*(!currentWallet.representative.enabled && IS_MAINNET) && <tr>*/}
+                        {/*<th style={{borderTop:'none'}}></th>*/}
+                        {/*<td style={{borderTop:'none',paddingTop:0,color:'#D8D8D8'}}>*/}
+                          {/*<span className="float-right d-block">*/}
+                            {/*{tu("SR_receive_award_tip2")}*/}
+                          {/*</span>*/}
+                            {/*{*/}
+                                {/*!reward && <span className="float-right d-block">*/}
+                                  {/*{tu("SR_receive_award_tip1")}*/}
+                              {/*</span>*/}
+                            {/*}*/}
+
+                        {/*</td>*/}
+                      {/*</tr>*/}
+                    {/*}*/}
+
+
                     </tbody>
                   </table>
                 </div>
@@ -2301,56 +2511,169 @@ export default class Account extends Component {
                         <p className="card-text">
                           {tu("sr_receive_reward_message_0")}
                         </p>
-                        <div className="text-center">
-                          <button className="btn btn-success"
-                                  onClick={() => {
-                                    this.claimRewards()
-                                  }}
-                                  disabled={currentWallet.representative.allowance === 0}
-                          >
-                            {tu("claim_rewards")}
-                          </button>
-                          {
-                            currentWallet.representative.allowance > 0 ?
-                                <p className="m-0 mt-3 text-success">
-                                  Claimable Rewards: <TRXPrice amount={currentWallet.representative.allowance / ONE_TRX}
-                                                               className="font-weight-bold"/>
-                                </p> :
-                                <p className="m-0 mt-3 font-weight-bold" style={{color: '#D0AC6E'}}>
-                                  No rewards to claim
-                                </p>
-                          }
+                        {/*<div className="text-left d-flex justify-content-between" style={{ height: '36px'}}>*/}
+                            {/*<div>*/}
+                                {/*<span className="SR_brokerage_line_height">{tu("SR_set_brokerage")}：</span>*/}
+                                {/*<span className="ml-1 SR_brokerage_save_tip">*/}
+                                    {/*<QuestionMark placement="top" text="SR_brokerage_save_tip"/>*/}
+                                {/*</span>*/}
+                            {/*</div>*/}
+                            {/*<div className="">*/}
+                              {/*<div className="d-flex">*/}
+                                {/*<Input value={brokerageValue} onChange={this.onChangeBrokerage} />*/}
+                                {/*<span className="ml-2 SR_brokerage_line_height">%</span>*/}
+                              {/*</div>*/}
+                                {/*{*/}
+                                    {/*errorMess? <span className="mt-1" style={{ color: 'red', display: 'block' }}>{errorMess}</span>:''*/}
+                                {/*}*/}
+                            {/*</div>*/}
+                            {/*<button className="btn btn-success"*/}
+                                    {/*onClick={() => {*/}
+                                        {/*this.brokerageUpdate()*/}
+                                    {/*}}*/}
+                                    {/*disabled={errorMess !== '' && brokerageValue !== '' }*/}
+                            {/*>*/}
+                            {/*{tu("SR_brokerage_save")}*/}
+                            {/*</button>*/}
+                        {/*</div>*/}
+                        <div className="table-responsive">
+                            <table className={"table m-0" + (isMobile? " SR_set_brokerage" :"")}>
+                                <tbody>
+                                <tr>
+                                    <th style={{border: 'none',width:'30%',paddingLeft:0}}>
+                                        <span className="SR_brokerage_line_height">{tu("SR_set_brokerage")}：</span>
+                                        <span className="ml-1 SR_brokerage_save_tip">
+                                              <QuestionMark placement="top" text="SR_brokerage_save_tip"/>
+                                          </span>
+                                    </th>
+                                    <td style={{border: 'none',paddingRight:0}}>
+                                        <div className="d-inline-block" style={{width:'30%',paddingRight:0}}>
+                                            <div className="d-flex">
+                                                <Input value={brokerageValue} onChange={this.onChangeBrokerage} />
+                                                <span className="ml-2 SR_brokerage_line_height">%</span>
+                                            </div>
+                                            {
+                                                errorMess? <span className="mt-1" style={{ color: 'red', display: 'block',position: 'absolute' }}>{errorMess}</span>:''
+                                            }
+                                        </div>
+                                        <div className="d-inline-block ml-5">
+                                            <span>{tu("countdown_to_voting")}：</span>
+                                            <Countdown date={this.getNextCycle()} daysInHours={true} onComplete={() => {
+                                                this.loadVoteTimer();
+                                            }}/>
+                                        </div>
+                                        <button className="btn btn-success float-right"
+                                                onClick={() => {
+                                                    this.brokerageUpdate()
+                                                }}
+                                                disabled={errorMess !== '' && brokerageValue !== '' }
+
+                                        >
+                                            {tu("SR_brokerage_save")}
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th style={{border: 'none',width:'30%',paddingLeft:0}}>
+                                        <span>{tu("claim_rewards")}：</span>
+                                    </th>
+                                    <td style={{border: 'none',paddingRight:0}}>
+                                       <span className="d-inline-block" style={{width:'50%',paddingRight:0}}>
+                                         <TRXPrice amount={currentWallet.representative.allowance / ONE_TRX} className="font-weight-bold"/>
+                                           &nbsp; {tu('SR_reward_available')}
+                                      </span>
+                                        {
+                                            currentWallet.representative.allowance == 0 ? <AntdTip title={<span>{tu('no_rewards_available_yet')}</span>}>
+                                                <button className="btn btn-success float-right claim_rewards_btn"
+                                                        disabled={currentWallet.representative.allowance === 0 || !reward }
+                                                >
+                                                    {tu("claim_rewards")}
+                                                </button>
+                                            </AntdTip>: <AntdTip title={!reward?<span>{tu("SR_receive_award_tip1")}{tu("SR_receive_award_tip2")}</span>:''}>
+                                                <button className={"btn btn-success float-right" + (!reward?" claim_rewards_btn":"")}
+                                                        onClick={() => {
+                                                            this.claimRewards()
+                                                        }}
+                                                        disabled={currentWallet.representative.allowance === 0 || !reward }
+                                                >
+
+                                                    {tu("claim_rewards")}
+                                                </button>
+                                            </AntdTip>
+                                        }
+                                        {/*<button className="btn btn-success float-right"*/}
+                                        {/*onClick={() => {*/}
+                                        {/*this.claimRewards()*/}
+                                        {/*}}*/}
+                                        {/*disabled={currentWallet.representative.allowance === 0 || !reward }*/}
+                                        {/*>*/}
+                                        {/*{tu("claim_rewards")}*/}
+                                        {/*</button>*/}
+                                    </td>
+                                </tr>
+                                {/*<tr>*/}
+                                {/*<th style={{borderTop:'none'}}></th>*/}
+                                {/*<td style={{borderTop:'none',paddingTop:0,color:'#D8D8D8'}}>*/}
+                                {/*<span className="float-right d-block">*/}
+                                {/*{tu("SR_receive_award_tip2")}*/}
+                                {/*</span>*/}
+                                {/*{*/}
+                                {/*!reward && <span className="float-right d-block">*/}
+                                {/*{tu("SR_receive_award_tip1")}*/}
+                                {/*</span>*/}
+                                {/*}*/}
+                                {/*</td>*/}
+                                {/*</tr>*/}
+                                </tbody>
+                            </table>
                         </div>
+
+
+                        {/*<div className="text-left d-flex mt-3 justify-content-between">*/}
+
+                          {/*{*/}
+                            {/*currentWallet.representative.allowance > 0 ?*/}
+                                {/*<p className="m-0 mt-3 text-success">*/}
+                                  {/*Claimable Rewards: <TRXPrice amount={currentWallet.representative.allowance / ONE_TRX}*/}
+                                                               {/*className="font-weight-bold"/>*/}
+                                {/*</p> :*/}
+                                {/*<p className="m-0 mt-3 font-weight-bold" style={{color: '#D0AC6E'}}>*/}
+                                  {/*No rewards to claim*/}
+                                {/*</p>*/}
+                          {/*}*/}
+                        {/*</div>*/}
                         <hr/>
                         <h5 className="card-title text-center">
                           {tu("landing_page")}
                         </h5>
-                        <div className="text-center">
-                          <p className="card-text text-center">
+                        <div className="d-flex">
+                          <p className="card-text SR_brokerage_line_height flex-1">
                             {tu("create_sr_landing_page_message_0")}
                           </p>
-                          <p className="text-center">
-                            <HrefLink className="btn btn-danger"
+                          <p className="float-right">
+                            <HrefLink className="btn btn-success"
                                       href="https://github.com/tronscan/tronsr-template#readme">
-                              {tu("show_more_information_publish_sr_page")}
+                              {tu("SR_set_github_learn_more")}
                             </HrefLink>
                           </p>
-                          {
-                            !this.hasGithubLink() &&
-                            <Fragment>
-                              <p className="card-text text-center">
-                                {tu("set_github_url_message_0")}
-                              </p>
-                              <p className="text-center">
-                                <button className="btn btn-dark mr-2" onClick={() => {
-                                  this.changeGithubURL()
-                                }}>
-                                  {tu("set_github_link")}
-                                </button>
-                              </p>
-                            </Fragment>
-                          }
                         </div>
+                        {/*<div className="d-flex">*/}
+                          {/*{*/}
+                            {/*!this.hasGithubLink() &&*/}
+                            {/*<Fragment>*/}
+                              {/*<p className="card-text SR_brokerage_line_height">*/}
+                                {/*{tu("set_github_url_message_0")}*/}
+                              {/*</p>*/}
+                              {/*<p className="text-center ml-5">*/}
+                                {/*<button className="btn btn-success mr-2" onClick={() => {*/}
+                                  {/*this.changeGithubURL()*/}
+                                {/*}}>*/}
+                                  {/*{tu("set_github_link")}*/}
+                                {/*</button>*/}
+                              {/*</p>*/}
+                            {/*</Fragment>*/}
+                          {/*}*/}
+                        {/*</div>*/}
                       </div>
                       {
                         this.hasGithubLink() &&

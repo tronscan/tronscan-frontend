@@ -215,10 +215,11 @@ class Proposal extends React.Component {
                                         <span>TRX</span>
                                     </div>
                                     {
-                                        record.proposalId == 23?<div className="mt-1">
+                                        record.proposalId == 23  || record.proposalId == 26 ?<div className="mt-1">
                                             <span>{ intl.formatMessage({id: 'propose_31'})}</span>
                                             <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
-                                            <span>{ 160000000 / ONE_TRX}</span> &nbsp;
+                                            { record.proposalId == 23 && <span>{ 160000000 / ONE_TRX}</span> } &nbsp;
+                                            { record.proposalId == 26 && <span>{ 128000000 / ONE_TRX}</span> } &nbsp;
                                             <span>TRX</span>
                                         </div>:''
                                     }

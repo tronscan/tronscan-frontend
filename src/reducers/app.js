@@ -170,7 +170,7 @@ export function appReducer(state = initialState, action) {
 
     case LOGIN_PK: {
 
-      Lockr.set("islogin", 0);
+       Lockr.set("islogin", 0);
        const ServerNode =  SUNWEBCONFIG.MAINFULLNODE;
        const HttpProvider = TronWeb.providers.HttpProvider; // This provider is optional, you can just use a url for the nodes instead
        const fullNode = new HttpProvider(ServerNode); // Full node http endpoint
@@ -188,12 +188,12 @@ export function appReducer(state = initialState, action) {
           {
               fullNode: ServerNode,
               solidityNode: ServerNode,
-              eventServer: ServerNode
+              eventServer: ServerNode,
           },
           {
               fullNode: SUNWEBCONFIG.SUNFULLNODE,
               solidityNode: SUNWEBCONFIG.SUNSOLIDITYNODE,
-              eventServer: SUNWEBCONFIG.SUNEVENTSERVER
+              eventServer: SUNWEBCONFIG.SUNEVENTSERVER,
           },
           SUNWEBCONFIG.MAINNET,
           SUNWEBCONFIG.SIDECHAIN,
@@ -201,7 +201,7 @@ export function appReducer(state = initialState, action) {
           privateKey
        );
 
-
+       //window.sunWeb = sunWeb
       return {
         ...state,
         account: {
