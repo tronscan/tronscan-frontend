@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/editor.worker.js"
   },
   {
-    "revision": "16c344833594de9807998e62584bd56d",
+    "revision": "154d11ca709e118bb9c58dda25416d96",
     "url": "/index.html"
   },
   {
@@ -140,8 +140,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/js/About.50da6590.chunk.js"
   },
   {
-    "revision": "9018fe23dcba89bed47d",
-    "url": "/static/js/Account.ceb42b7d.chunk.js"
+    "revision": "2cef9d57714fb09a9b45",
+    "url": "/static/js/Account.04058c4d.chunk.js"
   },
   {
     "revision": "73bf6bdfb2bba99f1d19",
@@ -152,16 +152,16 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/js/AddSignatureModal.292c8ee4.chunk.js"
   },
   {
-    "revision": "8bce9ac0d67b17a15c6d",
-    "url": "/static/js/Address.81658510.chunk.js"
+    "revision": "96154eebfe1ccd541feb",
+    "url": "/static/js/Address.bc3bfd02.chunk.js"
   },
   {
     "revision": "37570c80a86251aae298",
     "url": "/static/js/BTTSupplyTemp.f7ff38d0.chunk.js"
   },
   {
-    "revision": "ebfd4d6edf82ef09f450",
-    "url": "/static/js/Block.af9ee9c4.chunk.js"
+    "revision": "eb76752c7d886d200056",
+    "url": "/static/js/Block.7179e61c.chunk.js"
   },
   {
     "revision": "a7c068153911dcde1044",
@@ -232,8 +232,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/js/Markets.40defce6.chunk.js"
   },
   {
-    "revision": "c8f61d1288331bc5a5a6",
-    "url": "/static/js/MyToken.7359d342.chunk.js"
+    "revision": "fbfe923572fa0df70d95",
+    "url": "/static/js/MyToken.690f2550.chunk.js"
   },
   {
     "revision": "5c6bfd5b1e0e3c87753c",
@@ -276,8 +276,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/js/SingleStats.3b7dcea6.chunk.js"
   },
   {
-    "revision": "ea6aecd8e97c1ead3d74",
-    "url": "/static/js/SmartContract.f75ff484.chunk.js"
+    "revision": "6ba553b6ec094388de22",
+    "url": "/static/js/SmartContract.d4665501.chunk.js"
   },
   {
     "revision": "58829216a6182dd87cf1",
@@ -360,8 +360,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/js/main.3b556830.chunk.js"
   },
   {
-    "revision": "843c0be748630a435c53",
-    "url": "/static/js/runtime~main.fcd23ea9.js"
+    "revision": "fc0e008b33412de6fb48",
+    "url": "/static/js/runtime~main.ae160912.js"
   },
   {
     "revision": "7b00f7c4e78ed9cfc676c64c040965e8",

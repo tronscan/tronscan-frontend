@@ -340,7 +340,7 @@ class Transactions extends React.Component {
               }
 
           </div>
-          {!loading && <TotalInfo total={total} rangeTotal={rangeTotal} typeText="transactions_unit" common={!address} top={(!contract)? '-28px': '10px'} selected/>}
+          {!loading && <TotalInfo total={total} isQuestionMark={!isBlock} rangeTotal={rangeTotal} typeText="transactions_unit" common={!address} top={(!contract)? '-28px': '10px'} selected/>}
           
           {
               (!loading && transactions.length === 0)?
