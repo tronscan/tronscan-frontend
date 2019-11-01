@@ -1902,19 +1902,19 @@ export default class Account extends Component {
 
         let tronWeb = account.tronWeb;
         const unSignTransaction = await tronWeb.transactionBuilder.withdrawBlockRewards(tronWeb.defaultAddress.base58).catch(e => false);
-        const {result,txid} = await transactionResultManager(unSignTransaction, tronWeb)
+        const {result} = await transactionResultManager(unSignTransaction, tronWeb)
         res = result;
-        hashid = txid
+        //hashid = txid
 
         if (res) {
             this.setState({
                 modal: (
                     <SweetAlert success title={tu("rewards_claimed_submitted")} onConfirm={this.hideModal}>
-                        <div>
-                            {tu("rewards_claimed_hash")}
-                            <span className="SweetAlert_hashid">{hashid}</span>
-                        </div>
-                        <br/>
+                        {/*<div>*/}
+                            {/*{tu("rewards_claimed_hash")}*/}
+                            {/*<span className="SweetAlert_hashid">{hashid}</span>*/}
+                        {/*</div>*/}
+                        {/*<br/>*/}
                         {tu("rewards_claimed_hash_await")}
                     </SweetAlert>
                 )
