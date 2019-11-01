@@ -159,7 +159,7 @@ class ProposalDetail extends React.Component {
                                                                 <td>
                                                                     <FormattedDate value={Number(proposal.createTime)}/>&nbsp;
                                                                     <FormattedTime value={Number(proposal.createTime)}/>&nbsp;
-                                                                    <span>(UTC)</span>
+                                                                    {/*<span>(UTC)</span>*/}
                                                                 </td>
                                                             </tr>
                                                             <tr>
@@ -167,7 +167,7 @@ class ProposalDetail extends React.Component {
                                                                 <td>
                                                                     <FormattedDate value={Number(proposal.expirationTime)}/>&nbsp;
                                                                     <FormattedTime value={Number(proposal.expirationTime)}/>&nbsp;
-                                                                    <span>(UTC)</span>
+                                                                    {/*<span>(UTC)</span>*/}
                                                                 </td>
                                                             </tr>
                                                             <tr>

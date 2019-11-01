@@ -1425,8 +1425,8 @@ export const messages = {
   "propose_finished": "已完成",
   "proposal_content_info": "提议内容",
   "proposer": "提议者",
-  "proposal_time_of_creation": "创建时间 (UTC)",
-  "proposal_time_of_expire": "失效时间 (UTC)",
+  "proposal_time_of_creation": "创建时间 ",
+  "proposal_time_of_expire": "失效时间 ",
   "proposal_status": "提议状态",
   "proposal_to": "为 ",
   "no_commission_proposed_found": "未查询到委员会提议",
@@ -2137,7 +2137,7 @@ export const messages = {
   "developers_contribution_link":"贡献内容对应链接",
   "developers_earn_points":"获得积分",
   "developers_search":"搜索用户名",
-  "developers_scored_users":"已获积分账户",
+  "developers_scored_users":"波场全球社区开发者",
   "DAppChain_holders":"侧链持有者",
   "notrx_noenergy":"请确认TRX数量大于10或有一定的能量",
   "inactive_MainChain_account":"该地址未在TRON主网激活，无法完成此操作，请激活后重试",
@@ -2184,5 +2184,6 @@ export const messages = {
   "enter_main_contract":"请输入主合约的名称",
   "contract_verifty_passed":"验证通过",
   "unverifty_passed":"未验证",
+  "developers_account":"个参与者",
 
 };

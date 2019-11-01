@@ -282,7 +282,7 @@ class Contracts extends React.Component {
 
           {total ? 
             
-            <TotalInfo total={total} rangeTotal={rangeTotal} typeText="contract_source_codes_found" top="10px" />
+            <TotalInfo total={total} rangeTotal={rangeTotal} typeText="contract_source_codes_found" top="10px" isQuestionMark={false}/>
              : ''}
              {/**<div className="table_pos_info d-none d-md-block" style={{left: 'auto'}}>{tableInfo}<span> <QuestionMark placement="top" text="to_provide_a_better_experience"></QuestionMark></span></div> */}
            <SmartTable bordered={true} loading={loading}

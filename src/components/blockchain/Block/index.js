@@ -90,7 +90,7 @@ class Block extends React.Component {
           icon: "fa fa-handshake",
           path: "",
           label: <span>{tu("transactions")}</span>,
-          cmp: () => <Transactions filter={{block: block.number}}/>,
+          cmp: () => <Transactions filter={{block: block.number}} isBlock/>,
         },
         transfers: {
           id: "transfers",
