@@ -9,6 +9,7 @@ import {Sticky, StickyContainer} from "react-sticky";
 import {connect} from "react-redux";
 import {Alert} from "reactstrap";
 import {BarLoader, TronLoader} from "../common/loaders";
+import {QuestionMark} from "../common/QuestionMark";
 import SweetAlert from "react-bootstrap-sweetalert";
 import {ONE_TRX, IS_MAINNET} from "../../constants";
 import {login} from "../../actions/app";
@@ -572,11 +573,17 @@ export default class VoteOverview extends React.Component {
                               <th className="text-right" style={{width: 150}}>{tu("votes")}</th>
                               <th className="text-right" style={{width: 150}}>{tu("live")}</th>
                               <th className="text-right" style={{width: 100}}>{tu("percentage")}</th>
+                              <th className="text-right" style={{width: 150}}>{tu("voting_brokerage")}
+                                <span className="ml-2">
+                                    <QuestionMark placement="top" text="voting_brokerage_tip"/>
+                                </span>
+                              </th>
                               {
                                 votingEnabled && trxBalance > 0 && <th style={{width: 200}}>
                                   {tu("your_vote")}
                                 </th>
                               }
+
                             </tr>
                             </thead>
                             <tbody>
@@ -612,7 +619,7 @@ export default class VoteOverview extends React.Component {
                                               <AddressLink className="small text-muted" address={candidate.address}/>
                                             </div>
                                             {
-                                              candidate.hasPage && <div className="_team ml-0 ml-sm-auto">
+                                                (!votingEnabled && candidate.hasPage) && <div className="_team ml-0 ml-sm-auto">
                                                 <Link className="btn btn-lg btn-block btn-default mt-1"
                                                       to={`/representative/${candidate.address}`}>
                                                   {tu("open_team_page")}
@@ -658,6 +665,16 @@ export default class VoteOverview extends React.Component {
                                               </Fragment>
                                             }
                                           </td>
+                                          <td className="small text-right align-middle">
+                                              {
+                                                  <Fragment>
+                                                    <FormattedNumber value={candidate.brokerage?(100 - candidate.brokerage):0}
+                                                                     minimumFractionDigits={2}
+                                                                     maximumFractionDigits={2}
+                                                    />%
+                                                  </Fragment>
+                                              }
+                                          </td>
                                           {
                                             votingEnabled && trxBalance > 0 && <td className="vote-input-field">
                                               <div className="input-group">
@@ -670,7 +687,7 @@ export default class VoteOverview extends React.Component {
                                                 <input
                                                     type="text"
                                                     value={votes[candidate.address] || ""}
-                                                    className="form-control form-control-sm text-center"
+                                                    className="form-control text-center"
                                                     onChange={(ev) => this.setVote(candidate.address, ev.target.value)}/>
                                                 <div className="input-group-append">
                                                   <button className="btn btn-outline-success"

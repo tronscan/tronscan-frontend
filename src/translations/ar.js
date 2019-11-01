@@ -1387,7 +1387,7 @@
   "propose_27": "Propose to enable protocol optimization",
   "propose_28": "Propose to support the new features of TRON Virtual Machine 0.5.4",
   "propose_30":"Propose to support the decentralized vote dividend",
-  "propose_31": "Propose to modify the block voting rewards given to the top 27 SRs and the following 100 candidates",
+  "propose_31": "Propose to modify the block voting rewards given to the top 27 SRs and the following 100 partners",
   "propose_minute": "دقيقة",
   "propose_unactivate": "غير مفتوح",
   "propose_not_allowed": "غير مسموح",
@@ -2104,9 +2104,46 @@
   "mapping_warning":"This operation must be done by the token contract creator",
   "freeze_balance_limit":"عدم كفاية الرصيد ، يرجى إعادة الدخول",
 
+  /*
+     ##################################################################################
+     #                                                                                #
+     # SR rewards                                   #
+     #                                                                                #
+     ##################################################################################
+    */
+  "SR_set_brokerage":"تعيين معدل مكافأة الناخبين",
+  "SR_brokerage_save_tip":"بعد كل جولة تصويت ، سيتم توزيع المكافأة على الناخبين وفقًا للمجموعة الأخيرة من النسب.",
+  "SR_brokerage_save":"حفظ",
+  "SR_brokerage_save_verify":"أدخل قيمة من 0 إلى 100",
+  "SR_reward_available":"متاح للتحصيل",
+  "SR_set_github_learn_more":"إطلع على المزيد",
+  "SR_vote_for_reward":"مكافأة التصويت",
+  "SR_receive_award_btn":"إستلم المكافآت",
+  "SR_receive_award_tip1":"غير متاح للتحصيل,",
+  "SR_receive_award_tip2":"متاح للتحصيل مرة واحدة فقط كل 24 ساعة",
+  "SR_brokerage_save_result": "تم حفظ حصة الناخب!",
+  "successfully_brokerage_save": "قم بتعيين الناخبين لمشاركة النسب بنجاح",
+  "could_not_brokerage_save": "لا يمكن حفظ مشاركة الناخب",
+  "brokerage_save_error_message": "حدثت مشكلة أثناء محاولة تعيين نسبة تقسيم الناخبين ، يرجى إعادة المحاولة لاحقًا.",
+  "rewards_claimed_submitted":"تم تقديم المعاملة",
+  "rewards_claimed_hash":"تجزئة المعاملة (txid):",
+  "rewards_claimed_hash_await":"بعد تأكيد المعاملة يمكن الاطلاع عليها في صفحة الحساب",
+  "voting_brokerage":"معدل مكافأة الناخبين",
+  "voting_brokerage_tip":`نسبة الجوائز الممنوحة للممثل الممتاز لتوزيعها على الناخبين له / لها
+مكافأة الناخبين =  إجمالي المكافآت * معدل مكافأة الناخبين * (أصوات الناخبين / أصوات الناخبين الإجمالية).`,
+  "SR_set_brokerage_contract":"ممثل سوبر يحدد نسبة حصة المكافأة",
+  "countdown_to_voting":"العد التنازلي إلى نهاية هذه الجولة من التصويت",
+
+
   "total_tron_ecosystem_tokens":"Total TRON-ecosystem tokens:",
   "number_of_lists":"Number of lists:",
   "total_in_tronscan":"Total in tronscan:",
+  "develpopers_reward_tip":"Thank you for considering to help out with the java-tron! TRON Foundation welcome contributions from anyone on the internet, and are grateful for your contributions.",
+  "verifty_contract_result":"Validation results",
+  "main_contract_deployment":"(Please select the main contract deployment)",
+  "enter_main_contract":"Please enter the name of the main contract",
+  "contract_verifty_passed":"Verified",
+  "unverifty_passed":"Unverified",
   "developers_reward_tip":"Thank you for considering to help out with the java-tron! TRON Foundation welcome contributions from anyone on the internet, and are grateful for your contributions.",
   "developers_niTron":"niTron global developer conference will be held in Korea at 29 Feb, 2020. By the end of  31 Jan, 2020, developers with the total points end up in Top 5 will be rewarded two tickets each.",
 

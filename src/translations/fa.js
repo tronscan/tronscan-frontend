@@ -1390,7 +1390,7 @@ export const messages = {
     "propose_27": "Propose to enable protocol optimization",
     "propose_28": "Propose to support the new features of TRON Virtual Machine 0.5.4",
     "propose_30":"Propose to support the decentralized vote dividend",
-    "propose_31": "Propose to modify the block voting rewards given to the top 27 SRs and the following 100 candidates",
+    "propose_31": "Propose to modify the block voting rewards given to the top 27 SRs and the following 100 partners",
     "propose_minute": "دقیقه",
     "propose_unactivate": "فعال نشده است",
     "propose_not_allowed": "مجاز نیست",
@@ -2109,10 +2109,46 @@ export const messages = {
     "mapping_warning":"This operation must be done by the token contract creator",
     "freeze_balance_limit":"موجودی کافی نیست، لطفا دوباره وارد کنید",
 
+    /*
+   ##################################################################################
+   #                                                                                #
+   # SR rewards                                   #
+   #                                                                                #
+   ##################################################################################
+  */
+    "SR_set_brokerage":"میزان پاداش رای دهنده را تعیین کنید",
+    "SR_brokerage_save_tip":"پس از هر دور از رای گیری ، بر اساس آخرین تنظیمات نرخ ، جوایز تعیین می شود.",
+    "SR_brokerage_save":"ذخیره کنید",
+    "SR_brokerage_save_verify":"از 0 تا 100 مقداری را وارد کنید",
+    "SR_reward_available":"در دسترس برای مجموعه",
+    "SR_set_github_learn_more":"کسب اطلاعات بیشتر",
+    "SR_vote_for_reward":"پاداش رای گیری",
+    "SR_receive_award_btn":"جمع آوری پاداش",
+    "SR_receive_award_tip1":"برای مجموعه در دسترس نیست，",
+    "SR_receive_award_tip2":"فقط یک بار در 24 ساعت قابل برداشت است",
+    "SR_brokerage_save_result": "اشتراک رای دهنده ذخیره شد!",
+    "successfully_brokerage_save": "رأی دهندگان را تنظیم کنید تا نسبت ها را با موفقیت به اشتراک بگذارند",
+    "could_not_brokerage_save": "اشتراک اشتراک کننده را نمی توان ذخیره کرد",
+    "brokerage_save_error_message": "هنگام تنظیم تنظیم تقسیم رای دهندگان مشکلی پیش آمد. لطفا بعداً دوباره امتحان کنید.",
+    "rewards_claimed_submitted":"معامله ارسال شده است ",
+    "rewards_claimed_hash":"مقدار هش تراکنش:",
+    "rewards_claimed_hash_await":"بعد از تأیید معامله بعداً می توانید آن را در صفحه حساب مشاهده کنید.",
+    "voting_brokerage":"سهم پاداش رای دهنده",
+    "voting_brokerage_tip":`درصد جوایزی که به نماینده فوق العاده به رای دهنده اعطا می شود. پاداش رأی = پاداش کل * * نسبت تقسیم پاداش رای دهنده * (رأی رای / تعداد رای آرا).`,
+    "SR_set_brokerage_contract":"نماینده عالی نسبت سهم پاداش را تعیین می کند",
+    "countdown_to_voting":"شمارش معکوس برای پایان این دور از رأی گیری",
+
     "total_tron_ecosystem_tokens":"Total TRON-ecosystem tokens:",
     "number_of_lists":"Number of lists:",
     "total_in_tronscan":"Total in tronscan:",
+    "develpopers_reward_tip":"Thank you for considering to help out with the java-tron! TRON Foundation welcome contributions from anyone on the internet, and are grateful for your contributions.",
+    "verifty_contract_result":"Validation results",
+    "main_contract_deployment":"(Please select the main contract deployment)",
+    "enter_main_contract":"Please enter the name of the main contract",
+    "contract_verifty_passed":"Verified",
+    "unverifty_passed":"Unverified",
     "developers_reward_tip":"Thank you for considering to help out with the java-tron! TRON Foundation welcome contributions from anyone on the internet, and are grateful for your contributions.",
     "developers_niTron":"niTron global developer conference will be held in Korea at 29 Feb, 2020. By the end of  31 Jan, 2020, developers with the total points end up in Top 5 will be rewarded two tickets each.",
+
 
 };

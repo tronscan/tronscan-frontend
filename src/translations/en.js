@@ -305,10 +305,10 @@ export const messages = {
   ##################################################################################
   */
   "apply_for_delegate": "apply for delegate",
-  "apply_super_representative_candidate": "Apply to be a Super Representative Candidate",
+  "apply_super_representative_candidate": "Apply to be a Super Representative Partners",
   "your_personal_website_address": "your personal website address",
-  "apply_for_delegate_predescription": "Every token holder has the opportunity to become a TRON Super Representative.However, for the network and community to operate more smoothly and effectively,we have created a set of standards and regulations for eligible candidates to become recommended Super Representatives. We will promote recommended SRs to increase their chances of being elected. New recommended Super Representatives are updated and posted once a week.",
-  "apply_for_delegate_description": "All token holders can apply to become Super Representative (SR) candidates by clicking into the Account page; they can also vote for the candidates by clicking into the Votes page. Each user can vote for multiple candidates, with the number of votes smaller or equal to the amount of TRX that they hold.The voting results are based on the last round of voting by each user. The number of votes will be updated at 02:00(GMT+8),08:00(GMT+8),14:00(GMT+8),20:00(GMT+8) every day; users can also view real-time vote numbers. The top 27 most-voted candidates will become SRs and be responsible for transaction packaging and block generation, with a reward of 32 TRX per block generation. The 27 SRs and the top 100 SR candidates can also receive rewards of nodes based on the votes they receive. A one-time transaction fee of 9,999 TRX will be deducted for the application to become a candidate. It will not cost any TRX for users to vote for SR candidates.",
+  "apply_for_delegate_predescription": "Every token holder has the opportunity to become a TRON Super Representative.However, for the network and community to operate more smoothly and effectively,we have created a set of standards and regulations for eligible partners to become recommended Super Representatives. We will promote recommended SRs to increase their chances of being elected. New recommended Super Representatives are updated and posted once a week.",
+  "apply_for_delegate_description": "All token holders can apply to become Super Representative (SR) partner by clicking into the Account page; they can also vote for the partners by clicking into the Votes page. Each user can vote for multiple partners, with the number of votes smaller or equal to the amount of TRX that they hold.The voting results are based on the last round of voting by each user. The number of votes will be updated at 02:00(GMT+8),08:00(GMT+8),14:00(GMT+8),20:00(GMT+8) every day; users can also view real-time vote numbers. The top 27 most-voted partners will become SRs and be responsible for transaction packaging and block generation, with a reward of 32 TRX per block generation. The 27 SRs and the top 100 SR partners can also receive rewards of nodes based on the votes they receive. A one-time transaction fee of 9,999 TRX will be deducted for the application to become a partner. It will not cost any TRX for users to vote for SR partners.",
   "unknown_error": "an unknown error occurred",
   "representative_understand": "I understand how to be a TRON representative",
   "generate_account": "Click to generate your account address and password",
@@ -319,7 +319,7 @@ export const messages = {
   "recent_transactions": "recent transactions",
   "newest_account": "newest account",
   "representatives": "representatives",
-  "representativesAcandidates": "Super representatives and candidates",
+  "representativesAcandidates": "Super representatives and partners",
   "most_votes": "most votes",
   "start_end_time": "Start / End Time",
   "scan_qr_code": "Scan the code with a QR Code scanner",
@@ -367,7 +367,7 @@ export const messages = {
   "rewards_claimed": "Rewards Claimed!",
   "successfully_claimed_rewards": "Successfully claimed rewards",
   "claim_rewards": "Claim Rewards",
-  "sr_receive_reward_message_0": "As a representative you receive rewards for producing blocks. These rewards can be claimed every 24 hours",
+  "sr_receive_reward_message_0": "As a representative you receive rewards for producing blocks, these rewards can be claimed every 24 hours",
   "intro": "Intro",
   "budget_expenses": "Budget Expenses",
   "server_configuration": "Server Configuration",
@@ -637,7 +637,7 @@ export const messages = {
   "highest_productivity": "Highest Productivity",
   "lowest_productivity": "Lowest Productivity",
   "Super Representatives": "Super Representatives",
-  "Super Representative Candidates": "Super Representative Candidates",
+  "Super Representative Candidates": "Super Representative Partners",
   "loading_representatives": "Loading Representatives",
   "address_not_super_representative": "This address is not a Super Representative",
   "unable_load_representatives_page_message": "Unable to load page, this may happen if the address is invalid, the address is not a representative or the representative did not configure this page yet",
@@ -676,7 +676,7 @@ export const messages = {
   "3_day_ranking": "3 Days Ranking(Top 10)",
   "live_ranking": "Live Ranking",
   "live_ranking_msg": "Refreshes every 15 seconds. New votes may take up to 1-2 minutes before being counted",
-  "candidate": "Candidate",
+  "candidate": "Partner",
   "current_votes": "Current Votes",
   "click_to_start_voting": "Click here to Start Voting",
   "votes_remaining_message": "Votes Remaining",
@@ -853,7 +853,7 @@ export const messages = {
   ##################################################################################
   */
   "applied_for_super_representative": "applied for Super Representative",
-  "sr_candidature": "Super Representative Candidature",
+  "sr_candidature": "Super Representative Partners",
   "created_token": "created token",
   "token_creation": "Token Creation",
   "bought": "bought",
@@ -1071,7 +1071,7 @@ export const messages = {
   "block_unit": "Blocks",
   "record_unit": "Transactions",
   "token_unit": "Tokens",
-  "vote_unit": "candidates",
+  "vote_unit": "Partners",
   "voter_unit": "Voters",
   "account_unit": "accounts",
   "address_unit": "addresses",
@@ -1376,7 +1376,7 @@ export const messages = {
   "propose_4": "Propose to modify the amount of TRX used to gain extra bandwidth",
   "propose_5": "Propose to modify asset issuance fee",
   "propose_6": "Propose to modify SR block generation reward",
-  "propose_7": "Propose to modify the rewards given to the top 27 SRs and the following 100 candidates",
+  "propose_7": "Propose to modify the rewards given to the top 27 SRs and the following 100 partners",
   "propose_8": "Propose to modify the cost of account creation",
   "propose_9": "Propose to modify the consumption of bandwith",
   "propose_10": "Propose to activate the Virtual Machine (VM)",
@@ -1400,7 +1400,7 @@ export const messages = {
   "propose_27": "Propose to enable protocol optimization",
   "propose_28": "Propose to support the new features of TRON Virtual Machine 0.5.4",
   "propose_30":"Propose to support the decentralized vote dividend",
-  "propose_31": "Propose to modify the block voting rewards given to the top 27 SRs and the following 100 candidates",
+  "propose_31": "Propose to modify the block voting rewards given to the top 27 SRs and the following 100 partners",
   "propose_minute": "minute",
   "propose_unactivate": "Not activated",
   "propose_not_allowed": "Not allowed",
@@ -2119,10 +2119,46 @@ export const messages = {
   "mapping_warning":"This operation must be done by the token contract creator",
   "freeze_balance_limit":"Insufficient balance, please re-enter",
 
+  /*
+   ##################################################################################
+   #                                                                                #
+   # SR rewards                                   #
+   #                                                                                #
+   ##################################################################################
+  */
+  "SR_set_brokerage":"Set voter reward rate",
+  "SR_brokerage_save_tip":"After each voting round, voter reward will be distributed based on the latest rate setting.",
+  "SR_brokerage_save":"save",
+  "SR_brokerage_save_verify":"enter a value from 0 to 100",
+  "SR_reward_available":"available for collection",
+  "SR_set_github_learn_more":"learn more",
+  "SR_vote_for_reward":"voting reward",
+  "SR_receive_award_btn":"collect reward",
+  "SR_receive_award_tip1":"unavailable for collection,",
+  "SR_receive_award_tip2":"collect once only every 24 hours",
+  "SR_brokerage_save_result": "Saved voter reward rate!",
+  "successfully_brokerage_save": "Set voters reward rate successfully",
+  "could_not_brokerage_save": "Cannot save voter reward rate",
+  "brokerage_save_error_message": "There was a problem trying to set the voter reward rate. Please try again later.",
+  "rewards_claimed_submitted":"transaction submitted",
+  "rewards_claimed_hash":"transaction hash (txid):",
+  "rewards_claimed_hash_await":"viewable on account page after transaction is confirmed",
+  "voting_brokerage":"voter reward rate",
+  "voting_brokerage_tip":"Rate of SR's reward to be distributed to his/her voters. Voter's reward = SR's reward * Voters' reward rate * (voter's votes/ all votes for the SR).",
+  "SR_set_brokerage_contract":"SR address contract triggers",
+  "countdown_to_voting":"Countdown to the end of this round of voting",
+
   "total_tron_ecosystem_tokens":"Total TRON-ecosystem tokens:",
   "number_of_lists":"Number of lists:",
   "total_in_tronscan":"Total in tronscan:",
+  "develpopers_reward_tip":"Thank you for considering to help out with the java-tron! TRON Foundation welcome contributions from anyone on the internet, and are grateful for your contributions.",
+  "verifty_contract_result":"Validation results",
+  "main_contract_deployment":"(Please select the main contract deployment)",
+  "enter_main_contract":"Please enter the name of the main contract",
+  "contract_verifty_passed":"Verified",
+  "unverifty_passed":"Unverified",
   "developers_reward_tip":"Thank you for considering to help out with the java-tron! TRON Foundation welcome contributions from anyone on the internet, and are grateful for your contributions.",
   "developers_niTron":"niTron global developer conference will be held in Korea at 29 Feb, 2020. By the end of  31 Jan, 2020, developers with the total points end up in Top 5 will be rewarded two tickets each.",
+
 
 };

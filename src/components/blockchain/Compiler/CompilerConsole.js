@@ -33,7 +33,7 @@ class CompilerConsole extends React.Component {
     render() {
         let {loading, html, color} = this.state;
         let { CompileStatus } = this.props;
-
+        console.log('CompileStatus',CompileStatus)
         return (
             <PerfectScrollbar>
                 <div ref="compilerConsole" className="contract-compiler-console">

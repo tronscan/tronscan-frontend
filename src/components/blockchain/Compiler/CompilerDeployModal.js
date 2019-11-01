@@ -159,7 +159,7 @@ export default class DeployModal extends React.PureComponent {
                        <p>{tu('contract_deploy_modal_info')}</p>
                    </div>
                    <div className="form-group contract-deploy">
-                       <label>{tu("contract_name")}</label>
+                       <label>{tu("contract_name")} <span style={{color: 'rgb(216, 216, 216)'}}>{tu("main_contract_deployment")}</span></label>
                        <Select className='compile-select deploy-select'
                                value={currentContractName}
                                onChange={this.resourceSelectChange}
