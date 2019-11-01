@@ -305,7 +305,7 @@ class Address extends React.Component {
           token_balances: {
               id: "token_balances",
               // icon: "fa fa-piggy-bank",
-             // path: "/token-balances",
+             // path: "/token-balances",API_URL=http://3.14.14.175:9000 yarn build
               path: "",
               label: <span>{tu("token_balances")}</span>,
               cmp: () => <TokenBalances tokenBalances={tokenBalances} intl={intl}/>,

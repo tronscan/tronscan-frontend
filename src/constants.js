@@ -56,9 +56,9 @@ export const FILE_MAX_NUM = 10;
 
 // currency type
 export const CURRENCYTYPE = {
-  TRX: "TRX",
-  TRX10: "TRX10",
-  TRX20: "TRX20"
+    TRX: "TRX",
+    TRX10: "TRX10",
+    TRX20: "TRX20"
 };
 
 // mapping energy
@@ -82,10 +82,10 @@ export const TRCWITHDRAWMIN = 1;
 
 // trading type
 export const TRADINGMAP = {
-  MAPPING: "mapping",
-  WITHDRAW: "withdraw",
-  DEPOSIT: "deposit",
-  APPROVE: "approve"
+    MAPPING: "mapping",
+    WITHDRAW: "withdraw",
+    DEPOSIT: "deposit",
+    APPROVE: "approve"
 };
 
 // SunWeb config
@@ -104,8 +104,8 @@ export const SUNWEBCONFIG = {
 
 // Socket config
 export const TORNSOCKET = {
-  WSSURLMAIN: "wss://apilist.tronscan.org/api/tronsocket",
-  WSSURLSUN: "wss://dappchainapi.tronscan.org/api/tronsocket"
+    WSSURLMAIN: "wss://apilist.tronscan.org/api/tronsocket",
+    WSSURLSUN: "wss://dappchainapi.tronscan.org/api/tronsocket"
 };
 
 // token type

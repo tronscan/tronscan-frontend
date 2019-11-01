@@ -228,15 +228,15 @@ class ProposalDetail extends React.Component {
                                                                                             <span>TRX</span>
                                                                                         </div>
                                                                                         {
-                                                                                            proposal.proposalId == 23?<div className="mt-1">
+                                                                                            proposal.proposalId == 23 || proposal.proposalId == 26 ?<div className="mt-1">
                                                                                                 <span>{ intl.formatMessage({id: 'propose_31'})}</span>
                                                                                                 <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
-                                                                                                <span className='col-green'>{ 160000000 / ONE_TRX}</span> &nbsp;
+                                                                                                {proposal.proposalId == 23 && <span className='col-green'>{ 160000000 / ONE_TRX}</span>} &nbsp;
+                                                                                                {proposal.proposalId == 26 && <span className='col-green'>{ 128000000 / ONE_TRX}</span>} &nbsp;
                                                                                                 <span>TRX</span>
                                                                                             </div>:''
                                                                                         }
                                                                                     </div>
-
                                                                                 }
                                                                                 {
                                                                                     proposal.key == 'getWitnessStandbyAllowance' &&
