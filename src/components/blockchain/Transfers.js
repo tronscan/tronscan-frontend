@@ -189,7 +189,7 @@ class Transfers extends React.Component {
           {loading && <div className="loading-style"><TronLoader/></div>}
           <div className="row">
             <div className="col-md-12 table_pos">
-              {total ?<TotalInfo total={total} rangeTotal={rangeTotal}  typeText="transfers_unit"/>:""}
+              {total ?<TotalInfo total={total} rangeTotal={rangeTotal} isQuestionMark={false}  typeText="transfers_unit"/>:""}
               {
                 false && total? <DateRange onDateOk={(start,end) => this.onDateOk(start,end)} /> :''
               }

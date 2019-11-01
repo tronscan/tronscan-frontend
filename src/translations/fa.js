@@ -1399,8 +1399,8 @@ export const messages = {
     "propose_finished": "پایان یافته",
     "proposal_content_info": "محتوای پیشنهاد",
     "proposer": "پیشنهاد دهنده",
-    "proposal_time_of_creation": "زمان ایجاد (UTC)",
-    "proposal_time_of_expire": "زمان انقضا (UTC)",
+    "proposal_time_of_creation": "زمان ایجاد ",
+    "proposal_time_of_expire": "زمان انقضا ",
     "proposal_status": "وضعیت پیشنهاد",
     "proposal_to": "به",
     "no_commission_proposed_found": "هیچ کمیسیون پیشنهاد شده یافت نشد",
@@ -2102,7 +2102,7 @@ export const messages = {
     "developers_contribution_link":"Contribution content corresponding link",
     "developers_earn_points":"Earn points",
     "developers_search":" Search username",
-    "developers_scored_users":"Scored Users",
+    "developers_scored_users":"TRON Global Community Developers",
     "DAppChain_holders":"DAppChain Holders",
     "notrx_noenergy":"Please make sure your TRX is not less than 10 and a certain amount of energy",
     "inactive_MainChain_account":"Submission Failed.This address has not been activated on TRON.Please activate first and try again",
@@ -2149,6 +2149,6 @@ export const messages = {
     "unverifty_passed":"Unverified",
     "developers_reward_tip":"Thank you for considering to help out with the java-tron! TRON Foundation welcome contributions from anyone on the internet, and are grateful for your contributions.",
     "developers_niTron":"niTron global developer conference will be held in Korea at 29 Feb, 2020. By the end of  31 Jan, 2020, developers with the total points end up in Top 5 will be rewarded two tickets each.",
-
+    "developers_account":"Developers",
 
 };

@@ -221,7 +221,7 @@ class Transactions extends React.Component {
                 {loading && <div className="loading-style"><TronLoader/></div>}
               <div className="row">
                 <div className="col-md-12 table_pos">
-                    {total ? <TotalInfo total={total} rangeTotal={rangeTotal} typeText="transactions_unit" common={addressLock}/>:""}
+                    {total ? <TotalInfo total={total} rangeTotal={rangeTotal} typeText="transactions_unit" common={addressLock} isQuestionMark={false} />:""}
                     {
                         false && !addressLock && total?  <DateRange onDateOk={(start,end) => this.onDateOk(start,end)} /> : ''
                     }

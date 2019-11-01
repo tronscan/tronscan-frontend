@@ -11,7 +11,7 @@ class ProposalDetail extends React.Component {
     constructor() {
         super();
         this.state = {
-            loading:false
+            loading:false,
         };
     }
 
@@ -59,6 +59,7 @@ class ProposalDetail extends React.Component {
             '',
             '',
             'getChangeDelegation',
+            'getWitness127PayPerBlock',
         ];
 
         let sunsideArr = [
@@ -97,16 +98,17 @@ class ProposalDetail extends React.Component {
 
         ]
         if(IS_MAINNET){
+            console.log('data.paramters',data.paramters)
             for(let item in data.paramters){
-                data.key = parametersArr[item];
-                data.proposalVal = data.paramters[item];
+                data.paramters[item].proposalKey = parametersArr[data.paramters[item].key];
+                data.paramters[item].proposalVal = data.paramters[item].value;
             }
         }else{
             for(let item in data.paramters){
                 for(let i in sunsideArr){
-                    if(sunsideArr[i]['id']== item){
-                        data['key'] = sunsideArr[i]['key'];
-                        data['proposalVal'] = data.paramters[item];
+                    if(sunsideArr[i]['id'] == data.paramters[item]['key']){
+                        data.paramters[item]['proposalKey'] = sunsideArr[i]['key'];
+                        data.paramters[item]['proposalVal'] =  data.paramters[item]['value'];
                     }
                 }
             }
@@ -157,7 +159,7 @@ class ProposalDetail extends React.Component {
                                                                 <td>
                                                                     <FormattedDate value={Number(proposal.createTime)}/>&nbsp;
                                                                     <FormattedTime value={Number(proposal.createTime)}/>&nbsp;
-                                                                    <span>(UTC)</span>
+                                                                    {/*<span>(UTC)</span>*/}
                                                                 </td>
                                                             </tr>
                                                             <tr>
@@ -165,384 +167,394 @@ class ProposalDetail extends React.Component {
                                                                 <td>
                                                                     <FormattedDate value={Number(proposal.expirationTime)}/>&nbsp;
                                                                     <FormattedTime value={Number(proposal.expirationTime)}/>&nbsp;
-                                                                    <span>(UTC)</span>
+                                                                    {/*<span>(UTC)</span>*/}
                                                                 </td>
                                                             </tr>
                                                             <tr>
                                                                 <th>{tu("proposal_content_info")}:</th>
                                                                 <td>
                                                                     {
-                                                                        IS_MAINNET?<div>
+                                                                        proposal && proposal.paramters.map((item,index) => {
+                                                                            return  <div>
                                                                                 {
-                                                                                    proposal.key == 'getMaintenanceTimeInterval' &&
-                                                                                    <div className="proposal-message">
-                                                                                        <span>{ intl.formatMessage({id: 'propose_1'})}</span>
-                                                                                        <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
-                                                                                        <span className='col-green'>{proposal.proposalVal / (1000 * 60 * 60)}</span> &nbsp;
-                                                                                        <span>{intl.formatMessage({id: "propose_hour"})}</span>
-                                                                                    </div>
-                                                                                }
-                                                                                {
-                                                                                    proposal.key == 'getAccountUpgradeCost' &&
-                                                                                    <div className="proposal-message">
-                                                                                        <span>{ intl.formatMessage({id: 'propose_2'})}</span>
-                                                                                        <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
-                                                                                        <span className='col-green'>{proposal.proposalVal / ONE_TRX}</span> &nbsp;
-                                                                                        <span>TRX</span>
-                                                                                    </div>
-                                                                                }
-                                                                                {
-                                                                                    proposal.key == 'getCreateAccountFee' &&
-                                                                                    <div className="proposal-message">
-                                                                                        <span>{ intl.formatMessage({id: 'propose_3'})}</span>
-                                                                                        <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
-                                                                                        <span className='col-green'>{proposal.proposalVal / ONE_TRX}</span> &nbsp;
-                                                                                        <span>TRX</span>
-                                                                                    </div>
-                                                                                }
-                                                                                {
-                                                                                    proposal.key == 'getTransactionFee' &&
-                                                                                    <div className="proposal-message">
-                                                                                        <span>{ intl.formatMessage({id: 'propose_4'})}</span>
-                                                                                        <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
-                                                                                        <span className='col-green'>{proposal.proposalVal}</span> &nbsp;
-                                                                                        <span>Sun/byte</span>
-                                                                                    </div>
-                                                                                }
-                                                                                {
-                                                                                    proposal.key == 'getAssetIssueFee' &&
-                                                                                    <div className="proposal-message">
-                                                                                        <span>{ intl.formatMessage({id: 'propose_5'})}</span>
-                                                                                        <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
-                                                                                        <span className='col-green'>{proposal.proposalVal / ONE_TRX}</span> &nbsp;
-                                                                                        <span>TRX</span>
-                                                                                    </div>
-                                                                                }
-                                                                                {
-                                                                                    proposal.key == 'getWitnessPayPerBlock' &&
-                                                                                    <div>
-                                                                                        <div className="proposal-message">
-                                                                                            <span>{ intl.formatMessage({id: 'propose_6'})}</span>
-                                                                                            <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
-                                                                                            <span className='col-green'>{proposal.proposalVal / ONE_TRX}</span> &nbsp;
-                                                                                            <span>TRX</span>
-                                                                                        </div>
+                                                                                    IS_MAINNET?<div>
                                                                                         {
-                                                                                            proposal.proposalId == 23 || proposal.proposalId == 26 ?<div className="mt-1">
+                                                                                            item.proposalKey == 'getMaintenanceTimeInterval' &&
+                                                                                            <div className="proposal-message">
+                                                                                                <span>{ intl.formatMessage({id: 'propose_1'})}</span>
+                                                                                                <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
+                                                                                                <span className='col-green'>{item.proposalVal / (1000 * 60 * 60)}</span> &nbsp;
+                                                                                                <span>{intl.formatMessage({id: "propose_hour"})}</span>
+                                                                                            </div>
+                                                                                        }
+                                                                                        {
+                                                                                            item.proposalKey == 'getAccountUpgradeCost' &&
+                                                                                            <div className="proposal-message">
+                                                                                                <span>{ intl.formatMessage({id: 'propose_2'})}</span>
+                                                                                                <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
+                                                                                                <span className='col-green'>{item.proposalVal / ONE_TRX}</span> &nbsp;
+                                                                                                <span>TRX</span>
+                                                                                            </div>
+                                                                                        }
+                                                                                        {
+                                                                                            item.proposalKey == 'getCreateAccountFee' &&
+                                                                                            <div className="proposal-message">
+                                                                                                <span>{ intl.formatMessage({id: 'propose_3'})}</span>
+                                                                                                <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
+                                                                                                <span className='col-green'>{item.proposalVal / ONE_TRX}</span> &nbsp;
+                                                                                                <span>TRX</span>
+                                                                                            </div>
+                                                                                        }
+                                                                                        {
+                                                                                            item.proposalKey == 'getTransactionFee' &&
+                                                                                            <div className="proposal-message">
+                                                                                                <span>{ intl.formatMessage({id: 'propose_4'})}</span>
+                                                                                                <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
+                                                                                                <span className='col-green'>{item.proposalVal}</span> &nbsp;
+                                                                                                <span>Sun/byte</span>
+                                                                                            </div>
+                                                                                        }
+                                                                                        {
+                                                                                            item.proposalKey == 'getAssetIssueFee' &&
+                                                                                            <div className="proposal-message">
+                                                                                                <span>{ intl.formatMessage({id: 'propose_5'})}</span>
+                                                                                                <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
+                                                                                                <span className='col-green'>{item.proposalVal / ONE_TRX}</span> &nbsp;
+                                                                                                <span>TRX</span>
+                                                                                            </div>
+                                                                                        }
+                                                                                        {
+                                                                                            item.proposalKey == 'getWitnessPayPerBlock' &&
+                                                                                            <div>
+                                                                                                <div className="proposal-message">
+                                                                                                    <span>{ intl.formatMessage({id: 'propose_6'})}</span>
+                                                                                                    <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
+                                                                                                    <span className='col-green'>{item.proposalVal / ONE_TRX}</span> &nbsp;
+                                                                                                    <span>TRX</span>
+                                                                                                </div>
+                                                                                            </div>
+
+                                                                                        }
+                                                                                        {
+                                                                                            item.proposalKey == 'getWitnessStandbyAllowance' &&
+                                                                                            <div className="proposal-message">
+                                                                                                <span>{ intl.formatMessage({id: 'propose_7'})}</span>
+                                                                                                <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
+                                                                                                <span className='col-green'>{item.proposalVal / ONE_TRX}</span> &nbsp;
+                                                                                                <span>TRX</span></div>
+                                                                                        }
+                                                                                        {
+                                                                                            item.proposalKey == 'getCreateNewAccountFeeInSystemContract' &&
+                                                                                            <div className="proposal-message">
+                                                                                                <span>{ intl.formatMessage({id: 'propose_8'})}</span>
+                                                                                                <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
+                                                                                                <span className='col-green'>{item.proposalVal / ONE_TRX}</span> &nbsp;
+                                                                                                <span>TRX</span></div>
+                                                                                        }
+                                                                                        {
+                                                                                            item.proposalKey == 'getCreateNewAccountBandwidthRate' &&
+                                                                                            <div className="proposal-message">
+                                                                                                <span>{ intl.formatMessage({id: 'propose_9'})}</span>
+                                                                                                <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
+                                                                                                <span className='col-green'>{item.proposalVal}</span> &nbsp;
+                                                                                                <span>bandwith/byte</span>
+                                                                                            </div>
+                                                                                        }
+                                                                                        {
+                                                                                            item.proposalKey == 'getAllowCreationOfContracts' &&
+                                                                                            <div className="proposal-message">
+                                                                                                <span>{ intl.formatMessage({id: 'propose_10'})}</span>
+                                                                                                <span className='col-green'>{tu('propose_activate')}</span>
+                                                                                            </div>
+                                                                                        }
+                                                                                        {
+                                                                                            item.proposalKey == 'getRemoveThePowerOfTheGr' &&
+                                                                                            <div className="proposal-message">
+                                                                                                <span>{ intl.formatMessage({id: 'propose_11'})}</span>
+                                                                                            </div>
+                                                                                        }
+                                                                                        {
+                                                                                            item.proposalKey == 'getEnergyFee' &&
+                                                                                            <div className="proposal-message">
+                                                                                                <span>{ intl.formatMessage({id: 'propose_12'})}</span>
+                                                                                                <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
+                                                                                                <span className='col-green'>{item.proposalVal / ONE_TRX} TRX</span>
+                                                                                            </div>
+                                                                                        }
+                                                                                        {
+                                                                                            item.proposalKey == 'getExchangeCreateFee' &&
+                                                                                            <div className="proposal-message">
+                                                                                                <span>{ intl.formatMessage({id: 'propose_13'})}</span>
+                                                                                                <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
+                                                                                                <span className='col-green'>{item.proposalVal / ONE_TRX} TRX</span>
+                                                                                            </div>
+                                                                                        }
+                                                                                        {
+                                                                                            item.proposalKey == 'getMaxCpuTimeOfOneTx' &&
+                                                                                            <div className="proposal-message">
+                                                                                                <span>{ intl.formatMessage({id: 'propose_14'})}</span>
+                                                                                                <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
+                                                                                                <span className='col-green'>{item.proposalVal} ms</span>
+                                                                                            </div>
+                                                                                        }
+                                                                                        {
+                                                                                            item.proposalKey == 'getAllowUpdateAccountName' &&
+                                                                                            <div className="proposal-message">
+                                                                                                <span>{ intl.formatMessage({id: 'propose_15'})}</span>
+                                                                                                <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
+                                                                                                {
+                                                                                                    item.proposalVal? <span className='col-green'>{tu('propose_allowed')}</span>:
+                                                                                                        <span className='col-green'>{tu('propose_not_allowed')}</span>
+                                                                                                }
+                                                                                            </div>
+                                                                                        }
+                                                                                        {
+                                                                                            item.proposalKey == 'getAllowSameTokenName' &&
+                                                                                            <div className="proposal-message">
+                                                                                                <span>{ intl.formatMessage({id: 'propose_16'})}</span>
+                                                                                                <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
+                                                                                                {
+                                                                                                    item.proposalVal? <span className='col-green'>{tu('propose_allowed')}</span>:
+                                                                                                        <span className='col-green'>{tu('propose_not_allowed')}</span>
+                                                                                                }
+                                                                                            </div>
+                                                                                        }
+                                                                                        {
+                                                                                            item.proposalKey == 'getAllowDelegateResource' &&
+                                                                                            <div className="proposal-message">
+                                                                                                <span>{ intl.formatMessage({id: 'propose_17'})}</span>
+                                                                                                <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
+                                                                                                {
+                                                                                                    item.proposalVal? <span className='col-green'>{tu('propose_allowed')}</span>:
+                                                                                                        <span className='col-green'>{tu('propose_not_allowed')}</span>
+                                                                                                }
+                                                                                            </div>
+                                                                                        }
+                                                                                        {
+                                                                                            item.proposalKey == 'getTotalEnergyLimit' &&
+                                                                                            <div className="proposal-message">
+                                                                                                <span>{ intl.formatMessage({id: 'propose_18'})}</span>
+                                                                                                <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
+                                                                                                <span className='col-green'>{item.proposalVal}</span>
+                                                                                            </div>
+                                                                                        }
+                                                                                        {
+                                                                                            item.proposalKey == 'getAllowTvmTransferTrc10' &&
+                                                                                            <div className="proposal-message">
+                                                                                                <span>{ intl.formatMessage({id: 'propose_19'})}</span>
+                                                                                                <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
+                                                                                                {
+                                                                                                    item.proposalVal? <span className='col-green'>{tu('propose_allowed')}</span>:
+                                                                                                        <span className='col-green'>{tu('propose_not_allowed')}</span>
+                                                                                                }
+                                                                                            </div>
+                                                                                        }
+                                                                                        {
+                                                                                            item.proposalKey == 'getTotalEnergyLimitNew' &&
+                                                                                            <div className="proposal-message">
+                                                                                                <span>{ intl.formatMessage({id: 'propose_18_1'})}</span>
+                                                                                                <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
+                                                                                                <span className='col-green'>{item.proposalVal}</span>
+                                                                                            </div>
+                                                                                        }
+                                                                                        {
+                                                                                            item.proposalKey == 'getTotalEnergyCurrentLimit' &&
+                                                                                            <div>
+                                                                                                <span>{ intl.formatMessage({id: 'propose_20'})}</span>
+                                                                                                <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
+                                                                                                <span>{item.proposalVal}</span>
+                                                                                            </div>
+                                                                                        }
+                                                                                        {
+                                                                                            item.proposalKey == 'getAllowMultiSign' &&
+                                                                                            <div>
+                                                                                                <span>{ intl.formatMessage({id: 'propose_21'})}</span>
+                                                                                                <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
+                                                                                                {
+                                                                                                    item.proposalVal? <span>{tu('propose_allowed')}</span>:
+                                                                                                        <span>{tu('propose_not_allowed')}</span>
+                                                                                                }
+                                                                                            </div>
+                                                                                        }
+                                                                                        {
+                                                                                            item.proposalKey == 'getAllowAdaptiveEnergy' &&
+                                                                                            <div>
+                                                                                                <span>{ intl.formatMessage({id: 'propose_22'})}</span>
+                                                                                                <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
+                                                                                                {
+                                                                                                    item.proposalVal? <span>{tu('propose_allowed')}</span>:
+                                                                                                        <span>{tu('propose_not_allowed')}</span>
+                                                                                                }
+                                                                                            </div>
+                                                                                        }
+                                                                                        {
+                                                                                            item.proposalKey == 'getTotalEnergyTargetLimit' &&
+                                                                                            <div>
+                                                                                                <span>{ intl.formatMessage({id: 'propose_23'})}</span>
+                                                                                                <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
+                                                                                                <span>{item.proposalVal}</span>/
+                                                                                                <span>{tu('propose_minute')}</span>
+                                                                                            </div>
+                                                                                        }
+                                                                                        {
+                                                                                            item.proposalKey == 'getTotalEnergyAverageUsage' &&
+                                                                                            <div>
+                                                                                                <span>{ intl.formatMessage({id: 'propose_24'})}</span>
+                                                                                                <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
+                                                                                                {
+                                                                                                    item.proposalVal?<span><span>{item.proposalVal}</span>/<span>{tu('propose_minute')}</span></span>:
+                                                                                                        <span>{tu('propose_unactivate')}</span>
+                                                                                                }
+                                                                                            </div>
+                                                                                        }
+                                                                                        {
+                                                                                            item.proposalKey == 'getUpdateAccountPermissionFee' &&
+                                                                                            <div>
+                                                                                                <span>{ intl.formatMessage({id: 'propose_25'})}</span>
+                                                                                                <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
+                                                                                                <span>{item.proposalVal / ONE_TRX}</span> &nbsp;
+                                                                                                <span>TRX</span>
+                                                                                            </div>
+                                                                                        }
+                                                                                        {
+                                                                                            item.proposalKey == 'getMultiSignFee' &&
+                                                                                            <div>
+                                                                                                <span>{ intl.formatMessage({id: 'propose_26'})}</span>
+                                                                                                <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
+                                                                                                <span>{item.proposalVal / ONE_TRX}</span> &nbsp;
+                                                                                                <span>TRX</span>
+                                                                                            </div>
+                                                                                        }
+                                                                                        {
+                                                                                            item.proposalKey == 'getAllowProtoFilterNum' &&
+                                                                                            <div>
+                                                                                                <span>{ intl.formatMessage({id: 'propose_27'})}</span>
+                                                                                                <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
+                                                                                                {
+                                                                                                    item.proposalVal? <span>{tu('propose_activate')}</span>:
+                                                                                                        <span>{tu('propose_unactivate')}</span>
+                                                                                                }
+
+                                                                                            </div>
+                                                                                        }
+                                                                                        {
+                                                                                            item.proposalKey == 'getAllowTvmConstantinople' &&
+                                                                                            <div>
+                                                                                                <span>{ intl.formatMessage({id: 'propose_28'})}</span>
+                                                                                                <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
+                                                                                                {
+                                                                                                    item.proposalVal? <span>{tu('propose_allowed')}</span>:
+                                                                                                        <span>{tu('propose_not_allowed')}</span>
+                                                                                                }
+                                                                                            </div>
+                                                                                        }
+                                                                                        {
+                                                                                            item.proposalKey == 'getChangeDelegation' &&
+                                                                                            <div>
+                                                                                                <span>{ intl.formatMessage({id: 'propose_30'})}</span>
+                                                                                                <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
+                                                                                                {
+                                                                                                    item.proposalVal? <span>{tu('propose_activate')}</span>:
+                                                                                                        <span>{tu('propose_unactivate')}</span>
+                                                                                                }
+
+                                                                                            </div>
+                                                                                        }
+                                                                                        {
+
+                                                                                            item.proposalKey == 'getWitness127PayPerBlock' &&
+                                                                                            <div className="mt-1">
                                                                                                 <span>{ intl.formatMessage({id: 'propose_31'})}</span>
                                                                                                 <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
-                                                                                                {proposal.proposalId == 23 && <span className='col-green'>{ 160000000 / ONE_TRX}</span>} &nbsp;
-                                                                                                {proposal.proposalId == 26 && <span className='col-green'>{ 128000000 / ONE_TRX}</span>} &nbsp;
+                                                                                                <span className='col-green'>{ item.proposalVal / ONE_TRX}</span> &nbsp;
                                                                                                 <span>TRX</span>
-                                                                                            </div>:''
-                                                                                        }
-                                                                                    </div>
-                                                                                }
-                                                                                {
-                                                                                    proposal.key == 'getWitnessStandbyAllowance' &&
-                                                                                    <div className="proposal-message">
-                                                                                        <span>{ intl.formatMessage({id: 'propose_7'})}</span>
-                                                                                        <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
-                                                                                        <span className='col-green'>{proposal.proposalVal / ONE_TRX}</span> &nbsp;
-                                                                                        <span>TRX</span></div>
-                                                                                }
-                                                                                {
-                                                                                    proposal.key == 'getCreateNewAccountFeeInSystemContract' &&
-                                                                                    <div className="proposal-message">
-                                                                                        <span>{ intl.formatMessage({id: 'propose_8'})}</span>
-                                                                                        <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
-                                                                                        <span className='col-green'>{proposal.proposalVal / ONE_TRX}</span> &nbsp;
-                                                                                        <span>TRX</span></div>
-                                                                                }
-                                                                                {
-                                                                                    proposal.key == 'getCreateNewAccountBandwidthRate' &&
-                                                                                    <div className="proposal-message">
-                                                                                        <span>{ intl.formatMessage({id: 'propose_9'})}</span>
-                                                                                        <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
-                                                                                        <span className='col-green'>{proposal.proposalVal}</span> &nbsp;
-                                                                                        <span>bandwith/byte</span>
-                                                                                    </div>
-                                                                                }
-                                                                                {
-                                                                                    proposal.key == 'getAllowCreationOfContracts' &&
-                                                                                    <div className="proposal-message">
-                                                                                        <span>{ intl.formatMessage({id: 'propose_10'})}</span>
-                                                                                        <span className='col-green'>{tu('propose_activate')}</span>
-                                                                                    </div>
-                                                                                }
-                                                                                {
-                                                                                    proposal.key == 'getRemoveThePowerOfTheGr' &&
-                                                                                    <div className="proposal-message">
-                                                                                        <span>{ intl.formatMessage({id: 'propose_11'})}</span>
-                                                                                    </div>
-                                                                                }
-                                                                                {
-                                                                                    proposal.key == 'getEnergyFee' &&
-                                                                                    <div className="proposal-message">
-                                                                                        <span>{ intl.formatMessage({id: 'propose_12'})}</span>
-                                                                                        <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
-                                                                                        <span className='col-green'>{proposal.proposalVal / ONE_TRX} TRX</span>
-                                                                                    </div>
-                                                                                }
-                                                                                {
-                                                                                    proposal.key == 'getExchangeCreateFee' &&
-                                                                                    <div className="proposal-message">
-                                                                                        <span>{ intl.formatMessage({id: 'propose_13'})}</span>
-                                                                                        <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
-                                                                                        <span className='col-green'>{proposal.proposalVal / ONE_TRX} TRX</span>
-                                                                                    </div>
-                                                                                }
-                                                                                {
-                                                                                    proposal.key == 'getMaxCpuTimeOfOneTx' &&
-                                                                                    <div className="proposal-message">
-                                                                                        <span>{ intl.formatMessage({id: 'propose_14'})}</span>
-                                                                                        <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
-                                                                                        <span className='col-green'>{proposal.proposalVal} ms</span>
-                                                                                    </div>
-                                                                                }
-                                                                                {
-                                                                                    proposal.key == 'getAllowUpdateAccountName' &&
-                                                                                    <div className="proposal-message">
-                                                                                        <span>{ intl.formatMessage({id: 'propose_15'})}</span>
-                                                                                        <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
-                                                                                        {
-                                                                                            proposal.proposalVal? <span className='col-green'>{tu('propose_allowed')}</span>:
-                                                                                                <span className='col-green'>{tu('propose_not_allowed')}</span>
-                                                                                        }
-                                                                                    </div>
-                                                                                }
-                                                                                {
-                                                                                    proposal.key == 'getAllowSameTokenName' &&
-                                                                                    <div className="proposal-message">
-                                                                                        <span>{ intl.formatMessage({id: 'propose_16'})}</span>
-                                                                                        <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
-                                                                                        {
-                                                                                            proposal.proposalVal? <span className='col-green'>{tu('propose_allowed')}</span>:
-                                                                                                <span className='col-green'>{tu('propose_not_allowed')}</span>
-                                                                                        }
-                                                                                    </div>
-                                                                                }
-                                                                                {
-                                                                                    proposal.key == 'getAllowDelegateResource' &&
-                                                                                    <div className="proposal-message">
-                                                                                        <span>{ intl.formatMessage({id: 'propose_17'})}</span>
-                                                                                        <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
-                                                                                        {
-                                                                                            proposal.proposalVal? <span className='col-green'>{tu('propose_allowed')}</span>:
-                                                                                                <span className='col-green'>{tu('propose_not_allowed')}</span>
-                                                                                        }
-                                                                                    </div>
-                                                                                }
-                                                                                {
-                                                                                    proposal.key == 'getTotalEnergyLimit' &&
-                                                                                    <div className="proposal-message">
-                                                                                        <span>{ intl.formatMessage({id: 'propose_18'})}</span>
-                                                                                        <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
-                                                                                        <span className='col-green'>{proposal.proposalVal}</span>
-                                                                                    </div>
-                                                                                }
-                                                                                {
-                                                                                    proposal.key == 'getAllowTvmTransferTrc10' &&
-                                                                                    <div className="proposal-message">
-                                                                                        <span>{ intl.formatMessage({id: 'propose_19'})}</span>
-                                                                                        <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
-                                                                                        {
-                                                                                            proposal.proposalVal? <span className='col-green'>{tu('propose_allowed')}</span>:
-                                                                                                <span className='col-green'>{tu('propose_not_allowed')}</span>
-                                                                                        }
-                                                                                    </div>
-                                                                                }
-                                                                                {
-                                                                                    proposal.key == 'getTotalEnergyLimitNew' &&
-                                                                                    <div className="proposal-message">
-                                                                                        <span>{ intl.formatMessage({id: 'propose_18_1'})}</span>
-                                                                                        <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
-                                                                                        <span className='col-green'>{proposal.proposalVal}</span>
-                                                                                    </div>
-                                                                                }
-                                                                                {
-                                                                                    proposal.key == 'getTotalEnergyCurrentLimit' &&
-                                                                                    <div>
-                                                                                        <span>{ intl.formatMessage({id: 'propose_20'})}</span>
-                                                                                        <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
-                                                                                        <span>{proposal.proposalVal}</span>
-                                                                                    </div>
-                                                                                }
-                                                                                {
-                                                                                    proposal.key == 'getAllowMultiSign' &&
-                                                                                    <div>
-                                                                                        <span>{ intl.formatMessage({id: 'propose_21'})}</span>
-                                                                                        <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
-                                                                                        {
-                                                                                            proposal.proposalVal? <span>{tu('propose_allowed')}</span>:
-                                                                                                <span>{tu('propose_not_allowed')}</span>
-                                                                                        }
-                                                                                    </div>
-                                                                                }
-                                                                                {
-                                                                                    proposal.key == 'getAllowAdaptiveEnergy' &&
-                                                                                    <div>
-                                                                                        <span>{ intl.formatMessage({id: 'propose_22'})}</span>
-                                                                                        <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
-                                                                                        {
-                                                                                            proposal.proposalVal? <span>{tu('propose_allowed')}</span>:
-                                                                                                <span>{tu('propose_not_allowed')}</span>
-                                                                                        }
-                                                                                    </div>
-                                                                                }
-                                                                                {
-                                                                                    proposal.key == 'getTotalEnergyTargetLimit' &&
-                                                                                    <div>
-                                                                                        <span>{ intl.formatMessage({id: 'propose_23'})}</span>
-                                                                                        <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
-                                                                                        <span>{proposal.proposalVal}</span>/
-                                                                                        <span>{tu('propose_minute')}</span>
-                                                                                    </div>
-                                                                                }
-                                                                                {
-                                                                                    proposal.key == 'getTotalEnergyAverageUsage' &&
-                                                                                    <div>
-                                                                                        <span>{ intl.formatMessage({id: 'propose_24'})}</span>
-                                                                                        <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
-                                                                                        {
-                                                                                            proposal.proposalVal?<span><span>{proposal.proposalVal}</span>/<span>{tu('propose_minute')}</span></span>:
-                                                                                                <span>{tu('propose_unactivate')}</span>
-                                                                                        }
-                                                                                    </div>
-                                                                                }
-                                                                                {
-                                                                                    proposal.key == 'getUpdateAccountPermissionFee' &&
-                                                                                    <div>
-                                                                                        <span>{ intl.formatMessage({id: 'propose_25'})}</span>
-                                                                                        <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
-                                                                                        <span>{proposal.proposalVal / ONE_TRX}</span> &nbsp;
-                                                                                        <span>TRX</span>
-                                                                                    </div>
-                                                                                }
-                                                                                {
-                                                                                    proposal.key == 'getMultiSignFee' &&
-                                                                                    <div>
-                                                                                        <span>{ intl.formatMessage({id: 'propose_26'})}</span>
-                                                                                        <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
-                                                                                        <span>{proposal.proposalVal / ONE_TRX}</span> &nbsp;
-                                                                                        <span>TRX</span>
-                                                                                    </div>
-                                                                                }
-                                                                                {
-                                                                                    proposal.key == 'getAllowProtoFilterNum' &&
-                                                                                    <div>
-                                                                                        <span>{ intl.formatMessage({id: 'propose_27'})}</span>
-                                                                                        <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
-                                                                                        {
-                                                                                            proposal.proposalVal? <span>{tu('propose_activate')}</span>:
-                                                                                                <span>{tu('propose_unactivate')}</span>
+                                                                                            </div>
+
                                                                                         }
 
-                                                                                    </div>
-                                                                                }
-                                                                                {
-                                                                                    proposal.key == 'getAllowTvmConstantinople' &&
-                                                                                    <div>
-                                                                                        <span>{ intl.formatMessage({id: 'propose_28'})}</span>
-                                                                                        <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
+
+                                                                                    </div>:<div>
                                                                                         {
-                                                                                            proposal.proposalVal? <span>{tu('propose_allowed')}</span>:
-                                                                                                <span>{tu('propose_not_allowed')}</span>
+                                                                                            item.proposalKey == 'getChargingSwitch' && <div>
+                                                                                                <span>{ intl.formatMessage({id: 'sun_propose_1'})}</span>
+                                                                                                <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
+                                                                                                {
+                                                                                                    item.proposalVal != '0'? <span>{tu('propose_activate')}</span>:
+                                                                                                        <span>{tu('propose_unactivate')}</span>
+                                                                                                }
+                                                                                            </div>
+                                                                                        }
+                                                                                        {
+                                                                                            item.proposalKey == 'getSideChainGateWayList' && <div>
+                                                                                                <span>{ intl.formatMessage({id: 'sun_propose_2'})}</span>
+                                                                                                <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
+                                                                                                {
+                                                                                                    <span>{item.proposalVal}</span>
+                                                                                                }
+                                                                                            </div>
+                                                                                        }
+                                                                                        {
+                                                                                            item.proposalKey == 'getProposalExpireTime' && <div>
+                                                                                                <span>{ intl.formatMessage({id: 'sun_propose_3'})}</span>
+                                                                                                <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
+                                                                                                {
+                                                                                                    <span>{item.proposalVal}</span>
+                                                                                                }
+                                                                                            </div>
+                                                                                        }
+                                                                                        {
+                                                                                            item.proposalKey == 'getVoteWitnessSwitch' && <div>
+                                                                                                <span>{ intl.formatMessage({id: 'sun_propose_4'})}</span>
+                                                                                                <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
+                                                                                                {
+                                                                                                    item.proposalVal != '0'? <span>{tu('propose_activate')}</span>:
+                                                                                                        <span>{tu('propose_unactivate')}</span>
+                                                                                                }
+                                                                                            </div>
+                                                                                        }
+                                                                                        {
+                                                                                            item.proposalKey == 'getFundInjectAddress' && <div>
+                                                                                                <span>{ intl.formatMessage({id: 'sun_propose_5'})}</span>
+                                                                                                <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
+                                                                                                {
+                                                                                                    <span>{item.proposalVal}</span>
+                                                                                                }
+                                                                                            </div>
+                                                                                        }
+                                                                                        {
+                                                                                            item.proposalKey == 'getFundDistributeEnableSwitch' && <div>
+                                                                                                <span>{ intl.formatMessage({id: 'sun_propose_6'})}</span>
+                                                                                                <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
+                                                                                                {
+                                                                                                    item.proposalVal != '0'? <span>{tu('propose_activate')}</span>:
+                                                                                                        <span>{tu('propose_unactivate')}</span>
+                                                                                                }
+                                                                                            </div>
+                                                                                        }
+                                                                                        {
+                                                                                            item.proposalKey == 'getDayToSustainByFund' && <div>
+                                                                                                <span>{ intl.formatMessage({id: 'sun_propose_7'})}</span>
+                                                                                                <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
+                                                                                                {
+                                                                                                    <span>{item.proposalVal} {tu('day')}</span>
+                                                                                                }
+                                                                                            </div>
+                                                                                        }
+                                                                                        {
+                                                                                            item.proposalKey == 'getPercentToPayWitness' && <div>
+                                                                                                <span>{ intl.formatMessage({id: 'sun_propose_8'})}</span>
+                                                                                                <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
+                                                                                                {
+                                                                                                    <span>{item.proposalVal} %</span>
+                                                                                                }
+                                                                                            </div>
                                                                                         }
                                                                                     </div>
                                                                                 }
-                                                                                {
-                                                                                    proposal.key == 'getChangeDelegation' &&
-                                                                                    <div>
-                                                                                        <span>{ intl.formatMessage({id: 'propose_30'})}</span>
-                                                                                        <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
-                                                                                        {
-                                                                                            proposal.proposalVal? <span>{tu('propose_activate')}</span>:
-                                                                                                <span>{tu('propose_unactivate')}</span>
-                                                                                        }
-
-                                                                                    </div>
-                                                                                }
-
-                                                                        </div>:<div>
-                                                                            {
-                                                                                proposal.key == 'getChargingSwitch' && <div>
-                                                                                    <span>{ intl.formatMessage({id: 'sun_propose_1'})}</span>
-                                                                                    <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
-                                                                                    {
-                                                                                        proposal.proposalVal != '0'? <span>{tu('propose_activate')}</span>:
-                                                                                            <span>{tu('propose_unactivate')}</span>
-                                                                                    }
-                                                                                </div>
+                                                                            </div>
                                                                             }
-                                                                            {
-                                                                                proposal.key == 'getSideChainGateWayList' && <div>
-                                                                                    <span>{ intl.formatMessage({id: 'sun_propose_2'})}</span>
-                                                                                    <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
-                                                                                    {
-                                                                                        <span>{proposal.proposalVal}</span>
-                                                                                    }
-                                                                                </div>
-                                                                            }
-                                                                            {
-                                                                                proposal.key == 'getProposalExpireTime' && <div>
-                                                                                    <span>{ intl.formatMessage({id: 'sun_propose_3'})}</span>
-                                                                                    <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
-                                                                                    {
-                                                                                        <span>{proposal.proposalVal}</span>
-                                                                                    }
-                                                                                </div>
-                                                                            }
-                                                                            {
-                                                                                proposal.key == 'getVoteWitnessSwitch' && <div>
-                                                                                    <span>{ intl.formatMessage({id: 'sun_propose_4'})}</span>
-                                                                                    <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
-                                                                                    {
-                                                                                        proposal.proposalVal != '0'? <span>{tu('propose_activate')}</span>:
-                                                                                            <span>{tu('propose_unactivate')}</span>
-                                                                                    }
-                                                                                </div>
-                                                                            }
-                                                                            {
-                                                                                proposal.key == 'getFundInjectAddress' && <div>
-                                                                                    <span>{ intl.formatMessage({id: 'sun_propose_5'})}</span>
-                                                                                    <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
-                                                                                    {
-                                                                                        <span>{proposal.proposalVal}</span>
-                                                                                    }
-                                                                                </div>
-                                                                            }
-                                                                            {
-                                                                                proposal.key == 'getFundDistributeEnableSwitch' && <div>
-                                                                                    <span>{ intl.formatMessage({id: 'sun_propose_6'})}</span>
-                                                                                    <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
-                                                                                    {
-                                                                                        proposal.proposalVal != '0'? <span>{tu('propose_activate')}</span>:
-                                                                                            <span>{tu('propose_unactivate')}</span>
-                                                                                    }
-                                                                                </div>
-                                                                            }
-                                                                            {
-                                                                                proposal.key == 'getDayToSustainByFund' && <div>
-                                                                                    <span>{ intl.formatMessage({id: 'sun_propose_7'})}</span>
-                                                                                    <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
-                                                                                    {
-                                                                                        <span>{proposal.proposalVal} {tu('day')}</span>
-                                                                                    }
-                                                                                </div>
-                                                                            }
-                                                                            {
-                                                                                proposal.key == 'getPercentToPayWitness' && <div>
-                                                                                    <span>{ intl.formatMessage({id: 'sun_propose_8'})}</span>
-                                                                                    <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
-                                                                                    {
-                                                                                        <span>{proposal.proposalVal} %</span>
-                                                                                    }
-                                                                                </div>
-                                                                            }
-                                                                        </div>
+                                                                        )
                                                                     }
-
                                                                 </td>
                                                             </tr>
                                                             <tr>
