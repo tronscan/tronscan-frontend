@@ -41,6 +41,10 @@ class Transactions extends React.Component {
 
   componentDidMount() {
     // this.loadTransactions();
+      let {isBlock} = this.props;
+      if( isBlock ){
+          this.loadTransactions();
+      }
   }
 
   componentDidUpdate(prevProps) {
@@ -309,7 +313,7 @@ class Transactions extends React.Component {
   render() {
 
     let {transactions, total, rangeTotal, loading, EmptyState = null} = this.state;
-    let {intl, isinternal, address = false, filter: {contract}} = this.props;
+    let {intl, isinternal, isBlock = false, address = false, filter: {contract}} = this.props;
     let column = !isinternal? this.customizedColumn():
                               this.trc20CustomizedColumn();
     let tableInfo = intl.formatMessage({id: 'view_total'}) + ' ' + total + ' ' + intl.formatMessage({id: 'transactions_unit'})
@@ -331,9 +335,12 @@ class Transactions extends React.Component {
             {(total && contract && isinternal)? <div className="d-flex align-items-center">
               <div className="question-mark mr-2"><i>?</i></div><span className="flex-1">{tu('interTrx_tip')}</span>
             </div>: ''}
-            <DateSelect onDateOk={(start,end) => this.onDateOk(start,end)} dataStyle={{marginTop: '-1.6rem'}}/>
+              {
+                  !isBlock ?  <DateSelect onDateOk={(start,end) => this.onDateOk(start,end)} dataStyle={{marginTop: '-1.6rem'}}/>:''
+              }
+
           </div>
-          {!loading && <TotalInfo total={total} rangeTotal={rangeTotal} typeText="transactions_unit" common={!address} top={(!contract)? '-28px': '10px'} selected/>}
+          {!loading && <TotalInfo total={total} isQuestionMark={!isBlock} rangeTotal={rangeTotal} typeText="transactions_unit" common={!address} top={(!contract)? '-28px': '10px'} selected/>}
           
           {
               (!loading && transactions.length === 0)?
