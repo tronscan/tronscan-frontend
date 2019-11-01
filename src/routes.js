@@ -708,11 +708,11 @@ export const routes = [
           zhurl: "https://tron.network/exchangesList?lng=zh",
           linkHref: true
         },
-        {
-          icon: "fas fa-columns",
-          label: "Main_Chain",
-          sidechain:true,
-        },
+        // {
+        //   icon: "fas fa-columns",
+        //   label: "Main_Chain",
+        //   sidechain:true,
+        // },
       ]
     ]
   },
