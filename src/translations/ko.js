@@ -1637,6 +1637,13 @@ export const messages = {
   "trc20_failed_order": "거래 실패 설명",
   "trc20_ignore": '무시',
   "trc20_see_currentParis": '현재 거래만 보기',
+  "trc20_search_more_tokens":"토큰 더 검색하기",
+  "trc20_token_name":"토큰 명칭",
+  "trc20_token_id":"토큰 아이디",
+  "trc20_risk_token":"리스크 토큰",
+  "trc20_risk_token_desc":"아직 상장되지 않은 토큰이기 때문에 잠재적 리스크가 존재할 수 있으니 신중하게 투자해 주시기 바랍니다.",
+  "trc20_symbol_risk":"줄임말이 다른 토큰과 겹칩니다",
+  "trc20_hight_risk_token":"높은 리스크 토큰",
 
   /*
    *  2018-12-18

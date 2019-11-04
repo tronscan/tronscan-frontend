@@ -8,9 +8,9 @@ class ApiTW {
 
     // **** test
     // this.contractAddress = "TVpJQDbuuSwykezHDxGSK6wNhMUK1tXHzm";
-    // this.contractAddress10 = "TJyrPWWP3sit856yTCJrd3cg2Uo82aZ7JN";
+    // this.contractAddress10 = "TVx9uwGT5ggZuv9mthofj9Vw6otYtZ1TNn";
     // this.contractAddrUsdt20 = "TRxMaG7CwSfZdfho9KXtayDJUQEvvoCeKo"; //'TWe4z3uRvUoG9VBgoC8iSgHRtvxa9MJJPv'
-    // this.contractAddrUsdt10 = "TCXvoCbb2ejaYHBRKKjtnkTCp8DFKTrLTj";
+    // this.contractAddrUsdt10 = "TJyrPWWP3sit856yTCJrd3cg2Uo82aZ7JN";
   }
 
   /**

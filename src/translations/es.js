@@ -1652,6 +1652,13 @@ export const messages = {
   "trc20_failed_order": "El pedido no fue confirmado por blockchain",
   "trc20_ignore": 'Ignorar',
   "trc20_see_currentParis": 'Ocultar otros pares',
+  "trc20_search_more_tokens":"Busca más tokens",
+  "trc20_token_name":"Nombre de token",
+  "trc20_token_id":"ID de token",
+  "trc20_risk_token":"Token de riesgo",
+  "trc20_risk_token_desc":"Estas tokens no se han sido listado oficialmente. tendrían riesgos potenciales. Por favor haga sus inversiones con cautela.",
+  "trc20_symbol_risk":"El mismo símbolo que otra token",
+  "trc20_hight_risk_token":"Token de alto riesgo",
 
 
   /*
