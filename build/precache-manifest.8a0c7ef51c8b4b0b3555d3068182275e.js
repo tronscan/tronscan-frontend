@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/editor.worker.js"
   },
   {
-    "revision": "e1bbc41d030cf6a656a75e05536a74f8",
+    "revision": "ea817e536c93ddc44411130bb1658381",
     "url": "/index.html"
   },
   {
@@ -40,7 +40,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/css/NodeMap.aab5afec.chunk.css"
   },
   {
-    "revision": "6e8fbb14961eb92d393c",
+    "revision": "5a18a5ce3866621ccf9c",
     "url": "/static/css/main.cbd1d6ae.chunk.css"
   },
   {
@@ -292,12 +292,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/js/TRONRating.cc1b287b.chunk.js"
   },
   {
-    "revision": "e00b1ea5e72a29c44012",
-    "url": "/static/js/Token20Detail.ffdcb3f1.chunk.js"
+    "revision": "4545f3c743d251a280fd",
+    "url": "/static/js/Token20Detail.7304feb5.chunk.js"
   },
   {
-    "revision": "654ac5aebb7a7139a979",
-    "url": "/static/js/TokenDetail.b2cf150a.chunk.js"
+    "revision": "d8861a16df63baec40fb",
+    "url": "/static/js/TokenDetail.08c0bc98.chunk.js"
   },
   {
     "revision": "80dc74ba751b3d83557c",
@@ -356,12 +356,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/js/WalletWizard.0b9e5113.chunk.js"
   },
   {
-    "revision": "6e8fbb14961eb92d393c",
-    "url": "/static/js/main.197df7c8.chunk.js"
+    "revision": "5a18a5ce3866621ccf9c",
+    "url": "/static/js/main.5566d783.chunk.js"
   },
   {
-    "revision": "449c1f7a72922bc6a746",
-    "url": "/static/js/runtime~main.0424f72e.js"
+    "revision": "377f9d16074fb381cf05",
+    "url": "/static/js/runtime~main.2a1f3371.js"
   },
   {
     "revision": "7b00f7c4e78ed9cfc676c64c040965e8",
