@@ -394,7 +394,7 @@ class NewTransactions extends React.Component {
     onDateOk (start,end) {
         this.start = start.valueOf();
         this.end = end.valueOf();
-        this.loadTransactions();
+        this.loadTransactions(1);
     }
 
 
@@ -416,23 +416,49 @@ class NewTransactions extends React.Component {
         // }
 
         return (
-            <div className={"token_black table_pos " + (address?"mt-5":"")}>
-                { loading && <div className="loading-style"><TronLoader/></div>}
-                { !loading && <TotalInfo total={total} rangeTotal={rangeTotal} typeText="transactions_unit" common={!address} top={address? '-28px': '26'} selected/>}
-                {
-                    address ? <DateSelect onDateOk={(start,end) => this.onDateOk(start,end)} dataStyle={{marginTop: '-3.3rem'}} />: ''
-                }
-                {
-                    (!loading && transactions.length === 0)?
-                        <div className="p-3 text-center no-data">{tu("no_transactions")}</div>:
-                        <SmartTable bordered={true} loading={loading} column={column} data={transactions} total={rangeTotal> 2000? 2000: rangeTotal}
-                                    onPageChange={(page, pageSize) => {
-                                        this.loadTransactions(page, pageSize)
-                                    }}/>
-                }
-
-            </div>
-        )
+          <div className={"token_black table_pos " + (address ? "mt-5" : "")}>
+            {loading && (
+              <div className="loading-style">
+                <TronLoader />
+              </div>
+            )}
+            {!loading && (
+              <TotalInfo
+                total={total}
+                rangeTotal={rangeTotal}
+                typeText="transactions_unit"
+                common={!address}
+                top={address ? "-28px" : "26"}
+                selected
+              />
+            )}
+            {address ? (
+              <DateSelect
+                onDateOk={(start, end) => this.onDateOk(start, end)}
+                dataStyle={{ marginTop: "-3.3rem" }}
+              />
+            ) : (
+              ""
+            )}
+            {!loading && transactions.length === 0 ? (
+              <div className="p-3 text-center no-data">
+                {tu("no_transactions")}
+              </div>
+            ) : (
+              <SmartTable
+                bordered={true}
+                loading={loading}
+                column={column}
+                data={transactions}
+                total={rangeTotal > 2000 ? 2000 : rangeTotal}
+                current={this.state.page}
+                onPageChange={(page, pageSize) => {
+                  this.loadTransactions(page, pageSize);
+                }}
+              />
+            )}
+          </div>
+        );
     }
 }
 

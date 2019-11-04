@@ -381,8 +381,13 @@ class TransfersAll extends React.Component {
     onDateOk (start,end) {
         this.start = start.valueOf();
         this.end = end.valueOf();
-        let {page, pageSize} = this.state;
-        this.load(page,pageSize);
+        let { page, pageSize } = this.state;
+        this.setState({
+            page:1
+        }, () => {
+            this.load(1, pageSize);    
+        })
+        
     }
 
     onRadioChange = (e) => {
@@ -437,7 +442,8 @@ class TransfersAll extends React.Component {
                     (!loading && transfers.length === 0)?
                         <div className="p-3 text-center no-data">{tu("no_transfers")}</div>
                         :
-                        <SmartTable bordered={true} loading={loading} column={column} data={transfers} total={rangeTotal> 2000? 2000: rangeTotal} locale={locale} addr="address" transfers="address"
+                        <SmartTable bordered={true} loading={loading} column={column} data={transfers} total={rangeTotal > 2000 ? 2000 : rangeTotal} locale={locale} addr="address" transfers="address"
+                                    current={this.state.page}
                                     onPageChange={(page, pageSize) => {
                                         this.onChange(page, pageSize)
                                     }}/>
