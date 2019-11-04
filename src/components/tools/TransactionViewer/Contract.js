@@ -545,7 +545,7 @@ export default function Contract({contract}) {
                                         </div>
                                         <div className="d-flex border-bottom content_item">
                                             <div className="content_name">{tu('SR_set_brokerage')}:</div>
-                                            <div className="flex1">{100 - contract['brokerage']} %</div>
+                                            <div className="flex1">{contract['brokerage'] == null ? 100 : 100 - contract['brokerage']} %</div>
                                         </div>
                                         <div className="d-flex content_item">
                                             <div className="content_name">{tu('value')}:</div>
