@@ -131,7 +131,7 @@ class TokenHolders extends React.Component {
         width: '15%',
         align: 'left',
         render: (text, record, index) => {
-            return <div style={{whiteSpace:'nowrap'}}> {record.addressTag} </div>
+            return  <span style={{whiteSpace:'nowrap'}}> {record.addressTag?record.addressTag:''} </span>
         }
       },
       {

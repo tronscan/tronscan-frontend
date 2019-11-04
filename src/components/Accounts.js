@@ -184,7 +184,7 @@ class Accounts extends Component {
         key: 'addressTag',
         align: 'left',
         render: (text, record, index) => {
-            return <span> {record.addressTag} </span>
+            return <span style={{whiteSpace:'nowrap'}}> {record.addressTag?record.addressTag:''} </span>
         }
       },
       {
