@@ -522,6 +522,89 @@ export default function Contract({contract}) {
                         </Fragment>
                     );
                 }
+            case "UPDATEBROKERAGECONTRACT":
+            {
+                const { method } = contract;
+                return (
+                    <Fragment>
+                        <div className="card-body table-title">
+                            <h5>
+                                <i className="fa fa-exchange-alt"></i>
+                                {tu("trigger_smart_contract")}
+                                <small>{tu('SR_set_brokerage_contract')}</small>
+                            </h5>
+                        </div>
+                        <div className="content">
+                            <div className="content_pos">
+                                <div className="d-flex border-bottom pt-2">
+                                    <div className="content_box_name">{tu('Basic_info')}</div>
+                                    <div className="flex1">
+                                        <div className="d-flex border-bottom content_item">
+                                            <div className="content_name">{tu('contract_triggers_owner_address')}:</div>
+                                            <div className="flex1"><AddressLink address={contract['owner_address']}>{contract['owner_address']}</AddressLink></div>
+                                        </div>
+                                        {
+                                            (contract['brokerage'] || contract['brokerage'] == 0) && <div className="d-flex border-bottom content_item">
+                                                <div className="content_voting">{tu('SR_set_brokerage')}:</div>
+                                                <div className="flex1">{100 - contract['brokerage']} %</div>
+                                            </div>
+                                        }
+                                        <div className="d-flex content_item">
+                                            <div className="content_name">{tu('value')}:</div>
+                                            {
+                                                contract['call_value']?
+                                                    <TRXPrice amount={contract['call_value'] / ONE_TRX}/>
+                                                    :<TRXPrice amount={0}/>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                {JSON.stringify(contract.cost) != '{}' &&
+                                <div className="d-flex border-bottom pt-2">
+                                    <div className="content_box_name">{tu('Fee_Consumption')}</div>
+                                    <div className="flex1">
+                                        {
+                                            Object.keys(contract.cost).map((c)=>{
+                                                return (c==='energy_fee'||c==='net_fee')?
+                                                    <div className="d-flex border-bottom content_item" key={c}>
+                                                        <div className="content_name mr-2" style={{width: 'auto'}}>{tu(c)}:</div>
+                                                        <div className="flex1">{contract.cost[c]/1000000} TRX</div>
+                                                    </div>:
+                                                    <div className="d-flex border-bottom content_item" key={c}>
+                                                        <div className="content_name mr-2" style={{width: 'auto'}}>{tu(c)}:</div>
+                                                        <div className="flex1">{contract.cost[c]}</div>
+                                                    </div>
+                                            })
+                                        }
+                                    </div>
+                                </div>}
+
+                                {contract.method &&
+                                <div className="d-flex border-bottom pt-2">
+                                    <div className="content_box_name">{tu('Method_calling')}</div>
+                                    <div className="flex1">
+                                        <div className="d-flex border-bottom content_item">
+                                            <div className="content_name" >{tu("contract_method")}:</div>
+                                            <div className="flex1">{contract.method}</div>
+                                        </div>
+                                        {
+                                            contract.parameter && Object.keys(contract.parameter).map((p)=>{
+                                                return (
+                                                    <div className="d-flex border-bottom content_item" key={p}>
+                                                        <div className="content_name">{p}:</div>
+                                                        <div className="flex1">{contract.parameter[p]}</div>
+                                                    </div>)
+                                            })
+                                        }
+                                    </div>
+                                </div>}
+                            </div>
+                        </div>
+                    </Fragment>
+                );
+            }
             default:
                 return (
                     <Fragment>

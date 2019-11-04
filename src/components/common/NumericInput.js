@@ -49,6 +49,7 @@ class NumericInput extends React.Component {
     return (
       <Input
         {...this.props}
+        decimal=''
         onChange={this.onChange}
         onBlur={this.onBlur}
         maxLength={30}

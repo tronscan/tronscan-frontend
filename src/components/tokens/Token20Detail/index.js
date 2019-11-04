@@ -46,8 +46,7 @@ class Token20Detail extends React.Component {
 
   componentDidUpdate(prevProps) {
     let {match} = this.props;
-
-    if (match.params.name !== prevProps.match.params.name) {
+    if (match.params.address !== prevProps.match.params.address) {
       this.loadToken(decodeURI(match.params.address));
     }
   }

@@ -75,7 +75,7 @@ class Transfers extends React.Component {
             ...params
         }),
         Client.getCountByType({
-            type: 'trc20', 
+            type: 'trc20',
             contract: filter.token
         })
     ]).catch(e => {

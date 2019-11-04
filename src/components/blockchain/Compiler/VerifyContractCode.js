@@ -25,8 +25,16 @@ class VerifyContractCode extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            compilers: ['solidity-0.4.25_Odyssey_v3.2.3'],
-            deaultCompiler: 'solidity-0.4.25_Odyssey_v3.2.3',
+            compilers: [
+                'tron-0.4.25_Odyssey_v3.2.3',
+                'tron-0.5.8_Odyssey_v3.6.0',
+                'tron-0.5.4_Odyssey_v3.6.0',
+                'tron-0.4.24',
+                'tronbox_soljson_v1',
+                'tronbox_soljson_v2',
+                'tronbox_soljson_v3',
+            ],
+            deaultCompiler: 'tron-0.4.25_Odyssey_v3.2.3',
             contractCode: '',
             captchaCode: null,
             CompileStatus: [],
@@ -61,11 +69,36 @@ class VerifyContractCode extends Component {
         });
     }
 
+    componentDidMount() {
+        this.isLoggedIn()
+    }
+
+    /**
+     * 是否登陆
+     */
+    isLoggedIn = () => {
+        let { account, intl } = this.props;
+        if (!account.isLoggedIn){
+            this.setState({
+                modal: <SweetAlert
+                    warning
+                    title={tu('not_signed_in')}
+                    confirmBtnText={intl.formatMessage({ id: 'confirm' })}
+                    confirmBtnBsStyle="danger"
+                    onConfirm={() => this.setState({ modal: null })}
+                    style={{ marginLeft: '-240px', marginTop: '-195px' }}
+                >
+                </SweetAlert>
+            });
+        }
+        return account.isLoggedIn;
+    };
+
     /**
      * 点击验证并发布
      */
     handleVerifyCode = async() => {
-
+        if (!this.isLoggedIn()) return;
         // 统计代码
         this.gTagHandler();
 
@@ -95,12 +128,14 @@ class VerifyContractCode extends Component {
                 (v instanceof File) ? formData.append('files', v) : formData.append('files', v.originFileObj));
 
             this.setState({ loading: true });
+
             const { data } = await xhr.post(`${API_URL}/api/solidity/contract/verify`, formData);
+
             const { code, errmsg } = data;
             const { status } = data.data;
             if (code === 200){
-
                 if (status === 2001){
+                    // Verification failed
                     const mess = `The Contract Source code for <span class="">${contractAddress
                     }</span> has alreadly been verified. Click here to view the <a href="/#/contract/${
                         fieldata.contractAddress}/code" class="info_link">Verified Contract Source Code</a>`;
@@ -112,14 +147,39 @@ class VerifyContractCode extends Component {
                     this.setState({
                         CompileStatus,
                     });
-                } else {
+                } else if(status === 2007){
+                    // Verification failed
+                    const error = `<span>${
+                        contractAddress}</span> verification failed. Please confirm the correct parameters and try again`;
+
+                    CompileStatus.push({
+                        type: 'error',
+                        content: errmsg || error,
+                    });
+                    this.setState({
+                        CompileStatus,
+                    });
+                }else if(status === 2008){
+                    // Verification failed
+                    const error = `<span>${
+                        contractAddress}</span> verification failed. Please confirm the correct parameters and try again`;
+
+                    CompileStatus.push({
+                        type: 'error',
+                        content: errmsg || error,
+                    });
+                    this.setState({
+                        CompileStatus,
+                    });
+                }
+                else if(status === 2006){
                     // Verification success
                     location.href = `/#/contract/${contractAddress}/code`;
                 }
 
             } else {
                 const error = `<span>${
-                    contractAddress}</span> is not a existing contract. Please confirm and try again`;
+                    contractAddress}</span> verification failed. Please confirm the correct parameters and try again`;
                 // const errorMes = errmsg &&
                 //     typeof errmsg === 'string' && errmsg.indexOf('status') > -1 && JSON.parse(errmsg);
                 CompileStatus.push({
@@ -139,7 +199,6 @@ class VerifyContractCode extends Component {
      */
     gTagHandler = () => {
         const { account: { address } } = this.props;
-
         window.gtag('event', 'verify', {
             'event_category': 'contract',
             'event_label': address,
@@ -248,7 +307,7 @@ class VerifyContractCode extends Component {
             <Col span={12}>
                 <Form.Item label={tu('contract_name')}  {...formItemLayout}>
                     {getFieldDecorator('contractName', {})(
-                        <Input placeholder={intl.formatMessage({ id: 'contract_name' })}/>
+                        <Input placeholder={intl.formatMessage({ id: 'enter_main_contract' })}/>
                     )}
                 </Form.Item>
             </Col>
@@ -358,8 +417,8 @@ class VerifyContractCode extends Component {
 
         // 构造函数参数
         const constructorItem = (
-            <div className="row mt-3 contract-ABI">
-                <div className="col-md-12 ">
+            <div className="row mt-3 contract-ABI d-none">
+                <div className="col-md-12">
                     <div className="d-flex justify-content-center pt-3">
                         <p style={styles.s_title}>{tu('constructor_arguments_ABIencoded')}</p>
                         <div className="ml-1">
@@ -394,7 +453,7 @@ class VerifyContractCode extends Component {
                 {uploadItem}
                 {contractCodeItem}
                 {constructorItem}
-                <div className="text-center" >
+                <div className="text-center mt-5" >
                     <ContractCodeRequest handleCaptchaCode={this.handleCaptchaCode} />
                     {verifyBtnItem}
                 </div>
@@ -477,11 +536,11 @@ const styles = {
     }
 
 };
+
 function mapStateToProps(state) {
     return {
         account: state.app.account,
     };
 }
 
-export default Form.create({ name: 'contract_verify' })(connect(mapStateToProps, null)(
-    injectIntl(VerifyContractCode)));
+export default Form.create({ name: 'contract_verify' })(connect(mapStateToProps, null)(injectIntl(VerifyContractCode)));

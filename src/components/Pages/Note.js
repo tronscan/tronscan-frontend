@@ -62,7 +62,7 @@ export default class NoteModal extends React.PureComponent {
                 width: '80%',
                 render: (text, record, index) => {
                     return <HrefLink href={record.url} target="_blank" className="text-muted">
-                           <span>{record.url}</span>
+                           <span style={{'wordBreak': 'break-all'}}>{record.url}</span>
                     </HrefLink>
                 }
             },

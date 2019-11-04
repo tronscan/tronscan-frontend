@@ -61,7 +61,7 @@ class developersReward extends Component {
 
         data.map((item,index) => {
             item.index = index +1;
-
+            item.extraData = (new Function("return " + item.extra))();
         })
         this.setState({
             loading: false,
@@ -107,7 +107,7 @@ class developersReward extends Component {
     };
 
     showNote = (index) => {
-        let notes = (new Function("return " + this.state.developers[index].note))();;
+        let notes = (new Function("return " + this.state.developers[index].note))();
         this.setState({
             modal: (
                 <Note
@@ -198,8 +198,22 @@ class developersReward extends Component {
                 className: 'ant_table',
                 width: '40%',
                 render: (text, record, index) => {
-                    return <div>{record.name}</div>
+                    return <div>
+                        {
+                            record.extraData &&  record.extraData.imgUrl !== 'null' ?
+                                <div>
+                                    <img src={record.extraData.imgUrl} width="20" height="20" alt={'@'+record.name}/>
+                                        <span className="ml-2">{record.name}</span>
+                                </div> :
+                            <div>
+                                <img src={require(`../../images/developerReward/avatars.png`)} width="20" height="20" alt={'@'+record.name}/>
+                                <span className="ml-2">{record.name}</span>
+                            </div>
+                        }
+                        </div>
                 }
+
+
             },
 
             {
@@ -267,9 +281,15 @@ class developersReward extends Component {
                 {modal}
                 {loading && <div className="loading-style"><TronLoader/></div>}
                 <div className="row mt-2">
+                    {
+                        total? <p className="developers_reward_tip">
+                            {tu("developers_reward_tip")}
+                        </p>:''
+                    }
+
                     <div className="col-md-12 table_pos trc20-ad-bg">
                         {total ?<div className="table_pos_info d-none d-md-block" style={{left: 'auto'}}>
-                            <div>{tu('view_total')} {total} {tu('account_unit')}</div>
+                            <div>{tu('view_total')} {total} {tu('developers_account')}</div>
                         </div> : ''}
                          <div className="table_pos_search" style={{right: '15px',}}>
                              <Search
@@ -295,8 +315,14 @@ class developersReward extends Component {
                                 }}
                             />
                         </div>
+                        {
+                            total?<p className="developers_tip_bottom">
+                                {tu("developers_niTron")}
+                            </p>:''
+                        }
 
                     </div>
+
                 </div>
             </main>
         )
