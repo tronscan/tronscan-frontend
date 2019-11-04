@@ -72,6 +72,7 @@ class Proposal extends React.Component {
             '',
             '',
             'getChangeDelegation',
+            'getWitness127PayPerBlock',
         ];
 
         let sunsideArr = [
@@ -112,23 +113,23 @@ class Proposal extends React.Component {
         if(IS_MAINNET){
             for(let item in proposal){
                 for(let j in proposal[item]['paramters']){
-                    proposal[item]['key'] = parametersArr[j];
-                    proposal[item]['proposalVal'] = proposal[item]['paramters'][j];
+                    console.log(proposal[item]['paramters']);
+                    proposal[item]['paramters'][j]['proposalKey'] = parametersArr[proposal[item]['paramters'][j]['key']];
+                    proposal[item]['paramters'][j]['proposalVal'] = proposal[item]['paramters'][j]['value'];
                 }
             }
         }else{
             for(let item in proposal){
                 for(let j in proposal[item]['paramters']){
                     for(let i in sunsideArr){
-                        if(sunsideArr[i]['id']== j){
-                             proposal[item]['key'] = sunsideArr[i]['key'];
-                             proposal[item]['proposalVal'] = proposal[item]['paramters'][j];
+                        if(sunsideArr[i]['id']== proposal[item]['paramters'][j]['key']){
+                             proposal[item]['paramters'][j]['proposalKey'] = sunsideArr[i]['key'];
+                             proposal[item]['paramters'][j]['proposalVal'] = proposal[item]['paramters'][j]['value'];
                         }
                     }
                 }
             }
         }
-
         this.setState({
             loading: false,
             dataSource: proposal,
@@ -158,374 +159,383 @@ class Proposal extends React.Component {
             render: (text, record, index) => {
                 return  <div>
                     {
-                        IS_MAINNET?<div>
-                            {
-                                record.key == 'getMaintenanceTimeInterval' &&
-                                <div>
-                                    <span>{ intl.formatMessage({id: 'propose_1'})}</span>
-                                    <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
-                                    <span>{text / (1000 * 60 * 60)}</span> &nbsp;
-                                    <span>{intl.formatMessage({id: "propose_hour"})}
-                            </span>
-                                </div>
-                            }
-                            {
-                                record.key == 'getAccountUpgradeCost' &&
-                                <div>
-                                    <span>{ intl.formatMessage({id: 'propose_2'})}</span>
-                                    <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
-                                    <span>{text / ONE_TRX}</span> &nbsp;
-                                    <span>TRX</span>
-                                </div>
-                            }
-                            {
-                                record.key == 'getCreateAccountFee' &&
-                                <div>
-                                    <span>{ intl.formatMessage({id: 'propose_3'})}</span>
-                                    <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
-                                    <span>{text / ONE_TRX}</span> &nbsp;
-                                    <span>TRX</span>
-                                </div>
-                            }
-                            {
-                                record.key == 'getTransactionFee' &&
-                                <div>
-                                    <span>{ intl.formatMessage({id: 'propose_4'})}</span>
-                                    <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
-                                    <span>{text}</span> &nbsp;
-                                    <span>Sun/byte</span>
-                                </div>
-                            }
-                            {
-                                record.key == 'getAssetIssueFee' &&
-                                <div>
-                                    <span>{ intl.formatMessage({id: 'propose_5'})}</span>
-                                    <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
-                                    <span>{text / ONE_TRX}</span> &nbsp;
-                                    <span>TRX</span>
-                                </div>
-                            }
-                            {
-                                record.key == 'getWitnessPayPerBlock' &&
-                                <div>
-                                    <div>
-                                        <span>{ intl.formatMessage({id: 'propose_6'})}</span>
-                                        <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
-                                        <span>{text / ONE_TRX}</span> &nbsp;
-                                        <span>TRX</span>
+                        record.paramters.map((item,index)=>{
+                            return <div key={index}>
+                                {
+                                    IS_MAINNET?<div>
+                                        {
+                                            item.proposalKey == 'getMaintenanceTimeInterval' &&
+                                            <div>
+                                                <span>{ intl.formatMessage({id: 'propose_1'})}</span>
+                                                <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
+                                                <span>{ item.proposalVal / (1000 * 60 * 60)}</span> &nbsp;
+                                                <span>{intl.formatMessage({id: "propose_hour"})}</span>
+                                            </div>
+                                        }
+                                        {
+                                            item.proposalKey == 'getAccountUpgradeCost' &&
+                                            <div>
+                                                <span>{ intl.formatMessage({id: 'propose_2'})}</span>
+                                                <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
+                                                <span>{item.proposalVal / ONE_TRX}</span> &nbsp;
+                                                <span>TRX</span>
+                                            </div>
+                                        }
+                                        {
+                                            item.proposalKey == 'getCreateAccountFee' &&
+                                            <div>
+                                                <span>{ intl.formatMessage({id: 'propose_3'})}</span>
+                                                <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
+                                                <span>{item.proposalVal / ONE_TRX}</span> &nbsp;
+                                                <span>TRX</span>
+                                            </div>
+                                        }
+                                        {
+                                            record.proposalKey == 'getTransactionFee' &&
+                                            <div>
+                                                <span>{ intl.formatMessage({id: 'propose_4'})}</span>
+                                                <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
+                                                <span>{ item.proposalVal }</span> &nbsp;
+                                                <span>Sun/byte</span>
+                                            </div>
+                                        }
+                                        {
+                                            item.proposalKey == 'getAssetIssueFee' &&
+                                            <div>
+                                                <span>{ intl.formatMessage({id: 'propose_5'})}</span>
+                                                <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
+                                                <span>{item.proposalVal / ONE_TRX}</span> &nbsp;
+                                                <span>TRX</span>
+                                            </div>
+                                        }
+                                        {
+                                            item.proposalKey == 'getWitnessPayPerBlock' &&
+                                            <div>
+                                                <div>
+                                                    <span>{ intl.formatMessage({id: 'propose_6'})}</span>
+                                                    <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
+                                                    <span>{item.proposalVal / ONE_TRX}</span> &nbsp;
+                                                    <span>TRX</span>
+                                                </div>
+                                            </div>
+                                        }
+                                        {
+                                            item.proposalKey == 'getWitnessStandbyAllowance' &&
+                                            <div>
+                                                <span>{ intl.formatMessage({id: 'propose_7'})}</span>
+                                                <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
+                                                <span>{ item.proposalVal / ONE_TRX}</span> &nbsp;
+                                                <span>TRX</span></div>
+                                        }
+                                        {
+                                            item.proposalKey == 'getCreateNewAccountFeeInSystemContract' &&
+                                            <div>
+                                                <span>{ intl.formatMessage({id: 'propose_8'})}</span>
+                                                <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
+                                                <span>{ item.proposalVal / ONE_TRX}</span> &nbsp;
+                                                <span>TRX</span></div>
+                                        }
+                                        {
+                                            item.proposalKey == 'getCreateNewAccountBandwidthRate' &&
+                                            <div>
+                                                <span>{ intl.formatMessage({id: 'propose_9'})}</span>
+                                                <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
+                                                <span>{ item.proposalVal }</span> &nbsp;
+                                                <span>bandwith/byte</span>
+                                            </div>
+                                        }
+                                        {
+                                            item.proposalKey == 'getAllowCreationOfContracts' &&
+                                            <div>
+                                                <span>{ intl.formatMessage({id: 'propose_10'})}</span>
+                                                <span>{tu('propose_activate')}</span>
+                                            </div>
+                                        }
+                                        {
+                                            item.proposalKey == 'getRemoveThePowerOfTheGr' &&
+                                            <div>
+                                                <span>{ intl.formatMessage({id: 'propose_11'})}</span>
+                                            </div>
+                                        }
+                                        {
+                                            item.proposalKey == 'getEnergyFee' &&
+                                            <div>
+                                                <span>{ intl.formatMessage({id: 'propose_12'})}</span>
+                                                <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
+                                                <span>{ item.proposalVal / ONE_TRX} TRX</span>
+                                            </div>
+                                        }
+                                        {
+                                            item.proposalKey == 'getExchangeCreateFee' &&
+                                            <div>
+                                                <span>{ intl.formatMessage({id: 'propose_13'})}</span>
+                                                <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
+                                                <span>{ item.proposalVal / ONE_TRX} TRX</span>
+                                            </div>
+                                        }
+                                        {
+                                            item.proposalKey == 'getMaxCpuTimeOfOneTx' &&
+                                            <div>
+                                                <span>{ intl.formatMessage({id: 'propose_14'})}</span>
+                                                <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
+                                                <span>{ item.proposalVal } ms</span>
+                                            </div>
+                                        }
+                                        {
+                                            item.proposalKey == 'getAllowUpdateAccountName' &&
+                                            <div>
+                                                <span>{ intl.formatMessage({id: 'propose_15'})}</span>
+                                                <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
+                                                {
+                                                    item.proposalVal? <span>{tu('propose_allowed')}</span>:
+                                                        <span>{tu('propose_not_allowed')}</span>
+                                                }
+                                            </div>
+                                        }
+                                        {
+                                            item.proposalKey == 'getAllowSameTokenName' &&
+                                            <div>
+                                                <span>{ intl.formatMessage({id: 'propose_16'})}</span>
+                                                <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
+                                                {
+                                                    item.proposalVal? <span>{tu('propose_allowed')}</span>:
+                                                        <span>{tu('propose_not_allowed')}</span>
+                                                }
+                                            </div>
+                                        }
+                                        {
+                                            item.proposalKey == 'getAllowDelegateResource' &&
+                                            <div>
+                                                <span>{ intl.formatMessage({id: 'propose_17'})}</span>
+                                                <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
+                                                {
+                                                    item.proposalVal? <span>{tu('propose_allowed')}</span>:
+                                                        <span>{tu('propose_not_allowed')}</span>
+                                                }
+                                            </div>
+                                        }
+                                        {
+                                            item.proposalKey == 'getTotalEnergyLimit' &&
+                                            <div>
+                                                <span>{ intl.formatMessage({id: 'propose_18'})}</span>
+                                                <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
+                                                <span>{ item.proposalVal }</span>
+                                            </div>
+                                        }
+                                        {
+                                            item.proposalKey == 'getAllowTvmTransferTrc10' &&
+                                            <div>
+                                                <span>{ intl.formatMessage({id: 'propose_19'})}</span>
+                                                <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
+                                                {
+                                                    item.proposalVal? <span>{tu('propose_allowed')}</span>:
+                                                        <span>{tu('propose_not_allowed')}</span>
+                                                }
+                                            </div>
+                                        }
+                                        {
+                                            item.proposalKey == 'getTotalEnergyLimitNew' &&
+                                            <div>
+                                                <span>{ intl.formatMessage({id: 'propose_18_1'})}</span>
+                                                <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
+                                                <span>{ item.proposalVal }</span>
+                                            </div>
+                                        }
+                                        {
+                                            item.proposalKey == 'getTotalEnergyCurrentLimit' &&
+                                            <div>
+                                                <span>{ intl.formatMessage({id: 'propose_20'})}</span>
+                                                <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
+                                                <span>{ item.proposalVal }</span>
+                                            </div>
+                                        }
+                                        {
+                                            item.proposalKey == 'getAllowMultiSign' &&
+                                            <div>
+                                                <span>{ intl.formatMessage({id: 'propose_21'})}</span>
+                                                <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
+                                                {
+                                                    item.proposalVal? <span>{tu('propose_allowed')}</span>:
+                                                        <span>{tu('propose_not_allowed')}</span>
+                                                }
+                                            </div>
+                                        }
+                                        {
+                                            item.proposalKey == 'getAllowAdaptiveEnergy' &&
+                                            <div>
+                                                <span>{ intl.formatMessage({id: 'propose_22'})}</span>
+                                                <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
+                                                {
+                                                    item.proposalVal? <span>{tu('propose_allowed')}</span>:
+                                                        <span>{tu('propose_not_allowed')}</span>
+                                                }
+                                            </div>
+                                        }
+                                        {
+                                            item.proposalKey == 'getTotalEnergyTargetLimit' &&
+                                            <div>
+                                                <span>{ intl.formatMessage({id: 'propose_23'})}</span>
+                                                <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
+                                                <span>{item.proposalVal}</span>/
+                                                <span>{tu('propose_minute')}</span>
+                                            </div>
+                                        }
+                                        {
+                                            item.proposalKey == 'getTotalEnergyAverageUsage' &&
+                                            <div>
+                                                <span>{ intl.formatMessage({id: 'propose_24'})}</span>
+                                                <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
+                                                {
+                                                    item.proposalVal?<span><span>{item.proposalVal}</span>/<span>{tu('propose_minute')}</span></span>:
+                                                        <span>{tu('propose_unactivate')}</span>
+                                                }
+                                            </div>
+                                        }
+                                        {
+                                            item.proposalKey == 'getUpdateAccountPermissionFee' &&
+                                            <div>
+                                                <span>{ intl.formatMessage({id: 'propose_25'})}</span>
+                                                <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
+                                                <span>{item.proposalVal / ONE_TRX}</span> &nbsp;
+                                                <span>TRX</span>
+                                            </div>
+                                        }
+                                        {
+                                            item.proposalKey == 'getMultiSignFee' &&
+                                            <div>
+                                                <span>{ intl.formatMessage({id: 'propose_26'})}</span>
+                                                <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
+                                                <span>{item.proposalVal / ONE_TRX}</span> &nbsp;
+                                                <span>TRX</span>
+                                            </div>
+                                        }
+
+                                        {
+                                            item.proposalKey == 'getAllowProtoFilterNum' &&
+                                            <div>
+                                                <span>{ intl.formatMessage({id: 'propose_27'})}</span>
+                                                <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
+                                                {
+                                                    item.proposalVal? <span>{tu('propose_activate')}</span>:
+                                                        <span>{tu('propose_unactivate')}</span>
+                                                }
+                                            </div>
+                                        }
+                                        {
+                                            item.proposalKey == 'getAllowTvmConstantinople' &&
+                                            <div>
+                                                <span>{ intl.formatMessage({id: 'propose_28'})}</span>
+                                                <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
+                                                {
+                                                    item.proposalVal? <span>{tu('propose_allowed')}</span>:
+                                                        <span>{tu('propose_not_allowed')}</span>
+                                                }
+                                            </div>
+                                        }
+                                        {
+                                            item.proposalKey == 'getChangeDelegation' &&
+                                            <div>
+                                                <span>{ intl.formatMessage({id: 'propose_30'})}</span>
+                                                <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
+                                                {
+                                                    item.proposalVal? <span>{tu('propose_activate')}</span>:
+                                                        <span>{tu('propose_unactivate')}</span>
+                                                }
+                                            </div>
+                                        }
+                                        {
+
+                                            item.proposalKey == 'getWitness127PayPerBlock' &&
+                                            <div className="mt-1">
+                                                <span>{ intl.formatMessage({id: 'propose_31'})}</span>
+                                                <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
+                                                <span>{ item.proposalVal / ONE_TRX}</span> &nbsp;
+                                                <span>TRX</span>
+                                            </div>
+
+                                        }
+                                    </div>:<div>
+                                        {
+                                            item.proposalKey == 'getChargingSwitch' && <div>
+                                                <span>{ intl.formatMessage({id: 'sun_propose_1'})}</span>
+                                                <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
+                                                {
+                                                    item.proposalVal != '0'? <span>{tu('propose_activate')}</span>:
+                                                        <span>{tu('propose_unactivate')}</span>
+                                                }
+                                            </div>
+                                        }
+                                        {
+                                            item.proposalKey == 'getSideChainGateWayList' && <div>
+                                                <span>{ intl.formatMessage({id: 'sun_propose_2'})}</span>
+                                                <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
+                                                {
+                                                    <span>{item.proposalVal}</span>
+                                                }
+                                            </div>
+                                        }
+                                        {
+                                            item.proposalKey == 'getProposalExpireTime' && <div>
+                                                <span>{ intl.formatMessage({id: 'sun_propose_3'})}</span>
+                                                <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
+                                                {
+                                                    <span>{item.proposalVal}</span>
+                                                }
+                                            </div>
+                                        }
+                                        {
+                                            item.proposalKey == 'getVoteWitnessSwitch' && <div>
+                                                <span>{ intl.formatMessage({id: 'sun_propose_4'})}</span>
+                                                <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
+                                                {
+                                                    item.proposalVal != '0'? <span>{tu('propose_activate')}</span>:
+                                                        <span>{tu('propose_unactivate')}</span>
+                                                }
+                                            </div>
+                                        }
+                                        {
+                                            item.proposalKey == 'getFundInjectAddress' && <div>
+                                                <span>{ intl.formatMessage({id: 'sun_propose_5'})}</span>
+                                                <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
+                                                {
+                                                    <span>{item.proposalVal}</span>
+                                                }
+                                            </div>
+                                        }
+                                        {
+                                            item.proposalKey == 'getFundDistributeEnableSwitch' && <div>
+                                                <span>{ intl.formatMessage({id: 'sun_propose_6'})}</span>
+                                                <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
+                                                {
+                                                    item.proposalVal != '0'? <span>{tu('propose_activate')}</span>:
+                                                        <span>{tu('propose_unactivate')}</span>
+                                                }
+                                            </div>
+                                        }
+                                        {
+                                            item.proposalKey == 'getDayToSustainByFund' && <div>
+                                                <span>{ intl.formatMessage({id: 'sun_propose_7'})}</span>
+                                                <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
+                                                {
+                                                    <span>{item.proposalVal} {tu('day')}</span>
+                                                }
+                                            </div>
+                                        }
+                                        {
+                                            item.proposalKey == 'getPercentToPayWitness' && <div>
+                                                <span>{ intl.formatMessage({id: 'sun_propose_8'})}</span>
+                                                <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
+                                                {
+                                                    <span>{item.proposalVal} %</span>
+                                                }
+                                            </div>
+                                        }
                                     </div>
-                                    {
-                                        record.proposalId == 23?<div className="mt-1">
-                                            <span>{ intl.formatMessage({id: 'propose_31'})}</span>
-                                            <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
-                                            <span>{ 160000000 / ONE_TRX}</span> &nbsp;
-                                            <span>TRX</span>
-                                        </div>:''
-                                    }
+                                }
+                            </div>
+                        })
 
-                                </div>
-                            }
-                            {
-                                record.key == 'getWitnessStandbyAllowance' &&
-                                <div>
-                                    <span>{ intl.formatMessage({id: 'propose_7'})}</span>
-                                    <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
-                                    <span>{text / ONE_TRX}</span> &nbsp;
-                                    <span>TRX</span></div>
-                            }
-                            {
-                                record.key == 'getCreateNewAccountFeeInSystemContract' &&
-                                <div>
-                                    <span>{ intl.formatMessage({id: 'propose_8'})}</span>
-                                    <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
-                                    <span>{text / ONE_TRX}</span> &nbsp;
-                                    <span>TRX</span></div>
-                            }
-                            {
-                                record.key == 'getCreateNewAccountBandwidthRate' &&
-                                <div>
-                                    <span>{ intl.formatMessage({id: 'propose_9'})}</span>
-                                    <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
-                                    <span>{text}</span> &nbsp;
-                                    <span>bandwith/byte</span>
-                                </div>
-                            }
-                            {
-                                record.key == 'getAllowCreationOfContracts' &&
-                                <div>
-                                    <span>{ intl.formatMessage({id: 'propose_10'})}</span>
-                                    <span>{tu('propose_activate')}</span>
-                                </div>
-                            }
-                            {
-                                record.key == 'getRemoveThePowerOfTheGr' &&
-                                <div>
-                                    <span>{ intl.formatMessage({id: 'propose_11'})}</span>
-                                </div>
-                            }
-                            {
-                                record.key == 'getEnergyFee' &&
-                                <div>
-                                    <span>{ intl.formatMessage({id: 'propose_12'})}</span>
-                                    <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
-                                    <span>{text / ONE_TRX} TRX</span>
-                                </div>
-                            }
-                            {
-                                record.key == 'getExchangeCreateFee' &&
-                                <div>
-                                    <span>{ intl.formatMessage({id: 'propose_13'})}</span>
-                                    <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
-                                    <span>{text / ONE_TRX} TRX</span>
-                                </div>
-                            }
-                            {
-                                record.key == 'getMaxCpuTimeOfOneTx' &&
-                                <div>
-                                    <span>{ intl.formatMessage({id: 'propose_14'})}</span>
-                                    <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
-                                    <span>{text} ms</span>
-                                </div>
-                            }
-                            {
-                                record.key == 'getAllowUpdateAccountName' &&
-                                <div>
-                                    <span>{ intl.formatMessage({id: 'propose_15'})}</span>
-                                    <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
-                                    {
-                                        text? <span>{tu('propose_allowed')}</span>:
-                                            <span>{tu('propose_not_allowed')}</span>
-                                    }
-                                </div>
-                            }
-                            {
-                                record.key == 'getAllowSameTokenName' &&
-                                <div>
-                                    <span>{ intl.formatMessage({id: 'propose_16'})}</span>
-                                    <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
-                                    {
-                                        text? <span>{tu('propose_allowed')}</span>:
-                                            <span>{tu('propose_not_allowed')}</span>
-                                    }
-                                </div>
-                            }
-                            {
-                                record.key == 'getAllowDelegateResource' &&
-                                <div>
-                                    <span>{ intl.formatMessage({id: 'propose_17'})}</span>
-                                    <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
-                                    {
-                                        text? <span>{tu('propose_allowed')}</span>:
-                                            <span>{tu('propose_not_allowed')}</span>
-                                    }
-                                </div>
-                            }
-                            {
-                                record.key == 'getTotalEnergyLimit' &&
-                                <div>
-                                    <span>{ intl.formatMessage({id: 'propose_18'})}</span>
-                                    <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
-                                    <span>{text}</span>
-                                </div>
-                            }
-                            {
-                                record.key == 'getAllowTvmTransferTrc10' &&
-                                <div>
-                                    <span>{ intl.formatMessage({id: 'propose_19'})}</span>
-                                    <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
-                                    {
-                                        text? <span>{tu('propose_allowed')}</span>:
-                                            <span>{tu('propose_not_allowed')}</span>
-                                    }
-                                </div>
-                            }
-                            {
-                                record.key == 'getTotalEnergyLimitNew' &&
-                                <div>
-                                    <span>{ intl.formatMessage({id: 'propose_18_1'})}</span>
-                                    <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
-                                    <span>{text}</span>
-                                </div>
-                            }
-                            {
-                                record.key == 'getTotalEnergyCurrentLimit' &&
-                                <div>
-                                    <span>{ intl.formatMessage({id: 'propose_20'})}</span>
-                                    <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
-                                    <span>{text}</span>
-                                </div>
-                            }
-                            {
-                                record.key == 'getAllowMultiSign' &&
-                                <div>
-                                    <span>{ intl.formatMessage({id: 'propose_21'})}</span>
-                                    <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
-                                    {
-                                        text? <span>{tu('propose_allowed')}</span>:
-                                            <span>{tu('propose_not_allowed')}</span>
-                                    }
-                                </div>
-                            }
-                            {
-                                record.key == 'getAllowAdaptiveEnergy' &&
-                                <div>
-                                    <span>{ intl.formatMessage({id: 'propose_22'})}</span>
-                                    <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
-                                    {
-                                        text? <span>{tu('propose_allowed')}</span>:
-                                            <span>{tu('propose_not_allowed')}</span>
-                                    }
-                                </div>
-                            }
-                            {
-                                record.key == 'getTotalEnergyTargetLimit' &&
-                                <div>
-                                    <span>{ intl.formatMessage({id: 'propose_23'})}</span>
-                                    <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
-                                    <span>{text}</span>/
-                                    <span>{tu('propose_minute')}</span>
-                                </div>
-                            }
-                            {
-                                record.key == 'getTotalEnergyAverageUsage' &&
-                                <div>
-                                    <span>{ intl.formatMessage({id: 'propose_24'})}</span>
-                                    <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
-                                    {
-                                        text?<span><span>{text}</span>/<span>{tu('propose_minute')}</span></span>:
-                                            <span>{tu('propose_unactivate')}</span>
-                                    }
-                                </div>
-                            }
-                            {
-                                record.key == 'getUpdateAccountPermissionFee' &&
-                                <div>
-                                    <span>{ intl.formatMessage({id: 'propose_25'})}</span>
-                                    <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
-                                    <span>{text / ONE_TRX}</span> &nbsp;
-                                    <span>TRX</span>
-                                </div>
-                            }
-                            {
-                                record.key == 'getMultiSignFee' &&
-                                <div>
-                                    <span>{ intl.formatMessage({id: 'propose_26'})}</span>
-                                    <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
-                                    <span>{text / ONE_TRX}</span> &nbsp;
-                                    <span>TRX</span>
-                                </div>
-                            }
 
-                            {
-                                record.key == 'getAllowProtoFilterNum' &&
-                                <div>
-                                    <span>{ intl.formatMessage({id: 'propose_27'})}</span>
-                                    <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
-                                    {
-                                        text? <span>{tu('propose_activate')}</span>:
-                                            <span>{tu('propose_unactivate')}</span>
-                                    }
-                                </div>
-                            }
-                            {
-                                record.key == 'getAllowTvmConstantinople' &&
-                                <div>
-                                    <span>{ intl.formatMessage({id: 'propose_28'})}</span>
-                                    <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
-                                    {
-                                        text? <span>{tu('propose_allowed')}</span>:
-                                            <span>{tu('propose_not_allowed')}</span>
-                                    }
-                                </div>
-                            }
-                            {
-                                record.key == 'getChangeDelegation' &&
-                                <div>
-                                    <span>{ intl.formatMessage({id: 'propose_30'})}</span>
-                                    <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
-                                    {
-                                        text? <span>{tu('propose_activate')}</span>:
-                                            <span>{tu('propose_unactivate')}</span>
-                                    }
-                                </div>
-                            }
-                        </div>:<div>
-                            {
-                                record.key == 'getChargingSwitch' && <div>
-                                    <span>{ intl.formatMessage({id: 'sun_propose_1'})}</span>
-                                    <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
-                                    {
-                                        record.proposalVal != '0'? <span>{tu('propose_activate')}</span>:
-                                            <span>{tu('propose_unactivate')}</span>
-                                    }
-                                </div>
-                            }
-                            {
-                                record.key == 'getSideChainGateWayList' && <div>
-                                    <span>{ intl.formatMessage({id: 'sun_propose_2'})}</span>
-                                    <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
-                                    {
-                                        <span>{record.proposalVal}</span>
-                                    }
-                                </div>
-                            }
-                            {
-                                record.key == 'getProposalExpireTime' && <div>
-                                    <span>{ intl.formatMessage({id: 'sun_propose_3'})}</span>
-                                    <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
-                                    {
-                                        <span>{record.proposalVal}</span>
-                                    }
-                                </div>
-                            }
-                            {
-                                record.key == 'getVoteWitnessSwitch' && <div>
-                                    <span>{ intl.formatMessage({id: 'sun_propose_4'})}</span>
-                                    <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
-                                    {
-                                        record.proposalVal != '0'? <span>{tu('propose_activate')}</span>:
-                                            <span>{tu('propose_unactivate')}</span>
-                                    }
-                                </div>
-                            }
-                            {
-                                record.key == 'getFundInjectAddress' && <div>
-                                    <span>{ intl.formatMessage({id: 'sun_propose_5'})}</span>
-                                    <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
-                                    {
-                                        <span>{record.proposalVal}</span>
-                                    }
-                                </div>
-                            }
-                            {
-                                record.key == 'getFundDistributeEnableSwitch' && <div>
-                                    <span>{ intl.formatMessage({id: 'sun_propose_6'})}</span>
-                                    <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
-                                    {
-                                        record.proposalVal != '0'? <span>{tu('propose_activate')}</span>:
-                                            <span>{tu('propose_unactivate')}</span>
-                                    }
-                                </div>
-                            }
-                            {
-                                record.key == 'getDayToSustainByFund' && <div>
-                                    <span>{ intl.formatMessage({id: 'sun_propose_7'})}</span>
-                                    <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
-                                    {
-                                        <span>{record.proposalVal} {tu('day')}</span>
-                                    }
-                                </div>
-                            }
-                            {
-                                record.key == 'getPercentToPayWitness' && <div>
-                                    <span>{ intl.formatMessage({id: 'sun_propose_8'})}</span>
-                                    <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
-                                    {
-                                        <span>{record.proposalVal} %</span>
-                                    }
-                                </div>
-                            }
-                        </div>
                     }
 
 

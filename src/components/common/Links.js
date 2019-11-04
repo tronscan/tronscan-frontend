@@ -135,8 +135,8 @@ export class AddressLink extends React.PureComponent {
     if (width !== -1) {
       style.maxWidth = width;
     }
-    let children_start = children && isAddressValid(children) ? children.substring(0,29) : address.substring(0,29);
-    let children_end  =  children && isAddressValid(children) ? children.substring(29,34) : address.substring(29,34);
+    let children_start = children && isAddressValid(children) ? children.substring(0,29) : address?address.substring(0,29):'';
+    let children_end  =  children && isAddressValid(children) ? children.substring(29,34) : address?address.substring(29,34):'';
     let wrap = (
         <div className="d-flex">
           {

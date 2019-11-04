@@ -13762,7 +13762,22 @@ tronstation@^1.0.1:
     "@babel/runtime" "^7.0.0"
     babel-runtime "^6.26.0"
 
-tronweb@2.7.1, tronweb@^2.7.1:
+tronweb@2.7.4:
+  version "2.7.4"
+  resolved "https://registry.yarnpkg.com/tronweb/-/tronweb-2.7.4.tgz#9fc81db59ee3dd8cb88ef12c92f6c6f554020022"
+  dependencies:
+    "@babel/runtime" "^7.0.0"
+    axios "^0.19.0"
+    babel-runtime "^6.26.0"
+    bignumber.js "^7.2.1"
+    elliptic "^6.4.1"
+    ethers "^4.0.7"
+    eventemitter3 "^3.1.0"
+    lodash "^4.17.14"
+    semver "^5.6.0"
+    validator "^10.7.1"
+
+tronweb@^2.7.1:
   version "2.7.1"
   resolved "https://registry.yarnpkg.com/tronweb/-/tronweb-2.7.1.tgz#714547728a2e6e87e808da91b7a5b1e178179503"
   integrity sha512-BSqEFeCX3nM4utzWKzo/nCVbtvZ6MMbFvPKVje1as/ZPqACTH0KxaJnOdsxs2KESuT/uuWKXYcqrUQie4KHN2A==
