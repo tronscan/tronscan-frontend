@@ -180,9 +180,12 @@ class Accounts extends Component {
       },
       {
         title: 'Name Tag',
-        dataIndex: 'tagName',
-        key: 'tagName',
-        align: 'left'
+        dataIndex: 'addressTag',
+        key: 'addressTag',
+        align: 'left',
+        render: (text, record, index) => {
+            return <span> {record.addressTag} </span>
+        }
       },
       {
         title: upperFirst(intl.formatMessage({id: 'supply'})),

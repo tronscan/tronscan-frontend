@@ -127,10 +127,13 @@ class TokenHolders extends React.Component {
         }
       },
       {
-        title: 'Name Tag',
-        dataIndex: 'tagName',
-        key: 'tagName',
-        width: '200px'
+          title: 'Name Tag',
+          dataIndex: 'addressTag',
+          key: 'addressTag',
+          align: 'left',
+          render: (text, record, index) => {
+              return <span> {record.addressTag} </span>
+          }
       },
       {
         title: upperFirst(intl.formatMessage({id: 'quantity'})),

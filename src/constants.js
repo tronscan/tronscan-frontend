@@ -11,8 +11,8 @@ export const IS_MAINNET = Lockr.get("NET") === "mainnet" || !Lockr.get("NET");
 export const IS_SUNNET = Lockr.get("NET") === "sunnet";
 
 export const NETURL = {
-    MAINNET: "https://tronscan.org",
-    SUNNET: "https://dappchain.tronscan.org"
+    MAINNET: "http://18.217.215.94:61",
+    SUNNET: "http://18.217.215.94:62"
 };
 
 //export const IS_MAINNET = window.location.origin === NETURL.MAINNET;
@@ -27,11 +27,11 @@ export const ASSET_ISSUE_COST = 1024 * ONE_TRX;
 export const PUBLIC_URL = process.env.PUBLIC_URL || window.location.origin;
 //export const API_URL = process.env.API_URL;
 //test
-//export const API_URL_SUNNET = 'http://3.15.181.169:9000';
+export const API_URL_SUNNET = 'http://3.15.181.169:9000';
 //test pro
 //export const API_URL_SUNNET = 'http://52.15.68.74:10001';
 
-export const API_URL_SUNNET = 'https://dappchainapi.tronscan.org';
+//export const API_URL_SUNNET = 'https://dappchainapi.tronscan.org';
 // export const API_URL_MAINNET = 'https://apilist.tronscan.org';
 export const API_URL = IS_SUNNET?API_URL_SUNNET:process.env.API_URL;
 export const CONTRACT_MAINNET_API_URL = process.env.API_URL;
