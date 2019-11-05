@@ -2715,7 +2715,13 @@ export default class Account extends Component {
                           {tu("Super Representatives")}
                       </h5>
                       <p className="pt-3">
-                          {tu("apply_for_delegate_predescription")}
+                          {tu("apply_for_delegate_predescription_1")}
+                      </p>
+                      <p className="pt-1">
+                        {tu("apply_for_delegate_predescription_2")}
+                      </p>
+                      <p className="pt-1">
+                        {tu("apply_for_delegate_predescription_3")}
                       </p>
                       <div className="text-center">
                           {
