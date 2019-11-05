@@ -48,27 +48,29 @@ class Accounts extends Component {
       limit: pageSize,
       start: (page - 1) * pageSize
     })
-    let exchangeFlag = await Client.getTagNameList()
+    // let exchangeFlag = await Client.getTagNameList()
+    //
+    // accounts.map(item => {
+    //   item.tagName = ''
+    //   exchangeFlag.map(coin => {
+    //     const typeList = Object.keys(coin.addressList)
+    //     typeList.map(type => {
+    //       if(coin.addressList[type].length == 1){
+    //         if(coin.addressList[type][0] === item.address){
+    //           item.tagName = `${upperFirst(coin.name)}${type !== 'default'? `-${type}`: ''}`
+    //         }
+    //       }else if(coin.addressList[type].length > 1){
+    //         coin.addressList[type].map((address, index) => {
+    //           if(address === item.address){
+    //             item.tagName = `${upperFirst(coin.name)}${type !== 'default'? `-${type} ${index + 1}`: ` ${index + 1}`}`
+    //           }
+    //         })
+    //       }
+    //     })
+    //   })
+    //  })
 
-    accounts.map(item => {
-      item.tagName = ''
-      exchangeFlag.map(coin => {
-        const typeList = Object.keys(coin.addressList)
-        typeList.map(type => {
-          if(coin.addressList[type].length == 1){
-            if(coin.addressList[type][0] === item.address){
-              item.tagName = `${upperFirst(coin.name)}${type !== 'default'? `-${type}`: ''}`
-            }
-          }else if(coin.addressList[type].length > 1){
-            coin.addressList[type].map((address, index) => {
-              if(address === item.address){
-                item.tagName = `${upperFirst(coin.name)}${type !== 'default'? `-${type} ${index + 1}`: ` ${index + 1}`}`
-              }
-            })
-          }
-        })
-      })
-     })
+
      // let {txOverviewStats} = await Client.getTxOverviewStats();
 
     this.setState({
@@ -180,9 +182,12 @@ class Accounts extends Component {
       },
       {
         title: 'Name Tag',
-        dataIndex: 'tagName',
-        key: 'tagName',
-        align: 'left'
+        dataIndex: 'addressTag',
+        key: 'addressTag',
+        align: 'left',
+        render: (text, record, index) => {
+            return <span style={{whiteSpace:'nowrap'}}> {record.addressTag?record.addressTag:''} </span>
+        }
       },
       {
         title: upperFirst(intl.formatMessage({id: 'supply'})),

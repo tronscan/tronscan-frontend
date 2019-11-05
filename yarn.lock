@@ -1208,9 +1208,9 @@
     "@svgr/plugin-svgo" "^4.0.3"
     loader-utils "^1.1.0"
 
-"@tronscan/client@^0.2.57":
-  version "0.2.57"
-  resolved "https://registry.yarnpkg.com/@tronscan/client/-/client-0.2.57.tgz#f2e711c25769625e1d82c85fc3d622a98a11db35"
+"@tronscan/client@^0.2.58":
+  version "0.2.58"
+  resolved "https://registry.yarnpkg.com/@tronscan/client/-/client-0.2.58.tgz#fe7c3882505767bdf86080d381d9c923142ac60e"
   dependencies:
     axios "^0.18.0"
     babel-plugin-transform-class-properties "^6.24.1"
