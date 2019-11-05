@@ -5,7 +5,7 @@ import {tu} from "../../utils/i18n";
 import {TronLoader} from "../common/loaders";
 import {FormattedNumber} from "react-intl";
 import {injectIntl} from "react-intl";
-import _, {filter, maxBy, sortBy, trim, sumBy} from "lodash";
+import _, {filter, maxBy, sortBy, trim, sumBy, slice} from "lodash";
 import {AddressLink, BlockNumberLink} from "../common/Links";
 import {SR_MAX_COUNT,IS_MAINNET} from "../../constants";
 import {RepresentativesRingPieReact} from "../common/RingPieChart";
@@ -66,8 +66,9 @@ class Representatives extends Component {
     }
 
     let superRepresentatives = sortBy(filter(witnesses, w => w.producer), w => w.votes * -1);
-    let candidateRepresentatives = sortBy(filter(witnesses, w => !w.producer), w => w.votes * -1);
-
+    let candidateRepresentativesArr = sortBy(filter(witnesses, w => !w.producer), w => w.votes * -1);
+    let partnersRepresentatives = slice(candidateRepresentativesArr, 0 , 100);
+    let candidateRepresentatives = slice(candidateRepresentativesArr, 101);
     superRepresentatives.map( account => {
         Number(latestBlock) -  account.latestBlockNumber  < 1000 ? account.representerStatus = true :  account.representerStatus = false;
     })
@@ -99,13 +100,24 @@ class Representatives extends Component {
                                                                key={account.address + index} account={account}/>)}
             <tr style={{height: '72px'}}>
               <td colSpan="9" className="font-weight-bold">
-                <i className="fa fa-user mr-2 ml-2"  style={{color: '#666'}}></i>
-                {tu("Super Representative Candidates")}
+                <i className="far fa-handshake mr-2 ml-2"  style={{color: '#666'}}></i>
+                {tu("Super Representative Partners")}
               </td>
             </tr>
-            {candidateRepresentatives.map((account, index) => <Row index={superRepresentatives ? index + superRepresentatives.length: IS_MAINNET?index+27:index+5} state={this.state}
+            {partnersRepresentatives.map((account, index) => <Row  index={superRepresentatives ? index + superRepresentatives.length: IS_MAINNET?index+27:index+5} state={this.state}
                                                                    props={this.props} key={account.address + index}
                                                                    account={account} showSync={false}/>)}
+            {
+                IS_MAINNET && <tr style={{height: '72px'}}>
+                    <td colSpan="9" className="font-weight-bold">
+                        <i className="fa fa-user mr-2 ml-2"  style={{color: '#666'}}></i>
+                        {tu("Super Representative Candidates")}
+                    </td>
+                </tr>
+            }
+            {candidateRepresentatives && candidateRepresentatives.map((account, index) => <Row index={superRepresentatives ? index + superRepresentatives.length + partnersRepresentatives.length : IS_MAINNET?index+127:index+5} state={this.state}
+                                                                  props={this.props} key={account.address + index}
+                                                                  account={account} showSync={false}/>)}
             </tbody>
           </table>
         </div>
@@ -136,7 +148,7 @@ class Representatives extends Component {
                             <h3 className="text-primary">
                               <FormattedNumber value={witnesses.length}/>
                             </h3>
-                            {tu("representativesAcandidates")}
+                            {tu("Super Representatives")}
                           </div>
                         </div>
                       </div>

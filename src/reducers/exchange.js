@@ -17,7 +17,8 @@ import {
   SET_UNFIRM_ORDER_LIST,
   SET_CANCEL_ORDER_LIST,
   SET_DELEGATE_FAILURE_LIST,
-  SET_REDIRCT_PAIR
+  SET_REDIRCT_PAIR,
+  SET_EXCHANGE20BYIDS
 } from "../actions/exchange";
 
 const initialState = {
@@ -147,6 +148,13 @@ export function exchangeReducer(state = initialState, action) {
       return {
         ...state,
         redirctPair: action.redirctPair
+      };
+    }
+
+    case SET_EXCHANGE20BYIDS: {
+      return {
+        ...state,
+        searchListByIds: action.searchListByIds
       };
     }
 

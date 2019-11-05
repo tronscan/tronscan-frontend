@@ -302,10 +302,13 @@ export const messages = {
   ##################################################################################
   */
   "apply_for_delegate": "申请成为超级代表",
-  "apply_super_representative_candidate": "申请成为超级代表合伙人",
+  "apply_super_representative_candidate": "申请成为超级代表",
   "your_personal_website_address": "个人网页地址",
   "apply_for_delegate_predescription": "每个代币持有者都有机会成为TRON超级代表。然而，为了让网络和社区更加平稳有效地运作，我们制定了一套标准和规定，让符合条件的合伙人成为超级代表推荐人。我们以推荐超级代表的形式，增加他们当选的机会。新推荐的超级代表每周更新并发布一次。",
-  "apply_for_delegate_description": "每个代币持有者都可以通过账户管理页面，申请成为超级代表合伙人，或是在投票页面为合伙人投票。每个用户可以为多个合伙人投票，最高投票数必须少于或者等于持有TRX的数量。投票结果以每名用户的最终投票结果为准，票数会在每天的02:00(GMT+8)，08:00(GMT+8)，14:00(GMT+8)，20:00(GMT+8)刷新，用户也可以查看实时票数。票数最高的前27名合伙人可以成为超级代表，超级代表负责打包交易出块，每次出块奖励32个TRX。27个超级代表和前100名代表合伙人也可以根据票数获得节点奖励。申请成为合伙人需要一次性扣除9,999TRX的手续费，用户为超级代表合伙人投票不消耗TRX。",
+  "apply_for_delegate_description": "每个代币持有者都可以通过账户管理页面，申请成为超级代表候选人，或是在投票页面为候选人投票。每个用户可以为多个候选人投票，最高投票数必须少于或者等于持有TRX的数量。投票结果以每名用户的最终投票结果为准，票数会在每天的02:00(GMT+8)，08:00(GMT+8)，14:00(GMT+8)，20:00(GMT+8)刷新，用户也可以查看实时票数。票数最高的前27名候选人可以成为超级代表，超级代表负责打包交易出块，每次出块奖励16个TRX。27个超级代表和前100名代表合伙人也可以根据票数获得节点奖励。申请成为候选人需要一次性扣除9,999TRX的手续费，用户为超级代表候选人投票不消耗TRX。",
+  "apply_for_delegate_predescription_1":"每个代币持有者都有机会成为TRON超级代表。花费9,999TRX的申请费之后，你就成为超级代表候选人。超级代表候选人可以接受用户的投票。",
+  "apply_for_delegate_predescription_2":"票数最高的前27名候选人可以成为超级代表，超级代表负责打包交易出块，每次出块奖励16TRX。",
+  "apply_for_delegate_predescription_3":"27个超级代表和前100名超级代表合伙人也可以根据票数获得节点奖励。",
   "unknown_error": "发生未知错误",
   "representative_understand": "我已了解如何成为波场超级代表",
   "generate_account": "点击生成账户密码及地址",
@@ -632,7 +635,8 @@ export const messages = {
   "highest_productivity": "出块效率最高",
   "lowest_productivity": "出块效率最低",
   "Super Representatives": "超级代表",
-  "Super Representative Candidates": "超级代表合伙人",
+  "Super Representative Partners": "超级代表合伙人",
+  "Super Representative Candidates": "超级代表候选人",
   "loading_representatives": "超级代表加载中",
   "address_not_super_representative": "本地址非超级代表",
   "unable_load_representatives_page_message": "页面加载失败，可能原因为地址无效、非超级代表地址或超级代表尚未设置此页面。",
@@ -1668,6 +1672,14 @@ export const messages = {
   "trc20_failed_order": '此委托未得到区块确认',
   "trc20_ignore": '忽略',
   "trc20_see_currentParis": '只看当前交易对',
+  "trc20_search_more_tokens":"搜索发现更多通证",
+  "trc20_token_name":"通证名称",
+  "trc20_token_id":"通证ID",
+  "trc20_risk_token":"风险通证",
+  "trc20_risk_token_desc":"这些通证尚未正式上币，可能存在潜在风险，请谨慎投资。",
+  "trc20_symbol_risk":"简称与其他通证重复",
+  "trc20_hight_risk_token":"高风险通证",
+
 
   /*
    *  2018-12-18
