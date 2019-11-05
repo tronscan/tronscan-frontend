@@ -302,10 +302,10 @@ export const messages = {
   ##################################################################################
   */
   "apply_for_delegate": "슈퍼대표 신청",
-  "apply_super_representative_candidate": "최고 대표 파트너가 되려면 신청하십시오",
+  "apply_super_representative_candidate": "최고 대표자가되기 위해 신청하십시오",
   "your_personal_website_address": "개인 웹 주소",
   "apply_for_delegate_predescription": "각 토큰 소유자는 TRON 슈퍼 대표가 될 수 있는 기회를 갖습니다. 그러나 네트워크와 커뮤니티가 보다 원활하고 효율적으로 운영되기 위해서는 자격을 갖춘 후보자가 추천된 슈퍼 대표가 될 수 있도록 일련의 표준 및 규정을 만들었으며, 새롭게 추천된 슈퍼 대표는 일주일에 한 번 업데이트되고 공개됩니다.",
-  "apply_for_delegate_description":"각 토큰 보유자는 계정 관리 페이지를 통해 최고 대표 파트너가되거나 투표 페이지에서 파트너에게 투표 할 수 있습니다. 각 사용자는 여러 파트너에 투표 할 수 있으며, 최대 투표 수는 보유한 TRX 수보다 적거나 같아야합니다. 투표 결과는 각 사용자의 최종 투표 결과에 따라 결정되며 투표는 02:00 (GMT + 8), 08:00 (GMT + 8), 14:00 (GMT + 8), 20:00 (GMT)입니다. +8) 새로 고침, 사용자는 실시간 티켓 수를 볼 수도 있습니다. 가장 많은 표를 얻은 상위 27 명의 파트너는 최고 대표가 될 수 있으며 최고 대표는 거래 패키징을 담당하고 매번 32 TRX를 보상합니다. 27 명의 최고 대표와 100 대 대표 파트너도 투표 수에 따라 노드 보상을받을 수 있습니다. 파트너가되기 위해 신청하려면 한 번에 9,999 TRX의 수수료를 공제해야합니다.",
+  "apply_for_delegate_description":"각 토큰 보유자는 계정 관리 페이지를 통해 최고 대표 파트너가되거나 투표 페이지에서 파트너에게 투표 할 수 있습니다. 각 사용자는 여러 파트너에 투표 할 수 있으며, 최대 투표 수는 보유한 TRX 수보다 적거나 같아야합니다. 투표 결과는 각 사용자의 최종 투표 결과에 따라 결정되며 투표는 02:00 (GMT + 8), 08:00 (GMT + 8), 14:00 (GMT + 8), 20:00 (GMT)입니다. +8) 새로 고침, 사용자는 실시간 티켓 수를 볼 수도 있습니다. 가장 많은 표를 얻은 상위 27 명의 파트너는 최고 대표가 될 수 있으며 최고 대표는 거래 패키징을 담당하고 매번 16 TRX를 보상합니다. 27 명의 최고 대표와 100 대 대표 파트너도 투표 수에 따라 노드 보상을받을 수 있습니다. 파트너가되기 위해 신청하려면 한 번에 9,999 TRX의 수수료를 공제해야합니다.",
   "apply_for_delegate_predescription_1":"Every token holder has the opportunity to become a TRON Super Representative.After spending an application fee of 9,999 TRX, you become a Super Representative candidate. The Super Representative candidate can accept the user’s vote.",
   "apply_for_delegate_predescription_2":"The top 27 most-voted partners will become SRs and be responsible for transaction packaging and block generation, with a reward of 16 TRX per block generation.",
   "apply_for_delegate_predescription_3":"The 27 SRs and the top 100 SR partners can also receive rewards of nodes based on the votes they receive.",
