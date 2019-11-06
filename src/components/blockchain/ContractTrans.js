@@ -133,6 +133,7 @@ class ContractTrans extends React.Component {
                 dataIndex: 'timestamp',
                 key: 'timestamp',
                 align: 'left',
+                width:'14%',
                 render: (text, record, index) => {
                     return <BlockTime time={text}></BlockTime>
                     // <TimeAgo date={text} title={moment(text).format("MMM-DD-YYYY HH:mm:ss A")}/>

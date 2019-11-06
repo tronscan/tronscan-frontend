@@ -605,10 +605,11 @@ class Address extends React.Component {
                                 <td>
                                   <ul className="list-unstyled m-0">
                                     <li className="d-flex">
-                                      <TRXPrice showCurreny={false}
-                                                amount={(totalPower) / ONE_TRX}/>
+                                      {/* <TRXPrice showCurreny={false}
+                                                amount={(totalPower) / ONE_TRX}/> */}
+                                                <FormattedNumber value={(totalPower) / ONE_TRX}></FormattedNumber>  
                                       <div>
-                                         <span className="ml-1">(</span> {tu("address_tron_power_used")}: {address.voteTotal}&nbsp;   {tu("address_tron_power_remaining")}: {(totalPower) / ONE_TRX - address.voteTotal } <span>)</span>
+                                         <span className="ml-1">(</span> {tu("address_tron_power_used")}: <FormattedNumber value={address.voteTotal}></FormattedNumber>&nbsp;   {tu("address_tron_power_remaining")}:  <FormattedNumber value={(totalPower) / ONE_TRX - address.voteTotal }></FormattedNumber> <span>)</span>
                                       </div>
                                     </li>
                                   </ul>

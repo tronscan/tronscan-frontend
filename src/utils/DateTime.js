@@ -1,5 +1,5 @@
 import moment from 'moment'
-require('moment-timezone')
+
 export function Utc2BeijingDateTime(utc_datetime){
     const T_pos = utc_datetime.indexOf('T');
     const Z_pos = utc_datetime.indexOf('Z');
