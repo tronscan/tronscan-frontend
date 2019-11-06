@@ -11,8 +11,8 @@ export const IS_MAINNET = Lockr.get("NET") === "mainnet" || !Lockr.get("NET");
 export const IS_SUNNET = Lockr.get("NET") === "sunnet";
 
 export const NETURL = {
-    MAINNET: "https://tronscan.org",
-    SUNNET: "https://dappchain.tronscan.org"
+  MAINNET: "https://tronscan.org",
+  SUNNET: "https://dappchain.tronscan.org"
 };
 
 //export const IS_MAINNET = window.location.origin === NETURL.MAINNET;
@@ -33,15 +33,14 @@ export const PUBLIC_URL = process.env.PUBLIC_URL || window.location.origin;
 
 export const API_URL_SUNNET = 'https://dappchainapi.tronscan.org';
 // export const API_URL_MAINNET = 'https://apilist.tronscan.org';
-export const API_URL = IS_SUNNET?API_URL_SUNNET:process.env.API_URL;
+export const API_URL = IS_SUNNET ? API_URL_SUNNET : process.env.API_URL;
 export const CONTRACT_MAINNET_API_URL = process.env.API_URL;
 
 //Token issued
-export const MARKET_API_URL = 'https://platform.tron.network';
+export const MARKET_API_URL = "https://platform.tron.network";
 
 //trx.market
-export const MARKET_HTTP_URL = 'https://trx.market';
-
+export const MARKET_HTTP_URL = "https://trx.market";
 
 export const ACCOUNT_PRIVATE_KEY = "ACCOUNT_PRIVATE_KEY";
 export const ACCOUNT_ADDRESS = "ACCOUNT_ADDRESS";
@@ -59,9 +58,9 @@ export const FILE_MAX_NUM = 10;
 
 // currency type
 export const CURRENCYTYPE = {
-    TRX: "TRX",
-    TRX10: "TRX10",
-    TRX20: "TRX20"
+  TRX: "TRX",
+  TRX10: "TRX10",
+  TRX20: "TRX20"
 };
 
 // mapping energy
@@ -85,10 +84,10 @@ export const TRCWITHDRAWMIN = 1;
 
 // trading type
 export const TRADINGMAP = {
-    MAPPING: "mapping",
-    WITHDRAW: "withdraw",
-    DEPOSIT: "deposit",
-    APPROVE: "approve"
+  MAPPING: "mapping",
+  WITHDRAW: "withdraw",
+  DEPOSIT: "deposit",
+  APPROVE: "approve"
 };
 
 // SunWeb config
@@ -102,41 +101,40 @@ export const SUNWEBCONFIG = {
   MAINNET: "TWaPZru6PR5VjgT4sJrrZ481Zgp3iJ8Rfo",
   SIDECHAIN: "TGKotco6YoULzbYisTBuP6DWXDjEgJSpYz",
   SIDEID: "41E209E4DE650F0150788E8EC5CAFA240A23EB8EB7"
-
 };
 
 // Socket config
 export const TORNSOCKET = {
-    WSSURLMAIN: "wss://apilist.tronscan.org/api/tronsocket",
-    WSSURLSUN: "wss://dappchainapi.tronscan.org/api/tronsocket"
+  WSSURLMAIN: "wss://apilist.tronscan.org/api/tronsocket",
+  WSSURLSUN: "wss://dappchainapi.tronscan.org/api/tronsocket"
 };
 
 // token type
 export const TOKENTYPE = {
-    TOKEN10: 'trc10',
-    TOKEN20: 'trc20',
+  TOKEN10: "trc10",
+  TOKEN20: "trc20"
 };
 
 // market basic page
 export const MARKETPAGE = {
-    CREATE: 'create',
-    UPDATE: 'update',
+  CREATE: "create",
+  UPDATE: "update"
 };
 
 // market token verify status
 export const VERIFYSTATUS = {
-    HASBEENSUBMITTEDTHREE:-3,
-    NOTRECORDED: -2, // No recorded
-    HASBEENRECORDED: -1, // Has been recorded
-    HASBEENSUBMITTED: 0, // Has been submitted
-    NOTRECOMMENDED: 1, // not recommended
-    TOAUDIT: 2, // to audit
-    APPROVED: 3, // reviewed for recommendation
-    RECOMMENDED: 4, // reviewed and recommended
-    REJECTED: 5, // rejected
-    SHELVES: 6, // Has been off the shelves
-    CONFIRMED: 7, // Have been confirmed
-    RECOMMENDEDFAILED: 8, // Review recommendation failed
+  HASBEENSUBMITTEDTHREE: -3,
+  NOTRECORDED: -2, // No recorded
+  HASBEENRECORDED: -1, // Has been recorded
+  HASBEENSUBMITTED: 0, // Has been submitted
+  NOTRECOMMENDED: 1, // not recommended
+  TOAUDIT: 2, // to audit
+  APPROVED: 3, // reviewed for recommendation
+  RECOMMENDED: 4, // reviewed and recommended
+  REJECTED: 5, // rejected
+  SHELVES: 6, // Has been off the shelves
+  CONFIRMED: 7, // Have been confirmed
+  RECOMMENDEDFAILED: 8 // Review recommendation failed
 };
 
 // JSEncrypt key

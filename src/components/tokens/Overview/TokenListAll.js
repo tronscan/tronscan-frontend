@@ -111,6 +111,7 @@ class TokenList extends Component {
   }
 
   onChange = (e) => {
+    
     this.setState({
       filter: {
         ...this.state.filter,
@@ -118,6 +119,9 @@ class TokenList extends Component {
         sort: 'volume24hInTrx',
         filter: e.target.value,
         order_current: "descend"
+      },
+      pagination: {
+        current:1
       }
     }, () =>  this.loadPage())
   };
@@ -151,7 +155,8 @@ class TokenList extends Component {
 
   customizedColumn = () => {
     let {filter} = this.state;
-    let {intl} = this.props;
+    let { intl } = this.props;
+    const defaultImg = require("../../../images/logo_default.png");
     let column = [
       {
         title: '#',
@@ -181,46 +186,80 @@ class TokenList extends Component {
         key: 'name',
         width: '50%',
         render: (text, record, index) => {
-          return <div className="table-imgtext">
-            {record.imgUrl ?
-                <div style={{width: '42px', height: '42px', marginRight: '18px'}}>
-                    {
-                        (record.abbr == 'USDT' || record.abbr == 'BTT' || record.abbr == 'WIN') ? <div className="token-img-top">
-                          <img style={{width: '42px', height: '42px'}} src={record.imgUrl}/>
-                          <i></i>
-                        </div>:<img style={{width: '42px', height: '42px'}} src={record.imgUrl}/>
-                    }
-                </div> :
-                <div style={{width: '42px', height: '42px', marginRight: '18px'}}><img
-                    style={{width: '42px', height: '42px'}} src={require('../../../images/logo_default.png')}/></div>
-            }
-
-            <div>
-              <h5>
-              {
-                (record.isTop && record.contractAddress == "TNYNLRkqq956bQc2buvoLbaLgh25RkJMiN")?
-                <a href="javascript:;">{record.name + ' (' + record.abbr + ')'}</a>:
-                <div>
-                  {
-                    record.tokenType == 'trc10'&&
-                    <TokenLink 
-                      name={record.name} 
-                      id={record.tokenId}
-                      namePlus={record.name + ' (' + record.abbr + ')'}/>
-                  }
-                  {
-                    record.tokenType == 'trc20'&&
-                    <TokenTRC20Link 
-                      name={record.name}
-                      namePlus={record.name + ' (' + record.abbr + ')'} 
-                      address={record.contractAddress}/>
-                  }
+          
+          return (
+            <div className="table-imgtext">
+              {record.imgUrl ? (
+                <div
+                  style={{ width: "42px", height: "42px", marginRight: "18px" }}
+                >
+                  {record.abbr == "USDT" ||
+                  record.abbr == "BTT" ||
+                  record.abbr == "WIN" ? (
+                    <div className="token-img-top">
+                      <img
+                        style={{ width: "42px", height: "42px" }}
+                        src={record.imgUrl}
+                        onError={e => {
+                          e.target.onerror = null;
+                          e.target.src = defaultImg;
+                        }}
+                      />
+                      <i></i>
+                    </div>
+                  ) : (
+                    <img
+                      style={{ width: "42px", height: "42px" }}
+                      src={record.imgUrl}
+                      onError={e => {
+                        e.target.onerror = null;
+                        e.target.src = defaultImg;
+                      }}
+                    />
+                  )}
                 </div>
-              }
-              </h5>
-              <p style={{wordBreak: "break-all"}}>{record.description}</p>
+              ) : (
+                <div
+                  style={{ width: "42px", height: "42px", marginRight: "18px" }}
+                >
+                  <img
+                    style={{ width: "42px", height: "42px" }}
+                    src={defaultImg}
+                  />
+                </div>
+              )}
+
+              <div>
+                <h5>
+                  {record.isTop &&
+                  record.contractAddress ==
+                    "TNYNLRkqq956bQc2buvoLbaLgh25RkJMiN" ? (
+                    <a href="javascript:;">
+                      {record.name + " (" + record.abbr + ")"}
+                    </a>
+                  ) : (
+                    <div>
+                      {record.tokenType == "trc10" && (
+                        <TokenLink
+                          name={record.name}
+                          id={record.tokenId}
+                          namePlus={record.name + " (" + record.abbr + ")"}
+                        />
+                      )}
+                      {record.tokenType == "trc20" && (
+                        <TokenTRC20Link
+                          name={record.name}
+                          namePlus={record.name + " (" + record.abbr + ")"}
+                          address={record.contractAddress}
+                        />
+                      )}
+                    </div>
+                  )}
+                </h5>
+                <p style={{ wordBreak: "break-all" }}>{record.description}</p>
+              </div>
             </div>
-          </div>
+          );
         }
       },
       {
@@ -325,7 +364,8 @@ class TokenList extends Component {
   }
   suncustomizedColumn = () => {
         let {filter} = this.state
-        let {intl} = this.props;
+    let { intl } = this.props;
+    const defaultImg = require("../../../images/logo_default.png");
         let column = [
             {
                 title: '#',
@@ -355,46 +395,93 @@ class TokenList extends Component {
                 key: 'name',
                 width: '50%',
                 render: (text, record, index) => {
-                    return <div className="table-imgtext">
-                        {record.imgUrl ?
-                            <div style={{width: '42px', height: '42px', marginRight: '18px'}}>
-                                {
-                                    (record.abbr == 'USDT' || record.abbr == 'BTT' || record.abbr == 'WIN') ? <div className="token-img-top">
-                                      <img style={{width: '42px', height: '42px'}} src={record.imgUrl}/>
-                                      <i></i>
-                                    </div>:<img style={{width: '42px', height: '42px'}} src={record.imgUrl}/>
-                                }
-                            </div> :
-                            <div style={{width: '42px', height: '42px', marginRight: '18px'}}><img
-                                style={{width: '42px', height: '42px'}} src={require('../../../images/logo_default.png')}/></div>
-                        }
+                    return (
+                      <div className="table-imgtext">
+                        {record.imgUrl ? (
+                          <div
+                            style={{
+                              width: "42px",
+                              height: "42px",
+                              marginRight: "18px"
+                            }}
+                          >
+                            {record.abbr == "USDT" ||
+                            record.abbr == "BTT" ||
+                            record.abbr == "WIN" ? (
+                              <div className="token-img-top">
+                                <img
+                                  style={{ width: "42px", height: "42px" }}
+                                  src={record.imgUrl}
+                                  onError={e => {
+                                    e.target.onerror = null;
+                                    e.target.src = defaultImg;
+                                  }}
+                                />
+                                <i></i>
+                              </div>
+                            ) : (
+                              <img
+                                style={{ width: "42px", height: "42px" }}
+                                src={record.imgUrl}
+                                onError={e => {
+                                  e.target.onerror = null;
+                                  e.target.src = defaultImg;
+                                }}
+                              />
+                            )}
+                          </div>
+                        ) : (
+                          <div
+                            style={{
+                              width: "42px",
+                              height: "42px",
+                              marginRight: "18px"
+                            }}
+                          >
+                            <img
+                              style={{ width: "42px", height: "42px" }}
+                              src={defaultImg}
+                            />
+                          </div>
+                        )}
 
-                      <div>
-                        <h5>
-                            {
-                                (record.isTop && record.contractAddress == "TNYNLRkqq956bQc2buvoLbaLgh25RkJMiN")?
-                                    <a href="javascript:;">{record.name + ' (' + record.abbr + ')'}</a>:
-                                    <div>
-                                        {
-                                            record.tokenType == 'trc10'&&
-                                            <TokenLink
-                                                name={record.name}
-                                                id={record.tokenId}
-                                                namePlus={record.name + ' (' + record.abbr + ')'}/>
-                                        }
-                                        {
-                                            record.tokenType == 'trc20'&&
-                                            <TokenTRC20Link
-                                                name={record.name}
-                                                namePlus={record.name + ' (' + record.abbr + ')'}
-                                                address={record.contractAddress}/>
-                                        }
-                                    </div>
-                            }
-                        </h5>
-                        <p style={{wordBreak: "break-all"}}>{record.description}</p>
+                        <div>
+                          <h5>
+                            {record.isTop &&
+                            record.contractAddress ==
+                              "TNYNLRkqq956bQc2buvoLbaLgh25RkJMiN" ? (
+                              <a href="javascript:;">
+                                {record.name + " (" + record.abbr + ")"}
+                              </a>
+                            ) : (
+                              <div>
+                                {record.tokenType == "trc10" && (
+                                  <TokenLink
+                                    name={record.name}
+                                    id={record.tokenId}
+                                    namePlus={
+                                      record.name + " (" + record.abbr + ")"
+                                    }
+                                  />
+                                )}
+                                {record.tokenType == "trc20" && (
+                                  <TokenTRC20Link
+                                    name={record.name}
+                                    namePlus={
+                                      record.name + " (" + record.abbr + ")"
+                                    }
+                                    address={record.contractAddress}
+                                  />
+                                )}
+                              </div>
+                            )}
+                          </h5>
+                          <p style={{ wordBreak: "break-all" }}>
+                            {record.description}
+                          </p>
+                        </div>
                       </div>
-                    </div>
+                    );
                 }
             },
             {
