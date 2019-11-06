@@ -21,9 +21,10 @@ import {
   getExchanges,
   getExchangesAllList,
   setPriceConvert,
-  getExchanges20Volume,
-  getExchanges20UpDown,
-  getExchanges20Search
+  getExchanges20Search,
+  getExchangesByIds,
+  setExchanges20Search,
+  getExchangesByIdsContent
 } from "../../../../../actions/exchange";
 import { connect } from "react-redux";
 import Lockr from "lockr";
@@ -73,43 +74,60 @@ class ExchangeList extends React.Component {
       adchURL:
         "https://support.trx.market/hc/zh-cn/articles/360030644412-TRXMarket%E5%8A%A9%E5%8A%9BTRC20-USDT%E9%87%8D%E8%A3%85%E4%B8%8A%E9%98%B5-%E6%83%8A%E5%96%9C%E6%94%BE%E9%80%8110%E4%B8%87%E4%BA%BA%E6%B0%91%E5%B8%81",
       activedId: 0,
-      activedTab: "hot",
+      activedTab: "1",
       priceObj: {},
       loading: true,
       timeVolume: null,
       timeupDown: null,
       timeSearch: null,
-      inputValue: ""
+      inputValue: "",
+      unRecomendList: [],
+      unRecomendId: ""
     };
     this.tabChange = this.tabChange.bind(this);
     this.onInputChange = this.onInputChange.bind(this);
   }
 
   async componentDidMount() {
+    // sortType=0 24小时交易额 sortType=1 热门 sortType=2 涨跌幅
     const {
       getExchanges20,
-      getExchanges20Volume,
-      getExchanges20UpDown
+      getExchangesByIds,
+      getExchangesByIdsContent
     } = this.props;
-    //获取各个币的兑换价格
+    //get every token unit conversion
     await this.getCovert("trx");
     await this.getCovert("usdt");
 
-    getExchanges20();
-    getExchanges20Volume();
-    getExchanges20UpDown();
+    getExchanges20(1);
+    getExchanges20(0);
+    getExchanges20(2);
+    let ids = Lockr.get("dex20") || [];
+    getExchangesByIds(ids.join(","));
 
     this.setState({
       loading: false
     });
 
     const getDataTime = setInterval(() => {
-      getExchanges20();
+      getExchanges20(1);
     }, 10000);
     this.setState({ time: getDataTime });
     const dex = Lockr.get("DEX");
     if (!dex) {
       Lockr.set("DEX", "Main");
+    }
+
+    // When the user first comes in with a non-recommended currency url
+    const parsed = queryString.parse(this.props.location.search).id;
+    if (parsed) {
+      let idsItems = await getExchangesByIdsContent(parsed);
+      if (idsItems[0].source == 2) {
+        this.setState({
+          unRecomendList: idsItems,
+          unRecomendId: parsed
+        });
+      }
     }
     // if (dex == "GEM") {
     //   this.setState({ tokenAudited: false });
@@ -128,7 +146,8 @@ class ExchangeList extends React.Component {
       exchange20List,
       exchange20VolumeList,
       exchange20UpDownList,
-      exchanges20SearchList
+      exchanges20SearchList,
+      exchanges20SearchListByIds
     } = this.props;
     let { tokenAudited, activedTab, inputValue, activedId } = this.state;
     if (inputValue) {
@@ -140,41 +159,45 @@ class ExchangeList extends React.Component {
       }
       return;
     }
-    if (activedTab === "hot" && exchange20List !== prevProps.exchange20List) {
+    if (activedTab === "1" && exchange20List !== prevProps.exchange20List) {
       this.setData(tokenAudited, activedTab);
     }
 
     if (
-      activedTab === "volume" &&
+      activedTab === "0" &&
       exchange20VolumeList !== prevProps.exchange20VolumeList
     ) {
       this.setData(tokenAudited, activedTab);
     }
 
     if (
-      activedTab === "up_and_down" &&
+      activedTab === "2" &&
       exchange20UpDownList !== prevProps.exchange20UpDownList
+    ) {
+      this.setData(tokenAudited, activedTab);
+    }
+
+    if (
+      activedTab === "fav" &&
+      exchanges20SearchListByIds !== prevProps.exchanges20SearchListByIds
     ) {
       this.setData(tokenAudited, activedTab);
     }
   }
 
-  //活动倒计时
+  //count down
   countdown() {
-    // 目标日期时间戳
+    
     const end = Date.parse(new Date(this.date));
-    // 当前时间戳
+   
     const now = Date.parse(new Date());
-    // 相差的毫秒数
+  
     const msec = end - now;
-
-    // 计算时分秒数
     let day = parseInt(msec / 1000 / 60 / 60 / 24);
     let hr = parseInt((msec / 1000 / 60 / 60) % 24);
     let min = parseInt((msec / 1000 / 60) % 60);
     let sec = parseInt((msec / 1000) % 60);
 
-    // 个位数前补零
     if (day < 10 && day > 0) {
       day = "0" + day;
     } else if (day <= 0) {
@@ -202,7 +225,7 @@ class ExchangeList extends React.Component {
       sec: sec
     });
 
-    // 一秒后递归
+  
     setTimeout(() => {
       this.countdown();
     }, 1000);
@@ -218,45 +241,38 @@ class ExchangeList extends React.Component {
     let {
       exchange20List,
       exchange20VolumeList,
-      exchange20UpDownList
+      exchange20UpDownList,
+      exchanges20SearchListByIds
     } = this.props;
 
     let list = [];
-    switch (activeKey) {
-      case "hot":
+
+    switch (Number(activeKey)) {
+      case 1:
         list = exchange20List;
         break;
-      case "volume":
+      case 0:
         list = exchange20VolumeList;
         break;
-      case "up_and_down":
+      case 2:
         list = exchange20UpDownList;
         break;
       default:
-        let listIds = Lockr.get("dex20") || [];
-        list = exchange20List.filter(item => listIds.includes(item.id));
+        list = exchanges20SearchListByIds;
         break;
     }
     return list;
   }
   setData(type, activeKey) {
-    let { exchange20List } = this.props;
     let list = this.keyObj(activeKey);
 
-    if (type) {
-      this.fiterData(list);
-    } else {
-      let list = Lockr.get("dex20") || [];
-      let new20List = exchange20List.filter(item => list.includes(item.id));
-      // let unreviewedTokenList = _(new20List).value();
-      let unreviewedTokenList = new20List;
-      // this.setState({ dataSource: unreviewedTokenList });
-
-      this.fiterData(unreviewedTokenList);
-    }
+    this.setState({
+      dataSource: list
+    });
   }
   handleSelectData = (type, activeKey) => {
     const { tagLock } = this.state;
+
     try {
       const { klineLock } = this.props;
       if (klineLock && tagLock) {
@@ -266,6 +282,7 @@ class ExchangeList extends React.Component {
         } else {
           Lockr.set("DEX", "Main");
         }
+
         this.setData(type, activeKey);
 
         setTimeout(() => {
@@ -309,7 +326,9 @@ class ExchangeList extends React.Component {
       activedId,
       loading,
       inputValue,
-      activedTab
+      activedTab,
+      unRecomendList,
+      unRecomendId
     } = this.state;
 
     let { intl } = this.props;
@@ -406,7 +425,7 @@ class ExchangeList extends React.Component {
             </div> */}
           </div>
 
-          {/* filter 筛选 */}
+  
           <div
             className={
               intl.locale !== "en"
@@ -424,31 +443,26 @@ class ExchangeList extends React.Component {
                 }
                 key="fav"
               />
-              <TabPane
-                tab={intl.formatMessage({ id: "trc20_hot" })}
-                key="hot"
-              />
+              <TabPane tab={intl.formatMessage({ id: "trc20_hot" })} key="1" />
               <TabPane
                 tab={intl.formatMessage({ id: "trc20_top_Volume" })}
-                key="volume"
+                key="0"
               />
               <TabPane
                 tab={intl.formatMessage({ id: "trc20_top_Rising" })}
-                key="up_and_down"
+                key="2"
               />
             </Tabs>
           </div>
           <div className="dex-tab tab-pr-100 font12">
             <div
               className={"btn btn-sm" + (activedId === 0 ? " active" : "")}
-              // onClick={() => this.handleSelectData(true)}
               onClick={() => this.selcetSort(0)}
             >
               {tu("all")}
             </div>
             <div
               className={"btn btn-sm" + (activedId === "TRX" ? " active" : "")}
-              // onClick={() => this.gotoTrc10()}
               onClick={() => this.selcetSort("TRX")}
             >
               TRX
@@ -467,7 +481,13 @@ class ExchangeList extends React.Component {
                 {loading ? (
                   <TronLoader />
                 ) : (
-                  <ExchangeTable dataSource={dataSource} isAdClose={AdClose} />
+                  <ExchangeTable
+                    dataSource={dataSource}
+                    isAdClose={AdClose}
+                    unRecomendList={unRecomendList}
+                    unRecomendId={unRecomendId}
+                    handleValue={this.handleGet.bind(this)}
+                  />
                 )}
               </div>
             </div>
@@ -479,91 +499,113 @@ class ExchangeList extends React.Component {
       </div>
     );
   }
-  fiterData(list) {
-    let { activedId } = this.state;
-    let fiterData = list;
 
-    if (activedId !== 0) {
-      fiterData = list.filter((item, index) => {
-        return item.second_token_id === activedId;
-      });
-    }
-    this.setState({
-      dataSource: fiterData
-    });
+  handleGet(list){
+    this.setState({unRecomendList: list});
   }
+  // favorite,hot,top vol,rising changed
   tabChange(activeKey) {
-    const { time, timeVolume, timeupDown, inputValue, timeSearch } = this.state;
     const {
-      getExchanges20,
-      getExchanges20Volume,
-      getExchanges20UpDown
-    } = this.props;
+      unRecomendList,
+      time,
+      timeVolume,
+      timeupDown,
+      inputValue,
+      timeSearch
+    } = this.state;
+
     clearInterval(time);
-    clearInterval(timeVolume);
-    clearInterval(timeupDown);
     clearInterval(timeSearch);
     if (inputValue) {
-      this.setState({
-        activedTab: activeKey
-        // activedId: 0
-      });
-      this.setSearchList(activeKey, 0);
+      this.setState(
+        {
+          activedTab: activeKey,
+          activedId: 0
+        },
+        () => {
+          this.getSearchList(inputValue);
+        }
+      );
       return;
     }
     this.setState(
       {
-        activedTab: activeKey,
-        activedId: 0
+        activedTab: activeKey
       },
       () => {
         switch (activeKey) {
           case "fav":
-            this.handleSelectData(false);
-            break;
-          case "hot":
-            getExchanges20();
-            this.setState({
-              time: setInterval(() => {
-                getExchanges20();
-              }, 10000)
-            });
-            this.handleSelectData(true, activeKey);
-
-            break;
-          case "volume":
-            getExchanges20Volume();
-            this.setState({
-              timeVolume: setInterval(() => {
-                getExchanges20Volume();
-              }, 10000)
-            });
-
-            this.handleSelectData(true, activeKey);
-            break;
-          case "up_and_down":
-            getExchanges20UpDown();
-            this.setState({
-              timeupDown: setInterval(() => {
-                getExchanges20UpDown();
-              }, 10000)
-            });
-            this.handleSelectData(true, activeKey);
+            this.changeFavData();
             break;
           default:
-            this.handleSelectData(true, activeKey);
+            this.changeData();
             break;
         }
       }
     );
   }
+
+  // changede normal data
+  changeData() {
+    const { activedTab, activedId } = this.state;
+    const { getExchanges20 } = this.props;
+    getExchanges20(activedTab, activedId || "");
+    this.handleSelectData(true, activedTab);
+    this.setState({
+      time: setInterval(() => {
+        getExchanges20(activedTab, activedId || "");
+        this.handleSelectData(true, activedTab);
+      }, 10000)
+    });
+  }
+
+  // favorite data
+  changeFavData() {
+    const { activedTab } = this.state;
+    const { getExchangesByIds } = this.props;
+    let ids = Lockr.get("dex20") || [];
+    getExchangesByIds(ids.join(","));
+    this.handleSelectData(false, activedTab);
+    this.setState({
+      time: setInterval(() => {
+        getExchangesByIds(ids.join(","));
+        this.handleSelectData(false, activedTab);
+      }, 10000),
+      unRecomendList: [],
+      activedId: 0
+    });
+  }
+  //all,trx,usdt changed
   selcetSort(type) {
-    let { activedTab, inputValue } = this.state;
+    let { activedTab, inputValue, time, timeSearch } = this.state;
+    let { exchanges20SearchListByIds } = this.props;
     if (inputValue) {
+      this.setState(
+        {
+          activedId: type
+        },
+        () => {
+          this.getSearchList(inputValue);
+        }
+      );
+      return;
+    }
+    clearInterval(time);
+    clearInterval(timeSearch);
+    if (activedTab == "fav") {
+      let list = cloneDeep(exchanges20SearchListByIds);
+      let fiterData = list;
+      if (type != 0) {
+        fiterData = list.filter((item, index) => {
+          return item.second_token_id.toLowerCase() === type.toLowerCase();
+        });
+      }
+
       this.setState({
+        dataSource: fiterData,
         activedId: type
       });
-      this.setSearchList(activedTab, type);
+
       return;
     }
     this.setState(
@@ -571,10 +613,13 @@ class ExchangeList extends React.Component {
         activedId: type
       },
       () => {
-        this.fiterData(this.keyObj(activedTab));
+        if (activedTab != "fav") {
+          this.changeData();
+        }
       }
     );
   }
+  // Unit conversion 
   async getCovert(type) {
     const { setPriceConvert } = this.props;
     let { priceObj } = this.state;
@@ -606,84 +651,122 @@ class ExchangeList extends React.Component {
     }
     setPriceConvert(priceObj);
   }
-
+  // When the input box changes
   onInputChange(e) {
-    const { activedId, activedTab, timeSearch } = this.state;
+    let { activedId, activedTab, timeSearch, time, dataSource } = this.state;
+    const { setExchanges20Search, exchanges20SearchList } = this.props;
+    let listAll = { ...exchanges20SearchList };
+    let { unRecomendList } = listAll;
     this.setState({
       inputValue: e.target.value
     });
     if (!e.target.value) {
+      clearInterval(time);
       clearInterval(timeSearch);
-      this.setState({
-        // activedTab: "hot",
-        activedId: activedId,
-        dataSource: this.keyObj(activedTab)
-      });
+      let dataSourceNew = this.keyObj(activedTab);
+      if (activedTab == "fav") {
+        dataSourceNew = dataSourceNew.filter(item => {
+          if (activedId == 0) {
+            return item;
+          } else {
+            return (
+              activedId.toLowerCase() == item.second_token_abbr.toLowerCase()
+            );
+          }
+        });
+      }
+      this.setState(
+        {
+          // activedTab: "hot",
+          activedId: activedId,
+          dataSource: dataSourceNew,
+          unRecomendList: []
+        },
+        () => {
+          setExchanges20Search();
+        }
+      );
     } else {
+      if (activedTab == "fav") {
+        let filterRecomment = dataSource.filter(item => {
+          if (activedId == 0) {
+            return item.fShortName
+              .toLowerCase()
+              .includes(e.target.value.toLowerCase());
+          } else {
+            return (
+              item.fShortName.toLowerCase().includes(e.target.value) &&
+              activedId.toLowerCase() == item.second_token_abbr.toLowerCase()
+            );
+          }
+        });
+
+        this.setState({
+          dataSource: filterRecomment || [],
+          unRecomendList: []
+        });
+        return;
+      }
       this.getSearchList(e.target.value);
     }
   }
+  // 输入框点击enter
+  onPressEnter() {}
 
-  onPressEnter() {
-    const { inputValue, activedTab } = this.state;
-    if (inputValue === "") {
-      this.setState({
-        dataSource: this.keyObj(activedTab)
-      });
-    } else {
-      // this.setState({
-      //   activedTab: "hot",
-      //   activedId: 0
-      // });
-      this.getSearchList(inputValue);
-    }
-  }
+  searchEvent() {}
 
+  // search function
   getSearchList(val) {
-    const { time, timeVolume, timeupDown, timeSearch } = this.state;
+    const {
+      time,
+      timeVolume,
+      timeupDown,
+      timeSearch,
+      activedTab,
+      activedId
+    } = this.state;
     const { getExchanges20Search } = this.props;
 
     clearInterval(time);
-    clearInterval(timeVolume);
-    clearInterval(timeupDown);
+
     clearInterval(timeSearch);
-    getExchanges20Search({ key: val });
+    let obj = {
+      key: val,
+      sortType: activedTab != "fav" ? activedTab : "",
+      pairType: activedId != 0 ? activedId : ""
+    };
+    getExchanges20Search(obj);
     this.setState({
       timeSearch: setInterval(() => {
-        getExchanges20Search({ key: val });
+        getExchanges20Search(obj);
       }, 10000)
     });
   }
+  // set search data
   setSearchList(tab, id) {
     let { exchanges20SearchList } = this.props;
-    let list = [...exchanges20SearchList];
-    switch (tab) {
-      case "fav":
-        let _list = Lockr.get("dex20") || [];
-        list = list.filter(item => _list.includes(item.id));
-        break;
-      case "hot":
-        list = list;
-        break;
-      case "volume":
-        list = list.sort((a, b) => {
-          return b.trxVolume24h - a.trxVolume24h;
-        });
-        break;
-      case "up_and_down":
-        list = list.sort((a, b) => {
-          return b.gain - a.gain;
-        });
-        break;
-    }
-    if (id !== 0) {
-      list = list.filter(v => {
-        return v.second_token_abbr == id;
+    let listAll = { ...exchanges20SearchList };
+    let { recomendList, unRecomendList } = listAll;
+    let { activedId } = this.state;
+
+    if (tab == "fav") {
+      unRecomendList = [];
+      recomendList = recomendList.filter(item => {
+        if (activedId != 0) {
+          return (
+            item.isChecked &&
+            item.second_token_abbr.toLowerCase() == activedId.toLowerCase()
+          );
+        } else {
+          return item.isChecked;
+        }
       });
     }
+
     this.setState(() => {
       return {
-        dataSource: list
+        dataSource: recomendList,
+        unRecomendList: unRecomendList
       };
     });
   }
@@ -699,7 +782,8 @@ function mapStateToProps(state) {
     exchangeallList: state.exchange.list_all,
     klineLock: state.exchange.klineLock,
     price: state.exchange.price,
-    exchanges20SearchList: state.exchange.searchList
+    exchanges20SearchList: state.exchange.searchList,
+    exchanges20SearchListByIds: state.exchange.searchListByIds
   };
 }
 
@@ -709,9 +793,10 @@ const mapDispatchToProps = {
   getExchangesAllList,
   getExchanges,
   setPriceConvert,
-  getExchanges20Volume,
-  getExchanges20UpDown,
-  getExchanges20Search
+  getExchanges20Search,
+  getExchangesByIds,
+  setExchanges20Search,
+  getExchangesByIdsContent
 };
 
 export default connect(

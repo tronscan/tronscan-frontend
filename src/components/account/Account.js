@@ -128,9 +128,9 @@ export default class Account extends Component {
           },3000)
       }
       let isActivate =  await this.isActivateAccount(account.address)
-        this.setState({
-            isActivate
-        });
+      this.setState({
+        isActivate
+      });
       // gets the list of side chains
       isPrivateKey && !IS_SUNNET && await this.getSideChains();
       // get fees
@@ -2715,7 +2715,13 @@ export default class Account extends Component {
                           {tu("Super Representatives")}
                       </h5>
                       <p className="pt-3">
-                          {tu("apply_for_delegate_predescription")}
+                          {tu("apply_for_delegate_predescription_1")}
+                      </p>
+                      <p className="pt-1">
+                        {tu("apply_for_delegate_predescription_2")}
+                      </p>
+                      <p className="pt-1">
+                        {tu("apply_for_delegate_predescription_3")}
                       </p>
                       <div className="text-center">
                           {

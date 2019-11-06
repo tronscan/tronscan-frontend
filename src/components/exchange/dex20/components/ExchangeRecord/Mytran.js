@@ -15,6 +15,7 @@ import { setUpdateTran, setRedirctPair } from "../../../../../actions/exchange";
 import { TronLoader } from "../../../../common/loaders";
 import { Popover, Icon } from "antd";
 import { precisions } from "../../TokenPre";
+import { withRouter } from "react-router-dom";
 
 class Mytran extends Component {
   constructor(props) {
@@ -81,7 +82,8 @@ class Mytran extends Component {
         uAddr: account.address,
         start: (palyload.current - 1) * palyload.pageSize,
         limit: palyload.pageSize,
-        status: "2,5,6,7,8"
+        status: "2,5,6,7,8",
+        channelId: 10000
       };
 
       if (showCurrent) {
@@ -333,6 +335,14 @@ class Mytran extends Component {
   }
   changeParis(v) {
     const { setRedirctPair } = this.props;
+    let obj = {
+      exchange_id: v.pairId || v.exchangeId,
+      exchange_name: v.fShortName + "/" + v.sShortName
+    };
+    this.props.history.push(
+      "/exchange/trc20?token=" + obj.exchange_name + "&id=" + obj.exchange_id
+    );
+    window.location.reload();
     setRedirctPair(v);
   }
 }
@@ -357,4 +367,4 @@ const mapDispatchToProps = {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(injectIntl(Mytran));
+)(withRouter(injectIntl(Mytran)));

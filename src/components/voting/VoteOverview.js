@@ -362,14 +362,18 @@ export default class VoteOverview extends React.Component {
 
   submitVotes = async () => {
     let {account} = this.props;
-    let {votes } = this.state;
+    let { votes } = this.state;
     let res;
     this.setState({submittingVotes: true,});
     let witnessVotes = {};
     const tronWebLedger = this.props.tronWeb();
     const { tronWeb, sunWeb } = this.props.account;
     for (let address of Object.keys(votes)) {
-      witnessVotes[address] = parseInt(votes[address], 10);
+      if(votes[address] != ''){
+          witnessVotes[address] = parseInt(votes[address], 10);
+      }else{
+          witnessVotes[address] = 0;
+      }
     }
     if(IS_MAINNET){
         if (this.props.walletType.type === "ACCOUNT_LEDGER"){
@@ -385,7 +389,7 @@ export default class VoteOverview extends React.Component {
             res = success
         }else if(this.props.walletType.type === "ACCOUNT_TRONLINK"){
             try {
-                const unSignTransaction = await tronWeb.transactionBuilder.vote(witnessVotes, account.address).catch(e=>false);
+                const unSignTransaction = await tronWeb.transactionBuilder.vote(witnessVotes, account.address).catch(e => {console.error(e)});
                 const {result} = await transactionResultManager(unSignTransaction,tronWeb);
                 res = result;
             } catch (e) {

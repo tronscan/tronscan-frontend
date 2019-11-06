@@ -23,9 +23,15 @@ const getClientEnvironment = require('./env');
 const ModuleNotFoundPlugin = require('react-dev-utils/ModuleNotFoundPlugin');
 const ForkTsCheckerWebpackPlugin = require('react-dev-utils/ForkTsCheckerWebpackPlugin');
 const typescriptFormatter = require('react-dev-utils/typescriptFormatter');
-const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+// const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const postcssNormalize = require('postcss-normalize');
 const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin');
+const WorkboxPlugin = require('workbox-webpack-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+
+const CompressionPlugin = require('compression-webpack-plugin');
+
+
 
 // Source maps are resource heavy and can cause out of memory issue for large source files.
 const shouldUseSourceMap = process.env.GENERATE_SOURCEMAP !== 'false';
@@ -144,6 +150,7 @@ module.exports = function(webpackEnv) {
         require.resolve('react-dev-utils/webpackHotDevClient'),
       // Finally, this is your app's code:
       paths.appIndexJs,
+
       // We include the app code last so that if there is a runtime error during
       // initialization, it doesn't blow up the WebpackDevServer client, and
       // changing JS code would still trigger a refresh.
@@ -164,6 +171,7 @@ module.exports = function(webpackEnv) {
       chunkFilename: isEnvProduction
         ? 'static/js/[name].[contenthash:8].chunk.js'
         : isEnvDevelopment && 'static/js/[name].chunk.js',
+
       // We inferred the "public path" (such as / or /my-project) from homepage.
       // We use "/" in development.
       publicPath: publicPath,
@@ -179,6 +187,24 @@ module.exports = function(webpackEnv) {
     optimization: {
       minimize: isEnvProduction,
       minimizer: [
+        new UglifyJsPlugin({
+          test: /\.js(\?.*)?$/i,
+          include: /\/includes/,
+          chunkFilter: (chunk) => {
+            // Exclude uglification for the `vendor` chunk
+            if (chunk.name === 'vendor') {
+              return false;
+            }
+  
+            return true;
+          },
+          cache: true,
+          parallel: true,
+
+          uglifyOptions: {
+            compress: false
+          },
+        }),
         // This is only used in production mode
         new TerserPlugin({
           terserOptions: {
@@ -227,6 +253,8 @@ module.exports = function(webpackEnv) {
         // This is only used in production mode
         new OptimizeCSSAssetsPlugin({
           cssProcessorOptions: {
+            assetNameRegExp: /\.css$/g,
+			      cssProcessor: require('cssnano'),
             parser: safePostCssParser,
             map: shouldUseSourceMap
               ? {
@@ -569,6 +597,22 @@ module.exports = function(webpackEnv) {
           };
         },
       }),
+
+
+      new CompressionPlugin({
+        asset:  '[path].gz[query]',
+        algorithm:  'gzip',
+        test:  /\.js$|\.css$|\.html$/
+      }),
+
+      new WorkboxPlugin.GenerateSW({
+        // These options help ServiceWorkers quickly enable
+        clientsClaim: true,
+        skipWaiting: true,
+        importWorkboxFrom: 'local',  //Packed locally, the default value is 'cdn'. Access to foreign cdn needs to over the wall
+        // include: [/\.html$/, /\.js$/, /\.css$/],
+        // exclude: [/\.(png|jpg|gif|svg)/]
+      }),
       // Moment.js is an extremely popular library that bundles large locale files
       // by default due to how Webpack interprets its code. This is a practical
       // solution that requires the user to opt into importing specific locales.
@@ -630,7 +674,7 @@ module.exports = function(webpackEnv) {
         }),
       
       // isEnvProduction &&
-      //   new BundleAnalyzerPlugin({ analyzerPort: 8919 })
+      //    new BundleAnalyzerPlugin({ analyzerPort: 8919 })
     ].filter(Boolean),
     // Some libraries import Node modules but don't use them in the browser.
     // Tell Webpack to provide empty mocks for them so importing them works.

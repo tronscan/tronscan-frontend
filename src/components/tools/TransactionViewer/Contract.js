@@ -543,10 +543,12 @@ export default function Contract({contract}) {
                                             <div className="content_name">{tu('contract_triggers_owner_address')}:</div>
                                             <div className="flex1"><AddressLink address={contract['owner_address']}>{contract['owner_address']}</AddressLink></div>
                                         </div>
-                                        <div className="d-flex border-bottom content_item">
-                                            <div className="content_name">{tu('SR_set_brokerage')}:</div>
-                                            <div className="flex1">{100 - contract['brokerage']} %</div>
-                                        </div>
+                                        {
+                                            <div className="d-flex border-bottom content_item">
+                                                <div className="content_voting">{tu('SR_set_brokerage')}:</div>
+                                                <div className="flex1">{contract['brokerage']? 100 - contract['brokerage']: 100} %</div>
+                                            </div>
+                                        }
                                         <div className="d-flex content_item">
                                             <div className="content_name">{tu('value')}:</div>
                                             {
