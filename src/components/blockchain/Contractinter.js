@@ -8,10 +8,12 @@ import {TronLoader} from "../common/loaders";
 import {upperFirst, filter} from "lodash";
 import {loadTokens} from "../../actions/tokens";
 import {AddressLink, BlockNumberLink, TransactionHashLink} from "../common/Links";
-import TimeAgo from "react-timeago";
+// import TimeAgo from "react-timeago";
 import moment from 'moment';
 import {TRXPrice} from "../common/Price";
 import {ONE_TRX} from "../../constants";
+import BlockTime from '../common/blockTime'
+
 
 class Contractinter extends React.Component {
 
@@ -151,7 +153,8 @@ class Contractinter extends React.Component {
             width: '120px',
             className: 'ant_table',
             render: (text, record, index) => {
-              return <TimeAgo date={text} title={moment(text).format("MMM-DD-YYYY HH:mm:ss A")}/>
+              return <BlockTime time={text}></BlockTime>
+              // <TimeAgo date={text} title={moment(text).format("MMM-DD-YYYY HH:mm:ss A")}/>
             }
           },
           {

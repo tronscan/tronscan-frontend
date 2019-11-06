@@ -3,7 +3,7 @@ import { injectIntl} from "react-intl";
 import {Client} from "../../services/api";
 import {AddressLink, TransactionHashLink, BlockNumberLink, TokenLink, TokenTRC20Link} from "./Links";
 import {tu, tv} from "../../utils/i18n";
-import TimeAgo from "react-timeago";
+// import TimeAgo from "react-timeago";
 import {Truncate,TruncateAddress} from "./text";
 import {withTimers} from "../../utils/timing";
 import SmartTable from "./SmartTable.js"
@@ -23,6 +23,8 @@ import { CONTRACT_ADDRESS_USDT, CONTRACT_ADDRESS_WIN, CONTRACT_ADDRESS_GGC } fro
 import qs from 'qs'
 import DateSelect from './dateSelect'
 import {API_URL} from "../../constants";
+import BlockTime from '../common/blockTime'
+
 
 
 
@@ -232,7 +234,8 @@ class TransfersAll extends React.Component {
                 className: 'ant_table',
                 width: '14%',
                 render: (text, record, index) => {
-                    return <TimeAgo date={text} title={moment(text).format("MMM-DD-YYYY HH:mm:ss A")}/>
+                    return <BlockTime time={text}></BlockTime>
+                    // <TimeAgo date={text} title={moment(text).format("MMM-DD-YYYY HH:mm:ss A")}/>
                 }
             },
             {

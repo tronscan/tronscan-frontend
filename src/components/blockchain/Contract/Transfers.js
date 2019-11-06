@@ -2,7 +2,7 @@ import React, {Fragment} from "react";
 import {Client} from "../../../services/api";
 import {AddressLink, TransactionHashLink, TokenTRC20Link} from "../../common/Links";
 import {tu, t} from "../../../utils/i18n";
-import TimeAgo from "react-timeago";
+// import TimeAgo from "react-timeago";
 import moment from 'moment';
 import {Truncate} from "../../common/text";
 import {withTimers} from "../../../utils/timing";
@@ -15,7 +15,7 @@ import DateRange from "../../common/DateRange";
 import xhr from "axios/index";
 import {API_URL} from '../../../constants.js'
 import { FormatNumberByDecimals } from '../../../utils/number'
-
+import BlockTime from '../../common/blockTime'
 
 
 class Transfers extends React.Component {
@@ -106,7 +106,9 @@ class Transfers extends React.Component {
                 width: '150px',
                 className: 'ant_table',
                 render: (text, record, index) => {
-                    return <TimeAgo date={Number(record.block_ts)} title={moment(record.block_ts).format("MMM-DD-YYYY HH:mm:ss A")}/>
+                    return <BlockTime time={Number(record.block_ts)}></BlockTime>
+
+                    // <TimeAgo date={Number(record.block_ts)} title={moment(record.block_ts).format("MMM-DD-YYYY HH:mm:ss A")}/>
                 }
             },
             {

@@ -3,7 +3,7 @@ import { injectIntl} from "react-intl";
 import {Client} from "../../services/api";
 import {TransactionHashLink, AddressLink, BlockNumberLink} from "./Links";
 import {tu} from "../../utils/i18n";
-import TimeAgo from "react-timeago";
+// import TimeAgo from "react-timeago";
 import {TronLoader} from "./loaders";
 import {Truncate} from "./text";
 import {ContractTypes} from "../../utils/protocol";
@@ -17,6 +17,8 @@ import {NameWithId} from "./names";
 import rebuildList from "../../utils/rebuildList";
 import {API_URL} from "../../constants";
 import qs from 'qs'
+import BlockTime from '../common/blockTime'
+
 
 const RangePicker = DatePicker.RangePicker;
 
@@ -163,7 +165,8 @@ class Transactions extends React.Component {
         className: 'ant_table',
         width: '14%',
         render: (text, record, index) => {
-          return <TimeAgo date={text} title={moment(text).format("MMM-DD-YYYY HH:mm:ss A")}/>
+          return <BlockTime time={text}></BlockTime>
+          // <TimeAgo date={text} title={moment(text).format("MMM-DD-YYYY HH:mm:ss A")}/>
         }
       },
       {
@@ -230,7 +233,8 @@ class Transactions extends React.Component {
             className: 'ant_table',
             width: '14%',
             render: (text, record, index) => {
-                return <TimeAgo date={text} title={moment(text).format("MMM-DD-YYYY HH:mm:ss A")}/>
+                return <BlockTime time={text}></BlockTime>
+                // <TimeAgo date={text} title={moment(text).format("MMM-DD-YYYY HH:mm:ss A")}/>
             }
         },
       {

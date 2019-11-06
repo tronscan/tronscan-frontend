@@ -1,12 +1,14 @@
 /* eslint-disable no-undef */
 import React from "react";
-import TimeAgo from "react-timeago";
+// import TimeAgo from "react-timeago";
 import moment from 'moment';
 import {FormattedNumber} from "react-intl";
 import {BlockNumberLink} from "../../common/Links";
 import {tu} from "../../../utils/i18n";
 import SmartTable from "../../common/SmartTable.js"
 import {upperFirst} from "lodash";
+import BlockTime from '../../common/blockTime'
+
 
 export default function Blocks({blocks = []}) {
 
@@ -35,7 +37,8 @@ export default function Blocks({blocks = []}) {
       align: 'right',
       className: 'ant_table',
       render: (text, record, index) => {
-        return <TimeAgo date={text} title={moment(text).format("MMM-DD-YYYY HH:mm:ss A")}/>
+        return <BlockTime time={text}></BlockTime>
+        // <TimeAgo date={text} title={moment(text).format("MMM-DD-YYYY HH:mm:ss A")}/>
       }
     },
     {

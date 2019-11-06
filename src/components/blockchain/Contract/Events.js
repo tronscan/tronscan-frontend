@@ -2,7 +2,7 @@ import React, {Fragment} from "react";
 import {TransactionHashLink, BlockNumberLink, AddressLink} from "../../common/Links";
 import { injectIntl} from "react-intl";
 import {tu} from "../../../utils/i18n";
-import TimeAgo from "react-timeago";
+// import TimeAgo from "react-timeago";
 import moment from 'moment';
 import {TronLoader} from "../../common/loaders";
 import {Truncate} from "../../common/text";
@@ -11,7 +11,10 @@ import {upperFirst, forIn, uniqWith, isEqual} from "lodash";
 import xhr from "axios/index";
 import tronWeb from 'tronweb';
 import { Select } from 'antd';
+import BlockTime from '../../common/blockTime'
+
 const Option = Select.Option;
+
 
 class Transactions extends React.Component {
 
@@ -112,7 +115,8 @@ class Transactions extends React.Component {
           return <Truncate>
                   <TransactionHashLink hash={record.transaction_id}>{record.transaction_id}</TransactionHashLink><br/>
                   <span className="contract-event-block-number">#</span><BlockNumberLink number={record.block_number}/><br/>
-                  <TimeAgo date={record.block_timestamp} title={moment(record.block_timestamp).format("MMM-DD-YYYY HH:mm:ss A")}/>
+                  <BlockTime time={record.block_timestamp}></BlockTime>
+                  {/* <TimeAgo date={record.block_timestamp} title={moment(record.block_timestamp).format("MMM-DD-YYYY HH:mm:ss A")}/> */}
                 </Truncate>
         }
       },
