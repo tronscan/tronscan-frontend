@@ -8,23 +8,23 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/bd551f56ce2be3eba2812e605ab4f5b2.css.gz"
   },
   {
-    "revision": "c4c3e4513ae572cd29a69d3a91d08471",
+    "revision": "dc2bc8df67950af2aeded78a3c130241",
     "url": "/editor.worker.js"
   },
   {
-    "revision": "ebf4e7187bb03a53e4b4c14f24d81967",
+    "revision": "1bf54e99d09c08a002b193343a2b31c9",
     "url": "/editor.worker.js.gz"
   },
   {
-    "revision": "bbc47da38f4754ba9a2e54a82a539101",
+    "revision": "766e3e3057fb02ef4499952f3f624819",
     "url": "/index.html"
   },
   {
-    "revision": "b5eeb10f29a3cf223b32b2ab4af031d8",
+    "revision": "d7936b6db217c9f761815e41a9a1e45b",
     "url": "/index.html.gz"
   },
   {
-    "revision": "e2aca3ed200bc8680a54",
+    "revision": "d85abf9496b2469b98e6",
     "url": "/static/css/68.ee4be27c.chunk.css"
   },
   {
@@ -40,7 +40,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/css/76.bd022918.chunk.css.gz"
   },
   {
-    "revision": "a9147b2c03d13d2b7b1b",
+    "revision": "b4305ed7c57ff775460d",
     "url": "/static/css/ContractCompiler.7ca82181.chunk.css"
   },
   {
@@ -80,7 +80,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/css/NodeMap.aab5afec.chunk.css.gz"
   },
   {
-    "revision": "805bf8c2c5780ba046a9",
+    "revision": "c67b2f236b0f8ea8e251",
     "url": "/static/css/main.4c4e2185.chunk.css"
   },
   {
@@ -152,12 +152,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/js/6.306bf49b.chunk.js.gz"
   },
   {
-    "revision": "e2aca3ed200bc8680a54",
-    "url": "/static/js/68.ebaf009e.chunk.js"
+    "revision": "d85abf9496b2469b98e6",
+    "url": "/static/js/68.de612cd1.chunk.js"
   },
   {
-    "revision": "4caf293759b0d5f7809c12e9242bef35",
-    "url": "/static/js/68.ebaf009e.chunk.js.gz"
+    "revision": "4ba5713890478c317883e38541e40007",
+    "url": "/static/js/68.de612cd1.chunk.js.gz"
   },
   {
     "revision": "e66f01fddadc5b66984c",
@@ -344,12 +344,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/js/Committee.cb3c9b99.chunk.js.gz"
   },
   {
-    "revision": "a9147b2c03d13d2b7b1b",
-    "url": "/static/js/ContractCompiler.3ff46c6b.chunk.js"
+    "revision": "b4305ed7c57ff775460d",
+    "url": "/static/js/ContractCompiler.74b5bf92.chunk.js"
   },
   {
-    "revision": "9bc851bc647f8b61a1155a14fc01462c",
-    "url": "/static/js/ContractCompiler.3ff46c6b.chunk.js.gz"
+    "revision": "00617828f78a387f3b565915beb0543d",
+    "url": "/static/js/ContractCompiler.74b5bf92.chunk.js.gz"
   },
   {
     "revision": "3cef07fa8170aa3758de",
@@ -448,12 +448,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/js/Live.502483f9.chunk.js.gz"
   },
   {
-    "revision": "a10db373f643d4ca36ff",
-    "url": "/static/js/MarketCreate.f9545d3f.chunk.js"
+    "revision": "1fecd75fd80fb54cce59",
+    "url": "/static/js/MarketCreate.6c09277b.chunk.js"
   },
   {
-    "revision": "dbc3f2e8e6774737998f1a36651f31c4",
-    "url": "/static/js/MarketCreate.f9545d3f.chunk.js.gz"
+    "revision": "13c1feaab2b505ddcca66c90e044a7ab",
+    "url": "/static/js/MarketCreate.6c09277b.chunk.js.gz"
   },
   {
     "revision": "5ad84f2dc496667130db",
@@ -632,12 +632,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/js/TokenOverview.64b0bf0d.chunk.js.gz"
   },
   {
-    "revision": "c31335f714efaccdcc06",
-    "url": "/static/js/TokensCreate.ccdd19f5.chunk.js"
+    "revision": "b0c664ba4e159d96ca81",
+    "url": "/static/js/TokensCreate.40560559.chunk.js"
   },
   {
-    "revision": "88002bced8fae0990e33c1ed650ecde3",
-    "url": "/static/js/TokensCreate.ccdd19f5.chunk.js.gz"
+    "revision": "f891086c20965925ea3da12d0764dd65",
+    "url": "/static/js/TokensCreate.40560559.chunk.js.gz"
   },
   {
     "revision": "e959c989d4eddb0c38c8",
@@ -712,20 +712,20 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/js/WalletWizard.2afa6fc3.chunk.js.gz"
   },
   {
-    "revision": "805bf8c2c5780ba046a9",
-    "url": "/static/js/main.1fe58b08.chunk.js"
+    "revision": "c67b2f236b0f8ea8e251",
+    "url": "/static/js/main.8b25a170.chunk.js"
   },
   {
-    "revision": "b68eccdffe5ef43f3bed4e689631d383",
-    "url": "/static/js/main.1fe58b08.chunk.js.gz"
+    "revision": "0f6984cf88208556f530fd58e4769254",
+    "url": "/static/js/main.8b25a170.chunk.js.gz"
   },
   {
-    "revision": "e9922c19e3bac30df228",
-    "url": "/static/js/runtime~main.13d21393.js"
+    "revision": "4569fbaed033ae2d42b3",
+    "url": "/static/js/runtime~main.65a0642d.js"
   },
   {
-    "revision": "74fff2e8b05952b3d40383dc6cf4ac27",
-    "url": "/static/js/runtime~main.13d21393.js.gz"
+    "revision": "95652351281ca4791d400a74ff8aa6e8",
+    "url": "/static/js/runtime~main.65a0642d.js.gz"
   },
   {
     "revision": "7b00f7c4e78ed9cfc676c64c040965e8",
