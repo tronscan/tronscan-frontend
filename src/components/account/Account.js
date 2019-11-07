@@ -201,7 +201,6 @@ export default class Account extends Component {
   getAddressReward = async () => {
       let { account } = this.props;
       let tronWeb = account.tronWeb;
-      console.log(account.tronWeb)
       const  reward  =  await tronWeb.trx.getReward(tronWeb.defaultAddress.base58)
       this.setState({
           accountReward:reward

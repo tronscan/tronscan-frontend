@@ -443,12 +443,12 @@ export const routes = [
         icon: "fa fa-eye",
         component: TransactionViewerAsync
       },
-      {
-        label: "node_tester",
-        path: "/tools/node-tester",
-        icon: "fa fa-server",
-        component: NodeTesterAsync
-      },
+      // {
+      //   label: "node_tester",
+      //   path: "/tools/node-tester",
+      //   icon: "fa fa-server",
+      //   component: NodeTesterAsync
+      // },
       {
         label: "tron_convert_tool",
         path: "/tools/tron-convert-tool",
@@ -592,12 +592,12 @@ export const routes = [
           icon: "fa fa-random",
           component: TronConvertToolAsync
         },
-        {
-          label: "node_tester",
-          path: "/tools/node-tester",
-          icon: "fa fa-server",
-          component: NodeTesterAsync
-        }
+        // {
+        //   label: "node_tester",
+        //   path: "/tools/node-tester",
+        //   icon: "fa fa-server",
+        //   component: NodeTesterAsync
+        // }
         // {
         //     url: "https://github.com/tronscan/tronscan-desktop/releases",
         //     icon: "fa fa-download",
