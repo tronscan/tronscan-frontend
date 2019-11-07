@@ -151,7 +151,7 @@
     "semver": "6.0.0",
     "socket.io-client": "^2.1.0",
     "style-loader": "0.23.1",
-    "sunweb": "1.0.8",
+    "sunweb": "1.0.7",
     "sw-precache-webpack-plugin": "0.11.4",
     "terser-webpack-plugin": "1.2.3",
     "tronstation": "^1.0.1",
