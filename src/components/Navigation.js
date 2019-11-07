@@ -402,9 +402,10 @@ class Navigation extends React.Component {
   };
 
   onSearchChange = (ev) => {
-    this.setState({ search: trim(ev.target.value,' ')});
+    let value = (ev.target.value).replace(/\s+/g, "");
+    this.setState({ search: value});
     ev.persist();
-    this.callAjax(trim(ev.target.value,' '));
+    this.callAjax(value);
   }
 
   callAjax = async (value) => {
