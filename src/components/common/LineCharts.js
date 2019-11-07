@@ -1551,15 +1551,15 @@ export class ContractInvocationDistributionChart extends React.Component {
     initLine(id) {
         let _config = cloneDeep(config.overviewHighChart);
         let {intl, data} = this.props;
-
+        let newData = cloneDeep(data)
         
-        var chartdata = data.slice(0).map(o => {
+        var chartdata = newData.slice(0).map(o => {
             o.y= o.trigger_amount
             o.name = o.contract_address
             return o
         })
        
-        if (data && data.length > 0) {
+        if (newData && newData.length > 0) {
             let options =  {
                 chart: {
                     type: 'variablepie'
@@ -1589,7 +1589,7 @@ export class ContractInvocationDistributionChart extends React.Component {
                 _config[item] = options[item]
             })
         }
-        if (data && data.length === 0) {
+        if (newData && newData.length === 0) {
             _config.title.text = "No data";
         }
         Highcharts.chart(id, _config);
