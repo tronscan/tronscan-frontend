@@ -84,15 +84,15 @@ export default class Code extends React.Component {
         // 合约名称Item
         const contractNameItem = (
             <div className="row">
-                <div className="col-md-12 contract-header">
-                    <div className="d-flex justify-content-between">
-                        <div className="contract-header__item">
-                            <ul>
-                                <li><p className="plus">{tu('contract_name')}:</p>{name}</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+                {/*<div className="col-md-12 contract-header">*/}
+                    {/*<div className="d-flex justify-content-between">*/}
+                        {/*<div className="contract-header__item">*/}
+                            {/*<ul>*/}
+                                {/*<li><p className="plus">{tu('contract_name')}:</p>{name}</li>*/}
+                            {/*</ul>*/}
+                        {/*</div>*/}
+                    {/*</div>*/}
+                {/*</div>*/}
             </div>
         );
 
@@ -114,7 +114,7 @@ export default class Code extends React.Component {
                     </div>
                     <div className="col-md-10 pl-0">
                         <textarea className="w-100 form-control"
-                            rows="7"
+                            rows="15"
                             readOnly="readonly"
                             value={base64Code} />
                     </div>

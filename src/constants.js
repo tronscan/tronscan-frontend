@@ -17,8 +17,13 @@ export const NETURL = {
   SUNNET: "http://18.217.215.94:89"
 };
 
+<<<<<<< HEAD
 // export const IS_MAINNET = window.location.origin === NETURL.MAINNET;
 // export const IS_SUNNET = window.location.origin === NETURL.SUNNET;
+=======
+//export const IS_MAINNET = window.location.origin === NETURL.MAINNET;
+//export const IS_SUNNET = window.location.origin === NETURL.SUNNET;
+>>>>>>> 07dec2e7b415cec6b1a48160b542f738558cd536
 
 export const BLOCK_REWARD = 32;
 export const SR_MAX_COUNT = 27;

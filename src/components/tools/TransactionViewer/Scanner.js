@@ -1,5 +1,5 @@
 import React from "react";
-import Instascan from "instascan";
+import Instascan from "instascan-v2";
 import { Alert } from "reactstrap";
 import { tu } from "../../../utils/i18n";
 
