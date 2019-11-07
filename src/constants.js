@@ -7,8 +7,8 @@ export const ONE_TRX = 1000000;
 export const IS_TESTNET = process.env.NET === "testnet";
 export const IS_DESKTOP = process.env.DESKTOP === "true";
 
-export const IS_MAINNET = Lockr.get("NET") === "mainnet" || !Lockr.get("NET");
-export const IS_SUNNET = Lockr.get("NET") === "sunnet";
+// export const IS_MAINNET = Lockr.get("NET") === "mainnet" || !Lockr.get("NET");
+// export const IS_SUNNET = Lockr.get("NET") === "sunnet";
 
 export const NETURL = {
   // MAINNET: "https://tronscan.org",
@@ -17,13 +17,8 @@ export const NETURL = {
   SUNNET: "http://18.217.215.94:89"
 };
 
-<<<<<<< HEAD
-// export const IS_MAINNET = window.location.origin === NETURL.MAINNET;
-// export const IS_SUNNET = window.location.origin === NETURL.SUNNET;
-=======
-//export const IS_MAINNET = window.location.origin === NETURL.MAINNET;
-//export const IS_SUNNET = window.location.origin === NETURL.SUNNET;
->>>>>>> 07dec2e7b415cec6b1a48160b542f738558cd536
+export const IS_MAINNET = window.location.origin === NETURL.MAINNET;
+export const IS_SUNNET = window.location.origin === NETURL.SUNNET;
 
 export const BLOCK_REWARD = 32;
 export const SR_MAX_COUNT = 27;
@@ -38,7 +33,7 @@ export const PUBLIC_URL = process.env.PUBLIC_URL || window.location.origin;
 //test pro
 //export const API_URL_SUNNET = 'http://52.15.68.74:10001';
 
-export const API_URL_SUNNET = 'https://dappchainapi.tronscan.org';
+export const API_URL_SUNNET = "https://dappchainapi.tronscan.org";
 // export const API_URL_MAINNET = 'https://apilist.tronscan.org';
 export const API_URL = IS_SUNNET ? API_URL_SUNNET : process.env.API_URL;
 export const CONTRACT_MAINNET_API_URL = process.env.API_URL;
