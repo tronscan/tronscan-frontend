@@ -53,6 +53,7 @@ import LedgerAccess from "../hw/ledger/LedgerAccess";
 import { getQueryString } from "../utils/url";
 
 
+
 const { Option } = Select;
 class Navigation extends React.Component {
 
@@ -401,9 +402,9 @@ class Navigation extends React.Component {
   };
 
   onSearchChange = (ev) => {
-    this.setState({search: ev.target.value});
+    this.setState({ search: trim(ev.target.value,' ')});
     ev.persist();
-    this.callAjax(ev.target.value);
+    this.callAjax(trim(ev.target.value,' '));
   }
 
   callAjax = async (value) => {
