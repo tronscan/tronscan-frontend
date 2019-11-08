@@ -16,7 +16,6 @@ export const NETURL = {
 
 let { NET, NODE_ENV } = process.env;
 
-console.log(123, process.env, NODE_ENV == "development");
 let MAINNET;
 let SUNNET;
 if (NODE_ENV == "development") {
