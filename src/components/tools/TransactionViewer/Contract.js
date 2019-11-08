@@ -467,7 +467,7 @@ export default function Contract({contract}) {
                                                                     <div className="mr-1">{tu('from')}</div>
                                                                     <div className="mr-1" style={{width: '150px'}}><ContractLink address={item['caller_address']}>{item['caller_address']}</ContractLink></div>
                                                                     <div className="mr-1">{tu('to')}</div>
-                                                                    <div className="mr-1" style={{width: '150px'}}><ContractLink address={item['transfer_to_address']}>{item['caller_address']}</ContractLink></div>
+                                                                    <div className="mr-1" style={{width: '150px'}}><ContractLink address={item['transfer_to_address']}>{item['transfer_to_address']}</ContractLink></div>
                                                                 </div>
                                                             </div>
                                                         )
