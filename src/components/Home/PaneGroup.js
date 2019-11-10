@@ -301,26 +301,26 @@ export default class panelGroup extends Component {
 
                   <div className="col-lg-2 col-md-4 col-xs-12 mb-lg-0 mb-md-3">
                     <p className="m-0 panel-title">{tu("block_height")}</p>
-                    <Tooltip
+                    {/* <Tooltip
                       title={intl.formatMessage({ id: "tooltip_blockHeight" })}
+                    > */}
+                    <Link
+                      to="/blockchain/blocks"
+                      className="hvr-underline-from-center hvr-underline-white text-muted"
                     >
-                      <Link
-                        to="/blockchain/blocks"
-                        className="hvr-underline-from-center hvr-underline-white text-muted"
-                      >
-                        {mainnetData.blockHeight != 0 ? (
-                          <h2>
-                            <CountUp
-                              start={mainnetData.startblockHeight}
-                              end={mainnetData.blockHeight}
-                              duration={1}
-                            />
-                          </h2>
-                        ) : (
-                          <h2>-</h2>
-                        )}
-                      </Link>
-                    </Tooltip>
+                      {mainnetData.blockHeight != 0 ? (
+                        <h2>
+                          <CountUp
+                            start={mainnetData.startblockHeight}
+                            end={mainnetData.blockHeight}
+                            duration={1}
+                          />
+                        </h2>
+                      ) : (
+                        <h2>-</h2>
+                      )}
+                    </Link>
+                    {/* </Tooltip> */}
                   </div>
                   <div className="col-lg-2 col-md-4 col-xs-12 mb-lg-0  mb-md-3">
                     <p className="m-0 panel-title">{tu("current_MaxTPS")}</p>
@@ -330,31 +330,30 @@ export default class panelGroup extends Component {
                     >
                       {mainnetData.maxTps ? (
                         <h2>
-                          <Tooltip
+                          {/* <Tooltip
                             title={intl.formatMessage({
                               id: "tooltip_startTps"
                             })}
-                          >
-                            <span>
-                              <CountUp
-                                start={mainnetData.startTps}
-                                end={mainnetData.tps}
-                                duration={2}
-                              />
-                            </span>
-                          </Tooltip>
-                          /
-                          <Tooltip
+                          > */}
+                          <span>
+                            <CountUp
+                              start={mainnetData.startTps}
+                              end={mainnetData.tps}
+                              duration={2}
+                            />
+                          </span>
+                          {/* </Tooltip> */}/
+                          {/* <Tooltip
                             title={intl.formatMessage({ id: "tooltip_tps" })}
-                          >
-                            <span>
-                              <CountUp
-                                start={0}
-                                end={mainnetData.maxTps}
-                                duration={1}
-                              />
-                            </span>
-                          </Tooltip>
+                          > */}
+                          <span>
+                            <CountUp
+                              start={0}
+                              end={mainnetData.maxTps}
+                              duration={1}
+                            />
+                          </span>
+                          {/* </Tooltip> */}
                         </h2>
                       ) : (
                         <h2>-/-</h2>
@@ -439,21 +438,20 @@ export default class panelGroup extends Component {
                 </div>
               </div>
             </div>
-            { (
+            {
               <div
                 className={
                   isExpand ? "hidden-panel hidden-panel-height" : "hidden-panel"
                 }
               >
                 {/* hiden mainnet */}
-
                 <Divider orientation="left">{tu("main_chain")}</Divider>
                 <div className="text-center mr-0 ml-0 mt-3">
                   <div
                     className="col-12  card  pt-1 pl-0 pr-0"
                     style={{ border: "none", borderRadius: 0 }}
                   >
-                    <div className="card-body row pt-4 pb-4 home-stats">
+                    <div className="card-body row pt-2 pb-2 home-stats">
                       <div className="col-lg-2 col-md-4 col-xs-12 mb-lg-0  mb-md-3 ">
                         <Tooltip
                           title={intl.formatMessage({
@@ -480,28 +478,28 @@ export default class panelGroup extends Component {
                       </div>
 
                       <div className="col-lg-2 col-md-4 col-xs-12 mb-lg-0 mb-md-3">
-                        <Tooltip
+                        {/* <Tooltip
                           title={intl.formatMessage({
                             id: "tooltip_blockHeight_mainnet"
                           })}
+                        > */}
+                        <Link
+                          to="/blockchain/blocks"
+                          className="hvr-underline-from-center hvr-underline-white text-muted"
                         >
-                          <Link
-                            to="/blockchain/blocks"
-                            className="hvr-underline-from-center hvr-underline-white text-muted"
-                          >
-                            {mainnetData.blockHeight != 0 ? (
-                              <h2>
-                                <CountUp
-                                  start={mainnetData.startblockHeight}
-                                  end={mainnetData.blockHeight}
-                                  duration={1}
-                                />
-                              </h2>
-                            ) : (
-                              <h2>-</h2>
-                            )}
-                          </Link>
-                        </Tooltip>
+                          {mainnetData.blockHeight != 0 ? (
+                            <h2>
+                              <CountUp
+                                start={mainnetData.startblockHeight}
+                                end={mainnetData.blockHeight}
+                                duration={1}
+                              />
+                            </h2>
+                          ) : (
+                            <h2>-</h2>
+                          )}
+                        </Link>
+                        {/* </Tooltip> */}
                       </div>
                       <div className="col-lg-2 col-md-4 col-xs-12 mb-lg-0  mb-md-3">
                         <div
@@ -623,34 +621,34 @@ export default class panelGroup extends Component {
                     className="col-12  card  pt-1 pl-0 pr-0"
                     style={{ border: "none", borderRadius: 0 }}
                   >
-                    <div className="card-body row pt-4 pb-4 home-stats">
+                    <div className="card-body row pt-2 pb-2 home-stats">
                       <div className="col-lg-2 col-md-4 col-xs-12 mb-lg-0  mb-md-3 ">
                         <h2>-</h2>
                       </div>
 
                       <div className="col-lg-2 col-md-4 col-xs-12 mb-lg-0 mb-md-3">
-                        <Tooltip
+                        {/* <Tooltip
                           title={intl.formatMessage({
                             id: "tooltip_blockHeight_sunnet"
                           })}
+                        > */}
+                        <Link
+                          to="/blockchain/blocks"
+                          className="hvr-underline-from-center hvr-underline-white text-muted"
                         >
-                          <Link
-                            to="/blockchain/blocks"
-                            className="hvr-underline-from-center hvr-underline-white text-muted"
-                          >
-                            {sunnetData.blockHeight != 0 ? (
-                              <h2>
-                                <CountUp
-                                  start={sunnetData.startblockHeight}
-                                  end={sunnetData.blockHeight}
-                                  duration={1}
-                                />
-                              </h2>
-                            ) : (
-                              <h2>-</h2>
-                            )}
-                          </Link>
-                        </Tooltip>
+                          {sunnetData.blockHeight != 0 ? (
+                            <h2>
+                              <CountUp
+                                start={sunnetData.startblockHeight}
+                                end={sunnetData.blockHeight}
+                                duration={1}
+                              />
+                            </h2>
+                          ) : (
+                            <h2>-</h2>
+                          )}
+                        </Link>
+                        {/* </Tooltip> */}
                       </div>
                       <div className="col-lg-2 col-md-4 col-xs-12 mb-lg-0  mb-md-3">
                         <div
@@ -766,7 +764,7 @@ export default class panelGroup extends Component {
                   </div>
                 </div>
               </div>
-            )}
+            }
           </div>
         )}
         {/* sun network */}
@@ -780,28 +778,28 @@ export default class panelGroup extends Component {
                 <div className="col-lg-3 col-md-4 col-xs-12 mb-lg-0 mb-md-3">
                   <p className="m-0 panel-title">{tu("block_height")}</p>
 
-                  <Tooltip
+                  {/* <Tooltip
                     title={intl.formatMessage({
                       id: "tooltip_blockHeight_sunnet"
                     })}
+                  > */}
+                  <Link
+                    to="/blockchain/blocks"
+                    className="hvr-underline-from-center hvr-underline-white text-muted"
                   >
-                    <Link
-                      to="/blockchain/blocks"
-                      className="hvr-underline-from-center hvr-underline-white text-muted"
-                    >
-                      {sunnetData.blockHeight != 0 ? (
-                        <h2>
-                          <CountUp
-                            start={sunnetData.startblockHeight}
-                            end={sunnetData.blockHeight}
-                            duration={1}
-                          />
-                        </h2>
-                      ) : (
-                        <h2>-</h2>
-                      )}
-                    </Link>
-                  </Tooltip>
+                    {sunnetData.blockHeight != 0 ? (
+                      <h2>
+                        <CountUp
+                          start={sunnetData.startblockHeight}
+                          end={sunnetData.blockHeight}
+                          duration={1}
+                        />
+                      </h2>
+                    ) : (
+                      <h2>-</h2>
+                    )}
+                  </Link>
+                  {/* </Tooltip> */}
                 </div>
                 <div className="col-lg-2 col-md-4 col-xs-12 mb-lg-0  mb-md-3">
                   <p className="m-0 panel-title">{tu("current_MaxTPS")}</p>

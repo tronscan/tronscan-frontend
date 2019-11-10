@@ -640,6 +640,11 @@ $color: #c23631;
   .ant-divider-horizontal.ant-divider-with-text-left::before {
     width: 0%;
   }
+  .ant-divider-horizontal.ant-divider-with-text-left {
+    color: rgba(0, 0, 0, 0.85);
+    font-size: 16px;
+    font-weight: 400;
+  }
   .hidden-panel {
     height: 0;
     overflow: hidden;
@@ -649,6 +654,14 @@ $color: #c23631;
     -o-transition: height 0.5s;
   }
   .hidden-panel-height {
-    height: 300px;
+    height: 260px;
+  }
+  h2 {
+    font-size: 24px;
+  }
+  .panel-title {
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.45);
+    margin-bottom: 10px !important;
   }
 }
