@@ -2198,6 +2198,13 @@ export const messages = {
   "unverifty_passed":"未验证",
   "developers_account":"个参与者",
 
+  /*
+     ##################################################################################
+     #                                                                                #
+     # SUN-Network                              #
+     #                                                                                #
+     ##################################################################################
+  */
   "main_chain": "主链",
   "sun_network": "SUN Network",
   "expand": "展开",
@@ -2223,5 +2230,11 @@ export const messages = {
   "tooltip_trxPrice":"TRX对比USD的价格，实时波动",
   "tooltip_trxPrice_mainnet":"TRX对比USD的价格，实时波动",
   "tooltip_trxPrice_sunnet":"TRX对比USD的价格，实时波动",
+  "nav_network":"SUN Network",
+  "sun_network_product":"产品实例",
+  "sun_network_DAppChain":"应用链",
+  "sun_network_relevant_information":"相关资料",
+  "sun_network_project_introduction":"项目介绍",
+  "sun_network_development_document":"开发文档",
 
 };

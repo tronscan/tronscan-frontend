@@ -7,6 +7,8 @@ export const ONE_TRX = 1000000;
 export const IS_TESTNET = process.env.NET === "testnet";
 export const IS_DESKTOP = process.env.DESKTOP === "true";
 
+
+
 export const NETURL = {
   // MAINNET: "https://tronscan.org",
   // SUNNET: "https://dappchain.tronscan.org"
@@ -14,8 +16,8 @@ export const NETURL = {
   SUNNET: "http://18.217.215.94:89"
 };
 
-let { NET, NODE_ENV } = process.env;
 
+let { NET, NODE_ENV } = process.env;
 let MAINNET;
 let SUNNET;
 if (NODE_ENV == "development") {
