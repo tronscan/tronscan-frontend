@@ -168,7 +168,9 @@ class TransfersAll extends React.Component {
 
     }
     customizedColumn = () => {
-        let {intl} = this.props;
+        let { intl } = this.props;
+            const defaultImg = require("../../images/logo_default.png");
+
         let column = [
             {
                 title: upperFirst(intl.formatMessage({id: 'hash'})),
@@ -296,41 +298,83 @@ class TransfersAll extends React.Component {
                 align: 'left',
                 className: 'ant_table',
                 render: (text, record, index) => {
-                    return <div>
-                            {
-                                record.map_token_id == 1002000  || record.map_token_id == CONTRACT_ADDRESS_USDT || record.map_token_id == CONTRACT_ADDRESS_WIN || record.map_token_id == CONTRACT_ADDRESS_GGC?<div>
-                                        <b className="token-img-top" style={{marginRight: 5}}>
-                                            <img width={20} height={20} src={record.map_amount_logo} />
-                                            <i style={{width: 10, height: 10, bottom: -5}}></i>
-                                        </b>
-                                        {
-                                            record.type == 'trc20'?
-                                                <TokenTRC20Link name={record.map_token_id} address={record.contract_address} namePlus={record.map_token_name_abbr}/>
-                                                :
-                                                <TokenLink id={record.map_token_id} name={record.map_token_name_abbr}/>
-
-
-                                        }
-                                    </div>
-                                    :
-                                    <div>
-                                        {
-                                            isAddressValid(record.map_token_name_abbr)?<span>{tu('address_transfer_unrecorded_token')}</span>:
-                                            <div>
-                                                <img width={20} height={20} src={record.map_amount_logo} style={{marginRight: 5}}/>
-                                                {
-                                                    record.type == 'trc20'?
-
-                                                        <TokenTRC20Link name={record.map_token_id} address={record.contract_address} namePlus={record.map_token_name_abbr}/>
-                                                        :
-                                                        <TokenLink id={record.map_token_id} name={record.map_token_name_abbr?record.map_token_name_abbr:record.token_name}/>
-                                                }
-                                            </div>
-                                        }
-
-                                    </div>
-                            }
-                        </div>
+                    return (
+                      <div>
+                        {record.map_token_id == 1002000 ||
+                        record.map_token_id == CONTRACT_ADDRESS_USDT ||
+                        record.map_token_id == CONTRACT_ADDRESS_WIN ||
+                        record.map_token_id == CONTRACT_ADDRESS_GGC ? (
+                          <div>
+                            <b
+                              className="token-img-top"
+                              style={{ marginRight: 5 }}
+                            >
+                              <img
+                                width={20}
+                                height={20}
+                                src={record.map_amount_logo}
+                                onError={e => {
+                                  e.target.onerror = null;
+                                  e.target.src = defaultImg;
+                                }}
+                              />
+                              <i
+                                style={{ width: 10, height: 10, bottom: -5 }}
+                              ></i>
+                            </b>
+                            {record.type == "trc20" ? (
+                              <TokenTRC20Link
+                                name={record.map_token_id}
+                                address={record.contract_address}
+                                namePlus={record.map_token_name_abbr}
+                              />
+                            ) : (
+                              <TokenLink
+                                id={record.map_token_id}
+                                name={record.map_token_name_abbr}
+                              />
+                            )}
+                          </div>
+                        ) : (
+                          <div>
+                            {isAddressValid(record.map_token_name_abbr) ? (
+                              <span>
+                                {tu("address_transfer_unrecorded_token")}
+                              </span>
+                            ) : (
+                              <div>
+                                <img
+                                  width={20}
+                                  height={20}
+                                  src={record.map_amount_logo}
+                                  style={{ marginRight: 5 }}
+                                  onError={e => {
+                                    e.target.onerror = null;
+                                    e.target.src = defaultImg;
+                                  }}
+                                />
+                                {record.type == "trc20" ? (
+                                  <TokenTRC20Link
+                                    name={record.map_token_id}
+                                    address={record.contract_address}
+                                    namePlus={record.map_token_name_abbr}
+                                  />
+                                ) : (
+                                  <TokenLink
+                                    id={record.map_token_id}
+                                    name={
+                                      record.map_token_name_abbr
+                                        ? record.map_token_name_abbr
+                                        : record.token_name
+                                    }
+                                  />
+                                )}
+                              </div>
+                            )}
+                          </div>
+                        )}
+                      </div>
+                    );
                 }
             },
             // {
