@@ -9,7 +9,7 @@ import tronLogoSunNet from "../images/tron-logo-sunnet.png";
 import tronLogoInvertedTestNet from "../images/tron-logo-inverted-testnet.png";
 import {flatRoutes, routes} from "../routes"
 import {Link, NavLink, withRouter} from "react-router-dom"
-import {filter, find, isString, isUndefined, trim, toUpper,debounce} from "lodash"
+import {filter, find, isString, isUndefined, trim, toUpper, debounce, slice} from "lodash"
 import {tu, t} from "../utils/i18n"
 import {
   enableFlag,
@@ -355,11 +355,21 @@ class Navigation extends React.Component {
 
 
   getActiveComponent() {
-    let {router} = this.props;
-    return find(flatRoutes, route => route.path && matchPath(router.location.pathname, {
-      path: route.path,
-      strict: false,
-    }));
+    // let {router} = this.props;
+    // return find(flatRoutes, route => route.path && matchPath(router.location.pathname, {
+    //   path: route.path,
+    //   strict: false,
+    // }));
+      let {router} = this.props;
+      let flatRoutesActives = slice(flatRoutes, 1);
+      if(router.location.pathname == "/") {
+          return flatRoutes[0]
+      }else{
+        return find(flatRoutesActives, route => route.path && matchPath(router.location.pathname, {
+            path: route.path,
+            strict: false,
+        }));
+      }
   }
 
 
@@ -938,7 +948,7 @@ class Navigation extends React.Component {
     let {search, popup, notifications, announcement, announId, annountime, searchResults, selectedNet } = this.state;
 
     let activeComponent = this.getActiveComponent();
-
+    console.log('activeComponent',activeComponent)
     const isShowSideChain = !type || (type && IS_SUNNET);
 
     return (
@@ -1149,7 +1159,7 @@ class Navigation extends React.Component {
                         }
 
                         {
-                          route.routes && route.label !== "nav_more" &&
+                          route.routes && route.label !== "nav_more" && route.label !== "nav_network" &&
                           <div className="dropdown-menu">
                             {
                               route.routes && route.routes.map((subRoute, index) => {
@@ -1216,7 +1226,7 @@ class Navigation extends React.Component {
                           </div>
                         }
                         {
-                          route.routes && route.label == "nav_more" &&
+                            route.routes && (route.label == "nav_network" || route.label == "nav_more") &&
                           <div className="dropdown-menu more-menu" style={{left: 'auto'}}>
                             {
                               route.routes && route.routes.map((subRoute, index) => {
@@ -1227,7 +1237,7 @@ class Navigation extends React.Component {
                                       if (isString(Route)) {
                                         return (
                                             <h6 key={j}
-                                                className="dropdown-header text-uppercase">{Route}</h6>
+                                                className="dropdown-header text-uppercase"> {tu(Route)}</h6>
                                         )
                                       }
 

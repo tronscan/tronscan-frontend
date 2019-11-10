@@ -59,6 +59,16 @@ import {
 
 export const routes = [
   {
+      path: "/",
+      label: "home",
+      showInMenu: true,
+      showSubMenu: false,
+      showSubHeader: false,
+      isExact: true,
+      component: HomeAsync,
+      strict:true
+  },
+  {
     path: "/blockchain",
     label: "blockchain",
     icon: "fa fa-link",
@@ -319,6 +329,34 @@ export const routes = [
   //   showInMenu: false,
   //   none: true
   // },
+  {
+    path: "/network",
+    label: "nav_network",
+    icon: "fas fa-indent",
+    routes: [
+      [
+          "sun_network_product",
+          {
+              url: "https://dappchain.tronscan.org",
+              icon: "fa fa-download",
+              label: "sun_network_DAppChain"
+          },
+      ],
+      [
+          "sun_network_relevant_information",
+          {
+              url: "https://tron.network/sunnetwork/#/",
+              icon: "fa fa-globe",
+              label: "sun_network_project_introduction"
+          },
+          {
+              url: "https://tron.network/sunnetwork/doc/guide/",
+              icon: "fa fa-outdent",
+              label: "sun_network_development_document"
+          },
+      ],
+  ]
+  },
   {
     label: "TRXMarket",
     path: "/exchange/trc20",
@@ -775,15 +813,7 @@ export const routes = [
       showInMenu: false,
       component: DevelopersRewardAsync,
   },
-  {
-    path: "/",
-    label: "home",
-    showInMenu: false,
-    showSubMenu: false,
-    showSubHeader: false,
-    isExact: true,
-    component: HomeAsync
-  },
+
 
 
 ];
