@@ -23,7 +23,7 @@ import {
 import { API_URL, IS_MAINNET } from "../../constants";
 import { setWebsocket, setWebsocketSun } from "../../actions/account";
 import Lockr from "lockr";
-import { Button, Divider, Tooltip } from "antd";
+import { Icon, Divider, Tooltip, Tag } from "antd";
 import ApiHome from "../../services/homeApi";
 
 @connect(
@@ -261,14 +261,26 @@ export default class panelGroup extends Component {
         {/* mainnet */}
         {IS_MAINNET && (
           <div className="panel-group ">
-            <Button
+            <Tag
+              icon={isExpand ? "caret-up" : "caret-down"}
+              color="red"
+              className="col-tag"
+              onClick={() => {
+                this.expand();
+              }}
+            >
+              {isExpand ? tu("collapse") : tu("expand")}
+              <Icon type={isExpand ? "caret-up" : "caret-down"} />
+            </Tag>
+
+            {/* <Button
               icon={isExpand ? "caret-up" : "caret-down"}
               onClick={() => {
                 this.expand();
               }}
             >
               {isExpand ? tu("collapse") : tu("expand")}
-            </Button>
+            </Button> */}
             <div className="text-center mr-0 ml-0 mt-3">
               <div
                 className="col-12  card  pt-1 pl-0 pr-0"

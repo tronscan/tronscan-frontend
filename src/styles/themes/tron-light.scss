@@ -626,16 +626,13 @@ $color: #c23631;
 .panel-group {
   background: #fff;
   position: relative;
-  .ant-btn {
+  .col-tag {
     float: right;
     margin-top: 10px;
     margin-right: 10px;
-    span {
-      color: #333 !important;
+    .anticon {
+      vertical-align: 0.05rem;
     }
-  }
-  .ant-btn:hover span {
-    color: #c23631 !important;
   }
   .ant-divider-horizontal.ant-divider-with-text-left::before {
     width: 0%;
