@@ -823,9 +823,9 @@ export default {
               data: [],
               //turboThreshold: 7000,
               //allowPointSelect: false,
-              color: "rgba(194,54,49,1)",
+              color: "#8b0c07",
               marker: {
-                  enabled: true,
+                  enabled: false,
                   //enabledThreshold: '7'
               }
           },
@@ -837,7 +837,7 @@ export default {
               //allowPointSelect: false,
               color: "rgba(194,54,49,.78)",
               marker: {
-                  enabled: true,
+                  enabled: false,
                   //enabledThreshold: '7'
               }
           },
@@ -850,7 +850,7 @@ export default {
               color: "rgba(194,54,49,.48)",
               yAxis: 1,
               marker: {
-                  enabled: true,
+                  enabled: false,
                   //enabledThreshold: '7'
               }
           }

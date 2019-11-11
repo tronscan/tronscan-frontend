@@ -734,13 +734,13 @@ export default class Home extends Component {
                       className="card-body pt-0"
                       style={{ paddingLeft: "2rem", paddingRight: "2rem" }}
                     >
-                    <div style={IS_MAINNET?{ minWidth: 255, height: 300 }:{ minWidth: 255, height: 200 }}>
+                    <div style={IS_MAINNET?{ minWidth: 255, height: 260  }:{ minWidth: 255, height: 200 }}>
                         {txOverviewStats === null ? (
                           <TronLoader />
                         ) : (
                             IS_MAINNET ?
                               <LineReactHighChartHomeTx
-                                style={{ minWidth: 255, height: 300 }}
+                                style={{ minWidth: 255, height: 260 }}
                                 data={txOverviewStats}
                                 sun={SunTxOverviewStats}
                                 total={TotalTxOverviewStats}
@@ -774,13 +774,13 @@ export default class Home extends Component {
                       className="card-body pt-0"
                       style={{ paddingLeft: "2rem", paddingRight: "2rem" }}
                     >
-                      <div style={IS_MAINNET?{ minWidth: 255, height: 300 }:{ minWidth: 255, height: 200 }}>
+                      <div style={IS_MAINNET?{ minWidth: 255, height: 260 }:{ minWidth: 255, height: 200 }}>
                         {addressesStats === null ? (
                           <TronLoader />
                         ) :(
                            IS_MAINNET ?
                             <LineReactHighChartHomeAddress
-                              style={{ minWidth: 255, height: 300 }}
+                              style={{ minWidth: 255, height: 260 }}
                               data={addressesStats}
                               sun={SunAddressesStats}
                               total={TotalAddressesStats}
