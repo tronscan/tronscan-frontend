@@ -60,11 +60,17 @@ export default class App {
 }
 
 if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('/service-worker.js').then((registration) => {
-      console.log('SW registered: ', registration);
-    }).catch((registrationError) => {
-      console.log('SW registration failed: ', registrationError);
+    let version = '1.0.1'
+    window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/service-worker.js').then((registration) => {
+            if (localStorage.getItem('sw_version') !== version) {
+                registration.update().then(function () {
+                    localStorage.setItem('sw_version', version)
+                });
+            }
+            console.log('SW registered: ', registration);
+        }).catch((registrationError) => {
+            console.log('SW registration failed: ', registrationError);
+        });
     });
-  });
 }
