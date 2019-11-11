@@ -261,9 +261,7 @@ export default class panelGroup extends Component {
         {/* mainnet */}
         {IS_MAINNET && (
           <div className="panel-group ">
-            <Tag
-              icon={isExpand ? "caret-up" : "caret-down"}
-              color="red"
+            <span
               className="col-tag"
               onClick={() => {
                 this.expand();
@@ -271,7 +269,7 @@ export default class panelGroup extends Component {
             >
               {isExpand ? tu("collapse") : tu("expand")}
               <Icon type={isExpand ? "caret-up" : "caret-down"} />
-            </Tag>
+            </span>
 
             {/* <Button
               icon={isExpand ? "caret-up" : "caret-down"}
