@@ -654,6 +654,205 @@ export default {
       }
     }]
   },
+  HomeHighChart: {
+        chart: {
+            zoomType: '',
+            spacingTop: 5,
+            spacingBottom: 0,
+            spacingLeft: 0,
+            spacingRight: 0,
+            resetZoomButton: {
+                position: {
+                    align: 'right', // right by default
+                    verticalAlign: 'top',
+                    x: -55,
+                    y: 0
+                },
+                relativeTo: 'chart',
+                theme: {
+                    fill: 'white',
+                    stroke: 'silver',
+                    r: 0,
+                    states: {
+                        hover: {
+                            fill: '#eeeeee',
+                            style: {
+                                color: 'red'
+                            }
+                        }
+                    }
+                }
+
+            }
+        },
+        title: {
+            text: ''
+        },
+        credits: {
+            enabled: false
+        },
+        colors: [
+            '#c84a45',
+            '#e7afad'
+        ],
+        exporting: {
+            enabled: true,
+            sourceWidth: 1072,
+            sourceHeight: 500,
+            filename:''
+        },
+        subtitle: {
+            text: ''
+        },
+        xAxis: {
+            type: 'datetime',
+            ordinal: false,
+            dateTimeLabelFormats: {
+                millisecond: '%H:%M:%S.%L',
+                second: '%H:%M:%S',
+                minute: '%H:%M',
+                hour: '%H:%M',
+                day: '%m-%d',
+                week: '%m-%d',
+                month: '%Y-%m',
+                year: '%Y'
+            },
+            gridLineColor: '#eeeeee',
+            labels: {
+                style: {
+                    color: "#999999"
+                },
+                autoRotation: [-10, -20, -30, -40, -50, -60, -70, -80, -90]
+            }
+        },
+        tooltip: {
+            dateTimeLabelFormats: {
+                millisecond: '%H:%M:%S.%L',
+                second: '%H:%M:%S',
+                minute: '%H:%M',
+                hour: '%H:%M',
+                day: '%Y-%m-%d',
+                week: '%m-%d',
+                month: '%Y-%m',
+                year: '%Y'
+            }
+        },
+        yAxis: [
+          {
+              title: {
+                  // align: 'high',
+                  // offset: 0,
+                  text: '',
+                  // rotation: 0,
+                  // x:100,
+                  // y: -10
+              },
+              // min: 0,
+              //minTickInterval:5
+              tickPixelInterval: 30,
+              labels: {
+                  style: {
+                      color: "#999999"
+                  }
+              },
+          },
+          {// Secondary yAxis
+              title: {
+                  // align: 'high',
+                  // offset: 0,
+                  text: '',
+                  // rotation: 0,
+                  // x:100,
+                  // y: -10
+              },
+              // min: 0,
+              //minTickInterval:5
+              tickPixelInterval: 30,
+              labels: {
+                  style: {
+                      color: "#999999"
+                  }
+              },
+              opposite: true,
+
+          }
+        ],
+        legend: {
+           // layout: 'vertical',
+            align: 'center',
+            //x: 80,
+            verticalAlign: 'bottom',
+            //y: 55,
+            floating: false,
+            backgroundColor: '#FFFFFF'
+        },
+        plotOptions: {
+            area: {
+                fillColor: {
+                    linearGradient: {
+                        x1: 0,
+                        y1: 0,
+                        x2: 0,
+                        y2: 1
+                    },
+                    stops: [
+                        [0, '#ECC2C1'],
+                        [1, '#ffffff']
+                    ]
+                },
+                marker: {
+                    radius: 2
+                },
+                lineWidth: 1,
+                states: {
+                    hover: {
+                        lineWidth: 2
+                    }
+                },
+                threshold: null,
+                column: {
+                    pointPadding: 0.1,
+                    borderWidth: 0
+                }
+            }
+        },
+        series: [
+          {
+              type: 'spline',
+              name: '',
+              data: [],
+              //turboThreshold: 7000,
+              //allowPointSelect: false,
+              marker: {
+                  enabled: true,
+                  //enabledThreshold: '7'
+              }
+          },
+          {
+              type: 'spline',
+              name: '',
+              data: [],
+              yAxis: 1,
+              //turboThreshold: 7000,
+              //allowPointSelect: false,
+              marker: {
+                  enabled: true,
+                  //enabledThreshold: '7'
+              }
+          },
+          {
+              type: 'spline',
+              name: '',
+              data: [],
+              //turboThreshold: 7000,
+              //allowPointSelect: false,
+              marker: {
+                  enabled: true,
+                  //enabledThreshold: '7'
+              }
+          }
+        ]
+    },
   ringPieHighChart3D: {
         chart: {
             type: 'pie',

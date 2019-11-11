@@ -61,6 +61,7 @@ export const routes = [
   {
       path: "/",
       label: "home",
+      icon: "fa fa-link",
       showInMenu: true,
       showSubMenu: false,
       showSubHeader: false,

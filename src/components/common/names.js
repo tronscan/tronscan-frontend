@@ -25,7 +25,7 @@ export const NameWithId = ({value,type, notamount=false, totoken=false, br=false
         totoken?
         <Link to={`/token/${value.map_token_id}`}>
           {
-              type == 'abbr'?<span className="mr-1">
+              type == 'abbr'?<span className={page == ''?'mr-1':''}>
                   {
                     value.map_token_name_abbr?value.map_token_name_abbr:value.map_token_name
                   }
@@ -33,7 +33,7 @@ export const NameWithId = ({value,type, notamount=false, totoken=false, br=false
           }
         </Link>:
         
-        type === 'abbr'?<span className="mr-1">
+        type === 'abbr'?<span className={page == ''?'mr-1':''}>
             {
                 value.map_token_name_abbr ?value.map_token_name_abbr:value.map_token_name
             }

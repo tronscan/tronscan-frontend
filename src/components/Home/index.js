@@ -18,7 +18,8 @@ import { HrefLink } from "../common/Links";
 import { TronLoader } from "../common/loaders";
 import {
   LineReactHighChartAdd,
-  LineReactHighChartTx
+  LineReactHighChartTx,
+  LineReactHighChartHomeAddress,
 } from "../common/LineCharts";
 import { API_URL, IS_MAINNET } from "../../constants";
 import { setWebsocket } from "../../actions/account";
@@ -57,6 +58,7 @@ export default class Home extends Component {
       transactionPerDay: 0,
       txOverviewStats: null,
       addressesStats: null,
+      SunAddressesStats:null,
       maxTps: 0,
       tps: 0,
       startTps: 0,
@@ -164,6 +166,134 @@ export default class Home extends Component {
       // totalAccounts: txOverviewStats[txOverviewStats.length-1].totalAddress,
     });
   }
+  async loadAllData() {
+      const allData = await Promise.all([
+          Client.getTxOverviewStats(),
+          xhr.get(`https://dappchainapi.tronscan.org/api/stats/overview`)
+      ]).catch(e => {
+          console.log('error:' + e);
+      });
+      const [{txOverviewStats}, { data:{data} } ] = allData;
+      let SunTxOverviewStats = data;
+
+      /*
+       *  SUN-Network
+      */
+      let SunTemp = [];
+      let SunAddressesTemp = [];
+      for (let suntxs in SunTxOverviewStats) {
+          let suntx = parseInt(suntxs);
+          if (suntx === 0) {
+              SunAddressesTemp.push({
+                  date: SunTxOverviewStats[suntx].date,
+                  total: SunTxOverviewStats[suntx].totalAddress,
+                  increment: SunTxOverviewStats[suntx].newAddressSeen
+              });
+              SunTemp.push({
+                  date: SunTxOverviewStats[suntx].date,
+                  // totalTransaction: (txOverviewStats[tx].totalTransaction - txOverviewStats[tx - 1].totalTransaction),
+                  totalTransaction: SunTxOverviewStats[suntx].newTransactionSeen,
+                  avgBlockTime: SunTxOverviewStats[suntx].avgBlockTime,
+                  avgBlockSize: SunTxOverviewStats[suntx].avgBlockSize,
+                  totalBlockCount: SunTxOverviewStats[suntx].totalBlockCount,
+                  newAddressSeen: SunTxOverviewStats[suntx].newAddressSeen
+              });
+          } else {
+              SunTemp.push({
+                  date: SunTxOverviewStats[suntx].date,
+                  // totalTransaction: (txOverviewStats[tx].totalTransaction - txOverviewStats[tx - 1].totalTransaction),
+                  totalTransaction: SunTxOverviewStats[suntx].newTransactionSeen,
+                  avgBlockTime: SunTxOverviewStats[suntx].avgBlockTime,
+                  avgBlockSize: SunTxOverviewStats[suntx].avgBlockSize,
+                  totalBlockCount: SunTxOverviewStats[suntx].totalBlockCount - SunTxOverviewStats[suntx - 1].totalBlockCount,
+                  newAddressSeen: SunTxOverviewStats[suntx].newAddressSeen
+              });
+              SunAddressesTemp.push({
+                  date: SunTxOverviewStats[suntx].date,
+                  total: SunTxOverviewStats[suntx].totalAddress,
+                  increment: SunTxOverviewStats[suntx].newAddressSeen
+              });
+          }
+      }
+
+
+      /*
+       *  Main-Network
+      */
+      let temp = [];
+      let addressesTemp = [];
+      for (let txs in txOverviewStats) {
+          let tx = parseInt(txs);
+          if (tx === 0) {
+              //temp.push(txOverviewStats[tx]);
+              addressesTemp.push({
+                  date: txOverviewStats[tx].date,
+                  total: txOverviewStats[tx].totalAddress,
+                  increment: txOverviewStats[tx].newAddressSeen
+              });
+              temp.push({
+                  date: txOverviewStats[tx].date,
+                  // totalTransaction: (txOverviewStats[tx].totalTransaction - txOverviewStats[tx - 1].totalTransaction),
+                  totalTransaction: txOverviewStats[tx].newTransactionSeen,
+                  avgBlockTime: txOverviewStats[tx].avgBlockTime,
+                  avgBlockSize: txOverviewStats[tx].avgBlockSize,
+                  totalBlockCount: txOverviewStats[tx].totalBlockCount,
+                  newAddressSeen: txOverviewStats[tx].newAddressSeen
+              });
+          } else {
+              temp.push({
+                  date: txOverviewStats[tx].date,
+                  // totalTransaction: (txOverviewStats[tx].totalTransaction - txOverviewStats[tx - 1].totalTransaction),
+                  totalTransaction: txOverviewStats[tx].newTransactionSeen,
+                  avgBlockTime: txOverviewStats[tx].avgBlockTime,
+                  avgBlockSize: txOverviewStats[tx].avgBlockSize,
+                  totalBlockCount: txOverviewStats[tx].totalBlockCount - txOverviewStats[tx - 1].totalBlockCount,
+                  newAddressSeen: txOverviewStats[tx].newAddressSeen
+              });
+              addressesTemp.push({
+                  date: txOverviewStats[tx].date,
+                  total: txOverviewStats[tx].totalAddress,
+                  increment: txOverviewStats[tx].newAddressSeen
+              });
+          }
+      }
+
+      let TotalAddressesTemp = [];
+      let TotalTemp = [];
+      for(let i = 0; i < SunAddressesTemp.length; i++){
+          for(let j = 0; j < addressesTemp.length; j++){
+              if(i == j){
+                  TotalAddressesTemp.push({
+                      date: addressesTemp[j]['date'],
+                      total: addressesTemp[j]['total'] + SunAddressesTemp[i]['total'],
+                      increment: addressesTemp[j]['increment'] + SunAddressesTemp[i]['increment']
+                  })
+              }
+          }
+      }
+      for(let i = 0; i < SunTemp.length; i++){
+          for(let j = 0; j < temp.length; j++){
+              TotalTemp.push({
+                  date: temp[j]['date'],
+                  totalTransaction: temp[j]['totalTransaction'] + SunTemp[i]['totalTransaction'],
+
+              })
+          }
+      }
+      console.log('SunTemp',SunTemp)
+      console.log('temp',temp)
+      console.log('TotalAddressesTemp',TotalAddressesTemp)
+
+      this.setState({
+          txOverviewStats: temp.slice(0, 14),
+          addressesStats: addressesTemp.slice(0, 14),
+          SunTxOverviewStats: SunTemp.slice(0, 14),
+          SunAddressesStats: SunAddressesTemp.slice(0, 14),
+          TotalAddressesStats: TotalAddressesTemp.slice(0, 14),
+          TotalStats:TotalTemp.slice(0, 14),
+      });
+    }
+
 
   doSearch = async () => {
     let { intl } = this.props;
@@ -205,7 +335,8 @@ export default class Home extends Component {
 
   async componentDidMount() {
     const { intl } = this.props;
-    this.load();
+   // this.load();
+    this.loadAllData();
     this.loadAccounts();
     this.reconnect();
     this.loadHomepageBundle();
@@ -289,6 +420,8 @@ export default class Home extends Component {
       totalAccounts,
       txOverviewStats,
       addressesStats,
+      SunAddressesStats,
+      TotalAddressesStats,
       maxTps,
       tps
     } = this.state;
@@ -630,17 +763,26 @@ export default class Home extends Component {
                       className="card-body pt-0"
                       style={{ paddingLeft: "2rem", paddingRight: "2rem" }}
                     >
-                      <div style={{ minWidth: 255, height: 200 }}>
+                      <div style={{ minWidth: 255, height: 300 }}>
                         {addressesStats === null ? (
                           <TronLoader />
-                        ) : (
-                          <LineReactHighChartAdd
-                            style={{ minWidth: 255, height: 200 }}
-                            data={addressesStats}
-                            intl={intl}
-                            source="home"
-                          />
-                        )}
+                        ) :(
+                           IS_MAINNET ?
+                            <LineReactHighChartHomeAddress
+                              style={{ minWidth: 255, height: 300 }}
+                              data={addressesStats}
+                              sun={SunAddressesStats}
+                              total={TotalAddressesStats}
+                              intl={intl}
+                              source="home"
+                            />:<LineReactHighChartAdd
+                                style={{ minWidth: 255, height: 200 }}
+                                data={addressesStats}
+                                intl={intl}
+                                source="home"
+                            />
+                        )
+                        }
                       </div>
                     </div>
                   </div>

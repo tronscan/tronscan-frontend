@@ -100,6 +100,111 @@ export class SupplyAreaHighChart extends React.Component {
         )
     }
 }
+export class LineReactHighChartHomeAddress extends React.Component {
+
+    constructor(props) {
+        super(props)
+        this.myChart = null;
+        let id = ('_' + Math.random()).replace('.', '_');
+        this.state = {
+            lineId: 'lineAdd' + id
+        }
+    }
+    initLine(id) {
+        let _config = cloneDeep(config.HomeHighChart);
+        let {intl, data, sun, total, source} = this.props;
+        if (data && data.length === 0) {
+            _config.title.text = "No data";
+        }
+        if (source == 'home'){
+            console.log('data',data)
+            if (data && data.length > 0) {
+                _config.xAxis.categories = [];
+
+                data.map((val) => {
+                    let temp;
+                    temp = {...val, y: val.total};
+                    _config.xAxis.categories.push(moment(val.date).format('M/D'));
+                    _config.series[0].data.push(temp);
+                })
+                _config.series[0].name =  intl.formatMessage({id: '主链'});
+            }
+            console.log('sun',sun)
+            if (sun && sun.length > 0) {
+                //_config.xAxis.categories = [];
+                sun.map((val) => {
+                    let tempSun;
+                    tempSun = {...val, y: val.total};
+                   //_config.xAxis.categories.push(moment(val.date).format('M/D'));
+                    _config.series[1].data.push(tempSun);
+                })
+                _config.series[1].name =  intl.formatMessage({id: 'SUN Network'});
+            }
+            if (total && total.length > 0) {
+                //_config.xAxis.categories = [];
+                total.map((val) => {
+                    let tempTotal;
+                    tempTotal = {...val, y: val.total};
+                    //_config.xAxis.categories.push(moment(val.date).format('M/D'));
+                    _config.series[2].data.push(tempTotal);
+
+                })
+                _config.series[2].name =  intl.formatMessage({id: 'TRON'});
+            }
+            _config.chart.spacingTop = 20;
+            _config.exporting.enabled = false;
+            //_config.yAxis.min = (data[0].total - 100000)< 0  ? 0 : data[0].total - 100000 ;
+            // if(IS_MAINNET){
+            //     _config.yAxis.tickInterval = 100000;
+            // }else{
+            //     _config.yAxis.tickInterval = 1000
+            // }
+            // _config.yAxis.tickAmount = 4;
+            // _config.yAxis.allowDecimals = true;
+            if(IS_MAINNET) {
+                _config.yAxis[0].labels.formatter = function () {
+                    if (this.value < 1000000 && this.value >= 1000) {
+                        return this.value / 1000 + 'k'
+                    } else if (this.value >= 1000000) {
+                        return this.value / 1000000 + 'M'
+                    } else if (this.value < 1000) {
+                        return this.value
+                    }
+                }
+            }
+            _config.tooltip.formatter = function () {
+                let date = intl.formatDate((parseInt(this.point.date)));
+                return (
+                    intl.formatMessage({id: 'date'}) + ' : ' + date + '<br/>' +
+                    intl.formatMessage({id: 'daily_increment'}) + ' : ' + this.point.increment + '<br/>' +
+                    intl.formatMessage({id: 'total_addresses'}) + ' : ' + this.point.total
+                )
+            }
+        }
+        Highcharts.chart(document.getElementById(id),_config);
+
+    }
+    shouldComponentUpdate(nextProps)  {
+        if(nextProps.intl.locale !== this.props.intl.locale){
+            return true
+        }
+        return  false
+    }
+    componentDidMount() {
+        this.initLine(this.state.lineId);
+    }
+    componentDidUpdate() {
+        this.initLine(this.state.lineId);
+    }
+
+    render() {
+        return (
+            <div>
+                <div id={this.state.lineId} style={this.props.style}></div>
+            </div>
+        )
+    }
+}
 
 export class LineReactHighChartAdd extends React.Component {
 
