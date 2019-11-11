@@ -61,7 +61,7 @@ export const routes = [
   {
       path: "/",
       label: "home_page",
-      icon: "fa fa-link",
+      icon: "fas fa-home",
       showInMenu: true,
       showSubMenu: false,
       showSubHeader: false,
@@ -339,7 +339,7 @@ export const routes = [
           "sun_network_product",
           {
               url: "https://dappchain.tronscan.org",
-              icon: "fa fa-download",
+              icon: "fas fa-columns",
               label: "sun_network_DAppChain"
           },
       ],
@@ -352,7 +352,7 @@ export const routes = [
           },
           {
               url: "https://tron.network/sunnetwork/doc/guide/",
-              icon: "fa fa-outdent",
+              icon: "fa fa-book",
               label: "sun_network_development_document"
           },
       ],

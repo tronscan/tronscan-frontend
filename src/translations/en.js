@@ -2178,7 +2178,7 @@ export const messages = {
      #                                                                                #
      ##################################################################################
   */
-  "main_chain": "main chain",
+  "main_chain": "Main Chain",
   "sun_network": "SUN Network",
   "expand": "Data info",
   "collapse": "Collapse",
