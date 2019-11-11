@@ -672,10 +672,9 @@ export default class VoteOverview extends React.Component {
                                           <td className="small text-right align-middle">
                                               {
                                                   <Fragment>
-                                                    <FormattedNumber value={candidate.brokerage ||candidate.brokerage == 0 ?(100 - candidate.brokerage):0}
-                                                                     minimumFractionDigits={2}
-                                                                     maximumFractionDigits={2}
-                                                    />%
+                                                    <span>
+                                                      {(candidate.brokerage || candidate.brokerage == 0) ?(100 - candidate.brokerage)+ '%': ''}
+                                                    </span>
                                                   </Fragment>
                                               }
                                           </td>
