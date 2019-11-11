@@ -60,7 +60,7 @@ import {
 export const routes = [
   {
       path: "/",
-      label: "home",
+      label: "home_page",
       icon: "fa fa-link",
       showInMenu: true,
       showSubMenu: false,
