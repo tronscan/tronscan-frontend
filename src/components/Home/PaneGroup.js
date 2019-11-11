@@ -419,11 +419,7 @@ export default class panelGroup extends Component {
                         id: "tooltip_trxPrice"
                       })}
                     >
-                      <HrefLink
-                        href="https://coinmarketcap.com/currencies/tron/"
-                        target="_blank"
-                        className="hvr-underline-from-center hvr-underline-white text-muted"
-                      >
+                      
                         <h2>
                           <TRXPrice
                             showPopup={false}
@@ -432,7 +428,7 @@ export default class panelGroup extends Component {
                             source="home"
                           />
                         </h2>
-                      </HrefLink>
+                     
                     </Tooltip>
                   </div>
                 </div>
