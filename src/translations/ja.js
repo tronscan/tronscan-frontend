@@ -60,7 +60,7 @@ export const messages = {
   "from": "差出人",
   "to": "宛先",
   "value": "価値",
-  "total_accounts": "リアルタイムの総アカウント数",
+  "total_accounts": "アカウント数",
   "submit": "提出",
   "send": "発送",
   "receive": "受け取り",
@@ -1151,7 +1151,7 @@ export const messages = {
   #                                                                                #
   ##################################################################################
   */
-  "pice_per_1trx": "価格",
+  "pice_per_1trx": "TRX時価",
   "tron_power_freezing": "TRXをフリーズすることでTRONパワーを得ることができ、フリーズしたTRXごとに1つのTRONパワーを得ることができる。",
   "HighChart_tip": "描画領域をクリックしてドラッグしてズームインする",
   "general_information": "一般情報",

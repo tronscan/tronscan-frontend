@@ -148,7 +148,7 @@ export const messages = {
   "view_super_representatives": "Ver SR",
   "create_new_wallet": "Crea una nueva cartera",
   "view_tokens": "Ver Tokens",
-  "transactions_last_day": "Transactions del último día",
+  "transactions_last_day": "Transacción",
   /*
   ##################################################################################
   #                                                                                #
@@ -1164,7 +1164,7 @@ export const messages = {
   #                                                                                #
   ##################################################################################
   */
-  "pice_per_1trx": "Precio",
+  "pice_per_1trx": "Precio TRX en tiempo real",
   "tron_power_freezing": "TRON Power se puede obtener congelando TRX, 1 TRON Power por cada TRX.",
   "HighChart_tip": "Haga clic y arrastre para ampliar",
   "general_information": "Información General",

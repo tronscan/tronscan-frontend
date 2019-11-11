@@ -1152,7 +1152,7 @@ export const messages = {
   #                                                                                #
   ##################################################################################
   */
-  "pice_per_1trx": "가격",
+  "pice_per_1trx": "실시간 TRX 시세",
   "tron_power_freezing": "TRON power은 TRX 동결을 통해 얻을수 있으며, 1个TRX 동결시, 1개 TRON power을 얻을수 있습니다.",
   "HighChart_tip": "플롯 영역을 클릭하고 드래그하여 확대하세요.",
   "general_information": "일반 정보",
