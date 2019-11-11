@@ -948,7 +948,6 @@ class Navigation extends React.Component {
     let {search, popup, notifications, announcement, announId, annountime, searchResults, selectedNet } = this.state;
 
     let activeComponent = this.getActiveComponent();
-    console.log('activeComponent',activeComponent)
     const isShowSideChain = !type || (type && IS_SUNNET);
 
     return (
