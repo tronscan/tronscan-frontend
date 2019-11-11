@@ -823,6 +823,7 @@ export default {
               data: [],
               //turboThreshold: 7000,
               //allowPointSelect: false,
+              color: "rgba(194,54,49,1)",
               marker: {
                   enabled: true,
                   //enabledThreshold: '7'
@@ -832,20 +833,22 @@ export default {
               type: 'spline',
               name: '',
               data: [],
+              //turboThreshold: 7000,
+              //allowPointSelect: false,
+              color: "rgba(194,54,49,.78)",
+              marker: {
+                  enabled: true,
+                  //enabledThreshold: '7'
+              }
+          },
+          {
+              type: 'spline',
+              name: '',
+              data: [],
+              //turboThreshold: 7000,
+              //allowPointSelect: false,
+              color: "rgba(194,54,49,.48)",
               yAxis: 1,
-              //turboThreshold: 7000,
-              //allowPointSelect: false,
-              marker: {
-                  enabled: true,
-                  //enabledThreshold: '7'
-              }
-          },
-          {
-              type: 'spline',
-              name: '',
-              data: [],
-              //turboThreshold: 7000,
-              //allowPointSelect: false,
               marker: {
                   enabled: true,
                   //enabledThreshold: '7'

@@ -20,6 +20,7 @@ import {
   LineReactHighChartAdd,
   LineReactHighChartTx,
   LineReactHighChartHomeAddress,
+  LineReactHighChartHomeTx,
 } from "../common/LineCharts";
 import { API_URL, IS_MAINNET } from "../../constants";
 import { setWebsocket } from "../../actions/account";
@@ -280,9 +281,7 @@ export default class Home extends Component {
               })
           }
       }
-      console.log('SunTemp',SunTemp)
-      console.log('temp',temp)
-      console.log('TotalAddressesTemp',TotalAddressesTemp)
+      console.log('temp.slice(0, 14)',temp.slice(0, 14))
 
       this.setState({
           txOverviewStats: temp.slice(0, 14),
@@ -290,7 +289,7 @@ export default class Home extends Component {
           SunTxOverviewStats: SunTemp.slice(0, 14),
           SunAddressesStats: SunAddressesTemp.slice(0, 14),
           TotalAddressesStats: TotalAddressesTemp.slice(0, 14),
-          TotalStats:TotalTemp.slice(0, 14),
+          TotalTxOverviewStats:TotalTemp.slice(0, 14),
       });
     }
 
@@ -419,12 +418,15 @@ export default class Home extends Component {
       transactionPerDay,
       totalAccounts,
       txOverviewStats,
+      SunTxOverviewStats,
+      TotalTxOverviewStats,
       addressesStats,
       SunAddressesStats,
       TotalAddressesStats,
       maxTps,
       tps
     } = this.state;
+
     return (
       <main className="home pb-0">
         {/* <i className="main-icon-left"></i>
@@ -732,16 +734,25 @@ export default class Home extends Component {
                       className="card-body pt-0"
                       style={{ paddingLeft: "2rem", paddingRight: "2rem" }}
                     >
-                      <div style={{ minWidth: 255, height: 200 }}>
+                    <div style={IS_MAINNET?{ minWidth: 255, height: 300 }:{ minWidth: 255, height: 200 }}>
                         {txOverviewStats === null ? (
                           <TronLoader />
                         ) : (
-                          <LineReactHighChartTx
-                            style={{ minWidth: 255, height: 200 }}
-                            data={txOverviewStats}
-                            intl={intl}
-                            source="home"
-                          />
+                            IS_MAINNET ?
+                              <LineReactHighChartHomeTx
+                                style={{ minWidth: 255, height: 300 }}
+                                data={txOverviewStats}
+                                sun={SunTxOverviewStats}
+                                total={TotalTxOverviewStats}
+                                intl={intl}
+                                source="home"
+                              />
+                              :<LineReactHighChartTx
+                                style={{ minWidth: 255, height: 200 }}
+                                data={txOverviewStats}
+                                intl={intl}
+                                source="home"
+                              />
                         )}
                       </div>
                     </div>
@@ -763,7 +774,7 @@ export default class Home extends Component {
                       className="card-body pt-0"
                       style={{ paddingLeft: "2rem", paddingRight: "2rem" }}
                     >
-                      <div style={{ minWidth: 255, height: 300 }}>
+                      <div style={IS_MAINNET?{ minWidth: 255, height: 300 }:{ minWidth: 255, height: 200 }}>
                         {addressesStats === null ? (
                           <TronLoader />
                         ) :(

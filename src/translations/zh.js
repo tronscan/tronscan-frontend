@@ -2215,7 +2215,7 @@ export const messages = {
   "tooltip_blockHeight": "",
   "tooltip_blockHeight_mainnet": "",
   "tooltip_blockHeight_sunnet": "",
-  "tooltip_tps":"2",
+  "tooltip_tps":"",
   "tooltip_tps_mainnet":"主链历史区块中包含的最大交易数",
   "tooltip_tps_sunnet":"SUN Network历史区块中包含的最大交易数",
   "tooltip_startTps":"1",
