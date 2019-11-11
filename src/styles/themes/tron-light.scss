@@ -630,6 +630,13 @@ $color: #c23631;
     float: right;
     margin-top: 10px;
     margin-right: 10px;
+    border:none;
+    color: #999999;
+    background:#fff;
+    &:hover{
+      color:#C23631;
+      background:rgba(194,54,49,0.05);
+    }
     .anticon {
       vertical-align: 0.05rem;
     }
@@ -638,9 +645,11 @@ $color: #c23631;
     width: 0%;
   }
   .ant-divider-horizontal.ant-divider-with-text-left {
-    color: rgba(0, 0, 0, 0.85);
-    font-size: 16px;
+    color: #999999;
     font-weight: 400;
+    margin: 10px 0;
+    font-size: 12px;
+    padding:0 37px;
   }
   .hidden-panel {
     height: 0;
@@ -651,15 +660,17 @@ $color: #c23631;
     -o-transition: height 0.5s;
   }
   .hidden-panel-height {
-    height: 260px;
+    height: 200px;
   }
-  h2 {
-    font-size: 24px;
-  }
+  
   .panel-title {
     font-size: 14px;
     color: rgba(0, 0, 0, 0.45);
     margin-bottom: 10px !important;
     // text-align:right;
   }
+  .text-muted h2{
+    font-size:18px;
+  }
+  
 }

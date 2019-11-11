@@ -281,21 +281,18 @@ export default class panelGroup extends Component {
             >
               {isExpand ? tu("collapse") : tu("expand")}
             </Button> */}
-            <div className="text-center mr-0 ml-0 mt-3">
+            <div className="text-center mr-0 ml-0 mt-2">
               <div
                 className="col-12  card  pt-1 pl-0 pr-0"
                 style={{ border: "none", borderRadius: 0 }}
               >
-                <div className="card-body row pt-4 pb-4 home-stats">
+                <div className="card-body row pt-3 pb-3 home-stats">
                   <div className="col-lg-2 col-md-4 col-xs-12 mb-lg-0  mb-md-3 ">
                     <p className="m-0 panel-title">{tu("online_nodes")}</p>
                     <Tooltip
                       title={intl.formatMessage({ id: "tooltip_onlineNodes" })}
                     >
-                      <Link
-                        to="/blockchain/nodes"
-                        className="hvr-underline-from-center hvr-underline-white text-muted"
-                      >
+                      
                         {mainnetData.onlineNodes != 0 ? (
                           <h2>
                             <CountUp
@@ -307,7 +304,7 @@ export default class panelGroup extends Component {
                         ) : (
                           <h2>-</h2>
                         )}
-                      </Link>
+                      
                     </Tooltip>
                   </div>
 
@@ -316,10 +313,7 @@ export default class panelGroup extends Component {
                     {/* <Tooltip
                       title={intl.formatMessage({ id: "tooltip_blockHeight" })}
                     > */}
-                    <Link
-                      to="/blockchain/blocks"
-                      className="hvr-underline-from-center hvr-underline-white text-muted"
-                    >
+                   
                       {mainnetData.blockHeight != 0 ? (
                         <h2>
                           <CountUp
@@ -331,7 +325,7 @@ export default class panelGroup extends Component {
                       ) : (
                         <h2>-</h2>
                       )}
-                    </Link>
+                  
                     {/* </Tooltip> */}
                   </div>
                   <div className="col-lg-2 col-md-4 col-xs-12 mb-lg-0  mb-md-3">
@@ -381,10 +375,7 @@ export default class panelGroup extends Component {
                         id: "tooltip_transactionPerDay"
                       })}
                     >
-                      <Link
-                        to="/blockchain/transactions"
-                        className="hvr-underline-from-center hvr-underline-white text-muted"
-                      >
+                      
                         {complexData.transactionPerDay != 0 ? (
                           <h2>
                             <CountUp
@@ -396,7 +387,7 @@ export default class panelGroup extends Component {
                         ) : (
                           <h2>-</h2>
                         )}
-                      </Link>
+                     
                     </Tooltip>
                   </div>
                   <div className="col-lg-2 col-md-4 col-xs-12">
@@ -406,10 +397,7 @@ export default class panelGroup extends Component {
                         id: "tooltip_accounts"
                       })}
                     >
-                      <Link
-                        to="/blockchain/accounts"
-                        className="hvr-underline-from-center hvr-underline-white text-muted"
-                      >
+                      
                         {complexData.totalAccounts != 0 ? (
                           <h2>
                             <CountUp
@@ -421,7 +409,7 @@ export default class panelGroup extends Component {
                         ) : (
                           <h2>-</h2>
                         )}
-                      </Link>
+                     
                     </Tooltip>
                   </div>
                   <div className="col-lg-2 col-md-4 col-xs-12">
@@ -458,7 +446,7 @@ export default class panelGroup extends Component {
               >
                 {/* hiden mainnet */}
                 <Divider orientation="left">{tu("main_chain")}</Divider>
-                <div className="text-center mr-0 ml-0 mt-3">
+                <div className="text-center mr-0 ml-0 mt-2">
                   <div
                     className="col-12  card  pt-1 pl-0 pr-0"
                     style={{ border: "none", borderRadius: 0 }}
@@ -628,7 +616,7 @@ export default class panelGroup extends Component {
                 </div>
                 {/* hiden sun network */}
                 <Divider orientation="left">{tu("sun_network")}</Divider>
-                <div className="text-center mr-0 ml-0 mt-3">
+                <div className="text-center mr-0 ml-0 mt-2">
                   <div
                     className="col-12  card  pt-1 pl-0 pr-0"
                     style={{ border: "none", borderRadius: 0 }}
@@ -781,12 +769,12 @@ export default class panelGroup extends Component {
         )}
         {/* sun network */}
         {!IS_MAINNET && (
-          <div className="panel-group row text-center mr-0 ml-0 mt-3">
+          <div className="panel-group row text-center mr-0 ml-0 mt-2">
             <div
               className="col-12  card  pt-1 pl-0 pr-0"
               style={{ border: "none", borderRadius: 0 }}
             >
-              <div className="card-body row pt-4 pb-4 home-stats">
+              <div className="card-body row pt-3 pb-3 home-stats">
                 <div className="col-lg-3 col-md-4 col-xs-12 mb-lg-0 mb-md-3">
                   <p className="m-0 panel-title">{tu("block_height")}</p>
 
