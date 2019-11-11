@@ -2162,5 +2162,44 @@ export const messages = {
   "developers_reward_tip":"Thank you for considering to help out with the java-tron! TRON Foundation welcome contributions from anyone on the internet, and are grateful for your contributions.",
   "developers_niTron":"niTron global developer conference will be held in Korea at 29 Feb, 2020. By the end of  31 Jan, 2020, developers with the total points end up in Top 5 will be rewarded two tickets each.",
   "developers_account":"Developers",
+  /*
+     ##################################################################################
+     #                                                                                #
+     # SUN-Network                              #
+     #                                                                                #
+     ##################################################################################
+  */
+ "main_chain": "메인 체인",
+ "sun_network": "SUN Network",
+ "expand": "데이터 세부 사항",
+ "collapse": "닫기",
+ "tooltip_onlineNodes": "메인 체인과 SUN Network 노드 수의 합 ",
+ "tooltip_onlineNodes_mainnet": "메인 체인 현재 노드 수",
+ "tooltip_onlineNodes_sunnet": "SUN Network 현재 노드 수",
+ "tooltip_blockHeight": "",
+ "tooltip_blockHeight_mainnet": "",
+ "tooltip_blockHeight_sunnet": "",
+ "tooltip_tps":"2",
+ "tooltip_tps_mainnet":"메인 체인 히스토리 블록 중 포함된 최대 거래 수",
+ "tooltip_tps_sunnet":"SUN Network 히스토리 블록 중 포함된 최대 거래 수",
+ "tooltip_startTps":"1",
+ "tooltip_startTps_mainnet":"메인 체인 초당 거래 수, 약 3초에 한번씩 업데이트",
+ "tooltip_startTps_sunnet":"SUN Network 초당 거래 수, 약 3초에 한번씩 업데이트",
+ "tooltip_transactionPerDay":"메인 체인과 SUN Network 거래 수의 합 ",
+ "tooltip_transactionPerDay_mainnet":"메인 체인 지난 1일 거래 수",
+ "tooltip_transactionPerDay_sunnet":"메인 체인 지난 1일 거래 수",
+ "tooltip_accounts":"메인 체인과 SUN Network의 실시간 계정 수의 합",
+ "tooltip_accounts_mainnet":"메인 체인의 실시간 계정 수",
+ "tooltip_accounts_sunnet":"SUN Network의 실시간 계정 수",
+ "tooltip_trxPrice":"USD 대비한 TRX 시세, 실시간 변동",
+ "tooltip_trxPrice_mainnet":"USD 대비한 TRX 시세, 실시간 변동",
+ "tooltip_trxPrice_sunnet":"USD 대비한 TRX 시세, 실시간 변동",
+ "nav_network":"SUN Network",
+ "sun_network_product":"제품 사례",
+ "sun_network_DAppChain":"어플 체인",
+ "sun_network_relevant_information":"관련 정보",
+ "sun_network_project_introduction":"프로젝트 소개",
+ "sun_network_development_document": "개발 문서",
+ "home_page":"홈"
 
 };

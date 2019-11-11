@@ -2158,4 +2158,43 @@ export const messages = {
   "developers_reward_tip":"Thank you for considering to help out with the java-tron! TRON Foundation welcome contributions from anyone on the internet, and are grateful for your contributions.",
   "developers_niTron":"niTron global developer conference will be held in Korea at 29 Feb, 2020. By the end of  31 Jan, 2020, developers with the total points end up in Top 5 will be rewarded two tickets each.",
   "developers_account":"Developers",
+  /*
+     ##################################################################################
+     #                                                                                #
+     # SUN-Network                              #
+     #                                                                                #
+     ##################################################################################
+  */
+ "main_chain": "メインチェーン",
+ "sun_network": "SUN Network",
+ "expand": "データの詳細",
+ "collapse": "閉じる",
+ "tooltip_onlineNodes": "メインチェーンとSUNネットワークのノード数の合計",
+ "tooltip_onlineNodes_mainnet": "メインチェーン現在のノード数",
+ "tooltip_onlineNodes_sunnet": "SUNネットワーク現在のノード数",
+ "tooltip_blockHeight": "",
+ "tooltip_blockHeight_mainnet": "",
+ "tooltip_blockHeight_sunnet": "",
+ "tooltip_tps":"2",
+ "tooltip_tps_mainnet":"メインチェーンで過去ブロックに含まれる最大トランザクション数",
+ "tooltip_tps_sunnet":"SUNネットワークトで過去ブロックに含まれる最大トランザクション数",
+ "tooltip_startTps":"1",
+ "tooltip_startTps_mainnet":"メインチェーンで1秒当たりトランザクション数、約3秒で更新",
+ "tooltip_startTps_sunnet":"SUNネットワークトで1秒あたりのトランザクション数，約3秒で更新",
+ "tooltip_transactionPerDay":"メインチェーンとSUNネットワークトのランザクション数の合計",
+ "tooltip_transactionPerDay_mainnet":"メインチェーンで過去1日のトランザクション数",
+ "tooltip_transactionPerDay_sunnet":"メインチェーンで過去1日のトランザクション数",
+ "tooltip_accounts":"メインチェーンとSUNネットワークのリアルタイムアカウント数の合計",
+ "tooltip_accounts_mainnet":"メインチェーンでリアルタイムアカウント数",
+ "tooltip_accounts_sunnet":"SUNネットワークトでリアルタイムアカウント数",
+ "tooltip_trxPrice":"TRXはUSDの価格対比、リアルタイム変動",
+ "tooltip_trxPrice_mainnet":"TRXはUSDの価格対比、リアルタイム変動",
+ "tooltip_trxPrice_sunnet":"TRXはUSDの価格対比、リアルタイム変動",
+ "nav_network":"SUN Network",
+ "sun_network_product":"製品例",
+ "sun_network_DAppChain":"アプリチェーン",
+ "sun_network_relevant_information":"関係資料",
+ "sun_network_project_introduction":"プロジェクト紹介",
+ "sun_network_development_document": "開発ファイル",
+ "home_page":"ホームページ"
 }

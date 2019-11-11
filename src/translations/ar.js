@@ -2151,5 +2151,43 @@
   "developers_reward_tip":"Thank you for considering to help out with the java-tron! TRON Foundation welcome contributions from anyone on the internet, and are grateful for your contributions.",
   "developers_niTron":"niTron global developer conference will be held in Korea at 29 Feb, 2020. By the end of  31 Jan, 2020, developers with the total points end up in Top 5 will be rewarded two tickets each.",
   "developers_account":"Developers",
-
+/*
+     ##################################################################################
+     #                                                                                #
+     # SUN-Network                              #
+     #                                                                                #
+     ##################################################################################
+  */
+ "main_chain": "主链",
+  "sun_network": "SUN Network",
+  "expand": "数据详情",
+  "collapse": "收起",
+  "tooltip_onlineNodes": "主链与SUN Network 节点数之和",
+  "tooltip_onlineNodes_mainnet": "主链当前节点数",
+  "tooltip_onlineNodes_sunnet": "SUN Network当前节点数",
+  "tooltip_blockHeight": "",
+  "tooltip_blockHeight_mainnet": "",
+  "tooltip_blockHeight_sunnet": "",
+  "tooltip_tps":"2",
+  "tooltip_tps_mainnet":"主链历史区块中包含的最大交易数",
+  "tooltip_tps_sunnet":"SUN Network历史区块中包含的最大交易数",
+  "tooltip_startTps":"1",
+  "tooltip_startTps_mainnet":"主链每秒交易数，约3s更新",
+  "tooltip_startTps_sunnet":"SUN Network每秒交易数，约3s更新",
+  "tooltip_transactionPerDay":"主链与SUN Network 交易数之和",
+  "tooltip_transactionPerDay_mainnet":"主链过去一天的交易数",
+  "tooltip_transactionPerDay_sunnet":"SUN Network过去一天的交易数",
+  "tooltip_accounts":"主链与SUN Network 实时账户数之和",
+  "tooltip_accounts_mainnet":"主链上实时账户数",
+  "tooltip_accounts_sunnet":"SUN Network上实时账户数",
+  "tooltip_trxPrice":"TRX对比USD的价格，实时波动",
+  "tooltip_trxPrice_mainnet":"TRX对比USD的价格，实时波动",
+  "tooltip_trxPrice_sunnet":"TRX对比USD的价格，实时波动",
+  "nav_network":"SUN Network",
+  "sun_network_product":"产品实例",
+  "sun_network_DAppChain":"应用链",
+  "sun_network_relevant_information":"相关资料",
+  "sun_network_project_introduction":"项目介绍",
+  "sun_network_development_document": "开发文档",
+  "home_page":"首页"
 };

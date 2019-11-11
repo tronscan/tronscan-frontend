@@ -2207,7 +2207,7 @@ export const messages = {
   */
   "main_chain": "主链",
   "sun_network": "SUN Network",
-  "expand": "展开",
+  "expand": "数据详情",
   "collapse": "收起",
   "tooltip_onlineNodes": "主链与SUN Network 节点数之和",
   "tooltip_onlineNodes_mainnet": "主链当前节点数",
@@ -2235,6 +2235,7 @@ export const messages = {
   "sun_network_DAppChain":"应用链",
   "sun_network_relevant_information":"相关资料",
   "sun_network_project_introduction":"项目介绍",
-  "sun_network_development_document":"开发文档",
+  "sun_network_development_document": "开发文档",
+  "home_page":"首页"
 
 };

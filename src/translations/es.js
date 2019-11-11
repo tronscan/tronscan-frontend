@@ -2166,5 +2166,44 @@ export const messages = {
   "developers_reward_tip":"Thank you for considering to help out with the java-tron! TRON Foundation welcome contributions from anyone on the internet, and are grateful for your contributions.",
   "developers_niTron":"niTron global developer conference will be held in Korea at 29 Feb, 2020. By the end of  31 Jan, 2020, developers with the total points end up in Top 5 will be rewarded two tickets each.",
   "developers_account":"Developers",
+   /*
+     ##################################################################################
+     #                                                                                #
+     # SUN-Network                              #
+     #                                                                                #
+     ##################################################################################
+  */
+ "main_chain": "cadena principal",
+ "sun_network": "SUN Network",
+ "expand": "Detalles de datos",
+ "collapse": "Plegar",
+ "tooltip_onlineNodes": "nodos en total en la cadena principal y la red SUN",
+ "tooltip_onlineNodes_mainnet": "Número de nodos en la cadena principal.",
+ "tooltip_onlineNodes_sunnet": "Número de nodos en Sun Network",
+ "tooltip_blockHeight": "",
+ "tooltip_blockHeight_mainnet": "",
+ "tooltip_blockHeight_sunnet": "",
+ "tooltip_tps":"",
+ "tooltip_tps_mainnet":"Número máximo de transacciones registradas en los bloques del historial en la cadena principal",
+ "tooltip_tps_sunnet":"Número máximo de transacciones recordadas en los bloques del historial en la red SUN",
+ "tooltip_startTps":"",
+ "tooltip_startTps_mainnet":"TPS en la cadena principal, actualizado cada 3 segundos",
+ "tooltip_startTps_sunnet":"TPS en Sun Network, actualizado cada 3 segundos",
+ "tooltip_transactionPerDay":"Transacciones en total en la cadena principal y la red SUN",
+ "tooltip_transactionPerDay_mainnet":"Transacciones del día anterior en la cadena principal.",
+ "tooltip_transactionPerDay_sunnet":"Transacciones del día anterior en la red SUN",
+ "tooltip_accounts":"Cuentas en total en tiempo real en la cadena principal y la red SUN",
+ "tooltip_accounts_mainnet":"Cuentas en tiempo real en la cadena principal.",
+ "tooltip_accounts_sunnet":"Cuentas en tiempo real en la red SUN",
+ "tooltip_trxPrice":"Precio TRX en USD, cotización en tiempo real",
+ "tooltip_trxPrice_mainnet":"Precio TRX en USD, cotización en tiempo real",
+ "tooltip_trxPrice_sunnet":"Precio TRX en USD, cotización en tiempo real",
+ "nav_network":"SUN Network",
+ "sun_network_product":"Ejemplo de producto",
+ "sun_network_DAppChain":"Cadena de aplicación",
+ "sun_network_relevant_information":"Información relacionada",
+ "sun_network_project_introduction":"Introducción del proyecto",
+ "sun_network_development_document": "Documento de desarrollo",
+ "home_page":"Página principal"
 
 };

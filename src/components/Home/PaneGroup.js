@@ -781,7 +781,7 @@ export default class panelGroup extends Component {
         )}
         {/* sun network */}
         {!IS_MAINNET && (
-          <div className="row text-center mr-0 ml-0 mt-3">
+          <div className="panel-group row text-center mr-0 ml-0 mt-3">
             <div
               className="col-12  card  pt-1 pl-0 pr-0"
               style={{ border: "none", borderRadius: 0 }}
