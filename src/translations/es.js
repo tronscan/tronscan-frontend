@@ -1164,7 +1164,7 @@ export const messages = {
   #                                                                                #
   ##################################################################################
   */
-  "pice_per_1trx": "Precio TRX en tiempo real",
+  "pice_per_1trx": "Precio TRX",
   "tron_power_freezing": "TRON Power se puede obtener congelando TRX, 1 TRON Power por cada TRX.",
   "HighChart_tip": "Haga clic y arrastre para ampliar",
   "general_information": "Información General",
