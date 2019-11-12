@@ -974,7 +974,7 @@ export const messages = {
   "burned_trx": "TRX сожжено",
   "supply_notes": "Краудсейл и предварительная продажа доступны по всему миру, за исключением США, Китая и Японии.",
   "14_day_transaction_history": "История транзакций за 14 дней",
-  "14_day_address_growth": "Увеличение количества адресов за 14 дней",
+  "14_day_address_growth": "",
   /*
   ##################################################################################
   #                                                                                #
@@ -1821,7 +1821,7 @@ export const messages = {
 
   "address_balance_token_type": "Проходная категория",
   "address_balance_token_price_TRX": "Значение",
-  "address_transactions_tip": "Количество транзакций включает в себя количество переводов",
+  "address_transactions_tip": "Number of actively initiated transactions",
   "address_tron_power_tip": "Заморозить TRX, чтобы получить права голоса",
   "address_total_balance_tip": "Общий баланс включает в себя все ценные сертификаты",
   "address_tron_power_used": "Используется",

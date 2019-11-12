@@ -725,7 +725,9 @@ export default {
                 autoRotation: [-10, -20, -30, -40, -50, -60, -70, -80, -90]
             }
         },
-        tooltip: {
+        tooltip:
+          {
+            // shared: true,
             dateTimeLabelFormats: {
                 millisecond: '%H:%M:%S.%L',
                 second: '%H:%M:%S',
@@ -736,7 +738,7 @@ export default {
                 month: '%Y-%m',
                 year: '%Y'
             }
-        },
+          },
         yAxis: [
           {
               title: {
@@ -752,9 +754,10 @@ export default {
               tickPixelInterval: 30,
               labels: {
                   style: {
-                      color: "#999999"
+                      color: "#932724",
                   }
               },
+              gridLineWidth: 0
           },
           {// Secondary yAxis
               title: {
@@ -770,10 +773,11 @@ export default {
               tickPixelInterval: 30,
               labels: {
                   style: {
-                      color: "#999999"
+                      color: "#333333",
                   }
               },
               opposite: true,
+              gridLineWidth: 0
 
           }
         ],
@@ -823,9 +827,10 @@ export default {
               data: [],
               //turboThreshold: 7000,
               //allowPointSelect: false,
-              color: "#8b0c07",
+              color: "#932724",
               marker: {
-                  enabled: false,
+                  enabled: true,
+                  radius:1
                   //enabledThreshold: '7'
               }
           },
@@ -835,9 +840,10 @@ export default {
               data: [],
               //turboThreshold: 7000,
               //allowPointSelect: false,
-              color: "rgba(194,54,49,.78)",
+              color: "#FF3F3F",
               marker: {
                   enabled: false,
+                  radius:1
                   //enabledThreshold: '7'
               }
           },
@@ -847,10 +853,11 @@ export default {
               data: [],
               //turboThreshold: 7000,
               //allowPointSelect: false,
-              color: "rgba(194,54,49,.48)",
+              color: "#333333",
               yAxis: 1,
               marker: {
                   enabled: false,
+                  radius:1
                   //enabledThreshold: '7'
               }
           }

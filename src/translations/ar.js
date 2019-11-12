@@ -1805,7 +1805,7 @@
 
   "address_balance_token_type": "فئة التوكن",
   "address_balance_token_price_TRX": "قيمة",
-  "address_transactions_tip": "عدد المعاملات يشمل عدد التحويلات",
+  "address_transactions_tip": "Number of actively initiated transactions",
   "address_tron_power_tip": "قم بتجميد TRX للحصول على حقوق التصويت",
   "address_total_balance_tip": "يتضمن الرصيد الكلي كل قيمة للتكون",
   "address_tron_power_used": "تم استخدامه",

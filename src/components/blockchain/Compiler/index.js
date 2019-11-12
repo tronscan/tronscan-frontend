@@ -355,7 +355,7 @@ class ContractCompiler extends React.Component {
                         type: 'error',
                         content: `Compiled error: ${errmsg}`
                     }];
-                    console.log('CompileStatus2222',CompileStatus)
+
                     //const error = errorData.concat(CompileStatus);
                     const  error = errorData;
                     this.setState({

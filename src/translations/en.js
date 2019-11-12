@@ -974,7 +974,7 @@ export const messages = {
   "burned_trx": "TRX Burned",
   "supply_notes": "Crowdsale and pre-sale available globally, except in the US, China, and Japan",
   "14_day_transaction_history": "14 days Transaction History",
-  "14_day_address_growth": "14 days Address Growth",
+  "14_day_address_growth": "14 days Accounts Growth",
   /*
   ##################################################################################
   #                                                                                #
@@ -1830,7 +1830,7 @@ export const messages = {
 
   "address_balance_token_type": "Token Type",
   "address_balance_token_price_TRX": "Value",
-  "address_transactions_tip": "Transactions includes transfers",
+  "address_transactions_tip": "Number of actively initiated transactions",
   "address_tron_power_tip": "Freeze TRX to get TRON Power",
   "address_total_balance_tip": "The total balance is the sum of all valuable tokens (including TRON Power)",
   "address_tron_power_used": "Used",

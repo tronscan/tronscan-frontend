@@ -188,7 +188,8 @@ export default class Home extends Component {
               SunAddressesTemp.push({
                   date: SunTxOverviewStats[suntx].date,
                   total: SunTxOverviewStats[suntx].totalAddress,
-                  increment: SunTxOverviewStats[suntx].newAddressSeen
+                  increment: SunTxOverviewStats[suntx].newAddressSeen,
+                  name:'sun_network'
               });
               SunTemp.push({
                   date: SunTxOverviewStats[suntx].date,
@@ -197,7 +198,8 @@ export default class Home extends Component {
                   avgBlockTime: SunTxOverviewStats[suntx].avgBlockTime,
                   avgBlockSize: SunTxOverviewStats[suntx].avgBlockSize,
                   totalBlockCount: SunTxOverviewStats[suntx].totalBlockCount,
-                  newAddressSeen: SunTxOverviewStats[suntx].newAddressSeen
+                  newAddressSeen: SunTxOverviewStats[suntx].newAddressSeen,
+                  name:'sun_network'
               });
           } else {
               SunTemp.push({
@@ -207,12 +209,14 @@ export default class Home extends Component {
                   avgBlockTime: SunTxOverviewStats[suntx].avgBlockTime,
                   avgBlockSize: SunTxOverviewStats[suntx].avgBlockSize,
                   totalBlockCount: SunTxOverviewStats[suntx].totalBlockCount - SunTxOverviewStats[suntx - 1].totalBlockCount,
-                  newAddressSeen: SunTxOverviewStats[suntx].newAddressSeen
+                  newAddressSeen: SunTxOverviewStats[suntx].newAddressSeen,
+                  name:'sun_network'
               });
               SunAddressesTemp.push({
                   date: SunTxOverviewStats[suntx].date,
                   total: SunTxOverviewStats[suntx].totalAddress,
-                  increment: SunTxOverviewStats[suntx].newAddressSeen
+                  increment: SunTxOverviewStats[suntx].newAddressSeen,
+                  name:'sun_network'
               });
           }
       }
@@ -230,7 +234,8 @@ export default class Home extends Component {
               addressesTemp.push({
                   date: txOverviewStats[tx].date,
                   total: txOverviewStats[tx].totalAddress,
-                  increment: txOverviewStats[tx].newAddressSeen
+                  increment: txOverviewStats[tx].newAddressSeen,
+                  name: 'main_chain',
               });
               temp.push({
                   date: txOverviewStats[tx].date,
@@ -239,7 +244,8 @@ export default class Home extends Component {
                   avgBlockTime: txOverviewStats[tx].avgBlockTime,
                   avgBlockSize: txOverviewStats[tx].avgBlockSize,
                   totalBlockCount: txOverviewStats[tx].totalBlockCount,
-                  newAddressSeen: txOverviewStats[tx].newAddressSeen
+                  newAddressSeen: txOverviewStats[tx].newAddressSeen,
+                  name: 'main_chain',
               });
           } else {
               temp.push({
@@ -249,12 +255,14 @@ export default class Home extends Component {
                   avgBlockTime: txOverviewStats[tx].avgBlockTime,
                   avgBlockSize: txOverviewStats[tx].avgBlockSize,
                   totalBlockCount: txOverviewStats[tx].totalBlockCount - txOverviewStats[tx - 1].totalBlockCount,
-                  newAddressSeen: txOverviewStats[tx].newAddressSeen
+                  newAddressSeen: txOverviewStats[tx].newAddressSeen,
+                  name: 'main_chain',
               });
               addressesTemp.push({
                   date: txOverviewStats[tx].date,
                   total: txOverviewStats[tx].totalAddress,
-                  increment: txOverviewStats[tx].newAddressSeen
+                  increment: txOverviewStats[tx].newAddressSeen,
+                  name: 'main_chain',
               });
           }
       }
@@ -267,7 +275,8 @@ export default class Home extends Component {
                   TotalAddressesTemp.push({
                       date: addressesTemp[j]['date'],
                       total: addressesTemp[j]['total'] + SunAddressesTemp[i]['total'],
-                      increment: addressesTemp[j]['increment'] + SunAddressesTemp[i]['increment']
+                      increment: addressesTemp[j]['increment'] + SunAddressesTemp[i]['increment'],
+                      name: 'TRON',
                   })
               }
           }
@@ -277,11 +286,10 @@ export default class Home extends Component {
               TotalTemp.push({
                   date: temp[j]['date'],
                   totalTransaction: temp[j]['totalTransaction'] + SunTemp[i]['totalTransaction'],
-
+                  name: 'TRON',
               })
           }
       }
-      console.log('temp.slice(0, 14)',temp.slice(0, 14))
 
       this.setState({
           txOverviewStats: temp.slice(0, 14),
@@ -724,10 +732,13 @@ export default class Home extends Component {
                       className="card-header bg-tron-light color-grey-100 text-center pb-0"
                       style={styles.card}
                     >
-                      <h5 className="m-0 lh-150">
-                        <Link to="blockchain/stats/txOverviewStats">
-                          {tu("14_day_transaction_history")}
-                        </Link>
+                      <h5 className="mt-1 lh-150">
+                        {/*<Link to="blockchain/stats/txOverviewStats">*/}
+                          {/*{tu("14_day_transaction_history")}*/}
+                        {/*</Link>*/}
+                        <span className="color-tron-100">
+                            {tu("14_day_transaction_history")}
+                        </span>
                       </h5>
                     </div>
                     <div
@@ -764,10 +775,13 @@ export default class Home extends Component {
                       className="card-header bg-tron-light color-grey-100 text-center pb-0"
                       style={styles.card}
                     >
-                      <h5 className="m-0 lh-150">
-                        <Link to="blockchain/stats/addressesStats">
-                          {tu("14_day_address_growth")}
-                        </Link>
+                      <h5 className="mt-1 lh-150">
+                        {/*<Link to="blockchain/stats/addressesStats">*/}
+                          {/*{tu("14_day_address_growth")}*/}
+                        {/*</Link>*/}
+                          <span className="color-tron-100">
+                              {tu("14_day_address_growth")}
+                          </span>
                       </h5>
                     </div>
                     <div

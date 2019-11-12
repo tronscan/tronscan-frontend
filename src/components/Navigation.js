@@ -1138,7 +1138,7 @@ class Navigation extends React.Component {
                         {
                           route.linkHref === true ?
                               <HrefLink
-                                  className={route.routes ? "nav-link dropdown-toggle" : "nav-link"}
+                                  className={route.routes ? "nav-link" : "nav-link"}
                                   href={activeLanguage == 'zh' ? route.zhurl : route.enurl}>
                                 {route.icon &&
                                 <i className={route.icon + " d-none d-lg-inline-block mr-1"}/>}
@@ -1146,7 +1146,7 @@ class Navigation extends React.Component {
                               </HrefLink>
                               :
                               <span><NavLink
-                                  className={route.routes ? (route.label == 'nav_network' ? 'nav-link dropdown-toggle text-capitalize' : "nav-link dropdown-toggle") : "nav-link"}
+                                  className={route.routes ? (route.label == 'nav_network' ? 'nav-link text-capitalize' : "nav-link") : "nav-link"}
                                   {...((route.routes && route.routes.length > 0) ? {'data-toggle': 'dropdown'} : {})}
                                   activeClassName="active"
                                   to={route.redirect? route.redirect: route.path}

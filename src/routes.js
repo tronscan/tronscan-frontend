@@ -1,7 +1,7 @@
 import React from "react";
 import { flatten } from "lodash";
 import { Redirect } from "react-router-dom";
-import { IS_MAINNET } from "./constants"
+import { IS_MAINNET, NETURL } from "./constants"
 
 import {
     HomeAsync,
@@ -62,6 +62,7 @@ export const routes = [
       path: "/",
       label: "home_page",
       icon: "fas fa-home",
+
       showInMenu: true,
       showSubMenu: false,
       showSubHeader: false,
@@ -338,7 +339,7 @@ export const routes = [
       [
           "sun_network_product",
           {
-              url: "https://dappchain.tronscan.org",
+              url: NETURL.SUNNET,
               icon: "fas fa-columns",
               label: "sun_network_DAppChain"
           },
@@ -747,11 +748,11 @@ export const routes = [
           zhurl: "https://tron.network/exchangesList?lng=zh",
           linkHref: true
         },
-        {
-          icon: "fas fa-columns",
-          label: "Main_Chain",
-          sidechain:true,
-        },
+        // {
+        //   icon: "fas fa-columns",
+        //   label: "Main_Chain",
+        //   sidechain:true,
+        // },
       ]
     ]
   },

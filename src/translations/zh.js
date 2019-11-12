@@ -964,8 +964,9 @@ export const messages = {
   "list_trx": "交易所上币",
   "burned_trx": "TRX烧毁数",
   "supply_notes": "全球范围可进行众筹和预售，除美国、中国及日本外",
-  "14_day_transaction_history": " 过去14天交易数",
-  "14_day_address_growth": " 过去14天账户增长",
+  "14_day_transaction_history": "过去14天交易数",
+  "14_day_address_growth": "过去14天账户增长",
+
 
   /*
     ##################################################################################
@@ -1848,7 +1849,7 @@ export const messages = {
 
   "address_balance_token_type": "通证类别",
   "address_balance_token_price_TRX": "价值",
-  "address_transactions_tip": "交易数包含转账数",
+  "address_transactions_tip": "主动发起的交易数量",
   "address_tron_power_tip": "冻结TRX可以获得投票权",
   "address_total_balance_tip": "总余额为所有有价值的通证余额之和（包含投票权）",
   "address_tron_power_used": "已用",

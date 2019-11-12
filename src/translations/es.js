@@ -974,7 +974,7 @@ export const messages = {
   "burned_trx": "TRX Quemados",
   "supply_notes": "Venta al público y venta anticipada disponible en todo el mundo, excepto en EE.UU., China y Japón",
   "14_day_transaction_history": "Historial de transacciones en los últimos 14 días",
-  "14_day_address_growth": "Aumento de direcciones en los últimos 14 días",
+  "14_day_address_growth": "Aumento de cuenta en los últimos 14 días",
   /*
   ##################################################################################
   #                                                                                #
@@ -1818,7 +1818,7 @@ export const messages = {
 
   "address_balance_token_type": "Tipos de token",
   "address_balance_token_price_TRX": "Valor",
-  "address_transactions_tip": "El número de transacción está incluido en el número de trading ",
+  "address_transactions_tip": "Number of actively initiated transactions",
   "address_tron_power_tip": "Se puede conseguir voto por congelar TRX",
   "address_total_balance_tip": "El balance total incluye todos los tokens con valor",
   "address_tron_power_used": "Utilizado",

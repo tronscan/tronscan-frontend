@@ -178,6 +178,7 @@ export class LineReactHighChartHomeAddress extends React.Component {
             _config.tooltip.formatter = function () {
                 let date = intl.formatDate((parseInt(this.point.date)));
                 return (
+                    intl.formatMessage({id: 'name'}) + ' : ' + intl.formatMessage({id: this.point.name}) + '<br/>' +
                     intl.formatMessage({id: 'date'}) + ' : ' + date + '<br/>' +
                     intl.formatMessage({id: 'daily_increment'}) + ' : ' + this.point.increment + '<br/>' +
                     intl.formatMessage({id: 'total_addresses'}) + ' : ' + this.point.total
@@ -398,6 +399,7 @@ export class LineReactHighChartHomeTx extends React.Component {
             _config.tooltip.formatter = function () {
                 let date = intl.formatDate(this.point.date);
                 return (
+                    intl.formatMessage({id: 'name'}) + ' : ' + intl.formatMessage({id: this.point.name}) + '<br/>' +
                     intl.formatMessage({id: 'date'}) + ' : ' + date + '<br/>' +
                     intl.formatMessage({id: 'total_transactions'}) + ' : ' + this.point.y
                 )
@@ -619,14 +621,18 @@ export class LineReactHighChartTotalTxns extends React.Component {
             _config.series[0].marker.enabled = false;
             _config.series[0].pointInterval = 24 * 3600 * 1000;
             _config.series[0].pointStart = Date.UTC(2018, 5, 25);
+
             _config.tooltip.formatter = function () {
                 let date = intl.formatDate(this.point.x);
                 return (
+                    intl.formatMessage({id: 'TRON'}) + '<br/>' +
                     intl.formatMessage({id: 'date'}) + ' : ' + date + '<br/>' +
                     intl.formatMessage({id: 'total_transactions'}) + ' : ' + this.point.y
                 )
             }
+
         }
+
          
         Highcharts.chart(document.getElementById(id),_config);
     }
