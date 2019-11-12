@@ -16,18 +16,18 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/editor.worker.js.gz"
   },
   {
-    "revision": "e8d11b69feb6deaea152d17e05a51dd8",
+    "revision": "01cb569ad602e2d389309823e3cca65b",
     "url": "/index.html"
   },
   {
-    "revision": "6f664a6fe7e800f73032d2ab103d4c31",
+    "revision": "82a927b461b7e8ac2ad0dea76c9d6965",
     "url": "/index.html.gz"
   },
   {
-    "url": "/precache-manifest.36e21061161b28aa0757e0f0a4d1a4b1.js"
+    "url": "/precache-manifest.620050cade97bce37c9d2f7055d5a1cd.js"
   },
   {
-    "revision": "0205e27a8a0f147bc1f7ed08479d0733",
+    "revision": "f5a55b8429119877a7cff4d2e2272bdb",
     "url": "/service-worker.js"
   },
   {
@@ -87,12 +87,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/css/NodeMap.aab5afec.chunk.css.gz"
   },
   {
-    "revision": "755eca18eb9ba19598f6",
-    "url": "/static/css/main.a8bfa87a.chunk.css"
+    "revision": "37e53d49d5216d96eb8a",
+    "url": "/static/css/main.3e17c3ba.chunk.css"
   },
   {
-    "revision": "95c69ea2c7d0114701bb0d85c1e101a8",
-    "url": "/static/css/main.a8bfa87a.chunk.css.gz"
+    "revision": "5e18a0a6071f617ddd77edc22aec2f45",
+    "url": "/static/css/main.3e17c3ba.chunk.css.gz"
   },
   {
     "revision": "38b36550f49db3091d6c",
@@ -719,12 +719,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/js/WalletWizard.a19eea49.chunk.js.gz"
   },
   {
-    "revision": "755eca18eb9ba19598f6",
-    "url": "/static/js/main.2e6e63a8.chunk.js"
+    "revision": "37e53d49d5216d96eb8a",
+    "url": "/static/js/main.416a626b.chunk.js"
   },
   {
-    "revision": "b167acdc8c84ffd72f7746d6e29edea2",
-    "url": "/static/js/main.2e6e63a8.chunk.js.gz"
+    "revision": "fc303d92e761a57e53dff5ad0e013747",
+    "url": "/static/js/main.416a626b.chunk.js.gz"
   },
   {
     "revision": "55b5038811ccfc4a6d60",
