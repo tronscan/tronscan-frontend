@@ -215,6 +215,9 @@ class VerifyContractCode extends Component {
      * 上传之前
      */
     beforeUpload = (file, fileList) => {
+        if (!this.isLoggedIn()) {
+            return;
+        }
         // 文件数量不超过10个
         if (fileList.length > FILE_MAX_NUM) {
             this.showModal(tu('selected_file_max_num'));
@@ -234,6 +237,9 @@ class VerifyContractCode extends Component {
     * @param file
     */
     handleChange = ({ file }) => {
+        if (!this.isLoggedIn()) {
+            return;
+        }
         if (list.length > 0 && file.uid === list[list.length - 1].uid) {
             this.setState({ compileFiles: [...list] });
 
