@@ -1145,8 +1145,8 @@ class Navigation extends React.Component {
                                 {tu(route.label)}
                               </HrefLink>
                               :
-                              <NavLink
-                                  className={route.routes ? "nav-link dropdown-toggle" : "nav-link"}
+                              <span><NavLink
+                                  className={route.routes ? (route.label == 'nav_network' ? 'nav-link dropdown-toggle text-capitalize' : "nav-link dropdown-toggle") : "nav-link"}
                                   {...((route.routes && route.routes.length > 0) ? {'data-toggle': 'dropdown'} : {})}
                                   activeClassName="active"
                                   to={route.redirect? route.redirect: route.path}
@@ -1154,7 +1154,11 @@ class Navigation extends React.Component {
                                 {route.icon &&
                                 <i className={route.icon + " d-none d-lg-inline-block mr-1"}/>}
                                 {tu(route.label)}
+                                
                               </NavLink>
+                             
+                              </span>
+                              
                         }
 
                         {
