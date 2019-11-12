@@ -336,7 +336,7 @@ class TokenList extends Component {
               }
               {
                   IS_MAINNET&& <span>
-                    {record.extra ? <a href={record.extra.url} className="token-active-details btn mt-2">{tu(record.extra.desc)}</a>
+                    {(record.extra && record.extra.url && record.extra.desc) ? <a href={record.extra.url} className="token-active-details btn mt-2">{tu(record.extra.desc)}</a>
                         : (record.pairId )?
                             <Link to={`/exchange/trc20?id=${record.pairId}`} className="token-details btn mt-2" target="_blank"> {tu('token_trade')}</Link>
                             : <div>
@@ -513,7 +513,7 @@ class TokenList extends Component {
                         }
                         {
                             IS_MAINNET&& <span>
-                           {record.extra ? <a href={record.extra.url} className="token-active-details btn mt-2">{tu(record.extra.desc)}</a>
+                           {(record.extra && record.extra.url && record.extra.desc)? <a href={record.extra.url} className="token-active-details btn mt-2">{tu(record.extra.desc)}</a>
                             : (record.pairId )?
                             <Link to={`/exchange/trc20?id=${record.pairId}`} className="token-details btn mt-2"> {tu('token_trade')}</Link>
                             : <div>
