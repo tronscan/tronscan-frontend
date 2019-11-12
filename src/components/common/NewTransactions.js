@@ -85,6 +85,7 @@ class NewTransactions extends React.Component {
                 }
                 let data = {}
                 let countData = {}
+                let totalData = {}
                 let allData = [];
                 const query = qs.stringify({ format: 'csv',...params})
                 if(isContract){
@@ -103,6 +104,11 @@ class NewTransactions extends React.Component {
                     ]).catch(e => {
                         console.log('error:' + e);
                     });
+                    [data, countData] = allData;
+                    transactions = data.transactions;
+                    total = countData.count;
+                    rangeTotal = data.rangeTotal;
+
                 }else{
                     getCsvUrl(`${API_URL}/api/transaction?${query}`);
 
@@ -112,29 +118,50 @@ class NewTransactions extends React.Component {
                             start: (page - 1) * pageSize,
                             ...params,
                         }),
-                        Client.getCountByType({
-                            type: 'transaction', 
+                        Client.getTransactions({
+                            limit: 0,
+                            start: (page - 1) * pageSize,
+                            ...params,
+                        }),
+                        Client.getTransactions({
+                            limit: 0,
                             ...filter
                         })
                     ]).catch(e => {
                         console.log('error:' + e);
                     });
+                    [data, totalData, countData] = allData;
+                    transactions = data.transactions;
+                    total = countData.rangeTotal;
+                    rangeTotal = totalData.rangeTotal;
                 }
-                [data, countData] = allData;
-                transactions = data.transactions;
-                total = countData.count;
-                rangeTotal = data.rangeTotal;
+
             }else{
-                let data = await Client.getTransactions({
-                    sort: '-timestamp',
-                    limit: pageSize,
-                    start: (page - 1) * pageSize,
-                    total: this.state.total,
-                    ...filter,
+                let data = {}
+                let countData = {}
+                let totalData = {}
+                let allData = [];
+                allData = await Promise.all([
+                    Client.getTransactions({
+                        sort: '-timestamp',
+                        limit: pageSize,
+                        start: (page - 1) * pageSize,
+                        total: this.state.total,
+                        ...filter,
+                    }),
+                    Client.getTransactions({
+                        limit: 0,
+                        start: (page - 1) * pageSize,
+                        ...filter,
+                    })
+                ]).catch(e => {
+                    console.log('error:' + e);
                 });
+                [data, totalData] = allData;
                 transactions = data.transactions;
-                total = data.total;
-                rangeTotal = data.rangeTotal;
+                total = totalData.total;
+                rangeTotal = totalData.rangeTotal;
+
             }
 
         }else {

@@ -52,15 +52,23 @@ class Blocks extends React.Component {
             pageSize: pageSize,
         }
     );
-    let {blocks, total, rangeTotal} = await Client.getBlocks({
-      limit: pageSize,
-      start: (page - 1) * pageSize,
-      sort: '-number',
-      start_timestamp:this.start,
-      end_timestamp:this.end,
-    });
+      const allData = await Promise.all([
+        Client.getBlocks({
+            limit: pageSize,
+            start: (page - 1) * pageSize,
+            sort: '-number',
+            start_timestamp:this.start,
+            end_timestamp:this.end,
+        }),
+        Client.getBlocks({
+            limit: 0,
+        })
+      ]).catch(e => {
+          console.log('error:' + e);
+      });
+      const [{ blocks }, { total, rangeTotal } ] = allData;
 
-    this.setState({
+      this.setState({
       loading: false,
       blocks,
       total,

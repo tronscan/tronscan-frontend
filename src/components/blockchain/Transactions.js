@@ -86,50 +86,71 @@ class Transactions extends React.Component {
         let result = null;
         let transactions = [];
         let total = 0;
+        let wholeChainTxCount,rangeTotal;
         if (date_start) {
             result = await Client.getTransactions({
                 sort: '-timestamp',
                 date_start: date_start,
                 date_to: date_to
             });
+
         }
         else {
 
             const address = queryString.parse(location.search).address;
             if(address){
-                result = await Client.getTransactions({
-                    sort: '-timestamp',
-                    limit: pageSize,
-                    start: (page - 1) * pageSize,
-                    ...searchParams,
+                const allData = await Promise.all([
+                    Client.getTransactions({
+                        sort: '-timestamp',
+                        limit: pageSize,
+                        start: (page - 1) * pageSize,
+                        ...searchParams,
+                    }),
+                    Client.getTransactions({
+                        limit: 0,
+                        ...searchParams,
+                    })
+                ]).catch(e => {
+                    console.log('error:' + e);
                 });
+
+                let [{ transactions }, { rangeTotal, total }] = allData;
+
                 this.setState({
+                    total: total,
+                    transactions: transactions,
                     addressLock: true,
-                    rangeTotal: result.rangeTotal
+                    rangeTotal: rangeTotal
                 })
             }else{
-                result = await Client.getTransactions({
-                    sort: '-timestamp',
-                    limit: pageSize,
-                    start: (page - 1) * pageSize,
-                    start_timestamp:this.start,
-                    end_timestamp:this.end,
-                    ...searchParams,
+                const allData = await Promise.all([
+                    Client.getTransactions({
+                        sort: '-timestamp',
+                        limit: pageSize,
+                        start: (page - 1) * pageSize,
+                        start_timestamp:this.start,
+                        end_timestamp:this.end,
+                        ...searchParams,
+                    }),
+                    Client.getTransactions({
+                        limit: 0,
+                        ...searchParams,
+                    })
+                ]).catch(e => {
+                    console.log('error:' + e);
                 });
+                let [{ transactions }, { wholeChainTxCount, total }] = allData;
+
                 this.setState({
+                    total: total,
+                    transactions: transactions,
                     addressLock: false,
-                    rangeTotal: result.wholeChainTxCount
+                    rangeTotal: wholeChainTxCount
                 })
             }
-
-
         }
-
         this.setState({
-            transactions: result.transactions,
             loading: false,
-            total: result.total,
-
         });
     };
 

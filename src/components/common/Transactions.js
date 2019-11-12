@@ -74,31 +74,47 @@ class Transactions extends React.Component {
 
     let transactions, total,rangeTotal = 0;
 
-    if(!isinternal ){
+    if(!isinternal){
+
       if(address){
-          let data = await Client.getTransactions({
-              sort: '-timestamp',
-              limit: pageSize,
-              start: (page - 1) * pageSize,
-              total: this.state.total,
-              start_timestamp:this.start,
-              end_timestamp:this.end,
-              ...filter,
+          const allData = await Promise.all([
+              Client.getTransactions({
+                  sort: '-timestamp',
+                  limit: pageSize,
+                  start: (page - 1) * pageSize,
+                  total: this.state.total,
+                  start_timestamp:this.start,
+                  end_timestamp:this.end,
+                  ...filter,
+              }),
+              Client.getTransactions({
+                  limit: 0,
+                  ...filter,
+              })
+          ]).catch(e => {
+              console.log('error:' + e);
           });
-          transactions = data.transactions;
-          total = data.total
-          rangeTotal = data.rangeTotal
+           [{ transactions }, { total, rangeTotal } ] = allData;
       }else{
-          let data = await Client.getTransactions({
-              limit: pageSize,
-              start: (page - 1) * pageSize,
-              sort: '-timestamp',
-              total: this.state.total,
-              ...filter
+          const allData = await Promise.all([
+              Client.getTransactions({
+                  limit: pageSize,
+                  start: (page - 1) * pageSize,
+                  sort: '-timestamp',
+                  total: this.state.total,
+                  ...filter
+              }),
+              Client.getTransactions({
+                  limit: 0,
+                  ...filter
+              })
+          ]).catch(e => {
+              console.log('error:' + e);
           });
-          transactions = data.transactions;
-          total = data.total
-          rangeTotal = data.rangeTotal
+          [{ transactions }, { total, rangeTotal } ] = allData;
+
+
+
       }
 
     }else {
