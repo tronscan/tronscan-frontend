@@ -754,8 +754,9 @@ export default {
               tickPixelInterval: 30,
               labels: {
                   style: {
-                      color: "#932724",
+                      color: "#c23631",
                   }
+
               },
               gridLineWidth: 0
           },
@@ -827,12 +828,13 @@ export default {
               data: [],
               //turboThreshold: 7000,
               //allowPointSelect: false,
-              color: "#932724",
+              color: "#c23631",
               marker: {
-                  enabled: true,
+                  enabled: false,
                   radius:1
                   //enabledThreshold: '7'
               }
+
           },
           {
               type: 'spline',
@@ -840,7 +842,7 @@ export default {
               data: [],
               //turboThreshold: 7000,
               //allowPointSelect: false,
-              color: "#FF3F3F",
+              color: "#FFAA38",
               marker: {
                   enabled: false,
                   radius:1
@@ -853,7 +855,7 @@ export default {
               data: [],
               //turboThreshold: 7000,
               //allowPointSelect: false,
-              color: "#333333",
+              color: "#FF8A84",
               yAxis: 1,
               marker: {
                   enabled: false,

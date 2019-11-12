@@ -42,7 +42,7 @@ export const messages = {
   "price": "Price",
   "blocks": "blocks",
   "block": "block",
-  "name": "name",
+  "name": "Name",
   "website": "website",
   "address": "Address",
   "sign_out": "sign out",
