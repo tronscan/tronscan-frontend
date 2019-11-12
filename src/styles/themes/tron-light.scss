@@ -517,9 +517,9 @@ $color: #c23631;
       color: $color-grey-300;
     }
     &:hover {
-      h2 {
-        color: $color;
-      }
+      // h2 {
+      //   color: $color;
+      // }
       p {
         color: $color;
       }
@@ -657,6 +657,9 @@ $color: #c23631;
     font-size: 12px;
     padding:0 37px;
   }
+  .ant-divider-horizontal.ant-divider-with-text-left .ant-divider-inner-text{
+    padding:0 8px 0 15px;
+  }
   .hidden-panel {
     height: 0;
     overflow: hidden;
@@ -677,6 +680,12 @@ $color: #c23631;
   }
   h2{
     font-size:18px;
+  }
+  // .home-stats a:hover{
+  //   color:#333;
+  // }
+  .hover-red:hover{
+    color: $color!important;
   }
   
 }

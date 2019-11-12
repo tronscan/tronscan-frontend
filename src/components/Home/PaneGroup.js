@@ -270,15 +270,6 @@ export default class panelGroup extends Component {
               {isExpand ? tu("collapse") : tu("expand")}
               <Icon type={isExpand ? "caret-up" : "caret-down"} />
             </span>
-
-            {/* <Button
-              icon={isExpand ? "caret-up" : "caret-down"}
-              onClick={() => {
-                this.expand();
-              }}
-            >
-              {isExpand ? tu("collapse") : tu("expand")}
-            </Button> */}
             <div className="text-center mr-0 ml-0 mt-2">
               <div
                 className="col-12  card  pt-1 pl-0 pr-0"
@@ -290,9 +281,8 @@ export default class panelGroup extends Component {
                     <Tooltip
                       title={intl.formatMessage({ id: "tooltip_onlineNodes" })}
                     >
-                      
                         {mainnetData.onlineNodes != 0 ? (
-                          <h2>
+                          <h2 className="hover-red">
                             <CountUp
                               start={0}
                               end={mainnetData.onlineNodes}
@@ -313,7 +303,7 @@ export default class panelGroup extends Component {
                     > */}
                    
                       {mainnetData.blockHeight != 0 ? (
-                        <h2>
+                        <h2 className="hover-red">
                           <CountUp
                             start={mainnetData.startblockHeight}
                             end={mainnetData.blockHeight}
@@ -333,13 +323,13 @@ export default class panelGroup extends Component {
                       className="hvr-underline-from-center hvr-underline-white text-muted"
                     >
                       {mainnetData.maxTps ? (
-                        <h2>
+                        <h2 >
                           {/* <Tooltip
                             title={intl.formatMessage({
                               id: "tooltip_startTps"
                             })}
                           > */}
-                          <span>
+                          <span className="hover-red">
                             <CountUp
                               start={mainnetData.startTps}
                               end={mainnetData.tps}
@@ -350,7 +340,7 @@ export default class panelGroup extends Component {
                           {/* <Tooltip
                             title={intl.formatMessage({ id: "tooltip_tps" })}
                           > */}
-                          <span>
+                          <span className="hover-red">
                             <CountUp
                               start={0}
                               end={mainnetData.maxTps}
@@ -375,7 +365,7 @@ export default class panelGroup extends Component {
                     >
                       
                         {complexData.transactionPerDay != 0 ? (
-                          <h2>
+                          <h2 className="hover-red">
                             <CountUp
                               start={0}
                               end={complexData.transactionPerDay}
@@ -397,7 +387,7 @@ export default class panelGroup extends Component {
                     >
                       
                         {complexData.totalAccounts != 0 ? (
-                          <h2>
+                          <h2 className="hover-red">
                             <CountUp
                               start={0}
                               end={complexData.totalAccounts}
@@ -417,8 +407,12 @@ export default class panelGroup extends Component {
                         id: "tooltip_trxPrice"
                       })}
                     >
-                      
-                        <h2>
+                       <HrefLink
+                            href="https://coinmarketcap.com/currencies/tron/"
+                            target="_blank"
+                            className="hvr-underline-from-center hvr-underline-white text-muted"
+                          >
+                        <h2 className="hover-red">
                           <TRXPrice
                             showPopup={false}
                             amount={1}
@@ -426,7 +420,7 @@ export default class panelGroup extends Component {
                             source="home"
                           />
                         </h2>
-                     
+                        </HrefLink>
                     </Tooltip>
                   </div>
                 </div>
@@ -457,7 +451,7 @@ export default class panelGroup extends Component {
                             className="hvr-underline-from-center hvr-underline-white text-muted"
                           >
                             {mainnetData.onlineNodes != 0 ? (
-                              <h2>
+                              <h2 className="hover-red">
                                 <CountUp
                                   start={0}
                                   end={mainnetData.onlineNodes}
@@ -482,7 +476,7 @@ export default class panelGroup extends Component {
                           className="hvr-underline-from-center hvr-underline-white text-muted"
                         >
                           {mainnetData.blockHeight != 0 ? (
-                            <h2>
+                            <h2 className="hover-red">
                               <CountUp
                                 start={mainnetData.startblockHeight}
                                 end={mainnetData.blockHeight}
@@ -507,7 +501,7 @@ export default class panelGroup extends Component {
                                   id: "tooltip_startTps_mainnet"
                                 })}
                               >
-                                <span>
+                                <span className="hover-red">
                                   <CountUp
                                     start={mainnetData.startTps}
                                     end={mainnetData.tps}
@@ -521,7 +515,7 @@ export default class panelGroup extends Component {
                                   id: "tooltip_tps_mainnet"
                                 })}
                               >
-                                <span>
+                                <span className="hover-red">
                                   <CountUp
                                     start={0}
                                     end={mainnetData.maxTps}
@@ -546,7 +540,7 @@ export default class panelGroup extends Component {
                             className="hvr-underline-from-center hvr-underline-white text-muted"
                           >
                             {mainnetData.transactionPerDay != 0 ? (
-                              <h2>
+                              <h2 className="hover-red">
                                 <CountUp
                                   start={0}
                                   end={mainnetData.transactionPerDay}
@@ -570,7 +564,7 @@ export default class panelGroup extends Component {
                             className="hvr-underline-from-center hvr-underline-white text-muted"
                           >
                             {mainnetData.totalAccounts != 0 ? (
-                              <h2>
+                              <h2 className="hover-red">
                                 <CountUp
                                   start={0}
                                   end={mainnetData.totalAccounts}
@@ -594,7 +588,7 @@ export default class panelGroup extends Component {
                             target="_blank"
                             className="hvr-underline-from-center hvr-underline-white text-muted"
                           >
-                            <h2>
+                            <h2 className="hover-red">
                               <TRXPrice
                                 showPopup={false}
                                 amount={1}
@@ -626,12 +620,9 @@ export default class panelGroup extends Component {
                             id: "tooltip_blockHeight_sunnet"
                           })}
                         > */}
-                        <Link
-                          to="/blockchain/blocks"
-                          className="hvr-underline-from-center hvr-underline-white text-muted"
-                        >
+                        
                           {sunnetData.blockHeight != 0 ? (
-                            <h2>
+                            <h2 className="hover-red">
                               <CountUp
                                 start={sunnetData.startblockHeight}
                                 end={sunnetData.blockHeight}
@@ -641,7 +632,7 @@ export default class panelGroup extends Component {
                           ) : (
                             <h2>-</h2>
                           )}
-                        </Link>
+                     
                         {/* </Tooltip> */}
                       </div>
                       <div className="col-lg-2 col-md-4 col-xs-12 mb-lg-0  mb-md-3">
@@ -656,7 +647,7 @@ export default class panelGroup extends Component {
                                   id: "tooltip_startTps_sunnet"
                                 })}
                               >
-                                <span>
+                                <span className="hover-red">
                                   <CountUp
                                     start={sunnetData.startTps}
                                     end={sunnetData.tps}
@@ -670,7 +661,7 @@ export default class panelGroup extends Component {
                                   id: "tooltip_tps_sunnet"
                                 })}
                               >
-                                <span>
+                                <span className="hover-red">
                                   <CountUp
                                     start={0}
                                     end={sunnetData.maxTps}
@@ -690,12 +681,9 @@ export default class panelGroup extends Component {
                             id: "tooltip_transactionPerDay_sunnet"
                           })}
                         >
-                          <Link
-                            to="/blockchain/transactions"
-                            className="hvr-underline-from-center hvr-underline-white text-muted"
-                          >
+                          
                             {sunnetData.transactionPerDay != 0 ? (
-                              <h2>
+                              <h2 className="hover-red">
                                 <CountUp
                                   start={0}
                                   end={sunnetData.transactionPerDay}
@@ -705,7 +693,7 @@ export default class panelGroup extends Component {
                             ) : (
                               <h2>-</h2>
                             )}
-                          </Link>
+                        
                         </Tooltip>
                       </div>
                       <div className="col-lg-2 col-md-4 col-xs-12">
@@ -714,12 +702,9 @@ export default class panelGroup extends Component {
                             id: "tooltip_accounts_sunnet"
                           })}
                         >
-                          <Link
-                            to="/blockchain/accounts"
-                            className="hvr-underline-from-center hvr-underline-white text-muted"
-                          >
+                         
                             {sunnetData.totalAccounts != 0 ? (
-                              <h2>
+                              <h2 className="hover-red">
                                 <CountUp
                                   start={0}
                                   end={sunnetData.totalAccounts}
@@ -729,7 +714,7 @@ export default class panelGroup extends Component {
                             ) : (
                               <h2>-</h2>
                             )}
-                          </Link>
+                         
                         </Tooltip>
                       </div>
                       <div className="col-lg-2 col-md-4 col-xs-12">
@@ -743,7 +728,7 @@ export default class panelGroup extends Component {
                             target="_blank"
                             className="hvr-underline-from-center hvr-underline-white text-muted"
                           >
-                            <h2>
+                            <h2 className="hover-red">
                               <TRXPrice
                                 showPopup={false}
                                 amount={1}
@@ -782,7 +767,7 @@ export default class panelGroup extends Component {
                     className="hvr-underline-from-center hvr-underline-white text-muted"
                   >
                     {sunnetData.blockHeight != 0 ? (
-                      <h2>
+                      <h2 className="hover-red">
                         <CountUp
                           start={sunnetData.startblockHeight}
                           end={sunnetData.blockHeight}
@@ -802,13 +787,13 @@ export default class panelGroup extends Component {
                     className="hvr-underline-from-center hvr-underline-white text-muted"
                   >
                     {sunnetData.maxTps ? (
-                      <h2>
+                      <h2 className="hover-red">
                         <Tooltip
                           title={intl.formatMessage({
                             id: "tooltip_startTps_sunnet"
                           })}
                         >
-                          <span>
+                          <span className="hover-red">
                             <CountUp
                               start={sunnetData.startTps}
                               end={sunnetData.tps}
@@ -822,7 +807,7 @@ export default class panelGroup extends Component {
                             id: "tooltip_tps_sunnet"
                           })}
                         >
-                          <span>
+                          <span className="hover-red">
                             <CountUp
                               start={0}
                               end={sunnetData.maxTps}
@@ -832,7 +817,7 @@ export default class panelGroup extends Component {
                         </Tooltip>
                       </h2>
                     ) : (
-                      <h2>-/-</h2>
+                      <h2 className="hover-red">-/-</h2>
                     )}
                   </div>
                 </div>
@@ -850,7 +835,7 @@ export default class panelGroup extends Component {
                       className="hvr-underline-from-center hvr-underline-white text-muted"
                     >
                       {sunnetData.transactionPerDay != 0 ? (
-                        <h2>
+                        <h2 className="hover-red">
                           <CountUp
                             start={0}
                             end={sunnetData.transactionPerDay}
@@ -875,7 +860,7 @@ export default class panelGroup extends Component {
                       className="hvr-underline-from-center hvr-underline-white text-muted"
                     >
                       {sunnetData.totalAccounts != 0 ? (
-                        <h2>
+                        <h2 className="hover-red">
                           <CountUp
                             start={0}
                             end={sunnetData.totalAccounts}
@@ -900,7 +885,7 @@ export default class panelGroup extends Component {
                       target="_blank"
                       className="hvr-underline-from-center hvr-underline-white text-muted"
                     >
-                      <h2>
+                      <h2 className="hover-red">
                         <TRXPrice
                           showPopup={false}
                           amount={1}
