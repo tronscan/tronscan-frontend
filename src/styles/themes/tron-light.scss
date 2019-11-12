@@ -655,10 +655,15 @@ $color: #c23631;
     font-weight: 400;
     margin: 10px 0;
     font-size: 12px;
-    padding:0 37px;
+    padding:0 20px;
   }
   .ant-divider-horizontal.ant-divider-with-text-left .ant-divider-inner-text{
-    padding:0 8px 0 15px;
+    padding:0 8px 0 0px;
+  }
+  .ant-divider-horizontal.ant-divider-with-text-left{
+    text-align:left;
+  }.ant-divider-horizontal.ant-divider-with-text-left::after{
+    width:100%;
   }
   .hidden-panel {
     height: 0;
@@ -681,9 +686,6 @@ $color: #c23631;
   h2{
     font-size:18px;
   }
-  // .home-stats a:hover{
-  //   color:#333;
-  // }
   .hover-red:hover{
     color: $color!important;
   }
