@@ -2151,6 +2151,12 @@
   "developers_reward_tip":"Thank you for considering to help out with the java-tron! TRON Foundation welcome contributions from anyone on the internet, and are grateful for your contributions.",
   "developers_niTron":"niTron global developer conference will be held in Korea at 29 Feb, 2020. By the end of  31 Jan, 2020, developers with the total points end up in Top 5 will be rewarded two tickets each.",
   "developers_account":"Developers",
+  "SR_rank": "تصنيف",
+  "SR_blocksMissed": "عدد الكتل المفقودة",
+  "SR_votes": "التصويت",
+  "SR_voteRatio": "معدل مكافأة الناخبين",
+  "SR_normal":"عادي",
+  "SR_avnormal":"غير طبيعى",
 /*
      ##################################################################################
      #                                                                                #
