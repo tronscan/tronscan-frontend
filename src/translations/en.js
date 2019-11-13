@@ -42,7 +42,7 @@ export const messages = {
   "price": "Price",
   "blocks": "blocks",
   "block": "block",
-  "name": "name",
+  "name": "Name",
   "website": "website",
   "address": "Address",
   "sign_out": "sign out",
@@ -974,7 +974,7 @@ export const messages = {
   "burned_trx": "TRX Burned",
   "supply_notes": "Crowdsale and pre-sale available globally, except in the US, China, and Japan",
   "14_day_transaction_history": "14 days Transaction History",
-  "14_day_address_growth": "14 days Address Growth",
+  "14_day_address_growth": "14 days Accounts Growth",
   /*
   ##################################################################################
   #                                                                                #
@@ -1164,7 +1164,7 @@ export const messages = {
   #                                                                                #
   ##################################################################################
   */
-  "pice_per_1trx": "Price",
+  "pice_per_1trx": "Real-time TRX price",
   "tron_power_freezing": "TRON power can be gained through freezing TRX, 1 TRX for 1 TRON power.",
   "HighChart_tip": "Click and drag in the plot area to zoom in",
   "general_information": "General Information",
@@ -1830,7 +1830,7 @@ export const messages = {
 
   "address_balance_token_type": "Token Type",
   "address_balance_token_price_TRX": "Value",
-  "address_transactions_tip": "Transactions includes transfers",
+  "address_transactions_tip": "Number of actively initiated transactions",
   "address_tron_power_tip": "Freeze TRX to get TRON Power",
   "address_total_balance_tip": "The total balance is the sum of all valuable tokens (including TRON Power)",
   "address_tron_power_used": "Used",
@@ -2171,5 +2171,44 @@ export const messages = {
   "developers_reward_tip":"Thank you for considering to help out with the java-tron! TRON Foundation welcome contributions from anyone on the internet, and are grateful for your contributions.",
   "developers_niTron":"niTron global developer conference will be held in Korea at 29 Feb, 2020. By the end of  31 Jan, 2020, developers with the total points end up in Top 5 will be rewarded two tickets each.",
   "developers_account":"Developers",
+ /*
+     ##################################################################################
+     #                                                                                #
+     # SUN-Network                              #
+     #                                                                                #
+     ##################################################################################
+  */
+  "main_chain": "Main Chain",
+  "sun_network": "SUN Network",
+  "expand": "Data info",
+  "collapse": "Collapse",
+  "tooltip_onlineNodes": "Total nodes on the main chain and SUN Network",
+  "tooltip_onlineNodes_mainnet": "Number of nodes on the main chain",
+  "tooltip_onlineNodes_sunnet": "Number of nodes on Sun Network",
+  "tooltip_blockHeight": "",
+  "tooltip_blockHeight_mainnet": "",
+  "tooltip_blockHeight_sunnet": "",
+  "tooltip_tps":"",
+  "tooltip_tps_mainnet":"Peak number of transactions recorded in the history blocks on the main chain",
+  "tooltip_tps_sunnet":"Peak number of transactions recorded in the history blocks on SUN Network",
+  "tooltip_startTps":"",
+  "tooltip_startTps_mainnet":"TPS on the main chain, updated every 3 seconds",
+  "tooltip_startTps_sunnet":"TPS on Sun Network, updated every 3 seconds",
+  "tooltip_transactionPerDay":"Total transactions on the main chain and SUN Network",
+  "tooltip_transactionPerDay_mainnet":"Transactions of the previous day on the main chain",
+  "tooltip_transactionPerDay_sunnet":"Transactions of the previous day on SUN Network",
+  "tooltip_accounts":"Total real-time accounts on the main chain and SUN Network",
+  "tooltip_accounts_mainnet":"Real-time accounts on the main chain",
+  "tooltip_accounts_sunnet":"Real-time accounts on SUN Network",
+  "tooltip_trxPrice":"TRX price in USD, real-time quote",
+  "tooltip_trxPrice_mainnet":"TRX price in USD, real-time quote",
+  "tooltip_trxPrice_sunnet":"TRX price in USD, real-time quote",
+  "nav_network":"SUN Network",
+  "sun_network_product":"Products ",
+  "sun_network_DAppChain":"DAppchain",
+  "sun_network_relevant_information":"Related info",
+  "sun_network_project_introduction":"About the project",
+  "sun_network_development_document": "Developer documentation",
+  "home_page":"Homepage"
 
 };

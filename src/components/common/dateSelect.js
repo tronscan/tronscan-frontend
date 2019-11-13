@@ -44,6 +44,10 @@ class DateSelect extends React.Component {
     componentDidMount(){
         this.changeDateByItem()
     }
+    disabledDate(current) {
+        // Can not select days after today 
+        return current > moment().endOf('day');
+    }
 
     render() {
         const { dataItemList, dataItem, RangePickerStatus } = this.state
@@ -65,6 +69,7 @@ class DateSelect extends React.Component {
                     onOk={this.onOk}
                     open={RangePickerStatus}
                     className={`position-absolute`}
+                    disabledDate={this.disabledDate}
                     onBlur={() => {this.setState({RangePickerStatus: false})}}
                     style={{top: 0, right: 0, zIndex: -1, opacity: 0}}
                     />

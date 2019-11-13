@@ -1154,7 +1154,7 @@ export const messages = {
     #                                                                                #
     ##################################################################################
     */
-    "pice_per_1trx": "قیمت",
+    "pice_per_1trx": "قیمت TRX در زمان واقعی",
     "tron_power_freezing": "انرژی را می توان از طریق فریز تی آر ایکس بدست آورد ،  هر ۱ تی آرایکس معادل ۱ انرژی میباشد.",
     "HighChart_tip": "برای بزرگنمایی روی منطقه کلیک کنید و بکشید",
     "general_information": "اطلاعات عمومی",
@@ -1812,7 +1812,7 @@ export const messages = {
 
     "address_balance_token_type": "انواع رمز عبور",
     "address_balance_token_price_TRX": "ارزش",
-    "address_transactions_tip": "تعداد معاملات شامل تعداد انتقال است.",
+    "address_transactions_tip": "Number of actively initiated transactions",
     "address_tron_power_tip": "فریز TRX برای کسب حق رای",
     "address_total_balance_tip": "مجموع تعادل شامل تمام گواهینامه های با ارزش است.",
     "address_tron_power_used": "استفاده شده",
@@ -2161,5 +2161,44 @@ export const messages = {
     "developers_reward_tip":"Thank you for considering to help out with the java-tron! TRON Foundation welcome contributions from anyone on the internet, and are grateful for your contributions.",
     "developers_niTron":"niTron global developer conference will be held in Korea at 29 Feb, 2020. By the end of  31 Jan, 2020, developers with the total points end up in Top 5 will be rewarded two tickets each.",
     "developers_account":"Developers",
+    /*
+     ##################################################################################
+     #                                                                                #
+     # SUN-Network                              #
+     #                                                                                #
+     ##################################################################################
+  */
+  "main_chain": "زنجیره اصلی",
+  "sun_network": "SUN Network",
+  "expand": "جزئیات اطلاعات",
+  "collapse": "فروپاشی",
+  "tooltip_onlineNodes": "مجموع گره های موجود در زنجیره اصلی و شبکه سان .",
+  "tooltip_onlineNodes_mainnet": "تعداد گره های موجود در زنجیره اصلی",
+  "tooltip_onlineNodes_sunnet": "تعداد گره ها در شبکه سان",
+  "tooltip_blockHeight": "",
+  "tooltip_blockHeight_mainnet": "",
+  "tooltip_blockHeight_sunnet": "",
+  "tooltip_tps":"2",
+  "tooltip_tps_mainnet":"بالاترین تعداد معاملات در زنجیره اصلی ثبت شده در تاریخ  بلوک ها .",
+  "tooltip_tps_sunnet":"بالاترین تعداد معاملات ثبت شده در تاریخ  بلوک های  شبکه سان .",
+  "tooltip_startTps":"",
+  "tooltip_startTps_mainnet":"TPS در زنجیره اصلی ، هر 3 ثانیه به روز رسانی  می شود.",
+  "tooltip_startTps_sunnet":"TPS در شبکه Sun ، هر 3 ثانیه به روز رسانی  می شود.",
+  "tooltip_transactionPerDay":"مجموع معاملات انجام شده  در زنجیره اصلی و خورشید سان .",
+  "tooltip_transactionPerDay_mainnet":"معاملات انجام شده  روز قبل در زنجیره اصلی.",
+  "tooltip_transactionPerDay_sunnet":"معاملات انجام شده  روز قبل در شبکه سان .",
+  "tooltip_accounts":"مجموع کل حساب های زمان واقعی در زنجیره اصلی و شبکه سان .",
+  "tooltip_accounts_mainnet":"تعداد حسابهای واقعی در زنجیره اصلی",
+  "tooltip_accounts_sunnet":"تعداد حسابهای واقعی در شبکه سان ",
+  "tooltip_trxPrice":"TRX قیمت USD را با نوسانات زمان واقعی مقایسه می کند.",
+  "tooltip_trxPrice_mainnet":"TRX قیمت USD را با نوسانات زمان واقعی مقایسه می کند.",
+  "tooltip_trxPrice_sunnet":"TRX قیمت USD را با نوسانات زمان واقعی مقایسه می کند.",
+  "nav_network":"SUN Network",
+  "sun_network_product":"نمونه هایی از محصولات",
+  "sun_network_DAppChain":"زنجیره برنامه",
+  "sun_network_relevant_information":"اطلاعات مرتبط",
+  "sun_network_project_introduction":"معرفی پروژه",
+  "sun_network_development_document": "مستندات توسعه",
+  "home_page":"صفحه اصلی"
 
 };

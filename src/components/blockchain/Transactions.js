@@ -3,7 +3,7 @@ import React, {Fragment} from "react";
 import {injectIntl} from "react-intl";
 import {loadTokens} from "../../actions/tokens";
 import {connect} from "react-redux";
-import TimeAgo from "react-timeago";
+// import TimeAgo from "react-timeago";
 import {Client} from "../../services/api";
 import {AddressLink, BlockNumberLink, TransactionHashLink} from "../common/Links";
 import {getQueryParams} from "../../utils/url";
@@ -18,6 +18,7 @@ import {DatePicker} from 'antd';
 import moment from 'moment';
 import xhr from "axios/index";
 import queryString from 'query-string';
+import BlockTime from '../common/blockTime'
 
 
 const RangePicker = DatePicker.RangePicker;
@@ -185,7 +186,8 @@ class Transactions extends React.Component {
                 key: 'timestamp',
                 align: 'left',
                 render: (text, record, index) => {
-                    return <TimeAgo date={text} title={moment(text).format("MMM-DD-YYYY HH:mm:ss A")}/>
+                    return <BlockTime time={text}></BlockTime>
+                    // <TimeAgo date={text} title={moment(text).format("MMM-DD-YYYY HH:mm:ss A")}/>
                 }
             },
             {

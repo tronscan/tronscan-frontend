@@ -3,7 +3,7 @@ import { injectIntl} from "react-intl";
 import {Client} from "../../services/api";
 import {AddressLink, TransactionHashLink, BlockNumberLink, TokenLink, TokenTRC20Link} from "./Links";
 import {tu, tv} from "../../utils/i18n";
-import TimeAgo from "react-timeago";
+// import TimeAgo from "react-timeago";
 import {Truncate,TruncateAddress} from "./text";
 import {withTimers} from "../../utils/timing";
 import SmartTable from "./SmartTable.js"
@@ -23,6 +23,8 @@ import { CONTRACT_ADDRESS_USDT, CONTRACT_ADDRESS_WIN, CONTRACT_ADDRESS_GGC } fro
 import qs from 'qs'
 import DateSelect from './dateSelect'
 import {API_URL} from "../../constants";
+import BlockTime from '../common/blockTime'
+
 
 
 
@@ -166,7 +168,9 @@ class TransfersAll extends React.Component {
 
     }
     customizedColumn = () => {
-        let {intl} = this.props;
+        let { intl } = this.props;
+            const defaultImg = require("../../images/logo_default.png");
+
         let column = [
             {
                 title: upperFirst(intl.formatMessage({id: 'hash'})),
@@ -232,7 +236,8 @@ class TransfersAll extends React.Component {
                 className: 'ant_table',
                 width: '14%',
                 render: (text, record, index) => {
-                    return <TimeAgo date={text} title={moment(text).format("MMM-DD-YYYY HH:mm:ss A")}/>
+                    return <BlockTime time={text}></BlockTime>
+                    // <TimeAgo date={text} title={moment(text).format("MMM-DD-YYYY HH:mm:ss A")}/>
                 }
             },
             {
@@ -293,41 +298,83 @@ class TransfersAll extends React.Component {
                 align: 'left',
                 className: 'ant_table',
                 render: (text, record, index) => {
-                    return <div>
-                            {
-                                record.map_token_id == 1002000  || record.map_token_id == CONTRACT_ADDRESS_USDT || record.map_token_id == CONTRACT_ADDRESS_WIN || record.map_token_id == CONTRACT_ADDRESS_GGC?<div>
-                                        <b className="token-img-top" style={{marginRight: 5}}>
-                                            <img width={20} height={20} src={record.map_amount_logo} />
-                                            <i style={{width: 10, height: 10, bottom: -5}}></i>
-                                        </b>
-                                        {
-                                            record.type == 'trc20'?
-                                                <TokenTRC20Link name={record.map_token_id} address={record.contract_address} namePlus={record.map_token_name_abbr}/>
-                                                :
-                                                <TokenLink id={record.map_token_id} name={record.map_token_name_abbr}/>
-
-
-                                        }
-                                    </div>
-                                    :
-                                    <div>
-                                        {
-                                            isAddressValid(record.map_token_name_abbr)?<span>{tu('address_transfer_unrecorded_token')}</span>:
-                                            <div>
-                                                <img width={20} height={20} src={record.map_amount_logo} style={{marginRight: 5}}/>
-                                                {
-                                                    record.type == 'trc20'?
-
-                                                        <TokenTRC20Link name={record.map_token_id} address={record.contract_address} namePlus={record.map_token_name_abbr}/>
-                                                        :
-                                                        <TokenLink id={record.map_token_id} name={record.map_token_name_abbr?record.map_token_name_abbr:record.token_name}/>
-                                                }
-                                            </div>
-                                        }
-
-                                    </div>
-                            }
-                        </div>
+                    return (
+                      <div>
+                        {record.map_token_id == 1002000 ||
+                        record.map_token_id == CONTRACT_ADDRESS_USDT ||
+                        record.map_token_id == CONTRACT_ADDRESS_WIN ||
+                        record.map_token_id == CONTRACT_ADDRESS_GGC ? (
+                          <div>
+                            <b
+                              className="token-img-top"
+                              style={{ marginRight: 5 }}
+                            >
+                              <img
+                                width={20}
+                                height={20}
+                                src={record.map_amount_logo}
+                                onError={e => {
+                                  e.target.onerror = null;
+                                  e.target.src = defaultImg;
+                                }}
+                              />
+                              <i
+                                style={{ width: 10, height: 10, bottom: -5 }}
+                              ></i>
+                            </b>
+                            {record.type == "trc20" ? (
+                              <TokenTRC20Link
+                                name={record.map_token_id}
+                                address={record.contract_address}
+                                namePlus={record.map_token_name_abbr}
+                              />
+                            ) : (
+                              <TokenLink
+                                id={record.map_token_id}
+                                name={record.map_token_name_abbr}
+                              />
+                            )}
+                          </div>
+                        ) : (
+                          <div>
+                            {isAddressValid(record.map_token_name_abbr) ? (
+                              <span>
+                                {tu("address_transfer_unrecorded_token")}
+                              </span>
+                            ) : (
+                              <div>
+                                <img
+                                  width={20}
+                                  height={20}
+                                  src={record.map_amount_logo}
+                                  style={{ marginRight: 5 }}
+                                  onError={e => {
+                                    e.target.onerror = null;
+                                    e.target.src = defaultImg;
+                                  }}
+                                />
+                                {record.type == "trc20" ? (
+                                  <TokenTRC20Link
+                                    name={record.map_token_id}
+                                    address={record.contract_address}
+                                    namePlus={record.map_token_name_abbr}
+                                  />
+                                ) : (
+                                  <TokenLink
+                                    id={record.map_token_id}
+                                    name={
+                                      record.map_token_name_abbr
+                                        ? record.map_token_name_abbr
+                                        : record.token_name
+                                    }
+                                  />
+                                )}
+                              </div>
+                            )}
+                          </div>
+                        )}
+                      </div>
+                    );
                 }
             },
             // {
@@ -381,8 +428,13 @@ class TransfersAll extends React.Component {
     onDateOk (start,end) {
         this.start = start.valueOf();
         this.end = end.valueOf();
-        let {page, pageSize} = this.state;
-        this.load(page,pageSize);
+        let { page, pageSize } = this.state;
+        this.setState({
+            page:1
+        }, () => {
+            this.load(1, pageSize);    
+        })
+        
     }
 
     onRadioChange = (e) => {
@@ -437,7 +489,8 @@ class TransfersAll extends React.Component {
                     (!loading && transfers.length === 0)?
                         <div className="p-3 text-center no-data">{tu("no_transfers")}</div>
                         :
-                        <SmartTable bordered={true} loading={loading} column={column} data={transfers} total={rangeTotal> 2000? 2000: rangeTotal} locale={locale} addr="address" transfers="address"
+                        <SmartTable bordered={true} loading={loading} column={column} data={transfers} total={rangeTotal > 2000 ? 2000 : rangeTotal} locale={locale} addr="address" transfers="address"
+                                    current={this.state.page}
                                     onPageChange={(page, pageSize) => {
                                         this.onChange(page, pageSize)
                                     }}/>

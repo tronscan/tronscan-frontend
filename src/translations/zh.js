@@ -964,8 +964,9 @@ export const messages = {
   "list_trx": "交易所上币",
   "burned_trx": "TRX烧毁数",
   "supply_notes": "全球范围可进行众筹和预售，除美国、中国及日本外",
-  "14_day_transaction_history": " 过去14天交易数",
-  "14_day_address_growth": " 过去14天地址增长",
+  "14_day_transaction_history": "过去14天交易数",
+  "14_day_address_growth": "过去14天账户增长",
+
 
   /*
     ##################################################################################
@@ -1183,7 +1184,7 @@ export const messages = {
   #                                                                                #
   ##################################################################################
   */
-  "pice_per_1trx": "价格",
+  "pice_per_1trx": "TRX实时价格",
   "tron_power_freezing": "TRON power 可以通过冻结TRX来获得，每冻结1个TRX，可以获得1个TRON power。",
   "HighChart_tip": "单击并拖动绘图区域以放大",
   "general_information": "一般信息",
@@ -1848,7 +1849,7 @@ export const messages = {
 
   "address_balance_token_type": "通证类别",
   "address_balance_token_price_TRX": "价值",
-  "address_transactions_tip": "交易数包含转账数",
+  "address_transactions_tip": "主动发起的交易数量",
   "address_tron_power_tip": "冻结TRX可以获得投票权",
   "address_total_balance_tip": "总余额为所有有价值的通证余额之和（包含投票权）",
   "address_tron_power_used": "已用",
@@ -2197,5 +2198,45 @@ export const messages = {
   "contract_verifty_passed":"验证通过",
   "unverifty_passed":"未验证",
   "developers_account":"个参与者",
+
+  /*
+     ##################################################################################
+     #                                                                                #
+     # SUN-Network                              #
+     #                                                                                #
+     ##################################################################################
+  */
+  "main_chain": "主链",
+  "sun_network": "SUN Network",
+  "expand": "数据详情",
+  "collapse": "收起",
+  "tooltip_onlineNodes": "主链与SUN Network 节点数之和",
+  "tooltip_onlineNodes_mainnet": "主链当前节点数",
+  "tooltip_onlineNodes_sunnet": "SUN Network当前节点数",
+  "tooltip_blockHeight": "",
+  "tooltip_blockHeight_mainnet": "",
+  "tooltip_blockHeight_sunnet": "",
+  "tooltip_tps":"",
+  "tooltip_tps_mainnet":"主链历史区块中包含的最大交易数",
+  "tooltip_tps_sunnet":"SUN Network历史区块中包含的最大交易数",
+  "tooltip_startTps":"1",
+  "tooltip_startTps_mainnet":"主链每秒交易数，约3s更新",
+  "tooltip_startTps_sunnet":"SUN Network每秒交易数，约3s更新",
+  "tooltip_transactionPerDay":"主链与SUN Network 交易数之和",
+  "tooltip_transactionPerDay_mainnet":"主链过去一天的交易数",
+  "tooltip_transactionPerDay_sunnet":"SUN Network过去一天的交易数",
+  "tooltip_accounts":"主链与SUN Network 实时账户数之和",
+  "tooltip_accounts_mainnet":"主链上实时账户数",
+  "tooltip_accounts_sunnet":"SUN Network上实时账户数",
+  "tooltip_trxPrice":"TRX对比USD的价格，实时波动",
+  "tooltip_trxPrice_mainnet":"TRX对比USD的价格，实时波动",
+  "tooltip_trxPrice_sunnet":"TRX对比USD的价格，实时波动",
+  "nav_network":"SUN Network",
+  "sun_network_product":"产品实例",
+  "sun_network_DAppChain":"应用链",
+  "sun_network_relevant_information":"相关资料",
+  "sun_network_project_introduction":"项目介绍",
+  "sun_network_development_document": "开发文档",
+  "home_page":"首页"
 
 };

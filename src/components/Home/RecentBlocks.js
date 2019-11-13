@@ -5,7 +5,7 @@ import {loadBlocks} from "../../actions/blockchain";
 import {connect} from "react-redux";
 import {TronLoader} from "../common/loaders";
 import {AddressLink} from "../common/Links";
-import TimeAgo from "react-timeago";
+// import TimeAgo from "react-timeago";
 import moment from 'moment';
 import {Link} from "react-router-dom";
 import {TRXPrice} from "../common/Price";
@@ -13,8 +13,14 @@ import {withTimers} from "../../utils/timing";
 import {IS_MAINNET} from "../../constants";
 import 'react-perfect-scrollbar/dist/css/styles.css';
 import PerfectScrollbar from 'react-perfect-scrollbar'
+import BlockTime from '../common/blockTime'
+
 
 import isMobile from "../../utils/isMobile";
+import {timeDiffFormat,setTimeString} from '../../utils/DateTime'
+import { clear } from "sisteransi";
+
+
 
 class RecentBlocks extends Component {
 
@@ -28,14 +34,20 @@ class RecentBlocks extends Component {
   }
 
   componentDidMount() {
+    let {timer} = this.state;
     this.props.loadBlocks();
     this.props.setInterval(() => {
       this.props.loadBlocks();
-    }, 10000);
+      
+    }, 10000); 
+
   }
+
+  
 
   render() {
     let { blocks, isRightText, transactions} = this.props;
+    let {newBlocks} = this.state;
     // let { blockShow } = this.state
     // if (blocks.length === 0) {
     //   return (
@@ -47,6 +59,7 @@ class RecentBlocks extends Component {
 
     return (
         <div className="card" style={styles.card}>
+          {/* 测试 */}
           <div className="card-header bg-tron-light d-flex">
             <i className="fa fa-cubes mr-3 fa_width_20 color-grey-100"></i>
             <h5 className="m-0 lh-175 color-grey-100">{tu("blocks")}</h5>
@@ -75,7 +88,7 @@ class RecentBlocks extends Component {
                                   #{block.number}
                                 </Link>
                                 <div className="text-muted color-grey-300 small pt-2">
-                                  <TimeAgo date={block.timestamp} title={moment(block.timestamp).format("MMM-DD-YYYY HH:mm:ss A")}/>
+                                <BlockTime time={block.timestamp}></BlockTime>
                                 </div>
                               </div>
                               <div>
@@ -121,7 +134,9 @@ class RecentBlocks extends Component {
                                 # --
                               </Link>
                               <div className="text-muted color-grey-300 small pt-2">
-                                --
+                                
+                                <BlockTime time={block.timestamp}></BlockTime>
+                                {/* <TimeAgo date={block.timestamp} title={moment(block.timestamp).format("MMM-DD-YYYY HH:mm:ss A")}/> */}
                               </div>
                             </div>
                             <div>
@@ -196,7 +211,7 @@ class RecentBlocks extends Component {
                               }
 
                               <div className="text-muted color-grey-300 small" style={styles.nowrap}>
-                                <TimeAgo date={block.timestamp} title={moment(block.timestamp).format("MMM-DD-YYYY HH:mm:ss A")}/>
+                              <BlockTime time={block.timestamp}></BlockTime>
                               </div>
                             </div>
                           </div>
@@ -252,6 +267,9 @@ class RecentBlocks extends Component {
         </div>
     )
   }
+
+  
+
 }
 
 

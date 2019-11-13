@@ -1,7 +1,7 @@
 import React from "react";
 import { flatten } from "lodash";
 import { Redirect } from "react-router-dom";
-import { IS_MAINNET } from "./constants"
+import { IS_MAINNET, NETURL } from "./constants"
 
 import {
     HomeAsync,
@@ -58,6 +58,18 @@ import {
 
 
 export const routes = [
+  {
+      path: "/",
+      label: "home_page",
+      icon: "fas fa-home",
+
+      showInMenu: true,
+      showSubMenu: false,
+      showSubHeader: false,
+      isExact: true,
+      component: HomeAsync,
+      strict:true
+  },
   {
     path: "/blockchain",
     label: "blockchain",
@@ -320,6 +332,34 @@ export const routes = [
   //   none: true
   // },
   {
+    path: "/network",
+    label: "nav_network",
+    icon: "fas fa-indent",
+    routes: [
+      [
+          "sun_network_product",
+          {
+              url: NETURL.SUNNET,
+              icon: "fas fa-columns",
+              label: "sun_network_DAppChain"
+          },
+      ],
+      [
+          "sun_network_relevant_information",
+          {
+              url: "https://tron.network/sunnetwork/#/",
+              icon: "fa fa-globe",
+              label: "sun_network_project_introduction"
+          },
+          {
+              url: "https://tron.network/sunnetwork/doc/guide/",
+              icon: "fa fa-book",
+              label: "sun_network_development_document"
+          },
+      ],
+  ]
+  },
+  {
     label: "TRXMarket",
     path: "/exchange/trc20",
     icon: "fas fa-exchange-alt",
@@ -443,12 +483,12 @@ export const routes = [
         icon: "fa fa-eye",
         component: TransactionViewerAsync
       },
-      {
-        label: "node_tester",
-        path: "/tools/node-tester",
-        icon: "fa fa-server",
-        component: NodeTesterAsync
-      },
+      // {
+      //   label: "node_tester",
+      //   path: "/tools/node-tester",
+      //   icon: "fa fa-server",
+      //   component: NodeTesterAsync
+      // },
       {
         label: "tron_convert_tool",
         path: "/tools/tron-convert-tool",
@@ -592,12 +632,12 @@ export const routes = [
           icon: "fa fa-random",
           component: TronConvertToolAsync
         },
-        {
-          label: "node_tester",
-          path: "/tools/node-tester",
-          icon: "fa fa-server",
-          component: NodeTesterAsync
-        }
+        // {
+        //   label: "node_tester",
+        //   path: "/tools/node-tester",
+        //   icon: "fa fa-server",
+        //   component: NodeTesterAsync
+        // }
         // {
         //     url: "https://github.com/tronscan/tronscan-desktop/releases",
         //     icon: "fa fa-download",
@@ -708,11 +748,11 @@ export const routes = [
           zhurl: "https://tron.network/exchangesList?lng=zh",
           linkHref: true
         },
-        {
-          icon: "fas fa-columns",
-          label: "Main_Chain",
-          sidechain:true,
-        },
+        // {
+        //   icon: "fas fa-columns",
+        //   label: "Main_Chain",
+        //   sidechain:true,
+        // },
       ]
     ]
   },
@@ -775,15 +815,7 @@ export const routes = [
       showInMenu: false,
       component: DevelopersRewardAsync,
   },
-  {
-    path: "/",
-    label: "home",
-    showInMenu: false,
-    showSubMenu: false,
-    showSubHeader: false,
-    isExact: true,
-    component: HomeAsync
-  },
+
 
 
 ];

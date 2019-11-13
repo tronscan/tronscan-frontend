@@ -674,7 +674,7 @@ class Statistics extends React.Component {
                 title: "#",
                 dataIndex: 'index',
                 key: 'index',
-                width: '40px',
+                width: '60px',
                 align: 'center',
                 render: (text, record, index) => {
                   return <span>{text}</span>
@@ -739,7 +739,7 @@ class Statistics extends React.Component {
                 title: "#",
                 dataIndex: 'index',
                 key: 'index',
-                width: '40px',
+                width: '60px',
                 align: 'center',
                 render: (text, record, index) => {
                   return <span>{text}</span>
