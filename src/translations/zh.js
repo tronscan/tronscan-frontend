@@ -2197,7 +2197,14 @@ export const messages = {
   "enter_main_contract":"请输入主合约的名称",
   "contract_verifty_passed":"验证通过",
   "unverifty_passed":"未验证",
-  "developers_account":"个参与者",
+  "developers_account": "个参与者",
+  "SR_rank": "排名",
+  "SR_blocksMissed": "丢块数量",
+  "SR_votes": "得票数",
+  "SR_voteRatio": "投票分成比例",
+  "SR_normal":"出块正常",
+  "SR_avnormal":"出块异常",
+  
 
   /*
      ##################################################################################
