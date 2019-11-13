@@ -334,7 +334,7 @@ export const routes = [
   {
     path: "/network",
     label: "nav_network",
-    icon: "fas fa-indent",
+    icon: "fas fa-project-diagram",
     routes: [
       [
           "sun_network_product",

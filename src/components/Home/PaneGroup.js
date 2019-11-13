@@ -87,8 +87,10 @@ export default class panelGroup extends Component {
       },
       complexData: {
         totalAccounts: 0,
-        transactionPerDay: 0
-      }
+        transactionPerDay: 0,
+        onlineNodes: 0
+      },
+      onlineNodesSun: 12
     };
   }
 
@@ -96,7 +98,7 @@ export default class panelGroup extends Component {
     let data = await ApiHome.getHomePage(type);
     Lockr.set("dataEth", data.priceETH);
     Lockr.set("dataEur", data.priceEUR);
-    let { mainnetData, sunnetData, complexData } = this.state;
+    let { mainnetData, sunnetData, complexData, onlineNodesSun } = this.state;
     let Data = {
       onlineNodes: data.node.total,
       maxTps: data.tps.data.maxTps ? data.tps.data.maxTps : 0,
@@ -109,15 +111,19 @@ export default class panelGroup extends Component {
         mainnetData: Object.assign(mainnetData, Data),
         complexData: {
           ...complexData,
+          onlineNodes: onlineNodesSun + Data.onlineNodes,
           transactionPerDay:
             sunnetData.transactionPerDay + Data.transactionPerDay
         }
       });
     } else if (type == "sunnet") {
       this.setState({
-        sunnetData: Object.assign(sunnetData, Data),
+        sunnetData: Object.assign(sunnetData, Data, {
+          onlineNodes: onlineNodesSun
+        }),
         complexData: {
           ...complexData,
+          onlineNodes: onlineNodesSun + mainnetData.onlineNodes,
           transactionPerDay:
             mainnetData.transactionPerDay + Data.transactionPerDay
         }
@@ -281,18 +287,17 @@ export default class panelGroup extends Component {
                     <Tooltip
                       title={intl.formatMessage({ id: "tooltip_onlineNodes" })}
                     >
-                        {mainnetData.onlineNodes != 0 ? (
-                          <h2 className="hover-red">
-                            <CountUp
-                              start={0}
-                              end={mainnetData.onlineNodes}
-                              duration={1}
-                            />
-                          </h2>
-                        ) : (
-                          <h2>-</h2>
-                        )}
-                      
+                      {complexData.onlineNodes != 0 ? (
+                        <h2 className="hover-red">
+                          <CountUp
+                            start={0}
+                            end={complexData.onlineNodes}
+                            duration={1}
+                          />
+                        </h2>
+                      ) : (
+                        <h2>-</h2>
+                      )}
                     </Tooltip>
                   </div>
 
@@ -301,19 +306,19 @@ export default class panelGroup extends Component {
                     {/* <Tooltip
                       title={intl.formatMessage({ id: "tooltip_blockHeight" })}
                     > */}
-                   
-                      {mainnetData.blockHeight != 0 ? (
-                        <h2 className="hover-red">
-                          <CountUp
-                            start={mainnetData.startblockHeight}
-                            end={mainnetData.blockHeight}
-                            duration={1}
-                          />
-                        </h2>
-                      ) : (
-                        <h2>-</h2>
-                      )}
-                  
+
+                    {mainnetData.blockHeight != 0 ? (
+                      <h2 className="hover-red">
+                        <CountUp
+                          start={mainnetData.startblockHeight}
+                          end={mainnetData.blockHeight}
+                          duration={1}
+                        />
+                      </h2>
+                    ) : (
+                      <h2>-</h2>
+                    )}
+
                     {/* </Tooltip> */}
                   </div>
                   <div className="col-lg-2 col-md-4 col-xs-12 mb-lg-0  mb-md-3">
@@ -323,7 +328,7 @@ export default class panelGroup extends Component {
                       className="hvr-underline-from-center hvr-underline-white text-muted"
                     >
                       {mainnetData.maxTps ? (
-                        <h2 >
+                        <h2>
                           {/* <Tooltip
                             title={intl.formatMessage({
                               id: "tooltip_startTps"
@@ -363,19 +368,17 @@ export default class panelGroup extends Component {
                         id: "tooltip_transactionPerDay"
                       })}
                     >
-                      
-                        {complexData.transactionPerDay != 0 ? (
-                          <h2 className="hover-red">
-                            <CountUp
-                              start={0}
-                              end={complexData.transactionPerDay}
-                              duration={1}
-                            />
-                          </h2>
-                        ) : (
-                          <h2>-</h2>
-                        )}
-                     
+                      {complexData.transactionPerDay != 0 ? (
+                        <h2 className="hover-red">
+                          <CountUp
+                            start={0}
+                            end={complexData.transactionPerDay}
+                            duration={1}
+                          />
+                        </h2>
+                      ) : (
+                        <h2>-</h2>
+                      )}
                     </Tooltip>
                   </div>
                   <div className="col-lg-2 col-md-4 col-xs-12">
@@ -385,19 +388,17 @@ export default class panelGroup extends Component {
                         id: "tooltip_accounts"
                       })}
                     >
-                      
-                        {complexData.totalAccounts != 0 ? (
-                          <h2 className="hover-red">
-                            <CountUp
-                              start={0}
-                              end={complexData.totalAccounts}
-                              duration={1}
-                            />
-                          </h2>
-                        ) : (
-                          <h2>-</h2>
-                        )}
-                     
+                      {complexData.totalAccounts != 0 ? (
+                        <h2 className="hover-red">
+                          <CountUp
+                            start={0}
+                            end={complexData.totalAccounts}
+                            duration={1}
+                          />
+                        </h2>
+                      ) : (
+                        <h2>-</h2>
+                      )}
                     </Tooltip>
                   </div>
                   <div className="col-lg-2 col-md-4 col-xs-12">
@@ -407,11 +408,11 @@ export default class panelGroup extends Component {
                         id: "tooltip_trxPrice"
                       })}
                     >
-                       <HrefLink
-                            href="https://coinmarketcap.com/currencies/tron/"
-                            target="_blank"
-                            className="hvr-underline-from-center hvr-underline-white text-muted"
-                          >
+                      <HrefLink
+                        href="https://coinmarketcap.com/currencies/tron/"
+                        target="_blank"
+                        className="hvr-underline-from-center hvr-underline-white text-muted"
+                      >
                         <h2 className="hover-red">
                           <TRXPrice
                             showPopup={false}
@@ -420,7 +421,7 @@ export default class panelGroup extends Component {
                             source="home"
                           />
                         </h2>
-                        </HrefLink>
+                      </HrefLink>
                     </Tooltip>
                   </div>
                 </div>
@@ -611,7 +612,23 @@ export default class panelGroup extends Component {
                   >
                     <div className="card-body row pt-2 pb-2 home-stats">
                       <div className="col-lg-2 col-md-4 col-xs-12 mb-lg-0  mb-md-3 ">
-                        <h2>-</h2>
+                        <Tooltip
+                          title={intl.formatMessage({
+                            id: "tooltip_onlineNodes_sunnet"
+                          })}
+                        >
+                            {sunnetData.onlineNodes != 0 ? (
+                              <h2 className="hover-red">
+                                <CountUp
+                                  start={0}
+                                  end={sunnetData.onlineNodes}
+                                  duration={1}
+                                />
+                              </h2>
+                            ) : (
+                              <h2>-</h2>
+                            )}
+                        </Tooltip>
                       </div>
 
                       <div className="col-lg-2 col-md-4 col-xs-12 mb-lg-0 mb-md-3">
@@ -620,19 +637,19 @@ export default class panelGroup extends Component {
                             id: "tooltip_blockHeight_sunnet"
                           })}
                         > */}
-                        
-                          {sunnetData.blockHeight != 0 ? (
-                            <h2 className="hover-red">
-                              <CountUp
-                                start={sunnetData.startblockHeight}
-                                end={sunnetData.blockHeight}
-                                duration={1}
-                              />
-                            </h2>
-                          ) : (
-                            <h2>-</h2>
-                          )}
-                     
+
+                        {sunnetData.blockHeight != 0 ? (
+                          <h2 className="hover-red">
+                            <CountUp
+                              start={sunnetData.startblockHeight}
+                              end={sunnetData.blockHeight}
+                              duration={1}
+                            />
+                          </h2>
+                        ) : (
+                          <h2>-</h2>
+                        )}
+
                         {/* </Tooltip> */}
                       </div>
                       <div className="col-lg-2 col-md-4 col-xs-12 mb-lg-0  mb-md-3">
@@ -681,19 +698,17 @@ export default class panelGroup extends Component {
                             id: "tooltip_transactionPerDay_sunnet"
                           })}
                         >
-                          
-                            {sunnetData.transactionPerDay != 0 ? (
-                              <h2 className="hover-red">
-                                <CountUp
-                                  start={0}
-                                  end={sunnetData.transactionPerDay}
-                                  duration={1}
-                                />
-                              </h2>
-                            ) : (
-                              <h2>-</h2>
-                            )}
-                        
+                          {sunnetData.transactionPerDay != 0 ? (
+                            <h2 className="hover-red">
+                              <CountUp
+                                start={0}
+                                end={sunnetData.transactionPerDay}
+                                duration={1}
+                              />
+                            </h2>
+                          ) : (
+                            <h2>-</h2>
+                          )}
                         </Tooltip>
                       </div>
                       <div className="col-lg-2 col-md-4 col-xs-12">
@@ -702,19 +717,17 @@ export default class panelGroup extends Component {
                             id: "tooltip_accounts_sunnet"
                           })}
                         >
-                         
-                            {sunnetData.totalAccounts != 0 ? (
-                              <h2 className="hover-red">
-                                <CountUp
-                                  start={0}
-                                  end={sunnetData.totalAccounts}
-                                  duration={1}
-                                />
-                              </h2>
-                            ) : (
-                              <h2>-</h2>
-                            )}
-                         
+                          {sunnetData.totalAccounts != 0 ? (
+                            <h2 className="hover-red">
+                              <CountUp
+                                start={0}
+                                end={sunnetData.totalAccounts}
+                                duration={1}
+                              />
+                            </h2>
+                          ) : (
+                            <h2>-</h2>
+                          )}
                         </Tooltip>
                       </div>
                       <div className="col-lg-2 col-md-4 col-xs-12">
