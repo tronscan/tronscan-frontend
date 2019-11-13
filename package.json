@@ -62,6 +62,7 @@
     "htmr": "^0.8.4",
     "identity-obj-proxy": "3.0.0",
     "instascan": "^1.0.0",
+    "instascan-v2": "^1.0.2",
     "is-wsl": "^1.1.0",
     "jdenticon": "^2.1.0",
     "jest": "24.7.1",

@@ -3,7 +3,7 @@ import React, {Fragment} from "react";
 import {injectIntl} from "react-intl";
 import {loadTokens} from "../../actions/tokens";
 import {connect} from "react-redux";
-import TimeAgo from "react-timeago";
+// import TimeAgo from "react-timeago";
 import {Client} from "../../services/api";
 import {AddressLink, BlockNumberLink, TransactionHashLink} from "../common/Links";
 import {getQueryParams} from "../../utils/url";
@@ -18,6 +18,8 @@ import TotalInfo from "../common/TableTotal";
 import DateRange from "../common/DateRange";
 import moment from 'moment';
 import {DatePicker} from "antd/lib/index";
+import BlockTime from '../common/blockTime'
+
 const RangePicker = DatePicker.RangePicker;
 
 class ContractTrans extends React.Component {
@@ -131,8 +133,10 @@ class ContractTrans extends React.Component {
                 dataIndex: 'timestamp',
                 key: 'timestamp',
                 align: 'left',
+                width:'14%',
                 render: (text, record, index) => {
-                    return <TimeAgo date={text} title={moment(text).format("MMM-DD-YYYY HH:mm:ss A")}/>
+                    return <BlockTime time={text}></BlockTime>
+                    // <TimeAgo date={text} title={moment(text).format("MMM-DD-YYYY HH:mm:ss A")}/>
                 }
             },
             {

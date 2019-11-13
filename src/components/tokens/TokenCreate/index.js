@@ -91,7 +91,7 @@ export class TokenCreate extends Component {
 
   componentDidMount() {
     let {match} = this.props;
-    if(this.isLoggedIn()){
+    if(this.isLoggedIn(1)){
         if(match.path ==='/tokens/update/:id' &&  match.params.id){
             if(!isNaN(match.params.id)){
                 this.loadToken10(match.params.id)
@@ -355,20 +355,24 @@ export class TokenCreate extends Component {
         this.props.history.push('/account')
     }
 
-  isLoggedIn = () => {
+  isLoggedIn = (type) => {
     let {account, intl} = this.props;
     if(!account.isLoggedIn){
-      this.setState({
-        modal: <SweetAlert
-          warning
-          title={tu("not_signed_in")}
-          confirmBtnText={intl.formatMessage({id: 'confirm'})}
-          confirmBtnBsStyle="danger"
-          onConfirm={() => this.setState({modal: null})}
-          style={{marginLeft: '-240px', marginTop: '-195px'}}
-        >
-        </SweetAlert>
-      })
+        if(type != 1){
+            this.setState({
+                modal: <SweetAlert
+                  warning
+                  title={tu("not_signed_in")}
+                  confirmBtnText={intl.formatMessage({id: 'confirm'})}
+                  confirmBtnBsStyle="danger"
+                  onConfirm={() => this.setState({modal: null})}
+                  style={{marginLeft: '-240px', marginTop: '-195px'}}
+                >
+                </SweetAlert>
+                })
+        } 
+    
+      
     }
     return account.isLoggedIn;
   };
