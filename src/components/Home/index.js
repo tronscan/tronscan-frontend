@@ -20,7 +20,7 @@ import {
   LineReactHighChartAdd,
   LineReactHighChartTx,
   LineReactHighChartHomeAddress,
-  LineReactHighChartHomeTx,
+  LineReactHighChartHomeTx
 } from "../common/LineCharts";
 import { API_URL, IS_MAINNET } from "../../constants";
 import { setWebsocket } from "../../actions/account";
@@ -59,7 +59,7 @@ export default class Home extends Component {
       transactionPerDay: 0,
       txOverviewStats: null,
       addressesStats: null,
-      SunAddressesStats:null,
+      SunAddressesStats: null,
       maxTps: 0,
       tps: 0,
       startTps: 0,
@@ -168,139 +168,148 @@ export default class Home extends Component {
     });
   }
   async loadAllData() {
-      const allData = await Promise.all([
-          Client.getTxOverviewStats(),
-          xhr.get(`https://dappchainapi.tronscan.org/api/stats/overview`)
-      ]).catch(e => {
-          console.log('error:' + e);
-      });
-      const [{txOverviewStats}, { data:{data} } ] = allData;
-      let SunTxOverviewStats = data;
-
-      /*
-       *  SUN-Network
-      */
-      let SunTemp = [];
-      let SunAddressesTemp = [];
-      for (let suntxs in SunTxOverviewStats) {
-          let suntx = parseInt(suntxs);
-          if (suntx === 0) {
-              SunAddressesTemp.push({
-                  date: SunTxOverviewStats[suntx].date,
-                  total: SunTxOverviewStats[suntx].totalAddress,
-                  increment: SunTxOverviewStats[suntx].newAddressSeen,
-                  name:'sun_network'
-              });
-              SunTemp.push({
-                  date: SunTxOverviewStats[suntx].date,
-                  // totalTransaction: (txOverviewStats[tx].totalTransaction - txOverviewStats[tx - 1].totalTransaction),
-                  totalTransaction: SunTxOverviewStats[suntx].newTransactionSeen,
-                  avgBlockTime: SunTxOverviewStats[suntx].avgBlockTime,
-                  avgBlockSize: SunTxOverviewStats[suntx].avgBlockSize,
-                  totalBlockCount: SunTxOverviewStats[suntx].totalBlockCount,
-                  newAddressSeen: SunTxOverviewStats[suntx].newAddressSeen,
-                  name:'sun_network'
-              });
-          } else {
-              SunTemp.push({
-                  date: SunTxOverviewStats[suntx].date,
-                  // totalTransaction: (txOverviewStats[tx].totalTransaction - txOverviewStats[tx - 1].totalTransaction),
-                  totalTransaction: SunTxOverviewStats[suntx].newTransactionSeen,
-                  avgBlockTime: SunTxOverviewStats[suntx].avgBlockTime,
-                  avgBlockSize: SunTxOverviewStats[suntx].avgBlockSize,
-                  totalBlockCount: SunTxOverviewStats[suntx].totalBlockCount - SunTxOverviewStats[suntx - 1].totalBlockCount,
-                  newAddressSeen: SunTxOverviewStats[suntx].newAddressSeen,
-                  name:'sun_network'
-              });
-              SunAddressesTemp.push({
-                  date: SunTxOverviewStats[suntx].date,
-                  total: SunTxOverviewStats[suntx].totalAddress,
-                  increment: SunTxOverviewStats[suntx].newAddressSeen,
-                  name:'sun_network'
-              });
-          }
+    const allData = await Promise.all([
+      Client.getTxOverviewStats(),
+      xhr.get(`https://dappchainapi.tronscan.org/api/stats/overview`)
+    ]).catch(e => {
+      console.log("error:" + e);
+    });
+    const [
+      { txOverviewStats },
+      {
+        data: { data }
       }
+    ] = allData;
+    let SunTxOverviewStats = data;
 
-
-      /*
-       *  Main-Network
-      */
-      let temp = [];
-      let addressesTemp = [];
-      for (let txs in txOverviewStats) {
-          let tx = parseInt(txs);
-          if (tx === 0) {
-              //temp.push(txOverviewStats[tx]);
-              addressesTemp.push({
-                  date: txOverviewStats[tx].date,
-                  total: txOverviewStats[tx].totalAddress,
-                  increment: txOverviewStats[tx].newAddressSeen,
-                  name: 'main_chain',
-              });
-              temp.push({
-                  date: txOverviewStats[tx].date,
-                  // totalTransaction: (txOverviewStats[tx].totalTransaction - txOverviewStats[tx - 1].totalTransaction),
-                  totalTransaction: txOverviewStats[tx].newTransactionSeen,
-                  avgBlockTime: txOverviewStats[tx].avgBlockTime,
-                  avgBlockSize: txOverviewStats[tx].avgBlockSize,
-                  totalBlockCount: txOverviewStats[tx].totalBlockCount,
-                  newAddressSeen: txOverviewStats[tx].newAddressSeen,
-                  name: 'main_chain',
-              });
-          } else {
-              temp.push({
-                  date: txOverviewStats[tx].date,
-                  // totalTransaction: (txOverviewStats[tx].totalTransaction - txOverviewStats[tx - 1].totalTransaction),
-                  totalTransaction: txOverviewStats[tx].newTransactionSeen,
-                  avgBlockTime: txOverviewStats[tx].avgBlockTime,
-                  avgBlockSize: txOverviewStats[tx].avgBlockSize,
-                  totalBlockCount: txOverviewStats[tx].totalBlockCount - txOverviewStats[tx - 1].totalBlockCount,
-                  newAddressSeen: txOverviewStats[tx].newAddressSeen,
-                  name: 'main_chain',
-              });
-              addressesTemp.push({
-                  date: txOverviewStats[tx].date,
-                  total: txOverviewStats[tx].totalAddress,
-                  increment: txOverviewStats[tx].newAddressSeen,
-                  name: 'main_chain',
-              });
-          }
+    /*
+     *  SUN-Network
+     */
+    let SunTemp = [];
+    let SunAddressesTemp = [];
+    for (let suntxs in SunTxOverviewStats) {
+      let suntx = parseInt(suntxs);
+      if (suntx === 0) {
+        SunAddressesTemp.push({
+          date: SunTxOverviewStats[suntx].date,
+          total: SunTxOverviewStats[suntx].totalAddress,
+          increment: SunTxOverviewStats[suntx].newAddressSeen,
+          name: "sun_network"
+        });
+        SunTemp.push({
+          date: SunTxOverviewStats[suntx].date,
+          // totalTransaction: (txOverviewStats[tx].totalTransaction - txOverviewStats[tx - 1].totalTransaction),
+          totalTransaction: SunTxOverviewStats[suntx].newTransactionSeen,
+          avgBlockTime: SunTxOverviewStats[suntx].avgBlockTime,
+          avgBlockSize: SunTxOverviewStats[suntx].avgBlockSize,
+          totalBlockCount: SunTxOverviewStats[suntx].totalBlockCount,
+          newAddressSeen: SunTxOverviewStats[suntx].newAddressSeen,
+          name: "sun_network"
+        });
+      } else {
+        SunTemp.push({
+          date: SunTxOverviewStats[suntx].date,
+          // totalTransaction: (txOverviewStats[tx].totalTransaction - txOverviewStats[tx - 1].totalTransaction),
+          totalTransaction: SunTxOverviewStats[suntx].newTransactionSeen,
+          avgBlockTime: SunTxOverviewStats[suntx].avgBlockTime,
+          avgBlockSize: SunTxOverviewStats[suntx].avgBlockSize,
+          totalBlockCount:
+            SunTxOverviewStats[suntx].totalBlockCount -
+            SunTxOverviewStats[suntx - 1].totalBlockCount,
+          newAddressSeen: SunTxOverviewStats[suntx].newAddressSeen,
+          name: "sun_network"
+        });
+        SunAddressesTemp.push({
+          date: SunTxOverviewStats[suntx].date,
+          total: SunTxOverviewStats[suntx].totalAddress,
+          increment: SunTxOverviewStats[suntx].newAddressSeen,
+          name: "sun_network"
+        });
       }
-
-      let TotalAddressesTemp = [];
-      let TotalTemp = [];
-      for(let i = 0; i < SunAddressesTemp.length; i++){
-          for(let j = 0; j < addressesTemp.length; j++){
-              if(i == j){
-                  TotalAddressesTemp.push({
-                      date: addressesTemp[j]['date'],
-                      total: addressesTemp[j]['total'] + SunAddressesTemp[i]['total'],
-                      increment: addressesTemp[j]['increment'] + SunAddressesTemp[i]['increment'],
-                      name: 'TRON',
-                  })
-              }
-          }
-      }
-      for(let i = 0; i < SunTemp.length; i++){
-          for(let j = 0; j < temp.length; j++){
-              TotalTemp.push({
-                  date: temp[j]['date'],
-                  totalTransaction: temp[j]['totalTransaction'] + SunTemp[i]['totalTransaction'],
-                  name: 'TRON',
-              })
-          }
-      }
-
-      this.setState({
-          txOverviewStats: temp.slice(0, 14),
-          addressesStats: addressesTemp.slice(0, 14),
-          SunTxOverviewStats: SunTemp.slice(0, 14),
-          SunAddressesStats: SunAddressesTemp.slice(0, 14),
-          TotalAddressesStats: TotalAddressesTemp.slice(0, 14),
-          TotalTxOverviewStats:TotalTemp.slice(0, 14),
-      });
     }
 
+    /*
+     *  Main-Network
+     */
+    let temp = [];
+    let addressesTemp = [];
+    for (let txs in txOverviewStats) {
+      let tx = parseInt(txs);
+      if (tx === 0) {
+        //temp.push(txOverviewStats[tx]);
+        addressesTemp.push({
+          date: txOverviewStats[tx].date,
+          total: txOverviewStats[tx].totalAddress,
+          increment: txOverviewStats[tx].newAddressSeen,
+          name: "main_chain"
+        });
+        temp.push({
+          date: txOverviewStats[tx].date,
+          // totalTransaction: (txOverviewStats[tx].totalTransaction - txOverviewStats[tx - 1].totalTransaction),
+          totalTransaction: txOverviewStats[tx].newTransactionSeen,
+          avgBlockTime: txOverviewStats[tx].avgBlockTime,
+          avgBlockSize: txOverviewStats[tx].avgBlockSize,
+          totalBlockCount: txOverviewStats[tx].totalBlockCount,
+          newAddressSeen: txOverviewStats[tx].newAddressSeen,
+          name: "main_chain"
+        });
+      } else {
+        temp.push({
+          date: txOverviewStats[tx].date,
+          // totalTransaction: (txOverviewStats[tx].totalTransaction - txOverviewStats[tx - 1].totalTransaction),
+          totalTransaction: txOverviewStats[tx].newTransactionSeen,
+          avgBlockTime: txOverviewStats[tx].avgBlockTime,
+          avgBlockSize: txOverviewStats[tx].avgBlockSize,
+          totalBlockCount:
+            txOverviewStats[tx].totalBlockCount -
+            txOverviewStats[tx - 1].totalBlockCount,
+          newAddressSeen: txOverviewStats[tx].newAddressSeen,
+          name: "main_chain"
+        });
+        addressesTemp.push({
+          date: txOverviewStats[tx].date,
+          total: txOverviewStats[tx].totalAddress,
+          increment: txOverviewStats[tx].newAddressSeen,
+          name: "main_chain"
+        });
+      }
+    }
+
+    let TotalAddressesTemp = [];
+    let TotalTemp = [];
+    for (let i = 0; i < SunAddressesTemp.length; i++) {
+      for (let j = 0; j < addressesTemp.length; j++) {
+        if (i == j) {
+          TotalAddressesTemp.push({
+            date: addressesTemp[j]["date"],
+            total: addressesTemp[j]["total"] + SunAddressesTemp[i]["total"],
+            increment:
+              addressesTemp[j]["increment"] + SunAddressesTemp[i]["increment"],
+            name: "TRON"
+          });
+        }
+      }
+    }
+    for (let i = 0; i < SunTemp.length; i++) {
+      for (let j = 0; j < temp.length; j++) {
+        TotalTemp.push({
+          date: temp[j]["date"],
+          totalTransaction:
+            temp[j]["totalTransaction"] + SunTemp[i]["totalTransaction"],
+          name: "TRON"
+        });
+      }
+    }
+
+    this.setState({
+      txOverviewStats: temp.slice(0, 14),
+      addressesStats: addressesTemp.slice(0, 14),
+      SunTxOverviewStats: SunTemp.slice(0, 14),
+      SunAddressesStats: SunAddressesTemp.slice(0, 14),
+      TotalAddressesStats: TotalAddressesTemp.slice(0, 14),
+      TotalTxOverviewStats: TotalTemp.slice(0, 14)
+    });
+  }
 
   doSearch = async () => {
     let { intl } = this.props;
@@ -342,11 +351,11 @@ export default class Home extends Component {
 
   async componentDidMount() {
     const { intl } = this.props;
-   // this.load();
+    // this.load();
     this.loadAllData();
-    this.loadAccounts();
+    isMobile && this.loadAccounts();
     this.reconnect();
-    this.loadHomepageBundle();
+    isMobile && this.loadHomepageBundle();
     let { noticezhIEO, noticeenIEO } = this.state;
     const data = await Client20.getTRONNotice(intl.locale, { page: 3 });
     // intl.locale == "zh"? data.articles.unshift(noticezhIEO):data.articles.unshift(noticeenIEO);
@@ -734,10 +743,10 @@ export default class Home extends Component {
                     >
                       <h5 className="mt-1 lh-150">
                         {/*<Link to="blockchain/stats/txOverviewStats">*/}
-                          {/*{tu("14_day_transaction_history")}*/}
+                        {/*{tu("14_day_transaction_history")}*/}
                         {/*</Link>*/}
                         <span className="color-tron-100">
-                            {tu("14_day_transaction_history")}
+                          {tu("14_day_transaction_history")}
                         </span>
                       </h5>
                     </div>
@@ -745,25 +754,31 @@ export default class Home extends Component {
                       className="card-body pt-0"
                       style={{ paddingLeft: "2rem", paddingRight: "2rem" }}
                     >
-                    <div style={IS_MAINNET?{ minWidth: 255, height: 260  }:{ minWidth: 255, height: 200 }}>
+                      <div
+                        style={
+                          IS_MAINNET
+                            ? { minWidth: 255, height: 260 }
+                            : { minWidth: 255, height: 200 }
+                        }
+                      >
                         {txOverviewStats === null ? (
                           <TronLoader />
+                        ) : IS_MAINNET ? (
+                          <LineReactHighChartHomeTx
+                            style={{ minWidth: 255, height: 260 }}
+                            data={txOverviewStats}
+                            sun={SunTxOverviewStats}
+                            total={TotalTxOverviewStats}
+                            intl={intl}
+                            source="home"
+                          />
                         ) : (
-                            IS_MAINNET ?
-                              <LineReactHighChartHomeTx
-                                style={{ minWidth: 255, height: 260 }}
-                                data={txOverviewStats}
-                                sun={SunTxOverviewStats}
-                                total={TotalTxOverviewStats}
-                                intl={intl}
-                                source="home"
-                              />
-                              :<LineReactHighChartTx
-                                style={{ minWidth: 255, height: 200 }}
-                                data={txOverviewStats}
-                                intl={intl}
-                                source="home"
-                              />
+                          <LineReactHighChartTx
+                            style={{ minWidth: 255, height: 200 }}
+                            data={txOverviewStats}
+                            intl={intl}
+                            source="home"
+                          />
                         )}
                       </div>
                     </div>
@@ -777,37 +792,43 @@ export default class Home extends Component {
                     >
                       <h5 className="mt-1 lh-150">
                         {/*<Link to="blockchain/stats/addressesStats">*/}
-                          {/*{tu("14_day_address_growth")}*/}
+                        {/*{tu("14_day_address_growth")}*/}
                         {/*</Link>*/}
-                          <span className="color-tron-100">
-                              {tu("14_day_address_growth")}
-                          </span>
+                        <span className="color-tron-100">
+                          {tu("14_day_address_growth")}
+                        </span>
                       </h5>
                     </div>
                     <div
                       className="card-body pt-0"
                       style={{ paddingLeft: "2rem", paddingRight: "2rem" }}
                     >
-                      <div style={IS_MAINNET?{ minWidth: 255, height: 260 }:{ minWidth: 255, height: 200 }}>
+                      <div
+                        style={
+                          IS_MAINNET
+                            ? { minWidth: 255, height: 260 }
+                            : { minWidth: 255, height: 200 }
+                        }
+                      >
                         {addressesStats === null ? (
                           <TronLoader />
-                        ) :(
-                           IS_MAINNET ?
-                            <LineReactHighChartHomeAddress
-                              style={{ minWidth: 255, height: 260 }}
-                              data={addressesStats}
-                              sun={SunAddressesStats}
-                              total={TotalAddressesStats}
-                              intl={intl}
-                              source="home"
-                            />:<LineReactHighChartAdd
-                                style={{ minWidth: 255, height: 200 }}
-                                data={addressesStats}
-                                intl={intl}
-                                source="home"
-                            />
-                        )
-                        }
+                        ) : IS_MAINNET ? (
+                          <LineReactHighChartHomeAddress
+                            style={{ minWidth: 255, height: 260 }}
+                            data={addressesStats}
+                            sun={SunAddressesStats}
+                            total={TotalAddressesStats}
+                            intl={intl}
+                            source="home"
+                          />
+                        ) : (
+                          <LineReactHighChartAdd
+                            style={{ minWidth: 255, height: 200 }}
+                            data={addressesStats}
+                            intl={intl}
+                            source="home"
+                          />
+                        )}
                       </div>
                     </div>
                   </div>
