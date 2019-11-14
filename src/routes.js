@@ -81,6 +81,7 @@ export const routes = [
         icon: "fa fa-server",
         path: "/blockchain/nodes",
         component: NodesAsync,
+        // showInMenu:true
         showInMenu: IS_MAINNET?true:false,
       },
       {

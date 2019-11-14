@@ -495,7 +495,7 @@ class Navigation extends React.Component {
 
     return (
         <li className="nav-item dropdown navbar-right">
-          <a key={theme} className="nav-link" href="javascript:;" onClick={this.onSetThemeClick}>
+          <a key={theme} className="nav-link" href="#!" onClick={this.onSetThemeClick}>
             <i className={icon}/>
           </a>
         </li>
@@ -645,7 +645,7 @@ class Navigation extends React.Component {
     if (wallet.isLoading) {
       return (
           <li className="nav-item">
-            <a className="nav-link" href="javascript:;">
+            <a className="nav-link" href="#!">
               Loading Wallet...
             </a>
           </li>
@@ -666,7 +666,7 @@ class Navigation extends React.Component {
             (account.isLoggedIn && wallet.isOpen) ?
 
                 <li className="nav-static dropdown token_black nav">
-                  <a className="nav-link dropdown-toggle" data-toggle="dropdown" href="javascript:;">
+                  <a className="nav-link dropdown-toggle" data-toggle="dropdown" href="#!">
                     {tu("wallet")}
                   </a>
                   <ul className="dropdown-menu dropdown-menu-right account-dropdown-menu px-3">
@@ -736,12 +736,12 @@ class Navigation extends React.Component {
                       <i className="fa fa-angle-right float-right" ></i>
                     </Link>
                     <li className="dropdown-divider"/>
-                    <a className="dropdown-item" href="javascript:;" onClick={this.newTransaction}>
+                    <a className="dropdown-item" href="#!" onClick={this.newTransaction}>
                       <i className="fa fa-paper-plane mr-2"/>
                       {tu("send")}
                       <i className="fa fa-angle-right float-right" ></i>
                     </a>
-                    <a className="dropdown-item" href="javascript:;" onClick={this.showReceive}>
+                    <a className="dropdown-item" href="#!" onClick={this.showReceive}>
                       <i className="fa fa-qrcode mr-2"/>
                       {tu("receive")}
                       <i className="fa fa-angle-right float-right" ></i>
@@ -1264,7 +1264,7 @@ class Navigation extends React.Component {
                                       }
                                       if (isUndefined(Route.url) && Route.sidechain) {
                                         const sidechainTab = (
-                                          <a href="javascript:;"
+                                          <a href="#!"
                                             key={Route.label}
                                             className="dropdown-item text-uppercase"
                                             onClick={() => this.netSelectChange(IS_MAINNET?'sunnet':'mainnet')}
@@ -1317,7 +1317,7 @@ class Navigation extends React.Component {
                   <li className="nav-item dropdown navbar-right">
                     <a className="nav-link dropdown-toggle dropdown-menu-right "
                        data-toggle="dropdown"
-                       href="javascript:">
+                       href="#!">
                       {activeCurrency.toUpperCase()}
                     </a>
                     <div className="dropdown-menu">
@@ -1325,7 +1325,7 @@ class Navigation extends React.Component {
                         currencyConversions.map(currency => (
                             <a key={currency.id}
                                className="dropdown-item"
-                               href="javascript:"
+                               href="#!"
                                onClick={() => this.setCurrency(currency.id)}>{currency.name}</a>
                         ))
                       }
@@ -1334,13 +1334,13 @@ class Navigation extends React.Component {
                   <li className="nav-item dropdown navbar-right">
                     <a className="nav-link dropdown-toggle dropdown-menu-right "
                        data-toggle="dropdown"
-                       href="javascript:">{activeLanguage.toUpperCase()}</a>
+                       href="#!">{activeLanguage.toUpperCase()}</a>
                     <div className="dropdown-menu languages-menu">
                       {
                         Object.keys(languages).map(language => (
                             <a key={language}
                                className="dropdown-item"
-                               href="javascript:"
+                               href="#!"
                                onClick={() => this.setLanguage(language)}>{languages[language]}</a>
                         ))
                       }

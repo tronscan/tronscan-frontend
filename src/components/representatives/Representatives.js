@@ -335,7 +335,7 @@ function Row({ account, showSync = true, index, state, props }) {
       </td>
       <td>
         {account.name ? (
-          <div className="_context_right_click" style={{ width: "200px" }}>
+          <div className="_context_right_click font-weight-bold" style={{ width: "200px" }}>
             <AddressLink address={account.address}>
               {account.name}
               <br />
