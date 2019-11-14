@@ -96,7 +96,7 @@ class ContractCompiler extends React.Component {
             });
         } else {
             // 初始化数据
-            if (!this.isLoggedIn()){
+            if (!this.isLoggedIn(1)){
                 //  compileCode
                 Lockr.rm('CompileCode');
                 // compile status
@@ -164,20 +164,23 @@ class ContractCompiler extends React.Component {
     /**
      * 是否登陆
      */
-    isLoggedIn = () => {
+    isLoggedIn = (type) => {
         let { account, intl } = this.props;
         if (!account.isLoggedIn){
-            this.setState({
-                modal: <SweetAlert
-                    warning
-                    title={tu('not_signed_in')}
-                    confirmBtnText={intl.formatMessage({ id: 'confirm' })}
-                    confirmBtnBsStyle="danger"
-                    onConfirm={() => this.setState({ modal: null })}
-                    style={{ marginLeft: '-240px', marginTop: '-195px' }}
-                >
-                </SweetAlert>
-            });
+            if(type != 1){
+                this.setState({
+                    modal: <SweetAlert
+                        warning
+                        title={tu('not_signed_in')}
+                        confirmBtnText={intl.formatMessage({ id: 'confirm' })}
+                        confirmBtnBsStyle="danger"
+                        onConfirm={() => this.setState({ modal: null })}
+                        style={{ marginLeft: '-240px', marginTop: '-195px' }}
+                    >
+                    </SweetAlert>
+                });
+            }
+            
         }
         return account.isLoggedIn;
     };
@@ -352,7 +355,7 @@ class ContractCompiler extends React.Component {
                         type: 'error',
                         content: `Compiled error: ${errmsg}`
                     }];
-                    console.log('CompileStatus2222',CompileStatus)
+
                     //const error = errorData.concat(CompileStatus);
                     const  error = errorData;
                     this.setState({
@@ -639,6 +642,10 @@ class ContractCompiler extends React.Component {
      * 上传之前
      */
     beforeUpload = (file, fileList) => {
+        
+        if (!this.isLoggedIn()) {
+            return;
+        }
         // 文件数量不超过10个
         if (fileList.length > FILE_MAX_NUM) {
             this.showModal(tu('selected_file_max_num'));
@@ -658,6 +665,9 @@ class ContractCompiler extends React.Component {
     * @param file
     */
     handleChange = ({ file }) => {
+        if (!this.isLoggedIn()) {
+            return;
+        }
         if (list.length > 0 && file.uid === list[list.length - 1].uid) {
             this.setState({ compileFiles: [...list] });
 

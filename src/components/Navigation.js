@@ -9,7 +9,7 @@ import tronLogoSunNet from "../images/tron-logo-sunnet.png";
 import tronLogoInvertedTestNet from "../images/tron-logo-inverted-testnet.png";
 import {flatRoutes, routes} from "../routes"
 import {Link, NavLink, withRouter} from "react-router-dom"
-import {filter, find, isString, isUndefined, trim, toUpper,debounce} from "lodash"
+import {filter, find, isString, isUndefined, trim, toUpper, debounce, slice} from "lodash"
 import {tu, t} from "../utils/i18n"
 import {
   enableFlag,
@@ -51,6 +51,7 @@ import $ from 'jquery';
 import xhr from "axios/index";
 import LedgerAccess from "../hw/ledger/LedgerAccess";
 import { getQueryString } from "../utils/url";
+
 
 
 const { Option } = Select;
@@ -354,11 +355,21 @@ class Navigation extends React.Component {
 
 
   getActiveComponent() {
-    let {router} = this.props;
-    return find(flatRoutes, route => route.path && matchPath(router.location.pathname, {
-      path: route.path,
-      strict: false,
-    }));
+    // let {router} = this.props;
+    // return find(flatRoutes, route => route.path && matchPath(router.location.pathname, {
+    //   path: route.path,
+    //   strict: false,
+    // }));
+      let {router} = this.props;
+      let flatRoutesActives = slice(flatRoutes, 1);
+      if(router.location.pathname == "/") {
+          return flatRoutes[0]
+      }else{
+        return find(flatRoutesActives, route => route.path && matchPath(router.location.pathname, {
+            path: route.path,
+            strict: false,
+        }));
+      }
   }
 
 
@@ -401,9 +412,10 @@ class Navigation extends React.Component {
   };
 
   onSearchChange = (ev) => {
-    this.setState({search: ev.target.value});
+    let value = (ev.target.value).replace(/\s+/g, "");
+    this.setState({ search: value});
     ev.persist();
-    this.callAjax(ev.target.value);
+    this.callAjax(value);
   }
 
   callAjax = async (value) => {
@@ -483,7 +495,7 @@ class Navigation extends React.Component {
 
     return (
         <li className="nav-item dropdown navbar-right">
-          <a key={theme} className="nav-link" href="javascript:;" onClick={this.onSetThemeClick}>
+          <a key={theme} className="nav-link" href="javascript:" onClick={this.onSetThemeClick}>
             <i className={icon}/>
           </a>
         </li>
@@ -633,7 +645,7 @@ class Navigation extends React.Component {
     if (wallet.isLoading) {
       return (
           <li className="nav-item">
-            <a className="nav-link" href="javascript:;">
+            <a className="nav-link" href="javascript:">
               Loading Wallet...
             </a>
           </li>
@@ -654,7 +666,7 @@ class Navigation extends React.Component {
             (account.isLoggedIn && wallet.isOpen) ?
 
                 <li className="nav-static dropdown token_black nav">
-                  <a className="nav-link dropdown-toggle" data-toggle="dropdown" href="javascript:;">
+                  <a className="nav-link dropdown-toggle" data-toggle="dropdown" href="javascript:">
                     {tu("wallet")}
                   </a>
                   <ul className="dropdown-menu dropdown-menu-right account-dropdown-menu px-3">
@@ -724,12 +736,12 @@ class Navigation extends React.Component {
                       <i className="fa fa-angle-right float-right" ></i>
                     </Link>
                     <li className="dropdown-divider"/>
-                    <a className="dropdown-item" href="javascript:;" onClick={this.newTransaction}>
+                    <a className="dropdown-item" href="javascript:" onClick={this.newTransaction}>
                       <i className="fa fa-paper-plane mr-2"/>
                       {tu("send")}
                       <i className="fa fa-angle-right float-right" ></i>
                     </a>
-                    <a className="dropdown-item" href="javascript:;" onClick={this.showReceive}>
+                    <a className="dropdown-item" href="javascript:" onClick={this.showReceive}>
                       <i className="fa fa-qrcode mr-2"/>
                       {tu("receive")}
                       <i className="fa fa-angle-right float-right" ></i>
@@ -936,7 +948,6 @@ class Navigation extends React.Component {
     let {search, popup, notifications, announcement, announId, annountime, searchResults, selectedNet } = this.state;
 
     let activeComponent = this.getActiveComponent();
-
     const isShowSideChain = !type || (type && IS_SUNNET);
 
     return (
@@ -1127,15 +1138,15 @@ class Navigation extends React.Component {
                         {
                           route.linkHref === true ?
                               <HrefLink
-                                  className={route.routes ? "nav-link dropdown-toggle" : "nav-link"}
+                                  className={route.routes ? "nav-link" : "nav-link"}
                                   href={activeLanguage == 'zh' ? route.zhurl : route.enurl}>
                                 {route.icon &&
                                 <i className={route.icon + " d-none d-lg-inline-block mr-1"}/>}
                                 {tu(route.label)}
                               </HrefLink>
                               :
-                              <NavLink
-                                  className={route.routes ? "nav-link dropdown-toggle" : "nav-link"}
+                              <span><NavLink
+                                  className={route.routes ? (route.label == 'nav_network' ? 'nav-link text-capitalize' : "nav-link") : "nav-link"}
                                   {...((route.routes && route.routes.length > 0) ? {'data-toggle': 'dropdown'} : {})}
                                   activeClassName="active"
                                   to={route.redirect? route.redirect: route.path}
@@ -1143,11 +1154,15 @@ class Navigation extends React.Component {
                                 {route.icon &&
                                 <i className={route.icon + " d-none d-lg-inline-block mr-1"}/>}
                                 {tu(route.label)}
+                                
                               </NavLink>
+                             
+                              </span>
+                              
                         }
 
                         {
-                          route.routes && route.label !== "nav_more" &&
+                          route.routes && route.label !== "nav_more" && route.label !== "nav_network" &&
                           <div className="dropdown-menu">
                             {
                               route.routes && route.routes.map((subRoute, index) => {
@@ -1214,7 +1229,7 @@ class Navigation extends React.Component {
                           </div>
                         }
                         {
-                          route.routes && route.label == "nav_more" &&
+                            route.routes && (route.label == "nav_network" || route.label == "nav_more") &&
                           <div className="dropdown-menu more-menu" style={{left: 'auto'}}>
                             {
                               route.routes && route.routes.map((subRoute, index) => {
@@ -1225,7 +1240,7 @@ class Navigation extends React.Component {
                                       if (isString(Route)) {
                                         return (
                                             <h6 key={j}
-                                                className="dropdown-header text-uppercase">{Route}</h6>
+                                                className="dropdown-header text-uppercase"> {tu(Route)}</h6>
                                         )
                                       }
 
@@ -1249,7 +1264,7 @@ class Navigation extends React.Component {
                                       }
                                       if (isUndefined(Route.url) && Route.sidechain) {
                                         const sidechainTab = (
-                                          <a href="javascript:;"
+                                          <a href="javascript:"
                                             key={Route.label}
                                             className="dropdown-item text-uppercase"
                                             onClick={() => this.netSelectChange(IS_MAINNET?'sunnet':'mainnet')}

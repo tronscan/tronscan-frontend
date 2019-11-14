@@ -60,7 +60,7 @@ export const messages = {
   "from": "差出人",
   "to": "宛先",
   "value": "価値",
-  "total_accounts": "リアルタイムの総アカウント数",
+  "total_accounts": "アカウント数",
   "submit": "提出",
   "send": "発送",
   "receive": "受け取り",
@@ -911,7 +911,7 @@ export const messages = {
   "search_description": "アドレス、ブロック、取引、トークンを探す",
   "search_description1": "アドレス、ブロック、取引、トークンを探す",
   "transaction": "取引",
-  "total_addresses": "総アドレス数",
+  "total_addresses": "アカウントの総数",
   "daily_increment": "毎日の成長",
   "address_growth_chart": "アドレス成長図表",
   "addresses_amount": "アドレス数",
@@ -1151,7 +1151,7 @@ export const messages = {
   #                                                                                #
   ##################################################################################
   */
-  "pice_per_1trx": "価格",
+  "pice_per_1trx": "TRX時価",
   "tron_power_freezing": "TRXをフリーズすることでTRONパワーを得ることができ、フリーズしたTRXごとに1つのTRONパワーを得ることができる。",
   "HighChart_tip": "描画領域をクリックしてドラッグしてズームインする",
   "general_information": "一般情報",
@@ -1817,7 +1817,7 @@ export const messages = {
 
   "address_balance_token_type": "トークン種類",
   "address_balance_token_price_TRX": "価値",
-  "address_transactions_tip": "取引数は振替数を含めます",
+  "address_transactions_tip": "Number of actively initiated transactions",
   "address_tron_power_tip": "TRXを凍結することで、投票権をもらえます",
   "address_total_balance_tip": "総残高はすべて価値があるトークンを含めます",
   "address_tron_power_used": "使用済",
@@ -2158,4 +2158,49 @@ export const messages = {
   "developers_reward_tip":"Thank you for considering to help out with the java-tron! TRON Foundation welcome contributions from anyone on the internet, and are grateful for your contributions.",
   "developers_niTron":"niTron global developer conference will be held in Korea at 29 Feb, 2020. By the end of  31 Jan, 2020, developers with the total points end up in Top 5 will be rewarded two tickets each.",
   "developers_account":"Developers",
+  "SR_rank": "ランキング	",
+  "SR_blocksMissed": "落としたブロック数	",
+  "SR_votes": "投票数",
+  "SR_voteRatio": "議決権の共有比率	",
+  "SR_normal":"普通",
+  "SR_avnormal":"異常な	",
+  /*
+     ##################################################################################
+     #                                                                                #
+     # SUN-Network                              #
+     #                                                                                #
+     ##################################################################################
+  */
+ "main_chain": "メインチェーン",
+ "sun_network": "SUN Network",
+ "expand": "データの詳細",
+ "collapse": "閉じる",
+ "tooltip_onlineNodes": "メインチェーンとSUNネットワークのノード数の合計",
+ "tooltip_onlineNodes_mainnet": "メインチェーン現在のノード数",
+ "tooltip_onlineNodes_sunnet": "SUNネットワーク現在のノード数",
+ "tooltip_blockHeight": "",
+ "tooltip_blockHeight_mainnet": "",
+ "tooltip_blockHeight_sunnet": "",
+ "tooltip_tps":"2",
+ "tooltip_tps_mainnet":"メインチェーンで過去ブロックに含まれる最大トランザクション数",
+ "tooltip_tps_sunnet":"SUNネットワークトで過去ブロックに含まれる最大トランザクション数",
+ "tooltip_startTps":"1",
+ "tooltip_startTps_mainnet":"メインチェーンで1秒当たりトランザクション数、約3秒で更新",
+ "tooltip_startTps_sunnet":"SUNネットワークトで1秒あたりのトランザクション数，約3秒で更新",
+ "tooltip_transactionPerDay":"メインチェーンとSUNネットワークトのランザクション数の合計",
+ "tooltip_transactionPerDay_mainnet":"メインチェーンで過去1日のトランザクション数",
+ "tooltip_transactionPerDay_sunnet":"メインチェーンで過去1日のトランザクション数",
+ "tooltip_accounts":"メインチェーンとSUNネットワークのリアルタイムアカウント数の合計",
+ "tooltip_accounts_mainnet":"メインチェーンでリアルタイムアカウント数",
+ "tooltip_accounts_sunnet":"SUNネットワークトでリアルタイムアカウント数",
+ "tooltip_trxPrice":"TRXはUSDの価格対比、リアルタイム変動",
+ "tooltip_trxPrice_mainnet":"TRXはUSDの価格対比、リアルタイム変動",
+ "tooltip_trxPrice_sunnet":"TRXはUSDの価格対比、リアルタイム変動",
+ "nav_network":"SUN Network",
+ "sun_network_product":"製品例",
+ "sun_network_DAppChain":"アプリチェーン",
+ "sun_network_relevant_information":"関係資料",
+ "sun_network_project_introduction":"プロジェクト紹介",
+ "sun_network_development_document": "開発ファイル",
+ "home_page":"ホームページ"
 }

@@ -3,7 +3,7 @@ import { injectIntl} from "react-intl";
 import {Client} from "../../services/api";
 import {TransactionHashLink, AddressLink, BlockNumberLink} from "./Links";
 import {tu} from "../../utils/i18n";
-import TimeAgo from "react-timeago";
+// import TimeAgo from "react-timeago";
 import {TronLoader} from "./loaders";
 import {Truncate} from "./text";
 import {ContractTypes} from "../../utils/protocol";
@@ -17,6 +17,8 @@ import {NameWithId} from "./names";
 import rebuildList from "../../utils/rebuildList";
 import {API_URL} from "../../constants";
 import qs from 'qs'
+import BlockTime from '../common/blockTime'
+
 
 const RangePicker = DatePicker.RangePicker;
 
@@ -72,31 +74,53 @@ class Transactions extends React.Component {
 
     let transactions, total,rangeTotal = 0;
 
-    if(!isinternal ){
+    if(!isinternal){
+
       if(address){
-          let data = await Client.getTransactions({
-              sort: '-timestamp',
-              limit: pageSize,
-              start: (page - 1) * pageSize,
-              total: this.state.total,
-              start_timestamp:this.start,
-              end_timestamp:this.end,
-              ...filter,
+          const allData = await Promise.all([
+              Client.getTransactions({
+                  sort: '-timestamp',
+                  limit: pageSize,
+                  start: (page - 1) * pageSize,
+                 // total: this.state.total,
+                  start_timestamp:this.start,
+                  end_timestamp:this.end,
+                  ...filter,
+              }),
+              Client.getTransactions({
+                  limit: 0,
+                  ...filter,
+              }),
+              Client.getTransactions({
+                  limit: 0,
+                  start_timestamp:this.start,
+                  end_timestamp:this.end,
+                  ...filter,
+              })
+          ]).catch(e => {
+              console.log('error:' + e);
           });
-          transactions = data.transactions;
-          total = data.total
-          rangeTotal = data.rangeTotal
+           [{ transactions }, { total }, {rangeTotal} ] = allData;
       }else{
-          let data = await Client.getTransactions({
-              limit: pageSize,
-              start: (page - 1) * pageSize,
-              sort: '-timestamp',
-              total: this.state.total,
-              ...filter
+          const allData = await Promise.all([
+              Client.getTransactions({
+                  limit: pageSize,
+                  start: (page - 1) * pageSize,
+                  sort: '-timestamp',
+                  total: this.state.total,
+                  ...filter
+              }),
+              Client.getTransactions({
+                  limit: 0,
+                  ...filter
+              })
+          ]).catch(e => {
+              console.log('error:' + e);
           });
-          transactions = data.transactions;
-          total = data.total
-          rangeTotal = data.rangeTotal
+          [{ transactions }, { total, rangeTotal } ] = allData;
+
+
+
       }
 
     }else {
@@ -163,7 +187,8 @@ class Transactions extends React.Component {
         className: 'ant_table',
         width: '14%',
         render: (text, record, index) => {
-          return <TimeAgo date={text} title={moment(text).format("MMM-DD-YYYY HH:mm:ss A")}/>
+          return <BlockTime time={text}></BlockTime>
+          // <TimeAgo date={text} title={moment(text).format("MMM-DD-YYYY HH:mm:ss A")}/>
         }
       },
       {
@@ -230,7 +255,8 @@ class Transactions extends React.Component {
             className: 'ant_table',
             width: '14%',
             render: (text, record, index) => {
-                return <TimeAgo date={text} title={moment(text).format("MMM-DD-YYYY HH:mm:ss A")}/>
+                return <BlockTime time={text}></BlockTime>
+                // <TimeAgo date={text} title={moment(text).format("MMM-DD-YYYY HH:mm:ss A")}/>
             }
         },
       {

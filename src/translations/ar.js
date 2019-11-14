@@ -1154,7 +1154,7 @@
   #                                                                                #
   ##################################################################################
   */
-  "pice_per_1trx": "السعر",
+  "pice_per_1trx": "سعر TRX في الوقت الحقيقي",
   "tron_power_freezing": "يمكن الحصول على طاقة ترون بتجميد ترون واحد  ، ويمكن الحصول على طاقة ترون واحدة لكل ترون مجمدة",
   "HighChart_tip": "انقر واسحب في منطقة الرسم للتكبير",
   "general_information": "معلومات عامة",
@@ -1805,7 +1805,7 @@
 
   "address_balance_token_type": "فئة التوكن",
   "address_balance_token_price_TRX": "قيمة",
-  "address_transactions_tip": "عدد المعاملات يشمل عدد التحويلات",
+  "address_transactions_tip": "Number of actively initiated transactions",
   "address_tron_power_tip": "قم بتجميد TRX للحصول على حقوق التصويت",
   "address_total_balance_tip": "يتضمن الرصيد الكلي كل قيمة للتكون",
   "address_tron_power_used": "تم استخدامه",
@@ -2151,5 +2151,49 @@
   "developers_reward_tip":"Thank you for considering to help out with the java-tron! TRON Foundation welcome contributions from anyone on the internet, and are grateful for your contributions.",
   "developers_niTron":"niTron global developer conference will be held in Korea at 29 Feb, 2020. By the end of  31 Jan, 2020, developers with the total points end up in Top 5 will be rewarded two tickets each.",
   "developers_account":"Developers",
-
+  "SR_rank": "تصنيف",
+  "SR_blocksMissed": "عدد الكتل المفقودة",
+  "SR_votes": "التصويت",
+  "SR_voteRatio": "معدل مكافأة الناخبين",
+  "SR_normal":"عادي",
+  "SR_avnormal":"غير طبيعى",
+/*
+     ##################################################################################
+     #                                                                                #
+     # SUN-Network                              #
+     #                                                                                #
+     ##################################################################################
+  */
+  "main_chain": "السلسلة الرئيسية",
+  "sun_network": "SUN Network",
+  "expand": "تفاصيل البيانات",
+  "collapse": "إستلام",
+  "tooltip_onlineNodes": "عدد عقد السلسلة الرئيسية وشبكة SUN و",
+  "tooltip_onlineNodes_mainnet": "عدد العقد الحالي في السلسلة الرئيسية",
+  "tooltip_onlineNodes_sunnet": "عدد العقدة الحالية في شبكة SUN",
+  "tooltip_blockHeight": "",
+  "tooltip_blockHeight_mainnet": "",
+  "tooltip_blockHeight_sunnet": "",
+  "tooltip_tps":"",
+  "tooltip_tps_mainnet":"الحد الأقصى لعدد المعاملات الموجودة في سجل حفظ الكتلة بالسلسلة الرئيسية",
+  "tooltip_tps_sunnet":"الحد الأقصى لعدد المعاملات الموجودة في سجل حفظ الكتلة لشبكة SUN",
+  "tooltip_startTps":"",
+  "tooltip_startTps_mainnet":"معاملات السلسلة الرئيسية تكون خلال ثانية واحدة ، والتحديث يكون خلال 3 ثوان",
+  "tooltip_startTps_sunnet":"معاملات شبكة SUN تكون خلال ثانية واحدة ، والتحديث يحتاج حوالي 3 ثوان",
+  "tooltip_transactionPerDay":"عدد المعاملات بين السلسلة الرئيسية وشبكة SUN و",
+  "tooltip_transactionPerDay_mainnet":"عدد المعاملات في اليوم السابق",
+  "tooltip_transactionPerDay_sunnet":"عدد معاملات شبكة SUN في اليوم السابق",
+  "tooltip_accounts":"عدد حسابات الوقت الفعلي على السلسلة الرئيسية وشبكة SUN و",
+  "tooltip_accounts_mainnet":"عدد الحسابات في الوقت الحقيقي على السلسلة الرئيسية",
+  "tooltip_accounts_sunnet":"عدد الحسابات في الوقت الحقيقي على شبكة SUN",
+  "tooltip_trxPrice":"مقارنة سعر TRX في الدولار مع التقلبات المرتقبة في الوقت الحقيقي",
+  "tooltip_trxPrice_mainnet":"مقارنة سعر TRX في الدولار مع التقلبات المرتقبة في الوقت الحقيقي",
+  "tooltip_trxPrice_sunnet":"مقارنة سعر TRX في الدولار مع التقلبات المرتقبة في الوقت الحقيقي",
+  "nav_network":"SUN Network",
+  "sun_network_product":"مثال على المنتج",
+  "sun_network_DAppChain":"تطبيق السلسلة",
+  "sun_network_relevant_information":"المعلومات ذات الصلة",
+  "sun_network_project_introduction":"مقدمة المشروع",
+  "sun_network_development_document": "ملف التطوير",
+  "home_page":"الصفحة الرئيسية"
 };

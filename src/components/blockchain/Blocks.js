@@ -2,7 +2,7 @@
 import React from "react";
 import {loadTokens} from "../../actions/tokens";
 import {connect} from "react-redux";
-import TimeAgo from "react-timeago";
+// import TimeAgo from "react-timeago";
 import moment from 'moment';
 import {FormattedNumber, injectIntl} from "react-intl";
 import {Client} from "../../services/api";
@@ -12,6 +12,8 @@ import {upperFirst} from "lodash";
 import {TronLoader} from "../common/loaders";
 import TotalInfo from "../common/TableTotal";
 import DateRange from "../common/DateRange";
+import BlockTime from '../common/blockTime'
+
 
 import {DatePicker} from 'antd';
 import xhr from "axios/index";
@@ -50,15 +52,23 @@ class Blocks extends React.Component {
             pageSize: pageSize,
         }
     );
-    let {blocks, total, rangeTotal} = await Client.getBlocks({
-      limit: pageSize,
-      start: (page - 1) * pageSize,
-      sort: '-number',
-      start_timestamp:this.start,
-      end_timestamp:this.end,
-    });
+      const allData = await Promise.all([
+        Client.getBlocks({
+            limit: pageSize,
+            start: (page - 1) * pageSize,
+            sort: '-number',
+            start_timestamp:this.start,
+            end_timestamp:this.end,
+        }),
+        Client.getBlocks({
+            limit: 0,
+        })
+      ]).catch(e => {
+          console.log('error:' + e);
+      });
+      const [{ blocks }, { total, rangeTotal } ] = allData;
 
-    this.setState({
+      this.setState({
       loading: false,
       blocks,
       total,
@@ -110,7 +120,8 @@ class Blocks extends React.Component {
         align: 'left',
         className: 'ant_table',
         render: (text, record, index) => {
-          return <TimeAgo date={text} title={moment(text).format("MMM-DD-YYYY HH:mm:ss A")}/>
+          return <BlockTime time={text}></BlockTime>
+          // <TimeAgo date={text} title={moment(text).format("MMM-DD-YYYY HH:mm:ss A")}/>
         }
       },
       {

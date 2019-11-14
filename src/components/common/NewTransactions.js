@@ -5,7 +5,7 @@ import Paging from "./Paging";
 import {Client} from "../../services/api";
 import {TransactionHashLink, AddressLink, BlockNumberLink} from "./Links";
 import {tu} from "../../utils/i18n";
-import TimeAgo from "react-timeago";
+// import TimeAgo from "react-timeago";
 import {TronLoader} from "./loaders";
 import {Truncate} from "./text";
 import {ContractTypes} from "../../utils/protocol";
@@ -21,6 +21,8 @@ import rebuildList from "../../utils/rebuildList";
 import xhr from "axios/index";
 import {API_URL} from '../../constants.js'
 import qs from 'qs'
+import BlockTime from '../common/blockTime'
+
 
 const RangePicker = DatePicker.RangePicker;
 
@@ -83,6 +85,7 @@ class NewTransactions extends React.Component {
                 }
                 let data = {}
                 let countData = {}
+                let totalData = {}
                 let allData = [];
                 const query = qs.stringify({ format: 'csv',...params})
                 if(isContract){
@@ -101,6 +104,11 @@ class NewTransactions extends React.Component {
                     ]).catch(e => {
                         console.log('error:' + e);
                     });
+                    [data, countData] = allData;
+                    transactions = data.transactions;
+                    total = countData.count;
+                    rangeTotal = data.rangeTotal;
+
                 }else{
                     getCsvUrl(`${API_URL}/api/transaction?${query}`);
 
@@ -110,29 +118,50 @@ class NewTransactions extends React.Component {
                             start: (page - 1) * pageSize,
                             ...params,
                         }),
-                        Client.getCountByType({
-                            type: 'transaction', 
+                        Client.getTransactions({
+                            limit: 0,
+                            start: (page - 1) * pageSize,
+                            ...params,
+                        }),
+                        Client.getTransactions({
+                            limit: 0,
                             ...filter
                         })
                     ]).catch(e => {
                         console.log('error:' + e);
                     });
+                    [data, totalData, countData] = allData;
+                    transactions = data.transactions;
+                    total = countData.rangeTotal;
+                    rangeTotal = totalData.rangeTotal;
                 }
-                [data, countData] = allData;
-                transactions = data.transactions;
-                total = countData.count;
-                rangeTotal = data.rangeTotal;
+
             }else{
-                let data = await Client.getTransactions({
-                    sort: '-timestamp',
-                    limit: pageSize,
-                    start: (page - 1) * pageSize,
-                    total: this.state.total,
-                    ...filter,
+                let data = {}
+                let countData = {}
+                let totalData = {}
+                let allData = [];
+                allData = await Promise.all([
+                    Client.getTransactions({
+                        sort: '-timestamp',
+                        limit: pageSize,
+                        start: (page - 1) * pageSize,
+                        total: this.state.total,
+                        ...filter,
+                    }),
+                    Client.getTransactions({
+                        limit: 0,
+                        start: (page - 1) * pageSize,
+                        ...filter,
+                    })
+                ]).catch(e => {
+                    console.log('error:' + e);
                 });
+                [data, totalData] = allData;
                 transactions = data.transactions;
-                total = data.total;
-                rangeTotal = data.rangeTotal;
+                total = totalData.total;
+                rangeTotal = totalData.rangeTotal;
+
             }
 
         }else {
@@ -228,7 +257,8 @@ class NewTransactions extends React.Component {
                 className: 'ant_table',
                 width: '15%',
                 render: (text, record, index) => {
-                    return <TimeAgo date={text} title={moment(text).format("MMM-DD-YYYY HH:mm:ss A")}/>
+                    return <BlockTime time={text}></BlockTime>
+                    // <TimeAgo date={text} title={moment(text).format("MMM-DD-YYYY HH:mm:ss A")}/>
                 }
             },
             {
@@ -394,7 +424,7 @@ class NewTransactions extends React.Component {
     onDateOk (start,end) {
         this.start = start.valueOf();
         this.end = end.valueOf();
-        this.loadTransactions();
+        this.loadTransactions(1);
     }
 
 
@@ -416,23 +446,49 @@ class NewTransactions extends React.Component {
         // }
 
         return (
-            <div className={"token_black table_pos " + (address?"mt-5":"")}>
-                { loading && <div className="loading-style"><TronLoader/></div>}
-                { !loading && <TotalInfo total={total} rangeTotal={rangeTotal} typeText="transactions_unit" common={!address} top={address? '-28px': '26'} selected/>}
-                {
-                    address ? <DateSelect onDateOk={(start,end) => this.onDateOk(start,end)} dataStyle={{marginTop: '-3.3rem'}} />: ''
-                }
-                {
-                    (!loading && transactions.length === 0)?
-                        <div className="p-3 text-center no-data">{tu("no_transactions")}</div>:
-                        <SmartTable bordered={true} loading={loading} column={column} data={transactions} total={rangeTotal> 2000? 2000: rangeTotal}
-                                    onPageChange={(page, pageSize) => {
-                                        this.loadTransactions(page, pageSize)
-                                    }}/>
-                }
-
-            </div>
-        )
+          <div className={"token_black table_pos " + (address ? "mt-5" : "")}>
+            {loading && (
+              <div className="loading-style">
+                <TronLoader />
+              </div>
+            )}
+            {!loading && (
+              <TotalInfo
+                total={total}
+                rangeTotal={rangeTotal}
+                typeText="transactions_unit"
+                common={!address}
+                top={address ? "-28px" : "26"}
+                selected
+              />
+            )}
+            {address ? (
+              <DateSelect
+                onDateOk={(start, end) => this.onDateOk(start, end)}
+                dataStyle={{ marginTop: "-3.3rem" }}
+              />
+            ) : (
+              ""
+            )}
+            {!loading && transactions.length === 0 ? (
+              <div className="p-3 text-center no-data">
+                {tu("no_transactions")}
+              </div>
+            ) : (
+              <SmartTable
+                bordered={true}
+                loading={loading}
+                column={column}
+                data={transactions}
+                total={rangeTotal > 2000 ? 2000 : rangeTotal}
+                current={this.state.page}
+                onPageChange={(page, pageSize) => {
+                  this.loadTransactions(page, pageSize);
+                }}
+              />
+            )}
+          </div>
+        );
     }
 }
 

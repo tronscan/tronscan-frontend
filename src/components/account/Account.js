@@ -201,7 +201,6 @@ export default class Account extends Component {
   getAddressReward = async () => {
       let { account } = this.props;
       let tronWeb = account.tronWeb;
-      console.log(account.tronWeb)
       const  reward  =  await tronWeb.trx.getReward(tronWeb.defaultAddress.base58)
       this.setState({
           accountReward:reward
@@ -1738,12 +1737,19 @@ export default class Account extends Component {
 
   isActivateAccount = async (address) => {
       const { account: { sunWeb },intl} = this.props;
-      let data  = await sunWeb.mainchain.trx.getUnconfirmedAccount(address);
+      let data;
+      if (this.props.walletType.type === "ACCOUNT_LEDGER") {
+          let tronWebLedger = this.props.tronWeb();
+          data  = await tronWebLedger.trx.getUnconfirmedAccount(address);
+      }else {
+          data = await sunWeb.mainchain.trx.getUnconfirmedAccount(address);
+      }
       let isAccount = JSON.stringify(data) == "{}";
       if (isAccount) {
           return false
       }
       return true
+
   };
 
   /**
@@ -1857,7 +1863,7 @@ export default class Account extends Component {
         if(!reward){
             return
         }
-        let {account, currentWallet} = this.props;
+        let {account, currentWallet, walletType} = this.props;
         if (this.state.isTronLink === 1) {
             let tronWeb;
             if (this.props.walletType.type === "ACCOUNT_LEDGER") {
@@ -1865,7 +1871,7 @@ export default class Account extends Component {
             } else if (this.props.walletType.type === "ACCOUNT_TRONLINK") {
                 tronWeb = account.tronWeb;
             }
-            const unSignTransaction = await tronWeb.transactionBuilder.withdrawBlockRewards(tronWeb.defaultAddress.base58).catch(e => false);
+            const unSignTransaction = await tronWeb.transactionBuilder.withdrawBlockRewards(walletType.address).catch(e => false);
             const {result} = await transactionResultManager(unSignTransaction, tronWeb)
             res = result;
         } else {
@@ -1894,14 +1900,20 @@ export default class Account extends Component {
     // account claim rewards
     accountClaimRewards = async () => {
         let res,hashid;
-        let {account, currentWallet} = this.props;
+        let {account, currentWallet, walletType} = this.props;
         let {reward} = this.state;
         if(!reward){
            return
         }
 
-        let tronWeb = account.tronWeb;
-        const unSignTransaction = await tronWeb.transactionBuilder.withdrawBlockRewards(tronWeb.defaultAddress.base58).catch(e => false);
+        //let tronWeb = account.tronWeb;
+        let tronWeb;
+        if (this.props.walletType.type === "ACCOUNT_LEDGER") {
+            tronWeb = this.props.tronWeb();
+        } else {
+            tronWeb = account.tronWeb;
+        }
+        const unSignTransaction = await tronWeb.transactionBuilder.withdrawBlockRewards(walletType.address).catch(e => false);
         const {result} = await transactionResultManager(unSignTransaction, tronWeb)
         res = result;
         //hashid = txid

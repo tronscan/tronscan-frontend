@@ -98,7 +98,6 @@ class ProposalDetail extends React.Component {
 
         ]
         if(IS_MAINNET){
-            console.log('data.paramters',data.paramters)
             for(let item in data.paramters){
                 data.paramters[item].proposalKey = parametersArr[data.paramters[item].key];
                 data.paramters[item].proposalVal = data.paramters[item].value;

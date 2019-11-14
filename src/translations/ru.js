@@ -148,7 +148,7 @@ export const messages = {
   "view_super_representatives": "Посмотреть SR",
   "create_new_wallet": "Создать новый кошелек",
   "view_tokens": "Просмотр токенов",
-  "transactions_last_day": "Транзакции за последний день",
+  "transactions_last_day": "Количество транзакций",
   /*
   ##################################################################################
   #                                                                                #
@@ -974,7 +974,7 @@ export const messages = {
   "burned_trx": "TRX сожжено",
   "supply_notes": "Краудсейл и предварительная продажа доступны по всему миру, за исключением США, Китая и Японии.",
   "14_day_transaction_history": "История транзакций за 14 дней",
-  "14_day_address_growth": "Увеличение количества адресов за 14 дней",
+  "14_day_address_growth": "",
   /*
   ##################################################################################
   #                                                                                #
@@ -1164,7 +1164,7 @@ export const messages = {
   #                                                                                #
   ##################################################################################
   */
-  "pice_per_1trx": "Цена",
+  "pice_per_1trx": "Цена TRX",
   "tron_power_freezing": "Право голоса может быть получено путем замораживания TRX, 1 TRX за 1 Право голоса.",
   "HighChart_tip": "Нажмите и перетащите в область графика, чтобы увеличить",
   "general_information": "Основная информация",
@@ -1284,7 +1284,7 @@ export const messages = {
   "tokens_less_than_10": "Токены с количеством менее 10",
   "only_TRX_transfers": "Только переводы TRX",
   "no_transfers_found": "Переводы не найдены",
-  "current_MaxTPS": "Текущий/Максимальный TPS",
+  "current_MaxTPS": "Tок/наивысший TPS",
 
   /*
   ##################################################################################
@@ -1821,7 +1821,7 @@ export const messages = {
 
   "address_balance_token_type": "Проходная категория",
   "address_balance_token_price_TRX": "Значение",
-  "address_transactions_tip": "Количество транзакций включает в себя количество переводов",
+  "address_transactions_tip": "Number of actively initiated transactions",
   "address_tron_power_tip": "Заморозить TRX, чтобы получить права голоса",
   "address_total_balance_tip": "Общий баланс включает в себя все ценные сертификаты",
   "address_tron_power_used": "Используется",
@@ -2167,4 +2167,49 @@ export const messages = {
   "developers_reward_tip":"Thank you for considering to help out with the java-tron! TRON Foundation welcome contributions from anyone on the internet, and are grateful for your contributions.",
   "developers_niTron":"niTron global developer conference will be held in Korea at 29 Feb, 2020. By the end of  31 Jan, 2020, developers with the total points end up in Top 5 will be rewarded two tickets each.",
   "developers_account":"Developers",
+  "SR_rank": "ранжирование",
+  "SR_blocksMissed": "Пропущено блоков",
+  "SR_votes": "Голоса",
+  "SR_voteRatio": "Соотношение голосов",
+  "SR_normal":"Обычный",
+  "SR_avnormal":"ненормальный",
+  /*
+     ##################################################################################
+     #                                                                                #
+     # SUN-Network                              #
+     #                                                                                #
+     ##################################################################################
+  */
+ "main_chain": "Главная цепь",
+ "sun_network": "SUN Network",
+ "expand": "Детали данных",
+ "collapse": "Падение",
+ "tooltip_onlineNodes": "Общее количество узлов в главной цепи и SUN Network",
+ "tooltip_onlineNodes_mainnet": "Количество узлов в главной цепи",
+ "tooltip_onlineNodes_sunnet": "Количество узлов в сети Sun Network",
+ "tooltip_blockHeight": "",
+ "tooltip_blockHeight_mainnet": "",
+ "tooltip_blockHeight_sunnet": "",
+ "tooltip_tps":"",
+ "tooltip_tps_mainnet":"Пиковое количество транзакций, записанных в истории блоков в главной цепи",
+ "tooltip_tps_sunnet":"Пиковое количество транзакций, записанных в истории блоков в SUN Network",
+ "tooltip_startTps":"",
+ "tooltip_startTps_mainnet":"TPS на главной цепи, обновляется каждые 3 секунды",
+ "tooltip_startTps_sunnet":"TPS в Sun Network, обновляется каждые 3 секунды",
+ "tooltip_transactionPerDay":"Общее количество транзакций в основной сети и SUN Network",
+ "tooltip_transactionPerDay_mainnet":"Транзакции предыдущего дня в основной цепи",
+ "tooltip_transactionPerDay_sunnet":"Транзакции предыдущего дня в SUN Network",
+ "tooltip_accounts":"Общее количество аккаунтов в настоящие время в основной сети и SUN Network",
+ "tooltip_accounts_mainnet":"Аккаунты в настоящем времени в главной цепи",
+ "tooltip_accounts_sunnet":"Аккаунты в настоящем времени в SUN Network",
+ "tooltip_trxPrice":"Цена TRX в USD, котировка в настоящем времени",
+ "tooltip_trxPrice_mainnet":"Цена TRX в USD, котировка в настоящем времени",
+ "tooltip_trxPrice_sunnet":"Цена TRX в USD, котировка в настоящем времени",
+ "nav_network":"SUN Network",
+ "sun_network_product":"Пример продукта",
+ "sun_network_DAppChain":"Цепь приложений",
+ "sun_network_relevant_information":"Связанная информация",
+ "sun_network_project_introduction":"Описание проекта",
+ "sun_network_development_document": "Документ о разработке",
+ "home_page":"Домашняя страница"
 };

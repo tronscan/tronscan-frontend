@@ -912,7 +912,7 @@ export const messages = {
   "search_description": "주소, 블록, 거래, 토큰 검색",
   "search_description1": "주소, 블록, 거래, 토큰 검색",
   "transaction": "거래",
-  "total_addresses": "총 주소 수",
+  "total_addresses": "총 계정 수",
   "daily_increment": "일일 성장률",
   "address_growth_chart": "주소 성장 차트",
   "addresses_amount": "주소 수",
@@ -1152,7 +1152,7 @@ export const messages = {
   #                                                                                #
   ##################################################################################
   */
-  "pice_per_1trx": "가격",
+  "pice_per_1trx": "실시간 TRX 시세",
   "tron_power_freezing": "TRON power은 TRX 동결을 통해 얻을수 있으며, 1个TRX 동결시, 1개 TRON power을 얻을수 있습니다.",
   "HighChart_tip": "플롯 영역을 클릭하고 드래그하여 확대하세요.",
   "general_information": "일반 정보",
@@ -1805,7 +1805,7 @@ export const messages = {
 
   "address_balance_token_type": "토큰 종류",
   "address_balance_token_price_TRX": "가격",
-  "address_transactions_tip": "거래수 에는 전송 횟수가 포함됩니다.",
+  "address_transactions_tip": "Number of actively initiated transactions",
   "address_tron_power_tip": "TRX 동결 후 투표권을 얻을 수 있습니다.",
   "address_total_balance_tip": "총 잔고에는 모든 가치 있는 토큰이 포함됩니다.",
   "address_tron_power_used": "이미 사용",
@@ -2162,5 +2162,50 @@ export const messages = {
   "developers_reward_tip":"Thank you for considering to help out with the java-tron! TRON Foundation welcome contributions from anyone on the internet, and are grateful for your contributions.",
   "developers_niTron":"niTron global developer conference will be held in Korea at 29 Feb, 2020. By the end of  31 Jan, 2020, developers with the total points end up in Top 5 will be rewarded two tickets each.",
   "developers_account":"Developers",
+  "SR_rank": "순위",
+  "SR_blocksMissed": "잃어버린 블록 수량	",
+  "SR_votes": "투표 수	",
+  "SR_voteRatio": "투표 공유 비율	",
+  "SR_normal":"표준",
+  "SR_avnormal":"비정상",
+  /*
+     ##################################################################################
+     #                                                                                #
+     # SUN-Network                              #
+     #                                                                                #
+     ##################################################################################
+  */
+ "main_chain": "메인 체인",
+ "sun_network": "SUN Network",
+ "expand": "데이터 세부 사항",
+ "collapse": "닫기",
+ "tooltip_onlineNodes": "메인 체인과 SUN Network 노드 수의 합 ",
+ "tooltip_onlineNodes_mainnet": "메인 체인 현재 노드 수",
+ "tooltip_onlineNodes_sunnet": "SUN Network 현재 노드 수",
+ "tooltip_blockHeight": "",
+ "tooltip_blockHeight_mainnet": "",
+ "tooltip_blockHeight_sunnet": "",
+ "tooltip_tps":"2",
+ "tooltip_tps_mainnet":"메인 체인 히스토리 블록 중 포함된 최대 거래 수",
+ "tooltip_tps_sunnet":"SUN Network 히스토리 블록 중 포함된 최대 거래 수",
+ "tooltip_startTps":"1",
+ "tooltip_startTps_mainnet":"메인 체인 초당 거래 수, 약 3초에 한번씩 업데이트",
+ "tooltip_startTps_sunnet":"SUN Network 초당 거래 수, 약 3초에 한번씩 업데이트",
+ "tooltip_transactionPerDay":"메인 체인과 SUN Network 거래 수의 합 ",
+ "tooltip_transactionPerDay_mainnet":"메인 체인 지난 1일 거래 수",
+ "tooltip_transactionPerDay_sunnet":"메인 체인 지난 1일 거래 수",
+ "tooltip_accounts":"메인 체인과 SUN Network의 실시간 계정 수의 합",
+ "tooltip_accounts_mainnet":"메인 체인의 실시간 계정 수",
+ "tooltip_accounts_sunnet":"SUN Network의 실시간 계정 수",
+ "tooltip_trxPrice":"USD 대비한 TRX 시세, 실시간 변동",
+ "tooltip_trxPrice_mainnet":"USD 대비한 TRX 시세, 실시간 변동",
+ "tooltip_trxPrice_sunnet":"USD 대비한 TRX 시세, 실시간 변동",
+ "nav_network":"SUN Network",
+ "sun_network_product":"제품 사례",
+ "sun_network_DAppChain":"어플 체인",
+ "sun_network_relevant_information":"관련 정보",
+ "sun_network_project_introduction":"프로젝트 소개",
+ "sun_network_development_document": "개발 문서",
+ "home_page":"홈"
 
 };

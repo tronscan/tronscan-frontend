@@ -85,6 +85,8 @@ class TokenBalances extends React.Component {
 
     customizedColumn = () => {
         let {intl} = this.props;
+        const defaultImg = require("../../../images/logo_default.png");
+
         let column = [
             {
                 title: upperFirst(intl.formatMessage({id: 'token'})),
@@ -98,7 +100,10 @@ class TokenBalances extends React.Component {
 
                             record.map_token_id == 1002000  || record.map_token_id == CONTRACT_ADDRESS_USDT || record.map_token_id == CONTRACT_ADDRESS_WIN || record.map_token_id == CONTRACT_ADDRESS_GGC ?<div>
                                 <b className="token-img-top" style={{marginRight: 5}}>
-                                    <img width={20} height={20} src={record.map_amount_logo} />
+                                    <img width={20} height={20} src={record.map_amount_logo} onError={e => {
+                          e.target.onerror = null;
+                          e.target.src = defaultImg;
+                        }}/>
                                     <i style={{width: 10, height: 10, bottom: -5}}></i>
                                 </b>
                                     {
@@ -107,12 +112,14 @@ class TokenBalances extends React.Component {
                                         :
                                         <TokenLink id={record.map_token_id} name={record.map_token_name+' ('+record.map_token_name_abbr+")"} address={record.address}/>
 
-
                                     }
                             </div>
                             :
                             <div>
-                                <img width={20} height={20} src={record.map_amount_logo} style={{marginRight: 5}}/>
+                                <img width={20} height={20} src={record.map_amount_logo} style={{marginRight: 5}} onError={e => {
+                          e.target.onerror = null;
+                          e.target.src = defaultImg;
+                        }}/>
                                 {
                                     record.tokenType == 'TRC20'?
                                         <TokenTRC20Link name={record.map_token_id} address={record.contract_address} namePlus={record.map_token_name + ' (' + record.map_token_name_abbr + ')'}/>
