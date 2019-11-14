@@ -922,7 +922,7 @@ export const messages = {
   "search_description": "Search Address,Block Height,Transaction Hash,Token Name",
   "search_description1": "Search Address,Block,Transaction,Token",
   "transaction": "Transaction",
-  "total_addresses": "Total Addresses",
+  "total_addresses": "Total Accounts",
   "daily_increment": "Daily Increase",
   "address_growth_chart": "Address Growth Chart",
   "addresses_amount": "Addresses Amount",

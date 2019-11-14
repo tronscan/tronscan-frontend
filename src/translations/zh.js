@@ -917,7 +917,7 @@ export const messages = {
   "search_description": "搜索地址，区块，交易，通证",
   "search_description1": "搜索地址，区块，交易，通证",
   "transaction": "交易",
-  "total_addresses": "总地址数",
+  "total_addresses": "总账户数",
   "daily_increment": "日增长数",
   "address_growth_chart": "地址增长图表",
   "addresses_amount": "地址数",

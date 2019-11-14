@@ -911,7 +911,7 @@ export const messages = {
   "search_description": "アドレス、ブロック、取引、トークンを探す",
   "search_description1": "アドレス、ブロック、取引、トークンを探す",
   "transaction": "取引",
-  "total_addresses": "総アドレス数",
+  "total_addresses": "アカウントの総数",
   "daily_increment": "毎日の成長",
   "address_growth_chart": "アドレス成長図表",
   "addresses_amount": "アドレス数",

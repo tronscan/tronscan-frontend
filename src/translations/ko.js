@@ -912,7 +912,7 @@ export const messages = {
   "search_description": "주소, 블록, 거래, 토큰 검색",
   "search_description1": "주소, 블록, 거래, 토큰 검색",
   "transaction": "거래",
-  "total_addresses": "총 주소 수",
+  "total_addresses": "총 계정 수",
   "daily_increment": "일일 성장률",
   "address_growth_chart": "주소 성장 차트",
   "addresses_amount": "주소 수",
