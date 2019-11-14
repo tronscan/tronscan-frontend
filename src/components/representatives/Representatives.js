@@ -335,7 +335,10 @@ function Row({ account, showSync = true, index, state, props }) {
       </td>
       <td>
         {account.name ? (
-          <div className="_context_right_click font-weight-bold" style={{ width: "200px" }}>
+          <div
+            className="_context_right_click font-weight-bold"
+            style={{ width: "200px" }}
+          >
             <AddressLink address={account.address}>
               {account.name}
               <br />
@@ -359,7 +362,7 @@ function Row({ account, showSync = true, index, state, props }) {
           ) : (
             <Tooltip placement="top" title={tu("SR_avnormal")}>
               <span key="yes" className="text-danger">
-                <i className="fa fa-times" />
+                <i className="fas fa-circle" />
               </span>
             </Tooltip>
           )}
