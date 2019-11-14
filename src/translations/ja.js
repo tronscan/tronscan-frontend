@@ -911,7 +911,7 @@ export const messages = {
   "search_description": "アドレス、ブロック、取引、トークンを探す",
   "search_description1": "アドレス、ブロック、取引、トークンを探す",
   "transaction": "取引",
-  "total_addresses": "総アドレス数",
+  "total_addresses": "アカウントの総数",
   "daily_increment": "毎日の成長",
   "address_growth_chart": "アドレス成長図表",
   "addresses_amount": "アドレス数",
@@ -2158,6 +2158,12 @@ export const messages = {
   "developers_reward_tip":"Thank you for considering to help out with the java-tron! TRON Foundation welcome contributions from anyone on the internet, and are grateful for your contributions.",
   "developers_niTron":"niTron global developer conference will be held in Korea at 29 Feb, 2020. By the end of  31 Jan, 2020, developers with the total points end up in Top 5 will be rewarded two tickets each.",
   "developers_account":"Developers",
+  "SR_rank": "ランキング	",
+  "SR_blocksMissed": "落としたブロック数	",
+  "SR_votes": "投票数",
+  "SR_voteRatio": "議決権の共有比率	",
+  "SR_normal":"普通",
+  "SR_avnormal":"異常な	",
   /*
      ##################################################################################
      #                                                                                #

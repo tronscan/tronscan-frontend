@@ -111,19 +111,17 @@ export default class panelGroup extends Component {
         mainnetData: Object.assign(mainnetData, Data),
         complexData: {
           ...complexData,
-          onlineNodes: onlineNodesSun + Data.onlineNodes,
+          onlineNodes: sunnetData.onlineNodes + Data.onlineNodes,
           transactionPerDay:
             sunnetData.transactionPerDay + Data.transactionPerDay
         }
       });
     } else if (type == "sunnet") {
       this.setState({
-        sunnetData: Object.assign(sunnetData, Data, {
-          onlineNodes: onlineNodesSun
-        }),
+        sunnetData: Object.assign(sunnetData, Data),
         complexData: {
           ...complexData,
-          onlineNodes: onlineNodesSun + mainnetData.onlineNodes,
+          onlineNodes: Data.onlineNodes + mainnetData.onlineNodes,
           transactionPerDay:
             mainnetData.transactionPerDay + Data.transactionPerDay
         }
@@ -617,17 +615,17 @@ export default class panelGroup extends Component {
                             id: "tooltip_onlineNodes_sunnet"
                           })}
                         >
-                            {sunnetData.onlineNodes != 0 ? (
-                              <h2 className="hover-red">
-                                <CountUp
-                                  start={0}
-                                  end={sunnetData.onlineNodes}
-                                  duration={1}
-                                />
-                              </h2>
-                            ) : (
-                              <h2>-</h2>
-                            )}
+                          {sunnetData.onlineNodes != 0 ? (
+                            <h2 className="hover-red">
+                              <CountUp
+                                start={0}
+                                end={sunnetData.onlineNodes}
+                                duration={1}
+                              />
+                            </h2>
+                          ) : (
+                            <h2>-</h2>
+                          )}
                         </Tooltip>
                       </div>
 
@@ -767,7 +765,32 @@ export default class panelGroup extends Component {
               style={{ border: "none", borderRadius: 0 }}
             >
               <div className="card-body row pt-3 pb-3 home-stats">
-                <div className="col-lg-3 col-md-4 col-xs-12 mb-lg-0 mb-md-3">
+                <div className="col-lg-2 col-md-4 col-xs-12 mb-lg-0  mb-md-3">
+                  <p className="m-0 panel-title">{tu("online_nodes")}</p>
+                  <Tooltip
+                    title={intl.formatMessage({
+                      id: "tooltip_onlineNodes_sunnet"
+                    })}
+                  >
+                    <Link
+                      to="/blockchain/nodes"
+                      className="hvr-underline-from-center hvr-underline-white text-muted"
+                    >
+                      {sunnetData.onlineNodes != 0 ? (
+                        <h2 className="hover-red">
+                          <CountUp
+                            start={0}
+                            end={sunnetData.onlineNodes}
+                            duration={1}
+                          />
+                        </h2>
+                      ) : (
+                        <h2>-</h2>
+                      )}
+                    </Link>
+                  </Tooltip>
+                </div>
+                <div className="col-lg-2 col-md-4 col-xs-12 mb-lg-0 mb-md-3">
                   <p className="m-0 panel-title">{tu("block_height")}</p>
 
                   {/* <Tooltip
@@ -886,7 +909,7 @@ export default class panelGroup extends Component {
                     </Link>
                   </Tooltip>
                 </div>
-                <div className="col-lg-3 col-md-4 col-xs-12">
+                <div className="col-lg-2 col-md-4 col-xs-12">
                   <p className="m-0 panel-title">{tu("pice_per_1trx")}</p>
                   <Tooltip
                     title={intl.formatMessage({

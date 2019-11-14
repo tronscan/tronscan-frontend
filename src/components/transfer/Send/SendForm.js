@@ -134,10 +134,13 @@ class SendForm extends React.Component {
     }else{
         //DAppChain
         if (TokenName === "_") {
+            amount = this.Mul(amount,ONE_TRX);
             result = await this.props.account.sunWeb.sidechain.trx.sendTransaction(to, amount, {address: wallet.address}, false).catch(function (e) {
                 console.log(e)
             });
+
         }else{
+            amount = this.Mul(amount,Math.pow(10, decimals));
             result = await this.props.account.sunWeb.sidechain.trx.sendToken(to, amount, TokenName, {address:wallet.address}, false).catch(function (e) {
                 console.log(e)
             });
