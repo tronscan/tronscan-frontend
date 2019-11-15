@@ -1,10 +1,10 @@
-import { API_URL } from "../constants.js";
+import { API_URL_SUNNET, API_URL } from "../constants.js";
 import xhr from "axios/index";
 class ApiClientHome {
   constructor() {
     this.apiUrl = {
-      mainnet: "https://apilist.tronscan.org",
-      sunnet: "https://dappchainapi.tronscan.org"
+      mainnet: API_URL,
+      sunnet: API_URL_SUNNET
     };
   }
 

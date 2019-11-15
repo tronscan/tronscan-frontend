@@ -7,13 +7,10 @@ export const ONE_TRX = 1000000;
 export const IS_TESTNET = process.env.NET === "testnet";
 export const IS_DESKTOP = process.env.DESKTOP === "true";
 
-
-
 export const NETURL = {
   MAINNET: "https://tronscan.org",
   SUNNET: "https://dappchain.tronscan.org"
 };
-
 
 let { NET, NODE_ENV } = process.env;
 let MAINNET;
@@ -40,7 +37,7 @@ export const PUBLIC_URL = process.env.PUBLIC_URL || window.location.origin;
 //test
 //export const API_URL_SUNNET = 'http://3.15.181.169:9000';
 //test pro
-//export const API_URL_SUNNET = 'http://52.15.68.74:10001';
+//export const API_URL_SUNNET = "http://52.15.68.74:10001";
 
 export const API_URL_SUNNET = "https://dappchainapi.tronscan.org";
 // export const API_URL_MAINNET = 'https://apilist.tronscan.org';
@@ -114,11 +111,16 @@ export const SUNWEBCONFIG = {
   SIDEID: "41E209E4DE650F0150788E8EC5CAFA240A23EB8EB7"
 };
 
-// Socket config
+//Socket config
 export const TORNSOCKET = {
   WSSURLMAIN: "wss://apilist.tronscan.org/api/tronsocket",
   WSSURLSUN: "wss://dappchainapi.tronscan.org/api/tronsocket"
 };
+
+// export const TORNSOCKET = {
+//   WSSURLMAIN: "ws://52.15.68.74:10000/api/tronsocket",
+//   WSSURLSUN: "ws://52.15.68.74:10001/api/tronsocket"
+// };
 
 // token type
 export const TOKENTYPE = {

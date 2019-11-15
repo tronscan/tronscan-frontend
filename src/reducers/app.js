@@ -286,6 +286,7 @@ export function appReducer(state = initialState, action) {
           isLoggedIn: true,
           address: action.address,
           tronWeb:action.tronWeb,
+          sunWeb:action.sunWeb,
           tronStationSDK: new TronStationSDK(action.tronWeb, true)
         },
         wallet: {

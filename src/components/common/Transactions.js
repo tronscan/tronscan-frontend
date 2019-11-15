@@ -82,7 +82,7 @@ class Transactions extends React.Component {
                   sort: '-timestamp',
                   limit: pageSize,
                   start: (page - 1) * pageSize,
-                  total: this.state.total,
+                 // total: this.state.total,
                   start_timestamp:this.start,
                   end_timestamp:this.end,
                   ...filter,
@@ -90,11 +90,17 @@ class Transactions extends React.Component {
               Client.getTransactions({
                   limit: 0,
                   ...filter,
+              }),
+              Client.getTransactions({
+                  limit: 0,
+                  start_timestamp:this.start,
+                  end_timestamp:this.end,
+                  ...filter,
               })
           ]).catch(e => {
               console.log('error:' + e);
           });
-           [{ transactions }, { total, rangeTotal } ] = allData;
+           [{ transactions }, { total }, {rangeTotal} ] = allData;
       }else{
           const allData = await Promise.all([
               Client.getTransactions({

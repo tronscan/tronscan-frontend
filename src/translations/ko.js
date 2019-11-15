@@ -912,7 +912,7 @@ export const messages = {
   "search_description": "주소, 블록, 거래, 토큰 검색",
   "search_description1": "주소, 블록, 거래, 토큰 검색",
   "transaction": "거래",
-  "total_addresses": "총 주소 수",
+  "total_addresses": "총 계정 수",
   "daily_increment": "일일 성장률",
   "address_growth_chart": "주소 성장 차트",
   "addresses_amount": "주소 수",
@@ -2162,6 +2162,12 @@ export const messages = {
   "developers_reward_tip":"Thank you for considering to help out with the java-tron! TRON Foundation welcome contributions from anyone on the internet, and are grateful for your contributions.",
   "developers_niTron":"niTron global developer conference will be held in Korea at 29 Feb, 2020. By the end of  31 Jan, 2020, developers with the total points end up in Top 5 will be rewarded two tickets each.",
   "developers_account":"Developers",
+  "SR_rank": "순위",
+  "SR_blocksMissed": "잃어버린 블록 수량	",
+  "SR_votes": "투표 수	",
+  "SR_voteRatio": "투표 공유 비율	",
+  "SR_normal":"표준",
+  "SR_avnormal":"비정상",
   /*
      ##################################################################################
      #                                                                                #

@@ -917,7 +917,7 @@ export const messages = {
   "search_description": "搜索地址，区块，交易，通证",
   "search_description1": "搜索地址，区块，交易，通证",
   "transaction": "交易",
-  "total_addresses": "总地址数",
+  "total_addresses": "总账户数",
   "daily_increment": "日增长数",
   "address_growth_chart": "地址增长图表",
   "addresses_amount": "地址数",
@@ -2197,7 +2197,14 @@ export const messages = {
   "enter_main_contract":"请输入主合约的名称",
   "contract_verifty_passed":"验证通过",
   "unverifty_passed":"未验证",
-  "developers_account":"个参与者",
+  "developers_account": "个参与者",
+  "SR_rank": "排名",
+  "SR_blocksMissed": "丢块数量",
+  "SR_votes": "得票数",
+  "SR_voteRatio": "投票分成比例",
+  "SR_normal":"出块正常",
+  "SR_avnormal":"出块异常",
+  
 
   /*
      ##################################################################################
