@@ -4,7 +4,7 @@ import {AddressLink, TransactionHashLink} from "../../common/Links";
 import {TRXPrice} from "../../common/Price";
 import {API_URL, ONE_TRX} from "../../../constants";
 import {tu, t} from "../../../utils/i18n";
-import TimeAgo from "react-timeago";
+// import TimeAgo from "react-timeago";
 import moment from 'moment';
 import {Truncate} from "../../common/text";
 import {withTimers} from "../../../utils/timing";
@@ -15,9 +15,11 @@ import {TronLoader} from "../../common/loaders";
 import xhr from "axios/index";
 import {NameWithId} from "../../common/names";
 import TotalInfo from "../../common/TableTotal";
-import DateRange from "../../common/DateRange";
+import DateSelect from "../../common/dateSelect";
 import rebuildList from "../../../utils/rebuildList";
 import qs from 'qs'
+import BlockTime from '../../common/blockTime'
+
 
 class Transfers extends React.Component {
 
@@ -29,9 +31,9 @@ class Transfers extends React.Component {
     this.state = {
       filter: {},
       transfers: [],
-      page: 0,
+      page: 1,
       total: 0,
-      pageSize: 25,
+      pageSize: 20,
       showTotal: props.showTotal !== false,
       emptyState: props.emptyState,
       autoRefresh: props.autoRefresh || false
@@ -39,7 +41,7 @@ class Transfers extends React.Component {
   }
 
   componentDidMount() {
-    this.loadPage();
+    // this.loadPage();
 
     if (this.state.autoRefresh !== false) {
       this.props.setInterval(() => this.load(), this.state.autoRefresh);
@@ -59,6 +61,7 @@ class Transfers extends React.Component {
       start_timestamp:this.start,
       end_timestamp:this.end,
     }
+
     this.setState(
         {
             loading: true,
@@ -66,15 +69,27 @@ class Transfers extends React.Component {
             pageSize: pageSize,
         }
     );
-    const query = qs.stringify({ format: 'csv',...params})
-   // getCsvUrl(`${'http://52.15.68.74:10000'}/api/asset/transfer?${query}`)
-    let {list, total, rangeTotal} = await Client.getAssetTransfers({
-        limit: pageSize,
-        start: (page - 1) * pageSize,
-        ...params
-    });
-    let transfers = rebuildList(list,'tokenName','amount');
 
+    const query = qs.stringify({ format: 'csv',...params})
+    getCsvUrl(`${API_URL}/api/asset/transfer?${query}`)
+
+    const allData = await Promise.all([
+        Client.getAssetTransfers({
+            limit: pageSize,
+            start: (page - 1) * pageSize,
+            ...params
+        }),
+        Client.getCountByType({
+            type: 'asset', 
+            issueName: filter.address
+        })
+    ]).catch(e => {
+        console.log('error:' + e);
+    });
+
+    const [{list, total, rangeTotal}, { count } ] = allData;
+
+    let transfers = rebuildList(list,'tokenName','amount');
 
     for (let index in transfers) {
       transfers[index].index = parseInt(index) + 1;
@@ -83,7 +98,7 @@ class Transfers extends React.Component {
     this.setState({
       page,
       transfers,
-      total,
+      total: count,
       rangeTotal,
       loading: false,
     });
@@ -97,6 +112,7 @@ class Transfers extends React.Component {
         dataIndex: 'transactionHash',
         key: 'transactionHash',
         className: 'ant_table',
+        width: '160px',
         render: (text, record, index) => {
           return <Truncate>
             <TransactionHashLink hash={record.transactionHash}>
@@ -113,7 +129,8 @@ class Transfers extends React.Component {
         width: '150px',
         className: 'ant_table',
         render: (text, record, index) => {
-          return <TimeAgo date={record.timestamp} title={moment(record.timestamp).format("MMM-DD-YYYY HH:mm:ss A")}/>
+          return <BlockTime time={record.timestamp}></BlockTime>
+          // <TimeAgo date={record.timestamp} title={moment(record.timestamp).format("MMM-DD-YYYY HH:mm:ss A")}/>
         }
       },
       {
@@ -121,8 +138,9 @@ class Transfers extends React.Component {
         dataIndex: 'transferFromAddress',
         key: 'transferFromAddress',
         className: 'ant_table',
+        width: '160px',
         render: (text, record, index) => {
-          return <AddressLink address={record.transferFromAddress}/>
+            return <AddressLink address={record.transferFromAddress}>{record.transferFromAddress}</AddressLink>
         }
       },
       {
@@ -138,8 +156,9 @@ class Transfers extends React.Component {
         dataIndex: 'transferToAddress',
         key: 'transferToAddress',
         className: 'ant_table',
+        width: '160px',
         render: (text, record, index) => {
-          return <AddressLink address={record.transferToAddress}/>
+            return <AddressLink address={record.transferToAddress}>{record.transferToAddress}</AddressLink>
         },
       },
       {
@@ -190,14 +209,14 @@ class Transfers extends React.Component {
         <div className="row transfers">
           <div className="col-md-12 table_pos">
             <div className="d-flex justify-content-between pl-3 pr-3" style={{left: 'auto'}}>
-                {total ?<TotalInfo total={total} rangeTotal={rangeTotal} typeText="transaction_info" divClass="table_pos_info_addr"/> :""}
-                <DateRange onDateOk={(start,end) => this.onDateOk(start,end)} dateClass="date-range-box-token"/>
+            {!loading && <TotalInfo total={total} rangeTotal={rangeTotal} typeText="transaction_info" divClass="table_pos_info_addr" selected/>}
+                <DateSelect onDateOk={(start,end) => this.onDateOk(start,end)}  dataStyle={{right: '35px'}}/>
             </div>
               {
                   (!loading && transfers.length === 0)?
                       <div className="pt-5 pb-5 text-center no-data transfers-bg-white">{tu("no_transfers")}</div>
                       :
-                      <SmartTable border={false} loading={loading} column={column} data={transfers} total={total} addr="address" transfers="token"
+                      <SmartTable border={false} loading={loading} column={column} data={transfers} total={rangeTotal>2000? 2000: rangeTotal} addr="address" transfers="token"
                                   onPageChange={(page, pageSize) => {
                                       this.loadPage(page, pageSize)
                                   }}/>

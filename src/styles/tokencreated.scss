@@ -116,6 +116,9 @@
 
         div {
           color: #fff;
+          h1 {
+            color: #fff;
+          }
         }
       }
 
@@ -125,6 +128,7 @@
         margin-top: 4px;
 
         h1 {
+          color: #9b9b9b;
           line-height: 1 !important;
           font-weight: 500;
         }
@@ -222,6 +226,45 @@
     .btn-w {
       font-size: 14px;
       height: 40px;
+    }
+  }
+
+  .pair-box {
+    .pair-trading {
+      position: relative;
+      padding-left: 12px;
+    }
+
+    .pair-trading::before {
+      position: absolute;
+      color: #f5222d;
+      font-size: 14px;
+      font-family: SimSun, sans-serif;
+      line-height: 1;
+      content: '*';
+      display: block;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .pair {
+      position: relative;
+      padding-left: 20px;
+      margin-bottom: 1rem;
+    }
+  
+    .pair::before {
+      position: absolute;
+      content: "";
+      display: block;
+      width: 12px;
+      height: 12px;
+      border-radius: 100%;
+      background: #E69F4E;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
     }
   }
 }

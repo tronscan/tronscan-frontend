@@ -11,12 +11,11 @@ import SubmitInfo from './SubmitInfo';
 import ResultInfo from './resultInfo';
 import { Prompt } from 'react-router'
 import { BrowserRouter } from 'react-router-dom'
-import ReactDOM from 'react-dom'
 import SweetAlert from "react-bootstrap-sweetalert";
 import { Modal, Button } from 'antd';
 import NavigationPrompt from "react-router-navigation-prompt";
 import xhr from "axios/index";
-import {API_URL, ONE_TRX, CONTRACT_ADDRESS_USDT} from "../../../constants";
+import {API_URL, ONE_TRX} from "../../../constants";
 import {TronLoader} from "../../common/loaders";
 import {Client} from "../../../services/api";
 import _ from "lodash";
@@ -46,12 +45,14 @@ export class TokenCreate extends Component {
       social_total: 20,
       social_current: 4,
       paramData: {
+        token_id:'',
         token_name: '',
         token_abbr: '',
         token_introduction: "",
         token_supply: '',
         precision: 0,
-        logo_url: '',
+        logo_url: 'https://coin.top/production/upload/logo/default.png',
+        file_name: '',
         author: '',
         contract_address: '',
         contract_created_date: '',
@@ -90,7 +91,7 @@ export class TokenCreate extends Component {
 
   componentDidMount() {
     let {match} = this.props;
-    if(this.isLoggedIn()){
+    if(this.isLoggedIn(1)){
         if(match.path ==='/tokens/update/:id' &&  match.params.id){
             if(!isNaN(match.params.id)){
                 this.loadToken10(match.params.id)
@@ -107,7 +108,7 @@ export class TokenCreate extends Component {
   }
 
   loadToken10 = async (id) => {
-      let {account, intl} = this.props;
+      let {account, intl } = this.props;
       this.setState({ loading: true, isUpdate:true });
       let result = await xhr.get(API_URL+"/api/token?id=" + id + "&showAll=1");
       let token = result.data.data[0];
@@ -176,6 +177,7 @@ export class TokenCreate extends Component {
           type: 'trc10',
           isUpdate:true,
           paramData: {
+              token_id:id,
               token_name: token.name,
               token_abbr: token.abbr,
               token_introduction: token.description,
@@ -269,6 +271,7 @@ export class TokenCreate extends Component {
             type: 'trc20',
             isUpdate:true,
             paramData: {
+                 token_id:id,
                  token_name: token.name,
                  token_abbr: token.symbol,
                  token_introduction:token.token_desc,
@@ -352,20 +355,24 @@ export class TokenCreate extends Component {
         this.props.history.push('/account')
     }
 
-  isLoggedIn = () => {
+  isLoggedIn = (type) => {
     let {account, intl} = this.props;
     if(!account.isLoggedIn){
-      this.setState({
-        modal: <SweetAlert
-          warning
-          title={tu("not_signed_in")}
-          confirmBtnText={intl.formatMessage({id: 'confirm'})}
-          confirmBtnBsStyle="danger"
-          onConfirm={() => this.setState({modal: null})}
-          style={{marginLeft: '-240px', marginTop: '-195px'}}
-        >
-        </SweetAlert>
-      })
+        if(type != 1){
+            this.setState({
+                modal: <SweetAlert
+                  warning
+                  title={tu("not_signed_in")}
+                  confirmBtnText={intl.formatMessage({id: 'confirm'})}
+                  confirmBtnBsStyle="danger"
+                  onConfirm={() => this.setState({modal: null})}
+                  style={{marginLeft: '-240px', marginTop: '-195px'}}
+                >
+                </SweetAlert>
+                })
+        } 
+    
+      
     }
     return account.isLoggedIn;
   };

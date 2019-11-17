@@ -7,10 +7,11 @@ import {TronLoader} from "../common/loaders";
 import {ONE_TRX} from "../../constants";
 import {TRXPrice} from "../common/Price";
 import {AddressLink, TransactionHashLink} from "../common/Links";
-import TimeAgo from "react-timeago";
+// import TimeAgo from "react-timeago";
 import moment from 'moment';
 import {Link} from "react-router-dom";
 import {withTimers} from "../../utils/timing";
+import BlockTime from '../common/blockTime'
 
 class RecentTransactions extends Component {
 
@@ -65,10 +66,10 @@ class RecentTransactions extends Component {
                       <div className="media-body mb-0 d-flex">
                         <div className="text-left">
                           <TransactionHashLink
-                              hash={transaction.hash}>{transaction.hash.substr(0, 20)}...</TransactionHashLink>
+                              hash={transaction.hash}>{transaction.hash}</TransactionHashLink>
                           <br/>
                           <AddressLink wrapClass="d-inline-block" address={transaction.transferFromAddress}>
-                            {transaction.transferFromAddress}...
+                            {transaction.transferFromAddress}
                           </AddressLink>
                           <i className="fas fa-arrow-right mr-1 ml-1"/>
                           <AddressLink wrapClass="d-inline-block" address={transaction.transferToAddress}>
@@ -77,7 +78,9 @@ class RecentTransactions extends Component {
                         </div>
                         <div className="ml-auto text-right">
                           <div className="text-muted">
-                            <TimeAgo date={transaction.timestamp} title={moment(transaction.timestamp).format("MMM-DD-YYYY HH:mm:ss A")}/>
+                          <BlockTime time={transaction.timestamp}></BlockTime>
+
+                            {/* <TimeAgo date={transaction.timestamp} title={moment(transaction.timestamp).format("MMM-DD-YYYY HH:mm:ss A")}/> */}
                           </div>
                           <div>
                             <i className="fas fa-exchange-alt mr-1"/>

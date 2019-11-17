@@ -1,22 +1,20 @@
 import React, {Fragment} from "react";
-import {Sticky, StickyContainer} from "react-sticky";
-import Paging from "../../common/Paging";
-import {Client} from "../../../services/api";
 import {TransactionHashLink, BlockNumberLink, AddressLink} from "../../common/Links";
-import {FormattedNumber, injectIntl} from "react-intl";
+import { injectIntl} from "react-intl";
 import {tu} from "../../../utils/i18n";
-import TimeAgo from "react-timeago";
+// import TimeAgo from "react-timeago";
 import moment from 'moment';
 import {TronLoader} from "../../common/loaders";
 import {Truncate} from "../../common/text";
-import {ContractTypes} from "../../../utils/protocol";
 import SmartTable from "../../common/SmartTable"
 import {upperFirst, forIn, uniqWith, isEqual} from "lodash";
 import xhr from "axios/index";
-import {API_URL} from "../../../constants";
 import tronWeb from 'tronweb';
 import { Select } from 'antd';
+import BlockTime from '../../common/blockTime'
+
 const Option = Select.Option;
+
 
 class Transactions extends React.Component {
 
@@ -117,7 +115,8 @@ class Transactions extends React.Component {
           return <Truncate>
                   <TransactionHashLink hash={record.transaction_id}>{record.transaction_id}</TransactionHashLink><br/>
                   <span className="contract-event-block-number">#</span><BlockNumberLink number={record.block_number}/><br/>
-                  <TimeAgo date={record.block_timestamp} title={moment(record.block_timestamp).format("MMM-DD-YYYY HH:mm:ss A")}/>
+                  <BlockTime time={record.block_timestamp}></BlockTime>
+                  {/* <TimeAgo date={record.block_timestamp} title={moment(record.block_timestamp).format("MMM-DD-YYYY HH:mm:ss A")}/> */}
                 </Truncate>
         }
       },
@@ -184,7 +183,7 @@ class Transactions extends React.Component {
                           <Option value="Number">Number</Option>
                           <Option value="Address">Address</Option>
                         </Select>
-                        <i className="fa fa-arrow-right mx-2" aria-hidden="true"></i>
+                        <i className="fa fa-arrow-right mx-2" ></i>
                         <span id={'select_'+index} className="event-hex">{ record.row.data}</span>
                       </span>
                     }
@@ -202,32 +201,29 @@ class Transactions extends React.Component {
     let {match, intl} = this.props;
     let column = this.customizedColumn();
     let tableInfo = intl.formatMessage({id: 'view_total'}) + ' ' + total + ' ' + intl.formatMessage({id: 'Events'})
-
     if (!loading && transactions.length === 0) {
-      if (!EmptyState) {
         return (
             <div className="p-3 text-center no-data">{tu("no_event")}</div>
         );
-      }
-
-      return <EmptyState/>;
     }
 
     return (
       <Fragment>
        
         {loading && <div className="loading-style" style={{marginTop: '-20px'}}><TronLoader/></div>}
-        <div className="d-flex align-items-center  pt-3 pb-2"> <div className="question-mark mr-2"><i>?</i></div>{tu('event_tip')}</div>
-        <p className="m-0" style={{color: '#999999'}}>{tableInfo}</p>
-        <div className="row py-3">
-          <div className="col-md-12 event-main">
-              <SmartTable bordered={true} loading={loading}
-                          pagination={false}
-                          scroll={{ x: 1000 }}
-                          column={column} data={transactions} total={total}
-                          onPageChange={(page, pageSize) => {
-                            this.loadTransactions(page, pageSize)
-                          }}/>
+        <div>
+          <div className="d-flex align-items-center  pt-3 pb-2"> <div className="question-mark mr-2"><i>?</i></div>{tu('event_tip')}</div>
+          <p className="m-0" style={{color: '#999999'}}>{tableInfo}</p>
+          <div className="row py-3">
+            <div className="col-md-12 event-main">
+                <SmartTable bordered={true} loading={loading}
+                            pagination={false}
+                            scroll={{ x: 1000 }}
+                            column={column} data={transactions} total={total}
+                            onPageChange={(page, pageSize) => {
+                              this.loadTransactions(page, pageSize)
+                            }}/>
+            </div>
           </div>
         </div>
       </Fragment>

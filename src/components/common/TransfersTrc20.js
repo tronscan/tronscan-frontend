@@ -1,20 +1,20 @@
-import React, {Fragment} from "react";
-import {FormattedDate, FormattedNumber, FormattedTime, injectIntl} from "react-intl";
-import {Sticky, StickyContainer} from "react-sticky";
+import React from "react";
+import { injectIntl} from "react-intl";
 import {Client} from "../../services/api";
 import {AddressLink, TransactionHashLink} from "./Links";
 import {tu} from "../../utils/i18n";
 import { FormatNumberByDecimals } from '../../utils/number'
-import TimeAgo from "react-timeago";
+// import TimeAgo from "react-timeago";
 import moment from 'moment';
 import {Truncate} from "./text";
 import {withTimers} from "../../utils/timing";
 import SmartTable from "./SmartTable.js"
-import {upperFirst,upperCase} from "lodash";
+import {upperFirst} from "lodash";
 import {TronLoader} from "./loaders";
 import TotalInfo from "./TableTotal";
 import DateRange from "./DateRange";
 import _ from "lodash";
+import BlockTime from '../common/blockTime'
 
 class Transfers extends React.Component {
 
@@ -120,7 +120,8 @@ class Transfers extends React.Component {
         className: 'ant_table',
         width: '14%',
         render: (text, record, index) => {
-          return <TimeAgo date={text} title={moment(text).format("MMM-DD-YYYY HH:mm:ss A")}/>
+          return <BlockTime time={text}></BlockTime>
+          // <TimeAgo date={text} title={moment(text).format("MMM-DD-YYYY HH:mm:ss A")}/>
         }
       },
       {

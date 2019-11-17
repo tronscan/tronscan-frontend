@@ -1,27 +1,23 @@
-import React, {Fragment} from "react";
-import {FormattedDate, FormattedNumber, FormattedTime, injectIntl} from "react-intl";
-import {Sticky, StickyContainer} from "react-sticky";
-import Paging from "./Paging";
+import React from "react";
+import {injectIntl} from "react-intl";
 import {Client} from "../../services/api";
 import {AddressLink, TransactionHashLink} from "./Links";
-import {TRXPrice} from "./Price";
-import {ONE_TRX} from "../../constants";
 import {tu} from "../../utils/i18n";
-import TimeAgo from "react-timeago";
-import {Truncate} from "./text";
+// import TimeAgo from "react-timeago";
+import {Truncate,TruncateAddress} from "./text";
 import {withTimers} from "../../utils/timing";
 import SmartTable from "./SmartTable.js"
 import {upperFirst,upperCase} from "lodash";
 import {TronLoader} from "./loaders";
-import {ContractTypes} from "../../utils/protocol";
 import rebuildList from "../../utils/rebuildList";
 import {SwitchToken} from "./Switch";
 import TotalInfo from "./TableTotal";
 import DateRange from "./DateRange";
-import {DatePicker} from 'antd';
 import moment from 'moment';
 import {NameWithId} from "./names";
 import _ from "lodash";
+import BlockTime from '../common/blockTime'
+
 
 class Transfers extends React.Component {
   constructor(props) {
@@ -162,7 +158,8 @@ class Transfers extends React.Component {
         className: 'ant_table',
         width: '14%',
         render: (text, record, index) => {
-          return <TimeAgo date={text} title={moment(text).format("MMM-DD-YYYY HH:mm:ss A")}/>
+          return <BlockTime time={text}></BlockTime>
+          // <TimeAgo date={text} title={moment(text).format("MMM-DD-YYYY HH:mm:ss A")}/>
         }
       },
       {
@@ -173,8 +170,8 @@ class Transfers extends React.Component {
         className: 'ant_table',
         render: (text, record, index) => {
           return record.fromtip?
-          <AddressLink address={text}/>:
-          <Truncate><span>{text}</span></Truncate>
+              <AddressLink address={text}>{text}</AddressLink>:
+              <TruncateAddress>{text}</TruncateAddress>
         }
       },
       {
@@ -193,8 +190,8 @@ class Transfers extends React.Component {
         className: 'ant_table',
         render: (text, record, index) => {
           return record.totip?
-          <AddressLink address={text}/>:
-          <Truncate><span>{text}</span></Truncate>
+              <AddressLink address={text}>{text}</AddressLink>:
+              <TruncateAddress>{text}</TruncateAddress>
         }
       },
       {

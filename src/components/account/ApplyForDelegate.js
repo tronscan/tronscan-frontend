@@ -4,9 +4,9 @@ import {t, tu} from "../../utils/i18n";
 import {Client} from "../../services/api";
 import {Modal, ModalBody, ModalHeader} from "reactstrap";
 import SweetAlert from "react-bootstrap-sweetalert";
-import {WITNESS_CREATE_COST} from "../../constants";
+import {WITNESS_CREATE_COST, IS_MAINNET} from "../../constants";
 import {FormattedNumber} from "react-intl";
-import {transactionResultManager} from "../../utils/tron";
+import {transactionResultManager, transactionResultManagerSun} from "../../utils/tron";
 
 const {isWebUri} = require('valid-url');
 
@@ -39,23 +39,37 @@ class ApplyForDelegate extends Component {
     let {account, isTronLink} = this.props;
     let {url} = this.state;
     this.setState({ loading: true });
-    if (isTronLink === 1) {
-      let tronWeb;
-      if (this.props.walletType.type === "ACCOUNT_LEDGER"){
-          tronWeb = this.props.tronWeb();
-      }else if(this.props.walletType.type === "ACCOUNT_TRONLINK"){
-          tronWeb = account.tronWeb;
-      }
+    if(IS_MAINNET){
+        if (isTronLink === 1) {
+            let tronWeb;
+            if (this.props.walletType.type === "ACCOUNT_LEDGER"){
+                tronWeb = this.props.tronWeb();
+            }else if(this.props.walletType.type === "ACCOUNT_TRONLINK"){
+                tronWeb = account.tronWeb;
+            }
 
-     // const unSignTransaction = await tronWeb.transactionBuilder.applyForSR(tronWeb.defaultAddress.hex, url).catch(e => false);
-        const unSignTransaction = await tronWeb.transactionBuilder.applyForSR(tronWeb.defaultAddress.hex, url);
-        const {result} = await transactionResultManager(unSignTransaction, tronWeb);
+            const unSignTransaction = await tronWeb.transactionBuilder.applyForSR(tronWeb.defaultAddress.hex, url);
+            const {result} = await transactionResultManager(unSignTransaction, tronWeb);
 
-      res = result;
-    } else {
-      let {success} = await Client.applyForDelegate(account.address, url)(account.key);
-      res = success;
+            res = result;
+        } else {
+           let {success} = await Client.applyForDelegate(account.address, url)(account.key);
+           res = success;
+        }
+    }else{
+        if (isTronLink === 1) {
+            //tronlink
+            const unSignTransaction = await account.sunWeb.sidechain.transactionBuilder.applyForSR(account.sunWeb.sidechain.defaultAddress.hex, url).catch(e => console.log(e));
+            const {result} = await transactionResultManagerSun(unSignTransaction, account.sunWeb);
+            res = result;
+        } else {
+            //pk
+            const unSignTransaction = await account.sunWeb.sidechain.transactionBuilder.applyForSR(account.sunWeb.sidechain.defaultAddress.hex, url).catch(e => console.log(e));
+            const {result} = await transactionResultManagerSun(unSignTransaction, account.sunWeb);
+            res = result;
+        }
     }
+
     this.setState({ loading: false });
     if (res) {
       this.confirm();

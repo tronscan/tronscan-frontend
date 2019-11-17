@@ -13,6 +13,7 @@ import {isAddressValid} from "@tronscan/client/src/utils/crypto";
 import { trim } from 'lodash'
 import { FormatNumberByDecimals } from '../../../utils/number'
 import {QuestionMark} from "../../common/QuestionMark";
+import qs from 'qs'
 
 class TokenHolders extends React.Component {
     constructor(props) {
@@ -41,7 +42,7 @@ class TokenHolders extends React.Component {
   };
 
   loadTokenHolders = async (page = 1, pageSize = 20) => {
-    let {filter} = this.props;
+    let {filter, getCsvUrl} = this.props;
     this.setState({loading: true});
 
     // let {addresses, total} = await Client.getTokenHolders(filter.token, {
@@ -50,7 +51,15 @@ class TokenHolders extends React.Component {
     //   start: (page - 1) * pageSize,
     //   count: true
     // });
-    let { data } = await xhr.get(API_URL+"/api/token_trc20/holders?sort=-balance&start=" +(page - 1) * pageSize+ "&limit="+pageSize+"&contract_address=" + filter.token);
+    const params = {
+      sort: '-balance',
+      start:(page - 1) * pageSize,
+      limit: pageSize,
+      contract_address: filter.token
+    }
+    const query = qs.stringify({ format: 'csv',...params})
+    getCsvUrl(`${API_URL}/api/token_trc20/holders?${query}`)
+    let { data } = await xhr.get(API_URL+"/api/token_trc20/holders",{params});
     let addresses = data.trc20_tokens;
     let total= data.total;
     let rangeTotal = data.rangeTotal;
@@ -61,12 +70,12 @@ class TokenHolders extends React.Component {
     let exchangeFlag = await Client.getTagNameList()
     if(addresses.length){
       addresses.map(item => {
-        item.tagName = ''
+        item.tagName = '';
         exchangeFlag.map(coin => {
           const typeList = Object.keys(coin.addressList)
           typeList.map(type => {
             if(coin.addressList[type].length == 1){
-              if(coin.addressList[type][0] === item.address){
+              if(coin.addressList[type][0] === item.holder_address){
                 item.tagName = `${upperFirst(coin.name)}${type !== 'default'? `-${type}`: ''}`
                 if(lowerCase(coin.name) === 'binance'){
                   item.ico = lowerCase(coin.name)
@@ -74,7 +83,7 @@ class TokenHolders extends React.Component {
               }
             }else if(coin.addressList[type].length > 1){
               coin.addressList[type].map((address, index) => {
-                if(address === item.address){
+                if(address === item.holder_address){
                   item.tagName = `${upperFirst(coin.name)}${type !== 'default'? `-${type} ${index + 1}`: ` ${index + 1}`}`
                   if(lowerCase(coin.name) === 'binance'){
                     item.ico = lowerCase(coin.name)
@@ -86,7 +95,6 @@ class TokenHolders extends React.Component {
         })
        })
     }
-    
 
     this.setState({
       page,
@@ -118,9 +126,13 @@ class TokenHolders extends React.Component {
       },
       {
         title: 'Name Tag',
-        dataIndex: 'tagName',
-        key: 'tagName',
-        width: '200px'
+        dataIndex: 'addressTag',
+        key: 'addressTag',
+        width: '15%',
+        align: 'left',
+        render: (text, record, index) => {
+            return  <span style={{whiteSpace:'nowrap'}}> {record.addressTag?record.addressTag:''} </span>
+        }
       },
       {
         title: upperFirst(intl.formatMessage({id: 'quantity'})),
@@ -156,16 +168,49 @@ class TokenHolders extends React.Component {
   }
   doSearch = async () => {
       let {intl,filter} = this.props;
-      let {search,addresses} = this.state;
+      let {search} = this.state;
 
       if (isAddressValid(search)){
           let result = await  xhr.get(API_URL+"/api/token_trc20/holders?contract_address=" + filter.token +"&holder_address=" + search);
-          result.data.trc20_tokens[0].index = 1
+          let exchangeFlag = await Client.getTagNameList()
+          let addresses = result.data.trc20_tokens;
+          if(addresses.length){
+              addresses.map(item => {
+                  item.tagName = '';
+                  exchangeFlag.map(coin => {
+                      const typeList = Object.keys(coin.addressList)
+                      typeList.map(type => {
+                          if(coin.addressList[type].length == 1){
+
+                              if(coin.addressList[type][0] === item.holder_address){
+                                  item.tagName = `${upperFirst(coin.name)}${type !== 'default'? `-${type}`: ''}`
+                                  if(lowerCase(coin.name) === 'binance'){
+                                      item.ico = lowerCase(coin.name)
+                                  }
+                              }
+                          }else if(coin.addressList[type].length > 1){
+                              coin.addressList[type].map((address, index) => {
+                                  if(address === item.holder_address){
+                                      item.tagName = `${upperFirst(coin.name)}${type !== 'default'? `-${type} ${index + 1}`: ` ${index + 1}`}`
+                                      if(lowerCase(coin.name) === 'binance'){
+                                          item.ico = lowerCase(coin.name)
+                                      }
+                                  }
+                              })
+                          }
+                      })
+                  })
+              })
+          }
+
+          addresses[0].index = 1
+
           this.setState({
-              addresses:result.data.trc20_tokens,
+              addresses:addresses,
               total:1,
               search: ""
           });
+
       }else {
           toastr.warning(intl.formatMessage({id: 'warning'}), intl.formatMessage({id: 'search_TRC20_error'}));
           this.setState({

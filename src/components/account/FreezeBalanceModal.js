@@ -6,10 +6,10 @@ import {Modal, ModalBody, ModalHeader} from "reactstrap";
 import {tu, t} from "../../utils/i18n";
 import {FormattedNumber} from "react-intl";
 import {Client} from "../../services/api";
-import {ONE_TRX} from "../../constants";
+import {ONE_TRX, IS_MAINNET} from "../../constants";
 import {reloadWallet} from "../../actions/wallet";
 import {NumberField} from "../common/Fields";
-import {transactionResultManager} from "../../utils/tron";
+import { transactionResultManager, transactionResultManagerSun} from "../../utils/tron";
 import Lockr from "lockr";
 import {withTronWeb} from "../../utils/tronWeb";
 import { Tooltip } from 'antd';
@@ -50,7 +50,8 @@ export default class FreezeBalanceModal extends React.PureComponent {
       receiver:'',
       oneEnergy: 0,
       oneBandwidth: 0,
-      getcalculate: 0
+      getcalculate: 0,
+      freezeError: '',
     };
   }
 
@@ -75,12 +76,20 @@ export default class FreezeBalanceModal extends React.PureComponent {
   };
 
   onAmountChanged = (value) => {
-    let {trxBalance} = this.props;
+    let {trxBalance,intl} = this.props;
 
     let amount = parseInt(value);
     if (!isNaN(amount)) {
+      if (amount > Math.floor(trxBalance)) {
+        this.setState({
+            freezeError: `${intl.formatMessage({id: 'freeze_balance_limit'})}`
+        });
+      }else{
+          this.setState({
+              freezeError: ''
+          });
+      }
       amount = amount > 0 ? Math.floor(amount) : Math.abs(amount);
-      // amount = amount < trxBalance ? amount : trxBalance;
     } else {
       amount = "";
     }
@@ -107,51 +116,59 @@ export default class FreezeBalanceModal extends React.PureComponent {
     this.setState({loading: true});
 
     try {
-
-      if (Lockr.get("islogin") || this.props.wallet.type==="ACCOUNT_LEDGER" || this.props.wallet.type==="ACCOUNT_TRONLINK") {
         const tronWebLedger = this.props.tronWeb();
-        const { tronWeb } = this.props.account;
+        const { tronWeb, sunWeb } = this.props.account;
         if (!selectedResource) {
-          type = 'BANDWIDTH';
+            type = 'BANDWIDTH';
         } else {
-          type = 'ENERGY';
+            type = 'ENERGY';
         }
+        if(IS_MAINNET){
+            if (Lockr.get("islogin") || this.props.wallet.type==="ACCOUNT_LEDGER" || this.props.wallet.type==="ACCOUNT_TRONLINK") {
 
-
-        if(this.props.wallet.type==="ACCOUNT_LEDGER") {
-          let unSignTransaction;
-          if(receiver==="") {
-             unSignTransaction = await tronWebLedger.transactionBuilder.freezeBalance(
-                amount * ONE_TRX,
-                3,
-                type,
-                wallet.address);
-          }else{
-             unSignTransaction = await tronWebLedger.transactionBuilder.freezeBalance(
-                amount * ONE_TRX,
-                3,
-                type,
-                wallet.address, receiver);
+              if(this.props.wallet.type==="ACCOUNT_LEDGER") {
+                  let unSignTransaction;
+                  if(receiver==="") {
+                      unSignTransaction = await tronWebLedger.transactionBuilder.freezeBalance(
+                          amount * ONE_TRX,
+                          3,
+                          type,
+                          wallet.address);
+                  }else{
+                      unSignTransaction = await tronWebLedger.transactionBuilder.freezeBalance(
+                          amount * ONE_TRX,
+                          3,
+                          type,
+                          wallet.address, receiver);
+                  }
+                  result = await transactionResultManager(unSignTransaction, tronWebLedger);
+              }
+              if(this.props.wallet.type==="ACCOUNT_TRONLINK"){
+                  let unSignTransaction;
+                  if(receiver==="") {
+                      unSignTransaction = await tronWeb.transactionBuilder.freezeBalance(amount * ONE_TRX, 3, type, tronWeb.defaultAddress.base58).catch(e => false);
+                  }else{
+                      unSignTransaction = await tronWeb.transactionBuilder.freezeBalance(amount * ONE_TRX, 3, type, tronWeb.defaultAddress.base58,receiver).catch(e => false);
+                  }
+                  result = await transactionResultManager(unSignTransaction,tronWeb)
+              }
+              res = result;
+          } else {
+              let {success} = await Client.freezeBalance(account.address, amount * ONE_TRX, 3, selectedResource, receiver)(account.key);
+              res = success
           }
-           result = await transactionResultManager(unSignTransaction, tronWebLedger);
-        }
-        if(this.props.wallet.type==="ACCOUNT_TRONLINK"){
-          let unSignTransaction;
-          if(receiver==="") {
-             unSignTransaction = await tronWeb.transactionBuilder.freezeBalance(amount * ONE_TRX, 3, type, tronWeb.defaultAddress.base58).catch(e => false);
-          }else{
-             unSignTransaction = await tronWeb.transactionBuilder.freezeBalance(amount * ONE_TRX, 3, type, tronWeb.defaultAddress.base58,receiver).catch(e => false);
+      }else{
+          if(this.props.wallet.type==="ACCOUNT_TRONLINK" || this.props.wallet.type==="ACCOUNT_PRIVATE_KEY"){
+              let unSignTransaction;
+              if(receiver==="") {
+                  unSignTransaction = await sunWeb.sidechain.transactionBuilder.freezeBalance(amount * ONE_TRX, 3, type, sunWeb.sidechain.defaultAddress.base58).catch(e => false);
+              }else{
+                  unSignTransaction = await sunWeb.sidechain.transactionBuilder.freezeBalance(amount * ONE_TRX, 3, type, sunWeb.sidechain.defaultAddress.base58, receiver).catch(e => false);
+              }
+              result = await transactionResultManagerSun(unSignTransaction,sunWeb)
+              res = result;
           }
-           result = await transactionResultManager(unSignTransaction,tronWeb)
-        }
-
-        res = result;
-      } else {
-        let {success} = await Client.freezeBalance(account.address, amount * ONE_TRX, 3, selectedResource, receiver)(account.key);
-        res = success
       }
-
-
       if (res) {
         this.confirmModal({amount});
         this.setState({loading: false});
@@ -207,13 +224,17 @@ export default class FreezeBalanceModal extends React.PureComponent {
   setReceiverAddress = (address) => {
     this.setState({receiver: address});
   };
+
   render() {
 
-    let {receiver, amount, confirmed, loading, resources, selectedResource, oneEnergy, oneBandwidth, getcalculate} = this.state;
+    let {receiver, amount, confirmed, loading, resources, selectedResource, oneEnergy, oneBandwidth, getcalculate, freezeError} = this.state;
     let {trxBalance, frozenTrx, intl} = this.props;
     trxBalance = !trxBalance ? 0 :  trxBalance;
     let isValid =  (amount > 0 && trxBalance >= amount && confirmed);
-
+    // freezeError
+    const freezeErrorItem = (
+      <span className="pt-2 text-left" style={{ color: 'red', display: 'block' }}>{freezeError}</span>
+    );
     return (
         <Modal isOpen={true} toggle={this.hideModal} fade={false} className="modal-dialog-centered _freezeContent">
           <ModalHeader className="text-center _freezeHeader" toggle={this.hideModal}>
@@ -247,6 +268,7 @@ export default class FreezeBalanceModal extends React.PureComponent {
                       style={{marginTop: '12px', background: "#F3F3F3", border: "1px solid #EEEEEE"}}
                       onChange={this.onAmountChanged}/>
                 </div>
+                {freezeError && freezeErrorItem}
               </div>
               <div className="form-group">
                 <select className="custom-select"
@@ -264,16 +286,16 @@ export default class FreezeBalanceModal extends React.PureComponent {
               </div>
               {Boolean(selectedResource == 0 && getcalculate) &&
                 <div className="text-left d-flex align-items-center">
-                  <span className="col-red mr-2">1TRX ≈ <FormattedNumber value={oneBandwidth}/>{tu('bandwidth')}, {tu('Expected_acquisition')}<FormattedNumber value={getcalculate}/>{tu('bandwidth')}</span>
-                  <Tooltip placement="top" title={tu('bandwidth_more')} overlayStyle={{ maxWidth: '320px'}}>
+                  <span className="col-red mr-2">1TRX ≈ <FormattedNumber value={oneBandwidth}/>{tu('bandwidth')}, {tu('Expected_acquisition')}  &nbsp; <FormattedNumber value={getcalculate}/> &nbsp;{tu('bandwidth')} </span>
+                  <Tooltip placement="top" title={tu('energy_more')} overlayStyle={{ maxWidth: '320px'}}>
                     <div className="question-mark"><i>?</i></div>
                   </Tooltip>
                 </div>
               }
               {Boolean(selectedResource == 1&& getcalculate) &&
                 <div className="text-left d-flex align-items-center">
-                  <span className="col-red mr-2">1TRX ≈ <FormattedNumber value={oneEnergy}/>{tu('energy')}, {tu('Expected_acquisition')}<FormattedNumber value={getcalculate}/>{tu('energy')}</span>
-                  <Tooltip placement="top" title={tu('energy_more')} overlayStyle={{maxWidth: '320px'}}>
+                  <span className="col-red mr-2">1TRX ≈ <FormattedNumber value={oneEnergy}/>{tu('energy')}, {tu('Expected_acquisition')} &nbsp; <FormattedNumber value={getcalculate}/>  &nbsp;{tu('energy')}</span>
+                  <Tooltip placement="top" title={tu('bandwidth_more')} overlayStyle={{maxWidth: '320px'}}>
                     <div className="question-mark"><i>?</i></div>
                   </Tooltip>
                 </div>

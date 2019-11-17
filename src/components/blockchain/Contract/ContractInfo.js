@@ -1,214 +1,169 @@
-import React from "react";
-import { CopyText } from "../../common/Copy";
-import { tu, tv } from "../../../utils/i18n";
-import { Client } from "../../../services/api";
-import xhr from "axios";
-import { API_URL } from "../../../constants";
-import { AddressLink } from "../../common/Links";
-import { TronLoader } from "../../common/loaders";
+import React from 'react';
+import { CopyText } from '../../common/Copy';
+import { tu } from '../../../utils/i18n';
+import { Client } from '../../../services/api';
+import { TronLoader } from '../../common/loaders';
 import { Base64 } from 'js-base64';
-
 
 export default class Code extends React.Component {
 
-  constructor(props) {
-    super(props);
+    constructor(props) {
+        super(props);
 
-    this.state = {
-      name: "",
-      compilerVersion: "",
-      sourceCode: "",
-      abi: "",
-      creationCode: "",
-      abiEncoded: "",
-      address: "",
-      byteCode: "",
-      isSetting: 'Yes',
-      librarys: null,
-      loading: true,
-      contractInfos: ''
-    };
-  }
-
-  componentDidMount() {
-    let { filter } = this.props;
-    if (filter.contractInfoList.contractCode) {
-      let contractInfo = filter.contractInfoList.contractCode
-      let contractInfos = Base64.decode(contractInfo);
-      this.setState({
-        contractInfos: contractInfos
-      })
+        this.state = {
+            name: '',
+            compilerVersion: '',
+            sourceCode: '',
+            abi: '',
+            creationCode: '',
+            abiEncoded: '',
+            address: '',
+            byteCode: '',
+            isSetting: 'Yes',
+            librarys: null,
+            loading: true,
+            contractInfos: [],
+            contractCode: '',
+        };
     }
-    this.setState({
-      name: filter.contractInfoList.name || "-",
-      abi: filter.contractInfoList.interfaceAbi ? JSON.stringify(filter.contractInfoList.interfaceAbi) : JSON.stringify(filter.contractInfoList.abi),
-      byteCode: filter.contractInfoList.bytecode,
-      loading: false
-    })
-    // this.loadContractCode(filter.address);
-  }
 
-  async loadContractCode(id) {
-    this.setState({ loading: true });
-    let contractCode = await Client.getContractCode(id);
+    componentDidMount() {
+        let { filter } = this.props;
+        if (filter.contractInfoList.contractCode) {
+            let contractInfo = filter.contractInfoList.contractCode;
+            this.setState({
+                contractInfos: contractInfo,
+            });
+        }
+        this.setState({
+            name: filter.contractInfoList.name || '-',
+            abi: filter.contractInfoList.interfaceAbi
+                ? JSON.stringify(filter.contractInfoList.interfaceAbi)
+                : JSON.stringify(filter.contractInfoList.abi),
+            byteCode: filter.contractInfoList.bytecode,
+            loading: false
+        });
+    }
 
-    this.setState({
-      name: contractCode.data.name || "-",
-      compilerVersion: contractCode.data.compiler,
-      sourceCode: contractCode.data.source,
-      abi: contractCode.data.abi,
-      abiEncoded: contractCode.data.abiEncoded,
-      address: contractCode.data.address,
-      byteCode: contractCode.data.byteCode,
-      isSetting: contractCode.data.isSetting ? 'Yes' : 'No',
-      librarys: contractCode.data.librarys,
-      loading: false
-    }, () => {
-      // this.ace.editor.setValue(this.state.sourceCode);
-      // this.ace.editor.clearSelection();
-    });
+    async loadContractCode(id) {
+        this.setState({ loading: true });
+        let contractCode = await Client.getContractCode(id);
 
-  }
+        this.setState({
+            name: contractCode.data.name || '-',
+            compilerVersion: contractCode.data.compiler,
+            sourceCode: contractCode.data.source,
+            abi: contractCode.data.abi,
+            abiEncoded: contractCode.data.abiEncoded,
+            address: contractCode.data.address,
+            byteCode: contractCode.data.byteCode,
+            isSetting: contractCode.data.isSetting ? 'Yes' : 'No',
+            librarys: contractCode.data.librarys,
+            loading: false
+        });
 
-  onChange = (newValue, e) => {
+    }
 
-    //const editor = this.ace.editor;
+    /**
+    * 点击左侧菜单文件
+    */
+    changeEditor = contractInfo => {
+        const { code } = contractInfo;
+        this.setState({
+            contractCode: code,
+        });
+    }
 
-  }
+    render() {
+        const { name, abi, byteCode, loading, contractInfos, contractCode } = this.state;
+        const { filter: { contractInfoList: { interfaceAbi } } } = this.props;
+        // 合约代码
+        const code = contractCode || (contractInfos && contractInfos.length > 0 && contractInfos[0].code);
+        const base64Code = code && Base64.decode(code);
 
-  render() {
-    let { name, compilerVersion, sourceCode, abi, abiEncoded, address, byteCode, isSetting, librarys, loading, contractInfos } = this.state;
-    const { filter } = this.props
-    return (
-      <main className="container pl-0 pr-0">
-        {loading && <div className="loading-style" style={{ marginTop: '-20px' }}><TronLoader /></div>}
-        {
-          filter.contractInfoList.interfaceAbi ? null
-          : 
+        // 合约名称Item
+        const contractNameItem = (
             <div className="row">
-              <div className="col-md-12 contract-header">
-                {/*<br/>*/}
-                {/*<div className="pb-3 verified"><i className="fa fa-check-circle mr-1"></i>('contract_code_verified')</div> */}
-
-                <div className="d-flex justify-content-between">
-                  <div className="contract-header__item">
-                    <ul>
-                      <li><p className="plus">{tu("contract_name")}:</p>{name}</li>
-                      {/* <li><p className="plus">{tu('Optimization_Enabled')}: </p>{isSetting}</li> */}
-                    </ul>
-                  </div>
-                  <div className="contract-header__item">
-                    <ul>
-                      {/* <li><p className="plus">{tu("Compiler_Text")}:</p>{compilerVersion}</li> */}
-                    </ul>
-                  </div>
-                </div>
-              </div>
+                {/*<div className="col-md-12 contract-header">*/}
+                    {/*<div className="d-flex justify-content-between">*/}
+                        {/*<div className="contract-header__item">*/}
+                            {/*<ul>*/}
+                                {/*<li><p className="plus">{tu('contract_name')}:</p>{name}</li>*/}
+                            {/*</ul>*/}
+                        {/*</div>*/}
+                    {/*</div>*/}
+                {/*</div>*/}
             </div>
+        );
 
-        }
-        
+        // 合约代码Item
+        const contractCodeItem = (
+            <div className="mt-3">
 
-        {/* <div className="row">
-            <div className="col-md-12 ">
-              <div className="d-flex mb-1">
-                <span><i className="fa fa-code"></i> {tu('contract_source_code')}</span>
-                <CopyText text={sourceCode} className="ml-auto ml-1"/>
-              </div>
-              <ReactAce
-                  mode="text"
-                  theme="eclipse"
-                  setReadOnly={true}
-                  onChange={this.onChange}
-                  style={{height: '400px'}}
-                  ref={instance => {
-                    this.ace = instance;
-                  }}
-              />
-
-            </div>
-          </div> */}
-        {
-          contractInfos ? 
-            <div className="row mt-3">
-              <div className="col-md-12">
                 <div className="d-flex mb-1">
-                  <span><i className="fa fa-cogs"></i> {tu('contract_code')}</span>
-                  <CopyText text={contractInfos} className="ml-auto ml-1" />
+                    <span><i className="fa fa-cogs mb-2"></i> {tu('contract_code')}</span>
+                    <CopyText text={base64Code} className="ml-auto ml-1" />
                 </div>
-                <textarea className="w-100 form-control"
-                  rows="7"
-                  readOnly="readonly"
-                  value={contractInfos}
-                  onChange={ev => this.setState({ contractInfos: ev.target.value })} />
-              </div>
+                <div className="row">
+                    <div className="col-md-2 pr-0">
+                        <div className="p-3 contract-code-tab">
+                            {contractInfos && contractInfos.length > 0 && contractInfos.map(v => (
+                                <p onClick={() => this.changeEditor(v)} key={v.name}>{v.name}</p>
+                            ))}
+                        </div>
+                    </div>
+                    <div className="col-md-10 pl-0">
+                        <textarea className="w-100 form-control"
+                            rows="15"
+                            readOnly="readonly"
+                            value={base64Code} />
+                    </div>
+                </div>
             </div>
-            : ''
-        }
-        <div className="row mt-3">
-          <div className="col-md-12">
-            <div className="d-flex mb-1">
-              <span><i className="fa fa-cogs"></i> {tu('Contract_ABI')}</span>
-              <CopyText text={abi} className="ml-auto ml-1" />
-            </div>
-            <textarea className="w-100 form-control"
-              rows="7"
-              readOnly="readonly"
-              value={abi}
-              onChange={ev => this.setState({ abi: ev.target.value })} />
-          </div>
-        </div>
+        );
 
-        <div className="row mt-3">
-          <div className="col-md-12">
-            <div className="d-flex mb-1">
-              <span><i className="fas fa-file-invoice"></i> {tu('Byte_code')}</span>
-              <CopyText text={byteCode} className="ml-auto ml-1" />
-            </div>
-            <textarea className="w-100 form-control"
-              rows="7"
-              readOnly="readonly"
-              value={byteCode}
-              onChange={ev => this.setState({ byteCode: ev.target.value })} />
-          </div>
-        </div>
-
-        {/* { abiEncoded&&
-          <div className="row mt-3">
-            <div className="col-md-12 ">
-              <div className="d-flex mb-1">
-                <span><i className="far fa-dot-circle"></i> {tu('Constructor_Arguments')}</span>
-              </div>
-              <textarea className="w-100 form-control"
+        // 合约ABI Item
+        const  contractAbiItem = (
+            <div className="row mt-3">
+                <div className="col-md-12">
+                    <div className="d-flex mb-1">
+                        <span><i className="fa fa-cogs"></i> {tu('Contract_ABI')}</span>
+                        <CopyText text={abi} className="ml-auto ml-1" />
+                    </div>
+                    <textarea className="w-100 form-control"
                         rows="7"
                         readOnly="readonly"
-                        value={abiEncoded}
-                        onChange={ev => this.setState({abiEncoded: ev.target.value})}/>
-
+                        value={abi}
+                        onChange={ev => this.setState({ abi: ev.target.value })} />
+                </div>
             </div>
-          </div>}
+        );
 
-          { librarys&&(librarys.length !== 0)&&
-          <div className="row mt-3">
-            <div className="col-md-12 ">
-              <div className="d-flex mb-1">
-                <span><i className="fas fa-map-marker-alt"></i> {tu('Library_Used')}</span>
-              </div>
-              <div className="code-wapper">
-              { librarys.map( item => {
-                  return <div className="code-wapper-item d-flex">
-                    <p>{item.name}</p>
-                    <AddressLink address={item.address} isContract={true}/>
-                  </div>
-                })
-              }
-              </div>
-
+        // 字节码Item
+        const byteCodeItem = (
+            <div className="row mt-3">
+                <div className="col-md-12">
+                    <div className="d-flex mb-1">
+                        <span><i className="fas fa-file-invoice"></i> {tu('Byte_code')}</span>
+                        <CopyText text={byteCode} className="ml-auto ml-1" />
+                    </div>
+                    <textarea className="w-100 form-control"
+                        rows="7"
+                        readOnly="readonly"
+                        value={byteCode}
+                        onChange={ev => this.setState({ byteCode: ev.target.value })} />
+                </div>
             </div>
-          </div>} */}
+        );
 
-      </main>
-
-    )
-  }
+        return (
+            <main className="container pl-0 pr-0">
+                {loading && <div className="loading-style" style={{ marginTop: '-20px' }}><TronLoader /></div>}
+                {interfaceAbi && contractNameItem}
+                {contractInfos && contractInfos.length > 0 && contractCodeItem}
+                {contractAbiItem}
+                {byteCodeItem}
+            </main>
+        );
+    }
 }

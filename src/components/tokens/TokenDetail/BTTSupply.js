@@ -4,7 +4,7 @@ import {Client} from "../../../services/api";
 import {ONE_TRX} from "../../../constants";
 import {connect} from "react-redux";
 import {injectIntl} from "react-intl";
-import {filter, includes} from "lodash";
+import {filter, flatten} from "lodash";
 import {tronAddresses} from "../../../utils/tron";
 import {TronLoader} from "../../common/loaders";
 import LineReact from "../../common/LineChart";
@@ -59,7 +59,7 @@ class BTTSupply extends React.Component {
         this.loadTotalTRXSupply();
         setInterval(() => {
             this.loadTotalTRXSupply();
-        }, 30000);
+        }, 60000);
     }
 
     compare (property) {
@@ -81,9 +81,9 @@ class BTTSupply extends React.Component {
         let result=await xhr.get(`${API_URL}/api/bittorrent/graphic`);
 
       let supplyTypesChartData = result.data;
-
-        let trxPriceData = await xhr.get(`https://api.coinmarketcap.com/v1/ticker/bittorrent/?convert=EUR`);
-        let priceUSD = ((parseFloat(trxPriceData.data[0].price_usd))*1000).toFixed(2);
+        let eurBittorrentURL = encodeURI(`https://api.coinmarketcap.com/v1/ticker/bittorrent/?convert=EUR`);
+        let trxPriceData = await xhr.get(`${API_URL}/api/system/proxy?url=${eurBittorrentURL}`);
+        let priceUSD = ((parseFloat(trxPriceData.data[0].price_usd))*1000).toFixed(3);
         let priceBTC = ((parseFloat(trxPriceData.data[0].price_btc))*1000).toFixed(5);
         let marketCapitalization = ((parseFloat(trxPriceData.data[0].price_usd)*(funds.totalTurnOver))).toFixed(2);
         this.setState({
@@ -126,10 +126,34 @@ class BTTSupply extends React.Component {
         });
     }
 
+    getDateByYear(yearArr, initMonth){
+        var newdata = yearArr.map((yaer, index) => {
+            let startMonth = 1
+            let endMonth = 12
+            let date = []
+            if(index === 0){
+                startMonth = initMonth
+            }else if(index === yaer.length-1){
+                endMonth = initMonth
+            }
+            for (let month = startMonth; month <= endMonth; month++) {
+                date.push(`${yaer}-${month}`) 
+            }
+            return date
+        })
+        return flatten(newdata)
+    }
+
     render() {
         let {match, intl,activeLanguage} = this.props;
         let {supplyTypesChart,genesisNum,blockProduceRewardsNum,nodeRewardsNum,independenceDayBurned,feeBurnedNum,currentTotalSupply,priceUSD,priceBTC,marketCapitalization,foundationFreeze,circulatingNum} = this.state;
         let supplyURL = "https://ex.bnbstatic.com/images/20190128/c015d0e0-f442-4245-a963-b3e2ad50617b.jpg";
+        const chartData = {
+            title: intl.formatMessage({id: 'BTT_Token_Release_Schedule'}),
+            subtitle: intl.formatMessage({id: 'source_btt_team'}),
+            exporting: intl.formatMessage({id: 'BTT_Token_Release_Schedule'}),
+            xAxis: ['2019-01','2019-02','2019-03','2019-04','2019-05','2019-06','2019-07','2019-08','2019-09','2019-10','2019-11','2019-12','2020-01', '2020-02', '2020-03','2020-04','2020-05','2020-06','2020-07','2020-08','2020-09','2020-10','2020-11','2020-12','2021-01','2021-02','2021-03','2021-04','2021-05','2021-06','2021-07','2021-08','2021-09','2021-10','2021-11','2021-12','2022-01','2022-02','2022-03','2022-04','2022-05','2022-06','2022-07','2022-08','2022-09','2022-10','2022-11','2022-12']
+        }
         return (
 
                 <div className="row">
@@ -225,6 +249,7 @@ class BTTSupply extends React.Component {
                                                           <div className="card-body">
                                                             <SupplyAreaHighChart
                                                                 intl={intl}
+                                                                chartData={chartData}
                                                                 data={supplyTypesChart}
                                                                 style={{height: 400, marginTop: 10}}
                                                             />
@@ -260,8 +285,4 @@ const
         loadPriceData,
     };
 
-export default connect(mapStateToProps, mapDispatchToProps)
-
-(
-    injectIntl(BTTSupply)
-)
+export default connect(mapStateToProps, mapDispatchToProps)(injectIntl(BTTSupply))

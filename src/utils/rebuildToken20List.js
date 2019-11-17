@@ -1,16 +1,17 @@
 import {upperCase} from 'lodash'
 import {tokens20Map} from "./tokensMap.js";
 import xhr from "axios/index";
-import {API_URL} from '../constants.js'
+import {API_URL} from '../constants.js';
+import { store } from './../store';
 
 export default (list = [], tokenId, amount, infolist=false) => {
     let IDmap = {};
     let newList = list.map(item => item);
-
+    // const { account: { token20Map } } = store.getState();
+    // IDmap = token20Map;
     const tokenmap = localStorage.getItem('tokens20Map');
     IDmap = JSON.parse(tokenmap);
-
-
+    
     if(!IDmap){
         getTokensMap().then( date => {
             IDmap = date

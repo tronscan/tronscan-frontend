@@ -5,10 +5,11 @@ import logo from '../images/tron-banner-inverted.png'
 import tronLogoBlue from '../images/tron-banner-tronblue.png'
 import tronLogoDark from '../images/tron-banner-1.png'
 import tronLogoTestNet from "../images/tron-logo-testnet.png";
+import tronLogoSunNet from "../images/tron-logo-sunnet.png";
 import tronLogoInvertedTestNet from "../images/tron-logo-inverted-testnet.png";
 import {flatRoutes, routes} from "../routes"
 import {Link, NavLink, withRouter} from "react-router-dom"
-import {filter, find, isString, isUndefined, trim, toUpper,debounce} from "lodash"
+import {filter, find, isString, isUndefined, trim, toUpper, debounce, slice} from "lodash"
 import {tu, t} from "../utils/i18n"
 import {
   enableFlag,
@@ -26,7 +27,7 @@ import {Badge, Modal, ModalBody, ModalFooter, ModalHeader} from "reactstrap"
 import Avatar from "./common/Avatar"
 import {AddressLink, HrefLink} from "./common/Links"
 import {FormattedNumber} from "react-intl"
-import {API_URL, IS_TESTNET, ONE_TRX} from "../constants"
+import {API_URL, IS_TESTNET, ONE_TRX, IS_MAINNET, IS_SUNNET, SUNWEBCONFIG, NETURL} from "../constants"
 import {matchPath} from 'react-router'
 import {doSearch, getSearchType} from "../services/search"
 import {readFileContentsFromEvent} from "../services/file"
@@ -43,7 +44,7 @@ import {toastr} from 'react-redux-toastr'
 import Lockr from "lockr";
 import {BarLoader} from "./common/loaders";
 import {Truncate} from "./common/text";
-import {Icon} from 'antd';
+import { Icon, Select } from 'antd';
 import isMobile from '../utils/isMobile';
 import {Client} from '../services/api';
 import $ from 'jquery';
@@ -51,6 +52,9 @@ import xhr from "axios/index";
 import LedgerAccess from "../hw/ledger/LedgerAccess";
 import { getQueryString } from "../utils/url";
 
+
+
+const { Option } = Select;
 class Navigation extends React.Component {
 
   constructor() {
@@ -72,7 +76,9 @@ class Navigation extends React.Component {
       address: '',
       announcement: '',
       annountime: '1-1',
-      announId: 83
+      announId: 83,
+      selectedNet:'',
+
     };
   }
 
@@ -88,6 +94,7 @@ class Navigation extends React.Component {
 
 
   componentWillMount() {
+    let {intl} = this.props;
     this.reLoginWithTronLink();
   }
 
@@ -96,22 +103,44 @@ class Navigation extends React.Component {
     let _this = this;
 
     window.addEventListener('message', function (e) {
-      if (e.data.message) {
-        _this.setState({address: e.data.message.data});
-
+      if (e.data.message && e.data.message.action == "setAccount") {
+        _this.setState({address: e.data.message.data.address});
       }
+      if (e.data.message && e.data.message.action == "setNode") {
+        if(e.data.message.data.fullNode == SUNWEBCONFIG.MAINFULLNODE){
+            _this.setState({selectedNet: 'mainnet'});
+            Lockr.set("NET", 'mainnet')
+        }else if(e.data.message.data.fullNode == SUNWEBCONFIG.SUNFULLNODE){
+            _this.setState({selectedNet: 'sunnet'});
+            Lockr.set("NET", 'sunnet')
+        }
+      }
+
     })
-    //this.getAnnouncement();
-     setWebsocket();
+    setWebsocket();
     $(document).click(() => {
       $('#_searchBox').css({display: 'none'});
     });
+
+    this.setState({
+        selectedNet: IS_MAINNET?'mainnet':'sunnet'
+    });
+    Lockr.set("NET", IS_MAINNET?'mainnet':'sunnet')
+
   }
 
   componentWillUpdate(nextProps, nextState) {
-      if (nextState.address !== this.state.address && this.isString(nextState.address) && this.isString(this.state.address)) {
-      this.reLoginWithTronLink();
-    }
+      let { account,match,walletType } = this.props;
+        if ((nextState.address !== this.state.address) && this.isString(nextState.address) && this.isString(this.state.address) && walletType.type === "ACCOUNT_TRONLINK") {
+            this.reLoginWithTronLink();
+        }
+        if((nextState.selectedNet !== this.state.selectedNet) && this.state.selectedNet && nextState.selectedNet && this.props.account.isLoggedIn && walletType.type === "ACCOUNT_TRONLINK"){
+            if(nextState.selectedNet === 'mainnet'){
+                window.location.href= NETURL.MAINNET;
+            }else if(nextState.selectedNet === 'sunnet'){
+                window.location.href= NETURL.SUNNET;
+            }
+        }
   }
 
   componentWillUnmount() {
@@ -127,6 +156,19 @@ class Navigation extends React.Component {
     if (activeLanguage != prevProps.activeLanguage) {
      // this.getAnnouncement()
     }
+  }
+
+  netSelectChange = (value) => {
+      Lockr.set("NET", value);
+      Lockr.set("islogin", 0);
+      this.setState({selectedNet: 'value'},()=>{
+          if(value === 'mainnet'){
+              window.location.href= NETURL.MAINNET;
+          }else if(value === 'sunnet'){
+              window.location.href= NETURL.SUNNET;
+          }
+      })
+
   }
 
   isString(str){
@@ -159,8 +201,9 @@ class Navigation extends React.Component {
       let count = 0;
       timer = setInterval(() => {
         const tronWeb = window.tronWeb;
+        const sunWeb = window.sunWeb;
         if (tronWeb && tronWeb.defaultAddress.base58) {
-          this.props.loginWithTronLink(tronWeb.defaultAddress.base58, tronWeb).then(() => {
+          this.props.loginWithTronLink(tronWeb.defaultAddress.base58, tronWeb, sunWeb).then(() => {
             toastr.info(intl.formatMessage({id: 'success'}), intl.formatMessage({id: 'login_success'}));
           });
           this.setState({address: tronWeb.defaultAddress.base58});
@@ -312,11 +355,21 @@ class Navigation extends React.Component {
 
 
   getActiveComponent() {
-    let {router} = this.props;
-    return find(flatRoutes, route => route.path && matchPath(router.location.pathname, {
-      path: route.path,
-      strict: false,
-    }));
+    // let {router} = this.props;
+    // return find(flatRoutes, route => route.path && matchPath(router.location.pathname, {
+    //   path: route.path,
+    //   strict: false,
+    // }));
+      let {router} = this.props;
+      let flatRoutesActives = slice(flatRoutes, 1);
+      if(router.location.pathname == "/") {
+          return flatRoutes[0]
+      }else{
+        return find(flatRoutesActives, route => route.path && matchPath(router.location.pathname, {
+            path: route.path,
+            strict: false,
+        }));
+      }
   }
 
 
@@ -359,9 +412,10 @@ class Navigation extends React.Component {
   };
 
   onSearchChange = (ev) => {
-    this.setState({search: ev.target.value});
+    let value = (ev.target.value).replace(/\s+/g, "");
+    this.setState({ search: value});
     ev.persist();
-    this.callAjax(ev.target.value);
+    this.callAjax(value);
   }
 
   callAjax = async (value) => {
@@ -371,10 +425,13 @@ class Navigation extends React.Component {
       this.setState({searchResults: []});
       $('#_searchBox').css({display: 'none'});
       return;
-    }
+    } 
 
     let result = await xhr.get(API_URL+"/api/search?term=" + trim(search));
     let results = result.data;
+    if(results.Error){
+      results = []
+    }
     this.isSearching = false;
     /*let results = [
       {desc: 'Token-TRC10', value: "IGG 1000029"},
@@ -438,7 +495,7 @@ class Navigation extends React.Component {
 
     return (
         <li className="nav-item dropdown navbar-right">
-          <a key={theme} className="nav-link" href="javascript:;" onClick={this.onSetThemeClick}>
+          <a key={theme} className="nav-link" href="javascript:" onClick={this.onSetThemeClick}>
             <i className={icon}/>
           </a>
         </li>
@@ -471,7 +528,14 @@ class Navigation extends React.Component {
         default:
           return tronLogoInvertedTestNet;
       }
-    } else {
+    } else if(!IS_MAINNET){
+        switch (theme) {
+            case "light":
+                return tronLogoSunNet;
+            default:
+                return tronLogoSunNet;
+        }
+    } {
       switch (theme) {
         case "tron":
           return tronLogoBlue;
@@ -516,8 +580,9 @@ class Navigation extends React.Component {
     e.stopPropagation();
     const {loginWarning, signInWarning} = this.state;
     const tronWeb = window.tronWeb;
+    const sunWeb = window.sunWeb;
     // 没有下载 tronlink
-    if (!tronWeb) {
+    if (!tronWeb || !sunWeb) {
       this.setState({loginWarning: true});
       // this.loading = false
       return
@@ -536,7 +601,7 @@ class Navigation extends React.Component {
     if (address) {
       //this.isauot = true
       Lockr.set("islogin", 1);
-      this.props.loginWithTronLink(address, tronWeb).then(() => {
+      this.props.loginWithTronLink(address, tronWeb, sunWeb).then(() => {
         toastr.info(intl.formatMessage({id: 'success'}), intl.formatMessage({id: 'login_success'}));
         this.setState({isImportAccount: false})
       });
@@ -580,7 +645,7 @@ class Navigation extends React.Component {
     if (wallet.isLoading) {
       return (
           <li className="nav-item">
-            <a className="nav-link" href="javascript:;">
+            <a className="nav-link" href="javascript:">
               Loading Wallet...
             </a>
           </li>
@@ -595,14 +660,13 @@ class Navigation extends React.Component {
     const style_width = STYLE_MAP[activeLanguage]?
                         STYLE_MAP[activeLanguage]:
                         STYLE_MAP['default'];
-
     return (
         <Fragment>
           {
             (account.isLoggedIn && wallet.isOpen) ?
 
                 <li className="nav-static dropdown token_black nav">
-                  <a className="nav-link dropdown-toggle" data-toggle="dropdown" href="javascript:;">
+                  <a className="nav-link dropdown-toggle" data-toggle="dropdown" href="javascript:">
                     {tu("wallet")}
                   </a>
                   <ul className="dropdown-menu dropdown-menu-right account-dropdown-menu px-3">
@@ -612,17 +676,25 @@ class Navigation extends React.Component {
                           {/* <div className="col-lg-2">
                           <Avatar size={45} value={account.address}/>
                         </div> */}
-                          <div>
+                          <div style={{width: 252}}>
                             <b style={{color: '#333'}}>{wallet.current.name || tu("account")}</b>
                             <br/>
                             {/* <AddressLink
                               address={account.address}
                               className="small text-truncate text-nowrap d-sm-inline-block"
                               style={{width: 150}}/> */}
-                            <Truncate><span>{account.address}</span></Truncate>
+                              {
+                                  isAddressValid(account.address)?
+                                    <div className="ellipsis_box">
+                                      <div className="ellipsis_box_start">{account.address.substring(0,29)}</div>
+                                      <div className="ellipsis_box_end">{account.address.substring(29,34)}</div>
+                                    </div>
+                                  :<Truncate><span>{account.address}</span></Truncate>
+                              }
+
                           </div>
                           {/* <Link to="/account" className="col-lg-4 d-flex justify-content-end align-items-center"> */}
-                          <i className="fa fa-angle-right ml-3" aria-hidden="true"></i>
+                          <i className="fa fa-angle-right ml-3" ></i>
                           {/* </Link> */}
                         </Link>
                       </div>
@@ -639,40 +711,40 @@ class Navigation extends React.Component {
                     <Link className="dropdown-item" to="/account">
                       <i className="fa fa-credit-card mr-2"/>
                       <FormattedNumber value={wallet.current.balance / ONE_TRX}/> TRX
-                      <i className="fa fa-angle-right float-right" aria-hidden="true"></i>
+                      <i className="fa fa-angle-right float-right" ></i>
                     </Link>
                     <Link className="dropdown-item" to="/account">
                       <i className="fa fa-bolt mr-2"/>
                       <FormattedNumber value={wallet.current.frozenTrx / ONE_TRX}/> TRON {tu("power")}
-                      <i className="fa fa-angle-right float-right" aria-hidden="true"></i>
+                      <i className="fa fa-angle-right float-right" ></i>
                     </Link>
                     <Link className="dropdown-item" to="/account">
                       <i className="fa fa-tachometer-alt mr-2"/>
                       <FormattedNumber
                           value={wallet.current.bandwidth.netRemaining + wallet.current.bandwidth.freeNetRemaining}/> {tu("bandwidth")}
-                      <i className="fa fa-angle-right float-right" aria-hidden="true"></i>
+                      <i className="fa fa-angle-right float-right" ></i>
                     </Link>
                     <Link className="dropdown-item" to="/account">
                       <i className="fa fa-server mr-2"/>
-                      <FormattedNumber value={wallet.current.bandwidth.energyRemaining}/> {tu("energy")}
-                      <i className="fa fa-angle-right float-right" aria-hidden="true"></i>
+                      <FormattedNumber value={wallet.current.bandwidth.energyRemaining < 0 ? 0 :wallet.current.bandwidth.energyRemaining}/> {tu("energy")}
+                      <i className="fa fa-angle-right float-right" ></i>
                     </Link>
                     <Link className="dropdown-item"
                           to={"/blockchain/transactions?address=" + account.address}>
                       <i className="fa fa-exchange-alt mr-2"/>
                       <FormattedNumber value={totalTransactions}/> {tu("transactions")}
-                      <i className="fa fa-angle-right float-right" aria-hidden="true"></i>
+                      <i className="fa fa-angle-right float-right" ></i>
                     </Link>
                     <li className="dropdown-divider"/>
-                    <a className="dropdown-item" href="javascript:;" onClick={this.newTransaction}>
+                    <a className="dropdown-item" href="javascript:" onClick={this.newTransaction}>
                       <i className="fa fa-paper-plane mr-2"/>
                       {tu("send")}
-                      <i className="fa fa-angle-right float-right" aria-hidden="true"></i>
+                      <i className="fa fa-angle-right float-right" ></i>
                     </a>
-                    <a className="dropdown-item" href="javascript:;" onClick={this.showReceive}>
+                    <a className="dropdown-item" href="javascript:" onClick={this.showReceive}>
                       <i className="fa fa-qrcode mr-2"/>
                       {tu("receive")}
-                      <i className="fa fa-angle-right float-right" aria-hidden="true"></i>
+                      <i className="fa fa-angle-right float-right" ></i>
                     </a>
                     {/*<Link className="dropdown-item" to={"/blockchain/transactions?address=" + account.address}>*/}
                     {/*<i className="fa fa-qrcode mr-2"/>*/}
@@ -693,20 +765,22 @@ class Navigation extends React.Component {
                   }}>
                     {tu("open_wallet")}
                     <ul className="dropdown-menu dropdown-menu-right nav-login-wallet" style={{minWidth: style_width}}>
-                      <li className="px-2 py-1 border-bottom-0" onClick={(e) => {
-                        this.clickLoginWithTronLink(e)
-                      }}>
-                        <div className="dropdown-item text-uppercase d-flex align-items-center text-muted">
-                          <img src={require("../images/login/tronlink.png")} width="16px" height="16px" className="mr-2"/>
-                          {tu('sign_in_with_TRONlink')}
-                        </div>
-                      </li>
-                      <li className="px-2 py-1 border-bottom-0" onClick={(e) => this.loginWithLedger(e)}>
-                        <div className="dropdown-item text-uppercase d-flex  align-items-center text-muted">
-                          <img src={require("../images/login/ledger.png")} width="16px" height="16px" className="mr-2"/>
-                          {tu('sign_in_with_ledger')}
-                        </div>
-                      </li>
+                        <li className="px-2 py-1 border-bottom-0" onClick={(e) => {
+                            this.clickLoginWithTronLink(e)
+                        }}>
+                          <div className="dropdown-item text-uppercase d-flex align-items-center text-muted">
+                            <img src={require("../images/login/tronlink.png")} width="16px" height="16px" className="mr-2"/>
+                              {tu('sign_in_with_TRONlink')}
+                          </div>
+                        </li>
+                      {
+                          IS_MAINNET &&  <li className="px-2 py-1 border-bottom-0" onClick={(e) => this.loginWithLedger(e)}>
+                          <div className="dropdown-item text-uppercase d-flex  align-items-center text-muted">
+                            <img src={require("../images/login/ledger.png")} width="16px" height="16px" className="mr-2"/>
+                              {tu('sign_in_with_ledger')}
+                          </div>
+                        </li>
+                      }
                       <li className="px-2 py-1" onClick={(e) => {
                         this.clickLoginWithPk(e)
                       }}>
@@ -869,11 +943,13 @@ class Navigation extends React.Component {
       activeCurrency,
       wallet,
       syncStatus,
+      walletType: { type },
     } = this.props;
-
-    let {search, popup, notifications, announcement, announId, annountime, searchResults} = this.state;
+    let {search, popup, notifications, announcement, announId, annountime, searchResults, selectedNet } = this.state;
 
     let activeComponent = this.getActiveComponent();
+    const isShowSideChain = !type || (type && IS_SUNNET);
+
     return (
         <div className="header-top">
           {popup}
@@ -891,7 +967,7 @@ class Navigation extends React.Component {
                 </div>
               }
               {
-                (syncStatus && syncStatus.sync.progress < 95) &&
+                (syncStatus && syncStatus.sync && syncStatus.sync.progress < 95) &&
                 <div className="col text-danger text-center py-2">
                   Tronscan is syncing, data might not be up-to-date ({Math.round(syncStatus.sync.progress)}%)
                 </div>
@@ -1058,19 +1134,19 @@ class Navigation extends React.Component {
               <div className="collapse navbar-collapse" id="navbar-top">
                 <ul className="navbar-nav mr-auto">
                   {filter(routes, r => r.showInMenu !== false).map(route => (
-                      <li key={route.path} className="nav-item dropdown">
+                      <li key={route.path}  className={IS_MAINNET? 'nav-item dropdown': 'nav-item dropdown pr-3'}>
                         {
                           route.linkHref === true ?
                               <HrefLink
-                                  className={route.routes ? "nav-link dropdown-toggle" : "nav-link"}
+                                  className={route.routes ? "nav-link" : "nav-link"}
                                   href={activeLanguage == 'zh' ? route.zhurl : route.enurl}>
                                 {route.icon &&
                                 <i className={route.icon + " d-none d-lg-inline-block mr-1"}/>}
                                 {tu(route.label)}
                               </HrefLink>
                               :
-                              <NavLink
-                                  className={route.routes ? "nav-link dropdown-toggle" : "nav-link"}
+                              <span><NavLink
+                                  className={route.routes ? (route.label == 'nav_network' ? 'nav-link text-capitalize' : "nav-link") : "nav-link"}
                                   {...((route.routes && route.routes.length > 0) ? {'data-toggle': 'dropdown'} : {})}
                                   activeClassName="active"
                                   to={route.redirect? route.redirect: route.path}
@@ -1078,11 +1154,15 @@ class Navigation extends React.Component {
                                 {route.icon &&
                                 <i className={route.icon + " d-none d-lg-inline-block mr-1"}/>}
                                 {tu(route.label)}
+                                
                               </NavLink>
+                             
+                              </span>
+                              
                         }
 
                         {
-                          route.routes && route.label !== "nav_more" &&
+                          route.routes && route.label !== "nav_more" && route.label !== "nav_network" &&
                           <div className="dropdown-menu">
                             {
                               route.routes && route.routes.map((subRoute, index) => {
@@ -1149,7 +1229,7 @@ class Navigation extends React.Component {
                           </div>
                         }
                         {
-                          route.routes && route.label == "nav_more" &&
+                            route.routes && (route.label == "nav_network" || route.label == "nav_more") &&
                           <div className="dropdown-menu more-menu" style={{left: 'auto'}}>
                             {
                               route.routes && route.routes.map((subRoute, index) => {
@@ -1160,7 +1240,7 @@ class Navigation extends React.Component {
                                       if (isString(Route)) {
                                         return (
                                             <h6 key={j}
-                                                className="dropdown-header text-uppercase">{Route}</h6>
+                                                className="dropdown-header text-uppercase"> {tu(Route)}</h6>
                                         )
                                       }
 
@@ -1168,7 +1248,7 @@ class Navigation extends React.Component {
                                         return null;
                                       }
 
-                                      if (!isUndefined(Route.url)) {
+                                      if (!isUndefined(Route.url) && !Route.sidechain) {
                                         return (
                                             <HrefLink
                                                 key={Route.url}
@@ -1181,6 +1261,19 @@ class Navigation extends React.Component {
                                               <Badge value={Route.badge}/>}
                                             </HrefLink>
                                         );
+                                      }
+                                      if (isUndefined(Route.url) && Route.sidechain) {
+                                        const sidechainTab = (
+                                          <a href="javascript:"
+                                            key={Route.label}
+                                            className="dropdown-item text-uppercase"
+                                            onClick={() => this.netSelectChange(IS_MAINNET?'sunnet':'mainnet')}
+                                          >
+                                            {Route.icon && <i className={Route.icon + " mr-2"}/>}
+                                            {IS_MAINNET?tu('Side_Chain'):tu('Main_Chain')}
+                                          </a>
+                                        );
+                                        return sidechainTab
                                       }
                                       if (!isUndefined(Route.enurl) || !isUndefined(Route.zhurl)) {
                                         return (
@@ -1302,6 +1395,7 @@ function mapStateToProps(state) {
     router: state.router,
     languages: state.app.availableLanguages,
     account: state.app.account,
+    walletType: state.app.wallet,
     tokenBalances: state.account.tokens,
     frozen: state.account.frozen,
     totalTransactions: state.account.totalTransactions,

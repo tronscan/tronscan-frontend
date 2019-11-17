@@ -1,26 +1,24 @@
-import React, {Fragment} from "react";
-import {FormattedDate, FormattedNumber, FormattedTime, injectIntl} from "react-intl";
-import {Sticky, StickyContainer} from "react-sticky";
-import Paging from "./Paging";
+import React from "react";
+import { injectIntl} from "react-intl";
 import {Client} from "../../services/api";
 import {TransactionHashLink, AddressLink, BlockNumberLink} from "./Links";
 import {tu} from "../../utils/i18n";
-import TimeAgo from "react-timeago";
+// import TimeAgo from "react-timeago";
 import {TronLoader} from "./loaders";
 import {Truncate} from "./text";
 import {ContractTypes} from "../../utils/protocol";
 import SmartTable from "./SmartTable.js"
 import {upperFirst} from "lodash";
-import {QuestionMark} from "./QuestionMark";
 import TotalInfo from "./TableTotal";
-import DateRange from "./DateRange";
+import DateSelect from './dateSelect'
 import {DatePicker} from 'antd';
 import moment from 'moment';
 import {NameWithId} from "./names";
 import rebuildList from "../../utils/rebuildList";
-import xhr from "axios/index";
-import {API_URL} from '../../constants.js'
+import {API_URL} from "../../constants";
 import qs from 'qs'
+import BlockTime from '../common/blockTime'
+
 
 const RangePicker = DatePicker.RangePicker;
 
@@ -44,7 +42,11 @@ class Transactions extends React.Component {
   }
 
   componentDidMount() {
-    this.loadTransactions();
+    // this.loadTransactions();
+      let {isBlock} = this.props;
+      if( isBlock ){
+          this.loadTransactions();
+      }
   }
 
   componentDidUpdate(prevProps) {
@@ -72,31 +74,53 @@ class Transactions extends React.Component {
 
     let transactions, total,rangeTotal = 0;
 
-    if(!isinternal ){
+    if(!isinternal){
+
       if(address){
-          let data = await Client.getTransactions({
-              sort: '-timestamp',
-              limit: pageSize,
-              start: (page - 1) * pageSize,
-              total: this.state.total,
-              start_timestamp:this.start,
-              end_timestamp:this.end,
-              ...filter,
+          const allData = await Promise.all([
+              Client.getTransactions({
+                  sort: '-timestamp',
+                  limit: pageSize,
+                  start: (page - 1) * pageSize,
+                 // total: this.state.total,
+                  start_timestamp:this.start,
+                  end_timestamp:this.end,
+                  ...filter,
+              }),
+              Client.getTransactions({
+                  limit: 0,
+                  ...filter,
+              }),
+              Client.getTransactions({
+                  limit: 0,
+                  start_timestamp:this.start,
+                  end_timestamp:this.end,
+                  ...filter,
+              })
+          ]).catch(e => {
+              console.log('error:' + e);
           });
-          transactions = data.transactions;
-          total = data.total,
-          rangeTotal = data.rangeTotal
+           [{ transactions }, { total }, {rangeTotal} ] = allData;
       }else{
-          let data = await Client.getTransactions({
-              limit: pageSize,
-              start: (page - 1) * pageSize,
-              sort: '-timestamp',
-              total: this.state.total,
-              ...filter
+          const allData = await Promise.all([
+              Client.getTransactions({
+                  limit: pageSize,
+                  start: (page - 1) * pageSize,
+                  sort: '-timestamp',
+                  total: this.state.total,
+                  ...filter
+              }),
+              Client.getTransactions({
+                  limit: 0,
+                  ...filter
+              })
+          ]).catch(e => {
+              console.log('error:' + e);
           });
-          transactions = data.transactions;
-          total = data.total,
-          rangeTotal = data.rangeTotal
+          [{ transactions }, { total, rangeTotal } ] = allData;
+
+
+
       }
 
     }else {
@@ -106,17 +130,28 @@ class Transactions extends React.Component {
           ...filter
         }
         const query = qs.stringify({ format: 'csv',...params})
-        //getCsvUrl(`${'http://52.15.68.74:10000'}/api/internal-transaction?${query}`)
-        let data = await Client.getInternalTransaction({
-            limit: pageSize,
-            start: (page - 1) * pageSize,
-            ...params
+        getCsvUrl(`${API_URL}/api/internal-transaction?${query}`)
+
+        const allData = await Promise.all([
+            Client.getInternalTransaction({
+                limit: pageSize,
+                start: (page - 1) * pageSize,
+                ...params
+            }),
+            Client.getCountByType({
+                type: 'internal', 
+                ...filter
+            })
+        ]).catch(e => {
+            console.log('error:' + e);
         });
+
+        const [data, { count } ] = allData;
 
         let newdata = rebuildList(data.list, 'tokenId', 'callValue', 'valueInfoList')
         transactions = newdata;
-        total = data.total,
-            rangeTotal = data.rangeTotal
+        total = count || data.total
+        rangeTotal = data.rangeTotal
     }
 
     this.setState({
@@ -128,7 +163,7 @@ class Transactions extends React.Component {
   };
 
   customizedColumn = () => {
-      let {intl, isinternal = false} = this.props;
+    let {intl, isinternal = false} = this.props;
     let column = [
       {
         title: upperFirst(intl.formatMessage({id: 'hash'})),
@@ -152,7 +187,8 @@ class Transactions extends React.Component {
         className: 'ant_table',
         width: '14%',
         render: (text, record, index) => {
-          return <TimeAgo date={text} title={moment(text).format("MMM-DD-YYYY HH:mm:ss A")}/>
+          return <BlockTime time={text}></BlockTime>
+          // <TimeAgo date={text} title={moment(text).format("MMM-DD-YYYY HH:mm:ss A")}/>
         }
       },
       {
@@ -219,7 +255,8 @@ class Transactions extends React.Component {
             className: 'ant_table',
             width: '14%',
             render: (text, record, index) => {
-                return <TimeAgo date={text} title={moment(text).format("MMM-DD-YYYY HH:mm:ss A")}/>
+                return <BlockTime time={text}></BlockTime>
+                // <TimeAgo date={text} title={moment(text).format("MMM-DD-YYYY HH:mm:ss A")}/>
             }
         },
       {
@@ -229,7 +266,7 @@ class Transactions extends React.Component {
         align: 'left',
         className: 'ant_table',
         render: (text, record, index) => {
-          return <AddressLink address={text}/>
+            return <AddressLink address={text}>{text}</AddressLink>
         }
       },
       {
@@ -247,7 +284,7 @@ class Transactions extends React.Component {
         align: 'left',
         className: 'ant_table',
         render: (text, record, index) => {
-          return <AddressLink address={text}/>
+          return <AddressLink address={text}>{text}</AddressLink>
         }
       },
       {
@@ -259,7 +296,7 @@ class Transactions extends React.Component {
         render: (text, record, index) => {
           return <span>
               {
-                  text?<img style={{width: '20px', height: '20px'}} src={require("../../images/internal_error.png")}/>:<img style={{width: '20px', height: '20px'}} src={require("../../images/internal_success.png")}/>
+                  text?<img style={{width: '20px', height: '20px'}} src={require("../../images/contract/Unverified.png")}/>:<img style={{width: '20px', height: '20px'}} src={require("../../images/contract/Verified.png")}/>
               }
           </span>
         }
@@ -295,15 +332,14 @@ class Transactions extends React.Component {
   onDateOk (start,end) {
       this.start = start.valueOf();
       this.end = end.valueOf();
-      let {page, pageSize} = this.state;
-      this.loadTransactions(page,pageSize);
+      this.loadTransactions();
   }
 
 
   render() {
 
     let {transactions, total, rangeTotal, loading, EmptyState = null} = this.state;
-    let {intl, isinternal, address = false, filter: {contract}} = this.props;
+    let {intl, isinternal, isBlock = false, address = false, filter: {contract}} = this.props;
     let column = !isinternal? this.customizedColumn():
                               this.trc20CustomizedColumn();
     let tableInfo = intl.formatMessage({id: 'view_total'}) + ' ' + total + ' ' + intl.formatMessage({id: 'transactions_unit'})
@@ -318,22 +354,24 @@ class Transactions extends React.Component {
     // }
 
     return (
-      <div className={"token_black table_pos " + (address?"mt-5":"")}>
+      <div className={"token_black table_pos mt-5" }>
           {loading && <div className="loading-style"><TronLoader/></div>}
           
           <div className="d-flex justify-content-between w-100"  style={{position: "absolute", left: 0, top: '-28px'}}>
             {(total && contract && isinternal)? <div className="d-flex align-items-center">
               <div className="question-mark mr-2"><i>?</i></div><span className="flex-1">{tu('interTrx_tip')}</span>
             </div>: ''}
-              
-            {( address) ? <DateRange onDateOk={(start,end) => this.onDateOk(start,end)}  dateClass={`top-0 date-range-box-address${(total && contract)?'-unset': ''}`}/>: ''}
+              {
+                  !isBlock ?  <DateSelect onDateOk={(start,end) => this.onDateOk(start,end)} dataStyle={{marginTop: '-1.6rem'}}/>:''
+              }
+
           </div>
-          {total? <TotalInfo total={total} rangeTotal={rangeTotal} typeText="transactions_unit" common={!address} top={(!contract && address)? '-28px': '26'}/>: ''}
+          {!loading && <TotalInfo total={total} isQuestionMark={!isBlock} rangeTotal={rangeTotal} typeText="transactions_unit" common={!address} top={(!contract)? '-28px': '10px'} selected/>}
           
           {
               (!loading && transactions.length === 0)?
                   <div className="p-3 text-center no-data">{tu("no_transactions")}</div>:
-                  <SmartTable bordered={true} loading={loading} column={column} data={transactions} total={total}
+                  <SmartTable bordered={true} loading={loading} column={column} data={transactions} total={rangeTotal> 2000? 2000: rangeTotal}
                               onPageChange={(page, pageSize) => {
                                   this.loadTransactions(page, pageSize)
                               }}/>

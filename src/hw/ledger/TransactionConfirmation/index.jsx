@@ -301,6 +301,24 @@ export default function Contract({ contract, extra }) {
           </table>
         </Fragment>
       );
+      case "WITHDRAWBALANCECONTRACT":
+      return (
+          <Fragment>
+              <div className="card-body">
+                  <h5 className="card-title text-center">Collect Reward</h5>
+              </div>
+              <table className="table">
+                  <Field label="Owner Address"><AddressLink address={TronWeb.address.fromHex(contractParams.owner_address)} /></Field>
+                  {(extra && extra.hash &&
+                      <Field label="Hash">
+                          <Truncate>
+                              #{extra.hash}
+                          </Truncate>
+                      </Field>
+                  )}
+              </table>
+          </Fragment>
+      );
 
       case "TRIGGERSMARTCONTRACT":
       return (

@@ -4,7 +4,7 @@ import {t, tu} from "../../../utils/i18n";
 import {Client} from "../../../services/api";
 import {TokenLink, TokenTRC20Link} from "../../common/Links";
 import {QuestionMark} from "../../common/QuestionMark";
-import {API_URL, ONE_TRX} from "../../../constants";
+import {API_URL, ONE_TRX, IS_MAINNET} from "../../../constants";
 import {upperFirst, toLower} from "lodash";
 import {TronLoader} from "../../common/loaders";
 import xhr from "axios/index";
@@ -23,7 +23,7 @@ class TokenList extends Component {
       loading: false,
       total: 0,
       totalAll: 0,
-      countTop:2,
+      countTop:0,
       filter: {
         order: 'desc',
         filter: 'all',
@@ -43,14 +43,13 @@ class TokenList extends Component {
   loadPage = async (page = 1, pageSize = 20) => {
     this.setState({loading: true})
     const { filter, countTop } = this.state
-    const {data: {tokens, total, totalAll}} = await xhr.get(API_URL+"/api/tokens/overview", {params: {
+    const {data: {tokens, total, totalAll, all}} = await xhr.get(API_URL+"/api/tokens/overview", {params: {
       start:  (page - 1) * pageSize,
       limit: pageSize,
       ...filter
     }});
     let count = 0;
     let Top = 0;
-
     tokens.map((item,index) => {
       if(!item.isTop){
         if(page == 1){
@@ -60,7 +59,12 @@ class TokenList extends Component {
         }
         count++
       }else{
-        item.c_index = index + 1
+          Top = Top + 1
+          this.setState({
+              countTop:Top
+          },()=>{
+              item.index = count + 1 + (page-1)*pageSize - countTop
+          });
       }
      
       item.marketcap = item.marketcap || 0
@@ -95,7 +99,8 @@ class TokenList extends Component {
         total
       },
       total: total,
-      totalAll
+      totalAll,
+      all
     });
     return total;
     
@@ -106,6 +111,7 @@ class TokenList extends Component {
   }
 
   onChange = (e) => {
+    
     this.setState({
       filter: {
         ...this.state.filter,
@@ -113,6 +119,9 @@ class TokenList extends Component {
         sort: 'volume24hInTrx',
         filter: e.target.value,
         order_current: "descend"
+      },
+      pagination: {
+        current:1
       }
     }, () =>  this.loadPage())
   };
@@ -130,7 +139,6 @@ class TokenList extends Component {
       nrOfTokenHolders: 'holderCount',
       gain: 'gain',
       priceInTrx: 'priceInTrx',
-      gain :'gain',
       volume24hInTrx: 'volume24hInTrx',
       marketcap: 'marketcap'
     }
@@ -146,8 +154,9 @@ class TokenList extends Component {
   }
 
   customizedColumn = () => {
-    let {filter} = this.state
-    let {intl} = this.props;
+    let {filter} = this.state;
+    let { intl } = this.props;
+    const defaultImg = require("../../../images/logo_default.png");
     let column = [
       {
         title: '#',
@@ -177,46 +186,80 @@ class TokenList extends Component {
         key: 'name',
         width: '50%',
         render: (text, record, index) => {
-          return <div className="table-imgtext">
-            {record.imgUrl ?
-                <div style={{width: '42px', height: '42px', marginRight: '18px'}}>
-                    {
-                        (record.abbr == 'USDT' || record.abbr == 'BTT') ? <div className="token-img-top">
-                          <img style={{width: '42px', height: '42px'}} src={record.imgUrl}/>
-                          <i></i>
-                        </div>:<img style={{width: '42px', height: '42px'}} src={record.imgUrl}/>
-                    }
-                </div> :
-                <div style={{width: '42px', height: '42px', marginRight: '18px'}}><img
-                    style={{width: '42px', height: '42px'}} src={require('../../../images/logo_default.png')}/></div>
-            }
-
-            <div>
-              <h5>
-              {
-                (record.isTop && record.contractAddress == "TNYNLRkqq956bQc2buvoLbaLgh25RkJMiN")?
-                <a href="javascript:;">{record.name + ' (' + record.abbr + ')'}</a>:
-                <div>
-                  {
-                    record.tokenType == 'trc10'&&
-                    <TokenLink 
-                      name={record.name} 
-                      id={record.tokenId}
-                      namePlus={record.name + ' (' + record.abbr + ')'}/>
-                  }
-                  {
-                    record.tokenType == 'trc20'&&
-                    <TokenTRC20Link 
-                      name={record.name}
-                      namePlus={record.name + ' (' + record.abbr + ')'} 
-                      address={record.contractAddress}/>
-                  }
+          
+          return (
+            <div className="table-imgtext">
+              {record.imgUrl ? (
+                <div
+                  style={{ width: "42px", height: "42px", marginRight: "18px" }}
+                >
+                  {record.abbr == "USDT" ||
+                  record.abbr == "BTT" ||
+                  record.abbr == "WIN" ? (
+                    <div className="token-img-top">
+                      <img
+                        style={{ width: "42px", height: "42px" }}
+                        src={record.imgUrl}
+                        onError={e => {
+                          e.target.onerror = null;
+                          e.target.src = defaultImg;
+                        }}
+                      />
+                      <i></i>
+                    </div>
+                  ) : (
+                    <img
+                      style={{ width: "42px", height: "42px" }}
+                      src={record.imgUrl}
+                      onError={e => {
+                        e.target.onerror = null;
+                        e.target.src = defaultImg;
+                      }}
+                    />
+                  )}
                 </div>
-              }
-              </h5>
-              <p style={{wordBreak: "break-all"}}>{record.description}</p>
+              ) : (
+                <div
+                  style={{ width: "42px", height: "42px", marginRight: "18px" }}
+                >
+                  <img
+                    style={{ width: "42px", height: "42px" }}
+                    src={defaultImg}
+                  />
+                </div>
+              )}
+
+              <div>
+                <h5>
+                  {record.isTop &&
+                  record.contractAddress ==
+                    "TNYNLRkqq956bQc2buvoLbaLgh25RkJMiN" ? (
+                    <a href="javascript:;">
+                      {record.name + " (" + record.abbr + ")"}
+                    </a>
+                  ) : (
+                    <div>
+                      {record.tokenType == "trc10" && (
+                        <TokenLink
+                          name={record.name}
+                          id={record.tokenId}
+                          namePlus={record.name + " (" + record.abbr + ")"}
+                        />
+                      )}
+                      {record.tokenType == "trc20" && (
+                        <TokenTRC20Link
+                          name={record.name}
+                          namePlus={record.name + " (" + record.abbr + ")"}
+                          address={record.contractAddress}
+                        />
+                      )}
+                    </div>
+                  )}
+                </h5>
+                <p style={{ wordBreak: "break-all" }}>{record.description}</p>
+              </div>
             </div>
-          </div>
+          );
         }
       },
       {
@@ -292,19 +335,22 @@ class TokenList extends Component {
                   <Link to={`/token20/${encodeURI(record.contractAddress)}`} className="token-details btn">{tu('details')}</Link>
               }
               {
-                record.extra ? <a href={record.extra.url} className="token-active-details btn mt-2">{tu(record.extra.desc)}</a>
-                    : record.pairId?
-                    <Link to={`/exchange/trc20?id=${record.pairId}`} className="token-details btn mt-2"> {tu('token_trade')}</Link>
-                    : <div>
-                      <a href="javascript:;"
-                         className="token-disabled-exchange btn mt-2"
-                         id={record.tokenType == "trc20"?"exchange_"+record.contractAddress:"exchange_"+record.tokenId}
-                         onMouseOver={(prevS,props) => this.setState({[record.abbr + record.tokenId]: true})}
-                         onMouseOut={() => this.setState({[record.abbr+record.tokenId]: false})}>
-                          {tu('token_trade')}
-                      </a>
-                      <Tooltip placement="top" target={record.tokenType == "trc20"?"exchange_"+record.contractAddress:"exchange_"+record.tokenId} isOpen={this.state[record.abbr+record.tokenId]}> <span className="text-capitalize">{tu("token_does_not_support_exchange")}</span></Tooltip>
-                    </div>
+                  IS_MAINNET&& <span>
+                    {(record.extra && record.extra.url && record.extra.desc) ? <a href={record.extra.url} className="token-active-details btn mt-2">{tu(record.extra.desc)}</a>
+                        : (record.pairId )?
+                            <Link to={`/exchange/trc20?id=${record.pairId}`} className="token-details btn mt-2" target="_blank"> {tu('token_trade')}</Link>
+                            : <div>
+                              <a href="javascript:;"
+                                 className="token-disabled-exchange btn mt-2"
+                                 id={record.tokenType == "trc20"?"exchange_"+record.contractAddress:"exchange_"+record.tokenId}
+                                 onMouseOver={(prevS,props) => this.setState({[record.abbr + record.tokenId]: true})}
+                                 onMouseOut={() => this.setState({[record.abbr+record.tokenId]: false})}>
+                                  {tu('token_trade')}
+                              </a>
+                              <Tooltip placement="top" target={record.tokenType == "trc20"?"exchange_"+record.contractAddress:"exchange_"+record.tokenId} isOpen={this.state[record.abbr+record.tokenId]}> <span className="text-capitalize">{tu("token_does_not_support_exchange")}</span></Tooltip>
+                            </div>}
+                </span>
+
               }
 
             </div>
@@ -316,12 +362,189 @@ class TokenList extends Component {
     ];
     return column;
   }
+  suncustomizedColumn = () => {
+        let {filter} = this.state
+    let { intl } = this.props;
+    const defaultImg = require("../../../images/logo_default.png");
+        let column = [
+            {
+                title: '#',
+                dataIndex: 'index',
+                key: 'index',
+                width: '48px',
+                align: 'center',
+                className: 'ant_table _text_nowrap',
+                render: (text, record, index) => {
+                    return <span>
+                {
+                    record.isTop?
+                        <div>
+                          <span className="starbeat"><i className="fas fa-star"></i> </span>
+                          <span className="star-tip"></span>
+                        </div>
+                        :
+                        <span>{text}</span>
+                }
+
+            </span>
+                }
+            },
+            {
+                title: upperFirst(intl.formatMessage({id: 'token'})),
+                dataIndex: 'name',
+                key: 'name',
+                width: '50%',
+                render: (text, record, index) => {
+                    return (
+                      <div className="table-imgtext">
+                        {record.imgUrl ? (
+                          <div
+                            style={{
+                              width: "42px",
+                              height: "42px",
+                              marginRight: "18px"
+                            }}
+                          >
+                            {record.abbr == "USDT" ||
+                            record.abbr == "BTT" ||
+                            record.abbr == "WIN" ? (
+                              <div className="token-img-top">
+                                <img
+                                  style={{ width: "42px", height: "42px" }}
+                                  src={record.imgUrl}
+                                  onError={e => {
+                                    e.target.onerror = null;
+                                    e.target.src = defaultImg;
+                                  }}
+                                />
+                                <i></i>
+                              </div>
+                            ) : (
+                              <img
+                                style={{ width: "42px", height: "42px" }}
+                                src={record.imgUrl}
+                                onError={e => {
+                                  e.target.onerror = null;
+                                  e.target.src = defaultImg;
+                                }}
+                              />
+                            )}
+                          </div>
+                        ) : (
+                          <div
+                            style={{
+                              width: "42px",
+                              height: "42px",
+                              marginRight: "18px"
+                            }}
+                          >
+                            <img
+                              style={{ width: "42px", height: "42px" }}
+                              src={defaultImg}
+                            />
+                          </div>
+                        )}
+
+                        <div>
+                          <h5>
+                            {record.isTop &&
+                            record.contractAddress ==
+                              "TNYNLRkqq956bQc2buvoLbaLgh25RkJMiN" ? (
+                              <a href="javascript:;">
+                                {record.name + " (" + record.abbr + ")"}
+                              </a>
+                            ) : (
+                              <div>
+                                {record.tokenType == "trc10" && (
+                                  <TokenLink
+                                    name={record.name}
+                                    id={record.tokenId}
+                                    namePlus={
+                                      record.name + " (" + record.abbr + ")"
+                                    }
+                                  />
+                                )}
+                                {record.tokenType == "trc20" && (
+                                  <TokenTRC20Link
+                                    name={record.name}
+                                    namePlus={
+                                      record.name + " (" + record.abbr + ")"
+                                    }
+                                    address={record.contractAddress}
+                                  />
+                                )}
+                              </div>
+                            )}
+                          </h5>
+                          <p style={{ wordBreak: "break-all" }}>
+                            {record.description}
+                          </p>
+                        </div>
+                      </div>
+                    );
+                }
+            },
+            {
+                title:intl.formatMessage({id: 'DAppChain_holders'}),
+                dataIndex: 'nrOfTokenHolders',
+                key: 'nrOfTokenHolders',
+                sorter: true,
+                sortOrder: filter.sort === 'holderCount' && filter.order_current,
+                render: (text, record, index) => {
+                    return text>0? <FormattedNumber value={text}/>: '-'
+                },
+                align: 'center',
+                className: 'ant_table d-none d-sm-table-cell'
+            },
+            {
+                title: intl.formatMessage({id: 'trc20_cur_order_header_action'}),
+                dataIndex: 'abbr',
+                key: 'abbr',
+                width: '10%',
+                render: (text, record, index) => {
+                    return <div>
+                        {
+                            record.tokenType == 'trc10'&&
+                            <Link to={`/token/${encodeURI(record.tokenId)}`} className="token-details btn">{tu('details')}</Link>
+                        }
+                        {
+                            record.tokenType == 'trc20'&&
+                            <Link to={`/token20/${encodeURI(record.contractAddress)}`} className="token-details btn">{tu('details')}</Link>
+                        }
+                        {
+                            IS_MAINNET&& <span>
+                           {(record.extra && record.extra.url && record.extra.desc)? <a href={record.extra.url} className="token-active-details btn mt-2">{tu(record.extra.desc)}</a>
+                            : (record.pairId )?
+                            <Link to={`/exchange/trc20?id=${record.pairId}`} className="token-details btn mt-2"> {tu('token_trade')}</Link>
+                            : <div>
+                                  <a href="javascript:;"
+                                     className="token-disabled-exchange btn mt-2"
+                                     id={record.tokenType == "trc20"?"exchange_"+record.contractAddress:"exchange_"+record.tokenId}
+                                     onMouseOver={(prevS,props) => this.setState({[record.abbr + record.tokenId]: true})}
+                                     onMouseOut={() => this.setState({[record.abbr+record.tokenId]: false})}>
+                                      {tu('token_trade')}
+                                  </a>
+                                  <Tooltip placement="top" target={record.tokenType == "trc20"?"exchange_"+record.contractAddress:"exchange_"+record.tokenId} isOpen={this.state[record.abbr+record.tokenId]}> <span className="text-capitalize">{tu("token_does_not_support_exchange")}</span></Tooltip>
+                            </div>}
+                </span>
+
+                        }
+
+                    </div>
+
+                },
+                align: 'center',
+                className: 'ant_table d-sm-table-cell token-list-action'
+            }
+        ];
+        return column;
+    }
 
   render() {
-    let {tokens, alert, loading, total, totalAll, filter} = this.state;
+    let {tokens, alert, loading, total, totalAll, all, filter} = this.state;
     let {match, intl} = this.props;
-    let column = this.customizedColumn();
-    let tableInfo = intl.formatMessage({id: 'part_total'}) + ' ' + total + '/' + totalAll + ' ' + intl.formatMessage({id: 'part_pass'})
+    let column = IS_MAINNET?this.customizedColumn():this.suncustomizedColumn();
+    let tableInfo = intl.formatMessage({id: 'number_of_lists'}) + total  + ',' + intl.formatMessage({id: 'total_in_tronscan'}) + totalAll;
     let url = 'https://trx.market/launchBase?utm_source=TS3'
     if(intl.locale == 'zh'){
       url = 'https://trx.market/zh/launchBase?utm_source=TS3'
@@ -334,12 +557,13 @@ class TokenList extends Component {
             <div className="row">
               <div className="col-md-12 table_pos trc20-ad-bg pt-5 pt-md-0">
                 {total ?
-                  <div className="table_pos_info d-none d-md-block" style={{left: 'auto'}}>
+                  <div className="table_pos_info d-md-block" style={{left: 'auto'}}>
+                      {all && <div className="tron-ecosystem-tokens">{tu('total_tron_ecosystem_tokens')}{all}</div>}
                       <div>
                         {tableInfo} <span>
                           <QuestionMark placement="top" text="newly_issued_token_by_tronscan" className="token-list-info"></QuestionMark>
                         </span> &nbsp;&nbsp;  
-                        <Link to="/exchange/trc10">{t("Trade_on_TRXMarket")}></Link>
+                          {IS_MAINNET?<a href={`https://trx.market`} target="_blank" >{t("Trade_on_TRXMarket")}></a>:''}
                       </div>
                     </div> : ''}
                     <div className="d-md-flex apply-trc20 apply-all align-items-center">
@@ -356,7 +580,7 @@ class TokenList extends Component {
                         </button>
                       </a> */}
                     </div>
-                    
+
                 <Table
                   columns={column}
                   rowKey={(record, index) => index}

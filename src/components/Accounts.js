@@ -48,27 +48,29 @@ class Accounts extends Component {
       limit: pageSize,
       start: (page - 1) * pageSize
     })
-    let exchangeFlag = await Client.getTagNameList()
+    // let exchangeFlag = await Client.getTagNameList()
+    //
+    // accounts.map(item => {
+    //   item.tagName = ''
+    //   exchangeFlag.map(coin => {
+    //     const typeList = Object.keys(coin.addressList)
+    //     typeList.map(type => {
+    //       if(coin.addressList[type].length == 1){
+    //         if(coin.addressList[type][0] === item.address){
+    //           item.tagName = `${upperFirst(coin.name)}${type !== 'default'? `-${type}`: ''}`
+    //         }
+    //       }else if(coin.addressList[type].length > 1){
+    //         coin.addressList[type].map((address, index) => {
+    //           if(address === item.address){
+    //             item.tagName = `${upperFirst(coin.name)}${type !== 'default'? `-${type} ${index + 1}`: ` ${index + 1}`}`
+    //           }
+    //         })
+    //       }
+    //     })
+    //   })
+    //  })
 
-    accounts.map(item => {
-      item.tagName = ''
-      exchangeFlag.map(coin => {
-        const typeList = Object.keys(coin.addressList)
-        typeList.map(type => {
-          if(coin.addressList[type].length == 1){
-            if(coin.addressList[type][0] === item.address){
-              item.tagName = `${upperFirst(coin.name)}${type !== 'default'? `-${type}`: ''}`
-            }
-          }else if(coin.addressList[type].length > 1){
-            coin.addressList[type].map((address, index) => {
-              if(address === item.address){
-                item.tagName = `${upperFirst(coin.name)}${type !== 'default'? `-${type} ${index + 1}`: ` ${index + 1}`}`
-              }
-            })
-          }
-        })
-      })
-     })
+
      // let {txOverviewStats} = await Client.getTxOverviewStats();
 
     this.setState({
@@ -180,9 +182,12 @@ class Accounts extends Component {
       },
       {
         title: 'Name Tag',
-        dataIndex: 'tagName',
-        key: 'tagName',
-        align: 'left'
+        dataIndex: 'addressTag',
+        key: 'addressTag',
+        align: 'left',
+        render: (text, record, index) => {
+            return <span style={{whiteSpace:'nowrap'}}> {record.addressTag?record.addressTag:''} </span>
+        }
       },
       {
         title: upperFirst(intl.formatMessage({id: 'supply'})),
@@ -229,8 +234,8 @@ class Accounts extends Component {
     let {match, intl} = this.props;
     let {total, loading, rangeTotal = 0, accounts} = this.state;
     let column = this.customizedColumn();
-    let tableInfo = intl.formatMessage({id: 'view_total'}) + ' ' + rangeTotal + ' ' + intl.formatMessage({id: 'account_unit'}) + '<br/>' +  '(' + intl.formatMessage({id: 'table_info_big'}) + ')';
-    let tableInfoTip = intl.formatMessage({id: 'table_info_account_tip1'}) + ' ' + rangeTotal + ' ' + intl.formatMessage({id: 'table_info_account_tip2'});
+    let tableInfo = intl.formatMessage({id: 'view_total'}) + ' ' + rangeTotal + ' ' + intl.formatMessage({id: 'account_unit'}) + '<br/>(' + intl.formatMessage({id: 'table_info_big'}) + ')';
+    let tableInfoTip = intl.formatMessage({id: 'view_total'}) + ' ' + rangeTotal + ' ' + intl.formatMessage({id: 'table_info_account_tip2'});
       return (
         <main className="container header-overlap pb-3 token_black">
           <div className="row">
@@ -251,7 +256,9 @@ class Accounts extends Component {
           <div className="row mt-2">
             <div className="col-md-12 table_pos">
               {total ?<div className="table_pos_info d-none d-md-block" style={{left: 'auto'}}>
-                      <div>{tu('view_total')} {rangeTotal} {tu('account_unit')} <QuestionMark placement="top" info={tableInfoTip} ></QuestionMark> <br/> <span>({tu('table_info_big')})</span></div>
+                      <div>{tu('view_total')} {rangeTotal} {tu('account_unit')} <QuestionMark placement="top" info={tableInfoTip} ></QuestionMark> <br/>
+                          {rangeTotal>10000? <span>({tu('table_info_big1')}10000{tu('table_info_big2')})</span>:''}
+                      </div>
               </div> : ''}
               <SmartTable bordered={true} loading={loading} column={column} data={accounts} total={total}
                           onPageChange={(page, pageSize) => {

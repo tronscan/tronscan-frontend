@@ -1,6 +1,8 @@
 import {API_URL} from "../constants";
 import xhr from "axios/index";
 import {tokensMap, tokens20Map} from "../utils/tokensMap.js";
+import { store } from './../store';
+// import { setToken20Map, setTokenMap } from './../actions/account';
 
 export default class App {
 
@@ -26,6 +28,7 @@ export default class App {
       }
     }
     localStorage.setItem('tokensMap', JSON.stringify(tokensMap));
+    // store.dispatch(setTokenMap(tokensMap));
   }
 
   async getTokens20Map() {
@@ -42,6 +45,7 @@ export default class App {
           }
       }
       localStorage.setItem('tokens20Map', JSON.stringify(tokens20Map));
+      // store.dispatch(setToken20Map(tokens20Map));
   }
 
 
@@ -54,3 +58,19 @@ export default class App {
     return this.externalLinkHandler;
   }
 }
+
+// if ('serviceWorker' in navigator) {
+//     let version = '1.0.2'
+//     window.addEventListener('load', () => {
+//         navigator.serviceWorker.register('/service-worker.js').then((registration) => {
+//             if (localStorage.getItem('sw_version') !== version) {
+//                 registration.update().then(function () {
+//                     localStorage.setItem('sw_version', version)
+//                 });
+//             }
+//             console.log('SW registered: ', registration);
+//         }).catch((registrationError) => {
+//             console.log('SW registration failed: ', registrationError);
+//         });
+//     });
+// }

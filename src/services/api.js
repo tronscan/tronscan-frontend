@@ -12,10 +12,10 @@ const solidityNode = new HttpProvider(ServerNode); // Solidity node http endpoin
 const eventServer = ServerNode; // Contract events http endpoint
 export const tronWeb = new TronWeb(fullNode, solidityNode, eventServer);
 
-export const Client = new ApiClient();
+export const Client = new ApiClient(API_URL);
 
 export function buildClient(account) {
-  return new ApiClient();
+  return new ApiClient(API_URL);
 }
 
 export function channel(path, options) {
@@ -27,12 +27,10 @@ export function channel(path, options) {
 class ApiClient20 {
   constructor() {
     this.apiUrl = "https://api.trx.market";
-    // this.apiUrl = "http://52.15.171.70:21111";
+    // this.apiUrl = "https://testapi.trx.market";
+    // this.apiUrl = "http://13.58.63.31:21111";
     this.ZDUrl = "https://tron274.zendesk.com";
     this.SCANUrl = "https://tronscanorg.zendesk.com";
-
-    // *** test
-    // this.apiUrl = "https://testapi.trx.market";
   }
 
   async getexchanges20(options = {}) {
@@ -148,8 +146,8 @@ class ApiClient20 {
 
   async getExchanges20SearchList(options = {}) {
     let { data } = await xhr.get(
-      // `http://52.15.171.70:21110/api/exchange/marketPair/searchList`,
-      `${this.apiUrl}/api/exchange/marketPair/searchList`,
+      // `http://52.15.171.70:21110/api/exchange/marketPair/market/searchList`,
+      `${this.apiUrl}/api/exchange/marketPair/market/searchList`,
       {
         params: options
       }
@@ -191,11 +189,7 @@ class ApiClient20 {
     lan == "zh" ? (langauage = "zh-cn") : (langauage = "en-us");
     let { data } = await xhr({
       method: "get",
-      url: `${
-        this.ZDUrl
-      }/api/v2/help_center/${langauage}/categories/360001523732/articles.json?sort_by=created_at&sort_order=desc&per_page=${
-        query.page
-      }`
+      url: `${this.ZDUrl}/api/v2/help_center/${langauage}/categories/360001523732/articles.json?sort_by=created_at&sort_order=desc&per_page=${query.page}`
     });
     return data;
   }
@@ -210,11 +204,7 @@ class ApiClient20 {
     lan == "zh" ? (id = "360001618172") : (id = "360001621692");
     let { data } = await xhr({
       method: "get",
-      url: `${
-        this.SCANUrl
-      }/api/v2/help_center/${langauage}/categories/${id}/articles.json?sort_by=created_at&sort_order=desc&per_page=${
-        query.page
-      }`
+      url: `${this.SCANUrl}/api/v2/help_center/${langauage}/categories/${id}/articles.json?sort_by=created_at&sort_order=desc&per_page=${query.page}`
     });
     return data;
   }
@@ -227,16 +217,45 @@ class ApiClient20 {
     }
     let { data } = await xhr({
       method: "get",
-      url: `https://api.coinmarketcap.com/v1/ticker/${type}/?convert=${covert}`
+      url: `https://apilist.tronscan.org/api/system/proxy?url=https://api.coinmarketcap.com/v1/ticker/${type}/?convert=${covert}`
     });
     return data;
   }
 
   //market新接口，sortType=0 24小时交易额 sortType=1 热门 sortType=2 涨跌幅
-  async getMarketNew(sortType) {
+  async getMarketNew(sortType, pairType) {
+    let obj = { sortType, pairType };
     let { data } = await xhr({
       method: "get",
-      url: `${this.apiUrl}/api/exchange/marketPair/list?sortType=${sortType}`
+      url: `${this.apiUrl}/api/exchange/marketPair/list`,
+      params: obj
+    });
+    return data;
+  }
+
+  /**
+   * 异常订单处理
+   * @param {string} action_type   挂单"entry" or 撤单"cancel"
+   * @param {string} entry_txid   挂单的hash
+   * @param {string} cancel_txid   撤单的hash
+   * @param {number} order_id 订单ID
+   */
+  async abnormalOrderStatus(query) {
+    let { data } = await xhr({
+      method: "get",
+      url: `${this.apiUrl}/api/exchange/common/abnormalOrderStatus`,
+      params: query
+    });
+    return data;
+  }
+
+  //根据ids去查交易列表
+  async marketSearchListById(ids) {
+    let obj = { ids };
+    let { data } = await xhr({
+      method: "get",
+      url: `${this.apiUrl}/api/exchange/marketPair/searchListByIds`,
+      params: obj
     });
     return data;
   }

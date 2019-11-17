@@ -2,12 +2,9 @@ import {connect} from "react-redux";
 import {injectIntl} from "react-intl";
 import React from "react";
 import {Modal, ModalBody, ModalHeader} from "reactstrap";
-import {tu, t,option_t} from "../../utils/i18n";
-import {FormattedNumber} from "react-intl";
-import {Client} from "../../services/api";
+import {tu} from "../../utils/i18n";
 import {ONE_TRX} from "../../constants";
 import {reloadWallet} from "../../actions/wallet";
-import {NumberField} from "../common/Fields";
 import _ from "lodash";
 
 class OperateTxnPairModal extends React.PureComponent{

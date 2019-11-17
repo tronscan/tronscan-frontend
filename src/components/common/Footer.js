@@ -4,15 +4,11 @@ import { injectIntl } from "react-intl";
 import { Link } from "react-router-dom";
 import { withTimers } from "../../utils/timing";
 import { tu,pure_t } from "../../utils/i18n";
-import { toastr } from "react-redux-toastr";
 import { HrefLink } from "../common/Links";
 import isMobile from "../../utils/isMobile";
-import {Truncate} from "./text";
 
 class Footer extends Component {
-  constructor() {
-    super();
-  }
+
   render() {
     const donate_address = 'TTzPiwbBedv7E8p4FkyPyeqq4RVoqRL3TW';
     let { intl, activeLanguage } = this.props;
@@ -42,7 +38,7 @@ class Footer extends Component {
                     </HrefLink>
                   </li>
                   <li>
-                    <HrefLink href="https://discordapp.com/invite/GsRgsTD">
+                    <HrefLink href="https://discord.gg/hqKvyAM">
                       <i className="fab fa-discord mr-1"></i>Discord
                     </HrefLink>
                   </li>
@@ -200,7 +196,7 @@ class Footer extends Component {
                     </HrefLink>
                   </li>
                   <li className="p-2">
-                    <HrefLink href="https://discordapp.com/invite/GsRgsTD">
+                    <HrefLink href="https://discord.gg/hqKvyAM">
                       <i className="fab fa-discord mr-4"></i>Discord
                     </HrefLink>
                   </li>
@@ -399,9 +395,9 @@ class Footer extends Component {
             </div>
             <div className="row ">
               <div className="col-xs-12 col-sm-12 col-md-12 text-center mb-3">
-                <Link to="/help/copyright">
+                <div className="copy-right">
                   Copyright© 2017-2019 tronscan.org
-                </Link>
+                </div>
               </div>
             </div>
           </div>

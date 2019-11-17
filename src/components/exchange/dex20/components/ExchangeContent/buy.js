@@ -7,7 +7,10 @@ import { tu } from "../../../../../utils/i18n";
 import { connect } from "react-redux";
 import { injectIntl } from "react-intl";
 import { TW } from "../../TW";
-import { setUpdateTran } from "../../../../../actions/exchange";
+import {
+  setUpdateTran,
+  setUnConfirmOrderObj
+} from "../../../../../actions/exchange";
 
 import NumericInput from "./NumericInput";
 import {
@@ -15,6 +18,8 @@ import {
   onlyInputNumAndPoint
 } from "../../../../../utils/number";
 import { withTronWeb } from "../../../../../utils/tronWeb";
+import { fixed } from "../../TokenPre";
+import Lockr from "lockr";
 
 const marks = {
   0: "",
@@ -48,7 +53,9 @@ class Buy extends Component {
       trs_proportion: 0,
       balanceTimer: null,
       buttonLoading: false,
-      offlineToken: [30]
+      offlineToken: [30],
+      timer: null,
+      empty: "--"
     };
 
     this.slideChange = this.slideChange.bind(this);
@@ -89,7 +96,10 @@ class Buy extends Component {
     if (quickSelect && quickSelect != prevProps.quickSelect && quickSelect.b) {
       let n = quickSelect.b;
       let newPrice = 0;
-      let newAmount = 0;
+      let newAmount = "";
+      const a_precision = exchangeData.fPrecision
+        ? exchangeData.sPrecision - exchangeData.fix_precision
+        : 0;
       if (quickSelect.type != "buy") {
         return;
       }
@@ -98,11 +108,11 @@ class Buy extends Component {
         !prevProps.quickSelect.price ||
         prevProps.quickSelect.price != n.price
       ) {
-        newPrice = n.price;
-        if (n.amount * n.price <= firstBalance) {
-          newAmount = n.amount;
+        newPrice = fixed(n.price, exchangeData.fix_precision);
+        if (n.amount * newPrice <= firstBalance) {
+          newAmount = fixed(n.amount, a_precision);
         } else {
-          newAmount = parseInt(firstBalance / n.price);
+          newAmount = fixed(firstBalance / n.price, a_precision);
         }
 
         firstBalance && this.setSlider() && this.transTotal();
@@ -120,16 +130,16 @@ class Buy extends Component {
 
         this.props.form.setFieldsValue({
           first_quant_buy: newPrice,
-          second_quant_buy: newAmount
+          second_quant_buy: n.amount ? newAmount : ""
         });
       } else {
         if (n.amount != amount) {
-          newPrice = n.price;
+          newPrice = fixed(n.price, exchangeData.fix_precision);
 
-          if (n.amount * n.price <= firstBalance) {
-            newAmount = n.amount;
+          if (n.amount * newPrice <= firstBalance) {
+            newAmount = fixed(n.amount, a_precision);
           } else {
-            newAmount = parseInt(firstBalance / n.price);
+            newAmount = fixed(firstBalance / n.price, a_precision);
           }
 
           this.setState(
@@ -137,7 +147,7 @@ class Buy extends Component {
               secondError: "",
               firstError: "",
               price: newPrice,
-              amount: newAmount
+              amount: n.amount ? newAmount : ""
             },
             () => {
               firstBalance && (this.setSlider() || this.transTotal());
@@ -146,7 +156,7 @@ class Buy extends Component {
 
           this.props.form.setFieldsValue({
             first_quant_buy: newPrice,
-            second_quant_buy: newAmount
+            second_quant_buy: n.amount ? newAmount : ""
           });
         }
       }
@@ -274,11 +284,7 @@ class Buy extends Component {
           >
             {tu("BUY")} &nbsp;{exchangeData.fShortName}
           </Button>
-          <div className="txt-center">
-           
-              {tu("trc20_free_orders")}
-            
-          </div>
+          <div className="txt-center">{tu("trc20_free_orders")}</div>
           {/* </FormItem> */}
         </Form>
       </div>
@@ -372,150 +378,165 @@ class Buy extends Component {
       id = await TW.buyByContract(data);
 
       if (id) {
+        this.setState({
+          modal: (
+            <SweetAlert
+              success
+              title={tu("trc20_order_success")}
+              onConfirm={this.hideModal}
+            >
+              {/* {tu("trc20_trade_win_content")} */}
+            </SweetAlert>
+          ),
+          buttonLoading: false
+        });
+
+        this.orderQuickShow(id, data);
+
         // 读取事件服务器处理交易返回结果
-        let _times = 0;
-        const timer = setInterval(async () => {
-          const event = await tronWeb.getEventByTransactionID(id).catch(e => {
-            if (_times > 20) {
-              clearInterval(timer);
-              // this.$alert(this.$t("exchange.trade_win.content"), "", {
-              //   confirmButtonText: this.$t("exchange.trade_win.confirm")
-              // });
-              this.setState({
-                modal: (
-                  <SweetAlert
-                    error
-                    title={tu("trc20_trade_win_content")}
-                    onConfirm={this.hideModal}
-                  >
-                    {/* {tu("trc20_trade_win_content")} */}
-                  </SweetAlert>
-                )
-              });
-              this.setState({
-                buttonLoading: false
-              });
-            }
-          });
+        // let _times = 0;
+        // const timer = setInterval(async () => {
+        //   const event = await tronWeb.getEventByTransactionID(id).catch(e => {
+        //     if (_times > 20) {
+        //       clearInterval(timer);
+        //       // this.$alert(this.$t("exchange.trade_win.content"), "", {
+        //       //   confirmButtonText: this.$t("exchange.trade_win.confirm")
+        //       // });
+        //       this.setState({
+        //         modal: (
+        //           <SweetAlert
+        //             error
+        //             title={tu("trc20_trade_win_content")}
+        //             onConfirm={this.hideModal}
+        //           >
+        //             {/* {tu("trc20_trade_win_content")} */}
+        //           </SweetAlert>
+        //         )
+        //       });
+        //       this.setState({
+        //         buttonLoading: false
+        //       });
+        //     }
+        //   });
 
-          _times += 1;
+        //   _times += 1;
 
-          if (event.length > 0) {
-            for (var i = 0; i < event.length; i++) {
-              const k = event[i];
-              if (k.name.indexOf("Order") > -1) {
-                this.setState({
-                  modal: (
-                    <SweetAlert
-                      success
-                      title={tu("trc20_order_success")}
-                      onConfirm={this.hideModal}
-                    >
-                      {/*{tu("trc20_order_success")}*/}
-                    </SweetAlert>
-                  )
-                });
-                this.setBalance();
-                this.setState({
-                  buttonLoading: false
-                });
+        // if (event.length > 0) {
+        //   for (var i = 0; i < event.length; i++) {
+        //     const k = event[i];
+        //     if (k.name.indexOf("Order") > -1) {
+        //       this.setState({
+        //         modal: (
+        //           <SweetAlert
+        //             success
+        //             title={tu("trc20_order_success")}
+        //             onConfirm={this.hideModal}
+        //           >
+        //             {/*{tu("trc20_order_success")}*/}
+        //           </SweetAlert>
+        //         )
+        //       });
+        //       this.setBalance();
+        //       this.setState({
+        //         buttonLoading: false
+        //       });
 
-                if (k.result && k.result.orderID) {
-                  Client20.addChannelId(
-                    {
-                      hash: id,
-                      orderId: k.result.orderID,
-                      channelId: "10000"
-                    },
-                    {
-                      Key: "Tron@123456"
-                    }
-                  ).then(res => {});
-                }
-                clearInterval(timer);
-                break;
-              } else {
-                if (_times > 20) {
-                  clearInterval(timer);
-                  // this.$message.error(this.$t('exchange.order_fail'))
-                  this.setState({
-                    modal: (
-                      <SweetAlert
-                        error
-                        title={tu("trc20_trade_win_content")}
-                        onConfirm={this.hideModal}
-                      >
-                        {/* {tu("trc20_trade_win_content")} */}
-                      </SweetAlert>
-                    )
-                  });
-                  this.setState({
-                    buttonLoading: false
-                  });
-                }
-              }
-            }
-          }
+        //       if (k.result && k.result.orderID) {
+        //         Client20.addChannelId(
+        //           {
+        //             hash: id,
+        //             orderId: k.result.orderID,
+        //             channelId: "10000"
+        //           },
+        //           {
+        //             Key: "Tron@123456"
+        //           }
+        //         ).then(res => {});
+        //       }
+        //       clearInterval(timer);
+        //       break;
+        //     }
+        //   }
+        // } else {
+        //   if (_times > 20) {
+        //     clearInterval(timer);
+        //     // this.$message.error(this.$t('exchange.order_fail'))
+        //     this.setState({
+        //       modal: (
+        //         <SweetAlert
+        //           error
+        //           title={tu("trc20_trade_win_content")}
+        //           onConfirm={this.hideModal}
+        //         >
+        //           {/* {tu("trc20_trade_win_content")} */}
+        //         </SweetAlert>
+        //       )
+        //     });
+        //     this.setState({
+        //       buttonLoading: false
+        //     });
+        //   }
+        // }
 
-          let timer2 = setInterval(() => {
-            this.setBalance();
-          }, 1000);
-          this.setState({
-            balanceTimer: timer2
-          });
-
-          //   this.setBalance();
-          //   this.setState({
-          //     buttonLoading: false
-          //   });
-
-          //   let timer = setInterval(() => {
-          //     this.setBalance();
-          //   }, 1000);
-          //   this.setState({
-          //     balanceTimer: timer
-          //   });
-          //   let _times = 0;
-
-          //   let { account } = this.props;
-          //   let tronWeb;
-          //   if (this.props.walletType.type === "ACCOUNT_LEDGER") {
-          //     tronWeb = this.props.tronWeb();
-          //   } else if (
-          //     this.props.walletType.type === "ACCOUNT_TRONLINK" ||
-          //     this.props.walletType.type === "ACCOUNT_PRIVATE_KEY"
-          //   ) {
-          //     tronWeb = account.tronWeb;
-          //   }
-          //   const timer2 = setInterval(async () => {
-          //     const info = await tronWeb.trx.getTransactionInfo(id);
-          //     _times += 1;
-          //     if (info.log && info.log[0].data) {
-          //       const c_id = parseInt(
-          //         info.log[0].data.toString().substring(0, 64),
-          //         16
-          //       );
-          //       clearInterval(timer2);
-          //       if (c_id) {
-          //         Client20.addChannelId(
-          //           {
-          //             hash: id,
-          //             orderId: c_id.toString(),
-          //             channelId: "10000"
-          //           },
-          //           {
-          //             Key: "Tron@123456"
-          //           }
-          //         ).then(res => {});
-          //       }
-          //     } else {
-          //       if (_times > 6) {
-          //         clearInterval(timer2);
-          //       }
-          //     }
-          //   }, 20000);
-          // }
+        let timer2 = setInterval(() => {
+          this.setBalance();
         }, 1000);
+        this.setState({
+          balanceTimer: timer2
+        });
+
+        //   this.setBalance();
+        //   this.setState({
+        //     buttonLoading: false
+        //   });
+
+        //   let timer = setInterval(() => {
+        //     this.setBalance();
+        //   }, 1000);
+        //   this.setState({
+        //     balanceTimer: timer
+        //   });
+        //   let _times = 0;
+
+        //   let { account } = this.props;
+        //   let tronWeb;
+        //   if (this.props.walletType.type === "ACCOUNT_LEDGER") {
+        //     tronWeb = this.props.tronWeb();
+        //   } else if (
+        //     this.props.walletType.type === "ACCOUNT_TRONLINK" ||
+        //     this.props.walletType.type === "ACCOUNT_PRIVATE_KEY"
+        //   ) {
+        //     tronWeb = account.tronWeb;
+        //   }
+        //   const timer2 = setInterval(async () => {
+        //     const info = await tronWeb.trx.getTransactionInfo(id);
+        //     _times += 1;
+        //     if (info.log && info.log[0].data) {
+        //       const c_id = parseInt(
+        //         info.log[0].data.toString().substring(0, 64),
+        //         16
+        //       );
+        //       clearInterval(timer2);
+        //       if (c_id) {
+        //         Client20.addChannelId(
+        //           {
+        //             hash: id,
+        //             orderId: c_id.toString(),
+        //             channelId: "10000"
+        //           },
+        //           {
+        //             Key: "Tron@123456"
+        //           }
+        //         ).then(res => {});
+        //       }
+        //     } else {
+        //       if (_times > 6) {
+        //         clearInterval(timer2);
+        //       }
+        //     }
+        //   }, 20000);
+        // }
+        // }, 1000);
       }
     } catch (error) {
       this.setState({
@@ -541,7 +562,7 @@ class Buy extends Component {
 
   async setBalance() {
     let { account, exchangeData } = this.props;
-    let { firstBalance, balanceTimer } = this.state;
+    let { firstBalance, balanceTimer, empty } = this.state;
     let tronWeb;
     if (this.props.walletType.type === "ACCOUNT_LEDGER") {
       tronWeb = this.props.tronWeb();
@@ -552,12 +573,37 @@ class Buy extends Component {
       tronWeb = account.tronWeb;
     }
 
+    // let _b = 0;
+    // if (account.address && exchangeData.sTokenAddr) {
+    //   if (exchangeData.sTokenAddr === "T9yD14Nj9j7xAB4dbGeiX9h8unkKHxuWwb") {
+    //     _b =
+    //       (await tronWeb.trx.getUnconfirmedBalance(account.address)) /
+    //       Math.pow(10, exchangeData.sPrecision);
+    //   } else {
+    //     _b = await TW.getBalance({
+    //       _tokenA: exchangeData.sTokenAddr,
+    //       _uToken: account.address,
+    //       _precision: exchangeData.sPrecision,
+    //       tronWeb: tronWeb
+    //     });
+    //   }
+    // }
+    // if (_b != firstBalance) {
+    //   clearInterval(balanceTimer);
+    //   this.setState({
+    //     balanceTimer: null
+    //   });
+    // }
     let _b = 0;
     if (account.address && exchangeData.sTokenAddr) {
       if (exchangeData.sTokenAddr === "T9yD14Nj9j7xAB4dbGeiX9h8unkKHxuWwb") {
         _b =
           (await tronWeb.trx.getUnconfirmedBalance(account.address)) /
           Math.pow(10, exchangeData.sPrecision);
+        if (exchangeData.sTokenAddr !== "T9yD14Nj9j7xAB4dbGeiX9h8unkKHxuWwb") {
+          _b = empty;
+          return;
+        }
       } else {
         _b = await TW.getBalance({
           _tokenA: exchangeData.sTokenAddr,
@@ -565,14 +611,13 @@ class Buy extends Component {
           _precision: exchangeData.sPrecision,
           tronWeb: tronWeb
         });
+        if (exchangeData.sTokenAddr === "T9yD14Nj9j7xAB4dbGeiX9h8unkKHxuWwb") {
+          _b = empty;
+          return;
+        }
       }
     }
-    if (_b != firstBalance) {
-      clearInterval(balanceTimer);
-      this.setState({
-        balanceTimer: null
-      });
-    }
+
     this.setState({
       firstBalance: _b
     });
@@ -599,12 +644,12 @@ class Buy extends Component {
   handleValueBuy0 = value => {
     let { exchangeData } = this.props;
     let { price, firstBalance, amount } = this.state;
-
-    let precision = exchangeData.sPrecision;
-    if (amount) {
-      const _p = getDecimalsNum(+amount);
-      precision = precision - _p;
-    }
+    let precision = exchangeData.fix_precision;
+    // let precision = exchangeData.sPrecision;
+    // if (amount) {
+    //   const _p = getDecimalsNum(+amount);
+    //   precision = precision - _p;
+    // }
     let value1 = onlyInputNumAndPoint(value, precision);
 
     this.setState(
@@ -624,14 +669,24 @@ class Buy extends Component {
   handleValueBuy1 = value => {
     let { exchangeData } = this.props;
     let { price, firstBalance, amount } = this.state;
-    let precision = exchangeData.sPrecision;
-    if (price) {
-      const _p = getDecimalsNum(+price);
+    let precision = exchangeData.sPrecision - exchangeData.fix_precision;
 
-      precision = precision - _p;
-    }
+    // let precision = exchangeData.sPrecision;
+    // if (price) {
+    //   const _p = getDecimalsNum(+price);
+
+    //   precision = precision - _p;
+    // }
+    precision =
+      precision <= exchangeData.fPrecision
+        ? precision
+        : exchangeData.fPrecision;
+
     let value1 = onlyInputNumAndPoint(value, precision);
     // this.setMaxLen(value, precision)
+    if (precision == 0 && value1) {
+      value1 = Number(value1);
+    }
     this.setState(
       {
         amount: value1
@@ -657,7 +712,7 @@ class Buy extends Component {
 
   onblur(e, type) {
     let { intl, exchangeData } = this.props;
-    let { price, amount, firstBalance, transTip } = this.state;
+    let { price, amount, firstBalance, transTip, timer } = this.state;
     let firstError, secondError;
     if (!e.target.value) {
       type === 1
@@ -677,12 +732,13 @@ class Buy extends Component {
         price >
           (exchangeData.price * 1.1) / Math.pow(10, exchangeData.sPrecision)
       ) {
-        clearTimeout(t);
+        clearTimeout(timer);
         let transTip = true;
         const t = setTimeout(() => {
           transTip = false;
           this.setState({
-            transTip: transTip
+            transTip: transTip,
+            timer: t
           });
           clearTimeout(t);
         }, 3000);
@@ -698,12 +754,12 @@ class Buy extends Component {
   }
 
   onpress(e) {
-    var charCode = e.keyCode;
-    if (charCode > 31 && (charCode < 48 || charCode > 57) && charCode !== 46) {
-      e.preventDefault();
-    } else {
-      return true;
-    }
+    // var charCode = e.keyCode;
+    // if (charCode > 31 && (charCode < 48 || charCode > 57) && charCode !== 46) {
+    //   e.preventDefault();
+    // } else {
+    //   return true;
+    // }
   }
 
   slideChange(value) {
@@ -712,12 +768,22 @@ class Buy extends Component {
     if (!price) {
       return;
     }
-    let precision = exchangeData.sPrecision;
+
+    let precision = exchangeData.sPrecision - exchangeData.fix_precision;
+
+    // if (price) {
+    //   // const _s = price.toString().split(".")[1];
+    //   // const _p = (_s && _s.length) || 0;
+    //   // precision = precision - _p;
+    // }
+
     if (price) {
-      const _s = price.toString().split(".")[1];
-      const _p = (_s && _s.length) || 0;
-      precision = precision - _p;
+      precision =
+        precision <= exchangeData.fPrecision
+          ? precision
+          : exchangeData.fPrecision;
     }
+
     let _a = (firstBalance * value) / (100 * price);
     const _l = getDecimalsNum(_a);
     if (_l <= precision) {
@@ -756,9 +822,15 @@ class Buy extends Component {
     Client20.getCurrentPrice(id).then(res => {
       if (res.code === 0 && res.data) {
         if (res.data.sellLowPrice) {
-          price = res.data.sellLowPrice / secondPrecision;
+          price = fixed(
+            res.data.sellLowPrice / secondPrecision,
+            exchangeData.fix_precision
+          );
         } else {
-          price = exchangeData.price;
+          price = fixed(
+            exchangeData.price / secondPrecision,
+            exchangeData.fix_precision
+          );
         }
         this.setState(
           {
@@ -773,6 +845,41 @@ class Buy extends Component {
       }
     });
   }
+
+  orderQuickShow(hash, data) {
+    const { setUnConfirmOrderObj, exchangeData, account } = this.props;
+    const { amount, price } = this.state;
+    let confirmObj = {
+      fShortName: exchangeData.fShortName,
+      sShortName: exchangeData.sShortName,
+      orderTime: new Date().getTime(),
+      pairType: exchangeData.pairType,
+      volume: amount,
+      curTurnover: 0,
+      price: price,
+      hash: hash,
+      user: account.address,
+      orderStatus: -1,
+      transactionType: 1,
+      parisId: exchangeData.id,
+      created_by: new Date().getTime(),
+
+      transaction_id: hash,
+      secondToken: exchangeData.sTokenAddr,
+      orderType: 0,
+      firstToken: exchangeData.fTokenAddr,
+      secondAmount: data._amountB,
+      _price: data._price,
+      firstAmount: data._amountA,
+      transType: 1, // 1限价 0市价
+      exchangeId: exchangeData.id,
+      parisIdStr: exchangeData.fShortName + "-" + exchangeData.sShortName,
+      status: -1,
+      schedule: 0
+    };
+
+    setUnConfirmOrderObj(confirmObj);
+  }
 }
 
 function mapStateToProps(state) {
@@ -786,12 +893,14 @@ function mapStateToProps(state) {
     is_update_tran: state.exchange.is_update_tran
       ? state.exchange.is_update_tran
       : false,
-    walletType: state.app.wallet
+    walletType: state.app.wallet,
+    unConfirmOrderList: state.exchange.unConfirmOrderList
   };
 }
 
 const mapDispatchToProps = {
-  setUpdateTran
+  setUpdateTran,
+  setUnConfirmOrderObj
 };
 
 export default connect(

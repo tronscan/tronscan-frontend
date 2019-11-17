@@ -5,9 +5,9 @@ import {Client} from "../../../services/api";
 import {TransactionHashLink, BlockNumberLink, AddressLink} from "../../common/Links";
 import {FormattedNumber, injectIntl} from "react-intl";
 import {tu} from "../../../utils/i18n";
-import TimeAgo from "react-timeago";
+// import TimeAgo from "react-timeago";
 import {TronLoader} from "../../common/loaders";
-import {Truncate} from "../../common/text";
+import {Truncate,TruncateAddress} from "../../common/text";
 import {ContractTypes} from "../../../utils/protocol";
 import SmartTable from "../../common/SmartTable.js"
 import {upperFirst, toUpper} from "lodash";
@@ -16,11 +16,12 @@ import {API_URL} from "../../../constants";
 import {TRXPrice} from "../../common/Price";
 import {ONE_TRX} from "../../../constants";
 import TotalInfo from "../../common/TableTotal";
-import DateRange from "../../common/DateRange";
+import DateSelect from "../../common/dateSelect";
 import {Tooltip} from 'antd'
 import moment from 'moment';
 import {DatePicker} from "antd/lib/index";
 import qs from 'qs'
+import BlockTime from '../../common/blockTime'
 
 const RangePicker = DatePicker.RangePicker;
 
@@ -43,7 +44,7 @@ class Transactions extends React.Component {
   }
 
   componentDidMount() {
-    this.loadTransactions();
+    // this.loadTransactions();
   }
 
   onChange = (page, pageSize) => {
@@ -68,20 +69,30 @@ class Transactions extends React.Component {
       ...filter,
     }
     const query = qs.stringify({ format: 'csv',...params})
-    //getCsvUrl(`${'http://52.15.68.74:10000'}/api/contracts/transaction?${query}`)
+    getCsvUrl(`${API_URL}/api/contracts/transaction?${query}`)
 
-    let transactions = await Client.getContractTxs({
-      limit: pageSize,
-      start: (page - 1) * pageSize,
-      ...params,
+    const allData = await Promise.all([
+        Client.getContractTxs({
+            limit: pageSize,
+            start: (page - 1) * pageSize,
+            ...params,
+        }),
+        Client.getCountByType({
+            type: 'contract', 
+            ...filter
+        })
+    ]).catch(e => {
+        console.log('error:' + e);
     });
+
+    const [transactions, { count } ] = allData;
 
     transactions.data.map(item => {
       item.tip = item.ownAddress == filter.contract ? 'out' : 'in'
     })
     this.setState({
       transactions: transactions.data,
-      total: transactions.total,
+      total: count || transactions.total,
       rangeTotal :transactions.rangeTotal,
       loading: false
     });
@@ -96,7 +107,7 @@ class Transactions extends React.Component {
         dataIndex: 'txHash',
         key: 'txHash',
         align: 'left',
-        // width: '150px',
+        width: '150px',
         className: 'ant_table',
         render: (text, record, index) => {
           return <Truncate>
@@ -127,7 +138,8 @@ class Transactions extends React.Component {
         width: '150px',
         className: 'ant_table',
         render: (text, record, index) => {
-          return <TimeAgo date={text} title={moment(text).format("MMM-DD-YYYY HH:mm:ss A")}/>
+          return <BlockTime time={text}></BlockTime>
+          // <TimeAgo date={text} title={moment(text).format("MMM-DD-YYYY HH:mm:ss A")}/>
         }
       },
       {
@@ -135,6 +147,7 @@ class Transactions extends React.Component {
         dataIndex: 'ownAddress',
         key: 'ownAddress',
         align: 'left',
+        className: 'ant_table address_max_width',
         render: (text, record, index) => {
           return record.tip == 'in' ?
               <span className="d-flex">
@@ -143,9 +156,9 @@ class Transactions extends React.Component {
               <span><i className="far fa-file mr-1"></i></span>
             </Tooltip>}
 
-                <AddressLink address={text} isContract={record.ownAddressType == 2}/>
+                  <AddressLink address={text} isContract={record.ownAddressType == 2}>{text}</AddressLink>
           </span> :
-              <Truncate><span>{text}</span></Truncate>
+              <TruncateAddress>{text}</TruncateAddress>
         }
       },
       // {
@@ -161,6 +174,8 @@ class Transactions extends React.Component {
         dataIndex: 'toAddress',
         key: 'toAddress',
         align: 'left',
+        width:'150px',
+        className: 'ant_table address_max_width',
         render: (text, record, index) => {
           return record.tip == 'out' ?
               <span className="d-flex">
@@ -169,9 +184,9 @@ class Transactions extends React.Component {
               <span><i className="far fa-file mr-1"></i></span>
             </Tooltip>}
 
-                <AddressLink address={text} isContract={record.toAddressType == 2}/>
+                  <AddressLink address={text} isContract={record.toAddressType == 2}>{text}</AddressLink>
           </span> :
-              <Truncate><span>{text}</span></Truncate>
+              <TruncateAddress>{text}</TruncateAddress>
         }
       },
       {
@@ -233,8 +248,7 @@ class Transactions extends React.Component {
   onDateOk (start,end) {
       this.start = start.valueOf();
       this.end = end.valueOf();
-      let {page, pageSize} = this.state;
-      this.loadTransactions(page,pageSize);
+      this.loadTransactions();
   }
 
   render() {
@@ -258,12 +272,12 @@ class Transactions extends React.Component {
           {loading && <div className="loading-style" style={{marginTop: '-20px'}}><TronLoader/></div>}
           <div className="row">
             <div className="col-md-12 table_pos mt-5">
-              {total ? <TotalInfo total={total} rangeTotal={rangeTotal} top="-28px" typeText="transactions_unit"/>:""}
-              <DateRange onDateOk={(start,end) => this.onDateOk(start,end)} />
+              {!loading && <TotalInfo total={total} rangeTotal={rangeTotal} top="-28px" typeText="transactions_unit" selected/>}
+              <DateSelect onDateOk={(start,end) => this.onDateOk(start,end)} dataStyle={{marginTop: '-3.3rem', right: '15px'}}/>
               {
                   (!loading && transactions.length === 0)? <div className="p-3 text-center no-data">{tu("no_tnx")}</div>:
                     <SmartTable bordered={true} loading={loading}
-                                column={column} data={transactions} total={total}
+                                column={column} data={transactions} total={rangeTotal>2000? 2000: rangeTotal}
                                 onPageChange={(page, pageSize) => {
                                    this.loadTransactions(page, pageSize)
                   }}/>

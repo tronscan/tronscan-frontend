@@ -17,9 +17,21 @@ export default class CompilerModal extends React.PureComponent {
             loading: false,
             resources: [
                 {
-                    label:"solidity-0.4.25_Odyssey_v3.2.3",
-                    value:"solidity-0.4.25_Odyssey_v3.2.3"
-                }
+                    label:"tron-0.4.25_Odyssey_v3.2.3",
+                    value:"tron-0.4.25_Odyssey_v3.2.3"
+                },
+                {
+                    label:"tron-0.5.8_Odyssey_v3.6.0",
+                    value:"tron-0.5.8_Odyssey_v3.6.0"
+                },
+                {
+                    label:"tron-0.5.4_Odyssey_v3.6.0",
+                    value:"tron-0.5.4_Odyssey_v3.6.0"
+                },
+                {
+                    label:"tron-0.4.24",
+                    value:"tron-0.4.24"
+                },
             ],
             runs:[
                 {
@@ -31,7 +43,7 @@ export default class CompilerModal extends React.PureComponent {
                     value:"200",
                 }
             ],
-            selectedResource:'solidity-0.4.25_Odyssey_v3.2.3',
+            selectedResource:'tron-0.4.25_Odyssey_v3.2.3',
             hideSmallCurrency: true,
             optimizer:'1',
             selectedRuns:"0",

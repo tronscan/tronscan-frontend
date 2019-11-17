@@ -3,7 +3,6 @@ import {ONE_TRX} from "../../constants";
 import {AddressLink} from "../common/Links";
 import {getNotifyPermission, requestNotifyPermissions, sendNotification} from "../../services/notifications";
 import SweetAlert from "react-bootstrap-sweetalert";
-import {channel} from "../../services/api";
 import {connect} from "react-redux";
 import {reloadWallet} from "../../actions/wallet";
 import {tu} from "../../utils/i18n";
@@ -187,7 +186,7 @@ class Notifications extends React.Component {
     return (
         <li className="nav-item dropdown">
           {modal}
-          <a className="nav-link dropdown-toggle" data-toggle="dropdown" href="javascript:">
+          <a className="nav-link dropdown-toggle" data-toggle="dropdown" href="javascript:;">
             <i className="fa fa-bell mr-2"/>
             {
               notifications.length > 0 &&

@@ -1,6 +1,6 @@
 import React, {Fragment} from "react";
 import {Link} from "react-router-dom";
-import {sampleSize} from "lodash";
+import {sampleSize, isString} from "lodash";
 import {Button, Modal, ModalBody, ModalFooter, ModalHeader} from "reactstrap";
 import {ContextMenu, ContextMenuTrigger} from "react-contextmenu";
 import SendModal from "../transfer/Send/SendModal";
@@ -11,6 +11,7 @@ import {App} from "../../app";
 import {CopyToClipboard} from "react-copy-to-clipboard";
 import QRCode from "qrcode.react";
 import { Client } from '../../services/api';
+import { isAddressValid } from "@tronscan/client/src/utils/crypto";
 
 export const WitnessLink = ({address}) => (
     <Link to={`/witness/${address}`}>{address}</Link>
@@ -19,7 +20,7 @@ export const WitnessLink = ({address}) => (
 export const TokenLink = ({id, name, namePlus, address, children, ...props}) => {
 
   if(id == '_'){
-      return <a href="javascript:;" >{children || name}</a>
+      return <a href="javascript:;"  style={{'cursor': 'default'}}>{children || name}</a>
   }
   if (name && !namePlus) {
     return (
@@ -111,11 +112,11 @@ export class AddressLink extends React.PureComponent {
     return (
         <ContextMenu id={random} style={{zIndex: 1040}} className="dropdown-menu show">
           <Fragment>
-            <a className="dropdown-item" href="javascript:" onClick={this.renderModal}>
+            <a className="dropdown-item" href="javascript:;" onClick={this.renderModal}>
               <i className="fas fa-qrcode mr-2"/>
               {t("show_qr_code")}
             </a>
-            <a className="dropdown-item" href="javascript:" onClick={this.renderSend}>
+            <a className="dropdown-item" href="javascript:;" onClick={this.renderSend}>
               <i className="fas fa-exchange-alt mr-2"/>
               {t("send_tokens")}
             </a>
@@ -134,7 +135,8 @@ export class AddressLink extends React.PureComponent {
     if (width !== -1) {
       style.maxWidth = width;
     }
-
+    let children_start = children && isAddressValid(children) ? children.substring(0,29) : address?address.substring(0,29):'';
+    let children_end  =  children && isAddressValid(children) ? children.substring(29,34) : address?address.substring(29,34):'';
     let wrap = (
         <div className="d-flex">
           {
@@ -143,16 +145,35 @@ export class AddressLink extends React.PureComponent {
                   //to={`/address/${address}/token-balances`}
                   to={`/address/${address}`}
                   style={style}
-                  className={"text-truncate address-link  " + className}
+                  className={"text-truncate address-link " + className}
                   {...props}>
-                {children ? children : address}
+                  {
+                      children?
+                          isAddressValid(children)?<div className="ellipsis_box">
+                                  <div className="ellipsis_box_start">{children_start}</div>
+                                  <div className="ellipsis_box_end">{children_end}</div>
+                          </div>:<div>{children}</div>
+                      :
+                      <div>{address}</div>
+
+                  }
+
               </Link> :
               <Link
                   to={`/contract/${address}/code`}
                   style={style}
                   className={"text-truncate address-link " + className}
                   {...props}>
-                {children ? children : address}
+                  {
+                      children?
+                          isAddressValid(children)?<div className="ellipsis_box">
+                              <div className="ellipsis_box_start">{children_start}</div>
+                              <div className="ellipsis_box_end">{children_end}</div>
+                          </div>:<div>{children}</div>
+                          :
+                          <div>{address}</div>
+
+                  }
               </Link>
           }
           {
@@ -244,8 +265,7 @@ export class ExternalLink extends React.PureComponent {
             </ModalHeader>
             <ModalBody className="text-center p-3" onClick={this.hideModal}>
               <span
-                  className="font-weight-bold text-truncate d-block">{url}</span> {t("no_official_tron_website")} &nbsp;
-              {tu("private_key_untrusted_website_message_0")}
+                  className="font-weight-bold text-truncate d-block">{url}</span>{tu("visit_third_party_website")}
             </ModalBody>
             <ModalFooter>
               {this.renderExternalLink()}
@@ -274,6 +294,9 @@ export class ExternalLink extends React.PureComponent {
 export function HrefLink({href, children, ...props}) {
 
   let urlHandler = App.getExternalLinkHandler();
+  if (href == 'www.bittorrent.com') {
+      href = 'https://' + href
+   }
   if (urlHandler) {
     return (
         <a href="javascript:;"
@@ -298,9 +321,21 @@ export const BlockHashLink = ({hash}) => (
     <Link to={`/block/${hash}`}>{hash}</Link>
 );
 
-export const TransactionHashLink = ({hash, children}) => (
-    <Link className="color-tron-100 list-item-word" to={`/transaction/${hash}`}>{children}</Link>
-);
+export const TransactionHashLink = ({hash, children}) => {
+
+    let children_start = isString(children)? children.substring(0,59): hash.substring(0,59);
+    let children_end  =  isString(children)? children.substring(59,64): hash.substring(59,64);
+
+    return(
+        <Link className="color-tron-100 list-item-word" to={`/transaction/${hash}`}>
+            <div className="ellipsis_box">
+                <div className="ellipsis_box_start">{children_start}</div>
+                <div className="ellipsis_box_end">{children_end}</div>
+            </div>
+        </Link>
+    );
+}
+
 
 export const BlockNumberLink = ({number, children = null}) => {
   return (
@@ -311,6 +346,8 @@ export const BlockNumberLink = ({number, children = null}) => {
 };
 
 export const ContractLink = ({address, children = null}) => {
+  let children_start = children && isAddressValid(children) ? children.substring(0,29) : address.substring(0,29);
+  let children_end  =  children && isAddressValid(children) ? children.substring(29,34) : address.substring(29,34);
   async function pushto(){
     let {data} = await Client.getContractOverview(address);
     if(data instanceof Array){
@@ -321,8 +358,21 @@ export const ContractLink = ({address, children = null}) => {
     }
   }
   return (
-    <div className="text-truncate">
-      <a href="javascript:;" onClick={pushto}>{children || address}</a>
-    </div>
+      <div>
+          {
+              children ?
+                  isAddressValid(children)?<a href="javascript:;" className="ellipsis_box" onClick={pushto}>
+                      <div className="ellipsis_box_start">{children_start}</div>
+                      <div className="ellipsis_box_end">{children_end}</div>
+                  </a>:<div>{children}</div>
+                  :
+                  <div className="text-truncate">
+                      <a href="javascript:;" onClick={pushto}>{children || address}</a>
+                  </div>
+
+          }
+
+      </div>
+
   );
 };

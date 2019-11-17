@@ -155,12 +155,12 @@ export default class Trx {
    * @param tokenSignatures Tokens Signatures array
    * @return a signature as hex string
    * example
-   */send
+   */
   async signTransactionWithTokenName(
-    path: string,
-    rawTxHex: string,
-    tokenSignatures: string[],
-  ): Promise<string> {
+    path,
+    rawTxHex,
+    tokenSignatures,
+  ) {
     console.log(tokenSignatures);
     //const bipPath = BIPPath.fromString(path).toPathArray();
     let paths = splitPath(path);

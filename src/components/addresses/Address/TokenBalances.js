@@ -1,16 +1,15 @@
 import React from "react";
 import {tu} from "../../../utils/i18n";
 import {FormattedNumber, injectIntl} from "react-intl";
-import {filter,toUpper,sortBy} from "lodash";
+import {toUpper} from "lodash";
 import {TokenLink, TokenTRC20Link} from "../../common/Links";
 import {SwitchToken} from "../../common/Switch";
 import SmartTable from "../../common/SmartTable.js"
 import {upperFirst} from "lodash";
 import _ from "lodash";
-import { CONTRACT_ADDRESS_USDT } from "../../../constants";
+import { CONTRACT_ADDRESS_USDT, CONTRACT_ADDRESS_WIN, CONTRACT_ADDRESS_GGC } from "../../../constants";
 import {TRXPrice} from "../../common/Price";
 
-import rebuildList from "../../../utils/rebuildList";
 
 class TokenBalances extends React.Component {
 
@@ -51,7 +50,9 @@ class TokenBalances extends React.Component {
                 .value();
         }
 
-        this.setTop(tokens,'TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t')
+        this.setTop(tokens,CONTRACT_ADDRESS_GGC)
+        this.setTop(tokens,CONTRACT_ADDRESS_WIN)
+        this.setTop(tokens,CONTRACT_ADDRESS_USDT)
         this.setTop(tokens,'1002000');
         this.setTop(tokens,'_');
         this.setState({
@@ -84,6 +85,8 @@ class TokenBalances extends React.Component {
 
     customizedColumn = () => {
         let {intl} = this.props;
+        const defaultImg = require("../../../images/logo_default.png");
+
         let column = [
             {
                 title: upperFirst(intl.formatMessage({id: 'token'})),
@@ -95,9 +98,12 @@ class TokenBalances extends React.Component {
                 render: (text, record, index) => {
                     return (
 
-                            record.map_token_id == 1002000  || record.map_token_id == 'TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t'?<div>
+                            record.map_token_id == 1002000  || record.map_token_id == CONTRACT_ADDRESS_USDT || record.map_token_id == CONTRACT_ADDRESS_WIN || record.map_token_id == CONTRACT_ADDRESS_GGC ?<div>
                                 <b className="token-img-top" style={{marginRight: 5}}>
-                                    <img width={20} height={20} src={record.map_amount_logo} />
+                                    <img width={20} height={20} src={record.map_amount_logo} onError={e => {
+                          e.target.onerror = null;
+                          e.target.src = defaultImg;
+                        }}/>
                                     <i style={{width: 10, height: 10, bottom: -5}}></i>
                                 </b>
                                     {
@@ -106,12 +112,14 @@ class TokenBalances extends React.Component {
                                         :
                                         <TokenLink id={record.map_token_id} name={record.map_token_name+' ('+record.map_token_name_abbr+")"} address={record.address}/>
 
-
                                     }
                             </div>
                             :
                             <div>
-                                <img width={20} height={20} src={record.map_amount_logo} style={{marginRight: 5}}/>
+                                <img width={20} height={20} src={record.map_amount_logo} style={{marginRight: 5}} onError={e => {
+                          e.target.onerror = null;
+                          e.target.src = defaultImg;
+                        }}/>
                                 {
                                     record.tokenType == 'TRC20'?
                                         <TokenTRC20Link name={record.map_token_id} address={record.contract_address} namePlus={record.map_token_name + ' (' + record.map_token_name_abbr + ')'}/>
@@ -217,7 +225,7 @@ class TokenBalances extends React.Component {
                 className: 'ant_table',
                 render: (text, record, index) => {
                     return (
-                        record.contract_address == CONTRACT_ADDRESS_USDT?<div className="map-token-top">
+                        record.contract_address == CONTRACT_ADDRESS_USDT || record.contract_address == CONTRACT_ADDRESS_WIN || record.contract_address == CONTRACT_ADDRESS_GGC ?<div className="map-token-top">
                             <TokenTRC20Link name={record.name} address={record.contract_address} namePlus={record.name + ' (' + record.symbol + ')'}/>
                             <i></i>
                         </div>: <TokenTRC20Link name={record.name} address={record.contract_address} namePlus={record.name + ' (' + record.symbol + ')'}/>

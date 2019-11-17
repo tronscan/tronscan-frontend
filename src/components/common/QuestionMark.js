@@ -1,4 +1,3 @@
-import {CopyToClipboard} from "react-copy-to-clipboard";
 import React, {Fragment} from "react";
 import {alpha} from "../../utils/str";
 import {Tooltip} from "reactstrap";

@@ -2,7 +2,6 @@
 import React, {Fragment} from "react";
 import {injectIntl} from "react-intl";
 import {NavLink, Route, Switch} from "react-router-dom";
-import {connect} from "react-redux";
 import {Client} from "../../../services/api";
 import {tu} from "../../../utils/i18n";
 import {FormattedNumber} from "react-intl";
@@ -14,15 +13,10 @@ import {TronLoader} from "../../common/loaders";
 import Transactions from "../../common/Transactions";
 import NewTransactions from "../../common/NewTransactions";
 import Votes from "../../common/Votes";
-import Transfers from "../../common/Transfers";
-import TransfersTrc20 from "../../common/TransfersTrc20";
 import TransfersAll from "../../common/TransfersAll";
-import PieReact from "../../common/PieChart";
 import xhr from "axios/index";
-import {sortBy, toUpper} from "lodash";
 import _ from "lodash";
 import Blocks from "../../common/Blocks";
-import {channel} from "../../../services/api";
 import rebuildList from "../../../utils/rebuildList";
 import rebuildToken20List from "../../../utils/rebuildToken20List";
 import {API_URL} from '../../../constants.js'
@@ -32,6 +26,7 @@ import BigNumber from "bignumber.js"
 import {HrefLink} from "../../common/Links";
 import {QuestionMark} from "../../common/QuestionMark";
 import {CsvExport} from "../../common/CsvExport";
+import moment from 'moment';
 BigNumber.config({ EXPONENTIAL_AT: [-1e9, 1e9] });
 
 
@@ -216,9 +211,10 @@ class Address extends React.Component {
 
     let stats = await Client.getAddressStats(id);
 
-    let {total: totalProducedBlocks} = await Client.getBlocks({
+    let {rangeTotal: totalProducedBlocks} = await Client.getBlocks({
       producer: id,
       limit: 1,
+      start_timestamp: moment([2018,5,24]).startOf('day').valueOf(),
     });
     if (address.representative.enabled) {
       this.setState(prevProps => ({
@@ -271,7 +267,7 @@ class Address extends React.Component {
             // icon: "fa fa-cube",
             path: "/blocks",
             label: <span>{tu("produced_blocks")}</span>,
-            cmp: () => <Blocks filter={{producer: id}} intl={intl}/>,
+            cmp: () => <Blocks filter={{producer: id}} intl={intl} getCsvUrl={(csvurl) => this.setState({csvurl})}/>,
           },
           votes: {
             id: "votes",
@@ -292,6 +288,7 @@ class Address extends React.Component {
             cmp: () => <Votes
                 filter={{candidate: id}}
                 showCandidate={false}
+                getCsvUrl={(csvurl) => this.setState({csvurl})}
             />,
           },
         }
@@ -308,7 +305,7 @@ class Address extends React.Component {
           token_balances: {
               id: "token_balances",
               // icon: "fa fa-piggy-bank",
-             // path: "/token-balances",
+             // path: "/token-balances",API_URL=http://3.14.14.175:9000 yarn build
               path: "",
               label: <span>{tu("token_balances")}</span>,
               cmp: () => <TokenBalances tokenBalances={tokenBalances} intl={intl}/>,
@@ -393,9 +390,9 @@ class Address extends React.Component {
         availableBandWidthPercentage:(1-(address.bandwidth.netUsed + address.bandwidth.freeNetUsed)/(address.bandwidth.netLimit + address.bandwidth.freeNetLimit))*100,
         energyUsed:address.bandwidth.energyUsed,
         energyLimit:address.bandwidth.energyLimit,
-        energyRemaining:address.bandwidth.energyRemaining,
+        energyRemaining:address.bandwidth.energyRemaining>= 0?address.bandwidth.energyRemaining:0,
         energyPercentage:address.bandwidth.energyPercentage * 100,
-        availableEnergyPercentage:address.bandwidth.energyRemaining ?(1- address.bandwidth.energyPercentage) * 100 : 0,
+        availableEnergyPercentage:address.bandwidth.energyRemaining > 0 ?(1- address.bandwidth.energyPercentage) * 100 : 0,
     });
 
   }
@@ -435,7 +432,7 @@ class Address extends React.Component {
   }
 
   energyCircle = () => {
-    let { energyLimit, energyRemaining, energyUsed, energyPercentage } = this.state;
+      let { energyLimit, energyRemaining, energyUsed, energyPercentage, address } = this.state;
       let {intl} = this.props;
       let address_percentage_remaining = new BigNumber(100 - Number(energyPercentage));
       let addressPercentageRemaining = energyRemaining?address_percentage_remaining.decimalPlaces(2) + '%': '0%';
@@ -448,11 +445,17 @@ class Address extends React.Component {
             </div>
             <div>
               <span>{intl.formatMessage({id: 'address_energyRemaining'}) + ' : ' + energyRemaining }</span>&nbsp;&nbsp;
-              <span>{intl.formatMessage({id: 'address_percentage'}) + ' : ' + addressPercentageRemaining }</span>
+                {
+                    address.bandwidth.energyRemaining>= 0 &&  <span>{intl.formatMessage({id: 'address_percentage'}) + ' : ' + addressPercentageRemaining }</span>
+                }
+
             </div>
             <div>
               <span>{intl.formatMessage({id: 'address_energyUsed'}) + ' : ' + energyUsed }</span>&nbsp;&nbsp;
-              <span>{intl.formatMessage({id: 'address_percentage'}) + ' : ' + addressPercentageUsed }</span>
+                {
+                    address.bandwidth.energyRemaining>= 0 &&  <span>{intl.formatMessage({id: 'address_percentage'}) + ' : ' + addressPercentageUsed }</span>
+                }
+
             </div>
           </div>
       )
@@ -468,7 +471,6 @@ class Address extends React.Component {
         availableBandWidthPercentage,availableEnergyPercentage, csvurl} = this.state;
     let {match,intl} = this.props;
     let addr = match.params.id;
-
 
     if (!address) {
       return null;
@@ -603,10 +605,11 @@ class Address extends React.Component {
                                 <td>
                                   <ul className="list-unstyled m-0">
                                     <li className="d-flex">
-                                      <TRXPrice showCurreny={false}
-                                                amount={(totalPower) / ONE_TRX}/>
+                                      {/* <TRXPrice showCurreny={false}
+                                                amount={(totalPower) / ONE_TRX}/> */}
+                                                <FormattedNumber value={(totalPower) / ONE_TRX}></FormattedNumber>  
                                       <div>
-                                         <span className="ml-1">(</span> {tu("address_tron_power_used")}: {address.voteTotal}&nbsp;   {tu("address_tron_power_remaining")}: {(totalPower) / ONE_TRX - address.voteTotal } <span>)</span>
+                                         <span className="ml-1">(</span> {tu("address_tron_power_used")}: <FormattedNumber value={address.voteTotal}></FormattedNumber>&nbsp;   {tu("address_tron_power_remaining")}:  <FormattedNumber value={(totalPower) / ONE_TRX - address.voteTotal }></FormattedNumber> <span>)</span>
                                       </div>
                                     </li>
                                   </ul>
@@ -684,11 +687,11 @@ class Address extends React.Component {
 
                               <div className="circle-info">
                                 <div>{tu('address_netRemaining')}</div>
-                                <h2>
+                                <h5>
                                      <FormattedNumber
                                         value={netRemaining?netRemaining:0}/>
 
-                                </h2>
+                                </h5>
                               </div>
                             </div>
                             <div className="address-circle-line"></div>
@@ -706,9 +709,9 @@ class Address extends React.Component {
                               </Tooltip>
                               <div className="circle-info">
                                 <div>{tu('address_energyRemaining')}</div>
-                                <h2>
+                                <h5>
                                   <FormattedNumber value={energyRemaining?energyRemaining:0}/>
-                                </h2>
+                                </h5>
                               </div>
                             </div>
                           </div>
@@ -755,10 +758,10 @@ class Address extends React.Component {
                         </div>
 
                       </div>
-                      {/**
-                        ['transfers', 'transactions', 'internal-transactions'].indexOf(tabName) !== -1?
+                      {
+                        ['transfers', 'transactions', 'internal-transactions', 'blocks', 'voters'].indexOf(tabName) !== -1?
                         <CsvExport downloadURL={csvurl}/>: ''
-                       */}
+                      }
 
                     </Fragment>
               }

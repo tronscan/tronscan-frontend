@@ -8,6 +8,7 @@ import { withRouter } from "react-router-dom";
 import { Icon } from "antd";
 import { setQuickSelect, setRegister } from "../../../../../actions/exchange";
 import { TronLoader } from "../../../../common/loaders";
+import Column from "antd/lib/table/Column";
 
 class Register extends Component {
   constructor() {
@@ -126,7 +127,7 @@ class Register extends Component {
         key: "amount",
         align: "right",
         render: text => {
-          return <span>{Number(text).toFixed(2)}</span>;
+          return <span>{text && Number(text)}</span>;
         }
       },
       {
@@ -161,7 +162,7 @@ class Register extends Component {
         key: "amount",
         align: "right",
         render: text => {
-          return <span>{Number(text).toFixed(2)}</span>;
+          return <span>{text && Number(text)}</span>;
         }
       },
       {
@@ -228,7 +229,7 @@ class Register extends Component {
                     style={{
                       fontSize: "14px",
                       color: "#666666",
-                      marginLeft: "20px"
+                      marginLeft: "7px"
                     }}
                   >
                     ≈ {price_convert} USD
@@ -246,7 +247,7 @@ class Register extends Component {
                     style={{
                       fontSize: "14px",
                       color: "#666666",
-                      marginLeft: "20px"
+                      marginLeft: "7px"
                     }}
                   >
                     ≈ {price_convert} USD
@@ -280,8 +281,8 @@ class Register extends Component {
       isLoading: false
     });
 
-    let buyObj = await this.getList(data ? data.buy : [], 1);
-    let sellObj = await this.getList(data ? data.sell : []);
+    let buyObj = this.getNewList(data ? data.buy : [], 1);
+    let sellObj = this.getNewList(data ? data.sell : []);
     if (code === 0) {
       if (data) {
         this.setState(
@@ -299,6 +300,50 @@ class Register extends Component {
         );
       }
     }
+  }
+
+  getNewList(data, type) {
+    let list = data || [];
+    let { limit } = this.state;
+
+    let { pairs } = this.props;
+    let sPrecision = pairs.sPrecision ? pairs.sPrecision : 6;
+    let amPrecision = pairs.fix_precision
+      ? pairs.fix_precision < 3
+        ? 4
+        : 2
+      : 2;
+    let amount_list = [];
+    let listN = [];
+    let arr = [];
+
+    list.length > limit && (list.length = limit);
+
+    list.map(v => {
+      let cje = v.Amount * v.Price;
+      listN.push({
+        price: (+v.Price).toFixed(sPrecision),
+        amount: Number(v.Amount).toFixed(amPrecision),
+        cje: Number(cje).toFixed(sPrecision)
+      });
+      amount_list.push(v.Amount);
+    });
+    const _max = Math.max.apply(null, amount_list);
+    if (type === 1) {
+      // this.buyMax = _max
+      this.setState({
+        buyMax: _max
+      });
+    } else {
+      this.setState({
+        sellMax: _max
+      });
+      // this.sellMax = _max
+    }
+
+    return {
+      listN
+    };
   }
 
   async getList(data, type) {
@@ -391,11 +436,15 @@ class RegisterList extends Component {
     super();
     this.handlePriceObj = this.handlePriceObj.bind(this);
   }
-  handlePriceObj(v, type) {
+  handlePriceObj(v, type, column) {
+    let amount = "";
+    if (column == 2) {
+      amount = v.amount;
+    }
     let obj = {
       b: {
         price: Number(v.price),
-        amount: parseInt(v.amount)
+        amount: amount
       },
       type: type
     };
@@ -407,15 +456,23 @@ class RegisterList extends Component {
       <div className={`register-list ${type}`}>
         {data.map(v => {
           return (
-            <div className="list-item" key={v.key}>
-              <div
-                className="item-detail"
-                onClick={() =>
-                  this.handlePriceObj(v, type == "sell" ? "buy" : "sell")
-                }
-              >
-                <span className={type}>{v.price}</span>
-                <span>{v.amount}</span>
+            <div className="list-item" key={v.price}>
+              <div className="item-detail">
+                <span
+                  className={type}
+                  onClick={() =>
+                    this.handlePriceObj(v, type == "sell" ? "buy" : "sell", 1)
+                  }
+                >
+                  {v.price}
+                </span>
+                <span
+                  onClick={() =>
+                    this.handlePriceObj(v, type == "sell" ? "buy" : "sell", 2)
+                  }
+                >
+                  {v.amount}
+                </span>
                 <span>{v.cje}</span>
               </div>
               <div
