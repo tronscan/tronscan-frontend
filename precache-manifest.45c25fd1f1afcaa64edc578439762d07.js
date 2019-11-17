@@ -16,19 +16,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "https://tronscan.github.io/tronscan-frontend/editor.worker.js.gz"
   },
   {
-    "revision": "84248b43d8d80d0f69fd1a6ebdecdf2f",
+    "revision": "4bed2f1a756d38d1ec2c9b7dc831aad2",
     "url": "https://tronscan.github.io/tronscan-frontend/index.html"
   },
   {
-    "revision": "52f8b79eed2ebbb25d14e0072471c168",
+    "revision": "b721a5d186f5955c19d90c0443ad67f7",
     "url": "https://tronscan.github.io/tronscan-frontend/index.html.gz"
-  },
-  {
-    "url": "https://tronscan.github.io/tronscan-frontend/precache-manifest.83c36bb156de22a91a7bc0130d4d9ab9.js"
-  },
-  {
-    "revision": "7a608674425f3e3a08c404231051439d",
-    "url": "https://tronscan.github.io/tronscan-frontend/service-worker.js"
   },
   {
     "revision": "d5f28493ab6e6cfd740c",
@@ -71,7 +64,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "https://tronscan.github.io/tronscan-frontend/static/css/Exchangetrc.849a7a81.chunk.css.gz"
   },
   {
-    "revision": "d5f5fc647ae4cdaffdb5",
+    "revision": "fba2c4a2cf3217329d92",
     "url": "https://tronscan.github.io/tronscan-frontend/static/css/Home.849a7a81.chunk.css"
   },
   {
@@ -311,12 +304,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "https://tronscan.github.io/tronscan-frontend/static/js/Address.5bf4d08d.chunk.js.gz"
   },
   {
-    "revision": "ac3f1bc79413423829f0",
-    "url": "https://tronscan.github.io/tronscan-frontend/static/js/BTTSupplyTemp.b4092c43.chunk.js"
+    "revision": "56b074d26f1f9e3a6689",
+    "url": "https://tronscan.github.io/tronscan-frontend/static/js/BTTSupplyTemp.3f0f82fc.chunk.js"
   },
   {
-    "revision": "e85f24a3b51432cd3bada8a45d36445e",
-    "url": "https://tronscan.github.io/tronscan-frontend/static/js/BTTSupplyTemp.b4092c43.chunk.js.gz"
+    "revision": "e185ebbfeb275f6341ae4440b2132b8b",
+    "url": "https://tronscan.github.io/tronscan-frontend/static/js/BTTSupplyTemp.3f0f82fc.chunk.js.gz"
   },
   {
     "revision": "c91c0d6ff7409afe2b8b",
@@ -375,12 +368,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "https://tronscan.github.io/tronscan-frontend/static/js/CopyrightAsync.6264d3b4.chunk.js.gz"
   },
   {
-    "revision": "97373b1e5802291fe873",
-    "url": "https://tronscan.github.io/tronscan-frontend/static/js/DemoAsync.a34fd488.chunk.js"
+    "revision": "7d10c449200d03618fc8",
+    "url": "https://tronscan.github.io/tronscan-frontend/static/js/DemoAsync.a3fecbfc.chunk.js"
   },
   {
-    "revision": "aaea95e85dec2f8635bd8e03975bb180",
-    "url": "https://tronscan.github.io/tronscan-frontend/static/js/DemoAsync.a34fd488.chunk.js.gz"
+    "revision": "d74f34c70eb5f63fe37d8c7b892f1ac2",
+    "url": "https://tronscan.github.io/tronscan-frontend/static/js/DemoAsync.a3fecbfc.chunk.js.gz"
   },
   {
     "revision": "8e2bd21ce768bacb31e7",
@@ -423,12 +416,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "https://tronscan.github.io/tronscan-frontend/static/js/Foundation.3a88a44e.chunk.js.gz"
   },
   {
-    "revision": "d5f5fc647ae4cdaffdb5",
-    "url": "https://tronscan.github.io/tronscan-frontend/static/js/Home.4b9ff504.chunk.js"
+    "revision": "fba2c4a2cf3217329d92",
+    "url": "https://tronscan.github.io/tronscan-frontend/static/js/Home.48b45d04.chunk.js"
   },
   {
-    "revision": "34c76f8f8d7483dd3159bfee15ee23c8",
-    "url": "https://tronscan.github.io/tronscan-frontend/static/js/Home.4b9ff504.chunk.js.gz"
+    "revision": "6b4dea0ebfbf2d1ae590bc7eacbb9eea",
+    "url": "https://tronscan.github.io/tronscan-frontend/static/js/Home.48b45d04.chunk.js.gz"
   },
   {
     "revision": "3802a3e7fd2e9bc70507",
@@ -455,12 +448,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "https://tronscan.github.io/tronscan-frontend/static/js/MarketCreate.4ab51cb7.chunk.js.gz"
   },
   {
-    "revision": "0a70d42993812e3a03ba",
-    "url": "https://tronscan.github.io/tronscan-frontend/static/js/Markets.c53cb01a.chunk.js"
+    "revision": "2ac5e1e57f9b7ba44066",
+    "url": "https://tronscan.github.io/tronscan-frontend/static/js/Markets.eda7d6ce.chunk.js"
   },
   {
-    "revision": "9ff150e1a95bf2520779427b26e541f8",
-    "url": "https://tronscan.github.io/tronscan-frontend/static/js/Markets.c53cb01a.chunk.js.gz"
+    "revision": "ec62d4cf2cac6bf2f5c19d3c0f52bad4",
+    "url": "https://tronscan.github.io/tronscan-frontend/static/js/Markets.eda7d6ce.chunk.js.gz"
   },
   {
     "revision": "64026017e438b6d42010",
@@ -487,12 +480,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "https://tronscan.github.io/tronscan-frontend/static/js/NodeTester.b6a4547e.chunk.js.gz"
   },
   {
-    "revision": "25c647f95c926e1f45a8",
-    "url": "https://tronscan.github.io/tronscan-frontend/static/js/Nodes.78aa6a96.chunk.js"
+    "revision": "5b6a56bfe2b86e06195e",
+    "url": "https://tronscan.github.io/tronscan-frontend/static/js/Nodes.7d42a506.chunk.js"
   },
   {
-    "revision": "fea4bb6064973a7fe4c84dbf568314bf",
-    "url": "https://tronscan.github.io/tronscan-frontend/static/js/Nodes.78aa6a96.chunk.js.gz"
+    "revision": "936a3740589a3c7c2d2f9056d9d76579",
+    "url": "https://tronscan.github.io/tronscan-frontend/static/js/Nodes.7d42a506.chunk.js.gz"
   },
   {
     "revision": "216a95375c7a092c13ba",
@@ -535,28 +528,28 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "https://tronscan.github.io/tronscan-frontend/static/js/Representative.bb3c8c45.chunk.js.gz"
   },
   {
-    "revision": "d6068144e7a1c8a1e25e",
-    "url": "https://tronscan.github.io/tronscan-frontend/static/js/Representatives.7a1936e6.chunk.js"
+    "revision": "c1f149da79fe1422fbaa",
+    "url": "https://tronscan.github.io/tronscan-frontend/static/js/Representatives.1ec7bf4c.chunk.js"
   },
   {
-    "revision": "af4ad9d7bfc1ea39dab966bf8c06b629",
-    "url": "https://tronscan.github.io/tronscan-frontend/static/js/Representatives.7a1936e6.chunk.js.gz"
+    "revision": "255ae8c60485a8a4f94ba4b58cf48960",
+    "url": "https://tronscan.github.io/tronscan-frontend/static/js/Representatives.1ec7bf4c.chunk.js.gz"
   },
   {
-    "revision": "7cdadf90d3cffc87ace1",
-    "url": "https://tronscan.github.io/tronscan-frontend/static/js/SingleStats.afe6fdaa.chunk.js"
+    "revision": "bbd6fdbca136dac4de8f",
+    "url": "https://tronscan.github.io/tronscan-frontend/static/js/SingleStats.dc64169c.chunk.js"
   },
   {
-    "revision": "203521252da7198595dd2e8f2f78567e",
-    "url": "https://tronscan.github.io/tronscan-frontend/static/js/SingleStats.afe6fdaa.chunk.js.gz"
+    "revision": "f39d621b00469ca68db1a3c085fe9eef",
+    "url": "https://tronscan.github.io/tronscan-frontend/static/js/SingleStats.dc64169c.chunk.js.gz"
   },
   {
-    "revision": "52bc4ba93c64c41b88e5",
-    "url": "https://tronscan.github.io/tronscan-frontend/static/js/SmartContract.7e623d29.chunk.js"
+    "revision": "f1883afc9a8a7b20a085",
+    "url": "https://tronscan.github.io/tronscan-frontend/static/js/SmartContract.c2572cfd.chunk.js"
   },
   {
-    "revision": "6eb7e1e9c2f2118576e31a699acf574f",
-    "url": "https://tronscan.github.io/tronscan-frontend/static/js/SmartContract.7e623d29.chunk.js.gz"
+    "revision": "f8c64e9e6e544f2450dcc0349e58c9cb",
+    "url": "https://tronscan.github.io/tronscan-frontend/static/js/SmartContract.c2572cfd.chunk.js.gz"
   },
   {
     "revision": "97b230593c10498b5d5d",
@@ -583,20 +576,20 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "https://tronscan.github.io/tronscan-frontend/static/js/TRONRating.6a365e41.chunk.js.gz"
   },
   {
-    "revision": "55d3044eb3042c2ace28",
-    "url": "https://tronscan.github.io/tronscan-frontend/static/js/Token20Detail.4ea87b70.chunk.js"
+    "revision": "7573f913c3e7b801513d",
+    "url": "https://tronscan.github.io/tronscan-frontend/static/js/Token20Detail.a7a56f7e.chunk.js"
   },
   {
-    "revision": "49ecd80ec31dd518bf3aae921071ebd9",
-    "url": "https://tronscan.github.io/tronscan-frontend/static/js/Token20Detail.4ea87b70.chunk.js.gz"
+    "revision": "ba3c0ba523309de89edc955f69ec5d0e",
+    "url": "https://tronscan.github.io/tronscan-frontend/static/js/Token20Detail.a7a56f7e.chunk.js.gz"
   },
   {
-    "revision": "d43b57a9f55ffd20173c",
-    "url": "https://tronscan.github.io/tronscan-frontend/static/js/TokenDetail.9ead4c98.chunk.js"
+    "revision": "960d8531f1215a4d301c",
+    "url": "https://tronscan.github.io/tronscan-frontend/static/js/TokenDetail.ce2e9183.chunk.js"
   },
   {
-    "revision": "67aa499c0ad753c0115c3247b774da59",
-    "url": "https://tronscan.github.io/tronscan-frontend/static/js/TokenDetail.9ead4c98.chunk.js.gz"
+    "revision": "915a82c1e5e3160d5d0aa8995c0b1b5e",
+    "url": "https://tronscan.github.io/tronscan-frontend/static/js/TokenDetail.ce2e9183.chunk.js.gz"
   },
   {
     "revision": "9d70c9ea8358aa1c5efc",
@@ -719,12 +712,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "https://tronscan.github.io/tronscan-frontend/static/js/main.c87bab27.chunk.js.gz"
   },
   {
-    "revision": "5b230d28a6260d858232",
-    "url": "https://tronscan.github.io/tronscan-frontend/static/js/runtime~main.af444b20.js"
+    "revision": "d010ab7eb3ab90637a6f",
+    "url": "https://tronscan.github.io/tronscan-frontend/static/js/runtime~main.94232f6e.js"
   },
   {
-    "revision": "f33e534d13500cd8846d1ed0116ec9f5",
-    "url": "https://tronscan.github.io/tronscan-frontend/static/js/runtime~main.af444b20.js.gz"
+    "revision": "76977ddf31b9c7b6b58ecbde924a4211",
+    "url": "https://tronscan.github.io/tronscan-frontend/static/js/runtime~main.94232f6e.js.gz"
   },
   {
     "revision": "7b00f7c4e78ed9cfc676c64c040965e8",
