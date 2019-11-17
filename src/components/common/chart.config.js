@@ -847,7 +847,8 @@ export default {
                   enabled: false,
                   radius:1
                   //enabledThreshold: '7'
-              }
+              },
+              visible: false
           },
           {
               type: 'spline',
@@ -861,7 +862,8 @@ export default {
                   enabled: false,
                   radius:1
                   //enabledThreshold: '7'
-              }
+              },
+              visible: false
           }
         ]
     },
