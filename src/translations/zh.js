@@ -2182,7 +2182,7 @@ export const messages = {
   "rewards_claimed_hash":"交易哈希值：",
   "rewards_claimed_hash_await":"稍后交易确认后可在账户页查看",
   "voting_brokerage":"选民奖励分成比例",
-  "voting_brokerage_tip":"超级代表所获得的奖励中，分给投票者的比例。选民奖励=总奖励数*选民奖励分成比例*（选民票数/选民总票数）",
+  "voting_brokerage_tip":"超级代表所获得的奖励中，分给投票者的比例。投票奖励 = 总奖励数 * 投票分成比例 *（投票票数 / 得票总数）",
   "SR_set_brokerage_contract":"超级代表设置奖励分成比例",
   "countdown_to_voting":"本轮投票结束倒计时",
   "no_rewards_available_yet":"暂无可领取奖励",

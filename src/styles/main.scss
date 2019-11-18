@@ -3189,6 +3189,7 @@ h5 {
 
   img {
     width: 18px;
+    margin: 0 auto;
   }
 
   h2 {
@@ -4350,7 +4351,7 @@ h5 {
     .info-btn {
       border: 0.1px solid white;
       border-radius: 5px;
-      background: rgba(255,255,255,0.1);
+      background: rgba(255, 255, 255, 0.1);
       cursor: pointer;
       padding: 0px 10px 0px 10px;
       margin-left: 10px;
@@ -4651,42 +4652,41 @@ h5 {
   max-width: 100px;
 }
 
-.SR_brokerage{
-  &_line_height{
-     line-height: 30px;
+.SR_brokerage {
+  &_line_height {
+    line-height: 30px;
   }
-  &_save_tip{
+  &_save_tip {
     margin-top: 2px;
   }
 }
 
-.accont_reward_disabled{
+.accont_reward_disabled {
   cursor: pointer;
   color: #d8d8d8;
-  border-color:#d8d8d8;
-  span{
+  border-color: #d8d8d8;
+  span {
     color: #d8d8d8;
   }
-  &:hover{
+  &:hover {
     border-color: #d8d8d8;
-    color: #d8d8d8!important;
-    background-color:#ffffff;
-    span{
-      color: #d8d8d8!important;
+    color: #d8d8d8 !important;
+    background-color: #ffffff;
+    span {
+      color: #d8d8d8 !important;
     }
   }
 }
 
-.tron-ecosystem-tokens{
+.tron-ecosystem-tokens {
   margin-top: -15px;
 }
-
 
 .SweetAlert_hashid {
   font-size: 14px;
   word-break: break-all;
 }
-.developers_reward_tip{
+.developers_reward_tip {
   padding-right: 15px;
   padding-left: 15px;
 }
@@ -4696,19 +4696,19 @@ h5 {
   font-size: 14px;
   font-family: Helvetica-Bold;
 }
-.claim_rewards_btn{
+.claim_rewards_btn {
   opacity: 0.65;
   &:focus,
   &:visited,
   &:active,
-  &:hover{
-    background-color: #69C265;
-    border-color: #69C265;
+  &:hover {
+    background-color: #69c265;
+    border-color: #69c265;
   }
-  button{
+  button {
     display: inline-block;
     font-weight: 400;
-    color: #FFFFFF;
+    color: #ffffff;
     text-align: center;
     vertical-align: middle;
     -webkit-user-select: none;
@@ -4719,27 +4719,27 @@ h5 {
     font-size: 0.875rem;
     line-height: 1.5;
     border-radius: 0.25rem;
-    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-    background-color: #69C265;
-    border-color: #69C265;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+      border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    background-color: #69c265;
+    border-color: #69c265;
     padding: 0;
     &:focus,
     &:visited,
     &:active,
-    &:hover{
+    &:hover {
       background-color: #79a736;
       border-color: #729e33;
     }
   }
-  button:disabled{
+  button:disabled {
     opacity: 0.65;
   }
 }
 
-.SR_set_brokerage{
+.SR_set_brokerage {
   width: 300%;
 }
-
 
 .token-detail-popover {
   width: 330px;
