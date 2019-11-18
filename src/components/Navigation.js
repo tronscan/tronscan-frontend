@@ -1145,7 +1145,7 @@ class Navigation extends React.Component {
                                 {tu(route.label)}
                               </HrefLink>
                               :
-                              <span><NavLink
+                              <span   className={route.routes ? (route.label == 'nav_network' ? 'nav-network-hot mr-2' : "") : ""}> <NavLink
                                   className={route.routes ? (route.label == 'nav_network' ? 'nav-link text-capitalize' : "nav-link") : "nav-link"}
                                   {...((route.routes && route.routes.length > 0) ? {'data-toggle': 'dropdown'} : {})}
                                   activeClassName="active"
@@ -1154,9 +1154,9 @@ class Navigation extends React.Component {
                                 {route.icon &&
                                 <i className={route.icon + " d-none d-lg-inline-block mr-1"}/>}
                                 {tu(route.label)}
-                                
+
                               </NavLink>
-                             
+                              <i className="hot-nav"></i>
                               </span>
                               
                         }
@@ -1262,6 +1262,25 @@ class Navigation extends React.Component {
                                             </HrefLink>
                                         );
                                       }
+                                      if (!isUndefined(Route.url) && Route.label == 'developer_challenge') {
+                                          return (
+                                              <span>
+                                                <HrefLink
+                                                    key={Route.url}
+                                                    className="dropdown-item text-uppercase"
+                                                    href={Route.url}>
+                                                  {Route.icon &&
+                                                  <i className={Route.icon + " mr-2"}/>}
+                                                    {tu(Route.label)}
+                                                    {Route.badge &&
+                                                    <Badge value={Route.badge}/>}
+                                              </HrefLink>
+                                              <img src={require("../images/home/hot.svg")} title="hot" />
+                                              </span>
+
+                                          );
+                                      }
+
                                       if (isUndefined(Route.url) && Route.sidechain) {
                                         const sidechainTab = (
                                           <a href="javascript:"

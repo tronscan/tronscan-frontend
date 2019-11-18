@@ -4785,13 +4785,20 @@ h5 {
   }
 }
 
-//.header-top{
-//  height:108px;
-//}
-//.tron-light .home{
-//  flex:1;
-//}
-//
-//.tron-light .footer-compontent{
-//  height:484px;
-//}
+
+.nav-network-hot{
+  position: relative;
+  display: inline-block;
+  .hot-nav{
+    width:20px;
+    height:20px;
+    background-size: 100% 100%;
+    display: inline-block;
+    background-image: url(../images/home/hot-nav.png);
+    position: absolute;
+    top: 8px;
+    right: -12px;
+  }
+
+}
+
