@@ -128,7 +128,7 @@ export default class MobilePanelGroup extends Component {
                         {tu("current_MaxTPS")}
                       </p>
 
-                      {complexData.maxTps ? (
+                      {complexData.tps ? (
                         <h2>
                           <CountUp
                             start={complexData.startTps}

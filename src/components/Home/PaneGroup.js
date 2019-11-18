@@ -300,19 +300,22 @@ export default class panelGroup extends Component {
 
                       <div className="col-lg-2 col-md-4 col-xs-12 mb-lg-0 mb-md-3">
                         <p className="m-0 panel-title">{tu("block_height")}</p>
-                           <Tooltip title={intl.formatMessage({ id: "tooltip_blockHeight" })}>
-                        {mainnetData.blockHeight != 0 ? (
-                          <h2 className="hover-red">
-                            <CountUp
-                              start={mainnetData.startblockHeight}
-                              end={mainnetData.blockHeight}
-                              duration={1}
-                            />
-                          </h2>
-                        ) : (
-                          <h2>-</h2>
-                        )}
-
+                        <Tooltip
+                          title={intl.formatMessage({
+                            id: "tooltip_blockHeight"
+                          })}
+                        >
+                          {mainnetData.blockHeight != 0 ? (
+                            <h2 className="hover-red">
+                              <CountUp
+                                start={mainnetData.startblockHeight}
+                                end={mainnetData.blockHeight}
+                                duration={1}
+                              />
+                            </h2>
+                          ) : (
+                            <h2>-</h2>
+                          )}
                         </Tooltip>
                       </div>
                       <div className="col-lg-2 col-md-4 col-xs-12 mb-lg-0  mb-md-3">
@@ -326,29 +329,32 @@ export default class panelGroup extends Component {
                           {mainnetData.maxTps ? (
                             <h2>
                               <Tooltip
-                            title={intl.formatMessage({
-                              id: "tooltip_startTps"
-                            })}
-                          >
-                              <span className="hover-red">
-                                <CountUp
-                                  start={complexData.startTps}
-                                  end={complexData.tps}
-                                  duration={2}
-                                />
-                              </span>
-                               </Tooltip> /
-                               <Tooltip
-                            title={intl.formatMessage({ id: "tooltip_tps" })}
-                          >
-                              <span className="hover-red">
-                                <CountUp
-                                  start={0}
-                                  end={mainnetData.maxTps}
-                                  duration={1}
-                                />
-                              </span>
-                               </Tooltip>
+                                title={intl.formatMessage({
+                                  id: "tooltip_startTps"
+                                })}
+                              >
+                                <span className="hover-red">
+                                  <CountUp
+                                    start={complexData.startTps}
+                                    end={complexData.tps}
+                                    duration={2}
+                                  />
+                                </span>
+                              </Tooltip>
+                              /
+                              <Tooltip
+                                title={intl.formatMessage({
+                                  id: "tooltip_tps"
+                                })}
+                              >
+                                <span className="hover-red">
+                                  <CountUp
+                                    start={0}
+                                    end={mainnetData.maxTps}
+                                    duration={1}
+                                  />
+                                </span>
+                              </Tooltip>
                             </h2>
                           ) : (
                             <h2>-/-</h2>
@@ -468,26 +474,26 @@ export default class panelGroup extends Component {
 
                           <div className="col-lg-2 col-md-4 col-xs-12 mb-lg-0 mb-md-3">
                             <Tooltip
-                          title={intl.formatMessage({
-                            id: "tooltip_blockHeight_mainnet"
-                          })}
-                        >
-                            <Link
-                              to="/blockchain/blocks"
-                              className="hvr-underline-from-center hvr-underline-white text-muted"
+                              title={intl.formatMessage({
+                                id: "tooltip_blockHeight_mainnet"
+                              })}
                             >
-                              {mainnetData.blockHeight != 0 ? (
-                                <h2 className="hover-red">
-                                  <CountUp
-                                    start={mainnetData.startblockHeight}
-                                    end={mainnetData.blockHeight}
-                                    duration={1}
-                                  />
-                                </h2>
-                              ) : (
-                                <h2>-</h2>
-                              )}
-                            </Link>
+                              <Link
+                                to="/blockchain/blocks"
+                                className="hvr-underline-from-center hvr-underline-white text-muted"
+                              >
+                                {mainnetData.blockHeight != 0 ? (
+                                  <h2 className="hover-red">
+                                    <CountUp
+                                      start={mainnetData.startblockHeight}
+                                      end={mainnetData.blockHeight}
+                                      duration={1}
+                                    />
+                                  </h2>
+                                ) : (
+                                  <h2>-</h2>
+                                )}
+                              </Link>
                             </Tooltip>
                           </div>
                           <div className="col-lg-2 col-md-4 col-xs-12 mb-lg-0  mb-md-3">
@@ -632,24 +638,22 @@ export default class panelGroup extends Component {
                           </div>
 
                           <div className="col-lg-2 col-md-4 col-xs-12 mb-lg-0 mb-md-3">
-                             <Tooltip
-                          title={intl.formatMessage({
-                            id: "tooltip_blockHeight_sunnet"
-                          })}
-                        >
-
-                            {sunnetData.blockHeight != 0 ? (
-                              <h2 className="hover-red">
-                                <CountUp
-                                  start={sunnetData.startblockHeight}
-                                  end={sunnetData.blockHeight}
-                                  duration={1}
-                                />
-                              </h2>
-                            ) : (
-                              <h2>-</h2>
-                            )}
-
+                            <Tooltip
+                              title={intl.formatMessage({
+                                id: "tooltip_blockHeight_sunnet"
+                              })}
+                            >
+                              {sunnetData.blockHeight != 0 ? (
+                                <h2 className="hover-red">
+                                  <CountUp
+                                    start={sunnetData.startblockHeight}
+                                    end={sunnetData.blockHeight}
+                                    duration={1}
+                                  />
+                                </h2>
+                              ) : (
+                                <h2>-</h2>
+                              )}
                             </Tooltip>
                           </div>
                           <div className="col-lg-2 col-md-4 col-xs-12 mb-lg-0  mb-md-3">
@@ -795,27 +799,27 @@ export default class panelGroup extends Component {
                     <div className="col-lg-2 col-md-4 col-xs-12 mb-lg-0 mb-md-3">
                       <p className="m-0 panel-title">{tu("block_height")}</p>
 
-                       <Tooltip
-                    title={intl.formatMessage({
-                      id: "tooltip_blockHeight_sunnet"
-                    })}
-                  >
-                      <Link
-                        to="/blockchain/blocks"
-                        className="hvr-underline-from-center hvr-underline-white text-muted"
+                      <Tooltip
+                        title={intl.formatMessage({
+                          id: "tooltip_blockHeight_sunnet"
+                        })}
                       >
-                        {sunnetData.blockHeight != 0 ? (
-                          <h2 className="hover-red">
-                            <CountUp
-                              start={sunnetData.startblockHeight}
-                              end={sunnetData.blockHeight}
-                              duration={1}
-                            />
-                          </h2>
-                        ) : (
-                          <h2>-</h2>
-                        )}
-                      </Link>
+                        <Link
+                          to="/blockchain/blocks"
+                          className="hvr-underline-from-center hvr-underline-white text-muted"
+                        >
+                          {sunnetData.blockHeight != 0 ? (
+                            <h2 className="hover-red">
+                              <CountUp
+                                start={sunnetData.startblockHeight}
+                                end={sunnetData.blockHeight}
+                                duration={1}
+                              />
+                            </h2>
+                          ) : (
+                            <h2>-</h2>
+                          )}
+                        </Link>
                       </Tooltip>
                     </div>
                     <div className="col-lg-2 col-md-4 col-xs-12 mb-lg-0  mb-md-3">
