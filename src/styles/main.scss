@@ -4790,15 +4790,32 @@ h5 {
   position: relative;
   display: inline-block;
   .hot-nav{
-    width:20px;
-    height:20px;
+    width:15px;
+    height:15px;
     background-size: 100% 100%;
     display: inline-block;
     background-image: url(../images/home/hot-nav.png);
     position: absolute;
-    top: 8px;
-    right: -12px;
+    top: 10px;
+    right: -8px;
+  }
+  @media only screen and (max-width: 768px) {
+    .hot-nav{
+      right: -18px;
+    }
   }
 
 }
+.developer_challenge_box{
+  position: relative;
+  display: inline-block;
+  .developer_challenge_hot{
+    display: inline-block;
+    width: 30px;
+    position: absolute;
+    right: -6px;
+    bottom: 17px;
+  }
+}
+
 

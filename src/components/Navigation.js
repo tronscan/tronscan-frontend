@@ -846,7 +846,7 @@ class Navigation extends React.Component {
                         {
                           flags.mobileLogin &&
                           <Fragment>
-                            <li className="px-3 py-4 ">
+                            <li className="px-3 py-4">
                               <div className="text-center">
                                 <label>{tu("Mobile Login")}</label>
                                 <button className="btn btn-success btn-block"
@@ -1248,7 +1248,7 @@ class Navigation extends React.Component {
                                         return null;
                                       }
 
-                                      if (!isUndefined(Route.url) && !Route.sidechain) {
+                                      if (!isUndefined(Route.url) && !Route.sidechain && Route.label !== 'developer_challenge') {
                                         return (
                                             <HrefLink
                                                 key={Route.url}
@@ -1262,9 +1262,9 @@ class Navigation extends React.Component {
                                             </HrefLink>
                                         );
                                       }
-                                      if (!isUndefined(Route.url) && Route.label == 'developer_challenge') {
+                                      if (!isUndefined(Route.url) && !Route.sidechain && Route.label == 'developer_challenge') {
                                           return (
-                                              <span>
+                                              <span className="mr-3 d-inline-block developer_challenge_box">
                                                 <HrefLink
                                                     key={Route.url}
                                                     className="dropdown-item text-uppercase"
@@ -1275,7 +1275,7 @@ class Navigation extends React.Component {
                                                     {Route.badge &&
                                                     <Badge value={Route.badge}/>}
                                               </HrefLink>
-                                              <img src={require("../images/home/hot.svg")} title="hot" />
+                                              <img src={require("../images/home/hot.svg")} title="hot" className="developer_challenge_hot"/>
                                               </span>
 
                                           );

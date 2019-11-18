@@ -358,7 +358,7 @@ export const routes = [
         },
         {
           url: "https://support.tronscan.org/hc/en-us/articles/360035944072-SUN-Network-Developer-Challenge-Starts",
-          icon: "fa fa-book",
+          icon: "fas fa-trophy",
           label: "developer_challenge"
         }
       ]
