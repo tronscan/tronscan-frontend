@@ -2228,7 +2228,7 @@ export const messages = {
   "tooltip_startTps_mainnet":"主链每秒交易次数，约3秒更新一次",
   "tooltip_tps_mainnet":"主链每秒交易次数最大值",
   "tooltip_startTps_sunnet":"SUN Network每秒交易次数，约3秒更新一次",
-  "tooltip_tps_sunnet":"SUN Network历史区块中包含的最大交易数",
+  "tooltip_tps_sunnet":"SUN Network每秒交易次数最大值",
   "tooltip_transactionPerDay":"主链与SUN Network 过去一天交易数之和",
   "tooltip_transactionPerDay_mainnet":"主链过去一天的交易数",
   "tooltip_transactionPerDay_sunnet":"SUN Network过去一天的交易数",
