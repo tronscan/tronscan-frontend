@@ -8,7 +8,7 @@
   .tab-choice {
     margin-bottom: 20px;
 
-    p>span {
+    p > span {
       // margin-left: 10px;
     }
   }
@@ -32,8 +32,8 @@
     margin-bottom: 6px;
 
     &:hover {
-      color: #C23631 !important;
-      border: 1px solid #C23631;
+      color: #c23631 !important;
+      border: 1px solid #c23631;
     }
   }
 
@@ -46,13 +46,22 @@
     display: inline;
     margin-right: 10px;
   }
+  .monaco-editor-background {
+    background: #eee !important;
+  }
+  .monaco-editor .margin {
+    background: #ebebeb;
+  }
+  .active-code {
+    color: #000 !important;
+  }
 }
 
 .contrat-verify {
   padding-left: 15px;
 
   a {
-    color: #C23631 !important;
+    color: #c23631 !important;
     text-decoration: underline !important;
   }
 }
