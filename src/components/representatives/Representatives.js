@@ -104,7 +104,6 @@ class Representatives extends Component {
               <th className="text-center text-nowrap">{tu("productivity")}</th>
               <th
                 className="text-right text-nowrap"
-                style={{ borderRight: "1px solid rgb(223, 215, 202)" }}
               >
                 {tu("SR_votes")}
               </th>
