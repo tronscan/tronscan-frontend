@@ -1255,7 +1255,7 @@ class Navigation extends React.Component {
                                                 className="dropdown-item text-uppercase"
                                                 href={Route.url}>
                                               {Route.icon &&
-                                              <i className={Route.icon + " mr-2"}/>}
+                                              <i className={Route.icon + " mr-2"} />}
                                               {tu(Route.label)}
                                               {Route.badge &&
                                               <Badge value={Route.badge}/>}

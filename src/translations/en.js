@@ -2200,7 +2200,7 @@ export const messages = {
   "tooltip_tps_mainnet":"Maximum TPS on the Main Chain",
   "tooltip_startTps_sunnet":"TPS on SUN Network, updated every 3 seconds",
   "tooltip_tps_sunnet":"Maximum TPS on SUN Network",
-  "tooltip_transactionPerDay":"Total transactions on the Main Chain and SUN Network from the previous day",
+  "tooltip_transactionPerDay":"Total transactions of the previous day on the main chain and SUN Network",
   "tooltip_transactionPerDay_mainnet":"Transactions of the previous day on the Main Chain",
   "tooltip_transactionPerDay_sunnet":"Transactions of the previous day on SUN Network",
   "tooltip_accounts":"Total real-time accounts on the Main Chain and SUN Network",
