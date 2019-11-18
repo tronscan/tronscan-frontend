@@ -124,13 +124,15 @@ export default class MobilePanelGroup extends Component {
                       className="hvr-underline-from-center hvr-underline-white text-muted"
                     >
                       <img src={require("../../images/home/tps.png")} />
-                      <p className="text-muted mb-0 mt-2">{tu("current_MaxTPS")}</p>
+                      <p className="text-muted mb-0 mt-2">
+                        {tu("current_MaxTPS")}
+                      </p>
 
-                      {mainnetData.maxTps ? (
+                      {complexData.maxTps ? (
                         <h2>
                           <CountUp
-                            start={0}
-                            end={mainnetData.tps}
+                            start={complexData.startTps}
+                            end={complexData.tps}
                             duration={1}
                           />
                           /
@@ -165,7 +167,9 @@ export default class MobilePanelGroup extends Component {
                   </div>
                   <div className="col-6">
                     <img src={require("../../images/home/account.png")} />
-                    <p className="text-muted mb-0 mt-2">{tu("total_accounts")}</p>
+                    <p className="text-muted mb-0 mt-2">
+                      {tu("total_accounts")}
+                    </p>
 
                     {complexData.totalAccounts != 0 ? (
                       <h2>
@@ -186,7 +190,9 @@ export default class MobilePanelGroup extends Component {
                       className="hvr-underline-from-center hvr-underline-white text-muted"
                     >
                       <img src={require("../../images/home/price.png")} />
-                      <p className="text-muted mb-0 mt-2">{tu("pice_per_1trx")}</p>
+                      <p className="text-muted mb-0 mt-2">
+                        {tu("pice_per_1trx")}
+                      </p>
 
                       <h2>
                         <TRXPrice amount={1} currency="USD" source="home" />
@@ -210,7 +216,9 @@ export default class MobilePanelGroup extends Component {
                       className="hvr-underline-from-center hvr-underline-white text-muted"
                     >
                       <img src={require("../../images/home/node.png")} />
-                      <p className="text-muted mb-0 mt-2">{tu("online_nodes")}</p>
+                      <p className="text-muted mb-0 mt-2">
+                        {tu("online_nodes")}
+                      </p>
 
                       {mainnetData.onlineNodes != 0 ? (
                         <h2>
@@ -232,7 +240,9 @@ export default class MobilePanelGroup extends Component {
                       className="hvr-underline-from-center hvr-underline-white text-muted"
                     >
                       <img src={require("../../images/home/block.png")} />
-                      <p className="text-muted mb-0 mt-2">{tu("block_height")}</p>
+                      <p className="text-muted mb-0 mt-2">
+                        {tu("block_height")}
+                      </p>
 
                       {mainnetData.blockHeight != 0 ? (
                         <h2>
@@ -253,7 +263,9 @@ export default class MobilePanelGroup extends Component {
                       className="hvr-underline-from-center hvr-underline-white text-muted"
                     >
                       <img src={require("../../images/home/tps.png")} />
-                      <p className="text-muted mb-0 mt-2">{tu("current_MaxTPS")}</p>
+                      <p className="text-muted mb-0 mt-2">
+                        {tu("current_MaxTPS")}
+                      </p>
 
                       {mainnetData.maxTps ? (
                         <h2>
@@ -303,7 +315,9 @@ export default class MobilePanelGroup extends Component {
                       className="hvr-underline-from-center hvr-underline-white text-muted"
                     >
                       <img src={require("../../images/home/account.png")} />
-                      <p className="text-muted mb-0 mt-2">{tu("total_accounts")}</p>
+                      <p className="text-muted mb-0 mt-2">
+                        {tu("total_accounts")}
+                      </p>
 
                       {mainnetData.totalAccounts != 0 ? (
                         <h2>
@@ -325,7 +339,9 @@ export default class MobilePanelGroup extends Component {
                       className="hvr-underline-from-center hvr-underline-white text-muted"
                     >
                       <img src={require("../../images/home/price.png")} />
-                      <p className="text-muted mb-0 mt-2">{tu("pice_per_1trx")}</p>
+                      <p className="text-muted mb-0 mt-2">
+                        {tu("pice_per_1trx")}
+                      </p>
 
                       <h2>
                         <TRXPrice amount={1} currency="USD" source="home" />
@@ -382,7 +398,9 @@ export default class MobilePanelGroup extends Component {
                       className="hvr-underline-from-center hvr-underline-white text-muted"
                     >
                       <img src={require("../../images/home/tps.png")} />
-                      <p className="text-muted mb-0 mt-2">{tu("current_MaxTPS")}</p>
+                      <p className="text-muted mb-0 mt-2">
+                        {tu("current_MaxTPS")}
+                      </p>
 
                       {sunnetData.maxTps ? (
                         <h2>
@@ -423,7 +441,9 @@ export default class MobilePanelGroup extends Component {
                   </div>
                   <div className="col-6">
                     <img src={require("../../images/home/account.png")} />
-                    <p className="text-muted mb-0 mt-2">{tu("total_accounts")}</p>
+                    <p className="text-muted mb-0 mt-2">
+                      {tu("total_accounts")}
+                    </p>
 
                     {sunnetData.totalAccounts != 0 ? (
                       <h2>
@@ -444,7 +464,9 @@ export default class MobilePanelGroup extends Component {
                       className="hvr-underline-from-center hvr-underline-white text-muted"
                     >
                       <img src={require("../../images/home/price.png")} />
-                      <p className="text-muted mb-0 mt-2">{tu("pice_per_1trx")}</p>
+                      <p className="text-muted mb-0 mt-2">
+                        {tu("pice_per_1trx")}
+                      </p>
 
                       <h2>
                         <TRXPrice amount={1} currency="USD" source="home" />
@@ -513,7 +535,9 @@ export default class MobilePanelGroup extends Component {
                     className="hvr-underline-from-center hvr-underline-white text-muted"
                   >
                     <img src={require("../../images/home/tps.png")} />
-                    <p className="text-muted mb-0 mt-2">{tu("current_MaxTPS")}</p>
+                    <p className="text-muted mb-0 mt-2">
+                      {tu("current_MaxTPS")}
+                    </p>
 
                     {sunnetData.maxTps ? (
                       <h2>
@@ -558,7 +582,9 @@ export default class MobilePanelGroup extends Component {
                     className="hvr-underline-from-center hvr-underline-white text-muted"
                   >
                     <img src={require("../../images/home/account.png")} />
-                    <p className="text-muted mb-0 mt-2">{tu("total_accounts")}</p>
+                    <p className="text-muted mb-0 mt-2">
+                      {tu("total_accounts")}
+                    </p>
 
                     {sunnetData.totalAccounts != 0 ? (
                       <h2>
@@ -580,7 +606,9 @@ export default class MobilePanelGroup extends Component {
                     className="hvr-underline-from-center hvr-underline-white text-muted"
                   >
                     <img src={require("../../images/home/price.png")} />
-                    <p className="text-muted mb-0 mt-2">{tu("pice_per_1trx")}</p>
+                    <p className="text-muted mb-0 mt-2">
+                      {tu("pice_per_1trx")}
+                    </p>
 
                     <h2>
                       <TRXPrice amount={1} currency="USD" source="home" />
