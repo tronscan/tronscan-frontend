@@ -2182,7 +2182,7 @@ export const messages = {
   "rewards_claimed_hash":"交易哈希值：",
   "rewards_claimed_hash_await":"稍后交易确认后可在账户页查看",
   "voting_brokerage":"选民奖励分成比例",
-  "voting_brokerage_tip":"超级代表所获得的奖励中，分给投票者的比例。选民奖励=总奖励数*选民奖励分成比例*（选民票数/选民总票数）",
+  "voting_brokerage_tip":"超级代表所获得的奖励中，分给投票者的比例。投票奖励 = 总奖励数 * 投票分成比例 *（投票票数 / 得票总数）",
   "SR_set_brokerage_contract":"超级代表设置奖励分成比例",
   "countdown_to_voting":"本轮投票结束倒计时",
   "no_rewards_available_yet":"暂无可领取奖励",
@@ -2220,16 +2220,16 @@ export const messages = {
   "tooltip_onlineNodes": "主链与SUN Network 节点数之和",
   "tooltip_onlineNodes_mainnet": "主链当前节点数",
   "tooltip_onlineNodes_sunnet": "SUN Network当前节点数",
-  "tooltip_blockHeight": "",
-  "tooltip_blockHeight_mainnet": "",
-  "tooltip_blockHeight_sunnet": "",
-  "tooltip_tps":"",
-  "tooltip_tps_mainnet":"主链历史区块中包含的最大交易数",
-  "tooltip_tps_sunnet":"SUN Network历史区块中包含的最大交易数",
-  "tooltip_startTps":"1",
-  "tooltip_startTps_mainnet":"主链每秒交易数，约3s更新",
-  "tooltip_startTps_sunnet":"SUN Network每秒交易数，约3s更新",
-  "tooltip_transactionPerDay":"主链与SUN Network 交易数之和",
+  "tooltip_blockHeight": "最新区块号",
+  "tooltip_blockHeight_mainnet": "主链最新区块号",
+  "tooltip_blockHeight_sunnet": "SUN Network最新区块号",
+  "tooltip_startTps":"当前每秒交易次数，约3秒更新一次",
+  "tooltip_tps":"每秒交易次数最大值",
+  "tooltip_startTps_mainnet":"主链每秒交易次数，约3秒更新一次",
+  "tooltip_tps_mainnet":"主链每秒交易次数最大值",
+  "tooltip_startTps_sunnet":"SUN Network每秒交易次数，约3秒更新一次",
+  "tooltip_tps_sunnet":"SUN Network每秒交易次数最大值",
+  "tooltip_transactionPerDay":"主链与SUN Network 过去一天交易数之和",
   "tooltip_transactionPerDay_mainnet":"主链过去一天的交易数",
   "tooltip_transactionPerDay_sunnet":"SUN Network过去一天的交易数",
   "tooltip_accounts":"主链与SUN Network 实时账户数之和",
@@ -2253,5 +2253,6 @@ export const messages = {
    #                                                                                #
    ##################################################################################
   */
-  "muti_sign":"多重签名"
+  "muti_sign":"多重签名",
+  "developer_challenge":"开发者大赛",
 };

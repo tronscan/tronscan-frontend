@@ -540,7 +540,7 @@ export default class Home extends Component {
               ""
             )}
 
-            {isMobile ? (
+            {/* {isMobile ? (
               <div className="row text-center mr-0 ml-0 mobile-home-state">
                 <div
                   className="col-12  card  pt-1 mb-0"
@@ -667,9 +667,9 @@ export default class Home extends Component {
                   </div>
                 </div>
               </div>
-            ) : (
-              <PaneGroup></PaneGroup>
-            )}
+            ) : ( */}
+            <PaneGroup></PaneGroup>
+            {/* )} */}
           </div>
         </div>
         <div className=" pb-3 pb-md-5">
@@ -689,9 +689,24 @@ export default class Home extends Component {
                       </h5>
                     </div>
                     <div className="card-body pt-0">
-                      <div style={{ minWidth: 255, height: 140 }}>
+                      <div
+                        style={
+                          IS_MAINNET
+                            ? { minWidth: 255, height: 200 }
+                            : { minWidth: 255, height: 140 }
+                        }
+                      >
                         {txOverviewStats === null ? (
                           <TronLoader />
+                        ) : IS_MAINNET ? (
+                          <LineReactHighChartHomeTx
+                            style={{ minWidth: 255, height: 200 }}
+                            data={txOverviewStats}
+                            sun={SunTxOverviewStats}
+                            total={TotalTxOverviewStats}
+                            intl={intl}
+                            source="home"
+                          />
                         ) : (
                           <LineReactHighChartTx
                             style={{ minWidth: 255, height: 140 }}
@@ -717,9 +732,24 @@ export default class Home extends Component {
                       </h5>
                     </div>
                     <div className="card-body pt-0">
-                      <div style={{ minWidth: 255, height: 140 }}>
+                      <div
+                        style={
+                          IS_MAINNET
+                            ? { minWidth: 255, height: 200 }
+                            : { minWidth: 255, height: 140 }
+                        }
+                      >
                         {addressesStats === null ? (
                           <TronLoader />
+                        ) : IS_MAINNET ? (
+                          <LineReactHighChartHomeAddress
+                            style={{ minWidth: 255, height: 200 }}
+                            data={addressesStats}
+                            sun={SunAddressesStats}
+                            total={TotalAddressesStats}
+                            intl={intl}
+                            source="home"
+                          />
                         ) : (
                           <LineReactHighChartAdd
                             style={{ minWidth: 255, height: 140 }}
