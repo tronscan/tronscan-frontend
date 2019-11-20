@@ -2244,6 +2244,14 @@ export const messages = {
   "sun_network_relevant_information":"相关资料",
   "sun_network_project_introduction":"项目介绍",
   "sun_network_development_document": "开发文档",
-  "home_page":"首页"
+  "home_page":"首页",
 
+  /*
+   ##################################################################################
+   #                                                                                #
+   # mutiSign                                  #
+   #                                                                                #
+   ##################################################################################
+  */
+  "muti_sign":"多重签名"
 };

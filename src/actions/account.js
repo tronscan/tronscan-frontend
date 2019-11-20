@@ -12,7 +12,7 @@ export const SET_TOKEN20_MAP = "SET_TOKEN20_MAP";
 export const SET_TOKEN_MAP = "SET_TOKEN_MAP";
 export const SET_WEBSOCKET_SUN = "SET_WEBSOCKET_SUN";
 export const SET_WS_DATA_SUN = "SET_WS_DATA_SUN";
-
+export const SET_PERMISSIONS = "SET_PERMISSIONS";
 export const setTokenBalances = (
   tokens = [],
   trc20token = [],
@@ -136,4 +136,10 @@ export const setToken20Map = (token20Map = {}) => ({
 export const setTokenMap = (tokenMap = {}) => ({
   type: SET_TOKEN_MAP,
   tokenMap
+});
+
+//mutiSign permission
+export const setPermissions = (permission = {}) => ({
+  type: SET_PERMISSIONS,
+  permission
 });

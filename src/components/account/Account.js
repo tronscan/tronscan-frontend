@@ -2511,6 +2511,17 @@ export default class Account extends Component {
               </div>
             </div>
           </div>
+          <div className="row mt-3" id="mutiSign">
+            <div className="col-md-12">
+                <div className="card">
+                  <div className="card-body">
+                    <h5 className="card-title text-center m-0">
+                      TRON {tu("muti_sign")}
+                    </h5>
+                  </div>
+                </div>
+            </div>
+          </div>
           {
               (currentWallet.representative.enabled  && IS_MAINNET) &&
                 <div className="row mt-3">
