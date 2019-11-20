@@ -36,6 +36,7 @@ import SweetAlert from "react-bootstrap-sweetalert";
 import {pkToAddress} from "@tronscan/client/src/utils/crypto";
 import Notifications from "./account/Notifications";
 import SendModal from "./transfer/Send/SendModal";
+import SendMultiModal from "./transfer/SendMulti/SendModal";
 import {bytesToString} from "@tronscan/client/src/utils/bytes";
 import {hexStr2byteArray} from "@tronscan/client/src/lib/code";
 import {isAddressValid} from "@tronscan/client/src/utils/crypto";
@@ -510,6 +511,16 @@ class Navigation extends React.Component {
     });
   };
 
+  muitlTransfer = () => {
+    this.setState({
+        popup: (
+            <SendMultiModal onClose={this.hideModal}/>
+        )
+    });
+  };
+
+
+
   showReceive = () => {
     this.setState({
       popup: (
@@ -735,10 +746,22 @@ class Navigation extends React.Component {
                       <FormattedNumber value={totalTransactions}/> {tu("transactions")}
                       <i className="fa fa-angle-right float-right" ></i>
                     </Link>
+                    <Link className="dropdown-item" to="/account">
+                      <i className="fa fa-server mr-2"/>
+                      <FormattedNumber value={5}/> {tu("translations_wait_sign")}
+                      <i className="fa fa-angle-right float-right" ></i>
+                    </Link>
+
                     <li className="dropdown-divider"/>
+
                     <a className="dropdown-item" href="javascript:" onClick={this.newTransaction}>
                       <i className="fa fa-paper-plane mr-2"/>
                       {tu("send")}
+                      <i className="fa fa-angle-right float-right" ></i>
+                    </a>
+                    <a className="dropdown-item" href="javascript:" onClick={this.muitlTransfer}>
+                      <i className="far fa-paper-plane mr-2"/>
+                        {tu("transfer_multi_sign")}
                       <i className="fa fa-angle-right float-right" ></i>
                     </a>
                     <a className="dropdown-item" href="javascript:" onClick={this.showReceive}>

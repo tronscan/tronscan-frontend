@@ -8,6 +8,7 @@ export const tronAddresses = [
   '27WtBq2KoSy5v8VnVZBZHHJcDuWNiSgjbE3',
 ];
 
+
 export async function transactionResultManager(transaction, tronWeb) {
   const signedTransaction = await tronWeb.trx.sign(transaction, tronWeb.defaultPrivateKey).catch(e => {
     return false;
@@ -37,6 +38,23 @@ export async function transactionResultManagerSun(transaction, sunWeb) {
     } else {
         return false;
     }
+}
+
+export async function transactionMultiResultManager(transaction, tronWeb, permissionId) {
+    const signedTransaction = await tronWeb.trx.multiSign(transaction, tronWeb.defaultPrivateKey , permissionId).catch(e => {
+        return false;
+    });
+    return signedTransaction;
+
+    // if (signedTransaction) {
+    //     const broadcast = await tronWeb.trx.sendRawTransaction(signedTransaction);
+    //     if (!broadcast.result) {
+    //         broadcast.result = false;
+    //     }
+    //     return broadcast;
+    // } else {
+    //     return false;
+    // }
 }
 
 
