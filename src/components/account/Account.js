@@ -37,6 +37,7 @@ import { FormatNumberByDecimals } from '../../utils/number'
 import { getQueryString } from "../../utils/url";
 import IssuedToken from './IssuedToken';
 import PledgeModal from './PledgeModal';
+import MySignature from './MySignature';
 import MappingMessageModal from './MappingMessageModal';
 import SignModal from './SignModal';
 import {Tooltip} from "reactstrap";
@@ -2511,6 +2512,7 @@ export default class Account extends Component {
               </div>
             </div>
           </div>
+            <MySignature/>
           {
               (currentWallet.representative.enabled  && IS_MAINNET) &&
                 <div className="row mt-3">
@@ -2716,8 +2718,8 @@ export default class Account extends Component {
                     </div>
                   </div>
                 </div>
-            }
-            {
+          }
+          {
               !currentWallet.representative.enabled &&
               <div className="row mt-3">
                 <div className="col-md-12">
@@ -2749,7 +2751,7 @@ export default class Account extends Component {
                   </div>
                 </div>
               </div>
-            }
+          }
 
 
 

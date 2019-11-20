@@ -746,24 +746,27 @@ class Navigation extends React.Component {
                       <FormattedNumber value={totalTransactions}/> {tu("transactions")}
                       <i className="fa fa-angle-right float-right" ></i>
                     </Link>
-                    <Link className="dropdown-item" to="/account">
-                      <i className="fa fa-server mr-2"/>
-                      <FormattedNumber value={5}/> {tu("translations_wait_sign")}
-                      <i className="fa fa-angle-right float-right" ></i>
-                    </Link>
-
+                    {
+                        IS_MAINNET && <Link className="dropdown-item" to="/account">
+                          <i className="fa fa-server mr-2"/>
+                          <FormattedNumber value={5}/> {tu("translations_wait_sign")}
+                          <i className="fa fa-angle-right float-right" ></i>
+                        </Link>
+                    }
                     <li className="dropdown-divider"/>
-
                     <a className="dropdown-item" href="javascript:" onClick={this.newTransaction}>
                       <i className="fa fa-paper-plane mr-2"/>
                       {tu("send")}
                       <i className="fa fa-angle-right float-right" ></i>
                     </a>
-                    <a className="dropdown-item" href="javascript:" onClick={this.muitlTransfer}>
-                      <i className="far fa-paper-plane mr-2"/>
-                        {tu("transfer_multi_sign")}
-                      <i className="fa fa-angle-right float-right" ></i>
-                    </a>
+                    {
+                     IS_MAINNET && <a className="dropdown-item" href="javascript:" onClick={this.muitlTransfer}>
+                        <i className="far fa-paper-plane mr-2"/>
+                          {tu("transfer_multi_sign")}
+                        <i className="fa fa-angle-right float-right" ></i>
+                      </a>
+                    }
+
                     <a className="dropdown-item" href="javascript:" onClick={this.showReceive}>
                       <i className="fa fa-qrcode mr-2"/>
                       {tu("receive")}
