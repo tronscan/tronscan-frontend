@@ -1,132 +1,136 @@
-import React, {Fragment} from "react";
-import {connect} from "react-redux";
-import { Input,Button } from 'antd';
-import {Modal, ModalBody, ModalHeader} from "reactstrap";
+import React, { Fragment } from "react";
+import { connect } from "react-redux";
+import { Input, Button } from 'antd';
+import { Modal, ModalBody, ModalHeader } from "reactstrap";
 import SweetAlert from "react-bootstrap-sweetalert";
 import OwnerRead from '../PermissionRead/owner'
 import WitnessRead from '../PermissionRead/witness'
+import ActiveRead from '../PermissionRead/active'
 @connect(
     state => {
-      return {
-        wallet: state.wallet,
-    }}
+        return {
+            wallet: state.wallet,
+        }
+    }
 )
 export default class MyPermission extends React.Component {
-    constructor(props){
+    constructor(props) {
         super(props);
         const { wallet } = this.props;
-        this.state={
-            isEditOperateUser:false,
-            isEditContent:false,
-            curControlAddress:wallet.current.address,
+        this.state = {
+            isEditOperateUser: false,
+            isEditContent: false,
+            curControlAddress: wallet.current.address,
             modal: null,
-            ownerPermission:wallet.current.ownerPermission||[],
-            activePermissions:wallet.current.activePermissions ||[],
-            witnessPermission: wallet.current.witnessPermission || []
+            ownerPermission: wallet.current.ownerPermission || null,
+            activePermissions: wallet.current.activePermissions || [],
+            witnessPermission: wallet.current.witnessPermission || null
         }
     }
     hideModal = () => {
         this.setState({
-          modal: null,
+            modal: null,
         });
-      };
-    async saveControlAddress(){
+    };
+    async saveControlAddress() {
         //校验地址规则
         let isValid = false;
         const { tronWeb } = this.props;
         const curControlAddress = this.state.curControlAddress
         const { wallet } = this.props;
-        if(curControlAddress === wallet.current.address ){
+        if (curControlAddress === wallet.current.address) {
             isValid = true;
-        }else{
-            try{
+        } else {
+            try {
                 tronWeb.address.toHex(curControlAddress);
                 //校验是否合约地址
-                try{
-                    const contractInstance = await tronWeb.contract().at(curControlAddress) 
+                try {
+                    const contractInstance = await tronWeb.contract().at(curControlAddress)
                     this.setState({
                         modal: (
-                            <SweetAlert warning onConfirm={()=>this.hideModal()} title='warn'>
-                            {'此地址为合约地址,不能设置'}
+                            <SweetAlert warning onConfirm={() => this.hideModal()} title='warn'>
+                                {'此地址为合约地址,不能设置'}
                             </SweetAlert>
                         )
                     })
-                }catch(e){
+                } catch (e) {
                     isValid = true;
                     this.setState({
-                        isEditOperateUser:false
+                        isEditOperateUser: false
                     })
                 }
                 this.setState({
-                    isEditOperateUser:false
+                    isEditOperateUser: false
                 })
-                
-            }catch(e){
+
+            } catch (e) {
                 this.setState({
                     modal: (
-                        <SweetAlert warning onConfirm={()=>this.hideModal()} title='warn' style={{marginLeft: '-240px', marginTop: '-195px'}}>
-                        {e.toString()}
+                        <SweetAlert warning onConfirm={() => this.hideModal()} title='warn' style={{ marginLeft: '-240px', marginTop: '-195px' }}>
+                            {e.toString()}
                         </SweetAlert>
                     )
                 })
             }
-            if(isValid){
+            if (isValid) {
                 // todo tronWeb获取新地址权限并校验新地址下有没有该地址的权限
                 const res = await tronWeb.trx.getAccount(curControlAddress);
-                if(res){
-                    const { active_permission ,owner_permission,witness_permission} = res;
+                if (res) {
+                    const { active_permission, owner_permission, witness_permission } = res;
                     this.setState({
-                        ownerPermission:owner_permission||[],
-                        activePermissions:active_permission||[],
-                        witnessPermission:witness_permission||[]
+                        ownerPermission: owner_permission || [],
+                        activePermissions: active_permission || [],
+                        witnessPermission: witness_permission || []
                     })
-                }else{
+                } else {
                     this.setState({
                         modal: (
-                            <SweetAlert warning onConfirm={()=>this.hideModal()} title='warn'>
-                            {'Invalid address'}
+                            <SweetAlert warning onConfirm={() => this.hideModal()} title='warn'>
+                                {'Invalid address'}
                             </SweetAlert>
                         )
                     })
                 }
             }
         }
-        
-        
+
+
     }
-    changeControlAddress(event){
+    changeControlAddress(event) {
         this.setState({
-            curControlAddress:event.target.value
+            curControlAddress: event.target.value
         })
     }
-    componentDidMount(){
+    componentDidMount() {
     }
-    render(){
-        const {isEditOperateUser,isEditContent,curControlAddress,modal} = this.state;
-        const {wallet} = this.props;
+    render() {
+        const { isEditOperateUser, isEditContent, curControlAddress, modal, ownerPermission, witnessPermission, activePermissions } = this.state;
+        console.log('ownerPermission',ownerPermission)
+        const { wallet } = this.props;
         return (
-         <main className='permission-main'>
-             <div className='control-address'>
-                 <span> Control Address:</span> 
-                 <Input size="small" defaultValue={curControlAddress} className={!isEditOperateUser?'read':''} readOnly={!isEditOperateUser} onChange={(e)=>{
-                     this.changeControlAddress(e)
-                 }} />
-                 <Button className="btn btn-danger" style={{display:isEditOperateUser?'block':'none'}} 
-                 onClick={()=>this.saveControlAddress()}>Save</Button>
-                 <Button className="btn btn-default" style={{display:!isEditOperateUser?'block':'none'}}  onClick={()=>{
-                     this.setState({isEditOperateUser:true})
-                 }}>Alter</Button>
-             </div>
-             <div className="global-operate">
-                     <h3>Authority structure</h3>
-                     <div className="operate-btn">
-                         <a href="javascript;" className='edit-permission'>Edit Permissions</a>
-                     </div>
-                      
-            </div> 
-            <OwnerRead/>
-            <WitnessRead/> 
-             {modal}
-        </main>)
+            <main className='permission-main'>
+                <div className='control-address'>
+                    <span> Control Address:</span>
+                    <Input size="small" defaultValue={curControlAddress} className={!isEditOperateUser ? 'read' : ''} readOnly={!isEditOperateUser} onChange={(e) => {
+                        this.changeControlAddress(e)
+                    }} />
+                    <Button className="btn btn-danger" style={{ display: isEditOperateUser ? 'block' : 'none' }}
+                        onClick={() => this.saveControlAddress()}>Save</Button>
+                    <Button className="btn btn-default" style={{ display: !isEditOperateUser ? 'block' : 'none' }} onClick={() => {
+                        this.setState({ isEditOperateUser: true })
+                    }}>Alter</Button>
+                </div>
+                <div className="global-operate">
+                    <h3>Authority structure</h3>
+                    <div className="operate-btn">
+                        <a href="javascript;" className='edit-permission'>Edit Permissions</a>
+                    </div>
+
+                </div>
+                {ownerPermission && !isEditContent && <OwnerRead ownerPermission={ownerPermission} />}
+                {witnessPermission && !isEditContent && <WitnessRead witnessPermission={witnessPermission} />}
+                {activePermissions.length > 0 && !isEditContent && <ActiveRead activePermissions={activePermissions} />}
+                {modal}
+            </main>)
     }
 }

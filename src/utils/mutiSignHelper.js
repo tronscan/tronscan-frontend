@@ -47,41 +47,41 @@ export function getContractIdByHex(strHex) {
 
 function getAllContractTypes() {
     return {
-        0: AccountCreateContract,
-        1: TransferContract,
-        2: TransferAssetContract,
-        3: VoteAssetContract,
-        4: VoteWitnessContract,
-        5: WitnessCreateContract,
-        6: AssetIssueContract,
-        8: WitnessUpdateContract,
-        9: ParticipateAssetIssueContract,
-        10: AccountUpdateContract,
-        11: FreezeBalanceContract,
-        12: UnfreezeBalanceContract,
-        13: WithdrawBalanceContract,
-        14: UnfreezeAssetContract,
-        15: UpdateAssetContract,
-        16: ProposalCreateContract,
-        17: ProposalApproveContract,
-        18: ProposalDeleteContract,
-        19: SetAccountIdContract,
-        20: CustomContract,
+        0: 'AccountCreateContract',
+        1: 'TransferContract',
+        2: 'TransferAssetContract',
+        3: 'VoteAssetContract',
+        4: 'VoteWitnessContract',
+        5: 'WitnessCreateContract',
+        6: 'AssetIssueContract',
+        8: 'WitnessUpdateContract',
+        9: 'ParticipateAssetIssueContract',
+        10: 'AccountUpdateContract',
+        11: 'FreezeBalanceContract',
+        12: 'UnfreezeBalanceContract',
+        13: 'WithdrawBalanceContract',
+        14: 'UnfreezeAssetContract',
+        15: 'UpdateAssetContract',
+        16: 'ProposalCreateContract',
+        17: 'ProposalApproveContract',
+        18: 'ProposalDeleteContract',
+        19: 'SetAccountIdContract',
+        20: 'CustomContract',
         // BuyStorageContract = 21,
         // BuyStorageBytesContract = 22,
         // SellStorageContract = 23,
-        30: CreateSmartContract,
-        31: TriggerSmartContract,
-        32: GetContract,
-        33: UpdateSettingContract,
-        41: ExchangeCreateContract,
-        42: ExchangeInjectContract,
-        43: ExchangeWithdrawContract,
-        44: ExchangeTransactionContract,
-        45: UpdateEnergyLimitContract,
-        46: AccountPermissionUpdateContract,
-        48: ClearABIContract,
-        49: UpdateBrokerageContract,
+        30: 'CreateSmartContract',
+        31: 'TriggerSmartContract',
+        32: 'GetContract',
+        33: 'UpdateSettingContract',
+        41: 'ExchangeCreateContract',
+        42: 'ExchangeInjectContract',
+        43: 'ExchangeWithdrawContract',
+        44: 'ExchangeTransactionContract',
+        45: 'UpdateEnergyLimitContract',
+        46: 'AccountPermissionUpdateContract',
+        48: 'ClearABIContract',
+        49: 'UpdateBrokerageContract',
     }
 }
 export function getContractTypesByGroup() {
@@ -134,10 +134,15 @@ export function getContractTypesByIds(ids) {
     let { entries } = Object;
     ids.forEach(id => {
         for (let [key, value] of entries(allContractTypes)) {
-            if (id === key) {
+            if (id == key) {
                 contractFilteredType.push({ id, value })
             }
         }
     })
     return contractFilteredType;
+}
+
+export function getContractTypesByHex(strHex) {
+    const contractIds = getContractIdByHex(strHex);
+    return getContractTypesByIds(contractIds);
 }

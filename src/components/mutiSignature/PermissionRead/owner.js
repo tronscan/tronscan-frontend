@@ -5,8 +5,11 @@ export default class OwnerRead extends Component{
         super(props)
     }
     render(){
+        const { ownerPermission } = this.props;
+        const {keys,threshold,permission_name} = ownerPermission;
+        const tableList = keys.map((item)=><tr key={item.address}><td>{item.address}</td><td>{item.weight}</td></tr>);                         
         return(
-        <div className='permission'>
+        <div className='permission'> 
             <div className='permission-title'>
                 <span>Owner privilege</span>  
             </div>
@@ -14,17 +17,16 @@ export default class OwnerRead extends Component{
             Owner privilege is the highest privilege of the account. It is used to control the ownership of the user and adjust the permission structure. Owner privilege can also execute all contracts
             </div>
             <div className="permission-content">
-                <div className="permission-item"> <span class="permission-label">Permission to name:</span> <span>owner</span></div>
-                <div className="permission-item"> <span class="permission-label">Threshold value:</span> <span>1</span></div>
+                <div className="permission-item"> <span className="permission-label">Permission to name:</span> <span>{permission_name}</span></div>
+                <div className="permission-item"> <span className="permission-label">Threshold value:</span> <span>{threshold}</span></div>
                 <div className="permission-item permission-keys">
-                    <span class="permission-label">keys:</span> 
+                    <span className="permission-label">keys:</span> 
                     <table>
                         <thead>
                             <tr><td>key</td><td>weight</td></tr>
                         </thead>
                         <tbody>
-                            <tr><td>Txxxxxxxx</td> <td>1</td></tr>
-                            <tr><td>Txxxxxxxx</td> <td>1</td></tr>
+                           {tableList}
                         </tbody>
                     </table>
                     <div className='right-space'></div>
