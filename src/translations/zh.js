@@ -1340,6 +1340,8 @@ export const messages = {
   "contract_notes_5": "每个合约的编译有最多45秒的等待时间。如果您的合约需要更长时间，我们将无法对其进行验证。",
   "contract_notes_6": "更多功能将在下个版本体现。",
   "contract_optimization": "优化",
+  "contract_license": "license",
+  "select_license": "请选择license",
   "enter_contract_code": "请输入solidity合约代码",
   "following_optional_parameters": "以下为可选参数",
   "constructor_arguments_ABIencoded": "已编码的构造函数参数（只针对包含构造函数参数的合约）",

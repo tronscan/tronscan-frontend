@@ -26,13 +26,84 @@ class VerifyContractCode extends Component {
         super(props);
         this.state = {
             compilers: [
-                'tron-0.4.25_Odyssey_v3.2.3',
-                'tron-0.5.8_Odyssey_v3.6.0',
-                'tron-0.5.4_Odyssey_v3.6.0',
-                'tron-0.4.24',
-                'tronbox_soljson_v1',
-                'tronbox_soljson_v2',
-                'tronbox_soljson_v3',
+                {
+                    label:"0.4.25_Odyssey_v3.2.3",
+                    value:"tron-0.4.25_Odyssey_v3.2.3"
+                },
+                {
+                    label:"0.5.8_Odyssey_v3.6.0",
+                    value:"tron-0.5.8_Odyssey_v3.6.0"
+                },
+                {
+                    label:"0.5.4_Odyssey_v3.6.0",
+                    value:"tron-0.5.4_Odyssey_v3.6.0"
+                },
+                {
+                    label:"tron-0.4.24",
+                    value:"tron-0.4.24"
+                },
+                {
+                    label:"tronbox_soljson_v1",
+                    value:"tronbox_soljson_v1"
+                },
+                {
+                    label:"tronbox_soljson_v2",
+                    value:"tronbox_soljson_v2"
+                },
+                {
+                    label:"tronbox_soljson_v3",
+                    value:"tronbox_soljson_v3"
+                }
+            ],
+            licenses:[
+                {
+                    label: 'No License(None)',
+                    value: 1
+                },
+                {
+                    label: 'The Unlicense(Unlicense)',
+                    value: 2
+                },
+                {
+                    label: 'MIT License(MIT)',
+                    value: 3
+                },
+                {
+                    label: 'GNU General Public License v2.0(GNU GPLv2)',
+                    value: 4
+                },
+                {
+                    label: 'GNU General Public License v3.0(GNU GPLv3)',
+                    value: 5
+                },
+                {
+                    label: 'GNU Lesser General Public License v2.1(GNU LGPLv2.1)',
+                    value: 6
+                },
+                {
+                    label: 'GNU Lesser General Public License v3.0(GNU LGPLv3)',
+                    value: 7
+                },
+                {
+                    label: 'BSD 2-clause “Simplified” license(BSD-2-Clause)',
+                    value: 8
+                },
+                {
+                    label: 'BSD 3-clause “New” Or “Revised” license(BSD-3-Clause)',
+                    value: 9
+                },
+                {
+                    label: 'Mozilla Public License 2.0(MPL-2.0)',
+                    value: 10
+                },
+                {
+                    label: 'Open Software License 3.0(OSL-3.0)',
+                    value: 11
+                },
+                {
+                    label: 'Apache 2.0(Apache-2.0)',
+                    value: 12
+                }
             ],
             deaultCompiler: 'tron-0.4.25_Odyssey_v3.2.3',
             contractCode: '',
@@ -40,6 +111,7 @@ class VerifyContractCode extends Component {
             CompileStatus: [],
             loading: false,
             compileFiles: [],
+            optimizer: '1'
         };
     }
 
@@ -109,13 +181,17 @@ class VerifyContractCode extends Component {
         const { getFieldsValue } = this.props.form;
         const { CompileStatus, compileFiles } = this.state;
         const fieldata = getFieldsValue();
-        const { contractAddress, contractName, } = fieldata;
+        const { contractAddress, contractName, license } = fieldata;
 
         if (!contractAddress){
             this.showModal(tu('please_enter_address'));
         } else if (!contractName){
             this.showModal(tu('please_enter_name'));
-        } else if (!compileFiles || (compileFiles && compileFiles.length === 0)){
+        } 
+        else if (!license){
+            this.showModal(tu('select_license'));
+        } 
+        else if (!compileFiles || (compileFiles && compileFiles.length === 0)){
             this.showModal(tu('please_enter_code'));
         } else {
             let formData = new FormData();
@@ -285,9 +361,40 @@ class VerifyContractCode extends Component {
         return fileList;
     };
 
+    /**
+     * optimizer change
+     */
+    optimizerChange = (value) => {
+        this.setState({
+            optimizer: value
+        });
+        this.props.form.setFieldsValue({
+            runs: '0'
+        });
+    }
+
+    //test
+    getParam = () => {
+        const { getFieldsValue } = this.props.form;
+        const { CompileStatus, compileFiles } = this.state;
+        const fieldata = getFieldsValue();
+        console.log(fieldata)
+        const { contractAddress, contractName, license } = fieldata;
+
+        if (!contractAddress){
+            this.showModal(tu('please_enter_address'));
+        } else if (!contractName){
+            this.showModal(tu('please_enter_name'));
+        } else if (!license){
+            this.showModal(tu('select_license'));
+        } else if (!compileFiles || (compileFiles && compileFiles.length === 0)){
+            this.showModal(tu('please_enter_code'));
+        }
+    }
+
     render() {
         let { compilers, deaultCompiler, contractCode, modal, captchaCode, CompileStatus,
-            loading, compileFiles } = this.state;
+            loading, compileFiles, licenses, optimizer } = this.state;
         let { intl } = this.props;
         const options = {
             selectOnLineNumbers: true
@@ -332,7 +439,7 @@ class VerifyContractCode extends Component {
                     })(
                         <Select className="w-100" >
                             {compilers.map((compiler, index) => {
-                                return  <Option value={compiler} key={index}>{compiler}</Option>;
+                                return  <Option value={compiler.value} key={index}>{compiler.label}</Option>;
                             })}
                         </Select>
                     )}
@@ -347,7 +454,7 @@ class VerifyContractCode extends Component {
                     {getFieldDecorator('optimizer', {
                         initialValue: '1'
                     })(
-                        <Select className="w-100">
+                        <Select className="w-100" onChange={this.optimizerChange}>
                             <Option value="1">Yes</Option>
                             <Option value="0">No</Option>
                         </Select>
@@ -363,7 +470,7 @@ class VerifyContractCode extends Component {
                     {getFieldDecorator('runs', {
                         initialValue: '0'
                     })(
-                        <Select className="w-100">
+                        <Select className="w-100" disabled={optimizer != '1'}>
                             <Option value="0">0</Option>
                             <Option value="200">200</Option>
                         </Select>
@@ -371,7 +478,20 @@ class VerifyContractCode extends Component {
                 </Form.Item>
             </Col>
         );
-
+        //license
+        const license = (
+            <Col span={12} style={{ marginBottom: '-1.5em' }}>
+                <Form.Item label={tu('contract_license')} {...formItemLayout}>
+                    {getFieldDecorator('license')(
+                        <Select className="w-100" dropdownMatchSelectWidth={false} placeholder={tu('select_license')}>
+                            {licenses.map((license, index) => {
+                                return  <Option value={license.value} key={index}>{license.label}</Option>;
+                            })}
+                        </Select>
+                    )}
+                </Form.Item>
+            </Col>
+        )
         // uploadItem
         const uploadItem = (
             <div className={cx('row p-3 mb-2', !isSelectContract && 'no-select-contract')}
@@ -452,7 +572,7 @@ class VerifyContractCode extends Component {
                     loading={loading}
                     onClick={this.handleVerifyCode}
                     className="compile-button active ml-4"
-                    disabled={!captchaCode}
+                    // disabled={!captchaCode}
                 >{tu('verify_and_publish')}</Button>
             </div>
         );
@@ -479,6 +599,13 @@ class VerifyContractCode extends Component {
                 {uploadItem}
             </div>
         );
+        
+        // test
+        const testBtn = (
+            <div>
+                <Button onClick={this.getParam}>test</Button>
+            </div>
+        );
 
         return (
             <div className="w-100 verify-contranct">
@@ -490,8 +617,10 @@ class VerifyContractCode extends Component {
                                 {contractAddsItem}
                                 {contractNameItem}
                                 {compilerVersionItem}
+                                {license}
                                 {optimizerItem}
                                 {runItem}
+                                {testBtn}
                             </Row>
                             {isSelectContract ? selectContractItem : noSelectContractItem}
                         </Form>

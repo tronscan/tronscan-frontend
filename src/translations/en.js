@@ -1214,6 +1214,8 @@ export const messages = {
   "contract_notes_6": "More functions are coming in the next version.",
   "contract_address": "Contract Address",
   "contract_optimization": "Optimization",
+  "contract_license": "license",
+  "select_license": "Please select license",
   "enter_contract_code": "Enter the Solidity Contract Code below",
   "following_optional_parameters": "The following are optional Parameters",
   "constructor_arguments_ABIencoded": "Constructor Arguments ABI-encoded (For contracts that accept constructor parameters)",

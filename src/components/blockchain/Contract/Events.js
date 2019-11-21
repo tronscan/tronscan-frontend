@@ -153,12 +153,12 @@ class Transactions extends React.Component {
                     </div>
                     <div id={"event-wapper"+index} className="event-wapper p-3">{
                       record.eventList.map(item => {
-                        return <div className="mb-2" key={item.name}>
-                        <span className="e-blue mr-2">{record.result_type[item.name]} <span className="e-red">{item.name}</span></span>
+                        return <div className="mb-2 d-flex" key={item.name}>
+                        <div className="e-blue mr-2 text-nowrap">{record.result_type[item.name]} <span className="e-red">{item.name}</span></div>
 
                         {record.result_type[item.name] == 'address'?
                           <AddressLink address={this.getaddress(item.value)}/>:
-                          <div>{item.value}</div>
+                          <div class="text-break">{item.value}</div>
                         }
                       </div>
                       })

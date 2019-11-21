@@ -41,6 +41,7 @@ class ContractCompiler extends React.Component {
             compileInfo: [],
             runs: '0',
             compileFiles: [],
+            curFile: ''
         };
     }
 
@@ -66,6 +67,7 @@ class ContractCompiler extends React.Component {
             contractNameList: contractNameList || [],
             compileInfo: compileInfo || [],
             compileFiles: files || [],
+            curFile: files && files[0] && files[0].name
         });
     }
 
@@ -689,6 +691,7 @@ class ContractCompiler extends React.Component {
             const fileString = evt.target.result;
             this.setState({
                 code: fileString,
+                curFile: file.name
             });
         };
     }
@@ -742,7 +745,7 @@ class ContractCompiler extends React.Component {
     }
 
     render() {
-        let { modal, code, filter, compileLoading, deployLoading, CompileStatus, compileFiles } = this.state;
+        let { modal, code, filter, compileLoading, deployLoading, CompileStatus, compileFiles, curFile } = this.state;
         const options = {
             selectOnLineNumbers: true
         };
@@ -812,7 +815,7 @@ class ContractCompiler extends React.Component {
                         <Row className="flex">
                             <Col span={4} className="contract-compiler-tab">
                                 {isSelectContract && compileFiles.map(v => (
-                                    <p onClick={() => this.changeEditor(v)} key={v.uid + v.name}>{v.name}</p>
+                                    <p onClick={() => this.changeEditor(v)} key={v.uid + v.name} className={curFile===v.name ? 'active' : ''}>{v.name}</p>
                                 ))}
                             </Col>
                             <Col span={20}>
