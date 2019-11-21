@@ -351,7 +351,7 @@ class Contracts extends React.Component {
     }, () => this.loadContracts(pager.current, pager.pageSize));
   }
   render() {
-    let { contracts, total, loading, rangeTotal } = this.state;
+    let { contracts, total, loading, rangeTotal,pagination } = this.state;
     let { match, intl } = this.props;
     let column = IS_MAINNET
       ? this.customizedColumn()
@@ -397,11 +397,11 @@ class Contracts extends React.Component {
               onChange={this.handleTableChange}
             />
         </div>
+        </div>
         <p style={{textAlign:'right'}}>
           {tu("contract_source_code_title")}
           <Link to="/contracts/source-code-usage-terms">{tu("contract_source_code_use")}</Link>
         </p>
-        </div>
       </main>
     );
   }
