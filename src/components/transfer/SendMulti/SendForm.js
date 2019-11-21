@@ -14,11 +14,12 @@ import {TronLoader} from "../../common/loaders";
 import {login} from "../../../actions/app";
 import Lockr from "lockr";
 import xhr from "axios";
+import qs from 'qs';
 import {Select} from 'antd';
 import isMobile from '../../../utils/isMobile';
 import {withTronWeb} from "../../../utils/tronWeb";
 import { FormatNumberByDecimals } from '../../../utils/number'
-import { transactionResultManager, transactionResultManagerSun } from "../../../utils/tron"
+import { transactionResultManager, transactionResultManagerSun, transactionMultiResultManager } from "../../../utils/tron"
 import BigNumber from "bignumber.js"
 BigNumber.config({ EXPONENTIAL_AT: [-1e9, 1e9] });
 
@@ -86,16 +87,21 @@ class SendForm extends React.Component {
     resultVal = Number(r1.replace(".", "")) * Number(r2.replace(".", "")) / Math.pow(10, m);
     return typeof d !== "number" ? Number(resultVal) : Number(resultVal.toFixed(parseInt(d)));
   }
+  /*
+    send TRX  and send TRC10
+  */
   token10Send = async() => {
     let {to, token, amount, decimals} = this.state;
     let list = token.split('-');
     let TokenName = list[1];
     let { onSend, wallet} = this.props;
-
+    let  tronWeb, transactionId;
     let result, success;
     this.setState({isLoading: true, modal: null});
     if(IS_MAINNET){
+
         //MainChain
+        //send TRX
         if (TokenName === "_") {
             amount = this.Mul(amount,ONE_TRX);
             if(this.props.wallet.type==="ACCOUNT_LEDGER") {
@@ -105,14 +111,26 @@ class SendForm extends React.Component {
             }
 
             if(this.props.wallet.type==="ACCOUNT_TRONLINK"){
-                const unsignTransaction = await this.props.account.tronWeb.transactionBuilder.sendTrx(to, amount, {address: wallet.address}).catch(function (e) {
+                //create transaction
+                tronWeb = this.props.account.tronWeb;
+                const unSignTransaction = await tronWeb.transactionBuilder.sendTrx(to, amount, {address: wallet.address}).catch(function (e) {
                     console.log(e)
                 });
 
+                transactionId = await transactionMultiResultManager(unSignTransaction, tronWeb, 1)
 
-                // result = await this.props.account.tronWeb.trx.sendTransaction(to, amount, {address: wallet.address}, false).catch(function (e) {
-                //     console.log(e)
-                // });
+                let signData = {
+                    "address": wallet.address,
+                    "transaction": transactionId,
+                    "netType":"shasta"
+                }
+                const options = {
+                    method: 'POST',
+                    headers: { 'chain': 'MainChain'},
+                    data: qs.stringify(signData),
+                    url:'http://testlist.tronlink.org/api/wallet/multi/transaction',
+                };
+                //let result = await xhr.get(API_URL+"/api/token_trc20?sort=issue_time&start=0&limit=50");
             }
             if (result) {
                 success = result.result;
