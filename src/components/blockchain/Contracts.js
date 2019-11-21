@@ -14,7 +14,7 @@ import xhr from "axios/index";
 import {API_URL} from "../../constants";
 import {TRXPrice} from "../common/Price";
 import { ONE_TRX, IS_MAINNET } from "../../constants";
-import { Tooltip } from 'antd'
+import { Tooltip,Table } from 'antd'
 import {QuestionMark} from "../common/QuestionMark.js"
 
 function Nodetip({props, val}) {
@@ -45,7 +45,14 @@ class Contracts extends React.Component {
       contracts: [],
       total: 0,
       rangeTotal: 0,
-      loading: true
+      loading: true,
+      pagination: {
+        showQuickJumper:true,
+        position: 'both',
+        showSizeChanger: true,
+        defaultPageSize:20,
+        total: 0
+      }
     };
   }
 
@@ -73,7 +80,11 @@ class Contracts extends React.Component {
           contracts: data,
           loading: false,
           total,
-          rangeTotal
+          rangeTotal,
+          pagination: {
+            ...this.state.pagination,
+            total
+          }
         });
       }
     });
@@ -83,6 +94,14 @@ class Contracts extends React.Component {
 
   customizedColumn = () => {
     let {intl} = this.props;
+    const title = (
+      <div>
+        {upperFirst(intl.formatMessage({id: 'balance'}))}
+        <span className="ml-2">
+          <QuestionMark placement="top" text="voting_brokerage_tip" />
+        </span>
+      </div>
+    )
     let column = [
       {
         title: upperFirst(intl.formatMessage({id: 'address'})),
@@ -132,9 +151,10 @@ class Contracts extends React.Component {
       //   }
       // },
       {
-        title: upperFirst(intl.formatMessage({id: 'balance'})),
+        title: title,
         dataIndex: 'balance',
         key: 'balance',
+        sorter: true,
         align: 'left',
         className: 'ant_table',
         render: (text, record, index) => {
@@ -145,6 +165,7 @@ class Contracts extends React.Component {
         title: upperFirst(intl.formatMessage({id: 'TxCount'})),
         dataIndex: 'trxCount',
         key: 'trxCount',
+        sorter: true,
         align: 'right',
         className: 'ant_table',
         render: (text, record, index) => {
@@ -262,10 +283,18 @@ class Contracts extends React.Component {
         ];
         return column;
     }
+  handleTableChange = (pagination, filters, sorter) =>{
+    const pager = { ...this.state.pagination };
+    pager.current = pagination.current;
+    pager.pageSize = pagination.pageSize;
 
+    this.setState({
+      pagination: pager
+    }, () => this.loadContracts(pager.current, pager.pageSize));
+  }
   render() {
 
-    let {contracts, total, loading, rangeTotal} = this.state;
+    let {contracts, total, loading, rangeTotal,pagination} = this.state;
     let {match, intl} = this.props;
     let column = IS_MAINNET ? this.customizedColumn() : this.sunNetCustomizedColumn();
     let tableInfo = intl.formatMessage({id: 'view_total'}) + ' ' + total + ' ' + intl.formatMessage({id: 'contract_source_codes_found'})
@@ -285,11 +314,23 @@ class Contracts extends React.Component {
             <TotalInfo total={total} rangeTotal={rangeTotal} typeText="contract_source_codes_found" top="10px" isQuestionMark={false}/>
              : ''}
              {/**<div className="table_pos_info d-none d-md-block" style={{left: 'auto'}}>{tableInfo}<span> <QuestionMark placement="top" text="to_provide_a_better_experience"></QuestionMark></span></div> */}
-           <SmartTable bordered={true} loading={loading}
+           {/* <SmartTable bordered={true} loading={loading}
                       column={column} data={contracts} total={total}
                       onPageChange={(page, pageSize) => {
                         this.loadContracts(page, pageSize)
-                      }}/>
+                      }}/> */}
+            <Table
+              bordered={true}
+              columns={column}
+              rowKey={(record, index) => {
+                return index;
+              }}
+              dataSource={contracts}
+              scroll={scroll}
+              pagination={pagination}
+              loading={loading}
+              onChange={this.handleTableChange}
+            />
         </div>
       </div>
     </main>

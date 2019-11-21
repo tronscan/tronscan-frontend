@@ -4302,17 +4302,21 @@ h5 {
   font-size: 14px;
   color: #c9c9c9;
   // padding: 18px 38px;
-  padding: 0.18rem 0.38rem;
+  padding: 0.18rem 0;
   text-align: left;
 
   p {
     width: 100%;
-    margin-bottom: 0.5em;
+    padding: 0.25rem 0.38rem;
+    margin-bottom: 0.2em;
     cursor: pointer;
     text-overflow: ellipsis;
     // word-wrap: break-word;
     white-space: nowrap;
     overflow: hidden;
+    &.active{
+      background: #333;
+    }
   }
 }
 
