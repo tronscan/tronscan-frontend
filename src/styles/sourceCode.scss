@@ -1,0 +1,20 @@
+.sorce-code-use {
+  img {
+    width: 125px;
+    height: 125px;
+  }
+  .p3 {
+    p {
+      margin-bottom: 0.5rem !important;
+    }
+    p:first-child {
+      span {
+        background-color: rgba(119, 131, 143, 0.1);
+      }
+      margin-bottom: 1rem !important;
+
+      font-weight: 500;
+      color: #1e2022 !important;
+    }
+  }
+}

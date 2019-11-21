@@ -292,3 +292,23 @@
   border-color: $main-red !important;
   box-shadow: -1px 0 0 0 $main-red;
 }
+
+.home .ant-carousel .slick-dots li button {
+  background: #999;
+}
+.home .ant-carousel .slick-dots li.slick-active button {
+  background: #666;
+}
+.mobile-card .card {
+  padding-bottom: 12px;
+}
+.ant-carousel {
+  font-size: inherit;
+}
+.ant-message {
+  z-index: 1060;
+  color: rgba(255, 255, 255, 0.8);
+}
+.ant-message-notice-content {
+  background: rgba(0, 0, 0, 0.8);
+}

@@ -120,7 +120,7 @@ export default class Code extends React.Component {
 
     // 合约代码Item
     const contractCodeItem = (
-      <div className="mt-3">
+      <div className="">
         <div className="d-flex mb-1">
           <span>
             <i className="fa fa-cogs mb-2"></i> {tu("contract_code")}

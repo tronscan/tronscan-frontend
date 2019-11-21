@@ -630,18 +630,18 @@ $color: #c23631;
     float: right;
     margin-top: 10px;
     margin-right: 10px;
-    border:none;
+    border: none;
     color: #999999;
-    background:#fff;
-    padding:2px 6px;
-    border-radius:4px;
+    background: #fff;
+    padding: 2px 6px;
+    border-radius: 4px;
     cursor: pointer;
-    span{
-      font-size:12px;
+    span {
+      font-size: 12px;
     }
-    &:hover{
-      color:#C23631;
-      background:rgba(194,54,49,0.05);
+    &:hover {
+      color: #c23631;
+      background: rgba(194, 54, 49, 0.05);
     }
     .anticon {
       vertical-align: 0.05rem;
@@ -655,15 +655,16 @@ $color: #c23631;
     font-weight: 400;
     margin: 10px 0;
     font-size: 12px;
-    padding:0 20px;
+    padding: 0 20px;
   }
-  .ant-divider-horizontal.ant-divider-with-text-left .ant-divider-inner-text{
-    padding:0 8px 0 0px;
+  .ant-divider-horizontal.ant-divider-with-text-left .ant-divider-inner-text {
+    padding: 0 8px 0 0px;
   }
-  .ant-divider-horizontal.ant-divider-with-text-left{
-    text-align:left;
-  }.ant-divider-horizontal.ant-divider-with-text-left::after{
-    width:100%;
+  .ant-divider-horizontal.ant-divider-with-text-left {
+    text-align: left;
+  }
+  .ant-divider-horizontal.ant-divider-with-text-left::after {
+    width: 100%;
   }
   .hidden-panel {
     height: 0;
@@ -676,18 +677,20 @@ $color: #c23631;
   .hidden-panel-height {
     height: 200px;
   }
-  
+
   .panel-title {
     font-size: 14px;
     color: rgba(0, 0, 0, 0.45);
     margin-bottom: 10px !important;
     // text-align:right;
   }
-  h2{
-    font-size:18px;
+  h2 {
+    font-size: 18px;
   }
-  .hover-red:hover{
-    color: $color!important;
+  .hover-red:hover {
+    color: $color !important;
   }
-  
+}
+.mobile-title {
+  font-size: 16px;
 }

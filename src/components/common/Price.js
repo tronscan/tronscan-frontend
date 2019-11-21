@@ -42,25 +42,25 @@ class PriceProviderCmp extends React.PureComponent {
   }
 
   async loadPrices() {
-    var dataEur = Lockr.get('dataEur');
-    var dataEth = Lockr.get('dataEth');
-    let eurURL = encodeURI(`https://api.coinmarketcap.com/v1/ticker/tronix/?convert=EUR`)
-    let ethURL = encodeURI(`https://api.coinmarketcap.com/v1/ticker/tronix/?convert=ETH`)
-    if(!Lockr.get('dataEur')){
-        var { data:dataEur } = await xhr.get(
-            `${API_URL}/api/system/proxy?url=${eurURL}`
-
-        );
+    var dataEur = Lockr.get("dataEur");
+    var dataEth = Lockr.get("dataEth");
+    let eurURL = encodeURI(
+      `https://api.coinmarketcap.com/v1/ticker/tronix/?convert=EUR`
+    );
+    let ethURL = encodeURI(
+      `https://api.coinmarketcap.com/v1/ticker/tronix/?convert=ETH`
+    );
+    if (!Lockr.get("dataEur")) {
+      var { data: dataEur } = await xhr.get(
+        `${API_URL}/api/system/proxy?url=${eurURL}`
+      );
     }
 
-
-    if(!Lockr.get('dataEth')){
-        var { data: dataEth } = await xhr.get(
-            `${API_URL}/api/system/proxy?url=${ethURL}`
-        );
-
+    if (!Lockr.get("dataEth")) {
+      var { data: dataEth } = await xhr.get(
+        `${API_URL}/api/system/proxy?url=${ethURL}`
+      );
     }
-
 
     let newPrices = {
       BTC: parseFloat(dataEur[0].price_btc),
