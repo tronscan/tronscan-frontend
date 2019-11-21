@@ -1,0 +1,150 @@
+.account-muti-sign-tab{
+    margin:18px 0;
+    a{
+       color:#fff;
+       border-color:transparent;
+       background:#CBCBCB;
+       border-radius: 2px;
+       line-height: 1.5;
+       padding: 0.15rem 0.6rem;
+       &.active{
+            background:#D0021B;
+       } 
+    }
+}
+.muti-sign-content{
+    border: 1px solid #D8D8D8;
+    margin-top:28px;
+    .control-address{
+        background:#f3f3f3;
+        padding:21px 30px;
+        button{
+            float:right;
+            margin-top:-5px;
+            border-radius: 2px;
+            border-width: 1px;
+            .ant-btn:hover, .ant-btn:focus {
+                color: #666;
+                border-color: #666;
+            }
+            &.btn-default{
+                background: #FFFFFF;
+                border: 1px solid #D8D8D8;
+                span{color:#666!important};
+                &:hover{
+                    color:#666;
+                }
+            }
+        }
+        input.ant-input{
+            width:429px;
+            margin-left:12px;
+            &.read {
+                border: 1px solid transparent;
+                background: transparent;
+            }
+        }
+    
+    }
+    .global-operate{
+        padding:23px 0px;
+        margin:0 30px;
+        border-bottom:1px dashed #979797;
+        display:flex;
+        h3{
+            flex:1;
+            font-size: 23px;
+            color: #000000;
+            letter-spacing: -1.09px;
+        }
+        .operate-btn{
+            flex:1;
+            text-align: right;
+            .edit-permission{
+                font-size: 14px;
+                color: #C33935;
+                letter-spacing: -0.66px;
+                background:transparent;
+            }
+        }
+    }
+    .permission{
+        padding-top:39px;
+        margin:0 30px;
+        .permission-title{
+            font-size: 20px;
+            color: #000000;
+            letter-spacing: -0.94px;
+            span{
+                padding-left:10px;
+                border-left:1px solid #C23631;
+            }
+        }
+        .permission-desc{
+            padding-left: 10px;
+            font-size: 14px;
+            color: #666666;
+            letter-spacing: -0.66px;
+        }
+        .permission-content{
+            background: #F3F3F3;
+            border-radius: 4px;
+            margin-top:14px;
+            color:#999;
+            padding-left:10px;
+            font-size:16px;
+            .permission-item{
+                padding:10px 0px;
+                display:flex;
+                span:nth-of-type(1){
+                    width:200px;
+                }
+                span:nth-of-type(2){
+                    flex:1;
+                    text-align:left;
+                }
+                table{
+                    flex:3;
+                }
+                .right-space{
+                    flex:1;
+                }
+                .permission-label{
+                    font-size:16px;
+                }
+                .permission-address{
+                    color: #C23631;
+                    font-size:14px
+                }
+            }
+            .permission-keys{
+                tr{
+                    display:flex;
+                   td{
+                       padding:5px ;
+                       font-size: 14px;
+                   }
+                    td:nth-of-type(1){
+                        flex:3;
+                
+                    }
+                    td:nth-of-type(2){
+                        flex:1;
+                    }
+                }
+                thead{
+                    color: #CCCCCC;
+                }
+                tbody{
+                   tr{
+                     border-bottom:1px solid #6666661f;
+                     td:nth-of-type(1){
+                        color: #C23631;
+                    }
+                   }
+                }
+                
+            }
+        }
+    }
+}

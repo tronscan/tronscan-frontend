@@ -42,6 +42,8 @@ import SignModal from './SignModal';
 import {Tooltip} from "reactstrap";
 import { Input, Tooltip as AntdTip } from 'antd';
 import Countdown from "react-countdown-now";
+import { isJSXEmptyExpression } from '@babel/types';
+import  MyPermission  from '../mutiSignature/MyPermission';
 
 @connect(
     state => {
@@ -100,6 +102,8 @@ export default class Account extends Component {
       reward:false,
       accountReward:0,
       errorMess:'',
+      isInMyPermission:true,
+      isInMySignature:false,
     };
 
   }
@@ -1945,7 +1949,7 @@ export default class Account extends Component {
   render() {
     let { modal, sr, issuedAsset, showBandwidth, showBuyTokens, temporaryName, hideSmallCurrency, tokenTRC10,
         isShowPledgeModal, isShowMappingModal, address, currency, balance, precision, id, type, isShowSignModal,
-        tokenTRX, trx20MappingAddress,brokerageValue, errorMess, reward, rewardData, accountReward} = this.state;
+        tokenTRX, trx20MappingAddress,brokerageValue, errorMess, reward, rewardData, accountReward,isInMyPermission,isInMySignature} = this.state;
 
     let {account, frozen, totalTransactions, currentWallet, wallet, accountResource, trxBalance, intl} = this.props;
 
@@ -2511,13 +2515,34 @@ export default class Account extends Component {
               </div>
             </div>
           </div>
+          {/* <div> wjl </div> */}
           <div className="row mt-3" id="mutiSign">
             <div className="col-md-12">
                 <div className="card">
                   <div className="card-body">
                     <h5 className="card-title text-center m-0">
-                      TRON {tu("muti_sign")}
+                       {tu("muti_sign")}
                     </h5>
+                    <div className="account-muti-sign-tab">
+                      <a href="javascript:;"
+                        className={"btn btn-default btn-sm " + (isInMyPermission ? ' active' : '')}
+                        onClick={()=>this.setState({isInMyPermission:true,isInMySignature:false})}>
+                        我的权限
+                      </a>
+                      <a href="javascript:;"
+                        className={"btn btn-default btn-sm ml-2 " + (isInMySignature ? 'active' : '')}
+                        onClick={()=>this.setState({isInMyPermission:false,isInMySignature:true})}>
+                        我的签名
+                      </a>
+                      <div className='muti-sign-content'>
+                         <div className='muti-sign-my-permission' style={{display:isInMyPermission?'block':'none'}}>
+                            <MyPermission tronWeb={account.tronWeb}/>
+                         </div>
+                         <div className='muti-sign-my-signature' style={{display:isInMySignature?'block':'none'}}>
+                            我的签名模块
+                         </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
             </div>
