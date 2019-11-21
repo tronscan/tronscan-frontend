@@ -5,6 +5,7 @@ export default class WitnessRead extends Component{
         super(props)
     }
     render(){
+        const {witnessNodeAddress} = this.props;
         return(
         <div className='permission'>
             <div className='permission-title'>
@@ -16,7 +17,7 @@ export default class WitnessRead extends Component{
             <div className="permission-content">
                 <div className="permission-item"> 
                     <span class="permission-label">A piece of the node:</span> 
-                    <span class="permission-address">TV3NmH1enpu4X5Hur8Z16eCyNymTqKXQDP</span>
+        <span class="permission-address">{witnessNodeAddress}</span>
                 </div>
             </div>
         </div>)

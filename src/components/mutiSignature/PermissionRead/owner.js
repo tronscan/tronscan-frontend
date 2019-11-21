@@ -5,9 +5,9 @@ export default class OwnerRead extends Component{
         super(props)
     }
     render(){
-        const { ownerPermission } = this.props;
+        const { ownerPermission,tronWeb } = this.props;
         const {keys,threshold,permission_name} = ownerPermission;
-        const tableList = keys.map((item)=><tr key={item.address}><td>{item.address}</td><td>{item.weight}</td></tr>);                         
+        const tableList = keys.map((item)=><tr key={item.address}><td>{tronWeb.address.fromHex(item.address)}</td><td>{item.weight}</td></tr>);                         
         return(
         <div className='permission'> 
             <div className='permission-title'>

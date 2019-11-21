@@ -10,6 +10,7 @@ import ActiveRead from '../PermissionRead/active'
     state => {
         return {
             wallet: state.wallet,
+            account: state.app.account,
         }
     }
 )
@@ -17,6 +18,7 @@ export default class MyPermission extends React.Component {
     constructor(props) {
         super(props);
         const { wallet } = this.props;
+        console.log('wallet',wallet);
         this.state = {
             isEditOperateUser: false,
             isEditContent: false,
@@ -25,6 +27,23 @@ export default class MyPermission extends React.Component {
             ownerPermission: wallet.current.ownerPermission || null,
             activePermissions: wallet.current.activePermissions || [],
             witnessPermission: wallet.current.witnessPermission || null
+        }
+    }
+    initState(){
+      const { wallet } = this.props
+       this.setState({
+        curControlAddress: wallet.current.address,
+        ownerPermission: wallet.current.ownerPermission || null,
+        activePermissions: wallet.current.activePermissions || [],
+        witnessPermission: wallet.current.witnessPermission || null
+       },()=>{
+           console.log('initState',wallet.current.address);
+       })
+    }
+    componentDidUpdate(prevProps){
+        const { wallet } = prevProps;
+        if(wallet.current.address!=this.props.wallet.current.address){
+            this.initState();
         }
     }
     hideModal = () => {
@@ -40,6 +59,9 @@ export default class MyPermission extends React.Component {
         const { wallet } = this.props;
         if (curControlAddress === wallet.current.address) {
             isValid = true;
+            this.setState({
+                isEditOperateUser: false
+            })
         } else {
             try {
                 tronWeb.address.toHex(curControlAddress);
@@ -55,15 +77,17 @@ export default class MyPermission extends React.Component {
                     })
                 } catch (e) {
                     isValid = true;
+                    
+                }
+                finally{
                     this.setState({
                         isEditOperateUser: false
                     })
                 }
-                this.setState({
-                    isEditOperateUser: false
-                })
+                
 
             } catch (e) {
+                isValid=false;
                 this.setState({
                     modal: (
                         <SweetAlert warning onConfirm={() => this.hideModal()} title='warn' style={{ marginLeft: '-240px', marginTop: '-195px' }}>
@@ -72,26 +96,47 @@ export default class MyPermission extends React.Component {
                     )
                 })
             }
-            if (isValid) {
-                // todo tronWeb获取新地址权限并校验新地址下有没有该地址的权限
-                const res = await tronWeb.trx.getAccount(curControlAddress);
-                if (res) {
-                    const { active_permission, owner_permission, witness_permission } = res;
-                    this.setState({
-                        ownerPermission: owner_permission || [],
-                        activePermissions: active_permission || [],
-                        witnessPermission: witness_permission || []
-                    })
-                } else {
+            if(!isValid) return;
+            // todo tronWeb获取新地址权限并校验
+            const res = await tronWeb.trx.getAccount(curControlAddress);
+
+            if (res) {
+                const { active_permission, owner_permission, witness_permission } = res;
+                // 校验新地址下有没有该地址的权限
+                const {keys} = owner_permission;
+                const isInKeys = keys.some(item=>{
+                    console.log(tronWeb.address.fromHex(item.address),wallet.current.address)
+                    return tronWeb.address.fromHex(item.address)==wallet.current.address
+                })
+                if(!isInKeys){
+                    isValid=false;
                     this.setState({
                         modal: (
                             <SweetAlert warning onConfirm={() => this.hideModal()} title='warn'>
-                                {'Invalid address'}
+                                {'your address is not in control address keys'}
                             </SweetAlert>
-                        )
+                        ),
+                        isEditOperateUser: true
                     })
                 }
+                else{
+                    this.setState({
+                        ownerPermission: owner_permission || null,
+                        activePermissions: active_permission || [],
+                        witnessPermission: witness_permission || null
+                    })
+                }
+            } else {
+                isValid=false;
+                this.setState({
+                    modal: (
+                        <SweetAlert warning onConfirm={() => this.hideModal()} title='warn'>
+                            {'Invalid address'}
+                        </SweetAlert>
+                    )
+                })
             }
+            
         }
 
 
@@ -101,17 +146,19 @@ export default class MyPermission extends React.Component {
             curControlAddress: event.target.value
         })
     }
-    componentDidMount() {
+    componentDidMount(prevProps) {
+        
     }
     render() {
         const { isEditOperateUser, isEditContent, curControlAddress, modal, ownerPermission, witnessPermission, activePermissions } = this.state;
-        console.log('ownerPermission',ownerPermission)
-        const { wallet } = this.props;
+        
+        const { wallet,tronWeb } = this.props;
+        const witnessAddressIfIs = wallet.current.address;
         return (
             <main className='permission-main'>
                 <div className='control-address'>
                     <span> Control Address:</span>
-                    <Input size="small" defaultValue={curControlAddress} className={!isEditOperateUser ? 'read' : ''} readOnly={!isEditOperateUser} onChange={(e) => {
+                    <Input size="small" value={curControlAddress} className={!isEditOperateUser ? 'read' : ''} readOnly={!isEditOperateUser} onChange={(e) => {
                         this.changeControlAddress(e)
                     }} />
                     <Button className="btn btn-danger" style={{ display: isEditOperateUser ? 'block' : 'none' }}
@@ -127,9 +174,9 @@ export default class MyPermission extends React.Component {
                     </div>
 
                 </div>
-                {ownerPermission && !isEditContent && <OwnerRead ownerPermission={ownerPermission} />}
-                {witnessPermission && !isEditContent && <WitnessRead witnessPermission={witnessPermission} />}
-                {activePermissions.length > 0 && !isEditContent && <ActiveRead activePermissions={activePermissions} />}
+                {ownerPermission && !isEditContent && <OwnerRead ownerPermission={ownerPermission} tronWeb={tronWeb} />}
+                {witnessPermission && !isEditContent && <WitnessRead witnessPermission={witnessPermission} witnessNodeAddress={witnessAddressIfIs} tronWeb={tronWeb} />}
+                {activePermissions.length > 0 && !isEditContent && <ActiveRead activePermissions={activePermissions}  tronWeb={tronWeb}/>}
                 {modal}
             </main>)
     }

@@ -23,17 +23,22 @@
             margin-top:-5px;
             border-radius: 2px;
             border-width: 1px;
-            .ant-btn:hover, .ant-btn:focus {
-                color: #666;
-                border-color: #666;
-            }
+            // .ant-btn:hover, .ant-btn:focus {
+            //     color: #666;
+            //     border-color: #666;
+            // }
             &.btn-default{
-                background: #FFFFFF;
-                border: 1px solid #D8D8D8;
+                background: #FFFFFF!important;
+                border: 1px solid #D8D8D8!important;
                 span{color:#666!important};
                 &:hover{
                     color:#666;
                 }
+            }
+            &.ant-btn:hover, .ant-btn:focus {
+                color: #C23631;
+                background-color: #C23631;
+                border-color: #C23631;
             }
         }
         input.ant-input{
@@ -78,6 +83,10 @@
             span{
                 padding-left:10px;
                 border-left:1px solid #C23631;
+            }
+            i{
+                font-style: normal;
+                padding-left: 10px;
             }
         }
         .permission-desc{

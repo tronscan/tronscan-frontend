@@ -11,12 +11,12 @@ export default class ActiveRead extends PureComponent{
       })
     }
     render(){
-        const {activePermissions} = this.props;  
+        const {activePermissions,tronWeb} = this.props;  
         return(
     
         <div className='permission'>
             <div className='permission-title'>
-                <span>Active permissions</span>  
+                <span>Active permissions</span><i>({activePermissions.length+'/'+8})</i>  
             </div>
             <div className='permission-desc'>
                 Active permissions are used to provide a combination of permissions. For example, provide a permission that can only be performed to create accounts and transfer money Add up to eight active permissions
@@ -49,7 +49,7 @@ export default class ActiveRead extends PureComponent{
                            <tbody>
                                {
                                    item.keys.map(itemKey=>{
-                                   return <tr key={itemKey.address}><td>{itemKey.address}</td><td>{itemKey.weight}</td></tr>
+                                   return <tr key={itemKey.address}><td>{tronWeb.address.fromHex(itemKey.address)}</td><td>{itemKey.weight}</td></tr>
                                    })
                                }
                            </tbody>
