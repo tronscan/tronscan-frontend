@@ -4,6 +4,7 @@ import { Input,Button } from 'antd';
 import {Modal, ModalBody, ModalHeader} from "reactstrap";
 import SweetAlert from "react-bootstrap-sweetalert";
 import OwnerRead from '../PermissionRead/owner'
+import WitnessRead from '../PermissionRead/witness'
 @connect(
     state => {
       return {
@@ -123,7 +124,8 @@ export default class MyPermission extends React.Component {
                      </div>
                       
             </div> 
-            <OwnerRead/> 
+            <OwnerRead/>
+            <WitnessRead/> 
              {modal}
         </main>)
     }

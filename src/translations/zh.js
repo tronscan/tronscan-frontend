@@ -61,7 +61,7 @@ export const messages = {
   "value": "价值",
   "total_accounts": "实时总账户数",
   "submit": "提交",
-  "send": "发送",
+  "send": "转账",
   "receive": "接收",
   "supply": "持有量",
   "view": "查看",
@@ -2255,4 +2255,27 @@ export const messages = {
   */
   "muti_sign":"多重签名",
   "developer_challenge":"开发者大赛",
+  /*
+     ##################################################################################
+     #                                                                                #
+     #   multi-signature               2019-11-19              #
+     #                                                                                #
+     ##################################################################################
+  */
+  "translations_wait_sign":"待我签名的交易",
+  "transfer_multi_sign":"多重签名转账",
+  "permission":"权限",
+  "owner_permission":"Owner权限组",
+  "active_permission":"Active权限组",
+  "translations_failure_time":"失效时间",
+  "to_be_sign":"待签名",
+  "signed":"已签名",
+  "signature_failed":"失败",
+  "signature_successful":"成功",
+  "signature_type":"类型",
+  "signature_sponsor":"发起人",
+  "signature_time_left":"剩余时间",
+  "signature_list":"待签名列表",
+  "signature_operate":"操作",
+  "signature_status":"状态",
 };
