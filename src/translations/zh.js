@@ -1176,6 +1176,17 @@ export const messages = {
   "Normal_Transactions": "常规交易",
   "Verified_contracts": "已验证合约",
   "Constructor_Arguments_tip": "构造函数参数",
+  // 2019-11-21
+  "contract_all":"全部合约",
+  "contract_verified":"已验证合约",
+  "contract_open_license":"开源License",
+  "contract_token_name": "通证名称",
+  "contract__compile_version":"编译版本",
+  "contract_setting":"设置",
+  "contract_v_license":"License",
+  "contract_verified_time":"验证时间",
+  "contract_balance_tip":"只包含合约内TRX的数量",
+  "contract_version_tip":"存在已知的可靠性漏洞的版本",
   // 2019-11-19
   "contract_create_msg":"创建信息",
   "contract_create_time":"创建时间",

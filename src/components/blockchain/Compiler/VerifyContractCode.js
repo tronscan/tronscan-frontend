@@ -8,7 +8,7 @@ import MonacoEditor from 'react-monaco-editor';
 import xhr from 'axios/index';
 import SweetAlert from 'react-bootstrap-sweetalert';
 import CompilerConsole from './CompilerConsole';
-import { API_URL, FILE_MAX_SIZE, FILE_MAX_NUM } from '../../../constants';
+import { API_URL, CONTRACT_NODE_API, FILE_MAX_SIZE, FILE_MAX_NUM } from '../../../constants';
 
 import cx from 'classnames';
 
@@ -209,7 +209,8 @@ class VerifyContractCode extends Component {
 
             this.setState({ loading: true });
 
-            const { data } = await xhr.post(`${API_URL}/api/solidity/contract/verify`, formData);
+            // const { data } = await xhr.post(`${API_URL}/api/solidity/contract/verify`, formData);
+            const { data } = await xhr.post(`${CONTRACT_NODE_API}/api/solidity/contract/verify`, formData);
 
             const { code, errmsg } = data;
             const { status } = data.data;
@@ -620,7 +621,7 @@ class VerifyContractCode extends Component {
                                 {license}
                                 {optimizerItem}
                                 {runItem}
-                                {testBtn}
+                                {/* {testBtn} */}
                             </Row>
                             {isSelectContract ? selectContractItem : noSelectContractItem}
                         </Form>

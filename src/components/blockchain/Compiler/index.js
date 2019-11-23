@@ -14,7 +14,7 @@ import SweetAlert from 'react-bootstrap-sweetalert';
 import _ from 'lodash';
 import { toThousands } from '../../../utils/number';
 import Lockr from 'lockr';
-import { API_URL, FILE_MAX_SIZE, FILE_MAX_NUM } from '../../../constants';
+import { API_URL, CONTRACT_NODE_API, FILE_MAX_SIZE, FILE_MAX_NUM } from '../../../constants';
 import cx from 'classnames';
 
 import WARNIMG from './../../../images/compiler/warning.png';
@@ -318,7 +318,8 @@ class ContractCompiler extends React.Component {
         }
 
         // 编译
-         const { data } = await xhr.post(`${API_URL}/api/solidity/contract/compile`, formData)
+        //  const { data } = await xhr.post(`${API_URL}/api/solidity/contract/compile`, formData)
+         const { data } = await xhr.post(`${CONTRACT_NODE_API}/api/solidity/contract/compile`, formData)
             .catch(e => {
                 const errorData = [{
                     type: 'error',
@@ -599,7 +600,8 @@ class ContractCompiler extends React.Component {
                     };
 
                     // 部署后更新合约
-                    const { data } = await xhr.post(`${API_URL}/api/solidity/contract/deploy`, params);
+                    // const { data } = await xhr.post(`${API_URL}/api/solidity/contract/deploy`, params);
+                    const { data } = await xhr.post(`${CONTRACT_NODE_API}/api/solidity/contract/deploy`, params);
                     const { code } = data;
                     if (code == 200){
                         this.setState({
