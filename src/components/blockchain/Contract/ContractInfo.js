@@ -148,16 +148,13 @@ export default class Code extends React.Component {
                             rows="15"
                             readOnly="readonly"
                             value={base64Code} /> */}
-            <MonacoEditor
+            {base64Code && <MonacoEditor
               height="300"
               language="sol"
               theme="vs"
               value={base64Code}
               options={options}
-
-              //   onChange={this.onChange}
-              //   editorDidMount={this.editorDidMount}
-            />
+            />}
           </div>
         </div>
       </div>

@@ -34,7 +34,57 @@ class Code extends React.Component {
       nonePayableContractList: [],
       eventContractList: [],
       currentTokens: [],
-      contractVerifyState: true
+      contractVerifyState: true,
+      licensesList: [
+        {
+          label: "No License(None)",
+          value: 1
+        },
+        {
+          label: "The Unlicense(Unlicense)",
+          value: 2
+        },
+        {
+          label: "MIT License(MIT)",
+          value: 3
+        },
+        {
+          label: "GNU General Public License v2.0(GNU GPLv2)",
+          value: 4
+        },
+        {
+          label: "GNU General Public License v3.0(GNU GPLv3)",
+          value: 5
+        },
+        {
+          label: "GNU Lesser General Public License v2.1(GNU LGPLv2.1)",
+          value: 6
+        },
+        {
+          label: "GNU Lesser General Public License v3.0(GNU LGPLv3)",
+          value: 7
+        },
+        {
+          label: "BSD 2-clause “Simplified” license(BSD-2-Clause)",
+          value: 8
+        },
+        {
+          label: "BSD 3-clause “New” Or “Revised” license(BSD-3-Clause)",
+          value: 9
+        },
+        {
+          label: "Mozilla Public License 2.0(MPL-2.0)",
+          value: 10
+        },
+        {
+          label: "Open Software License 3.0(OSL-3.0)",
+          value: 11
+        },
+        {
+          label: "Apache 2.0(Apache-2.0)",
+          value: 12
+        }
+      ]
     };
   }
 
@@ -51,10 +101,16 @@ class Code extends React.Component {
     };
 
     let { data } = await xhr
-      .post(`${API_URL}/api/solidity/contract/info`, params)
+      // .post(`${API_URL}/api/solidity/contract/info`, params)
+      // .post(`http://52.15.126.154:9017/api/solidity/contract/info`, params)
+
+      .post(`https://apilist.tronscan.org/api/solidity/contract/info`, {
+        contractAddress: "TRzwSBRFzfUuKwTAh7Yh4ih6UGTfaDDrGY"
+      })
       .catch(function(e) {
         console.log(e);
       });
+
     const dataInfo = data.data;
     // eslint-disable-next-line
     const {
@@ -64,8 +120,11 @@ class Code extends React.Component {
       contract_code,
       constructor_params,
       optimizer,
-      compiler
+      compiler,
+      optimizer_runs,
+      license
     } = dataInfo;
+
     if (status === 3 || status === 1 || status === 4) {
       this.setState(
         {
@@ -77,6 +136,11 @@ class Code extends React.Component {
         }
       );
     } else {
+      let licenses = this.state.licensesList;
+
+      let licenseObj = licenses.find(item => {
+        return item.value == license;
+      });
       let infoObj;
       const abi = dataInfo.abi && JSON.parse(dataInfo.abi);
       /* eslint-disable */
@@ -87,7 +151,9 @@ class Code extends React.Component {
         contractCode: contract_code || [],
         constructorParams: constructor_params || "",
         optimizer,
-        compiler
+        compiler,
+        optimizer_runs,
+        license: licenseObj && licenseObj.label
       };
       this.props.handleContract(infoObj);
       /* eslint-disable */
@@ -237,7 +303,14 @@ class Code extends React.Component {
       loading
     } = this.state;
     const { filter } = this.props;
-    const { abi, name, compiler, optimizer } = contractInfoList;
+    const {
+      abi,
+      name,
+      compiler,
+      optimizer,
+      optimizer_runs,
+      license
+    } = contractInfoList;
     let tabContent;
 
     if (choiceContractItem === "code" && contractInfoList) {
@@ -338,15 +411,15 @@ class Code extends React.Component {
           <div className="tab-choice">
             {radioBtnItem}
             <div className="d-flex">
-              <p className="flex-1">
+              <p className="flex-1 border-1">
                 {tu("contract_name")}: <span>{name || ""}</span>
               </p>
-              <p className="flex-1">
+              <p className="flex-1 border-1">
                 {tu("contract_version")}: <span>{compiler || ""}</span>
               </p>
             </div>
             <div className="d-flex">
-            <p className="flex-1">
+              <p className="flex-1 border-1">
                 {tu("contract_optimize")}:{" "}
                 <span>
                   {optimizer === 1 ? (
@@ -354,9 +427,10 @@ class Code extends React.Component {
                   ) : (
                     <span>{tu("contract_optimizer")}</span>
                   )}
+                  {optimizer === 1 && ` with ${optimizer_runs} runs`}
                 </span>
               </p>
-             
+              <p className="flex-1 border-1">License:{license}</p>
             </div>
           </div>
         ) : (

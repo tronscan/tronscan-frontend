@@ -47,13 +47,19 @@
     margin-right: 10px;
   }
   .monaco-editor-background {
-    background: #eee !important;
+    background: #f3f3f3 !important;
   }
   .monaco-editor .margin {
-    background: #ebebeb;
+    background: #e9e9e9;
   }
   .active-code {
-    color: #000 !important;
+    color: #e50000 !important;
+  }
+  .monaco-editor .line-numbers {
+    color: rgba(51, 51, 51, 0.3);
+  }
+  .monaco-editor .current-line ~ .line-numbers {
+    color: rgba(51, 51, 51, 1);
   }
 }
 

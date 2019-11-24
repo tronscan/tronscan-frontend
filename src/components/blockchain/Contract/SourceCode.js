@@ -19,12 +19,7 @@ class SourceCode extends Component {
   render() {
     return (
       <main className="container header-overlap token_black sorce-code-use">
-        <div className="d-flex">
-          <div className="mr-2">
-            <img
-              src={require("../../../images/contract/folder-man-monochrome.svg")}
-            />
-          </div>
+        <div>
           <div className="mt-2">
             <p>
               {tu("contract_source_code_p1")}{" "}
@@ -34,7 +29,9 @@ class SourceCode extends Component {
             </p>
             <p>
               {tu("contract_source_code_p2_1")}{" "}
-              <Link to="/contracts/contract-Compiler/verify">{tu("contract_source_code_p2_ver")}</Link>{" "}
+              <Link to="/contracts/contract-Compiler/verify">
+                {tu("contract_source_code_p2_ver")}
+              </Link>{" "}
               {tu("contract_source_code_p2_2")}
             </p>
           </div>

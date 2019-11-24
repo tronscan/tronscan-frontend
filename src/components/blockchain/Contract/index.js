@@ -295,6 +295,22 @@ class SmartContract extends React.Component {
     if (!contract) {
       return null;
     }
+
+    let contractValue = "";
+    if (contract.call_token_value && contract.call_value) {
+      contractValue =
+        contract.call_value +
+        "TRX" +
+        " " +
+        contract.call_token_value +
+        contract.call_token_id;
+    } else if (!contract.call_token_value && contract.call_value) {
+      contractValue = contract.call_value + "TRX";
+    } else if (contract.call_token_value && !contract.call_value) {
+      contractValue = contract.call_token_value + contract.call_token_id;
+    } else {
+      contractValue = "--";
+    }
     let pathname = this.props.location.pathname;
     let tabName = "";
     let rex = /[a-zA-Z0-9]{34}\/?([a-zA-Z\\-]+)$/;
@@ -523,17 +539,18 @@ class SmartContract extends React.Component {
                               <div className="d-flex">
                                 <span style={{ width: "30%" }}>
                                   {tu("contract_percent")}：
-                                  {
-                                    100-contract.creator
-                                      .consume_user_resource_percent
-                                  }%
+                                  {100 -
+                                    contract.creator
+                                      .consume_user_resource_percent}
+                                  %
                                 </span>
                                 <span style={{ width: "30%" }}>
-                                {tu("contract_percent_user")}：
+                                  {tu("contract_percent_user")}：
                                   {
                                     contract.creator
                                       .consume_user_resource_percent
-                                  }%
+                                  }
+                                  %
                                 </span>
                               </div>
                             )}
@@ -552,27 +569,12 @@ class SmartContract extends React.Component {
                               </Tooltip>
                               :
                             </p>
-                            {contract.creator && (
-                              <div className="d-flex">
-                                <span style={{ width: "30%" }}>
-                                  <AddressLink
-                                    address={contract.creator.address}
-                                  >
-                                    {contract.creator.address}
-                                  </AddressLink>
-                                </span>
-                                <span className="px-1">{tu("at_txn")}</span>
-                                <span style={{ width: "30%" }}>
-                                  <Truncate>
-                                    <TransactionHashLink
-                                      hash={contract.creator.txHash}
-                                    >
-                                      {contract.creator.txHash}
-                                    </TransactionHashLink>
-                                  </Truncate>
-                                </span>
-                              </div>
-                            )}
+
+                            <div className="d-flex">
+                              <span style={{ width: "100%" }}>
+                                {contractValue}
+                              </span>
+                            </div>
                           </li>
                         </ul>
                       </div>
