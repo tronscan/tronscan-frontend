@@ -51,8 +51,7 @@ class SmartContract extends React.Component {
         tokenBalances: {}
       },
       token20: null,
-      csvurl: "",
-      contractInfo: {}
+      csvurl: ""
     };
   }
 
@@ -125,12 +124,7 @@ class SmartContract extends React.Component {
             id: "code",
             path: "/code",
             label: <span>{tu("contract_title")}</span>,
-            cmp: () => (
-              <Code
-                filter={{ address: id }}
-                handleContract={this.getContractInfo.bind(this)}
-              />
-            )
+            cmp: () => <Code filter={{ address: id }} />
           },
           intransactions: {
             id: "intransactions",
@@ -209,12 +203,7 @@ class SmartContract extends React.Component {
             id: "code",
             path: "/code",
             label: <span>{tu("contract_title")}</span>,
-            cmp: () => (
-              <Code
-                filter={{ address: id }}
-                handleContract={this.getContractInfo.bind(this)}
-              />
-            )
+            cmp: () => <Code filter={{ address: id }} />
           },
           intransactions: {
             id: "intransactions",
@@ -272,12 +261,6 @@ class SmartContract extends React.Component {
     }
   };
 
-  getContractInfo(val) {
-    this.setState({
-      contractInfo: val
-    });
-  }
-
   render() {
     let {
       contract,
@@ -286,8 +269,7 @@ class SmartContract extends React.Component {
       token20,
       csvurl,
       mainchainAddress,
-      isPrivateKey,
-      contractInfo
+      isPrivateKey
     } = this.state;
     let { match, intl } = this.props;
     const defaultImg = require("../../../images/logo_default.png");
@@ -311,6 +293,7 @@ class SmartContract extends React.Component {
     } else {
       contractValue = "--";
     }
+
     let pathname = this.props.location.pathname;
     let tabName = "";
     let rex = /[a-zA-Z0-9]{34}\/?([a-zA-Z\\-]+)$/;
@@ -354,7 +337,7 @@ class SmartContract extends React.Component {
                               )}
                               :{" "}
                             </p>
-                            {contractInfo.name || "-"}
+                            {contract.name || "--"}
                           </li>
                           <li>
                             <p>
@@ -373,26 +356,28 @@ class SmartContract extends React.Component {
                                 showPopup={false}
                                 currency="TRX"
                               />
-                              <p>
-                                ≈{" "}
-                                <TRXPrice
-                                  amount={
-                                    contract.balance
-                                      ? parseInt(contract.balance) / ONE_TRX
-                                      : 0
-                                  }
-                                  currency="USD"
-                                  showPopup={false}
-                                />
-                                &nbsp;(@&nbsp;USD&nbsp;
-                                <TRXPrice
-                                  amount={1}
-                                  currency="USD"
-                                  showPopup={false}
-                                  showCurreny={false}
-                                />
-                                /TRX)
-                              </p>
+                              {contract.balance > 0 && (
+                                <p>
+                                  ≈{" "}
+                                  <TRXPrice
+                                    amount={
+                                      contract.balance
+                                        ? parseInt(contract.balance) / ONE_TRX
+                                        : 0
+                                    }
+                                    currency="USD"
+                                    showPopup={false}
+                                  />
+                                  &nbsp;(@&nbsp;USD&nbsp;
+                                  <TRXPrice
+                                    amount={1}
+                                    currency="USD"
+                                    showPopup={false}
+                                    showCurreny={false}
+                                  />
+                                  /TRX)
+                                </p>
+                              )}
                             </div>
                           </li>
                           {/* <li><p>{tu('trx_value')}: </p><TRXPrice amount={1} currency="USD" source="home"/></li> */}

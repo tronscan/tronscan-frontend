@@ -34,7 +34,7 @@ $color-grey: #d2d1d1;
 @import "contractRead.scss";
 @import "sourceCode.scss";
 @import "contract1.scss";
-
+@import "contract";
 body {
   overflow-y: scroll;
 }
@@ -4317,7 +4317,7 @@ h5 {
     // word-wrap: break-word;
     white-space: nowrap;
     overflow: hidden;
-    &.active{
+    &.active {
       background: #333;
     }
   }

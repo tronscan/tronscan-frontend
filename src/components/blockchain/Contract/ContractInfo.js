@@ -39,7 +39,7 @@ export default class Code extends React.Component {
       });
     }
     this.setState({
-      name: filter.contractInfoList.name || "-",
+      name: filter.contractInfoList.name || "--",
       abi: filter.contractInfoList.interfaceAbi
         ? JSON.stringify(filter.contractInfoList.interfaceAbi)
         : JSON.stringify(filter.contractInfoList.abi),
@@ -53,7 +53,7 @@ export default class Code extends React.Component {
     let contractCode = await Client.getContractCode(id);
 
     this.setState({
-      name: contractCode.data.name || "-",
+      name: contractCode.data.name || "--",
       compilerVersion: contractCode.data.compiler,
       sourceCode: contractCode.data.source,
       abi: contractCode.data.abi,
@@ -148,13 +148,15 @@ export default class Code extends React.Component {
                             rows="15"
                             readOnly="readonly"
                             value={base64Code} /> */}
-            {base64Code && <MonacoEditor
-              height="300"
-              language="sol"
-              theme="vs"
-              value={base64Code}
-              options={options}
-            />}
+            {base64Code && (
+              <MonacoEditor
+                height="300"
+                language="sol"
+                theme="vs"
+                value={base64Code}
+                options={options}
+              />
+            )}
           </div>
         </div>
       </div>

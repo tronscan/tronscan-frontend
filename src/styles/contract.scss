@@ -1,0 +1,38 @@
+.contract-list{
+  .contract-filter{
+    list-style-type: none;
+    >div{
+      width: 103px;
+      height: 35px;
+      line-height: 35px;
+      text-align: center;
+      background: #CBCBCB;
+      border-radius: 2px;
+      color: #fff;
+      margin-right: 6px;
+      cursor: pointer;
+      &.active{
+        background: #D0021B;
+      }
+    }
+  }
+  .table_pos_info{
+    flex: 1;
+    position: static;
+  }
+  .switch-wrap{
+    font-size: 16px;
+    color: #333333;
+    .license-switch{
+      width: 38px ;
+      margin-right: 7px;
+      &.ant-switch{
+        background-color: #CBCBCB;
+        &.ant-switch-checked{
+          background-color: #C23631;
+        }
+      }
+    }
+  }
+  
+}

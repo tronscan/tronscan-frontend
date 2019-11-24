@@ -2,12 +2,19 @@ import React from "react";
 import { tu } from "../../../utils/i18n";
 import xhr from "axios/index";
 import { TronLoader } from "../../common/loaders";
-import { Radio } from "antd";
+import { Radio, Tooltip } from "antd";
 import ContractInfo from "./ContractInfo";
 import EntryContract from "./EntryContract";
 import tronWeb from "tronweb";
 import { connect } from "react-redux";
-import { API_URL, IS_MAINNET, SUNWEBCONFIG } from "../../../constants";
+import {
+  API_URL,
+  IS_MAINNET,
+  SUNWEBCONFIG,
+  CONTRACT_LICENSES,
+  CONTRACT_NODE_API
+} from "../../../constants";
+import { injectIntl } from "react-intl";
 
 class Code extends React.Component {
   constructor(props) {
@@ -35,55 +42,11 @@ class Code extends React.Component {
       eventContractList: [],
       currentTokens: [],
       contractVerifyState: true,
-      licensesList: [
-        {
-          label: "No License(None)",
-          value: 1
-        },
-        {
-          label: "The Unlicense(Unlicense)",
-          value: 2
-        },
-        {
-          label: "MIT License(MIT)",
-          value: 3
-        },
-        {
-          label: "GNU General Public License v2.0(GNU GPLv2)",
-          value: 4
-        },
-        {
-          label: "GNU General Public License v3.0(GNU GPLv3)",
-          value: 5
-        },
-        {
-          label: "GNU Lesser General Public License v2.1(GNU LGPLv2.1)",
-          value: 6
-        },
-        {
-          label: "GNU Lesser General Public License v3.0(GNU LGPLv3)",
-          value: 7
-        },
-        {
-          label: "BSD 2-clause “Simplified” license(BSD-2-Clause)",
-          value: 8
-        },
-        {
-          label: "BSD 3-clause “New” Or “Revised” license(BSD-3-Clause)",
-          value: 9
-        },
-        {
-          label: "Mozilla Public License 2.0(MPL-2.0)",
-          value: 10
-        },
-        {
-          label: "Open Software License 3.0(OSL-3.0)",
-          value: 11
-        },
-        {
-          label: "Apache 2.0(Apache-2.0)",
-          value: 12
-        }
+      warningVersions: [
+        "tron-0.4.24",
+        "tronbox_soljson_v1",
+        "tronbox_soljson_v3",
+        "tron-0.4.25_Odyssey_v3.2.3"
       ]
     };
   }
@@ -102,11 +65,10 @@ class Code extends React.Component {
 
     let { data } = await xhr
       // .post(`${API_URL}/api/solidity/contract/info`, params)
-      // .post(`http://52.15.126.154:9017/api/solidity/contract/info`, params)
-
-      .post(`https://apilist.tronscan.org/api/solidity/contract/info`, {
-        contractAddress: "TRzwSBRFzfUuKwTAh7Yh4ih6UGTfaDDrGY"
-      })
+      .post(`${CONTRACT_NODE_API}/api/solidity/contract/info`, params)
+      // .post(`https://apilist.tronscan.org/api/solidity/contract/info`, {
+      //   contractAddress: "TRzwSBRFzfUuKwTAh7Yh4ih6UGTfaDDrGY"
+      // })
       .catch(function(e) {
         console.log(e);
       });
@@ -137,10 +99,6 @@ class Code extends React.Component {
       );
     } else {
       let licenses = this.state.licensesList;
-
-      let licenseObj = licenses.find(item => {
-        return item.value == license;
-      });
       let infoObj;
       const abi = dataInfo.abi && JSON.parse(dataInfo.abi);
       /* eslint-disable */
@@ -153,9 +111,8 @@ class Code extends React.Component {
         optimizer,
         compiler,
         optimizer_runs,
-        license: licenseObj && licenseObj.label
+        license: CONTRACT_LICENSES[license] || "--"
       };
-      this.props.handleContract(infoObj);
       /* eslint-disable */
       this.setState(
         {
@@ -290,6 +247,31 @@ class Code extends React.Component {
       });
     }
   }
+  solidityVersions = v => {
+    let version;
+    switch (v) {
+      case "tron-0.4.24":
+      case "tronbox_soljson_v1":
+      case "tronbox_soljson_v2":
+        version = "0.4.24";
+        break;
+      case "tron-0.4.25_Odyssey_v3.2.3":
+      case "solidity-0.4.25_Odyssey_v3.2.3":
+      case "tronbox_soljson_v3":
+        version = "0.4.25";
+        break;
+      case "tron-0.5.4_Odyssey_v3.6.0":
+        version = "0.5.4";
+        break;
+      case "tron-0.5.8_Odyssey_v3.6.0":
+        version = "0.5.8";
+        break;
+      default:
+        version = v.match(/\d+(.\d+)*/g)[0] || "";
+        break;
+    }
+    return version;
+  };
 
   render() {
     const {
@@ -302,7 +284,8 @@ class Code extends React.Component {
       contractVerifyState,
       loading
     } = this.state;
-    const { filter } = this.props;
+    const { filter, intl } = this.props;
+
     const {
       abi,
       name,
@@ -410,17 +393,52 @@ class Code extends React.Component {
         {IS_MAINNET ? (
           <div className="tab-choice">
             {radioBtnItem}
+            <p className="contract-source-code-title">
+              {contractVerifyState ? (
+                <img
+                  style={{ width: "20px", height: "20px" }}
+                  src={require("../../../images/contract/Verified.png")}
+                />
+              ) : (
+                <img
+                  style={{ width: "20px", height: "20px" }}
+                  src={require("../../../images/contract/Unverified.png")}
+                />
+              )}
+              {tu("contract_source_code_match")}
+            </p>
             <div className="d-flex">
               <p className="flex-1 border-1">
-                {tu("contract_name")}: <span>{name || ""}</span>
+                <span className="contract-left">{tu("contract_name")}: </span>
+                <span>{name || ""}</span>
               </p>
               <p className="flex-1 border-1">
-                {tu("contract_version")}: <span>{compiler || ""}</span>
+                <span className="contract-left">{tu("contract_version")}:</span>
+                <span>
+                  {compiler
+                    ? `solidity ${this.solidityVersions(compiler)}`
+                    : "--"}
+                  {this.state.warningVersions.indexOf(compiler) > -1 ? (
+                    <Tooltip
+                      placement="top"
+                      title={intl.formatMessage({ id: "contract_version_tip" })}
+                    >
+                      <img
+                        src={require("../../../images/contract/warning.png")}
+                        style={{ height: "14px", marginRight: "4px" }}
+                      />
+                    </Tooltip>
+                  ) : (
+                    ""
+                  )}
+                </span>
               </p>
             </div>
             <div className="d-flex">
               <p className="flex-1 border-1">
-                {tu("contract_optimize")}:{" "}
+                <span className="contract-left">
+                  {tu("contract_optimize")}:
+                </span>
                 <span>
                   {optimizer === 1 ? (
                     <span>{tu("contract_optimizered")}</span>
@@ -430,7 +448,10 @@ class Code extends React.Component {
                   {optimizer === 1 && ` with ${optimizer_runs} runs`}
                 </span>
               </p>
-              <p className="flex-1 border-1">License:{license}</p>
+              <p className="flex-1 border-1">
+                <span className="contract-left">License:</span>
+                {license}
+              </p>
             </div>
           </div>
         ) : (
@@ -478,4 +499,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, null)(Code);
+export default connect(mapStateToProps, null)(injectIntl(Code));
