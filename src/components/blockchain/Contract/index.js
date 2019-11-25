@@ -36,6 +36,7 @@ import { Tooltip, Icon } from "antd";
 import TokenBalances from "./Balance.js";
 import { CsvExport } from "../../common/CsvExport";
 import moment from "moment";
+import rebuildList from "../../../utils/rebuildList";
 
 class SmartContract extends React.Component {
   constructor({ match }) {
@@ -261,6 +262,34 @@ class SmartContract extends React.Component {
     }
   };
 
+  contractValue() {
+    let contract = this.state.contract;
+    let contractValue = "";
+
+    if (contract.call_token_value) {
+      let tokenList = [{ token_id: contract.call_token_id }];
+      let tokenInfo = rebuildList(tokenList, "token_id", "amount")[0];
+      if (contract.call_value) {
+        contractValue =
+          contract.call_value +
+          "TRX" +
+          " " +
+          contract.call_token_value +
+          tokenInfo.map_token_name;
+      } else {
+        contractValue = contract.call_token_value + tokenInfo.map_token_name;
+      }
+    } else {
+      if (contract.call_value) {
+        contractValue = contract.call_value + "TRX";
+      } else {
+        contractValue = "--";
+      }
+    }
+
+    return contractValue;
+  }
+
   render() {
     let {
       contract,
@@ -278,21 +307,7 @@ class SmartContract extends React.Component {
       return null;
     }
 
-    let contractValue = "";
-    if (contract.call_token_value && contract.call_value) {
-      contractValue =
-        contract.call_value +
-        "TRX" +
-        " " +
-        contract.call_token_value +
-        contract.call_token_id;
-    } else if (!contract.call_token_value && contract.call_value) {
-      contractValue = contract.call_value + "TRX";
-    } else if (contract.call_token_value && !contract.call_value) {
-      contractValue = contract.call_token_value + contract.call_token_id;
-    } else {
-      contractValue = "--";
-    }
+    const contractValue = this.contractValue();
 
     let pathname = this.props.location.pathname;
     let tabName = "";

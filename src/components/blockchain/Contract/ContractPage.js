@@ -1,47 +1,50 @@
 import React from "react";
-import {injectIntl} from "react-intl";
-import tronWeb from 'tronweb';
+import { injectIntl } from "react-intl";
+import tronWeb from "tronweb";
 
 class ContractShow extends React.Component {
-
   constructor(props) {
     super(props);
     this.tronWeb = new tronWeb({
-      fullNode: 'https://api.trongrid.io',
-      solidityNode: 'https://api.trongrid.io',
-      eventServer: 'https://api.trongrid.io',
-    })
+      fullNode: "https://api.trongrid.io",
+      solidityNode: "https://api.trongrid.io",
+      eventServer: "https://api.trongrid.io"
+    });
     this.state = {
       ContractInvocation: null,
       ContractInvocationChartData: null,
       loading: true,
-      date: new Date().getTime() - 2 * 24*60*60*1000,
+      date: new Date().getTime() - 2 * 24 * 60 * 60 * 1000,
       total: 0
     };
   }
 
   componentDidMount() {
-
-    this.getContractInfos()
+    this.getContractInfos();
   }
 
-  async getContractInfos () {
+  async getContractInfos() {
     let smartcontract = await this.tronWeb.trx.getContract(
       this.props.filter.address
     );
   }
 
   render() {
-    let {ContractInvocation, ContractInvocationChartData, loading, total, date} = this.state;
-    let { intl, filter} = this.props
+    let {
+      ContractInvocation,
+      ContractInvocationChartData,
+      loading,
+      total,
+      date
+    } = this.state;
+    let { intl, filter } = this.props;
 
     return (
-        <main className="mt-5 p-0">
+      <main className="mt-5 p-0">
         <div>{filter.address}</div>
-        </main>
-
-    )
+      </main>
+    );
   }
 }
 
-export default injectIntl(ContractShow)
+export default injectIntl(ContractShow);

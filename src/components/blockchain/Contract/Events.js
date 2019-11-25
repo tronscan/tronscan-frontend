@@ -57,7 +57,7 @@ class Transactions extends React.Component {
     // let contractEvent = await Client.getContractEvent(filter.address);
     // let {data} = await xhr.get(`https://api.trongrid.io/event/contract/${filter.address}`);
     let { data } = await xhr.get(
-      `https://api.shasta.trongrid.io/event/contract/TLAehKquTpYzU4jsiX8bTCs4PMtaUmVqwq`
+      `https://api.shasta.trongrid.io/event/contract/${filter.address}`
     );
 
     let contractEvent = data;
@@ -98,7 +98,7 @@ class Transactions extends React.Component {
     let {
       data
     } = await xhr.post(
-      `https://api.shasta.tronscan.org/api/contracts/smart-contract-triggers-batch?fields=hash,method`,
+      `${API_URL}/api/contracts/smart-contract-triggers-batch?fields=hash,method`,
       { hashList }
     );
 

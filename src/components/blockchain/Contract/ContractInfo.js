@@ -35,7 +35,7 @@ export default class Code extends React.Component {
       let contractInfo = filter.contractInfoList.contractCode;
       this.setState({
         contractInfos: contractInfo,
-        activeCodeName: contractInfo && contractInfo[0].name
+        activeCodeName: contractInfo && contractInfo[0] && contractInfo[0].name
       });
     }
     this.setState({

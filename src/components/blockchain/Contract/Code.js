@@ -66,9 +66,6 @@ class Code extends React.Component {
     let { data } = await xhr
       // .post(`${API_URL}/api/solidity/contract/info`, params)
       .post(`${CONTRACT_NODE_API}/api/solidity/contract/info`, params)
-      // .post(`https://apilist.tronscan.org/api/solidity/contract/info`, {
-      //   contractAddress: "TRzwSBRFzfUuKwTAh7Yh4ih6UGTfaDDrGY"
-      // })
       .catch(function(e) {
         console.log(e);
       });

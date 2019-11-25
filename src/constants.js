@@ -20,7 +20,7 @@ let NODEAPI;
 if (NODE_ENV == "development") {
   MAINNET = Lockr.get("NET") === "mainnet" || !Lockr.get("NET");
   SUNNET = Lockr.get("NET") === "sunnet";
-  NODEAPI = 'http://52.15.126.154:9017';
+  NODEAPI = "http://52.15.126.154:9017";
 } else {
   MAINNET = window.location.origin === NETURL.MAINNET;
   SUNNET = window.location.origin === NETURL.SUNNET;
@@ -48,7 +48,6 @@ export const API_URL_SUNNET = "https://dappchainapi.tronscan.org";
 export const API_URL = IS_SUNNET ? API_URL_SUNNET : process.env.API_URL;
 export const CONTRACT_MAINNET_API_URL = process.env.API_URL;
 export const CONTRACT_NODE_API = NODEAPI;
-
 
 //Token issued
 export const MARKET_API_URL = "https://platform.tron.network";
@@ -165,18 +164,18 @@ export const FROMID = 1;
 // url regexp
 export const URLREGEXP = /^((ht|f)tps?):\/\/[\w\-]+(\.[\w\-]+)+([\w\-.,@?^=%&:\\/~+#]*[\w\-@?^=%&\\/~+#])?$/;
 
-// contract 
+// contract
 export const CONTRACT_LICENSES = [
-  'None',
-  'Unlicense',
-  'MIT',
-  'GNU GPLv2',
-  'GNU GPLv3',
-  'GNU LGPLv2.1',
-  'GNU LGPLv3',
-  'BSD-2-Clause',
-  'BSD-3-Clause',
-  'MPL-2.0',
-  'OSL-3.0',
-  'Apache-2.0'
-]
+  "None",
+  "Unlicense",
+  "MIT",
+  "GNU GPLv2",
+  "GNU GPLv3",
+  "GNU LGPLv2.1",
+  "GNU LGPLv3",
+  "BSD-2-Clause",
+  "BSD-3-Clause",
+  "MPL-2.0",
+  "OSL-3.0",
+  "Apache-2.0"
+];
