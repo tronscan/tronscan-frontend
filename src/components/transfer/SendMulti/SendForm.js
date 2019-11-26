@@ -66,18 +66,9 @@ class SendForm extends React.Component {
    * @returns {*|boolean}
    */
   isValid = () => {
-    let {to, token, amount, privateKey,balance} = this.state;
+    let {from, to, token, amount,balance, permissionTime, permissionId} = this.state;
     let {account} = this.props;
-    /*
-       if (!privateKey || privateKey.length !== 64) {
-         return false;
-       }
-
-      if(privateKey && privateKey.length === 64 && pkToAddress(privateKey) !== account.address){
-         return false;
-       }
-    */
-    return isAddressValid(to) && token !== "" && balance >= amount && amount > 0 && to !== account.address;
+    return isAddressValid(to) && isAddressValid(from) && token !== "" && balance >= amount && amount > 0 && to !== account.address && permissionTime && permissionId !== "";
   };
 
   /**
@@ -135,19 +126,9 @@ class SendForm extends React.Component {
                 //get transaction parameter value to Hex
                 let HexStr = Client.getSendHexStr(TokenName, from, to, amount);
 
-                console.log('HexStr',HexStr)
-                console.log('unSignTransaction',unSignTransaction)
-                //set transaction expiration time (1H-24H)
-                const newTransaction = await tronWeb.transactionBuilder.extendExpiration(unSignTransaction, (3600*permissionTime));
-                console.log('newTransaction',newTransaction)
                 //sign transaction
-                const SignTransaction = await transactionMultiResultManager(newTransaction, tronWeb, permissionId);
+                const SignTransaction = await transactionMultiResultManager(unSignTransaction, tronWeb, permissionId, permissionTime,HexStr);
                 console.log('SignTransaction111',SignTransaction)
-
-                //set transaction hex parameter value
-                SignTransaction.raw_data.contract[0].parameter.value = HexStr;
-
-                console.log('SignTransaction222',JSON.stringify(SignTransaction))
 
                 // xhr.defaults.headers.common["MainChain"] = 'MainChain';
 
@@ -168,19 +149,44 @@ class SendForm extends React.Component {
             }
 
         } else {
+            /*
+            *   MainChain send TRC10
+            */
             amount = this.Mul(amount,Math.pow(10, decimals));
             if(this.props.wallet.type==="ACCOUNT_LEDGER") {
                 result = await this.props.tronWeb().trx.sendToken(to, amount, TokenName, {address:wallet.address}, false).catch(function (e) {
                     console.log(e)
                 });
             }
-            if(this.props.wallet.type==="ACCOUNT_TRONLINK"){
-                result = await this.props.account.tronWeb.trx.sendToken(to, amount, TokenName, {address:wallet.address}, false).catch(function (e) {
+
+
+
+            if(this.props.wallet.type==="ACCOUNT_TRONLINK" || this.props.wallet.type==="ACCOUNT_PRIVATE_KEY" ){
+                //create transaction
+                tronWeb = this.props.account.tronWeb;
+                const unSignTransaction = await tronWeb.transactionBuilder.sendToken(to, amount, TokenName, from, {'permissionId':permissionId}).catch(function (e) {
                     console.log(e)
                 });
+                //get transaction parameter value to Hex
+                let HexStr = Client.getSendHexStr(TokenName, from, to, amount);
+
+                //sign transaction
+                const SignTransaction = await transactionMultiResultManager(unSignTransaction, tronWeb, permissionId,permissionTime, HexStr);
+
+                // xhr.defaults.headers.common["MainChain"] = 'MainChain';
+
+                //xhr multi-sign transaction api
+                let { data } = await xhr.post("https://testlist.tronlink.org/api/wallet/multi/transaction", {
+                    "address": wallet.address,
+                    "transaction": SignTransaction,
+                    "netType":"shasta"
+                });
+                result = data.code;
+                console.log('code',result)
             }
-            if (result) {
-                success = result.result;
+
+            if (result == 0) {
+                success = true;
             } else {
                 success = false;
             }
@@ -231,9 +237,9 @@ class SendForm extends React.Component {
 
   token20Send = async () => {
 
-    let {to, token, amount, decimals} = this.state;
+    let {to, token, amount, tokens20, decimals, permissionId,permissionTime } = this.state;
     let TokenName = token.substring(0, token.length - 6);
-    let {onSend,tokens20} = this.props;
+    let {onSend,wallet} = this.props;
     let tronWeb;
     let transactionId;
     this.setState({ isLoading: true, modal: null });
@@ -262,10 +268,44 @@ class SendForm extends React.Component {
             }
             transactionId = await transactionResultManager(unSignTransaction, tronWeb)
         } else if (this.props.wallet.type === "ACCOUNT_TRONLINK" || this.props.wallet.type === "ACCOUNT_PRIVATE_KEY") {
-            tronWeb = this.props.account.tronWeb;
-            let contractInstance = await tronWeb.contract().at(contractAddress);
-            transactionId = await contractInstance.transfer(to, new BigNumber(amount).shiftedBy(decimals).toString()).send();
+             tronWeb = this.props.account.tronWeb;
+            // Send TRC20
+            let unSignTransaction = await tronWeb.transactionBuilder.triggerSmartContract(
+                tronWeb.address.toHex(contractAddress),
+                'transfer(address,uint256)',
+                {'permissionId':permissionId},
+                [
+                    {type: 'address', value: tronWeb.address.toHex(to)},
+                    {type: 'uint256', value: new BigNumber(amount).shiftedBy(decimals).toString()}
+                ],
+                tronWeb.address.toHex(this.props.wallet.address),
+            );
+            if (unSignTransaction.transaction !== undefined)
+                unSignTransaction = unSignTransaction.transaction;
+            console.log('unSignTransaction',unSignTransaction)
+
+            //get transaction parameter value to Hex
+            let HexStr = Client.getTriggerSmartContractHexStr(unSignTransaction.raw_data.contract[0].parameter.value);
+            console.log('HexStr',HexStr)
+
+            //sign transaction
+            let SignTransaction = await transactionMultiResultManager(unSignTransaction, tronWeb, permissionId,permissionTime,HexStr);
+
+            let { data } = await xhr.post("https://testlist.tronlink.org/api/wallet/multi/transaction", {
+                "address": wallet.address,
+                "transaction": SignTransaction,
+                "netType":"shasta"
+            });
+            let result = data.code;
+            console.log('code',result)
+            if (result == 0) {
+                transactionId = true;
+            } else {
+                transactionId = false;
+            }
         }
+
+
     }else{
          if (this.props.wallet.type === "ACCOUNT_TRONLINK" || this.props.wallet.type === "ACCOUNT_PRIVATE_KEY") {
              let sunWeb = this.props.account.sunWeb;
@@ -346,7 +386,8 @@ class SendForm extends React.Component {
       let isDisable = false
       console.log('contractTypesArr',contractTypesArr)
       contractTypesArr.map((type,i) => {
-        if(type.value == "TransferContract") {
+        //if(type.value == "TransferContract" || type.value == "TransferAssetContract" || type.value == "TriggerSmartContract") {
+        if(type.value == "TriggerSmartContract") {
             isDisable = true
             return;
         }
@@ -356,35 +397,20 @@ class SendForm extends React.Component {
 
   getPermissions = async (address) => {
       let wallet = await Client.getAccountByAddressNew(address);
-      console.log('wallet', wallet)
-      let { permissionDisable } = this.state;
       let ownerPermissions = wallet.ownerPermission || {};
       let activePermissions = wallet.activePermissions || [];
-      let ownerPermissionAddress = [];
-      let activePermissionAddress = [];
       let activePermissionContractTypes = [];
       let ownerOption = [];
       let activeOption = [];
       if(JSON.stringify(ownerPermissions) != "{}") {
-          // ownerPermissions.keys.map((item, index) => {
-          //     if (item.address != address) {
-          //         ownerPermissionAddress.push(item.address)
-          //     }
-          // });
           ownerOption.push({
               permissionName:ownerPermissions.permission_name,
               permissionValue:0,
           })
       }
       if(activePermissions){
+          //
           activePermissions.map((item,index) =>{
-              // item.keys.map((key,i) =>{
-              //     if ( key.address != address) {
-              //         activePermissionAddress.push(key.address)
-              //     }
-              // })
-              //activePermissionContractTypes.push(getContractTypesByHex(item.operations))
-
               console.log('this.setActivePermissionDisable(getContractTypesByHex(item.operations))',this.setActivePermissionDisable(getContractTypesByHex(item.operations)))
               activeOption.push({
                   permissionName:item.permission_name,
@@ -392,8 +418,6 @@ class SendForm extends React.Component {
                   permissionDisable: this.setActivePermissionDisable(getContractTypesByHex(item.operations))
               })
           })
-          console.log('activePermissionContractTypes',activePermissionContractTypes)
-
       }
 
 
@@ -518,40 +542,11 @@ class SendForm extends React.Component {
 
   refreshTokenBalances = async (address) => {
     let {account} = this.props;
-    if (account.isLoggedIn) {
-      let {balances, trc20token_balances, frozen, accountResource, delegated, tokenBalances, exchanges, ...wallet} = await Client.getAccountByAddressNew(address);
-      wallet.frozenEnergy = accountResource.frozen_balance_for_energy.frozen_balance ? accountResource.frozen_balance_for_energy.frozen_balance : 0;
-
-      let sentDelegateBandwidth = 0;
-      if(delegated&&delegated.sentDelegatedBandwidth) {
-          for (let i = 0; i < delegated.sentDelegatedBandwidth.length; i++) {
-              sentDelegateBandwidth = sentDelegateBandwidth + delegated.sentDelegatedBandwidth[i]['frozen_balance_for_bandwidth'];
-          }
-      }
-
-      let frozenBandwidth=0;
-      if(frozen.balances.length > 0){
-          frozenBandwidth=frozen.balances[0].amount;
-      }
-
-      let sentDelegateResource=0;
-      if(delegated&&delegated.sentDelegatedResource) {
-          for (let i = 0; i < delegated.sentDelegatedResource.length; i++) {
-              sentDelegateResource = sentDelegateResource + delegated.sentDelegatedResource[i]['frozen_balance_for_energy'];
-          }
-      }
-
-      let frozenEnergy=0;
-      if(accountResource.frozen_balance_for_energy.frozen_balance > 0){
-          frozenEnergy=accountResource.frozen_balance_for_energy.frozen_balance;
-      }
-
-      wallet.frozenTrx = sentDelegateBandwidth+frozenBandwidth+sentDelegateResource+frozenEnergy;
-
-      wallet.exchanges = rebuildList(exchanges, ['first_token_id', 'second_token_id'], ['first_token_balance', 'second_token_balance']);
-      wallet.tokenBalances = rebuildList(tokenBalances, 'name', 'balance');
+    if (account.isLoggedIn && isAddressValid(address)){
+      let {balances, trc20token_balances} = await Client.getAccountByAddressNew(address);
       let balances_new = rebuildList(balances, 'name', 'balance');
       let trc20token_balances_new  = rebuildToken20List(trc20token_balances, 'contract_address', 'balance');
+
       trc20token_balances_new && trc20token_balances_new.map(item => {
           item.token20_name = item.name + '(' + item.symbol + ')';
           item.token20_balance = FormatNumberByDecimals(item.balance, item.decimals);
@@ -667,8 +662,7 @@ class SendForm extends React.Component {
     console.log('numValue',numValue)
     const MaxAmount  = 24;
     let errorMess = '';
-    //let reg = /^([1-9]{1,2})$/
-    let reg = /(^[1-9][0-9]$)|(^100&)|(^[1-9]$)$/
+    let reg = /^(([1-9])|(1\d)|(2[0-4]))$/
     if (numValue) {
         if (Number(numValue) > MaxAmount) {
            //  errorMess = `${intl.formatMessage({id: 'SR_brokerage_save_verify'})}`;
@@ -758,7 +752,7 @@ class SendForm extends React.Component {
   render() {
 
     let {intl, account } = this.props;
-    let {tokenBalances, tokens20, isLoading, sendStatus, modal, to, from, note, toAccount, fromAccount, permissionTime, signList, token, amount, privateKey,decimals, ownerOption, activeOption} = this.state;
+    let {tokenBalances, tokens20, isLoading, sendStatus, modal, to, from, note, toAccount, fromAccount, permissionTime,permissionId, signList, token, amount, privateKey,decimals, ownerOption, activeOption} = this.state;
 
     tokenBalances = _(tokenBalances)
         .filter(tb => tb.balance > 0)
@@ -827,6 +821,7 @@ class SendForm extends React.Component {
                     <Select
                         onChange={this.handlePermissionChange}
                         placeholder="Select Permission"
+                        value={permissionId}
                     >
                         <OptGroup label={tu('owner_permission')} key="owner_permission">
                             {

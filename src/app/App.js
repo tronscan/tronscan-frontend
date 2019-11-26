@@ -15,7 +15,7 @@ export default class App {
   }
 
   async getTokensMap() {
-    let {data} = await xhr.get(`${API_URL}/api/token?showAll=1&limit=5000&id_gt=1002653&fields=id,name,precision,abbr,imgUrl`);
+    let {data} = await xhr.get(`${API_URL}/api/token?showAll=1&limit=5000&id_gt=1000000&fields=id,name,precision,abbr,imgUrl`);
     let imgUrl;
     for (var i = 0; i < data.data.length; i++) {
       if (!tokensMap[data.data[i].id]) {
