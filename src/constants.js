@@ -166,6 +166,7 @@ export const URLREGEXP = /^((ht|f)tps?):\/\/[\w\-]+(\.[\w\-]+)+([\w\-.,@?^=%&:\\
 
 // contract
 export const CONTRACT_LICENSES = [
+  "--",
   "None",
   "Unlicense",
   "MIT",

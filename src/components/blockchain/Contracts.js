@@ -25,42 +25,43 @@ import { tu } from "../../utils/i18n";
 import { Link } from "react-router-dom";
 
 
-function Nodetip({ props, val }) {
-  let { intl } = props;
+function Nodetip({ intl, val }) {
+  // let { intl } = props;
   return (
-    <span>
-      {val.isLibrary && (
+    <span className="text-nowrap">
+      {val.isLibrary ? (
         <img
           src={require("../../images/contract/book.png")}
-          style={{ height: "16px" }}
+          style={{ height: "14px" }}
         />
-      )}
+      ):''}
 
-      {val.isSetting && (
+      {val.optimizer ? (
         <Tooltip
           placement="top"
-          title={intl.formatMessage({ id: "Optimization_Enabled" })}
+          // title={intl.formatMessage({ id: "Optimization_Enabled" })}
+          title={'Optimization enabled'}
         >
           <img
-            src={require("../../images/contract/linghst.png")}
-            style={{ height: "16px" }}
+            src={require("../../images/contract/optimization.png")}
+            style={{ height: "14px" }}
           />
         </Tooltip>
-      )}
+      ):''}
 
-      {val.isParameter && (
+      {val.constructor_params ? (
         <Tooltip
           placement="top"
-          title={intl.formatMessage({ id: "Constructor_Arguments_tip" })}
+          // title={intl.formatMessage({ id: "Constructor_Arguments_tip" })}
+          title={'Constructor Arguments'}
         >
           <img
-            src={require("../../images/contract/tools.png")}
-            style={{ height: "16px" }}
+            src={require("../../images/contract/param.png")}
+            style={{ height: "14px",marginLeft: '6px' }}
           />
         </Tooltip>
-      )}
-
-      {!val.isLibrary && !val.isSetting && !val.isParameter && "-"}
+      ):''}
+      {!val.isLibrary && !val.optimizer && !val.constructor_params && '--'}
     </span>
   );
 }
@@ -84,7 +85,7 @@ class Contracts extends React.Component {
       curFilter: 'all',
       isOpen: false,
       sort:'-trxCount',
-      warningVersions:['tron-0.4.24','tronbox_soljson_v1','tronbox_soljson_v3','tron-0.4.25_Odyssey_v3.2.3']
+      warningVersions:[]
     };
   }
 
@@ -132,16 +133,8 @@ class Contracts extends React.Component {
       case 'tronbox_soljson_v2':
         version = '0.4.24'
         break;
-      case 'tron-0.4.25_Odyssey_v3.2.3':
-      case 'solidity-0.4.25_Odyssey_v3.2.3':
       case 'tronbox_soljson_v3':
         version = '0.4.25'
-        break;
-      case 'tron-0.5.4_Odyssey_v3.6.0':
-          version = '0.5.4'
-          break;
-      case 'tron-0.5.8_Odyssey_v3.6.0':
-          version = '0.5.8'
         break;
       default:
           version =v.match(/\d+(.\d+)*/g)[0]||''
@@ -165,7 +158,7 @@ class Contracts extends React.Component {
         dataIndex: "address",
         key: "address",
         align: "left",
-        width: "15%",
+        width: "12%",
         className: "ant_table",
         render: (text, record, index) => {
           return (
@@ -185,17 +178,17 @@ class Contracts extends React.Component {
         width: "10%",
         className: "ant_table",
         render: (text, record, index) => {
-          return <span style={{display:'block',width:'100px',overflow:'hidden',whiteSpace:'nowrap',textOverflow:'ellipsis'}}>{text || "--"}</span>;
+          return <span style={{display:'block',maxWidth:'100px',overflow:'hidden',whiteSpace:'nowrap',textOverflow:'ellipsis'}} title={text || ""}>{text || "--"}</span>;
         }
       },
       {
         title: upperFirst(intl.formatMessage({ id: "contract_create_time" })),
-        dataIndex: "",
-        key: "",
+        dataIndex: "date_created",
+        key: "date_created",
         align: "left",
         className: "ant_table",
         render: (text, record, index) => {
-          return <span><FormattedDate value={1542667989000}/></span>
+          return <span>{text ? <FormattedDate value={text}/> : '--'}</span>
         }
       },
       {
@@ -214,9 +207,9 @@ class Contracts extends React.Component {
               {text ? (
                 <span className="d-flex align-items-center">
                   <img src={text.icon_url} style={{width:'18px',height:'18px',marginRight: '8px'}}></img>
-                  <span className="d-flex flex-column">
-                    <span>{text.name}</span>
-                    <span>{text.symbol}</span>
+                  <span className="d-flex flex-column" style={{flex: '1'}}>
+                    <span style={{display:'block',width:'80px',overflow:'hidden',whiteSpace:'nowrap',textOverflow:'ellipsis'}} title={text.name}>{text.name}</span>
+                    <span style={{display:'block',width:'80px',overflow:'hidden',whiteSpace:'nowrap',textOverflow:'ellipsis'}} title={text.symbol}>{text.symbol}</span>
                   </span>
                 </span>
               ):'--'}
@@ -263,18 +256,19 @@ class Contracts extends React.Component {
           const val = text ? JSON.parse(text) : '';
           return (<span>{
             text ? (
-              <span className="text-nowrap">
-                {
-                  val.optimizer ? <img
-                  style={{width: '14px', height: '14px'}}
-                  src={require("../../images/contract/optimization.png")}></img>:''
-                }
-                {
-                  val.constructor_params ? <img 
-                  style={{width: '14px', height: '14px',marginLeft: '8px'}}
-                  src={require("../../images/contract/param.png")}></img> : ''
-                }
-              </span>
+              // <span className="text-nowrap">
+              //   {
+              //     val.optimizer ? <img
+              //     style={{width: '14px', height: '14px'}}
+              //     src={require("../../images/contract/optimization.png")}></img>:''
+              //   }
+              //   {
+              //     val.constructor_params ? <img 
+              //     style={{width: '14px', height: '14px',marginLeft: '8px'}}
+              //     src={require("../../images/contract/param.png")}></img> : ''
+              //   }
+              // </span>
+              Nodetip({intl,val})
             ):'--'
           }</span>)
         }
@@ -286,7 +280,7 @@ class Contracts extends React.Component {
         align: "left",
         className: "ant_table",
         render: (text, record, index) => {
-        return <span>{text ? CONTRACT_LICENSES[text] : '--'}</span>
+        return <span  style={{display:'block',maxWidth:'80px',overflow:'hidden',whiteSpace:'nowrap',textOverflow:'ellipsis'}} title={+text ? CONTRACT_LICENSES[text] : ''}>{text ? CONTRACT_LICENSES[text] : '--'}</span>
         }
       },
       {
