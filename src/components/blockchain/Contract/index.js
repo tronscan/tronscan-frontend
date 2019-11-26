@@ -269,19 +269,17 @@ class SmartContract extends React.Component {
     if (contract.call_token_value) {
       let tokenList = [{ token_id: contract.call_token_id }];
       let tokenInfo = rebuildList(tokenList, "token_id", "amount")[0];
+      let value =
+        contract.call_token_value /
+        Math.pow(10, tokenInfo.map_token_precision || 6);
       if (contract.call_value) {
-        contractValue =
-          contract.call_value +
-          "TRX" +
-          " " +
-          contract.call_token_value +
-          tokenInfo.map_token_name;
+        contractValue = `${contract.call_value} TRX ${value} ${tokenInfo.map_token_name}`;
       } else {
-        contractValue = contract.call_token_value + tokenInfo.map_token_name;
+        contractValue = `${value} ${tokenInfo.map_token_name}`;
       }
     } else {
       if (contract.call_value) {
-        contractValue = contract.call_value + "TRX";
+        contractValue = `${contract.call_value} TRX`;
       } else {
         contractValue = "--";
       }

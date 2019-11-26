@@ -1,14 +1,21 @@
 import React from "react";
 import { injectIntl } from "react-intl";
 import tronWeb from "tronweb";
+import {
+  API_URL,
+  IS_MAINNET,
+  SUNWEBCONFIG,
+  CONTRACT_LICENSES,
+  CONTRACT_NODE_API
+} from "../../../constants";
 
 class ContractShow extends React.Component {
   constructor(props) {
     super(props);
     this.tronWeb = new tronWeb({
-      fullNode: "https://api.trongrid.io",
-      solidityNode: "https://api.trongrid.io",
-      eventServer: "https://api.trongrid.io"
+      fullNode: SUNWEBCONFIG.MAINFULLNODE,
+      solidityNode: SUNWEBCONFIG.MAINSOLIDITYNODE,
+      eventServer: SUNWEBCONFIG.MAINEVENTSERVER
     });
     this.state = {
       ContractInvocation: null,

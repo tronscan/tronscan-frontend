@@ -16,7 +16,7 @@ import xhr from "axios/index";
 import tronWeb from "tronweb";
 import { Select } from "antd";
 import BlockTime from "../../common/blockTime";
-import { API_URL } from "../../../constants";
+import { API_URL, SUNWEBCONFIG } from "../../../constants";
 const Option = Select.Option;
 
 class Transactions extends React.Component {
@@ -57,7 +57,7 @@ class Transactions extends React.Component {
     // let contractEvent = await Client.getContractEvent(filter.address);
     // let {data} = await xhr.get(`https://api.trongrid.io/event/contract/${filter.address}`);
     let { data } = await xhr.get(
-      `https://api.shasta.trongrid.io/event/contract/${filter.address}`
+      `${SUNWEBCONFIG.MAINEVENTSERVER}/event/contract/${filter.address}`
     );
 
     let contractEvent = data;
