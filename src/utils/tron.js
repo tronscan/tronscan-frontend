@@ -8,8 +8,19 @@ export const tronAddresses = [
   '27WtBq2KoSy5v8VnVZBZHHJcDuWNiSgjbE3',
 ];
 
+export async function transactionTrxSign(transaction, tronWeb) {
+    console.log('transaction',transaction)
+    const signedTransaction = await tronWeb.trx.sign(transaction, tronWeb.defaultPrivateKey, true, true ).catch(e => {
+        console.log('e',e)
+        return false;
+    });
+    console.log('tronWeb.defaultPrivateKey',tronWeb.defaultPrivateKey)
+    console.log('signedTransaction',signedTransaction)
+    return signedTransaction;
+}
 
 export async function transactionResultManager(transaction, tronWeb) {
+
   const signedTransaction = await tronWeb.trx.sign(transaction, tronWeb.defaultPrivateKey).catch(e => {
     return false;
   });
@@ -40,21 +51,24 @@ export async function transactionResultManagerSun(transaction, sunWeb) {
     }
 }
 
-export async function transactionMultiResultManager(transaction, tronWeb, permissionId) {
-    const signedTransaction = await tronWeb.trx.multiSign(transaction, tronWeb.defaultPrivateKey , permissionId).catch(e => {
+export async function transactionMultiResultManager(unSignTransaction, tronWeb, permissionId, permissionTime, HexStr) {
+
+    //set transaction expiration time (1H-24H)
+    const newTransaction = await tronWeb.transactionBuilder.extendExpiration(unSignTransaction, (3600*permissionTime));
+    console.log('permissionId',permissionId)
+    console.log('newTransaction',newTransaction)
+    //sign transaction
+    const signedTransaction = await tronWeb.trx.multiSign(newTransaction, tronWeb.defaultPrivateKey , permissionId).catch(e => {
+        console.log('e',e)
         return false;
     });
+    console.log('signedTransaction',signedTransaction)
+    //set transaction hex parameter value
+    if(HexStr){
+        signedTransaction.raw_data.contract[0].parameter.value = HexStr;
+    }
+    // return transaction
     return signedTransaction;
-
-    // if (signedTransaction) {
-    //     const broadcast = await tronWeb.trx.sendRawTransaction(signedTransaction);
-    //     if (!broadcast.result) {
-    //         broadcast.result = false;
-    //     }
-    //     return broadcast;
-    // } else {
-    //     return false;
-    // }
 }
 
 

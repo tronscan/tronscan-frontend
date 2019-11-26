@@ -2278,4 +2278,6 @@ export const messages = {
   "signature_list":"待签名列表",
   "signature_operate":"操作",
   "signature_status":"状态",
+  "signature_account":"待签名人",
+
 };
