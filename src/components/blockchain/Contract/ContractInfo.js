@@ -6,6 +6,7 @@ import { TronLoader } from "../../common/loaders";
 import { Base64 } from "js-base64";
 import MonacoEditor from "react-monaco-editor";
 import * as monaco from "monaco-editor/esm/vs/editor/editor.api";
+import isMobile from "../../../utils/isMobile";
 
 export default class Code extends React.Component {
   constructor(props) {
@@ -128,7 +129,7 @@ export default class Code extends React.Component {
           <CopyText text={base64Code} className="ml-auto ml-1" />
         </div>
         <div className="row">
-          <div className="col-md-2 pr-0">
+          <div className={isMobile ? `col-md-2` : `col-md-2 pr-0`}>
             <div className="p-3 contract-code-tab">
               {contractInfos &&
                 contractInfos.length > 0 &&
@@ -143,7 +144,10 @@ export default class Code extends React.Component {
                 ))}
             </div>
           </div>
-          <div className="col-md-10 pl-0" id="container">
+          <div
+            className={isMobile ? `col-md-10` : `col-md-10 pl-0`}
+            id="container"
+          >
             {/* <textarea className="w-100 form-control"
                             rows="15"
                             readOnly="readonly"
@@ -151,6 +155,7 @@ export default class Code extends React.Component {
             {base64Code && (
               <MonacoEditor
                 height="300"
+                width="100%"
                 language="sol"
                 theme="vs"
                 value={base64Code}

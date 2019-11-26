@@ -42,12 +42,7 @@ class Code extends React.Component {
       eventContractList: [],
       currentTokens: [],
       contractVerifyState: true,
-      warningVersions: [
-        "tron-0.4.24",
-        "tronbox_soljson_v1",
-        "tronbox_soljson_v3",
-        "tron-0.4.25_Odyssey_v3.2.3"
-      ]
+      warningVersions: []
     };
   }
 
@@ -404,51 +399,56 @@ class Code extends React.Component {
               )}
               {tu("contract_source_code_match")}
             </p>
-            <div className="d-flex">
-              <p className="flex-1 border-1">
-                <span className="contract-left">{tu("contract_name")}: </span>
-                <span>{name || ""}</span>
-              </p>
-              <p className="flex-1 border-1">
-                <span className="contract-left">{tu("contract_version")}:</span>
-                <span>
-                  {compiler
-                    ? `solidity ${this.solidityVersions(compiler)}`
-                    : "--"}
-                  {this.state.warningVersions.indexOf(compiler) > -1 ? (
-                    <Tooltip
-                      placement="top"
-                      title={intl.formatMessage({ id: "contract_version_tip" })}
-                    >
-                      <img
-                        src={require("../../../images/contract/warning.png")}
-                        style={{ height: "14px", marginRight: "4px" }}
-                      />
-                    </Tooltip>
-                  ) : (
-                    ""
-                  )}
-                </span>
-              </p>
-            </div>
-            <div className="d-flex">
-              <p className="flex-1 border-1">
-                <span className="contract-left">
-                  {tu("contract_optimize")}:
-                </span>
-                <span>
-                  {optimizer === 1 ? (
-                    <span>{tu("contract_optimizered")}</span>
-                  ) : (
-                    <span>{tu("contract_optimizer")}</span>
-                  )}
-                  {optimizer === 1 && ` with ${optimizer_runs} runs`}
-                </span>
-              </p>
-              <p className="flex-1 border-1">
-                <span className="contract-left">License:</span>
-                {license}
-              </p>
+            <div className="d-flex contract-header_list contract-detail">
+              <div className="contract-header__item contract-header">
+                <ul>
+                  <li>
+                    <p className="contract-left">{tu("contract_name")}:</p>
+                    {name || ""}
+                  </li>
+                  <li>
+                    <p>{tu("contract_optimize")}:</p>
+                    <span>
+                      {optimizer === 1 ? (
+                        <span>{tu("contract_optimizered")}</span>
+                      ) : (
+                        <span>{tu("contract_optimizer")}</span>
+                      )}
+                      {"  "}
+                      {optimizer === 1 && ` with ${optimizer_runs} runs`}
+                    </span>
+                  </li>
+                </ul>
+              </div>
+              <div className="contract-header__item contract-header">
+                <ul>
+                  <li>
+                    <p>{tu("contract_version")}:</p>
+                    {compiler
+                      ? `solidity ${this.solidityVersions(compiler)}`
+                      : "--"}
+                    {this.state.warningVersions.indexOf(compiler) > -1 ? (
+                      <Tooltip
+                        placement="top"
+                        title={intl.formatMessage({
+                          id: "contract_version_tip"
+                        })}
+                      >
+                        <img
+                          src={require("../../../images/contract/warning.png")}
+                          style={{ height: "14px", marginRight: "4px" }}
+                        />
+                      </Tooltip>
+                    ) : (
+                      ""
+                    )}
+                  </li>
+                  <li>
+                    <p>License:</p>
+                    {license}
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
         ) : (
