@@ -2526,12 +2526,12 @@ export default class Account extends Component {
                     </h5>
                     <div className="account-muti-sign-tab">
                       <a href="javascript:;"
-                        className={"btn btn-default btn-sm " + (isInMyPermission ? ' active' : '')}
+                        className={"btn btn-tap btn-default btn-sm " + (isInMyPermission ? ' active' : '')}
                         onClick={()=>this.setState({isInMyPermission:true,isInMySignature:false})}>
                         我的权限
                       </a>
                       <a href="javascript:;"
-                        className={"btn btn-default btn-sm ml-2 " + (isInMySignature ? 'active' : '')}
+                        className={"btn btn-tap btn-default btn-sm ml-2 " + (isInMySignature ? 'active' : '')}
                         onClick={()=>this.setState({isInMyPermission:false,isInMySignature:true})}>
                         我的签名
                       </a>

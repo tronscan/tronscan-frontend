@@ -106,3 +106,12 @@ export function toThousands(num) {
   }
   return result;
 }
+
+export function toNumber(value){
+  const regNum = /^[1-9][0-9]*$/;
+  if ((!Number.isNaN(value) && regNum.test(value))) {
+    return parseInt(value);
+  }else{
+    return '';
+  }
+}

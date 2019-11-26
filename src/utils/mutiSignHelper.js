@@ -1,5 +1,7 @@
 import { byteArray2hexStr } from "@tronscan/client/src/utils/bytes";
 export function getOperationsHexStrByContractIdArr(contractIdArr) {
+    contractIdArr.sort(function(a,b){return a-b});
+    console.log('contractIdArr',contractIdArr);
     let list = (contractIdArr.slice(0).slice(0));
     var operations = (function (s) {
         var a = []; while (s-- > 0)
@@ -85,48 +87,66 @@ function getAllContractTypes() {
     }
 }
 export function getContractTypesByGroup() {
-    return {
-        Balance: {
-            TransferContract: 1,
-            FreezeBalanceContract: 11,
-            UnfreezeBalanceContract: 12
+    return [
+        {
+            key: 'Balance',
+            value: [
+                { name: 'TransferContract', value: 1 },
+                { name: 'FreezeBalanceContract', value: 11 },
+                { name: 'UnfreezeBalanceContract', value: 12 }
+            ]
         },
-        Account: {
-            AccountCreateContract: 0,
-            AccountUpdateContract: 10,
-            AccountPermissionUpdateContract: 46
+        {
+            key: 'Account',
+            value: [
+                { name: 'AccountCreateContract', value: 0 },
+                { name: 'AccountUpdateContract', value: 10 },
+                { name: 'AccountPermissionUpdateContract', value: 46 }
+            ]
         },
-        TRC10: {
-            TransferAssetContract: 2,
-            ParticipateAssetIssueContract: 9,
-            AssetIssueContract: 6,
-            UnfreezeAssetContract: 14,
-            UpdateAssetContract: 15
+        {
+            key: 'TRC10',
+            value: [
+                { name: 'TransferAssetContract', value: 2 },
+                { name: 'ParticipateAssetIssueContract', value: 9 },
+                { name: 'AssetIssueContract', value: 6 },
+                { name: 'UnfreezeAssetContract', value: 14 },
+                { name: 'UpdateAssetContract', value: 15 }
+            ]
         },
-        SmartContract: {
-            TriggerSmartContract: 31,
-            CreateSmartContract: 30,
-            UpdateSettingContract: 33,
-            UpdateEnergyLimitContract: 45,
-            ClearABIContract: 48,
+        {
+            key: 'SmartContract',
+            value: [
+                { name: 'TriggerSmartContract', value: 31 },
+                { name: 'CreateSmartContract', value: 30 },
+                { name: 'UpdateSettingContract', value: 33 },
+                { name: 'UpdateEnergyLimitContract', value: 45 },
+                { name: 'ClearABIContract', value: 48 },
+            ]
         },
-        Representatives: {
-            VoteWitnessContract: 4,
-            WithdrawBalanceContract: 13,
-            ProposalCreateContract: 16,
-            ProposalApproveContract: 17,
-            ProposalDeleteContract: 18,
-            WitnessCreateContract: 5,
-            WitnessUpdateContract: 8,
-            UpdateBrokerageContract: 49
+        {
+            key: 'Representatives',
+            value: [
+                { name: 'VoteWitnessContract', value: 4 },
+                { name: 'WithdrawBalanceContract', value: 13 },
+                { name: 'ProposalCreateContract', value: 16 },
+                { name: 'ProposalApproveContract', value: 17 },
+                { name: 'ProposalDeleteContract', value: 18 },
+                { name: 'WitnessCreateContract', value: 5 },
+                { name: 'WitnessUpdateContract', value: 8 },
+                { name: 'UpdateBrokerageContract', value: 49 }
+            ]
         },
-        Bancor: {
-            ExchangeTransactionContract: 44,
-            ExchangeCreateContract: 41,
-            ExchangeInjectContract: 42,
-            ExchangeWithdrawContract: 43
+        {
+            key: 'Bancor',
+            value: [
+                { name: 'ExchangeTransactionContract', value: 44 },
+                { name: 'ExchangeCreateContract', value: 41 },
+                { name: 'ExchangeInjectContract', value: 42 },
+                { name: 'ExchangeWithdrawContract', value: 43 }
+            ]
         }
-    }
+    ]
 }
 export function getContractTypesByIds(ids) {
     const contractFilteredType = [];

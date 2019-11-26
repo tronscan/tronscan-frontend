@@ -17,7 +17,7 @@ export default class WitnessRead extends Component{
             <div className="permission-content">
                 <div className="permission-item"> 
                     <span class="permission-label">A piece of the node:</span> 
-        <span class="permission-address">{witnessNodeAddress}</span>
+                    <span class="permission-address">{witnessNodeAddress}</span>
                 </div>
             </div>
         </div>)
