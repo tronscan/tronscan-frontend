@@ -100,9 +100,9 @@ export const TRADINGMAP = {
 
 // SunWeb config
 export const SUNWEBCONFIG = {
-  MAINFULLNODE: "https://api.trongrid.io",
-  MAINSOLIDITYNODE: "https://api.trongrid.io",
-  MAINEVENTSERVER: "https://api.trongrid.io",
+  MAINFULLNODE: "https://api.shasta.trongrid.io",
+  MAINSOLIDITYNODE: "https://api.shasta.trongrid.io",
+  MAINEVENTSERVER: "https://api.shasta.trongrid.io",
   SUNFULLNODE: "https://sun.tronex.io",
   SUNSOLIDITYNODE: "https://sun.tronex.io",
   SUNEVENTSERVER: "https://sun.tronex.io",
@@ -158,3 +158,9 @@ export const FROMID = 1;
 
 // url regexp
 export const URLREGEXP = /^((ht|f)tps?):\/\/[\w\-]+(\.[\w\-]+)+([\w\-.,@?^=%&:\\/~+#]*[\w\-@?^=%&\\/~+#])?$/;
+
+
+export const ADDRESS_SIZE = 34;
+export const ADDRESS_PREFIX = "41";
+export const ADDRESS_PREFIX_BYTE = 0x41;
+export const ADDRESS_PREFIX_REGEX = /^(41)/;

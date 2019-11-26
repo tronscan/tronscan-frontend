@@ -18,8 +18,14 @@ import qs from 'qs';
 import {Select} from 'antd';
 import isMobile from '../../../utils/isMobile';
 import {withTronWeb} from "../../../utils/tronWeb";
-import { FormatNumberByDecimals } from '../../../utils/number'
-import { transactionResultManager, transactionResultManagerSun, transactionMultiResultManager } from "../../../utils/tron"
+import { FormatNumberByDecimals,FormatNumberByDecimalsBalance } from '../../../utils/number'
+import { transactionResultManager, transactionResultManagerSun, transactionMultiResultManager, transactionTrxSign } from "../../../utils/tron"
+import { getContractTypesByHex } from "../../../utils/mutiSignHelper"
+import rebuildList from "../../../utils/rebuildList";
+import rebuildToken20List from "../../../utils/rebuildToken20List";
+
+
+
 import BigNumber from "bignumber.js"
 BigNumber.config({ EXPONENTIAL_AT: [-1e9, 1e9] });
 
@@ -30,20 +36,28 @@ class SendForm extends React.Component {
 
   constructor(props) {
     super(props);
-
+    console.log('props',props)
     this.state = {
       privateKey: "",
       to: props.to || "",
+      from:props.wallet.address || '',
       token: "",
       amount: '',
       note: '',
       sendStatus: 'waiting',
       isLoading: false,
       toAccount: null,
+      fromAccount:null,
       modal: null,
       tokens20:[],
       decimals:'',
       balance:'',
+      ownerOption:[],
+      activeOption:[],
+      permissionId:'',
+      permissionTime:24,
+      tokenBalances:[],
+      tokens20:[],
     };
   }
 
@@ -88,10 +102,10 @@ class SendForm extends React.Component {
     return typeof d !== "number" ? Number(resultVal) : Number(resultVal.toFixed(parseInt(d)));
   }
   /*
-    send TRX  and send TRC10
+   * send TRX  and send TRC10
   */
   token10Send = async() => {
-    let {to, token, amount, decimals} = this.state;
+    let {to, from, token, amount, decimals, permissionId, permissionTime } = this.state;
     let list = token.split('-');
     let TokenName = list[1];
     let { onSend, wallet} = this.props;
@@ -99,9 +113,9 @@ class SendForm extends React.Component {
     let result, success;
     this.setState({isLoading: true, modal: null});
     if(IS_MAINNET){
-
-        //MainChain
-        //send TRX
+        /*
+        *   MainChain send TRX
+        */
         if (TokenName === "_") {
             amount = this.Mul(amount,ONE_TRX);
             if(this.props.wallet.type==="ACCOUNT_LEDGER") {
@@ -110,30 +124,45 @@ class SendForm extends React.Component {
                 });
             }
 
-            if(this.props.wallet.type==="ACCOUNT_TRONLINK"){
+            if(this.props.wallet.type==="ACCOUNT_TRONLINK" || this.props.wallet.type==="ACCOUNT_PRIVATE_KEY"){
+
                 //create transaction
                 tronWeb = this.props.account.tronWeb;
-                const unSignTransaction = await tronWeb.transactionBuilder.sendTrx(to, amount, {address: wallet.address}).catch(function (e) {
+                const unSignTransaction = await tronWeb.transactionBuilder.sendTrx(to, amount, from, {'permissionId':permissionId}).catch(function (e) {
                     console.log(e)
                 });
 
-                transactionId = await transactionMultiResultManager(unSignTransaction, tronWeb, 1)
+                //get transaction parameter value to Hex
+                let HexStr = Client.getSendHexStr(TokenName, from, to, amount);
 
-                let signData = {
+                console.log('HexStr',HexStr)
+                console.log('unSignTransaction',unSignTransaction)
+                //set transaction expiration time (1H-24H)
+                const newTransaction = await tronWeb.transactionBuilder.extendExpiration(unSignTransaction, (3600*permissionTime));
+                console.log('newTransaction',newTransaction)
+                //sign transaction
+                const SignTransaction = await transactionMultiResultManager(newTransaction, tronWeb, permissionId);
+                console.log('SignTransaction111',SignTransaction)
+
+                //set transaction hex parameter value
+                SignTransaction.raw_data.contract[0].parameter.value = HexStr;
+
+                console.log('SignTransaction222',JSON.stringify(SignTransaction))
+
+                // xhr.defaults.headers.common["MainChain"] = 'MainChain';
+
+                //xhr multi-sign transaction api
+                let { data } = await xhr.post("https://testlist.tronlink.org/api/wallet/multi/transaction", {
                     "address": wallet.address,
-                    "transaction": transactionId,
+                    "transaction": SignTransaction,
                     "netType":"shasta"
-                }
-                const options = {
-                    method: 'POST',
-                    headers: { 'chain': 'MainChain'},
-                    data: qs.stringify(signData),
-                    url:'http://testlist.tronlink.org/api/wallet/multi/transaction',
-                };
-                //let result = await xhr.get(API_URL+"/api/token_trc20?sort=issue_time&start=0&limit=50");
+                });
+                result = data.code;
+                console.log('code',result)
             }
-            if (result) {
-                success = result.result;
+
+            if (result == 0) {
+                success = true;
             } else {
                 success = false;
             }
@@ -177,7 +206,7 @@ class SendForm extends React.Component {
         }
     }
     if (success) {
-      this.refreshTokenBalances();
+      //this.refreshTokenBalances();
 
       onSend && onSend();
       //two work flows!
@@ -247,7 +276,7 @@ class SendForm extends React.Component {
          }
     }
     if (transactionId) {
-      this.refreshTokenBalances();
+      //this.refreshTokenBalances();
       onSend && onSend();
       //two work flows!
 
@@ -313,6 +342,71 @@ class SendForm extends React.Component {
       modal: null,
     });
   };
+    setActivePermissionDisable = (contractTypesArr) =>{
+      let isDisable = false
+      console.log('contractTypesArr',contractTypesArr)
+      contractTypesArr.map((type,i) => {
+        if(type.value == "TransferContract") {
+            isDisable = true
+            return;
+        }
+      })
+        return isDisable;
+    }
+
+  getPermissions = async (address) => {
+      let wallet = await Client.getAccountByAddressNew(address);
+      console.log('wallet', wallet)
+      let { permissionDisable } = this.state;
+      let ownerPermissions = wallet.ownerPermission || {};
+      let activePermissions = wallet.activePermissions || [];
+      let ownerPermissionAddress = [];
+      let activePermissionAddress = [];
+      let activePermissionContractTypes = [];
+      let ownerOption = [];
+      let activeOption = [];
+      if(JSON.stringify(ownerPermissions) != "{}") {
+          // ownerPermissions.keys.map((item, index) => {
+          //     if (item.address != address) {
+          //         ownerPermissionAddress.push(item.address)
+          //     }
+          // });
+          ownerOption.push({
+              permissionName:ownerPermissions.permission_name,
+              permissionValue:0,
+          })
+      }
+      if(activePermissions){
+          activePermissions.map((item,index) =>{
+              // item.keys.map((key,i) =>{
+              //     if ( key.address != address) {
+              //         activePermissionAddress.push(key.address)
+              //     }
+              // })
+              //activePermissionContractTypes.push(getContractTypesByHex(item.operations))
+
+              console.log('this.setActivePermissionDisable(getContractTypesByHex(item.operations))',this.setActivePermissionDisable(getContractTypesByHex(item.operations)))
+              activeOption.push({
+                  permissionName:item.permission_name,
+                  permissionValue:item.id,
+                  permissionDisable: this.setActivePermissionDisable(getContractTypesByHex(item.operations))
+              })
+          })
+          console.log('activePermissionContractTypes',activePermissionContractTypes)
+
+      }
+
+
+      console.log('ownerOption', ownerOption)
+      console.log('activeOption', activeOption)
+      this.setState({
+          ownerPermissions,
+          ownerOption,
+          activePermissions,
+          activeOption,
+      });
+  }
+
 
   setAmount = (amount) => {
     let {token, decimals} = this.state;
@@ -346,16 +440,13 @@ class SendForm extends React.Component {
         }
       }
     }
-
-
     this.setState({
       amount,
     });
   };
 
   getSelectedTokenBalance = () => {
-    let {tokenBalances,tokens20} = this.props;
-    let {token} = this.state;
+    let {token,tokenBalances,tokens20} = this.state;
     let TokenType =  token.substr(token.length-5,5);
     let list = token.split('-')
     if (token && TokenType == 'TRC10') {
@@ -386,6 +477,33 @@ class SendForm extends React.Component {
     return 0;
   };
 
+  setPermissionAddress = (value) => {
+      let { ownerPermissions, activePermissions } = this.state;
+      let { wallet } = this.props;
+      let signList = [];
+      console.log('wallet',wallet)
+      console.log('ownerPermissions',ownerPermissions)
+      console.log('activePermissions',activePermissions)
+      if(value == 0){
+          ownerPermissions.keys.map((item, index) => {
+              if (item.address != wallet.address) {
+                  signList.push(item.address)
+              }
+          });
+      }else{
+          let activePermissionAddress = find(activePermissions, t => t.id === value).keys;
+          activePermissionAddress.map((item, index) => {
+              if (item.address != wallet.address) {
+                  signList.push(item.address)
+              }
+          });
+      }
+      console.log('signList',signList)
+      this.setState({
+          signList
+      });
+  }
+
   isAmountValid = () => {
     let {amount,balance} = this.state;
     let selectedTokenBalance = balance;
@@ -393,29 +511,72 @@ class SendForm extends React.Component {
   };
 
   componentDidMount() {
-    this.refreshTokenBalances();
-
-    //this.setAddress(this.props.to);
-
+    let { onSend, wallet} = this.props;
+    this.refreshTokenBalances(wallet.address);
+    this.setSenderAddress(wallet.address);
   }
 
-  refreshTokenBalances = () => {
+  refreshTokenBalances = async (address) => {
     let {account} = this.props;
     if (account.isLoggedIn) {
-      this.props.reloadWallet();
-      //this.getTRC20Tokens();
+      let {balances, trc20token_balances, frozen, accountResource, delegated, tokenBalances, exchanges, ...wallet} = await Client.getAccountByAddressNew(address);
+      wallet.frozenEnergy = accountResource.frozen_balance_for_energy.frozen_balance ? accountResource.frozen_balance_for_energy.frozen_balance : 0;
+
+      let sentDelegateBandwidth = 0;
+      if(delegated&&delegated.sentDelegatedBandwidth) {
+          for (let i = 0; i < delegated.sentDelegatedBandwidth.length; i++) {
+              sentDelegateBandwidth = sentDelegateBandwidth + delegated.sentDelegatedBandwidth[i]['frozen_balance_for_bandwidth'];
+          }
+      }
+
+      let frozenBandwidth=0;
+      if(frozen.balances.length > 0){
+          frozenBandwidth=frozen.balances[0].amount;
+      }
+
+      let sentDelegateResource=0;
+      if(delegated&&delegated.sentDelegatedResource) {
+          for (let i = 0; i < delegated.sentDelegatedResource.length; i++) {
+              sentDelegateResource = sentDelegateResource + delegated.sentDelegatedResource[i]['frozen_balance_for_energy'];
+          }
+      }
+
+      let frozenEnergy=0;
+      if(accountResource.frozen_balance_for_energy.frozen_balance > 0){
+          frozenEnergy=accountResource.frozen_balance_for_energy.frozen_balance;
+      }
+
+      wallet.frozenTrx = sentDelegateBandwidth+frozenBandwidth+sentDelegateResource+frozenEnergy;
+
+      wallet.exchanges = rebuildList(exchanges, ['first_token_id', 'second_token_id'], ['first_token_balance', 'second_token_balance']);
+      wallet.tokenBalances = rebuildList(tokenBalances, 'name', 'balance');
+      let balances_new = rebuildList(balances, 'name', 'balance');
+      let trc20token_balances_new  = rebuildToken20List(trc20token_balances, 'contract_address', 'balance');
+      trc20token_balances_new && trc20token_balances_new.map(item => {
+          item.token20_name = item.name + '(' + item.symbol + ')';
+          item.token20_balance = FormatNumberByDecimals(item.balance, item.decimals);
+          item.token20_balance_decimals = FormatNumberByDecimalsBalance(item.balance, item.decimals);
+          return item
+      });
+
+      this.setState({
+          tokenBalances: balances_new,
+          tokens20: trc20token_balances_new
+      });
     }
+
+
   };
 
   componentDidUpdate() {
-    let {tokenBalances,tokens20} = this.props;
+    let {tokenBalances,tokens20} = this.state;
     tokenBalances = _.filter(tokenBalances, tb => tb.balance > 0);
 
     let {token} = this.state;
     if (!token && tokenBalances.length > 0) {
       this.setState(
         {
-        token: tokenBalances[0].map_token_name + '-' + tokenBalances[0].map_token_id + '-TRC10',
+          token: tokenBalances[0].map_token_name + '-' + tokenBalances[0].map_token_id + '-TRC10',
         },
         () => this.getSelectedTokenBalance())
 
@@ -427,6 +588,7 @@ class SendForm extends React.Component {
         () => this.getSelectedTokenBalance())
     }
   }
+
 
   renderFooter() {
 
@@ -479,15 +641,47 @@ class SendForm extends React.Component {
     });
   };
 
-  setAddress = (address) => {
+  setReceiverAddress = (address) => {
     this.setState({to: address});
-
     Client.getAddress(address).then(data => {
       this.setState({
         toAccount: data ? data : null,
       });
     })
   };
+
+  setSenderAddress = (address) => {
+    this.setState({from: address});
+    this.getPermissions(address);
+    this.refreshTokenBalances(address);
+    Client.getAddress(address).then(data => {
+        this.setState({
+            fromAccount: data ? data : null,
+        });
+    })
+  };
+
+  onChangePermissionTime = e => {
+    const { intl } = this.props;
+    const numValue = e;
+    console.log('numValue',numValue)
+    const MaxAmount  = 24;
+    let errorMess = '';
+    //let reg = /^([1-9]{1,2})$/
+    let reg = /(^[1-9][0-9]$)|(^100&)|(^[1-9]$)$/
+    if (numValue) {
+        if (Number(numValue) > MaxAmount) {
+           //  errorMess = `${intl.formatMessage({id: 'SR_brokerage_save_verify'})}`;
+        }
+        if (!new RegExp(reg).test(numValue)) {
+            // max value
+            return;
+        }
+    }
+    this.setState({
+        permissionTime:numValue,
+    });
+  }
 
   setNote = (note) => {
     this.setState({note});
@@ -497,7 +691,13 @@ class SendForm extends React.Component {
       this.setState({ token: value },() =>{
           this.getSelectedTokenBalance();
       });
+  }
 
+  handlePermissionChange =  (value) => {
+      console.log('value',value)
+      this.setState({ permissionId: value },() =>{
+          this.setPermissionAddress(value);
+      });
   }
 
   async getTRC20Tokens(){
@@ -557,8 +757,9 @@ class SendForm extends React.Component {
 
   render() {
 
-    let {intl, tokenBalances, account, tokens20 } = this.props;
-    let {isLoading, sendStatus, modal, to, note, toAccount, token, amount, privateKey,decimals} = this.state;
+    let {intl, account } = this.props;
+    let {tokenBalances, tokens20, isLoading, sendStatus, modal, to, from, note, toAccount, fromAccount, permissionTime, signList, token, amount, privateKey,decimals, ownerOption, activeOption} = this.state;
+
     tokenBalances = _(tokenBalances)
         .filter(tb => tb.balance > 0)
         .filter(tb => tb.map_token_id > 0 || tb.map_token_id == '_')
@@ -576,7 +777,7 @@ class SendForm extends React.Component {
     if(decimals || decimals == 0){
        placeholder =num.toFixed(decimals)
     }
-
+    let isFromValid = from.length !== 0 && isAddressValid(from);
     let isToValid = to.length !== 0 && isAddressValid(to);
    // let isPrivateKeyValid = privateKey && privateKey.length === 64 && pkToAddress(privateKey) === account.address;
     let isAmountValid = this.isAmountValid();
@@ -606,47 +807,42 @@ class SendForm extends React.Component {
             <label>{tu("from")}</label>
             <div className="input-group mb-3">
                 <input type="text"
-                       onChange={(ev) => this.setAddress(ev.target.value)}
-                       className={"form-control " + (!isToValid ? "is-invalid" : "")}
-                       value={to}/>
+                       onChange={(ev) => this.setSenderAddress(ev.target.value)}
+                       className={"form-control " + (!isFromValid ? "is-invalid" : "")}
+                       value={from}/>
                 <div className="invalid-feedback">
                     {tu("fill_a_valid_address")}
                 </div>
             </div>
           </div>
-
+            {
+                (fromAccount && fromAccount.name) && <Alert color="info">
+                    <b>{fromAccount.name}</b>
+                </Alert>
+            }
             {/*permission*/}
           <div className="form-group">
                 <label>{tu("permission")}</label>
                 <div className="input-group mb-3"  style={{height:36}}>
                     <Select
-                        onChange={this.handleTokenChange}
-                        value={token}
+                        onChange={this.handlePermissionChange}
+                        placeholder="Select Permission"
                     >
-                        <OptGroup label={tu('owner_permission')} key="TRC10">
+                        <OptGroup label={tu('owner_permission')} key="owner_permission">
                             {
-                                tokenBalances.map((tokenBalance, index) => (
-                                    <Option value={tokenBalance.token_name_type} key={index}>
-                                <span> {tokenBalance.map_token_name}
-                                    {
-                                        tokenBalance.map_token_id !== '_'?
-                                            <span style={{fontSize:12,color:'#999',margin:'2px 4px 8px'}}>[ID:{tokenBalance.map_token_id}]</span>
-                                            :""
-                                    }
-                                    ({tokenBalance.map_amount} {intl.formatMessage({id: "available"})})</span>
-
+                                ownerOption.map((owner, index) => (
+                                    <Option value={owner.permissionValue} key={'owner_'+index}>
+                                        <span> {owner.permissionName} </span>
                                     </Option>
                                 ))
                             }
                         </OptGroup>
 
-                        <OptGroup label={tu('active_permission')} key="TRC20">
+                        <OptGroup label={tu('active_permission')} key="active_permission">
                             {
-                                tokens20.map((token, index) => (
-                                    <Option value={token.token_name_type} key={index}>
-                                        {/*<span>{token.name}</span>*/}
-                                        {/*({token.token20_balance} {intl.formatMessage({id: "available"})})*/}
-                                        {token.name} ({token.token20_balance_decimals} {intl.formatMessage({id: "available"})})
+                                activeOption.map((activer, index) => (
+                                    <Option value={activer.permissionValue} key={'activer_'+index} disabled={!activer.permissionDisable}>
+                                        <span> {activer.permissionName} </span>
                                     </Option>
                                 ))
                             }
@@ -654,14 +850,23 @@ class SendForm extends React.Component {
                     </Select>
                 </div>
             </div>
+            {
+                signList && <div className="text-left">
+                    {tu('signature_account')}:  {
+                    signList.map((address, index) => (
+                            <span> { address } </span>
+                    ))
+                }
+                </div>
+            }
             {/*Failure time*/}
             <div className="form-group">
                 <label>{tu("translations_failure_time")}</label>
                 <div className="input-group mb-3">
                     <input type="text"
+                           onChange={(ev) => this.onChangePermissionTime(ev.target.value)}
                            className="form-control"
-                           value={24}
-                           disabled={true}
+                           value={permissionTime}
                     />
                 </div>
             </div>
@@ -670,12 +875,11 @@ class SendForm extends React.Component {
             <label>{tu("to")}</label>
             <div className="input-group mb-3">
               <input type="text"
-                     onChange={(ev) => this.setAddress(ev.target.value)}
+                     onChange={(ev) => this.setReceiverAddress(ev.target.value)}
                      className={"form-control " + (!isToValid ? "is-invalid" : "")}
                      value={to}/>
               <div className="invalid-feedback">
                 {tu("fill_a_valid_address")}
-                {/* tu("invalid_address") */}
               </div>
             </div>
           </div>
@@ -687,22 +891,9 @@ class SendForm extends React.Component {
           <div className="form-group">
             <label>{tu("token")}</label>
             <div className="input-group mb-3"  style={{height:36}}>
-              {/*<select*/}
-                  {/*className="form-control"*/}
-                  {/*onChange={(ev) => this.setState({token: ev.target.value})}*/}
-                  {/*value={token}>*/}
-                {/*{*/}
-                  {/*tokenBalances.map((tokenBalance, index) => (*/}
-                      {/*<SendOption key={index}*/}
-                                  {/*name={tokenBalance.name}*/}
-                                  {/*balance={tokenBalance.balance}/>*/}
-                  {/*))*/}
-                {/*}*/}
-              {/*</select>*/}
               <Select
                   onChange={this.handleTokenChange}
                   value={token}
-
               >
                 <OptGroup label={tu('TRC10_token')} key="TRC10">
                     {

@@ -8,11 +8,23 @@ export const tronAddresses = [
   '27WtBq2KoSy5v8VnVZBZHHJcDuWNiSgjbE3',
 ];
 
+export async function transactionTrxSign(transaction, tronWeb) {
+    console.log('transaction',transaction)
+    const signedTransaction = await tronWeb.trx.sign(transaction, tronWeb.defaultPrivateKey, true, true ).catch(e => {
+        console.log('e',e)
+        return false;
+    });
+    console.log('tronWeb.defaultPrivateKey',tronWeb.defaultPrivateKey)
+    console.log('signedTransaction',signedTransaction)
+    return signedTransaction;
+}
 
 export async function transactionResultManager(transaction, tronWeb) {
+    console.log('transaction222',transaction)
   const signedTransaction = await tronWeb.trx.sign(transaction, tronWeb.defaultPrivateKey).catch(e => {
     return false;
   });
+    console.log('signedTransaction222',signedTransaction)
   if (signedTransaction) {
     const broadcast = await tronWeb.trx.sendRawTransaction(signedTransaction);
     if (!broadcast.result) {
@@ -41,7 +53,10 @@ export async function transactionResultManagerSun(transaction, sunWeb) {
 }
 
 export async function transactionMultiResultManager(transaction, tronWeb, permissionId) {
+    console.log('permissionId',permissionId)
+    console.log('tronWeb',tronWeb)
     const signedTransaction = await tronWeb.trx.multiSign(transaction, tronWeb.defaultPrivateKey , permissionId).catch(e => {
+        console.log('e',e)
         return false;
     });
     return signedTransaction;
