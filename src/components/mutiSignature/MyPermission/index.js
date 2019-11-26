@@ -10,6 +10,7 @@ import OwnerEdit from '../PermissionEdit/owner'
 import ActiveEdit from '../PermissionEdit/active'
 import { isEqual, cloneDeep } from 'lodash'
 import { reloadWallet } from "../../../actions/wallet";
+import { deepCopy } from "ethers/utils";
 @connect(
     state => {
         return {
@@ -30,10 +31,14 @@ export default class MyPermission extends React.Component {
             isEditOperateUser: false,
             isEditContent: false,
             curControlAddress: wallet.current.address,
+            curLoginAddress: wallet.current.address,
             modal: null,
             ownerPermission: cloneDeep(ownerPermission) || null,
             activePermissions: cloneDeep(activePermissions) || [],
-            witnessPermission: cloneDeep(witnessPermission)
+            witnessPermission: cloneDeep(witnessPermission),
+            changedOwnerPermission: cloneDeep(ownerPermission),
+            changedActivePermission: cloneDeep(activePermissions),
+            changedWihnessPermission: cloneDeep(witnessPermission)
         }
     }
     async initState(nextProps) {
@@ -43,6 +48,7 @@ export default class MyPermission extends React.Component {
         //console.log('activePermissions222', activePermissions);
         this.setState({
             curControlAddress: wallet.current.address,
+            curLoginAddress: wallet.current.address,
             ownerPermission: cloneDeep(ownerPermission) || null,
             activePermissions: cloneDeep(activePermissions) || [],
             witnessPermission: cloneDeep(witnessPermission)
@@ -79,40 +85,37 @@ export default class MyPermission extends React.Component {
                 isEditOperateUser: false
             })
         } else {
+
+            isValid = tronWeb.isAddress(curControlAddress);
+            //校验是否合约地址
             try {
-                tronWeb.address.toHex(curControlAddress);
-                //校验是否合约地址
-                try {
-                    const contractInstance = await tronWeb.contract().at(curControlAddress)
-                    this.setState({
-                        modal: (
-                            <SweetAlert warning onConfirm={() => this.hideModal()} title='warn'>
-                                {'此地址为合约地址,不能设置'}
-                            </SweetAlert>
-                        )
-                    })
-                } catch (e) {
-                    isValid = true;
-
-                }
-                finally {
-                    this.setState({
-                        isEditOperateUser: false
-                    })
-                }
-
-
-            } catch (e) {
-                isValid = false;
+                const contractInstance = await tronWeb.contract().at(curControlAddress)
                 this.setState({
                     modal: (
-                        <SweetAlert warning onConfirm={() => this.hideModal()} title='warn' style={{ marginLeft: '-240px', marginTop: '-195px' }}>
-                            {e.toString()}
+                        <SweetAlert warning onConfirm={() => this.hideModal()} title='warn'>
+                            {'此地址为合约地址,不能设置'}
                         </SweetAlert>
                     )
                 })
+            } catch (e) {
+                isValid = true;
+
             }
-            if (!isValid) return;
+            finally {
+                this.setState({
+                    isEditOperateUser: false
+                })
+            }
+            if (!isValid) {
+                this.setState({
+                    modal: (
+                        <SweetAlert warning onConfirm={() => this.hideModal()} title='warn' style={{ marginLeft: '-240px', marginTop: '-195px' }}>
+                            {'Unverified address'}
+                        </SweetAlert>
+                    )
+                })
+                return;
+            }
             // todo tronWeb获取新地址权限并校验
             const res = await tronWeb.trx.getAccount(curControlAddress);
 
@@ -123,6 +126,7 @@ export default class MyPermission extends React.Component {
                 const isInKeys = keys.some(item => {
                     return tronWeb.address.fromHex(item.address) == wallet.current.address
                 })
+                console.log('isInkeys', isInKeys);
                 if (!isInKeys) {
                     isValid = false;
                     this.setState({
@@ -164,26 +168,27 @@ export default class MyPermission extends React.Component {
     componentDidMount(prevProps) {
 
     }
+
     changeOwnerPermission(changedOwnerPermission) {
         //console.log('changedOwnerPermission',changedOwnerPermission)
         this.setState({
-            ownerPermission: changedOwnerPermission
+            changedOwnerPermission: changedOwnerPermission
         })
     }
     changeActivePermission(changedActivePermission) {
         this.setState({
-            activePermissions: changedActivePermission
+            changedActivePermission: changedActivePermission
         })
     }
     comparePermissionIsChanged() {
         const { wallet } = this.props;
-        const { ownerPermission, activePermissions, witnessPermission, curControlAddress } = this.state;
+        const { changedOwnerPermission, changedActivePermission, changedWihnessPermission } = this.state;
         const oldOwnerPermission = wallet.current.ownerPermission;
         const oldActivePermission = wallet.current.activePermissions;
         const oldWitnessPersmission = wallet.current.witnessPermission;
-        let isEqualOwner = isEqual(oldOwnerPermission, ownerPermission);
-        let isEqualActive = isEqual(oldActivePermission, activePermissions);
-        let isEqualWitness = isEqual(oldWitnessPersmission, witnessPermission);
+        let isEqualOwner = isEqual(oldOwnerPermission, changedOwnerPermission);
+        let isEqualActive = isEqual(oldActivePermission, changedActivePermission);
+        let isEqualWitness = isEqual(oldWitnessPersmission, changedWihnessPermission);
         return isEqualOwner && isEqualActive && isEqualWitness;
     }
     validKeys(keysItem) {
@@ -193,14 +198,14 @@ export default class MyPermission extends React.Component {
         if (tronWeb.isAddress(item.address) && item.weight) {
             item.address = tronWeb.address.toHex(item.address);
             return true;
-        } 
-        return false;     
+        }
+        return false;
     }
 
     //点击保存
     async savePermission() {
         const { tronWeb } = this.props;
-        const { ownerPermission, activePermissions, witnessPermission, curControlAddress } = this.state;
+        const { changedOwnerPermission, changedActivePermission, changedWihnessPermission, curLoginAddress, curControlAddress } = this.state;
 
         if (this.comparePermissionIsChanged()) {
             this.setState({
@@ -209,19 +214,19 @@ export default class MyPermission extends React.Component {
             return false;
         }
 
-        ownerPermission.type = 0;
-        const threshold = ownerPermission.threshold;
+        changedOwnerPermission.type = 0;
+        const threshold = changedOwnerPermission.threshold;
         let sumOwnerKeysWeight = 0;
-        const validAllOwnerKeys =  ownerPermission.keys.every(item => {
-            if(!this.validKeys(item)){
-               // item.address = tronWeb.address.toHex(item.address);
+        const validAllOwnerKeys = changedOwnerPermission.keys.every(item => {
+            if (!this.validKeys(item)) {
+                // item.address = tronWeb.address.toHex(item.address);
                 return false
             }
-            sumOwnerKeysWeight+=item.weight;
+            sumOwnerKeysWeight += item.weight;
             return true
         })
-    
-        if(!validAllOwnerKeys){
+
+        if (!validAllOwnerKeys) {
             this.setState({
                 modal: (
                     <SweetAlert warning title="Update Permission" onConfirm={this.hideModal}>
@@ -232,8 +237,8 @@ export default class MyPermission extends React.Component {
             return;
         }
         //权重之和大于阈值
-    
-        if(sumOwnerKeysWeight<threshold){
+
+        if (sumOwnerKeysWeight < threshold) {
             this.setState({
                 modal: (
                     <SweetAlert warning title="Update Permission" onConfirm={this.hideModal}>
@@ -244,22 +249,22 @@ export default class MyPermission extends React.Component {
             return;
         }
         // active数据校验######################################################
-        console.log('activePermissions',activePermissions);
+        console.log('changedActivePermission', changedActivePermission);
         let isValidActivePermission = true;
-        for(let i=0;i<activePermissions.length;i++){
-            const acItem = activePermissions[i];
+        for (let i = 0; i < changedActivePermission.length; i++) {
+            const acItem = changedActivePermission[i];
             acItem.type = 2;
             let sumKeysWeight = 0;
             const acItemThreshold = acItem.threshold;
             const validActivePermissionKeys = acItem.keys.every(item => {
-                if(!this.validKeys(item)){
+                if (!this.validKeys(item)) {
                     isValidActivePermission = false;
-                     return false
-                 }
-                 sumKeysWeight+=item.weight;
-                 return true
+                    return false
+                }
+                sumKeysWeight += item.weight;
+                return true
             })
-            if(!validActivePermissionKeys){
+            if (!validActivePermissionKeys) {
                 this.setState({
                     modal: (
                         <SweetAlert warning title="Update Permission" onConfirm={this.hideModal}>
@@ -269,8 +274,8 @@ export default class MyPermission extends React.Component {
                 });
                 break;
             }
-            if(sumKeysWeight<acItemThreshold){
-                isValidActivePermission=false;
+            if (sumKeysWeight < acItemThreshold) {
+                isValidActivePermission = false;
                 this.setState({
                     modal: (
                         <SweetAlert warning title="Update Permission" onConfirm={this.hideModal}>
@@ -281,41 +286,71 @@ export default class MyPermission extends React.Component {
                 return;
             }
         }
-        if(!isValidActivePermission){console.log('active vliad failed');return}
+        if (!isValidActivePermission) { console.log('active vliad failed'); return }
 
-        const updateTransaction = await tronWeb.transactionBuilder.updateAccountPermissions(tronWeb.address.toHex(curControlAddress), ownerPermission, witnessPermission, activePermissions);
-        const signedTransaction = await tronWeb.trx.sign(updateTransaction);
-        //console.log(signedTransaction)
-        const res = await tronWeb.trx.broadcast(signedTransaction).catch(e => {
-            this.setState({
-                modal: (
-                    <SweetAlert warning title="Update Permission" onConfirm={this.hideModal}>
-                        {'update permission failed'}
-                    </SweetAlert>
-                )
-            });
-        });
-        if (res.result) {
-            this.setState({
-                modal: (
-                    <SweetAlert success title="Update Permission" onConfirm={this.hideModal}>
-                        {'update permission success'}
-                    </SweetAlert>
-                ),
-                isEditContent: false
-            }, async () => {
-                setTimeout(()=>{
-                     this.props.reloadWallet();
-                },500)
+        this.setState({
+            ownerPermission: deepCopy(changedOwnerPermission),
+            activePermissions: deepCopy(changedActivePermission),
+            witnessPermission: deepCopy(changedWihnessPermission)
+        }, async () => {
+            const { ownerPermission, activePermissions, witnessPermission } = this.state;
+            const UnmodifiedOwnerPermission = this.props.wallet.current.ownerPermission;
+            if (curControlAddress === curLoginAddress && UnmodifiedOwnerPermission.keys.length<2) {
+                const { ownerPermission, activePermissions, witnessPermission } = this.state;
+                const updateTransaction = await tronWeb.transactionBuilder.updateAccountPermissions(tronWeb.address.toHex(curLoginAddress), ownerPermission, witnessPermission, activePermissions);
+                const signedTransaction = await tronWeb.trx.sign(updateTransaction);
+                //console.log(signedTransaction)
+                const res = await tronWeb.trx.broadcast(signedTransaction).catch(e => {
+                    this.setState({
+                        modal: (
+                            <SweetAlert warning title="Update Permission" onConfirm={this.hideModal}>
+                                {'update permission failed'}
+                            </SweetAlert>
+                        )
+                    });
+                });
+                console.log('res',res);
+                if (res.result) {
+                    this.setState({
+                        modal: (
+                            <SweetAlert success title="Update Permission" onConfirm={this.hideModal}>
+                                {'update permission success'}
+                            </SweetAlert>
+                        ),
+                        isEditContent: false
+                    });
+
+                }else{
+                    this.setState({
+                        modal: (
+                            <SweetAlert warning title="Update Permission" onConfirm={this.hideModal}>
+                                {tronWeb.toUtf8(res.message)}
+                            </SweetAlert>
+                        ),
+                        isEditContent: false
+                    });
+                }
+            }else{
+                //走多重签名
                 
-            });
+                const updateTransaction = await tronWeb.transactionBuilder.updateAccountPermissions(tronWeb.address.toHex(curLoginAddress), ownerPermission, witnessPermission, activePermissions);
+                const signedTransaction = await tronWeb.trx.multiSign(updateTransaction,tronWeb.defaultPrivateKey,0);
+                console.log('signedTransaction',signedTransaction);
+            }
+        })
 
-        }
+
     }
     render() {
-        const { isEditOperateUser, isEditContent, curControlAddress, modal, } = this.state;
+        const { isEditOperateUser, isEditContent, curControlAddress, modal, curLoginAddress } = this.state;
         const { wallet, tronWeb } = this.props;
-        const { ownerPermission, activePermissions, witnessPermission } = wallet.current;
+        let permissionOrigin = null;
+        if (curControlAddress === curLoginAddress) {
+            permissionOrigin = wallet.current;
+        } else {
+            permissionOrigin = this.state;
+        }
+        const { ownerPermission, activePermissions, witnessPermission } = permissionOrigin;
         const witnessAddressIfIs = wallet.current.address;
         return (
             <main className='permission-main'>

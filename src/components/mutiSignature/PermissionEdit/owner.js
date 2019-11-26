@@ -62,7 +62,7 @@ export default class OwnerEdit extends Component{
     changeParentOwenrPermission(){
         const { changeOwnerPermission }=this.props;
         let {keys,threshold,permission_name} = this.state;
-        console.log('keys',keys);
+        //console.log('keys',keys);
         // keys = keys.filter(item=>{
         //     return item.address && item.weight
         // })
@@ -72,7 +72,7 @@ export default class OwnerEdit extends Component{
     render(){
         const {tronWeb } = this.props;
         const {keys,threshold,permission_name} = this.state;
-        console.log('render',keys);
+        //console.log('render',keys);
         const tableList = keys.map((item,index)=><tr className='edit-tr' key={index}>
             <td style={{paddingLeft:0}}><Input defaultValue={tronWeb.address.fromHex(item.address)} onChange={(e)=>{this.changeValue(index,1,e)}}/></td>
             <td><Input value={ item.weight } onChange={(e)=>{this.changeValue(index,2,e)}}/>
