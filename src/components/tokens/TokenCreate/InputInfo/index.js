@@ -45,6 +45,7 @@ export class TokenCreate extends Component {
         let {intl, account} = this.props;
         const {paramData: {author}, iconList, isUpdate} = this.state;
         if (account.address !== author) {
+            console.log(2)
             this.setState({
                 modal:
                     <SweetAlert

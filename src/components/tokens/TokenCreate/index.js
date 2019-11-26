@@ -325,6 +325,7 @@ export class TokenCreate extends Component {
     isAuthor = (author) => {
         let {intl, account} = this.props;
         if (account.address !== author) {
+            console.log(1)
             this.setState({
                 loading:false,
                 step:0,
