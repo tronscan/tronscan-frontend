@@ -120,7 +120,7 @@ class addressLinkClass extends React.PureComponent {
                   onCopy={() => {
                     message.success(
                       intl.formatMessage({ id: "contract_copy_success" }),
-                      2
+                      10
                     );
                   }}
                 >
@@ -267,7 +267,7 @@ class addressLinkClass extends React.PureComponent {
               onCopy={() => {
                 message.success(
                   intl.formatMessage({ id: "contract_copy_success" }),
-                  2
+                  100
                 );
               }}
             >
@@ -315,7 +315,7 @@ class addressLinkClass extends React.PureComponent {
             <i className="fa fa-qrcode" />
           </a>
         )}
-        {this.renderContextMenu(random)}
+        {!isContract && this.renderContextMenu(random)}
       </span>
     );
   }

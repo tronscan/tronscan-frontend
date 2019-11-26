@@ -246,3 +246,9 @@ export const ContractUseServiceTerms = loadable(() =>
     /* webpackChunkName: "ContractSourceCode" */ "./blockchain/Contract/UseServiceTerms"
   )
 );
+
+export const ContractLicense = loadable(() =>
+  import(
+    /* webpackChunkName: "ContractSourceCode" */ "./blockchain/Contract/License"
+  )
+);
