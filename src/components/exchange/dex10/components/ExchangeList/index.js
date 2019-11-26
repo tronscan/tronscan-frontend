@@ -49,8 +49,8 @@ class ExchangeList extends React.Component {
       min: "",
       sec: "",
       AdClose: true,
-      adURL: "https://trx.market/launchBase?utm_source=TS2",
-      adchURL: "https://trx.market/zh/launchBase?utm_source=TS2"
+      adURL: "https://poloniex.org/launchBase?utm_source=TS2",
+      adchURL: "https://poloniex.org/zh/launchBase?utm_source=TS2"
     };
   }
 
@@ -484,8 +484,8 @@ class ExchangeList extends React.Component {
           <div className="market-title">
             <div className="d-flex  justify-content-between align-items-center w-100 mb-3">
               <h6 className="m-0">
-                <a href="https://trx.market" target="_blank" className="">
-                  TRXMarket
+                <a href="https://poloniex.org" target="_blank" className="">
+                  POLONIDEX
                 </a>
               </h6>
 

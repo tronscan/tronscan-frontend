@@ -316,11 +316,11 @@ export const routes = [
     showInMenu: false
   },
   // {
-  //   path: "/TRXMarket",
-  //   label: "TRXMarket",
+  //   path: "/POLONIDEX",
+  //   label: "POLONIDEX",
   //   icon: "fas fa-rocket",
-  //   enurl: "https://trx.market",
-  //   zhurl: "https://trx.market",
+  //   enurl: "https://poloniex.org",
+  //   zhurl: "https://poloniex.org",
   //   linkHref: true
   // },
   // {
@@ -365,7 +365,7 @@ export const routes = [
     ]
   },
   {
-    label: "TRXMarket",
+    label: "POLONIDEX",
     path: "/exchange/trc20",
     icon: "fas fa-exchange-alt",
     component: Exchange20,
@@ -374,7 +374,7 @@ export const routes = [
     showInMenu: IS_MAINNET ? true : false
   },
   // {
-  //   label: "TRXMarket",
+  //   label: "POLONIDEX",
   //   path: "/exchange/:type",
   //   redirect: "/exchange/trc20",
   //   icon: "fas fa-exchange-alt",

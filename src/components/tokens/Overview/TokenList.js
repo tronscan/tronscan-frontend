@@ -700,7 +700,7 @@ class TokenList extends Component {
                     ></QuestionMark>
                   </span>{" "}
                   &nbsp;&nbsp;{" "}
-                  <Link to="/exchange/trc10">{t("Trade_on_TRXMarket")}></Link>
+                  <Link to="/exchange/trc10">{t("Trade_on_POLONIDEX")}></Link>
                 </div>
               ) : (
                 ""
