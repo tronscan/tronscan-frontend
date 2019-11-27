@@ -84,7 +84,7 @@ class Footer extends Component {
                     <HrefLink href="https://tron.network"> {tu('footer_tron_network')}</HrefLink>
                   </li>
                   <li>
-                    <HrefLink href="https://trx.market">{tu('exchange')}</HrefLink>
+                    <HrefLink href="https://poloniex.org">{tu('exchange')}</HrefLink>
                   </li>
                   <li>
                     <HrefLink href="https://www.tronlink.org"> {tu('wallet')}</HrefLink>
@@ -268,7 +268,7 @@ class Footer extends Component {
                     </HrefLink>
                   </li>
                   <li className="p-2">
-                    <HrefLink href="https://trx.market">
+                    <HrefLink href="https://poloniex.org">
                         {tu('exchange')}
                     </HrefLink>
                   </li>

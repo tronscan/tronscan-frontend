@@ -69,9 +69,9 @@ class ExchangeList extends React.Component {
       sec: "",
       AdClose: true,
       adURL:
-        "https://support.trx.market/hc/en-us/articles/360030644412-TRC20-USDT-Reloaded-with-Powerful-Aid-from-TRXMarket-15-000-USD-Awaits-",
+        "https://support.poloniex.org/hc/en-us/articles/360030644412-TRC20-USDT-Reloaded-with-Powerful-Aid-from-TRXMarket-15-000-USD-Awaits-",
       adchURL:
-        "https://support.trx.market/hc/zh-cn/articles/360030644412-TRXMarket%E5%8A%A9%E5%8A%9BTRC20-USDT%E9%87%8D%E8%A3%85%E4%B8%8A%E9%98%B5-%E6%83%8A%E5%96%9C%E6%94%BE%E9%80%8110%E4%B8%87%E4%BA%BA%E6%B0%91%E5%B8%81",
+        "https://support.poloniex.org/hc/zh-cn/articles/360030644412-TRXMarket%E5%8A%A9%E5%8A%9BTRC20-USDT%E9%87%8D%E8%A3%85%E4%B8%8A%E9%98%B5-%E6%83%8A%E5%96%9C%E6%94%BE%E9%80%8110%E4%B8%87%E4%BA%BA%E6%B0%91%E5%B8%81",
       activedId: 0,
       activedTab: "hot",
       priceObj: {},
@@ -352,8 +352,8 @@ class ExchangeList extends React.Component {
           <div className="d-flex  justify-content-between align-items-center w-100 tab-pr-100">
             {/* <h6 className="m-0">
               
-              <a href="https://trx.market" target="_blank" className="">
-                TRXMarket
+              <a href="https://poloniex.org" target="_blank" className="">
+                POLONIDEX
               </a>
             </h6> */}
 
@@ -361,8 +361,8 @@ class ExchangeList extends React.Component {
               <a
                 href={
                   intl.locale == "zh"
-                    ? "	https://support.trx.market/hc/zh-cn/requests/new"
-                    : "	https://support.trx.market/hc/en-us/requests/new"
+                    ? "	https://support.poloniex.org/hc/zh-cn/requests/new"
+                    : "	https://support.poloniex.org/hc/en-us/requests/new"
                 }
                 target="_bank"
                 className="pr-1 border-right border-light"
@@ -372,8 +372,8 @@ class ExchangeList extends React.Component {
               <a
                 href={
                   intl.locale == "zh"
-                    ? "https://support.trx.market/hc/zh-cn/categories/360001517211-%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98"
-                    : "https://support.trx.market/hc/en-us/categories/360001517211-FAQ"
+                    ? "https://support.poloniex.org/hc/zh-cn/categories/360001517211-%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98"
+                    : "https://support.poloniex.org/hc/en-us/categories/360001517211-FAQ"
                 }
                 target="_blank"
                 className="px-1 border-right  border-light"

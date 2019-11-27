@@ -559,19 +559,21 @@ class IssuedToken extends React.Component{
       const content = (
         <div className="ml-1">
           <span className="small">
-            {tu('address_total_balance_info_sources')}：
+            {tu("address_total_balance_info_sources")}：
           </span>
           <span className="small">
-              <HrefLink
-                  href={
-                      intl.locale == "zh"
-                          ? "https://trx.market/zh/"
-                          : "https://trx.market/"
-                  }
-              >TRXMarket</HrefLink>
+            <HrefLink
+              href={
+                intl.locale == "zh"
+                  ? "https://poloniex.org/zh/"
+                  : "https://poloniex.org/"
+              }
+            >
+              POLONIDEX
+            </HrefLink>
           </span>
         </div>
-      )
+      );
 
       // mapping button item
       const mappingBtnItem = (id, currency) => (
@@ -647,20 +649,20 @@ class IssuedToken extends React.Component{
                   </div>
                   <div className="tf-card__header-item">
                     <div className="tf-card__header-title">{tu('day_trade')} 
-                      <Popover  content={content} trigger="hover"><img width={15} height={15}  style={{marginLeft:5}} src={require("../../images/svg/market.png")} alt=""/></Popover>
+                      <Popover  content={content} trigger="hover"><img width={60} height={15}  style={{marginLeft:5}} src={require("../../images/svg/market.png")} alt=""/></Popover>
                     </div>
                     <div className="tf-card__header-text">-</div>
                     {/** <div className="dor-img"><img src={require("../../images/issuedasset/3.png")} alt=""/></div>*/}
                   </div>
                   <div className="tf-card__header-item">
                     <div className="tf-card__header-title">{tu('last_price')}
-                    <Popover  content={content} trigger="hover"><img width={15} height={15}  style={{marginLeft:5}} src={require("../../images/svg/market.png")} alt=""/></Popover></div>
+                    <Popover  content={content} trigger="hover"><img width={60} height={15}  style={{marginLeft:5}} src={require("../../images/svg/market.png")} alt=""/></Popover></div>
                     <div className="tf-card__header-text">-</div>
                     {/** <div className="dor-img"><img src={require("../../images/issuedasset/4.png")} alt=""/></div>*/}
                   </div>
                   <div className="tf-card__header-item">
                     <div className="tf-card__header-title">{tu('total_value')}
-                    <Popover  content={content} trigger="hover"><img width={15} height={15}  style={{marginLeft:5}} src={require("../../images/svg/market.png")} alt=""/></Popover></div>
+                    <Popover  content={content} trigger="hover"><img width={60} height={15}  style={{marginLeft:5}} src={require("../../images/svg/market.png")} alt=""/></Popover></div>
                     <div className="tf-card__header-text">-</div>
                     {/** <div className="dor-img"><img src={require("../../images/issuedasset/5.png")} alt=""/></div>*/}
                   </div>
@@ -830,17 +832,17 @@ class IssuedToken extends React.Component{
                       </div>
                       <div className="tf-card__header-item">
                         <div className="tf-card__header-title">{tu('day_trade')}
-                        <Popover  content={content} trigger="hover"><img width={15} height={15}  style={{marginLeft:5}} src={require("../../images/svg/market.png")} alt=""/></Popover></div>
+                        <Popover  content={content} trigger="hover"><img width={60} height={15}  style={{marginLeft:5}} src={require("../../images/svg/market.png")} alt=""/></Popover></div>
                         <div className="tf-card__header-text">-</div>
                       </div>
                       <div className="tf-card__header-item">
                         <div className="tf-card__header-title">{tu('last_price')}
-                        <Popover  content={content} trigger="hover"><img width={15} height={15}  style={{marginLeft:5}} src={require("../../images/svg/market.png")} alt=""/></Popover></div>
+                        <Popover  content={content} trigger="hover"><img width={60} height={15}  style={{marginLeft:5}} src={require("../../images/svg/market.png")} alt=""/></Popover></div>
                         <div className="tf-card__header-text">-</div>
                       </div>
                       <div className="tf-card__header-item">
                         <div className="tf-card__header-title">{tu('total_value')}
-                        <Popover  content={content} trigger="hover"><img width={15} height={15}  style={{marginLeft:5}} src={require("../../images/svg/market.png")} alt=""/></Popover></div>
+                        <Popover  content={content} trigger="hover"><img width={60} height={15}  style={{marginLeft:5}} src={require("../../images/svg/market.png")} alt=""/></Popover></div>
                         <div className="tf-card__header-text">-</div>
                       </div>
                     </div>

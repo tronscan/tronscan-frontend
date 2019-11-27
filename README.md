@@ -24,13 +24,13 @@
 * Node Tester
 * Transaction Debugger
 * Notifications
-* Market Information
+* POLONIDEX Information
 * News
 * Node Overview
 * Basic info browser
 * Quick search token
 * Web wallet
-* TRXMarket
+* POLONIDEX
 * DApp Recommend
 * Vote for SR
 * TRON Committee
