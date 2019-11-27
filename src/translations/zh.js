@@ -1200,7 +1200,7 @@ export const messages = {
   "contract_copy_success": "复制成功",
   "contract_source_code_title": "源代码",
   "contract_source_code_use": "使用说明",
-  "contracts_source-code-usage-terms":"源代码使用说明",
+  "contracts_source-code-usage-terms":"Source code instructions",
   "contract_source_code_match":"合约源代码已验证 (完全匹配)",
   "contract_source_code_p1":"At Tronscan we have a moral, ethical and legal obligation that the all contract source codes (a.k.a. end user data) provided to us is (1) only used within the scope of the services we provide and (2) usage governed in accordance to our general",
   "contract_source_code_p1_use_service":"Use and Service Terms.",

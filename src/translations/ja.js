@@ -1156,7 +1156,7 @@ export const messages = {
   "contract_copy_success": "コピー成功",
   "contract_source_code_title": "コードソース",
   "contract_source_code_use": "使用説明",
-  "contracts_source-code-usage-terms":"コードソース使用説明",
+  "contracts_source-code-usage-terms":"Source code instructions",
   "contract_source_code_match":"確認済みの契約",
    "contract_source_code_p1":"At Tronscan we have a moral, ethical and legal obligation that the all contract source codes (a.k.a. end user data) provided to us is (1) only used within the scope of the services we provide and (2) usage governed in accordance to our general",
    "contract_source_code_p1_use_service":"Use and Service Terms.",

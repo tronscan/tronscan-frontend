@@ -1159,7 +1159,7 @@
    "contract_copy_success": "تم النسخ بنجاح",
    "contract_source_code_title": "مصدر الكود",
    "contract_source_code_use": "تعليمات الاستخدام",
-   "contracts_source-code-usage-terms":"تعليمات الاستخدام لمصدر الكود",
+   "contracts_source-code-usage-terms":"Source code instructions",
    "contract_source_code_match":"تم التحقق من العقد",
    "contract_source_code_p1":"At Tronscan we have a moral, ethical and legal obligation that the all contract source codes (a.k.a. end user data) provided to us is (1) only used within the scope of the services we provide and (2) usage governed in accordance to our general",
    "contract_source_code_p1_use_service":"Use and Service Terms.",
