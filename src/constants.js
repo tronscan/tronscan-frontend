@@ -8,8 +8,10 @@ export const IS_TESTNET = process.env.NET === "testnet";
 export const IS_DESKTOP = process.env.DESKTOP === "true";
 
 export const NETURL = {
-  MAINNET: "https://tronscan.org",
-  SUNNET: "https://dappchain.tronscan.org"
+  // MAINNET: "https://tronscan.org",
+  // SUNNET: "https://dappchain.tronscan.org"
+  MAINNET: "http://18.217.215.94:61",
+  SUNNET: "http://18.217.215.94:62"
 };
 
 let { NET, NODE_ENV } = process.env;
@@ -24,7 +26,8 @@ if (NODE_ENV == "development") {
 } else {
   MAINNET = window.location.origin === NETURL.MAINNET;
   SUNNET = window.location.origin === NETURL.SUNNET;
-  NODEAPI = process.env.API_URL;
+  // NODEAPI = process.env.API_URL;
+  NODEAPI = "http://52.15.126.154:9017";
 }
 
 export let IS_MAINNET = MAINNET;
