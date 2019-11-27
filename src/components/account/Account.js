@@ -46,6 +46,7 @@ import Countdown from "react-countdown-now";
 import { isJSXEmptyExpression } from '@babel/types';
 import  MyPermission  from '../mutiSignature/MyPermission';
 
+
 @connect(
     state => {
       return {
@@ -2540,7 +2541,7 @@ export default class Account extends Component {
                             <MyPermission tronWeb={account.tronWeb}/>
                          </div>
                          <div className='muti-sign-my-signature' style={{display:isInMySignature?'block':'none'}}>
-                            我的签名模块
+                             <MySignature />
                          </div>
                       </div>
                     </div>

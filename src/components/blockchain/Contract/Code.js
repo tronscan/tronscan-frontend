@@ -204,6 +204,7 @@ class Code extends React.Component {
             currentTokens,
             contractVerifyState,
             loading } = this.state;
+        console.log('payableContractList',payableContractList)
         const { filter } = this.props;
         const { abi, name, compiler, optimizer } = contractInfoList;
         let tabContent;

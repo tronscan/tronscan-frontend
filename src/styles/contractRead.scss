@@ -23,14 +23,15 @@
 
   .search-btn {
     height: 30px;
-    width: 60px;
+    //width: 60px;
     line-height: 30px;
     text-align: center;
     cursor: pointer;
     border: 1px solid #aaa;
     border-radius: 4px;
     margin-bottom: 6px;
-
+    padding-left: 10px;
+    padding-right: 10px;
     &:hover {
       color: #C23631 !important;
       border: 1px solid #C23631;

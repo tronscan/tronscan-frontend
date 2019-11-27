@@ -67,8 +67,7 @@ class SendForm extends React.Component {
    */
   isValid = () => {
     let {from, to, token, amount,balance, permissionTime, permissionId} = this.state;
-    let {account} = this.props;
-    return isAddressValid(to) && isAddressValid(from) && token !== "" && balance >= amount && amount > 0 && to !== account.address && permissionTime && permissionId !== "";
+    return  isAddressValid(from) && permissionTime && permissionId !== "";
   };
 
   /**
@@ -616,7 +615,7 @@ class SendForm extends React.Component {
   renderFooter() {
 
     let {sendStatus, isLoading} = this.state;
-
+    let {onClose} = this.props;
     if (sendStatus === 'success') {
       return (
           <Alert color="success" className="text-center">
@@ -636,14 +635,15 @@ class SendForm extends React.Component {
     return (
         <Fragment>
 
-          {/*<Alert color="warning" className="text-center">*/}
-          {/*{tu("address_warning")}*/}
-          {/*</Alert>*/}
+        <button
+            type="button"
+            className="btn btn-default mr-2"
+            onClick={onClose}>{tu("trc20_cancel")}</button>
           <button
               type="button"
               disabled={!this.isValid() || isLoading}
-              className="btn btn-primary btn-block btn-lg"
-              onClick={this.confirmSend}>{tu("send")}</button>
+              className="btn btn-primary"
+              onClick={this.confirmSend}>{tu("trc20_confirm")}</button>
         </Fragment>
     )
   }
@@ -895,98 +895,98 @@ class SendForm extends React.Component {
                 </div>
             </div>
             {/*Receiver*/}
-          <div className="form-group">
-            <label>{tu("to")}</label>
-            <div className="input-group mb-3">
-              <input type="text"
-                     onChange={(ev) => this.setReceiverAddress(ev.target.value)}
-                     className={"form-control " + (!isToValid ? "is-invalid" : "")}
-                     value={to}/>
-              <div className="invalid-feedback">
-                {tu("fill_a_valid_address")}
-              </div>
-            </div>
-          </div>
-          {
-            (toAccount && toAccount.name) && <Alert color="info">
-              <b>{toAccount.name}</b>
-            </Alert>
-          }
-          <div className="form-group">
-            <label>{tu("token")}</label>
-            <div className="input-group mb-3"  style={{height:36}}>
-              <Select
-                  onChange={this.handleTokenChange}
-                  value={token}
-              >
-                <OptGroup label={tu('TRC10_token')} key="TRC10">
-                    {
-                        tokenBalances.map((tokenBalance, index) => (
-                            <Option value={tokenBalance.token_name_type} key={index}>
-                                <span> {tokenBalance.map_token_name}
-                                    {
-                                        tokenBalance.map_token_id !== '_'?
-                                            <span style={{fontSize:12,color:'#999',margin:'2px 4px 8px'}}>[ID:{tokenBalance.map_token_id}]</span>
-                                            :""
-                                    }
-                                    ({tokenBalance.map_amount} {intl.formatMessage({id: "available"})})</span>
+          {/*<div className="form-group">*/}
+            {/*<label>{tu("to")}</label>*/}
+            {/*<div className="input-group mb-3">*/}
+              {/*<input type="text"*/}
+                     {/*onChange={(ev) => this.setReceiverAddress(ev.target.value)}*/}
+                     {/*className={"form-control " + (!isToValid ? "is-invalid" : "")}*/}
+                     {/*value={to}/>*/}
+              {/*<div className="invalid-feedback">*/}
+                {/*{tu("fill_a_valid_address")}*/}
+              {/*</div>*/}
+            {/*</div>*/}
+          {/*</div>*/}
+          {/*{*/}
+            {/*(toAccount && toAccount.name) && <Alert color="info">*/}
+              {/*<b>{toAccount.name}</b>*/}
+            {/*</Alert>*/}
+          {/*}*/}
+          {/*<div className="form-group">*/}
+            {/*<label>{tu("token")}</label>*/}
+            {/*<div className="input-group mb-3"  style={{height:36}}>*/}
+              {/*<Select*/}
+                  {/*onChange={this.handleTokenChange}*/}
+                  {/*value={token}*/}
+              {/*>*/}
+                {/*<OptGroup label={tu('TRC10_token')} key="TRC10">*/}
+                    {/*{*/}
+                        {/*tokenBalances.map((tokenBalance, index) => (*/}
+                            {/*<Option value={tokenBalance.token_name_type} key={index}>*/}
+                                {/*<span> {tokenBalance.map_token_name}*/}
+                                    {/*{*/}
+                                        {/*tokenBalance.map_token_id !== '_'?*/}
+                                            {/*<span style={{fontSize:12,color:'#999',margin:'2px 4px 8px'}}>[ID:{tokenBalance.map_token_id}]</span>*/}
+                                            {/*:""*/}
+                                    {/*}*/}
+                                    {/*({tokenBalance.map_amount} {intl.formatMessage({id: "available"})})</span>*/}
 
-                            </Option>
-                        ))
-                    }
-                </OptGroup>
+                            {/*</Option>*/}
+                        {/*))*/}
+                    {/*}*/}
+                {/*</OptGroup>*/}
 
-                <OptGroup label={tu('TRC20_token')} key="TRC20">
-                    {
-                        tokens20.map((token, index) => (
-                            <Option value={token.token_name_type} key={index}>
-                                {/*<span>{token.name}</span>*/}
-                                {/*({token.token20_balance} {intl.formatMessage({id: "available"})})*/}
-                                {token.name} ({token.token20_balance_decimals} {intl.formatMessage({id: "available"})})
-                            </Option>
-                        ))
-                    }
-                </OptGroup>
-              </Select>
-            </div>
-          </div>
-          <div className="form-group">
-            <label>{tu("amount")}</label>
-            <div className="input-group mb-3">
-              <input type="number"
-                     onChange={(ev) => this.setAmount(ev.target.value)}
-                     className={"form-control " + (!isAmountValid ? "is-invalid" : "")}
-                     value={amount}
-                     placeholder={placeholder}
-              />
-              <div className="input-group-append">
-                <button className="btn btn-outline-secondary"
-                        type="button"
-                        onClick={this.setMaxAmount}>
-                  MAX
-                </button>
-              </div>
-              <div className="invalid-feedback">
-                {tu("fill_a_valid_number")}
-                {/* tu("insufficient_tokens") */}
-              </div>
-            </div>
-          </div>
+                {/*<OptGroup label={tu('TRC20_token')} key="TRC20">*/}
+                    {/*{*/}
+                        {/*tokens20.map((token, index) => (*/}
+                            {/*<Option value={token.token_name_type} key={index}>*/}
+                                {/*/!*<span>{token.name}</span>*!/*/}
+                                {/*/!*({token.token20_balance} {intl.formatMessage({id: "available"})})*!/*/}
+                                {/*{token.name} ({token.token20_balance_decimals} {intl.formatMessage({id: "available"})})*/}
+                            {/*</Option>*/}
+                        {/*))*/}
+                    {/*}*/}
+                {/*</OptGroup>*/}
+              {/*</Select>*/}
+            {/*</div>*/}
+          {/*</div>*/}
+          {/*<div className="form-group">*/}
+            {/*<label>{tu("amount")}</label>*/}
+            {/*<div className="input-group mb-3">*/}
+              {/*<input type="number"*/}
+                     {/*onChange={(ev) => this.setAmount(ev.target.value)}*/}
+                     {/*className={"form-control " + (!isAmountValid ? "is-invalid" : "")}*/}
+                     {/*value={amount}*/}
+                     {/*placeholder={placeholder}*/}
+              {/*/>*/}
+              {/*<div className="input-group-append">*/}
+                {/*<button className="btn btn-outline-secondary"*/}
+                        {/*type="button"*/}
+                        {/*onClick={this.setMaxAmount}>*/}
+                  {/*MAX*/}
+                {/*</button>*/}
+              {/*</div>*/}
+              {/*<div className="invalid-feedback">*/}
+                {/*{tu("fill_a_valid_number")}*/}
+                {/*/!* tu("insufficient_tokens") *!/*/}
+              {/*</div>*/}
+            {/*</div>*/}
+          {/*</div>*/}
 
-          <div className="form-group">
-            <label>{tu("note")}</label>
-            <div className="input-group mb-3">
-            <textarea
-                onChange={(ev) => this.setNote(ev.target.value)}
-                className={"form-control"}
-                value={note}
-            />
-              <div className="invalid-feedback">
-                {tu("fill_a_valid_address")}
-                {/* tu("invalid_address") */}
-              </div>
-            </div>
-          </div>
+          {/*<div className="form-group">*/}
+            {/*<label>{tu("note")}</label>*/}
+            {/*<div className="input-group mb-3">*/}
+            {/*<textarea*/}
+                {/*onChange={(ev) => this.setNote(ev.target.value)}*/}
+                {/*className={"form-control"}*/}
+                {/*value={note}*/}
+            {/*/>*/}
+              {/*<div className="invalid-feedback">*/}
+                {/*{tu("fill_a_valid_address")}*/}
+                {/*/!* tu("invalid_address") *!/*/}
+              {/*</div>*/}
+            {/*</div>*/}
+          {/*</div>*/}
           {this.renderFooter()}
         </form>
     )

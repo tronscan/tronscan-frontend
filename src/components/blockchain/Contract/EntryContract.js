@@ -7,6 +7,7 @@ import { formatOutput, formatInput } from '../../../utils/readContract'
 import SweetAlert from "react-bootstrap-sweetalert";
 import TokenBalanceSelect from "../../common/TokenBalanceSelect";
 import JSONTree from 'react-json-tree'
+import SendMultiModal from "../../common/MultiModal/SendModal";
 
 const { Panel } = Collapse;
 // const { Option } = Select;
@@ -42,9 +43,9 @@ class Code extends React.Component {
     let { contract } = this.state
     const { tronWeb } = this.props.account;
     if ( account.isLoggedIn ) {
-      let addressHex = tronWeb.address.toHex(address)
-      
+      let addressHex = tronWeb.address.toHex(address);
       let initContract = await tronWeb.contract([contractItem], addressHex)
+        console.log('initContract',initContract)
       this.setState({
         contract: initContract
       }, () => {
@@ -55,6 +56,7 @@ class Code extends React.Component {
   componentDidUpdate(prevProps, prevState) {
     // this.submitValueFormat()
   }
+
 
   isLoggedIn = () => {
     let { account, intl } = this.props;
@@ -96,6 +98,7 @@ class Code extends React.Component {
       //bytes input
       submitValueFormat.push(formatInput(inputValue, inputType));
     }
+    console.log('submitValueFormat',submitValueFormat)
     return submitValueFormat;
   }
 
@@ -160,7 +163,16 @@ class Code extends React.Component {
       return "No value return";
     }
   }
-
+    hideModal = () => {
+        this.setState({modal: null});
+    };
+    MultiSend = () => {
+        this.setState({
+            modal: (
+                <SendMultiModal onClose={this.hideModal}/>
+            )
+        });
+    };
 
   Mul (arg1, arg2) {
       let r1 = arg1.toString(), r2 = arg2.toString(), m, resultVal, d = arguments[2];
@@ -168,6 +180,62 @@ class Code extends React.Component {
       resultVal = Number(r1.replace(".", "")) * Number(r2.replace(".", "")) / Math.pow(10, m);
       return typeof d !== "number" ? Number(resultVal) : Number(resultVal.toFixed(parseInt(d)));
   }
+  // async MultiSend () {
+  //       const { tokenId, totalValue, contract ,sendTokenDecimals } = this.state
+  //       const { contractItem, intl } = this.props;
+  //       const { tronWeb } = this.props.account;
+  //       if (this.isLoggedIn()) {
+  //           try {
+  //               let options = {};
+  //               if (!tokenId || tokenId == '_') {
+  //                   options = { callValue: this.Mul(totalValue,Math.pow(10, sendTokenDecimals)) };
+  //               } else {
+  //                   options = {
+  //                       tokenId: tokenId,
+  //                       tokenValue: this.Mul(totalValue,Math.pow(10, sendTokenDecimals))
+  //                   };
+  //               }
+  //               console.log('options',options)
+  //
+  //               let signedTransaction = await contract[contractItem.name](
+  //                   ...this.submitValueFormat()
+  //               ).send(options)
+  //
+  //               let retValue = await this.getTxResult(signedTransaction);
+  //               this.setState({
+  //                   result: this.formatOutputs(retValue)
+  //               })
+  //           } catch (e) {
+  //               if (e.error == "REVERT opcode executed") {
+  //                   var res = e.output["contractResult"][0];
+  //                   let result =
+  //                       "REVERT opcode executed. " +
+  //                       (res == ""
+  //                           ? ""
+  //                           : "Message: " +
+  //                           tronWeb
+  //                               .toUtf8(res.substring(res.length - 64, res.length))
+  //                               .trim());
+  //                   this.setState({
+  //                       result: result
+  //                   })
+  //               } else {
+  //                   this.setState({
+  //                       result: JSON.stringify(e)
+  //                       // modal: <SweetAlert
+  //                       //   warning
+  //                       //   title={e}
+  //                       //   confirmBtnText={intl.formatMessage({ id: 'confirm' })}
+  //                       //   confirmBtnBsStyle="danger"
+  //                       //   onConfirm={() => this.setState({ modal: null })}
+  //                       //   style={{ marginLeft: '-240px', marginTop: '-195px' }}
+  //                       // >
+  //                       // </SweetAlert>
+  //                   })
+  //               }
+  //           }
+  //       }
+  //   }
 
   async Send () {
     const { tokenId, totalValue, contract ,sendTokenDecimals } = this.state
@@ -184,9 +252,12 @@ class Code extends React.Component {
               tokenValue: this.Mul(totalValue,Math.pow(10, sendTokenDecimals))
             };
           }
+        console.log('options',options)
+
         let signedTransaction = await contract[contractItem.name](
           ...this.submitValueFormat()
         ).send(options)
+
         let retValue = await this.getTxResult(signedTransaction);
         this.setState({
           result: this.formatOutputs(retValue)
@@ -323,7 +394,11 @@ class Code extends React.Component {
             }
             
           </div>
-          <div className="search-btn" onClick={() => this.Send()}>Send</div>
+          <div className="d-flex">
+              <div className="search-btn" onClick={() => this.Send()}>Send</div>
+              <div className="search-btn ml-2" onClick={() => this.MultiSend()}>Multi Send</div>
+          </div>
+
             {
                 result && <JSONTree data={result}  theme={theme} invertTheme={true} hide/>
             }
@@ -334,7 +409,10 @@ class Code extends React.Component {
       // Run these functions will consume Trx or Energy
       contractList = (
         <div>
-          <div className="search-btn" onClick={() => this.Send()}>Send</div>
+            <div className="d-flex">
+                <div className="search-btn ml-5" onClick={() => this.Send()}>Send</div>
+                <div className="search-btn ml-2" onClick={() => this.MultiSend()}>Multi Send</div>
+            </div>
             {
                 result && <JSONTree data={result}  theme={theme} invertTheme={true}/>
             }

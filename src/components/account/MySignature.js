@@ -18,6 +18,8 @@ import { Popover, Button, Tooltip as AntdTip } from 'antd';
 import { IS_SUNNET, IS_MAINNET } from './../../constants';
 import SweetAlert from 'react-bootstrap-sweetalert';
 import SmartTable from "../common/SmartTable.js"
+import TotalInfo from "../common/TableTotal";
+import Countdown from "react-countdown-now";
 import {ContractTypes} from "../../utils/protocol";
 
 class MySignature extends React.Component{
@@ -25,12 +27,44 @@ class MySignature extends React.Component{
         super();
         this.state = {
             modal: null,
+            total:0,
+            data:[],
+            //0-签名中，1-签名交易完成， 2-交易过期/处理失败
             filter: {
-                direction:'all'
+                direction:0
             },
-
         };
     }
+
+    componentDidMount() {
+        this.load()
+    }
+
+
+    load = async (page = 1, pageSize = 20) => {
+        let { wallet } = this.props;
+        console.log('wallet',wallet)
+        console.log('wallet222',wallet.address)
+        let { filter } = this.state;
+        let { data:{data} } = await xhr.get("https://testlist.tronlink.org/api/wallet/multi/trx_record", {params: {
+            "address": wallet.address,
+            "start": (page - 1) * pageSize,
+            "state": filter.direction,
+            "limit": pageSize,
+            "netType":"shasta"
+        }});
+        let signatureList = data.data;
+        let total = data.total;
+        console.log('signatureList',signatureList)
+        console.log('total',total)
+
+        this.setState({
+            page,
+            data:signatureList,
+            total:total,
+            loading: false,
+        });
+    };
 
     onRadioChange = (e) => {
         this.setState({
@@ -45,35 +79,33 @@ class MySignature extends React.Component{
         let column = [
             {
                 title: upperFirst(intl.formatMessage({id: 'signature_type'})),
-                dataIndex: 'hash',
-                key: 'hash',
+                dataIndex: 'contractType',
+                key: 'contractType',
                 align: 'left',
                 className: 'ant_table',
                 render: (text, record, index) => {
-                    return <span>{ContractTypes[text]}</span>
+                    return <span>{text}</span>
                 }
             },
             {
                 title: upperFirst(intl.formatMessage({id: 'signature_sponsor'})),
-                dataIndex: 'timestamp',
-                key: 'timestamp',
+                dataIndex: 'originatorAddress',
+                key: 'originatorAddress',
                 align: 'left',
                 className: 'ant_table',
                 width: '14%',
                 render: (text, record, index) => {
-                    return <span></span>
-                    // <TimeAgo date={text} title={moment(text).format("MMM-DD-YYYY HH:mm:ss A")}/>
+                    return <AddressLink address={text}>{text}</AddressLink>
                 }
             },
             {
                 title: upperFirst(intl.formatMessage({id: 'signature_time_left'})),
-                dataIndex: 'contractType',
-                key: 'contractType',
-                align: 'right',
-                width: '20%',
-                className: 'ant_table _text_nowrap',
+                dataIndex: 'expireTime',
+                key: 'expireTime',
+                align: 'center',
+                className: 'ant_table',
                 render: (text, record, index) => {
-                    return <span></span>
+                    return <Countdown date={Date.now() + text*1000} daysInHours={true}/>
                 }
             },
             {
@@ -110,8 +142,10 @@ class MySignature extends React.Component{
         return column;
     }
 
+
     render() {
-       let {transfers, filter, total, rangeTotal = 0, loading, emptyState: EmptyState = null} = this.state;
+       let {data, filter, total, rangeTotal = 0, loading, emptyState: EmptyState = null} = this.state;
+       console.log('data',data)
        let column = this.customizedColumn();
        return (
            <Fragment>
@@ -136,15 +170,17 @@ class MySignature extends React.Component{
                                    </div>
                                }
                                <div className="token_black table_pos">
-                                    {/*<TotalInfo total={total}  rangeTotal={rangeTotal} typeText="transactions_unit" common={!address} top={(!contract)? '-28px': '10px'} selected/>*/}
-                                   {/*
-                                        (!loading && transactions.length === 0)?
+                                   <TotalInfo total={total}  typeText="transactions_unit"/>
+                                   {
+                                       (!loading && data.length === 0 )?
                                            <div className="p-3 text-center no-data">{tu("no_transactions")}</div>:
-                                           <SmartTable bordered={true} loading={loading} column={column} data={} total={20}
+                                           <SmartTable bordered={true} loading={loading} column={column} data={data} total={20}
                                                        onPageChange={(page, pageSize) => {
-                                                           this.loadTransactions(page, pageSize)
+                                                           this.load(page, pageSize)
                                                        }}/>
-                                  */ }
+                                   }
+
+
 
                                </div>
                            </div>
@@ -159,7 +195,7 @@ class MySignature extends React.Component{
 function mapStateToProps(state) {
     return {
         account: state.app.account,
-        wallet: state.wallet,
+        wallet: state.wallet.current,
         walletType: state.app.wallet,
         currentWallet: state.wallet.current,
         activeLanguage: state.app.activeLanguage,

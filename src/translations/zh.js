@@ -2279,5 +2279,6 @@ export const messages = {
   "signature_operate":"操作",
   "signature_status":"状态",
   "signature_account":"待签名人",
+  "no_control_permission":"没有该地址的控制权限，请确认后重试",
 
 };
