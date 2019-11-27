@@ -11,6 +11,10 @@ import ActiveEdit from '../PermissionEdit/active'
 import { isEqual, cloneDeep } from 'lodash'
 import { reloadWallet } from "../../../actions/wallet";
 import { deepCopy } from "ethers/utils";
+import {transactionMultiResultManager} from '../../../utils/tron'
+import {buildAccountPermissionUpdateContract} from'@tronscan/client/src/utils/transactionBuilder'
+// import xhr from "axios";
+import {postMutiSignTransaction} from '../../../services/apiMutiSign'
 @connect(
     state => {
         return {
@@ -334,14 +338,39 @@ export default class MyPermission extends React.Component {
                 //走多重签名
                 
                 const updateTransaction = await tronWeb.transactionBuilder.updateAccountPermissions(tronWeb.address.toHex(curLoginAddress), ownerPermission, witnessPermission, activePermissions);
-                const signedTransaction = await tronWeb.trx.multiSign(updateTransaction,tronWeb.defaultPrivateKey,0);
-                console.log('signedTransaction',signedTransaction);
+                console.log('updateTransaction',JSON.stringify(updateTransaction));
+                //const signedTransaction = await tronWeb.trx.multiSign(updateTransaction,tronWeb.defaultPrivateKey,0);
+                const value = updateTransaction.raw_data.contract[0].parameter.value;
+                const hexStr = buildAccountPermissionUpdateContract(value);
+                console.log('hexStr',hexStr);
+                const signedTransaction = await transactionMultiResultManager(updateTransaction,tronWeb,0,1,hexStr);
+                let { data } = await postMutiSignTransaction(curLoginAddress,signedTransaction);
+                const result = data.code;
+                if(result===0){
+                    this.setState({
+                        modal: (
+                            <SweetAlert success title="" onConfirm={this.hideModal}>
+                                {'success transaction'}
+                            </SweetAlert>
+                        ),
+                        isEditContent: false
+                    });
+                }else{
+                    this.setState({
+                        modal: (
+                            <SweetAlert success title="" onConfirm={this.hideModal}>
+                                {'failed transaction'}
+                            </SweetAlert>
+                        )
+                    });
+                }
             }
         })
 
 
     }
     render() {
+        console.log('getClientEnvironment',getClientEnvironment())
         const { isEditOperateUser, isEditContent, curControlAddress, modal, curLoginAddress } = this.state;
         const { wallet, tronWeb } = this.props;
         let permissionOrigin = null;
