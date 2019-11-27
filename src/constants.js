@@ -22,12 +22,12 @@ let NODEAPI;
 if (NODE_ENV == "development") {
   MAINNET = Lockr.get("NET") === "mainnet" || !Lockr.get("NET");
   SUNNET = Lockr.get("NET") === "sunnet";
-  NODEAPI = "http://52.15.126.154:9017";
+  NODEAPI = "http://52.15.126.154:9016";
 } else {
   MAINNET = window.location.origin === NETURL.MAINNET;
   SUNNET = window.location.origin === NETURL.SUNNET;
   // NODEAPI = process.env.API_URL;
-  NODEAPI = "http://52.15.126.154:9017";
+  NODEAPI = "http://52.15.126.154:9016";
 }
 
 export let IS_MAINNET = MAINNET;
