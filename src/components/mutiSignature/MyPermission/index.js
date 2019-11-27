@@ -336,7 +336,6 @@ export default class MyPermission extends React.Component {
                 }
             }else{
                 //走多重签名
-                
                 const updateTransaction = await tronWeb.transactionBuilder.updateAccountPermissions(tronWeb.address.toHex(curLoginAddress), ownerPermission, witnessPermission, activePermissions);
                 console.log('updateTransaction',JSON.stringify(updateTransaction));
                 //const signedTransaction = await tronWeb.trx.multiSign(updateTransaction,tronWeb.defaultPrivateKey,0);
@@ -344,7 +343,7 @@ export default class MyPermission extends React.Component {
                 const hexStr = buildAccountPermissionUpdateContract(value);
                 console.log('hexStr',hexStr);
                 const signedTransaction = await transactionMultiResultManager(updateTransaction,tronWeb,0,1,hexStr);
-                let { data } = await postMutiSignTransaction(curLoginAddress,signedTransaction);
+                let data = await postMutiSignTransaction(curLoginAddress,signedTransaction);
                 const result = data.code;
                 if(result===0){
                     this.setState({
@@ -370,7 +369,6 @@ export default class MyPermission extends React.Component {
 
     }
     render() {
-        console.log('getClientEnvironment',getClientEnvironment())
         const { isEditOperateUser, isEditContent, curControlAddress, modal, curLoginAddress } = this.state;
         const { wallet, tronWeb } = this.props;
         let permissionOrigin = null;

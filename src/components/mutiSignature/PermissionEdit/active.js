@@ -213,7 +213,7 @@ export default class ActiveEdit extends Component {
                                         <tbody>
                                             {
                                                 item.keys.map((itemKey, index) => {
-                                                    return <tr key={index}>
+                                                    return <tr key={index} className='edit-tr'>
                                                         <td style={{ paddingLeft: 0 }}><Input value={tronWeb.address.fromHex(itemKey.address)} onChange={(e) => { this.changeValue(acIndex, index, 1, e) }} /></td>
                                                         <td><Input value={itemKey.weight} onChange={(e) => { this.changeValue(acIndex, index, 2, e) }} />
                                                             <a href="javascript:;" className='cac-btn minus' onClick={(e) => { this.removeKeysItem(acIndex, index) }}>-</a>
@@ -231,15 +231,15 @@ export default class ActiveEdit extends Component {
 
                     }
                     <Modal
-                        title="Basic Modal"
+                        title="Modify Permission"
                         visible={modal}
-                        width='530px'
                         onCancel={this.hideModal}
                         onOk={this.Ok.bind(this)}
+                        wrapClassName='permission-modal'
                         >
                         
                         <div className="permission-edit-check">
-                            <h4>Modify Permission</h4>
+                            {/* <h4>Modify Permission</h4> */}
                             <Checkbox.Group style={{ width: '100%' }} onChange={this.onChangeCheck.bind(this)} value={hasContractIds}>
                                 {
                                     allPermissions.map(item => {

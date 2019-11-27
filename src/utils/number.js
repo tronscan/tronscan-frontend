@@ -110,7 +110,13 @@ export function toThousands(num) {
 export function toNumber(value){
   const regNum = /^[1-9][0-9]*$/;
   if ((!Number.isNaN(value) && regNum.test(value))) {
-    return parseInt(value);
+    if(parseInt(value)>100){
+      return 100;
+    }else if(parseInt(value)===0){
+      return 1;
+    }else{
+      return parseInt(value);
+    }
   }else{
     return '';
   }

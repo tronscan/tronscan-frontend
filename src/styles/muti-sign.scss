@@ -268,5 +268,53 @@
             min-width: 125px;
             display: inline-block;
         }
+        .ant-modal-body{
+            padding:20px;
+        }
+        .ant-modal-footer{
+            .ant-btn-primary{
+                background: #C23631!important;
+                border-color: #C23631;
+            }
+        }
+    }
+}
+
+.permission-modal{
+    .ant-modal-footer{
+        .ant-btn{
+        
+            color:#666666;
+            &:hover,&:focus{
+                background-color: #fff;
+                border-color: #D8D8D8;
+            }
+            &:hover span, &:focus span{
+                color: rgba(0,0,0,0.65)!important;
+            }
+            
+        }
+        .ant-btn-primary{
+            background:#c43127;
+            border:#c43127;
+            color:#fff!important;
+            &:hover,&:focus{
+                background-color: #D0021B;
+                border-color: #D0021B;
+            }
+            &:hover span, &:focus span{
+                color:#fff!important;
+            }
+
+        }
+    }
+    .ant-modal-content{
+        width:600px;
+    }
+    .ant-modal-body{
+        padding:20px;
+        .permission-edit-item{
+            margin-top:10px;
+        }
     }
 }
