@@ -8,6 +8,7 @@ import MonacoEditor from 'react-monaco-editor';
 import xhr from 'axios/index';
 import SweetAlert from 'react-bootstrap-sweetalert';
 import CompilerConsole from './CompilerConsole';
+import {Link} from "react-router-dom"
 import { API_URL, CONTRACT_NODE_API, FILE_MAX_SIZE, FILE_MAX_NUM } from '../../../constants';
 
 import cx from 'classnames';
@@ -15,7 +16,7 @@ import cx from 'classnames';
 import UPLOADICON from './../../../images/compiler/upload_icon.png';
 
 import {
-    Form, Row, Col, Input, Select, Button, Upload
+    Form, Row, Col, Input, Select, Button, Upload, Icon
 } from 'antd';
 const { Option } = Select;
 
@@ -411,7 +412,7 @@ class VerifyContractCode extends Component {
 
         // 合约地址
         const contractAddsItem = (
-            <Col span={12}>
+            <Col span={11}>
                 <Form.Item label={tu('contract_address')} {...formItemLayout}>
                     {getFieldDecorator('contractAddress', {})(
                         <Input placeholder={intl.formatMessage({ id: 'contract_address' })}/>
@@ -422,7 +423,7 @@ class VerifyContractCode extends Component {
 
         // 合约名称
         const contractNameItem = (
-            <Col span={12}>
+            <Col span={11}>
                 <Form.Item label={tu('contract_name')}  {...formItemLayout}>
                     {getFieldDecorator('contractName', {})(
                         <Input placeholder={intl.formatMessage({ id: 'enter_main_contract' })}/>
@@ -433,7 +434,7 @@ class VerifyContractCode extends Component {
 
         // 编译器版本
         const compilerVersionItem = (
-            <Col span={12}>
+            <Col span={11}>
                 <Form.Item label={tu('compiler')} {...formItemLayout}>
                     {getFieldDecorator('compiler', {
                         initialValue: deaultCompiler
@@ -450,7 +451,7 @@ class VerifyContractCode extends Component {
 
         // 优化Item
         const optimizerItem = (
-            <Col span={12}>
+            <Col span={11}>
                 <Form.Item label={tu('contract_optimization')} {...formItemLayout}>
                     {getFieldDecorator('optimizer', {
                         initialValue: '1'
@@ -466,7 +467,7 @@ class VerifyContractCode extends Component {
 
         // runItem
         const runItem = (
-            <Col span={12} style={{ marginBottom: '-1.5em' }}>
+            <Col span={11} style={{ marginBottom: '-1.5em' }}>
                 <Form.Item label={tu('runs')} {...formItemLayout}>
                     {getFieldDecorator('runs', {
                         initialValue: '0'
@@ -480,9 +481,16 @@ class VerifyContractCode extends Component {
             </Col>
         );
         //license
+        const licenseTitle = (
+            <div>
+                <Link to="/contracts/license">
+                    {tu('contract_v_license')}
+                </Link>:
+            </div>
+        )
         const license = (
-            <Col span={12} style={{ marginBottom: '-1.5em' }}>
-                <Form.Item label={tu('contract_license')} {...formItemLayout}>
+            <Col span={11} style={{ marginBottom: '-1.5em' }}>
+                <Form.Item label={licenseTitle} {...formItemLayout}>
                     {getFieldDecorator('license')(
                         <Select className="w-100" dropdownMatchSelectWidth={false} placeholder={tu('select_license')}>
                             {licenses.map((license, index) => {
