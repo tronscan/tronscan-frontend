@@ -175,7 +175,7 @@
   "scripts": {
     "start": "node scripts/start.js",
     "start:testnet": "NET=testnet API_URL=https://testapi.tronscan.org yarn start",
-    "build": "GENERATE_SOURCEMAP=false node scripts/build.js",
+    "build": "GENERATE_SOURCEMAP=false API_URL=https://api.tronscan.org node scripts/build.js",
     "desktop:build": "GENERATE_SOURCEMAP=false API_URL=https://api.tronscan.org DESKTOP=true yarn run build",
     "desktop:prepare": "rm -rf ./build-native && mkdir build-native && cp desktop/* build-native/ && cp -r ./build/* build-native/",
     "desktop:build:win": "electron-packager ./build-native Tronscan --platform=win32 --out=build-desktop --asar --overwrite",
