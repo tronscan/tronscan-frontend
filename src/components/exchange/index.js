@@ -75,8 +75,8 @@ class Exchange extends React.Component {
               <a
                 href={
                   lg == "CN"
-                    ? "https://support.trx.market/hc/zh-cn/categories/360001523732-Announcements"
-                    : "https://support.trx.market/hc/en-us/categories/360001523732-Announcements"
+                    ? "https://support.poloniex.org/hc/zh-cn/categories/360001523732-Announcements"
+                    : "https://support.poloniex.org/hc/en-us/categories/360001523732-Announcements"
                 }
                 target="_blank"
               >

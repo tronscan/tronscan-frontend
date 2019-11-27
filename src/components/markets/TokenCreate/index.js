@@ -119,6 +119,17 @@ export class TokenCreate extends Component {
             return;
         } else {
             if (!this.isAuthor(token.ownerAddress)){
+                this.setState({
+                    modal: <SweetAlert
+                    error
+                    confirmBtnText={intl.formatMessage({ id: 'confirm' })}
+                    confirmBtnBsStyle="success"
+                    onConfirm={this.hideModal}
+                    style={{ marginLeft: '-240px', marginTop: '-195px' }}
+                >
+                    {tu('token_create_auther_different')}
+                </SweetAlert>
+                })
                 return;
             }
         }
@@ -165,6 +176,17 @@ export class TokenCreate extends Component {
             return;
         } else {
             if (!this.isAuthor(token.issue_address)){
+                this.setState({
+                    modal: <SweetAlert
+                    error
+                    confirmBtnText={intl.formatMessage({ id: 'confirm' })}
+                    confirmBtnBsStyle="success"
+                    onConfirm={this.hideModal}
+                    style={{ marginLeft: '-240px', marginTop: '-195px' }}
+                >
+                    {tu('token_create_auther_different')}
+                </SweetAlert>
+                })
                 return;
             }
         }
@@ -224,15 +246,15 @@ export class TokenCreate extends Component {
             this.setState({
                 loading: false,
                 step: 0,
-                modal: <SweetAlert
-                    error
-                    confirmBtnText={intl.formatMessage({ id: 'confirm' })}
-                    confirmBtnBsStyle="success"
-                    onConfirm={this.hideModal}
-                    style={{ marginLeft: '-240px', marginTop: '-195px' }}
-                >
-                    {tu('token_create_auther_different')}
-                </SweetAlert>
+                // modal: <SweetAlert
+                //     error
+                //     confirmBtnText={intl.formatMessage({ id: 'confirm' })}
+                //     confirmBtnBsStyle="success"
+                //     onConfirm={this.hideModal}
+                //     style={{ marginLeft: '-240px', marginTop: '-195px' }}
+                // >
+                //     {tu('token_create_auther_different')}
+                // </SweetAlert>
             });
             return false;
         }

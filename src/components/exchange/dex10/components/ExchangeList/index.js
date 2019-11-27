@@ -49,8 +49,8 @@ class ExchangeList extends React.Component {
       min: "",
       sec: "",
       AdClose: true,
-      adURL: "https://trx.market/launchBase?utm_source=TS2",
-      adchURL: "https://trx.market/zh/launchBase?utm_source=TS2"
+      adURL: "https://poloniex.org/launchBase?utm_source=TS2",
+      adchURL: "https://poloniex.org/zh/launchBase?utm_source=TS2"
     };
   }
 
@@ -484,8 +484,8 @@ class ExchangeList extends React.Component {
           <div className="market-title">
             <div className="d-flex  justify-content-between align-items-center w-100 mb-3">
               <h6 className="m-0">
-                <a href="https://trx.market" target="_blank" className="">
-                  TRXMarket
+                <a href="https://poloniex.org" target="_blank" className="">
+                  POLONIDEX
                 </a>
               </h6>
 
@@ -493,8 +493,8 @@ class ExchangeList extends React.Component {
                 <a
                   href={
                     intl.locale == "zh"
-                      ? "https://support.trx.market/hc/zh-cn/requests/new"
-                      : "https://support.trx.market/hc/en-us/requests/new"
+                      ? "https://support.poloniex.org/hc/zh-cn/requests/new"
+                      : "https://support.poloniex.org/hc/en-us/requests/new"
                   }
                   target="_blank"
                   className="pr-1 border-right border-light"
@@ -504,8 +504,8 @@ class ExchangeList extends React.Component {
                 <a
                   href={
                     intl.locale == "zh"
-                      ? "https://support.trx.market/hc/zh-cn/categories/360001517211-%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98"
-                      : "https://support.trx.market/hc/en-us/categories/360001517211-FAQ"
+                      ? "https://support.poloniex.org/hc/zh-cn/categories/360001517211-%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98"
+                      : "https://support.poloniex.org/hc/en-us/categories/360001517211-FAQ"
                   }
                   target="_blank"
                   className="px-1 border-right  border-light"
