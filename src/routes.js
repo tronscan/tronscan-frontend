@@ -241,13 +241,13 @@ export const routes = [
         icon: "fa fa-list",
         component: TokenAllAsync
       },
-      {
-        label: "participate",
-        path: "/tokens/view",
-        icon: "fas fa-coins",
-        component: TokenOverviewAsync,
-        showInMenu: IS_MAINNET ? true : false
-      },
+      // {
+      //   label: "participate",
+      //   path: "/tokens/view",
+      //   icon: "fas fa-coins",
+      //   component: TokenOverviewAsync,
+      //   showInMenu: IS_MAINNET ? true : false
+      // },
       {
         label: "token_input",
         path: "/tokens/create",
@@ -357,7 +357,8 @@ export const routes = [
           label: "sun_network_development_document"
         },
         {
-          url: "https://support.tronscan.org/hc/en-us/articles/360035944072-SUN-Network-Developer-Challenge-Starts",
+          url:
+            "https://support.tronscan.org/hc/en-us/articles/360035944072-SUN-Network-Developer-Challenge-Starts",
           icon: "fas fa-award",
           label: "developer_challenge"
         }
