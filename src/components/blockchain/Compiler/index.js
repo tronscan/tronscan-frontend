@@ -866,12 +866,8 @@ class ContractCompiler extends React.Component {
                             <div>
                                 <div style={{marginTop:'8px'}}>
                                     2.{tu('verify_code3')}
-                                    <ul className="mb-1" style={{color: '#ADADAD'}}>
-                                        <li>{tu('verify_code4')}</li>
-                                        <li>{tu('verify_code5')}</li>
-                                    </ul>
                                 </div>
-                                <div style={{marginTop:'8px'}}>3.{tu('verify_code6')}<Link to="/contracts/license">{tu('verify_code7')}</Link>{tu('verify_code8')}</div>
+                                <div style={{marginTop:'8px'}}>3.{tu('verify_code6')}<Link to="/contracts/source-code-usage-terms">{tu('verify_code7')}</Link>{tu('verify_code8')}</div>
                             </div>
                         ) : ''
                     }
