@@ -20,7 +20,7 @@ import SweetAlert from 'react-bootstrap-sweetalert';
 import SmartTable from "../common/SmartTable.js"
 import TotalInfo from "../common/TableTotal";
 import Countdown from "react-countdown-now";
-import {ContractTypes} from "../../utils/protocol";
+import _, {find} from "lodash";
 
 class MySignature extends React.Component{
     constructor() {
@@ -29,9 +29,10 @@ class MySignature extends React.Component{
             modal: null,
             total:0,
             data:[],
-            //0-签名中，1-签名交易完成， 2-交易过期/处理失败
+            //0-签名中，1-签名交易完成， 2-交易过期/处理失败 3-待签名  4-已签名 255-全部
             filter: {
-                direction:0
+                direction:255,
+                multiState:255,
             },
         };
     }
@@ -45,7 +46,7 @@ class MySignature extends React.Component{
         let { wallet } = this.props;
         console.log('wallet',wallet)
         console.log('wallet222',wallet.address)
-        let { filter } = this.state;
+        let { filter, multiState} = this.state;
         let { data:{data} } = await xhr.get("https://testlist.tronlink.org/api/wallet/multi/trx_record", {params: {
             "address": wallet.address,
             "start": (page - 1) * pageSize,
@@ -57,19 +58,55 @@ class MySignature extends React.Component{
         let total = data.total;
         console.log('signatureList',signatureList)
         console.log('total',total)
-
+        signatureList.map((item)=>{
+            if(item.state == 0){
+                item.signatureProgress.map((sign,index)=>{
+                    if(sign.address == wallet.address){
+                        //0-未签名 1-已签名
+                        if(sign.isSign == 0){
+                            item.multiState = 3;
+                        }else {
+                            item.multiState = 4;
+                        }
+                    }
+                })
+            }else{
+                item.multiState = item.state;
+            }
+        })
+        let list;
+        console.log('signatureList',signatureList)
+        if(filter.multiState !== 255){
+            list = _(signatureList)
+                .filter(signTx => signTx.multiState == filter.multiState )
+                .value();
+        }else{
+            list = signatureList
+        }
+        console.log('list',list)
         this.setState({
             page,
-            data:signatureList,
+            data:list,
             total:total,
             loading: false,
         });
     };
 
-    onRadioChange = (e) => {
+    onRadioChange = (type,str) => {
+        console.log('type',type)
+        console.log('str',str)
+        let multiState;
+        if(type == 0 && str == "to_be_sign"){
+            multiState = 3
+        }else if(type == 0 && str == "signed"){
+            multiState = 4
+        }else{
+            multiState = type
+        }
         this.setState({
             filter: {
-                direction: e.target.value,
+                direction: type,
+                multiState
             }
         }, () =>  this.load())
     };
@@ -93,7 +130,7 @@ class MySignature extends React.Component{
                 key: 'originatorAddress',
                 align: 'left',
                 className: 'ant_table',
-                width: '14%',
+                width: '15%',
                 render: (text, record, index) => {
                     return <AddressLink address={text}>{text}</AddressLink>
                 }
@@ -105,17 +142,51 @@ class MySignature extends React.Component{
                 align: 'center',
                 className: 'ant_table',
                 render: (text, record, index) => {
-                    return <Countdown date={Date.now() + text*1000} daysInHours={true}/>
+                    return <Countdown date={Date.now() + (record.expireTime*1000)} daysInHours={true}/>
                 }
             },
             {
                 title: upperFirst(intl.formatMessage({id: 'signature_list'})),
                 dataIndex: 'confirmed',
                 key: 'confirmed',
-                align: 'center',
+                align: 'left',
+               // width: '25%',
                 className: 'ant_table',
                 render: (text, record, index) => {
-                    return <span></span>
+                    return (
+                        <div className="p-2 position-relative" style={{'background':'#f3f3f3'}}>
+                        <div className="text-left signature-currentWeight">{record.currentWeight + '/' +record.threshold}</div>
+                        {
+                            record.signatureProgress.map((item,index)=>{
+                            return    <div key={index} className="d-flex">
+                                        <div style={{width:250}}>
+                                            <AddressLink address={item.address}>{item.address}</AddressLink>
+                                        </div>
+                                        <div className="ml-2 p-1 d-block signature-weight">{item.weight}</div>
+                                        {item.isSign == 1 ? <i className="ml-2 signature-siged"></i>:''}
+                                </div>
+                            })
+                        }
+                    </div>
+                    )
+                },
+            },
+            {
+                title: upperFirst(intl.formatMessage({id: 'signature_status'})),
+                dataIndex: 'multiState',
+                key: 'multiState',
+                align: 'center',
+                className: 'ant_table',
+                width: '15%',
+                render: (text, record, index) => {
+                    return <span>
+                        <span>
+                             {text == 3 && tu('to_be_sign')}
+                             {text == 4 && tu('signed')}
+                             {text == 1 && tu('signature_failed')}
+                             {text == 2 && tu('signature_successful')}
+                        </span>
+                    </span>
                 },
             },
             {
@@ -124,20 +195,28 @@ class MySignature extends React.Component{
                 key: 'confirmed',
                 align: 'center',
                 className: 'ant_table',
+                width: '15%',
                 render: (text, record, index) => {
-                    return  <span></span>
+                    return  <span>
+                        {
+                            record.multiState == 3 ? <div>
+                                <a href="javascript:;" className="text-primary btn btn-default btn-sm">
+                                    {tu('signature')}
+                                </a>
+                                <a href="javascript:;" className="text-primary btn btn-default btn-sm ml-2">
+                                    {tu('details')}
+                                </a>
+                            </div>:<div>
+                                <a href="javascript:;" className="text-primary btn btn-default btn-sm">
+                                    {tu('details')}
+                                </a>
+                            </div>
+                        }
+
+                    </span>
                 },
             },
-            {
-                title: upperFirst(intl.formatMessage({id: 'signature_status'})),
-                dataIndex: 'confirmed',
-                key: 'confirmed',
-                align: 'center',
-                className: 'ant_table',
-                render: (text, record, index) => {
-                    return <span></span>
-                },
-            },
+
         ];
         return column;
     }
@@ -149,40 +228,64 @@ class MySignature extends React.Component{
        let column = this.customizedColumn();
        return (
            <Fragment>
-               <div className="row mt-3">
+               <div className="row">
                    <div className="col-md-12">
-                       <div className="card">
-                           <div className="card-body">
-                               <h5 className="card-title text-center">
-                                   {tu("我的签名")}
-                               </h5>
+                       <div className="card list-style-body border-0">
+                           <div className="card-header list-style-body__header" style={{'background':'#f3f3f3'}}>
+                               <ul className="nav nav-tabs card-header-tabs">
+                                       <li className="nav-item">
+                                           <a className={filter.multiState == 255? "nav-link text-dark active":"nav-link text-dark"} href="javascript:;" aria-current="page"
+                                              onClick={() => this.onRadioChange(255,'address_transfer_all')}
+                                           >
+                                               <span>{tu('address_transfer_all')}</span>
+                                           </a>
+                                       </li>
+                                       <li className="nav-item">
+                                           <a className={filter.multiState ==3? "nav-link text-dark active":"nav-link text-dark"} href="javascript:;" aria-current="page"
+                                              onClick={() => this.onRadioChange(0,'to_be_sign')}
+                                           >
+                                               <span>{tu('to_be_sign')}</span>
+                                           </a>
+                                       </li>
+                                       <li className="nav-item">
+                                           <a className={filter.multiState ==4? "nav-link text-dark active":"nav-link text-dark"}  href="javascript:;" aria-current="page"
+                                              onClick={() => this.onRadioChange(0,'signed')}
+                                           >
+                                               <span>{tu('signed')}</span>
+                                           </a>
+                                       </li>
+                                       <li className="nav-item">
+                                           <a className={filter.multiState ==1? "nav-link text-dark active":"nav-link text-dark"}  href="javascript:;" aria-current="page"
+                                              onClick={() => this.onRadioChange(1,'signature_failed')}
+                                           >
+                                               <span>{tu('signature_failed')}</span>
+                                           </a>
+                                       </li>
+                                       <li className="nav-item">
+                                           <a className={filter.multiState ==2? "nav-link text-dark active":"nav-link text-dark"}  href="javascript:;" aria-current="page"
+                                              onClick={() => this.onRadioChange(2,'signature_successful')}
+                                           >
+                                               <span>{tu('signature_successful')}</span>
+                                           </a>
+                                       </li>
+
+
+                               </ul>
+                           </div>
+                           <div className="token_black pl-4 pr-4 position-relative">
                                {
-                                    <div className="d-flex align-items-center">
-                                       <div className="">
-                                           <Radio.Group size="Small" value={filter.direction}  onChange={this.onRadioChange}>
-                                               <Radio.Button value="all">{tu('address_transfer_all')}</Radio.Button>
-                                               <Radio.Button value="in">{tu('to_be_sign')}</Radio.Button>
-                                               <Radio.Button value="out">{tu('signed')}</Radio.Button>
-                                               <Radio.Button value="out">{tu('signature_failed')}</Radio.Button>
-                                               <Radio.Button value="out">{tu('signature_successful')}</Radio.Button>
-                                           </Radio.Group>
-                                       </div>
-                                   </div>
+                                   data.length !== 0 &&   <TotalInfo total={total} rangeTotal={total} typeText="transactions_unit"/>
                                }
-                               <div className="token_black table_pos">
-                                   <TotalInfo total={total}  typeText="transactions_unit"/>
-                                   {
-                                       (!loading && data.length === 0 )?
-                                           <div className="p-3 text-center no-data">{tu("no_transactions")}</div>:
-                                           <SmartTable bordered={true} loading={loading} column={column} data={data} total={20}
-                                                       onPageChange={(page, pageSize) => {
-                                                           this.load(page, pageSize)
-                                                       }}/>
-                                   }
 
+                               {
+                                   (!loading && data.length === 0 )?
+                                       <div className="p-3 text-center no-data">{tu("no_transactions")}</div>:
+                                       <SmartTable bordered={true} loading={loading} column={column} data={data} total={20}
+                                                   onPageChange={(page, pageSize) => {
+                                                       this.load(page, pageSize)
+                                                   }}/>
+                               }
 
-
-                               </div>
                            </div>
                        </div>
                    </div>
