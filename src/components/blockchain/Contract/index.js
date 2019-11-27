@@ -535,14 +535,14 @@ class SmartContract extends React.Component {
                             </p>
                             {contract.creator && (
                               <div className="d-flex">
-                                <span style={{ width: "30%" }}>
+                                <span style={{ width: "50%" }}>
                                   {tu("contract_percent")}：
                                   {100 -
                                     contract.creator
                                       .consume_user_resource_percent}
                                   %
                                 </span>
-                                <span style={{ width: "30%" }}>
+                                <span style={{ width: "50%" }}>
                                   {tu("contract_percent_user")}：
                                   {
                                     contract.creator
