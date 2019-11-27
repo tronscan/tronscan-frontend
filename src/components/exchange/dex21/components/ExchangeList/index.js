@@ -266,8 +266,8 @@ class ExchangeList extends React.Component {
               <a
                 href={
                   intl.locale == "zh"
-                    ? "	https://support.trx.market/hc/zh-cn/requests/new"
-                    : "	https://support.trx.market/hc/en-us/requests/new"
+                    ? "	https://support.poloniex.org/hc/zh-cn/requests/new"
+                    : "	https://support.poloniex.org/hc/en-us/requests/new"
                 }
                 target="_bank"
                 className="pr-1 border-right border-light"
@@ -277,8 +277,8 @@ class ExchangeList extends React.Component {
               <a
                 href={
                   intl.locale == "zh"
-                    ? "https://support.trx.market/hc/zh-cn/categories/360001517211-%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98"
-                    : "https://support.trx.market/hc/en-us/categories/360001517211-FAQ"
+                    ? "https://support.poloniex.org/hc/zh-cn/categories/360001517211-%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98"
+                    : "https://support.poloniex.org/hc/en-us/categories/360001517211-FAQ"
                 }
                 target="_blank"
                 className="px-1 border-right  border-light"
