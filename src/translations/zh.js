@@ -2281,5 +2281,7 @@ export const messages = {
   "signature_account":"待签名人",
   "no_control_permission":"没有该地址的控制权限，请确认后重试",
   "signature":"签名",
-
+  "signature_details":"交易详情",
+  "signature_details_processing":"进行中",
+  "view_on_chain_transactions":"查看链上交易",
 };

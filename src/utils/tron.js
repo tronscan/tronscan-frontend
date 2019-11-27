@@ -8,16 +8,6 @@ export const tronAddresses = [
   '27WtBq2KoSy5v8VnVZBZHHJcDuWNiSgjbE3',
 ];
 
-export async function transactionTrxSign(transaction, tronWeb) {
-    console.log('transaction',transaction)
-    const signedTransaction = await tronWeb.trx.sign(transaction, tronWeb.defaultPrivateKey, true, true ).catch(e => {
-        console.log('e',e)
-        return false;
-    });
-    console.log('tronWeb.defaultPrivateKey',tronWeb.defaultPrivateKey)
-    console.log('signedTransaction',signedTransaction)
-    return signedTransaction;
-}
 
 export async function transactionResultManager(transaction, tronWeb) {
 

@@ -4849,4 +4849,21 @@ h5 {
   margin-top: 2px;
 }
 
+.signature_details{
+  .form-group{
+    display: flex;
+    padding-top: 0.75rem;
+    padding-bottom: 0.25rem;
+    margin-bottom: 0;
+    border-bottom: 1px solid #e8e8e8;
+  }
+  .form-group>span{
+    display: block;
+    width: 320px;
+  }
+  .form-group>label {
+    width: 120px;
+  }
+}
+
 

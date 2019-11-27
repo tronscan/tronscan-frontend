@@ -19,7 +19,7 @@ import {Select} from 'antd';
 import isMobile from '../../../utils/isMobile';
 import {withTronWeb} from "../../../utils/tronWeb";
 import { FormatNumberByDecimals,FormatNumberByDecimalsBalance } from '../../../utils/number'
-import { transactionResultManager, transactionResultManagerSun, transactionMultiResultManager, transactionTrxSign } from "../../../utils/tron"
+import { transactionResultManager, transactionResultManagerSun, transactionMultiResultManager } from "../../../utils/tron"
 import { getContractTypesByHex } from "../../../utils/mutiSignHelper"
 import rebuildList from "../../../utils/rebuildList";
 import rebuildToken20List from "../../../utils/rebuildToken20List";

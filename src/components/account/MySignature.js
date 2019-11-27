@@ -21,6 +21,10 @@ import SmartTable from "../common/SmartTable.js"
 import TotalInfo from "../common/TableTotal";
 import Countdown from "react-countdown-now";
 import _, {find} from "lodash";
+import SignDetailsModal from './SignDetailsModal';
+import { TransactionHashLink } from "../common/Links";
+
+
 
 class MySignature extends React.Component{
     constructor() {
@@ -29,11 +33,13 @@ class MySignature extends React.Component{
             modal: null,
             total:0,
             data:[],
-            //0-签名中，1-签名交易完成， 2-交易过期/处理失败 3-待签名  4-已签名 255-全部
+            //0-签名中，1-签名交易完成， 2-交易过期/处理失败 10-待签名  11-已签名 255-全部
             filter: {
                 direction:255,
                 multiState:255,
             },
+            isShowSignDetailsModal:false,
+            details:{}
         };
     }
 
@@ -51,7 +57,7 @@ class MySignature extends React.Component{
             "address": wallet.address,
             "start": (page - 1) * pageSize,
             "state": filter.direction,
-            "limit": pageSize,
+            "limit": 1000,
             "netType":"shasta"
         }});
         let signatureList = data.data;
@@ -64,9 +70,9 @@ class MySignature extends React.Component{
                     if(sign.address == wallet.address){
                         //0-未签名 1-已签名
                         if(sign.isSign == 0){
-                            item.multiState = 3;
+                            item.multiState = 10;
                         }else {
-                            item.multiState = 4;
+                            item.multiState = 11;
                         }
                     }
                 })
@@ -78,7 +84,7 @@ class MySignature extends React.Component{
         console.log('signatureList',signatureList)
         if(filter.multiState !== 255){
             list = _(signatureList)
-                .filter(signTx => signTx.multiState == filter.multiState )
+                .filter(signTx => signTx.multiState == filter.multiState)
                 .value();
         }else{
             list = signatureList
@@ -92,14 +98,17 @@ class MySignature extends React.Component{
         });
     };
 
+    /**
+     * Change Type
+     */
     onRadioChange = (type,str) => {
         console.log('type',type)
         console.log('str',str)
         let multiState;
         if(type == 0 && str == "to_be_sign"){
-            multiState = 3
+            multiState = 10
         }else if(type == 0 && str == "signed"){
-            multiState = 4
+            multiState = 11
         }else{
             multiState = type
         }
@@ -110,6 +119,56 @@ class MySignature extends React.Component{
             }
         }, () =>  this.load())
     };
+
+    multiSign = async(details) => {
+        let {wallet} = this.props;
+        let result, success,tronWeb;
+        console.log('e=====',details)
+        //create transaction
+        tronWeb = this.props.account.tronWeb;
+        const currentTransaction = details.currentTransaction;
+        //set transaction txID
+        currentTransaction.txID = details.hash;
+        //sign transaction
+        const SignTransaction = await tronWeb.trx.multiSign(currentTransaction, tronWeb.defaultPrivateKey,currentTransaction.raw_data.contract[0].Permission_id).catch(e => {
+            console.log('e',e)
+        });
+        console.log('SignTransaction111',SignTransaction)
+
+        // xhr.defaults.headers.common["MainChain"] = 'MainChain';
+
+        //xhr multi-sign transaction api
+        let { data } = await xhr.post("https://testlist.tronlink.org/api/wallet/multi/transaction", {
+            "address": wallet.address,
+            "transaction": SignTransaction,
+            "netType":"shasta"
+        });
+        result = data.code;
+        console.log('code',result)
+    }
+
+
+
+
+
+    /**
+     * close SignDetailsModal
+     */
+    closeSignDetailsModal = () => {
+        this.setState({ isShowSignDetailsModal: false });
+    }
+
+    /**
+     * open SignDetailsModal
+     * @param details
+     */
+    openSignDetailsModal = details => {
+      //  const { address, currency, balance, precision, id, type } = option;
+        this.setState({
+            isShowSignDetailsModal: true,
+            details,
+        });
+    }
 
     customizedColumn = () => {
         let {intl, isinternal = false} = this.props;
@@ -137,12 +196,12 @@ class MySignature extends React.Component{
             },
             {
                 title: upperFirst(intl.formatMessage({id: 'signature_time_left'})),
-                dataIndex: 'expireTime',
+            dataIndex: 'expireTime',
                 key: 'expireTime',
                 align: 'center',
                 className: 'ant_table',
                 render: (text, record, index) => {
-                    return <Countdown date={Date.now() + (record.expireTime*1000)} daysInHours={true}/>
+                    return text?<Countdown date={Date.now() + (record.expireTime*1000)} daysInHours={true}/>:'-'
                 }
             },
             {
@@ -158,12 +217,13 @@ class MySignature extends React.Component{
                         <div className="text-left signature-currentWeight">{record.currentWeight + '/' +record.threshold}</div>
                         {
                             record.signatureProgress.map((item,index)=>{
-                            return    <div key={index} className="d-flex">
+                            return    <div key={index} className="d-flex mt-1">
                                         <div style={{width:250}}>
                                             <AddressLink address={item.address}>{item.address}</AddressLink>
                                         </div>
                                         <div className="ml-2 p-1 d-block signature-weight">{item.weight}</div>
                                         {item.isSign == 1 ? <i className="ml-2 signature-siged"></i>:''}
+
                                 </div>
                             })
                         }
@@ -181,36 +241,62 @@ class MySignature extends React.Component{
                 render: (text, record, index) => {
                     return <span>
                         <span>
-                             {text == 3 && tu('to_be_sign')}
-                             {text == 4 && tu('signed')}
-                             {text == 1 && tu('signature_failed')}
-                             {text == 2 && tu('signature_successful')}
+                             {text == 10 && tu('to_be_sign')}
+                             {text == 11 && tu('signed')}
+                             {text == 2 && tu('signature_failed')}
+                             {text == 1 && tu('signature_successful')}
                         </span>
                     </span>
                 },
             },
             {
                 title: upperFirst(intl.formatMessage({id: 'signature_operate'})),
-                dataIndex: 'confirmed',
-                key: 'confirmed',
-                align: 'center',
+                dataIndex: 'signature_operate',
+                key: 'signature_operate',
+                align: 'right',
                 className: 'ant_table',
                 width: '15%',
                 render: (text, record, index) => {
                     return  <span>
                         {
-                            record.multiState == 3 ? <div>
-                                <a href="javascript:;" className="text-primary btn btn-default btn-sm">
+                            record.multiState == 10 ? <div>
+                                <a href="javascript:;"
+                                   className="text-primary btn btn-default btn-sm"
+                                   onClick={()=> this.multiSign(record)}
+                                >
                                     {tu('signature')}
                                 </a>
-                                <a href="javascript:;" className="text-primary btn btn-default btn-sm ml-2">
+                                <a href="javascript:;"
+                                   className="text-primary btn btn-default btn-sm ml-2"
+                                   onClick={() => this.openSignDetailsModal(record)}
+                                >
                                     {tu('details')}
                                 </a>
-                            </div>:<div>
-                                <a href="javascript:;" className="text-primary btn btn-default btn-sm">
-                                    {tu('details')}
-                                </a>
-                            </div>
+                            </div>:record.multiState == 1 ?
+                                <div>
+                                    <div>
+                                        <a href="javascript:;"
+                                           className="text-primary btn btn-default btn-sm"
+                                           onClick={() => this.openSignDetailsModal(record)}
+                                        >
+                                            {tu('details')}
+                                        </a>
+                                    </div>
+                                    <div className="mt-3">
+                                        <Link className="color-tron-100 list-item-word" to={`/transaction/${record.hash}`}>
+                                            {tu('view_on_chain_transactions')}
+                                        </Link>
+                                    </div>
+                                </div>
+                                :
+                                <div>
+                                    <a href="javascript:;"
+                                       className="text-primary btn btn-default btn-sm"
+                                       onClick={() => this.openSignDetailsModal(record)}
+                                    >
+                                        {tu('details')}
+                                    </a>
+                                </div>
                         }
 
                     </span>
@@ -223,7 +309,7 @@ class MySignature extends React.Component{
 
 
     render() {
-       let {data, filter, total, rangeTotal = 0, loading, emptyState: EmptyState = null} = this.state;
+       let {data, filter, total, rangeTotal = 0, loading, emptyState: EmptyState = null, isShowSignDetailsModal, details} = this.state;
        console.log('data',data)
        let column = this.customizedColumn();
        return (
@@ -241,29 +327,29 @@ class MySignature extends React.Component{
                                            </a>
                                        </li>
                                        <li className="nav-item">
-                                           <a className={filter.multiState ==3? "nav-link text-dark active":"nav-link text-dark"} href="javascript:;" aria-current="page"
+                                           <a className={filter.multiState ==10? "nav-link text-dark active":"nav-link text-dark"} href="javascript:;" aria-current="page"
                                               onClick={() => this.onRadioChange(0,'to_be_sign')}
                                            >
                                                <span>{tu('to_be_sign')}</span>
                                            </a>
                                        </li>
                                        <li className="nav-item">
-                                           <a className={filter.multiState ==4? "nav-link text-dark active":"nav-link text-dark"}  href="javascript:;" aria-current="page"
+                                           <a className={filter.multiState ==11? "nav-link text-dark active":"nav-link text-dark"}  href="javascript:;" aria-current="page"
                                               onClick={() => this.onRadioChange(0,'signed')}
                                            >
                                                <span>{tu('signed')}</span>
                                            </a>
                                        </li>
                                        <li className="nav-item">
-                                           <a className={filter.multiState ==1? "nav-link text-dark active":"nav-link text-dark"}  href="javascript:;" aria-current="page"
-                                              onClick={() => this.onRadioChange(1,'signature_failed')}
+                                           <a className={filter.multiState ==2? "nav-link text-dark active":"nav-link text-dark"}  href="javascript:;" aria-current="page"
+                                              onClick={() => this.onRadioChange(2,'signature_failed')}
                                            >
                                                <span>{tu('signature_failed')}</span>
                                            </a>
                                        </li>
                                        <li className="nav-item">
-                                           <a className={filter.multiState ==2? "nav-link text-dark active":"nav-link text-dark"}  href="javascript:;" aria-current="page"
-                                              onClick={() => this.onRadioChange(2,'signature_successful')}
+                                           <a className={filter.multiState ==1? "nav-link text-dark active":"nav-link text-dark"}  href="javascript:;" aria-current="page"
+                                              onClick={() => this.onRadioChange(1,'signature_successful')}
                                            >
                                                <span>{tu('signature_successful')}</span>
                                            </a>
@@ -290,6 +376,7 @@ class MySignature extends React.Component{
                        </div>
                    </div>
                </div>
+               {isShowSignDetailsModal && <SignDetailsModal onCancel={this.closeSignDetailsModal} details={details} onSign={this.multiSign()} />}
            </Fragment>
        )
     }
