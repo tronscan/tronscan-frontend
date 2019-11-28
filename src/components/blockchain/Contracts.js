@@ -31,8 +31,8 @@ function Nodetip({ intl, val }) {
     <span className="text-nowrap">
       {val.isLibrary ? (
         <img
-          src={require("../../images/contract/book.png")}
-          style={{ height: "14px" }}
+          src={require("../../images/contract/books.png")}
+          style={{ height: "16px",marginRight: '6px' }}
         />
       ):''}
 
@@ -44,7 +44,7 @@ function Nodetip({ intl, val }) {
         >
           <img
             src={require("../../images/contract/optimization.png")}
-            style={{ height: "14px" }}
+            style={{ height: "16px",marginRight: '6px' }}
           />
         </Tooltip>
       ):''}
@@ -57,7 +57,7 @@ function Nodetip({ intl, val }) {
         >
           <img
             src={require("../../images/contract/param.png")}
-            style={{ height: "14px",marginLeft: '6px' }}
+            style={{ height: "16px" }}
           />
         </Tooltip>
       ):''}
@@ -208,8 +208,8 @@ class Contracts extends React.Component {
                 <span className="d-flex align-items-center">
                   <img src={text.icon_url} style={{width:'18px',height:'18px',marginRight: '8px'}}></img>
                   <span className="d-flex flex-column" style={{flex: '1'}}>
-                    <span style={{display:'block',width:'80px',overflow:'hidden',whiteSpace:'nowrap',textOverflow:'ellipsis'}} title={text.name}>{text.name}</span>
-                    <span style={{display:'block',width:'80px',overflow:'hidden',whiteSpace:'nowrap',textOverflow:'ellipsis'}} title={text.symbol}>{text.symbol}</span>
+                    <span style={{display:'block',maxWidth:'80px',overflow:'hidden',whiteSpace:'nowrap',textOverflow:'ellipsis'}} title={text.name}>{text.name}</span>
+                    <span style={{display:'block',maxWidth:'80px',overflow:'hidden',whiteSpace:'nowrap',textOverflow:'ellipsis'}} title={text.symbol}>{text.symbol}</span>
                   </span>
                 </span>
               ):'--'}
@@ -534,7 +534,7 @@ class Contracts extends React.Component {
       <main className="container header-overlap pb-3 token_black">
       {loading && <div className="loading-style"><TronLoader/></div>}
       <div className="row contract-list">
-        <div className="d-flex col-md-12 contract-filter my-3">
+        {IS_MAINNET ? (<div className="d-flex col-md-12 contract-filter my-3">
           {
             filters.map((v,i) => {
               return(
@@ -542,7 +542,7 @@ class Contracts extends React.Component {
               )
             })
           }
-        </div>
+        </div>) : ''}
         <div className="col-md-12 table_pos">
           {total ? 
             <div className="d-flex align-items-center mb-2">

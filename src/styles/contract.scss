@@ -2,8 +2,9 @@
   .contract-filter {
     list-style-type: none;
     > div {
-      width: 103px;
+      min-width: 103px;
       height: 35px;
+      padding: 0 10px;
       line-height: 35px;
       text-align: center;
       background: #cbcbcb;
@@ -33,6 +34,9 @@
         }
       }
     }
+  }
+  .ant-table .ant-table-thead > tr > th, .ant-table .ant-table-tbody > tr > td{
+    padding: 12px 10px;
   }
 }
 

@@ -1204,7 +1204,7 @@ export const messages = {
   "contract_percent": "合约",
   "contract_percent_user": "用户",
   "contract_copy_success": "复制成功",
-  "contract_source_code_title": "源代码",
+  "contract_source_code_title": "源代码 ",
   "contract_source_code_use": "使用说明",
   "contracts_source-code-usage-terms":"Source code instructions",
   "contract_source_code_match":"合约源代码已验证 (完全匹配)",
