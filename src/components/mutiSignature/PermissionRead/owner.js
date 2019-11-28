@@ -4,6 +4,7 @@ export default class OwnerRead extends Component{
     constructor(props){
         super(props)
     }
+    //todo 以下表单中
     render(){
         const { ownerPermission,tronWeb } = this.props;
         const {keys,threshold,permission_name} = ownerPermission;

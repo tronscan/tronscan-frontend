@@ -130,6 +130,8 @@ export default class ActiveEdit extends Component {
         activePermissions.splice(acIndex,1);
         this.setState({
             activePermissions:activePermissions
+        },()=>{
+            this.changeParentActivePermission();
         })
     }
     addActivePermission(){
@@ -173,6 +175,7 @@ export default class ActiveEdit extends Component {
     render() {
         const { activePermissions, modal,allPermissions,hasContractIds } = this.state;
         const { tronWeb } = this.props;
+        // todo 以下表单中的
         return (
             <div>
                 <div className='permission'>

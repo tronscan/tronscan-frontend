@@ -12,8 +12,9 @@ export default class ActiveRead extends PureComponent{
     }
     render(){
         const {activePermissions,tronWeb} = this.props;  
+         // todo 以下表单中
         return(
-    
+        
         <div className='permission'>
             <div className='permission-title'>
                 <span>Active permissions</span><i>({activePermissions.length+'/'+8})</i>  

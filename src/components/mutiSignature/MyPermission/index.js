@@ -94,16 +94,10 @@ export default class MyPermission extends React.Component {
             //校验是否合约地址
             try {
                 const contractInstance = await tronWeb.contract().at(curControlAddress)
-                this.setState({
-                    modal: (
-                        <SweetAlert warning onConfirm={() => this.hideModal()} title='warn'>
-                            {'此地址为合约地址,不能设置'}
-                        </SweetAlert>
-                    )
-                })
+                //todo
+                this.warningAlert('此地址为合约地址,不能设置')
             } catch (e) {
                 isValid = true;
-
             }
             finally {
                 this.setState({
@@ -111,16 +105,10 @@ export default class MyPermission extends React.Component {
                 })
             }
             if (!isValid) {
-                this.setState({
-                    modal: (
-                        <SweetAlert warning onConfirm={() => this.hideModal()} title='warn' style={{ marginLeft: '-240px', marginTop: '-195px' }}>
-                            {'Unverified address'}
-                        </SweetAlert>
-                    )
-                })
+                this.warningAlert('Unverified address')
                 return;
             }
-            // todo tronWeb获取新地址权限并校验
+            //
             const res = await tronWeb.trx.getAccount(curControlAddress);
 
             if (res) {
@@ -130,7 +118,7 @@ export default class MyPermission extends React.Component {
                 const isInKeys = keys.some(item => {
                     return tronWeb.address.fromHex(item.address) == wallet.current.address
                 })
-                console.log('isInkeys', isInKeys);
+                //todo 你的地址必须在控制地址keys下
                 if (!isInKeys) {
                     isValid = false;
                     this.setState({
@@ -151,13 +139,8 @@ export default class MyPermission extends React.Component {
                 }
             } else {
                 isValid = false;
-                this.setState({
-                    modal: (
-                        <SweetAlert warning onConfirm={() => this.hideModal()} title='warn'>
-                            {'Invalid address'}
-                        </SweetAlert>
-                    )
-                })
+                //todo 
+                this.warningAlert('无效地址')
             }
 
         }
@@ -195,22 +178,68 @@ export default class MyPermission extends React.Component {
         let isEqualWitness = isEqual(oldWitnessPersmission, changedWihnessPermission);
         return isEqualOwner && isEqualActive && isEqualWitness;
     }
-    validKeys(keysItem) {
+    validKeys(keysItem,keysArr) {
         const { tronWeb } = this.props;
         const item = keysItem;
-        //('item',item);
-        if (tronWeb.isAddress(item.address) && item.weight) {
-            item.address = tronWeb.address.toHex(item.address);
+        if(!tronWeb.isAddress(item.address)){
+            //todo 
+            this.warningAlert('无效的地址.')
+            return false;
+        }
+        if(!item.weight){
+            //todo
+            this.warningAlert('weight 为必填项.');
+            return false;
+        }
+        
+        if ( this.findIsSameKey(item,keysArr)) {
+            //todo
+
+            this.warningAlert('同一权限组下账户地址不能相同.');
+            return false;
+        }
+        item.address = tronWeb.address.toHex(item.address);
+        return true;
+       
+    }
+    findIsSameKey(itemKey,arr){
+        let count = 0;
+        arr.forEach(item=>{
+            if(item.address===itemKey.address){
+                count++;
+            }
+        })
+        if(count>1){
             return true;
         }
-        return false;
+        return false
     }
+    successAlert(msg){
+        this.setState({
+            modal: (
+                <SweetAlert success onConfirm={this.hideModal}>
+                    {msg}
+                </SweetAlert>
+            ),
+            isEditContent: false
+        });
+    }
+    warningAlert(msg){
+        this.setState({
+            modal: (
+                <SweetAlert warning title="Update Permission" onConfirm={this.hideModal}>
+                    {msg}
+                </SweetAlert>
+            )
+        });
+    }
+
 
     //点击保存
     async savePermission() {
         const { tronWeb } = this.props;
         const { changedOwnerPermission, changedActivePermission, changedWihnessPermission, curLoginAddress, curControlAddress } = this.state;
-
+        //检查权限是否修改过
         if (this.comparePermissionIsChanged()) {
             this.setState({
                 isEditContent: false
@@ -220,9 +249,13 @@ export default class MyPermission extends React.Component {
 
         changedOwnerPermission.type = 0;
         const threshold = changedOwnerPermission.threshold;
+        if(!changedOwnerPermission.permission_name){
+            this.warningAlert('owner permission_name is required.')
+            return;
+        }
         let sumOwnerKeysWeight = 0;
         const validAllOwnerKeys = changedOwnerPermission.keys.every(item => {
-            if (!this.validKeys(item)) {
+            if (!this.validKeys(item,changedOwnerPermission.keys)) {
                 // item.address = tronWeb.address.toHex(item.address);
                 return false
             }
@@ -231,29 +264,18 @@ export default class MyPermission extends React.Component {
         })
 
         if (!validAllOwnerKeys) {
-            this.setState({
-                modal: (
-                    <SweetAlert warning title="Update Permission" onConfirm={this.hideModal}>
-                        {'key\'s count should be greater than 0 or Incorrect address format'}
-                    </SweetAlert>
-                )
-            });
+            //
+            //this.warningAlert('The number of keys cannot be 0 and cannot be the same or Incorrect address format.')
             return;
         }
-        //权重之和大于阈值
 
         if (sumOwnerKeysWeight < threshold) {
-            this.setState({
-                modal: (
-                    <SweetAlert warning title="Update Permission" onConfirm={this.hideModal}>
-                        {'sum of all key\'s weight should not be less than threshold in permission Owner'}
-                    </SweetAlert>
-                )
-            });
+            //todo owner 权限权重之和大于阈值
+            this.warningAlert('sum of all key\'s weight should not be less than threshold in permission Owner')
             return;
         }
         // active数据校验######################################################
-        console.log('changedActivePermission', changedActivePermission);
+
         let isValidActivePermission = true;
         for (let i = 0; i < changedActivePermission.length; i++) {
             const acItem = changedActivePermission[i];
@@ -261,7 +283,7 @@ export default class MyPermission extends React.Component {
             let sumKeysWeight = 0;
             const acItemThreshold = acItem.threshold;
             const validActivePermissionKeys = acItem.keys.every(item => {
-                if (!this.validKeys(item)) {
+                if (!this.validKeys(item,acItem.keys)) {
                     isValidActivePermission = false;
                     return false
                 }
@@ -269,24 +291,12 @@ export default class MyPermission extends React.Component {
                 return true
             })
             if (!validActivePermissionKeys) {
-                this.setState({
-                    modal: (
-                        <SweetAlert warning title="Update Permission" onConfirm={this.hideModal}>
-                            {'Invalid activesPermissions provided'}
-                        </SweetAlert>
-                    )
-                });
                 break;
             }
             if (sumKeysWeight < acItemThreshold) {
                 isValidActivePermission = false;
-                this.setState({
-                    modal: (
-                        <SweetAlert warning title="Update Permission" onConfirm={this.hideModal}>
-                            {'sum of all key\'s weight should not be less than threshold in permission Active'}
-                        </SweetAlert>
-                    )
-                });
+                //todo active 权限权重值和必须大于阈值
+                this.warningAlert('sum of all key\'s weight should not be less than threshold in permission Active');
                 return;
             }
         }
@@ -313,55 +323,32 @@ export default class MyPermission extends React.Component {
                         )
                     });
                 });
-                console.log('res',res);
+               
                 if (res.result) {
-                    this.setState({
-                        modal: (
-                            <SweetAlert success title="Update Permission" onConfirm={this.hideModal}>
-                                {'update permission success'}
-                            </SweetAlert>
-                        ),
-                        isEditContent: false
-                    });
+                    //todo 签名成功
+                    this.successAlert('签名成功.')
 
                 }else{
-                    this.setState({
-                        modal: (
-                            <SweetAlert warning title="Update Permission" onConfirm={this.hideModal}>
-                                {tronWeb.toUtf8(res.message)}
-                            </SweetAlert>
-                        ),
-                        isEditContent: false
-                    });
+                    //todo 签名失败
+                    this.warningAlert('签名失败')
                 }
             }else{
                 //走多重签名
                 const updateTransaction = await tronWeb.transactionBuilder.updateAccountPermissions(tronWeb.address.toHex(curLoginAddress), ownerPermission, witnessPermission, activePermissions);
-                console.log('updateTransaction',JSON.stringify(updateTransaction));
+      
                 //const signedTransaction = await tronWeb.trx.multiSign(updateTransaction,tronWeb.defaultPrivateKey,0);
                 const value = updateTransaction.raw_data.contract[0].parameter.value;
                 const hexStr = buildAccountPermissionUpdateContract(value);
-                console.log('hexStr',hexStr);
+           
                 const signedTransaction = await transactionMultiResultManager(updateTransaction,tronWeb,0,1,hexStr);
                 let data = await postMutiSignTransaction(curLoginAddress,signedTransaction);
                 const result = data.code;
                 if(result===0){
-                    this.setState({
-                        modal: (
-                            <SweetAlert success title="" onConfirm={this.hideModal}>
-                                {'success transaction'}
-                            </SweetAlert>
-                        ),
-                        isEditContent: false
-                    });
+                    //todo 签名成功
+                    this.successAlert('签名成功.')
                 }else{
-                    this.setState({
-                        modal: (
-                            <SweetAlert success title="" onConfirm={this.hideModal}>
-                                {'failed transaction'}
-                            </SweetAlert>
-                        )
-                    });
+                     //todo 签名失败
+                    this.warningAlert('签名失败')
                 }
             }
         })
@@ -382,6 +369,7 @@ export default class MyPermission extends React.Component {
         return (
             <main className='permission-main'>
                 <div className='control-address'>
+                    {/* todo */}
                     <span> Control Address:</span>
                     <Input size="small" value={curControlAddress} className={!isEditOperateUser ? 'read' : ''} readOnly={!isEditOperateUser} onChange={(e) => {
                         this.changeControlAddress(e)
@@ -392,6 +380,7 @@ export default class MyPermission extends React.Component {
                         this.setState({ isEditOperateUser: true })
                     }}>Alter</Button>
                 </div>
+                {/* todo */}
                 <div className="global-operate">
                     <h3>Authority structure</h3>
                     <div className="operate-btn">

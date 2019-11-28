@@ -70,6 +70,7 @@ export default class OwnerEdit extends Component{
     }
 
     render(){
+        // todo 以下表单中的
         const {tronWeb } = this.props;
         const {keys,threshold,permission_name} = this.state;
         //console.log('render',keys);
