@@ -16,11 +16,11 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/editor.worker.js.gz"
   },
   {
-    "revision": "2172a1cdf3a44f0abe8f0408498a5f07",
+    "revision": "9cb8f287494d78524ac0c313b114a134",
     "url": "/index.html"
   },
   {
-    "revision": "1f2e239eb610f2ffc710890410451bcd",
+    "revision": "90371a2be71f8b6ea7a651b1c36c6ff4",
     "url": "/index.html.gz"
   },
   {
@@ -80,7 +80,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/css/NodeMap.aab5afec.chunk.css.gz"
   },
   {
-    "revision": "8d41523ee3a0329532b7",
+    "revision": "2e0ce62484c5007f4b51",
     "url": "/static/css/main.05edda53.chunk.css"
   },
   {
@@ -312,12 +312,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/js/Address.53ceabcf.chunk.js.gz"
   },
   {
-    "revision": "d627af0612590c85f974",
-    "url": "/static/js/BTTSupplyTemp.f6b60041.chunk.js"
+    "revision": "4f75ef096b757cab0245",
+    "url": "/static/js/BTTSupplyTemp.2359fa17.chunk.js"
   },
   {
-    "revision": "49873073deafc4d6a4a5e14b8787bf2e",
-    "url": "/static/js/BTTSupplyTemp.f6b60041.chunk.js.gz"
+    "revision": "a3def1c1f34f7521543834003e20573c",
+    "url": "/static/js/BTTSupplyTemp.2359fa17.chunk.js.gz"
   },
   {
     "revision": "3cf01cb30f231513e7be",
@@ -544,12 +544,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/js/Representatives.e820816b.chunk.js.gz"
   },
   {
-    "revision": "faf5c50ac090654e3472",
-    "url": "/static/js/SingleStats.2a2c1e8f.chunk.js"
+    "revision": "f05131e86ffc2f141267",
+    "url": "/static/js/SingleStats.d6b795cd.chunk.js"
   },
   {
-    "revision": "e29834f8c81651213ab6b07ec540a9a4",
-    "url": "/static/js/SingleStats.2a2c1e8f.chunk.js.gz"
+    "revision": "f7d304da33683e7c156f92433164cf46",
+    "url": "/static/js/SingleStats.d6b795cd.chunk.js.gz"
   },
   {
     "revision": "370b210b456eb4a1b9ac",
@@ -584,20 +584,20 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/js/TRONRating.11812409.chunk.js.gz"
   },
   {
-    "revision": "00c915acaab1a4cee0e2",
-    "url": "/static/js/Token20Detail.9c5e8029.chunk.js"
+    "revision": "638f84b2b11ce78adb1c",
+    "url": "/static/js/Token20Detail.1e6381fc.chunk.js"
   },
   {
-    "revision": "ce3be5f389ac9afa575ff8461403c202",
-    "url": "/static/js/Token20Detail.9c5e8029.chunk.js.gz"
+    "revision": "c69e73dd7d602c3af474a484d916b1ef",
+    "url": "/static/js/Token20Detail.1e6381fc.chunk.js.gz"
   },
   {
-    "revision": "e6aade4c18e72f1877e2",
-    "url": "/static/js/TokenDetail.fe084246.chunk.js"
+    "revision": "daaeac869ac0a95be55d",
+    "url": "/static/js/TokenDetail.b3fa56e6.chunk.js"
   },
   {
-    "revision": "6a388c81d35891a6d298efdcf7e1e2e9",
-    "url": "/static/js/TokenDetail.fe084246.chunk.js.gz"
+    "revision": "1a78d07680f38941ac35a6a836b843e6",
+    "url": "/static/js/TokenDetail.b3fa56e6.chunk.js.gz"
   },
   {
     "revision": "d86ba56d59ed3815f453",
@@ -712,20 +712,20 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/js/WalletWizard.f52d4ac5.chunk.js.gz"
   },
   {
-    "revision": "8d41523ee3a0329532b7",
-    "url": "/static/js/main.6b0f1a96.chunk.js"
+    "revision": "2e0ce62484c5007f4b51",
+    "url": "/static/js/main.e354f88e.chunk.js"
   },
   {
-    "revision": "005c336ae25f6fb6f4397eec31b9e7f4",
-    "url": "/static/js/main.6b0f1a96.chunk.js.gz"
+    "revision": "f2db88772f1805e0cdce87478c5cfeaf",
+    "url": "/static/js/main.e354f88e.chunk.js.gz"
   },
   {
-    "revision": "e01dc08bae05d62168d8",
-    "url": "/static/js/runtime~main.09be3313.js"
+    "revision": "a54709e66e1c730bdc15",
+    "url": "/static/js/runtime~main.384792b2.js"
   },
   {
-    "revision": "ed92bd3484aaeebe5a684ef4b180f983",
-    "url": "/static/js/runtime~main.09be3313.js.gz"
+    "revision": "8d5cd35d0043b17899677689caed0da1",
+    "url": "/static/js/runtime~main.384792b2.js.gz"
   },
   {
     "revision": "7b00f7c4e78ed9cfc676c64c040965e8",
