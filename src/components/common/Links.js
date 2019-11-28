@@ -120,7 +120,7 @@ class addressLinkClass extends React.PureComponent {
                   onCopy={() => {
                     message.success(
                       intl.formatMessage({ id: "contract_copy_success" }),
-                      2
+                      1
                     );
                   }}
                 >
@@ -267,7 +267,7 @@ class addressLinkClass extends React.PureComponent {
               onCopy={() => {
                 message.success(
                   intl.formatMessage({ id: "contract_copy_success" }),
-                  2
+                  1
                 );
               }}
             >
