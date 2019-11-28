@@ -79,7 +79,7 @@ class Code extends React.Component {
       license
     } = dataInfo;
 
-    if (status === 3 || status === 1 || status === 4) {
+    if (!status || status === 3 || status === 1 || status === 4) {
       this.setState(
         {
           contractVerifyState: false,
@@ -90,7 +90,6 @@ class Code extends React.Component {
         }
       );
     } else {
-      let licenses = this.state.licensesList;
       let infoObj;
       const abi = dataInfo.abi && JSON.parse(dataInfo.abi);
       /* eslint-disable */
