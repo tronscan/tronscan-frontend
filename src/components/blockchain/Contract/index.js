@@ -37,6 +37,7 @@ import TokenBalances from "./Balance.js";
 import { CsvExport } from "../../common/CsvExport";
 import moment from "moment";
 import rebuildList from "../../../utils/rebuildList";
+import { QuestionMark } from "../../common/QuestionMark.js";
 
 class SmartContract extends React.Component {
   constructor({ match }) {
@@ -522,15 +523,12 @@ class SmartContract extends React.Component {
                           <li>
                             <p>
                               {tu("contract_enery")}
-                              <Tooltip
-                                placement="top"
-                                title={tu("contract_enery_tip")}
-                              >
-                                <Icon
-                                  type="question-circle"
-                                  style={{ verticalAlign: "0.1rem" }}
+                              <span className="ml-1">
+                                <QuestionMark
+                                  placement="top"
+                                  text="contract_enery_tip"
                                 />
-                              </Tooltip>
+                              </span>
                               :
                             </p>
                             {contract.creator && (
@@ -556,15 +554,12 @@ class SmartContract extends React.Component {
                           <li>
                             <p>
                               {tu("contract_init_assets")}
-                              <Tooltip
-                                placement="top"
-                                title={tu("contract_init_assets_tip")}
-                              >
-                                <Icon
-                                  type="question-circle"
-                                  style={{ verticalAlign: "0.1rem" }}
+                              <span className="ml-1">
+                                <QuestionMark
+                                  placement="top"
+                                  text="contract_init_assets_tip"
                                 />
-                              </Tooltip>
+                              </span>
                               :
                             </p>
 
