@@ -95,11 +95,11 @@
                     }
                     margin-right:20px;
                 }
-                .ant-btn:hover, .ant-btn:focus{
-                    color: #fff;
-                    background: #C23631!important;
-                    border-color: #C23631;
-                }
+                // .ant-btn:hover, .ant-btn:focus{
+                //     color: #fff;
+                //     background: #C23631!important;
+                //     border-color: #C23631;
+                // }
             
         }
         .permission{
@@ -638,5 +638,25 @@
         }
     }
 }
+.permission-main{
+    .confirm-content-text{
+        color:#666!important;
+        .trx{
+            color:#C23631!important;
+        }
+    }
+}
 
+.btn-cancel{
+    border-color:#D8D8D8!important;
+    color:#333!important;
+    &:hover,&:active,&:focus{
+        color: #333!important;
+        background-color: #d4d4d4!important;
+        border-color: #8c8c8c!important;
+        span{
+            color: #333!important;
+        }
+    }
 
+}
