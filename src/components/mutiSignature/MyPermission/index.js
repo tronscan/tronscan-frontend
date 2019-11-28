@@ -14,13 +14,9 @@ import { deepCopy } from "ethers/utils";
 import { transactionMultiResultManager } from '../../../utils/tron'
 import { buildAccountPermissionUpdateContract } from '@tronscan/client/src/utils/transactionBuilder'
 // import xhr from "axios";
-<<<<<<< HEAD
 import { postMutiSignTransaction } from '../../../services/apiMutiSign'
-=======
-import {postMutiSignTransaction} from '../../../services/apiMutiSign'
 import { injectIntl } from "react-intl";
 @injectIntl
->>>>>>> 4fd505f65f689a668ec7565c62bcb6f3213a540e
 @connect(
     state => {
         return {

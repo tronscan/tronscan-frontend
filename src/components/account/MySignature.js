@@ -152,9 +152,9 @@ class MySignature extends React.Component{
             transactionId = false;
         }
         if (transactionId) {
-            this.onSignedTransaction('transaction_signature_muti');
+            this.onSignedTransaction('transaction_signature_muti_successful');
         } else {
-            this.onSignedTransaction('transaction_create_failed');
+            this.onSignedTransaction('transaction_signature_muti_failed');
         }
 
     }
