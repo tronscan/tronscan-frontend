@@ -25,21 +25,20 @@ import SignDetailsModal from './SignDetailsModal';
 import { TransactionHashLink } from "../common/Links";
 
 
-
 class MySignature extends React.Component{
     constructor() {
         super();
         this.state = {
             modal: null,
-            total:0,
-            data:[],
+            total: 0,
+            data: [],
             //0-签名中，1-签名交易完成， 2-交易过期/处理失败 10-待签名  11-已签名 255-全部
             filter: {
-                direction:255,
-                multiState:255,
+                direction: 255,
+                multiState: 255,
             },
-            isShowSignDetailsModal:false,
-            details:{}
+            isShowSignDetailsModal: false,
+            details: {}
         };
     }
 
@@ -122,11 +121,13 @@ class MySignature extends React.Component{
 
     multiSign = async(details) => {
         let {wallet} = this.props;
+        let transactionId;
         let result, success,tronWeb;
         console.log('e=====',details)
         //create transaction
         tronWeb = this.props.account.tronWeb;
         const currentTransaction = details.currentTransaction;
+
         //set transaction txID
         currentTransaction.txID = details.hash;
         //sign transaction
@@ -145,9 +146,36 @@ class MySignature extends React.Component{
         });
         result = data.code;
         console.log('code',result)
+        if (result == 0) {
+            transactionId = true;
+        } else {
+            transactionId = false;
+        }
+        if (transactionId) {
+            this.onSignedTransaction('transaction_signature_muti');
+        } else {
+            this.onSignedTransaction('transaction_create_failed');
+        }
+
     }
 
+    /**
+     * close SignedTransaction
+     */
+    hideModal = () => {
+        this.setState({ modal: null });
+    }
 
+    /**
+     * open SignedTransaction
+     */
+    onSignedTransaction = (str) => {
+        this.setState({
+            modal: (
+                <SweetAlert success title={tu(str)} onConfirm={this.hideModal}/>
+            )
+        });
+    };
 
 
 
@@ -241,9 +269,13 @@ class MySignature extends React.Component{
                 render: (text, record, index) => {
                     return <span>
                         <span>
-                             {text == 10 && tu('to_be_sign')}
-                             {text == 11 && tu('signed')}
-                             {text == 2 && tu('signature_failed')}
+                            {text == 10 && tu('to_be_sign')}
+                            {text == 11 && tu('signed')}
+                        </span>
+                        <span style={{color:'#c23631'}}>
+                            {text == 2 && tu('signature_failed')}
+                        </span>
+                        <span style={{color:'#69C265'}}>
                              {text == 1 && tu('signature_successful')}
                         </span>
                     </span>
@@ -309,7 +341,7 @@ class MySignature extends React.Component{
 
 
     render() {
-       let {data, filter, total, rangeTotal = 0, loading, emptyState: EmptyState = null, isShowSignDetailsModal, details} = this.state;
+       let {data, filter, total, rangeTotal = 0, loading, emptyState: EmptyState = null, isShowSignDetailsModal, details,modal} = this.state;
        console.log('data',data)
        let column = this.customizedColumn();
        return (
@@ -376,7 +408,8 @@ class MySignature extends React.Component{
                        </div>
                    </div>
                </div>
-               {isShowSignDetailsModal && <SignDetailsModal onCancel={this.closeSignDetailsModal} details={details} onSign={this.multiSign()} />}
+               {isShowSignDetailsModal && <SignDetailsModal onCancel={this.closeSignDetailsModal} details={details} onSign={this.multiSign} />}
+               {modal}
            </Fragment>
        )
     }

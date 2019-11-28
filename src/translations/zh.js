@@ -2284,4 +2284,7 @@ export const messages = {
   "signature_details":"交易详情",
   "signature_details_processing":"进行中",
   "view_on_chain_transactions":"查看链上交易",
+  "transaction_create_successful":"交易创建成功，请等待签名通过",
+  "transaction_create_failed":"签名失败，请稍后重试",
+  "transaction_signature_muti":"签名成功",
 };
