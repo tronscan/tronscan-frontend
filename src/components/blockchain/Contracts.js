@@ -495,13 +495,21 @@ class Contracts extends React.Component {
   }
   onLicenseChange = (checked) => {
     this.setState({
-      isOpen:checked
+      isOpen:checked,
+      pagination:{
+        ...this.state.pagination,
+        current: 1
+      },
     },() => this.loadContracts())
   }
   filterChange = (v) => {
     this.setState({
       curFilter:v,
-      isOpen: v === 'all' ? false : this.state.isOpen
+      isOpen: v === 'all' ? false : this.state.isOpen,
+      pagination:{
+        ...this.state.pagination,
+        current: 1
+      }
     },() => this.loadContracts())
   }
   render() {
