@@ -4,6 +4,7 @@ import { Input, Checkbox, Row, Col,Modal } from 'antd';
 import SweetAlert from "react-bootstrap-sweetalert";
 import { toNumber } from '../../../utils/number'
 import { cloneDeep } from 'lodash'
+import {tu} from "../../../utils/i18n"
 
 export default class ActiveEdit extends Component {
     constructor(props) {
@@ -180,22 +181,22 @@ export default class ActiveEdit extends Component {
             <div>
                 <div className='permission'>
                     <div className='permission-title'>
-                        <span className='permission-title-active'>Active permissions</span><i>({activePermissions.length + '/' + 8})</i>
+                        <span className='permission-title-active'>{tu('signature_active_permissions')}</span><i>({activePermissions.length + '/' + 8})</i>
                         <a className='btn btn-danger ac-permission-add-btn' size='small' onClick={()=>{this.addActivePermission()}}><span>+</span><span>Add permission</span></a>
                     </div>
                     <div className='permission-desc'>
-                        Active permissions are used to provide a combination of permissions. For example, provide a permission that can only be performed to create accounts and transfer money Add up to eight active permissions
+                        {tu('signature_active_permissions_desc')}
                 </div>
                     {
                         activePermissions.map((item, acIndex) => {
                             return <div className="permission-content" key={acIndex}>
                                 <a href="javascript:;" className='permission-delete' onClick={(e)=>{this.deleteAcItem(acIndex,e)}}></a>
                                 <div className="permission-item">
-                                    <span className="permission-label">Permission to name:</span>
+                                    <span className="permission-label">{tu('signature_permission')}:</span>
                                     <span><Input value={item.permission_name} name='permission_name' onChange={(e) => { this.changeValueByEvent(acIndex, e) }} /></span>
                                 </div>
                                 <div className="permission-item" style={{ paddingBottom: 0 }}>
-                                    <span className="permission-label">Operations:</span>
+                                    <span className="permission-label">{tu('signature_Operations')}:</span>
                                     <ul className='permission-operation-list'>
                                         {
                                             this.getOperationsByHex(item.operations)
@@ -204,14 +205,14 @@ export default class ActiveEdit extends Component {
                                     </ul>
                                 </div>
                                 <div className="permission-item" style={{ paddingTop: 0 }}>
-                                    <span className="permission-label">Threshold value:</span>
+                                    <span className="permission-label">{tu('signature_threshold')}:</span>
                                     <span><Input value={item.threshold} name='threshold' onChange={(e) => { this.changeValueByEvent(acIndex, e) }} /></span>
                                 </div>
                                 <div className="permission-item permission-keys">
-                                    <span className="permission-label">keys:</span>
+                                    <span className="permission-label">{tu('signature_keys')}:</span>
                                     <table>
                                         <thead>
-                                            <tr><td>key</td><td>weight</td></tr>
+                                            <tr><td>{'signature_key'}</td><td>{tu('signature_weight')}</td></tr>
                                         </thead>
                                         <tbody>
                                             {

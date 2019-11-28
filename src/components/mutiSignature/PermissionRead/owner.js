@@ -1,10 +1,11 @@
 import React, {Component} from "react";
+import {tu} from "../../../utils/i18n"
+
 
 export default class OwnerRead extends Component{
     constructor(props){
         super(props)
     }
-    //todo 以下表单中
     render(){
         const { ownerPermission,tronWeb } = this.props;
         const {keys,threshold,permission_name} = ownerPermission;
@@ -12,19 +13,19 @@ export default class OwnerRead extends Component{
         return(
         <div className='permission'> 
             <div className='permission-title'>
-                <span>Owner privilege</span>  
+        <span>{tu('signature_privilege')}</span>  
             </div>
             <div className='permission-desc'>
-            Owner privilege is the highest privilege of the account. It is used to control the ownership of the user and adjust the permission structure. Owner privilege can also execute all contracts
+                {tu('signature_privilege_desc')}
             </div>
             <div className="permission-content">
-                <div className="permission-item"> <span className="permission-label">Permission to name:</span> <span>{permission_name}</span></div>
-                <div className="permission-item"> <span className="permission-label">Threshold value:</span> <span>{threshold}</span></div>
+                <div className="permission-item"> <span className="permission-label">{tu('signature_permission')}:</span> <span>{permission_name}</span></div>
+                <div className="permission-item"> <span className="permission-label">{tu('signature_threshold')}:</span> <span>{threshold}</span></div>
                 <div className="permission-item permission-keys">
-                    <span className="permission-label">keys:</span> 
+                    <span className="permission-label">{tu('signature_keys')}:</span> 
                     <table>
                         <thead>
-                            <tr><td>key</td><td>weight</td></tr>
+                            <tr><td>{tu('signature_key')}</td><td>{tu('signature_weight')}</td></tr>
                         </thead>
                         <tbody>
                            {tableList}

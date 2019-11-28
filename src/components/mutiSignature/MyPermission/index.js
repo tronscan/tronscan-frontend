@@ -15,6 +15,8 @@ import {transactionMultiResultManager} from '../../../utils/tron'
 import {buildAccountPermissionUpdateContract} from'@tronscan/client/src/utils/transactionBuilder'
 // import xhr from "axios";
 import {postMutiSignTransaction} from '../../../services/apiMutiSign'
+import { injectIntl } from "react-intl";
+@injectIntl
 @connect(
     state => {
         return {
@@ -82,7 +84,7 @@ export default class MyPermission extends React.Component {
         let isValid = false;
         const { tronWeb } = this.props;
         const curControlAddress = this.state.curControlAddress
-        const { wallet } = this.props;
+        const { wallet,intl } = this.props;
         if (curControlAddress === wallet.current.address) {
             isValid = true;
             this.setState({
@@ -94,8 +96,9 @@ export default class MyPermission extends React.Component {
             //校验是否合约地址
             try {
                 const contractInstance = await tronWeb.contract().at(curControlAddress)
-                //todo
-                this.warningAlert('此地址为合约地址,不能设置')
+                this.warningAlert(intl.formatMessage({
+                    id: "signature_no_set"
+                  }))
             } catch (e) {
                 isValid = true;
             }
@@ -105,11 +108,17 @@ export default class MyPermission extends React.Component {
                 })
             }
             if (!isValid) {
-                this.warningAlert('Unverified address')
+
+                this.warningAlert(intl.formatMessage({
+                    id: "signature_Unverified_address"
+                  }))
                 return;
             }
             //
             const res = await tronWeb.trx.getAccount(curControlAddress);
+            const notInContralAddress = intl.formatMessage({
+                id: "signature_notInContralAddress"
+              })
 
             if (res) {
                 const { active_permission, owner_permission, witness_permission } = res;
@@ -124,7 +133,7 @@ export default class MyPermission extends React.Component {
                     this.setState({
                         modal: (
                             <SweetAlert warning onConfirm={() => this.hideModal()} title='warn'>
-                                {'your address is not in control address keys'}
+                                {notInContralAddress}
                             </SweetAlert>
                         ),
                         isEditOperateUser: true
@@ -139,8 +148,9 @@ export default class MyPermission extends React.Component {
                 }
             } else {
                 isValid = false;
-                //todo 
-                this.warningAlert('无效地址')
+                this.warningAlert(intl.formatMessage({
+                    id: "signature_invalid_Address"
+                  }))
             }
 
         }
@@ -179,11 +189,13 @@ export default class MyPermission extends React.Component {
         return isEqualOwner && isEqualActive && isEqualWitness;
     }
     validKeys(keysItem,keysArr) {
-        const { tronWeb } = this.props;
+        const { tronWeb,intl } = this.props;
         const item = keysItem;
         if(!tronWeb.isAddress(item.address)){
             //todo 
-            this.warningAlert('无效的地址.')
+            this.warningAlert(intl.formatMessage({
+                id: "signature_invalid_Address"
+              }))
             return false;
         }
         if(!item.weight){

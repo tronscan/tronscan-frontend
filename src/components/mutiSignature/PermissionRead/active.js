@@ -1,5 +1,7 @@
 import React, {Component,PureComponent} from "react";
 import { getContractTypesByHex } from '../../../utils/mutiSignHelper';
+import {tu} from "../../../utils/i18n"
+
 export default class ActiveRead extends PureComponent{
     constructor(props){
         super(props)
@@ -12,25 +14,24 @@ export default class ActiveRead extends PureComponent{
     }
     render(){
         const {activePermissions,tronWeb} = this.props;  
-         // todo 以下表单中
         return(
         
         <div className='permission'>
             <div className='permission-title'>
-                <span>Active permissions</span><i>({activePermissions.length+'/'+8})</i>  
+        <span>{tu('signature_active_permissions')}</span><i>({activePermissions.length+'/'+8})</i>  
             </div>
             <div className='permission-desc'>
-                Active permissions are used to provide a combination of permissions. For example, provide a permission that can only be performed to create accounts and transfer money Add up to eight active permissions
+                {tu('signature_active_permissions_desc')}
             </div>
             {
                activePermissions.map(item=>{
                    return  <div className="permission-content" key={item.id}>
                    <div className="permission-item"> 
-                       <span className="permission-label">Permission to name:</span> 
+                       <span className="permission-label">{tu('signature_permission')}:</span> 
                        <span>{item.permission_name}</span>
                    </div>
                    <div className="permission-item" style={{paddingBottom:0}}>
-                       <span className="permission-label">Operations:</span>
+                       <span className="permission-label">{tu('signature_Operations')}:</span>
                        <ul className='permission-operation-list'>
                            {
                                 this.getOperationsByHex(item.operations)
@@ -38,14 +39,14 @@ export default class ActiveRead extends PureComponent{
                        </ul>
                    </div>
                    <div className="permission-item" style={{paddingTop:0}}> 
-                       <span className="permission-label">Threshold value:</span> 
+                       <span className="permission-label">{tu('signature_threshold')}:</span> 
                         <span>{item.threshold}</span>
                    </div>
                    <div className="permission-item permission-keys">
-                       <span className="permission-label">keys:</span> 
+                       <span className="permission-label">{tu('signature_keys')}:</span> 
                        <table>
                            <thead>
-                               <tr><td>key</td><td>weight</td></tr>
+                        <tr><td>{tu('signature_key')}</td><td>{tu('signature_weight')}</td></tr>
                            </thead>
                            <tbody>
                                {
