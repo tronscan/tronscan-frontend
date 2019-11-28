@@ -217,7 +217,7 @@ class ApiClient20 {
     }
     let { data } = await xhr({
       method: "get",
-      url: `https://apilist.tronscan.org/api/system/proxy?url=https://api.coinmarketcap.com/v1/ticker/${type}/?convert=${covert}`
+      url: `https://apilist.tronscan.org/api/system/proxy?url=http://api.coinmarketcap.com/v1/ticker/${type}/?convert=${covert}`
     });
     return data;
   }
