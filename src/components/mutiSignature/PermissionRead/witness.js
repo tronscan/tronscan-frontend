@@ -1,5 +1,7 @@
 import React, {Component} from "react";
-//todo 以下表单
+import {tu} from "../../../utils/i18n"
+
+
 export default class WitnessRead extends Component{
     constructor(props){
         super(props)
@@ -9,14 +11,14 @@ export default class WitnessRead extends Component{
         return(
         <div className='permission'>
             <div className='permission-title'>
-                <span>Superdelegate authority</span>  
+                <span>{tu('signature_Superdelegate_authority')}</span>  
             </div>
             <div className='permission-desc'>
-            Superdelegate privileges are used to set block nodes
+            {tu('signature_Superdelegate_authority_desc')}
             </div>
             <div className="permission-content">
                 <div className="permission-item"> 
-                    <span class="permission-label">A piece of the node:</span> 
+                    <span class="permission-label">{tu('signature_piece_node')}:</span> 
                     <span class="permission-address">{witnessNodeAddress}</span>
                 </div>
             </div>

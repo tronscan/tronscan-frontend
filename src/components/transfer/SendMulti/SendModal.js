@@ -36,7 +36,7 @@ class SendModal extends React.PureComponent {
   onSend = () => {
     this.setState({
       modal: (
-          <SweetAlert success title="Successful Transaction" onConfirm={this.hideModal}/>
+          <SweetAlert success title={tu('transaction_create_successful')} onConfirm={this.hideModal}/>
       )
     });
   };
@@ -55,7 +55,9 @@ class SendModal extends React.PureComponent {
       )
     }
 
-    return modal;
+    return <div className="token_black">
+        {modal}
+    </div>;
   }
 }
 

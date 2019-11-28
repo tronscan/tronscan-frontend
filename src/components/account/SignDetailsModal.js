@@ -9,6 +9,7 @@ import { mul, division } from './../../utils/calculation';
 import rebuildList from "./../../utils/rebuildList";
 import { NameWithId } from '../common/names';
 import { AddressLink } from "../common/Links";
+import {TRXPrice} from "../common/Price";
 import {FormattedDate, FormattedNumber, FormattedRelative, FormattedTime, injectIntl} from "react-intl";
 
 const { Option } = Select;
@@ -128,6 +129,8 @@ class SignDetailsModal extends Component {
      */
     sign = () => {
         const { onSign, details } = this.props;
+        alert(11111)
+        console.log('details222',details)
         onSign && onSign(details);
     };
 
@@ -200,7 +203,7 @@ class SignDetailsModal extends Component {
                 </div>
                 <div className="form-group">
                     <label>{tu("amount")}</label>
-                    <span>{details.contractData.amount / ONE_TRX}</span>
+                    <span><TRXPrice amount={details.contractData.amount/ ONE_TRX}/></span>
                 </div>
             </Fragment>
         );
@@ -239,10 +242,15 @@ class SignDetailsModal extends Component {
             </Fragment>
         );
 
-        // btnItem
-        const btnItem = (
+        // sign btnItem
+        const signBtnItem = (
             <button className="btn btn-danger mt-4" style={{ width: '100%' }}
                     onClick={this.sign}>{tu('signature')}</button>
+        );
+        // close btnItem
+        const closeBtnItem = (
+            <button className="btn btn-danger mt-4" style={{ width: '100%' }}
+                    onClick={this.cancel}>{tu('compile_close')}</button>
         );
         return (
             <div>
@@ -306,7 +314,7 @@ class SignDetailsModal extends Component {
                            }
                        </div>
                    </div>
-                    {btnItem}
+                    {details.state == 0 &&  details.multiState == 10 ? signBtnItem :closeBtnItem}
                 </Modal>
                 {modal}
             </div>

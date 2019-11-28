@@ -2,6 +2,8 @@ import React, {Component} from "react";
 import { Input } from 'antd';
 import { cloneDeep } from 'lodash'
 import { toNumber } from '../../../utils/number'
+import {tu} from "../../../utils/i18n"
+
 export default class OwnerEdit extends Component{
     constructor(props){
         super(props)
@@ -70,7 +72,6 @@ export default class OwnerEdit extends Component{
     }
 
     render(){
-        // todo 以下表单中的
         const {tronWeb } = this.props;
         const {keys,threshold,permission_name} = this.state;
         //console.log('render',keys);
@@ -83,19 +84,19 @@ export default class OwnerEdit extends Component{
         return(
         <div className='permission'> 
             <div className='permission-title'>
-                <span>Owner privilege</span>  
+                <span>{tu('signature_privilege')}</span>  
             </div>
             <div className='permission-desc'>
-            Owner privilege is the highest privilege of the account. It is used to control the ownership of the user and adjust the permission structure. Owner privilege can also execute all contracts
+                {tu('signature_privilege_desc')}
             </div>
             <div className="permission-content">
-                <div className="permission-item"> <span className="permission-label">Permission to name:</span> <span><Input value={permission_name} name='permission_name' onChange={(e)=>{this.changeValueByEvent(e)}}/></span></div>
-                <div className="permission-item"> <span className="permission-label">Threshold value:</span> <span><Input value={threshold} name='threshold' onChange={(e)=>{this.changeValueByEvent(e)}}/></span></div>
+                <div className="permission-item"> <span className="permission-label">{tu('signature_permission')}:</span> <span><Input value={permission_name} name='permission_name' onChange={(e)=>{this.changeValueByEvent(e)}}/></span></div>
+                <div className="permission-item"> <span className="permission-label">{tu('signature_threshold')}:</span> <span><Input value={threshold} name='threshold' onChange={(e)=>{this.changeValueByEvent(e)}}/></span></div>
                 <div className="permission-item permission-keys">
-                    <span className="permission-label">keys:</span> 
+                    <span className="permission-label">{'signature_keys'}:</span> 
                     <table>
                         <thead>
-                            <tr><td>key</td><td>weight</td></tr>
+                            <tr><td>{tu('signature_key')}</td><td>{tu('signature_weight')}</td></tr>
                         </thead>
                         <tbody>
                            {tableList}
