@@ -12,6 +12,8 @@ import Contract from "../hw/ledger/TransactionConfirmation";
 import {ACCOUNT_LEDGER, ACCOUNT_PRIVATE_KEY, ACCOUNT_TRONLINK} from "../constants";
 
 import {Client} from "../services/api";
+
+import config from '../config/main.config'
 const ledgerTokenList = require('./tokens');
 const ledgerExchangeList = require('./exchanges');
 
@@ -27,7 +29,7 @@ export function withTronWeb(InnerComponent) {
     getTronWeb = () => {
 
       // if (typeof window.tronWeb === 'undefined') {
-      const networkUrl = `https://api.trongrid.io`;
+      const networkUrl = config.networkUrl;
 
       const tronWeb = new TronWeb(
         networkUrl,
@@ -57,7 +59,6 @@ export function withTronWeb(InnerComponent) {
           switch (wallet.type) {
             case ACCOUNT_LEDGER:
 
-
               try {
                 const transactionObj = transactionJsonToProtoBuf(transaction);
 
@@ -68,6 +69,7 @@ export function withTronWeb(InnerComponent) {
                 const contractObj = raw.getContractList()[0];
 
                 let contractType = contractObj.getType();
+                console.log('contractType',contractType);
 
                 let tokenInfo = [];
                 let extra = {};
@@ -140,6 +142,10 @@ export function withTronWeb(InnerComponent) {
                     case 31: //Trigger Smart Contract
                       extra = transaction.extra;
                       break;
+                    case 46:
+                        extra = {};
+                        tokenInfo = undefined;
+                        break;
                 }
 
                 extra.hash = transaction.txID;
@@ -152,7 +158,7 @@ export function withTronWeb(InnerComponent) {
                   hex: rawDataHex,
                   info: tokenInfo,
                 });
-
+                console.log('signedResponse',signedResponse);
                 transaction.signature = [Buffer.from(signedResponse).toString('hex')];
                 return transaction;
               } finally {

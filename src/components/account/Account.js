@@ -1959,6 +1959,12 @@ export default class Account extends Component {
 
     let trxBalanceRemaining = currentWallet && currentWallet.balance / ONE_TRX;
 
+    let tronWeb;
+    if(wallet.type==='ACCOUNT_LEDGER'){
+      tronWeb = this.props.tronWeb();
+    }else{
+      tronWeb = account.tronWeb;
+    }
       // pledge param
       const option = {
           address,
@@ -2538,7 +2544,7 @@ export default class Account extends Component {
                       </a>
                       <div className='muti-sign-content'>
                          <div className='muti-sign-my-permission' style={{display:isInMyPermission?'block':'none'}}>
-                            <MyPermission tronWeb={account.tronWeb}/>
+                            <MyPermission tronWeb={tronWeb}/>
                          </div>
                          <div className='muti-sign-my-signature' style={{display:isInMySignature?'block':'none'}}>
                              <MySignature />
