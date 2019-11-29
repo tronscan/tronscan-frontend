@@ -128,9 +128,9 @@ export default class Code extends React.Component {
           </span>
           <CopyText text={base64Code} className="ml-auto ml-1" />
         </div>
-        <div className="row">
-          <div className={isMobile ? `col-md-2` : `col-md-2 pr-0`}>
-            <div className="p-3 contract-code-tab">
+        <div className="row contract-code-editor">
+          <div className={isMobile ? `contract-code-1` : `contract-code-1 pr-0`}>
+            <div className="contract-code-tab">
               {contractInfos &&
                 contractInfos.length > 0 &&
                 contractInfos.map(v => (
@@ -145,7 +145,7 @@ export default class Code extends React.Component {
             </div>
           </div>
           <div
-            className={isMobile ? `col-md-10` : `col-md-10 pl-0`}
+            className={isMobile ? `contract-code-11` : `contract-code-11 pl-0`}
             id="container"
           >
             {/* <textarea className="w-100 form-control"
