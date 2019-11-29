@@ -183,3 +183,5 @@ export const CONTRACT_LICENSES = [
   "OSL-3.0",
   "Apache-2.0"
 ];
+
+export const WARNING_VERSIONS = ['tronbox_soljson_v3','tronbox_soljson_v1','tronbox_soljson_v2']

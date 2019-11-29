@@ -112,7 +112,8 @@ class VerifyContractCode extends Component {
             CompileStatus: [],
             loading: false,
             compileFiles: [],
-            optimizer: '1'
+            optimizer: '1',
+            curFile: ''
         };
     }
 
@@ -339,6 +340,7 @@ class VerifyContractCode extends Component {
             const fileString = evt.target.result;
             this.setState({
                 contractCode: fileString,
+                curFile: file.name
             });
         };
     }
@@ -396,7 +398,7 @@ class VerifyContractCode extends Component {
 
     render() {
         let { compilers, deaultCompiler, contractCode, modal, captchaCode, CompileStatus,
-            loading, compileFiles, licenses, optimizer } = this.state;
+            loading, compileFiles, licenses, optimizer,curFile } = this.state;
         let { intl } = this.props;
         const options = {
             selectOnLineNumbers: true
@@ -531,7 +533,7 @@ class VerifyContractCode extends Component {
                 <Row className="flex">
                     <Col span={4} className="contract-compiler-tab">
                         {isSelectContract && compileFiles.map(v => (
-                            <p onClick={() => this.changeEditor(v)} key={v.name}>{v.name}</p>
+                            <p onClick={() => this.changeEditor(v)} key={v.uid + v.name} className={curFile===v.name ? 'active' : ''}>{v.name}</p>
                         ))}
                     </Col>
                     <Col span={20} className="text-left">

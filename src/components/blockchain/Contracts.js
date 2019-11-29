@@ -18,7 +18,7 @@ import { loadTokens } from "../../actions/tokens";
 import xhr from "axios/index";
 import { API_URL, CONTRACT_LICENSES } from "../../constants";
 import { TRXPrice } from "../common/Price";
-import { ONE_TRX, IS_MAINNET } from "../../constants";
+import { ONE_TRX, IS_MAINNET, WARNING_VERSIONS } from "../../constants";
 import { Tooltip,Table, Switch } from "antd";
 import { QuestionMark } from "../common/QuestionMark.js";
 import { tu } from "../../utils/i18n";
@@ -228,7 +228,7 @@ class Contracts extends React.Component {
           {
             text ? (
               <span className="text-nowrap">
-                {this.state.warningVersions.indexOf(text) > -1 ? 
+                {WARNING_VERSIONS.indexOf(text) > -1 ? 
                   (<Tooltip
                     placement="top"
                     title={intl.formatMessage({ id: "contract_version_tip" })}
@@ -574,10 +574,10 @@ class Contracts extends React.Component {
             />
         </div>
         </div>
-        <p style={{textAlign:'right'}}>
+        {IS_MAINNET ? (<p style={{textAlign:'right'}}>
           {tu("contract_source_code_title")}
           <Link to="/contracts/source-code-usage-terms">{tu("contract_source_code_use")}</Link>
-        </p>
+        </p>): ''}
       </main>
     );
   }

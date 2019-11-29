@@ -12,7 +12,8 @@ import {
   IS_MAINNET,
   SUNWEBCONFIG,
   CONTRACT_LICENSES,
-  CONTRACT_NODE_API
+  CONTRACT_NODE_API,
+  WARNING_VERSIONS
 } from "../../../constants";
 import { injectIntl } from "react-intl";
 
@@ -426,7 +427,7 @@ class Code extends React.Component {
                     {compiler
                       ? `solidity ${this.solidityVersions(compiler)}`
                       : "--"}
-                    {this.state.warningVersions.indexOf(compiler) > -1 ? (
+                    {WARNING_VERSIONS.indexOf(compiler) > -1 ? (
                       <Tooltip
                         placement="top"
                         title={intl.formatMessage({
