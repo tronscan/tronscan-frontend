@@ -84,8 +84,7 @@ class Contracts extends React.Component {
       filters:['all','verified'],
       curFilter: 'all',
       isOpen: false,
-      sort:'-trxCount',
-      warningVersions:[]
+      sort:'-trxCount'
     };
   }
 

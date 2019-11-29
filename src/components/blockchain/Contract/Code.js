@@ -42,8 +42,7 @@ class Code extends React.Component {
       nonePayableContractList: [],
       eventContractList: [],
       currentTokens: [],
-      contractVerifyState: true,
-      warningVersions: []
+      contractVerifyState: true
     };
   }
 

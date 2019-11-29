@@ -1,5 +1,5 @@
 import React, { Fragment, Component } from "react";
-import { tu, tv } from "../../../utils/i18n";
+import { t, tu, tv } from "../../../utils/i18n";
 import { Link } from "react-router-dom";
 import { injectIntl } from "react-intl";
 
@@ -24,13 +24,13 @@ class SourceCode extends Component {
             <p>
               {tu("contract_source_code_p1")}{" "}
               <Link to="/contracts/terms">
-                {tu("contract_source_code_p1_use_service")}
+                {t("contract_source_code_p1_use_service")}
               </Link>
             </p>
             <p>
               {tu("contract_source_code_p2_1")}{" "}
               <Link to="/contracts/contract-Compiler/verify">
-                {tu("contract_source_code_p2_ver")}
+                {t("contract_source_code_p2_ver")}
               </Link>{" "}
               {tu("contract_source_code_p2_2")}
             </p>
