@@ -20,26 +20,40 @@ class SendModal extends React.PureComponent {
           <Modal backdrop="static" isOpen={true} toggle={this.hideModal} fade={false} className="modal-dialog-centered fiexd-none">
             <ModalHeader className="text-center" toggle={this.hideModal}>Send</ModalHeader>
             <ModalBody className="text-center">
-              <SendForm to={to} onSend={this.onSend} onClose={this.hideModal}/>
+              <SendForm to={to} onSend={this.onSend} onClose={this.hideModal} onMultiSend={(permissionId, permissionTime, from) =>this.onMultiSend(permissionId, permissionTime, from)}/>
             </ModalBody>
           </Modal>
       )
     };
   }
 
+
+
   hideModal = () => {
     let {onClose} = this.props;
     onClose && onClose();
   };
 
-
+  onMultiSend = (permissionId, permissionTime, from) => {
+      let {onMultiSignSend} = this.props;
+      onMultiSignSend && onMultiSignSend(permissionId, permissionTime, from);
+  };
   onSend = () => {
     this.setState({
       modal: (
-          <SweetAlert success title="Successful Transaction" onConfirm={this.hideModal}/>
+          <SweetAlert success title="transaction_create_successful" onConfirm={this.hideModal}/>
       )
     });
   };
+
+  componentDidUpdate(prevProps) {
+      // let { code } = this.props;
+      // console.log('code222',code)
+      // console.log('prevProps.code',prevProps.code)
+      // if(prevProps.code !== code && prevProps.code == 0 ){
+      //     this.onSend()
+      // }
+  }
 
   render() {
 

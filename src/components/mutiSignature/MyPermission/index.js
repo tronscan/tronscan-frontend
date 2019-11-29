@@ -13,7 +13,7 @@ import { deepCopy } from "ethers/utils";
 import { transactionMultiResultManager } from '../../../utils/tron'
 import { buildAccountPermissionUpdateContract } from '@tronscan/client/src/utils/transactionBuilder'
 // import xhr from "axios";
-import {postMutiSignTransaction} from '../../../services/apiMutiSign'
+import { postMutiSignTransaction } from '../../../services/apiMutiSign'
 import { injectIntl } from "react-intl";
 @injectIntl
 @connect(

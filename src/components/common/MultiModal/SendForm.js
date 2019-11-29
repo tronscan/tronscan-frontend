@@ -66,7 +66,7 @@ class SendForm extends React.Component {
    * @returns {*|boolean}
    */
   isValid = () => {
-    let {from, to, token, amount,balance, permissionTime, permissionId} = this.state;
+    let {from, permissionTime, permissionId} = this.state;
     return  isAddressValid(from) && permissionTime && permissionId !== "";
   };
 
@@ -610,12 +610,17 @@ class SendForm extends React.Component {
         () => this.getSelectedTokenBalance())
     }
   }
-
+    onMultiSignSend = () =>{
+        let {onClose,onMultiSend} = this.props;
+        let {from, permissionId, permissionTime } = this.state;
+        onMultiSend(permissionId,permissionTime,from)
+    }
 
   renderFooter() {
+    let { sendStatus, isLoading } = this.state;
 
-    let {sendStatus, isLoading} = this.state;
-    let {onClose} = this.props;
+
+    let { onClose } = this.props;
     if (sendStatus === 'success') {
       return (
           <Alert color="success" className="text-center">
@@ -643,7 +648,7 @@ class SendForm extends React.Component {
               type="button"
               disabled={!this.isValid() || isLoading}
               className="btn btn-primary"
-              onClick={this.confirmSend}>{tu("trc20_confirm")}</button>
+              onClick={this.onMultiSignSend}>{tu("trc20_confirm")}</button>
         </Fragment>
     )
   }
