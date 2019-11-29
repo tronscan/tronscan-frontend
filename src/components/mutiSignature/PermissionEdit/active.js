@@ -176,7 +176,7 @@ export default class ActiveEdit extends Component {
     render() {
         const { activePermissions, modal,allPermissions,hasContractIds } = this.state;
         const { tronWeb } = this.props;
-        // todo 以下表单中的
+        //  以下表单中的
         return (
             <div>
                 <div className='permission'>
@@ -201,7 +201,7 @@ export default class ActiveEdit extends Component {
                                         {
                                             this.getOperationsByHex(item.operations)
                                         }
-                                        <li className='permission-modify' onClick={(e) => { this.modifyPermission(acIndex, e) }}><span>+</span><span>add</span></li>
+                        <li className='permission-modify' onClick={(e) => { this.modifyPermission(acIndex, e) }}><span>+</span><span>{tu('signature_add')}</span></li>
                                     </ul>
                                 </div>
                                 <div className="permission-item" style={{ paddingTop: 0 }}>
