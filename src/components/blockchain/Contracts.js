@@ -81,8 +81,8 @@ class Contracts extends React.Component {
         defaultPageSize:20,
         total: 0
       },
-      filters:['all','verified'],
-      curFilter: 'all',
+      filters:['verified', 'all'],
+      curFilter: 'verified',
       isOpen: false,
       sort:'-trxCount'
     };
@@ -205,7 +205,7 @@ class Contracts extends React.Component {
             <span>
               {text ? (
                 <span className="d-flex align-items-center">
-                  <img src={text.icon_url} style={{width:'18px',height:'18px',marginRight: '8px'}}></img>
+                  <img src={text.icon_url} style={{width:'27px',height:'27px',marginRight: '6px'}}></img>
                   <span className="d-flex flex-column" style={{flex: '1'}}>
                     <span style={{display:'block',maxWidth:'80px',overflow:'hidden',whiteSpace:'nowrap',textOverflow:'ellipsis'}} title={text.name}>{text.name}</span>
                     <span style={{display:'block',maxWidth:'80px',overflow:'hidden',whiteSpace:'nowrap',textOverflow:'ellipsis'}} title={text.symbol}>{text.symbol}</span>

@@ -1179,8 +1179,8 @@ export const messages = {
   // 2019-11-21
   "contract_license": "license",
   "select_license": "请选择license",
-  "contract_all":"全部合约",
-  "contract_verified":"已验证合约",
+  "contract_all":"全部",
+  "contract_verified":"验证通过",
   "contract_open_license":"开源License",
   "contract_token_name": "通证名称",
   "contract__compile_version":"编译版本",

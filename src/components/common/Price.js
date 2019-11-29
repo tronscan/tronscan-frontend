@@ -157,7 +157,7 @@ export class TRXPrice extends React.PureComponent {
                       <FormattedNumber
                         value={amount / ONE_TRX}
                         maximumFractionDigits={6}
-                        minimumFractionDigits={6}
+                        // minimumFractionDigits={6}
                       />{" "}
                       <br />
                       BTC{" "}
@@ -228,7 +228,7 @@ export class TRXPrice extends React.PureComponent {
                       <FormattedNumber
                         value={amount}
                         maximumFractionDigits={6}
-                        minimumFractionDigits={6}
+                        // minimumFractionDigits={6}
                       />{" "}
                       <br />
                       <span className="text-capitalize">satoshi</span>{" "}
@@ -301,7 +301,7 @@ export class TRXPrice extends React.PureComponent {
                       <FormattedNumber
                         value={amount}
                         maximumFractionDigits={6}
-                        minimumFractionDigits={6}
+                        // minimumFractionDigits={6}
                       />{" "}
                       <br />
                       BTC{" "}
