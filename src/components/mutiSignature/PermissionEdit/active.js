@@ -137,6 +137,9 @@ export default class ActiveEdit extends Component {
     }
     addActivePermission(){
         const { activePermissions } = this.state;
+        if(activePermissions.length>=8){
+            return false;
+        }
         activePermissions.push({
             operations:'',
             keys:[{key:'',weight:1}],

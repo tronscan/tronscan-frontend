@@ -465,7 +465,25 @@ export default function Contract({ contract, extra }) {
             </table>
           </Fragment>
         );
-
+        case "ACCOUNTPERMISSIONUPDATECONTRACT":
+          return (
+            <Fragment>
+              <div className="card-body">
+                <h5 className="card-title text-center">Claim Rewards</h5>
+              </div>
+              <table className="table">
+                <tbody>
+                {(extra && extra.hash && 
+                      <Field label="Hash">
+                          <Truncate>
+                            #{extra.hash}
+                          </Truncate>
+                      </Field>
+                  )}
+                  </tbody>
+              </table>
+            </Fragment>
+          );
         case "EXCHANGEINJECTCONTRACT":
         return (
           <Fragment>

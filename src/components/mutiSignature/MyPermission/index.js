@@ -69,8 +69,10 @@ export default class MyPermission extends React.Component {
     //     }
     // }
     async componentWillReceiveProps(nextProps) {
-        console.log('nextProps', nextProps.wallet);
-        await this.initState(nextProps);
+    
+        if(nextProps.account.address!=this.props.account.address){
+            this.initState(nextProps);
+        }
     }
     // static async getDerivedStateFromProps(nextProps, prevState) {
     //     await this.initState(nextProps);
@@ -374,7 +376,7 @@ export default class MyPermission extends React.Component {
                     });
                 });
 
-                if (res.result) {
+                if (res&&res.result) {
                     // 签名成功 transaction_signature_muti_successful
                     this.successAlert(intl.formatMessage({
                         id:"transaction_signature_muti_successful"
