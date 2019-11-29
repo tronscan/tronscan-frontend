@@ -1,6 +1,7 @@
 import React from "react";
 import { injectIntl } from "react-intl";
 import { tu } from "../../../utils/i18n";
+import {Client} from "../../../services/api";
 import { Collapse, Input, Form, Select } from 'antd';
 import { connect } from "react-redux";
 import { formatOutput, formatInput } from '../../../utils/readContract'
@@ -8,6 +9,9 @@ import SweetAlert from "react-bootstrap-sweetalert";
 import TokenBalanceSelect from "../../common/TokenBalanceSelect";
 import JSONTree from 'react-json-tree'
 import SendMultiModal from "../../common/MultiModal/SendModal";
+import { transactionMultiResultManager } from "../../../utils/tron"
+import xhr from "axios";
+
 
 const { Panel } = Collapse;
 // const { Option } = Select;
@@ -34,18 +38,21 @@ class Code extends React.Component {
       submitValues: '',
       modal: null,
       tokenId: '',
-      totalValue: ''
+      totalValue: 0,
+      code:111
     };
   }
 
   async componentDidMount() {
     let { contractItem, address, account } = this.props;
+    console.log('account',account)
+    console.log('contractItem',contractItem)
+      console.log('address',address)
     let { contract } = this.state
     const { tronWeb } = this.props.account;
     if ( account.isLoggedIn ) {
       let addressHex = tronWeb.address.toHex(address);
       let initContract = await tronWeb.contract([contractItem], addressHex)
-        console.log('initContract',initContract)
       this.setState({
         contract: initContract
       }, () => {
@@ -166,10 +173,12 @@ class Code extends React.Component {
     hideModal = () => {
         this.setState({modal: null});
     };
-    MultiSend = () => {
+    MultiSendModal = () => {
+        let {code} = this.state;
+        console.log('code',code)
         this.setState({
             modal: (
-                <SendMultiModal onClose={this.hideModal}/>
+                <SendMultiModal code={code} onClose={this.hideModal} onMultiSignSend={(permissionId, permissionTime, from) => this.MultiSend(permissionId, permissionTime, from)}/>
             )
         });
     };
@@ -180,62 +189,134 @@ class Code extends React.Component {
       resultVal = Number(r1.replace(".", "")) * Number(r2.replace(".", "")) / Math.pow(10, m);
       return typeof d !== "number" ? Number(resultVal) : Number(resultVal.toFixed(parseInt(d)));
   }
-  // async MultiSend () {
-  //       const { tokenId, totalValue, contract ,sendTokenDecimals } = this.state
-  //       const { contractItem, intl } = this.props;
-  //       const { tronWeb } = this.props.account;
-  //       if (this.isLoggedIn()) {
-  //           try {
-  //               let options = {};
-  //               if (!tokenId || tokenId == '_') {
-  //                   options = { callValue: this.Mul(totalValue,Math.pow(10, sendTokenDecimals)) };
-  //               } else {
-  //                   options = {
-  //                       tokenId: tokenId,
-  //                       tokenValue: this.Mul(totalValue,Math.pow(10, sendTokenDecimals))
-  //                   };
-  //               }
-  //               console.log('options',options)
-  //
-  //               let signedTransaction = await contract[contractItem.name](
-  //                   ...this.submitValueFormat()
-  //               ).send(options)
-  //
-  //               let retValue = await this.getTxResult(signedTransaction);
-  //               this.setState({
-  //                   result: this.formatOutputs(retValue)
-  //               })
-  //           } catch (e) {
-  //               if (e.error == "REVERT opcode executed") {
-  //                   var res = e.output["contractResult"][0];
-  //                   let result =
-  //                       "REVERT opcode executed. " +
-  //                       (res == ""
-  //                           ? ""
-  //                           : "Message: " +
-  //                           tronWeb
-  //                               .toUtf8(res.substring(res.length - 64, res.length))
-  //                               .trim());
-  //                   this.setState({
-  //                       result: result
-  //                   })
-  //               } else {
-  //                   this.setState({
-  //                       result: JSON.stringify(e)
-  //                       // modal: <SweetAlert
-  //                       //   warning
-  //                       //   title={e}
-  //                       //   confirmBtnText={intl.formatMessage({ id: 'confirm' })}
-  //                       //   confirmBtnBsStyle="danger"
-  //                       //   onConfirm={() => this.setState({ modal: null })}
-  //                       //   style={{ marginLeft: '-240px', marginTop: '-195px' }}
-  //                       // >
-  //                       // </SweetAlert>
-  //                   })
-  //               }
-  //           }
-  //       }
-  //   }
+   MultiSend =  async(permissionId, permissionTime, from) => {
+        console.log('permissionId=====',permissionId)
+        console.log('permissionTime======',permissionTime)
+        console.log('from====',from)
+        const { tokenId, totalValue, contract ,sendTokenDecimals } = this.state;
+        let { contractItem, address, account, intl } = this.props;
+        const { tronWeb } = this.props.account;
+        let selectorTypeArr = [];
+        let selectorValueArr = this.submitValueFormat();
+        let selectorArr = [];
+        let transactionId;
+        console.log('contractItem.input',contractItem.inputs)
+        if(contractItem.inputs){
+            for(let i = 0; i < contractItem.inputs.length; i++){
+                selectorTypeArr.push(contractItem.inputs[i]['type'])
+            }
+        }
+        if(selectorValueArr){
+          for(let i = 0; i < selectorValueArr.length; i++){
+              if(selectorValueArr[i] == 'undefined'){
+                  selectorValueArr[i] = '';
+              }
+              if(selectorTypeArr[i] == 'address'){
+                  selectorValueArr[i] = tronWeb.address.toHex(selectorValueArr[i]);
+              }
+              selectorArr.push(
+                    {type: selectorTypeArr[i], value: selectorValueArr[i]},
+              )
+            }
+        }
+
+        console.log('selectorArr',selectorArr)
+
+        let selectorTypeStr = selectorTypeArr.join(',')
+        let function_selector = contractItem.name + '(' + selectorTypeStr + ')';
+        console.log('function_selector',function_selector)
+        console.log('this.isLoggedIn()',this.isLoggedIn())
+        if (this.isLoggedIn()) {
+            try {
+                 let options = {};
+                // if (!tokenId || tokenId == '_') {
+                //     options = { callValue: this.Mul(totalValue,Math.pow(10, sendTokenDecimals)) };
+                // } else {
+                //     options = {
+                //         tokenId: tokenId,
+                //         tokenValue: this.Mul(totalValue,Math.pow(10, sendTokenDecimals))
+                //     };
+                // }
+                console.log('options=======',options)
+                let unSignTransaction = await tronWeb.transactionBuilder.triggerSmartContract(
+                    tronWeb.address.toHex(address),
+                    function_selector,
+                    {'permissionId':permissionId,...options},
+                    selectorArr,
+                    tronWeb.address.toHex(from),
+                );
+                if (unSignTransaction.transaction !== undefined)
+                    unSignTransaction = unSignTransaction.transaction;
+                console.log('unSignTransaction',unSignTransaction)
+
+                //get transaction parameter value to Hex
+                let HexStr = Client.getTriggerSmartContractHexStr(unSignTransaction.raw_data.contract[0].parameter.value);
+                console.log('HexStr',HexStr)
+
+                //sign transaction
+                let SignTransaction = await transactionMultiResultManager(unSignTransaction, tronWeb, permissionId,permissionTime,HexStr);
+
+                let { data } = await xhr.post("https://testlist.tronlink.org/api/wallet/multi/transaction", {
+                    "address": account.address,
+                    "transaction": SignTransaction,
+                    "netType":"shasta",
+                    "functionSelector":function_selector,
+                });
+                let code = data.code;
+                console.log('code',code)
+                if(code == 0){
+                    this.setState({
+                        modal: (
+                            <SweetAlert success title={tu("transaction_create_successful")} onConfirm={this.hideModal}/>
+                        )
+                    });
+                }else{
+                    this.setState({
+                        modal: (
+                            <SweetAlert error title={tu("transaction_create_failed")} onConfirm={this.hideModal}/>
+                        )
+                    });
+                }
+
+
+
+                // let retValue = await this.getTxResult(SignTransaction);
+                // this.setState({
+                //     result: this.formatOutputs(retValue)
+                // })
+
+            } catch (e) {
+                console.log('e=======',e)
+                if (e.error == "REVERT opcode executed") {
+                    var res = e.output["contractResult"][0];
+                    let result =
+                        "REVERT opcode executed. " +
+                        (res == ""
+                            ? ""
+                            : "Message: " +
+                            tronWeb
+                                .toUtf8(res.substring(res.length - 64, res.length))
+                                .trim());
+                    this.setState({
+                        result: result
+                    })
+                } else {
+                    this.setState({
+                        result: JSON.stringify(e)
+                        // modal: <SweetAlert
+                        //   warning
+                        //   title={e}
+                        //   confirmBtnText={intl.formatMessage({ id: 'confirm' })}
+                        //   confirmBtnBsStyle="danger"
+                        //   onConfirm={() => this.setState({ modal: null })}
+                        //   style={{ marginLeft: '-240px', marginTop: '-195px' }}
+                        // >
+                        // </SweetAlert>
+                    })
+                }
+            }
+        }
+    }
 
   async Send () {
     const { tokenId, totalValue, contract ,sendTokenDecimals } = this.state
@@ -396,7 +477,7 @@ class Code extends React.Component {
           </div>
           <div className="d-flex">
               <div className="search-btn" onClick={() => this.Send()}>Send</div>
-              <div className="search-btn ml-2" onClick={() => this.MultiSend()}>Multi Send</div>
+              <div className="search-btn ml-5" onClick={() => this.MultiSendModal()}>Multi Send</div>
           </div>
 
             {
@@ -410,8 +491,8 @@ class Code extends React.Component {
       contractList = (
         <div>
             <div className="d-flex">
-                <div className="search-btn ml-5" onClick={() => this.Send()}>Send</div>
-                <div className="search-btn ml-2" onClick={() => this.MultiSend()}>Multi Send</div>
+                <div className="search-btn" onClick={() => this.MultiSend()}>Send</div>
+                <div className="search-btn ml-2" onClick={() => this.MultiSendModal()}>Multi Send</div>
             </div>
             {
                 result && <JSONTree data={result}  theme={theme} invertTheme={true}/>
