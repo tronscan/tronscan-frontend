@@ -15,6 +15,7 @@ import { buildAccountPermissionUpdateContract } from '@tronscan/client/src/utils
 // import xhr from "axios";
 import { postMutiSignTransaction } from '../../../services/apiMutiSign'
 import { injectIntl } from "react-intl";
+import {tu} from '../../../utils/i18n'
 @injectIntl
 @connect(
     state => {
@@ -129,7 +130,7 @@ export default class MyPermission extends React.Component {
                 const isInKeys = keys.some(item => {
                     return tronWeb.address.fromHex(item.address) == wallet.current.address
                 })
-                //todo 你的地址必须在控制地址keys下
+                // 你的地址必须在控制地址keys下
                 if (!isInKeys) {
                     isValid = false;
                     this.setState({
@@ -194,22 +195,26 @@ export default class MyPermission extends React.Component {
         const { tronWeb,intl } = this.props;
         const item = keysItem;
         if (!tronWeb.isAddress(item.address)) {
-            //todo 
+            
             this.warningAlert(intl.formatMessage({
                 id: "signature_invalid_Address"
               }))
             return false;
         }
         if (!item.weight) {
-            //todo
-            this.warningAlert('weight 为必填项.');
+            
+            this.warningAlert(intl.formatMessage({
+                id: "signature_weight_required"
+              }));
             return false;
         }
 
         if (this.findIsSameKey(item, keysArr)) {
-            //todo
+            
 
-            this.warningAlert('同一权限组下账户地址不能相同.');
+            this.warningAlert(intl.formatMessage({
+                id: "signature_address_not_similar"
+              }));
             return false;
         }
         item.address = tronWeb.address.toHex(item.address);
@@ -269,18 +274,18 @@ export default class MyPermission extends React.Component {
         this.confirmAlert(()=>{
             this.hideModal();
             this.setState({ isEditContent: false })
-        },null,<div className='confirm-content-text'>是否放弃本次修改?</div>)
+    },null,<div className='confirm-content-text'>{tu('signature_giveup_change')}</div>)
     }
     onSubmitClick(){
         this.confirmAlert(()=>{
             this.savePermission()
             this.hideModal();
-        },null,<div className='confirm-content-text'>提交修改将完成多重签名权限结构的设置此操作将会花费<span className='trx'>100TRX</span>，是否提交本次修改?</div>)
+    },null,<div className='confirm-content-text'>{tu('signature_set_spend_trx')}<span className='trx'>100TRX</span>{tu('signature_submit_change')}</div>)
     }
 
     //点击保存
     async savePermission() {
-        const { tronWeb, reloadWallet } = this.props;
+        const { tronWeb, reloadWallet,intl } = this.props;
         const { changedOwnerPermission, changedActivePermission, changedWihnessPermission, curLoginAddress, curControlAddress } = this.state;
         //检查权限是否修改过
         if (this.comparePermissionIsChanged()) {
@@ -313,8 +318,10 @@ export default class MyPermission extends React.Component {
         }
 
         if (sumOwnerKeysWeight < threshold) {
-            //todo owner 权限权重之和大于阈值
-            this.warningAlert('sum of all key\'s weight should not be less than threshold in permission Owner')
+            // owner 权限权重之和大于阈值
+            this.warningAlert(intl.formatMessage({
+                id:"signature__less_threshold_owner"
+            }))
             return;
         }
         // active数据校验######################################################
@@ -338,8 +345,10 @@ export default class MyPermission extends React.Component {
             }
             if (sumKeysWeight < acItemThreshold) {
                 isValidActivePermission = false;
-                //todo active 权限权重值和必须大于阈值
-                this.warningAlert('sum of all key\'s weight should not be less than threshold in permission Active');
+                // active 权限权重值和必须大于阈值
+                this.warningAlert(intl.formatMessage({
+                    id:"signature__less_threshold_active"
+                }));
                 return;
             }
         }
@@ -361,23 +370,27 @@ export default class MyPermission extends React.Component {
                     this.setState({
                         modal: (
                             <SweetAlert warning title="Update Permission" onConfirm={this.hideModal}>
-                                {'update permission failed'}
+                                {tu('signature_update_failed')}
                             </SweetAlert>
                         )
                     });
                 });
 
                 if (res&&res.result) {
-                    //todo 签名成功
-                    this.successAlert('签名成功.')
+                    // 签名成功 transaction_signature_muti_successful
+                    this.successAlert(intl.formatMessage({
+                        id:"transaction_signature_muti_successful"
+                    }))
                     // setTimeout(()=>{
                     //     reloadWallet();
                     // },5000)
 
 
                 } else {
-                    //todo 签名失败
-                    this.warningAlert('签名失败')
+                    // 签名失败
+                    this.warningAlert(intl.formatMessage({
+                        id:"transaction_signature_muti_failed"
+                    }))
                 }
             } else {
                 //走多重签名
@@ -391,11 +404,15 @@ export default class MyPermission extends React.Component {
                 let data = await postMutiSignTransaction(curLoginAddress, signedTransaction);
                 const result = data.code;
                 if (result === 0) {
-                    //todo 签名成功
-                    this.successAlert('签名成功.')
+                    // 签名成功
+                    this.successAlert(intl.formatMessage({
+                        id:"transaction_signature_muti_successful"
+                    }))
                 } else {
-                    //todo 签名失败
-                    this.warningAlert('签名失败')
+                    // 签名失败
+                    this.warningAlert(intl.formatMessage({
+                        id:"transaction_signature_muti_failed"
+                    }))
                 }
             }
         })
@@ -416,24 +433,23 @@ export default class MyPermission extends React.Component {
         return (
             <main className='permission-main'>
                 <div className='control-address'>
-                    {/* todo */}
-                    <span> Control Address:</span>
+                    
+                    <span> {tu('signature_control_address')}:</span>
                     <Input size="small" value={curControlAddress} className={!isEditOperateUser ? 'read' : ''} readOnly={!isEditOperateUser} onChange={(e) => {
                         this.changeControlAddress(e)
                     }} />
                     <Button className="btn btn-danger" style={{ display: isEditOperateUser ? 'block' : 'none' }}
-                        onClick={() => this.saveControlAddress()}>Save</Button>
+                        onClick={() => this.saveControlAddress()}>{tu('signature_save')}</Button>
                     <Button className="btn btn-cancel" style={{ display: !isEditOperateUser ? 'block' : 'none' }} onClick={() => {
                         this.setState({ isEditOperateUser: true })
-                    }}>Alter</Button>
+                    }}>{tu('signature_alter')}</Button>
                 </div>
-                {/* todo */}
                 <div className="global-operate">
-                    <h3>Authority structure</h3>
+                    <h3>{tu('signature_authority_structure')}</h3>
                     <div className="operate-btn">
                         <a href="javascript:;" className='edit-permission' style={{ display: !isEditContent ? 'inline-block' : 'none' }} onClick={() => { this.setState({ isEditContent: true }) }}><span className='edit'></span><span>Edit Permissions</span> </a>
                         <div className="buttonWarp" style={{ display: isEditContent ? 'inline-block' : 'none' }}>
-                            <Button className="btn btn-cancel" onClick={() => { this.onCancelClick()}}>Cancel</Button>
+                            <Button className="btn btn-cancel" onClick={() => { this.onCancelClick()}}>{tu('signature_cancel')}</Button>
                             <Button className="btn btn-danger" style={{marginLeft:'10px'}} onClick={() => { this.onSubmitClick() }}>Save</Button>
                         </div>
                     </div>
