@@ -22,12 +22,11 @@ import TotalInfo from "../common/TableTotal";
 import Countdown from "react-countdown-now";
 import _, {find} from "lodash";
 import SignDetailsModal from './SignDetailsModal';
-import { TransactionHashLink } from "../common/Links";
 
 
 class MySignature extends React.Component{
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             modal: null,
             total: 0,
@@ -35,7 +34,7 @@ class MySignature extends React.Component{
             //0-签名中，1-签名交易完成， 2-交易过期/处理失败 10-待签名  11-已签名 255-全部
             filter: {
                 direction: 255,
-                multiState: 255,
+                multiState: props.type,
             },
             isShowSignDetailsModal: false,
             details: {}
@@ -46,23 +45,34 @@ class MySignature extends React.Component{
         this.load()
     }
 
+    async componentDidUpdate(prevProps) {
+        let { type } = this.props;
+        if(prevProps.type !== type){
+            this.setState({
+                filter: {
+                    direction: 255,
+                    multiState: type,
+                },
+            },()=>{
+                this.load()
+            });
+        }
+    }
+
+
 
     load = async (page = 1, pageSize = 20) => {
         let { wallet } = this.props;
-        console.log('wallet',wallet)
-        console.log('wallet222',wallet.address)
-        let { filter, multiState} = this.state;
+        let { filter } = this.state;
         let { data:{data} } = await xhr.get("https://testlist.tronlink.org/api/wallet/multi/trx_record", {params: {
             "address": wallet.address,
             "start": (page - 1) * pageSize,
             "state": filter.direction,
-            "limit": 1000,
+            "limit": 5000,
             "netType":"shasta"
         }});
         let signatureList = data.data;
         let total = data.total;
-        console.log('signatureList',signatureList)
-        console.log('total',total)
         signatureList.map((item)=>{
             if(item.state == 0){
                 item.signatureProgress.map((sign,index)=>{
@@ -80,7 +90,7 @@ class MySignature extends React.Component{
             }
         })
         let list;
-        console.log('signatureList',signatureList)
+
         if(filter.multiState !== 255){
             list = _(signatureList)
                 .filter(signTx => signTx.multiState == filter.multiState)
@@ -88,7 +98,6 @@ class MySignature extends React.Component{
         }else{
             list = signatureList
         }
-        console.log('list',list)
         this.setState({
             page,
             data:list,
@@ -101,8 +110,6 @@ class MySignature extends React.Component{
      * Change Type
      */
     onRadioChange = (type,str) => {
-        console.log('type',type)
-        console.log('str',str)
         let multiState;
         if(type == 0 && str == "to_be_sign"){
             multiState = 10
@@ -123,7 +130,6 @@ class MySignature extends React.Component{
         let {wallet} = this.props;
         let transactionId;
         let result, success,tronWeb;
-        console.log('e=====',details)
         //create transaction
         tronWeb = this.props.account.tronWeb;
         const currentTransaction = details.currentTransaction;
@@ -134,7 +140,6 @@ class MySignature extends React.Component{
         const SignTransaction = await tronWeb.trx.multiSign(currentTransaction, tronWeb.defaultPrivateKey,currentTransaction.raw_data.contract[0].Permission_id).catch(e => {
             console.log('e',e)
         });
-        console.log('SignTransaction111',SignTransaction)
 
         // xhr.defaults.headers.common["MainChain"] = 'MainChain';
 
@@ -145,16 +150,15 @@ class MySignature extends React.Component{
             "netType":"shasta"
         });
         result = data.code;
-        console.log('code',result)
         if (result == 0) {
             transactionId = true;
         } else {
             transactionId = false;
         }
         if (transactionId) {
-            this.onSignedTransaction('transaction_signature_muti_successful');
+            this.onSignedTransactionSuccess();
         } else {
-            this.onSignedTransaction('transaction_signature_muti_failed');
+            this.onSignedTransactionFailed();
         }
 
     }
@@ -167,12 +171,22 @@ class MySignature extends React.Component{
     }
 
     /**
-     * open SignedTransaction
+     * open SignedTransaction Success
      */
-    onSignedTransaction = (str) => {
+    onSignedTransactionSuccess = (str) => {
         this.setState({
             modal: (
-                <SweetAlert success title={tu(str)} onConfirm={this.hideModal}/>
+                <SweetAlert success title={tu('transaction_signature_muti_successful')} onConfirm={this.hideModal}/>
+            )
+        });
+    };
+    /**
+     * open SignedTransaction Failed
+     */
+    onSignedTransactionFailed = (str) => {
+        this.setState({
+            modal: (
+                <SweetAlert error title={tu('transaction_signature_muti_failed')} onConfirm={this.hideModal}/>
             )
         });
     };
@@ -342,7 +356,6 @@ class MySignature extends React.Component{
 
     render() {
        let {data, filter, total, rangeTotal = 0, loading, emptyState: EmptyState = null, isShowSignDetailsModal, details,modal} = this.state;
-       console.log('data',data)
        let column = this.customizedColumn();
        return (
            <Fragment>

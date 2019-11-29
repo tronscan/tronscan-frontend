@@ -651,6 +651,9 @@ class Navigation extends React.Component {
 
     })
   }
+  goAccountWaitSign = () => {
+      window.location.hash = "#/account?from=nav&type=multisign";
+  }
 
   renderWallet() {
     let {account, totalTransactions = 0, flags, wallet, activeLanguage} = this.props;
@@ -750,12 +753,12 @@ class Navigation extends React.Component {
                       <i className="fa fa-angle-right float-right" ></i>
                     </Link>
                     {
-                        IS_MAINNET && <Link className="dropdown-item" to="/account">
+                        IS_MAINNET && <a className="dropdown-item" href="javascript:;" onClick={this.goAccountWaitSign}>
                           <i className="fa fa-server mr-2"/>
                           {/*<FormattedNumber value={5}/> */}
                             {tu("translations_wait_sign")}
                           <i className="fa fa-angle-right float-right" ></i>
-                        </Link>
+                        </a>
                     }
                     <li className="dropdown-divider"/>
                     <a className="dropdown-item" href="javascript:" onClick={this.newTransaction}>

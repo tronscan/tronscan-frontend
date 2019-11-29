@@ -106,6 +106,7 @@ export default class Account extends Component {
       errorMess:'',
       isInMyPermission:true,
       isInMySignature:false,
+      mySignatureType:255
     };
 
   }
@@ -133,6 +134,17 @@ export default class Account extends Component {
               this.scrollToAnchor()
           },3000)
       }
+      if(getQueryString('from') == 'nav' && getQueryString('type') == 'multisign'){
+          this.setState({
+              isInMyPermission:false,
+              isInMySignature:true,
+              mySignatureType:10
+          },()=>{
+              setTimeout(()=>{
+                  this.scrollToMultisign()
+              },500)
+          })
+      }
       let isActivate =  await this.isActivateAccount(account.address)
       this.setState({
         isActivate
@@ -154,7 +166,16 @@ export default class Account extends Component {
   }
 
   async componentDidUpdate(prevProps) {
-    let {account, walletType, currentWallet} = this.props;
+    let {account, walletType, currentWallet, location} = this.props;
+    if((location.search != prevProps.location.search) && getQueryString('from') == 'nav' && getQueryString('type') == 'multisign') {
+        this.setState({
+            isInMyPermission:false,isInMySignature:true
+        },()=>{
+            setTimeout(()=>{
+                this.scrollToMultisign()
+            },500)
+        })
+    }
     if (((prevProps.account.isLoggedIn !== account.isLoggedIn) && account.isLoggedIn) || ((prevProps.account.address !== account.address) && account.isLoggedIn)) {
       this.setState({isTronLink: Lockr.get("islogin")});
       this.reloadTokens();
@@ -229,6 +250,14 @@ export default class Account extends Component {
       if(anchorElement) { anchorElement.scrollIntoView(); }
 
   }
+    scrollToMultisign = () => {
+
+        let anchorElement = document.getElementById('tronMultisign');
+        if(anchorElement) { anchorElement.scrollIntoView(); }
+
+    }
+
+
 
   loadAccount = async () => {
     let {account, loadRecentTransactions, currentWallet} = this.props;
@@ -1951,7 +1980,7 @@ export default class Account extends Component {
   render() {
     let { modal, sr, issuedAsset, showBandwidth, showBuyTokens, temporaryName, hideSmallCurrency, tokenTRC10,
         isShowPledgeModal, isShowMappingModal, address, currency, balance, precision, id, type, isShowSignModal,
-        tokenTRX, trx20MappingAddress,brokerageValue, errorMess, reward, rewardData, accountReward,isInMyPermission,isInMySignature} = this.state;
+        tokenTRX, trx20MappingAddress,brokerageValue, errorMess, reward, rewardData, accountReward,isInMyPermission,isInMySignature, mySignatureType} = this.state;
 
     let {account, frozen, totalTransactions, currentWallet, wallet, accountResource, trxBalance, intl} = this.props;
 
@@ -2518,7 +2547,7 @@ export default class Account extends Component {
             </div>
           </div>
           {/* <div> wjl </div> */}
-          <div className="row mt-3" id="mutiSign">
+          <div className="row mt-3" id="tronMultisign">
             <div className="col-md-12">
                 <div className="card">
                   <div className="card-body">
@@ -2541,7 +2570,7 @@ export default class Account extends Component {
                             <MyPermission tronWeb={account.tronWeb}/>
                          </div>
                          <div className='muti-sign-my-signature' style={{display:isInMySignature?'block':'none'}}>
-                             <MySignature />
+                             <MySignature type={mySignatureType}/>
                          </div>
                       </div>
                     </div>

@@ -129,7 +129,6 @@ class SignDetailsModal extends Component {
      */
     sign = () => {
         const { onSign, details } = this.props;
-        alert(11111)
         console.log('details222',details)
         onSign && onSign(details);
     };
