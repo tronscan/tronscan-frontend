@@ -2307,5 +2307,6 @@ export const messages = {
   "signature_weight_required":"weight 为必填项.",
   "signature_address_not_similar":"同一权限组下账户地址不能相同.",
   "signature_owner_permissin_name_required":"owner permission_name is required",
-  "signature__less_threshold":"sum of all key\'s weight should not be less than threshold in permission Owner"
+  "signature__less_threshold_owner":"sum of all key\'s weight should not be less than threshold in permission Owner",
+  "signature__less_threshold_active":"sum of all key\'s weight should not be less than threshold in permission Active"
 };
