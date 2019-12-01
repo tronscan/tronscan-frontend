@@ -39,6 +39,7 @@ export default class MyPermission extends React.Component {
             curControlAddress: wallet.current.address,
             curLoginAddress: wallet.current.address,
             modal: null,
+            modalAlert:null,
             ownerPermission: cloneDeep(ownerPermission) || null,
             activePermissions: cloneDeep(activePermissions) || [],
             witnessPermission: cloneDeep(witnessPermission),
@@ -82,6 +83,11 @@ export default class MyPermission extends React.Component {
             modal: null,
         });
     };
+    hideAlertModal = ()=>{
+        this.setState({
+            modalAlert:null
+        })
+    }
     async saveControlAddress() {
         //校验地址规则
         let isValid = false;
@@ -191,18 +197,39 @@ export default class MyPermission extends React.Component {
         let isEqualWitness = isEqual(oldWitnessPersmission, changedWihnessPermission);
         return isEqualOwner && isEqualActive && isEqualWitness;
     }
-    validKeys(keysItem,keysArr) {
+    async ifContractAddress(address){
+        const {tronWeb} = this.props;
+        let isValid = false;
+        try {
+            const contractInstance = await tronWeb.contract().at(tronWeb.address.fromHex(address)).catch()
+        } catch (e) {
+            isValid = true;
+        }
+        return isValid;
+    }
+    async validKeys(keysItem,keysArr) {
         const { tronWeb,intl } = this.props;
         const item = keysItem;
-        if (!tronWeb.isAddress(item.address)) {
-            
+        console.log('item.address.trim()',item.address.trim());
+        if(!item.address.trim()){
             this.warningAlert(intl.formatMessage({
                 id: "signature_invalid_Address"
               }))
             return false;
         }
+        if (!tronWeb.isAddress(item.address)) {
+            this.warningAlert(intl.formatMessage({
+                id: "signature_invalid_Address"
+              }))
+            return false;
+        }
+        if(!await this.ifContractAddress(tronWeb.address.fromHex(item.address))){
+            this.warningAlert(intl.formatMessage({
+                id: "signature_no_set"
+              }))
+            return false;
+        }
         if (!item.weight) {
-            
             this.warningAlert(intl.formatMessage({
                 id: "signature_weight_required"
               }));
@@ -223,8 +250,9 @@ export default class MyPermission extends React.Component {
     }
     findIsSameKey(itemKey, arr) {
         let count = 0;
+        const {tronWeb}  = this.props;
         arr.forEach(item => {
-            if (item.address === itemKey.address) {
+            if (tronWeb.address.fromHex(item.address) === tronWeb.address.fromHex(itemKey.address)) {
                 count++;
             }
         })
@@ -236,7 +264,7 @@ export default class MyPermission extends React.Component {
     successAlert(msg) {
         this.setState({
             modal: (
-                <SweetAlert success onConfirm={this.hideModal}>
+                <SweetAlert success title='' onConfirm={this.hideModal}>
                     {msg}
                 </SweetAlert>
             ),
@@ -244,9 +272,10 @@ export default class MyPermission extends React.Component {
         });
     }
     warningAlert(msg) {
+    
         this.setState({
-            modal: (
-                <SweetAlert warning title="Update Permission" onConfirm={this.hideModal}>
+            modalAlert: (
+                <SweetAlert warning title="" onConfirm={this.hideAlertModal}>
                     {msg}
                 </SweetAlert>
             )
@@ -278,8 +307,9 @@ export default class MyPermission extends React.Component {
     }
     onSubmitClick(){
         this.confirmAlert(()=>{
-            this.savePermission()
             this.hideModal();
+            this.savePermission()
+        
     },null,<div className='confirm-content-text'>{tu('signature_set_spend_trx')}<span className='trx'>100TRX</span>{tu('signature_submit_change')}</div>)
     }
 
@@ -301,19 +331,26 @@ export default class MyPermission extends React.Component {
             this.warningAlert('owner permission_name is required.')
             return;
         }
+        if(!threshold){
+            this.warningAlert('owner threshold is required.')
+            return;
+        }
         let sumOwnerKeysWeight = 0;
-        const validAllOwnerKeys = changedOwnerPermission.keys.every(item => {
-            if (!this.validKeys(item, changedOwnerPermission.keys)) {
+        let validAllOwnerKeys = false;
+        for(let item of changedOwnerPermission.keys){
+            if (!await this.validKeys(item, changedOwnerPermission.keys)) {
                 // item.address = tronWeb.address.toHex(item.address);
-                return false
+                validAllOwnerKeys =  false
+                break;
             }
             sumOwnerKeysWeight += item.weight;
-            return true
-        })
+            validAllOwnerKeys = true;
+        }
+
+       
 
         if (!validAllOwnerKeys) {
-            //
-            //this.warningAlert('The number of keys cannot be 0 and cannot be the same or Incorrect address format.')
+            
             return;
         }
 
@@ -332,14 +369,27 @@ export default class MyPermission extends React.Component {
             acItem.type = 2;
             let sumKeysWeight = 0;
             const acItemThreshold = acItem.threshold;
-            const validActivePermissionKeys = acItem.keys.every(item => {
-                if (!this.validKeys(item, acItem.keys)) {
+            if(!acItem.permission_name){
+                this.warningAlert('active permission_name is required.')
+                isValidActivePermission = false;
+                break;
+            }
+            if(!acItem.threshold){
+                this.warningAlert('active threshold is required.')
+                isValidActivePermission = false;
+                break;
+            }
+            let validActivePermissionKeys  = false;
+        
+            for(let item of acItem.keys ){
+                if (!await this.validKeys(item, acItem.keys)) {
                     isValidActivePermission = false;
-                    return false
+                    break;
                 }
                 sumKeysWeight += item.weight;
-                return true
-            })
+                validActivePermissionKeys = true;
+            }
+
             if (!validActivePermissionKeys) {
                 break;
             }
@@ -378,6 +428,9 @@ export default class MyPermission extends React.Component {
 
                 if (res&&res.result) {
                     // 签名成功 transaction_signature_muti_successful
+                    this.setState({
+
+                    })
                     this.successAlert(intl.formatMessage({
                         id:"transaction_signature_muti_successful"
                     }))
@@ -420,7 +473,7 @@ export default class MyPermission extends React.Component {
 
     }
     render() {
-        const { isEditOperateUser, isEditContent, curControlAddress, modal, curLoginAddress } = this.state;
+        const { isEditOperateUser, isEditContent, curControlAddress, modal,modalAlert, curLoginAddress,ownerPermission, activePermissions, witnessPermission } = this.state;
         const { wallet, tronWeb } = this.props;
         let permissionOrigin = null;
         if (curControlAddress === curLoginAddress) {
@@ -428,7 +481,6 @@ export default class MyPermission extends React.Component {
         } else {
             permissionOrigin = this.state;
         }
-        const { ownerPermission, activePermissions, witnessPermission } = permissionOrigin;
         const witnessAddressIfIs = wallet.current.address;
         return (
             <main className='permission-main'>
@@ -453,7 +505,9 @@ export default class MyPermission extends React.Component {
                             <Button className="btn btn-danger" style={{marginLeft:'10px'}} onClick={() => { this.onSubmitClick() }}>Save</Button>
                         </div>
                     </div>
+                    {modal}
                 </div>
+                {modalAlert}
                 {/* view status */}
                 {ownerPermission && !isEditContent && <OwnerRead ownerPermission={ownerPermission} tronWeb={tronWeb} />}
                 {witnessPermission && !isEditContent && <WitnessRead witnessPermission={witnessPermission} witnessNodeAddress={witnessAddressIfIs} tronWeb={tronWeb} />}
@@ -461,7 +515,7 @@ export default class MyPermission extends React.Component {
                 {/* edit status */}
                 {ownerPermission && isEditContent && <OwnerEdit ownerPermission={ownerPermission} tronWeb={tronWeb} changeOwnerPermission={this.changeOwnerPermission.bind(this)} />}
                 {activePermissions && isEditContent && <ActiveEdit activePermissions={activePermissions} tronWeb={tronWeb} changeActivePermission={this.changeActivePermission.bind(this)} />}
-                {modal}
+                
             </main>)
     }
 }

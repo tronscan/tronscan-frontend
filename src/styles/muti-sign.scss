@@ -309,6 +309,8 @@
                 }
     
             }
+        
+            
         }
         .ant-modal-content{
             width:600px;
@@ -318,7 +320,106 @@
             .permission-edit-item{
                 margin-top:10px;
             }
+            .permission-content{
+                .permission-item{
+                    display: flex;
+                    align-items: center;
+                    margin-top:10px;
+                    .permission-label{
+                        width:100px;
+                    }
+                    span:nth-of-type(2){
+                        flex:1;
+                    }
+                    .permission-operation-list{
+                        list-style:none;
+                        margin:0;
+                        padding:0;
+                
+                        li{
+                            float: left;
+                            width: auto;
+                            background: #FFFFFF;
+                            border: 1px solid #979797;
+                            border-radius: 13px;
+                            margin-right: 10px;
+                            padding: 0 10px;
+                            margin-bottom: 10px;
+                            font-size: 12px;
+                            color: #979797;
+                            &.permission-modify{
+                                border: 1px dashed #C23631;
+                                border-radius: 13px;
+                                color: #C23631;
+                                margin:0;
+                                cursor: pointer;
+                            }
+                        }
+
+                    }
+                }
+                .permission-keys{
+                    display: flex;
+                   
+                    tr{
+                        display:flex;
+                       td{
+                           padding:5px ;
+                           font-size: 14px;
+                       }
+                        td:nth-of-type(1){
+                            flex:3;
+                    
+                        }
+                        td:nth-of-type(2){
+                            flex:1;
+                        }
+                    }
+                    thead{
+                        color: #CCCCCC;
+                    }
+                    tbody{
+                       tr{
+                         border-bottom:1px solid #6666661f;
+                         td:nth-of-type(1){
+                            color: #C23631;
+                        }
+                        &.edit-tr{
+                            border-bottom:transparent;
+                        }
+                        td:nth-of-type(2){
+                            display:flex;
+                            justify-content: center;
+                            align-items: center;
+                            a.cac-btn {
+                                display: block;
+                                width:20px;
+                                height:20px;
+                                border-radius:50%;
+                                border: 1px solid #979797;
+                                text-align: center;
+                                line-height: 18px;
+                                margin-left:10px;
+                                &.minus{
+                                    color:#979797!important;
+                                }
+                                &.plus{
+                                    border-color:#C23631;
+                                    color:#fff!important;
+                                    background: #C23631;
+                                }
+                            }
+                            input{
+                                width:107px;
+                            }
+                        }
+                       }
+                    }
+                    
+                }
+            }
         }
+
     }
 }
 
@@ -636,6 +737,7 @@
         .ant-col-8{
             width:50%;
         }
+        
     }
 }
 .permission-main{

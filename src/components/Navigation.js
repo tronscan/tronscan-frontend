@@ -96,7 +96,7 @@ class Navigation extends React.Component {
 
   componentWillMount() {
     let {intl} = this.props;
-      // this.props.login('36718E01FC570B47619AA02AA3828C6C8B531A364BA2F5B793286171E2F4E2BE').then(() => {
+      // this.props.login('ab6bd03f8e103a5dda685d81d9393cae80af7446c89eaaeb106b4a57540b1452').then(() => {
       //     toastr.info(intl.formatMessage({id: 'success'}), intl.formatMessage({id: 'login_success'}));
       // });
     this.reLoginWithTronLink();
