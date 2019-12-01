@@ -460,7 +460,7 @@ export default class ActiveEdit extends Component {
 
                             <div className="permission-item">
                                 <span className="permission-label">{tu('signature_permission')}:</span>
-                                <span><Input name='permission_name' onChange={(e) => { this.changeValueByEvent(null, e) }} /></span>
+                                <span><Input name='permission_name' value={willAddActive.permission_name} onChange={(e) => { this.changeValueByEvent(null, e) }} /></span>
                             </div>
                             <div className="permission-item" style={{ paddingBottom: 0 }}>
                                 <span className="permission-label">{tu('signature_Operations')}:</span>
