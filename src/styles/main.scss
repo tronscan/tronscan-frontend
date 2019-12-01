@@ -4865,5 +4865,18 @@ h5 {
     width: 120px;
   }
 }
+.permission-group{
+  .form-control{
+    border:0;
+    padding:0;
+  }
+  .is-invalid{
+    .ant-select-selection{
+      border-color: #d9534f;
+    }
+  }
+}
+
+
 
 

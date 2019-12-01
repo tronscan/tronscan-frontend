@@ -2322,6 +2322,8 @@ export const messages = {
   "signature_submit_change":"，是否提交本次修改?",
   "signature_my":"我的签名",
   "signature_my_authrity":"我的权限",
+  "fill_a_valid_permissin_time": "请填写有效的失效时间",
+  "fill_a_valid_permissin_id":"请选择有效的权限",
 
   
 };

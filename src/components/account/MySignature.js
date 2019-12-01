@@ -72,7 +72,6 @@ class MySignature extends React.Component{
             "netType":"shasta"
         }});
         let signatureList = data.data;
-        let total = data.total;
         signatureList.map((item)=>{
             if(item.state == 0){
                 item.signatureProgress.map((sign,index)=>{
@@ -101,11 +100,47 @@ class MySignature extends React.Component{
         this.setState({
             page,
             data:list,
-            total:total,
+            total:list.length || 0,
             loading: false,
+            signatureList:signatureList,
         });
     };
 
+    changeSignatureList() {
+        let { wallet } = this.props;
+        let {signatureList,filter} = this.state;
+        signatureList.map((item) => {
+            if (item.state == 0) {
+                item.signatureProgress.map((sign, index) => {
+                    if (sign.address == wallet.address) {
+                        //0-未签名 1-已签名
+                        if (sign.isSign == 0) {
+                            item.multiState = 10;
+                        } else {
+                            item.multiState = 11;
+                        }
+                    }
+                })
+            } else {
+                item.multiState = item.state;
+            }
+        })
+        let list;
+
+        if (filter.multiState !== 255) {
+            list = _(signatureList)
+                .filter(signTx => signTx.multiState == filter.multiState)
+                .value();
+        } else {
+            list = signatureList
+        }
+
+        this.setState({
+            data: list,
+            total: list.length || 0,
+            loading: false,
+        });
+    }
     /**
      * Change Type
      */
@@ -123,7 +158,7 @@ class MySignature extends React.Component{
                 direction: type,
                 multiState
             }
-        }, () =>  this.load())
+        }, () =>  this.changeSignatureList())
     };
 
     multiSign = async(details) => {

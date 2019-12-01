@@ -9,7 +9,7 @@ import {byteArray2hexStr} from "@tronscan/client/src/utils/bytes";
 import {Modal, ModalBody, ModalFooter, ModalHeader} from "reactstrap";
 import {PulseLoader} from "react-spinners";
 import Contract from "../hw/ledger/TransactionConfirmation";
-import {ACCOUNT_LEDGER, ACCOUNT_PRIVATE_KEY, ACCOUNT_TRONLINK} from "../constants";
+import {ACCOUNT_LEDGER, ACCOUNT_PRIVATE_KEY, ACCOUNT_TRONLINK,SUNWEBCONFIG} from "../constants";
 
 import {Client} from "../services/api";
 
@@ -29,7 +29,7 @@ export function withTronWeb(InnerComponent) {
     getTronWeb = () => {
 
       // if (typeof window.tronWeb === 'undefined') {
-      const networkUrl = config.networkUrl;
+      const networkUrl = SUNWEBCONFIG.MAINFULLNODE
 
       const tronWeb = new TronWeb(
         networkUrl,

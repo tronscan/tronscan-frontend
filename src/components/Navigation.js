@@ -755,8 +755,8 @@ class Navigation extends React.Component {
                     {
                         IS_MAINNET && <a className="dropdown-item" href="javascript:;" onClick={this.goAccountWaitSign}>
                           <i className="fa fa-server mr-2"/>
-                          {/*<FormattedNumber value={5}/> */}
-                            {tu("translations_wait_sign")}
+                          <FormattedNumber value={wallet.current.signatureTotal}/> {tu("translations_wait_sign")}
+
                           <i className="fa fa-angle-right float-right" ></i>
                         </a>
                     }

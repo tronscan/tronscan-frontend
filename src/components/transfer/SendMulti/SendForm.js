@@ -23,9 +23,6 @@ import { transactionResultManager, transactionResultManagerSun, transactionMulti
 import { getContractTypesByHex } from "../../../utils/mutiSignHelper"
 import rebuildList from "../../../utils/rebuildList";
 import rebuildToken20List from "../../../utils/rebuildToken20List";
-
-
-
 import BigNumber from "bignumber.js"
 BigNumber.config({ EXPONENTIAL_AT: [-1e9, 1e9] });
 
@@ -57,7 +54,7 @@ class SendForm extends React.Component {
       permissionTime:24,
       tokenBalances:[],
       tokens20:[],
-      errmessage:true,
+      errmessage:false,
     };
   }
 
@@ -442,11 +439,11 @@ class SendForm extends React.Component {
       let isAddressHasPermission =  _.find(isAddressHasPermissionArr, function(o) { return o.address == wallet.address });
       if(!isAddressHasPermission){
           this.setState({
-              errmessage:false
+              errmessage:true
           });
       }else{
           this.setState({
-              errmessage:true
+              errmessage:false
           });
       }
       console.log('ownerOption', ownerOption)
@@ -801,6 +798,8 @@ class SendForm extends React.Component {
     }
     let isFromValid = from.length !== 0 && isAddressValid(from);
     let isToValid = to.length !== 0 && isAddressValid(to);
+    let isPermissionTime = permissionTime.length !== 0;
+    let isPermissionId = permissionId !== '';
    // let isPrivateKeyValid = privateKey && privateKey.length === 64 && pkToAddress(privateKey) === account.address;
     let isAmountValid = this.isAmountValid();
 
@@ -830,10 +829,10 @@ class SendForm extends React.Component {
             <div className="input-group mb-3">
                 <input type="text"
                        onChange={(ev) => this.setSenderAddress(ev.target.value)}
-                       className={"form-control " + (!isFromValid || !errmessage ? "is-invalid" : "")}
+                       className={"form-control " + (!isFromValid || errmessage ? "is-invalid" : "")}
                        value={from}/>
                 <div className="invalid-feedback">
-                    {!errmessage? tu('no_control_permission'):tu("fill_a_valid_address")}
+                    {!isFromValid? tu("fill_a_valid_address"): errmessage?tu('no_control_permission'):''}
                 </div>
             </div>
           </div>
@@ -844,13 +843,15 @@ class SendForm extends React.Component {
                 </Alert>
             }
             {/*permission*/}
-          <div className="form-group">
+          <div className="form-group pb-3">
                 <label>{tu("permission")}</label>
-                <div className="input-group mb-3"  style={{height:36}}>
+                <div className="input-grou permission-group"  style={{height:36}}>
                     <Select
                         onChange={this.handlePermissionChange}
                         placeholder="Select Permission"
                         value={permissionId}
+                        disabled={!isFromValid || errmessage}
+                        className={"form-control " + ((isFromValid && !errmessage && !isPermissionId)? "is-invalid" : "")}
                     >
                         <OptGroup label={tu('owner_permission')} key="owner_permission">
                             {
@@ -872,6 +873,9 @@ class SendForm extends React.Component {
                             }
                         </OptGroup>
                     </Select>
+                    <div className="invalid-feedback">
+                        {tu("fill_a_valid_permissin_id")}
+                    </div>
                 </div>
             </div>
             {
@@ -889,9 +893,12 @@ class SendForm extends React.Component {
                 <div className="input-group mb-3">
                     <input type="text"
                            onChange={(ev) => this.onChangePermissionTime(ev.target.value)}
-                           className="form-control"
+                           className={"form-control " + (!isPermissionTime ? "is-invalid" : "")}
                            value={permissionTime}
                     />
+                    <div className="invalid-feedback">
+                        {tu("fill_a_valid_permissin_time")}
+                    </div>
                 </div>
             </div>
             {/*Receiver*/}
@@ -930,7 +937,6 @@ class SendForm extends React.Component {
                                             :""
                                     }
                                     ({tokenBalance.map_amount} {intl.formatMessage({id: "available"})})</span>
-
                             </Option>
                         ))
                     }
@@ -968,7 +974,6 @@ class SendForm extends React.Component {
               </div>
               <div className="invalid-feedback">
                 {tu("fill_a_valid_number")}
-                {/* tu("insufficient_tokens") */}
               </div>
             </div>
           </div>
