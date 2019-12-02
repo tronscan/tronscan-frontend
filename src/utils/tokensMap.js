@@ -5498,5 +5498,4 @@ export const tokensMap = {
   "1002752":
     "MagicData_&&_1002752_&&_6_&&_MDC_&&_https://coin.top/production/js/20190509074813.png"
 };
-
 export const tokens20Map = {};

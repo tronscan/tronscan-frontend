@@ -270,13 +270,13 @@ export const routes = [
         icon: "fa fa-list",
         component: TokenAllAsync
       },
-      {
-        label: "participate",
-        path: "/tokens/view",
-        icon: "fas fa-coins",
-        component: TokenOverviewAsync,
-        showInMenu: IS_MAINNET ? true : false
-      },
+      // {
+      //   label: "participate",
+      //   path: "/tokens/view",
+      //   icon: "fas fa-coins",
+      //   component: TokenOverviewAsync,
+      //   showInMenu: IS_MAINNET ? true : false
+      // },
       {
         label: "token_input",
         path: "/tokens/create",
@@ -345,11 +345,11 @@ export const routes = [
     showInMenu: false
   },
   // {
-  //   path: "/TRXMarket",
-  //   label: "TRXMarket",
+  //   path: "/Poloni DEX",
+  //   label: "Poloni DEX",
   //   icon: "fas fa-rocket",
-  //   enurl: "https://trx.market",
-  //   zhurl: "https://trx.market",
+  //   enurl: "https://poloniex.org",
+  //   zhurl: "https://poloniex.org",
   //   linkHref: true
   // },
   // {
@@ -395,7 +395,7 @@ export const routes = [
     ]
   },
   {
-    label: "TRXMarket",
+    label: "Poloni DEX",
     path: "/exchange/trc20",
     icon: "fas fa-exchange-alt",
     component: Exchange20,
@@ -404,7 +404,7 @@ export const routes = [
     showInMenu: IS_MAINNET ? true : false
   },
   // {
-  //   label: "TRXMarket",
+  //   label: "Poloni DEX",
   //   path: "/exchange/:type",
   //   redirect: "/exchange/trc20",
   //   icon: "fas fa-exchange-alt",

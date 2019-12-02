@@ -55,8 +55,8 @@ export const CONTRACT_NODE_API = NODEAPI;
 //Token issued
 export const MARKET_API_URL = "https://platform.tron.network";
 
-//trx.market
-export const MARKET_HTTP_URL = "https://trx.market";
+//poloniex.org
+export const MARKET_HTTP_URL = "https://poloniex.org";
 
 export const ACCOUNT_PRIVATE_KEY = "ACCOUNT_PRIVATE_KEY";
 export const ACCOUNT_ADDRESS = "ACCOUNT_ADDRESS";

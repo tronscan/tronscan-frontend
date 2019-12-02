@@ -76,7 +76,7 @@ class Notice extends React.Component {
                   {focus["title" + lg]}
                 </div>
                 <div className="exchange-box-right-vice-title">
-                  <span className="author">TRXMarket</span>
+                  <span className="author">Poloni DEX</span>
                   <div className="line" />
                   <BlockTime time={date}></BlockTime>
                   {/* <TimeAgo date={date} /> */}
