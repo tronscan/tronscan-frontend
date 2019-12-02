@@ -2224,6 +2224,7 @@ export const messages = {
      #                                                                                #
      ##################################################################################
   */
+ "muti_sign":"Multi-signature",
  "translations_wait_sign":"Transactions waiting for my signature",
   "transfer_multi_sign":"Multi-signature transfer",
   "permission":"Access",
@@ -2287,6 +2288,19 @@ export const messages = {
   "fill_a_valid_permissin_time": "请填写有效的失效时间",
   "fill_a_valid_permissin_id":"请选择有效的权限",
   "signature_edit_permissions":"Edit access",
-  "signature_add_permissions":"Add new access"
+  "signature_add_permissions":"Add new access",
+  "signature_add_active_permissions":"添加活跃权限",
+
+  // 2019-12-02
+  "signature_owner_permission_name_required":"拥有者权限名称为必填项",
+  "signature_owner_threshold_required":"拥有者全系阈值为必填项",
+  "signature_active_permission_name_required":"活跃权限名称为必填项",
+  "signature_active_threshold_required":"活跃权限阈值为必填项",
+  "signature_keys_required":"keys为必填项",
+  "signature_permission_name_required":"权限名称为必填项",
+  "signature_operations_required":"权限操作为必填项",
+  "signature_threshold_required":"权限阈值为必填项",
+
+
 
 };
