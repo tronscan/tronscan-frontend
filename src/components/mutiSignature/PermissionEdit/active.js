@@ -490,8 +490,8 @@ export default class ActiveEdit extends Component {
                                             willAddActive.keys.map((itemKey, index) => {
                                                 return <tr key={index} className='edit-tr'>
                                                     <td style={{ paddingLeft: 0 }}><Input value={itemKey.address} onChange={(e) => { this.changeValue(null, index, 1, e) }} /></td>
-                                                    <td><Input value={itemKey.weight} onChange={(e) => { this.changeValue(null, index, 2, e) }} />
-                                                        <a href="javascript:;" className='cac-btn minus' onClick={(e) => { this.removeKeysItem(null, index) }}>-</a>
+                                                    <td><Input value={itemKey.weight} onChange={(e) => { this.changeValue(null, index, 2, e) }} style={{width:'50px'}} />
+                                                        <a href="javascript:;" className='cac-btn minus' style={{ visibility: index=== 0 && willAddActive.keys.length===1 ?'hidden':'visible'}} onClick={(e) => { this.removeKeysItem(null, index) }}>-</a>
                                                         <a href="javascript:;" className='cac-btn plus' style={{ visibility: index === (willAddActive.keys.length - 1) && willAddActive.keys.length < 5 ? 'visible' : 'hidden' }} onClick={() => { this.addKeysItem(null) }}  >+</a>
                                                     </td>
                                                 </tr>

@@ -176,10 +176,6 @@ export default class MyPermission extends React.Component {
             curControlAddress: event.target.value
         })
     }
-    componentDidMount(prevProps) {
-
-    }
-
     changeOwnerPermission(changedOwnerPermission) {
         //console.log('changedOwnerPermission',changedOwnerPermission)
         this.setState({
@@ -215,7 +211,6 @@ export default class MyPermission extends React.Component {
     async validKeys(keysItem, keysArr) {
         const { tronWeb, intl } = this.props;
         const item = keysItem;
-        console.log('item.address.trim()', item.address.trim());
         if (!item.address.trim()) {
             this.warningAlert(intl.formatMessage({
                 id: "signature_invalid_Address"
@@ -242,8 +237,6 @@ export default class MyPermission extends React.Component {
         }
 
         if (this.findIsSameKey(item, keysArr)) {
-
-
             this.warningAlert(intl.formatMessage({
                 id: "signature_address_not_similar"
             }));
@@ -251,7 +244,6 @@ export default class MyPermission extends React.Component {
         }
         item.address = tronWeb.address.toHex(item.address);
         return true;
-
     }
     findIsSameKey(itemKey, arr) {
         let count = 0;
@@ -412,7 +404,7 @@ export default class MyPermission extends React.Component {
         const { ownerPermission, activePermissions, witnessPermission } = this.state;
         const UnmodifiedOwnerPermission = ownerPermission;
         if (curControlAddress === curLoginAddress && UnmodifiedOwnerPermission.keys.length < 2) {
-            const updateTransaction = await tronWeb.transactionBuilder.updateAccountPermissions(tronWeb.address.toHex(curLoginAddress), changedOwnerPermission, changedWihnessPermission, changedActivePermission);
+            const updateTransaction = await tronWeb.transactionBuilder.updateAccountPermissions(tronWeb.address.toHex(curLoginAddress), changedOwnerPermission, witnessPermission, changedActivePermission);
             const signedTransaction = await tronWeb.trx.sign(updateTransaction);
             //console.log(signedTransaction)
             const res = await tronWeb.trx.broadcast(signedTransaction).catch(e => {
@@ -448,7 +440,7 @@ export default class MyPermission extends React.Component {
             }
         } else {
             //走多重签名
-            const updateTransaction = await tronWeb.transactionBuilder.updateAccountPermissions(tronWeb.address.toHex(curLoginAddress), changedOwnerPermission, changedWihnessPermission, changedActivePermission);
+            const updateTransaction = await tronWeb.transactionBuilder.updateAccountPermissions(tronWeb.address.toHex(curLoginAddress), changedOwnerPermission, witnessPermission, changedActivePermission);
 
             //const signedTransaction = await tronWeb.trx.multiSign(updateTransaction,tronWeb.defaultPrivateKey,0);
             const value = updateTransaction.raw_data.contract[0].parameter.value;
@@ -515,7 +507,7 @@ export default class MyPermission extends React.Component {
                 {modalAlert}
                 {/* view status */}
                 {ownerPermission && !isEditContent && <OwnerRead ownerPermission={ownerPermission} tronWeb={tronWeb} />}
-                {witnessPermission && !isEditContent && <WitnessRead witnessPermission={witnessPermission} witnessNodeAddress={witnessAddressIfIs} tronWeb={tronWeb} />}
+                {/* {witnessPermission && !isEditContent && <WitnessRead witnessPermission={witnessPermission} witnessNodeAddress={witnessAddressIfIs} tronWeb={tronWeb} />} */}
                 {activePermissions && !isEditContent && <ActiveRead activePermissions={activePermissions} tronWeb={tronWeb} />}
                 {/* edit status */}
                 {ownerPermission && isEditContent && <OwnerEdit ownerPermission={ownerPermission} tronWeb={tronWeb} changeOwnerPermission={this.changeOwnerPermission.bind(this)} />}

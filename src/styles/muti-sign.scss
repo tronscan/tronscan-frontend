@@ -361,7 +361,10 @@
                 }
                 .permission-keys{
                     display: flex;
-                   
+                    table{
+                        width:100%;
+                        margin-left:20px;
+                    }
                     tr{
                         display:flex;
                        td{
@@ -410,9 +413,9 @@
                                     background: #C23631;
                                 }
                             }
-                            input{
-                                width:107px;
-                            }
+                            // input{
+                            //     width:107px;
+                            // }
                         }
                        }
                     }

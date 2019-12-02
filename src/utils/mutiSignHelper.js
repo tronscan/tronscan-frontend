@@ -83,7 +83,7 @@ function getAllContractTypes() {
         45: 'UpdateEnergyLimitContract',
         46: 'AccountPermissionUpdateContract',
         48: 'ClearABIContract',
-        49: 'UpdateBrokerageContract',
+        // 49: 'UpdateBrokerageContract',
     }
 }
 export function getContractTypesByGroup() {
@@ -134,7 +134,7 @@ export function getContractTypesByGroup() {
                 { name: 'ProposalDeleteContract', value: 18 },
                 { name: 'WitnessCreateContract', value: 5 },
                 { name: 'WitnessUpdateContract', value: 8 },
-                { name: 'UpdateBrokerageContract', value: 49 }
+                // { name: 'UpdateBrokerageContract', value: 49 }
             ]
         },
         {
