@@ -9,6 +9,9 @@
        padding: 0.15rem 0.6rem;
        &.active{
             background:#D0021B;
+            span{
+                color:#fff!important;
+            }
        } 
     }
 }
@@ -421,6 +424,10 @@
                     }
                     
                 }
+            }
+            .error-msgs{
+                padding-left: 100px;
+                color: red;
             }
         }
 

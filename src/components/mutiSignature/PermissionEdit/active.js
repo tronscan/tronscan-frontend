@@ -20,7 +20,7 @@ export default class ActiveEdit extends Component {
             allPermissions: [],//所有的权限
             hasContractIds: [],//当前选中的权限
             modal: false,
-            permissionModal:false,
+            permissionModal: false,
             addActiveModal: false,
             modifyIndex: null,
             willAddActive: {
@@ -29,6 +29,13 @@ export default class ActiveEdit extends Component {
                 threshold: 1,
                 permission_name: '',
                 type: 2
+            },
+            errorMsgModal: {
+                permissionName: { msg: '', show: false },
+                operations: { msg: '', show: false },
+                thresholdValue: { msg: '', show: false },
+                keys: { msg: '', show: false }
+
             }
         }
     }
@@ -79,9 +86,9 @@ export default class ActiveEdit extends Component {
             }, () => {
                 this.changeParentActivePermission();
             })
-        }else{
+        } else {
             this.setState({
-                willAddActive:activeItem
+                willAddActive: activeItem
             })
         }
 
@@ -108,8 +115,11 @@ export default class ActiveEdit extends Component {
                 this.changeParentActivePermission();
             })
         } else {
+            let { errorMsgModal } = this.state;
+            errorMsgModal.keys = {msg:'',show:false}
             this.setState({
-                willAddActive: activeItem
+                willAddActive: activeItem,
+                errorMsgModal:errorMsgModal
             })
         }
 
@@ -126,7 +136,6 @@ export default class ActiveEdit extends Component {
         const name = target.name;
         const value = name === 'threshold' ? toNumber(target.value) : target.value;
         activeItem[name] = value;
-        console.log('activeItem',activeItem,name);
         if (acIndex !== null) {
             this.setState({
                 activePermissions: activeArr
@@ -134,8 +143,16 @@ export default class ActiveEdit extends Component {
                 this.changeParentActivePermission();
             });
         } else {
+            let { errorMsgModal } = this.state;
+            if(name==='threshold'){
+                errorMsgModal.thresholdValue = { msg: '', show: false };
+            }else{
+                errorMsgModal.permissionName = { msg: '', show: false };
+            }
+           
             this.setState({
-                willAddActive: activeItem
+                willAddActive: activeItem,
+                errorMsgModal: errorMsgModal
             })
         }
 
@@ -156,9 +173,9 @@ export default class ActiveEdit extends Component {
             modal: false,
         });
     };
-    hidePermissionModal=()=>{
+    hidePermissionModal = () => {
         this.setState({
-            permissionModal:false
+            permissionModal: false
         })
     }
     hideActiveModal() {
@@ -175,7 +192,7 @@ export default class ActiveEdit extends Component {
     modifyPermission(acIndex) {
         const allPermissions = getContractTypesByGroup();
         let hasContractIds = [];
-        if (acIndex!=null) {
+        if (acIndex != null) {
             const { activePermissions } = this.state;
             const hasContractOperations = activePermissions[acIndex].operations;
             if (hasContractOperations) {
@@ -186,7 +203,7 @@ export default class ActiveEdit extends Component {
                 })
             }
         } else {
-            const { willAddActive } = this.state;
+            const { willAddActive ,errorMsgModal } = this.state;
             const hasContractOperations = willAddActive.operations;
             if (hasContractOperations) {
 
@@ -194,12 +211,16 @@ export default class ActiveEdit extends Component {
                 hasContractIds = hasContractIds.map(item => {
                     return item.id;
                 })
+                errorMsgModal.operations = {msg:'',show:false}
+                this.setState({
+                    errorMsgModal: errorMsgModal
+                })
             }
         }
         this.setState({
             allPermissions,
             permissionModal: true,
-            modifyIndex: acIndex
+            modifyIndex: acIndex,
         }, () => {
             this.setState({
                 hasContractIds: hasContractIds,
@@ -215,9 +236,9 @@ export default class ActiveEdit extends Component {
             this.changeParentActivePermission();
         })
     }
-    openAddActiveModal(){
+    openAddActiveModal() {
         const { activePermissions } = this.state;
-        if(activePermissions.length>=8){
+        if (activePermissions.length >= 8) {
             return false;
         }
         this.setState({
@@ -250,33 +271,55 @@ export default class ActiveEdit extends Component {
             )
         });
     }
-    validKeys(keysItem,keysArr) {
-        const { tronWeb,intl } = this.props;
+    validKeys(keysItem, keysArr) {
+        const { tronWeb, intl } = this.props;
+        const { errorMsgModal } = this.state;
         const item = keysItem;
-        if(keysArr.length ===0){
-            this.warningAlert(intl.formatMessage({
-                id:'signature_keys_required'
-            }));
+        if (keysArr.length === 0) {
+            errorMsgModal.keys = {
+                msg: intl.formatMessage({
+                    id: 'signature_keys_required'
+                }), show: true
+            }
+            this.setState({
+                errorMsgModal: errorMsgModal
+            })
+
             return false;
         }
         if (!tronWeb.isAddress(item.address)) {
-            
-            this.warningAlert(intl.formatMessage({
-                id:'signature_invalid_Address'
-            }));
+
+            errorMsgModal.keys = {
+                msg: intl.formatMessage({
+                    id: 'signature_invalid_Address'
+                }), show: true
+            }
+            this.setState({
+                errorMsgModal: errorMsgModal
+            })
             return false;
         }
         if (!item.weight) {
-            this.warningAlert(intl.formatMessage({
-                id:'signature_weight_required'
-            }));
+            errorMsgModal.keys = {
+                msg: intl.formatMessage({
+                    id: 'signature_weight_required'
+                }), show: true
+            }
+            this.setState({
+                errorMsgModal: errorMsgModal
+            })
             return false;
         }
 
         if (this.findIsSameKey(item, keysArr)) {
-            this.warningAlert(intl.formatMessage({
-                id:'signature_address_not_similar'
-            }));
+            errorMsgModal.keys = {
+                msg: intl.formatMessage({
+                    id: 'signature_address_not_similar'
+                }), show: true
+            }
+            this.setState({
+                errorMsgModal: errorMsgModal
+            })
             return false;
         }
         return true;
@@ -284,7 +327,7 @@ export default class ActiveEdit extends Component {
     }
     findIsSameKey(itemKey, arr) {
         let count = 0;
-        const {tronWeb}  = this.props;
+        const { tronWeb } = this.props;
         arr.forEach(item => {
             if (tronWeb.address.fromHex(item.address) === tronWeb.address.fromHex(itemKey.address)) {
                 count++;
@@ -296,27 +339,45 @@ export default class ActiveEdit extends Component {
         return false
     }
     OkAddActive() {
-        const { activePermissions,willAddActive } = this.state;
-        const {intl} = this.props;
+        //todo 
+        const { activePermissions, willAddActive, errorMsgModal } = this.state;
+        const { intl } = this.props;
         //校验willAddActive
-        console.log(willAddActive);
-        const {keys,permission_name,threshold,operations} = willAddActive;
-        if(!permission_name){
-            this.warningAlert(intl.formatMessage({
-                id:'signature_permission_name_required'
-            }));
+        const { keys, permission_name, threshold, operations } = willAddActive;
+        let { permissionName, thresholdValue } = errorMsgModal;
+        if (!permission_name) {
+            permissionName = {
+                msg: intl.formatMessage({
+                    id: 'signature_permission_name_required'
+                }), show: true
+            }
+            errorMsgModal.permissionName = permissionName;
+            this.setState({
+                errorMsgModal: errorMsgModal
+            })
             return;
         }
-        if(!operations){
-            this.warningAlert(intl.formatMessage({
-                id:'signature_operations_required'
-            }));
+        if (!operations) {
+            errorMsgModal.operations = {
+                msg: intl.formatMessage({
+                    id: 'signature_operations_required'
+                }), show: true
+            }
+            this.setState({
+                errorMsgModal: errorMsgModal
+            })
             return;
         }
-        if(!threshold){
-            this.warningAlert(intl.formatMessage({
-                id:'signature_threshold_required'
-            }));
+        if (!threshold) {
+            thresholdValue = {
+                msg: intl.formatMessage({
+                    id: 'signature_threshold_required'
+                }), show: true
+            }
+            errorMsgModal.thresholdValue = thresholdValue;
+            this.setState({
+                errorMsgModal: errorMsgModal
+            })
             return;
         }
         let sumOwnerKeysWeight = 0;
@@ -327,17 +388,22 @@ export default class ActiveEdit extends Component {
             sumOwnerKeysWeight += item.weight;
             return true
         })
-        if(!validAddActiveKeys){return false}
-        if(sumOwnerKeysWeight<threshold){
-            this.warningAlert(intl.formatMessage({
-                id:'signature__less_threshold_owner'
-            }))
+        if (!validAddActiveKeys) { return false }
+        if (sumOwnerKeysWeight < threshold) {
+            errorMsgModal.keys = {
+                msg: intl.formatMessage({
+                    id: 'signature__less_threshold_owner'
+                }), show: true
+            }
+            this.setState({
+                errorMsgModal: errorMsgModal
+            })
             return;
         }
-        activePermissions.push({...this.state.willAddActive});
+        activePermissions.push({ ...this.state.willAddActive });
         this.setState({
-            activePermissions:activePermissions
-        },()=>{
+            activePermissions: activePermissions
+        }, () => {
             this.hideActiveModal();
             this.changeParentActivePermission();
         })
@@ -379,15 +445,15 @@ export default class ActiveEdit extends Component {
 
     }
     render() {
-        const { activePermissions, modal, permissionModal,allPermissions, hasContractIds, addActiveModal, willAddActive } = this.state;
-        const { tronWeb,intl } = this.props;
+        const { activePermissions, modal, permissionModal, allPermissions, hasContractIds, addActiveModal, willAddActive, errorMsgModal } = this.state;
+        const { tronWeb, intl } = this.props;
         //  以下表单中的
         return (
             <div>
                 <div className='permission'>
                     <div className='permission-title'>
                         <span className='permission-title-active'>{tu('signature_active_permissions')}</span><i>({activePermissions.length + '/' + 8})</i>
-        <a className='btn btn-danger ac-permission-add-btn' size='small' onClick={() => { this.openAddActiveModal() }}><span>+</span><span>{tu('signature_add_permissions')}</span></a>
+                        <a className='btn btn-danger ac-permission-add-btn' size='small' onClick={() => { this.openAddActiveModal() }}><span>+</span><span>{tu('signature_add_permissions')}</span></a>
                     </div>
                     <div className='permission-desc'>
                         {tu('signature_active_permissions_desc')}
@@ -421,15 +487,15 @@ export default class ActiveEdit extends Component {
                                         </thead>
                                         <tbody>
                                             {
-                                                
+
                                                 item.keys.map((itemKey, index) => {
-                                                    if(itemKey.address && tronWeb.isAddress(itemKey.address)){
+                                                    if (itemKey.address && tronWeb.isAddress(itemKey.address)) {
                                                         itemKey.address = tronWeb.address.fromHex(itemKey.address);
                                                     }
                                                     return <tr key={index} className='edit-tr'>
                                                         <td style={{ paddingLeft: 0 }}><Input value={itemKey.address} onChange={(e) => { this.changeValue(acIndex, index, 1, e) }} /></td>
                                                         <td><Input value={itemKey.weight} onChange={(e) => { this.changeValue(acIndex, index, 2, e) }} />
-                                                            <a href="javascript:;" className='cac-btn minus' style={{ visibility: index=== 0 && item.keys.length===1 ?'hidden':'visible'}} onClick={(e) => { this.removeKeysItem(acIndex, index) }}>-</a>
+                                                            <a href="javascript:;" className='cac-btn minus' style={{ visibility: index === 0 && item.keys.length === 1 ? 'hidden' : 'visible' }} onClick={(e) => { this.removeKeysItem(acIndex, index) }}>-</a>
                                                             <a href="javascript:;" className='cac-btn plus' style={{ visibility: index === (item.keys.length - 1) && item.keys.length < 5 ? 'visible' : 'hidden' }} onClick={() => { this.addKeysItem(acIndex) }}  >+</a>
                                                         </td>
                                                     </tr>
@@ -446,7 +512,7 @@ export default class ActiveEdit extends Component {
                     <Modal
                         title={intl.formatMessage({
                             id: "signature_edit_permissions"
-                          })}
+                        })}
                         visible={permissionModal}
                         onCancel={this.hidePermissionModal}
                         onOk={this.Ok.bind(this)}
@@ -479,8 +545,8 @@ export default class ActiveEdit extends Component {
                             id: "signature_add_active_permissions"
                         })}
                         visible={addActiveModal}
-                        onCancel={()=>this.hideActiveModal()}
-                        onOk={()=>this.OkAddActive()}
+                        onCancel={() => this.hideActiveModal()}
+                        onOk={() => this.OkAddActive()}
                         wrapClassName='permission permission-modal'
                         zIndex={5400}
                     >
@@ -488,7 +554,13 @@ export default class ActiveEdit extends Component {
 
                             <div className="permission-item">
                                 <span className="permission-label">{tu('signature_permission')}:</span>
-                                <span><Input name='permission_name' value={willAddActive.permission_name} onChange={(e) => { this.changeValueByEvent(null, e) }} /></span>
+                                <span>
+                                    <Input name='permission_name' value={willAddActive.permission_name} onChange={(e) => { this.changeValueByEvent(null, e) }} />
+
+                                </span>
+                            </div>
+                            <div className="error-msgs" style={{ display: errorMsgModal.permissionName.show ? 'block' : 'none' }}>
+                                {errorMsgModal.permissionName.msg}
                             </div>
                             <div className="permission-item" style={{ paddingBottom: 0 }}>
                                 <span className="permission-label">{tu('signature_Operations')}:</span>
@@ -498,10 +570,20 @@ export default class ActiveEdit extends Component {
                                     }
                                     <li className='permission-modify' onClick={(e) => { this.modifyPermission(undefined, e) }}><span>+</span><span>{tu('signature_add')}</span></li>
                                 </ul>
+
+                            </div>
+                            <div className="error-msgs" style={{ display: errorMsgModal.operations.show ? 'block' : 'none' }}>
+                                {errorMsgModal.operations.msg}
                             </div>
                             <div className="permission-item" style={{ paddingTop: 0 }}>
                                 <span className="permission-label">{tu('signature_threshold')}:</span>
-                                <span><Input name='threshold' value={willAddActive.threshold} onChange={(e) => { this.changeValueByEvent(null, e) }} /></span>
+                                <span>
+                                    <Input name='threshold' value={willAddActive.threshold} onChange={(e) => { this.changeValueByEvent(null, e) }} />
+
+                                </span>
+                            </div>
+                            <div className="error-msgs" style={{ display: errorMsgModal.thresholdValue.show ? 'block' : 'none' }}>
+                                {errorMsgModal.thresholdValue.msg}
                             </div>
                             <div className="permission-item permission-keys">
                                 <span className="permission-label">{tu('signature_keys')}:</span>
@@ -514,8 +596,8 @@ export default class ActiveEdit extends Component {
                                             willAddActive.keys.map((itemKey, index) => {
                                                 return <tr key={index} className='edit-tr'>
                                                     <td style={{ paddingLeft: 0 }}><Input value={itemKey.address} onChange={(e) => { this.changeValue(null, index, 1, e) }} /></td>
-                                                    <td><Input value={itemKey.weight} onChange={(e) => { this.changeValue(null, index, 2, e) }} style={{width:'50px'}} />
-                                                        <a href="javascript:;" className='cac-btn minus' style={{ visibility: index=== 0 && willAddActive.keys.length===1 ?'hidden':'visible'}} onClick={(e) => { this.removeKeysItem(null, index) }}>-</a>
+                                                    <td><Input value={itemKey.weight} onChange={(e) => { this.changeValue(null, index, 2, e) }} style={{ width: '50px' }} />
+                                                        <a href="javascript:;" className='cac-btn minus' style={{ visibility: index === 0 && willAddActive.keys.length === 1 ? 'hidden' : 'visible' }} onClick={(e) => { this.removeKeysItem(null, index) }}>-</a>
                                                         <a href="javascript:;" className='cac-btn plus' style={{ visibility: index === (willAddActive.keys.length - 1) && willAddActive.keys.length < 5 ? 'visible' : 'hidden' }} onClick={() => { this.addKeysItem(null) }}  >+</a>
                                                     </td>
                                                 </tr>
@@ -524,6 +606,9 @@ export default class ActiveEdit extends Component {
                                     </tbody>
                                 </table>
 
+                            </div>
+                            <div className="error-msgs" style={{ display: errorMsgModal.keys.show ? 'block' : 'none' }}>
+                                {errorMsgModal.keys.msg}
                             </div>
                         </div>
 
