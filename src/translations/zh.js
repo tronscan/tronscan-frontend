@@ -2245,15 +2245,6 @@ export const messages = {
   "sun_network_project_introduction":"项目介绍",
   "sun_network_development_document": "开发文档",
   "home_page":"首页",
-
-  /*
-   ##################################################################################
-   #                                                                                #
-   # mutiSign                                  #
-   #                                                                                #
-   ##################################################################################
-  */
-  "muti_sign":"多重签名",
   "developer_challenge":"开发者大赛",
   /*
      ##################################################################################
@@ -2262,6 +2253,7 @@ export const messages = {
      #                                                                                #
      ##################################################################################
   */
+ "muti_sign":"多重签名",
   "translations_wait_sign":"待我签名的交易",
   "transfer_multi_sign":"多重签名转账",
   "permission":"权限",
@@ -2299,7 +2291,7 @@ export const messages = {
   "signature_active_permissions_desc":"活跃权限用于提供一个权限的组合；比如提供一个只能执行创建账户、转账功能的权限最多添加8个活跃权限",
   "signature_Operations":"操作",
   "signature_Superdelegate_authority":"超级代表权限",
-  "signature_Superdelegate_authority_desc":"活跃权限用于提供一个权限的组合；比如提供一个只能执行创建账户、转账功能的权限最多添加8个活跃权限",
+  "signature_Superdelegate_authority_desc":"超级代表权限用来设定出块节点",
   "signature_piece_node":"出块节点",
   "signature_no_set":"此地址为合约地址,不能设置",
   "signature_Unverified_address":"未验证地址",
@@ -2325,7 +2317,18 @@ export const messages = {
   "fill_a_valid_permissin_time": "请填写有效的失效时间",
   "fill_a_valid_permissin_id":"请选择有效的权限",
   "signature_edit_permissions":"编辑权限",
-  "signature_add_permissions":"添加新权限"
+  "signature_add_permissions":"添加新权限",
+  "signature_add_active_permissions":"添加活跃权限",
+
+  // 2019-12-02
+  "signature_owner_permission_name_required":"拥有者权限名称为必填项",
+  "signature_owner_threshold_required":"拥有者全系阈值为必填项",
+  "signature_active_permission_name_required":"活跃权限名称为必填项",
+  "signature_active_threshold_required":"活跃权限阈值为必填项",
+  "signature_keys_required":"keys为必填项",
+  "signature_permission_name_required":"权限名称为必填项",
+  "signature_operations_required":"权限操作为必填项",
+  "signature_threshold_required":"权限阈值为必填项",
 
   
 };

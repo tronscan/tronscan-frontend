@@ -2564,12 +2564,12 @@ export default class Account extends Component {
                       <a href="javascript:;"
                         className={"btn btn-tap btn-default btn-sm " + (isInMyPermission ? ' active' : '')}
                         onClick={()=>this.setState({isInMyPermission:true,isInMySignature:false})}>
-                        我的权限
+                        {tu('signature_my_authrity')}
                       </a>
                       <a href="javascript:;"
                         className={"btn btn-tap btn-default btn-sm ml-2 " + (isInMySignature ? 'active' : '')}
                         onClick={()=>this.setState({isInMyPermission:false,isInMySignature:true})}>
-                        我的签名
+                        {tu('signature_my')}
                       </a>
                       <div className='muti-sign-content'>
                          <div className='muti-sign-my-permission' style={{display:isInMyPermission?'block':'none'}}>

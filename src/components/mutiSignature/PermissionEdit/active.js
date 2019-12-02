@@ -5,7 +5,9 @@ import SweetAlert from "react-bootstrap-sweetalert";
 import { toNumber } from '../../../utils/number'
 import { cloneDeep } from 'lodash'
 import { tu } from "../../../utils/i18n"
+import { injectIntl } from "react-intl";
 
+@injectIntl
 export default class ActiveEdit extends Component {
     constructor(props) {
         super(props)
@@ -249,23 +251,32 @@ export default class ActiveEdit extends Component {
         });
     }
     validKeys(keysItem,keysArr) {
-        const { tronWeb } = this.props;
+        const { tronWeb,intl } = this.props;
         const item = keysItem;
         if(keysArr.length ===0){
-            this.warningAlert("keys is required.");
+            this.warningAlert(intl.formatMessage({
+                id:'signature_keys_required'
+            }));
             return false;
         }
         if (!tronWeb.isAddress(item.address)) {
-            this.warningAlert("signature_invalid_Address");
+            
+            this.warningAlert(intl.formatMessage({
+                id:'signature_invalid_Address'
+            }));
             return false;
         }
         if (!item.weight) {
-            this.warningAlert(tu("signature_weight_required"));
+            this.warningAlert(intl.formatMessage({
+                id:'signature_weight_required'
+            }));
             return false;
         }
 
         if (this.findIsSameKey(item, keysArr)) {
-            this.warningAlert(tu("signature_address_not_similar"));
+            this.warningAlert(intl.formatMessage({
+                id:'signature_address_not_similar'
+            }));
             return false;
         }
         return true;
@@ -286,19 +297,26 @@ export default class ActiveEdit extends Component {
     }
     OkAddActive() {
         const { activePermissions,willAddActive } = this.state;
+        const {intl} = this.props;
         //校验willAddActive
         console.log(willAddActive);
         const {keys,permission_name,threshold,operations} = willAddActive;
         if(!permission_name){
-            this.warningAlert('permissionName is required.');
+            this.warningAlert(intl.formatMessage({
+                id:'signature_permission_name_required'
+            }));
             return;
         }
         if(!operations){
-            this.warningAlert('operations is required.');
+            this.warningAlert(intl.formatMessage({
+                id:'signature_operations_required'
+            }));
             return;
         }
         if(!threshold){
-            this.warningAlert('threshold is required.');
+            this.warningAlert(intl.formatMessage({
+                id:'signature_threshold_required'
+            }));
             return;
         }
         let sumOwnerKeysWeight = 0;
@@ -311,7 +329,9 @@ export default class ActiveEdit extends Component {
         })
         if(!validAddActiveKeys){return false}
         if(sumOwnerKeysWeight<threshold){
-            this.warningAlert(tu('signature__less_threshold_owner'))
+            this.warningAlert(intl.formatMessage({
+                id:'signature__less_threshold_owner'
+            }))
             return;
         }
         activePermissions.push({...this.state.willAddActive});
@@ -360,7 +380,7 @@ export default class ActiveEdit extends Component {
     }
     render() {
         const { activePermissions, modal, permissionModal,allPermissions, hasContractIds, addActiveModal, willAddActive } = this.state;
-        const { tronWeb } = this.props;
+        const { tronWeb,intl } = this.props;
         //  以下表单中的
         return (
             <div>
@@ -420,7 +440,9 @@ export default class ActiveEdit extends Component {
 
                     }
                     <Modal
-                        title="Modify Permission"
+                        title={intl.formatMessage({
+                            id: "signature_edit_permissions"
+                          })}
                         visible={permissionModal}
                         onCancel={this.hidePermissionModal}
                         onOk={this.Ok.bind(this)}
@@ -449,7 +471,9 @@ export default class ActiveEdit extends Component {
                         </div>
                     </Modal>
                     <Modal
-                        title="Add Active Permission"
+                        title={intl.formatMessage({
+                            id: "signature_add_active_permissions"
+                        })}
                         visible={addActiveModal}
                         onCancel={()=>this.hideActiveModal()}
                         onOk={()=>this.OkAddActive()}

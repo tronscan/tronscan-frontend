@@ -328,11 +328,15 @@ export default class MyPermission extends React.Component {
         changedOwnerPermission.type = 0;
         const threshold = changedOwnerPermission.threshold;
         if (!changedOwnerPermission.permission_name) {
-            this.warningAlert('owner permission_name is required.')
+            this.warningAlert(intl.formatMessage({
+                id: "signature_owner_permission_name_required"
+              }))
             return;
         }
         if(!threshold){
-            this.warningAlert('owner threshold is required.')
+            this.warningAlert(intl.formatMessage({
+                id: "signature_owner_threshold_required"
+              }))
             return;
         }
         let sumOwnerKeysWeight = 0;
@@ -370,12 +374,16 @@ export default class MyPermission extends React.Component {
             let sumKeysWeight = 0;
             const acItemThreshold = acItem.threshold;
             if(!acItem.permission_name){
-                this.warningAlert('active permission_name is required.')
+                this.warningAlert(intl.formatMessage({
+                    id:"signature_active_permission_name_required"
+                }))
                 isValidActivePermission = false;
                 break;
             }
             if(!acItem.threshold){
-                this.warningAlert('active threshold is required.')
+                this.warningAlert(intl.formatMessage({
+                    id:"signature_active_threshold_required"
+                }))
                 isValidActivePermission = false;
                 break;
             }
