@@ -410,6 +410,13 @@ export default class MyPermission extends React.Component {
         if (!isValidActivePermission) { console.log('active vliad failed'); return }
 
         const { ownerPermission, activePermissions, witnessPermission } = this.state;
+        console.log('witnessPermission',witnessPermission);
+        witnessPermission.keys.forEach(item=>{
+                item.address = tronWeb.address.toHex(item.address)         
+        })
+        witnessPermission.type = 1;
+        console.log('witnessPermission',witnessPermission);
+        console.log('changedOwnerPermission',changedOwnerPermission);
         const UnmodifiedOwnerPermission = ownerPermission;
         if (curControlAddress === curLoginAddress && UnmodifiedOwnerPermission.keys.length < 2) {
             const updateTransaction = await tronWeb.transactionBuilder.updateAccountPermissions(tronWeb.address.toHex(curLoginAddress), changedOwnerPermission, witnessPermission, changedActivePermission);
@@ -429,8 +436,7 @@ export default class MyPermission extends React.Component {
                 // 签名成功 transaction_signature_muti_successful
                 this.setState({
                     ownerPermission: deepCopy(changedOwnerPermission),
-                    activePermissions: deepCopy(changedActivePermission),
-                    witnessPermission: deepCopy(changedWihnessPermission)
+                    activePermissions: deepCopy(changedActivePermission)
                 })
                 this.successAlert(intl.formatMessage({
                     id: "transaction_signature_muti_successful"
