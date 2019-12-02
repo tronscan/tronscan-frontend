@@ -261,7 +261,7 @@ class Representatives extends Component {
                         <FormattedNumber
                           maximumFractionDigits={2}
                           minimunFractionDigits={2}
-                          value={leastProductive.producePercentage}
+                          value={leastProductive.producePercentage || 0}
                         />
                         %
                       </h3>
