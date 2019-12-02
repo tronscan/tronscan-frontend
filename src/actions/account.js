@@ -18,14 +18,14 @@ export const setTokenBalances = (
   trc20token = [],
   frozen = {},
   accountResource = {},
-  delegated = {}
+  delegated = {},
 ) => ({
   type: SET_TOKEN_BALANCES,
   tokens,
   trc20token,
   frozen,
   accountResource,
-  delegated
+  delegated,
 });
 
 export const setRecentTransactions = (transactions = []) => ({

@@ -504,10 +504,10 @@ export default class MyPermission extends React.Component {
                 <div className="global-operate">
                     <h3>{tu('signature_authority_structure')}</h3>
                     <div className="operate-btn">
-                        <a href="javascript:;" className='edit-permission' style={{ display: !isEditContent ? 'inline-block' : 'none' }} onClick={() => { this.setState({ isEditContent: true }) }}><span className='edit'></span><span>Edit Permissions</span> </a>
+                <a href="javascript:;" className='edit-permission' style={{ display: !isEditContent ? 'inline-block' : 'none' }} onClick={() => { this.setState({ isEditContent: true }) }}><span className='edit'></span><span>{tu('signature_edit_permissions')}</span> </a>
                         <div className="buttonWarp" style={{ display: isEditContent ? 'inline-block' : 'none' }}>
-                            <Button className="btn btn-cancel" onClick={() => { this.onCancelClick() }}>{tu('signature_cancel')}</Button>
-                            <Button className="btn btn-danger" style={{ marginLeft: '10px' }} onClick={() => { this.onSubmitClick() }}>Save</Button>
+                            <Button className="btn btn-cancel" onClick={() => { this.onCancelClick()}}>{tu('signature_cancel')}</Button>
+                <Button className="btn btn-danger" style={{marginLeft:'10px'}} onClick={() => { this.onSubmitClick() }}>{tu('signature_save')}</Button>
                         </div>
                     </div>
                     {modal}

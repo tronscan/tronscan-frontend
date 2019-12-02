@@ -367,7 +367,7 @@ export default class ActiveEdit extends Component {
                 <div className='permission'>
                     <div className='permission-title'>
                         <span className='permission-title-active'>{tu('signature_active_permissions')}</span><i>({activePermissions.length + '/' + 8})</i>
-                        <a className='btn btn-danger ac-permission-add-btn' size='small' onClick={() => { this.openAddActiveModal() }}><span>+</span><span>Add permission</span></a>
+        <a className='btn btn-danger ac-permission-add-btn' size='small' onClick={() => { this.openAddActiveModal() }}><span>+</span><span>{tu('signature_add_permissions')}</span></a>
                     </div>
                     <div className='permission-desc'>
                         {tu('signature_active_permissions_desc')}
@@ -397,7 +397,7 @@ export default class ActiveEdit extends Component {
                                     <span className="permission-label">{tu('signature_keys')}:</span>
                                     <table>
                                         <thead>
-                                            <tr><td>{'signature_key'}</td><td>{tu('signature_weight')}</td></tr>
+                                            <tr><td>{tu('signature_key')}</td><td>{tu('signature_weight')}</td></tr>
                                         </thead>
                                         <tbody>
                                             {
@@ -483,7 +483,7 @@ export default class ActiveEdit extends Component {
                                 <span className="permission-label">{tu('signature_keys')}:</span>
                                 <table>
                                     <thead>
-                                        <tr><td>{'signature_key'}</td><td>{tu('signature_weight')}</td></tr>
+                                        <tr><td>{tu('signature_key')}</td><td>{tu('signature_weight')}</td></tr>
                                     </thead>
                                     <tbody>
                                         {

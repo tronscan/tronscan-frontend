@@ -2284,5 +2284,9 @@ export const messages = {
  "signature_submit_change":"，Do you wish to proceed?",
  "signature_my":"My Signature",
   "signature_my_authrity":"My Access",
+  "fill_a_valid_permissin_time": "请填写有效的失效时间",
+  "fill_a_valid_permissin_id":"请选择有效的权限",
+  "signature_edit_permissions":"Edit access",
+  "signature_add_permissions":"Add new access"
 
 };
