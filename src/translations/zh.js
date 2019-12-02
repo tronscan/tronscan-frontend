@@ -2324,6 +2324,8 @@ export const messages = {
   "signature_my_authrity":"我的权限",
   "fill_a_valid_permissin_time": "请填写有效的失效时间",
   "fill_a_valid_permissin_id":"请选择有效的权限",
+  "signature_edit_permissions":"编辑权限",
+  "signature_add_permissions":"添加新权限"
 
   
 };

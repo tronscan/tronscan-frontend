@@ -93,7 +93,7 @@ export default class OwnerEdit extends Component{
                 <div className="permission-item"> <span className="permission-label">{tu('signature_permission')}:</span> <span><Input value={permission_name} name='permission_name' onChange={(e)=>{this.changeValueByEvent(e)}}/></span></div>
                 <div className="permission-item"> <span className="permission-label">{tu('signature_threshold')}:</span> <span><Input value={threshold} name='threshold' onChange={(e)=>{this.changeValueByEvent(e)}}/></span></div>
                 <div className="permission-item permission-keys">
-                    <span className="permission-label">{'signature_keys'}:</span> 
+                    <span className="permission-label">{tu('signature_keys')}:</span> 
                     <table>
                         <thead>
                             <tr><td>{tu('signature_key')}</td><td>{tu('signature_weight')}</td></tr>
