@@ -26,13 +26,13 @@ export default class OwnerEdit extends Component{
         })
     }
     removeKeysItem(index,e){
-        let { keys }= this.state;
-        if(keys.length<=1){
+        let curKeys = this.state.keys;
+        if(curKeys.length<=1){
             return false;
         }
-        keys.splice(index,1);
+        curKeys.splice(index,1);
         this.setState({
-            keys
+            keys:curKeys
         },()=>{
             this.changeParentOwenrPermission();
         })
@@ -73,12 +73,19 @@ export default class OwnerEdit extends Component{
 
     render(){
         const {tronWeb } = this.props;
-        const {keys,threshold,permission_name} = this.state;
+        let {keys,threshold,permission_name} = this.state;
         //console.log('render',keys);
-        const tableList = keys.map((item,index)=><tr className='edit-tr' key={index}>
-            <td style={{paddingLeft:0}}><Input defaultValue={tronWeb.address.fromHex(item.address)} onChange={(e)=>{this.changeValue(index,1,e)}}/></td>
+        keys = keys.map(item=>{
+            if(item.address && tronWeb.isAddress(item.address)){
+                item.address = tronWeb.address.fromHex(item.address);
+            }
+            return item;
+        })
+        const tableList = keys.map((item,index)=>
+        <tr className='edit-tr' key={index}>
+            <td style={{paddingLeft:0}}><Input value={item.address} onChange={(e)=>{this.changeValue(index,1,e)}}/></td>
             <td><Input value={ item.weight } onChange={(e)=>{this.changeValue(index,2,e)}}/>
-                <a href="javascript:;" className='cac-btn minus' onClick={(e)=>{this.removeKeysItem(index)}}>-</a>
+                <a href="javascript:;" className='cac-btn minus' style={{ visibility: index=== 0 && keys.length===1 ?'hidden':'visible'}} onClick={(e)=>{this.removeKeysItem(index)}}>-</a>
                 <a href="javascript:;" className='cac-btn plus' style={{visibility:index===(keys.length-1)&&keys.length<5?'visible':'hidden'}} onClick={()=>{this.addKeysItem()}}  >+</a>
             </td></tr>);                         
         return(
