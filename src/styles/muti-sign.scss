@@ -7,6 +7,9 @@
        border-radius: 2px;
        line-height: 1.5;
        padding: 0.15rem 0.6rem;
+       span{
+        color:#fff;
+       }
        &.active{
             background:#D0021B;
             span{
