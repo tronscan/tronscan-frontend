@@ -2309,7 +2309,7 @@ export const messages = {
   "voting_brokerage_tip":"Rate of SR's reward to be distributed to his/her voters. Voter's reward = SR's reward * Voters' reward rate * (voter's votes/ all votes for the SR).",
   "SR_set_brokerage_contract":"SR address contract triggers",
   "countdown_to_voting":"Countdown to the end of this round of voting",
-
+  "no_rewards_available_yet":"No rewards available",
   "total_tron_ecosystem_tokens":"Total TRON-ecosystem tokens:",
   "number_of_lists":"Number of lists:",
   "total_in_tronscan":"Total in tronscan:",

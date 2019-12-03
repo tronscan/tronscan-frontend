@@ -2337,7 +2337,6 @@ export const messages = {
   "SR_set_brokerage_contract":"超级代表设置奖励分成比例",
   "countdown_to_voting":"本轮投票结束倒计时",
   "no_rewards_available_yet":"暂无可领取奖励",
-
   "total_tron_ecosystem_tokens":"波场生态通证总数：",
   "number_of_lists":"列表数量：",
   "total_in_tronscan":"共收录：",

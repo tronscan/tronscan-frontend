@@ -2298,7 +2298,7 @@ export const messages = {
   "voting_brokerage_tip":"슈퍼대표가 받는 보상 중, 배당 투표자의 비율은. 유권자= 총 보상 수* 유권자 보상 배당 비율* (유권자 투표/ 유권자 총 투표)",
   "SR_set_brokerage_contract":"슈퍼 대표는 보너스 공유 비율을 설정",
   "countdown_to_voting":"이 투표 라운드가 끝날 때까지의 카운트 다운",
-
+  "no_rewards_available_yet":"No rewards available",
   "total_tron_ecosystem_tokens":"Total TRON-ecosystem tokens:",
   "number_of_lists":"Number of lists:",
   "total_in_tronscan":"Total in tronscan:",
