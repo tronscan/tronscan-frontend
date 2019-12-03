@@ -11,6 +11,8 @@ import { NameWithId } from '../common/names';
 import { AddressLink } from "../common/Links";
 import {TRXPrice} from "../common/Price";
 import {FormattedDate, FormattedNumber, FormattedRelative, FormattedTime, injectIntl} from "react-intl";
+import {Client, tronWeb} from "../../services/api";
+import Utils from '../../utils/contractUtils';
 
 const { Option } = Select;
 
@@ -26,39 +28,18 @@ class SignDetailsModal extends Component {
 
     constructor() {
         super();
-
         this.state = {
             isDisabled: false,
             isShowModal: true,
         };
     }
+    componentDidMount() {
+        const { details } = this.props;
+        if(details.contractType == 'TriggerSmartContract' && details.functionSelector) {
+            this.getParameterValue()
+        }
+    }
 
-    /**
-     * show result
-     */
-    openModal = data => {
-        const isSuccess = !!data;
-        this.setState({
-            isShowModal: false,
-            modal: (
-                <SweetAlert
-                    type={isSuccess ? 'success' : 'error'}
-                    confirmBtnText={tu('trc20_confirm')}
-                    confirmBtnBsStyle="danger"
-                    title={isSuccess ? tu('pledge_success') : tu('pledge_error')}
-                    onConfirm={this.hideModal}
-                    style={{ height: '300px', top: '30%', marginLeft: '-240px' }}
-                >
-                    <div className="form-group" style={{ marginBottom: '36px' }}>
-                        <div className="mt-3 mb-2 text-left" style={{ color: '#666' }}>
-
-                        </div>
-                    </div>
-
-                </SweetAlert>
-            ),
-        });
-    };
 
     /**
      * clsoe result
@@ -145,44 +126,36 @@ class SignDetailsModal extends Component {
         return trx20MappingAddress;
     }
 
-    /**
-     * num change
-     */
-    onChangeNum = e => {
-        const { option: { precision, balance, currency, type }, intl } = this.props;
-        const numValue = e.target && e.target.value;
-        let errorMess = '';
-        let reg = Number(precision) > 0
-            ? `^(0|[1-9][0-9]*)(\\.\\d{0,${Number(precision)}})?$` : '^(0|[1-9][0-9]*)(\\.\\d+)?$';
-
-        if (!!numValue) {
-            // format
-            if (!new RegExp(reg).test(numValue)) {
-                return;
-            }
-
-            // min value
-            const minAmount = type === CURRENCYTYPE.TRX ? TRXDEPOSITMIN : division(TRCDEPOSITMIN, Math.pow(10, Number(precision)));
-            if (Number(numValue) < minAmount) {
-                errorMess = `${intl.formatMessage({id: 'pledge_num_min_error'})}${minAmount}${currency}`;
-            }
-
-            // max value
-            if (Number(numValue) > Number(balance)) {
-                errorMess = tu('pledge_num_error');
-            }
-        }
-
+    getParameterValue = async() =>{
+        const { details, account } = this.props;
+        let hexstr = details.currentTransaction.raw_data.contract[0].parameter.value;
+        console.log('hexstr',hexstr)
+        let parameterValue = Client.getParameterValue(hexstr);
+        console.log('parameterValue',parameterValue)
+        //details.contractData.data = parameterValue;
+        console.log('details.contractData',details.contractData)
+        let parameter = details.contractData;
+        let function_selector = details.functionSelector;
+        console.log('function_selector',function_selector)
+        let contract_address = details.contractData.contract_address;
+        console.log('contract_address',contract_address)
+        let smartcontract = await account.tronWeb.trx.getContract(contract_address);
+        let abi = smartcontract.abi.entrys;
+        console.log('abi',abi)
+        console.log('parameterValue.data.substring(8)',parameterValue.data.substring(8))
+        const args = Utils.decodeParams(parameterValue.data.substring(8),abi,function_selector);
+        console.log('args',args)
         this.setState({
-            numValue,
-            errorMess,
+            args
         });
     }
+
 
     render() {
         const { getFieldDecorator } = this.props.form;
         const { details } = this.props;
-        const {  isShowModal, modal } = this.state;
+        const {  isShowModal, modal, args } = this.state;
+        console.log('args',args)
         console.log('details',details)
         let TokenIDList = [];
         let tokenIdData;
@@ -190,6 +163,7 @@ class SignDetailsModal extends Component {
         if(TokenIDList){
             tokenIdData  = rebuildList(TokenIDList,'asset_name','amount')[0]
         }
+
         const TransferDetailsItem = (
             <Fragment>
                 <div className="form-group">
@@ -227,6 +201,41 @@ class SignDetailsModal extends Component {
             </Fragment>
         );
 
+        const TriggerSmartTransferDetailsItem = (
+            <Fragment>
+                <div className="form-group">
+                    <label>{tu("contract_triggers_owner_address")}</label>
+                    <span><AddressLink address={details.contractData.owner_address}>{details.contractData.owner_address}</AddressLink></span>
+                </div>
+                <div className="form-group">
+                    <label>{tu("contract_address")}</label>
+                    <span><AddressLink address={details.contractData.contract_address} isContract={true}>{details.contractData.contract_address}</AddressLink></span>
+                </div>
+                {
+                    (details.functionSelector == 'transfer(address,uint256)' && args) &&  <div>
+                        <div className="form-group">
+                            <label>{tu("from")}</label>
+                            <span><AddressLink address={details.contractData.owner_address}>{details.contractData.owner_address}</AddressLink></span>
+                        </div>
+
+                        <div className="form-group">
+                            <label>{tu("to")}</label>
+                            <span><AddressLink address={args[0].value}>{args[0].value}</AddressLink></span>
+                        </div>
+                        <div className="form-group">
+                            <label>{tu("amount")}</label>
+                            <span>{tokenIdData.map_amount}</span>
+                        </div>
+                        <div className="form-group">
+                            <label>{tu("token")}</label>
+                            <span><NameWithId value={details.contractData} notamount totoken/></span>
+                        </div>
+                    </div>
+
+                }
+            </Fragment>
+        );
+
         const TriggerSmartDetailsItem = (
             <Fragment>
                 <div className="form-group">
@@ -237,7 +246,6 @@ class SignDetailsModal extends Component {
                     <label>{tu("contract_address")}</label>
                     <span><AddressLink address={details.contractData.contract_address} isContract={true}>{details.contractData.contract_address}</AddressLink></span>
                 </div>
-
             </Fragment>
         );
 
@@ -283,7 +291,8 @@ class SignDetailsModal extends Component {
                        <Fragment>
                            {details.contractType == 'TransferContract' ?TransferDetailsItem:''}
                            {details.contractType == 'TransferAssetContract' ?TransferAssetDetailsItem:''}
-                           {details.contractType == 'TriggerSmartContract' ?TriggerSmartDetailsItem:''}
+                           {details.contractType == 'TriggerSmartContract' && details.functionSelector != 'transfer(address,uint256)' ? TriggerSmartDetailsItem :''}
+                           {details.contractType == 'TriggerSmartContract' && details.functionSelector == 'transfer(address,uint256)' ? TriggerSmartDetailsItem :''}
                        </Fragment>
 
                        <div className="form-group border-0">
@@ -323,7 +332,6 @@ class SignDetailsModal extends Component {
 
 function mapStateToProps(state, ownProp) {
     return {
-        option: ownProp.option,
         sideChains: state.app.sideChains,
         account: state.app.account,
         fees: state.app.fees,
