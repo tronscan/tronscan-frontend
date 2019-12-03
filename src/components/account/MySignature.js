@@ -336,7 +336,7 @@ class MySignature extends React.Component{
                 key: 'signature_operate',
                 align: 'right',
                 className: 'ant_table',
-                width: '15%',
+                width: '20%',
                 render: (text, record, index) => {
                     return  <span>
                         {
@@ -364,7 +364,7 @@ class MySignature extends React.Component{
                                         </a>
                                     </div>
                                     <div className="mt-3">
-                                        <Link className="color-tron-100 list-item-word" to={`/transaction/${record.hash}`}>
+                                        <Link className="color-tron-100 list-item-word" style={{fontSize:12}} to={`/transaction/${record.hash}`}>
                                             {tu('view_on_chain_transactions')}
                                         </Link>
                                     </div>

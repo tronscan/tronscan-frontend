@@ -4864,7 +4864,7 @@ h5 {
     width: 320px;
   }
   .form-group>label {
-    width: 120px;
+    min-width: 150px;
   }
 }
 .permission-group{
@@ -4876,6 +4876,16 @@ h5 {
     .ant-select-selection{
       border-color: #d9534f;
     }
+  }
+}
+
+.sign-details-method{
+  .flex1{
+    width: 100%;
+  }
+
+  .border-bottom{
+    border-bottom: 1px solid #e5e5e5 !important;
   }
 }
 
