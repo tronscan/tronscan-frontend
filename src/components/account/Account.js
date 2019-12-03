@@ -142,7 +142,8 @@ export default class Account extends Component {
           },()=>{
               setTimeout(()=>{
                   this.scrollToMultisign()
-              },500)
+                  window.location.hash = "#/account";
+                },500)
           })
       }
       let isActivate =  await this.isActivateAccount(account.address)
@@ -169,10 +170,13 @@ export default class Account extends Component {
     let {account, walletType, currentWallet, location} = this.props;
     if((location.search != prevProps.location.search) && getQueryString('from') == 'nav' && getQueryString('type') == 'multisign') {
         this.setState({
-            isInMyPermission:false,isInMySignature:true
+          isInMyPermission:false,
+          isInMySignature:true,
+          mySignatureType:10
         },()=>{
             setTimeout(()=>{
                 this.scrollToMultisign()
+                window.location.hash = "#/account";
             },500)
         })
     }
