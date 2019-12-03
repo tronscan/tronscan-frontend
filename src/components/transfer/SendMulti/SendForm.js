@@ -385,22 +385,23 @@ class SendForm extends React.Component {
       let isDisable = false;
         console.log('contractTypesArr222',contractTypesArr)
         console.log('keys222',keys)
-        keys.map((key,k) => {
-            if(key.address == wallet.address) {
-                if(contractTypesArr){
-                    contractTypesArr.map((type,i) => {
-                        if(type.value == "TransferContract" || type.value == "TransferAssetContract" || type.value == "TriggerSmartContract") {
-                            isDisable = true
-                            return;
-                        }
-                    })
+            keys.map((key,k) => {
+                if(key.address == wallet.address) {
+                    if(contractTypesArr){
+                        contractTypesArr.map((type,i) => {
+                            if(type.value == "TransferContract" || type.value == "TransferAssetContract" || type.value == "TriggerSmartContract") {
+                                isDisable = true
+                                return;
+                            }
+                        })
+                    }else{
+                        isDisable = true
+                        return;
+                    }
                 }
-                isDisable = true
-                return;
-            }else{
-                return isDisable;
-            }
-        })
+            })
+
+
         return isDisable;
     }
 
