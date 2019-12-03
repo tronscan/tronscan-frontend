@@ -106,7 +106,7 @@ export default class ActiveEdit extends Component {
             activeItem.keys[index].address = e.target.value;
         } else {
             let value = e.target.value;
-            const threshold = activeArr[acIndex].threshold;
+            const threshold = activeItem.threshold;
             if(toNumber(value)>threshold){
                 value = threshold
             }
@@ -215,10 +215,7 @@ export default class ActiveEdit extends Component {
                 hasContractIds = hasContractIds.map(item => {
                     return item.id;
                 })
-                errorMsgModal.operations = {msg:'',show:false}
-                this.setState({
-                    errorMsgModal: errorMsgModal
-                })
+               
             }
         }
         this.setState({
@@ -278,7 +275,17 @@ export default class ActiveEdit extends Component {
             )
         });
     }
-    validKeys(keysItem, keysArr) {
+    async ifContractAddress(address) {
+        const { tronWeb } = this.props;
+        let isValid = false;
+        try {
+            const contractInstance = await tronWeb.contract().at(tronWeb.address.fromHex(address)).catch()
+        } catch (e) {
+            isValid = true;
+        }
+        return isValid;
+    }
+    async validKeys(keysItem, keysArr) {
         const { tronWeb, intl } = this.props;
         const { errorMsgModal } = this.state;
         const item = keysItem;
@@ -299,6 +306,17 @@ export default class ActiveEdit extends Component {
             errorMsgModal.keys = {
                 msg: intl.formatMessage({
                     id: 'signature_invalid_Address'
+                }), show: true
+            }
+            this.setState({
+                errorMsgModal: errorMsgModal
+            })
+            return false;
+        }
+        if (!await this.ifContractAddress(tronWeb.address.fromHex(item.address))) {
+            errorMsgModal.keys = {
+                msg: intl.formatMessage({
+                    id: 'signature_no_set'
                 }), show: true
             }
             this.setState({
@@ -345,7 +363,7 @@ export default class ActiveEdit extends Component {
         }
         return false
     }
-    OkAddActive() {
+    async OkAddActive() {
         //todo 
         const { activePermissions, willAddActive, errorMsgModal } = this.state;
         const { intl } = this.props;
@@ -388,13 +406,14 @@ export default class ActiveEdit extends Component {
             return;
         }
         let sumOwnerKeysWeight = 0;
-        const validAddActiveKeys = keys.every(item => {
-            if (!this.validKeys(item, keys)) {
+        let validAddActiveKeys = false;
+        for(let item of keys){
+            if (!await this.validKeys(item, keys)) {
                 return false
             }
             sumOwnerKeysWeight += item.weight;
-            return true
-        })
+            validAddActiveKeys = true;
+        }
         if (!validAddActiveKeys) { return false }
         if (sumOwnerKeysWeight < threshold) {
             errorMsgModal.keys = {
@@ -428,7 +447,7 @@ export default class ActiveEdit extends Component {
     }
     //修改权限弹框ok
     Ok() {
-        const { modifyIndex, activePermissions, hasContractIds, willAddActive } = this.state;
+        const { modifyIndex, activePermissions, hasContractIds, willAddActive ,errorMsgModal} = this.state;
         if (hasContractIds.length === 0) {
             return false;
         }
@@ -443,8 +462,12 @@ export default class ActiveEdit extends Component {
         } else {
 
             willAddActive.operations = getOperationsHexStrByContractIdArr(hasContractIds).toLowerCase();
+            //
+            errorMsgModal.operations = {msg:'',show:false}
+           
             this.setState({
-                willAddActive
+                willAddActive,
+                errorMsgModal: errorMsgModal
             })
 
         }
@@ -471,7 +494,7 @@ export default class ActiveEdit extends Component {
                                 <a href="javascript:;" className='permission-delete' onClick={(e) => { this.deleteAcItem(acIndex, e) }}></a>
                                 <div className="permission-item">
                                     <span className="permission-label">{tu('signature_permission')}:</span>
-                                    <span><Input value={item.permission_name} name='permission_name' maxLength={30} onChange={(e) => { this.changeValueByEvent(acIndex, e) }} /></span>
+                                    <span><Input value={item.permission_name} name='permission_name' maxLength={32} onChange={(e) => { this.changeValueByEvent(acIndex, e) }} /></span>
                                 </div>
                                 <div className="permission-item" style={{ paddingBottom: 0 }}>
                                     <span className="permission-label">{tu('signature_Operations')}:</span>
@@ -562,7 +585,7 @@ export default class ActiveEdit extends Component {
                             <div className="permission-item">
                                 <span className="permission-label">{tu('signature_permission')}:</span>
                                 <span>
-                                    <Input name='permission_name' value={willAddActive.permission_name} maxLength={30} onChange={(e) => { this.changeValueByEvent(null, e) }} />
+                                    <Input name='permission_name' value={willAddActive.permission_name} maxLength={32} onChange={(e) => { this.changeValueByEvent(null, e) }} />
 
                                 </span>
                             </div>
