@@ -52,7 +52,6 @@ export default class MyPermission extends React.Component {
 
         const { wallet } = nextProps
         const { ownerPermission, activePermissions, witnessPermission } = wallet.current;
-        //console.log('activePermissions222', activePermissions);
         this.setState({
             curControlAddress: wallet.current.address,
             curLoginAddress: wallet.current.address,
@@ -88,6 +87,7 @@ export default class MyPermission extends React.Component {
             modalAlert: null
         })
     }
+    //todo 
     async saveControlAddress() {
         //校验地址规则
         let isValid = false;
@@ -114,6 +114,7 @@ export default class MyPermission extends React.Component {
                 this.warningAlert(intl.formatMessage({
                     id: "signature_no_set"
                 }))
+                return;
             } catch (e) {
                 isValid = true;
             }
@@ -154,10 +155,15 @@ export default class MyPermission extends React.Component {
                     })
                 }
                 else {
+                    //同时更新changedPermission
+                
                     this.setState({
                         ownerPermission: owner_permission || null,
                         activePermissions: active_permission || [],
-                        witnessPermission: witness_permission || null
+                        witnessPermission: witness_permission || null,
+                        changedOwnerPermission:deepCopy(owner_permission),
+                        changedActivePermission:deepCopy(active_permission),
+                        changedWihnessPermission:deepCopy(witness_permission)
                     })
                 }
             } else {
@@ -168,8 +174,6 @@ export default class MyPermission extends React.Component {
             }
 
         }
-
-
     }
     changeControlAddress(event) {
         this.setState({
@@ -177,7 +181,7 @@ export default class MyPermission extends React.Component {
         })
     }
     changeOwnerPermission(changedOwnerPermission) {
-        //console.log('changedOwnerPermission',changedOwnerPermission)
+        
         this.setState({
             changedOwnerPermission: changedOwnerPermission
         })
@@ -242,7 +246,9 @@ export default class MyPermission extends React.Component {
             }));
             return false;
         }
-        item.address = tronWeb.address.toHex(item.address);
+        if(item.address.length!==42){
+            item.address = tronWeb.address.toHex(item.address);
+        }
         return true;
     }
     findIsSameKey(itemKey, arr) {
@@ -314,13 +320,17 @@ export default class MyPermission extends React.Component {
     async savePermission() {
         const { tronWeb, reloadWallet, intl } = this.props;
         const { changedOwnerPermission, changedActivePermission, changedWihnessPermission, curLoginAddress, curControlAddress } = this.state;
+
+        console.log('changedOwnerPermission',changedOwnerPermission);
+        console.log('changedActivePermission',changedActivePermission);
+
         //检查权限是否修改过
-        if (this.comparePermissionIsChanged()) {
-            this.setState({
-                isEditContent: false
-            })
-            return false;
-        }
+        // if (this.comparePermissionIsChanged()) {
+        //     this.setState({
+        //         isEditContent: false
+        //     })
+        //     return false;
+        // }
 
         changedOwnerPermission.type = 0;
         const threshold = changedOwnerPermission.threshold;
@@ -366,8 +376,8 @@ export default class MyPermission extends React.Component {
 
         let isValidActivePermission = true;
         for (let i = 0; i < changedActivePermission.length; i++) {
-            const acItem = changedActivePermission[i];
-            acItem.type = 2;
+            let acItem = changedActivePermission[i];
+            changedActivePermission[i].type = 2;
             let sumKeysWeight = 0;
             const acItemThreshold = acItem.threshold;
             if (!acItem.permission_name) {
@@ -422,7 +432,7 @@ export default class MyPermission extends React.Component {
         if (curControlAddress === curLoginAddress && UnmodifiedOwnerPermission.keys.length < 2) {
             const updateTransaction = await tronWeb.transactionBuilder.updateAccountPermissions(tronWeb.address.toHex(curLoginAddress), changedOwnerPermission, witnessPermission, changedActivePermission);
             const signedTransaction = await tronWeb.trx.sign(updateTransaction);
-            //console.log(signedTransaction)
+         
             const res = await tronWeb.trx.broadcast(signedTransaction).catch(e => {
                 this.setState({
                     modal: (
@@ -455,7 +465,7 @@ export default class MyPermission extends React.Component {
             }
         } else {
             //走多重签名
-            const updateTransaction = await tronWeb.transactionBuilder.updateAccountPermissions(tronWeb.address.toHex(curLoginAddress), changedOwnerPermission, witnessPermission, changedActivePermission);
+            const updateTransaction = await tronWeb.transactionBuilder.updateAccountPermissions(tronWeb.address.toHex(curControlAddress), changedOwnerPermission, witnessPermission, changedActivePermission);
 
             //const signedTransaction = await tronWeb.trx.multiSign(updateTransaction,tronWeb.defaultPrivateKey,0);
             const value = updateTransaction.raw_data.contract[0].parameter.value;
@@ -464,6 +474,7 @@ export default class MyPermission extends React.Component {
             const signedTransaction = await transactionMultiResultManager(updateTransaction, tronWeb, 0, 1, hexStr);
             let data = await postMutiSignTransaction(curLoginAddress, signedTransaction);
             const result = data.code;
+            
             if (result === 0) {
                 // 签名成功
                 this.setState({
