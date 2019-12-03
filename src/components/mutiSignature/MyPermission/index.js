@@ -35,9 +35,15 @@ export default class MyPermission extends React.Component {
         const { ownerPermission, activePermissions, witnessPermission } = wallet.current;
         if(ownerPermission){
             ownerPermission.type = 0;
+            ownerPermission.keys.forEach(item=>{
+                item.address = tronWeb.address.toHex(item.address);
+            })
         }
         if(witnessPermission){
             witnessPermission.type = 1;
+            witnessPermission.keys.forEach(item=>{
+                item.address = tronWeb.address.toHex(item.address);
+            })
         }
         if(activePermissions){
             activePermissions.forEach(item=>{
