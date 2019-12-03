@@ -3,12 +3,13 @@ import { connect } from 'react-redux';
 import { tu } from '../../utils/i18n';
 import { Modal, Form, Input, Select } from 'antd';
 import PropTypes from 'prop-types';
-import { CURRENCYTYPE, FEELIMIT, TRXDEPOSITMIN, TRCDEPOSITMIN, ONE_TRX } from './../../constants';
+import { CURRENCYTYPE, FEELIMIT, CONTRACT_ADDRESS_USDT, CONTRACT_ADDRESS_WIN, CONTRACT_ADDRESS_GGC, ONE_TRX } from './../../constants';
 import SweetAlert from 'react-bootstrap-sweetalert';
 import { mul, division } from './../../utils/calculation';
 import rebuildList from "./../../utils/rebuildList";
+import rebuildToken20List from "./../../utils/rebuildToken20List";
 import { NameWithId } from '../common/names';
-import { AddressLink } from "../common/Links";
+import { AddressLink, TokenTRC20Link } from "../common/Links";
 import {TRXPrice} from "../common/Price";
 import {FormattedDate, FormattedNumber, FormattedRelative, FormattedTime, injectIntl} from "react-intl";
 import {Client, tronWeb} from "../../services/api";
@@ -155,14 +156,31 @@ class SignDetailsModal extends Component {
         const { getFieldDecorator } = this.props.form;
         const { details } = this.props;
         const {  isShowModal, modal, args } = this.state;
+        const defaultImg = require("../../images/logo_default.png");
         console.log('args',args)
         console.log('details',details)
         let TokenIDList = [];
-        let tokenIdData;
+        let TokencontractList = [];
+        let tokenIdData,trc20tokenBalances;
         TokenIDList.push(details.contractData)
         if(TokenIDList){
+            console.log('TokenIDList',TokenIDList)
             tokenIdData  = rebuildList(TokenIDList,'asset_name','amount')[0]
         }
+
+
+        if(details.functionSelector == 'transfer(address,uint256)' && args){
+            TokencontractList.push(
+                {
+                    "contract_address":details.contractData.contract_address,
+                    "balance":args[1].value
+                }
+            )
+           trc20tokenBalances  = rebuildToken20List(TokencontractList, 'contract_address', 'balance')[0];
+        }
+        console.log('trc20tokenBalances',trc20tokenBalances)
+
+
 
         const TransferDetailsItem = (
             <Fragment>
@@ -224,11 +242,82 @@ class SignDetailsModal extends Component {
                         </div>
                         <div className="form-group">
                             <label>{tu("amount")}</label>
-                            <span>{tokenIdData.map_amount}</span>
+                            <span>{trc20tokenBalances.map_amount}</span>
                         </div>
                         <div className="form-group">
                             <label>{tu("token")}</label>
-                            <span><NameWithId value={details.contractData} notamount totoken/></span>
+                            <span>
+                                <div className="flex1">
+                                        {trc20tokenBalances["contract_address"] == CONTRACT_ADDRESS_USDT || trc20tokenBalances["contract_address"] == CONTRACT_ADDRESS_WIN || trc20tokenBalances["contract_address"] == CONTRACT_ADDRESS_GGC ? (
+                                            <b
+                                                className="token-img-top"
+                                                style={{ marginRight: 5 }}
+                                            >
+                                                <img
+                                                    width={20}
+                                                    height={20}
+                                                    src={
+                                                        trc20tokenBalances[
+                                                            "map_amount_logo"
+                                                            ]
+                                                    }
+                                                    alt={
+                                                        trc20tokenBalances[
+                                                            "map_token_name"
+                                                            ]
+                                                    }
+                                                    onError={e => {
+                                                        e.target.onerror = null;
+                                                        e.target.src = defaultImg;
+                                                    }}
+                                                />
+                                                <i
+                                                    style={{
+                                                        width: 10,
+                                                        height: 10,
+                                                        bottom: -5
+                                                    }}
+                                                ></i>
+                                            </b>
+                                        ) : (
+                                            <img
+                                                width={20}
+                                                height={20}
+                                                src={
+                                                    trc20tokenBalances[
+                                                        "map_amount_logo"
+                                                        ]
+                                                }
+                                                alt={
+                                                    trc20tokenBalances["map_token_name"]
+                                                }
+                                                style={{ marginRight: 5 }}
+                                                onError={e => {
+                                                    e.target.onerror = null;
+                                                    e.target.src = defaultImg;
+                                                }}
+                                            />
+                                        )}
+                                    <TokenTRC20Link
+                                        name={
+                                            trc20tokenBalances["map_token_name"]
+                                        }
+                                        address={
+                                            trc20tokenBalances[
+                                                "contract_address"
+                                                ]
+                                        }
+                                        namePlus={
+                                            trc20tokenBalances["map_token_name"] +
+                                            " (" +
+                                            trc20tokenBalances[
+                                                "map_token_name_abbr"
+                                                ] +
+                                            ")"
+                                        }
+                                    />
+                                      </div>
+                            </span>
                         </div>
                     </div>
 
@@ -292,7 +381,7 @@ class SignDetailsModal extends Component {
                            {details.contractType == 'TransferContract' ?TransferDetailsItem:''}
                            {details.contractType == 'TransferAssetContract' ?TransferAssetDetailsItem:''}
                            {details.contractType == 'TriggerSmartContract' && details.functionSelector != 'transfer(address,uint256)' ? TriggerSmartDetailsItem :''}
-                           {details.contractType == 'TriggerSmartContract' && details.functionSelector == 'transfer(address,uint256)' ? TriggerSmartDetailsItem :''}
+                           {details.contractType == 'TriggerSmartContract' && details.functionSelector == 'transfer(address,uint256)' ? TriggerSmartTransferDetailsItem  :''}
                        </Fragment>
 
                        <div className="form-group border-0">
