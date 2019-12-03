@@ -515,7 +515,7 @@ class SmartContract extends React.Component {
                             <div className="d-flex">
                               <span>
                                 {moment(contract.date_created).format(
-                                  "YYYY-MM-DD HH:mm:SS"
+                                  "YYYY-MM-DD HH:mm:ss"
                                 )}
                               </span>
                             </div>
