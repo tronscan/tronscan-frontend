@@ -35,7 +35,7 @@ class SignDetailsModal extends Component {
     }
     componentDidMount() {
         const { details } = this.props;
-        if(details.contractType == 'TriggerSmartContract') {
+        if(details.contractType == 'TriggerSmartContract' && details.functionSelector) {
             this.getParameterValue()
         }
     }
@@ -155,6 +155,7 @@ class SignDetailsModal extends Component {
         const { getFieldDecorator } = this.props.form;
         const { details } = this.props;
         const {  isShowModal, modal, args } = this.state;
+        console.log('args',args)
         console.log('details',details)
         let TokenIDList = [];
         let tokenIdData;
@@ -211,7 +212,7 @@ class SignDetailsModal extends Component {
                     <span><AddressLink address={details.contractData.contract_address} isContract={true}>{details.contractData.contract_address}</AddressLink></span>
                 </div>
                 {
-                    details.functionSelector &&  <div>
+                    (details.functionSelector == 'transfer(address,uint256)' && args) &&  <div>
                         <div className="form-group">
                             <label>{tu("from")}</label>
                             <span><AddressLink address={details.contractData.owner_address}>{details.contractData.owner_address}</AddressLink></span>
@@ -290,7 +291,7 @@ class SignDetailsModal extends Component {
                        <Fragment>
                            {details.contractType == 'TransferContract' ?TransferDetailsItem:''}
                            {details.contractType == 'TransferAssetContract' ?TransferAssetDetailsItem:''}
-                           {details.contractType == 'TriggerSmartContract' && details.functionSelector != 'transfer(address,uint256)' ? TriggerSmartDetailsItem :'' }
+                           {details.contractType == 'TriggerSmartContract' && details.functionSelector != 'transfer(address,uint256)' ? TriggerSmartDetailsItem :''}
                            {details.contractType == 'TriggerSmartContract' && details.functionSelector == 'transfer(address,uint256)' ? TriggerSmartDetailsItem :''}
                        </Fragment>
 
