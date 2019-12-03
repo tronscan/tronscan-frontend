@@ -291,7 +291,8 @@ class SendForm extends React.Component {
             let { data } = await xhr.post("https://testlist.tronlink.org/api/wallet/multi/transaction", {
                 "address": wallet.address,
                 "transaction": SignTransaction,
-                "netType":"shasta"
+                "netType":"shasta",
+                "functionSelector":"transfer(address,uint256)"
             });
             let result = data.code;
             console.log('code',result)
