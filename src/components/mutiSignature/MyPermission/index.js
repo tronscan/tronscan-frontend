@@ -31,8 +31,22 @@ import { tu } from '../../../utils/i18n'
 export default class MyPermission extends React.Component {
     constructor(props) {
         super(props);
-        const { wallet } = this.props;
+        const { wallet,tronWeb } = this.props;
         const { ownerPermission, activePermissions, witnessPermission } = wallet.current;
+        if(ownerPermission){
+            ownerPermission.type = 0;
+        }
+        if(witnessPermission){
+            witnessPermission.type = 1;
+        }
+        if(activePermissions){
+            activePermissions.forEach(item=>{
+                item.type = 2;
+                item.keys.forEach(itemKey=>{
+                    itemKey.address = tronWeb.address.toHex(itemKey.address);
+                })
+            })
+        }
         this.state = {
             isEditOperateUser: false,
             isEditContent: false,
@@ -156,14 +170,27 @@ export default class MyPermission extends React.Component {
                 }
                 else {
                     //同时更新changedPermission
-                
+                    if(active_permission&&active_permission.length>0){
+                        active_permission.forEach(item => {
+                            item.type = 2;
+                            item.keys.forEach(keyItem => {
+                                keyItem.address = tronWeb.address.toHex(keyItem.address);
+                            })
+                        })
+                    }
+                    if(witness_permission){
+                        witness_permission.type = 1;
+                        witness_permission.keys.forEach(keyItem => {
+                            keyItem.address = tronWeb.address.toHex(keyItem.address);
+                        })
+                    }
                     this.setState({
                         ownerPermission: owner_permission || null,
                         activePermissions: active_permission || [],
                         witnessPermission: witness_permission || null,
-                        changedOwnerPermission:deepCopy(owner_permission),
-                        changedActivePermission:deepCopy(active_permission),
-                        changedWihnessPermission:deepCopy(witness_permission)
+                        changedOwnerPermission: deepCopy(owner_permission),
+                        changedActivePermission: deepCopy(active_permission),
+                        changedWihnessPermission: deepCopy(witness_permission)
                     })
                 }
             } else {
@@ -181,7 +208,7 @@ export default class MyPermission extends React.Component {
         })
     }
     changeOwnerPermission(changedOwnerPermission) {
-        
+
         this.setState({
             changedOwnerPermission: changedOwnerPermission
         })
@@ -246,7 +273,7 @@ export default class MyPermission extends React.Component {
             }));
             return false;
         }
-        if(item.address.length!==42){
+        if (item.address.length !== 42) {
             item.address = tronWeb.address.toHex(item.address);
         }
         return true;
@@ -321,8 +348,9 @@ export default class MyPermission extends React.Component {
         const { tronWeb, reloadWallet, intl } = this.props;
         const { changedOwnerPermission, changedActivePermission, changedWihnessPermission, curLoginAddress, curControlAddress } = this.state;
 
-        console.log('changedOwnerPermission',changedOwnerPermission);
-        console.log('changedActivePermission',changedActivePermission);
+        console.log('changedOwnerPermission', changedOwnerPermission);
+        console.log('changedActivePermission', changedActivePermission);
+        console.log('changeWithnessPermission', changedWihnessPermission);
 
         //检查权限是否修改过
         // if (this.comparePermissionIsChanged()) {
@@ -358,8 +386,6 @@ export default class MyPermission extends React.Component {
             validAllOwnerKeys = true;
         }
 
-
-
         if (!validAllOwnerKeys) {
 
             return;
@@ -377,7 +403,6 @@ export default class MyPermission extends React.Component {
         let isValidActivePermission = true;
         for (let i = 0; i < changedActivePermission.length; i++) {
             let acItem = changedActivePermission[i];
-            changedActivePermission[i].type = 2;
             let sumKeysWeight = 0;
             const acItemThreshold = acItem.threshold;
             if (!acItem.permission_name) {
@@ -419,20 +444,13 @@ export default class MyPermission extends React.Component {
         }
         if (!isValidActivePermission) { console.log('active vliad failed'); return }
 
-        const { ownerPermission, activePermissions, witnessPermission } = this.state;
-        if (witnessPermission) {
-            witnessPermission.keys.forEach(item => {
-                item.address = tronWeb.address.toHex(item.address)
-            })
-            witnessPermission.type = 1;
-        }
-
+        let { ownerPermission } = this.state;
 
         const UnmodifiedOwnerPermission = ownerPermission;
         if (curControlAddress === curLoginAddress && UnmodifiedOwnerPermission.keys.length < 2) {
-            const updateTransaction = await tronWeb.transactionBuilder.updateAccountPermissions(tronWeb.address.toHex(curLoginAddress), changedOwnerPermission, witnessPermission, changedActivePermission);
+            const updateTransaction = await tronWeb.transactionBuilder.updateAccountPermissions(tronWeb.address.toHex(curLoginAddress), changedOwnerPermission, changedWihnessPermission, changedActivePermission);
             const signedTransaction = await tronWeb.trx.sign(updateTransaction);
-         
+
             const res = await tronWeb.trx.broadcast(signedTransaction).catch(e => {
                 this.setState({
                     modal: (
@@ -447,7 +465,8 @@ export default class MyPermission extends React.Component {
                 // 签名成功 transaction_signature_muti_successful
                 this.setState({
                     ownerPermission: deepCopy(changedOwnerPermission),
-                    activePermissions: deepCopy(changedActivePermission)
+                    activePermissions: deepCopy(changedActivePermission),
+                    witnessPermission: deepCopy(changedWihnessPermission)
                 })
                 this.successAlert(intl.formatMessage({
                     id: "transaction_signature_muti_successful"
@@ -465,7 +484,7 @@ export default class MyPermission extends React.Component {
             }
         } else {
             //走多重签名
-            const updateTransaction = await tronWeb.transactionBuilder.updateAccountPermissions(tronWeb.address.toHex(curControlAddress), changedOwnerPermission, witnessPermission, changedActivePermission);
+            const updateTransaction = await tronWeb.transactionBuilder.updateAccountPermissions(tronWeb.address.toHex(curControlAddress), changedOwnerPermission, changedWihnessPermission, changedActivePermission);
 
             //const signedTransaction = await tronWeb.trx.multiSign(updateTransaction,tronWeb.defaultPrivateKey,0);
             const value = updateTransaction.raw_data.contract[0].parameter.value;
@@ -474,7 +493,7 @@ export default class MyPermission extends React.Component {
             const signedTransaction = await transactionMultiResultManager(updateTransaction, tronWeb, 0, 1, hexStr);
             let data = await postMutiSignTransaction(curLoginAddress, signedTransaction);
             const result = data.code;
-            
+
             if (result === 0) {
                 // 签名成功
                 this.setState({

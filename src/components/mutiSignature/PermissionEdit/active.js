@@ -106,6 +106,10 @@ export default class ActiveEdit extends Component {
             activeItem.keys[index].address = e.target.value;
         } else {
             let value = e.target.value;
+            const threshold = activeArr[acIndex].threshold;
+            if(toNumber(value)>threshold){
+                value = threshold
+            }
             activeItem.keys[index].weight = toNumber(value);
         }
         if (acIndex != null) {
@@ -134,7 +138,7 @@ export default class ActiveEdit extends Component {
         }
         const target = e.target;
         const name = target.name;
-        const value = name === 'threshold' ? toNumber(target.value) : target.value;
+        const value = name === 'threshold' ? toNumber(target.value) : target.value.trim();
         activeItem[name] = value;
         if (acIndex !== null) {
             this.setState({
@@ -229,6 +233,9 @@ export default class ActiveEdit extends Component {
     }
     deleteAcItem(acIndex) {
         const { activePermissions } = this.state;
+        if(activePermissions.length===1){
+            return false;
+        }
         activePermissions.splice(acIndex, 1);
         this.setState({
             activePermissions: activePermissions
@@ -464,7 +471,7 @@ export default class ActiveEdit extends Component {
                                 <a href="javascript:;" className='permission-delete' onClick={(e) => { this.deleteAcItem(acIndex, e) }}></a>
                                 <div className="permission-item">
                                     <span className="permission-label">{tu('signature_permission')}:</span>
-                                    <span><Input value={item.permission_name} name='permission_name' onChange={(e) => { this.changeValueByEvent(acIndex, e) }} /></span>
+                                    <span><Input value={item.permission_name} name='permission_name' maxLength={30} onChange={(e) => { this.changeValueByEvent(acIndex, e) }} /></span>
                                 </div>
                                 <div className="permission-item" style={{ paddingBottom: 0 }}>
                                     <span className="permission-label">{tu('signature_Operations')}:</span>
@@ -555,7 +562,7 @@ export default class ActiveEdit extends Component {
                             <div className="permission-item">
                                 <span className="permission-label">{tu('signature_permission')}:</span>
                                 <span>
-                                    <Input name='permission_name' value={willAddActive.permission_name} onChange={(e) => { this.changeValueByEvent(null, e) }} />
+                                    <Input name='permission_name' value={willAddActive.permission_name} maxLength={30} onChange={(e) => { this.changeValueByEvent(null, e) }} />
 
                                 </span>
                             </div>

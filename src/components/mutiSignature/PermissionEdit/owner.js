@@ -43,7 +43,11 @@ export default class OwnerEdit extends Component{
             curKeys[index].address=e.target.value;
         }else{
             let value =  e.target.value;
-            curKeys[index].weight = toNumber(value);     
+            if(toNumber(value)>this.state.threshold){
+                value = this.state.threshold;
+            }
+            curKeys[index].weight = toNumber(value); 
+               
         }
         this.setState({
             keys:curKeys
@@ -97,7 +101,7 @@ export default class OwnerEdit extends Component{
                 {tu('signature_privilege_desc')}
             </div>
             <div className="permission-content">
-                <div className="permission-item"> <span className="permission-label">{tu('signature_permission')}:</span> <span><Input value={permission_name} name='permission_name' onChange={(e)=>{this.changeValueByEvent(e)}}/></span></div>
+                <div className="permission-item"> <span className="permission-label">{tu('signature_permission')}:</span> <span><Input value={permission_name} name='permission_name' maxLength={30} onChange={(e)=>{this.changeValueByEvent(e)}}/></span></div>
                 <div className="permission-item"> <span className="permission-label">{tu('signature_threshold')}:</span> <span><Input value={threshold} name='threshold' onChange={(e)=>{this.changeValueByEvent(e)}}/></span></div>
                 <div className="permission-item permission-keys">
                     <span className="permission-label">{tu('signature_keys')}:</span> 
