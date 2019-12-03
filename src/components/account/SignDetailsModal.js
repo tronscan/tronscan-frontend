@@ -335,6 +335,36 @@ class SignDetailsModal extends Component {
                     <label>{tu("contract_address")}</label>
                     <span><AddressLink address={details.contractData.contract_address} isContract={true}>{details.contractData.contract_address}</AddressLink></span>
                 </div>
+                <div className="form-group sign-details-method">
+                    <label>{tu("Method_calling")}</label>
+                    <div className="flex1">
+                        <div className="d-flex border-bottom content_item pt-0">
+                            <div className="content_name">
+                                {tu("contract_method")}:
+                            </div>
+                            <div className="flex1">
+                                {details.functionSelector}
+                            </div>
+                        </div>
+                        {args &&
+                        Object.keys(args).map(item => {
+                            return (
+                                <div
+                                    className="d-flex content_item"
+                                    key={args[item].name}
+                                >
+                                    <div className="content_name">
+                                        {args[item].name}:
+                                    </div>
+                                    <div className="flex1">
+                                        {args[item].value}
+                                    </div>
+                                </div>
+                            );
+                        })}
+                    </div>
+                </div>
+
             </Fragment>
         );
 
