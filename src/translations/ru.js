@@ -2223,7 +2223,7 @@ export const messages = {
  "muti_sign":"Мульти-подпись",
   "translations_wait_sign":"Транзакции ждут мою подпись",
   "transfer_multi_sign":"Мульти-подпись перевод",
-  "permission":"权限",
+  "permission":"Отправитель",
   "owner_permission":"Owner权限组",
   "active_permission":"Active权限组",
   "translations_failure_time":"Время истечения",

@@ -2293,7 +2293,7 @@ export const messages = {
   "signature_Superdelegate_authority":"超级代表权限",
   "signature_Superdelegate_authority_desc":"超级代表权限用来设定出块节点",
   "signature_piece_node":"出块节点",
-  "signature_no_set":"此地址为合约地址,不能设置",
+  "signature_no_set":"此地址为合约地址，请确认后再试",
   "signature_Unverified_address":"未验证地址",
   "signature_notInContralAddress":"没有该地址的控制权限，请确认后重试",
   "signature_invalid_Address":"地址格式有误，请确认后再试",
