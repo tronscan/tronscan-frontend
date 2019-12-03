@@ -497,11 +497,13 @@ class SendForm extends React.Component {
 
   getSelectedTokenBalance = () => {
     let {token,tokenBalances,tokens20} = this.state;
+    console.log('tokenBalances',tokenBalances)
     let TokenType =  token.substr(token.length-5,5);
     let list = token.split('-')
     if (token && TokenType == 'TRC10') {
         let TokenName =  list[1];
         let balance = parseFloat(find(tokenBalances, t => t.map_token_id === TokenName).map_amount);
+        console.log('balance',balance)
         let TokenDecimals = parseFloat(find(tokenBalances, t => t.map_token_id === TokenName).map_token_precision);
         if(TokenName == 'TRX'){
             this.setState({
@@ -556,6 +558,7 @@ class SendForm extends React.Component {
 
   isAmountValid = () => {
     let {amount,balance} = this.state;
+    console.log('isAmountValid',balance)
     let selectedTokenBalance = balance;
     return amount !== 0 && amount !== '' && selectedTokenBalance >= amount;
   };
@@ -583,6 +586,8 @@ class SendForm extends React.Component {
       this.setState({
           tokenBalances: balances_new,
           tokens20: trc20token_balances_new
+      },()=>{
+          this.getSelectedTokenBalance()
       });
     }
 
@@ -880,7 +885,7 @@ class SendForm extends React.Component {
                 </div>
             </div>
             {
-                signList && <div className="text-left">
+                signList && <div className="text-left" style={{color:'#a2a2a2',marginTop:'-1.5rem'}}>
                     {tu('signature_account')}:  {
                     signList.map((address, index) => (
                             <span> { address } </span>
@@ -890,7 +895,7 @@ class SendForm extends React.Component {
             }
             {/*Failure time*/}
             <div className="form-group">
-                <label>{tu("translations_failure_time")}</label>
+                <label>{tu("translations_failure_time")}(H)</label>
                 <div className="input-group mb-3">
                     <input type="text"
                            onChange={(ev) => this.onChangePermissionTime(ev.target.value)}

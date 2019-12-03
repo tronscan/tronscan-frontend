@@ -47,6 +47,8 @@ class MySignature extends React.Component{
 
     async componentDidUpdate(prevProps) {
         let { type } = this.props;
+        console.log('prevProps',prevProps.type)
+        console.log('type',type)
         if(prevProps.type !== type){
             this.setState({
                 filter: {
@@ -163,8 +165,14 @@ class MySignature extends React.Component{
 
     multiSign = async(details) => {
         let {wallet} = this.props;
+        let {filter} = this.state;
         let transactionId;
         let result, success,tronWeb;
+        console.log('details.contractType',details.contractType, details.contractType == 'TransferContract')
+        if(!(details.contractType == 'TransferContract' || details.contractType == 'TransferAssetContract' || details.contractType == 'TriggerSmartContract' || details.contractType == 'AccountPermissionUpdateContract')){
+            this.onNotSupportSign();
+            return;
+        }
         //create transaction
         tronWeb = this.props.account.tronWeb;
         const currentTransaction = details.currentTransaction;
@@ -185,43 +193,67 @@ class MySignature extends React.Component{
             "netType":"shasta"
         });
         result = data.code;
+        this.closeSignDetailsModal();
         if (result == 0) {
             transactionId = true;
         } else {
             transactionId = false;
         }
         if (transactionId) {
-            this.onSignedTransactionSuccess();
+            this.onSignedTransactionSuccess(filter.multiState);
         } else {
-            this.onSignedTransactionFailed();
+            this.onSignedTransactionFailed(filter.multiState);
         }
 
     }
-
+    /**
+     * open support sign popups
+     */
+    onNotSupportSign = (str) => {
+        this.setState({
+            modal: (
+                <SweetAlert error title={tu('tronscan_not_support_signatures_this_transaction')} onConfirm={this.hideModal}/>
+            )
+        });
+    };
+    /**
+     * close modal
+     */
+    hideModal = () => {
+        this.setState({
+            modal: null,
+        })
+    }
     /**
      * close SignedTransaction
      */
-    hideModal = () => {
-        this.setState({ modal: null });
+    hideSignedModal = (multiState) => {
+        this.setState({
+            modal: null,
+            filter: {
+                direction: 255,
+                multiState: multiState,
+            },
+        },()=>{this.load()});
     }
 
     /**
      * open SignedTransaction Success
      */
-    onSignedTransactionSuccess = (str) => {
+    onSignedTransactionSuccess = (multiState) => {
         this.setState({
             modal: (
-                <SweetAlert success title={tu('transaction_signature_muti_successful')} onConfirm={this.hideModal}/>
+                <SweetAlert success title={tu('transaction_signature_muti_successful')} onConfirm={()=>this.hideSignedModal(multiState)}/>
             )
         });
     };
     /**
      * open SignedTransaction Failed
      */
-    onSignedTransactionFailed = (str) => {
+    onSignedTransactionFailed = (multiState) => {
         this.setState({
             modal: (
-                <SweetAlert error title={tu('transaction_signature_muti_failed')} onConfirm={this.hideModal}/>
+                <SweetAlert error title={tu('transaction_signature_muti_failed')} onConfirm={()=>this.hideSignedModal(multiState)}/>
             )
         });
     };
@@ -240,7 +272,6 @@ class MySignature extends React.Component{
      * @param details
      */
     openSignDetailsModal = details => {
-      //  const { address, currency, balance, precision, id, type } = option;
         this.setState({
             isShowSignDetailsModal: true,
             details,
@@ -248,7 +279,7 @@ class MySignature extends React.Component{
     }
 
     customizedColumn = () => {
-        let {intl, isinternal = false} = this.props;
+        let { intl } = this.props;
         let column = [
             {
                 title: upperFirst(intl.formatMessage({id: 'signature_type'})),
@@ -446,10 +477,7 @@ class MySignature extends React.Component{
                                {
                                    (!loading && data.length === 0 )?
                                        <div className="p-3 text-center no-data">{tu("no_transactions")}</div>:
-                                       <SmartTable bordered={true} loading={loading} column={column} data={data} total={20}
-                                                   onPageChange={(page, pageSize) => {
-                                                       this.load(page, pageSize)
-                                                   }}/>
+                                       <SmartTable bordered={true} loading={loading} column={column} data={data} total={total}/>
                                }
 
                            </div>

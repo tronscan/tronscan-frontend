@@ -2329,6 +2329,6 @@ export const messages = {
   "signature_permission_name_required":"权限名称为必填项",
   "signature_operations_required":"权限操作为必填项",
   "signature_threshold_required":"权限阈值为必填项",
-
+  "tronscan_not_support_signatures_this_transaction":"tronscan不支持此交易的签名",
   
 };
