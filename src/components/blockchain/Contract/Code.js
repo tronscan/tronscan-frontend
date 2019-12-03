@@ -435,7 +435,7 @@ class Code extends React.Component {
                       >
                         <img
                           src={require("../../../images/contract/warning.png")}
-                          style={{ height: "14px", marginRight: "4px" }}
+                          style={{ height: "14px", marginRight: "4px", marginTop: '2px' }}
                         />
                       </Tooltip>
                     ) : (

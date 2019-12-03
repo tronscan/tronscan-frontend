@@ -197,10 +197,6 @@ class Contracts extends React.Component {
         align: "left",
         className: "ant_table",
         render: (text, record, index) => {
-
-          if(text){
-            console.log(text)
-          }
           return (
             <span>
               {text ? (

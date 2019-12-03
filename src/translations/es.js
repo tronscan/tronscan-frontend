@@ -2149,7 +2149,7 @@ export const messages = {
   "contract_title": "Contrato",
   "contract_code_choice": "Código",
   "contract_read": "Leer contrato",
-  "contract_write": "Escribit contrato",
+  "contract_write": "Escribir contrato",
   "contract_tip": "Apunto",
   "contract_version": "Versión del compilador",
   "contract_optimize": "optimización",
@@ -2306,7 +2306,7 @@ export const messages = {
   "total_in_tronscan":"Total in tronscan:",
 
   "develpopers_reward_tip":"Thank you for considering to help out with the java-tron! TRON Foundation welcome contributions from anyone on the internet, and are grateful for your contributions.",
-  "verifty_contract_result":"Validation results",
+  "verifty_contract_result":"Resulto",
   "main_contract_deployment":"(Please select the main contract deployment)",
   "enter_main_contract":"Please enter the name of the main contract",
   "contract_verifty_passed":"Verified",

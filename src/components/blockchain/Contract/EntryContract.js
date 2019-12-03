@@ -238,7 +238,7 @@ class Code extends React.Component {
     return new Promise((reslove, reject) => {
       let checkResult = async function(txID) {
         const output = await tronWeb.trx.getTransactionInfo(txID);
-        if (!Object.keys(output).length) {
+        if (Object.keys(output).length <= 1 && !output.id) {
           return setTimeout(() => {
             checkResult(txID);
           }, 3000);
