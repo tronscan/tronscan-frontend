@@ -327,13 +327,13 @@ export default class MyPermission extends React.Component {
         if (!changedOwnerPermission.permission_name) {
             this.warningAlert(intl.formatMessage({
                 id: "signature_owner_permission_name_required"
-              }))
+            }))
             return;
         }
-        if(!threshold){
+        if (!threshold) {
             this.warningAlert(intl.formatMessage({
                 id: "signature_owner_threshold_required"
-              }))
+            }))
             return;
         }
         let sumOwnerKeysWeight = 0;
@@ -370,16 +370,16 @@ export default class MyPermission extends React.Component {
             acItem.type = 2;
             let sumKeysWeight = 0;
             const acItemThreshold = acItem.threshold;
-            if(!acItem.permission_name){
+            if (!acItem.permission_name) {
                 this.warningAlert(intl.formatMessage({
-                    id:"signature_active_permission_name_required"
+                    id: "signature_active_permission_name_required"
                 }))
                 isValidActivePermission = false;
                 break;
             }
-            if(!acItem.threshold){
+            if (!acItem.threshold) {
                 this.warningAlert(intl.formatMessage({
-                    id:"signature_active_threshold_required"
+                    id: "signature_active_threshold_required"
                 }))
                 isValidActivePermission = false;
                 break;
@@ -410,13 +410,14 @@ export default class MyPermission extends React.Component {
         if (!isValidActivePermission) { console.log('active vliad failed'); return }
 
         const { ownerPermission, activePermissions, witnessPermission } = this.state;
-        console.log('witnessPermission',witnessPermission);
-        witnessPermission.keys.forEach(item=>{
-                item.address = tronWeb.address.toHex(item.address)         
-        })
-        witnessPermission.type = 1;
-        console.log('witnessPermission',witnessPermission);
-        console.log('changedOwnerPermission',changedOwnerPermission);
+        if (witnessPermission) {
+            witnessPermission.keys.forEach(item => {
+                item.address = tronWeb.address.toHex(item.address)
+            })
+            witnessPermission.type = 1;
+        }
+
+
         const UnmodifiedOwnerPermission = ownerPermission;
         if (curControlAddress === curLoginAddress && UnmodifiedOwnerPermission.keys.length < 2) {
             const updateTransaction = await tronWeb.transactionBuilder.updateAccountPermissions(tronWeb.address.toHex(curLoginAddress), changedOwnerPermission, witnessPermission, changedActivePermission);
@@ -510,10 +511,10 @@ export default class MyPermission extends React.Component {
                 <div className="global-operate">
                     <h3>{tu('signature_authority_structure')}</h3>
                     <div className="operate-btn">
-                <a href="javascript:;" className='edit-permission' style={{ display: !isEditContent ? 'inline-block' : 'none' }} onClick={() => { this.setState({ isEditContent: true }) }}><span className='edit'></span><span>{tu('signature_edit_permissions')}</span> </a>
+                        <a href="javascript:;" className='edit-permission' style={{ display: !isEditContent ? 'inline-block' : 'none' }} onClick={() => { this.setState({ isEditContent: true }) }}><span className='edit'></span><span>{tu('signature_edit_permissions')}</span> </a>
                         <div className="buttonWarp" style={{ display: isEditContent ? 'inline-block' : 'none' }}>
-                            <Button className="btn btn-cancel" onClick={() => { this.onCancelClick()}}>{tu('signature_cancel')}</Button>
-                <Button className="btn btn-danger" style={{marginLeft:'10px'}} onClick={() => { this.onSubmitClick() }}>{tu('signature_save')}</Button>
+                            <Button className="btn btn-cancel" onClick={() => { this.onCancelClick() }}>{tu('signature_cancel')}</Button>
+                            <Button className="btn btn-danger" style={{ marginLeft: '10px' }} onClick={() => { this.onSubmitClick() }}>{tu('signature_save')}</Button>
                         </div>
                     </div>
                     {modal}
