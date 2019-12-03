@@ -2286,8 +2286,7 @@
 مكافأة الناخبين =  إجمالي المكافآت * معدل مكافأة الناخبين * (أصوات الناخبين / أصوات الناخبين الإجمالية).`,
   "SR_set_brokerage_contract":"ممثل سوبر يحدد نسبة حصة المكافأة",
   "countdown_to_voting":"العد التنازلي إلى نهاية هذه الجولة من التصويت",
-
-
+  "no_rewards_available_yet":"No rewards available",
   "total_tron_ecosystem_tokens":"Total TRON-ecosystem tokens:",
   "number_of_lists":"Number of lists:",
   "total_in_tronscan":"Total in tronscan:",

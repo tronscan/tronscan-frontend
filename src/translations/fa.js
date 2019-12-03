@@ -2297,7 +2297,7 @@ export const messages = {
     "voting_brokerage_tip":`درصد جوایزی که به نماینده فوق العاده به رای دهنده اعطا می شود. پاداش رأی = پاداش کل * * نسبت تقسیم پاداش رای دهنده * (رأی رای / تعداد رای آرا).`,
     "SR_set_brokerage_contract":"نماینده عالی نسبت سهم پاداش را تعیین می کند",
     "countdown_to_voting":"شمارش معکوس برای پایان این دور از رأی گیری",
-
+    "no_rewards_available_yet":"No rewards available",
     "total_tron_ecosystem_tokens":"Total TRON-ecosystem tokens:",
     "number_of_lists":"Number of lists:",
     "total_in_tronscan":"Total in tronscan:",
