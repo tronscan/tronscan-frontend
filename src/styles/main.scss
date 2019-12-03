@@ -4822,11 +4822,13 @@ h5 {
   display: inline-block;
   background-size: 100% 100%;
   background-image: url(../images/icon/current-weight.png);
-  width:42px;
+  min-width:42px;
   height:22px;
   margin-left: -10px;
   text-align: center!important;
   color: #ffffff;
+  padding: 0 5px;
+  line-height: 19px;
 }
 
 .signature-siged{
