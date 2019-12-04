@@ -184,4 +184,4 @@ export const CONTRACT_LICENSES = [
   "Apache-2.0"
 ];
 
-export const WARNING_VERSIONS = ['tronbox_soljson_v3','tronbox_soljson_v1','tronbox_soljson_v2', 'tron-0.4.25_Odyssey_v3.2.3']
+export const WARNING_VERSIONS = []
