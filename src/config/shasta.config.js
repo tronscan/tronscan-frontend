@@ -3,7 +3,7 @@ let config = {
     networkUrl : `https://api.shasta.trongrid.io`,
     api:{
         mutiSign:{
-            apiPostMutiSignedTansaction:'https://pretest.tronlink.org/api/wallet/multi/transaction'
+            apiPostMutiSignedTansaction:'https://testpre.tronlink.org/api/wallet/multi/transaction'
         }
     }
 }

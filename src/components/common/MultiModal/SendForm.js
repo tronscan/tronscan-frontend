@@ -132,7 +132,7 @@ class SendForm extends React.Component {
                 // xhr.defaults.headers.common["MainChain"] = 'MainChain';
 
                 //xhr multi-sign transaction api
-                let { data } = await xhr.post("https://pretest.tronlink.org/api/wallet/multi/transaction", {
+                let { data } = await xhr.post("https://testpre.tronlink.org/api/wallet/multi/transaction", {
                     "address": wallet.address,
                     "transaction": SignTransaction,
                     "netType":"main_net"
@@ -175,7 +175,7 @@ class SendForm extends React.Component {
                 // xhr.defaults.headers.common["MainChain"] = 'MainChain';
 
                 //xhr multi-sign transaction api
-                let { data } = await xhr.post("https://pretest.tronlink.org/api/wallet/multi/transaction", {
+                let { data } = await xhr.post("https://testpre.tronlink.org/api/wallet/multi/transaction", {
                     "address": wallet.address,
                     "transaction": SignTransaction,
                     "netType":"main_net"
@@ -290,7 +290,7 @@ class SendForm extends React.Component {
             //sign transaction
             let SignTransaction = await transactionMultiResultManager(unSignTransaction, tronWeb, permissionId,permissionTime,HexStr);
 
-            let { data } = await xhr.post("https://pretest.tronlink.org/api/wallet/multi/transaction", {
+            let { data } = await xhr.post("https://testpre.tronlink.org/api/wallet/multi/transaction", {
                 "address": wallet.address,
                 "transaction": SignTransaction,
                 "netType":"main_net"
