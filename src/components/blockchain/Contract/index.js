@@ -521,7 +521,7 @@ class SmartContract extends React.Component {
                             </div>
                           </li>
                           <li>
-                            <p>
+                            <div className="question-markk">
                               {tu("contract_enery")}
                               <span className="ml-1">
                                 <QuestionMark
@@ -530,7 +530,7 @@ class SmartContract extends React.Component {
                                 />
                               </span>
                               :
-                            </p>
+                            </div>
                             {contract.creator && (
                               <div className="d-flex">
                                 <span>
@@ -552,7 +552,7 @@ class SmartContract extends React.Component {
                             )}
                           </li>
                           <li>
-                            <p>
+                            <div className="question-markk">
                               {tu("contract_init_assets")}
                               <span className="ml-1">
                                 <QuestionMark
@@ -561,7 +561,7 @@ class SmartContract extends React.Component {
                                 />
                               </span>
                               :
-                            </p>
+                            </div>
 
                             <div className="d-flex">
                               <span style={{ width: "100%" }}>

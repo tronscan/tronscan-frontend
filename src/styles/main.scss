@@ -2155,7 +2155,7 @@ h5 {
       border-bottom: 1px solid #eee;
       color: #333;
 
-      p {
+      p,.question-markk {
         min-width: 138px;
         margin: 0;
 
@@ -2163,6 +2163,10 @@ h5 {
           width: 180px;
         }
       }
+      .question-markk{
+        flex:none;
+      }
+      
 
       & > div {
         flex: 1;

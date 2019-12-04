@@ -60,7 +60,7 @@ class Transactions extends React.Component {
       `${SUNWEBCONFIG.MAINEVENTSERVER}/event/contract/${filter.address}`
     );
 
-    let contractEvent = data;
+    let contractEvent = data || [];
     let newList = [];
     contractEvent.map((item, index) => {
       let eventList = [];
@@ -76,6 +76,7 @@ class Transactions extends React.Component {
     const list = uniqWith(contractEvent, isEqual);
     let methods = await this.loadFunNames(list);
 
+
     list.map(item => {
       methods.map(subItem => {
         if (item.transaction_id == subItem.hash) {
@@ -85,7 +86,7 @@ class Transactions extends React.Component {
       });
     });
     this.setState({
-      transactions: newList,
+      transactions: methods.length > 0 ? newList : list,
       total: list.length,
       loading: false
     });
@@ -100,9 +101,12 @@ class Transactions extends React.Component {
     } = await xhr.post(
       `${API_URL}/api/contracts/smart-contract-triggers-batch?fields=hash,method`,
       { hashList }
-    );
+    ).catch(err=>{
+      return []
+    });
 
-    const methods = data.list;
+
+    const methods = data ? data.list : [];
 
     return methods;
   }
@@ -166,7 +170,7 @@ class Transactions extends React.Component {
         render: (text, record, index) => {
           return (
             <Truncate>
-              <div>{record.method}</div>
+              <div>{record.method || '--'}</div>
               <div></div>
             </Truncate>
           );
