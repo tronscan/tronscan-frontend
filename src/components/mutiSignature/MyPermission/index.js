@@ -134,7 +134,7 @@ export default class MyPermission extends React.Component {
     }
     //todo 
     async saveControlAddress() {
-        //校验地址规则
+        //
         let isValid = false;
         const { tronWeb } = this.props;
         const curControlAddress = this.state.curControlAddress
@@ -153,7 +153,7 @@ export default class MyPermission extends React.Component {
                 }))
                 return;
             }
-            //校验是否合约地址
+            //
             try {
                 const contractInstance = await tronWeb.contract().at(curControlAddress)
                 this.warningAlert(intl.formatMessage({
@@ -182,12 +182,12 @@ export default class MyPermission extends React.Component {
 
             if (res) {
                 const { active_permission, owner_permission, witness_permission } = res;
-                // 校验新地址下有没有该地址的权限
+                // 
                 const { keys } = owner_permission;
                 const isInKeys = keys.some(item => {
                     return tronWeb.address.fromHex(item.address) == wallet.current.address
                 })
-                // 你的地址必须在控制地址keys下
+                // 
                 if (!isInKeys) {
                     isValid = false;
                     this.setState({
@@ -200,7 +200,7 @@ export default class MyPermission extends React.Component {
                     })
                 }
                 else {
-                    //同时更新changedPermission
+                    //changedPermission
                     if(active_permission&&active_permission.length>0){
                         active_permission.forEach(item => {
                             item.type = 2;
@@ -385,7 +385,7 @@ export default class MyPermission extends React.Component {
         console.log('changedActivePermission', changedActivePermission);
         console.log('changeWithnessPermission', changedWihnessPermission);
 
-        //检查权限是否修改过
+        //
         // if (this.comparePermissionIsChanged()) {
         //     this.setState({
         //         isEditContent: false
@@ -425,13 +425,13 @@ export default class MyPermission extends React.Component {
         }
 
         if (sumOwnerKeysWeight < threshold) {
-            // owner 权限权重之和大于阈值
+        
             this.warningAlert(intl.formatMessage({
                 id: "signature__less_threshold_owner"
             }))
             return;
         }
-        // active数据校验######################################################
+        // active######################################################
 
         let isValidActivePermission = true;
         for (let i = 0; i < changedActivePermission.length; i++) {
@@ -468,7 +468,7 @@ export default class MyPermission extends React.Component {
             }
             if (sumKeysWeight < acItemThreshold) {
                 isValidActivePermission = false;
-                // active 权限权重值和必须大于阈值
+                // 
                 this.warningAlert(intl.formatMessage({
                     id: "signature__less_threshold_active"
                 }));
@@ -497,7 +497,7 @@ export default class MyPermission extends React.Component {
             });
 
             if (res && res.result) {
-                // 签名成功 transaction_signature_muti_successful
+                //  transaction_signature_muti_successful
                 this.setState({
                     ownerPermission: deepCopy(changedOwnerPermission),
                     activePermissions: deepCopy(changedActivePermission),
@@ -512,13 +512,13 @@ export default class MyPermission extends React.Component {
 
 
             } else {
-                // 签名失败
+                // 
                 this.warningAlert(intl.formatMessage({
                     id: "transaction_signature_muti_failed"
                 }))
             }
         } else {
-            //走多重签名
+            //
             const updateTransaction = await tronWeb.transactionBuilder.updateAccountPermissions(tronWeb.address.toHex(curControlAddress), changedOwnerPermission, changedWihnessPermission, changedActivePermission);
 
             //const signedTransaction = await tronWeb.trx.multiSign(updateTransaction,tronWeb.defaultPrivateKey,0);
@@ -530,7 +530,7 @@ export default class MyPermission extends React.Component {
             const result = data.code;
 
             if (result === 0) {
-                // 签名成功
+                // 
                 this.setState({
                     ownerPermission: deepCopy(changedOwnerPermission),
                     activePermissions: deepCopy(changedActivePermission),
@@ -540,7 +540,7 @@ export default class MyPermission extends React.Component {
                     id: "transaction_signature_muti_successful"
                 }))
             } else {
-                // 签名失败
+                // 
                 this.warningAlert(intl.formatMessage({
                     id: "transaction_signature_muti_failed"
                 }))
