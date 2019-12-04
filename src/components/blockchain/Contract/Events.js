@@ -77,14 +77,16 @@ class Transactions extends React.Component {
     let methods = await this.loadFunNames(list);
 
 
-    list.map(item => {
+    list.map((item,index) => {
+      item.method = '--'
       methods.map(subItem => {
         if (item.transaction_id == subItem.hash) {
-          let obj = { ...item, method: subItem.method };
-          newList.push(obj);
+          item.method = subItem.method;
+          list[index] = item;
         }
       });
     });
+    newList = list
     this.setState({
       transactions: methods.length > 0 ? newList : list,
       total: list.length,
@@ -169,10 +171,10 @@ class Transactions extends React.Component {
         className: "ant_table",
         render: (text, record, index) => {
           return (
-            <Truncate>
+            <div >
               <div>{record.method || '--'}</div>
               <div></div>
-            </Truncate>
+            </div>
           );
         }
       },

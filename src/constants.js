@@ -22,7 +22,8 @@ let NODEAPI;
 if (NODE_ENV == "development") {
   MAINNET = Lockr.get("NET") === "mainnet" || !Lockr.get("NET");
   SUNNET = Lockr.get("NET") === "sunnet";
-  NODEAPI = "http://52.15.126.154:9016";
+  // NODEAPI = "http://52.15.126.154:9016";
+  NODEAPI = process.env.API_URL;
 } else {
   MAINNET = window.location.origin === NETURL.MAINNET;
   SUNNET = window.location.origin === NETURL.SUNNET;
