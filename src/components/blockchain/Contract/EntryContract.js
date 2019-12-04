@@ -45,9 +45,6 @@ class Code extends React.Component {
 
   async componentDidMount() {
     let { contractItem, address, account } = this.props;
-    console.log('account',account)
-    console.log('contractItem',contractItem)
-      console.log('address',address)
     let { contract } = this.state
     const { tronWeb } = this.props.account;
     if ( account.isLoggedIn ) {
@@ -194,6 +191,8 @@ class Code extends React.Component {
         console.log('permissionTime======',permissionTime)
         console.log('from====',from)
         const { tokenId, totalValue, contract ,sendTokenDecimals } = this.state;
+        console.log('totalValue',totalValue)
+       console.log('sendTokenDecimals',sendTokenDecimals)
         let { contractItem, address, account, intl } = this.props;
         const { tronWeb } = this.props.account;
         let selectorTypeArr = [];
@@ -228,15 +227,15 @@ class Code extends React.Component {
         console.log('this.isLoggedIn()',this.isLoggedIn())
         if (this.isLoggedIn()) {
             try {
-                 let options = {};
-                // if (!tokenId || tokenId == '_') {
-                //     options = { callValue: this.Mul(totalValue,Math.pow(10, sendTokenDecimals)) };
-                // } else {
-                //     options = {
-                //         tokenId: tokenId,
-                //         tokenValue: this.Mul(totalValue,Math.pow(10, sendTokenDecimals))
-                //     };
-                // }
+                let options = {};
+                if (!tokenId || tokenId == '_') {
+                    options = { callValue: this.Mul(totalValue,Math.pow(10, sendTokenDecimals)) };
+                } else {
+                    options = {
+                        tokenId: tokenId,
+                        tokenValue: this.Mul(totalValue,Math.pow(10, sendTokenDecimals))
+                    };
+                }
                 console.log('options=======',options)
                 let unSignTransaction = await tronWeb.transactionBuilder.triggerSmartContract(
                     tronWeb.address.toHex(address),
@@ -256,10 +255,10 @@ class Code extends React.Component {
                 //sign transaction
                 let SignTransaction = await transactionMultiResultManager(unSignTransaction, tronWeb, permissionId,permissionTime,HexStr);
 
-                let { data } = await xhr.post("https://testlist.tronlink.org/api/wallet/multi/transaction", {
+                let { data } = await xhr.post("https://pretest.tronlink.org/api/wallet/multi/transaction", {
                     "address": account.address,
                     "transaction": SignTransaction,
-                    "netType":"shasta",
+                    "netType":"main_net",
                     "functionSelector":function_selector,
                 });
                 let code = data.code;

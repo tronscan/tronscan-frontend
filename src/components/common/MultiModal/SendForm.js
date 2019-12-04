@@ -132,10 +132,10 @@ class SendForm extends React.Component {
                 // xhr.defaults.headers.common["MainChain"] = 'MainChain';
 
                 //xhr multi-sign transaction api
-                let { data } = await xhr.post("https://testlist.tronlink.org/api/wallet/multi/transaction", {
+                let { data } = await xhr.post("https://pretest.tronlink.org/api/wallet/multi/transaction", {
                     "address": wallet.address,
                     "transaction": SignTransaction,
-                    "netType":"shasta"
+                    "netType":"main_net"
                 });
                 result = data.code;
                 console.log('code',result)
@@ -175,10 +175,10 @@ class SendForm extends React.Component {
                 // xhr.defaults.headers.common["MainChain"] = 'MainChain';
 
                 //xhr multi-sign transaction api
-                let { data } = await xhr.post("https://testlist.tronlink.org/api/wallet/multi/transaction", {
+                let { data } = await xhr.post("https://pretest.tronlink.org/api/wallet/multi/transaction", {
                     "address": wallet.address,
                     "transaction": SignTransaction,
-                    "netType":"shasta"
+                    "netType":"main_net"
                 });
                 result = data.code;
                 console.log('code',result)
@@ -290,10 +290,10 @@ class SendForm extends React.Component {
             //sign transaction
             let SignTransaction = await transactionMultiResultManager(unSignTransaction, tronWeb, permissionId,permissionTime,HexStr);
 
-            let { data } = await xhr.post("https://testlist.tronlink.org/api/wallet/multi/transaction", {
+            let { data } = await xhr.post("https://pretest.tronlink.org/api/wallet/multi/transaction", {
                 "address": wallet.address,
                 "transaction": SignTransaction,
-                "netType":"shasta"
+                "netType":"main_net"
             });
             let result = data.code;
             console.log('code',result)
@@ -384,22 +384,19 @@ class SendForm extends React.Component {
     setActivePermissionDisable = (keys,contractTypesArr) =>{
       let { wallet } = this.props;
       let isDisable = false;
-        console.log('contractTypesArr222',contractTypesArr)
-        console.log('keys222',keys)
         keys.map((key,k) => {
             if(key.address == wallet.address) {
                 if(contractTypesArr){
                     contractTypesArr.map((type,i) => {
-                        if(type.value == "TransferContract" || type.value == "TransferAssetContract" || type.value == "TriggerSmartContract") {
+                        if(type.value == "TriggerSmartContract") {
                             isDisable = true
                             return;
                         }
                     })
+                }else{
+                    isDisable = true
+                    return;
                 }
-                isDisable = true
-                return;
-            }else{
-                return isDisable;
             }
         })
         return isDisable;
@@ -880,7 +877,7 @@ class SendForm extends React.Component {
                 </div>
             </div>
             {
-                signList && <div className="text-left">
+                signList && <div className="text-left" style={{color:'#a2a2a2'}}>
                     {tu('signature_account')}:  {
                     signList.map((address, index) => (
                             <span> { address } </span>
@@ -890,7 +887,7 @@ class SendForm extends React.Component {
             }
             {/*Failure time*/}
             <div className="form-group">
-                <label>{tu("translations_failure_time")}</label>
+                <label>{tu("translations_failure_time")}(H)</label>
                 <div className="input-group mb-3">
                     <input type="text"
                            onChange={(ev) => this.onChangePermissionTime(ev.target.value)}

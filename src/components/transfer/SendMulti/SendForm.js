@@ -132,10 +132,10 @@ class SendForm extends React.Component {
                     result = 40001
                 }else {
                     //xhr multi-sign transaction api
-                    let {data} = await xhr.post("https://testlist.tronlink.org/api/wallet/multi/transaction", {
+                    let {data} = await xhr.post("https://pretest.tronlink.org/api/wallet/multi/transaction", {
                         "address": wallet.address,
                         "transaction": SignTransaction,
-                        "netType": "shasta"
+                        "netType": "main_net"
                     });
                     result = data.code;
                     console.log('code', result)
@@ -178,10 +178,10 @@ class SendForm extends React.Component {
                     result = 40001
                 }else{
                     //xhr multi-sign transaction api
-                    let { data } = await xhr.post("https://testlist.tronlink.org/api/wallet/multi/transaction", {
+                    let { data } = await xhr.post("https://pretest.tronlink.org/api/wallet/multi/transaction", {
                         "address": wallet.address,
                         "transaction": SignTransaction,
-                        "netType":"shasta"
+                        "netType":"main_net"
                     });
                     result = data.code;
                     console.log('code',result)
@@ -299,10 +299,10 @@ class SendForm extends React.Component {
             if(!SignTransaction){
                 result = 40001
             }else{
-                let { data } = await xhr.post("https://testlist.tronlink.org/api/wallet/multi/transaction", {
+                let { data } = await xhr.post("https://pretest.tronlink.org/api/wallet/multi/transaction", {
                     "address": wallet.address,
                     "transaction": SignTransaction,
-                    "netType":"shasta",
+                    "netType":"main_net",
                     "functionSelector":"transfer(address,uint256)"
                 });
                 result = data.code;
@@ -414,8 +414,6 @@ class SendForm extends React.Component {
                     }
                 }
             })
-
-
         return isDisable;
     }
 

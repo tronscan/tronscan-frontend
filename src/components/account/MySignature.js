@@ -66,12 +66,12 @@ class MySignature extends React.Component{
     load = async (page = 1, pageSize = 20) => {
         let { wallet } = this.props;
         let { filter } = this.state;
-        let { data:{data} } = await xhr.get("https://testlist.tronlink.org/api/wallet/multi/trx_record", {params: {
+        let { data:{data} } = await xhr.get("https://pretest.tronlink.org/api/wallet/multi/trx_record", {params: {
             "address": wallet.address,
             "start": (page - 1) * pageSize,
             "state": filter.direction,
             "limit": 5000,
-            "netType":"shasta"
+            "netType":"main_net"
         }});
         let signatureList = data.data;
         signatureList.map((item)=>{
@@ -187,10 +187,10 @@ class MySignature extends React.Component{
         // xhr.defaults.headers.common["MainChain"] = 'MainChain';
 
         //xhr multi-sign transaction api
-        let { data } = await xhr.post("https://testlist.tronlink.org/api/wallet/multi/transaction", {
+        let { data } = await xhr.post("https://pretest.tronlink.org/api/wallet/multi/transaction", {
             "address": wallet.address,
             "transaction": SignTransaction,
-            "netType":"shasta"
+            "netType":"main_net"
         });
         result = data.code;
         this.closeSignDetailsModal();

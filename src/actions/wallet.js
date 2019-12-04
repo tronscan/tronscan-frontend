@@ -19,12 +19,12 @@ export const reloadWallet = () => async (dispatch, getState) => {
 
   if (app.account.isLoggedIn) {
     let {balances, trc20token_balances, frozen, accountResource, delegated, tokenBalances, exchanges, ...wallet} = await Client.getAccountByAddressNew(app.account.address);
-    let { data:{data} } = await xhr.get("https://testlist.tronlink.org/api/wallet/multi/trx_record", {params: {
+    let { data:{data} } = await xhr.get("https://pretest.tronlink.org/api/wallet/multi/trx_record", {params: {
         "address": app.account.address,
         "start": 0,
         "state": 0,
         "limit": 5000,
-        "netType":"shasta"
+        "netType":"main_net"
     }});
       let signatureList = data.data;
       signatureList.map((item) => {

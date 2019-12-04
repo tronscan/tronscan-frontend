@@ -2,7 +2,7 @@ let config = {
     curEnv:'test',
     api:{
         mutiSign:{
-            apiPostMutiSignedTansaction:'https://testlist.tronlink.org/api/wallet/multi/transaction'
+            apiPostMutiSignedTansaction:'https://pretest.tronlink.org/api/wallet/multi/transaction'
         }
     }
 }

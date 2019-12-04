@@ -4,11 +4,11 @@ import config from '../config/main.config.js'
 export async function postMutiSignTransaction(address,transaction){
     let netType='shasta';
     if(config.curEnv==='production'){
-        netType='shasta'
+        netType='main_net'
     }else if(config.curEnv==='development'){
-        netType='shasta'
+        netType='main_net'
     }else{
-        netType='shasta'
+        netType='main_net'
     }
     let { data } = await xhr.post(config.api.mutiSign.apiPostMutiSignedTansaction, {
                     "address": address,
