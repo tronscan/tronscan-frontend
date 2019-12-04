@@ -1161,7 +1161,7 @@ export const messages = {
   "select_license": "Select a license",
   "contract_all":"All contracts",
   "contract_verified":"Verified contracts",
-  "contract_open_license":"Open-source Licesne",
+  "contract_open_license":"Open Source Licesne",
   "contract_token_name": "TokenNames",
   "contract__compile_version":"Version",
   "contract_setting":"Setting",
