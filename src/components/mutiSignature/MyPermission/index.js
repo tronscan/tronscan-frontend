@@ -378,7 +378,9 @@ export default class MyPermission extends React.Component {
     async savePermission() {
         const { tronWeb, reloadWallet, intl } = this.props;
         const { changedOwnerPermission, changedActivePermission, changedWihnessPermission, curLoginAddress, curControlAddress } = this.state;
-
+        if(!changedOwnerPermission&&!changedActivePermission){
+            return;
+        }
         console.log('changedOwnerPermission', changedOwnerPermission);
         console.log('changedActivePermission', changedActivePermission);
         console.log('changeWithnessPermission', changedWihnessPermission);
