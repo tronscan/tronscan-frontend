@@ -2329,6 +2329,6 @@ export const messages = {
   "signature_permission_name_required":"权限名称为必填项",
   "signature_operations_required":"权限操作为必填项",
   "signature_threshold_required":"权限阈值为必填项",
-  "tronscan_not_support_signatures_this_transaction":"tronscan不支持此交易的签名",
+  "tronscan_not_support_signatures_this_transaction":"TRONscan不支持此交易的签名",
   "signaure_control_address_tip":"控制地址表明了拥有者权限，超级代表权限和活跃权限的所属地址修改控制地址后展示的3类权限也会随之改变",
 };
