@@ -403,13 +403,13 @@ class SendForm extends React.Component {
                 if(key.address == wallet.address) {
                     if(contractTypesArr){
                         contractTypesArr.map((type,i) => {
-                            if(type.value == "TransferContract" || type.value == "TransferAssetContract" || type.value == "TriggerSmartContract") {
-                                isDisable = true
+                            if(type.id == 1 || type.id == 2 || type.id == 31) {
+                                isDisable = true;
                                 return;
                             }
                         })
                     }else{
-                        isDisable = true
+                        isDisable = true;
                         return;
                     }
                 }

@@ -388,7 +388,7 @@ class SendForm extends React.Component {
             if(key.address == wallet.address) {
                 if(contractTypesArr){
                     contractTypesArr.map((type,i) => {
-                        if(type.value == "TriggerSmartContract") {
+                        if(type.id == 31) {
                             isDisable = true
                             return;
                         }
