@@ -87,7 +87,7 @@ class Contracts extends React.Component {
         total: 0
       },
       filters: ["verified", "all"],
-      curFilter: "verified",
+      curFilter: IS_MAINNET ? "verified" : "",
       isOpen: false,
       sort: "-trxCount"
     };
