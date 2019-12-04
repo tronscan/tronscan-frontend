@@ -42,8 +42,9 @@ export default class ActiveEdit extends Component {
     getOperationsByHex(hex) {
         if (!hex) { return '' }
         const operations = getContractTypesByHex(hex);
+        // console.log('operations',operations)
         return operations.map(item => {
-            return <li key={item.id}>{item.value.replace('Contract', '')}</li>
+            return <li key={item.id}>{item.value}</li>
         })
     }
     addKeysItem(acIndex) {
@@ -107,6 +108,7 @@ export default class ActiveEdit extends Component {
         } else {
             let value = e.target.value;
             const threshold = activeItem.threshold;
+            // todo
             if(toNumber(value)>threshold){
                 value = threshold
             }
@@ -188,7 +190,7 @@ export default class ActiveEdit extends Component {
         });
     }
     onChangeCheck(checkedValues) {
-        console.log('checked = ', checkedValues);
+       
         this.setState({
             hasContractIds: checkedValues
         })
@@ -440,7 +442,7 @@ export default class ActiveEdit extends Component {
             return <Col key={childItem.value} span={8}>
                 <Checkbox
                     value={childItem.value}
-                    style={{ fontSize: '12px', float: 'left' }} >{childItem.name.replace('Contract', '')}
+                    style={{ fontSize: '12px', float: 'left' }} >{childItem.alias}
                 </Checkbox>
             </Col>
         })

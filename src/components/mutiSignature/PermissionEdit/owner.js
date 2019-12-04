@@ -43,6 +43,7 @@ export default class OwnerEdit extends Component{
             curKeys[index].address=e.target.value;
         }else{
             let value =  e.target.value;
+            //todo 
             if(toNumber(value)>this.state.threshold){
                 value = this.state.threshold;
             }

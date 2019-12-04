@@ -9,7 +9,7 @@ export default class ActiveRead extends PureComponent{
     getOperationsByHex(hex){
       const operations =  getContractTypesByHex(hex);
       return operations.map(item=>{
-      return <li key={item.id}>{item.value.replace('Contract','')}</li>
+      return <li key={item.id}>{item.value}</li>
       })
     }
     render(){

@@ -68,32 +68,57 @@ export default class MyPermission extends React.Component {
             changedWihnessPermission: cloneDeep(witnessPermission)
         }
     }
-    async initState(nextProps) {
-
-        const { wallet } = nextProps
-        const { ownerPermission, activePermissions, witnessPermission } = wallet.current;
+    async initState(wallet) {
+        const {tronWeb} = this.props;
+        let { ownerPermission, activePermissions, witnessPermission } = wallet.current;
+        if(wallet.current.representative.enabled===false){
+            witnessPermission = null;
+        }
+        if(ownerPermission){
+            ownerPermission.type = 0;
+            ownerPermission.keys.forEach(item=>{
+                item.address = tronWeb.address.toHex(item.address);
+            })
+        }
+        if(witnessPermission){
+            witnessPermission.type = 1;
+            witnessPermission.keys.forEach(item=>{
+                item.address = tronWeb.address.toHex(item.address);
+            })
+        }
+        if(activePermissions){
+            activePermissions.forEach(item=>{
+                item.type = 2;
+                item.keys.forEach(itemKey=>{
+                    itemKey.address = tronWeb.address.toHex(itemKey.address);
+                })
+            })
+        }
         this.setState({
             curControlAddress: wallet.current.address,
             curLoginAddress: wallet.current.address,
             ownerPermission: cloneDeep(ownerPermission) || null,
             activePermissions: cloneDeep(activePermissions) || [],
-            witnessPermission: cloneDeep(witnessPermission)
+            witnessPermission: cloneDeep(witnessPermission),
+            changedOwnerPermission: cloneDeep(ownerPermission),
+            changedActivePermission: cloneDeep(activePermissions),
+            changedWihnessPermission: cloneDeep(witnessPermission)
         }, () => {
             console.log('initState', wallet.current.address);
         })
     }
-    // componentDidUpdate(prevProps){
-    //     const { wallet } = prevProps;
-    //     if(wallet.current.address!=this.props.wallet.current.address){
-    //         this.initState();
-    //     }
-    // }
-    async componentWillReceiveProps(nextProps) {
-
-        if (nextProps.account.address != this.props.account.address) {
-            this.initState(nextProps);
+    componentDidUpdate(prevProps){
+        const { wallet } = prevProps;
+        if(wallet.current.address!=this.props.wallet.current.address){
+            this.initState(this.props.wallet);
         }
     }
+    // async componentWillReceiveProps(nextProps) {
+    //     console.log('nextProps',nextProps);
+    //     if (nextProps.account.address != this.props.account.address) {
+    //         this.initState(nextProps);
+    //     }
+    // }
     // static async getDerivedStateFromProps(nextProps, prevState) {
     //     await this.initState(nextProps);
     // }
@@ -453,7 +478,9 @@ export default class MyPermission extends React.Component {
         let { ownerPermission } = this.state;
 
         const UnmodifiedOwnerPermission = ownerPermission;
-        if (curControlAddress === curLoginAddress && UnmodifiedOwnerPermission.keys.length < 2) {
+        const UnmodifiedOwnerPermissionKeys = UnmodifiedOwnerPermission.keys;
+        
+        if (curControlAddress === curLoginAddress && UnmodifiedOwnerPermissionKeys.length < 2&&UnmodifiedOwnerPermissionKeys[0].address === tronWeb.address.toHex(curLoginAddress)) {
             const updateTransaction = await tronWeb.transactionBuilder.updateAccountPermissions(tronWeb.address.toHex(curLoginAddress), changedOwnerPermission, changedWihnessPermission, changedActivePermission);
             const signedTransaction = await tronWeb.trx.sign(updateTransaction);
 

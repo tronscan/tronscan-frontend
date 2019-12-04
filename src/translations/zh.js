@@ -2297,7 +2297,7 @@ export const messages = {
   "signature_Unverified_address":"未验证地址",
   "signature_notInContralAddress":"没有该地址的控制权限，请确认后重试",
   "signature_invalid_Address":"地址格式有误，请确认后再试",
-  "signature_weight_required":"weight 为必填项.",
+  "signature_weight_required":"权重为必填项.",
   "signature_address_not_similar":"同一权限组下账户地址不能相同.",
   "signature_owner_permissin_name_required":"权限名称为必填项",
   "signature__less_threshold_owner":"地址权重之和须大于等于阈值，才能添加成功  ",

@@ -49,41 +49,41 @@ export function getContractIdByHex(strHex) {
 
 function getAllContractTypes() {
     return {
-        0: 'AccountCreateContract',
-        1: 'TransferContract',
-        2: 'TransferAssetContract',
-        3: 'VoteAssetContract',
-        4: 'VoteWitnessContract',
-        5: 'WitnessCreateContract',
-        6: 'AssetIssueContract',
-        8: 'WitnessUpdateContract',
-        9: 'ParticipateAssetIssueContract',
-        10: 'AccountUpdateContract',
-        11: 'FreezeBalanceContract',
-        12: 'UnfreezeBalanceContract',
-        13: 'WithdrawBalanceContract',
-        14: 'UnfreezeAssetContract',
-        15: 'UpdateAssetContract',
-        16: 'ProposalCreateContract',
-        17: 'ProposalApproveContract',
-        18: 'ProposalDeleteContract',
-        19: 'SetAccountIdContract',
-        20: 'CustomContract',
+        0: 'Account Create',
+        1: 'TRX Transfer',
+        2: 'TRC10 Transfer',
+        // 3: 'VoteAssetContract',
+        4: 'Vote',
+        5: 'Representatives Create',
+        6: 'TRC10 Issue',
+        8: 'Representatives Info Update',
+        9: 'TRC10 Issue Participate',
+        10: 'Account Name Update',
+        11: 'TRX Freeze',
+        12: 'TRX Unfreeze',
+        13: 'Reward Withdraw',
+        14: 'TRC10 Unfreeze',
+        15: 'TRC10 Parameters Update',
+        16: 'Proposal Create',
+        17: 'Proposal Approve',
+        18: 'Proposal Cancel',
+        // 19: 'SetAccountIdContract',
+        // 20: 'CustomContract',
         // BuyStorageContract = 21,
         // BuyStorageBytesContract = 22,
         // SellStorageContract = 23,
-        30: 'CreateSmartContract',
-        31: 'TriggerSmartContract',
-        32: 'GetContract',
-        33: 'UpdateSettingContract',
-        41: 'ExchangeCreateContract',
-        42: 'ExchangeInjectContract',
-        43: 'ExchangeWithdrawContract',
-        44: 'ExchangeTransactionContract',
-        45: 'UpdateEnergyLimitContract',
-        46: 'AccountPermissionUpdateContract',
-        48: 'ClearABIContract',
-        // 49: 'UpdateBrokerageContract',
+        30: 'Smart Contract Create',
+        31: 'Smart Contract Trigger(TRC20 Transfer)',
+        // 32: 'GetContract',
+        33: 'Contract Setting Update',
+        41: 'Bancor Exchange Create',
+        42: 'Bancor Exchange Inject',
+        43: 'Bancor Exchange Withdraw',
+        44: 'Bancor Transaction',
+        45: 'Contract Energy Limit Update',
+        46: 'Account Permissions Update',
+        48: 'Contract ABI Clear',
+        49: 'Representatives Brokerage Update',
     }
 }
 export function getContractTypesByGroup() {
@@ -91,59 +91,59 @@ export function getContractTypesByGroup() {
         {
             key: 'Balance',
             value: [
-                { name: 'TransferContract', value: 1 },
-                { name: 'FreezeBalanceContract', value: 11 },
-                { name: 'UnfreezeBalanceContract', value: 12 }
+                { name: 'TransferContract', value: 1,alias:'TRX Transfer'},
+                { name: 'FreezeBalanceContract', value: 11,alias:'TRX Freeze' },
+                { name: 'UnfreezeBalanceContract', value: 12,alias:'TRX Unfreeze' }
             ]
         },
         {
             key: 'Account',
             value: [
-                { name: 'AccountCreateContract', value: 0 },
-                { name: 'AccountUpdateContract', value: 10 },
-                { name: 'AccountPermissionUpdateContract', value: 46 }
+                { name: 'AccountCreateContract', value: 0 ,alias:'Account Create'},
+                { name: 'AccountUpdateContract', value: 10,alias:'Account Name Update' },
+                { name: 'AccountPermissionUpdateContract', value: 46,alias:'Account Permissions Update' }
             ]
         },
         {
             key: 'TRC10',
             value: [
-                { name: 'TransferAssetContract', value: 2 },
-                { name: 'ParticipateAssetIssueContract', value: 9 },
-                { name: 'AssetIssueContract', value: 6 },
-                { name: 'UnfreezeAssetContract', value: 14 },
-                { name: 'UpdateAssetContract', value: 15 }
+                { name: 'TransferAssetContract', value: 2,alias:'TRC10 Transfer' },
+                { name: 'ParticipateAssetIssueContract', value: 9,alias:'TRC10 Issue Participate' },
+                { name: 'AssetIssueContract', value: 6 ,alias:'TRC10 Issue'},
+                { name: 'UnfreezeAssetContract', value: 14,alias:'TRC10 Unfreeze' },
+                { name: 'UpdateAssetContract', value: 15,alias:'TRC10 Parameters Update' }
             ]
         },
         {
             key: 'SmartContract',
             value: [
-                { name: 'TriggerSmartContract', value: 31 },
-                { name: 'CreateSmartContract', value: 30 },
-                { name: 'UpdateSettingContract', value: 33 },
-                { name: 'UpdateEnergyLimitContract', value: 45 },
-                { name: 'ClearABIContract', value: 48 },
+                { name: 'TriggerSmartContract', value: 31,alias:'Smart Contract Trigger (TRC20 Transfer)' },
+                { name: 'CreateSmartContract', value: 30,alias:'Smart Contract Create' },
+                { name: 'UpdateSettingContract', value: 33,alias:'Contract Setting Update' },
+                { name: 'UpdateEnergyLimitContract', value: 45 ,alias:'Contract Energy Limit Update'},
+                { name: 'ClearABIContract', value: 48,alias:'Contract ABI Clear' },
             ]
         },
         {
             key: 'Representatives',
             value: [
-                { name: 'VoteWitnessContract', value: 4 },
-                { name: 'WithdrawBalanceContract', value: 13 },
-                { name: 'ProposalCreateContract', value: 16 },
-                { name: 'ProposalApproveContract', value: 17 },
-                { name: 'ProposalDeleteContract', value: 18 },
-                { name: 'WitnessCreateContract', value: 5 },
-                { name: 'WitnessUpdateContract', value: 8 },
-                // { name: 'UpdateBrokerageContract', value: 49 }
+                { name: 'VoteWitnessContract', value: 4,alias:'Vote' },
+                { name: 'WithdrawBalanceContract', value: 13,alias:'Reward Withdraw' },
+                { name: 'ProposalCreateContract', value: 16 ,alias:'Proposal Create'},
+                { name: 'ProposalApproveContract', value: 17,alias:'Proposal Approve' },
+                { name: 'ProposalDeleteContract', value: 18 ,alias:'Proposal Cancel'},
+                { name: 'WitnessCreateContract', value: 5,alias:'Representatives Create' },
+                { name: 'WitnessUpdateContract', value: 8,alias:'Representatives Info Update' },
+                { name: 'UpdateBrokerageContract', value: 49,alias:'Representatives Brokerage Update' }
             ]
         },
         {
             key: 'Bancor',
             value: [
-                { name: 'ExchangeTransactionContract', value: 44 },
-                { name: 'ExchangeCreateContract', value: 41 },
-                { name: 'ExchangeInjectContract', value: 42 },
-                { name: 'ExchangeWithdrawContract', value: 43 }
+                { name: 'ExchangeTransactionContract', value: 44,alias:'Bancor Transaction' },
+                { name: 'ExchangeCreateContract', value: 41 ,alias:'Bancor Exchange Create'},
+                { name: 'ExchangeInjectContract', value: 42,alias:'Bancor Exchange Inject' },
+                { name: 'ExchangeWithdrawContract', value: 43,alias:'Bancor Exchange Withdraw' }
             ]
         }
     ]
