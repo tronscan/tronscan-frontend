@@ -18,7 +18,7 @@ export default class ActiveRead extends PureComponent{
         
         <div className='permission'>
             <div className='permission-title'>
-        <span>{tu('signature_active_permissions')}</span><i>({activePermissions.length+'/'+8})</i>  
+        <span className='permission-title-active'>{tu('signature_active_permissions')}</span><i>({activePermissions.length+'/'+8})</i>  
             </div>
             <div className='permission-desc'>
                 {tu('signature_active_permissions_desc')}

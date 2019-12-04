@@ -13,7 +13,7 @@ export default class OwnerRead extends Component{
         return(
         <div className='permission'> 
             <div className='permission-title'>
-        <span>{tu('signature_privilege')}</span>  
+        <span className='permission-title-active'>{tu('signature_privilege')}</span>  
             </div>
             <div className='permission-desc'>
                 {tu('signature_privilege_desc')}
