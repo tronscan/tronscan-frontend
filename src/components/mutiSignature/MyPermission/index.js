@@ -240,7 +240,13 @@ export default class MyPermission extends React.Component {
         })
     }
     changeOwnerPermission(changedOwnerPermission) {
-
+        const {tronWeb} = this.props;
+        if(changedOwnerPermission){
+            changedOwnerPermission.type = 0;
+            changedOwnerPermission.keys.forEach(item=>{
+                item.address = tronWeb.address.toHex(item.address);
+            })
+        }
         this.setState({
             changedOwnerPermission: changedOwnerPermission
         })
