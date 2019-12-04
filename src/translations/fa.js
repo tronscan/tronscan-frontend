@@ -2246,7 +2246,7 @@ export const messages = {
  "signature_permission":"نام دسترسی",
  "signature_threshold":"آستانه",
  "signature_keys":"keys",
- "signature_key":"key",
+ "signature_key":"address",
  "signature_weight":"وزن",
  "signature_active_permissions":"امتیازات فعال",
  "signature_active_permissions_desc":"مجوزهای فعال برای تهیه ترکیبی از مجوزها استفاده می شود ؛ به عنوان مثال ، شما می توانید حداکثر 8 مجوز فعال را به کاربر اضافه کنید که فقط قادر به ایجاد حساب و توابع انتقال باشد.",

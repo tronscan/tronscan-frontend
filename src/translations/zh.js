@@ -2285,7 +2285,7 @@ export const messages = {
   "signature_permission":"权限名称",
   "signature_threshold":"阈值",
   "signature_keys":"keys",
-  "signature_key":"key",
+  "signature_key":"地址",
   "signature_weight":"权重",
   "signature_active_permissions":"活跃权限",
   "signature_active_permissions_desc":"活跃权限用于提供一个权限的组合；比如提供一个只能执行创建账户、转账功能的权限最多添加8个活跃权限",

@@ -2256,7 +2256,7 @@ export const messages = {
  "signature_permission":"Access name",
  "signature_threshold":"Threshold",
  "signature_keys":"keys",
- "signature_key":"key",
+ "signature_key":"address",
  "signature_weight":"weight",
  "signature_active_permissions":"Active access",
  "signature_active_permissions_desc":"Active acess provides a combo of accesses. i.e. an access for creating accounts and transferring funds; You can add a maximum of 8 active accesses",

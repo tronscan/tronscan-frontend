@@ -2243,7 +2243,7 @@ export const messages = {
   "signature_permission":"特権名",
   "signature_threshold":"閾値",
   "signature_keys":"keys",
-  "signature_key":"key",
+  "signature_key":"address",
   "signature_weight":"荷重函数",
   "signature_active_permissions":"有効な許可",
   "signature_active_permissions_desc":"アクティブな権限は、権限の組み合わせを提供するために使用されます;たとえば、アカウントの作成と転送機能のみを実行する権限を提供します。最大8つのアクティブな権限を追加します",

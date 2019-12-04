@@ -2251,7 +2251,7 @@ export const messages = {
  "signature_permission":"Nombre de acceso",
  "signature_threshold":"Límite",
  "signature_keys":"keys",
- "signature_key":"key",
+ "signature_key":"address",
  "signature_weight":"Ponderación",
  "signature_active_permissions":"Acceso activo",
  "signature_active_permissions_desc":"El acceso activo proporciona una combinación de accesos. es decir, un acceso para crear cuentas y transferir fondos; Puede agregar un máximo de 8 accesos activos",

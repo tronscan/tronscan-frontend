@@ -2247,7 +2247,7 @@ export const messages = {
   "signature_permission":"권한 명칭",
   "signature_threshold":"역치",
   "signature_keys":"keys",
-  "signature_key":"key",
+  "signature_key":"address",
   "signature_weight":"가중치",
   "signature_active_permissions":"활성 권한",
   "signature_active_permissions_desc":"활성 권한은 하나의 권한 조합을 제공하는데 사용됩니다. 예를 들어: 회원가입, 입금만 집행 가능 한 권한은 최대 8개의 활성 권한을 보유 할 수 있습니다",

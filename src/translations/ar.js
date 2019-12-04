@@ -2235,7 +2235,7 @@
  "signature_permission":"اسم الامتياز",
  "signature_threshold":"الحد الفاصل",
  "signature_keys":"keys",
- "signature_key":"key",
+ "signature_key":"address",
  "signature_weight":"الأوزان",
  "signature_active_permissions":"الامتيازات النشطة",
  "signature_active_permissions_desc":"يتم استخدام الصلاحيات/الامتيازات النشطة لتوفير مجموعة من الصلاحيات ؛ على سبيل المثال توفير صلاحية واحدة فقط لإنشاء حساب ، وظيفة النقل لها الحق في إضافة ما يصل إلى 8 صلاحيات نشطة.",

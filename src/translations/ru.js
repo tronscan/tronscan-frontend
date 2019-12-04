@@ -2252,7 +2252,7 @@ export const messages = {
   "signature_permission":"Имя доступа",
   "signature_threshold":"Предел",
   "signature_keys":"keys",
-  "signature_key":"key",
+  "signature_key":"address",
   "signature_weight":"Вес",
   "signature_active_permissions":"Активный доступ",
   "signature_active_permissions_desc":"Активный доступ обеспечивает комбинированный доступ. например доступ к созданию аккаунтов и переводу средств; Вы можете добавить до 8 активных доступов.",

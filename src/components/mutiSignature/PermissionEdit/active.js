@@ -25,8 +25,8 @@ export default class ActiveEdit extends Component {
             modifyIndex: null,
             willAddActive: {
                 operations: '',
-                keys: [{ address: '', weight: 1 }],
-                threshold: 1,
+                keys: [{ address: '', weight: '' }],
+                threshold: '',
                 permission_name: '',
                 type: 2
             },
@@ -35,7 +35,6 @@ export default class ActiveEdit extends Component {
                 operations: { msg: '', show: false },
                 thresholdValue: { msg: '', show: false },
                 keys: { msg: '', show: false }
-
             }
         }
     }
@@ -187,6 +186,13 @@ export default class ActiveEdit extends Component {
     hideActiveModal() {
         this.setState({
             addActiveModal: false,
+            errorMsgModal: {
+                permissionName: { msg: '', show: false },
+                operations: { msg: '', show: false },
+                thresholdValue: { msg: '', show: false },
+                keys: { msg: '', show: false }
+            }
+
         });
     }
     onChangeCheck(checkedValues) {
@@ -250,8 +256,8 @@ export default class ActiveEdit extends Component {
         this.setState({
             willAddActive: {
                 operations: '',
-                keys: [{ address: '', weight: 1 }],
-                threshold: 1,
+                keys: [{ address: '', weight: '' }],
+                threshold: '',
                 permission_name: '',
                 type: 2
             },
@@ -550,6 +556,8 @@ export default class ActiveEdit extends Component {
                         onOk={this.Ok.bind(this)}
                         wrapClassName='permission-modal'
                         zIndex={5450}
+                        okText={tu('signature_save')}
+                        cancelText={tu('signature_cancel')}
                     >
 
                         <div className="permission-edit-check">
@@ -581,6 +589,9 @@ export default class ActiveEdit extends Component {
                         onOk={() => this.OkAddActive()}
                         wrapClassName='permission permission-modal'
                         zIndex={5400}
+                        okText={tu('signature_save')}
+                        cancelText={tu('signature_cancel')}
+
                     >
                         <div className="permission-content">
 
@@ -621,7 +632,7 @@ export default class ActiveEdit extends Component {
                                 <span className="permission-label">{tu('signature_keys')}:</span>
                                 <table>
                                     <thead>
-                                        <tr><td>{tu('signature_key')}</td><td>{tu('signature_weight')}</td></tr>
+                                        <tr><td>{tu('signature_key')}</td><td style={{paddingLeft:'80px'}}>{tu('signature_weight')}</td></tr>
                                     </thead>
                                     <tbody>
                                         {
