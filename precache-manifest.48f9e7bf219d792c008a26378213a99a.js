@@ -16,18 +16,18 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "https://tronscan.github.io/tronscan-frontend/editor.worker.js.gz"
   },
   {
-    "revision": "6ffd5405b621d59070a6e396f94c2bd3",
+    "revision": "31e7c8e2aab540e8fed384beb67364b1",
     "url": "https://tronscan.github.io/tronscan-frontend/index.html"
   },
   {
-    "revision": "bcbd93a8a24165d542e0af1e48a8481b",
+    "revision": "d366db16e2e96371874045a158364848",
     "url": "https://tronscan.github.io/tronscan-frontend/index.html.gz"
   },
   {
-    "url": "https://tronscan.github.io/tronscan-frontend/precache-manifest.5ef41a061198ce095cf50d88ed97d215.js"
+    "url": "https://tronscan.github.io/tronscan-frontend/precache-manifest.f052d9002ca1e7d190e0784378d7d27b.js"
   },
   {
-    "revision": "1667e5176196448519445b6bb05aca32",
+    "revision": "36c0e63dfd1f839c4161570546551954",
     "url": "https://tronscan.github.io/tronscan-frontend/service-worker.js"
   },
   {
@@ -375,12 +375,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "https://tronscan.github.io/tronscan-frontend/static/js/ContractTrans.82e1bfa1.chunk.js.gz"
   },
   {
-    "revision": "e14f3003d09356a56fe4",
-    "url": "https://tronscan.github.io/tronscan-frontend/static/js/Contracts.2b373037.chunk.js"
+    "revision": "db8b5e61b0cc393f0f19",
+    "url": "https://tronscan.github.io/tronscan-frontend/static/js/Contracts.bb366c60.chunk.js"
   },
   {
-    "revision": "e743d9dbed63a46f06b7640825966185",
-    "url": "https://tronscan.github.io/tronscan-frontend/static/js/Contracts.2b373037.chunk.js.gz"
+    "revision": "067c65233cda6b414560e1e80bde1a1d",
+    "url": "https://tronscan.github.io/tronscan-frontend/static/js/Contracts.bb366c60.chunk.js.gz"
   },
   {
     "revision": "597bf60cb9c8216299a4",
@@ -735,12 +735,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "https://tronscan.github.io/tronscan-frontend/static/js/main.b24ae581.chunk.js.gz"
   },
   {
-    "revision": "535ba3d4aba62c505853",
-    "url": "https://tronscan.github.io/tronscan-frontend/static/js/runtime~main.5d1fa803.js"
+    "revision": "117519c1d4322f1e0350",
+    "url": "https://tronscan.github.io/tronscan-frontend/static/js/runtime~main.0d36e2b1.js"
   },
   {
-    "revision": "bc5329c06055ab29cd04bad45fbd7551",
-    "url": "https://tronscan.github.io/tronscan-frontend/static/js/runtime~main.5d1fa803.js.gz"
+    "revision": "aa9b0b54c171666e3a8d328147d5cd84",
+    "url": "https://tronscan.github.io/tronscan-frontend/static/js/runtime~main.0d36e2b1.js.gz"
   },
   {
     "revision": "7b00f7c4e78ed9cfc676c64c040965e8",
