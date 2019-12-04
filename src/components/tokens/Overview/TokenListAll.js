@@ -563,7 +563,7 @@ class TokenList extends Component {
                         {tableInfo} <span>
                           <QuestionMark placement="top" text="newly_issued_token_by_tronscan" className="token-list-info"></QuestionMark>
                         </span> &nbsp;&nbsp;  
-                          {IS_MAINNET?<a href={`https://poloniex.org`} target="_blank" >{t("Trade_on_POLONIDEX")}></a>:''}
+                          {IS_MAINNET?<a href={`https://poloniex.org`} target="_blank" >{t("Trade_on_Poloni DEX")}></a>:''}
                       </div>
                     </div> : ''}
                     <div className="d-md-flex apply-trc20 apply-all align-items-center">

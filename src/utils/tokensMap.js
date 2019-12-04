@@ -1,6 +1,6 @@
 export const tokensMap = {
   "1000001":
-    "SEED_&&_1000001_&&_0_&&_SEED_&&_https://coin.top/production/logo/1000001.png",
+    "SEED_&&_1000001_&&_0_&&_SEED_&&_https://coin.top/production/logo/1000001.jpeg",
   "1000002":
     "TRX_&&_1000002_&&_0_&&_TRX_&&_https://coin.top/production/js/20190509074813.png",
   "1000003":
@@ -32,13 +32,13 @@ export const tokensMap = {
   "1000016":
     "USD_&&_1000016_&&_0_&&_USD_&&_https://coin.top/production/js/20190509074813.png",
   "1000017":
-    "Tarquin_&&_1000017_&&_0_&&_Tarq_&&_https://coin.top/production/logo/1000017.png",
+    "Tarquin_&&_1000017_&&_0_&&_Tarq_&&_https://coin.top/tokenLogo/tokenLogo20180917030508.png?t=1566463703348",
   "1000018":
     "TWX_&&_1000018_&&_0_&&_TWX_&&_https://coin.top/production/logo/1000018.png",
   "1000019":
     "DEX_&&_1000019_&&_0_&&_DEX_&&_https://coin.top/production/js/20190509074813.png",
   "1000020":
-    "IRONCOIN_&&_1000020_&&_0_&&_IRC_&&_https://coin.top/production/logo/1000020.png",
+    "IRONCOIN_&&_1000020_&&_0_&&_IRC_&&_https://coin.top/tokenLogo/tokenLogo20180917030508.png",
   "1000021":
     "FAIRCOIN_&&_1000021_&&_0_&&_FAIR_&&_https://coin.top/production/js/20190509074813.png",
   "1000022":
@@ -46,9 +46,9 @@ export const tokensMap = {
   "1000023":
     "ODYSSEY_&&_1000023_&&_0_&&_OCN_&&_https://coin.top/production/js/20190509074813.png",
   "1000024":
-    "AtlantisBlueDigitalToken_&&_1000024_&&_0_&&_ABDT_&&_https://coin.top/production/logo/1000024.png",
+    "AtlantisBlueDigitalToken_&&_1000024_&&_0_&&_ABDT_&&_https://coin.top/tokenLogo/tokenLogo20180917030508.png",
   "1000025":
-    "eTolar_&&_1000025_&&_0_&&_ETL_&&_https://coin.top/production/logo/1000025.png",
+    "eTolar_&&_1000025_&&_0_&&_ETL_&&_https://coin.top/tokenLogo/tokenLogo20180919084753.png",
   "1000026":
     "Litetron_&&_1000026_&&_0_&&_LTRX_&&_https://coin.top/production/js/20190509074813.png",
   "1000027":
@@ -58,7 +58,7 @@ export const tokensMap = {
   "1000029":
     "Ethereum_&&_1000029_&&_0_&&_ETH_&&_https://coin.top/production/js/20190509074813.png",
   "1000030":
-    "Evertell_&&_1000030_&&_0_&&_EVR_&&_https://coin.top/production/logo/1000030.png",
+    "Evertell_&&_1000030_&&_0_&&_EVR_&&_https://coin.top/tokenLogo/tokenLogo20180917030508.png",
   "1000031":
     "ForoMarketers_&&_1000031_&&_0_&&_FMKT_&&_https://coin.top/production/js/20190509074813.png",
   "1000032":
@@ -66,7 +66,7 @@ export const tokensMap = {
   "1000033":
     "Food_&&_1000033_&&_0_&&_FOOD_&&_https://coin.top/production/js/20190509074813.png",
   "1000034":
-    "ZTron_&&_1000034_&&_0_&&_ZTN_&&_https://coin.top/production/logo/1000034.png",
+    "ZTron_&&_1000034_&&_0_&&_ZTN_&&_https://coin.top/tokenLogo/tokenLogo20180917030508.png",
   "1000035":
     "MishimaCoin_&&_1000035_&&_0_&&_PHAN_&&_https://coin.top/production/js/20190509074813.png",
   "1000036":
@@ -98,7 +98,7 @@ export const tokensMap = {
   "1000049":
     "TronCore_&&_1000049_&&_0_&&_TRC_&&_https://coin.top/production/js/20190509074813.png",
   "1000050":
-    "ZTRON_&&_1000050_&&_0_&&_token_&&_https://coin.top/production/logo/1000050.png",
+    "ZTRON_&&_1000050_&&_0_&&_token_&&_https://4.allegroimg.com/s128/03d9e7/7e10f2674c42b9a13f0542c792e4.png",
   "1000051":
     "BerkshireHathawayIncClassA_&&_1000051_&&_0_&&_BRKA_&&_https://coin.top/production/js/20190509074813.png",
   "1000052":
@@ -158,7 +158,7 @@ export const tokensMap = {
   "1000079":
     "HoweyCoin_&&_1000079_&&_0_&&_HYC_&&_https://coin.top/production/js/20190509074813.png",
   "1000080":
-    "CITYUPTAKE_&&_1000080_&&_0_&&_CITY_&&_https://coin.top/production/logo/1000080.png",
+    "CITYUPTAKE_&&_1000080_&&_0_&&_CITY_&&_https://coin.top/tokenLogo/tokenLogo20180917030508.png",
   "1000081":
     "LamboToken_&&_1000081_&&_0_&&_LMB_&&_https://coin.top/production/js/20190509074813.png",
   "1000082":
@@ -248,7 +248,7 @@ export const tokensMap = {
   "1000124":
     "KRYPTONITETOKEN_&&_1000124_&&_0_&&_KRYPT_&&_https://coin.top/production/js/20190509074813.png",
   "1000125":
-    "GameofTrons_&&_1000125_&&_0_&&_GoT_&&_https://coin.top/production/logo/1000125.png",
+    "GameofTrons_&&_1000125_&&_0_&&_GoT_&&_https://coin.top/production/logo/1000125.jpg",
   "1000126":
     "TronPower_&&_1000126_&&_0_&&_TRXP_&&_https://coin.top/production/js/20190509074813.png",
   "1000127":
@@ -356,17 +356,17 @@ export const tokensMap = {
   "1000178":
     "Dreamcoin_&&_1000178_&&_0_&&_DRM_&&_https://coin.top/production/js/20190509074813.png",
   "1000179":
-    "IDEA_&&_1000179_&&_0_&&_IDEA_&&_https://coin.top/production/logo/1000179.png",
+    "IDEA_&&_1000179_&&_0_&&_IDEA_&&_http://ideacoin.info/wp-content/uploads/2019/08/IDEA-icon-2.jpg?t=1565766387749",
   "1000180":
     "LGBT_&&_1000180_&&_0_&&_LGBT_&&_https://coin.top/production/js/20190509074813.png",
   "1000181":
-    "KrMaToken_&&_1000181_&&_0_&&_KrMa_&&_https://coin.top/production/logo/1000181.png",
+    "KrMaToken_&&_1000181_&&_0_&&_KrMa_&&_https://coin.top/production/logo/1000181.jpg",
   "1000182":
     "DICE_&&_1000182_&&_0_&&_DICE_&&_https://coin.top/production/js/20190509074813.png",
   "1000183":
     "ZYON_&&_1000183_&&_0_&&_ZYX_&&_https://coin.top/production/js/20190509074813.png",
   "1000184":
-    "KlassicCarParts_&&_1000184_&&_0_&&_KCP_&&_https://coin.top/production/logo/1000184.png",
+    "KlassicCarParts_&&_1000184_&&_0_&&_KCP_&&_https://coin.top/tokenLogo/tokenLogo20181022120419.jpg",
   "1000185":
     "MonsterTokens_&&_1000185_&&_0_&&_MT_&&_https://coin.top/production/js/20190509074813.png",
   "1000186":
@@ -424,7 +424,7 @@ export const tokensMap = {
   "1000212":
     "NintendoCoin_&&_1000212_&&_0_&&_TNIN_&&_https://coin.top/production/js/20190509074813.png",
   "1000213":
-    "Leaf_&&_1000213_&&_0_&&_LEAF_&&_https://coin.top/production/logo/1000213.png",
+    "Leaf_&&_1000213_&&_0_&&_LEAF_&&_https://coin.top/tokenLogo/tokenLogo20180917030508.png",
   "1000214":
     "TRXFitness_&&_1000214_&&_0_&&_TRXF_&&_https://coin.top/production/js/20190509074813.png",
   "1000215":
@@ -446,7 +446,7 @@ export const tokensMap = {
   "1000223":
     "FOMOTRX_&&_1000223_&&_0_&&_FTX_&&_https://coin.top/production/js/20190509074813.png",
   "1000224":
-    "NeuroticMirageToken_&&_1000224_&&_0_&&_NMT_&&_https://coin.top/production/logo/1000224.png",
+    "NeuroticMirageToken_&&_1000224_&&_0_&&_NMT_&&_https://coin.top/tokenLogo/tokenLogo20180917030508.png",
   "1000225":
     "Mythereum_&&_1000225_&&_0_&&_MYTH_&&_https://coin.top/production/js/20190509074813.png",
   "1000226":
@@ -460,7 +460,7 @@ export const tokensMap = {
   "1000230":
     "TheRealTRONLottery_&&_1000230_&&_0_&&_TRTL_&&_https://coin.top/production/js/20190509074813.png",
   "1000231":
-    "TRONGOLD_&&_1000231_&&_0_&&_GOLD_&&_https://coin.top/production/logo/1000231.png",
+    "TRONGOLD_&&_1000231_&&_0_&&_GOLD_&&_https://coin.top/tokenLogo/tokenLogo20180917030508.png",
   "1000232":
     "PAWS_&&_1000232_&&_0_&&_PAWS_&&_https://coin.top/production/js/20190509074813.png",
   "1000233":
@@ -476,7 +476,7 @@ export const tokensMap = {
   "1000238":
     "HighFive_&&_1000238_&&_0_&&_HF_&&_https://coin.top/production/js/20190509074813.png",
   "1000239":
-    "TRAN_&&_1000239_&&_0_&&_ECO_&&_https://coin.top/production/logo/1000239.png",
+    "TRAN_&&_1000239_&&_0_&&_ECO_&&_https://coin.top/tokenLogo/tokenLogo20180917030508.png",
   "1000240":
     "MedalCeremony_&&_1000240_&&_0_&&_MEDAL_&&_https://coin.top/production/js/20190509074813.png",
   "1000241":
@@ -514,7 +514,7 @@ export const tokensMap = {
   "1000257":
     "Seara_&&_1000257_&&_0_&&_Seara_&&_https://coin.top/production/js/20190509074813.png",
   "1000258":
-    "zOilMarineGroup_&&_1000258_&&_0_&&_OMGt_&&_https://coin.top/production/logo/1000258.png",
+    "zOilMarineGroup_&&_1000258_&&_0_&&_OMGt_&&_https://coin.top/tokenLogo/tokenLogo20180917030508.png",
   "1000259":
     "USDT_&&_1000259_&&_0_&&_USDT_&&_https://coin.top/production/js/20190509074813.png",
   "1000260":
@@ -612,7 +612,7 @@ export const tokensMap = {
   "1000306":
     "IntergalacticSilver_&&_1000306_&&_0_&&_IGS_&&_https://coin.top/production/js/20190509074813.png",
   "1000307":
-    "TronLoot_&&_1000307_&&_0_&&_LOOT_&&_https://coin.top/production/logo/1000307.png",
+    "TronLoot_&&_1000307_&&_0_&&_LOOT_&&_https://coin.top/production/logo/1000307.jpg",
   "1000308":
     "TripleX_&&_1000308_&&_0_&&_XXX_&&_https://coin.top/production/js/20190509074813.png",
   "1000309":
@@ -632,7 +632,7 @@ export const tokensMap = {
   "1000316":
     "BurgerTron_&&_1000316_&&_0_&&_BRGR_&&_https://coin.top/production/js/20190509074813.png",
   "1000317":
-    "IGG_&&_1000317_&&_0_&&_IGG_&&_https://coin.top/production/logo/1000317.png",
+    "IGG_&&_1000317_&&_0_&&_IGG_&&_https://coin.top/production/logo/1000317.jpeg",
   "1000318":
     "RoboDollar_&&_1000318_&&_0_&&_RBD_&&_https://coin.top/production/js/20190509074813.png",
   "1000319":
@@ -642,7 +642,7 @@ export const tokensMap = {
   "1000321":
     "GameCredits_&&_1000321_&&_0_&&_GCX_&&_https://coin.top/production/js/20190509074813.png",
   "1000322":
-    "CommunityNodeToken_&&_1000322_&&_0_&&_TRUC_&&_https://coin.top/production/logo/1000322.png",
+    "CommunityNodeToken_&&_1000322_&&_0_&&_TRUC_&&_https://coin.top/production_test/js/20190618041637.png",
   "1000323":
     "RICK_&&_1000323_&&_0_&&_RCKA_&&_https://coin.top/production/js/20190509074813.png",
   "1000324":
@@ -694,7 +694,7 @@ export const tokensMap = {
   "1000347":
     "PornHub_&&_1000347_&&_0_&&_SEXY_&&_https://coin.top/production/js/20190509074813.png",
   "1000348":
-    "Renta_&&_1000348_&&_0_&&_RENTA_&&_https://coin.top/production/upload/logo/1000348.jpeg?t=1572085794802",
+    "Renta_&&_1000348_&&_0_&&_RENTA_&&_https://coin.top/production/js/20190509074813.png",
   "1000349":
     "NoneOfOurBusiness_&&_1000349_&&_0_&&_NOOB_&&_https://coin.top/production/js/20190509074813.png",
   "1000350":
@@ -782,7 +782,7 @@ export const tokensMap = {
   "1000391":
     "IBIZALUXURY_&&_1000391_&&_0_&&_IBZ_&&_https://coin.top/production/js/20190509074813.png",
   "1000392":
-    "PLAYSTATION_&&_1000392_&&_0_&&_PST_&&_https://coin.top/production/logo/1000392.png",
+    "PLAYSTATION_&&_1000392_&&_0_&&_PST_&&_https://coin.top/tokenLogo/tokenLogo20180917030508.png",
   "1000393":
     "FakeNews_&&_1000393_&&_0_&&_FALSE_&&_https://coin.top/production/js/20190509074813.png",
   "1000394":
@@ -834,7 +834,7 @@ export const tokensMap = {
   "1000417":
     "UBER_&&_1000417_&&_0_&&_UBER_&&_https://coin.top/production/js/20190509074813.png",
   "1000418":
-    "BullionTroyGrain_&&_1000418_&&_0_&&_BTG_&&_https://coin.top/production/logo/1000418.png",
+    "BullionTroyGrain_&&_1000418_&&_0_&&_BTG_&&_https://coin.top/tokenLogo/tokenLogo20180917030508.png",
   "1000419":
     "RoadStar_&&_1000419_&&_0_&&_STAR_&&_https://coin.top/production/js/20190509074813.png",
   "1000420":
@@ -858,7 +858,7 @@ export const tokensMap = {
   "1000429":
     "Karlsruher_&&_1000429_&&_0_&&_KARL_&&_https://coin.top/production/js/20190509074813.png",
   "1000430":
-    "BOOK_&&_1000430_&&_0_&&_WRT_&&_https://coin.top/production/logo/1000430.png",
+    "BOOK_&&_1000430_&&_0_&&_WRT_&&_https://coin.top/tokenLogo/tokenLogo20180917030508.png",
   "1000431":
     "TronTom_&&_1000431_&&_0_&&_TRT_&&_https://coin.top/production/js/20190509074813.png",
   "1000432":
@@ -890,7 +890,7 @@ export const tokensMap = {
   "1000445":
     "SaganCoin_&&_1000445_&&_0_&&_SGN_&&_https://coin.top/production/js/20190509074813.png",
   "1000446":
-    "trustlesstruthFoundation_&&_1000446_&&_0_&&_TLT_&&_https://coin.top/production/logo/1000446.png",
+    "trustlesstruthFoundation_&&_1000446_&&_0_&&_TLT_&&_https://coin.top/tokenLogo/tokenLogo20180917030508.png",
   "1000447":
     "JAM_&&_1000447_&&_0_&&_JAM_&&_https://coin.top/production/js/20190509074813.png",
   "1000448":
@@ -928,7 +928,7 @@ export const tokensMap = {
   "1000464":
     "NERD_&&_1000464_&&_0_&&_NERD_&&_https://coin.top/production/js/20190509074813.png",
   "1000465":
-    "CryptocurrencyOrganizer_&&_1000465_&&_0_&&_CO_&&_https://coin.top/production/logo/1000465.png",
+    "CryptocurrencyOrganizer_&&_1000465_&&_0_&&_CO_&&_https://coin.top/tokenLogo/tokenLogo20180917030508.png",
   "1000466":
     "TronEnergy_&&_1000466_&&_0_&&_TronE_&&_https://coin.top/production/js/20190509074813.png",
   "1000467":
@@ -948,7 +948,7 @@ export const tokensMap = {
   "1000474":
     "BONER_&&_1000474_&&_0_&&_BNR_&&_https://coin.top/production/js/20190509074813.png",
   "1000475":
-    "TronWeeklyJournal_&&_1000475_&&_0_&&_TRWJ_&&_https://coin.top/production/logo/1000475.png",
+    "TronWeeklyJournal_&&_1000475_&&_0_&&_TRWJ_&&_https://coin.top/production/logo/1000475.jpg",
   "1000476":
     "RealWorldGaming_&&_1000476_&&_0_&&_RWG_&&_https://coin.top/production/js/20190509074813.png",
   "1000477":
@@ -966,7 +966,7 @@ export const tokensMap = {
   "1000483":
     "Love_&&_1000483_&&_0_&&_Love_&&_https://coin.top/production/js/20190509074813.png",
   "1000484":
-    "infinity_&&_1000484_&&_0_&&_IFNT_&&_https://coin.top/production/logo/1000484.png",
+    "infinity_&&_1000484_&&_0_&&_IFNT_&&_https://coin.top/production/logo/1000484.jpg",
   "1000485":
     "@credits_&&_1000485_&&_0_&&_CRD_&&_https://coin.top/production/js/20190509074813.png",
   "1000486":
@@ -974,7 +974,7 @@ export const tokensMap = {
   "1000487":
     "MATRX_&&_1000487_&&_0_&&_MTX_&&_https://coin.top/production/js/20190509074813.png",
   "1000488":
-    "Vincoloelettronico_&&_1000488_&&_0_&&_VinE_&&_https://coin.top/production/logo/1000488.png",
+    "Vincoloelettronico_&&_1000488_&&_0_&&_VinE_&&_https://coin.top/tokenLogo/tokenLogo20181207072125.png",
   "1000489":
     "Vessel_&&_1000489_&&_0_&&_HIN_&&_https://coin.top/production/js/20190509074813.png",
   "1000490":
@@ -1000,11 +1000,11 @@ export const tokensMap = {
   "1000500":
     "ThoR_&&_1000500_&&_0_&&_ToR_&&_https://coin.top/production/js/20190509074813.png",
   "1000501":
-    "BeatzCoin_&&_1000501_&&_0_&&_BTZC_&&_https://coin.top/production/logo/1000501.png",
+    "BeatzCoin_&&_1000501_&&_0_&&_BTZC_&&_https://coin.top/production/logo/1000501.jpg",
   "1000502":
     "MyWeddingToken_&&_1000502_&&_0_&&_MWT_&&_https://coin.top/production/js/20190509074813.png",
   "1000503":
-    "Dislike_&&_1000503_&&_0_&&_DLK_&&_https://coin.top/production/logo/1000503.png",
+    "Dislike_&&_1000503_&&_0_&&_DLK_&&_https://coin.top/tokenLogo/tokenLogo20180917030508.png",
   "1000504":
     "TronTips_&&_1000504_&&_0_&&_TIPS_&&_https://coin.top/production/js/20190509074813.png",
   "1000505":
@@ -1024,7 +1024,7 @@ export const tokensMap = {
   "1000512":
     "TRONBITCOINGOLD_&&_1000512_&&_0_&&_TBTG_&&_https://coin.top/production/js/20190509074813.png",
   "1000513":
-    "Tronpix_&&_1000513_&&_0_&&_PIX_&&_https://coin.top/production/logo/1000513.png",
+    "Tronpix_&&_1000513_&&_0_&&_PIX_&&_https://coin.top/production/upload/logo/1000513.png?t=1569281767367",
   "1000514":
     "GOD_&&_1000514_&&_0_&&_GOD_&&_https://coin.top/production/js/20190509074813.png",
   "1000515":
@@ -1042,7 +1042,7 @@ export const tokensMap = {
   "1000521":
     "GoodLuckToken_&&_1000521_&&_0_&&_GLT_&&_https://coin.top/production/js/20190509074813.png",
   "1000522":
-    "ActivEightCoin_&&_1000522_&&_0_&&_Activ_&&_https://coin.top/production/logo/1000522.png",
+    "ActivEightCoin_&&_1000522_&&_0_&&_Activ_&&_https://coin.top/tokenLogo/tokenLogo20180917030508.png",
   "1000523":
     "SHARES_&&_1000523_&&_0_&&_SHRS_&&_https://coin.top/production/js/20190509074813.png",
   "1000524":
@@ -1052,7 +1052,7 @@ export const tokensMap = {
   "1000526":
     "HashCoin_&&_1000526_&&_0_&&_HSC_&&_https://coin.top/production/js/20190509074813.png",
   "1000527":
-    "MarcusMillichap_&&_1000527_&&_0_&&_MM_&&_https://coin.top/production/logo/1000527.png",
+    "MarcusMillichap_&&_1000527_&&_0_&&_MM_&&_https://coin.top/tokenLogo/tokenLogo20180917030508.png",
   "1000528":
     "Lovehearts_&&_1000528_&&_0_&&_Luv_&&_https://coin.top/production/js/20190509074813.png",
   "1000529":
@@ -1098,7 +1098,7 @@ export const tokensMap = {
   "1000549":
     "Emoney_&&_1000549_&&_0_&&_EM_&&_https://coin.top/production/js/20190509074813.png",
   "1000550":
-    "SocialMediaCoin_&&_1000550_&&_0_&&_Media_&&_https://coin.top/production/logo/1000550.png",
+    "SocialMediaCoin_&&_1000550_&&_0_&&_Media_&&_https://coin.top/tokenLogo/tokenLogo20180917030508.png",
   "1000551":
     "JesusIsLord_&&_1000551_&&_0_&&_JLORD_&&_https://coin.top/production/js/20190509074813.png",
   "1000552":
@@ -1106,7 +1106,7 @@ export const tokensMap = {
   "1000553":
     "BACON_&&_1000553_&&_0_&&_BACON_&&_https://coin.top/production/js/20190509074813.png",
   "1000554":
-    "DEXCOIN_&&_1000554_&&_0_&&_XDEX_&&_https://coin.top/production/logo/1000554.png",
+    "DEXCOIN_&&_1000554_&&_0_&&_XDEX_&&_https://coin.top/tokenLogo/tokenLogo20180917030508.png",
   "1000555":
     "SatBet_&&_1000555_&&_0_&&_SBT_&&_https://coin.top/production/js/20190509074813.png",
   "1000556":
@@ -1130,7 +1130,7 @@ export const tokensMap = {
   "1000565":
     "YOTCOIN_&&_1000565_&&_0_&&_YOT_&&_https://coin.top/production/js/20190509074813.png",
   "1000566":
-    "SiddhaMedicine_&&_1000566_&&_0_&&_SMC_&&_https://coin.top/production/logo/1000566.png",
+    "SiddhaMedicine_&&_1000566_&&_0_&&_SMC_&&_https://coin.top/production/logo/1000566.jpg",
   "1000567":
     "OtonamiS_&&_1000567_&&_0_&&_os_&&_https://coin.top/production/js/20190509074813.png",
   "1000568":
@@ -1152,7 +1152,7 @@ export const tokensMap = {
   "1000576":
     "Like_&&_1000576_&&_0_&&_LIKE_&&_https://coin.top/production/js/20190509074813.png",
   "1000577":
-    "MegaTron_&&_1000577_&&_0_&&_MGA_&&_https://coin.top/production/logo/1000577.png",
+    "MegaTron_&&_1000577_&&_0_&&_MGA_&&_https://coin.top/production/logo/1000577.jpg",
   "1000578":
     "lovehearts_&&_1000578_&&_0_&&_lvvvr_&&_https://coin.top/production/js/20190509074813.png",
   "1000579":
@@ -1162,11 +1162,11 @@ export const tokensMap = {
   "1000581":
     "Sound_&&_1000581_&&_0_&&_STRX_&&_https://coin.top/production/js/20190509074813.png",
   "1000582":
-    "tronvietnam_&&_1000582_&&_0_&&_TVN_&&_https://coin.top/production/logo/1000582.png",
+    "tronvietnam_&&_1000582_&&_0_&&_TVN_&&_https://coin.top/production/upload/logo/1000582.jpeg?t=1567773564245",
   "1000583":
     "IndoDetik_&&_1000583_&&_0_&&_IDK_&&_https://coin.top/production/js/20190509074813.png",
   "1000584":
-    "BTCL_&&_1000584_&&_0_&&_BTCL_&&_https://coin.top/production/logo/1000584.png",
+    "BTCL_&&_1000584_&&_0_&&_BTCL_&&_https://coin.top/tokenLogo/tokenLogo20180917030508.png",
   "1000585":
     "Reddit_&&_1000585_&&_0_&&_RDT_&&_https://coin.top/production/js/20190509074813.png",
   "1000586":
@@ -1206,7 +1206,7 @@ export const tokensMap = {
   "1000603":
     "TWEETHEART_&&_1000603_&&_0_&&_XOXO_&&_https://coin.top/production/js/20190509074813.png",
   "1000604":
-    "TheLOneCrewToken_&&_1000604_&&_0_&&_LOCT_&&_https://coin.top/production/logo/1000604.png",
+    "TheLOneCrewToken_&&_1000604_&&_0_&&_LOCT_&&_https://coin.top/production/upload/logo/1000604.jpeg?t=1567985121749",
   "1000605":
     "nana_&&_1000605_&&_0_&&_NANA_&&_https://coin.top/production/js/20190509074813.png",
   "1000606":
@@ -1264,7 +1264,7 @@ export const tokensMap = {
   "1000632":
     "GTC_&&_1000632_&&_0_&&_GTC_&&_https://coin.top/production/js/20190509074813.png",
   "1000633":
-    "EGG_&&_1000633_&&_0_&&_EGG_&&_https://coin.top/production/logo/1000633.png",
+    "EGG_&&_1000633_&&_0_&&_EGG_&&_https://coin.top/tokenLogo/tokenLogo20180917030508.png",
   "1000634":
     "EXP_&&_1000634_&&_0_&&_EXP_&&_https://coin.top/production/js/20190509074813.png",
   "1000635":
@@ -1288,15 +1288,15 @@ export const tokensMap = {
   "1000644":
     "Air_&&_1000644_&&_0_&&_AIR_&&_https://coin.top/production/js/20190509074813.png",
   "1000645":
-    "TRXTwitter_&&_1000645_&&_0_&&_Tweet_&&_https://coin.top/production/logo/1000645.png",
+    "TRXTwitter_&&_1000645_&&_0_&&_Tweet_&&_https://coin.top/tokenLogo/tokenLogo20180917030508.png",
   "1000646":
     "TRONEOS_&&_1000646_&&_0_&&_TEOS_&&_https://coin.top/production/js/20190509074813.png",
   "1000647":
     "TRONSTELLAR_&&_1000647_&&_0_&&_TXLM_&&_https://coin.top/production/js/20190509074813.png",
   "1000648":
-    "UpVote_&&_1000648_&&_0_&&_UP_&&_https://coin.top/production/logo/1000648.png",
+    "UpVote_&&_1000648_&&_0_&&_UP_&&_https://coin.top/tokenLogo/tokenLogo20180917030508.png",
   "1000649":
-    "DownVote_&&_1000649_&&_0_&&_DOWN_&&_https://coin.top/production/logo/1000649.png",
+    "DownVote_&&_1000649_&&_0_&&_DOWN_&&_https://coin.top/tokenLogo/tokenLogo20180917030508.png",
   "1000650":
     "%ATM_&&_1000650_&&_0_&&_ATM_&&_https://coin.top/production/js/20190509074813.png",
   "1000651":
@@ -1326,7 +1326,7 @@ export const tokensMap = {
   "1000663":
     "Dekaay_&&_1000663_&&_0_&&_Deka_&&_https://coin.top/production/js/20190509074813.png",
   "1000664":
-    "CryptoTravels_&&_1000664_&&_0_&&_ZcT_&&_https://coin.top/production/logo/1000664.png",
+    "CryptoTravels_&&_1000664_&&_0_&&_ZcT_&&_https://coin.top/tokenLogo/tokenLogo20180917030508.png",
   "1000665":
     "ZOE_&&_1000665_&&_0_&&_ZOE_&&_https://coin.top/production/js/20190509074813.png",
   "1000666":
@@ -1340,7 +1340,7 @@ export const tokensMap = {
   "1000670":
     "RevShare_&&_1000670_&&_0_&&_REV_&&_https://coin.top/production/js/20190509074813.png",
   "1000671":
-    "EdX_&&_1000671_&&_0_&&_EdX_&&_https://coin.top/production/logo/1000671.png",
+    "EdX_&&_1000671_&&_0_&&_EdX_&&_https://coin.top/production/logo/1000671.jpeg",
   "1000672":
     "LAMBO_&&_1000672_&&_0_&&_LAMBO_&&_https://coin.top/production/js/20190509074813.png",
   "1000673":
@@ -1370,7 +1370,7 @@ export const tokensMap = {
   "1000685":
     "JesusSaves_&&_1000685_&&_0_&&_JS_&&_https://coin.top/production/js/20190509074813.png",
   "1000686":
-    "CBD_&&_1000686_&&_0_&&_CBD_&&_https://coin.top/production/logo/1000686.png",
+    "CBD_&&_1000686_&&_0_&&_CBD_&&_https://raw.githubusercontent.com/cbdtoken/cbdtoken.network/master/images/cbdlogo.png",
   "1000687":
     "NotTodayIsis_&&_1000687_&&_0_&&_FU_&&_https://coin.top/production/js/20190509074813.png",
   "1000688":
@@ -1384,15 +1384,15 @@ export const tokensMap = {
   "1000692":
     "1Million-TRX-Lottery_&&_1000692_&&_0_&&_Lotto_&&_https://coin.top/production/js/20190509074813.png",
   "1000693":
-    "Rockstar_&&_1000693_&&_0_&&_ROCK_&&_https://coin.top/production/logo/1000693.png",
+    "Rockstar_&&_1000693_&&_0_&&_ROCK_&&_https://coin.top/tokenLogo/tokenLogo20180917030508.png",
   "1000694":
     "CryptoGamesToken_&&_1000694_&&_0_&&_CGT_&&_https://coin.top/production/js/20190509074813.png",
   "1000695":
-    "SpaceBucks_&&_1000695_&&_0_&&_SXB_&&_https://coin.top/production/logo/1000695.png",
+    "SpaceBucks_&&_1000695_&&_0_&&_SXB_&&_https://coin.top/production/logo/1000695.jpeg",
   "1000696":
     "TronDisasterReliefToken_&&_1000696_&&_0_&&_DRT_&&_https://coin.top/production/js/20190509074813.png",
   "1000697":
-    "DITN_&&_1000697_&&_0_&&_DITN_&&_https://coin.top/production/logo/1000697.png",
+    "DITN_&&_1000697_&&_0_&&_DITN_&&_https://coin.top/production/logo/1000697.bmp",
   "1000698":
     "Bittorrent_&&_1000698_&&_0_&&_BITT_&&_https://coin.top/production/js/20190509074813.png",
   "1000699":
@@ -1428,7 +1428,7 @@ export const tokensMap = {
   "1000714":
     "BadHairDay_&&_1000714_&&_0_&&_BHD_&&_https://coin.top/production/js/20190509074813.png",
   "1000715":
-    "TRXPlanet_&&_1000715_&&_0_&&_TRXPL_&&_https://coin.top/production/logo/1000715.png",
+    "TRXPlanet_&&_1000715_&&_0_&&_TRXPL_&&_https://coin.top/tokenLogo/tokenLogo20180917030508.png",
   "1000716":
     "TTFM_&&_1000716_&&_0_&&_TTFM_&&_https://coin.top/production/js/20190509074813.png",
   "1000717":
@@ -1506,7 +1506,7 @@ export const tokensMap = {
   "1000753":
     "TIPATRADE_&&_1000753_&&_0_&&_TAT_&&_https://coin.top/production/js/20190509074813.png",
   "1000754":
-    "Batzen_&&_1000754_&&_0_&&_BTZN_&&_https://coin.top/production/logo/1000754.png",
+    "Batzen_&&_1000754_&&_0_&&_BTZN_&&_https://coin.top/tokenLogo/tokenLogo20180917030508.png",
   "1000755":
     "MajikMunchi_&&_1000755_&&_0_&&_DMT_&&_https://coin.top/production/js/20190509074813.png",
   "1000756":
@@ -1540,7 +1540,7 @@ export const tokensMap = {
   "1000770":
     "Moody_&&_1000770_&&_0_&&_Moo_&&_https://coin.top/production/js/20190509074813.png",
   "1000771":
-    "Seafoodcoin_&&_1000771_&&_0_&&_SFC_&&_https://coin.top/production/logo/1000771.png",
+    "Seafoodcoin_&&_1000771_&&_0_&&_SFC_&&_https://coin.top/tokenLogo/tokenLogo20180917030508.png",
   "1000772":
     "Genomics_&&_1000772_&&_0_&&_GNX_&&_https://coin.top/production/js/20190509074813.png",
   "1000773":
@@ -1582,7 +1582,7 @@ export const tokensMap = {
   "1000791":
     "Coke_&&_1000791_&&_0_&&_Coke_&&_https://coin.top/production/js/20190509074813.png",
   "1000792":
-    "PSTY_&&_1000792_&&_0_&&_PSTY_&&_https://coin.top/production/upload/logo/1000792.jpeg?t=1570631616638",
+    "PSTY_&&_1000792_&&_0_&&_PSTY_&&_https://coin.top/tokenLogo/tokenLogo20180917030508.png",
   "1000793":
     "TRCX_&&_1000793_&&_0_&&_TRCX_&&_https://coin.top/production/js/20190509074813.png",
   "1000794":
@@ -1596,7 +1596,7 @@ export const tokensMap = {
   "1000798":
     "HANDSHAKE_&&_1000798_&&_0_&&_HANDSHAKE_&&_https://coin.top/production/js/20190509074813.png",
   "1000799":
-    "IGGP_&&_1000799_&&_0_&&_IGGP_&&_https://coin.top/production/logo/1000799.png",
+    "IGGP_&&_1000799_&&_0_&&_IGGP_&&_https://coin.top/tokenLogo/tokenLogo20180917030508.png",
   "1000800":
     "Java_&&_1000800_&&_0_&&_JAVA_&&_https://coin.top/production/js/20190509074813.png",
   "1000801":
@@ -1646,7 +1646,7 @@ export const tokensMap = {
   "1000823":
     "Fire_&&_1000823_&&_0_&&_Fire_&&_https://coin.top/production/js/20190509074813.png",
   "1000824":
-    "Tipatrade_&&_1000824_&&_0_&&_TAT_&&_https://coin.top/production/logo/1000824.png",
+    "Tipatrade_&&_1000824_&&_0_&&_TAT_&&_https://coin.top/tokenLogo/tokenLogo20190218022759.jpg",
   "1000825":
     "WILLBUYSEEDatGmailcomDoublePrice_&&_1000825_&&_0_&&_BYsd_&&_https://coin.top/production/js/20190509074813.png",
   "1000826":
@@ -1666,11 +1666,11 @@ export const tokensMap = {
   "1000833":
     "Alipay_&&_1000833_&&_0_&&_ALP_&&_https://coin.top/production/js/20190509074813.png",
   "1000834":
-    "ZZZZZB_&&_1000834_&&_0_&&_ZZB_&&_https://coin.top/production/logo/1000834.png",
+    "ZZZZZB_&&_1000834_&&_0_&&_ZZB_&&_https://coin.top/tokenLogo/tokenLogo_20180830160027.626685.jpeg",
   "1000835":
-    "ZXM_&&_1000835_&&_0_&&_ZXM_&&_https://coin.top/production/logo/1000835.png",
+    "ZXM_&&_1000835_&&_0_&&_ZXM_&&_https://coin.top/tokenLogo/tokenLogo20180919041517.png",
   "1000836":
-    "CloudVinylCoin_&&_1000836_&&_0_&&_CVC_&&_https://coin.top/production/logo/1000836.png",
+    "CloudVinylCoin_&&_1000836_&&_0_&&_CVC_&&_https://coin.top/tokenLogo/tokenLogo20180917030508.png",
   "1000837":
     "Healthesurveys_&&_1000837_&&_0_&&_HSV_&&_C:\fakepathgorounding screenshot small.png",
   "1000838":
@@ -1684,13 +1684,13 @@ export const tokensMap = {
   "1000842":
     "RushSociety_&&_1000842_&&_0_&&_RUSH_&&_https://coin.top/production/js/20190509074813.png",
   "1000843":
-    "ZZBG_&&_1000843_&&_0_&&_ZBG_&&_https://coin.top/production/logo/1000843.png",
+    "ZZBG_&&_1000843_&&_0_&&_ZBG_&&_https://coin.top/tokenLogo/tokenLogo20180919060254.jpeg",
   "1000844":
     "DOUGTOKEN_&&_1000844_&&_0_&&_DKN_&&_https://coin.top/production/js/20190509074813.png",
   "1000845":
     "TronDark_&&_1000845_&&_0_&&_TRXD_&&_https://coin.top/production/js/20190509074813.png",
   "1000846":
-    "SCCBetaAccessToken_&&_1000846_&&_0_&&_SBAT_&&_https://coin.top/production/logo/1000846.png",
+    "SCCBetaAccessToken_&&_1000846_&&_0_&&_SBAT_&&_https://coin.top/tokenLogo/tokenLogo_20180906183439.307800.jpeg",
   "1000847":
     "ThugLife_&&_1000847_&&_0_&&_TL_&&_https://coin.top/production/js/20190509074813.png",
   "1000848":
@@ -1698,19 +1698,19 @@ export const tokensMap = {
   "1000849":
     "DealWithIt_&&_1000849_&&_0_&&_DWI_&&_https://coin.top/production/js/20190509074813.png",
   "1000850":
-    "TronMarket_&&_1000850_&&_0_&&_TM_&&_https://coin.top/production/logo/1000850.png",
+    "TronMarket_&&_1000850_&&_0_&&_TM_&&_https://coin.top/production/logo/1000850.jpeg",
   "1000851":
-    "SatoshiDroppers_&&_1000851_&&_0_&&_ANDY_&&_https://coin.top/production/logo/1000851.png",
+    "SatoshiDroppers_&&_1000851_&&_0_&&_ANDY_&&_https://coin.top/tokenLogo/tokenLogo_20180906233937.502141.jpeg",
   "1000852":
-    "Cryptomaniac_&&_1000852_&&_0_&&_CTMN_&&_https://coin.top/production/logo/1000852.png",
+    "Cryptomaniac_&&_1000852_&&_0_&&_CTMN_&&_https://coin.top/production/logo/1000852.jpeg",
   "1000853":
-    "Plastic_&&_1000853_&&_0_&&_ReP_&&_https://coin.top/production/logo/1000853.png",
+    "Plastic_&&_1000853_&&_0_&&_ReP_&&_https://coin.top/production/logo/1000853.jpeg",
   "1000854":
-    "GSG_&&_1000854_&&_0_&&_GSG_&&_https://coin.top/production/logo/1000854.png",
+    "GSG_&&_1000854_&&_0_&&_GSG_&&_https://coin.top/tokenLogo/tokenLogo_20180907022955.991504.jpeg",
   "1000855":
-    "SUN_&&_1000855_&&_0_&&_SUN_&&_https://coin.top/production/logo/1000855.png",
+    "SUN_&&_1000855_&&_0_&&_SUN_&&_https://coin.top/production/logo/1000855.jpeg",
   "1000856":
-    "intrxChain_&&_1000856_&&_0_&&_ICH_&&_https://coin.top/production/logo/1000856.png",
+    "intrxChain_&&_1000856_&&_0_&&_ICH_&&_https://coin.top/production/logo/1000856.jpeg",
   "1000857":
     "!Unbankedx0918-5%_&&_1000857_&&_0_&&_UBX0918_&&_https://coin.top/production/js/20190509074813.png",
   "1000858":
@@ -1718,19 +1718,19 @@ export const tokensMap = {
   "1000859":
     "Motivation_&&_1000859_&&_0_&&_Motiv8_&&_https://coin.top/production/js/20190509074813.png",
   "1000860":
-    "beer_&&_1000860_&&_0_&&_BEER_&&_https://coin.top/production/logo/1000860.png",
+    "beer_&&_1000860_&&_0_&&_BEER_&&_https://coin.top/tokenLogo/tokenLogo_20180908035800.435503.jpeg",
   "1000861":
     "TronSilver_&&_1000861_&&_0_&&_AG_&&_https://coin.top/production/js/20190509074813.png",
   "1000862":
-    "Interken_&&_1000862_&&_0_&&_IKN_&&_https://coin.top/production/logo/1000862.png",
+    "Interken_&&_1000862_&&_0_&&_IKN_&&_https://coin.top/production/logo/1000862.jpeg",
   "1000863":
-    "Raybotron_&&_1000863_&&_0_&&_RBT_&&_https://coin.top/production/logo/1000863.png",
+    "Raybotron_&&_1000863_&&_0_&&_RBT_&&_https://coin.top/production/logo/1000863.jpeg",
   "1000864":
     "BabaTron_&&_1000864_&&_0_&&_BBT_&&_https://coin.top/production/js/20190509074813.png",
   "1000865":
     "TronInvestGroup_&&_1000865_&&_0_&&_TIG_&&_https://coin.top/production/js/20190509074813.png",
   "1000866":
-    "TravelWorldCoin_&&_1000866_&&_0_&&_TWCR_&&_https://coin.top/production/logo/1000866.png",
+    "TravelWorldCoin_&&_1000866_&&_0_&&_TWCR_&&_https://coin.top/production/logo/1000866.jpeg",
   "1000867":
     "TelosTestToken_&&_1000867_&&_0_&&_TTT_&&_https://coin.top/production/js/20190509074813.png",
   "1000868":
@@ -1740,7 +1740,7 @@ export const tokensMap = {
   "1000870":
     "torrentcenter_&&_1000870_&&_0_&&_TORRE_&&_https://coin.top/production/js/20190509074813.png",
   "1000871":
-    "GYMRewards_&&_1000871_&&_0_&&_GYM_&&_https://coin.top/production/logo/1000871.png",
+    "GYMRewards_&&_1000871_&&_0_&&_GYM_&&_https://coin.top/production/logo/1000871.jpeg",
   "1000872":
     "QTRON_&&_1000872_&&_0_&&_QTRX_&&_http://i.piccy.info/i9/a4ee040e50d6c3ba3e4b329324c45b41/1564398334/12099/1330121/IMG_20190729_134819.jpg",
   "1000873":
@@ -1748,11 +1748,11 @@ export const tokensMap = {
   "1000874":
     "TronBitcoinCash_&&_1000874_&&_0_&&_TBCH_&&_https://coin.top/production/js/20190509074813.png",
   "1000875":
-    "Tickets_&&_1000875_&&_0_&&_Win_&&_https://coin.top/production/logo/1000875.png",
+    "Tickets_&&_1000875_&&_0_&&_Win_&&_https://coin.top/tokenLogo/tokenLogo_20180910073717.501601.jpeg",
   "1000876":
     "CaribbeanDecentralizedCrypto_&&_1000876_&&_0_&&_CDC_&&_https://coin.top/production/js/20190509074813.png",
   "1000877":
-    "Crawdaddycoin_&&_1000877_&&_0_&&_CDC_&&_https://coin.top/production/logo/1000877.png",
+    "Crawdaddycoin_&&_1000877_&&_0_&&_CDC_&&_https://coin.top/production/logo/1000877.jpeg",
   "1000878":
     "CDC_&&_1000878_&&_0_&&_CDC_&&_https://coin.top/production/js/20190509074813.png",
   "1000879":
@@ -1760,17 +1760,17 @@ export const tokensMap = {
   "1000880":
     "RESPECT_&&_1000880_&&_0_&&_RSPCT_&&_https://coin.top/production/js/20190509074813.png",
   "1000881":
-    "NonSense_&&_1000881_&&_0_&&_N_&&_https://coin.top/production/logo/1000881.png",
+    "NonSense_&&_1000881_&&_0_&&_N_&&_https://coin.top/production/logo/1000881.jpeg",
   "1000882":
-    "PAKISTANdam_&&_1000882_&&_0_&&_PDM_&&_https://coin.top/production/logo/1000882.png",
+    "PAKISTANdam_&&_1000882_&&_0_&&_PDM_&&_https://coin.top/tokenLogo/tokenLogo_20180911172100.247944.jpeg",
   "1000883":
-    "TokenLottery_&&_1000883_&&_0_&&_ATRX_&&_https://coin.top/production/logo/1000883.png",
+    "TokenLottery_&&_1000883_&&_0_&&_ATRX_&&_https://coin.top/production/logo/1000883.jpeg",
   "1000884":
-    "TRONEX_&&_1000884_&&_0_&&_TEX_&&_https://coin.top/production/logo/1000884.png",
+    "TRONEX_&&_1000884_&&_0_&&_TEX_&&_https://coin.top/production/logo/1000884.jpeg",
   "1000885":
     "Pizza_&&_1000885_&&_0_&&_PZA_&&_https://coin.top/production/js/20190509074813.png",
   "1000886":
-    "Goodactions_&&_1000886_&&_0_&&_Good_&&_https://coin.top/production/logo/1000886.png",
+    "Goodactions_&&_1000886_&&_0_&&_Good_&&_https://coin.top/tokenLogo/tokenLogo_20180912025617.257102.jpeg",
   "1000887":
     "Donut_&&_1000887_&&_0_&&_DONUT_&&_https://coin.top/production/js/20190509074813.png",
   "1000888":
@@ -1780,53 +1780,53 @@ export const tokensMap = {
   "1000890":
     "Bioinformatics_&&_1000890_&&_0_&&_BIO_&&_https://coin.top/production/js/20190509074813.png",
   "1000891":
-    "DEG_&&_1000891_&&_0_&&_DEG_&&_https://coin.top/production/logo/1000891.png",
+    "DEG_&&_1000891_&&_0_&&_DEG_&&_https://coin.top/tokenLogo/tokenLogo_20180913002312.231393.jpeg",
   "1000892":
     "Stratus_&&_1000892_&&_0_&&_STS_&&_https://coin.top/production/js/20190509074813.png",
   "1000893":
-    "ReynaToken_&&_1000893_&&_0_&&_REY_&&_https://coin.top/production/logo/1000893.png",
+    "ReynaToken_&&_1000893_&&_0_&&_REY_&&_https://coin.top/production/logo/1000893.jpeg",
   "1000894":
-    "Petro_&&_1000894_&&_0_&&_PTR_&&_https://coin.top/production/logo/1000894.png",
+    "Petro_&&_1000894_&&_0_&&_PTR_&&_https://coin.top/production/logo/1000894.jpeg",
   "1000895":
     "Genesix_&&_1000895_&&_0_&&_GNX_&&_https://coin.top/production/js/20190509074813.png",
   "1000896":
-    "Gazua_&&_1000896_&&_0_&&_GZA_&&_https://coin.top/production/logo/1000896.png",
+    "Gazua_&&_1000896_&&_0_&&_GZA_&&_https://coin.top/tokenLogo/tokenLogo_20180913230949.345844.jpeg",
   "1000897":
-    "DEXCoin_&&_1000897_&&_0_&&_XDX_&&_https://coin.top/production/logo/1000897.png",
+    "DEXCoin_&&_1000897_&&_0_&&_XDX_&&_https://coin.top/production/logo/1000897.jpeg",
   "1000898":
     "UPVOTE_&&_1000898_&&_0_&&_UPVT_&&_https://coin.top/production/js/20190509074813.png",
   "1000899":
     "Triacus_&&_1000899_&&_0_&&_TRC_&&_https://coin.top/production/js/20190509074813.png",
   "1000900":
-    "SEG_&&_1000900_&&_0_&&_SEG_&&_https://coin.top/production/logo/1000900.png",
+    "SEG_&&_1000900_&&_0_&&_SEG_&&_https://coin.top/tokenLogo/tokenLogo_20180914050329.798895.jpeg",
   "1000901":
     "Palestine_&&_1000901_&&_0_&&_Allah_&&_https://coin.top/production/js/20190509074813.png",
   "1000902":
-    "DreamX_&&_1000902_&&_0_&&_drmx_&&_https://coin.top/production/logo/1000902.png",
+    "DreamX_&&_1000902_&&_0_&&_drmx_&&_https://coin.top/tokenLogo/tokenLogo_20180914142018.683768.jpeg",
   "1000903":
-    "Telegram_&&_1000903_&&_0_&&_TLG_&&_https://coin.top/production/logo/1000903.png",
+    "Telegram_&&_1000903_&&_0_&&_TLG_&&_https://coin.top/production/logo/1000903.jpeg",
   "1000904":
-    "loveit_&&_1000904_&&_0_&&_LIT_&&_https://coin.top/production/logo/1000904.png",
+    "loveit_&&_1000904_&&_0_&&_LIT_&&_https://coin.top/production/logo/1000904.jpeg",
   "1000905":
-    "APC_&&_1000905_&&_0_&&_APC_&&_https://coin.top/production/logo/1000905.png",
+    "APC_&&_1000905_&&_0_&&_APC_&&_https://coin.top/production/logo/1000905.jpeg",
   "1000906":
     "Punahou_&&_1000906_&&_0_&&_PUNS_&&_https://coin.top/production/js/20190509074813.png",
   "1000907":
     "RUOKToken_&&_1000907_&&_0_&&_RUOK_&&_https://coin.top/production/logo/1000907.png",
   "1000908":
-    "NCG_&&_1000908_&&_0_&&_NCG_&&_https://coin.top/production/logo/1000908.png",
+    "NCG_&&_1000908_&&_0_&&_NCG_&&_https://coin.top/tokenLogo/tokenLogo_20180914221431.970346.jpeg",
   "1000909":
     "AlphaCoin_&&_1000909_&&_0_&&_ALF_&&_https://coin.top/production/js/20190509074813.png",
   "1000910":
-    "Tronbaba_&&_1000910_&&_0_&&_TBB_&&_https://coin.top/production/logo/1000910.png",
+    "Tronbaba_&&_1000910_&&_0_&&_TBB_&&_https://coin.top/tokenLogo/tokenLogo20180917030508.png",
   "1000911":
-    "SafeDriverNetwork_&&_1000911_&&_0_&&_SDN_&&_https://coin.top/production/logo/1000911.png",
+    "SafeDriverNetwork_&&_1000911_&&_0_&&_SDN_&&_https://coin.top/production/logo/1000911.jpeg",
   "1000912":
-    "Lottery_&&_1000912_&&_0_&&_LOTTO_&&_https://coin.top/production/logo/1000912.png",
+    "Lottery_&&_1000912_&&_0_&&_LOTTO_&&_https://coin.top/production/logo/1000912.jpeg",
   "1000913":
-    "iheartit_&&_1000913_&&_0_&&_ihi_&&_https://coin.top/production/logo/1000913.png",
+    "iheartit_&&_1000913_&&_0_&&_ihi_&&_https://coin.top/tokenLogo/tokenLogo_20180915195821.985165.jpeg",
   "1000914":
-    "FGG_&&_1000914_&&_0_&&_FGG_&&_https://coin.top/production/logo/1000914.png",
+    "FGG_&&_1000914_&&_0_&&_FGG_&&_https://coin.top/tokenLogo/tokenLogo_20180916004349.791966.jpeg",
   "1000915":
     "EasterEgg_&&_1000915_&&_0_&&_EGG_&&_https://coin.top/production/js/20190509074813.png",
   "1000916":
@@ -1834,9 +1834,9 @@ export const tokensMap = {
   "1000917":
     "Cardano_&&_1000917_&&_0_&&_CDO_&&_https://coin.top/production/js/20190509074813.png",
   "1000918":
-    "TRANSYS_&&_1000918_&&_0_&&_ECO_&&_https://coin.top/production/logo/1000918.png",
+    "TRANSYS_&&_1000918_&&_0_&&_ECO_&&_https://coin.top/production/logo/1000918.jpeg",
   "1000919":
-    "FwelcoES_&&_1000919_&&_0_&&_FWES_&&_https://coin.top/production/logo/1000919.png",
+    "FwelcoES_&&_1000919_&&_0_&&_FWES_&&_https://coin.top/production/logo/1000919.jpeg",
   "1000920":
     "TeddyBear_&&_1000920_&&_0_&&_BEAR_&&_https://coin.top/production/js/20190509074813.png",
   "1000921":
@@ -1850,21 +1850,21 @@ export const tokensMap = {
   "1000925":
     "RESPECTGOLDENTICKET_&&_1000925_&&_0_&&_RGOLD_&&_https://coin.top/production/js/20190509074813.png",
   "1000926":
-    "TronExchange_&&_1000926_&&_0_&&_TronX_&&_https://coin.top/production/logo/1000926.png",
+    "TronExchange_&&_1000926_&&_0_&&_TronX_&&_https://coin.top/production/logo/1000926.jpeg",
   "1000927":
     "AAFood_&&_1000927_&&_0_&&_afo_&&_https://coin.top/production/js/20190509074813.png",
   "1000928":
     "MicrosoftToken_&&_1000928_&&_0_&&_MSFT_&&_https://coin.top/production/js/20190509074813.png",
   "1000929":
-    "SAFFRON_&&_1000929_&&_0_&&_SAFE_&&_https://coin.top/production/logo/1000929.png",
+    "SAFFRON_&&_1000929_&&_0_&&_SAFE_&&_https://coin.top/production/logo/1000929.jpeg",
   "1000930":
-    "GhostNote_&&_1000930_&&_0_&&_GNOTE_&&_https://coin.top/production/logo/1000930.png",
+    "GhostNote_&&_1000930_&&_0_&&_GNOTE_&&_https://coin.top/production/logo/1000930.jpeg",
   "1000931":
-    "AllDayAllNightPoker_&&_1000931_&&_0_&&_ADNP_&&_https://coin.top/production/logo/1000931.png",
+    "AllDayAllNightPoker_&&_1000931_&&_0_&&_ADNP_&&_https://coin.top/production/logo/1000931.jpeg",
   "1000932":
     "GamingEmpowermentMaterialSource_&&_1000932_&&_0_&&_GEMS_&&_https://coin.top/production/js/20190509074813.png",
   "1000933":
-    "TronWatchMarket_&&_1000933_&&_0_&&_TWM_&&_https://coin.top/production/logo/1000933.png",
+    "TronWatchMarket_&&_1000933_&&_0_&&_TWM_&&_https://coin.top/production_test/js/20190618041746.png",
   "1000934":
     "BIGNET_&&_1000934_&&_0_&&_BIG_&&_https://coin.top/production/js/20190509074813.png",
   "1000935":
@@ -1872,27 +1872,27 @@ export const tokensMap = {
   "1000936":
     "MtwoTerra_&&_1000936_&&_0_&&_MTT_&&_https://coin.top/production/logo/1000936.png",
   "1000937":
-    "Cherry_&&_1000937_&&_0_&&_CHRY_&&_https://coin.top/production/logo/1000937.png",
+    "Cherry_&&_1000937_&&_0_&&_CHRY_&&_https://coin.top/production/logo/1000937.jpeg",
   "1000938":
-    "eFilingPlus_&&_1000938_&&_0_&&_EFILE_&&_https://coin.top/production/logo/1000938.png",
+    "eFilingPlus_&&_1000938_&&_0_&&_EFILE_&&_https://coin.top/tokenLogo/tokenLogo_20180921051027.235566.jpeg",
   "1000939":
-    "REVOLUTION_&&_1000939_&&_0_&&_REV_&&_https://coin.top/production/upload/logo/1000939.png?t=1571976864364",
+    "REVOLUTION_&&_1000939_&&_0_&&_REV_&&_https://coin.top/tokenLogo/tokenLogo_20180921103839.165750.jpeg",
   "1000940":
     "Sesameseed_&&_1000940_&&_0_&&_SEED_&&_https://coin.top/production/logo/1000940.png",
   "1000941":
     "VeTronHealth_&&_1000941_&&_0_&&_VTN_&&_https://coin.top/production/js/20190509074813.png",
   "1000942":
-    "Dilithium_&&_1000942_&&_0_&&_DLT_&&_https://coin.top/production/logo/1000942.png",
+    "Dilithium_&&_1000942_&&_0_&&_DLT_&&_https://coin.top/tokenLogo/tokenLogo_20180922125337.061342.jpeg",
   "1000943":
     "GEMS_&&_1000943_&&_0_&&_gems_&&_https://coin.top/production/logo/1000943.png",
   "1000944":
-    "THANOSTOKEN_&&_1000944_&&_0_&&_THANO_&&_https://coin.top/production/logo/1000944.png",
+    "THANOSTOKEN_&&_1000944_&&_0_&&_THANO_&&_https://coin.top/production/logo/1000944.jpeg",
   "1000945":
     "EMStoken_&&_1000945_&&_0_&&_EMS_&&_https://coin.top/production/logo/1000945.png",
   "1000946":
     "PEACECOIN_&&_1000946_&&_0_&&_PCC_&&_https://coin.top/production/js/20190509074813.png",
   "1000947":
-    "Chocolate_&&_1000947_&&_0_&&_CHOC_&&_https://coin.top/production/upload/logo/1000947.jpeg?t=1571888624633",
+    "Chocolate_&&_1000947_&&_0_&&_CHOC_&&_C:\fakepathchocolow.jpg?t=1566800290082",
   "1000948":
     "SEEDpresale_&&_1000948_&&_0_&&_SEED_&&_https://coin.top/production/logo/1000948.png",
   "1000949":
@@ -1900,7 +1900,7 @@ export const tokensMap = {
   "1000950":
     "VortexCoin_&&_1000950_&&_0_&&_XVX_&&_https://coin.top/production/js/20190509074813.png",
   "1000951":
-    "FFS_&&_1000951_&&_0_&&_FFS_&&_https://coin.top/production/logo/1000951.png",
+    "FFS_&&_1000951_&&_0_&&_FFS_&&_https://coin.top/tokenLogo/tokenLogo_20180924004959.338918.jpeg",
   "1000952":
     "CryptoTrade_&&_1000952_&&_0_&&_CTR_&&_https://coin.top/production/js/20190509074813.png",
   "1000953":
@@ -1912,19 +1912,19 @@ export const tokensMap = {
   "1000956":
     "oK_&&_1000956_&&_0_&&_oK_&&_https://coin.top/production/js/20190509074813.png",
   "1000957":
-    "NoFucksGiven_&&_1000957_&&_0_&&_NFG_&&_https://coin.top/production/logo/1000957.png",
+    "NoFucksGiven_&&_1000957_&&_0_&&_NFG_&&_https://coin.top/production/logo/1000957.jpeg",
   "1000958":
-    "XMAS_&&_1000958_&&_0_&&_XMAS_&&_https://coin.top/production/logo/1000958.png",
+    "XMAS_&&_1000958_&&_0_&&_XMAS_&&_https://coin.top/production/logo/1000958.jpeg",
   "1000959":
-    "WatsonAI_&&_1000959_&&_0_&&_WAI_&&_https://coin.top/production/logo/1000959.png",
+    "WatsonAI_&&_1000959_&&_0_&&_WAI_&&_https://coin.top/tokenLogo/tokenLogo_20180925011915.635974.jpeg",
   "1000960":
-    "TronWatchmarket_&&_1000960_&&_0_&&_TWM_&&_https://coin.top/production/logo/1000960.png",
+    "TronWatchmarket_&&_1000960_&&_0_&&_TWM_&&_https://coin.top/production/logo/1000960.jpeg",
   "1000961":
     "TronMarketWatch_&&_1000961_&&_0_&&_TMW_&&_https://coin.top/production/js/20190509074813.png",
   "1000962":
     "AnimalRescue_&&_1000962_&&_0_&&_AR_&&_https://coin.top/production/js/20190509074813.png",
   "1000963":
-    "TKO_&&_1000963_&&_0_&&_TTKO_&&_https://coin.top/production/logo/1000963.png",
+    "TKO_&&_1000963_&&_0_&&_TTKO_&&_https://coin.top/tokenLogo/tokenLogo_20180925095707.774873.jpeg",
   "1000964":
     "AllahCoin_&&_1000964_&&_0_&&_AC_&&_https://coin.top/production/js/20190509074813.png",
   "1000965":
@@ -1936,21 +1936,21 @@ export const tokensMap = {
   "1000968":
     "Egg_&&_1000968_&&_0_&&_EGG_&&_https://coin.top/production/js/20190509074813.png",
   "1000969":
-    "PRO_&&_1000969_&&_0_&&_PRO_&&_https://coin.top/production/logo/1000969.png",
+    "PRO_&&_1000969_&&_0_&&_PRO_&&_https://coin.top/tokenLogo/tokenLogo_20180926054756.807781.jpeg",
   "1000970":
     "Tronimals_&&_1000970_&&_0_&&_TRA_&&_https://coin.top/production/js/20190509074813.png",
   "1000971":
     "EGGUITY_&&_1000971_&&_0_&&_EGGTY_&&_https://coin.top/production/js/20190509074813.png",
   "1000972":
-    "Samsung_&&_1000972_&&_0_&&_SST_&&_https://coin.top/production/logo/1000972.png",
+    "Samsung_&&_1000972_&&_0_&&_SST_&&_https://coin.top/production/logo/1000972.jpeg",
   "1000973":
     "Huawei_&&_1000973_&&_0_&&_HWT_&&_https://coin.top/production/logo/1000973.png",
   "1000974":
-    "ARCH_&&_1000974_&&_0_&&_ARCH_&&_https://coin.top/production/logo/1000974.png",
+    "ARCH_&&_1000974_&&_0_&&_ARCH_&&_https://coin.top/production/logo/1000974.jpeg",
   "1000975":
     "PLANKTONS_&&_1000975_&&_0_&&_PTON_&&_https://coin.top/production/js/20190509074813.png",
   "1000976":
-    "Tronwatchmarket_&&_1000976_&&_0_&&_TWM_&&_https://coin.top/production/logo/1000976.png",
+    "Tronwatchmarket_&&_1000976_&&_0_&&_TWM_&&_https://coin.top/production/logo/1000976.jpeg",
   "1000977":
     "PROMO_&&_1000977_&&_0_&&_PROMO_&&_https://coin.top/production/logo/1000977.png",
   "1000978":
@@ -1958,7 +1958,7 @@ export const tokensMap = {
   "1000979":
     "WABworld_&&_1000979_&&_0_&&_WB_&&_https://coin.top/production/js/20190509074813.png",
   "1000980":
-    "FOCUS_&&_1000980_&&_0_&&_FCS_&&_https://coin.top/production/logo/1000980.png",
+    "FOCUS_&&_1000980_&&_0_&&_FCS_&&_https://coin.top/tokenLogo/tokenLogo20180917030508.png",
   "1000981":
     "TRONBEAN_&&_1000981_&&_0_&&_BEAN_&&_https://coin.top/production/js/20190509074813.png",
   "1000982":
@@ -1968,23 +1968,23 @@ export const tokensMap = {
   "1000984":
     "MediaWiki_&&_1000984_&&_0_&&_WM_&&_https://coin.top/production/logo/1000984.png",
   "1000985":
-    "Santa_&&_1000985_&&_0_&&_Santa_&&_https://coin.top/production/logo/1000985.png",
+    "Santa_&&_1000985_&&_0_&&_Santa_&&_https://coin.top/production/logo/1000985.jpeg",
   "1000986":
-    "MICASA_&&_1000986_&&_0_&&_CASA_&&_https://coin.top/production/logo/1000986.png",
+    "MICASA_&&_1000986_&&_0_&&_CASA_&&_https://coin.top/production/logo/1000986.jpeg",
   "1000987":
     "GreenWaterpower_&&_1000987_&&_0_&&_GWP_&&_https://coin.top/production/js/20190509074813.png",
   "1000988":
-    "Pagemesh_&&_1000988_&&_0_&&_PMSH_&&_https://coin.top/production/logo/1000988.png",
+    "Pagemesh_&&_1000988_&&_0_&&_PMSH_&&_https://coin.top/tokenLogo/tokenLogo20180917030508.png",
   "1000989":
-    "WHEN_&&_1000989_&&_0_&&_WHEN_&&_https://coin.top/production/logo/1000989.png",
+    "WHEN_&&_1000989_&&_0_&&_WHEN_&&_https://coin.top/production/logo/1000989.jpeg",
   "1000990":
     "KentuckyFriedCoin_&&_1000990_&&_0_&&_KFC_&&_https://coin.top/production/js/20190509074813.png",
   "1000991":
     "CRBN_&&_1000991_&&_0_&&_CRBN_&&_https://coin.top/production/js/20190509074813.png",
   "1000992":
-    "LoveHeart_&&_1000992_&&_0_&&_LVH_&&_https://coin.top/production/logo/1000992.png",
+    "LoveHeart_&&_1000992_&&_0_&&_LVH_&&_https://coin.top/production/logo/1000992.jpeg",
   "1000993":
-    "DANCE_&&_1000993_&&_0_&&_DANCE_&&_https://coin.top/production/logo/1000993.png",
+    "DANCE_&&_1000993_&&_0_&&_DANCE_&&_https://coin.top/production/logo/1000993.jpeg",
   "1000994":
     "Pikachu_&&_1000994_&&_0_&&_PIKA_&&_https://coin.top/production/js/20190509074813.png",
   "1000995":
@@ -1994,7 +1994,7 @@ export const tokensMap = {
   "1000997":
     "Squirtle_&&_1000997_&&_0_&&_SQUIRTLE_&&_https://coin.top/production/js/20190509074813.png",
   "1000998":
-    "GAcoin_&&_1000998_&&_0_&&_GAC_&&_https://coin.top/production/logo/1000998.png",
+    "GAcoin_&&_1000998_&&_0_&&_GAC_&&_https://coin.top/production/logo/1000998.jpeg",
   "1000999":
     "tronloot_&&_1000999_&&_0_&&_LOOT_&&_https://coin.top/production/js/20190509074813.png",
   "1001000":
@@ -2016,39 +2016,39 @@ export const tokensMap = {
   "1001008":
     "Mykocoin_&&_1001008_&&_0_&&_MYKO_&&_https://coin.top/production/js/20190509074813.png",
   "1001009":
-    "IndicaGeneSeed_&&_1001009_&&_0_&&_INDCA_&&_https://coin.top/production/logo/1001009.png",
+    "IndicaGeneSeed_&&_1001009_&&_0_&&_INDCA_&&_https://coin.top/production/logo/1001009.jpeg",
   "1001010":
-    "SativaGeneSeed_&&_1001010_&&_0_&&_SATVA_&&_https://coin.top/production/logo/1001010.png",
+    "SativaGeneSeed_&&_1001010_&&_0_&&_SATVA_&&_https://coin.top/production/logo/1001010.jpeg",
   "1001011":
-    "KiloReX_&&_1001011_&&_0_&&_KTRX_&&_https://coin.top/production/logo/1001011.png",
+    "KiloReX_&&_1001011_&&_0_&&_KTRX_&&_https://coin.top/production/logo/1001011.jpeg",
   "1001012":
-    "LuckyClover_&&_1001012_&&_0_&&_LCC_&&_https://coin.top/production/upload/logo/1001012.jpeg?t=1571300128900",
+    "LuckyClover_&&_1001012_&&_0_&&_LCC_&&_https://coin.top/tokenLogo/tokenLogo_20181001091419.440947.jpeg",
   "1001013":
     "TronPlatinum_&&_1001013_&&_0_&&_TPL_&&_https://coin.top/production/js/20190509074813.png",
   "1001014":
-    "TronLegitGaming_&&_1001014_&&_0_&&_TLG_&&_https://coin.top/production/logo/1001014.png",
+    "TronLegitGaming_&&_1001014_&&_0_&&_TLG_&&_https://coin.top/production/logo/1001014.jpeg",
   "1001015":
     "Apples_&&_1001015_&&_0_&&_APP_&&_https://coin.top/production/js/20190509074813.png",
   "1001016":
-    "EsoCash_&&_1001016_&&_0_&&_ESOCH_&&_https://coin.top/production/logo/1001016.png",
+    "EsoCash_&&_1001016_&&_0_&&_ESOCH_&&_https://coin.top/tokenLogo/tokenLogo_20181002014710.341564.jpeg",
   "1001017":
-    "CommunityAction_&&_1001017_&&_0_&&_CAT_&&_https://coin.top/production/logo/1001017.png",
+    "CommunityAction_&&_1001017_&&_0_&&_CAT_&&_https://coin.top/tokenLogo/tokenLogo_20181002055853.213456.jpeg",
   "1001018":
-    "tronwatchmarket_&&_1001018_&&_0_&&_TWM_&&_https://coin.top/production/logo/1001018.png",
+    "tronwatchmarket_&&_1001018_&&_0_&&_TWM_&&_https://coin.top/production/logo/1001018.jpeg",
   "1001019":
-    "Jocknuts_&&_1001019_&&_0_&&_JN_&&_https://coin.top/production/logo/1001019.png",
+    "Jocknuts_&&_1001019_&&_0_&&_JN_&&_https://coin.top/production/logo/1001019.jpeg",
   "1001020":
     "Tebro_&&_1001020_&&_0_&&_Tbr_&&_https://coin.top/production/js/20190509074813.png",
   "1001021":
     "AIgang_&&_1001021_&&_0_&&_Agan_&&_https://coin.top/production/js/20190509074813.png",
   "1001022":
-    "Karma_&&_1001022_&&_0_&&_KRMA_&&_https://coin.top/production/logo/1001022.png",
+    "Karma_&&_1001022_&&_0_&&_KRMA_&&_https://coin.top/production/logo/1001022.jpeg",
   "1001023":
-    "Blood_&&_1001023_&&_0_&&_BLD_&&_https://coin.top/production/logo/1001023.png",
+    "Blood_&&_1001023_&&_0_&&_BLD_&&_https://coin.top/production/logo/1001023.jpeg",
   "1001024":
-    "ViaBTC_&&_1001024_&&_0_&&_VIAT_&&_https://coin.top/production/logo/1001024.png",
+    "ViaBTC_&&_1001024_&&_0_&&_VIAT_&&_https://coin.top/production/logo/1001024.jpeg",
   "1001025":
-    "LuckyTron_&&_1001025_&&_0_&&_LUCK_&&_https://coin.top/production/logo/1001025.png",
+    "LuckyTron_&&_1001025_&&_0_&&_LUCK_&&_https://coin.top/production/logo/1001025.jpeg",
   "1001026":
     "prirodni_&&_1001026_&&_0_&&_Truhl_&&_https://coin.top/production/js/20190509074813.png",
   "1001027":
@@ -2064,45 +2064,45 @@ export const tokensMap = {
   "1001032":
     "CamModelToken_&&_1001032_&&_0_&&_CMTC_&&_https://coin.top/production/js/20190509074813.png",
   "1001033":
-    "TMW_&&_1001033_&&_0_&&_TMW_&&_https://coin.top/production/logo/1001033.png",
+    "TMW_&&_1001033_&&_0_&&_TMW_&&_https://coin.top/production/logo/1001033.jpeg",
   "1001034":
-    "TronWatchToken_&&_1001034_&&_0_&&_TWT_&&_https://coin.top/production/logo/1001034.png",
+    "TronWatchToken_&&_1001034_&&_0_&&_TWT_&&_https://coin.top/production/logo/1001034.jpeg",
   "1001035":
-    "TronADS_&&_1001035_&&_0_&&_ADST_&&_https://coin.top/production/logo/1001035.png",
+    "TronADS_&&_1001035_&&_0_&&_ADST_&&_https://coin.top/production/logo/1001035.jpeg",
   "1001036":
     "SesameSEED_&&_1001036_&&_0_&&_SEED_&&_https://coin.top/production/logo/1001036.png",
   "1001037":
-    "CyberTrons_&&_1001037_&&_0_&&_CTRX_&&_https://coin.top/production/logo/1001037.png",
+    "CyberTrons_&&_1001037_&&_0_&&_CTRX_&&_https://coin.top/production/logo/1001037.jpeg",
   "1001038":
     "BESTCOIN_&&_1001038_&&_0_&&_BCL_&&_https://coin.top/production/logo/1001038.png",
   "1001039":
     "GoodVibes_&&_1001039_&&_0_&&_Vibe_&&_https://coin.top/production/js/20190509074813.png",
   "1001040":
-    "LUV_&&_1001040_&&_0_&&_LUV_&&_https://coin.top/production/logo/1001040.png",
+    "LUV_&&_1001040_&&_0_&&_LUV_&&_https://coin.top/production/logo/1001040.jpeg",
   "1001041":
-    "MEG_&&_1001041_&&_0_&&_MEG_&&_https://coin.top/production/logo/1001041.png",
+    "MEG_&&_1001041_&&_0_&&_MEG_&&_https://coin.top/tokenLogo/tokenLogo_20181006044131.496573.jpeg",
   "1001042":
     "CITY_&&_1001042_&&_0_&&_CITY_&&_https://coin.top/production/js/20190509074813.png",
   "1001043":
-    "RETRO_&&_1001043_&&_0_&&_RTR_&&_https://coin.top/production/logo/1001043.png",
+    "RETRO_&&_1001043_&&_0_&&_RTR_&&_https://coin.top/production/logo/1001043.jpeg",
   "1001044":
-    "Lotto_&&_1001044_&&_0_&&_Lotto_&&_https://coin.top/production/logo/1001044.png",
+    "Lotto_&&_1001044_&&_0_&&_Lotto_&&_https://coin.top/tokenLogo/tokenLogo20180917030508.png",
   "1001045":
-    "RoboDiamond_&&_1001045_&&_0_&&_RBD_&&_https://coin.top/production/logo/1001045.png",
+    "RoboDiamond_&&_1001045_&&_0_&&_RBD_&&_https://coin.top/production/upload/logo/1001045.png?t=1569110840742",
   "1001046":
-    "TronPlatinumBusiness_&&_1001046_&&_0_&&_TPLB_&&_https://coin.top/production/logo/1001046.png",
+    "TronPlatinumBusiness_&&_1001046_&&_0_&&_TPLB_&&_https://coin.top/tokenLogo/tokenLogo20180917030508.png",
   "1001047":
-    "TronPlatinumElite_&&_1001047_&&_0_&&_TPLE_&&_https://coin.top/production/logo/1001047.png",
+    "TronPlatinumElite_&&_1001047_&&_0_&&_TPLE_&&_https://coin.top/tokenLogo/tokenLogo20180917030508.png",
   "1001048":
-    "EtradeToken_&&_1001048_&&_0_&&_ETFC_&&_https://coin.top/production/logo/1001048.png",
+    "EtradeToken_&&_1001048_&&_0_&&_ETFC_&&_https://coin.top/tokenLogo/tokenLogo20180917030508.png",
   "1001049":
     "FirstNobleGroup_&&_1001049_&&_0_&&_FNG_&&_https://coin.top/production/js/20190509074813.png",
   "1001050":
-    "KiwiBerry_&&_1001050_&&_0_&&_KIWI_&&_https://coin.top/production/logo/1001050.png",
+    "KiwiBerry_&&_1001050_&&_0_&&_KIWI_&&_https://coin.top/production/logo/1001050.jpeg",
   "1001051":
-    "Athesis_&&_1001051_&&_0_&&_Ath_&&_https://coin.top/production/logo/1001051.png",
+    "Athesis_&&_1001051_&&_0_&&_Ath_&&_https://coin.top/production/logo/1001051.jpeg",
   "1001052":
-    "DRIVEN_&&_1001052_&&_0_&&_DVN_&&_https://coin.top/production/logo/1001052.png",
+    "DRIVEN_&&_1001052_&&_0_&&_DVN_&&_https://coin.top/production/logo/1001052.jpeg",
   "1001053":
     "KIWIBERRY_&&_1001053_&&_0_&&_FAKE_&&_https://coin.top/production/js/20190509074813.png",
   "1001054":
@@ -2112,47 +2112,47 @@ export const tokensMap = {
   "1001056":
     "Kiwiberry_&&_1001056_&&_0_&&_FAKE_&&_https://coin.top/production/js/20190509074813.png",
   "1001057":
-    "BerryBonds_&&_1001057_&&_0_&&_BONDS_&&_https://coin.top/production/logo/1001057.png",
+    "BerryBonds_&&_1001057_&&_0_&&_BONDS_&&_https://coin.top/production/logo/1001057.jpeg",
   "1001058":
-    "DigitalDollar_&&_1001058_&&_0_&&_DLL_&&_https://coin.top/production/logo/1001058.png",
+    "DigitalDollar_&&_1001058_&&_0_&&_DLL_&&_https://coin.top/production/logo/1001058.jpeg",
   "1001059":
     "FuegoCat_&&_1001059_&&_0_&&_FUC_&&_https://coin.top/production/js/20190509074813.png",
   "1001060":
-    "STARBUCKS_&&_1001060_&&_0_&&_str_&&_https://coin.top/production/logo/1001060.png",
+    "STARBUCKS_&&_1001060_&&_0_&&_str_&&_https://coin.top/production/logo/1001060.jpeg",
   "1001061":
     "Buisness_&&_1001061_&&_0_&&_BNP_&&_https://coin.top/production/js/20190509074813.png",
   "1001062":
     "SECRET_&&_1001062_&&_0_&&_SCRT_&&_https://coin.top/production/js/20190509074813.png",
   "1001063":
-    "BolsonaroPresidente_&&_1001063_&&_0_&&_JBP_&&_https://coin.top/production/logo/1001063.png",
+    "BolsonaroPresidente_&&_1001063_&&_0_&&_JBP_&&_https://coin.top/production/logo/1001063.jpeg",
   "1001064":
-    "RCNT_&&_1001064_&&_0_&&_REO_&&_https://coin.top/production/logo/1001064.png",
+    "RCNT_&&_1001064_&&_0_&&_REO_&&_https://coin.top/production/logo/1001064.jpeg",
   "1001065":
-    "Cryptomodity_&&_1001065_&&_0_&&_CMDTY_&&_https://coin.top/production/logo/1001065.png",
+    "Cryptomodity_&&_1001065_&&_0_&&_CMDTY_&&_https://coin.top/production/logo/1001065.jpeg",
   "1001066":
-    "Kiwi_&&_1001066_&&_0_&&_KIWI_&&_https://coin.top/production/logo/1001066.png",
+    "Kiwi_&&_1001066_&&_0_&&_KIWI_&&_https://coin.top/tokenLogo/tokenLogo_20181008131826.057378.jpeg",
   "1001067":
-    "KIWIBerry_&&_1001067_&&_0_&&_KIWI_&&_https://coin.top/production/logo/1001067.png",
+    "KIWIBerry_&&_1001067_&&_0_&&_KIWI_&&_https://coin.top/production/logo/1001067.jpeg",
   "1001068":
-    "SPEED_&&_1001068_&&_0_&&_SPEED_&&_https://coin.top/production/logo/1001068.png",
+    "SPEED_&&_1001068_&&_0_&&_SPEED_&&_https://coin.top/tokenLogo/tokenLogo_20181008171946.461639.jpeg",
   "1001069":
-    "SummaTRON_&&_1001069_&&_0_&&_STX_&&_https://coin.top/production/logo/1001069.png",
+    "SummaTRON_&&_1001069_&&_0_&&_STX_&&_https://coin.top/tokenLogo/tokenLogo_20181008182759.977569.jpeg",
   "1001070":
-    "TravelToken_&&_1001070_&&_0_&&_TRL_&&_https://coin.top/production/logo/1001070.png",
+    "TravelToken_&&_1001070_&&_0_&&_TRL_&&_https://coin.top/production/logo/1001070.jpeg",
   "1001071":
-    "MarshMeloToken_&&_1001071_&&_0_&&_MMT_&&_https://coin.top/production/logo/1001071.png",
+    "MarshMeloToken_&&_1001071_&&_0_&&_MMT_&&_https://coin.top/production/logo/1001071.jpg",
   "1001072":
-    "NTFM_&&_1001072_&&_0_&&_NTFM_&&_https://coin.top/production/logo/1001072.png",
+    "NTFM_&&_1001072_&&_0_&&_NTFM_&&_https://coin.top/production/logo/1001072.jpeg",
   "1001073":
     "walmart_&&_1001073_&&_0_&&_WMT_&&_https://coin.top/production/js/20190509074813.png",
   "1001074":
     "MenzCoin_&&_1001074_&&_0_&&_MENZ_&&_https://coin.top/production/js/20190509074813.png",
   "1001075":
-    "ProjectTree_&&_1001075_&&_0_&&_TREE_&&_https://coin.top/production/logo/1001075.png",
+    "ProjectTree_&&_1001075_&&_0_&&_TREE_&&_https://coin.top/tokenLogo/tokenLogo_20181009072438.515843.jpeg",
   "1001076":
-    "digitize_&&_1001076_&&_0_&&_DIG_&&_https://coin.top/production/logo/1001076.png",
+    "digitize_&&_1001076_&&_0_&&_DIG_&&_https://coin.top/tokenLogo/tokenLogo_20181009095419.478341.jpeg",
   "1001077":
-    "INGOTcoin_&&_1001077_&&_0_&&_IC_&&_https://coin.top/production/logo/1001077.png",
+    "INGOTcoin_&&_1001077_&&_0_&&_IC_&&_https://coin.top/production/logo/1001077.jpeg",
   "1001078":
     "Rocket_&&_1001078_&&_0_&&_ROKET_&&_https://coin.top/production/js/20190509074813.png",
   "1001079":
@@ -2162,27 +2162,27 @@ export const tokensMap = {
   "1001081":
     "TronICE_&&_1001081_&&_0_&&_Trice_&&_https://coin.top/production/js/20190509074813.png",
   "1001082":
-    "HODL_&&_1001082_&&_0_&&_HODL_&&_https://coin.top/production/logo/1001082.png",
+    "HODL_&&_1001082_&&_0_&&_HODL_&&_https://coin.top/production/logo/1001082.jpeg",
   "1001083":
     "lucifeR_&&_1001083_&&_0_&&_LCR_&&_https://coin.top/production/js/20190509074813.png",
   "1001084":
     "TronClassic_&&_1001084_&&_0_&&_TCL_&&_https://coin.top/production/js/20190509074813.png",
   "1001085":
-    "Cheers_&&_1001085_&&_0_&&_CHRS_&&_https://coin.top/production/logo/1001085.png",
+    "Cheers_&&_1001085_&&_0_&&_CHRS_&&_https://coin.top/production/logo/1001085.jpeg",
   "1001086":
-    "TheTrustToken_&&_1001086_&&_0_&&_TRSD_&&_https://coin.top/production/logo/1001086.png",
+    "TheTrustToken_&&_1001086_&&_0_&&_TRSD_&&_https://coin.top/production/logo/1001086.jpeg",
   "1001087":
-    "TRONSCHOOL_&&_1001087_&&_0_&&_COOL_&&_https://coin.top/production/logo/1001087.png",
+    "TRONSCHOOL_&&_1001087_&&_0_&&_COOL_&&_https://coin.top/tokenLogo/tokenLogo_20181010211701.502412.jpeg",
   "1001088":
-    "Passch_&&_1001088_&&_0_&&_PCH_&&_https://coin.top/production/logo/1001088.png",
+    "Passch_&&_1001088_&&_0_&&_PCH_&&_https://coin.top/production/logo/1001088.jpeg",
   "1001089":
     "MileProCoin_&&_1001089_&&_0_&&_MPC_&&_https://coin.top/production/js/20190509074813.png",
   "1001090":
-    "TRONONE_&&_1001090_&&_0_&&_TONE_&&_https://coin.top/production/logo/1001090.png",
+    "TRONONE_&&_1001090_&&_0_&&_TONE_&&_https://coin.top/production_test/js/20190618041604.jpg",
   "1001091":
-    "SCC_&&_1001091_&&_0_&&_SCC_&&_https://coin.top/production/upload/logo/1001091.png?t=1574005151860",
+    "SCC_&&_1001091_&&_0_&&_SCC_&&_https://coin.top/production_test/js/20190618041455.png",
   "1001092":
-    "SCT_&&_1001092_&&_0_&&_SCT_&&_https://coin.top/production/logo/1001092.png",
+    "SCT_&&_1001092_&&_0_&&_SCT_&&_https://coin.top/production_test/js/20190618041510.png",
   "1001093":
     "pro_&&_1001093_&&_0_&&_PRO_&&_https://coin.top/production/js/20190509074813.png",
   "1001094":
@@ -2196,9 +2196,9 @@ export const tokensMap = {
   "1001098":
     "HAPPY_&&_1001098_&&_0_&&_Hap_&&_https://coin.top/production/js/20190509074813.png",
   "1001099":
-    "KulaCoin_&&_1001099_&&_0_&&_KULA_&&_https://coin.top/production/logo/1001099.png",
+    "KulaCoin_&&_1001099_&&_0_&&_KULA_&&_https://coin.top/tokenLogo/tokenLogo_20181012065741.309353.jpeg",
   "1001100":
-    "Ervincoin_&&_1001100_&&_0_&&_ERVN_&&_https://coin.top/production/logo/1001100.png",
+    "Ervincoin_&&_1001100_&&_0_&&_ERVN_&&_https://coin.top/production/logo/1001100.jpeg",
   "1001101":
     "TronPay_&&_1001101_&&_0_&&_TPX_&&_https://coin.top/production/js/20190509074813.png",
   "1001102":
@@ -2210,53 +2210,53 @@ export const tokensMap = {
   "1001105":
     "jtoken_&&_1001105_&&_0_&&_JT_&&_https://coin.top/production/js/20190509074813.png",
   "1001106":
-    "Ruby_&&_1001106_&&_0_&&_rby_&&_https://coin.top/production/logo/1001106.png",
+    "Ruby_&&_1001106_&&_0_&&_rby_&&_https://coin.top/production/logo/1001106.jpeg",
   "1001107":
-    "KAOSCANDY_&&_1001107_&&_0_&&_KAOS_&&_https://coin.top/production/logo/1001107.png",
+    "KAOSCANDY_&&_1001107_&&_0_&&_KAOS_&&_https://coin.top/production/logo/1001107.jpeg",
   "1001108":
     "kaoscandy_&&_1001108_&&_0_&&_kaos_&&_https://coin.top/production/js/20190509074813.png",
   "1001109":
-    "TRONbetANTE_&&_1001109_&&_0_&&_ANTE_&&_https://coin.top/production/logo/1001109.png",
+    "TRONbetANTE_&&_1001109_&&_0_&&_ANTE_&&_https://coin.top/production/logo/1001109.jpeg",
   "1001110":
-    "TRONbetAnte_&&_1001110_&&_0_&&_Ante_&&_https://coin.top/production/logo/1001110.png",
+    "TRONbetAnte_&&_1001110_&&_0_&&_Ante_&&_https://coin.top/production/logo/1001110.jpeg",
   "1001111":
-    "ROSKACOIN_&&_1001111_&&_0_&&_ROSKA_&&_https://coin.top/production/logo/1001111.png",
+    "ROSKACOIN_&&_1001111_&&_0_&&_ROSKA_&&_https://coin.top/tokenLogo/tokenLogo_20181013173620.132208.jpeg",
   "1001112":
-    "TRONUSD_&&_1001112_&&_0_&&_TUSD_&&_https://coin.top/production/logo/1001112.png",
+    "TRONUSD_&&_1001112_&&_0_&&_TUSD_&&_https://coin.top/production/logo/1001112.jpeg",
   "1001113":
-    "ChainLink_&&_1001113_&&_0_&&_LNK_&&_https://coin.top/production/logo/1001113.png",
+    "ChainLink_&&_1001113_&&_0_&&_LNK_&&_https://coin.top/production/logo/1001113.jpeg",
   "1001114":
-    "BMCard_&&_1001114_&&_0_&&_BM_&&_https://coin.top/production/logo/1001114.png",
+    "BMCard_&&_1001114_&&_0_&&_BM_&&_https://coin.top/production/logo/1001114.jpeg",
   "1001115":
-    "eBayInc_&&_1001115_&&_0_&&_eBay_&&_https://coin.top/production/logo/1001115.png",
+    "eBayInc_&&_1001115_&&_0_&&_eBay_&&_https://coin.top/tokenLogo/tokenLogo_20181014124945.720641.jpeg",
   "1001116":
-    "MEDUSA_&&_1001116_&&_0_&&_DUSA_&&_https://coin.top/production/logo/1001116.png",
+    "MEDUSA_&&_1001116_&&_0_&&_DUSA_&&_https://coin.top/tokenLogo/tokenLogo_20181014152854.980189.jpeg",
   "1001117":
-    "SWOP_&&_1001117_&&_0_&&_SWOP_&&_https://coin.top/production/logo/1001117.png",
+    "SWOP_&&_1001117_&&_0_&&_SWOP_&&_https://coin.top/tokenLogo/tokenLogo_20181014162942.562791.jpeg",
   "1001118":
-    "ATMDistribution_&&_1001118_&&_0_&&_ATMTR_&&_https://coin.top/production/logo/1001118.png",
+    "ATMDistribution_&&_1001118_&&_0_&&_ATMTR_&&_https://coin.top/tokenLogo/tokenLogo20180917030508.png",
   "1001119":
     "Rabbit_&&_1001119_&&_0_&&_PSB_&&_https://coin.top/production/js/20190509074813.png",
   "1001120":
-    "TronPhone_&&_1001120_&&_0_&&_TRXP_&&_https://coin.top/production/logo/1001120.png",
+    "TronPhone_&&_1001120_&&_0_&&_TRXP_&&_https://coin.top/tokenLogo/tokenLogo20180917030508.png",
   "1001121":
-    "TronixRed_&&_1001121_&&_0_&&_TXR_&&_https://coin.top/production/logo/1001121.png",
+    "TronixRed_&&_1001121_&&_0_&&_TXR_&&_https://coin.top/production/logo/1001121.jpeg",
   "1001122":
-    "TRONbetante_&&_1001122_&&_0_&&_ante_&&_https://coin.top/production/logo/1001122.png",
+    "TRONbetante_&&_1001122_&&_0_&&_ante_&&_https://coin.top/production/logo/1001122.jpeg",
   "1001123":
-    "CryptoCashCow_&&_1001123_&&_0_&&_CCC_&&_https://coin.top/production/logo/1001123.png",
+    "CryptoCashCow_&&_1001123_&&_0_&&_CCC_&&_https://coin.top/tokenLogo/tokenLogo_20181015170132.178368.jpeg",
   "1001124":
-    "HCART_&&_1001124_&&_0_&&_HCART_&&_https://coin.top/production/logo/1001124.png",
+    "HCART_&&_1001124_&&_0_&&_HCART_&&_https://coin.top/tokenLogo/tokenLogo_20181015204542.191971.jpeg",
   "1001125":
-    "TitheCoin_&&_1001125_&&_0_&&_TITHE_&&_https://coin.top/production/logo/1001125.png",
+    "TitheCoin_&&_1001125_&&_0_&&_TITHE_&&_https://coin.top/production/logo/1001125.jpeg",
   "1001126":
-    "DinwiddieCoin_&&_1001126_&&_0_&&_DWC_&&_https://coin.top/production/logo/1001126.png",
+    "DinwiddieCoin_&&_1001126_&&_0_&&_DWC_&&_https://coin.top/production/logo/1001126.jpeg",
   "1001127":
-    "KaosCandy_&&_1001127_&&_0_&&_FAKE_&&_https://coin.top/production/logo/1001127.png",
+    "KaosCandy_&&_1001127_&&_0_&&_FAKE_&&_https://coin.top/production/logo/1001127.jpeg",
   "1001128":
-    "Kaoscandy_&&_1001128_&&_0_&&_FAKE_&&_https://coin.top/production/logo/1001128.png",
+    "Kaoscandy_&&_1001128_&&_0_&&_FAKE_&&_https://coin.top/production/logo/1001128.jpeg",
   "1001129":
-    "KAOSKANDY_&&_1001129_&&_0_&&_FAKE_&&_https://coin.top/production/logo/1001129.png",
+    "KAOSKANDY_&&_1001129_&&_0_&&_FAKE_&&_https://coin.top/production/logo/1001129.jpeg",
   "1001130":
     "cityuptake_&&_1001130_&&_0_&&_NOT_&&_https://coin.top/production/js/20190509074813.png",
   "1001131":
@@ -2264,53 +2264,53 @@ export const tokensMap = {
   "1001132":
     "HOT_&&_1001132_&&_0_&&_HOT_&&_https://coin.top/production/js/20190509074813.png",
   "1001133":
-    "TronTube_&&_1001133_&&_0_&&_TTube_&&_https://coin.top/production/logo/1001133.png",
+    "TronTube_&&_1001133_&&_0_&&_TTube_&&_https://coin.top/production/logo/1001133.jpeg",
   "1001134":
-    "IdTronix_&&_1001134_&&_0_&&_ITX_&&_https://coin.top/production/logo/1001134.png",
+    "IdTronix_&&_1001134_&&_0_&&_ITX_&&_https://coin.top/tokenLogo/tokenLogo_20181017141733.426382.jpeg",
   "1001135":
-    "COFFEE_&&_1001135_&&_0_&&_CFE_&&_https://coin.top/production/logo/1001135.png",
+    "COFFEE_&&_1001135_&&_0_&&_CFE_&&_https://coin.top/tokenLogo/tokenLogo_20181017170032.714156.jpeg",
   "1001136":
     "AssChat_&&_1001136_&&_0_&&_ASS_&&_https://coin.top/production/logo/1001136.png",
   "1001137":
-    "Botcoin_&&_1001137_&&_0_&&_BOT_&&_https://coin.top/production/logo/1001137.png",
+    "Botcoin_&&_1001137_&&_0_&&_BOT_&&_https://coin.top/production/logo/1001137.jpeg",
   "1001138":
-    "NinetyNineCoin_&&_1001138_&&_0_&&_NNC_&&_https://coin.top/production/logo/1001138.png",
+    "NinetyNineCoin_&&_1001138_&&_0_&&_NNC_&&_https://coin.top/tokenLogo/tokenLogo20180917030508.png",
   "1001139":
-    "Nale_&&_1001139_&&_0_&&_NLM_&&_https://coin.top/production/logo/1001139.png",
+    "Nale_&&_1001139_&&_0_&&_NLM_&&_https://coin.top/production/logo/1001139.jpeg",
   "1001140":
     "SirHODLCoin_&&_1001140_&&_0_&&_SHC_&&_https://coin.top/production/js/20190509074813.png",
   "1001141":
-    "TestToken_&&_1001141_&&_0_&&_TT_&&_https://coin.top/production/logo/1001141.png",
+    "TestToken_&&_1001141_&&_0_&&_TT_&&_https://coin.top/production/logo/1001141.jpeg",
   "1001142":
-    "Stream_&&_1001142_&&_0_&&_STI_&&_https://coin.top/production/logo/1001142.png",
+    "Stream_&&_1001142_&&_0_&&_STI_&&_https://coin.top/production/logo/1001142.jpeg",
   "1001143":
-    "GazuaCash_&&_1001143_&&_0_&&_GZC_&&_https://coin.top/production/logo/1001143.png",
+    "GazuaCash_&&_1001143_&&_0_&&_GZC_&&_https://coin.top/production/logo/1001143.jpeg",
   "1001144":
     "TKG_&&_1001144_&&_0_&&_TKG_&&_https://coin.top/production/js/20190509074813.png",
   "1001145":
     "Git_&&_1001145_&&_0_&&_GIT_&&_https://coin.top/production/js/20190509074813.png",
   "1001146":
-    "GoldenDragon_&&_1001146_&&_0_&&_Draco_&&_https://coin.top/production/logo/1001146.png",
+    "GoldenDragon_&&_1001146_&&_0_&&_Draco_&&_https://coin.top/production/logo/1001146.jpeg",
   "1001147":
-    "MillionCoinX_&&_1001147_&&_0_&&_MONx_&&_https://coin.top/production/logo/1001147.png",
+    "MillionCoinX_&&_1001147_&&_0_&&_MONx_&&_https://coin.top/production/logo/1001147.jpeg",
   "1001148":
     "Slavacoin_&&_1001148_&&_0_&&_SLAVA_&&_https://coin.top/tokenLogo/tokenLogo_20181019133743.276980.jpeg",
   "1001149":
-    "Repertoire_&&_1001149_&&_0_&&_RPT_&&_https://coin.top/production/logo/1001149.png",
+    "Repertoire_&&_1001149_&&_0_&&_RPT_&&_https://coin.top/production/logo/1001149.jpeg",
   "1001150":
-    "MakeAWish_&&_1001150_&&_0_&&_MAW_&&_https://coin.top/production/logo/1001150.png",
+    "MakeAWish_&&_1001150_&&_0_&&_MAW_&&_https://coin.top/production/logo/1001150.jpeg",
   "1001151":
-    "Poppy_&&_1001151_&&_0_&&_POPPY_&&_https://coin.top/production/logo/1001151.png",
+    "Poppy_&&_1001151_&&_0_&&_POPPY_&&_https://coin.top/production/logo/1001151.jpeg",
   "1001152":
-    "FuegoDog_&&_1001152_&&_0_&&_FDOG_&&_https://coin.top/production/logo/1001152.png",
+    "FuegoDog_&&_1001152_&&_0_&&_FDOG_&&_https://coin.top/production/logo/1001152.jpeg",
   "1001153":
-    "AKC_&&_1001153_&&_0_&&_AKC_&&_https://coin.top/production/logo/1001153.png",
+    "AKC_&&_1001153_&&_0_&&_AKC_&&_https://coin.top/production/logo/1001153.jpeg",
   "1001154":
     "bitTron_&&_1001154_&&_0_&&_BTRON_&&_https://coin.top/production/js/20190509074813.png",
   "1001155":
-    "POPPY_&&_1001155_&&_0_&&_POPPY_&&_https://coin.top/production/logo/1001155.png",
+    "POPPY_&&_1001155_&&_0_&&_POPPY_&&_https://coin.top/production/logo/1001155.jpeg",
   "1001156":
-    "Cupcake_&&_1001156_&&_0_&&_CC_&&_https://coin.top/production/logo/1001156.png",
+    "Cupcake_&&_1001156_&&_0_&&_CC_&&_https://coin.top/production/logo/1001156.jpeg",
   "1001157":
     "Gold_&&_1001157_&&_0_&&_Gold_&&_https://coin.top/production/js/20190509074813.png",
   "1001158":
@@ -2318,19 +2318,19 @@ export const tokensMap = {
   "1001159":
     "Wuabit_&&_1001159_&&_0_&&_WUAT_&&_https://coin.top/production/js/20190509074813.png",
   "1001160":
-    "poppy_&&_1001160_&&_0_&&_POPPY_&&_https://coin.top/production/logo/1001160.png",
+    "poppy_&&_1001160_&&_0_&&_POPPY_&&_https://coin.top/production/logo/1001160.jpeg",
   "1001161":
-    "PORN_&&_1001161_&&_0_&&_PORN_&&_https://coin.top/production/logo/1001161.png",
+    "PORN_&&_1001161_&&_0_&&_PORN_&&_https://coin.top/tokenLogo/tokenLogo_20181020162606.250849.jpeg",
   "1001162":
     "GemCash_&&_1001162_&&_0_&&_GCASH_&&_https://coin.top/production/js/20190509074813.png",
   "1001163":
-    "Tronnabis_&&_1001163_&&_0_&&_TNN_&&_https://coin.top/production/logo/1001163.png",
+    "Tronnabis_&&_1001163_&&_0_&&_TNN_&&_https://coin.top/production/logo/1001163.jpeg",
   "1001164":
-    "ADVCoin_&&_1001164_&&_0_&&_ADV_&&_https://coin.top/production/logo/1001164.png",
+    "ADVCoin_&&_1001164_&&_0_&&_ADV_&&_https://coin.top/production/logo/1001164.jpeg",
   "1001165":
-    "CowardCash_&&_1001165_&&_0_&&_CWC_&&_https://coin.top/production/logo/1001165.png",
+    "CowardCash_&&_1001165_&&_0_&&_CWC_&&_https://coin.top/production/logo/1001165.jpeg",
   "1001166":
-    "XXX_&&_1001166_&&_0_&&_XXX_&&_https://coin.top/production/logo/1001166.png",
+    "XXX_&&_1001166_&&_0_&&_XXX_&&_https://coin.top/tokenLogo/tokenLogo_20181021163935.312900.jpeg",
   "1001167":
     "TronLIFE_&&_1001167_&&_0_&&_LIFE_&&_https://coin.top/production/js/20190509074813.png",
   "1001168":
@@ -2342,79 +2342,79 @@ export const tokensMap = {
   "1001171":
     "ACES_&&_1001171_&&_0_&&_ACES_&&_https://coin.top/production/js/20190509074813.png",
   "1001172":
-    "Music_&&_1001172_&&_0_&&_Music_&&_https://coin.top/production/logo/1001172.png",
+    "Music_&&_1001172_&&_0_&&_Music_&&_https://coin.top/tokenLogo/tokenLogo_20181023060745.550568.jpeg",
   "1001173":
     "for_&&_1001173_&&_0_&&_for_&&_https://coin.top/production/js/20190509074813.png",
   "1001174":
-    "AmericanGoldEagle_&&_1001174_&&_0_&&_EAu_&&_https://coin.top/production/logo/1001174.png",
+    "AmericanGoldEagle_&&_1001174_&&_0_&&_EAu_&&_https://coin.top/production/logo/1001174.jpeg",
   "1001175":
-    "KrugerrandGold_&&_1001175_&&_0_&&_KAu_&&_https://coin.top/production/logo/1001175.png",
+    "KrugerrandGold_&&_1001175_&&_0_&&_KAu_&&_https://coin.top/production/logo/1001175.jpeg",
   "1001176":
-    "GoldMapleLeaf_&&_1001176_&&_0_&&_MAu_&&_https://coin.top/production/logo/1001176.png",
+    "GoldMapleLeaf_&&_1001176_&&_0_&&_MAu_&&_https://coin.top/production/logo/1001176.jpeg",
   "1001177":
     "Schilling_&&_1001177_&&_0_&&_ATS_&&_https://coin.top/production/js/20190509074813.png",
   "1001178":
-    "DeutscheMark_&&_1001178_&&_0_&&_DM_&&_https://coin.top/production/logo/1001178.png",
+    "DeutscheMark_&&_1001178_&&_0_&&_DM_&&_https://coin.top/production/logo/1001178.jpeg",
   "1001179":
-    "BlockchainDNSNetwork_&&_1001179_&&_0_&&_DNSX_&&_https://coin.top/production/logo/1001179.png",
+    "BlockchainDNSNetwork_&&_1001179_&&_0_&&_DNSX_&&_https://coin.top/tokenLogo/tokenLogo_20181023142054.953865.jpeg",
   "1001180":
-    "CASINO_&&_1001180_&&_0_&&_CASI_&&_https://coin.top/production/logo/1001180.png",
+    "CASINO_&&_1001180_&&_0_&&_CASI_&&_https://coin.top/production/logo/1001180.jpeg",
   "1001181":
     "TRONFORCE_&&_1001181_&&_0_&&_TRF_&&_https://coin.top/production/logo/1001181.png",
   "1001182":
-    "Insurance_&&_1001182_&&_0_&&_sure_&&_https://coin.top/production/logo/1001182.png",
+    "Insurance_&&_1001182_&&_0_&&_sure_&&_https://coin.top/tokenLogo/tokenLogo_20181023214532.482564.jpeg",
   "1001183":
     "Obi_&&_1001183_&&_0_&&_Obi_&&_https://coin.top/production/js/20190509074813.png",
   "1001184":
-    "SocialcryptNET_&&_1001184_&&_0_&&_SCG_&&_https://coin.top/production/logo/1001184.png",
+    "SocialcryptNET_&&_1001184_&&_0_&&_SCG_&&_https://coin.top/production/logo/1001184.jpeg",
   "1001185":
-    "OSHO_&&_1001185_&&_0_&&_OSHO_&&_https://coin.top/production/logo/1001185.png",
+    "OSHO_&&_1001185_&&_0_&&_OSHO_&&_https://coin.top/production/logo/1001185.jpeg",
   "1001186":
-    "POINT_&&_1001186_&&_0_&&_POINT_&&_https://coin.top/production/logo/1001186.png",
+    "POINT_&&_1001186_&&_0_&&_POINT_&&_https://coin.top/production/logo/1001186.jpeg",
   "1001187":
-    "GoldBars_&&_1001187_&&_0_&&_AU_&&_https://coin.top/production/logo/1001187.png",
+    "GoldBars_&&_1001187_&&_0_&&_AU_&&_https://coin.top/production/logo/1001187.jpeg",
   "1001188":
     "hlau_&&_1001188_&&_0_&&_cic_&&_https://coin.top/production/js/20190509074813.png",
   "1001189":
     "Gekko_&&_1001189_&&_0_&&_Gek_&&_https://coin.top/production/js/20190509074813.png",
   "1001190":
-    "Dildo_&&_1001190_&&_0_&&_DDO_&&_https://coin.top/production/logo/1001190.png",
+    "Dildo_&&_1001190_&&_0_&&_DDO_&&_https://coin.top/tokenLogo/tokenLogo_20181024233253.411171.jpeg",
   "1001191":
     "VERITAS_&&_1001191_&&_0_&&_VTS_&&_https://coin.top/production/js/20190509074813.png",
   "1001192":
-    "Pepe_&&_1001192_&&_0_&&_MEME_&&_https://coin.top/production/logo/1001192.png",
+    "Pepe_&&_1001192_&&_0_&&_MEME_&&_https://coin.top/tokenLogo/tokenLogo_20181025020919.103078.jpeg",
   "1001193":
-    "BUY_&&_1001193_&&_0_&&_BUY_&&_https://coin.top/production/logo/1001193.png",
+    "BUY_&&_1001193_&&_0_&&_BUY_&&_https://coin.top/tokenLogo/tokenLogo_20181025054317.177546.jpeg",
   "1001194":
     "Disney_&&_1001194_&&_0_&&_WDW_&&_https://coin.top/production/js/20190509074813.png",
   "1001195":
     "Baggi_&&_1001195_&&_0_&&_Bgi_&&_https://coin.top/production/js/20190509074813.png",
   "1001196":
-    "TIP_&&_1001196_&&_0_&&_TIP_&&_https://coin.top/production/logo/1001196.png",
+    "TIP_&&_1001196_&&_0_&&_TIP_&&_https://coin.top/production/logo/1001196.jpeg",
   "1001197":
-    "ZaraCoin_&&_1001197_&&_0_&&_Zara_&&_https://coin.top/production/logo/1001197.png",
+    "ZaraCoin_&&_1001197_&&_0_&&_Zara_&&_https://coin.top/tokenLogo/tokenLogo_20181025215915.068003.jpeg",
   "1001198":
     "GAME_&&_1001198_&&_0_&&_GAME_&&_https://coin.top/production/js/20190509074813.png",
   "1001199":
     "BAGGl_&&_1001199_&&_0_&&_BAGGl_&&_https://coin.top/production/js/20190509074813.png",
   "1001200":
-    "PoSiTRoN_&&_1001200_&&_0_&&_BoOM_&&_https://coin.top/production/logo/1001200.png",
+    "PoSiTRoN_&&_1001200_&&_0_&&_BoOM_&&_https://coin.top/production/logo/1001200.jpeg",
   "1001201":
     "CHEHAR_&&_1001201_&&_0_&&_!CMC_&&_https://coin.top/production/js/20190509074813.png",
   "1001202":
-    "ShareTheLoveOfGod_&&_1001202_&&_0_&&_SLOG_&&_https://coin.top/production/logo/1001202.png",
+    "ShareTheLoveOfGod_&&_1001202_&&_0_&&_SLOG_&&_https://coin.top/production/logo/1001202.jpeg",
   "1001203":
-    "MedicCoin_&&_1001203_&&_0_&&_MEDIC_&&_https://coin.top/production/logo/1001203.png",
+    "MedicCoin_&&_1001203_&&_0_&&_MEDIC_&&_https://coin.top/production/logo/1001203.jpeg",
   "1001204":
-    "MedIBlock_&&_1001204_&&_0_&&_MIB_&&_https://coin.top/production/logo/1001204.png",
+    "MedIBlock_&&_1001204_&&_0_&&_MIB_&&_https://coin.top/tokenLogo/tokenLogo_20181026113131.494312.jpeg",
   "1001205":
-    "MedXHealth_&&_1001205_&&_0_&&_MEDX_&&_https://coin.top/production/logo/1001205.png",
+    "MedXHealth_&&_1001205_&&_0_&&_MEDX_&&_https://coin.top/production/logo/1001205.jpeg",
   "1001206":
-    "Medikament_&&_1001206_&&_0_&&_Med_&&_https://coin.top/production/logo/1001206.png",
+    "Medikament_&&_1001206_&&_0_&&_Med_&&_https://coin.top/production/logo/1001206.jpeg",
   "1001207":
-    "KroneMinus_&&_1001207_&&_0_&&_minus_&&_https://coin.top/production/logo/1001207.png",
+    "KroneMinus_&&_1001207_&&_0_&&_minus_&&_https://coin.top/production/logo/1001207.jpeg",
   "1001208":
-    "KronePluss_&&_1001208_&&_0_&&_pluss_&&_https://coin.top/production/logo/1001208.png",
+    "KronePluss_&&_1001208_&&_0_&&_pluss_&&_https://coin.top/production/logo/1001208.jpeg",
   "1001209":
     "WhopperCoin_&&_1001209_&&_0_&&_WHO_&&_https://coin.top/production/js/20190509074813.png",
   "1001210":
@@ -2424,164 +2424,164 @@ export const tokensMap = {
   "1001212":
     "AftermathIsIandsToken_&&_1001212_&&_0_&&_ABCD_&&_https://coin.top/production/js/20190509074813.png",
   "1001213":
-    "TTMspace_&&_1001213_&&_0_&&_TTM_&&_https://coin.top/production/logo/1001213.png",
+    "TTMspace_&&_1001213_&&_0_&&_TTM_&&_https://coin.top/production/logo/1001213.jpeg",
   "1001214":
     "TronExchangeCoin_&&_1001214_&&_0_&&_TEC_&&_https://coin.top/production/logo/1001214.png",
   "1001215":
     "ComicCon_&&_1001215_&&_0_&&_CCI_&&_https://coin.top/production/js/20190509074813.png",
   "1001216":
-    "Eventz_&&_1001216_&&_0_&&_EVZ_&&_https://coin.top/production/logo/1001216.png",
+    "Eventz_&&_1001216_&&_0_&&_EVZ_&&_https://coin.top/tokenLogo/tokenLogo_20181028012715.829832.jpeg",
   "1001217":
-    "EOY_&&_1001217_&&_0_&&_EOY_&&_https://coin.top/production/logo/1001217.png",
+    "EOY_&&_1001217_&&_0_&&_EOY_&&_https://coin.top/tokenLogo/tokenLogo_20181028080421.002356.jpeg",
   "1001218":
     "LeeKuanYew_&&_1001218_&&_0_&&_LKY_&&_https://coin.top/production/js/20190509074813.png",
   "1001219":
     "TRUMP_&&_1001219_&&_0_&&_TRUMP_&&_https://coin.top/production/js/20190509074813.png",
   "1001220":
-    "TOKEN_&&_1001220_&&_0_&&_TOKEN_&&_https://coin.top/production/logo/1001220.png",
+    "TOKEN_&&_1001220_&&_0_&&_TOKEN_&&_https://coin.top/production/logo/1001220.jpeg",
   "1001221":
     "gazua_&&_1001221_&&_0_&&_gz_&&_https://coin.top/production/js/20190509074813.png",
   "1001222":
-    "Scintilla_&&_1001222_&&_0_&&_SCN_&&_https://coin.top/production/logo/1001222.png",
+    "Scintilla_&&_1001222_&&_0_&&_SCN_&&_https://coin.top/production/logo/1001222.jpeg",
   "1001223":
-    "RoboRuby_&&_1001223_&&_0_&&_RBR_&&_https://coin.top/production/logo/1001223.png",
+    "RoboRuby_&&_1001223_&&_0_&&_RBR_&&_https://coin.top/production/upload/logo/1001223.png?t=1569112100050",
   "1001224":
     "RideWithFriends_&&_1001224_&&_0_&&_RWF_&&_https://coin.top/production/js/20190509074813.png",
   "1001225":
-    "LandToken_&&_1001225_&&_0_&&_Land_&&_https://coin.top/production/logo/1001225.png",
+    "LandToken_&&_1001225_&&_0_&&_Land_&&_https://coin.top/tokenLogo/tokenLogo_20181029131204.911049.jpeg",
   "1001226":
-    "MyBcard_&&_1001226_&&_0_&&_MBC_&&_https://coin.top/production/logo/1001226.png",
+    "MyBcard_&&_1001226_&&_0_&&_MBC_&&_https://coin.top/tokenLogo/tokenLogo_20181029170850.521856.jpeg",
   "1001227":
-    "ANTEs_&&_1001227_&&_0_&&_ANTE_&&_https://coin.top/production/logo/1001227.png",
+    "ANTEs_&&_1001227_&&_0_&&_ANTE_&&_https://coin.top/production/logo/1001227.jpeg",
   "1001228":
-    "KornsiriCherryCoinNET_&&_1001228_&&_0_&&_KCCN_&&_https://coin.top/production/logo/1001228.png",
+    "KornsiriCherryCoinNET_&&_1001228_&&_0_&&_KCCN_&&_https://coin.top/production/logo/1001228.jpeg",
   "1001229":
     "cybertron_&&_1001229_&&_0_&&_CTRX_&&_https://coin.top/production/js/20190509074813.png",
   "1001230":
     "ethereum_&&_1001230_&&_0_&&_ETH_&&_https://coin.top/production/js/20190509074813.png",
   "1001231":
-    "DOLLAR_&&_1001231_&&_0_&&_DOL_&&_https://coin.top/production/logo/1001231.png",
+    "DOLLAR_&&_1001231_&&_0_&&_DOL_&&_https://coin.top/production/logo/1001231.jpeg",
   "1001232":
     "AIivio_&&_1001232_&&_0_&&_ALIV_&&_https://coin.top/production/logo/1001232.png",
   "1001233":
-    "EWOKS_&&_1001233_&&_0_&&_EWOK_&&_https://coin.top/production/logo/1001233.png",
+    "EWOKS_&&_1001233_&&_0_&&_EWOK_&&_https://coin.top/production/logo/1001233.jpeg",
   "1001234":
     "WlN_&&_1001234_&&_0_&&_WlN_&&_https://coin.top/production/logo/1001234.png",
   "1001235":
     "ClTYUPTAKE_&&_1001235_&&_0_&&_NOT_&&_https://coin.top/production/js/20190509074813.png",
   "1001236":
-    "TRONchat_&&_1001236_&&_0_&&_TRCT_&&_https://coin.top/production/logo/1001236.png",
+    "TRONchat_&&_1001236_&&_0_&&_TRCT_&&_https://coin.top/production/logo/1001236.jpeg",
   "1001237":
-    "TRXMarket_&&_1001237_&&_0_&&_TRXMT_&&_https://coin.top/production/logo/1001237.png",
+    "TRXMarket_&&_1001237_&&_0_&&_TRXMT_&&_https://coin.top/production/logo/1001237.jpeg",
   "1001238":
     "WheelOfTron_&&_1001238_&&_0_&&_WOT_&&_https://coin.top/production/logo/1001238.png",
   "1001239":
-    "BLOKmail_&&_1001239_&&_0_&&_BLOKm_&&_https://coin.top/production/logo/1001239.png",
+    "BLOKmail_&&_1001239_&&_0_&&_BLOKm_&&_https://coin.top/production/logo/1001239.jpeg",
   "1001240":
-    "Cowrie_&&_1001240_&&_0_&&_COW_&&_https://coin.top/production/logo/1001240.png",
+    "Cowrie_&&_1001240_&&_0_&&_COW_&&_https://coin.top/production/logo/1001240.jpeg",
   "1001241":
     "Angel_&&_1001241_&&_0_&&_ANGEL_&&_https://coin.top/production/js/20190509074813.png",
   "1001242":
     "pepe_&&_1001242_&&_0_&&_meme_&&_https://coin.top/production/js/20190509074813.png",
   "1001243":
-    "Beatzcoin_&&_1001243_&&_0_&&_BTZC_&&_https://coin.top/production/logo/1001243.png",
+    "Beatzcoin_&&_1001243_&&_0_&&_BTZC_&&_https://coin.top/production/logo/1001243.jpeg",
   "1001244":
     "PHONE_&&_1001244_&&_0_&&_PHONE_&&_https://coin.top/production/js/20190509074813.png",
   "1001245":
     "Trondivorce_&&_1001245_&&_0_&&_TRD_&&_https://coin.top/production/js/20190509074813.png",
   "1001246":
-    "TronExToken_&&_1001246_&&_0_&&_TET_&&_https://coin.top/production/logo/1001246.png",
+    "TronExToken_&&_1001246_&&_0_&&_TET_&&_https://coin.top/production/logo/1001246.jpeg",
   "1001247":
     "Cigarettes_&&_1001247_&&_0_&&_CGTS_&&_https://coin.top/production/js/20190509074813.png",
   "1001248":
-    "RoboSapphire_&&_1001248_&&_0_&&_RbS_&&_https://coin.top/production/logo/1001248.png",
+    "RoboSapphire_&&_1001248_&&_0_&&_RbS_&&_https://coin.top/production/upload/logo/1001248.png?t=1569116392989",
   "1001249":
     "ModafocaCoin_&&_1001249_&&_0_&&_MFC_&&_https://coin.top/production/js/20190509074813.png",
   "1001250":
-    "HOLY_&&_1001250_&&_0_&&_HOLY_&&_https://coin.top/production/logo/1001250.png",
+    "HOLY_&&_1001250_&&_0_&&_HOLY_&&_https://coin.top/tokenLogo/tokenLogo_20181101222510.486587.jpeg",
   "1001251":
     "tr_&&_1001251_&&_0_&&_tr_&&_https://coin.top/production/js/20190509074813.png",
   "1001252":
-    "Maleum_&&_1001252_&&_0_&&_MAL_&&_https://coin.top/production/logo/1001252.png",
+    "Maleum_&&_1001252_&&_0_&&_MAL_&&_https://coin.top/tokenLogo/tokenLogo_20181102042855.818908.jpeg",
   "1001253":
     "KsumNoIe_&&_1001253_&&_0_&&_MSK_&&_https://coin.top/production/js/20190509074813.png",
   "1001254":
-    "TRONEXCHANGE_&&_1001254_&&_0_&&_TRONX_&&_https://coin.top/production/logo/1001254.png",
+    "TRONEXCHANGE_&&_1001254_&&_0_&&_TRONX_&&_https://coin.top/tokenLogo/tokenLogo_20181102100233.455192.jpeg",
   "1001255":
-    "TronCapital_&&_1001255_&&_0_&&_TCT_&&_https://coin.top/production/logo/1001255.png",
+    "TronCapital_&&_1001255_&&_0_&&_TCT_&&_https://coin.top/production/logo/1001255.jpeg",
   "1001256":
-    "WOOKIE_&&_1001256_&&_0_&&_CHEWY_&&_https://coin.top/production/logo/1001256.png",
+    "WOOKIE_&&_1001256_&&_0_&&_CHEWY_&&_https://coin.top/production/logo/1001256.jpeg",
   "1001257":
-    "JEDI_&&_1001257_&&_0_&&_jedi_&&_https://coin.top/production/logo/1001257.png",
+    "JEDI_&&_1001257_&&_0_&&_jedi_&&_https://coin.top/production/logo/1001257.jpeg",
   "1001258":
-    "SITH_&&_1001258_&&_0_&&_sith_&&_https://coin.top/production/logo/1001258.png",
+    "SITH_&&_1001258_&&_0_&&_sith_&&_https://coin.top/production/logo/1001258.jpeg",
   "1001259":
     "EGGUlTY_&&_1001259_&&_0_&&_EGGTY_&&_https://coin.top/production/js/20190509074813.png",
   "1001260":
-    "SCO_&&_1001260_&&_0_&&_SCO_&&_https://coin.top/production/logo/1001260.png",
+    "SCO_&&_1001260_&&_0_&&_SCO_&&_https://coin.top/tokenLogo/tokenLogo_20181103003619.179894.jpeg",
   "1001261":
-    "GOOGLE_&&_1001261_&&_0_&&_GOOGL_&&_https://coin.top/production/logo/1001261.png",
+    "GOOGLE_&&_1001261_&&_0_&&_GOOGL_&&_https://coin.top/tokenLogo/tokenLogo_20181103021514.292878.jpeg",
   "1001262":
-    "TRONTONIC_&&_1001262_&&_0_&&_TTT_&&_https://coin.top/production/logo/1001262.png",
+    "TRONTONIC_&&_1001262_&&_0_&&_TTT_&&_https://coin.top/production/logo/1001262.jpeg",
   "1001263":
     "trontonic_&&_1001263_&&_0_&&_ttt_&&_https://coin.top/production/js/20190509074813.png",
   "1001264":
-    "Tarqiun_&&_1001264_&&_0_&&_Tarq_&&_https://coin.top/production/logo/1001264.png",
+    "Tarqiun_&&_1001264_&&_0_&&_Tarq_&&_https://coin.top/tokenLogo/tokenLogo20180917030508.png",
   "1001265":
     "TronTonic_&&_1001265_&&_0_&&_TTt_&&_https://coin.top/production/js/20190509074813.png",
   "1001266":
-    "TRONTONICesports_&&_1001266_&&_0_&&_TTE_&&_https://coin.top/production/logo/1001266.png",
+    "TRONTONICesports_&&_1001266_&&_0_&&_TTE_&&_https://coin.top/production/logo/1001266.jpeg",
   "1001267":
-    "TokenIntelligenceCoin_&&_1001267_&&_0_&&_TIC_&&_https://coin.top/production/logo/1001267.png",
+    "TokenIntelligenceCoin_&&_1001267_&&_0_&&_TIC_&&_https://coin.top/tokenLogo/tokenLogo_20181103081726.523840.jpeg",
   "1001268":
     "TronTokensContributor_&&_1001268_&&_0_&&_TTC_&&_https://coin.top/production/js/20190509074813.png",
   "1001269":
-    "StencilGraffitiArt_&&_1001269_&&_0_&&_SGA_&&_https://coin.top/production/logo/1001269.png",
+    "StencilGraffitiArt_&&_1001269_&&_0_&&_SGA_&&_https://coin.top/tokenLogo/tokenLogo_20181103122814.455941.jpeg",
   "1001270":
-    "Trontonic_&&_1001270_&&_0_&&_Ttt_&&_https://coin.top/production/logo/1001270.png",
+    "Trontonic_&&_1001270_&&_0_&&_Ttt_&&_https://coin.top/tokenLogo/tokenLogo_20181103123743.473827.jpeg",
   "1001271":
     "TRONTONlC_&&_1001271_&&_0_&&_TTl_&&_https://coin.top/production/js/20190509074813.png",
   "1001272":
     ".Tronbet.io_&&_1001272_&&_0_&&_ANTE_&&_https://coin.top/production/js/20190509074813.png",
   "1001273":
-    "NigalRecords_&&_1001273_&&_0_&&_NGL_&&_https://coin.top/production/logo/1001273.png",
+    "NigalRecords_&&_1001273_&&_0_&&_NGL_&&_https://coin.top/production/logo/1001273.jpeg",
   "1001274":
     "StarTrek_&&_1001274_&&_0_&&_Trex_&&_https://coin.top/production/js/20190509074813.png",
   "1001275":
     "TronPlatiumElite_&&_1001275_&&_0_&&_TronP_&&_https://coin.top/production/js/20190509074813.png",
   "1001276":
-    "PGICOIN_&&_1001276_&&_0_&&_PGI_&&_https://coin.top/production/logo/1001276.png",
+    "PGICOIN_&&_1001276_&&_0_&&_PGI_&&_https://coin.top/production/logo/1001276.jpeg",
   "1001277":
-    "SpiritWarrior_&&_1001277_&&_0_&&_SW_&&_https://coin.top/production/logo/1001277.png",
+    "SpiritWarrior_&&_1001277_&&_0_&&_SW_&&_https://coin.top/production/logo/1001277.jpeg",
   "1001278": "DejaVu_&&_1001278_&&_0_&&_DVU_&&_C:\fakepatha.jpg",
   "1001279":
-    "RoboEmerald_&&_1001279_&&_0_&&_RbE_&&_https://coin.top/production/logo/1001279.png",
+    "RoboEmerald_&&_1001279_&&_0_&&_RbE_&&_https://coin.top/production/upload/logo/1001279.png?t=1569113599457",
   "1001280":
     "SW_&&_1001280_&&_0_&&_Sw_&&_https://coin.top/production/js/20190509074813.png",
   "1001281":
-    "tarquin_&&_1001281_&&_0_&&_Tarq_&&_https://coin.top/production/logo/1001281.png",
+    "tarquin_&&_1001281_&&_0_&&_Tarq_&&_https://coin.top/tokenLogo/tokenLogo20180917030508.png",
   "1001282":
     "TronWeekIyJournaI_&&_1001282_&&_0_&&_TWYhk_&&_https://coin.top/production/js/20190509074813.png",
   "1001283":
-    "RedCoin_&&_1001283_&&_0_&&_RED_&&_https://coin.top/production/logo/1001283.png",
+    "RedCoin_&&_1001283_&&_0_&&_RED_&&_https://coin.top/tokenLogo/tokenLogo_20181104055736.784950.jpeg",
   "1001284":
     "SEEDEGG_&&_1001284_&&_0_&&_SEGG_&&_https://coin.top/production/js/20190509074813.png",
   "1001285":
-    "MAGATOKEN_&&_1001285_&&_0_&&_MAGA_&&_https://coin.top/production/logo/1001285.png",
+    "MAGATOKEN_&&_1001285_&&_0_&&_MAGA_&&_https://coin.top/tokenLogo/tokenLogo_20181104143008.178013.jpeg",
   "1001286":
-    "DEODA_&&_1001286_&&_0_&&_DOD_&&_https://coin.top/production/logo/1001286.png",
+    "DEODA_&&_1001286_&&_0_&&_DOD_&&_https://coin.top/production/logo/1001286.jpeg",
   "1001287":
-    "BALAT_&&_1001287_&&_0_&&_BLT_&&_https://coin.top/production/logo/1001287.png",
+    "BALAT_&&_1001287_&&_0_&&_BLT_&&_https://coin.top/production/logo/1001287.jpeg",
   "1001288":
     "TTX_&&_1001288_&&_0_&&_TTX_&&_https://coin.top/production/js/20190509074813.png",
   "1001289":
-    "ENJOINT_&&_1001289_&&_0_&&_ENJ_&&_https://coin.top/production/logo/1001289.png",
+    "ENJOINT_&&_1001289_&&_0_&&_ENJ_&&_https://coin.top/production/logo/1001289.jpeg",
   "1001290":
     "JesusChrist_&&_1001290_&&_0_&&_JCTRX_&&_https://coin.top/production/js/20190509074813.png",
   "1001291":
-    "TRONbet_&&_1001291_&&_0_&&_ANTE_&&_https://coin.top/production/logo/1001291.png",
+    "TRONbet_&&_1001291_&&_0_&&_ANTE_&&_https://coin.top/production/logo/1001291.jpeg",
   "1001292":
-    "Fusionchain_&&_1001292_&&_0_&&_FIX_&&_https://coin.top/production/logo/1001292.png",
+    "Fusionchain_&&_1001292_&&_0_&&_FIX_&&_https://coin.top/production/logo/1001292.jpg",
   "1001293":
     "GENXTestToken_&&_1001293_&&_0_&&_GENX_&&_https://coin.top/production/js/20190509074813.png",
   "1001294":
@@ -2589,7 +2589,7 @@ export const tokensMap = {
   "1001295":
     "AQUA_&&_1001295_&&_0_&&_AQA_&&_https://coin.top/production/js/20190509074813.png",
   "1001296":
-    "YUM_&&_1001296_&&_0_&&_YUM_&&_https://coin.top/production/logo/1001296.png",
+    "YUM_&&_1001296_&&_0_&&_YUM_&&_https://coin.top/production/logo/1001296.jpeg",
   "1001297":
     "VEGAN_&&_1001297_&&_0_&&_VEGAN_&&_https://coin.top/production/js/20190509074813.png",
   "1001298":
@@ -2599,9 +2599,9 @@ export const tokensMap = {
   "1001300":
     "BigCoin_&&_1001300_&&_0_&&_BIGC_&&_https://coin.top/production/js/20190509074813.png",
   "1001301":
-    "COLORBIKE_&&_1001301_&&_0_&&_CBK_&&_https://coin.top/production/logo/1001301.png",
+    "COLORBIKE_&&_1001301_&&_0_&&_CBK_&&_https://coin.top/production/logo/1001301.jpeg",
   "1001302":
-    "TRD_&&_1001302_&&_0_&&_TRD_&&_https://coin.top/production/logo/1001302.png",
+    "TRD_&&_1001302_&&_0_&&_TRD_&&_https://coin.top/production/logo/1001302.jpeg",
   "1001303":
     "Artificial_&&_1001303_&&_0_&&_ART_&&_https://coin.top/production/js/20190509074813.png",
   "1001304":
@@ -2611,59 +2611,59 @@ export const tokensMap = {
   "1001306":
     "ATLAS_&&_1001306_&&_0_&&_ATLAS_&&_https://coin.top/production/js/20190509074813.png",
   "1001307":
-    "YANtoken_&&_1001307_&&_0_&&_YAN_&&_https://coin.top/production/logo/1001307.png",
+    "YANtoken_&&_1001307_&&_0_&&_YAN_&&_https://coin.top/production/logo/1001307.jpeg",
   "1001308":
     "Cryptospot_&&_1001308_&&_0_&&_SPOT_&&_https://coin.top/production/logo/1001308.png",
   "1001309":
-    "BaeCoin_&&_1001309_&&_0_&&_BAE_&&_https://coin.top/production/logo/1001309.png",
+    "BaeCoin_&&_1001309_&&_0_&&_BAE_&&_https://coin.top/production/logo/1001309.jpeg",
   "1001310":
     "Sentoki_&&_1001310_&&_0_&&_SEN_&&_https://coin.top/tokenLogo/tokenLogo_20181109020527.569921.jpeg",
   "1001311":
     "TronMulti_&&_1001311_&&_0_&&_TRM_&&_https://coin.top/tokenLogo/tokenLogo_20181109080315.751842.jpeg",
   "1001312":
-    "PokerTRON_&&_1001312_&&_0_&&_PTRX_&&_https://coin.top/production/logo/1001312.png",
+    "PokerTRON_&&_1001312_&&_0_&&_PTRX_&&_https://coin.top/tokenLogo/tokenLogo_20181109091036.391548.jpeg",
   "1001313":
-    "CryptoGuyInZA_&&_1001313_&&_0_&&_CGIZA_&&_https://coin.top/production/logo/1001313.png",
+    "CryptoGuyInZA_&&_1001313_&&_0_&&_CGIZA_&&_https://coin.top/production/logo/1001313.jpeg",
   "1001314":
     "TRXInfo_&&_1001314_&&_0_&&_Info_&&_https://coin.top/production/js/20190509074813.png",
   "1001315":
     "EarthXploration_&&_1001315_&&_0_&&_XPLR_&&_https://coin.top/production/js/20190509074813.png",
   "1001316":
-    "TronSociety_&&_1001316_&&_0_&&_TSY_&&_https://coin.top/production/logo/1001316.png",
+    "TronSociety_&&_1001316_&&_0_&&_TSY_&&_https://coin.top/production/logo/1001316.jpeg",
   "1001317":
     "MarcusCoin_&&_1001317_&&_0_&&_MARC_&&_https://coin.top/production/js/20190509074813.png",
   "1001318":
-    "FourSixFour_&&_1001318_&&_0_&&_FSF_&&_https://coin.top/production/logo/1001318.png",
+    "FourSixFour_&&_1001318_&&_0_&&_FSF_&&_https://coin.top/tokenLogo/tokenLogo_20181110160457.566256.jpeg",
   "1001319":
-    "TronConstruction_&&_1001319_&&_0_&&_TCON_&&_https://coin.top/production/logo/1001319.png",
+    "TronConstruction_&&_1001319_&&_0_&&_TCON_&&_https://coin.top/production/logo/1001319.jpeg",
   "1001320":
-    "TronTV_&&_1001320_&&_0_&&_TTV_&&_https://coin.top/production/logo/1001320.png",
+    "TronTV_&&_1001320_&&_0_&&_TTV_&&_https://coin.top/production/logo/1001320.jpeg",
   "1001321":
-    "MultiplayerGameCoin_&&_1001321_&&_0_&&_MPG_&&_https://coin.top/production/logo/1001321.png",
+    "MultiplayerGameCoin_&&_1001321_&&_0_&&_MPG_&&_https://coin.top/production/logo/1001321.jpeg",
   "1001322":
-    "SmartPhi_&&_1001322_&&_0_&&_SPhi_&&_https://coin.top/production/logo/1001322.png",
+    "SmartPhi_&&_1001322_&&_0_&&_SPhi_&&_https://coin.top/production/logo/1001322.jpeg",
   "1001323":
-    "IWillBuyYourSEEDEGG_&&_1001323_&&_0_&&_BUY_&&_https://coin.top/production/logo/1001323.png",
+    "IWillBuyYourSEEDEGG_&&_1001323_&&_0_&&_BUY_&&_https://coin.top/production/logo/1001323.jpeg",
   "1001324":
     "TR_&&_1001324_&&_0_&&_TR_&&_https://coin.top/production/js/20190509074813.png",
   "1001325":
-    "ThoreCashTRX_&&_1001325_&&_0_&&_TCHTX_&&_https://coin.top/production/logo/1001325.png",
+    "ThoreCashTRX_&&_1001325_&&_0_&&_TCHTX_&&_https://coin.top/production/logo/1001325.jpeg",
   "1001326":
-    "UniCoin_&&_1001326_&&_0_&&_UNI_&&_https://coin.top/production/logo/1001326.png",
+    "UniCoin_&&_1001326_&&_0_&&_UNI_&&_https://coin.top/production/logo/1001326.jpeg",
   "1001327":
-    "sportxcoin_&&_1001327_&&_0_&&_sprtx_&&_https://coin.top/production/logo/1001327.png",
+    "sportxcoin_&&_1001327_&&_0_&&_sprtx_&&_https://coin.top/production/logo/1001327.jpeg",
   "1001328":
-    "gaclife_&&_1001328_&&_0_&&_GAC_&&_https://coin.top/production/logo/1001328.png",
+    "gaclife_&&_1001328_&&_0_&&_GAC_&&_https://coin.top/production/logo/1001328.jpeg",
   "1001329":
     "Antimatter_&&_1001329_&&_0_&&_ANT_&&_https://coin.top/production/js/20190509074813.png",
   "1001330":
     "TronFoundation_&&_1001330_&&_0_&&_$TRONICS$_&&_https://coin.top/production/js/20190509074813.png",
   "1001331":
-    "IndyCash_&&_1001331_&&_0_&&_INDY_&&_https://coin.top/production/logo/1001331.png",
+    "IndyCash_&&_1001331_&&_0_&&_INDY_&&_https://coin.top/tokenLogo/tokenLogo_20181112204439.500739.jpeg",
   "1001332":
     "SCHNEID_&&_1001332_&&_0_&&_RCJ_&&_https://coin.top/production/upload/logo/1001332.png?t=1567272321320",
   "1001333":
-    "SEVLACOIN_&&_1001333_&&_0_&&_SEVLA_&&_https://coin.top/production/logo/1001333.png",
+    "SEVLACOIN_&&_1001333_&&_0_&&_SEVLA_&&_https://coin.top/production/logo/1001333.jpeg",
   "1001334":
     "Snow_&&_1001334_&&_0_&&_SNW_&&_https://coin.top/production/js/20190509074813.png",
   "1001335":
@@ -2673,7 +2673,7 @@ export const tokensMap = {
   "1001337":
     "MineralHub_&&_1001337_&&_0_&&_MNRH_&&_https://coin.top/production/js/20190509074813.png",
   "1001338":
-    "SoftwaresOnDeckMoneyGames_&&_1001338_&&_0_&&_SODMG_&&_https://coin.top/production/logo/1001338.png",
+    "SoftwaresOnDeckMoneyGames_&&_1001338_&&_0_&&_SODMG_&&_https://coin.top/production/logo/1001338.jpeg",
   "1001339":
     "EDN_&&_1001339_&&_0_&&_EDN_&&_https://coin.top/production/js/20190509074813.png",
   "1001340":
@@ -2681,25 +2681,25 @@ export const tokensMap = {
   "1001341":
     "AAAS_&&_1001341_&&_0_&&_ELF_&&_https://coin.top/production/js/20190509074813.png",
   "1001342":
-    "LottoCoin_&&_1001342_&&_0_&&_LOTTO_&&_https://coin.top/production/logo/1001342.png",
+    "LottoCoin_&&_1001342_&&_0_&&_LOTTO_&&_https://coin.top/production/logo/1001342.jpeg",
   "1001343":
     "ilovepi_&&_1001343_&&_0_&&_pi_&&_https://coin.top/production/js/20190509074813.png",
   "1001344":
     "VIVI_&&_1001344_&&_0_&&__&&_https://coin.top/production/js/20190509074813.png",
   "1001345":
-    "DAppDollars_&&_1001345_&&_0_&&_DDX_&&_https://coin.top/production/logo/1001345.png",
+    "DAppDollars_&&_1001345_&&_0_&&_DDX_&&_https://coin.top/tokenLogo/tokenLogo_20181114000658.047625.jpeg",
   "1001346":
-    "TRONCLASSIC_&&_1001346_&&_0_&&_TRXC_&&_https://coin.top/production/logo/1001346.png",
+    "TRONCLASSIC_&&_1001346_&&_0_&&_TRXC_&&_https://coin.top/tokenLogo/tokenLogo_20181114041304.724754.jpeg",
   "1001347":
     "XCube_&&_1001347_&&_0_&&_XCB_&&_https://coin.top/production/js/20190509074813.png",
   "1001348":
     "FOR_&&_1001348_&&_0_&&_FOR_&&_https://coin.top/production/js/20190509074813.png",
   "1001349":
-    "GACoin_&&_1001349_&&_0_&&_GAC_&&_https://coin.top/production/logo/1001349.png",
+    "GACoin_&&_1001349_&&_0_&&_GAC_&&_https://coin.top/production/logo/1001349.jpeg",
   "1001350":
-    "BitGuild_&&_1001350_&&_0_&&_BTG_&&_https://coin.top/production/logo/1001350.png",
+    "BitGuild_&&_1001350_&&_0_&&_BTG_&&_https://coin.top/production/logo/1001350.jpeg",
   "1001351":
-    "CryptoDivaFund_&&_1001351_&&_0_&&_CDF_&&_https://coin.top/production/logo/1001351.png",
+    "CryptoDivaFund_&&_1001351_&&_0_&&_CDF_&&_https://coin.top/production_test/js/20190618041139.jpeg",
   "1001352":
     "COMPLIANCE_&&_1001352_&&_0_&&_CMP_&&_https://coin.top/production/js/20190509074813.png",
   "1001353":
@@ -2709,49 +2709,49 @@ export const tokensMap = {
   "1001355":
     "PUMP_&&_1001355_&&_0_&&_PUMP_&&_https://coin.top/production/js/20190509074813.png",
   "1001356":
-    "Philanthropy_&&_1001356_&&_0_&&_PHIL_&&_https://coin.top/production/upload/logo/1001356.png?t=1572415236931",
+    "Philanthropy_&&_1001356_&&_0_&&_PHIL_&&_https://www.givephilanthropy.com/logo.jp.jpg",
   "1001357":
-    "HitDapps_&&_1001357_&&_0_&&_HIT_&&_https://coin.top/production/logo/1001357.png",
+    "HitDapps_&&_1001357_&&_0_&&_HIT_&&_https://coin.top/tokenLogo/tokenLogo_20181115075319.919820.jpeg",
   "1001358":
-    "socialinfluencetoken_&&_1001358_&&_0_&&_SIT_&&_https://coin.top/production/logo/1001358.png",
+    "socialinfluencetoken_&&_1001358_&&_0_&&_SIT_&&_https://coin.top/tokenLogo/tokenLogo_20181115083237.715680.jpeg",
   "1001359":
-    "TRONCITY_&&_1001359_&&_0_&&_TCO_&&_https://coin.top/production/logo/1001359.png",
+    "TRONCITY_&&_1001359_&&_0_&&_TCO_&&_https://coin.top/production/logo/1001359.jpeg",
   "1001360":
-    "PUBToken_&&_1001360_&&_0_&&_PUB_&&_https://coin.top/production/logo/1001360.png",
+    "PUBToken_&&_1001360_&&_0_&&_PUB_&&_https://coin.top/tokenLogo/tokenLogo_20181115114537.843720.jpeg",
   "1001361":
-    "SPOK_&&_1001361_&&_0_&&_SPK_&&_https://coin.top/production/logo/1001361.png",
+    "SPOK_&&_1001361_&&_0_&&_SPK_&&_https://coin.top/production/logo/1001361.jpg",
   "1001362":
     "TRx_&&_1001362_&&_0_&&_TRx_&&_https://coin.top/production/js/20190509074813.png",
   "1001363":
-    "CaptainKirk_&&_1001363_&&_0_&&_CKK_&&_https://coin.top/production/logo/1001363.png",
+    "CaptainKirk_&&_1001363_&&_0_&&_CKK_&&_https://coin.top/production/logo/1001363.jpg",
   "1001364":
-    "Hazel_&&_1001364_&&_0_&&_HZT_&&_https://coin.top/production/logo/1001364.png",
+    "Hazel_&&_1001364_&&_0_&&_HZT_&&_https://coin.top/production/logo/1001364.jpeg",
   "1001365":
-    "CryptoGuyinZA_&&_1001365_&&_0_&&_CGIZA_&&_https://coin.top/production/logo/1001365.png",
+    "CryptoGuyinZA_&&_1001365_&&_0_&&_CGIZA_&&_https://coin.top/production/logo/1001365.jpeg",
   "1001366":
-    "Socialinflunce_&&_1001366_&&_0_&&_SIT_&&_https://coin.top/production/logo/1001366.png",
+    "Socialinflunce_&&_1001366_&&_0_&&_SIT_&&_https://coin.top/tokenLogo/tokenLogo_20181115171843.798999.jpeg",
   "1001367":
     "PeerToPeer_&&_1001367_&&_0_&&_PTP_&&_https://coin.top/production/logo/1001367.png",
   "1001368":
-    "VBucksPlus_&&_1001368_&&_0_&&_VBP_&&_https://coin.top/production/logo/1001368.png",
+    "VBucksPlus_&&_1001368_&&_0_&&_VBP_&&_https://coin.top/production/logo/1001368.jpeg",
   "1001369":
     "Cryptospots_&&_1001369_&&_0_&&_cry_&&_https://coin.top/production/logo/1001369.png",
   "1001370":
-    "ONE_&&_1001370_&&_0_&&_ONE_&&_https://coin.top/production/logo/1001370.png",
+    "ONE_&&_1001370_&&_0_&&_ONE_&&_https://coin.top/production/upload/logo/1001370.jpeg?t=1567985451383",
   "1001371":
-    "LONE_&&_1001371_&&_0_&&_LONE_&&_https://coin.top/production/logo/1001371.png",
+    "LONE_&&_1001371_&&_0_&&_LONE_&&_https://coin.top/production/upload/logo/1001371.jpeg?t=1567986066339",
   "1001372":
-    "DigitalFantasySports_&&_1001372_&&_0_&&_DFS_&&_https://coin.top/production/logo/1001372.png",
+    "DigitalFantasySports_&&_1001372_&&_0_&&_DFS_&&_https://coin.top/production/logo/1001372.jpeg",
   "1001373":
-    "Bitconnect_&&_1001373_&&_0_&&_BCC_&&_https://coin.top/production/logo/1001373.png",
+    "Bitconnect_&&_1001373_&&_0_&&_BCC_&&_https://coin.top/tokenLogo/tokenLogo_20181115232636.990836.jpeg",
   "1001374":
-    "ROLEX_&&_1001374_&&_0_&&_ROLEX_&&_https://coin.top/production/logo/1001374.png",
+    "ROLEX_&&_1001374_&&_0_&&_ROLEX_&&_https://coin.top/production/logo/1001374.jpeg",
   "1001375":
     "TRXasHODLemPokerChips_&&_1001375_&&_0_&&_HODL_&&_https://coin.top/production/js/20190509074813.png",
   "1001376":
     "Trontoken_&&_1001376_&&_0_&&_TRX_&&_https://coin.top/production/js/20190509074813.png",
   "1001377":
-    "ALLEExchange_&&_1001377_&&_0_&&_AEC_&&_https://coin.top/production/logo/1001377.png",
+    "ALLEExchange_&&_1001377_&&_0_&&_AEC_&&_https://coin.top/tokenLogo/tokenLogo20180917030508.png",
   "1001378":
     "TronsTronics_&&_1001378_&&_0_&&_TTS_&&_https://coin.top/production/js/20190509074813.png",
   "1001379":
@@ -2759,55 +2759,55 @@ export const tokensMap = {
   "1001380":
     "Eevee_&&_1001380_&&_0_&&_EEV_&&_https://coin.top/production/js/20190509074813.png",
   "1001381":
-    "AutoPay_&&_1001381_&&_0_&&_APAY_&&_https://coin.top/production/logo/1001381.png",
+    "AutoPay_&&_1001381_&&_0_&&_APAY_&&_https://coin.top/tokenLogo/tokenLogo_20181116025119.249855.jpeg",
   "1001382":
     "Mewtwo_&&_1001382_&&_0_&&_MWO_&&_https://coin.top/production/js/20190509074813.png",
   "1001383":
     "SwissTRON_&&_1001383_&&_0_&&_CHTRX_&&_https://coin.top/production/js/20190509074813.png",
   "1001384":
-    "SIT_&&_1001384_&&_0_&&_SIT_&&_https://coin.top/production/logo/1001384.png",
+    "SIT_&&_1001384_&&_0_&&_SIT_&&_https://coin.top/tokenLogo/tokenLogo_20181116103146.839878.jpeg",
   "1001385":
     "FURCOIN_&&_1001385_&&_0_&&_FUR_&&_https://coin.top/production/js/20190509074813.png",
   "1001386":
     "Smartytron_&&_1001386_&&_0_&&_SMT_&&_https://coin.top/production/js/20190509074813.png",
   "1001387":
-    "SUPERMAN_&&_1001387_&&_0_&&_SUPER_&&_https://coin.top/production/logo/1001387.png",
+    "SUPERMAN_&&_1001387_&&_0_&&_SUPER_&&_https://coin.top/production/logo/1001387.jpeg",
   "1001388":
-    "ProjectSports_&&_1001388_&&_0_&&_PSPRT_&&_https://coin.top/production/logo/1001388.png",
+    "ProjectSports_&&_1001388_&&_0_&&_PSPRT_&&_https://coin.top/production/logo/1001388.jpeg",
   "1001389":
     "TOP_&&_1001389_&&_0_&&_......_&&_https://coin.top/production/js/20190509074813.png",
   "1001390":
-    "TurboTron_&&_1001390_&&_0_&&_TBX_&&_https://coin.top/production/logo/1001390.png",
+    "TurboTron_&&_1001390_&&_0_&&_TBX_&&_https://coin.top/production/logo/1001390.jpeg",
   "1001391":
     "Truxx_&&_1001391_&&_0_&&_TRK_&&_https://coin.top/production/js/20190509074813.png",
   "1001392":
     "DevilTron_&&_1001392_&&_0_&&_DTRX_&&_https://coin.top/production/js/20190509074813.png",
   "1001393":
-    "Tilinguk_&&_1001393_&&_0_&&_TUK_&&_https://coin.top/production/logo/1001393.png",
+    "Tilinguk_&&_1001393_&&_0_&&_TUK_&&_https://coin.top/production/logo/1001393.jpeg",
   "1001394":
     "SeattleHomeToken_&&_1001394_&&_0_&&_SAT_&&_https://coin.top/production/js/20190509074813.png",
   "1001395":
     "ReadTokenDescriptionSeedBuyer_&&_1001395_&&_0_&&_bsdp_&&_https://coin.top/production/js/20190509074813.png",
   "1001396":
-    "ExamineSmartContract_&&_1001396_&&_0_&&_ESC_&&_https://coin.top/production/logo/1001396.png",
+    "ExamineSmartContract_&&_1001396_&&_0_&&_ESC_&&_https://coin.top/production/logo/1001396.jpeg",
   "1001397":
-    "PokerTron_&&_1001397_&&_0_&&_POKER_&&_https://coin.top/production/logo/1001397.png",
+    "PokerTron_&&_1001397_&&_0_&&_POKER_&&_https://coin.top/tokenLogo/tokenLogo_20181116191233.766541.jpeg",
   "1001398":
     "ANTE_&&_1001398_&&_0_&&_ANT_&&_https://coin.top/production/js/20190509074813.png",
   "1001399":
-    "RouletteEN_&&_1001399_&&_0_&&_REN_&&_https://coin.top/production/logo/1001399.png",
+    "RouletteEN_&&_1001399_&&_0_&&_REN_&&_https://coin.top/production/logo/1001399.jpeg",
   "1001400":
-    "Dapp_&&_1001400_&&_0_&&_DApp_&&_https://coin.top/production/logo/1001400.png",
+    "Dapp_&&_1001400_&&_0_&&_DApp_&&_https://coin.top/production/logo/1001400.jpeg",
   "1001401":
-    "cryptomarket_&&_1001401_&&_0_&&_cryp_&&_https://coin.top/production/logo/1001401.png",
+    "cryptomarket_&&_1001401_&&_0_&&_cryp_&&_https://coin.top/production/logo/1001401.jpeg",
   "1001402":
-    "EntonaX_&&_1001402_&&_0_&&_ETC_&&_https://coin.top/production/logo/1001402.png",
+    "EntonaX_&&_1001402_&&_0_&&_ETC_&&_https://coin.top/production/logo/1001402.jpeg",
   "1001403":
-    "ATronTripleSevenLotto_&&_1001403_&&_0_&&_TTS_&&_https://coin.top/production/logo/1001403.png",
+    "ATronTripleSevenLotto_&&_1001403_&&_0_&&_TTS_&&_https://coin.top/production/logo/1001403.jpeg",
   "1001404":
-    "GoldenTron_&&_1001404_&&_0_&&_GDT_&&_https://coin.top/production/logo/1001404.png",
+    "GoldenTron_&&_1001404_&&_0_&&_GDT_&&_https://coin.top/production/logo/1001404.jpeg",
   "1001405":
-    "ASS_&&_1001405_&&_0_&&_ASS_&&_https://coin.top/production/logo/1001405.png",
+    "ASS_&&_1001405_&&_0_&&_ASS_&&_https://coin.top/production/logo/1001405.jpeg",
   "1001406":
     "NewYorkCoin_&&_1001406_&&_0_&&_NYC_&&_https://coin.top/production/js/20190509074813.png",
   "1001407":
@@ -2815,187 +2815,187 @@ export const tokensMap = {
   "1001408":
     "MerryChristmas_&&_1001408_&&_0_&&_MXM_&&_https://coin.top/production/js/20190509074813.png",
   "1001409":
-    "MVISION_&&_1001409_&&_0_&&_MVC_&&_https://coin.top/production/logo/1001409.png",
+    "MVISION_&&_1001409_&&_0_&&_MVC_&&_https://coin.top/production/logo/1001409.jpeg",
   "1001410":
-    "BitMain_&&_1001410_&&_0_&&_BTM_&&_https://coin.top/production/logo/1001410.png",
+    "BitMain_&&_1001410_&&_0_&&_BTM_&&_https://coin.top/tokenLogo/tokenLogo_20181117072855.008162.jpeg",
   "1001411":
-    "CryptoBankCoin_&&_1001411_&&_0_&&_CBC_&&_https://coin.top/production/logo/1001411.png",
+    "CryptoBankCoin_&&_1001411_&&_0_&&_CBC_&&_https://coin.top/production/logo/1001411.jpeg",
   "1001412":
     "TRONSKY_&&_1001412_&&_0_&&_TSKY_&&_https://coin.top/production/js/20190509074813.png",
   "1001413":
-    "DigiSports_&&_1001413_&&_0_&&_DGS_&&_https://coin.top/production/logo/1001413.png",
+    "DigiSports_&&_1001413_&&_0_&&_DGS_&&_https://coin.top/production/logo/1001413.jpeg",
   "1001414":
-    "TRONO_&&_1001414_&&_0_&&_TRONO_&&_https://coin.top/production/logo/1001414.png",
+    "TRONO_&&_1001414_&&_0_&&_TRONO_&&_https://coin.top/tokenLogo/tokenLogo_20181117122457.504582.jpeg",
   "1001415":
-    "CryptoPool_&&_1001415_&&_0_&&_CxP_&&_https://coin.top/production/upload/logo/1001415.png?t=1572373875718",
+    "CryptoPool_&&_1001415_&&_0_&&_CxP_&&_https://coin.top/production/js/20190509074813.png",
   "1001416":
-    "TronShop_&&_1001416_&&_0_&&_TS_&&_https://coin.top/production/logo/1001416.png",
+    "TronShop_&&_1001416_&&_0_&&_TS_&&_https://coin.top/production/logo/1001416.jpeg",
   "1001417":
-    "TronShopVIP_&&_1001417_&&_0_&&_TSVIP_&&_https://coin.top/production/logo/1001417.png",
+    "TronShopVIP_&&_1001417_&&_0_&&_TSVIP_&&_https://coin.top/production/logo/1001417.jpeg",
   "1001418":
-    "BitAi_&&_1001418_&&_0_&&_BITAI_&&_https://coin.top/production/logo/1001418.png",
+    "BitAi_&&_1001418_&&_0_&&_BITAI_&&_https://coin.top/production/logo/1001418.jpeg",
   "1001419":
-    "HashFables_&&_1001419_&&_0_&&_HASH_&&_https://coin.top/production/logo/1001419.png",
+    "HashFables_&&_1001419_&&_0_&&_HASH_&&_https://coin.top/production/logo/1001419.jpeg",
   "1001420":
-    "RippleTronBank_&&_1001420_&&_0_&&_XRPTB_&&_https://coin.top/production/logo/1001420.png",
+    "RippleTronBank_&&_1001420_&&_0_&&_XRPTB_&&_https://coin.top/production/logo/1001420.jpeg",
   "1001421":
     "FCBitcoin_&&_1001421_&&_0_&&_FCB_&&_https://coin.top/production/js/20190509074813.png",
   "1001422":
-    "TronBet_&&_1001422_&&_0_&&_BET_&&_https://coin.top/production/logo/1001422.png",
+    "TronBet_&&_1001422_&&_0_&&_BET_&&_https://coin.top/production/logo/1001422.jpeg",
   "1001423":
-    "Platinum_&&_1001423_&&_0_&&_PLT_&&_https://coin.top/production/logo/1001423.png",
+    "Platinum_&&_1001423_&&_0_&&_PLT_&&_https://coin.top/tokenLogo/tokenLogo_20181117204402.733511.jpeg",
   "1001424":
-    "DIAMOND_&&_1001424_&&_0_&&_DIAMD_&&_https://coin.top/production/logo/1001424.png",
+    "DIAMOND_&&_1001424_&&_0_&&_DIAMD_&&_https://coin.top/production/logo/1001424.jpeg",
   "1001425":
-    "Litcoin_&&_1001425_&&_0_&&_LCT_&&_https://coin.top/production/logo/1001425.png",
+    "Litcoin_&&_1001425_&&_0_&&_LCT_&&_https://coin.top/production/logo/1001425.jpeg",
   "1001426":
-    "UFO_&&_1001426_&&_0_&&_UFO_&&_https://coin.top/production/logo/1001426.png",
+    "UFO_&&_1001426_&&_0_&&_UFO_&&_https://coin.top/tokenLogo/tokenLogo_20181117234137.149192.jpeg",
   "1001427":
-    "TRONREFUNDS_&&_1001427_&&_0_&&_RFD_&&_https://coin.top/production/logo/1001427.png",
+    "TRONREFUNDS_&&_1001427_&&_0_&&_RFD_&&_https://coin.top/tokenLogo/tokenLogo_20181118002128.779362.jpeg",
   "1001428":
-    "FileCoin_&&_1001428_&&_0_&&_FIL_&&_https://coin.top/production/logo/1001428.png",
+    "FileCoin_&&_1001428_&&_0_&&_FIL_&&_https://coin.top/tokenLogo/tokenLogo_20181118031324.196020.jpeg",
   "1001429":
-    "TronGameCoin_&&_1001429_&&_0_&&_TGC_&&_https://coin.top/production/logo/1001429.png",
+    "TronGameCoin_&&_1001429_&&_0_&&_TGC_&&_https://coin.top/tokenLogo/tokenLogo_20181118045346.813376.jpeg",
   "1001430":
     "richercoin_&&_1001430_&&_0_&&_richo_&&_https://coin.top/production/js/20190509074813.png",
   "1001431":
-    "SMC_&&_1001431_&&_0_&&_SMC_&&_https://coin.top/production/logo/1001431.png",
+    "SMC_&&_1001431_&&_0_&&_SMC_&&_https://coin.top/production/logo/1001431.jpeg",
   "1001432":
     "BetToken_&&_1001432_&&_0_&&_BET_&&_https://coin.top/production/js/20190509074813.png",
   "1001433":
-    "TronMatrixAI_&&_1001433_&&_0_&&_TRXAI_&&_https://coin.top/production/logo/1001433.png",
+    "TronMatrixAI_&&_1001433_&&_0_&&_TRXAI_&&_https://coin.top/production/logo/1001433.jpeg",
   "1001434":
-    "TronBG_&&_1001434_&&_0_&&_TBG_&&_https://coin.top/production/logo/1001434.png",
+    "TronBG_&&_1001434_&&_0_&&_TBG_&&_https://coin.top/production/logo/1001434.jpeg",
   "1001435":
-    "Virrex_&&_1001435_&&_0_&&_VX_&&_https://coin.top/production/logo/1001435.png",
+    "Virrex_&&_1001435_&&_0_&&_VX_&&_https://coin.top/production/logo/1001435.jpeg",
   "1001436":
-    "TronThereum_&&_1001436_&&_0_&&_TTH_&&_https://coin.top/production/logo/1001436.png",
+    "TronThereum_&&_1001436_&&_0_&&_TTH_&&_https://coin.top/tokenLogo/tokenLogo_20181118133836.971439.jpeg",
   "1001437":
-    "CandyCrushSaga_&&_1001437_&&_0_&&_CCS_&&_https://coin.top/production/logo/1001437.png",
+    "CandyCrushSaga_&&_1001437_&&_0_&&_CCS_&&_https://coin.top/production/logo/1001437.jpeg",
   "1001438":
-    "Photon_&&_1001438_&&_0_&&_PTN_&&_https://coin.top/production/logo/1001438.png",
+    "Photon_&&_1001438_&&_0_&&_PTN_&&_https://coin.top/production/logo/1001438.jpeg",
   "1001439":
-    "KloutCoin_&&_1001439_&&_0_&&_KC_&&_https://coin.top/production/logo/1001439.png",
+    "KloutCoin_&&_1001439_&&_0_&&_KC_&&_https://coin.top/production/logo/1001439.jpeg",
   "1001440":
     "CHIPS_&&_1001440_&&_0_&&_CHIPS_&&_https://coin.top/production/logo/1001440.png",
   "1001441":
-    "FundMe_&&_1001441_&&_0_&&_FUND_&&_https://coin.top/production/logo/1001441.png",
+    "FundMe_&&_1001441_&&_0_&&_FUND_&&_https://coin.top/production/logo/1001441.jpeg",
   "1001442":
-    "TRXKings_&&_1001442_&&_0_&&_TRXK_&&_https://coin.top/production/logo/1001442.png",
+    "TRXKings_&&_1001442_&&_0_&&_TRXK_&&_https://coin.top/production/logo/1001442.jpeg",
   "1001443":
     "TronPixel_&&_1001443_&&_0_&&_PIXEL_&&_https://coin.top/production/logo/1001443.png",
   "1001444":
-    "GolFCoin_&&_1001444_&&_0_&&_GFC_&&_https://coin.top/production/logo/1001444.png",
+    "GolFCoin_&&_1001444_&&_0_&&_GFC_&&_https://coin.top/production/logo/1001444.jpeg",
   "1001445":
-    "DYOR_&&_1001445_&&_0_&&_DYOR_&&_https://coin.top/production/logo/1001445.png",
+    "DYOR_&&_1001445_&&_0_&&_DYOR_&&_https://coin.top/tokenLogo/tokenLogo_20181119035617.350113.jpeg",
   "1001446":
-    "GoodKarma_&&_1001446_&&_0_&&_Karma_&&_https://coin.top/production/logo/1001446.png",
+    "GoodKarma_&&_1001446_&&_0_&&_Karma_&&_https://coin.top/production/logo/1001446.jpeg",
   "1001447":
-    "LAMBORGHINI_&&_1001447_&&_0_&&_LAMBo_&&_https://coin.top/production/logo/1001447.png",
+    "LAMBORGHINI_&&_1001447_&&_0_&&_LAMBo_&&_https://coin.top/production/logo/1001447.jpeg",
   "1001448":
     "Tulip_&&_1001448_&&_0_&&_TPC_&&_https://coin.top/production/logo/1001448.png",
   "1001449":
-    "Tronbay_&&_1001449_&&_0_&&_TBY_&&_https://coin.top/production/logo/1001449.png",
+    "Tronbay_&&_1001449_&&_0_&&_TBY_&&_https://coin.top/production/logo/1001449.jpeg",
   "1001450":
-    "LuckyGames_&&_1001450_&&_0_&&_LGX_&&_https://coin.top/production/logo/1001450.png",
+    "LuckyGames_&&_1001450_&&_0_&&_LGX_&&_https://coin.top/tokenLogo/tokenLogo_20181119102413.758905.jpeg",
   "1001451":
     "BitChit_&&_1001451_&&_0_&&_BITC_&&_https://coin.top/production/js/20190509074813.png",
   "1001452":
-    "Workperk_&&_1001452_&&_0_&&_WPK_&&_https://coin.top/production/logo/1001452.png",
+    "Workperk_&&_1001452_&&_0_&&_WPK_&&_https://coin.top/production/logo/1001452.jpeg",
   "1001453":
-    "TRONX_&&_1001453_&&_0_&&_TX_&&_https://coin.top/production/logo/1001453.png",
+    "TRONX_&&_1001453_&&_0_&&_TX_&&_https://coin.top/tokenLogo/tokenLogo_20181119120555.567162.jpeg",
   "1001454":
-    "CityBlockCapital_&&_1001454_&&_0_&&_CBC_&&_https://coin.top/production/logo/1001454.png",
+    "CityBlockCapital_&&_1001454_&&_0_&&_CBC_&&_https://coin.top/production/logo/1001454.jpeg",
   "1001455":
-    "ASADividend_&&_1001455_&&_0_&&_ASA_&&_https://coin.top/production/logo/1001455.png",
+    "ASADividend_&&_1001455_&&_0_&&_ASA_&&_https://coin.top/production/logo/1001455.jpeg",
   "1001456":
-    "SUPERTRON_&&_1001456_&&_0_&&_STRX_&&_https://coin.top/production/logo/1001456.png",
+    "SUPERTRON_&&_1001456_&&_0_&&_STRX_&&_https://coin.top/production/logo/1001456.jpeg",
   "1001457":
     "TronATM_&&_1001457_&&_0_&&_TATM_&&_https://coin.top/production/logo/1001457.png",
   "1001458":
     "KohiNoor_&&_1001458_&&_0_&&_KNR_&&_https://coin.top/production/logo/1001458.png",
   "1001459":
-    "Payment_&&_1001459_&&_0_&&_pay_&&_https://coin.top/production/logo/1001459.png",
+    "Payment_&&_1001459_&&_0_&&_pay_&&_https://coin.top/production/logo/1001459.jpeg",
   "1001460":
-    "MXC_&&_1001460_&&_0_&&_MXC_&&_https://coin.top/production/logo/1001460.png",
+    "MXC_&&_1001460_&&_0_&&_MXC_&&_https://coin.top/production/logo/1001460.jpeg",
   "1001461":
-    "IrishGirlCrypto_&&_1001461_&&_0_&&_IGC_&&_https://coin.top/production/logo/1001461.png",
+    "IrishGirlCrypto_&&_1001461_&&_0_&&_IGC_&&_https://coin.top/production/logo/1001461.jpeg",
   "1001462":
-    "TRONWALLET_&&_1001462_&&_0_&&_TWX_&&_https://coin.top/production/logo/1001462.png",
+    "TRONWALLET_&&_1001462_&&_0_&&_TWX_&&_https://coin.top/production/logo/1001462.jpeg",
   "1001463":
     "TRONgold_&&_1001463_&&_0_&&_trg_&&_https://coin.top/production/logo/1001463.png",
   "1001464":
-    "TRONplay_&&_1001464_&&_0_&&_TRXp_&&_https://coin.top/production/logo/1001464.png",
+    "TRONplay_&&_1001464_&&_0_&&_TRXp_&&_https://coin.top/tokenLogo/tokenLogo_20181119223539.303513.jpeg",
   "1001465":
-    "SEEDGerminator_&&_1001465_&&_0_&&_SEED_&&_https://coin.top/production/logo/1001465.png",
+    "SEEDGerminator_&&_1001465_&&_0_&&_SEED_&&_https://coin.top/tokenLogo/tokenLogo_20181119224911.231104.jpeg",
   "1001466":
-    "Tronics_&&_1001466_&&_0_&&_TX_&&_https://coin.top/production/logo/1001466.png",
+    "Tronics_&&_1001466_&&_0_&&_TX_&&_https://coin.top/tokenLogo/tokenLogo_20181119225306.676966.jpeg",
   "1001467":
-    "EXODUS_&&_1001467_&&_0_&&_EXO_&&_https://coin.top/production/logo/1001467.png",
+    "EXODUS_&&_1001467_&&_0_&&_EXO_&&_https://coin.top/production/logo/1001467.jpeg",
   "1001468":
     "PRIZE_&&_1001468_&&_0_&&_PRIZE_&&_https://coin.top/production/js/20190509074813.png",
   "1001469":
-    "GOLDPOKER_&&_1001469_&&_0_&&_GLD_&&_https://coin.top/production/logo/1001469.png",
+    "GOLDPOKER_&&_1001469_&&_0_&&_GLD_&&_https://coin.top/production/logo/1001469.jpeg",
   "1001470":
-    "TRONATLAS_&&_1001470_&&_0_&&_ATL_&&_https://coin.top/production/logo/1001470.png",
+    "TRONATLAS_&&_1001470_&&_0_&&_ATL_&&_https://coin.top/production/logo/1001470.jpeg",
   "1001471":
-    "TRONMAG_&&_1001471_&&_0_&&_TRM_&&_https://coin.top/production/logo/1001471.png",
+    "TRONMAG_&&_1001471_&&_0_&&_TRM_&&_https://coin.top/production/logo/1001471.jpeg",
   "1001472":
     "secondamendmenttoken_&&_1001472_&&_0_&&_SEC_&&_https://coin.top/production/js/20190509074813.png",
   "1001473":
-    "Resilience_&&_1001473_&&_0_&&_XRSN_&&_https://coin.top/production/logo/1001473.png",
+    "Resilience_&&_1001473_&&_0_&&_XRSN_&&_https://coin.top/production/logo/1001473.jpeg",
   "1001474":
-    "TrophyKing_&&_1001474_&&_0_&&_KING_&&_https://coin.top/production/logo/1001474.png",
+    "TrophyKing_&&_1001474_&&_0_&&_KING_&&_https://coin.top/tokenLogo/tokenLogo20180917030508.png",
   "1001475":
-    "TronCharity_&&_1001475_&&_0_&&_TRC_&&_https://coin.top/production/logo/1001475.png",
+    "TronCharity_&&_1001475_&&_0_&&_TRC_&&_https://coin.top/production/logo/1001475.jpeg",
   "1001476":
     "GameToken_&&_1001476_&&_0_&&_GTC_&&_https://coin.top/production/js/20190509074813.png",
   "1001477":
-    "NEOworld_&&_1001477_&&_0_&&_NWL_&&_https://coin.top/production/logo/1001477.png",
+    "NEOworld_&&_1001477_&&_0_&&_NWL_&&_https://coin.top/production/logo/1001477.jpeg",
   "1001478":
-    "BitdogToken_&&_1001478_&&_0_&&_BTDG_&&_https://coin.top/production/logo/1001478.png",
+    "BitdogToken_&&_1001478_&&_0_&&_BTDG_&&_https://coin.top/production/logo/1001478.jpeg",
   "1001479":
     "TronTokensGuardian_&&_1001479_&&_0_&&_TTG_&&_https://coin.top/production/js/20190509074813.png",
   "1001480":
     "CHARITY_&&_1001480_&&_0_&&_CHA_&&_https://coin.top/production/js/20190509074813.png",
   "1001481":
-    "BusyBlaze_&&_1001481_&&_0_&&_bb_&&_https://coin.top/production/logo/1001481.png",
+    "BusyBlaze_&&_1001481_&&_0_&&_bb_&&_https://coin.top/production/logo/1001481.jpeg",
   "1001482":
-    "CryTrExToken_&&_1001482_&&_0_&&_CRYT_&&_https://coin.top/production/logo/1001482.png",
+    "CryTrExToken_&&_1001482_&&_0_&&_CRYT_&&_https://crytrex.com/cryt/cryt_files/cryt_logo.png",
   "1001483":
     "Cats_&&_1001483_&&_0_&&_CAT_&&_https://coin.top/production/js/20190509074813.png",
   "1001484":
-    "SatBetEntertainment_&&_1001484_&&_0_&&_SBE_&&_https://coin.top/production/logo/1001484.png",
+    "SatBetEntertainment_&&_1001484_&&_0_&&_SBE_&&_https://coin.top/production/logo/1001484.jpeg",
   "1001485":
-    "EDU_&&_1001485_&&_0_&&_EKT_&&_https://coin.top/production/logo/1001485.png",
+    "EDU_&&_1001485_&&_0_&&_EKT_&&_https://coin.top/production/logo/1001485.jpeg",
   "1001486":
-    "Check_&&_1001486_&&_0_&&_CCK_&&_https://coin.top/production/logo/1001486.png",
+    "Check_&&_1001486_&&_0_&&_CCK_&&_https://coin.top/production/logo/1001486.jpeg",
   "1001487":
-    "Storieinc_&&_1001487_&&_0_&&_SiNC_&&_https://coin.top/production/logo/1001487.png",
+    "Storieinc_&&_1001487_&&_0_&&_SiNC_&&_https://coin.top/tokenLogo/tokenLogo_20181120185725.280534.jpeg",
   "1001488":
-    "cybercoin_&&_1001488_&&_0_&&_CTRx_&&_https://coin.top/production/logo/1001488.png",
+    "cybercoin_&&_1001488_&&_0_&&_CTRx_&&_https://coin.top/production/logo/1001488.jpeg",
   "1001489":
-    "edxproject_&&_1001489_&&_0_&&_edx_&&_https://coin.top/production/logo/1001489.png",
+    "edxproject_&&_1001489_&&_0_&&_edx_&&_https://coin.top/production/logo/1001489.jpeg",
   "1001490":
-    "WAGER_&&_1001490_&&_0_&&_wgr_&&_https://coin.top/production/logo/1001490.png",
+    "WAGER_&&_1001490_&&_0_&&_wgr_&&_https://coin.top/production/logo/1001490.jpeg",
   "1001491":
-    "BTFY_&&_1001491_&&_0_&&_BTFY_&&_https://coin.top/production/logo/1001491.png",
+    "BTFY_&&_1001491_&&_0_&&_BTFY_&&_https://coin.top/tokenLogo/tokenLogo_20181120194719.575969.jpeg",
   "1001492":
     "KobeBryantCoin_&&_1001492_&&_0_&&_KOBE_&&_https://coin.top/production/js/20190509074813.png",
   "1001493":
     "PIT123456789_&&_1001493_&&_0_&&_LPKIT_&&_https://coin.top/production/js/20190509074813.png",
   "1001494":
-    "MFG_&&_1001494_&&_0_&&_Work_&&_https://coin.top/production/logo/1001494.png",
+    "MFG_&&_1001494_&&_0_&&_Work_&&_https://coin.top/production/logo/1001494.jpeg",
   "1001495":
-    "PalmTreeFoundation_&&_1001495_&&_0_&&_PTF_&&_https://coin.top/production/logo/1001495.png",
+    "PalmTreeFoundation_&&_1001495_&&_0_&&_PTF_&&_https://coin.top/production/logo/1001495.jpeg",
   "1001496":
-    "Kobe_&&_1001496_&&_0_&&_KOBE_&&_https://coin.top/production/logo/1001496.png",
+    "Kobe_&&_1001496_&&_0_&&_KOBE_&&_https://coin.top/production/logo/1001496.jpeg",
   "1001497":
-    "TRONtv_&&_1001497_&&_0_&&_TV_&&_https://coin.top/production/logo/1001497.png",
+    "TRONtv_&&_1001497_&&_0_&&_TV_&&_https://coin.top/production/logo/1001497.jpeg",
   "1001498":
-    "HITDAPPS_&&_1001498_&&_0_&&_HIT_&&_https://coin.top/production/logo/1001498.png",
+    "HITDAPPS_&&_1001498_&&_0_&&_HIT_&&_https://coin.top/tokenLogo/tokenLogo_20181121000022.700057.jpeg",
   "1001499":
-    "HIT_&&_1001499_&&_0_&&_HIT_&&_https://coin.top/production/logo/1001499.png",
+    "HIT_&&_1001499_&&_0_&&_HIT_&&_https://coin.top/tokenLogo/tokenLogo_20181121000201.099873.jpeg",
   "1001500":
     "HaloSocialMeetup_&&_1001500_&&_0_&&_Halo_&&_https://coin.top/production/js/20190509074813.png",
   "1001501":
@@ -3009,57 +3009,57 @@ export const tokensMap = {
   "1001505":
     "WorldToKeN_&&_1001505_&&_0_&&_WTKN_&&_https://coin.top/production/js/20190509074813.png",
   "1001506":
-    "MSGFractionalOwnership_&&_1001506_&&_0_&&_MSGFO_&&_https://coin.top/production/logo/1001506.png",
+    "MSGFractionalOwnership_&&_1001506_&&_0_&&_MSGFO_&&_https://coin.top/production/logo/1001506.jpeg",
   "1001507":
     "WordDigitalCurrecy_&&_1001507_&&_0_&&_WDC_&&_https://coin.top/production/js/20190509074813.png",
   "1001508":
-    "ModernSportsAgency_&&_1001508_&&_0_&&_MSA_&&_https://coin.top/production/logo/1001508.png",
+    "ModernSportsAgency_&&_1001508_&&_0_&&_MSA_&&_https://coin.top/production/logo/1001508.jpeg",
   "1001509":
     "INK_&&_1001509_&&_0_&&_INK_&&_https://coin.top/production/js/20190509074813.png",
   "1001510":
-    "NMIToken_&&_1001510_&&_0_&&_NMI_&&_https://coin.top/production/logo/1001510.png",
+    "NMIToken_&&_1001510_&&_0_&&_NMI_&&_https://coin.top/production/logo/1001510.jpeg",
   "1001511":
-    "RIFF_&&_1001511_&&_0_&&_RIFF_&&_https://coin.top/production/logo/1001511.png",
+    "RIFF_&&_1001511_&&_0_&&_RIFF_&&_https://coin.top/production/logo/1001511.jpeg",
   "1001512":
-    "HALO_&&_1001512_&&_0_&&_HALO_&&_https://coin.top/production/logo/1001512.png",
+    "HALO_&&_1001512_&&_0_&&_HALO_&&_https://coin.top/tokenLogo/tokenLogo_20181121235701.198410.jpeg",
   "1001513":
-    "halo_&&_1001513_&&_0_&&_halo_&&_https://coin.top/production/logo/1001513.png",
+    "halo_&&_1001513_&&_0_&&_halo_&&_https://coin.top/production/logo/1001513.jpeg",
   "1001514":
     "Slot_&&_1001514_&&_0_&&_Slot_&&_https://coin.top/production/js/20190509074813.png",
   "1001515":
     "HappyNewYear_&&_1001515_&&_0_&&_HNY_&&_https://coin.top/production/js/20190509074813.png",
   "1001516":
-    "OracleBlockchain_&&_1001516_&&_0_&&_ORC_&&_https://coin.top/production/logo/1001516.png",
+    "OracleBlockchain_&&_1001516_&&_0_&&_ORC_&&_https://coin.top/production/logo/1001516.jpeg",
   "1001517":
-    "Leonardo_&&_1001517_&&_0_&&_SAPL_&&_https://coin.top/production/logo/1001517.png",
+    "Leonardo_&&_1001517_&&_0_&&_SAPL_&&_https://coin.top/tokenLogo/tokenLogo_20181122055435.886557.jpeg",
   "1001518":
-    "MaryJaneGold_&&_1001518_&&_0_&&_MJAu_&&_https://coin.top/production/logo/1001518.png",
+    "MaryJaneGold_&&_1001518_&&_0_&&_MJAu_&&_https://coin.top/production/logo/1001518.jpeg",
   "1001519":
-    "TronKey_&&_1001519_&&_0_&&_TKE_&&_https://coin.top/production/logo/1001519.png",
+    "TronKey_&&_1001519_&&_0_&&_TKE_&&_https://coin.top/production/logo/1001519.jpeg",
   "1001520":
     "TWITTER_&&_1001520_&&_0_&&_TWEET_&&_https://coin.top/production/js/20190509074813.png",
   "1001521":
-    "TCHTRX_&&_1001521_&&_0_&&_TCH_&&_https://coin.top/production/logo/1001521.png",
+    "TCHTRX_&&_1001521_&&_0_&&_TCH_&&_https://coin.top/production/logo/1001521.jpeg",
   "1001522":
-    "TronExchToken_&&_1001522_&&_0_&&_TEX_&&_https://coin.top/production/logo/1001522.png",
+    "TronExchToken_&&_1001522_&&_0_&&_TEX_&&_https://coin.top/tokenLogo/tokenLogo_20181122132503.854672.jpeg",
   "1001523":
     "UniversalCoiN_&&_1001523_&&_0_&&_UCN_&&_https://coin.top/production/js/20190509074813.png",
   "1001524":
-    "Corl_&&_1001524_&&_0_&&_CRL_&&_https://coin.top/production/logo/1001524.png",
+    "Corl_&&_1001524_&&_0_&&_CRL_&&_https://coin.top/production/logo/1001524.jpeg",
   "1001525":
-    "WoozyFace_&&_1001525_&&_0_&&_WF_&&_https://coin.top/production/logo/1001525.png",
+    "WoozyFace_&&_1001525_&&_0_&&_WF_&&_https://coin.top/production/logo/1001525.jpeg",
   "1001526":
-    "angrybirdgold_&&_1001526_&&_0_&&_ABG_&&_https://coin.top/production/logo/1001526.png",
+    "angrybirdgold_&&_1001526_&&_0_&&_ABG_&&_https://coin.top/production/logo/1001526.jpeg",
   "1001527":
-    "BlockClash_&&_1001527_&&_0_&&_BLC_&&_https://coin.top/production/logo/1001527.png",
+    "BlockClash_&&_1001527_&&_0_&&_BLC_&&_https://coin.top/production/logo/1001527.jpeg",
   "1001528":
-    "ReynaExchange_&&_1001528_&&_0_&&_RET_&&_https://coin.top/production/logo/1001528.png",
+    "ReynaExchange_&&_1001528_&&_0_&&_RET_&&_https://coin.top/production/logo/1001528.jpeg",
   "1001529":
     "Game_&&_1001529_&&_0_&&_Game_&&_https://coin.top/production/js/20190509074813.png",
   "1001530":
-    "RenewablePower_&&_1001530_&&_0_&&_RPW_&&_https://coin.top/production/logo/1001530.png",
+    "RenewablePower_&&_1001530_&&_0_&&_RPW_&&_https://coin.top/production/logo/1001530.jpeg",
   "1001531":
-    "BlueChiliPromo_&&_1001531_&&_0_&&_BCP_&&_https://coin.top/production/logo/1001531.png",
+    "BlueChiliPromo_&&_1001531_&&_0_&&_BCP_&&_https://coin.top/production/logo/1001531.jpeg",
   "1001532":
     "TronExpress_&&_1001532_&&_0_&&_TXP_&&_https://coin.top/production/js/20190509074813.png",
   "1001533":
@@ -3071,9 +3071,9 @@ export const tokensMap = {
   "1001536":
     "Lawfarm_&&_1001536_&&_0_&&_LAW_&&_https://coin.top/production/js/20190509074813.png",
   "1001537":
-    "GTest_&&_1001537_&&_0_&&_GT_&&_https://coin.top/production/logo/1001537.png",
+    "GTest_&&_1001537_&&_0_&&_GT_&&_https://coin.top/tokenLogo/tokenLogo_20181124024249.579368.jpeg",
   "1001538":
-    "FEITIANWALLET_&&_1001538_&&_0_&&_FT_&&_https://coin.top/production/logo/1001538.png",
+    "FEITIANWALLET_&&_1001538_&&_0_&&_FT_&&_https://coin.top/production/logo/1001538.jpeg",
   "1001539":
     "RenyaToken_&&_1001539_&&_0_&&_REY_&&_https://coin.top/production/js/20190509074813.png",
   "1001540":
@@ -3081,27 +3081,27 @@ export const tokensMap = {
   "1001541":
     "TronChain_&&_1001541_&&_0_&&_TRC_&&_https://coin.top/production/js/20190509074813.png",
   "1001542":
-    "BlockchainCenter_&&_1001542_&&_0_&&_BLC_&&_https://coin.top/production/logo/1001542.png",
+    "BlockchainCenter_&&_1001542_&&_0_&&_BLC_&&_https://coin.top/production/logo/1001542.jpeg",
   "1001543":
-    "Governance_&&_1001543_&&_0_&&_LAW_&&_https://coin.top/production/logo/1001543.png",
+    "Governance_&&_1001543_&&_0_&&_LAW_&&_https://coin.top/production/logo/1001543.jpeg",
   "1001544":
-    "ReynaExchangeToken_&&_1001544_&&_0_&&_RET_&&_https://coin.top/production/logo/1001544.png",
+    "ReynaExchangeToken_&&_1001544_&&_0_&&_RET_&&_https://coin.top/tokenLogo/tokenLogo_20181124124626.219590.jpeg",
   "1001545":
-    "DigitalTokeN_&&_1001545_&&_0_&&_DTN_&&_https://coin.top/production/logo/1001545.png",
+    "DigitalTokeN_&&_1001545_&&_0_&&_DTN_&&_https://coin.top/production/logo/1001545.jpeg",
   "1001546":
     "TRONHERO_&&_1001546_&&_0_&&_THX_&&_https://coin.top/production/js/20190509074813.png",
   "1001547":
-    "UgotTRONed_&&_1001547_&&_0_&&_UTRON_&&_https://coin.top/production/logo/1001547.png",
+    "UgotTRONed_&&_1001547_&&_0_&&_UTRON_&&_https://coin.top/production/logo/1001547.jpeg",
   "1001548":
     "TronSports_&&_1001548_&&_0_&&_TSP_&&_https://coin.top/production/js/20190509074813.png",
   "1001549":
     "Dice_&&_1001549_&&_0_&&_dice_&&_https://coin.top/production/js/20190509074813.png",
   "1001550":
-    "VAGINA_&&_1001550_&&_0_&&_VGN_&&_https://coin.top/production/logo/1001550.png",
+    "VAGINA_&&_1001550_&&_0_&&_VGN_&&_https://coin.top/tokenLogo/tokenLogo_20181124220753.937827.jpeg",
   "1001551":
-    "PokemonTron_&&_1001551_&&_0_&&_POK_&&_https://coin.top/production/logo/1001551.png",
+    "PokemonTron_&&_1001551_&&_0_&&_POK_&&_https://coin.top/tokenLogo/tokenLogo_20181124220820.400733.jpeg",
   "1001552":
-    "Win_&&_1001552_&&_0_&&_WIN_&&_https://coin.top/production/logo/1001552.png",
+    "Win_&&_1001552_&&_0_&&_WIN_&&_https://coin.top/tokenLogo/tokenLogo20180917030508.png",
   "1001553":
     "TESTBOOK_&&_1001553_&&_0_&&_TWRT_&&_https://coin.top/production/js/20190509074813.png",
   "1001554":
@@ -3111,105 +3111,105 @@ export const tokensMap = {
   "1001556":
     "Abra_&&_1001556_&&_0_&&_Abra_&&_https://coin.top/production/js/20190509074813.png",
   "1001557":
-    "NITRON_&&_1001557_&&_0_&&_NTN_&&_https://coin.top/production/logo/1001557.png",
+    "NITRON_&&_1001557_&&_0_&&_NTN_&&_https://coin.top/production/logo/1001557.jpeg",
   "1001558":
-    "REO_&&_1001558_&&_0_&&_RCNT_&&_https://coin.top/production/logo/1001558.png",
+    "REO_&&_1001558_&&_0_&&_RCNT_&&_https://coin.top/production/logo/1001558.jpeg",
   "1001559":
     "TronID_&&_1001559_&&_0_&&_TronID_&&_https://coin.top/production/js/20190509074813.png",
   "1001560":
     "E-TokeN_&&_1001560_&&_0_&&_E-TokeN_&&_https://coin.top/production/js/20190509074813.png",
   "1001561":
-    "Whisky_&&_1001561_&&_0_&&_WSKY_&&_https://coin.top/production/logo/1001561.png",
+    "Whisky_&&_1001561_&&_0_&&_WSKY_&&_https://coin.top/production/logo/1001561.jpeg",
   "1001562":
-    "TRONMINDS_&&_1001562_&&_0_&&_TXX_&&_https://coin.top/production/logo/1001562.png",
+    "TRONMINDS_&&_1001562_&&_0_&&_TXX_&&_https://coin.top/production/logo/1001562.jpeg",
   "1001563":
-    "MOIST_&&_1001563_&&_0_&&_MOIST_&&_https://coin.top/production/logo/1001563.png",
+    "MOIST_&&_1001563_&&_0_&&_MOIST_&&_https://coin.top/production/logo/1001563.jpeg",
   "1001564":
-    "CLICK_&&_1001564_&&_0_&&_CLICK_&&_https://coin.top/production/logo/1001564.png",
+    "CLICK_&&_1001564_&&_0_&&_CLICK_&&_https://coin.top/tokenLogo/tokenLogo_20181125225649.370359.jpeg",
   "1001565":
     "Ton_&&_1001565_&&_0_&&_Ton_&&_https://coin.top/production/js/20190509074813.png",
   "1001566":
-    "phoenixultimatefantasysports_&&_1001566_&&_0_&&_PUFS_&&_https://coin.top/production/logo/1001566.png",
+    "phoenixultimatefantasysports_&&_1001566_&&_0_&&_PUFS_&&_https://coin.top/production/logo/1001566.jpeg",
   "1001567":
-    "TronSecurityToken_&&_1001567_&&_0_&&_TST_&&_https://coin.top/production/logo/1001567.png",
+    "TronSecurityToken_&&_1001567_&&_0_&&_TST_&&_https://coin.top/production/logo/1001567.jpeg",
   "1001568":
     "TronixLottery_&&_1001568_&&_0_&&_TLY_&&_https://coin.top/production/js/20190509074813.png",
   "1001569":
-    "ZerkZ_&&_1001569_&&_0_&&_ZRK_&&_https://coin.top/production/logo/1001569.png",
+    "ZerkZ_&&_1001569_&&_0_&&_ZRK_&&_https://coin.top/production/logo/1001569.jpeg",
   "1001570":
-    "BlockchainCapital_&&_1001570_&&_0_&&_BC_&&_https://coin.top/production/logo/1001570.png",
+    "BlockchainCapital_&&_1001570_&&_0_&&_BC_&&_https://coin.top/production/logo/1001570.jpeg",
   "1001571":
     "TronSafe_&&_1001571_&&_0_&&_TRS_&&_https://coin.top/production/js/20190509074813.png",
   "1001572":
-    "SonOfChrome_&&_1001572_&&_0_&&_SOC_&&_https://coin.top/production/logo/1001572.png",
+    "SonOfChrome_&&_1001572_&&_0_&&_SOC_&&_https://coin.top/tokenLogo/tokenLogo_20181126082759.603217.jpeg",
   "1001573":
-    "ConsumerAlliance_&&_1001573_&&_0_&&_CA_&&_https://coin.top/production/logo/1001573.png",
+    "ConsumerAlliance_&&_1001573_&&_0_&&_CA_&&_https://coin.top/production/logo/1001573.jpeg",
   "1001574":
     "Cryptocard_&&_1001574_&&_0_&&_CTCD_&&_https://coin.top/production/js/20190509074813.png",
   "1001575":
-    "MediCoin_&&_1001575_&&_0_&&_MED_&&_https://coin.top/production/logo/1001575.png",
+    "MediCoin_&&_1001575_&&_0_&&_MED_&&_https://coin.top/production/logo/1001575.jpeg",
   "1001576":
-    "Vanadium_&&_1001576_&&_0_&&_VDM_&&_https://coin.top/production/logo/1001576.png",
+    "Vanadium_&&_1001576_&&_0_&&_VDM_&&_https://coin.top/production/logo/1001576.jpeg",
   "1001577":
     "Qicoin_&&_1001577_&&_0_&&_Qi_&&_https://coin.top/production/js/20190509074813.png",
   "1001578":
-    "StarCards_&&_1001578_&&_0_&&_SCard_&&_https://coin.top/production/logo/1001578.png",
+    "StarCards_&&_1001578_&&_0_&&_SCard_&&_https://coin.top/production/logo/1001578.jpeg",
   "1001579":
     "Tobit_&&_1001579_&&_0_&&_TOB_&&_https://coin.top/production/js/20190509074813.png",
   "1001580":
     "TWLT_&&_1001580_&&_0_&&__&&_https://coin.top/production/js/20190509074813.png",
   "1001581":
-    "HealthPort_&&_1001581_&&_0_&&_EHR_&&_https://coin.top/production/logo/1001581.png",
+    "HealthPort_&&_1001581_&&_0_&&_EHR_&&_https://coin.top/tokenLogo/tokenLogo_20181126223654.976633.jpeg",
   "1001582":
     "DogeTron_&&_1001582_&&_0_&&_DOGET_&&_https://coin.top/production/js/20190509074813.png",
   "1001583":
     "BnB_&&_1001583_&&_0_&&_BnB_&&_https://coin.top/production/js/20190509074813.png",
   "1001584":
-    "SUDWA_&&_1001584_&&_0_&&_SUDWA_&&_https://coin.top/production/logo/1001584.png",
+    "SUDWA_&&_1001584_&&_0_&&_SUDWA_&&_https://coin.top/production/logo/1001584.jpeg",
   "1001585":
-    "TronLotto_&&_1001585_&&_0_&&_TRXLT_&&_https://coin.top/production/logo/1001585.png",
+    "TronLotto_&&_1001585_&&_0_&&_TRXLT_&&_https://coin.top/tokenLogo/tokenLogo_20181127104355.225548.jpeg",
   "1001586":
-    "TRONLOTTO_&&_1001586_&&_0_&&_TRXLT_&&_https://coin.top/production/logo/1001586.png",
+    "TRONLOTTO_&&_1001586_&&_0_&&_TRXLT_&&_https://coin.top/production/logo/1001586.jpeg",
   "1001587":
-    "PSV_&&_1001587_&&_0_&&_PSV_&&_https://coin.top/production/logo/1001587.png",
+    "PSV_&&_1001587_&&_0_&&_PSV_&&_https://coin.top/tokenLogo/tokenLogo_20181127110339.524182.jpeg",
   "1001588":
     "BenficaFans_&&_1001588_&&_0_&&_SLBFa_&&_https://coin.top/production/js/20190509074813.png",
   "1001589":
-    "TRONDIAMOND_&&_1001589_&&_0_&&_TRD_&&_https://coin.top/production/logo/1001589.png",
+    "TRONDIAMOND_&&_1001589_&&_0_&&_TRD_&&_https://coin.top/production/logo/1001589.jpeg",
   "1001590":
     "twlt_&&_1001590_&&_0_&&__&&_https://coin.top/production/js/20190509074813.png",
   "1001591":
-    "TronETF_&&_1001591_&&_0_&&_ETF_&&_https://coin.top/production/logo/1001591.png",
+    "TronETF_&&_1001591_&&_0_&&_ETF_&&_https://coin.top/production/logo/1001591.jpeg",
   "1001592":
-    "airbitclub_&&_1001592_&&_0_&&_abc_&&_https://coin.top/production/logo/1001592.png",
+    "airbitclub_&&_1001592_&&_0_&&_abc_&&_https://coin.top/production/logo/1001592.jpeg",
   "1001593":
-    "InternationalFootbalCoin_&&_1001593_&&_0_&&_IFC_&&_https://coin.top/production/logo/1001593.png",
+    "InternationalFootbalCoin_&&_1001593_&&_0_&&_IFC_&&_https://coin.top/production/logo/1001593.jpeg",
   "1001594":
-    "CRYPTYK_&&_1001594_&&_0_&&_CTK_&&_https://coin.top/production/logo/1001594.png",
+    "CRYPTYK_&&_1001594_&&_0_&&_CTK_&&_https://coin.top/production/logo/1001594.jpeg",
   "1001595":
-    "Minion_&&_1001595_&&_0_&&_MNON_&&_https://coin.top/production/logo/1001595.png",
+    "Minion_&&_1001595_&&_0_&&_MNON_&&_https://coin.top/tokenLogo/tokenLogo_20181128160654.922381.jpeg",
   "1001596":
-    "TronSecure_&&_1001596_&&_0_&&_TSC_&&_https://coin.top/production/logo/1001596.png",
+    "TronSecure_&&_1001596_&&_0_&&_TSC_&&_https://coin.top/production/logo/1001596.jpeg",
   "1001597":
-    "IOSpades_&&_1001597_&&_0_&&_IOSP_&&_https://coin.top/production/logo/1001597.png",
+    "IOSpades_&&_1001597_&&_0_&&_IOSP_&&_https://coin.top/tokenLogo/tokenLogo_20181128180234.606799.jpeg",
   "1001598":
     "JELLY_&&_1001598_&&_0_&&_JELLY_&&_https://coin.top/production/js/20190509074813.png",
   "1001599":
-    "SEEDR_&&_1001599_&&_0_&&_SEEDR_&&_https://coin.top/production/logo/1001599.png",
+    "SEEDR_&&_1001599_&&_0_&&_SEEDR_&&_https://coin.top/tokenLogo/tokenLogo_20181129002236.037468.jpeg",
   "1001600":
     "901tokens_&&_1001600_&&_0_&&_901_&&_https://coin.top/production/js/20190509074813.png",
   "1001601":
     "TronJoy_&&_1001601_&&_0_&&_Joy_&&_https://coin.top/production/js/20190509074813.png",
   "1001602":
-    "TronWeb_&&_1001602_&&_0_&&_TW_&&_https://coin.top/production/logo/1001602.png",
+    "TronWeb_&&_1001602_&&_0_&&_TW_&&_https://coin.top/tokenLogo/tokenLogo_20181129072343.108058.jpeg",
   "1001603":
-    "HelpToBuy_&&_1001603_&&_0_&&_HTB_&&_https://coin.top/production/logo/1001603.png",
+    "HelpToBuy_&&_1001603_&&_0_&&_HTB_&&_https://coin.top/production/logo/1001603.jpeg",
   "1001604":
     "Fasttrx_&&_1001604_&&_0_&&_Fast_&&_https://coin.top/production/js/20190509074813.png",
   "1001605":
     "Casino_&&_1001605_&&_0_&&_Dao_&&_https://coin.top/production/js/20190509074813.png",
   "1001606":
-    "DiceETF_&&_1001606_&&_0_&&_DETF_&&_https://coin.top/production/logo/1001606.png",
+    "DiceETF_&&_1001606_&&_0_&&_DETF_&&_https://coin.top/production/logo/1001606.jpeg",
   "1001607":
     "TIGER_&&_1001607_&&_0_&&_TIGER_&&_https://coin.top/production/js/20190509074813.png",
   "1001608":
@@ -3221,17 +3221,17 @@ export const tokensMap = {
   "1001611":
     "TRXTwitterClassic_&&_1001611_&&_0_&&_TTC_&&_https://coin.top/production/js/20190509074813.png",
   "1001612":
-    "PalaTrx_&&_1001612_&&_0_&&_PALA_&&_https://coin.top/production/logo/1001612.png",
+    "PalaTrx_&&_1001612_&&_0_&&_PALA_&&_https://coin.top/production/logo/1001612.jpg",
   "1001613":
-    "InfinityToken_&&_1001613_&&_0_&&_INF_&&_https://coin.top/production/logo/1001613.png",
+    "InfinityToken_&&_1001613_&&_0_&&_INF_&&_https://coin.top/production/logo/1001613.jpeg",
   "1001614":
     ".TRXminer.net_&&_1001614_&&_0_&&_TRXM_&&_https://coin.top/production/js/20190509074813.png",
   "1001615":
-    "AnusCoin_&&_1001615_&&_0_&&_ANUS_&&_https://coin.top/production/logo/1001615.png",
+    "AnusCoin_&&_1001615_&&_0_&&_ANUS_&&_https://coin.top/production/logo/1001615.jpeg",
   "1001616":
-    "TronPlayer_&&_1001616_&&_0_&&_TIP_&&_https://coin.top/production/logo/1001616.png",
+    "TronPlayer_&&_1001616_&&_0_&&_TIP_&&_https://coin.top/production/logo/1001616.jpeg",
   "1001617":
-    "TronArt_&&_1001617_&&_0_&&_TAR_&&_https://coin.top/production/logo/1001617.png",
+    "TronArt_&&_1001617_&&_0_&&_TAR_&&_https://coin.top/production/logo/1001617.jpeg",
   "1001618":
     "TRC_&&_1001618_&&_0_&&_TRC_&&_https://coin.top/production/js/20190509074813.png",
   "1001619":
@@ -3239,27 +3239,27 @@ export const tokensMap = {
   "1001620":
     "TRONDOGE_&&_1001620_&&_0_&&_TRXDG_&&_https://coin.top/production/js/20190509074813.png",
   "1001621":
-    "FwelcoPolinateProject_&&_1001621_&&_0_&&_FPP_&&_https://coin.top/production/logo/1001621.png",
+    "FwelcoPolinateProject_&&_1001621_&&_0_&&_FPP_&&_https://coin.top/production/logo/1001621.jpeg",
   "1001622":
     "Jamean_&&_1001622_&&_0_&&_JMN_&&_https://coin.top/production/js/20190509074813.png",
   "1001623":
     "BurtSkirt_&&_1001623_&&_0_&&_BSKT_&&_https://coin.top/production/js/20190509074813.png",
   "1001624":
-    "FUN_&&_1001624_&&_0_&&_FUN_&&_https://coin.top/production/logo/1001624.png",
+    "FUN_&&_1001624_&&_0_&&_FUN_&&_https://coin.top/production/logo/1001624.jpeg",
   "1001625":
     "CryptoNite_&&_1001625_&&_0_&&_CNITE_&&_https://coin.top/production/js/20190509074813.png",
   "1001626":
     "SuperNova_&&_1001626_&&_0_&&_SNR_&&_https://coin.top/production/js/20190509074813.png",
   "1001627":
-    "PHOENIX_&&_1001627_&&_0_&&_PHXT_&&_https://coin.top/production/logo/1001627.png",
+    "PHOENIX_&&_1001627_&&_0_&&_PHXT_&&_https://coin.top/production/logo/1001627.jpeg",
   "1001628":
     "GoTron_&&_1001628_&&_0_&&_GOT_&&_https://coin.top/production/js/20190509074813.png",
   "1001629":
     "FCB_&&_1001629_&&_0_&&_fcb_&&_https://coin.top/production/js/20190509074813.png",
   "1001630":
-    "GeoCash_&&_1001630_&&_0_&&_GeoC_&&_https://coin.top/production/logo/1001630.png",
+    "GeoCash_&&_1001630_&&_0_&&_GeoC_&&_https://coin.top/production/logo/1001630.jpeg",
   "1001631":
-    "TronPlayerDisc_&&_1001631_&&_0_&&_DISC_&&_https://coin.top/production/logo/1001631.png",
+    "TronPlayerDisc_&&_1001631_&&_0_&&_DISC_&&_https://coin.top/production/logo/1001631.jpeg",
   "1001632":
     "TronWeeklyJournaI_&&_1001632_&&_0_&&_TRWJ_&&_https://coin.top/production/js/20190509074813.png",
   "1001633":
@@ -3267,21 +3267,21 @@ export const tokensMap = {
   "1001634":
     "Reynatoken_&&_1001634_&&_0_&&_REYNA_&&_https://coin.top/production/js/20190509074813.png",
   "1001635":
-    "MIC_&&_1001635_&&_0_&&_MIC_&&_https://coin.top/production/logo/1001635.png",
+    "MIC_&&_1001635_&&_0_&&_MIC_&&_https://coin.top/tokenLogo/tokenLogo_20181202193120.266828.jpeg",
   "1001636":
-    "TRONMAN_&&_1001636_&&_0_&&_MAN_&&_https://coin.top/production/logo/1001636.png",
+    "TRONMAN_&&_1001636_&&_0_&&_MAN_&&_https://coin.top/production/logo/1001636.jpeg",
   "1001637":
-    "RoboCoal_&&_1001637_&&_0_&&_RbC_&&_https://coin.top/production/logo/1001637.png",
+    "RoboCoal_&&_1001637_&&_0_&&_RbC_&&_https://coin.top/production/upload/logo/1001637.png?t=1569117710866",
   "1001638":
     ".HELPUS._&&_1001638_&&_0_&&_.HP._&&_https://coin.top/production/js/20190509074813.png",
   "1001639":
-    "CryptoJaeger_&&_1001639_&&_0_&&_CTJ_&&_https://coin.top/production/logo/1001639.png",
+    "CryptoJaeger_&&_1001639_&&_0_&&_CTJ_&&_https://coin.top/production/logo/1001639.jpeg",
   "1001640":
     "RSHCoin_&&_1001640_&&_0_&&_RSH_&&_https://coin.top/production/js/20190509074813.png",
   "1001641":
     "ORACLE_&&_1001641_&&_0_&&_OCX_&&_https://coin.top/production/logo/1001641.png",
   "1001642":
-    "ARTron_&&_1001642_&&_0_&&_ART_&&_https://coin.top/production/logo/1001642.png",
+    "ARTron_&&_1001642_&&_0_&&_ART_&&_https://coin.top/production/logo/1001642.jpeg",
   "1001643":
     "Trans_&&_1001643_&&_0_&&_TRS_&&_https://coin.top/production/js/20190509074813.png",
   "1001644":
@@ -3293,19 +3293,19 @@ export const tokensMap = {
   "1001647":
     "MAYA_&&_1001647_&&_0_&&_MAA_&&_https://coin.top/production/js/20190509074813.png",
   "1001648":
-    "CryptoFluenceToken_&&_1001648_&&_0_&&_CFT_&&_https://coin.top/production/logo/1001648.png",
+    "CryptoFluenceToken_&&_1001648_&&_0_&&_CFT_&&_https://coin.top/production/logo/1001648.jpeg",
   "1001649":
     "FUNCoin_&&_1001649_&&_0_&&_FUN_&&_https://coin.top/production/js/20190509074813.png",
   "1001650":
-    "SGP_&&_1001650_&&_0_&&_SGP_&&_https://coin.top/production/logo/1001650.png",
+    "SGP_&&_1001650_&&_0_&&_SGP_&&_https://coin.top/tokenLogo/tokenLogo_20181205011033.302779.jpeg",
   "1001651":
-    "TronBBS_&&_1001651_&&_0_&&_BBS_&&_https://coin.top/production/logo/1001651.png",
+    "TronBBS_&&_1001651_&&_0_&&_BBS_&&_https://coin.top/production/logo/1001651.jpeg",
   "1001652":
-    "ORACLETRX_&&_1001652_&&_0_&&_OCTX_&&_https://coin.top/production/logo/1001652.png",
+    "ORACLETRX_&&_1001652_&&_0_&&_OCTX_&&_https://coin.top/production/logo/1001652.jpeg",
   "1001653":
     "ZombiToken_&&_1001653_&&_0_&&_ZTx_&&_https://coin.top/production/js/20190509074813.png",
   "1001654":
-    "TRXPower_&&_1001654_&&_0_&&_TRXP_&&_https://coin.top/production/logo/1001654.png",
+    "TRXPower_&&_1001654_&&_0_&&_TRXP_&&_https://coin.top/production/logo/1001654.jpeg",
   "1001655":
     "ExactTron_&&_1001655_&&_0_&&_EXT_&&_https://coin.top/production/js/20190509074813.png",
   "1001656":
@@ -3313,31 +3313,31 @@ export const tokensMap = {
   "1001657":
     "CupidAmore_&&_1001657_&&_0_&&_UPI_&&_https://coin.top/production/js/20190509074813.png",
   "1001658":
-    "GameofTronsHolderToken_&&_1001658_&&_0_&&_GoTH_&&_https://coin.top/production/logo/1001658.png",
+    "GameofTronsHolderToken_&&_1001658_&&_0_&&_GoTH_&&_https://coin.top/production/logo/1001658.jpeg",
   "1001659":
-    "TronChat_&&_1001659_&&_0_&&_TRC_&&_https://coin.top/production/logo/1001659.png",
+    "TronChat_&&_1001659_&&_0_&&_TRC_&&_https://coin.top/production/logo/1001659.jpeg",
   "1001660":
-    "TikTokToken_&&_1001660_&&_0_&&_TTT_&&_https://coin.top/production/logo/1001660.png",
+    "TikTokToken_&&_1001660_&&_0_&&_TTT_&&_https://coin.top/production/logo/1001660.jpeg",
   "1001661":
     "TreeOfLife_&&_1001661_&&_0_&&_TOL_&&_https://coin.top/production/js/20190509074813.png",
   "1001662":
-    "WORLDTOKEN_&&_1001662_&&_0_&&_WT_&&_https://coin.top/production/logo/1001662.png",
+    "WORLDTOKEN_&&_1001662_&&_0_&&_WT_&&_https://coin.top/production/logo/1001662.jpeg",
   "1001663":
-    "SurgicaLTron_&&_1001663_&&_0_&&_SLT_&&_https://coin.top/production/logo/1001663.png",
+    "SurgicaLTron_&&_1001663_&&_0_&&_SLT_&&_https://coin.top/tokenLogo/tokenLogo_20181205155003.222232.jpeg",
   "1001664":
-    "CRAZY_&&_1001664_&&_0_&&_CRAZY_&&_https://coin.top/production/logo/1001664.png",
+    "CRAZY_&&_1001664_&&_0_&&_CRAZY_&&_https://coin.top/tokenLogo/tokenLogo_20181205192303.554185.jpeg",
   "1001665":
-    "OnGameToken_&&_1001665_&&_0_&&_OGT_&&_https://coin.top/production/logo/1001665.png",
+    "OnGameToken_&&_1001665_&&_0_&&_OGT_&&_https://coin.top/production/logo/1001665.jpeg",
   "1001666":
     "NXToken_&&_1001666_&&_0_&&_NXT_&&_https://coin.top/production/js/20190509074813.png",
   "1001667":
     "BOZKURT_&&_1001667_&&_0_&&_CCC_&&_https://coin.top/production/js/20190509074813.png",
   "1001668":
-    "FREELANCE_&&_1001668_&&_0_&&_FL_&&_https://coin.top/production/logo/1001668.png",
+    "FREELANCE_&&_1001668_&&_0_&&_FL_&&_https://coin.top/tokenLogo/tokenLogo_20181206132002.458238.jpeg",
   "1001669":
-    "CryptoInfluencerToken_&&_1001669_&&_0_&&_CIT_&&_https://coin.top/production/logo/1001669.png",
+    "CryptoInfluencerToken_&&_1001669_&&_0_&&_CIT_&&_https://coin.top/tokenLogo/tokenLogo_20181206144109.663027.jpeg",
   "1001670":
-    "ZEZE_&&_1001670_&&_0_&&_ZEZE_&&_https://coin.top/production/logo/1001670.png",
+    "ZEZE_&&_1001670_&&_0_&&_ZEZE_&&_https://coin.top/production/logo/1001670.jpeg",
   "1001671":
     "GEMD_&&_1001671_&&_0_&&_GEMS-D_&&_https://coin.top/production/js/20190509074813.png",
   "1001672":
@@ -3347,7 +3347,7 @@ export const tokensMap = {
   "1001674":
     "KAOSEGG_&&_1001674_&&_0_&&_KAEGG_&&_https://coin.top/production/js/20190509074813.png",
   "1001675":
-    "Christmas_&&_1001675_&&_0_&&_XMAS_&&_https://coin.top/production/logo/1001675.png",
+    "Christmas_&&_1001675_&&_0_&&_XMAS_&&_https://coin.top/production/logo/1001675.jpeg",
   "1001676":
     "ALIENEGG_&&_1001676_&&_0_&&_ALEGG_&&_https://coin.top/production/js/20190509074813.png",
   "1001677":
@@ -3357,27 +3357,27 @@ export const tokensMap = {
   "1001679":
     "FLOWER_&&_1001679_&&_0_&&_FLR_&&_https://coin.top/production/js/20190509074813.png",
   "1001680":
-    "TronCasino_&&_1001680_&&_0_&&_TCS_&&_https://coin.top/production/logo/1001680.png",
+    "TronCasino_&&_1001680_&&_0_&&_TCS_&&_https://coin.top/production/logo/1001680.jpeg",
   "1001681":
     "ZEZEEGG_&&_1001681_&&_0_&&_ZEEGG_&&_https://coin.top/production/js/20190509074813.png",
   "1001682":
-    "HOLOYOLO_&&_1001682_&&_0_&&_HYT_&&_https://coin.top/production/logo/1001682.png",
+    "HOLOYOLO_&&_1001682_&&_0_&&_HYT_&&_https://coin.top/production/upload/logo/1001682.png?t=1568233265619",
   "1001683":
     "HighSociety_&&_1001683_&&_0_&&_HSS_&&_https://coin.top/production/js/20190509074813.png",
   "1001684":
-    "TronGameGlobal_&&_1001684_&&_0_&&_GTG_&&_https://coin.top/production/logo/1001684.png",
+    "TronGameGlobal_&&_1001684_&&_0_&&_GTG_&&_https://coin.top/production/logo/1001684.jpeg",
   "1001685":
-    "SMARTPEOPLE_&&_1001685_&&_0_&&_SMART_&&_https://coin.top/production/logo/1001685.png",
+    "SMARTPEOPLE_&&_1001685_&&_0_&&_SMART_&&_https://coin.top/tokenLogo/tokenLogo_20181208103609.957728.jpeg",
   "1001686":
     "ViPay_&&_1001686_&&_0_&&_VPAY_&&_https://coin.top/production/js/20190509074813.png",
   "1001687":
     "DeadSeaScrolls_&&_1001687_&&_0_&&_DSS_&&_https://coin.top/production/js/20190509074813.png",
   "1001688":
-    "cyberTron_&&_1001688_&&_0_&&_CTRX_&&_https://coin.top/production/logo/1001688.png",
+    "cyberTron_&&_1001688_&&_0_&&_CTRX_&&_https://coin.top/production/logo/1001688.jpeg",
   "1001689":
     "Converse_&&_1001689_&&_0_&&__&&_https://coin.top/production/js/20190509074813.png",
   "1001690":
-    "LMC_&&_1001690_&&_0_&&_LMC_&&_https://coin.top/production/logo/1001690.png",
+    "LMC_&&_1001690_&&_0_&&_LMC_&&_https://coin.top/tokenLogo/tokenLogo_20181208231643.965229.jpeg",
   "1001691":
     "TRUDEX_&&_1001691_&&_0_&&_TDEX_&&_https://coin.top/production/js/20190509074813.png",
   "1001692":
@@ -3389,21 +3389,21 @@ export const tokensMap = {
   "1001695":
     "NullCoin_&&_1001695_&&_0_&&_NULL_&&_https://coin.top/tokenLogo/tokenLogo_20181209071109.677302.jpeg",
   "1001696":
-    "BANG_&&_1001696_&&_0_&&_BANG_&&_https://coin.top/production/logo/1001696.png",
+    "BANG_&&_1001696_&&_0_&&_BANG_&&_https://coin.top/tokenLogo/tokenLogo_20181209102546.083867.jpeg",
   "1001697":
-    "ShitCoinToken_&&_1001697_&&_0_&&_SC_&&_https://coin.top/production/logo/1001697.png",
+    "ShitCoinToken_&&_1001697_&&_0_&&_SC_&&_https://coin.top/tokenLogo/tokenLogo_20181209125711.269649.jpeg",
   "1001698":
-    "ONGISTRON_&&_1001698_&&_0_&&_ONGIS_&&_https://coin.top/production/upload/logo/1001698.jpeg?t=1574448711747",
+    "ONGISTRON_&&_1001698_&&_0_&&_ONGIS_&&_https://coin.top/production/js/20190509074813.png",
   "1001699":
-    "NoleWater_&&_1001699_&&_0_&&_AMSK_&&_https://coin.top/production/logo/1001699.png",
+    "NoleWater_&&_1001699_&&_0_&&_AMSK_&&_https://coin.top/production/logo/1001699.jpg",
   "1001700":
-    "Sesameseedit_&&_1001700_&&_0_&&_SEED_&&_https://coin.top/production/logo/1001700.png",
+    "Sesameseedit_&&_1001700_&&_0_&&_SEED_&&_https://coin.top/production/logo/1001700.jpeg",
   "1001701":
     "JELLYEGG_&&_1001701_&&_0_&&_JEEGG_&&_https://coin.top/production/js/20190509074813.png",
   "1001702":
     "CYCLOEGG_&&_1001702_&&_0_&&_CYEGG_&&_https://coin.top/production/js/20190509074813.png",
   "1001703":
-    "Pipefitter_&&_1001703_&&_0_&&_PIPE_&&_https://coin.top/production/logo/1001703.png",
+    "Pipefitter_&&_1001703_&&_0_&&_PIPE_&&_https://coin.top/production/logo/1001703.jpg",
   "1001704":
     "LAVAEGG_&&_1001704_&&_0_&&_LAEGG_&&_https://coin.top/production/js/20190509074813.png",
   "1001705":
@@ -3411,21 +3411,21 @@ export const tokensMap = {
   "1001706":
     "TRXLotto_&&_1001706_&&_0_&&_TLOT_&&_https://coin.top/production/js/20190509074813.png",
   "1001707":
-    "TRXDEXio_&&_1001707_&&_0_&&_TDI_&&_https://coin.top/production/logo/1001707.png",
+    "TRXDEXio_&&_1001707_&&_0_&&_TDI_&&_https://coin.top/production/logo/1001707.jpeg",
   "1001708":
     "TIPster_&&_1001708_&&_0_&&_TIP_&&_https://coin.top/production/js/20190509074813.png",
   "1001709":
-    "INRcoin_&&_1001709_&&_0_&&_INRC_&&_https://coin.top/production/logo/1001709.png",
+    "INRcoin_&&_1001709_&&_0_&&_INRC_&&_https://coin.top/production/logo/1001709.jpeg",
   "1001710":
-    "PokeTron_&&_1001710_&&_0_&&_PKM_&&_https://coin.top/production/logo/1001710.png",
+    "PokeTron_&&_1001710_&&_0_&&_PKM_&&_https://coin.top/tokenLogo/tokenLogo_20181211011248.865964.jpeg",
   "1001711":
     "fud_&&_1001711_&&_0_&&_fud_&&_https://coin.top/production/js/20190509074813.png",
   "1001712":
-    "MOON_&&_1001712_&&_0_&&_MOON_&&_https://coin.top/production/logo/1001712.png",
+    "MOON_&&_1001712_&&_0_&&_MOON_&&_https://coin.top/production/logo/1001712.jpeg",
   "1001713":
     "REWARD_&&_1001713_&&_0_&&_RWD_&&_https://coin.top/production/js/20190509074813.png",
   "1001714":
-    "MARYJANE_&&_1001714_&&_0_&&_MJ_&&_https://coin.top/production/logo/1001714.png",
+    "MARYJANE_&&_1001714_&&_0_&&_MJ_&&_https://coin.top/production/logo/1001714.jpeg",
   "1001715":
     "KOEGG_&&_1001715_&&_0_&&_KOEGG_&&_https://coin.top/production/js/20190509074813.png",
   "1001716":
@@ -3437,13 +3437,13 @@ export const tokensMap = {
   "1001719":
     "FALLENEGG_&&_1001719_&&_0_&&_FAEGG_&&_https://coin.top/production/js/20190509074813.png",
   "1001720":
-    "BINGO_&&_1001720_&&_0_&&_BIN_&&_https://coin.top/production/logo/1001720.png",
+    "BINGO_&&_1001720_&&_0_&&_BIN_&&_https://coin.top/production/logo/1001720.jpeg",
   "1001721":
     "CRANIUMEGG_&&_1001721_&&_0_&&_CREGG_&&_https://coin.top/production/js/20190509074813.png",
   "1001722":
     "MoonMarketingGold_&&_1001722_&&_0_&&_MMG_&&_https://coin.top/production/js/20190509074813.png",
   "1001723":
-    "BetterME_&&_1001723_&&_0_&&_BM_&&_https://coin.top/production/logo/1001723.png",
+    "BetterME_&&_1001723_&&_0_&&_BM_&&_https://coin.top/production/logo/1001723.jpeg",
   "1001724":
     "RUM_&&_1001724_&&_0_&&_RUM_&&_https://coin.top/production/js/20190509074813.png",
   "1001725":
@@ -3451,35 +3451,35 @@ export const tokensMap = {
   "1001726":
     "PayItForward_&&_1001726_&&_0_&&_PAY_&&_https://coin.top/production/logo/1001726.png",
   "1001727":
-    "KODAKCoin_&&_1001727_&&_0_&&_KODAK_&&_https://coin.top/production/logo/1001727.png",
+    "KODAKCoin_&&_1001727_&&_0_&&_KODAK_&&_https://coin.top/tokenLogo/tokenLogo_20181212125511.407082.jpeg",
   "1001728":
     "ANDROMEDA_&&_1001728_&&_0_&&_AND_&&_https://coin.top/production/js/20190509074813.png",
   "1001729":
     "MiamiVice_&&_1001729_&&_0_&&_VICE_&&_https://coin.top/production/js/20190509074813.png",
   "1001730":
-    "DonTRONDraw_&&_1001730_&&_0_&&_DTXD_&&_https://coin.top/production/logo/1001730.png",
+    "DonTRONDraw_&&_1001730_&&_0_&&_DTXD_&&_https://coin.top/production/logo/1001730.jpeg",
   "1001731":
-    "GEMSD_&&_1001731_&&_0_&&_GEMSD_&&_https://coin.top/production/logo/1001731.png",
+    "GEMSD_&&_1001731_&&_0_&&_GEMSD_&&_https://coin.top/tokenLogo/tokenLogo_20181213004217.375099.jpeg",
   "1001732":
-    "tronchat_&&_1001732_&&_0_&&_TRCT_&&_https://coin.top/production/logo/1001732.png",
+    "tronchat_&&_1001732_&&_0_&&_TRCT_&&_https://coin.top/tokenLogo/tokenLogo_20181213022250.468755.jpeg",
   "1001733":
-    "TronLotteryIO_&&_1001733_&&_0_&&_TL_&&_https://coin.top/production/logo/1001733.png",
+    "TronLotteryIO_&&_1001733_&&_0_&&_TL_&&_https://coin.top/production/logo/1001733.jpeg",
   "1001734":
     "VoteReward_&&_1001734_&&_0_&&_VOTE_&&_https://coin.top/production/js/20190509074813.png",
   "1001735":
-    "CNNBS_&&_1001735_&&_0_&&_CNNBS_&&_https://coin.top/production/logo/1001735.png",
+    "CNNBS_&&_1001735_&&_0_&&_CNNBS_&&_https://coin.top/tokenLogo/tokenLogo_20181213100936.862039.jpeg",
   "1001736":
-    "LogoLike_&&_1001736_&&_0_&&_Like_&&_https://coin.top/production/logo/1001736.png",
+    "LogoLike_&&_1001736_&&_0_&&_Like_&&_https://coin.top/tokenLogo/tokenLogo_20181213143148.092711.jpeg",
   "1001737":
     "SportHeraldToken_&&_1001737_&&_0_&&_SHT_&&_https://coin.top/production/js/20190509074813.png",
   "1001738":
-    "BusinessCoin_&&_1001738_&&_0_&&_BSS_&&_https://coin.top/production/logo/1001738.png",
+    "BusinessCoin_&&_1001738_&&_0_&&_BSS_&&_https://coin.top/production/logo/1001738.jpeg",
   "1001739":
-    "Poker_&&_1001739_&&_0_&&_PKR_&&_https://coin.top/production/logo/1001739.png",
+    "Poker_&&_1001739_&&_0_&&_PKR_&&_https://coin.top/tokenLogo/tokenLogo_20181214010647.825362.jpeg",
   "1001740":
-    "TRONENVELOPE_&&_1001740_&&_0_&&_TRE_&&_https://coin.top/production/logo/1001740.png",
+    "TRONENVELOPE_&&_1001740_&&_0_&&_TRE_&&_https://coin.top/production/logo/1001740.jpeg",
   "1001741":
-    "UPGRADETOKEN_&&_1001741_&&_0_&&_UG_&&_https://coin.top/production/logo/1001741.png",
+    "UPGRADETOKEN_&&_1001741_&&_0_&&_UG_&&_https://coin.top/production/logo/1001741.jpeg",
   "1001742":
     "NPR_&&_1001742_&&_0_&&_NPR_&&_https://coin.top/production/js/20190509074813.png",
   "1001743":
@@ -3489,7 +3489,7 @@ export const tokensMap = {
   "1001745":
     "TronWeekly_&&_1001745_&&_0_&&_TWJ_&&_https://coin.top/production/js/20190509074813.png",
   "1001746":
-    "Tronbor_&&_1001746_&&_0_&&_BOR_&&_https://coin.top/production/logo/1001746.png",
+    "Tronbor_&&_1001746_&&_0_&&_BOR_&&_https://coin.top/production/logo/1001746.jpeg",
   "1001747":
     "TronWeekIy_&&_1001747_&&_0_&&_TWJ_&&_https://coin.top/production/js/20190509074813.png",
   "1001748":
@@ -3501,17 +3501,17 @@ export const tokensMap = {
   "1001751":
     "$myrabbit.org_&&_1001751_&&_0_&&_myr_&&_https://coin.top/production/js/20190509074813.png",
   "1001752":
-    "CYBR_&&_1001752_&&_0_&&_CYBR_&&_https://coin.top/production/logo/1001752.png",
+    "CYBR_&&_1001752_&&_0_&&_CYBR_&&_https://coin.top/production/logo/1001752.jpeg",
   "1001753":
     "BEAR_&&_1001753_&&_0_&&_BEAR_&&_https://coin.top/production/js/20190509074813.png",
   "1001754":
-    "Painite_&&_1001754_&&_0_&&_PNT_&&_https://coin.top/production/logo/1001754.png",
+    "Painite_&&_1001754_&&_0_&&_PNT_&&_https://coin.top/tokenLogo/tokenLogo_20181216062850.983656.jpeg",
   "1001755":
-    "HoliDay_&&_1001755_&&_0_&&_HD_&&_https://coin.top/production/logo/1001755.png",
+    "HoliDay_&&_1001755_&&_0_&&_HD_&&_https://coin.top/tokenLogo/tokenLogo_20181216110501.561298.jpeg",
   "1001756":
     "MEMPHIS_&&_1001756_&&_0_&&_MEM_&&_https://coin.top/production/js/20190509074813.png",
   "1001757":
-    "EVO_&&_1001757_&&_0_&&_EVO_&&_https://coin.top/production/logo/1001757.png",
+    "EVO_&&_1001757_&&_0_&&_EVO_&&_https://coin.top/production/logo/1001757.jpeg",
   "1001758":
     "TronGamePay_&&_1001758_&&_0_&&_TGP_&&_https://coin.top/production/js/20190509074813.png",
   "1001759":
@@ -3519,15 +3519,15 @@ export const tokensMap = {
   "1001760":
     "Beatz_&&_1001760_&&_0_&&_BtZ_&&_https://coin.top/production/js/20190509074813.png",
   "1001761":
-    "TronGameGlobalPay_&&_1001761_&&_0_&&_GTP_&&_https://coin.top/production/logo/1001761.png",
+    "TronGameGlobalPay_&&_1001761_&&_0_&&_GTP_&&_https://coin.top/production/logo/1001761.jpeg",
   "1001762":
     "ELECTRON_&&_1001762_&&_0_&&_ELE_&&_https://coin.top/production/js/20190509074813.png",
   "1001763":
-    "Bee_&&_1001763_&&_0_&&_BEE_&&_https://coin.top/production/logo/1001763.png",
+    "Bee_&&_1001763_&&_0_&&_BEE_&&_https://coin.top/production/upload/logo/1001763.png?t=1569177591469",
   "1001764":
     "ANTEGG_&&_1001764_&&_0_&&_ANEGG_&&_https://coin.top/production/js/20190509074813.png",
   "1001765":
-    "RealPropertyToken_&&_1001765_&&_0_&&_RPT_&&_https://coin.top/production/logo/1001765.png",
+    "RealPropertyToken_&&_1001765_&&_0_&&_RPT_&&_https://coin.top/production/logo/1001765.jpeg",
   "1001766":
     "TRZ_&&_1001766_&&_0_&&_True_&&_https://coin.top/production/js/20190509074813.png",
   "1001767":
@@ -3535,49 +3535,49 @@ export const tokensMap = {
   "1001768":
     "TronWallet_&&_1001768_&&_0_&&_TWX_&&_https://coin.top/production/logo/1001768.png",
   "1001769":
-    "HyfllCoin_&&_1001769_&&_0_&&_HYFLL_&&_https://coin.top/production/logo/1001769.png",
+    "HyfllCoin_&&_1001769_&&_0_&&_HYFLL_&&_https://coin.top/tokenLogo/tokenLogo_20181218153113.503769.jpeg",
   "1001770":
     "TronStore_&&_1001770_&&_0_&&_TRS_&&_https://coin.top/production/js/20190509074813.png",
   "1001771":
-    "TronFundMe_&&_1001771_&&_0_&&_FUND_&&_https://coin.top/production/logo/1001771.png",
+    "TronFundMe_&&_1001771_&&_0_&&_FUND_&&_https://coin.top/production/logo/1001771.jpeg",
   "1001772":
-    "LifeTimeCoin_&&_1001772_&&_0_&&_LTC_&&_https://coin.top/production/logo/1001772.png",
+    "LifeTimeCoin_&&_1001772_&&_0_&&_LTC_&&_https://coin.top/tokenLogo/tokenLogo_20181218211159.872007.jpeg",
   "1001773":
-    "VinE_&&_1001773_&&_0_&&_VinE_&&_https://coin.top/production/logo/1001773.png",
+    "VinE_&&_1001773_&&_0_&&_VinE_&&_https://coin.top/production/logo/1001773.jpeg",
   "1001774":
-    "PSACOIN_&&_1001774_&&_0_&&_PSA_&&_https://coin.top/production/logo/1001774.png",
+    "PSACOIN_&&_1001774_&&_0_&&_PSA_&&_https://coin.top/production/logo/1001774.jpeg",
   "1001775":
-    "HashDice_&&_1001775_&&_0_&&_HDT_&&_https://coin.top/production/logo/1001775.png",
+    "HashDice_&&_1001775_&&_0_&&_HDT_&&_https://coin.top/production/logo/1001775.jpeg",
   "1001776":
     "PIRATESHIP_&&_1001776_&&_0_&&_PSS_&&_https://coin.top/production/js/20190509074813.png",
   "1001777":
     "JOLLYROGER_&&_1001777_&&_0_&&_JRGR_&&_https://coin.top/production/js/20190509074813.png",
   "1001778":
-    "Awesome_&&_1001778_&&_0_&&_AWS_&&_https://coin.top/production/logo/1001778.png",
+    "Awesome_&&_1001778_&&_0_&&_AWS_&&_https://coin.top/production/logo/1001778.jpeg",
   "1001779":
-    "Tolar_&&_1001779_&&_0_&&_TLR_&&_https://coin.top/production/logo/1001779.png",
+    "Tolar_&&_1001779_&&_0_&&_TLR_&&_https://coin.top/tokenLogo/tokenLogo_20181219120034.759486.jpeg",
   "1001780":
     "PaulyandMark_&&_1001780_&&_0_&&_PMTX_&&_https://coin.top/production/js/20190509074813.png",
   "1001781":
-    "CrytoCannabisDispensaryLicense_&&_1001781_&&_0_&&_CCDL_&&_https://coin.top/production/logo/1001781.png",
+    "CrytoCannabisDispensaryLicense_&&_1001781_&&_0_&&_CCDL_&&_https://coin.top/production/logo/1001781.jpeg",
   "1001782":
-    "CryptoCannabisDispensaryLicense_&&_1001782_&&_0_&&_CCDL_&&_https://coin.top/production/logo/1001782.png",
+    "CryptoCannabisDispensaryLicense_&&_1001782_&&_0_&&_CCDL_&&_https://coin.top/tokenLogo/tokenLogo_20181219202025.190883.jpeg",
   "1001783":
     "PIRATEKING_&&_1001783_&&_0_&&_PKING_&&_https://coin.top/production/js/20190509074813.png",
   "1001784":
-    "HopeNebulaCoin_&&_1001784_&&_0_&&_HNC_&&_https://coin.top/production/logo/1001784.png",
+    "HopeNebulaCoin_&&_1001784_&&_0_&&_HNC_&&_https://coin.top/production/logo/1001784.jpeg",
   "1001785":
-    "TRE_&&_1001785_&&_0_&&_TRE_&&_https://coin.top/production/logo/1001785.png",
+    "TRE_&&_1001785_&&_0_&&_TRE_&&_https://coin.top/tokenLogo/tokenLogo_20181220025307.923483.jpeg",
   "1001786":
     "FreeAgeControl_&&_1001786_&&_0_&&_FSC_&&_https://coin.top/production/js/20190509074813.png",
   "1001787":
-    "TRONArcade_&&_1001787_&&_0_&&_TA_&&_https://coin.top/production/logo/1001787.png",
+    "TRONArcade_&&_1001787_&&_0_&&_TA_&&_https://coin.top/production/logo/1001787.jpeg",
   "1001788":
     "AttentionMoveVotesToSRTRONEurope_&&_1001788_&&_0_&&_MOVE_&&_https://coin.top/production/js/20190509074813.png",
   "1001789":
     "MarshMeIoToken_&&_1001789_&&_0_&&_MMTE_&&_https://coin.top/production/js/20190509074813.png",
   "1001790":
-    "DigitalGeoTreasureToken_&&_1001790_&&_0_&&_DGTT_&&_https://coin.top/production/logo/1001790.png",
+    "DigitalGeoTreasureToken_&&_1001790_&&_0_&&_DGTT_&&_https://coin.top/tokenLogo/tokenLogo20180917030508.png",
   "1001791":
     "FuqU_&&_1001791_&&_0_&&_FU_&&_https://coin.top/production/js/20190509074813.png",
   "1001792":
@@ -3585,41 +3585,41 @@ export const tokensMap = {
   "1001793":
     "Techniko_&&_1001793_&&_0_&&_NIKO_&&_https://coin.top/production/js/20190509074813.png",
   "1001794":
-    "QuarkChainToken_&&_1001794_&&_0_&&_QKC_&&_https://coin.top/production/logo/1001794.png",
+    "QuarkChainToken_&&_1001794_&&_0_&&_QKC_&&_https://coin.top/tokenLogo/tokenLogo_20181221142936.716557.jpeg",
   "1001795":
-    "soccertoken_&&_1001795_&&_0_&&_sct_&&_https://coin.top/production/logo/1001795.png",
+    "soccertoken_&&_1001795_&&_0_&&_sct_&&_https://coin.top/production/logo/1001795.jpeg",
   "1001796":
     "ShutTheFuckUp_&&_1001796_&&_0_&&_STFU_&&_https://coin.top/production/js/20190509074813.png",
   "1001797":
-    "SEEDRSHARE_&&_1001797_&&_0_&&_SHARE_&&_https://coin.top/production/logo/1001797.png",
+    "SEEDRSHARE_&&_1001797_&&_0_&&_SHARE_&&_https://coin.top/production/logo/1001797.jpeg",
   "1001798":
-    "SEEDRAPTS_&&_1001798_&&_0_&&_SAPTS_&&_https://coin.top/production/logo/1001798.png",
+    "SEEDRAPTS_&&_1001798_&&_0_&&_SAPTS_&&_https://coin.top/production/logo/1001798.jpeg",
   "1001799":
-    "DCG_&&_1001799_&&_0_&&_DCG_&&_https://coin.top/production/logo/1001799.png",
+    "DCG_&&_1001799_&&_0_&&_DCG_&&_https://coin.top/tokenLogo/tokenLogo_20181222154843.374656.jpeg",
   "1001800":
     "!SocialHelp!_&&_1001800_&&_0_&&_SOCL_&&_https://coin.top/production/js/20190509074813.png",
   "1001801":
-    "Baba_&&_1001801_&&_0_&&_BABA_&&_https://coin.top/production/logo/1001801.png",
+    "Baba_&&_1001801_&&_0_&&_BABA_&&_https://coin.top/production/logo/1001801.jpg",
   "1001802":
     "Virgin_&&_1001802_&&_0_&&_VAG_&&_https://coin.top/production/js/20190509074813.png",
   "1001803":
-    "LIME_&&_1001803_&&_0_&&_LIME_&&_https://coin.top/production/logo/1001803.png",
+    "LIME_&&_1001803_&&_0_&&_LIME_&&_https://coin.top/tokenLogo/tokenLogo_20181223072210.051151.jpeg",
   "1001804":
     "STEPS_&&_1001804_&&_0_&&_STEPS_&&_https://coin.top/production/js/20190509074813.png",
   "1001805":
     "ATETHEASS_&&_1001805_&&_0_&&_ATETHEASS_&&_https://coin.top/production/js/20190509074813.png",
   "1001806":
-    "TreeOfLifePlus_&&_1001806_&&_0_&&_TOLP_&&_https://coin.top/production/logo/1001806.png",
+    "TreeOfLifePlus_&&_1001806_&&_0_&&_TOLP_&&_https://coin.top/production/logo/1001806.jpeg",
   "1001807":
     "togethersociety_&&_1001807_&&_0_&&_echo_&&_https://coin.top/production/js/20190509074813.png",
   "1001808":
-    "Echo_&&_1001808_&&_0_&&_ECHO_&&_https://coin.top/production/logo/1001808.png",
+    "Echo_&&_1001808_&&_0_&&_ECHO_&&_https://coin.top/tokenLogo/tokenLogo_20181224062849.907061.jpeg",
   "1001809":
-    "Rupee_&&_1001809_&&_0_&&_Rpe_&&_https://coin.top/production/logo/1001809.png",
+    "Rupee_&&_1001809_&&_0_&&_Rpe_&&_https://coin.top/production/logo/1001809.jpeg",
   "1001810":
-    "Colorpop_&&_1001810_&&_0_&&_CLP_&&_https://coin.top/production/logo/1001810.png",
+    "Colorpop_&&_1001810_&&_0_&&_CLP_&&_https://coin.top/tokenLogo/tokenLogo_20181224141717.706194.jpeg",
   "1001811":
-    "Moccacoin_&&_1001811_&&_0_&&_MOC_&&_https://coin.top/production/logo/1001811.png",
+    "Moccacoin_&&_1001811_&&_0_&&_MOC_&&_https://coin.top/production/logo/1001811.jpeg",
   "1001812":
     "STEPSTOKEN_&&_1001812_&&_0_&&_ST_&&_https://coin.top/production/js/20190509074813.png",
   "1001813":
@@ -3627,33 +3627,33 @@ export const tokensMap = {
   "1001814":
     "CryptoFlash_&&_1001814_&&_0_&&_CFTX_&&_https://coin.top/production/js/20190509074813.png",
   "1001815":
-    "TronRoyal_&&_1001815_&&_0_&&_TRL_&&_https://coin.top/production/logo/1001815.png",
+    "TronRoyal_&&_1001815_&&_0_&&_TRL_&&_https://coin.top/production/logo/1001815.jpeg",
   "1001816":
-    "TRONROYAL_&&_1001816_&&_0_&&_TRXR_&&_https://coin.top/production/logo/1001816.png",
+    "TRONROYAL_&&_1001816_&&_0_&&_TRXR_&&_https://coin.top/production/logo/1001816.jpeg",
   "1001817":
-    "TRONA_&&_1001817_&&_0_&&_TRA_&&_https://coin.top/production/logo/1001817.png",
+    "TRONA_&&_1001817_&&_0_&&_TRA_&&_https://coin.top/production/logo/1001817.jpeg",
   "1001818":
     "TronInfo_&&_1001818_&&_0_&&_TiTo_&&_https://coin.top/production/logo/1001818.png",
   "1001819":
-    "AITechnology_&&_1001819_&&_0_&&_ATN_&&_https://coin.top/production/logo/1001819.png",
+    "AITechnology_&&_1001819_&&_0_&&_ATN_&&_https://coin.top/production/logo/1001819.jpeg",
   "1001820":
     "TronDubai_&&_1001820_&&_0_&&_TDBX_&&_https://coin.top/production/js/20190509074813.png",
   "1001821":
-    "WLC_&&_1001821_&&_0_&&_WLC_&&_https://coin.top/production/logo/1001821.png",
+    "WLC_&&_1001821_&&_0_&&_WLC_&&_https://coin.top/tokenLogo/tokenLogo_20181226111357.711542.jpeg",
   "1001822":
-    "WLT_&&_1001822_&&_0_&&_WLT_&&_https://coin.top/production/logo/1001822.png",
+    "WLT_&&_1001822_&&_0_&&_WLT_&&_https://coin.top/tokenLogo/tokenLogo_20181226122621.998170.jpeg",
   "1001823":
-    "WL_&&_1001823_&&_0_&&_WL_&&_https://coin.top/production/logo/1001823.png",
+    "WL_&&_1001823_&&_0_&&_WL_&&_https://coin.top/tokenLogo/tokenLogo_20181226125752.904820.jpeg",
   "1001824":
-    "SulMiners_&&_1001824_&&_0_&&_SM_&&_https://coin.top/production/logo/1001824.png",
+    "SulMiners_&&_1001824_&&_0_&&_SM_&&_https://coin.top/production/logo/1001824.jpeg",
   "1001825":
-    "CYBER_&&_1001825_&&_0_&&_CYBR_&&_https://coin.top/production/logo/1001825.png",
+    "CYBER_&&_1001825_&&_0_&&_CYBR_&&_https://coin.top/production/logo/1001825.jpeg",
   "1001826":
     "TearsOfSorrow_&&_1001826_&&_0_&&_ToS_&&_https://coin.top/production/logo/1001826.png",
   "1001827":
-    "iGenomics_&&_1001827_&&_0_&&_IGX_&&_https://coin.top/production/logo/1001827.png",
+    "iGenomics_&&_1001827_&&_0_&&_IGX_&&_https://coin.top/production/logo/1001827.jpeg",
   "1001828":
-    "CommunitySupportedAgriculture_&&_1001828_&&_0_&&_CSA_&&_https://coin.top/production/logo/1001828.png",
+    "CommunitySupportedAgriculture_&&_1001828_&&_0_&&_CSA_&&_https://coin.top/production/logo/1001828.jpeg",
   "1001829":
     "GroceriesCoin_&&_1001829_&&_0_&&_GC_&&_https://coin.top/production/js/20190509074813.png",
   "1001830":
@@ -3661,85 +3661,85 @@ export const tokensMap = {
   "1001831":
     "BLOCKFXGOLD_&&_1001831_&&_0_&&_BFG_&&_https://coin.top/production/js/20190509074813.png",
   "1001832":
-    "RUSH_&&_1001832_&&_0_&&_YYZ_&&_https://coin.top/production/logo/1001832.png",
+    "RUSH_&&_1001832_&&_0_&&_YYZ_&&_https://coin.top/tokenLogo/tokenLogo_20181229171608.597641.jpeg",
   "1001833":
-    "preChargeTRX_&&_1001833_&&_0_&&_PCPit_&&_https://coin.top/production/logo/1001833.png",
+    "preChargeTRX_&&_1001833_&&_0_&&_PCPit_&&_https://coin.top/production/logo/1001833.jpeg",
   "1001834":
-    "DeepCloudAI_&&_1001834_&&_0_&&_DEEP_&&_https://coin.top/production/logo/1001834.png",
+    "DeepCloudAI_&&_1001834_&&_0_&&_DEEP_&&_https://coin.top/production/logo/1001834.jpeg",
   "1001835":
     "JinTRX_&&_1001835_&&_0_&&_JTRXE_&&_https://coin.top/production/js/20190509074813.png",
   "1001836":
-    "BITCOIN_&&_1001836_&&_0_&&_BTC_&&_https://coin.top/production/logo/1001836.png",
+    "BITCOIN_&&_1001836_&&_0_&&_BTC_&&_https://coin.top/production/logo/1001836.jpeg",
   "1001837":
-    "POS_&&_1001837_&&_0_&&_POS_&&_https://coin.top/production/logo/1001837.png",
+    "POS_&&_1001837_&&_0_&&_POS_&&_https://coin.top/tokenLogo/tokenLogo_20181230171057.817926.jpeg",
   "1001838":
     "ENlGMAEGG_&&_1001838_&&_0_&&_ENEGG_&&_https://coin.top/production/js/20190509074813.png",
   "1001839":
-    "UPRISING_&&_1001839_&&_0_&&_UPRZ_&&_https://coin.top/production/logo/1001839.png",
+    "UPRISING_&&_1001839_&&_0_&&_UPRZ_&&_https://coin.top/production/logo/1001839.jpeg",
   "1001840":
-    "SuperNovaTron_&&_1001840_&&_0_&&_SNT_&&_https://coin.top/production/logo/1001840.png",
+    "SuperNovaTron_&&_1001840_&&_0_&&_SNT_&&_https://coin.top/production/logo/1001840.jpeg",
   "1001841":
     "TronLOTTO_&&_1001841_&&_0_&&_LOTTO_&&_https://coin.top/production/logo/1001841.png",
   "1001842":
-    "WHISKY_&&_1001842_&&_0_&&_WHY_&&_https://coin.top/production/logo/1001842.png",
+    "WHISKY_&&_1001842_&&_0_&&_WHY_&&_https://coin.top/production/logo/1001842.jpeg",
   "1001843":
     "FXGOLD_&&_1001843_&&_0_&&_FXG_&&_https://coin.top/production/js/20190509074813.png",
   "1001844":
-    "DigitalGeoTreasureReward_&&_1001844_&&_0_&&_DGTR_&&_https://coin.top/production/upload/logo/1001844.png?t=1573847799581",
+    "DigitalGeoTreasureReward_&&_1001844_&&_0_&&_DGTR_&&_https://coin.top/production/js/20190509074813.png",
   "1001845":
     "TimerGuardBox_&&_1001845_&&_0_&&_TGB_&&_https://coin.top/production/js/20190509074813.png",
   "1001846":
     "MINERRI_&&_1001846_&&_0_&&_MNRRI_&&_https://coin.top/production/js/20190509074813.png",
   "1001847":
-    "ATARI_&&_1001847_&&_0_&&_ATARI_&&_https://coin.top/production/logo/1001847.png",
+    "ATARI_&&_1001847_&&_0_&&_ATARI_&&_https://coin.top/production/logo/1001847.jpeg",
   "1001848":
     "GOC_&&_1001848_&&_0_&&_GOC_&&_https://coin.top/production/js/20190509074813.png",
   "1001849":
-    "Atom_&&_1001849_&&_0_&&_ATOM_&&_https://coin.top/production/logo/1001849.png",
+    "Atom_&&_1001849_&&_0_&&_ATOM_&&_https://coin.top/production/logo/1001849.jpeg",
   "1001850":
-    "BEREKET_&&_1001850_&&_0_&&_BRKT_&&_https://coin.top/production/logo/1001850.png",
+    "BEREKET_&&_1001850_&&_0_&&_BRKT_&&_https://coin.top/production/logo/1001850.jpeg",
   "1001851":
-    "FreeCoinCash_&&_1001851_&&_0_&&_FCC_&&_https://coin.top/production/logo/1001851.png",
+    "FreeCoinCash_&&_1001851_&&_0_&&_FCC_&&_https://coin.top/production/logo/1001851.jpeg",
   "1001852":
-    "SCAMTOKEN_&&_1001852_&&_0_&&_SCAM_&&_https://coin.top/production/logo/1001852.png",
+    "SCAMTOKEN_&&_1001852_&&_0_&&_SCAM_&&_https://coin.top/production/logo/1001852.jpeg",
   "1001853":
     "UTCP_&&_1001853_&&_0_&&_UTCP_&&_https://coin.top/production/js/20190509074813.png",
   "1001854":
-    "NeuralFractalZ_&&_1001854_&&_0_&&_NFZ_&&_https://coin.top/production/logo/1001854.png",
+    "NeuralFractalZ_&&_1001854_&&_0_&&_NFZ_&&_https://i.imgur.com/OleY17R.jpg",
   "1001855":
     "ante_&&_1001855_&&_0_&&_ANTE_&&_https://coin.top/production/js/20190509074813.png",
   "1001856":
-    "Frame_&&_1001856_&&_0_&&_FRM_&&_https://coin.top/production/logo/1001856.png",
+    "Frame_&&_1001856_&&_0_&&_FRM_&&_https://coin.top/production/logo/1001856.jpeg",
   "1001857":
     "BYC_&&_1001857_&&_0_&&_BYC_&&_https://coin.top/production/js/20190509074813.png",
   "1001858":
-    "TronRefunds_&&_1001858_&&_0_&&_TRFD_&&_https://coin.top/production/logo/1001858.png",
+    "TronRefunds_&&_1001858_&&_0_&&_TRFD_&&_https://coin.top/production/logo/1001858.jpeg",
   "1001859":
     "NORToken_&&_1001859_&&_0_&&_XRT_&&_https://coin.top/production/js/20190509074813.png",
   "1001860":
     "BPToken_&&_1001860_&&_0_&&_BPTK_&&_https://coin.top/production/js/20190509074813.png",
   "1001861":
-    "Mafia_&&_1001861_&&_0_&&_MOB_&&_https://coin.top/production/logo/1001861.png",
+    "Mafia_&&_1001861_&&_0_&&_MOB_&&_https://coin.top/production/logo/1001861.jpeg",
   "1001862":
-    "GG_&&_1001862_&&_0_&&_GG_&&_https://coin.top/production/logo/1001862.png",
+    "GG_&&_1001862_&&_0_&&_GG_&&_https://coin.top/tokenLogo/tokenLogo_20190103170132.335956.jpeg",
   "1001863":
     "TronBucks_&&_1001863_&&_0_&&_TBUCK_&&_https://coin.top/production/js/20190509074813.png",
   "1001864":
-    "LeafUp_&&_1001864_&&_0_&&_LEAF_&&_https://coin.top/production/logo/1001864.png",
+    "LeafUp_&&_1001864_&&_0_&&_LEAF_&&_https://coin.top/production/logo/1001864.jpeg",
   "1001865":
-    "GlobalRiceToken_&&_1001865_&&_0_&&_GRT_&&_https://coin.top/production/logo/1001865.png",
+    "GlobalRiceToken_&&_1001865_&&_0_&&_GRT_&&_https://coin.top/production/logo/1001865.jpeg",
   "1001866":
-    "Erudition_&&_1001866_&&_0_&&_GNIUS_&&_https://coin.top/production/logo/1001866.png",
+    "Erudition_&&_1001866_&&_0_&&_GNIUS_&&_https://coin.top/tokenLogo/tokenLogo_20190104023819.074913.jpeg",
   "1001867":
-    "worldswastika_&&_1001867_&&_0_&&_WST_&&_https://coin.top/production/logo/1001867.png",
+    "worldswastika_&&_1001867_&&_0_&&_WST_&&_https://coin.top/tokenLogo/tokenLogo_20190104053933.458303.jpeg",
   "1001868":
-    "HEARTPACK_&&_1001868_&&_0_&&_HRTPK_&&_https://coin.top/production/logo/1001868.png",
+    "HEARTPACK_&&_1001868_&&_0_&&_HRTPK_&&_https://coin.top/tokenLogo/tokenLogo_20190104111337.749934.jpeg",
   "1001869":
-    "RToken_&&_1001869_&&_0_&&_RT_&&_https://coin.top/production/logo/1001869.png",
+    "RToken_&&_1001869_&&_0_&&_RT_&&_https://coin.top/tokenLogo/tokenLogo_20190104141249.524285.jpeg",
   "1001870":
     "DONO_&&_1001870_&&_0_&&_DONO_&&_https://coin.top/production/js/20190509074813.png",
   "1001871":
-    "RODEX_&&_1001871_&&_0_&&_RDX_&&_https://coin.top/production/logo/1001871.png",
+    "RODEX_&&_1001871_&&_0_&&_RDX_&&_https://coin.top/production/logo/1001871.jpeg",
   "1001872":
     "TWX_&&_1001872_&&_0_&&_TWX_&&_https://coin.top/production/js/20190509074813.png",
   "1001873":
@@ -3751,13 +3751,13 @@ export const tokensMap = {
   "1001876":
     "HasanahTRON_&&_1001876_&&_0_&&_HTRON_&&_https://coin.top/production/js/20190509074813.png",
   "1001877":
-    "SEED_&&_1001877_&&_0_&&_SEED_&&_https://coin.top/production/logo/1001877.png",
+    "SEED_&&_1001877_&&_0_&&_SEED_&&_https://coin.top/tokenLogo/tokenLogo_20190105182405.584783.jpeg",
   "1001878":
-    "TronSilver_&&_1001878_&&_0_&&_TRS_&&_https://coin.top/production/logo/1001878.png",
+    "TronSilver_&&_1001878_&&_0_&&_TRS_&&_https://coin.top/production/logo/1001878.jpeg",
   "1001879":
-    "SEED_&&_1001879_&&_0_&&_SEED_&&_https://coin.top/production/logo/1001879.png",
+    "SEED_&&_1001879_&&_0_&&_SEED_&&_https://coin.top/tokenLogo/tokenLogo_20190106072942.045340.jpeg",
   "1001880":
-    "LocalTRX_&&_1001880_&&_0_&&_LTRX_&&_https://coin.top/production/logo/1001880.png",
+    "LocalTRX_&&_1001880_&&_0_&&_LTRX_&&_https://coin.top/production/logo/1001880.jpeg",
   "1001881":
     "Zapdos_&&_1001881_&&_0_&&_ZAP_&&_https://coin.top/production/js/20190509074813.png",
   "1001882":
@@ -3765,17 +3765,17 @@ export const tokensMap = {
   "1001883":
     "SEED_&&_1001883_&&_0_&&_SCC_&&_https://coin.top/production/js/20190509074813.png",
   "1001884":
-    "HeartPowerToken_&&_1001884_&&_0_&&_HEART_&&_https://coin.top/production/logo/1001884.png",
+    "HeartPowerToken_&&_1001884_&&_0_&&_HEART_&&_https://coin.top/production/logo/1001884.jpeg",
   "1001885":
-    "DownRound_&&_1001885_&&_0_&&_DROWN_&&_https://coin.top/production/logo/1001885.png",
+    "DownRound_&&_1001885_&&_0_&&_DROWN_&&_https://coin.top/tokenLogo/tokenLogo_20190107174422.297005.jpeg",
   "1001886":
     "PizzaPatelTestToken_&&_1001886_&&_0_&&_PPTT_&&_https://coin.top/production/js/20190509074813.png",
   "1001887":
     "JoseReyes_&&_1001887_&&_0_&&_JoseReyes_&&_https://coin.top/production/js/20190509074813.png",
   "1001888":
-    "Nudes_&&_1001888_&&_0_&&_Nudes_&&_https://coin.top/production/logo/1001888.png",
+    "Nudes_&&_1001888_&&_0_&&_Nudes_&&_https://coin.top/production/logo/1001888.jpeg",
   "1001889":
-    "STAR_&&_1001889_&&_1_&&_STAR_&&_https://coin.top/production/logo/1001889.png",
+    "STAR_&&_1001889_&&_1_&&_STAR_&&_https://coin.top/tokenLogo/tokenLogo_20190108032527.259040.jpeg",
   "1001890":
     "DapperCrypto_&&_1001890_&&_0_&&_dc_&&_https://coin.top/production/js/20190509074813.png",
   "1001891":
@@ -3783,45 +3783,45 @@ export const tokensMap = {
   "1001892":
     "CutsAndColorTestToken_&&_1001892_&&_0_&&_CACTT_&&_https://coin.top/production/js/20190509074813.png",
   "1001893":
-    "BetaORCA_&&_1001893_&&_0_&&_BetaO_&&_https://coin.top/production/logo/1001893.png",
+    "BetaORCA_&&_1001893_&&_0_&&_BetaO_&&_https://coin.top/production/logo/1001893.jpeg",
   "1001894":
-    "CandyMoreBox_&&_1001894_&&_6_&&_CMB_&&_https://coin.top/production/logo/1001894.png",
+    "CandyMoreBox_&&_1001894_&&_6_&&_CMB_&&_https://coin.top/tokenLogo/tokenLogo_20190108122816.217681.jpeg",
   "1001895":
     "MajikMunchi_&&_1001895_&&_0_&&_DNA_&&_https://coin.top/production/js/20190509074813.png",
   "1001896":
-    "TokenzXchange_&&_1001896_&&_0_&&_TXG_&&_https://coin.top/production/logo/1001896.png",
+    "TokenzXchange_&&_1001896_&&_0_&&_TXG_&&_https://coin.top/tokenLogo/tokenLogo_20190108132309.989924.jpeg",
   "1001897":
     "LucianNagyToken_&&_1001897_&&_0_&&_LNT_&&_https://coin.top/production/logo/1001897.png",
   "1001898":
     "GlobalRiceTokenKilo_&&_1001898_&&_0_&&_GRTK_&&_https://coin.top/production/js/20190509074813.png",
   "1001899":
-    "TronRefunds_&&_1001899_&&_1_&&_TRORE_&&_https://coin.top/production/logo/1001899.png",
+    "TronRefunds_&&_1001899_&&_1_&&_TRORE_&&_https://coin.top/tokenLogo/tokenLogo_20190108210823.052561.jpeg",
   "1001900":
-    "FIATCOIN_&&_1001900_&&_6_&&_BTC_&&_https://coin.top/production/logo/1001900.png",
+    "FIATCOIN_&&_1001900_&&_6_&&_BTC_&&_https://coin.top/production/logo/1001900.jpeg",
   "1001901":
     "Poop_&&_1001901_&&_6_&&_poop_&&_https://coin.top/production/js/20190509074813.png",
   "1001902":
-    "SkeinSync_&&_1001902_&&_0_&&_SKS_&&_https://coin.top/production/logo/1001902.png",
+    "SkeinSync_&&_1001902_&&_0_&&_SKS_&&_https://coin.top/tokenLogo/tokenLogo_20190109013130.302496.jpeg",
   "1001903":
-    "Mew_&&_1001903_&&_0_&&_MEW_&&_https://coin.top/production/logo/1001903.png",
+    "Mew_&&_1001903_&&_0_&&_MEW_&&_https://coin.top/production/logo/1001903.jpeg",
   "1001904":
-    "XMEN_&&_1001904_&&_0_&&_XMEN_&&_https://coin.top/production/logo/1001904.png",
+    "XMEN_&&_1001904_&&_0_&&_XMEN_&&_https://coin.top/tokenLogo/tokenLogo_20190109052440.464426.jpeg",
   "1001905":
-    "Thunder_&&_1001905_&&_0_&&_XTD_&&_https://coin.top/production/logo/1001905.png",
+    "Thunder_&&_1001905_&&_0_&&_XTD_&&_https://coin.top/tokenLogo/tokenLogo_20190109134429.879677.jpeg",
   "1001906":
     "INSURANCESCOIN_&&_1001906_&&_0_&&_INSC_&&_https://coin.top/production/js/20190509074813.png",
   "1001907":
-    "spade_&&_1001907_&&_0_&&_SPX_&&_https://coin.top/production/logo/1001907.png",
+    "spade_&&_1001907_&&_0_&&_SPX_&&_https://coin.top/production/logo/1001907.jpeg",
   "1001908":
     "LINXIAOWANG_&&_1001908_&&_1_&&_LXW_&&_https://coin.top/production/js/20190509074813.png",
   "1001909":
-    "DEP_&&_1001909_&&_5_&&_dep_&&_https://coin.top/production/logo/1001909.png",
+    "DEP_&&_1001909_&&_5_&&_dep_&&_https://coin.top/production/logo/1001909.jpeg",
   "1001910":
     "TronRare_&&_1001910_&&_0_&&_TR_&&_https://coin.top/production/logo/1001910.png",
   "1001911":
     "JackTronLottery_&&_1001911_&&_4_&&_JACK_&&_https://coin.top/production/js/20190509074813.png",
   "1001912":
-    "TronSquadToken_&&_1001912_&&_0_&&_TST_&&_https://coin.top/production/logo/1001912.png",
+    "TronSquadToken_&&_1001912_&&_0_&&_TST_&&_https://coin.top/production/logo/1001912.jpeg",
   "1001913":
     "TRXPTEST_&&_1001913_&&_6_&&_TRXPT_&&_https://coin.top/production/js/20190509074813.png",
   "1001914":
@@ -3829,23 +3829,23 @@ export const tokensMap = {
   "1001915":
     "Colorpop_&&_1001915_&&_6_&&_CLPP_&&_https://coin.top/production/js/20190509074813.png",
   "1001916":
-    "IntergalacticGamingGalaxy_&&_1001916_&&_0_&&_IGG_&&_https://coin.top/production/logo/1001916.png",
+    "IntergalacticGamingGalaxy_&&_1001916_&&_0_&&_IGG_&&_https://coin.top/production/logo/1001916.jpeg",
   "1001917":
-    "SmartCryptoRadio_&&_1001917_&&_0_&&_SCR_&&_https://coin.top/production/logo/1001917.png",
+    "SmartCryptoRadio_&&_1001917_&&_0_&&_SCR_&&_https://coin.top/production/logo/1001917.jpeg",
   "1001918":
-    "Ellysium_&&_1001918_&&_4_&&_ELY_&&_https://coin.top/production/logo/1001918.png",
+    "Ellysium_&&_1001918_&&_4_&&_ELY_&&_https://coin.top/production/logo/1001918.jpeg",
   "1001919":
     "VRgram_&&_1001919_&&_0_&&_VRG_&&_https://coin.top/production/js/20190509074813.png",
   "1001920":
-    "ORCA_&&_1001920_&&_0_&&_ORCA_&&_https://coin.top/production/logo/1001920.png",
+    "ORCA_&&_1001920_&&_0_&&_ORCA_&&_https://coin.top/production/logo/1001920.jpeg",
   "1001921":
-    "ANTE_&&_1001921_&&_2_&&_ANTE_&&_https://coin.top/production/logo/1001921.png",
+    "ANTE_&&_1001921_&&_2_&&_ANTE_&&_https://coin.top/tokenLogo/tokenLogo_20190112140838.099472.jpeg",
   "1001922":
-    "EDGE_&&_1001922_&&_2_&&_EDGE_&&_https://coin.top/production/logo/1001922.png",
+    "EDGE_&&_1001922_&&_2_&&_EDGE_&&_https://coin.top/production/logo/1001922.jpeg",
   "1001923":
-    "DiviHuntersCoin_&&_1001923_&&_0_&&_DHC_&&_https://coin.top/production/logo/1001923.png",
+    "DiviHuntersCoin_&&_1001923_&&_0_&&_DHC_&&_https://coin.top/tokenLogo/tokenLogo_20190112194027.236889.jpeg",
   "1001924":
-    "REFUN_&&_1001924_&&_0_&&_REF_&&_https://coin.top/production/logo/1001924.png",
+    "REFUN_&&_1001924_&&_0_&&_REF_&&_https://coin.top/tokenLogo/tokenLogo_20190112223416.453410.jpeg",
   "1001925":
     "BlockExGOLD_&&_1001925_&&_0_&&_BEX_&&_https://coin.top/production/js/20190509074813.png",
   "1001926":
@@ -3853,15 +3853,15 @@ export const tokensMap = {
   "1001927":
     "BTT_&&_1001927_&&_0_&&_BTT_&&_https://coin.top/production/js/20190509074813.png",
   "1001928":
-    "Cuddles_&&_1001928_&&_0_&&_CUD_&&_https://coin.top/production/logo/1001928.png",
+    "Cuddles_&&_1001928_&&_0_&&_CUD_&&_https://coin.top/tokenLogo/tokenLogo_20190113174103.794610.jpeg",
   "1001929":
-    "JAVVY_&&_1001929_&&_4_&&_JVY_&&_https://coin.top/production/logo/1001929.png",
+    "JAVVY_&&_1001929_&&_4_&&_JVY_&&_https://coin.top/production/logo/1001929.jpeg",
   "1001930":
-    "TESTCOIN_&&_1001930_&&_5_&&_TCN_&&_https://coin.top/production/logo/1001930.png",
+    "TESTCOIN_&&_1001930_&&_5_&&_TCN_&&_https://coin.top/production/logo/1001930.jpeg",
   "1001931":
-    "RENDEN_&&_1001931_&&_0_&&_DUTCH_&&_https://coin.top/production/logo/1001931.png",
+    "RENDEN_&&_1001931_&&_0_&&_DUTCH_&&_https://coin.top/tokenLogo/tokenLogo_20190114143206.709776.jpeg",
   "1001932":
-    "SMS_&&_1001932_&&_5_&&_SMS_&&_https://coin.top/production/logo/1001932.png",
+    "SMS_&&_1001932_&&_5_&&_SMS_&&_https://coin.top/tokenLogo/tokenLogo_20190114163953.903654.jpeg",
   "1001933":
     "ATOM_&&_1001933_&&_6_&&_ATOM_&&_https://coin.top/production/js/20190509074813.png",
   "1001934":
@@ -3873,35 +3873,35 @@ export const tokensMap = {
   "1001937":
     "AtomicExchange_&&_1001937_&&_0_&&_ATOMX_&&_https://coin.top/production/js/20190509074813.png",
   "1001938":
-    "KEK_&&_1001938_&&_0_&&_KEK_&&_https://coin.top/production/logo/1001938.png",
+    "KEK_&&_1001938_&&_0_&&_KEK_&&_https://coin.top/production/logo/1001938.jpeg",
   "1001939":
-    "ROASTED_&&_1001939_&&_0_&&_ROAST_&&_https://coin.top/production/logo/1001939.png",
+    "ROASTED_&&_1001939_&&_0_&&_ROAST_&&_https://coin.top/tokenLogo/tokenLogo_20190116063659.903794.jpeg",
   "1001940":
-    "BitTorrentToken_&&_1001940_&&_0_&&_BTT_&&_https://coin.top/production/logo/1001940.png",
+    "BitTorrentToken_&&_1001940_&&_0_&&_BTT_&&_https://coin.top/production/logo/1001940.jpeg",
   "1001941":
     "CAG_&&_1001941_&&_6_&&_CAG_&&_https://coin.top/production/js/20190509074813.png",
   "1001942":
     "TRXP_&&_1001942_&&_6_&&_TRXP_&&_https://coin.top/production/js/20190509074813.png",
   "1001943":
-    "POPPY_&&_1001943_&&_6_&&_POPPY_&&_https://coin.top/production/logo/1001943.png",
+    "POPPY_&&_1001943_&&_6_&&_POPPY_&&_https://coin.top/production_test/js/20190618041439.jpeg",
   "1001944":
-    "MeatBlock_&&_1001944_&&_0_&&_MEAT_&&_https://coin.top/production/logo/1001944.png",
+    "MeatBlock_&&_1001944_&&_0_&&_MEAT_&&_https://coin.top/production/logo/1001944.jpeg",
   "1001945":
     "Seagulls_&&_1001945_&&_0_&&_GULL_&&_https://coin.top/production/js/20190509074813.png",
   "1001946":
     "TronLot_&&_1001946_&&_0_&&_Lott_&&_https://coin.top/production/js/20190509074813.png",
   "1001947":
-    "Colorpop_&&_1001947_&&_6_&&_CLP_&&_https://coin.top/production/logo/1001947.png",
+    "Colorpop_&&_1001947_&&_6_&&_CLP_&&_https://coin.top/production/js/20190509074813.png",
   "1001948":
-    "BitTorrent_&&_1001948_&&_6_&&_BTT_&&_https://coin.top/production/logo/1001948.png",
+    "BitTorrent_&&_1001948_&&_6_&&_BTT_&&_https://coin.top/production/logo/1001948.jpeg",
   "1001949":
-    "SOON_&&_1001949_&&_6_&&_SOON_&&_https://coin.top/production/logo/1001949.png",
+    "SOON_&&_1001949_&&_6_&&_SOON_&&_https://coin.top/tokenLogo/tokenLogo_20190118031516.436694.jpeg",
   "1001950":
-    "Cashcoin_&&_1001950_&&_0_&&_CAH_&&_https://coin.top/production/logo/1001950.png",
+    "Cashcoin_&&_1001950_&&_0_&&_CAH_&&_https://coin.top/production/logo/1001950.jpeg",
   "1001951":
-    "Ruby_&&_1001951_&&_6_&&_XIP_&&_https://coin.top/production/logo/1001951.png",
+    "Ruby_&&_1001951_&&_6_&&_XIP_&&_https://coin.top/production/logo/1001951.jpeg",
   "1001952":
-    "BitTorrent_&&_1001952_&&_0_&&_BTT_&&_https://coin.top/production/logo/1001952.png",
+    "BitTorrent_&&_1001952_&&_0_&&_BTT_&&_https://coin.top/tokenLogo/tokenLogo_20190118065408.505739.jpeg",
   "1001953":
     "SmartRealEstate_&&_1001953_&&_6_&&_REAL_&&_https://coin.top/production/js/20190509074813.png",
   "1001954":
@@ -3913,17 +3913,17 @@ export const tokensMap = {
   "1001957":
     "AI_&&_1001957_&&_0_&&_AI_&&_https://coin.top/production/js/20190509074813.png",
   "1001958":
-    "Trontmone_&&_1001958_&&_0_&&_TTT_&&_https://coin.top/production/logo/1001958.png",
+    "Trontmone_&&_1001958_&&_0_&&_TTT_&&_https://coin.top/tokenLogo/tokenLogo20190124035131.png",
   "1001959":
     "Kioshu_&&_1001959_&&_6_&&_KIO_&&_https://coin.top/production/js/20190509074813.png",
   "1001960":
-    "CREW_&&_1001960_&&_0_&&_CREW_&&_https://coin.top/production/logo/1001960.png",
+    "CREW_&&_1001960_&&_0_&&_CREW_&&_https://coin.top/tokenLogo/tokenLogo_20190118212900.924814.jpeg",
   "1001961":
-    "Drop_&&_1001961_&&_4_&&_DROP_&&_https://coin.top/production/logo/1001961.png",
+    "Drop_&&_1001961_&&_4_&&_DROP_&&_https://coin.top/tokenLogo/tokenLogo_20190119000834.183245.jpeg",
   "1001962":
-    "Trongram_&&_1001962_&&_0_&&_gram_&&_https://coin.top/production/logo/1001962.png",
+    "Trongram_&&_1001962_&&_0_&&_gram_&&_https://coin.top/tokenLogo/tokenLogo_20190119032631.496077.jpeg",
   "1001963":
-    "Dolzigu_&&_1001963_&&_0_&&_DZG_&&_https://coin.top/production/logo/1001963.png",
+    "Dolzigu_&&_1001963_&&_0_&&_DZG_&&_https://coin.top/production/logo/1001963.jpeg",
   "1001964":
     "BitTorrent_&&_1001964_&&_6_&&_BTT_&&_https://coin.top/production/js/20190509074813.png",
   "1001965":
@@ -3997,25 +3997,25 @@ export const tokensMap = {
   "1001999":
     "NewAgeCoin_&&_1001999_&&_0_&&_NAC_&&_https://coin.top/production/js/20190509074813.png",
   "1002000":
-    "BitTorrent_&&_1002000_&&_6_&&_BTT_&&_https://coin.top/production/logo/1002000.png",
+    "BitTorrent_&&_1002000_&&_6_&&_BTT_&&_https://coin.top/production_test/js/20190618041122.jpg",
   "1002001":
     "BitTorrent_&&_1002001_&&_0_&&_BTT_&&_https://coin.top/production/js/20190509074813.png",
   "1002002":
-    "TheSecretStash_&&_1002002_&&_0_&&_SecS_&&_https://coin.top/production/logo/1002002.png",
+    "TheSecretStash_&&_1002002_&&_0_&&_SecS_&&_https://www.thesecretstash.org/wp/SECS%20Coin_200%20x%20200.png",
   "1002003":
-    "Dilling_&&_1002003_&&_1_&&_DLC_&&_https://coin.top/production/logo/1002003.png",
+    "Dilling_&&_1002003_&&_1_&&_DLC_&&_https://coin.top/tokenLogo/tokenLogo_20190121034653.128067.jpeg",
   "1002004":
-    "HARPOON_&&_1002004_&&_0_&&_TSCH_&&_https://coin.top/production/logo/1002004.png",
+    "HARPOON_&&_1002004_&&_0_&&_TSCH_&&_https://coin.top/tokenLogo/tokenLogo20190410114412.jpg",
   "1002005":
-    "IntaTrading_&&_1002005_&&_0_&&_IAT_&&_https://coin.top/production/logo/1002005.png",
+    "IntaTrading_&&_1002005_&&_0_&&_IAT_&&_https://coin.top/tokenLogo/tokenLogo_20190121094635.953268.jpeg",
   "1002006":
     "ASA_&&_1002006_&&_0_&&_ASA_&&_https://coin.top/production/js/20190509074813.png",
   "1002007":
-    "FOT_&&_1002007_&&_4_&&_Pay_&&_https://coin.top/production/logo/1002007.png",
+    "FOT_&&_1002007_&&_4_&&_Pay_&&_https://coin.top/tokenLogo/tokenLogo_20190121153232.897588.jpeg",
   "1002008":
-    "TRONBulls_&&_1002008_&&_0_&&_TLX_&&_https://coin.top/production/logo/1002008.png",
+    "TRONBulls_&&_1002008_&&_0_&&_TLX_&&_https://coin.top/production/logo/1002008.jpeg",
   "1002009":
-    "BitTorrent_&&_1002009_&&_0_&&_BTT_&&_https://coin.top/production/logo/1002009.png",
+    "BitTorrent_&&_1002009_&&_0_&&_BTT_&&_https://coin.top/tokenLogo/tokenLogo_20190121225648.134332.jpeg",
   "1002010":
     "CAJ_&&_1002010_&&_3_&&_CAJ_&&_https://coin.top/production/js/20190509074813.png",
   "1002011":
@@ -4023,7 +4023,7 @@ export const tokensMap = {
   "1002012":
     "APPRECIATE_&&_1002012_&&_0_&&_APR_&&_https://coin.top/production/js/20190509074813.png",
   "1002013":
-    "UTILITYTRON_&&_1002013_&&_0_&&_UTRON_&&_https://coin.top/production/logo/1002013.png",
+    "UTILITYTRON_&&_1002013_&&_0_&&_UTRON_&&_https://coin.top/production/logo/1002013.jpg",
   "1002014":
     "CrowdMachineComputeTokens_&&_1002014_&&_0_&&_CMCT_&&_https://coin.top/production/js/20190509074813.png",
   "1002015":
@@ -4051,9 +4051,9 @@ export const tokensMap = {
   "1002026":
     "ColorPop_&&_1002026_&&_6_&&_clp_&&_https://coin.top/production/js/20190509074813.png",
   "1002027":
-    "BETSPAY_&&_1002027_&&_1_&&_BTP_&&_https://coin.top/production/logo/1002027.png",
+    "BETSPAY_&&_1002027_&&_1_&&_BTP_&&_https://coin.top/production/js/20190509074813.png",
   "1002028":
-    "ORCAGOLD_&&_1002028_&&_0_&&_OrcaG_&&_https://coin.top/production/logo/1002028.png",
+    "ORCAGOLD_&&_1002028_&&_0_&&_OrcaG_&&_https://coin.top/tokenLogo/tokenLogo20190125062622.jpg",
   "1002029":
     "Chocolate_&&_1002029_&&_5_&&_CHOC_&&_https://coin.top/production/js/20190509074813.png",
   "1002030":
@@ -4075,7 +4075,7 @@ export const tokensMap = {
   "1002038":
     "BitTorrent_&&_1002038_&&_0_&&_BTT_&&_https://coin.top/production/js/20190509074813.png",
   "1002039":
-    "CryptoSpin(tron.cryptospin.co)_&&_1002039_&&_0_&&_SPIN_&&_https://coin.top/production/logo/1002039.png",
+    "CryptoSpin(tron.cryptospin.co)_&&_1002039_&&_0_&&_SPIN_&&_https://coin.top/tokenLogo/tokenLogo20180917030508.png",
   "1002040":
     "TronClassic_&&_1002040_&&_4_&&_TRNC_&&_https://coin.top/production/js/20190509074813.png",
   "1002041":
@@ -4131,7 +4131,7 @@ export const tokensMap = {
   "1002066":
     "VIBLU_&&_1002066_&&_1_&&_VIB_&&_https://coin.top/production/js/20190509074813.png",
   "1002067":
-    "TRONPLAY_&&_1002067_&&_6_&&_TRXP_&&_https://coin.top/production/logo/1002067.png",
+    "TRONPLAY_&&_1002067_&&_6_&&_TRXP_&&_https://pbs.twimg.com/profile_images/1005740061311356928/SncpeTgV_400x400.jpg",
   "1002068":
     "Graphene_&&_1002068_&&_0_&&_GRAP_&&_https://coin.top/production/js/20190509074813.png",
   "1002069":
@@ -4157,11 +4157,11 @@ export const tokensMap = {
   "1002079":
     "LAW_&&_1002079_&&_6_&&_LAW_&&_https://coin.top/production/js/20190509074813.png",
   "1002080":
-    "IQKombatToken_&&_1002080_&&_6_&&_IQKT_&&_https://coin.top/production/logo/1002080.png",
+    "IQKombatToken_&&_1002080_&&_6_&&_IQKT_&&_https://coin.top/tokenLogo/tokenLogo20190610040439.jpg",
   "1002081":
     "TESTTHREE_&&_1002081_&&_0_&&_TTHR_&&_https://coin.top/production/js/20190509074813.png",
   "1002082":
-    "SWGamers_&&_1002082_&&_3_&&_SWG_&&_https://coin.top/production/logo/1002082.png",
+    "SWGamers_&&_1002082_&&_3_&&_SWG_&&_https://coin.top/production/upload/logo/1002082.png?t=1567630126531",
   "1002083":
     "BTT_&&_1002083_&&_6_&&_BTT_&&_https://coin.top/production/js/20190509074813.png",
   "1002084":
@@ -4205,9 +4205,9 @@ export const tokensMap = {
   "1002103":
     "Cashierum_&&_1002103_&&_0_&&_CHU_&&_https://coin.top/production/logo/1002103.png",
   "1002104":
-    "Phelox_&&_1002104_&&_0_&&_Pholx_&&_https://coin.top/production/logo/1002104.png",
+    "Phelox_&&_1002104_&&_0_&&_Pholx_&&_https://coin.top/tokenLogo/tokenLogo20180917030508.png",
   "1002105":
-    "Majikmunchi_&&_1002105_&&_6_&&_Yoke_&&_https://coin.top/production/logo/1002105.png",
+    "Majikmunchi_&&_1002105_&&_6_&&_Yoke_&&_https://coin.top/tokenLogo/tokenLogo20180917030508.png",
   "1002106":
     "MyPayWay_&&_1002106_&&_4_&&_MPW_&&_https://coin.top/production/js/20190509074813.png",
   "1002107":
@@ -4265,7 +4265,7 @@ export const tokensMap = {
   "1002133":
     "bittorrentX_&&_1002133_&&_6_&&_BTTX_&&_https://coin.top/production/js/20190509074813.png",
   "1002134":
-    "SmileBit_&&_1002134_&&_2_&&_SBT_&&_https://coin.top/production/logo/1002134.png",
+    "SmileBit_&&_1002134_&&_2_&&_SBT_&&_https://coin.top/production/logo/1002134.jpg",
   "1002135":
     "TronGold_&&_1002135_&&_6_&&_XTG_&&_https://coin.top/production/js/20190509074813.png",
   "1002136":
@@ -4309,7 +4309,7 @@ export const tokensMap = {
   "1002155":
     "Microx_&&_1002155_&&_6_&&_MCRX_&&_https://coin.top/production/js/20190509074813.png",
   "1002156":
-    "BitCash_&&_1002156_&&_6_&&_BITC_&&_https://coin.top/production/logo/1002156.png",
+    "BitCash_&&_1002156_&&_6_&&_BITC_&&_https://coin.top/production/logo/1002156.jpg",
   "1002157":
     "venapi_&&_1002157_&&_2_&&_VP_&&_https://coin.top/production/js/20190509074813.png",
   "1002158":
@@ -4317,7 +4317,7 @@ export const tokensMap = {
   "1002159":
     "EGG_&&_1002159_&&_0_&&_EGG_&&_https://coin.top/production/js/20190509074813.png",
   "1002160":
-    "OMOS_&&_1002160_&&_6_&&_OMOS_&&_https://coin.top/production/logo/1002160.png",
+    "OMOS_&&_1002160_&&_6_&&_OMOS_&&_https://coin.top/tokenLogo/tokenLogo20190412112040.png",
   "1002161":
     "CLUBSA_&&_1002161_&&_3_&&_CSA_&&_https://coin.top/production/js/20190509074813.png",
   "1002162":
@@ -4335,11 +4335,11 @@ export const tokensMap = {
   "1002168":
     "AgeRoll_&&_1002168_&&_6_&&_AGE_&&_https://coin.top/production/js/20190509074813.png",
   "1002169":
-    "KrazyKewlGamezToken_&&_1002169_&&_1_&&_KKGT_&&_https://coin.top/production/upload/logo/1002169.jpeg?t=1571588731943",
+    "KrazyKewlGamezToken_&&_1002169_&&_1_&&_KKGT_&&_https://coin.top/production/upload/logo/1002169.png?t=1566350167099",
   "1002170":
     "GarbageToken_&&_1002170_&&_0_&&_GBG_&&_https://coin.top/production/js/20190509074813.png",
   "1002171":
-    "ActivEightCoin_&&_1002171_&&_6_&&_ACTIV_&&_https://coin.top/production/upload/logo/1002171.png?t=1574197025615",
+    "ActivEightCoin_&&_1002171_&&_6_&&_ACTIV_&&_https://coin.top/production/js/20190509074813.png",
   "1002172":
     "EggiesFoodAirdrop_&&_1002172_&&_0_&&_EFA_&&_https://coin.top/production/js/20190509074813.png",
   "1002173":
@@ -4363,9 +4363,9 @@ export const tokensMap = {
   "1002182":
     "SilverCashs_&&_1002182_&&_0_&&_Svc_&&_https://coin.top/production/js/20190509074813.png",
   "1002183":
-    "Poison_&&_1002183_&&_1_&&_TXC_&&_https://coin.top/production/logo/1002183.png",
+    "Poison_&&_1002183_&&_1_&&_TXC_&&_https://cdn1.imggmi.com/uploads/2019/8/5/23ab44bcaede5d3c10c9cf06056238c3-full.png",
   "1002184":
-    "SIGN_&&_1002184_&&_6_&&_SIGN_&&_https://coin.top/production/logo/1002184.png",
+    "SIGN_&&_1002184_&&_6_&&_SIGN_&&_https://coin.top/production/upload/logo/1002184.png?t=1568916064323",
   "1002185":
     "Pointcash_&&_1002185_&&_4_&&_PTC_&&_https://coin.top/production/js/20190509074813.png",
   "1002186":
@@ -4445,7 +4445,7 @@ export const tokensMap = {
   "1002223":
     "IseriCoin_&&_1002223_&&_6_&&_IRC_&&_https://coin.top/production/js/20190509074813.png",
   "1002224":
-    "CRYPTOSLO_&&_1002224_&&_6_&&_MGS_&&_https://coin.top/production/logo/1002224.png",
+    "CRYPTOSLO_&&_1002224_&&_6_&&_MGS_&&_https://coin.top/production/upload/logo/1002224.png?t=1566402299760",
   "1002225":
     "KEYS_&&_1002225_&&_0_&&_KEYS_&&_https://coin.top/production/upload/logo/1002225.jpeg?t=1567153584265",
   "1002226":
@@ -4465,7 +4465,7 @@ export const tokensMap = {
   "1002233":
     "Bytecoin_&&_1002233_&&_2_&&_BCN_&&_https://coin.top/production/js/20190509074813.png",
   "1002234":
-    "BOOK_&&_1002234_&&_6_&&_ART_&&_https://coin.top/production/upload/logo/1002234.png?t=1571766981606",
+    "BOOK_&&_1002234_&&_6_&&_ART_&&_https://coin.top/tokenLogo/tokenLogo20180917030508.png",
   "1002235":
     "ecToken_&&_1002235_&&_3_&&_ECT_&&_https://coin.top/production/js/20190509074813.png",
   "1002236":
@@ -4489,15 +4489,15 @@ export const tokensMap = {
   "1002245":
     "!!ALTcoinsHOSTING!!_&&_1002245_&&_0_&&_!!A_&&_https://coin.top/production/js/20190509074813.png",
   "1002246":
-    "IdahoCryptoGroup_&&_1002246_&&_6_&&_ICG_&&_https://coin.top/production/logo/1002246.png",
+    "IdahoCryptoGroup_&&_1002246_&&_6_&&_ICG_&&_https://coin.top/production/upload/logo/1002246.png?t=1568839242359",
   "1002247":
     "PlinkoCoin_&&_1002247_&&_6_&&_PKC_&&_https://coin.top/production/js/20190509074813.png",
   "1002248":
-    "DinosaurToken_&&_1002248_&&_6_&&_DRT_&&_https://coin.top/production/logo/1002248.png",
+    "DinosaurToken_&&_1002248_&&_6_&&_DRT_&&_https://coin.top/tokenLogo/tokenLogo20190517090630.png",
   "1002249":
     "TronBlockSec_&&_1002249_&&_6_&&_TBS_&&_https://coin.top/production/js/20190509074813.png",
   "1002250":
-    "CANDYCOIN_&&_1002250_&&_0_&&_CYN_&&_https://coin.top/production/upload/logo/1002250.png?t=1574363713038",
+    "CANDYCOIN_&&_1002250_&&_0_&&_CYN_&&_https://coin.top/production/js/20190509074813.png",
   "1002251":
     "UNlBET_&&_1002251_&&_0_&&_UNB_&&_https://coin.top/production/js/20190509074813.png",
   "1002252":
@@ -4517,9 +4517,9 @@ export const tokensMap = {
   "1002259":
     "RBTT_&&_1002259_&&_6_&&_RBTT_&&_https://coin.top/production/js/20190509074813.png",
   "1002260":
-    "LetsTrip_&&_1002260_&&_0_&&_LST_&&_https://coin.top/production/logo/1002260.png",
+    "LetsTrip_&&_1002260_&&_0_&&_LST_&&_https://coin.top/production/logo/1002260.jpg",
   "1002261":
-    "VULCAN_&&_1002261_&&_1_&&_V_&&_https://coin.top/production/logo/1002261.png",
+    "VULCAN_&&_1002261_&&_1_&&_V_&&_https://coin.top/production/logo/1002261.jpg",
   "1002262":
     "Cyberpunkhack_&&_1002262_&&_3_&&_CPH_&&_https://coin.top/production/js/20190509074813.png",
   "1002263":
@@ -4529,17 +4529,17 @@ export const tokensMap = {
   "1002265":
     "InfinityTrust_&&_1002265_&&_6_&&_INFT_&&_https://coin.top/production/js/20190509074813.png",
   "1002266":
-    "InfinityBeta_&&_1002266_&&_0_&&_INFB_&&_https://coin.top/production/logo/1002266.png",
+    "InfinityBeta_&&_1002266_&&_0_&&_INFB_&&_https://coin.top/production/upload/logo/1002266.jpeg?t=1567441203663",
   "1002267":
     "BitsChallenge_&&_1002267_&&_3_&&_BITS_&&_https://coin.top/production/js/20190509074813.png",
   "1002268":
-    "DecentralizeCurrency_&&_1002268_&&_6_&&_XDCA_&&_https://coin.top/production/logo/1002268.png",
+    "DecentralizeCurrency_&&_1002268_&&_6_&&_XDCA_&&_https://coin.top/production/upload/logo/1002268.png?t=1569218360648",
   "1002269":
     "AirDropsClick_&&_1002269_&&_6_&&_ADC_&&_https://coin.top/production/js/20190509074813.png",
   "1002270":
-    "KvazarCash_&&_1002270_&&_0_&&_KVC_&&_https://coin.top/production/logo/1002270.png",
+    "KvazarCash_&&_1002270_&&_0_&&_KVC_&&_https://coin.top/production/logo/1002270.jpg",
   "1002271":
-    "GMC_&&_1002271_&&_2_&&_GMC_&&_https://coin.top/production/logo/1002271.png",
+    "GMC_&&_1002271_&&_2_&&_GMC_&&_https://coin.top/tokenLogo/tokenLogo20180917030508.png",
   "1002272":
     "CRYPTOSPORTS_&&_1002272_&&_6_&&_SPORT_&&_https://coin.top/production/js/20190509074813.png",
   "1002273":
@@ -4551,7 +4551,7 @@ export const tokensMap = {
   "1002276":
     "tronwow_&&_1002276_&&_2_&&_wow_&&_https://coin.top/production/js/20190509074813.png",
   "1002277":
-    "TRONAce_&&_1002277_&&_6_&&_ACE_&&_https://coin.top/production/logo/1002277.png",
+    "TRONAce_&&_1002277_&&_6_&&_ACE_&&_https://coin.top/tokenLogo/tokenLogo20180917030508.png",
   "1002278":
     "BTTx_&&_1002278_&&_0_&&_BTTx_&&_https://coin.top/production/js/20190509074813.png",
   "1002279":
@@ -4563,7 +4563,7 @@ export const tokensMap = {
   "1002282":
     "Folos_&&_1002282_&&_0_&&_FLS_&&_https://coin.top/production/js/20190509074813.png",
   "1002283":
-    "FOLOS_&&_1002283_&&_6_&&_FLS_&&_https://coin.top/production/logo/1002283.png",
+    "FOLOS_&&_1002283_&&_6_&&_FLS_&&_https://exfolos.com/Images/02.png",
   "1002284":
     "VIP_&&_1002284_&&_0_&&_VIP_&&_https://coin.top/production/js/20190509074813.png",
   "1002285":
@@ -4573,9 +4573,9 @@ export const tokensMap = {
   "1002287":
     "2Bsafe_&&_1002287_&&_0_&&_TBS_&&_https://coin.top/production/js/20190509074813.png",
   "1002288":
-    "Rich_&&_1002288_&&_6_&&_RT_&&_https://coin.top/production/logo/1002288.png",
+    "Rich_&&_1002288_&&_6_&&_RT_&&_https://coin.top/tokenLogo/tokenLogo20190516173516.png",
   "1002289":
-    "GUG_&&_1002289_&&_0_&&_GUG_&&_https://coin.top/production/logo/1002289.png",
+    "GUG_&&_1002289_&&_0_&&_GUG_&&_https://coin.top/tokenLogo/tokenLogo20190418041234.png",
   "1002290":
     "nasipay_&&_1002290_&&_0_&&_NSPay_&&_https://coin.top/production/js/20190509074813.png",
   "1002291":
@@ -4595,15 +4595,15 @@ export const tokensMap = {
   "1002298":
     "GrowRich_&&_1002298_&&_6_&&_GR_&&_https://coin.top/production/js/20190509074813.png",
   "1002299":
-    "Tronext_&&_1002299_&&_0_&&_TNX_&&_https://coin.top/production/logo/1002299.png",
+    "Tronext_&&_1002299_&&_0_&&_TNX_&&_https://coin.top/production/upload/logo/1002299.png?t=1566940155966",
   "1002300":
-    "AUSDigitalDollar_&&_1002300_&&_6_&&_AUSDD_&&_https://coin.top/production/logo/1002300.png",
+    "AUSDigitalDollar_&&_1002300_&&_6_&&_AUSDD_&&_https://coin.top/tokenLogo/tokenLogo20180917030508.png",
   "1002301":
     "YoMama_&&_1002301_&&_0_&&_YMA_&&_https://coin.top/production/js/20190509074813.png",
   "1002302":
     "Snowflake_&&_1002302_&&_0_&&_SNOW_&&_https://coin.top/production/js/20190509074813.png",
   "1002303":
-    "1111_&&_1002303_&&_0_&&_11_&&_https://coin.top/production/logo/1002303.png",
+    "1111_&&_1002303_&&_0_&&_11_&&_https://coin.top/tokenLogo/tokenLogo20180917030508.png",
   "1002304":
     "ACGsecurity_&&_1002304_&&_0_&&_ACGs_&&_https://coin.top/production/js/20190509074813.png",
   "1002305":
@@ -4627,7 +4627,7 @@ export const tokensMap = {
   "1002314":
     "AACC2_&&_1002314_&&_6_&&__&&_https://coin.top/production/js/20190509074813.png",
   "1002315":
-    "CCB_&&_1002315_&&_6_&&__&&_https://coin.top/production/logo/1002315.png",
+    "CCB_&&_1002315_&&_6_&&__&&_https://coin.top/tokenLogo/tokenLogo20190430081247.png",
   "1002316":
     "TronTip_&&_1002316_&&_0_&&_TIP_&&_https://coin.top/production/js/20190509074813.png",
   "1002317":
@@ -4635,7 +4635,7 @@ export const tokensMap = {
   "1002318":
     "ThatsWhatSheSaid_&&_1002318_&&_0_&&_BRNC6_&&_https://coin.top/production/js/20190509074813.png",
   "1002319":
-    "SIMcoin_&&_1002319_&&_6_&&_SIMc_&&_https://coin.top/production/upload/logo/1002319.png?t=1571127944342",
+    "SIMcoin_&&_1002319_&&_6_&&_SIMc_&&_https://coin.top/production/js/20190509074813.png",
   "1002320":
     "DumpsterFire_&&_1002320_&&_0_&&_BRNC7_&&_https://coin.top/production/js/20190509074813.png",
   "1002321":
@@ -4723,13 +4723,13 @@ export const tokensMap = {
   "1002362":
     "Capelli_&&_1002362_&&_2_&&_CPL_&&_https://coin.top/production/js/20190509074813.png",
   "1002363":
-    "KOPIBLOCK_&&_1002363_&&_2_&&_BLOCK_&&_https://coin.top/production/logo/1002363.png",
+    "KOPIBLOCK_&&_1002363_&&_2_&&_BLOCK_&&_https://coin.top/production/js/20190509074813.png",
   "1002364":
     "AUSDigitalDollar_&&_1002364_&&_6_&&_AUDD_&&_https://coin.top/production/logo/1002364.png",
   "1002365":
     "PRESTIGEDPIXELATION_&&_1002365_&&_1_&&_PPX_&&_https://coin.top/production/js/20190509074813.png",
   "1002366":
-    "TRXLounge_&&_1002366_&&_0_&&_DTL_&&_https://coin.top/production/logo/1002366.png",
+    "TRXLounge_&&_1002366_&&_0_&&_DTL_&&_https://coin.top/production/logo/1002366.jpeg",
   "1002367":
     "TronTrust_&&_1002367_&&_1_&&_TST_&&_https://coin.top/production/js/20190509074813.png",
   "1002368":
@@ -4769,7 +4769,7 @@ export const tokensMap = {
   "1002385":
     "KLCTEST_&&_1002385_&&_6_&&_KLCTE_&&_https://coin.top/production/js/20190509074813.png",
   "1002386":
-    "GoTDividends_&&_1002386_&&_0_&&_GoTD_&&_https://coin.top/production/upload/logo/1002386.png?t=1571177498205",
+    "GoTDividends_&&_1002386_&&_0_&&_GoTD_&&_https://coin.top/production/js/20190509074813.png",
   "1002387":
     "iaProject_&&_1002387_&&_1_&&_IAP_&&_https://coin.top/production/js/20190509074813.png",
   "1002388":
@@ -4809,13 +4809,13 @@ export const tokensMap = {
   "1002405":
     "TRONMegaMillions_&&_1002405_&&_0_&&_MEGA_&&_https://coin.top/production/js/20190509074813.png",
   "1002406":
-    "MyPokerCoin_&&_1002406_&&_3_&&_MPC_&&_https://coin.top/production/logo/1002406.png",
+    "MyPokerCoin_&&_1002406_&&_3_&&_MPC_&&_https://coin.top/tokenLogo/tokenLogo20180917030508.png",
   "1002407":
     "AzerChainToken_&&_1002407_&&_2_&&_AZT_&&_https://coin.top/production/logo/1002407.png",
   "1002408":
     "Corpse_&&_1002408_&&_0_&&_CRPS_&&_https://coin.top/production/js/20190509074813.png",
   "1002409":
-    "GameofTrons_&&_1002409_&&_0_&&_GoTs_&&_https://coin.top/production/upload/logo/1002409.png?t=1571178487355",
+    "GameofTrons_&&_1002409_&&_0_&&_GoTs_&&_https://coin.top/production/js/20190509074813.png",
   "1002410":
     "TRONFUTURES_&&_1002410_&&_1_&&_TRNF_&&_https://coin.top/production/js/20190509074813.png",
   "1002411":
@@ -4823,7 +4823,7 @@ export const tokensMap = {
   "1002412":
     "Tokenizedproperties_&&_1002412_&&_6_&&_XTP_&&_https://coin.top/production/js/20190509074813.png",
   "1002413":
-    "BeatzCoin_&&_1002413_&&_6_&&_BTZC_&&_https://coin.top/production/upload/logo/1002413.png?t=1572026493406",
+    "BeatzCoin_&&_1002413_&&_6_&&_BTZC_&&_https://coin.top/production/upload/logo/1002413.png?t=1569164258554",
   "1002414":
     "AmazonLoyaltyToken_&&_1002414_&&_6_&&_AMZ_&&_https://coin.top/production/js/20190509074813.png",
   "1002415":
@@ -4865,13 +4865,13 @@ export const tokensMap = {
   "1002433":
     "MegaPoint_&&_1002433_&&_6_&&_MMP_&&_https://coin.top/production/js/20190509074813.png",
   "1002434":
-    "BitexPaymentCoin_&&_1002434_&&_6_&&_BPC_&&_https://coin.top/production/logo/1002434.png",
+    "BitexPaymentCoin_&&_1002434_&&_6_&&_BPC_&&_https://coin.top/tokenLogo/tokenLogo20190521042810.png",
   "1002435":
     "THANOS_&&_1002435_&&_6_&&_TS_&&_https://coin.top/production/js/20190509074813.png",
   "1002436":
     "Dracma_&&_1002436_&&_0_&&_grd_&&_https://coin.top/production/js/20190509074813.png",
   "1002437":
-    "MasaTron_&&_1002437_&&_6_&&_MASA_&&_https://coin.top/production/logo/1002437.png",
+    "MasaTron_&&_1002437_&&_6_&&_MASA_&&_https://coin.top/tokenLogo/tokenLogo20190522065929.jpg",
   "1002438":
     "!!!666_&&_1002438_&&_0_&&_666_&&_https://coin.top/production/js/20190509074813.png",
   "1002439":
@@ -4881,25 +4881,25 @@ export const tokensMap = {
   "1002441":
     "CryptoParadiseRewardToken_&&_1002441_&&_1_&&_CPRT_&&_https://coin.top/production/js/20190509074813.png",
   "1002442":
-    "CryptoParadiseRewards_&&_1002442_&&_1_&&_CPR_&&_https://coin.top/production/logo/1002442.png",
+    "CryptoParadiseRewards_&&_1002442_&&_1_&&_CPR_&&_https://coin.top/production/logo/1002442.jpg",
   "1002443":
     "BitTorrent_&&_1002443_&&_6_&&_BTT_&&_https://coin.top/production/js/20190509074813.png",
   "1002444":
     "XTRO_&&_1002444_&&_2_&&_XTRO_&&_https://coin.top/production/js/20190509074813.png",
   "1002445":
-    "TRONbrary_&&_1002445_&&_6_&&_TBA_&&_https://coin.top/production/logo/1002445.png",
+    "TRONbrary_&&_1002445_&&_6_&&_TBA_&&_https://coin.top/tokenLogo/tokenLogo20190522070252.png",
   "1002446":
-    "ConnectDApp_&&_1002446_&&_6_&&_COD_&&_https://coin.top/production/logo/1002446.png",
+    "ConnectDApp_&&_1002446_&&_6_&&_COD_&&_https://coin.top/production/logo/1002446.jpg",
   "1002447":
     "news_&&_1002447_&&_0_&&_News_&&_https://coin.top/production/js/20190509074813.png",
   "1002448":
-    "BitxmenStock_&&_1002448_&&_6_&&_BXMS_&&_https://coin.top/production/logo/1002448.png",
+    "BitxmenStock_&&_1002448_&&_6_&&_BXMS_&&_https://coin.top/tokenLogo/tokenLogo20180917030508.png",
   "1002449":
     "Qwantom_&&_1002449_&&_0_&&_QKC_&&_https://coin.top/production/js/20190509074813.png",
   "1002450":
     "SaveBitmexFrenchChat_&&_1002450_&&_6_&&_SBFC_&&_https://coin.top/production/js/20190509074813.png",
   "1002451":
-    "OneClubToken_&&_1002451_&&_6_&&_CLUB_&&_https://coin.top/production/logo/1002451.png",
+    "OneClubToken_&&_1002451_&&_6_&&_CLUB_&&_https://i.imgur.com/c9lGsWZ.png",
   "1002452":
     "CoomunitySecurityTokenSeriesA_&&_1002452_&&_0_&&_CSTA_&&_https://coin.top/production/js/20190509074813.png",
   "1002453":
@@ -4907,7 +4907,7 @@ export const tokensMap = {
   "1002454":
     "FAM_&&_1002454_&&_2_&&_FAM_&&_https://coin.top/production/js/20190509074813.png",
   "1002455":
-    "CaratGoldBank_&&_1002455_&&_6_&&_CGB_&&_https://coin.top/production/logo/1002455.png",
+    "CaratGoldBank_&&_1002455_&&_6_&&_CGB_&&_https://coin.top/tokenLogo/tokenLogo20180917030508.png",
   "1002456":
     "ATTSinoAfricanTrade_&&_1002456_&&_6_&&_att_&&_https://coin.top/production/js/20190509074813.png",
   "1002457":
@@ -4923,7 +4923,7 @@ export const tokensMap = {
   "1002462":
     "HeliumCoin_&&_1002462_&&_1_&&_HC_&&_https://coin.top/production/js/20190509074813.png",
   "1002463":
-    "hedayatabbaszadeh_&&_1002463_&&_1_&&_HDB_&&_https://coin.top/production/logo/1002463.png",
+    "hedayatabbaszadeh_&&_1002463_&&_1_&&_HDB_&&_https://coin.top/tokenLogo/tokenLogo20180917030508.png",
   "1002464":
     "BlackOnion_&&_1002464_&&_6_&&_BkOn_&&_https://imgur.com/YXnSX3Q.PNG",
   "1002465":
@@ -4934,13 +4934,13 @@ export const tokensMap = {
   "1002468":
     "LiquidPesoARS_&&_1002468_&&_0_&&_ARST_&&_https://coin.top/production/js/20190509074813.png",
   "1002469":
-    "ECOECTRON_&&_1002469_&&_6_&&_ECOEC_&&_https://coin.top/production/logo/1002469.png",
+    "ECOECTRON_&&_1002469_&&_6_&&_ECOEC_&&_https://coin.top/production/logo/1002469.jpg",
   "1002470":
     "Talisman_&&_1002470_&&_0_&&_TLS_&&_https://coin.top/production/js/20190509074813.png",
   "1002471":
     "EXBEGA_&&_1002471_&&_6_&&_XBE_&&_https://coin.top/production/js/20190509074813.png",
   "1002472":
-    "KingRippleXRP_&&_1002472_&&_0_&&_KRXP_&&_https://coin.top/production/logo/1002472.png",
+    "KingRippleXRP_&&_1002472_&&_0_&&_KRXP_&&_https://coin.top/tokenLogo/tokenLogo20190603094023.jpg",
   "1002473":
     "TronImax_&&_1002473_&&_6_&&_TRIX_&&_https://coin.top/production/js/20190509074813.png",
   "1002474":
@@ -4950,7 +4950,7 @@ export const tokensMap = {
   "1002476":
     "VOTEforSMARTrealESTATE_&&_1002476_&&_0_&&_VSRE_&&_https://coin.top/production/js/20190509074813.png",
   "1002477":
-    "HEcoin_&&_1002477_&&_6_&&_HE_&&_https://coin.top/production/upload/logo/1002477.png?t=1570841404255",
+    "HEcoin_&&_1002477_&&_6_&&_HE_&&_https://coin.top/tokenLogo/tokenLogo20190610040110.png",
   "1002478":
     "PitchTokenKlassic_&&_1002478_&&_0_&&_PTK_&&_https://coin.top/production/js/20190509074813.png",
   "1002479":
@@ -4960,17 +4960,17 @@ export const tokensMap = {
   "1002481":
     "iloveyou_&&_1002481_&&_6_&&_kiss_&&_https://coin.top/production/js/20190509074813.png",
   "1002482":
-    "Kilopi_&&_1002482_&&_6_&&_LOP_&&_https://coin.top/production/logo/1002482.png",
+    "Kilopi_&&_1002482_&&_6_&&_LOP_&&_http://kilopi.net/lop/files/logo_lop.png",
   "1002483":
-    "GOLDSECURE_&&_1002483_&&_6_&&_GOLD_&&_https://coin.top/production/upload/logo/1002483.jpeg?t=1573540338541",
+    "GOLDSECURE_&&_1002483_&&_6_&&_GOLD_&&_https://coin.top/production/js/20190509074813.png",
   "1002484":
     "PHE_&&_1002484_&&_0_&&_PHE_&&_https://coin.top/production/js/20190509074813.png",
   "1002485":
     "SonDungBaoTRX_&&_1002485_&&_2_&&_SDBVN_&&_https://coin.top/production/js/20190509074813.png",
   "1002486":
-    "BlockDance_&&_1002486_&&_6_&&_BDC_&&_https://coin.top/production/logo/1002486.png",
+    "BlockDance_&&_1002486_&&_6_&&_BDC_&&_https://coin.top/production/upload/logo/1002486.jpeg?t=1567409109170",
   "1002487":
-    "TokenMasters_&&_1002487_&&_6_&&_BTO_&&_https://coin.top/production/logo/1002487.png",
+    "TokenMasters_&&_1002487_&&_6_&&_BTO_&&_https://coin.top/production/logo/1002487.jpg?t=1566370190756",
   "1002488":
     "PleaseFundMyEducation_&&_1002488_&&_0_&&_FUME_&&_https://coin.top/production/js/20190509074813.png",
   "1002489":
@@ -4982,11 +4982,11 @@ export const tokensMap = {
   "1002492":
     "Halfquid_&&_1002492_&&_0_&&_HALF_&&_https://coin.top/production/js/20190509074813.png",
   "1002493":
-    "trx111_&&_1002493_&&_3_&&_tron_&&_https://coin.top/production/logo/1002493.png",
+    "trx111_&&_1002493_&&_3_&&_tron_&&_https://coin.top/production/upload/logo/1002493.jpeg?t=1565695741951",
   "1002494":
     "FacebookCoin_&&_1002494_&&_4_&&_FBC_&&_https://coin.top/production/js/20190509074813.png",
   "1002495":
-    "Tronsaction_&&_1002495_&&_4_&&_TSA_&&_https://coin.top/production/logo/1002495.png",
+    "Tronsaction_&&_1002495_&&_4_&&_TSA_&&_https://explorer.tronsaction.com/images/1000.png",
   "1002496":
     "sparks_&&_1002496_&&_4_&&_spk_&&_https://coin.top/production/js/20190509074813.png",
   "1002497":
@@ -4994,29 +4994,29 @@ export const tokensMap = {
   "1002498":
     "GOLD_&&_1002498_&&_6_&&_GOLD_&&_https://coin.top/production/js/20190509074813.png",
   "1002499":
-    "TweetTron_&&_1002499_&&_6_&&_TTT_&&_https://coin.top/production/upload/logo/1002499.jpeg?t=1573377676982",
+    "TweetTron_&&_1002499_&&_6_&&_TTT_&&_https://coin.top/production/logo/1002499.png",
   "1002500":
     "Bitleaf_&&_1002500_&&_0_&&_BTLF_&&_https://coin.top/production/js/20190509074813.png",
   "1002501":
-    "zigzag_&&_1002501_&&_6_&&_xzgz_&&_https://coin.top/production/logo/1002501.png",
+    "zigzag_&&_1002501_&&_6_&&_xzgz_&&_https://wmpics.pics/di-TFBJ.jpg",
   "1002502":
     "PlatinumBook_&&_1002502_&&_0_&&_PTB_&&_https://coin.top/production/logo/1002502.png",
   "1002503":
-    "CodeXpert_&&_1002503_&&_6_&&_CDX_&&_https://coin.top/production/logo/1002503.png",
+    "CodeXpert_&&_1002503_&&_6_&&_CDX_&&_http://thecodexpert.org/CodeXpert_3.png",
   "1002504":
-    "IQKombat_&&_1002504_&&_6_&&_IQKT_&&_https://coin.top/production/upload/logo/1002504.png?t=1572369135722",
+    "IQKombat_&&_1002504_&&_6_&&_IQKT_&&_https://photos.app.goo.gl/nuwUs8C2TToqbGni7.png",
   "1002505":
     "IceCream_&&_1002505_&&_6_&&_SCOOP_&&_https://coin.top/production/logo/1002505.png",
   "1002506":
-    "Tronspy_&&_1002506_&&_0_&&_SPY_&&_https://coin.top/production/logo/1002506.png",
+    "Tronspy_&&_1002506_&&_0_&&_SPY_&&_https://pbs.twimg.com/profile_images/1142087167004553220/CTE4Q3RM_400x400.png",
   "1002507":
-    "LegacyToken_&&_1002507_&&_0_&&_Leg_&&_https://coin.top/production/logo/1002507.png",
+    "LegacyToken_&&_1002507_&&_0_&&_Leg_&&_https://i.postimg.cc/W1dZmJ3G/leg-pic.png",
   "1002508":
     "Siying_&&_1002508_&&_6_&&_Siying_&&_https://coin.top/production/js/20190509074813.png",
   "1002509":
     "LoveArtHate_&&_1002509_&&_0_&&_LAH_&&_https://coin.top/production/js/20190509074813.png",
   "1002510":
-    "Ninetyss_&&_1002510_&&_6_&&_90s_&&_https://coin.top/production/logo/1002510.png",
+    "Ninetyss_&&_1002510_&&_6_&&_90s_&&_http://i63.tinypic.com/jq2936.jpg",
   "1002511": "Livecoin_&&_1002511_&&_6_&&_Live_&&_https://ibb.co/VmRFvqn.png",
   "1002512":
     "NbankUSD_&&_1002512_&&_6_&&_NUSD_&&_https://coin.top/production/js/20190509074813.png",
@@ -5025,17 +5025,16 @@ export const tokensMap = {
   "1002514":
     "DotCryptoExchangeToken_&&_1002514_&&_2_&&_DOC_&&_https://coin.top/production/js/20190509074813.png",
   "1002515":
-    "TROPTIONS_&&_1002515_&&_6_&&_TROPTIONS_&&_https://coin.top/production/logo/1002515.png",
-  "1002516":
-    "Scrap_&&_1002516_&&_6_&&_XSCR_&&_https://coin.top/production/logo/1002516.png",
+    "TROPTIONS_&&_1002515_&&_6_&&_TROPTIONS_&&_https://coin.top/production/logo/1002515.jpg",
+  "1002516": "Scrap_&&_1002516_&&_6_&&_XSCR_&&_https://i.imgur.com/WSsEgOJ.png",
   "1002517":
-    "BUILDER_&&_1002517_&&_6_&&_BUILDER_&&_https://coin.top/production/logo/1002517.png",
+    "BUILDER_&&_1002517_&&_6_&&_BUILDER_&&_https://tronbuild.fun/builder250.png",
   "1002518":
-    "CBDOILTOKEN_&&_1002518_&&_5_&&_CBDT_&&_https://coin.top/production/logo/1002518.png",
+    "CBDOILTOKEN_&&_1002518_&&_5_&&_CBDT_&&_https://cdn1.imggmi.com/uploads/2019/6/26/e5b376e4a857a26caa7eb4b92b3c7e24-full.png",
   "1002519":
     "Nyte_&&_1002519_&&_0_&&_Nyte_&&_https://coin.top/production/js/20190509074813.png",
   "1002520":
-    "Match_&&_1002520_&&_6_&&_MATCH_&&_https://coin.top/production/logo/1002520.png",
+    "Match_&&_1002520_&&_6_&&_MATCH_&&_https://i.postimg.cc/XYSJL3Wd/Tru-You-Full-Logo-1200x1200.jpg",
   "1002521":
     "BitValuta_&&_1002521_&&_6_&&_BTV_&&_https://coin.top/production/js/20190509074813.png",
   "1002522":
@@ -5081,7 +5080,7 @@ export const tokensMap = {
   "1002542":
     "TRONTesseract_&&_1002542_&&_6_&&_TESS_&&_https://coin.top/production/js/20190509074813.png",
   "1002543":
-    "PULIDO_&&_1002543_&&_6_&&_PULIDO_&&_https://coin.top/production/logo/1002543.png",
+    "PULIDO_&&_1002543_&&_6_&&_PULIDO_&&_https://coin.top/production/js/20190509074813.png",
   "1002544":
     "CABBY_&&_1002544_&&_6_&&_CABBY_&&_https://coin.top/production/js/20190509074813.png",
   "1002545":
@@ -5099,7 +5098,7 @@ export const tokensMap = {
   "1002551":
     "Bitvaluta_&&_1002551_&&_6_&&_BTV_&&_https://www.bitvaluta.co/wp-content/uploads/2019/07/btvsmall.png",
   "1002552":
-    "Luck_&&_1002552_&&_6_&&_LUK_&&_https://coin.top/production/logo/1002552.png",
+    "Luck_&&_1002552_&&_6_&&_LUK_&&_https://coin.top/production/logo/1002552.png?t=1566053050696",
   "1002553":
     "TetherUSD_&&_1002553_&&_6_&&_USDT_&&_https://coin.top/production/js/20190509074813.png",
   "1002554":
@@ -5109,59 +5108,58 @@ export const tokensMap = {
   "1002556":
     "MonsterByte_&&_1002556_&&_4_&&_MBT_&&_https://cdn1.telesco.pe/file/gove54VdBPRGF2X_gJlY9U5Dc6knoQomTi3APmlcrRRSp2UGKnLoulOFub85UgwlpvLd4ULjt3h7b0xV70A69xMeTqBTX1aC62gDQFqToAps8hO30Zk3gaO9dL0YAjGsnpINyahAZyk5bIb1HPLULx9O4U3pU62W3eLiBGfIKGWTkpWbLzXmma_EF8tAzzZWoGlQiQjkCPQb5-47YFcKSuCr5o7NX93sllIcOJFVIEesc0joRs766vslAIW5Bp9avr5ORd5Vm44MADqBlkSRuEM_DhZpjUV873FSEBHU7i7-w2XedHYSvLmInTqvVA-LX4MkKFcwEIcXgfwP3gXECw.jpg",
   "1002557":
-    "Litra_&&_1002557_&&_0_&&_LIT_&&_https://coin.top/production/upload/logo/1002557.png?t=1572485153998",
+    "Litra_&&_1002557_&&_0_&&_LIT_&&_https://coin.top/production/js/20190509074813.png",
   "1002558":
     "SINGK_&&_1002558_&&_6_&&_SINGK_&&_https://coin.top/production/js/20190509074813.png",
   "1002559":
-    "TRONTEACHERS_&&_1002559_&&_6_&&_TEACH_&&_https://coin.top/production/logo/1002559.png",
+    "TRONTEACHERS_&&_1002559_&&_6_&&_TEACH_&&_https://coin.top/production/upload/logo/1002559.jpeg?t=1565923106236",
   "1002560":
     "DecentralizedMindz_&&_1002560_&&_6_&&_DMZ_&&_https://coin.top/production/js/20190509074813.png",
   "1002561":
     "BetCryptoClub_&&_1002561_&&_6_&&_BCCT_&&_https://economipedia.com/wp-content/uploads/2015/11/test-de-estr%C3%A9s.png",
   "1002562":
-    "BetCryptoClub_&&_1002562_&&_6_&&_BCCT_&&_https://coin.top/production/logo/1002562.png",
+    "BetCryptoClub_&&_1002562_&&_6_&&_BCCT_&&_https://i.imgur.com/IjditMy.png",
   "1002563":
     "LinkTronbobeiEcosystem_&&_1002563_&&_6_&&_TBE_&&_https://coin.top/production/js/20190509074813.png",
   "1002564":
-    "TheWallCoin_&&_1002564_&&_6_&&_TWC_&&_https://coin.top/production/logo/1002564.png",
+    "TheWallCoin_&&_1002564_&&_6_&&_TWC_&&_https://i.imgur.com/7msSybA.png&t=603&c=KJcCcG5CzLV15Q.png",
   "1002565":
-    "KrypTronAIR_&&_1002565_&&_6_&&_KTA_&&_https://coin.top/production/logo/1002565.png",
+    "KrypTronAIR_&&_1002565_&&_6_&&_KTA_&&_https://coin.top/production/upload/logo/1002565.png?t=1566793747021",
   "1002566":
     "chiliZ_&&_1002566_&&_6_&&_CHZ_&&_https://www.chiliz.com/wp-content/uploads/2019/03/chz.jpg",
   "1002567":
-    "WorldCoin_&&_1002567_&&_6_&&_WRLD_&&_https://coin.top/production/logo/1002567.png",
+    "WorldCoin_&&_1002567_&&_6_&&_WRLD_&&_https://worldbuilder.fun/img/logo.png",
   "1002568":
-    "TronGamingToken_&&_1002568_&&_6_&&_TGT_&&_https://coin.top/production/logo/1002568.png",
+    "TronGamingToken_&&_1002568_&&_6_&&_TGT_&&_https://coin.top/production/upload/logo/1002568.jpeg?t=1568205568424",
   "1002569":
     "utorrentchina_&&_1002569_&&_6_&&_utrx_&&_https://coin.top/production/js/20190509074813.png",
   "1002570":
-    "Criptoblock_&&_1002570_&&_0_&&_CBK_&&_https://coin.top/production/logo/1002570.png",
+    "Criptoblock_&&_1002570_&&_0_&&_CBK_&&_https://criptoblock.com.br/wp-content/uploads/2019/08/favicon-Criptoblock-Green.png",
   "1002571":
     "utorrentchina_&&_1002571_&&_6_&&_utc_&&_https://coin.top/production/js/20190509074813.png",
   "1002572":
-    "FruitToken_&&_1002572_&&_6_&&_Fruit_&&_https://coin.top/production/logo/1002572.png",
+    "FruitToken_&&_1002572_&&_6_&&_Fruit_&&_http://oss.cunyouchina.com/images/1/2019/08/xDDGz9bBb5d9nB1dVKVD9Vvbduu5dQ.png",
   "1002573":
     "BTCX_&&_1002573_&&_6_&&_BTCX_&&_https://coin.top/production/js/20190509074813.png",
   "1002574":
     "GoldenBridge_&&_1002574_&&_0_&&_GDBR_&&_https://coin.top/production/js/20190509074813.png",
   "1002575":
-    "DarkMatter_&&_1002575_&&_6_&&_DMX_&&_https://coin.top/production/logo/1002575.png",
+    "DarkMatter_&&_1002575_&&_6_&&_DMX_&&_https://i.imgur.com/KsHPSy3.png",
   "1002576":
     "LinkTbctokenIecosystem_&&_1002576_&&_6_&&_TBC_&&_https://coin.top/production/js/20190509074813.png",
   "1002577":
-    "VirtualHash_&&_1002577_&&_1_&&_VRT_&&_https://coin.top/production/logo/1002577.png",
+    "VirtualHash_&&_1002577_&&_1_&&_VRT_&&_https://coin.top/production/upload/logo/1002577.jpeg?t=1566093440462",
   "1002578":
     "IDA_&&_1002578_&&_6_&&_IDA_&&_https://idatoken.org/ida-coin.png?t=1566833273600",
   "1002579":
     "DivVC_&&_1002579_&&_6_&&_DivVC_&&_https://divvc.com/uploads/1/2/6/7/126794900/logo-ready-to-go_2_orig.png",
   "1002580":
-    "TreasureHunterToken_&&_1002580_&&_6_&&_THT_&&_https://coin.top/production/logo/1002580.png",
+    "TreasureHunterToken_&&_1002580_&&_6_&&_THT_&&_http://i66.tinypic.com/96fbc9.png",
   "1002581":
     "AsiaDollar_&&_1002581_&&_6_&&_ASD_&&_https://coin.top/production/js/20190509074813.png",
   "1002582":
     "NewTRXplorerPM_&&_1002582_&&_6_&&_TRXPM_&&_https://coin.top/production/js/20190509074813.png",
-  "1002583":
-    "RIZEX_&&_1002583_&&_6_&&_RZX_&&_https://coin.top/production/logo/1002583.png",
+  "1002583": "RIZEX_&&_1002583_&&_6_&&_RZX_&&_https://i.imgur.com/xhaixAw.png",
   "1002584":
     "GSB_&&_1002584_&&_6_&&_GSB_&&_https://coin.top/production/js/20190509074813.png",
   "1002585":
@@ -5171,35 +5169,35 @@ export const tokensMap = {
   "1002587":
     "USDM_&&_1002587_&&_3_&&_USDM_&&_https://coin.top/production/js/20190509074813.png",
   "1002588":
-    "WeThinkItMatters_&&_1002588_&&_6_&&_WTIM_&&_https://coin.top/production/logo/1002588.png",
+    "WeThinkItMatters_&&_1002588_&&_6_&&_WTIM_&&_https://coin.top/production/upload/logo/1002588.png?t=1565708281460",
   "1002589":
-    "AeroChain_&&_1002589_&&_6_&&_AEROX_&&_https://coin.top/production/logo/1002589.png",
+    "AeroChain_&&_1002589_&&_6_&&_AEROX_&&_https://coin.top/production/upload/logo/1002589.png?t=1566958312599",
   "1002590":
-    "TokenStoreWorld_&&_1002590_&&_6_&&_TSW_&&_https://coin.top/production/upload/logo/1002590.jpeg?t=1571996247297",
+    "TokenStoreWorld_&&_1002590_&&_6_&&_TSW_&&_https://coin.top/production/upload/logo/1002590.jpeg?t=1566038788129",
   "1002591":
-    "DRACMA_&&_1002591_&&_6_&&_DRAC_&&_https://coin.top/production/upload/logo/1002591.png?t=1569961774855",
+    "DRACMA_&&_1002591_&&_6_&&_DRAC_&&_https://coin.top/production/js/20190509074813.png",
   "1002592":
-    "TronRewards_&&_1002592_&&_0_&&_TRWD_&&_https://coin.top/production/upload/logo/1002592.png?t=1571046498389",
+    "TronRewards_&&_1002592_&&_0_&&_TRWD_&&_https://coin.top/production/js/20190509074813.png",
   "1002593":
     "TRONSECURITY_&&_1002593_&&_1_&&_TRSEC_&&_https://coin.top/production/js/20190509074813.png",
   "1002594":
     "VAYLA_&&_1002594_&&_1_&&_VAY_&&_https://coin.top/production/js/20190509074813.png",
   "1002595":
-    "NytePath_&&_1002595_&&_1_&&_NTP_&&_https://coin.top/production/logo/1002595.png",
+    "NytePath_&&_1002595_&&_1_&&_NTP_&&_https://coin.top/production/js/20190509074813.png",
   "1002596":
-    "BlackDollarToken_&&_1002596_&&_6_&&_BDOLL_&&_https://coin.top/production/logo/1002596.png",
+    "BlackDollarToken_&&_1002596_&&_6_&&_BDOLL_&&_https://coin.top/production/upload/logo/1002596.png?t=1566390457366",
   "1002597":
     "ZOO_&&_1002597_&&_6_&&_ZOO_&&_https://coin.top/production/js/20190509074813.png",
   "1002598":
-    "FateCoin_&&_1002598_&&_6_&&_FTC_&&_https://coin.top/production/logo/1002598.png",
+    "FateCoin_&&_1002598_&&_6_&&_FTC_&&_https://coin.top/production/upload/logo/1002598.png?t=1566367714294",
   "1002599":
-    "CRYPTOPRESS_&&_1002599_&&_6_&&_CPT_&&_https://coin.top/production/upload/logo/1002599.png?t=1571469305614",
+    "CRYPTOPRESS_&&_1002599_&&_6_&&_CPT_&&_https://coin.top/production/upload/logo/1002599.png?t=1566440877157",
   "1002600":
-    "VaTrix_&&_1002600_&&_6_&&_VTX_&&_https://coin.top/production/logo/1002600.png",
+    "VaTrix_&&_1002600_&&_6_&&_VTX_&&_https://coin.top/production/upload/logo/1002600.jpeg?t=1566438148135",
   "1002601":
-    "PhilippinePesoTRX_&&_1002601_&&_6_&&_PhpT_&&_https://coin.top/production/logo/1002601.png",
+    "PhilippinePesoTRX_&&_1002601_&&_6_&&_PhpT_&&_https://coin.top/production/upload/logo/1002601.png?t=1569309868040",
   "1002602":
-    "Mandalar_&&_1002602_&&_3_&&_MDL_&&_https://coin.top/production/logo/1002602.png",
+    "Mandalar_&&_1002602_&&_3_&&_MDL_&&_https://coin.top/production/upload/logo/1002602.jpeg?t=1566641179744",
   "1002603":
     "HERO_&&_1002603_&&_1_&&_HERO_&&_https://coin.top/production/js/20190509074813.png",
   "1002604":
@@ -5211,17 +5209,17 @@ export const tokensMap = {
   "1002607":
     "Post42_&&_1002607_&&_6_&&_P42_&&_https://coin.top/production/js/20190509074813.png",
   "1002608":
-    "LuckyCloverTrx_&&_1002608_&&_6_&&_LCT_&&_https://coin.top/production/upload/logo/1002608.jpeg?t=1571301459180",
+    "LuckyCloverTrx_&&_1002608_&&_6_&&_LCT_&&_https://coin.top/production/js/20190509074813.png",
   "1002609":
-    "P2P_&&_1002609_&&_6_&&_P2P_&&_https://coin.top/production/logo/1002609.png",
+    "P2P_&&_1002609_&&_6_&&_P2P_&&_https://coin.top/production/upload/logo/1002609.png?t=1567051640172",
   "1002610":
-    "BesiktASK_&&_1002610_&&_6_&&_BJK_&&_https://coin.top/production/logo/1002610.png",
+    "BesiktASK_&&_1002610_&&_6_&&_BJK_&&_https://coin.top/production/upload/logo/1002610.png?t=1567081149273",
   "1002611":
     "HealthyLife_&&_1002611_&&_6_&&_HELI_&&_https://coin.top/production/upload/logo/1002611.jpeg?t=1567496776240",
   "1002612":
     "FjordX_&&_1002612_&&_6_&&_FDX_&&_https://coin.top/production/js/20190509074813.png",
   "1002613":
-    "913_&&_1002613_&&_0_&&_913_&&_https://coin.top/production/logo/1002613.png",
+    "913_&&_1002613_&&_0_&&_913_&&_https://coin.top/production/upload/logo/1002613.jpeg?t=1567409673556",
   "1002614":
     "eScriptio_&&_1002614_&&_6_&&_eSc_&&_https://coin.top/production/upload/logo/1002614.jpeg?t=1568583641416",
   "1002615":
@@ -5231,39 +5229,39 @@ export const tokensMap = {
   "1002617":
     "PIatinumBook_&&_1002617_&&_0_&&_PBK_&&_https://coin.top/production/js/20190509074813.png",
   "1002618":
-    "Pumpkin_&&_1002618_&&_1_&&_PMK_&&_https://coin.top/production/logo/1002618.png",
+    "Pumpkin_&&_1002618_&&_1_&&_PMK_&&_https://coin.top/production/js/20190509074813.png",
   "1002619":
     "BinhBeoToken_&&_1002619_&&_0_&&_BBToken_&&_https://coin.top/production/js/20190509074813.png",
   "1002620":
-    "PACO_&&_1002620_&&_6_&&_PACO_&&_https://coin.top/production/logo/1002620.png",
+    "PACO_&&_1002620_&&_6_&&_PACO_&&_https://coin.top/production/upload/logo/1002620.jpeg?t=1567541872657",
   "1002621":
-    "BlockchainPedia_&&_1002621_&&_6_&&_PEDIA_&&_https://coin.top/production/logo/1002621.png",
+    "BlockchainPedia_&&_1002621_&&_6_&&_PEDIA_&&_https://coin.top/production/upload/logo/1002621.png?t=1567561126534",
   "1002622":
-    "AZARTRON_&&_1002622_&&_6_&&_AZRT_&&_https://coin.top/production/logo/1002622.png",
+    "AZARTRON_&&_1002622_&&_6_&&_AZRT_&&_https://coin.top/production/upload/logo/1002622.png?t=1569308644715",
   "1002623":
-    "BankRobber_&&_1002623_&&_4_&&_BankRober_&&_https://coin.top/production/logo/1002623.png",
+    "BankRobber_&&_1002623_&&_4_&&_BankRober_&&_https://coin.top/production/upload/logo/1002623.png?t=1567603731279",
   "1002624":
     "WNKR_&&_1002624_&&_4_&&_WNKR_&&_https://coin.top/production/js/20190509074813.png",
   "1002625":
     "Patrick_&&_1002625_&&_6_&&_PTR_&&_https://coin.top/production/js/20190509074813.png",
   "1002626":
-    "VMirCo_&&_1002626_&&_6_&&_PTR_&&_https://coin.top/production/logo/1002626.png",
+    "VMirCo_&&_1002626_&&_6_&&_PTR_&&_https://coin.top/production/upload/logo/1002626.jpeg?t=1567768743323",
   "1002627":
     "TronivCoin_&&_1002627_&&_2_&&_TIV_&&_https://coin.top/production/js/20190509074813.png",
   "1002628":
     "YHWHcoin_&&_1002628_&&_3_&&_YHWH_&&_C:\fakepathicono yhwhcoin.jpg",
   "1002629":
-    "TronivCoin_&&_1002629_&&_2_&&_TIV_&&_https://coin.top/production/logo/1002629.png",
+    "TronivCoin_&&_1002629_&&_2_&&_TIV_&&_https://coin.top/production/upload/logo/1002629.jpeg?t=1568280267783",
   "1002630":
-    "Karma_&&_1002630_&&_1_&&_Karma_&&_https://coin.top/production/logo/1002630.png",
+    "Karma_&&_1002630_&&_1_&&_Karma_&&_https://coin.top/production/upload/logo/1002630.png?t=1568004975354",
   "1002631":
     "BarolTron_&&_1002631_&&_0_&&_BRLC_&&_https://coin.top/production/js/20190509074813.png",
   "1002632":
     "TronInvestment_&&_1002632_&&_0_&&_TRIV_&&_https://coin.top/production/js/20190509074813.png",
   "1002633":
-    "TronPlace_&&_1002633_&&_6_&&_TPL_&&_https://coin.top/production/logo/1002633.png",
+    "TronPlace_&&_1002633_&&_6_&&_TPL_&&_https://coin.top/production/js/20190509074813.png",
   "1002634":
-    "BliUntung_&&_1002634_&&_0_&&_BNM_&&_https://coin.top/production/logo/1002634.png",
+    "BliUntung_&&_1002634_&&_0_&&_BNM_&&_https://coin.top/production/upload/logo/1002634.png?t=1568267277452",
   "1002635":
     "Bartercoin_&&_1002635_&&_6_&&_BEC_&&_https://coin.top/production/js/20190509074813.png",
   "1002636":
@@ -5275,31 +5273,31 @@ export const tokensMap = {
   "1002639":
     "GasMoney_&&_1002639_&&_0_&&_GMY_&&_https://coin.top/production/js/20190509074813.png",
   "1002640":
-    "LMB_&&_1002640_&&_6_&&_LMB_&&_https://coin.top/production/logo/1002640.png",
+    "LMB_&&_1002640_&&_6_&&_LMB_&&_https://coin.top/production/upload/logo/1002640.png?t=1568560221676",
   "1002641":
     "BRANDXZbagXZ15000000XZ12092019_&&_1002641_&&_1_&&_BRAND_&&_https://coin.top/production/js/20190509074813.png",
   "1002642":
     "CoinSpot_&&_1002642_&&_6_&&_COPT_&&_https://coin.top/production/js/20190509074813.png",
   "1002643":
-    "Trevizo_&&_1002643_&&_6_&&_TVZ_&&_https://coin.top/production/logo/1002643.png",
+    "Trevizo_&&_1002643_&&_6_&&_TVZ_&&_https://coin.top/production/upload/logo/1002643.png?t=1568789599888",
   "1002644":
-    "StratosEnergy_&&_1002644_&&_6_&&_STR_&&_https://coin.top/production/upload/logo/1002644.jpeg?t=1574238981945",
+    "StratosEnergy_&&_1002644_&&_6_&&_STR_&&_https://coin.top/production/js/20190509074813.png",
   "1002645":
-    "TalluAppaRappung_&&_1002645_&&_0_&&_TAR_&&_https://coin.top/production/logo/1002645.png",
+    "TalluAppaRappung_&&_1002645_&&_0_&&_TAR_&&_https://coin.top/production/upload/logo/1002645.jpeg?t=1568855164700",
   "1002646":
-    "TALESHCOIN_&&_1002646_&&_6_&&_TALC_&&_https://coin.top/production/logo/1002646.png",
+    "TALESHCOIN_&&_1002646_&&_6_&&_TALC_&&_https://coin.top/production/js/20190509074813.png",
   "1002647":
-    "Querr_&&_1002647_&&_6_&&_LGBTQ_&&_https://coin.top/production/logo/1002647.png",
+    "Querr_&&_1002647_&&_6_&&_LGBTQ_&&_https://coin.top/production/js/20190509074813.png",
   "1002648":
-    "CoinWikiToken_&&_1002648_&&_6_&&_WIKI_&&_https://coin.top/production/logo/1002648.png",
+    "CoinWikiToken_&&_1002648_&&_6_&&_WIKI_&&_https://coin.top/production/upload/logo/1002648.png?t=1568925774514",
   "1002649":
     "FBLIBRA_&&_1002649_&&_6_&&_FBL_&&_https://coin.top/production/upload/logo/1002649.png?t=1569104109311",
   "1002650":
-    "TELETRON_&&_1002650_&&_6_&&_TELE_&&_https://coin.top/production/logo/1002650.png",
+    "TELETRON_&&_1002650_&&_6_&&_TELE_&&_https://coin.top/production/js/20190509074813.png",
   "1002651":
-    "BeeHive_&&_1002651_&&_6_&&_BeeH_&&_https://coin.top/production/logo/1002651.png",
+    "BeeHive_&&_1002651_&&_6_&&_BeeH_&&_https://coin.top/production/upload/logo/1002651.png?t=1569184937830",
   "1002652":
-    "eIDR_&&_1002652_&&_2_&&_eIDR_&&_https://coin.top/production/logo/1002652.png",
+    "eIDR_&&_1002652_&&_2_&&_eIDR_&&_https://coin.top/production/upload/logo/1002652.png?t=1569218053800",
   "1002653":
     "GEMSD_&&_1002653_&&_6_&&_GEMSD_&&_https://coin.top/production/js/20190509074813.png",
   "1002654":
@@ -5486,7 +5484,7 @@ export const tokensMap = {
   "1002745":
     "HawToken_&&_1002745_&&_6_&&_HAW_&&_https://coin.top/production/upload/logo/1002745.png?t=1572524474619",
   "1002746":
-    "QueenMahsa_&&_1002746_&&_6_&&_QMT_&&_https://coin.top/production/upload/logo/1002746.jpeg?t=1573116262506",
+    "QueenMahsa_&&_1002746_&&_6_&&_QMT_&&_https://coin.top/production/upload/logo/1002746.jpeg?t=1572548863923",
   "1002747":
     "49ers2020SuperBowlWinners_&&_1002747_&&_1_&&_49ersLIV_&&_https://coin.top/production/js/20190509074813.png",
   "1002748":
@@ -5498,91 +5496,6 @@ export const tokensMap = {
   "1002751":
     "FuelChainX_&&_1002751_&&_6_&&_FCX_&&_https://coin.top/production/upload/logo/1002751.png?t=1572823991941",
   "1002752":
-    "MagicData_&&_1002752_&&_6_&&_MDC_&&_https://coin.top/production/js/20190509074813.png",
-  "1002753":
-    "Zhong_&&_1002753_&&_6_&&_ZNG_&&_https://coin.top/production/js/20190509074813.png",
-  "1002754":
-    "BinhCuToken_&&_1002754_&&_6_&&_BINHC_&&_https://coin.top/production/js/20190509074813.png",
-  "1002755":
-    "Sezon_&&_1002755_&&_6_&&_SZN_&&_https://coin.top/production/upload/logo/1002755.png?t=1573051683339",
-  "1002756":
-    "TRXTEST_&&_1002756_&&_6_&&_TRXTEST_&&_https://coin.top/production/js/20190509074813.png",
-  "1002757":
-    "SCCTEST_&&_1002757_&&_6_&&_SCCTEST_&&_https://coin.top/production/js/20190509074813.png",
-  "1002758":
-    "FUZE_&&_1002758_&&_0_&&_FUZE_&&_https://coin.top/production/js/20190509074813.png",
-  "1002759":
-    "LUCKYPOINT_&&_1002759_&&_1_&&_LKP_&&_https://coin.top/production/js/20190509074813.png",
-  "1002760":
-    "AussieOptions_&&_1002760_&&_1_&&_AUS_&&_https://coin.top/production/js/20190509074813.png",
-  "1002761":
-    "Butter_&&_1002761_&&_2_&&_BTTR_&&_https://coin.top/production/js/20190509074813.png",
-  "1002762":
-    "Alphard_&&_1002762_&&_6_&&_AHD_&&_https://coin.top/production/upload/logo/1002762.png?t=1573510594683",
-  "1002763":
-    "Ganja_&&_1002763_&&_2_&&_GNJA_&&_https://coin.top/production/upload/logo/1002763.jpeg?t=1573528057763",
-  "1002764":
-    "NovaDiamond_&&_1002764_&&_1_&&_NVD_&&_https://coin.top/production/js/20190509074813.png",
-  "1002765":
-    "NovaEmerald_&&_1002765_&&_1_&&_NVE_&&_https://coin.top/production/js/20190509074813.png",
-  "1002766":
-    "NovaSapphire_&&_1002766_&&_1_&&_NVS_&&_https://coin.top/production/js/20190509074813.png",
-  "1002767":
-    "NovaRuby_&&_1002767_&&_1_&&_NVR_&&_https://coin.top/production/js/20190509074813.png",
-  "1002768":
-    "NovaBlade_&&_1002768_&&_1_&&_NVB_&&_https://coin.top/production/js/20190509074813.png",
-  "1002769":
-    "MasternodesCash_&&_1002769_&&_2_&&_MNDxCASH_&&_https://coin.top/production/upload/logo/1002769.png?t=1573766441140",
-  "1002770":
-    "VisionTrade_&&_1002770_&&_1_&&_VST_&&_https://coin.top/production/js/20190509074813.png",
-  "1002771":
-    "TRXFOREX_&&_1002771_&&_6_&&_TRXFX_&&_https://coin.top/production/js/20190509074813.png",
-  "1002772":
-    "TestMIL_&&_1002772_&&_0_&&_TMIL_&&_https://coin.top/production/js/20190509074813.png",
-  "1002773":
-    "TestMil2_&&_1002773_&&_0_&&_TMil2_&&_https://coin.top/production/js/20190509074813.png",
-  "1002774":
-    "GravelTRON_&&_1002774_&&_6_&&_GRVL_&&_https://coin.top/production/upload/logo/1002774.png?t=1574730620440",
-  "1002775":
-    "ALPHA_&&_1002775_&&_6_&&_ALPHA_&&_https://coin.top/production/js/20190509074813.png",
-  "1002776":
-    "TRONSHOPVIETNAM_&&_1002776_&&_6_&&_TRXPVN_&&_https://coin.top/production/js/20190509074813.png",
-  "1002777":
-    "youForia_&&_1002777_&&_6_&&_youForia_&&_https://coin.top/production/js/20190509074813.png",
-  "1002778":
-    "Whisper_&&_1002778_&&_2_&&_WSPR_&&_https://coin.top/production/js/20190509074813.png",
-  "1002779":
-    "TronIOTOS_&&_1002779_&&_6_&&_TIS_&&_https://coin.top/production/js/20190509074813.png",
-  "1002780":
-    "TestMil3_&&_1002780_&&_0_&&_TMIL3_&&_https://coin.top/production/js/20190509074813.png",
-  "1002781":
-    "liaoer_&&_1002781_&&_6_&&_liaoer_&&_https://coin.top/production/js/20190509074813.png",
-  "1002782":
-    "ICS_&&_1002782_&&_6_&&_CRED_&&_https://coin.top/production/js/20190509074813.png",
-  "1002783":
-    "GlobalDollar_&&_1002783_&&_3_&&_GLD_&&_https://coin.top/production/upload/logo/1002783.jpeg?t=1574668390923",
-  "1002784":
-    "BossToken_&&_1002784_&&_0_&&_BOSS_&&_https://coin.top/production/js/20190509074813.png",
-  "1002785":
-    "TronManagementAssets_&&_1002785_&&_6_&&_TMAX_&&_https://coin.top/production/js/20190509074813.png",
-  "1002786":
-    "GVT_&&_1002786_&&_0_&&_GVT_&&_https://coin.top/production/js/20190509074813.png",
-  "1002787":
-    "SCFARM_&&_1002787_&&_6_&&_SCDF_&&_https://coin.top/production/js/20190509074813.png",
-  "1002788":
-    "TTRX_&&_1002788_&&_2_&&_testTrx_&&_https://coin.top/production/js/20190509074813.png",
-  "1002789":
-    "IKO_&&_1002789_&&_6_&&_IKO_&&_https://coin.top/production/js/20190509074813.png",
-  "1002790":
-    "APET_&&_1002790_&&_6_&&_APET_&&_https://coin.top/production/upload/logo/1002790.png?t=1574654456279",
-  "1002791":
-    "JLikecoin_&&_1002791_&&_3_&&_JLike_&&_https://coin.top/production/upload/logo/1002791.png?t=1574655184531",
-  "1002792":
-    "VoteForGeoTreasureSR_&&_1002792_&&_0_&&_VoteGT_&&_https://coin.top/production/js/20190509074813.png",
-  "1002793":
-    "Sportsai_&&_1002793_&&_4_&&_SAI_&&_https://coin.top/production/upload/logo/1002793.png?t=1574679799072",
-  "1002794":
-    "TAOdice_&&_1002794_&&_6_&&_TAOstake_&&_https://coin.top/production/js/20190509074813.png"
+    "MagicData_&&_1002752_&&_6_&&_MDC_&&_https://coin.top/production/js/20190509074813.png"
 };
-
 export const tokens20Map = {};

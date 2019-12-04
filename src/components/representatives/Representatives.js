@@ -210,6 +210,7 @@ class Representatives extends Component {
       .filter(w => w.producedTotal > 0)
       .sortBy(w => w.producePercentage)
       .value()[0];
+      leastProductive = leastProductive ? leastProductive : {}
 
     return (
       <main className="container header-overlap pb-3 token_black">
@@ -260,7 +261,7 @@ class Representatives extends Component {
                         <FormattedNumber
                           maximumFractionDigits={2}
                           minimunFractionDigits={2}
-                          value={leastProductive.producePercentage}
+                          value={leastProductive.producePercentage || 0}
                         />
                         %
                       </h3>

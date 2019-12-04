@@ -67,13 +67,13 @@ export default class Home extends Component {
       noticezhIEO: {
         id: 1,
         html_url: "https://poloniex.org/zh/launchBase?utm_source=TS1",
-        name: "POLONIDEX LaunchBase 瞩目呈现 ACE重磅登陆",
+        name: "Poloni DEX LaunchBase 瞩目呈现 ACE重磅登陆",
         created_at: "2019-04-09T12:00:00Z"
       },
       noticeenIEO: {
         id: 1,
         html_url: "https://poloniex.org/launchBase?utm_source=TS1",
-        name: "POLONIDEX LaunchBase grand open ACE is waiting for you",
+        name: "Poloni DEX LaunchBase grand open ACE is waiting for you",
         created_at: "2019-04-09T12:00:00Z"
       },
       newNotice: [" ", " ", " "]
