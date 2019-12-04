@@ -10,8 +10,8 @@ export const IS_DESKTOP = process.env.DESKTOP === "true";
 export const NETURL = {
   // MAINNET: "https://tronscan.org",
   // SUNNET: "https://dappchain.tronscan.org"
-  MAINNET: "http://18.217.215.94:65",
-  SUNNET: "http://18.217.215.94:66"
+  MAINNET: "https://debug.tronscan.org",
+  SUNNET: "https://debugdappchain.tronscan.org"
 };
 
 let { NET, NODE_ENV } = process.env;
@@ -26,8 +26,8 @@ if (NODE_ENV == "development") {
 } else {
   MAINNET = window.location.origin === NETURL.MAINNET;
   SUNNET = window.location.origin === NETURL.SUNNET;
-  // NODEAPI = process.env.API_URL;
-  NODEAPI = "http://52.15.126.154:9016";
+  NODEAPI = process.env.API_URL;
+  // NODEAPI = "http://52.15.126.154:9016";
 }
 
 export let IS_MAINNET = MAINNET;
@@ -108,9 +108,9 @@ export const TRADINGMAP = {
 
 // SunWeb config
 export const SUNWEBCONFIG = {
-  MAINFULLNODE: "https://api.shasta.trongrid.io",
-  MAINSOLIDITYNODE: "https://api.shasta.trongrid.io",
-  MAINEVENTSERVER: "https://api.shasta.trongrid.io",
+  MAINFULLNODE: "https://api.trongrid.io",
+  MAINSOLIDITYNODE: "https://api.trongrid.io",
+  MAINEVENTSERVER: "https://api.trongrid.io",
   SUNFULLNODE: "https://sun.tronex.io",
   SUNSOLIDITYNODE: "https://sun.tronex.io",
   SUNEVENTSERVER: "https://sun.tronex.io",

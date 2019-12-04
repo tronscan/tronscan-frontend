@@ -832,23 +832,14 @@ class SubmitInfo extends Component {
             {tu("trc20_token_return")}
           </button>
           {/* {// todo wangyan} */}
-          {/* 注释掉验证 */}
-          {/* <button
+          <button
                 className="ml-4 btn btn-danger btn-lg"
                 htmltype="submit"
                 disabled={!captcha_code}
                 onClick={this.submit}
               >
                 {tu("submit")}
-              </button> */}
-          <button
-            className="ml-4 btn btn-danger btn-lg"
-            htmltype="submit"
-            disabled={captcha_code}
-            onClick={this.submit}
-          >
-            {tu("submit")}
-          </button>
+              </button>
         </section>
       </main>
     );
