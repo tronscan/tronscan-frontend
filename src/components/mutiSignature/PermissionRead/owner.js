@@ -1,7 +1,9 @@
 import React, {Component} from "react";
 import {tu} from "../../../utils/i18n"
 
+import { injectIntl } from "react-intl";
 
+@injectIntl
 export default class OwnerRead extends Component{
     constructor(props){
         super(props)

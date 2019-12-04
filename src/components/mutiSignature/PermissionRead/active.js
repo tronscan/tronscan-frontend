@@ -1,7 +1,9 @@
 import React, {Component,PureComponent} from "react";
 import { getContractTypesByHex } from '../../../utils/mutiSignHelper';
 import {tu} from "../../../utils/i18n"
+import { injectIntl } from "react-intl";
 
+@injectIntl
 export default class ActiveRead extends PureComponent{
     constructor(props){
         super(props)

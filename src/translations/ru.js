@@ -2261,7 +2261,7 @@ export const messages = {
   "signature_Superdelegate_authority_desc":"Доступ SR используется для настройки блока, производящего нода",
   "signature_piece_node":"Блок производящий нод",
   "signature_no_set":"Это адрес контракта, и его нельзя сбросить.",
-  "signature_Unverified_address":"未验证地址",
+  "signature_Unverified_address":"Unverified address",
   "signature_notInContralAddress":"Нет доступа к указанному адресу. Пожалуйста, попробуйте еще раз.",
   "signature_invalid_Address":"Неправильный формат адреса. Пожалуйста, попробуйте еще раз.",
   "signature_weight_required":"Вы должны ввести weight",
@@ -2296,5 +2296,5 @@ export const messages = {
   "signature_permission_name_required":"Вы должны ввести имя доступа",
   "signature_operations_required":"Требуется операция",
   "signature_threshold_required":"Требуется предел",
-
+  "signaure_control_address_tip":"Control address refers to the associated control addresses of owner permission, SR permission and active permission. Display of the three types of permissions will change subsequently when the control address is modified.",
 };

@@ -2252,7 +2252,7 @@ export const messages = {
   "signature_Superdelegate_authority_desc":"ブロックノードの設定にはスーパーデリゲート権限が使用されます",
   "signature_piece_node":"ブロックノード",
   "signature_no_set":"ここはコントラクアドレスです。確認してからもう一度お試しください",
-  "signature_Unverified_address":"未验证地址",
+  "signature_Unverified_address":"Unverified address",
   "signature_notInContralAddress":"このアドレスには制御権限がありません。確認してからもう一度お試しください",
   "signature_invalid_Address":"アドレスの形式が正しくありません。確認してからもう一度お試しください。",
   "signature_weight_required":"ウエートの入力が必要です.",
@@ -2287,5 +2287,5 @@ export const messages = {
   "signature_permission_name_required":"権限名が必要",
   "signature_operations_required":"操作の入力が必要",
   "signature_threshold_required":"閾値の入力が必要",
-
+  "signaure_control_address_tip":"Control address refers to the associated control addresses of owner permission, SR permission and active permission. Display of the three types of permissions will change subsequently when the control address is modified.",
 }

@@ -2561,7 +2561,7 @@ export default class Account extends Component {
             <div className="col-md-12">
                 <div className="card">
                   <div className="card-body">
-                    <h5 className="card-title text-center m-0">
+                    <h5 className="card-title text-center m-0" style={{fontSize:'24px'}}>
                        {tu("muti_sign")}
                     </h5>
                     <div className="account-muti-sign-tab">

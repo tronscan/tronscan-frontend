@@ -2255,7 +2255,7 @@ export const messages = {
  "signature_Superdelegate_authority_desc":"قدرت سوپر نماینده برای تنظیم گره بلاک استفاده می شود.",
  "signature_piece_node":"گره بلوک",
  "signature_no_set":"این یک آدرس قرارداد است ، لطفاً دوباره بررسی کنید و دوباره امتحان کنید.",
- "signature_Unverified_address":"未验证地址",
+ "signature_Unverified_address":"Unverified address",
  "signature_notInContralAddress":"به آدرس گفته شده دسترسی ندارید. لطفاً دوباره امتحان کنید.",
  "signature_invalid_Address":"قالب آدرس اشتباه است. لطفا دوباره تلاش کنید.",
  "signature_weight_required":"وزن مورد نیاز است",
@@ -2290,5 +2290,5 @@ export const messages = {
   "signature_permission_name_required":"نام دسترسی مورد نیاز است.",
   "signature_operations_required":"عملیات مورد نیاز است",
   "signature_threshold_required":"آستانه مورد نیاز است",
-
+  "signaure_control_address_tip":"Control address refers to the associated control addresses of owner permission, SR permission and active permission. Display of the three types of permissions will change subsequently when the control address is modified.",
 };

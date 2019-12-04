@@ -2265,7 +2265,7 @@ export const messages = {
  "signature_Superdelegate_authority_desc":"Superdelegate privileges are used to set block nodes",
  "signature_piece_node":"Block producing nodes",
  "signature_no_set":"This is a contract address, please check and try again.",
- "signature_Unverified_address":"未验证地址",
+ "signature_Unverified_address":"Unverified address",
  "signature_notInContralAddress":"No access to the said address. Please try again.",
  "signature_invalid_Address":"Wrong address format. Please try again.",
  "signature_weight_required":"Weight is required",
@@ -2300,7 +2300,7 @@ export const messages = {
   "signature_permission_name_required":"Access name is required",
   "signature_operations_required":"Operation is required",
   "signature_threshold_required":"Threshold is requried",
-
+  "signaure_control_address_tip":"Control address refers to the associated control addresses of owner permission, SR permission and active permission. Display of the three types of permissions will change subsequently when the control address is modified.",
 
 
 };

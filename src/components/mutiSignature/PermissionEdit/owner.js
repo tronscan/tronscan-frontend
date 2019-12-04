@@ -3,7 +3,9 @@ import { Input } from 'antd';
 import { cloneDeep } from 'lodash'
 import { toNumber } from '../../../utils/number'
 import {tu} from "../../../utils/i18n"
+import { injectIntl } from "react-intl";
 
+@injectIntl
 export default class OwnerEdit extends Component{
     constructor(props){
         super(props)

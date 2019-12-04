@@ -2244,7 +2244,7 @@
  "signature_Superdelegate_authority_desc":"يتم استخدام تفويض صلاحيات الممثل الممتاز لتعيين عقدة للكتلة",
  "signature_piece_node":"عقدة الكتلة",
  "signature_no_set":"هذا هو عنوان العقد ، يرجى التأكيد والمحاولة مرة أخرى",
- "signature_Unverified_address":"未验证地址",
+ "signature_Unverified_address":"Unverified address",
  "signature_notInContralAddress":"لا يمكن الوصول إلى العنوان المذكور ، يرجى المحاولة مرة أخرى.",
  "signature_invalid_Address":"تنسيق العنوان غير صحيح يرجى التأكد والمحاولة مرة أخرى.",
  "signature_weight_required":"مطلوب إدخال weight ",
@@ -2277,5 +2277,5 @@
   "signature_permission_name_required":"اسم الإذن مطلوب",
   "signature_operations_required":"التشغيل مطلوب",
   "signature_threshold_required":"مطلوب إضافة الحد الأدنى",
-
+  "signaure_control_address_tip":"Control address refers to the associated control addresses of owner permission, SR permission and active permission. Display of the three types of permissions will change subsequently when the control address is modified.",
 };

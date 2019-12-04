@@ -16,6 +16,7 @@ import { buildAccountPermissionUpdateContract } from '@tronscan/client/src/utils
 import { postMutiSignTransaction } from '../../../services/apiMutiSign'
 import { injectIntl } from "react-intl";
 import { tu } from '../../../utils/i18n'
+import {QuestionMark} from "../../common/QuestionMark";
 @injectIntl
 @connect(
     state => {
@@ -563,7 +564,7 @@ export default class MyPermission extends React.Component {
             <main className='permission-main'>
                 <div className='control-address'>
 
-                    <span> {tu('signature_control_address')}:</span>
+                    <span> {tu('signature_control_address')}:<QuestionMark placement="top" text="signaure_control_address_tip"/></span>
                     <Input size="small" value={curControlAddress} className={!isEditOperateUser ? 'read' : ''} readOnly={!isEditOperateUser} onChange={(e) => {
                         this.changeControlAddress(e)
                     }} />
@@ -588,7 +589,7 @@ export default class MyPermission extends React.Component {
                 {/* view status */}
                 {ownerPermission && !isEditContent && <OwnerRead ownerPermission={ownerPermission} tronWeb={tronWeb} />}
                 {/* {witnessPermission && !isEditContent && <WitnessRead witnessPermission={witnessPermission} witnessNodeAddress={witnessAddressIfIs} tronWeb={tronWeb} />} */}
-                {activePermissions && !isEditContent && <ActiveRead activePermissions={activePermissions} tronWeb={tronWeb} />}
+                {activePermissions && !isEditContent && <ActiveRead activePermissions={activePermissions} tronWeb={tronWeb}/>}
                 {/* edit status */}
                 {ownerPermission && isEditContent && <OwnerEdit ownerPermission={ownerPermission} tronWeb={tronWeb} changeOwnerPermission={this.changeOwnerPermission.bind(this)} />}
                 {activePermissions && isEditContent && <ActiveEdit activePermissions={activePermissions} tronWeb={tronWeb} changeActivePermission={this.changeActivePermission.bind(this)} />}

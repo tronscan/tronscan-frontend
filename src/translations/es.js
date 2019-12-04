@@ -2260,7 +2260,7 @@ export const messages = {
  "signature_Superdelegate_authority_desc":"El acceso SR se utiliza para configurar el bloque que produce ndoes",
  "signature_piece_node":"Bloque de nodos productores",
  "signature_no_set":"Esta es una dirección de contrato, verifique e intente nuevamente.",
- "signature_Unverified_address":"未验证地址",
+ "signature_Unverified_address":"Unverified address",
  "signature_notInContralAddress":"No acceso al address indicado, intenta nuevamente más tarde.",
  "signature_invalid_Address":"formato de dirección incorrecto, intenta otra vez.",
  "signature_weight_required":"Se requiere peso.",
@@ -2295,5 +2295,5 @@ export const messages = {
   "signature_permission_name_required":"Se requiere nombre de acceso",
   "signature_operations_required":"Se requiere operación",
   "signature_threshold_required":"Se requiere umbral",
-
+  "signaure_control_address_tip":"Control address refers to the associated control addresses of owner permission, SR permission and active permission. Display of the three types of permissions will change subsequently when the control address is modified.",
 };

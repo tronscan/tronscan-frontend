@@ -2256,7 +2256,7 @@ export const messages = {
   "signature_Superdelegate_authority_desc":"SR 권한은 블록 노드를 설정하는데 사용됩니다",
   "signature_piece_node":"블록 노드",
   "signature_no_set":"이 주소는 계약 주소 입니다. 확인 후 다시 시도해 보세요.",
-  "signature_Unverified_address":"未验证地址",
+  "signature_Unverified_address":"Unverified address",
   "signature_notInContralAddress":"이 주소의 제어 권한이 없습니다. 확인하고 다시 시도해 보세요",
   "signature_invalid_Address":"주소 양식 오류, 확인하고 다시 시도해 보세요",
   "signature_weight_required":"weight 는 필수 정보입니다",
@@ -2291,5 +2291,5 @@ export const messages = {
   "signature_permission_name_required":"권한 명칭은 필수 정보입니다",
   "signature_operations_required":"조작은 필수 정보입니다",
   "signature_threshold_required":"역치는 필수 정보입니다",
-
+  "signaure_control_address_tip":"Control address refers to the associated control addresses of owner permission, SR permission and active permission. Display of the three types of permissions will change subsequently when the control address is modified.",
 };
