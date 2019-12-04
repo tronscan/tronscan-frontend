@@ -128,15 +128,18 @@ class SendForm extends React.Component {
                 console.log('SignTransaction111',SignTransaction)
 
                 // xhr.defaults.headers.common["MainChain"] = 'MainChain';
-
-                //xhr multi-sign transaction api
-                let { data } = await xhr.post("https://testlist.tronlink.org/api/wallet/multi/transaction", {
-                    "address": wallet.address,
-                    "transaction": SignTransaction,
-                    "netType":"shasta"
-                });
-                result = data.code;
-                console.log('code',result)
+                if(!SignTransaction){
+                    result = 40001
+                }else {
+                    //xhr multi-sign transaction api
+                    let {data} = await xhr.post("https://testlist.tronlink.org/api/wallet/multi/transaction", {
+                        "address": wallet.address,
+                        "transaction": SignTransaction,
+                        "netType": "shasta"
+                    });
+                    result = data.code;
+                    console.log('code', result)
+                }
             }
 
             if (result == 0) {
@@ -171,15 +174,19 @@ class SendForm extends React.Component {
                 const SignTransaction = await transactionMultiResultManager(unSignTransaction, tronWeb, permissionId,permissionTime, HexStr);
 
                 // xhr.defaults.headers.common["MainChain"] = 'MainChain';
+                if(!SignTransaction){
+                    result = 40001
+                }else{
+                    //xhr multi-sign transaction api
+                    let { data } = await xhr.post("https://testlist.tronlink.org/api/wallet/multi/transaction", {
+                        "address": wallet.address,
+                        "transaction": SignTransaction,
+                        "netType":"shasta"
+                    });
+                    result = data.code;
+                    console.log('code',result)
+                }
 
-                //xhr multi-sign transaction api
-                let { data } = await xhr.post("https://testlist.tronlink.org/api/wallet/multi/transaction", {
-                    "address": wallet.address,
-                    "transaction": SignTransaction,
-                    "netType":"shasta"
-                });
-                result = data.code;
-                console.log('code',result)
             }
 
             if (result == 0) {
@@ -239,6 +246,7 @@ class SendForm extends React.Component {
     let {onSend,wallet} = this.props;
     let tronWeb;
     let transactionId;
+    let result;
     this.setState({ isLoading: true, modal: null });
     let contractAddress = find(tokens20, t => t.name === TokenName).contract_address;
     if(IS_MAINNET) {
@@ -288,14 +296,20 @@ class SendForm extends React.Component {
             //sign transaction
             let SignTransaction = await transactionMultiResultManager(unSignTransaction, tronWeb, permissionId,permissionTime,HexStr);
 
-            let { data } = await xhr.post("https://testlist.tronlink.org/api/wallet/multi/transaction", {
-                "address": wallet.address,
-                "transaction": SignTransaction,
-                "netType":"shasta",
-                "functionSelector":"transfer(address,uint256)"
-            });
-            let result = data.code;
-            console.log('code',result)
+            if(!SignTransaction){
+                result = 40001
+            }else{
+                let { data } = await xhr.post("https://testlist.tronlink.org/api/wallet/multi/transaction", {
+                    "address": wallet.address,
+                    "transaction": SignTransaction,
+                    "netType":"shasta",
+                    "functionSelector":"transfer(address,uint256)"
+                });
+                result = data.code;
+                console.log('code',result)
+            }
+
+
             if (result == 0) {
                 transactionId = true;
             } else {
@@ -559,7 +573,6 @@ class SendForm extends React.Component {
 
   isAmountValid = () => {
     let {amount,balance} = this.state;
-    console.log('isAmountValid',balance)
     let selectedTokenBalance = balance;
     return amount !== 0 && amount !== '' && selectedTokenBalance >= amount;
   };
@@ -785,7 +798,6 @@ class SendForm extends React.Component {
 
     let {intl, account } = this.props;
     let {tokenBalances, tokens20, isLoading, sendStatus, modal, to, from, note, toAccount, fromAccount, permissionTime,permissionId, signList, token, amount, privateKey,decimals, ownerOption, activeOption, errmessage} = this.state;
-    console.log('errmessage',errmessage)
     tokenBalances = _(tokenBalances)
         .filter(tb => tb.balance > 0)
         .filter(tb => tb.map_token_id > 0 || tb.map_token_id == '_')
