@@ -569,7 +569,7 @@ class IssuedToken extends React.Component{
                   : "https://poloniex.org/"
               }
             >
-              POLONIDEX
+              Poloni DEX
             </HrefLink>
           </span>
         </div>

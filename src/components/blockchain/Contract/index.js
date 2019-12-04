@@ -32,9 +32,12 @@ import {
   IS_SUNNET,
   CONTRACT_MAINNET_API_URL
 } from "../../../constants";
-import { Tooltip } from "antd";
+import { Tooltip, Icon } from "antd";
 import TokenBalances from "./Balance.js";
 import { CsvExport } from "../../common/CsvExport";
+import moment from "moment";
+import rebuildList from "../../../utils/rebuildList";
+import { QuestionMark } from "../../common/QuestionMark.js";
 
 class SmartContract extends React.Component {
   constructor({ match }) {
@@ -260,6 +263,32 @@ class SmartContract extends React.Component {
     }
   };
 
+  contractValue() {
+    let contract = this.state.contract;
+    let contractValue = "";
+
+    if (contract.call_token_value) {
+      let tokenList = [{ token_id: contract.call_token_id }];
+      let tokenInfo = rebuildList(tokenList, "token_id", "amount")[0];
+      let value =
+        contract.call_token_value /
+        Math.pow(10, tokenInfo.map_token_precision || 6);
+      if (contract.call_value) {
+        contractValue = `${contract.call_value} TRX ${value} ${tokenInfo.map_token_name}`;
+      } else {
+        contractValue = `${value} ${tokenInfo.map_token_name}`;
+      }
+    } else {
+      if (contract.call_value) {
+        contractValue = `${contract.call_value} TRX`;
+      } else {
+        contractValue = "--";
+      }
+    }
+
+    return contractValue;
+  }
+
   render() {
     let {
       contract,
@@ -276,6 +305,9 @@ class SmartContract extends React.Component {
     if (!contract) {
       return null;
     }
+
+    const contractValue = this.contractValue();
+
     let pathname = this.props.location.pathname;
     let tabName = "";
     let rex = /[a-zA-Z0-9]{34}\/?([a-zA-Z\\-]+)$/;
@@ -301,6 +333,8 @@ class SmartContract extends React.Component {
                         address={contract.address}
                         isContract={true}
                         includeCopy={true}
+                        includeTransfer={true}
+                        includeErcode={true}
                       />
                     </h6>
 
@@ -313,17 +347,52 @@ class SmartContract extends React.Component {
                           <li>
                             <p>
                               {upperFirst(
+                                intl.formatMessage({ id: "contract_name" })
+                              )}
+                              :{" "}
+                            </p>
+                            {contract.name || "--"}
+                          </li>
+                          <li>
+                            <p>
+                              {upperFirst(
                                 intl.formatMessage({ id: "balance" })
                               )}
                               :{" "}
                             </p>
-                            <TRXPrice
-                              amount={
-                                contract.balance
-                                  ? parseInt(contract.balance) / ONE_TRX
-                                  : 0
-                              }
-                            />
+                            <div>
+                              <TRXPrice
+                                amount={
+                                  contract.balance
+                                    ? parseInt(contract.balance) / ONE_TRX
+                                    : 0
+                                }
+                                showPopup={false}
+                                currency="TRX"
+                              />
+                              {contract.balance > 0 && (
+                                <p>
+                                  ≈{" "}
+                                  <TRXPrice
+                                    amount={
+                                      contract.balance
+                                        ? parseInt(contract.balance) / ONE_TRX
+                                        : 0
+                                    }
+                                    currency="USD"
+                                    showPopup={false}
+                                  />
+                                  &nbsp;(@&nbsp;USD&nbsp;
+                                  <TRXPrice
+                                    amount={1}
+                                    currency="USD"
+                                    showPopup={false}
+                                    showCurreny={false}
+                                  />
+                                  /TRX)
+                                </p>
+                              )}
+                            </div>
                           </li>
                           {/* <li><p>{tu('trx_value')}: </p><TRXPrice amount={1} currency="USD" source="home"/></li> */}
                           <li>
@@ -345,6 +414,7 @@ class SmartContract extends React.Component {
                               </Tooltip>
                             </p>
                           </li>
+
                           {token20 && (
                             <li>
                               <p>{tu("token_tracker")}: </p>
@@ -392,10 +462,19 @@ class SmartContract extends React.Component {
                               />
                             </li>
                           )}
+                          {!token20 && (
+                            <li>
+                              <p>{tu("token_tracker")}: </p>
+                              {/* <img width={20} height={20} src={defaultImg} /> */}
+                              --
+                            </li>
+                          )}
                         </ul>
                       </div>
                       <div className="contract-header__item">
-                        <h6 className="contract-header__title">{tu("Misc")}</h6>
+                        <h6 className="contract-header__title">
+                          {tu("contract_create_msg")}
+                        </h6>
                         <ul>
                           <li>
                             <p>{tu("contract_creator")}:</p>
@@ -431,6 +510,65 @@ class SmartContract extends React.Component {
                               </span>
                             </li>
                           )}
+                          <li>
+                            <p>{tu("contract_create_time")}:</p>
+                            <div className="d-flex">
+                              <span>
+                                {moment(contract.date_created).format(
+                                  "YYYY-MM-DD HH:mm:ss"
+                                )}
+                              </span>
+                            </div>
+                          </li>
+                          <li>
+                            <div className="question-markk">
+                              {tu("contract_enery")}
+                              <span className="ml-1">
+                                <QuestionMark
+                                  placement="top"
+                                  text="contract_enery_tip"
+                                />
+                              </span>
+                              :
+                            </div>
+                            {contract.creator && (
+                              <div className="d-flex">
+                                <span>
+                                  {tu("contract_percent")}
+                                  {100 -
+                                    contract.creator
+                                      .consume_user_resource_percent}
+                                  %
+                                </span>
+                                <span className="ml-2">
+                                  {tu("contract_percent_user")}
+                                  {
+                                    contract.creator
+                                      .consume_user_resource_percent
+                                  }
+                                  %
+                                </span>
+                              </div>
+                            )}
+                          </li>
+                          <li>
+                            <div className="question-markk">
+                              {tu("contract_init_assets")}
+                              <span className="ml-1">
+                                <QuestionMark
+                                  placement="top"
+                                  text="contract_init_assets_tip"
+                                />
+                              </span>
+                              :
+                            </div>
+
+                            <div className="d-flex">
+                              <span style={{ width: "100%" }}>
+                                {contractValue}
+                              </span>
+                            </div>
+                          </li>
                         </ul>
                       </div>
                     </div>

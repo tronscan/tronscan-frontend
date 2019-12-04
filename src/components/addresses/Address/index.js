@@ -644,7 +644,7 @@ class Address extends React.Component {
                                                         ? "https://poloniex.org/zh/"
                                                         : "https://poloniex.org/"
                                                 }
-                                            >POLONIDEX</HrefLink>
+                                            >Poloni DEX</HrefLink>
                                         </span>
                                         <img width={15} height={15}  style={{marginLeft:5}} src={require("../../../images/svg/market.png")} alt=""/>
                                       </div>

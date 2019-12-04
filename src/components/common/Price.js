@@ -44,8 +44,8 @@ class PriceProviderCmp extends React.PureComponent {
   async loadPrices() {
     var dataEur = Lockr.get('dataEur');
     var dataEth = Lockr.get('dataEth');
-    let eurURL = encodeURI(`https://api.coinmarketcap.com/v1/ticker/tronix/?convert=EUR`)
-    let ethURL = encodeURI(`https://api.coinmarketcap.com/v1/ticker/tronix/?convert=ETH`)
+    let eurURL = encodeURI(`http://api.coinmarketcap.com/v1/ticker/tronix/?convert=EUR`)
+    let ethURL = encodeURI(`http://api.coinmarketcap.com/v1/ticker/tronix/?convert=ETH`)
     if(!Lockr.get('dataEur')){
         var { data:dataEur } = await xhr.get(
             `${API_URL}/api/system/proxy?url=${eurURL}`
@@ -53,14 +53,11 @@ class PriceProviderCmp extends React.PureComponent {
         );
     }
 
-
-    if(!Lockr.get('dataEth')){
-        var { data: dataEth } = await xhr.get(
-            `${API_URL}/api/system/proxy?url=${ethURL}`
-        );
-
+    if (!Lockr.get("dataEth")) {
+      var { data: dataEth } = await xhr.get(
+        `${API_URL}/api/system/proxy?url=${ethURL}`
+      );
     }
-
 
     let newPrices = {
       BTC: parseFloat(dataEur[0].price_btc),
@@ -157,7 +154,7 @@ export class TRXPrice extends React.PureComponent {
                       <FormattedNumber
                         value={amount / ONE_TRX}
                         maximumFractionDigits={6}
-                        minimumFractionDigits={6}
+                        // minimumFractionDigits={6}
                       />{" "}
                       <br />
                       BTC{" "}
@@ -228,7 +225,7 @@ export class TRXPrice extends React.PureComponent {
                       <FormattedNumber
                         value={amount}
                         maximumFractionDigits={6}
-                        minimumFractionDigits={6}
+                        // minimumFractionDigits={6}
                       />{" "}
                       <br />
                       <span className="text-capitalize">satoshi</span>{" "}
@@ -301,7 +298,7 @@ export class TRXPrice extends React.PureComponent {
                       <FormattedNumber
                         value={amount}
                         maximumFractionDigits={6}
-                        minimumFractionDigits={6}
+                        // minimumFractionDigits={6}
                       />{" "}
                       <br />
                       BTC{" "}

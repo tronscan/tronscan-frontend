@@ -485,7 +485,7 @@ class ExchangeList extends React.Component {
             <div className="d-flex  justify-content-between align-items-center w-100 mb-3">
               <h6 className="m-0">
                 <a href="https://poloniex.org" target="_blank" className="">
-                  POLONIDEX
+                  Poloni DEX
                 </a>
               </h6>
 

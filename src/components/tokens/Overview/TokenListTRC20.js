@@ -330,7 +330,7 @@ class TokenList extends Component {
                   style={{ left: "auto" }}
                 >
                   {tableInfo} &nbsp;&nbsp;
-                  <Link to="/exchange/trc20">{t("Trade_on_POLONIDEX")}></Link>
+                  <Link to="/exchange/trc20">{t("Trade_on_Poloni DEX")}></Link>
                 </div>
               ) : (
                 ""

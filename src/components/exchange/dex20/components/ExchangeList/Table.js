@@ -41,8 +41,8 @@ class ExchangeTable extends Component {
         },
         text: {
           en:
-            "TRC20-USDT Returns with Generous Rewards from POLONIDEX - 15,000 USDT Awaits!",
-          zh: "POLONIDEX助力TRC20-USDT重装上阵，惊喜放送10万人民币"
+            "TRC20-USDT Returns with Generous Rewards from Poloni DEX - 15,000 USDT Awaits!",
+          zh: "Poloni DEX助力TRC20-USDT重装上阵，惊喜放送10万人民币"
         }
       },
       AdClose: props.isAdClose,

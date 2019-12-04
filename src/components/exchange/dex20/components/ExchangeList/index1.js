@@ -353,7 +353,7 @@ class ExchangeList extends React.Component {
             {/* <h6 className="m-0">
               
               <a href="https://poloniex.org" target="_blank" className="">
-                POLONIDEX
+                Poloni DEX
               </a>
             </h6> */}
 
