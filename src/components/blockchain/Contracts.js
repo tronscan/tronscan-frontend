@@ -539,7 +539,7 @@ class Contracts extends React.Component {
           }
         </div>) : ''}
         <div className="col-md-12 table_pos">
-          {total ? 
+          {/* {total ?  */}
             <div className="d-flex align-items-center mb-2">
               <TotalInfo total={total} rangeTotal={rangeTotal} typeText="contract_source_codes_found" top="10px" isQuestionMark={false}/>
               {curFilter == 'verified' ? (<div className="switch-wrap d-flex align-items-center">
@@ -547,7 +547,7 @@ class Contracts extends React.Component {
                 {tu("contract_open_license")}
               </div>) : ''}
             </div>
-            : ''}
+            {/* : ''} */}
           
              {/**<div className="table_pos_info d-none d-md-block" style={{left: 'auto'}}>{tableInfo}<span> <QuestionMark placement="top" text="to_provide_a_better_experience"></QuestionMark></span></div> */}
            {/* <SmartTable bordered={true} loading={loading}
