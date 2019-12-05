@@ -33,7 +33,6 @@ class SendForm extends React.Component {
 
   constructor(props) {
     super(props);
-    console.log('props',props)
     this.state = {
       privateKey: "",
       to: props.to || "",
@@ -99,7 +98,7 @@ class SendForm extends React.Component {
     let TokenName = list[1];
     let { onSend, wallet} = this.props;
     let  tronWeb, transactionId;
-    let result, success, sendErrorMessage;;
+    let result, success, sendErrorMessage,SignTransaction;
     this.setState({isLoading: true, modal: null});
     if(IS_MAINNET){
         /*
@@ -132,8 +131,14 @@ class SendForm extends React.Component {
                 let HexStr = Client.getSendHexStr(TokenName, from, to, amount);
 
                 //sign transaction
-                const SignTransaction = await transactionMultiResultManager(unSignTransaction, tronWeb, permissionId, permissionTime,HexStr);
-                console.log('SignTransaction111',SignTransaction)
+                if(this.props.wallet.type==="ACCOUNT_LEDGER"){
+                     SignTransaction = await transactionMultiResultManager(unSignTransaction, tronWeb, permissionId, permissionTime,HexStr);
+                    console.log('SignTransaction111',SignTransaction)
+                }else{
+                     SignTransaction = await transactionMultiResultManager(unSignTransaction, tronWeb, permissionId, permissionTime,HexStr);
+                    console.log('SignTransaction2222',SignTransaction)
+                }
+
 
                 // xhr.defaults.headers.common["MainChain"] = 'MainChain';
                 if(!SignTransaction){
