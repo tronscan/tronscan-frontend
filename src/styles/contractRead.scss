@@ -8,7 +8,7 @@
   .tab-choice {
     margin-bottom: 20px;
 
-    p>span {
+    p > span {
       // margin-left: 10px;
     }
   }
@@ -33,8 +33,8 @@
     padding-left: 10px;
     padding-right: 10px;
     &:hover {
-      color: #C23631 !important;
-      border: 1px solid #C23631;
+      color: #c23631 !important;
+      border: 1px solid #c23631;
     }
   }
 
@@ -47,13 +47,41 @@
     display: inline;
     margin-right: 10px;
   }
+  .monaco-editor-background {
+    background: #f3f3f3 !important;
+  }
+  .monaco-editor .margin {
+    background: #e9e9e9;
+  }
+  .contract-code-tab{
+    p{
+      height:26px;
+      line-height: 26px;
+      margin-bottom:0;
+      width:100%;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+      padding-left:20px;
+    }
+  }
+  .active-code {
+    // color: #e50000 !important;
+    background:#d8d8d8;
+  }
+  .monaco-editor .line-numbers {
+    color: rgba(51, 51, 51, 0.3);
+  }
+  .monaco-editor .current-line ~ .line-numbers {
+    color: rgba(51, 51, 51, 1);
+  }
 }
 
 .contrat-verify {
   padding-left: 15px;
 
   a {
-    color: #C23631 !important;
+    color: #c23631 !important;
     text-decoration: underline !important;
   }
 }
@@ -61,4 +89,22 @@
 .write-title {
   margin-bottom: 20px;
   text-align: center;
+}
+
+.contract-code-editor{
+  display: flex;
+  .contract-code-1{
+    width:150px;
+  }
+  .contract-code-11{
+    flex:1;
+  }
+}
+@media screen and (max-width: 768px) {
+  .contract-code-editor{
+    display: block;
+    .contract-code-1{
+      width:100%;
+    }
+  }
 }

@@ -545,9 +545,9 @@ class TokenList extends Component {
     let {match, intl} = this.props;
     let column = IS_MAINNET?this.customizedColumn():this.suncustomizedColumn();
     let tableInfo = intl.formatMessage({id: 'number_of_lists'}) + total  + ',' + intl.formatMessage({id: 'total_in_tronscan'}) + totalAll;
-    let url = 'https://trx.market/launchBase?utm_source=TS3'
+    let url = 'https://poloniex.org/launchBase?utm_source=TS3'
     if(intl.locale == 'zh'){
-      url = 'https://trx.market/zh/launchBase?utm_source=TS3'
+      url = 'https://poloniex.org/zh/launchBase?utm_source=TS3'
     }
     return (
         <main className="container header-overlap token_black">
@@ -563,7 +563,7 @@ class TokenList extends Component {
                         {tableInfo} <span>
                           <QuestionMark placement="top" text="newly_issued_token_by_tronscan" className="token-list-info"></QuestionMark>
                         </span> &nbsp;&nbsp;  
-                          {IS_MAINNET?<a href={`https://trx.market`} target="_blank" >{t("Trade_on_TRXMarket")}></a>:''}
+                          {IS_MAINNET?<a href={`https://poloniex.org`} target="_blank" >{t("Trade_on_Poloni DEX")}></a>:''}
                       </div>
                     </div> : ''}
                     <div className="d-md-flex apply-trc20 apply-all align-items-center">

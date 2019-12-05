@@ -17,15 +17,15 @@ export default class CompilerModal extends React.PureComponent {
             loading: false,
             resources: [
                 {
-                    label:"tron-0.4.25_Odyssey_v3.2.3",
+                    label:"0.4.25_Odyssey_v3.2.3",
                     value:"tron-0.4.25_Odyssey_v3.2.3"
                 },
                 {
-                    label:"tron-0.5.8_Odyssey_v3.6.0",
+                    label:"0.5.8_Odyssey_v3.6.0",
                     value:"tron-0.5.8_Odyssey_v3.6.0"
                 },
                 {
-                    label:"tron-0.5.4_Odyssey_v3.6.0",
+                    label:"0.5.4_Odyssey_v3.6.0",
                     value:"tron-0.5.4_Odyssey_v3.6.0"
                 },
                 {
@@ -82,7 +82,8 @@ export default class CompilerModal extends React.PureComponent {
         return (enable) => {
             this.setState({
                 [prop]: enable,
-                'optimizer':enable?'1':'0'
+                'optimizer':enable?'1':'0',
+                selectedRuns: enable ? this.state.selectedRuns : '0'
             });
         };
     }
@@ -116,11 +117,18 @@ export default class CompilerModal extends React.PureComponent {
                             }
                         </Select>
                     </div>
+                    <div className="d-flex p-2">
+                        <label>{tu("compile_params_optimization")}</label>
+                        <div className="compile-switch">
+                            <Switch checked={hideSmallCurrency} onChange={this.handleToggle('hideSmallCurrency')} />
+                        </div>
+                    </div>
                     <div className="d-flex p-2 justify-content-between">
                         <label>{tu("compile_params_runs")}</label>
                         <Select className='compile-select'
                                 value={selectedRuns}
                                 onChange={this.runsSelectChange}
+                                disabled={!hideSmallCurrency}
                         >
                             {
                                 runs.map((run, index) => {
@@ -131,12 +139,7 @@ export default class CompilerModal extends React.PureComponent {
                             }
                         </Select>
                     </div>
-                    <div className="d-flex p-2">
-                        <label>{tu("compile_params_optimization")}</label>
-                        <div className="compile-switch">
-                            <Switch checked={hideSmallCurrency} onChange={this.handleToggle('hideSmallCurrency')} />
-                        </div>
-                    </div>
+                    
                     <div className="contract-compiler-button-modal mt-3 mb-2">
                         {/*<button*/}
                             {/*onClick={this.hideModal}*/}

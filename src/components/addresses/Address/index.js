@@ -641,10 +641,10 @@ class Address extends React.Component {
                                             <HrefLink
                                                 href={
                                                     intl.locale == "zh"
-                                                        ? "https://trx.market/zh/"
-                                                        : "https://trx.market/"
+                                                        ? "https://poloniex.org/zh/"
+                                                        : "https://poloniex.org/"
                                                 }
-                                            >TRXMarket</HrefLink>
+                                            >Poloni DEX</HrefLink>
                                         </span>
                                         <img width={15} height={15}  style={{marginLeft:5}} src={require("../../../images/svg/market.png")} alt=""/>
                                       </div>
