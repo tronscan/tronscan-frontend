@@ -132,7 +132,7 @@ class SendForm extends React.Component {
 
                 //sign transaction
                 if(this.props.wallet.type==="ACCOUNT_LEDGER"){
-                     SignTransaction = await transactionMultiResultManager(unSignTransaction, tronWeb, permissionId, permissionTime,HexStr);
+                     SignTransaction = await transactionMultiResultManager(unSignTransaction, tronWeb, permissionId, permissionTime);
                     console.log('SignTransaction111',SignTransaction)
                 }else{
                      SignTransaction = await transactionMultiResultManager(unSignTransaction, tronWeb, permissionId, permissionTime,HexStr);
@@ -266,7 +266,7 @@ class SendForm extends React.Component {
     let tronWeb;
     let transactionId;
     let result;
-    let sendErrorMessage;
+    let sendErrorMessage, SignTransaction;
     this.setState({ isLoading: true, modal: null });
     let contractAddress = find(tokens20, t => t.name === TokenName).contract_address;
     if(IS_MAINNET) {
@@ -298,8 +298,13 @@ class SendForm extends React.Component {
            let HexStr = Client.getTriggerSmartContractHexStr(unSignTransaction.raw_data.contract[0].parameter.value);
            console.log('HexStr',HexStr)
 
-           //sign transaction
-           let SignTransaction = await transactionMultiResultManager(unSignTransaction, tronWeb, permissionId,permissionTime,HexStr);
+            if(this.props.wallet.type==="ACCOUNT_LEDGER"){
+                //sign transaction
+                 SignTransaction = await transactionMultiResultManager(unSignTransaction, tronWeb, permissionId,permissionTime);
+            }else{
+                 SignTransaction = await transactionMultiResultManager(unSignTransaction, tronWeb, permissionId,permissionTime,HexStr);
+            }
+
            if(!SignTransaction){
             result = 40001
            }else{
