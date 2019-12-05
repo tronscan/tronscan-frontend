@@ -39,7 +39,7 @@ export const messages = {
     "password": "密码",
     "money_price": "价格",
     "price": "价格",
-    "blocks": "区块",
+    "blocks": "已确认区块",
     "block": "区块",
     "name": "名称",
     "website": "网址",
