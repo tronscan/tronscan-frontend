@@ -61,7 +61,7 @@
       text-overflow: ellipsis;
       white-space: nowrap;
       overflow: hidden;
-      padding-left:20px;
+      padding-left:15px;
     }
   }
   .active-code {
@@ -93,10 +93,13 @@
 .contract-code-editor{
   display: flex;
   .contract-code-1{
-    width:150px;
+    width:135px;
+    padding-left: 15px;
+    box-sizing: border-box;
   }
   .contract-code-11{
     flex:1;
+    padding-right: 15px;
   }
 }
 @media screen and (max-width: 768px) {
