@@ -211,6 +211,11 @@ export default class Account extends Component {
 
     }
   }
+  changeMySignatureType(value){
+    this.setState({
+      mySignatureType:value
+    })
+  }
 
   loadVoteTimer = async () => {
       this.props.loadVoteTimer();
@@ -2561,7 +2566,7 @@ export default class Account extends Component {
             <div className="col-md-12">
                 <div className="card">
                   <div className="card-body">
-                    <h5 className="card-title text-center m-0" style={{fontSize:'24px'}}>
+                    <h5 className="card-title text-center m-0">
                        {tu("muti_sign")}
                     </h5>
                     <div className="account-muti-sign-tab">
@@ -2580,7 +2585,7 @@ export default class Account extends Component {
                             <MyPermission tronWeb={tronWeb}/>
                          </div>
                          <div className='muti-sign-my-signature' style={{display:isInMySignature?'block':'none'}}>
-                             <MySignature type={mySignatureType}/>
+                            <MySignature type={mySignatureType} handleType={this.changeMySignatureType.bind(this)}/>
                          </div>
                       </div>
                     </div>
