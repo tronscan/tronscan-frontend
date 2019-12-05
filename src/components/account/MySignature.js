@@ -62,9 +62,9 @@ class MySignature extends React.Component {
   componentDidMount() {
     let { type } = this.props;
     this.load();
-    if (type !== 10) {
-      this.load();
-    }
+    // if (type !== 10) {
+    //   this.load();
+    // }
   }
 
   async componentDidUpdate(prevProps) {
