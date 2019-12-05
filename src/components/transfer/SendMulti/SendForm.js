@@ -281,7 +281,7 @@ class SendForm extends React.Component {
                     {type: 'address', value: tronWeb.address.toHex(to)},
                     {type: 'uint256', value: new BigNumber(amount).shiftedBy(decimals).toString()}
                 ],
-                tronWeb.address.toHex(this.props.wallet.address),
+                tronWeb.address.toHex(from),
             );
             if (unSignTransaction.transaction !== undefined)
                 unSignTransaction = unSignTransaction.transaction;
@@ -300,7 +300,7 @@ class SendForm extends React.Component {
 
             if(this.props.wallet.type==="ACCOUNT_LEDGER"){
                 //sign transaction
-                 SignTransaction = await transactionMultiResultManager(unSignTransaction, tronWeb, permissionId,permissionTime);
+                 SignTransaction = await transactionMultiResultManager(unSignTransaction, tronWeb, permissionId,permissionTime,HexStr);
             }else{
                  SignTransaction = await transactionMultiResultManager(unSignTransaction, tronWeb, permissionId,permissionTime,HexStr);
             }

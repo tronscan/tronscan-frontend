@@ -9,19 +9,20 @@ import SweetAlert from "react-bootstrap-sweetalert";
 import TokenBalanceSelect from "../../common/TokenBalanceSelect";
 import JSONTree from 'react-json-tree'
 import SendMultiModal from "../../common/MultiModal/SendModal";
-import { transactionMultiResultManager } from "../../../utils/tron"
+import { transactionMultiResultManager,transactionResultManagerByLedger } from "../../../utils/tron"
 import xhr from "axios";
 import MonacoEditor from "react-monaco-editor";
-
+import {withTronWeb} from "../../../utils/tronWeb";
 
 const { Panel } = Collapse;
 // const { Option } = Select;
 
 @connect(state => {
   return {
-    account: state.app.account
+    account: state.app.account,
   };
 })
+@withTronWeb
 class Code extends React.Component {
   constructor(props) {
     super(props);
@@ -218,9 +219,6 @@ class Code extends React.Component {
               )
             }
         }
-
-        console.log('selectorArr',selectorArr)
-
         let selectorTypeStr = selectorTypeArr.join(',')
         let function_selector = contractItem.name + '(' + selectorTypeStr + ')';
         console.log('function_selector',function_selector)
@@ -322,6 +320,7 @@ class Code extends React.Component {
     const { contractItem, intl } = this.props;
     const { tronWeb } = this.props.account;
     if (this.isLoggedIn()) {
+
       try {
         let options = {};
         if (!tokenId || tokenId == "_") {
@@ -372,12 +371,142 @@ class Code extends React.Component {
       }
     }
   }
+  async ledgerSend(){
+    const { tokenId, totalValue, contract ,sendTokenDecimals } = this.state;
+    let { contractItem, address, account, intl } = this.props;
+    //const { tronWeb } = this.props.account;
+    const tronWeb = this.props.tronWeb();
+    let selectorTypeArr = [];
+    let selectorValueArr = this.submitValueFormat();
+    let selectorArr = [];
+    let transactionId;
+    console.log('contractItem.input',contractItem.inputs)
+    if(contractItem.inputs){
+        for(let i = 0; i < contractItem.inputs.length; i++){
+            selectorTypeArr.push(contractItem.inputs[i]['type'])
+        }
+    }
+    if(selectorValueArr){
+      for(let i = 0; i < selectorValueArr.length; i++){
+          if(selectorValueArr[i] == 'undefined'){
+              selectorValueArr[i] = '';
+          }
+          if(selectorTypeArr[i] == 'address'){
+              selectorValueArr[i] = tronWeb.address.toHex(selectorValueArr[i]);
+          }
+          selectorArr.push(
+                {type: selectorTypeArr[i], value: selectorValueArr[i]},
+          )
+        }
+    }
+    let selectorTypeStr = selectorTypeArr.join(',')
+    let function_selector = contractItem.name + '(' + selectorTypeStr + ')';
+    if (this.isLoggedIn()) {
+        try {
+            let options = {};
+            console.log(11111111111111111111111);
+            console.log('tokenId',tokenId,sendTokenDecimals);
+            if (!tokenId || tokenId == '_') {
+                options = { callValue: this.Mul(totalValue,Math.pow(10, sendTokenDecimals))||0 };
+            } else {
+                options = {
+                    tokenId: tokenId,
+                    tokenValue: this.Mul(totalValue,Math.pow(10, sendTokenDecimals))
+                };
+            }
+            console.log('options=======',options)
+            let unSignTransaction = await tronWeb.transactionBuilder.triggerSmartContract(
+                tronWeb.address.toHex(address),
+                function_selector,
+                {...options},
+                selectorArr,
+                tronWeb.address.toHex(account.address),
+            );
+            if (unSignTransaction.transaction !== undefined)
+                unSignTransaction = unSignTransaction.transaction;
+            console.log('unSignTransaction',unSignTransaction)
+
+            //get transaction parameter value to Hex
+            let HexStr = Client.getTriggerSmartContractHexStr(unSignTransaction.raw_data.contract[0].parameter.value);
+            console.log('HexStr',HexStr)
+
+            
+            //sign transaction
+            let { broadcast,signedTransaction }= await transactionResultManagerByLedger(unSignTransaction,tronWeb);
+            //console.log('signedTransaction',signedTransaction,broadcast);
+            let retValue = false;
+            if(!broadcast.result){
+              retValue = false;
+            }else{
+              retValue=await this.getTxResult(signedTransaction.txID);
+            }
+            this.setState({
+              result: this.formatOutputs(retValue)
+            });
+           
+            // if(code == 0){
+            //     this.setState({
+            //         modal: (
+            //             <SweetAlert success title={tu("transaction_create_successful")} onConfirm={this.hideModal}/>
+            //         )
+            //     });
+            // }else{
+            //     this.setState({
+            //         modal: (
+            //             <SweetAlert error title={tu("transaction_create_failed")} onConfirm={this.hideModal}/>
+            //         )
+            //     });
+            // }
+
+
+        } catch (e) {
+            console.log('e=======',e)
+            if (e.error == "REVERT opcode executed") {
+                var res = e.output["contractResult"][0];
+                let result =
+                    "REVERT opcode executed. " +
+                    (res == ""
+                        ? ""
+                        : "Message: " +
+                        tronWeb
+                            .toUtf8(res.substring(res.length - 64, res.length))
+                            .trim());
+                this.setState({
+                    result: result
+                })
+            } else {
+                this.setState({
+                    result: JSON.stringify(e)
+                    // modal: <SweetAlert
+                    //   warning
+                    //   title={e}
+                    //   confirmBtnText={intl.formatMessage({ id: 'confirm' })}
+                    //   confirmBtnBsStyle="danger"
+                    //   onConfirm={() => this.setState({ modal: null })}
+                    //   style={{ marginLeft: '-240px', marginTop: '-195px' }}
+                    // >
+                    // </SweetAlert>
+                })
+            }
+        }
+    }
+  }
+
+  sendClick(){
+     const account = this.props.account;
+     console.log('acount.type',account.type)
+     if(account.type==='ACCOUNT_LEDGER'){
+       this.ledgerSend();
+     }else{
+       this.Send();
+     }
+  }
   getTxResult(txID) {
     let { contractItem, intl } = this.props;
     const { tronWeb } = this.props.account;
     return new Promise((reslove, reject) => {
       let checkResult = async function(txID) {
-        const output = await tronWeb.trx.getTransactionInfo(txID);
+        const output = await tronWeb.trx.getUnconfirmedTransactionInfo(txID);
         if (Object.keys(output).length <= 1 && !output.id) {
           return setTimeout(() => {
             checkResult(txID);
@@ -479,7 +608,7 @@ class Code extends React.Component {
             ) : null}
           </div>
           <div className="d-flex">
-              <div className="search-btn" onClick={() => this.Send()}>Send</div>
+              <div className="search-btn" onClick={() => this.sendClick()}>Send</div>
               <div className="search-btn ml-5" onClick={() => this.MultiSendModal()}>Multi Send</div>
           </div>
 
@@ -494,7 +623,7 @@ class Code extends React.Component {
       contractList = (
         <div>
             <div className="d-flex">
-                <div className="search-btn" onClick={() => this.MultiSend()}>Send</div>
+                <div className="search-btn" onClick={() => this.sendClick()}>Send</div>
                 <div className="search-btn ml-2" onClick={() => this.MultiSendModal()}>Multi Send</div>
             </div>
             {

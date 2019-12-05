@@ -48,7 +48,7 @@ export function withTronWeb(InnerComponent) {
 
 
      mutiSign= async( tronWeb, transaction = false, privateKey = false, permissionId = false, callback = false)=> {
-      let copyTransaction = deepCopy(transaction);
+      let copyTransaction = transaction;
       const utils = tronWeb.utils;
       if (utils.isFunction(permissionId)) {
         callback = permissionId;
@@ -73,6 +73,7 @@ export function withTronWeb(InnerComponent) {
       //   return callback('Invalid transaction provided');
       // If owner permission or permission id exists in transaction, do sign directly
       // If no permission id inside transaction or user passes permission id, use old way to reset permission id
+      transaction.raw_data.contract[0].Permission_id = permissionId;
       if (!transaction.raw_data.contract[0].Permission_id && permissionId > 0) {
         // set permission id
         console.log('进来了')
@@ -132,6 +133,10 @@ export function withTronWeb(InnerComponent) {
             case ACCOUNT_LEDGER:
 
               try {
+                const transactionObj = transactionJsonToProtoBuf(transaction);
+                const rawDataHex = byteArray2hexStr(transactionObj.getRawData().serializeBinary());
+                let raw = transactionObj.getRawData();
+                let contractObj = raw.getContractList()[0];
                 if (isMulti) {
                   transaction = await this.mutiSign(tronWeb, transaction, privateKey, permissionId).catch(e=>{
                     console.log(e.toString())
@@ -139,19 +144,8 @@ export function withTronWeb(InnerComponent) {
                   if(!isMulti){
                     return;
                   }
-                  console.log('isMulti', transaction);
                 }
-                const transactionObj = transactionJsonToProtoBuf(transaction);
-
-                const rawDataHex = byteArray2hexStr(transactionObj.getRawData().serializeBinary());
-
-                let raw = transactionObj.getRawData();
-
-                const contractObj = raw.getContractList()[0];
-
                 let contractType = contractObj.getType();
-                console.log('contractType', contractType);
-
                 let tokenInfo = [];
                 let extra = {};
                 switch (contractType) {
