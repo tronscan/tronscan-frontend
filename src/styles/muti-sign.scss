@@ -134,6 +134,10 @@
           font-size: 12px;
           float: right;
         }
+        .disabled-btn{
+            background:rgba(196,49,39,0.4);
+            border-color:rgba(196,49,39,0.4);
+        }
       }
       .permission-desc {
         padding-left: 10px;
