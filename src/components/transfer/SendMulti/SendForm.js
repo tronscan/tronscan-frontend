@@ -539,7 +539,7 @@ class SendForm extends React.Component {
 
   getSelectedTokenBalance = () => {
     let {token,tokenBalances,tokens20} = this.state;
-    console.log('tokenBalances',tokenBalances)
+    console.log('token',token)
     let TokenType =  token.substr(token.length-5,5);
     let list = token.split('-')
     let balance;
@@ -550,7 +550,6 @@ class SendForm extends React.Component {
           console.log('tokenBalances6666666=======',tokenBalances)
           console.log('tokenBalances7777=======',find(tokenBalances, t => t.map_token_id === TokenName));
           console.log('tokenBalances999=======',find(tokenBalances, t => t.map_token_id === TokenName));
-
            balance = parseFloat(find(tokenBalances, t => t.map_token_id === TokenName).map_amount);
         }else{
            balance = 0
@@ -639,7 +638,22 @@ class SendForm extends React.Component {
           tokenBalances: balances_new,
           tokens20: trc20token_balances_new
       },()=>{
-          this.getSelectedTokenBalance()
+          let tokenBalances = _.filter(balances_new, tb => tb.balance > 0);
+          let {token} = this.state;
+          if (!token && tokenBalances.length > 0) {
+              this.setState(
+                  {
+                      token: tokenBalances[0].map_token_name + '-' + tokenBalances[0].map_token_id + '-TRC10',
+                  },
+                  () => this.getSelectedTokenBalance())
+
+          } else if (!token && trc20token_balances_new.length > 0 && tokenBalances.length === 0) {
+              this.setState(
+                  {
+                      token: trc20token_balances_new[0].name + '-TRC20',
+                  },
+                  () => this.getSelectedTokenBalance())
+          }
       });
     }
 
@@ -648,8 +662,8 @@ class SendForm extends React.Component {
 
   componentDidUpdate() {
     let {tokenBalances,tokens20} = this.state;
+    console.log('tokenBalances9999======1000',tokenBalances)
     tokenBalances = _.filter(tokenBalances, tb => tb.balance > 0);
-
     let {token} = this.state;
     if (!token && tokenBalances.length > 0) {
       this.setState(
@@ -848,6 +862,7 @@ class SendForm extends React.Component {
         item.token_name_type =  item.name + '-TRC20';
         return item
     });
+    console.log('token===========',token)
     let placeholder = '0.000000';
     let num = 0;
     if(decimals || decimals == 0){

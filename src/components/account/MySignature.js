@@ -188,9 +188,11 @@ class MySignature extends React.Component{
         //set transaction txID
         currentTransaction.txID = details.hash;
         //sign transaction
+        console.log('currentTransaction=======',currentTransaction)
         const SignTransaction = await tronWeb.trx.multiSign(currentTransaction, tronWeb.defaultPrivateKey,currentTransaction.raw_data.contract[0].Permission_id).catch(e => {
             console.log('e',e)
         });
+        console.log('SignTransaction===',SignTransaction)
 
         // xhr.defaults.headers.common["MainChain"] = 'MainChain';
 

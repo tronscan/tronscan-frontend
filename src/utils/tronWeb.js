@@ -36,9 +36,9 @@ export function withTronWeb(InnerComponent) {
         networkUrl,
         networkUrl);
 
-      tronWeb.trx.sign = this.buildTransactionSigner(tronWeb, isMulti = false);
+      tronWeb.trx.sign = this.buildTransactionSigner(tronWeb, false);
 
-      tronWeb.trx.multiSign = this.buildTransactionSigner(tronWeb, isMulti = true);
+      tronWeb.trx.multiSign = this.buildTransactionSigner(tronWeb, true);
 
       // }
 
@@ -46,7 +46,7 @@ export function withTronWeb(InnerComponent) {
     };
 
 
-    mutiSign(tronWeb, transaction = false, privateKey = false, permissionId = false, callback = false) {
+    async mutiSign (tronWeb, transaction = false, privateKey = false, permissionId = false, callback = false) {
       const utils = tronWeb.utils;
       if (utils.isFunction(permissionId)) {
         callback = permissionId;
