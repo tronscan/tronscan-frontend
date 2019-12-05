@@ -117,6 +117,7 @@ class SendForm extends React.Component {
 
                 //create transaction
                 if(this.props.wallet.type==="ACCOUNT_LEDGER"){
+                  console.log('this.props.wallet.type',this.props.wallet.type);
                   tronWeb = this.props.tronWeb()
                 }else{
                   tronWeb = this.props.account.tronWeb;
