@@ -551,7 +551,7 @@ class Navigation extends React.Component {
     this.openLedgerModal();
   };
 
-  openLedgerModal = () => {
+  openLedgerModal = (type) => {
     this.setState({
       popup: (
           <Modal isOpen={true} fade={false} keyboard={false} size="lg" className="modal-dialog-centered">
@@ -564,7 +564,7 @@ class Navigation extends React.Component {
               {/*</Link>*/}
             </ModalHeader>
             <ModalBody className="p-0">
-              <LedgerAccess onClose={this.hideModal} />
+            <LedgerAccess onClose={this.hideModal} loginType={type}/>
             </ModalBody>
           </Modal>
       )
@@ -597,14 +597,25 @@ class Navigation extends React.Component {
       return
     }
 
-    // 已登录 tronlink
+    // 如果是tronlink的ledger登录，跳转到tronscan的ledger登录
+    const tronlinkLoginType = tronWeb.defaultAddress.type;
+    if (tronlinkLoginType == 2) {
+      this.closeLoginModel(e);
+      this.openLedgerModal(tronlinkLoginType);
+      return;
+    }
+
     if (address) {
-      //this.isauot = true
-      Lockr.set("islogin", 1);
-      this.props.loginWithTronLink(address, tronWeb, sunWeb).then(() => {
-        toastr.info(intl.formatMessage({id: 'success'}), intl.formatMessage({id: 'login_success'}));
-        this.setState({isImportAccount: false})
-      });
+        // 已登录 tronlink
+        //this.isauot = true
+        Lockr.set("islogin", 1);
+        this.props.loginWithTronLink(address, tronWeb, sunWeb).then(() => {
+          toastr.info(
+            intl.formatMessage({ id: "success" }),
+            intl.formatMessage({ id: "login_success" })
+          );
+          this.setState({ isImportAccount: false });
+        });
     }
   };
 

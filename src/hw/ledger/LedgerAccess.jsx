@@ -15,14 +15,14 @@ export default
 @withRouter
 @withTronWeb
 class LedgerAccess extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       loading: false,
       connected: false,
       confirmed: false,
       address: "",
-      type: 1
+      type: props.loginType
     };
     this.ledger = new LedgerDevice();
   }
@@ -39,7 +39,6 @@ class LedgerAccess extends Component {
 
   checkForConnection = async () => {
     this.setState({ loading: true });
-
     while (this._isMounted) {
       let { connected, address } = await this.ledger.checkForConnection(true);
 
