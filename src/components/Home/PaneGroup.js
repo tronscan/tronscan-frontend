@@ -26,6 +26,7 @@ import Lockr from "lockr";
 import { Icon, Divider, Tooltip, Tag } from "antd";
 import ApiHome from "../../services/homeApi";
 import MobilePanelGroup from "./MobilePaneGroup";
+// import BigNumber from "bignumber.js"
 
 @connect(
   state => {
@@ -277,6 +278,7 @@ export default class panelGroup extends Component {
                     style={{ border: "none", borderRadius: 0 }}
                   >
                     <div className="card-body row pt-3 pb-3 home-stats">
+                    <div className="col-lg-1 col-md-2 col-xs-6"></div>
                       <div className="col-lg-2 col-md-4 col-xs-12 mb-lg-0  mb-md-3 ">
                         <p className="m-0 panel-title">{tu("online_nodes")}</p>
                         <Tooltip
@@ -287,6 +289,7 @@ export default class panelGroup extends Component {
                           {complexData.onlineNodes != 0 ? (
                             <h2 className="hover-red">
                               <CountUp
+                               separator=","
                                 start={0}
                                 end={complexData.onlineNodes}
                                 duration={1}
@@ -308,6 +311,7 @@ export default class panelGroup extends Component {
                           {mainnetData.blockHeight != 0 ? (
                             <h2 className="hover-red">
                               <CountUp
+                                separator=","
                                 start={mainnetData.startblockHeight}
                                 end={mainnetData.blockHeight}
                                 duration={1}
@@ -335,6 +339,7 @@ export default class panelGroup extends Component {
                               >
                                 <span className="hover-red">
                                   <CountUp
+                                    separator=","
                                     start={complexData.startTps}
                                     end={complexData.tps}
                                     duration={2}
@@ -349,6 +354,7 @@ export default class panelGroup extends Component {
                               >
                                 <span className="hover-red">
                                   <CountUp
+                                    separator=","
                                     start={0}
                                     end={mainnetData.maxTps}
                                     duration={1}
@@ -373,6 +379,7 @@ export default class panelGroup extends Component {
                           {complexData.transactionPerDay != 0 ? (
                             <h2 className="hover-red">
                               <CountUp
+                                separator=","
                                 start={0}
                                 end={complexData.transactionPerDay}
                                 duration={1}
@@ -395,6 +402,7 @@ export default class panelGroup extends Component {
                           {complexData.totalAccounts != 0 ? (
                             <h2 className="hover-red">
                               <CountUp
+                                separator=","
                                 start={0}
                                 end={complexData.totalAccounts}
                                 duration={1}
@@ -405,7 +413,7 @@ export default class panelGroup extends Component {
                           )}
                         </Tooltip>
                       </div>
-                      <div className="col-lg-2 col-md-4 col-xs-12">
+                      {/* <div className="col-lg-2 col-md-4 col-xs-12">
                         <p className="m-0 panel-title">{tu("pice_per_1trx")}</p>
                         <Tooltip
                           title={intl.formatMessage({
@@ -427,7 +435,7 @@ export default class panelGroup extends Component {
                             </h2>
                           </HrefLink>
                         </Tooltip>
-                      </div>
+                      </div> */}
                     </div>
                   </div>
                 </div>
@@ -447,6 +455,7 @@ export default class panelGroup extends Component {
                         style={{ border: "none", borderRadius: 0 }}
                       >
                         <div className="card-body row pt-2 pb-2 home-stats">
+                        <div className="col-lg-1 col-md-2 col-xs-6"></div>
                           <div className="col-lg-2 col-md-4 col-xs-12 mb-lg-0  mb-md-3 ">
                             <Tooltip
                               title={intl.formatMessage({
@@ -460,6 +469,7 @@ export default class panelGroup extends Component {
                                 {mainnetData.onlineNodes != 0 ? (
                                   <h2 className="hover-red">
                                     <CountUp
+                                      separator=","
                                       start={0}
                                       end={mainnetData.onlineNodes}
                                       duration={1}
@@ -485,6 +495,7 @@ export default class panelGroup extends Component {
                                 {mainnetData.blockHeight != 0 ? (
                                   <h2 className="hover-red">
                                     <CountUp
+                                      separator=","
                                       start={mainnetData.startblockHeight}
                                       end={mainnetData.blockHeight}
                                       duration={1}
@@ -510,6 +521,7 @@ export default class panelGroup extends Component {
                                   >
                                     <span className="hover-red">
                                       <CountUp
+                                        separator=","
                                         start={mainnetData.startTps}
                                         end={mainnetData.tps}
                                         duration={2}
@@ -524,6 +536,7 @@ export default class panelGroup extends Component {
                                   >
                                     <span className="hover-red">
                                       <CountUp
+                                        separator=","
                                         start={0}
                                         end={mainnetData.maxTps}
                                         duration={1}
@@ -549,6 +562,7 @@ export default class panelGroup extends Component {
                                 {mainnetData.transactionPerDay != 0 ? (
                                   <h2 className="hover-red">
                                     <CountUp
+                                      separator=","
                                       start={0}
                                       end={mainnetData.transactionPerDay}
                                       duration={1}
@@ -573,6 +587,7 @@ export default class panelGroup extends Component {
                                 {mainnetData.totalAccounts != 0 ? (
                                   <h2 className="hover-red">
                                     <CountUp
+                                      separator=","
                                       start={0}
                                       end={mainnetData.totalAccounts}
                                       duration={1}
@@ -584,7 +599,7 @@ export default class panelGroup extends Component {
                               </Link>
                             </Tooltip>
                           </div>
-                          <div className="col-lg-2 col-md-4 col-xs-12">
+                          {/* <div className="col-lg-2 col-md-4 col-xs-12">
                             <Tooltip
                               title={intl.formatMessage({
                                 id: "tooltip_trxPrice_mainnet"
@@ -605,7 +620,7 @@ export default class panelGroup extends Component {
                                 </h2>
                               </HrefLink>
                             </Tooltip>
-                          </div>
+                          </div> */}
                         </div>
                       </div>
                     </div>
@@ -617,6 +632,7 @@ export default class panelGroup extends Component {
                         style={{ border: "none", borderRadius: 0 }}
                       >
                         <div className="card-body row pt-2 pb-2 home-stats">
+                        <div className="col-lg-1 col-md-2 col-xs-6"></div>
                           <div className="col-lg-2 col-md-4 col-xs-12 mb-lg-0  mb-md-3 ">
                             <Tooltip
                               title={intl.formatMessage({
@@ -626,6 +642,7 @@ export default class panelGroup extends Component {
                               {sunnetData.onlineNodes != 0 ? (
                                 <h2 className="hover-red">
                                   <CountUp
+                                    separator=","
                                     start={0}
                                     end={sunnetData.onlineNodes}
                                     duration={1}
@@ -646,6 +663,7 @@ export default class panelGroup extends Component {
                               {sunnetData.blockHeight != 0 ? (
                                 <h2 className="hover-red">
                                   <CountUp
+                                    separator=","
                                     start={sunnetData.startblockHeight}
                                     end={sunnetData.blockHeight}
                                     duration={1}
@@ -670,6 +688,7 @@ export default class panelGroup extends Component {
                                   >
                                     <span className="hover-red">
                                       <CountUp
+                                         separator=","
                                         start={sunnetData.startTps}
                                         end={sunnetData.tps}
                                         duration={2}
@@ -684,6 +703,7 @@ export default class panelGroup extends Component {
                                   >
                                     <span className="hover-red">
                                       <CountUp
+                                        separator=","
                                         start={0}
                                         end={sunnetData.maxTps}
                                         duration={1}
@@ -705,6 +725,7 @@ export default class panelGroup extends Component {
                               {sunnetData.transactionPerDay != 0 ? (
                                 <h2 className="hover-red">
                                   <CountUp
+                                    separator=","
                                     start={0}
                                     end={sunnetData.transactionPerDay}
                                     duration={1}
@@ -724,6 +745,7 @@ export default class panelGroup extends Component {
                               {sunnetData.totalAccounts != 0 ? (
                                 <h2 className="hover-red">
                                   <CountUp
+                                    separator=","
                                     start={0}
                                     end={sunnetData.totalAccounts}
                                     duration={1}
@@ -734,7 +756,7 @@ export default class panelGroup extends Component {
                               )}
                             </Tooltip>
                           </div>
-                          <div className="col-lg-2 col-md-4 col-xs-12">
+                          {/* <div className="col-lg-2 col-md-4 col-xs-12">
                             <Tooltip
                               title={intl.formatMessage({
                                 id: "tooltip_trxPrice_sunnet"
@@ -755,7 +777,7 @@ export default class panelGroup extends Component {
                                 </h2>
                               </HrefLink>
                             </Tooltip>
-                          </div>
+                          </div> */}
                         </div>
                       </div>
                     </div>
@@ -785,6 +807,7 @@ export default class panelGroup extends Component {
                           {sunnetData.onlineNodes != 0 ? (
                             <h2 className="hover-red">
                               <CountUp
+                                separator=","
                                 start={0}
                                 end={sunnetData.onlineNodes}
                                 duration={1}
@@ -811,6 +834,7 @@ export default class panelGroup extends Component {
                           {sunnetData.blockHeight != 0 ? (
                             <h2 className="hover-red">
                               <CountUp
+                                separator=","
                                 start={sunnetData.startblockHeight}
                                 end={sunnetData.blockHeight}
                                 duration={1}
@@ -837,6 +861,7 @@ export default class panelGroup extends Component {
                             >
                               <span className="hover-red">
                                 <CountUp
+                                   separator=","
                                   start={sunnetData.startTps}
                                   end={sunnetData.tps}
                                   duration={2}
@@ -851,6 +876,7 @@ export default class panelGroup extends Component {
                             >
                               <span className="hover-red">
                                 <CountUp
+                                   separator=","
                                   start={0}
                                   end={sunnetData.maxTps}
                                   duration={1}
@@ -879,6 +905,7 @@ export default class panelGroup extends Component {
                           {sunnetData.transactionPerDay != 0 ? (
                             <h2 className="hover-red">
                               <CountUp
+                                separator=","
                                 start={0}
                                 end={sunnetData.transactionPerDay}
                                 duration={1}
@@ -904,6 +931,7 @@ export default class panelGroup extends Component {
                           {sunnetData.totalAccounts != 0 ? (
                             <h2 className="hover-red">
                               <CountUp
+                                separator=","
                                 start={0}
                                 end={sunnetData.totalAccounts}
                                 duration={1}
@@ -915,7 +943,7 @@ export default class panelGroup extends Component {
                         </Link>
                       </Tooltip>
                     </div>
-                    <div className="col-lg-2 col-md-4 col-xs-12">
+                    {/* <div className="col-lg-2 col-md-4 col-xs-12">
                       <p className="m-0 panel-title">{tu("pice_per_1trx")}</p>
                       <Tooltip
                         title={intl.formatMessage({
@@ -937,7 +965,7 @@ export default class panelGroup extends Component {
                           </h2>
                         </HrefLink>
                       </Tooltip>
-                    </div>
+                    </div> */}
                   </div>
                 </div>
               </div>

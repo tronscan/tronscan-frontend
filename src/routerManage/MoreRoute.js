@@ -15,38 +15,6 @@ export const MoreRoutes = [
         icon: "fas fa-indent",
         routes: [
             [
-                "tools",
-                {
-                    path: "/tools/system",
-                    // icon: "fa fa-database",
-                    label: "system",
-                    component: SystemAsync
-                },
-                {
-                    label: "transaction_viewer",
-                    path: "/tools/transaction-viewer",
-                    // icon: "fa fa-eye",
-                    component: TransactionViewerAsync
-                },
-                {
-                    label: "tron_convert_tool",
-                    path: "/tools/tron-convert-tool",
-                    // icon: "fa fa-random",
-                    component: TronConvertToolAsync
-                }
-                // {
-                //   label: "node_tester",
-                //   path: "/tools/node-tester",
-                //   icon: "fa fa-server",
-                //   component: NodeTesterAsync
-                // }
-                // {
-                //     url: "https://github.com/tronscan/tronscan-desktop/releases",
-                //     icon: "fa fa-download",
-                //     label: "desktop_explorer"
-                // },
-            ],
-            [
                 "Documentation",
                 {
                     url: "https://tron.network/static/doc/white_paper_v_2_0.pdf",
@@ -59,27 +27,23 @@ export const MoreRoutes = [
                     label: "tron_architechure"
                 },
                 {
-                    url: "https://dn-peiwo-web.qbox.me/TRON%20Protobuf%20Protocol%20Document.pdf",
-                    // icon: "fa fa-book",
-                    label: "tron_protobuf_doc"
-                },
-                {
                     url: "https://github.com/tronscan/tronscan-frontend/blob/dev2019/document/api.md",
                     // icon: "fa fa-building",
                     label: "tron_explorer_api"
                 },
+                {
+                    url: "https://dn-peiwo-web.qbox.me/TRON%20Protobuf%20Protocol%20Document.pdf",
+                    // icon: "fa fa-book",
+                    label: "tron_protobuf_doc"
+                },
+
                 {
                     label: "frequently_asked_questions",
                     // icon: "fa fa-question",
                     component: FaqAsync,
                     path: "/help/faq"
                 },
-                {
-                    label: "ledger_guide",
-                    // icon: "fa fa-tags",
-                    component: LedgerHelpAsync,
-                    path: "/help/ledger"
-                }
+
                 // {
                 //     label: "copyright",
                 //     component: CopyrightAsync,
@@ -113,13 +77,47 @@ export const MoreRoutes = [
                 // }
             ],
             [
-                "Other",
+                "tools",
+                {
+                    path: "/tools/system",
+                    // icon: "fa fa-database",
+                    label: "system",
+                    component: SystemAsync
+                },
+                {
+                    label: "transaction_viewer",
+                    path: "/tools/transaction-viewer",
+                    // icon: "fa fa-eye",
+                    component: TransactionViewerAsync
+                },
+                {
+                    label: "tron_convert_tool",
+                    path: "/tools/tron-convert-tool",
+                    // icon: "fa fa-random",
+                    component: TronConvertToolAsync
+                },
                 {
                     url: "https://shasta.tronscan.org",
                     // icon: "fa fa-link",
                     label: "link_test_server",
                     sidechain: false
                 },
+                // {
+                //   label: "node_tester",
+                //   path: "/tools/node-tester",
+                //   icon: "fa fa-server",
+                //   component: NodeTesterAsync
+                // }
+                // {
+                //     url: "https://github.com/tronscan/tronscan-desktop/releases",
+                //     icon: "fa fa-download",
+                //     label: "desktop_explorer"
+                // },
+            ],
+
+            [
+                "Other",
+
                 {
                     url: "https://www.trongrid.io/shasta",
                     // icon: "fa fa-recycle",
@@ -146,6 +144,12 @@ export const MoreRoutes = [
                     enurl: "https://tron.network/exchangesList?lng=en",
                     zhurl: "https://tron.network/exchangesList?lng=zh",
                     linkHref: true
+                },
+                {
+                    label: "ledger_guide",
+                    // icon: "fa fa-tags",
+                    component: LedgerHelpAsync,
+                    path: "/help/ledger"
                 }
                 // {
                 //   icon: "fas fa-columns",
