@@ -18,42 +18,71 @@ export const reloadWallet = () => async (dispatch, getState) => {
   let {app, account} = getState();
 
   if (app.account.isLoggedIn) {
-    let {balances, trc20token_balances, frozen, accountResource, delegated, tokenBalances, exchanges, ...wallet} = await Client.getAccountByAddressNew(app.account.address);
-    try{
-        let { data:{data} } = await xhr.get("https://testpre.tronlink.org/api/wallet/multi/trx_record", {params: {
-            "address": app.account.address,
-            "start": 0,
-            "state": 0,
-            "limit": 5000,
-            "netType":"main_net"
-        }});
-        let signatureList = data.data;
-        signatureList.map((item) => {
-            if (item.state == 0) {
-                item.signatureProgress.map((sign, index) => {
-                    if (sign.address == app.account.address) {
-                        //0-未签名 1-已签名
-                        if (sign.isSign == 0) {
-                            item.multiState = 10;
-                        } else {
-                            item.multiState = 11;
-                        }
-                    }
-                })
-            } else {
-                item.multiState = item.state;
-            }
-        })
-        let list = _(signatureList)
-            .filter(signTx => signTx.multiState == 10)
-            .value();
-        let signatureTotal = list.length || 0
-        wallet.signatureTotal = signatureTotal;
-    }catch(e){
-        console.log(e)
-        wallet.signatureTotal = 0;
-    }
-
+      let {balances, trc20token_balances, frozen, accountResource, delegated, tokenBalances, exchanges, ...wallet} = await Client.getAccountByAddressNew(app.account.address);
+      try {
+          let {data: {data}} = await xhr.get("https://testpre.tronlink.org/api/wallet/multi/trx_record", {
+              params: {
+                  "address": app.account.address,
+                  "start": 0,
+                  "state": 0,
+                  "limit": 5000,
+                  "netType": "main_net"
+              }
+          });
+          let signatureList = data.data;
+          signatureList.map((item) => {
+              if (item.state == 0) {
+                  item.signatureProgress.map((sign, index) => {
+                      if (sign.address == app.account.address) {
+                          //0-未签名 1-已签名
+                          if (sign.isSign == 0) {
+                              item.multiState = 10;
+                          } else {
+                              item.multiState = 11;
+                          }
+                      }
+                  })
+              } else {
+                  item.multiState = item.state;
+              }
+          })
+          let list = _(signatureList)
+              .filter(signTx => signTx.multiState == 10)
+              .value();
+          let signatureTotal = list.length || 0
+          wallet.signatureTotal = signatureTotal;
+      } catch (e) {
+          console.log(e)
+          wallet.signatureTotal = 0;
+      }
+      if (wallet.activePermissions.length == 0) {
+          let activePermissionsData = {
+              "operations": "7fff1fc0033e0300000000000000000000000000000000000000000000000000",
+              "keys": [
+                  {
+                      "address": app.account.address,
+                      "weight": 1
+                  }
+              ],
+              "threshold": 1,
+              "id": 2,
+              "type": "Active",
+              "permission_name": "active"
+          }
+          wallet.activePermissions.push(activePermissionsData)
+      }
+      if(!wallet.ownerPermission){
+          wallet.ownerPermission = {
+              "keys": [
+                  {
+                      "address": app.account.address,
+                      "weight": 1
+                  }
+              ],
+              "threshold": 1,
+              "permission_name": "owner"
+          }
+      }
     wallet.frozenEnergy = accountResource.frozen_balance_for_energy.frozen_balance ? accountResource.frozen_balance_for_energy.frozen_balance : 0;
     let sentDelegateBandwidth = 0;
     if(delegated&&delegated.sentDelegatedBandwidth) {
