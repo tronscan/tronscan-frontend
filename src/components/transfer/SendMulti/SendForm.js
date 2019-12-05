@@ -836,7 +836,7 @@ class SendForm extends React.Component {
     }
 
     return (
-        <form>
+        <form className="send-form">
           {modal}
           {isLoading && <TronLoader/>}
 
