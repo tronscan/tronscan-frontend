@@ -33,7 +33,8 @@ $color-grey: #d2d1d1;
 @import "exchangeRevised";
 @import "contractRead.scss";
 @import "muti-sign.scss";
-
+@import "sourceCode.scss";
+@import "contract";
 body {
   overflow-y: scroll;
 }
@@ -2155,14 +2156,18 @@ h5 {
       border-bottom: 1px solid #eee;
       color: #333;
 
-      p {
-        width: 138px;
+      p,.question-markk {
+        min-width: 138px;
         margin: 0;
 
         &.plus {
           width: 180px;
         }
       }
+      .question-markk{
+        flex:none;
+      }
+      
 
       & > div {
         flex: 1;
@@ -2211,7 +2216,7 @@ h5 {
     }
 
     .event-wapper {
-      display: none;
+      display: block;
     }
 
     &-topic p {
@@ -4304,17 +4309,21 @@ h5 {
   font-size: 14px;
   color: #c9c9c9;
   // padding: 18px 38px;
-  padding: 0.18rem 0.38rem;
+  padding: 0.18rem 0;
   text-align: left;
 
   p {
     width: 100%;
-    margin-bottom: 0.5em;
+    padding: 0.25rem 0.38rem;
+    margin-bottom: 0.2em;
     cursor: pointer;
     text-overflow: ellipsis;
     // word-wrap: break-word;
     white-space: nowrap;
     overflow: hidden;
+    &.active {
+      background: #333;
+    }
   }
 }
 
@@ -4786,13 +4795,12 @@ h5 {
   }
 }
 
-
-.nav-network-hot{
+.nav-network-hot {
   position: relative;
   display: inline-block;
-  .hot-nav{
-    width:15px;
-    height:15px;
+  .hot-nav {
+    width: 15px;
+    height: 15px;
     background-size: 100% 100%;
     display: inline-block;
     background-image: url(../images/home/hot-nav.png);
@@ -4801,16 +4809,15 @@ h5 {
     right: -8px;
   }
   @media only screen and (max-width: 768px) {
-    .hot-nav{
+    .hot-nav {
       right: -18px;
     }
   }
-
 }
-.developer_challenge_box{
+.developer_challenge_box {
   position: relative;
   display: inline-block;
-  .developer_challenge_hot{
+  .developer_challenge_hot {
     display: inline-block;
     width: 30px;
     position: absolute;
@@ -4818,6 +4825,7 @@ h5 {
     bottom: 17px;
   }
 }
+
 .signature-currentWeight{
   display: inline-block;
   background-size: 100% 100%;
@@ -4888,7 +4896,6 @@ h5 {
     border-bottom: 1px solid #e5e5e5 !important;
   }
 }
-
 
 
 

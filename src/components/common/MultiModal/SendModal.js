@@ -17,9 +17,9 @@ class SendModal extends React.PureComponent {
     this.state = {
       isOpen,
       modal: (
-          <Modal backdrop="static" isOpen={true} toggle={this.hideModal} fade={false} className="modal-dialog-centered fiexd-none">
+          <Modal backdrop="static" isOpen={true} toggle={this.hideModal} fade={false} className="modal-dialog-centered fiexd-none send-modal">
             <ModalHeader className="text-center" toggle={this.hideModal}>Multi Send</ModalHeader>
-            <ModalBody className="text-center">
+            <ModalBody className="">
               <SendForm to={to} onSend={this.onSend} onClose={this.hideModal} onMultiSend={(permissionId, permissionTime, from) =>this.onMultiSend(permissionId, permissionTime, from)}/>
             </ModalBody>
           </Modal>

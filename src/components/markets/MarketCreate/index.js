@@ -114,7 +114,7 @@ export class MarketCreate extends Component {
                 <p>{tu('market_other_success')}</p>
                 <p>
                     {tu('market_other_success_desc_left')}
-                    <a href="https://support.trx.market/hc/en-us/requests/new">
+                    <a href="https://support.poloniex.org/hc/en-us/requests/new">
                         <label className="color-red">{tu('market_other_success_desc_right')}</label>
                     </a>
                 </p>

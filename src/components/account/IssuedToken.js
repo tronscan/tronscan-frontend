@@ -559,19 +559,21 @@ class IssuedToken extends React.Component{
       const content = (
         <div className="ml-1">
           <span className="small">
-            {tu('address_total_balance_info_sources')}：
+            {tu("address_total_balance_info_sources")}：
           </span>
           <span className="small">
-              <HrefLink
-                  href={
-                      intl.locale == "zh"
-                          ? "https://trx.market/zh/"
-                          : "https://trx.market/"
-                  }
-              >TRXMarket</HrefLink>
+            <HrefLink
+              href={
+                intl.locale == "zh"
+                  ? "https://poloniex.org/zh/"
+                  : "https://poloniex.org/"
+              }
+            >
+              Poloni DEX
+            </HrefLink>
           </span>
         </div>
-      )
+      );
 
       // mapping button item
       const mappingBtnItem = (id, currency) => (

@@ -396,7 +396,7 @@ class Navigation extends React.Component {
         this.afterSearch("#/address/" + trim(searchResults[0].value));
       }
       if (searchResults[0].desc === 'Contract') {
-        this.afterSearch("#/contract/" + trim(searchResults[0].value));
+        this.afterSearch("#/contract/" + trim(searchResults[0].value)+'/code');
       }
       if (searchResults[0].desc === 'TxHash') {
         this.afterSearch("#/transaction/" + trim(searchResults[0].value));
@@ -1059,7 +1059,7 @@ class Navigation extends React.Component {
                                             key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></Link>
                                 }
                                 if (result.desc === 'Contract') {
-                                  return <Link className="dropdown-item text-uppercase" to={"/contract/" + trim(result.value)} onClick={() => {
+                                  return <Link className="dropdown-item text-uppercase" to={"/contract/" + trim(result.value)+'/code'} onClick={() => {
                                     this.afterSearch()
                                   }}
                                             key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></Link>
@@ -1131,7 +1131,7 @@ class Navigation extends React.Component {
                                     key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></Link>
                         }
                         if (result.desc === 'Contract') {
-                          return <Link className="dropdown-item text-uppercase" to={"/contract/" + trim(result.value)} onClick={() => {
+                          return <Link className="dropdown-item text-uppercase" to={"/contract/" + trim(result.value)+'/code'} onClick={() => {
                             this.afterSearch()
                           }}
                                     key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></Link>

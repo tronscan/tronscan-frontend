@@ -22,7 +22,7 @@ import TotalInfo from "../common/TableTotal";
 import Countdown from "react-countdown-now";
 import _, {find} from "lodash";
 import SignDetailsModal from './SignDetailsModal';
-
+import {reloadWallet} from "../../actions/wallet";
 
 class MySignature extends React.Component{
     constructor(props) {
@@ -42,7 +42,14 @@ class MySignature extends React.Component{
     }
 
     componentDidMount() {
-        this.load()
+        let { type } = this.props;
+        console.log('type=========111',type)
+        if(type !== 10){
+            console.log('this.load()11========111')
+            this.load()
+        }
+
+
     }
 
     async componentDidUpdate(prevProps) {
@@ -56,6 +63,7 @@ class MySignature extends React.Component{
                     multiState: type,
                 },
             },()=>{
+                console.log('this.load()22========222')
                 this.load()
             });
         }
@@ -112,7 +120,7 @@ class MySignature extends React.Component{
         let { wallet } = this.props;
         let {signatureList,filter} = this.state;
         signatureList.map((item) => {
-            if (item.state == 0) {
+                if (item.state == 0) {
                 item.signatureProgress.map((sign, index) => {
                     if (sign.address == wallet.address) {
                         //0-未签名 1-已签名
@@ -234,7 +242,10 @@ class MySignature extends React.Component{
                 direction: 255,
                 multiState: multiState,
             },
-        },()=>{this.load()});
+        },()=>{
+            this.props.reloadWallet();
+            this.load();
+        });
     }
 
     /**
@@ -503,6 +514,7 @@ function mapStateToProps(state) {
 }
 
 const mapDispatchToProps = {
+    reloadWallet
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(injectIntl(MySignature))
