@@ -65,7 +65,7 @@ class SendForm extends React.Component {
   isValid = () => {
     let {from, to, token, amount,balance, permissionTime, permissionId} = this.state;
     let {account} = this.props;
-    return isAddressValid(to) && isAddressValid(from) && token !== "" && balance >= amount && amount > 0 && to !== account.address && permissionTime && permissionId !== "";
+    return isAddressValid(to) && isAddressValid(from) && token !== "" && balance >= amount && amount > 0 && to !== from && permissionTime && permissionId !== "";
   };
 
   /**
@@ -110,12 +110,18 @@ class SendForm extends React.Component {
                 result = await this.props.tronWeb().trx.sendTransaction(to, amount, {address: wallet.address}, false).catch(function (e) {
                     console.log(e)
                 });
+
             }
 
-            if(this.props.wallet.type==="ACCOUNT_TRONLINK" || this.props.wallet.type==="ACCOUNT_PRIVATE_KEY"){
+            if(this.props.wallet.type==="ACCOUNT_TRONLINK" || this.props.wallet.type==="ACCOUNT_PRIVATE_KEY" || this.props.wallet.type==="ACCOUNT_LEDGER"){
 
                 //create transaction
-                tronWeb = this.props.account.tronWeb;
+                if(this.props.wallet.type==="ACCOUNT_LEDGER"){
+                  tronWeb = this.props.tronWeb()
+                }else{
+                  tronWeb = this.props.account.tronWeb;
+                }
+          
                 const unSignTransaction = await tronWeb.transactionBuilder.sendTrx(to, amount, from, {'permissionId':permissionId}).catch(function (e) {
                     console.log(e)
                 });
@@ -158,8 +164,6 @@ class SendForm extends React.Component {
                     console.log(e)
                 });
             }
-
-
 
             if(this.props.wallet.type==="ACCOUNT_TRONLINK" || this.props.wallet.type==="ACCOUNT_PRIVATE_KEY" ){
                 //create transaction
@@ -271,7 +275,32 @@ class SendForm extends React.Component {
                 token_name: TokenName,
                 amount: amount,
             }
-            transactionId = await transactionResultManager(unSignTransaction, tronWeb)
+            console.log('unSignTransaction=========',unSignTransaction)
+
+           // transactionId = await transactionResultManager(unSignTransaction, tronWeb)
+           //get transaction parameter value to Hex
+           let HexStr = Client.getTriggerSmartContractHexStr(unSignTransaction.raw_data.contract[0].parameter.value);
+           console.log('HexStr',HexStr)
+
+           //sign transaction
+           let SignTransaction = await transactionMultiResultManager(unSignTransaction, tronWeb, permissionId,permissionTime,HexStr);
+           if(!SignTransaction){
+            result = 40001
+           }else{
+              let { data } = await xhr.post("https://testpre.tronlink.org/api/wallet/multi/transaction", {
+                  "address": wallet.address,
+                  "transaction": SignTransaction,
+                  "netType":"main_net",
+                  "functionSelector":"transfer(address,uint256)"
+              });
+              result = data.code;
+              console.log('code',result)
+            }
+            if (result == 0) {
+                transactionId = true;
+            } else {
+                transactionId = false;
+             } 
         } else if (this.props.wallet.type === "ACCOUNT_TRONLINK" || this.props.wallet.type === "ACCOUNT_PRIVATE_KEY") {
              tronWeb = this.props.account.tronWeb;
             // Send TRC20
@@ -513,9 +542,20 @@ class SendForm extends React.Component {
     console.log('tokenBalances',tokenBalances)
     let TokenType =  token.substr(token.length-5,5);
     let list = token.split('-')
+    let balance;
     if (token && TokenType == 'TRC10') {
         let TokenName =  list[1];
-        let balance = parseFloat(find(tokenBalances, t => t.map_token_id === TokenName).map_amount);
+        console.log('TokenName=====111',TokenName)
+        if(tokenBalances.length > 0 ){
+          console.log('tokenBalances6666666=======',tokenBalances)
+          console.log('tokenBalances7777=======',find(tokenBalances, t => t.map_token_id === TokenName));
+          console.log('tokenBalances999=======',find(tokenBalances, t => t.map_token_id === TokenName));
+
+           balance = parseFloat(find(tokenBalances, t => t.map_token_id === TokenName).map_amount);
+        }else{
+           balance = 0
+        }
+    
         console.log('balance',balance)
         let TokenDecimals = parseFloat(find(tokenBalances, t => t.map_token_id === TokenName).map_token_precision);
         if(TokenName == 'TRX'){

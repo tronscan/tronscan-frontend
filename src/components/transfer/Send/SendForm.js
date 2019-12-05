@@ -276,6 +276,7 @@ class SendForm extends React.Component {
                 token_name: TokenName,
                 amount: amount,
             }
+            console.log('unSignTransaction666666666====',unSignTransaction)
             transactionId = await transactionResultManager(unSignTransaction, tronWeb)
         } else if (this.props.wallet.type === "ACCOUNT_TRONLINK" || this.props.wallet.type === "ACCOUNT_PRIVATE_KEY") {
             tronWeb = this.props.account.tronWeb;
