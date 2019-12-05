@@ -73,7 +73,7 @@ function getAllContractTypes() {
         // BuyStorageBytesContract = 22,
         // SellStorageContract = 23,
         30: 'Smart Contract Create',
-        31: 'Smart Contract Trigger(TRC20 Transfer)',
+        31: 'Smart Contract Trigger (TRC20 Transfer)',
         // 32: 'GetContract',
         33: 'Contract Setting Update',
         41: 'Bancor Exchange Create',

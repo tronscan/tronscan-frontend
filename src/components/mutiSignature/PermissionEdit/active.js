@@ -43,7 +43,7 @@ export default class ActiveEdit extends Component {
         const operations = getContractTypesByHex(hex);
         // console.log('operations',operations)
         return operations.map(item => {
-            return <li key={item.id}>{item.value}</li>
+            return <li key={item.id}>{tu(item.value)}</li>
         })
     }
     addKeysItem(acIndex) {
@@ -448,7 +448,7 @@ export default class ActiveEdit extends Component {
             return <Col key={childItem.value} span={8}>
                 <Checkbox
                     value={childItem.value}
-                    style={{ fontSize: '12px', float: 'left' }} >{childItem.alias}
+                    style={{ fontSize: '12px', float: 'left' }} >{tu(childItem.alias)}
                 </Checkbox>
             </Col>
         })
