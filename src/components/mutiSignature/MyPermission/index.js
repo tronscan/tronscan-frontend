@@ -582,7 +582,7 @@ export default class MyPermission extends React.Component {
                     }}>{tu('signature_alter')}</Button>
                 </div>
                 <div className="global-operate">
-                    <h3>{tu('signature_authority_structure')}</h3>
+                    <h5>{tu('signature_authority_structure')}</h5>
                     <div className="operate-btn">
                         <a href="javascript:;" className='edit-permission' style={{ display: !isEditContent ? 'inline-block' : 'none' }} onClick={() => { this.setState({ isEditContent: true }) }}><span className='edit'></span><span>{tu('signature_edit_permissions')}</span> </a>
                         <div className="buttonWarp" style={{ display: isEditContent ? 'inline-block' : 'none' }}>

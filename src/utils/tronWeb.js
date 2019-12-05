@@ -64,7 +64,7 @@ export function withTronWeb(InnerComponent) {
       console.log('transaction',copyTransaction);
       console.log('permissionId',permissionId ,typeof permissionId);
       console.log('transaction.raw_data',copyTransaction.raw_data);
-      console.log('transaction.raw_data.contract[0]',copyTransaction.raw_data.contract[0].toString());
+      console.log('transaction.raw_data.contract[0]',copyTransaction.raw_data.contract[0]);
       console.log('transaction.raw_data.contract[0].Permission_id',copyTransaction.raw_data.contract[0]['Permission_id']);
       // if (!callback)
       //   return this.injectPromise(this.multiSign, transaction, privateKey, permissionId);
@@ -136,6 +136,9 @@ export function withTronWeb(InnerComponent) {
                   transaction = await this.mutiSign(tronWeb, transaction, privateKey, permissionId).catch(e=>{
                     console.log(e.toString())
                   });
+                  if(!isMulti){
+                    return;
+                  }
                   console.log('isMulti', transaction);
                 }
                 const transactionObj = transactionJsonToProtoBuf(transaction);
