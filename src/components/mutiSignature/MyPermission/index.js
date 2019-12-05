@@ -355,9 +355,10 @@ export default class MyPermission extends React.Component {
                 <SweetAlert
                     warning
                     showCancel
-                    confirmBtnText="Ok"
+                    confirmBtnText={tu('signature_save')}
                     confirmBtnBsStyle="danger"
-                    cancelBtnBsStyle="cancel"
+                    cancelBtnText="cancel"
+                    cancelBtnBsStyle={tu('signature_cancel')}
                     onConfirm={() => cbOK()}
                     onCancel={() => this.hideModal()}
                     focusCancelBtn

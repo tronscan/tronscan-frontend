@@ -1,17 +1,17 @@
 import React from "react";
-import {connect} from "react-redux";
+import { connect } from "react-redux";
 import TronWeb from "tronweb";
-import {TransferAssetContract} from "@tronscan/client/src/protocol/core/Contract_pb";
+import { TransferAssetContract } from "@tronscan/client/src/protocol/core/Contract_pb";
 import LedgerBridge from "../hw/ledger/LedgerBridge";
-import {transactionJsonToProtoBuf} from "@tronscan/client/src/utils/tronWeb";
-import {byteArray2hexStr} from "@tronscan/client/src/utils/bytes";
+import { transactionJsonToProtoBuf } from "@tronscan/client/src/utils/tronWeb";
+import { byteArray2hexStr } from "@tronscan/client/src/utils/bytes";
 
-import {Modal, ModalBody, ModalFooter, ModalHeader} from "reactstrap";
-import {PulseLoader} from "react-spinners";
+import { Modal, ModalBody, ModalFooter, ModalHeader } from "reactstrap";
+import { PulseLoader } from "react-spinners";
 import Contract from "../hw/ledger/TransactionConfirmation";
-import {ACCOUNT_LEDGER, ACCOUNT_PRIVATE_KEY, ACCOUNT_TRONLINK,SUNWEBCONFIG} from "../constants";
+import { ACCOUNT_LEDGER, ACCOUNT_PRIVATE_KEY, ACCOUNT_TRONLINK, SUNWEBCONFIG } from "../constants";
 
-import {Client} from "../services/api";
+import { Client } from "../services/api";
 
 import config from '../config/main.config'
 const ledgerTokenList = require('./tokens');
@@ -36,30 +36,89 @@ export function withTronWeb(InnerComponent) {
         networkUrl,
         networkUrl);
 
-      tronWeb.trx.sign = this.buildTransactionSigner(tronWeb);
+      tronWeb.trx.sign = this.buildTransactionSigner(tronWeb, isMulti = false);
 
-      return tronWeb;
+      tronWeb.trx.multiSign = this.buildTransactionSigner(tronWeb, isMulti = true);
+
       // }
 
       return window.tronWeb;
     };
 
-    buildTransactionSigner(tronWeb) {
-      const {account, wallet} = this.props;
 
-      return async (transaction) => {
+    mutiSign(tronWeb, transaction = false, privateKey = false, permissionId = false, callback = false) {
+      const utils = tronWeb.utils;
+      if (utils.isFunction(permissionId)) {
+        callback = permissionId;
+        permissionId = 0;
+      }
 
+      if (utils.isFunction(privateKey)) {
+        callback = privateKey;
+        privateKey = tronWeb.defaultPrivateKey;
+        permissionId = 0;
+      }
+
+      if (!callback)
+        return tronWeb.injectPromise(tronWeb.multiSign, transaction, privateKey, permissionId);
+
+      if (!utils.isObject(transaction) || !transaction.raw_data || !transaction.raw_data.contract)
+        return callback('Invalid transaction provided');
+
+      // If owner permission or permission id exists in transaction, do sign directly
+      // If no permission id inside transaction or user passes permission id, use old way to reset permission id
+      if (!transaction.raw_data.contract[0].Permission_id && permissionId > 0) {
+        // set permission id
+        transaction.raw_data.contract[0].Permission_id = permissionId;
+
+        // check if private key insides permission list
+        const address = tronWeb.address.toHex(tronWeb.address.fromPrivateKey(privateKey)).toLowerCase();
+        const signWeight = await tronWeb.trx.getSignWeight(transaction, permissionId);
+
+        if (signWeight.result.code === 'PERMISSION_ERROR') {
+          return callback(signWeight.result.message);
+        }
+
+        let foundKey = false;
+        signWeight.permission.keys.map(key => {
+          if (key.address === address)
+            foundKey = true;
+        });
+
+        if (!foundKey)
+          return callback(privateKey + ' has no permission to sign');
+
+        if (signWeight.approved_list && signWeight.approved_list.indexOf(address) != -1) {
+          return callback(privateKey + ' already sign transaction');
+        }
+
+        // reset transaction
+        if (signWeight.transaction && signWeight.transaction.transaction) {
+          return transaction;
+        } else {
+          return callback('Invalid transaction provided');
+        }
+      }
+    }
+
+    buildTransactionSigner(tronWeb, isMulti) {
+      const { account, wallet } = this.props;
+
+      return async (transaction, privateKey = false,permissionId = false,callback = false) => {
 
         if (!wallet.isOpen) {
           throw new Error("wallet is not open");
         }
-
         try {
 
           switch (wallet.type) {
             case ACCOUNT_LEDGER:
 
               try {
+                if(isMulti){
+                  transaction = await this.mutiSign(tronWeb,transaction,privateKey,permissionId);
+                  console.log('isMulti',transaction);
+                }
                 const transactionObj = transactionJsonToProtoBuf(transaction);
 
                 const rawDataHex = byteArray2hexStr(transactionObj.getRawData().serializeBinary());
@@ -69,83 +128,83 @@ export function withTronWeb(InnerComponent) {
                 const contractObj = raw.getContractList()[0];
 
                 let contractType = contractObj.getType();
-                console.log('contractType',contractType);
+                console.log('contractType', contractType);
 
                 let tokenInfo = [];
                 let extra = {};
-                switch (contractType){
-                    case 2: // Transfer Assets
-                      const ID = tronWeb.toUtf8(
-                        transaction.raw_data.contract[0].parameter.value.asset_name
-                      );
-                      // get token info
-                      extra = await this.getTokenExtraInfo(transaction.raw_data.contract[0].parameter.value.asset_name);
-                      tokenInfo.push(this.getLedgerTokenInfo(ID).message);
-                      break;
-                    case 41: //ExchangeCreateContract
-                      const token1 =  await this.getTokenExtraInfo(
-                        transaction.raw_data.contract[0].parameter.value.first_token_id
-                      );
-                      const token2 =  await this.getTokenExtraInfo(
-                        transaction.raw_data.contract[0].parameter.value.second_token_id
-                      );
-                      if (token1!== undefined && token2!== undefined){
-                        extra = {
-                          token1: token1.token_name,
-                          decimals1: token1.decimals,
-                          token2: token2.token_name,
-                          decimals2: token2.decimals,
-                        }
-                        if (token1.id!=0)tokenInfo.push(this.getLedgerTokenInfo(token1.id).message);
-                        if (token2.id!=0)tokenInfo.push(this.getLedgerTokenInfo(token2.id).message);
+                switch (contractType) {
+                  case 2: // Transfer Assets
+                    const ID = tronWeb.toUtf8(
+                      transaction.raw_data.contract[0].parameter.value.asset_name
+                    );
+                    // get token info
+                    extra = await this.getTokenExtraInfo(transaction.raw_data.contract[0].parameter.value.asset_name);
+                    tokenInfo.push(this.getLedgerTokenInfo(ID).message);
+                    break;
+                  case 41: //ExchangeCreateContract
+                    const token1 = await this.getTokenExtraInfo(
+                      transaction.raw_data.contract[0].parameter.value.first_token_id
+                    );
+                    const token2 = await this.getTokenExtraInfo(
+                      transaction.raw_data.contract[0].parameter.value.second_token_id
+                    );
+                    if (token1 !== undefined && token2 !== undefined) {
+                      extra = {
+                        token1: token1.token_name,
+                        decimals1: token1.decimals,
+                        token2: token2.token_name,
+                        decimals2: token2.decimals,
                       }
-                      break;
-                    case 42: //ExchangeInjectContract
-                      const exchangeDepositID = transaction.raw_data.contract[0].parameter.value.exchange_id;
-                      const exchangeDeposit = this.getLedgerExchangeInfo(exchangeDepositID);
-                      const exchangeDepositToken = this.getLedgerTokenInfo(tronWeb.toUtf8(
-                        transaction.raw_data.contract[0].parameter.value.token_id)
-                      );
-                      // get exchange info
-                      extra = {
-                        pair: exchangeDeposit.pair,
-                        token: exchangeDepositToken.token_name,
-                        decimals: exchangeDepositToken.decimals,
-                      };
-                      if (exchangeDepositToken.id!=0) tokenInfo.push(exchangeDepositToken.message);
-                      break;
-                    case 43: //ExchangeWithdrawContract
-                      const exchangeWithdrawID = transaction.raw_data.contract[0].parameter.value.exchange_id;
-                      const exchangeWithdraw = this.getLedgerExchangeInfo(exchangeWithdrawID);
-                      const exchangeWithdrawToken = this.getLedgerTokenInfo(tronWeb.toUtf8(
-                        transaction.raw_data.contract[0].parameter.value.token_id)
-                      );
-                      // get exchange info
-                      extra = {
-                        pair: exchangeWithdraw.pair,
-                        token: exchangeWithdrawToken.token_name,
-                        decimals: exchangeWithdrawToken.decimals,
-                      };
-                      if (exchangeWithdrawToken.id!=0) tokenInfo.push(exchangeWithdrawToken.message);
-                      break;
-                    case 44: //ExchangeTransactionContract
-                      const exchangeID = transaction.raw_data.contract[0].parameter.value.exchange_id;
-                      const exchange = this.getLedgerExchangeInfo(exchangeID);
-                      // get exchange info
-                      extra = {
-                        pair: exchange.pair, decimals1: exchange.decimals1, decimals2: exchange.decimals2,
-                        action: ((transaction.raw_data.contract[0].parameter.value.token_id===exchange.firstToken)?"Sell":"Buy"),
-                      };
-                      tokenInfo.push(exchange.message);
-                      break;
+                      if (token1.id != 0) tokenInfo.push(this.getLedgerTokenInfo(token1.id).message);
+                      if (token2.id != 0) tokenInfo.push(this.getLedgerTokenInfo(token2.id).message);
+                    }
+                    break;
+                  case 42: //ExchangeInjectContract
+                    const exchangeDepositID = transaction.raw_data.contract[0].parameter.value.exchange_id;
+                    const exchangeDeposit = this.getLedgerExchangeInfo(exchangeDepositID);
+                    const exchangeDepositToken = this.getLedgerTokenInfo(tronWeb.toUtf8(
+                      transaction.raw_data.contract[0].parameter.value.token_id)
+                    );
+                    // get exchange info
+                    extra = {
+                      pair: exchangeDeposit.pair,
+                      token: exchangeDepositToken.token_name,
+                      decimals: exchangeDepositToken.decimals,
+                    };
+                    if (exchangeDepositToken.id != 0) tokenInfo.push(exchangeDepositToken.message);
+                    break;
+                  case 43: //ExchangeWithdrawContract
+                    const exchangeWithdrawID = transaction.raw_data.contract[0].parameter.value.exchange_id;
+                    const exchangeWithdraw = this.getLedgerExchangeInfo(exchangeWithdrawID);
+                    const exchangeWithdrawToken = this.getLedgerTokenInfo(tronWeb.toUtf8(
+                      transaction.raw_data.contract[0].parameter.value.token_id)
+                    );
+                    // get exchange info
+                    extra = {
+                      pair: exchangeWithdraw.pair,
+                      token: exchangeWithdrawToken.token_name,
+                      decimals: exchangeWithdrawToken.decimals,
+                    };
+                    if (exchangeWithdrawToken.id != 0) tokenInfo.push(exchangeWithdrawToken.message);
+                    break;
+                  case 44: //ExchangeTransactionContract
+                    const exchangeID = transaction.raw_data.contract[0].parameter.value.exchange_id;
+                    const exchange = this.getLedgerExchangeInfo(exchangeID);
+                    // get exchange info
+                    extra = {
+                      pair: exchange.pair, decimals1: exchange.decimals1, decimals2: exchange.decimals2,
+                      action: ((transaction.raw_data.contract[0].parameter.value.token_id === exchange.firstToken) ? "Sell" : "Buy"),
+                    };
+                    tokenInfo.push(exchange.message);
+                    break;
 
-                    case 31: //Trigger Smart Contract
-                      extra = transaction.extra;
-                      break;
-                    case 46:
-                        extra = {};
-                        tokenInfo = undefined;
-                        break;
+                  case 31: //Trigger Smart Contract
+                    extra = transaction.extra;
+                    break;
+                  case 46:
+                    extra = {};
+                    tokenInfo = undefined;
+                    break;
                 }
 
                 extra.hash = transaction.txID;
@@ -154,11 +213,14 @@ export function withTronWeb(InnerComponent) {
                 });
 
                 const ledgerBridge = new LedgerBridge();
-                const signedResponse = await ledgerBridge.signTransaction({
+                let signedResponse;
+                
+                signedResponse = await ledgerBridge.signTransaction({
                   hex: rawDataHex,
                   info: tokenInfo,
-                });
-                console.log('signedResponse',signedResponse);
+                })
+                
+                console.log('signedResponse', signedResponse);
                 transaction.signature = [Buffer.from(signedResponse).toString('hex')];
                 return transaction;
               } finally {
@@ -181,40 +243,40 @@ export function withTronWeb(InnerComponent) {
       };
     }
 
-    async getTokenExtraInfo(ID){
+    async getTokenExtraInfo(ID) {
       let tokenID = ID;
       if (typeof tokenID !== "number") {
         tokenID = TronWeb.toUtf8(tokenID);
-        if (tokenID==="_")
-          return {id: 0, decimals: 6, token_name: "TRX"};
+        if (tokenID === "_")
+          return { id: 0, decimals: 6, token_name: "TRX" };
         else
           tokenID = parseInt(tokenID);
       }
 
-      const token = await Client.getTokens({id: tokenID});
-      if (token.total==1){
-        return {id: tokenID, decimals: token.tokens[0].precision, token_name: token.tokens[0].name};
+      const token = await Client.getTokens({ id: tokenID });
+      if (token.total == 1) {
+        return { id: tokenID, decimals: token.tokens[0].precision, token_name: token.tokens[0].name };
       }
-      return {id: -1, decimals: 0, token_name: ""};;
+      return { id: -1, decimals: 0, token_name: "" };;
     }
 
-    getLedgerTokenInfo(ID){
+    getLedgerTokenInfo(ID) {
       let tokenID = ID;
       if (typeof tokenID !== "number") {
-        if (tokenID==="_")
+        if (tokenID === "_")
           tokenID = 0;
         else
           tokenID = parseInt(tokenID);
       }
-      return ledgerTokenList.tokenList.find(o => o.id === tokenID );
+      return ledgerTokenList.tokenList.find(o => o.id === tokenID);
     }
 
-    getLedgerExchangeInfo(ID){
+    getLedgerExchangeInfo(ID) {
       let exchangeID = ID;
       if (typeof exchangeID !== "number") {
         exchangeID = parseInt(exchangeID);
       }
-      return ledgerExchangeList.exchangeList.find(o => o.id === exchangeID );
+      return ledgerExchangeList.exchangeList.find(o => o.id === exchangeID);
     }
 
     hideModal = () => {
@@ -236,7 +298,7 @@ export function withTronWeb(InnerComponent) {
           <ModalBody className="p-0">
             <Contract contract={transaction["raw_data"].contract[0]} extra={extra} />
             <div className="text-center my-1">
-              <img src={require("../hw/ledger/ledger-nano-s.png")} style={{ height: 50 }}/><br/>
+              <img src={require("../hw/ledger/ledger-nano-s.png")} style={{ height: 50 }} /><br />
               Confirm the transaction on your ledger
             </div>
             <div className="text-center my-1">
@@ -252,7 +314,7 @@ export function withTronWeb(InnerComponent) {
 
     render() {
 
-      const {modal} = this.state;
+      const { modal } = this.state;
 
       return (
         <React.Fragment>
@@ -276,6 +338,6 @@ export function withTronWeb(InnerComponent) {
     }),
     null,
     null,
-    {pure: false},
+    { pure: false },
   )(wrappedComponent);
 }
