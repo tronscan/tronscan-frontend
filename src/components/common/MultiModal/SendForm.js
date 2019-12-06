@@ -127,7 +127,6 @@ class SendForm extends React.Component {
 
                 //sign transaction
                 const SignTransaction = await transactionMultiResultManager(unSignTransaction, tronWeb, permissionId, permissionTime,HexStr);
-                console.log('SignTransaction111',SignTransaction)
 
                 // xhr.defaults.headers.common["MainChain"] = 'MainChain';
 
@@ -138,7 +137,7 @@ class SendForm extends React.Component {
                     "netType":"main_net"
                 });
                 result = data.code;
-                console.log('code',result)
+
             }
 
             if (result == 0) {
@@ -281,11 +280,9 @@ class SendForm extends React.Component {
             );
             if (unSignTransaction.transaction !== undefined)
                 unSignTransaction = unSignTransaction.transaction;
-            console.log('unSignTransaction',unSignTransaction)
 
             //get transaction parameter value to Hex
             let HexStr = Client.getTriggerSmartContractHexStr(unSignTransaction.raw_data.contract[0].parameter.value);
-            console.log('HexStr',HexStr)
 
             //sign transaction
             let SignTransaction = await transactionMultiResultManager(unSignTransaction, tronWeb, permissionId,permissionTime,HexStr);
@@ -296,7 +293,6 @@ class SendForm extends React.Component {
                 "netType":"main_net"
             });
             let result = data.code;
-            console.log('code',result)
             if (result == 0) {
                 transactionId = true;
             } else {
@@ -436,14 +432,10 @@ class SendForm extends React.Component {
       }
       let ownerPermissions = walletAddress.ownerPermission || {};
       let activePermissions = walletAddress.activePermissions || [];
-      console.log('activePermissions',activePermissions)
       let isAddressHasPermissionArr = [];
       let ownerOption = [];
       let activeOption = [];
-      console.log('ownerPermissions',ownerPermissions)
       if(JSON.stringify(ownerPermissions) != "{}") {
-          console.log('this.setActivePermissionDisable(ownerPermissions.keys)222222',ownerPermissions.keys)
-          console.log('this.setActivePermissionDisable(ownerPermissions.keys)',this.setActivePermissionDisable(ownerPermissions.keys))
           ownerOption.push({
               permissionName:ownerPermissions.permission_name,
               permissionValue:0,
@@ -453,7 +445,6 @@ class SendForm extends React.Component {
       if(activePermissions){
           //
           activePermissions.map((item,index) =>{
-              console.log('item.keys',item.keys)
               activeOption.push({
                   permissionName:item.permission_name,
                   permissionValue:item.id,
@@ -462,7 +453,6 @@ class SendForm extends React.Component {
               isAddressHasPermissionArr = _.concat(isAddressHasPermissionArr,ownerPermissions.keys,item.keys)
           })
       }
-      console.log('isAddressHasPermissionArr', isAddressHasPermissionArr)
       let isAddressHasPermission =  _.find(isAddressHasPermissionArr, function(o) { return o.address == wallet.address });
       if(!isAddressHasPermission){
           this.setState({
@@ -473,8 +463,6 @@ class SendForm extends React.Component {
               errmessage:true
           });
       }
-      console.log('ownerOption', ownerOption)
-      console.log('activeOption', activeOption)
       this.setState({
           ownerPermissions,
           ownerOption,
@@ -557,9 +545,6 @@ class SendForm extends React.Component {
       let { ownerPermissions, activePermissions } = this.state;
       let { wallet } = this.props;
       let signList = [];
-      console.log('wallet',wallet)
-      console.log('ownerPermissions',ownerPermissions)
-      console.log('activePermissions',activePermissions)
       if(value == 0){
           ownerPermissions.keys.map((item, index) => {
               if (item.address != wallet.address) {
@@ -574,7 +559,6 @@ class SendForm extends React.Component {
               }
           });
       }
-      console.log('signList',signList)
       this.setState({
           signList
       });

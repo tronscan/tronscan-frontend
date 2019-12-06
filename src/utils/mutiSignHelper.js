@@ -1,7 +1,6 @@
 import { byteArray2hexStr } from "@tronscan/client/src/utils/bytes";
 export function getOperationsHexStrByContractIdArr(contractIdArr) {
     contractIdArr.sort(function(a,b){return a-b});
-    console.log('contractIdArr',contractIdArr);
     let list = (contractIdArr.slice(0).slice(0));
     var operations = (function (s) {
         var a = []; while (s-- > 0)

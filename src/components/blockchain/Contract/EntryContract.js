@@ -105,7 +105,6 @@ class Code extends React.Component {
       //bytes input
       submitValueFormat.push(formatInput(inputValue, inputType));
     }
-    console.log('submitValueFormat',submitValueFormat)
     return submitValueFormat;
   }
 
@@ -174,7 +173,6 @@ class Code extends React.Component {
     };
     MultiSendModal = () => {
         let {code} = this.state;
-        console.log('code',code)
         this.setState({
             modal: (
                 <SendMultiModal code={code} onClose={this.hideModal} onMultiSignSend={(permissionId, permissionTime, from) => this.MultiSend(permissionId, permissionTime, from)}/>
@@ -189,19 +187,13 @@ class Code extends React.Component {
       return typeof d !== "number" ? Number(resultVal) : Number(resultVal.toFixed(parseInt(d)));
   }
    MultiSend =  async(permissionId, permissionTime, from) => {
-        console.log('permissionId=====',permissionId)
-        console.log('permissionTime======',permissionTime)
-        console.log('from====',from)
         const { tokenId, totalValue, contract ,sendTokenDecimals } = this.state;
-        console.log('totalValue',totalValue)
-       console.log('sendTokenDecimals',sendTokenDecimals)
         let { contractItem, address, account, intl } = this.props;
         const { tronWeb } = this.props.account;
         let selectorTypeArr = [];
         let selectorValueArr = this.submitValueFormat();
         let selectorArr = [];
         let transactionId;
-        console.log('contractItem.input',contractItem.inputs)
         if(contractItem.inputs){
             for(let i = 0; i < contractItem.inputs.length; i++){
                 selectorTypeArr.push(contractItem.inputs[i]['type'])
@@ -222,8 +214,6 @@ class Code extends React.Component {
         }
         let selectorTypeStr = selectorTypeArr.join(',')
         let function_selector = contractItem.name + '(' + selectorTypeStr + ')';
-        console.log('function_selector',function_selector)
-        console.log('this.isLoggedIn()',this.isLoggedIn())
         if (this.isLoggedIn()) {
             try {
                 let options = {};
@@ -235,7 +225,6 @@ class Code extends React.Component {
                         tokenValue: this.Mul(totalValue,Math.pow(10, sendTokenDecimals))
                     };
                 }
-                console.log('options=======',options)
                 let unSignTransaction = await tronWeb.transactionBuilder.triggerSmartContract(
                     tronWeb.address.toHex(address),
                     function_selector,
@@ -245,11 +234,9 @@ class Code extends React.Component {
                 );
                 if (unSignTransaction.transaction !== undefined)
                     unSignTransaction = unSignTransaction.transaction;
-                console.log('unSignTransaction',unSignTransaction)
 
                 //get transaction parameter value to Hex
                 let HexStr = Client.getTriggerSmartContractHexStr(unSignTransaction.raw_data.contract[0].parameter.value);
-                console.log('HexStr',HexStr)
 
                 //sign transaction
                 let SignTransaction = await transactionMultiResultManager(unSignTransaction, tronWeb, permissionId,permissionTime,HexStr);
@@ -261,7 +248,6 @@ class Code extends React.Component {
                     "functionSelector":function_selector,
                 });
                 let code = data.code;
-                console.log('code',code)
                 if(code == 0){
                     this.setState({
                         modal: (
@@ -379,7 +365,6 @@ class Code extends React.Component {
     let selectorValueArr = this.submitValueFormat();
     let selectorArr = [];
     let transactionId;
-    console.log('contractItem.input',contractItem.inputs)
     if(contractItem.inputs){
         for(let i = 0; i < contractItem.inputs.length; i++){
             selectorTypeArr.push(contractItem.inputs[i]['type'])
@@ -403,9 +388,6 @@ class Code extends React.Component {
     if (this.isLoggedIn()) {
         try {
             let options = {};
-            console.log(11111111111111111111111);
-            console.log('tokenId',tokenId,sendTokenDecimals);
-
             if (!tokenId || tokenId == '_') {
                 options = { callValue: this.Mul(totalValue,Math.pow(10, sendTokenDecimals))||0 }
             } else {
@@ -414,9 +396,6 @@ class Code extends React.Component {
                     tokenValue: this.Mul(totalValue,Math.pow(10, sendTokenDecimals))
                 };
             }
-            console.log('options=======',options)
-            console.log('address',address)
-            console.log('account.address',account.address)
             let unSignTransaction = await tronWeb.transactionBuilder.triggerSmartContract(
                 tronWeb.address.toHex(address),
                 function_selector,
@@ -429,16 +408,13 @@ class Code extends React.Component {
             unSignTransaction.extra = {
                 to: '',
             }
-            console.log('unSignTransaction===========10000',unSignTransaction)
 
             //get transaction parameter value to Hex
             let HexStr = Client.getTriggerSmartContractHexStr(unSignTransaction.raw_data.contract[0].parameter.value);
-            console.log('HexStr',HexStr)
 
             
             //sign transaction
             let { broadcast,signedTransaction }= await transactionResultManagerByLedger(unSignTransaction,tronWeb);
-            //console.log('signedTransaction',signedTransaction,broadcast);
             let retValue = false;
             if(!broadcast.result){
               retValue = false;
@@ -499,7 +475,6 @@ class Code extends React.Component {
 
   sendClick(){
      const account = this.props.account;
-     console.log('acount.type',account.type)
      if(account.type==='ACCOUNT_LEDGER'){
        this.ledgerSend();
      }else{

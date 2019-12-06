@@ -48,8 +48,6 @@ class SendModal extends React.PureComponent {
 
   componentDidUpdate(prevProps) {
       // let { code } = this.props;
-      // console.log('code222',code)
-      // console.log('prevProps.code',prevProps.code)
       // if(prevProps.code !== code && prevProps.code == 0 ){
       //     this.onSend()
       // }

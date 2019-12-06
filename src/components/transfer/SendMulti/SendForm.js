@@ -117,7 +117,6 @@ class SendForm extends React.Component {
 
                 //create transaction
                 if(this.props.wallet.type==="ACCOUNT_LEDGER"){
-                  console.log('this.props.wallet.type',this.props.wallet.type);
                   tronWeb = this.props.tronWeb()
                 }else{
                   tronWeb = this.props.account.tronWeb;
@@ -133,10 +132,8 @@ class SendForm extends React.Component {
                 //sign transaction
                 if(this.props.wallet.type==="ACCOUNT_LEDGER"){
                      SignTransaction = await transactionMultiResultManager(unSignTransaction, tronWeb, permissionId, permissionTime);
-                    console.log('SignTransaction111',SignTransaction)
                 }else{
                      SignTransaction = await transactionMultiResultManager(unSignTransaction, tronWeb, permissionId, permissionTime,HexStr);
-                    console.log('SignTransaction2222',SignTransaction)
                 }
 
 
@@ -152,7 +149,6 @@ class SendForm extends React.Component {
                     });
                     result = data.code;
                     sendErrorMessage = data.message;
-                    console.log('code', result)
                 }
             }
 
@@ -200,7 +196,6 @@ class SendForm extends React.Component {
                     });
                     result = data.code;
                     sendErrorMessage = data.message;
-                    console.log('code',result)
                 }
 
             }
@@ -276,7 +271,7 @@ class SendForm extends React.Component {
             let unSignTransaction = await tronWeb.transactionBuilder.triggerSmartContract(
                 tronWeb.address.toHex(contractAddress),
                 'transfer(address,uint256)',
-                10000000, 0,
+                {'feeLimit':20000000},
                 [
                     {type: 'address', value: tronWeb.address.toHex(to)},
                     {type: 'uint256', value: new BigNumber(amount).shiftedBy(decimals).toString()}
@@ -291,12 +286,10 @@ class SendForm extends React.Component {
                 token_name: TokenName,
                 amount: amount,
             }
-            console.log('unSignTransaction=========',unSignTransaction)
 
            // transactionId = await transactionResultHexManager(unSignTransaction, tronWeb)
            // get transaction parameter value to Hex
            let HexStr = Client.getTriggerSmartContractHexStr(unSignTransaction.raw_data.contract[0].parameter.value);
-           console.log('HexStr',HexStr)
 
             if(this.props.wallet.type==="ACCOUNT_LEDGER"){
                 //sign transaction
@@ -316,7 +309,7 @@ class SendForm extends React.Component {
               });
               result = data.code;
               sendErrorMessage = data.message;
-              console.log('code',result)
+
 
             }
             if (result == 0) {
@@ -333,7 +326,7 @@ class SendForm extends React.Component {
             let unSignTransaction = await tronWeb.transactionBuilder.triggerSmartContract(
                 tronWeb.address.toHex(contractAddress),
                 'transfer(address,uint256)',
-                {'permissionId':permissionId},
+                {'permissionId':permissionId, 'feeLimit':20000000},
                 [
                     {type: 'address', value: tronWeb.address.toHex(to)},
                     {type: 'uint256', value: new BigNumber(amount).shiftedBy(decimals).toString()}
@@ -342,11 +335,9 @@ class SendForm extends React.Component {
             );
             if (unSignTransaction.transaction !== undefined)
                 unSignTransaction = unSignTransaction.transaction;
-            console.log('unSignTransaction',unSignTransaction)
 
             //get transaction parameter value to Hex
             let HexStr = Client.getTriggerSmartContractHexStr(unSignTransaction.raw_data.contract[0].parameter.value);
-            console.log('HexStr',HexStr)
 
             //sign transaction
             let SignTransaction = await transactionMultiResultManager(unSignTransaction, tronWeb, permissionId,permissionTime,HexStr);
@@ -362,7 +353,6 @@ class SendForm extends React.Component {
                 });
                 result = data.code;
                 sendErrorMessage = data.message;
-                console.log('code',result)
             }
 
 
@@ -508,11 +498,9 @@ class SendForm extends React.Component {
       }
       let ownerPermissions = walletAddress.ownerPermission || {};
       let activePermissions = walletAddress.activePermissions || [];
-      console.log('activePermissions',activePermissions)
       let isAddressHasPermissionArr = [];
       let ownerOption = [];
       let activeOption = [];
-      console.log('ownerPermissions',ownerPermissions)
       if(JSON.stringify(ownerPermissions) != "{}") {
           ownerOption.push({
               permissionName:ownerPermissions.permission_name,
@@ -523,7 +511,6 @@ class SendForm extends React.Component {
       if(activePermissions){
           //
           activePermissions.map((item,index) =>{
-              console.log('item.keys',item.keys)
               activeOption.push({
                   permissionName:item.permission_name,
                   permissionValue:item.id,
@@ -532,7 +519,6 @@ class SendForm extends React.Component {
               isAddressHasPermissionArr = _.concat(isAddressHasPermissionArr,ownerPermissions.keys,item.keys)
           })
       }
-      console.log('isAddressHasPermissionArr', isAddressHasPermissionArr)
       let isAddressHasPermission =  _.find(isAddressHasPermissionArr, function(o) { return o.address == wallet.address });
       if(!isAddressHasPermission){
           this.setState({
@@ -543,8 +529,6 @@ class SendForm extends React.Component {
               errmessage:false
           });
       }
-      console.log('ownerOption', ownerOption)
-      console.log('activeOption', activeOption)
       this.setState({
           ownerPermissions,
           ownerOption,
@@ -593,23 +577,17 @@ class SendForm extends React.Component {
 
   getSelectedTokenBalance = () => {
     let {token,tokenBalances,tokens20} = this.state;
-    console.log('token',token)
     let TokenType =  token.substr(token.length-5,5);
     let list = token.split('-')
     let balance;
     if (token && TokenType == 'TRC10') {
         let TokenName =  list[1];
-        console.log('TokenName=====111',TokenName)
         if(tokenBalances.length > 0 ){
-          console.log('tokenBalances6666666=======',tokenBalances)
-          console.log('tokenBalances7777=======',find(tokenBalances, t => t.map_token_id === TokenName));
-          console.log('tokenBalances999=======',find(tokenBalances, t => t.map_token_id === TokenName));
            balance = parseFloat(find(tokenBalances, t => t.map_token_id === TokenName).map_amount);
         }else{
            balance = 0
         }
     
-        console.log('balance',balance)
         let TokenDecimals = parseFloat(find(tokenBalances, t => t.map_token_id === TokenName).map_token_precision);
         if(TokenName == 'TRX'){
             this.setState({
@@ -639,9 +617,6 @@ class SendForm extends React.Component {
       let { ownerPermissions, activePermissions } = this.state;
       let { wallet } = this.props;
       let signList = [];
-      console.log('wallet',wallet)
-      console.log('ownerPermissions',ownerPermissions)
-      console.log('activePermissions',activePermissions)
       if(value == 0){
           ownerPermissions.keys.map((item, index) => {
               if (item.address != wallet.address) {
@@ -656,7 +631,6 @@ class SendForm extends React.Component {
               }
           });
       }
-      console.log('signList',signList)
       this.setState({
           signList
       });
@@ -716,7 +690,6 @@ class SendForm extends React.Component {
 
   componentDidUpdate() {
     let {tokenBalances,tokens20} = this.state;
-    console.log('tokenBalances9999======1000',tokenBalances)
     tokenBalances = _.filter(tokenBalances, tb => tb.balance > 0);
     let {token} = this.state;
     if (!token && tokenBalances.length > 0) {
@@ -811,7 +784,6 @@ class SendForm extends React.Component {
   onChangePermissionTime = e => {
     const { intl } = this.props;
     const numValue = e;
-    console.log('numValue',numValue)
     const MaxAmount  = 24;
     let errorMess = '';
     let reg = /^(([1-9])|(1\d)|(2[0-4]))$/
@@ -840,7 +812,6 @@ class SendForm extends React.Component {
   }
 
   handlePermissionChange =  (value) => {
-      console.log('value',value)
       this.setState({ permissionId: value },() =>{
           this.setPermissionAddress(value);
       });
@@ -917,7 +888,6 @@ class SendForm extends React.Component {
         item.token_name_type =  item.name + '-TRC20';
         return item
     });
-    console.log('token===========',token)
     let placeholder = '0.000000';
     let num = 0;
     if(decimals || decimals == 0){

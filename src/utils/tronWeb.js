@@ -39,7 +39,6 @@ export function withTronWeb(InnerComponent) {
 
       tronWeb.trx.sign = this.buildTransactionSigner(tronWeb, false);
       tronWeb.trx.multiSign = this.buildTransactionSigner(tronWeb, true);
-      window.tronWeb = tronWeb;
       return tronWeb;
       // }
 
@@ -60,12 +59,6 @@ export function withTronWeb(InnerComponent) {
         privateKey = tronWeb.defaultPrivateKey;
         permissionId = 0;
       }
-      console.log('2222222222222222222222222');
-      console.log('transaction',copyTransaction);
-      console.log('permissionId',permissionId ,typeof permissionId);
-      console.log('transaction.raw_data',copyTransaction.raw_data);
-      console.log('transaction.raw_data.contract[0]',copyTransaction.raw_data.contract[0]);
-      console.log('transaction.raw_data.contract[0].Permission_id',copyTransaction.raw_data.contract[0]['Permission_id']);
       // if (!callback)
       //   return this.injectPromise(this.multiSign, transaction, privateKey, permissionId);
 
@@ -76,9 +69,7 @@ export function withTronWeb(InnerComponent) {
       transaction.raw_data.contract[0].Permission_id = permissionId;
       if (!transaction.raw_data.contract[0].Permission_id && permissionId > 0) {
         // set permission id
-        console.log('进来了')
         transaction.raw_data.contract[0].Permission_id = permissionId;
-        console.log('props.wallet',this.props.wallet);
         // check if private key insides permission list
         // const address = tronWeb.address.toHex(tronWeb.address.fromPrivateKey(privateKey)).toLowerCase();
         const address = tronWeb.address.toHex(this.props.wallet.address).toLowerCase();
@@ -236,7 +227,6 @@ export function withTronWeb(InnerComponent) {
                   info: tokenInfo,
                 })
 
-                console.log('signedResponse', signedResponse);
                 transaction.signature = [Buffer.from(signedResponse).toString('hex')];
                 return transaction;
               } finally {
