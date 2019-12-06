@@ -488,12 +488,12 @@ class Code extends React.Component {
     const { tronWeb } = this.props.account;
     return new Promise((reslove, reject) => {
       let checkResult = async function(txID) {
-        const output = await tronWeb.trx.getTransactionInfo(txID);
+        const output = await tronWeb.trx.getUnconfirmedTransactionInfo(txID);
         console.log('output',output)
         if (Object.keys(output).length <= 1 && !output.id) {
           return setTimeout(() => {
             checkResult(txID);
-          }, 3000);
+          }, 6000);
         }
 
         if (output.result && output.result == "FAILED") {
