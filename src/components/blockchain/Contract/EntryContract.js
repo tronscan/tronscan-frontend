@@ -420,8 +420,9 @@ class Code extends React.Component {
               retValue = false;
               console.log('retValue222222',retValue)
             }else{
-              retValue= await this.getTxResult(signedTransaction.txID);
+              retValue = await this.getTxResult(signedTransaction.txID);
             }
+            console.log('retValue3333333',retValue)
             this.setState({
               result: this.formatOutputs(retValue)
             });
@@ -483,11 +484,11 @@ class Code extends React.Component {
      }
   }
   getTxResult(txID) {
-    let { contractItem, intl } = this.props;
+    let { contractItem, intl, address } = this.props;
     const { tronWeb } = this.props.account;
     return new Promise((reslove, reject) => {
       let checkResult = async function(txID) {
-        const output = await tronWeb.trx.getUnconfirmedTransactionInfo(txID);
+        const output = await tronWeb.trx.getTransactionInfo(txID);
         console.log('output',output)
         if (Object.keys(output).length <= 1 && !output.id) {
           return setTimeout(() => {
@@ -502,7 +503,6 @@ class Code extends React.Component {
             output
           });
         }
-
         if (!tronWeb.utils.hasProperty(output, "contractResult")) {
           return reject({
             error: "Failed to execute: " + JSON.stringify(output, null, 2),
@@ -510,6 +510,9 @@ class Code extends React.Component {
             output
           });
         }
+
+
+        console.log('contractItem',contractItem)
         if (contractItem.outputs == undefined) {
           return reslove(0);
         }
@@ -517,13 +520,19 @@ class Code extends React.Component {
           .map(({ name }) => name)
           .filter(name => !!name);
         const types = contractItem.outputs.map(({ type }) => type);
+        console.log('names',names)
+          console.log('types',types)
         let decoded = window.tronWeb.utils.abi.decodeParams(
           names,
           types,
           "0x" + output.contractResult[0]
         );
         if (decoded.length === 1) decoded = decoded[0];
+        if(address == 'TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t' && contractItem.name ==  "transfer"){
+            return reslove(!decoded);
+        }
         return reslove(decoded);
+
       };
       checkResult(txID);
     });
