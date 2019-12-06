@@ -32,7 +32,7 @@ import {QuestionMark} from "../../common/QuestionMark";
 export default class MyPermission extends React.Component {
     constructor(props) {
         super(props);
-        const { wallet,tronWeb } = this.props;
+        const { wallet,tronWeb,account } = this.props;
         const { ownerPermission, activePermissions, witnessPermission } = wallet.current;
         if(ownerPermission){
             ownerPermission.type = 0;
@@ -57,7 +57,7 @@ export default class MyPermission extends React.Component {
         this.state = {
             isEditOperateUser: false,
             isEditContent: false,
-            curControlAddress: wallet.current.address,
+            curControlAddress: wallet.current.address == '3QJmnh'? account.address:wallet.current.address,
             curLoginAddress: wallet.current.address,
             modal: null,
             modalAlert: null,
