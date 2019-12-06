@@ -193,7 +193,7 @@ export default class MyPermission extends React.Component {
                     isValid = false;
                     this.setState({
                         modal: (
-                            <SweetAlert warning onConfirm={() => this.hideModal()} title='warn'>
+                            <SweetAlert warning onConfirm={() => this.hideModal()} title=''>
                                 {notInContralAddress}
                             </SweetAlert>
                         ),
