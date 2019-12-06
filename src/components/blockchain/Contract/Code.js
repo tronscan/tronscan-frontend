@@ -264,6 +264,7 @@ class Code extends React.Component {
     return version;
   };
 
+
   render() {
     const {
       choiceContractItem,
@@ -276,7 +277,6 @@ class Code extends React.Component {
       loading
     } = this.state;
     const { filter, intl } = this.props;
-
     const {
       abi,
       name,

@@ -8,10 +8,8 @@ export const IS_TESTNET = process.env.NET === "testnet";
 export const IS_DESKTOP = process.env.DESKTOP === "true";
 
 export const NETURL = {
-  MAINNET: "https://tronscan.org",
-  SUNNET: "https://dappchain.tronscan.org"
-  // MAINNET: "https://debug.tronscan.org",
-  // SUNNET: "https://debugdappchain.tronscan.org"
+   MAINNET: "https://tronscan.org",
+   SUNNET: "https://dappchain.tronscan.org",
 };
 
 let { NET, NODE_ENV } = process.env;
@@ -168,6 +166,13 @@ export const FROMID = 1;
 // url regexp
 export const URLREGEXP = /^((ht|f)tps?):\/\/[\w\-]+(\.[\w\-]+)+([\w\-.,@?^=%&:\\/~+#]*[\w\-@?^=%&\\/~+#])?$/;
 
+
+
+export const ADDRESS_SIZE = 34;
+export const ADDRESS_PREFIX = "41";
+export const ADDRESS_PREFIX_BYTE = 0x41;
+export const ADDRESS_PREFIX_REGEX = /^(41)/;
+
 // contract
 export const CONTRACT_LICENSES = [
   "--",
@@ -186,3 +191,4 @@ export const CONTRACT_LICENSES = [
 ];
 
 export const WARNING_VERSIONS = []
+

@@ -23,14 +23,15 @@
 
   .search-btn {
     height: 30px;
-    width: 60px;
+    //width: 60px;
     line-height: 30px;
     text-align: center;
     cursor: pointer;
     border: 1px solid #aaa;
     border-radius: 4px;
     margin-bottom: 6px;
-
+    padding-left: 10px;
+    padding-right: 10px;
     &:hover {
       color: #c23631 !important;
       border: 1px solid #c23631;
@@ -61,7 +62,7 @@
       text-overflow: ellipsis;
       white-space: nowrap;
       overflow: hidden;
-      padding-left:20px;
+      padding-left:15px;
     }
   }
   .active-code {
@@ -93,10 +94,13 @@
 .contract-code-editor{
   display: flex;
   .contract-code-1{
-    width:150px;
+    width:135px;
+    padding-left: 15px;
+    box-sizing: border-box;
   }
   .contract-code-11{
     flex:1;
+    padding-right: 15px;
   }
 }
 @media screen and (max-width: 768px) {
