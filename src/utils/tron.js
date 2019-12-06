@@ -12,6 +12,7 @@ export const tronAddresses = [
 export async function transactionResultManager(transaction, tronWeb) {
   console.log('unSignTransaction222=====3333',transaction)
   const signedTransaction = await tronWeb.trx.sign(transaction, tronWeb.defaultPrivateKey).catch(e => {
+    console.log(e.toString());
     return false;
   });
   if (signedTransaction) {
@@ -20,6 +21,22 @@ export async function transactionResultManager(transaction, tronWeb) {
       broadcast.result = false;
     }
     return broadcast;
+  } else {
+    return false;
+  }
+}
+export async function transactionResultManagerByLedger(transaction, tronWeb) {
+  console.log('unSignTransaction222=====3333',transaction)
+  const signedTransaction = await tronWeb.trx.sign(transaction, tronWeb.defaultPrivateKey).catch(e => {
+    console.log(e.toString());
+    return false;
+  });
+  if (signedTransaction) {
+    const broadcast = await tronWeb.trx.sendRawTransaction(signedTransaction);
+    if (!broadcast.result) {
+      broadcast.result = false;
+    }
+    return { broadcast,signedTransaction };
   } else {
     return false;
   }
@@ -45,7 +62,6 @@ export async function transactionMultiResultManager(unSignTransaction, tronWeb, 
     console.log('unSignTransaction222',unSignTransaction)
     //set transaction expiration time (1H-24H)
     const newTransaction = await tronWeb.transactionBuilder.extendExpiration(unSignTransaction, (3600*permissionTime-60));
-    console.log('permissionId',permissionId)
     console.log('newTransaction',newTransaction)
     //sign transaction
     const signedTransaction = await tronWeb.trx.multiSign(newTransaction, tronWeb.defaultPrivateKey , permissionId).catch(e => {

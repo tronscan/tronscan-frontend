@@ -10,21 +10,22 @@ import { Modal, ModalBody, ModalFooter, ModalHeader } from "reactstrap";
 import { PulseLoader } from "react-spinners";
 import Contract from "../hw/ledger/TransactionConfirmation";
 import { ACCOUNT_LEDGER, ACCOUNT_PRIVATE_KEY, ACCOUNT_TRONLINK, SUNWEBCONFIG } from "../constants";
-
+import { deepCopy } from "ethers/utils";
 import { Client } from "../services/api";
-
+import injectpromise from 'injectpromise';
 import config from '../config/main.config'
 const ledgerTokenList = require('./tokens');
 const ledgerExchangeList = require('./exchanges');
 
 export function withTronWeb(InnerComponent) {
-
+ 
   const wrappedComponent = class extends React.Component {
 
 
     state = {
       modal: null,
     };
+    injectPromise = injectpromise.bind(this);
 
     getTronWeb = () => {
 
@@ -37,16 +38,17 @@ export function withTronWeb(InnerComponent) {
         networkUrl);
 
       tronWeb.trx.sign = this.buildTransactionSigner(tronWeb, false);
-
       tronWeb.trx.multiSign = this.buildTransactionSigner(tronWeb, true);
-
+      window.tronWeb = tronWeb;
+      return tronWeb;
       // }
 
-      return window.tronWeb;
+      //return window.tronWeb;
     };
 
 
-    async mutiSign (tronWeb, transaction = false, privateKey = false, permissionId = false, callback = false) {
+     mutiSign= async( tronWeb, transaction = false, privateKey = false, permissionId = false, callback = false)=> {
+      let copyTransaction = transaction;
       const utils = tronWeb.utils;
       if (utils.isFunction(permissionId)) {
         callback = permissionId;
@@ -58,25 +60,33 @@ export function withTronWeb(InnerComponent) {
         privateKey = tronWeb.defaultPrivateKey;
         permissionId = 0;
       }
+      console.log('2222222222222222222222222');
+      console.log('transaction',copyTransaction);
+      console.log('permissionId',permissionId ,typeof permissionId);
+      console.log('transaction.raw_data',copyTransaction.raw_data);
+      console.log('transaction.raw_data.contract[0]',copyTransaction.raw_data.contract[0]);
+      console.log('transaction.raw_data.contract[0].Permission_id',copyTransaction.raw_data.contract[0]['Permission_id']);
+      // if (!callback)
+      //   return this.injectPromise(this.multiSign, transaction, privateKey, permissionId);
 
-      if (!callback)
-        return tronWeb.injectPromise(tronWeb.multiSign, transaction, privateKey, permissionId);
-
-      if (!utils.isObject(transaction) || !transaction.raw_data || !transaction.raw_data.contract)
-        return callback('Invalid transaction provided');
-
+      // if (!utils.isObject(transaction) || !transaction.raw_data || !transaction.raw_data.contract)
+      //   return callback('Invalid transaction provided');
       // If owner permission or permission id exists in transaction, do sign directly
       // If no permission id inside transaction or user passes permission id, use old way to reset permission id
+      transaction.raw_data.contract[0].Permission_id = permissionId;
       if (!transaction.raw_data.contract[0].Permission_id && permissionId > 0) {
         // set permission id
+        console.log('进来了')
         transaction.raw_data.contract[0].Permission_id = permissionId;
-
+        console.log('props.wallet',this.props.wallet);
         // check if private key insides permission list
-        const address = tronWeb.address.toHex(tronWeb.address.fromPrivateKey(privateKey)).toLowerCase();
+        // const address = tronWeb.address.toHex(tronWeb.address.fromPrivateKey(privateKey)).toLowerCase();
+        const address = tronWeb.address.toHex(this.props.wallet.address).toLowerCase();
+        console.log('address',address);
         const signWeight = await tronWeb.trx.getSignWeight(transaction, permissionId);
 
         if (signWeight.result.code === 'PERMISSION_ERROR') {
-          return callback(signWeight.result.message);
+           throw new Error('PERMISSION_ERROR')
         }
 
         let foundKey = false;
@@ -86,25 +96,33 @@ export function withTronWeb(InnerComponent) {
         });
 
         if (!foundKey)
-          return callback(privateKey + ' has no permission to sign');
+          //return callback(privateKey + ' has no permission to sign');
+          throw new Error(privateKey + ' has no permission to sign')
 
         if (signWeight.approved_list && signWeight.approved_list.indexOf(address) != -1) {
-          return callback(privateKey + ' already sign transaction');
+          //return callback(privateKey + ' already sign transaction');
+          throw new Error(privateKey + ' already sign transaction')
         }
 
         // reset transaction
         if (signWeight.transaction && signWeight.transaction.transaction) {
+          transaction = signWeight.transaction.transaction;
+          if (permissionId > 0) {
+            transaction.raw_data.contract[0].Permission_id = permissionId;
+          }
           return transaction;
         } else {
-          return callback('Invalid transaction provided');
+          throw new Error('Invalid transaction provided')
+          //eturn callback('Invalid transaction provided');
         }
       }
+      return transaction;
     }
 
     buildTransactionSigner(tronWeb, isMulti) {
       const { account, wallet } = this.props;
 
-      return async (transaction, privateKey = false,permissionId = false,callback = false) => {
+      return async (transaction, privateKey = false, permissionId = false, callback = false) => {
 
         if (!wallet.isOpen) {
           throw new Error("wallet is not open");
@@ -115,21 +133,19 @@ export function withTronWeb(InnerComponent) {
             case ACCOUNT_LEDGER:
 
               try {
-                if(isMulti){
-                  transaction = await this.mutiSign(tronWeb,transaction,privateKey,permissionId);
-                  console.log('isMulti',transaction);
-                }
                 const transactionObj = transactionJsonToProtoBuf(transaction);
-
                 const rawDataHex = byteArray2hexStr(transactionObj.getRawData().serializeBinary());
-
                 let raw = transactionObj.getRawData();
-
-                const contractObj = raw.getContractList()[0];
-
+                let contractObj = raw.getContractList()[0];
+                if (isMulti) {
+                  transaction = await this.mutiSign(tronWeb, transaction, privateKey, permissionId).catch(e=>{
+                    console.log(e.toString())
+                  });
+                  if(!isMulti){
+                    return;
+                  }
+                }
                 let contractType = contractObj.getType();
-                console.log('contractType', contractType);
-
                 let tokenInfo = [];
                 let extra = {};
                 switch (contractType) {
@@ -199,7 +215,7 @@ export function withTronWeb(InnerComponent) {
                     break;
 
                   case 31: //Trigger Smart Contract
-                    extra = transaction.extra;
+                    extra = transaction.extra || {};
                     break;
                   case 46:
                     extra = {};
@@ -214,12 +230,12 @@ export function withTronWeb(InnerComponent) {
 
                 const ledgerBridge = new LedgerBridge();
                 let signedResponse;
-                
+
                 signedResponse = await ledgerBridge.signTransaction({
                   hex: rawDataHex,
                   info: tokenInfo,
                 })
-                
+
                 console.log('signedResponse', signedResponse);
                 transaction.signature = [Buffer.from(signedResponse).toString('hex')];
                 return transaction;

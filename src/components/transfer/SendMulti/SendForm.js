@@ -33,7 +33,6 @@ class SendForm extends React.Component {
 
   constructor(props) {
     super(props);
-    console.log('props',props)
     this.state = {
       privateKey: "",
       to: props.to || "",
@@ -55,6 +54,7 @@ class SendForm extends React.Component {
       tokenBalances:[],
       tokens20:[],
       errmessage:false,
+      sendErrorMessage:"",
     };
   }
 
@@ -98,7 +98,7 @@ class SendForm extends React.Component {
     let TokenName = list[1];
     let { onSend, wallet} = this.props;
     let  tronWeb, transactionId;
-    let result, success;
+    let result, success, sendErrorMessage,SignTransaction;
     this.setState({isLoading: true, modal: null});
     if(IS_MAINNET){
         /*
@@ -117,6 +117,7 @@ class SendForm extends React.Component {
 
                 //create transaction
                 if(this.props.wallet.type==="ACCOUNT_LEDGER"){
+                  console.log('this.props.wallet.type',this.props.wallet.type);
                   tronWeb = this.props.tronWeb()
                 }else{
                   tronWeb = this.props.account.tronWeb;
@@ -130,8 +131,14 @@ class SendForm extends React.Component {
                 let HexStr = Client.getSendHexStr(TokenName, from, to, amount);
 
                 //sign transaction
-                const SignTransaction = await transactionMultiResultManager(unSignTransaction, tronWeb, permissionId, permissionTime,HexStr);
-                console.log('SignTransaction111',SignTransaction)
+                if(this.props.wallet.type==="ACCOUNT_LEDGER"){
+                     SignTransaction = await transactionMultiResultManager(unSignTransaction, tronWeb, permissionId, permissionTime);
+                    console.log('SignTransaction111',SignTransaction)
+                }else{
+                     SignTransaction = await transactionMultiResultManager(unSignTransaction, tronWeb, permissionId, permissionTime,HexStr);
+                    console.log('SignTransaction2222',SignTransaction)
+                }
+
 
                 // xhr.defaults.headers.common["MainChain"] = 'MainChain';
                 if(!SignTransaction){
@@ -144,6 +151,7 @@ class SendForm extends React.Component {
                         "netType": "main_net"
                     });
                     result = data.code;
+                    sendErrorMessage = data.message;
                     console.log('code', result)
                 }
             }
@@ -152,6 +160,9 @@ class SendForm extends React.Component {
                 success = true;
             } else {
                 success = false;
+                this.setState({
+                    sendErrorMessage,
+                });
             }
 
         } else {
@@ -188,6 +199,7 @@ class SendForm extends React.Component {
                         "netType":"main_net"
                     });
                     result = data.code;
+                    sendErrorMessage = data.message;
                     console.log('code',result)
                 }
 
@@ -197,6 +209,9 @@ class SendForm extends React.Component {
                 success = true;
             } else {
                 success = false;
+                this.setState({
+                    sendErrorMessage,
+                });
             }
         }
     }else{
@@ -251,6 +266,7 @@ class SendForm extends React.Component {
     let tronWeb;
     let transactionId;
     let result;
+    let sendErrorMessage, SignTransaction;
     this.setState({ isLoading: true, modal: null });
     let contractAddress = find(tokens20, t => t.name === TokenName).contract_address;
     if(IS_MAINNET) {
@@ -265,7 +281,7 @@ class SendForm extends React.Component {
                     {type: 'address', value: tronWeb.address.toHex(to)},
                     {type: 'uint256', value: new BigNumber(amount).shiftedBy(decimals).toString()}
                 ],
-                tronWeb.address.toHex(this.props.wallet.address),
+                tronWeb.address.toHex(from),
             );
             if (unSignTransaction.transaction !== undefined)
                 unSignTransaction = unSignTransaction.transaction;
@@ -277,13 +293,18 @@ class SendForm extends React.Component {
             }
             console.log('unSignTransaction=========',unSignTransaction)
 
-           // transactionId = await transactionResultManager(unSignTransaction, tronWeb)
-           //get transaction parameter value to Hex
+           // transactionId = await transactionResultHexManager(unSignTransaction, tronWeb)
+           // get transaction parameter value to Hex
            let HexStr = Client.getTriggerSmartContractHexStr(unSignTransaction.raw_data.contract[0].parameter.value);
            console.log('HexStr',HexStr)
 
-           //sign transaction
-           let SignTransaction = await transactionMultiResultManager(unSignTransaction, tronWeb, permissionId,permissionTime,HexStr);
+            if(this.props.wallet.type==="ACCOUNT_LEDGER"){
+                //sign transaction
+                 SignTransaction = await transactionMultiResultManager(unSignTransaction, tronWeb, permissionId,permissionTime,HexStr);
+            }else{
+                 SignTransaction = await transactionMultiResultManager(unSignTransaction, tronWeb, permissionId,permissionTime,HexStr);
+            }
+
            if(!SignTransaction){
             result = 40001
            }else{
@@ -294,11 +315,16 @@ class SendForm extends React.Component {
                   "functionSelector":"transfer(address,uint256)"
               });
               result = data.code;
+              sendErrorMessage = data.message;
               console.log('code',result)
+
             }
             if (result == 0) {
                 transactionId = true;
             } else {
+                this.setState({
+                    sendErrorMessage,
+                });
                 transactionId = false;
              } 
         } else if (this.props.wallet.type === "ACCOUNT_TRONLINK" || this.props.wallet.type === "ACCOUNT_PRIVATE_KEY") {
@@ -335,6 +361,7 @@ class SendForm extends React.Component {
                     "functionSelector":"transfer(address,uint256)"
                 });
                 result = data.code;
+                sendErrorMessage = data.message;
                 console.log('code',result)
             }
 
@@ -342,6 +369,9 @@ class SendForm extends React.Component {
             if (result == 0) {
                 transactionId = true;
             } else {
+                this.setState({
+                    sendErrorMessage,
+                });
                 transactionId = false;
             }
         }
@@ -426,8 +456,6 @@ class SendForm extends React.Component {
     setActivePermissionDisable = (keys,contractTypesArr) =>{
       let { wallet } = this.props;
       let isDisable = false;
-        console.log('contractTypesArr222',contractTypesArr)
-        console.log('keys222',keys)
             keys.map((key,k) => {
                 if(key.address == wallet.address) {
                     if(contractTypesArr){
@@ -450,6 +478,34 @@ class SendForm extends React.Component {
       let { errmessage }  = this.state;
       let { wallet }  = this.props;
       let walletAddress = await Client.getAccountByAddressNew(address);
+      if (walletAddress.activePermissions.length == 0) {
+          let activePermissionsData = {
+              "operations": "7fff1fc0033e0300000000000000000000000000000000000000000000000000",
+              "keys": [
+                  {
+                      "address": address,
+                      "weight": 1
+                  }
+              ],
+              "threshold": 1,
+              "id": 2,
+              "type": "Active",
+              "permission_name": "active"
+          }
+          walletAddress.activePermissions.push(activePermissionsData)
+      }
+      if(!walletAddress.ownerPermission){
+          walletAddress.ownerPermission = {
+              "keys": [
+                  {
+                      "address": address,
+                      "weight": 1
+                  }
+              ],
+              "threshold": 1,
+              "permission_name": "owner"
+          }
+      }
       let ownerPermissions = walletAddress.ownerPermission || {};
       let activePermissions = walletAddress.activePermissions || [];
       console.log('activePermissions',activePermissions)
@@ -458,8 +514,6 @@ class SendForm extends React.Component {
       let activeOption = [];
       console.log('ownerPermissions',ownerPermissions)
       if(JSON.stringify(ownerPermissions) != "{}") {
-          console.log('this.setActivePermissionDisable(ownerPermissions.keys)222222',ownerPermissions.keys)
-          console.log('this.setActivePermissionDisable(ownerPermissions.keys)',this.setActivePermissionDisable(ownerPermissions.keys))
           ownerOption.push({
               permissionName:ownerPermissions.permission_name,
               permissionValue:0,
@@ -684,7 +738,7 @@ class SendForm extends React.Component {
 
   renderFooter() {
 
-    let {sendStatus, isLoading} = this.state;
+    let {sendStatus, isLoading, sendErrorMessage} = this.state;
 
     if (sendStatus === 'success') {
       return (
@@ -697,7 +751,8 @@ class SendForm extends React.Component {
     if (sendStatus === 'failure') {
       return (
           <Alert color="danger" className="text-center">
-            Something went wrong while submitting the transaction
+              {sendErrorMessage?sendErrorMessage: 'Something went wrong while submitting the transaction'}
+
           </Alert>
       )
     }
