@@ -324,9 +324,7 @@ class Code extends React.Component {
       try {
         let options = {};
         if (!tokenId || tokenId == "_") {
-          options = {
-            callValue: this.Mul(totalValue, Math.pow(10, sendTokenDecimals))
-          };
+          options = { callValue: this.Mul(totalValue,Math.pow(10, sendTokenDecimals))||0 }
         } else {
           options = {
             tokenId: tokenId,
@@ -407,7 +405,7 @@ class Code extends React.Component {
             console.log(11111111111111111111111);
             console.log('tokenId',tokenId,sendTokenDecimals);
             if (!tokenId || tokenId == '_') {
-                options = { callValue: this.Mul(totalValue,Math.pow(10, sendTokenDecimals))||0 };
+                options = { callValue: this.Mul(totalValue,Math.pow(10, sendTokenDecimals))||0 }
             } else {
                 options = {
                     tokenId: tokenId,

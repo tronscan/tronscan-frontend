@@ -460,7 +460,7 @@ class MySignature extends React.Component {
         key: "signature_operate",
         align: "right",
         className: "ant_table",
-        width: "20%",
+        width: "25%",
         render: (text, record, index) => {
           return (
             <span>
