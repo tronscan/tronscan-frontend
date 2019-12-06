@@ -61,7 +61,10 @@ export default class OwnerEdit extends Component{
     changeValueByEvent(e){
         const target = e.target;
         const name = target.name;
-        const value = name==='threshold'?toNumber(target.value):target.value;
+        let value = name==='threshold'?toNumber(target.value):target.value;
+        if(name==='permission_name'){
+            value = value.replace(/[\u4e00-\u9fa5]/g,'');
+        }
         this.setState({
         [name]: value
         },()=>{

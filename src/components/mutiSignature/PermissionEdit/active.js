@@ -139,7 +139,10 @@ export default class ActiveEdit extends Component {
         }
         const target = e.target;
         const name = target.name;
-        const value = name === 'threshold' ? toNumber(target.value) : target.value.trim();
+        let value = name === 'threshold' ? toNumber(target.value) : target.value.trim();
+        if(name==='permission_name'){
+            value = value.replace(/[\u4e00-\u9fa5]/g,'');
+        }
         activeItem[name] = value;
         if (acIndex !== null) {
             this.setState({
