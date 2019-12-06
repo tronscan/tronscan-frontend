@@ -135,8 +135,9 @@
           float: right;
         }
         .disabled-btn{
-            background:rgba(196,49,39,0.4);
-            border-color:rgba(196,49,39,0.4);
+            background:#979797;
+            border-color:#979797;
+            cursor: default;
         }
       }
       .permission-desc {
