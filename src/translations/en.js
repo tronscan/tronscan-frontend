@@ -119,7 +119,7 @@ export const messages = {
   "transfers": "Transfers",
   "live": "Live",
   "statistics": "Statistics",
-  "markets": "Poloni DEX",
+  "markets": "Markets",
   "tools": "Tools",
   "transaction_viewer": "Transaction Viewer",
   "node_tester": "Node Tester",
