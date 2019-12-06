@@ -494,7 +494,7 @@ export default class ActiveEdit extends Component {
                         <a className={activePermissions.length < 8 ? 'btn btn-danger ac-permission-add-btn' : 'btn btn-danger ac-permission-add-btn disabled-btn'} size='small'  onClick={() => { this.openAddActiveModal() }}><span>+</span><span>{tu('signature_add_permissions')}</span></a>
                     </div>
                     <div className='permission-desc'>
-                        {tu('signature_active_permissions_desc')}
+                        {tu('signature_active_permissions_desc')} 
                     </div>
                     {
                         activePermissions.map((item, acIndex) => {
