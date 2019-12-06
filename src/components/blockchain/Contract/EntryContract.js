@@ -426,7 +426,10 @@ class Code extends React.Component {
             );
             if (unSignTransaction.transaction !== undefined)
                 unSignTransaction = unSignTransaction.transaction;
-            console.log('unSignTransaction',unSignTransaction)
+            unSignTransaction.extra = {
+                to: '',
+            }
+            console.log('unSignTransaction===========10000',unSignTransaction)
 
             //get transaction parameter value to Hex
             let HexStr = Client.getTriggerSmartContractHexStr(unSignTransaction.raw_data.contract[0].parameter.value);

@@ -406,6 +406,34 @@ class SendForm extends React.Component {
       let { errmessage }  = this.state;
       let { wallet }  = this.props;
       let walletAddress = await Client.getAccountByAddressNew(address);
+      if (walletAddress.activePermissions.length == 0) {
+          let activePermissionsData = {
+              "operations": "7fff1fc0033e0300000000000000000000000000000000000000000000000000",
+              "keys": [
+                  {
+                      "address": address,
+                      "weight": 1
+                  }
+              ],
+              "threshold": 1,
+              "id": 2,
+              "type": "Active",
+              "permission_name": "active"
+          }
+          walletAddress.activePermissions.push(activePermissionsData)
+      }
+      if(!walletAddress.ownerPermission){
+          walletAddress.ownerPermission = {
+              "keys": [
+                  {
+                      "address": address,
+                      "weight": 1
+                  }
+              ],
+              "threshold": 1,
+              "permission_name": "owner"
+          }
+      }
       let ownerPermissions = walletAddress.ownerPermission || {};
       let activePermissions = walletAddress.activePermissions || [];
       console.log('activePermissions',activePermissions)
