@@ -63,7 +63,7 @@ export default class OwnerEdit extends Component{
         const name = target.name;
         let value = name==='threshold'?toNumber(target.value):target.value;
         if(name==='permission_name'){
-            value = value.replace(/[\u4e00-\u9fa5]/g,'');
+            value = value.replace(/[^\w\.\/]/ig,'');
         }
         this.setState({
         [name]: value
@@ -82,7 +82,7 @@ export default class OwnerEdit extends Component{
     }
 
     render(){
-        const {tronWeb } = this.props;
+        const {tronWeb,intl } = this.props;
         let {keys,threshold,permission_name} = this.state;
         //console.log('render',keys);
         keys = keys.map(item=>{
@@ -107,7 +107,7 @@ export default class OwnerEdit extends Component{
                 {tu('signature_privilege_desc')}
             </div>
             <div className="permission-content">
-                <div className="permission-item"> <span className="permission-label">{tu('signature_permission')}:</span> <span><Input value={permission_name} name='permission_name' maxLength={32} onChange={(e)=>{this.changeValueByEvent(e)}}/></span></div>
+                <div className="permission-item"> <span className="permission-label">{tu('signature_permission')}:</span> <span><Input value={permission_name} name='permission_name' placeholder={intl.formatMessage({id: "permission_name_limit"})} maxLength={32} onChange={(e)=>{this.changeValueByEvent(e)}}/></span></div>
                 <div className="permission-item"> <span className="permission-label">{tu('signature_threshold')}:</span> <span><Input value={threshold} name='threshold' onChange={(e)=>{this.changeValueByEvent(e)}}/></span></div>
                 <div className="permission-item permission-keys">
                     <span className="permission-label">{tu('signature_keys')}:</span> 

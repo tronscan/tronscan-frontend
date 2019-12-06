@@ -2508,5 +2508,6 @@ export const messages = {
   "Bancor Transaction":"执行Bancor交易",
   "Bancor Exchange Create":"创建Bancor交易",
   "Bancor Exchange Inject":"Bancor交易注资",
-  "Bancor Exchange Withdraw":"Bancor交易撤资"
+  "Bancor Exchange Withdraw":"Bancor交易撤资",
+  "permission_name_limit":"请输入英文字符及数字",
 };

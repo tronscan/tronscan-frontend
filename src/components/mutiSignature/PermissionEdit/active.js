@@ -141,7 +141,7 @@ export default class ActiveEdit extends Component {
         const name = target.name;
         let value = name === 'threshold' ? toNumber(target.value) : target.value.trim();
         if(name==='permission_name'){
-            value = value.replace(/[\u4e00-\u9fa5]/g,'');
+            value = value.replace(/[^\w\.\/]/ig,'');
         }
         activeItem[name] = value;
         if (acIndex !== null) {
@@ -505,7 +505,7 @@ export default class ActiveEdit extends Component {
                                 <a href="javascript:;" className='permission-delete' onClick={(e) => { this.deleteAcItem(acIndex, e) }}></a>
                                 <div className="permission-item">
                                     <span className="permission-label">{tu('signature_permission')}:</span>
-                                    <span><Input value={item.permission_name} name='permission_name' maxLength={32} onChange={(e) => { this.changeValueByEvent(acIndex, e) }} /></span>
+                                    <span><Input value={item.permission_name} name='permission_name' placeholder={intl.formatMessage({id: "permission_name_limit"})}  maxLength={32} onChange={(e) => { this.changeValueByEvent(acIndex, e) }} /></span>
                                 </div>
                                 <div className="permission-item" style={{ paddingBottom: 0 }}>
                                     <span className="permission-label">{tu('signature_Operations')}:</span>
@@ -601,7 +601,7 @@ export default class ActiveEdit extends Component {
                             <div className="permission-item">
                                 <span className="permission-label">{tu('signature_permission')}:</span>
                                 <span>
-                                    <Input name='permission_name' value={willAddActive.permission_name} maxLength={32} onChange={(e) => { this.changeValueByEvent(null, e) }} />
+                                    <Input name='permission_name' value={willAddActive.permission_name}  placeholder={intl.formatMessage({id: "permission_name_limit"})}  maxLength={32} onChange={(e) => { this.changeValueByEvent(null, e) }} />
 
                                 </span>
                             </div>
