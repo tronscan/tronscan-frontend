@@ -389,9 +389,6 @@ export default class MyPermission extends React.Component {
         if(!changedOwnerPermission){
             return;
         }
-        console.log('changedOwnerPermission', changedOwnerPermission);
-        console.log('changedActivePermission', changedActivePermission);
-        console.log('changeWithnessPermission', changedWihnessPermission);
 
         //
         // if (this.comparePermissionIsChanged()) {

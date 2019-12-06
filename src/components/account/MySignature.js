@@ -205,11 +205,6 @@ class MySignature extends React.Component {
     let { filter } = this.state;
     let transactionId;
     let result, success, tronWeb;
-    console.log(
-      "details.contractType",
-      details.contractType,
-      details.contractType == "TransferContract"
-    );
     if (
       !(
         details.contractType == "TransferContract" ||
@@ -228,7 +223,6 @@ class MySignature extends React.Component {
     //set transaction txID
     currentTransaction.txID = details.hash;
     //sign transaction
-    console.log("currentTransaction=======", currentTransaction);
     const SignTransaction = await tronWeb.trx
       .multiSign(
         currentTransaction,
@@ -238,7 +232,6 @@ class MySignature extends React.Component {
       .catch(e => {
         console.log("e", e);
       });
-    console.log("SignTransaction===", SignTransaction);
 
     // xhr.defaults.headers.common["MainChain"] = 'MainChain';
 

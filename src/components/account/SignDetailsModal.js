@@ -111,7 +111,6 @@ class SignDetailsModal extends Component {
      */
     sign = () => {
         const { onSign, details } = this.props;
-        console.log('details222',details)
         onSign && onSign(details);
     };
 
@@ -130,22 +129,14 @@ class SignDetailsModal extends Component {
     getParameterValue = async() =>{
         const { details, account } = this.props;
         let hexstr = details.currentTransaction.raw_data.contract[0].parameter.value;
-        console.log('hexstr',hexstr)
         let parameterValue = Client.getParameterValue(hexstr);
-        console.log('parameterValue',parameterValue)
         //details.contractData.data = parameterValue;
-        console.log('details.contractData',details.contractData)
         let parameter = details.contractData;
         let function_selector = details.functionSelector;
-        console.log('function_selector',function_selector)
         let contract_address = details.contractData.contract_address;
-        console.log('contract_address',contract_address)
         let smartcontract = await account.tronWeb.trx.getContract(contract_address);
         let abi = smartcontract.abi.entrys;
-        console.log('abi',abi)
-        console.log('parameterValue.data.substring(8)',parameterValue.data.substring(8))
         const args = Utils.decodeParams(parameterValue.data.substring(8),abi,function_selector);
-        console.log('args',args)
         this.setState({
             args
         });
@@ -157,14 +148,11 @@ class SignDetailsModal extends Component {
         const { details } = this.props;
         const {  isShowModal, modal, args } = this.state;
         const defaultImg = require("../../images/logo_default.png");
-        console.log('args',args)
-        console.log('details',details)
         let TokenIDList = [];
         let TokencontractList = [];
         let tokenIdData,trc20tokenBalances;
         TokenIDList.push(details.contractData)
         if(TokenIDList){
-            console.log('TokenIDList',TokenIDList)
             tokenIdData  = rebuildList(TokenIDList,'asset_name','amount')[0]
         }
 
@@ -178,7 +166,6 @@ class SignDetailsModal extends Component {
             )
            trc20tokenBalances  = rebuildToken20List(TokencontractList, 'contract_address', 'balance')[0];
         }
-        console.log('trc20tokenBalances',trc20tokenBalances)
 
 
 
