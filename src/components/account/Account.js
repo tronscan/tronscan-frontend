@@ -2580,7 +2580,8 @@ export default class Account extends Component {
                         onClick={()=>this.setState({isInMyPermission:false,isInMySignature:true})}>
                         {tu('signature_my')}
                       </a>
-                      <div className='muti-sign-content'>
+                      { 
+                        IS_MAINNET&&<div className='muti-sign-content'>
                          <div className='muti-sign-my-permission' style={{display:isInMyPermission?'block':'none'}}>
                             <MyPermission tronWeb={tronWeb}/>
                          </div>
@@ -2588,6 +2589,7 @@ export default class Account extends Component {
                             <MySignature type={mySignatureType} handleType={this.changeMySignatureType.bind(this)}/>
                          </div>
                       </div>
+                      }
                     </div>
                   </div>
                 </div>
