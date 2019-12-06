@@ -9,7 +9,7 @@
     "@fortawesome/react-fontawesome": "^0.0.19",
     "@ledgerhq/hw-transport-u2f": "^4.31.0",
     "@svgr/webpack": "4.1.0",
-    "@tronscan/client": "^0.2.61",
+    "@tronscan/client": "^0.2.62",
     "@tweenjs/tween.js": "^17.2.0",
     "@typescript-eslint/eslint-plugin": "1.6.0",
     "@typescript-eslint/parser": "1.6.0",
@@ -18,6 +18,8 @@
     "antd": "^3.6.5",
     "awesome-bootstrap-checkbox": "^1.0.1",
     "axios": "^0.18.0",
+
+
     "babel-eslint": "10.0.1",
     "babel-jest": "^24.8.0",
     "babel-loader": "8.0.5",

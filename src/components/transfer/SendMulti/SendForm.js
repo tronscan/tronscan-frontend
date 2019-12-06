@@ -106,12 +106,12 @@ class SendForm extends React.Component {
         */
         if (TokenName === "_") {
             amount = this.Mul(amount,ONE_TRX);
-            if(this.props.wallet.type==="ACCOUNT_LEDGER") {
-                result = await this.props.tronWeb().trx.sendTransaction(to, amount, {address: wallet.address}, false).catch(function (e) {
-                    console.log(e)
-                });
-
-            }
+            // if(this.props.wallet.type==="ACCOUNT_LEDGER") {
+            //     result = await this.props.tronWeb().trx.sendTransaction(to, amount, {address: wallet.address}, false).catch(function (e) {
+            //         console.log(e)
+            //     });
+            //
+            // }
 
             if(this.props.wallet.type==="ACCOUNT_TRONLINK" || this.props.wallet.type==="ACCOUNT_PRIVATE_KEY" || this.props.wallet.type==="ACCOUNT_LEDGER"){
 
