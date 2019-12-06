@@ -32,7 +32,7 @@ import {QuestionMark} from "../../common/QuestionMark";
 export default class MyPermission extends React.Component {
     constructor(props) {
         super(props);
-        const { wallet,tronWeb } = this.props;
+        const { wallet,tronWeb,account } = this.props;
         const { ownerPermission, activePermissions, witnessPermission } = wallet.current;
         if(ownerPermission){
             ownerPermission.type = 0;
@@ -57,7 +57,7 @@ export default class MyPermission extends React.Component {
         this.state = {
             isEditOperateUser: false,
             isEditContent: false,
-            curControlAddress: wallet.current.address,
+            curControlAddress: wallet.current.address == '3QJmnh'? account.address:wallet.current.address,
             curLoginAddress: wallet.current.address,
             modal: null,
             modalAlert: null,
@@ -355,13 +355,13 @@ export default class MyPermission extends React.Component {
                 <SweetAlert
                     warning
                     showCancel
-                    confirmBtnText={tu('signature_save')}
+                    confirmBtnText={tu('ok_confirm')}
                     confirmBtnBsStyle="danger"
                     cancelBtnText={tu('signature_cancel')}
-                    cancelBtnBsStyle="default"
+                    cancelBtnBsStyle="cancel"
                     onConfirm={() => cbOK()}
                     onCancel={() => this.hideModal()}
-                    //focusCancelBtn
+                    focusCancelBtn
                 >
                     {msg}
                 </SweetAlert>
@@ -586,7 +586,7 @@ export default class MyPermission extends React.Component {
                     <div className="operate-btn">
                         <a href="javascript:;" className='edit-permission' style={{ display: !isEditContent ? 'inline-block' : 'none' }} onClick={() => { this.setState({ isEditContent: true }) }}><span className='edit'></span><span>{tu('signature_edit_permissions')}</span> </a>
                         <div className="buttonWarp" style={{ display: isEditContent ? 'inline-block' : 'none' }}>
-                            <Button className="btn btn-default" onClick={() => { this.onCancelClick() }}>{tu('signature_cancel')}</Button>
+                            <Button className="btn btn-cancel" onClick={() => { this.onCancelClick() }}>{tu('signature_cancel')}</Button>
                             <Button className="btn btn-danger" style={{ marginLeft: '10px' }} onClick={() => { this.onSubmitClick() }}>{tu('signature_save')}</Button>
                         </div>
                     </div>

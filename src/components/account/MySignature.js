@@ -90,7 +90,7 @@ class MySignature extends React.Component {
     let {
       data: { data }
     } = await xhr.get(
-      "https://testpre.tronlink.org/api/wallet/multi/trx_record",
+      "https://list.tronlink.org/api/wallet/multi/trx_record",
       {
         params: {
           address: wallet.address,
@@ -242,7 +242,7 @@ class MySignature extends React.Component {
 
     //xhr multi-sign transaction api
     let { data } = await xhr.post(
-      "https://testpre.tronlink.org/api/wallet/multi/transaction",
+      "https://list.tronlink.org/api/wallet/multi/transaction",
       {
         address: wallet.address,
         transaction: SignTransaction,
@@ -460,7 +460,7 @@ class MySignature extends React.Component {
         key: "signature_operate",
         align: "right",
         className: "ant_table",
-        width: "20%",
+        width: "25%",
         render: (text, record, index) => {
           return (
             <span>

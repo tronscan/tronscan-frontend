@@ -20,7 +20,7 @@ export const reloadWallet = () => async (dispatch, getState) => {
   if (app.account.isLoggedIn) {
       let {balances, trc20token_balances, frozen, accountResource, delegated, tokenBalances, exchanges, ...wallet} = await Client.getAccountByAddressNew(app.account.address);
       try {
-          let {data: {data}} = await xhr.get("https://testpre.tronlink.org/api/wallet/multi/trx_record", {
+          let {data: {data}} = await xhr.get("https://list.tronlink.org/api/wallet/multi/trx_record", {
               params: {
                   "address": app.account.address,
                   "start": 0,

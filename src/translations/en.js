@@ -2394,7 +2394,7 @@ export const messages = {
  "signature_status":"Status",
  "signature_account":"Pending signature",
  "no_control_permission":"No access to the said address. Please try again.",
- "signature":"Signature",
+ "signature":"Sign",
  "signature_details":"Transaction details",
  "signature_details_processing":"In progress",
  "view_on_chain_transactions":"View on-chain transactions",

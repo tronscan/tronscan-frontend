@@ -253,7 +253,7 @@ class Code extends React.Component {
                 //sign transaction
                 let SignTransaction = await transactionMultiResultManager(unSignTransaction, tronWeb, permissionId,permissionTime,HexStr);
 
-                let { data } = await xhr.post("https://testpre.tronlink.org/api/wallet/multi/transaction", {
+                let { data } = await xhr.post("https://list.tronlink.org/api/wallet/multi/transaction", {
                     "address": account.address,
                     "transaction": SignTransaction,
                     "netType":"main_net",
@@ -324,9 +324,7 @@ class Code extends React.Component {
       try {
         let options = {};
         if (!tokenId || tokenId == "_") {
-          options = {
-            callValue: this.Mul(totalValue, Math.pow(10, sendTokenDecimals))
-          };
+          options = { callValue: this.Mul(totalValue,Math.pow(10, sendTokenDecimals))||0 }
         } else {
           options = {
             tokenId: tokenId,
@@ -407,7 +405,7 @@ class Code extends React.Component {
             console.log(11111111111111111111111);
             console.log('tokenId',tokenId,sendTokenDecimals);
             if (!tokenId || tokenId == '_') {
-                options = { callValue: this.Mul(totalValue,Math.pow(10, sendTokenDecimals))||0 };
+                options = { callValue: this.Mul(totalValue,Math.pow(10, sendTokenDecimals))||0 }
             } else {
                 options = {
                     tokenId: tokenId,
