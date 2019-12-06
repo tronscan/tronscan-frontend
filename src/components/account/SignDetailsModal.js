@@ -343,7 +343,7 @@ class SignDetailsModal extends Component {
                                     <div className="content_name">
                                         {args[item].name}:
                                     </div>
-                                    <div className="flex1">
+                                    <div className="flex1 details-break-word">
                                         {args[item].value}
                                     </div>
                                 </div>

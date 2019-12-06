@@ -4891,9 +4891,13 @@ h5 {
   .flex1{
     width: 100%;
   }
-
   .border-bottom{
     border-bottom: 1px solid #e5e5e5 !important;
+  }
+  .details-break-word{
+    word-wrap: break-word;
+    width: 234px;
+    margin-left: -34px;
   }
 }
 
