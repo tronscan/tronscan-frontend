@@ -418,8 +418,9 @@ class Code extends React.Component {
             let retValue = false;
             if(!broadcast.result){
               retValue = false;
+              console.log('retValue222222',retValue)
             }else{
-              retValue=await this.getTxResult(signedTransaction.txID);
+              retValue= await this.getTxResult(signedTransaction.txID);
             }
             this.setState({
               result: this.formatOutputs(retValue)
@@ -487,6 +488,7 @@ class Code extends React.Component {
     return new Promise((reslove, reject) => {
       let checkResult = async function(txID) {
         const output = await tronWeb.trx.getUnconfirmedTransactionInfo(txID);
+        console.log('output',output)
         if (Object.keys(output).length <= 1 && !output.id) {
           return setTimeout(() => {
             checkResult(txID);
