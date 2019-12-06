@@ -55,7 +55,8 @@ class MySignature extends React.Component {
         multiState: props.type
       },
       isShowSignDetailsModal: false,
-      details: {}
+      details: {},
+      now:Math.ceil(Date.now()/1000)
     };
   }
 
@@ -166,6 +167,7 @@ class MySignature extends React.Component {
     } else {
       list = signatureList;
     }
+    
 
     this.setState({
       data: list,
@@ -352,6 +354,7 @@ class MySignature extends React.Component {
 
   customizedColumn = () => {
     let { intl } = this.props;
+    let {now} = this.state;
     let column = [
       {
         title: upperFirst(intl.formatMessage({ id: "signature_type" })),
@@ -383,7 +386,7 @@ class MySignature extends React.Component {
         render: (text, record, index) => {
           return text ? (
             <Countdown
-              date={Date.now() + record.expireTime * 1000}
+              date={(now + record.expireTime) * 1000}
               daysInHours={true}
             />
           ) : (
