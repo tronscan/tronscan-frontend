@@ -38,6 +38,7 @@ class Code extends React.Component {
       modal: null,
       tokenId: '',
       totalValue: 0,
+      sendTokenDecimals:0,
       code:111
     };
   }
@@ -404,6 +405,7 @@ class Code extends React.Component {
             let options = {};
             console.log(11111111111111111111111);
             console.log('tokenId',tokenId,sendTokenDecimals);
+
             if (!tokenId || tokenId == '_') {
                 options = { callValue: this.Mul(totalValue,Math.pow(10, sendTokenDecimals))||0 }
             } else {
@@ -413,6 +415,8 @@ class Code extends React.Component {
                 };
             }
             console.log('options=======',options)
+            console.log('address',address)
+            console.log('account.address',account.address)
             let unSignTransaction = await tronWeb.transactionBuilder.triggerSmartContract(
                 tronWeb.address.toHex(address),
                 function_selector,
@@ -607,7 +611,7 @@ class Code extends React.Component {
           </div>
           <div className="d-flex">
               <div className="search-btn" onClick={() => this.sendClick()}>Send</div>
-              <div className="search-btn ml-5" onClick={() => this.MultiSendModal()}>Multi Send</div>
+              <div className="search-btn ml-2" onClick={() => this.MultiSendModal()}>Multi Send</div>
           </div>
 
             {
@@ -621,8 +625,8 @@ class Code extends React.Component {
       contractList = (
         <div>
             <div className="d-flex">
-                <div className="search-btn" onClick={() => this.MultiSend()}>Send</div>
-                <div className="search-btn" onClick={() => this.MultiSendModal()}>Multi Send</div>
+                <div className="search-btn" onClick={() => this.sendClick()}>Send</div>
+                <div className="search-btn ml-2" onClick={() => this.MultiSendModal()}>Multi Send</div>
             </div>
             {
                 result && <JSONTree data={result}  theme={theme} invertTheme={true}/>
