@@ -39,7 +39,7 @@ export const messages = {
     "password": "密码",
     "money_price": "价格",
     "price": "价格",
-    "blocks": "已确认区块",
+    "blocks": "区块",
     "block": "区块",
     "name": "名称",
     "website": "网址",
@@ -61,7 +61,7 @@ export const messages = {
     "value": "价值",
     "total_accounts": "实时总账户数",
     "submit": "提交",
-    "send": "发送",
+    "send": "转账",
     "receive": "接收",
     "supply": "持有量",
     "view": "查看",
@@ -530,9 +530,9 @@ export const messages = {
     "no_trx_remaining": "无TRX余额",
     "show_more": "展示{国家长度} 更多内容",
     "vote_guide_message": `使用TRX为超级代表投票。
-   每一个TRX享有一次投票机会。
-   投票不消耗TRX。可以为多个超级代表投票，投票不限次数。
-   票数于每天2:00,8:00,14:00,20:00更新，同时代表排序会刷新。`,
+ 每一个TRX享有一次投票机会。
+ 投票不消耗TRX。可以为多个超级代表投票，投票不限次数。
+ 票数于每天2:00,8:00,14:00,20:00更新，同时代表排序会刷新。`,
     "search_address": "搜索地址",
     "token_transactions": "通证交易",
     "token_holders": "通证持有者",
@@ -593,9 +593,9 @@ export const messages = {
     "token_spend_confirm": "我已获知发行通证需一次性缴纳1024TRX。",
     "token_issue_guide_message_1": `用户账户中有至少1024TRX，就可以在波场协议上发行通证。`,
     "token_issue_guide_message_2": `通证发行后，会在通证总览页面进行显示。
-    之后用户可以在发行期限内参与认购，用TRX兑换通证。`,
+  之后用户可以在发行期限内参与认购，用TRX兑换通证。`,
     "token_issue_guide_message_3": `在发行通证后，您的账户将会收到全部的发行数额。
-    当其他用户使用TRX兑换您发行的通证，兑换数额将从您的账户扣除，并以指定汇率获得相应数额的TRX。`,
+  当其他用户使用TRX兑换您发行的通证，兑换数额将从您的账户扣除，并以指定汇率获得相应数额的TRX。`,
     /*
     ##################################################################################
     #                                                                                #
@@ -961,7 +961,7 @@ export const messages = {
     "total_TRX_supply": "TRX总流通量",
     "market_capitalization": "市值",
     "circulating_supply": "流通量",
-    "list_trx": "交易所上线TRX",
+    "list_trx": "交易所上币",
     "burned_trx": "TRX烧毁数",
     "supply_notes": "全球范围可进行众筹和预售，除美国、中国及日本外",
     "14_day_transaction_history": "过去14天交易数",
@@ -2168,11 +2168,11 @@ export const messages = {
 
 
     /*
-  ##################################################################################
-  #                                                                                #
-  # read contract info   2019-07-02                                    #
-  #                                                                                #
-  ##################################################################################
+##################################################################################
+#                                                                                #
+# read contract info   2019-07-02                                    #
+#                                                                                #
+##################################################################################
 */
     "contract_title": "合约",
     "contract_code_choice": "代码",
@@ -2396,4 +2396,118 @@ export const messages = {
     "sun_network_development_document": "开发文档",
     "home_page": "首页",
     "developer_challenge": "开发者大赛",
+    /*
+       ##################################################################################
+       #                                                                                #
+       #   multi-signature               2019-11-19              #
+       #                                                                                #
+       ##################################################################################
+    */
+    "muti_sign": "多重签名",
+    "translations_wait_sign": "待我签名的交易",
+    "transfer_multi_sign": "多重签名转账",
+    "permission": "权限",
+    "owner_permission": "Owner权限组",
+    "active_permission": "Active权限组",
+    "translations_failure_time": "失效时间",
+    "to_be_sign": "待签名",
+    "signed": "已签名",
+    "signature_failed": "失败",
+    "signature_successful": "成功",
+    "signature_type": "类型",
+    "signature_sponsor": "发起人",
+    "signature_time_left": "剩余时间",
+    "signature_list": "待签名列表",
+    "signature_operate": "操作",
+    "signature_status": "状态",
+    "signature_account": "待签名人",
+    "no_control_permission": "没有该地址的控制权限，请确认后重试",
+    "signature": "签名",
+    "signature_details": "交易详情",
+    "signature_details_processing": "进行中",
+    "view_on_chain_transactions": "查看链上交易",
+    "transaction_create_successful": "交易创建成功，请等待签名通过",
+    "transaction_create_failed": "交易创建失败，请稍后重试",
+    "transaction_signature_muti_failed": "签名失败，请稍后重试",
+    "transaction_signature_muti_successful": "签名成功",
+    "signature_privilege": "拥有者权限",
+    "signature_privilege_desc": "拥有者权限是账户的最高权限，用于控制用户的所有权、调整权限结构拥有者权限也可以执行所有合约",
+    "signature_permission": "权限名称",
+    "signature_threshold": "阈值",
+    "signature_keys": "keys",
+    "signature_key": "地址",
+    "signature_weight": "权重",
+    "signature_active_permissions": "活跃权限",
+    "signature_active_permissions_desc": "活跃权限用于提供一个权限的组合；比如提供一个只能执行创建账户、转账功能的权限最多添加8个活跃权限",
+    "signature_Operations": "操作",
+    "signature_Superdelegate_authority": "超级代表权限",
+    "signature_Superdelegate_authority_desc": "超级代表权限用来设定出块节点",
+    "signature_piece_node": "出块节点",
+    "signature_no_set": "此地址为合约地址，请确认后再试",
+    "signature_Unverified_address": "未验证地址",
+    "signature_notInContralAddress": "没有该地址的控制权限，请确认后重试",
+    "signature_invalid_Address": "地址格式有误，请确认后再试",
+    "signature_weight_required": "权重为必填项.",
+    "signature_address_not_similar": "同一权限组下账户地址不能相同.",
+    "signature_owner_permissin_name_required": "权限名称为必填项",
+    "signature__less_threshold_owner": "地址权重之和须大于等于阈值，才能添加成功  ",
+    "signature__less_threshold_active": "地址权重之和须大于等于阈值，才能添加成功  ",
+    "signature_update_failed": "更新权限失败",
+    "signature_control_address": "控制地址",
+    "signature_authority_structure": "权限结构",
+    "signature_save": "保存",
+    "signature_cancel": "取消",
+    "signature_alter": "修改",
+    "signature_add": "添加",
+    "signature_giveup_change": "是否放弃本次修改?",
+    "signature_set_spend_trx": "提交修改将完成多重签名权限结构的设置此操作将会花费",
+    "signature_submit_change": "，是否提交本次修改?",
+    "signature_my": "我的签名",
+    "signature_my_authrity": "我的权限",
+    "fill_a_valid_permissin_time": "请填写有效的失效时间",
+    "fill_a_valid_permissin_id": "请选择有效的权限",
+    "signature_edit_permissions": "编辑权限",
+    "signature_add_permissions": "添加新权限",
+    "signature_add_active_permissions": "添加活跃权限",
+
+    // 2019-12-02
+    "signature_owner_permission_name_required": "拥有者权限名称为必填项",
+    "signature_owner_threshold_required": "拥有者全系阈值为必填项",
+    "signature_active_permission_name_required": "活跃权限名称为必填项",
+    "signature_active_threshold_required": "活跃权限阈值为必填项",
+    "signature_keys_required": "keys为必填项",
+    "signature_permission_name_required": "权限名称为必填项",
+    "signature_operations_required": "权限操作为必填项",
+    "signature_threshold_required": "权限阈值为必填项",
+    "tronscan_not_support_signatures_this_transaction": "TRONscan不支持此交易的签名",
+    "signaure_control_address_tip": "控制地址表明了拥有者权限，超级代表权限和活跃权限的所属地址修改控制地址后展示的3类权限也会随之改变",
+    "TRX Transfer": "TRX转账",
+    "TRX Freeze": "冻结资产",
+    "TRX Unfreeze": "解冻资产",
+    "Account Create": "激活账户",
+    "Account Name Update": "修改账户名称",
+    "Account Permissions Update": "更新账户权限",
+    "TRC10 Transfer": "TRC10转账",
+    "TRC10 Issue Participate": "购买TRC10通证",
+    "TRC10 Issue": "发行TRC10通证",
+    "TRC10 Unfreeze": "TRC10锁仓提取",
+    "TRC10 Parameters Update": "更新TRC10通证参数",
+    "Smart Contract Trigger (TRC20 Transfer)": "触发智能合约（TRC20 转账)",
+    "Smart Contract Create": "创建智能合约",
+    "Contract Setting Update": "更新合约参数",
+    "Contract Energy Limit Update": "更新合约能量限制",
+    "Contract ABI Clear": "清除合约ABI",
+    "Vote": "投票",
+    "Reward Withdraw": "提取奖励",
+    "Proposal Create": "创建提议",
+    "Proposal Approve": "赞成提议",
+    "Proposal Cancel": "撤销提议",
+    "Representatives Create": "创建超级代表候选人",
+    "Representatives Info Update": "更新超级代表候选人信息",
+    "Representatives Brokerage Update": "更新超级代表佣金比例",
+    "Bancor Transaction": "执行Bancor交易",
+    "Bancor Exchange Create": "创建Bancor交易",
+    "Bancor Exchange Inject": "Bancor交易注资",
+    "Bancor Exchange Withdraw": "Bancor交易撤资",
+    "permission_name_limit": "请输入英文字符及数字",
 };
