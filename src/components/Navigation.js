@@ -953,8 +953,8 @@ class Navigation extends React.Component {
     return (
         <div className="header-top">
           {popup}
-          <div className="logo-wrapper">
-            <div className="container py-2 d-flex px-0">
+          <div className="logo-wrapper ">
+            <div className="py-2 d-flex px-0">
               <div className="ml-4">
                 <Link to="/">
                   <img src={this.getLogo()} className="logo" alt="Tron"/>
@@ -972,165 +972,11 @@ class Navigation extends React.Component {
                   Tronscan is syncing, data might not be up-to-date ({Math.round(syncStatus.sync.progress)}%)
                 </div>
               }
-              {/*{*/}
-                {/*announcement &&*/}
-                {/*<div className="col text-danger text-center py-2 d-none d-md-block text-truncate nav_notice">*/}
-                  {/*<img src={require('../images/announcement-logo.png')} alt="" style={{width: '16px'}}*/}
-                       {/*className="mr-1"/>*/}
-                  {/*<Link to={'/notice/' + announId}>{announcement} <span*/}
-                      {/*style={{color: '#999'}}>({annountime})</span></Link>*/}
-                {/*</div>*/}
-              {/*}*/}
-              <div className="ml-auto d-flex">
-                {
-                  <div className="hidden-mobile nav-searchbar">
-                    <div className="input-group dropdown">
-                      <input type="text"
-                             className="form-control p-2 bg-white border-0 box-shadow-none"
-                             style={styles.search}
-                             value={search}
-                             onKeyDown={this.onSearchKeyDown}
-                             onChange={this.onSearchChange}
-                             onClick={this.callAjax}
-                             placeholder={intl.formatMessage({id: "search_description1"})}/>
-                      <div className="input-group-append" style={{marginLeft:0}}>
-                        <button className="btn box-shadow-none" disabled={this.isSearching} onClick={this.doSearch}>
-                          <i className="fa fa-search"/>
-                        </button>
-                      </div>
-                      <div className="dropdown-menu" id="_searchBox" style={{width: '100%',maxHeight:'300px', overflow:'auto'}}>
-                        {
-                          searchResults && searchResults.map((result, index) => {
-                                if (result.desc === 'Block') {
-                                  return <Link className="dropdown-item text-uppercase" to={"/block/" + trim(result.value)} onClick={() => {
-                                    this.afterSearch()
-                                  }}
-                                            key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></Link>
-                                }
-                                if (result.desc === 'Token-TRC20') {
-                                  return <Link className="dropdown-item text-uppercase" to={"/token20/" + trim(result.value.split(' ')[result.value.split(' ').length-1])} onClick={() => {
-                                    this.afterSearch()
-                                  }}
-                                            key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></Link>
-                                }
-                                if (result.desc === 'Token-TRC10') {
-                                  return <Link className="dropdown-item text-uppercase" to={"/token/" + trim(result.value.split(' ')[result.value.split(' ').length-1])} onClick={() => {
-                                    this.afterSearch()
-                                  }}
-                                            key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></Link>
-                                }
-                                if (result.desc === 'Address') {
-                                  return <Link className="dropdown-item text-uppercase" to={"/address/" + trim(result.value)} onClick={() => {
-                                    this.afterSearch()
-                                  }}
-                                            key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></Link>
-                                }
-                                if (result.desc === 'Contract') {
-                                  return <Link className="dropdown-item text-uppercase" to={"/contract/" + trim(result.value)+'/code'} onClick={() => {
-                                    this.afterSearch()
-                                  }}
-                                            key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></Link>
-                                }
-                                if (result.desc === 'TxHash') {
-                                  return <Link className="dropdown-item text-uppercase" to={"/transaction/" + trim(result.value)} onClick={() => {
-                                    this.afterSearch()
-                                  }}
-                                            key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></Link>
-                                }
-                              }
-                          )
-                        }
-                      </div>
-                    </div>
-                  </div>
-                }
-                <div className="navbar navbar-expand-md navbar-dark py-0">
-                  <ul className="navbar-nav navbar-right wallet-nav">
-                    {
-                      wallet.isOpen && <Notifications wallet={wallet} notifications={notifications}/>
-                    }
-                    {this.renderWallet()}
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="hidden-PC nav-searchbar">
-            <div className="input-group dropdown">
-              <input type="text"
-                     className="form-control p-2 bg-white border-0 box-shadow-none"
-                     style={styles.search}
-                     value={search}
-                     onKeyDown={this.onSearchKeyDown}
-                     onChange={this.onSearchChange}
-                     onClick={this.callAjax}
-                     placeholder={intl.formatMessage({id: "search_description1"})}/>
-              <div className="input-group-append">
-                <button className="btn box-shadow-none" disabled={this.isSearching} onClick={this.doSearch}>
-                  <i className="fa fa-search"/>
-                </button>
-              </div>
-              <div className="dropdown-menu" id="_searchBox" style={{width: '100%',maxHeight:'300px', overflow:'auto'}}>
-                {
-                  searchResults && searchResults.map((result, index) => {
-                        if (result.desc === 'Block') {
-                          return <Link className="dropdown-item text-uppercase" to={"/block/" + trim(result.value)} onClick={() => {
-                            this.afterSearch()
-                          }}
-                                    key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></Link>
-                        }
-                        if (result.desc === 'Token-TRC20') {
-                          return <Link className="dropdown-item text-uppercase" to={"/token20/" + trim(result.value.split(' ')[result.value.split(' ').length-1])} onClick={() => {
-                            this.afterSearch()
-                          }}
-                                    key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></Link>
-                        }
-                        if (result.desc === 'Token-TRC10') {
-                          return <Link className="dropdown-item text-uppercase" to={"/token/" + trim(result.value.split(' ')[result.value.split(' ').length-1])} onClick={() => {
-                            this.afterSearch()
-                          }}
-                                    key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></Link>
-                        }
-                        if (result.desc === 'Address') {
-                          return <Link className="dropdown-item text-uppercase" to={"/address/" + trim(result.value)} onClick={() => {
-                            this.afterSearch()
-                          }}
-                                    key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></Link>
-                        }
-                        if (result.desc === 'Contract') {
-                          return <Link className="dropdown-item text-uppercase" to={"/contract/" + trim(result.value)+'/code'} onClick={() => {
-                            this.afterSearch()
-                          }}
-                                    key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></Link>
-                        }
-                        if (result.desc === 'TxHash') {
-                          return <Link className="dropdown-item text-uppercase" to={"/transaction/" + trim(result.value)} onClick={() => {
-                            this.afterSearch()
-                          }}
-                                    key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></Link>
-                        }
-                      }
-                  )
-                }
-              </div>
-            </div>
-          </div>
-          <nav className="top-bar navbar navbar-expand-md navbar-dark">
             <div className="container">
               <button className="navbar-toggler" type="button" data-toggle="collapse"
                       data-target="#navbar-top">
                 <span className="navbar-toggler-icon"/>
               </button>
-              {/*{*/}
-                {/*announcement && <div className="col text-danger d-md-none">*/}
-                  {/*<div className="">*/}
-
-                    {/*<img src={require('../images/announcement-logo.png')} alt="" style={{width: '16px', height: '16px'}}*/}
-                         {/*className="mr-1"/>*/}
-                    {/*<Link to={'/notice/' + announId}>{announcement} <span style={{color: '#999'}}>({annountime})</span></Link>*/}
-                  {/*</div>*/}
-                {/*</div>*/}
-              {/*}*/}
               <div className="collapse navbar-collapse" id="navbar-top">
                 <ul className="navbar-nav mr-auto">
                   {filter(routes, r => r.showInMenu !== false).map(route => (
@@ -1368,6 +1214,142 @@ class Navigation extends React.Component {
                 </ul>
               </div>
             </div>
+              <div className="ml-auto d-flex">
+                {
+                  <div className="hidden-mobile nav-searchbar">
+                    <div className="input-group dropdown">
+                      <input type="text"
+                             className="form-control p-2 bg-white border-0 box-shadow-none"
+                             style={styles.search}
+                             value={search}
+                             onKeyDown={this.onSearchKeyDown}
+                             onChange={this.onSearchChange}
+                             onClick={this.callAjax}
+                             placeholder={intl.formatMessage({id: "search_description1"})}/>
+                      <div className="input-group-append" style={{marginLeft:0}}>
+                        <button className="btn box-shadow-none" disabled={this.isSearching} onClick={this.doSearch}>
+                          <i className="fa fa-search"/>
+                        </button>
+                      </div>
+                      <div className="dropdown-menu" id="_searchBox" style={{width: '100%',maxHeight:'300px', overflow:'auto'}}>
+                        {
+                          searchResults && searchResults.map((result, index) => {
+                                if (result.desc === 'Block') {
+                                  return <Link className="dropdown-item text-uppercase" to={"/block/" + trim(result.value)} onClick={() => {
+                                    this.afterSearch()
+                                  }}
+                                            key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></Link>
+                                }
+                                if (result.desc === 'Token-TRC20') {
+                                  return <Link className="dropdown-item text-uppercase" to={"/token20/" + trim(result.value.split(' ')[result.value.split(' ').length-1])} onClick={() => {
+                                    this.afterSearch()
+                                  }}
+                                            key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></Link>
+                                }
+                                if (result.desc === 'Token-TRC10') {
+                                  return <Link className="dropdown-item text-uppercase" to={"/token/" + trim(result.value.split(' ')[result.value.split(' ').length-1])} onClick={() => {
+                                    this.afterSearch()
+                                  }}
+                                            key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></Link>
+                                }
+                                if (result.desc === 'Address') {
+                                  return <Link className="dropdown-item text-uppercase" to={"/address/" + trim(result.value)} onClick={() => {
+                                    this.afterSearch()
+                                  }}
+                                            key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></Link>
+                                }
+                                if (result.desc === 'Contract') {
+                                  return <Link className="dropdown-item text-uppercase" to={"/contract/" + trim(result.value)+'/code'} onClick={() => {
+                                    this.afterSearch()
+                                  }}
+                                            key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></Link>
+                                }
+                                if (result.desc === 'TxHash') {
+                                  return <Link className="dropdown-item text-uppercase" to={"/transaction/" + trim(result.value)} onClick={() => {
+                                    this.afterSearch()
+                                  }}
+                                            key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></Link>
+                                }
+                              }
+                          )
+                        }
+                      </div>
+                    </div>
+                  </div>
+                }
+                <div className="navbar navbar-expand-md navbar-dark py-0">
+                  <ul className="navbar-nav navbar-right wallet-nav">
+                    {
+                      wallet.isOpen && <Notifications wallet={wallet} notifications={notifications}/>
+                    }
+                    {this.renderWallet()}
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="hidden-PC nav-searchbar">
+            <div className="input-group dropdown">
+              <input type="text"
+                     className="form-control p-2 bg-white border-0 box-shadow-none"
+                     style={styles.search}
+                     value={search}
+                     onKeyDown={this.onSearchKeyDown}
+                     onChange={this.onSearchChange}
+                     onClick={this.callAjax}
+                     placeholder={intl.formatMessage({id: "search_description1"})}/>
+              <div className="input-group-append">
+                <button className="btn box-shadow-none" disabled={this.isSearching} onClick={this.doSearch}>
+                  <i className="fa fa-search"/>
+                </button>
+              </div>
+              <div className="dropdown-menu" id="_searchBox" style={{width: '100%',maxHeight:'300px', overflow:'auto'}}>
+                {
+                  searchResults && searchResults.map((result, index) => {
+                        if (result.desc === 'Block') {
+                          return <Link className="dropdown-item text-uppercase" to={"/block/" + trim(result.value)} onClick={() => {
+                            this.afterSearch()
+                          }}
+                                    key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></Link>
+                        }
+                        if (result.desc === 'Token-TRC20') {
+                          return <Link className="dropdown-item text-uppercase" to={"/token20/" + trim(result.value.split(' ')[result.value.split(' ').length-1])} onClick={() => {
+                            this.afterSearch()
+                          }}
+                                    key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></Link>
+                        }
+                        if (result.desc === 'Token-TRC10') {
+                          return <Link className="dropdown-item text-uppercase" to={"/token/" + trim(result.value.split(' ')[result.value.split(' ').length-1])} onClick={() => {
+                            this.afterSearch()
+                          }}
+                                    key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></Link>
+                        }
+                        if (result.desc === 'Address') {
+                          return <Link className="dropdown-item text-uppercase" to={"/address/" + trim(result.value)} onClick={() => {
+                            this.afterSearch()
+                          }}
+                                    key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></Link>
+                        }
+                        if (result.desc === 'Contract') {
+                          return <Link className="dropdown-item text-uppercase" to={"/contract/" + trim(result.value)+'/code'} onClick={() => {
+                            this.afterSearch()
+                          }}
+                                    key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></Link>
+                        }
+                        if (result.desc === 'TxHash') {
+                          return <Link className="dropdown-item text-uppercase" to={"/transaction/" + trim(result.value)} onClick={() => {
+                            this.afterSearch()
+                          }}
+                                    key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></Link>
+                        }
+                      }
+                  )
+                }
+              </div>
+            </div>
+          </div>
+          <nav className="top-bar navbar navbar-expand-md navbar-dark">
+            
           </nav>
           {
             activeComponent.none ? <div className="container pt-5 pb-4"></div>
