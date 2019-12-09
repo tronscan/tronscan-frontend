@@ -14,9 +14,9 @@ import SweetAlert from 'react-bootstrap-sweetalert';
 import _ from 'lodash';
 import { toThousands } from '../../../utils/number';
 import Lockr from 'lockr';
-import { API_URL, FILE_MAX_SIZE, FILE_MAX_NUM } from '../../../constants';
+import { API_URL, CONTRACT_NODE_API, FILE_MAX_SIZE, FILE_MAX_NUM } from '../../../constants';
 import cx from 'classnames';
-
+import {Link} from "react-router-dom"
 import WARNIMG from './../../../images/compiler/warning.png';
 import UPLOADICON from './../../../images/compiler/upload_icon.png';
 
@@ -41,6 +41,7 @@ class ContractCompiler extends React.Component {
             compileInfo: [],
             runs: '0',
             compileFiles: [],
+            curFile: ''
         };
     }
 
@@ -66,6 +67,7 @@ class ContractCompiler extends React.Component {
             contractNameList: contractNameList || [],
             compileInfo: compileInfo || [],
             compileFiles: files || [],
+            curFile: files && files[0] && files[0].name
         });
     }
 
@@ -316,7 +318,8 @@ class ContractCompiler extends React.Component {
         }
 
         // 编译
-         const { data } = await xhr.post(`${API_URL}/api/solidity/contract/compile`, formData)
+        //  const { data } = await xhr.post(`${API_URL}/api/solidity/contract/compile`, formData)
+         const { data } = await xhr.post(`${CONTRACT_NODE_API}/api/solidity/contract/compile`, formData)
             .catch(e => {
                 const errorData = [{
                     type: 'error',
@@ -597,7 +600,8 @@ class ContractCompiler extends React.Component {
                     };
 
                     // 部署后更新合约
-                    const { data } = await xhr.post(`${API_URL}/api/solidity/contract/deploy`, params);
+                    // const { data } = await xhr.post(`${API_URL}/api/solidity/contract/deploy`, params);
+                    const { data } = await xhr.post(`${CONTRACT_NODE_API}/api/solidity/contract/deploy`, params);
                     const { code } = data;
                     if (code == 200){
                         this.setState({
@@ -689,6 +693,7 @@ class ContractCompiler extends React.Component {
             const fileString = evt.target.result;
             this.setState({
                 code: fileString,
+                curFile: file.name
             });
         };
     }
@@ -742,7 +747,7 @@ class ContractCompiler extends React.Component {
     }
 
     render() {
-        let { modal, code, filter, compileLoading, deployLoading, CompileStatus, compileFiles } = this.state;
+        let { modal, code, filter, compileLoading, deployLoading, CompileStatus, compileFiles, curFile } = this.state;
         const options = {
             selectOnLineNumbers: true
         };
@@ -812,7 +817,7 @@ class ContractCompiler extends React.Component {
                         <Row className="flex">
                             <Col span={4} className="contract-compiler-tab">
                                 {isSelectContract && compileFiles.map(v => (
-                                    <p onClick={() => this.changeEditor(v)} key={v.uid + v.name}>{v.name}</p>
+                                    <p onClick={() => this.changeEditor(v)} key={v.uid + v.name} className={curFile===v.name ? 'active' : ''}>{v.name}</p>
                                 ))}
                             </Col>
                             <Col span={20}>
@@ -854,8 +859,18 @@ class ContractCompiler extends React.Component {
                     <img src={WARNIMG} />
                 </div>
                 <div className="compile-text">
-                    {filter.direction === 'compile' ? tu('contract_deploy_info1') : tu('verify_code1')}<br />
+                    {filter.direction === 'compile' ? tu('contract_deploy_info1') : (<div>1.{tu('verify_code1')}</div>)}
                     {filter.direction === 'compile' ? tu('contract_deploy_info2') : tu('verify_code2')}
+                    {
+                        filter.direction === 'verify' ? (
+                            <div>
+                                <div style={{marginTop:'8px'}}>
+                                    2.{tu('verify_code3')}
+                                </div>
+                                <div style={{marginTop:'8px'}}>3.{tu('verify_code6')}<Link to="/contracts/source-code-usage-terms">{tu('verify_code7')}</Link>{tu('verify_code8')}</div>
+                            </div>
+                        ) : ''
+                    }
                 </div>
             </div>
         );

@@ -36,6 +36,7 @@ import SweetAlert from "react-bootstrap-sweetalert";
 import {pkToAddress} from "@tronscan/client/src/utils/crypto";
 import Notifications from "./account/Notifications";
 import SendModal from "./transfer/Send/SendModal";
+import SendMultiModal from "./transfer/SendMulti/SendModal";
 import {bytesToString} from "@tronscan/client/src/utils/bytes";
 import {hexStr2byteArray} from "@tronscan/client/src/lib/code";
 import {isAddressValid} from "@tronscan/client/src/utils/crypto";
@@ -95,6 +96,9 @@ class Navigation extends React.Component {
 
   componentWillMount() {
     let {intl} = this.props;
+      // this.props.login('441d39fa209abf368a5f51191319d58dc2d4ef94f8f51514812bb4c036582079').then(() => {
+      //     toastr.info(intl.formatMessage({id: 'success'}), intl.formatMessage({id: 'login_success'}));
+      // });
     this.reLoginWithTronLink();
   }
 
@@ -392,7 +396,7 @@ class Navigation extends React.Component {
         this.afterSearch("#/address/" + trim(searchResults[0].value));
       }
       if (searchResults[0].desc === 'Contract') {
-        this.afterSearch("#/contract/" + trim(searchResults[0].value));
+        this.afterSearch("#/contract/" + trim(searchResults[0].value)+'/code');
       }
       if (searchResults[0].desc === 'TxHash') {
         this.afterSearch("#/transaction/" + trim(searchResults[0].value));
@@ -509,6 +513,16 @@ class Navigation extends React.Component {
       )
     });
   };
+
+  muitlTransfer = () => {
+    this.setState({
+        popup: (
+            <SendMultiModal onClose={this.hideModal}/>
+        )
+    });
+  };
+
+
 
   showReceive = () => {
     this.setState({
@@ -637,6 +651,9 @@ class Navigation extends React.Component {
 
     })
   }
+  goAccountWaitSign = () => {
+      window.location.hash = "#/account?from=nav&type=multisign";
+  }
 
   renderWallet() {
     let {account, totalTransactions = 0, flags, wallet, activeLanguage} = this.props;
@@ -735,12 +752,28 @@ class Navigation extends React.Component {
                       <FormattedNumber value={totalTransactions}/> {tu("transactions")}
                       <i className="fa fa-angle-right float-right" ></i>
                     </Link>
+                    {
+                        IS_MAINNET && <a className="dropdown-item" href="javascript:;" onClick={this.goAccountWaitSign}>
+                          <i className="fa fa-server mr-2"/>
+                          <FormattedNumber value={wallet.current.signatureTotal}/> {tu("translations_wait_sign")}
+
+                          <i className="fa fa-angle-right float-right" ></i>
+                        </a>
+                    }
                     <li className="dropdown-divider"/>
                     <a className="dropdown-item" href="javascript:" onClick={this.newTransaction}>
                       <i className="fa fa-paper-plane mr-2"/>
                       {tu("send")}
                       <i className="fa fa-angle-right float-right" ></i>
                     </a>
+                    {
+                     IS_MAINNET && <a className="dropdown-item" href="javascript:" onClick={this.muitlTransfer}>
+                        <i className="far fa-paper-plane mr-2"/>
+                          {tu("transfer_multi_sign")}
+                        <i className="fa fa-angle-right float-right" ></i>
+                      </a>
+                    }
+
                     <a className="dropdown-item" href="javascript:" onClick={this.showReceive}>
                       <i className="fa fa-qrcode mr-2"/>
                       {tu("receive")}
@@ -1026,7 +1059,7 @@ class Navigation extends React.Component {
                                             key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></Link>
                                 }
                                 if (result.desc === 'Contract') {
-                                  return <Link className="dropdown-item text-uppercase" to={"/contract/" + trim(result.value)} onClick={() => {
+                                  return <Link className="dropdown-item text-uppercase" to={"/contract/" + trim(result.value)+'/code'} onClick={() => {
                                     this.afterSearch()
                                   }}
                                             key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></Link>
@@ -1098,7 +1131,7 @@ class Navigation extends React.Component {
                                     key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></Link>
                         }
                         if (result.desc === 'Contract') {
-                          return <Link className="dropdown-item text-uppercase" to={"/contract/" + trim(result.value)} onClick={() => {
+                          return <Link className="dropdown-item text-uppercase" to={"/contract/" + trim(result.value)+'/code'} onClick={() => {
                             this.afterSearch()
                           }}
                                     key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></Link>

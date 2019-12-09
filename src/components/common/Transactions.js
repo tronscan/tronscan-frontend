@@ -359,7 +359,7 @@ class Transactions extends React.Component {
           
           <div className="d-flex justify-content-between w-100"  style={{position: "absolute", left: 0, top: '-28px'}}>
             {(total && contract && isinternal)? <div className="d-flex align-items-center">
-              <div className="question-mark mr-2"><i>?</i></div><span className="flex-1">{tu('interTrx_tip')}</span>
+              <div className="question-mark mr-2"><i>?</i></div><span className="flex-1" style={{width: '700px'}}>{tu('interTrx_tip')}</span>
             </div>: ''}
               {
                   !isBlock ?  <DateSelect onDateOk={(start,end) => this.onDateOk(start,end)} dataStyle={{marginTop: '-1.6rem'}}/>:''

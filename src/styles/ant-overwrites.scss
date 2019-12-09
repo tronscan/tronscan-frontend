@@ -305,3 +305,13 @@
 .ant-carousel {
   font-size: inherit;
 }
+.ant-message {
+  z-index: 1060;
+  color: rgba(255, 255, 255, 0.8);
+}
+.ant-message-notice-content {
+  background: rgba(0, 0, 0, 0.8);
+}
+.ant-message .anticon {
+  vertical-align: 0.1rem;
+}

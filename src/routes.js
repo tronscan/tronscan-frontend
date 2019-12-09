@@ -53,7 +53,10 @@ import {
   DevelopersRewardAsync,
   TokensMarketsCreateAsync,
   TokensMarketsAddListAsync,
-  Exchange20
+  Exchange20,
+  ContractSourceCode,
+  ContractUseServiceTerms,
+  ContractLicense
 } from "./components/async";
 
 export const routes = [
@@ -188,10 +191,36 @@ export const routes = [
         icon: "fas fa-file-signature",
         component: ContractCompilerAsync,
         showInMenu: false
+      },
+      {
+        label: "contracts_source-code-usage-terms",
+        icon: "fa fa-file",
+        path: "/contracts/source-code-usage-terms",
+        component: ContractSourceCode,
+        showInMenu: false
+      },
+      {
+        label: "contracts_terms",
+        icon: "fa fa-file",
+        path: "/contracts/terms",
+        component: ContractUseServiceTerms,
+        showInMenu: false
+      },
+      {
+        label: "contracts_license",
+        icon: "fa fa-file",
+        path: "/contracts/license",
+        component: ContractLicense,
+        showInMenu: false
       }
     ]
   },
-  { path: "/block/:id", label: "block", component: Block, showInMenu: false },
+  {
+    path: "/block/:id",
+    label: "block",
+    component: Block,
+    showInMenu: false
+  },
   {
     path: "/transaction/:hash",
     label: "transaction",
@@ -241,13 +270,13 @@ export const routes = [
         icon: "fa fa-list",
         component: TokenAllAsync
       },
-      {
-        label: "participate",
-        path: "/tokens/view",
-        icon: "fas fa-coins",
-        component: TokenOverviewAsync,
-        showInMenu: IS_MAINNET ? true : false
-      },
+      // {
+      //   label: "participate",
+      //   path: "/tokens/view",
+      //   icon: "fas fa-coins",
+      //   component: TokenOverviewAsync,
+      //   showInMenu: IS_MAINNET ? true : false
+      // },
       {
         label: "token_input",
         path: "/tokens/create",
@@ -316,11 +345,11 @@ export const routes = [
     showInMenu: false
   },
   // {
-  //   path: "/TRXMarket",
-  //   label: "TRXMarket",
+  //   path: "/Poloni DEX",
+  //   label: "Poloni DEX",
   //   icon: "fas fa-rocket",
-  //   enurl: "https://trx.market",
-  //   zhurl: "https://trx.market",
+  //   enurl: "https://poloniex.org",
+  //   zhurl: "https://poloniex.org",
   //   linkHref: true
   // },
   // {
@@ -357,7 +386,8 @@ export const routes = [
           label: "sun_network_development_document"
         },
         {
-          url: "https://support.tronscan.org/hc/en-us/articles/360035944072-SUN-Network-Developer-Challenge-Starts",
+          url:
+            "https://support.tronscan.org/hc/en-us/articles/360035944072-SUN-Network-Developer-Challenge-Starts",
           icon: "fas fa-award",
           label: "developer_challenge"
         }
@@ -365,7 +395,7 @@ export const routes = [
     ]
   },
   {
-    label: "TRXMarket",
+    label: "Poloni DEX",
     path: "/exchange/trc20",
     icon: "fas fa-exchange-alt",
     component: Exchange20,
@@ -374,7 +404,7 @@ export const routes = [
     showInMenu: IS_MAINNET ? true : false
   },
   // {
-  //   label: "TRXMarket",
+  //   label: "Poloni DEX",
   //   path: "/exchange/:type",
   //   redirect: "/exchange/trc20",
   //   icon: "fas fa-exchange-alt",

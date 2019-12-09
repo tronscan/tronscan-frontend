@@ -8,19 +8,25 @@ export const IS_TESTNET = process.env.NET === "testnet";
 export const IS_DESKTOP = process.env.DESKTOP === "true";
 
 export const NETURL = {
-  MAINNET: "https://tronscan.org",
-  SUNNET: "https://dappchain.tronscan.org"
+   MAINNET: "https://tronscan.org",
+   SUNNET: "https://dappchain.tronscan.org",
 };
 
 let { NET, NODE_ENV } = process.env;
 let MAINNET;
 let SUNNET;
+let NODEAPI;
+
 if (NODE_ENV == "development") {
   MAINNET = Lockr.get("NET") === "mainnet" || !Lockr.get("NET");
   SUNNET = Lockr.get("NET") === "sunnet";
+  // NODEAPI = "http://52.15.126.154:9016";
+  NODEAPI = process.env.API_URL;
 } else {
   MAINNET = window.location.origin === NETURL.MAINNET;
   SUNNET = window.location.origin === NETURL.SUNNET;
+  NODEAPI = process.env.API_URL;
+  // NODEAPI = "http://52.15.126.154:9016";
 }
 
 export let IS_MAINNET = MAINNET;
@@ -43,12 +49,13 @@ export const API_URL_SUNNET = "https://dappchainapi.tronscan.org";
 // export const API_URL_MAINNET = 'https://apilist.tronscan.org';
 export const API_URL = IS_SUNNET ? API_URL_SUNNET : process.env.API_URL;
 export const CONTRACT_MAINNET_API_URL = process.env.API_URL;
+export const CONTRACT_NODE_API = NODEAPI;
 
 //Token issued
 export const MARKET_API_URL = "https://platform.tron.network";
 
-//trx.market
-export const MARKET_HTTP_URL = "https://trx.market";
+//poloniex.org
+export const MARKET_HTTP_URL = "https://poloniex.org";
 
 export const ACCOUNT_PRIVATE_KEY = "ACCOUNT_PRIVATE_KEY";
 export const ACCOUNT_ADDRESS = "ACCOUNT_ADDRESS";
@@ -158,3 +165,30 @@ export const FROMID = 1;
 
 // url regexp
 export const URLREGEXP = /^((ht|f)tps?):\/\/[\w\-]+(\.[\w\-]+)+([\w\-.,@?^=%&:\\/~+#]*[\w\-@?^=%&\\/~+#])?$/;
+
+
+
+export const ADDRESS_SIZE = 34;
+export const ADDRESS_PREFIX = "41";
+export const ADDRESS_PREFIX_BYTE = 0x41;
+export const ADDRESS_PREFIX_REGEX = /^(41)/;
+
+// contract
+export const CONTRACT_LICENSES = [
+  "--",
+  "None",
+  "Unlicense",
+  "MIT",
+  "GNU GPLv2",
+  "GNU GPLv3",
+  "GNU LGPLv2.1",
+  "GNU LGPLv3",
+  "BSD-2-Clause",
+  "BSD-3-Clause",
+  "MPL-2.0",
+  "OSL-3.0",
+  "Apache-2.0"
+];
+
+export const WARNING_VERSIONS = []
+
