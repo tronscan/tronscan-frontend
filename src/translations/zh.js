@@ -1098,7 +1098,7 @@ export const messages = {
   "account_unit": "个账户",
   "address_unit": "个地址",
   "contract_unit": "条已验证合约",
-  "inter_contract_unit": "条内部交易",
+  "inter_contract_unit": "个内部交易",
 
   /*
   ##################################################################################
