@@ -20,7 +20,7 @@ import {
   LineReactHighChartAdd,
   LineReactHighChartTx
 } from "../common/LineCharts";
-import { API_URL, IS_MAINNET } from "../../constants";
+import { API_URL, IS_MAINNET,IS_NILE } from "../../constants";
 import { setWebsocket, setWebsocketSun } from "../../actions/account";
 import Lockr from "lockr";
 import { Icon, Divider, Tooltip, Tag } from "antd";
@@ -260,8 +260,8 @@ export default class panelGroup extends Component {
         {!isMobile && (
           <div>
             {/* mainnet */}
-            {IS_MAINNET && (
-              <div className="panel-group ">
+            {!IS_NILE && IS_MAINNET && (
+              <div className="panel-group " >
                 <span
                   className="col-tag"
                   onClick={() => {

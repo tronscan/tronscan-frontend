@@ -13,6 +13,9 @@ export const IS_DESKTOP = process.env.DESKTOP === "true";
 export const IS_MAINNET = true;
 export const IS_SUNNET = false;
 
+export const IS_NILE = true;
+
+
 export const NETURL = {
    MAINNET: "http://18.190.104.70:9000",
    SUNNET: "https://dappchain.tronscan.org",
