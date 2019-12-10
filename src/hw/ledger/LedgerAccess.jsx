@@ -147,6 +147,9 @@ class LedgerAccess extends Component {
                 <div className="text-muted">
                   {tu("open_tron_app_on_ledger")}
                 </div>
+                <div className="text-muted">
+                  {tu("open_tron_app_on_ledger")}
+                </div>
                 <div className="my-3">
                   <PulseLoader
                     color="#343a40"
