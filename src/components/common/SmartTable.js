@@ -55,7 +55,9 @@ export default class SmartTable extends Component {
   };
 
   handleTableChange = (pagination, filters, sorter) => {
-    const pager = { ...this.state.pagination };
+    const pager = {
+      ...this.state.pagination
+    };
     pager.current = pagination.current;
     this.setState({
       pagination: pager
@@ -70,7 +72,9 @@ export default class SmartTable extends Component {
   };
 
   fetch = (params = {}) => {
-    this.setState({ loading: true });
+    this.setState({
+      loading: true
+    });
     if (!this.props.onPageChange) {
       this.setState({
         loading: false
@@ -84,12 +88,19 @@ export default class SmartTable extends Component {
   };
 
   onInputChange = e => {
-    this.setState({ searchText: e.target.value });
+    this.setState({
+      searchText: e.target.value
+    });
   };
   onReset = () => {
-    this.setState({ searchText: "" }, () => {
-      this.onSearch();
-    });
+    this.setState(
+      {
+        searchText: ""
+      },
+      () => {
+        this.onSearch();
+      }
+    );
   };
   onSearch = () => {
     let { tableData } = this.props;
@@ -108,6 +119,7 @@ export default class SmartTable extends Component {
             ...record,
             name: (
               <span>
+                {" "}
                 {record.name
                   .split(
                     new RegExp(`(?<=${searchText})|(?=${searchText})`, "i")
@@ -116,12 +128,13 @@ export default class SmartTable extends Component {
                     (text, i) =>
                       text.toLowerCase() === searchText.toLowerCase() ? (
                         <span key={i} className="highlight">
-                          {text}
+                          {" "}
+                          {text}{" "}
                         </span>
                       ) : (
                         text
                       ) // eslint-disable-line
-                  )}
+                  )}{" "}
               </span>
             )
           };
@@ -151,19 +164,23 @@ export default class SmartTable extends Component {
             value={this.state.searchText}
             onChange={this.onInputChange}
             onPressEnter={this.onSearch}
-          />
+          />{" "}
           <Button type="primary" onClick={this.onSearch}>
-            {tu("search")}
-          </Button>
+            {" "}
+            {tu("search")}{" "}
+          </Button>{" "}
           <Button className="btn-secondary ml-1" onClick={this.onReset}>
-            {tu("reset")}
-          </Button>
+            {" "}
+            {tu("reset")}{" "}
+          </Button>{" "}
         </div>
       ),
       filterIcon: (
         <Icon
           type="filter"
-          style={{ color: this.state.filtered ? "#108ee9" : "#aaa" }}
+          style={{
+            color: this.state.filtered ? "#108ee9" : "#aaa"
+          }}
         />
       ),
       filterDropdownVisible: this.state.filterDropdownVisible,
@@ -183,14 +200,30 @@ export default class SmartTable extends Component {
 
     for (let col of column) {
       if (col.sorter && !col.filterDropdown) {
-        let temp = { sorter: compare(col.key) };
-        columns.push({ ...col, ...temp });
+        let temp = {
+          sorter: compare(col.key)
+        };
+        columns.push({
+          ...col,
+          ...temp
+        });
       } else if (!col.sorter && col.filterDropdown) {
-        let temp = { ...filter };
-        columns.push({ ...col, ...temp });
+        let temp = {
+          ...filter
+        };
+        columns.push({
+          ...col,
+          ...temp
+        });
       } else if (col.sorter && col.filterDropdown) {
-        let temp = { sorter: compare(col.key), ...filter };
-        columns.push({ ...col, ...temp });
+        let temp = {
+          sorter: compare(col.key),
+          ...filter
+        };
+        columns.push({
+          ...col,
+          ...temp
+        });
       } else {
         columns.push(col);
       }
@@ -215,11 +248,15 @@ export default class SmartTable extends Component {
     } = this.props;
     let columns = this.setColumn(column);
     const paginationStatus = pagination
-      ? { total: total, ...this.state.pagination }
+      ? {
+          total: total,
+          ...this.state.pagination
+        }
       : pagination;
 
     return (
       <div>
+        {" "}
         {addr ? (
           <div
             className={
@@ -240,7 +277,7 @@ export default class SmartTable extends Component {
               pagination={paginationStatus}
               loading={loading}
               onChange={this.handleTableChange}
-            />{" "}
+            />
           </div>
         ) : (
           <div className="card table_pos">
