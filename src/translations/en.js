@@ -2454,4 +2454,7 @@ export const messages = {
   "signaure_control_address_tip":"Control address refers to the associated control addresses of owner permission, SR permission and active permission. Display of the three types of permissions will change subsequently when the control address is modified.",
   "permission_name_limit":"Please input English characters and numbers",
 
+  // 2019-12-10
+  "ledger_tronlink":"Login to TRONSCAN via TronLink",
+
 };

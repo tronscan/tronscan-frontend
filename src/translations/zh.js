@@ -2510,4 +2510,7 @@ export const messages = {
   "Bancor Exchange Inject":"Bancor交易注资",
   "Bancor Exchange Withdraw":"Bancor交易撤资",
   "permission_name_limit":"请输入英文字符及数字",
+
+  // 2019-12-10
+  "ledger_tronlink":"通过TronLink登录TRONSCAN ",
 };

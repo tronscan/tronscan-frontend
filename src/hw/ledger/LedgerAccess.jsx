@@ -144,9 +144,9 @@ class LedgerAccess extends Component {
             />
             {loading && (
               <div className="mt-4">
-                <div className="text-muted">
-                  {tu("open_tron_app_on_ledger")}
-                </div>
+                <h5>
+                  {tu("ledger_tronlink")}
+                </h5>
                 <div className="text-muted">
                   {tu("open_tron_app_on_ledger")}
                 </div>
@@ -171,7 +171,7 @@ class LedgerAccess extends Component {
                   className="btn btn-success mt-3"
                   onClick={this.openWallet}
                 >
-                  {tu("open_wallet")}
+                  {tu("ok_confirm")}
                 </button>
               </div>
             )}
