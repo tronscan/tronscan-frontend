@@ -25,9 +25,6 @@ import DateSelect from './dateSelect'
 import {API_URL} from "../../constants";
 import BlockTime from '../common/blockTime'
 
-
-
-
 class TransfersAll extends React.Component {
     constructor(props) {
         super(props);

@@ -1,7 +1,14 @@
-import { API_URL } from "../constants";
+import {
+  API_URL
+} from "../constants";
 import xhr from "axios/index";
-import { tokensMap, tokens20Map } from "../utils/tokensMap.js";
-import { store } from "./../store";
+import {
+  tokensMap,
+  tokens20Map
+} from "../utils/tokensMap.js";
+import {
+  store
+} from "./../store";
 // import { setToken20Map, setTokenMap } from './../actions/account';
 
 export default class App {
@@ -14,9 +21,11 @@ export default class App {
   }
 
   async getTokensMap() {
-    let { data } = await xhr.get(
-      `${API_URL}/api/token?showAll=1&limit=5000&id_gt=1002794&fields=id,name,precision,abbr,imgUrl`
-    );
+
+    let {
+      data
+    } = await xhr.get(`${API_URL}/api/token?showAll=1&limit=5000&id_gt=1002753&fields=id,name,precision,abbr,imgUrl`);
+
     let imgUrl;
     for (var i = 0; i < data.data.length; i++) {
       if (!tokensMap[data.data[i].id]) {
@@ -42,7 +51,9 @@ export default class App {
   }
 
   async getTokens20Map() {
-    let { data } = await xhr.get(
+    let {
+      data
+    } = await xhr.get(
       `${API_URL}/api/tokens/overview?start=0&limit=1000&filter=trc20`
     );
     let imgUrl;

@@ -32,6 +32,7 @@ $color-grey: #d2d1d1;
 @import "tokencreated";
 @import "exchangeRevised";
 @import "contractRead.scss";
+@import "muti-sign.scss";
 @import "sourceCode.scss";
 @import "contract";
 body {
@@ -4824,3 +4825,81 @@ h5 {
     bottom: 17px;
   }
 }
+
+.signature-currentWeight{
+  display: inline-block;
+  background-size: 100% 100%;
+  background-image: url(../images/icon/current-weight.png);
+  min-width:42px;
+  height:22px;
+  margin-left: -10px;
+  text-align: center!important;
+  color: #ffffff;
+  padding: 0 5px;
+  line-height: 19px;
+}
+
+.signature-siged{
+  display: inline-block;
+  background-size: 100% 100%;
+  background-image: url(../images/icon/current-weight-siged.png);
+  width:12px;
+  height:12px;
+  margin-top: 4px;
+}
+
+.signature-weight{
+ // width: 15px;
+  height: 15px;
+  border-radius: 1px;
+  background-color: #C23631;
+  font-size: 12px;
+  color: #FFFFFF;
+  line-height: 8px;
+  margin-top: 2px;
+}
+
+.signature_details{
+  .form-group{
+    display: flex;
+    padding-top: 0.75rem;
+    padding-bottom: 0.25rem;
+    margin-bottom: 0;
+    border-bottom: 1px solid #e8e8e8;
+  }
+  .form-group>span{
+    display: block;
+    width: 320px;
+  }
+  .form-group>label {
+    min-width: 150px;
+  }
+}
+.permission-group{
+  .form-control{
+    border:0;
+    padding:0;
+  }
+  .is-invalid{
+    .ant-select-selection{
+      border-color: #d9534f;
+    }
+  }
+}
+
+.sign-details-method{
+  .flex1{
+    width: 100%;
+  }
+  .border-bottom{
+    border-bottom: 1px solid #e5e5e5 !important;
+  }
+  .details-break-word{
+    word-wrap: break-word;
+    width: 234px;
+    margin-left: -34px;
+  }
+}
+
+
+
