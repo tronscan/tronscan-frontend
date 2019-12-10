@@ -14,9 +14,9 @@ import SweetAlert from 'react-bootstrap-sweetalert';
 import _ from 'lodash';
 import { toThousands } from '../../../utils/number';
 import Lockr from 'lockr';
-import { API_URL, FILE_MAX_SIZE, FILE_MAX_NUM } from '../../../constants';
+import { API_URL, CONTRACT_NODE_API, FILE_MAX_SIZE, FILE_MAX_NUM } from '../../../constants';
 import cx from 'classnames';
-
+import {Link} from "react-router-dom"
 import WARNIMG from './../../../images/compiler/warning.png';
 import UPLOADICON from './../../../images/compiler/upload_icon.png';
 
@@ -41,6 +41,7 @@ class ContractCompiler extends React.Component {
             compileInfo: [],
             runs: '0',
             compileFiles: [],
+            curFile: ''
         };
     }
 
@@ -66,6 +67,7 @@ class ContractCompiler extends React.Component {
             contractNameList: contractNameList || [],
             compileInfo: compileInfo || [],
             compileFiles: files || [],
+            curFile: files && files[0] && files[0].name
         });
     }
 
@@ -96,7 +98,7 @@ class ContractCompiler extends React.Component {
             });
         } else {
             // 初始化数据
-            if (!this.isLoggedIn()){
+            if (!this.isLoggedIn(1)){
                 //  compileCode
                 Lockr.rm('CompileCode');
                 // compile status
@@ -164,20 +166,23 @@ class ContractCompiler extends React.Component {
     /**
      * 是否登陆
      */
-    isLoggedIn = () => {
+    isLoggedIn = (type) => {
         let { account, intl } = this.props;
         if (!account.isLoggedIn){
-            this.setState({
-                modal: <SweetAlert
-                    warning
-                    title={tu('not_signed_in')}
-                    confirmBtnText={intl.formatMessage({ id: 'confirm' })}
-                    confirmBtnBsStyle="danger"
-                    onConfirm={() => this.setState({ modal: null })}
-                    style={{ marginLeft: '-240px', marginTop: '-195px' }}
-                >
-                </SweetAlert>
-            });
+            if(type != 1){
+                this.setState({
+                    modal: <SweetAlert
+                        warning
+                        title={tu('not_signed_in')}
+                        confirmBtnText={intl.formatMessage({ id: 'confirm' })}
+                        confirmBtnBsStyle="danger"
+                        onConfirm={() => this.setState({ modal: null })}
+                        style={{ marginLeft: '-240px', marginTop: '-195px' }}
+                    >
+                    </SweetAlert>
+                });
+            }
+            
         }
         return account.isLoggedIn;
     };
@@ -313,7 +318,8 @@ class ContractCompiler extends React.Component {
         }
 
         // 编译
-         const { data } = await xhr.post(`${API_URL}/api/solidity/contract/compile`, formData)
+        //  const { data } = await xhr.post(`${API_URL}/api/solidity/contract/compile`, formData)
+         const { data } = await xhr.post(`${CONTRACT_NODE_API}/api/solidity/contract/compile`, formData)
             .catch(e => {
                 const errorData = [{
                     type: 'error',
@@ -352,7 +358,7 @@ class ContractCompiler extends React.Component {
                         type: 'error',
                         content: `Compiled error: ${errmsg}`
                     }];
-                    console.log('CompileStatus2222',CompileStatus)
+
                     //const error = errorData.concat(CompileStatus);
                     const  error = errorData;
                     this.setState({
@@ -594,7 +600,8 @@ class ContractCompiler extends React.Component {
                     };
 
                     // 部署后更新合约
-                    const { data } = await xhr.post(`${API_URL}/api/solidity/contract/deploy`, params);
+                    // const { data } = await xhr.post(`${API_URL}/api/solidity/contract/deploy`, params);
+                    const { data } = await xhr.post(`${CONTRACT_NODE_API}/api/solidity/contract/deploy`, params);
                     const { code } = data;
                     if (code == 200){
                         this.setState({
@@ -639,6 +646,10 @@ class ContractCompiler extends React.Component {
      * 上传之前
      */
     beforeUpload = (file, fileList) => {
+        
+        if (!this.isLoggedIn()) {
+            return;
+        }
         // 文件数量不超过10个
         if (fileList.length > FILE_MAX_NUM) {
             this.showModal(tu('selected_file_max_num'));
@@ -658,6 +669,9 @@ class ContractCompiler extends React.Component {
     * @param file
     */
     handleChange = ({ file }) => {
+        if (!this.isLoggedIn()) {
+            return;
+        }
         if (list.length > 0 && file.uid === list[list.length - 1].uid) {
             this.setState({ compileFiles: [...list] });
 
@@ -679,6 +693,7 @@ class ContractCompiler extends React.Component {
             const fileString = evt.target.result;
             this.setState({
                 code: fileString,
+                curFile: file.name
             });
         };
     }
@@ -732,7 +747,7 @@ class ContractCompiler extends React.Component {
     }
 
     render() {
-        let { modal, code, filter, compileLoading, deployLoading, CompileStatus, compileFiles } = this.state;
+        let { modal, code, filter, compileLoading, deployLoading, CompileStatus, compileFiles, curFile } = this.state;
         const options = {
             selectOnLineNumbers: true
         };
@@ -802,7 +817,7 @@ class ContractCompiler extends React.Component {
                         <Row className="flex">
                             <Col span={4} className="contract-compiler-tab">
                                 {isSelectContract && compileFiles.map(v => (
-                                    <p onClick={() => this.changeEditor(v)} key={v.uid + v.name}>{v.name}</p>
+                                    <p onClick={() => this.changeEditor(v)} key={v.uid + v.name} className={curFile===v.name ? 'active' : ''}>{v.name}</p>
                                 ))}
                             </Col>
                             <Col span={20}>
@@ -844,8 +859,18 @@ class ContractCompiler extends React.Component {
                     <img src={WARNIMG} />
                 </div>
                 <div className="compile-text">
-                    {filter.direction === 'compile' ? tu('contract_deploy_info1') : tu('verify_code1')}<br />
+                    {filter.direction === 'compile' ? tu('contract_deploy_info1') : (<div>1.{tu('verify_code1')}</div>)}
                     {filter.direction === 'compile' ? tu('contract_deploy_info2') : tu('verify_code2')}
+                    {
+                        filter.direction === 'verify' ? (
+                            <div>
+                                <div style={{marginTop:'8px'}}>
+                                    2.{tu('verify_code3')}
+                                </div>
+                                <div style={{marginTop:'8px'}}>3.{tu('verify_code6')}<Link to="/contracts/source-code-usage-terms">{tu('verify_code7')}</Link>{tu('verify_code8')}</div>
+                            </div>
+                        ) : ''
+                    }
                 </div>
             </div>
         );

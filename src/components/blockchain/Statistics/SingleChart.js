@@ -171,7 +171,7 @@ class Statistics extends React.Component {
             {value: funds.turnOver, name: 'circulating_supply', selected: true,sliced: true},
             {value: funds.fundTrx, name: 'total_frozen', selected: false,sliced: false},
         ]
-        let eurURL = encodeURI(`https://api.coinmarketcap.com/v1/ticker/tronix/?convert=EUR`);
+        let eurURL = encodeURI(`http://api.coinmarketcap.com/v1/ticker/tronix/?convert=EUR`);
         let trxPriceData = await xhr.get(`${API_URL}/api/system/proxy?url=${eurURL}`);
         let priceUSD = ((parseFloat(trxPriceData.data[0].price_usd))*1000).toFixed(2);
         let priceBTC = ((parseFloat(trxPriceData.data[0].price_btc))*1000).toFixed(5)
@@ -674,7 +674,7 @@ class Statistics extends React.Component {
                 title: "#",
                 dataIndex: 'index',
                 key: 'index',
-                width: '40px',
+                width: '60px',
                 align: 'center',
                 render: (text, record, index) => {
                   return <span>{text}</span>
@@ -739,7 +739,7 @@ class Statistics extends React.Component {
                 title: "#",
                 dataIndex: 'index',
                 key: 'index',
-                width: '40px',
+                width: '60px',
                 align: 'center',
                 render: (text, record, index) => {
                   return <span>{text}</span>

@@ -3,7 +3,7 @@ import React, {Fragment} from "react";
 import {injectIntl} from "react-intl";
 import {loadTokens} from "../../actions/tokens";
 import {connect} from "react-redux";
-import TimeAgo from "react-timeago";
+// import TimeAgo from "react-timeago";
 import {Client} from "../../services/api";
 import {AddressLink, BlockNumberLink, TransactionHashLink} from "../common/Links";
 import {getQueryParams} from "../../utils/url";
@@ -20,6 +20,7 @@ import moment from 'moment';
 import xhr from "axios/index";
 import {NameWithId} from "../common/names";
 import rebuildList from "../../utils/rebuildList";
+import BlockTime from '../common/blockTime'
 
 
 const RangePicker = DatePicker.RangePicker;
@@ -119,7 +120,8 @@ class Transfers extends React.Component {
         align: 'left',
         width: '14%',
         render: (text, record, index) => {
-          return <TimeAgo date={text} title={moment(text).format("MMM-DD-YYYY HH:mm:ss A")}/>
+          return <BlockTime time={text}></BlockTime>
+          // <TimeAgo date={text} title={moment(text).format("MMM-DD-YYYY HH:mm:ss A")}/>
         }
       },
       {
@@ -189,7 +191,7 @@ class Transfers extends React.Component {
           {loading && <div className="loading-style"><TronLoader/></div>}
           <div className="row">
             <div className="col-md-12 table_pos">
-              {total ?<TotalInfo total={total} rangeTotal={rangeTotal}  typeText="transfers_unit"/>:""}
+              {total ?<TotalInfo total={total} rangeTotal={rangeTotal} isQuestionMark={false}  typeText="transfers_unit"/>:""}
               {
                 false && total? <DateRange onDateOk={(start,end) => this.onDateOk(start,end)} /> :''
               }

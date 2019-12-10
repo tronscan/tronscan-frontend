@@ -100,6 +100,115 @@ export class SupplyAreaHighChart extends React.Component {
         )
     }
 }
+export class LineReactHighChartHomeAddress extends React.Component {
+
+    constructor(props) {
+        super(props)
+        this.myChart = null;
+        let id = ('_' + Math.random()).replace('.', '_');
+        this.state = {
+            lineId: 'lineAdd' + id
+        }
+    }
+    initLine(id) {
+        let _config = cloneDeep(config.HomeHighChart);
+        let {intl, data, sun, total, source} = this.props;
+        if (data && data.length === 0) {
+            _config.title.text = "No data";
+        }
+        if (source == 'home'){
+            if (total && total.length > 0) {
+                //_config.xAxis.categories = [];
+                total.map((val) => {
+                    let tempTotal;
+                    tempTotal = {...val, y: val.total};
+                    //_config.xAxis.categories.push(moment(val.date).format('M/D'));
+                    _config.series[0].data.push(tempTotal);
+
+                })
+                _config.series[0].name =  intl.formatMessage({id: 'TRON'});
+            }
+            if (data && data.length > 0) {
+                _config.xAxis.categories = [];
+
+                data.map((val) => {
+                    let temp;
+                    temp = {...val, y: val.total};
+                    _config.xAxis.categories.push(moment(val.date).format('M/D'));
+                    _config.series[1].data.push(temp);
+                })
+                _config.series[1].name =  intl.formatMessage({id: 'main_chain'});
+            }
+            if (sun && sun.length > 0) {
+                //_config.xAxis.categories = [];
+                sun.map((val) => {
+                    let tempSun;
+                    tempSun = {...val, y: val.total};
+                   //_config.xAxis.categories.push(moment(val.date).format('M/D'));
+                    _config.series[2].data.push(tempSun);
+                })
+                _config.series[2].name =  intl.formatMessage({id: 'sun_network'});
+            }
+
+            _config.chart.spacingTop = 20;
+            _config.yAxis[0].tickAmount = 4;
+            _config.yAxis[1].tickAmount = 4;
+            _config.yAxis[0].allowDecimals = true;
+            _config.yAxis[1].allowDecimals = true;
+            _config.exporting.enabled = false;
+            //_config.yAxis.min = (data[0].total - 100000)< 0  ? 0 : data[0].total - 100000 ;
+            // if(IS_MAINNET){
+            //     _config.yAxis.tickInterval = 100000;
+            // }else{
+            //     _config.yAxis.tickInterval = 1000
+            // }
+            // _config.yAxis.tickAmount = 4;
+            // _config.yAxis.allowDecimals = true;
+            if(IS_MAINNET) {
+                _config.yAxis[0].labels.formatter = function () {
+                    if (this.value < 1000000 && this.value >= 1000) {
+                        return this.value / 1000 + 'k'
+                    } else if (this.value >= 1000000) {
+                        return this.value / 1000000 + 'M'
+                    } else if (this.value < 1000) {
+                        return this.value
+                    }
+                }
+            }
+            _config.tooltip.formatter = function () {
+                let date = intl.formatDate((parseInt(this.point.date)));
+                return (
+                    intl.formatMessage({id: 'name'}) + ' : ' + intl.formatMessage({id: this.point.name}) + '<br/>' +
+                    intl.formatMessage({id: 'date'}) + ' : ' + date + '<br/>' +
+                    intl.formatMessage({id: 'daily_increment'}) + ' : ' + this.point.increment + '<br/>' +
+                    intl.formatMessage({id: 'total_addresses'}) + ' : ' + this.point.total
+                )
+            }
+        }
+        Highcharts.chart(document.getElementById(id),_config);
+
+    }
+    shouldComponentUpdate(nextProps)  {
+        if(nextProps.intl.locale !== this.props.intl.locale){
+            return true
+        }
+        return  false
+    }
+    componentDidMount() {
+        this.initLine(this.state.lineId);
+    }
+    componentDidUpdate() {
+        this.initLine(this.state.lineId);
+    }
+
+    render() {
+        return (
+            <div>
+                <div id={this.state.lineId} style={this.props.style}></div>
+            </div>
+        )
+    }
+}
 
 export class LineReactHighChartAdd extends React.Component {
 
@@ -222,6 +331,103 @@ export class LineReactHighChartAdd extends React.Component {
     }
 }
 
+export class LineReactHighChartHomeTx extends React.Component {
+
+    constructor(props) {
+        super(props)
+        this.myChart = null;
+        let id = ('_' + Math.random()).replace('.', '_');
+        this.state = {
+            lineId: 'lineTx' + id
+        }
+    }
+    initLine(id) {
+        let _config = cloneDeep(config.HomeHighChart);
+        let {intl, data, sun, total, source} = this.props;
+
+        if (source == 'home'){
+            if (total && total.length > 0) {
+                _config.xAxis.categories = [];
+                total.map((val) => {
+                    let tempTotal;
+                    tempTotal = {...val, y: val.totalTransaction};
+                    _config.xAxis.categories.push(moment(val.date).format('M/D'));
+                    _config.series[0].data.push(tempTotal);
+                })
+                _config.series[0].name =  intl.formatMessage({id: 'TRON'});
+            }
+            if (data && data.length > 0) {
+                //_config.xAxis.categories = [];
+                data.map((val) => {
+                    let temp;
+                    temp = {...val, y: val.totalTransaction};
+                    //_config.xAxis.categories.push(moment(val.date).format('M/D'));
+                    _config.series[1].data.push(temp);
+                })
+                _config.series[1].name = intl.formatMessage({id: 'main_chain'});
+            }
+            if (sun && sun.length > 0) {
+               // _config.xAxis.categories = [];
+                sun.map((val) => {
+                    let tempSun;
+                    tempSun = {...val, y: val.totalTransaction};
+                    //_config.xAxis.categories.push(moment(val.date).format('M/D'));
+                    _config.series[2].data.push(tempSun);
+                })
+                _config.series[2].name =  intl.formatMessage({id: 'sun_network'});
+            }
+
+            _config.chart.spacingTop = 20;
+            _config.yAxis[0].tickAmount = 4;
+            _config.yAxis[1].tickAmount = 4;
+            _config.yAxis[0].allowDecimals = true;
+            _config.yAxis[1].allowDecimals = true;
+            _config.exporting.enabled = false;
+            // _config.yAxis[0].min = 0;
+            // _config.yAxis[1].min = 0;
+            if(IS_MAINNET) {
+                _config.yAxis[0].labels.formatter = function () {
+                    if (this.value < 1000000 && this.value >= 1000) {
+                        return this.value / 1000 + 'k'
+                    } else if (this.value >= 1000000) {
+                        return this.value / 1000000 + 'M'
+                    } else if (this.value < 1000) {
+                        return this.value
+                    }
+                }
+            }
+            _config.tooltip.formatter = function () {
+                let date = intl.formatDate(this.point.date);
+                return (
+                    intl.formatMessage({id: 'name'}) + ' : ' + intl.formatMessage({id: this.point.name}) + '<br/>' +
+                    intl.formatMessage({id: 'date'}) + ' : ' + date + '<br/>' +
+                    intl.formatMessage({id: 'total_transactions'}) + ' : ' + this.point.y
+                )
+            }
+        }
+        Highcharts.chart(document.getElementById(id),_config);
+    }
+    shouldComponentUpdate(nextProps)  {
+        if(nextProps.intl.locale !== this.props.intl.locale){
+            return true
+        }
+        return  false
+    }
+    componentDidMount() {
+        this.initLine(this.state.lineId);
+    }
+    componentDidUpdate() {
+        this.initLine(this.state.lineId);
+    }
+
+    render() {
+        return (
+            <div>
+                <div id={this.state.lineId} style={this.props.style}></div>
+            </div>
+        )
+    }
+}
 export class LineReactHighChartTx extends React.Component {
 
     constructor(props) {
@@ -415,14 +621,18 @@ export class LineReactHighChartTotalTxns extends React.Component {
             _config.series[0].marker.enabled = false;
             _config.series[0].pointInterval = 24 * 3600 * 1000;
             _config.series[0].pointStart = Date.UTC(2018, 5, 25);
+
             _config.tooltip.formatter = function () {
                 let date = intl.formatDate(this.point.x);
                 return (
+                    intl.formatMessage({id: 'TRON'}) + '<br/>' +
                     intl.formatMessage({id: 'date'}) + ' : ' + date + '<br/>' +
                     intl.formatMessage({id: 'total_transactions'}) + ' : ' + this.point.y
                 )
             }
+
         }
+
          
         Highcharts.chart(document.getElementById(id),_config);
     }
@@ -1551,15 +1761,15 @@ export class ContractInvocationDistributionChart extends React.Component {
     initLine(id) {
         let _config = cloneDeep(config.overviewHighChart);
         let {intl, data} = this.props;
-
+        let newData = cloneDeep(data)
         
-        var chartdata = data.slice(0).map(o => {
+        var chartdata = newData.slice(0).map(o => {
             o.y= o.trigger_amount
             o.name = o.contract_address
             return o
         })
        
-        if (data && data.length > 0) {
+        if (newData && newData.length > 0) {
             let options =  {
                 chart: {
                     type: 'variablepie'
@@ -1589,7 +1799,7 @@ export class ContractInvocationDistributionChart extends React.Component {
                 _config[item] = options[item]
             })
         }
-        if (data && data.length === 0) {
+        if (newData && newData.length === 0) {
             _config.title.text = "No data";
         }
         Highcharts.chart(id, _config);

@@ -125,7 +125,7 @@ class Curorder extends Component {
       account,
       cancelOrderList
     } = this.props;
-    // 切换钱包或者只看当前交易对
+    // change wallet and see current pairs
     if (
       prevProps.account.address != account.address ||
       prevProps.showCurrent != showCurrent
@@ -146,7 +146,7 @@ class Curorder extends Component {
       });
     }
 
-    //未确认订单变化
+    // unConfirmOrder
     if (prevProps.unConfirmOrderList != unConfirmOrderList) {
       this.filterData();
       this.watchUnCOnfirmOrderList();
@@ -306,8 +306,8 @@ class Curorder extends Component {
               <a
                 href={
                   activeLanguage === "zh"
-                    ? "https://support.trx.market/hc/zh-cn/signin?return_to=https%3A%2F%2Fsupport.trx.market%2Fhc%2Fzh-cn%2Farticles%2F360033085292-%25E4%25B8%25BA%25E4%25BB%2580%25E4%25B9%2588%25E4%25BC%259A-%25E5%25A7%2594%25E6%2589%2598%25E5%25A4%25B1%25E8%25B4%25A5-"
-                    : "https://support.trx.market/hc/en-us/articles/360033085292-Why-is-there-Submit-Failed-"
+                    ? "https://support.poloniex.org/hc/zh-cn/signin?return_to=https%3A%2F%2Fsupport.poloniex.org%2Fhc%2Fzh-cn%2Farticles%2F360033085292-%25E4%25B8%25BA%25E4%25BB%2580%25E4%25B9%2588%25E4%25BC%259A-%25E5%25A7%2594%25E6%2589%2598%25E5%25A4%25B1%25E8%25B4%25A5-"
+                    : "https://support.poloniex.org/hc/en-us/articles/360033085292-Why-is-there-Submit-Failed-"
                 }
                 className="learn-more"
                 target="_blank"
@@ -412,7 +412,7 @@ class Curorder extends Component {
       return;
     }
 
-    let obj = { start, limit, uAddr, status: "-1,0,1" };
+    let obj = { start, limit, uAddr, status: "-1,0,1", channelId: 10000 };
     if (showCurrent) {
       obj = Object.assign(obj, {
         fTokenAddr: exchangeData.fTokenAddr,
@@ -449,7 +449,8 @@ class Curorder extends Component {
       start: 0,
       limit: 100,
       uAddr: uAddr,
-      status: "2,7,8"
+      status: "2,7,8",
+      channelId: 10000
     }).then(res => {
       if (res.code === 0) {
         let list = [],
@@ -582,7 +583,7 @@ class Curorder extends Component {
     let { initData, contain28List } = this.state;
     let { unConfirmOrderList, deleteUnConfirmOrderObj } = this.props;
 
-    //从本地存储列表和服务端列表进行对比
+    //local and server order
     let contactList = initData.concat(contain28List);
     unConfirmOrderList.map((item, index) => {
       let isFind = false;
@@ -601,7 +602,7 @@ class Curorder extends Component {
     let { unConfirmOrderList, showCurrent, account, exchangeData } = this.props;
     let uAddr = account ? account.address : "";
 
-    //只看当前交易对
+    //see current pairs
     let list = [...unConfirmOrderList];
     let confirmList = [];
     if (showCurrent) {
@@ -647,7 +648,7 @@ class Curorder extends Component {
     let list = [...initData];
 
     let filterList = list.filter(item => {
-      //  取消确认中的订单
+      //  canceling order
       cancelOrderList &&
         cancelOrderList.map(subItem => {
           if (item.orderID === subItem.orderID) {
@@ -703,7 +704,7 @@ class Curorder extends Component {
     const event = await tronWeb.getEventByTransactionID(id).catch(e => {
       // 委托失败
       this.currentFaile(id);
-      console.log("委托失败--请求事件服务器失败");
+      console.log("Delegate failure--failed event server");
     });
 
     if (event.length > 0) {
@@ -716,8 +717,12 @@ class Curorder extends Component {
             let entry_txid = id;
 
             let obj = { action_type, order_id, entry_txid };
-            // todo 请求接口告诉服务端状态
-            console.log("委托失败--从服务端查询", entry_txid, order_id);
+
+            console.log(
+              "Delegate failure--Query from the server",
+              entry_txid,
+              order_id
+            );
             Client20.abnormalOrderStatus(obj).then(res => {
               if (res.order_status !== 0) {
                 this.currentFaile(id);
@@ -728,7 +733,7 @@ class Curorder extends Component {
         }
       }
     } else {
-      console.log("委托失败--事件服务器没有返回");
+      console.log("Delegate failure--no result from event server");
       this.currentFaile(id);
       // 委托失败
     }
@@ -754,13 +759,12 @@ class Curorder extends Component {
           item.orderStatus === 6 &&
           current_time - item.created_by > 1 * 60 * 1000
         ) {
-          // todo 告诉服务端长期未取消的订单残留
+          // todo Long-term unremoved order processing
           let action_type = "cancel";
           let entry_txid = item.hash;
           let order_id = item.orderID;
           let cancel_txid = item.cancel_hash;
           let obj = { action_type, entry_txid, cancel_txid, order_id };
-          // console.log("告诉服务端", entry_txid, order_id, cancel_txid, index);
           Client20.abnormalOrderStatus(obj)
             .then(res => {
               deleteCancelOrderObj(index);
@@ -784,6 +788,14 @@ class Curorder extends Component {
   }
   changeParis(v) {
     const { setRedirctPair } = this.props;
+    let obj = {
+      exchange_id: v.pairId || v.exchangeId,
+      exchange_name: v.fShortName + "/" + v.sShortName
+    };
+    this.props.history.push(
+      "/exchange/trc20?token=" + obj.exchange_name + "&id=" + obj.exchange_id
+    );
+    window.location.reload();
     setRedirctPair(v);
   }
 }

@@ -58,7 +58,7 @@ class TokenHolders extends React.Component {
       contract_address: filter.token
     }
     const query = qs.stringify({ format: 'csv',...params})
-    getCsvUrl(`${API_URL}/api/trc10trc20-transfer?${query}`)
+    getCsvUrl(`${API_URL}/api/token_trc20/holders?${query}`)
     let { data } = await xhr.get(API_URL+"/api/token_trc20/holders",{params});
     let addresses = data.trc20_tokens;
     let total= data.total;
@@ -126,9 +126,13 @@ class TokenHolders extends React.Component {
       },
       {
         title: 'Name Tag',
-        dataIndex: 'tagName',
-        key: 'tagName',
-        width: '200px'
+        dataIndex: 'addressTag',
+        key: 'addressTag',
+        width: '15%',
+        align: 'left',
+        render: (text, record, index) => {
+            return  <span style={{whiteSpace:'nowrap'}}> {record.addressTag?record.addressTag:''} </span>
+        }
       },
       {
         title: upperFirst(intl.formatMessage({id: 'quantity'})),

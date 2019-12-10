@@ -37,11 +37,15 @@ import { FormatNumberByDecimals } from '../../utils/number'
 import { getQueryString } from "../../utils/url";
 import IssuedToken from './IssuedToken';
 import PledgeModal from './PledgeModal';
+import MySignature from './MySignature';
 import MappingMessageModal from './MappingMessageModal';
 import SignModal from './SignModal';
 import {Tooltip} from "reactstrap";
 import { Input, Tooltip as AntdTip } from 'antd';
 import Countdown from "react-countdown-now";
+import { isJSXEmptyExpression } from '@babel/types';
+import  MyPermission  from '../mutiSignature/MyPermission';
+
 
 @connect(
     state => {
@@ -100,6 +104,9 @@ export default class Account extends Component {
       reward:false,
       accountReward:0,
       errorMess:'',
+      isInMyPermission:true,
+      isInMySignature:false,
+      mySignatureType:255
     };
 
   }
@@ -127,10 +134,22 @@ export default class Account extends Component {
               this.scrollToAnchor()
           },3000)
       }
+      if(getQueryString('from') == 'nav' && getQueryString('type') == 'multisign'){
+          this.setState({
+              isInMyPermission:false,
+              isInMySignature:true,
+              mySignatureType:10
+          },()=>{
+              setTimeout(()=>{
+                  this.scrollToMultisign()
+                  window.location.hash = "#/account";
+                },500)
+          })
+      }
       let isActivate =  await this.isActivateAccount(account.address)
-        this.setState({
-            isActivate
-        });
+      this.setState({
+        isActivate
+      });
       // gets the list of side chains
       isPrivateKey && !IS_SUNNET && await this.getSideChains();
       // get fees
@@ -148,7 +167,19 @@ export default class Account extends Component {
   }
 
   async componentDidUpdate(prevProps) {
-    let {account, walletType, currentWallet} = this.props;
+    let {account, walletType, currentWallet, location} = this.props;
+    if((location.search != prevProps.location.search) && getQueryString('from') == 'nav' && getQueryString('type') == 'multisign') {
+        this.setState({
+          isInMyPermission:false,
+          isInMySignature:true,
+          mySignatureType:10
+        },()=>{
+            setTimeout(()=>{
+                this.scrollToMultisign()
+                window.location.hash = "#/account";
+            },500)
+        })
+    }
     if (((prevProps.account.isLoggedIn !== account.isLoggedIn) && account.isLoggedIn) || ((prevProps.account.address !== account.address) && account.isLoggedIn)) {
       this.setState({isTronLink: Lockr.get("islogin")});
       this.reloadTokens();
@@ -180,6 +211,11 @@ export default class Account extends Component {
 
     }
   }
+  changeMySignatureType(value){
+    this.setState({
+      mySignatureType:value
+    })
+  }
 
   loadVoteTimer = async () => {
       this.props.loadVoteTimer();
@@ -201,7 +237,6 @@ export default class Account extends Component {
   getAddressReward = async () => {
       let { account } = this.props;
       let tronWeb = account.tronWeb;
-      console.log(account.tronWeb)
       const  reward  =  await tronWeb.trx.getReward(tronWeb.defaultAddress.base58)
       this.setState({
           accountReward:reward
@@ -224,6 +259,14 @@ export default class Account extends Component {
       if(anchorElement) { anchorElement.scrollIntoView(); }
 
   }
+    scrollToMultisign = () => {
+
+        let anchorElement = document.getElementById('tronMultisign');
+        if(anchorElement) { anchorElement.scrollIntoView(); }
+
+    }
+
+
 
   loadAccount = async () => {
     let {account, loadRecentTransactions, currentWallet} = this.props;
@@ -1738,12 +1781,19 @@ export default class Account extends Component {
 
   isActivateAccount = async (address) => {
       const { account: { sunWeb },intl} = this.props;
-      let data  = await sunWeb.mainchain.trx.getUnconfirmedAccount(address);
+      let data;
+      if (this.props.walletType.type === "ACCOUNT_LEDGER") {
+          let tronWebLedger = this.props.tronWeb();
+          data  = await tronWebLedger.trx.getUnconfirmedAccount(address);
+      }else {
+          data = await sunWeb.mainchain.trx.getUnconfirmedAccount(address);
+      }
       let isAccount = JSON.stringify(data) == "{}";
       if (isAccount) {
           return false
       }
       return true
+
   };
 
   /**
@@ -1857,7 +1907,7 @@ export default class Account extends Component {
         if(!reward){
             return
         }
-        let {account, currentWallet} = this.props;
+        let {account, currentWallet, walletType} = this.props;
         if (this.state.isTronLink === 1) {
             let tronWeb;
             if (this.props.walletType.type === "ACCOUNT_LEDGER") {
@@ -1865,7 +1915,7 @@ export default class Account extends Component {
             } else if (this.props.walletType.type === "ACCOUNT_TRONLINK") {
                 tronWeb = account.tronWeb;
             }
-            const unSignTransaction = await tronWeb.transactionBuilder.withdrawBlockRewards(tronWeb.defaultAddress.base58).catch(e => false);
+            const unSignTransaction = await tronWeb.transactionBuilder.withdrawBlockRewards(walletType.address).catch(e => false);
             const {result} = await transactionResultManager(unSignTransaction, tronWeb)
             res = result;
         } else {
@@ -1894,14 +1944,20 @@ export default class Account extends Component {
     // account claim rewards
     accountClaimRewards = async () => {
         let res,hashid;
-        let {account, currentWallet} = this.props;
+        let {account, currentWallet, walletType} = this.props;
         let {reward} = this.state;
         if(!reward){
            return
         }
 
-        let tronWeb = account.tronWeb;
-        const unSignTransaction = await tronWeb.transactionBuilder.withdrawBlockRewards(tronWeb.defaultAddress.base58).catch(e => false);
+        //let tronWeb = account.tronWeb;
+        let tronWeb;
+        if (this.props.walletType.type === "ACCOUNT_LEDGER") {
+            tronWeb = this.props.tronWeb();
+        } else {
+            tronWeb = account.tronWeb;
+        }
+        const unSignTransaction = await tronWeb.transactionBuilder.withdrawBlockRewards(walletType.address).catch(e => false);
         const {result} = await transactionResultManager(unSignTransaction, tronWeb)
         res = result;
         //hashid = txid
@@ -1933,7 +1989,7 @@ export default class Account extends Component {
   render() {
     let { modal, sr, issuedAsset, showBandwidth, showBuyTokens, temporaryName, hideSmallCurrency, tokenTRC10,
         isShowPledgeModal, isShowMappingModal, address, currency, balance, precision, id, type, isShowSignModal,
-        tokenTRX, trx20MappingAddress,brokerageValue, errorMess, reward, rewardData, accountReward} = this.state;
+        tokenTRX, trx20MappingAddress,brokerageValue, errorMess, reward, rewardData, accountReward,isInMyPermission,isInMySignature, mySignatureType} = this.state;
 
     let {account, frozen, totalTransactions, currentWallet, wallet, accountResource, trxBalance, intl} = this.props;
 
@@ -1941,6 +1997,12 @@ export default class Account extends Component {
 
     let trxBalanceRemaining = currentWallet && currentWallet.balance / ONE_TRX;
 
+    let tronWeb;
+    if(wallet.type==='ACCOUNT_LEDGER'){
+      tronWeb = this.props.tronWeb();
+    }else{
+      tronWeb = account.tronWeb;
+    }
       // pledge param
       const option = {
           address,
@@ -1970,11 +2032,11 @@ export default class Account extends Component {
     }
     let hasFrozen = frozen.balances.length > 0;
     let hasResourceFrozen = accountResource.frozen_balance > 0
-    let url = 'https://support.trx.market/hc/en-us/articles/360030644412-TRC20-USDT-Reloaded-with-Powerful-Aid-from-TRXMarket-15-000-USD-Awaits-'
-    let title = 'TRC20-USDT Returns with Generous Rewards from TRXMarket - 15,000 USDT Awaits!'
+    let url = 'https://support.poloniex.org/hc/en-us/articles/360030644412-TRC20-USDT-Reloaded-with-Powerful-Aid-from-TRXMarket-15-000-USD-Awaits-'
+    let title = 'TRC20-USDT Returns with Generous Rewards from Poloni DEX - 15,000 USDT Awaits!'
     if(intl.locale == 'zh'){
-      url = 'https://support.trx.market/hc/zh-cn/articles/360030644412-TRXMarket%E5%8A%A9%E5%8A%9BTRC20-USDT%E9%87%8D%E8%A3%85%E4%B8%8A%E9%98%B5-%E6%83%8A%E5%96%9C%E6%94%BE%E9%80%8110%E4%B8%87%E4%BA%BA%E6%B0%91%E5%B8%81'
-      title = 'TRXMarket助力TRC20-USDT重装上阵，惊喜放送10万人民币'
+      url = 'https://support.poloniex.org/hc/zh-cn/articles/360030644412-TRXMarket%E5%8A%A9%E5%8A%9BTRC20-USDT%E9%87%8D%E8%A3%85%E4%B8%8A%E9%98%B5-%E6%83%8A%E5%96%9C%E6%94%BE%E9%80%8110%E4%B8%87%E4%BA%BA%E6%B0%91%E5%B8%81'
+      title = 'Poloni DEX-USDT重装上阵，惊喜放送10万人民币'
     }
    
     return (
@@ -2314,7 +2376,7 @@ export default class Account extends Component {
                       TRX
                     </a>
                       {
-                          IS_MAINNET?  <a href={`https://trx.market`} className="ml-2 float-right" target="_blank"><span className="mr-1"  style={{textDecoration: 'underline'}}>{t("Trade_on_TRXMarket")}</span>></a>
+                          IS_MAINNET?  <a href={`https://poloniex.org`} className="ml-2 float-right" target="_blank"><span className="mr-1"  style={{textDecoration: 'underline'}}>{t("Trade_on_Poloni DEX")}</span>></a>
                           :''
                       }
                   </div>
@@ -2499,6 +2561,44 @@ export default class Account extends Component {
               </div>
             </div>
           </div>
+          {/* <div> wjl </div> */}
+
+
+          {
+          IS_MAINNET&&<div className="row mt-3" id="tronMultisign">
+            <div className="col-md-12">
+                <div className="card">
+                  <div className="card-body">
+                    <h5 className="card-title text-center m-0">
+                       {tu("muti_sign")}
+                    </h5>
+                    <div className="account-muti-sign-tab">
+                      <a href="javascript:;"
+                        className={"btn btn-tap btn-default btn-sm " + (isInMyPermission ? ' active' : '')}
+                        onClick={()=>this.setState({isInMyPermission:true,isInMySignature:false})}>
+                        {tu('signature_my_authrity')}
+                      </a>
+                      <a href="javascript:;"
+                        className={"btn btn-tap btn-default btn-sm ml-2 " + (isInMySignature ? 'active' : '')}
+                        onClick={()=>this.setState({isInMyPermission:false,isInMySignature:true})}>
+                        {tu('signature_my')}
+                      </a>
+                      
+                      <div className='muti-sign-content'>
+                         <div className='muti-sign-my-permission' style={{display:isInMyPermission?'block':'none'}}>
+                            <MyPermission tronWeb={tronWeb}/>
+                         </div>
+                         <div className='muti-sign-my-signature' style={{display:isInMySignature?'block':'none'}}>
+                            <MySignature type={mySignatureType} handleType={this.changeMySignatureType.bind(this)}/>
+                         </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+          </div>
+          }
+          
           {
               (currentWallet.representative.enabled  && IS_MAINNET) &&
                 <div className="row mt-3">
@@ -2704,8 +2804,8 @@ export default class Account extends Component {
                     </div>
                   </div>
                 </div>
-            }
-            {
+          }
+          {
               !currentWallet.representative.enabled &&
               <div className="row mt-3">
                 <div className="col-md-12">
@@ -2715,7 +2815,13 @@ export default class Account extends Component {
                           {tu("Super Representatives")}
                       </h5>
                       <p className="pt-3">
-                          {tu("apply_for_delegate_predescription")}
+                          {tu("apply_for_delegate_predescription_1")}
+                      </p>
+                      <p className="pt-1">
+                        {tu("apply_for_delegate_predescription_2")}
+                      </p>
+                      <p className="pt-1">
+                        {tu("apply_for_delegate_predescription_3")}
                       </p>
                       <div className="text-center">
                           {
@@ -2731,7 +2837,7 @@ export default class Account extends Component {
                   </div>
                 </div>
               </div>
-            }
+          }
 
 
 

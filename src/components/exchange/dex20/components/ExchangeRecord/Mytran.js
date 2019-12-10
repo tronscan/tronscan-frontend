@@ -15,6 +15,7 @@ import { setUpdateTran, setRedirctPair } from "../../../../../actions/exchange";
 import { TronLoader } from "../../../../common/loaders";
 import { Popover, Icon } from "antd";
 import { precisions } from "../../TokenPre";
+import { withRouter } from "react-router-dom";
 
 class Mytran extends Component {
   constructor(props) {
@@ -81,7 +82,8 @@ class Mytran extends Component {
         uAddr: account.address,
         start: (palyload.current - 1) * palyload.pageSize,
         limit: palyload.pageSize,
-        status: "2,5,6,7,8"
+        status: "2,5,6,7,8",
+        channelId: 10000
       };
 
       if (showCurrent) {
@@ -257,8 +259,8 @@ class Mytran extends Component {
               <a
                 href={
                   activeLanguage === "zh"
-                    ? "https://support.trx.market/hc/zh-cn/signin?return_to=https%3A%2F%2Fsupport.trx.market%2Fhc%2Fzh-cn%2Farticles%2F360033085292-%25E4%25B8%25BA%25E4%25BB%2580%25E4%25B9%2588%25E4%25BC%259A-%25E5%25A7%2594%25E6%2589%2598%25E5%25A4%25B1%25E8%25B4%25A5-"
-                    : "https://support.trx.market/hc/en-us/articles/360033085292-Why-is-there-Submit-Failed-"
+                    ? "https://support.poloniex.org/hc/zh-cn/signin?return_to=https%3A%2F%2Fsupport.poloniex.org%2Fhc%2Fzh-cn%2Farticles%2F360033085292-%25E4%25B8%25BA%25E4%25BB%2580%25E4%25B9%2588%25E4%25BC%259A-%25E5%25A7%2594%25E6%2589%2598%25E5%25A4%25B1%25E8%25B4%25A5-"
+                    : "https://support.poloniex.org/hc/en-us/articles/360033085292-Why-is-there-Submit-Failed-"
                 }
                 className="learn-more"
                 target="_blank"
@@ -333,6 +335,14 @@ class Mytran extends Component {
   }
   changeParis(v) {
     const { setRedirctPair } = this.props;
+    let obj = {
+      exchange_id: v.pairId || v.exchangeId,
+      exchange_name: v.fShortName + "/" + v.sShortName
+    };
+    this.props.history.push(
+      "/exchange/trc20?token=" + obj.exchange_name + "&id=" + obj.exchange_id
+    );
+    window.location.reload();
     setRedirctPair(v);
   }
 }
@@ -357,4 +367,4 @@ const mapDispatchToProps = {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(injectIntl(Mytran));
+)(withRouter(injectIntl(Mytran)));

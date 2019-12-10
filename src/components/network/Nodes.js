@@ -10,7 +10,7 @@ import {NodeMapAsync} from "./NodeMap/async";
 import {getQueryParam} from "../../utils/url";
 import {WidgetIcon} from "../common/Icon";
 import BarReact from "../common/BarChart";
-import {API_URL} from "../../constants";
+import {API_URL,IS_MAINNET} from "../../constants";
 
 class Nodes extends Component {
 
@@ -177,11 +177,17 @@ class Nodes extends Component {
                     <br/>
                     {tu("split_by_country")}
                   </h5>
-                  <div style={{height: 500}}>
+                  <div style={IS_MAINNET
+                      ? { height: 500 }
+                      : { height: 250 }}>{
+
+                  }
                     {
                       countries === null ?
                           <TronLoader/> :
-                          <BarReact style={{height: 500}} data={countries}/>
+                          <BarReact style={IS_MAINNET
+                              ? { height: 500 }
+                              : { height: 250 }} data={countries}/>
                     }
                   </div>
                 </div>

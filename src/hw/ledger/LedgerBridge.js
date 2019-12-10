@@ -45,6 +45,7 @@ export default class LedgerBridge {
   async signTransaction(transaction) {
     return new Promise(async (resolve, reject) => {
       const transport = await Transport.create();
+      console.log(1,transport);
       try {
         const trx = new AppTrx(transport);
         let response = await trx.signTransactionWithTokenName(
@@ -59,4 +60,5 @@ export default class LedgerBridge {
       }
     });
   }
+
 }

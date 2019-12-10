@@ -4,7 +4,7 @@ import {AddressLink, TransactionHashLink} from "../../common/Links";
 import {TRXPrice} from "../../common/Price";
 import {API_URL, ONE_TRX} from "../../../constants";
 import {tu, t} from "../../../utils/i18n";
-import TimeAgo from "react-timeago";
+// import TimeAgo from "react-timeago";
 import moment from 'moment';
 import {Truncate} from "../../common/text";
 import {withTimers} from "../../../utils/timing";
@@ -18,6 +18,8 @@ import TotalInfo from "../../common/TableTotal";
 import DateSelect from "../../common/dateSelect";
 import rebuildList from "../../../utils/rebuildList";
 import qs from 'qs'
+import BlockTime from '../../common/blockTime'
+
 
 class Transfers extends React.Component {
 
@@ -127,7 +129,8 @@ class Transfers extends React.Component {
         width: '150px',
         className: 'ant_table',
         render: (text, record, index) => {
-          return <TimeAgo date={record.timestamp} title={moment(record.timestamp).format("MMM-DD-YYYY HH:mm:ss A")}/>
+          return <BlockTime time={record.timestamp}></BlockTime>
+          // <TimeAgo date={record.timestamp} title={moment(record.timestamp).format("MMM-DD-YYYY HH:mm:ss A")}/>
         }
       },
       {

@@ -4,12 +4,14 @@ import {BlockNumberLink} from "./Links";
 import {t, tu} from "../../utils/i18n";
 import {FormattedNumber,injectIntl} from "react-intl";
 import {API_URL} from "../../constants";
-import TimeAgo from "react-timeago";
+// import TimeAgo from "react-timeago";
 import moment from 'moment';
 import SmartTable from "./SmartTable.js"
 import {upperFirst} from "lodash";
 import {TronLoader} from "./loaders";
 import qs from 'qs'
+import BlockTime from '../common/blockTime'
+
 
 class Blocks extends React.Component {
 
@@ -80,7 +82,8 @@ class Blocks extends React.Component {
         align: 'left',
         className: 'ant_table',
         render: (text, record, index) => {
-          return <TimeAgo date={text} title={moment(text).format("MMM-DD-YYYY HH:mm:ss A")}/>
+          return <BlockTime time={text}></BlockTime>
+          // <TimeAgo date={text} title={moment(text).format("MMM-DD-YYYY HH:mm:ss A")}/>
         }
       },
       {

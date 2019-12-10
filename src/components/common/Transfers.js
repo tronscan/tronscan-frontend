@@ -3,7 +3,7 @@ import {injectIntl} from "react-intl";
 import {Client} from "../../services/api";
 import {AddressLink, TransactionHashLink} from "./Links";
 import {tu} from "../../utils/i18n";
-import TimeAgo from "react-timeago";
+// import TimeAgo from "react-timeago";
 import {Truncate,TruncateAddress} from "./text";
 import {withTimers} from "../../utils/timing";
 import SmartTable from "./SmartTable.js"
@@ -16,6 +16,8 @@ import DateRange from "./DateRange";
 import moment from 'moment';
 import {NameWithId} from "./names";
 import _ from "lodash";
+import BlockTime from '../common/blockTime'
+
 
 class Transfers extends React.Component {
   constructor(props) {
@@ -156,7 +158,8 @@ class Transfers extends React.Component {
         className: 'ant_table',
         width: '14%',
         render: (text, record, index) => {
-          return <TimeAgo date={text} title={moment(text).format("MMM-DD-YYYY HH:mm:ss A")}/>
+          return <BlockTime time={text}></BlockTime>
+          // <TimeAgo date={text} title={moment(text).format("MMM-DD-YYYY HH:mm:ss A")}/>
         }
       },
       {
