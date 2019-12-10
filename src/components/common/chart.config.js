@@ -760,27 +760,27 @@ export default {
               },
               gridLineWidth: 0
           },
-          {// Secondary yAxis
-              title: {
-                  // align: 'high',
-                  // offset: 0,
-                  text: '',
-                  // rotation: 0,
-                  // x:100,
-                  // y: -10
-              },
-              // min: 0,
-              //minTickInterval:5
-              tickPixelInterval: 30,
-              labels: {
-                  style: {
-                      color: "#333333",
-                  }
-              },
-              opposite: true,
-              gridLineWidth: 0
+          // {// Secondary yAxis
+          //     title: {
+          //         // align: 'high',
+          //         // offset: 0,
+          //         text: '',
+          //         // rotation: 0,
+          //         // x:100,
+          //         // y: -10
+          //     },
+          //     // min: 0,
+          //     //minTickInterval:5
+          //     tickPixelInterval: 30,
+          //     labels: {
+          //         style: {
+          //             color: "#333333",
+          //         }
+          //     },
+          //     opposite: true,
+          //     gridLineWidth: 0
 
-          }
+          // }
         ],
         legend: {
            // layout: 'vertical',
@@ -836,35 +836,35 @@ export default {
               }
 
           },
-          {
-              type: 'spline',
-              name: '',
-              data: [],
-              //turboThreshold: 7000,
-              //allowPointSelect: false,
-              color: "#FFAA38",
-              marker: {
-                  enabled: false,
-                  radius:1
-                  //enabledThreshold: '7'
-              },
-              visible: false
-          },
-          {
-              type: 'spline',
-              name: '',
-              data: [],
-              //turboThreshold: 7000,
-              //allowPointSelect: false,
-              color: "#FF8A84",
-              yAxis: 1,
-              marker: {
-                  enabled: false,
-                  radius:1
-                  //enabledThreshold: '7'
-              },
-              visible: false
-          }
+          // {
+          //     type: 'spline',
+          //     name: '',
+          //     data: [],
+          //     //turboThreshold: 7000,
+          //     //allowPointSelect: false,
+          //     color: "#FFAA38",
+          //     marker: {
+          //         enabled: false,
+          //         radius:1
+          //         //enabledThreshold: '7'
+          //     },
+          //     visible: false
+          // },
+          // {
+          //     type: 'spline',
+          //     name: '',
+          //     data: [],
+          //     //turboThreshold: 7000,
+          //     //allowPointSelect: false,
+          //     color: "#FF8A84",
+          //     yAxis: 1,
+          //     marker: {
+          //         enabled: false,
+          //         radius:1
+          //         //enabledThreshold: '7'
+          //     },
+          //     visible: false
+          // }
         ]
     },
   ringPieHighChart3D: {

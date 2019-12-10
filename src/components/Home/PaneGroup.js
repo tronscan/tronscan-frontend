@@ -260,7 +260,7 @@ export default class panelGroup extends Component {
         {!isMobile && (
           <div>
             {/* mainnet */}
-            {!IS_NILE && IS_MAINNET && (
+            { IS_MAINNET && (
               <div className="panel-group " >
                 <span
                   className="col-tag"
@@ -268,8 +268,11 @@ export default class panelGroup extends Component {
                     this.expand();
                   }}
                 >
-                  {isExpand ? tu("collapse") : tu("expand")}
-                  <Icon type={isExpand ? "caret-up" : "caret-down"} />
+                  {
+                  !IS_NILE && <span>                 
+                     {isExpand ? tu("collapse") : tu("expand")}
+                  <Icon type={isExpand ? "caret-up" : "caret-down"} /></span>
+                  }
                 </span>
                 <div className="text-center mr-0 ml-0 mt-2">
                   <div
