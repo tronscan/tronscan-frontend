@@ -2112,6 +2112,7 @@ export const messages = {
   "information_is_being_confirmed": "Information is being confirmed, this process may take 10 minutes, please try again later",
 
   "interTrx_tip": "内部取引は、一般住所がスマート契約を呼び出し、スマート契約が他のアドレスにトークンを転送する操作です。",
+  "interTrx_tip_contract":"Internal transactions from contract execution",
   "event_tip": "イベントは、プログラマや外部インタフェースプロバイダが契約業務や監査に注意を払うためにそれを使用できるようにすることです。",
   "Expected_acquisition": "獲得見込み",
   "energy_more": "獲得したバンド幅＝エネルギーを獲得するために凍結したTRX/ネット全体がバンド幅を獲得するために凍結したTRX総額",

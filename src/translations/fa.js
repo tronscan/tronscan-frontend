@@ -2116,6 +2116,7 @@ export const messages = {
     "receive_address": "دریافت آدرس (آدرس پیش فرض شخصی شماست)",
 
     "interTrx_tip": "معاملات داخلی عملیاتی است که یک آدرس کلی آدرس یک قرارداد هوشمند را فراخوانی می کند و قرارداد هوشمند نقل قول را به آدرس دیگری انتقال می دهد.",
+    "interTrx_tip_contract":"Internal transactions from contract execution",
     "event_tip": "رویدادها این است که اجازه دهید برنامهنویس یا ارائه دهنده رابط خارجی از آن برای توجه به عملیات قرارداد و ممیزی استفاده کند.",
     /* 2019-07-06*/
     "trc20_free_orders": "0 trading fee for all orders",

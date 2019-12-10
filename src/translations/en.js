@@ -1177,7 +1177,7 @@ export const messages = {
    "contract_create_msg":"Information",
    "contract_create_time":"CreationTime",
    "contract_enery":"Energy consumption ratio",
-   "contract_enery_tip":"Calling smart contracts consumes energy",
+   "contract_enery_tip":"Calling smart contract consumes energy, which is borne by the contract and the user in proportion",
    "contract_init_assets":"Initial asset",
    "contract_init_assets_tip":"Contract creator transfers funds to contract address while deploying contracts",
    "contract_editor_bug": "Loophole warning for the compiler",
@@ -2125,8 +2125,8 @@ export const messages = {
   "str_9": "Unable to verify the parameters",
   "token_login_no_updated": "The login account is inconsistent with the publisher and cannot be updated",
   "information_is_being_confirmed": "Information is being confirmed, this process may take 10 minutes, please try again later",
-
   "interTrx_tip": "Internal Transactions is an operation which a general address calls a Smart Contract， and the Smart Contract transfers token to other address.",
+  "interTrx_tip_contract":"Internal transactions from contract execution",
   "event_tip": "Events is to let the programmer or external interface provider use it to pay attention to contract operations and audits.",
   /* 2019-07-06*/
   "trc20_free_orders": "0 trading fee for all orders",
@@ -2376,7 +2376,7 @@ export const messages = {
      ##################################################################################
   */
  "muti_sign":"Multi-signature",
- "translations_wait_sign":"Transactions waiting for my signature",
+ "translations_wait_sign":"Unsigned transactions",
   "transfer_multi_sign":"Multi-signature transfer",
   "permission":"Access",
   "owner_permission":"Owner access group",
