@@ -1,4 +1,3 @@
-/*eslint-disable no-script-url*/
 import React, {Fragment, PureComponent} from 'react'
 import {injectIntl} from "react-intl";
 import logo from '../images/tron-banner-inverted.png'
@@ -550,6 +549,7 @@ class Navigation extends React.Component {
                 return tronLogoSunNet;
         }
     } {
+      // eslint-disable-next-line
       switch (theme) {
         case "tron":
           return tronLogoBlue;
