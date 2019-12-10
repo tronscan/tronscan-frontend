@@ -78,14 +78,14 @@ export const routes = [
         icon: "fa fa-link",
         component: () => <Redirect to="/blockchain/blocks" />,
         routes: [
-            {
-                label: "nodes",
-                icon: "fa fa-server",
-                path: "/blockchain/nodes",
-                component: NodesAsync,
-                showInMenu: true
-                // showInMenu: IS_MAINNET?true:false,
-            },
+            // {
+            //     label: "nodes",
+            //     icon: "fa fa-server",
+            //     path: "/blockchain/nodes",
+            //     component: NodesAsync,
+            //     showInMenu: true
+            //     // showInMenu: IS_MAINNET?true:false,
+            // },
             {
                 path: "/blockchain/blocks",
                 label: "blocks",
@@ -144,20 +144,20 @@ export const routes = [
                 path: "/blockchain/live",
                 component: LiveAsync,
                 showInMenu: false
-            }, // {
+            } // {
             //   label: "inter_tnxl",
             //   icon: `fa fa-random`,
             //   path: "/blockchain/ContractInter",
             //   component: ContractInter,
             //   showInMenu: false
             // },
-            {
-                path: "/blockchain/foundation",
-                label: "foundation",
-                icon: "fa fa-address-book",
-                showInMenu: IS_MAINNET ? true : false,
-                component: FoundationAsync
-            }
+            // {
+            //     path: "/blockchain/foundation",
+            //     label: "foundation",
+            //     icon: "fa fa-address-book",
+            //     showInMenu: IS_MAINNET ? true : false,
+            //     component: FoundationAsync
+            // }
         ]
     },
     {

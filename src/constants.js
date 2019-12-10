@@ -42,6 +42,7 @@ let NODEAPI;
 // export let IS_MAINNET = MAINNET;
 // export let IS_SUNNET = SUNNET;
 
+NODEAPI = "http://52.15.126.154:9016";
 
 export const BLOCK_REWARD = 32;
 export const SR_MAX_COUNT = 27;

@@ -2376,7 +2376,7 @@ export default class Account extends Component {
                       TRX
                     </a>
                       {
-                          IS_MAINNET?  <a href={`https://poloniex.org`} className="ml-2 float-right" target="_blank"><span className="mr-1"  style={{textDecoration: 'underline'}}>{t("Trade_on_Poloni DEX")}</span>></a>
+                          IS_MAINNET?  <a href={`https://poloniex.org`} className="ml-2 float-right" target="_blank"style={{display:"none"}} ><span className="mr-1"  style={{textDecoration: 'underline'}}>{t("Trade_on_Poloni DEX")}</span>></a>
                           :''
                       }
                   </div>

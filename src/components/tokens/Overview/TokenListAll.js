@@ -334,7 +334,7 @@ class TokenList extends Component {
                   record.tokenType == 'trc20'&&
                   <Link to={`/token20/${encodeURI(record.contractAddress)}`} className="token-details btn">{tu('details')}</Link>
               }
-              {
+              {/* {
                   IS_MAINNET&& <span>
                     {(record.extra && record.extra.url && record.extra.desc) ? <a href={record.extra.url} className="token-active-details btn mt-2">{tu(record.extra.desc)}</a>
                         : (record.pairId )?
@@ -351,7 +351,7 @@ class TokenList extends Component {
                             </div>}
                 </span>
 
-              }
+              } */}
 
             </div>
 
@@ -511,7 +511,7 @@ class TokenList extends Component {
                             record.tokenType == 'trc20'&&
                             <Link to={`/token20/${encodeURI(record.contractAddress)}`} className="token-details btn">{tu('details')}</Link>
                         }
-                        {
+                        {/* {
                             IS_MAINNET&& <span>
                            {(record.extra && record.extra.url && record.extra.desc)? <a href={record.extra.url} className="token-active-details btn mt-2">{tu(record.extra.desc)}</a>
                             : (record.pairId )?
@@ -528,7 +528,7 @@ class TokenList extends Component {
                             </div>}
                 </span>
 
-                        }
+                        } */}
 
                     </div>
 
@@ -563,7 +563,7 @@ class TokenList extends Component {
                         {tableInfo} <span>
                           <QuestionMark placement="top" text="newly_issued_token_by_tronscan" className="token-list-info"></QuestionMark>
                         </span> &nbsp;&nbsp;  
-                          {IS_MAINNET?<a href={`https://poloniex.org`} target="_blank" >{t("Trade_on_Poloni DEX")}></a>:''}
+                          {IS_MAINNET?<a href={`https://poloniex.org`} target="_blank"  style={{display:"none"}} >{t("Trade_on_Poloni DEX")}></a>:''}
                       </div>
                     </div> : ''}
                     <div className="d-md-flex apply-trc20 apply-all align-items-center">
