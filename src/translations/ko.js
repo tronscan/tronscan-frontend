@@ -1522,7 +1522,7 @@ export const messages = {
   "propose_12": "1 energy의 비용 수정 제안",
   "propose_13": "거래조합 생성 비용 수정 제안",
   "propose_14": "한 거래의 최대 실행 시간 수정 제안",
-  "propose_15": "계정 이름 변경 여부 제안",
+  "propose_15": "중복 계정 이름을 허용하도록 제안",
   "propose_16": "토큰 동명 제안 허락",
   "propose_17": "리소스 위임을 허용 제안",
   "propose_18": "총 에너지 한도 수정 제안",

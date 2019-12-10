@@ -1539,7 +1539,7 @@ export const messages = {
   "propose_12": "Propose to modify the fee of 1 energy",
   "propose_13": "Propose to modify the cost of trading pair creation",
   "propose_14": "Propose to modify the maximum execution time of one transaction",
-  "propose_15": "Propose to allow to change the account name",
+  "propose_15": "Propose to allow duplicate account name",
   "propose_16": "Propose to allow the same token name",
   "propose_17": "Propose to allow resource delegation",
   "propose_18": "Propose to modify the total energy limit",

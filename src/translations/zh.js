@@ -1556,7 +1556,7 @@ export const messages = {
   "propose_12": "提议修改1 energy的费用",
   "propose_13": "提议修改创建交易对的费用",
   "propose_14": "提议修改一条交易的最大执行时间",
-  "propose_15": "提议是否允许更改账户名称",
+  "propose_15": "提议允许账户重名",
   "propose_16": "提议允许通证同名",
   "propose_17": "提议允许资源委派",
   "propose_18": "提议修改总Energy上限",

@@ -1310,7 +1310,7 @@ class Navigation extends React.Component {
                                           return (
                                               <span className="mr-3 d-inline-block developer_challenge_box">
                                                 <HrefLink
-                                                    key={Route.url}
+                                                    key={Route.url+'_'+ Route.label}
                                                     className="dropdown-item text-uppercase"
                                                     href={Route.url}>
                                                   {Route.icon &&
