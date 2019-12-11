@@ -11,7 +11,10 @@ import xhr from "axios/index";
 import {Tooltip} from "reactstrap";
 import {withTronWeb} from "../../../utils/tronWeb";
 import {Link} from "react-router-dom";
-import { Button,Table, Radio } from 'antd';
+import { Button,Table, Radio, Divider } from 'antd';
+import { TRXPrice } from "../../common/Price";
+import { connect } from "react-redux";
+import { loadUsdPrice } from "../../../actions/blockchain";
 @withTronWeb
 class TokenList extends Component {
 
@@ -27,16 +30,16 @@ class TokenList extends Component {
       filter: {
         order: 'desc',
         filter: 'all',
-        sort: 'volume24hInTrx',
+        sort: 'marketcap',
         order_current: "descend"
       },
       pagination: {
         showQuickJumper:true,
-        position: 'both',
+        position: 'bottom',
         showSizeChanger: true,
         defaultPageSize:20,
         total: 0
-      },
+      }
     };
   }
 
@@ -67,24 +70,24 @@ class TokenList extends Component {
           });
       }
      
-      item.marketcap = item.marketcap || 0
-      item.nrOfTokenHolders = item.nrOfTokenHolders || '-'
-      item.volume24hInTrx =  item.volume24hInTrx|| 0
-      item.priceInTrx = item.priceInTrx || '-'
+      // item.marketcap = item.marketcap || 0
+      // item.nrOfTokenHolders = item.nrOfTokenHolders || '-'
+      // item.volume24hInTrx =  item.volume24hInTrx|| 0
+      // item.priceInTrx = item.priceInTrx || '-'
 
       if(item.gain != undefined){
-        item.gain = item.gain *10000
+        item.gain = item.gain * 100
         if(item.gain<0){
           item.color = 'col-red'
-          item.gain = parseInt(item.gain) / 100 + '%'
+          item.gain = item.gain.toFixed(2) + '%'
         }
         if(item.gain>0){
           item.color = 'col-green'
-          item.gain = '+' + parseInt(item.gain) / 100 + '%'
+          item.gain = '+' + item.gain.toFixed(2) + '%'
         }
         if(item.gain==0){
-          item.color = 'col-green'
-          item.gain =  parseInt(item.gain) / 100+ '%'
+          item.color = 'col-gray'
+          item.gain =  '0%'
         }
       }else{
         item.gain= '-'
@@ -108,6 +111,8 @@ class TokenList extends Component {
 
   componentDidMount() {
     this.loadPage();
+    // this.getUsdPrice();
+    this.props.loadUsdPrice();
   }
 
   onChange = (e) => {
@@ -116,7 +121,7 @@ class TokenList extends Component {
       filter: {
         ...this.state.filter,
         order: 'desc',
-        sort: 'volume24hInTrx',
+        sort: 'marketcap',
         filter: e.target.value,
         order_current: "descend"
       },
@@ -146,7 +151,7 @@ class TokenList extends Component {
       pagination: pager,
       filter: {
         ...this.state.filter,
-        sort: sortMap[sorter.columnKey] || 'volume24hInTrx',
+        sort: sortMap[sorter.columnKey] || 'marketcap',
         order: map[sorter.order] || 'desc',
         order_current: sorter.order
       }
@@ -154,8 +159,8 @@ class TokenList extends Component {
   }
 
   customizedColumn = () => {
-    let {filter} = this.state;
-    let { intl } = this.props;
+    let { filter } = this.state;
+    let { intl, priceUSD } = this.props;
     const defaultImg = require("../../../images/logo_default.png");
     let column = [
       {
@@ -256,23 +261,40 @@ class TokenList extends Component {
                     </div>
                   )}
                 </h5>
-                <p style={{ wordBreak: "break-all" }}>{record.description}</p>
+                <p className="multi-line-overflow">{record.description}</p>
               </div>
             </div>
           );
         }
       },
       {
-        title: intl.formatMessage({id: 'price'})+ ' (TRX)',
+        title: intl.formatMessage({id: 'price'}),
         dataIndex: 'priceInTrx',
         key: 'priceInTrx',
         sorter: true,
         sortOrder: filter.sort === 'priceInTrx' && filter.order_current,
         align: 'center',
-        className: 'ant_table d-none d-md-table-cell _text_nowrap'
+        className: 'ant_table d-none d-md-table-cell _text_nowrap',
+        render:(text, record, index)=>{
+          return (
+            text ? (<div className="d-flex flex-column">
+              <span>{(text*priceUSD).toFixed(6)}{' USD'}</span>
+              {text && record.contractAddress != 'TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t' ? <span>{text.toFixed(6)}{' TRX'}</span> : ''}
+            </div>) : '-'
+          )
+        }
       },
       {
-        title: intl.formatMessage({id: 'gain'}),
+        title: () => {
+          return (
+            <div>
+              <span className="mr-2">
+                <QuestionMark placement="top" text="gain_tip" />
+              </span>
+              {upperFirst(intl.formatMessage({ id: "gain" }))}
+            </div>
+          )
+        },
         sorter: true,
         sortOrder: filter.sort === 'gain' && filter.order_current,
         dataIndex: 'gain',
@@ -287,24 +309,46 @@ class TokenList extends Component {
         title: intl.formatMessage({id: 'volume_24_trx'}),
         dataIndex: 'volume24hInTrx',
         key: 'volume24hInTrx',
-        align: 'center',
+        align: 'left',
         className: 'ant_table',
         sorter: true,
         sortOrder: filter.sort === 'volume24hInTrx' && filter.order_current,
         render: (text, record, index) => {
-          return text>0? <FormattedNumber value={text} maximumFractionDigits={2}/>: '-'
+          // return text>0? <FormattedNumber value={text} maximumFractionDigits={2}/>: '-'
+          return (
+            text ? (<div className="d-flex flex-column">
+              <span><FormattedNumber value={text*priceUSD} maximumFractionDigits={2}/>{' USD'}</span>
+              {text && record.contractAddress != 'TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t' ? <span><FormattedNumber value={text} maximumFractionDigits={2}/>{' TRX'}</span> : ''}
+            </div>) : '-'
+          )
         }
       },
       {
-        title: intl.formatMessage({id: 'market_capitalization_trx'}),
+        // title: intl.formatMessage({id: 'market_capitalization_trx'}),
+        title: () => {
+          return (
+            <div>
+              <span className="mr-2">
+                <QuestionMark placement="top" text="total_supply_tip" />
+              </span>
+              {upperFirst(intl.formatMessage({ id: "market_capitalization_t" }))}
+            </div>
+          )
+        },
         dataIndex: 'marketcap',
         key: 'marketcap',
         sorter: true,
         sortOrder: filter.sort === 'marketcap' && filter.order_current,
         render: (text, record, index) => {
-          return text>0? <FormattedNumber value={text}/>: '-'
+          // return text>0? <FormattedNumber value={text}/>: '-'
+          return (
+            text ? (<div className="d-flex flex-column">
+              <span><FormattedNumber value={text*priceUSD} maximumFractionDigits={2}/>{' USD'}</span>
+              {text && record.contractAddress != 'TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t' ? <span><FormattedNumber value={text} maximumFractionDigits={2}/>{' TRX'}</span> : ''}
+            </div>) : '-'
+          )
         },
-        align: 'center',
+        align: 'left',
         className: 'ant_table _text_nowrap'
       },
       {
@@ -544,7 +588,7 @@ class TokenList extends Component {
     let {tokens, alert, loading, total, totalAll, all, filter} = this.state;
     let {match, intl} = this.props;
     let column = IS_MAINNET?this.customizedColumn():this.suncustomizedColumn();
-    let tableInfo = intl.formatMessage({id: 'number_of_lists'}) + total  + ',' + intl.formatMessage({id: 'total_in_tronscan'}) + totalAll;
+    let tableInfo = intl.formatMessage({id: 'number_of_lists'}) + total;
     let url = 'https://poloniex.org/launchBase?utm_source=TS3'
     if(intl.locale == 'zh'){
       url = 'https://poloniex.org/zh/launchBase?utm_source=TS3'
@@ -556,9 +600,32 @@ class TokenList extends Component {
           {
             <div className="row">
               <div className="col-md-12 table_pos trc20-ad-bg pt-5 pt-md-0">
+              <Link to={'/tokens/create'} className="">{tu('create_token')}></Link>
                 {total ?
-                  <div className="table_pos_info d-md-block" style={{left: 'auto'}}>
-                      {all && <div className="tron-ecosystem-tokens">{tu('total_tron_ecosystem_tokens')}{all}</div>}
+                  <div className="d-md-block">
+                      {all && (
+                        <div className="token-num-wrap d-flex text-center">
+                          <div className="d-flex flex-grow-1">
+                            <div className="d-flex flex-column flex-grow-1">
+                              <div ><FormattedNumber value={all}/></div>
+                              <div>{tu('token_tron_total')}</div>
+                            </div>
+                            <div className="d-flex flex-column flex-grow-1">
+                              <div>{all}</div>
+                              <div>{tu('token_week')}</div>
+                            </div>
+                          </div>
+                          <div className="d-flex flex-grow-1">
+                            <div className="d-flex flex-column flex-grow-1">
+                              <div><FormattedNumber value={totalAll}/></div>
+                              <div>{tu('token_scan_total')}</div>
+                            </div>
+                            <div className="d-flex flex-column flex-grow-1">
+                              <div>{totalAll}</div>
+                              <div>{tu('token_week')}</div>
+                            </div>
+                          </div>
+                        </div>)}
                       <div>
                         {tableInfo} <span>
                           <QuestionMark placement="top" text="newly_issued_token_by_tronscan" className="token-list-info"></QuestionMark>
@@ -610,4 +677,18 @@ class TokenList extends Component {
   }
 }
 
-export default injectIntl(TokenList)
+// export default injectIntl(TokenList)
+function mapStateToProps(state) {
+  return {
+    priceUSD: state.blockchain.usdPrice
+  };
+}
+
+const mapDispatchToProps = {
+  loadUsdPrice
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(injectIntl(TokenList));
