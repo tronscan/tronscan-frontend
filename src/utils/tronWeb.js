@@ -131,17 +131,16 @@ export function withTronWeb(InnerComponent) {
                 const rawDataHex = byteArray2hexStr(transactionObj.getRawData().serializeBinary());
                 let raw = transactionObj.getRawData();
                 let contractObj = raw.getContractList()[0];
-                if (isMulti) {
-                  transaction = await this.mutiSign(tronWeb, transaction, privateKey, permissionId).catch(e=>{
-                    console.log(e.toString())
-                  });
-                }
+                // if (isMulti) {
+                //   transaction = await this.mutiSign(tronWeb, transaction, privateKey, permissionId).catch(e=>{
+                //     console.log(e.toString())
+                //   });
+                // }
                 let contractType = contractObj.getType();
                 let PermissionId = contractObj.getPermissionId();
-                console.log('----permissionId',PermissionId)
                 let tokenInfo = [];
                 let extra = {};
-                console.log('contractType',contractType);
+              
                 switch (contractType) {
                   case 2: // Transfer Assets
                     const ID = tronWeb.toUtf8(

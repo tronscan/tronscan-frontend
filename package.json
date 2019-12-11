@@ -179,11 +179,11 @@
     "yargs-parser": "^13.1.1"
   },
   "scripts": {
-    "start": "NODE_ENV=production node scripts/start.js",
-    "dev":"NODE_ENV=development API_URL=https://api.shasta.tronscan.org yarn start",
-    "start:testnet": "NET=testnet API_URL=https://testapi.tronscan.org node scripts/start.js",
+    "start": "RUN_ENV=production node scripts/start.js",
+    "dev":"API_URL=https://api.shasta.tronscan.org node scripts/start.js",
+    "start:testnet": "RUN_ENV=test NET=testnet API_URL=https://testapi.tronscan.org node scripts/start.js",
     "build:shasta": "GENERATE_SOURCEMAP=false API_URL=https://api.shasta.tronscan.org node scripts/build.js",
-    "build": "GENERATE_SOURCEMAP=false API_URL=https://apilist.tronscan.org node scripts/build.js",
+    "build": "RUN_ENV=production  GENERATE_SOURCEMAP=false API_URL=https://apilist.tronscan.org node scripts/build.js",
     "desktop:build": "GENERATE_SOURCEMAP=false API_URL=https://api.tronscan.org DESKTOP=true yarn run build",
     "desktop:prepare": "rm -rf ./build-native && mkdir build-native && cp desktop/* build-native/ && cp -r ./build/* build-native/",
     "desktop:build:win": "electron-packager ./build-native Tronscan --platform=win32 --out=build-desktop --asar --overwrite",
@@ -194,7 +194,7 @@
     "desktop:build:full": "yarn desktop:build && yarn run desktop:prepare && yarn desktop:build:win && yarn desktop:build:linux && yarn desktop:build:mac",
     "test": "node scripts/test.js --env=jsdom",
     "deploy": "gh-pages -d build",
-    "analyz": "NODE_ENV=production npm_config_report=true npm run build"
+    "analyz": "RUN_ENV=production npm_config_report=true npm run build"
   },
   "browserslist": {
     "production": [

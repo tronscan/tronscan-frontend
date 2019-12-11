@@ -24,6 +24,7 @@ import { getContractTypesByHex } from "../../../utils/mutiSignHelper"
 import rebuildList from "../../../utils/rebuildList";
 import rebuildToken20List from "../../../utils/rebuildToken20List";
 import BigNumber from "bignumber.js"
+import {postMutiSignTransaction} from '../../../services/apiMutiSign'
 BigNumber.config({ EXPONENTIAL_AT: [-1e9, 1e9] });
 
 const { Option, OptGroup } = Select;
@@ -144,12 +145,13 @@ class SendForm extends React.Component {
             result = 40001
           } else {
             //xhr multi-sign transaction api
-            let { data } = await xhr.post("https://list.tronlink.org/api/wallet/multi/transaction", {
-              "address": wallet.address,
-              "transaction": SignTransaction,
-              //"netType": "main_net",
-              "netType": "shasta"
-            });
+            // let { data } = await xhr.post("https://list.tronlink.org/api/wallet/multi/transaction", {
+            //   "address": wallet.address,
+            //   "transaction": SignTransaction,
+            //   //"netType": "main_net",
+            //   "netType": "shasta"
+            // });
+            let data = await postMutiSignTransaction(wallet.address,SignTransaction);
             result = data.code;
             sendErrorMessage = data.message;
           }
@@ -178,6 +180,8 @@ class SendForm extends React.Component {
         if (this.props.wallet.type === "ACCOUNT_TRONLINK" || this.props.wallet.type === "ACCOUNT_PRIVATE_KEY" || this.props.wallet.type === "ACCOUNT_LEDGER") {
           //create transaction
           //tronWeb = this.props.account.tronWeb;
+          console.log('tronWeb',tronWeb);
+          console.log(to, amount, TokenName, from);
           const unSignTransaction = await tronWeb.transactionBuilder.sendToken(to, amount, TokenName, from, { 'permissionId': permissionId }).catch(function (e) {
             console.log(e)
           });
@@ -192,11 +196,12 @@ class SendForm extends React.Component {
             result = 40001
           } else {
             //xhr multi-sign transaction api
-            let { data } = await xhr.post("https://list.tronlink.org/api/wallet/multi/transaction", {
-              "address": wallet.address,
-              "transaction": SignTransaction,
-              "netType": "main_net"
-            });
+            // let { data } = await xhr.post("https://list.tronlink.org/api/wallet/multi/transaction", {
+            //   "address": wallet.address,
+            //   "transaction": SignTransaction,
+            //   "netType": "main_net"
+            // });
+            let data = await postMutiSignTransaction(wallet.address,SignTransaction);
             result = data.code;
             sendErrorMessage = data.message;
           }
