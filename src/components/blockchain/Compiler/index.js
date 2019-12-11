@@ -542,6 +542,7 @@ class ContractCompiler extends React.Component {
 
             // 部署合约
             await this.timeout(20000);
+           
             transactionInfo = await tronWeb.trx.getTransactionInfo(txID)
                 .catch (e => {
                     infoData = [{

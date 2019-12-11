@@ -141,6 +141,7 @@ export default class ActiveEdit extends Component {
         const name = target.name;
         let value = name === 'threshold' ? toNumber(target.value) : target.value.trim();
         if(name==='permission_name'){
+            /* eslint-disable */
             value = value.replace(/[^\w\.\/]/ig,'');
         }
         activeItem[name] = value;

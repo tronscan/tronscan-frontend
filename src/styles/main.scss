@@ -2043,8 +2043,8 @@ h5 {
     display: flex;
     height: 45px;
     line-height: 1.4em;
-    width: 45%;
-    float: left;
+    width: 90%;
+    // float: left;
     border-bottom: 1px solid #eee;
     align-items: center;
 
@@ -4261,7 +4261,7 @@ h5 {
 }
 
 @each $name in Weibo, Wechat, Discord, Facebook, Group, Steem, Instagram, Medium,
-  Reddit, Telegram, Twitter, delete
+  Reddit, Telegram, Twitter, delete,GitHub
 {
   .#{$name} {
     width: 20px;
