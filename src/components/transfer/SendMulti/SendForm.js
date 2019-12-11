@@ -279,7 +279,7 @@ class SendForm extends React.Component {
         let unSignTransaction = await tronWeb.transactionBuilder.triggerSmartContract(
           tronWeb.address.toHex(contractAddress),
           'transfer(address,uint256)',
-          { 'feeLimit': 20000000 },
+          { 'feeLimit': 20000000,'permissionId': permissionId },
           [
             { type: 'address', value: tronWeb.address.toHex(to) },
             { type: 'uint256', value: new BigNumber(amount).shiftedBy(decimals).toString() }
@@ -288,7 +288,7 @@ class SendForm extends React.Component {
         );
         if (unSignTransaction.transaction !== undefined)
           unSignTransaction = unSignTransaction.transaction;
-        unSignTransaction.extra = {
+          unSignTransaction.extra = {
           to: to,
           decimals: decimals,
           token_name: TokenName,
@@ -298,14 +298,7 @@ class SendForm extends React.Component {
         // transactionId = await transactionResultHexManager(unSignTransaction, tronWeb)
         // get transaction parameter value to Hex
         let HexStr = Client.getTriggerSmartContractHexStr(unSignTransaction.raw_data.contract[0].parameter.value);
-
-        if (this.props.wallet.type === "ACCOUNT_LEDGER") {
-          //sign transaction
-          SignTransaction = await transactionMultiResultManager(unSignTransaction, tronWeb, permissionId, permissionTime, HexStr);
-        } else {
-          SignTransaction = await transactionMultiResultManager(unSignTransaction, tronWeb, permissionId, permissionTime, HexStr);
-        }
-
+        SignTransaction = await transactionMultiResultManager(unSignTransaction, tronWeb, permissionId, permissionTime, HexStr);
         if (!SignTransaction) {
           result = 40001
         } else {
@@ -317,8 +310,6 @@ class SendForm extends React.Component {
           });
           result = data.code;
           sendErrorMessage = data.message;
-
-
         }
         if (result == 0) {
           transactionId = true;
