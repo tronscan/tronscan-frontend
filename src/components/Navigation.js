@@ -27,7 +27,7 @@ import {Badge, Modal, ModalBody, ModalFooter, ModalHeader} from "reactstrap"
 import Avatar from "./common/Avatar"
 import {AddressLink, HrefLink} from "./common/Links"
 import {FormattedNumber} from "react-intl"
-import {API_URL, IS_TESTNET, ONE_TRX, IS_MAINNET, IS_SUNNET, SUNWEBCONFIG, NETURL} from "../constants"
+import {API_URL, IS_TESTNET, ONE_TRX, IS_MAINNET, IS_SUNNET, SUNWEBCONFIG, NETURL,IS_NILE} from "../constants"
 import {matchPath} from 'react-router'
 import {doSearch, getSearchType} from "../services/search"
 import {readFileContentsFromEvent} from "../services/file"
@@ -753,7 +753,7 @@ class Navigation extends React.Component {
                               <i className="fa fa-angle-right float-right" ></i>
                             </Link>
                               {
-                                  IS_MAINNET && <a className="dropdown-item" href="javascript:;" onClick={this.goAccountWaitSign}>
+                                  !IS_NILE && IS_MAINNET && <a className="dropdown-item" href="javascript:;" onClick={this.goAccountWaitSign}>
                                     <i className="fa fa-server mr-2"/>
                                     <FormattedNumber value={wallet.current.signatureTotal}/> {tu("translations_wait_sign")}
 
@@ -767,7 +767,7 @@ class Navigation extends React.Component {
                               <i className="fa fa-angle-right float-right" ></i>
                             </a>
                               {
-                                  IS_MAINNET && <a className="dropdown-item" href="javascript:;" onClick={this.muitlTransfer}>
+                                  !IS_NILE && IS_MAINNET && <a className="dropdown-item" href="javascript:;" onClick={this.muitlTransfer}>
                                     <i className="far fa-paper-plane mr-2"/>
                                       {tu("transfer_multi_sign")}
                                     <i className="fa fa-angle-right float-right" ></i>

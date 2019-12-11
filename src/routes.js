@@ -751,12 +751,12 @@ export const routes = [
             ],
             [
                 "Other",
-                {
-                    url: "https://shasta.tronscan.org",
-                    icon: "fa fa-link",
-                    label: "link_test_server",
-                    sidechain: false
-                },
+                // {
+                //     url: "https://shasta.tronscan.org",
+                //     icon: "fa fa-link",
+                //     label: "link_test_server",
+                //     sidechain: false
+                // },
                 {
                     url: "http://nileex.io/join/getJoinPage",
                     icon: "fa fa-recycle",

@@ -17,7 +17,7 @@ export const IS_NILE = true;
 
 
 export const NETURL = {
-   MAINNET: "http://18.190.104.70:9000",
+   MAINNET: "https://18.190.104.70:9000",
    SUNNET: "https://dappchain.tronscan.org",
 };
 
@@ -42,7 +42,9 @@ let NODEAPI;
 // export let IS_MAINNET = MAINNET;
 // export let IS_SUNNET = SUNNET;
 
-NODEAPI = "http://52.15.126.154:9016";
+//NODEAPI = "http://52.15.126.154:9016";
+//for nile
+NODEAPI = "http://52.15.126.154:9017";
 
 export const BLOCK_REWARD = 32;
 export const SR_MAX_COUNT = 27;
@@ -121,9 +123,15 @@ export const TRADINGMAP = {
 
 // SunWeb config
 export const SUNWEBCONFIG = {
-  MAINFULLNODE: "https://api.trongrid.io",
-  MAINSOLIDITYNODE: "https://api.trongrid.io",
-  MAINEVENTSERVER: "https://api.trongrid.io",
+  // MAINFULLNODE: "https://api.trongrid.io",
+  // MAINSOLIDITYNODE: "https://api.trongrid.io",
+  // MAINEVENTSERVER: "https://api.trongrid.io",
+
+  //for nile
+  MAINFULLNODE: "https://httpapi.nileex.io",
+  MAINSOLIDITYNODE: "https://httpapi.nileex.io",
+  MAINEVENTSERVER: "https://eventtest.nileex.io",
+
   SUNFULLNODE: "https://sun.tronex.io",
   SUNSOLIDITYNODE: "https://sun.tronex.io",
   SUNEVENTSERVER: "https://sun.tronex.io",
