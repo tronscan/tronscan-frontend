@@ -293,7 +293,7 @@ class Transfers extends React.Component {
                 onPageChange={(page, pageSize) => {
                   this.loadPage(page, pageSize);
                 }}
-                position="bottom"
+                // position="bottom"
               />
             )}
           </div>
