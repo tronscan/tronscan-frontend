@@ -42,15 +42,18 @@ class PriceProviderCmp extends React.PureComponent {
   }
 
   async loadPrices() {
-    var dataEur = Lockr.get('dataEur');
-    var dataEth = Lockr.get('dataEth');
-    let eurURL = encodeURI(`http://api.coinmarketcap.com/v1/ticker/tronix/?convert=EUR`)
-    let ethURL = encodeURI(`http://api.coinmarketcap.com/v1/ticker/tronix/?convert=ETH`)
-    if(!Lockr.get('dataEur')){
-        var { data:dataEur } = await xhr.get(
-            `${API_URL}/api/system/proxy?url=${eurURL}`
-
-        );
+    var dataEur = Lockr.get("dataEur");
+    var dataEth = Lockr.get("dataEth");
+    let eurURL = encodeURI(
+      `http://api.coinmarketcap.com/v1/ticker/tronix/?convert=EUR`
+    );
+    let ethURL = encodeURI(
+      `http://api.coinmarketcap.com/v1/ticker/tronix/?convert=ETH`
+    );
+    if (!Lockr.get("dataEur")) {
+      var { data: dataEur } = await xhr.get(
+        `${API_URL}/api/system/proxy?url=${eurURL}`
+      );
     }
 
     if (!Lockr.get("dataEth")) {
@@ -150,14 +153,14 @@ export class TRXPrice extends React.PureComponent {
                   </FormattedNumber>
                   {showPopup && (
                     <Tooltip placement="top" isOpen={open} target={id}>
-                      TRX{" "}
+                      TRX
                       <FormattedNumber
                         value={amount / ONE_TRX}
                         maximumFractionDigits={6}
                         // minimumFractionDigits={6}
-                      />{" "}
+                      />
                       <br />
-                      BTC{" "}
+                      BTC
                       <FormattedNumber
                         value={priceValues.prices.BTC * (amount / ONE_TRX)}
                         maximumFractionDigits={
@@ -165,7 +168,7 @@ export class TRXPrice extends React.PureComponent {
                         }
                       />
                       <br />
-                      ETH{" "}
+                      ETH
                       <FormattedNumber
                         value={priceValues.prices.ETH * (amount / ONE_TRX)}
                         maximumFractionDigits={
@@ -173,7 +176,7 @@ export class TRXPrice extends React.PureComponent {
                         }
                       />
                       <br />
-                      USD{" "}
+                      USD
                       <FormattedNumber
                         value={priceValues.prices.USD * (amount / ONE_TRX)}
                         maximumFractionDigits={
@@ -181,7 +184,7 @@ export class TRXPrice extends React.PureComponent {
                         }
                       />
                       <br />
-                      EUR{" "}
+                      EUR
                       <FormattedNumber
                         value={priceValues.prices.EUR * (amount / ONE_TRX)}
                         maximumFractionDigits={
@@ -212,7 +215,7 @@ export class TRXPrice extends React.PureComponent {
                         onMouseOut={() => this.setState({ open: false })}
                         {...props}
                       >
-                        {value}{" "}
+                        {value}
                         {showCurreny &&
                           (currency.toUpperCase() ||
                             priceValues.priceShown.toUpperCase())}
@@ -221,12 +224,12 @@ export class TRXPrice extends React.PureComponent {
                   </FormattedNumber>
                   {showPopup && (
                     <Tooltip placement="top" isOpen={open} target={id}>
-                      TRX{" "}
+                      TRX
                       <FormattedNumber
                         value={amount}
                         maximumFractionDigits={6}
                         // minimumFractionDigits={6}
-                      />{" "}
+                      />
                       <br />
                       <span className="text-capitalize">satoshi</span>{" "}
                       <FormattedNumber
@@ -238,7 +241,7 @@ export class TRXPrice extends React.PureComponent {
                         }
                       />
                       <br />
-                      ETH{" "}
+                      ETH
                       <FormattedNumber
                         value={priceValues.prices.ETH * amount}
                         maximumFractionDigits={
@@ -246,7 +249,7 @@ export class TRXPrice extends React.PureComponent {
                         }
                       />
                       <br />
-                      USD{" "}
+                      USD
                       <FormattedNumber
                         value={priceValues.prices.USD * amount}
                         maximumFractionDigits={
@@ -285,7 +288,7 @@ export class TRXPrice extends React.PureComponent {
                         onMouseLeave={() => this.setState({ open: false })}
                         {...props}
                       >
-                        {value}{" "}
+                        {value}
                         {showCurreny &&
                           (currency.toUpperCase() ||
                             priceValues.priceShown.toUpperCase())}
@@ -294,14 +297,14 @@ export class TRXPrice extends React.PureComponent {
                   </FormattedNumber>
                   {showPopup && (
                     <Tooltip placement="top" isOpen={open} target={id}>
-                      TRX{" "}
+                      TRX
                       <FormattedNumber
                         value={amount}
                         maximumFractionDigits={6}
                         // minimumFractionDigits={6}
-                      />{" "}
+                      />
                       <br />
-                      BTC{" "}
+                      BTC
                       <FormattedNumber
                         value={priceValues.prices.BTC * amount}
                         maximumFractionDigits={
@@ -309,7 +312,7 @@ export class TRXPrice extends React.PureComponent {
                         }
                       />
                       <br />
-                      ETH{" "}
+                      ETH
                       <FormattedNumber
                         value={priceValues.prices.ETH * amount}
                         maximumFractionDigits={
@@ -317,7 +320,7 @@ export class TRXPrice extends React.PureComponent {
                         }
                       />
                       <br />
-                      USD{" "}
+                      USD
                       <FormattedNumber
                         value={priceValues.prices.USD * amount}
                         maximumFractionDigits={
@@ -325,7 +328,7 @@ export class TRXPrice extends React.PureComponent {
                         }
                       />
                       <br />
-                      EUR{" "}
+                      EUR
                       <FormattedNumber
                         value={priceValues.prices.EUR * amount}
                         maximumFractionDigits={

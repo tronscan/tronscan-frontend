@@ -1,24 +1,27 @@
-import React, {Fragment} from "react";
-import {Client} from "../../../services/api";
-import {AddressLink, TransactionHashLink, TokenTRC20Link} from "../../common/Links";
-import {TRXPrice} from "../../common/Price";
-import {API_URL, ONE_TRX} from "../../../constants";
-import {tu, t} from "../../../utils/i18n";
+import React, { Fragment } from "react";
+import { Client } from "../../../services/api";
+import {
+  AddressLink,
+  TransactionHashLink,
+  TokenTRC20Link
+} from "../../common/Links";
+import { TRXPrice } from "../../common/Price";
+import { API_URL, ONE_TRX } from "../../../constants";
+import { tu, t } from "../../../utils/i18n";
 // import TimeAgo from "react-timeago";
-import moment from 'moment';
-import {Truncate} from "../../common/text";
-import {withTimers} from "../../../utils/timing";
-import {FormattedNumber, injectIntl} from "react-intl";
-import SmartTable from "../../common/SmartTable.js"
-import {upperFirst} from "lodash";
-import {TronLoader} from "../../common/loaders";
-import TotalInfo from "../../common/TableTotal";
-import DateSelect from "../../common/dateSelect";
+import moment from "moment";
+import { Truncate } from "../../common/text";
+import { withTimers } from "../../../utils/timing";
+import { FormattedNumber, injectIntl } from "react-intl";
+import SmartTable from "../../common/SmartTable.js";
+import { upperFirst } from "lodash";
+import { TronLoader } from "../../common/loaders";
+import TotalInfo from "./components/TableTotal";
+import DateSelect from "./components/dateSelect";
 import xhr from "axios/index";
-import { FormatNumberByDecimals } from '../../../utils/number'
-import qs from 'qs'
-import BlockTime from '../../common/blockTime'
-
+import { FormatNumberByDecimals } from "../../../utils/number";
+import qs from "qs";
+import BlockTime from "../../common/blockTime";
 
 class Transfers extends React.Component {
   constructor(props) {
@@ -131,7 +134,7 @@ class Transfers extends React.Component {
         width: "150px",
         className: "ant_table",
         render: (text, record, index) => {
-          return <BlockTime time={Number(record.block_ts)}></BlockTime>
+          return <BlockTime time={Number(record.block_ts)}></BlockTime>;
           // <TimeAgo date={Number(record.block_ts)} title={moment(record.block_ts).format("MMM-DD-YYYY HH:mm:ss A")}/>
         }
       },
@@ -252,11 +255,16 @@ class Transfers extends React.Component {
           </div>
         )}
         <div className="row transfers">
-          <div className="col-md-12 table_pos">
+          <div className="col-md-12 ">
             <div
-              className="d-flex justify-content-between pl-3 pr-3"
-              style={{ left: "auto" }}
+              className="d-flex justify-content-between pl-3 pr-3 pt-3 pb-3"
+              style={{ background: "#fff" }}
             >
+              <DateSelect
+                onDateOk={(start, end) => this.onDateOk(start, end)}
+              />
+            </div>
+            <div className="d-flex justify-content-between pl-3 pr-3">
               {!loading && (
                 <TotalInfo
                   total={total}
@@ -264,12 +272,9 @@ class Transfers extends React.Component {
                   typeText="transaction_info"
                   divClass="table_pos_info_addr"
                   selected
+                  top="64px"
                 />
               )}
-              <DateSelect
-                onDateOk={(start, end) => this.onDateOk(start, end)}
-                dataStyle={{ right: "35px" }}
-              />
             </div>
             {!loading && transfers.length === 0 ? (
               <div className="pt-5 pb-5 text-center no-data transfers-bg-white">
@@ -288,6 +293,7 @@ class Transfers extends React.Component {
                 onPageChange={(page, pageSize) => {
                   this.loadPage(page, pageSize);
                 }}
+                // position="bottom"
               />
             )}
           </div>

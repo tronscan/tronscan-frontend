@@ -4,9 +4,16 @@ import bip32 from 'bip32';
 import TronWeb from 'tronweb';
 import pbkdf2 from 'pbkdf2';
 import aesjs from "aes-js";
-import { isAddressValid,pkToAddress } from "@tronscan/client/src/utils/crypto";
-import {utils} from 'ethers';
-import {filter} from "lodash";
+import {
+    isAddressValid,
+    pkToAddress
+} from "@tronscan/client/src/utils/crypto";
+import {
+    utils
+} from 'ethers';
+import {
+    filter
+} from "lodash";
 
 const encryptKey = (password, salt) => {
     return pbkdf2.pbkdf2Sync(password, salt, 1, 256 / 8, 'sha512');
@@ -20,21 +27,22 @@ const Utils = {
     hashAlgorithm: 'sha256',
 
     stringToByte(str) {
+        /* eslint-disable  */
         var bytes = new Array();
         var len, c;
         len = str.length;
-        for(var i = 0; i < len; i++) {
+        for (var i = 0; i < len; i++) {
             c = str.charCodeAt(i);
-            if(c >= 0x010000 && c <= 0x10FFFF) {
+            if (c >= 0x010000 && c <= 0x10FFFF) {
                 bytes.push(((c >> 18) & 0x07) | 0xF0);
                 bytes.push(((c >> 12) & 0x3F) | 0x80);
                 bytes.push(((c >> 6) & 0x3F) | 0x80);
                 bytes.push((c & 0x3F) | 0x80);
-            } else if(c >= 0x000800 && c <= 0x00FFFF) {
+            } else if (c >= 0x000800 && c <= 0x00FFFF) {
                 bytes.push(((c >> 12) & 0x0F) | 0xE0);
                 bytes.push(((c >> 6) & 0x3F) | 0x80);
                 bytes.push((c & 0x3F) | 0x80);
-            } else if(c >= 0x000080 && c <= 0x0007FF) {
+            } else if (c >= 0x000080 && c <= 0x0007FF) {
                 bytes.push(((c >> 6) & 0x1F) | 0xC0);
                 bytes.push((c & 0x3F) | 0x80);
             } else {
@@ -45,18 +53,18 @@ const Utils = {
     },
 
     byteToString(arr) {
-        if(typeof arr === 'string') {
+        if (typeof arr === 'string') {
             return arr;
         }
         var str = '',
             _arr = arr;
-        for(var i = 0; i < _arr.length; i++) {
+        for (var i = 0; i < _arr.length; i++) {
             var one = _arr[i].toString(2),
                 v = one.match(/^1+?(?=0)/);
-            if(v && one.length == 8) {
+            if (v && one.length == 8) {
                 var bytesLength = v[0].length;
                 var store = _arr[i].toString(2).slice(7 - bytesLength);
-                for(var st = 1; st < bytesLength; st++) {
+                for (var st = 1; st < bytesLength; st++) {
                     store += _arr[st + i].toString(2).slice(2);
                 }
                 str += String.fromCharCode(parseInt(store, 2));
@@ -99,33 +107,33 @@ const Utils = {
             get(target, prop) {
                 // First, check if the property exists on the target
                 // If it doesn't, throw an error
-                if(!Reflect.has(target, prop))
+                if (!Reflect.has(target, prop))
                     throw new Error(`Object does not have property '${ prop }'`);
 
                 // If the target is a variable or the internal 'on'
                 // method, simply return the standard function call
-                if(typeof target[ prop ] !== 'function' || prop === 'on')
+                if (typeof target[prop] !== 'function' || prop === 'on')
                     return Reflect.get(target, prop);
 
                 // The 'req' object can be destructured into three components -
                 // { resolve, reject and data }. Call the function (and resolve it)
                 // so the result can then be passed back to the request.
                 return (...args) => {
-                    if(!args.length)
-                        args[ 0 ] = {};
+                    if (!args.length)
+                        args[0] = {};
 
-                    const [ firstArg ] = args;
+                    const [firstArg] = args;
 
                     const {
                         resolve = () => {},
-                        reject = ex => console.error(ex),
-                        data
+                            reject = ex => console.error(ex),
+                            data
                     } = firstArg;
 
-                    if(typeof firstArg !== 'object' || !('data' in firstArg))
-                        return target[ prop ].call(target, ...args);
+                    if (typeof firstArg !== 'object' || !('data' in firstArg))
+                        return target[prop].call(target, ...args);
 
-                    Promise.resolve(target[ prop ].call(target, data))
+                    Promise.resolve(target[prop].call(target, data))
                         .then(resolve)
                         .catch(reject);
                 };
@@ -157,7 +165,7 @@ const Utils = {
     injectPromise(func, ...args) {
         return new Promise((resolve, reject) => {
             func(...args, (err, res) => {
-                if(err)
+                if (err)
                     reject(err);
                 else resolve(res);
             });
@@ -168,26 +176,28 @@ const Utils = {
         return typeof obj === 'function';
     },
 
-    dataLetterSort (data, field, field2, topArray) {
+    dataLetterSort(data, field, field2, topArray) {
         let needArray = [];
-        if(topArray){
+        if (topArray) {
             topArray.forEach(v => {
                 needArray.push(v)
             });
-            data = data.filter(({tokenId})=> !topArray.map(v=>v.tokenId).includes(tokenId))
+            data = data.filter(({
+                tokenId
+            }) => !topArray.map(v => v.tokenId).includes(tokenId))
         }
         let list = {};
-        let LetterArray = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z','0','1','2','3','4','5','6','7','8','9'];
+        let LetterArray = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
         for (let i = 0; i < data.length; i++) {
             const d = data[i][field] || data[i][field2] || data[i]['name'];
-            let letter =  d.split('').filter(v=> v.match(/[a-zA-Z0-9]/)).join('').substr(0, 1).toUpperCase();
-            if(!list[letter]) {
+            let letter = d.split('').filter(v => v.match(/[a-zA-Z0-9]/)).join('').substr(0, 1).toUpperCase();
+            if (!list[letter]) {
                 list[letter] = [];
             }
             list[letter].push(data[i]);
         }
-        LetterArray.forEach( v => {
-            if(list[v]) {
+        LetterArray.forEach(v => {
+            if (list[v]) {
                 needArray = needArray.concat(list[v])
             }
         });
@@ -260,7 +270,7 @@ const Utils = {
         return aesjs.utils.utf8.fromBytes(decryptedBytes);
     },
 
-    validatePrivateKey(privateKey){
+    validatePrivateKey(privateKey) {
         try {
             let address = pkToAddress(privateKey);
             return isAddressValid(address);
@@ -269,31 +279,40 @@ const Utils = {
         }
     },
 
-    delay(timeout){
+    delay(timeout) {
         return new Promise(resolve => {
             setTimeout(resolve, timeout);
         });
     },
 
-    decodeParams(message,abiCode,function_selector) {
+    decodeParams(message, abiCode, function_selector) {
         const cutArr = function_selector.match(/(.+)\((.*)\)/);
-        console.log('abiCode',abiCode)
-        if(cutArr[2]!==''){
+        console.log('abiCode', abiCode)
+        if (cutArr[2] !== '') {
             const byteArray = TronWeb.utils.code.hexStr2byteArray(message);
-            const abi = abiCode.filter(({name})=> name === cutArr[1]);
-            return abi[0].inputs.map(({name,type},i)=>{
+            const abi = abiCode.filter(({
+                name
+            }) => name === cutArr[1]);
+            return abi[0].inputs.map(({
+                name,
+                type
+            }, i) => {
                 let value;
-                const array = byteArray.filter((v,index)=>index >=32 * i && index< 32 * (i + 1));
-                if(type === 'address') {
-                    value = TronWeb.address.fromHex('41'+TronWeb.utils.code.byteArray2hexStr(array.filter((v,i) => i>11)));
-                } else if(type === 'trcToken') {
-                    value = TronWeb.toDecimal('0x'+TronWeb.utils.code.byteArray2hexStr(array));
+                const array = byteArray.filter((v, index) => index >= 32 * i && index < 32 * (i + 1));
+                if (type === 'address') {
+                    value = TronWeb.address.fromHex('41' + TronWeb.utils.code.byteArray2hexStr(array.filter((v, i) => i > 11)));
+                } else if (type === 'trcToken') {
+                    value = TronWeb.toDecimal('0x' + TronWeb.utils.code.byteArray2hexStr(array));
                 } else {
-                    value = TronWeb.toDecimal('0x'+TronWeb.utils.code.byteArray2hexStr(array));
+                    value = TronWeb.toDecimal('0x' + TronWeb.utils.code.byteArray2hexStr(array));
                 }
-                return {name,type,value};
+                return {
+                    name,
+                    type,
+                    value
+                };
             });
-        }else{
+        } else {
             return [];
         }
     },
