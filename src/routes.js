@@ -548,7 +548,7 @@ export const routes = [
                 label: "link_test_server"
             },
             {
-                url: "https://www.trongrid.io/shasta",
+                url: "http://nileex.io/join/getJoinPage",
                 icon: "fa fa-recycle",
                 label: "link_test_fauct"
             }
@@ -758,7 +758,7 @@ export const routes = [
                     sidechain: false
                 },
                 {
-                    url: "https://www.trongrid.io/shasta",
+                    url: "http://nileex.io/join/getJoinPage",
                     icon: "fa fa-recycle",
                     label: "link_test_fauct",
                     sidechain: false
