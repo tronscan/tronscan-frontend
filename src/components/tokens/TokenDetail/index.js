@@ -489,15 +489,15 @@ class TokenDetail extends React.Component {
                             </h5>
                             <p className="card-text">{token.description}</p>
                           </div>
-                            {
-                                IS_MAINNET && <div className="ml-auto">
-                                    {(!(token.endTime < new Date() || token.issuedPercentage === 100 || token.startTime > new Date() || token.isBlack) && (token.canShow !== 3)) &&
-                                    <button className="btn btn-default btn-xs d-inline-block"
-                                            onClick={() => this.preBuyTokens(token)}>{tu("participate")}</button>
-                                    }
-                                    {/**<a href={"#/myToken?address="+ token.ownerAddress} className="btn btn-danger btn-xs d-inline-block token-detail-btn">{tu("update_token")}</a> */}
-                                </div>
-                            }
+                            {/*{*/}
+                                {/*IS_MAINNET && <div className="ml-auto">*/}
+                                    {/*{(!(token.endTime < new Date() || token.issuedPercentage === 100 || token.startTime > new Date() || token.isBlack) && (token.canShow !== 3)) &&*/}
+                                    {/*<button className="btn btn-default btn-xs d-inline-block"*/}
+                                            {/*onClick={() => this.preBuyTokens(token)}>{tu("participate")}</button>*/}
+                                    {/*}*/}
+                                    {/*/!**<a href={"#/myToken?address="+ token.ownerAddress} className="btn btn-danger btn-xs d-inline-block token-detail-btn">{tu("update_token")}</a> *!/*/}
+                                {/*</div>*/}
+                            {/*}*/}
 
                         </div>
                       </div>

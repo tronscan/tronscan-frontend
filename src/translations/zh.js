@@ -1098,7 +1098,7 @@ export const messages = {
   "account_unit": "个账户",
   "address_unit": "个地址",
   "contract_unit": "条已验证合约",
-  "inter_contract_unit": "条合约内部交易",
+  "inter_contract_unit": "个内部交易",
 
   /*
   ##################################################################################
@@ -1197,7 +1197,7 @@ export const messages = {
   "contract_create_msg":"创建信息",
   "contract_create_time":"创建时间",
   "contract_enery":"能量消耗比例",
-  "contract_enery_tip":"调用智能合约会消耗一定的能量，这个能量由合约和用户按照此比例承担",
+  "contract_enery_tip":"调用智能合约会消耗能量，消耗能量由合约和用户按比例承担",
   "contract_init_assets":"初始资产",
   "contract_init_assets_tip":"部署合约时合约创建人向合约地址转入的资产",
   "contract_editor_bug": "编译器漏洞提示",
@@ -1556,7 +1556,7 @@ export const messages = {
   "propose_12": "提议修改1 energy的费用",
   "propose_13": "提议修改创建交易对的费用",
   "propose_14": "提议修改一条交易的最大执行时间",
-  "propose_15": "提议是否允许更改账户名称",
+  "propose_15": "提议允许账户重名",
   "propose_16": "提议允许通证同名",
   "propose_17": "提议允许资源委派",
   "propose_18": "提议修改总Energy上限",
@@ -2150,6 +2150,7 @@ export const messages = {
   "energy_more": "获得带宽 = 为获取带宽冻结的TRX / 整个网络当中为获取带宽而冻结的TRX总数",
   "bandwidth_more": "获得能量 = 为获取能量冻结的TRX / 整个网络当中为获取能量而冻结的TRX总数*总能量限制",
   "interTrx_tip": "内部交易是指普通地址调用智能合约，由合约向其它地址转移通证的一种操作",
+  "interTrx_tip_contract":"执行合约产生的内部交易",
   "event_tip": "事件是让程序编写人员或外部界面提供者使用它来注意合约操作动向和审计",
   "table_info_big": "仅展示前10,000条数据",
   "Download": "下载",
@@ -2404,7 +2405,7 @@ export const messages = {
      ##################################################################################
   */
  "muti_sign":"多重签名",
-  "translations_wait_sign":"待我签名的交易",
+  "translations_wait_sign":"待签名的交易",
   "transfer_multi_sign":"多重签名转账",
   "permission":"权限",
   "owner_permission":"Owner权限组",
@@ -2510,4 +2511,7 @@ export const messages = {
   "Bancor Exchange Inject":"Bancor交易注资",
   "Bancor Exchange Withdraw":"Bancor交易撤资",
   "permission_name_limit":"请输入英文字符及数字",
+
+  // 2019-12-10
+  "ledger_tronlink":"通过TronLink登录TRONSCAN ",
 };

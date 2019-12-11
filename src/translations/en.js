@@ -1070,17 +1070,17 @@ export const messages = {
   "a_totle": "A Total of",
   "transaction_info": "transactions found",
   "hold_addr": "Token Holders",
-  "transactions_unit": "Transactions",
-  "transfers_unit": "Transfers",
-  "block_unit": "Blocks",
-  "record_unit": "Transactions",
-  "token_unit": "Tokens",
-  "vote_unit": "Partners",
-  "voter_unit": "Voters",
+  "transactions_unit": "transactions",
+  "transfers_unit": "transfers",
+  "block_unit": "blocks",
+  "record_unit": "transactions",
+  "token_unit": "tokens",
+  "vote_unit": "partners",
+  "voter_unit": "voters",
   "account_unit": "accounts",
   "address_unit": "addresses",
   "contract_unit": "verified contract source codes found",
-  "inter_contract_unit": "Internal Transactions found",
+  "inter_contract_unit": "internal transactions found",
 
   /*
 ##################################################################################
@@ -1177,7 +1177,7 @@ export const messages = {
    "contract_create_msg":"Information",
    "contract_create_time":"CreationTime",
    "contract_enery":"Energy consumption ratio",
-   "contract_enery_tip":"Calling smart contracts consumes energy",
+   "contract_enery_tip":"Calling smart contract consumes energy, which is borne by the contract and the user in proportion",
    "contract_init_assets":"Initial asset",
    "contract_init_assets_tip":"Contract creator transfers funds to contract address while deploying contracts",
    "contract_editor_bug": "Loophole warning for the compiler",
@@ -1539,7 +1539,7 @@ export const messages = {
   "propose_12": "Propose to modify the fee of 1 energy",
   "propose_13": "Propose to modify the cost of trading pair creation",
   "propose_14": "Propose to modify the maximum execution time of one transaction",
-  "propose_15": "Propose to allow to change the account name",
+  "propose_15": "Propose to allow duplicate account name",
   "propose_16": "Propose to allow the same token name",
   "propose_17": "Propose to allow resource delegation",
   "propose_18": "Propose to modify the total energy limit",
@@ -2125,8 +2125,8 @@ export const messages = {
   "str_9": "Unable to verify the parameters",
   "token_login_no_updated": "The login account is inconsistent with the publisher and cannot be updated",
   "information_is_being_confirmed": "Information is being confirmed, this process may take 10 minutes, please try again later",
-
   "interTrx_tip": "Internal Transactions is an operation which a general address calls a Smart Contract， and the Smart Contract transfers token to other address.",
+  "interTrx_tip_contract":"Internal transactions from contract execution",
   "event_tip": "Events is to let the programmer or external interface provider use it to pay attention to contract operations and audits.",
   /* 2019-07-06*/
   "trc20_free_orders": "0 trading fee for all orders",
@@ -2376,7 +2376,7 @@ export const messages = {
      ##################################################################################
   */
  "muti_sign":"Multi-signature",
- "translations_wait_sign":"Transactions waiting for my signature",
+ "translations_wait_sign":"Unsigned transactions",
   "transfer_multi_sign":"Multi-signature transfer",
   "permission":"Access",
   "owner_permission":"Owner access group",
@@ -2453,5 +2453,8 @@ export const messages = {
   "signature_threshold_required":"Threshold is requried",
   "signaure_control_address_tip":"Control address refers to the associated control addresses of owner permission, SR permission and active permission. Display of the three types of permissions will change subsequently when the control address is modified.",
   "permission_name_limit":"Please input English characters and numbers",
+
+  // 2019-12-10
+  "ledger_tronlink":"Login to TRONSCAN via TronLink",
 
 };

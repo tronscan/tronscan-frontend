@@ -1522,7 +1522,7 @@ export const messages = {
   "propose_12": "1 energyの費用を修正しようと提議します",
   "propose_13": "トレードペアの作成費用を修正しようと提議します",
   "propose_14": "一つの取引の最大実行時間を修正しようと提議します",
-  "propose_15": "アカウント名の変更を提議します",
+  "propose_15": "アカウント名の重複を許可することを提案する",
   "propose_16": "トークンの同名を可能にしようと提議します",
   "propose_17": "リソース配分を提議します",
   "propose_18": "総エネルギー上限の編集を提議します",
@@ -2112,6 +2112,7 @@ export const messages = {
   "information_is_being_confirmed": "Information is being confirmed, this process may take 10 minutes, please try again later",
 
   "interTrx_tip": "内部取引は、一般住所がスマート契約を呼び出し、スマート契約が他のアドレスにトークンを転送する操作です。",
+  "interTrx_tip_contract":"Internal transactions from contract execution",
   "event_tip": "イベントは、プログラマや外部インタフェースプロバイダが契約業務や監査に注意を払うためにそれを使用できるようにすることです。",
   "Expected_acquisition": "獲得見込み",
   "energy_more": "獲得したバンド幅＝エネルギーを獲得するために凍結したTRX/ネット全体がバンド幅を獲得するために凍結したTRX総額",
@@ -2437,4 +2438,7 @@ export const messages = {
   "signature_operations_required":"操作の入力が必要",
   "signature_threshold_required":"閾値の入力が必要",
   "signaure_control_address_tip":"Control address refers to the associated control addresses of owner permission, SR permission and active permission. Display of the three types of permissions will change subsequently when the control address is modified.",
+
+// 2019-12-10
+"ledger_tronlink":"Login to TRONSCAN via TronLink",
 }
