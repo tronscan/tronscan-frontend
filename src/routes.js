@@ -56,7 +56,8 @@ import {
   Exchange20,
   ContractSourceCode,
   ContractUseServiceTerms,
-  ContractLicense
+  ContractLicense,
+  RatingRule
 } from "./components/async";
 
 export const routes = [
@@ -316,6 +317,13 @@ export const routes = [
         path: "/tokens/markets/:page/:type/:id",
         icon: "fa fa-plus-square",
         component: TokensMarketsCreateAsync,
+        showInMenu: false
+      },
+      {
+        label: "token_rating_rule",
+        path: "/tokens/rating-rule",
+        icon: "fa fa-plus-square",
+        component: RatingRule,
         showInMenu: false
       }
     ]

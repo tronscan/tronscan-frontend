@@ -1,0 +1,6 @@
+.multi-line-overflow{
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: auto;
+  -webkit-line-clamp: 2; 
+}

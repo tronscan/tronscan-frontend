@@ -1,4 +1,7 @@
 /* eslint-disable */
+import {
+    lang19Q4
+} from './versionLang/lang19Q4/ja19Q4'; /* 2019Q4 */
 export const messages = {
     /*
     ##################################################################################
@@ -2439,4 +2442,5 @@ export const messages = {
     "signature_operations_required": "操作の入力が必要",
     "signature_threshold_required": "閾値の入力が必要",
     "signaure_control_address_tip": "Control address refers to the associated control addresses of owner permission, SR permission and active permission. Display of the three types of permissions will change subsequently when the control address is modified.",
+    ...lang19Q4
 }

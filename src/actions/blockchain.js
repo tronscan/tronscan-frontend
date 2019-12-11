@@ -1,10 +1,16 @@
-import {Client} from "../services/api";
+import {Client, Client20} from "../services/api";
+import ClientToken from "../services/tokenApi";
 import rebuildList from "../utils/rebuildList";
 
 export const SET_TRANSACTIONS = 'SET_TRANSACTIONS';
 export const SET_TOTAL_TRANSACTIONS = 'SET_TOTAL_TRANSACTIONS';
 export const SET_BLOCKS = 'SET_BLOCKS';
+export const SET_USD_PRICE = 'SET_USD_PRICE';
 
+export const setUsdPrice = (price = 0) => ({
+  type: SET_USD_PRICE,
+  price
+})
 export const setTransactions = (transactions = []) => ({
   type: SET_TRANSACTIONS,
   transactions,
@@ -42,4 +48,9 @@ export const loadTotalNumberOfTransactions = () => async (dispatch, getState) =>
 
   // let totalTransactions = await Client.getTotalNumberOfTransactions();
   // dispatch(setTotalNumberOfTransactions(totalTransactions));
+};
+
+export const loadUsdPrice = () => async (dispatch) => {
+  let price = await ClientToken.getUsdPrice();
+  dispatch(setUsdPrice(price));
 };

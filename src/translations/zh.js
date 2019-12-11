@@ -1,4 +1,7 @@
 /* eslint-disable */
+import {
+    lang19Q4
+} from './versionLang/lang19Q4/zh19Q4'; /* 2019Q4 */
 export const messages = {
     /*
     ##################################################################################
@@ -531,9 +534,9 @@ export const messages = {
     "no_trx_remaining": "无TRX余额",
     "show_more": "展示{国家长度} 更多内容",
     "vote_guide_message": `使用TRX为超级代表投票。
-   每一个TRX享有一次投票机会。
-   投票不消耗TRX。可以为多个超级代表投票，投票不限次数。
-   票数于每天2:00,8:00,14:00,20:00更新，同时代表排序会刷新。`,
+ 每一个TRX享有一次投票机会。
+ 投票不消耗TRX。可以为多个超级代表投票，投票不限次数。
+ 票数于每天2:00,8:00,14:00,20:00更新，同时代表排序会刷新。`,
     "search_address": "搜索地址",
     "token_transactions": "通证交易",
     "token_holders": "通证持有者",
@@ -594,9 +597,9 @@ export const messages = {
     "token_spend_confirm": "我已获知发行通证需一次性缴纳1024TRX。",
     "token_issue_guide_message_1": `用户账户中有至少1024TRX，就可以在波场协议上发行通证。`,
     "token_issue_guide_message_2": `通证发行后，会在通证总览页面进行显示。
-    之后用户可以在发行期限内参与认购，用TRX兑换通证。`,
+  之后用户可以在发行期限内参与认购，用TRX兑换通证。`,
     "token_issue_guide_message_3": `在发行通证后，您的账户将会收到全部的发行数额。
-    当其他用户使用TRX兑换您发行的通证，兑换数额将从您的账户扣除，并以指定汇率获得相应数额的TRX。`,
+  当其他用户使用TRX兑换您发行的通证，兑换数额将从您的账户扣除，并以指定汇率获得相应数额的TRX。`,
     /*
     ##################################################################################
     #                                                                                #
@@ -800,7 +803,6 @@ export const messages = {
     "hash": "哈希值",
     "time": "时间",
     "parenthash": "父哈希",
-    "finalResult": "最终结果",
     "size": "大小",
     "blockchain_size": "区块链大小",
     /*
@@ -1100,7 +1102,7 @@ export const messages = {
     "account_unit": "个账户",
     "address_unit": "个地址",
     "contract_unit": "条已验证合约",
-    "inter_contract_unit": "条合约内部交易",
+    "inter_contract_unit": "个内部交易",
 
     /*
     ##################################################################################
@@ -1199,7 +1201,7 @@ export const messages = {
     "contract_create_msg": "创建信息",
     "contract_create_time": "创建时间",
     "contract_enery": "能量消耗比例",
-    "contract_enery_tip": "调用智能合约会消耗一定的能量，这个能量由合约和用户按照此比例承担",
+    "contract_enery_tip": "调用智能合约会消耗能量，消耗能量由合约和用户按比例承担",
     "contract_init_assets": "初始资产",
     "contract_init_assets_tip": "部署合约时合约创建人向合约地址转入的资产",
     "contract_editor_bug": "编译器漏洞提示",
@@ -1558,7 +1560,7 @@ export const messages = {
     "propose_12": "提议修改1 energy的费用",
     "propose_13": "提议修改创建交易对的费用",
     "propose_14": "提议修改一条交易的最大执行时间",
-    "propose_15": "提议是否允许更改账户名称",
+    "propose_15": "提议允许账户重名",
     "propose_16": "提议允许通证同名",
     "propose_17": "提议允许资源委派",
     "propose_18": "提议修改总Energy上限",
@@ -1975,6 +1977,8 @@ export const messages = {
     "token_txs_info": "通证",
     "result": "结果",
 
+
+
     /*
          ##################################################################################
          #                                                                                #
@@ -2152,6 +2156,7 @@ export const messages = {
     "energy_more": "获得带宽 = 为获取带宽冻结的TRX / 整个网络当中为获取带宽而冻结的TRX总数",
     "bandwidth_more": "获得能量 = 为获取能量冻结的TRX / 整个网络当中为获取能量而冻结的TRX总数*总能量限制",
     "interTrx_tip": "内部交易是指普通地址调用智能合约，由合约向其它地址转移通证的一种操作",
+    "interTrx_tip_contract": "执行合约产生的内部交易",
     "event_tip": "事件是让程序编写人员或外部界面提供者使用它来注意合约操作动向和审计",
     "table_info_big": "仅展示前10,000条数据",
     "Download": "下载",
@@ -2170,11 +2175,11 @@ export const messages = {
 
 
     /*
-  ##################################################################################
-  #                                                                                #
-  # read contract info   2019-07-02                                    #
-  #                                                                                #
-  ##################################################################################
+##################################################################################
+#                                                                                #
+# read contract info   2019-07-02                                    #
+#                                                                                #
+##################################################################################
 */
     "contract_title": "合约",
     "contract_code_choice": "代码",
@@ -2406,7 +2411,7 @@ export const messages = {
        ##################################################################################
     */
     "muti_sign": "多重签名",
-    "translations_wait_sign": "待我签名的交易",
+    "translations_wait_sign": "待签名的交易",
     "transfer_multi_sign": "多重签名转账",
     "permission": "权限",
     "owner_permission": "Owner权限组",
@@ -2512,4 +2517,55 @@ export const messages = {
     "Bancor Exchange Inject": "Bancor交易注资",
     "Bancor Exchange Withdraw": "Bancor交易撤资",
     "permission_name_limit": "请输入英文字符及数字",
+
+    //2019-12-10
+    "token_rank": "排名",
+    "gain_tip": "涨跌幅以TRX为参考对象，实行24小时制",
+    "total_supply_tip": "由通证流通量乘以当前通证市场价格得出",
+    "market_capitalization_t": "流通市值",
+    "token_tron_total": "TRON通证总数",
+    "token_week": "周新增",
+    "token_scan_total": "TRONSCAN收录通证数",
+    "create_token_btn": "发行通证",
+    // 2019-12-10
+    "ledger_tronlink": "通过TronLink登录TRONSCAN ",
+
+    // 2019-12-10
+    "token_basic_view": "基本概况",
+    "token_additional_materials": "补充资料",
+    "token_hold_user": "持有者",
+    "token_capitalization": "流通市值/总市值",
+    "token_credit_rating": "信用评级",
+    "token_contract": "发行合约",
+    "token_price_new": "价格",
+    "token_website": "官网",
+    "token_social_link": "媒体链接",
+    "token_credit_rating_rule": "查看评级规则",
+    "token_issuance_info": "发售信息",
+    "token_market": "交易市场",
+    "token_contract_tab": "通证合约",
+    "token_rating_rule": "TRONSCAN 信用评级规则",
+    "token_rating_rule_title": "TRONSCAN目前根据通证信息的完善程度、社区反馈以及是否可在POLONIDEX交易将通证分为以下5个信用评级：",
+    "token_rating_rule_title_p1_title": "未知",
+    "token_rating_rule_title_p1": "未知信用评级是新录入通证的默认评级，若通证发行成功后未补充更新信息，只有强制基本信息的话，将会被认为是未知通证。强制基本信息包括：通证名称、通证简称、通证简介、发行量、精度、发行者，TRC20通证还应包含发行合约、合约创建时间和合约创建者。",
+    "token_rating_rule_title_p2_title": "中立",
+    "token_rating_rule_title_p2": "此类通证在发行成功后补充更新了信息，具体包括：官网、Logo、邮箱、GitHub地址、白皮书地址、社交媒体链接（至少一个）",
+    "token_rating_rule_title_p3_title": "OK",
+    "token_rating_rule_title_p3": "若通证在POLONIDEX正式上线交易，则会获得OK信用评级。",
+    "token_rating_rule_title_p3_1": "POLONIDEX上币申请需要在TRONSCAN进行，在申请前需要了解以下事项： ",
+    "token_rating_rule_title_p3_2": "1）请先登TRONSCAN，并确保该账户至少有一个已经发行的 TRC10 / TRC20 通证。",
+    "token_rating_rule_title_p3_3": "2）选择需要在POLONIDEX上币的通证，提供一些基本信息，该通证便可以通过搜索进行交易。",
+    "token_rating_rule_title_p3_4": "3） 如果您希望通证显示在行情列表中，则需要提供更多信息， 将有专业的审核人员审核您的申请。在通过审核后，POLONIDEX将在一周内通过电子邮件与您联系。只有通过审核的通证才具有获得OK信用评级的资格。",
+    "token_rating_rule_title_p4_title": "有风险",
+    "token_rating_rule_title_p4": "此类通证有关于欺诈/钓鱼/伪造/发送垃圾信息等的举报，或有关于此类通证的虚假陈述的举报且未有效处理，或有其他恶性报告，经TRONSCAN评估认为存在安全风险。存在安全风险的通证将无法在TRONSCAN上搜索到。 ",
+    "token_rating_rule_title_p5_title": "欺诈",
+    "token_rating_rule_title_p5": "此类通证有大量关于欺诈/钓鱼/伪造/发送垃圾信息等的举报，或有大量关于此类通证的虚假陈述的举报且未有效处理，或有大量其他恶性报告，或项目团队解散、官方网站和社区长时间无人维护，或项目团队涉嫌违法行为面临重大法律制裁，经TRONSCAN评估认为存在极高安全风险。存在极高安全风险的通证将无法在TRONSCAN上搜索到。",
+    "token_rating_rule_title_end_title": "免责声明：",
+    "token_rating_rule_title_end_1": "TRONSCAN作为波场生态的一款区块浏览器，仅提供波场生态数据信息的展示和查询等服务，关于通证的所有信息皆由通证所有者自行上传，TRONSCAN不参与任何通证的发行和发展，不对通证信息的真实性和有效性做任何担保，请注意甄别使用。",
+    "token_rating_rule_title_end_2": "信用评级仅是基于通证信息的完善度和社区反馈来评定的，旨在为用户提供一定的参考，并不是通证的绝对价值判断，可能会与通证的真实情况有所偏差。TRONSCAN不对此信用评级的准确性和可靠性做任何保证，也不对由此造成或声称由此造成的损失承担任何直接或间接的责任。",
+    "token_rating_rule_title_end_3": "我们保留更改通证信用评级的权利，并且没有义务对通证信用评级的评定和变更做任何解释。若我们发现通证存在伪造信息或其他有损用户权益的行为，我们将会将其列入黑名单或采取其他进一步措施。",
+    "token_rating_rule_title_end_4": "TRONSCAN将根据生态发展的需要适时更新通证信用评级规则，更新后的通证信用评级规则在网站上一经公布即有效代替原来的通证信用评级规则。",
+    ...lang19Q4
+
+
 };

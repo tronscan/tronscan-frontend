@@ -184,7 +184,7 @@ class Transfers extends React.Component {
         }
       },
       {
-        title: upperFirst(intl.formatMessage({ id: "finalResult" })),
+        title: upperFirst(intl.formatMessage({ id: "FinalResult" })),
         dataIndex: "contractRet",
         key: "contractRet",
         className: "ant_table",
