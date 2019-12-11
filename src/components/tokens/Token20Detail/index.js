@@ -56,7 +56,7 @@ class Token20Detail extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    let {match} = this.props;
+    let { match } = this.props;
     if (match.params.address !== prevProps.match.params.address) {
       this.loadToken(decodeURI(match.params.address));
     }
@@ -64,17 +64,17 @@ class Token20Detail extends React.Component {
 
   loadToken = async address => {
     const tabs = [
-      {
-        id: "tokenInfo",
-        icon: "",
-        path: "",
-        label: <span>{tu("token_issuance_info")}</span>,
-        cmp: () => <TokenInfo token={token} />
-      },
+      // {
+      //   id: "tokenInfo",
+      //   icon: "",
+      //   path: "",
+      //   label: <span>{tu("token_issuance_info")}</span>,
+      //   cmp: () => <TokenInfo token={token} />
+      // },
       {
         id: "transfers",
         icon: "",
-        path: "/transfers",
+        path: "/",
         label: <span>{tu("token_transfers")}</span>,
         cmp: () => (
           <Transfers
@@ -102,14 +102,23 @@ class Token20Detail extends React.Component {
         )
       },
       {
-        id: "holders",
+        id: "holders1",
         icon: "",
         path: "/holders",
-        label: (
-          <span>
-            {tu("token_market")}
-          </span>
-        ),
+        label: <span>{tu("token_market")}</span>,
+        cmp: () => (
+          <TokenHolders
+            filter={{ token: address }}
+            getCsvUrl={csvurl => this.setState({ csvurl })}
+            token={token}
+          />
+        )
+      },
+      {
+        id: "holders2",
+        icon: "",
+        path: "/holders",
+        label: <span>{tu("token_contract_tab")}</span>,
         cmp: () => (
           <TokenHolders
             filter={{ token: address }}
@@ -118,7 +127,6 @@ class Token20Detail extends React.Component {
           />
         )
       }
-
     ];
 
     if (address === "TLa2f6VPqDgRE67v1736s7bJ8Ray5wYjU7") {
@@ -568,9 +576,7 @@ class Token20Detail extends React.Component {
                         </h5>
                         <p className="card-text">{token.token_desc}</p>
                       </div>
-                      <div className="ml-auto">
-                        trc20
-                      </div>
+                      <div className="ml-auto">trc20</div>
                       {/*<div className="ml-auto">*/}
                       {/*{(!(token.endTime < new Date() || token.issuedPercentage === 100 || token.startTime > new Date() || token.isBlack) && !token.isBlack) &&*/}
                       {/*<button className="btn btn-default btn-xs d-inline-block"*/}

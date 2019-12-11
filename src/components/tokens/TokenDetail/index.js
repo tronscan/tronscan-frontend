@@ -76,101 +76,79 @@ class TokenDetail extends React.Component {
       this.props.history.push("/tokens/list");
       return;
     }
+    let tabs = [
+      {
+        id: "tokenInfo",
+        icon: "",
+        path: "",
+        label: <span>{tu("issue_info")}</span>,
+        cmp: () => <TokenInfo token={token} />
+      },
+      {
+        id: "transfers",
+        icon: "",
+        path: "/transfers",
+        label: <span>{tu("token_transfers")}</span>,
+        cmp: () => (
+          <Transfers
+            getCsvUrl={csvurl => this.setState({ csvurl })}
+            filter={{ token: token.name, address: token.ownerAddress }}
+          />
+        )
+      },
+      {
+        id: "holders",
+        icon: "",
+        path: "/holders",
+        label: (
+          <span>
+            {IS_MAINNET ? tu("token_holders") : tu("DAppChain_holders")}
+          </span>
+        ),
+        cmp: () => (
+          <TokenHolders
+            filter={{ token: token.name, address: token.ownerAddress }}
+            token={{ totalSupply: token.totalSupply }}
+            tokenPrecision={{ precision: token.precision }}
+            getCsvUrl={csvurl => this.setState({ csvurl })}
+          />
+        )
+      },
+      {
+        id: "holders",
+        icon: "",
+        path: "/holders",
+        label: <span>{tu("token_market")}</span>,
+        cmp: () => (
+          <TokenHolders
+            filter={{ token: token.name, address: token.ownerAddress }}
+            token={{ totalSupply: token.totalSupply }}
+            tokenPrecision={{ precision: token.precision }}
+            getCsvUrl={csvurl => this.setState({ csvurl })}
+          />
+        )
+      }
+    ];
+
+    this.setState({
+      loading: false,
+      token
+    });
     if (token.tokenID == 1002000) {
+      let BttSupply = {
+        id: "BTTSupply",
+        icon: "",
+        path: "/supply",
+        label: <span>{tu("BTT_supply")}</span>,
+        cmp: () => <BTTSupply token={token} />
+      };
       this.loadTotalTRXSupply();
       this.setState({
-        loading: false,
-        token,
-        tabs: [
-          {
-            id: "tokenInfo",
-            icon: "",
-            path: "",
-            label: <span>{tu("issue_info")}</span>,
-            cmp: () => <TokenInfo token={token} />
-          },
-          {
-            id: "transfers",
-            icon: "",
-            path: "/transfers",
-            label: <span>{tu("token_transfers")}</span>,
-            cmp: () => (
-              <Transfers
-                getCsvUrl={csvurl => this.setState({ csvurl })}
-                filter={{ token: token.name, address: token.ownerAddress }}
-              />
-            )
-          },
-          {
-            id: "holders",
-            icon: "",
-            path: "/holders",
-            label: (
-              <span>
-                {IS_MAINNET ? tu("token_holders") : tu("DAppChain_holders")}
-              </span>
-            ),
-            cmp: () => (
-              <TokenHolders
-                filter={{ token: token.name, address: token.ownerAddress }}
-                token={{ totalSupply: token.totalSupply }}
-                tokenPrecision={{ precision: token.precision }}
-                getCsvUrl={csvurl => this.setState({ csvurl })}
-              />
-            )
-          },
-          {
-            id: "BTTSupply",
-            icon: "",
-            path: "/supply",
-            label: <span>{tu("BTT_supply")}</span>,
-            cmp: () => <BTTSupply token={token} />
-          }
-        ]
+        tabs: tabs.push(BttSupply)
       });
     } else {
       this.setState({
-        loading: false,
-        token,
-        tabs: [
-          {
-            id: "tokenInfo",
-            icon: "",
-            path: "",
-            label: <span>{tu("issue_info")}</span>,
-            cmp: () => <TokenInfo token={token} />
-          },
-          {
-            id: "transfers",
-            icon: "",
-            path: "/transfers",
-            label: <span>{tu("token_transfers")}</span>,
-            cmp: () => (
-              <Transfers
-                getCsvUrl={csvurl => this.setState({ csvurl })}
-                filter={{ token: token.name, address: token.ownerAddress }}
-              />
-            )
-          },
-          {
-            id: "holders",
-            icon: "",
-            path: "/holders",
-            label: (
-              <span>
-                {IS_MAINNET ? tu("token_holders") : tu("DAppChain_holders")}
-              </span>
-            ),
-            cmp: () => (
-              <TokenHolders
-                filter={{ token: token.name, address: token.ownerAddress }}
-                token={{ totalSupply: token.totalSupply }}
-                tokenPrecision={{ precision: token.precision }}
-                getCsvUrl={csvurl => this.setState({ csvurl })}
-              />
-            )
-          }
-        ]
+        tabs: tabs
       });
     }
   };
