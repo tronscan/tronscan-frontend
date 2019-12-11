@@ -800,6 +800,7 @@ export const messages = {
     "hash": "哈希值",
     "time": "时间",
     "parenthash": "父哈希",
+    "finalResult": "最终结果",
     "size": "大小",
     "blockchain_size": "区块链大小",
     /*

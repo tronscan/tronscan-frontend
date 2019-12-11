@@ -257,7 +257,7 @@ export class TRXPrice extends React.PureComponent {
                         }
                       />
                       <br />
-                      EUR{" "}
+                      EURs
                       <FormattedNumber
                         value={priceValues.prices.EUR * amount}
                         maximumFractionDigits={
