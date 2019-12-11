@@ -1109,7 +1109,7 @@ export const messages = {
   */
 
   "issue_progress": "发行进度",
-  "fund_raised": "已筹集资金",
+  "fund_raised": "筹集金额",
   "issuing_price": "发行价格",
   "buy_token_info": "你想要购买多少数量的通证？",
   "reputation": "信用评级",
@@ -2540,6 +2540,8 @@ export const messages = {
 "token_issuance_info": "发售信息",
 "token_market": "交易市场",
 "token_contract_tab": "通证合约",
+"token_price_issue":"发行价",
+"token_Participants":"参与者",
 "token_rating_rule": "TRONSCAN 信用评级规则",
 "token_rating_rule_title":
 "TRONSCAN目前根据通证信息的完善程度、社区反馈以及是否可在POLONIDEX交易将通证分为以下5个信用评级：",

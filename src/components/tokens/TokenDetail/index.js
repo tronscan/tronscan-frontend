@@ -81,7 +81,7 @@ class TokenDetail extends React.Component {
         id: "tokenInfo",
         icon: "",
         path: "",
-        label: <span>{tu("issue_info")}</span>,
+        label: <span>{tu("token_issuance_info")}</span>,
         cmp: () => <TokenInfo token={token} />
       },
       {
@@ -97,7 +97,7 @@ class TokenDetail extends React.Component {
         )
       },
       {
-        id: "holders",
+        id: "holders1",
         icon: "",
         path: "/holders",
         label: (
@@ -115,7 +115,7 @@ class TokenDetail extends React.Component {
         )
       },
       {
-        id: "holders",
+        id: "holders2",
         icon: "",
         path: "/holders",
         label: <span>{tu("token_market")}</span>,
