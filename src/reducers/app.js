@@ -2,6 +2,7 @@ import Lockr from "lockr";
 import TronWeb from 'tronweb';
 import SunWeb from 'sunweb';
 import TronStationSDK from 'tronstation';
+import config from '../config/main.config'
 import {
   DISABLE_FLAG,
   ENABLE_FLAG,
@@ -171,7 +172,8 @@ export function appReducer(state = initialState, action) {
     case LOGIN_PK: {
 
        Lockr.set("islogin", 0);
-       const ServerNode =  SUNWEBCONFIG.MAINFULLNODE;
+      //  const ServerNode =  SUNWEBCONFIG.MAINFULLNODE;
+       const ServerNode = config.networkUrl;
        const HttpProvider = TronWeb.providers.HttpProvider; // This provider is optional, you can just use a url for the nodes instead
        const fullNode = new HttpProvider(ServerNode); // Full node http endpoint
        const solidityNode = new HttpProvider(ServerNode); // Solidity node http endpoint
