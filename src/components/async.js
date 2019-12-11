@@ -252,3 +252,9 @@ export const ContractLicense = loadable(() =>
     /* webpackChunkName: "ContractSourceCode" */ "./blockchain/Contract/License"
   )
 );
+
+export const RatingRule = loadable(() =>
+  import(
+    /* webpackChunkName: "ContractSourceCode" */ "./tokens/RatingRule"
+  )
+);

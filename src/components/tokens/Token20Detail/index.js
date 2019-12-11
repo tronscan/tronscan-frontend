@@ -68,7 +68,7 @@ class Token20Detail extends React.Component {
         id: "tokenInfo",
         icon: "",
         path: "",
-        label: <span>{tu("issue_info")}</span>,
+        label: <span>{tu("token_issuance_info")}</span>,
         cmp: () => <TokenInfo token={token} />
       },
       {
@@ -100,7 +100,25 @@ class Token20Detail extends React.Component {
             token={token}
           />
         )
+      },
+      {
+        id: "holders",
+        icon: "",
+        path: "/holders",
+        label: (
+          <span>
+            {tu("token_market")}
+          </span>
+        ),
+        cmp: () => (
+          <TokenHolders
+            filter={{ token: address }}
+            getCsvUrl={csvurl => this.setState({ csvurl })}
+            token={token}
+          />
+        )
       }
+
     ];
 
     if (address === "TLa2f6VPqDgRE67v1736s7bJ8Ray5wYjU7") {
@@ -549,6 +567,9 @@ class Token20Detail extends React.Component {
                           {token.name} ({token.symbol})
                         </h5>
                         <p className="card-text">{token.token_desc}</p>
+                      </div>
+                      <div className="ml-auto">
+                        trc20
                       </div>
                       {/*<div className="ml-auto">*/}
                       {/*{(!(token.endTime < new Date() || token.issuedPercentage === 100 || token.startTime > new Date() || token.isBlack) && !token.isBlack) &&*/}
