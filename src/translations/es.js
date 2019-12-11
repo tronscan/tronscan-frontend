@@ -1536,7 +1536,7 @@ export const messages = {
   "propose_12": "Proponer modificar la tarifa de 1 de energía.",
   "propose_13": "Proponer modificar el costo de la creación de pares para trading.",
   "propose_14": "Proponer modificar el tiempo máximo de ejecución de una transacción.",
-  "propose_15": "Proponer permitir cambiar el nombre de la cuenta.",
+  "propose_15": "Proponer permitir nombre de cuenta duplicado.",
   "propose_16": "Proponer permitir el mismo nombre de token",
   "propose_17": "Proponer permitir la delegación de recursos.",
   "propose_18": "Proponer modificar el límite de energía total.",
@@ -2120,6 +2120,7 @@ export const messages = {
   "receive_address": "Dirección de recepción (la dirección predeterminada es la suya)",
   "unfreeze_time": "Fecha de descongelación",
   "interTrx_tip": "Transacciones internas es una operación que una dirección general llama un Contrato inteligente, y el Contrato inteligente transfiere el token a otra dirección.",
+  "interTrx_tip_contract":"Internal transactions from contract execution",
   "event_tip": "Los eventos son para permitir que el programador o el proveedor de la interfaz externa lo utilicen para prestar atención a las operaciones y auditorías del contrato.",
   /* 2019-07-06*/
   "trc20_free_orders": "0 trading fee for all orders",
@@ -2444,4 +2445,8 @@ export const messages = {
   "signature_operations_required":"Se requiere operación",
   "signature_threshold_required":"Se requiere umbral",
   "signaure_control_address_tip":"Control address refers to the associated control addresses of owner permission, SR permission and active permission. Display of the three types of permissions will change subsequently when the control address is modified.",
+
+  // 2019-12-10
+  "ledger_tronlink":"Login to TRONSCAN via TronLink",
+
 };
