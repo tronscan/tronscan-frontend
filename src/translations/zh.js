@@ -2477,6 +2477,7 @@ export const messages = {
     "signature_add_permissions": "添加新权限",
     "signature_add_active_permissions": "添加活跃权限",
 
+
     // 2019-12-02
     "signature_owner_permission_name_required": "拥有者权限名称为必填项",
     "signature_owner_threshold_required": "拥有者全系阈值为必填项",
@@ -2529,6 +2530,7 @@ export const messages = {
     "create_token_btn": "发行通证",
     // 2019-12-10
     "ledger_tronlink": "通过TronLink登录TRONSCAN ",
+
 
     // 2019-12-10
     "token_basic_view": "基本概况",
