@@ -128,6 +128,14 @@ class Transfers extends React.Component {
         }
       },
       {
+        title: upperFirst(intl.formatMessage({ id: "blocks" })),
+        dataIndex: "block",
+        key: "block",
+        className: "ant_table",
+        width: "100px",
+     
+      },
+      {
         title: upperFirst(intl.formatMessage({ id: "age" })),
         dataIndex: "timestamp",
         key: "timestamp",
@@ -165,6 +173,7 @@ class Transfers extends React.Component {
         dataIndex: "transferToAddress",
         key: "transferToAddress",
         className: "ant_table",
+        align: "center",
         width: "160px",
         render: (text, record, index) => {
           return (
@@ -175,11 +184,33 @@ class Transfers extends React.Component {
         }
       },
       {
+        title: upperFirst(intl.formatMessage({ id: "FinalResult" })),
+        dataIndex: "contractRet",
+        key: "contractRet",
+        className: "ant_table",
+        filters: [
+            {
+              text: 'SUCCESS',
+              value: 'SUCCESS',
+            },
+            {
+              text: 'FAIL',
+              value: 'FAIL',
+            },
+            {
+                text: 'CONFIRMING',
+                value: 'CONFIRMING',
+              },
+          ],
+          onFilter: (value, record) => {
+            console.log(value,record)
+          },
+      },
+      {
         title: upperFirst(intl.formatMessage({ id: "amount" })),
         dataIndex: "amount",
         key: "amount",
-        width: "200px",
-        align: "right",
+        align: "center",
         className: "ant_table",
         render: (text, record, index) => {
           return (
@@ -187,16 +218,27 @@ class Transfers extends React.Component {
               <span>
                 {FormatNumberByDecimals(record.quant, token.decimals)}
               </span>
-              {/* <FormattedNumber value={parseFloat(record.quant) / (Math.pow(10,token.decimals))}/>*/}
-              &nbsp;&nbsp;
-              <TokenTRC20Link
-                name={token.symbol}
-                address={token.contract_address}
-              />
             </span>
           );
         }
-      }
+      },
+      {
+        title: upperFirst(intl.formatMessage({ id: "tokens" })),
+        dataIndex: "tokens",
+        key: "tokens",
+        className: "ant_table",
+        render: (text, record, index) => {
+            return(
+                <span>
+                    <TokenTRC20Link
+                    name={token.symbol}
+                    address={token.contract_address}
+                    />
+                </span>
+            )
+           
+          }
+      },
     ];
 
     return column;
@@ -293,7 +335,7 @@ class Transfers extends React.Component {
                 onPageChange={(page, pageSize) => {
                   this.loadPage(page, pageSize);
                 }}
-                // position="bottom"
+                position="bottom"
               />
             )}
           </div>

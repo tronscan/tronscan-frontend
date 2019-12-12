@@ -1,4 +1,7 @@
 /* eslint-disable */
+import {
+    lang19Q4
+} from './versionLang/lang19Q4/en19Q4';
 export const messages = {
     /*
     ##################################################################################
@@ -806,6 +809,7 @@ export const messages = {
     "time": "Time",
     "parenthash": "Parent Hash",
     "size": "Size",
+    "finalResult": "Result",
     "blockchain_size": "Blockchain Size",
     /*
     ##################################################################################
@@ -2454,5 +2458,6 @@ export const messages = {
     "signature_threshold_required": "Threshold is requried",
     "signaure_control_address_tip": "Control address refers to the associated control addresses of owner permission, SR permission and active permission. Display of the three types of permissions will change subsequently when the control address is modified.",
     "permission_name_limit": "Please input English characters and numbers",
+    ...lang19Q4,
 
 };
