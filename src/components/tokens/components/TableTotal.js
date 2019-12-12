@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 import { injectIntl } from "react-intl";
-import { tv, tu } from "../../../../utils/i18n";
-import { QuestionMark } from "../../../common/QuestionMark";
+import { tv, tu } from "./../../../utils/i18n";
+import { QuestionMark } from "./../../common/QuestionMark";
 
 class TotalInfo extends React.Component {
   constructor(props) {

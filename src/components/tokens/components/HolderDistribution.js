@@ -1,6 +1,6 @@
 import React from "react";
 import { injectIntl } from "react-intl";
-import { tv, tu } from "../../../../utils/i18n";
+import { tv, tu } from "../../../utils/i18n";
 
 class HolderDistribution extends React.Component {
   constructor(props) {
@@ -9,7 +9,7 @@ class HolderDistribution extends React.Component {
       chartAry: [
         {
           id: 1,
-          background: "rgb(9, 109, 217)",
+          background: "#0477FF",
           percent: "38.4443 1 0%",
           first: "1",
           end: "10",
@@ -17,7 +17,7 @@ class HolderDistribution extends React.Component {
         },
         {
           id: 2,
-          background: "rgb(82, 196, 26)",
+          background: "#EDB92B",
           percent: "12.0836  1 0%",
           first: "11",
           end: "50",
@@ -25,7 +25,7 @@ class HolderDistribution extends React.Component {
         },
         {
           id: 3,
-          background: "rgb(75, 223, 224)",
+          background: "#32C956",
           percent: "17.4921  1 0%",
           first: "51",
           end: "100",
@@ -33,7 +33,7 @@ class HolderDistribution extends React.Component {
         },
         {
           id: 4,
-          background: "rgb(255, 137, 157)",
+          background: "#FF9065",
           first: "101",
           end: "500",
           percent: "19.7246 1 0%",
@@ -41,10 +41,10 @@ class HolderDistribution extends React.Component {
         },
         {
           id: 5,
-          background: "rgb(251, 211, 72)",
+          background: "#05D2AD",
           percent: "12.2553  1 0%",
           first: "501",
-          end: "+∞",
+          end: "",
           portion: "12.2553"
         }
       ]
@@ -55,25 +55,54 @@ class HolderDistribution extends React.Component {
     return (
       <div
         className="holder-distribution"
-        style={{ background: "#fff", paddingTop: "10px" }}
+        style={{ background: "#fff", paddingTop: "20px", marginBottom: "20px" }}
       >
         <section
           className="distribution-header"
           style={{
+            fontFamily: "PingFangSC-Medium",
+            color: "#333333",
             fontSize: "16px",
             fontWeight: 500,
-            color: "rgba(0,0,0,0.85)",
-            textIndent: "30px"
+            textIndent: "20px"
           }}
         >
           {tu("distributionTitle")}
         </section>
         <section
+          style={{
+            margin: "10px 20px 0"
+          }}
+        >
+          {chartAry.map((item, ind) => {
+            return (
+              <span>
+                <span
+                  style={{
+                    width: "10px",
+                    height: "10px",
+                    display: "inline-block",
+                    background: item.background
+                  }}
+                ></span>
+                <span
+                  style={{
+                    margin: "0 20px 0 10px",
+                    fontFamily: "PingFangSC-Regular",
+                    fontSize: "14px"
+                  }}
+                >
+                  {tv("assetsPercent", { first: item.first, end: item.end })}
+                </span>
+              </span>
+            );
+          })}
+        </section>
+        <section
           className="distribution-content"
           style={{
             display: "flex",
-            margin: "32px 28px 0",
-            borderRadius: "8px",
+            margin: "10px 20px",
             overflow: "hidden"
           }}
         >
@@ -96,8 +125,8 @@ class HolderDistribution extends React.Component {
           style={{
             display: "flex",
             margin: "0 28px",
-            paddingTop: "24px",
-            paddingBottom: "32px"
+            paddingTop: "6px",
+            paddingBottom: "19px"
           }}
         >
           {chartAry.map((item, ind) => {
@@ -106,23 +135,18 @@ class HolderDistribution extends React.Component {
                 className="distribution-list"
                 key={ind}
                 style={{
-                  flex: 1
+                  flex: item.percent
                 }}
               >
-                <section>
-                  <span
-                    style={{
-                      width: "10px",
-                      height: "10px",
-                      borderRadius: "50%",
-                      display: "inline-block",
-                      marginRight: "16px",
-                      background: item.background
-                    }}
-                  ></span>
-                  {tv("assetsPercent", { first: item.first, end: item.end })}
+                <section
+                  style={{
+                    fontFamily: "PingFangSC-Regular",
+                    fontSize: "12px",
+                    color: "#333333;"
+                  }}
+                >
+                  {item.portion}%
                 </section>
-                <section>{item.portion}%</section>
               </div>
             );
           })}

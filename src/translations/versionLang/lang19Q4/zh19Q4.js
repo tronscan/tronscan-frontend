@@ -31,5 +31,7 @@ export const lang19Q4 = {
     */
     "FinalResult": "最终结果",
     "distributionTitle": "持仓分布",
-    "assetsPercent": "第{first}-{end}名总资产"
+    "assetsPercent": "第{first}-{end}名总资产",
+    "holders": "持有者",
+
 }

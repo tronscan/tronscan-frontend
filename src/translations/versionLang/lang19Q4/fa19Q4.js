@@ -31,6 +31,7 @@ export const lang19Q4 = {
     */
     "FinalResult": "نتیجه نهایی",
     "distributionTitle": "توزیع موقعیت",
-    "assetsPercent": "کل دارایی های {first}-{end}"
+    "assetsPercent": "کل دارایی های {first}-{end}",
+    "holders": "هوادر های توکن",
 
 }

@@ -31,6 +31,7 @@ export const lang19Q4 = {
     */
     "FinalResult": "最終結果",
     "distributionTitle": "Asset Breakdown by Holders",
-    "assetsPercent": "第{first}-{end}名の総資産"
+    "assetsPercent": "第{first}-{end}名の総資産",
+    "holders": "トークンホルダー",
 
 }

@@ -635,8 +635,8 @@ class TokenDetail extends React.Component {
                       className="nav nav-tabs card-header-tabs"
                       style={{ marginTop: "-12px", marginLeft: "-20px" }}
                     >
-                      {tabs.map(tab => (
-                        <li key={tab.id} className="nav-item">
+                      {tabs.map((tab, tabInd) => (
+                        <li key={tabInd} className="nav-item">
                           <NavLink
                             exact
                             to={match.url + tab.path}
@@ -651,22 +651,30 @@ class TokenDetail extends React.Component {
                   </div>
                   <div className="card-body p-0">
                     <Switch>
-                      {tabs.map(tab => (
+                      {tabs.map((tab, tabInd) => (
                         <Route
-                          key={tab.id}
+                          key={tabInd}
                           exact
                           path={match.url + tab.path}
                           render={() => <tab.cmp />}
                         />
                       ))}
                     </Switch>
+                    <div
+                      style={{
+                        position: "absolute",
+                        left: "20px",
+                        bottom: "45px"
+                      }}
+                    >
+                      {["transfers", "holders"].indexOf(tabName) !== -1 ? (
+                        <CsvExport downloadURL={csvurl} />
+                      ) : (
+                        ""
+                      )}
+                    </div>
                   </div>
                 </div>
-                {["transfers", "holders"].indexOf(tabName) !== -1 ? (
-                  <CsvExport downloadURL={csvurl} />
-                ) : (
-                  ""
-                )}
               </div>
             )}
           </div>

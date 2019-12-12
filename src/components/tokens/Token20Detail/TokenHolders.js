@@ -13,7 +13,7 @@ import { isAddressValid } from "@tronscan/client/src/utils/crypto";
 import { trim } from "lodash";
 import { FormatNumberByDecimals } from "../../../utils/number";
 import { QuestionMark } from "../../common/QuestionMark";
-import HolderDistribution from "./components/HolderDistribution";
+import HolderDistribution from "../components/HolderDistribution";
 import qs from "qs";
 
 class TokenHolders extends React.Component {
@@ -322,7 +322,10 @@ class TokenHolders extends React.Component {
           <div className="col-md-12 table_pos">
             <HolderDistribution></HolderDistribution>
             <div className="nav-searchbar" style={styles.searchBox}>
-              <div className="token20-input-group input-group">
+              <div
+                className="token20-input-group input-group"
+                style={{ height: 70 }}
+              >
                 <div className="token20-search">
                   <input
                     type="text"
@@ -356,7 +359,24 @@ class TokenHolders extends React.Component {
                     left: "auto"
                   }}
                 >
-                  <div>
+                  <div
+                    style={{
+                      fontFamily: "PingFangSC-Medium",
+                      fontSize: "16px",
+                      color: "#333333",
+                      marginTop: "16px"
+                    }}
+                  >
+                    {tu("holders")}
+                    {tu("address")}
+                  </div>
+                  <div
+                    style={{
+                      fontFamily: "PingFangSC-Regular",
+                      fontSize: "14px",
+                      color: "#999999"
+                    }}
+                  >
                     {tu("view_total")} {rangeTotal} {tu("hold_addr")},
                     {rangeTotal >= 10000 ? (
                       <span> ({tu("table_info_big")}) </span>
@@ -377,10 +397,9 @@ class TokenHolders extends React.Component {
                 ""
               )}
             </div>
-            {/*{total?<div className="table_pos_info d-none d-md-block">{tableInfo}</div>: ''}*/}
             <div style={styles.table}>
               <SmartTable
-                border={false}
+                bordered={true}
                 loading={loading}
                 column={column}
                 data={addresses}
@@ -399,8 +418,8 @@ class TokenHolders extends React.Component {
 }
 const styles = {
   searchBox: {
-    background: "#fff"
-    // paddingTop: 30
+    background: "#fff",
+    paddingTop: 14
   },
   tablePosInfo: {
     paddingLeft: 40,

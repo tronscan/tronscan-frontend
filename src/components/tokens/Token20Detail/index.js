@@ -620,13 +620,21 @@ class Token20Detail extends React.Component {
                         />
                       ))}
                     </Switch>
+                    <div
+                      style={{
+                        position: "absolute",
+                        left: "20px",
+                        bottom: "45px"
+                      }}
+                    >
+                      {["transfers", "holders"].indexOf(tabName) !== -1 ? (
+                        <CsvExport downloadURL={csvurl} />
+                      ) : (
+                        ""
+                      )}
+                    </div>
                   </div>
                 </div>
-                {["transfers", "holders"].indexOf(tabName) !== -1 ? (
-                  <CsvExport downloadURL={csvurl} />
-                ) : (
-                  ""
-                )}
               </div>
             )}
           </div>
