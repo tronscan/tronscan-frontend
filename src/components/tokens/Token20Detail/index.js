@@ -34,7 +34,7 @@ import xhr from "axios/index";
 import _ from "lodash";
 import WinkSupply from "./winkSupply.js";
 import { CsvExport } from "../../common/CsvExport";
-
+import Code from "../../blockchain/Contract/Code";
 class Token20Detail extends React.Component {
   constructor() {
     super();
@@ -74,7 +74,7 @@ class Token20Detail extends React.Component {
       {
         id: "transfers",
         icon: "",
-        path: "/",
+        path: "",
         label: <span>{tu("token_transfers")}</span>,
         cmp: () => (
           <Transfers
@@ -115,17 +115,11 @@ class Token20Detail extends React.Component {
         )
       },
       {
-        id: "holders2",
+        id: "code",
         icon: "",
-        path: "/holders",
-        label: <span>{tu("token_contract_tab")}</span>,
-        cmp: () => (
-          <TokenHolders
-            filter={{ token: address }}
-            getCsvUrl={csvurl => this.setState({ csvurl })}
-            token={token}
-          />
-        )
+        path: "/code",
+        label: <span>{tu("contract_title")}</span>,
+        cmp: () => <div style={{background: '#fff',padding: '0 2.6%'}}><Code filter={{ address: address }} /></div>
       }
     ];
 

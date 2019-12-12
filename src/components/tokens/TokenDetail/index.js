@@ -115,7 +115,7 @@ class TokenDetail extends React.Component {
         )
       },
       {
-        id: "holders",
+        id: "holder",
         icon: "",
         path: "/holders",
         label: <span>{tu("token_market")}</span>,
@@ -143,14 +143,11 @@ class TokenDetail extends React.Component {
         cmp: () => <BTTSupply token={token} />
       };
       this.loadTotalTRXSupply();
-      this.setState({
-        tabs: tabs.push(BttSupply)
-      });
-    } else {
-      this.setState({
-        tabs: tabs
-      });
+      tabs.push(BttSupply)
     }
+    this.setState({
+      tabs: tabs
+    });
   };
 
   submit = async token => {

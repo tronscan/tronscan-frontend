@@ -2488,30 +2488,7 @@ h5 {
   }
 }
 
-.apply-trc20 {
-  margin-top: -35px;
-  position: absolute;
-  right: 16px;
 
-  @media only screen and (max-width: 768px) {
-    margin-top: -25px;
-    position: absolute;
-    right: 10px;
-  }
-}
-
-.apply-all {
-  margin-top: -35px;
-  position: absolute;
-  right: 16px;
-
-  @media only screen and (max-width: 768px) {
-    margin-top: -64px;
-    position: absolute;
-    right: 10px;
-    left: 10px;
-  }
-}
 
 .approvers-proposal {
   display: flex;
@@ -4208,40 +4185,7 @@ h5 {
   flex: 1;
 }
 
-.token-list-action {
-  a {
-    padding: 3px 8px;
-    height: 1.2rem;
-    border-radius: 2px;
-    text-align: center;
-    line-height: 0.8rem;
-    display: block;
-    background-color: #c23631;
-    color: #ffffff !important;
-    font-size: 12px;
 
-    span {
-    }
-
-    &:hover {
-      color: #ffffff !important;
-    }
-  }
-
-  .btn {
-    span {
-      color: #ffffff !important;
-    }
-  }
-
-  .token-active-details {
-    background-color: #c23631;
-  }
-
-  .token-disabled-exchange {
-    background-color: #d1d3df;
-  }
-}
 
 .tooltip.show {
   opacity: 1;
