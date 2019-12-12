@@ -5,7 +5,7 @@ import {tu} from "../../../utils/i18n";
 import {AddressLink, ExternalLink} from "../../common/Links";
 import {withTimers} from "../../../utils/timing";
 import {toThousands} from "../../../utils/number";
-
+@injectIntl
 class TokenInfo extends React.Component {
 
   constructor(props) {
@@ -18,6 +18,7 @@ class TokenInfo extends React.Component {
   }
 
   render() {
+    console.log(222);
     let token = this.props.token;
     return (
         <div className="tokenDetail_box">
