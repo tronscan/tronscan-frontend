@@ -16,7 +16,7 @@ import { getTime} from "date-fns";
 import {CopyToClipboard} from "react-copy-to-clipboard";
 import {Tooltip} from "reactstrap";
 import { Popover, Button, Tooltip as AntdTip } from 'antd';
-import { IS_SUNNET, IS_MAINNET } from './../../constants';
+import { IS_SUNNET, IS_MAINNET,IS_NILE } from './../../constants';
 import MappingModal from './MappingModal';
 import SweetAlert from 'react-bootstrap-sweetalert';
 
@@ -587,7 +587,7 @@ class IssuedToken extends React.Component{
       );
 
       // DAppChain Mapping Item
-      const mppingItem = (id, currency, mappedToSideChains) => (
+        const mppingItem = (id, currency, mappedToSideChains) => (
         <div className="row">
           <div className="col-md-12">
             <hr className="my-4"/>
@@ -900,7 +900,7 @@ class IssuedToken extends React.Component{
                         </tr> */}
                       </tbody>
                     </table>
-                    {isPrivateKey && !IS_SUNNET && mppingItem(token20Item.contract_address, token20Item.symbol, token20Item.sidechains)}
+                    {isPrivateKey && !IS_SUNNET && !IS_NILE && mppingItem(token20Item.contract_address, token20Item.symbol, token20Item.sidechains)}
                   </div>
                 </div>
               })
