@@ -62,7 +62,7 @@ export function Information({ token: tokens }) {
       )
     },
     {
-      name: "token_circulation",
+      name: "circulating_supply",
       content: <div></div>
     },
     {

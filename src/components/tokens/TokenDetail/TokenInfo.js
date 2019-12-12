@@ -17,8 +17,20 @@ import Lockr from "lockr";
 import { withTronWeb } from "../../../utils/tronWeb";
 import { reloadWallet } from "../../../actions/wallet";
 
-
+@connect(
+  state => {
+    return {
+      wallet: state.wallet,
+      currentWallet: state.wallet.current,
+      walletType: state.app.wallet,
+      activeLanguage:state.app.activeLanguage
+  }},
+  {
+    reloadWallet
+  }
+)
 @injectIntl
+// @withTimers
 @withTronWeb
 class TokenInfo extends React.Component {
   constructor(props) {
@@ -33,6 +45,13 @@ class TokenInfo extends React.Component {
   componentDidMount() {
     this.loadTotalTRXSupply();
   }
+  shouldComponentUpdate(nextProps)  {
+    console.log('intl====',nextProps.activeLanguage,this.props.activeLanguage)
+    if(nextProps.activeLanguage !== this.props.activeLanguage){
+        return true
+    }
+    return  false
+}
   loadTotalTRXSupply = async () => {
     const { funds } = await Client.getBttFundsSupply();
     this.setState({
@@ -40,7 +59,7 @@ class TokenInfo extends React.Component {
     });
   };
   render() {
-    let { token } = this.props;
+    let { token ,intl} = this.props;
     let { currentTotalSupply,alert } = this.state;
     let issued = token.precision
       ? token.issued / Math.pow(10, token.precision)
@@ -52,7 +71,9 @@ class TokenInfo extends React.Component {
         <table className="table m-0 tokenDetail">
           <tbody>
             <tr>
-              <th style={{ borderTop: "0px" }}>{tu("start_time")}:</th>
+              <th style={{ borderTop: "0px" }}><span>{tu("start_time")}</span>{intl.formatMessage({
+                id:"start_time"
+              })}:</th>
               {token.id == "1002000" ? (
                 <td style={{ borderTop: "0px" }}>
                   <span>
@@ -534,17 +555,17 @@ class TokenInfo extends React.Component {
   };
 }
 
-function mapStateToProps(state) {
-  return {
-    wallet: state.wallet,
-    currentWallet: state.wallet.current,
-    walletType: state.app.wallet
+// function mapStateToProps(state) {
+//   return {
+//     wallet: state.wallet,
+//     currentWallet: state.wallet.current,
+//     walletType: state.app.wallet
 
-  };
-}
+//   };
+// }
 
-const mapDispatchToProps = {
-  reloadWallet
-};
+// const mapDispatchToProps = {
+//   reloadWallet
+// };
 
-export default connect(mapStateToProps,mapDispatchToProps)(withTimers(TokenInfo));
+export default TokenInfo;

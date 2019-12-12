@@ -46,10 +46,13 @@ class TokenDetail extends React.Component {
     } else {
       this.loadToken(decodeURI(match.params.id));
     }
+
   }
 
+  
+
   componentDidUpdate(prevProps) {
-    let { match } = this.props;
+    let { match ,intl} = this.props;
 
     if (match.params.id !== prevProps.match.params.id) {
       if (isNaN(Number(match.params.id))) {
@@ -58,6 +61,8 @@ class TokenDetail extends React.Component {
         this.loadToken(decodeURI(match.params.id));
       }
     }
+
+
   }
   loadTotalTRXSupply = async () => {
     const { funds } = await Client.getBttFundsSupply();
@@ -67,7 +72,7 @@ class TokenDetail extends React.Component {
   };
   loadToken = async id => {
     this.setState({ loading: true });
-
+  
     //let token = await Client.getToken(name);
     let result = await xhr.get(API_URL + "/api/token?id=" + id + "&showAll=1");
     let token = result.data.data[0];
@@ -80,9 +85,9 @@ class TokenDetail extends React.Component {
       {
         id: "tokenInfo",
         icon: "",
-        path: "",
+        path: "/",
         label: <span>{tu("token_issuance_info")}</span>,
-        cmp: () => <TokenInfo token={token} />
+        cmp: () => <TokenInfo token={token}/>
       },
       {
         id: "transfers",
@@ -444,7 +449,7 @@ class TokenDetail extends React.Component {
   };
 
   render() {
-    let { match, wallet } = this.props;
+    let { match, wallet,intl } = this.props;
     let {
       token,
       tabs,
@@ -462,6 +467,7 @@ class TokenDetail extends React.Component {
     pathname.replace(rex, function(a, b) {
       tabName = b;
     });
+    console.log(111,intl)
     return (
       <main className="container header-overlap token_black mc-donalds-coin">
         {alert}
