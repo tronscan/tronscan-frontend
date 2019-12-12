@@ -35,6 +35,7 @@ import _ from "lodash";
 import WinkSupply from "./winkSupply.js";
 import { CsvExport } from "../../common/CsvExport";
 import Code from "../../blockchain/Contract/Code";
+import ExchangeQuotes from "../ExchangeQuotes"
 class Token20Detail extends React.Component {
   constructor() {
     super();
@@ -102,16 +103,12 @@ class Token20Detail extends React.Component {
         )
       },
       {
-        id: "holders1",
+        id: "quotes",
         icon: "",
-        path: "/holders",
+        path: "/quotes",
         label: <span>{tu("token_market")}</span>,
         cmp: () => (
-          <TokenHolders
-            filter={{ token: address }}
-            getCsvUrl={csvurl => this.setState({ csvurl })}
-            token={token}
-          />
+          <ExchangeQuotes />
         )
       },
       {

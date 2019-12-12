@@ -67,7 +67,7 @@ export function Information({ token: tokens, currentTotalSupply }) {
       )
     },
     {
-      name: "token_circulation",
+      name: "circulating_supply",
       content: <FormattedNumber value={currentTotal} />
     },
     {

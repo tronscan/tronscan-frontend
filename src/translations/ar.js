@@ -1,4 +1,7 @@
 ﻿/* eslint-disable  */
+import {
+    lang19Q4
+} from './versionLang/lang19Q4/ar19Q4'; /* 2019Q4 */
 export const messages = {
     /*
     ##################################################################################
@@ -799,6 +802,7 @@ export const messages = {
     "time": "الوقت",
     "parenthash": "Parent Hash",
     "size": "الحجم",
+    "finalResult": "النتيجة النهائية",
     "blockchain_size": "حجم البلوكشين",
     /*
     ##################################################################################
@@ -2427,4 +2431,5 @@ export const messages = {
     "signature_operations_required": "التشغيل مطلوب",
     "signature_threshold_required": "مطلوب إضافة الحد الأدنى",
     "signaure_control_address_tip": "Control address refers to the associated control addresses of owner permission, SR permission and active permission. Display of the three types of permissions will change subsequently when the control address is modified.",
+    ...lang19Q4,
 };

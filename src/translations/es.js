@@ -1,4 +1,7 @@
 /* eslint-disable */
+import {
+    lang19Q4
+} from './versionLang/lang19Q4/es19Q4'; /* 2019Q4 */
 export const messages = {
     /*
     ##################################################################################
@@ -2445,4 +2448,5 @@ export const messages = {
     "signature_operations_required": "Se requiere operación",
     "signature_threshold_required": "Se requiere umbral",
     "signaure_control_address_tip": "Control address refers to the associated control addresses of owner permission, SR permission and active permission. Display of the three types of permissions will change subsequently when the control address is modified.",
+    ...lang19Q4
 };
