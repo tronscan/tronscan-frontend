@@ -242,13 +242,13 @@ export const routes = [
         icon: "fa fa-list",
         component: TokenAllAsync
       },
-      {
-        label: "participate",
-        path: "/tokens/view",
-        icon: "fas fa-coins",
-        component: TokenOverviewAsync,
-        showInMenu: IS_MAINNET ? true : false
-      },
+    //   {
+    //     label: "participate",
+    //     path: "/tokens/view",
+    //     icon: "fas fa-coins",
+    //     component: TokenOverviewAsync,
+    //     showInMenu: IS_MAINNET ? true : false
+    //   },
       {
         label: "token_input",
         path: "/tokens/create",
