@@ -756,7 +756,7 @@ class IssuedToken extends React.Component{
                       id={issuedAsset && issuedAsset.id}/></td>
                     </tr>
                     
-                    { status10.isPassed && this.getMarketToken10Html()}
+                    {/* { status10.isPassed && this.getMarketToken10Html()} */}
                     {/* <tr className="line-3">
                       <td></td>
                       <td><Tag color="blue">{tu('application_entry')}</Tag></td>
@@ -879,7 +879,7 @@ class IssuedToken extends React.Component{
                             <TokenTRC20Link name={tu('check_token_detail')} address={token20Item.contract_address}/>
                           </td>
                         </tr>
-                        { status20.isPassed && this.getMarketToken20Html(index, token20Item)}
+                        {/* { status20.isPassed && this.getMarketToken20Html(index, token20Item)} */}
                         {/* <tr className="line-3">
                           <td></td>
                           <td><Tag color="blue">{tu('application_entry')}</Tag></td>

@@ -395,7 +395,7 @@ export default class Account extends Component {
           <tr>
             <th>{tu("name")}</th>
             <th className="text-right">{tu("balance")}</th>
-            {isPrivateKey && <th className="text-right">{tu("trc20_cur_order_header_action")}</th>}
+            {/* {isPrivateKey && <th className="text-right">{tu("trc20_cur_order_header_action")}</th>} */}
           </tr>
           </thead>
           <tbody>
@@ -417,7 +417,7 @@ export default class Account extends Component {
                     <span>{token.token20_balance}</span>
                     {/*<FormattedNumber value={token.token20_balance} maximumFractionDigits={20}/>*/}
                   </td>
-                  {isPrivateKey && pledgeItem(token.contract_address, token.symbol, token.token20_balance_decimals, token.map_token_precision)}
+                  {/* {isPrivateKey && pledgeItem(token.contract_address, token.symbol, token.token20_balance_decimals, token.map_token_precision)} */}
                 </tr>
             ))
           }
@@ -493,7 +493,7 @@ export default class Account extends Component {
                     <FormattedNumber value={token.map_amount}
                                      maximumFractionDigits={Number(token.map_token_precision)}/>
                   </td>
-                  {isPrivateKey && pledgeItem(token.map_token_id, token.map_token_name_abbr, token.map_amount, token.map_token_precision)}
+                  {/* {isPrivateKey && pledgeItem(token.map_token_id, token.map_token_name_abbr, token.map_amount, token.map_token_precision)} */}
                 </tr>
             ))
           }
@@ -543,7 +543,7 @@ export default class Account extends Component {
             <th>ID</th>
             <th>{tu("TRC20_decimals")}</th>
             <th className="text-right">{tu("balance")}</th>
-            {isPrivateKey && <th className="text-right">{tu('trc20_cur_order_header_action')}</th>}
+            {/* {isPrivateKey && <th className="text-right">{tu('trc20_cur_order_header_action')}</th>} */}
           </tr>
           </thead>
           <tbody>
@@ -569,7 +569,7 @@ export default class Account extends Component {
                     <FormattedNumber value={token.map_amount}
                                      maximumFractionDigits={Number(token.map_token_precision)}/>
                   </td>
-                  {isPrivateKey && pledgeItem(token.map_token_id, token.map_token_name_abbr, token.map_amount, token.map_token_precision)}
+                  {/* {isPrivateKey && pledgeItem(token.map_token_id, token.map_token_name_abbr, token.map_amount, token.map_token_precision)} */}
                 </tr>
             ))
           }
