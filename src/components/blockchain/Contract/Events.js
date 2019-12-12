@@ -56,42 +56,55 @@ class Transactions extends React.Component {
 
     // let contractEvent = await Client.getContractEvent(filter.address);
     // let {data} = await xhr.get(`https://api.trongrid.io/event/contract/${filter.address}`);
-    let { data } = await xhr.get(
-      `${SUNWEBCONFIG.MAINEVENTSERVER}/event/contract/${filter.address}`
-    );
-
-    let contractEvent = data || [];
-    let newList = [];
-    contractEvent.map((item, index) => {
-      let eventList = [];
-      forIn(item.result, (value, key) => {
-        eventList.push({
-          name: key,
-          value
+    try {
+      let { data } = await xhr.get(
+        `${SUNWEBCONFIG.MAINEVENTSERVER}/event/contract/${filter.address}`
+      );
+      
+      console.log("data:"+data);
+  
+      let contractEvent = data || [];
+      let newList = [];
+      contractEvent.map((item, index) => {
+        let eventList = [];
+        forIn(item.result, (value, key) => {
+          eventList.push({
+            name: key,
+            value
+          });
+        });
+        item.eventList = eventList;
+      });
+  
+      const list = uniqWith(contractEvent, isEqual);
+      let methods = await this.loadFunNames(list);
+  
+  
+      list.map((item,index) => {
+        item.method = '--'
+        methods.map(subItem => {
+          if (item.transaction_id == subItem.hash) {
+            item.method = subItem.method;
+            list[index] = item;
+          }
         });
       });
-      item.eventList = eventList;
-    });
-
-    const list = uniqWith(contractEvent, isEqual);
-    let methods = await this.loadFunNames(list);
-
-
-    list.map((item,index) => {
-      item.method = '--'
-      methods.map(subItem => {
-        if (item.transaction_id == subItem.hash) {
-          item.method = subItem.method;
-          list[index] = item;
-        }
+      newList = list
+      this.setState({
+        transactions: methods.length > 0 ? newList : list,
+        total: list.length,
+        loading: false
       });
-    });
-    newList = list
-    this.setState({
-      transactions: methods.length > 0 ? newList : list,
-      total: list.length,
-      loading: false
-    });
+    } catch (e){
+      console.log(e);
+      this.setState({
+        transactions: [],
+        total: 0,
+        loading: false
+      });
+      
+    }
+    
   };
 
   async loadFunNames(list) {
