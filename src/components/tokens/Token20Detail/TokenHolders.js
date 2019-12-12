@@ -351,19 +351,18 @@ class TokenHolders extends React.Component {
             <div style={styles.tablePosInfo}>
               {total ? (
                 <div
-                  className="table_pos_info d-none d-md-block"
+                  className="d-none d-md-block"
                   style={{
                     left: "auto"
                   }}
                 >
                   <div>
-                    {tu("view_total")} {rangeTotal} {tu("hold_addr")}
+                    {tu("view_total")} {rangeTotal} {tu("hold_addr")},
                     {rangeTotal >= 10000 ? (
                       <span> ({tu("table_info_big")}) </span>
                     ) : (
                       ""
                     )}
-                    ,
                     {rangeTotal >= 10000 ? (
                       <QuestionMark
                         placement="top"
@@ -400,11 +399,13 @@ class TokenHolders extends React.Component {
 }
 const styles = {
   searchBox: {
-    background: "#fff",
-    paddingTop: 10
+    background: "#fff"
+    // paddingTop: 30
   },
   tablePosInfo: {
-    paddingLeft: 40
+    paddingLeft: 40,
+    position: "absolute",
+    top: "190px"
   }
 };
 
