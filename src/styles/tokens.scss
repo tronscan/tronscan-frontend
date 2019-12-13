@@ -1,0 +1,233 @@
+.multi-line-overflow {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: auto;
+  -webkit-line-clamp: 2;
+}
+.token-list-wrap {
+  .token-num-wrap {
+    // margin:20px 0 24px;
+    font-size: 12px;
+    color: #333333;
+    > div {
+      width: 47.5%;
+      height: 98px;
+      > div {
+        > div {
+          &:first-child {
+            font-size: 28px;
+          }
+        }
+        &:first-child {
+          flex: 1;
+        }
+        &:nth-child(2) {
+          margin: auto;
+          width: 1px;
+          height: 60%;
+          transform: rotate(-330deg);
+          background: #d8d8d8;
+        }
+        &:last-child {
+          flex: 1;
+          > div {
+            &:first-child {
+              color: #c64844;
+              &::before {
+                content: "+";
+              }
+            }
+          }
+        }
+      }
+    }
+    @media only screen and (max-width: 768px) {
+      flex-direction: column;
+      margin: 0 !important;
+      > div {
+        width: 100%;
+        margin-bottom: 1rem;
+        height: 70px;
+      }
+    }
+  }
+  .create-token-btn {
+    position: absolute;
+    top: -30px;
+    right: 15px;
+    padding: 0 12px;
+    background: #ffffff;
+    border: 1px solid #c23631;
+    color: #c23631;
+    text-align: center;
+    line-height: 28px;
+    font-size: 12px;
+    @media only screen and (max-width: 768px) {
+      top: -50px;
+    }
+  }
+  .ant-table {
+    .trx-price {
+      font-size: 12px;
+      color: #999999;
+    }
+    .token-list-action {
+      a {
+        padding: 0 8px;
+        height: 1.5rem;
+        border-radius: 1px;
+        text-align: center;
+        line-height: 1.5rem;
+        display: block;
+        background-color: #c23631;
+        color: #ffffff !important;
+        font-size: 12px;
+        font-weight: 300;
+        span {
+        }
+
+        &:hover {
+          color: #ffffff !important;
+        }
+      }
+
+      .btn {
+        span {
+          color: #ffffff !important;
+        }
+      }
+
+      .token-active-details {
+        background-color: #c23631;
+      }
+
+      .token-disabled-exchange {
+        background-color: #d1d3df;
+      }
+    }
+  }
+
+  @media only screen and (max-width: 768px) {
+    > div {
+      padding-top: 1rem !important;
+    }
+    .filter-wrap {
+      flex-direction: column-reverse;
+      align-items: flex-start !important;
+    }
+  }
+}
+
+.exchange-quotes-wrap {
+  .ant-table {
+    thead {
+      th {
+        background: #ffffff !important;
+      }
+    }
+  }
+}
+
+// .apply-trc20 {
+//   margin-top: -35px;
+//   position: absolute;
+//   right: 16px;
+
+//   @media only screen and (max-width: 768px) {
+//     margin-top: -25px;
+//     position: absolute;
+//     right: 10px;
+//   }
+// }
+
+// .apply-all {
+//   margin-top: -35px;
+//   position: absolute;
+//   right: 16px;
+
+//   @media only screen and (max-width: 768px) {
+//     margin-top: -64px;
+//     position: absolute;
+//     right: 10px;
+//     left: 10px;
+//   }
+// }
+
+.token-rating-rule {
+  ul {
+    padding-left: 0;
+    li {
+      list-style: none;
+      color: #666666;
+    }
+  }
+}
+.information-bg {
+  .flex-1 {
+    .information-bg-item {
+      &:first-child {
+        & > span {
+          font-size: 16px;
+          color: #333333;
+          width: 100%;
+        }
+        border-bottom: none;
+      }
+      & > span {
+        font-size: 14px;
+        color: #666666;
+        font-weight: 500;
+      }
+
+      &:last-child {
+        border-bottom: none;
+      }
+      & > div {
+        font-size: 14px;
+        color: #333;
+
+        .token-price-trx {
+          font-size: 14px;
+          color: #666666;
+        }
+      }
+      .btn-danger {
+        border: 1px solid #c23631;
+        border-radius: 1px;
+        background: none;
+        span {
+          font-size: 13px;
+          color: #c23631;
+          font-weight: 400;
+        }
+      }
+    }
+  }
+}
+.tokenDetail {
+  th {
+    span {
+      font-weight: 500;
+    }
+  }
+}
+.tron-light .token_black.mc-donalds-coin .card-header .nav-item a {
+  font-size: 16px;
+  color: #c23631;
+  font-family: PingFangSC-Regular;
+}
+.card-body {
+  position: relative;
+  .token-sign {
+    position: absolute;
+    background: url("../images/token/tokenSign.png") 100% 100%;
+    width: 46px;
+    height: 19.2px;
+    text-indent: 8px;
+    background-size: 100% 100%;
+    line-height: 19.2px;
+    font-size: 10px;
+    color: #ffffff;
+    top: -6px;
+  }
+}

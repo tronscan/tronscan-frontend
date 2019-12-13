@@ -34,7 +34,9 @@ import xhr from "axios/index";
 import _ from "lodash";
 import WinkSupply from "./winkSupply.js";
 import { CsvExport } from "../../common/CsvExport";
-
+import { loadUsdPrice } from "../../../actions/blockchain";
+import Code from "../../blockchain/Contract/Code";
+import ExchangeQuotes from "../ExchangeQuotes";
 class Token20Detail extends React.Component {
   constructor() {
     super();
@@ -50,8 +52,9 @@ class Token20Detail extends React.Component {
     };
   }
 
-  componentDidMount() {
-    let { match } = this.props;
+  async componentDidMount() {
+    let { match, priceUSD } = this.props;
+    !priceUSD && (await this.props.loadUsdPrice());
     this.loadToken(decodeURI(match.params.address));
   }
 
@@ -63,6 +66,7 @@ class Token20Detail extends React.Component {
   }
 
   loadToken = async address => {
+    let { priceUSD } = this.props;
     const tabs = [
       // {
       //   id: "tokenInfo",
@@ -74,7 +78,7 @@ class Token20Detail extends React.Component {
       {
         id: "transfers",
         icon: "",
-        path: "/",
+        path: "",
         label: <span>{tu("token_transfers")}</span>,
         cmp: () => (
           <Transfers
@@ -102,29 +106,21 @@ class Token20Detail extends React.Component {
         )
       },
       {
-        id: "holders1",
+        id: "quotes",
         icon: "",
-        path: "/holders",
+        path: "/quotes",
         label: <span>{tu("token_market")}</span>,
-        cmp: () => (
-          <TokenHolders
-            filter={{ token: address }}
-            getCsvUrl={csvurl => this.setState({ csvurl })}
-            token={token}
-          />
-        )
+        cmp: () => <ExchangeQuotes />
       },
       {
-        id: "holders2",
+        id: "code",
         icon: "",
-        path: "/holders",
-        label: <span>{tu("token_contract_tab")}</span>,
+        path: "/code",
+        label: <span>{tu("contract_title")}</span>,
         cmp: () => (
-          <TokenHolders
-            filter={{ token: address }}
-            getCsvUrl={csvurl => this.setState({ csvurl })}
-            token={token}
-          />
+          <div style={{ background: "#fff", padding: "0 2.6%" }}>
+            <Code filter={{ address: address }} />
+          </div>
         )
       }
     ];
@@ -144,6 +140,12 @@ class Token20Detail extends React.Component {
       API_URL + "/api/token_trc20?contract=" + address + "&showAll=1"
     );
     let token = result.data.trc20_tokens[0];
+
+    token.priceToUsd =
+      token && token["market_info"]
+        ? token["market_info"].priceInTrx * priceUSD
+        : 0;
+    console.log("token===", token, priceUSD);
     this.setState({
       loading: false,
       token,
@@ -535,7 +537,7 @@ class Token20Detail extends React.Component {
             {token && (
               <div className="col-sm-12">
                 <div className="card">
-                  <div className="card-body">
+                  <div className="card-body mt-2">
                     <div className="d-flex">
                       {token && token.icon_url ? (
                         <div>
@@ -567,16 +569,13 @@ class Token20Detail extends React.Component {
                       ) : (
                         <img className="token-logo" src={defaultImg} />
                       )}
-                      <div
-                        style={{ width: "70%" }}
-                        className="token-description"
-                      >
+                      <div className="token-description">
                         <h5 className="card-title">
                           {token.name} ({token.symbol})
                         </h5>
                         <p className="card-text">{token.token_desc}</p>
                       </div>
-                      <div className="ml-auto">trc20</div>
+                      <div className="token-sign">trc20</div>
                       {/*<div className="ml-auto">*/}
                       {/*{(!(token.endTime < new Date() || token.issuedPercentage === 100 || token.startTime > new Date() || token.isBlack) && !token.isBlack) &&*/}
                       {/*<button className="btn btn-default btn-xs d-inline-block"*/}
@@ -661,13 +660,15 @@ function mapStateToProps(state) {
     tokens: state.tokens.tokens,
     wallet: state.wallet,
     currentWallet: state.wallet.current,
-    account: state.app.account
+    account: state.app.account,
+    priceUSD: state.blockchain.usdPrice
   };
 }
 
 const mapDispatchToProps = {
   login,
-  reloadWallet
+  reloadWallet,
+  loadUsdPrice
 };
 
 export default connect(

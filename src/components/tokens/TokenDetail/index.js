@@ -21,6 +21,8 @@ import xhr from "axios/index";
 import Lockr from "lockr";
 import { withTronWeb } from "../../../utils/tronWeb";
 import { CsvExport } from "../../common/CsvExport";
+import { loadUsdPrice } from "../../../actions/blockchain";
+import ExchangeQuotes from "../ExchangeQuotes";
 
 @withTronWeb
 class TokenDetail extends React.Component {
@@ -39,8 +41,10 @@ class TokenDetail extends React.Component {
     };
   }
 
-  componentDidMount() {
-    let { match } = this.props;
+  async componentDidMount() {
+    let { match, priceUSD } = this.props;
+    !priceUSD && (await this.props.loadUsdPrice());
+
     if (isNaN(Number(match.params.id))) {
       this.props.history.push("/tokens/list");
     } else {
@@ -49,7 +53,7 @@ class TokenDetail extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    let { match } = this.props;
+    let { match, intl } = this.props;
 
     if (match.params.id !== prevProps.match.params.id) {
       if (isNaN(Number(match.params.id))) {
@@ -66,11 +70,17 @@ class TokenDetail extends React.Component {
     });
   };
   loadToken = async id => {
+    let { priceUSD } = this.props;
+
     this.setState({ loading: true });
 
     //let token = await Client.getToken(name);
     let result = await xhr.get(API_URL + "/api/token?id=" + id + "&showAll=1");
     let token = result.data.data[0];
+    token.priceToUsd =
+      token && token["market_info"]
+        ? token["market_info"].priceInTrx * priceUSD
+        : 0;
     if (!token) {
       this.setState({ loading: false, token: null });
       this.props.history.push("/tokens/list");
@@ -81,7 +91,7 @@ class TokenDetail extends React.Component {
         id: "tokenInfo",
         icon: "",
         path: "",
-        label: <span>{tu("issue_info")}</span>,
+        label: <span>{tu("token_issuance_info")}</span>,
         cmp: () => <TokenInfo token={token} />
       },
       {
@@ -115,18 +125,11 @@ class TokenDetail extends React.Component {
         )
       },
       {
-        id: "holders",
+        id: "quotes",
         icon: "",
-        path: "/holders",
+        path: "/quotes",
         label: <span>{tu("token_market")}</span>,
-        cmp: () => (
-          <TokenHolders
-            filter={{ token: token.name, address: token.ownerAddress }}
-            token={{ totalSupply: token.totalSupply }}
-            tokenPrecision={{ precision: token.precision }}
-            getCsvUrl={csvurl => this.setState({ csvurl })}
-          />
-        )
+        cmp: () => <ExchangeQuotes />
       }
     ];
 
@@ -142,15 +145,13 @@ class TokenDetail extends React.Component {
         label: <span>{tu("BTT_supply")}</span>,
         cmp: () => <BTTSupply token={token} />
       };
+      tabs.push(BttSupply);
       this.loadTotalTRXSupply();
-      this.setState({
-        tabs: tabs.push(BttSupply)
-      });
-    } else {
-      this.setState({
-        tabs: tabs
-      });
+      tabs.push(BttSupply);
     }
+    this.setState({
+      tabs: tabs
+    });
   };
 
   submit = async token => {
@@ -298,102 +299,6 @@ class TokenDetail extends React.Component {
     });
   };
 
-  preBuyTokens = token => {
-    let { buyAmount } = this.state;
-    let { currentWallet, wallet, intl } = this.props;
-
-    if (!wallet.isOpen) {
-      this.setState({
-        alert: (
-          <SweetAlert
-            info
-            showConfirm={false}
-            // style={{ width: '30rem', height: '18.75rem',left:'50%',marginLeft:'-15rem'}}
-          >
-            <div className="token-sweet-alert">
-              <a
-                className="close"
-                onClick={() => {
-                  this.setState({ alert: null });
-                }}
-              >
-                <i className="fa fa-times" ariaHidden="true"></i>
-              </a>
-              <span>{tu("login_first")}</span>
-              <button
-                className="btn btn-danger btn-block mt-3"
-                onClick={() => {
-                  this.setState({ alert: null });
-                }}
-              >
-                {tu("OK")}
-              </button>
-            </div>
-          </SweetAlert>
-        )
-      });
-      return;
-    } else {
-      this.setState({
-        alert: (
-          <SweetAlert
-            showConfirm={false}
-            // style={{marginLeft: '-240px', marginTop: '-195px', width: '450px', height: '300px'}}
-          >
-            <div
-              className="mt-5 token-sweet-alert"
-              style={{ textAlign: "left" }}
-            >
-              <a
-                style={{ float: "right", marginTop: "-45px" }}
-                onClick={() => {
-                  this.setState({ alert: null });
-                }}
-              >
-                <i className="fa fa-times" ariaHidden="true"></i>
-              </a>
-              <h5 style={{ color: "black" }}>{tu("buy_token_info")}</h5>
-              {token.remaining === 0 && <span> {tu("no_token_to_buy")}</span>}
-              <div className="input-group mt-5">
-                <input
-                  type="number"
-                  ref={ref => (this.buyAmount = ref)}
-                  className="form-control"
-                  max={token.remaining}
-                  min={1}
-                  onKeyUp={e => {
-                    e.target.value = e.target.value.replace(/^0|[^\d*]/g, "");
-                  }}
-                  onChange={e => {
-                    this.onBuyInputChange(
-                      e.target.value,
-                      ((token.trxNum / token.num) *
-                        Math.pow(10, token.precision)) /
-                        ONE_TRX,
-                      token.remaining
-                    );
-                  }}
-                />
-              </div>
-              <div className="text-center mt-3 text-muted">
-                <b>
-                  = <span ref={ref => (this.priceTRX = ref)}>0</span> TRX
-                </b>
-              </div>
-              <button
-                className="btn btn-danger btn-block mt-3"
-                onClick={() => {
-                  this.buyTokens(token);
-                }}
-              >
-                {tu("participate")}
-              </button>
-            </div>
-          </SweetAlert>
-        )
-      });
-    }
-  };
   buyTokens = token => {
     let price = (token.trxNum / token.num) * Math.pow(10, token.precision);
     let { buyAmount } = this.state;
@@ -539,7 +444,7 @@ class TokenDetail extends React.Component {
   };
 
   render() {
-    let { match, wallet } = this.props;
+    let { match, wallet, intl } = this.props;
     let {
       token,
       tabs,
@@ -557,6 +462,7 @@ class TokenDetail extends React.Component {
     pathname.replace(rex, function(a, b) {
       tabName = b;
     });
+
     return (
       <main className="container header-overlap token_black mc-donalds-coin">
         {alert}
@@ -571,7 +477,7 @@ class TokenDetail extends React.Component {
             {token && (
               <div className="col-sm-12">
                 <div className="card">
-                  <div className="card-body">
+                  <div className="card-body mt-2">
                     <div className="d-flex">
                       {token && token.imgUrl && token.tokenID ? (
                         <div>
@@ -590,35 +496,14 @@ class TokenDetail extends React.Component {
                           src={require("../../../images/logo_default.png")}
                         />
                       )}
-                      <div
-                        style={{ width: "70%" }}
-                        className="token-description"
-                      >
+                      <div className="token-description">
                         <h5 className="card-title">
                           {token.name} ({token.abbr})
                         </h5>
                         <p className="card-text">{token.description}</p>
                       </div>
-                      {IS_MAINNET && (
-                        <div className="ml-auto">
-                          {!(
-                            token.endTime < new Date() ||
-                            token.issuedPercentage === 100 ||
-                            token.startTime > new Date() ||
-                            token.isBlack
-                          ) &&
-                            token.canShow !== 3 && (
-                              <button
-                                className="btn btn-default btn-xs d-inline-block"
-                                onClick={() => this.preBuyTokens(token)}
-                              >
-                                {tu("participate")}
-                              </button>
-                            )}
-                          {/**<a href={"#/myToken?address="+ token.ownerAddress} className="btn btn-danger btn-xs d-inline-block token-detail-btn">{tu("update_token")}</a> */}
-                        </div>
-                      )}
-                      <div className="ml-auto">trc10</div>
+
+                      <div className="token-sign">trc10</div>
                     </div>
                   </div>
                   {token && (
@@ -701,13 +586,15 @@ function mapStateToProps(state) {
     wallet: state.wallet,
     currentWallet: state.wallet.current,
     account: state.app.account,
-    walletType: state.app.wallet
+    walletType: state.app.wallet,
+    priceUSD: state.blockchain.usdPrice
   };
 }
 
 const mapDispatchToProps = {
   login,
-  reloadWallet
+  reloadWallet,
+  loadUsdPrice
 };
 
 export default connect(

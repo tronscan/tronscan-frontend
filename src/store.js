@@ -12,7 +12,7 @@ export const reduxHistory = createHashHistory({
 export function configureStore() {
   const enhancer = compose(
     applyMiddleware(thunk, routerMiddleware(reduxHistory)),
-    //curEnv==='development'&&window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+    // curEnv==='development'&&window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
   );
 
   return createStore(
