@@ -80,8 +80,10 @@ export function Information({ token: tokens }) {
         <div className="d-flex">
           {token["market_info"] ? (
             <div className="d-flex">
-              {token["priceToUsd"].toFixed(6)} USD 
-              ≈ {token["market_info"].priceInTrx} TRX
+              {token["priceToUsd"].toFixed(6)} USD
+              <span className="token-price-trx">
+                ≈ {token["market_info"].priceInTrx} TRX
+              </span>
               <span
                 className={
                   token["market_info"].gain < 0
@@ -153,7 +155,10 @@ export function Information({ token: tokens }) {
       name: "issuer",
       content: (
         <div>
-          <AddressLink address={token && token.issue_address} includeCopy={true}/>
+          <AddressLink
+            address={token && token.issue_address}
+            includeCopy={true}
+          />
         </div>
       )
     },

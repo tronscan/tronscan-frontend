@@ -2542,15 +2542,6 @@ export const messages = {
     "Bancor Exchange Withdraw": "Bancor交易撤资",
     "permission_name_limit": "请输入英文字符及数字",
 
-    //2019-12-10
-    "token_rank": "排名",
-    "gain_tip": "涨跌幅以TRX为参考对象，实行24小时制",
-    "total_supply_tip": "由通证流通量乘以当前通证市场价格得出",
-    "market_capitalization_t": "流通市值",
-    "token_tron_total": "TRON通证总数",
-    "token_week": "周新增",
-    "token_scan_total": "TRONSCAN收录通证数",
-    "create_token_btn": "发行通证",
     // 2019-12-10
     "ledger_tronlink": "通过TronLink登录TRONSCAN ",
 

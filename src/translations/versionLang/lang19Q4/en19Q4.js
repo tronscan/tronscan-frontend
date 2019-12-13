@@ -37,7 +37,7 @@ export const lang19Q4 = {
    "token_basic_view": "Overview",
    "token_additional_materials": "Profile Summary",
    "token_hold_user": "Holders",
-   "token_capitalization": "Market Cap/Fully Diluted Market Cap",
+   "token_capitalization": "Market Cap/Fully MC",
    "token_credit_rating": "Reputation",
    "token_contract": "Contract",
    "token_price_new": "Price",

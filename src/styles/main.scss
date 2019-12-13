@@ -35,7 +35,7 @@ $color-grey: #d2d1d1;
 @import "muti-sign.scss";
 @import "sourceCode.scss";
 @import "contract";
-@import "tokenList";
+@import "tokens";
 body {
   overflow-y: scroll;
 }
@@ -2054,7 +2054,7 @@ h5 {
 
     & > span {
       display: block;
-      width: 120px;
+      width: 150px;
       font-weight: bold;
       color: #666;
       overflow: hidden;
@@ -2160,7 +2160,8 @@ h5 {
       border-bottom: 1px solid #eee;
       color: #333;
 
-      p,.question-markk {
+      p,
+      .question-markk {
         min-width: 138px;
         margin: 0;
 
@@ -2168,10 +2169,9 @@ h5 {
           width: 180px;
         }
       }
-      .question-markk{
-        flex:none;
+      .question-markk {
+        flex: none;
       }
-      
 
       & > div {
         flex: 1;
@@ -2488,31 +2488,6 @@ h5 {
         text-align: center;
       }
     }
-  }
-}
-
-.apply-trc20 {
-  margin-top: -35px;
-  position: absolute;
-  right: 16px;
-
-  @media only screen and (max-width: 768px) {
-    margin-top: -25px;
-    position: absolute;
-    right: 10px;
-  }
-}
-
-.apply-all {
-  margin-top: -35px;
-  position: absolute;
-  right: 16px;
-
-  @media only screen and (max-width: 768px) {
-    margin-top: -64px;
-    position: absolute;
-    right: 10px;
-    left: 10px;
   }
 }
 
@@ -4211,41 +4186,6 @@ h5 {
   flex: 1;
 }
 
-.token-list-action {
-  a {
-    padding: 3px 8px;
-    height: 1.2rem;
-    border-radius: 2px;
-    text-align: center;
-    line-height: 0.8rem;
-    display: block;
-    background-color: #c23631;
-    color: #ffffff !important;
-    font-size: 12px;
-
-    span {
-    }
-
-    &:hover {
-      color: #ffffff !important;
-    }
-  }
-
-  .btn {
-    span {
-      color: #ffffff !important;
-    }
-  }
-
-  .token-active-details {
-    background-color: #c23631;
-  }
-
-  .token-disabled-exchange {
-    background-color: #d1d3df;
-  }
-}
-
 .tooltip.show {
   opacity: 1;
 }
@@ -4264,7 +4204,7 @@ h5 {
 }
 
 @each $name in Weibo, Wechat, Discord, Facebook, Group, Steem, Instagram, Medium,
-  Reddit, Telegram, Twitter, delete,GitHub
+  Reddit, Telegram, Twitter, delete, GitHub
 {
   .#{$name} {
     width: 20px;
@@ -4830,80 +4770,77 @@ h5 {
   }
 }
 
-.signature-currentWeight{
+.signature-currentWeight {
   display: inline-block;
   background-size: 100% 100%;
   background-image: url(../images/icon/current-weight.png);
-  min-width:42px;
-  height:22px;
+  min-width: 42px;
+  height: 22px;
   margin-left: -10px;
-  text-align: center!important;
+  text-align: center !important;
   color: #ffffff;
   padding: 0 5px;
   line-height: 19px;
 }
 
-.signature-siged{
+.signature-siged {
   display: inline-block;
   background-size: 100% 100%;
   background-image: url(../images/icon/current-weight-siged.png);
-  width:12px;
-  height:12px;
+  width: 12px;
+  height: 12px;
   margin-top: 4px;
 }
 
-.signature-weight{
- // width: 15px;
+.signature-weight {
+  // width: 15px;
   height: 15px;
   border-radius: 1px;
-  background-color: #C23631;
+  background-color: #c23631;
   font-size: 12px;
-  color: #FFFFFF;
+  color: #ffffff;
   line-height: 8px;
   margin-top: 2px;
 }
 
-.signature_details{
-  .form-group{
+.signature_details {
+  .form-group {
     display: flex;
     padding-top: 0.75rem;
     padding-bottom: 0.25rem;
     margin-bottom: 0;
     border-bottom: 1px solid #e8e8e8;
   }
-  .form-group>span{
+  .form-group > span {
     display: block;
     width: 320px;
   }
-  .form-group>label {
+  .form-group > label {
     min-width: 150px;
   }
 }
-.permission-group{
-  .form-control{
-    border:0;
-    padding:0;
+.permission-group {
+  .form-control {
+    border: 0;
+    padding: 0;
   }
-  .is-invalid{
-    .ant-select-selection{
+  .is-invalid {
+    .ant-select-selection {
       border-color: #d9534f;
     }
   }
 }
 
-.sign-details-method{
-  .flex1{
+.sign-details-method {
+  .flex1 {
     width: 100%;
   }
-  .border-bottom{
+  .border-bottom {
     border-bottom: 1px solid #e5e5e5 !important;
   }
-  .details-break-word{
+  .details-break-word {
     word-wrap: break-word;
     width: 234px;
     margin-left: -34px;
   }
 }
-
-
-

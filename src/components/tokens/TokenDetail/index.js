@@ -22,9 +22,10 @@ import Lockr from "lockr";
 import { withTronWeb } from "../../../utils/tronWeb";
 import { CsvExport } from "../../common/CsvExport";
 import { loadUsdPrice } from "../../../actions/blockchain";
+import ExchangeQuotes from "../ExchangeQuotes";
 
 @withTronWeb
-class TokenDetail extends React.PureComponent {
+class TokenDetail extends React.Component {
   constructor() {
     super();
 
@@ -42,7 +43,7 @@ class TokenDetail extends React.PureComponent {
 
   async componentDidMount() {
     let { match, priceUSD } = this.props;
-    !priceUSD && await this.props.loadUsdPrice();
+    !priceUSD && (await this.props.loadUsdPrice());
 
     if (isNaN(Number(match.params.id))) {
       this.props.history.push("/tokens/list");
@@ -89,7 +90,7 @@ class TokenDetail extends React.PureComponent {
       {
         id: "tokenInfo",
         icon: "",
-        path: "/",
+        path: "",
         label: <span>{tu("token_issuance_info")}</span>,
         cmp: () => <TokenInfo token={token} />
       },
@@ -106,7 +107,7 @@ class TokenDetail extends React.PureComponent {
         )
       },
       {
-        id: "holders1",
+        id: "holders",
         icon: "",
         path: "/holders",
         label: (
@@ -124,18 +125,11 @@ class TokenDetail extends React.PureComponent {
         )
       },
       {
-        id: "holders2",
+        id: "quotes",
         icon: "",
-        path: "/holders",
+        path: "/quotes",
         label: <span>{tu("token_market")}</span>,
-        cmp: () => (
-          <TokenHolders
-            filter={{ token: token.name, address: token.ownerAddress }}
-            token={{ totalSupply: token.totalSupply }}
-            tokenPrecision={{ precision: token.precision }}
-            getCsvUrl={csvurl => this.setState({ csvurl })}
-          />
-        )
+        cmp: () => <ExchangeQuotes />
       }
     ];
 
@@ -153,14 +147,11 @@ class TokenDetail extends React.PureComponent {
       };
       tabs.push(BttSupply);
       this.loadTotalTRXSupply();
-      this.setState({
-        tabs: tabs
-      });
-    } else {
-      this.setState({
-        tabs: tabs
-      });
+      tabs.push(BttSupply);
     }
+    this.setState({
+      tabs: tabs
+    });
   };
 
   submit = async token => {
@@ -486,7 +477,7 @@ class TokenDetail extends React.PureComponent {
             {token && (
               <div className="col-sm-12">
                 <div className="card">
-                  <div className="card-body">
+                  <div className="card-body mt-2">
                     <div className="d-flex">
                       {token && token.imgUrl && token.tokenID ? (
                         <div>
@@ -505,17 +496,14 @@ class TokenDetail extends React.PureComponent {
                           src={require("../../../images/logo_default.png")}
                         />
                       )}
-                      <div
-                        style={{ width: "70%" }}
-                        className="token-description"
-                      >
+                      <div className="token-description">
                         <h5 className="card-title">
                           {token.name} ({token.abbr})
                         </h5>
                         <p className="card-text">{token.description}</p>
                       </div>
 
-                      <div className="ml-auto">trc10</div>
+                      <div className="token-sign">trc10</div>
                     </div>
                   </div>
                   {token && (

@@ -47,7 +47,7 @@ export const lang19Q4 = {
     "token_market": "交易市场",
     "token_contract_tab": "通证合约",
     "token_price_issue":"发行价",
-    "token_Participants":"参与者",
+    "token_Participants": "参与者",
     "token_rating_rule": "TRONSCAN 信用评级规则",
     "token_rating_rule_title":
     "TRONSCAN目前根据通证信息的完善程度、社区反馈以及是否可在POLONIDEX交易将通证分为以下5个信用评级：",
@@ -83,4 +83,21 @@ export const lang19Q4 = {
     "我们保留更改通证信用评级的权利，并且没有义务对通证信用评级的评定和变更做任何解释。若我们发现通证存在伪造信息或其他有损用户权益的行为，我们将会将其列入黑名单或采取其他进一步措施。",
     "token_rating_rule_title_end_4":
     "TRONSCAN将根据生态发展的需要适时更新通证信用评级规则，更新后的通证信用评级规则在网站上一经公布即有效代替原来的通证信用评级规则。",
+
+    //2019-12-10  leon
+    "token_rank": "排名",
+    "gain_tip": "涨跌幅以TRX为参考对象，实行24小时制",
+    "total_supply_tip": "由通证流通量乘以当前通证市场价格得出",
+    "market_capitalization_t": "流通市值",
+    "token_tron_total": "TRON通证总数",
+    "token_week": "周新增",
+    "token_scan_total": "TRONSCAN收录通证数",
+    "create_token_btn": "发行通证",
+    "token_exchange":"交易所",
+    "token_exchange_pair":"交易对",
+    "token_exchange_price":"价格",
+    "token_exchange_24h_vol":"24小时成交量",
+    "token_exchange_vol_rate":"成交量占比",
+    "token_exchange_rate_tip":"该通证在该交易对24小时的成交量占该通证24小时所有成交量的比重",
+
 }

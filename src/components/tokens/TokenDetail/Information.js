@@ -86,9 +86,12 @@ export function Information({ token: tokens, currentTotalSupply }) {
             <div>
               {token["market_info"].sShortName == "TRX" ? (
                 <div className="d-flex">
-                  {token.priceToUsd.toFixed(6)} USD ≈{" "}
-                  {token["market_info"].priceInTrx}{" "}
-                  {token["market_info"].sShortName}
+                  {token.priceToUsd.toFixed(6)} USD
+                  <span className="token-price-trx">
+                    {" "}
+                    ≈ {token["market_info"].priceInTrx}{" "}
+                    {token["market_info"].sShortName}
+                  </span>
                   <span
                     className={
                       token["market_info"].gain < 0
