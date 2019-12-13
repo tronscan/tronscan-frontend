@@ -123,7 +123,7 @@ class Transfers extends React.Component {
         dataIndex: "transactionHash",
         key: "transactionHash",
         className: "ant_table",
-        width: "160px",
+        width: "200px",
         render: (text, record, index) => {
           return (
             <Truncate>
@@ -332,7 +332,6 @@ class Transfers extends React.Component {
 
     return (
       <Fragment>
-        {" "}
         {loading && (
           <div
             className="loading-style"
@@ -342,7 +341,7 @@ class Transfers extends React.Component {
           >
             <TronLoader />
           </div>
-        )}{" "}
+        )}
         <div className="row transfers">
           <div className="col-md-12 ">
             <div
@@ -353,10 +352,9 @@ class Transfers extends React.Component {
             >
               <DateSelect
                 onDateOk={(start, end) => this.onDateOk(start, end)}
-              />{" "}
-            </div>{" "}
+              />
+            </div>
             <div className="d-flex justify-content-between pl-3 pr-3">
-              {" "}
               {!loading && (
                 <TotalInfo
                   total={total}
@@ -366,16 +364,15 @@ class Transfers extends React.Component {
                   selected
                   top="64px"
                 />
-              )}{" "}
-            </div>{" "}
+              )}
+            </div>
             {!loading && transfers.length === 0 ? (
               <div className="pt-5 pb-5 text-center no-data transfers-bg-white">
-                {" "}
-                {tu("no_transfers")}{" "}
+                {tu("no_transfers")}
               </div>
             ) : (
               <SmartTable
-                border={false}
+                bordered={true}
                 loading={loading}
                 column={column}
                 data={transfers}
@@ -388,9 +385,9 @@ class Transfers extends React.Component {
                 }}
                 position="bottom"
               />
-            )}{" "}
-          </div>{" "}
-        </div>{" "}
+            )}
+          </div>
+        </div>
       </Fragment>
     );
   }

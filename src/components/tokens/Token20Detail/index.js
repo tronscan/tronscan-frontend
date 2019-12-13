@@ -589,8 +589,19 @@ class Token20Detail extends React.Component {
                   <Information token={token}></Information>
                 </div>
 
-                <div className="card mt-3 border_table">
-                  <div className="card-header">
+                <div
+                  className="card mt-3"
+                  style={{
+                    borderTop: "1px solid #d8d8d8"
+                  }}
+                >
+                  <div
+                    className="card-header"
+                    style={{
+                      borderLeft: "1px solid #d8d8d8",
+                      borderRight: "1px solid #d8d8d8"
+                    }}
+                  >
                     <ul
                       className="nav nav-tabs card-header-tabs"
                       style={{ marginTop: "-12px", marginLeft: "-20px" }}
@@ -621,10 +632,11 @@ class Token20Detail extends React.Component {
                       ))}
                     </Switch>
                     <div
+                      className="downloadCsv"
                       style={{
                         position: "absolute",
                         left: "20px",
-                        bottom: "45px"
+                        bottom: "28px"
                       }}
                     >
                       {["transfers", "holders"].indexOf(tabName) !== -1 ? (

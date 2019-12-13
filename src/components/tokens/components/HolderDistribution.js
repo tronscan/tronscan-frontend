@@ -55,7 +55,14 @@ class HolderDistribution extends React.Component {
     return (
       <div
         className="holder-distribution"
-        style={{ background: "#fff", paddingTop: "20px", marginBottom: "20px" }}
+        style={{
+          background: "#fff",
+          paddingTop: "20px",
+          marginBottom: "20px",
+          borderLeft: "1px solid #d8d8d8",
+          borderRight: "1px solid #d8d8d8",
+          borderBottom: "1px solid #d8d8d8"
+        }}
       >
         <section
           className="distribution-header"
@@ -76,7 +83,7 @@ class HolderDistribution extends React.Component {
         >
           {chartAry.map((item, ind) => {
             return (
-              <span>
+              <span key={ind}>
                 <span
                   style={{
                     width: "10px",
@@ -142,7 +149,7 @@ class HolderDistribution extends React.Component {
                   style={{
                     fontFamily: "PingFangSC-Regular",
                     fontSize: "12px",
-                    color: "#333333;"
+                    color: "#333333"
                   }}
                 >
                   {item.portion}%

@@ -136,27 +136,38 @@ class TokenHolders extends React.Component {
         dataIndex: "address",
         key: "address",
         render: (text, record, index) => {
-          return <AddressLink address={record.holder_address} />;
-        }
-      },
-      {
-        title: "",
-        dataIndex: "addressTag",
-        key: "addressTag",
-        width: "15%",
-        align: "left",
-        render: (text, record, index) => {
           return (
-            <span
-              style={{
-                whiteSpace: "nowrap"
-              }}
-            >
-              {record.addressTag ? `#${record.addressTag}` : ""}
-            </span>
+            <div>
+              <AddressLink address={record.holder_address} />
+              <span
+                style={{
+                  whiteSpace: "nowrap"
+                }}
+              >
+                {record.addressTag ? `#${record.addressTag}` : ""}
+              </span>
+            </div>
           );
         }
       },
+      // {
+      //   title: "",
+      //   dataIndex: "addressTag",
+      //   key: "addressTag",
+      //   width: "15%",
+      //   align: "left",
+      //   render: (text, record, index) => {
+      //     return (
+      //       <span
+      //         style={{
+      //           whiteSpace: "nowrap"
+      //         }}
+      //       >
+      //         {record.addressTag ? `#${record.addressTag}` : ""}
+      //       </span>
+      //     );
+      //   }
+      // },
       {
         title: upperFirst(
           intl.formatMessage({
@@ -321,94 +332,102 @@ class TokenHolders extends React.Component {
         <div className="row transfers">
           <div className="col-md-12 table_pos">
             <HolderDistribution></HolderDistribution>
-            <div className="nav-searchbar" style={styles.searchBox}>
-              <div
-                className="token20-input-group input-group"
-                style={{ height: 70 }}
-              >
-                <div className="token20-search">
-                  <input
-                    type="text"
-                    className="form-control p-2 bg-white border-0 box-shadow-none"
-                    value={search}
-                    onChange={ev =>
-                      this.setState({
-                        search: trim(ev.target.value)
-                      })
-                    }
-                    placeholder={intl.formatMessage({
-                      id: "search_TRC20"
-                    })}
-                  />
-                  <div className="input-group-append">
-                    <button
-                      className="btn box-shadow-none"
-                      onClick={this.doSearch}
-                    >
-                      <i className="fa fa-search" />
-                    </button>
+            <div
+              className="distributionWrapper"
+              style={{
+                background: "#d8d8d8",
+                borderTop: "1px solid #d8d8d8"
+              }}
+            >
+              <div className="nav-searchbar" style={styles.searchBox}>
+                <div
+                  className="token20-input-group input-group"
+                  style={{ height: 70 }}
+                >
+                  <div className="token20-search">
+                    <input
+                      type="text"
+                      className="form-control p-2 bg-white border-0 box-shadow-none"
+                      value={search}
+                      onChange={ev =>
+                        this.setState({
+                          search: trim(ev.target.value)
+                        })
+                      }
+                      placeholder={intl.formatMessage({
+                        id: "search_TRC20"
+                      })}
+                    />
+                    <div className="input-group-append">
+                      <button
+                        className="btn box-shadow-none"
+                        onClick={this.doSearch}
+                      >
+                        <i className="fa fa-search" />
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div style={styles.tablePosInfo}>
-              {total ? (
-                <div
-                  className="d-none d-md-block"
-                  style={{
-                    left: "auto"
+              <div style={styles.tablePosInfo}>
+                {total ? (
+                  <div
+                    className="d-none d-md-block"
+                    style={{
+                      left: "auto"
+                    }}
+                  >
+                    <div
+                      style={{
+                        fontFamily: "PingFangSC-Medium",
+                        fontSize: "16px",
+                        color: "#333333",
+                        marginTop: "16px"
+                      }}
+                    >
+                      {tu("holders")}
+                      {tu("address")}
+                    </div>
+                    <div
+                      style={{
+                        fontFamily: "PingFangSC-Regular",
+                        fontSize: "14px",
+                        color: "#999999"
+                      }}
+                    >
+                      {tu("view_total")} {rangeTotal} {tu("hold_addr")},
+                      {rangeTotal >= 10000 ? (
+                        <span> ({tu("table_info_big")}) </span>
+                      ) : (
+                        ""
+                      )}
+                      {rangeTotal >= 10000 ? (
+                        <QuestionMark
+                          placement="top"
+                          info={tableInfoTip}
+                        ></QuestionMark>
+                      ) : (
+                        ""
+                      )}
+                    </div>
+                  </div>
+                ) : (
+                  ""
+                )}
+              </div>
+              <div style={styles.table}>
+                <SmartTable
+                  bordered={true}
+                  loading={loading}
+                  column={column}
+                  data={addresses}
+                  total={total}
+                  onPageChange={(page, pageSize) => {
+                    this.loadTokenHolders(page, pageSize);
                   }}
-                >
-                  <div
-                    style={{
-                      fontFamily: "PingFangSC-Medium",
-                      fontSize: "16px",
-                      color: "#333333",
-                      marginTop: "16px"
-                    }}
-                  >
-                    {tu("holders")}
-                    {tu("address")}
-                  </div>
-                  <div
-                    style={{
-                      fontFamily: "PingFangSC-Regular",
-                      fontSize: "14px",
-                      color: "#999999"
-                    }}
-                  >
-                    {tu("view_total")} {rangeTotal} {tu("hold_addr")},
-                    {rangeTotal >= 10000 ? (
-                      <span> ({tu("table_info_big")}) </span>
-                    ) : (
-                      ""
-                    )}
-                    {rangeTotal >= 10000 ? (
-                      <QuestionMark
-                        placement="top"
-                        info={tableInfoTip}
-                      ></QuestionMark>
-                    ) : (
-                      ""
-                    )}
-                  </div>
-                </div>
-              ) : (
-                ""
-              )}
-            </div>
-            <div style={styles.table}>
-              <SmartTable
-                bordered={true}
-                loading={loading}
-                column={column}
-                data={addresses}
-                total={total}
-                onPageChange={(page, pageSize) => {
-                  this.loadTokenHolders(page, pageSize);
-                }}
-                position="bottom"
-              />
+                  position="bottom"
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -419,12 +438,17 @@ class TokenHolders extends React.Component {
 const styles = {
   searchBox: {
     background: "#fff",
-    paddingTop: 14
+    paddingTop: 14,
+    borderRight: "1px solid #d8d8d8",
+    borderLeft: "1px solid #d8d8d8"
   },
   tablePosInfo: {
     paddingLeft: 40,
     position: "absolute",
     top: "190px"
+  },
+  table: {
+    // borderTop: "1px solid #d8d8d8"
   }
 };
 

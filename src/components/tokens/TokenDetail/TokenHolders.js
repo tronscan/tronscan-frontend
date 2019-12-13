@@ -105,11 +105,13 @@ class TokenHolders extends React.Component {
     let { intl, token, tokenPrecision } = this.props;
     let column = [
       {
-        title: "#",
+        title: intl.formatMessage({
+          id: "SR_rank"
+        }),
         dataIndex: "index",
         key: "index",
         width: "10%",
-        align: "left",
+        align: "center",
         className: "ant_table"
       },
       {
@@ -118,42 +120,52 @@ class TokenHolders extends React.Component {
         key: "address",
         render: (text, record, index) => {
           return record.ico ? (
-            <Tooltip
-              placement="topLeft"
-              title={upperCase(intl.formatMessage({ id: record.ico }))}
-            >
-              <span className="d-flex align-items-center">
-                <img
-                  src={require("../../../images/" + record.ico + "-logo.png")}
-                  style={{
-                    width: "14px",
-                    marginLeft: "-20px",
-                    marginRight: "6px"
-                  }}
-                />
-                <AddressLink address={record.address} />
+            <div>
+              <Tooltip
+                placement="topLeft"
+                title={upperCase(intl.formatMessage({ id: record.ico }))}
+              >
+                <span className="d-flex align-items-center">
+                  <img
+                    src={require("../../../images/" + record.ico + "-logo.png")}
+                    style={{
+                      width: "14px",
+                      marginLeft: "-20px",
+                      marginRight: "6px"
+                    }}
+                  />
+                  <AddressLink address={record.address} />
+                </span>
+              </Tooltip>
+              <span style={{ whiteSpace: "nowrap" }}>
+                {record.addressTag ? record.addressTag : ""}{" "}
               </span>
-            </Tooltip>
+            </div>
           ) : (
-            <AddressLink address={record.address} />
+            <div>
+              <AddressLink address={record.address} />
+              <span style={{ whiteSpace: "nowrap" }}>
+                {record.addressTag ? record.addressTag : ""}{" "}
+              </span>
+            </div>
           );
         }
       },
-      {
-        title: "Name Tag",
-        dataIndex: "addressTag",
-        key: "addressTag",
-        align: "left",
-        width: "15%",
-        render: (text, record, index) => {
-          return (
-            <span style={{ whiteSpace: "nowrap" }}>
-              {" "}
-              {record.addressTag ? record.addressTag : ""}{" "}
-            </span>
-          );
-        }
-      },
+      // {
+      //   title: "",
+      //   dataIndex: "addressTag",
+      //   key: "addressTag",
+      //   align: "left",
+      //   width: "15%",
+      //   render: (text, record, index) => {
+      //     return (
+      //       <span style={{ whiteSpace: "nowrap" }}>
+      //         {" "}
+      //         {record.addressTag ? record.addressTag : ""}{" "}
+      //       </span>
+      //     );
+      //   }
+      // },
       {
         title: upperFirst(intl.formatMessage({ id: "quantity" })),
         dataIndex: "transactionHash",
@@ -227,45 +239,53 @@ class TokenHolders extends React.Component {
           <div className="col-md-12 table_pos">
             <HolderDistribution></HolderDistribution>
             {/* {total?<div className="table_pos_info d-none d-md-block">{tableInfo}</div>: ''} */}
-            <div style={{ paddingLeft: 20 }}>
-              {total ? (
-                <div
-                  className="d-none d-md-block"
-                  style={{ left: "auto", top: 190 }}
-                >
-                  <div>
-                    {tu("view_total")} {rangeTotal} {tu("hold_addr")}
-                    {rangeTotal >= 10000 ? (
-                      <QuestionMark
-                        placement="top"
-                        info={tableInfoTip}
-                      ></QuestionMark>
-                    ) : (
-                      ""
-                    )}
-                    <br />
-                    {rangeTotal >= 10000 ? (
-                      <span>({tu("table_info_big")})</span>
-                    ) : (
-                      ""
-                    )}
-                  </div>
-                </div>
-              ) : (
-                ""
-              )}
-            </div>
-            <SmartTable
-              bordered={true}
-              loading={loading}
-              column={column}
-              data={addresses}
-              total={total}
-              onPageChange={(page, pageSize) => {
-                this.loadTokenHolders(page, pageSize);
+            <div
+              className="distributionWrapper"
+              style={{
+                background: "#d8d8d8",
+                borderTop: "1px solid #d8d8d8"
               }}
-              position="bottom"
-            />
+            >
+              <div style={{ paddingLeft: 20, background: "#fff" }}>
+                {total ? (
+                  <div
+                    className="d-none d-md-block"
+                    style={{ left: "auto", top: 190 }}
+                  >
+                    <div style={{ padding: "20px 0" }}>
+                      {tu("view_total")} {rangeTotal} {tu("hold_addr")}
+                      {rangeTotal >= 10000 ? (
+                        <QuestionMark
+                          placement="top"
+                          info={tableInfoTip}
+                        ></QuestionMark>
+                      ) : (
+                        ""
+                      )}
+                      <br />
+                      {rangeTotal >= 10000 ? (
+                        <span>({tu("table_info_big")})</span>
+                      ) : (
+                        ""
+                      )}
+                    </div>
+                  </div>
+                ) : (
+                  ""
+                )}
+              </div>
+              <SmartTable
+                bordered={true}
+                loading={loading}
+                column={column}
+                data={addresses}
+                total={total}
+                onPageChange={(page, pageSize) => {
+                  this.loadTokenHolders(page, pageSize);
+                }}
+                position="bottom"
+              />
+            </div>
           </div>
         </div>
       </Fragment>
