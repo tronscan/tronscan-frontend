@@ -12,9 +12,7 @@ import { reloadWallet } from "../../../actions/wallet";
 import SweetAlert from "react-bootstrap-sweetalert";
 import { TronLoader } from "../../common/loaders";
 import { login } from "../../../actions/app";
-import Lockr from "lockr";
 import xhr from "axios";
-import qs from 'qs';
 import { Select } from 'antd';
 import isMobile from '../../../utils/isMobile';
 import { withTronWeb } from "../../../utils/tronWeb";
@@ -180,8 +178,6 @@ class SendForm extends React.Component {
         if (this.props.wallet.type === "ACCOUNT_TRONLINK" || this.props.wallet.type === "ACCOUNT_PRIVATE_KEY" || this.props.wallet.type === "ACCOUNT_LEDGER") {
           //create transaction
           //tronWeb = this.props.account.tronWeb;
-          console.log('tronWeb', tronWeb);
-          console.log(to, amount, TokenName, from);
           const unSignTransaction = await tronWeb.transactionBuilder.sendToken(to, amount, TokenName, from, { 'permissionId': permissionId }).catch(function (e) {
             console.log(e)
           });
