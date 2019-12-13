@@ -2514,4 +2514,29 @@ export const messages = {
 
   // 2019-12-10
   "ledger_tronlink":"通过TronLink登录TRONSCAN ",
+
+
+  /*
+    ##################################################################################
+    #                                                                                #
+    # Charts 2019-12-13                            #
+    #                                                                                #
+    ##################################################################################
+ */
+
+  "charts_transaction":"交易",
+  "charts_circulation":"流通",
+  "charts_address":"地址",
+  "charts_block":"区块",
+  "charts_contract":"合约",
+  "charts_SR":"超级代表",
+  "charts_daily_transactions":"日交易记录",
+  "charts_total_transactions":"总交易记录",
+  "charts_overall_freezing_rate":"全网冻结率",
+  "charts_new_addresses":"地址增长",
+  "":"",
+  "":"",
+
+
+
 };

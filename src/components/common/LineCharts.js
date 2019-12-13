@@ -279,9 +279,9 @@ export class LineReactHighChartAdd extends React.Component {
             }
             _config.chart.zoomType = 'x';
             _config.chart.marginTop = 80;
-            _config.title.text = intl.formatMessage({id: 'address_growth_chart'});
+            _config.title.text = intl.formatMessage({id: 'charts_new_addresses'});
             _config.subtitle.text = intl.formatMessage({id: 'HighChart_tip'});
-            _config.exporting.filename = intl.formatMessage({id: 'address_growth_chart'});
+            _config.exporting.filename = intl.formatMessage({id: 'charts_new_addresses'});
             _config.xAxis.tickPixelInterval = 100;
             _config.xAxis.minRange=24 * 3600 * 1000;
             _config.yAxis.title.text = intl.formatMessage({id: 'addresses_amount'});
@@ -493,9 +493,9 @@ export class LineReactHighChartTx extends React.Component {
             }
             _config.chart.zoomType = 'x';
             _config.chart.marginTop = 80;
-            _config.title.text = intl.formatMessage({id: 'tron_transaction_chart'});
+            _config.title.text = intl.formatMessage({id: 'charts_daily_transactions'});
             _config.subtitle.text = intl.formatMessage({id: 'HighChart_tip'});
-            _config.exporting.filename = intl.formatMessage({id: 'tron_transaction_chart'});
+            _config.exporting.filename = intl.formatMessage({id: 'charts_daily_transactions'});
             _config.xAxis.tickPixelInterval = 100;
             _config.xAxis.minRange=24 * 3600 * 1000
             _config.yAxis.title.text = intl.formatMessage({id: 'transactions_per_day'});
@@ -601,9 +601,9 @@ export class LineReactHighChartTotalTxns extends React.Component {
             }
             _config.chart.zoomType = 'x';
             _config.chart.marginTop = 80;
-            _config.title.text = intl.formatMessage({id: 'tron_total_transactions_chart'});
+            _config.title.text = intl.formatMessage({id: 'charts_total_transactions'});
             _config.subtitle.text = intl.formatMessage({id: 'HighChart_tip'});
-            _config.exporting.filename = intl.formatMessage({id: 'tron_total_transactions_chart'});
+            _config.exporting.filename = intl.formatMessage({id: 'charts_total_transactions'});
             _config.xAxis.tickPixelInterval = 100;
             _config.xAxis.minRange=24 * 3600 * 1000;
             _config.yAxis.title.text = intl.formatMessage({id: 'totle_transactions_per_day'});
@@ -1021,7 +1021,7 @@ export class LineReactAdd extends React.Component {
         }
 
         if (source !== 'home') {
-            _config.title.text = intl.formatMessage({id: 'address_growth_chart'});
+            _config.title.text = intl.formatMessage({id: 'charts_new_addresses'});
             _config.title.link = '#/blockchain/stats/addressesStats';
             _config.toolbox.feature = {
                 restore: {
@@ -1115,7 +1115,7 @@ export class LineReactTx extends React.Component {
         }
 
         if (source !== 'home') {
-            _config.title.text = intl.formatMessage({id: 'tron_transaction_chart'});
+            _config.title.text = intl.formatMessage({id: 'charts_daily_transactions'});
             _config.title.link = '#/blockchain/stats/txOverviewStats';
             _config.toolbox.feature = {
                 restore: {
