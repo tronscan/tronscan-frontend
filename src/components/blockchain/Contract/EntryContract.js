@@ -600,7 +600,7 @@ class Code extends React.Component {
           </div>
           <div className="d-flex">
               <div className="search-btn" onClick={() => this.sendClick()}>Send</div>
-              <div className="search-btn ml-2" onClick={() => this.MultiSendModal()}>Multi Send</div>
+              {/* <div className="search-btn ml-2" onClick={() => this.MultiSendModal()}>Multi Send</div> */}
           </div>
 
             {
@@ -615,7 +615,7 @@ class Code extends React.Component {
         <div>
             <div className="d-flex">
                 <div className="search-btn" onClick={() => this.sendClick()}>Send</div>
-                <div className="search-btn ml-2" onClick={() => this.MultiSendModal()}>Multi Send</div>
+                {/* <div className="search-btn ml-2" onClick={() => this.MultiSendModal()}>Multi Send</div> */}
             </div>
             {
                 result && <JSONTree data={result}  theme={theme} invertTheme={true}/>

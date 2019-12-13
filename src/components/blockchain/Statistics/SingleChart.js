@@ -264,6 +264,14 @@ class Statistics extends React.Component {
         let volumeData = await xhr.get("https://server.tron.network/api/v2/node/market_data");
         let volumeUSD = volumeData.data.market_cap_by_available_supply
 
+        if (volumeUSD == null) {
+            return {
+                time: 0,
+                volume_billion: 0,
+                volume_usd: 0,
+                volume_usd_num: 0
+            }
+        }
         let volume = volumeUSD.map(function (v, i) {
             return {
                 time: v[0],
@@ -982,7 +990,8 @@ class Statistics extends React.Component {
                             <div style={{height: chartHeight}}>
                                 {
                                     volumeStats === null ?
-                                        <TronLoader/> :
+                                        // <TronLoader/>
+                                        <div >{tu('trc20_no_data')} </div> :
                                         <LineReactHighChartVolumeUsd style={{height: chartHeight}}
                                                                      data={volumeStats}
                                                                      intl={intl}/>
