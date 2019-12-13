@@ -56,10 +56,14 @@ export async function transactionResultManagerSun(transaction, sunWeb) {
     }
 }
 
-export async function transactionMultiResultManager(unSignTransaction, tronWeb, permissionId, permissionTime, HexStr) {
+export async function transactionMultiResultManager(unSignTransaction, tronWeb, permissionId, permissionTime, HexStr,extra) {
     //set transaction expiration time (1H-24H)
     console.log('unSignTransaction',unSignTransaction)
-    const newTransaction = await tronWeb.transactionBuilder.extendExpiration(cloneDeep(unSignTransaction), (3600*permissionTime-60));
+    unSignTransaction.extra={name:'zs'};
+    let newTransaction = await tronWeb.transactionBuilder.extendExpiration(cloneDeep(unSignTransaction), (3600*permissionTime-60));
+    if(extra){
+      newTransaction.extra = extra;
+    }
     console.log('newTransaction',newTransaction)
     //sign transaction
     const signedTransaction = await tronWeb.trx.multiSign(newTransaction, tronWeb.defaultPrivateKey , permissionId).catch(e => {

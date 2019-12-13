@@ -126,6 +126,7 @@ export function withTronWeb(InnerComponent) {
               try {
                 const transactionObj = transactionJsonToProtoBuf(transaction);
                 const rawDataHex = byteArray2hexStr(transactionObj.getRawData().serializeBinary());
+                console.log('rawDataHex',rawDataHex);
                 let raw = transactionObj.getRawData();
                 let contractObj = raw.getContractList()[0];
                 // if (isMulti) {

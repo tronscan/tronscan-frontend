@@ -294,19 +294,19 @@ class SendForm extends React.Component {
 
       //get transaction parameter value to Hex
       let HexStr = Client.getTriggerSmartContractHexStr(unSignTransaction.raw_data.contract[0].parameter.value);
-
+       const extra = {
+         to:tronWeb.address.toHex(to),
+         amount:amount,
+         decimals:decimals,
+       }   
       //sign transaction
-      let SignTransaction = await transactionMultiResultManager(unSignTransaction, tronWeb, permissionId, permissionTime, HexStr);
+      let SignTransaction = await transactionMultiResultManager(unSignTransaction, tronWeb, permissionId, permissionTime, HexStr,extra);
 
       if (!SignTransaction) {
         result = 40001
       } else {
-        let { data } = await xhr.post("https://list.tronlink.org/api/wallet/multi/transaction", {
-          "address": wallet.address,
-          "transaction": SignTransaction,
-          "netType": "main_net",
-          "functionSelector": "transfer(address,uint256)"
-        });
+      
+        let data = await postMutiSignTransaction(wallet.address, SignTransaction,"transfer(address,uint256)");
         result = data.code;
         sendErrorMessage = data.message;
       }
@@ -933,7 +933,7 @@ class SendForm extends React.Component {
           signList && <div className="text-left" style={{ color: '#a2a2a2', marginTop: '-1.5rem' }}>
             {tu('signature_account')}:  {
               signList.map((address, index) => (
-                <span> {address} </span>
+                <span key={index}> {address} </span>
               ))
             }
           </div>

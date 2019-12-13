@@ -110,7 +110,6 @@ export default class Account extends Component {
     };
 
   }
-
   async componentDidMount() {
 
     let { account,match,walletType,currentWallet } = this.props;
