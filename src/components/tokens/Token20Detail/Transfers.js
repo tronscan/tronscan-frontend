@@ -123,6 +123,7 @@ class Transfers extends React.Component {
         dataIndex: "transactionHash",
         key: "transactionHash",
         className: "ant_table",
+        align: "center",
         width: "200px",
         render: (text, record, index) => {
           return (
@@ -343,49 +344,57 @@ class Transfers extends React.Component {
           </div>
         )}
         <div className="row transfers">
-          <div className="col-md-12 ">
+          <div className="col-md-12 table_pos">
             <div
-              className="d-flex justify-content-between pl-3 pr-3 pt-3 pb-3"
+              className="distributionWrapper"
               style={{
-                background: "#fff"
+                background: "#d8d8d8",
+                borderTop: "1px solid #d8d8d8"
               }}
             >
-              <DateSelect
-                onDateOk={(start, end) => this.onDateOk(start, end)}
-              />
-            </div>
-            <div className="d-flex justify-content-between pl-3 pr-3">
-              {!loading && (
-                <TotalInfo
-                  total={total}
-                  rangeTotal={rangeTotal}
-                  typeText="transaction_info"
-                  divClass="table_pos_info_addr"
-                  selected
-                  top="64px"
+              <div
+                className="d-flex justify-content-between pl-3 pr-3 pt-3 pb-3"
+                style={{
+                  background: "#fff"
+                }}
+              >
+                <DateSelect
+                  onDateOk={(start, end) => this.onDateOk(start, end)}
+                />
+              </div>
+              <div className="d-flex justify-content-between pl-3 pr-3">
+                {!loading && (
+                  <TotalInfo
+                    total={total}
+                    rangeTotal={rangeTotal}
+                    typeText="transaction_info"
+                    divClass="table_pos_info_addr"
+                    selected
+                    top="64px"
+                  />
+                )}
+              </div>
+              {!loading && transfers.length === 0 ? (
+                <div className="pt-5 pb-5 text-center no-data transfers-bg-white">
+                  {tu("no_transfers")}
+                </div>
+              ) : (
+                <SmartTable
+                  bordered={true}
+                  loading={loading}
+                  column={column}
+                  data={transfers}
+                  total={rangeTotal > 2000 ? 2000 : rangeTotal}
+                  addr="address"
+                  transfers="token"
+                  current={this.state.page}
+                  onPageChange={(page, pageSize) => {
+                    this.loadPage(page, pageSize);
+                  }}
+                  position="bottom"
                 />
               )}
             </div>
-            {!loading && transfers.length === 0 ? (
-              <div className="pt-5 pb-5 text-center no-data transfers-bg-white">
-                {tu("no_transfers")}
-              </div>
-            ) : (
-              <SmartTable
-                bordered={true}
-                loading={loading}
-                column={column}
-                data={transfers}
-                total={rangeTotal > 2000 ? 2000 : rangeTotal}
-                addr="address"
-                transfers="token"
-                current={this.state.page}
-                onPageChange={(page, pageSize) => {
-                  this.loadPage(page, pageSize);
-                }}
-                position="bottom"
-              />
-            )}
           </div>
         </div>
       </Fragment>

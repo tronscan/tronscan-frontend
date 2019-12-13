@@ -78,7 +78,7 @@ class Token20Detail extends React.Component {
       {
         id: "transfers",
         icon: "",
-        path: "",
+        path: "/transfers",
         label: <span>{tu("token_transfers")}</span>,
         cmp: () => (
           <Transfers
