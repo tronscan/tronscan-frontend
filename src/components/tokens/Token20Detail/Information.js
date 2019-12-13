@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import { toLower } from "lodash";
 import { Popover } from "antd";
 import { cloneDeep } from "lodash";
+import { connect } from "react-redux";
 import {
   API_URL,
   ONE_TRX,
@@ -79,7 +80,8 @@ export function Information({ token: tokens }) {
         <div className="d-flex">
           {token["market_info"] ? (
             <div className="d-flex">
-              {token["market_info"].priceInTrx} TRX
+              {token["priceToUsd"].toFixed(6)} USD 
+              ≈ {token["market_info"].priceInTrx} TRX
               <span
                 className={
                   token["market_info"].gain < 0
@@ -122,7 +124,7 @@ export function Information({ token: tokens }) {
     {
       name: "token_credit_rating",
       content: (
-        <div>
+        <div className="d-flex" style={{ justifyContent: "space-between" }}>
           <Link to="/tokens/rating-rule">{tu("token_credit_rating_rule")}</Link>
         </div>
       )
@@ -151,7 +153,7 @@ export function Information({ token: tokens }) {
       name: "issuer",
       content: (
         <div>
-          <AddressLink address={token && token.issue_address} />
+          <AddressLink address={token && token.issue_address} includeCopy={true}/>
         </div>
       )
     },

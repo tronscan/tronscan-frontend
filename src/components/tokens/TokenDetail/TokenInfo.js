@@ -7,7 +7,7 @@ import {
   injectIntl
 } from "react-intl";
 import { ONE_TRX } from "../../../constants";
-import { tu,t } from "../../../utils/i18n";
+import { tu, t } from "../../../utils/i18n";
 import { withTimers } from "../../../utils/timing";
 import { Client } from "../../../services/api";
 import SweetAlert from "react-bootstrap-sweetalert";
@@ -16,6 +16,7 @@ import { transactionResultManager } from "../../../utils/tron";
 import Lockr from "lockr";
 import { withTronWeb } from "../../../utils/tronWeb";
 import { reloadWallet } from "../../../actions/wallet";
+import { isEqual } from "lodash";
 
 @connect(
   state => {
@@ -23,8 +24,9 @@ import { reloadWallet } from "../../../actions/wallet";
       wallet: state.wallet,
       currentWallet: state.wallet.current,
       walletType: state.app.wallet,
-      activeLanguage:state.app.activeLanguage
-  }},
+      activeLanguage: state.app.activeLanguage
+    };
+  },
   {
     reloadWallet
   }
@@ -37,21 +39,23 @@ class TokenInfo extends React.Component {
     super(props);
     this.state = {
       currentTotalSupply: 0,
-      alert:null,
-      buyAmount:0
+      alert: null,
+      buyAmount: 0
     };
   }
 
   componentDidMount() {
     this.loadTotalTRXSupply();
   }
-  shouldComponentUpdate(nextProps)  {
-    console.log('intl====',nextProps.activeLanguage,this.props.activeLanguage)
-    if(nextProps.activeLanguage !== this.props.activeLanguage){
-        return true
+  shouldComponentUpdate(nextProps) {
+    if (
+      nextProps.activeLanguage !== this.props.activeLanguage ||
+      !isEqual(nextProps, this.props)
+    ) {
+      return true;
     }
-    return  false
-}
+    return false;
+  }
   loadTotalTRXSupply = async () => {
     const { funds } = await Client.getBttFundsSupply();
     this.setState({
@@ -59,8 +63,8 @@ class TokenInfo extends React.Component {
     });
   };
   render() {
-    let { token ,intl} = this.props;
-    let { currentTotalSupply,alert } = this.state;
+    let { token, intl } = this.props;
+    let { currentTotalSupply, alert } = this.state;
     let issued = token.precision
       ? token.issued / Math.pow(10, token.precision)
       : token.issued;
@@ -71,9 +75,7 @@ class TokenInfo extends React.Component {
         <table className="table m-0 tokenDetail">
           <tbody>
             <tr>
-              <th style={{ borderTop: "0px" }}><span>{tu("start_time")}</span>{intl.formatMessage({
-                id:"start_time"
-              })}:</th>
+              <th style={{ borderTop: "0px" }}>{tu("start_time")}:</th>
               {token.id == "1002000" ? (
                 <td style={{ borderTop: "0px" }}>
                   <span>
@@ -137,23 +139,22 @@ class TokenInfo extends React.Component {
                   ) : (
                     "-"
                   )}
-                  {/* {!(
-                token.endTime < new Date() ||
-                token.issuedPercentage === 100 ||
-                token.startTime > new Date() ||
-                token.isBlack
-              ) &&
-                token.canShow !== 3 && ( */}
-                  <button
-                    className="btn btn-default btn-xs d-inline-block ml-3"
-                    onClick={() => this.preBuyTokens(token)}
-                  >
-                    {tu("participate")}
-                  </button>
-                {/* )} */}
+                  {!(
+                    token.endTime < new Date() ||
+                    token.issuedPercentage === 100 ||
+                    token.startTime > new Date() ||
+                    token.isBlack
+                  ) &&
+                    token.canShow !== 3 && (
+                      <button
+                        className="btn btn-default btn-xs d-inline-block ml-3"
+                        onClick={() => this.preBuyTokens(token)}
+                      >
+                        {tu("participate")}
+                      </button>
+                    )}
                 </td>
               )}
-              
             </tr>
             <tr>
               <th>{tu("token_price_issue")}:</th>
@@ -192,15 +193,7 @@ class TokenInfo extends React.Component {
             </tr>
             <tr>
               <th>{tu("token_Participants")}:</th>
-              {token.id == "1002000" ? (
-                <td>
-                  
-                </td>
-              ) : (
-                <td>
-                  
-                </td>
-              )}
+              {token.id == "1002000" ? <td></td> : <td></td>}
             </tr>
             <tr>
               <th>{tu("fund_raised")}:</th>

@@ -36,7 +36,7 @@ export const lang19Q4 = {
     "token_basic_view": "informaciones básicas",
     "token_additional_materials": "Información suplementaria",
     "token_hold_user": "Poseedor",
-    "token_capitalization": "مقدار توکن های  در حال  گردش/Capitalización de mercado",
+    "token_capitalization": "Valor al token en circulación/Capitalización de mercado",
     "token_credit_rating": "Calificación de crédito.",
     "token_contract": "Contrato de emisión",
     "token_price_new": "Precio",

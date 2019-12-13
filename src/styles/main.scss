@@ -2057,6 +2057,9 @@ h5 {
       width: 120px;
       font-weight: bold;
       color: #666;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
 
     & > p {

@@ -21,9 +21,10 @@ import xhr from "axios/index";
 import Lockr from "lockr";
 import { withTronWeb } from "../../../utils/tronWeb";
 import { CsvExport } from "../../common/CsvExport";
+import { loadUsdPrice } from "../../../actions/blockchain";
 
 @withTronWeb
-class TokenDetail extends React.Component {
+class TokenDetail extends React.PureComponent {
   constructor() {
     super();
 
@@ -39,20 +40,19 @@ class TokenDetail extends React.Component {
     };
   }
 
-  componentDidMount() {
-    let { match } = this.props;
+  async componentDidMount() {
+    let { match, priceUSD } = this.props;
+    !priceUSD && await this.props.loadUsdPrice();
+
     if (isNaN(Number(match.params.id))) {
       this.props.history.push("/tokens/list");
     } else {
       this.loadToken(decodeURI(match.params.id));
     }
-
   }
 
-  
-
   componentDidUpdate(prevProps) {
-    let { match ,intl} = this.props;
+    let { match, intl } = this.props;
 
     if (match.params.id !== prevProps.match.params.id) {
       if (isNaN(Number(match.params.id))) {
@@ -61,8 +61,6 @@ class TokenDetail extends React.Component {
         this.loadToken(decodeURI(match.params.id));
       }
     }
-
-
   }
   loadTotalTRXSupply = async () => {
     const { funds } = await Client.getBttFundsSupply();
@@ -71,11 +69,17 @@ class TokenDetail extends React.Component {
     });
   };
   loadToken = async id => {
+    let { priceUSD } = this.props;
+
     this.setState({ loading: true });
-  
+
     //let token = await Client.getToken(name);
     let result = await xhr.get(API_URL + "/api/token?id=" + id + "&showAll=1");
     let token = result.data.data[0];
+    token.priceToUsd =
+      token && token["market_info"]
+        ? token["market_info"].priceInTrx * priceUSD
+        : 0;
     if (!token) {
       this.setState({ loading: false, token: null });
       this.props.history.push("/tokens/list");
@@ -87,7 +91,7 @@ class TokenDetail extends React.Component {
         icon: "",
         path: "/",
         label: <span>{tu("token_issuance_info")}</span>,
-        cmp: () => <TokenInfo token={token}/>
+        cmp: () => <TokenInfo token={token} />
       },
       {
         id: "transfers",
@@ -147,7 +151,7 @@ class TokenDetail extends React.Component {
         label: <span>{tu("BTT_supply")}</span>,
         cmp: () => <BTTSupply token={token} />
       };
-      tabs.push(BttSupply)
+      tabs.push(BttSupply);
       this.loadTotalTRXSupply();
       this.setState({
         tabs: tabs
@@ -449,7 +453,7 @@ class TokenDetail extends React.Component {
   };
 
   render() {
-    let { match, wallet,intl } = this.props;
+    let { match, wallet, intl } = this.props;
     let {
       token,
       tabs,
@@ -467,7 +471,7 @@ class TokenDetail extends React.Component {
     pathname.replace(rex, function(a, b) {
       tabName = b;
     });
-    console.log(111,intl)
+
     return (
       <main className="container header-overlap token_black mc-donalds-coin">
         {alert}
@@ -510,7 +514,7 @@ class TokenDetail extends React.Component {
                         </h5>
                         <p className="card-text">{token.description}</p>
                       </div>
-              
+
                       <div className="ml-auto">trc10</div>
                     </div>
                   </div>
@@ -575,13 +579,15 @@ function mapStateToProps(state) {
     wallet: state.wallet,
     currentWallet: state.wallet.current,
     account: state.app.account,
-    walletType: state.app.wallet
+    walletType: state.app.wallet,
+    priceUSD: state.blockchain.usdPrice
   };
 }
 
 const mapDispatchToProps = {
   login,
-  reloadWallet
+  reloadWallet,
+  loadUsdPrice
 };
 
 export default connect(
