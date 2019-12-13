@@ -9,6 +9,12 @@ import {filter, includes} from "lodash";
 import {tronAddresses} from "../../../utils/tron";
 import {Link} from "react-router-dom"
 import {loadPriceData} from "../../../actions/markets";
+import { Sticky, StickyContainer } from "react-sticky";
+// import { goToAnchor } from 'react-scrollable-anchor'
+// import ScrollableAnchor from 'react-scrollable-anchor'
+// import { removeHash } from 'react-scrollable-anchor'
+import $ from 'jquery';
+import Scrollchor from 'react-scrollchor';
 
 class Statistics extends React.Component {
   constructor() {
@@ -26,15 +32,42 @@ class Statistics extends React.Component {
       priceStats: null,
       volume: null,
       pieChart: null,
-      supplyTypesChart: null
+      supplyTypesChart: null,
+      tabs:[
+          {
+            name:'交易',
+            id:'transfer'
+          },
+          {
+              name:'流通',
+              id:'currency'
+          },
+          // {
+          //     name:'地址',
+          //     id:'address'
+          // },
+          // {
+          //     name:'区块',
+          //     id:'block'
+          // },
+          // {
+          //     name:'合约',
+          //     id:'contract'
+          // },
+          {
+              name:'超级代表',
+              id:'sr'
+          },
+
+      ],
+      scrollsId:'',
+      linkIds:[],
     };
   }
 
-  componentDidMount() {
 
-  }
 
-  async loadAccounts() {
+    async loadAccounts() {
 
     let {accounts} = await Client.getAccounts({
       limit: 35,
@@ -52,7 +85,7 @@ class Statistics extends React.Component {
   }
 
 
-  async loadStats() {
+    async loadStats() {
 
     let {intl} = this.props;
 
@@ -87,7 +120,7 @@ class Statistics extends React.Component {
     });
   }
 
-  async loadTxOverviewStats() {
+    async loadTxOverviewStats() {
     let {intl} = this.props;
     let today = new Date();
     let timerToday = today.getTime();
@@ -202,255 +235,334 @@ class Statistics extends React.Component {
     });
   }
 
+    componentDidMount() {
+        this.getScrollsIds();
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener('scroll', this.onScrollEvent);
+    }
+
+    onScrollEvent(linkIds) {
+        // const { linkIds } = this.state;
+        console.log('linkIds22222',linkIds)
+        console.log('11111')
+        let root = document.getElementById('root')
+        console.log('root',root)
+        linkIds.forEach((item, index) => {
+            console.log('root.scrollTop', document.documentElement.scrollTop)
+            console.log('item.offsetTop',item.offsetTop)
+
+            if ( document.documentElement.scrollTop > item.offsetTop) {
+                console.log('item.key',item.key)
+                $('.'+item.key).addClass('active');
+                linkIds.forEach((k, v) => {
+                    if (item.key !== k.key) {
+                        $('.'+k.key).removeClass('active');
+                    }
+                });
+            }
+        });
+        console.log('222')
+    }
+    getScrollsIds = () => {
+        let { tabs } = this.state;
+        const linkIds = [];
+        tabs.forEach((item, index) => {
+           // const top = document.getElementById(`${item.id}`);
+            let top = $('#'+item.id);
+            console.log('top',top)
+            console.log('top.getBoundingClientRect().top', top.offset().top)
+            if (top) {
+                linkIds.push({ key: item.id, offsetTop: top.offset().top});
+            }
+        })
+        this.setState({ linkIds },()=>{
+            console.log('linkIds',this.state.linkIds)
+            window.addEventListener('scroll',()=> this.onScrollEvent(linkIds))
+        });
+    };
+
+    updateHash = (id) =>{
+      window.location.hash = "#/blockchain/stats"
+      this.setState({
+          scrollsId:id
+      });
+  }
+
   render() {
 
-    let {txOverviewStats, addressesStats, transactionStats, transactionValueStats, blockStats, accounts, blockSizeStats, blockchainSizeStats, priceStats, volume, pieChart, supplyTypesChart} = this.state;
+    let {tabs,scrollsId,txOverviewStats, addressesStats, transactionStats, transactionValueStats, blockStats, accounts, blockSizeStats, blockchainSizeStats, priceStats, volume, pieChart, supplyTypesChart} = this.state;
     let {intl} = this.props;
-
+    console.log('scrollsId',scrollsId)
     return (
         <main className="container header-overlap">
-          {/*<div className="text-center alert alert-light alert-dismissible fade show" role="alert">*/}
-            {/*{tu("click_the_chart_title_to_find_more")}*/}
-            {/*<button type="button" className="close" data-dismiss="alert" aria-label="Close">*/}
-              {/*<span >&times;</span>*/}
-            {/*</button>*/}
-          {/*</div>*/}
-          <div className="card statistics-chart" style={styles.card}>
-            <div className="row mt-5">
-              <div className="col-md-4">
-                  <span className="">
-                  <i className="fas fa-layer-group ml-5 mr-2"/>
-                      {tu("general_information")}
-                  </span>
-              </div>
-            </div>
-            <div className="row mb-4 mt-4">
-              <div className="col-md-4">
-                <div className="card-chart">
-                  <Link className="card-title" to="/blockchain/stats/txOverviewStats">
+          <div className="card mt-3 list-style-body-scroll">
+            <nav className="card-header list-style-body-scroll__header navbar navbar-expand-sm fixed-top" style={{position:"sticky",zIndex:10,background:'#f3f3f3',borderBottom:'none'}}>
+              <ul className="nav nav-tabs card-header-tabs navbar-nav">
+                  {
+                      Object.values(tabs).map(tab => (
+                          <li className="nav-item scroll-li" key={tab.id}>
+                            <Scrollchor to={'#' + tab.id}
+                                        className={scrollsId == tab.id? `scroll-tab nav-link active ${tab.id}`: `scroll-tab nav-link ${tab.id} `}
+                                        key={tab.id}
+                                        afterAnimate={() => this.updateHash(tab.id)}
+                            >
+                                     {tu(tab.name)}
+                            </Scrollchor>
+                          </li>
+                      ))
+                  }
+              </ul>
+            </nav>
+
+            <div className="card statistics-chart" style={styles.card} >
+              <div id="transfer">
+                {/*<ScrollableAnchor >*/}
+                  <div className="row mt-5">
+                    <div className="col-md-4">
+                    <span className="">
+                    <i className="fas fa-layer-group ml-5 mr-2"/>
+                        {tu("general_information")}
+                    </span>
+                    </div>
+                  </div>
+                {/*</ScrollableAnchor>*/}
+                <div className="row mb-4 mt-4">
+                  <div className="col-md-4">
+                    <div className="card-chart">
+                      <Link className="card-title" to="/blockchain/stats/txOverviewStats">
                     <span>
                       <i className="fas fa-chart-area ml-5 mr-2"/>
                         {tu("tron_transaction_chart")}
                     </span>
-                    <img src={require("../../../images/chart/TRON-Transaction-Chart.png")}
-                         style={{width: 240, filter: 'grayscale(100%)'}}
-                         className="ml-5 mt-2"
-                    />
-                  </Link>
-                </div>
-              </div>
-              <div className="col-md-4">
-                <div className="card-chart">
-                  <Link className="card-title" to="/blockchain/stats/addressesStats">
+                        <img src={require("../../../images/chart/TRON-Transaction-Chart.png")}
+                             style={{width: 240, filter: 'grayscale(100%)'}}
+                             className="ml-5 mt-2"
+                        />
+                      </Link>
+                    </div>
+                  </div>
+                  <div className="col-md-4">
+                    <div className="card-chart">
+                      <Link className="card-title" to="/blockchain/stats/addressesStats">
                     <span>
                       <i className="fas fa-chart-area ml-5 mr-2"/>
                         {tu("address_growth_chart")}
                     </span>
-                    <img src={require("../../../images/chart/Address-Growth-Chart.png")}
-                         style={{width: 240, filter: 'grayscale(100%)'}}
-                         className="ml-5 mt-2"
-                    />
-                  </Link>
-                </div>
-              </div>
-              <div className="col-md-4">
-                <div className="card-chart">
-                  <Link className="card-title" to="/blockchain/stats/supply">
+                        <img src={require("../../../images/chart/Address-Growth-Chart.png")}
+                             style={{width: 240, filter: 'grayscale(100%)'}}
+                             className="ml-5 mt-2"
+                        />
+                      </Link>
+                    </div>
+                  </div>
+                  <div className="col-md-4">
+                    <div className="card-chart">
+                      <Link className="card-title" to="/blockchain/stats/supply">
                     <span>
                       <i className="fas fa-chart-pie ml-5 mr-2"/>
                         {tu("total_TRX_supply")}
                     </span>
-                    <img src={require("../../../images/chart/Total-TRX-Supply.png")}
-                         style={{width: 240, filter: 'grayscale(100%)'}}
-                         className="ml-5 mt-2"
-                    />
-                  </Link>
+                        <img src={require("../../../images/chart/Total-TRX-Supply.png")}
+                             style={{width: 240, filter: 'grayscale(100%)'}}
+                             className="ml-5 mt-2"
+                        />
+                      </Link>
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div className="row mb-4 mt-4">
-              <div className="col-md-4">
-                <div className="card-chart">
-                  <Link className="card-title" to="/blockchain/stats/totalTxns">
-                    <span>
-                      <i className="fas fa-chart-area ml-5 mr-2"/>
-                        {tu("tron_total_transactions_chart")}
-                    </span>
-                    <img src={require("../../../images/chart/TRON-Total-Transactions-Chart.png")}
-                         style={{width: 240, filter: 'grayscale(100%)'}}
-                         className="ml-5 mt-2"
-                    />
-                  </Link>
-                </div>
-              </div>
-              <div className="col-md-4">
-                <div className="card-chart">
-                  <Link className="card-title" to="/blockchain/stats/EnergyConsume">
+
+
+              <div className="row mb-4 mt-4" id="currency">
+                {/*<ScrollableAnchor id={"currency"}>*/}
+                  <div className="col-md-4">
+                    <div className="card-chart">
+                      <Link className="card-title" to="/blockchain/stats/totalTxns">
+                      <span>
+                        <i className="fas fa-chart-area ml-5 mr-2"/>
+                          {tu("tron_total_transactions_chart")}
+                      </span>
+                        <img src={require("../../../images/chart/TRON-Total-Transactions-Chart.png")}
+                             style={{width: 240, filter: 'grayscale(100%)'}}
+                             className="ml-5 mt-2"
+                        />
+                      </Link>
+                    </div>
+                  </div>
+                {/*</ScrollableAnchor>*/}
+                <div className="col-md-4">
+                  <div className="card-chart">
+                    <Link className="card-title" to="/blockchain/stats/EnergyConsume">
                     <span>
                       <i className="fas fa-chart-bar ml-5 mr-2"/>
                         {tu("Tron_energy_chart")}
                     </span>
-                    <img src={require("../../../images/chart/EnergyConsume.png")}
-                         style={{width: 240, filter: 'grayscale(100%)'}}
-                         className="ml-5 mt-2"/>
-                  </Link>
+                      <img src={require("../../../images/chart/EnergyConsume.png")}
+                           style={{width: 240, filter: 'grayscale(100%)'}}
+                           className="ml-5 mt-2"/>
+                    </Link>
+                  </div>
                 </div>
-              </div>
 
-              <div className="col-md-4">
-                <div className="card-chart">
-                  <Link className="card-title" to="/blockchain/stats/ContractInvocation">
+                <div className="col-md-4">
+                  <div className="card-chart">
+                    <Link className="card-title" to="/blockchain/stats/ContractInvocation">
                     <span>
                       <i className="fas fa-chart-area ml-5 mr-2"/>
                         {tu("tron_contract_call_chart")}
                     </span>
-                    <img src={require("../../../images/chart/ContractInvocation.png")}
-                         style={{width: 240, filter: 'grayscale(100%)'}}
-                         className="ml-5 mt-2"/>
-                  </Link>
+                      <img src={require("../../../images/chart/ContractInvocation.png")}
+                           style={{width: 240, filter: 'grayscale(100%)'}}
+                           className="ml-5 mt-2"/>
+                    </Link>
+                  </div>
                 </div>
               </div>
-            </div>
-            <hr/>
-            <div className="row mt-5">
-              <div className="col-md-4">
+              <hr/>
+              <div className="row mt-5" id="sr">
+                <div className="col-md-4">
                   <span className="">
                   <i className="fas fa-cubes ml-5 mr-2"/>
                       {tu("blockchain_information")}
                   </span>
+                </div>
               </div>
-            </div>
-            <div className="row mb-4 mt-4">
-              <div className="col-md-4">
-                <div className="card-chart">
-                  <Link className="card-title" to="/blockchain/stats/blockSizeStats">
+              <div className="row mb-4 mt-4">
+                <div className="col-md-4">
+                  <div className="card-chart">
+                    <Link className="card-title" to="/blockchain/stats/blockSizeStats">
                     <span>
                       <i className="fas fa-chart-bar ml-5 mr-2"/>
                         {tu("average_blocksize")}
                     </span>
-                    <img src={require("../../../images/chart/Average-Block-Size.png")}
-                         style={{width: 240, filter: 'grayscale(100%)'}}
-                         className="ml-5 mt-2"
-                    />
-                  </Link>
+                      <img src={require("../../../images/chart/Average-Block-Size.png")}
+                           style={{width: 240, filter: 'grayscale(100%)'}}
+                           className="ml-5 mt-2"
+                      />
+                    </Link>
+                  </div>
                 </div>
-              </div>
-              <div className="col-md-4">
-                <div className="card-chart">
-                  <Link className="card-title" to="/blockchain/stats/blockchainSizeStats">
+                <div className="col-md-4">
+                  <div className="card-chart">
+                    <Link className="card-title" to="/blockchain/stats/blockchainSizeStats">
                     <span>
                       <i className="fas fa-chart-area ml-5 mr-2"/>
                         {tu("blockchain_size")}
                     </span>
-                    <img src={require("../../../images/chart/Blockchain-Size.png")}
-                         style={{width: 240, filter: 'grayscale(100%)'}}
-                         className="ml-5 mt-2"
-                    />
-                  </Link>
+                      <img src={require("../../../images/chart/Blockchain-Size.png")}
+                           style={{width: 240, filter: 'grayscale(100%)'}}
+                           className="ml-5 mt-2"
+                      />
+                    </Link>
+                  </div>
                 </div>
-              </div>
-              <div className="col-md-4">
-                <div className="card-chart">
-                  <Link className="card-title" to="/blockchain/stats/EnergyConsumeDistribution">
+                <div className="col-md-4">
+                  <div className="card-chart">
+                    <Link className="card-title" to="/blockchain/stats/EnergyConsumeDistribution">
                     <span>
                       <i className="fas fa-chart-pie ml-5 mr-2"/>
                         {tu("day_contract_energy_distribution")}
                     </span>
-                    <img src={require("../../../images/chart/EnergyConsumeDistribution.png")}
-                        style={{width: 240, filter: 'grayscale(100%)'}}
-                        className="ml-5 mt-2"/>
-                  </Link>
+                      <img src={require("../../../images/chart/EnergyConsumeDistribution.png")}
+                           style={{width: 240, filter: 'grayscale(100%)'}}
+                           className="ml-5 mt-2"/>
+                    </Link>
+                  </div>
                 </div>
-              </div>
               </div>
 
               <div className="row mb-4 mt-4">
-              <div className="col-md-4">
-                <div className="card-chart">
-                  <Link className="card-title" to="/blockchain/stats/ContractInvocationDistribution">
+                <div className="col-md-4">
+                  <div className="card-chart">
+                    <Link className="card-title" to="/blockchain/stats/ContractInvocationDistribution">
                     <span>
                       <i className="fas fa-chart-pie ml-5 mr-2"/>
                         {tu("day_contract_call_distribution")}
                     </span>
-                    <img src={require("../../../images/chart/ContractInvocationDistribution.png")}
-                        style={{width: 240, filter: 'grayscale(100%)'}}
-                        className="ml-5 mt-2"/>
-                  </Link>
+                      <img src={require("../../../images/chart/ContractInvocationDistribution.png")}
+                           style={{width: 240, filter: 'grayscale(100%)'}}
+                           className="ml-5 mt-2"/>
+                    </Link>
+                  </div>
                 </div>
               </div>
-            </div>
-            <hr/>
-            <div className="row mt-5">
-              <div className="col-md-4">
+              <hr/>
+              <div className="row mt-5">
+                <div className="col-md-4">
                   <span className="">
                   <i className="fas fa-medal ml-5 mr-2"/>
                       {tu("sr_information")}
                   </span>
+                </div>
               </div>
-            </div>
-            <div className="row mb-4 mt-4">
-              <div className="col-md-4">
-                <div className="card-chart">
-                  <Link className="card-title" to="/blockchain/stats/pieChart">
+              <div className="row mb-4 mt-4">
+                <div className="col-md-4">
+                  <div className="card-chart">
+                    <Link className="card-title" to="/blockchain/stats/pieChart">
                     <span>
                       <i className="fas fa-chart-pie ml-5 mr-2"/>
                         {tu("produce_distribution")}
                     </span>
-                    <img src={require("../../../images/chart/Block-Producer-Chart.png")}
-                         style={{width: 240, filter: 'grayscale(100%)'}}
-                         className="ml-5 mt-2"
-                    />
-                  </Link>
+                      <img src={require("../../../images/chart/Block-Producer-Chart.png")}
+                           style={{width: 240, filter: 'grayscale(100%)'}}
+                           className="ml-5 mt-2"
+                      />
+                    </Link>
+                  </div>
                 </div>
+
+
               </div>
-
-
-            </div>
-            <hr/>
-            <div className="row mt-5">
-              <div className="col-md-4">
+              <hr/>
+              <div className="row mt-5">
+                <div className="col-md-4">
                   <span className="">
                   <i className="fas fa-exchange-alt ml-5 mr-2"/>
                       {tu("currency_information")}
                   </span>
+                </div>
               </div>
-            </div>
-            <div className="row mb-4 mt-4">
-              <div className="col-md-4">
-                <div className="card-chart">
-                  <Link className="card-title" to="/blockchain/stats/priceStats">
+              <div className="row mb-4 mt-4">
+                <div className="col-md-4">
+                  <div className="card-chart">
+                    <Link className="card-title" to="/blockchain/stats/priceStats">
                     <span>
                       <i className="fas fa-chart-area ml-5 mr-2"/>
                         {tu("average_price")}
                     </span>
-                    <img src={require("../../../images/chart/Average-Price.png")}
-                         style={{width: 240, filter: 'grayscale(100%)'}}
-                         className="ml-5 mt-2"
-                    />
-                  </Link>
+                      <img src={require("../../../images/chart/Average-Price.png")}
+                           style={{width: 240, filter: 'grayscale(100%)'}}
+                           className="ml-5 mt-2"
+                      />
+                    </Link>
+                  </div>
                 </div>
-              </div>
-              <div className="col-md-4">
-                <div className="card-chart">
-                  <Link className="card-title" to="/blockchain/stats/volumeStats">
+                <div className="col-md-4">
+                  <div className="card-chart">
+                    <Link className="card-title" to="/blockchain/stats/volumeStats">
                     <span>
                       <i className="fas fa-chart-area ml-5 mr-2"/>
                         {tu("volume_24")}
                     </span>
-                    <img src={require("../../../images/chart/24-Hour-Trading-Volume.png")}
-                         style={{width: 240, filter: 'grayscale(100%)'}}
-                         className="ml-5 mt-2"/>
-                  </Link>
+                      <img src={require("../../../images/chart/24-Hour-Trading-Volume.png")}
+                           style={{width: 240, filter: 'grayscale(100%)'}}
+                           className="ml-5 mt-2"/>
+                    </Link>
+                  </div>
                 </div>
+
+
+
+
+
               </div>
-
-              
-
-             
 
             </div>
 
           </div>
+
         </main>
     );
   }
