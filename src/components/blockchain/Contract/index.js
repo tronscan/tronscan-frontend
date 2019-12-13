@@ -211,7 +211,7 @@ class SmartContract extends React.Component {
             id: "intransactions",
             // icon: "fas fa-handshake",
             path: "/internal-transactions",
-            label: <span>{tu("internal_transactions")}</span>,
+            label: <span>{tu("Internal_txns")}</span>,
             cmp: () => (
               <Transactions
                 getCsvUrl={csvurl => this.setState({ csvurl })}

@@ -1522,7 +1522,7 @@ export const messages = {
   "propose_12": "1 energy의 비용 수정 제안",
   "propose_13": "거래조합 생성 비용 수정 제안",
   "propose_14": "한 거래의 최대 실행 시간 수정 제안",
-  "propose_15": "계정 이름 변경 여부 제안",
+  "propose_15": "중복 계정 이름을 허용하도록 제안",
   "propose_16": "토큰 동명 제안 허락",
   "propose_17": "리소스 위임을 허용 제안",
   "propose_18": "총 에너지 한도 수정 제안",
@@ -2116,6 +2116,7 @@ export const messages = {
   "receive_address":"수신 주소 (기본 주소는 자신의 주소입니다)",
   "unfreeze_time": "해동 시간",
   "interTrx_tip": "내부 트랜잭션은 일반 주소가 스마트 계약을 호출하고 스마트 계약이 토큰을 다른 주소로 전송하는 작업입니다.",
+  "interTrx_tip_contract":"Internal transactions from contract execution",
   "event_tip": "이벤트는 프로그래머 또는 외부 인터페이스 제공 업체가 계약 작업 및 감사에주의를 기울일 수있게하는 것입니다.",
    /* 2019-07-06*/
    "trc20_free_orders":"0 trading fee for all orders",
@@ -2441,4 +2442,7 @@ export const messages = {
   "signature_operations_required":"조작은 필수 정보입니다",
   "signature_threshold_required":"역치는 필수 정보입니다",
   "signaure_control_address_tip":"Control address refers to the associated control addresses of owner permission, SR permission and active permission. Display of the three types of permissions will change subsequently when the control address is modified.",
+
+// 2019-12-10
+"ledger_tronlink":"Login to TRONSCAN via TronLink",
 };

@@ -1537,7 +1537,7 @@ export const messages = {
   "propose_12": "Предлагается изменить плату за 1 энергию",
   "propose_13": "Предлагается изменить стоимость создания торговой пары",
   "propose_14": "Предлагается изменить максимальное время выполнения одной транзакции",
-  "propose_15": "Предлагается разрешить сменить имя аккаунта",
+  "propose_15": "Предлагаю разрешить дублирование имени аккаунта",
   "propose_16": "Предлагается разрешить одно и то же имя токена",
   "propose_17": "Предлагается разрешить делегирование ресурсов",
   "propose_18": "Предлагается изменить общий предел энергии",
@@ -2123,6 +2123,7 @@ export const messages = {
   "receive_address":"Получите адрес (адрес по умолчанию ваш собственный)",
   "unfreeze_time": "Время разморозки",
   "interTrx_tip": "Внутренние транзакции - это операция, которая по общему адресу называется смарт-контрактом, а смарт-контракт передает токен на другой адрес.",
+  "interTrx_tip_contract":"Internal transactions from contract execution",
   "event_tip": "События позволяют программисту или провайдеру внешнего интерфейса использовать его, чтобы обратить внимание на контрактные операции и аудиты.",
   "Expected_acquisition": "Расчетная",
   "energy_more": "Полученная пропускная способность = замороженные TRX для получения пропускной способности/ общее количество замороженных TRX в сети для получения пропускной способности.",
@@ -2446,4 +2447,8 @@ export const messages = {
   "signature_operations_required":"Требуется операция",
   "signature_threshold_required":"Требуется предел",
   "signaure_control_address_tip":"Control address refers to the associated control addresses of owner permission, SR permission and active permission. Display of the three types of permissions will change subsequently when the control address is modified.",
+
+// 2019-12-10
+"ledger_tronlink":"Login to TRONSCAN via TronLink",
+
 };
