@@ -691,16 +691,58 @@ engry {
         thead {
             tr {
                 th {
-                    border-right: 1px solid #e8e8e8 !important;
-                    border-right-width: 1px !important;
-                    border-right-style: solid !important;
-                    border-right-color: rgb(232, 232, 232) !important;
+                    // border-right: 1px solid #e8e8e8 !important;
+                    // border-right-width: 1px !important;
+                    // border-right-style: solid !important;
+                    // border-right-color: rgb(232, 232, 232) !important;
                     border-bottom: 1px solid #eee !important;
                     border-bottom-width: 1px !important;
                     border-bottom-style: solid !important;
                     border-bottom-color: rgb(238, 238, 238) !important;
                 }
             }
+        }
+    }
+}
+
+.token_black {
+    .ant-input-affix-wrapper:hover .ant-input:not {
+        border-color: #d9d9d9 !important;
+        box-sizing: border-box;
+    }
+    .ant-input:focus {
+        border-color: #d9d9d9 !important;
+        box-sizing: border-box;
+    }
+    .ant-input:hover {
+        border-color: #d9d9d9 !important;
+        box-sizing: border-box;
+    }
+    --antd-wave-shadow-color: #d9d9d9 !important;
+    .ant-input::selection {
+        background: #d9d9d9 !important;
+    }
+}
+
+.holder-transfers {
+    .ant-table {
+        thead {
+            tr {
+                th {
+                    border-right: 1px solid #e8e8e8 !important;
+                    border-right-width: 1px !important;
+                    border-right-style: solid !important;
+                    border-right-color: rgb(232, 232, 232) !important;
+                }
+            }
+        }
+    }
+}
+
+.trx20tronsfers {
+    .ant-table-body {
+        table {
+            padding: 0 2rem !important;
         }
     }
 }

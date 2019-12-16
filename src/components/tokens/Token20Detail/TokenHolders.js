@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 import { tu } from "../../../utils/i18n";
 import { AddressLink } from "../../common/Links";
 import { Client } from "../../../services/api";
-import SmartTable from "../../common/SmartTable.js";
+import SmartTable from "../../common/SmartTable";
 import { FormattedNumber, injectIntl } from "react-intl";
 import { TronLoader } from "../../common/loaders";
 import { upperFirst, lowerCase } from "lodash";
@@ -329,7 +329,7 @@ class TokenHolders extends React.Component {
             <TronLoader />
           </div>
         )}
-        <div className="row transfers">
+        <div className="row transfers holder-transfers">
           <div className="col-md-12 table_pos">
             <HolderDistribution></HolderDistribution>
             <div

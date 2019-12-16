@@ -1569,6 +1569,7 @@ export const messages = {
     "TRC20_token": "TRC20トークン",
     "TRC20_decimals": "精度",
     "nav_more": "その他",
+    "testnet":"テストネット",
     "no_holders_found": "トークン保有者がいない",
     "search_TRC20": "アドレスを検索する",
     "beginners_guide": "ガイド",
