@@ -467,7 +467,7 @@ export default class Account extends Component {
             <th>ID</th>
             <th>{tu("TRC20_decimals")}</th>
             <th className="text-right">{tu("balance")}</th>
-            {isPrivateKey && <th className="text-right">{tu('trc20_cur_order_header_action')}</th>}
+            {/* {isPrivateKey && <th className="text-right">{tu('trc20_cur_order_header_action')}</th>} */}
           </tr>
           </thead>
           <tbody>

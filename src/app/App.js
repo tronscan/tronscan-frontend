@@ -24,7 +24,7 @@ export default class App {
 
     let {
       data
-    } = await xhr.get(`${API_URL}/api/token?showAll=1&limit=5000&id_gt=1002753&fields=id,name,precision,abbr,imgUrl`);
+    } = await xhr.get(`${API_URL}/api/token?showAll=1&limit=5000&id_gt=1000000&fields=id,name,precision,abbr,imgUrl`);
 
     let imgUrl;
     for (var i = 0; i < data.data.length; i++) {
