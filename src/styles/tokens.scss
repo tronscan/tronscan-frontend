@@ -223,11 +223,34 @@
     background: url("../images/token/tokenSign.png") 100% 100%;
     width: 46px;
     height: 19.2px;
-    text-indent: 8px;
+    text-indent: 10px;
     background-size: 100% 100%;
     line-height: 19.2px;
     font-size: 10px;
     color: #ffffff;
     top: -6px;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .information-bg.token-mobile {
+    display: block !important;
+    .information-bg-item {
+      min-height: 45px;
+      height: auto;
+    }
+    .flex-1 {
+      margin-top: 1rem;
+    }
+    .price-info {
+      display: block !important;
+      .col-red,
+      .col-green {
+        margin-left: 0 !important;
+      }
+    }
+    .token-price-trx {
+      display: block;
+    }
   }
 }
