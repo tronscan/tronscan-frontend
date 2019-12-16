@@ -1177,7 +1177,7 @@ export const messages = {
    "contract_create_msg":"Information",
    "contract_create_time":"CreationTime",
    "contract_enery":"Energy consumption ratio",
-   "contract_enery_tip":"Calling smart contracts consumes energy",
+   "contract_enery_tip":"Calling smart contract consumes energy, which is borne by the contract and the user in proportion",
    "contract_init_assets":"Initial asset",
    "contract_init_assets_tip":"Contract creator transfers funds to contract address while deploying contracts",
    "contract_editor_bug": "Loophole warning for the compiler",
