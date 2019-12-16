@@ -47,7 +47,7 @@ class Participate extends React.Component {
     let { token, intl } = this.props;
     let { alert } = this.state;
     return (
-      <span className="">
+      <span className="token-sweet-alert">
         {alert}
         <button
           className="btn btn-default btn-xs d-inline-block ml-3"
@@ -62,6 +62,8 @@ class Participate extends React.Component {
   preBuyTokens = token => {
     let { buyAmount } = this.state;
     let { currentWallet, wallet, intl } = this.props;
+    let price =
+      ((token.trxNum / token.num) * Math.pow(10, token.precision)) / ONE_TRX;
     if (!wallet.isOpen) {
       this.setState({
         alert: (
@@ -107,10 +109,7 @@ class Participate extends React.Component {
             showClose={true}
             // style={{marginLeft: '-240px', marginTop: '-195px', width: '450px', height: '300px'}}
           >
-            <div
-              className="mt-5 token-sweet-alert"
-              style={{ textAlign: "left" }}
-            >
+            <div className="token-sweet-alert" style={{ textAlign: "left" }}>
               <a
                 style={{ float: "right", marginTop: "-45px" }}
                 onClick={() => {
@@ -119,14 +118,12 @@ class Participate extends React.Component {
               >
                 <i className="fa fa-times" aria-hidden="true"></i>
               </a>
-              <p>
-                1{token.name} ≈{" "}
-                {(token["market_info"] && token["market_info"].priceInTrx) || 0}{" "}
-                TRX
+              <p className="token-price mt-2">
+                1{token.name} ≈ {price} TRX
               </p>
-              <h5 style={{ color: "black" }}>{tu("buy_token_info")}</h5>
+              <p className="token-number">{tu("token_enter_number")}</p>
               {token.remaining === 0 && <span> {tu("no_token_to_buy")}</span>}
-              <div className="input-group mt-5">
+              <div className="input-group mt-1">
                 <input
                   type="number"
                   ref={ref => (this.buyAmount = ref)}
@@ -147,9 +144,9 @@ class Participate extends React.Component {
                   }}
                 />
               </div>
-              <div className="text-center mt-3 text-muted">
+              <div className="mt-2">
                 <b>
-                  = <span ref={ref => (this.priceTRX = ref)}>0</span> TRX
+                 {tu('token_estimated_cost')}  <span className="token-estminated" ref={ref => (this.priceTRX = ref)}>0</span> TRX
                 </b>
               </div>
               <button

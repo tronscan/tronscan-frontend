@@ -113,7 +113,7 @@ class TokenInfo extends React.Component {
               ) : (
                 <td>
                   {token.endTime - token.startTime > 1000 ? (
-                    <span>
+                    <span style={{float:"left"}}>
                       <FormattedDate value={token.endTime} />{" "}
                       <FormattedTime
                         value={token.endTime}
