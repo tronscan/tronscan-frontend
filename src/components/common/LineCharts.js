@@ -1599,7 +1599,7 @@ export class EnergyConsumeChart extends React.Component {
                 },
                 colors: map[type],
                 title: {
-                    text: intl.formatMessage({id: 'EnergyConsume_title'})
+                    text: intl.formatMessage({id: 'charts_daily_energy_consumption'})
                 },
                 subtitle: {text: intl.formatMessage({id: 'EnergyConsume_subtitle'})},
                 yAxis: {
@@ -1678,7 +1678,7 @@ export class ContractInvocationChart extends React.Component {
                 chart: { zoomType: 'x' },
                 colors: ['#f7a35c', '#f15c80'],
                 title: {
-                    text: intl.formatMessage({id: 'contract_call_chart'})
+                    text: intl.formatMessage({id: 'charts_contract_calling'})
                 },
                 subtitle: {
                     text: intl.formatMessage({id: 'HighChart_tip'})
@@ -1777,7 +1777,7 @@ export class ContractInvocationDistributionChart extends React.Component {
                 colors: ['#7cb5ec', '#434348', '#90ed7d', '#f7a35c', '#8085e9', 
    '#f15c80', '#e4d354', '#2b908f', '#f45b5b', '#91e8e1'],
                 title: {
-                    text: intl.formatMessage({id: 'contract_call_chart_day'})
+                    text: intl.formatMessage({id: 'charts_daily_contract_calling_profile'})
                 },
                 tooltip: {
                     headerFormat: '',
@@ -1868,7 +1868,7 @@ export class EnergyConsumeDistributionChart extends React.Component {
                 colors: ['#7cb5ec', '#434348', '#90ed7d', '#f7a35c', '#8085e9', 
    '#f15c80', '#e4d354', '#2b908f', '#f45b5b', '#91e8e1'],
                 title: {
-                    text: intl.formatMessage({id: 'total_energy_used_chart'})
+                    text: intl.formatMessage({id: 'charts_daily_energy_contracts'})
                 },
                 subtitle: {
                     text: SUBTITLE

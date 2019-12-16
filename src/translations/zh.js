@@ -2534,9 +2534,8 @@ export const messages = {
   "charts_total_transactions":"总交易记录",
   "charts_overall_freezing_rate":"全网冻结率",
   "charts_new_addresses":"地址增长",
-  "":"",
-  "":"",
-
-
-
+  "charts_daily_energy_consumption":"日能量消耗",
+  "charts_daily_energy_contracts":"日合约能量消耗",
+  "charts_contract_calling":"合约调用",
+  "charts_daily_contract_calling_profile":"日合约调用分布",
 };
