@@ -10,7 +10,7 @@ import Transfers from "./Transfers.js";
 import TokenInfo from "./TokenInfo.js";
 import BTTSupply from "./BTTSupply.js";
 import {Information} from "./Information.js";
-import {ONE_TRX,API_URL,IS_MAINNET} from "../../../constants";
+import {ONE_TRX,API_URL,IS_MAINNET,IS_NILE} from "../../../constants";
 import {login} from "../../../actions/app";
 import {reloadWallet} from "../../../actions/wallet";
 import {connect} from "react-redux";
@@ -490,7 +490,7 @@ class TokenDetail extends React.Component {
                             <p className="card-text">{token.description}</p>
                           </div>
                             {
-                                IS_MAINNET && <div className="ml-auto">
+                               !IS_NILE && IS_MAINNET && <div className="ml-auto">
                                     {(!(token.endTime < new Date() || token.issuedPercentage === 100 || token.startTime > new Date() || token.isBlack) && (token.canShow !== 3)) &&
                                     <button className="btn btn-default btn-xs d-inline-block"
                                             onClick={() => this.preBuyTokens(token)}>{tu("participate")}</button>
