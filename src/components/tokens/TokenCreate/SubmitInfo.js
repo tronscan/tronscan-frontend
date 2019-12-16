@@ -835,7 +835,7 @@ class SubmitInfo extends Component {
           <button
                 className="ml-4 btn btn-danger btn-lg"
                 htmltype="submit"
-                // disabled={!captcha_code}
+                disabled={!captcha_code}
                 onClick={this.submit}
               >
                 {tu("submit")}

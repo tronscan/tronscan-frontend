@@ -17,7 +17,8 @@ export const IS_NILE = true;
 
 
 export const NETURL = {
-   MAINNET: "https://18.190.104.70:9000",
+   //MAINNET: "https://18.190.104.70:9000",
+   MAINNET: "https://nile.tronscan.org",
    SUNNET: "https://dappchain.tronscan.org",
 };
 
@@ -44,7 +45,8 @@ let NODEAPI;
 
 //NODEAPI = "http://52.15.126.154:9016";
 //for nile
-NODEAPI = "http://52.15.126.154:9017";
+//NODEAPI = "http://52.15.126.154:9017";
+NODEAPI="https://nileapi.tronscan.org";
 
 export const BLOCK_REWARD = 32;
 export const SR_MAX_COUNT = 27;
