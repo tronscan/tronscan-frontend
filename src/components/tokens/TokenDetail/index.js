@@ -21,6 +21,8 @@ import xhr from "axios/index";
 import Lockr from "lockr";
 import { withTronWeb } from "../../../utils/tronWeb";
 import { CsvExport } from "../../common/CsvExport";
+import { loadUsdPrice } from "../../../actions/blockchain";
+import ExchangeQuotes from "../ExchangeQuotes";
 
 @withTronWeb
 class TokenDetail extends React.Component {
@@ -39,20 +41,19 @@ class TokenDetail extends React.Component {
     };
   }
 
-  componentDidMount() {
-    let { match } = this.props;
+  async componentDidMount() {
+    let { match, priceUSD } = this.props;
+    !priceUSD && (await this.props.loadUsdPrice());
+
     if (isNaN(Number(match.params.id))) {
       this.props.history.push("/tokens/list");
     } else {
       this.loadToken(decodeURI(match.params.id));
     }
-
   }
 
-  
-
   componentDidUpdate(prevProps) {
-    let { match ,intl} = this.props;
+    let { match, intl } = this.props;
 
     if (match.params.id !== prevProps.match.params.id) {
       if (isNaN(Number(match.params.id))) {
@@ -61,8 +62,6 @@ class TokenDetail extends React.Component {
         this.loadToken(decodeURI(match.params.id));
       }
     }
-
-
   }
   loadTotalTRXSupply = async () => {
     const { funds } = await Client.getBttFundsSupply();
@@ -71,11 +70,17 @@ class TokenDetail extends React.Component {
     });
   };
   loadToken = async id => {
+    let { priceUSD } = this.props;
+
     this.setState({ loading: true });
-  
+
     //let token = await Client.getToken(name);
     let result = await xhr.get(API_URL + "/api/token?id=" + id + "&showAll=1");
     let token = result.data.data[0];
+    token.priceToUsd =
+      token && token["market_info"]
+        ? token["market_info"].priceInTrx * priceUSD
+        : 0;
     if (!token) {
       this.setState({ loading: false, token: null });
       this.props.history.push("/tokens/list");
@@ -85,9 +90,9 @@ class TokenDetail extends React.Component {
       {
         id: "tokenInfo",
         icon: "",
-        path: "/",
+        path: "",
         label: <span>{tu("token_issuance_info")}</span>,
-        cmp: () => <TokenInfo token={token}/>
+        cmp: () => <TokenInfo token={token} />
       },
       {
         id: "transfers",
@@ -102,7 +107,7 @@ class TokenDetail extends React.Component {
         )
       },
       {
-        id: "holders1",
+        id: "holders",
         icon: "",
         path: "/holders",
         label: (
@@ -118,23 +123,20 @@ class TokenDetail extends React.Component {
             getCsvUrl={csvurl => this.setState({ csvurl })}
           />
         )
-      },
-      {
-        id: "holders2",
-        icon: "",
-        path: "/holders",
-        label: <span>{tu("token_market")}</span>,
-        cmp: () => (
-          <TokenHolders
-            filter={{ token: token.name, address: token.ownerAddress }}
-            token={{ totalSupply: token.totalSupply }}
-            tokenPrecision={{ precision: token.precision }}
-            getCsvUrl={csvurl => this.setState({ csvurl })}
-          />
-        )
       }
     ];
-
+    if(IS_MAINNET){
+      tabs = [
+        ...tabs,
+        {
+          id: "quotes",
+          icon: "",
+          path: "/quotes",
+          label: <span>{tu("token_market")}</span>,
+          cmp: () => <ExchangeQuotes address={token.tokenID} />
+        }
+      ]
+    }
     this.setState({
       loading: false,
       token
@@ -147,9 +149,9 @@ class TokenDetail extends React.Component {
         label: <span>{tu("BTT_supply")}</span>,
         cmp: () => <BTTSupply token={token} />
       };
-      tabs.push(BttSupply)
+      tabs.push(BttSupply);
       this.loadTotalTRXSupply();
-      tabs.push(BttSupply)
+      tabs.push(BttSupply);
     }
     this.setState({
       tabs: tabs
@@ -446,7 +448,7 @@ class TokenDetail extends React.Component {
   };
 
   render() {
-    let { match, wallet,intl } = this.props;
+    let { match, wallet, intl } = this.props;
     let {
       token,
       tabs,
@@ -464,7 +466,7 @@ class TokenDetail extends React.Component {
     pathname.replace(rex, function(a, b) {
       tabName = b;
     });
-    console.log(111,intl)
+
     return (
       <main className="container header-overlap token_black mc-donalds-coin">
         {alert}
@@ -479,7 +481,7 @@ class TokenDetail extends React.Component {
             {token && (
               <div className="col-sm-12">
                 <div className="card">
-                  <div className="card-body">
+                  <div className="card-body mt-2">
                     <div className="d-flex">
                       {token && token.imgUrl && token.tokenID ? (
                         <div>
@@ -498,17 +500,14 @@ class TokenDetail extends React.Component {
                           src={require("../../../images/logo_default.png")}
                         />
                       )}
-                      <div
-                        style={{ width: "70%" }}
-                        className="token-description"
-                      >
+                      <div className="token-description">
                         <h5 className="card-title">
                           {token.name} ({token.abbr})
                         </h5>
                         <p className="card-text">{token.description}</p>
                       </div>
-              
-                      <div className="ml-auto">trc10</div>
+
+                      <div className="token-sign">trc10</div>
                     </div>
                   </div>
                   {token && (
@@ -519,14 +518,25 @@ class TokenDetail extends React.Component {
                   )}
                 </div>
 
-                <div className="card mt-3 border_table">
-                  <div className="card-header">
+                <div
+                  className="card mt-3"
+                  style={{
+                    borderTop: "1px solid #d8d8d8"
+                  }}
+                >
+                  <div
+                    className="card-header"
+                    style={{
+                      borderLeft: "1px solid #d8d8d8",
+                      borderRight: "1px solid #d8d8d8"
+                    }}
+                  >
                     <ul
                       className="nav nav-tabs card-header-tabs"
                       style={{ marginTop: "-12px", marginLeft: "-20px" }}
                     >
-                      {tabs.map(tab => (
-                        <li key={tab.id} className="nav-item">
+                      {tabs.map((tab, tabInd) => (
+                        <li key={tabInd} className="nav-item">
                           <NavLink
                             exact
                             to={match.url + tab.path}
@@ -541,22 +551,30 @@ class TokenDetail extends React.Component {
                   </div>
                   <div className="card-body p-0">
                     <Switch>
-                      {tabs.map(tab => (
+                      {tabs.map((tab, tabInd) => (
                         <Route
-                          key={tab.id}
+                          key={tabInd}
                           exact
                           path={match.url + tab.path}
                           render={() => <tab.cmp />}
                         />
                       ))}
                     </Switch>
+                    <div
+                      style={{
+                        position: "absolute",
+                        left: "20px",
+                        bottom: "28px"
+                      }}
+                    >
+                      {["transfers", "holders"].indexOf(tabName) !== -1 ? (
+                        <CsvExport downloadURL={csvurl} />
+                      ) : (
+                        ""
+                      )}
+                    </div>
                   </div>
                 </div>
-                {["transfers", "holders"].indexOf(tabName) !== -1 ? (
-                  <CsvExport downloadURL={csvurl} />
-                ) : (
-                  ""
-                )}
               </div>
             )}
           </div>
@@ -572,13 +590,15 @@ function mapStateToProps(state) {
     wallet: state.wallet,
     currentWallet: state.wallet.current,
     account: state.app.account,
-    walletType: state.app.wallet
+    walletType: state.app.wallet,
+    priceUSD: state.blockchain.usdPrice
   };
 }
 
 const mapDispatchToProps = {
   login,
-  reloadWallet
+  reloadWallet,
+  loadUsdPrice
 };
 
 export default connect(

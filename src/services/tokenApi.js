@@ -15,6 +15,17 @@ class ApiClientToken {
     let priceUSD = trxPriceData && trxPriceData.data && trxPriceData.data[0] && trxPriceData.data[0].price_usd;
     return priceUSD
   }
+
+  async getCoinId(address, type) {
+    let url = 'http://3.14.14.175:9000'//this.apiUrl[type || "mainnet"];
+    let obj = { address };
+    let { data } = await xhr({
+      method: "get",
+      url: `${url}/api/token/id-mapper`,
+      params: obj
+    });
+    return data;
+  }
 }
 
 export default new ApiClientToken();

@@ -330,13 +330,13 @@ export const routes = [
   },
   {
     path: "/token/:id",
-    label: "token",
+    label: "token_detail",
     component: TokenDetailAsync,
     showInMenu: false
   },
   {
     path: "/token20/:address",
-    label: "token",
+    label: "token_detail",
     component: Token20DetailAsync,
     showInMenu: false
   },

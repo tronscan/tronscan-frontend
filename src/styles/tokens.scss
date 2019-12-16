@@ -1,40 +1,40 @@
-.multi-line-overflow{
+.multi-line-overflow {
   display: -webkit-box;
   -webkit-box-orient: vertical;
   overflow: auto;
-  -webkit-line-clamp: 2; 
+  -webkit-line-clamp: 2;
 }
-.token-list-wrap{
-  .token-num-wrap{
+.token-list-wrap {
+  .token-num-wrap {
     // margin:20px 0 24px;
     font-size: 12px;
     color: #333333;
-    >div{
+    > div {
       width: 47.5%;
       height: 98px;
-      >div{
-        >div{
-          &:first-child{
+      > div {
+        > div {
+          &:first-child {
             font-size: 28px;
           }
         }
-        &:first-child{
+        &:first-child {
           flex: 1;
         }
-        &:nth-child(2){
-          margin:auto;
+        &:nth-child(2) {
+          margin: auto;
           width: 1px;
           height: 60%;
           transform: rotate(-330deg);
-          background: #D8D8D8;
+          background: #d8d8d8;
         }
-        &:last-child{
+        &:last-child {
           flex: 1;
-          >div{
-            &:first-child{
-              color: #C64844;
-              &::before{
-                content: '+';
+          > div {
+            &:first-child {
+              color: #c64844;
+              &::before {
+                content: "+";
               }
             }
           }
@@ -43,31 +43,31 @@
     }
     @media only screen and (max-width: 768px) {
       flex-direction: column;
-      margin: 0!important;
-      >div{
+      margin: 0 !important;
+      > div {
         width: 100%;
         margin-bottom: 1rem;
         height: 70px;
       }
     }
   }
-  .create-token-btn{
+  .create-token-btn {
     position: absolute;
     top: -30px;
     right: 15px;
     padding: 0 12px;
-    background: #FFFFFF;
-    border: 1px solid #C23631;
-    color: #C23631;
+    background: #ffffff;
+    border: 1px solid #c23631;
+    color: #c23631;
     text-align: center;
     line-height: 28px;
     font-size: 12px;
     @media only screen and (max-width: 768px) {
-      top:-50px;
+      top: -50px;
     }
   }
-  .ant-table{
-    .trx-price{
+  .ant-table {
+    .trx-price {
       font-size: 12px;
       color: #999999;
     }
@@ -85,56 +85,68 @@
         font-weight: 300;
         span {
         }
-    
+
         &:hover {
           color: #ffffff !important;
         }
       }
-    
+
       .btn {
         span {
           color: #ffffff !important;
         }
       }
-    
+
       .token-active-details {
         background-color: #c23631;
       }
-    
+
       .token-disabled-exchange {
         background-color: #d1d3df;
       }
     }
-  }
-  
-  @media only screen and (max-width: 768px) {
-    >div{
-      padding-top: 1rem!important;
+    .token-rank-wrap{
+      position: relative;
+      img{
+        position: absolute;
+        top: 10px;
+        left: 0;
+        width: 31px;
+        height: 20px;
+      }
     }
-    .filter-wrap{
+  }
+
+  @media only screen and (max-width: 768px) {
+    > div {
+      padding-top: 1rem !important;
+    }
+    .filter-wrap {
       flex-direction: column-reverse;
-      align-items: flex-start!important;
+      align-items: flex-start !important;
     }
   }
 }
 
 .exchange-quotes-wrap{
-  padding: 0 2rem;
-  .total-info{
-    padding-top: 10px;
-    font-size: 14px;
-    color: #999999;
-    border-bottom: 1px solid #eee;
-    line-height: 2.5rem;
-  }
-  .ant-table {
-    thead {
-      th{
-        background: #ffffff!important;
-        border-bottom: 1px solid #eee!important;
-      }
-    }
-  }
+  background: #ffffff;
+  overflow: hidden;
+  // padding: 0 2rem;
+  // .total-info{
+  //   padding-top: 10px;
+  //   font-size: 14px;
+  //   color: #999999;
+  //   border-bottom: 1px solid #eee;
+  //   line-height: 2.5rem;
+  // }
+  // .ant-table {
+  //   thead {
+  //     th{
+  //       background: #ffffff!important;
+  //       border-bottom: 1px solid #eee!important;
+  //     }
+  //   }
+  // }
 }
 
 // .apply-trc20 {
@@ -161,3 +173,105 @@
 //     left: 10px;
 //   }
 // }
+
+.token-rating-rule {
+  ul {
+    padding-left: 0;
+    li {
+      list-style: none;
+      color: #666666;
+    }
+  }
+}
+.information-bg {
+  .flex-1 {
+    .information-bg-item {
+      &:first-child {
+        & > span {
+          font-size: 16px;
+          color: #333333;
+          width: 100%;
+        }
+        border-bottom: none;
+      }
+      & > span {
+        font-size: 14px;
+        color: #666666;
+        font-weight: 500;
+      }
+
+      &:last-child {
+        border-bottom: none;
+      }
+      & > div {
+        font-size: 14px;
+        color: #333;
+
+        .token-price-trx {
+          font-size: 14px;
+          color: #666666;
+        }
+      }
+      .btn-danger {
+        border: 1px solid #c23631;
+        border-radius: 1px;
+        background: none;
+        span {
+          font-size: 13px;
+          color: #c23631;
+          font-weight: 400;
+        }
+      }
+    }
+  }
+}
+.tokenDetail {
+  th {
+    span {
+      font-weight: 500;
+    }
+  }
+}
+.tron-light .token_black.mc-donalds-coin .card-header .nav-item a {
+  font-size: 16px;
+  color: #c23631;
+  font-family: PingFangSC-Regular;
+}
+.card-body {
+  position: relative;
+  .token-sign {
+    position: absolute;
+    background: url("../images/token/tokenSign.png") 100% 100%;
+    width: 46px;
+    height: 19.2px;
+    text-indent: 10px;
+    background-size: 100% 100%;
+    line-height: 19.2px;
+    font-size: 10px;
+    color: #ffffff;
+    top: -6px;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .information-bg.token-mobile {
+    display: block !important;
+    .information-bg-item {
+      min-height: 45px;
+      height: auto;
+    }
+    .flex-1 {
+      margin-top: 1rem;
+    }
+    .price-info {
+      display: block !important;
+      .col-red,
+      .col-green {
+        margin-left: 0 !important;
+      }
+    }
+    .token-price-trx {
+      display: block;
+    }
+  }
+}
