@@ -261,7 +261,11 @@ class Statistics extends React.Component {
 
     async loadVolume(){
         let {intl} = this.props;
-        let volumeData = await xhr.get("https://server.tron.network/api/v2/node/market_data");
+
+        let TRXURL = encodeURI(`http://graphs2.coinmarketcap.com/currencies/tron/`)
+        let volumeData = await xhr.get(
+            `${API_URL}/api/system/proxy?url=${TRXURL}`
+        );
         let volumeUSD = volumeData.data.market_cap_by_available_supply
 
         if (volumeUSD == null) {
