@@ -119,10 +119,19 @@
 }
 
 .exchange-quotes-wrap{
+  padding: 0 2rem;
+  .total-info{
+    padding-top: 10px;
+    font-size: 14px;
+    color: #999999;
+    border-bottom: 1px solid #eee;
+    line-height: 2.5rem;
+  }
   .ant-table {
     thead {
       th{
         background: #ffffff!important;
+        border-bottom: 1px solid #eee!important;
       }
     }
   }

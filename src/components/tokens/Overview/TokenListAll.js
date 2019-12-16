@@ -326,10 +326,11 @@ class TokenList extends Component {
       {
         // title: intl.formatMessage({id: 'market_capitalization_trx'}),
         title: () => {
+          let text = t('total_supply_tip1') + '1000' + t('total_supply_tip1');
           return (
             <div>
               <span className="mr-2">
-                <QuestionMark placement="top" text="total_supply_tip" />
+                <QuestionMark placement="top" text={text} />
               </span>
               {upperFirst(intl.formatMessage({ id: "market_capitalization_t" }))}
             </div>

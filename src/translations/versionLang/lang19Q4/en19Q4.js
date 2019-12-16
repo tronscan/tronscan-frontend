@@ -85,4 +85,24 @@ export const lang19Q4 = {
    "token_rating_rule_title_end_4":
    "TRONSCAN will update the Token Reputation System as it sees fit for the ecosystem. The updated policy will take effect once published on the official website.    ",
 
+   //2019-12-10  leon
+   "token_overview":"Token Tracker",
+   "token_rank": "Rank",
+   "gain_tip": "24 hour change compared with TRX",
+   "total_supply_tip1": "Calculated by multiplying total circulating supply by current price of each token. Tokens with 24h trading volume lower than ",
+   "total_supply_tip2":" TRX are excluded.",
+   "market_capitalization_t": "Market Cap",
+   "token_tron_total": "Total TRON Tokens",
+   "token_week": "This Week",
+   "token_scan_total": "Total in TRONSCAN",
+   "create_token_btn": "Issue Tokens",
+   "token_exchange":"Exchange",
+   "token_exchange_pair":"Trading Pair",
+   "token_exchange_price":"Price",
+   "token_exchange_24h_vol":"24h Volume",
+   "token_exchange_vol_rate":"Percentage",
+   "token_exchange_total1":" ",
+   "token_exchange_total2":" trading pairs in total",
+   "token_exchange_rate_tip":"24h volume of the trading pair / 24h volume of the token",
+   "contract_available_energy":"Available Energy",
 }

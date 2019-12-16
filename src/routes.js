@@ -266,7 +266,7 @@ export const routes = [
       //   component: TokenListAsync
       // },
       {
-        label: "overview",
+        label: "token_overview",
         path: "/tokens/list",
         icon: "fa fa-list",
         component: TokenAllAsync

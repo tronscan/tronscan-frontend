@@ -84,4 +84,24 @@ export const lang19Q4 = {
    "token_rating_rule_title_end_4":
    "TRONSCAN will update the Token Reputation System as it sees fit for the ecosystem. The updated policy will take effect once published on the official website.    ",
 
+    //2019-12-10  leon
+    "token_overview":"visión general de token",
+    "token_rank": "Clasificación",
+    "market_capitalization_t": "Valor al token en circulación",
+    "token_tron_total": "Número total de token de TRON",
+    "token_week": "Nuevas tokens durante la semana",
+    "token_scan_total": "Número de tokens en TRONSCAN",
+    "create_token_btn": "Emisión de token",
+    "gain_tip": "Movimiento de 24 horas",
+    "total_supply_tip1": "由通证流通量乘以当前通证市场价格得出，24小时交易量不足",
+    "total_supply_tip2":"TRX的不计入统计",
+    "token_exchange":"Exchanges",
+    "token_exchange_pair":"trading pairs",
+    "token_exchange_price":"Precio",
+    "token_exchange_24h_vol":"Transacciones de 24 horas",
+    "token_exchange_vol_rate":"Proporción de transacciones",
+    "token_exchange_total1":"当前共",
+    "token_exchange_total2":"个交易对",
+    "token_exchange_rate_tip":"La proporción que ocupa el volumen en ese trading pair de 24 horas del token  en el volumen comercial total de 24 horas ",
+    "contract_available_energy":"可用能量",
 }

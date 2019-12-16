@@ -198,7 +198,7 @@ class ExchangeQuotes extends React.Component {
 
   }
   render(){
-    let { list, pagination, loading } = this.state;
+    let { list, pagination, loading, total } = this.state;
     let column = IS_MAINNET
       ? this.customizedColumn()
       : this.sunNetCustomizedColumn();
@@ -209,8 +209,8 @@ class ExchangeQuotes extends React.Component {
             <TronLoader />
           </div>
         )}
-        <div className="bg-white exchange-quotes-wrap" style={{padding: '0 20px'}}>
-        {/* <div>{t('')}</div> */}
+        <div className="bg-white exchange-quotes-wrap">
+        <div className="total-info">{tu('token_exchange_total1')}{`${total}`}{tu('token_exchange_total2')}</div>
           <Table
             bordered={false}
             columns={column}
