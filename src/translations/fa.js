@@ -1574,6 +1574,7 @@ export const messages = {
     "TRC20_token": "TRC20 Token",
     "TRC20_decimals": "دقت",
     "nav_more": "بیشتر",
+    "testnet":'شبکه تست',
     "no_holders_found": "هیچ دارنده توکن یافت نشد",
     "search_TRC20": "جستجوی آدرس",
     "beginners_guide": "راهنمایی",

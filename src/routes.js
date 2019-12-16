@@ -689,6 +689,21 @@ export const routes = [
         // },
       ],
       [
+        "testnet",
+        {
+          url: "https://nile.tronscan.org",
+          icon: false,
+          label: "NILE TESTNET",
+          sidechain: false
+        },
+        {
+          url: "https://shasta.tronscan.org",
+          icon: false,
+          label: "SHASTA TESTNET",
+          sidechain: false
+        }
+      ],
+      [
         "Documentation",
         {
           url: "https://tron.network/static/doc/white_paper_v_2_0.pdf",

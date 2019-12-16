@@ -77,9 +77,9 @@ export function Information({ token: tokens }) {
     {
       name: "token_price_new",
       content: (
-        <div className="d-flex">
+        <div className="d-flex ">
           {token["market_info"] ? (
-            <div className="d-flex">
+            <div className="d-flex price-info">
               {token["priceToUsd"].toFixed(6)} USD
               <span className="token-price-trx">
                 ≈ {token["market_info"].priceInTrx} TRX
@@ -386,7 +386,7 @@ export function Information({ token: tokens }) {
   );
 
   return (
-    <div className="information-bg d-flex">
+    <div className="information-bg d-flex token-mobile">
       {LeftMap}
       {RightMap}
     </div>

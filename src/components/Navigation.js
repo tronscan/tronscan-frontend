@@ -1279,9 +1279,10 @@ class Navigation extends React.Component {
                                       if (Route.showInMenu === false) {
                                         return null;
                                       }
-
+                                      //wjl
                                       if (!isUndefined(Route.url) && !Route.sidechain && Route.label !== 'developer_challenge') {
                                         return (
+                                          <span className='mr-3 d-inline-block developer_challenge_box'>
                                             <HrefLink
                                                 key={Route.url}
                                                 className="dropdown-item text-uppercase"
@@ -1292,6 +1293,8 @@ class Navigation extends React.Component {
                                               {Route.badge &&
                                               <Badge value={Route.badge}/>}
                                             </HrefLink>
+                                           {Route.label==='NILE TESTNET'&& <span className="new-test-net">new</span>} 
+                                          </span>
                                         );
                                       }
                                       if (!isUndefined(Route.url) && !Route.sidechain && Route.label == 'developer_challenge') {
