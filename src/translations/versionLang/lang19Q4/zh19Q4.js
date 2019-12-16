@@ -32,6 +32,8 @@ export const lang19Q4 = {
     "FinalResult": "最终结果",
     "distributionTitle": "持仓分布",
     "assetsPercent": "第{first}-{end}名总资产",
+    "holders": "持有者",
+
     // 2019-12-10
     "token_basic_view": "基本概况",
     "token_additional_materials": "补充资料",
@@ -46,34 +48,24 @@ export const lang19Q4 = {
     "token_issuance_info": "发售信息",
     "token_market": "交易市场",
     "token_contract_tab": "通证合约",
-    "token_price_issue":"发行价",
+    "token_price_issue": "发行价",
     "token_Participants": "参与者",
     "token_rating_rule": "TRONSCAN 信用评级规则",
-    "token_rating_rule_title":
-    "TRONSCAN目前根据通证信息的完善程度、社区反馈以及是否可在POLONIDEX交易将通证分为以下5个信用评级：",
+    "token_rating_rule_title": "TRONSCAN目前根据通证信息的完善程度、社区反馈以及是否可在POLONIDEX交易将通证分为以下5个信用评级：",
     "token_rating_rule_title_p1_title": "未知",
-    "token_rating_rule_title_p1":
-    "未知信用评级是新录入通证的默认评级，若通证发行成功后未补充更新信息，只有强制基本信息的话，将会被认为是未知通证。强制基本信息包括：通证名称、通证简称、通证简介、发行量、精度、发行者，TRC20通证还应包含发行合约、合约创建时间和合约创建者。",
+    "token_rating_rule_title_p1": "未知信用评级是新录入通证的默认评级，若通证发行成功后未补充更新信息，只有强制基本信息的话，将会被认为是未知通证。强制基本信息包括：通证名称、通证简称、通证简介、发行量、精度、发行者，TRC20通证还应包含发行合约、合约创建时间和合约创建者。",
     "token_rating_rule_title_p2_title": "中立",
-    "token_rating_rule_title_p2":
-    "此类通证在发行成功后补充更新了信息，具体包括：官网、Logo、邮箱、GitHub地址、白皮书地址、社交媒体链接（至少一个）",
+    "token_rating_rule_title_p2": "此类通证在发行成功后补充更新了信息，具体包括：官网、Logo、邮箱、GitHub地址、白皮书地址、社交媒体链接（至少一个）",
     "token_rating_rule_title_p3_title": "OK",
-    "token_rating_rule_title_p3":
-    "若通证在POLONIDEX正式上线交易，则会获得OK信用评级。",
-    "token_rating_rule_title_p3_1":
-    "POLONIDEX上币申请需要在TRONSCAN进行，在申请前需要了解以下事项： ",
-    "token_rating_rule_title_p3_2":
-    "1）请先登TRONSCAN，并确保该账户至少有一个已经发行的 TRC10 / TRC20 通证。",
-    "token_rating_rule_title_p3_3":
-    "2）选择需要在POLONIDEX上币的通证，提供一些基本信息，该通证便可以通过搜索进行交易。",
-    "token_rating_rule_title_p3_4":
-    "3） 如果您希望通证显示在行情列表中，则需要提供更多信息， 将有专业的审核人员审核您的申请。在通过审核后，POLONIDEX将在一周内通过电子邮件与您联系。只有通过审核的通证才具有获得OK信用评级的资格。",
+    "token_rating_rule_title_p3": "若通证在POLONIDEX正式上线交易，则会获得OK信用评级。",
+    "token_rating_rule_title_p3_1": "POLONIDEX上币申请需要在TRONSCAN进行，在申请前需要了解以下事项： ",
+    "token_rating_rule_title_p3_2": "1）请先登TRONSCAN，并确保该账户至少有一个已经发行的 TRC10 / TRC20 通证。",
+    "token_rating_rule_title_p3_3": "2）选择需要在POLONIDEX上币的通证，提供一些基本信息，该通证便可以通过搜索进行交易。",
+    "token_rating_rule_title_p3_4": "3） 如果您希望通证显示在行情列表中，则需要提供更多信息， 将有专业的审核人员审核您的申请。在通过审核后，POLONIDEX将在一周内通过电子邮件与您联系。只有通过审核的通证才具有获得OK信用评级的资格。",
     "token_rating_rule_title_p4_title": "有风险",
-    "token_rating_rule_title_p4":
-    "此类通证有关于欺诈/钓鱼/伪造/发送垃圾信息等的举报，或有关于此类通证的虚假陈述的举报且未有效处理，或有其他恶性报告，经TRONSCAN评估认为存在安全风险。存在安全风险的通证将无法在TRONSCAN上搜索到。 ",
+    "token_rating_rule_title_p4": "此类通证有关于欺诈/钓鱼/伪造/发送垃圾信息等的举报，或有关于此类通证的虚假陈述的举报且未有效处理，或有其他恶性报告，经TRONSCAN评估认为存在安全风险。存在安全风险的通证将无法在TRONSCAN上搜索到。 ",
     "token_rating_rule_title_p5_title": "欺诈",
-    "token_rating_rule_title_p5":
-    "此类通证有大量关于欺诈/钓鱼/伪造/发送垃圾信息等的举报，或有大量关于此类通证的虚假陈述的举报且未有效处理，或有大量其他恶性报告，或项目团队解散、官方网站和社区长时间无人维护，或项目团队涉嫌违法行为面临重大法律制裁，经TRONSCAN评估认为存在极高安全风险。存在极高安全风险的通证将无法在TRONSCAN上搜索到。",
+    "token_rating_rule_title_p5": "此类通证有大量关于欺诈/钓鱼/伪造/发送垃圾信息等的举报，或有大量关于此类通证的虚假陈述的举报且未有效处理，或有大量其他恶性报告，或项目团队解散、官方网站和社区长时间无人维护，或项目团队涉嫌违法行为面临重大法律制裁，经TRONSCAN评估认为存在极高安全风险。存在极高安全风险的通证将无法在TRONSCAN上搜索到。",
     "token_rating_rule_title_end_title": "免责声明：",
     "token_rating_rule_title_end_1":
     "TRONSCAN作为波场生态的一款区块浏览器，仅提供波场生态数据信息的展示和查询等服务，关于通证的所有信息皆由通证所有者自行上传，TRONSCAN不参与任何通证的发行和发展，不对通证信息的真实性和有效性做任何担保，请注意甄别使用。",
@@ -85,7 +77,6 @@ export const lang19Q4 = {
         "TRONSCAN将根据生态发展的需要适时更新通证信用评级规则，更新后的通证信用评级规则在网站上一经公布即有效代替原来的通证信用评级规则。",
     "token_par_issu":"参与发行",
     "token_cau_risk":"请注意防范风险!",
-
     //2019-12-10  leon
     "token_rank": "排名",
     "gain_tip": "涨跌幅以TRX为参考对象，实行24小时制",
@@ -95,11 +86,11 @@ export const lang19Q4 = {
     "token_week": "周新增",
     "token_scan_total": "TRONSCAN收录通证数",
     "create_token_btn": "发行通证",
-    "token_exchange":"交易所",
-    "token_exchange_pair":"交易对",
-    "token_exchange_price":"价格",
-    "token_exchange_24h_vol":"24小时成交量",
-    "token_exchange_vol_rate":"成交量占比",
-    "token_exchange_rate_tip":"该通证在该交易对24小时的成交量占该通证24小时所有成交量的比重",
+    "token_exchange": "交易所",
+    "token_exchange_pair": "交易对",
+    "token_exchange_price": "价格",
+    "token_exchange_24h_vol": "24小时成交量",
+    "token_exchange_vol_rate": "成交量占比",
+    "token_exchange_rate_tip": "该通证在该交易对24小时的成交量占该通证24小时所有成交量的比重",
 
 }
