@@ -9,7 +9,7 @@ import moment from "moment";
 import { Truncate } from "../../common/text";
 import { withTimers } from "../../../utils/timing";
 import { FormattedNumber, injectIntl } from "react-intl";
-import SmartTable from "../../common/SmartTable.js";
+import SmartTable from "../../common/SmartTable";
 import { upperFirst } from "lodash";
 import { TronLoader } from "../../common/loaders";
 import xhr from "axios/index";
@@ -190,6 +190,34 @@ class Transfers extends React.Component {
       {
         title: upperFirst(
           intl.formatMessage({
+            id: "FinalResult"
+          })
+        ),
+        dataIndex: "contractRet",
+        key: "contractRet",
+        className: "ant_table",
+        filterMultiple: false,
+        filters: [
+          {
+            text: "SUCCESS",
+            value: "SUCCESS"
+          },
+          {
+            text: "FAIL",
+            value: "FAIL"
+          },
+          {
+            text: "CONFIRMING",
+            value: "CONFIRMING"
+          }
+        ],
+        onFilter: (value, record) => {
+          console.log(value);
+        }
+      },
+      {
+        title: upperFirst(
+          intl.formatMessage({
             id: "amount"
           })
         ),
@@ -263,7 +291,8 @@ class Transfers extends React.Component {
             <div
               className="d-flex justify-content-between pl-3 pr-3 pt-3 pb-3"
               style={{
-                background: "#fff"
+                background: "#fff",
+                minHeight: "8rem"
               }}
             >
               {!loading && (
@@ -283,25 +312,27 @@ class Transfers extends React.Component {
                 }}
               />
             </div>
-            {!loading && transfers.length === 0 ? (
-              <div className="pt-5 pb-5 text-center no-data transfers-bg-white">
-                {tu("no_transfers")}
-              </div>
-            ) : (
-              <SmartTable
-                bordered={true}
-                loading={loading}
-                position="bottom"
-                column={column}
-                data={transfers}
-                total={rangeTotal > 2000 ? 2000 : rangeTotal}
-                addr="address"
-                transfers="token"
-                onPageChange={(page, pageSize) => {
-                  this.loadPage(page, pageSize);
-                }}
-              />
-            )}
+            <div className="trx20tronsfers">
+              {!loading && transfers.length === 0 ? (
+                <div className="pt-5 pb-5 text-center no-data transfers-bg-white">
+                  {tu("no_transfers")}
+                </div>
+              ) : (
+                <SmartTable
+                  bordered={false}
+                  loading={loading}
+                  position="bottom"
+                  column={column}
+                  data={transfers}
+                  total={rangeTotal > 2000 ? 2000 : rangeTotal}
+                  addr="address"
+                  transfers="token"
+                  onPageChange={(page, pageSize) => {
+                    this.loadPage(page, pageSize);
+                  }}
+                />
+              )}
+            </div>
           </div>
         </div>
       </Fragment>
