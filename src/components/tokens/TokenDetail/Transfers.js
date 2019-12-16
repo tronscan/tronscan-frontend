@@ -252,6 +252,21 @@ class Transfers extends React.Component {
       loading,
       emptyState: EmptyState = null
     } = this.state;
+    const listCommonSty = {
+      textAlign: "center",
+      width: "25%",
+      paddingTop: "20px"
+    };
+    const descStyle = {
+      fontFamily: "HelveticaNeue",
+      fontSize: "12px",
+      color: "#999999"
+    };
+    const listTitleStyle = {
+      fontFamily: "HelveticaNeue-Medium",
+      fontSize: "18px",
+      color: "#333333"
+    };
     let { theadClass = "thead-dark", intl } = this.props;
     let column = this.customizedColumn();
     let tableInfo =
@@ -289,6 +304,46 @@ class Transfers extends React.Component {
         <div className="row transfers">
           <div className="col-md-12 table_pos">
             <div
+              style={{
+                display: "flex",
+                background: "#fff",
+                borderBottom: "1px solid #EEEEEE"
+              }}
+              className="pt-3 pb-3"
+            >
+              <div style={listCommonSty}>
+                <div
+                  style={{
+                    fontFamily: "HelveticaNeue-Medium",
+                    fontSize: "18px",
+                    color: "#C64844"
+                  }}
+                >
+                  TFMAHNT…ts65Y12
+                </div>
+                <p style={descStyle}>Holders</p>
+              </div>
+              <div style={listCommonSty}>
+                <div style={listTitleStyle}>537.2334TRX</div>
+                <p style={descStyle}>Holdings</p>
+              </div>
+              <div style={listCommonSty}>
+                <div style={listTitleStyle}>55.5%</div>
+                <p style={descStyle}>Accounted for</p>
+              </div>
+              <div style={listCommonSty}>
+                <div style={listTitleStyle}>
+                  $23432.234
+                  <span
+                    style={{ color: "rgba(51,51,51,0.25)", fontSize: "14px" }}
+                  >
+                    ≈123432432 TRX
+                  </span>
+                </div>
+                <p style={descStyle}>Value</p>
+              </div>
+            </div>
+            <div
               className="d-flex justify-content-between pl-3 pr-3 pt-3 pb-3"
               style={{
                 background: "#fff",
@@ -302,7 +357,7 @@ class Transfers extends React.Component {
                   typeText="transaction_info"
                   divClass="table_pos_info_addr"
                   selected
-                  top="64px"
+                  top="154px"
                 />
               )}
               <DateSelect
