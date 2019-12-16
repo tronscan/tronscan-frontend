@@ -346,8 +346,7 @@ class Transfers extends React.Component {
             <div
               className="d-flex justify-content-between pl-3 pr-3 pt-3 pb-3"
               style={{
-                background: "#fff",
-                minHeight: "8rem"
+                background: "#fff"
               }}
             >
               {!loading && (
@@ -357,7 +356,7 @@ class Transfers extends React.Component {
                   typeText="transaction_info"
                   divClass="table_pos_info_addr"
                   selected
-                  top="154px"
+                  top="184px"
                 />
               )}
               <DateSelect

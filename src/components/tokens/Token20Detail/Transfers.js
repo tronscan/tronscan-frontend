@@ -420,7 +420,7 @@ class Transfers extends React.Component {
                       typeText="transaction_info"
                       divClass="table_pos_info_addr"
                       selected
-                      top="154px"
+                      top="184px"
                     />
                   )}
                 </div>
