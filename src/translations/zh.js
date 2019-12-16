@@ -1625,6 +1625,7 @@ export const messages = {
     "TRC20_token": "TRC20 通证",
     "TRC20_decimals": "精度",
     "nav_more": "更多",
+    "testnet":'测试网',
     "no_holders_found": "无通证持有者",
     "search_TRC20": "搜索地址",
     "beginners_guide": "教程",

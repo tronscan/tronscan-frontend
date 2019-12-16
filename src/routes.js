@@ -689,7 +689,7 @@ export const routes = [
         // },
       ],
       [
-        "testNet",
+        "testnet",
         {
           url: "https://nile.tronscan.org",
           icon: false,

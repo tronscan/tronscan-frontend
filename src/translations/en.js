@@ -1586,6 +1586,7 @@ export const messages = {
     "TRC20_token": "TRC20 Token",
     "TRC20_decimals": "Precision",
     "nav_more": "more",
+    "testnet":'Testnet',
     "no_holders_found": "No Token Holders Found",
     "search_TRC20": "Search Address",
     "beginners_guide": "Guide",

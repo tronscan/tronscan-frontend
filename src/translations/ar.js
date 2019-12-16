@@ -1571,6 +1571,7 @@ export const messages = {
     "TRC20_token": "TRC20 الرمز",
     "TRC20_decimals": "الدقه",
     "nav_more": "المزيد",
+    "testnet":"اختبار صافي",
     "no_holders_found": "لم يتم العثور على رمز مميز",
     "search_TRC20": "عنوان البحث",
     "beginners_guide": "دليل",

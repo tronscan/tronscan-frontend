@@ -1569,6 +1569,7 @@ export const messages = {
     "TRC20_token": "TRC20 토큰",
     "TRC20_decimals": "정밀도",
     "nav_more": "더 알아보기",
+    "testnet":'테스트 넷',
     "no_holders_found": "토큰 소유자가 없습니다.",
     "search_TRC20": "주소 검색",
     "beginners_guide": "가이드",
