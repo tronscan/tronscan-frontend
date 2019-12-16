@@ -988,10 +988,20 @@ class Navigation extends React.Component {
                 {popup}
               <div className="logo-wrapper">
                 <div className="container py-2 d-flex px-0">
-                  <div className="ml-4">
+                  <div className="ml-4 d-flex">
                     <Link to="/">
                       <img src={this.getLogo()} className="logo" alt="Tron"/>
                     </Link>
+                    {
+                        <span className="d-flex mt-2">
+                            <span className="ml-2 d-block" style={{borderLeft:'1px solid #999999',height:'70%'}}>
+                            </span>
+                            <span className="ml-2" style={{color:"#999999"}}>
+                                NILE TESTNET
+                            </span>
+                        </span>
+                        
+                    }
                   </div>
                     {
                         IS_TESTNET &&
