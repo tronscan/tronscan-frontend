@@ -747,6 +747,7 @@ class IssuedToken extends React.Component{
                         {status10.isPassed && tu('pass_time') }
                         {status10.isFailed && tu('black_time') }
                         {status10.isAppealing && tu('appeal_time') }
+                        { status10.isdefault && tu('pass_time') }
                         :<FormattedDate value={token10Time} className="ml-1"/>
                         {' '}
                         <FormattedTime value={token10Time}  hour='numeric' minute="numeric" second='numeric' hour12={false}/>
