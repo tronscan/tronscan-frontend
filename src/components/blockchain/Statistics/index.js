@@ -250,8 +250,8 @@ class Statistics extends React.Component {
         let root = document.getElementById('root')
         console.log('root',root)
         linkIds.forEach((item, index) => {
-            console.log('root.scrollTop', document.documentElement.scrollTop)
-            console.log('item.offsetTop',item.offsetTop)
+            // console.log('root.scrollTop', document.documentElement.scrollTop)
+            // console.log('item.offsetTop',item.offsetTop)
 
             if ( document.documentElement.scrollTop > item.offsetTop) {
                 console.log('item.key',item.key)
@@ -271,14 +271,14 @@ class Statistics extends React.Component {
         tabs.forEach((item, index) => {
            // const top = document.getElementById(`${item.id}`);
             let top = $('#'+item.id);
-            console.log('top',top)
-            console.log('top.getBoundingClientRect().top', top.offset().top)
+            // console.log('top',top)
+            // console.log('top.getBoundingClientRect().top', top.offset().top)
             if (top) {
                 linkIds.push({ key: item.id, offsetTop: top.offset().top});
             }
         })
         this.setState({ linkIds },()=>{
-            console.log('linkIds',this.state.linkIds)
+            // console.log('linkIds',this.state.linkIds)
             window.addEventListener('scroll',()=> this.onScrollEvent(linkIds))
         });
     };
@@ -306,7 +306,6 @@ class Statistics extends React.Component {
 
     let {tabs,scrollsId,txOverviewStats, addressesStats, transactionStats, transactionValueStats, blockStats, accounts, blockSizeStats, blockchainSizeStats, priceStats, volume, pieChart, supplyTypesChart} = this.state;
     let {intl} = this.props;
-    console.log('scrollsId',scrollsId)
     return (
         <main className="container header-overlap">
           <div className="card mt-3 list-style-body-scroll">
@@ -409,7 +408,7 @@ class Statistics extends React.Component {
                   </div>
                   <div className="col-md-4">
                     <div className="card-chart">
-                      <Link className="card-title" to="/blockchain/stats/volumeStats">
+                      <Link className="card-title" to="/blockchain/stats/OverallFreezingRate">
                       <span className="ml-5">
                           {tu("charts_overall_freezing_rate")}
                       </span>
@@ -477,8 +476,7 @@ class Statistics extends React.Component {
                 <div className="col-md-4">
                   <div className="card-chart">
                     <Link className="card-title" to="/blockchain/stats/blockSizeStats">
-                    <span>
-                      <i className="fas fa-chart-bar ml-5 mr-2"/>
+                    <span className="ml-5">
                         {tu("average_blocksize")}
                     </span>
                       <img src={require("../../../images/chart/Average-Block-Size.png")}
@@ -491,8 +489,7 @@ class Statistics extends React.Component {
                 <div className="col-md-4">
                   <div className="card-chart">
                     <Link className="card-title" to="/blockchain/stats/blockchainSizeStats">
-                    <span>
-                      <i className="fas fa-chart-area ml-5 mr-2"/>
+                    <span className="ml-5">
                         {tu("blockchain_size")}
                     </span>
                       <img src={require("../../../images/chart/Blockchain-Size.png")}
@@ -532,8 +529,7 @@ class Statistics extends React.Component {
                   <div className="col-md-4">
                     <div className="card-chart">
                       <Link className="card-title" to="/blockchain/stats/EnergyConsumeDistribution">
-                      <span>
-                        <i className="fas fa-chart-pie ml-5 mr-2"/>
+                      <span className="ml-5">
                           {tu("charts_daily_energy_contracts")}
                       </span>
                         <img src={require("../../../images/chart/EnergyConsumeDistribution.png")}
@@ -545,8 +541,7 @@ class Statistics extends React.Component {
                   <div className="col-md-4">
                     <div className="card-chart">
                       <Link className="card-title" to="/blockchain/stats/ContractInvocation">
-                      <span>
-                        <i className="fas fa-chart-area ml-5 mr-2"/>
+                      <span className="ml-5">
                           {tu("charts_contract_calling")}
                       </span>
                         <img src={require("../../../images/chart/ContractInvocation.png")}
@@ -558,8 +553,7 @@ class Statistics extends React.Component {
                   <div className="col-md-4 mt-5">
                     <div className="card-chart">
                       <Link className="card-title" to="/blockchain/stats/ContractInvocationDistribution">
-                      <span>
-                        <i className="fas fa-chart-pie ml-5 mr-2"/>
+                      <span className="ml-5">
                           {tu("charts_daily_contract_calling_profile")}
                       </span>
                         <img src={require("../../../images/chart/ContractInvocationDistribution.png")}
@@ -585,8 +579,7 @@ class Statistics extends React.Component {
                   <div className="col-md-4">
                     <div className="card-chart">
                       <Link className="card-title" to="/blockchain/stats/pieChart">
-                      <span>
-                        <i className="fas fa-chart-pie ml-5 mr-2"/>
+                      <span className="ml-5">
                           {tu("produce_distribution")}
                       </span>
                         <img src={require("../../../images/chart/Block-Producer-Chart.png")}

@@ -756,7 +756,6 @@ export default {
                   style: {
                       color: "#c23631",
                   }
-
               },
               gridLineWidth: 0
           },
@@ -1060,6 +1059,103 @@ export default {
       },
       series: []
 
+  },
+
+  OverallFreezingRateChart:{
+    chart: {
+        type: '',
+        zoomType: 'xy'
+    },
+    title: {
+        text: ''
+    },
+    subtitle: {
+        text: ''
+    },
+    credits: {
+        enabled: false
+    },
+    xAxis: {
+      type: 'datetime',
+      ordinal: false,
+      dateTimeLabelFormats: {
+        millisecond: '%H:%M:%S.%L',
+        second: '%H:%M:%S',
+        minute: '%H:%M',
+        hour: '%H:%M',
+        day: '%m-%d',
+        week: '%m-%d',
+        month: '%Y-%m',
+        year: '%Y'
+      },
+      gridLineColor: '#eeeeee',
+      labels: {
+        style: {
+          color: "#999999"
+        },
+        autoRotation: [-10, -20, -30, -40, -50, -60, -70, -80, -90]
+      }
+    },
+    yAxis: [
+      { // Primary yAxis
+        labels: {
+          format: '{value}%',
+          style: {
+            color: "#434343"
+          }
+        },
+        title: {
+          text: '',
+          style: {
+          //  color: Highcharts.getOptions().colors[1]
+          }
+        },
+        stackLabels: {  // 堆叠数据标签
+          enabled: true,
+          style: {
+            fontWeight: 'bold',
+        //   color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
+          }
+        }
+      }, { // Secondary yAxis
+        title: {
+          text: '降雨量',
+          style: {
+        //   color: Highcharts.getOptions().colors[0]
+          }
+        },
+        labels: {
+          format: '{value} mm',
+          style: {
+        //   color: Highcharts.getOptions().colors[0]
+          }
+        },
+        opposite: true
+      }
+    ],
+    tooltip: {
+      shared: true,
+      valueSuffix:'%',
+    },
+    exporting: {
+        enabled: true,
+        sourceWidth: 1072,
+        sourceHeight: 500,
+        filename:''
+    },
+    plotOptions: {
+      column: {
+        stacking: 'normal',
+        dataLabels: {
+          enabled: false,
+        //	color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white',
+          style: {
+            textShadow: '0 0 3px black'
+          }
+        }
+      }
+    },
+    series: []
   }
 
 };

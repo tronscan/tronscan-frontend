@@ -2538,4 +2538,12 @@ export const messages = {
   "charts_daily_energy_contracts":"日合约能量消耗",
   "charts_contract_calling":"合约调用",
   "charts_daily_contract_calling_profile":"日合约调用分布",
+  "freezing_column_time":"时间（UTC）",
+  "freezing_column_total_circulation":"TRX总流通量",
+  "freezing_column_total_frozen":"TRX冻结量",
+  "freezing_column_freezing_rate":"冻结率",
+  "freezing_column_energy_ratio":"能量占比",
+  "freezing_column_bandwidth_ratio":"带宽占比",
+  "freezing_column_more":"更多",
+  "freezing_column_total_circulation_chart":"总流通量（TRX）",
 };

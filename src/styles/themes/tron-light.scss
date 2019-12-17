@@ -429,14 +429,15 @@
     font-weight: 500;
   }
   .card-chart .card-title {
-    color: #c23631;
+    color: #000000;
     font-size: 14px;
+    font-weight: 400;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
   }
   .card-chart .card-title:hover {
-    text-decoration: underline;
+   text-decoration: underline;
   }
   .card-chart img {
     //margin: 16px auto 0;

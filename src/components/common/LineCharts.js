@@ -1906,6 +1906,175 @@ export class EnergyConsumeDistributionChart extends React.Component {
     }
 
     render() {
+
+        return (
+            <div>
+                <div id={this.state.lineId} style={this.props.style}></div>
+            </div>
+        )
+    }
+}
+
+
+
+export class OverallFreezingRateChart extends React.Component {
+
+    constructor(props) {
+        super(props)
+        this.myChart = null;
+        let id = ('_' + Math.random()).replace('.', '_');
+        this.state = {
+            lineId: 'OverallFreezingRateChart' + id
+        }
+    }
+
+    initLine(id) {
+        let _config = cloneDeep(config.OverallFreezingRateChart);
+        let {intl, data} = this.props;
+        let newData = cloneDeep(data)
+        let categories = ['2019-12-12',"2019-12-13","2019-12-14","2019-12-15",'2019-12-12',"2019-12-13","2019-12-14","2019-12-15","2019-12-13","2019-12-14","2019-12-15"];
+        let temp;
+        var chartdata = newData.map(o => {
+            o.y= o.data
+           // o.name = o.contract_address
+            return o
+        })
+        data.map((val) => {
+            temp = {...val, y: val.newtotalTransaction};
+            // categories.push(moment(val.day).format('M/D'));
+            // _config.series[0].data.push(temp);
+        })
+        
+       
+        if (newData && newData.length > 0) {
+            let options =  {
+            
+                title: {
+                    text: intl.formatMessage({id: 'charts_overall_freezing_rate'})
+                },
+                rangeSelector: {
+                    allButtonsEnabled: true,
+                    buttons: [{
+                        type: 'month',
+                        count: 3,
+                        text: 'Day',
+                        dataGrouping: {
+                            forced: true,
+                            units: [['day', [1]]]
+                        }
+                    }, {
+                        type: 'year',
+                        count: 1,
+                        text: 'Week',
+                        dataGrouping: {
+                            forced: true,
+                            units: [['week', [1]]]
+                        }
+                    }, {
+                        type: 'all',
+                        text: 'Month',
+                        dataGrouping: {
+                            forced: true,
+                            units: [['month', [1]]]
+                        }
+                    }],
+                    buttonTheme: {
+                        width: 60
+                    },
+                    selected: 1
+                },
+                xAxis: [{
+                    categories: categories,
+                    crosshair: false
+                }],
+                yAxis: [
+                    { // Primary yAxis
+                      labels: {
+                        format: '{value}%',
+                        style: {
+                          color: "#434343"
+                        }
+                      },
+                      title: {
+                        text: intl.formatMessage({id: 'freezing_column_freezing_rate'}),
+                        style: {
+                            color: "#434343"
+                        }
+                      },
+                    }, { // Secondary yAxis
+                      title: {
+                        text: intl.formatMessage({id: 'freezing_column_total_circulation_chart'}),
+                        style: {
+                          color: "#C64844"
+                        }
+                      },
+                      labels: {
+                        style: {
+                            color: "#C64844"
+                        }
+                      },
+                     opposite: true
+                    }
+                  ],
+                // tooltip: {
+                //     headerFormat: '',
+                //     pointFormat: '<span style="color:{point.color}">\u25CF</span> <b> {point.name}</b><br/>' +
+                //     intl.formatMessage({id: 'call_address_time'}) + ': <b>{point.caller_amount}</b><br/>' +
+                //     intl.formatMessage({id: 'call_address_scale'}) + ': <b>{point.caller_percent}</b><br/>'+
+                //     intl.formatMessage({id: 'call_time'}) + ': <b>{point.y}</b><br/>' +
+                //     intl.formatMessage({id: 'call_scale'}) + ': <b>{point.trigger_percent}</b><br/>'
+                // },
+                series: [{
+                    name: intl.formatMessage({id: 'freezing_column_total_circulation'}),
+                    type: 'column',
+                    yAxis: 1,
+                    color: "#DA8885",
+                    data: [9321363918342.775, 9321363918342.775, 9321363918342.775, 9321363918342.775, 9321363918342.775, 9321363918342.775, 9321363918342.775, 9321363918342.775, 9321363918342.775, 9321363918342.775, 9321363918342.775, 9321363918342.775],
+                    tooltip: {
+                        valueSuffix: ' '
+                    }
+                }, {
+                    name: intl.formatMessage({id: 'freezing_column_total_frozen'}),
+                    type: 'column',
+                    yAxis: 1,
+                    color: "#C64844",
+                    data: [510255631450, 520255631452, 550255631435,610255633145, 310253563145, 210255633145, 410255631145, 512255631451, 560255632145, 610255633145, 580255633145, 518255613145],
+                    // marker: {
+                    //     enabled: false
+                    // },
+                    //dashStyle: 'shortdot',
+                    tooltip: {
+                        valueSuffix: ' '
+                    }
+                }, {
+                    name: intl.formatMessage({id: 'freezing_column_freezing_rate'}),
+                    type: 'spline',
+                    color: "#5A5A5A",
+                    data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6],
+                    tooltip: {
+                        valueSuffix: ' %'
+                    }
+                }]
+            }
+            Object.keys(options).map(item => {
+                _config[item] = options[item]
+            })
+        }
+        if (newData && newData.length === 0) {
+            _config.title.text = "No data";
+        }
+        Highcharts.StockChart(id, _config);
+    }
+
+    componentDidMount() {
+        this.initLine(this.state.lineId);
+    }
+
+    componentDidUpdate() {
+        this.initLine(this.state.lineId);
+    }
+
+    render() {
         return (
             <div>
                 <div id={this.state.lineId} style={this.props.style}></div>
