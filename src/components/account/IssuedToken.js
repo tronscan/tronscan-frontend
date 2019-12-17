@@ -548,6 +548,7 @@ class IssuedToken extends React.Component{
           isPassed: issuedAsset.canShow == 1,
           isFailed: issuedAsset.canShow == 3,
           isAppealing: issuedAsset.canShow == 2,
+          isdefault: issuedAsset.canShow == 0
         }
         
         token10Time = issuedAsset.dateCreated
@@ -739,6 +740,8 @@ class IssuedToken extends React.Component{
                         { status10.isPassed && <Tag color="#28a745">{tu('type_pass')}</Tag> }
                         { status10.isFailed && <Tag color="#3d3d3d">{tu('type_black')}</Tag> }
                         { status10.isAppealing && <Tag color="#f5a623">{tu('type_appeal')}</Tag> }
+                        { status10.isdefault && <Tag color="#28a745">{tu('type_pass')}</Tag> }
+                        
                       </td>
                       <td className="text-light">
                         {status10.isPassed && tu('pass_time') }
