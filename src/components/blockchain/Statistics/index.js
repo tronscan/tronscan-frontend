@@ -244,17 +244,11 @@ class Statistics extends React.Component {
     }
 
     onScrollEvent(linkIds) {
-        // const { linkIds } = this.state;
-        console.log('linkIds22222',linkIds)
-        console.log('11111')
-        let root = document.getElementById('root')
-        console.log('root',root)
+        const viewPortHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight
         linkIds.forEach((item, index) => {
-            // console.log('root.scrollTop', document.documentElement.scrollTop)
-            // console.log('item.offsetTop',item.offsetTop)
-
-            if ( document.documentElement.scrollTop > item.offsetTop) {
-                console.log('item.key',item.key)
+          const el = $('#'+item.key).get(0);
+          const top = el.getBoundingClientRect() && el.getBoundingClientRect().top
+            if ( top <=viewPortHeight-500) {
                 $('.'+item.key).addClass('active');
                 linkIds.forEach((k, v) => {
                     if (item.key !== k.key) {
@@ -263,7 +257,6 @@ class Statistics extends React.Component {
                 });
             }
         });
-        console.log('222')
     }
     getScrollsIds = () => {
         let { tabs } = this.state;
@@ -295,7 +288,7 @@ class Statistics extends React.Component {
             const anchorElement = document.getElementById(anchorName);
             if (anchorElement) {
                 anchorElement.scrollIntoView({
-                    block: 'start',
+                    block: 'center',
                     behavior: 'smooth',
                 });
             }
