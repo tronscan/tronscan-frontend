@@ -671,7 +671,7 @@ class IssuedToken extends React.Component{
                 <hr className="mt-2"/>
                 
 
-                  <div className="iocInfo mb-4  w-100">
+                  {/* <div className="iocInfo mb-4  w-100">
                       <div className="iocInfo-content ml-3">
                           <div className="d-flex justify-content-between mb-1" style={{fontSize: '12px'}}>
                             <h4 className="mb-2" style={{fontWeight: '500'}}>{tu('ico_infomation')}</h4>
@@ -724,7 +724,7 @@ class IssuedToken extends React.Component{
                           }
                         </div>
                       }</div>
-                  </div>
+                  </div> */}
 
                 <table className="table tf-card-table">
                   <tbody>
