@@ -87,7 +87,7 @@ export class PriceInfo extends Component {
                     </div>
                  </Form.Item>
                 </Col>
-                {/* <Col  span={24} md={11}>
+                <Col  span={24} md={11}>
                 <div className="part p-3 mb-4">
                   <div className="part_title mb-3">
                     <span className="part_title_name">{tu('participation')}</span>
@@ -119,8 +119,8 @@ export class PriceInfo extends Component {
                     </Col>
                   </Row>
                 </div>
-               </Col> */}
-                {/* <Col  span={24} md={11}>
+               </Col> 
+                 <Col  span={24} md={11}>
                 <div className="part p-3  mb-4">
                   <div className="part_title mb-3">
                     <span className="part_title_name">{tu('frozen_supply')}</span>
@@ -150,7 +150,7 @@ export class PriceInfo extends Component {
                     </Col>
                   </Row>
                 </div>
-               </Col> */}
+               </Col> 
               </Row>
             </div>
     )
