@@ -26,6 +26,8 @@ import {
 } from "../../../constants";
 import { login } from "../../../actions/app";
 import { reloadWallet } from "../../../actions/wallet";
+import { updateTokenInfo } from "../../../actions/tokenInfo";
+
 import { connect } from "react-redux";
 import SweetAlert from "react-bootstrap-sweetalert";
 import { pkToAddress } from "@tronscan/client/src/utils/crypto";
@@ -141,12 +143,15 @@ class Token20Detail extends React.Component {
       API_URL + "/api/token_trc20?contract=" + address + "&showAll=1"
     );
     let token = result.data.trc20_tokens[0];
+    this.props.updateTokenInfo({
+      tokenDetail: token
+    });
 
     token.priceToUsd =
       token && token["market_info"]
         ? token["market_info"].priceInTrx * priceUSD
         : 0;
-    console.log("token===", token, priceUSD);
+
     this.setState({
       loading: false,
       token,
@@ -523,7 +528,6 @@ class Token20Detail extends React.Component {
     pathname.replace(rex, function(a, b) {
       tabName = b;
     });
-    console.log(pathname);
     const defaultImg = require("../../../images/logo_default.png");
     return (
       <main className="container header-overlap token_black mc-donalds-coin">
@@ -690,6 +694,7 @@ class Token20Detail extends React.Component {
 function mapStateToProps(state) {
   return {
     tokens: state.tokens.tokens,
+    tokensInfo: state.tokensInfo,
     wallet: state.wallet,
     currentWallet: state.wallet.current,
     account: state.app.account,
@@ -700,7 +705,8 @@ function mapStateToProps(state) {
 const mapDispatchToProps = {
   login,
   reloadWallet,
-  loadUsdPrice
+  loadUsdPrice,
+  updateTokenInfo
 };
 
 export default connect(

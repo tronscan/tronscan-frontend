@@ -31,7 +31,7 @@ export const lang19Q4 = {
     */
     "FinalResult": "Результат",
     "distributionTitle": "Распределение Активов по Держателям",
-    "assetsPercent": "Общее количество активов топ {first}-{end} держателей",
+    "assetsPercent": "Общее количество активов топ {first}~{end} держателей",
     "holders": "Держатели",
 
     // 2019-12-10

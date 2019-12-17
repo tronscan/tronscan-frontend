@@ -31,7 +31,7 @@ export const lang19Q4 = {
     */
     "FinalResult": "النتيجة النهائية",
     "distributionTitle": "توزيع المراكز",
-    "assetsPercent": "إجمالي أصول {first}-{end}",
+    "assetsPercent": "إجمالي أصول {first}~{end}",
     "holders": "حامل الرمز",
     // 2019-12-10
     "token_basic_view": "الأساسيات",

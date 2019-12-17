@@ -120,7 +120,7 @@ class TokenHolders extends React.Component {
         key: "address",
         render: (text, record, index) => {
           return record.ico ? (
-            <div>
+            <div style={{ display: "flex" }}>
               <Tooltip
                 placement="topLeft"
                 title={upperCase(intl.formatMessage({ id: record.ico }))}
@@ -137,16 +137,12 @@ class TokenHolders extends React.Component {
                   <AddressLink address={record.address} />
                 </span>
               </Tooltip>
-              <span style={{ whiteSpace: "nowrap" }}>
-                {record.addressTag ? record.addressTag : ""}{" "}
-              </span>
+              <span>{record.addressTag ? record.addressTag : ""} </span>
             </div>
           ) : (
             <div>
               <AddressLink address={record.address} />
-              <span style={{ whiteSpace: "nowrap" }}>
-                {record.addressTag ? record.addressTag : ""}{" "}
-              </span>
+              <span>{record.addressTag ? record.addressTag : ""} </span>
             </div>
           );
         }
@@ -208,7 +204,7 @@ class TokenHolders extends React.Component {
 
   render() {
     let { addresses, total, rangeTotal, loading } = this.state;
-    let { intl } = this.props;
+    let { intl, filter } = this.props;
     let column = this.customizedColumn();
     let tableInfo =
       intl.formatMessage({ id: "a_totle" }) +
@@ -237,8 +233,10 @@ class TokenHolders extends React.Component {
         )}
         <div className="row transfers">
           <div className="col-md-12 table_pos">
-            <HolderDistribution></HolderDistribution>
-            {/* {total?<div className="table_pos_info d-none d-md-block">{tableInfo}</div>: ''} */}
+            <HolderDistribution
+              trcType={"trc10"}
+              tokenId={filter.tokenId}
+            ></HolderDistribution>
             <div
               className="distributionWrapper"
               style={{
