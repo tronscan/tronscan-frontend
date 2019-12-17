@@ -125,24 +125,43 @@ class TokenHolders extends React.Component {
                 placement="topLeft"
                 title={upperCase(intl.formatMessage({ id: record.ico }))}
               >
-                <span className="d-flex align-items-center">
-                  <img
-                    src={require("../../../images/" + record.ico + "-logo.png")}
-                    style={{
-                      width: "14px",
-                      marginLeft: "-20px",
-                      marginRight: "6px"
-                    }}
-                  />
+                <span
+                  className="d-flex align-items-center"
+                  style={{ maxWidth: 350 }}
+                >
                   <AddressLink address={record.address} />
                 </span>
               </Tooltip>
-              <span>{record.addressTag ? record.addressTag : ""} </span>
+              {record.addressTag ? (
+                <div>
+                  <img
+                    style={{ width: 14, height: 14 }}
+                    src={`https://coin.top/production/upload/tag/${record.address}.png`}
+                    alt=""
+                  />
+                  <span> {record.addressTag}</span>
+                </div>
+              ) : (
+                ""
+              )}
             </div>
           ) : (
-            <div>
-              <AddressLink address={record.address} />
-              <span>{record.addressTag ? record.addressTag : ""} </span>
+            <div style={{ display: "flex" }}>
+              <div style={{ maxWidth: 350 }}>
+                <AddressLink address={record.address} />
+              </div>
+              {record.addressTag ? (
+                <div>
+                  <img
+                    style={{ width: 14, height: 14 }}
+                    src={`https://coin.top/production/upload/tag/${record.address}.png`}
+                    alt=""
+                  />
+                  <span> {record.addressTag}</span>
+                </div>
+              ) : (
+                ""
+              )}
             </div>
           );
         }
