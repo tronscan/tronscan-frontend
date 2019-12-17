@@ -63,6 +63,9 @@ export function Information({ token: tokens, currentTotalSupply, priceUSD }) {
     token["market_info"].priceInTrx &&
     (token["market_info"].priceInTrx * currentTotal * priceUSD).toFixed(0);
 
+
+  const defaultContent = <span style={{ color: "#d8d8d8" }}>-</span> ; 
+
   const LeftTokenInfo = [
     { name: "token_basic_view", content: "" },
     {
@@ -126,7 +129,7 @@ export function Information({ token: tokens, currentTotalSupply, priceUSD }) {
                   </Link>
                 </div>
               ) : (
-                <span style={{ color: "#d8d8d8" }}>-</span>
+                {defaultContent}
               )}
             </div>
           )}
@@ -201,7 +204,7 @@ export function Information({ token: tokens, currentTotalSupply, priceUSD }) {
               <ExternalLink url={token.url} />
             )
           ) : (
-            <span style={{ color: "#d8d8d8" }}>-</span>
+            defaultContent
           )}
         </div>
       )
@@ -210,7 +213,7 @@ export function Information({ token: tokens, currentTotalSupply, priceUSD }) {
       name: "white_paper",
       content: (
         <div>
-          {token.white_paper !== "no_message" &&
+          {token.white_paper !== "no_message" ?
             (token.id == TOKEN_ID_BTT ? (
               <HrefLink
                 style={{
@@ -228,7 +231,7 @@ export function Information({ token: tokens, currentTotalSupply, priceUSD }) {
                 url={token.white_paper && t(token.white_paper)}
                 _url={token.white_paper}
               />
-            ))}
+            )) : defaultContent}
         </div>
       )
     },

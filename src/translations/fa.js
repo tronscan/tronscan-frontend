@@ -1532,7 +1532,7 @@ export const messages = {
     "propose_12": "پیشنهاد برای تغییر هزینه یک انرژی",
     "propose_13": "پیشنهاد برای تغییر حداکثر زمان اجرای یک معامله",
     "propose_14": "پیشنهاد برای تغییر نام حساب کاربری",
-    "propose_15": "پیشنهاد اجازه صدور توکن های هم نام",
+    "propose_15": "پیشنهاد کنید نام حساب تکراری را مجاز کنید",
     "propose_16": "پیشنهاد برای اجازه دادن به مجوز منابع",
     "propose_17": "پیشنهاد به اجازه هیئت منابع",
     "propose_18": "پیشنهاد برای تغییر کل محدودیت انرژی",
@@ -2122,6 +2122,7 @@ export const messages = {
     "receive_address": "دریافت آدرس (آدرس پیش فرض شخصی شماست)",
 
     "interTrx_tip": "معاملات داخلی عملیاتی است که یک آدرس کلی آدرس یک قرارداد هوشمند را فراخوانی می کند و قرارداد هوشمند نقل قول را به آدرس دیگری انتقال می دهد.",
+    "interTrx_tip_contract":"Internal transactions from contract execution",
     "event_tip": "رویدادها این است که اجازه دهید برنامهنویس یا ارائه دهنده رابط خارجی از آن برای توجه به عملیات قرارداد و ممیزی استفاده کند.",
     /* 2019-07-06*/
     "trc20_free_orders": "0 trading fee for all orders",
@@ -2446,5 +2447,7 @@ export const messages = {
     "signature_operations_required": "عملیات مورد نیاز است",
     "signature_threshold_required": "آستانه مورد نیاز است",
     "signaure_control_address_tip": "Control address refers to the associated control addresses of owner permission, SR permission and active permission. Display of the three types of permissions will change subsequently when the control address is modified.",
+    // 2019-12-10
+    "ledger_tronlink":"Login to TRONSCAN via TronLink",
     ...lang19Q4
 };

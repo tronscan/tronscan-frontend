@@ -86,11 +86,11 @@ export function Information({ token: tokens, priceUSD }) {
     },
     {
       name: "token_hold_user",
-      content: <div></div>
+      content: <div>{toThousands(token.holders_count)}</div>
     },
     {
       name: "address_info_transfers",
-      content: <div></div>
+      content: <div>{toThousands(token.transferNumber)}</div>
     },
     {
       name: "token_price_new",
@@ -389,7 +389,7 @@ export function Information({ token: tokens, priceUSD }) {
         return (
           <div className={"information-bg-item"} key={index}>
             <span>{tu(item.name)}</span>
-            <div style={{ width: "75%" }}>{item.content}</div>
+            <div style={{ width: "73%" }}>{item.content}</div>
           </div>
         );
       })}
@@ -402,7 +402,7 @@ export function Information({ token: tokens, priceUSD }) {
         return (
           <div className={"information-bg-item"} key={index}>
             <span>{tu(item.name)}</span>
-            <div style={{ width: "75%" }}>{item.content}</div>
+            <div style={{ width: "73%" }}>{item.content}</div>
           </div>
         );
       })}

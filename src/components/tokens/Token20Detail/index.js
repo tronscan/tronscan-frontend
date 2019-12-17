@@ -73,8 +73,18 @@ class Token20Detail extends React.Component {
     return winkSupply;
   }
 
+  async getTransferNum(address) {
+    let params = {
+      contract_address:address,
+      limit:0
+    }
+    let transferNumber = await ApiClientToken.getTransferNumber(params);
+    return transferNumber;
+  }
+
   loadToken = async address => {
     let { priceUSD } = this.props;
+
     const tabs = [
       // {
       //   id: "tokenInfo",
@@ -145,6 +155,8 @@ class Token20Detail extends React.Component {
       winkTotalSupply = await this.getWinkFund();
     }
 
+    let transferNumber = await this.getTransferNum(address)
+
     this.setState({ loading: true });
     let result = await xhr.get(
       API_URL + "/api/token_trc20?contract=" + address + "&showAll=1"
@@ -156,6 +168,7 @@ class Token20Detail extends React.Component {
         ? token["market_info"].priceInTrx * priceUSD
         : 0;
     token.winkTotalSupply = winkTotalSupply;
+    token.transferNumber = transferNumber.rangeTotal || 0
     this.setState({
       loading: false,
       token,
@@ -586,7 +599,7 @@ class Token20Detail extends React.Component {
                         </h5>
                         <p className="card-text">{token.token_desc}</p>
                       </div>
-                      <div className="token-sign">trc20</div>
+                      <div className="token-sign">TRC20</div>
                       {/*<div className="ml-auto">*/}
                       {/*{(!(token.endTime < new Date() || token.issuedPercentage === 100 || token.startTime > new Date() || token.isBlack) && !token.isBlack) &&*/}
                       {/*<button className="btn btn-default btn-xs d-inline-block"*/}

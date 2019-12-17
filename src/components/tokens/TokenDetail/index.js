@@ -151,7 +151,6 @@ class TokenDetail extends React.Component {
       };
       tabs.push(BttSupply);
       this.loadTotalTRXSupply();
-      tabs.push(BttSupply);
     }
     this.setState({
       tabs: tabs
@@ -224,7 +223,7 @@ class TokenDetail extends React.Component {
                         <p className="card-text">{token.description}</p>
                       </div>
 
-                      <div className="token-sign">trc10</div>
+                      <div className="token-sign">TRC10</div>
                     </div>
                   </div>
                   {token && (

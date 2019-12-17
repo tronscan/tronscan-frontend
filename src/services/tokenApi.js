@@ -29,6 +29,13 @@ class ApiClientToken {
     let res = await xhr.get(`${API_URL}/api/wink/fund`);
     return res && res.data
   }
+
+   //get transfer Number
+   async getTransferNumber(params){
+    let res = await xhr.get(`${API_URL}/api/token_trc20/transfers`,{
+      params:params} );
+    return res && res.data
+  }
 }
 
 export default new ApiClientToken();
