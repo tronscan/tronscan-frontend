@@ -38,6 +38,8 @@ import { CsvExport } from "../../common/CsvExport";
 import { loadUsdPrice } from "../../../actions/blockchain";
 import Code from "../../blockchain/Contract/Code";
 import ExchangeQuotes from "../ExchangeQuotes";
+import ApiClientToken from "../../../services/tokenApi";
+
 class Token20Detail extends React.Component {
   constructor() {
     super();
@@ -66,6 +68,11 @@ class Token20Detail extends React.Component {
     }
   }
 
+  async getWinkFund() {
+    let winkSupply = await ApiClientToken.getWinkFund();
+    return winkSupply;
+  }
+
   loadToken = async address => {
     let { priceUSD } = this.props;
     const tabs = [
@@ -79,7 +86,7 @@ class Token20Detail extends React.Component {
       {
         id: "transfers",
         icon: "",
-        path: "/transfers",
+        path: "",
         label: <span>{tu("token_transfers")}</span>,
         cmp: () => (
           <Transfers
@@ -126,6 +133,7 @@ class Token20Detail extends React.Component {
       }
     ];
 
+    let winkTotalSupply = {};
     if (address === "TLa2f6VPqDgRE67v1736s7bJ8Ray5wYjU7") {
       tabs.push({
         id: "WinkSupply",
@@ -134,6 +142,7 @@ class Token20Detail extends React.Component {
         label: <span>{tu("WIN_supply")}</span>,
         cmp: () => <WinkSupply token={token} />
       });
+      winkTotalSupply = await this.getWinkFund();
     }
 
     this.setState({ loading: true });
@@ -146,7 +155,7 @@ class Token20Detail extends React.Component {
       token && token["market_info"]
         ? token["market_info"].priceInTrx * priceUSD
         : 0;
-    console.log("token===", token, priceUSD);
+    token.winkTotalSupply = winkTotalSupply;
     this.setState({
       loading: false,
       token,
@@ -515,7 +524,7 @@ class Token20Detail extends React.Component {
   };
 
   render() {
-    let { match, wallet } = this.props;
+    let { match, wallet, priceUSD } = this.props;
     let { token, tabs, loading, buyAmount, alert, csvurl } = this.state;
     let pathname = this.props.location.pathname;
     let tabName = "";
@@ -587,7 +596,7 @@ class Token20Detail extends React.Component {
                       {/*</div>*/}
                     </div>
                   </div>
-                  <Information token={token}></Information>
+                  <Information token={token} priceUSD={priceUSD}></Information>
                 </div>
 
                 <div

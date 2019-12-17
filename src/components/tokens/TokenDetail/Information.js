@@ -8,8 +8,9 @@ import { Link } from "react-router-dom";
 import { toLower } from "lodash";
 import { cloneDeep } from "lodash";
 import { IS_MAINNET, TOKEN_ID_BTT } from "../../../constants";
+import { Level } from "chalk";
 
-export function Information({ token: tokens, currentTotalSupply }) {
+export function Information({ token: tokens, currentTotalSupply, priceUSD }) {
   let token = cloneDeep(tokens);
   let lowerText = token.reputation
     ? toLower(token.reputation) + "_active.png"
@@ -52,19 +53,21 @@ export function Information({ token: tokens, currentTotalSupply }) {
     : token.issued;
   let currentTotal = token.id == 1002000 ? currentTotalSupply : issued;
 
+  let totalSupply = token.precision
+    ? token.totalSupply / Math.pow(10, token.precision)
+    : token.totalSupply;
+  let totalSupplyUsd =
+    token["market_info"].priceInTrx &&
+    (token["market_info"].priceInTrx * totalSupply * priceUSD).toFixed(0);
+  let currentTotalSupplyUsd =
+    token["market_info"].priceInTrx &&
+    (token["market_info"].priceInTrx * currentTotal * priceUSD).toFixed(0);
+
   const LeftTokenInfo = [
     { name: "token_basic_view", content: "" },
     {
       name: "total_supply",
-      content: (
-        <FormattedNumber
-          value={
-            token.precision
-              ? token.totalSupply / Math.pow(10, token.precision)
-              : token.totalSupply
-          }
-        />
-      )
+      content: <FormattedNumber value={totalSupply} />
     },
     {
       name: "circulating_supply",
@@ -95,8 +98,8 @@ export function Information({ token: tokens, currentTotalSupply }) {
                   <span
                     className={
                       token["market_info"].gain < 0
-                        ? "col-red ml-3"
-                        : "col-green ml-3"
+                        ? "col-red ml-1"
+                        : "col-green ml-1"
                     }
                   >
                     {token["market_info"].gain > 0 ? (
@@ -132,27 +135,18 @@ export function Information({ token: tokens, currentTotalSupply }) {
     },
     {
       name: "token_capitalization",
-      content: <div></div>
+      content: (
+        <div>
+          <FormattedNumber value={currentTotalSupplyUsd}></FormattedNumber> USD
+          / <FormattedNumber value={totalSupplyUsd}></FormattedNumber> USD
+        </div>
+      )
     },
     {
       name: "token_credit_rating",
       content: (
         <div className="d-flex" style={{ justifyContent: "space-between" }}>
-          {token.canShow == 1 && (
-            <img src={require("../../../images/svg/ok.svg")} title="OK" />
-          )}
-          {token.canShow == 2 && (
-            <img
-              src={require("../../../images/svg/neutral.svg")}
-              title="Neutral"
-            />
-          )}
-          {token.canShow == 3 && (
-            <img
-              src={require("../../../images/svg/high_risk.svg")}
-              title="High Risk"
-            />
-          )}
+          {tu(`token_rules_${Number(token.level) || 0}`)}
           <Link to="/tokens/rating-rule">{tu("token_credit_rating_rule")}</Link>
         </div>
       )

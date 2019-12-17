@@ -18,7 +18,7 @@ import {
   IS_MAINNET
 } from "../../../constants";
 
-export function Information({ token: tokens }) {
+export function Information({ token: tokens, priceUSD }) {
   let token = cloneDeep(tokens);
   let social_display = 0;
   let lowerText = token.reputation
@@ -44,6 +44,25 @@ export function Information({ token: tokens }) {
   token.git_hub &&
     token.social_media_list.unshift({ url: [token.git_hub], name: "GitHub" });
 
+  let totalSupply = parseFloat(
+    token.total_supply_with_decimals / Math.pow(10, token.decimals)
+  ).toFixed(token.decimals);
+
+  let currentTotal = totalSupply;
+
+  let totalSupplyUsd =
+    token["market_info"].priceInTrx &&
+    (token["market_info"].priceInTrx * totalSupply * priceUSD).toFixed(0);
+
+  let currentTotalSupplyUsd =
+    token["market_info"].priceInTrx &&
+    (token["market_info"].priceInTrx * currentTotal * priceUSD).toFixed(0);
+  // if wink
+  if (token.contract_address === "TLa2f6VPqDgRE67v1736s7bJ8Ray5wYjU7") {
+    currentTotal = token.winkTotalSupply.totalTurnOver || 0;
+    currentTotalSupplyUsd = token.winkTotalSupply.marketValue || 0;
+  }
+
   const LeftTokenInfo = [
     { name: "token_basic_view", content: "" },
     {
@@ -51,20 +70,19 @@ export function Information({ token: tokens }) {
       content: (
         <div>
           {/*<FormattedNumber value={token.total_supply_with_decimals / (Math.pow(10,token.decimals))} maximumFractionDigits={token.decimals}/>*/}
-          <span>
-            {toThousands(
-              parseFloat(
-                token.total_supply_with_decimals / Math.pow(10, token.decimals)
-              ).toFixed(token.decimals)
-            )}
-          </span>
+          <span>{toThousands(totalSupply)}</span>
           <span className="ml-1">{token.symbol}</span>
         </div>
       )
     },
     {
       name: "circulating_supply",
-      content: <div></div>
+      content: (
+        <div>
+          {toThousands(currentTotal)}
+          <span className="ml-1">{token.symbol}</span>
+        </div>
+      )
     },
     {
       name: "token_hold_user",
@@ -87,8 +105,8 @@ export function Information({ token: tokens }) {
               <span
                 className={
                   token["market_info"].gain < 0
-                    ? "col-red ml-3"
-                    : "col-green ml-3"
+                    ? "col-red ml-1"
+                    : "col-green ml-1"
                 }
               >
                 {token["market_info"].gain > 0 ? (
@@ -121,12 +139,18 @@ export function Information({ token: tokens }) {
     },
     {
       name: "token_capitalization",
-      content: <div></div>
+      content: (
+        <div>
+          <FormattedNumber value={currentTotalSupplyUsd}></FormattedNumber> USD
+          / <FormattedNumber value={totalSupplyUsd}></FormattedNumber> USD
+        </div>
+      )
     },
     {
       name: "token_credit_rating",
       content: (
         <div className="d-flex" style={{ justifyContent: "space-between" }}>
+          {tu(`token_rules_${Number(token.level) || 0}`)}
           <Link to="/tokens/rating-rule">{tu("token_credit_rating_rule")}</Link>
         </div>
       )

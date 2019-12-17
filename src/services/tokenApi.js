@@ -15,6 +15,20 @@ class ApiClientToken {
     let priceUSD = trxPriceData && trxPriceData.data && trxPriceData.data[0] && trxPriceData.data[0].price_usd;
     return priceUSD
   }
+
+   // get address number
+   async getParticipateassetissue(params){
+    let res = await xhr.get(`${API_URL}/api/tokens/participateassetissue`,{
+      params:params} );
+    let data = res && res.data
+    return data
+  }
+
+  //get wink total supply
+  async getWinkFund(){
+    let res = await xhr.get(`${API_URL}/api/wink/fund`);
+    return res && res.data
+  }
 }
 
 export default new ApiClientToken();
