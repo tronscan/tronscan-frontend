@@ -9,6 +9,7 @@ import {
   injectIntl
 } from "react-intl";
 import TokenHolders from "./TokenHolders";
+import { Input } from "antd";
 import { NavLink, Route, Switch } from "react-router-dom";
 import { AddressLink, ExternalLink } from "../../common/Links";
 import { TronLoader } from "../../common/loaders";
@@ -37,6 +38,8 @@ import { CsvExport } from "../../common/CsvExport";
 import { loadUsdPrice } from "../../../actions/blockchain";
 import Code from "../../blockchain/Contract/Code";
 import ExchangeQuotes from "../ExchangeQuotes";
+import ApiClientToken from "../../../services/tokenApi";
+
 class Token20Detail extends React.Component {
   constructor() {
     super();
@@ -65,6 +68,20 @@ class Token20Detail extends React.Component {
     }
   }
 
+  async getWinkFund() {
+    let winkSupply = await ApiClientToken.getWinkFund();
+    return winkSupply;
+  }
+
+  async getTransferNum(address) {
+    let params = {
+      contract_address:address,
+      limit:0
+    }
+    let transferNumber = await ApiClientToken.getTransferNumber(params);
+    return transferNumber;
+  }
+
   loadToken = async address => {
     let { priceUSD } = this.props;
     let tabs = [
@@ -78,7 +95,7 @@ class Token20Detail extends React.Component {
       {
         id: "transfers",
         icon: "",
-        path: "/transfers",
+        path: "",
         label: <span>{tu("token_transfers")}</span>,
         cmp: () => (
           <Transfers
@@ -129,6 +146,8 @@ class Token20Detail extends React.Component {
         }
       ]
     }
+
+    let winkTotalSupply = {};
     if (address === "TLa2f6VPqDgRE67v1736s7bJ8Ray5wYjU7") {
       tabs.push({
         id: "WinkSupply",
@@ -137,7 +156,10 @@ class Token20Detail extends React.Component {
         label: <span>{tu("WIN_supply")}</span>,
         cmp: () => <WinkSupply token={token} />
       });
+      winkTotalSupply = await this.getWinkFund();
     }
+
+    let transferNumber = await this.getTransferNum(address)
 
     this.setState({ loading: true });
     let result = await xhr.get(
@@ -149,7 +171,8 @@ class Token20Detail extends React.Component {
       token && token["market_info"]
         ? token["market_info"].priceInTrx * priceUSD
         : 0;
-    console.log("token===", token, priceUSD);
+    token.winkTotalSupply = winkTotalSupply;
+    token.transferNumber = transferNumber.rangeTotal || 0
     this.setState({
       loading: false,
       token,
@@ -518,7 +541,7 @@ class Token20Detail extends React.Component {
   };
 
   render() {
-    let { match, wallet } = this.props;
+    let { match, wallet, priceUSD } = this.props;
     let { token, tabs, loading, buyAmount, alert, csvurl } = this.state;
     let pathname = this.props.location.pathname;
     let tabName = "";
@@ -526,6 +549,7 @@ class Token20Detail extends React.Component {
     pathname.replace(rex, function(a, b) {
       tabName = b;
     });
+    console.log(pathname);
     const defaultImg = require("../../../images/logo_default.png");
     return (
       <main className="container header-overlap token_black mc-donalds-coin">
@@ -579,7 +603,7 @@ class Token20Detail extends React.Component {
                         </h5>
                         <p className="card-text">{token.token_desc}</p>
                       </div>
-                      <div className="token-sign">trc20</div>
+                      <div className="token-sign">TRC20</div>
                       {/*<div className="ml-auto">*/}
                       {/*{(!(token.endTime < new Date() || token.issuedPercentage === 100 || token.startTime > new Date() || token.isBlack) && !token.isBlack) &&*/}
                       {/*<button className="btn btn-default btn-xs d-inline-block"*/}
@@ -589,7 +613,7 @@ class Token20Detail extends React.Component {
                       {/*</div>*/}
                     </div>
                   </div>
-                  <Information token={token}></Information>
+                  <Information token={token} priceUSD={priceUSD}></Information>
                 </div>
 
                 <div
@@ -602,7 +626,8 @@ class Token20Detail extends React.Component {
                     className="card-header"
                     style={{
                       borderLeft: "1px solid #d8d8d8",
-                      borderRight: "1px solid #d8d8d8"
+                      borderRight: "1px solid #d8d8d8",
+                      position: "relative"
                     }}
                   >
                     <ul
@@ -622,6 +647,35 @@ class Token20Detail extends React.Component {
                         </li>
                       ))}
                     </ul>
+                    {pathname.slice(-9) === "transfers" ? (
+                      <div
+                        style={{
+                          position: "absolute",
+                          right: "20px",
+                          top: 6,
+                          height: 26
+                        }}
+                      >
+                        <div
+                          className="input-group-append"
+                          style={{ marginLeft: 0 }}
+                        >
+                          <Input allowClear />
+                          <button
+                            className="btn box-shadow-none"
+                            style={{
+                              height: "35px",
+                              width: "35px",
+                              background: "#C23631",
+                              borderRadius: "0 2px 2px 0",
+                              color: "#fff"
+                            }}
+                          >
+                            <i className="fa fa-search" />
+                          </button>
+                        </div>
+                      </div>
+                    ) : null}
                   </div>
                   <div className="card-body p-0">
                     <Switch>

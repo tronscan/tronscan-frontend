@@ -26,6 +26,26 @@ class ApiClientToken {
     });
     return data;
   }
+   // get address number
+   async getParticipateassetissue(params){
+    let res = await xhr.get(`${API_URL}/api/tokens/participateassetissue`,{
+      params:params} );
+    let data = res && res.data
+    return data
+  }
+
+  //get wink total supply
+  async getWinkFund(){
+    let res = await xhr.get(`${API_URL}/api/wink/fund`);
+    return res && res.data
+  }
+
+   //get transfer Number
+   async getTransferNumber(params){
+    let res = await xhr.get(`${API_URL}/api/token_trc20/transfers`,{
+      params:params} );
+    return res && res.data
+  }
 }
 
 export default new ApiClientToken();

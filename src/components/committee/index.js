@@ -77,14 +77,14 @@ class Committee extends React.Component {
                         item.name = 'propose_7';
                         item.id = '6';
                         break;
-                    case "getCreateNewAccountFeeInSystemContract":
-                        item.name = 'propose_8';
-                        item.id = '7';
-                        break;
-                    case "getCreateNewAccountBandwidthRate":
-                        item.name = 'propose_9';
-                        item.id = '8';
-                        break;
+                    // case "getCreateNewAccountFeeInSystemContract":
+                    //     item.name = 'propose_8';
+                    //     item.id = '7';
+                    //     break;
+                    // case "getCreateNewAccountBandwidthRate":
+                    //     item.name = 'propose_9';
+                    //     item.id = '8';
+                    //     break;
                     case "getAllowCreationOfContracts":
                         item.name = 'propose_10';
                         item.id = '9';
@@ -313,12 +313,12 @@ class Committee extends React.Component {
                                     {
                                         record.key == 'getWitnessStandbyAllowance' && <div><span>{text / ONE_TRX}</span> &nbsp;<span>TRX</span></div>
                                     }
-                                    {
-                                        record.key == 'getCreateNewAccountFeeInSystemContract' && <div><span>{text / ONE_TRX}</span> &nbsp;<span>TRX</span></div>
-                                    }
-                                    {
-                                        record.key == 'getCreateNewAccountBandwidthRate' && <div><span>{text}</span> &nbsp;<span>bandwith/byte</span></div>
-                                    }
+                                    {/*{*/}
+                                        {/*record.key == 'getCreateNewAccountFeeInSystemContract' && <div><span>{text / ONE_TRX}</span> &nbsp;<span>TRX</span></div>*/}
+                                    {/*}*/}
+                                    {/*{*/}
+                                        {/*record.key == 'getCreateNewAccountBandwidthRate' && <div><span>{text}</span> &nbsp;<span>bandwith/byte</span></div>*/}
+                                    {/*}*/}
                                     {
                                         record.key == 'getAllowCreationOfContracts' && <div>
                                             {

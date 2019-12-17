@@ -91,4 +91,13 @@ export const lang19Q4 = {
    "token_exchange_total2":" trading pairs in total",
    "token_exchange_rate_tip":"24h volume of the trading pair / 24h volume of the token",
    "contract_available_energy":"Available Energy",
+    //2019-12-15
+    "token_estimated_cost":"Estimated Cost",
+    "token_enter_number":"Please enter the amount you want to buy",
+    "token_rules_0":"Unknown",
+    "token_rules_1":"Neutral",
+    "token_rules_2":"OK",
+    "token_rules_3":"Suspicious",
+    "token_rules_4":"Scam",
+
 }

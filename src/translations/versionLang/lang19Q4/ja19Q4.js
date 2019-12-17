@@ -93,4 +93,15 @@ export const lang19Q4 = {
     "token_exchange_total2":"トレーディングペア",
     "token_exchange_rate_tip":"24時間での取引ペアの取引量/ 24時間での全体的な取引量",
     "contract_available_energy":"使用可能",
+
+    //2019-12-15
+    "token_estimated_cost":"バデット",
+    "token_enter_number":"購入したい数量を入力してください",
+    "token_rules_0":"未知",
+    "token_rules_1":"中立",
+    "token_rules_2":"OK",
+    "token_rules_3":"怪しいです",
+    "token_rules_4":"詐欺",
+
+    
 }

@@ -91,4 +91,12 @@ export const lang19Q4 = {
     "token_exchange_total2":"개의 거래 페어",
     "token_exchange_rate_tip":"토큰 24시간 거래페어에서의 거래량 / 24시간의 총 거래량",
     "contract_available_energy":"이용 가능",
+    //2019-12-15
+    "token_estimated_cost":"예상 비용",
+    "token_enter_number":"매입하려는 수량을 입력하세요",
+    "token_rules_0":"알 수 없는",
+    "token_rules_1":"중립",
+    "token_rules_2":"OK",
+    "token_rules_3":"리스크",
+    "token_rules_4":"스캠",
 }

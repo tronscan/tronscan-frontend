@@ -442,6 +442,11 @@ export const routes = [
         label: "TronLending"
       },
       {
+          url: "https://dappradar.com/rankings/protocol/tron",
+          icon: "fab fa-asymmetrik",
+          label: "DAppradar"
+      },
+      {
         url:
           "https://dapp.review/explore/tron?gclid=EAIaIQobChMIx-fB8KH04QIVlHZgCh0ybA1hEAAYASAAEgIad_D_BwE",
         icon: "fas fa-ellipsis-h",
@@ -687,6 +692,21 @@ export const routes = [
         //     icon: "fa fa-download",
         //     label: "desktop_explorer"
         // },
+      ],
+      [
+        "testnet",
+        {
+          url: "https://nile.tronscan.org",
+          icon: false,
+          label: "NILE TESTNET",
+          sidechain: false
+        },
+        {
+          url: "https://shasta.tronscan.org",
+          icon: false,
+          label: "SHASTA TESTNET",
+          sidechain: false
+        }
       ],
       [
         "Documentation",

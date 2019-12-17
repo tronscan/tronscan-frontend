@@ -564,7 +564,7 @@ class Navigation extends React.Component {
     this.openLedgerModal();
   };
 
-  openLedgerModal = () => {
+  openLedgerModal = (type) => {
     this.setState({
       popup: (
           <Modal isOpen={true} fade={false} keyboard={false} size="lg" className="modal-dialog-centered">
@@ -577,7 +577,7 @@ class Navigation extends React.Component {
               {/*</Link>*/}
             </ModalHeader>
             <ModalBody className="p-0">
-              <LedgerAccess onClose={this.hideModal} />
+            <LedgerAccess onClose={this.hideModal} loginType={type}/>
             </ModalBody>
           </Modal>
       )
@@ -610,14 +610,25 @@ class Navigation extends React.Component {
       return
     }
 
-    // 已登录 tronlink
+    // 如果是tronlink的ledger登录，跳转到tronscan的ledger登录
+    const tronlinkLoginType = tronWeb.defaultAddress.type;
+    if (tronlinkLoginType == 2) {
+      this.closeLoginModel(e);
+      this.openLedgerModal(tronlinkLoginType);
+      return;
+    }
+
     if (address) {
-      //this.isauot = true
-      Lockr.set("islogin", 1);
-      this.props.loginWithTronLink(address, tronWeb, sunWeb).then(() => {
-        toastr.info(intl.formatMessage({id: 'success'}), intl.formatMessage({id: 'login_success'}));
-        this.setState({isImportAccount: false})
-      });
+        // 已登录 tronlink
+        //this.isauot = true
+        Lockr.set("islogin", 1);
+        this.props.loginWithTronLink(address, tronWeb, sunWeb).then(() => {
+          toastr.info(
+            intl.formatMessage({ id: "success" }),
+            intl.formatMessage({ id: "login_success" })
+          );
+          this.setState({ isImportAccount: false });
+        });
     }
   };
 
@@ -753,7 +764,7 @@ class Navigation extends React.Component {
                     </Link>
                     {
                         IS_MAINNET && <a className="dropdown-item" href="javascript:;" onClick={this.goAccountWaitSign}>
-                          <i className="fa fa-server mr-2"/>
+                          <i className="fas fa-file-signature mr-2"/>
                           <FormattedNumber value={wallet.current.signatureTotal}/> {tu("translations_wait_sign")}
 
                           <i className="fa fa-angle-right float-right" ></i>
@@ -1279,9 +1290,10 @@ class Navigation extends React.Component {
                                       if (Route.showInMenu === false) {
                                         return null;
                                       }
-
+                                      //wjl
                                       if (!isUndefined(Route.url) && !Route.sidechain && Route.label !== 'developer_challenge') {
                                         return (
+                                          <span className='mr-3 d-inline-block developer_challenge_box'>
                                             <HrefLink
                                                 key={Route.url}
                                                 className="dropdown-item text-uppercase"
@@ -1292,13 +1304,15 @@ class Navigation extends React.Component {
                                               {Route.badge &&
                                               <Badge value={Route.badge}/>}
                                             </HrefLink>
+                                           {Route.label==='NILE TESTNET'&& <span className="new-test-net">new</span>} 
+                                          </span>
                                         );
                                       }
                                       if (!isUndefined(Route.url) && !Route.sidechain && Route.label == 'developer_challenge') {
                                           return (
                                               <span className="mr-3 d-inline-block developer_challenge_box">
                                                 <HrefLink
-                                                    key={Route.url}
+                                                    key={Route.url+'_'+ Route.label}
                                                     className="dropdown-item text-uppercase"
                                                     href={Route.url}>
                                                   {Route.icon &&

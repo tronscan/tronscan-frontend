@@ -97,4 +97,22 @@ export const lang19Q4 = {
     "token_exchange_total2":"个交易对",
     "token_exchange_rate_tip":"该通证在该交易对24小时的成交量占该通证24小时所有成交量的比重",
     "contract_available_energy":"可用能量",
+
+    //2019-12-15
+    "token_estimated_cost":"预计花费",
+    "token_enter_number":"输入您想要购买的数量",
+    "token_rules_0":"未知",
+    "token_rules_1":"中立",
+    "token_rules_2":"OK",
+    "token_rules_3":"有风险",
+    "token_rules_4":"欺诈",
+
+    "address_vote_reward_pending":"待领取投票奖励",
+    "address_balance":"TRX余额",
+    "address_get_energe":"为了获得能量",
+    "address_get_bandwith":"为了获得带宽",
+    "address_freeze_owner":"冻结给自己",
+    "address_freeze_other":"冻结给他人",
+
+
 }

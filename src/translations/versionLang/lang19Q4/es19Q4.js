@@ -91,4 +91,12 @@ export const lang19Q4 = {
     "token_exchange_total2":" pares comerciales en total",
     "token_exchange_rate_tip":"La proporción que ocupa el volumen en ese trading pair de 24 horas del token  en el volumen comercial total de 24 horas ",
     "contract_available_energy":"Disponible",
+    //2019-12-15
+    "token_estimated_cost":"Costo estimado",
+    "token_enter_number":"ingrese la cantidad que desea comprar",
+    "token_rules_0":"未知",
+    "token_rules_1":"中立",
+    "token_rules_2":"OK",
+    "token_rules_3":"有风险",
+    "token_rules_4":"欺诈",
 }
