@@ -254,3 +254,46 @@
     }
   }
 }
+
+.token-sweet-alert {
+  h2 {
+    text-align: left;
+    border-bottom: 1px solid #eee;
+    font-size: 16px;
+    color: #333333;
+    line-height: 50px;
+  }
+  .fa-times {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 20px;
+  }
+  .token-price {
+    font-family: PingFangSC-Regular;
+    font-size: 14px;
+    color: #333333;
+  }
+  .token-number {
+    font-family: PingFangSC-Medium;
+    font-size: 14px;
+    color: #333333;
+    span {
+      font-size: 14px !important;
+    }
+  }
+  .input-group {
+    .form-control {
+      height: 38px !important;
+    }
+  }
+  b{
+    font-family: PingFangSC-Regular;
+font-size: 13px;
+color: #666666;
+span.token-estminated{
+      
+color: #C23631!important;
+    }
+  }
+}

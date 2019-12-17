@@ -27,7 +27,12 @@ import {HrefLink} from "../../common/Links";
 import {QuestionMark} from "../../common/QuestionMark";
 import {CsvExport} from "../../common/CsvExport";
 import moment from 'moment';
+import ApiClientAddress from '../../../services/addressApi'
+import { alpha } from "../../../utils/str";
+
+
 BigNumber.config({ EXPONENTIAL_AT: [-1e9, 1e9] });
+
 
 
 class Address extends React.Component {
@@ -47,6 +52,7 @@ class Address extends React.Component {
         address: "",
         balance: 0,
         tokenBalances: {},
+      
       },
       stats: {
         transactions: 0,
@@ -77,6 +83,12 @@ class Address extends React.Component {
           )
         },
       },
+      walletReward:0,
+      sentDelegateBandwidth:0,
+      frozenBandwidth:0,
+      sentDelegateResource:0,
+      frozenEnergy:0,
+      TRXBalance:0
     };
   }
 
@@ -84,6 +96,7 @@ class Address extends React.Component {
     let {match} = this.props;
     this.loadAddress(match.params.id);
     this.loadWitness(match.params.id);
+    this.loadWalletReward(match.params.id)
   }
 
   componentDidUpdate(prevProps) {
@@ -97,6 +110,15 @@ class Address extends React.Component {
 
   componentWillUnmount() {
     // this.live && this.live.close();
+  }
+
+  async loadWalletReward(addressT){
+    let {address} = this.state;
+    let walletReward = await ApiClientAddress.getWalletReward(addressT)
+    let reward = walletReward.reward || 0
+    this.setState({
+      walletReward:reward
+    })
   }
 
   async loadVotes(address) {
@@ -380,6 +402,7 @@ class Address extends React.Component {
     }
 
     let totalPower=sentDelegateBandwidth+frozenBandwidth+sentDelegateResource+frozenEnergy;
+
     this.setState({
         totalPower:totalPower,
         TRXBalanceTotal:TRXBalance + totalPower/ONE_TRX,
@@ -393,6 +416,12 @@ class Address extends React.Component {
         energyRemaining:address.bandwidth.energyRemaining>= 0?address.bandwidth.energyRemaining:0,
         energyPercentage:address.bandwidth.energyPercentage * 100,
         availableEnergyPercentage:address.bandwidth.energyRemaining > 0 ?(1- address.bandwidth.energyPercentage) * 100 : 0,
+        sentDelegateBandwidth,
+        frozenBandwidth,
+        sentDelegateResource,
+        frozenEnergy,
+        TRXBalance,
+        balance:address.balance
     });
 
   }
@@ -462,13 +491,70 @@ class Address extends React.Component {
 
   }
 
+  renderFrozenTokens(){
+    let {totalPower,
+      sentDelegateBandwidth,
+      frozenBandwidth,
+      sentDelegateResource,
+      frozenEnergy,
+      balance } = this.state;
+    
+    let GetEnergy = frozenEnergy + sentDelegateResource;
+    let GetBandWidth = frozenBandwidth + sentDelegateBandwidth;
+    let Owner = frozenBandwidth + frozenEnergy;
+    let Other = sentDelegateResource + sentDelegateBandwidth;
+
+    let GetEnergyPer = parseInt(GetEnergy / (GetEnergy + GetBandWidth) * 100 )
+    let GetBandWidthPer = 100 - GetEnergyPer
+    let OwnerPer = parseInt((Owner / (Owner + Other)) * 100); 
+    let OtherPer = 100 - OwnerPer
+
+
+      const TooltipText = 
+      <div style={{lineHeight:'25px'}}>
+          <div style={{ borderBottom:'1px solid #eee',paddingBottom:"5px"}}>
+        {tu('address_get_energe')}：<FormattedNumber value={GetEnergy/ONE_TRX}/>TRX
+        ({GetEnergyPer}%)
+          <br/>
+          {tu('address_get_bandwith')}：<FormattedNumber value={GetBandWidth/ONE_TRX}/>TRX
+          ({GetBandWidthPer}%)
+        </div>
+        <div style={{paddingTop:"5px"}}>
+        {tu('address_freeze_owner')}：<FormattedNumber value={Owner/ONE_TRX}/>TRX
+        ({OwnerPer}%)
+          <br/>
+          {tu('address_freeze_other')}：<FormattedNumber value={Other/ONE_TRX}/>TRX
+          ({OtherPer}%)
+      </div></div>
+    return (
+      <div>
+        <span className="ml-1">
+          (</span> 
+          {tu("address_tron_power_remaining")}: 
+          <FormattedNumber value={balance/ONE_TRX}/>TRX
+            &nbsp;   
+          {tu("freeze")}:  
+          {totalPower!= 0 ? 
+            <Tooltip placement="top" innerClassName="w-100" title={TooltipText}>
+                <FormattedNumber value={totalPower/ONE_TRX}/>TRX
+            </Tooltip>
+            : <span><FormattedNumber value={totalPower/ONE_TRX}/> TRX</span>
+            }
+            <span>
+          )
+          </span>
+          
+      </div>
+    )
+  }
+
   render() {
 
     let {totalPower, address, tabs, stats, 
         loading, blocksProduced, media, candidates, 
         rank, totalVotes, netRemaining, bandWidthPercentage, 
         energyRemaining, energyPercentage, TRXBalanceTotal,
-        availableBandWidthPercentage,availableEnergyPercentage, csvurl} = this.state;
+        availableBandWidthPercentage,availableEnergyPercentage, csvurl,walletReward,balance} = this.state;
     let {match,intl} = this.props;
     let addr = match.params.id;
 
@@ -611,6 +697,36 @@ class Address extends React.Component {
                                       <div>
                                          <span className="ml-1">(</span> {tu("address_tron_power_used")}: <FormattedNumber value={address.voteTotal}></FormattedNumber>&nbsp;   {tu("address_tron_power_remaining")}:  <FormattedNumber value={(totalPower) / ONE_TRX - address.voteTotal }></FormattedNumber> <span>)</span>
                                       </div>
+                                    </li>
+                                  </ul>
+                                </td>
+                              </tr>
+                              <tr>
+                                <th>
+                                    <span className="mr-1">{tu("address_vote_reward_pending")}</span>
+                                    <span className="ml-1" >:</span>
+                                </th>
+                                <td>
+                                  <ul className="list-unstyled m-0">
+                                    <li className="d-flex">
+                                        {walletReward} TRX
+                                    </li>
+                                  </ul>
+                                </td>
+                              </tr>
+                              <tr>
+                                <th>
+                                    <span className="mr-1">{tu("address_balance")}</span>
+                                    <span className="ml-1" >:</span>
+                                </th>
+                                <td>
+                                  <ul className="list-unstyled m-0">
+                                    <li className="d-flex">
+                                    <TRXPrice
+                                            amount={(balance+totalPower)/ONE_TRX}/>
+                                       <div>
+                                         {this.renderFrozenTokens()}
+                                      </div>     
                                     </li>
                                   </ul>
                                 </td>

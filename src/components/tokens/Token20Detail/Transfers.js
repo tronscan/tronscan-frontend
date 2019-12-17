@@ -13,7 +13,7 @@ import moment from "moment";
 import { Truncate } from "../../common/text";
 import { withTimers } from "../../../utils/timing";
 import { FormattedNumber, injectIntl } from "react-intl";
-import SmartTable from "../../common/SmartTable.js";
+import SmartTable from "../../common/SmartTable";
 import { upperFirst } from "lodash";
 import { TronLoader } from "../../common/loaders";
 import TotalInfo from "../components/TableTotal";
@@ -129,7 +129,6 @@ class Transfers extends React.Component {
           return (
             <Truncate>
               <TransactionHashLink hash={record.transaction_id}>
-                {" "}
                 {record.transaction_id}{" "}
               </TransactionHashLink>{" "}
             </Truncate>
@@ -218,6 +217,7 @@ class Transfers extends React.Component {
         dataIndex: "contractRet",
         key: "contractRet",
         className: "ant_table",
+        filterMultiple: false,
         filters: [
           {
             text: "SUCCESS",
@@ -309,6 +309,21 @@ class Transfers extends React.Component {
     if (total == 0) {
       transfers = [];
     }
+    const listCommonSty = {
+      textAlign: "center",
+      width: "25%",
+      paddingTop: "20px"
+    };
+    const descStyle = {
+      fontFamily: "HelveticaNeue",
+      fontSize: "12px",
+      color: "#999999"
+    };
+    const listTitleStyle = {
+      fontFamily: "HelveticaNeue-Medium",
+      fontSize: "18px",
+      color: "#333333"
+    };
     let { theadClass = "thead-dark", intl } = this.props;
     let column = this.customizedColumn();
     let tableInfo =
@@ -344,56 +359,95 @@ class Transfers extends React.Component {
           </div>
         )}
         <div className="row transfers">
-          <div className="col-md-12 table_pos">
+          <div className="col-md-12 ">
             <div
-              className="distributionWrapper"
               style={{
-                background: "#d8d8d8",
-                borderTop: "1px solid #d8d8d8"
+                display: "flex",
+                background: "#fff",
+                borderBottom: "1px solid #EEEEEE"
               }}
+              className="pt-3 pb-3"
             >
-              <div
-                className="d-flex justify-content-between pl-3 pr-3 pt-3 pb-3"
-                style={{
-                  background: "#fff"
-                }}
-              >
-                <DateSelect
-                  onDateOk={(start, end) => this.onDateOk(start, end)}
-                />
+              <div style={listCommonSty}>
+                <div
+                  style={{
+                    fontFamily: "HelveticaNeue-Medium",
+                    fontSize: "18px",
+                    color: "#C64844"
+                  }}
+                >
+                  TFMAHNT…ts65Y12
+                </div>
+                <p style={descStyle}>Holders</p>
               </div>
-              <div className="d-flex justify-content-between pl-3 pr-3">
-                {!loading && (
-                  <TotalInfo
-                    total={total}
-                    rangeTotal={rangeTotal}
-                    typeText="transaction_info"
-                    divClass="table_pos_info_addr"
-                    selected
-                    top="64px"
+              <div style={listCommonSty}>
+                <div style={listTitleStyle}>537.2334TRX</div>
+                <p style={descStyle}>Holdings</p>
+              </div>
+              <div style={listCommonSty}>
+                <div style={listTitleStyle}>55.5%</div>
+                <p style={descStyle}>Accounted for</p>
+              </div>
+              <div style={listCommonSty}>
+                <div style={listTitleStyle}>
+                  $23432.234
+                  <span
+                    style={{ color: "rgba(51,51,51,0.25)", fontSize: "14px" }}
+                  >
+                    ≈123432432 TRX
+                  </span>
+                </div>
+                <p style={descStyle}>Value</p>
+              </div>
+            </div>
+            <div className="distributionWrapper">
+              <div>
+                <div
+                  className="d-flex justify-content-between pl-3 pr-3 pt-3 pb-3"
+                  style={{
+                    background: "#fff"
+                  }}
+                >
+                  <DateSelect
+                    onDateOk={(start, end) => this.onDateOk(start, end)}
+                  />
+                </div>
+                <div className="d-flex justify-content-between pl-3 pr-3">
+                  {!loading && (
+                    <TotalInfo
+                      total={total}
+                      rangeTotal={rangeTotal}
+                      typeText="transaction_info"
+                      divClass="table_pos_info_addr"
+                      selected
+                      top="184px"
+                    />
+                  )}
+                </div>
+              </div>
+              <div className="trx20tronsfers">
+                {!loading && transfers.length === 0 ? (
+                  <div className="pt-5 pb-5 text-center no-data transfers-bg-white">
+                    {tu("no_transfers")}
+                  </div>
+                ) : (
+                  <SmartTable
+                    bordered={false}
+                    loading={loading}
+                    column={column}
+                    data={transfers}
+                    total={rangeTotal > 2000 ? 2000 : rangeTotal}
+                    addr="address"
+                    transfers="token"
+                    current={this.state.page}
+                    onPageChange={(page, pageSize) => {
+                      this.loadPage(page, pageSize);
+                    }}
+                    position="bottom"
+                    isPaddingTop={false}
                   />
                 )}
               </div>
-              {!loading && transfers.length === 0 ? (
-                <div className="pt-5 pb-5 text-center no-data transfers-bg-white">
-                  {tu("no_transfers")}
-                </div>
-              ) : (
-                <SmartTable
-                  bordered={true}
-                  loading={loading}
-                  column={column}
-                  data={transfers}
-                  total={rangeTotal > 2000 ? 2000 : rangeTotal}
-                  addr="address"
-                  transfers="token"
-                  current={this.state.page}
-                  onPageChange={(page, pageSize) => {
-                    this.loadPage(page, pageSize);
-                  }}
-                  position="bottom"
-                />
-              )}
             </div>
           </div>
         </div>

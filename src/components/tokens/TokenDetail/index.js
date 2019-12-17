@@ -13,6 +13,7 @@ import { Information } from "./Information.js";
 import { ONE_TRX, API_URL, IS_MAINNET } from "../../../constants";
 import { login } from "../../../actions/app";
 import { reloadWallet } from "../../../actions/wallet";
+import { Input } from "antd";
 import { connect } from "react-redux";
 import SweetAlert from "react-bootstrap-sweetalert";
 import { pkToAddress } from "@tronscan/client/src/utils/crypto";
@@ -524,7 +525,8 @@ class TokenDetail extends React.Component {
                     className="card-header"
                     style={{
                       borderLeft: "1px solid #d8d8d8",
-                      borderRight: "1px solid #d8d8d8"
+                      borderRight: "1px solid #d8d8d8",
+                      position: "relative"
                     }}
                   >
                     <ul
@@ -544,6 +546,35 @@ class TokenDetail extends React.Component {
                         </li>
                       ))}
                     </ul>
+                    {pathname.slice(-9) === "transfers" ? (
+                      <div
+                        style={{
+                          position: "absolute",
+                          right: "20px",
+                          top: 6,
+                          height: 26
+                        }}
+                      >
+                        <div
+                          className="input-group-append"
+                          style={{ marginLeft: 0 }}
+                        >
+                          <Input allowClear />
+                          <button
+                            className="btn box-shadow-none"
+                            style={{
+                              height: "35px",
+                              width: "35px",
+                              background: "#C23631",
+                              borderRadius: "0 2px 2px 0",
+                              color: "#fff"
+                            }}
+                          >
+                            <i className="fa fa-search" />
+                          </button>
+                        </div>
+                      </div>
+                    ) : null}
                   </div>
                   <div className="card-body p-0">
                     <Switch>
