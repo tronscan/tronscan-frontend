@@ -1036,6 +1036,7 @@ class Statistics extends React.Component {
                             <div>
                             {
                                 EnergyConsumeDistribution === null ? <TronLoader/> :
+                               ( 
                                 <div>
                                     <div className="d-md-flex justify-content-between pb-3">
                                         <DatePicker 
@@ -1058,7 +1059,9 @@ class Statistics extends React.Component {
                                         data={EnergyConsumeDistribution}
                                         intl={intl}
                                     />
+                                     {(ContractInvocationDistributionParams.total_energy <=0 ? <div > </div> :
                                     <div className="token_black">
+                                   
                                     <div className="col-md-12 table_pos">
                                         <p>{intl.formatMessage({id:'a_total'})+ intl.formatNumber(ContractInvocationDistributionParams.total_energy)+ 
                                         intl.formatMessage({id:'energe'})+' ('+ intl.formatMessage({id:'with_the_proportion_of'})+ContractInvocationDistributionParams.scale+
@@ -1066,6 +1069,7 @@ class Statistics extends React.Component {
                                             intl.formatMessage({id:'contracts_from_the_total_used_of'}) + intl.formatNumber(ContractInvocationDistributionParams.total_used_energy)+
                                             intl.formatMessage({id:'energe'})}
                                         </p>
+
                                         {( EnergyConsumeDistribution.length === 0)?
                                         <div className="p-3 text-center no-data">{tu("no_data")}</div>
                                         :
@@ -1074,10 +1078,12 @@ class Statistics extends React.Component {
                                             column={column} 
                                             data={EnergyConsumeDistribution} 
                                         />}
-                                    </div>
-                                    </div>
 
+                                    </div>
+                                    </div>
+                                     )}
                                 </div>
+                              )
                             }
                             </div>
                         }
@@ -1110,6 +1116,7 @@ class Statistics extends React.Component {
                                         data={ContractInvocationDistribution}
                                         intl={intl}
                                     />
+                                    {(ContractInvocationDistributionParams.total_energy <=0 ? <div > </div> :
                                     <div className="token_black">
                                     <div className="col-md-12 table_pos">
                                         <p>{ intl.formatMessage({id: 'a_total'}) + intl.formatNumber(ContractInvocationDistributionParams.total_energy)+ 
@@ -1125,7 +1132,7 @@ class Statistics extends React.Component {
                                         />}
                                     </div>
                                     </div>
-
+                                    )}
                                 </div>
                             }
                             </div>
