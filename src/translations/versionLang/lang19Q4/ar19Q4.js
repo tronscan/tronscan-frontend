@@ -72,5 +72,32 @@ export const lang19Q4 = {
     "token_rating_rule_title_end_4": "TRONSCAN will update the Token Reputation System as it sees fit for the ecosystem. The updated policy will take effect once published on the official website.    ",
 
 
-
+    //2019-12-10  leon
+    "token_overview":"نظرة عامة على الرمز",
+    "token_rank": "الترتيب",
+    "market_capitalization_t": "القيمة الرمزية في التداول",
+    "token_tron_total": "إجمالي عدد رموز ترون",
+    "token_week": "الرموز الجديدة على مدار الأسبوع",
+    "token_scan_total": "عدد الرموز في TRONSCAN",
+    "create_token_btn": "إصدار الرمز",
+    "gain_tip": "نظام مرجع TRX لـ ٢٤ساعة",
+    "total_supply_tip1": "يتم حسابها بضرب تداول الرموز حسب سعر السوق الحالي للرموز ، وإذا كان حجم التداول على مدار الساعة أقل من ",
+    "total_supply_tip2":" TRX فلا يتم حسابه.",
+    "token_exchange":"المنصة",
+    "token_exchange_pair":"زوج التداول",
+    "token_exchange_price":"السعر",
+    "token_exchange_24h_vol":"حجم التداول على مدار 24 ساعة",
+    "token_exchange_vol_rate":"نسبة حجم التداول",
+    "token_exchange_total1":"المجموع الحالي من ",
+    "token_exchange_total2":" لأزواج التداول",
+    "token_exchange_rate_tip":"نسبة حجم تداول الرمز المميز على مدار 24 ساعة في إجمالي حجم تداول زوج التداول على مدار 24 ساعة",
+    "contract_available_energy":"متاح",
+    //2019-12-15
+    "token_estimated_cost":"التكلفة المقدرة",
+    "token_enter_number":"أدخل الكمية التي تريد شرائها",
+    "token_rules_0":"غير معروف",
+    "token_rules_1":"محايد",
+    "token_rules_2":"OK",
+    "token_rules_3":"محايد",
+    "token_rules_4":"احتيال",
 }

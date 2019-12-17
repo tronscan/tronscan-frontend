@@ -40,6 +40,8 @@ import { CsvExport } from "../../common/CsvExport";
 import { loadUsdPrice } from "../../../actions/blockchain";
 import Code from "../../blockchain/Contract/Code";
 import ExchangeQuotes from "../ExchangeQuotes";
+import ApiClientToken from "../../../services/tokenApi";
+
 class Token20Detail extends React.Component {
   constructor() {
     super();
@@ -68,9 +70,23 @@ class Token20Detail extends React.Component {
     }
   }
 
+  async getWinkFund() {
+    let winkSupply = await ApiClientToken.getWinkFund();
+    return winkSupply;
+  }
+
+  async getTransferNum(address) {
+    let params = {
+      contract_address: address,
+      limit: 0
+    };
+    let transferNumber = await ApiClientToken.getTransferNumber(params);
+    return transferNumber;
+  }
+
   loadToken = async address => {
     let { priceUSD } = this.props;
-    const tabs = [
+    let tabs = [
       // {
       //   id: "tokenInfo",
       //   icon: "",
@@ -81,7 +97,7 @@ class Token20Detail extends React.Component {
       {
         id: "transfers",
         icon: "",
-        path: "/transfers",
+        path: "",
         label: <span>{tu("token_transfers")}</span>,
         cmp: () => (
           <Transfers
@@ -107,27 +123,33 @@ class Token20Detail extends React.Component {
             token={token}
           />
         )
-      },
-      {
-        id: "quotes",
-        icon: "",
-        path: "/quotes",
-        label: <span>{tu("token_market")}</span>,
-        cmp: () => <ExchangeQuotes />
-      },
-      {
-        id: "code",
-        icon: "",
-        path: "/code",
-        label: <span>{tu("contract_title")}</span>,
-        cmp: () => (
-          <div style={{ background: "#fff", padding: "0 2.6%" }}>
-            <Code filter={{ address: address }} />
-          </div>
-        )
       }
     ];
+    if (IS_MAINNET) {
+      tabs = [
+        ...tabs,
+        {
+          id: "quotes",
+          icon: "",
+          path: "/quotes",
+          label: <span>{tu("token_market")}</span>,
+          cmp: () => <ExchangeQuotes address={address} />
+        },
+        {
+          id: "code",
+          icon: "",
+          path: "/code",
+          label: <span>{tu("contract_title")}</span>,
+          cmp: () => (
+            <div style={{ background: "#fff", padding: "0 2.6%" }}>
+              <Code filter={{ address: address }} />
+            </div>
+          )
+        }
+      ];
+    }
 
+    let winkTotalSupply = {};
     if (address === "TLa2f6VPqDgRE67v1736s7bJ8Ray5wYjU7") {
       tabs.push({
         id: "WinkSupply",
@@ -136,7 +158,10 @@ class Token20Detail extends React.Component {
         label: <span>{tu("WIN_supply")}</span>,
         cmp: () => <WinkSupply token={token} />
       });
+      winkTotalSupply = await this.getWinkFund();
     }
+
+    let transferNumber = await this.getTransferNum(address);
 
     this.setState({ loading: true });
     let result = await xhr.get(
@@ -152,6 +177,8 @@ class Token20Detail extends React.Component {
         ? token["market_info"].priceInTrx * priceUSD
         : 0;
 
+    token.winkTotalSupply = winkTotalSupply;
+    token.transferNumber = transferNumber.rangeTotal || 0;
     this.setState({
       loading: false,
       token,
@@ -520,7 +547,7 @@ class Token20Detail extends React.Component {
   };
 
   render() {
-    let { match, wallet } = this.props;
+    let { match, wallet, priceUSD } = this.props;
     let { token, tabs, loading, buyAmount, alert, csvurl } = this.state;
     let pathname = this.props.location.pathname;
     let tabName = "";
@@ -581,7 +608,7 @@ class Token20Detail extends React.Component {
                         </h5>
                         <p className="card-text">{token.token_desc}</p>
                       </div>
-                      <div className="token-sign">trc20</div>
+                      <div className="token-sign">TRC20</div>
                       {/*<div className="ml-auto">*/}
                       {/*{(!(token.endTime < new Date() || token.issuedPercentage === 100 || token.startTime > new Date() || token.isBlack) && !token.isBlack) &&*/}
                       {/*<button className="btn btn-default btn-xs d-inline-block"*/}
@@ -591,7 +618,7 @@ class Token20Detail extends React.Component {
                       {/*</div>*/}
                     </div>
                   </div>
-                  <Information token={token}></Information>
+                  <Information token={token} priceUSD={priceUSD}></Information>
                 </div>
 
                 <div

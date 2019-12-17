@@ -71,5 +71,32 @@ export const lang19Q4 = {
     "token_rating_rule_title_end_3": "TRONSCAN reserves the right to update the reputation score, and has no obligation to give any explanation for how it determines and updates the token reputation. Tokens found to be fraudulent or detrimental to other users’ rights and interests will be blacklisted or further disciplined.   ",
     "token_rating_rule_title_end_4": "TRONSCAN will update the Token Reputation System as it sees fit for the ecosystem. The updated policy will take effect once published on the official website.    ",
 
-
+    //2019-12-10  leon
+    "token_overview":"토큰 개관",
+    "token_rank": "랭킹",
+    "gain_tip": "TRX를 기준으로하는 24시간제 시스템",
+    "total_supply_tip1": "토큰 유통량에 토큰의 현재 시장 가격을 곱하여 계산되며 24시간 거래량이 ",
+    "total_supply_tip2":" TRX 미만인 경우 계산되지 않습니다.",
+    "market_capitalization_t": "유통 시세",
+    "token_tron_total": "TRON 토큰 총 수",
+    "token_week": "금주 증가 된",
+    "token_scan_total": "TRONSCAN 수록 토큰 수",
+    "create_token_btn": "토큰 발행",
+    "token_exchange":"거래소",
+    "token_exchange_pair":"거래 페어",
+    "token_exchange_price":"가격",
+    "token_exchange_24h_vol":"24시간 거래 량",
+    "token_exchange_vol_rate":"거래량 비율",
+    "token_exchange_total1":"현재 총 ",
+    "token_exchange_total2":"개의 거래 페어",
+    "token_exchange_rate_tip":"토큰 24시간 거래페어에서의 거래량 / 24시간의 총 거래량",
+    "contract_available_energy":"이용 가능",
+    //2019-12-15
+    "token_estimated_cost":"예상 비용",
+    "token_enter_number":"매입하려는 수량을 입력하세요",
+    "token_rules_0":"알 수 없는",
+    "token_rules_1":"중립",
+    "token_rules_2":"OK",
+    "token_rules_3":"리스크",
+    "token_rules_4":"스캠",
 }

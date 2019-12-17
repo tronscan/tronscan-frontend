@@ -266,7 +266,7 @@ export const routes = [
       //   component: TokenListAsync
       // },
       {
-        label: "overview",
+        label: "token_overview",
         path: "/tokens/list",
         icon: "fa fa-list",
         component: TokenAllAsync
@@ -440,6 +440,11 @@ export const routes = [
         url: "https://tronlending.org/?utm_source=TS",
         icon: "fas fa-hand-holding-usd",
         label: "TronLending"
+      },
+      {
+          url: "https://dappradar.com/rankings/protocol/tron",
+          icon: "fab fa-asymmetrik",
+          label: "DAppradar"
       },
       {
         url:

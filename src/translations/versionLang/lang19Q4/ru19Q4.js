@@ -72,5 +72,33 @@ export const lang19Q4 = {
     "token_rating_rule_title_end_3": "TRONSCAN reserves the right to update the reputation score, and has no obligation to give any explanation for how it determines and updates the token reputation. Tokens found to be fraudulent or detrimental to other users’ rights and interests will be blacklisted or further disciplined.   ",
     "token_rating_rule_title_end_4": "TRONSCAN will update the Token Reputation System as it sees fit for the ecosystem. The updated policy will take effect once published on the official website.    ",
 
+    //2019-12-10  leon
+    "token_overview":"Токен Трекер",
+    "token_rank": "Ранг",
+    "gain_tip": "24-часовое изменение по сравнению с TRX",
+    "total_supply_tip1": "Рассчитывается путем умножения общего предложения в циркуляции на текущую цену каждого токена. Токены с 24-часовым объемом торгов ниже ",
+    "total_supply_tip2":" TRX исключаются.",
+    "market_capitalization_t": "Рыночная капитализация",
+    "token_tron_total": "Общее Количество Токенов TRON",
+    "token_week": "На этой неделе",
+    "token_scan_total": "Всего на TRONSCAN",
+    "create_token_btn": "Выданные Токены",
+    "token_exchange":"Биржа",
+    "token_exchange_pair":"Торговая Пара",
+    "token_exchange_price":"Цена",
+    "token_exchange_24h_vol":"24-часовой Объем",
+    "token_exchange_vol_rate":"Процент",
+    "token_exchange_total1":"",
+    "token_exchange_total2":" торговых пар в общей сложности",
+    "token_exchange_rate_tip":"24-часовой объем торговой пары / 24-часовой объем токена",
+    "contract_available_energy":"Доступно",
+    //2019-12-15
+    "token_estimated_cost":"Ориентировочная Стоимость",
+    "token_enter_number":"Пожалуйста, введите сумму, которую вы хотите купить",
+    "token_rules_0":"Неизвестный",
+    "token_rules_1":"Нейтральный",
+    "token_rules_2":"OK",
+    "token_rules_3":"Подозрительный",
+    "token_rules_4":"Скам",
 
 }
