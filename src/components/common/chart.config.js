@@ -732,46 +732,46 @@ export default {
                 month: '%Y-%m',
                 year: '%Y'
             }
-        },
-        yAxis: [{
-                title: {
-                    // align: 'high',
-                    // offset: 0,
-                    text: '',
-                    // rotation: 0,
-                    // x:100,
-                    // y: -10
-                },
-                // min: 0,
-                //minTickInterval:5
-                tickPixelInterval: 30,
-                labels: {
-                    style: {
-                        color: "#c23631",
-                    }
-
-                },
-                gridLineWidth: 0
-            },
-            { // Secondary yAxis
-                title: {
-                    // align: 'high',
-                    // offset: 0,
-                    text: '',
-                    // rotation: 0,
-                    // x:100,
-                    // y: -10
-                },
-                // min: 0,
-                //minTickInterval:5
-                tickPixelInterval: 30,
-                labels: {
-                    style: {
-                        color: "#333333",
-                    }
-                },
-                opposite: true,
-                gridLineWidth: 0
+          },
+        yAxis: [
+          {
+              title: {
+                  // align: 'high',
+                  // offset: 0,
+                  text: '',
+                  // rotation: 0,
+                  // x:100,
+                  // y: -10
+              },
+              // min: 0,
+              //minTickInterval:5
+              tickPixelInterval: 30,
+              labels: {
+                  style: {
+                      color: "#c23631",
+                  }
+              },
+              gridLineWidth: 0
+          },
+          {// Secondary yAxis
+              title: {
+                  // align: 'high',
+                  // offset: 0,
+                  text: '',
+                  // rotation: 0,
+                  // x:100,
+                  // y: -10
+              },
+              // min: 0,
+              //minTickInterval:5
+              tickPixelInterval: 30,
+              labels: {
+                  style: {
+                      color: "#333333",
+                  }
+              },
+              opposite: true,
+              gridLineWidth: 0
 
             }
         ],
@@ -1052,6 +1052,80 @@ export default {
         },
         series: []
 
-    }
+  },
+
+  OverallFreezingRateChart:{
+    chart: {
+        type: '',
+        zoomType: 'xy'
+    },
+    title: {
+        text: ''
+    },
+    subtitle: {
+        text: ''
+    },
+    credits: {
+        enabled: false
+    },
+    legend: {
+      enabled: true,
+      align: 'center',
+    },
+    xAxis: {
+      type: 'datetime',
+      dateTimeLabelFormats: {
+        millisecond: '%H:%M:%S.%L',
+        second: '%H:%M:%S',
+        minute: '%H:%M',
+        hour: '%H:%M',
+        day: '%Y-%m-%d',
+        week: '%m-%d',
+        month: '%Y-%m',
+        year: '%Y'
+      },
+      gridLineColor: '#eeeeee',
+      labels: {
+        style: {
+          color: "#999999"
+        },
+        autoRotation: [-10, -20, -30, -40, -50, -60, -70, -80, -90]
+      }
+    },
+    yAxis: [
+      
+    ],
+    tooltip: {
+    
+    },
+    exporting: {
+        enabled: true,
+        sourceWidth: 1072,
+        sourceHeight: 500,
+        filename:''
+    },
+    plotOptions: {
+      column: {
+        stacking: 'normal',
+        dataLabels: {
+          enabled: false,
+        //	color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white',
+          style: {
+            textShadow: '0 0 3px black'
+          }
+        }
+      },
+      spline: {
+        marker: {
+          fillColor:"#5A5A5A",
+          width: 8,
+          height: 8,
+          lineWidth: 0,  //线条宽度
+          radius: 4,    //半径宽度
+        }
+      }
+    },
+    series: []
+  }
 
 };

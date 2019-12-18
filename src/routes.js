@@ -21,6 +21,7 @@ import {
   ProposalDetailAsync,
   RepresentativesAsync,
   SingleChartAsync,
+  ChartsAsync,
   StatisticsAsync,
   SystemAsync,
   Token20DetailAsync,
@@ -137,6 +138,13 @@ export const routes = [
         icon: `fa fa-chart-pie`,
         path: "/blockchain/stats/:chartName",
         component: SingleChartAsync,
+        showInMenu: false
+      },
+      {
+        label: "statistics",
+        icon: `fa fa-chart-pie`,
+        path: "/blockchain/charts/:chartName",
+        component: ChartsAsync,
         showInMenu: false
       },
       {
@@ -779,18 +787,18 @@ export const routes = [
       ],
       [
         "Other",
-        {
-          url: "https://shasta.tronscan.org",
-          icon: "fa fa-link",
-          label: "link_test_server",
-          sidechain: false
-        },
-        {
-          url: "https://www.trongrid.io/shasta",
-          icon: "fa fa-recycle",
-          label: "link_test_fauct",
-          sidechain: false
-        },
+        // {
+        //   url: "https://shasta.tronscan.org",
+        //   icon: "fa fa-link",
+        //   label: "link_test_server",
+        //   sidechain: false
+        // },
+        // {
+        //   url: "https://www.trongrid.io/shasta",
+        //   icon: "fa fa-recycle",
+        //   label: "link_test_fauct",
+        //   sidechain: false
+        // },
         // {
         //   url: "https://dapphouse.org",
         //   icon: "fa fa-archive",
