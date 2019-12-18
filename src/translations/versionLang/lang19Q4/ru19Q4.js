@@ -31,14 +31,14 @@ export const lang19Q4 = {
     */
     "FinalResult": "Результат",
     "distributionTitle": "Распределение Активов по Держателям",
-    "assetsPercent": "Общее количество активов топ {first}-{end} держателей",
+    "assetsPercent": "Общее количество активов топ {first}~{end} держателей",
     "holders": "Держатели",
 
     // 2019-12-10
     "token_basic_view": "Обзор",
     "token_additional_materials": "Информация Профиля",
     "token_hold_user": "Держатели",
-    "token_capitalization": "Рыночная капитализация/Общая Рыночная Капитализация",
+    "token_capitalization": "Рыночная кепка/Полная Капитализация",
     "token_credit_rating": "Репутация",
     "token_contract": "Контракт",
     "token_price_new": "Цена",
@@ -78,7 +78,7 @@ export const lang19Q4 = {
     "gain_tip": "24-часовое изменение по сравнению с TRX",
     "total_supply_tip1": "Рассчитывается путем умножения общего предложения в циркуляции на текущую цену каждого токена. Токены с 24-часовым объемом торгов ниже ",
     "total_supply_tip2":" TRX исключаются.",
-    "market_capitalization_t": "Рыночная капитализация",
+    "market_capitalization_t": "Рыночная кепка",
     "token_tron_total": "Общее Количество Токенов TRON",
     "token_week": "На этой неделе",
     "token_scan_total": "Всего на TRONSCAN",

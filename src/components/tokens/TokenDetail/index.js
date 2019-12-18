@@ -13,6 +13,7 @@ import { Information } from "./Information.js";
 import { ONE_TRX, API_URL, IS_MAINNET } from "../../../constants";
 import { login } from "../../../actions/app";
 import { reloadWallet } from "../../../actions/wallet";
+import { updateTokenInfo } from "../../../actions/tokenInfo";
 import { Input } from "antd";
 import { connect } from "react-redux";
 import SweetAlert from "react-bootstrap-sweetalert";
@@ -24,6 +25,7 @@ import { withTronWeb } from "../../../utils/tronWeb";
 import { CsvExport } from "../../common/CsvExport";
 import { loadUsdPrice } from "../../../actions/blockchain";
 import ExchangeQuotes from "../ExchangeQuotes";
+import ApiClientToken from "../../../services/tokenApi";
 
 @withTronWeb
 class TokenDetail extends React.Component {
@@ -38,7 +40,8 @@ class TokenDetail extends React.Component {
       buyAmount: 0,
       alert: null,
       currentTotalSupply: "",
-      csvurl: ""
+      csvurl: "",
+      BttSupplyClient: ""
     };
   }
 
@@ -67,24 +70,28 @@ class TokenDetail extends React.Component {
   loadTotalTRXSupply = async () => {
     const { funds } = await Client.getBttFundsSupply();
     this.setState({
-      currentTotalSupply: parseInt(funds.totalTurnOver)
+      currentTotalSupply: parseInt(funds.totalTurnOver),
+      BttSupplyClient: funds
     });
   };
   loadToken = async id => {
     let { priceUSD } = this.props;
-    let {currentTotalSupply} = this.state;
+    let { currentTotalSupply } = this.state;
 
     this.setState({ loading: true });
 
     //let token = await Client.getToken(name);
     let result = await xhr.get(API_URL + "/api/token?id=" + id + "&showAll=1");
     let token = result.data.data[0];
+    this.props.updateTokenInfo({
+      tokenDetail: token
+    });
 
     token.priceToUsd =
       token && token["market_info"]
         ? token["market_info"].priceInTrx * priceUSD
         : 0;
-        
+
     if (!token) {
       this.setState({ loading: false, token: null });
       this.props.history.push("/tokens/list");
@@ -121,7 +128,11 @@ class TokenDetail extends React.Component {
         ),
         cmp: () => (
           <TokenHolders
-            filter={{ token: token.name, address: token.ownerAddress }}
+            filter={{
+              token: token.name,
+              address: token.ownerAddress,
+              tokenId: token.id
+            }}
             token={{ totalSupply: token.totalSupply }}
             tokenPrecision={{ precision: token.precision }}
             getCsvUrl={csvurl => this.setState({ csvurl })}
@@ -129,7 +140,7 @@ class TokenDetail extends React.Component {
         )
       }
     ];
-    if(IS_MAINNET){
+    if (IS_MAINNET) {
       tabs = [
         ...tabs,
         {
@@ -139,7 +150,7 @@ class TokenDetail extends React.Component {
           label: <span>{tu("token_market")}</span>,
           cmp: () => <ExchangeQuotes address={token.tokenID} />
         }
-      ]
+      ];
     }
     this.setState({
       loading: false,
@@ -154,21 +165,19 @@ class TokenDetail extends React.Component {
         cmp: () => <BTTSupply token={token} />
       };
       tabs.push(BttSupply);
-      this.loadTotalTRXSupply();
+      await this.loadTotalTRXSupply();
     }
     this.setState({
       tabs: tabs
     });
   };
 
-  
-
   isBuyValid = () => {
     return this.state.buyAmount > 0;
   };
 
   render() {
-    let { match, wallet, intl,priceUSD } = this.props;
+    let { match, wallet, intl, priceUSD } = this.props;
     let {
       token,
       tabs,
@@ -176,7 +185,8 @@ class TokenDetail extends React.Component {
       buyAmount,
       alert,
       currentTotalSupply,
-      csvurl
+      csvurl,
+      BttSupplyClient
     } = this.state;
     let uploadURL =
       API_URL + "/api/v2/node/info_upload?address=" + match.params.id;
@@ -235,6 +245,7 @@ class TokenDetail extends React.Component {
                       token={token}
                       currentTotalSupply={currentTotalSupply}
                       priceUSD={priceUSD}
+                      BttSupplyClient={BttSupplyClient}
                     ></Information>
                   )}
                 </div>
@@ -349,7 +360,8 @@ function mapStateToProps(state) {
 const mapDispatchToProps = {
   login,
   reloadWallet,
-  loadUsdPrice
+  loadUsdPrice,
+  updateTokenInfo
 };
 
 export default connect(

@@ -31,14 +31,14 @@ export const lang19Q4 = {
     */
     "FinalResult": "نتیجه نهایی",
     "distributionTitle": "توزیع موقعیت",
-    "assetsPercent": "کل دارایی های {first}-{end}",
+    "assetsPercent": "کل دارایی های {first}~{end}",
     "holders": "هوادر های توکن",
 
     // 2019-12-10
     "token_basic_view": "مبانی",
     "token_additional_materials": "اطلاعات تکمیلی",
     "token_hold_user": "هوادر های توکن",
-    "token_capitalization": "مقدار توکن های  در حال  گردش/ارزش بازار سرمایه",
+    "token_capitalization": "درپوش بازار/کامل درپوش بازار",
     "token_credit_rating": "رتبه بندی اعتباری",
     "token_contract": "صدور قرارداد",
     "token_price_new": "قیمت",

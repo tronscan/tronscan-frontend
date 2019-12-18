@@ -31,13 +31,13 @@ export const lang19Q4 = {
     */
     "FinalResult": "النتيجة النهائية",
     "distributionTitle": "توزيع المراكز",
-    "assetsPercent": "إجمالي أصول {first}-{end}",
+    "assetsPercent": "إجمالي أصول {first}~{end}",
     "holders": "حامل الرمز",
     // 2019-12-10
     "token_basic_view": "الأساسيات",
     "token_additional_materials": "معلومات تكميلية",
     "token_hold_user": "حامل الرمز",
-    "token_capitalization": "القيمة الرمزية في التداول/إجمالي القيمة السوقية",
+    "token_capitalization": "رسملة السوق/السوق الكامل كاب",
     "token_credit_rating": "التصنيف الائتماني",
     "token_contract": "إصدار العقد ",
     "token_price_new": "السعر",
@@ -101,4 +101,7 @@ export const lang19Q4 = {
     "token_rules_2":"OK",
     "token_rules_3":"محايد",
     "token_rules_4":"احتيال",
+    "token_trade": "صفقة",
+     // 2019-12-10
+    "ledger_tronlink":"Login to TRONSCAN via TronLink",
 }

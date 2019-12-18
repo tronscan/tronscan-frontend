@@ -31,7 +31,7 @@ export const lang19Q4 = {
     */
     "FinalResult": "Result",
     "distributionTitle": "Asset Breakdown by Holders",
-    "assetsPercent": "Total assets of top {first}-{end}  holders",
+    "assetsPercent": "Total assets of top {first}~{end}  holders",
     "holders": "Holders",
     // 2019-12-10
     "token_basic_view": "Overview",
