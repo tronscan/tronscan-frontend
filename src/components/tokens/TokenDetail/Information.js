@@ -159,7 +159,7 @@ export function Information({
                            to={`/exchange/trc20?id=${token["market_info"].pairId}`}
                            target="_blank"
                            className="btn btn-danger btn-sm ml-3"
-                           style={{ height: "1.2rem", lineHeight: "0.6rem" }}
+                           style={{ height: "1.2rem", lineHeight: "0.6rem",textTransform:"capitalize" }}
                          >
                            {" "}
                            {tu("token_trade")}
