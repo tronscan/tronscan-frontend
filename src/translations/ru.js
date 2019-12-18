@@ -973,7 +973,7 @@ export const messages = {
   "in_BTC": "В BTC",
   "total_TRX_supply": "Общий объем TRX",
   "market_capitalization": "Рыночная капитализация",
-  "circulating_supply": "Общее количество в обороте",
+  "circulating_supply": "циркулирующий",
   "list_trx": "Залистить TRX",
   "burned_trx": "TRX сожжено",
   "supply_notes": "Краудсейл и предварительная продажа доступны по всему миру, за исключением США, Китая и Японии.",

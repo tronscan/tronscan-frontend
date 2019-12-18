@@ -38,7 +38,7 @@ export const lang19Q4 = {
     "token_basic_view": "Обзор",
     "token_additional_materials": "Информация Профиля",
     "token_hold_user": "Держатели",
-    "token_capitalization": "Рыночная капитализация/Общая Рыночная Капитализация",
+    "token_capitalization": "Рыночная кепка/Общая Рыночная Капитализация",
     "token_credit_rating": "Репутация",
     "token_contract": "Контракт",
     "token_price_new": "Цена",

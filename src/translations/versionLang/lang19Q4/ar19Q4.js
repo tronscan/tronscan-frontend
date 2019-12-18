@@ -37,7 +37,7 @@ export const lang19Q4 = {
     "token_basic_view": "الأساسيات",
     "token_additional_materials": "معلومات تكميلية",
     "token_hold_user": "حامل الرمز",
-    "token_capitalization": "القيمة الرمزية في التداول/إجمالي القيمة السوقية",
+    "token_capitalization":"رسملة السوق/مجموع",
     "token_credit_rating": "التصنيف الائتماني",
     "token_contract": "إصدار العقد ",
     "token_price_new": "السعر",
