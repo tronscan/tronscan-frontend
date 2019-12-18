@@ -87,6 +87,7 @@ class Token20Detail extends React.Component {
 
   loadToken = async address => {
     let { priceUSD } = this.props;
+    const { searchAddress } = this.state;
     let tabs = [
       // {
       //   id: "tokenInfo",
@@ -105,6 +106,7 @@ class Token20Detail extends React.Component {
             filter={{ token: address }}
             getCsvUrl={csvurl => this.setState({ csvurl })}
             token={token}
+            searchAddress={searchAddress}
           />
         )
       },
@@ -550,9 +552,11 @@ class Token20Detail extends React.Component {
     }
   };
 
-  tokensTransferSearchFun = async address => {
-    // console.log(this.searchAddress.value);
+  tokensTransferSearchFun = async () => {
     let serchInputVal = this.searchAddress.value;
+    this.setState({
+      searchAddress: serchInputVal
+    });
     const {
       contract_address,
       total_supply_with_decimals
@@ -563,14 +567,20 @@ class Token20Detail extends React.Component {
       )
       .then(res => {
         if (res.data) {
-          let trc20Token = res.data.trc20_tokens[0];
-          this.props.updateTokenInfo({
-            transferSearchStatus: true,
-            transfer: {
-              ...trc20Token,
-              accountedFor: trc20Token.balance / total_supply_with_decimals
-            }
-          });
+          if (res.data.trc20_tokens.length > 0) {
+            let trc20Token = res.data.trc20_tokens[0];
+            this.props.updateTokenInfo({
+              transferSearchStatus: true,
+              transfer: {
+                ...trc20Token,
+                accountedFor: trc20Token.balance / total_supply_with_decimals
+              }
+            });
+          } else {
+            this.props.updateTokenInfo({
+              transferSearchStatus: false
+            });
+          }
         }
       })
       .catch(err => {

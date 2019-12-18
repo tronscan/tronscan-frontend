@@ -176,9 +176,39 @@ class TokenDetail extends React.Component {
     return this.state.buyAmount > 0;
   };
 
+  tokensTransferSearchFun = async () => {
+    let serchInputVal = this.searchAddress.value;
+    this.setState({
+      searchAddress: serchInputVal
+    });
+    const { tokenID, totalSupply } = this.props.tokensInfo.tokenDetail;
+    await xhr
+      .get(`${API_URL}/api/tokenholders?address=${serchInputVal}&id=${tokenID}`)
+      .then(res => {
+        if (res.data) {
+          if (res.data.trc20_tokens.length > 0) {
+            let trc20Token = res.data.trc20_tokens[0];
+            this.props.updateTokenInfo({
+              transferSearchStatus: true,
+              transfer: {
+                ...trc20Token,
+                accountedFor: trc20Token.balance / totalSupply
+              }
+            });
+          } else {
+            this.props.updateTokenInfo({
+              transferSearchStatus: false
+            });
+          }
+        }
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+
   render() {
     let { match, wallet, intl, priceUSD } = this.props;
-    console.log(this.props, 12122131232123123);
     let {
       token,
       tabs,
@@ -301,9 +331,8 @@ class TokenDetail extends React.Component {
                             style={{
                               border: "none",
                               minWidth: 240,
-                              padding: "0 0.5rem"
+                              padding: "0 0.9rem 0 0.5rem"
                             }}
-                            onKeyPress={() => this.tokensTransferSearchFun()}
                           />
                           <button
                             className="btn box-shadow-none"
@@ -314,6 +343,7 @@ class TokenDetail extends React.Component {
                               borderRadius: "0 2px 2px 0",
                               color: "#fff"
                             }}
+                            onClick={() => this.tokensTransferSearchFun()}
                           >
                             <i className="fa fa-search" />
                           </button>
@@ -359,10 +389,10 @@ class TokenDetail extends React.Component {
 function mapStateToProps(state) {
   return {
     tokens: state.tokens.tokens,
+    tokensInfo: state.tokensInfo,
     wallet: state.wallet,
     currentWallet: state.wallet.current,
     account: state.app.account,
-    walletType: state.app.wallet,
     priceUSD: state.blockchain.usdPrice
   };
 }

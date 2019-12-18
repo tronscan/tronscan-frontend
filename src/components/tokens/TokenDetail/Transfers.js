@@ -6,9 +6,17 @@ import { API_URL, ONE_TRX } from "../../../constants";
 import { tu, t } from "../../../utils/i18n";
 // import TimeAgo from "react-timeago";
 import moment from "moment";
+import { Icon, Tooltip } from "antd";
 import { Truncate } from "../../common/text";
 import { withTimers } from "../../../utils/timing";
-import { FormattedNumber, injectIntl } from "react-intl";
+import {
+  FormattedNumber,
+  injectIntl,
+  FormattedDate,
+  FormattedTime
+} from "react-intl";
+import { connect } from "react-redux";
+import { updateTokenInfo } from "../../../actions/tokenInfo";
 import SmartTable from "../../common/SmartTable";
 import { upperFirst } from "lodash";
 import { TronLoader } from "../../common/loaders";
@@ -37,7 +45,8 @@ class Transfers extends React.Component {
       showTotal: props.showTotal !== false,
       emptyState: props.emptyState,
       autoRefresh: props.autoRefresh || false,
-      searchStatus: false
+      searchStatus: false,
+      timeType: true
     };
   }
 
@@ -108,6 +117,7 @@ class Transfers extends React.Component {
 
   customizedColumn = () => {
     let { intl } = this.props;
+    let { timeType } = this.state;
     let column = [
       {
         title: upperFirst(
@@ -118,7 +128,7 @@ class Transfers extends React.Component {
         dataIndex: "transactionHash",
         key: "transactionHash",
         className: "ant_table",
-        width: "160px",
+        width: "150px",
         render: (text, record, index) => {
           return (
             <Truncate>
@@ -130,18 +140,43 @@ class Transfers extends React.Component {
         }
       },
       {
-        title: upperFirst(
-          intl.formatMessage({
-            id: "age"
-          })
+        title: (
+          <span
+            className="token-change-type"
+            onClick={this.changeType.bind(this)}
+          >
+            {upperFirst(
+              intl.formatMessage({
+                id: timeType ? "age" : "trc20_cur_order_header_order_time"
+              })
+            )}
+            <Icon type="retweet" style={{ verticalAlign: 0, marginLeft: 10 }} />
+          </span>
         ),
         dataIndex: "timestamp",
         key: "timestamp",
-        width: "150px",
+        width: "180px",
         className: "ant_table",
         render: (text, record, index) => {
-          return <BlockTime time={record.timestamp}> </BlockTime>;
-          // <TimeAgo date={record.timestamp} title={moment(record.timestamp).format("MMM-DD-YYYY HH:mm:ss A")}/>
+          return (
+            <div>
+              {timeType ? (
+                <BlockTime time={Number(record.timestamp)}> </BlockTime>
+              ) : (
+                <span className="">
+                  <FormattedDate value={record.timestamp} />{" "}
+                  <FormattedTime
+                    value={record.timestamp}
+                    hour="numeric"
+                    minute="numeric"
+                    second="numeric"
+                    hour12={false}
+                  />
+                </span>
+              )}
+            </div>
+          );
+          // <TimeAgo date={Number(record.timestamp)} title={moment(record.block_ts).format("MMM-DD-YYYY HH:mm:ss A")}/>
         }
       },
       {
@@ -157,6 +192,14 @@ class Transfers extends React.Component {
         render: (text, record, index) => {
           return (
             <AddressLink address={record.transferFromAddress}>
+              {record.fromAddressIsContract ? (
+                <Tooltip placement="top" title={"合约地址"}>
+                  <Icon
+                    type="file-text"
+                    style={{ marginRight: 2, verticalAlign: 0 }}
+                  />
+                </Tooltip>
+              ) : null}
               {record.transferFromAddress}
             </AddressLink>
           );
@@ -183,6 +226,14 @@ class Transfers extends React.Component {
         render: (text, record, index) => {
           return (
             <AddressLink address={record.transferToAddress}>
+              {record.fromAddressIsContract ? (
+                <Tooltip placement="top" title={"合约地址"}>
+                  <Icon
+                    type="file-text"
+                    style={{ marginRight: 2, verticalAlign: 0 }}
+                  />
+                </Tooltip>
+              ) : null}
               {record.transferToAddress}
             </AddressLink>
           );
@@ -218,6 +269,14 @@ class Transfers extends React.Component {
     return column;
   };
 
+  changeType() {
+    let { timeType } = this.state;
+
+    this.setState({
+      timeType: !timeType
+    });
+  }
+
   onDateOk(start, end) {
     this.start = start.valueOf();
     this.end = end.valueOf();
@@ -251,7 +310,7 @@ class Transfers extends React.Component {
       fontSize: "18px",
       color: "#333333"
     };
-    let { theadClass = "thead-dark", intl } = this.props;
+    let { theadClass = "thead-dark", intl, tokensInfo, priceUSD } = this.props;
     let column = this.customizedColumn();
     let tableInfo =
       intl.formatMessage({
@@ -287,7 +346,7 @@ class Transfers extends React.Component {
         )}
         <div className="row transfers">
           <div className="col-md-12 table_pos">
-            {searchStatus ? (
+            {tokensInfo.transferSearchStatus ? (
               <div
                 style={{
                   display: "flex",
@@ -304,28 +363,53 @@ class Transfers extends React.Component {
                       color: "#C64844"
                     }}
                   >
-                    TFMAHNT…ts65Y12
+                    {tokensInfo.transfer.holder_address
+                      ? `${tokensInfo.transfer.holder_address.substring(
+                          0,
+                          7
+                        )}...${tokensInfo.transfer.holder_address.slice(-7)}`
+                      : null}
                   </div>
-                  <p style={descStyle}>Holders</p>
-                </div>
-                <div style={listCommonSty}>
-                  <div style={listTitleStyle}>537.2334TRX</div>
-                  <p style={descStyle}>Holdings</p>
-                </div>
-                <div style={listCommonSty}>
-                  <div style={listTitleStyle}>55.5%</div>
-                  <p style={descStyle}>Accounted for</p>
+                  <p style={descStyle}> Holders </p>
                 </div>
                 <div style={listCommonSty}>
                   <div style={listTitleStyle}>
-                    $23432.234
+                    {(tokensInfo.transfer.balance / Math.pow(10, 6)).toFixed(6)}
+                    TRX
+                  </div>
+                  <p style={descStyle}> Holdings </p>
+                </div>
+                <div style={listCommonSty}>
+                  <div style={listTitleStyle}>
+                    <FormattedNumber
+                      value={tokensInfo.transfer.accountedFor * 100}
+                      maximumFractionDigits={6}
+                    ></FormattedNumber>
+                    %
+                  </div>
+                  <p style={descStyle}> Accounted for </p>
+                </div>
+                <div style={listCommonSty}>
+                  <div style={listTitleStyle}>
+                    $
+                    {(
+                      (tokensInfo.transfer.balance / Math.pow(10, 6)) *
+                      priceUSD
+                    ).toFixed(0)}
                     <span
-                      style={{ color: "rgba(51,51,51,0.25)", fontSize: "14px" }}
+                      style={{
+                        color: "rgba(51,51,51,0.25)",
+                        fontSize: "14px"
+                      }}
                     >
-                      ≈123432432 TRX
+                      ≈
+                      {(tokensInfo.transfer.balance / Math.pow(10, 6)).toFixed(
+                        0
+                      )}
+                      TRX
                     </span>
                   </div>
-                  <p style={descStyle}>Value</p>
+                  <p style={descStyle}> Value </p>
                 </div>
               </div>
             ) : null}
@@ -353,7 +437,7 @@ class Transfers extends React.Component {
                 }}
               />
             </div>
-            <div className="trx20tronsfers">
+            <div className="trx20tronsfers trx10tronsfers">
               {!loading && transfers.length === 0 ? (
                 <div className="pt-5 pb-5 text-center no-data transfers-bg-white">
                   {tu("no_transfers")}
@@ -380,5 +464,18 @@ class Transfers extends React.Component {
     );
   }
 }
+function mapStateToProps(state) {
+  return {
+    tokensInfo: state.tokensInfo,
+    priceUSD: state.blockchain.usdPrice
+  };
+}
 
-export default withTimers(injectIntl(Transfers));
+const mapDispatchToProps = {
+  updateTokenInfo
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withTimers(injectIntl(Transfers)));

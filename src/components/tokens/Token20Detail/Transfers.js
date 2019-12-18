@@ -5,6 +5,7 @@ import {
   TransactionHashLink,
   TokenTRC20Link
 } from "../../common/Links";
+import { Icon, Tooltip } from "antd";
 import { TRXPrice } from "../../common/Price";
 import { API_URL, ONE_TRX } from "../../../constants";
 import { tu, t } from "../../../utils/i18n";
@@ -14,7 +15,12 @@ import { connect } from "react-redux";
 import { updateTokenInfo } from "../../../actions/tokenInfo";
 import { Truncate } from "../../common/text";
 import { withTimers } from "../../../utils/timing";
-import { FormattedNumber, injectIntl } from "react-intl";
+import {
+  FormattedNumber,
+  injectIntl,
+  FormattedDate,
+  FormattedTime
+} from "react-intl";
 import SmartTable from "../../common/SmartTable";
 import { upperFirst } from "lodash";
 import { TronLoader } from "../../common/loaders";
@@ -42,7 +48,8 @@ class Transfers extends React.Component {
       showTotal: props.showTotal !== false,
       emptyState: props.emptyState,
       autoRefresh: props.autoRefresh || false,
-      searchStatus: false
+      searchStatus: false,
+      timeType: true
     };
   }
 
@@ -59,12 +66,13 @@ class Transfers extends React.Component {
   };
 
   loadPage = async (page = 1, pageSize = 20) => {
-    let { filter, getCsvUrl } = this.props;
-    let { showTotal } = this.state;
+    let { filter, getCsvUrl, searchAddress } = this.props;
+    let { showTotal, timeType } = this.state;
     const params = {
       contract_address: filter.token,
       start_timestamp: this.start,
-      end_timestamp: this.end
+      end_timestamp: this.end,
+      address: searchAddress ? searchAddress : ""
     };
     this.setState({
       loading: true,
@@ -116,6 +124,7 @@ class Transfers extends React.Component {
 
   customizedColumn = () => {
     let { intl, token } = this.props;
+    let { timeType } = this.state;
     let column = [
       {
         title: upperFirst(
@@ -127,7 +136,7 @@ class Transfers extends React.Component {
         key: "transactionHash",
         className: "ant_table",
         align: "center",
-        width: "200px",
+        width: "150px",
         render: (text, record, index) => {
           return (
             <Truncate>
@@ -150,17 +159,42 @@ class Transfers extends React.Component {
         width: "100px"
       },
       {
-        title: upperFirst(
-          intl.formatMessage({
-            id: "age"
-          })
+        title: (
+          <span
+            className="token-change-type"
+            onClick={this.changeType.bind(this)}
+          >
+            {upperFirst(
+              intl.formatMessage({
+                id: timeType ? "age" : "trc20_cur_order_header_order_time"
+              })
+            )}
+            <Icon type="retweet" style={{ verticalAlign: 0, marginLeft: 10 }} />
+          </span>
         ),
         dataIndex: "timestamp",
         key: "timestamp",
-        width: "150px",
+        width: "180px",
         className: "ant_table",
         render: (text, record, index) => {
-          return <BlockTime time={Number(record.block_ts)}> </BlockTime>;
+          return (
+            <div>
+              {timeType ? (
+                <BlockTime time={Number(record.block_ts)}> </BlockTime>
+              ) : (
+                <span className="">
+                  <FormattedDate value={record.block_ts} />
+                  <FormattedTime
+                    value={record.block_ts}
+                    hour="numeric"
+                    minute="numeric"
+                    second="numeric"
+                    hour12={false}
+                  />
+                </span>
+              )}
+            </div>
+          );
           // <TimeAgo date={Number(record.block_ts)} title={moment(record.block_ts).format("MMM-DD-YYYY HH:mm:ss A")}/>
         }
       },
@@ -177,6 +211,15 @@ class Transfers extends React.Component {
         render: (text, record, index) => {
           return (
             <AddressLink address={record.from_address}>
+              {record.fromAddressIsContract ? (
+                <Tooltip placement="top" title={"合约地址"}>
+                  <Icon
+                    type="file-text"
+                    style={{ marginRight: 2, verticalAlign: 0 }}
+                  />
+                </Tooltip>
+              ) : null}
+
               {record.from_address}
             </AddressLink>
           );
@@ -204,6 +247,14 @@ class Transfers extends React.Component {
         render: (text, record, index) => {
           return (
             <AddressLink address={record.to_address}>
+              {record.toAddressIsContract ? (
+                <Tooltip placement="top" title={"合约地址"}>
+                  <Icon
+                    type="file-text"
+                    style={{ marginRight: 2, verticalAlign: 0 }}
+                  />
+                </Tooltip>
+              ) : null}
               {record.to_address}
             </AddressLink>
           );
@@ -249,13 +300,21 @@ class Transfers extends React.Component {
         key: "tokens",
         className: "ant_table",
         render: (text, record, index) => {
-          return <span>{token.symbol}</span>;
+          return <span> {token.symbol} </span>;
         }
       }
     ];
 
     return column;
   };
+
+  changeType() {
+    let { timeType } = this.state;
+
+    this.setState({
+      timeType: !timeType
+    });
+  }
 
   onDateOk(start, end) {
     this.start = start.valueOf();
@@ -282,8 +341,7 @@ class Transfers extends React.Component {
       emptyState: EmptyState = null,
       searchStatus
     } = this.state;
-    const { priceUSD } = this.props;
-    console.log(this.props, "priceUSDpriceUSDpriceUSDpriceUSD");
+
     // console.log(   let { priceUSD } = this.props;)
 
     if (total == 0) {
@@ -305,7 +363,7 @@ class Transfers extends React.Component {
       color: "#333333"
     };
 
-    let { theadClass = "thead-dark", intl, tokensInfo } = this.props;
+    let { theadClass = "thead-dark", intl, tokensInfo, priceUSD } = this.props;
     let column = this.customizedColumn();
     let tableInfo =
       intl.formatMessage({
@@ -365,14 +423,14 @@ class Transfers extends React.Component {
                         )}...${tokensInfo.transfer.holder_address.slice(-7)}`
                       : null}
                   </div>
-                  <p style={descStyle}>Holders</p>
+                  <p style={descStyle}> Holders </p>
                 </div>
                 <div style={listCommonSty}>
                   <div style={listTitleStyle}>
                     {(tokensInfo.transfer.balance / Math.pow(10, 6)).toFixed(6)}
                     TRX
                   </div>
-                  <p style={descStyle}>Holdings</p>
+                  <p style={descStyle}> Holdings </p>
                 </div>
                 <div style={listCommonSty}>
                   <div style={listTitleStyle}>
@@ -382,7 +440,7 @@ class Transfers extends React.Component {
                     ></FormattedNumber>
                     %
                   </div>
-                  <p style={descStyle}>Accounted for</p>
+                  <p style={descStyle}> Accounted for </p>
                 </div>
                 <div style={listCommonSty}>
                   <div style={listTitleStyle}>
@@ -392,7 +450,10 @@ class Transfers extends React.Component {
                       priceUSD
                     ).toFixed(0)}
                     <span
-                      style={{ color: "rgba(51,51,51,0.25)", fontSize: "14px" }}
+                      style={{
+                        color: "rgba(51,51,51,0.25)",
+                        fontSize: "14px"
+                      }}
                     >
                       ≈
                       {(tokensInfo.transfer.balance / Math.pow(10, 6)).toFixed(
@@ -401,11 +462,10 @@ class Transfers extends React.Component {
                       TRX
                     </span>
                   </div>
-                  <p style={descStyle}>Value</p>
+                  <p style={descStyle}> Value </p>
                 </div>
               </div>
             ) : null}
-
             <div className="distributionWrapper">
               <div>
                 <div
@@ -461,6 +521,7 @@ class Transfers extends React.Component {
     );
   }
 }
+
 function mapStateToProps(state) {
   return {
     tokensInfo: state.tokensInfo,

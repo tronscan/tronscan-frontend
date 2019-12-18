@@ -720,6 +720,25 @@ engry {
     }
 }
 
+.distributionWrapper {
+    .card {
+        padding: 0 !important;
+    }
+    .trx20tronsfers {
+        .card {
+            padding-top: 4rem !important;
+        }
+    }
+}
+
+.trx10tronsfers {
+    .card {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        padding-bottom: 0 !important;
+    }
+}
+
 .trx20tronsfers {
     .ant-table-body {
         table {

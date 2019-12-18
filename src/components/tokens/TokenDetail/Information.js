@@ -127,7 +127,7 @@ export function Information({
                    <div>
                      {token["market_info"].sShortName == "TRX" ? (
                        <div className="d-flex price-info">
-                         {token.priceToUsd.toFixed(6)} USD
+                         ${token.priceToUsd.toFixed(6)}
                          <span className="token-price-trx ">
                            {" "}
                            ≈ {token["market_info"].priceInTrx}{" "}
@@ -159,7 +159,7 @@ export function Information({
                            to={`/exchange/trc20?id=${token["market_info"].pairId}`}
                            target="_blank"
                            className="btn btn-danger btn-sm ml-3"
-                           style={{ height: "1.2rem", lineHeight: "0.6rem" }}
+                           style={{ height: "1.2rem", lineHeight: "0.6rem",textTransform:"capitalize" }}
                          >
                            {" "}
                            {tu("token_trade")}
@@ -181,10 +181,10 @@ export function Information({
                <div>
                  {currentTotalSupplyUsd != 0 ? (
                    <span>
-                     <FormattedNumber
+                     $<FormattedNumber
                        value={currentTotalSupplyUsd}
                      ></FormattedNumber>{" "}
-                     USD
+                     
                    </span>
                  ) : (
                    defaultContent
@@ -192,8 +192,8 @@ export function Information({
                  /{" "}
                  {totalSupplyUsd != 0 ? (
                    <span>
-                     <FormattedNumber value={totalSupplyUsd}></FormattedNumber>{" "}
-                     USD
+                     $<FormattedNumber value={totalSupplyUsd}></FormattedNumber>{" "}
+                     
                    </span>
                  ) : (
                    defaultContent
