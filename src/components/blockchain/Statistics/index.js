@@ -274,7 +274,7 @@ class Statistics extends React.Component {
       }
     })
     let _this = this;
-    window.onscroll = function () {
+     window.onscroll = function () {
       _this.onScrollEvent(linkIds);
     }
 
@@ -315,7 +315,7 @@ class Statistics extends React.Component {
                 Object.values(tabs).map(tab => (
                   <li className="nav-item scroll-li" key={tab.id}>
                     <a href="javascript:"
-                      className={`scroll-tab nav-link ${tab.id}`}
+                      className={`scroll-tab nav-link ${tab.id} ${tab.id==='transfer'?'active':''}`}
                       key={tab.id}
                       //afterAnimate={() => this.updateHash(tab.id)}
                       onClick={() => this.scrollToAnchor(tab.id)}
