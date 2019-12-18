@@ -50,11 +50,17 @@ class TokenList extends Component {
   loadPage = async (page = 1, pageSize = 20) => {
     this.setState({loading: true})
     const { filter, countTop } = this.state
-    const {data: {tokens, total, totalAll, all,currentWeekAll,currentWeekTotalAll,valueAtLeast}} = await xhr.get(API_URL+"/api/tokens/overview", {params: {
+    const res = await xhr.get(API_URL+"/api/tokens/overview", {params: {
       start:  (page - 1) * pageSize,
       limit: pageSize,
       ...filter
-    }});
+    }}).catch(e=>{
+      this.setState({loading: false})
+    });
+    if(!res){
+      return
+    }
+    const {data: {tokens, total, totalAll, all,currentWeekAll,currentWeekTotalAll,valueAtLeast}} =res
     let count = 0;
     let Top = 0;
     tokens.map((item,index) => {
