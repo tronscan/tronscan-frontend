@@ -295,7 +295,16 @@ class TokenDetail extends React.Component {
                           className="input-group-append"
                           style={{ marginLeft: 0 }}
                         >
-                          <Input allowClear />
+                          <input
+                            type="text"
+                            ref={ref => (this.searchAddress = ref)}
+                            style={{
+                              border: "none",
+                              minWidth: 240,
+                              padding: "0 0.5rem"
+                            }}
+                            onKeyPress={() => this.tokensTransferSearchFun()}
+                          />
                           <button
                             className="btn box-shadow-none"
                             style={{

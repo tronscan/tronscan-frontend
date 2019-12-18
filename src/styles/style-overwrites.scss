@@ -705,25 +705,6 @@ engry {
     }
 }
 
-.token_black {
-    .ant-input-affix-wrapper:hover .ant-input:not {
-        border-color: #d9d9d9 !important;
-        box-sizing: border-box;
-    }
-    .ant-input:focus {
-        border-color: #d9d9d9 !important;
-        box-sizing: border-box;
-    }
-    .ant-input:hover {
-        border-color: #d9d9d9 !important;
-        box-sizing: border-box;
-    }
-    --antd-wave-shadow-color: #d9d9d9 !important;
-    .ant-input::selection {
-        background: #d9d9d9 !important;
-    }
-}
-
 .holder-transfers {
     .ant-table {
         thead {

@@ -10,6 +10,8 @@ import { API_URL, ONE_TRX } from "../../../constants";
 import { tu, t } from "../../../utils/i18n";
 // import TimeAgo from "react-timeago";
 import moment from "moment";
+import { connect } from "react-redux";
+import { updateTokenInfo } from "../../../actions/tokenInfo";
 import { Truncate } from "../../common/text";
 import { withTimers } from "../../../utils/timing";
 import { FormattedNumber, injectIntl } from "react-intl";
@@ -280,6 +282,10 @@ class Transfers extends React.Component {
       emptyState: EmptyState = null,
       searchStatus
     } = this.state;
+    const { priceUSD } = this.props;
+    console.log(this.props, "priceUSDpriceUSDpriceUSDpriceUSD");
+    // console.log(   let { priceUSD } = this.props;)
+
     if (total == 0) {
       transfers = [];
     }
@@ -298,7 +304,8 @@ class Transfers extends React.Component {
       fontSize: "18px",
       color: "#333333"
     };
-    let { theadClass = "thead-dark", intl } = this.props;
+
+    let { theadClass = "thead-dark", intl, tokensInfo } = this.props;
     let column = this.customizedColumn();
     let tableInfo =
       intl.formatMessage({
@@ -334,7 +341,7 @@ class Transfers extends React.Component {
         )}
         <div className="row transfers">
           <div className="col-md-12 ">
-            {searchStatus ? (
+            {tokensInfo.transferSearchStatus ? (
               <div
                 style={{
                   display: "flex",
@@ -351,25 +358,47 @@ class Transfers extends React.Component {
                       color: "#C64844"
                     }}
                   >
-                    TFMAHNT…ts65Y12
+                    {tokensInfo.transfer.holder_address
+                      ? `${tokensInfo.transfer.holder_address.substring(
+                          0,
+                          7
+                        )}...${tokensInfo.transfer.holder_address.slice(-7)}`
+                      : null}
                   </div>
                   <p style={descStyle}>Holders</p>
                 </div>
                 <div style={listCommonSty}>
-                  <div style={listTitleStyle}>537.2334TRX</div>
+                  <div style={listTitleStyle}>
+                    {(tokensInfo.transfer.balance / Math.pow(10, 6)).toFixed(6)}
+                    TRX
+                  </div>
                   <p style={descStyle}>Holdings</p>
                 </div>
                 <div style={listCommonSty}>
-                  <div style={listTitleStyle}>55.5%</div>
+                  <div style={listTitleStyle}>
+                    <FormattedNumber
+                      value={tokensInfo.transfer.accountedFor * 100}
+                      maximumFractionDigits={6}
+                    ></FormattedNumber>
+                    %
+                  </div>
                   <p style={descStyle}>Accounted for</p>
                 </div>
                 <div style={listCommonSty}>
                   <div style={listTitleStyle}>
-                    $23432.234
+                    $
+                    {(
+                      (tokensInfo.transfer.balance / Math.pow(10, 6)) *
+                      priceUSD
+                    ).toFixed(0)}
                     <span
                       style={{ color: "rgba(51,51,51,0.25)", fontSize: "14px" }}
                     >
-                      ≈123432432 TRX
+                      ≈
+                      {(tokensInfo.transfer.balance / Math.pow(10, 6)).toFixed(
+                        0
+                      )}
+                      TRX
                     </span>
                   </div>
                   <p style={descStyle}>Value</p>
@@ -397,7 +426,7 @@ class Transfers extends React.Component {
                       typeText="transaction_info"
                       divClass="table_pos_info_addr"
                       selected
-                      top={searchStatus ? "184px" : "70px"}
+                      top={tokensInfo.transferSearchStatus ? "184px" : "70px"}
                     />
                   )}
                 </div>
@@ -432,5 +461,18 @@ class Transfers extends React.Component {
     );
   }
 }
+function mapStateToProps(state) {
+  return {
+    tokensInfo: state.tokensInfo,
+    priceUSD: state.blockchain.usdPrice
+  };
+}
 
-export default withTimers(injectIntl(Transfers));
+const mapDispatchToProps = {
+  updateTokenInfo
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withTimers(injectIntl(Transfers)));

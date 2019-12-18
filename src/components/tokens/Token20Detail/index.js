@@ -42,32 +42,6 @@ import Code from "../../blockchain/Contract/Code";
 import ExchangeQuotes from "../ExchangeQuotes";
 import ApiClientToken from "../../../services/tokenApi";
 
-// search
-const CreateForm = Form.create()(
-  // eslint-disable-next-line
-  class extends React.Component {
-    render() {
-      const { form } = this.props;
-      const { getFieldDecorator } = form;
-      return (
-        <Form>
-          <Form.Item>
-            {getFieldDecorator("address")(
-              <Input
-                onChange={e => {
-                  console.log(e);
-                }}
-                onPressEnter={() => this.tokensTransferSearchFun()}
-                allowClear
-              />
-            )}
-          </Form.Item>
-        </Form>
-      );
-    }
-  }
-);
-
 class Token20Detail extends React.Component {
   constructor() {
     super();
@@ -577,9 +551,31 @@ class Token20Detail extends React.Component {
   };
 
   tokensTransferSearchFun = async address => {
-    let result = await xhr.get(
-      API_URL + "/api/token_trc20/holder_address=" + address
-    );
+    // console.log(this.searchAddress.value);
+    let serchInputVal = this.searchAddress.value;
+    const {
+      contract_address,
+      total_supply_with_decimals
+    } = this.props.tokensInfo.tokenDetail;
+    await xhr
+      .get(
+        `${API_URL}/api/token_trc20/holders?holder_address=${serchInputVal}&contract_address=${contract_address}`
+      )
+      .then(res => {
+        if (res.data) {
+          let trc20Token = res.data.trc20_tokens[0];
+          this.props.updateTokenInfo({
+            transferSearchStatus: true,
+            transfer: {
+              ...trc20Token,
+              accountedFor: trc20Token.balance / total_supply_with_decimals
+            }
+          });
+        }
+      })
+      .catch(err => {
+        console.log(err);
+      });
   };
 
   render() {
@@ -701,16 +697,15 @@ class Token20Detail extends React.Component {
                           className="input-group-append"
                           style={{ marginLeft: 0 }}
                         >
-                          <CreateForm></CreateForm>
-                          {/* <Form>
-                            <Form.Item>
-                              <Input
-                                allowClear
-                                
-                              />
-                            </Form.Item>
-                          </Form> */}
-
+                          <input
+                            type="text"
+                            ref={ref => (this.searchAddress = ref)}
+                            style={{
+                              border: "none",
+                              minWidth: 240,
+                              padding: "0 0.5rem"
+                            }}
+                          />
                           <button
                             className="btn box-shadow-none"
                             style={{

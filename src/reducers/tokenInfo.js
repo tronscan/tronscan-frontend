@@ -3,8 +3,12 @@ import {
 } from "../constants";
 
 const initialState = {
-    totalSupply: '',
     tokenDetail: '',
+    transferSearchStatus: false,
+    transfer: {
+        holder_address: '',
+        balance: ''
+    }
 
 }
 
