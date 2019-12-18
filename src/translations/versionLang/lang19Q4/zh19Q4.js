@@ -97,7 +97,7 @@ export const lang19Q4 = {
     "token_exchange_total2":"个交易对",
     "token_exchange_rate_tip":"该通证在该交易对24小时的成交量占该通证24小时所有成交量的比重",
     "contract_available_energy":"可用能量",
-
+    "token_list_count":"列表数量",
     //2019-12-15
     "token_estimated_cost":"预计花费",
     "token_enter_number":"输入您想要购买的数量",

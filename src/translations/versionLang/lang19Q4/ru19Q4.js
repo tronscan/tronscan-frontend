@@ -92,6 +92,7 @@ export const lang19Q4 = {
     "token_exchange_total2":" торговых пар в общей сложности",
     "token_exchange_rate_tip":"24-часовой объем торговой пары / 24-часовой объем токена",
     "contract_available_energy":"Доступно",
+    "token_list_count":"Количество списков",
     //2019-12-15
     "token_estimated_cost":"Ориентировочная Стоимость",
     "token_enter_number":"Пожалуйста, введите сумму, которую вы хотите купить",

@@ -92,6 +92,7 @@ export const lang19Q4 = {
     "token_exchange_total2":" لأزواج التداول",
     "token_exchange_rate_tip":"نسبة حجم تداول الرمز المميز على مدار 24 ساعة في إجمالي حجم تداول زوج التداول على مدار 24 ساعة",
     "contract_available_energy":"متاح",
+    "token_list_count":"عدد القوائم",
     //2019-12-15
     "token_estimated_cost":"التكلفة المقدرة",
     "token_enter_number":"أدخل الكمية التي تريد شرائها",

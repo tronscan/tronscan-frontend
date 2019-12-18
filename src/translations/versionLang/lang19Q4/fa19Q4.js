@@ -92,6 +92,7 @@ export const lang19Q4 = {
     "token_exchange_total2":"مجموع  جفت معاملات ",
     "token_exchange_rate_tip":"گردش مالی جفت معاملات در 24hs / گردش مالی کلی در 24hs.",
     "contract_available_energy":"در دسترس است",
+    "token_list_count":"تعداد لیست ها",
     //2019-12-15
     "token_estimated_cost":"بودجه",
     "token_enter_number":"لطفا مبلغ موردنیاز برای خرید را وارد کنید",
