@@ -18,6 +18,7 @@ import { withTronWeb } from "../../../utils/tronWeb";
 import { reloadWallet } from "../../../actions/wallet";
 import { isEqual } from "lodash";
 import Participate from "./Participate";
+import ApiClientToken from '../../../services/tokenApi'
 
 // @withTimers
 @withTronWeb
@@ -27,12 +28,14 @@ class TokenInfo extends React.Component {
     this.state = {
       currentTotalSupply: 0,
       alert: null,
-      buyAmount: 0
+      buyAmount: 0,
+      participateassetissueTotal:0
     };
   }
 
   componentDidMount() {
     this.loadTotalTRXSupply();
+    this.loadParticipateassetissue()
   }
   // shouldComponentUpdate(nextProps) {
   //   if (
@@ -43,6 +46,19 @@ class TokenInfo extends React.Component {
   //   }
   //   return false;
   // }
+  async loadParticipateassetissue(){
+    let {token} = this.props;
+    let params = {
+      id:token.id,
+      limit:1
+    }
+    let data = await ApiClientToken.getParticipateassetissue(params)
+
+    this.setState({
+      participateassetissueTotal:data && data.total
+    })
+
+  }
   loadTotalTRXSupply = async () => {
     const { funds } = await Client.getBttFundsSupply();
     this.setState({
@@ -51,7 +67,7 @@ class TokenInfo extends React.Component {
   };
   render() {
     let { token } = this.props;
-    let { currentTotalSupply, alert } = this.state;
+    let { currentTotalSupply, alert,participateassetissueTotal } = this.state;
     let issued = token.precision
       ? token.issued / Math.pow(10, token.precision)
       : token.issued;
@@ -74,6 +90,7 @@ class TokenInfo extends React.Component {
                       second="numeric"
                       hour12={false}
                     />
+                    UTC
                   </span>
                 </td>
               ) : (
@@ -88,6 +105,7 @@ class TokenInfo extends React.Component {
                         second="numeric"
                         hour12={false}
                       />
+                      UTC
                     </span>
                   ) : (
                     "-"
@@ -108,6 +126,7 @@ class TokenInfo extends React.Component {
                       second="numeric"
                       hour12={false}
                     />
+                    UTC
                   </span>
                 </td>
               ) : (
@@ -122,6 +141,7 @@ class TokenInfo extends React.Component {
                         second="numeric"
                         hour12={false}
                       />
+                      UTC
                     </span>
                   ) : (
                     "-"
@@ -133,12 +153,6 @@ class TokenInfo extends React.Component {
                     token.isBlack
                   ) &&
                     token.canShow !== 3 && (
-                      // <button
-                      //   className="btn btn-default btn-xs d-inline-block ml-3"
-                      //   onClick={() => this.preBuyTokens(token)}
-                      // >
-                      //   {tu("participate")}
-                      // </button>
                       <Participate token={token} />
                     )}
                 </td>
@@ -181,7 +195,7 @@ class TokenInfo extends React.Component {
             </tr>
             <tr>
               <th>{tu("token_Participants")}:</th>
-              {token.id == "1002000" ? <td></td> : <td></td>}
+                  {<td>{participateassetissueTotal} {" "}{tu('address')}</td>}
             </tr>
             <tr>
               <th>{tu("fund_raised")}:</th>

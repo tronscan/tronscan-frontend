@@ -31,7 +31,7 @@ export const lang19Q4 = {
     */
     "FinalResult": "最終結果",
     "distributionTitle": "Asset Breakdown by Holders",
-    "assetsPercent": "第{first}-{end}名の総資産",
+    "assetsPercent": "第{first}~{end}名の総資産",
     "holders": "トークンホルダー",
 
     // 2019-12-10
@@ -72,8 +72,28 @@ export const lang19Q4 = {
     "token_rating_rule_title_end_2": "Reputation merely serves as a reference for users. It may not be accurate and should not be taken as a definite value judgment since it only considers the completeness of token information and community feedback. TRONSCAN makes no warranties as to the accuracy and reliability of the reputation score, and accepts no direct or indirect liability for any losses caused or claimed to be caused by this.   ",
     "token_rating_rule_title_end_3": "TRONSCAN reserves the right to update the reputation score, and has no obligation to give any explanation for how it determines and updates the token reputation. Tokens found to be fraudulent or detrimental to other users’ rights and interests will be blacklisted or further disciplined.   ",
     "token_rating_rule_title_end_4": "TRONSCAN will update the Token Reputation System as it sees fit for the ecosystem. The updated policy will take effect once published on the official website.    ",
-
-
+    "token_cau_risk": "リスクに注意してください!",
+    //2019-12-10  leon
+    "token_overview":"トークン概要",
+    "token_rank": "ランキング",
+    "market_capitalization_t": "時価総額",
+    "token_tron_total": "TRONトークン 総数",
+    "token_week": "今週の新しいトークン",
+    "token_scan_total": "TRONSCANのトークン数",
+    "create_token_btn": "トークン発行",
+    "gain_tip": "24時間の変動量",
+    "total_supply_tip1": "トークンの流通量にトークンの現在の市場価格を掛けて計算されます24時間の取引量が",
+    "total_supply_tip2":" TRX未満の場合、カウントされません",
+    "token_exchange":"取引所",
+    "token_exchange_pair":"取引ペア",
+    "token_exchange_price":"価格",
+    "token_exchange_24h_vol":"24時間の取引量",
+    "token_exchange_vol_rate":"取引量の割合",
+    "token_exchange_total1":"合計",
+    "token_exchange_total2":"トレーディングペア",
+    "token_exchange_rate_tip":"24時間での取引ペアの取引量/ 24時間での全体的な取引量",
+    "contract_available_energy":"使用可能",
+    "token_list_count":"リスト数",
     //2019-12-15
     "token_estimated_cost":"バデット",
     "token_enter_number":"購入したい数量を入力してください",

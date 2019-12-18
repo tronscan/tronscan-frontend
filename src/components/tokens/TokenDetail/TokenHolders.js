@@ -120,33 +120,48 @@ class TokenHolders extends React.Component {
         key: "address",
         render: (text, record, index) => {
           return record.ico ? (
-            <div>
+            <div style={{ display: "flex" }}>
               <Tooltip
                 placement="topLeft"
                 title={upperCase(intl.formatMessage({ id: record.ico }))}
               >
-                <span className="d-flex align-items-center">
-                  <img
-                    src={require("../../../images/" + record.ico + "-logo.png")}
-                    style={{
-                      width: "14px",
-                      marginLeft: "-20px",
-                      marginRight: "6px"
-                    }}
-                  />
+                <span
+                  className="d-flex align-items-center"
+                  style={{ maxWidth: 350 }}
+                >
                   <AddressLink address={record.address} />
                 </span>
               </Tooltip>
-              <span style={{ whiteSpace: "nowrap" }}>
-                {record.addressTag ? record.addressTag : ""}{" "}
-              </span>
+              {record.addressTag ? (
+                <div>
+                  <img
+                    style={{ width: 14, height: 14 }}
+                    src={`https://coin.top/production/upload/tag/${record.address}.png`}
+                    alt=""
+                  />
+                  <span> {record.addressTag}</span>
+                </div>
+              ) : (
+                ""
+              )}
             </div>
           ) : (
-            <div>
-              <AddressLink address={record.address} />
-              <span style={{ whiteSpace: "nowrap" }}>
-                {record.addressTag ? record.addressTag : ""}{" "}
-              </span>
+            <div style={{ display: "flex" }}>
+              <div style={{ maxWidth: 350 }}>
+                <AddressLink address={record.address} />
+              </div>
+              {record.addressTag ? (
+                <div>
+                  <img
+                    style={{ width: 14, height: 14 }}
+                    src={`https://coin.top/production/upload/tag/${record.address}.png`}
+                    alt=""
+                  />
+                  <span> {record.addressTag}</span>
+                </div>
+              ) : (
+                ""
+              )}
             </div>
           );
         }
@@ -208,7 +223,7 @@ class TokenHolders extends React.Component {
 
   render() {
     let { addresses, total, rangeTotal, loading } = this.state;
-    let { intl } = this.props;
+    let { intl, filter } = this.props;
     let column = this.customizedColumn();
     let tableInfo =
       intl.formatMessage({ id: "a_totle" }) +
@@ -237,8 +252,10 @@ class TokenHolders extends React.Component {
         )}
         <div className="row transfers">
           <div className="col-md-12 table_pos">
-            <HolderDistribution></HolderDistribution>
-            {/* {total?<div className="table_pos_info d-none d-md-block">{tableInfo}</div>: ''} */}
+            <HolderDistribution
+              trcType={"trc10"}
+              tokenId={filter.tokenId}
+            ></HolderDistribution>
             <div
               className="distributionWrapper"
               style={{

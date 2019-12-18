@@ -39,18 +39,28 @@ class TokenList extends Component {
         showSizeChanger: true,
         defaultPageSize:20,
         total: 0
-      }
+      },
+      marketCapTip: false,
+      currentWeekAll: 0,
+      currentWeekTotalAll: 0,
+      valueAtLeast: 0
     };
   }
 
   loadPage = async (page = 1, pageSize = 20) => {
     this.setState({loading: true})
     const { filter, countTop } = this.state
-    const {data: {tokens, total, totalAll, all}} = await xhr.get(API_URL+"/api/tokens/overview", {params: {
+    const res = await xhr.get(API_URL+"/api/tokens/overview", {params: {
       start:  (page - 1) * pageSize,
       limit: pageSize,
       ...filter
-    }});
+    }}).catch(e=>{
+      this.setState({loading: false})
+    });
+    if(!res){
+      return
+    }
+    const {data: {tokens, total, totalAll, all,currentWeekAll,currentWeekTotalAll,valueAtLeast}} =res
     let count = 0;
     let Top = 0;
     tokens.map((item,index) => {
@@ -103,7 +113,10 @@ class TokenList extends Component {
       },
       total: total,
       totalAll,
-      all
+      all,
+      currentWeekAll,
+      currentWeekTotalAll,
+      valueAtLeast
     });
     return total;
     
@@ -147,6 +160,9 @@ class TokenList extends Component {
       volume24hInTrx: 'volume24hInTrx',
       marketcap: 'marketcap'
     }
+    if(sorter.order === undefined){
+      sorter['order']= 'ascend'
+    }
     this.setState({
       pagination: pager,
       filter: {
@@ -159,9 +175,10 @@ class TokenList extends Component {
   }
 
   customizedColumn = () => {
-    let { filter } = this.state;
+    let { filter, valueAtLeast } = this.state;
     let { intl, priceUSD } = this.props;
     const defaultImg = require("../../../images/logo_default.png");
+
     let column = [
       {
         title: upperFirst(intl.formatMessage({id: 'token_rank'})),
@@ -169,20 +186,18 @@ class TokenList extends Component {
         key: 'index',
         width: '48px',
         align: 'center',
-        className: 'ant_table _text_nowrap',
+        className: 'ant_table _text_nowrap token-rank-wrap',
         render: (text, record, index) => {
             return <span>
-                {
-                    record.isTop?
+                    {record.isTop?
                         <div>
                             <span className="starbeat"><i className="fas fa-star"></i> </span>
                             <span className="star-tip"></span>
                         </div>
                         :
-                        <span>{text}</span>
-                }
-
-            </span>
+                        <span>{text}</span>}
+                    {record.level > 100?<img src={require('../../../images/token/hot.png')}></img>:''}
+                  </span>
         }
       },
       {
@@ -326,10 +341,11 @@ class TokenList extends Component {
       {
         // title: intl.formatMessage({id: 'market_capitalization_trx'}),
         title: () => {
+          let text = intl.formatMessage({id: 'total_supply_tip1'}) + valueAtLeast + intl.formatMessage({id: 'total_supply_tip2'});
           return (
             <div>
               <span className="mr-2">
-                <QuestionMark placement="top" text="total_supply_tip" />
+                <QuestionMark placement="top" text={text} />
               </span>
               {upperFirst(intl.formatMessage({ id: "market_capitalization_t" }))}
             </div>
@@ -407,7 +423,7 @@ class TokenList extends Component {
     return column;
   }
   suncustomizedColumn = () => {
-        let {filter} = this.state
+    let {filter} = this.state
     let { intl } = this.props;
     const defaultImg = require("../../../images/logo_default.png");
         let column = [
@@ -585,10 +601,12 @@ class TokenList extends Component {
     }
 
   render() {
-    let {tokens, alert, loading, total, totalAll, all, filter} = this.state;
+    let {tokens, alert, loading, total, totalAll, all,currentWeekAll, currentWeekTotalAll, filter} = this.state;
     let {match, intl} = this.props;
     let column = IS_MAINNET?this.customizedColumn():this.suncustomizedColumn();
-    let tableInfo = intl.formatMessage({id: 'number_of_lists'}) + total;
+    let mainInfo = `${intl.formatMessage({id: 'token_list_count'})} : ${total} `;
+    let sunInfo = `${intl.formatMessage({id: 'token_list_count'})} : ${total} , ${intl.formatMessage({id: 'total_in_tronscan'})} : ${totalAll} `;
+
     let url = 'https://poloniex.org/launchBase?utm_source=TS3'
     if(intl.locale == 'zh'){
       url = 'https://poloniex.org/zh/launchBase?utm_source=TS3'
@@ -603,7 +621,7 @@ class TokenList extends Component {
               {IS_MAINNET && <Link to={'/tokens/create'} className="create-token-btn">{tu('create_token')}</Link>}
                 {total ?
                   <div className="d-md-block">
-                      {all && (
+                      {all && IS_MAINNET && (
                         <div className="token-num-wrap d-flex d-sm-flex justify-content-between text-center my-3">
                           <div className="d-flex bg-white justify-content-center">
                             <div className="d-flex flex-column justify-content-center">
@@ -612,7 +630,7 @@ class TokenList extends Component {
                             </div>
                             <div></div>
                             <div className="d-flex flex-column justify-content-center">
-                              <div>{all}</div>
+                              <div><FormattedNumber value={currentWeekAll}/></div>
                               <div>{tu('token_week')}</div>
                             </div>
                           </div>
@@ -623,7 +641,7 @@ class TokenList extends Component {
                             </div>
                             <div></div>
                             <div className="d-flex flex-column justify-content-center">
-                              <div>{totalAll}</div>
+                              <div><FormattedNumber value={currentWeekTotalAll}/></div>
                               <div>{tu('token_week')}</div>
                             </div>
                           </div>
@@ -631,10 +649,14 @@ class TokenList extends Component {
                         )}
                       <div className="d-flex justify-content-between align-items-center mb-2 filter-wrap">
                         <div>
-                          {tableInfo} <span>
-                            <QuestionMark placement="top" text="newly_issued_token_by_tronscan" className="token-list-info"></QuestionMark>
-                          </span> &nbsp;&nbsp;  
-                            {IS_MAINNET?<a href={`https://poloniex.org`} target="_blank" >{t("Trade_on_Poloni DEX")}></a>:''}
+                          <div>
+                            {all && !IS_MAINNET && <div>{tu('total_tron_ecosystem_tokens')}{all}</div>}
+                            {IS_MAINNET ? mainInfo : sunInfo} 
+                            <span>
+                              <QuestionMark placement="top" text="newly_issued_token_by_tronscan" className="token-list-info"></QuestionMark>
+                            </span>
+                          </div>
+                            {/* {IS_MAINNET?<a href={`https://poloniex.org`} target="_blank" >{t("Trade_on_Poloni DEX")}></a>:''} */}
                         </div>
                         <div className="d-md-flex apply-trc20 apply-all align-items-center">
                           <div className="d-flex align-items-center mb-2 mb-md-0">

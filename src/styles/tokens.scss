@@ -53,7 +53,7 @@
   }
   .create-token-btn {
     position: absolute;
-    top: -30px;
+    top: -35px;
     right: 15px;
     padding: 0 12px;
     background: #ffffff;
@@ -105,6 +105,16 @@
         background-color: #d1d3df;
       }
     }
+    .token-rank-wrap{
+      position: relative;
+      img{
+        position: absolute;
+        top: 10px;
+        left: 0;
+        width: 31px;
+        height: 20px;
+      }
+    }
   }
 
   @media only screen and (max-width: 768px) {
@@ -118,14 +128,25 @@
   }
 }
 
-.exchange-quotes-wrap {
-  .ant-table {
-    thead {
-      th {
-        background: #ffffff !important;
-      }
-    }
-  }
+.exchange-quotes-wrap{
+  background: #ffffff;
+  overflow: hidden;
+  // padding: 0 2rem;
+  // .total-info{
+  //   padding-top: 10px;
+  //   font-size: 14px;
+  //   color: #999999;
+  //   border-bottom: 1px solid #eee;
+  //   line-height: 2.5rem;
+  // }
+  // .ant-table {
+  //   thead {
+  //     th{
+  //       background: #ffffff!important;
+  //       border-bottom: 1px solid #eee!important;
+  //     }
+  //   }
+  // }
 }
 
 // .apply-trc20 {
@@ -187,7 +208,7 @@
         color: #333;
 
         .token-price-trx {
-          font-size: 14px;
+          font-size: 12px;
           color: #666666;
         }
       }
@@ -223,7 +244,7 @@
     background: url("../images/token/tokenSign.png") 100% 100%;
     width: 46px;
     height: 19.2px;
-    text-indent: 10px;
+    text-indent: 5px;
     background-size: 100% 100%;
     line-height: 19.2px;
     font-size: 10px;

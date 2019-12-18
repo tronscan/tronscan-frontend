@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import { Client } from "../../services/api";
+import ClientToken from "../../services/tokenApi";
 import { t, tu } from "../../utils/i18n";
 import { withTimers } from "../../utils/timing";
 import { upperFirst } from "lodash";
@@ -8,6 +8,8 @@ import { Tooltip, Table, Switch } from "antd";
 import { QuestionMark } from "../common/QuestionMark.js";
 import { ONE_TRX, IS_MAINNET, WARNING_VERSIONS } from "../../constants";
 import { TronLoader } from "../common/loaders";
+import { Empty } from 'antd';
+import { reverse } from "dns";
 class ExchangeQuotes extends React.Component {
   constructor(props){
     super(props);
@@ -15,21 +17,65 @@ class ExchangeQuotes extends React.Component {
       list: [1,2,3],
       total: 0,
       rangeTotal: 0,
-      loading: false,
+      loading: true,
       pagination: {
         showQuickJumper: true,
         position: "bottom",
         showSizeChanger: true,
         defaultPageSize: 20,
         total: 0
-      }
+      },
+      coinId: ''
     };
   }
 
   componentDidMount(){
-    this.loadData()
+    // this.loadData()
+    Promise.all([this.loadId(),this.loadScript('https://widgets.coingecko.com/coingecko-coin-market-ticker-list-widget.js')]).then(values => {
+      this.setState({
+        loading: false,
+        coinId: values[0]&&values[0][0]&&values[0][0].mapper_id
+      })
+    }).catch(e=>{
+      this.setState({
+        loading: false,
+        coinId: ''
+      })
+    })
   }
 
+  loadScript = (src) => {
+    return new Promise((resolve,reverse) => {
+      let tag = document.createElement("script")
+      tag.async = true
+      tag.src = src
+  
+      document.body.appendChild(tag)
+  
+      tag.addEventListener("load", function() {
+        resolve()
+      })
+      tag.addEventListener("error", function() {
+        reverse()
+      })
+    })
+  }
+  loadId(){
+    let {address} = this.props
+    return new Promise(async (resolve,reverse) => {
+      let res = await ClientToken.getCoinId(address).catch(e=>{
+        this.setState({
+          loading: false,
+          coinId: ''
+        })
+      })
+      if(res && res.data){
+        resolve(res.data)
+      }else{
+        reverse()
+      }
+    })
+  }
   loadData = () => {
 
   }
@@ -198,33 +244,41 @@ class ExchangeQuotes extends React.Component {
 
   }
   render(){
-    let { list, pagination, loading } = this.state;
+    let { list, pagination, loading, total, coinId } = this.state;
     let column = IS_MAINNET
       ? this.customizedColumn()
       : this.sunNetCustomizedColumn();
     return (
-      <Fragment >
-        {loading && (
+      <div className="exchange-quotes-wrap">
+        {loading ? 
           <div className="loading-style" style={{ marginTop: "-20px" }}>
             <TronLoader />
-          </div>
-        )}
-        <div className="bg-white exchange-quotes-wrap" style={{padding: '0 20px'}}>
-        {/* <div>{t('')}</div> */}
-          <Table
-            bordered={false}
-            columns={column}
-            rowKey={(record, index) => {
-              return index;
-            }}
-            dataSource={list}
-            // scroll={scroll}
-            pagination={pagination}
-            loading={loading}
-            onChange={this.handleTableChange}
-          />
-        </div>
-      </Fragment>
+          </div> : 
+          (coinId ? <coingecko-coin-market-ticker-list-widget coin-id={coinId} currency="usd" locale="en"></coingecko-coin-market-ticker-list-widget> : 
+          <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} description={tu('trc20_no_data')} />)}
+      </div>
+      // <Fragment >
+      //   {loading && (
+      //     <div className="loading-style" style={{ marginTop: "-20px" }}>
+      //       <TronLoader />
+      //     </div>
+      //   )}
+      //   <div className="bg-white exchange-quotes-wrap">
+      //   <div className="total-info">{tu('token_exchange_total1')}{`${total}`}{tu('token_exchange_total2')}</div>
+      //     <Table
+      //       bordered={false}
+      //       columns={column}
+      //       rowKey={(record, index) => {
+      //         return index;
+      //       }}
+      //       dataSource={list}
+      //       // scroll={scroll}
+      //       pagination={pagination}
+      //       loading={loading}
+      //       onChange={this.handleTableChange}
+      //     />
+      //   </div>
+      // </Fragment>
     )
   }
 }

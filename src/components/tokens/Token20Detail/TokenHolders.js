@@ -137,14 +137,27 @@ class TokenHolders extends React.Component {
         key: "address",
         render: (text, record, index) => {
           return (
-            <div>
-              <AddressLink address={record.holder_address} />
+            <div style={{ display: "flex" }}>
+              <div style={{ maxWidth: 380 }}>
+                <AddressLink address={record.holder_address} />
+              </div>
               <span
                 style={{
                   whiteSpace: "nowrap"
                 }}
               >
-                {record.addressTag ? `#${record.addressTag}` : ""}
+                {record.addressTag ? (
+                  <div>
+                    <img
+                      style={{ width: 14, height: 14 }}
+                      src={`https://coin.top/production/upload/tag/${record.holder_address}.png`}
+                      alt=""
+                    />
+                    <span> {record.addressTag}</span>
+                  </div>
+                ) : (
+                  ""
+                )}
               </span>
             </div>
           );
@@ -290,7 +303,8 @@ class TokenHolders extends React.Component {
     if (total == 0) {
       addresses = [];
     }
-    let { intl } = this.props;
+
+    let { intl, filter } = this.props;
     let column = this.customizedColumn();
     let tableInfo =
       intl.formatMessage({
@@ -331,7 +345,10 @@ class TokenHolders extends React.Component {
         )}
         <div className="row transfers holder-transfers">
           <div className="col-md-12 table_pos">
-            <HolderDistribution></HolderDistribution>
+            <HolderDistribution
+              trcType={"trc20"}
+              tokenId={filter.token}
+            ></HolderDistribution>
             <div
               className="distributionWrapper"
               style={{

@@ -18,7 +18,7 @@ import {
   IS_MAINNET
 } from "../../../constants";
 
-export function Information({ token: tokens }) {
+export function Information({ token: tokens, priceUSD }) {
   let token = cloneDeep(tokens);
   let social_display = 0;
   let lowerText = token.reputation
@@ -44,35 +44,66 @@ export function Information({ token: tokens }) {
   token.git_hub &&
     token.social_media_list.unshift({ url: [token.git_hub], name: "GitHub" });
 
+  let totalSupply = parseFloat(
+    token.total_supply_with_decimals / Math.pow(10, token.decimals)
+  ).toFixed(token.decimals);
+
+  let currentTotal = totalSupply;
+
+  let totalSupplyUsd = token["market_info"]
+    ? (token["market_info"].priceInTrx * totalSupply * priceUSD).toFixed(0)
+    : 0;
+
+  let currentTotalSupplyUsd = token["market_info"]
+    ? (token["market_info"].priceInTrx * currentTotal * priceUSD).toFixed(0)
+    : 0;
+  // if wink
+  if (token.contract_address === "TLa2f6VPqDgRE67v1736s7bJ8Ray5wYjU7") {
+    currentTotal = token.winkTotalSupply.totalTurnOver || 0;
+    currentTotalSupplyUsd = token.winkTotalSupply.marketValue || 0;
+  }
+
+  const defaultContent = "-";
+
   const LeftTokenInfo = [
     { name: "token_basic_view", content: "" },
     {
       name: "total_supply",
       content: (
         <div>
-          {/*<FormattedNumber value={token.total_supply_with_decimals / (Math.pow(10,token.decimals))} maximumFractionDigits={token.decimals}/>*/}
-          <span>
-            {toThousands(
-              parseFloat(
-                token.total_supply_with_decimals / Math.pow(10, token.decimals)
-              ).toFixed(token.decimals)
-            )}
-          </span>
+          <span>{totalSupply ? toThousands(totalSupply) : defaultContent}</span>
           <span className="ml-1">{token.symbol}</span>
         </div>
       )
     },
     {
       name: "circulating_supply",
-      content: <div></div>
+      content: (
+        <div>
+          {currentTotal ? toThousands(currentTotal) : defaultContent}
+          <span className="ml-1">{token.symbol}</span>
+        </div>
+      )
     },
     {
       name: "token_hold_user",
-      content: <div></div>
+      content: (
+        <div>
+          {token.holders_count
+            ? <span>{toThousands(token.holders_count)} {" "}{tu('addresses')}</span>
+            : defaultContent}
+        </div>
+      )
     },
     {
       name: "address_info_transfers",
-      content: <div></div>
+      content: (
+        <div>
+          {token.transferNumber
+            ? toThousands(token.transferNumber)
+            : defaultContent}
+        </div>
+      )
     },
     {
       name: "token_price_new",
@@ -87,8 +118,8 @@ export function Information({ token: tokens }) {
               <span
                 className={
                   token["market_info"].gain < 0
-                    ? "col-red ml-3"
-                    : "col-green ml-3"
+                    ? "col-red ml-1"
+                    : "col-green ml-1"
                 }
               >
                 {token["market_info"].gain > 0 ? (
@@ -106,7 +137,7 @@ export function Information({ token: tokens }) {
               <Link
                 to={`/exchange/trc20?id=${token["market_info"].pairId}`}
                 target="_blank"
-                className="btn btn-danger btn-sm ml-3"
+                className="btn btn-danger btn-sm ml-1"
                 style={{ height: "1.2rem", lineHeight: "0.6rem" }}
               >
                 {" "}
@@ -114,19 +145,39 @@ export function Information({ token: tokens }) {
               </Link>
             </div>
           ) : (
-            "-"
+            defaultContent
           )}
         </div>
       )
     },
     {
       name: "token_capitalization",
-      content: <div></div>
+      content: (
+        <div>
+          {currentTotalSupplyUsd != 0 ? (
+            <span>
+              <FormattedNumber value={currentTotalSupplyUsd}></FormattedNumber>{" "}
+              USD
+            </span>
+          ) : (
+            defaultContent
+          )}{" "}
+          /{" "}
+          {totalSupplyUsd != 0 ? (
+            <span>
+              <FormattedNumber value={totalSupplyUsd}></FormattedNumber> USD
+            </span>
+          ) : (
+            defaultContent
+          )}
+        </div>
+      )
     },
     {
       name: "token_credit_rating",
       content: (
         <div className="d-flex" style={{ justifyContent: "space-between" }}>
+          {tu(`token_rules_${Number(token.level) || 0}`)}
           <Link to="/tokens/rating-rule">{tu("token_credit_rating_rule")}</Link>
         </div>
       )
@@ -139,26 +190,36 @@ export function Information({ token: tokens }) {
     },
     {
       name: "token_contract",
-      content: (
+      content: token.contract_address ? (
         <AddressLink address={token.contract_address} isContract={true} />
+      ) : (
+        defaultContent
       )
     },
     {
       name: "TRC20_decimals",
-      content: <FormattedNumber value={token.decimals} />
+      content: token.decimals ? (
+        <FormattedNumber value={token.decimals} />
+      ) : (
+        defaultContent
+      )
     },
     {
       name: "issue_time",
-      content: <div>{token && token.issue_time}</div>
+      content: <div>{token ? token.issue_time+'UTC' : defaultContent}</div>
     },
     {
       name: "issuer",
       content: (
         <div>
-          <AddressLink
-            address={token && token.issue_address}
-            includeCopy={true}
-          />
+          {token.issue_address ? (
+            <AddressLink
+              address={token && token.issue_address}
+              includeCopy={true}
+            />
+          ) : (
+            defaultContent
+          )}
         </div>
       )
     },
@@ -174,7 +235,7 @@ export function Information({ token: tokens }) {
               <ExternalLink url={token.home_page} />
             )
           ) : (
-            <span style={{ color: "#d8d8d8" }}>-</span>
+            defaultContent
           )}
         </div>
       )
@@ -204,155 +265,19 @@ export function Information({ token: tokens }) {
               />
             )
           ) : (
-            <span style={{ color: "#d8d8d8" }}>-</span>
+            defaultContent
           )}
         </div>
       )
     },
     {
       name: "token_social_link",
-      content: <SocialMedia mediaList={token.social_media_list} />
-    }
-  ];
-
-  const tokenList = [
-    {
-      name: "total_supply",
       content: (
         <div>
-          {/*<FormattedNumber value={token.total_supply_with_decimals / (Math.pow(10,token.decimals))} maximumFractionDigits={token.decimals}/>*/}
-          <span>
-            {toThousands(
-              parseFloat(
-                token.total_supply_with_decimals / Math.pow(10, token.decimals)
-              ).toFixed(token.decimals)
-            )}
-          </span>
-          <span className="ml-1">{token.symbol}</span>
-        </div>
-      )
-    },
-    {
-      name: "contract_address",
-      content: (
-        <AddressLink address={token.contract_address} isContract={true} />
-      )
-    },
-    // {
-    //   name: 'token_holders',
-    //   content: <FormattedNumber value={token.total_supply}/>
-    // },
-    {
-      name: "TRC20_decimals",
-      content: <FormattedNumber value={token.decimals} />
-    },
-    {
-      name: "website",
-      content: (
-        <div>
-          {token.home_page ? (
-            token.contract_address === CONTRACT_ADDRESS_USDT ||
-            token.contract_address === CONTRACT_ADDRESS_WIN ? (
-              <HrefLink href={token.home_page}>{token.home_page}</HrefLink>
-            ) : (
-              <ExternalLink url={token.home_page} />
-            )
+          {token.social_media_list.length > 0 ? (
+            <SocialMedia mediaList={token.social_media_list} />
           ) : (
-            <span style={{ color: "#d8d8d8" }}>-</span>
-          )}
-        </div>
-      )
-    },
-    {
-      name: "white_paper",
-      content: (
-        <div>
-          {token.white_paper ? (
-            token.contract_address === CONTRACT_ADDRESS_USDT ||
-            token.contract_address === CONTRACT_ADDRESS_WIN ? (
-              <HrefLink
-                style={{
-                  whiteSpace: "nowrap",
-                  overflow: "hidden",
-                  textOverflow: "ellipsis",
-                  display: "block"
-                }}
-                href={token.white_paper}
-              >
-                {token.white_paper}
-              </HrefLink>
-            ) : (
-              <ExternalLink
-                url={token.white_paper && t(token.white_paper)}
-                _url={token.white_paper}
-              />
-            )
-          ) : (
-            <span style={{ color: "#d8d8d8" }}>-</span>
-          )}
-        </div>
-      )
-    },
-    {
-      name: "social_link",
-      content: <SocialMedia mediaList={token.social_media_list} />
-    },
-    {
-      name: "GitHub",
-      content: token.git_hub ? (
-        <HrefLink
-          style={{
-            whiteSpace: "nowrap",
-            overflow: "hidden",
-            textOverflow: "ellipsis",
-            display: "block"
-          }}
-          href={token.git_hub}
-        >
-          {token.git_hub}
-        </HrefLink>
-      ) : (
-        <span style={{ color: "#d8d8d8" }}>-</span>
-      )
-    },
-    {
-      name: "pice_per_1trx",
-      content: (
-        <div className="d-flex">
-          {token["market_info"] ? (
-            <div className="d-flex">
-              {token["market_info"].priceInTrx} TRX
-              <span
-                className={
-                  token["market_info"].gain < 0
-                    ? "col-red ml-3"
-                    : "col-green ml-3"
-                }
-              >
-                {token["market_info"].gain > 0 ? (
-                  <span>
-                    {"+" +
-                      parseInt(token["market_info"].gain * 10000) / 100 +
-                      "%"}
-                  </span>
-                ) : (
-                  <span>
-                    {parseInt(token["market_info"].gain * 10000) / 100 + "%"}
-                  </span>
-                )}
-              </span>
-              <Link
-                to={`/exchange/trc20?id=${token["market_info"].pairId}`}
-                target="_blank"
-                className="btn btn-danger btn-sm ml-3"
-                style={{ height: "1.2rem", lineHeight: "0.6rem" }}
-              >
-                {" "}
-                {tu("token_trade")}
-              </Link>
-            </div>
-          ) : (
-            "-"
+            defaultContent
           )}
         </div>
       )
@@ -365,7 +290,7 @@ export function Information({ token: tokens }) {
         return (
           <div className={"information-bg-item"} key={index}>
             <span>{tu(item.name)}</span>
-            <div style={{ width: "75%" }}>{item.content}</div>
+            <div style={{ width: "73%" }}>{item.content}</div>
           </div>
         );
       })}
@@ -378,7 +303,7 @@ export function Information({ token: tokens }) {
         return (
           <div className={"information-bg-item"} key={index}>
             <span>{tu(item.name)}</span>
-            <div style={{ width: "75%" }}>{item.content}</div>
+            <div style={{ width: "73%" }}>{item.content}</div>
           </div>
         );
       })}

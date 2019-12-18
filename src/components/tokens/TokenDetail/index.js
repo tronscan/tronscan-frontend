@@ -13,6 +13,7 @@ import { Information } from "./Information.js";
 import { ONE_TRX, API_URL, IS_MAINNET } from "../../../constants";
 import { login } from "../../../actions/app";
 import { reloadWallet } from "../../../actions/wallet";
+import { updateTokenInfo } from "../../../actions/tokenInfo";
 import { Input } from "antd";
 import { connect } from "react-redux";
 import SweetAlert from "react-bootstrap-sweetalert";
@@ -24,6 +25,7 @@ import { withTronWeb } from "../../../utils/tronWeb";
 import { CsvExport } from "../../common/CsvExport";
 import { loadUsdPrice } from "../../../actions/blockchain";
 import ExchangeQuotes from "../ExchangeQuotes";
+import ApiClientToken from "../../../services/tokenApi";
 
 @withTronWeb
 class TokenDetail extends React.Component {
@@ -38,7 +40,8 @@ class TokenDetail extends React.Component {
       buyAmount: 0,
       alert: null,
       currentTotalSupply: "",
-      csvurl: ""
+      csvurl: "",
+      BttSupplyClient: ""
     };
   }
 
@@ -67,21 +70,28 @@ class TokenDetail extends React.Component {
   loadTotalTRXSupply = async () => {
     const { funds } = await Client.getBttFundsSupply();
     this.setState({
-      currentTotalSupply: parseInt(funds.totalTurnOver)
+      currentTotalSupply: parseInt(funds.totalTurnOver),
+      BttSupplyClient: funds
     });
   };
   loadToken = async id => {
     let { priceUSD } = this.props;
+    let { currentTotalSupply } = this.state;
 
     this.setState({ loading: true });
 
     //let token = await Client.getToken(name);
     let result = await xhr.get(API_URL + "/api/token?id=" + id + "&showAll=1");
     let token = result.data.data[0];
+    this.props.updateTokenInfo({
+      tokenDetail: token
+    });
+
     token.priceToUsd =
       token && token["market_info"]
         ? token["market_info"].priceInTrx * priceUSD
         : 0;
+
     if (!token) {
       this.setState({ loading: false, token: null });
       this.props.history.push("/tokens/list");
@@ -118,22 +128,30 @@ class TokenDetail extends React.Component {
         ),
         cmp: () => (
           <TokenHolders
-            filter={{ token: token.name, address: token.ownerAddress }}
+            filter={{
+              token: token.name,
+              address: token.ownerAddress,
+              tokenId: token.id
+            }}
             token={{ totalSupply: token.totalSupply }}
             tokenPrecision={{ precision: token.precision }}
             getCsvUrl={csvurl => this.setState({ csvurl })}
           />
         )
-      },
-      {
-        id: "quotes",
-        icon: "",
-        path: "/quotes",
-        label: <span>{tu("token_market")}</span>,
-        cmp: () => <ExchangeQuotes />
       }
     ];
-
+    if (IS_MAINNET) {
+      tabs = [
+        ...tabs,
+        {
+          id: "quotes",
+          icon: "",
+          path: "/quotes",
+          label: <span>{tu("token_market")}</span>,
+          cmp: () => <ExchangeQuotes address={token.tokenID} />
+        }
+      ];
+    }
     this.setState({
       loading: false,
       token
@@ -147,138 +165,10 @@ class TokenDetail extends React.Component {
         cmp: () => <BTTSupply token={token} />
       };
       tabs.push(BttSupply);
-      this.loadTotalTRXSupply();
-      tabs.push(BttSupply);
+      await this.loadTotalTRXSupply();
     }
     this.setState({
       tabs: tabs
-    });
-  };
-
-  submit = async token => {
-    let price = (token.trxNum / token.num) * Math.pow(10, token.precision);
-    let { account, currentWallet } = this.props;
-    let { buyAmount, privateKey } = this.state;
-
-    let res;
-    if (
-      Lockr.get("islogin") ||
-      this.props.walletType.type === "ACCOUNT_LEDGER" ||
-      this.props.walletType.type === "ACCOUNT_TRONLINK"
-    ) {
-      const tronWebLedger = this.props.tronWeb();
-      const { tronWeb } = this.props.account;
-      try {
-        if (this.props.walletType.type === "ACCOUNT_LEDGER") {
-          const unSignTransaction = await tronWebLedger.transactionBuilder
-            .purchaseToken(
-              token.ownerAddress,
-              token.id + "",
-              parseInt((buyAmount * price).toFixed(0)),
-              this.props.walletType.address
-            )
-            .catch(e => false);
-          const { result } = await transactionResultManager(
-            unSignTransaction,
-            tronWebLedger
-          );
-          res = result;
-        }
-        if (this.props.walletType.type === "ACCOUNT_TRONLINK") {
-          const unSignTransaction = await tronWeb.transactionBuilder
-            .purchaseToken(
-              token.ownerAddress,
-              token.id + "",
-              parseInt((buyAmount * price).toFixed(0)),
-              tronWeb.defaultAddress.hex
-            )
-            .catch(e => false);
-          const { result } = await transactionResultManager(
-            unSignTransaction,
-            tronWeb
-          );
-          res = result;
-        }
-      } catch (e) {
-        console.log(e);
-      }
-    } else {
-      let isSuccess = await Client.participateAsset(
-        currentWallet.address,
-        token.ownerAddress,
-        token.id + "",
-        parseInt((buyAmount * price).toFixed(0))
-      )(account.key);
-      res = isSuccess.success;
-    }
-
-    if (res) {
-      this.setState({
-        activeToken: null,
-        confirmedParticipate: true,
-        participateSuccess: res,
-        buyAmount: 0
-      });
-      this.props.reloadWallet();
-      return true;
-    } else {
-      return false;
-    }
-  };
-  onInputChange = value => {
-    let { account } = this.props;
-    if (value && value.length === 64) {
-      this.privateKey.className = "form-control";
-      if (pkToAddress(value) !== account.address)
-        this.privateKey.className = "form-control is-invalid";
-    } else {
-      this.privateKey.className = "form-control is-invalid";
-    }
-    this.setState({ privateKey: value });
-    this.privateKey.value = value;
-  };
-  confirmPrivateKey = param => {
-    let { privateKey, token } = this.state;
-    let { account } = this.props;
-
-    let reConfirm = () => {
-      if (this.privateKey.value && this.privateKey.value.length === 64) {
-        if (pkToAddress(this.privateKey.value) === account.address)
-          this.buyTokens(token);
-      }
-    };
-
-    this.setState({
-      alert: (
-        <SweetAlert
-          info
-          showCancel
-          cancelBtnText={tu("cancel")}
-          confirmBtnText={tu("confirm")}
-          confirmBtnBsStyle="success"
-          cancelBtnBsStyle="default"
-          title={tu("confirm_private_key")}
-          onConfirm={reConfirm}
-          onCancel={() => this.setState({ alert: null })}
-          // style={{marginLeft: '-240px', marginTop: '-195px'}}
-        >
-          <div className="form-group">
-            <div className="input-group mb-3">
-              <input
-                type="text"
-                ref={ref => (this.privateKey = ref)}
-                onChange={ev => {
-                  this.onInputChange(ev.target.value);
-                }}
-                className="form-control is-invalid"
-              />
-              <div className="invalid-feedback">
-                {tu("fill_a_valid_private_key")}
-              </div>
-            </div>
-          </div>
-        </SweetAlert>
-      )
     });
   };
 
@@ -286,166 +176,8 @@ class TokenDetail extends React.Component {
     return this.state.buyAmount > 0;
   };
 
-  onBuyInputChange = (value, price, max) => {
-    let { intl } = this.props;
-    if (value > max) {
-      value = max;
-    }
-    value = value.replace(/^0|[^\d*]/g, "");
-    this.setState({ buyAmount: value });
-    this.buyAmount.value = value;
-    let priceTRX = value * price;
-    this.priceTRX.innerHTML = intl.formatNumber(priceTRX, {
-      maximumFractionDigits: 6
-    });
-  };
-
-  buyTokens = token => {
-    let price = (token.trxNum / token.num) * Math.pow(10, token.precision);
-    let { buyAmount } = this.state;
-    if (buyAmount <= 0) {
-      return;
-    }
-    let { currentWallet, wallet } = this.props;
-    let tokenCosts = buyAmount * (price / ONE_TRX);
-
-    if (currentWallet.balance / ONE_TRX < tokenCosts) {
-      this.setState({
-        alert: (
-          <SweetAlert
-            warning
-            showConfirm={false}
-            // style={{marginLeft: '-240px', marginTop: '-195px', width: '450px', height: '300px'}}
-          >
-            <div className="mt-5 token-sweet-alert">
-              <a
-                style={{ float: "right", marginTop: "-155px" }}
-                onClick={() => {
-                  this.setState({ alert: null });
-                }}
-              >
-                <i className="fa fa-times" ariaHidden="true"></i>
-              </a>
-              <span>{tu("not_enough_trx_message")}</span>
-              <button
-                className="btn btn-danger btn-block mt-3"
-                onClick={() => {
-                  this.setState({ alert: null });
-                }}
-              >
-                {tu("confirm")}
-              </button>
-            </div>
-          </SweetAlert>
-        )
-      });
-    } else {
-      this.setState({
-        alert: (
-          <SweetAlert
-            warning
-            showConfirm={false}
-            // style={{marginLeft: '-240px', marginTop: '-195px', width: '450px', height: '300px'}}
-          >
-            <div className="mt-5 token-sweet-alert">
-              <a
-                style={{ float: "right", marginTop: "-155px" }}
-                onClick={() => {
-                  this.setState({ alert: null });
-                }}
-              >
-                <i className="fa fa-times" ariaHidden="true"></i>
-              </a>
-              <p className="ml-auto buy_confirm_message">
-                {tu("buy_confirm_message_1")}
-              </p>
-              <span>
-                {buyAmount} {token.name} {t("for")}{" "}
-                {parseFloat((buyAmount * (price / ONE_TRX)).toFixed(6))} TRX?
-              </span>
-              <button
-                className="btn btn-danger btn-block mt-3"
-                onClick={() => {
-                  this.confirmTransaction(token);
-                }}
-              >
-                {tu("confirm")}
-              </button>
-            </div>
-          </SweetAlert>
-        )
-      });
-    }
-  };
-
-  confirmTransaction = async token => {
-    let { account, intl } = this.props;
-    let { buyAmount } = this.state;
-
-    this.setState({
-      alert: (
-        <SweetAlert
-          showConfirm={false}
-          showCancel={false}
-          cancelBtnBsStyle="default"
-          title={intl.formatMessage({ id: "transferring" })}
-          // style={{marginLeft: '-240px', marginTop: '-195px', width: '450px', height: '300px'}}
-        ></SweetAlert>
-      )
-    });
-
-    if (await this.submit(token)) {
-      this.setState({
-        alert: (
-          <SweetAlert
-            success
-            showConfirm={false}
-            // style={{marginLeft: '-240px', marginTop: '-195px', width: '450px', height: '300px'}}
-          >
-            <div className="mt-5 token-sweet-alert">
-              <a
-                style={{ float: "right", marginTop: "-155px" }}
-                onClick={() => {
-                  this.setState({ alert: null });
-                }}
-              >
-                <i className="fa fa-times" ariaHidden="true"></i>
-              </a>
-              <h5 style={{ color: "black" }}>
-                {tu("transaction")} {tu("confirm")}
-              </h5>
-              <span>
-                {tu("success_receive")} {token.name} {tu("tokens")}
-              </span>
-              <button
-                className="btn btn-danger btn-block mt-3"
-                onClick={() => {
-                  this.setState({ alert: null });
-                }}
-              >
-                {tu("OK")}
-              </button>
-            </div>
-          </SweetAlert>
-        )
-      });
-    } else {
-      this.setState({
-        alert: (
-          <SweetAlert
-            danger
-            title="Error"
-            onConfirm={() => this.setState({ alert: null })}
-          >
-            {tu("fail_transaction")}
-          </SweetAlert>
-        )
-      });
-    }
-  };
-
   render() {
-    let { match, wallet, intl } = this.props;
+    let { match, wallet, intl, priceUSD } = this.props;
     let {
       token,
       tabs,
@@ -453,7 +185,8 @@ class TokenDetail extends React.Component {
       buyAmount,
       alert,
       currentTotalSupply,
-      csvurl
+      csvurl,
+      BttSupplyClient
     } = this.state;
     let uploadURL =
       API_URL + "/api/v2/node/info_upload?address=" + match.params.id;
@@ -504,13 +237,15 @@ class TokenDetail extends React.Component {
                         <p className="card-text">{token.description}</p>
                       </div>
 
-                      <div className="token-sign">trc10</div>
+                      <div className="token-sign">TRC10</div>
                     </div>
                   </div>
                   {token && (
                     <Information
                       token={token}
                       currentTotalSupply={currentTotalSupply}
+                      priceUSD={priceUSD}
+                      BttSupplyClient={BttSupplyClient}
                     ></Information>
                   )}
                 </div>
@@ -625,7 +360,8 @@ function mapStateToProps(state) {
 const mapDispatchToProps = {
   login,
   reloadWallet,
-  loadUsdPrice
+  loadUsdPrice,
+  updateTokenInfo
 };
 
 export default connect(
