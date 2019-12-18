@@ -1101,7 +1101,7 @@ export const messages = {
   "reputation": "Репутация",
   "issue_time": "Время выпуска ",
   "success_receive": "Успешно получено",
-  "circulating_supply": "Количество в обороте",
+  "circulating_supply": "циркулирующий",
   "issue_info": "Информация о выпуске",
   "transferring": "В процессе",
   "in_progress": "В процессе",

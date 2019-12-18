@@ -8,7 +8,7 @@ import { tu, t } from "../../../utils/i18n";
 import moment from "moment";
 import { Truncate } from "../../common/text";
 import { withTimers } from "../../../utils/timing";
-import { FormattedNumber, injectIntl } from "react-intl";
+import { FormattedNumber, injectIntl,FormattedDate,FormattedTime } from "react-intl";
 import SmartTable from "../../common/SmartTable";
 import { upperFirst } from "lodash";
 import { TronLoader } from "../../common/loaders";
@@ -36,7 +36,8 @@ class Transfers extends React.Component {
       pageSize: 20,
       showTotal: props.showTotal !== false,
       emptyState: props.emptyState,
-      autoRefresh: props.autoRefresh || false
+      autoRefresh: props.autoRefresh || false,
+      timeType:true
     };
   }
 
@@ -107,6 +108,7 @@ class Transfers extends React.Component {
 
   customizedColumn = () => {
     let { intl } = this.props;
+    let {timeType} = this.state;
     let column = [
       {
         title: upperFirst(
@@ -129,20 +131,33 @@ class Transfers extends React.Component {
         }
       },
       {
-        title: upperFirst(
+        title: <span className="token-change-type" onClick={this.changeType.bind(this)}>{
+          upperFirst(
           intl.formatMessage({
-            id: "age"
+            id: timeType ? "age" : "trc20_cur_order_header_order_time"
           })
-        ),
-        dataIndex: "timestamp",
-        key: "timestamp",
-        width: "150px",
-        className: "ant_table",
-        render: (text, record, index) => {
-          return <BlockTime time={record.timestamp}> </BlockTime>;
-          // <TimeAgo date={record.timestamp} title={moment(record.timestamp).format("MMM-DD-YYYY HH:mm:ss A")}/>
-        }
-      },
+        )}</span>,
+          dataIndex: "timestamp",
+          key: "timestamp",
+          width: "150px",
+          className: "ant_table",
+          render: (text, record, index) => {
+            return <div>
+              {timeType ? <BlockTime time={Number(record.timestamp)}> </BlockTime> 
+              : <span className="fs12">
+                <FormattedDate value={record.timestamp} />{" "}
+                <FormattedTime
+                    value={record.timestamp}
+                    hour="numeric"
+                    minute="numeric"
+                    second="numeric"
+                    hour12={false}
+                  /></span>
+                }
+              </div>;
+            // <TimeAgo date={Number(record.timestamp)} title={moment(record.block_ts).format("MMM-DD-YYYY HH:mm:ss A")}/>
+          }
+        },
       {
         title: upperFirst(
           intl.formatMessage({
@@ -234,6 +249,14 @@ class Transfers extends React.Component {
 
     return column;
   };
+
+  changeType(){
+    let {timeType} = this.state;
+    
+    this.setState({
+      timeType:!timeType
+    })
+  }
 
   onDateOk(start, end) {
     this.start = start.valueOf();

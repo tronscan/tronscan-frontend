@@ -12,7 +12,7 @@ import { tu, t } from "../../../utils/i18n";
 import moment from "moment";
 import { Truncate } from "../../common/text";
 import { withTimers } from "../../../utils/timing";
-import { FormattedNumber, injectIntl } from "react-intl";
+import { FormattedNumber, injectIntl,FormattedDate,FormattedTime } from "react-intl";
 import SmartTable from "../../common/SmartTable";
 import { upperFirst } from "lodash";
 import { TronLoader } from "../../common/loaders";
@@ -39,7 +39,8 @@ class Transfers extends React.Component {
       pageSize: 20,
       showTotal: props.showTotal !== false,
       emptyState: props.emptyState,
-      autoRefresh: props.autoRefresh || false
+      autoRefresh: props.autoRefresh || false,
+      timeType:true
     };
   }
 
@@ -57,7 +58,7 @@ class Transfers extends React.Component {
 
   loadPage = async (page = 1, pageSize = 20) => {
     let { filter, getCsvUrl } = this.props;
-    let { showTotal } = this.state;
+    let { showTotal,timeType } = this.state;
     const params = {
       contract_address: filter.token,
       start_timestamp: this.start,
@@ -113,6 +114,7 @@ class Transfers extends React.Component {
 
   customizedColumn = () => {
     let { intl, token } = this.props;
+    let {timeType} = this.state;
     let column = [
       {
         title: upperFirst(
@@ -147,17 +149,30 @@ class Transfers extends React.Component {
         width: "100px"
       },
       {
-        title: upperFirst(
-          intl.formatMessage({
-            id: "age"
-          })
-        ),
+      title: <span className="token-change-type" onClick={this.changeType.bind(this)}>{
+        upperFirst(
+        intl.formatMessage({
+          id: timeType ? "age" : "trc20_cur_order_header_order_time"
+        })
+      )}</span>,
         dataIndex: "timestamp",
         key: "timestamp",
-        width: "150px",
+        width: "200px",
         className: "ant_table",
         render: (text, record, index) => {
-          return <BlockTime time={Number(record.block_ts)}> </BlockTime>;
+          return <div>
+            {timeType ? <BlockTime time={Number(record.block_ts)}> </BlockTime> 
+            : <span className="">
+              <FormattedDate value={record.block_ts} />{" "}
+              <FormattedTime
+                  value={record.block_ts}
+                  hour="numeric"
+                  minute="numeric"
+                  second="numeric"
+                  hour12={false}
+                /></span>
+              }
+            </div>;
           // <TimeAgo date={Number(record.block_ts)} title={moment(record.block_ts).format("MMM-DD-YYYY HH:mm:ss A")}/>
         }
       },
@@ -174,8 +189,7 @@ class Transfers extends React.Component {
         render: (text, record, index) => {
           return (
             <AddressLink address={record.from_address}>
-              {" "}
-              {record.from_address}{" "}
+              {record.from_address}
             </AddressLink>
           );
         }
@@ -202,8 +216,7 @@ class Transfers extends React.Component {
         render: (text, record, index) => {
           return (
             <AddressLink address={record.to_address}>
-              {" "}
-              {record.to_address}{" "}
+              {record.to_address}
             </AddressLink>
           );
         }
@@ -281,6 +294,14 @@ class Transfers extends React.Component {
 
     return column;
   };
+
+  changeType(){
+    let {timeType} = this.state;
+
+    this.setState({
+      timeType:!timeType
+    })
+  }
 
   onDateOk(start, end) {
     this.start = start.valueOf();
