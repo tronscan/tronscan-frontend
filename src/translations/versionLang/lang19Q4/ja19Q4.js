@@ -72,7 +72,7 @@ export const lang19Q4 = {
     "token_rating_rule_title_end_2": "Reputation merely serves as a reference for users. It may not be accurate and should not be taken as a definite value judgment since it only considers the completeness of token information and community feedback. TRONSCAN makes no warranties as to the accuracy and reliability of the reputation score, and accepts no direct or indirect liability for any losses caused or claimed to be caused by this.   ",
     "token_rating_rule_title_end_3": "TRONSCAN reserves the right to update the reputation score, and has no obligation to give any explanation for how it determines and updates the token reputation. Tokens found to be fraudulent or detrimental to other users’ rights and interests will be blacklisted or further disciplined.   ",
     "token_rating_rule_title_end_4": "TRONSCAN will update the Token Reputation System as it sees fit for the ecosystem. The updated policy will take effect once published on the official website.    ",
-
+    "token_cau_risk": "リスクに注意してください!",
     //2019-12-10  leon
     "token_overview":"トークン概要",
     "token_rank": "ランキング",

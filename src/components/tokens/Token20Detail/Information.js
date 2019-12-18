@@ -90,7 +90,7 @@ export function Information({ token: tokens, priceUSD }) {
       content: (
         <div>
           {token.holders_count
-            ? <span>{toThousands(token.holders_count)} {" "}{tu('address')}</span>
+            ? <span>{toThousands(token.holders_count)} {" "}{tu('addresses')}</span>
             : defaultContent}
         </div>
       )
@@ -190,7 +190,7 @@ export function Information({ token: tokens, priceUSD }) {
     },
     {
       name: "token_contract",
-      content: token.contract_addres ? (
+      content: token.contract_address ? (
         <AddressLink address={token.contract_address} isContract={true} />
       ) : (
         defaultContent
@@ -206,7 +206,7 @@ export function Information({ token: tokens, priceUSD }) {
     },
     {
       name: "issue_time",
-      content: <div>{token ? token.issue_time : defaultContent}</div>
+      content: <div>{token ? token.issue_time+'UTC' : defaultContent}</div>
     },
     {
       name: "issuer",
