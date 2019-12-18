@@ -544,7 +544,7 @@ export const messages = {
   "percentage": "总百分比",
   "loading_token": "通证加载中",
   "voter_percentage": "自占百分比",
-  "total_balance": "总余额",
+  "total_balance": "总资产",
   /*
   ##################################################################################
   #                                                                                #
@@ -2514,4 +2514,12 @@ export const messages = {
 
   // 2019-12-10
   "ledger_tronlink":"通过TronLink登录TRONSCAN ",
+
+  // 2019-12-18
+  "address_vote_reward_pending":"待领取投票奖励",
+  "address_balance":"TRX余额",
+  "address_get_energe":"为了获得能量",
+  "address_get_bandwith":"为了获得带宽",
+  "address_freeze_owner":"冻结给自己",
+  "address_freeze_other":"冻结给他人",
 };
