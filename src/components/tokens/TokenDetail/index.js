@@ -13,6 +13,7 @@ import { Information } from "./Information.js";
 import { ONE_TRX, API_URL, IS_MAINNET } from "../../../constants";
 import { login } from "../../../actions/app";
 import { reloadWallet } from "../../../actions/wallet";
+import { updateTokenInfo } from "../../../actions/tokenInfo";
 import { Input } from "antd";
 import { connect } from "react-redux";
 import SweetAlert from "react-bootstrap-sweetalert";
@@ -82,6 +83,9 @@ class TokenDetail extends React.Component {
     //let token = await Client.getToken(name);
     let result = await xhr.get(API_URL + "/api/token?id=" + id + "&showAll=1");
     let token = result.data.data[0];
+    this.props.updateTokenInfo({
+      tokenDetail: token
+    });
 
     token.priceToUsd =
       token && token["market_info"]
@@ -124,22 +128,30 @@ class TokenDetail extends React.Component {
         ),
         cmp: () => (
           <TokenHolders
-            filter={{ token: token.name, address: token.ownerAddress }}
+            filter={{
+              token: token.name,
+              address: token.ownerAddress,
+              tokenId: token.id
+            }}
             token={{ totalSupply: token.totalSupply }}
             tokenPrecision={{ precision: token.precision }}
             getCsvUrl={csvurl => this.setState({ csvurl })}
           />
         )
-      },
-      {
-        id: "quotes",
-        icon: "",
-        path: "/quotes",
-        label: <span>{tu("token_market")}</span>,
-        cmp: () => <ExchangeQuotes />
       }
     ];
-
+    if (IS_MAINNET) {
+      tabs = [
+        ...tabs,
+        {
+          id: "quotes",
+          icon: "",
+          path: "/quotes",
+          label: <span>{tu("token_market")}</span>,
+          cmp: () => <ExchangeQuotes address={token.tokenID} />
+        }
+      ];
+    }
     this.setState({
       loading: false,
       token
@@ -348,7 +360,8 @@ function mapStateToProps(state) {
 const mapDispatchToProps = {
   login,
   reloadWallet,
-  loadUsdPrice
+  loadUsdPrice,
+  updateTokenInfo
 };
 
 export default connect(

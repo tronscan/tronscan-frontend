@@ -12,6 +12,10 @@ export const NETURL = {
     SUNNET: "https://dappchain.tronscan.org",
 };
 
+export const TOKENINFO_UPDATE = 'TOKENINFO_UPDATE'
+
+
+
 let {
     NET,
     NODE_ENV

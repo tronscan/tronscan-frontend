@@ -1,7 +1,15 @@
 import React from "react";
 import { injectIntl } from "react-intl";
+import { connect } from "react-redux";
+import xhr from "axios/index";
+import { API_URL } from "../../../constants";
 import { tv, tu } from "../../../utils/i18n";
+import { updateTokenInfo } from "../../../actions/tokenInfo";
+import { Decimal } from "decimal.js";
 
+@connect(state => state, {
+  updateTokenInfo
+})
 class HolderDistribution extends React.Component {
   constructor(props) {
     super(props);
@@ -10,46 +18,143 @@ class HolderDistribution extends React.Component {
         {
           id: 1,
           background: "#0477FF",
-          percent: "38.4443 1 0%",
+          percent: "100 1 0%",
           first: "1",
           end: "10",
-          portion: "38.4443"
+          portion: "100"
         },
         {
           id: 2,
           background: "#EDB92B",
-          percent: "12.0836  1 0%",
+          percent: "0  1 0%",
           first: "11",
           end: "50",
-          portion: "12.0836"
+          portion: "0"
         },
         {
           id: 3,
           background: "#32C956",
-          percent: "17.4921  1 0%",
+          percent: "0  1 0%",
           first: "51",
           end: "100",
-          portion: "17.4921"
+          portion: "0"
         },
         {
           id: 4,
           background: "#FF9065",
           first: "101",
           end: "500",
-          percent: "19.7246 1 0%",
-          portion: "19.7246"
+          percent: "0 1 0%",
+          portion: "0"
         },
         {
           id: 5,
           background: "#05D2AD",
-          percent: "12.2553  1 0%",
+          percent: "0  1 0%",
           first: "501",
           end: "",
-          portion: "12.2553"
+          portion: "0"
         }
       ]
     };
   }
+
+  componentDidMount() {
+    this.getDistributionFun();
+  }
+
+  async getDistributionFun() {
+    const { trcType, tokenId, tokensInfo } = this.props;
+    const totalSupply =
+      trcType === "trc10"
+        ? tokensInfo.tokenDetail.totalSupply
+        : tokensInfo.tokenDetail.total_supply_with_decimals;
+    console.log(totalSupply, "tokensInfo");
+    await xhr
+      .get(`${API_URL}/api/tokens/position-distribution?tokenId=${tokenId}`)
+      .then(res => {
+        if (res.data) {
+          return res.data;
+        }
+      })
+      .then(res => {
+        let other = new Decimal(totalSupply)
+          .sub(new Decimal(res["rank1-10"]))
+          .sub(new Decimal(res["rank11-50"]))
+          .sub(new Decimal(res["rank51-100"]))
+          .sub(new Decimal(res["rank101-500"]));
+
+        const first = (
+          new Decimal(res["rank1-10"]).div(new Decimal(totalSupply)) * 100
+        ).toFixed(6);
+
+        const second = (
+          new Decimal(res["rank11-50"]).div(new Decimal(totalSupply)) * 100
+        ).toFixed(6);
+
+        const third = (
+          new Decimal(res["rank51-100"]).div(new Decimal(totalSupply)) * 100
+        ).toFixed(6);
+
+        const four = (
+          new Decimal(res["rank101-500"]).div(new Decimal(totalSupply)) * 100
+        ).toFixed(6);
+
+        const oherPercent = (other.div(new Decimal(totalSupply)) * 100).toFixed(
+          6
+        );
+
+        const chartAry = [
+          {
+            id: 1,
+            background: "#0477FF",
+            percent: `${first} 1 0%`,
+            first: "1",
+            end: "10",
+            portion: `${first}`
+          },
+          {
+            id: 2,
+            background: "#EDB92B",
+            percent: `${second} 1 0%`,
+            first: "11",
+            end: "50",
+            portion: `${second}`
+          },
+          {
+            id: 3,
+            background: "#32C956",
+            percent: `${third} 1 0%`,
+            first: "51",
+            end: "100",
+            portion: `${third}`
+          },
+          {
+            id: 4,
+            background: "#FF9065",
+            first: "101",
+            end: "500",
+            percent: `${four} 1 0%`,
+            portion: `${four}`
+          },
+          {
+            id: 5,
+            background: "#FF9065",
+            first: "500",
+            end: "",
+            percent: `${oherPercent} 1 0%`,
+            portion: `${oherPercent}`
+          }
+        ];
+        this.setState({
+          chartAry
+        });
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }
+
   render() {
     const { chartAry } = this.state;
     return (
@@ -99,7 +204,10 @@ class HolderDistribution extends React.Component {
                     fontSize: "14px"
                   }}
                 >
-                  {tv("assetsPercent", { first: item.first, end: item.end })}
+                  {tv("assetsPercent", {
+                    first: item.first,
+                    end: item.end
+                  })}
                 </span>
               </span>
             );

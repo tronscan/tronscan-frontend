@@ -26,6 +26,8 @@ import {
 } from "../../../constants";
 import { login } from "../../../actions/app";
 import { reloadWallet } from "../../../actions/wallet";
+import { updateTokenInfo } from "../../../actions/tokenInfo";
+
 import { connect } from "react-redux";
 import SweetAlert from "react-bootstrap-sweetalert";
 import { pkToAddress } from "@tronscan/client/src/utils/crypto";
@@ -75,17 +77,16 @@ class Token20Detail extends React.Component {
 
   async getTransferNum(address) {
     let params = {
-      contract_address:address,
-      limit:0
-    }
+      contract_address: address,
+      limit: 0
+    };
     let transferNumber = await ApiClientToken.getTransferNumber(params);
     return transferNumber;
   }
 
   loadToken = async address => {
     let { priceUSD } = this.props;
-
-    const tabs = [
+    let tabs = [
       // {
       //   id: "tokenInfo",
       //   icon: "",
@@ -122,26 +123,31 @@ class Token20Detail extends React.Component {
             token={token}
           />
         )
-      },
-      {
-        id: "quotes",
-        icon: "",
-        path: "/quotes",
-        label: <span>{tu("token_market")}</span>,
-        cmp: () => <ExchangeQuotes />
-      },
-      {
-        id: "code",
-        icon: "",
-        path: "/code",
-        label: <span>{tu("contract_title")}</span>,
-        cmp: () => (
-          <div style={{ background: "#fff", padding: "0 2.6%" }}>
-            <Code filter={{ address: address }} />
-          </div>
-        )
       }
     ];
+    if (IS_MAINNET) {
+      tabs = [
+        ...tabs,
+        {
+          id: "quotes",
+          icon: "",
+          path: "/quotes",
+          label: <span>{tu("token_market")}</span>,
+          cmp: () => <ExchangeQuotes address={address} />
+        },
+        {
+          id: "code",
+          icon: "",
+          path: "/code",
+          label: <span>{tu("contract_title")}</span>,
+          cmp: () => (
+            <div style={{ background: "#fff", padding: "0 2.6%" }}>
+              <Code filter={{ address: address }} />
+            </div>
+          )
+        }
+      ];
+    }
 
     let winkTotalSupply = {};
     if (address === "TLa2f6VPqDgRE67v1736s7bJ8Ray5wYjU7") {
@@ -155,20 +161,24 @@ class Token20Detail extends React.Component {
       winkTotalSupply = await this.getWinkFund();
     }
 
-    let transferNumber = await this.getTransferNum(address)
+    let transferNumber = await this.getTransferNum(address);
 
     this.setState({ loading: true });
     let result = await xhr.get(
       API_URL + "/api/token_trc20?contract=" + address + "&showAll=1"
     );
     let token = result.data.trc20_tokens[0];
+    this.props.updateTokenInfo({
+      tokenDetail: token
+    });
 
     token.priceToUsd =
       token && token["market_info"]
         ? token["market_info"].priceInTrx * priceUSD
         : 0;
+
     token.winkTotalSupply = winkTotalSupply;
-    token.transferNumber = transferNumber.rangeTotal || 0
+    token.transferNumber = transferNumber.rangeTotal || 0;
     this.setState({
       loading: false,
       token,
@@ -545,7 +555,6 @@ class Token20Detail extends React.Component {
     pathname.replace(rex, function(a, b) {
       tabName = b;
     });
-    console.log(pathname);
     const defaultImg = require("../../../images/logo_default.png");
     return (
       <main className="container header-overlap token_black mc-donalds-coin">
@@ -712,6 +721,7 @@ class Token20Detail extends React.Component {
 function mapStateToProps(state) {
   return {
     tokens: state.tokens.tokens,
+    tokensInfo: state.tokensInfo,
     wallet: state.wallet,
     currentWallet: state.wallet.current,
     account: state.app.account,
@@ -722,7 +732,8 @@ function mapStateToProps(state) {
 const mapDispatchToProps = {
   login,
   reloadWallet,
-  loadUsdPrice
+  loadUsdPrice,
+  updateTokenInfo
 };
 
 export default connect(

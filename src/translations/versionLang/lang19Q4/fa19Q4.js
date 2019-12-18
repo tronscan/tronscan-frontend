@@ -31,7 +31,7 @@ export const lang19Q4 = {
     */
     "FinalResult": "نتیجه نهایی",
     "distributionTitle": "توزیع موقعیت",
-    "assetsPercent": "کل دارایی های {first}-{end}",
+    "assetsPercent": "کل دارایی های {first}~{end}",
     "holders": "هوادر های توکن",
 
     // 2019-12-10
@@ -72,6 +72,26 @@ export const lang19Q4 = {
     "token_rating_rule_title_end_3": "TRONSCAN reserves the right to update the reputation score, and has no obligation to give any explanation for how it determines and updates the token reputation. Tokens found to be fraudulent or detrimental to other users’ rights and interests will be blacklisted or further disciplined.   ",
     "token_rating_rule_title_end_4": "TRONSCAN will update the Token Reputation System as it sees fit for the ecosystem. The updated policy will take effect once published on the official website.    ",
 
+    //2019-12-10  leon
+    "token_overview":"بررسی اجمالی ترون",
+    "token_rank": "رتبه بندی",
+    "market_capitalization_t": "مقدار توکن های  در حال  گردش",
+    "token_tron_total": "تعداد کل توکن های ترون ",
+    "token_week": "توکن های جدید در طول هفته",
+    "token_scan_total": "تعداد توکن های موجود در TRONSCAN",
+    "create_token_btn": "صدور توکن",
+    "gain_tip": "حرکت 24 ساعته",
+    "total_supply_tip1": "محاسبه شده با ضرب کردن تیراژ کد با قیمت فعلی بازار توکن ،اگر حجم معاملات 24 ساعته کمتر از ",
+    "total_supply_tip2":" TRX باشد ، حساب نمی شود.",
+    "token_exchange":"اکسچنج",
+    "token_exchange_pair":"تجارت جفت",
+    "token_exchange_price":"قیمت",
+    "token_exchange_24h_vol":"گردش مالی در 24hs",
+    "token_exchange_vol_rate":"درصد گردش مالی.",
+    "token_exchange_total1":"",
+    "token_exchange_total2":"مجموع  جفت معاملات ",
+    "token_exchange_rate_tip":"گردش مالی جفت معاملات در 24hs / گردش مالی کلی در 24hs.",
+    "contract_available_energy":"در دسترس است",
     //2019-12-15
     "token_estimated_cost":"بودجه",
     "token_enter_number":"لطفا مبلغ موردنیاز برای خرید را وارد کنید",

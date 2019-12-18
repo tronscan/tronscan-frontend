@@ -16,6 +16,16 @@ class ApiClientToken {
     return priceUSD
   }
 
+  async getCoinId(address, type) {
+    let url = 'http://3.14.14.175:9000'//this.apiUrl[type || "mainnet"];
+    let obj = { address };
+    let { data } = await xhr({
+      method: "get",
+      url: `${url}/api/token/id-mapper`,
+      params: obj
+    });
+    return data;
+  }
    // get address number
    async getParticipateassetissue(params){
     let res = await xhr.get(`${API_URL}/api/tokens/participateassetissue`,{
