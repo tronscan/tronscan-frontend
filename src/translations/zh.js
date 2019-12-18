@@ -2515,5 +2515,45 @@ export const messages = {
 
   // 2019-12-10
   "ledger_tronlink":"通过TronLink登录TRONSCAN ",
-    ...lang19Q4
+
+  /*
+    ##################################################################################
+    #                                                                                #
+    # Charts 2019-12-13                            #
+    #                                                                                #
+    ##################################################################################
+ */
+
+"charts_transaction":"交易",
+"charts_circulation":"流通",
+"charts_address":"地址",
+"charts_block":"区块",
+"charts_contract":"合约",
+"charts_SR":"超级代表",
+"charts_daily_transactions":"日交易记录",
+"charts_total_transactions":"总交易记录",
+"charts_overall_freezing_rate":"全网冻结率",
+"charts_new_addresses":"地址增长",
+"charts_daily_energy_consumption":"日能量消耗",
+"charts_daily_energy_contracts":"日合约能量消耗",
+"charts_contract_calling":"合约调用",
+"charts_daily_contract_calling_profile":"日合约调用分布",
+"freezing_column_time":"时间（UTC）",
+"freezing_column_total_circulation":"TRX总流通量",
+"freezing_column_total_frozen":"TRX冻结量",
+"freezing_column_freezing_rate":"冻结率",
+"freezing_column_energy_ratio":"能量占比",
+"freezing_column_bandwidth_ratio":"带宽占比",
+"freezing_column_more":"更多",
+"freezing_column_total_circulation_chart":"总流通量（TRX）",
+"freezing_rangeSelector_botton_text_1y":"1年",
+"freezing_rangeSelector_botton_text_6m":"6个月",
+"freezing_rangeSelector_botton_text_3m":"3个月",
+"freezing_rangeSelector_botton_text_1m":"1个月",
+
+    ...lang19Q4,
+
+
+
+
 };
