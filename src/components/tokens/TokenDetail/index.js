@@ -24,6 +24,7 @@ import { withTronWeb } from "../../../utils/tronWeb";
 import { CsvExport } from "../../common/CsvExport";
 import { loadUsdPrice } from "../../../actions/blockchain";
 import ExchangeQuotes from "../ExchangeQuotes";
+import ApiClientToken from "../../../services/tokenApi";
 
 @withTronWeb
 class TokenDetail extends React.Component {
@@ -38,7 +39,8 @@ class TokenDetail extends React.Component {
       buyAmount: 0,
       alert: null,
       currentTotalSupply: "",
-      csvurl: ""
+      csvurl: "",
+      BttSupplyClient: ""
     };
   }
 
@@ -67,12 +69,13 @@ class TokenDetail extends React.Component {
   loadTotalTRXSupply = async () => {
     const { funds } = await Client.getBttFundsSupply();
     this.setState({
-      currentTotalSupply: parseInt(funds.totalTurnOver)
+      currentTotalSupply: parseInt(funds.totalTurnOver),
+      BttSupplyClient: funds
     });
   };
   loadToken = async id => {
     let { priceUSD } = this.props;
-    let {currentTotalSupply} = this.state;
+    let { currentTotalSupply } = this.state;
 
     this.setState({ loading: true });
 
@@ -84,7 +87,7 @@ class TokenDetail extends React.Component {
       token && token["market_info"]
         ? token["market_info"].priceInTrx * priceUSD
         : 0;
-        
+
     if (!token) {
       this.setState({ loading: false, token: null });
       this.props.history.push("/tokens/list");
@@ -150,21 +153,19 @@ class TokenDetail extends React.Component {
         cmp: () => <BTTSupply token={token} />
       };
       tabs.push(BttSupply);
-      this.loadTotalTRXSupply();
+      await this.loadTotalTRXSupply();
     }
     this.setState({
       tabs: tabs
     });
   };
 
-  
-
   isBuyValid = () => {
     return this.state.buyAmount > 0;
   };
 
   render() {
-    let { match, wallet, intl,priceUSD } = this.props;
+    let { match, wallet, intl, priceUSD } = this.props;
     let {
       token,
       tabs,
@@ -172,7 +173,8 @@ class TokenDetail extends React.Component {
       buyAmount,
       alert,
       currentTotalSupply,
-      csvurl
+      csvurl,
+      BttSupplyClient
     } = this.state;
     let uploadURL =
       API_URL + "/api/v2/node/info_upload?address=" + match.params.id;
@@ -231,6 +233,7 @@ class TokenDetail extends React.Component {
                       token={token}
                       currentTotalSupply={currentTotalSupply}
                       priceUSD={priceUSD}
+                      BttSupplyClient={BttSupplyClient}
                     ></Information>
                   )}
                 </div>

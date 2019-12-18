@@ -79,4 +79,7 @@ export const lang19Q4 = {
     "token_rules_2":"OK",
     "token_rules_3":"محايد",
     "token_rules_4":"احتيال",
+    "token_trade": "صفقة",
+     // 2019-12-10
+    "ledger_tronlink":"Login to TRONSCAN via TronLink",
 }
