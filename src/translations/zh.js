@@ -2546,4 +2546,8 @@ export const messages = {
   "freezing_column_bandwidth_ratio":"带宽占比",
   "freezing_column_more":"更多",
   "freezing_column_total_circulation_chart":"总流通量（TRX）",
+  "freezing_rangeSelector_botton_text_1y":"1年",
+  "freezing_rangeSelector_botton_text_6m":"6个月",
+  "freezing_rangeSelector_botton_text_3m":"3个月",
+  "freezing_rangeSelector_botton_text_1m":"1个月",
 };

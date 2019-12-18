@@ -1932,7 +1932,6 @@ export class OverallFreezingRateChart extends React.Component {
         let _config = cloneDeep(config.OverallFreezingRateChart);
         let {intl, data} = this.props;
         let newData = cloneDeep(data)
-        let categories = ['2019-12-12',"2019-12-13","2019-12-14","2019-12-15",'2019-12-12',"2019-12-13","2019-12-14","2019-12-15","2019-12-13","2019-12-14","2019-12-15"];
         let temp;
         var chartdata = newData.map(o => {
             o.y= o.data
@@ -1944,8 +1943,7 @@ export class OverallFreezingRateChart extends React.Component {
             // categories.push(moment(val.day).format('M/D'));
             // _config.series[0].data.push(temp);
         })
-        
-       
+        console.log('this.point',this.point)
         if (newData && newData.length > 0) {
             let options =  {
             
@@ -1953,40 +1951,45 @@ export class OverallFreezingRateChart extends React.Component {
                     text: intl.formatMessage({id: 'charts_overall_freezing_rate'})
                 },
                 rangeSelector: {
-                    allButtonsEnabled: true,
-                    buttons: [{
-                        type: 'month',
-                        count: 3,
-                        text: 'Day',
-                        dataGrouping: {
-                            forced: true,
-                            units: [['day', [1]]]
-                        }
-                    }, {
+                    //allButtonsEnabled: true,
+                    buttons: [
+                    {
+                        type: 'all',
+                        text: intl.formatMessage({id: 'all'})
+                    },
+                    {
                         type: 'year',
                         count: 1,
-                        text: 'Week',
-                        dataGrouping: {
-                            forced: true,
-                            units: [['week', [1]]]
-                        }
-                    }, {
-                        type: 'all',
-                        text: 'Month',
-                        dataGrouping: {
-                            forced: true,
-                            units: [['month', [1]]]
-                        }
-                    }],
-                    buttonTheme: {
-                        width: 60
+                        text: intl.formatMessage({id: 'freezing_rangeSelector_botton_text_1y'})
                     },
-                    selected: 1
+                    {
+                        type: 'month',
+                        count: 6,
+                        text: intl.formatMessage({id: 'freezing_rangeSelector_botton_text_6m'})
+                    },
+                    {
+                        type: 'month',
+                        count: 3,
+                        text: intl.formatMessage({id: 'freezing_rangeSelector_botton_text_3m'})
+                    },
+                    {
+                        type: 'month',
+                        count: 1,
+                        text: intl.formatMessage({id: 'freezing_rangeSelector_botton_text_1m'})
+                    }],
+                    selected: 0
                 },
-                xAxis: [{
-                    categories: categories,
-                    crosshair: false
-                }],
+                navigator: {
+                    maskFill: 'rgba(198,72,68, 0.3)',
+                    xAxis: {
+                        labels: {
+                            format: '{value:%Y-%m-%d}',
+                        }
+                    }
+                },
+                scrollbar: {
+                    enabled: false
+                },
                 yAxis: [
                     { // Primary yAxis
                       labels: {
@@ -2001,6 +2004,7 @@ export class OverallFreezingRateChart extends React.Component {
                             color: "#434343"
                         }
                       },
+                      opposite: false
                     }, { // Secondary yAxis
                       title: {
                         text: intl.formatMessage({id: 'freezing_column_total_circulation_chart'}),
@@ -2013,46 +2017,116 @@ export class OverallFreezingRateChart extends React.Component {
                             color: "#C64844"
                         }
                       },
-                     opposite: true
                     }
                   ],
-                // tooltip: {
-                //     headerFormat: '',
-                //     pointFormat: '<span style="color:{point.color}">\u25CF</span> <b> {point.name}</b><br/>' +
-                //     intl.formatMessage({id: 'call_address_time'}) + ': <b>{point.caller_amount}</b><br/>' +
-                //     intl.formatMessage({id: 'call_address_scale'}) + ': <b>{point.caller_percent}</b><br/>'+
-                //     intl.formatMessage({id: 'call_time'}) + ': <b>{point.y}</b><br/>' +
-                //     intl.formatMessage({id: 'call_scale'}) + ': <b>{point.trigger_percent}</b><br/>'
-                // },
+                  tooltip: {
+                    useHTML: true,
+                    shadow: true,
+                    split: false,
+                    shared: true,
+                    borderColor: '#7F8C8D',
+                    borderRadius: 2,
+                    backgroundColor: 'white',
+                    formatter: function () {
+                        var s;
+                        var points = this.points;
+                        var pointsLength = points.length;
+                      
+                        s = '<table class="tableformat" style="border: 0px;padding-left:10px;padding-right:10px" min-width="100%"><tr><td colspan=2 style="padding-bottom:5px;"><span style="font-size: 10px;"> ' + Highcharts.dateFormat('%Y-%m-%d', new Date(points[0].x)) + '</span><br></td></tr>'
+                        for (let index = 0; index < pointsLength; index += 1) {
+                            s += '<tr><td style="padding-top:4px;padding-bottom:4px;border-top:1px solid #D5D8DC;" valign="top">' + '<span style="color:' + points[index].series.color + ';font-size: 15px !important;">\u25A0</span> ' + intl.formatMessage({id: points[index].series.name })+ '</td>' +
+                                '<td align="right" style="padding-top:5px;padding-bottom:4px;border-top:1px solid #D5D8DC;"><span style=""><b>' +
+                                (index == 2 ? Highcharts.numberFormat(points[index].y, 2, '.', ',') + ' %</b>' : Highcharts.numberFormat(points[index].y, 2, '.', ',') + '</b>')
+                                + '</span>' +
+                                '</td></tr>'
+                        }
+                        s += '</table>';
+                        return s;
+                    },
+
+                },
                 series: [{
                     name: intl.formatMessage({id: 'freezing_column_total_circulation'}),
                     type: 'column',
                     yAxis: 1,
                     color: "#DA8885",
-                    data: [9321363918342.775, 9321363918342.775, 9321363918342.775, 9321363918342.775, 9321363918342.775, 9321363918342.775, 9321363918342.775, 9321363918342.775, 9321363918342.775, 9321363918342.775, 9321363918342.775, 9321363918342.775],
+                    data:[
+                        [1147651200000,9321363918342.775],
+                        [1147737600000,9321363918342.775],
+                        [1147824000000,9321363918342.775],
+                        [1147910400000,9321363918342.775],
+                        [1147996800000,9321363918342.775],
+                        [1148256000000,9321363918342.775],
+                        [1148342400000,9321363918342.775],
+                        [1148428800000,9321363918342.775],
+                        [1148515200000,9321363918342.775],
+                        [1148601600000,9321363918342.775],
+                        [1148947200000,9321363918342.775],
+                        [1149033600000,9321363918342.775],
+                    ],
                     tooltip: {
                         valueSuffix: ' '
+                    },
+                    showInNavigator: false,
+                    dataGrouping: { // 针对highstock,将指定数量的数据合并展现为一个点
+                        enabled: false
                     }
                 }, {
                     name: intl.formatMessage({id: 'freezing_column_total_frozen'}),
                     type: 'column',
                     yAxis: 1,
                     color: "#C64844",
-                    data: [510255631450, 520255631452, 550255631435,610255633145, 310253563145, 210255633145, 410255631145, 512255631451, 560255632145, 610255633145, 580255633145, 518255613145],
-                    // marker: {
-                    //     enabled: false
-                    // },
+                    data:[
+                        [1147651200000,510255631450],
+                        [1147737600000,520255631452],
+                        [1147824000000,550255631435],
+                        [1147910400000,610255633145],
+                        [1147996800000,310253563145],
+                        [1148256000000,210255633145],
+                        [1148342400000,410255631145],
+                        [1148428800000,512255631451],
+                        [1148515200000,518255613145],
+                        [1148601600000,560255632145],
+                        [1148947200000,610255633145],
+                        [1149033600000,580255633145],
+                    ],
+                    
                     //dashStyle: 'shortdot',
                     tooltip: {
                         valueSuffix: ' '
+                    },
+                    showInNavigator: false,
+                    dataGrouping: { // 针对highstock,将指定数量的数据合并展现为一个点
+                        enabled: false
                     }
                 }, {
                     name: intl.formatMessage({id: 'freezing_column_freezing_rate'}),
                     type: 'spline',
                     color: "#5A5A5A",
-                    data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6],
+                    data:[
+                        [1147651200000,7.0],
+                        [1147737600000,6.0],
+                        [1147824000000,6.9],
+                        [1147910400000,9.5],
+                        [1147996800000,14.5],
+                        [1148256000000,28.2],
+                        [1148342400000,21.5],
+                        [1148428800000,25.2],
+                        [1148515200000,26.5],
+                        [1148601600000,23.3],
+                        [1148947200000,9.3],
+                        [1149033600000,13.9],
+                    ],
+                    marker: {
+                        enabled: true,
+                    
+                    },
                     tooltip: {
                         valueSuffix: ' %'
+                    },
+                    showInNavigator: true,
+                    dataGrouping: { // 针对highstock,将指定数量的数据合并展现为一个点
+                        enabled: false
                     }
                 }]
             }

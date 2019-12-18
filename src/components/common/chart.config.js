@@ -1075,15 +1075,18 @@ export default {
     credits: {
         enabled: false
     },
+    legend: {
+      enabled: true,
+      align: 'center',
+    },
     xAxis: {
       type: 'datetime',
-      ordinal: false,
       dateTimeLabelFormats: {
         millisecond: '%H:%M:%S.%L',
         second: '%H:%M:%S',
         minute: '%H:%M',
         hour: '%H:%M',
-        day: '%m-%d',
+        day: '%Y-%m-%d',
         week: '%m-%d',
         month: '%Y-%m',
         year: '%Y'
@@ -1097,45 +1100,10 @@ export default {
       }
     },
     yAxis: [
-      { // Primary yAxis
-        labels: {
-          format: '{value}%',
-          style: {
-            color: "#434343"
-          }
-        },
-        title: {
-          text: '',
-          style: {
-          //  color: Highcharts.getOptions().colors[1]
-          }
-        },
-        stackLabels: {  // 堆叠数据标签
-          enabled: true,
-          style: {
-            fontWeight: 'bold',
-        //   color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
-          }
-        }
-      }, { // Secondary yAxis
-        title: {
-          text: '降雨量',
-          style: {
-        //   color: Highcharts.getOptions().colors[0]
-          }
-        },
-        labels: {
-          format: '{value} mm',
-          style: {
-        //   color: Highcharts.getOptions().colors[0]
-          }
-        },
-        opposite: true
-      }
+      
     ],
     tooltip: {
-      shared: true,
-      valueSuffix:'%',
+    
     },
     exporting: {
         enabled: true,
@@ -1152,6 +1120,15 @@ export default {
           style: {
             textShadow: '0 0 3px black'
           }
+        }
+      },
+      spline: {
+        marker: {
+          fillColor:"#5A5A5A",
+          width: 8,
+          height: 8,
+          lineWidth: 0,  //线条宽度
+          radius: 4,    //半径宽度
         }
       }
     },

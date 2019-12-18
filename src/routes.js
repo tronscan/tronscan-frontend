@@ -21,6 +21,7 @@ import {
   ProposalDetailAsync,
   RepresentativesAsync,
   SingleChartAsync,
+  ChartsAsync,
   StatisticsAsync,
   SystemAsync,
   Token20DetailAsync,
@@ -136,6 +137,13 @@ export const routes = [
         icon: `fa fa-chart-pie`,
         path: "/blockchain/stats/:chartName",
         component: SingleChartAsync,
+        showInMenu: false
+      },
+      {
+        label: "statistics",
+        icon: `fa fa-chart-pie`,
+        path: "/blockchain/charts/:chartName",
+        component: ChartsAsync,
         showInMenu: false
       },
       {

@@ -16,7 +16,7 @@ import { Sticky, StickyContainer } from "react-sticky";
 import $ from 'jquery';
 import Scrollchor from 'react-scrollchor';
 
-class Statistics extends React.Component {
+class StatsCharts extends React.Component {
   constructor() {
     super();
 
@@ -408,7 +408,7 @@ class Statistics extends React.Component {
                 </div>
                 <div className="col-md-4">
                   <div className="card-chart">
-                    <Link className="card-title" to="/blockchain/stats/OverallFreezingRate">
+                    <Link className="card-title" to="/blockchain/charts/OverallFreezingRate">
                       <span className="ml-5">
                         {tu("charts_overall_freezing_rate")}
                       </span>
@@ -621,7 +621,7 @@ const mapDispatchToProps = {
   loadPriceData,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(injectIntl(Statistics))
+export default connect(mapStateToProps, mapDispatchToProps)(injectIntl(StatsCharts))
 
 
 
