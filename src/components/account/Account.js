@@ -1674,8 +1674,8 @@ export default class Account extends Component {
   };
 
   toissuedAsset = () => {
-    let {issuedAsset} = this.state;
-    window.location.hash = "#/token/" + issuedAsset.id;
+     let {issuedAsset} = this.state;
+     window.location.hash = "#/token/" + issuedAsset.id;
   }
 
   handleSwitch = (val) => {

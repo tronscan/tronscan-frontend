@@ -11,6 +11,12 @@ export const SingleChartAsync = loadable(() =>
   )
 );
 
+export const ChartsAsync = loadable(() =>
+  import(
+    /* webpackChunkName: "Charts" */ "./blockchain/Statistics/Charts.js"
+  )
+);
+
 export const MarketsAsync = loadable(() =>
   import(/* webpackChunkName: "Markets" */ "./markets")
 );
