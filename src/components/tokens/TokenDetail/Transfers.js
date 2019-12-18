@@ -36,7 +36,8 @@ class Transfers extends React.Component {
       pageSize: 20,
       showTotal: props.showTotal !== false,
       emptyState: props.emptyState,
-      autoRefresh: props.autoRefresh || false
+      autoRefresh: props.autoRefresh || false,
+      searchStatus: false
     };
   }
 
@@ -195,25 +196,7 @@ class Transfers extends React.Component {
         ),
         dataIndex: "contractRet",
         key: "contractRet",
-        className: "ant_table",
-        filterMultiple: false,
-        filters: [
-          {
-            text: "SUCCESS",
-            value: "SUCCESS"
-          },
-          {
-            text: "FAIL",
-            value: "FAIL"
-          },
-          {
-            text: "CONFIRMING",
-            value: "CONFIRMING"
-          }
-        ],
-        onFilter: (value, record) => {
-          console.log(value);
-        }
+        className: "ant_table"
       },
       {
         title: upperFirst(
@@ -250,7 +233,8 @@ class Transfers extends React.Component {
       rangeTotal,
       pageSize,
       loading,
-      emptyState: EmptyState = null
+      emptyState: EmptyState = null,
+      searchStatus
     } = this.state;
     const listCommonSty = {
       textAlign: "center",
@@ -303,46 +287,49 @@ class Transfers extends React.Component {
         )}
         <div className="row transfers">
           <div className="col-md-12 table_pos">
-            <div
-              style={{
-                display: "flex",
-                background: "#fff",
-                borderBottom: "1px solid #EEEEEE"
-              }}
-              className="pt-3 pb-3"
-            >
-              <div style={listCommonSty}>
-                <div
-                  style={{
-                    fontFamily: "HelveticaNeue-Medium",
-                    fontSize: "18px",
-                    color: "#C64844"
-                  }}
-                >
-                  TFMAHNT…ts65Y12
-                </div>
-                <p style={descStyle}>Holders</p>
-              </div>
-              <div style={listCommonSty}>
-                <div style={listTitleStyle}>537.2334TRX</div>
-                <p style={descStyle}>Holdings</p>
-              </div>
-              <div style={listCommonSty}>
-                <div style={listTitleStyle}>55.5%</div>
-                <p style={descStyle}>Accounted for</p>
-              </div>
-              <div style={listCommonSty}>
-                <div style={listTitleStyle}>
-                  $23432.234
-                  <span
-                    style={{ color: "rgba(51,51,51,0.25)", fontSize: "14px" }}
+            {searchStatus ? (
+              <div
+                style={{
+                  display: "flex",
+                  background: "#fff",
+                  borderBottom: "1px solid #EEEEEE"
+                }}
+                className="pt-3 pb-3"
+              >
+                <div style={listCommonSty}>
+                  <div
+                    style={{
+                      fontFamily: "HelveticaNeue-Medium",
+                      fontSize: "18px",
+                      color: "#C64844"
+                    }}
                   >
-                    ≈123432432 TRX
-                  </span>
+                    TFMAHNT…ts65Y12
+                  </div>
+                  <p style={descStyle}>Holders</p>
                 </div>
-                <p style={descStyle}>Value</p>
+                <div style={listCommonSty}>
+                  <div style={listTitleStyle}>537.2334TRX</div>
+                  <p style={descStyle}>Holdings</p>
+                </div>
+                <div style={listCommonSty}>
+                  <div style={listTitleStyle}>55.5%</div>
+                  <p style={descStyle}>Accounted for</p>
+                </div>
+                <div style={listCommonSty}>
+                  <div style={listTitleStyle}>
+                    $23432.234
+                    <span
+                      style={{ color: "rgba(51,51,51,0.25)", fontSize: "14px" }}
+                    >
+                      ≈123432432 TRX
+                    </span>
+                  </div>
+                  <p style={descStyle}>Value</p>
+                </div>
               </div>
-            </div>
+            ) : null}
+
             <div
               className="d-flex justify-content-between pl-3 pr-3 pt-3 pb-3"
               style={{
@@ -356,7 +343,7 @@ class Transfers extends React.Component {
                   typeText="transaction_info"
                   divClass="table_pos_info_addr"
                   selected
-                  top="184px"
+                  top={searchStatus ? "184px" : "80px"}
                 />
               )}
               <DateSelect

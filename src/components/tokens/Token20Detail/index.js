@@ -9,7 +9,7 @@ import {
   injectIntl
 } from "react-intl";
 import TokenHolders from "./TokenHolders";
-import { Input } from "antd";
+import { Input, Form } from "antd";
 import { NavLink, Route, Switch } from "react-router-dom";
 import { AddressLink, ExternalLink } from "../../common/Links";
 import { TronLoader } from "../../common/loaders";
@@ -42,6 +42,32 @@ import Code from "../../blockchain/Contract/Code";
 import ExchangeQuotes from "../ExchangeQuotes";
 import ApiClientToken from "../../../services/tokenApi";
 
+// search
+const CreateForm = Form.create()(
+  // eslint-disable-next-line
+  class extends React.Component {
+    render() {
+      const { form } = this.props;
+      const { getFieldDecorator } = form;
+      return (
+        <Form>
+          <Form.Item>
+            {getFieldDecorator("address")(
+              <Input
+                onChange={e => {
+                  console.log(e);
+                }}
+                onPressEnter={() => this.tokensTransferSearchFun()}
+                allowClear
+              />
+            )}
+          </Form.Item>
+        </Form>
+      );
+    }
+  }
+);
+
 class Token20Detail extends React.Component {
   constructor() {
     super();
@@ -53,7 +79,8 @@ class Token20Detail extends React.Component {
       tabs: [],
       buyAmount: 0,
       alert: null,
-      csvurl: ""
+      csvurl: "",
+      searchAddress: ""
     };
   }
 
@@ -97,7 +124,7 @@ class Token20Detail extends React.Component {
       {
         id: "transfers",
         icon: "",
-        path: "",
+        path: "/transfers",
         label: <span>{tu("token_transfers")}</span>,
         cmp: () => (
           <Transfers
@@ -210,6 +237,7 @@ class Token20Detail extends React.Component {
       return false;
     }
   };
+
   onInputChange = value => {
     let { account } = this.props;
     if (value && value.length === 64) {
@@ -222,6 +250,7 @@ class Token20Detail extends React.Component {
     this.setState({ privateKey: value });
     this.privateKey.value = value;
   };
+
   confirmPrivateKey = param => {
     let { privateKey, token } = this.state;
     let { account } = this.props;
@@ -383,6 +412,7 @@ class Token20Detail extends React.Component {
       });
     }
   };
+
   buyTokens = token => {
     let { buyAmount } = this.state;
     if (buyAmount <= 0) {
@@ -546,6 +576,12 @@ class Token20Detail extends React.Component {
     }
   };
 
+  tokensTransferSearchFun = async address => {
+    let result = await xhr.get(
+      API_URL + "/api/token_trc20/holder_address=" + address
+    );
+  };
+
   render() {
     let { match, wallet, priceUSD } = this.props;
     let { token, tabs, loading, buyAmount, alert, csvurl } = this.state;
@@ -665,7 +701,16 @@ class Token20Detail extends React.Component {
                           className="input-group-append"
                           style={{ marginLeft: 0 }}
                         >
-                          <Input allowClear />
+                          <CreateForm></CreateForm>
+                          {/* <Form>
+                            <Form.Item>
+                              <Input
+                                allowClear
+                                
+                              />
+                            </Form.Item>
+                          </Form> */}
+
                           <button
                             className="btn box-shadow-none"
                             style={{
@@ -675,6 +720,7 @@ class Token20Detail extends React.Component {
                               borderRadius: "0 2px 2px 0",
                               color: "#fff"
                             }}
+                            onClick={() => this.tokensTransferSearchFun()}
                           >
                             <i className="fa fa-search" />
                           </button>

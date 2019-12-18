@@ -175,6 +175,7 @@ class TokenDetail extends React.Component {
 
   render() {
     let { match, wallet, intl, priceUSD } = this.props;
+    console.log(this.props, 12122131232123123);
     let {
       token,
       tabs,

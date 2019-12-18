@@ -383,7 +383,7 @@ class TokenList extends Component {
               }
               {
                   record.tokenType == 'trc20'&&
-                  <Link to={`/token20/${encodeURI(record.contractAddress)}`} className="token-details btn">{tu('details')}</Link>
+                  <Link to={`/token20/${encodeURI(record.contractAddress)}/transfers`} className="token-details btn">{tu('details')}</Link>
               }
               {
                   IS_MAINNET&& <span>

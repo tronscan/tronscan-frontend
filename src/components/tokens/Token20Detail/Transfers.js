@@ -39,7 +39,8 @@ class Transfers extends React.Component {
       pageSize: 20,
       showTotal: props.showTotal !== false,
       emptyState: props.emptyState,
-      autoRefresh: props.autoRefresh || false
+      autoRefresh: props.autoRefresh || false,
+      searchStatus: false
     };
   }
 
@@ -129,8 +130,8 @@ class Transfers extends React.Component {
           return (
             <Truncate>
               <TransactionHashLink hash={record.transaction_id}>
-                {record.transaction_id}{" "}
-              </TransactionHashLink>{" "}
+                {record.transaction_id}
+              </TransactionHashLink>
             </Truncate>
           );
         }
@@ -174,8 +175,7 @@ class Transfers extends React.Component {
         render: (text, record, index) => {
           return (
             <AddressLink address={record.from_address}>
-              {" "}
-              {record.from_address}{" "}
+              {record.from_address}
             </AddressLink>
           );
         }
@@ -202,8 +202,7 @@ class Transfers extends React.Component {
         render: (text, record, index) => {
           return (
             <AddressLink address={record.to_address}>
-              {" "}
-              {record.to_address}{" "}
+              {record.to_address}
             </AddressLink>
           );
         }
@@ -216,25 +215,7 @@ class Transfers extends React.Component {
         ),
         dataIndex: "contractRet",
         key: "contractRet",
-        className: "ant_table",
-        filterMultiple: false,
-        filters: [
-          {
-            text: "SUCCESS",
-            value: "SUCCESS"
-          },
-          {
-            text: "FAIL",
-            value: "FAIL"
-          },
-          {
-            text: "CONFIRMING",
-            value: "CONFIRMING"
-          }
-        ],
-        onFilter: (value, record) => {
-          console.log(value, record);
-        }
+        className: "ant_table"
       },
       {
         title: upperFirst(
@@ -250,9 +231,8 @@ class Transfers extends React.Component {
           return (
             <span>
               <span>
-                {" "}
-                {FormatNumberByDecimals(record.quant, token.decimals)}{" "}
-              </span>{" "}
+                {FormatNumberByDecimals(record.quant, token.decimals)}
+              </span>
             </span>
           );
         }
@@ -267,14 +247,7 @@ class Transfers extends React.Component {
         key: "tokens",
         className: "ant_table",
         render: (text, record, index) => {
-          return (
-            <span>
-              <TokenTRC20Link
-                name={token.symbol}
-                address={token.contract_address}
-              />{" "}
-            </span>
-          );
+          return <span>{token.symbol}</span>;
         }
       }
     ];
@@ -304,7 +277,8 @@ class Transfers extends React.Component {
       rangeTotal,
       pageSize,
       loading,
-      emptyState: EmptyState = null
+      emptyState: EmptyState = null,
+      searchStatus
     } = this.state;
     if (total == 0) {
       transfers = [];
@@ -360,46 +334,49 @@ class Transfers extends React.Component {
         )}
         <div className="row transfers">
           <div className="col-md-12 ">
-            <div
-              style={{
-                display: "flex",
-                background: "#fff",
-                borderBottom: "1px solid #EEEEEE"
-              }}
-              className="pt-3 pb-3"
-            >
-              <div style={listCommonSty}>
-                <div
-                  style={{
-                    fontFamily: "HelveticaNeue-Medium",
-                    fontSize: "18px",
-                    color: "#C64844"
-                  }}
-                >
-                  TFMAHNT…ts65Y12
-                </div>
-                <p style={descStyle}>Holders</p>
-              </div>
-              <div style={listCommonSty}>
-                <div style={listTitleStyle}>537.2334TRX</div>
-                <p style={descStyle}>Holdings</p>
-              </div>
-              <div style={listCommonSty}>
-                <div style={listTitleStyle}>55.5%</div>
-                <p style={descStyle}>Accounted for</p>
-              </div>
-              <div style={listCommonSty}>
-                <div style={listTitleStyle}>
-                  $23432.234
-                  <span
-                    style={{ color: "rgba(51,51,51,0.25)", fontSize: "14px" }}
+            {searchStatus ? (
+              <div
+                style={{
+                  display: "flex",
+                  background: "#fff",
+                  borderBottom: "1px solid #EEEEEE"
+                }}
+                className="pt-3 pb-3"
+              >
+                <div style={listCommonSty}>
+                  <div
+                    style={{
+                      fontFamily: "HelveticaNeue-Medium",
+                      fontSize: "18px",
+                      color: "#C64844"
+                    }}
                   >
-                    ≈123432432 TRX
-                  </span>
+                    TFMAHNT…ts65Y12
+                  </div>
+                  <p style={descStyle}>Holders</p>
                 </div>
-                <p style={descStyle}>Value</p>
+                <div style={listCommonSty}>
+                  <div style={listTitleStyle}>537.2334TRX</div>
+                  <p style={descStyle}>Holdings</p>
+                </div>
+                <div style={listCommonSty}>
+                  <div style={listTitleStyle}>55.5%</div>
+                  <p style={descStyle}>Accounted for</p>
+                </div>
+                <div style={listCommonSty}>
+                  <div style={listTitleStyle}>
+                    $23432.234
+                    <span
+                      style={{ color: "rgba(51,51,51,0.25)", fontSize: "14px" }}
+                    >
+                      ≈123432432 TRX
+                    </span>
+                  </div>
+                  <p style={descStyle}>Value</p>
+                </div>
               </div>
-            </div>
+            ) : null}
+
             <div className="distributionWrapper">
               <div>
                 <div
@@ -420,7 +397,7 @@ class Transfers extends React.Component {
                       typeText="transaction_info"
                       divClass="table_pos_info_addr"
                       selected
-                      top="184px"
+                      top={searchStatus ? "184px" : "70px"}
                     />
                   )}
                 </div>
