@@ -229,7 +229,7 @@ class TokenDetail extends React.Component {
     });
 
     return (
-      <main className="container header-overlap token_black mc-donalds-coin">
+      <main className="container header-overlap token_black mc-donalds-coin tonken10DetailMain">
         {alert}
         {loading ? (
           <div className="card">
@@ -314,6 +314,7 @@ class TokenDetail extends React.Component {
                     </ul>
                     {pathname.slice(-9) === "transfers" ? (
                       <div
+                        className="tokenTransferSearch"
                         style={{
                           position: "absolute",
                           right: "20px",
@@ -363,6 +364,7 @@ class TokenDetail extends React.Component {
                       ))}
                     </Switch>
                     <div
+                      className="downCsvExport"
                       style={{
                         position: "absolute",
                         left: "20px",

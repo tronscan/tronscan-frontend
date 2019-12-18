@@ -746,3 +746,22 @@ engry {
         }
     }
 }
+
+@media (max-width: 768px) {
+    .tokenTransferSearch {
+        position: inherit !important;
+        right: 0 !important;
+        top: 0 !important;
+    }
+    .singleTimeRange {
+        margin-top: 15px !important;
+    }
+    .tonken10DetailMain,
+    .tonken20DetailMain {
+        .downCsvExport {
+            position: inherit !important;
+            top: 0 !important;
+            left: 0 !important;
+        }
+    }
+}

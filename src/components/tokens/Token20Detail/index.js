@@ -599,7 +599,7 @@ class Token20Detail extends React.Component {
     });
     const defaultImg = require("../../../images/logo_default.png");
     return (
-      <main className="container header-overlap token_black mc-donalds-coin">
+      <main className="container header-overlap token_black mc-donalds-coin tonken20DetailMain">
         {alert}
         {loading ? (
           <div className="card">
@@ -696,6 +696,7 @@ class Token20Detail extends React.Component {
                     </ul>
                     {pathname.slice(-9) === "transfers" ? (
                       <div
+                        className="tokenTransferSearch"
                         style={{
                           position: "absolute",
                           right: "20px",
@@ -745,7 +746,7 @@ class Token20Detail extends React.Component {
                       ))}
                     </Switch>
                     <div
-                      className="downloadCsv"
+                      className="downCsvExport"
                       style={{
                         position: "absolute",
                         left: "20px",
