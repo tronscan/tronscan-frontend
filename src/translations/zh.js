@@ -1111,7 +1111,7 @@ export const messages = {
   */
 
   "issue_progress": "发行进度",
-  "fund_raised": "已筹集资金",
+  "fund_raised": "募集金额",
   "issuing_price": "发行价格",
   "buy_token_info": "你想要购买多少数量的通证？",
   "reputation": "信用评级",
@@ -1639,7 +1639,7 @@ export const messages = {
   #                                                                                #
   ##################################################################################
   */
-  "newly_issued_token_by_tronscan": "虚假token会加入黑名单，不予显示。",
+  "newly_issued_token_by_tronscan": "虚假通证会加入黑名单，不予显示。",
   "Favorites": "自选",
   "dex_search_dec": "输入想交易代币的简称",
   "TRC20_exchange_online": "TRC20交易所上线啦",

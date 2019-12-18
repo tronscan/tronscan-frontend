@@ -90,6 +90,7 @@ class TokenInfo extends React.Component {
                       second="numeric"
                       hour12={false}
                     />
+                    UTC
                   </span>
                 </td>
               ) : (
@@ -104,6 +105,7 @@ class TokenInfo extends React.Component {
                         second="numeric"
                         hour12={false}
                       />
+                      UTC
                     </span>
                   ) : (
                     "-"
@@ -124,6 +126,7 @@ class TokenInfo extends React.Component {
                       second="numeric"
                       hour12={false}
                     />
+                    UTC
                   </span>
                 </td>
               ) : (
@@ -138,6 +141,7 @@ class TokenInfo extends React.Component {
                         second="numeric"
                         hour12={false}
                       />
+                      UTC
                     </span>
                   ) : (
                     "-"

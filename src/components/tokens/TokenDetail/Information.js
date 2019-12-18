@@ -243,13 +243,16 @@ export function Information({
                    <FormattedDate value={token.dateCreated} />
                  )}{" "}
                  {token.dateCreated && (
-                   <FormattedTime
-                     value={token.dateCreated}
-                     hour="numeric"
-                     minute="numeric"
-                     second="numeric"
-                     hour12={false}
-                   />
+                   <span>
+                      <FormattedTime
+                        value={token.dateCreated}
+                        hour="numeric"
+                        minute="numeric"
+                        second="numeric"
+                        hour12={false}
+                    /> UTC
+                   </span>
+                   
                  )}
                  {!token.dateCreated && defaultContent}
                </div>

@@ -9,6 +9,7 @@ import { QuestionMark } from "../common/QuestionMark.js";
 import { ONE_TRX, IS_MAINNET, WARNING_VERSIONS } from "../../constants";
 import { TronLoader } from "../common/loaders";
 import { Empty } from 'antd';
+import { reverse } from "dns";
 class ExchangeQuotes extends React.Component {
   constructor(props){
     super(props);
@@ -35,11 +36,16 @@ class ExchangeQuotes extends React.Component {
         loading: false,
         coinId: values[0]&&values[0][0]&&values[0][0].mapper_id
       })
+    }).catch(e=>{
+      this.setState({
+        loading: false,
+        coinId: ''
+      })
     })
   }
 
   loadScript = (src) => {
-    return new Promise(resolve => {
+    return new Promise((resolve,reverse) => {
       let tag = document.createElement("script")
       tag.async = true
       tag.src = src
@@ -49,13 +55,25 @@ class ExchangeQuotes extends React.Component {
       tag.addEventListener("load", function() {
         resolve()
       })
+      tag.addEventListener("error", function() {
+        reverse()
+      })
     })
   }
   loadId(){
     let {address} = this.props
-    return new Promise(async resolve => {
-      let {data} = await ClientToken.getCoinId(address)
-      resolve(data)
+    return new Promise(async (resolve,reverse) => {
+      let res = await ClientToken.getCoinId(address).catch(e=>{
+        this.setState({
+          loading: false,
+          coinId: ''
+        })
+      })
+      if(res && res.data){
+        resolve(res.data)
+      }else{
+        reverse()
+      }
     })
   }
   loadData = () => {
