@@ -126,7 +126,7 @@ class Transfers extends React.Component {
         key: "transactionHash",
         className: "ant_table",
         align: "center",
-        width: "200px",
+        width: "150px",
         render: (text, record, index) => {
           return (
             <Truncate>
@@ -157,7 +157,7 @@ class Transfers extends React.Component {
       )}</span>,
         dataIndex: "timestamp",
         key: "timestamp",
-        width: "200px",
+        width: "180px",
         className: "ant_table",
         render: (text, record, index) => {
           return <div>

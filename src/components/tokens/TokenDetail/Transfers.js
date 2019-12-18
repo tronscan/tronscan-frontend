@@ -119,7 +119,7 @@ class Transfers extends React.Component {
         dataIndex: "transactionHash",
         key: "transactionHash",
         className: "ant_table",
-        width: "160px",
+        width: "150px",
         render: (text, record, index) => {
           return (
             <Truncate>
@@ -139,12 +139,12 @@ class Transfers extends React.Component {
         )}</span>,
           dataIndex: "timestamp",
           key: "timestamp",
-          width: "150px",
+          width: "180px",
           className: "ant_table",
           render: (text, record, index) => {
             return <div>
               {timeType ? <BlockTime time={Number(record.timestamp)}> </BlockTime> 
-              : <span className="fs12">
+              : <span className="">
                 <FormattedDate value={record.timestamp} />{" "}
                 <FormattedTime
                     value={record.timestamp}
