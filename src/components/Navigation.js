@@ -1293,7 +1293,7 @@ class Navigation extends React.Component {
                                       //wjl
                                       if (!isUndefined(Route.url) && !Route.sidechain && Route.label !== 'developer_challenge') {
                                         return (
-                                          <span className='mr-3 d-inline-block developer_challenge_box'>
+                                          <span className='mr-3 d-inline-block developer_challenge_box' key={j+Route.label}>
                                             <HrefLink
                                                 key={Route.url}
                                                 className="dropdown-item text-uppercase"
@@ -1310,7 +1310,7 @@ class Navigation extends React.Component {
                                       }
                                       if (!isUndefined(Route.url) && !Route.sidechain && Route.label == 'developer_challenge') {
                                           return (
-                                              <span className="mr-3 d-inline-block developer_challenge_box">
+                                              <span className="mr-3 d-inline-block developer_challenge_box" key={Route.url+'_'+ Route.label}>
                                                 <HrefLink
                                                     key={Route.url+'_'+ Route.label}
                                                     className="dropdown-item text-uppercase"

@@ -50,11 +50,17 @@ class TokenList extends Component {
   loadPage = async (page = 1, pageSize = 20) => {
     this.setState({loading: true})
     const { filter, countTop } = this.state
-    const {data: {tokens, total, totalAll, all,currentWeekAll,currentWeekTotalAll,valueAtLeast}} = await xhr.get(API_URL+"/api/tokens/overview", {params: {
+    const res = await xhr.get(API_URL+"/api/tokens/overview", {params: {
       start:  (page - 1) * pageSize,
       limit: pageSize,
       ...filter
-    }});
+    }}).catch(e=>{
+      this.setState({loading: false})
+    });
+    if(!res){
+      return
+    }
+    const {data: {tokens, total, totalAll, all,currentWeekAll,currentWeekTotalAll,valueAtLeast}} =res
     let count = 0;
     let Top = 0;
     tokens.map((item,index) => {
@@ -154,6 +160,9 @@ class TokenList extends Component {
       volume24hInTrx: 'volume24hInTrx',
       marketcap: 'marketcap'
     }
+    if(sorter.order === undefined){
+      sorter['order']= 'ascend'
+    }
     this.setState({
       pagination: pager,
       filter: {
@@ -187,7 +196,7 @@ class TokenList extends Component {
                         </div>
                         :
                         <span>{text}</span>}
-                    {record.isHot?<img src={require('../../../images/token/hot.png')}></img>:''}
+                    {record.level > 100?<img src={require('../../../images/token/hot.png')}></img>:''}
                   </span>
         }
       },
@@ -595,8 +604,8 @@ class TokenList extends Component {
     let {tokens, alert, loading, total, totalAll, all,currentWeekAll, currentWeekTotalAll, filter} = this.state;
     let {match, intl} = this.props;
     let column = IS_MAINNET?this.customizedColumn():this.suncustomizedColumn();
-    let mainInfo = intl.formatMessage({id: 'number_of_lists'}) + total;
-    let sunInfo = intl.formatMessage({id: 'number_of_lists'}) + total  + ',' + intl.formatMessage({id: 'total_in_tronscan'}) + totalAll;
+    let mainInfo = `${intl.formatMessage({id: 'token_list_count'})} : ${total} `;
+    let sunInfo = `${intl.formatMessage({id: 'token_list_count'})} : ${total} , ${intl.formatMessage({id: 'total_in_tronscan'})} : ${totalAll} `;
 
     let url = 'https://poloniex.org/launchBase?utm_source=TS3'
     if(intl.locale == 'zh'){
@@ -621,7 +630,7 @@ class TokenList extends Component {
                             </div>
                             <div></div>
                             <div className="d-flex flex-column justify-content-center">
-                              <div>{currentWeekAll}</div>
+                              <div><FormattedNumber value={currentWeekAll}/></div>
                               <div>{tu('token_week')}</div>
                             </div>
                           </div>
@@ -632,7 +641,7 @@ class TokenList extends Component {
                             </div>
                             <div></div>
                             <div className="d-flex flex-column justify-content-center">
-                              <div>{currentWeekTotalAll}</div>
+                              <div><FormattedNumber value={currentWeekTotalAll}/></div>
                               <div>{tu('token_week')}</div>
                             </div>
                           </div>
