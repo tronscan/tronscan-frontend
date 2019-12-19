@@ -640,7 +640,12 @@ class Token20Detail extends React.Component {
               transfers,
               total: res.total,
               rangeTotal: res.rangeTotal
-            }
+            },
+            transferSearchStatus: false
+          });
+        } else {
+          this.props.updateTokenInfo({
+            transferSearchStatus: false
           });
         }
       })

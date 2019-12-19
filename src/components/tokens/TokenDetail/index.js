@@ -220,12 +220,12 @@ class TokenDetail extends React.Component {
       .catch(err => {
         console.log(err);
       });
-    // let { tokensInfo } = this.props;
+    let { tokensInfo } = this.props;
     const params = {
       issueAddress: ownerAddress,
-      relatedAddress: serchInputVal
-      // start_timestamp: tokensInfo.start_timestamp,
-      // end_timestamp: tokensInfo.end_timestamp
+      relatedAddress: serchInputVal,
+      start_timestamp: tokensInfo.start_timestamp,
+      end_timestamp: tokensInfo.end_timestamp
     };
 
     await Client.getAssetTransfers({
@@ -282,7 +282,12 @@ class TokenDetail extends React.Component {
               transfers: transfers,
               total: res.total,
               rangeTotal: res.rangeTotal
-            }
+            },
+            transferSearchStatus: false
+          });
+        } else {
+          this.props.updateTokenInfo({
+            transferSearchStatus: false
           });
         }
       })
