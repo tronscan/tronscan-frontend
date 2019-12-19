@@ -893,7 +893,11 @@ class Address extends React.Component {
                             </th>
                             <td>
                               <ul className="list-unstyled m-0">
-                                <li className="d-flex">{walletReward} TRX</li>
+                                <li className="d-flex">
+                                <FormattedNumber
+                                      value={walletReward/ONE_TRX} 
+                                    ></FormattedNumber>
+                                  TRX</li>
                               </ul>
                             </td>
                           </tr>

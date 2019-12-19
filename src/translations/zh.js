@@ -2002,7 +2002,7 @@ export const messages = {
   "address_balance_token_price_TRX": "价值",
   "address_transactions_tip": "主动发起的交易数量",
   "address_tron_power_tip": "冻结TRX可以获得投票权",
-  "address_total_balance_tip": "总余额为所有有价值的通证余额之和（包含投票权）",
+  "address_total_balance_tip": "总资产为所有有价值的通证余额之和（包含投票权）",
   "address_tron_power_used": "已用",
   "address_tron_power_remaining": "可用",
   "address_total_balance_info_sources": "信息来源",
