@@ -103,7 +103,45 @@ export const lang19Q4 = {
     "token_rules_3": "محايد",
     "token_rules_4": "احتيال",
     "token_trade": "صفقة",
-    // 2019-12-10
-    "ledger_tronlink": "Login to TRONSCAN via TronLink",
-    "trc20_token_id": "هوية الرمز المميز"
+     // 2019-12-10
+    "ledger_tronlink":"Login to TRONSCAN via TronLink",
+    "trc20_token_id":"هوية الرمز المميز",
+    /*
+        ##################################################################################
+        #                                                                                #
+        # Charts 2019-12-13                            #
+        #                                                                                #
+        ##################################################################################
+    */
+    "charts_transaction":"المعاملات",
+    "charts_circulation":"تداول",
+    "charts_address":"العنوان",
+    "charts_block":"كتلة",
+    "charts_contract":"عقد",
+    "charts_SR":"الممثل الممتاز",
+    "charts_daily_transactions":"المعاملات اليومية",
+    "charts_total_transactions":"مجموع المعاملات",
+    "charts_overall_freezing_rate":"معدل التجميد الكلي",
+    "charts_new_addresses":"عناوين جديدة",
+    "charts_daily_energy_consumption":"استهلاك الطاقة اليومي",
+    "charts_daily_energy_contracts":"استهلاك الطاقة اليومي بعقود",
+    "charts_contract_calling":"دعوة العقد ",
+    "charts_daily_contract_calling_profile":"توزيع دعوة العقود اليومية",
+    "freezing_column_time":"（UTC）الوقت",
+    "freezing_column_total_circulation":"إجمالي تداول TRX",
+    "freezing_column_total_frozen":"مجموع TRX المجمدة",
+    "freezing_column_freezing_rate":"معدل التجمد",
+    "freezing_column_energy_ratio":"نسبة TRX مقابل الطاقة",
+    "freezing_column_bandwidth_ratio":"نسبة TRX مقابل عرض النطاق الترددي",
+    "freezing_column_freezing_rate_tip":"تجميد كمية TRX / إجمالي TRX التداول",
+    "freezing_column_energy_ratio_tip":"عدد TRX للحصول على الطاقة في TRX / TRX المجمدة",
+    "freezing_column_bandwidth_ratio_tip":"عدد TRX للحصول على النطاق العريض في TRX / TRX المجمدة",
+    "freezing_column_more":"المزيد",
+    "freezing_column_total_circulation_chart":"(TRX) إجمالي تداول ",
+    "freezing_rangeSelector_botton_text_1y":"١ سنة",
+    "freezing_rangeSelector_botton_text_6m":"٦ أشهر",
+    "freezing_rangeSelector_botton_text_3m":"٣ أشهر",
+    "freezing_rangeSelector_botton_text_1m":"١ شهر",
+    "freezing_column_a_total":"بيانات TRX المجمدة والمتداولة",
+    "freezing_column_calls":"نتيجة",
 }

@@ -94,12 +94,50 @@ export const lang19Q4 = {
     "contract_available_energy": "Available Energy",
     "token_list_count": "Number of Lists",
     //2019-12-15
-    "token_estimated_cost": "Estimated Cost",
-    "token_enter_number": "Please enter the amount you want to buy",
-    "token_rules_0": "Unknown",
-    "token_rules_1": "Neutral",
-    "token_rules_2": "OK",
-    "token_rules_3": "Suspicious",
-    "token_rules_4": "Scam",
+    "token_estimated_cost":"Estimated Cost",
+    "token_enter_number":"Please enter the amount you want to buy",
+    "token_rules_0":"Unknown",
+    "token_rules_1":"Neutral",
+    "token_rules_2":"OK",
+    "token_rules_3":"Suspicious",
+    "token_rules_4":"Scam",
+    /*
+        ##################################################################################
+        #                                                                                #
+        # Charts 2019-12-13                            #
+        #                                                                                #
+        ##################################################################################
+    */
+    "charts_transaction":"Transaction",
+    "charts_circulation":"Circulation",
+    "charts_address":"Address",
+    "charts_block":"Block",
+    "charts_contract":"Contract",
+    "charts_SR":"SR",
+    "charts_daily_transactions":"Daily transactions",
+    "charts_total_transactions":"Total transactions",
+    "charts_overall_freezing_rate":"Overall freezing rate",
+    "charts_new_addresses":"New addresses",
+    "charts_daily_energy_consumption":"Daily Energy consumption",
+    "charts_daily_energy_contracts":"Daily Energy consumption by contracts",
+    "charts_contract_calling":"Contract calling",
+    "charts_daily_contract_calling_profile":"Daily contract calling profile",
+    "freezing_column_time":"Time（UTC）",
+    "freezing_column_total_circulation":"Total circulation of TRX",
+    "freezing_column_total_frozen":"Total TRX frozen",
+    "freezing_column_freezing_rate":"Freezing rate",
+    "freezing_column_energy_ratio":"TRX-for-Energy ratio",
+    "freezing_column_bandwidth_ratio":"TRX-for-bandwidth ratio",
+    "freezing_column_freezing_rate_tip":"Freezing rate=amount of TRX frozen/total TRX in circulation",
+    "freezing_column_energy_ratio_tip":"TRX-for-Energy ratio=amount of frozen TRX redeemed for Energy/amount of TRX frozen",
+    "freezing_column_bandwidth_ratio_tip":"TRX-for-bandwidth ratio=amount of frozen TRX redeemed for bandwidth/amount of TRX frozen",
+    "freezing_column_more":"More",
+    "freezing_column_total_circulation_chart":"Total circulation（TRX）",
+    "freezing_rangeSelector_botton_text_1y":"1 y",
+    "freezing_rangeSelector_botton_text_6m":"6 m",
+    "freezing_rangeSelector_botton_text_3m":"3 m",
+    "freezing_rangeSelector_botton_text_1m":"1 m",
+    "freezing_column_a_total":"Data of TRX frozen and in circulation ",
+    "freezing_column_calls":" results",
 
 }

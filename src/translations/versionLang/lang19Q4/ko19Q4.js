@@ -94,11 +94,50 @@ export const lang19Q4 = {
     "contract_available_energy": "이용 가능",
     "token_list_count": "리스트 수",
     //2019-12-15
-    "token_estimated_cost": "예상 비용",
-    "token_enter_number": "매입하려는 수량을 입력하세요",
-    "token_rules_0": "알 수 없는",
-    "token_rules_1": "중립",
-    "token_rules_2": "OK",
-    "token_rules_3": "리스크",
-    "token_rules_4": "스캠",
+    "token_estimated_cost":"예상 비용",
+    "token_enter_number":"매입하려는 수량을 입력하세요",
+    "token_rules_0":"알 수 없는",
+    "token_rules_1":"중립",
+    "token_rules_2":"OK",
+    "token_rules_3":"리스크",
+    "token_rules_4":"스캠",
+
+    /*
+        ##################################################################################
+        #                                                                                #
+        # Charts 2019-12-13                            #
+        #                                                                                #
+        ##################################################################################
+    */
+   "charts_transaction":"거래",
+   "charts_circulation":"유통",
+   "charts_address":"주소",
+   "charts_block":"블록",
+   "charts_contract":"계약",
+   "charts_SR":"SR",
+   "charts_daily_transactions":"일일 거래 내역",
+   "charts_total_transactions":"총 거래 내역",
+   "charts_overall_freezing_rate":"네트워크 전체 동결 속도",
+   "charts_new_addresses":"새로운 주소",
+   "charts_daily_energy_consumption":"일일 에너지 소비",
+   "charts_daily_energy_contracts":"일일 계약 에너지 소비",
+   "charts_contract_calling":"계약 호출",
+   "charts_daily_contract_calling_profile":"일일 계약 호출 분배",
+   "freezing_column_time":"시간（UTC）",
+   "freezing_column_total_circulation":"TRX 총 유통 량",
+   "freezing_column_total_frozen":"TRX 동결 량",
+   "freezing_column_freezing_rate":"동결 속도",
+   "freezing_column_energy_ratio":"에너지 점유율",
+   "freezing_column_bandwidth_ratio":"대역폭 점유율",
+   "freezing_column_freezing_rate_tip":"TRX 동결 수/ 총 TRX 유통 량",
+   "freezing_column_energy_ratio_tip":"동결 한 TRX 중 에저지 획득 한 TRX 수/ 동결 한 TRX 수",
+   "freezing_column_bandwidth_ratio_tip":"동결 한 TRX 중 대역폭 획득 한 TRX 수/ 동결 한 TRX 수",
+   "freezing_column_more":"더 보기",
+   "freezing_column_total_circulation_chart":"총 유통 량（TRX）",
+   "freezing_rangeSelector_botton_text_1y":"1년",
+   "freezing_rangeSelector_botton_text_6m":"6개월",
+   "freezing_rangeSelector_botton_text_3m":"3개월",
+   "freezing_rangeSelector_botton_text_1m":"1개월",
+   "freezing_column_a_total":"TRX 유통 및 동결 데이터 총",
+   "freezing_column_calls":"개 데이터",
 }

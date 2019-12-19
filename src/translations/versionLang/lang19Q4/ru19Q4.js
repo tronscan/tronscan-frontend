@@ -95,12 +95,49 @@ export const lang19Q4 = {
     "contract_available_energy": "Доступно",
     "token_list_count": "Количество списков",
     //2019-12-15
-    "token_estimated_cost": "Ориентировочная Стоимость",
-    "token_enter_number": "Пожалуйста, введите сумму, которую вы хотите купить",
-    "token_rules_0": "Неизвестный",
-    "token_rules_1": "Нейтральный",
-    "token_rules_2": "OK",
-    "token_rules_3": "Подозрительный",
-    "token_rules_4": "Скам",
-
+    "token_estimated_cost":"Ориентировочная Стоимость",
+    "token_enter_number":"Пожалуйста, введите сумму, которую вы хотите купить",
+    "token_rules_0":"Неизвестный",
+    "token_rules_1":"Нейтральный",
+    "token_rules_2":"OK",
+    "token_rules_3":"Подозрительный",
+    "token_rules_4":"Скам",
+    /*
+        ##################################################################################
+        #                                                                                #
+        # Charts 2019-12-13                            #
+        #                                                                                #
+        ##################################################################################
+    */
+   "charts_transaction":"Транзакции",
+   "charts_circulation":"Циркуляция",
+   "charts_address":"Адрес",
+   "charts_block":"Блок",
+   "charts_contract":"Контракт",
+   "charts_SR":"SR",
+   "charts_daily_transactions":"Дневные транзакции",
+   "charts_total_transactions":"Всего транзакций",
+   "charts_overall_freezing_rate":"Общий коэффициент заморозки",
+   "charts_new_addresses":"Новые адреса",
+   "charts_daily_energy_consumption":"Ежедневное потребление Энергии",
+   "charts_daily_energy_contracts":"Ежедневное потребление Энергии контрактами",
+   "charts_contract_calling":"Вызов контракта",
+   "charts_daily_contract_calling_profile":"Профиль вызывающий ежедневный контракт",
+   "freezing_column_time":"Время（UTC）",
+   "freezing_column_total_circulation":"Общая циркуляция TRX",
+   "freezing_column_total_frozen":"Всего замороженных TRX",
+   "freezing_column_freezing_rate":"Коэффициент заморозки",
+   "freezing_column_energy_ratio":"Коэффициент TRX-к-Энергии",
+   "freezing_column_bandwidth_ratio":"Коэффициент TRX-к-Пропускной Способности",
+   "freezing_column_energy_ratio_tip":"Количество TRX для получения энергии в замороженном TRX / замороженном TRX",
+   "freezing_column_bandwidth_ratio_tip":"Количество TRX для получения широкополосной связи в замороженном TRX / количество замороженных TRX",
+   "freezing_column_more":"Больше",
+   "freezing_column_total_circulation_chart":"Общая циркуляция（TRX）",
+   "freezing_rangeSelector_botton_text_1y":"1 год",
+   "freezing_rangeSelector_botton_text_6m":"6 месяцев",
+   "freezing_rangeSelector_botton_text_3m":"3 месяца",
+   "freezing_rangeSelector_botton_text_1m":"1 месяц",
+   "freezing_column_a_total":"Данные замороженных TRX и находятся в циркуляции ",
+   "freezing_column_calls":" результатов",
+   
 }

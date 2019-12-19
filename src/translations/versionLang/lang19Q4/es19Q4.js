@@ -94,11 +94,50 @@ export const lang19Q4 = {
     "contract_available_energy": "Disponible",
     "token_list_count": "número de lista",
     //2019-12-15
-    "token_estimated_cost": "Costo estimado",
-    "token_enter_number": "ingrese la cantidad que desea comprar",
-    "token_rules_0": "Desconocido",
-    "token_rules_1": "Neutral",
-    "token_rules_2": "Okay",
-    "token_rules_3": "Suspicaz",
-    "token_rules_4": "Estafa",
+    "token_estimated_cost":"Costo estimado",
+    "token_enter_number":"ingrese la cantidad que desea comprar",
+    "token_rules_0":"Desconocido",
+    "token_rules_1":"Neutral",
+    "token_rules_2":"Okay",
+    "token_rules_3":"Suspicaz",
+    "token_rules_4":"Estafa",
+
+    /*
+        ##################################################################################
+        #                                                                                #
+        # Charts 2019-12-13                            #
+        #                                                                                #
+        ##################################################################################
+    */
+   "charts_transaction":"Transacción",
+   "charts_circulation":"Circulación",
+   "charts_address":"Dirección",
+   "charts_block":"Bloque",
+   "charts_contract":"Contrato",
+   "charts_SR":"SR",
+   "charts_daily_transactions":"Transacciones diarias",
+   "charts_total_transactions":"Transacciones totales",
+   "charts_overall_freezing_rate":"Tasa de congelación general",
+   "charts_new_addresses":"Nuevas direcciones",
+   "charts_daily_energy_consumption":"Consumo diario de energía",
+   "charts_daily_energy_contracts":"Consumo diario de energía por contratos",
+   "charts_contract_calling":"Llamada de contrato",
+   "charts_daily_contract_calling_profile":"Perfil de llamadas de contrato diario",
+   "freezing_column_time":"Tiempo（UTC）",
+   "freezing_column_total_circulation":"Circulación total de TRX",
+   "freezing_column_total_frozen":"TRX total congelado",
+   "freezing_column_freezing_rate":"Tasa de congelación",
+   "freezing_column_energy_ratio":"Relación TRX por energía",
+   "freezing_column_bandwidth_ratio":"Relación TRX para ancho de banda",
+   "freezing_column_freezing_rate_tip":"Congelar cantidad TRX / circulación TRX total",
+   "freezing_column_energy_ratio_tip":"Número de TRX para obtener energía en TRX congelado / TRX congelado",
+   "freezing_column_bandwidth_ratio_tip":"Número de TRX para obtener banda ancha en TRX congelado / TRX congelado",
+   "freezing_column_more":"Más",
+   "freezing_column_total_circulation_chart":"total congelado（TRX）",
+   "freezing_rangeSelector_botton_text_1y":"1 año",
+   "freezing_rangeSelector_botton_text_6m":"6 meses",
+   "freezing_rangeSelector_botton_text_3m":"3 meses",
+   "freezing_rangeSelector_botton_text_1m":"1 mes",
+   "freezing_column_a_total":"Datos de TRX congelados y en circulación: ",
+   "freezing_column_calls":"resultados",
 }

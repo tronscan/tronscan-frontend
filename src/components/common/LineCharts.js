@@ -1983,7 +1983,7 @@ export class OverallFreezingRateChart extends React.Component {
                     xAxis: {
                         labels: {
                             format: '{value:%Y-%m-%d}',
-                            enabled:false
+                            // enabled:false
                         }
                     }
                 },
