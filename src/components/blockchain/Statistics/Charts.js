@@ -17,9 +17,11 @@ import {API_URL} from "../../../constants";
 import { DatePicker, Select } from 'antd';
 import SmartTable from "../../common/SmartTable.js"
 import moment from 'moment';
-import { upperFirst } from 'lodash'
+import { upperFirst,sortBy } from 'lodash'
 import {AddressLink} from "../../common/Links";
 import {Truncate} from "../../common/text";
+import {QuestionMark} from "../../common/QuestionMark";
+import { CsvExport } from "../../common/CsvExport";
 
 import isMobile from "../../../utils/isMobile";
 import {
@@ -299,11 +301,32 @@ class StatCharts extends React.Component {
         
         data.map((item, index) => {
             item.timestamp = moment(item.day).valueOf();
-            item.freezing_rate_percent = (item.freezing_rate * 100).toFixed(2)
+            item.freezing_rate_percent = parseFloat((item.freezing_rate * 100).toFixed(2));
         })
         console.log('data',data)
         this.setState({
-            OverallFreezingRate: data,
+            OverallFreezingRate:  sortBy(data, function(o) { return o.timestamp; })
+        });
+       
+        let higest = {date: '', increment: ''};
+        let lowest = {date: '', increment: ''};
+        let pr = cloneDeep(data).sort(this.compare('freezing_rate'));
+        for (let p in pr) {
+            pr[p] = {date: pr[p].time, ...pr[p]};
+        }
+        this.setState({
+            summit: {
+                OverallFreezingRate_sort: [
+                    {
+                        date: pr[pr.length - 1].timestamp ,
+                        increment: pr[pr.length - 1].freezing_rate ? (pr[pr.length - 1].freezing_rate * 100).toFixed(2) + '%': 0
+                    },
+                    {
+                        date: pr[0].timestamp,
+                        increment: pr[0].freezing_rate ? (pr[0].freezing_rate * 100).toFixed(2) + '%': 0
+                    }],
+
+            }
         });
     }
 
@@ -337,12 +360,22 @@ class StatCharts extends React.Component {
         }
         },
         {
-        title: upperFirst(intl.formatMessage({id: 'freezing_column_freezing_rate'})),
+        title: () => {
+            let text = intl.formatMessage({id: 'freezing_column_freezing_rate_tip'}); 
+            return (
+              <div>
+                {upperFirst(intl.formatMessage({id: 'freezing_column_freezing_rate'}))}
+                <span className="ml-2">
+                  <QuestionMark placement="top" text={text} />
+                </span>
+              </div>
+            )
+        },
         dataIndex: 'freezing_column_freezing_rate',
         key: 'freezing_column_freezing_rate',
         render: (text, record, index) => {
             return <span>
-                {record.freezing_rate != 0?
+                {record.freezing_rate?
                     <span>
                         <FormattedNumber
                         value={(record.freezing_rate)*100}
@@ -357,12 +390,22 @@ class StatCharts extends React.Component {
             }
         },
         {
-        title: upperFirst(intl.formatMessage({id: 'freezing_column_energy_ratio'})),
+        title: () => {
+            let text = intl.formatMessage({id: 'freezing_column_energy_ratio_tip'}); 
+            return (
+              <div>
+                {upperFirst(intl.formatMessage({id: 'freezing_column_energy_ratio'}))}
+                <span className="ml-2">
+                  <QuestionMark placement="top" text={text} />
+                </span>
+              </div>
+            )
+        },
         dataIndex: 'caller_amount',
         key: 'caller_amount',
         render: (text, record, index) => {
             return <span>
-            {record.energy_rate != 0?
+            {record.energy_rate?
                 <span>
                     <FormattedNumber
                     value={(record.energy_rate)*100}
@@ -376,12 +419,22 @@ class StatCharts extends React.Component {
         }
         },
         {
-        title: upperFirst(intl.formatMessage({id: 'freezing_column_bandwidth_ratio'})),
+        title: () => {
+            let text = intl.formatMessage({id: 'freezing_column_bandwidth_ratio_tip'}); 
+            return (
+              <div>
+                {upperFirst(intl.formatMessage({id: 'freezing_column_bandwidth_ratio'}))}
+                <span className="ml-2">
+                  <QuestionMark placement="top" text={text} />
+                </span>
+              </div>
+            )
+        },
         dataIndex: 'trigger_amount',
         key: 'trigger_amount',
         render: (text, record, index) => {
             return <span>
-            {record.net_rate != 0?
+            {record.net_rate?
                 <span>
                     <FormattedNumber
                     value={(record.net_rate)*100}
@@ -410,8 +463,10 @@ class StatCharts extends React.Component {
         let {match, intl} = this.props;
         let {txOverviewStats, txOverviewStatsFull, 
             addressesStats, blockSizeStats, blockchainSizeStats, summit ,OverallFreezingRate } = this.state;
+        let { start_day, end_day} = this.state.OverallFreezingRateParams;
+
         let unit;
-        let uploadURL = API_URL + "/api/v2/node/overview_upload";
+        let csvurl = API_URL + "/api/freezeresource?start_day=" + start_day+"&end_day="+end_day + "&format=csv";
         let freezing_column = this.freezingCustomizedColumn();
         let chartHeight = isMobile? 240: 580
         if (match.params.chartName === 'blockchainSizeStats' || match.params.chartName === 'addressesStats') {
@@ -419,6 +474,7 @@ class StatCharts extends React.Component {
         } else {
             unit = 'number';
         }
+        
 
         return (
             <main className="container header-overlap">
@@ -491,11 +547,19 @@ class StatCharts extends React.Component {
                                         <div className="pt-4 pb-2 d-flex justify-content-between">
                                             <div>
                                                 {
-                                                    intl.formatMessage({id: 'a_total'}) + intl.formatNumber(OverallFreezingRate.length)+ 
-                                                    intl.formatMessage({id: 'Contract_times_calls'})
+                                                    intl.formatMessage({id: 'freezing_column_a_total'}) + intl.formatNumber(OverallFreezingRate.length)+ 
+                                                    intl.formatMessage({id: 'freezing_column_calls'})
                                                 }
                                             </div>
-                                            <div><i size="1" style={{fontStyle: 'normal'}}>[ Download <a href={uploadURL} style={{color: '#C23631'}}><b>CSV Export</b></a>&nbsp;<span className="glyphicon glyphicon-download-alt"></span> ]</i>&nbsp;</div>
+                                            <div style={{marginTop:-20}}>
+                                            {[
+                                                "OverallFreezingRate"
+                                                ].indexOf(match.params.chartName) !== -1 ? (
+                                                <CsvExport downloadURL={csvurl} />
+                                                ) : (
+                                                ""
+                                                )}
+                                            </div>
                                         </div>
                                         {
                                             ( OverallFreezingRate.length === 0)?

@@ -1932,18 +1932,17 @@ export class OverallFreezingRateChart extends React.Component {
         let _config = cloneDeep(config.OverallFreezingRateChart);
         let {intl, data} = this.props;
         let newData = cloneDeep(data)
-        let temp;
-        var chartdata = newData.map(o => {
-            o.y= o.data
-           // o.name = o.contract_address
-            return o
+        let freezingRate = [];
+        let freezeTotal = [];
+        let turnoverTotal = [];
+        newData.map((val) => {
+            freezingRate.push([val['timestamp'],val['freezing_rate_percent']]);
+            freezeTotal.push([val['timestamp'],val['total_freeze_weight']]);
+            turnoverTotal.push([val['timestamp'],val['total_turn_over']]);
         })
-        data.map((val) => {
-            temp = {...val, y: val.newtotalTransaction};
-            // categories.push(moment(val.day).format('M/D'));
-            // _config.series[0].data.push(temp);
-        })
-        console.log('this.point',this.point)
+        console.log('freezingRate',freezingRate)
+        console.log('freezeTotal',freezeTotal)
+        console.log('turnoverTotal',turnoverTotal)
         if (newData && newData.length > 0) {
             let options =  {
             
@@ -1984,6 +1983,7 @@ export class OverallFreezingRateChart extends React.Component {
                     xAxis: {
                         labels: {
                             format: '{value:%Y-%m-%d}',
+                            enabled:false
                         }
                     }
                 },
@@ -2004,7 +2004,8 @@ export class OverallFreezingRateChart extends React.Component {
                             color: "#434343"
                         }
                       },
-                      opposite: false
+                      opposite: false,
+                      min:0
                     }, { // Secondary yAxis
                       title: {
                         text: intl.formatMessage({id: 'freezing_column_total_circulation_chart'}),
@@ -2050,20 +2051,7 @@ export class OverallFreezingRateChart extends React.Component {
                     type: 'column',
                     yAxis: 1,
                     color: "#DA8885",
-                    data:[
-                        [1147651200000,9321363918342.775],
-                        [1147737600000,9321363918342.775],
-                        [1147824000000,9321363918342.775],
-                        [1147910400000,9321363918342.775],
-                        [1147996800000,9321363918342.775],
-                        [1148256000000,9321363918342.775],
-                        [1148342400000,9321363918342.775],
-                        [1148428800000,9321363918342.775],
-                        [1148515200000,9321363918342.775],
-                        [1148601600000,9321363918342.775],
-                        [1148947200000,9321363918342.775],
-                        [1149033600000,9321363918342.775],
-                    ],
+                    data:turnoverTotal,
                     tooltip: {
                         valueSuffix: ' '
                     },
@@ -2076,22 +2064,7 @@ export class OverallFreezingRateChart extends React.Component {
                     type: 'column',
                     yAxis: 1,
                     color: "#C64844",
-                    data:[
-                        [1147651200000,510255631450],
-                        [1147737600000,520255631452],
-                        [1147824000000,550255631435],
-                        [1147910400000,610255633145],
-                        [1147996800000,310253563145],
-                        [1148256000000,210255633145],
-                        [1148342400000,410255631145],
-                        [1148428800000,512255631451],
-                        [1148515200000,518255613145],
-                        [1148601600000,560255632145],
-                        [1148947200000,610255633145],
-                        [1149033600000,580255633145],
-                    ],
-                    
-                    //dashStyle: 'shortdot',
+                    data:freezeTotal,
                     tooltip: {
                         valueSuffix: ' '
                     },
@@ -2103,20 +2076,7 @@ export class OverallFreezingRateChart extends React.Component {
                     name: intl.formatMessage({id: 'freezing_column_freezing_rate'}),
                     type: 'spline',
                     color: "#5A5A5A",
-                    data:[
-                        [1147651200000,7.0],
-                        [1147737600000,6.0],
-                        [1147824000000,6.9],
-                        [1147910400000,9.5],
-                        [1147996800000,14.5],
-                        [1148256000000,28.2],
-                        [1148342400000,21.5],
-                        [1148428800000,25.2],
-                        [1148515200000,26.5],
-                        [1148601600000,23.3],
-                        [1148947200000,9.3],
-                        [1149033600000,13.9],
-                    ],
+                    data:freezingRate,
                     marker: {
                         enabled: true,
                     
