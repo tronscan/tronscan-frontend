@@ -16,19 +16,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/editor.worker.js.gz"
   },
   {
-    "revision": "5cf32cfbe6230b083c12dcb93b64d03e",
+    "revision": "1466908e54116371c17f84a67997aa6b",
     "url": "/index.html"
   },
   {
-    "revision": "b3b222623ef3149eb648c3e2ded9fe8b",
+    "revision": "b2f370696f98e834b8620615e0c48046",
     "url": "/index.html.gz"
-  },
-  {
-    "url": "/precache-manifest.93f33257d2d54479949f1c78847a1306.js"
-  },
-  {
-    "revision": "8515180cdb502b573854d97312d47ac3",
-    "url": "/service-worker.js"
   },
   {
     "revision": "9b1ffa462936da08043e",
@@ -311,12 +304,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/js/AddSignatureModal.764a9066.chunk.js.gz"
   },
   {
-    "revision": "352de6af53a92f5dc50a",
-    "url": "/static/js/Address.cc8b7881.chunk.js"
+    "revision": "6faaaaf1bb262f97be15",
+    "url": "/static/js/Address.ab0482e6.chunk.js"
   },
   {
-    "revision": "573aead3778fb4ad8ff9348a3b3329ec",
-    "url": "/static/js/Address.cc8b7881.chunk.js.gz"
+    "revision": "e3505f0e9d6a3c471ba90dcaa7b6234c",
+    "url": "/static/js/Address.ab0482e6.chunk.js.gz"
   },
   {
     "revision": "e40f48fb8fb576c4835a",
@@ -479,12 +472,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/js/Markets.855cb028.chunk.js.gz"
   },
   {
-    "revision": "bdbeca296e139efee614",
-    "url": "/static/js/MyToken.e7a1c2aa.chunk.js"
+    "revision": "00ef9ba16432fe06afa5",
+    "url": "/static/js/MyToken.8d855ceb.chunk.js"
   },
   {
-    "revision": "446f818402c41e4da6d39b405506d182",
-    "url": "/static/js/MyToken.e7a1c2aa.chunk.js.gz"
+    "revision": "2e29aad61cbc00b869cecfc11f6e4b97",
+    "url": "/static/js/MyToken.8d855ceb.chunk.js.gz"
   },
   {
     "revision": "312901fb1322b725f9c6",
@@ -735,12 +728,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/js/main.9edf1395.chunk.js.gz"
   },
   {
-    "revision": "26ae0af2e1bbdb955f29",
-    "url": "/static/js/runtime~main.e58580e9.js"
+    "revision": "82fd663ad6048277dd93",
+    "url": "/static/js/runtime~main.2fb120f4.js"
   },
   {
-    "revision": "466945e75f5fd417cfc18b698d7193c6",
-    "url": "/static/js/runtime~main.e58580e9.js.gz"
+    "revision": "3604bed63d8d867fd8316c7df35052ab",
+    "url": "/static/js/runtime~main.2fb120f4.js.gz"
   },
   {
     "revision": "7b00f7c4e78ed9cfc676c64c040965e8",

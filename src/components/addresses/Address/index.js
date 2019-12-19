@@ -685,8 +685,10 @@ class Address extends React.Component {
         TRX &nbsp;
         {tu("freeze")}:{" "}
         <Tooltip placement="top" innerClassName="w-100" title={TooltipText}>
+          <span style={{color:'rgb(255, 163, 11)'}}>
           <FormattedNumber value={totalPower / ONE_TRX} />
           TRX
+          </span>
         </Tooltip>
         <span>)</span>
       </div>
@@ -894,7 +896,7 @@ class Address extends React.Component {
                             <td>
                               <ul className="list-unstyled m-0">
                                 <li className="d-flex">   
-                                  <TRXPrice amount={walletReward / ONE_TRX} className="font-weight-bold"/>
+                                  <TRXPrice amount={walletReward / ONE_TRX} showPopup={false}/>
                                   </li>
                               </ul>
                             </td>
