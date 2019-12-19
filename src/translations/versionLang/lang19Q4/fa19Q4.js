@@ -34,7 +34,11 @@ export const lang19Q4 = {
     "assetsPercent": "کل دارایی های {first}~{end}",
     "assetsPercentshow": "کل دارایی های {first}~{end}：{usdt} {unit}",
     "holders": "هوادر های توکن",
-
+    "transfersDetailContractAddress": "",
+    "transfersDetailHolder": "",
+    "transfersDetailQuantity": "",
+    "transfersDetailPercentage": "",
+    "transfersDetailValue": "",
     // 2019-12-10
     "token_basic_view": "مبانی",
     "token_additional_materials": "اطلاعات تکمیلی",

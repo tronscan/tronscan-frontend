@@ -2,7 +2,6 @@ import React from 'react'
 import moment from 'moment';
 import config from './chart.config.js'
 import { IS_MAINNET } from "../../constants"
-
 import echarts from 'echarts/lib/echarts'
 import 'echarts/lib/chart/line'
 import 'echarts/lib/component/title'
@@ -11,7 +10,6 @@ import 'echarts/lib/component/dataZoom'
 import 'echarts/lib/component/toolbox'
 import 'echarts/lib/component/markPoint'
 import 'echarts/lib/chart/bar'
-
 import Highcharts from 'highcharts/highstock';
 import HighchartsMore from 'highcharts/highcharts-more';
 import HighchartsDrilldown from 'highcharts/modules/drilldown';
@@ -1950,6 +1948,7 @@ export class OverallFreezingRateChart extends React.Component {
                     text: intl.formatMessage({id: 'charts_overall_freezing_rate'})
                 },
                 rangeSelector: {
+                    inputDateFormat: '%Y-%m-%d',
                     //allButtonsEnabled: true,
                     buttons: [
                     {
@@ -1985,7 +1984,8 @@ export class OverallFreezingRateChart extends React.Component {
                             format: '{value:%Y-%m-%d}',
                             // enabled:false
                         }
-                    }
+                    },
+                   
                 },
                 scrollbar: {
                     enabled: false

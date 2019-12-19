@@ -451,14 +451,13 @@ export const routes = [
       },
       {
           url: "https://dappradar.com/rankings/protocol/tron",
-          icon: "fab fa-asymmetrik",
+          icon: "fab fa-dochub", 
           label: "DAppradar"
       },
       {
-        url:
-          "https://dapp.review/explore/tron?gclid=EAIaIQobChMIx-fB8KH04QIVlHZgCh0ybA1hEAAYASAAEgIad_D_BwE",
-        icon: "fas fa-ellipsis-h",
-        label: "nav_more"
+        url:"https://dapp.review/explore/tron?gclid=EAIaIQobChMIx-fB8KH04QIVlHZgCh0ybA1hEAAYASAAEgIad_D_BwE",
+        icon: "fas fa-crop-alt",
+        label: "Dappview"
       }
     ]
   },

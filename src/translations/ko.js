@@ -2244,9 +2244,9 @@ export const messages = {
   "7day": "7 일",
   "14day": "14 일",
   "30day": "1 개월",
-  "select_tip": "To view data other than 2000 You can manually adjust the time window",
-  "date_number_tip": "{total} records in the current time range",
-  "date_list_tip": "Only the first 2000 data are displayed",
+  "select_tip": "2000 이외의 데이터를 보려면 시간 창을 수동으로 조정하세요",
+  "date_number_tip": "현재 시간 범위내에 {total}개의 기록이 있습니다.",
+  "date_list_tip": "리스트에는 2000개의 기록만 표시됩니다",
 
 
   "sun_propose_1": "거래 비용 청구 스위치에 대한 제안 설치가 1일 경우 거래 비용을 정상적으로 받습니다.",

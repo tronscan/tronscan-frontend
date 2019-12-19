@@ -34,6 +34,11 @@ export const lang19Q4 = {
     "assetsPercent": "제 {first}~{end} 보유자의 총 자산",
     "assetsPercentshow": "제 {first}~{end} 보유자의 총 자산：{usdt} {unit}",
     "holders": "보유자",
+    "transfersDetailContractAddress": "",
+    "transfersDetailHolder": "",
+    "transfersDetailQuantity": "",
+    "transfersDetailPercentage": "",
+    "transfersDetailValue": "",
     // 2019-12-10
     "token_basic_view": "개요",
     "token_additional_materials": "자료 보충",
