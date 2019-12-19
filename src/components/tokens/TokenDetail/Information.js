@@ -84,7 +84,7 @@ export function Information({
            {
              name: "total_supply",
              content: totalSupply ? (
-               <FormattedNumber value={totalSupply} />
+               <span><FormattedNumber value={totalSupply} /> {token.name}</span>
              ) : (
                defaultContent
              )
@@ -92,7 +92,7 @@ export function Information({
            {
              name: "circulating_supply",
              content: currentTotal ? (
-               <FormattedNumber value={currentTotal} />
+               <span><FormattedNumber value={currentTotal} /> {token.name}</span>
              ) : (
                defaultContent
              )
