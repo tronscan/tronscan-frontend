@@ -158,6 +158,30 @@ class TokenHolders extends React.Component {
                 ) : (
                   ""
                 )}
+                {record.srTag ? (
+                  <div>
+                    <img
+                      style={{ width: 14, height: 14 }}
+                      src="https://coin.top/production/upload/tag/sr.png"
+                      alt=""
+                    />
+                    <span> SR</span>
+                  </div>
+                ) : (
+                  ""
+                )}
+                {record.foundationTag ? (
+                  <div>
+                    <img
+                      style={{ width: 14, height: 14 }}
+                      src="https://coin.top/production/upload/tag/foundation.png"
+                      alt=""
+                    />
+                    <span> foundation</span>
+                  </div>
+                ) : (
+                  ""
+                )}
               </span>
             </div>
           );

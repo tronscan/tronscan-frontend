@@ -6,6 +6,7 @@ import { ONE_TRX, API_URL } from "../../../constants";
 import SmartTable from "../../common/SmartTable.js";
 import { FormattedNumber, injectIntl } from "react-intl";
 import { TronLoader } from "../../common/loaders";
+import { trim } from "lodash";
 import { upperFirst, upperCase, lowerCase } from "lodash";
 import { Tooltip } from "antd";
 import { FormatNumberByDecimals } from "../../../utils/number";
@@ -22,7 +23,8 @@ class TokenHolders extends React.Component {
       addresses: [],
       page: 0,
       total: 0,
-      pageSize: 25
+      pageSize: 25,
+      search: ""
     };
   }
 
@@ -162,6 +164,30 @@ class TokenHolders extends React.Component {
               ) : (
                 ""
               )}
+              {record.srTag ? (
+                <div>
+                  <img
+                    style={{ width: 14, height: 14 }}
+                    src="https://coin.top/production/upload/tag/sr.png"
+                    alt=""
+                  />
+                  <span> SR</span>
+                </div>
+              ) : (
+                ""
+              )}
+              {record.foundationTag ? (
+                <div>
+                  <img
+                    style={{ width: 14, height: 14 }}
+                    src="https://coin.top/production/upload/tag/foundation.png"
+                    alt=""
+                  />
+                  <span> foundation</span>
+                </div>
+              ) : (
+                ""
+              )}
             </div>
           );
         }
@@ -222,7 +248,7 @@ class TokenHolders extends React.Component {
   };
 
   render() {
-    let { addresses, total, rangeTotal, loading } = this.state;
+    let { addresses, total, rangeTotal, loading, search } = this.state;
     let { intl, filter } = this.props;
     let column = this.customizedColumn();
     let tableInfo =
@@ -263,33 +289,65 @@ class TokenHolders extends React.Component {
                 borderTop: "1px solid #d8d8d8"
               }}
             >
-              <div style={{ paddingLeft: 20, background: "#fff" }}>
-                {total ? (
+              <div className="nav-searchbar" style={styles.searchBox}>
+                <div
+                  className="token20-input-group input-group"
+                  style={{ height: 70 }}
+                >
                   <div
-                    className="d-none d-md-block"
-                    style={{ left: "auto", top: 190 }}
+                    style={{
+                      paddingLeft: 20,
+                      background: "#fff"
+                    }}
                   >
-                    <div style={{ padding: "20px 0" }}>
-                      {tu("view_total")} {rangeTotal} {tu("hold_addr")}
-                      {rangeTotal >= 10000 ? (
-                        <QuestionMark
-                          placement="top"
-                          info={tableInfoTip}
-                        ></QuestionMark>
-                      ) : (
-                        ""
-                      )}
-                      <br />
-                      {rangeTotal >= 10000 ? (
-                        <span>({tu("table_info_big")})</span>
-                      ) : (
-                        ""
-                      )}
+                    {total ? (
+                      <div className="d-none d-md-block">
+                        <div style={{ padding: "5px 0" }}>
+                          {tu("view_total")} {rangeTotal} {tu("hold_addr")}
+                          {rangeTotal >= 10000 ? (
+                            <QuestionMark
+                              placement="top"
+                              info={tableInfoTip}
+                            ></QuestionMark>
+                          ) : (
+                            ""
+                          )}
+                          <br />
+                          {rangeTotal >= 10000 ? (
+                            <span>({tu("table_info_big")})</span>
+                          ) : (
+                            ""
+                          )}
+                        </div>
+                      </div>
+                    ) : (
+                      ""
+                    )}
+                  </div>
+                  <div className="token20-search">
+                    <input
+                      type="text"
+                      className="form-control p-2 bg-white border-0 box-shadow-none"
+                      value={search}
+                      onChange={ev =>
+                        this.setState({
+                          search: trim(ev.target.value)
+                        })
+                      }
+                      placeholder={intl.formatMessage({
+                        id: "search_TRC20"
+                      })}
+                    />
+                    <div className="input-group-append">
+                      <button
+                        className="btn box-shadow-none"
+                        onClick={this.doSearch}
+                      >
+                        <i className="fa fa-search" />
+                      </button>
                     </div>
                   </div>
-                ) : (
-                  ""
-                )}
+                </div>
               </div>
               <SmartTable
                 bordered={true}
@@ -309,5 +367,12 @@ class TokenHolders extends React.Component {
     );
   }
 }
-
+const styles = {
+  searchBox: {
+    background: "#fff",
+    paddingTop: 14,
+    borderRight: "1px solid #d8d8d8",
+    borderLeft: "1px solid #d8d8d8"
+  }
+};
 export default injectIntl(TokenHolders);

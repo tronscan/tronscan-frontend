@@ -88,22 +88,22 @@ class HolderDistribution extends React.Component {
 
         const first = (
           new Decimal(res["rank1-10"]).div(new Decimal(totalSupply)) * 100
-        ).toFixed(6);
+        ).toFixed(2);
 
         const second = (
           new Decimal(res["rank11-50"]).div(new Decimal(totalSupply)) * 100
-        ).toFixed(6);
+        ).toFixed(2);
 
         const third = (
           new Decimal(res["rank51-100"]).div(new Decimal(totalSupply)) * 100
-        ).toFixed(6);
+        ).toFixed(2);
 
         const four = (
           new Decimal(res["rank101-500"]).div(new Decimal(totalSupply)) * 100
-        ).toFixed(6);
+        ).toFixed(2);
 
         const oherPercent = (other.div(new Decimal(totalSupply)) * 100).toFixed(
-          6
+          2
         );
         let { priceUSD } = this.props;
         let currentDecimals = Math.pow(10, 6);
@@ -116,10 +116,8 @@ class HolderDistribution extends React.Component {
             first: "1",
             end: "10",
             portion: `${first}`,
-            usdt: (
-              new Decimal(res["rank1-10"]).div(currentDecimals).toFixed(6) *
-              priceUSD
-            ).toFixed(6)
+            usdt: new Decimal(res["rank1-10"]).div(currentDecimals).toFixed(6),
+            unit: tokensInfo.tokenDetail.abbr || tokensInfo.tokenDetail.symbol
           },
           {
             id: 2,
@@ -128,10 +126,8 @@ class HolderDistribution extends React.Component {
             first: "11",
             end: "50",
             portion: `${second}`,
-            usdt: (
-              new Decimal(res["rank11-50"]).div(currentDecimals).toFixed(6) *
-              priceUSD
-            ).toFixed(6)
+            usdt: new Decimal(res["rank11-50"]).div(currentDecimals).toFixed(6),
+            unit: tokensInfo.tokenDetail.abbr || tokensInfo.tokenDetail.symbol
           },
           {
             id: 3,
@@ -140,10 +136,10 @@ class HolderDistribution extends React.Component {
             first: "51",
             end: "100",
             portion: `${third}`,
-            usdt: (
-              new Decimal(res["rank51-100"]).div(currentDecimals).toFixed(6) *
-              priceUSD
-            ).toFixed(6)
+            usdt: new Decimal(res["rank51-100"])
+              .div(currentDecimals)
+              .toFixed(6),
+            unit: tokensInfo.tokenDetail.abbr || tokensInfo.tokenDetail.symbol
           },
           {
             id: 4,
@@ -152,22 +148,20 @@ class HolderDistribution extends React.Component {
             end: "500",
             percent: `${four} 1 0%`,
             portion: `${four}`,
-            usdt: (
-              new Decimal(res["rank101-500"]).div(currentDecimals).toFixed(6) *
-              priceUSD
-            ).toFixed(6)
+            usdt: new Decimal(res["rank101-500"])
+              .div(currentDecimals)
+              .toFixed(6),
+            unit: tokensInfo.tokenDetail.abbr || tokensInfo.tokenDetail.symbol
           },
           {
             id: 5,
             background: "#05D2AD",
-            first: "500",
+            first: "501",
             end: "",
             percent: `${oherPercent} 1 0%`,
             portion: `${oherPercent}`,
-            usdt: (
-              new Decimal(other.toFixed(6)).div(currentDecimals).toFixed(6) *
-              priceUSD
-            ).toFixed(6)
+            usdt: new Decimal(other.toFixed(6)).div(currentDecimals).toFixed(6),
+            unit: tokensInfo.tokenDetail.abbr || tokensInfo.tokenDetail.symbol
           }
         ];
         this.setState({
@@ -253,7 +247,8 @@ class HolderDistribution extends React.Component {
                 title={tv("assetsPercentshow", {
                   first: item.first,
                   end: item.end,
-                  usdt: item.usdt
+                  usdt: item.usdt,
+                  unit: item.unit
                 })}
               >
                 <div
