@@ -2,9 +2,11 @@ import React from "react";
 import { injectIntl } from "react-intl";
 import { connect } from "react-redux";
 import xhr from "axios/index";
+import { Tooltip } from "antd";
 import { API_URL } from "../../../constants";
 import { tv, tu } from "../../../utils/i18n";
 import { updateTokenInfo } from "../../../actions/tokenInfo";
+import { loadUsdPrice } from "../../../actions/blockchain";
 import { Decimal } from "decimal.js";
 
 @connect(state => state, {
@@ -52,7 +54,7 @@ class HolderDistribution extends React.Component {
           background: "#05D2AD",
           percent: "0  1 0%",
           first: "501",
-          end: "",
+          end: "∞",
           portion: "0"
         }
       ]
@@ -69,7 +71,7 @@ class HolderDistribution extends React.Component {
       trcType === "trc10"
         ? tokensInfo.tokenDetail.totalSupply
         : tokensInfo.tokenDetail.total_supply_with_decimals;
-    console.log(totalSupply, "tokensInfo");
+
     await xhr
       .get(`${API_URL}/api/tokens/position-distribution?tokenId=${tokenId}`)
       .then(res => {
@@ -103,6 +105,21 @@ class HolderDistribution extends React.Component {
         const oherPercent = (other.div(new Decimal(totalSupply)) * 100).toFixed(
           6
         );
+        let { priceUSD } = this.props;
+
+        let currentDecimals = Math.pow(10, 6);
+        console.log(
+          new Decimal(res["rank1-10"])
+            .div(new Decimal(currentDecimals))
+            .toFixed(6)
+        );
+        console.log(
+          (
+            new Decimal(res["rank1-10"])
+              .div(new Decimal(currentDecimals))
+              .toFixed(6) * priceUSD
+          ).toFixed(6)
+        );
 
         const chartAry = [
           {
@@ -111,7 +128,11 @@ class HolderDistribution extends React.Component {
             percent: `${first} 1 0%`,
             first: "1",
             end: "10",
-            portion: `${first}`
+            portion: `${first}`,
+            usdt: (
+              new Decimal(res["rank1-10"]).div(currentDecimals).toFixed(6) *
+              priceUSD
+            ).toFixed(6)
           },
           {
             id: 2,
@@ -119,7 +140,11 @@ class HolderDistribution extends React.Component {
             percent: `${second} 1 0%`,
             first: "11",
             end: "50",
-            portion: `${second}`
+            portion: `${second}`,
+            usdt: (
+              new Decimal(res["rank11-50"]).div(currentDecimals).toFixed(6) *
+              priceUSD
+            ).toFixed(6)
           },
           {
             id: 3,
@@ -127,7 +152,11 @@ class HolderDistribution extends React.Component {
             percent: `${third} 1 0%`,
             first: "51",
             end: "100",
-            portion: `${third}`
+            portion: `${third}`,
+            usdt: (
+              new Decimal(res["rank51-100"]).div(currentDecimals).toFixed(6) *
+              priceUSD
+            ).toFixed(6)
           },
           {
             id: 4,
@@ -135,15 +164,23 @@ class HolderDistribution extends React.Component {
             first: "101",
             end: "500",
             percent: `${four} 1 0%`,
-            portion: `${four}`
+            portion: `${four}`,
+            usdt: (
+              new Decimal(res["rank101-500"]).div(currentDecimals).toFixed(6) *
+              priceUSD
+            ).toFixed(6)
           },
           {
             id: 5,
-            background: "#FF9065",
+            background: "#05D2AD",
             first: "500",
             end: "",
             percent: `${oherPercent} 1 0%`,
-            portion: `${oherPercent}`
+            portion: `${oherPercent}`,
+            usdt: (
+              new Decimal(other.toFixed(6)).div(currentDecimals).toFixed(6) *
+              priceUSD
+            ).toFixed(6)
           }
         ];
         this.setState({
@@ -223,15 +260,24 @@ class HolderDistribution extends React.Component {
         >
           {chartAry.map((item, ind) => {
             return (
-              <div
-                className="distribution-item"
+              <Tooltip
                 key={ind}
-                style={{
-                  height: "30px",
-                  background: item.background,
-                  flex: item.percent
-                }}
-              ></div>
+                placement="top"
+                title={tv("assetsPercentshow", {
+                  first: item.first,
+                  end: item.end,
+                  usdt: item.usdt
+                })}
+              >
+                <div
+                  className="distribution-item"
+                  style={{
+                    height: "30px",
+                    background: item.background,
+                    flex: item.percent
+                  }}
+                ></div>
+              </Tooltip>
             );
           })}
         </section>
@@ -270,5 +316,18 @@ class HolderDistribution extends React.Component {
     );
   }
 }
+function mapStateToProps(state) {
+  return {
+    tokensInfo: state.tokensInfo,
+    priceUSD: state.blockchain.usdPrice
+  };
+}
 
-export default injectIntl(HolderDistribution);
+const mapDispatchToProps = {
+  loadUsdPrice
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(injectIntl(HolderDistribution));
