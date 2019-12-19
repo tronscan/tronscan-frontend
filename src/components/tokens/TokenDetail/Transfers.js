@@ -51,8 +51,7 @@ class Transfers extends React.Component {
   }
 
   componentDidMount() {
-    // this.loadPage();
-
+    this.loadPage();
     if (this.state.autoRefresh !== false) {
       this.props.setInterval(() => this.load(), this.state.autoRefresh);
     }
@@ -112,6 +111,14 @@ class Transfers extends React.Component {
       total: count,
       rangeTotal,
       loading: false
+    });
+    this.props.updateTokenInfo({
+      transfersListObj: {
+        page,
+        transfers,
+        total: count,
+        rangeTotal
+      }
     });
   };
 
@@ -286,15 +293,18 @@ class Transfers extends React.Component {
 
   render() {
     let {
-      transfers,
-      page,
-      total,
-      rangeTotal,
       pageSize,
       loading,
       emptyState: EmptyState = null,
       searchStatus
     } = this.state;
+    let {
+      transfers,
+      page,
+      total,
+      rangeTotal
+    } = this.props.tokensInfo.transfersListObj;
+
     const listCommonSty = {
       textAlign: "center",
       width: "25%",
