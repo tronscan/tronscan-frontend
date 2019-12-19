@@ -22,7 +22,6 @@ import {AddressLink} from "../../common/Links";
 import {Truncate} from "../../common/text";
 import {QuestionMark} from "../../common/QuestionMark";
 import { CsvExport } from "../../common/CsvExport";
-
 import isMobile from "../../../utils/isMobile";
 import {
     LineReactHighChartAdd,
@@ -482,7 +481,7 @@ class StatCharts extends React.Component {
                             <div className="col-md-6 text-center">
                                 {
                                     summit && summit[match.params.chartName + '_sort'] &&
-                                    <span>{t('highest')}{t(unit)}{t('_of')}
+                                    <span>{t('freezing_column_freezing_rate')}&nbsp;{tu('highest')}{t(unit)}{t('_of')}
                                       <strong>{' ' + summit[match.params.chartName + '_sort'][0].increment + ' '}</strong>
                                         {t('was_recorded_on')} {intl.formatDate(summit[match.params.chartName + '_sort'][0].date)}
                             </span>
@@ -491,7 +490,7 @@ class StatCharts extends React.Component {
                             <div className="col-md-6 text-center">
                                 {
                                     summit && summit[match.params.chartName + '_sort'] &&
-                                    <span>{t('lowest')}{t(unit)}{t('_of')}
+                                    <span>{t('freezing_column_freezing_rate')}&nbsp;{tu('lowest')}{t(unit)}{t('_of')}
                                       <strong>{' ' + summit[match.params.chartName + '_sort'][1].increment + ' '}</strong>
                                         {t('was_recorded_on')} {intl.formatDate(summit[match.params.chartName + '_sort'][1].date)}
                             </span>

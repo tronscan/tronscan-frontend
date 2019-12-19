@@ -61,39 +61,39 @@ class TokenHolders extends React.Component {
     // }
     let exchangeFlag = await Client.getTagNameList();
 
-    if (addresses.length) {
-      addresses.map(item => {
-        item.tagName = "";
-        exchangeFlag.map(coin => {
-          const typeList = Object.keys(coin.addressList);
-          typeList.map(type => {
-            if (coin.addressList[type].length == 1) {
-              if (coin.addressList[type][0] === item.address) {
-                item.tagName = `${upperFirst(coin.name)}${
-                  type !== "default" ? `-${type}` : ""
-                }`;
-                if (lowerCase(coin.name) === "binance") {
-                  item.ico = lowerCase(coin.name);
-                }
-              }
-            } else if (coin.addressList[type].length > 1) {
-              coin.addressList[type].map((address, index) => {
-                if (address === item.address) {
-                  item.tagName = `${upperFirst(coin.name)}${
-                    type !== "default"
-                      ? `-${type} ${index + 1}`
-                      : ` ${index + 1}`
-                  }`;
-                  if (lowerCase(coin.name) === "binance") {
-                    item.ico = lowerCase(coin.name);
-                  }
-                }
-              });
-            }
-          });
-        });
-      });
-    }
+    // if (addresses.length) {
+    //   addresses.map(item => {
+    //     item.tagName = "";
+    //     exchangeFlag.map(coin => {
+    //       const typeList = Object.keys(coin.addressList);
+    //       typeList.map(type => {
+    //         if (coin.addressList[type].length == 1) {
+    //           if (coin.addressList[type][0] === item.address) {
+    //             item.tagName = `${upperFirst(coin.name)}${
+    //               type !== "default" ? `-${type}` : ""
+    //             }`;
+    //             if (lowerCase(coin.name) === "binance") {
+    //               item.ico = lowerCase(coin.name);
+    //             }
+    //           }
+    //         } else if (coin.addressList[type].length > 1) {
+    //           coin.addressList[type].map((address, index) => {
+    //             if (address === item.address) {
+    //               item.tagName = `${upperFirst(coin.name)}${
+    //                 type !== "default"
+    //                   ? `-${type} ${index + 1}`
+    //                   : ` ${index + 1}`
+    //               }`;
+    //               if (lowerCase(coin.name) === "binance") {
+    //                 item.ico = lowerCase(coin.name);
+    //               }
+    //             }
+    //           });
+    //         }
+    //       });
+    //     });
+    //   });
+    // }
 
     this.setState({
       page,

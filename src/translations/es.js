@@ -1,3 +1,7 @@
+/* eslint-disable */
+import {
+  lang19Q4
+} from './versionLang/lang19Q4/es19Q4';
 export const messages = {
   /*
   ##################################################################################
@@ -2455,4 +2459,5 @@ export const messages = {
 "address_get_bandwith":"Para ancho de banda",
 "address_freeze_owner":"A tu cuenta",
 "address_freeze_other":"A la (s) cuenta (s) de otros",
+...lang19Q4
 };

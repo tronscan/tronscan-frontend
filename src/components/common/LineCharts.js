@@ -1975,7 +1975,10 @@ export class OverallFreezingRateChart extends React.Component {
                         count: 1,
                         text: intl.formatMessage({id: 'freezing_rangeSelector_botton_text_1m'})
                     }],
-                    selected: 0
+                    selected: 0,
+                    buttonTheme: {
+                        width: 50
+                    },
                 },
                 navigator: {
                     maskFill: 'rgba(198,72,68, 0.3)',
