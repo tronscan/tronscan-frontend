@@ -412,6 +412,7 @@ class TokenDetail extends React.Component {
                           <input
                             type="text"
                             ref={ref => (this.searchAddress = ref)}
+                            value={searchAddress}
                             style={{
                               border: "none",
                               minWidth: 240,
@@ -421,6 +422,17 @@ class TokenDetail extends React.Component {
                               if (event.target.value !== "") {
                                 this.setState({
                                   searchAddress: event.target.value,
+                                  searchAddressClose: true
+                                });
+                              } else {
+                                this.setState({
+                                  searchAddressClose: false
+                                });
+                              }
+                            }}
+                            onBlur={() => {
+                              if (searchAddress !== "") {
+                                this.setState({
                                   searchAddressClose: true
                                 });
                               } else {
