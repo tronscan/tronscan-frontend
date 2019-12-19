@@ -328,7 +328,7 @@ class StatsCharts extends React.Component {
               <div className="row mt-5 d-flex">
                 <div className="charts-title mr-3 ml-3">
                   <span>
-                    <i className="fas fa-layer-group ml-5 mr-2" />
+                    <i class="fa fa-exchange-alt ml-5 mr-2 "></i>
                     {tu("charts_transaction")}
                   </span>
                 </div>
@@ -433,7 +433,7 @@ class StatsCharts extends React.Component {
               <div className="row mt-5 d-flex">
                 <div className="charts-title mr-3 ml-3">
                   <span>
-                    <i className="fas fa-layer-group ml-5 mr-2" />
+                    <i className="a fa-users ml-5 mr-2" />
                     {tu("charts_address")}
                   </span>
                 </div>
@@ -502,7 +502,7 @@ class StatsCharts extends React.Component {
               <div className="row mt-5 d-flex">
                 <div className="charts-title mr-3 ml-3">
                   <span>
-                    <i className="fas fa-layer-group ml-5 mr-2" />
+                    <i className="fa fa-file-contract ml-5 mr-2" />
                     {tu("charts_contract")}
                   </span>
                 </div>
