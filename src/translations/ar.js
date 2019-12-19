@@ -2427,4 +2427,13 @@
   "signature_operations_required":"التشغيل مطلوب",
   "signature_threshold_required":"مطلوب إضافة الحد الأدنى",
   "signaure_control_address_tip":"Control address refers to the associated control addresses of owner permission, SR permission and active permission. Display of the three types of permissions will change subsequently when the control address is modified.",
+  // 2019-12-10
+  "ledger_tronlink":"Login to TRONSCAN via TronLink", 
+  // 2019-12-18
+   "address_vote_reward_pending":"مكافأة التصويت",
+   "address_balance":"رصيد TRX",
+   "address_get_energe":"من أجل الحصول على الطاقة",
+   "address_get_bandwith":"للحصول على عرض النطاق الترددي",
+   "address_freeze_owner":"تجميد إلى حسابك",
+   "address_freeze_other":"تجميد إلى حسابات الآخرين",
 };
