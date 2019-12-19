@@ -8,6 +8,12 @@ const initialState = {
     transfer: {
         holder_address: '',
         balance: ''
+    },
+    transfersListObj: {
+        transfers: [],
+        page: 1,
+        total: 0,
+        rangeTotal: ''
     }
 
 }
