@@ -724,7 +724,7 @@ export const routes = [
           sidechain: false
         },
         {
-          url: "https://www.trongrid.io/faucet,
+          url: "https://www.trongrid.io/faucet",
           icon: "fa fa-recycle",
           label: "link_test_fauct",
           sidechain: false
