@@ -6,6 +6,8 @@ import { ONE_TRX, API_URL } from "../../../constants";
 import SmartTable from "../../common/SmartTable.js";
 import { FormattedNumber, injectIntl } from "react-intl";
 import { TronLoader } from "../../common/loaders";
+import { toastr } from "react-redux-toastr";
+import { isAddressValid } from "@tronscan/client/src/utils/crypto";
 import { trim } from "lodash";
 import { upperFirst, upperCase, lowerCase } from "lodash";
 import { Tooltip } from "antd";
@@ -245,6 +247,86 @@ class TokenHolders extends React.Component {
     ];
 
     return column;
+  };
+
+  doSearch = async () => {
+    let { intl } = this.props;
+    let { search } = this.state;
+
+    if (isAddressValid(search)) {
+      let { filter, getCsvUrl } = this.props;
+      this.setState({ loading: true });
+      const params = {
+        sort: "-balance",
+        limit: 20,
+        count: true,
+        address: filter.address
+      };
+      const query = qs.stringify({ format: "csv", ...params });
+      getCsvUrl(`${API_URL}/api/tokenholders?${query}`);
+
+      let { addresses, total, rangeTotal } = await Client.getTokenHolders(
+        filter.token,
+        params
+      );
+
+      // for (let index in addresses) {
+      //   addresses[index].index = parseInt(index) + 1;
+      // }
+      let exchangeFlag = await Client.getTagNameList();
+      if (addresses.length) {
+        addresses.map(item => {
+          item.tagName = "";
+          exchangeFlag.map(coin => {
+            const typeList = Object.keys(coin.addressList);
+            typeList.map(type => {
+              if (coin.addressList[type].length == 1) {
+                if (coin.addressList[type][0] === item.address) {
+                  item.tagName = `${upperFirst(coin.name)}${
+                    type !== "default" ? `-${type}` : ""
+                  }`;
+                  if (lowerCase(coin.name) === "binance") {
+                    item.ico = lowerCase(coin.name);
+                  }
+                }
+              } else if (coin.addressList[type].length > 1) {
+                coin.addressList[type].map((address, index) => {
+                  if (address === item.address) {
+                    item.tagName = `${upperFirst(coin.name)}${
+                      type !== "default"
+                        ? `-${type} ${index + 1}`
+                        : ` ${index + 1}`
+                    }`;
+                    if (lowerCase(coin.name) === "binance") {
+                      item.ico = lowerCase(coin.name);
+                    }
+                  }
+                });
+              }
+            });
+          });
+        });
+      }
+
+      this.setState({
+        addresses,
+        total,
+        rangeTotal,
+        loading: false
+      });
+    } else {
+      toastr.warning(
+        intl.formatMessage({
+          id: "warning"
+        }),
+        intl.formatMessage({
+          id: "search_TRC20_error"
+        })
+      );
+      this.setState({
+        search: ""
+      });
+    }
   };
 
   render() {

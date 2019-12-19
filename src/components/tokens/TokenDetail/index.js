@@ -14,8 +14,10 @@ import { ONE_TRX, API_URL, IS_MAINNET } from "../../../constants";
 import { login } from "../../../actions/app";
 import { reloadWallet } from "../../../actions/wallet";
 import { updateTokenInfo } from "../../../actions/tokenInfo";
-
+import { trim } from "lodash";
 import moment from "moment";
+import { toastr } from "react-redux-toastr";
+import { isAddressValid } from "@tronscan/client/src/utils/crypto";
 import { connect } from "react-redux";
 import SweetAlert from "react-bootstrap-sweetalert";
 import { pkToAddress } from "@tronscan/client/src/utils/crypto";
@@ -186,8 +188,23 @@ class TokenDetail extends React.Component {
 
   tokensTransferSearchFun = async () => {
     let serchInputVal = this.searchAddress.value;
+    let { intl } = this.props;
     if (serchInputVal === "") {
       return false;
+    }
+    if (!isAddressValid(serchInputVal)) {
+      toastr.warning(
+        intl.formatMessage({
+          id: "warning"
+        }),
+        intl.formatMessage({
+          id: "search_TRC20_error"
+        })
+      );
+      this.setState({
+        searchAddress: ""
+      });
+      return;
     }
     this.setState({
       searchAddress: serchInputVal
@@ -422,6 +439,9 @@ class TokenDetail extends React.Component {
                             type="text"
                             ref={ref => (this.searchAddress = ref)}
                             value={searchAddress}
+                            placeholder={intl.formatMessage({
+                              id: "search_TRC20"
+                            })}
                             style={{
                               border: "none",
                               minWidth: 240,
@@ -430,7 +450,7 @@ class TokenDetail extends React.Component {
                             onChange={event => {
                               if (event.target.value !== "") {
                                 this.setState({
-                                  searchAddress: event.target.value,
+                                  searchAddress: trim(event.target.value),
                                   searchAddressClose: true
                                 });
                               } else {

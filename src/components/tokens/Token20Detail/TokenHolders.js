@@ -486,7 +486,7 @@ const styles = {
   tablePosInfo: {
     paddingLeft: 40,
     position: "absolute",
-    top: "190px"
+    top: "200px"
   },
   table: {
     // borderTop: "1px solid #d8d8d8"

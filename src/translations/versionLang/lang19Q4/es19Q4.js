@@ -34,6 +34,11 @@ export const lang19Q4 = {
     "assetsPercent": "Activo total del No.{first} holder",
     "assetsPercentshow": "Activo total del No.{first} holder：{usdt} {unit}",
     "holders": "Poseedor",
+    "transfersDetailContractAddress": "Dirección de Contrato",
+    "transfersDetailHolder": "Holder",
+    "transfersDetailQuantity": "Cantidad",
+    "transfersDetailPercentage": "porcentaje",
+    "transfersDetailValue": "Valor",
     // 2019-12-10
     "token_basic_view": "informaciones básicas",
     "token_additional_materials": "Información suplementaria",

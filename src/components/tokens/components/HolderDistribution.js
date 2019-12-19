@@ -157,7 +157,7 @@ class HolderDistribution extends React.Component {
             id: 5,
             background: "#05D2AD",
             first: "501",
-            end: "",
+            end: "∞",
             percent: `${oherPercent} 1 0%`,
             portion: `${oherPercent}`,
             usdt: new Decimal(other.toFixed(6)).div(currentDecimals).toFixed(6),
