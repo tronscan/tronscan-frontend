@@ -4,7 +4,8 @@ import moment from "moment";
 import { cloneDeep } from "lodash";
 import { Button, Radio, DatePicker } from "antd";
 import { tu } from "../../../utils/i18n";
-
+import { connect } from "react-redux";
+import { updateTokenInfo } from "../../../actions/tokenInfo";
 const { RangePicker } = DatePicker;
 
 class DateSelect extends React.Component {
@@ -23,6 +24,10 @@ class DateSelect extends React.Component {
     // .hour(0).minute(0).second(0)
     const end = moment();
     const start = cloneDeep(end).subtract(item, "days");
+    this.props.updateTokenInfo({
+      start_timestamp: start.valueOf(),
+      end_timestamp: end.valueOf()
+    });
     onDateOk(start, end);
   }
   handleSizeChange = e => {
@@ -76,15 +81,13 @@ class DateSelect extends React.Component {
         <div className="row">
           <div className="col-xs-8 col-sm-6">
             <Radio.Group value={dataItem} onChange={this.handleSizeChange}>
-              {" "}
               {dataItemList.map(dateItem => (
                 <Radio.Button value={dateItem} key={dateItem}>
-                  {" "}
-                  {tu(`${dateItem}day`)}{" "}
+                  {tu(`${dateItem}day`)}
                 </Radio.Button>
-              ))}{" "}
-            </Radio.Group>{" "}
-          </div>{" "}
+              ))}
+            </Radio.Group>
+          </div>
           <div className="col-xs-4 col-sm-6 singleTimeRange">
             <RangePicker
               showTime={{
@@ -104,12 +107,24 @@ class DateSelect extends React.Component {
               style={{
                 right: "1rem"
               }}
-            />{" "}
-          </div>{" "}
-        </div>{" "}
+            />
+          </div>
+        </div>
       </div>
     );
   }
 }
+function mapStateToProps(state) {
+  return {
+    tokensInfo: state.tokensInfo
+  };
+}
 
-export default injectIntl(DateSelect);
+const mapDispatchToProps = {
+  updateTokenInfo
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(injectIntl(DateSelect));

@@ -51,8 +51,7 @@ class Transfers extends React.Component {
   }
 
   componentDidMount() {
-    // this.loadPage();
-
+    this.loadPage();
     if (this.state.autoRefresh !== false) {
       this.props.setInterval(() => this.load(), this.state.autoRefresh);
     }
@@ -112,6 +111,14 @@ class Transfers extends React.Component {
       total: count,
       rangeTotal,
       loading: false
+    });
+    this.props.updateTokenInfo({
+      transfersListObj: {
+        page,
+        transfers,
+        total: count,
+        rangeTotal
+      }
     });
   };
 
@@ -185,6 +192,7 @@ class Transfers extends React.Component {
             id: "from"
           })
         ),
+        align: "center",
         dataIndex: "transferFromAddress",
         key: "transferFromAddress",
         className: "ant_table",
@@ -200,7 +208,10 @@ class Transfers extends React.Component {
                   />
                 </Tooltip>
               ) : null}
-              {record.transferFromAddress}
+              {`${record.transferFromAddress.slice(
+                0,
+                5
+              )}...${record.transferFromAddress.slice(-5)}`}
             </AddressLink>
           );
         }
@@ -223,6 +234,7 @@ class Transfers extends React.Component {
         key: "transferToAddress",
         className: "ant_table",
         width: "160px",
+        align: "center",
         render: (text, record, index) => {
           return (
             <AddressLink address={record.transferToAddress}>
@@ -234,7 +246,10 @@ class Transfers extends React.Component {
                   />
                 </Tooltip>
               ) : null}
-              {record.transferToAddress}
+              {`${record.transferToAddress.slice(
+                0,
+                5
+              )}...${record.transferToAddress.slice(-5)}`}
             </AddressLink>
           );
         }
@@ -286,15 +301,18 @@ class Transfers extends React.Component {
 
   render() {
     let {
-      transfers,
-      page,
-      total,
-      rangeTotal,
       pageSize,
       loading,
       emptyState: EmptyState = null,
       searchStatus
     } = this.state;
+    let {
+      transfers,
+      page,
+      total,
+      rangeTotal
+    } = this.props.tokensInfo.transfersListObj;
+
     const listCommonSty = {
       textAlign: "center",
       width: "25%",

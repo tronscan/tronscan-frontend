@@ -106,20 +106,7 @@ class HolderDistribution extends React.Component {
           6
         );
         let { priceUSD } = this.props;
-
         let currentDecimals = Math.pow(10, 6);
-        console.log(
-          new Decimal(res["rank1-10"])
-            .div(new Decimal(currentDecimals))
-            .toFixed(6)
-        );
-        console.log(
-          (
-            new Decimal(res["rank1-10"])
-              .div(new Decimal(currentDecimals))
-              .toFixed(6) * priceUSD
-          ).toFixed(6)
-        );
 
         const chartAry = [
           {

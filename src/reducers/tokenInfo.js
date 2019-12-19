@@ -13,8 +13,10 @@ const initialState = {
         transfers: [],
         page: 1,
         total: 0,
-        rangeTotal: ''
-    }
+        rangeTotal: '',
+    },
+    start_timestamp: '',
+    end_timestamp: ''
 
 }
 
