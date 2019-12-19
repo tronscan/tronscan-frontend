@@ -455,11 +455,9 @@ class Transfers extends React.Component {
                       color: "#C64844"
                     }}
                   >
-                    {tokensInfo.transfer.holder_address
-                      ? `${tokensInfo.transfer.holder_address.substring(
-                          0,
-                          7
-                        )}...${tokensInfo.transfer.holder_address.slice(-7)}`
+                    {tokensInfo.transfer.holder_address !== ""
+                      ? `${tokensInfo.transfer.holder_address.substring(0, 7)}
+                        ...${tokensInfo.transfer.holder_address.slice(-7)}`
                       : null}
                   </div>
                   <p style={descStyle}> {tu("transfersDetailHolder")} </p>
