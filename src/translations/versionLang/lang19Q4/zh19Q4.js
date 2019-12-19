@@ -34,11 +34,11 @@ export const lang19Q4 = {
     "assetsPercent": "第{first}~{end}名总资产",
     "assetsPercentshow": "第{first}~{end}名总资产：{usdt} {unit}",
     "holders": "持有者",
-    "transfersDetailContractAddress": "",
-    "transfersDetailHolder": "",
-    "transfersDetailQuantity": "",
-    "transfersDetailPercentage": "",
-    "transfersDetailValue": "",
+    "transfersDetailContractAddress": "合约地址",
+    "transfersDetailHolder": "持有者",
+    "transfersDetailQuantity": "持有量",
+    "transfersDetailPercentage": "占比",
+    "transfersDetailValue": "价值",
 
     // 2019-12-10
     "token_basic_view": "基本概况",

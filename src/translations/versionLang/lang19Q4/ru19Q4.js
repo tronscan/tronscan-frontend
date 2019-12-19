@@ -34,11 +34,11 @@ export const lang19Q4 = {
     "assetsPercent": "Общее количество активов топ {first}~{end} держателей",
     "assetsPercentshow": "Общее количество активов топ {first}~{end} держателей：{usdt} {unit}",
     "holders": "Держатели",
-    "transfersDetailContractAddress": "",
-    "transfersDetailHolder": "",
-    "transfersDetailQuantity": "",
-    "transfersDetailPercentage": "",
-    "transfersDetailValue": "",
+    "transfersDetailContractAddress": "Адрес контракта",
+    "transfersDetailHolder": "Держатель",
+    "transfersDetailQuantity": "Количество",
+    "transfersDetailPercentage": "Процент",
+    "transfersDetailValue": "Значение",
 
     // 2019-12-10
     "token_basic_view": "Обзор",
