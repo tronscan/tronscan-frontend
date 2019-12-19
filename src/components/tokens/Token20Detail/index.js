@@ -16,6 +16,7 @@ import { TronLoader } from "../../common/loaders";
 import Transfers from "./Transfers.js";
 import TokenInfo from "./TokenInfo.js";
 import { Information } from "./Information.js";
+import qs from "qs";
 import {
   API_URL,
   ONE_TRX,
@@ -27,7 +28,6 @@ import {
 import { login } from "../../../actions/app";
 import { reloadWallet } from "../../../actions/wallet";
 import { updateTokenInfo } from "../../../actions/tokenInfo";
-
 import { connect } from "react-redux";
 import SweetAlert from "react-bootstrap-sweetalert";
 import { pkToAddress } from "@tronscan/client/src/utils/crypto";
@@ -106,7 +106,6 @@ class Token20Detail extends React.Component {
             filter={{ token: address }}
             getCsvUrl={csvurl => this.setState({ csvurl })}
             token={token}
-            searchAddress={searchAddress}
           />
         )
       },
@@ -585,6 +584,32 @@ class Token20Detail extends React.Component {
       })
       .catch(err => {
         console.log(err);
+      });
+
+    let { match } = this.props;
+    const params = {
+      contract_address: decodeURI(match.params.address),
+      address: serchInputVal
+    };
+
+    await Client.getTokenTRC20Transfers({
+      limit: 20,
+      ...params
+    })
+      .then(res => {
+        console.log(res);
+        if (res.list) {
+          this.props.updateTokenInfo({
+            transfersListObj: {
+              transfers: res.list,
+              total: res.total,
+              rangeTotal: res.rangeTotal
+            }
+          });
+        }
+      })
+      .catch(e => {
+        console.log("error:" + e);
       });
   };
 

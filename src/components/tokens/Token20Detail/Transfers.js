@@ -66,13 +66,11 @@ class Transfers extends React.Component {
   };
 
   loadPage = async (page = 1, pageSize = 20) => {
-    let { filter, getCsvUrl, searchAddress } = this.props;
-    let { showTotal, timeType } = this.state;
+    let { filter, getCsvUrl, searchAddressVal } = this.props;
     const params = {
       contract_address: filter.token,
       start_timestamp: this.start,
-      end_timestamp: this.end,
-      address: searchAddress ? searchAddress : ""
+      end_timestamp: this.end
     };
     this.setState({
       loading: true,
@@ -119,6 +117,14 @@ class Transfers extends React.Component {
       total: count,
       rangeTotal,
       loading: false
+    });
+    this.props.updateTokenInfo({
+      transfersListObj: {
+        page,
+        transfers,
+        total: count,
+        rangeTotal
+      }
     });
   };
 
@@ -169,7 +175,13 @@ class Transfers extends React.Component {
                 id: timeType ? "age" : "trc20_cur_order_header_order_time"
               })
             )}
-            <Icon type="retweet" style={{ verticalAlign: 0, marginLeft: 10 }} />
+            <Icon
+              type="retweet"
+              style={{
+                verticalAlign: 0,
+                marginLeft: 10
+              }}
+            />
           </span>
         ),
         dataIndex: "timestamp",
@@ -215,11 +227,13 @@ class Transfers extends React.Component {
                 <Tooltip placement="top" title={"合约地址"}>
                   <Icon
                     type="file-text"
-                    style={{ marginRight: 2, verticalAlign: 0 }}
+                    style={{
+                      marginRight: 2,
+                      verticalAlign: 0
+                    }}
                   />
                 </Tooltip>
               ) : null}
-
               {record.from_address}
             </AddressLink>
           );
@@ -251,7 +265,10 @@ class Transfers extends React.Component {
                 <Tooltip placement="top" title={"合约地址"}>
                   <Icon
                     type="file-text"
-                    style={{ marginRight: 2, verticalAlign: 0 }}
+                    style={{
+                      marginRight: 2,
+                      verticalAlign: 0
+                    }}
                   />
                 </Tooltip>
               ) : null}
@@ -332,15 +349,17 @@ class Transfers extends React.Component {
 
   render() {
     let {
-      transfers,
-      page,
-      total,
-      rangeTotal,
       pageSize,
       loading,
       emptyState: EmptyState = null,
       searchStatus
     } = this.state;
+    let {
+      transfers,
+      page,
+      total,
+      rangeTotal
+    } = this.props.tokensInfo.transfersListObj;
 
     // console.log(   let { priceUSD } = this.props;)
 
