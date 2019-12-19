@@ -298,15 +298,19 @@ class TokenHolders extends React.Component {
             });
           });
         });
+        addresses[0].index = 1;
+        this.setState({
+          addresses: addresses,
+          total: 1,
+          search: ""
+        });
+      } else {
+        this.setState({
+          addresses,
+          total: 0,
+          search: ""
+        });
       }
-
-      addresses[0].index = 1;
-
-      this.setState({
-        addresses: addresses,
-        total: 1,
-        search: ""
-      });
     } else {
       toastr.warning(
         intl.formatMessage({
@@ -352,7 +356,12 @@ class TokenHolders extends React.Component {
       });
     if (!loading && addresses.length === 0) {
       return (
-        <div className="p-3 text-center no-data">{tu("no_holders_found")}</div>
+        <div
+          className="p-3 text-center no-data"
+          style={{ background: "#fff", minHeight: "300px" }}
+        >
+          <span style={{ marginTop: "100px" }}>{tu("no_holders_found")}</span>
+        </div>
       );
     }
     return (

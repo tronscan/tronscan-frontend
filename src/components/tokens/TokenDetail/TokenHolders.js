@@ -260,7 +260,7 @@ class TokenHolders extends React.Component {
         sort: "-balance",
         limit: 20,
         count: true,
-        address: filter.address
+        address: search
       };
       const query = qs.stringify({ format: "csv", ...params });
       getCsvUrl(`${API_URL}/api/tokenholders?${query}`);
@@ -348,7 +348,12 @@ class TokenHolders extends React.Component {
 
     if (!loading && addresses.length === 0) {
       return (
-        <div className="p-3 text-center no-data">{tu("no_holders_found")}</div>
+        <div
+          className="p-3 text-center no-data"
+          style={{ background: "#fff", minHeight: "300px" }}
+        >
+          <span style={{ marginTop: "100px" }}>{tu("no_holders_found")}</span>
+        </div>
       );
     }
     return (

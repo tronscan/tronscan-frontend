@@ -102,7 +102,7 @@ class Token20Detail extends React.Component {
       {
         id: "transfers",
         icon: "",
-        path: "/transfers",
+        path: "",
         label: <span>{tu("token_transfers")}</span>,
         cmp: () => (
           <Transfers
@@ -674,6 +674,7 @@ class Token20Detail extends React.Component {
 
   render() {
     let { match, wallet, priceUSD, intl } = this.props;
+
     let {
       token,
       tabs,
@@ -789,7 +790,7 @@ class Token20Detail extends React.Component {
                         </li>
                       ))}
                     </ul>
-                    {pathname.slice(-9) === "transfers" ? (
+                    {pathname.length === 43 ? (
                       <div
                         className="tokenTransferSearch"
                         style={{

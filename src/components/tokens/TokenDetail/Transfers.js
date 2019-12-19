@@ -83,43 +83,46 @@ class Transfers extends React.Component {
     });
     getCsvUrl(`${API_URL}/api/asset/transfer?${query}`);
 
-    const allData = await Promise.all([
-      Client.getAssetTransfers({
-        limit: pageSize,
-        start: (page - 1) * pageSize,
-        ...params
-      }),
-      Client.getCountByType({
-        type: "asset",
-        issueName: filter.address
-      })
-    ]).catch(e => {
-      console.log("error:" + e);
-    });
+    try {
+      const allData = await Promise.all([
+        Client.getAssetTransfers({
+          limit: pageSize,
+          start: (page - 1) * pageSize,
+          ...params
+        }),
+        Client.getCountByType({
+          type: "asset",
+          issueName: filter.address
+        })
+      ]).catch(e => {
+        console.log("error:" + e);
+      });
+      const [{ list, total, rangeTotal }, { count }] = allData;
 
-    const [{ list, total, rangeTotal }, { count }] = allData;
+      let transfers = rebuildList(list, "tokenName", "amount");
 
-    let transfers = rebuildList(list, "tokenName", "amount");
+      for (let index in transfers) {
+        transfers[index].index = parseInt(index) + 1;
+      }
 
-    for (let index in transfers) {
-      transfers[index].index = parseInt(index) + 1;
-    }
-
-    this.setState({
-      page,
-      transfers,
-      total: count,
-      rangeTotal,
-      loading: false
-    });
-    this.props.updateTokenInfo({
-      transfersListObj: {
+      this.setState({
         page,
         transfers,
         total: count,
-        rangeTotal
-      }
-    });
+        rangeTotal,
+        loading: false
+      });
+      this.props.updateTokenInfo({
+        transfersListObj: {
+          page,
+          transfers,
+          total: count,
+          rangeTotal
+        }
+      });
+    } catch (e) {
+      console.log("error:" + e);
+    }
   };
 
   customizedColumn = () => {
