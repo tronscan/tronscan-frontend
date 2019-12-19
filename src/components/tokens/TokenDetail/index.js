@@ -1,7 +1,7 @@
 import React from "react";
 import { Client } from "../../../services/api";
 import { t, tu } from "../../../utils/i18n";
-
+import { Icon } from "antd";
 import { injectIntl } from "react-intl";
 import TokenHolders from "./TokenHolders";
 import { NavLink, Route, Switch } from "react-router-dom";
@@ -14,7 +14,8 @@ import { ONE_TRX, API_URL, IS_MAINNET } from "../../../constants";
 import { login } from "../../../actions/app";
 import { reloadWallet } from "../../../actions/wallet";
 import { updateTokenInfo } from "../../../actions/tokenInfo";
-import { Input } from "antd";
+
+import moment from "moment";
 import { connect } from "react-redux";
 import SweetAlert from "react-bootstrap-sweetalert";
 import { pkToAddress } from "@tronscan/client/src/utils/crypto";
@@ -26,12 +27,16 @@ import { CsvExport } from "../../common/CsvExport";
 import { loadUsdPrice } from "../../../actions/blockchain";
 import ExchangeQuotes from "../ExchangeQuotes";
 import ApiClientToken from "../../../services/tokenApi";
+import rebuildList from "../../../utils/rebuildList";
 
 @withTronWeb
 class TokenDetail extends React.Component {
   constructor() {
     super();
-
+    this.start = moment([2018, 5, 25])
+      .startOf("day")
+      .valueOf();
+    this.end = moment().valueOf();
     this.state = {
       privateKey: "",
       loading: true,
@@ -41,7 +46,9 @@ class TokenDetail extends React.Component {
       alert: null,
       currentTotalSupply: "",
       csvurl: "",
-      BttSupplyClient: ""
+      BttSupplyClient: "",
+      searchAddress: "",
+      searchAddressClose: false
     };
   }
 
@@ -74,6 +81,7 @@ class TokenDetail extends React.Component {
       BttSupplyClient: funds
     });
   };
+
   loadToken = async id => {
     let { priceUSD } = this.props;
     let { currentTotalSupply } = this.state;
@@ -178,15 +186,22 @@ class TokenDetail extends React.Component {
 
   tokensTransferSearchFun = async () => {
     let serchInputVal = this.searchAddress.value;
+    if (serchInputVal === "") {
+      return false;
+    }
     this.setState({
       searchAddress: serchInputVal
     });
-    const { tokenID, totalSupply } = this.props.tokensInfo.tokenDetail;
+    const {
+      tokenID,
+      totalSupply,
+      ownerAddress
+    } = this.props.tokensInfo.tokenDetail;
     await xhr
       .get(`${API_URL}/api/tokenholders?address=${serchInputVal}&id=${tokenID}`)
       .then(res => {
         if (res.data) {
-          if (res.data.trc20_tokens.length > 0) {
+          if (res.data.length > 0) {
             let trc20Token = res.data.trc20_tokens[0];
             this.props.updateTokenInfo({
               transferSearchStatus: true,
@@ -205,6 +220,80 @@ class TokenDetail extends React.Component {
       .catch(err => {
         console.log(err);
       });
+    let { tokensInfo } = this.props;
+    const params = {
+      issueAddress: ownerAddress,
+      relatedAddress: serchInputVal,
+      start_timestamp: tokensInfo.start_timestamp,
+      end_timestamp: tokensInfo.end_timestamp
+    };
+
+    await Client.getAssetTransfers({
+      limit: 20,
+      ...params
+    })
+      .then(res => {
+        let transfers = rebuildList(res.list, "tokenName", "amount");
+        for (let index in transfers) {
+          transfers[index].index = parseInt(index) + 1;
+        }
+        if (res.list) {
+          this.props.updateTokenInfo({
+            transfersListObj: {
+              transfers,
+              total: res.total,
+              rangeTotal: res.rangeTotal
+            }
+          });
+        }
+      })
+      .catch(e => {
+        console.log("error:" + e);
+      });
+  };
+
+  resetSearch = async () => {
+    this.setState({
+      searchAddress: "",
+      searchAddressClose: false
+    });
+    let { tokensInfo } = this.props;
+    const { ownerAddress } = this.props.tokensInfo.tokenDetail;
+    const params = {
+      name: tokensInfo.tokenDetail.name,
+      issueAddress: ownerAddress,
+      start_timestamp: tokensInfo.start_timestamp,
+      end_timestamp: tokensInfo.end_timestamp
+    };
+
+    await Client.getAssetTransfers({
+      limit: 20,
+      ...params
+    })
+      .then(res => {
+        if (res.list) {
+          let transfers = rebuildList(res.list, "tokenName", "amount");
+          for (let index in transfers) {
+            transfers[index].index = parseInt(index) + 1;
+          }
+
+          this.props.updateTokenInfo({
+            transfersListObj: {
+              transfers: transfers,
+              total: res.total,
+              rangeTotal: res.rangeTotal
+            },
+            transferSearchStatus: false
+          });
+        } else {
+          this.props.updateTokenInfo({
+            transferSearchStatus: false
+          });
+        }
+      })
+      .catch(e => {
+        console.log("error:" + e);
+      });
   };
 
   render() {
@@ -217,8 +306,11 @@ class TokenDetail extends React.Component {
       alert,
       currentTotalSupply,
       csvurl,
-      BttSupplyClient
+      BttSupplyClient,
+      searchAddress,
+      searchAddressClose
     } = this.state;
+
     let uploadURL =
       API_URL + "/api/v2/node/info_upload?address=" + match.params.id;
     let pathname = this.props.location.pathname;
@@ -324,17 +416,54 @@ class TokenDetail extends React.Component {
                       >
                         <div
                           className="input-group-append"
-                          style={{ marginLeft: 0 }}
+                          style={{ marginLeft: 0, position: "relative" }}
                         >
                           <input
                             type="text"
                             ref={ref => (this.searchAddress = ref)}
+                            value={searchAddress}
                             style={{
                               border: "none",
                               minWidth: 240,
-                              padding: "0 0.9rem 0 0.5rem"
+                              padding: "0 1.4rem 0 0.7rem"
+                            }}
+                            onChange={event => {
+                              if (event.target.value !== "") {
+                                this.setState({
+                                  searchAddress: event.target.value,
+                                  searchAddressClose: true
+                                });
+                              } else {
+                                this.setState({
+                                  searchAddressClose: false
+                                });
+                              }
+                            }}
+                            onBlur={() => {
+                              if (searchAddress !== "") {
+                                this.setState({
+                                  searchAddressClose: true
+                                });
+                              } else {
+                                this.setState({
+                                  searchAddressClose: false
+                                });
+                              }
                             }}
                           />
+                          {searchAddressClose ? (
+                            <Icon
+                              onClick={() => {
+                                this.resetSearch();
+                              }}
+                              type="close-circle"
+                              style={{
+                                position: "absolute",
+                                top: "0.6rem",
+                                right: 40
+                              }}
+                            />
+                          ) : null}
                           <button
                             className="btn box-shadow-none"
                             style={{
@@ -363,6 +492,7 @@ class TokenDetail extends React.Component {
                         />
                       ))}
                     </Switch>
+
                     <div
                       className="downCsvExport"
                       style={{
