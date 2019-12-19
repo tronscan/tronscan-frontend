@@ -2449,7 +2449,7 @@ export const messages = {
   // 2019-12-10
   "ledger_tronlink":"Login to TRONSCAN via TronLink",
 // 2019-12-18
-"address_vote_reward_pending":"待领取投票奖励",
+"address_vote_reward_pending":"recompensa de votación",
 "address_balance":"Balance TRX",
 "address_get_energe":"Por energía",
 "address_get_bandwith":"Para ancho de banda",

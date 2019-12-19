@@ -2430,7 +2430,7 @@
   // 2019-12-10
   "ledger_tronlink":"Login to TRONSCAN via TronLink", 
   // 2019-12-18
-   "address_vote_reward_pending":"待领取投票奖励",
+   "address_vote_reward_pending":"مكافأة التصويت",
    "address_balance":"رصيد TRX",
    "address_get_energe":"من أجل الحصول على الطاقة",
    "address_get_bandwith":"للحصول على عرض النطاق الترددي",

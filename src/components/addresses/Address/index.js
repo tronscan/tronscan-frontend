@@ -680,10 +680,10 @@ class Address extends React.Component {
     return (
       <div>
         <span className="ml-1">(</span>
-        {tu("address_tron_power_remaining")}:
+        {tu("address_tron_power_remaining")}:{" "}
         <FormattedNumber value={balance / ONE_TRX} />
         TRX &nbsp;
-        {tu("freeze")}:
+        {tu("freeze")}:{" "}
         <Tooltip placement="top" innerClassName="w-100" title={TooltipText}>
           <FormattedNumber value={totalPower / ONE_TRX} />
           TRX
@@ -906,8 +906,8 @@ class Address extends React.Component {
                             </th>
                             <td>
                               <ul className="list-unstyled m-0">
-                                <li className="d-flex">
-                                  {(balance + totalPower) / ONE_TRX} TRX
+                                <li className="">
+                                <FormattedNumber value={(balance + totalPower) / ONE_TRX} /> TRX
                                   <div>{this.renderFrozenTokens()}</div>
                                 </li>
                               </ul>
