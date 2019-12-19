@@ -99,7 +99,7 @@ class Token20Detail extends React.Component {
       {
         id: "transfers",
         icon: "",
-        path: "",
+        path: "/transfers",
         label: <span>{tu("token_transfers")}</span>,
         cmp: () => (
           <Transfers
@@ -663,6 +663,7 @@ class Token20Detail extends React.Component {
       searchAddressClose
     } = this.state;
     let pathname = this.props.location.pathname;
+
     let tabName = "";
 
     let rex = /[a-zA-Z0-9]{34}\/?([a-zA-Z\\-]+)$/;
