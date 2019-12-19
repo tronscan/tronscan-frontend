@@ -626,8 +626,10 @@ class Code extends React.Component {
     } else {
       contractList = (
         <div>
-          <div className="search-btn" onClick={() => this.Call()}>
-            Call
+          <div className="d-flex">
+            <div className="search-btn" onClick={() => this.Call()}>
+              Call
+            </div>
           </div>
           {result && (
             <JSONTree data={result} theme={theme} invertTheme={true} />
