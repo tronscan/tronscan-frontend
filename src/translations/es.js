@@ -1,9 +1,5 @@
-/* eslint-disable */
-import {
-    lang19Q4
-} from './versionLang/lang19Q4/es19Q4'; /* 2019Q4 */
 export const messages = {
-   /*
+  /*
   ##################################################################################
   #                                                                                #
   #  $$$$$$$$\                                                                     #
@@ -541,7 +537,7 @@ export const messages = {
    El número de votos y la lista de delegados se actualizará a las 02:00, 08:00, 14:00, 20:00 (GMT + 8） todos los días.`,
   "search_address": "Busqueda por dirección",
   "token_transactions": "Transacciones de tokens",
-  "token_holders": "Titulares de fichas",
+  "token_holders": "Poseedores de tokens",
   "nr_of_Transfers": "Número de transferencias",
   "not_signed_in": "Deberá iniciar sesión para hacer uso de esta función.",
   "loading_map": "Cargando mapa",
@@ -973,7 +969,7 @@ export const messages = {
   "in_BTC": "En BTC",
   "total_TRX_supply": "Suministro total TRX",
   "market_capitalization": "Capitalización de mercado",
-  "circulating_supply": "Circulante",
+  "circulating_supply": "Suministro circulante",
   "list_trx": "Lista TRX",
   "burned_trx": "TRX Quemados",
   "supply_notes": "Venta al público y venta anticipada disponible en todo el mundo, excepto en EE.UU., China y Japón",
@@ -1029,7 +1025,7 @@ export const messages = {
   "my_token_desc_2": "Si necesita actualizar su información, envíe las actualizaciones utilizando la siguiente plantilla de Excel a token@tronscan.org a través del correo electrónico de su empresa o correo electrónico certificado con las credenciales necesarias.",
   "brief_info": "Breve introducción",
   "website_official": "Website oficial",
-  "white_paper": "WhitePaper",
+  "white_paper": "WhitePaper (documentación técnica)",
   "GitHub": "GitHub",
   "country": "País/Región",
   "social_link": "Enlace a redes sociales",
@@ -1101,7 +1097,7 @@ export const messages = {
   "reputation": "Reputación",
   "issue_time": "Fecha de emisión ",
   "success_receive": "Recibido satisfactoriamente",
-  "circulating_supply": "Circulante",
+  "circulating_supply": "Suministro en circulación",
   "issue_info": "Info de emisión",
   "transferring": "En progreso",
   "in_progress": "En progreso",
@@ -2244,12 +2240,12 @@ export const messages = {
 
   "Side_Chain":"DAppChain",
   "Main_Chain":"MainChain",
-  "7day": "7 días",
-  "14day": "14 dias",
-  "30day": "1 mes",
-  "select_tip": "To view data other than 2000 You can manually adjust the time window",
-  "date_number_tip": "{total} records in the current time range",
-  "date_list_tip": "Only the first 2000 data are displayed",
+  "7day": "one week",
+  "14day": "two weeks",
+  "30day": "one month",
+  "select_tip": "Si desea ver los datos después de 2000, ajuste la ventana de tiempo manualmente",
+  "date_number_tip": "Hay {total} registros en el rango de tiempo actual ",
+  "date_list_tip": "Solo se muestra 2000 registros en la lista",
 
   "sun_propose_1": "Cambio de tarifa de transacción: la tarifa de transacción se cobrará normalmente cuando la propuesta se establezca en 1.",
   "sun_propose_2": "Establecer la dirección del contrato para la puerta de enlace en la cadena lateral",
@@ -2308,7 +2304,7 @@ export const messages = {
   "no_rewards_available_yet":"No rewards available",
   "total_tron_ecosystem_tokens":"Total TRON-ecosystem tokens:",
   "number_of_lists":"Number of lists:",
-  "total_in_tronscan":"Total in tronscan",
+  "total_in_tronscan":"Total in tronscan:",
 
   "develpopers_reward_tip":"Thank you for considering to help out with the java-tron! TRON Foundation welcome contributions from anyone on the internet, and are grateful for your contributions.",
   "verifty_contract_result":"Resulto",
@@ -2452,5 +2448,11 @@ export const messages = {
 
   // 2019-12-10
   "ledger_tronlink":"Login to TRONSCAN via TronLink",
-    ...lang19Q4
+// 2019-12-18
+"address_vote_reward_pending":"recompensa de votación",
+"address_balance":"Balance TRX",
+"address_get_energe":"Por energía",
+"address_get_bandwith":"Para ancho de banda",
+"address_freeze_owner":"A tu cuenta",
+"address_freeze_other":"A la (s) cuenta (s) de otros",
 };

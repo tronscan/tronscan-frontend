@@ -2240,9 +2240,9 @@ export const messages = {
   "7day": "7日",
   "14day": "14日間",
   "30day": "1ヶ月",
-  "select_tip": "To view data other than 2000 You can manually adjust the time window",
-  "date_number_tip": "{total} records in the current time range",
-  "date_list_tip": "Only the first 2000 data are displayed",
+  "select_tip": "2000条以外のデータを表示する場合は、時間枠を手動で調整してください",
+  "date_number_tip": "現在の時間範囲に{total}条のレコードがあります ",
+  "date_list_tip": "リストには2000条のレコードのみが表示されます",
 
 
   "sun_propose_1": "トランザクションリクエストの切り替え",
