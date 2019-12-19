@@ -2441,4 +2441,11 @@ export const messages = {
 
 // 2019-12-10
 "ledger_tronlink":"Login to TRONSCAN via TronLink",
+// 2019-12-18
+"address_vote_reward_pending":"褒賞に投票",
+"address_balance":"TRX余額",
+"address_get_energe":"エネルギー取得するには",
+"address_get_bandwith":"帯域幅を取得するには",
+"address_freeze_owner":"自分に固定する",
+"address_freeze_other":"他人に固定する",
 }
