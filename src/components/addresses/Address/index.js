@@ -895,7 +895,6 @@ class Address extends React.Component {
                               <ul className="list-unstyled m-0">
                                 <li className="d-flex">   
                                   <TRXPrice amount={walletReward / ONE_TRX} className="font-weight-bold"/>
-                                  TRX
                                   </li>
                               </ul>
                             </td>
