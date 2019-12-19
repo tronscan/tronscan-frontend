@@ -955,17 +955,21 @@ class Navigation extends React.Component {
           {popup}
           <div className="logo-wrapper">
             <div className="container py-2 d-flex px-0">
-              <div className="ml-4">
+              <div className="ml-4  d-flex">
                 <Link to="/">
                   <img src={this.getLogo()} className="logo" alt="Tron"/>
                 </Link>
               </div>
               {
-                IS_TESTNET &&
-                <div className="col text-center text-info font-weight-bold py-2">
-                  TESTNET
-                </div>
-              }
+                        <span className="d-flex mt-2">
+                            <span className="ml-2 d-block" style={{borderLeft:'1px solid #999999',height:'70%'}}>
+                            </span>
+                            <span className="ml-2" style={{color:"#000000"}}>
+                                SHASTA TESTNET
+                            </span>
+                        </span>
+                        
+                    }
               {
                 (syncStatus && syncStatus.sync && syncStatus.sync.progress < 95) &&
                 <div className="col text-danger text-center py-2">
