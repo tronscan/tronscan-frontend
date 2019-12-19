@@ -468,12 +468,12 @@ export function Information({
          ];
 
          const LeftMap = (
-           <div className="flex-1">
+           <div className="flex-1" style={{width:"50%"}}>
              {LeftTokenInfo.map((item, index) => {
                return (
                  <div className={"information-bg-item"} key={index}>
                    <span>{tu(item.name)}</span>
-                   <div style={{ width: "75%" }}>{item.content}</div>
+                   <div style={{width: "calc(100% - 150px)" }}>{item.content}</div>
                  </div>
                );
              })}
@@ -481,12 +481,12 @@ export function Information({
          );
 
          const RightMap = (
-           <div className="flex-1">
+           <div className="flex-1" style={{width:"50%"}}>
              {RightTokenInfo.map((item, index) => {
                return (
                  <div className={"information-bg-item"} key={index}>
                    <span>{tu(item.name)}</span>
-                   <div style={{ width: "75%" }}>{item.content}</div>
+                   <div style={{ width: "calc(100% - 150px)" }}>{item.content}</div>
                  </div>
                );
              })}
