@@ -16,18 +16,18 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/editor.worker.js.gz"
   },
   {
-    "revision": "817f8347b5c5502be46a3d008fb9f35b",
+    "revision": "6e6410f1e51c98effc4a64c8b4b709cb",
     "url": "/index.html"
   },
   {
-    "revision": "ec3a8edcf168f0dd4e3dc73881536ed7",
+    "revision": "ca04e01b6f06d1368bbd54ef78ac1f5c",
     "url": "/index.html.gz"
   },
   {
-    "url": "/precache-manifest.5eb84b52b63b8387d005c328327c9ea3.js"
+    "url": "/precache-manifest.fa1d622f4fd881cf2a4b952f6793490f.js"
   },
   {
-    "revision": "028c1000a0ff77c3123e5f35ffef09ea",
+    "revision": "5226305b1f3722fb1976201d2de656bf",
     "url": "/service-worker.js"
   },
   {
@@ -95,7 +95,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/css/SmartContract.e41670ec.chunk.css.gz"
   },
   {
-    "revision": "d8f783f6fb73969f065d",
+    "revision": "632ca59beeb3f7f9fc62",
     "url": "/static/css/main.77e88f27.chunk.css"
   },
   {
@@ -727,12 +727,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/js/WalletWizard.1ba0e5d9.chunk.js.gz"
   },
   {
-    "revision": "d8f783f6fb73969f065d",
-    "url": "/static/js/main.71b5464f.chunk.js"
+    "revision": "632ca59beeb3f7f9fc62",
+    "url": "/static/js/main.ba2fd81d.chunk.js"
   },
   {
-    "revision": "3abe81ded15bb023ca96a07f4bfb3628",
-    "url": "/static/js/main.71b5464f.chunk.js.gz"
+    "revision": "13336747eb5656786f3c45bc7ba1623c",
+    "url": "/static/js/main.ba2fd81d.chunk.js.gz"
   },
   {
     "revision": "31451d92a347500ad07d",
@@ -897,10 +897,6 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "9f9e875b1093440ab382154088307874",
     "url": "/static/media/trc_active.9f9e875b.png"
-  },
-  {
-    "revision": "e40b3379629262491cfa1724efcb0083",
-    "url": "/static/media/tron-banner-1.e40b3379.png"
   },
   {
     "revision": "8621e16760c7afdd7592a4c891129311",
