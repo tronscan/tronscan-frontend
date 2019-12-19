@@ -220,6 +220,7 @@ class Transfers extends React.Component {
         key: "transferFromAddress",
         className: "ant_table",
         width: "160px",
+        align: "center",
         render: (text, record, index) => {
           return (
             <AddressLink address={record.from_address}>
@@ -234,7 +235,10 @@ class Transfers extends React.Component {
                   />
                 </Tooltip>
               ) : null}
-              {record.from_address}
+              {`${record.from_address.slice(
+                0,
+                5
+              )}...${record.from_address.slice(-5)}`}
             </AddressLink>
           );
         }
@@ -272,7 +276,9 @@ class Transfers extends React.Component {
                   />
                 </Tooltip>
               ) : null}
-              {record.to_address}
+              {`${record.to_address.slice(0, 5)}...${record.to_address.slice(
+                -5
+              )}`}
             </AddressLink>
           );
         }

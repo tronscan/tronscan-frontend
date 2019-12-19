@@ -599,7 +599,6 @@ class Token20Detail extends React.Component {
       ...params
     })
       .then(res => {
-        console.log(res);
         if (res.list) {
           this.props.updateTokenInfo({
             transfersListObj: {

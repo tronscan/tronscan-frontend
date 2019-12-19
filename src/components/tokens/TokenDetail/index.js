@@ -201,7 +201,7 @@ class TokenDetail extends React.Component {
       .get(`${API_URL}/api/tokenholders?address=${serchInputVal}&id=${tokenID}`)
       .then(res => {
         if (res.data) {
-          if (res.data.trc20_tokens.length > 0) {
+          if (res.data.length > 0) {
             let trc20Token = res.data.trc20_tokens[0];
             this.props.updateTokenInfo({
               transferSearchStatus: true,
@@ -220,12 +220,12 @@ class TokenDetail extends React.Component {
       .catch(err => {
         console.log(err);
       });
-    let { tokensInfo } = this.props;
+    // let { tokensInfo } = this.props;
     const params = {
       issueAddress: ownerAddress,
-      relatedAddress: serchInputVal,
-      start_timestamp: tokensInfo.start_timestamp,
-      end_timestamp: tokensInfo.end_timestamp
+      relatedAddress: serchInputVal
+      // start_timestamp: tokensInfo.start_timestamp,
+      // end_timestamp: tokensInfo.end_timestamp
     };
 
     await Client.getAssetTransfers({
@@ -233,11 +233,14 @@ class TokenDetail extends React.Component {
       ...params
     })
       .then(res => {
-        console.log(res);
+        let transfers = rebuildList(res.list, "tokenName", "amount");
+        for (let index in transfers) {
+          transfers[index].index = parseInt(index) + 1;
+        }
         if (res.list) {
           this.props.updateTokenInfo({
             transfersListObj: {
-              transfers: res.list,
+              transfers,
               total: res.total,
               rangeTotal: res.rangeTotal
             }
@@ -248,6 +251,7 @@ class TokenDetail extends React.Component {
         console.log("error:" + e);
       });
   };
+
   resetSearch = async () => {
     this.setState({
       searchAddress: "",
