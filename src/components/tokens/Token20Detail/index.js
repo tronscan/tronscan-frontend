@@ -9,7 +9,7 @@ import {
   injectIntl
 } from "react-intl";
 import TokenHolders from "./TokenHolders";
-import { Input, Form } from "antd";
+import { Icon } from "antd";
 import { NavLink, Route, Switch } from "react-router-dom";
 import { AddressLink, ExternalLink } from "../../common/Links";
 import { TronLoader } from "../../common/loaders";
@@ -54,7 +54,8 @@ class Token20Detail extends React.Component {
       buyAmount: 0,
       alert: null,
       csvurl: "",
-      searchAddress: ""
+      searchAddress: "",
+      searchAddressClose: false
     };
   }
 
@@ -87,7 +88,6 @@ class Token20Detail extends React.Component {
 
   loadToken = async address => {
     let { priceUSD } = this.props;
-    const { searchAddress } = this.state;
     let tabs = [
       // {
       //   id: "tokenInfo",
@@ -553,9 +553,9 @@ class Token20Detail extends React.Component {
 
   tokensTransferSearchFun = async () => {
     let serchInputVal = this.searchAddress.value;
-    this.setState({
-      searchAddress: serchInputVal
-    });
+    if (serchInputVal === "") {
+      return false;
+    }
     const {
       contract_address,
       total_supply_with_decimals
@@ -586,10 +586,12 @@ class Token20Detail extends React.Component {
         console.log(err);
       });
 
-    let { match } = this.props;
+    let { match, tokensInfo } = this.props;
     const params = {
       contract_address: decodeURI(match.params.address),
-      address: serchInputVal
+      relatedAddress: serchInputVal,
+      start_timestamp: tokensInfo.start_timestamp,
+      end_timestamp: tokensInfo.end_timestamp
     };
 
     await Client.getTokenTRC20Transfers({
@@ -612,12 +614,57 @@ class Token20Detail extends React.Component {
         console.log("error:" + e);
       });
   };
+  resetSearch = async () => {
+    this.setState({
+      searchAddress: "",
+      searchAddressClose: false
+    });
+    let { match, tokensInfo } = this.props;
+    const params = {
+      contract_address: decodeURI(match.params.address),
+      start_timestamp: tokensInfo.start_timestamp,
+      end_timestamp: tokensInfo.end_timestamp
+    };
+
+    await Client.getTokenTRC20Transfers({
+      limit: 20,
+      ...params
+    })
+      .then(res => {
+        let transfers = res.list;
+        for (let index in transfers) {
+          transfers[index].index = parseInt(index) + 1;
+        }
+        if (res.list) {
+          this.props.updateTokenInfo({
+            transfersListObj: {
+              transfers,
+              total: res.total,
+              rangeTotal: res.rangeTotal
+            }
+          });
+        }
+      })
+      .catch(e => {
+        console.log("error:" + e);
+      });
+  };
 
   render() {
     let { match, wallet, priceUSD } = this.props;
-    let { token, tabs, loading, buyAmount, alert, csvurl } = this.state;
+    let {
+      token,
+      tabs,
+      loading,
+      buyAmount,
+      alert,
+      csvurl,
+      searchAddress,
+      searchAddressClose
+    } = this.state;
     let pathname = this.props.location.pathname;
     let tabName = "";
+
     let rex = /[a-zA-Z0-9]{34}\/?([a-zA-Z\\-]+)$/;
     pathname.replace(rex, function(a, b) {
       tabName = b;
@@ -731,7 +778,7 @@ class Token20Detail extends React.Component {
                       >
                         <div
                           className="input-group-append"
-                          style={{ marginLeft: 0 }}
+                          style={{ marginLeft: 0, position: "relative" }}
                         >
                           <input
                             type="text"
@@ -739,9 +786,36 @@ class Token20Detail extends React.Component {
                             style={{
                               border: "none",
                               minWidth: 240,
-                              padding: "0 0.5rem"
+                              padding: "0 1.4rem 0 0.7rem"
+                            }}
+                            value={searchAddress}
+                            onChange={event => {
+                              if (event.target.value !== "") {
+                                this.setState({
+                                  searchAddress: event.target.value,
+                                  searchAddressClose: true
+                                });
+                              } else {
+                                this.setState({
+                                  searchAddressClose: false
+                                });
+                              }
                             }}
                           />
+                          {searchAddressClose ? (
+                            <Icon
+                              onClick={() => {
+                                this.resetSearch();
+                              }}
+                              type="close-circle"
+                              style={{
+                                position: "absolute",
+                                top: "0.6rem",
+                                right: 40
+                              }}
+                            />
+                          ) : null}
+
                           <button
                             className="btn box-shadow-none"
                             style={{

@@ -54,7 +54,7 @@ class Transfers extends React.Component {
   }
 
   componentDidMount() {
-    // this.loadPage();
+    this.loadPage();
 
     if (this.state.autoRefresh !== false) {
       this.props.setInterval(() => this.load(), this.state.autoRefresh);
@@ -510,8 +510,9 @@ class Transfers extends React.Component {
                   )}
                 </div>
               </div>
+
               <div className="trx20tronsfers">
-                {!loading && transfers.length === 0 ? (
+                {transfers.length === 0 ? (
                   <div className="pt-5 pb-5 text-center no-data transfers-bg-white">
                     {tu("no_transfers")}
                   </div>
