@@ -651,9 +651,9 @@ class Address extends React.Component {
     let totalType2 = Owner + Other;
     let GetEnergyPer =
       totalType1 != 0 ? ((GetEnergy / totalType1) * 100).toFixed(2) : "-";
-    let GetBandWidthPer = totalType1 != 0 ? 100 - GetEnergyPer : "-";
+    let GetBandWidthPer = totalType1 != 0 ? (100 - GetEnergyPer).toFixed(2) : "-";
     let OwnerPer = totalType2 != 0 ? ((Owner / totalType2) * 100).toFixed(2) : "-";
-    let OtherPer = totalType2 != 0 ? 100 - OwnerPer : "-";
+    let OtherPer = totalType2 != 0 ? (100 - OwnerPer).toFixed(2) : "-";
 
     const TooltipText = (
       <div style={{ lineHeight: "25px" }}>
@@ -893,11 +893,10 @@ class Address extends React.Component {
                             </th>
                             <td>
                               <ul className="list-unstyled m-0">
-                                <li className="d-flex">
-                                <FormattedNumber
-                                      value={walletReward/ONE_TRX} 
-                                    ></FormattedNumber>
-                                  TRX</li>
+                                <li className="d-flex">   
+                                  <TRXPrice amount={walletReward / ONE_TRX} className="font-weight-bold"/>
+                                  TRX
+                                  </li>
                               </ul>
                             </td>
                           </tr>
