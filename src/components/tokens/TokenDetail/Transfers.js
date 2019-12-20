@@ -174,7 +174,7 @@ class Transfers extends React.Component {
                 <BlockTime time={Number(record.timestamp)}> </BlockTime>
               ) : (
                 <span className="">
-                  <FormattedDate value={record.timestamp} /> 
+                  <FormattedDate value={record.timestamp} />
                   &nbsp;
                   <FormattedTime
                     value={record.timestamp}
@@ -399,7 +399,7 @@ class Transfers extends React.Component {
                       color: "#C64844"
                     }}
                   >
-                    {tokensInfo.transfer.holder_address
+                    {tokensInfo.transfer.holder_address !== ""
                       ? `${tokensInfo.transfer.holder_address.substring(
                           0,
                           7
