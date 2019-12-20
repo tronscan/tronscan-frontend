@@ -313,6 +313,12 @@ class TokenDetail extends React.Component {
       });
   };
 
+  onSearchKeyDown = ev => {
+    if (ev.keyCode === 13) {
+      this.tokensTransferSearchFun();
+    }
+  };
+
   render() {
     let { match, wallet, intl, priceUSD } = this.props;
     let {
@@ -459,6 +465,7 @@ class TokenDetail extends React.Component {
                                 });
                               }
                             }}
+                            onKeyDown={this.onSearchKeyDown}
                             onBlur={() => {
                               if (searchAddress !== "") {
                                 this.setState({

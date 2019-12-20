@@ -631,6 +631,7 @@ class Token20Detail extends React.Component {
         console.log("error:" + e);
       });
   };
+
   resetSearch = async () => {
     this.setState({
       searchAddress: "",
@@ -670,6 +671,13 @@ class Token20Detail extends React.Component {
       .catch(e => {
         console.log("error:" + e);
       });
+  };
+
+  onSearchKeyDown = ev => {
+    if (ev.keyCode === 13) {
+      this.tokensTransferSearchFun();
+      // $('#_searchBox').css({display: 'none'});
+    }
   };
 
   render() {
@@ -816,6 +824,7 @@ class Token20Detail extends React.Component {
                               id: "search_TRC20"
                             })}
                             value={searchAddress}
+                            onKeyDown={this.onSearchKeyDown}
                             onChange={event => {
                               if (event.target.value !== "") {
                                 this.setState({
