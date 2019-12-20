@@ -104,7 +104,7 @@ class Transfers extends React.Component {
       for (let index in transfers) {
         transfers[index].index = parseInt(index) + 1;
       }
-
+      console.log(transfers);
       this.setState({
         page,
         transfers,
@@ -282,6 +282,17 @@ class Transfers extends React.Component {
         key: "contractRet",
         className: "ant_table"
       },
+      // {
+      //   title: upperFirst(
+      //     intl.formatMessage({
+      //       id: "amount"
+      //     })
+      //   ),
+      //   dataIndex: "amount",
+      //   key: "amount",
+      //   align: "right",
+      //   className: "ant_table"
+      // },
       {
         title: upperFirst(
           intl.formatMessage({
@@ -290,7 +301,6 @@ class Transfers extends React.Component {
         ),
         dataIndex: "amount",
         key: "amount",
-        width: "200px",
         align: "right",
         className: "ant_table",
         render: (text, record, index) => {
