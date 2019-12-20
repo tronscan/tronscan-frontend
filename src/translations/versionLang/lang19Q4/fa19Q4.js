@@ -122,7 +122,7 @@ export const lang19Q4 = {
     "charts_daily_transactions": "معاملات روزانه",
     "charts_total_transactions": "مجموع معاملات",
     "charts_overall_freezing_rate": "نرخ انجماد به طور کلی",
-    "charts_new_addresses": "آدرس های جدید",
+    "charts_new_addresses": "رشد حساب",
     "charts_daily_energy_consumption": "مصرف روزانه انرژی",
     "charts_daily_energy_contracts": "مصرف روزانه انرژی با قراردادها",
     "charts_contract_calling": "تماس با قرارداد",

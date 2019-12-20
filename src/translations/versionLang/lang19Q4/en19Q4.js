@@ -123,7 +123,7 @@ export const lang19Q4 = {
     "charts_daily_transactions": "Daily Transactions",
     "charts_total_transactions": "Total Transactions",
     "charts_overall_freezing_rate": "Overall Freezing Rate",
-    "charts_new_addresses": "New Addresses",
+    "charts_new_addresses": "Account growth",
     "charts_daily_energy_consumption": "Daily Energy Consumption",
     "charts_daily_energy_contracts": "Daily Energy  Consumption By Contracts",
     "charts_contract_calling": "Contract Calling",

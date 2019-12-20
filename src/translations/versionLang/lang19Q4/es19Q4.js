@@ -123,7 +123,7 @@ export const lang19Q4 = {
     "charts_daily_transactions": "Transacciones diarias",
     "charts_total_transactions": "Transacciones totales",
     "charts_overall_freezing_rate": "Tasa de congelación general",
-    "charts_new_addresses": "Nuevas direcciones",
+    "charts_new_addresses": "Crecimiento de la cuenta",
     "charts_daily_energy_consumption": "Consumo diario de energía",
     "charts_daily_energy_contracts": "Consumo diario de energía por contratos",
     "charts_contract_calling": "Llamada de contrato",
