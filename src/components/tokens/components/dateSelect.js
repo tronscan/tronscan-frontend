@@ -105,7 +105,8 @@ class DateSelect extends React.Component {
               //   });
               // }}
               style={{
-                right: "1rem"
+                right: "1rem",
+                width: "370px"
               }}
             />
           </div>
