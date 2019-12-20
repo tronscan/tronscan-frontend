@@ -1,6 +1,7 @@
 import React, { Fragment } from "react";
 import { Client } from "../../../services/api";
 import { t, tu } from "../../../utils/i18n";
+import { trim } from "lodash";
 import {
   FormattedDate,
   FormattedNumber,
@@ -17,6 +18,8 @@ import Transfers from "./Transfers.js";
 import TokenInfo from "./TokenInfo.js";
 import { Information } from "./Information.js";
 import qs from "qs";
+import { toastr } from "react-redux-toastr";
+import { isAddressValid } from "@tronscan/client/src/utils/crypto";
 import {
   API_URL,
   ONE_TRX,
@@ -99,7 +102,7 @@ class Token20Detail extends React.Component {
       {
         id: "transfers",
         icon: "",
-        path: "/transfers",
+        path: "",
         label: <span>{tu("token_transfers")}</span>,
         cmp: () => (
           <Transfers
@@ -556,6 +559,21 @@ class Token20Detail extends React.Component {
     if (serchInputVal === "") {
       return false;
     }
+    let { intl } = this.props;
+    if (!isAddressValid(serchInputVal)) {
+      toastr.warning(
+        intl.formatMessage({
+          id: "warning"
+        }),
+        intl.formatMessage({
+          id: "search_TRC20_error"
+        })
+      );
+      this.setState({
+        searchAddress: ""
+      });
+      return;
+    }
     const {
       contract_address,
       total_supply_with_decimals
@@ -613,6 +631,7 @@ class Token20Detail extends React.Component {
         console.log("error:" + e);
       });
   };
+
   resetSearch = async () => {
     this.setState({
       searchAddress: "",
@@ -654,8 +673,16 @@ class Token20Detail extends React.Component {
       });
   };
 
+  onSearchKeyDown = ev => {
+    if (ev.keyCode === 13) {
+      this.tokensTransferSearchFun();
+      // $('#_searchBox').css({display: 'none'});
+    }
+  };
+
   render() {
-    let { match, wallet, priceUSD } = this.props;
+    let { match, wallet, priceUSD, intl } = this.props;
+
     let {
       token,
       tabs,
@@ -771,7 +798,7 @@ class Token20Detail extends React.Component {
                         </li>
                       ))}
                     </ul>
-                    {pathname.slice(-9) === "transfers" ? (
+                    {pathname.length === 43 ? (
                       <div
                         className="tokenTransferSearch"
                         style={{
@@ -793,11 +820,15 @@ class Token20Detail extends React.Component {
                               minWidth: 240,
                               padding: "0 1.4rem 0 0.7rem"
                             }}
+                            placeholder={intl.formatMessage({
+                              id: "search_TRC20"
+                            })}
                             value={searchAddress}
+                            onKeyDown={this.onSearchKeyDown}
                             onChange={event => {
                               if (event.target.value !== "") {
                                 this.setState({
-                                  searchAddress: event.target.value,
+                                  searchAddress: trim(event.target.value),
                                   searchAddressClose: true
                                 });
                               } else {

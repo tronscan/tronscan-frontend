@@ -127,7 +127,7 @@ export const lang19Q4 = {
     "charts_daily_transactions": "المعاملات اليومية",
     "charts_total_transactions": "مجموع المعاملات",
     "charts_overall_freezing_rate": "معدل التجميد الكلي",
-    "charts_new_addresses": "عناوين جديدة",
+    "charts_new_addresses": "نمو الحساب",
     "charts_daily_energy_consumption": "استهلاك الطاقة اليومي",
     "charts_daily_energy_contracts": "استهلاك الطاقة اليومي بعقود",
     "charts_contract_calling": "دعوة العقد ",

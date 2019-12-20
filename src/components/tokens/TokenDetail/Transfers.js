@@ -83,43 +83,46 @@ class Transfers extends React.Component {
     });
     getCsvUrl(`${API_URL}/api/asset/transfer?${query}`);
 
-    const allData = await Promise.all([
-      Client.getAssetTransfers({
-        limit: pageSize,
-        start: (page - 1) * pageSize,
-        ...params
-      }),
-      Client.getCountByType({
-        type: "asset",
-        issueName: filter.address
-      })
-    ]).catch(e => {
-      console.log("error:" + e);
-    });
+    try {
+      const allData = await Promise.all([
+        Client.getAssetTransfers({
+          limit: pageSize,
+          start: (page - 1) * pageSize,
+          ...params
+        }),
+        Client.getCountByType({
+          type: "asset",
+          issueName: filter.address
+        })
+      ]).catch(e => {
+        console.log("error:" + e);
+      });
+      const [{ list, total, rangeTotal }, { count }] = allData;
 
-    const [{ list, total, rangeTotal }, { count }] = allData;
+      let transfers = rebuildList(list, "tokenName", "amount");
 
-    let transfers = rebuildList(list, "tokenName", "amount");
+      for (let index in transfers) {
+        transfers[index].index = parseInt(index) + 1;
+      }
 
-    for (let index in transfers) {
-      transfers[index].index = parseInt(index) + 1;
-    }
-
-    this.setState({
-      page,
-      transfers,
-      total: count,
-      rangeTotal,
-      loading: false
-    });
-    this.props.updateTokenInfo({
-      transfersListObj: {
+      this.setState({
         page,
         transfers,
         total: count,
-        rangeTotal
-      }
-    });
+        rangeTotal,
+        loading: false
+      });
+      this.props.updateTokenInfo({
+        transfersListObj: {
+          page,
+          transfers,
+          total: count,
+          rangeTotal
+        }
+      });
+    } catch (e) {
+      console.log("error:" + e);
+    }
   };
 
   customizedColumn = () => {
@@ -171,7 +174,8 @@ class Transfers extends React.Component {
                 <BlockTime time={Number(record.timestamp)}> </BlockTime>
               ) : (
                 <span className="">
-                  <FormattedDate value={record.timestamp} />{" "}
+                  <FormattedDate value={record.timestamp} /> 
+                  &nbsp;
                   <FormattedTime
                     value={record.timestamp}
                     hour="numeric"
@@ -201,7 +205,14 @@ class Transfers extends React.Component {
           return (
             <AddressLink address={record.transferFromAddress}>
               {record.fromAddressIsContract ? (
-                <Tooltip placement="top" title={"合约地址"}>
+                <Tooltip
+                  placement="top"
+                  title={upperFirst(
+                    intl.formatMessage({
+                      id: "transfersDetailContractAddress"
+                    })
+                  )}
+                >
                   <Icon
                     type="file-text"
                     style={{ marginRight: 2, verticalAlign: 0 }}
@@ -239,7 +250,14 @@ class Transfers extends React.Component {
           return (
             <AddressLink address={record.transferToAddress}>
               {record.fromAddressIsContract ? (
-                <Tooltip placement="top" title={"合约地址"}>
+                <Tooltip
+                  placement="top"
+                  title={upperFirst(
+                    intl.formatMessage({
+                      id: "transfersDetailContractAddress"
+                    })
+                  )}
+                >
                   <Icon
                     type="file-text"
                     style={{ marginRight: 2, verticalAlign: 0 }}
@@ -388,14 +406,14 @@ class Transfers extends React.Component {
                         )}...${tokensInfo.transfer.holder_address.slice(-7)}`
                       : null}
                   </div>
-                  <p style={descStyle}> Holders </p>
+                  <p style={descStyle}> {tu("transfersDetailHolder")} </p>
                 </div>
                 <div style={listCommonSty}>
                   <div style={listTitleStyle}>
                     {(tokensInfo.transfer.balance / Math.pow(10, 6)).toFixed(6)}
                     TRX
                   </div>
-                  <p style={descStyle}> Holdings </p>
+                  <p style={descStyle}> {tu("transfersDetailQuantity")} </p>
                 </div>
                 <div style={listCommonSty}>
                   <div style={listTitleStyle}>
@@ -405,7 +423,7 @@ class Transfers extends React.Component {
                     ></FormattedNumber>
                     %
                   </div>
-                  <p style={descStyle}> Accounted for </p>
+                  <p style={descStyle}> {tu("transfersDetailPercentage")} </p>
                 </div>
                 <div style={listCommonSty}>
                   <div style={listTitleStyle}>
@@ -427,7 +445,7 @@ class Transfers extends React.Component {
                       TRX
                     </span>
                   </div>
-                  <p style={descStyle}> Value </p>
+                  <p style={descStyle}> {tu("transfersDetailValue")} </p>
                 </div>
               </div>
             ) : null}

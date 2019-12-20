@@ -6,6 +6,8 @@ import { ONE_TRX, API_URL } from "../../../constants";
 import SmartTable from "../../common/SmartTable.js";
 import { FormattedNumber, injectIntl } from "react-intl";
 import { TronLoader } from "../../common/loaders";
+import { toastr } from "react-redux-toastr";
+import { isAddressValid } from "@tronscan/client/src/utils/crypto";
 import { trim } from "lodash";
 import { upperFirst, upperCase, lowerCase } from "lodash";
 import { Tooltip } from "antd";
@@ -61,39 +63,39 @@ class TokenHolders extends React.Component {
     // }
     let exchangeFlag = await Client.getTagNameList();
 
-    if (addresses.length) {
-      addresses.map(item => {
-        item.tagName = "";
-        exchangeFlag.map(coin => {
-          const typeList = Object.keys(coin.addressList);
-          typeList.map(type => {
-            if (coin.addressList[type].length == 1) {
-              if (coin.addressList[type][0] === item.address) {
-                item.tagName = `${upperFirst(coin.name)}${
-                  type !== "default" ? `-${type}` : ""
-                }`;
-                if (lowerCase(coin.name) === "binance") {
-                  item.ico = lowerCase(coin.name);
-                }
-              }
-            } else if (coin.addressList[type].length > 1) {
-              coin.addressList[type].map((address, index) => {
-                if (address === item.address) {
-                  item.tagName = `${upperFirst(coin.name)}${
-                    type !== "default"
-                      ? `-${type} ${index + 1}`
-                      : ` ${index + 1}`
-                  }`;
-                  if (lowerCase(coin.name) === "binance") {
-                    item.ico = lowerCase(coin.name);
-                  }
-                }
-              });
-            }
-          });
-        });
-      });
-    }
+    // if (addresses.length) {
+    //   addresses.map(item => {
+    //     item.tagName = "";
+    //     exchangeFlag.map(coin => {
+    //       const typeList = Object.keys(coin.addressList);
+    //       typeList.map(type => {
+    //         if (coin.addressList[type].length == 1) {
+    //           if (coin.addressList[type][0] === item.address) {
+    //             item.tagName = `${upperFirst(coin.name)}${
+    //               type !== "default" ? `-${type}` : ""
+    //             }`;
+    //             if (lowerCase(coin.name) === "binance") {
+    //               item.ico = lowerCase(coin.name);
+    //             }
+    //           }
+    //         } else if (coin.addressList[type].length > 1) {
+    //           coin.addressList[type].map((address, index) => {
+    //             if (address === item.address) {
+    //               item.tagName = `${upperFirst(coin.name)}${
+    //                 type !== "default"
+    //                   ? `-${type} ${index + 1}`
+    //                   : ` ${index + 1}`
+    //               }`;
+    //               if (lowerCase(coin.name) === "binance") {
+    //                 item.ico = lowerCase(coin.name);
+    //               }
+    //             }
+    //           });
+    //         }
+    //       });
+    //     });
+    //   });
+    // }
 
     this.setState({
       page,
@@ -247,6 +249,86 @@ class TokenHolders extends React.Component {
     return column;
   };
 
+  doSearch = async () => {
+    let { intl } = this.props;
+    let { search } = this.state;
+
+    if (isAddressValid(search)) {
+      let { filter, getCsvUrl } = this.props;
+      this.setState({ loading: true });
+      const params = {
+        sort: "-balance",
+        limit: 20,
+        count: true,
+        address: search
+      };
+      const query = qs.stringify({ format: "csv", ...params });
+      getCsvUrl(`${API_URL}/api/tokenholders?${query}`);
+
+      let { addresses, total, rangeTotal } = await Client.getTokenHolders(
+        filter.token,
+        params
+      );
+
+      // for (let index in addresses) {
+      //   addresses[index].index = parseInt(index) + 1;
+      // }
+      let exchangeFlag = await Client.getTagNameList();
+      if (addresses.length) {
+        addresses.map(item => {
+          item.tagName = "";
+          exchangeFlag.map(coin => {
+            const typeList = Object.keys(coin.addressList);
+            typeList.map(type => {
+              if (coin.addressList[type].length == 1) {
+                if (coin.addressList[type][0] === item.address) {
+                  item.tagName = `${upperFirst(coin.name)}${
+                    type !== "default" ? `-${type}` : ""
+                  }`;
+                  if (lowerCase(coin.name) === "binance") {
+                    item.ico = lowerCase(coin.name);
+                  }
+                }
+              } else if (coin.addressList[type].length > 1) {
+                coin.addressList[type].map((address, index) => {
+                  if (address === item.address) {
+                    item.tagName = `${upperFirst(coin.name)}${
+                      type !== "default"
+                        ? `-${type} ${index + 1}`
+                        : ` ${index + 1}`
+                    }`;
+                    if (lowerCase(coin.name) === "binance") {
+                      item.ico = lowerCase(coin.name);
+                    }
+                  }
+                });
+              }
+            });
+          });
+        });
+      }
+
+      this.setState({
+        addresses,
+        total,
+        rangeTotal,
+        loading: false
+      });
+    } else {
+      toastr.warning(
+        intl.formatMessage({
+          id: "warning"
+        }),
+        intl.formatMessage({
+          id: "search_TRC20_error"
+        })
+      );
+      this.setState({
+        search: ""
+      });
+    }
+  };
+
   render() {
     let { addresses, total, rangeTotal, loading, search } = this.state;
     let { intl, filter } = this.props;
@@ -264,11 +346,6 @@ class TokenHolders extends React.Component {
       " " +
       intl.formatMessage({ id: "table_info_holders_tip2" });
 
-    if (!loading && addresses.length === 0) {
-      return (
-        <div className="p-3 text-center no-data">{tu("no_holders_found")}</div>
-      );
-    }
     return (
       <Fragment>
         {loading && (
@@ -300,29 +377,25 @@ class TokenHolders extends React.Component {
                       background: "#fff"
                     }}
                   >
-                    {total ? (
-                      <div className="d-none d-md-block">
-                        <div style={{ padding: "5px 0" }}>
-                          {tu("view_total")} {rangeTotal} {tu("hold_addr")}
-                          {rangeTotal >= 10000 ? (
-                            <QuestionMark
-                              placement="top"
-                              info={tableInfoTip}
-                            ></QuestionMark>
-                          ) : (
-                            ""
-                          )}
-                          <br />
-                          {rangeTotal >= 10000 ? (
-                            <span>({tu("table_info_big")})</span>
-                          ) : (
-                            ""
-                          )}
-                        </div>
+                    <div className="d-none d-md-block">
+                      <div style={{ padding: "5px 0" }}>
+                        {tu("view_total")} {rangeTotal} {tu("hold_addr")}
+                        {rangeTotal >= 10000 ? (
+                          <QuestionMark
+                            placement="top"
+                            info={tableInfoTip}
+                          ></QuestionMark>
+                        ) : (
+                          ""
+                        )}
+                        <br />
+                        {rangeTotal >= 10000 ? (
+                          <span>({tu("table_info_big")})</span>
+                        ) : (
+                          ""
+                        )}
                       </div>
-                    ) : (
-                      ""
-                    )}
+                    </div>
                   </div>
                   <div className="token20-search">
                     <input
@@ -349,17 +422,31 @@ class TokenHolders extends React.Component {
                   </div>
                 </div>
               </div>
-              <SmartTable
-                bordered={true}
-                loading={loading}
-                column={column}
-                data={addresses}
-                total={total}
-                onPageChange={(page, pageSize) => {
-                  this.loadTokenHolders(page, pageSize);
-                }}
-                position="bottom"
-              />
+
+              {!loading && addresses.length === 0 ? (
+                <div
+                  className=" text-center no-data"
+                  style={{
+                    background: "#fff",
+                    minHeight: "300px",
+                    paddingTop: "100px"
+                  }}
+                >
+                  <span>{tu("no_holders_found")}</span>
+                </div>
+              ) : (
+                <SmartTable
+                  bordered={true}
+                  loading={loading}
+                  column={column}
+                  data={addresses}
+                  total={total}
+                  onPageChange={(page, pageSize) => {
+                    this.loadTokenHolders(page, pageSize);
+                  }}
+                  position="bottom"
+                />
+              )}
             </div>
           </div>
         </div>

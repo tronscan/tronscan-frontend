@@ -252,6 +252,7 @@ class TokenHolders extends React.Component {
 
     return column;
   };
+
   doSearch = async () => {
     let { intl, filter } = this.props;
     let { search } = this.state;
@@ -266,6 +267,7 @@ class TokenHolders extends React.Component {
       );
       let exchangeFlag = await Client.getTagNameList();
       let addresses = result.data.trc20_tokens;
+      let rangeTotal = result.data.rangeTotal;
       if (addresses.length) {
         addresses.map(item => {
           item.tagName = "";
@@ -298,15 +300,21 @@ class TokenHolders extends React.Component {
             });
           });
         });
+        addresses[0].index = 1;
+        this.setState({
+          addresses: addresses,
+          total: 1,
+          search: "",
+          rangeTotal
+        });
+      } else {
+        this.setState({
+          addresses,
+          total: 0,
+          search: "",
+          rangeTotal
+        });
       }
-
-      addresses[0].index = 1;
-
-      this.setState({
-        addresses: addresses,
-        total: 1,
-        search: ""
-      });
     } else {
       toastr.warning(
         intl.formatMessage({
@@ -350,11 +358,7 @@ class TokenHolders extends React.Component {
       intl.formatMessage({
         id: "table_info_holders_tip2"
       });
-    if (!loading && addresses.length === 0) {
-      return (
-        <div className="p-3 text-center no-data">{tu("no_holders_found")}</div>
-      );
-    }
+
     return (
       <Fragment>
         {loading && (
@@ -411,64 +415,77 @@ class TokenHolders extends React.Component {
                 </div>
               </div>
               <div style={styles.tablePosInfo}>
-                {total ? (
+                {/* {total ? ( */}
+                <div
+                  className="d-none d-md-block"
+                  style={{
+                    left: "auto"
+                  }}
+                >
                   <div
-                    className="d-none d-md-block"
                     style={{
-                      left: "auto"
+                      fontFamily: "PingFangSC-Medium",
+                      fontSize: "16px",
+                      color: "#333333",
+                      marginTop: "16px"
                     }}
                   >
-                    <div
-                      style={{
-                        fontFamily: "PingFangSC-Medium",
-                        fontSize: "16px",
-                        color: "#333333",
-                        marginTop: "16px"
-                      }}
-                    >
-                      {tu("holders")}
-                      {tu("address")}
-                    </div>
-                    <div
-                      style={{
-                        fontFamily: "PingFangSC-Regular",
-                        fontSize: "14px",
-                        color: "#999999"
-                      }}
-                    >
-                      {tu("view_total")} {rangeTotal} {tu("hold_addr")},
-                      {rangeTotal >= 10000 ? (
-                        <span> ({tu("table_info_big")}) </span>
-                      ) : (
-                        ""
-                      )}
-                      {rangeTotal >= 10000 ? (
-                        <QuestionMark
-                          placement="top"
-                          info={tableInfoTip}
-                        ></QuestionMark>
-                      ) : (
-                        ""
-                      )}
-                    </div>
+                    {tu("holders")}
+                    {tu("address")}
                   </div>
-                ) : (
-                  ""
-                )}
+                  <div
+                    style={{
+                      fontFamily: "PingFangSC-Regular",
+                      fontSize: "14px",
+                      color: "#999999"
+                    }}
+                  >
+                    {tu("view_total")} {rangeTotal} {tu("hold_addr")},
+                    {rangeTotal >= 10000 ? (
+                      <span> ({tu("table_info_big")}) </span>
+                    ) : (
+                      ""
+                    )}
+                    {rangeTotal >= 10000 ? (
+                      <QuestionMark
+                        placement="top"
+                        info={tableInfoTip}
+                      ></QuestionMark>
+                    ) : (
+                      ""
+                    )}
+                  </div>
+                </div>
+                {/* ) : ( */}
+                {/* "" */}
+                {/* )} */}
               </div>
-              <div style={styles.table}>
-                <SmartTable
-                  bordered={true}
-                  loading={loading}
-                  column={column}
-                  data={addresses}
-                  total={total}
-                  onPageChange={(page, pageSize) => {
-                    this.loadTokenHolders(page, pageSize);
+              {!loading && addresses.length === 0 ? (
+                <div
+                  className=" text-center no-data"
+                  style={{
+                    background: "#fff",
+                    minHeight: "300px",
+                    paddingTop: "100px"
                   }}
-                  position="bottom"
-                />
-              </div>
+                >
+                  <span>{tu("no_holders_found")}</span>
+                </div>
+              ) : (
+                <div style={styles.table}>
+                  <SmartTable
+                    bordered={true}
+                    loading={loading}
+                    column={column}
+                    data={addresses}
+                    total={total}
+                    onPageChange={(page, pageSize) => {
+                      this.loadTokenHolders(page, pageSize);
+                    }}
+                    position="bottom"
+                  />
+                </div>
+              )}
             </div>
           </div>
         </div>
@@ -486,7 +503,7 @@ const styles = {
   tablePosInfo: {
     paddingLeft: 40,
     position: "absolute",
-    top: "190px"
+    top: "200px"
   },
   table: {
     // borderTop: "1px solid #d8d8d8"

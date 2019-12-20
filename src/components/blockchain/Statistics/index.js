@@ -38,7 +38,7 @@ class StatsCharts extends React.Component {
           id: 'currency'
         },
         {
-          name: 'charts_address',
+          name: 'accounts',
           id: 'address'
         },
         {
@@ -433,8 +433,8 @@ class StatsCharts extends React.Component {
               <div className="row mt-5 d-flex">
                 <div className="charts-title mr-3 ml-3">
                   <span>
-                    <i className="a fa-users ml-5 mr-2" />
-                    {tu("charts_address")}
+                    <i className="fa fa-users ml-5 mr-2" />
+                    {tu("accounts")}
                   </span>
                 </div>
                 <div className="charts-line"></div>
