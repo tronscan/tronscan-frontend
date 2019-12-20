@@ -346,16 +346,6 @@ class TokenHolders extends React.Component {
       " " +
       intl.formatMessage({ id: "table_info_holders_tip2" });
 
-    if (!loading && addresses.length === 0) {
-      return (
-        <div
-          className="p-3 text-center no-data"
-          style={{ background: "#fff", minHeight: "300px" }}
-        >
-          <span style={{ marginTop: "100px" }}>{tu("no_holders_found")}</span>
-        </div>
-      );
-    }
     return (
       <Fragment>
         {loading && (
@@ -387,29 +377,25 @@ class TokenHolders extends React.Component {
                       background: "#fff"
                     }}
                   >
-                    {total ? (
-                      <div className="d-none d-md-block">
-                        <div style={{ padding: "5px 0" }}>
-                          {tu("view_total")} {rangeTotal} {tu("hold_addr")}
-                          {rangeTotal >= 10000 ? (
-                            <QuestionMark
-                              placement="top"
-                              info={tableInfoTip}
-                            ></QuestionMark>
-                          ) : (
-                            ""
-                          )}
-                          <br />
-                          {rangeTotal >= 10000 ? (
-                            <span>({tu("table_info_big")})</span>
-                          ) : (
-                            ""
-                          )}
-                        </div>
+                    <div className="d-none d-md-block">
+                      <div style={{ padding: "5px 0" }}>
+                        {tu("view_total")} {rangeTotal} {tu("hold_addr")}
+                        {rangeTotal >= 10000 ? (
+                          <QuestionMark
+                            placement="top"
+                            info={tableInfoTip}
+                          ></QuestionMark>
+                        ) : (
+                          ""
+                        )}
+                        <br />
+                        {rangeTotal >= 10000 ? (
+                          <span>({tu("table_info_big")})</span>
+                        ) : (
+                          ""
+                        )}
                       </div>
-                    ) : (
-                      ""
-                    )}
+                    </div>
                   </div>
                   <div className="token20-search">
                     <input
@@ -436,17 +422,31 @@ class TokenHolders extends React.Component {
                   </div>
                 </div>
               </div>
-              <SmartTable
-                bordered={true}
-                loading={loading}
-                column={column}
-                data={addresses}
-                total={total}
-                onPageChange={(page, pageSize) => {
-                  this.loadTokenHolders(page, pageSize);
-                }}
-                position="bottom"
-              />
+
+              {!loading && addresses.length === 0 ? (
+                <div
+                  className=" text-center no-data"
+                  style={{
+                    background: "#fff",
+                    minHeight: "300px",
+                    paddingTop: "100px"
+                  }}
+                >
+                  <span>{tu("no_holders_found")}</span>
+                </div>
+              ) : (
+                <SmartTable
+                  bordered={true}
+                  loading={loading}
+                  column={column}
+                  data={addresses}
+                  total={total}
+                  onPageChange={(page, pageSize) => {
+                    this.loadTokenHolders(page, pageSize);
+                  }}
+                  position="bottom"
+                />
+              )}
             </div>
           </div>
         </div>
