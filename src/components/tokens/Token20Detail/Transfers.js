@@ -195,7 +195,7 @@ class Transfers extends React.Component {
                 <BlockTime time={Number(record.block_ts)}> </BlockTime>
               ) : (
                 <span className="">
-                  <FormattedDate value={record.block_ts} /> 
+                  <FormattedDate value={record.block_ts} />
                   &nbsp;
                   <FormattedTime
                     value={record.block_ts}
@@ -243,10 +243,12 @@ class Transfers extends React.Component {
                   />
                 </Tooltip>
               ) : null}
-              {`${record.from_address.slice(
-                0,
-                5
-              )}...${record.from_address.slice(-5)}`}
+              {record.from_address !== ""
+                ? `${record.from_address.slice(
+                    0,
+                    5
+                  )}...${record.from_address.slice(-5)}`
+                : null}
             </AddressLink>
           );
         }
@@ -291,9 +293,11 @@ class Transfers extends React.Component {
                   />
                 </Tooltip>
               ) : null}
-              {`${record.to_address.slice(0, 5)}...${record.to_address.slice(
-                -5
-              )}`}
+              {record.to_address !== ""
+                ? `${record.to_address.slice(0, 5)}...${record.to_address.slice(
+                    -5
+                  )}`
+                : null}
             </AddressLink>
           );
         }

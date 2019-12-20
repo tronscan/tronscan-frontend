@@ -91,104 +91,108 @@ class Token20Detail extends React.Component {
 
   loadToken = async address => {
     let { priceUSD } = this.props;
-    let tabs = [
-      // {
-      //   id: "tokenInfo",
-      //   icon: "",
-      //   path: "",
-      //   label: <span>{tu("token_issuance_info")}</span>,
-      //   cmp: () => <TokenInfo token={token} />
-      // },
-      {
-        id: "transfers",
-        icon: "",
-        path: "",
-        label: <span>{tu("token_transfers")}</span>,
-        cmp: () => (
-          <Transfers
-            filter={{ token: address }}
-            getCsvUrl={csvurl => this.setState({ csvurl })}
-            token={token}
-          />
-        )
-      },
-      {
-        id: "holders",
-        icon: "",
-        path: "/holders",
-        label: (
-          <span>
-            {IS_MAINNET ? tu("token_holders") : tu("DAppChain_holders")}
-          </span>
-        ),
-        cmp: () => (
-          <TokenHolders
-            filter={{ token: address }}
-            getCsvUrl={csvurl => this.setState({ csvurl })}
-            token={token}
-          />
-        )
-      }
-    ];
-    if (IS_MAINNET) {
-      tabs = [
-        ...tabs,
-        {
-          id: "quotes",
-          icon: "",
-          path: "/quotes",
-          label: <span>{tu("token_market")}</span>,
-          cmp: () => <ExchangeQuotes address={address} />
-        },
-        {
-          id: "code",
-          icon: "",
-          path: "/code",
-          label: <span>{tu("contract_title")}</span>,
-          cmp: () => (
-            <div style={{ background: "#fff", padding: "0 2.6%" }}>
-              <Code filter={{ address: address }} />
-            </div>
-          )
+
+    xhr
+      .get(API_URL + "/api/token_trc20?contract=" + address + "&showAll=1")
+      .then(async res => {
+        let token = res.data.trc20_tokens[0];
+        this.props.updateTokenInfo({
+          tokenDetail: token
+        });
+        let tabs = [
+          // {
+          //   id: "tokenInfo",
+          //   icon: "",
+          //   path: "",
+          //   label: <span>{tu("token_issuance_info")}</span>,
+          //   cmp: () => <TokenInfo token={token} />
+          // },
+          {
+            id: "transfers",
+            icon: "",
+            path: "",
+            label: <span>{tu("token_transfers")}</span>,
+            cmp: () => (
+              <Transfers
+                filter={{ token: address }}
+                getCsvUrl={csvurl => this.setState({ csvurl })}
+                token={token}
+              />
+            )
+          },
+          {
+            id: "holders",
+            icon: "",
+            path: "/holders",
+            label: (
+              <span>
+                {IS_MAINNET ? tu("token_holders") : tu("DAppChain_holders")}
+              </span>
+            ),
+            cmp: () => (
+              <TokenHolders
+                filter={{ token: address }}
+                getCsvUrl={csvurl => this.setState({ csvurl })}
+                token={token}
+              />
+            )
+          }
+        ];
+
+        if (IS_MAINNET) {
+          tabs = [
+            ...tabs,
+            {
+              id: "quotes",
+              icon: "",
+              path: "/quotes",
+              label: <span>{tu("token_market")}</span>,
+              cmp: () => <ExchangeQuotes address={address} />
+            },
+            {
+              id: "code",
+              icon: "",
+              path: "/code",
+              label: <span>{tu("contract_title")}</span>,
+              cmp: () => (
+                <div style={{ background: "#fff", padding: "0 2.6%" }}>
+                  <Code filter={{ address: address }} />
+                </div>
+              )
+            }
+          ];
         }
-      ];
-    }
+        let winkTotalSupply = {};
+        if (address === "TLa2f6VPqDgRE67v1736s7bJ8Ray5wYjU7") {
+          tabs.push({
+            id: "WinkSupply",
+            icon: "",
+            path: "/supply",
+            label: <span>{tu("WIN_supply")}</span>,
+            cmp: () => <WinkSupply token={token} />
+          });
+          winkTotalSupply = await this.getWinkFund();
+        }
 
-    let winkTotalSupply = {};
-    if (address === "TLa2f6VPqDgRE67v1736s7bJ8Ray5wYjU7") {
-      tabs.push({
-        id: "WinkSupply",
-        icon: "",
-        path: "/supply",
-        label: <span>{tu("WIN_supply")}</span>,
-        cmp: () => <WinkSupply token={token} />
+        let transferNumber = await this.getTransferNum(address);
+
+        this.setState({ loading: true });
+        token.priceToUsd =
+          token && token["market_info"]
+            ? token["market_info"].priceInTrx * priceUSD
+            : 0;
+
+        token.winkTotalSupply = winkTotalSupply;
+        token.transferNumber = transferNumber.rangeTotal || 0;
+        this.setState({
+          loading: false,
+          token,
+          tabs
+        });
+      })
+      .catch(err => {
+        console.log(err);
       });
-      winkTotalSupply = await this.getWinkFund();
-    }
-
-    let transferNumber = await this.getTransferNum(address);
-
-    this.setState({ loading: true });
-    let result = await xhr.get(
-      API_URL + "/api/token_trc20?contract=" + address + "&showAll=1"
-    );
-    let token = result.data.trc20_tokens[0];
-    this.props.updateTokenInfo({
-      tokenDetail: token
-    });
-
-    token.priceToUsd =
-      token && token["market_info"]
-        ? token["market_info"].priceInTrx * priceUSD
-        : 0;
-
-    token.winkTotalSupply = winkTotalSupply;
-    token.transferNumber = transferNumber.rangeTotal || 0;
-    this.setState({
-      loading: false,
-      token,
-      tabs
-    });
   };
 
   submit = async token => {

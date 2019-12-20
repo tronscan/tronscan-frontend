@@ -219,10 +219,12 @@ class Transfers extends React.Component {
                   />
                 </Tooltip>
               ) : null}
-              {`${record.transferFromAddress.slice(
-                0,
-                5
-              )}...${record.transferFromAddress.slice(-5)}`}
+              {record.transferFromAddress !== ""
+                ? `${record.transferFromAddress.slice(
+                    0,
+                    5
+                  )}...${record.transferFromAddress.slice(-5)}`
+                : null}
             </AddressLink>
           );
         }
@@ -264,10 +266,12 @@ class Transfers extends React.Component {
                   />
                 </Tooltip>
               ) : null}
-              {`${record.transferToAddress.slice(
-                0,
-                5
-              )}...${record.transferToAddress.slice(-5)}`}
+              {record.transferToAddress !== ""
+                ? `${record.transferToAddress.slice(
+                    0,
+                    5
+                  )}...${record.transferToAddress.slice(-5)}`
+                : null}
             </AddressLink>
           );
         }
