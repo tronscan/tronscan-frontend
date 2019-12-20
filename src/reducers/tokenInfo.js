@@ -15,6 +15,12 @@ const initialState = {
         total: 0,
         rangeTotal: '',
     },
+    transfers20ListObj: {
+        transfers: [],
+        page: 1,
+        total: 0,
+        rangeTotal: '',
+    },
     start_timestamp: '',
     end_timestamp: ''
 
