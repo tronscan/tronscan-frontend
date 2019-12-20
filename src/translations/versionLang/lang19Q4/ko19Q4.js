@@ -123,7 +123,7 @@ export const lang19Q4 = {
     "charts_daily_transactions": "일일 거래 내역",
     "charts_total_transactions": "총 거래 내역",
     "charts_overall_freezing_rate": "네트워크 전체 동결 속도",
-    "charts_new_addresses": "새로운 주소",
+    "charts_new_addresses": "계정 성장",
     "charts_daily_energy_consumption": "일일 에너지 소비",
     "charts_daily_energy_contracts": "일일 계약 에너지 소비",
     "charts_contract_calling": "계약 호출",

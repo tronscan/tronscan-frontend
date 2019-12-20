@@ -195,7 +195,8 @@ class Transfers extends React.Component {
                 <BlockTime time={Number(record.block_ts)}> </BlockTime>
               ) : (
                 <span className="">
-                  <FormattedDate value={record.block_ts} />
+                  <FormattedDate value={record.block_ts} /> 
+                  &nbsp;
                   <FormattedTime
                     value={record.block_ts}
                     hour="numeric"

@@ -132,7 +132,7 @@ export const lang19Q4 = {
     "charts_daily_transactions": "日交易记录",
     "charts_total_transactions": "总交易记录",
     "charts_overall_freezing_rate": "全网冻结率",
-    "charts_new_addresses": "地址增长",
+    "charts_new_addresses": "账户增长",
     "charts_daily_energy_consumption": "日能量消耗",
     "charts_daily_energy_contracts": "日合约能量消耗",
     "charts_contract_calling": "合约调用",

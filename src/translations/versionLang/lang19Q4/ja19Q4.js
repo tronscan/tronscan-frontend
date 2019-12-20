@@ -124,7 +124,7 @@ export const lang19Q4 = {
     "charts_daily_transactions": "日取引記録",
     "charts_total_transactions": "総合取引記録",
     "charts_overall_freezing_rate": "全体的の凍結率",
-    "charts_new_addresses": "新しいアドレス",
+    "charts_new_addresses": "アカウントの成長",
     "charts_daily_energy_consumption": "毎日のエネルギー消費",
     "charts_daily_energy_contracts": "契約のよる毎日のエネルギー消費",
     "charts_contract_calling": "契約の呼び出し",
