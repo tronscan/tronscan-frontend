@@ -97,6 +97,7 @@ class Address extends React.Component {
     if (match.params.id !== prevProps.match.params.id) {
       this.loadAddress(match.params.id);
       this.loadWitness(match.params.id);
+      this.loadWalletReward(match.params.id)
     }
   }
 
@@ -650,10 +651,10 @@ class Address extends React.Component {
     let totalType1 = GetEnergy + GetBandWidth;
     let totalType2 = Owner + Other;
     let GetEnergyPer =
-      totalType1 != 0 ? parseInt((GetEnergy / totalType1) * 100) : "-";
-    let GetBandWidthPer = totalType1 != 0 ? 100 - GetEnergyPer : "-";
-    let OwnerPer = totalType2 != 0 ? parseInt((Owner / totalType2) * 100) : "-";
-    let OtherPer = totalType2 != 0 ? 100 - OwnerPer : "-";
+      totalType1 != 0 ? ((GetEnergy / totalType1) * 100).toFixed(2) : "-";
+    let GetBandWidthPer = totalType1 != 0 ? (100 - GetEnergyPer).toFixed(2) : "-";
+    let OwnerPer = totalType2 != 0 ? ((Owner / totalType2) * 100).toFixed(2) : "-";
+    let OtherPer = totalType2 != 0 ? (100 - OwnerPer).toFixed(2) : "-";
 
     const TooltipText = (
       <div style={{ lineHeight: "25px" }}>
@@ -680,13 +681,15 @@ class Address extends React.Component {
     return (
       <div>
         <span className="ml-1">(</span>
-        {tu("address_tron_power_remaining")}:
+        {tu("address_tron_power_remaining")}:{" "}
         <FormattedNumber value={balance / ONE_TRX} />
         TRX &nbsp;
-        {tu("freeze")}:
+        {tu("freeze")}:{" "}
         <Tooltip placement="top" innerClassName="w-100" title={TooltipText}>
+          <span style={{color:'rgb(255, 163, 11)'}}>
           <FormattedNumber value={totalPower / ONE_TRX} />
           TRX
+          </span>
         </Tooltip>
         <span>)</span>
       </div>
@@ -893,7 +896,9 @@ class Address extends React.Component {
                             </th>
                             <td>
                               <ul className="list-unstyled m-0">
-                                <li className="d-flex">{walletReward} TRX</li>
+                                <li className="d-flex">   
+                                  <TRXPrice amount={walletReward / ONE_TRX} showPopup={false}/>
+                                  </li>
                               </ul>
                             </td>
                           </tr>
@@ -906,10 +911,8 @@ class Address extends React.Component {
                             </th>
                             <td>
                               <ul className="list-unstyled m-0">
-                                <li className="d-flex">
-                                  <TRXPrice
-                                    amount={(balance + totalPower) / ONE_TRX}
-                                  />
+                                <li className="">
+                                <FormattedNumber value={(balance + totalPower) / ONE_TRX} /> TRX
                                   <div>{this.renderFrozenTokens()}</div>
                                 </li>
                               </ul>

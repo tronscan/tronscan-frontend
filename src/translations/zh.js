@@ -547,7 +547,7 @@ export const messages = {
   "percentage": "总百分比",
   "loading_token": "通证加载中",
   "voter_percentage": "自占百分比",
-  "total_balance": "总余额",
+  "total_balance": "总资产",
   /*
   ##################################################################################
   #                                                                                #
@@ -2005,7 +2005,7 @@ export const messages = {
   "address_balance_token_price_TRX": "价值",
   "address_transactions_tip": "主动发起的交易数量",
   "address_tron_power_tip": "冻结TRX可以获得投票权",
-  "address_total_balance_tip": "总余额为所有有价值的通证余额之和（包含投票权）",
+  "address_total_balance_tip": "总资产为所有有价值的通证余额之和（包含投票权）",
   "address_tron_power_used": "已用",
   "address_tron_power_remaining": "可用",
   "address_total_balance_info_sources": "信息来源",
@@ -2517,9 +2517,12 @@ export const messages = {
   // 2019-12-10
   "ledger_tronlink":"通过TronLink登录TRONSCAN ",
 
-    ...lang19Q4,
-
-    
-
-
+  // 2019-12-18
+  "address_vote_reward_pending":"待领取投票奖励",
+  "address_balance":"TRX余额",
+  "address_get_energe":"为了获得能量",
+  "address_get_bandwith":"为了获得带宽",
+  "address_freeze_owner":"冻结给自己",
+  "address_freeze_other":"冻结给他人",
+  ...lang19Q4,
 };

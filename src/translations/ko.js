@@ -2449,5 +2449,12 @@ export const messages = {
 
 // 2019-12-10
 "ledger_tronlink":"Login to TRONSCAN via TronLink",
-    ...lang19Q4
+// 2019-12-18
+   "address_vote_reward_pending":"투표 보상",
+   "address_balance":"TRX 잔액",
+   "address_get_energe":"에너지 획득하려면",
+   "address_get_bandwith":"대역폭 획득하려면",
+   "address_freeze_owner":"자신에게 동결",
+   "address_freeze_other":"타인에게 동결",
+   ...lang19Q4
 };

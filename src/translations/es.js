@@ -2459,5 +2459,5 @@ export const messages = {
 "address_get_bandwith":"Para ancho de banda",
 "address_freeze_owner":"A tu cuenta",
 "address_freeze_other":"A la (s) cuenta (s) de otros",
-...lang19Q4
+  ...lang19Q4
 };
