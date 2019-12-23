@@ -68,19 +68,20 @@ class Token20Detail extends React.Component {
     this.loadToken(decodeURI(match.params.address));
   }
 
-  componentDidUpdate(prevProps,nextProps) {
+  componentDidUpdate(prevProps, nextProps) {
     let { match } = this.props;
     if (match.params.address !== prevProps.match.params.address) {
       this.loadToken(decodeURI(match.params.address));
     }
-    // if (this.props.location !== prevProps.location) {
-    //   // 路由变化
-    //   if(this.state.searchAddress){
-    //     this.setState({
-    //       searchAddress:""
-    //     })
-    //   }
-    // }
+    if (this.props.location !== prevProps.location) {
+      // 路由变化
+      if (this.state.searchAddress != "") {
+        this.setState({
+          searchAddress: "",
+          searchAddressClose: false
+        });
+      }
+    }
   }
 
   async getWinkFund() {
@@ -586,6 +587,9 @@ class Token20Detail extends React.Component {
       });
       return;
     }
+    this.props.updateTokenInfo({
+      searchAddress: serchInputVal
+    });
     const {
       contract_address,
       total_supply_with_decimals
@@ -630,9 +634,17 @@ class Token20Detail extends React.Component {
     })
       .then(res => {
         if (res.list) {
+          let transfersList = res.list;
+          transfersList.forEach(result => {
+            if (result.to_address === serchInputVal) {
+              result.transfersTag = "in";
+            } else if (result.from_address === serchInputVal) {
+              result.transfersTag = "out";
+            }
+          });
           this.props.updateTokenInfo({
             transfers20ListObj: {
-              transfers: res.list,
+              transfers: transfersList,
               total: res.total,
               rangeTotal: res.rangeTotal
             }
@@ -694,9 +706,9 @@ class Token20Detail extends React.Component {
 
   render() {
     let { match, wallet, priceUSD, intl, tokensInfo } = this.props;
-    let tokenTransferTotal =
-      tokensInfo.transfers20ListObj.rangeTotal ||
-      tokensInfo.holders20ListObj.rangeTotal;
+
+    let tokenTransferTotal = tokensInfo.transfers20ListObj.rangeTotal || 0;
+    let tokensHoldersTotal = tokensInfo.holders20ListObj.rangeTotal || 0;
     let {
       token,
       tabs,
@@ -902,12 +914,12 @@ class Token20Detail extends React.Component {
                         bottom: "28px"
                       }}
                     >
-                      {["", "holders"].indexOf(tabName) !== -1 &&
-                      tokenTransferTotal !== 0 ? (
+                      {tabName === " " && tokenTransferTotal !== 0 ? (
                         <CsvExport downloadURL={csvurl} />
-                      ) : (
-                        ""
-                      )}
+                      ) : null}
+                      {tabName === "holders" && tokensHoldersTotal !== 0 ? (
+                        <CsvExport downloadURL={csvurl} />
+                      ) : null}
                     </div>
                   </div>
                 </div>

@@ -1073,24 +1073,32 @@ export default {
       align: 'center',
     },
     xAxis: {
-      type: 'datetime',
-      dateTimeLabelFormats: {
-        millisecond: '%H:%M:%S.%L',
-        second: '%H:%M:%S',
-        minute: '%H:%M',
-        hour: '%H:%M',
-        day: '%Y-%m-%d',
-        week: '%m-%d',
-        month: '%Y-%m',
-        year: '%Y'
-      },
-      gridLineColor: '#eeeeee',
-      labels: {
-        style: {
-          color: "#999999"
+        type: 'datetime',
+        ordinal: false,
+        dateTimeLabelFormats: {
+            millisecond: '%H:%M:%S.%L',
+            second: '%H:%M:%S',
+            minute: '%H:%M',
+            hour: '%H:%M',
+            day: '%Y-%m-%d',
+            week: '%m-%d',
+            month: '%Y-%m',
+            year: '%Y'
         },
-        autoRotation: [-10, -20, -30, -40, -50, -60, -70, -80, -90]
-      }
+        gridLineColor: '#eeeeee',
+        labels: {
+            style: {
+                color: "#999999"
+            },
+            autoRotation: [-10, -20, -30, -40, -50, -60, -70, -80, -90],
+            //x:55
+        },
+        // tickmarkPlacement: 'on',
+        // tickPixelInterval: 50,
+        title: {
+            enabled: false
+        },
+    
     },
     yAxis: [
       
@@ -1105,25 +1113,7 @@ export default {
         filename:''
     },
     plotOptions: {
-      column: {
-        stacking: 'normal',
-        dataLabels: {
-          enabled: false,
-        //	color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white',
-          style: {
-            textShadow: '0 0 3px black'
-          }
-        }
-      },
-      spline: {
-        marker: {
-          fillColor:"#5A5A5A",
-          width: 8,
-          height: 8,
-          lineWidth: 0,  //线条宽度
-          radius: 4,    //半径宽度
-        }
-      }
+      
     },
     series: []
   }

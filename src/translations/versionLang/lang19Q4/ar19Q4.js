@@ -143,6 +143,7 @@ export const lang19Q4 = {
     "freezing_column_bandwidth_ratio_tip": "عدد TRX للحصول على النطاق العريض في TRX / TRX المجمدة",
     "freezing_column_more": "المزيد",
     "freezing_column_total_circulation_chart": "(TRX) إجمالي تداول ",
+    "freezing_column_total_frozen_chart": "(TRX)كمية التجميد ",
     "freezing_rangeSelector_botton_text_1y": "١ سنة",
     "freezing_rangeSelector_botton_text_6m": "٦ أشهر",
     "freezing_rangeSelector_botton_text_3m": "٣ أشهر",

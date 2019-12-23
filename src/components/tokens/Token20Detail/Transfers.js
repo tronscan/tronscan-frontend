@@ -55,7 +55,6 @@ class Transfers extends React.Component {
   }
 
   componentDidMount() {
-    
     this.loadPage();
 
     if (this.state.autoRefresh !== false) {
@@ -68,6 +67,9 @@ class Transfers extends React.Component {
   };
 
   loadPage = async (page = 1, pageSize = 20) => {
+    this.props.updateTokenInfo({
+      transferSearchStatus: false
+    });
     let { filter, getCsvUrl } = this.props;
     const params = {
       contract_address: filter.token,
@@ -246,7 +248,7 @@ class Transfers extends React.Component {
                     type="file-text"
                     style={{
                       verticalAlign: 0,
-                      color: '#77838f'
+                      color: "#77838f"
                     }}
                   />
                 </Tooltip>
@@ -266,7 +268,15 @@ class Transfers extends React.Component {
         className: "ant_table",
         width: "30px",
         render: (text, record, index) => {
-          return <img src={require("../../../images/arrow.png")} />;
+          return record.transfersTag ? (
+            <img
+              width={40}
+              height={22}
+              src={require(`../../../images/address/${record.transfersTag}.png`)}
+            />
+          ) : (
+            <img src={require("../../../images/arrow.png")} />
+          );
         }
       },
       {
@@ -299,7 +309,8 @@ class Transfers extends React.Component {
                     type="file-text"
                     style={{
                       marginRight: 2,
-                      verticalAlign: 0
+                      verticalAlign: 0,
+                      color: "#77838f"
                     }}
                   />
                 </Tooltip>
@@ -353,6 +364,7 @@ class Transfers extends React.Component {
         dataIndex: "tokens",
         width: "170px",
         key: "tokens",
+        align: "center",
         className: "ant_table",
         render: (text, record, index) => {
           return <span> {token.symbol} </span>;

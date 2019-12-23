@@ -9,11 +9,13 @@ const initialState = {
         holder_address: '',
         balance: ''
     },
+    searchAddress: "",
     transfersListObj: {
         transfers: [],
         page: 1,
         total: 0,
         rangeTotal: 0,
+
     },
     transfers20ListObj: {
         transfers: [],

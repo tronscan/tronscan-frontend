@@ -64,6 +64,9 @@ class Transfers extends React.Component {
   };
 
   loadPage = async (page = 1, pageSize = 20) => {
+    this.props.updateTokenInfo({
+      transferSearchStatus: false
+    });
     let { filter, getCsvUrl } = this.props;
     let { showTotal } = this.state;
     const params = {
@@ -130,6 +133,8 @@ class Transfers extends React.Component {
   customizedColumn = () => {
     let { intl } = this.props;
     let { timeType } = this.state;
+    let { searchAddress } = this.props.tokensInfo || "";
+    console.log(searchAddress, "searchAddress");
     let column = [
       {
         title: upperFirst(
@@ -226,7 +231,7 @@ class Transfers extends React.Component {
                     type="file-text"
                     style={{
                       verticalAlign: 0,
-                      color: '#77838f'
+                      color: "#77838f"
                     }}
                   />
                 </Tooltip>
@@ -246,7 +251,15 @@ class Transfers extends React.Component {
         className: "ant_table",
         width: "30px",
         render: (text, record, index) => {
-          return <img src={require("../../../images/arrow.png")} />;
+          return record.transfersTag ? (
+            <img
+              width={40}
+              height={22}
+              src={require(`../../../images/address/${record.transfersTag}.png`)}
+            />
+          ) : (
+            <img src={require("../../../images/arrow.png")} />
+          );
         }
       },
       {

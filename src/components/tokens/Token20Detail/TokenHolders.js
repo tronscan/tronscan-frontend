@@ -17,7 +17,7 @@ import { updateTokenInfo } from "../../../actions/tokenInfo";
 import { QuestionMark } from "../../common/QuestionMark";
 import HolderDistribution from "../components/HolderDistribution";
 import qs from "qs";
-import {Icon} from 'antd'
+import { Icon } from "antd";
 
 class TokenHolders extends React.Component {
   constructor(props) {
@@ -365,13 +365,16 @@ class TokenHolders extends React.Component {
     }
   };
   resetSearch = async () => {
-    const { page,pageSize} =  this.state
-    this.setState({
-      search: "",
-      page:1
-    },()=>{
-      this.loadTokenHolders(page, pageSize);
-    });
+    const { page, pageSize } = this.state;
+    this.setState(
+      {
+        search: "",
+        page: 1
+      },
+      () => {
+        this.loadTokenHolders(page, pageSize);
+      }
+    );
   };
 
   render() {
@@ -450,18 +453,18 @@ class TokenHolders extends React.Component {
                       })}
                     />
                     {search ? (
-                        <Icon
-                          onClick={() => {
-                            this.resetSearch();
-                          }}
-                          type="close-circle"
-                          style={{
-                            position: "absolute",
-                            top: "0.6rem",
-                            right: 40
-                          }}
-                        />
-                      ) : null}
+                      <Icon
+                        onClick={() => {
+                          this.resetSearch();
+                        }}
+                        type="close-circle"
+                        style={{
+                          position: "absolute",
+                          top: "0.6rem",
+                          right: 40
+                        }}
+                      />
+                    ) : null}
                     <div className="input-group-append">
                       <button
                         className="btn box-shadow-none"
@@ -504,14 +507,14 @@ class TokenHolders extends React.Component {
                     ) : (
                       ""
                     )}
-                    {rangeTotal >= 10000 ? (
+                    {/* {rangeTotal >= 10000 ? (
                       <QuestionMark
                         placement="top"
                         info={tableInfoTip}
                       ></QuestionMark>
                     ) : (
                       ""
-                    )}
+                    )} */}
                   </div>
                 </div>
               </div>

@@ -299,7 +299,8 @@ class StatCharts extends React.Component {
         })
         console.log('data',data)
         this.setState({
-            OverallFreezingRate:  sortBy(data, function(o) { return o.timestamp; })
+            OverallFreezingRate:  sortBy(data, function(o) { return o.timestamp; }),
+            OverallFreezingRateRevers:  data
         });
        
         let higest = {date: '', increment: ''};
@@ -456,12 +457,11 @@ class StatCharts extends React.Component {
     render() {
         let {match, intl} = this.props;
         let {txOverviewStats, txOverviewStatsFull, 
-            addressesStats, blockSizeStats, blockchainSizeStats, summit ,OverallFreezingRate } = this.state;
+            addressesStats, blockSizeStats, blockchainSizeStats, summit ,OverallFreezingRate,OverallFreezingRateRevers } = this.state;
         let { start_day, end_day} = this.state.OverallFreezingRateParams;
 
         let unit;
-        
-         let csvurl = "http://3.14.14.175:9000" + "/api/freezeresource?start_day=" + start_day+"&end_day="+end_day + "&format=csv";
+        let csvurl = "http://3.14.14.175:9000" + "/api/freezeresource?start_day=" + start_day+"&end_day="+end_day + "&format=csv";
         // let csvurl = API_URL + "/api/freezeresource?start_day=" + start_day+"&end_day="+end_day + "&format=csv";
         let freezing_column = this.freezingCustomizedColumn();
         let chartHeight = isMobile? 240: 580
@@ -564,7 +564,7 @@ class StatCharts extends React.Component {
                                             <SmartTable 
                                                 bordered={true} 
                                                 column={freezing_column} 
-                                                data={OverallFreezingRate}
+                                                data={OverallFreezingRateRevers}
                                                 position="bottom"
                                             />
                                         }

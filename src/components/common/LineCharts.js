@@ -1943,7 +1943,6 @@ export class OverallFreezingRateChart extends React.Component {
         console.log('turnoverTotal',turnoverTotal)
         if (newData && newData.length > 0) {
             let options =  {
-            
                 title: {
                     text: intl.formatMessage({id: 'charts_overall_freezing_rate'})
                 },
@@ -1986,7 +1985,7 @@ export class OverallFreezingRateChart extends React.Component {
                         labels: {
                             format: '{value:%Y-%m-%d}',
                             // enabled:false
-                        }
+                        },
                     },
                    
                 },
@@ -2022,8 +2021,73 @@ export class OverallFreezingRateChart extends React.Component {
                         }
                       },
                     }
-                  ],
-                  tooltip: {
+                ],
+                plotOptions: {
+                    column: {
+                        stacking: 'percent',
+                        // dataLabels: {
+                        //     enabled: false,
+                        //     style: {
+                        //         textShadow: '0 0 3px black'
+                        //     }
+                        // }
+                    },
+                    spline: {
+                        marker: {
+                            fillColor:"#5A5A5A",
+                            width: 8,
+                            height: 8,
+                            lineWidth: 0,  //线条宽度
+                            radius: 4,    //半径宽度
+                        }
+                    },
+                    series: {
+                        events: {
+                            // legendItemClick: function(e) {
+                            //     /*var target = e.target; 
+                            //     console.log(target === this);
+                            //     */
+                            //     var index = this.index;
+                            //     var series = this.chart.series;
+                            //     if(series[index].name == intl.formatMessage({id: 'freezing_column_total_circulation'})) {
+                            //         this.chart.yAxis[1].update({
+                            //             title:{
+                            //                 text: intl.formatMessage({id: 'freezing_column_total_circulation_chart'})
+                            //             }
+                            //         });
+                            //     }else if(series[index].name == intl.formatMessage({id: 'freezing_column_total_frozen'})){
+                            //         this.chart.yAxis[1].update({
+                            //             title:{
+                            //                 text: intl.formatMessage({id: 'freezing_column_total_frozen'})
+                            //             }
+                            //         });
+                            //     }
+                            // },
+                            hide: function(event) {
+                                var index = this.index;
+                                var series = this.chart.series;
+                                console.log(series[index].name)
+                                if(series[index].name == intl.formatMessage({id: 'freezing_column_total_circulation'})) {
+                                    this.chart.yAxis[1].update({
+                                        title:{
+                                            text: intl.formatMessage({id: 'freezing_column_total_frozen_chart'})
+                                        }
+                                    });
+                                }else if(series[index].name == intl.formatMessage({id: 'freezing_column_total_frozen'})){
+                                    this.chart.yAxis[1].update({
+                                        title:{
+                                            text: intl.formatMessage({id: 'freezing_column_total_circulation_chart'})
+                                        }
+                                    });
+                                }
+                            },
+                            show: function() {
+                                
+                            }
+                        }
+                    }
+                },
+                tooltip: {
                     useHTML: true,
                     shadow: true,
                     split: false,
@@ -2040,7 +2104,7 @@ export class OverallFreezingRateChart extends React.Component {
                         for (let index = 0; index < pointsLength; index += 1) {
                             s += '<tr><td style="padding-top:4px;padding-bottom:4px;border-top:1px solid #D5D8DC;" valign="top">' + '<span style="color:' + points[index].series.color + ';font-size: 15px !important;">\u25A0</span> ' + intl.formatMessage({id: points[index].series.name })+ '</td>' +
                                 '<td align="right" style="padding-top:5px;padding-bottom:4px;border-top:1px solid #D5D8DC;"><span style=""><b>' +
-                                (index == 2 ? Highcharts.numberFormat(points[index].y, 2, '.', ',') + ' %</b>' : Highcharts.numberFormat(points[index].y, 2, '.', ',') + '</b>')
+                                (points[index].series.name == intl.formatMessage({id: 'freezing_column_freezing_rate'}) ? Highcharts.numberFormat(points[index].y, 2, '.', ',') + ' %</b>' : points[index].series.name ==  intl.formatMessage({id: 'freezing_column_total_circulation'}) ? Highcharts.numberFormat(points[index].y, 6, '.', ',') + '</b>':Highcharts.numberFormat(points[index].y, 0, '.', ',') + '</b>')
                                 + '</span>' +
                                 '</td></tr>'
                         }

@@ -75,7 +75,20 @@ class TokenDetail extends React.Component {
         this.loadToken(decodeURI(match.params.id));
       }
     }
+    if (this.props.location !== prevProps.location) {
+      // 路由变化
+      if (this.state.searchAddress != "") {
+        this.setState({
+          searchAddress: "",
+          searchAddressClose: false
+        });
+        this.props.updateTokenInfo({
+          searchAddress: ""
+        });
+      }
+    }
   }
+
   loadTotalTRXSupply = async () => {
     const { funds } = await Client.getBttFundsSupply();
     this.setState({
@@ -206,7 +219,11 @@ class TokenDetail extends React.Component {
       });
       return;
     }
+
     this.setState({
+      searchAddress: serchInputVal
+    });
+    this.props.updateTokenInfo({
       searchAddress: serchInputVal
     });
     const {
@@ -251,6 +268,14 @@ class TokenDetail extends React.Component {
     })
       .then(res => {
         let transfers = rebuildList(res.list, "tokenName", "amount");
+        transfers.forEach(result => {
+          if (result.transferToAddress === serchInputVal) {
+            result.transfersTag = "in";
+          } else if (result.transferFromAddress === serchInputVal) {
+            result.transfersTag = "out";
+          }
+        });
+        console.log(transfers, transfers);
         for (let index in transfers) {
           transfers[index].index = parseInt(index) + 1;
         }
@@ -273,6 +298,9 @@ class TokenDetail extends React.Component {
     this.setState({
       searchAddress: "",
       searchAddressClose: false
+    });
+    this.props.updateTokenInfo({
+      searchAddress: ""
     });
     let { tokensInfo } = this.props;
     const { ownerAddress } = this.props.tokensInfo.tokenDetail;
@@ -321,9 +349,9 @@ class TokenDetail extends React.Component {
 
   render() {
     let { match, wallet, intl, priceUSD, tokensInfo } = this.props;
-    let tokenTransferTotal =
-      tokensInfo.transfersListObj.rangeTotal ||
-      tokensInfo.holders10ListObj.rangeTotal;
+
+    let tokenTransferTotal = tokensInfo.transfersListObj.rangeTotal;
+    let tokensHoldersTotal = tokensInfo.holders10ListObj.rangeTotal;
     let {
       token,
       tabs,
@@ -531,12 +559,12 @@ class TokenDetail extends React.Component {
                         bottom: "28px"
                       }}
                     >
-                      {["transfers", "holders"].indexOf(tabName) !== -1 &&
-                      tokenTransferTotal !== 0 ? (
+                      {tabName === "transfers" && tokenTransferTotal !== 0 ? (
                         <CsvExport downloadURL={csvurl} />
-                      ) : (
-                        ""
-                      )}
+                      ) : null}
+                      {tabName === "holders" && tokensHoldersTotal !== 0 ? (
+                        <CsvExport downloadURL={csvurl} />
+                      ) : null}
                     </div>
                   </div>
                 </div>
