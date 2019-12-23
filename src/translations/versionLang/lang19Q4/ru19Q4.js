@@ -31,7 +31,7 @@ export const lang19Q4 = {
     */
     "FinalResult": "Результат",
     "distributionTitle": "Распределение Активов по Держателям",
-    "assetsPercent": "Общее количество активов топ {first}~{end} держателей",
+    "assetsPercent": "Топ {first}~{end} держателей",
     "assetsPercentshow": "Общее количество активов топ {first}~{end} держателей：{usdt} {unit}",
     "holders": "Держатели",
     "transfersDetailContractAddress": "Адрес контракта",

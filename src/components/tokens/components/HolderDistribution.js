@@ -64,7 +64,12 @@ class HolderDistribution extends React.Component {
   componentDidMount() {
     this.getDistributionFun();
   }
-
+  // shouldComponentUpdate(nextProps)  {
+  //   if(nextProps.intl.locale !== this.props.activeLanguage){
+  //       return true
+  //   }
+  //   return  false
+  // }
   async getDistributionFun() {
     const { trcType, tokenId, tokensInfo } = this.props;
     const totalSupply =
@@ -175,6 +180,7 @@ class HolderDistribution extends React.Component {
 
   render() {
     const { chartAry } = this.state;
+    let { intl } = this.props;
     return (
       <div
         className="holder-distribution"
@@ -201,7 +207,8 @@ class HolderDistribution extends React.Component {
         </section>
         <section
           style={{
-            margin: "10px 20px 0"
+            margin: "10px 20px 0",
+            display: 'flex'
           }}
         >
           {chartAry.map((item, ind) => {
@@ -222,10 +229,15 @@ class HolderDistribution extends React.Component {
                     fontSize: "14px"
                   }}
                 >
-                  {tv("assetsPercent", {
+                  {tv('assetsPercent',{
                     first: item.first,
                     end: item.end
                   })}
+                  {/* <span>{intl.formatMessage({id: 'assetsPercent'},{
+                    first: item.first,
+                    end: item.end
+                  })}</span> */}
+                  : <span>{item.portion + '%'}</span>
                 </span>
               </span>
             );
@@ -263,7 +275,7 @@ class HolderDistribution extends React.Component {
             );
           })}
         </section>
-        <section
+        {/* <section
           className="distribution-note"
           style={{
             display: "flex",
@@ -293,7 +305,7 @@ class HolderDistribution extends React.Component {
               </div>
             );
           })}
-        </section>
+        </section> */}
       </div>
     );
   }
@@ -301,7 +313,8 @@ class HolderDistribution extends React.Component {
 function mapStateToProps(state) {
   return {
     tokensInfo: state.tokensInfo,
-    priceUSD: state.blockchain.usdPrice
+    priceUSD: state.blockchain.usdPrice,
+    activeLanguage: state.app.activeLanguage
   };
 }
 

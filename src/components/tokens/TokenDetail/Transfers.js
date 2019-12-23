@@ -225,8 +225,8 @@ class Transfers extends React.Component {
                   <Icon
                     type="file-text"
                     style={{
-                      marginRight: 2,
-                      verticalAlign: 0
+                      verticalAlign: 0,
+                      color: '#77838f'
                     }}
                   />
                 </Tooltip>
