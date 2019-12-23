@@ -146,7 +146,7 @@ class Transfers extends React.Component {
         dataIndex: "transactionHash",
         key: "transactionHash",
         className: "ant_table",
-        align: "center",
+        align: "left",
         width: "90px",
         render: (text, record, index) => {
           return (
@@ -195,8 +195,7 @@ class Transfers extends React.Component {
         ),
         dataIndex: "timestamp",
         key: "timestamp",
-        width: "150px",
-        align: "center",
+        align: "left",
         className: "ant_table",
         render: (text, record, index) => {
           return (
@@ -226,7 +225,7 @@ class Transfers extends React.Component {
             id: "from"
           })
         ),
-        align: "center",
+        align: "left",
         dataIndex: "transferFromAddress",
         key: "transferFromAddress",
         className: "ant_table",
@@ -266,6 +265,7 @@ class Transfers extends React.Component {
         title: "",
         className: "ant_table",
         width: "30px",
+        align: "left",
         render: (text, record, index) => {
           return record.transfersTag ? (
             <img
@@ -288,7 +288,7 @@ class Transfers extends React.Component {
         key: "transferToAddress",
         className: "ant_table",
         width: "160px",
-        align: "center",
+        align: "left",
         render: (text, record, index) => {
           return (
             <AddressLink address={record.transferToAddress}>
@@ -351,7 +351,6 @@ class Transfers extends React.Component {
             id: "tokens"
           })
         ),
-        width: "170px",
         dataIndex: "tokens",
         align: "center",
         key: "tokens",
