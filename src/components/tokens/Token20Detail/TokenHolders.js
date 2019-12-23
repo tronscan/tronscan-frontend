@@ -129,7 +129,7 @@ class TokenHolders extends React.Component {
     let column = [
       {
         title: intl.formatMessage({
-          id: "SR_rank"
+          id: "token_rank"
         }),
         dataIndex: "index",
         key: "index",
