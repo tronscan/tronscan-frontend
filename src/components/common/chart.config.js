@@ -1080,7 +1080,7 @@ export default {
             second: '%H:%M:%S',
             minute: '%H:%M',
             hour: '%H:%M',
-            day: '%m-%d',
+            day: '%Y-%m-%d',
             week: '%m-%d',
             month: '%Y-%m',
             year: '%Y'
@@ -1098,7 +1098,6 @@ export default {
         title: {
             enabled: false
         },
-        reversed:true,
     
     },
     yAxis: [
