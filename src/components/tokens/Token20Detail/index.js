@@ -639,35 +639,43 @@ class Token20Detail extends React.Component {
       end_timestamp: tokensInfo.end_timestamp
     };
 
-    await Client.getTokenTRC20Transfers({
-      limit: 20,
-      ...params
-    })
-      .then(res => {
-        if (res.list) {
-          let transfersList = res.list;
-          this.props.updateTokenInfo({
-            searchAddress: serchInputVal
-          });
-          transfersList.forEach(result => {
-            if (result.to_address === serchInputVal) {
-              result.transfersTag = "in";
-            } else if (result.from_address === serchInputVal) {
-              result.transfersTag = "out";
-            }
-          });
-          this.props.updateTokenInfo({
-            transfers20ListObj: {
-              transfers: transfersList,
-              total: res.total,
-              rangeTotal: res.rangeTotal
-            }
-          });
-        }
+    const allData = await Promise.all([
+      Client.getTokenTRC20Transfers({
+        limit: 20,
+        ...params
+      }),
+      Client.getCountByType({
+        type: "trc20",
+        contract: decodeURI(match.params.address)
       })
-      .catch(e => {
-        console.log("error:" + e);
+    ]).catch(e => {
+      console.log("error:" + e);
+    });
+
+    const [{ list, rangeTotal }, { count }] = allData;
+    let transfers = list || [];
+
+    for (let index in transfers) {
+      transfers[index].index = parseInt(index) + 1;
+    }
+    if (serchInputVal !== "") {
+      transfers.forEach(result => {
+        if (result.to_address === serchInputVal) {
+          result.transfersTag = "in";
+        } else if (result.from_address === serchInputVal) {
+          result.transfersTag = "out";
+        }
       });
+    }
+
+    this.props.updateTokenInfo({
+      searchAddress: serchInputVal,
+      transfers20ListObj: {
+        transfers,
+        total: count,
+        rangeTotal
+      }
+    });
   };
 
   resetSearch = async () => {

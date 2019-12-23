@@ -269,12 +269,27 @@ class TokenDetail extends React.Component {
       end_timestamp: tokensInfo.end_timestamp
     };
 
-    await Client.getAssetTransfers({
-      limit: 20,
-      ...params
-    })
-      .then(res => {
-        let transfers = rebuildList(res.list, "tokenName", "amount");
+    try {
+      const allData = await Promise.all([
+        Client.getAssetTransfers({
+          limit: 20,
+          ...params
+        }),
+        Client.getCountByType({
+          type: "asset",
+          issueName: ownerAddress
+        })
+      ]).catch(e => {
+        console.log("error:" + e);
+      });
+      const [{ list, total, rangeTotal }, { count }] = allData;
+
+      let transfers = rebuildList(list, "tokenName", "amount");
+
+      for (let index in transfers) {
+        transfers[index].index = parseInt(index) + 1;
+      }
+      if (serchInputVal !== "") {
         transfers.forEach(result => {
           if (result.transferToAddress === serchInputVal) {
             result.transfersTag = "in";
@@ -282,25 +297,17 @@ class TokenDetail extends React.Component {
             result.transfersTag = "out";
           }
         });
+      }
 
-        for (let index in transfers) {
-          transfers[index].index = parseInt(index) + 1;
+      this.props.updateTokenInfo({
+        searchAddress: serchInputVal,
+        transfersListObj: {
+          transfers,
+          total: count,
+          rangeTotal
         }
-
-        if (res.list) {
-          this.props.updateTokenInfo({
-            searchAddress: serchInputVal,
-            transfersListObj: {
-              transfers,
-              total: res.total,
-              rangeTotal: res.rangeTotal
-            }
-          });
-        }
-      })
-      .catch(e => {
-        console.log("error:" + e);
       });
+    } catch {}
   };
 
   resetSearch = async () => {
