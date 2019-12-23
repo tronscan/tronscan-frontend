@@ -68,7 +68,7 @@ class Token20Detail extends React.Component {
     this.loadToken(decodeURI(match.params.address));
   }
 
-  componentDidUpdate(prevProps,nextProps) {
+  componentDidUpdate(prevProps, nextProps) {
     let { match } = this.props;
     if (match.params.address !== prevProps.match.params.address) {
       this.loadToken(decodeURI(match.params.address));
@@ -694,9 +694,16 @@ class Token20Detail extends React.Component {
 
   render() {
     let { match, wallet, priceUSD, intl, tokensInfo } = this.props;
+
     let tokenTransferTotal =
       tokensInfo.transfers20ListObj.rangeTotal ||
       tokensInfo.holders20ListObj.rangeTotal;
+    console.log(
+      tokensInfo.transfers20ListObj.rangeTotal,
+      tokensInfo.holders20ListObj.rangeTotal,
+      tokenTransferTotal,
+      "tokenTransferTotal"
+    );
     let {
       token,
       tabs,

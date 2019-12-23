@@ -473,14 +473,14 @@ class TokenHolders extends React.Component {
                         }}
                       >
                         {tu("view_total")} {rangeTotal} {tu("hold_addr")}
-                        {rangeTotal >= 10000 ? (
+                        {/* {rangeTotal >= 10000 ? (
                           <QuestionMark
                             placement="top"
                             info={tableInfoTip}
                           ></QuestionMark>
                         ) : (
                           ""
-                        )}
+                        )} */}
                         <br />
                         {rangeTotal >= 10000 ? (
                           <span> ({tu("table_info_big")}) </span>
