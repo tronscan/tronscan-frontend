@@ -328,7 +328,7 @@ class StatsCharts extends React.Component {
               <div className="row mt-5 d-flex">
                 <div className="charts-title mr-3 ml-3">
                   <span>
-                    <i class="fa fa-exchange-alt ml-5 mr-2 "></i>
+                    <i className="fa fa-exchange-alt ml-5 mr-2 "></i>
                     {tu("charts_transaction")}
                   </span>
                 </div>
