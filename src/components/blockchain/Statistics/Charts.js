@@ -4,6 +4,7 @@ import {Client} from "../../../services/api";
 import {ONE_TRX} from "../../../constants";
 import {connect} from "react-redux";
 import {FormattedNumber, injectIntl} from "react-intl";
+import BigNumber from "bignumber.js";
 import {filter, includes} from "lodash";
 import {tronAddresses} from "../../../utils/tron";
 import {TronLoader} from "../../common/loaders";
@@ -48,7 +49,7 @@ import {t} from "../../../utils/i18n";
 
 const Option = Select.Option;
 
-// const API_URL = 'http://52.15.68.74:10000'
+
 
 class StatCharts extends React.Component {
 
@@ -292,10 +293,12 @@ class StatCharts extends React.Component {
        // let {data: {data}} = await xhr.get(API_URL + "/api/freezeresource?start_day="+ start_day+"&end_day="+end_day);
         let {data: {data}} = await xhr.get("http://3.14.14.175:9000" + "/api/freezeresource?start_day="+ start_day+"&end_day="+end_day);
        
-        
+        let x;
         data.map((item, index) => {
             item.timestamp = moment(item.day).valueOf();
             item.freezing_rate_percent = parseFloat((item.freezing_rate * 100).toFixed(2));
+            x = new BigNumber(item.total_turn_over);
+            item.total_turn_over_num = x.decimalPlaces(6).toNumber();
         })
         console.log('data',data)
         this.setState({
@@ -339,20 +342,20 @@ class StatCharts extends React.Component {
             }
         },
         {
-        title: upperFirst(intl.formatMessage({id: 'freezing_column_total_circulation'})),
-        dataIndex: 'total_turn_over',
-        key: 'total_turn_over',
-        render: (text, record, index) => {
-            return <FormattedNumber value={text}/>
-        }
+            title: upperFirst(intl.formatMessage({id: 'freezing_column_total_circulation'})),
+            dataIndex: 'total_turn_over',
+            key: 'total_turn_over',
+            render: (text, record, index) => {
+                return <FormattedNumber value={text}  minimumFractionDigits={6}/>
+            }
         },
         {
-        title: upperFirst(intl.formatMessage({id: 'freezing_column_total_frozen'})),
-        dataIndex: 'total_freeze_weight',
-        key: 'total_freeze_weight',
-        render: (text, record, index) => {
-            return <FormattedNumber value={text}/>
-        }
+            title: upperFirst(intl.formatMessage({id: 'freezing_column_total_frozen'})),
+            dataIndex: 'total_freeze_weight',
+            key: 'total_freeze_weight',
+            render: (text, record, index) => {
+                return <FormattedNumber value={text}/>
+            }
         },
         {
         title: () => {

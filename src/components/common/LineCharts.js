@@ -2,6 +2,8 @@ import React from 'react'
 import moment from 'moment';
 import config from './chart.config.js'
 import { IS_MAINNET } from "../../constants"
+import BigNumber from "bignumber.js"
+import { toThousands } from './../../utils/number'
 import echarts from 'echarts/lib/echarts'
 import 'echarts/lib/chart/line'
 import 'echarts/lib/component/title'
@@ -1933,11 +1935,15 @@ export class OverallFreezingRateChart extends React.Component {
         let freezingRate = [];
         let freezeTotal = [];
         let turnoverTotal = [];
+        let timestamp = []
         newData.map((val) => {
-            freezingRate.push([val['timestamp'],val['freezing_rate_percent']]);
-            freezeTotal.push([val['timestamp'],val['total_freeze_weight']]);
-            turnoverTotal.push([val['timestamp'],val['total_turn_over']]);
+            freezingRate.push(val['freezing_rate_percent']);
+            freezeTotal.push(val['total_freeze_weight']);
+            turnoverTotal.push(val['total_turn_over_num']);
+            timestamp.push(val['timestamp'])
+            //timestamp.push(moment(val['timestamp']).format("YYYY-MM-DD"))
         })
+        console.log('categories',timestamp)
         console.log('freezingRate',freezingRate)
         console.log('freezeTotal',freezeTotal)
         console.log('turnoverTotal',turnoverTotal)
@@ -1990,7 +1996,34 @@ export class OverallFreezingRateChart extends React.Component {
                    
                 },
                 scrollbar: {
-                    enabled: false
+                   // enabled: false
+                },
+                xAxis: {
+                    //type: 'datetime',
+                    ordinal: false,
+                    categories:timestamp,
+                    dateTimeLabelFormats: {
+                        millisecond: '%H:%M:%S.%L',
+                        second: '%H:%M:%S',
+                        minute: '%H:%M',
+                        hour: '%H:%M',
+                        day: '%Y-%m-%d',
+                        week: '%m-%d',
+                        month: '%Y-%m',
+                        year: '%Y'
+                    },
+                    gridLineColor: '#eeeeee',
+                    labels: {
+                        style: {
+                            color: "#999999"
+                        },
+                        autoRotation: [-10, -20, -30, -40, -50, -60, -70, -80, -90],
+                    },
+                    title: {
+                        enabled: false
+                    },
+                  
+                
                 },
                 yAxis: [
                     { // Primary yAxis
@@ -2024,13 +2057,13 @@ export class OverallFreezingRateChart extends React.Component {
                 ],
                 plotOptions: {
                     column: {
-                        stacking: 'percent',
-                        // dataLabels: {
-                        //     enabled: false,
-                        //     style: {
-                        //         textShadow: '0 0 3px black'
-                        //     }
-                        // }
+                        stacking: 'normal',
+                        dataLabels: {
+                            enabled: false,
+                            style: {
+                                textShadow: '0 0 3px black'
+                            }
+                        }
                     },
                     spline: {
                         marker: {
@@ -2115,11 +2148,11 @@ export class OverallFreezingRateChart extends React.Component {
                         var points = this.points;
                         var pointsLength = points.length;
                       
-                        s = '<table class="tableformat" style="border: 0px;padding-left:10px;padding-right:10px" min-width="100%"><tr><td colspan=2 style="padding-bottom:5px;"><span style="font-size: 10px;"> ' + Highcharts.dateFormat('%Y-%m-%d', new Date(points[0].x)) + '</span><br></td></tr>'
+                        s = '<table class="tableformat" style="border: 0px;padding-left:10px;padding-right:10px" min-width="100%"><tr><td colspan=2 style="padding-bottom:5px;"><span style="font-size: 10px;"> ' + moment(points[0].x).format("YYYY-MM-DD") + '</span><br></td></tr>'
                         for (let index = 0; index < pointsLength; index += 1) {
                             s += '<tr><td style="padding-top:4px;padding-bottom:4px;border-top:1px solid #D5D8DC;" valign="top">' + '<span style="color:' + points[index].series.color + ';font-size: 15px !important;">\u25A0</span> ' + intl.formatMessage({id: points[index].series.name })+ '</td>' +
-                                '<td align="right" style="padding-top:5px;padding-bottom:4px;border-top:1px solid #D5D8DC;"><span style=""><b>' +
-                                (points[index].series.name == intl.formatMessage({id: 'freezing_column_freezing_rate'}) ? Highcharts.numberFormat(points[index].y, 2, '.', ',') + ' %</b>' : points[index].series.name ==  intl.formatMessage({id: 'freezing_column_total_circulation'}) ? Highcharts.numberFormat(points[index].y, 6, '.', ',') + '</b>':Highcharts.numberFormat(points[index].y, 0, '.', ',') + '</b>')
+                                '<td align="right" style="padding-top:5px;padding-left:10px;padding-bottom:4px;border-top:1px solid #D5D8DC;"><span style=""><b>' +
+                                (points[index].series.name == intl.formatMessage({id: 'freezing_column_freezing_rate'}) ? Highcharts.numberFormat(points[index].y, 2, '.', ',') + ' %</b>' : points[index].series.name ==  intl.formatMessage({id: 'freezing_column_total_circulation'}) ?  toThousands((new BigNumber(points[index].y)).decimalPlaces(6)) + '</b>':Highcharts.numberFormat(points[index].y, 0, '.', ',') + '</b>')
                                 + '</span>' +
                                 '</td></tr>'
                         }
@@ -2134,6 +2167,8 @@ export class OverallFreezingRateChart extends React.Component {
                     yAxis: 1,
                     color: "#DA8885",
                     data:turnoverTotal,
+                    pointStart: Date.UTC(2019, 11, 14),
+			        pointInterval: 24 * 3600 * 1000 , // one day
                     tooltip: {
                         valueSuffix: ' '
                     },
@@ -2147,6 +2182,8 @@ export class OverallFreezingRateChart extends React.Component {
                     yAxis: 1,
                     color: "#C64844",
                     data:freezeTotal,
+                    pointStart: Date.UTC(2019, 11, 14),
+			        pointInterval: 24 * 3600 * 1000 , // one day
                     tooltip: {
                         valueSuffix: ' '
                     },
@@ -2159,6 +2196,8 @@ export class OverallFreezingRateChart extends React.Component {
                     type: 'spline',
                     color: "#5A5A5A",
                     data:freezingRate,
+                    pointStart: Date.UTC(2019, 11, 14),
+			        pointInterval: 24 * 3600 * 1000 , // one day
                     marker: {
                         enabled: true,
                     
