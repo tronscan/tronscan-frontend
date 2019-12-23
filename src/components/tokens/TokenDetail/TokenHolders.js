@@ -11,10 +11,13 @@ import { isAddressValid } from "@tronscan/client/src/utils/crypto";
 import { trim } from "lodash";
 import { upperFirst, upperCase, lowerCase } from "lodash";
 import { Tooltip } from "antd";
+import { connect } from "react-redux";
+import { updateTokenInfo } from "../../../actions/tokenInfo";
 import { FormatNumberByDecimals } from "../../../utils/number";
 import { QuestionMark } from "../../common/QuestionMark";
 import HolderDistribution from "../components/HolderDistribution";
 import qs from "qs";
+import { Icon } from "antd";
 
 class TokenHolders extends React.Component {
   constructor(props) {
@@ -42,7 +45,9 @@ class TokenHolders extends React.Component {
 
   loadTokenHolders = async (page = 1, pageSize = 20) => {
     let { filter, getCsvUrl } = this.props;
-    this.setState({ loading: true });
+    this.setState({
+      loading: true
+    });
     const params = {
       sort: "-balance",
       limit: pageSize,
@@ -50,7 +55,10 @@ class TokenHolders extends React.Component {
       count: true,
       address: filter.address
     };
-    const query = qs.stringify({ format: "csv", ...params });
+    const query = qs.stringify({
+      format: "csv",
+      ...params
+    });
     getCsvUrl(`${API_URL}/api/tokenholders?${query}`);
 
     let { addresses, total, rangeTotal } = await Client.getTokenHolders(
@@ -104,6 +112,11 @@ class TokenHolders extends React.Component {
       rangeTotal,
       loading: false
     });
+    this.props.updateTokenInfo({
+      holders10ListObj: {
+        rangeTotal
+      }
+    });
   };
   customizedColumn = () => {
     let { intl, token, tokenPrecision } = this.props;
@@ -119,19 +132,31 @@ class TokenHolders extends React.Component {
         className: "ant_table"
       },
       {
-        title: intl.formatMessage({ id: "address" }),
+        title: intl.formatMessage({
+          id: "address"
+        }),
         dataIndex: "address",
         key: "address",
         render: (text, record, index) => {
           return record.ico ? (
-            <div style={{ display: "flex" }}>
+            <div
+              style={{
+                display: "flex"
+              }}
+            >
               <Tooltip
                 placement="topLeft"
-                title={upperCase(intl.formatMessage({ id: record.ico }))}
+                title={upperCase(
+                  intl.formatMessage({
+                    id: record.ico
+                  })
+                )}
               >
                 <span
                   className="d-flex align-items-center"
-                  style={{ maxWidth: 350 }}
+                  style={{
+                    maxWidth: 350
+                  }}
                 >
                   <AddressLink address={record.address} />
                 </span>
@@ -139,29 +164,43 @@ class TokenHolders extends React.Component {
               {record.addressTag ? (
                 <div>
                   <img
-                    style={{ width: 14, height: 14 }}
+                    style={{
+                      width: 14,
+                      height: 14
+                    }}
                     src={`https://coin.top/production/upload/tag/${record.address}.png`}
                     alt=""
                   />
-                  <span> {record.addressTag}</span>
+                  <span> {record.addressTag} </span>
                 </div>
               ) : (
                 ""
               )}
             </div>
           ) : (
-            <div style={{ display: "flex" }}>
-              <div style={{ maxWidth: 350 }}>
+            <div
+              style={{
+                display: "flex"
+              }}
+            >
+              <div
+                style={{
+                  maxWidth: 350
+                }}
+              >
                 <AddressLink address={record.address} />
               </div>
               {record.addressTag ? (
                 <div>
                   <img
-                    style={{ width: 14, height: 14 }}
+                    style={{
+                      width: 14,
+                      height: 14
+                    }}
                     src={`https://coin.top/production/upload/tag/${record.address}.png`}
                     alt=""
                   />
-                  <span> {record.addressTag}</span>
+                  <span> {record.addressTag} </span>
                 </div>
               ) : (
                 ""
@@ -169,11 +208,14 @@ class TokenHolders extends React.Component {
               {record.srTag ? (
                 <div>
                   <img
-                    style={{ width: 14, height: 14 }}
+                    style={{
+                      width: 14,
+                      height: 14
+                    }}
                     src="https://coin.top/production/upload/tag/sr.png"
                     alt=""
                   />
-                  <span> SR</span>
+                  <span> SR </span>
                 </div>
               ) : (
                 ""
@@ -181,11 +223,14 @@ class TokenHolders extends React.Component {
               {record.foundationTag ? (
                 <div>
                   <img
-                    style={{ width: 14, height: 14 }}
+                    style={{
+                      width: 14,
+                      height: 14
+                    }}
                     src="https://coin.top/production/upload/tag/foundation.png"
                     alt=""
                   />
-                  <span> foundation</span>
+                  <span> foundation </span>
                 </div>
               ) : (
                 ""
@@ -203,14 +248,18 @@ class TokenHolders extends React.Component {
       //   render: (text, record, index) => {
       //     return (
       //       <span style={{ whiteSpace: "nowrap" }}>
-      //         {" "}
-      //         {record.addressTag ? record.addressTag : ""}{" "}
+      //
+      //         {record.addressTag ? record.addressTag : ""}
       //       </span>
       //     );
       //   }
       // },
       {
-        title: upperFirst(intl.formatMessage({ id: "quantity" })),
+        title: upperFirst(
+          intl.formatMessage({
+            id: "quantity"
+          })
+        ),
         dataIndex: "transactionHash",
         key: "transactionHash",
         width: "20%",
@@ -226,7 +275,9 @@ class TokenHolders extends React.Component {
         }
       },
       {
-        title: intl.formatMessage({ id: "percentage" }),
+        title: intl.formatMessage({
+          id: "percentage"
+        }),
         dataIndex: "percentage",
         key: "percentage",
         width: "18%",
@@ -238,7 +289,7 @@ class TokenHolders extends React.Component {
               <FormattedNumber
                 value={(record.balance / token.totalSupply) * 100}
                 maximumFractionDigits={6}
-              />{" "}
+              />
               %
             </div>
           );
@@ -255,7 +306,9 @@ class TokenHolders extends React.Component {
 
     if (isAddressValid(search)) {
       let { filter, getCsvUrl } = this.props;
-      this.setState({ loading: true });
+      this.setState({
+        loading: true
+      });
       const params = {
         sort: "-balance",
         limit: 20,
@@ -263,7 +316,10 @@ class TokenHolders extends React.Component {
         address: filter.address,
         holder_address: search
       };
-      const query = qs.stringify({ format: "csv", ...params });
+      const query = qs.stringify({
+        format: "csv",
+        ...params
+      });
       getCsvUrl(`${API_URL}/api/tokenholders?${query}`);
 
       let { addresses, total, rangeTotal } = await Client.getTokenHolders(
@@ -315,6 +371,11 @@ class TokenHolders extends React.Component {
         rangeTotal,
         loading: false
       });
+      this.props.updateTokenInfo({
+        holders10ListObj: {
+          rangeTotal
+        }
+      });
     } else {
       toastr.warning(
         intl.formatMessage({
@@ -330,27 +391,53 @@ class TokenHolders extends React.Component {
     }
   };
 
+  resetSearch = async () => {
+    const { page, pageSize } = this.state;
+    this.setState(
+      {
+        search: "",
+        page: 1
+      },
+      () => {
+        this.loadTokenHolders(page, pageSize);
+      }
+    );
+  };
+
   render() {
     let { addresses, total, rangeTotal, loading, search } = this.state;
     let { intl, filter } = this.props;
     let column = this.customizedColumn();
     let tableInfo =
-      intl.formatMessage({ id: "a_totle" }) +
+      intl.formatMessage({
+        id: "a_totle"
+      }) +
       " " +
       total +
       " " +
-      intl.formatMessage({ id: "hold_addr" });
+      intl.formatMessage({
+        id: "hold_addr"
+      });
     let tableInfoTip =
-      intl.formatMessage({ id: "table_info_holders_tip1" }) +
+      intl.formatMessage({
+        id: "table_info_holders_tip1"
+      }) +
       " " +
       rangeTotal +
       " " +
-      intl.formatMessage({ id: "table_info_holders_tip2" });
+      intl.formatMessage({
+        id: "table_info_holders_tip2"
+      });
 
     return (
       <Fragment>
         {loading && (
-          <div className="loading-style" style={{ marginTop: "-20px" }}>
+          <div
+            className="loading-style"
+            style={{
+              marginTop: "-20px"
+            }}
+          >
             <TronLoader />
           </div>
         )}
@@ -370,7 +457,9 @@ class TokenHolders extends React.Component {
               <div className="nav-searchbar" style={styles.searchBox}>
                 <div
                   className="token20-input-group input-group"
-                  style={{ height: 70 }}
+                  style={{
+                    height: 70
+                  }}
                 >
                   <div
                     style={{
@@ -379,7 +468,11 @@ class TokenHolders extends React.Component {
                     }}
                   >
                     <div className="d-none d-md-block">
-                      <div style={{ padding: "5px 0" }}>
+                      <div
+                        style={{
+                          padding: "5px 0"
+                        }}
+                      >
                         {tu("view_total")} {rangeTotal} {tu("hold_addr")}
                         {rangeTotal >= 10000 ? (
                           <QuestionMark
@@ -391,7 +484,7 @@ class TokenHolders extends React.Component {
                         )}
                         <br />
                         {rangeTotal >= 10000 ? (
-                          <span>({tu("table_info_big")})</span>
+                          <span> ({tu("table_info_big")}) </span>
                         ) : (
                           ""
                         )}
@@ -401,7 +494,7 @@ class TokenHolders extends React.Component {
                   <div className="token20-search">
                     <input
                       type="text"
-                      className="form-control p-2 bg-white border-0 box-shadow-none"
+                      className="form-control p-2 bg-white border-0 box-shadow-none padding20"
                       value={search}
                       onChange={ev =>
                         this.setState({
@@ -412,6 +505,19 @@ class TokenHolders extends React.Component {
                         id: "search_TRC20"
                       })}
                     />
+                    {search ? (
+                      <Icon
+                        onClick={() => {
+                          this.resetSearch();
+                        }}
+                        type="close-circle"
+                        style={{
+                          position: "absolute",
+                          top: "0.6rem",
+                          right: 40
+                        }}
+                      />
+                    ) : null}
                     <div className="input-group-append">
                       <button
                         className="btn box-shadow-none"
@@ -433,7 +539,7 @@ class TokenHolders extends React.Component {
                     paddingTop: "100px"
                   }}
                 >
-                  <span>{tu("no_holders_found")}</span>
+                  <span> {tu("no_holders_found")} </span>
                 </div>
               ) : (
                 <SmartTable
@@ -463,4 +569,18 @@ const styles = {
     borderLeft: "1px solid #d8d8d8"
   }
 };
-export default injectIntl(TokenHolders);
+
+function mapStateToProps(state) {
+  return {
+    tokensInfo: state.tokensInfo
+  };
+}
+
+const mapDispatchToProps = {
+  updateTokenInfo
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(injectIntl(TokenHolders));

@@ -13,13 +13,19 @@ const initialState = {
         transfers: [],
         page: 1,
         total: 0,
-        rangeTotal: '',
+        rangeTotal: 0,
     },
     transfers20ListObj: {
         transfers: [],
         page: 1,
         total: 0,
-        rangeTotal: '',
+        rangeTotal: 0,
+    },
+    holders10ListObj: {
+        rangeTotal: 0,
+    },
+    holders20ListObj: {
+        rangeTotal: 0,
     },
     start_timestamp: '',
     end_timestamp: ''

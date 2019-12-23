@@ -68,11 +68,19 @@ class Token20Detail extends React.Component {
     this.loadToken(decodeURI(match.params.address));
   }
 
-  componentDidUpdate(prevProps) {
+  componentDidUpdate(prevProps,nextProps) {
     let { match } = this.props;
     if (match.params.address !== prevProps.match.params.address) {
       this.loadToken(decodeURI(match.params.address));
     }
+    // if (this.props.location !== prevProps.location) {
+    //   // 路由变化
+    //   if(this.state.searchAddress){
+    //     this.setState({
+    //       searchAddress:""
+    //     })
+    //   }
+    // }
   }
 
   async getWinkFund() {
@@ -623,7 +631,7 @@ class Token20Detail extends React.Component {
       .then(res => {
         if (res.list) {
           this.props.updateTokenInfo({
-            transfersListObj: {
+            transfers20ListObj: {
               transfers: res.list,
               total: res.total,
               rangeTotal: res.rangeTotal
@@ -659,7 +667,7 @@ class Token20Detail extends React.Component {
         }
         if (res.list) {
           this.props.updateTokenInfo({
-            transfersListObj: {
+            transfers20ListObj: {
               transfers,
               total: res.total,
               rangeTotal: res.rangeTotal
@@ -685,8 +693,10 @@ class Token20Detail extends React.Component {
   };
 
   render() {
-    let { match, wallet, priceUSD, intl } = this.props;
-
+    let { match, wallet, priceUSD, intl, tokensInfo } = this.props;
+    let tokenTransferTotal =
+      tokensInfo.transfers20ListObj.rangeTotal ||
+      tokensInfo.holders20ListObj.rangeTotal;
     let {
       token,
       tabs,
@@ -892,7 +902,8 @@ class Token20Detail extends React.Component {
                         bottom: "28px"
                       }}
                     >
-                      {["transfers", "holders"].indexOf(tabName) !== -1 ? (
+                      {["", "holders"].indexOf(tabName) !== -1 &&
+                      tokenTransferTotal !== 0 ? (
                         <CsvExport downloadURL={csvurl} />
                       ) : (
                         ""
