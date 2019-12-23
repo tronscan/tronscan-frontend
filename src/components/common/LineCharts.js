@@ -2026,14 +2026,13 @@ export class OverallFreezingRateChart extends React.Component {
                 ],
                 plotOptions: {
                     column: {
-                        stacking: 'normal',
-                        dataLabels: {
-                            enabled: false,
-                        //	color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white',
-                            style: {
-                            textShadow: '0 0 3px black'
-                            }
-                        }
+                        stacking: 'percent',
+                        // dataLabels: {
+                        //     enabled: false,
+                        //     style: {
+                        //         textShadow: '0 0 3px black'
+                        //     }
+                        // }
                     },
                     spline: {
                         marker: {
