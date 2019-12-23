@@ -345,7 +345,7 @@ export const messages = {
   "open_external_link": "أنت تقوم بالفتح عن طريق رابط خارجي",
   "private_key_untrusted_website_message_0": "يرجى عدم إدخال مفتاحك الخاص على موقع ويب غير موثوق به.",
   "no_official_tron_website": "ليس الموقع الرسمي لترون",
-  "continue_to_external_website": "الاستمرار في الاستخدام بالموقع الخارجي",
+  "continue_to_external_website": "إستمر بالتقدم",
   "visit_third_party_website":"The page you visit will be redirected to a third-party website. There may be security risks. Are you sure you want to continue?",
   "url_changed": "تم تغيير عنوان URL",
   "successfully_changed_website_message": "تم تبديل عنوان موقع الويب بنجاح",

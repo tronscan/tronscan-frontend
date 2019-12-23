@@ -347,7 +347,7 @@ export const messages = {
   "open_external_link": "You are opening an external link",
   "private_key_untrusted_website_message_0": "Never enter your private key on an untrusted website.",
   "no_official_tron_website": "is not an official TRON site.",
-  "continue_to_external_website": "Continue to external site",
+  "continue_to_external_website": "Continue",
   "visit_third_party_website":"The page you visit will be redirected to a third-party website. There may be security risks. Are you sure you want to continue?",
   "url_changed": "URL changed",
   "successfully_changed_website_message": "Successfully changed website to ",

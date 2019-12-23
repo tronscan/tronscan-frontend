@@ -68,11 +68,19 @@ class Token20Detail extends React.Component {
     this.loadToken(decodeURI(match.params.address));
   }
 
-  componentDidUpdate(prevProps) {
+  componentDidUpdate(prevProps,nextProps) {
     let { match } = this.props;
     if (match.params.address !== prevProps.match.params.address) {
       this.loadToken(decodeURI(match.params.address));
     }
+    // if (this.props.location !== prevProps.location) {
+    //   // 路由变化
+    //   if(this.state.searchAddress){
+    //     this.setState({
+    //       searchAddress:""
+    //     })
+    //   }
+    // }
   }
 
   async getWinkFund() {

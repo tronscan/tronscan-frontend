@@ -17,6 +17,7 @@ import { FormatNumberByDecimals } from "../../../utils/number";
 import { QuestionMark } from "../../common/QuestionMark";
 import HolderDistribution from "../components/HolderDistribution";
 import qs from "qs";
+import { Icon } from "antd";
 
 class TokenHolders extends React.Component {
   constructor(props) {
@@ -389,6 +390,19 @@ class TokenHolders extends React.Component {
     }
   };
 
+  resetSearch = async () => {
+    const { page, pageSize } = this.state;
+    this.setState(
+      {
+        search: "",
+        page: 1
+      },
+      () => {
+        this.loadTokenHolders(page, pageSize);
+      }
+    );
+  };
+
   render() {
     let { addresses, total, rangeTotal, loading, search } = this.state;
     let { intl, filter } = this.props;
@@ -479,7 +493,7 @@ class TokenHolders extends React.Component {
                   <div className="token20-search">
                     <input
                       type="text"
-                      className="form-control p-2 bg-white border-0 box-shadow-none"
+                      className="form-control p-2 bg-white border-0 box-shadow-none padding20"
                       value={search}
                       onChange={ev =>
                         this.setState({
@@ -490,6 +504,19 @@ class TokenHolders extends React.Component {
                         id: "search_TRC20"
                       })}
                     />
+                    {search ? (
+                      <Icon
+                        onClick={() => {
+                          this.resetSearch();
+                        }}
+                        type="close-circle"
+                        style={{
+                          position: "absolute",
+                          top: "0.6rem",
+                          right: 40
+                        }}
+                      />
+                    ) : null}
                     <div className="input-group-append">
                       <button
                         className="btn box-shadow-none"
@@ -501,6 +528,7 @@ class TokenHolders extends React.Component {
                   </div>
                 </div>
               </div>
+
               {!loading && addresses.length === 0 ? (
                 <div
                   className=" text-center no-data"
