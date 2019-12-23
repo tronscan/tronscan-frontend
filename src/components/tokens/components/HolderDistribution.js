@@ -228,7 +228,7 @@ class HolderDistribution extends React.Component {
                     fontSize: "14px"
                   }}
                 >
-                  {tv("Token_rules_10086", {
+                  {tv("assetsPercent", {
                     first: item.first,
                     end: item.end,
                     portion: item.portion
