@@ -2244,9 +2244,9 @@ export const messages = {
 
   "Side_Chain":"DAppChain",
   "Main_Chain":"MainChain",
-  "7day": "one week",
-  "14day": "two weeks",
-  "30day": "one month",
+  "7day": "7 días",
+  "14day": "14 dias",
+  "30day": "1 mes",
   "select_tip": "Si desea ver los datos después de 2000, ajuste la ventana de tiempo manualmente",
   "date_number_tip": "Hay {total} registros en el rango de tiempo actual ",
   "date_list_tip": "Solo se muestra 2000 registros en la lista",
