@@ -260,7 +260,8 @@ class TokenHolders extends React.Component {
         sort: "-balance",
         limit: 20,
         count: true,
-        address: search
+        address: filter.address,
+        holder_address: search
       };
       const query = qs.stringify({ format: "csv", ...params });
       getCsvUrl(`${API_URL}/api/tokenholders?${query}`);

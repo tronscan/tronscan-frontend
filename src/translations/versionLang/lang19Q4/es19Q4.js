@@ -31,7 +31,7 @@ export const lang19Q4 = {
     */
     "FinalResult": "Resultado",
     "distributionTitle": "distribución deactivo",
-    "assetsPercent": "Activo total del No.{first} holder",
+    "assetsPercent": "Principales titulares {first}~{end}",
     "assetsPercentshow": "Activo total del No.{first} holder：{usdt} {unit}",
     "holders": "Poseedor",
     "transfersDetailContractAddress": "Dirección de Contrato",

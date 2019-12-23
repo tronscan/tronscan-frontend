@@ -31,7 +31,7 @@ export const lang19Q4 = {
     */
     "FinalResult": "النتيجة النهائية",
     "distributionTitle": "توزيع المراكز",
-    "assetsPercent": "إجمالي أصول {first}~{end}",
+    "assetsPercent": "أفضل حاملي {first}~{end}",
     "assetsPercentshow": "إجمالي أصول {first}~{end}：{usdt} {unit}",
     "holders": "حامل الرمز",
     "transfersDetailContractAddress": "",
