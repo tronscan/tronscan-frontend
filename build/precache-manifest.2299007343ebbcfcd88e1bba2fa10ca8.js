@@ -16,12 +16,19 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/editor.worker.js.gz"
   },
   {
-    "revision": "e6de18aec40b1fa751ad091649552425",
+    "revision": "b94c9d1d88e36d116197700290597113",
     "url": "/index.html"
   },
   {
-    "revision": "f5c1e8ed61ca265c1e28a4fbe789c007",
+    "revision": "1191587a6039e8b330103ee089abf868",
     "url": "/index.html.gz"
+  },
+  {
+    "url": "/precache-manifest.e84131ce8e52e929ddd7ee9a77c392dd.js"
+  },
+  {
+    "revision": "d5f2cc6971990ed893629633caae14b4",
+    "url": "/service-worker.js"
   },
   {
     "revision": "5d50f5c9091ef0187d79",
@@ -88,7 +95,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/css/SmartContract.4872173e.chunk.css.gz"
   },
   {
-    "revision": "eeb04b495af095acc3f7",
+    "revision": "9455a7f7e39abaabfbbd",
     "url": "/static/css/Token20Detail.5f955d2e.chunk.css"
   },
   {
@@ -608,20 +615,20 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/js/TRONRating.248718d9.chunk.js.gz"
   },
   {
-    "revision": "eeb04b495af095acc3f7",
-    "url": "/static/js/Token20Detail.f532ed5e.chunk.js"
+    "revision": "9455a7f7e39abaabfbbd",
+    "url": "/static/js/Token20Detail.c7bd9284.chunk.js"
   },
   {
-    "revision": "8774b6ee72473e4d8a6be2b7265c1fa4",
-    "url": "/static/js/Token20Detail.f532ed5e.chunk.js.gz"
+    "revision": "92b56a6f42ca29036809bb382fc92177",
+    "url": "/static/js/Token20Detail.c7bd9284.chunk.js.gz"
   },
   {
-    "revision": "fc83bc9065d21e82dd59",
-    "url": "/static/js/TokenDetail.696a121d.chunk.js"
+    "revision": "e6a221c99150757fa4f7",
+    "url": "/static/js/TokenDetail.482adb92.chunk.js"
   },
   {
-    "revision": "f99108c28d403cfae21f81123a8a3338",
-    "url": "/static/js/TokenDetail.696a121d.chunk.js.gz"
+    "revision": "5144bd169af6776b667cbb638249cee9",
+    "url": "/static/js/TokenDetail.482adb92.chunk.js.gz"
   },
   {
     "revision": "c4e7a52efe7efe9cf15a",
@@ -744,12 +751,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/js/main.e4a00475.chunk.js.gz"
   },
   {
-    "revision": "389e18a622417972470b",
-    "url": "/static/js/runtime~main.2c05789f.js"
+    "revision": "103b8679e05c5db70ad5",
+    "url": "/static/js/runtime~main.83bfd720.js"
   },
   {
-    "revision": "485f2c6c8d298e886d7129edcdaf2472",
-    "url": "/static/js/runtime~main.2c05789f.js.gz"
+    "revision": "5b988a09bd3fae58449be30668cad12d",
+    "url": "/static/js/runtime~main.83bfd720.js.gz"
   },
   {
     "revision": "7b00f7c4e78ed9cfc676c64c040965e8",
