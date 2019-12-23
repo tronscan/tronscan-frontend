@@ -999,6 +999,101 @@ export class LineReactHighChartVolumeUsd extends React.Component {
     }
 }
 
+export class LineReactHighChartTRXVolumeContract extends React.Component {
+
+    constructor(props) {
+        super(props)
+        this.myChart = null;
+        let id = ('_' + Math.random()).replace('.', '_');
+        this.state = {
+            lineId: 'lineReactVolumeUsd' + id
+        }
+    }
+    initLine(id) {
+        let _config = cloneDeep(config.overviewHighChart);
+
+        let {intl, data, source} = this.props;
+        if (data && data.length === 0) {
+            _config.title.text = "No data";
+        }
+        if (source == 'markets'){
+            if (data && data.length > 0) {
+                data.map((val) => {
+                    let temp;
+                    temp = [val.time,val.volume_billion]
+                    _config.series[0].data.push(temp);
+                })
+            }
+            _config.chart.spacingTop = 20;
+            _config.xAxis.tickPixelInterval = 100;
+            // _config.yAxis.title.text = intl.formatMessage({id: 'billion_usd'});
+            _config.yAxis.tickAmount = 5;
+            _config.yAxis.min = 0;
+            _config.exporting.enabled = false;
+            _config.series[0].marker.enabled = false;
+            _config.tooltip.formatter = function () {
+                let date = intl.formatDate((parseInt(this.point.x)));
+                return (
+                    intl.formatMessage({id: 'date'}) + ' : ' + date + '<br/>' +
+                    intl.formatMessage({id: 'volume_24'}) + ' : ' + this.point.y +'<br>'
+                )
+            }
+        }else{
+            if (data && data.length > 0) {
+                data.map((val) => {
+                    let temp;
+                    temp = [val.time,val.volume_billion]
+                    // temp = {...val, y: val.volume_billion};
+                    _config.series[0].data.push(temp);
+                })
+            }
+            _config.chart.zoomType = 'x';
+            _config.chart.marginTop = 80;
+            _config.title.text = intl.formatMessage({id: 'TRX_historical_data'});
+            _config.subtitle.text = intl.formatMessage({id: 'HighChart_tip'});
+            _config.exporting.filename = intl.formatMessage({id: 'TRX_historical_data'});
+            _config.xAxis.tickPixelInterval = 100;
+            // _config.xAxis.minRange=24 * 3600 * 1000
+            _config.yAxis.title.text = intl.formatMessage({id: 'TRX_historical_data_y_text'});
+            _config.yAxis.tickAmount = 6;
+            _config.yAxis.min = 0;
+            _config.series[0].marker.enabled = false;
+            _config.series[0].pointInterval = 24 * 3600 * 1000;
+            // _config.series[0].pointStart = Date.UTC(2018, 5, 25);
+            _config.tooltip.formatter = function () {
+                let date = intl.formatDate((parseInt(this.point.x)));
+                return (
+                    intl.formatMessage({id: 'date'}) + ' : ' + date + '<br/>' +
+                    intl.formatMessage({id: 'TRX_historical_data_tip'}) + ' : ' + this.point.y +'<br>'
+                )
+            }
+        }
+
+        Highcharts.chart(document.getElementById(id),_config);
+    }
+
+    shouldComponentUpdate(nextProps)  {
+        if(nextProps.intl.locale !== this.props.intl.locale){
+            return true
+        }
+        return  false
+    }
+    componentDidMount() {
+        this.initLine(this.state.lineId);
+    }
+    componentDidUpdate() {
+        this.initLine(this.state.lineId);
+    }
+
+    render() {
+        return (
+            <div>
+                <div id={this.state.lineId} style={this.props.style}></div>
+            </div>
+        )
+    }
+}
+
 export class LineReactAdd extends React.Component {
 
     constructor(props) {
@@ -1951,6 +2046,12 @@ export class OverallFreezingRateChart extends React.Component {
             let options =  {
                 title: {
                     text: intl.formatMessage({id: 'charts_overall_freezing_rate'})
+                },
+                exporting: {
+                    enabled: true,
+                    sourceWidth: 1072,
+                    sourceHeight: 500,
+                    filename:intl.formatMessage({id: 'charts_overall_freezing_rate'})
                 },
                 rangeSelector: {
                     inputDateFormat: '%Y-%m-%d',

@@ -21,6 +21,7 @@ import Events from "./Events";
 import Transfers from "./Transfers";
 import Energy from "./Energy";
 import Call from "./Call";
+import TRXChart from "./TrxCharts";
 import { upperFirst } from "lodash";
 import { Truncate } from "../../common/text";
 import xhr from "axios/index";
@@ -135,7 +136,7 @@ class SmartContract extends React.Component {
             id: "intransactions",
             // icon: "fas fa-handshake",
             path: "/internal-transactions",
-            label: <span>{tu("internal_transactions")}</span>,
+            label: <span>{tu("Internal_txns")}</span>,
             cmp: () => (
               <Transactions
                 getCsvUrl={csvurl => this.setState({ csvurl })}
@@ -162,6 +163,12 @@ class SmartContract extends React.Component {
             path: "/call",
             label: <span>{tu("call")}</span>,
             cmp: () => <Call filter={{ address: id }} />
+          },
+          trx_chart: {
+            id: "trx_chart",
+            path: "/trx-balances-chart",
+            label: <span>{tu("address_balance")}</span>,
+            cmp: () => <TRXChart filter={{ address: id }} />
           }
         }
       }));
@@ -241,6 +248,12 @@ class SmartContract extends React.Component {
             path: "/call",
             label: <span>{tu("call")}</span>,
             cmp: () => <Call filter={{ address: id }} />
+          },
+          trx_chart: {
+            id: "trx_chart",
+            path: "/trx-balances-chart",
+            label: <span>{tu("address_balance")}</span>,
+            cmp: () => <TRXChart filter={{ address: id }} />
           }
         }
       }));
