@@ -139,6 +139,7 @@ export const lang19Q4 = {
     "freezing_column_bandwidth_ratio_tip": "TRX-for-bandwidth ratio=amount of frozen TRX redeemed for bandwidth/amount of TRX frozen",
     "freezing_column_more": "More",
     "freezing_column_total_circulation_chart": "Total circulation（TRX）",
+    "freezing_column_total_frozen_chart": "Total frozen（TRX）",
     "freezing_rangeSelector_botton_text_1y": "1 y",
     "freezing_rangeSelector_botton_text_6m": "6 m",
     "freezing_rangeSelector_botton_text_3m": "3 m",

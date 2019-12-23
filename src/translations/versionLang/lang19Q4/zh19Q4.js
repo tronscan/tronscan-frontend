@@ -148,6 +148,7 @@ export const lang19Q4 = {
     "freezing_column_bandwidth_ratio_tip": "冻结的TRX中获取宽带的TRX数量/冻结TRX数量",
     "freezing_column_more": "更多",
     "freezing_column_total_circulation_chart": "总流通量（TRX）",
+    "freezing_column_total_frozen_chart": "冻结量（TRX）",
     "freezing_rangeSelector_botton_text_1y": "1年",
     "freezing_rangeSelector_botton_text_6m": "6个月",
     "freezing_rangeSelector_botton_text_3m": "3个月",

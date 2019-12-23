@@ -133,12 +133,12 @@ export const lang19Q4 = {
     "freezing_column_freezing_rate": "میزان فریز شده",
     "freezing_column_energy_ratio": "نسبت TRX به انرژی",
     "freezing_column_bandwidth_ratio": "نسبت پهنای باند TRX",
-
     "freezing_column_freezing_rate_tip": "مقدار TRX / TRX در چرخه انجماد",
     "freezing_column_energy_ratio_tip": " ارزش منجمد TRX انرژی / ارزش یخ زده TRX ؛ نسبت پهنای باند",
     "freezing_column_bandwidth_ratio_tip": "تعداد TRX برای به دست آوردن باند پهن در TRX یخ زده / تعداد TRX یخ زده",
     "freezing_column_more": "بیشتر",
     "freezing_column_total_circulation_chart": "（TRX） مجموع گردش",
+    "freezing_column_total_frozen_chart": "（TRX）مجموع  فریز شده ",
     "freezing_rangeSelector_botton_text_1y": "۱ سال",
     "freezing_rangeSelector_botton_text_6m": "۶ ماه",
     "freezing_rangeSelector_botton_text_3m": "۳ ماه",

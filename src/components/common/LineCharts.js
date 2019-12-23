@@ -1929,7 +1929,6 @@ export class OverallFreezingRateChart extends React.Component {
     initLine(id) {
         let _config = cloneDeep(config.OverallFreezingRateChart);
         let {intl, data} = this.props;
-        console.log('data222',data)
         let newData = cloneDeep(data)
         let freezingRate = [];
         let freezeTotal = [];
@@ -1987,7 +1986,6 @@ export class OverallFreezingRateChart extends React.Component {
                             format: '{value:%Y-%m-%d}',
                             // enabled:false
                         },
-                        reversed:true,
                     },
                    
                 },
@@ -2045,25 +2043,46 @@ export class OverallFreezingRateChart extends React.Component {
                     },
                     series: {
                         events: {
-                            legendItemClick: function(e) {
-                                /*var target = e.target; 
-                                console.log(target === this);
-                                */
+                            // legendItemClick: function(e) {
+                            //     /*var target = e.target; 
+                            //     console.log(target === this);
+                            //     */
+                            //     var index = this.index;
+                            //     var series = this.chart.series;
+                            //     if(series[index].name == intl.formatMessage({id: 'freezing_column_total_circulation'})) {
+                            //         this.chart.yAxis[1].update({
+                            //             title:{
+                            //                 text: intl.formatMessage({id: 'freezing_column_total_circulation_chart'})
+                            //             }
+                            //         });
+                            //     }else if(series[index].name == intl.formatMessage({id: 'freezing_column_total_frozen'})){
+                            //         this.chart.yAxis[1].update({
+                            //             title:{
+                            //                 text: intl.formatMessage({id: 'freezing_column_total_frozen'})
+                            //             }
+                            //         });
+                            //     }
+                            // },
+                            hide: function(event) {
                                 var index = this.index;
                                 var series = this.chart.series;
+                                console.log(series[index].name)
                                 if(series[index].name == intl.formatMessage({id: 'freezing_column_total_circulation'})) {
                                     this.chart.yAxis[1].update({
                                         title:{
-                                            text: intl.formatMessage({id: 'freezing_column_total_circulation_chart'})
+                                            text: intl.formatMessage({id: 'freezing_column_total_frozen_chart'})
                                         }
                                     });
                                 }else if(series[index].name == intl.formatMessage({id: 'freezing_column_total_frozen'})){
                                     this.chart.yAxis[1].update({
                                         title:{
-                                            text: intl.formatMessage({id: 'freezing_column_total_frozen'})
+                                            text: intl.formatMessage({id: 'freezing_column_total_circulation_chart'})
                                         }
                                     });
                                 }
+                            },
+                            show: function() {
+                                
                             }
                         }
                     }
