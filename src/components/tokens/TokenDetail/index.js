@@ -75,6 +75,15 @@ class TokenDetail extends React.Component {
         this.loadToken(decodeURI(match.params.id));
       }
     }
+    if (this.props.location !== prevProps.location) {
+      // 路由变化
+      if (this.state.searchAddress != "") {
+        this.setState({
+          searchAddress: "",
+          searchAddressClose: false
+        });
+      }
+    }
   }
   loadTotalTRXSupply = async () => {
     const { funds } = await Client.getBttFundsSupply();

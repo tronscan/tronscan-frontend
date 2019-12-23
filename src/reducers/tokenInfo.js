@@ -14,12 +14,14 @@ const initialState = {
         page: 1,
         total: 0,
         rangeTotal: 0,
+
     },
     transfers20ListObj: {
         transfers: [],
         page: 1,
         total: 0,
         rangeTotal: 0,
+
     },
     holders10ListObj: {
         rangeTotal: 0,

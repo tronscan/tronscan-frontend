@@ -67,6 +67,9 @@ class Transfers extends React.Component {
   };
 
   loadPage = async (page = 1, pageSize = 20) => {
+    this.props.updateTokenInfo({
+      transferSearchStatus: false
+    });
     let { filter, getCsvUrl } = this.props;
     const params = {
       contract_address: filter.token,

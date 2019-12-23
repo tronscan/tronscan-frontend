@@ -64,6 +64,9 @@ class Transfers extends React.Component {
   };
 
   loadPage = async (page = 1, pageSize = 20) => {
+    this.props.updateTokenInfo({
+      transferSearchStatus: false
+    });
     let { filter, getCsvUrl } = this.props;
     let { showTotal } = this.state;
     const params = {
@@ -226,7 +229,7 @@ class Transfers extends React.Component {
                     type="file-text"
                     style={{
                       verticalAlign: 0,
-                      color: '#77838f'
+                      color: "#77838f"
                     }}
                   />
                 </Tooltip>

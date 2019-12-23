@@ -73,14 +73,15 @@ class Token20Detail extends React.Component {
     if (match.params.address !== prevProps.match.params.address) {
       this.loadToken(decodeURI(match.params.address));
     }
-    // if (this.props.location !== prevProps.location) {
-    //   // 路由变化
-    //   if(this.state.searchAddress){
-    //     this.setState({
-    //       searchAddress:""
-    //     })
-    //   }
-    // }
+    if (this.props.location !== prevProps.location) {
+      // 路由变化
+      if (this.state.searchAddress != "") {
+        this.setState({
+          searchAddress: "",
+          searchAddressClose: false
+        });
+      }
+    }
   }
 
   async getWinkFund() {
@@ -695,8 +696,8 @@ class Token20Detail extends React.Component {
   render() {
     let { match, wallet, priceUSD, intl, tokensInfo } = this.props;
 
-    let tokenTransferTotal = tokensInfo.transfers20ListObj.rangeTotal;
-    let tokensHoldersTotal = tokensInfo.holders20ListObj.rangeTotal;
+    let tokenTransferTotal = tokensInfo.transfers20ListObj.rangeTotal || 0;
+    let tokensHoldersTotal = tokensInfo.holders20ListObj.rangeTotal || 0;
     let {
       token,
       tabs,
