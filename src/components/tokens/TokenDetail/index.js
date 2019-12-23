@@ -223,9 +223,7 @@ class TokenDetail extends React.Component {
     this.setState({
       searchAddress: serchInputVal
     });
-    this.props.updateTokenInfo({
-      searchAddress: serchInputVal
-    });
+
     const {
       tokenID,
       totalSupply,
@@ -275,12 +273,14 @@ class TokenDetail extends React.Component {
             result.transfersTag = "out";
           }
         });
-        console.log(transfers, transfers);
+
         for (let index in transfers) {
           transfers[index].index = parseInt(index) + 1;
         }
+
         if (res.list) {
           this.props.updateTokenInfo({
+            searchAddress: serchInputVal,
             transfersListObj: {
               transfers,
               total: res.total,

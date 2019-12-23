@@ -470,10 +470,23 @@ class TokenHolders extends React.Component {
                     <div className="d-none d-md-block">
                       <div
                         style={{
-                          padding: "5px 0"
+                          fontFamily: "PingFangSC-Medium",
+                          fontSize: "16px",
+                          color: "#333333",
+                          marginTop: "8px"
                         }}
                       >
-                        {tu("view_total")} {rangeTotal} {tu("hold_addr")}
+                        {tu("holders")}
+                        {tu("address")}
+                      </div>
+                      <div
+                        style={{
+                          fontFamily: "PingFangSC-Regular",
+                          fontSize: "14px",
+                          color: "#999999"
+                        }}
+                      >
+                        {tu("view_total")} {rangeTotal} {tu("hold_addr")},
                         {/* {rangeTotal >= 10000 ? (
                           <QuestionMark
                             placement="top"
@@ -482,9 +495,8 @@ class TokenHolders extends React.Component {
                         ) : (
                           ""
                         )} */}
-                        <br />
                         {rangeTotal >= 10000 ? (
-                          <span> ({tu("table_info_big")}) </span>
+                          <span> {tu("table_info_big")} </span>
                         ) : (
                           ""
                         )}
