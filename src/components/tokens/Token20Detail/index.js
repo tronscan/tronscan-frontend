@@ -686,7 +686,9 @@ class Token20Detail extends React.Component {
 
   render() {
     let { match, wallet, priceUSD, intl, tokensInfo } = this.props;
-    let tokenTransferTotal = tokensInfo.transfers20ListObj.total || 0;
+    let tokenTransferTotal =
+      tokensInfo.transfers20ListObj.rangeTotal ||
+      tokensInfo.holders20ListObj.rangeTotal;
     let {
       token,
       tabs,

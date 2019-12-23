@@ -310,7 +310,7 @@ class Transfers extends React.Component {
         ),
         dataIndex: "amount",
         key: "amount",
-        align: "center",
+        align: "right",
         className: "ant_table",
         render: (text, record, index) => {
           return (
@@ -326,6 +326,7 @@ class Transfers extends React.Component {
             id: "tokens"
           })
         ),
+        width: "170px",
         dataIndex: "tokens",
         align: "center",
         key: "tokens",

@@ -12,6 +12,8 @@ import { toastr } from "react-redux-toastr";
 import { isAddressValid } from "@tronscan/client/src/utils/crypto";
 import { trim } from "lodash";
 import { FormatNumberByDecimals } from "../../../utils/number";
+import { connect } from "react-redux";
+import { updateTokenInfo } from "../../../actions/tokenInfo";
 import { QuestionMark } from "../../common/QuestionMark";
 import HolderDistribution from "../components/HolderDistribution";
 import qs from "qs";
@@ -115,6 +117,11 @@ class TokenHolders extends React.Component {
       rangeTotal,
       loading: false
     });
+    this.props.updateTokenInfo({
+      holders20ListObj: {
+        rangeTotal
+      }
+    });
   };
   customizedColumn = () => {
     let { intl, token } = this.props;
@@ -137,8 +144,16 @@ class TokenHolders extends React.Component {
         key: "address",
         render: (text, record, index) => {
           return (
-            <div style={{ display: "flex" }}>
-              <div style={{ maxWidth: 380 }}>
+            <div
+              style={{
+                display: "flex"
+              }}
+            >
+              <div
+                style={{
+                  maxWidth: 380
+                }}
+              >
                 <AddressLink address={record.holder_address} />
               </div>
               <span
@@ -149,11 +164,14 @@ class TokenHolders extends React.Component {
                 {record.addressTag ? (
                   <div>
                     <img
-                      style={{ width: 14, height: 14 }}
+                      style={{
+                        width: 14,
+                        height: 14
+                      }}
                       src={`https://coin.top/production/upload/tag/${record.holder_address}.png`}
                       alt=""
                     />
-                    <span> {record.addressTag}</span>
+                    <span> {record.addressTag} </span>
                   </div>
                 ) : (
                   ""
@@ -161,11 +179,14 @@ class TokenHolders extends React.Component {
                 {record.srTag ? (
                   <div>
                     <img
-                      style={{ width: 14, height: 14 }}
+                      style={{
+                        width: 14,
+                        height: 14
+                      }}
                       src="https://coin.top/production/upload/tag/sr.png"
                       alt=""
                     />
-                    <span> SR</span>
+                    <span> SR </span>
                   </div>
                 ) : (
                   ""
@@ -173,11 +194,14 @@ class TokenHolders extends React.Component {
                 {record.foundationTag ? (
                   <div>
                     <img
-                      style={{ width: 14, height: 14 }}
+                      style={{
+                        width: 14,
+                        height: 14
+                      }}
                       src="https://coin.top/production/upload/tag/foundation.png"
                       alt=""
                     />
-                    <span> foundation</span>
+                    <span> foundation </span>
                   </div>
                 ) : (
                   ""
@@ -307,12 +331,22 @@ class TokenHolders extends React.Component {
           search: "",
           rangeTotal
         });
+        this.props.updateTokenInfo({
+          holders20ListObj: {
+            rangeTotal
+          }
+        });
       } else {
         this.setState({
           addresses,
           total: 0,
           search: "",
           rangeTotal
+        });
+        this.props.updateTokenInfo({
+          holders20ListObj: {
+            rangeTotal
+          }
         });
       }
     } else {
@@ -387,7 +421,9 @@ class TokenHolders extends React.Component {
               <div className="nav-searchbar" style={styles.searchBox}>
                 <div
                   className="token20-input-group input-group"
-                  style={{ height: 70 }}
+                  style={{
+                    height: 70
+                  }}
                 >
                   <div className="token20-search">
                     <input
@@ -430,8 +466,7 @@ class TokenHolders extends React.Component {
                       marginTop: "16px"
                     }}
                   >
-                    {tu("holders")}
-                    {tu("address")}
+                    {tu("holders")} {tu("address")}
                   </div>
                   <div
                     style={{
@@ -456,9 +491,6 @@ class TokenHolders extends React.Component {
                     )}
                   </div>
                 </div>
-                {/* ) : ( */}
-                {/* "" */}
-                {/* )} */}
               </div>
               {!loading && addresses.length === 0 ? (
                 <div
@@ -469,7 +501,7 @@ class TokenHolders extends React.Component {
                     paddingTop: "100px"
                   }}
                 >
-                  <span>{tu("no_holders_found")}</span>
+                  <span> {tu("no_holders_found")} </span>
                 </div>
               ) : (
                 <div style={styles.table}>
@@ -510,4 +542,17 @@ const styles = {
   }
 };
 
-export default injectIntl(TokenHolders);
+function mapStateToProps(state) {
+  return {
+    tokensInfo: state.tokensInfo
+  };
+}
+
+const mapDispatchToProps = {
+  updateTokenInfo
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(injectIntl(TokenHolders));
