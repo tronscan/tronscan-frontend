@@ -54,6 +54,7 @@ class Transfers extends React.Component {
   }
 
   componentDidMount() {
+    
     this.loadPage();
 
     if (this.state.autoRefresh !== false) {

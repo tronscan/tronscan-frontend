@@ -344,7 +344,7 @@ export const messages = {
   "open_external_link": "您正在打开外部链接",
   "private_key_untrusted_website_message_0": "请不要在不受信任的网站上输入您的私钥。",
   "no_official_tron_website": "不是波场官方网站",
-  "continue_to_external_website": "继续前往外部网站",
+  "continue_to_external_website": "继续前往",
   "visit_third_party_website":"您所访问的页面将跳转到第三方网站，可能存在安全风险，确定要继续吗?",
   "url_changed": "网址已变更",
   "successfully_changed_website_message": "成功切换网址为",

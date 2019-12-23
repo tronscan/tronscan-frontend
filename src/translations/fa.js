@@ -345,7 +345,7 @@ export const messages = {
    "open_external_link": "شما در حال باز کردن یک لینک خارجی هستید",
    "private_key_untrusted_website_message_0": "هرگز کلید خصوصی خود را بر روی وب سایت های غیر قابل اطمینان وارد نکنید",
    "no_official_tron_website": "این سایت رسمی ترون نیست",
-   "continue_to_external_website": "به سمت سایت خارجی",
+   "continue_to_external_website": "ادامه رو به جلو",
    "visit_third_party_website":"The page you visit will be redirected to a third-party website. There may be security risks. Are you sure you want to continue?",
    "url_changed": "آدرس تغییر کرده",
    "successfully_changed_website_message": "وب سایت به صورت موفقیت آمیز تغییر کرده است",
