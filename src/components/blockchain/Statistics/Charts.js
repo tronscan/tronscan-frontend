@@ -299,7 +299,8 @@ class StatCharts extends React.Component {
         })
         console.log('data',data)
         this.setState({
-            OverallFreezingRate:  sortBy(data, function(o) { return o.timestamp; })
+            OverallFreezingRate:  sortBy(data, function(o) { return o.timestamp; }),
+            // OverallFreezingRate:  data
         });
        
         let higest = {date: '', increment: ''};
