@@ -55,7 +55,6 @@ class Transfers extends React.Component {
   }
 
   componentDidMount() {
-    
     this.loadPage();
 
     if (this.state.autoRefresh !== false) {
@@ -246,7 +245,7 @@ class Transfers extends React.Component {
                     type="file-text"
                     style={{
                       verticalAlign: 0,
-                      color: '#77838f'
+                      color: "#77838f"
                     }}
                   />
                 </Tooltip>
@@ -299,7 +298,8 @@ class Transfers extends React.Component {
                     type="file-text"
                     style={{
                       marginRight: 2,
-                      verticalAlign: 0
+                      verticalAlign: 0,
+                      color: "#77838f"
                     }}
                   />
                 </Tooltip>
@@ -353,6 +353,7 @@ class Transfers extends React.Component {
         dataIndex: "tokens",
         width: "170px",
         key: "tokens",
+        align: "center",
         className: "ant_table",
         render: (text, record, index) => {
           return <span> {token.symbol} </span>;

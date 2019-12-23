@@ -321,9 +321,9 @@ class TokenDetail extends React.Component {
 
   render() {
     let { match, wallet, intl, priceUSD, tokensInfo } = this.props;
-    let tokenTransferTotal =
-      tokensInfo.transfersListObj.rangeTotal ||
-      tokensInfo.holders10ListObj.rangeTotal;
+
+    let tokenTransferTotal = tokensInfo.transfersListObj.rangeTotal;
+    let tokensHoldersTotal = tokensInfo.holders10ListObj.rangeTotal;
     let {
       token,
       tabs,
@@ -531,12 +531,12 @@ class TokenDetail extends React.Component {
                         bottom: "28px"
                       }}
                     >
-                      {["transfers", "holders"].indexOf(tabName) !== -1 &&
-                      tokenTransferTotal !== 0 ? (
+                      {tabName === "transfers" && tokenTransferTotal !== 0 ? (
                         <CsvExport downloadURL={csvurl} />
-                      ) : (
-                        ""
-                      )}
+                      ) : null}
+                      {tabName === "holders" && tokensHoldersTotal !== 0 ? (
+                        <CsvExport downloadURL={csvurl} />
+                      ) : null}
                     </div>
                   </div>
                 </div>
