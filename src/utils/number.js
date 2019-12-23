@@ -65,7 +65,9 @@ export function FormatNumberByDecimalsBalance(number, decimals) {
     if (!number) {
         return 0;
     }
-    if (decimals) {
+    let curDecimals = Number(decimals)
+    console.log()
+    if (curDecimals) {
         const numberString = number.toString();
         const arr = numberString.split(".");
         const cerrentLength = arr[0].length;

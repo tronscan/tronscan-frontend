@@ -6,8 +6,13 @@ const initialState = {
     tokenDetail: '',
     transferSearchStatus: false,
     transfer: {
-        holder_address: '',
-        balance: ''
+        srTag: false,
+        srName: null,
+        balance: '',
+        addressTag: null,
+        holder_address: "",
+        foundationTag: false,
+        accountedFor: 0,
     },
     searchAddress: "",
     transfersListObj: {

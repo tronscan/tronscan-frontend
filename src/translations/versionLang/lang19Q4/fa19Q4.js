@@ -31,7 +31,7 @@ export const lang19Q4 = {
     */
     "FinalResult": "نتیجه نهایی",
     "distributionTitle": "توزیع موقعیت",
-    "assetsPercent": "بالا {first}~{end} دارندگان",
+    "assetsPercent": "%{portion}:بالا {first}~{end} دارندگان",
     "assetsPercentshow": "کل دارایی های {first}~{end}：{usdt} {unit}",
     "holders": "هوادر های توکن",
     "transfersDetailContractAddress": "آدرس قرارداد",

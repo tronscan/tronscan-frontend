@@ -64,18 +64,33 @@ class Transfers extends React.Component {
     this.loadPage(page, pageSize);
   };
 
-  loadPage = async (page = 1, pageSize = 20) => {
-    this.props.updateTokenInfo({
-      transferSearchStatus: false
-    });
+  loadPage = async (page = 1, pageSize = 20, isDate = 0) => {
+    if (isDate == 0) {
+      this.props.updateTokenInfo({
+        transferSearchStatus: false
+      });
+    }
+
     let { filter, getCsvUrl } = this.props;
     let { showTotal } = this.state;
-    const params = {
-      name: filter.token,
-      issueAddress: filter.address,
-      start_timestamp: this.start,
-      end_timestamp: this.end
-    };
+    const { searchAddress } = this.props.tokensInfo;
+    let params;
+    if (searchAddress === "") {
+      params = {
+        name: filter.token,
+        issueAddress: filter.address,
+        start_timestamp: this.start,
+        end_timestamp: this.end
+      };
+    } else {
+      params = {
+        name: filter.token,
+        issueAddress: filter.address,
+        start_timestamp: this.start,
+        end_timestamp: this.end,
+        relatedAddress: searchAddress
+      };
+    }
 
     this.setState({
       loading: true,
@@ -110,6 +125,15 @@ class Transfers extends React.Component {
       for (let index in transfers) {
         transfers[index].index = parseInt(index) + 1;
       }
+      if (searchAddress !== "") {
+        transfers.forEach(result => {
+          if (result.transferToAddress === searchAddress) {
+            result.transfersTag = "in";
+          } else if (result.transferFromAddress === searchAddress) {
+            result.transfersTag = "out";
+          }
+        });
+      }
 
       this.setState({
         page,
@@ -135,7 +159,7 @@ class Transfers extends React.Component {
     let { intl } = this.props;
     let { timeType } = this.state;
     let { searchAddress } = this.props.tokensInfo || "";
-    console.log(searchAddress, "searchAddress");
+
     let column = [
       {
         title: upperFirst(
@@ -376,7 +400,7 @@ class Transfers extends React.Component {
     this.start = start.valueOf();
     this.end = end.valueOf();
     let { page, pageSize } = this.state;
-    this.loadPage(page, pageSize);
+    this.loadPage(page, pageSize, 1);
   }
 
   render() {
@@ -524,7 +548,7 @@ class Transfers extends React.Component {
                   typeText="transaction_info"
                   divClass="table_pos_info_addr"
                   selected
-                  top={searchStatus ? "184px" : "80px"}
+                  top={tokensInfo.searchAddress ? "184px" : "80px"}
                 />
               )}
               <DateSelect
@@ -550,7 +574,7 @@ class Transfers extends React.Component {
                   addr="address"
                   transfers="token"
                   onPageChange={(page, pageSize) => {
-                    this.loadPage(page, pageSize);
+                    this.loadPage(page, pageSize, 1);
                   }}
                 />
               )}

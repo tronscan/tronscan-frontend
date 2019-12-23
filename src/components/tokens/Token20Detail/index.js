@@ -80,6 +80,9 @@ class Token20Detail extends React.Component {
           searchAddress: "",
           searchAddressClose: false
         });
+        this.props.updateTokenInfo({
+          searchAddress: ""
+        });
       }
     }
   }
@@ -604,12 +607,22 @@ class Token20Detail extends React.Component {
               transferSearchStatus: true,
               transfer: {
                 ...trc20Token,
-                accountedFor: trc20Token.balance / total_supply_with_decimals
+                accountedFor:
+                  trc20Token.balance / total_supply_with_decimals || 0
               }
             });
           } else {
             this.props.updateTokenInfo({
-              transferSearchStatus: false
+              transfer: {
+                srTag: false,
+                srName: null,
+                balance: 0,
+                addressTag: null,
+                holder_address: serchInputVal,
+                foundationTag: false,
+                accountedFor: 0
+              },
+              transferSearchStatus: true
             });
           }
         }
@@ -661,6 +674,9 @@ class Token20Detail extends React.Component {
     this.setState({
       searchAddress: "",
       searchAddressClose: false
+    });
+    this.props.updateTokenInfo({
+      searchAddress: ""
     });
     let { match, tokensInfo } = this.props;
     const params = {

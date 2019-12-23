@@ -31,7 +31,7 @@ export const lang19Q4 = {
     */
     "FinalResult": "Результат",
     "distributionTitle": "Распределение Активов по Держателям",
-    "assetsPercent": "Топ {first}~{end} держателей",
+    "assetsPercent": "Топ {first}~{end} держателейL:{portion}%",
     "assetsPercentshow": "Общее количество активов топ {first}~{end} держателей：{usdt} {unit}",
     "holders": "Держатели",
     "transfersDetailContractAddress": "Адрес контракта",
@@ -139,10 +139,10 @@ export const lang19Q4 = {
     "freezing_column_more": "Больше",
     "freezing_column_total_circulation_chart": "Общая циркуляция（TRX）",
     "freezing_column_total_circulation_chart": "Всего замороженных（TRX）",
-    "freezing_rangeSelector_botton_text_1y":"1 год",
-    "freezing_rangeSelector_botton_text_6m":"6 месяцев",
-    "freezing_rangeSelector_botton_text_3m":"3 месяцев",
-    "freezing_rangeSelector_botton_text_1m":"1 месяцев",
+    "freezing_rangeSelector_botton_text_1y": "1 год",
+    "freezing_rangeSelector_botton_text_6m": "6 месяцев",
+    "freezing_rangeSelector_botton_text_3m": "3 месяцев",
+    "freezing_rangeSelector_botton_text_1m": "1 месяцев",
     "freezing_column_a_total": "Данные замороженных TRX и находятся в циркуляции ",
     "freezing_column_calls": " результатов",
 

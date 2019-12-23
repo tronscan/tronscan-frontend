@@ -31,7 +31,7 @@ export const lang19Q4 = {
     */
     "FinalResult": "Resultado",
     "distributionTitle": "distribución deactivo",
-    "assetsPercent": "Principales titulares {first}~{end}",
+    "assetsPercent": "Principales titulares {first}~{end}:{portion}%",
     "assetsPercentshow": "Activo total del No.{first} holder：{usdt} {unit}",
     "holders": "Poseedor",
     "transfersDetailContractAddress": "Dirección de Contrato",
@@ -140,10 +140,10 @@ export const lang19Q4 = {
     "freezing_column_more": "Más",
     "freezing_column_total_circulation_chart": "Total congelado（TRX）",
     "freezing_column_total_frozen_chart": "Total frozen（TRX）",
-    "freezing_rangeSelector_botton_text_1y":"1 año",
-    "freezing_rangeSelector_botton_text_6m":"6 meses",
-    "freezing_rangeSelector_botton_text_3m":"3 meses",
-    "freezing_rangeSelector_botton_text_1m":"1 meses",
+    "freezing_rangeSelector_botton_text_1y": "1 año",
+    "freezing_rangeSelector_botton_text_6m": "6 meses",
+    "freezing_rangeSelector_botton_text_3m": "3 meses",
+    "freezing_rangeSelector_botton_text_1m": "1 meses",
     "freezing_column_a_total": "Datos de TRX congelados y en circulación: ",
     "freezing_column_calls": "resultados",
 }

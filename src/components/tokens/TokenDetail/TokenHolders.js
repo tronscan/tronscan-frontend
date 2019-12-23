@@ -458,7 +458,7 @@ class TokenHolders extends React.Component {
                 <div
                   className="token20-input-group input-group"
                   style={{
-                    height: 70
+                    height: 100
                   }}
                 >
                   <div
@@ -473,7 +473,7 @@ class TokenHolders extends React.Component {
                           fontFamily: "PingFangSC-Medium",
                           fontSize: "16px",
                           color: "#333333",
-                          marginTop: "8px"
+                          marginTop: "20px"
                         }}
                       >
                         {tu("holders")}
@@ -503,7 +503,7 @@ class TokenHolders extends React.Component {
                       </div>
                     </div>
                   </div>
-                  <div className="token20-search">
+                  <div className="token20-search" style={{ top: 20 }}>
                     <input
                       type="text"
                       className="form-control p-2 bg-white border-0 box-shadow-none padding20"
@@ -576,7 +576,6 @@ class TokenHolders extends React.Component {
 const styles = {
   searchBox: {
     background: "#fff",
-    paddingTop: 14,
     borderRight: "1px solid #d8d8d8",
     borderLeft: "1px solid #d8d8d8"
   }

@@ -187,10 +187,9 @@ class HolderDistribution extends React.Component {
         style={{
           background: "#fff",
           paddingTop: "20px",
-          marginBottom: "20px",
+          paddingBottom: "20px",
           borderLeft: "1px solid #d8d8d8",
-          borderRight: "1px solid #d8d8d8",
-          borderBottom: "1px solid #d8d8d8"
+          borderRight: "1px solid #d8d8d8"
         }}
       >
         <section
@@ -208,7 +207,7 @@ class HolderDistribution extends React.Component {
         <section
           style={{
             margin: "10px 20px 0",
-            display: 'flex'
+            display: "flex"
           }}
         >
           {chartAry.map((item, ind) => {
@@ -229,15 +228,16 @@ class HolderDistribution extends React.Component {
                     fontSize: "14px"
                   }}
                 >
-                  {tv('assetsPercent',{
+                  {tv("assetsPercent", {
                     first: item.first,
-                    end: item.end
+                    end: item.end,
+                    portion: item.portion
                   })}
                   {/* <span>{intl.formatMessage({id: 'assetsPercent'},{
                     first: item.first,
                     end: item.end
                   })}</span> */}
-                  : <span>{item.portion + '%'}</span>
+                  {/* : <span>{ + "%"}</span> */}
                 </span>
               </span>
             );

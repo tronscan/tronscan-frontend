@@ -31,7 +31,7 @@ export const lang19Q4 = {
     */
     "FinalResult": "최종 결과",
     "distributionTitle": "보유 분포",
-    "assetsPercent": "톱 {first}~{end} 보유자",
+    "assetsPercent": "톱 {first}~{end} 보유자:{portion}%",
     "assetsPercentshow": "제 {first}~{end} 보유자의 총 자산：{usdt} {unit}",
     "holders": "보유자",
     "transfersDetailContractAddress": "계약주소",

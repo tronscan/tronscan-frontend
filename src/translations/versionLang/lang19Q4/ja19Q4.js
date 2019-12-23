@@ -31,7 +31,7 @@ export const lang19Q4 = {
     */
     "FinalResult": "最終結果",
     "distributionTitle": "保有者による資産内訳",
-    "assetsPercent": "第{first}~{end}名",
+    "assetsPercent": "第{first}~{end}名:{portion}%",
     "assetsPercentshow": "第{first}~{end}名の総資産：{usdt} {unit}",
     "holders": "トークンホルダー",
     "transfersDetailContractAddress": "コントラクト アドレス",

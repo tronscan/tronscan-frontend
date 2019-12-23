@@ -244,7 +244,16 @@ class TokenDetail extends React.Component {
             });
           } else {
             this.props.updateTokenInfo({
-              transferSearchStatus: false
+              transfer: {
+                srTag: false,
+                srName: null,
+                balance: 0,
+                addressTag: null,
+                holder_address: serchInputVal,
+                foundationTag: false,
+                accountedFor: 0
+              },
+              transferSearchStatus: true
             });
           }
         }

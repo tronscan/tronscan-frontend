@@ -31,7 +31,7 @@ export const lang19Q4 = {
     */
     "FinalResult": "Result",
     "distributionTitle": "Asset Breakdown by Holders",
-    "assetsPercent": "Top {first}~{end} holders",
+    "assetsPercent": "Top {first}~{end} holders:{portion}%",
     "assetsPercentshow": "Total assets of top {first}~{end}  holders：{usdt} {unit}",
     "holders": "Holders",
     "transfersDetailContractAddress": "Contract address",

@@ -63,19 +63,34 @@ class Transfers extends React.Component {
   }
 
   onChange = (page, pageSize) => {
-    this.loadPage(page, pageSize);
+    this.loadPage(page, pageSize, 1);
   };
 
-  loadPage = async (page = 1, pageSize = 20) => {
-    this.props.updateTokenInfo({
-      transferSearchStatus: false
-    });
+  loadPage = async (page = 1, pageSize = 20, isDate = 0) => {
+    if (isDate == 0) {
+      this.props.updateTokenInfo({
+        transferSearchStatus: false
+      });
+    }
+
     let { filter, getCsvUrl } = this.props;
-    const params = {
-      contract_address: filter.token,
-      start_timestamp: this.start,
-      end_timestamp: this.end
-    };
+    const { searchAddress } = this.props.tokensInfo;
+    let params;
+    if (searchAddress === "") {
+      params = {
+        contract_address: filter.token,
+        start_timestamp: this.start,
+        end_timestamp: this.end
+      };
+    } else {
+      params = {
+        contract_address: filter.token,
+        start_timestamp: this.start,
+        end_timestamp: this.end,
+        relatedAddress: searchAddress
+      };
+    }
+
     this.setState({
       loading: true,
       page: page,
@@ -113,6 +128,15 @@ class Transfers extends React.Component {
 
     for (let index in transfers) {
       transfers[index].index = parseInt(index) + 1;
+    }
+    if (searchAddress !== "") {
+      transfers.forEach(result => {
+        if (result.to_address === searchAddress) {
+          result.transfersTag = "in";
+        } else if (result.from_address === searchAddress) {
+          result.transfersTag = "out";
+        }
+      });
     }
 
     this.setState({
@@ -348,7 +372,6 @@ class Transfers extends React.Component {
         align: "right",
         className: "ant_table",
         render: (text, record, index) => {
-          console.log(record);
           return (
             <span>
               <span>
@@ -395,7 +418,7 @@ class Transfers extends React.Component {
         page: 1
       },
       () => {
-        this.loadPage(1, pageSize);
+        this.loadPage(1, pageSize, 1);
       }
     );
   }
@@ -577,7 +600,7 @@ class Transfers extends React.Component {
                     transfers="token"
                     current={this.state.page}
                     onPageChange={(page, pageSize) => {
-                      this.loadPage(page, pageSize);
+                      this.loadPage(page, pageSize, 1);
                     }}
                     position="bottom"
                     isPaddingTop={false}

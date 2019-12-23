@@ -435,10 +435,10 @@ class TokenHolders extends React.Component {
                 <div
                   className="token20-input-group input-group"
                   style={{
-                    height: 70
+                    height: 100
                   }}
                 >
-                  <div className="token20-search">
+                  <div className="token20-search" style={{ top: 12 }}>
                     <input
                       type="text"
                       className="form-control p-2 bg-white border-0 box-shadow-none padding20"
@@ -490,7 +490,7 @@ class TokenHolders extends React.Component {
                       fontFamily: "PingFangSC-Medium",
                       fontSize: "16px",
                       color: "#333333",
-                      marginTop: "16px"
+                      marginTop: "20px"
                     }}
                   >
                     {tu("holders")}
@@ -505,7 +505,7 @@ class TokenHolders extends React.Component {
                   >
                     {tu("view_total")} {rangeTotal} {tu("hold_addr")},
                     {rangeTotal >= 10000 ? (
-                      <span> ({tu("table_info_big")}) </span>
+                      <span> {tu("table_info_big")}</span>
                     ) : (
                       ""
                     )}
@@ -548,7 +548,7 @@ class TokenHolders extends React.Component {
 const styles = {
   searchBox: {
     background: "#fff",
-    paddingTop: 14,
+    paddingTop: "14px",
     borderRight: "1px solid #d8d8d8",
     borderLeft: "1px solid #d8d8d8"
   },
