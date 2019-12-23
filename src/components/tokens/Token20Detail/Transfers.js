@@ -268,7 +268,15 @@ class Transfers extends React.Component {
         className: "ant_table",
         width: "30px",
         render: (text, record, index) => {
-          return <img src={require("../../../images/arrow.png")} />;
+          return record.transfersTag ? (
+            <img
+              width={40}
+              height={22}
+              src={require(`../../../images/address/${record.transfersTag}.png`)}
+            />
+          ) : (
+            <img src={require("../../../images/arrow.png")} />
+          );
         }
       },
       {

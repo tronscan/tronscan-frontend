@@ -9,6 +9,7 @@ const initialState = {
         holder_address: '',
         balance: ''
     },
+    searchAddress: "",
     transfersListObj: {
         transfers: [],
         page: 1,
@@ -21,7 +22,6 @@ const initialState = {
         page: 1,
         total: 0,
         rangeTotal: 0,
-
     },
     holders10ListObj: {
         rangeTotal: 0,

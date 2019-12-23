@@ -587,6 +587,9 @@ class Token20Detail extends React.Component {
       });
       return;
     }
+    this.props.updateTokenInfo({
+      searchAddress: serchInputVal
+    });
     const {
       contract_address,
       total_supply_with_decimals
@@ -631,9 +634,17 @@ class Token20Detail extends React.Component {
     })
       .then(res => {
         if (res.list) {
+          let transfersList = res.list;
+          transfersList.forEach(result => {
+            if (result.to_address === serchInputVal) {
+              result.transfersTag = "in";
+            } else if (result.from_address === serchInputVal) {
+              result.transfersTag = "out";
+            }
+          });
           this.props.updateTokenInfo({
             transfers20ListObj: {
-              transfers: res.list,
+              transfers: transfersList,
               total: res.total,
               rangeTotal: res.rangeTotal
             }
