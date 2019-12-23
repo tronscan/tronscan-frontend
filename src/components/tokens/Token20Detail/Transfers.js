@@ -131,6 +131,7 @@ class Transfers extends React.Component {
   customizedColumn = () => {
     let { intl, token } = this.props;
     let { timeType } = this.state;
+    console.log(token.decimals, "12312312312312312312");
     let column = [
       {
         title: upperFirst(
@@ -147,9 +148,8 @@ class Transfers extends React.Component {
           return (
             <Truncate>
               <TransactionHashLink hash={record.transaction_id}>
-                {" "}
-                {record.transaction_id}{" "}
-              </TransactionHashLink>{" "}
+                {record.transaction_id}
+              </TransactionHashLink>
             </Truncate>
           );
         }
@@ -175,14 +175,14 @@ class Transfers extends React.Component {
               intl.formatMessage({
                 id: timeType ? "age" : "trc20_cur_order_header_order_time"
               })
-            )}{" "}
+            )}
             <Icon
               type="retweet"
               style={{
                 verticalAlign: 0,
                 marginLeft: 10
               }}
-            />{" "}
+            />
           </span>
         ),
         dataIndex: "timestamp",
@@ -192,21 +192,20 @@ class Transfers extends React.Component {
         render: (text, record, index) => {
           return (
             <div>
-              {" "}
               {timeType ? (
                 <BlockTime time={Number(record.block_ts)}> </BlockTime>
               ) : (
                 <span className="">
-                  <FormattedDate value={record.block_ts} /> & nbsp;{" "}
+                  <FormattedDate value={record.block_ts} /> &nbsp;
                   <FormattedTime
                     value={record.block_ts}
                     hour="numeric"
                     minute="numeric"
                     second="numeric"
                     hour12={false}
-                  />{" "}
+                  />
                 </span>
-              )}{" "}
+              )}
             </div>
           );
           // <TimeAgo date={Number(record.block_ts)} title={moment(record.block_ts).format("MMM-DD-YYYY HH:mm:ss A")}/>
@@ -226,7 +225,6 @@ class Transfers extends React.Component {
         render: (text, record, index) => {
           return (
             <AddressLink address={record.from_address}>
-              {" "}
               {record.fromAddressIsContract ? (
                 <Tooltip
                   placement="top"
@@ -242,15 +240,15 @@ class Transfers extends React.Component {
                       marginRight: 2,
                       verticalAlign: 0
                     }}
-                  />{" "}
+                  />
                 </Tooltip>
-              ) : null}{" "}
+              ) : null}
               {record.from_address !== ""
                 ? `${record.from_address.slice(
                     0,
                     5
                   )}...${record.from_address.slice(-5)}`
-                : null}{" "}
+                : null}
             </AddressLink>
           );
         }
@@ -277,7 +275,6 @@ class Transfers extends React.Component {
         render: (text, record, index) => {
           return (
             <AddressLink address={record.to_address}>
-              {" "}
               {record.toAddressIsContract ? (
                 <Tooltip
                   placement="top"
@@ -293,14 +290,14 @@ class Transfers extends React.Component {
                       marginRight: 2,
                       verticalAlign: 0
                     }}
-                  />{" "}
+                  />
                 </Tooltip>
-              ) : null}{" "}
+              ) : null}
               {record.to_address !== ""
                 ? `${record.to_address.slice(0, 5)}...${record.to_address.slice(
                     -5
                   )}`
-                : null}{" "}
+                : null}
             </AddressLink>
           );
         }
@@ -329,9 +326,8 @@ class Transfers extends React.Component {
           return (
             <span>
               <span>
-                {" "}
-                {FormatNumberByDecimals(record.quant, token.decimals)}{" "}
-              </span>{" "}
+                {FormatNumberByDecimals(record.quant, token.decimals)}
+              </span>
             </span>
           );
         }
@@ -435,7 +431,6 @@ class Transfers extends React.Component {
 
     return (
       <Fragment>
-        {" "}
         {loading && (
           <div
             className="loading-style"
@@ -445,10 +440,9 @@ class Transfers extends React.Component {
           >
             <TronLoader />
           </div>
-        )}{" "}
+        )}
         <div className="row transfers">
           <div className="col-md-12 ">
-            {" "}
             {tokensInfo.transferSearchStatus ? (
               <div
                 style={{
@@ -469,38 +463,34 @@ class Transfers extends React.Component {
                     {tokensInfo.transfer.holder_address !== ""
                       ? `${tokensInfo.transfer.holder_address.substring(0, 7)}
                         ...${tokensInfo.transfer.holder_address.slice(-7)}`
-                      : null}{" "}
-                  </div>{" "}
-                  <p style={descStyle}> {tu("transfersDetailHolder")} </p>{" "}
-                </div>{" "}
+                      : null}
+                  </div>
+                  <p style={descStyle}> {tu("transfersDetailHolder")} </p>
+                </div>
                 <div style={listCommonSty}>
                   <div style={listTitleStyle}>
-                    {" "}
                     {(tokensInfo.transfer.balance / Math.pow(10, 6)).toFixed(6)}
-                    TRX{" "}
-                  </div>{" "}
-                  <p style={descStyle}>
-                    {" "}
-                    {tu("transfersDetailQuantity")}{" "}
-                  </p>{" "}
-                </div>{" "}
+                    TRX
+                  </div>
+                  <p style={descStyle}>{tu("transfersDetailQuantity")}</p>
+                </div>
                 <div style={listCommonSty}>
                   <div style={listTitleStyle}>
                     <FormattedNumber
                       value={tokensInfo.transfer.accountedFor * 100}
                       maximumFractionDigits={6}
-                    ></FormattedNumber>{" "}
+                    ></FormattedNumber>
                     %
-                  </div>{" "}
-                  <p style={descStyle}> {tu("transfersDetailPercentage")} </p>{" "}
-                </div>{" "}
+                  </div>
+                  <p style={descStyle}> {tu("transfersDetailPercentage")} </p>
+                </div>
                 <div style={listCommonSty}>
                   <div style={listTitleStyle}>
-                    ${" "}
+                    $
                     {(
                       (tokensInfo.transfer.balance / Math.pow(10, 6)) *
                       priceUSD
-                    ).toFixed(0)}{" "}
+                    ).toFixed(0)}
                     <span
                       style={{
                         color: "rgba(51,51,51,0.25)",
@@ -511,13 +501,13 @@ class Transfers extends React.Component {
                       {(tokensInfo.transfer.balance / Math.pow(10, 6)).toFixed(
                         0
                       )}
-                      TRX{" "}
-                    </span>{" "}
-                  </div>{" "}
-                  <p style={descStyle}> {tu("transfersDetailValue")} </p>{" "}
-                </div>{" "}
+                      TRX
+                    </span>
+                  </div>
+                  <p style={descStyle}> {tu("transfersDetailValue")} </p>
+                </div>
               </div>
-            ) : null}{" "}
+            ) : null}
             <div className="distributionWrapper">
               <div>
                 <div
@@ -528,10 +518,9 @@ class Transfers extends React.Component {
                 >
                   <DateSelect
                     onDateOk={(start, end) => this.onDateOk(start, end)}
-                  />{" "}
-                </div>{" "}
+                  />
+                </div>
                 <div className="d-flex justify-content-between pl-3 pr-3">
-                  {" "}
                   {!loading && (
                     <TotalInfo
                       total={total}
@@ -541,15 +530,13 @@ class Transfers extends React.Component {
                       selected
                       top={tokensInfo.transferSearchStatus ? "184px" : "70px"}
                     />
-                  )}{" "}
-                </div>{" "}
+                  )}
+                </div>
               </div>
               <div className="trx20tronsfers">
-                {" "}
                 {transfers.length === 0 ? (
                   <div className="pt-5 pb-5 text-center no-data transfers-bg-white">
-                    {" "}
-                    {tu("no_transfers")}{" "}
+                    {tu("no_transfers")}
                   </div>
                 ) : (
                   <SmartTable
@@ -567,11 +554,11 @@ class Transfers extends React.Component {
                     position="bottom"
                     isPaddingTop={false}
                   />
-                )}{" "}
-              </div>{" "}
-            </div>{" "}
-          </div>{" "}
-        </div>{" "}
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
       </Fragment>
     );
   }

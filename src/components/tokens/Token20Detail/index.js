@@ -623,7 +623,7 @@ class Token20Detail extends React.Component {
       .then(res => {
         if (res.list) {
           this.props.updateTokenInfo({
-            transfersListObj: {
+            transfers20ListObj: {
               transfers: res.list,
               total: res.total,
               rangeTotal: res.rangeTotal
@@ -659,7 +659,7 @@ class Token20Detail extends React.Component {
         }
         if (res.list) {
           this.props.updateTokenInfo({
-            transfersListObj: {
+            transfers20ListObj: {
               transfers,
               total: res.total,
               rangeTotal: res.rangeTotal
