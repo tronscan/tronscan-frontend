@@ -346,6 +346,7 @@ class Transfers extends React.Component {
         align: "right",
         className: "ant_table",
         render: (text, record, index) => {
+          console.log(record);
           return (
             <span>
               <span>
@@ -353,6 +354,7 @@ class Transfers extends React.Component {
               </span>
             </span>
           );
+          //  <FormattedNumber value={record.map_quant}></FormattedNumber>;
         }
       },
       {

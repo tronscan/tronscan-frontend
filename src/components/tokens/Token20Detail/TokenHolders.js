@@ -478,6 +478,7 @@ class TokenHolders extends React.Component {
               </div>
               <div style={styles.tablePosInfo}>
                 {/* {total ? ( */}
+
                 <div
                   className="d-none d-md-block"
                   style={{
@@ -492,7 +493,8 @@ class TokenHolders extends React.Component {
                       marginTop: "16px"
                     }}
                   >
-                    {tu("holders")} {tu("address")}
+                    {tu("holders")}
+                    {tu("address")}
                   </div>
                   <div
                     style={{
@@ -507,14 +509,6 @@ class TokenHolders extends React.Component {
                     ) : (
                       ""
                     )}
-                    {/* {rangeTotal >= 10000 ? (
-                      <QuestionMark
-                        placement="top"
-                        info={tableInfoTip}
-                      ></QuestionMark>
-                    ) : (
-                      ""
-                    )} */}
                   </div>
                 </div>
               </div>

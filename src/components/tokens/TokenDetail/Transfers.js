@@ -10,6 +10,7 @@ import { Icon, Tooltip } from "antd";
 import { Truncate } from "../../common/text";
 import { withTimers } from "../../../utils/timing";
 import { FormatNumberByDecimals } from "../../../utils/number";
+import { BlockNumberLink } from "../../common/Links";
 import {
   FormattedNumber,
   injectIntl,
@@ -155,6 +156,21 @@ class Transfers extends React.Component {
               </TransactionHashLink>
             </Truncate>
           );
+        }
+      },
+      {
+        title: upperFirst(
+          intl.formatMessage({
+            id: "blocks"
+          })
+        ),
+        dataIndex: "blockId",
+        key: "blockId",
+        className: "ant_table",
+        align: "center",
+        width: "100px",
+        render: (text, record, index) => {
+          return <BlockNumberLink number={text} />;
         }
       },
       {
@@ -326,11 +342,7 @@ class Transfers extends React.Component {
         align: "right",
         className: "ant_table",
         render: (text, record, index) => {
-          return (
-            <span>
-              {FormatNumberByDecimals(text, record.map_token_precision)}
-            </span>
-          );
+          return <FormattedNumber value={record.map_amount}></FormattedNumber>;
         }
       },
       {
@@ -345,7 +357,7 @@ class Transfers extends React.Component {
         key: "tokens",
         className: "ant_table",
         render: (text, record, index) => {
-          return <span> {record.map_token_name} </span>;
+          return <span> {record.map_token_name_abbr} </span>;
         }
       }
     ];
