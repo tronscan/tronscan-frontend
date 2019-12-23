@@ -2082,7 +2082,22 @@ export class OverallFreezingRateChart extends React.Component {
                                 }
                             },
                             show: function() {
-                                
+                                var index = this.index;
+                                var series = this.chart.series;
+                                console.log(series[index].name)
+                                if(series[index].name == intl.formatMessage({id: 'freezing_column_total_circulation'})) {
+                                    this.chart.yAxis[1].update({
+                                        title:{
+                                            text: intl.formatMessage({id: 'freezing_column_total_circulation_chart'})
+                                        }
+                                    });
+                                }else if(series[index].name == intl.formatMessage({id: 'freezing_column_total_frozen'})){
+                                    this.chart.yAxis[1].update({
+                                        title:{
+                                            text: intl.formatMessage({id: 'freezing_column_total_frozen_chart'})
+                                        }
+                                    });
+                                }
                             }
                         }
                     }
