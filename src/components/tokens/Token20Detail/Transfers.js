@@ -29,6 +29,7 @@ import DateSelect from "../components/dateSelect";
 import xhr from "axios/index";
 import { FormatNumberByDecimals } from "../../../utils/number";
 import qs from "qs";
+import { BlockNumberLink } from "../../common/Links";
 import BlockTime from "../../common/blockTime";
 
 class Transfers extends React.Component {
@@ -131,7 +132,6 @@ class Transfers extends React.Component {
   customizedColumn = () => {
     let { intl, token } = this.props;
     let { timeType } = this.state;
-    console.log(token.decimals, "12312312312312312312");
     let column = [
       {
         title: upperFirst(
@@ -143,7 +143,7 @@ class Transfers extends React.Component {
         key: "transactionHash",
         className: "ant_table",
         align: "center",
-        width: "150px",
+        width: "90px",
         render: (text, record, index) => {
           return (
             <Truncate>
@@ -163,7 +163,11 @@ class Transfers extends React.Component {
         dataIndex: "block",
         key: "block",
         className: "ant_table",
-        width: "100px"
+        align: "center",
+        width: "100px",
+        render: (text, record, index) => {
+          return <BlockNumberLink number={text} />;
+        }
       },
       {
         title: (
@@ -224,7 +228,10 @@ class Transfers extends React.Component {
         align: "center",
         render: (text, record, index) => {
           return (
-            <AddressLink address={record.from_address}>
+            <AddressLink
+              address={record.from_address}
+              isContract={record.toAddressIsContract}
+            >
               {record.fromAddressIsContract ? (
                 <Tooltip
                   placement="top"
@@ -274,7 +281,10 @@ class Transfers extends React.Component {
         width: "160px",
         render: (text, record, index) => {
           return (
-            <AddressLink address={record.to_address}>
+            <AddressLink
+              address={record.to_address}
+              isContract={record.toAddressIsContract}
+            >
               {record.toAddressIsContract ? (
                 <Tooltip
                   placement="top"
@@ -308,6 +318,7 @@ class Transfers extends React.Component {
             id: "FinalResult"
           })
         ),
+        align: "center",
         dataIndex: "contractRet",
         key: "contractRet",
         className: "ant_table"

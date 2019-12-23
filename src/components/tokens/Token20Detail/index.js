@@ -685,8 +685,8 @@ class Token20Detail extends React.Component {
   };
 
   render() {
-    let { match, wallet, priceUSD, intl } = this.props;
-
+    let { match, wallet, priceUSD, intl, tokensInfo } = this.props;
+    let tokenTransferTotal = tokensInfo.transfers20ListObj.total || 0;
     let {
       token,
       tabs,
@@ -892,7 +892,8 @@ class Token20Detail extends React.Component {
                         bottom: "28px"
                       }}
                     >
-                      {["transfers", "holders"].indexOf(tabName) !== -1 ? (
+                      {["", "holders"].indexOf(tabName) !== -1 &&
+                      tokenTransferTotal !== 0 ? (
                         <CsvExport downloadURL={csvurl} />
                       ) : (
                         ""

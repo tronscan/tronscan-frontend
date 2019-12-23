@@ -27,6 +27,7 @@ import TotalInfo from "../components/TableTotal";
 import DateSelect from "../components/dateSelect";
 import rebuildList from "../../../utils/rebuildList";
 import qs from "qs";
+
 import BlockTime from "../../common/blockTime";
 
 class Transfers extends React.Component {
@@ -105,7 +106,7 @@ class Transfers extends React.Component {
       for (let index in transfers) {
         transfers[index].index = parseInt(index) + 1;
       }
-      console.log(transfers);
+
       this.setState({
         page,
         transfers,
@@ -127,9 +128,7 @@ class Transfers extends React.Component {
   };
 
   customizedColumn = () => {
-    let { intl, tokensInfo } = this.props;
-    let precision = tokensInfo.tokenDetail.precision || "";
-    let tokenNameInfo = tokensInfo.tokenDetail.name || "";
+    let { intl } = this.props;
     let { timeType } = this.state;
     let column = [
       {
@@ -141,7 +140,8 @@ class Transfers extends React.Component {
         dataIndex: "transactionHash",
         key: "transactionHash",
         className: "ant_table",
-        width: "150px",
+        align: "center",
+        width: "90px",
         render: (text, record, index) => {
           return (
             <Truncate>
@@ -174,7 +174,8 @@ class Transfers extends React.Component {
         ),
         dataIndex: "timestamp",
         key: "timestamp",
-        width: "180px",
+        width: "150px",
+        align: "center",
         className: "ant_table",
         render: (text, record, index) => {
           return (
@@ -314,10 +315,7 @@ class Transfers extends React.Component {
         render: (text, record, index) => {
           return (
             <span>
-              {FormatNumberByDecimals(
-                JSON.stringify(record.amount),
-                precision.decimals
-              )}
+              {FormatNumberByDecimals(text, record.map_token_precision)}
             </span>
           );
         }
@@ -333,7 +331,7 @@ class Transfers extends React.Component {
         key: "tokens",
         className: "ant_table",
         render: (text, record, index) => {
-          return <span> {tokenNameInfo} </span>;
+          return <span> {record.map_token_name} </span>;
         }
       }
     ];
