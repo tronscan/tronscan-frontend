@@ -290,9 +290,7 @@ class StatCharts extends React.Component {
     //冻结率
     async loadOverallFreezingRate() {
         let { start_day, end_day} = this.state.OverallFreezingRateParams;
-       // let {data: {data}} = await xhr.get(API_URL + "/api/freezeresource?start_day="+ start_day+"&end_day="+end_day);
-        let {data: {data}} = await xhr.get("http://3.14.14.175:9000" + "/api/freezeresource?start_day="+ start_day+"&end_day="+end_day);
-       
+        let {data: {data}} = await xhr.get(API_URL + "/api/freezeresource?start_day="+ start_day+"&end_day="+end_day);       
         let x;
         data.map((item, index) => {
             item.timestamp = moment(item.day).valueOf();
@@ -464,8 +462,7 @@ class StatCharts extends React.Component {
         let { start_day, end_day} = this.state.OverallFreezingRateParams;
 
         let unit;
-        let csvurl = "http://3.14.14.175:9000" + "/api/freezeresource?start_day=" + start_day+"&end_day="+end_day + "&format=csv";
-        // let csvurl = API_URL + "/api/freezeresource?start_day=" + start_day+"&end_day="+end_day + "&format=csv";
+        let csvurl = API_URL + "/api/freezeresource?start_day=" + start_day+"&end_day="+end_day + "&format=csv";
         let freezing_column = this.freezingCustomizedColumn();
         let chartHeight = isMobile? 240: 580
         if (match.params.chartName === 'blockchainSizeStats' || match.params.chartName === 'addressesStats') {
