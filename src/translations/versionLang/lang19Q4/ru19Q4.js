@@ -138,12 +138,15 @@ export const lang19Q4 = {
     "freezing_column_bandwidth_ratio_tip": "Количество TRX для получения широкополосной связи в замороженном TRX / количество замороженных TRX",
     "freezing_column_more": "Больше",
     "freezing_column_total_circulation_chart": "Общая циркуляция（TRX）",
-    "freezing_column_total_circulation_chart": "Всего замороженных（TRX）",
+    "freezing_column_total_frozen_chart": "Всего замороженных（TRX）",
     "freezing_rangeSelector_botton_text_1y": "1 год",
     "freezing_rangeSelector_botton_text_6m": "6 месяцев",
     "freezing_rangeSelector_botton_text_3m": "3 месяцев",
     "freezing_rangeSelector_botton_text_1m": "1 месяцев",
     "freezing_column_a_total": "Данные замороженных TRX и находятся в циркуляции ",
     "freezing_column_calls": " результатов",
+    "TRX_historical_data":"TRX balance historical data in the contract",
+    "TRX_historical_data_y_text":"Amount（TRX）",
+    "TRX_historical_data_tip":"TRX Amount",
 
 }

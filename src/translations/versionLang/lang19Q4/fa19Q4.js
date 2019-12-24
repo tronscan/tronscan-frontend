@@ -145,4 +145,7 @@ export const lang19Q4 = {
     "freezing_rangeSelector_botton_text_1m": "۱ ماه",
     "freezing_column_a_total": "داده های TRX را یخ زده و بچرخانید",
     "freezing_column_calls": "نتایج",
+    "TRX_historical_data":"TRX balance historical data in the contract",
+    "TRX_historical_data_y_text":"Amount（TRX）",
+    "TRX_historical_data_tip":"TRX Amount",
 }
