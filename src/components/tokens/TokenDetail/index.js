@@ -252,7 +252,9 @@ class TokenDetail extends React.Component {
       ownerAddress
     } = this.props.tokensInfo.tokenDetail;
     await xhr
-      .get(`${API_URL}/api/tokenholders?address=${serchInputVal}&id=${tokenID}`)
+      .get(
+        `${API_URL}/api/tokenholders?address=${ownerAddress}&holder_address=${serchInputVal}&id=${tokenID}`
+      )
       .then(res => {
         if (res.data) {
           let trc10Token = res.data.data;
