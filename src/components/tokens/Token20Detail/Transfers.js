@@ -75,12 +75,16 @@ class Transfers extends React.Component {
 
     let { filter, getCsvUrl } = this.props;
     const { searchAddress } = this.props.tokensInfo;
-    let params;
+    let params, countParams;
     if (searchAddress === "") {
       params = {
         contract_address: filter.token,
         start_timestamp: this.start,
         end_timestamp: this.end
+      };
+      countParams = {
+        type: "trc20",
+        contract: filter.token
       };
     } else {
       params = {
@@ -88,6 +92,11 @@ class Transfers extends React.Component {
         start_timestamp: this.start,
         end_timestamp: this.end,
         relatedAddress: searchAddress
+      };
+      countParams = {
+        type: "trc20",
+        contract: filter.token,
+        address: searchAddress
       };
     }
 
@@ -108,10 +117,7 @@ class Transfers extends React.Component {
         start: (page - 1) * pageSize,
         ...params
       }),
-      Client.getCountByType({
-        type: "trc20",
-        contract: filter.token
-      })
+      Client.getCountByType(countParams)
     ]).catch(e => {
       console.log("error:" + e);
     });
@@ -258,7 +264,7 @@ class Transfers extends React.Component {
           return (
             <AddressLink
               address={record.from_address}
-              isContract={record.toAddressIsContract}
+              isContract={record.fromAddressIsContract}
             >
               {record.fromAddressIsContract ? (
                 <Tooltip

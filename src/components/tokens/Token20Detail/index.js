@@ -646,7 +646,8 @@ class Token20Detail extends React.Component {
       }),
       Client.getCountByType({
         type: "trc20",
-        contract: decodeURI(match.params.address)
+        contract: decodeURI(match.params.address),
+        address: serchInputVal
       })
     ]).catch(e => {
       console.log("error:" + e);

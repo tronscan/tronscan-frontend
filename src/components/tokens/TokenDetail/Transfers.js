@@ -74,13 +74,17 @@ class Transfers extends React.Component {
     let { filter, getCsvUrl } = this.props;
     let { showTotal } = this.state;
     const { searchAddress } = this.props.tokensInfo;
-    let params;
+    let params, countParams;
     if (searchAddress === "") {
       params = {
         name: filter.token,
         issueAddress: filter.address,
         start_timestamp: this.start,
         end_timestamp: this.end
+      };
+      countParams = {
+        type: "asset",
+        issueName: filter.address
       };
     } else {
       params = {
@@ -89,6 +93,11 @@ class Transfers extends React.Component {
         start_timestamp: this.start,
         end_timestamp: this.end,
         relatedAddress: searchAddress
+      };
+      countParams = {
+        type: "asset",
+        issueName: filter.address,
+        address: searchAddress
       };
     }
 
@@ -111,10 +120,7 @@ class Transfers extends React.Component {
           start: (page - 1) * pageSize,
           ...params
         }),
-        Client.getCountByType({
-          type: "asset",
-          issueName: filter.address
-        })
+        Client.getCountByType(countParams)
       ]).catch(e => {
         console.log("error:" + e);
       });

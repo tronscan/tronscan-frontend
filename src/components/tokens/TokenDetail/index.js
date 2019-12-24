@@ -277,7 +277,8 @@ class TokenDetail extends React.Component {
         }),
         Client.getCountByType({
           type: "asset",
-          issueName: ownerAddress
+          issueName: ownerAddress,
+          address: serchInputVal
         })
       ]).catch(e => {
         console.log("error:" + e);
