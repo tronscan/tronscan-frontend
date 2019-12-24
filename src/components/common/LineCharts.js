@@ -2268,7 +2268,7 @@ export class OverallFreezingRateChart extends React.Component {
                     yAxis: 1,
                     color: "#DA8885",
                     data:turnoverTotal,
-                    pointStart: Date.UTC(2019, 11, 14),
+                    pointStart: Date.UTC(2019, 11, 20),
 			        pointInterval: 24 * 3600 * 1000 , // one day
                     tooltip: {
                         valueSuffix: ' '
@@ -2283,7 +2283,7 @@ export class OverallFreezingRateChart extends React.Component {
                     yAxis: 1,
                     color: "#C64844",
                     data:freezeTotal,
-                    pointStart: Date.UTC(2019, 11, 14),
+                    pointStart: Date.UTC(2019, 11, 20),
 			        pointInterval: 24 * 3600 * 1000 , // one day
                     tooltip: {
                         valueSuffix: ' '
@@ -2297,7 +2297,7 @@ export class OverallFreezingRateChart extends React.Component {
                     type: 'spline',
                     color: "#5A5A5A",
                     data:freezingRate,
-                    pointStart: Date.UTC(2019, 11, 14),
+                    pointStart: Date.UTC(2019, 11, 20),
 			        pointInterval: 24 * 3600 * 1000 , // one day
                     marker: {
                         enabled: true,
