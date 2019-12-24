@@ -102,7 +102,9 @@ class TokenDetail extends React.Component {
     let { priceUSD } = this.props;
     let { currentTotalSupply } = this.state;
 
-    this.setState({ loading: true });
+    this.setState({
+      loading: true
+    });
 
     //let token = await Client.getToken(name);
     let result = await xhr.get(API_URL + "/api/token?id=" + id + "&showAll=1");
@@ -117,7 +119,10 @@ class TokenDetail extends React.Component {
         : 0;
 
     if (!token) {
-      this.setState({ loading: false, token: null });
+      this.setState({
+        loading: false,
+        token: null
+      });
       this.props.history.push("/tokens/list");
       return;
     }
@@ -126,18 +131,25 @@ class TokenDetail extends React.Component {
         id: "tokenInfo",
         icon: "",
         path: "",
-        label: <span>{tu("token_issuance_info")}</span>,
+        label: <span> {tu("token_issuance_info")} </span>,
         cmp: () => <TokenInfo token={token} />
       },
       {
         id: "transfers",
         icon: "",
         path: "/transfers",
-        label: <span>{tu("token_transfers")}</span>,
+        label: <span> {tu("token_transfers")} </span>,
         cmp: () => (
           <Transfers
-            getCsvUrl={csvurl => this.setState({ csvurl })}
-            filter={{ token: token.name, address: token.ownerAddress }}
+            getCsvUrl={csvurl =>
+              this.setState({
+                csvurl
+              })
+            }
+            filter={{
+              token: token.name,
+              address: token.ownerAddress
+            }}
           />
         )
       },
@@ -147,7 +159,8 @@ class TokenDetail extends React.Component {
         path: "/holders",
         label: (
           <span>
-            {IS_MAINNET ? tu("token_holders") : tu("DAppChain_holders")}
+            {" "}
+            {IS_MAINNET ? tu("token_holders") : tu("DAppChain_holders")}{" "}
           </span>
         ),
         cmp: () => (
@@ -157,9 +170,17 @@ class TokenDetail extends React.Component {
               address: token.ownerAddress,
               tokenId: token.id
             }}
-            token={{ totalSupply: token.totalSupply }}
-            tokenPrecision={{ precision: token.precision }}
-            getCsvUrl={csvurl => this.setState({ csvurl })}
+            token={{
+              totalSupply: token.totalSupply
+            }}
+            tokenPrecision={{
+              precision: token.precision
+            }}
+            getCsvUrl={csvurl =>
+              this.setState({
+                csvurl
+              })
+            }
           />
         )
       }
@@ -171,7 +192,7 @@ class TokenDetail extends React.Component {
           id: "quotes",
           icon: "",
           path: "/quotes",
-          label: <span>{tu("token_market")}</span>,
+          label: <span> {tu("token_market")} </span>,
           cmp: () => <ExchangeQuotes address={token.tokenID} />
         }
       ];
@@ -185,7 +206,7 @@ class TokenDetail extends React.Component {
         id: "BTTSupply",
         icon: "",
         path: "/supply",
-        label: <span>{tu("BTT_supply")}</span>,
+        label: <span> {tu("BTT_supply")} </span>,
         cmp: () => <BTTSupply token={token} />
       };
       tabs.push(BttSupply);
@@ -240,7 +261,10 @@ class TokenDetail extends React.Component {
             trc10Token.forEach(res => {
               balance += res.balance;
             });
-
+            let accountedFor =
+              new BigNumber(balance)
+                .dividedBy(new BigNumber(totalSupply))
+                .toFixed(4) || 0;
             let trc10TokenObj = {
               srTag: false,
               srName: null,
@@ -249,7 +273,7 @@ class TokenDetail extends React.Component {
               foundationTag: false,
               balance,
               name: trc10Token[0].name,
-              accountedFor: balance / totalSupply
+              accountedFor
             };
 
             this.props.updateTokenInfo({
@@ -418,47 +442,52 @@ class TokenDetail extends React.Component {
 
     return (
       <main className="container header-overlap token_black mc-donalds-coin tonken10DetailMain">
-        {alert}
+        {" "}
+        {alert}{" "}
         {loading ? (
           <div className="card">
             <TronLoader>
-              {tu("loading_token")} {token.name}
-            </TronLoader>
+              {" "}
+              {tu("loading_token")} {token.name}{" "}
+            </TronLoader>{" "}
           </div>
         ) : (
           <div className="row">
+            {" "}
             {token && (
               <div className="col-sm-12">
                 <div className="card">
                   <div className="card-body mt-2">
                     <div className="d-flex">
+                      {" "}
                       {token && token.imgUrl && token.tokenID ? (
                         <div>
+                          {" "}
                           {token.tokenID == 1002000 ? (
                             <div className="token-img-top">
-                              <img className="token-logo" src={token.imgUrl} />
-                              <i></i>
+                              <img className="token-logo" src={token.imgUrl} />{" "}
+                              <i> </i>{" "}
                             </div>
                           ) : (
                             <img className="token-logo" src={token.imgUrl} />
-                          )}
+                          )}{" "}
                         </div>
                       ) : (
                         <img
                           className="token-logo"
                           src={require("../../../images/logo_default.png")}
                         />
-                      )}
+                      )}{" "}
                       <div className="token-description">
                         <h5 className="card-title">
-                          {token.name} ({token.abbr})
-                        </h5>
-                        <p className="card-text">{token.description}</p>
+                          {" "}
+                          {token.name}({token.abbr}){" "}
+                        </h5>{" "}
+                        <p className="card-text"> {token.description} </p>{" "}
                       </div>
-
-                      <div className="token-sign">TRC10</div>
-                    </div>
-                  </div>
+                      <div className="token-sign"> TRC10 </div>{" "}
+                    </div>{" "}
+                  </div>{" "}
                   {token && (
                     <Information
                       token={token}
@@ -466,9 +495,8 @@ class TokenDetail extends React.Component {
                       priceUSD={priceUSD}
                       BttSupplyClient={BttSupplyClient}
                     ></Information>
-                  )}
+                  )}{" "}
                 </div>
-
                 <div
                   className="card mt-3"
                   style={{
@@ -485,7 +513,10 @@ class TokenDetail extends React.Component {
                   >
                     <ul
                       className="nav nav-tabs card-header-tabs"
-                      style={{ marginTop: "-12px", marginLeft: "-20px" }}
+                      style={{
+                        marginTop: "-12px",
+                        marginLeft: "-20px"
+                      }}
                     >
                       {tabs.map((tab, tabInd) => (
                         <li key={tabInd} className="nav-item">
@@ -494,12 +525,11 @@ class TokenDetail extends React.Component {
                             to={match.url + tab.path}
                             className="nav-link text-dark"
                           >
-                            <i className={tab.icon + " mr-2"} />
-                            {tab.label}
-                          </NavLink>
+                            <i className={tab.icon + " mr-2"} /> {tab.label}{" "}
+                          </NavLink>{" "}
                         </li>
-                      ))}
-                    </ul>
+                      ))}{" "}
+                    </ul>{" "}
                     {pathname.slice(-9) === "transfers" ? (
                       <div
                         className="tokenTransferSearch"
@@ -512,7 +542,10 @@ class TokenDetail extends React.Component {
                       >
                         <div
                           className="input-group-append"
-                          style={{ marginLeft: 0, position: "relative" }}
+                          style={{
+                            marginLeft: 0,
+                            position: "relative"
+                          }}
                         >
                           <input
                             type="text"
@@ -550,7 +583,7 @@ class TokenDetail extends React.Component {
                                 });
                               }
                             }}
-                          />
+                          />{" "}
                           {searchAddressClose ? (
                             <Icon
                               onClick={() => {
@@ -563,7 +596,7 @@ class TokenDetail extends React.Component {
                                 right: 40
                               }}
                             />
-                          ) : null}
+                          ) : null}{" "}
                           <button
                             className="btn box-shadow-none"
                             style={{
@@ -576,13 +609,14 @@ class TokenDetail extends React.Component {
                             onClick={() => this.tokensTransferSearchFun()}
                           >
                             <i className="fa fa-search" />
-                          </button>
-                        </div>
+                          </button>{" "}
+                        </div>{" "}
                       </div>
-                    ) : null}
-                  </div>
+                    ) : null}{" "}
+                  </div>{" "}
                   <div className="card-body p-0">
                     <Switch>
+                      {" "}
                       {tabs.map((tab, tabInd) => (
                         <Route
                           key={tabInd}
@@ -590,9 +624,8 @@ class TokenDetail extends React.Component {
                           path={match.url + tab.path}
                           render={() => <tab.cmp />}
                         />
-                      ))}
+                      ))}{" "}
                     </Switch>
-
                     <div
                       className="downCsvExport"
                       style={{
@@ -603,17 +636,17 @@ class TokenDetail extends React.Component {
                     >
                       {tabName === "transfers" && tokenTransferTotal !== 0 ? (
                         <CsvExport downloadURL={csvurl} />
-                      ) : null}
+                      ) : null}{" "}
                       {tabName === "holders" && tokensHoldersTotal !== 0 ? (
                         <CsvExport downloadURL={csvurl} />
-                      ) : null}
-                    </div>
-                  </div>
-                </div>
+                      ) : null}{" "}
+                    </div>{" "}
+                  </div>{" "}
+                </div>{" "}
               </div>
-            )}
+            )}{" "}
           </div>
-        )}
+        )}{" "}
       </main>
     );
   }

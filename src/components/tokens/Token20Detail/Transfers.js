@@ -31,6 +31,7 @@ import { FormatNumberByDecimals } from "../../../utils/number";
 import qs from "qs";
 import { BlockNumberLink } from "../../common/Links";
 import BlockTime from "../../common/blockTime";
+import BigNumber from "bignumber.js";
 
 class Transfers extends React.Component {
   constructor(props) {
@@ -548,10 +549,26 @@ class Transfers extends React.Component {
                 <div style={listCommonSty}>
                   <div style={listTitleStyle}>
                     $
-                    {(
+                    <FormattedNumber
+                      value={
+                        tokensInfo.tokenDetail.decimals === 0
+                          ? new BigNumber(tokensInfo.transfer.balance)
+                              .multipliedBy(
+                                new BigNumber(tokensInfo.tokenDetail.priceToUsd)
+                              )
+                              .toNumber()
+                          : new BigNumber(tokensInfo.transfer.balance)
+                              .dividedBy(
+                                Math.pow(10, tokensInfo.tokenDetail.decimals)
+                              )
+                              .multipliedBy(tokensInfo.tokenDetail.priceToUsd)
+                      }
+                      maximumFractionDigits={2}
+                    ></FormattedNumber>
+                    {/* {(
                       (tokensInfo.transfer.balance / Math.pow(10, 6)) *
                       priceUSD
-                    ).toFixed(0)}
+                    ).toFixed(0)} */}
                     <span
                       style={{
                         color: "rgba(51,51,51,0.25)",
@@ -559,9 +576,27 @@ class Transfers extends React.Component {
                       }}
                     >
                       ≈
-                      {(tokensInfo.transfer.balance / Math.pow(10, 6)).toFixed(
+                      <FormattedNumber
+                        value={
+                          tokensInfo.tokenDetail.decimals === 0
+                            ? new BigNumber(
+                                tokensInfo.transfer.balance
+                              ).multipliedBy(
+                                tokensInfo.tokenDetail.market_info.priceInTrx
+                              )
+                            : new BigNumber(tokensInfo.transfer.balance)
+                                .dividedBy(
+                                  Math.pow(10, tokensInfo.tokenDetail.decimals)
+                                )
+                                .multipliedBy(
+                                  tokensInfo.tokenDetail.market_info.priceInTrx
+                                )
+                        }
+                        maximumFractionDigits={2}
+                      ></FormattedNumber>
+                      {/* {(tokensInfo.transfer.balance / Math.pow(10, 6)).toFixed(
                         0
-                      )}
+                      )} */}
                       TRX
                     </span>
                   </div>

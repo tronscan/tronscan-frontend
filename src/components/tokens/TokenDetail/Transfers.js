@@ -558,7 +558,7 @@ class Transfers extends React.Component {
                               )
                               .multipliedBy(tokensInfo.tokenDetail.priceToUsd)
                       }
-                      maximumFractionDigits={6}
+                      maximumFractionDigits={2}
                     ></FormattedNumber>
                     <span
                       style={{

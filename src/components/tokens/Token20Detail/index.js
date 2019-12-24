@@ -44,6 +44,7 @@ import { loadUsdPrice } from "../../../actions/blockchain";
 import Code from "../../blockchain/Contract/Code";
 import ExchangeQuotes from "../ExchangeQuotes";
 import ApiClientToken from "../../../services/tokenApi";
+import BigNumber from "bignumber.js";
 
 class Token20Detail extends React.Component {
   constructor() {
@@ -604,18 +605,17 @@ class Token20Detail extends React.Component {
           let trc20Token = res.data.trc20_tokens;
           let balance = 0;
           if (trc20Token.length > 0) {
-            trc20Token.forEach(res => {
-              balance += res.balance;
-            });
-
+            
+            let newBalance = trc20Token[0].balance;
+            let accountedFor = new BigNumber(balance).dividedBy(new BigNumber(total_supply_with_decimals)).toFixed(4) || 0;
             let trc20TokenObj = {
               srTag: false,
               srName: null,
               addressTag: null,
               holder_address: serchInputVal,
               foundationTag: false,
-              balance,
-              accountedFor: balance / total_supply_with_decimals || 0
+              balance:newBalance,
+              accountedFor
             };
 
             this.props.updateTokenInfo({
