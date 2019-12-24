@@ -145,13 +145,13 @@ class TokenInfo extends React.Component {
                   ) : (
                     "-"
                   )}
-                  {!(
+                  {/* {!(
                     token.endTime < new Date() ||
                     token.issuedPercentage === 100 ||
                     token.startTime > new Date() ||
                     token.isBlack
                   ) &&
-                    token.canShow !== 3 && <Participate token={token} />}
+                    token.canShow !== 3 && <Participate token={token} />} */}
                 </td>
               )}
             </tr>
