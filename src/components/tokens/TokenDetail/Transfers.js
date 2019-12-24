@@ -521,11 +521,10 @@ class Transfers extends React.Component {
                         tokensInfo.tokenDetail.precision === 0
                           ? tokensInfo.transfer.balance
                           : tokensInfo.transfer.balance /
-                            Math.pow(
-                              10,
-                              tokensInfo.tokenDetail.precision
-                            ).toFixed(6)
+                            Math.pow(10, tokensInfo.tokenDetail.precision)
                       }
+                      minimumFractionDigits={2}
+                      maximumFractionDigits={2}
                     ></FormattedNumber>
                     <span> {tokensInfo.tokenDetail.abbr}</span>
                   </div>
@@ -535,7 +534,8 @@ class Transfers extends React.Component {
                   <div style={listTitleStyle}>
                     <FormattedNumber
                       value={tokensInfo.transfer.accountedFor * 100}
-                      maximumFractionDigits={6}
+                      minimumFractionDigits={2}
+                      maximumFractionDigits={2}
                     ></FormattedNumber>
                     %
                   </div>
@@ -558,6 +558,7 @@ class Transfers extends React.Component {
                               )
                               .multipliedBy(tokensInfo.tokenDetail.priceToUsd)
                       }
+                      minimumFractionDigits={2}
                       maximumFractionDigits={2}
                     ></FormattedNumber>
                     <span
@@ -583,6 +584,7 @@ class Transfers extends React.Component {
                                   tokensInfo.tokenDetail.market_info.priceInTrx
                                 )
                         }
+                        minimumFractionDigits={2}
                         maximumFractionDigits={2}
                       ></FormattedNumber>
                       {/* {(tokensInfo.transfer.balance / Math.pow(10, 6)).toFixed(

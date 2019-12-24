@@ -264,7 +264,7 @@ class TokenDetail extends React.Component {
             let accountedFor =
               new BigNumber(balance)
                 .dividedBy(new BigNumber(totalSupply))
-                .toFixed(4) || 0;
+                .toNumber(8) || 0;
             let trc10TokenObj = {
               srTag: false,
               srName: null,

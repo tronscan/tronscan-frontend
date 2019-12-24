@@ -531,7 +531,17 @@ class Transfers extends React.Component {
                 </div>
                 <div style={listCommonSty}>
                   <div style={listTitleStyle}>
-                    {(tokensInfo.transfer.balance / Math.pow(10, 6)).toFixed(6)}
+                    <FormattedNumber
+                      value={
+                        tokensInfo.tokenDetail.decimals === 0
+                          ? tokensInfo.transfer.balance
+                          : tokensInfo.transfer.balance /
+                            Math.pow(10, tokensInfo.tokenDetail.decimals)
+                      }
+                      minimumFractionDigits={2}
+                      maximumFractionDigits={2}
+                    ></FormattedNumber>
+
                     <span> {tokensInfo.tokenDetail.symbol}</span>
                   </div>
                   <p style={descStyle}>{tu("transfersDetailQuantity")}</p>
@@ -540,7 +550,8 @@ class Transfers extends React.Component {
                   <div style={listTitleStyle}>
                     <FormattedNumber
                       value={tokensInfo.transfer.accountedFor * 100}
-                      maximumFractionDigits={6}
+                      maximumFractionDigits={2}
+                      minimumFractionDigits={2}
                     ></FormattedNumber>
                     %
                   </div>
@@ -563,6 +574,7 @@ class Transfers extends React.Component {
                               )
                               .multipliedBy(tokensInfo.tokenDetail.priceToUsd)
                       }
+                      minimumFractionDigits={2}
                       maximumFractionDigits={2}
                     ></FormattedNumber>
                     {/* {(
@@ -592,6 +604,7 @@ class Transfers extends React.Component {
                                   tokensInfo.tokenDetail.market_info.priceInTrx
                                 )
                         }
+                        minimumFractionDigits={2}
                         maximumFractionDigits={2}
                       ></FormattedNumber>
                       {/* {(tokensInfo.transfer.balance / Math.pow(10, 6)).toFixed(
