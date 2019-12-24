@@ -158,8 +158,5 @@ export const lang19Q4 = {
     "TRX_historical_data":"合约内TRX余额历史数据",
     "TRX_historical_data_y_text":"数量（TRX）",
     "TRX_historical_data_tip":"TRX数量",
-    "TRX_historical_data":"TRX balance historical data in the contract",
-    "TRX_historical_data_y_text":"Amount（TRX）",
-    "TRX_historical_data_tip":"TRX Amount",
    
 }
