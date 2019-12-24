@@ -514,16 +514,21 @@ class SmartContract extends React.Component {
                                     {contract.creator.address}
                                   </AddressLink>
                                 </span>
-                                <span className="px-1">{tu("at_txn")}</span>
-                                <span style={{ width: "30%" }}>
-                                  <Truncate>
-                                    <TransactionHashLink
-                                      hash={contract.creator.txHash}
-                                    >
-                                      {contract.creator.txHash}
-                                    </TransactionHashLink>
-                                  </Truncate>
-                                </span>
+                               {
+                                  contract.creator.txHash && <span>
+                                    <span className="px-1">{tu("at_txn")}</span>
+                                      <span style={{ width: "30%" }}>
+                                        <Truncate>
+                                          <TransactionHashLink
+                                            hash={contract.creator.txHash}
+                                          >
+                                            {contract.creator.txHash}
+                                          </TransactionHashLink>
+                                        </Truncate>
+                                      </span>
+                                  </span>  
+                               } 
+                              
                               </div>
                             )}
                           </li>
