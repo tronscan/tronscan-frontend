@@ -407,7 +407,7 @@ class StatsCharts extends React.Component {
                       <span className="ml-5">
                         {tu("charts_overall_freezing_rate")}
                       </span>
-                      <img src={require("../../../images/chart/24-Hour-Trading-Volume.png")}
+                      <img src={require("../../../images/chart/Overall-Freezing-Rate.png")}
                         style={{ width: 240, filter: 'grayscale(100%)' }}
                         className="ml-5 mt-2" />
                     </Link>
@@ -446,7 +446,7 @@ class StatsCharts extends React.Component {
                       <span className="ml-5">
                         {tu("charts_new_addresses")}
                       </span>
-                      <img src={require("../../../images/chart/Address-Growth-Chart.png")}
+                      <img src={require("../../../images/chart/Account-growth.png")}
                         style={{ width: 240, filter: 'grayscale(100%)' }}
                         className="ml-5 mt-2"
                       />
