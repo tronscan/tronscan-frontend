@@ -464,7 +464,7 @@ class StatCharts extends React.Component {
         let unit;
         let csvurl = API_URL + "/api/freezeresource?start_day=" + start_day+"&end_day="+end_day + "&format=csv";
         let freezing_column = this.freezingCustomizedColumn();
-        let chartHeight = isMobile? 240: 580
+        let chartHeight = isMobile? 580: 580
         if (match.params.chartName === 'blockchainSizeStats' || match.params.chartName === 'addressesStats') {
             unit = 'increase';
         } else {
