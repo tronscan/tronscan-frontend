@@ -162,12 +162,12 @@ class TokenInfo extends React.Component {
                   <FormattedNumber
                     value={0.00447261}
                     maximumFractionDigits={8}
-                  />
+                  />{" "}
                   TRX <br />
                   <FormattedNumber
                     value={0.00001824}
                     maximumFractionDigits={8}
-                  />
+                  />{" "}
                   BNB
                 </td>
               ) : (
@@ -179,7 +179,7 @@ class TokenInfo extends React.Component {
                       ONE_TRX
                     }
                     maximumFractionDigits={6}
-                  />
+                  />{" "}
                   TRX
                 </td>
               )}
@@ -194,7 +194,7 @@ class TokenInfo extends React.Component {
               <th>{tu("token_Participants")}:</th>
               {
                 <td>
-                  {participateassetissueTotal} {tu("address")}
+                  {participateassetissueTotal}{" "}{tu("address")}
                 </td>
               }
             </tr>
