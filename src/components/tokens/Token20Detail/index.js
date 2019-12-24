@@ -608,7 +608,6 @@ class Token20Detail extends React.Component {
             
             let newBalance = trc20Token[0].balance;
             let accountedFor = new BigNumber(newBalance).dividedBy(new BigNumber(total_supply_with_decimals)).toNumber(8) || 0;
-            console.log(accountedFor,newBalance,total_supply_with_decimals)
             let trc20TokenObj = {
               srTag: false,
               srName: null,
@@ -771,7 +770,6 @@ class Token20Detail extends React.Component {
     pathname.replace(rex, function(a, b) {
       tabName = b;
     });
-    console.log(tabName)
     const defaultImg = require("../../../images/logo_default.png");
     return (
       <main className="container header-overlap token_black mc-donalds-coin tonken20DetailMain">
