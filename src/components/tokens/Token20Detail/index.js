@@ -601,16 +601,30 @@ class Token20Detail extends React.Component {
       )
       .then(res => {
         if (res.data) {
-          if (res.data.trc20_tokens.length > 0) {
-            let trc20Token = res.data.trc20_tokens[0];
+          let trc20Token = res.data.trc20_tokens;
+          let balance = 0;
+          if (trc20Token.length > 0) {
+            trc20Token.forEach(res => {
+              balance += res.balance;
+            });
+
+            let trc20TokenObj = {
+              srTag: false,
+              srName: null,
+              addressTag: null,
+              holder_address: serchInputVal,
+              foundationTag: false,
+              balance,
+              accountedFor: balance / total_supply_with_decimals || 0
+            };
+
             this.props.updateTokenInfo({
               transferSearchStatus: true,
               transfer: {
-                ...trc20Token,
-                accountedFor:
-                  trc20Token.balance / total_supply_with_decimals || 0
+                ...trc20TokenObj
               }
             });
+           
           } else {
             this.props.updateTokenInfo({
               transfer: {
@@ -694,33 +708,36 @@ class Token20Detail extends React.Component {
       end_timestamp: tokensInfo.end_timestamp
     };
 
-    await Client.getTokenTRC20Transfers({
-      limit: 20,
-      ...params
-    })
-      .then(res => {
-        let transfers = res.list;
-        for (let index in transfers) {
-          transfers[index].index = parseInt(index) + 1;
-        }
-        if (res.list) {
-          this.props.updateTokenInfo({
-            transfers20ListObj: {
-              transfers,
-              total: res.total,
-              rangeTotal: res.rangeTotal
-            },
-            transferSearchStatus: false
-          });
-        } else {
-          this.props.updateTokenInfo({
-            transferSearchStatus: false
-          });
-        }
+    const allData = await Promise.all([
+      Client.getTokenTRC20Transfers({
+        limit: 20,
+        ...params
+      }),
+      Client.getCountByType({
+        type: "trc20",
+        contract: decodeURI(match.params.address)
       })
-      .catch(e => {
-        console.log("error:" + e);
+    ]).catch(e => {
+      this.props.updateTokenInfo({
+        transferSearchStatus: false
       });
+      console.log("error:" + e);
+    });
+
+    const [{ list, rangeTotal }, { count }] = allData;
+    let transfers = list || [];
+
+    for (let index in transfers) {
+      transfers[index].index = parseInt(index) + 1;
+    }
+    this.props.updateTokenInfo({
+      transfers20ListObj: {
+        transfers,
+        total: count,
+        rangeTotal
+      },
+      transferSearchStatus: false
+    });
   };
 
   onSearchKeyDown = ev => {

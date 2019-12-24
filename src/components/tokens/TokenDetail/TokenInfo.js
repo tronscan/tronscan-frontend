@@ -18,7 +18,7 @@ import { withTronWeb } from "../../../utils/tronWeb";
 import { reloadWallet } from "../../../actions/wallet";
 import { isEqual } from "lodash";
 import Participate from "./Participate";
-import ApiClientToken from '../../../services/tokenApi'
+import ApiClientToken from "../../../services/tokenApi";
 
 // @withTimers
 @withTronWeb
@@ -29,13 +29,13 @@ class TokenInfo extends React.Component {
       currentTotalSupply: 0,
       alert: null,
       buyAmount: 0,
-      participateassetissueTotal:0
+      participateassetissueTotal: 0
     };
   }
 
   componentDidMount() {
     this.loadTotalTRXSupply();
-    this.loadParticipateassetissue()
+    this.loadParticipateassetissue();
   }
   // shouldComponentUpdate(nextProps) {
   //   if (
@@ -46,18 +46,17 @@ class TokenInfo extends React.Component {
   //   }
   //   return false;
   // }
-  async loadParticipateassetissue(){
-    let {token} = this.props;
+  async loadParticipateassetissue() {
+    let { token } = this.props;
     let params = {
-      id:token.id,
-      limit:1
-    }
-    let data = await ApiClientToken.getParticipateassetissue(params)
+      id: token.id,
+      limit: 1
+    };
+    let data = await ApiClientToken.getParticipateassetissue(params);
 
     this.setState({
-      participateassetissueTotal:data && data.total
-    })
-
+      participateassetissueTotal: data && data.total
+    });
   }
   loadTotalTRXSupply = async () => {
     const { funds } = await Client.getBttFundsSupply();
@@ -67,7 +66,7 @@ class TokenInfo extends React.Component {
   };
   render() {
     let { token } = this.props;
-    let { currentTotalSupply, alert,participateassetissueTotal } = this.state;
+    let { currentTotalSupply, alert, participateassetissueTotal } = this.state;
     let issued = token.precision
       ? token.issued / Math.pow(10, token.precision)
       : token.issued;
@@ -82,7 +81,7 @@ class TokenInfo extends React.Component {
               {token.id == "1002000" ? (
                 <td style={{ borderTop: "0px" }}>
                   <span>
-                    <FormattedDate value={1548658800000} />{" "}
+                    <FormattedDate value={1548658800000} />
                     <FormattedTime
                       value={1548658800000}
                       hour="numeric"
@@ -90,7 +89,6 @@ class TokenInfo extends React.Component {
                       second="numeric"
                       hour12={false}
                     />
-                    {" "}
                     UTC
                   </span>
                 </td>
@@ -98,7 +96,7 @@ class TokenInfo extends React.Component {
                 <td style={{ borderTop: "0px" }}>
                   {token.endTime - token.startTime > 1000 ? (
                     <span>
-                      <FormattedDate value={token.startTime} />{" "}
+                      <FormattedDate value={token.startTime} />
                       <FormattedTime
                         value={token.startTime}
                         hour="numeric"
@@ -106,7 +104,6 @@ class TokenInfo extends React.Component {
                         second="numeric"
                         hour12={false}
                       />
-                      {" "}
                       UTC
                     </span>
                   ) : (
@@ -120,7 +117,7 @@ class TokenInfo extends React.Component {
               {token.id == "1002000" ? (
                 <td>
                   <span>
-                    <FormattedDate value={1548659681000} />{" "}
+                    <FormattedDate value={1548659681000} />
                     <FormattedTime
                       value={1548659681000}
                       hour="numeric"
@@ -128,15 +125,14 @@ class TokenInfo extends React.Component {
                       second="numeric"
                       hour12={false}
                     />
-                    {" "}
                     UTC
                   </span>
                 </td>
               ) : (
                 <td>
                   {token.endTime - token.startTime > 1000 ? (
-                    <span style={{float:"left"}}>
-                      <FormattedDate value={token.endTime} />{" "}
+                    <span style={{ float: "left" }}>
+                      <FormattedDate value={token.endTime} />
                       <FormattedTime
                         value={token.endTime}
                         hour="numeric"
@@ -144,7 +140,6 @@ class TokenInfo extends React.Component {
                         second="numeric"
                         hour12={false}
                       />
-                      {" "}
                       UTC
                     </span>
                   ) : (
@@ -156,9 +151,7 @@ class TokenInfo extends React.Component {
                     token.startTime > new Date() ||
                     token.isBlack
                   ) &&
-                    token.canShow !== 3 && (
-                      <Participate token={token} />
-                    )}
+                    token.canShow !== 3 && <Participate token={token} />}
                 </td>
               )}
             </tr>
@@ -169,12 +162,12 @@ class TokenInfo extends React.Component {
                   <FormattedNumber
                     value={0.00447261}
                     maximumFractionDigits={8}
-                  />{" "}
+                  />
                   TRX <br />
                   <FormattedNumber
                     value={0.00001824}
                     maximumFractionDigits={8}
-                  />{" "}
+                  />
                   BNB
                 </td>
               ) : (
@@ -186,7 +179,7 @@ class TokenInfo extends React.Component {
                       ONE_TRX
                     }
                     maximumFractionDigits={6}
-                  />{" "}
+                  />
                   TRX
                 </td>
               )}
@@ -199,7 +192,11 @@ class TokenInfo extends React.Component {
             </tr>
             <tr>
               <th>{tu("token_Participants")}:</th>
-                  {<td>{participateassetissueTotal} {" "}{tu('address')}</td>}
+              {
+                <td>
+                  {participateassetissueTotal} {tu("address")}
+                </td>
+              }
             </tr>
             <tr>
               <th>{tu("fund_raised")}:</th>

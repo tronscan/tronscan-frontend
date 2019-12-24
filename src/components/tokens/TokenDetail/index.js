@@ -24,6 +24,7 @@ import { pkToAddress } from "@tronscan/client/src/utils/crypto";
 import { transactionResultManager } from "../../../utils/tron";
 import xhr from "axios/index";
 import Lockr from "lockr";
+import BigNumber from "bignumber.js";
 import { withTronWeb } from "../../../utils/tronWeb";
 import { CsvExport } from "../../common/CsvExport";
 import { loadUsdPrice } from "../../../actions/blockchain";
@@ -233,13 +234,28 @@ class TokenDetail extends React.Component {
       .get(`${API_URL}/api/tokenholders?address=${serchInputVal}&id=${tokenID}`)
       .then(res => {
         if (res.data) {
-          if (res.data.length > 0) {
-            let trc20Token = res.data.trc20_tokens[0];
+          let trc10Token = res.data.data;
+          let balance = 0;
+          if (trc10Token.length > 0) {
+            trc10Token.forEach(res => {
+              balance += res.balance;
+            });
+
+            let trc10TokenObj = {
+              srTag: false,
+              srName: null,
+              addressTag: null,
+              holder_address: serchInputVal,
+              foundationTag: false,
+              balance,
+              name: trc10Token[0].name,
+              accountedFor: balance / totalSupply
+            };
+
             this.props.updateTokenInfo({
               transferSearchStatus: true,
               transfer: {
-                ...trc20Token,
-                accountedFor: trc20Token.balance / totalSupply
+                ...trc10TokenObj
               }
             });
           } else {
@@ -327,35 +343,44 @@ class TokenDetail extends React.Component {
       start_timestamp: tokensInfo.start_timestamp,
       end_timestamp: tokensInfo.end_timestamp
     };
-
-    await Client.getAssetTransfers({
-      limit: 20,
-      ...params
-    })
-      .then(res => {
-        if (res.list) {
-          let transfers = rebuildList(res.list, "tokenName", "amount");
-          for (let index in transfers) {
-            transfers[index].index = parseInt(index) + 1;
-          }
-
-          this.props.updateTokenInfo({
-            transfersListObj: {
-              transfers: transfers,
-              total: res.total,
-              rangeTotal: res.rangeTotal
-            },
-            transferSearchStatus: false
-          });
-        } else {
-          this.props.updateTokenInfo({
-            transferSearchStatus: false
-          });
-        }
-      })
-      .catch(e => {
+    try {
+      const allData = await Promise.all([
+        Client.getAssetTransfers({
+          limit: 20,
+          ...params
+        }),
+        Client.getCountByType({
+          type: "asset",
+          issueName: ownerAddress
+        })
+      ]).catch(e => {
         console.log("error:" + e);
       });
+      const [{ list, total, rangeTotal }, { count }] = allData;
+
+      let transfers = rebuildList(list, "tokenName", "amount");
+
+      for (let index in transfers) {
+        transfers[index].index = parseInt(index) + 1;
+      }
+
+      this.props.updateTokenInfo({
+        transfersListObj: {
+          transfers: transfers,
+          total: count,
+          rangeTotal
+        },
+        transferSearchStatus: false
+      });
+      this.props.updateTokenInfo({
+        searchAddress: "",
+        transfersListObj: {
+          transfers,
+          total: count,
+          rangeTotal
+        }
+      });
+    } catch {}
   };
 
   onSearchKeyDown = ev => {

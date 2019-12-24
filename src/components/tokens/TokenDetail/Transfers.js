@@ -28,7 +28,7 @@ import TotalInfo from "../components/TableTotal";
 import DateSelect from "../components/dateSelect";
 import rebuildList from "../../../utils/rebuildList";
 import qs from "qs";
-
+import BigNumber from "bignumber.js";
 import BlockTime from "../../common/blockTime";
 
 class Transfers extends React.Component {
@@ -53,7 +53,11 @@ class Transfers extends React.Component {
     };
   }
 
-  componentDidMount() {
+  async componentDidMount() {
+    await this.props.updateTokenInfo({
+      searchAddress: "",
+      transferSearchStatus: false
+    });
     this.loadPage();
     if (this.state.autoRefresh !== false) {
       this.props.setInterval(() => this.load(), this.state.autoRefresh);
@@ -428,6 +432,16 @@ class Transfers extends React.Component {
       width: "25%",
       paddingTop: "20px"
     };
+    const listThirdSty = {
+      textAlign: "center",
+      width: "20%",
+      paddingTop: "20px"
+    };
+    const listFourSty = {
+      textAlign: "center",
+      width: "30%",
+      paddingTop: "20px"
+    };
     const descStyle = {
       fontFamily: "HelveticaNeue",
       fontSize: "12px",
@@ -502,12 +516,22 @@ class Transfers extends React.Component {
                 </div>
                 <div style={listCommonSty}>
                   <div style={listTitleStyle}>
-                    {(tokensInfo.transfer.balance / Math.pow(10, 6)).toFixed(6)}
-                    TRX
+                    <FormattedNumber
+                      value={
+                        tokensInfo.tokenDetail.precision === 0
+                          ? tokensInfo.transfer.balance
+                          : tokensInfo.transfer.balance /
+                            Math.pow(
+                              10,
+                              tokensInfo.tokenDetail.precision
+                            ).toFixed(6)
+                      }
+                    ></FormattedNumber>
+                    <span> {tokensInfo.tokenDetail.abbr}</span>
                   </div>
                   <p style={descStyle}>{tu("transfersDetailQuantity")}</p>
                 </div>
-                <div style={listCommonSty}>
+                <div style={listThirdSty}>
                   <div style={listTitleStyle}>
                     <FormattedNumber
                       value={tokensInfo.transfer.accountedFor * 100}
@@ -517,13 +541,25 @@ class Transfers extends React.Component {
                   </div>
                   <p style={descStyle}> {tu("transfersDetailPercentage")} </p>
                 </div>
-                <div style={listCommonSty}>
+                <div style={listFourSty}>
                   <div style={listTitleStyle}>
                     $
-                    {(
-                      (tokensInfo.transfer.balance / Math.pow(10, 6)) *
-                      priceUSD
-                    ).toFixed(0)}
+                    <FormattedNumber
+                      value={
+                        tokensInfo.tokenDetail.precision === 0
+                          ? new BigNumber(tokensInfo.transfer.balance)
+                              .multipliedBy(
+                                new BigNumber(tokensInfo.tokenDetail.priceToUsd)
+                              )
+                              .toNumber()
+                          : new BigNumber(tokensInfo.transfer.balance)
+                              .dividedBy(
+                                Math.pow(10, tokensInfo.tokenDetail.precision)
+                              )
+                              .multipliedBy(tokensInfo.tokenDetail.priceToUsd)
+                      }
+                      maximumFractionDigits={6}
+                    ></FormattedNumber>
                     <span
                       style={{
                         color: "rgba(51,51,51,0.25)",
@@ -531,9 +567,27 @@ class Transfers extends React.Component {
                       }}
                     >
                       ≈
-                      {(tokensInfo.transfer.balance / Math.pow(10, 6)).toFixed(
+                      <FormattedNumber
+                        value={
+                          tokensInfo.tokenDetail.precision === 0
+                            ? new BigNumber(
+                                tokensInfo.transfer.balance
+                              ).multipliedBy(
+                                tokensInfo.tokenDetail.market_info.priceInTrx
+                              )
+                            : new BigNumber(tokensInfo.transfer.balance)
+                                .dividedBy(
+                                  Math.pow(10, tokensInfo.tokenDetail.precision)
+                                )
+                                .multipliedBy(
+                                  tokensInfo.tokenDetail.market_info.priceInTrx
+                                )
+                        }
+                        maximumFractionDigits={2}
+                      ></FormattedNumber>
+                      {/* {(tokensInfo.transfer.balance / Math.pow(10, 6)).toFixed(
                         0
-                      )}
+                      )} */}
                       TRX
                     </span>
                   </div>

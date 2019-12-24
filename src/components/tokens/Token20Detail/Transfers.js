@@ -54,7 +54,11 @@ class Transfers extends React.Component {
     };
   }
 
-  componentDidMount() {
+  async componentDidMount() {
+    await this.props.updateTokenInfo({
+      searchAddress: "",
+      transferSearchStatus: false
+    });
     this.loadPage();
 
     if (this.state.autoRefresh !== false) {
