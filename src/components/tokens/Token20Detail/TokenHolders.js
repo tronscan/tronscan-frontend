@@ -202,7 +202,7 @@ class TokenHolders extends React.Component {
                       src="https://coin.top/production/upload/tag/foundation.png"
                       alt=""
                     />
-                    <span> foundation </span>
+                    <span> FOUNDATION </span>
                   </div>
                 ) : (
                   ""
@@ -503,7 +503,7 @@ class TokenHolders extends React.Component {
                       color: "#999999"
                     }}
                   >
-                    {tu("view_total")} {rangeTotal} {tu("hold_addr")},
+                    {tu("view_total")} {rangeTotal} {tu("hold_addr")}
                     {rangeTotal >= 10000 ? (
                       <span>, {tu("table_info_big")}</span>
                     ) : (

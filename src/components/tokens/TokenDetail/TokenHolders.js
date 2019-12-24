@@ -230,7 +230,7 @@ class TokenHolders extends React.Component {
                     src="https://coin.top/production/upload/tag/foundation.png"
                     alt=""
                   />
-                  <span> foundation </span>
+                  <span> FOUNDATION </span>
                 </div>
               ) : (
                 ""

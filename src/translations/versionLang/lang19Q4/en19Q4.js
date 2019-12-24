@@ -146,5 +146,8 @@ export const lang19Q4 = {
     "freezing_rangeSelector_botton_text_1m": "1 m",
     "freezing_column_a_total": "Data of TRX frozen and in circulation ",
     "freezing_column_calls": " results",
+    "TRX_historical_data":"TRX balance historical data in the contract",
+    "TRX_historical_data_y_text":"Amount（TRX）",
+    "TRX_historical_data_tip":"TRX Amount",
 
 }

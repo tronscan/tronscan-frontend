@@ -139,7 +139,7 @@ export const lang19Q4 = {
     "freezing_column_bandwidth_ratio_tip": "동결 한 TRX 중 대역폭 획득 한 TRX 수/ 동결 한 TRX 수",
     "freezing_column_more": "더 보기",
     "freezing_column_total_circulation_chart": "총 유통 량（TRX）",
-    "freezing_column_total_circulation_chart": "동결 량（TRX）",
+    "freezing_column_total_frozen_chart": "동결 량（TRX）",
     "freezing_rangeSelector_botton_text_1y": "1년",
     "freezing_rangeSelector_botton_text_6m": "6개월",
     "freezing_rangeSelector_botton_text_3m": "3개월",

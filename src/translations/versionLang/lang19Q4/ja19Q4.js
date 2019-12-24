@@ -140,13 +140,16 @@ export const lang19Q4 = {
     "freezing_column_bandwidth_ratio_tip": "帯域幅に引き換えられた凍結TRXの量/凍結TRXの量",
     "freezing_column_more": "詳しく",
     "freezing_column_total_circulation_chart": "総合流通量（TRX）",
-    "freezing_column_total_circulation_chart": "凍結量（TRX）",
+    "freezing_column_total_frozen_chart": "凍結量（TRX）",
     "freezing_rangeSelector_botton_text_1y": "1年",
     "freezing_rangeSelector_botton_text_6m": "６ヶ月",
     "freezing_rangeSelector_botton_text_3m": "３ヶ月",
     "freezing_rangeSelector_botton_text_1m": "１ヶ月",
     "freezing_column_a_total": "TRX凍結および流通データ",
     "freezing_column_calls": "件",
+    "TRX_historical_data":"TRX balance historical data in the contract",
+    "TRX_historical_data_y_text":"Amount（TRX）",
+    "TRX_historical_data_tip":"TRX Amount",
 
 
 }
