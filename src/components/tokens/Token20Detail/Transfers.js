@@ -532,7 +532,7 @@ class Transfers extends React.Component {
                 <div style={listCommonSty}>
                   <div style={listTitleStyle}>
                     {(tokensInfo.transfer.balance / Math.pow(10, 6)).toFixed(6)}
-                    TRX
+                    <span> {tokensInfo.tokenDetail.symbol}</span>
                   </div>
                   <p style={descStyle}>{tu("transfersDetailQuantity")}</p>
                 </div>
