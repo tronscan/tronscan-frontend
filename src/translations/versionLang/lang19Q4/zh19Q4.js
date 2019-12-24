@@ -155,8 +155,11 @@ export const lang19Q4 = {
     "freezing_rangeSelector_botton_text_1m": "1个月",
     "freezing_column_a_total": "TRX流通及冻结数据共 ",
     "freezing_column_calls": "条数据",
-    "TRX_historical_data":"TRX历史数据",
+    "TRX_historical_data":"合约内TRX余额历史数据",
     "TRX_historical_data_y_text":"数量（TRX）",
     "TRX_historical_data_tip":"TRX数量",
+    "TRX_historical_data":"TRX balance historical data in the contract",
+    "TRX_historical_data_y_text":"Amount（TRX）",
+    "TRX_historical_data_tip":"TRX Amount",
    
 }
