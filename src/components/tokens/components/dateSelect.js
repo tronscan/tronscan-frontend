@@ -32,7 +32,7 @@ class DateSelect extends React.Component {
   }
   handleSizeChange = e => {
     const value = e.target.value;
-    console.log(value);
+
     if (value === "more") {
       this.setState({
         RangePickerStatus: true
