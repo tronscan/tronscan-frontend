@@ -208,7 +208,7 @@ export function Information({
                  className="d-flex"
                  style={{ justifyContent: "space-between" }}
                >
-                 {tu(`token_rules_${Number(token.level) || 0}`)}
+                 {tu(`token_rules_${Number(token.level > 100 ? 2 : token.level) || 0}`)}
                  <Link to="/tokens/rating-rule">
                    {tu("token_credit_rating_rule")}
                  </Link>
