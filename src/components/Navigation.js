@@ -444,7 +444,6 @@ class Navigation extends React.Component {
       {desc: 'Address', value: "TVethjgashn8t4cwKWfGA3VvSgMwVmHKNM"},
       {desc: 'Contract', value: "TVethjgashn8t4cwKWfGA3VvSgMwVmHKNM"},
       {desc: 'TxHash', value: "9073aca5dfacd63c8e61f6174c98ab3f350bc9365df6ffc3bc7a70a252711d6f"}
-
     ];*/
 
     this.setState({searchResults: results});
@@ -1291,9 +1290,10 @@ class Navigation extends React.Component {
                                       if (Route.showInMenu === false) {
                                         return null;
                                       }
-
+                                      //wjl
                                       if (!isUndefined(Route.url) && !Route.sidechain && Route.label !== 'developer_challenge') {
                                         return (
+                                          <span className='mr-3 d-inline-block developer_challenge_box' key={j+Route.label}>
                                             <HrefLink
                                                 key={Route.url}
                                                 className="dropdown-item text-uppercase"
@@ -1304,11 +1304,13 @@ class Navigation extends React.Component {
                                               {Route.badge &&
                                               <Badge value={Route.badge}/>}
                                             </HrefLink>
+                                           {Route.label==='NILE TESTNET'&& <span className="new-test-net">new</span>} 
+                                          </span>
                                         );
                                       }
                                       if (!isUndefined(Route.url) && !Route.sidechain && Route.label == 'developer_challenge') {
                                           return (
-                                              <span className="mr-3 d-inline-block developer_challenge_box">
+                                              <span className="mr-3 d-inline-block developer_challenge_box" key={Route.url+'_'+ Route.label}>
                                                 <HrefLink
                                                     key={Route.url+'_'+ Route.label}
                                                     className="dropdown-item text-uppercase"

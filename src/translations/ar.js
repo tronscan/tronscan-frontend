@@ -1,5 +1,9 @@
-﻿export const messages = {
-  /*
+﻿/* eslint-disable  */
+import {
+    lang19Q4
+} from './versionLang/lang19Q4/ar19Q4'; /* 2019Q4 */
+export const messages = {
+    /*
   ##################################################################################
   #                                                                                #
   #  $$$$$$$$\                                                                     #
@@ -341,7 +345,7 @@
   "open_external_link": "أنت تقوم بالفتح عن طريق رابط خارجي",
   "private_key_untrusted_website_message_0": "يرجى عدم إدخال مفتاحك الخاص على موقع ويب غير موثوق به.",
   "no_official_tron_website": "ليس الموقع الرسمي لترون",
-  "continue_to_external_website": "الاستمرار في الاستخدام بالموقع الخارجي",
+  "continue_to_external_website": "إستمر بالتقدم",
   "visit_third_party_website":"The page you visit will be redirected to a third-party website. There may be security risks. Are you sure you want to continue?",
   "url_changed": "تم تغيير عنوان URL",
   "successfully_changed_website_message": "تم تبديل عنوان موقع الويب بنجاح",
@@ -2225,12 +2229,12 @@
   "Main_Chain":"MainChain",
 
 
-  "7day": "one week",
-  "14day": "two weeks",
-  "30day": "one month",
-  "select_tip": "To view data other than 2000 You can manually adjust the time window",
-  "date_number_tip": "{total} records in the current time range",
-  "date_list_tip": "Only the first 2000 data are displayed",
+  "7day": "7 أيام",
+  "14day": "14 يوما",
+  "30day": "1 شهر",
+  "select_tip": "لعرض بيانات أخرى غير 2000 ، يرجى ضبط نافذة الوقت يدويًا",
+  "date_number_tip": "سجلات {total} في النطاق الزمني الحالي ",
+  "date_list_tip": "لا يتم عرض سوى بيانات 2000 الأولى",
   "sun_propose_1": "تبديل رسوم المعاملة: سيتم فرض رسوم المعاملة بشكل طبيعي عندما يتم تعيين الاقتراح على 1.",
   "sun_propose_2": "قم بتعيين عنوان العقد الخاص بالبوابة على السلسلة الجانبية",
   "sun_propose_3": "حدد وقت انتهاء الصلاحية للمقترح",
@@ -2290,7 +2294,7 @@
   "no_rewards_available_yet":"No rewards available",
   "total_tron_ecosystem_tokens":"Total TRON-ecosystem tokens:",
   "number_of_lists":"Number of lists:",
-  "total_in_tronscan":"Total in tronscan:",
+  "total_in_tronscan":"Total in tronscan",
   "develpopers_reward_tip":"Thank you for considering to help out with the java-tron! TRON Foundation welcome contributions from anyone on the internet, and are grateful for your contributions.",
   "verifty_contract_result":"نتائج التحقق",
   "main_contract_deployment":"(Please select the main contract deployment)",
@@ -2436,4 +2440,5 @@
    "address_get_bandwith":"للحصول على عرض النطاق الترددي",
    "address_freeze_owner":"تجميد إلى حسابك",
    "address_freeze_other":"تجميد إلى حسابات الآخرين",
+   ...lang19Q4,
 };

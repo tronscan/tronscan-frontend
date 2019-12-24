@@ -177,14 +177,14 @@ class ExchangeTable extends Component {
           </p>
           <p className="token-name">{item.fTokenName}</p>
         </section>
-        <section>
+        {item.id != 48 && <section>
           <p className="token-title">
             {item.pairType == 1 || item.pairType == 4
               ? intl.formatMessage({ id: "trc20_token_id" })
               : intl.formatMessage({ id: "contract_address" })}
           </p>
           <p>{item.fTokenAddr}</p>
-        </section>
+        </section>}
         <section className="token-href">
           <a
             href={
@@ -235,7 +235,7 @@ class ExchangeTable extends Component {
                 </span>
               </span>
               <div className="tokens">
-                <Popover
+                {<Popover
                   content={tokenDetailContent}
                   title=""
                   placement="rightTop"
@@ -267,7 +267,7 @@ class ExchangeTable extends Component {
                       </span>
                     </p>
                   )}
-                </Popover>
+                </Popover>}
 
                 <p
                   className={
