@@ -13,6 +13,13 @@ class ApiClientAddress {
     return data;
   }
 
+  async getHomeAccounts(type, options = {}) {
+    let url = this.apiUrl[type || "mainnet"];
+    let { data } = await xhr.get(`${url}/api/account/list`, {
+      params: options
+    });
+    return data;
+  }
 }
 
 export default new ApiClientAddress();

@@ -21,6 +21,7 @@ import {
   ProposalDetailAsync,
   RepresentativesAsync,
   SingleChartAsync,
+  ChartsAsync,
   StatisticsAsync,
   SystemAsync,
   Token20DetailAsync,
@@ -56,7 +57,8 @@ import {
   Exchange20,
   ContractSourceCode,
   ContractUseServiceTerms,
-  ContractLicense
+  ContractLicense,
+  RatingRule
 } from "./components/async";
 
 export const routes = [
@@ -136,6 +138,13 @@ export const routes = [
         icon: `fa fa-chart-pie`,
         path: "/blockchain/stats/:chartName",
         component: SingleChartAsync,
+        showInMenu: false
+      },
+      {
+        label: "statistics",
+        icon: `fa fa-chart-pie`,
+        path: "/blockchain/charts/:chartName",
+        component: ChartsAsync,
         showInMenu: false
       },
       {
@@ -265,7 +274,7 @@ export const routes = [
       //   component: TokenListAsync
       // },
       {
-        label: "overview",
+        label: "token_overview",
         path: "/tokens/list",
         icon: "fa fa-list",
         component: TokenAllAsync
@@ -317,18 +326,25 @@ export const routes = [
         icon: "fa fa-plus-square",
         component: TokensMarketsCreateAsync,
         showInMenu: false
+      },
+      {
+        label: "token_rating_rule",
+        path: "/tokens/rating-rule",
+        icon: "fa fa-plus-square",
+        component: RatingRule,
+        showInMenu: false
       }
     ]
   },
   {
     path: "/token/:id",
-    label: "token",
+    label: "token_detail",
     component: TokenDetailAsync,
     showInMenu: false
   },
   {
     path: "/token20/:address",
-    label: "token",
+    label: "token_detail",
     component: Token20DetailAsync,
     showInMenu: false
   },
@@ -435,14 +451,13 @@ export const routes = [
       },
       {
           url: "https://dappradar.com/rankings/protocol/tron",
-          icon: "fab fa-asymmetrik",
+          icon: "fab fa-dochub", 
           label: "DAppradar"
       },
       {
-        url:
-          "https://dapp.review/explore/tron?gclid=EAIaIQobChMIx-fB8KH04QIVlHZgCh0ybA1hEAAYASAAEgIad_D_BwE",
-        icon: "fas fa-ellipsis-h",
-        label: "nav_more"
+        url:"https://dapp.review/explore/tron?gclid=EAIaIQobChMIx-fB8KH04QIVlHZgCh0ybA1hEAAYASAAEgIad_D_BwE",
+        icon: "fas fa-crop-alt",
+        label: "Dappview"
       }
     ]
   },
@@ -686,6 +701,21 @@ export const routes = [
         // },
       ],
       [
+        "testnet",
+        {
+          url: "https://nile.tronscan.org",
+          icon: false,
+          label: "NILE TESTNET",
+          sidechain: false
+        },
+        {
+          url: "https://shasta.tronscan.org",
+          icon: false,
+          label: "SHASTA TESTNET",
+          sidechain: false
+        }
+      ],
+      [
         "Documentation",
         {
           url: "https://tron.network/static/doc/white_paper_v_2_0.pdf",
@@ -756,18 +786,18 @@ export const routes = [
       ],
       [
         "Other",
-        {
-          url: "https://shasta.tronscan.org",
-          icon: "fa fa-link",
-          label: "link_test_server",
-          sidechain: false
-        },
-        {
-          url: "https://www.trongrid.io/shasta",
-          icon: "fa fa-recycle",
-          label: "link_test_fauct",
-          sidechain: false
-        },
+        // {
+        //   url: "https://shasta.tronscan.org",
+        //   icon: "fa fa-link",
+        //   label: "link_test_server",
+        //   sidechain: false
+        // },
+        // {
+        //   url: "https://www.trongrid.io/shasta",
+        //   icon: "fa fa-recycle",
+        //   label: "link_test_fauct",
+        //   sidechain: false
+        // },
         // {
         //   url: "https://dapphouse.org",
         //   icon: "fa fa-archive",
