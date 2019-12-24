@@ -81,14 +81,14 @@ class TokenInfo extends React.Component {
               {token.id == "1002000" ? (
                 <td style={{ borderTop: "0px" }}>
                   <span>
-                    <FormattedDate value={1548658800000} />
+                    <FormattedDate value={1548658800000} />{" "}
                     <FormattedTime
                       value={1548658800000}
                       hour="numeric"
                       minute="numeric"
                       second="numeric"
                       hour12={false}
-                    />
+                    />{" "}
                     UTC
                   </span>
                 </td>
@@ -96,14 +96,14 @@ class TokenInfo extends React.Component {
                 <td style={{ borderTop: "0px" }}>
                   {token.endTime - token.startTime > 1000 ? (
                     <span>
-                      <FormattedDate value={token.startTime} />
+                      <FormattedDate value={token.startTime} />{" "}
                       <FormattedTime
                         value={token.startTime}
                         hour="numeric"
                         minute="numeric"
                         second="numeric"
                         hour12={false}
-                      />
+                      />{" "}
                       UTC
                     </span>
                   ) : (
@@ -117,14 +117,14 @@ class TokenInfo extends React.Component {
               {token.id == "1002000" ? (
                 <td>
                   <span>
-                    <FormattedDate value={1548659681000} />
+                    <FormattedDate value={1548659681000} />{" "}
                     <FormattedTime
                       value={1548659681000}
                       hour="numeric"
                       minute="numeric"
                       second="numeric"
                       hour12={false}
-                    />
+                    />{" "}
                     UTC
                   </span>
                 </td>
@@ -132,26 +132,26 @@ class TokenInfo extends React.Component {
                 <td>
                   {token.endTime - token.startTime > 1000 ? (
                     <span style={{ float: "left" }}>
-                      <FormattedDate value={token.endTime} />
+                      <FormattedDate value={token.endTime} />{" "}
                       <FormattedTime
                         value={token.endTime}
                         hour="numeric"
                         minute="numeric"
                         second="numeric"
                         hour12={false}
-                      />
+                      />{" "}
                       UTC
                     </span>
                   ) : (
                     "-"
                   )}
-                  {!(
+                  {/* {!(
                     token.endTime < new Date() ||
                     token.issuedPercentage === 100 ||
                     token.startTime > new Date() ||
                     token.isBlack
                   ) &&
-                    token.canShow !== 3 && <Participate token={token} />}
+                    token.canShow !== 3 && <Participate token={token} />} */}
                 </td>
               )}
             </tr>
@@ -162,12 +162,12 @@ class TokenInfo extends React.Component {
                   <FormattedNumber
                     value={0.00447261}
                     maximumFractionDigits={8}
-                  />
+                  />{" "}
                   TRX <br />
                   <FormattedNumber
                     value={0.00001824}
                     maximumFractionDigits={8}
-                  />
+                  />{" "}
                   BNB
                 </td>
               ) : (
@@ -179,7 +179,7 @@ class TokenInfo extends React.Component {
                       ONE_TRX
                     }
                     maximumFractionDigits={6}
-                  />
+                  />{" "}
                   TRX
                 </td>
               )}
@@ -194,7 +194,7 @@ class TokenInfo extends React.Component {
               <th>{tu("token_Participants")}:</th>
               {
                 <td>
-                  {participateassetissueTotal} {tu("address")}
+                  {participateassetissueTotal}{" "}{tu("address")}
                 </td>
               }
             </tr>
