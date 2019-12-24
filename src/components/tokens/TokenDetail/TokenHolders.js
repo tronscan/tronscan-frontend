@@ -486,7 +486,7 @@ class TokenHolders extends React.Component {
                           color: "#999999"
                         }}
                       >
-                        {tu("view_total")} {rangeTotal} {tu("hold_addr")},
+                        {tu("view_total")} {rangeTotal} {tu("hold_addr")}
                         {/* {rangeTotal >= 10000 ? (
                           <QuestionMark
                             placement="top"
@@ -496,7 +496,7 @@ class TokenHolders extends React.Component {
                           ""
                         )} */}
                         {rangeTotal >= 10000 ? (
-                          <span> {tu("table_info_big")} </span>
+                          <span>, {tu("table_info_big")} </span>
                         ) : (
                           ""
                         )}
