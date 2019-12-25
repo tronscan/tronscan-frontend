@@ -9,6 +9,8 @@ import rebuildList from "../../../../utils/rebuildList";
 import {toUtf8} from 'tronweb'
 import { NameWithId } from '../../../common/names';
 
+import TriggerContract from './TriggerContract'
+
 /**
  * Get the title
  * @param {*} contract 
@@ -100,7 +102,7 @@ export default function Info({contract}) {
             case "PROPOSALCREATECONTRACT":
                 return '';
             case "TRIGGERSMARTCONTRACT":
-                return '';
+                return <TriggerContract contract={...contract}></TriggerContract>;
             case "UPDATEBROKERAGECONTRACT":
                 return '';
             default:
