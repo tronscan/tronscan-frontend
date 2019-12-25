@@ -132,6 +132,7 @@ export const lang19Q4 = {
     "freezing_column_total_circulation": "Circulación total de TRX",
     "freezing_column_total_frozen": "TRX total congelado",
     "freezing_column_freezing_rate": "Tasa de congelación",
+    "freezing_column_freezing_rate_highest": "Tasa de congelación:",
     "freezing_column_energy_ratio": "Relación TRX por energía",
     "freezing_column_bandwidth_ratio": "Relación TRX para ancho de banda",
     "freezing_column_freezing_rate_tip": "Congelar cantidad TRX / circulación TRX total",

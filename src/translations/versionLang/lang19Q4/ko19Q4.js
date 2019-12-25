@@ -132,6 +132,7 @@ export const lang19Q4 = {
     "freezing_column_total_circulation": "TRX 총 유통 량",
     "freezing_column_total_frozen": "TRX 동결 량",
     "freezing_column_freezing_rate": "동결 속도",
+    "freezing_column_freezing_rate_highest":"동결 속도",
     "freezing_column_energy_ratio": "에너지 점유율",
     "freezing_column_bandwidth_ratio": "대역폭 점유율",
     "freezing_column_freezing_rate_tip": "TRX 동결 수/ 총 TRX 유통 량",

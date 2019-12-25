@@ -482,7 +482,7 @@ class StatCharts extends React.Component {
                             <div className="col-md-6 text-center">
                                 {
                                     summit && summit[match.params.chartName + '_sort'] &&
-                                    <span>{t('freezing_column_freezing_rate')}&nbsp;{tu('highest')}{t(unit)}{t('_of')}
+                                    <span>{t('freezing_column_freezing_rate_highest')}&nbsp;{tu('highest')}{t(unit)}{t('_of')}
                                       <strong>{' ' + summit[match.params.chartName + '_sort'][0].increment + ' '}</strong>
                                         {t('was_recorded_on')} {intl.formatDate(summit[match.params.chartName + '_sort'][0].date)}
                             </span>
@@ -491,7 +491,7 @@ class StatCharts extends React.Component {
                             <div className="col-md-6 text-center">
                                 {
                                     summit && summit[match.params.chartName + '_sort'] &&
-                                    <span>{t('freezing_column_freezing_rate')}&nbsp;{tu('lowest')}{t(unit)}{t('_of')}
+                                    <span>{t('freezing_column_freezing_rate_highest')}&nbsp;{tu('lowest')}{t(unit)}{t('_of')}
                                       <strong>{' ' + summit[match.params.chartName + '_sort'][1].increment + ' '}</strong>
                                         {t('was_recorded_on')} {intl.formatDate(summit[match.params.chartName + '_sort'][1].date)}
                             </span>

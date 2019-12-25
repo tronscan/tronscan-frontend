@@ -136,6 +136,7 @@ export const lang19Q4 = {
     "freezing_column_total_circulation": "إجمالي تداول TRX",
     "freezing_column_total_frozen": "مجموع TRX المجمدة",
     "freezing_column_freezing_rate": "معدل التجمد",
+    "freezing_column_freezing_rate_highest": "معدل التجمد",
     "freezing_column_energy_ratio": "نسبة TRX مقابل الطاقة",
     "freezing_column_bandwidth_ratio": "نسبة TRX مقابل عرض النطاق الترددي",
     "freezing_column_freezing_rate_tip": "تجميد كمية TRX / إجمالي TRX التداول",
