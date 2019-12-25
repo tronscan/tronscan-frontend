@@ -383,7 +383,7 @@ class TokenHolders extends React.Component {
       addresses = [];
     }
 
-    let { intl, filter } = this.props;
+    let { intl, filter, activeLanguage } = this.props;
     let column = this.customizedColumn();
     let tableInfo =
       intl.formatMessage({
@@ -494,6 +494,7 @@ class TokenHolders extends React.Component {
                     }}
                   >
                     {tu("holders")}
+                    {activeLanguage === "en" ? <span>' </span> : null}
                     {tu("address")}
                   </div>
                   <div
@@ -564,6 +565,7 @@ const styles = {
 
 function mapStateToProps(state) {
   return {
+    activeLanguage: state.app.activeLanguage,
     tokensInfo: state.tokensInfo
   };
 }

@@ -131,6 +131,7 @@ export const lang19Q4 = {
     "freezing_column_total_circulation": "مجموع گردش TRX",
     "freezing_column_total_frozen": "مجموع TRX فریز شده ",
     "freezing_column_freezing_rate": "میزان فریز شده",
+    "freezing_column_freezing_rate_highest": "میزان فریز شده",
     "freezing_column_energy_ratio": "نسبت TRX به انرژی",
     "freezing_column_bandwidth_ratio": "نسبت پهنای باند TRX",
     "freezing_column_freezing_rate_tip": "مقدار TRX / TRX در چرخه انجماد",

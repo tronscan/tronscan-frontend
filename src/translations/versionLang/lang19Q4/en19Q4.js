@@ -132,6 +132,7 @@ export const lang19Q4 = {
     "freezing_column_total_circulation": "Total circulation of TRX",
     "freezing_column_total_frozen": "Total TRX frozen",
     "freezing_column_freezing_rate": "Freezing rate",
+    "freezing_column_freezing_rate_highest": "Freezing rate:",
     "freezing_column_energy_ratio": "TRX-for-Energy ratio",
     "freezing_column_bandwidth_ratio": "TRX-for-bandwidth ratio",
     "freezing_column_freezing_rate_tip": "amount of TRX frozen/total TRX in circulation",
