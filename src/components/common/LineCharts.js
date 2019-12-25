@@ -2158,13 +2158,9 @@ export class OverallFreezingRateChart extends React.Component {
                 ],
                 plotOptions: {
                     column: {
-                        stacking: 'normal',
-                        dataLabels: {
-                            enabled: false,
-                            style: {
-                                textShadow: '0 0 3px black'
-                            }
-                        }
+                        grouping: false,
+                        shadow: false,
+                        borderWidth: 0
                     },
                     spline: {
                         marker: {
