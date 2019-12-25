@@ -163,5 +163,6 @@ export const lang19Q4 = {
     "transation_detail":"交易详情",
     "transation_hash":"交易哈希值",
     "transation_status_tip":'"已确认"是指被19个以上超级节点确认，不足19个为"确认中"',
-    "transation_type":"交易类型"
+    "transation_type": "交易类型",
+    "transation_transfer_trx":"TRX转账",
 }

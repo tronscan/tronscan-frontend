@@ -4,12 +4,12 @@ import {connect} from "react-redux";
 import { Route, Switch} from "react-router-dom";
 import {Client} from "../../../services/api";
 import {tu} from "../../../utils/i18n";
-import {FormattedDate, FormattedTime} from "react-intl";
+import {FormattedDate, FormattedTime,injectIntl} from "react-intl";
 import {BlockNumberLink} from "../../common/Links";
 import {CopyText} from "../../common/Copy";
 import {TronLoader} from "../../common/loaders";
 import {Truncate} from "../../common/text";
-import Contract from "../../tools/TransactionViewer/Contract";
+// import Contract from "../../tools/TransactionViewer/Contract";
 import {ContractTypes} from "../../../utils/protocol";
 import {Alert} from "reactstrap";
 import {setLanguage} from "../../../actions/app"
@@ -17,7 +17,8 @@ import queryString from 'query-string';
 import tokenApi from '../../../services/tokenApi'
 import { IS_MAINNET } from "../../../constants";
 import {QuestionMark} from '../../common/QuestionMark'
-
+import Info from './info';
+@injectIntl
 class Transaction extends React.Component {
 
   constructor() {
@@ -92,7 +93,7 @@ class Transaction extends React.Component {
           path: "",
           label: <span>{tu("contracts")}</span>,
           cmp: () => (
-              <Contract contract={{
+              <Info contract={{
                   ...{cost:transaction.cost},
                   ...transaction.contractData,
                   ...transaction['trigger_info'],
@@ -110,7 +111,7 @@ class Transaction extends React.Component {
   render() {
 
     let {transaction, tabs, loading,notFound,resMessage,SUCCESS,FAIL} = this.state;
-    let {match} = this.props;
+    let {match,intl} = this.props;
     if (notFound) {
         return (
             <main className="container header-overlap">
@@ -150,7 +151,7 @@ class Transaction extends React.Component {
                           }
                           {
                               transaction.hasOwnProperty("confirmed") && <tr>
-                                  <th>{tu("status")}:<QuestionMark placement="right" text={tu('transation_status_tip')} ></QuestionMark></th>
+                                  <th>{tu("status")}:<QuestionMark placement="right" text={intl.formatMessage({id:'transation_status_tip'})} ></QuestionMark></th>
                                   <td>
                                       {
                                           transaction.confirmed ?
@@ -201,6 +202,7 @@ class Transaction extends React.Component {
                         <Switch>
                           {
                             Object.values(tabs).map(tab => (
+                              
                                 <Route key={tab.id} exact path={match.url + tab.path} render={(props) => (<tab.cmp/>)}/>
                             ))
                           }
