@@ -1261,68 +1261,7 @@ class Navigation extends React.Component {
               </div>
             </div>
               <div className="ml-auto d-flex">
-                {
-                  <div className="hidden-mobile nav-searchbar">
-                    <div className="input-group dropdown">
-                      <input type="text"
-                             className="form-control p-2 bg-white border-0 box-shadow-none"
-                             style={styles.search}
-                             value={search}
-                             onKeyDown={this.onSearchKeyDown}
-                             onChange={this.onSearchChange}
-                             onClick={this.callAjax}
-                             placeholder={intl.formatMessage({id: "search_description1"})}/>
-                      <div className="input-group-append" style={{marginLeft:0}}>
-                        <button className="btn box-shadow-none" disabled={this.isSearching} onClick={this.doSearch}>
-                          <i className="fa fa-search"/>
-                        </button>
-                      </div>
-                      <div className="dropdown-menu" id="_searchBox" style={{width: '100%',maxHeight:'300px', overflow:'auto'}}>
-                        {
-                          searchResults && searchResults.map((result, index) => {
-                                if (result.desc === 'Block') {
-                                  return <Link className="dropdown-item text-uppercase" to={"/block/" + trim(result.value)} onClick={() => {
-                                    this.afterSearch()
-                                  }}
-                                            key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></Link>
-                                }
-                                if (result.desc === 'Token-TRC20') {
-                                  return <Link className="dropdown-item text-uppercase" to={"/token20/" + trim(result.value.split(' ')[result.value.split(' ').length-1])} onClick={() => {
-                                    this.afterSearch()
-                                  }}
-                                            key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></Link>
-                                }
-                                if (result.desc === 'Token-TRC10') {
-                                  return <Link className="dropdown-item text-uppercase" to={"/token/" + trim(result.value.split(' ')[result.value.split(' ').length-1])} onClick={() => {
-                                    this.afterSearch()
-                                  }}
-                                            key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></Link>
-                                }
-                                if (result.desc === 'Address') {
-                                  return <Link className="dropdown-item text-uppercase" to={"/address/" + trim(result.value)} onClick={() => {
-                                    this.afterSearch()
-                                  }}
-                                            key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></Link>
-                                }
-                                if (result.desc === 'Contract') {
-                                  return <Link className="dropdown-item text-uppercase" to={"/contract/" + trim(result.value)+'/code'} onClick={() => {
-                                    this.afterSearch()
-                                  }}
-                                            key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></Link>
-                                }
-                                if (result.desc === 'TxHash') {
-                                  return <Link className="dropdown-item text-uppercase" to={"/transaction/" + trim(result.value)} onClick={() => {
-                                    this.afterSearch()
-                                  }}
-                                            key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></Link>
-                                }
-                              }
-                          )
-                        }
-                      </div>
-                    </div>
-                  </div>
-                }
+              
                 <div className="navbar navbar-expand-md navbar-dark py-0">
                   <ul className="navbar-nav navbar-right wallet-nav">
                     {
@@ -1334,6 +1273,74 @@ class Navigation extends React.Component {
               </div>
             </div>
           </div>
+          <div style={{boxShadow:"0 2px 40px 0 rgba(4,4,64,0.05)"}}>
+            <div className="container  p-0 p-md-3">
+              <div className="row justify-content-center text-center">
+                <div className="col-12">
+                  {
+                    <div className="hidden-mobile nav-searchbar" style={{width:"100%"}}>
+                      <div className="input-group dropdown">
+                        <input type="text"
+                                className="form-control p-2 border-0 box-shadow-none newSearchInput"
+                                style={styles.search}
+                                value={search}
+                                onKeyDown={this.onSearchKeyDown}
+                                onChange={this.onSearchChange}
+                                onClick={this.callAjax}
+                                placeholder={intl.formatMessage({id: "search_description1"})}/>
+                        <div className="input-group-append">
+                          <button className="btn box-shadow-none" disabled={this.isSearching} onClick={this.doSearch}>
+                            {/* <i className="fa fa-search"/> */}
+                            {tu("search")}
+                          </button>
+                        </div>
+                        <div className="dropdown-menu" id="_searchBox" style={{width: '100%',maxHeight:'300px', overflow:'auto'}}>
+                          {
+                            searchResults && searchResults.map((result, index) => {
+                                if (result.desc === 'Block') {
+                                  return <Link className="dropdown-item text-uppercase" to={"/block/" + trim(result.value)} onClick={() => {
+                                    this.afterSearch()
+                                  }} key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></Link>
+                                }
+                                if (result.desc === 'Token-TRC20') {
+                                  return <Link className="dropdown-item text-uppercase" to={"/token20/" + trim(result.value.split(' ')[result.value.split(' ').length-1])} onClick={() => {
+                                    this.afterSearch()
+                                  }} key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></Link>
+                                }
+                                if (result.desc === 'Token-TRC10') {
+                                  return <Link className="dropdown-item text-uppercase" to={"/token/" + trim(result.value.split(' ')[result.value.split(' ').length-1])} onClick={() => {
+                                    this.afterSearch()
+                                  }} key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></Link>
+                                }
+                                if (result.desc === 'Address') {
+                                  return <Link className="dropdown-item text-uppercase" to={"/address/" + trim(result.value)} onClick={() => {
+                                    this.afterSearch()
+                                  }} key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></Link>
+                                }
+                                if (result.desc === 'Contract') {
+                                  return <Link className="dropdown-item text-uppercase" to={"/contract/" + trim(result.value)+'/code'} onClick={() => {
+                                    this.afterSearch()
+                                  }} key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></Link>
+                                }
+                                if (result.desc === 'TxHash') {
+                                  return <Link className="dropdown-item text-uppercase" to={"/transaction/" + trim(result.value)} onClick={() => {
+                                    this.afterSearch()
+                                  }} key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></Link>
+                                }
+                              }
+                            )
+                          }
+                        </div>
+                      </div>
+                    </div>
+                  }
+                </div>
+               
+              </div>
+            </div>
+          </div>
+       
+          
           <div className="hidden-PC nav-searchbar">
             <div className="input-group dropdown">
               <input type="text"
@@ -1394,9 +1401,9 @@ class Navigation extends React.Component {
               </div>
             </div>
           </div>
-          <nav className="top-bar navbar navbar-expand-md navbar-dark">
+          {/* <nav className="top-bar navbar navbar-expand-md navbar-dark" >
             
-          </nav>
+          </nav> */}
           {
             activeComponent.none ? <div className="container pt-5 pb-4"></div>
                 :

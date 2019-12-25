@@ -32,6 +32,9 @@
             background-color: #f3f3f3 !important;
             border-radius: 2px;
         }
+        .newSearchInput {
+            background: #E9E9E9 !important;
+        }
         .input-group-append button {
             border-radius: 0 2px 2px 0;
             background-color: $main-red;
@@ -452,270 +455,283 @@
         float: right;
         margin-top: -134px;
     }
-
     form {
-      .table {
-        th,
-        td {
-          border-top-color: #eee;
+        .table {
+            th,
+            td {
+                border-top-color: #eee;
+            }
         }
-      }
-      tr td:first-child {
-        color: $border-color;
-      }
+        tr td:first-child {
+            color: $border-color;
+        }
     }
     // McDonaldsCoin 样式覆盖
     &.mc-donalds-coin {
-      .tokenDetail {
-        background-color: $white;
-        tbody {
-          td,
-          th {
-            border-color: #eee;
-          }
-          th {
-            color: $border-color;
-          }
-        }
-      }
-      .card-body {
-        background-color: $bg-color-lighter;
-        border: 1px solid $border-color-lighter;
-        h5 {
-          color: $bg-color;
-        }
-        p {
-          color: $border-color;
-        }
-      }
-      .card-header {
-        background-color: $bg-color-lighter;
-        .nav-item a {
-          color: $text-block-dark !important;
-          &:hover,
-          &.active {
+        .tokenDetail {
             background-color: $white;
-          }
+            tbody {
+                td,
+                th {
+                    border-color: #eee;
+                }
+                th {
+                    color: $border-color;
+                }
+            }
         }
-      }
-      .border_table {
-        border: 1px solid $border-color-lighter;
-      }
+        .card-body {
+            background-color: $bg-color-lighter;
+            border: 1px solid $border-color-lighter;
+            h5 {
+                color: $bg-color;
+            }
+            p {
+                color: $border-color;
+            }
+        }
+        .card-header {
+            background-color: $bg-color-lighter;
+            .nav-item a {
+                color: $text-block-dark !important;
+                &:hover,
+                &.active {
+                    background-color: $white;
+                }
+            }
+        }
+        .border_table {
+            border: 1px solid $border-color-lighter;
+        }
     }
     .sweet-alert {
-      h5,
-      h5 * {
-        font-size: 20px !important;
-      }
-      span,
-      b {
-        font-size: 16px;
-      }
-      .input-group {
-        margin-top: 10px;
-      }
-      padding-bottom: 40px !important;
-      height: auto !important;
-      h5 {
-        color: $border-color !important;
-      }
-      .form-control {
-        height: 50px;
-        color: $text-block-dark;
-        background-color: $bg-color-lighter;
-      }
-      .text-muted {
-        color: $gold !important;
-      }
-      .btn {
-        height: 50px;
-        font-size: 16px;
-      }
-      a {
-        color: $border-color !important;
-      }
+        h5,
+        h5 * {
+            font-size: 20px !important;
+        }
+        span,
+        b {
+            font-size: 16px;
+        }
+        .input-group {
+            margin-top: 10px;
+        }
+        padding-bottom: 40px !important;
+        height: auto !important;
+        h5 {
+            color: $border-color !important;
+        }
+        .form-control {
+            height: 50px;
+            color: $text-block-dark;
+            background-color: $bg-color-lighter;
+        }
+        .text-muted {
+            color: $gold !important;
+        }
+        .btn {
+            height: 50px;
+            font-size: 16px;
+        }
+        a {
+            color: $border-color !important;
+        }
     }
     .row.transfers .card {
-      background-color: $white;
-      padding: 0 20px 20px;
-      .ant-table thead th {
-        color: $text-block-dark;
         background-color: $white;
-      }
-      .ant-table-thead > tr > th {
-        border-bottom: 1px solid #eee;
-        border-top: 1px solid #eee;
-      }
-      table {
-        border-bottom: 1px solid #eee;
-      }
+        padding: 0 20px 20px;
+        .ant-table thead th {
+            color: $text-block-dark;
+            background-color: $white;
+        }
+        .ant-table-thead>tr>th {
+            border-bottom: 1px solid #eee;
+            border-top: 1px solid #eee;
+        }
+        table {
+            border-bottom: 1px solid #eee;
+        }
     }
     &.mytoken {
-      .card-body {
-        padding: 0;
-      }
+        .card-body {
+            padding: 0;
+        }
     } // news 样式覆盖
     &.news {
-      h2,
-      h2 * {
-        font-size: 20px;
-        margin-bottom: 10px;
-      }
-      h4,
-      h4 * {
-        font-size: 14px;
-        color: $text-block-dark;
-        // font-weight: lighter;
-      }
-      hr {
-        margin: 30px 0;
-      }
-      p {
-        margin-bottom: 0.7em;
-        &:last-child {
-          margin-bottom: 30px;
+        h2,
+        h2 * {
+            font-size: 20px;
+            margin-bottom: 10px;
         }
-      }
-      .socialMedia {
-        margin-left: 0;
-        .ml-2,
-        .mx-2 {
-          margin-left: 1.3rem !important;
-        }
-        .mt-2,
-        .my-2 {
-          margin-top: 1rem !important;
-        }
-        & > div {
-          background-color: #eee;
-          span {
+        h4,
+        h4 * {
+            font-size: 14px;
             color: $text-block-dark;
-          }
+            // font-weight: lighter;
         }
-      }
-      .btn {
-        margin: 38px 0 50px !important;
-      }
-      .news_unit {
-        padding: 1.25rem;
-        background-color: $white;
-        margin-bottom: 2px;
-        &:first-child {
-          hr {
-            display: none;
-          }
+        hr {
+            margin: 30px 0;
         }
-        td {
-          border: none;
-          padding: {
-            top: 9px;
-            bottom: 9px;
-          }
-          color: $border-color;
-          &:last-child,
-          a {
-            color: $bg-color;
-          }
+        p {
+            margin-bottom: 0.7em;
+            &:last-child {
+                margin-bottom: 30px;
+            }
         }
-      }
+        .socialMedia {
+            margin-left: 0;
+            .ml-2,
+            .mx-2 {
+                margin-left: 1.3rem !important;
+            }
+            .mt-2,
+            .my-2 {
+                margin-top: 1rem !important;
+            }
+            &>div {
+                background-color: #eee;
+                span {
+                    color: $text-block-dark;
+                }
+            }
+        }
+        .btn {
+            margin: 38px 0 50px !important;
+        }
+        .news_unit {
+            padding: 1.25rem;
+            background-color: $white;
+            margin-bottom: 2px;
+            &:first-child {
+                hr {
+                    display: none;
+                }
+            }
+            td {
+                border: none;
+                padding: {
+                    top: 9px;
+                    bottom: 9px;
+                }
+                color: $border-color;
+                &:last-child,
+                a {
+                    color: $bg-color;
+                }
+            }
+        }
     }
-  }
-  .confirm .borderBottom {
+}
+
+.confirm .borderBottom {
     borderbottom: "1px solid #DFD7CA" !important;
-  }
-  .rdtPicker {
+}
+
+.rdtPicker {
     bottom: 38px;
-  }
-  .socialMedia div {
+}
+
+.socialMedia div {
     line-height: 32px;
-  }
-  .socialMedia div span {
+}
+
+.socialMedia div span {
     margin-left: 10px;
-  }
-  .myToken tr td:first-child {
+}
+
+.myToken tr td:first-child {
     width: 15%;
-  }
-  .sr th,
-  .sr td {
+}
+
+.sr th,
+.sr td {
     padding-left: 10px;
     padding-right: 10px;
-  }
-  .main-counters {
+}
+
+.main-counters {
     margin-top: 30px;
     margin-bottom: 50px;
     .counters {
-      color: #555;
-      text-align: center;
-      span {
-        font-size: 30px;
-        line-height: 40px;
-      }
-      h4 {
-        margin-top: 10px;
+        color: #555;
+        text-align: center;
         span {
-          color: #555;
-          margin-top: 5px;
-          text-shadow: none;
-          font-weight: 400;
-          font-size: 18px;
-          font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-            "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji",
-            "Segoe UI Emoji", "Segoe UI Symbol";
+            font-size: 30px;
+            line-height: 40px;
         }
-      }
+        h4 {
+            margin-top: 10px;
+            span {
+                color: #555;
+                margin-top: 5px;
+                text-shadow: none;
+                font-weight: 400;
+                font-size: 18px;
+                font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+            }
+        }
     }
     @media (max-width: 768px) {
-      .counters {
-        span {
-          font-size: 24px;
+        .counters {
+            span {
+                font-size: 24px;
+            }
         }
-      }
     }
-  }
-  .go-foundation {
+}
+
+.go-foundation {
     color: red;
-  }
-  .go-foundation:hover {
+}
+
+.go-foundation:hover {
     color: red;
     text-decoration: underline;
-  }
-  .loader-hidden {
+}
+
+.loader-hidden {
     display: none;
-  }
-  .card-chart {
+}
+
+.card-chart {
     display: flex;
     justify-content: center;
     align-items: flex-start;
     flex-direction: column;
     font-size: 1rem;
     font-weight: 500;
-  }
-  .card-chart .card-title {
+}
+
+.card-chart .card-title {
     color: #000000;
     font-size: 14px;
     font-weight: 400;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-  }
-  .card-chart .card-title:hover {
-   text-decoration: underline;
-  }
-  .card-chart img {
+}
+
+.card-chart .card-title:hover {
+    text-decoration: underline;
+}
+
+.card-chart img {
     //margin: 16px auto 0;
-  }
-  .statistics-chart hr {
+}
+
+.statistics-chart hr {
     margin: 0px 55px;
-  }
-  .token-sweet-alert {
+}
+
+.token-sweet-alert {
     // width: 390px;
     // margin: auto;
-  }
-  .token-sweet-alert .close {
+}
+
+.token-sweet-alert .close {
     float: right;
     margin-top: -134px;
-  }
-
+}
 
 $white: #ffffff;
 $color-grey-100: #333333;
