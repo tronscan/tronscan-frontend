@@ -603,18 +603,21 @@ class Transfers extends React.Component {
                 background: "#fff"
               }}
             >
-              {!loading && (
-                <div style={{ paddingLeft: 8 }}>
-                  <TotalInfo
-                    total={total}
-                    rangeTotal={rangeTotal}
-                    typeText="transaction_info"
-                    divClass="table_pos_info_addr"
-                    selected
-                    top={tokensInfo.searchAddress ? "184px" : "80px"}
-                  />
-                </div>
-              )}
+              <div style={{ paddingLeft: 8 }}>
+                {!loading && (
+                  <div >
+                    <TotalInfo
+                      total={total}
+                      rangeTotal={rangeTotal}
+                      typeText="transaction_info"
+                      divClass="table_pos_info_addr"
+                      selected
+                      top={tokensInfo.searchAddress ? "184px" : "80px"}
+                    />
+                  </div>
+                )}
+              </div>
+             
               <DateSelect
                 onDateOk={(start, end) => this.onDateOk(start, end)}
                 dataStyle={{

@@ -494,7 +494,7 @@ class TokenHolders extends React.Component {
                     }}
                   >
                     {tu("holders")}
-                    {activeLanguage === "en" ? " ’" : null}
+                    {activeLanguage === "en" ? <span>' </span> : null}
                     {tu("address")}
                   </div>
                   <div
