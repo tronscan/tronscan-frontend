@@ -16,11 +16,11 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/editor.worker.js.gz"
   },
   {
-    "revision": "80eecf92056d186711d8c5a972d78c2a",
+    "revision": "7a631137aa94d35d85df3aa82b084050",
     "url": "/index.html"
   },
   {
-    "revision": "03c0def74ec4ca154edaef8ac2c7772d",
+    "revision": "259e765b007583616f6208d007187f55",
     "url": "/index.html.gz"
   },
   {
@@ -288,12 +288,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/js/About.6d3b370f.chunk.js.gz"
   },
   {
-    "revision": "e0391aee97a2159dd86c",
-    "url": "/static/js/Account.2be962fb.chunk.js"
+    "revision": "934978f890a11c5ce453",
+    "url": "/static/js/Account.d25d1b0a.chunk.js"
   },
   {
-    "revision": "cc751af82582ac8c371f86b5b0129887",
-    "url": "/static/js/Account.2be962fb.chunk.js.gz"
+    "revision": "18d7ae120048752dbaf136107a1d3d78",
+    "url": "/static/js/Account.d25d1b0a.chunk.js.gz"
   },
   {
     "revision": "4662030d672a54072bd7",
@@ -744,12 +744,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/js/main.3cbd96bf.chunk.js.gz"
   },
   {
-    "revision": "fefc30f5218f78519ac1",
-    "url": "/static/js/runtime~main.6bbf5fd4.js"
+    "revision": "46a40cd1a1385662ce1d",
+    "url": "/static/js/runtime~main.2c08b9a3.js"
   },
   {
-    "revision": "2afa75636eaa2cbee4041a9b540aac48",
-    "url": "/static/js/runtime~main.6bbf5fd4.js.gz"
+    "revision": "95e5f1d39004500e2d7d1e843833d22e",
+    "url": "/static/js/runtime~main.2c08b9a3.js.gz"
   },
   {
     "revision": "7b00f7c4e78ed9cfc676c64c040965e8",
