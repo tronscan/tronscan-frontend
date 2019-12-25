@@ -23,7 +23,6 @@ class TransferContract extends React.Component {
         </div>
         <div className="table-responsive">
           <table className="table">
-            <thead></thead>
             <tbody>
               <Field label="from">
                 <AddressLink address={contract["owner_address"]}>
