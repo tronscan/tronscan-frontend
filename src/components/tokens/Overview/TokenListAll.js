@@ -383,25 +383,26 @@ class TokenList extends Component {
           title: intl.formatMessage({id: 'trc20_cur_order_header_action'}),
           dataIndex: 'abbr',
           key: 'abbr',
-          width: '10%',
+          width: '11%',
           render: (text, record, index) => {
             return <div>
               {
                   record.tokenType == 'trc10'&&
-                  <Link to={`/token/${encodeURI(record.tokenId)}`} className="token-details btn">{tu('details')}</Link>
+                  <Link to={`/token/${encodeURI(record.tokenId)}`} className="token-details btn" style={{textTransform:'capitalize'}}>{tu('details')}</Link>
               }
               {
                   record.tokenType == 'trc20'&&
-                  <Link to={`/token20/${encodeURI(record.contractAddress)}`} className="token-details btn">{tu('details')}</Link>
+                  <Link to={`/token20/${encodeURI(record.contractAddress)}`} className="token-details btn" style={{textTransform:'capitalize'}}>{tu('details')}</Link>
               }
               {
                   IS_MAINNET&& <span>
-                    {(record.extra && record.extra.url && record.extra.desc) ? <a href={record.extra.url} className="token-active-details btn mt-2">{tu(record.extra.desc)}</a>
+                    {(record.extra && record.extra.url && record.extra.desc) ? <a href={record.extra.url} className="token-active-details btn mt-2"  style={{textTransform:'capitalize'}}>{tu(record.extra.desc)}</a>
                         : (record.pairId )?
-                            <Link to={`/exchange/trc20?id=${record.pairId}`} className="token-details btn mt-2" target="_blank"> {tu('token_trade')}</Link>
+                            <Link to={`/exchange/trc20?id=${record.pairId}`} className="token-details btn mt-2" target="_blank" style={{textTransform:'capitalize'}}> {tu('token_trade')}</Link>
                             : <div>
                               <a href="javascript:;"
                                  className="token-disabled-exchange btn mt-2"
+                                 style={{textTransform:'capitalize'}}
                                  id={record.tokenType == "trc20"?"exchange_"+record.contractAddress:"exchange_"+record.tokenId}
                                  onMouseOver={(prevS,props) => this.setState({[record.abbr + record.tokenId]: true})}
                                  onMouseOut={() => this.setState({[record.abbr+record.tokenId]: false})}>
