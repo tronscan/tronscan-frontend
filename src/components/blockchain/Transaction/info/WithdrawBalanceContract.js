@@ -1,3 +1,7 @@
+/*
+* Auther:xueyuanying
+* Date:2019-12-25
+*/
 import React, { Fragment } from "react";
 import { tu } from "../../../../utils/i18n";
 import Field from "../../../tools/TransactionViewer/Field";

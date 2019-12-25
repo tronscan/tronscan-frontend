@@ -8,6 +8,8 @@ import {FormattedNumber, FormattedDate, injectIntl} from "react-intl";
 import rebuildList from "../../../../utils/rebuildList";
 import {toUtf8} from 'tronweb'
 import { NameWithId } from '../../../common/names';
+import UpdateSettingContract from './UpdateSettingContract'
+import ExchangeCreateContract from './ExchangeCreateContract'
 import TransferContract from './TransferContract'
 import FreezeBalanceContract from './FreezeBalanceContract'
 import UnFreezeBalanceContract from './UnFreezeBalanceContract'
@@ -75,7 +77,7 @@ export default function Info({contract}) {
         }
 
     }
-    console.log('contract',contract)
+    console.log('contract1111',contract)
 
     let TokenIDList = [];
     let tokenIdData;
@@ -119,6 +121,10 @@ export default function Info({contract}) {
                 return <UnfreezeAssetContract contract={contract}></UnfreezeAssetContract>;
             case "UPDATEASSETCONTRACT":
                 return <UpdateAssetContract contract={contract}></UpdateAssetContract>;
+            case "UPDATESETTINGCONTRACT":
+                    return <UpdateSettingContract contract={contract}/>;    
+            case "EXCHANGECREATECONTRACT":
+                    return <ExchangeCreateContract contract={contract}/> 
             default:
                 return (
                     <Fragment>
