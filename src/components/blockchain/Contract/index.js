@@ -515,7 +515,7 @@ class SmartContract extends React.Component {
                                   </AddressLink>
                                 </span>
                                {
-                                  contract.creator.txHash && <span>
+                                  contract.creator.txHash && <span className="d-flex" style={{ width: "70%" }}>
                                     <span className="px-1">{tu("at_txn")}</span>
                                       <span style={{ width: "30%" }}>
                                         <Truncate>

@@ -36,7 +36,7 @@ export const lang19Q4 = {
     "holders": "보유자",
     "transfersDetailContractAddress": "계약주소",
     "transfersDetailHolder": "홀더",
-    "transfersDetailQuantity": "Quantity",
+    "transfersDetailQuantity": "수량",
     "transfersDetailPercentage": "점유율",
     "transfersDetailValue": "가치",
     // 2019-12-10

@@ -297,8 +297,9 @@ class StatCharts extends React.Component {
             item.freezing_rate_percent = parseFloat((item.freezing_rate * 100).toFixed(2));
             x = new BigNumber(item.total_turn_over);
             item.total_turn_over_num = x.decimalPlaces(6).toNumber();
+            item.total_unfreezing_weight = x.minus(item.total_freeze_weight).decimalPlaces(6).toNumber();
+
         })
-        console.log('data',data)
         this.setState({
             OverallFreezingRate:  sortBy(data, function(o) { return o.timestamp; }),
             OverallFreezingRateRevers:  data
