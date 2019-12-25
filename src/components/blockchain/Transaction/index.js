@@ -9,13 +9,14 @@ import {BlockNumberLink} from "../../common/Links";
 import {CopyText} from "../../common/Copy";
 import {TronLoader} from "../../common/loaders";
 import {Truncate} from "../../common/text";
-import Contract from "../../tools/TransactionViewer/Contract";
+// import Contract from "../../tools/TransactionViewer/Contract";
 import {ContractTypes} from "../../../utils/protocol";
 import {Alert} from "reactstrap";
 import {setLanguage} from "../../../actions/app"
 import queryString from 'query-string';
 import tokenApi from '../../../services/tokenApi'
 import { IS_MAINNET } from "../../../constants";
+import Info from './info';
 
 
 class Transaction extends React.Component {
@@ -90,7 +91,7 @@ class Transaction extends React.Component {
           path: "",
           label: <span>{tu("contracts")}</span>,
           cmp: () => (
-              <Contract contract={{
+              <Info contract={{
                   ...{cost:transaction.cost},
                   ...transaction.contractData,
                   ...transaction['trigger_info'],
