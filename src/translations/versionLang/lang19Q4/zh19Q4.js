@@ -141,6 +141,7 @@ export const lang19Q4 = {
     "freezing_column_total_circulation": "TRX总流通量",
     "freezing_column_total_frozen": "TRX冻结量",
     "freezing_column_freezing_rate": "冻结率",
+    "freezing_column_freezing_rate_highest": "冻结率",
     "freezing_column_energy_ratio": "能量占比",
     "freezing_column_bandwidth_ratio": "带宽占比",
     "freezing_column_freezing_rate_tip": "TRX冻结量/TRX总流通量",

@@ -206,7 +206,7 @@ export function Information({ token: tokens, priceUSD }) {
     },
     {
       name: "issue_time",
-      content: <div>{token ? token.issue_time+'UTC' : defaultContent}</div>
+      content: <div>{token ? token.issue_time+' UTC' : defaultContent}</div>
     },
     {
       name: "issuer",

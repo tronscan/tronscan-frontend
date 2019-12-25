@@ -132,6 +132,7 @@ export const lang19Q4 = {
     "freezing_column_total_circulation": "Общая циркуляция TRX",
     "freezing_column_total_frozen": "Всего замороженных TRX",
     "freezing_column_freezing_rate": "Коэффициент заморозки",
+    "freezing_column_freezing_rate_highest": "Коэффициент заморозки:",
     "freezing_column_energy_ratio": "TRX-for-Energy ratio",
     "freezing_column_bandwidth_ratio": "TRX-for-bandwidth ratio",
     "freezing_column_freezing_rate_tip": "количество замороженного TRX / общее количество TRX в циркуляции;",

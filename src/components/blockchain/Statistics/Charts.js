@@ -297,8 +297,9 @@ class StatCharts extends React.Component {
             item.freezing_rate_percent = parseFloat((item.freezing_rate * 100).toFixed(2));
             x = new BigNumber(item.total_turn_over);
             item.total_turn_over_num = x.decimalPlaces(6).toNumber();
+            item.total_unfreezing_weight = x.minus(item.total_freeze_weight).decimalPlaces(6).toNumber();
+
         })
-        console.log('data',data)
         this.setState({
             OverallFreezingRate:  sortBy(data, function(o) { return o.timestamp; }),
             OverallFreezingRateRevers:  data
@@ -481,7 +482,7 @@ class StatCharts extends React.Component {
                             <div className="col-md-6 text-center">
                                 {
                                     summit && summit[match.params.chartName + '_sort'] &&
-                                    <span>{t('freezing_column_freezing_rate')}&nbsp;{tu('highest')}{t(unit)}{t('_of')}
+                                    <span>{t('freezing_column_freezing_rate_highest')}&nbsp;{tu('highest')}{t(unit)}{t('_of')}
                                       <strong>{' ' + summit[match.params.chartName + '_sort'][0].increment + ' '}</strong>
                                         {t('was_recorded_on')} {intl.formatDate(summit[match.params.chartName + '_sort'][0].date)}
                             </span>
@@ -490,7 +491,7 @@ class StatCharts extends React.Component {
                             <div className="col-md-6 text-center">
                                 {
                                     summit && summit[match.params.chartName + '_sort'] &&
-                                    <span>{t('freezing_column_freezing_rate')}&nbsp;{tu('lowest')}{t(unit)}{t('_of')}
+                                    <span>{t('freezing_column_freezing_rate_highest')}&nbsp;{tu('lowest')}{t(unit)}{t('_of')}
                                       <strong>{' ' + summit[match.params.chartName + '_sort'][1].increment + ' '}</strong>
                                         {t('was_recorded_on')} {intl.formatDate(summit[match.params.chartName + '_sort'][1].date)}
                             </span>

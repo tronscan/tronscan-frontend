@@ -133,6 +133,7 @@ export const lang19Q4 = {
     "freezing_column_total_circulation": "TRX総合流通量",
     "freezing_column_total_frozen": "TRX凍結量",
     "freezing_column_freezing_rate": "凍結率",
+    "freezing_column_freezing_rate_highest": "凍結率",
     "freezing_column_energy_ratio": "TRXエネルギー比",
     "freezing_column_bandwidth_ratio": "TRXの帯域幅比",
     "freezing_column_freezing_rate_tip": "凍結したTRXの量/循環中のTRXの合計",
