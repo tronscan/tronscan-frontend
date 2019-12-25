@@ -16,7 +16,7 @@ import {setLanguage} from "../../../actions/app"
 import queryString from 'query-string';
 import tokenApi from '../../../services/tokenApi'
 import { IS_MAINNET } from "../../../constants";
-
+import {QuestionMark} from '../../common/QuestionMark'
 
 class Transaction extends React.Component {
 
@@ -39,7 +39,9 @@ class Transaction extends React.Component {
           cmp: () => <TronLoader/>,
         }
       },
-      resMessage: ''
+      resMessage: '',
+      SUCCESS:'SUCCESS',
+      FAIL:'FAIL'
     };
   }
 
@@ -107,7 +109,7 @@ class Transaction extends React.Component {
 
   render() {
 
-    let {transaction, tabs, loading,notFound,resMessage} = this.state;
+    let {transaction, tabs, loading,notFound,resMessage,SUCCESS,FAIL} = this.state;
     let {match} = this.props;
     if (notFound) {
         return (
@@ -131,16 +133,24 @@ class Transaction extends React.Component {
                     <div className="card  list-style-header">
                       <div className="card-body">
                         <h5 className="card-title m-0">
-                          <i className="fa fa-hashtag mr-1"></i>
-                          {tu("hash")} {transaction.hash}
+                          {tu("transation_hash")} {transaction.hash}
+                          <CopyText text={transaction.hash} className="ml-1"/>
                         </h5>
                       </div>
                       <div className="table-responsive">
                         <table className="table table-hover m-0">
                           <tbody>
                           {
+                              transaction.hasOwnProperty("contractRet") &&<tr>
+                                  <th>{tu("result")}:</th>
+                                  <td>
+                                      {transaction.contractRet.toUpperCase() === SUCCESS ?  SUCCESS : FAIL} {IS_MAINNET && resMessage ? `--${resMessage}` : ''}
+                                  </td>
+                              </tr>
+                          }
+                          {
                               transaction.hasOwnProperty("confirmed") && <tr>
-                                  <th>{tu("status")}:</th>
+                                  <th>{tu("status")}:<QuestionMark placement="right" text={tu('transation_status_tip')} ></QuestionMark></th>
                                   <td>
                                       {
                                           transaction.confirmed ?
@@ -150,24 +160,6 @@ class Transaction extends React.Component {
                                   </td>
                               </tr>
                           }
-                          {
-                              transaction.hasOwnProperty("contractRet") &&<tr>
-                                  <th>{tu("result")}:</th>
-                                  <td>
-                                      {transaction.contractRet} {IS_MAINNET && resMessage ? `(${resMessage})` : ''}
-                                  </td>
-                              </tr>
-                          }
-
-                            <tr>
-                              <th>{tu("hash")}:</th>
-                              <td>
-                                <Truncate>
-                                  {transaction.hash}
-                                  <CopyText text={transaction.hash} className="ml-1"/>
-                                </Truncate>
-                              </td>
-                            </tr>
                             <tr>
                               <th>{tu("block")}:</th>
                               <td><BlockNumberLink number={transaction.block}/></td>
