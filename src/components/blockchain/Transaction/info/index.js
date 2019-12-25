@@ -10,6 +10,8 @@ import {toUtf8} from 'tronweb'
 import { NameWithId } from '../../../common/names';
 import UpdateSettingContract from './UpdateSettingContract'
 import ExchangeCreateContract from './ExchangeCreateContract'
+import TransferContract from './TransferContract'
+
 /**
  * Get the title
  * @param {*} contract 
@@ -75,7 +77,7 @@ export default function Info({contract}) {
     if(contract.contractType){
         switch (contract.contractType.toUpperCase()) {
             case "TRANSFERCONTRACT":
-                return '';
+                return <TransferContract contract={contract}/>;
             case "TRANSFERASSETCONTRACT":
                 return '';
             case "PARTICIPATEASSETISSUECONTRACT":
