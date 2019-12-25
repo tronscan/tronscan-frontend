@@ -2038,10 +2038,7 @@ export class OverallFreezingRateChart extends React.Component {
             timestamp.push(val['timestamp'])
             //timestamp.push(moment(val['timestamp']).format("YYYY-MM-DD"))
         })
-        console.log('categories',timestamp)
-        console.log('freezingRate',freezingRate)
-        console.log('freezeTotal',freezeTotal)
-        console.log('turnoverTotal',turnoverTotal)
+       
         if (newData && newData.length > 0) {
             let options =  {
                 title: {

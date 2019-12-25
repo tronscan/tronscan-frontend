@@ -300,7 +300,6 @@ class StatCharts extends React.Component {
             item.total_unfreezing_weight = x.minus(item.total_freeze_weight).decimalPlaces(6).toNumber();
 
         })
-        console.log('data',data)
         this.setState({
             OverallFreezingRate:  sortBy(data, function(o) { return o.timestamp; }),
             OverallFreezingRateRevers:  data
