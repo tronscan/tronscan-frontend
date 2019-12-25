@@ -1,26 +1,44 @@
-import { applyMiddleware, combineReducers, compose, createStore } from "redux";
+import {
+  applyMiddleware,
+  combineReducers,
+  compose,
+  createStore
+} from "redux";
 import thunk from "redux-thunk";
 import reducers from "./reducers";
-import { routerMiddleware, routerReducer } from "react-router-redux";
-import { createHashHistory } from "history";
-import config from './config/main.config'
-const curEnv = config.curEnv;
+import {
+  routerMiddleware,
+  routerReducer
+} from "react-router-redux";
+import {
+  createHashHistory
+} from "history";
+const enhancers = []
+
+if (process.env.NODE_ENV === 'development') {
+  const devToolsExtension = window.__REDUX_DEVTOOLS_EXTENSION__
+
+  if (typeof devToolsExtension === 'function') {
+      enhancers.push(devToolsExtension())
+  }
+}
 export const reduxHistory = createHashHistory({
   hashType: "slash"
 });
 
+const middleware = [thunk, routerMiddleware(history)]
 export function configureStore() {
-  const enhancer = compose(
-    applyMiddleware(thunk, routerMiddleware(reduxHistory)),
-    //curEnv==='development'&&window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  const composedEnhancers = compose(
+      applyMiddleware(...middleware),
+      ...enhancers
   );
 
   return createStore(
-    combineReducers({
-      ...reducers,
-      router: routerReducer
-    }),
-    enhancer
+      combineReducers({
+          ...reducers,
+          router: routerReducer
+      }),
+      composedEnhancers
   );
 }
 

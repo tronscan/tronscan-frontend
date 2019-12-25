@@ -79,6 +79,7 @@ export default function Contract({contract}) {
         }
 
     }
+    console.log('contract',contract)
 
     let TokenIDList = [];
     let tokenIdData;
@@ -365,10 +366,18 @@ export default function Contract({contract}) {
                         <table className="table">
                             <tbody>
                             <Field label="owner_address"><AddressLink address={contract['owner_address']}/></Field>
-                            <tr>
-                                <th>{proposal}</th>
-                                <td>{proposalVal}</td>
-                            </tr>
+                           
+                              {/* {
+                                // return(
+                                  contract['parameters'].map((item)=>{
+                                    return <tr>
+                                      <th>{item['key']}</th>
+                                      <td>{item['value']}</td>
+                                    </tr>
+                                  })
+                                // )
+                              } */}
+                           
                             </tbody>
                         </table>
                     </Fragment>

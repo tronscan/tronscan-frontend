@@ -1,3 +1,7 @@
+/* eslint-disable */
+import {
+    lang19Q4
+} from './versionLang/lang19Q4/zh19Q4'; /* 2019Q4 */
 export const messages = {
     /*
     ##################################################################################
@@ -340,7 +344,7 @@ export const messages = {
     "open_external_link": "您正在打开外部链接",
     "private_key_untrusted_website_message_0": "请不要在不受信任的网站上输入您的私钥。",
     "no_official_tron_website": "不是波场官方网站",
-    "continue_to_external_website": "继续前往外部网站",
+    "continue_to_external_website": "继续前往",
     "visit_third_party_website": "您所访问的页面将跳转到第三方网站，可能存在安全风险，确定要继续吗?",
     "url_changed": "网址已变更",
     "successfully_changed_website_message": "成功切换网址为",
@@ -491,7 +495,6 @@ export const messages = {
     "removed_tip": "交易对已被移除",
     "in_progress_tip": "创建交易对处理中",
     /*
-
     ##################################################################################
     #                                                                                #
     # token participate                                                              #
@@ -530,9 +533,9 @@ export const messages = {
     "no_trx_remaining": "无TRX余额",
     "show_more": "展示{国家长度} 更多内容",
     "vote_guide_message": `使用TRX为超级代表投票。
- 每一个TRX享有一次投票机会。
- 投票不消耗TRX。可以为多个超级代表投票，投票不限次数。
- 票数于每天2:00,8:00,14:00,20:00更新，同时代表排序会刷新。`,
+   每一个TRX享有一次投票机会。
+   投票不消耗TRX。可以为多个超级代表投票，投票不限次数。
+   票数于每天2:00,8:00,14:00,20:00更新，同时代表排序会刷新。`,
     "search_address": "搜索地址",
     "token_transactions": "通证交易",
     "token_holders": "通证持有者",
@@ -544,7 +547,7 @@ export const messages = {
     "percentage": "总百分比",
     "loading_token": "通证加载中",
     "voter_percentage": "自占百分比",
-    "total_balance": "总余额",
+    "total_balance": "总资产",
     /*
     ##################################################################################
     #                                                                                #
@@ -593,9 +596,9 @@ export const messages = {
     "token_spend_confirm": "我已获知发行通证需一次性缴纳1024TRX。",
     "token_issue_guide_message_1": `用户账户中有至少1024TRX，就可以在波场协议上发行通证。`,
     "token_issue_guide_message_2": `通证发行后，会在通证总览页面进行显示。
-  之后用户可以在发行期限内参与认购，用TRX兑换通证。`,
+    之后用户可以在发行期限内参与认购，用TRX兑换通证。`,
     "token_issue_guide_message_3": `在发行通证后，您的账户将会收到全部的发行数额。
-  当其他用户使用TRX兑换您发行的通证，兑换数额将从您的账户扣除，并以指定汇率获得相应数额的TRX。`,
+    当其他用户使用TRX兑换您发行的通证，兑换数额将从您的账户扣除，并以指定汇率获得相应数额的TRX。`,
     /*
     ##################################################################################
     #                                                                                #
@@ -1058,7 +1061,6 @@ export const messages = {
     my_token: "我的通证",
     try_later: "请稍后再试",
     contract_address: "合约地址",
-
     /*
       ##################################################################################
       #                                                                                #
@@ -1087,7 +1089,7 @@ export const messages = {
     "total": "总",
     "a_totle": "共",
     "transaction_info": "条交易信息",
-    "hold_addr": "通证持有地址",
+    "hold_addr": "通证持有者地址",
     "transactions_unit": "个交易",
     "transfers_unit": "个转账",
     "block_unit": "个区块",
@@ -1098,7 +1100,7 @@ export const messages = {
     "account_unit": "个账户",
     "address_unit": "个地址",
     "contract_unit": "条已验证合约",
-    "inter_contract_unit": "条合约内部交易",
+    "inter_contract_unit": "个内部交易",
 
     /*
     ##################################################################################
@@ -1109,7 +1111,7 @@ export const messages = {
     */
 
     "issue_progress": "发行进度",
-    "fund_raised": "已筹集资金",
+    "fund_raised": "募集金额",
     "issuing_price": "发行价格",
     "buy_token_info": "你想要购买多少数量的通证？",
     "reputation": "信用评级",
@@ -1197,7 +1199,7 @@ export const messages = {
     "contract_create_msg": "创建信息",
     "contract_create_time": "创建时间",
     "contract_enery": "能量消耗比例",
-    "contract_enery_tip": "调用智能合约会消耗一定的能量，这个能量由合约和用户按照此比例承担",
+    "contract_enery_tip": "调用智能合约会消耗能量，消耗能量由合约和用户按比例承担",
     "contract_init_assets": "初始资产",
     "contract_init_assets_tip": "部署合约时合约创建人向合约地址转入的资产",
     "contract_editor_bug": "编译器漏洞提示",
@@ -1208,6 +1210,7 @@ export const messages = {
     "contract_source_code_use": "使用说明",
     "contracts_source-code-usage-terms": "Usage Terms - Contract Source Codes",
     "contract_source_code_match": "合约源代码已验证 (完全匹配)",
+    "contract_source_code_no_match": "合约代码未验证",
     "contract_source_code_p1": "At Tronscan we have a moral, ethical and legal obligation that the all contract source codes (a.k.a. end user data) provided to us is (1) only used within the scope of the services we provide and (2) usage governed in accordance to our general",
     "contract_source_code_p1_use_service": "terms of service.",
     "contract_source_code_p2_1": "Source code verification provides transparency for end users interacting with smart contracts. The",
@@ -1556,7 +1559,7 @@ export const messages = {
     "propose_12": "提议修改1 energy的费用",
     "propose_13": "提议修改创建交易对的费用",
     "propose_14": "提议修改一条交易的最大执行时间",
-    "propose_15": "提议是否允许更改账户名称",
+    "propose_15": "提议允许账户重名",
     "propose_16": "提议允许通证同名",
     "propose_17": "提议允许资源委派",
     "propose_18": "提议修改总Energy上限",
@@ -1637,7 +1640,7 @@ export const messages = {
     #                                                                                #
     ##################################################################################
     */
-    "newly_issued_token_by_tronscan": "虚假token会加入黑名单，不予显示。",
+    "newly_issued_token_by_tronscan": "虚假通证会加入黑名单，不予显示。",
     "Favorites": "自选",
     "dex_search_dec": "输入想交易代币的简称",
     "TRC20_exchange_online": "TRC20交易所上线啦",
@@ -2002,7 +2005,7 @@ export const messages = {
     "address_balance_token_price_TRX": "价值",
     "address_transactions_tip": "主动发起的交易数量",
     "address_tron_power_tip": "冻结TRX可以获得投票权",
-    "address_total_balance_tip": "总余额为所有有价值的通证余额之和（包含投票权）",
+    "address_total_balance_tip": "总资产为所有有价值的通证余额之和（包含投票权）",
     "address_tron_power_used": "已用",
     "address_tron_power_remaining": "可用",
     "address_total_balance_info_sources": "信息来源",
@@ -2022,7 +2025,6 @@ export const messages = {
     "address_transfer_out": "转出",
     "address_transfer_unrecorded_token": "未收录通证",
     /*
-
        ##################################################################################
        #                                                                                #
        # footer  2019-05-20                                    #
@@ -2150,6 +2152,7 @@ export const messages = {
     "energy_more": "获得带宽 = 为获取带宽冻结的TRX / 整个网络当中为获取带宽而冻结的TRX总数",
     "bandwidth_more": "获得能量 = 为获取能量冻结的TRX / 整个网络当中为获取能量而冻结的TRX总数*总能量限制",
     "interTrx_tip": "内部交易是指普通地址调用智能合约，由合约向其它地址转移通证的一种操作",
+    "interTrx_tip_contract": "执行合约产生的内部交易",
     "event_tip": "事件是让程序编写人员或外部界面提供者使用它来注意合约操作动向和审计",
     "table_info_big": "仅展示前10,000条数据",
     "Download": "下载",
@@ -2168,11 +2171,11 @@ export const messages = {
 
 
     /*
-##################################################################################
-#                                                                                #
-# read contract info   2019-07-02                                    #
-#                                                                                #
-##################################################################################
+  ##################################################################################
+  #                                                                                #
+  # read contract info   2019-07-02                                    #
+  #                                                                                #
+  ##################################################################################
 */
     "contract_title": "合约",
     "contract_code_choice": "代码",
@@ -2339,7 +2342,7 @@ export const messages = {
     "no_rewards_available_yet": "暂无可领取奖励",
     "total_tron_ecosystem_tokens": "波场生态通证总数：",
     "number_of_lists": "列表数量：",
-    "total_in_tronscan": "共收录：",
+    "total_in_tronscan": "共收录",
     "developers_reward_tip": "感谢所有帮助java-tron开发的开发者们，波场基金会欢迎并且感谢所有开发者们的贡献。",
     "developers_niTron": "2020年，niTron全球开发者大会将于2月29日在韩国举办。 截止到2020年1月31日，总积分排名前五的开发者，每人都可以获赠门票两张。",
     "verifty_contract_result": "验证结果",
@@ -2404,7 +2407,7 @@ export const messages = {
        ##################################################################################
     */
     "muti_sign": "多重签名",
-    "translations_wait_sign": "待我签名的交易",
+    "translations_wait_sign": "待签名的交易",
     "transfer_multi_sign": "多重签名转账",
     "permission": "权限",
     "owner_permission": "Owner权限组",
@@ -2510,4 +2513,16 @@ export const messages = {
     "Bancor Exchange Inject": "Bancor交易注资",
     "Bancor Exchange Withdraw": "Bancor交易撤资",
     "permission_name_limit": "请输入英文字符及数字",
+
+    // 2019-12-10
+    "ledger_tronlink": "通过TronLink登录TRONSCAN ",
+
+    // 2019-12-18
+    "address_vote_reward_pending": "待领取投票奖励",
+    "address_balance": "TRX余额",
+    "address_get_energe": "为了获得能量",
+    "address_get_bandwith": "为了获得带宽",
+    "address_freeze_owner": "冻结给自己",
+    "address_freeze_other": "冻结给他人",
+    ...lang19Q4,
 };

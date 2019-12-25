@@ -1,5 +1,9 @@
+/* eslint-disable */
+import {
+    lang19Q4
+} from './versionLang/lang19Q4/ru19Q4'; /* 2019Q4 */
 export const messages = {
-  /*
+    /*
   ##################################################################################
   #                                                                                #
   #  $$$$$$$$\                                                                     #
@@ -343,7 +347,7 @@ export const messages = {
   "open_external_link": "Вы открываете внешнюю ссылку",
   "private_key_untrusted_website_message_0": "Никогда не вводите свой приватный ключ на ненадежном веб-сайте.",
   "no_official_tron_website": "не является официальным сайтом TRON.",
-  "continue_to_external_website": "Продолжить переход на внешний сайт",
+  "continue_to_external_website": "Продолжить",
   "visit_third_party_website":"The page you visit will be redirected to a third-party website. There may be security risks. Are you sure you want to continue?",
   "url_changed": "URL изменен",
   "successfully_changed_website_message": "Сайт успешно изменен на",
@@ -532,12 +536,12 @@ export const messages = {
   "no_trx_remaining": "Не осталось TRX",
   "show_more": "Показать {countriesLength} больше",
   "vote_guide_message": `Используйте свои TRX, чтобы голосовать за Суперпредставителей.
-   За каждый TRX, который вы имеете в своем аккаунте, вы можете потратить на один голос.
-   TRX не будет тратиться. Вы можете проголосовать за несколько представителей столько раз, сколько захотите.
-   Количество голосов будет обновляться в 02:00, 08:00, 14:00, 20:00 (GMT+8) каждый день, и список делегатов будет обновляться.`,
+   За каждый TRX, который вы имеете в своем аккаунте, вы можете потратить на один голос.
+   TRX не будет тратиться. Вы можете проголосовать за несколько представителей столько раз, сколько захотите.
+   Количество голосов будет обновляться в 02:00, 08:00, 14:00, 20:00 (GMT+8) каждый день, и список делегатов будет обновляться.`,
   "search_address": "Поиск адреса",
   "token_transactions": "Транзакции токена",
-  "token_holders": "Держатели токенов",
+  "token_holders": "держатель токена",
   "nr_of_Transfers": "Количество переводов",
   "not_signed_in": "Вам нужно будет войти в свой аккаунт, чтобы использовать эту функцию",
   "loading_map": "Загрузка карты",
@@ -587,20 +591,20 @@ export const messages = {
   "participation_message_0": "Укажите период, в котором будут выпущены токены. В течение данного периода пользователи могут обменять TRX на",
   "participation_message_1": " токенов.",
   "frozen_supply_message_0": `Часть токенов может быть заморожена. Количество должно быть указано и должно быть заморожено
-    минимум на 1 день. Замороженное кол-во может быть вручную заморожено после даты начала и заморожено
-    дни были достигнуты. Заморозка не является обязательной.`,
+    минимум на 1 день. Замороженное кол-во может быть вручную заморожено после даты начала и заморожено
+    дни были достигнуты. Заморозка не является обязательной.`,
   "token_issued_successfully": "Токен успешно выпущен",
   "participation": "Время выпуска токена",
   "start_date": "Дата начала",
   "end_date": "Дата окончания",
   "token_spend_confirm": "Я подтверждаю, что для создания всех токенов требуется единовременная оплата в 1024 TRX",
   "token_issue_guide_message_1": `Выдача токена по протоколу TRON может быть выполнена
-     любым, у кого в аккаунте есть хотя бы 1024 TRX.`,
+     любым, у кого в аккаунте есть хотя бы 1024 TRX.`,
   "token_issue_guide_message_2": `Когда токен будет выпущен, он будет отображаться на странице обзора токенов.
-     Пользователи могут обменивать свои TRX на токены в течение времени выпуска токена.`,
+     Пользователи могут обменивать свои TRX на токены в течение времени выпуска токена.`,
   "token_issue_guide_message_3": `После выпуска токена ваш аккаунт получит количество токенов, равное его общему количеству.
-     Когда другие пользователи обменяют свои TRX на токены, токены будут сняты с вашего аккаунта, и вы
-     получите TRX, равный указанному обменному курсу.`,
+     Когда другие пользователи обменяют свои TRX на токены, токены будут сняты с вашего аккаунта, и вы
+     получите TRX, равный указанному обменному курсу.`,
   /*
   ##################################################################################
   #                                                                                #
@@ -969,7 +973,7 @@ export const messages = {
   "in_BTC": "В BTC",
   "total_TRX_supply": "Общий объем TRX",
   "market_capitalization": "Рыночная капитализация",
-  "circulating_supply": "Общее количество в обороте",
+  "circulating_supply": "циркулирующий",
   "list_trx": "Залистить TRX",
   "burned_trx": "TRX сожжено",
   "supply_notes": "Краудсейл и предварительная продажа доступны по всему миру, за исключением США, Китая и Японии.",
@@ -1097,7 +1101,7 @@ export const messages = {
   "reputation": "Репутация",
   "issue_time": "Время выпуска ",
   "success_receive": "Успешно получено",
-  "circulating_supply": "Количество в обороте",
+  "circulating_supply": "циркулирующий",
   "issue_info": "Информация о выпуске",
   "transferring": "В процессе",
   "in_progress": "В процессе",
@@ -1537,7 +1541,7 @@ export const messages = {
   "propose_12": "Предлагается изменить плату за 1 энергию",
   "propose_13": "Предлагается изменить стоимость создания торговой пары",
   "propose_14": "Предлагается изменить максимальное время выполнения одной транзакции",
-  "propose_15": "Предлагается разрешить сменить имя аккаунта",
+  "propose_15": "Предлагаю разрешить дублирование имени аккаунта",
   "propose_16": "Предлагается разрешить одно и то же имя токена",
   "propose_17": "Предлагается разрешить делегирование ресурсов",
   "propose_18": "Предлагается изменить общий предел энергии",
@@ -2123,6 +2127,7 @@ export const messages = {
   "receive_address":"Получите адрес (адрес по умолчанию ваш собственный)",
   "unfreeze_time": "Время разморозки",
   "interTrx_tip": "Внутренние транзакции - это операция, которая по общему адресу называется смарт-контрактом, а смарт-контракт передает токен на другой адрес.",
+  "interTrx_tip_contract":"Internal transactions from contract execution",
   "event_tip": "События позволяют программисту или провайдеру внешнего интерфейса использовать его, чтобы обратить внимание на контрактные операции и аудиты.",
   "Expected_acquisition": "Расчетная",
   "energy_more": "Полученная пропускная способность = замороженные TRX для получения пропускной способности/ общее количество замороженных TRX в сети для получения пропускной способности.",
@@ -2241,9 +2246,9 @@ export const messages = {
   "Side_Chain":"DAppChain",
   "Main_Chain":"MainChain",
 
-  "7day": "one week",
-  "14day": "two weeks",
-  "30day": "one month",
+  "7day": "7 дней",
+  "14day": "14 дней",
+  "30day": "1 месяц",
   "select_tip": "To view data other than 2000 You can manually adjust the time window",
   "date_number_tip": "{total} records in the current time range",
   "date_list_tip": "Only the first 2000 data are displayed",
@@ -2306,7 +2311,7 @@ export const messages = {
   "no_rewards_available_yet":"No rewards available",
   "total_tron_ecosystem_tokens":"Total TRON-ecosystem tokens:",
   "number_of_lists":"Number of lists:",
-  "total_in_tronscan":"Total in tronscan:",
+  "total_in_tronscan":"Total in tronscan",
   "develpopers_reward_tip":"Thank you for considering to help out with the java-tron! TRON Foundation welcome contributions from anyone on the internet, and are grateful for your contributions.",
   "verifty_contract_result":"Результат",
   "main_contract_deployment":"(Please select the main contract deployment)",
@@ -2446,4 +2451,15 @@ export const messages = {
   "signature_operations_required":"Требуется операция",
   "signature_threshold_required":"Требуется предел",
   "signaure_control_address_tip":"Control address refers to the associated control addresses of owner permission, SR permission and active permission. Display of the three types of permissions will change subsequently when the control address is modified.",
+
+// 2019-12-10
+"ledger_tronlink":"Login to TRONSCAN via TronLink",
+// 2019-12-18
+"address_vote_reward_pending":"награда за голосование",
+"address_balance":"Баланс TRX",
+"address_get_energe":"Для Энергии",
+"address_get_bandwith":"Для Пропускной Способности",
+"address_freeze_owner":"Для вашего аккаунта ",
+"address_freeze_other":"Для другого аккаунта(ов)",
+...lang19Q4
 };

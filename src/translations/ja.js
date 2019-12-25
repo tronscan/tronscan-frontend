@@ -1,5 +1,9 @@
+/* eslint-disable */
+import {
+    lang19Q4
+} from './versionLang/lang19Q4/ja19Q4'; /* 2019Q4 */
 export const messages = {
-  /*
+    /*
   ##################################################################################
   #                                                                                #
   #  $$$$$$$$\                                                                     #
@@ -341,7 +345,7 @@ export const messages = {
   "open_external_link": "外部リンクにアクセス中",
   "private_key_untrusted_website_message_0": "不審なネットで自分の秘密鍵を入力しないでください。",
   "no_official_tron_website": "信頼できないウェブサイトに秘密鍵を入力しないでください。",
-  "continue_to_external_website": "外部リンクに引き続きアクセスする",
+  "continue_to_external_website": "前に進む",
   "visit_third_party_website":"The page you visit will be redirected to a third-party website. There may be security risks. Are you sure you want to continue?",
   "url_changed": "ウェブサイトが既に変更した",
   "successfully_changed_website_message": "に変更した",
@@ -1522,7 +1526,7 @@ export const messages = {
   "propose_12": "1 energyの費用を修正しようと提議します",
   "propose_13": "トレードペアの作成費用を修正しようと提議します",
   "propose_14": "一つの取引の最大実行時間を修正しようと提議します",
-  "propose_15": "アカウント名の変更を提議します",
+  "propose_15": "アカウント名の重複を許可することを提案する",
   "propose_16": "トークンの同名を可能にしようと提議します",
   "propose_17": "リソース配分を提議します",
   "propose_18": "総エネルギー上限の編集を提議します",
@@ -2112,6 +2116,7 @@ export const messages = {
   "information_is_being_confirmed": "Information is being confirmed, this process may take 10 minutes, please try again later",
 
   "interTrx_tip": "内部取引は、一般住所がスマート契約を呼び出し、スマート契約が他のアドレスにトークンを転送する操作です。",
+  "interTrx_tip_contract":"Internal transactions from contract execution",
   "event_tip": "イベントは、プログラマや外部インタフェースプロバイダが契約業務や監査に注意を払うためにそれを使用できるようにすることです。",
   "Expected_acquisition": "獲得見込み",
   "energy_more": "獲得したバンド幅＝エネルギーを獲得するために凍結したTRX/ネット全体がバンド幅を獲得するために凍結したTRX総額",
@@ -2232,12 +2237,12 @@ export const messages = {
   "Side_Chain":"DAppChain",
   "Main_Chain":"MainChain",
 
-  "7day": "one week",
-  "14day": "two weeks",
-  "30day": "one month",
-  "select_tip": "To view data other than 2000 You can manually adjust the time window",
-  "date_number_tip": "{total} records in the current time range",
-  "date_list_tip": "Only the first 2000 data are displayed",
+  "7day": "7日",
+  "14day": "14日間",
+  "30day": "1ヶ月",
+  "select_tip": "2000条以外のデータを表示する場合は、時間枠を手動で調整してください",
+  "date_number_tip": "現在の時間範囲に{total}条のレコードがあります ",
+  "date_list_tip": "リストには2000条のレコードのみが表示されます",
 
 
   "sun_propose_1": "トランザクションリクエストの切り替え",
@@ -2297,7 +2302,7 @@ export const messages = {
   "no_rewards_available_yet":"No rewards available",
   "total_tron_ecosystem_tokens":"Total TRON-ecosystem tokens:",
   "number_of_lists":"Number of lists:",
-  "total_in_tronscan":"Total in tronscan:",
+  "total_in_tronscan":"Total in tronscan",
   "develpopers_reward_tip":"Thank you for considering to help out with the java-tron! TRON Foundation welcome contributions from anyone on the internet, and are grateful for your contributions.",
   "verifty_contract_result":"検証結果",
   "main_contract_deployment":"(Please select the main contract deployment)",
@@ -2437,4 +2442,15 @@ export const messages = {
   "signature_operations_required":"操作の入力が必要",
   "signature_threshold_required":"閾値の入力が必要",
   "signaure_control_address_tip":"Control address refers to the associated control addresses of owner permission, SR permission and active permission. Display of the three types of permissions will change subsequently when the control address is modified.",
+
+// 2019-12-10
+"ledger_tronlink":"Login to TRONSCAN via TronLink",
+// 2019-12-18
+"address_vote_reward_pending":"褒賞に投票",
+"address_balance":"TRX余額",
+"address_get_energe":"エネルギー取得するには",
+"address_get_bandwith":"帯域幅を取得するには",
+"address_freeze_owner":"自分に固定する",
+"address_freeze_other":"他人に固定する",
+...lang19Q4
 }

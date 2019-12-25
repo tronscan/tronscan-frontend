@@ -14,6 +14,8 @@ import {ContractTypes} from "../../../utils/protocol";
 import {Alert} from "reactstrap";
 import {setLanguage} from "../../../actions/app"
 import queryString from 'query-string';
+import tokenApi from '../../../services/tokenApi'
+import { IS_MAINNET } from "../../../constants";
 
 
 class Transaction extends React.Component {
@@ -37,6 +39,7 @@ class Transaction extends React.Component {
           cmp: () => <TronLoader/>,
         }
       },
+      resMessage: ''
     };
   }
 
@@ -68,6 +71,14 @@ class Transaction extends React.Component {
         });
         return;
     }
+    if(transaction && IS_MAINNET){
+      const data = await tokenApi.getTransactionInfo(id).catch(e=>{})
+      if(data){
+        this.setState({
+          resMessage: data && data.resMessage
+        });
+      }
+    }
 
     this.setState({
       loading: false,
@@ -96,7 +107,7 @@ class Transaction extends React.Component {
 
   render() {
 
-    let {transaction, tabs, loading,notFound} = this.state;
+    let {transaction, tabs, loading,notFound,resMessage} = this.state;
     let {match} = this.props;
     if (notFound) {
         return (
@@ -143,7 +154,7 @@ class Transaction extends React.Component {
                               transaction.hasOwnProperty("contractRet") &&<tr>
                                   <th>{tu("result")}:</th>
                                   <td>
-                                      {transaction.contractRet}
+                                      {transaction.contractRet} {IS_MAINNET && resMessage ? `(${resMessage})` : ''}
                                   </td>
                               </tr>
                           }

@@ -1,5 +1,9 @@
-﻿export const messages = {
-  /*
+﻿/* eslint-disable  */
+import {
+    lang19Q4
+} from './versionLang/lang19Q4/ar19Q4'; /* 2019Q4 */
+export const messages = {
+    /*
   ##################################################################################
   #                                                                                #
   #  $$$$$$$$\                                                                     #
@@ -341,7 +345,7 @@
   "open_external_link": "أنت تقوم بالفتح عن طريق رابط خارجي",
   "private_key_untrusted_website_message_0": "يرجى عدم إدخال مفتاحك الخاص على موقع ويب غير موثوق به.",
   "no_official_tron_website": "ليس الموقع الرسمي لترون",
-  "continue_to_external_website": "الاستمرار في الاستخدام بالموقع الخارجي",
+  "continue_to_external_website": "إستمر بالتقدم",
   "visit_third_party_website":"The page you visit will be redirected to a third-party website. There may be security risks. Are you sure you want to continue?",
   "url_changed": "تم تغيير عنوان URL",
   "successfully_changed_website_message": "تم تبديل عنوان موقع الويب بنجاح",
@@ -1524,7 +1528,7 @@
   "propose_12": "اقتراح لتعديل رسوم بمقدار واحد للطاقة",
   "propose_13": "اقتراح لتعديل تكلفة تداول الأزواج",
   "propose_14": "اقتراح لتعديل وقت التنفيذ الأقصى لمعاملة واحدة",
-  "propose_15": "اقتراح للسماح لتغيير اسم الحساب",
+  "propose_15": "اقترح السماح بتكرار اسم الحساب",
   "propose_16": "اقتراح للسماح لنفس اسم الرمز المميز",
   "propose_17": "اقتراح للسماح بتفويض الموارد",
   "propose_18": "اقتراح لتعديل الحد الكلي للطاقة",
@@ -2106,6 +2110,7 @@
   "receive_address": "تلقي عنوان (العنوان الافتراضي هو الخاص بك)",
   "unfreeze_time": "  وقت الغاء التجميد ",
   "interTrx_tip": "المعاملات الداخلية هي عملية يطلق عليها عنوان عام العقد الذكي transfers وينقل العقد الذكي الرمز المميز إلى عنوان آخر.",
+  "interTrx_tip_contract":"Internal transactions from contract execution",
   "event_tip": "الأحداث هي السماح للمبرمج أو موفر الواجهة الخارجية باستخدامه للانتباه إلى عمليات التعاقد والتدقيق.",
   "Expected_acquisition": "الربح المقدر",
   "energy_more": "عرض النطاق الترددي الذي تم الحصول عليه = TRX المجمدة لكسب عرض النطاق الترددي / إجمالي TRX المجمدة في الشبكة للحصول على عرض النطاق الترددي",
@@ -2224,12 +2229,12 @@
   "Main_Chain":"MainChain",
 
 
-  "7day": "one week",
-  "14day": "two weeks",
-  "30day": "one month",
-  "select_tip": "To view data other than 2000 You can manually adjust the time window",
-  "date_number_tip": "{total} records in the current time range",
-  "date_list_tip": "Only the first 2000 data are displayed",
+  "7day": "7 أيام",
+  "14day": "14 يوما",
+  "30day": "1 شهر",
+  "select_tip": "لعرض بيانات أخرى غير 2000 ، يرجى ضبط نافذة الوقت يدويًا",
+  "date_number_tip": "سجلات {total} في النطاق الزمني الحالي ",
+  "date_list_tip": "لا يتم عرض سوى بيانات 2000 الأولى",
   "sun_propose_1": "تبديل رسوم المعاملة: سيتم فرض رسوم المعاملة بشكل طبيعي عندما يتم تعيين الاقتراح على 1.",
   "sun_propose_2": "قم بتعيين عنوان العقد الخاص بالبوابة على السلسلة الجانبية",
   "sun_propose_3": "حدد وقت انتهاء الصلاحية للمقترح",
@@ -2289,7 +2294,7 @@
   "no_rewards_available_yet":"No rewards available",
   "total_tron_ecosystem_tokens":"Total TRON-ecosystem tokens:",
   "number_of_lists":"Number of lists:",
-  "total_in_tronscan":"Total in tronscan:",
+  "total_in_tronscan":"Total in tronscan",
   "develpopers_reward_tip":"Thank you for considering to help out with the java-tron! TRON Foundation welcome contributions from anyone on the internet, and are grateful for your contributions.",
   "verifty_contract_result":"نتائج التحقق",
   "main_contract_deployment":"(Please select the main contract deployment)",
@@ -2426,4 +2431,14 @@
   "signature_operations_required":"التشغيل مطلوب",
   "signature_threshold_required":"مطلوب إضافة الحد الأدنى",
   "signaure_control_address_tip":"Control address refers to the associated control addresses of owner permission, SR permission and active permission. Display of the three types of permissions will change subsequently when the control address is modified.",
+  // 2019-12-10
+  "ledger_tronlink":"Login to TRONSCAN via TronLink", 
+  // 2019-12-18
+   "address_vote_reward_pending":"مكافأة التصويت",
+   "address_balance":"رصيد TRX",
+   "address_get_energe":"من أجل الحصول على الطاقة",
+   "address_get_bandwith":"للحصول على عرض النطاق الترددي",
+   "address_freeze_owner":"تجميد إلى حسابك",
+   "address_freeze_other":"تجميد إلى حسابات الآخرين",
+   ...lang19Q4,
 };

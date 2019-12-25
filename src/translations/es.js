@@ -1,3 +1,7 @@
+/* eslint-disable */
+import {
+  lang19Q4
+} from './versionLang/lang19Q4/es19Q4';
 export const messages = {
   /*
   ##################################################################################
@@ -343,7 +347,7 @@ export const messages = {
   "open_external_link": "Está abriendo un enlace externo",
   "private_key_untrusted_website_message_0": "Nunca introduzca su clave privada en una web desconocida.",
   "no_official_tron_website": "no es una web oficial de TRON.",
-  "continue_to_external_website": "Continuar a una web externa",
+  "continue_to_external_website": "Cancelar",
   "visit_third_party_website":"The page you visit will be redirected to a third-party website. There may be security risks. Are you sure you want to continue?",
   "url_changed": "URL cambiada",
   "successfully_changed_website_message": "Web cambiada satisfactoriamente a ",
@@ -1025,7 +1029,7 @@ export const messages = {
   "my_token_desc_2": "Si necesita actualizar su información, envíe las actualizaciones utilizando la siguiente plantilla de Excel a token@tronscan.org a través del correo electrónico de su empresa o correo electrónico certificado con las credenciales necesarias.",
   "brief_info": "Breve introducción",
   "website_official": "Website oficial",
-  "white_paper": "WhitePaper (documentación técnica)",
+  "white_paper": "WhitePaper",
   "GitHub": "GitHub",
   "country": "País/Región",
   "social_link": "Enlace a redes sociales",
@@ -1097,7 +1101,7 @@ export const messages = {
   "reputation": "Reputación",
   "issue_time": "Fecha de emisión ",
   "success_receive": "Recibido satisfactoriamente",
-  "circulating_supply": "Suministro en circulación",
+  "circulating_supply": "Circulante",
   "issue_info": "Info de emisión",
   "transferring": "En progreso",
   "in_progress": "En progreso",
@@ -1536,7 +1540,7 @@ export const messages = {
   "propose_12": "Proponer modificar la tarifa de 1 de energía.",
   "propose_13": "Proponer modificar el costo de la creación de pares para trading.",
   "propose_14": "Proponer modificar el tiempo máximo de ejecución de una transacción.",
-  "propose_15": "Proponer permitir cambiar el nombre de la cuenta.",
+  "propose_15": "Proponer permitir nombre de cuenta duplicado.",
   "propose_16": "Proponer permitir el mismo nombre de token",
   "propose_17": "Proponer permitir la delegación de recursos.",
   "propose_18": "Proponer modificar el límite de energía total.",
@@ -2120,6 +2124,7 @@ export const messages = {
   "receive_address": "Dirección de recepción (la dirección predeterminada es la suya)",
   "unfreeze_time": "Fecha de descongelación",
   "interTrx_tip": "Transacciones internas es una operación que una dirección general llama un Contrato inteligente, y el Contrato inteligente transfiere el token a otra dirección.",
+  "interTrx_tip_contract":"Internal transactions from contract execution",
   "event_tip": "Los eventos son para permitir que el programador o el proveedor de la interfaz externa lo utilicen para prestar atención a las operaciones y auditorías del contrato.",
   /* 2019-07-06*/
   "trc20_free_orders": "0 trading fee for all orders",
@@ -2239,12 +2244,12 @@ export const messages = {
 
   "Side_Chain":"DAppChain",
   "Main_Chain":"MainChain",
-  "7day": "one week",
-  "14day": "two weeks",
-  "30day": "one month",
-  "select_tip": "To view data other than 2000 You can manually adjust the time window",
-  "date_number_tip": "{total} records in the current time range",
-  "date_list_tip": "Only the first 2000 data are displayed",
+  "7day": "7 días",
+  "14day": "14 dias",
+  "30day": "1 mes",
+  "select_tip": "Si desea ver los datos después de 2000, ajuste la ventana de tiempo manualmente",
+  "date_number_tip": "Hay {total} registros en el rango de tiempo actual ",
+  "date_list_tip": "Solo se muestra 2000 registros en la lista",
 
   "sun_propose_1": "Cambio de tarifa de transacción: la tarifa de transacción se cobrará normalmente cuando la propuesta se establezca en 1.",
   "sun_propose_2": "Establecer la dirección del contrato para la puerta de enlace en la cadena lateral",
@@ -2444,4 +2449,15 @@ export const messages = {
   "signature_operations_required":"Se requiere operación",
   "signature_threshold_required":"Se requiere umbral",
   "signaure_control_address_tip":"Control address refers to the associated control addresses of owner permission, SR permission and active permission. Display of the three types of permissions will change subsequently when the control address is modified.",
+
+  // 2019-12-10
+  "ledger_tronlink":"Login to TRONSCAN via TronLink",
+// 2019-12-18
+"address_vote_reward_pending":"recompensa de votación",
+"address_balance":"Balance TRX",
+"address_get_energe":"Por energía",
+"address_get_bandwith":"Para ancho de banda",
+"address_freeze_owner":"A tu cuenta",
+"address_freeze_other":"A la (s) cuenta (s) de otros",
+  ...lang19Q4
 };

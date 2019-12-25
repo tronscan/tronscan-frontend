@@ -254,7 +254,7 @@ export default {
                 'CoinExchange': false,
                 'CoinFalcon': false,
                 'Cryptomate': false,
-                'Gatecoin': false,
+                // 'Gatecoin': false,
                 'IDEX': false,
                 'LiteBit.eu': false,
                 'Stocks.Exchange': false,
@@ -545,19 +545,10 @@ export default {
             '#e7afad'
         ],
         exporting: {
-            button: {
-                contextButton: {
-                    menuItems: [
-
-                    ]
-                }
-            }
-        },
-        navigation: {
-            buttonOptions: {
-                align: 'right',
-                enabled: true
-            }
+            enabled: true,
+            sourceWidth: 1072,
+            sourceHeight: 500,
+            filename: ''
         },
         subtitle: {
             text: ''
@@ -758,7 +749,6 @@ export default {
                     style: {
                         color: "#c23631",
                     }
-
                 },
                 gridLineWidth: 0
             },
@@ -1061,6 +1051,70 @@ export default {
         },
         series: []
 
+    },
+
+    OverallFreezingRateChart: {
+        chart: {
+            type: '',
+            zoomType: 'xy'
+        },
+        title: {
+            text: ''
+        },
+        subtitle: {
+            text: ''
+        },
+        credits: {
+            enabled: false
+        },
+        legend: {
+            enabled: true,
+            align: 'center',
+        },
+        xAxis: {
+            type: 'datetime',
+            ordinal: false,
+            dateTimeLabelFormats: {
+                millisecond: '%H:%M:%S.%L',
+                second: '%H:%M:%S',
+                minute: '%H:%M',
+                hour: '%H:%M',
+                day: '%Y-%m-%d',
+                week: '%m-%d',
+                month: '%Y-%m',
+                year: '%Y'
+            },
+            gridLineColor: '#eeeeee',
+            labels: {
+                style: {
+                    color: "#999999"
+                },
+                autoRotation: [-10, -20, -30, -40, -50, -60, -70, -80, -90],
+                //x:55
+            },
+            // tickmarkPlacement: 'on',
+            // tickPixelInterval: 50,
+            title: {
+                enabled: false
+            },
+
+        },
+        yAxis: [
+
+        ],
+        tooltip: {
+
+        },
+        exporting: {
+            enabled: true,
+            sourceWidth: 1072,
+            sourceHeight: 500,
+            filename: ''
+        },
+        plotOptions: {
+
+        },
+        series: []
     }
 
 };

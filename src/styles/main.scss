@@ -35,6 +35,7 @@ $color-grey: #d2d1d1;
 @import "muti-sign.scss";
 @import "sourceCode.scss";
 @import "contract";
+@import "tokens";
 body {
   overflow-y: scroll;
 }
@@ -1481,6 +1482,7 @@ $border-color-dark: #d8d8d8;
       margin: 0;
     }
 
+
     li {
       min-width: 100px;
 
@@ -1507,7 +1509,179 @@ $border-color-dark: #d8d8d8;
           }
         }
       }
+
     }
+
+
+  }
+
+  &__body {
+    background: #fff;
+    padding: 0 2.6% !important;
+
+    .no-data {
+      height: 200px;
+      line-height: 200px;
+      color: $text-color-lighter;
+      font-size: 12px;
+      // font-weight: lighter;
+    }
+
+    .ant-table.ant-table-bordered {
+      border: none !important;
+    }
+
+    th,
+    td {
+      background: #fff !important;
+      border-top: 1px solid #eee !important;
+    }
+
+    td {
+      border-right: none !important;
+    }
+
+    tr:last-child td,
+    th {
+      border-bottom: 1px solid #eee !important;
+    }
+
+    th:first-child,
+    td:first-child {
+      padding-left: 0 !important;
+    }
+
+    th:last-child,
+    td:last-child {
+      padding-right: 0 !important;
+    }
+
+    .table-title {
+      padding: 30px 0 6px;
+
+      span {
+        margin-left: 10px;
+      }
+
+      small {
+        color: $text-color-lighter;
+        // font-weight: lighter;
+      }
+    }
+
+    .table-responsive {
+      overflow: unset;
+
+      th,
+      td {
+        // font-weight: lighter;
+        border: none !important;
+        border-bottom: 1px solid $border-color !important;
+      }
+
+      tbody:last-child {
+        td,
+        th {
+          border: none !important;
+        }
+      }
+
+      .table tbody + tbody {
+        border: none;
+      }
+
+      .table {
+        margin: 0;
+      }
+    }
+
+    a {
+      color: $main-red;
+    }
+
+    .show-current-style {
+      .ant-table.ant-table-bordered {
+        border: 1px solid #d8d8d8 !important;
+      }
+
+      th {
+        background: #f3f3f3 !important;
+      }
+
+      th:first-child,
+      td:first-child {
+        padding-left: 13px !important;
+      }
+
+      th:last-child,
+      td:last-child {
+        padding-right: 13px !important;
+      }
+
+      td {
+        border-right: 1px solid #e8e8e8 !important;
+      }
+
+      tr:last-child td,
+      th {
+        border-bottom: none !important;
+      }
+    }
+  }
+}
+
+.list-style-body-scroll {
+  border: 1px solid $border-color-dark !important;
+  border-radius: 0;
+  // padding: 0 2.6%;
+  background-color: $bg-color;
+
+  h5 {
+    font-size: 16px;
+  }
+
+  &__header {
+    padding: 0;
+
+    .card-header {
+      border: none;
+    }
+
+    ul {
+      margin: 0;
+    }
+
+
+    li {
+      min-width: 100px;
+
+      a {
+        text-align: center;
+        border: none !important;
+        border-radius: 0 !important;
+        padding: 0.8rem 0.9rem;
+        background: transparent !important;
+        box-sizing: border-box;
+        border-top: 4px solid transparent !important;
+
+        span {
+          color: $text-color-lighter;
+        }
+
+        &.active,
+        &:hover {
+          border-color: #f3f3f3 !important;
+          background: #f3f3f3 !important;
+
+          span {
+            color: $main-red;
+          }
+        }
+      }
+
+    }
+
+
   }
 
   &__body {
@@ -2042,8 +2216,8 @@ h5 {
     display: flex;
     height: 45px;
     line-height: 1.4em;
-    width: 45%;
-    float: left;
+    width: 90%;
+    // float: left;
     border-bottom: 1px solid #eee;
     align-items: center;
 
@@ -2053,9 +2227,12 @@ h5 {
 
     & > span {
       display: block;
-      width: 120px;
+      width: 150px;
       font-weight: bold;
       color: #666;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
 
     & > p {
@@ -2156,7 +2333,8 @@ h5 {
       border-bottom: 1px solid #eee;
       color: #333;
 
-      p,.question-markk {
+      p,
+      .question-markk {
         min-width: 138px;
         margin: 0;
 
@@ -2164,10 +2342,9 @@ h5 {
           width: 180px;
         }
       }
-      .question-markk{
-        flex:none;
+      .question-markk {
+        flex: none;
       }
-      
 
       & > div {
         flex: 1;
@@ -2487,31 +2664,6 @@ h5 {
   }
 }
 
-.apply-trc20 {
-  margin-top: -35px;
-  position: absolute;
-  right: 16px;
-
-  @media only screen and (max-width: 768px) {
-    margin-top: -25px;
-    position: absolute;
-    right: 10px;
-  }
-}
-
-.apply-all {
-  margin-top: -35px;
-  position: absolute;
-  right: 16px;
-
-  @media only screen and (max-width: 768px) {
-    margin-top: -64px;
-    position: absolute;
-    right: 10px;
-    left: 10px;
-  }
-}
-
 .approvers-proposal {
   display: flex;
   flex-wrap: wrap;
@@ -2619,9 +2771,12 @@ h5 {
     right: 22px;
 
     input {
-      fontsize: 13px;
+      font-size: 13px;
       width: 260px;
       min-width: 260px;
+    }
+    .padding20{
+      padding: 0px 20px 0px 14px !important
     }
   }
 
@@ -2638,6 +2793,10 @@ h5 {
         width: 220px;
         min-width: 200px;
       }
+      .padding20{
+
+      }
+
     }
   }
 }
@@ -4207,41 +4366,6 @@ h5 {
   flex: 1;
 }
 
-.token-list-action {
-  a {
-    padding: 3px 8px;
-    height: 1.2rem;
-    border-radius: 2px;
-    text-align: center;
-    line-height: 0.8rem;
-    display: block;
-    background-color: #c23631;
-    color: #ffffff !important;
-    font-size: 12px;
-
-    span {
-    }
-
-    &:hover {
-      color: #ffffff !important;
-    }
-  }
-
-  .btn {
-    span {
-      color: #ffffff !important;
-    }
-  }
-
-  .token-active-details {
-    background-color: #c23631;
-  }
-
-  .token-disabled-exchange {
-    background-color: #d1d3df;
-  }
-}
-
 .tooltip.show {
   opacity: 1;
 }
@@ -4260,7 +4384,7 @@ h5 {
 }
 
 @each $name in Weibo, Wechat, Discord, Facebook, Group, Steem, Instagram, Medium,
-  Reddit, Telegram, Twitter, delete
+  Reddit, Telegram, Twitter, delete, GitHub
 {
   .#{$name} {
     width: 20px;
@@ -4824,82 +4948,104 @@ h5 {
     right: -6px;
     bottom: 17px;
   }
+  .new-test-net{
+    display: inline-block;
+    /* width: 30px; */
+    padding: 0 2px;
+    position: absolute;
+    right: -5px;
+    bottom: 10px;
+    background: #C64844;
+    color: #fff;
+    line-height: 10px;
+    text-align: center;
+    font-size: 10px;
+    font-style: italic;
+  }
 }
 
-.signature-currentWeight{
+.signature-currentWeight {
   display: inline-block;
   background-size: 100% 100%;
   background-image: url(../images/icon/current-weight.png);
-  min-width:42px;
-  height:22px;
+  min-width: 42px;
+  height: 22px;
   margin-left: -10px;
-  text-align: center!important;
+  text-align: center !important;
   color: #ffffff;
   padding: 0 5px;
   line-height: 19px;
 }
 
-.signature-siged{
+.signature-siged {
   display: inline-block;
   background-size: 100% 100%;
   background-image: url(../images/icon/current-weight-siged.png);
-  width:12px;
-  height:12px;
+  width: 12px;
+  height: 12px;
   margin-top: 4px;
 }
 
-.signature-weight{
- // width: 15px;
+.signature-weight {
+  // width: 15px;
   height: 15px;
   border-radius: 1px;
-  background-color: #C23631;
+  background-color: #c23631;
   font-size: 12px;
-  color: #FFFFFF;
+  color: #ffffff;
   line-height: 8px;
   margin-top: 2px;
 }
 
-.signature_details{
-  .form-group{
+.signature_details {
+  .form-group {
     display: flex;
     padding-top: 0.75rem;
     padding-bottom: 0.25rem;
     margin-bottom: 0;
     border-bottom: 1px solid #e8e8e8;
   }
-  .form-group>span{
+  .form-group > span {
     display: block;
     width: 320px;
   }
-  .form-group>label {
+  .form-group > label {
     min-width: 150px;
   }
 }
-.permission-group{
-  .form-control{
-    border:0;
-    padding:0;
+.permission-group {
+  .form-control {
+    border: 0;
+    padding: 0;
   }
-  .is-invalid{
-    .ant-select-selection{
+  .is-invalid {
+    .ant-select-selection {
       border-color: #d9534f;
     }
   }
 }
 
-.sign-details-method{
-  .flex1{
+.sign-details-method {
+  .flex1 {
     width: 100%;
   }
-  .border-bottom{
+  .border-bottom {
     border-bottom: 1px solid #e5e5e5 !important;
   }
-  .details-break-word{
+  .details-break-word {
     word-wrap: break-word;
     width: 234px;
     margin-left: -34px;
   }
 }
-
-
+.charts-title{
+  color: #c23631;
+  font-size: 16px;
+}
+.charts-line{
+  width: 85%;
+  height: 1px;
+  background: #EEEEEE;
+  margin-top: 10px;
+}
 
