@@ -51,6 +51,7 @@ const getTitle = contract => {
 };
 
 export default function Info({contract}) {
+    console.log('contract1111',contract)
     let parametersArr = [
         'MAINTENANCE_TIME_INTERVAL',
         'ACCOUNT_UPGRADE_COST',
@@ -81,7 +82,7 @@ export default function Info({contract}) {
         }
 
     }
-    console.log('contract1111',contract)
+  
 
     let TokenIDList = [];
     let tokenIdData;
@@ -90,8 +91,6 @@ export default function Info({contract}) {
         tokenIdData  = rebuildList(TokenIDList,'asset_name','amount')[0]
     }
     if(contract.contractType){
-
-        console.log(22222,contract.contractType);
         switch (contract.contractType.toUpperCase()) {
             case "TRANSFERCONTRACT":
                 return <TransferContract contract={contract}/>;

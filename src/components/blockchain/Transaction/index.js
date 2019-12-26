@@ -111,6 +111,7 @@ class Transaction extends React.Component {
   render() {
 
     let {transaction, tabs, loading,notFound,resMessage,SUCCESS,FAIL} = this.state;
+   
     let {match,intl} = this.props;
     if (notFound) {
         return (

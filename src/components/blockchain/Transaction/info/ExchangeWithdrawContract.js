@@ -3,27 +3,22 @@ import {AddressLink, ExternalLink, ContractLink, TokenTRC20Link} from "../../../
 import Field from "../../../tools/TransactionViewer/Field";
 import {toThousands} from '../../../../utils/number'
 import SignList from './common/SignList'
+import {TransationTitle} from './common/Title'
 export default function ExchangeWithdrawContract(props) {
     const contract = props.contract;
-    const {quant,signList} = contract;
+    const {quant,signList,contractType} = contract;
     return <Fragment>
-        <div className="card-body table-title">
-            <h5>
-                <i className="fa fa-exchange-alt"></i>
-                &nbsp;&nbsp;
-                交易类型-{contract.contractType}
-            </h5>
-        </div>
+        <TransationTitle contractType={contractType}/>
         <table className="table">
             <tbody>
                 {
                     contract['owner_address'] ?
-                        <Field label="owner_address"><AddressLink address={contract['owner_address']} /></Field>
+                        <Field label="transation_owner_address"><AddressLink address={contract['owner_address']} /></Field>
                         : ''
                 }
-                <Field label="交易对"></Field>
-                <Field label="通证"></Field>
-                <Field label="数额">{toThousands(quant)}</Field>
+                <Field label="pairs"></Field>
+                <Field label="token_tracker"></Field>
+                <Field label="amount">{toThousands(quant)}</Field>
                 {/* 消耗带宽 */}
                 <SignList signList={signList}/>
             </tbody>
