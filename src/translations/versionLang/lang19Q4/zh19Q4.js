@@ -159,4 +159,6 @@ export const lang19Q4 = {
     "TRX_historical_data_y_text":"数量（TRX）",
     "TRX_historical_data_tip":"TRX数量",
    
+    // transaction info  2019-12-25  leon
+    
 }

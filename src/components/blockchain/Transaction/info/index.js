@@ -102,7 +102,7 @@ export default function Info({contract}) {
             case "PROPOSALCREATECONTRACT":
                 return '';
             case "TRIGGERSMARTCONTRACT":
-                return <TriggerContract contract={...contract}></TriggerContract>;
+                return <TriggerContract contract={contract}></TriggerContract>;
             case "UPDATEBROKERAGECONTRACT":
                 return '';
             default:
