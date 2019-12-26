@@ -161,4 +161,18 @@ export const lang19Q4 = {
    
     // transaction info  2019-12-25  leon
     
+    // 2019-12-25 xyy
+    "transation_detail":"交易详情",
+    "transation_hash":"交易哈希值",
+    "transation_status_tip":'"已确认"是指被19个以上超级节点确认，不足19个为"确认中"',
+    "transation_type": "交易类型",
+    "transation_transfer_trx":"TRX转账",
+    "transation_freeze_balance":"冻结资产",
+    "transation_owner_address":"发起地址",
+    "transation_receiver_address":"资源接收地址",
+    "transation_freeze_num":"冻结数额",
+    "transation_get_resourse":"获取资源",
+    "transation_recycling_address":"资源回收地址",
+    "transation_unfreeze_num":"解冻数额",
+
 }

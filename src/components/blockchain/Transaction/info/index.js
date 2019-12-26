@@ -8,6 +8,20 @@ import {FormattedNumber, FormattedDate, injectIntl} from "react-intl";
 import rebuildList from "../../../../utils/rebuildList";
 import {toUtf8} from 'tronweb'
 import { NameWithId } from '../../../common/names';
+import UpdateSettingContract from './UpdateSettingContract'
+import ExchangeCreateContract from './ExchangeCreateContract'
+import TransferContract from './TransferContract'
+import FreezeBalanceContract from './FreezeBalanceContract'
+import UnFreezeBalanceContract from './UnFreezeBalanceContract'
+import TransferAssetContract from './TransferAssetContract'
+import ParticipateAssetIssueContract from './ParticipateAssetIssueContract'
+import AccountCreateContract from './AccountCreateContract'
+import AssetIssueContract from './AssetIssueContract'
+import UnfreezeAssetContract from './UnfreezeAssetContract'
+import UpdateAssetContract from './UpdateAssetContract'
+import WithdrawBalanceContract from './WithdrawBalanceContract'
+
+
 
 import TriggerContract from './TriggerContract'
 
@@ -65,7 +79,7 @@ export default function Info({contract}) {
         }
 
     }
-    console.log('contract',contract)
+    console.log('contract1111',contract)
 
     let TokenIDList = [];
     let tokenIdData;
@@ -76,35 +90,43 @@ export default function Info({contract}) {
     if(contract.contractType){
         switch (contract.contractType.toUpperCase()) {
             case "TRANSFERCONTRACT":
-                return '';
+                return <TransferContract contract={contract}/>;
             case "TRANSFERASSETCONTRACT":
-                return '';
+                return <TransferAssetContract contract={contract}></TransferAssetContract>;
             case "PARTICIPATEASSETISSUECONTRACT":
-                return '';
+                return <ParticipateAssetIssueContract contract={contract}></ParticipateAssetIssueContract>;
             case "WITNESSUPDATECONTRACT":
                 return ''
             case "WITNESSCREATECONTRACT":
-                return ''
+                return ""
             case "ACCOUNTUPDATECONTRACT":
                 return ''
             case "ACCOUNTCREATECONTRACT":
-                return ''
+                return <AccountCreateContract contract={contract}></AccountCreateContract>;
             case "WITHDRAWBALANCECONTRACT":
-                return '';
+                return <WithdrawBalanceContract contract={contract}></WithdrawBalanceContract>;
             case "FREEZEBALANCECONTRACT":
-                return '';
+                return <FreezeBalanceContract contract={contract}></FreezeBalanceContract>;
             case "UNFREEZEBALANCECONTRACT":
-                return '';
+                return <UnFreezeBalanceContract contract={contract}></UnFreezeBalanceContract>;
             case "VOTEWITNESSCONTRACT":
                 return '';
             case "ASSETISSUECONTRACT":
-                return '';
+                return <AssetIssueContract contract={contract}></AssetIssueContract>;
             case "PROPOSALCREATECONTRACT":
                 return '';
             case "TRIGGERSMARTCONTRACT":
                 return <TriggerContract contract={contract}></TriggerContract>;
             case "UPDATEBROKERAGECONTRACT":
                 return '';
+            case "UNFREEZEASSETCONTRACT":
+                return <UnfreezeAssetContract contract={contract}></UnfreezeAssetContract>;
+            case "UPDATEASSETCONTRACT":
+                return <UpdateAssetContract contract={contract}></UpdateAssetContract>;
+            case "UPDATESETTINGCONTRACT":
+                    return <UpdateSettingContract contract={contract}/>;    
+            case "EXCHANGECREATECONTRACT":
+                    return <ExchangeCreateContract contract={contract}/> 
             default:
                 return (
                     <Fragment>
