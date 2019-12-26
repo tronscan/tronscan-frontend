@@ -17,13 +17,19 @@ export const IS_NILE = true;
 
 
 export const NETURL = {
-   //MAINNET: "https://18.190.104.70:9000",
-   MAINNET: "https://nile.tronscan.org",
-   SUNNET: "https://dappchain.tronscan.org",
+
+    MAINNET: "https://nile.tronscan.org",
+    SUNNET: "https://dappchain.tronscan.org",
 };
 
+export const TOKENINFO_UPDATE = 'TOKENINFO_UPDATE'
 
-let { NET, NODE_ENV } = process.env;
+
+
+let {
+    NET,
+    NODE_ENV
+} = process.env;
 let MAINNET;
 let SUNNET;
 let NODEAPI;
@@ -91,9 +97,9 @@ export const FILE_MAX_NUM = 10;
 
 // currency type
 export const CURRENCYTYPE = {
-  TRX: "TRX",
-  TRX10: "TRX10",
-  TRX20: "TRX20"
+    TRX: "TRX",
+    TRX10: "TRX10",
+    TRX20: "TRX20"
 };
 
 // mapping energy
@@ -117,10 +123,10 @@ export const TRCWITHDRAWMIN = 1;
 
 // trading type
 export const TRADINGMAP = {
-  MAPPING: "mapping",
-  WITHDRAW: "withdraw",
-  DEPOSIT: "deposit",
-  APPROVE: "approve"
+    MAPPING: "mapping",
+    WITHDRAW: "withdraw",
+    DEPOSIT: "deposit",
+    APPROVE: "approve"
 };
 
 // SunWeb config
@@ -155,30 +161,30 @@ export const TORNSOCKET = {
 
 // token type
 export const TOKENTYPE = {
-  TOKEN10: "trc10",
-  TOKEN20: "trc20"
+    TOKEN10: "trc10",
+    TOKEN20: "trc20"
 };
 
 // market basic page
 export const MARKETPAGE = {
-  CREATE: "create",
-  UPDATE: "update"
+    CREATE: "create",
+    UPDATE: "update"
 };
 
 // market token verify status
 export const VERIFYSTATUS = {
-  HASBEENSUBMITTEDTHREE: -3,
-  NOTRECORDED: -2, // No recorded
-  HASBEENRECORDED: -1, // Has been recorded
-  HASBEENSUBMITTED: 0, // Has been submitted
-  NOTRECOMMENDED: 1, // not recommended
-  TOAUDIT: 2, // to audit
-  APPROVED: 3, // reviewed for recommendation
-  RECOMMENDED: 4, // reviewed and recommended
-  REJECTED: 5, // rejected
-  SHELVES: 6, // Has been off the shelves
-  CONFIRMED: 7, // Have been confirmed
-  RECOMMENDEDFAILED: 8 // Review recommendation failed
+    HASBEENSUBMITTEDTHREE: -3,
+    NOTRECORDED: -2, // No recorded
+    HASBEENRECORDED: -1, // Has been recorded
+    HASBEENSUBMITTED: 0, // Has been submitted
+    NOTRECOMMENDED: 1, // not recommended
+    TOAUDIT: 2, // to audit
+    APPROVED: 3, // reviewed for recommendation
+    RECOMMENDED: 4, // reviewed and recommended
+    REJECTED: 5, // rejected
+    SHELVES: 6, // Has been off the shelves
+    CONFIRMED: 7, // Have been confirmed
+    RECOMMENDEDFAILED: 8 // Review recommendation failed
 };
 
 // JSEncrypt key
@@ -188,6 +194,7 @@ export const JSENCRYPTKEY = `-----BEGIN PUBLIC KEY-----MIGfMA0GCSqGSIb3DQEBAQUAA
 export const FROMID = 1;
 
 // url regexp
+/* eslint-disable */
 export const URLREGEXP = /^((ht|f)tps?):\/\/[\w\-]+(\.[\w\-]+)+([\w\-.,@?^=%&:\\/~+#]*[\w\-@?^=%&\\/~+#])?$/;
 
 
@@ -199,20 +206,19 @@ export const ADDRESS_PREFIX_REGEX = /^(41)/;
 
 // contract
 export const CONTRACT_LICENSES = [
-  "--",
-  "None",
-  "Unlicense",
-  "MIT",
-  "GNU GPLv2",
-  "GNU GPLv3",
-  "GNU LGPLv2.1",
-  "GNU LGPLv3",
-  "BSD-2-Clause",
-  "BSD-3-Clause",
-  "MPL-2.0",
-  "OSL-3.0",
-  "Apache-2.0"
+    "--",
+    "None",
+    "Unlicense",
+    "MIT",
+    "GNU GPLv2",
+    "GNU GPLv3",
+    "GNU LGPLv2.1",
+    "GNU LGPLv3",
+    "BSD-2-Clause",
+    "BSD-3-Clause",
+    "MPL-2.0",
+    "OSL-3.0",
+    "Apache-2.0"
 ];
 
 export const WARNING_VERSIONS = []
-

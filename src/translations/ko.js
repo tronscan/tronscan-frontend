@@ -1,5 +1,9 @@
+/* eslint-disable */
+import {
+    lang19Q4
+} from './versionLang/lang19Q4/ko19Q4'; /* 2019Q4 */
 export const messages = {
-  /*
+    /*
   ##################################################################################
   #                                                                                #
   #  $$$$$$$$\                                                                     #
@@ -340,7 +344,7 @@ export const messages = {
   "open_external_link": "외부 링크를 여는 중입니다.",
   "private_key_untrusted_website_message_0": "신뢰할 수 없는 웹사이트에 프라이빗키를 제공하지 마세요.",
   "no_official_tron_website": "TRON 공식 페이지가 아닙니다.",
-  "continue_to_external_website": "외부 웹사이트로 이동",
+  "continue_to_external_website": "계속",
   "visit_third_party_website":"The page you visit will be redirected to a third-party website. There may be security risks. Are you sure you want to continue?",
   "url_changed": "URL 변경됨",
   "successfully_changed_website_message": "URL으로 전환했습니다.",
@@ -588,7 +592,7 @@ export const messages = {
   "token_spend_confirm": "저는 이미 토큰 발행시 1024TRX를 지불해야 된다는 것에 대해 알고 있습니다.",
   "token_issue_guide_message_1": `사용자 계정에는 최소1024TRX가 있어야 TRON 프로토콜에서 토큰을 발행할수 있습니다.  `,
   "token_issue_guide_message_2": `토큰 발행후， 토큰 개요 페이지에 표시됩니다.
-     사용자는 발급 기간 내에 참여하여 구입 가능하며  TRX를 이용하여 토큰으로 교환할 수 있습니다.`,
+     사용자는 발급 기간 내에 참여하여 구입 가능하며  TRX를 이용하여 토큰으로 교환할 수 있습니다.`,
   "token_issue_guide_message_3": `토큰 발행후， 귀하의 계정에서 전체 발행 금액을 받을 수 있습니다.
     다른 사용자가 TRX를 사용하여 토큰으로 교환하면 귀하의 계정에서 상환 금액이 공제되고 해당 환율로 TRX 금액이 입금됩니다.`,
   /*
@@ -1522,7 +1526,7 @@ export const messages = {
   "propose_12": "1 energy의 비용 수정 제안",
   "propose_13": "거래조합 생성 비용 수정 제안",
   "propose_14": "한 거래의 최대 실행 시간 수정 제안",
-  "propose_15": "계정 이름 변경 여부 제안",
+  "propose_15": "중복 계정 이름을 허용하도록 제안",
   "propose_16": "토큰 동명 제안 허락",
   "propose_17": "리소스 위임을 허용 제안",
   "propose_18": "총 에너지 한도 수정 제안",
@@ -2116,6 +2120,7 @@ export const messages = {
   "receive_address":"수신 주소 (기본 주소는 자신의 주소입니다)",
   "unfreeze_time": "해동 시간",
   "interTrx_tip": "내부 트랜잭션은 일반 주소가 스마트 계약을 호출하고 스마트 계약이 토큰을 다른 주소로 전송하는 작업입니다.",
+  "interTrx_tip_contract":"Internal transactions from contract execution",
   "event_tip": "이벤트는 프로그래머 또는 외부 인터페이스 제공 업체가 계약 작업 및 감사에주의를 기울일 수있게하는 것입니다.",
    /* 2019-07-06*/
    "trc20_free_orders":"0 trading fee for all orders",
@@ -2236,12 +2241,12 @@ export const messages = {
   "Side_Chain":"DAppChain",
   "Main_Chain":"MainChain",
 
-  "7day": "one week",
-  "14day": "two weeks",
-  "30day": "one month",
-  "select_tip": "To view data other than 2000 You can manually adjust the time window",
-  "date_number_tip": "{total} records in the current time range",
-  "date_list_tip": "Only the first 2000 data are displayed",
+  "7day": "7 일",
+  "14day": "14 일",
+  "30day": "1 개월",
+  "select_tip": "2000 이외의 데이터를 보려면 시간 창을 수동으로 조정하세요",
+  "date_number_tip": "현재 시간 범위내에 {total}개의 기록이 있습니다.",
+  "date_list_tip": "리스트에는 2000개의 기록만 표시됩니다",
 
 
   "sun_propose_1": "거래 비용 청구 스위치에 대한 제안 설치가 1일 경우 거래 비용을 정상적으로 받습니다.",
@@ -2301,7 +2306,7 @@ export const messages = {
   "no_rewards_available_yet":"No rewards available",
   "total_tron_ecosystem_tokens":"Total TRON-ecosystem tokens:",
   "number_of_lists":"Number of lists:",
-  "total_in_tronscan":"Total in tronscan:",
+  "total_in_tronscan":"Total in tronscan",
   "develpopers_reward_tip":"Thank you for considering to help out with the java-tron! TRON Foundation welcome contributions from anyone on the internet, and are grateful for your contributions.",
   "verifty_contract_result":"인증 결과",
   "main_contract_deployment":"(Please select the main contract deployment)",
@@ -2441,4 +2446,15 @@ export const messages = {
   "signature_operations_required":"조작은 필수 정보입니다",
   "signature_threshold_required":"역치는 필수 정보입니다",
   "signaure_control_address_tip":"Control address refers to the associated control addresses of owner permission, SR permission and active permission. Display of the three types of permissions will change subsequently when the control address is modified.",
+
+// 2019-12-10
+"ledger_tronlink":"Login to TRONSCAN via TronLink",
+// 2019-12-18
+   "address_vote_reward_pending":"투표 보상",
+   "address_balance":"TRX 잔액",
+   "address_get_energe":"에너지 획득하려면",
+   "address_get_bandwith":"대역폭 획득하려면",
+   "address_freeze_owner":"자신에게 동결",
+   "address_freeze_other":"타인에게 동결",
+   ...lang19Q4
 };

@@ -11,6 +11,12 @@ export const SingleChartAsync = loadable(() =>
   )
 );
 
+export const ChartsAsync = loadable(() =>
+  import(
+    /* webpackChunkName: "Charts" */ "./blockchain/Statistics/Charts.js"
+  )
+);
+
 export const MarketsAsync = loadable(() =>
   import(/* webpackChunkName: "Markets" */ "./markets")
 );
@@ -250,5 +256,11 @@ export const ContractUseServiceTerms = loadable(() =>
 export const ContractLicense = loadable(() =>
   import(
     /* webpackChunkName: "ContractSourceCode" */ "./blockchain/Contract/License"
+  )
+);
+
+export const RatingRule = loadable(() =>
+  import(
+    /* webpackChunkName: "ContractSourceCode" */ "./tokens/RatingRule"
   )
 );

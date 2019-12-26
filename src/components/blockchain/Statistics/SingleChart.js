@@ -33,7 +33,8 @@ import {
     EnergyConsumeChart,
     ContractInvocationChart,
     ContractInvocationDistributionChart,
-    EnergyConsumeDistributionChart
+    EnergyConsumeDistributionChart,
+    OverallFreezingRateChart,
 } from "../../common/LineCharts";
 
 import {
@@ -89,7 +90,12 @@ class Statistics extends React.Component {
                 scale: '',
                 range_type: 'Top20'
             },
-            EnergyConsumeDistribution: null
+            EnergyConsumeDistribution: null,
+            OverallFreezingRate:null,
+            OverallFreezingRateParams:{
+                start_day:'2019-12-01',
+                end_day:'2019-12-12'
+            }
         };
     }
 
@@ -128,7 +134,9 @@ class Statistics extends React.Component {
             case 'EnergyConsumeDistribution':
                 this.loadEnergyConsumeDistribution();
                 break;
-                
+            case 'OverallFreezingRate':
+                this.loadOverallFreezingRate();
+                break;   
             default:
                 this.loadTxOverviewStats();
                 break;
@@ -266,6 +274,7 @@ class Statistics extends React.Component {
         let volumeData = await xhr.get(
             `${API_URL}/api/system/proxy?url=${TRXURL}`
         );
+
         let volumeUSD = volumeData.data.market_cap_by_available_supply
 
         if (volumeUSD == null) {
@@ -567,7 +576,7 @@ class Statistics extends React.Component {
         });
     }
 
-   // 每日合约消耗能量分布
+    // 每日合约消耗能量分布
     async loadEnergyConsumeDistribution(){
         let { time, range} = this.state.ContractInvocationDistributionParams
         let {data: {total, totalEnergy, data}} = await xhr.get(API_URL + "/api/energydailystatistic?limit="+ range+"&day="+time);
@@ -620,6 +629,23 @@ class Statistics extends React.Component {
                 ...this.state.ContractInvocationDistributionParams,
                 total_energy: totalTrigger
             }
+        });
+    }
+
+    //冻结率
+    async loadOverallFreezingRate() {
+        let { start_day, end_day} = this.state.OverallFreezingRateParams;
+        let {data: {data}} = await xhr.get(API_URL + "/api/freezeresource?start_day="+ start_day+"&end_day="+end_day);
+        console.log('data',data)
+        data.map((item, index) => {
+            item.freezing_percent = ((item.total_freeze_weight / item.total_turn_over)*100).toFixed(2) + '%'
+        })
+        this.setState({
+            OverallFreezingRate: data,
+            // ContractInvocationDistributionParams: {
+            //     ...this.state.ContractInvocationDistributionParams,
+            //     total_energy: totalTrigger
+            // }
         });
     }
 
@@ -809,6 +835,94 @@ class Statistics extends React.Component {
         return column;
       }
 
+      freezingCustomizedColumn = () => {
+        let {intl} = this.props;
+        let column = [
+            {
+                title: upperFirst(intl.formatMessage({id: 'freezing_column_time'})),
+                dataIndex: 'day',
+                key: 'day',
+                width: '60px',
+                align: 'center',
+                render: (text, record, index) => {
+                  return <span>{text}</span>
+                }
+            },
+          {
+            title: upperFirst(intl.formatMessage({id: 'freezing_column_total_circulation'})),
+            dataIndex: 'total_turn_over',
+            key: 'total_turn_over',
+            render: (text, record, index) => {
+              return <FormattedNumber value={text}/>
+            }
+          },
+          {
+            title: upperFirst(intl.formatMessage({id: 'freezing_column_total_frozen'})),
+            dataIndex: 'total_freeze_weight',
+            key: 'total_freeze_weight',
+            render: (text, record, index) => {
+              return <FormattedNumber value={text}/>
+            }
+          },
+          {
+            title: upperFirst(intl.formatMessage({id: 'freezing_column_freezing_rate'})),
+            dataIndex: 'freezing_column_freezing_rate',
+            key: 'freezing_column_freezing_rate',
+            render: (text, record, index) => {
+                return <span>
+                    <FormattedNumber
+                        value={(record.total_freeze_weight/record.total_turn_over)*100}
+                        minimumFractionDigits={2}
+                        maximumFractionDigits={2}
+                    /> %
+                </span>
+
+
+            }
+          },
+          {
+            title: upperFirst(intl.formatMessage({id: 'freezing_column_energy_ratio'})),
+            dataIndex: 'caller_amount',
+            key: 'caller_amount',
+            render: (text, record, index) => {
+                return <span>
+                    <FormattedNumber
+                        value={(record.total_energy_weight/record.total_freeze_weight)*100} 
+                        minimumFractionDigits={2}
+                        maximumFractionDigits={2}
+                    /> %
+
+                </span>
+            }
+          },
+          {
+            title: upperFirst(intl.formatMessage({id: 'freezing_column_bandwidth_ratio'})),
+            dataIndex: 'trigger_amount',
+            key: 'trigger_amount',
+            render: (text, record, index) => {
+                return <span>
+                    <FormattedNumber
+                        value={(record.total_net_weight/record.total_freeze_weight)*100} 
+                        minimumFractionDigits={2}
+                        maximumFractionDigits={2}
+                    /> %
+                </span>
+            }
+          },
+        //   {
+        //     title: upperFirst(intl.formatMessage({id: 'freezing_column_more'})),
+        //     dataIndex: 'caller_percent',
+        //     key: 'caller_percent',
+        //     render: (text, record, index) => {
+        //       return <span>{text}</span>
+        //     }
+        //   },
+          
+        ];
+        return column;
+      }
+
+
 
 
     render() {
@@ -823,12 +937,13 @@ class Statistics extends React.Component {
             priceUSD,priceBTC,marketCapitalization,foundationFreeze,
             circulatingNum, energyConsumeData, ContractInvocation,
             ContractInvocationDistribution, ContractInvocationDistributionParams,
-            EnergyConsumeDistribution } = this.state;
+            EnergyConsumeDistribution,OverallFreezingRate } = this.state;
 
         let unit;
         let uploadURL = API_URL + "/api/v2/node/overview_upload";
-        let column = this.customizedColumn()
-        let call_colum = this.callCustomizedColumn()
+        let column = this.customizedColumn();
+        let call_colum = this.callCustomizedColumn();
+        let freezing_column = this.freezingCustomizedColumn();
 
         let chartHeight = isMobile? 240: 500
 
@@ -1137,6 +1252,41 @@ class Statistics extends React.Component {
                             }
                             </div>
                         }
+
+{
+                           
+                           match.params.chartName === 'OverallFreezingRate' &&
+                           <div>
+                           {
+                               OverallFreezingRate === null ? <TronLoader/> :
+                               <div>
+                                   
+                               
+                                   <OverallFreezingRateChart
+                                       style={{height: chartHeight}}
+                                       data={OverallFreezingRate}
+                                       intl={intl}
+                                   />
+                                   <div className="token_black">
+                                   <div className="col-md-12 table_pos">
+                                       {/* <p>{ intl.formatMessage({id: 'a_total'}) + intl.formatNumber(ContractInvocationDistributionParams.total_energy)+ 
+                                           intl.formatMessage({id: 'Contract_times_calls'})}
+                                       </p> */}
+                                       {( OverallFreezingRate.length === 0)?
+                                       <div className="p-3 text-center no-data">{tu("no_data")}</div>
+                                       :
+                                       <SmartTable 
+                                           bordered={true} 
+                                           column={freezing_column} 
+                                           data={OverallFreezingRate} 
+                                       />}
+                                   </div>
+                                   </div>
+
+                               </div>
+                           }
+                           </div>
+                       }
 
                         
                         {

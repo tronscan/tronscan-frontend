@@ -248,101 +248,101 @@ class Navigation extends React.Component {
     isLoginValid = () => {
         let {privateKey} = this.state;
 
-        if (trim(privateKey) === "external") {
-            return true;
-        }
+    if (trim(privateKey) === "external") {
+      return true;
+    }
 
-        if (!privateKey || privateKey.length === 0) {
-            return false;
-        }
-
-
-        if (privateKey.length !== 64) {
-            return false;
-        }
-
-        const HAS_LIST = '0123456789ABCDEF'.split('');
-        for (let i = 0; i < privateKey.length; i++) {
-            const element = toUpper(privateKey[i]);
-            if(HAS_LIST.indexOf(element) === -1){
-                return false
-            }
-        }
+    if (!privateKey || privateKey.length === 0) {
+      return false;
+    }
 
 
-        return true;
-    };
+    if (privateKey.length !== 64) {
+      return false;
+    }
+    
+    const HAS_LIST = '0123456789ABCDEF'.split('');
+    for (let i = 0; i < privateKey.length; i++) {
+      const element = toUpper(privateKey[i]);
+      if(HAS_LIST.indexOf(element) === -1){
+        return false
+      }
+    }
+    
 
-    selectFile(e) {
-        e.stopPropagation();
-        this.fileRef.current.click();
-    };
+    return true;
+  };
 
-    onFileSelected = async (ev) => {
-        if (ev.target.value.endsWith(".txt")) {
-            let contents = await readFileContentsFromEvent(ev);
-            this.fileRef.current.value = '';
-            this.openPasswordPrompt(contents);
-        }
-    };
+  selectFile(e) {
+    e.stopPropagation();
+    this.fileRef.current.click();
+  };
 
-    openPasswordPrompt = (contents) => {
-        this.setState({
-            isImportAccount: false,
-            isTRONlinkLogin: false,
-            loginWarning: false,
-            signInWarning: false,
-            popup: (
-                <SweetAlert
-                    input
-                    showCancel
-                    inputType="password"
-                    cancelBtnBsStyle="default"
-                    cancelBtnText={tu("cancel")}
-                    title={tu("unlock_keyFile")}
-                    placeHolder="Password"
-                    onCancel={this.hideModal}
-                    validationMsg={tu("enter_password_message")}
-                    confirmBtnText={tu("ok_confirm")}
-                    onConfirm={(password) => this.unlockKeyFile(password, contents)}>
-                    {tu("password")}
-                </SweetAlert>
-            )
-        });
-    };
+  onFileSelected = async (ev) => {
+    if (ev.target.value.endsWith(".txt")) {
+      let contents = await readFileContentsFromEvent(ev);
+      this.fileRef.current.value = '';
+      this.openPasswordPrompt(contents);
+    }
+  };
 
-    hideModal = () => {
-        this.setState({popup: null});
-    };
+  openPasswordPrompt = (contents) => {
+    this.setState({
+      isImportAccount: false,
+      isTRONlinkLogin: false,
+      loginWarning: false,
+      signInWarning: false,
+      popup: (
+          <SweetAlert
+              input
+              showCancel
+              inputType="password"
+              cancelBtnBsStyle="default"
+              cancelBtnText={tu("cancel")}
+              title={tu("unlock_keyFile")}
+              placeHolder="Password"
+              onCancel={this.hideModal}
+              validationMsg={tu("enter_password_message")}
+              confirmBtnText={tu("ok_confirm")}
+              onConfirm={(password) => this.unlockKeyFile(password, contents)}>
+            {tu("password")}
+          </SweetAlert>
+      )
+    });
+  };
 
-    unlockKeyFile = (password, contents) => {
-        let {key, address, salt} = JSON.parse(bytesToString(hexStr2byteArray(contents)));
-        let privateKey = decryptString(password, salt, key);
-        if (validatePrivateKey(privateKey) && pkToAddress(privateKey) === address) {
-            this.setState({
-                popup: (
-                    <SweetAlert
-                        success title={tu("wallet_unlocked")}
-                        onConfirm={this.hideModal}
-                        confirmBtnText={tu("ok_confirm")}/>
-                )
-            });
-            this.props.login(privateKey);
-        } else {
-            this.setState({
-                popup: (
-                    <SweetAlert
-                        danger
-                        showCancel
-                        title={tu("password_incorrect")}
-                        cancelBtnBsStyle="default"
-                        cancelBtnText={tu("try_again")}
-                        onCancel={() => this.openPasswordPrompt(contents)}
-                        onConfirm={this.hideModal}/>
-                )
-            });
-        }
-    };
+  hideModal = () => {
+    this.setState({popup: null});
+  };
+
+  unlockKeyFile = (password, contents) => {
+    let {key, address, salt} = JSON.parse(bytesToString(hexStr2byteArray(contents)));
+    let privateKey = decryptString(password, salt, key);
+    if (validatePrivateKey(privateKey) && pkToAddress(privateKey) === address) {
+      this.setState({
+        popup: (
+            <SweetAlert
+                success title={tu("wallet_unlocked")}
+                onConfirm={this.hideModal}
+                confirmBtnText={tu("ok_confirm")}/>
+        )
+      });
+      this.props.login(privateKey);
+    } else {
+      this.setState({
+        popup: (
+            <SweetAlert
+                danger
+                showCancel
+                title={tu("password_incorrect")}
+                cancelBtnBsStyle="default"
+                cancelBtnText={tu("try_again")}
+                onCancel={() => this.openPasswordPrompt(contents)}
+                onConfirm={this.hideModal}/>
+        )
+      });
+    }
+  };
 
     logout(e) {
         e.stopPropagation();
@@ -447,200 +447,211 @@ class Navigation extends React.Component {
 
         ];*/
 
-        this.setState({searchResults: results});
-        if (results.length) {
-            $('#_searchBox').css({display: 'block'});
-        } else {
-            $('#_searchBox').css({display: 'none'});
-        }
+    this.setState({searchResults: results});
+    if (results.length) {
+      $('#_searchBox').css({display: 'block'});
+    } else {
+      $('#_searchBox').css({display: 'none'});
+    }
+  }
+
+  afterSearch = (hash) => {
+    hash && (window.location.hash = hash);
+    this.setState({searchResults: []});
+    this.setState({search: ""});
+  }
+
+  onSetThemeClick = (ev) => {
+
+    let {theme} = this.props;
+
+    switch (theme) {
+      case "light":
+        this.props.setTheme("dark");
+        break;
+      case "dark":
+        this.props.setTheme("light");
+        break;
+      case "tron":
+        this.props.setTheme("dark");
+        break;
+
+    }
+  };
+
+  renderThemeChooser() {
+
+    let {theme} = this.props;
+
+    let icon = "";
+
+    switch (theme) {
+      case "light":
+        icon = "fa fa-moon";
+        break;
+      case "dark":
+        icon = "fa fa-sun";
+        break;
+      case "tron":
+        icon = "fas fa-user-astronaut";
+        break;
     }
 
-    afterSearch = (hash) => {
-        hash && (window.location.hash = hash);
-        this.setState({searchResults: []});
-        this.setState({search: ""});
-    }
+    return (
+        <li className="nav-item dropdown navbar-right">
+          <a key={theme} className="nav-link" href="javascript:" onClick={this.onSetThemeClick}>
+            <i className={icon}/>
+          </a>
+        </li>
+    )
+  }
 
-    onSetThemeClick = (ev) => {
+  newTransaction = () => {
+    this.setState({
+      popup: (
+          <SendModal onClose={this.hideModal}/>
+      )
+    });
+  };
 
-        let {theme} = this.props;
-
-        switch (theme) {
-            case "light":
-                this.props.setTheme("dark");
-                break;
-            case "dark":
-                this.props.setTheme("light");
-                break;
-            case "tron":
-                this.props.setTheme("dark");
-                break;
-
-        }
-    };
-
-    renderThemeChooser() {
-
-        let {theme} = this.props;
-
-        let icon = "";
-
-        switch (theme) {
-            case "light":
-                icon = "fa fa-moon";
-                break;
-            case "dark":
-                icon = "fa fa-sun";
-                break;
-            case "tron":
-                icon = "fas fa-user-astronaut";
-                break;
-        }
-
-        return (
-            <li className="nav-item dropdown navbar-right">
-              <a key={theme} className="nav-link" href="javascript:;" onClick={this.onSetThemeClick}>
-                <i className={icon}/>
-              </a>
-            </li>
+  muitlTransfer = () => {
+    this.setState({
+        popup: (
+            <SendMultiModal onClose={this.hideModal}/>
         )
+    });
+  };
+
+
+
+  showReceive = () => {
+    this.setState({
+      popup: (
+          <ReceiveModal onClose={this.hideModal}/>
+      )
+    });
+  };
+
+  getLogo = () => {
+    let theme = 'light';
+
+    if (IS_TESTNET) {
+      switch (theme) {
+        case "light":
+          return tronLogoTestNet;
+        default:
+          return tronLogoInvertedTestNet;
+      }
+    } else if(!IS_MAINNET){
+        switch (theme) {
+            case "light":
+                return tronLogoSunNet;
+            default:
+                return tronLogoSunNet;
+        }
+    } {
+      switch (theme) {
+        case "tron":
+          return tronLogoBlue;
+        case "light":
+          return tronLogoDark;
+        default:
+          return logo;
+      }
+    }
+  };
+
+  loginWithLedger = () => {
+    this.openLedgerModal();
+  };
+
+  openLedgerModal = (type) => {
+    this.setState({
+      popup: (
+          <Modal isOpen={true} fade={false} keyboard={false} size="lg" className="modal-dialog-centered">
+            <ModalHeader className="text-center" toggle={this.hideModal}>
+              {tu("open_ledger")}&nbsp;&nbsp;
+              {/*<Link to="/help/ledger" onClick={this.hideModal} style={{fontSize:12,marginTop:6}}>*/}
+                {/*<small>*/}
+                    {/*{tu("ledger_user_guide")}*/}
+                {/*</small>*/}
+              {/*</Link>*/}
+            </ModalHeader>
+            <ModalBody className="p-0">
+            <LedgerAccess onClose={this.hideModal} loginType={type}/>
+            </ModalBody>
+          </Modal>
+      )
+    });
+  };
+
+  loginWithMobileDevice = () => {
+    console.log("LOGIN WITH MOBILE");
+  };
+
+  loginWithTronLink(e) {
+    let {intl} = this.props;
+    e.stopPropagation();
+    const {loginWarning, signInWarning} = this.state;
+    const tronWeb = window.tronWeb;
+    const sunWeb = window.sunWeb;
+    // 没有下载 tronlink
+    if (!tronWeb || !sunWeb) {
+      this.setState({loginWarning: true});
+      // this.loading = false
+      return
     }
 
-    newTransaction = () => {
-        this.setState({
-            popup: (
-                <SendModal onClose={this.hideModal}/>
-            )
-        });
-    };
+    // 没有登录 tronlink
+    const address = tronWeb.defaultAddress.base58;
+    if (!address) {
+      this.setState({signInWarning: true});
+      //this.loading = false
+      Lockr.set("islogin", 0);
+      return
+    }
 
-    muitlTransfer = () => {
-        this.setState({
-            popup: (
-                <SendMultiModal onClose={this.hideModal}/>
-            )
-        });
-    };
+    // 如果是tronlink的ledger登录，跳转到tronscan的ledger登录
+    const tronlinkLoginType = tronWeb.defaultAddress.type;
+    if (tronlinkLoginType == 2) {
+      this.closeLoginModel(e);
+      this.openLedgerModal(tronlinkLoginType);
+      return;
+    }
 
-
-
-    showReceive = () => {
-        this.setState({
-            popup: (
-                <ReceiveModal onClose={this.hideModal}/>
-            )
-        });
-    };
-
-    getLogo = () => {
-        let theme = 'light';
-
-        if (IS_TESTNET) {
-            switch (theme) {
-                case "light":
-                    return tronLogoTestNet;
-                default:
-                    return tronLogoInvertedTestNet;
-            }
-        } else if(!IS_MAINNET){
-            switch (theme) {
-                case "light":
-                    return tronLogoSunNet;
-                default:
-                    return tronLogoSunNet;
-            }
-        } {
-            switch (theme) {
-                case "tron":
-                    return tronLogoBlue;
-                case "light":
-                    return tronLogoDark;
-                default:
-                    return logo;
-            }
-        }
-    };
-
-    loginWithLedger = () => {
-        this.openLedgerModal();
-    };
-
-    openLedgerModal = () => {
-        this.setState({
-            popup: (
-                <Modal isOpen={true} fade={false} keyboard={false} size="lg" className="modal-dialog-centered">
-                  <ModalHeader className="text-center" toggle={this.hideModal}>
-                      {tu("open_ledger")}&nbsp;&nbsp;
-                      {/*<Link to="/help/ledger" onClick={this.hideModal} style={{fontSize:12,marginTop:6}}>*/}
-                      {/*<small>*/}
-                      {/*{tu("ledger_user_guide")}*/}
-                      {/*</small>*/}
-                      {/*</Link>*/}
-                  </ModalHeader>
-                  <ModalBody className="p-0">
-                    <LedgerAccess onClose={this.hideModal} />
-                  </ModalBody>
-                </Modal>
-            )
-        });
-    };
-
-    loginWithMobileDevice = () => {
-        console.log("LOGIN WITH MOBILE");
-    };
-
-    loginWithTronLink(e) {
-        let {intl} = this.props;
-        e.stopPropagation();
-        const {loginWarning, signInWarning} = this.state;
-        const tronWeb = window.tronWeb;
-        const sunWeb = window.sunWeb;
-        // 没有下载 tronlink
-        if (!tronWeb || !sunWeb) {
-            this.setState({loginWarning: true});
-            // this.loading = false
-            return
-        }
-
-        // 没有登录 tronlink
-        const address = tronWeb.defaultAddress.base58;
-        if (!address) {
-            this.setState({signInWarning: true});
-            //this.loading = false
-            Lockr.set("islogin", 0);
-            return
-        }
-
+    if (address) {
         // 已登录 tronlink
-        if (address) {
-            //this.isauot = true
-            Lockr.set("islogin", 1);
-            this.props.loginWithTronLink(address, tronWeb, sunWeb).then(() => {
-                toastr.info(intl.formatMessage({id: 'success'}), intl.formatMessage({id: 'login_success'}));
-                this.setState({isImportAccount: false})
-            });
-        }
-    };
-
-    closeLoginModel = (e) => {
-        e.stopPropagation()
-        this.setState({
-            isImportAccount: false,
-            isTRONlinkLogin: false,
-            loginWarning: false,
-            signInWarning: false
-        })
-    };
-
-    clickLoginWithTronLink(e) {
-        e.stopPropagation()
-        this.setState({
-            isTRONlinkLogin: true,
-            isImportAccount: false
-        }, () => {
-
+        //this.isauot = true
+        Lockr.set("islogin", 1);
+        this.props.loginWithTronLink(address, tronWeb, sunWeb).then(() => {
+          toastr.info(
+            intl.formatMessage({ id: "success" }),
+            intl.formatMessage({ id: "login_success" })
+          );
+          this.setState({ isImportAccount: false });
         });
     }
+  };
+
+  closeLoginModel = (e) => {
+    e.stopPropagation()
+    this.setState({
+      isImportAccount: false,
+      isTRONlinkLogin: false,
+      loginWarning: false,
+      signInWarning: false
+    })
+  };
+
+  clickLoginWithTronLink(e) {
+    e.stopPropagation()
+    this.setState({
+      isTRONlinkLogin: true,
+      isImportAccount: false
+    }, () => {
+
+    });
+  }
 
     clickLoginWithPk(e) {
         e.stopPropagation()
@@ -659,14 +670,14 @@ class Navigation extends React.Component {
         let {account, totalTransactions = 0, flags, wallet, activeLanguage} = this.props;
         let {isImportAccount, isTRONlinkLogin, loginWarning, signInWarning, address} = this.state;
 
-        if (wallet.isLoading) {
-            return (
-                <li className="nav-item">
-                  <a className="nav-link" href="javascript:;">
-                    Loading Wallet...
-                  </a>
-                </li>
-            );
+    if (wallet.isLoading) {
+      return (
+          <li className="nav-item">
+            <a className="nav-link" href="javascript:">
+              Loading Wallet...
+            </a>
+          </li>
+      );
 
         }
         const STYLE_MAP={
@@ -682,15 +693,15 @@ class Navigation extends React.Component {
                 {
                     (account.isLoggedIn && wallet.isOpen) ?
 
-                        <li className="nav-static dropdown token_black nav">
-                          <a className="nav-link dropdown-toggle" data-toggle="dropdown" href="javascript:;">
-                              {tu("wallet")}
-                          </a>
-                          <ul className="dropdown-menu dropdown-menu-right account-dropdown-menu px-3">
-                            <li className=" py-1">
-                              <div className="row" style={{width: 305}}>
-                                <Link to="/account" className="col-12 d-flex justify-content-end align-items-center">
-                                    {/* <div className="col-lg-2">
+                <li className="nav-static dropdown token_black nav">
+                  <a className="nav-link dropdown-toggle" data-toggle="dropdown" href="javascript:">
+                    {tu("wallet")}
+                  </a>
+                  <ul className="dropdown-menu dropdown-menu-right account-dropdown-menu px-3">
+                    <li className=" py-1">
+                      <div className="row" style={{width: 305}}>
+                        <Link to="/account" className="col-12 d-flex justify-content-end align-items-center">
+                          {/* <div className="col-lg-2">
                           <Avatar size={45} value={account.address}/>
                         </div> */}
                                   <div style={{width: 252}}>
@@ -774,58 +785,58 @@ class Navigation extends React.Component {
                                   </a>
                               }
 
-                            <a className="dropdown-item" href="javascript:;" onClick={this.showReceive}>
-                              <i className="fa fa-qrcode mr-2"/>
-                                {tu("receive")}
-                              <i className="fa fa-angle-right float-right" ></i>
-                            </a>
-                              {/*<Link className="dropdown-item" to={"/blockchain/transactions?address=" + account.address}>*/}
-                              {/*<i className="fa fa-qrcode mr-2"/>*/}
-                              {/*Receive*/}
-                              {/*</Link>*/}
-                            <li className="dropdown-divider"/>
-                            <li className=" pt-1 pb-2">
-                              <button className="btn btn-danger btn-block"
-                                      onClick={(e) => {
-                                          this.logout(e)
-                                      }}>{tu("sign_out")}</button>
-                            </li>
-                          </ul>
-                        </li> :
-                        <li className="dropdown nav nav_input">
-                          <div className="nav-link dropdown-toggle nav-item" onClick={(e) => {
-                              isMobile && this.clickLoginWithPk(e)
-                          }}>
-                              {tu("open_wallet")}
-                            <ul className="dropdown-menu dropdown-menu-right nav-login-wallet" style={{minWidth: style_width}}>
-                              <li className="px-2 py-1 border-bottom-0" onClick={(e) => {
-                                  this.clickLoginWithTronLink(e)
-                              }}>
-                                <div className="dropdown-item text-uppercase d-flex align-items-center text-muted">
-                                  <img src={require("../images/login/tronlink.png")} width="16px" height="16px" className="mr-2"/>
-                                    {tu('sign_in_with_TRONlink')}
-                                </div>
-                              </li>
-                                {
-                                    IS_MAINNET &&  <li className="px-2 py-1 border-bottom-0" onClick={(e) => this.loginWithLedger(e)}>
-                                      <div className="dropdown-item text-uppercase d-flex  align-items-center text-muted">
-                                        <img src={require("../images/login/ledger.png")} width="16px" height="16px" className="mr-2"/>
-                                          {tu('sign_in_with_ledger')}
-                                      </div>
-                                    </li>
-                                }
-                              <li className="px-2 py-1" onClick={(e) => {
-                                  this.clickLoginWithPk(e)
-                              }}>
-                                <div className="dropdown-item text-uppercase d-flex align-items-center text-muted">
-                                  <div className="d-flex justify-content-center mr-2" style={{width: '16px', height: '16px'}}>
-                                    <img src={require("../images/login/kp.png")} width="11px" height="16px"/>
-                                  </div>
-                                    {tu('import_a_wallet')}
-                                </div>
-                              </li>
-                            </ul>
+                    <a className="dropdown-item" href="javascript:" onClick={this.showReceive}>
+                      <i className="fa fa-qrcode mr-2"/>
+                      {tu("receive")}
+                      <i className="fa fa-angle-right float-right" ></i>
+                    </a>
+                    {/*<Link className="dropdown-item" to={"/blockchain/transactions?address=" + account.address}>*/}
+                    {/*<i className="fa fa-qrcode mr-2"/>*/}
+                    {/*Receive*/}
+                    {/*</Link>*/}
+                    <li className="dropdown-divider"/>
+                    <li className=" pt-1 pb-2">
+                      <button className="btn btn-danger btn-block"
+                              onClick={(e) => {
+                                this.logout(e)
+                              }}>{tu("sign_out")}</button>
+                    </li>
+                  </ul>
+                </li> :
+                <li className="dropdown nav nav_input">
+                  <div className="nav-link dropdown-toggle nav-item" onClick={(e) => {
+                    isMobile && this.clickLoginWithPk(e)
+                  }}>
+                    {tu("open_wallet")}
+                    <ul className="dropdown-menu dropdown-menu-right nav-login-wallet" style={{minWidth: style_width}}>
+                        <li className="px-2 py-1 border-bottom-0" onClick={(e) => {
+                            this.clickLoginWithTronLink(e)
+                        }}>
+                          <div className="dropdown-item text-uppercase d-flex align-items-center text-muted">
+                            <img src={require("../images/login/tronlink.png")} width="16px" height="16px" className="mr-2"/>
+                              {tu('sign_in_with_TRONlink')}
                           </div>
+                        </li>
+                      {
+                          IS_MAINNET &&  <li className="px-2 py-1 border-bottom-0" onClick={(e) => this.loginWithLedger(e)}>
+                          <div className="dropdown-item text-uppercase d-flex  align-items-center text-muted">
+                            <img src={require("../images/login/ledger.png")} width="16px" height="16px" className="mr-2"/>
+                              {tu('sign_in_with_ledger')}
+                          </div>
+                        </li>
+                      }
+                      <li className="px-2 py-1" onClick={(e) => {
+                        this.clickLoginWithPk(e)
+                      }}>
+                        <div className="dropdown-item text-uppercase d-flex align-items-center text-muted">
+                          <div className="d-flex justify-content-center mr-2" style={{width: '16px', height: '16px'}}>
+                          <img src={require("../images/login/kp.png")} width="11px" height="16px"/>
+                          </div>
+                          {tu('import_a_wallet')}
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
 
                             {
                                 isImportAccount ? <div className="login-mask">
@@ -983,16 +994,16 @@ class Navigation extends React.Component {
         let activeComponent = this.getActiveComponent();
         const isShowSideChain = !type || (type && IS_SUNNET);
 
-        return (
-            <div className="header-top">
-                {popup}
-              <div className="logo-wrapper">
-                <div className="container py-2 d-flex px-0">
-                  <div className="ml-4 d-flex">
-                    <Link to="/">
-                      <img src={this.getLogo()} className="logo" alt="Tron"/>
-                    </Link>
-                    {
+    return (
+        <div className="header-top">
+          {popup}
+          <div className="logo-wrapper">
+            <div className="container py-2 d-flex px-0">
+              <div className="ml-4 d-flex">
+                <Link to="/">
+                  <img src={this.getLogo()} className="logo" alt="Tron"/>
+                </Link>
+                   {
                         <span className="d-flex mt-2">
                             <span className="ml-2 d-block" style={{borderLeft:'1px solid #999999',height:'70%'}}>
                             </span>
@@ -1001,172 +1012,172 @@ class Navigation extends React.Component {
                             </span>
                         </span>
                         
-                    }
-                  </div>
-                    {
-                        IS_TESTNET &&
-                        <div className="col text-center text-info font-weight-bold py-2">
-                          TESTNET
-                        </div>
-                    }
-                    {
-                        (syncStatus && syncStatus.sync && syncStatus.sync.progress < 95) &&
-                        <div className="col text-danger text-center py-2">
-                          Tronscan is syncing, data might not be up-to-date ({Math.round(syncStatus.sync.progress)}%)
-                        </div>
-                    }
-                    {/*{*/}
-                    {/*announcement &&*/}
-                    {/*<div className="col text-danger text-center py-2 d-none d-md-block text-truncate nav_notice">*/}
-                    {/*<img src={require('../images/announcement-logo.png')} alt="" style={{width: '16px'}}*/}
-                    {/*className="mr-1"/>*/}
-                    {/*<Link to={'/notice/' + announId}>{announcement} <span*/}
-                    {/*style={{color: '#999'}}>({annountime})</span></Link>*/}
-                    {/*</div>*/}
-                    {/*}*/}
-                  <div className="ml-auto d-flex">
-                      {
-                        <div className="hidden-mobile nav-searchbar">
-                          <div className="input-group dropdown">
-                            <input type="text"
-                                   className="form-control p-2 bg-white border-0 box-shadow-none"
-                                   style={styles.search}
-                                   value={search}
-                                   onKeyDown={this.onSearchKeyDown}
-                                   onChange={this.onSearchChange}
-                                   onClick={this.callAjax}
-                                   placeholder={intl.formatMessage({id: "search_description1"})}/>
-                            <div className="input-group-append" style={{marginLeft:0}}>
-                              <button className="btn box-shadow-none" disabled={this.isSearching} onClick={this.doSearch}>
-                                <i className="fa fa-search"/>
-                              </button>
-                            </div>
-                            <div className="dropdown-menu" id="_searchBox" style={{width: '100%',maxHeight:'300px', overflow:'auto'}}>
-                                {
-                                    searchResults && searchResults.map((result, index) => {
-                                            if (result.desc === 'Block') {
-                                                return <Link className="dropdown-item text-uppercase" to={"/block/" + trim(result.value)} onClick={() => {
-                                                    this.afterSearch()
-                                                }}
-                                                             key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></Link>
-                                            }
-                                            if (result.desc === 'Token-TRC20') {
-                                                return <Link className="dropdown-item text-uppercase" to={"/token20/" + trim(result.value.split(' ')[result.value.split(' ').length-1])} onClick={() => {
-                                                    this.afterSearch()
-                                                }}
-                                                             key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></Link>
-                                            }
-                                            if (result.desc === 'Token-TRC10') {
-                                                return <Link className="dropdown-item text-uppercase" to={"/token/" + trim(result.value.split(' ')[result.value.split(' ').length-1])} onClick={() => {
-                                                    this.afterSearch()
-                                                }}
-                                                             key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></Link>
-                                            }
-                                            if (result.desc === 'Address') {
-                                                return <Link className="dropdown-item text-uppercase" to={"/address/" + trim(result.value)} onClick={() => {
-                                                    this.afterSearch()
-                                                }}
-                                                             key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></Link>
-                                            }
-                                            if (result.desc === 'Contract') {
-                                                return <Link className="dropdown-item text-uppercase" to={"/contract/" + trim(result.value)+'/code'} onClick={() => {
-                                                    this.afterSearch()
-                                                }}
-                                                             key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></Link>
-                                            }
-                                            if (result.desc === 'TxHash') {
-                                                return <Link className="dropdown-item text-uppercase" to={"/transaction/" + trim(result.value)} onClick={() => {
-                                                    this.afterSearch()
-                                                }}
-                                                             key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></Link>
-                                            }
-                                        }
-                                    )
-                                }
-                            </div>
-                          </div>
-                        </div>
-                      }
-                    <div className="navbar navbar-expand-md navbar-dark py-0">
-                      <ul className="navbar-nav navbar-right wallet-nav">
-                          {
-                              wallet.isOpen && <Notifications wallet={wallet} notifications={notifications}/>
-                          }
-                          {this.renderWallet()}
-                      </ul>
-                    </div>
-                  </div>
-                </div>
+                   }
               </div>
-              <div className="hidden-PC nav-searchbar">
-                <div className="input-group dropdown">
-                  <input type="text"
-                         className="form-control p-2 bg-white border-0 box-shadow-none"
-                         style={styles.search}
-                         value={search}
-                         onKeyDown={this.onSearchKeyDown}
-                         onChange={this.onSearchChange}
-                         onClick={this.callAjax}
-                         placeholder={intl.formatMessage({id: "search_description1"})}/>
-                  <div className="input-group-append">
-                    <button className="btn box-shadow-none" disabled={this.isSearching} onClick={this.doSearch}>
-                      <i className="fa fa-search"/>
-                    </button>
-                  </div>
-                  <div className="dropdown-menu" id="_searchBox" style={{width: '100%',maxHeight:'300px', overflow:'auto'}}>
-                      {
+              {
+                IS_TESTNET &&
+                <div className="col text-center text-info font-weight-bold py-2">
+                  TESTNET
+                </div>
+              }
+              {
+                (syncStatus && syncStatus.sync && syncStatus.sync.progress < 95) &&
+                <div className="col text-danger text-center py-2">
+                  Tronscan is syncing, data might not be up-to-date ({Math.round(syncStatus.sync.progress)}%)
+                </div>
+              }
+              {/*{*/}
+                {/*announcement &&*/}
+                {/*<div className="col text-danger text-center py-2 d-none d-md-block text-truncate nav_notice">*/}
+                  {/*<img src={require('../images/announcement-logo.png')} alt="" style={{width: '16px'}}*/}
+                       {/*className="mr-1"/>*/}
+                  {/*<Link to={'/notice/' + announId}>{announcement} <span*/}
+                      {/*style={{color: '#999'}}>({annountime})</span></Link>*/}
+                {/*</div>*/}
+              {/*}*/}
+              <div className="ml-auto d-flex">
+                {
+                  <div className="hidden-mobile nav-searchbar">
+                    <div className="input-group dropdown">
+                      <input type="text"
+                             className="form-control p-2 bg-white border-0 box-shadow-none"
+                             style={styles.search}
+                             value={search}
+                             onKeyDown={this.onSearchKeyDown}
+                             onChange={this.onSearchChange}
+                             onClick={this.callAjax}
+                             placeholder={intl.formatMessage({id: "search_description1"})}/>
+                      <div className="input-group-append" style={{marginLeft:0}}>
+                        <button className="btn box-shadow-none" disabled={this.isSearching} onClick={this.doSearch}>
+                          <i className="fa fa-search"/>
+                        </button>
+                      </div>
+                      <div className="dropdown-menu" id="_searchBox" style={{width: '100%',maxHeight:'300px', overflow:'auto'}}>
+                        {
                           searchResults && searchResults.map((result, index) => {
-                                  if (result.desc === 'Block') {
-                                      return <Link className="dropdown-item text-uppercase" to={"/block/" + trim(result.value)} onClick={() => {
-                                          this.afterSearch()
-                                      }}
-                                                   key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></Link>
-                                  }
-                                  if (result.desc === 'Token-TRC20') {
-                                      return <Link className="dropdown-item text-uppercase" to={"/token20/" + trim(result.value.split(' ')[result.value.split(' ').length-1])} onClick={() => {
-                                          this.afterSearch()
-                                      }}
-                                                   key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></Link>
-                                  }
-                                  if (result.desc === 'Token-TRC10') {
-                                      return <Link className="dropdown-item text-uppercase" to={"/token/" + trim(result.value.split(' ')[result.value.split(' ').length-1])} onClick={() => {
-                                          this.afterSearch()
-                                      }}
-                                                   key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></Link>
-                                  }
-                                  if (result.desc === 'Address') {
-                                      return <Link className="dropdown-item text-uppercase" to={"/address/" + trim(result.value)} onClick={() => {
-                                          this.afterSearch()
-                                      }}
-                                                   key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></Link>
-                                  }
-                                  if (result.desc === 'Contract') {
-                                      return <Link className="dropdown-item text-uppercase" to={"/contract/" + trim(result.value)+'/code'} onClick={() => {
-                                          this.afterSearch()
-                                      }}
-                                                   key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></Link>
-                                  }
-                                  if (result.desc === 'TxHash') {
-                                      return <Link className="dropdown-item text-uppercase" to={"/transaction/" + trim(result.value)} onClick={() => {
-                                          this.afterSearch()
-                                      }}
-                                                   key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></Link>
-                                  }
+                                if (result.desc === 'Block') {
+                                  return <Link className="dropdown-item text-uppercase" to={"/block/" + trim(result.value)} onClick={() => {
+                                    this.afterSearch()
+                                  }}
+                                            key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></Link>
+                                }
+                                if (result.desc === 'Token-TRC20') {
+                                  return <Link className="dropdown-item text-uppercase" to={"/token20/" + trim(result.value.split(' ')[result.value.split(' ').length-1])} onClick={() => {
+                                    this.afterSearch()
+                                  }}
+                                            key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></Link>
+                                }
+                                if (result.desc === 'Token-TRC10') {
+                                  return <Link className="dropdown-item text-uppercase" to={"/token/" + trim(result.value.split(' ')[result.value.split(' ').length-1])} onClick={() => {
+                                    this.afterSearch()
+                                  }}
+                                            key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></Link>
+                                }
+                                if (result.desc === 'Address') {
+                                  return <Link className="dropdown-item text-uppercase" to={"/address/" + trim(result.value)} onClick={() => {
+                                    this.afterSearch()
+                                  }}
+                                            key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></Link>
+                                }
+                                if (result.desc === 'Contract') {
+                                  return <Link className="dropdown-item text-uppercase" to={"/contract/" + trim(result.value)+'/code'} onClick={() => {
+                                    this.afterSearch()
+                                  }}
+                                            key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></Link>
+                                }
+                                if (result.desc === 'TxHash') {
+                                  return <Link className="dropdown-item text-uppercase" to={"/transaction/" + trim(result.value)} onClick={() => {
+                                    this.afterSearch()
+                                  }}
+                                            key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></Link>
+                                }
                               }
                           )
-                      }
+                        }
+                      </div>
+                    </div>
                   </div>
+                }
+                <div className="navbar navbar-expand-md navbar-dark py-0">
+                  <ul className="navbar-nav navbar-right wallet-nav">
+                    {
+                      wallet.isOpen && <Notifications wallet={wallet} notifications={notifications}/>
+                    }
+                    {this.renderWallet()}
+                  </ul>
                 </div>
               </div>
-              <nav className="top-bar navbar navbar-expand-md navbar-dark">
-                <div className="container">
-                  <button className="navbar-toggler" type="button" data-toggle="collapse"
-                          data-target="#navbar-top">
-                    <span className="navbar-toggler-icon"/>
-                  </button>
-                    {/*{*/}
-                    {/*announcement && <div className="col text-danger d-md-none">*/}
-                    {/*<div className="">*/}
+            </div>
+          </div>
+          <div className="hidden-PC nav-searchbar">
+            <div className="input-group dropdown">
+              <input type="text"
+                     className="form-control p-2 bg-white border-0 box-shadow-none"
+                     style={styles.search}
+                     value={search}
+                     onKeyDown={this.onSearchKeyDown}
+                     onChange={this.onSearchChange}
+                     onClick={this.callAjax}
+                     placeholder={intl.formatMessage({id: "search_description1"})}/>
+              <div className="input-group-append">
+                <button className="btn box-shadow-none" disabled={this.isSearching} onClick={this.doSearch}>
+                  <i className="fa fa-search"/>
+                </button>
+              </div>
+              <div className="dropdown-menu" id="_searchBox" style={{width: '100%',maxHeight:'300px', overflow:'auto'}}>
+                {
+                  searchResults && searchResults.map((result, index) => {
+                        if (result.desc === 'Block') {
+                          return <Link className="dropdown-item text-uppercase" to={"/block/" + trim(result.value)} onClick={() => {
+                            this.afterSearch()
+                          }}
+                                    key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></Link>
+                        }
+                        if (result.desc === 'Token-TRC20') {
+                          return <Link className="dropdown-item text-uppercase" to={"/token20/" + trim(result.value.split(' ')[result.value.split(' ').length-1])} onClick={() => {
+                            this.afterSearch()
+                          }}
+                                    key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></Link>
+                        }
+                        if (result.desc === 'Token-TRC10') {
+                          return <Link className="dropdown-item text-uppercase" to={"/token/" + trim(result.value.split(' ')[result.value.split(' ').length-1])} onClick={() => {
+                            this.afterSearch()
+                          }}
+                                    key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></Link>
+                        }
+                        if (result.desc === 'Address') {
+                          return <Link className="dropdown-item text-uppercase" to={"/address/" + trim(result.value)} onClick={() => {
+                            this.afterSearch()
+                          }}
+                                    key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></Link>
+                        }
+                        if (result.desc === 'Contract') {
+                          return <Link className="dropdown-item text-uppercase" to={"/contract/" + trim(result.value)+'/code'} onClick={() => {
+                            this.afterSearch()
+                          }}
+                                    key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></Link>
+                        }
+                        if (result.desc === 'TxHash') {
+                          return <Link className="dropdown-item text-uppercase" to={"/transaction/" + trim(result.value)} onClick={() => {
+                            this.afterSearch()
+                          }}
+                                    key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></Link>
+                        }
+                      }
+                  )
+                }
+              </div>
+            </div>
+          </div>
+          <nav className="top-bar navbar navbar-expand-md navbar-dark">
+            <div className="container">
+              <button className="navbar-toggler" type="button" data-toggle="collapse"
+                      data-target="#navbar-top">
+                <span className="navbar-toggler-icon"/>
+              </button>
+              {/*{*/}
+                {/*announcement && <div className="col text-danger d-md-none">*/}
+                  {/*<div className="">*/}
 
                     {/*<img src={require('../images/announcement-logo.png')} alt="" style={{width: '16px', height: '16px'}}*/}
                     {/*className="mr-1"/>*/}
@@ -1227,89 +1238,92 @@ class Navigation extends React.Component {
                                                     return null;
                                                 }
 
-                                                if (!isUndefined(subRoute.url)) {
-                                                    return (
-                                                        <HrefLink
-                                                            key={subRoute.url}
-                                                            className="dropdown-item text-uppercase"
-                                                            href={subRoute.url}>
-                                                            {subRoute.icon &&
-                                                            <i className={subRoute.icon + " mr-2"}/>}
-                                                            {tu(subRoute.label)}
-                                                            {subRoute.badge &&
-                                                            <Badge value={subRoute.badge}/>}
-                                                        </HrefLink>
-                                                    );
-                                                }
-                                                if (!isUndefined(subRoute.enurl) || !isUndefined(subRoute.zhurl)) {
-                                                    return (
-                                                        <HrefLink
-                                                            key={subRoute.enurl}
-                                                            className="dropdown-item text-uppercase"
-                                                            href={activeLanguage == 'zh' ? subRoute.zhurl : subRoute.enurl}>
-                                                            {subRoute.icon &&
-                                                            <i className={subRoute.icon + " mr-2"}/>}
-                                                            {tu(subRoute.label)}
-                                                            {subRoute.badge &&
-                                                            <Badge value={subRoute.badge}/>}
-                                                        </HrefLink>
-                                                    );
-                                                }
-
-                                                return (
-                                                    <Link
-                                                        key={subRoute.path}
-                                                        className="dropdown-item text-uppercase"
-                                                        to={subRoute.path}>
-                                                        {subRoute.icon &&
-                                                        <i className={subRoute.icon + " mr-2" + " fa_width"}/>}
-                                                        {tu(subRoute.label)}
-                                                        {subRoute.badge && <Badge value={subRoute.badge}/>}
-                                                    </Link>
-                                                );
-                                            })
-                                        }
-                                    </div>
+                                if (!isUndefined(subRoute.url)) {
+                                  return (
+                                      <HrefLink
+                                          key={subRoute.url}
+                                          className="dropdown-item text-uppercase"
+                                          href={subRoute.url}>
+                                        {subRoute.icon &&
+                                        <i className={subRoute.icon + " mr-2"}/>}
+                                        {tu(subRoute.label)}
+                                        {subRoute.badge &&
+                                        <Badge value={subRoute.badge}/>}
+                                      </HrefLink>
+                                  );
                                 }
-                                {
-                                    route.routes && (route.label == "nav_network" || route.label == "nav_more") &&
-                                    <div className="dropdown-menu more-menu" style={{left: 'auto'}}>
-                                        {
-                                            route.routes && route.routes.map((subRoute, index) => {
-                                                return <div className="" key={index}>
-                                                  <div className="more-menu-line"></div>
-                                                    {
-                                                        subRoute.map((Route, j) => {
-                                                            if (isString(Route)) {
-                                                                return (
-                                                                    <h6 key={j}
-                                                                        className="dropdown-header text-uppercase"> {tu(Route)}</h6>
-                                                                )
-                                                            }
+                                if (!isUndefined(subRoute.enurl) || !isUndefined(subRoute.zhurl)) {
+                                  return (
+                                      <HrefLink
+                                          key={subRoute.enurl}
+                                          className="dropdown-item text-uppercase"
+                                          href={activeLanguage == 'zh' ? subRoute.zhurl : subRoute.enurl}>
+                                        {subRoute.icon &&
+                                        <i className={subRoute.icon + " mr-2"}/>}
+                                        {tu(subRoute.label)}
+                                        {subRoute.badge &&
+                                        <Badge value={subRoute.badge}/>}
+                                      </HrefLink>
+                                  );
+                                }
 
-                                                            if (Route.showInMenu === false) {
-                                                                return null;
-                                                            }
+                                return (
+                                    <Link
+                                        key={subRoute.path}
+                                        className="dropdown-item text-uppercase"
+                                        to={subRoute.path}>
+                                      {subRoute.icon &&
+                                      <i className={subRoute.icon + " mr-2" + " fa_width"}/>}
+                                      {tu(subRoute.label)}
+                                      {subRoute.badge && <Badge value={subRoute.badge}/>}
+                                    </Link>
+                                );
+                              })
+                            }
+                          </div>
+                        }
+                        {
+                            route.routes && (route.label == "nav_network" || route.label == "nav_more") &&
+                          <div className="dropdown-menu more-menu" style={{left: 'auto'}}>
+                            {
+                              route.routes && route.routes.map((subRoute, index) => {
+                                return <div className="" key={index}>
+                                  <div className="more-menu-line"></div>
+                                  {
+                                    subRoute.map((Route, j) => {
+                                      if (isString(Route)) {
+                                        return (
+                                            <h6 key={j}
+                                                className="dropdown-header text-uppercase"> {tu(Route)}</h6>
+                                        )
+                                      }
 
-                                                            if (!isUndefined(Route.url) && !Route.sidechain && Route.label !== 'developer_challenge') {
-                                                                return (
-                                                                    <HrefLink
-                                                                        key={Route.url}
-                                                                        className="dropdown-item text-uppercase"
-                                                                        href={Route.url}>
-                                                                        {Route.icon &&
-                                                                        <i className={Route.icon + " mr-2"} />}
-                                                                        {tu(Route.label)}
-                                                                        {Route.badge &&
-                                                                        <Badge value={Route.badge}/>}
-                                                                    </HrefLink>
-                                                                );
-                                                            }
-                                                            if (!isUndefined(Route.url) && !Route.sidechain && Route.label == 'developer_challenge') {
-                                                                return (
-                                                                    <span className="mr-3 d-inline-block developer_challenge_box">
+                                      if (Route.showInMenu === false) {
+                                        return null;
+                                      }
+                                      //wjl
+                                      if (!isUndefined(Route.url) && !Route.sidechain && Route.label !== 'developer_challenge') {
+                                        return (
+                                          <span className='mr-3 d-inline-block developer_challenge_box' key={j+Route.label}>
+                                            <HrefLink
+                                                key={Route.url}
+                                                className="dropdown-item text-uppercase"
+                                                href={Route.url}>
+                                              {Route.icon &&
+                                              <i className={Route.icon + " mr-2"} />}
+                                              {tu(Route.label)}
+                                              {Route.badge &&
+                                              <Badge value={Route.badge}/>}
+                                            </HrefLink>
+                                           {Route.label==='NILE TESTNET'&& <span className="new-test-net">new</span>} 
+                                          </span>
+                                        );
+                                      }
+                                      if (!isUndefined(Route.url) && !Route.sidechain && Route.label == 'developer_challenge') {
+                                          return (
+                                              <span className="mr-3 d-inline-block developer_challenge_box" key={Route.url+'_'+ Route.label}>
                                                 <HrefLink
-                                                    key={Route.url}
+                                                    key={Route.url+'_'+ Route.label}
                                                     className="dropdown-item text-uppercase"
                                                     href={Route.url}>
                                                   {Route.icon &&
@@ -1324,33 +1338,33 @@ class Navigation extends React.Component {
                                                                 );
                                                             }
 
-                                                            if (isUndefined(Route.url) && Route.sidechain) {
-                                                                const sidechainTab = (
-                                                                    <a href="javascript:;"
-                                                                       key={Route.label}
-                                                                       className="dropdown-item text-uppercase"
-                                                                       onClick={() => this.netSelectChange(IS_MAINNET?'sunnet':'mainnet')}
-                                                                    >
-                                                                        {Route.icon && <i className={Route.icon + " mr-2"}/>}
-                                                                        {IS_MAINNET?tu('Side_Chain'):tu('Main_Chain')}
-                                                                    </a>
-                                                                );
-                                                                return sidechainTab
-                                                            }
-                                                            if (!isUndefined(Route.enurl) || !isUndefined(Route.zhurl)) {
-                                                                return (
-                                                                    <HrefLink
-                                                                        key={Route.enurl}
-                                                                        className="dropdown-item text-uppercase"
-                                                                        href={activeLanguage == 'zh' ? Route.zhurl : Route.enurl}>
-                                                                        {Route.icon &&
-                                                                        <i className={Route.icon + " mr-2"}/>}
-                                                                        {tu(Route.label)}
-                                                                        {Route.badge &&
-                                                                        <Badge value={Route.badge}/>}
-                                                                    </HrefLink>
-                                                                );
-                                                            }
+                                      if (isUndefined(Route.url) && Route.sidechain) {
+                                        const sidechainTab = (
+                                          <a href="javascript:"
+                                            key={Route.label}
+                                            className="dropdown-item text-uppercase"
+                                            onClick={() => this.netSelectChange(IS_MAINNET?'sunnet':'mainnet')}
+                                          >
+                                            {Route.icon && <i className={Route.icon + " mr-2"}/>}
+                                            {IS_MAINNET?tu('Side_Chain'):tu('Main_Chain')}
+                                          </a>
+                                        );
+                                        return sidechainTab
+                                      }
+                                      if (!isUndefined(Route.enurl) || !isUndefined(Route.zhurl)) {
+                                        return (
+                                            <HrefLink
+                                                key={Route.enurl}
+                                                className="dropdown-item text-uppercase"
+                                                href={activeLanguage == 'zh' ? Route.zhurl : Route.enurl}>
+                                              {Route.icon &&
+                                              <i className={Route.icon + " mr-2"}/>}
+                                              {tu(Route.label)}
+                                              {Route.badge &&
+                                              <Badge value={Route.badge}/>}
+                                            </HrefLink>
+                                        );
+                                      }
 
                                                             return (
                                                                 <Link
@@ -1368,69 +1382,69 @@ class Navigation extends React.Component {
                                                 </div>
 
 
-                                            })
-                                        }
-                                    </div>
-                                }
-                            </li>
-                        ))}
-                    </ul>
-                    <ul className="navbar-nav navbar-right">
-                      <li className="nav-item dropdown navbar-right">
-                        <a className="nav-link dropdown-toggle dropdown-menu-right "
-                           data-toggle="dropdown"
-                           href="javascript:;">
-                            {activeCurrency.toUpperCase()}
-                        </a>
-                        <div className="dropdown-menu">
-                            {
-                                currencyConversions.map(currency => (
-                                    <a key={currency.id}
-                                       className="dropdown-item"
-                                       href="javascript:;"
-                                       onClick={() => this.setCurrency(currency.id)}>{currency.name}</a>
-                                ))
+                              })
                             }
-                        </div>
+                          </div>
+                        }
                       </li>
-                      <li className="nav-item dropdown navbar-right">
-                        <a className="nav-link dropdown-toggle dropdown-menu-right "
-                           data-toggle="dropdown"
-                           href="javascript:;">{activeLanguage.toUpperCase()}</a>
-                        <div className="dropdown-menu languages-menu">
-                            {
-                                Object.keys(languages).map(language => (
-                                    <a key={language}
-                                       className="dropdown-item"
-                                       href="javascript:;"
-                                       onClick={() => this.setLanguage(language)}>{languages[language]}</a>
-                                ))
-                            }
-                        </div>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </nav>
-                {
-                    activeComponent.none ? <div className="container pt-5 pb-4"></div>
-                        :
-                        (activeComponent && activeComponent.showSubHeader !== false) &&
-                        <div className="container d-flex sub-header">
-                            {
-                                activeComponent && <h4 className="pt-4">
-                                  <span className="text-uppercase">{tu(activeComponent.label)}</span> &nbsp;&nbsp;
-                                    {activeComponent.label === 'overview' &&
-                                    <small className='text-muted'>{tu('token_overview_tron')}</small>
-                                    }
-                                    {activeComponent.label === 'participate' &&
-                                    <small className='text-muted'>{tu('token_participate_tron')}</small>
-                                    }
-                                    {/*{activeComponent.label === 'create' &&*/}
-                                    {/*<small className='text-muted' style={{fontSize: '14px'}}>{tu('issued_token_of_tronscan')}</small>*/}
-                                    {/*}*/}
-                                </h4>
-                            }
+                  ))}
+                </ul>
+                <ul className="navbar-nav navbar-right">
+                  <li className="nav-item dropdown navbar-right">
+                    <a className="nav-link dropdown-toggle dropdown-menu-right "
+                       data-toggle="dropdown"
+                       href="javascript:">
+                      {activeCurrency.toUpperCase()}
+                    </a>
+                    <div className="dropdown-menu">
+                      {
+                        currencyConversions.map(currency => (
+                            <a key={currency.id}
+                               className="dropdown-item"
+                               href="javascript:"
+                               onClick={() => this.setCurrency(currency.id)}>{currency.name}</a>
+                        ))
+                      }
+                    </div>
+                  </li>
+                  <li className="nav-item dropdown navbar-right">
+                    <a className="nav-link dropdown-toggle dropdown-menu-right "
+                       data-toggle="dropdown"
+                       href="javascript:">{activeLanguage.toUpperCase()}</a>
+                    <div className="dropdown-menu languages-menu">
+                      {
+                        Object.keys(languages).map(language => (
+                            <a key={language}
+                               className="dropdown-item"
+                               href="javascript:"
+                               onClick={() => this.setLanguage(language)}>{languages[language]}</a>
+                        ))
+                      }
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </nav>
+          {
+            activeComponent.none ? <div className="container pt-5 pb-4"></div>
+                :
+                (activeComponent && activeComponent.showSubHeader !== false) &&
+                <div className="container d-flex sub-header">
+                  {
+                    activeComponent && <h4 className="pt-4">
+                      <span className="text-uppercase">{tu(activeComponent.label)}</span> &nbsp;&nbsp;
+                      {activeComponent.label === 'overview' &&
+                      <small className='text-muted'>{tu('token_overview_tron')}</small>
+                      }
+                      {activeComponent.label === 'participate' &&
+                      <small className='text-muted'>{tu('token_participate_tron')}</small>
+                      }
+                      {/*{activeComponent.label === 'create' &&*/}
+                      {/*<small className='text-muted' style={{fontSize: '14px'}}>{tu('issued_token_of_tronscan')}</small>*/}
+                      {/*}*/}
+                    </h4>
+                  }
 
                         </div>
                 }

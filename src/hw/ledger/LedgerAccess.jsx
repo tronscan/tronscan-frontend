@@ -1,35 +1,31 @@
-import React, {Component} from 'react';
-import {withRouter} from "react-router-dom";
-import {connect} from "react-redux";
+import React, { Component } from "react";
+import { withRouter } from "react-router-dom";
+import { connect } from "react-redux";
 import LedgerDevice from "./LedgerBridge";
-import {delay} from "../../utils/promises";
-import {PulseLoader} from "react-spinners";
-import {loginWithLedger} from "../../actions/app";
-import {tu, t} from "../../utils/i18n";
-import {withTronWeb} from "../../utils/tronWeb";
-
+import { delay } from "../../utils/promises";
+import { PulseLoader } from "react-spinners";
+import { loginWithLedger } from "../../actions/app";
+import { tu, t } from "../../utils/i18n";
+import { withTronWeb } from "../../utils/tronWeb";
 
 export default
-@connect(
-  null,
-  {
-    loginWithLedger
-  }
-)
+@connect(null, {
+  loginWithLedger
+})
 @withRouter
 @withTronWeb
 class LedgerAccess extends Component {
-
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       loading: false,
       connected: false,
       confirmed: false,
       address: "",
+      type: props.loginType
     };
     this.ledger = new LedgerDevice();
-  };
+  }
 
   componentDidMount() {
     this._isMounted = true;
@@ -43,15 +39,13 @@ class LedgerAccess extends Component {
 
   checkForConnection = async () => {
     this.setState({ loading: true });
-
     while (this._isMounted) {
-
-      let {connected, address} = await this.ledger.checkForConnection(true);
+      let { connected, address } = await this.ledger.checkForConnection(true);
 
       if (connected) {
         this.setState({
           connected,
-          address,
+          address
         });
         break;
       }
@@ -62,69 +56,128 @@ class LedgerAccess extends Component {
   };
 
   openWallet = () => {
-    let {address} = this.state;
-    let {history, onClose} = this.props;
+    let { address } = this.state;
+    let { history, onClose } = this.props;
     const tronWebLedger = this.props.tronWeb();
-    const defaultAddress = {hex: tronWebLedger.address.toHex(address), base58: address}
-    tronWebLedger.defaultAddress = defaultAddress
+    const defaultAddress = {
+      hex: tronWebLedger.address.toHex(address),
+      base58: address
+    };
+    tronWebLedger.defaultAddress = defaultAddress;
     this.props.loginWithLedger(address, tronWebLedger);
     history.push("/account");
-    window.gtag('event', 'login', {
-        'event_category': 'Ledger',
-        'event_label': this.props.account.address,
-        'referrer':window.location.origin,
-        'value': this.props.account.address
+    window.gtag("event", "login", {
+      event_category: "Ledger",
+      event_label: this.props.account.address,
+      referrer: window.location.origin,
+      value: this.props.account.address
     });
     onClose && onClose();
   };
   render() {
-    let {loading, connected, address} = this.state;
+    let { loading, connected, address, type } = this.state;
     return (
-      <div className="mt-2 ml-3">
-        <div style={{fontSize:12}}>
-          <div>{tu('latest_version_chrome')}</div>
-          <div>{tu('ledger_support_version')}</div>
-          <div className="mt-3">{tu('ledger_you_can')}
-            <a target="_blank" href="https://www.ledger.com/">
-                {tu('ledger_website')}
-            </a>
-            {t('ledger_website_download')}
-
-          </div>
-          <div>
-            <a target="_blank" href="https://support.tronscan.org/hc/en-us/articles/360025936472-LEDGER-GUIDE">
-                {tu('ledger_click_help')}>
-            </a>
-          </div>
-        </div>
-        <div className="text-center pt-5 mx-5">
-          <img src={require("./ledger-nano-s.png")} style={{ height: 65 }} />
-            { loading &&
-            <div className="mt-4">
-              <div className="text-muted">
-                  {tu('open_tron_app_on_ledger')}
+      <div>
+        {type != 2 ? (
+          <div className="mt-2 ml-3">
+            <div style={{ fontSize: 12 }}>
+              <div>{tu("latest_version_chrome")}</div>
+              <div>{tu("ledger_support_version")}</div>
+              <div className="mt-3">
+                {tu("ledger_you_can")}
+                <a target="_blank" href="https://www.ledger.com/">
+                  {tu("ledger_website")}
+                </a>
+                {t("ledger_website_download")}
               </div>
-              <div className="my-3">
-                <PulseLoader color="#343a40" loading={true} height={5} width={150} />
+              <div>
+                <a
+                  target="_blank"
+                  href="https://support.tronscan.org/hc/en-us/articles/360025936472-LEDGER-GUIDE"
+                >
+                  {tu("ledger_click_help")}>
+                </a>
               </div>
             </div>
-            }
-            {
-                connected &&
+            <div className="text-center pt-5 mx-5">
+              <img
+                src={require("./ledger-nano-s.png")}
+                style={{ height: 65 }}
+              />
+              {loading && (
+                <div className="mt-4">
+                  <div className="text-muted">
+                    {tu("open_tron_app_on_ledger")}
+                  </div>
+                  <div className="my-3">
+                    <PulseLoader
+                      color="#343a40"
+                      loading={true}
+                      height={5}
+                      width={150}
+                    />
+                  </div>
+                </div>
+              )}
+              {connected && (
                 <div className="my-3">
                   <div className="text-center my-4">
-                    <b className="text-success">Ledger Connected</b><br/>
-                      {address}
+                    <b className="text-success">Ledger Connected</b>
+                    <br />
+                    {address}
                   </div>
-                  <button className="btn btn-success mt-3"
-                          onClick={this.openWallet}>
-                      {tu("open_wallet")}
+                  <button
+                    className="btn btn-success mt-3"
+                    onClick={this.openWallet}
+                  >
+                    {tu("open_wallet")}
                   </button>
                 </div>
-            }
-        </div>
-
+              )}
+            </div>
+          </div>
+        ) : (
+          <div className="text-center pt-5 mx-5">
+            <img
+              src={require("./ledger-tronlink.png")}
+              style={{ height: 65 }}
+            />
+            {loading && (
+              <div className="mt-4">
+                <h5>
+                  {tu("ledger_tronlink")}
+                </h5>
+                <div className="text-muted">
+                  {tu("open_tron_app_on_ledger")}
+                </div>
+                <div className="my-3">
+                  <PulseLoader
+                    color="#343a40"
+                    loading={true}
+                    height={5}
+                    width={150}
+                  />
+                </div>
+              </div>
+            )}
+            {connected && (
+              <div className="my-3">
+                <div className="text-center my-4">
+                  <b className="text-success">Ledger Connected</b>
+                  <br />
+                  {address}
+                </div>
+                <button
+                  className="btn btn-success mt-3"
+                  onClick={this.openWallet}
+                >
+                  {tu("ok_confirm")}
+                </button>
+              </div>
+            )}
+          </div>
+        )}
       </div>
-    )
+    );
   }
 }

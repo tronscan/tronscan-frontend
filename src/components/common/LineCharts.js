@@ -2,7 +2,8 @@ import React from 'react'
 import moment from 'moment';
 import config from './chart.config.js'
 import { IS_MAINNET } from "../../constants"
-
+import BigNumber from "bignumber.js"
+import { toThousands } from './../../utils/number'
 import echarts from 'echarts/lib/echarts'
 import 'echarts/lib/chart/line'
 import 'echarts/lib/component/title'
@@ -11,7 +12,6 @@ import 'echarts/lib/component/dataZoom'
 import 'echarts/lib/component/toolbox'
 import 'echarts/lib/component/markPoint'
 import 'echarts/lib/chart/bar'
-
 import Highcharts from 'highcharts/highstock';
 import HighchartsMore from 'highcharts/highcharts-more';
 import HighchartsDrilldown from 'highcharts/modules/drilldown';
@@ -279,9 +279,9 @@ export class LineReactHighChartAdd extends React.Component {
             }
             _config.chart.zoomType = 'x';
             _config.chart.marginTop = 80;
-            _config.title.text = intl.formatMessage({id: 'address_growth_chart'});
+            _config.title.text = intl.formatMessage({id: 'charts_new_addresses'});
             _config.subtitle.text = intl.formatMessage({id: 'HighChart_tip'});
-            _config.exporting.filename = intl.formatMessage({id: 'address_growth_chart'});
+            _config.exporting.filename = intl.formatMessage({id: 'charts_new_addresses'});
             _config.xAxis.tickPixelInterval = 100;
             _config.xAxis.minRange=24 * 3600 * 1000;
             _config.yAxis.title.text = intl.formatMessage({id: 'addresses_amount'});
@@ -493,9 +493,9 @@ export class LineReactHighChartTx extends React.Component {
             }
             _config.chart.zoomType = 'x';
             _config.chart.marginTop = 80;
-            _config.title.text = intl.formatMessage({id: 'tron_transaction_chart'});
+            _config.title.text = intl.formatMessage({id: 'charts_daily_transactions'});
             _config.subtitle.text = intl.formatMessage({id: 'HighChart_tip'});
-            _config.exporting.filename = intl.formatMessage({id: 'tron_transaction_chart'});
+            _config.exporting.filename = intl.formatMessage({id: 'charts_daily_transactions'});
             _config.xAxis.tickPixelInterval = 100;
             _config.xAxis.minRange=24 * 3600 * 1000
             _config.yAxis.title.text = intl.formatMessage({id: 'transactions_per_day'});
@@ -601,9 +601,9 @@ export class LineReactHighChartTotalTxns extends React.Component {
             }
             _config.chart.zoomType = 'x';
             _config.chart.marginTop = 80;
-            _config.title.text = intl.formatMessage({id: 'tron_total_transactions_chart'});
+            _config.title.text = intl.formatMessage({id: 'charts_total_transactions'});
             _config.subtitle.text = intl.formatMessage({id: 'HighChart_tip'});
-            _config.exporting.filename = intl.formatMessage({id: 'tron_total_transactions_chart'});
+            _config.exporting.filename = intl.formatMessage({id: 'charts_total_transactions'});
             _config.xAxis.tickPixelInterval = 100;
             _config.xAxis.minRange=24 * 3600 * 1000;
             _config.yAxis.title.text = intl.formatMessage({id: 'totle_transactions_per_day'});
@@ -999,6 +999,101 @@ export class LineReactHighChartVolumeUsd extends React.Component {
     }
 }
 
+export class LineReactHighChartTRXVolumeContract extends React.Component {
+
+    constructor(props) {
+        super(props)
+        this.myChart = null;
+        let id = ('_' + Math.random()).replace('.', '_');
+        this.state = {
+            lineId: 'lineReactVolumeUsd' + id
+        }
+    }
+    initLine(id) {
+        let _config = cloneDeep(config.overviewHighChart);
+
+        let {intl, data, source} = this.props;
+        if (data && data.length === 0) {
+            _config.title.text = "No data";
+        }
+        if (source == 'markets'){
+            if (data && data.length > 0) {
+                data.map((val) => {
+                    let temp;
+                    temp = [val.time,val.volume_billion]
+                    _config.series[0].data.push(temp);
+                })
+            }
+            _config.chart.spacingTop = 20;
+            _config.xAxis.tickPixelInterval = 100;
+            // _config.yAxis.title.text = intl.formatMessage({id: 'billion_usd'});
+            _config.yAxis.tickAmount = 5;
+            _config.yAxis.min = 0;
+            _config.exporting.enabled = false;
+            _config.series[0].marker.enabled = false;
+            _config.tooltip.formatter = function () {
+                let date = intl.formatDate((parseInt(this.point.x)));
+                return (
+                    intl.formatMessage({id: 'date'}) + ' : ' + date + '<br/>' +
+                    intl.formatMessage({id: 'volume_24'}) + ' : ' + this.point.y +'<br>'
+                )
+            }
+        }else{
+            if (data && data.length > 0) {
+                data.map((val) => {
+                    let temp;
+                    temp = [val.time,val.volume_billion]
+                    // temp = {...val, y: val.volume_billion};
+                    _config.series[0].data.push(temp);
+                })
+            }
+            _config.chart.zoomType = 'x';
+            _config.chart.marginTop = 80;
+            _config.title.text = intl.formatMessage({id: 'TRX_historical_data'});
+            _config.subtitle.text = intl.formatMessage({id: 'HighChart_tip'});
+            _config.exporting.filename = intl.formatMessage({id: 'TRX_historical_data'});
+            _config.xAxis.tickPixelInterval = 100;
+            // _config.xAxis.minRange=24 * 3600 * 1000
+            _config.yAxis.title.text = intl.formatMessage({id: 'TRX_historical_data_y_text'});
+            _config.yAxis.tickAmount = 6;
+            _config.yAxis.min = 0;
+            _config.series[0].marker.enabled = false;
+            _config.series[0].pointInterval = 24 * 3600 * 1000;
+            // _config.series[0].pointStart = Date.UTC(2018, 5, 25);
+            _config.tooltip.formatter = function () {
+                let date = intl.formatDate((parseInt(this.point.x)));
+                return (
+                    intl.formatMessage({id: 'date'}) + ' : ' + date + '<br/>' +
+                    intl.formatMessage({id: 'TRX_historical_data_tip'}) + ' : ' + this.point.y +'<br>'
+                )
+            }
+        }
+
+        Highcharts.chart(document.getElementById(id),_config);
+    }
+
+    shouldComponentUpdate(nextProps)  {
+        if(nextProps.intl.locale !== this.props.intl.locale){
+            return true
+        }
+        return  false
+    }
+    componentDidMount() {
+        this.initLine(this.state.lineId);
+    }
+    componentDidUpdate() {
+        this.initLine(this.state.lineId);
+    }
+
+    render() {
+        return (
+            <div>
+                <div id={this.state.lineId} style={this.props.style}></div>
+            </div>
+        )
+    }
+}
+
 export class LineReactAdd extends React.Component {
 
     constructor(props) {
@@ -1021,7 +1116,7 @@ export class LineReactAdd extends React.Component {
         }
 
         if (source !== 'home') {
-            _config.title.text = intl.formatMessage({id: 'address_growth_chart'});
+            _config.title.text = intl.formatMessage({id: 'charts_new_addresses'});
             _config.title.link = '#/blockchain/stats/addressesStats';
             _config.toolbox.feature = {
                 restore: {
@@ -1115,7 +1210,7 @@ export class LineReactTx extends React.Component {
         }
 
         if (source !== 'home') {
-            _config.title.text = intl.formatMessage({id: 'tron_transaction_chart'});
+            _config.title.text = intl.formatMessage({id: 'charts_daily_transactions'});
             _config.title.link = '#/blockchain/stats/txOverviewStats';
             _config.toolbox.feature = {
                 restore: {
@@ -1599,7 +1694,7 @@ export class EnergyConsumeChart extends React.Component {
                 },
                 colors: map[type],
                 title: {
-                    text: intl.formatMessage({id: 'EnergyConsume_title'})
+                    text: intl.formatMessage({id: 'charts_daily_energy_consumption'})
                 },
                 subtitle: {text: intl.formatMessage({id: 'EnergyConsume_subtitle'})},
                 yAxis: {
@@ -1678,7 +1773,7 @@ export class ContractInvocationChart extends React.Component {
                 chart: { zoomType: 'x' },
                 colors: ['#f7a35c', '#f15c80'],
                 title: {
-                    text: intl.formatMessage({id: 'contract_call_chart'})
+                    text: intl.formatMessage({id: 'charts_contract_calling'})
                 },
                 subtitle: {
                     text: intl.formatMessage({id: 'HighChart_tip'})
@@ -1777,7 +1872,7 @@ export class ContractInvocationDistributionChart extends React.Component {
                 colors: ['#7cb5ec', '#434348', '#90ed7d', '#f7a35c', '#8085e9', 
    '#f15c80', '#e4d354', '#2b908f', '#f45b5b', '#91e8e1'],
                 title: {
-                    text: intl.formatMessage({id: 'contract_call_chart_day'})
+                    text: intl.formatMessage({id: 'charts_daily_contract_calling_profile'})
                 },
                 tooltip: {
                     headerFormat: '',
@@ -1868,7 +1963,7 @@ export class EnergyConsumeDistributionChart extends React.Component {
                 colors: ['#7cb5ec', '#434348', '#90ed7d', '#f7a35c', '#8085e9', 
    '#f15c80', '#e4d354', '#2b908f', '#f45b5b', '#91e8e1'],
                 title: {
-                    text: intl.formatMessage({id: 'total_energy_used_chart'})
+                    text: intl.formatMessage({id: 'charts_daily_energy_contracts'})
                 },
                 subtitle: {
                     text: SUBTITLE
@@ -1895,6 +1990,329 @@ export class EnergyConsumeDistributionChart extends React.Component {
             _config.title.text = "No data";
         }
         Highcharts.chart(id, _config);
+    }
+
+    componentDidMount() {
+        this.initLine(this.state.lineId);
+    }
+
+    componentDidUpdate() {
+        this.initLine(this.state.lineId);
+    }
+
+    render() {
+
+        return (
+            <div>
+                <div id={this.state.lineId} style={this.props.style}></div>
+            </div>
+        )
+    }
+}
+
+
+
+export class OverallFreezingRateChart extends React.Component {
+
+    constructor(props) {
+        super(props)
+        this.myChart = null;
+        let id = ('_' + Math.random()).replace('.', '_');
+        this.state = {
+            lineId: 'OverallFreezingRateChart' + id
+        }
+    }
+
+    initLine(id) {
+        let _config = cloneDeep(config.OverallFreezingRateChart);
+        let {intl, data} = this.props;
+        let newData = cloneDeep(data)
+        let freezingRate = [];
+        let freezeTotal = [];
+        let turnoverTotal = [];
+        let timestamp = []
+        newData.map((val) => {
+            freezingRate.push(val['freezing_rate_percent']);
+            freezeTotal.push(val['total_freeze_weight']);
+            turnoverTotal.push(val['total_turn_over_num']);
+            timestamp.push(val['timestamp'])
+            //timestamp.push(moment(val['timestamp']).format("YYYY-MM-DD"))
+        })
+       
+        if (newData && newData.length > 0) {
+            let options =  {
+                title: {
+                    text: intl.formatMessage({id: 'charts_overall_freezing_rate'})
+                },
+                exporting: {
+                    enabled: true,
+                    sourceWidth: 1072,
+                    sourceHeight: 500,
+                    filename:intl.formatMessage({id: 'charts_overall_freezing_rate'})
+                },
+                rangeSelector: {
+                    inputDateFormat: '%Y-%m-%d',
+                    //allButtonsEnabled: true,
+                    buttons: [
+                    {
+                        type: 'all',
+                        text: intl.formatMessage({id: 'all'})
+                    },
+                    {
+                        type: 'year',
+                        count: 1,
+                        text: intl.formatMessage({id: 'freezing_rangeSelector_botton_text_1y'})
+                    },
+                    {
+                        type: 'month',
+                        count: 6,
+                        text: intl.formatMessage({id: 'freezing_rangeSelector_botton_text_6m'})
+                    },
+                    {
+                        type: 'month',
+                        count: 3,
+                        text: intl.formatMessage({id: 'freezing_rangeSelector_botton_text_3m'})
+                    },
+                    {
+                        type: 'month',
+                        count: 1,
+                        text: intl.formatMessage({id: 'freezing_rangeSelector_botton_text_1m'})
+                    }],
+                    selected: 0,
+                    buttonTheme: {
+                        width: 50
+                    },
+                },
+                navigator: {
+                    maskFill: 'rgba(198,72,68, 0.3)',
+                    xAxis: {
+                        labels: {
+                            format: '{value:%Y-%m-%d}',
+                            // enabled:false
+                        },
+                    },
+                   
+                },
+                scrollbar: {
+                   // enabled: false
+                },
+                xAxis: {
+                    //type: 'datetime',
+                    ordinal: false,
+                    categories:timestamp,
+                    dateTimeLabelFormats: {
+                        millisecond: '%H:%M:%S.%L',
+                        second: '%H:%M:%S',
+                        minute: '%H:%M',
+                        hour: '%H:%M',
+                        day: '%Y-%m-%d',
+                        week: '%m-%d',
+                        month: '%Y-%m',
+                        year: '%Y'
+                    },
+                    gridLineColor: '#eeeeee',
+                    labels: {
+                        style: {
+                            color: "#999999"
+                        },
+                        autoRotation: [-10, -20, -30, -40, -50, -60, -70, -80, -90],
+                    },
+                    title: {
+                        enabled: false
+                    },
+                  
+                
+                },
+                yAxis: [
+                    { // Primary yAxis
+                      labels: {
+                        format: '{value}%',
+                        style: {
+                          color: "#434343"
+                        }
+                      },
+                      title: {
+                        text: intl.formatMessage({id: 'freezing_column_freezing_rate'}),
+                        style: {
+                            color: "#434343"
+                        }
+                      },
+                      opposite: false,
+                      min:0
+                    }, { // Secondary yAxis
+                      title: {
+                        text: intl.formatMessage({id: 'freezing_column_total_circulation_chart'}),
+                        style: {
+                          color: "#C64844"
+                        }
+                      },
+                      labels: {
+                        style: {
+                            color: "#C64844"
+                        }
+                      },
+                    }
+                ],
+                plotOptions: {
+                    column: {
+                        grouping: false,
+                        shadow: false,
+                        borderWidth: 0
+                    },
+                    spline: {
+                        marker: {
+                            fillColor:"#5A5A5A",
+                            width: 8,
+                            height: 8,
+                            lineWidth: 0,  //线条宽度
+                            radius: 4,    //半径宽度
+                        }
+                    },
+                    series: {
+                        events: {
+                            // legendItemClick: function(e) {
+                            //     /*var target = e.target; 
+                            //     console.log(target === this);
+                            //     */
+                            //     var index = this.index;
+                            //     var series = this.chart.series;
+                            //     if(series[index].name == intl.formatMessage({id: 'freezing_column_total_circulation'})) {
+                            //         this.chart.yAxis[1].update({
+                            //             title:{
+                            //                 text: intl.formatMessage({id: 'freezing_column_total_circulation_chart'})
+                            //             }
+                            //         });
+                            //     }else if(series[index].name == intl.formatMessage({id: 'freezing_column_total_frozen'})){
+                            //         this.chart.yAxis[1].update({
+                            //             title:{
+                            //                 text: intl.formatMessage({id: 'freezing_column_total_frozen'})
+                            //             }
+                            //         });
+                            //     }
+                            // },
+                            hide: function(event) {
+                                var index = this.index;
+                                var series = this.chart.series;
+                                console.log(series[index].name)
+                                if(series[index].name == intl.formatMessage({id: 'freezing_column_total_circulation'})) {
+                                    this.chart.yAxis[1].update({
+                                        title:{
+                                            text: intl.formatMessage({id: 'freezing_column_total_frozen_chart'})
+                                        }
+                                    });
+                                }else if(series[index].name == intl.formatMessage({id: 'freezing_column_total_frozen'})){
+                                    this.chart.yAxis[1].update({
+                                        title:{
+                                            text: intl.formatMessage({id: 'freezing_column_total_circulation_chart'})
+                                        }
+                                    });
+                                }
+                            },
+                            show: function() {
+                                var index = this.index;
+                                var series = this.chart.series;
+                                console.log(series[index].name)
+                                if(series[index].name == intl.formatMessage({id: 'freezing_column_total_circulation'})) {
+                                    this.chart.yAxis[1].update({
+                                        title:{
+                                            text: intl.formatMessage({id: 'freezing_column_total_circulation_chart'})
+                                        }
+                                    });
+                                }else if(series[index].name == intl.formatMessage({id: 'freezing_column_total_frozen'})){
+                                    this.chart.yAxis[1].update({
+                                        title:{
+                                            text: intl.formatMessage({id: 'freezing_column_total_frozen_chart'})
+                                        }
+                                    });
+                                }
+                            }
+                        }
+                    }
+                },
+                tooltip: {
+                    useHTML: true,
+                    shadow: true,
+                    split: false,
+                    shared: true,
+                    borderColor: '#7F8C8D',
+                    borderRadius: 2,
+                    backgroundColor: 'white',
+                    formatter: function () {
+                        var s;
+                        var points = this.points;
+                        var pointsLength = points.length;
+                      
+                        s = '<table class="tableformat" style="border: 0px;padding-left:10px;padding-right:10px" min-width="100%"><tr><td colspan=2 style="padding-bottom:5px;"><span style="font-size: 10px;"> ' + moment(points[0].x).format("YYYY-MM-DD") + '</span><br></td></tr>'
+                        for (let index = 0; index < pointsLength; index += 1) {
+                            s += '<tr><td style="padding-top:4px;padding-bottom:4px;border-top:1px solid #D5D8DC;" valign="top">' + '<span style="color:' + points[index].series.color + ';font-size: 15px !important;">\u25A0</span> ' + intl.formatMessage({id: points[index].series.name })+ '</td>' +
+                                '<td align="right" style="padding-top:5px;padding-left:10px;padding-bottom:4px;border-top:1px solid #D5D8DC;"><span ><b style="color:#C23631">' +
+                                (points[index].series.name == intl.formatMessage({id: 'freezing_column_freezing_rate'}) ? Highcharts.numberFormat(points[index].y, 2, '.', ',') + ' %</b>' : points[index].series.name ==  intl.formatMessage({id: 'freezing_column_total_circulation'}) ?  toThousands((new BigNumber(points[index].y)).decimalPlaces(6)) + '</b>':Highcharts.numberFormat(points[index].y, 0, '.', ',') + '</b>')
+                                + '</span>' +
+                                '</td></tr>'
+                        }
+                        s += '</table>';
+                        return s;
+                    },
+
+                },
+                series: [{
+                    name: intl.formatMessage({id: 'freezing_column_total_circulation'}),
+                    type: 'column',
+                    yAxis: 1,
+                    color: "#DA8885",
+                    data:turnoverTotal,
+                    pointStart: Date.UTC(2019, 11, 20),
+			        pointInterval: 24 * 3600 * 1000 , // one day
+                    tooltip: {
+                        valueSuffix: ' '
+                    },
+                    showInNavigator: false,
+                    dataGrouping: { // 针对highstock,将指定数量的数据合并展现为一个点
+                        enabled: false
+                    }
+                }, {
+                    name: intl.formatMessage({id: 'freezing_column_total_frozen'}),
+                    type: 'column',
+                    yAxis: 1,
+                    color: "#C64844",
+                    data:freezeTotal,
+                    pointStart: Date.UTC(2019, 11, 20),
+			        pointInterval: 24 * 3600 * 1000 , // one day
+                    tooltip: {
+                        valueSuffix: ' '
+                    },
+                    showInNavigator: false,
+                    dataGrouping: { // 针对highstock,将指定数量的数据合并展现为一个点
+                        enabled: false
+                    }
+                }, {
+                    name: intl.formatMessage({id: 'freezing_column_freezing_rate'}),
+                    type: 'spline',
+                    color: "#5A5A5A",
+                    data:freezingRate,
+                    pointStart: Date.UTC(2019, 11, 20),
+			        pointInterval: 24 * 3600 * 1000 , // one day
+                    marker: {
+                        enabled: true,
+                    
+                    },
+                    tooltip: {
+                        valueSuffix: ' %'
+                    },
+                    showInNavigator: true,
+                    dataGrouping: { // 针对highstock,将指定数量的数据合并展现为一个点
+                        enabled: false
+                    }
+                }]
+            }
+            Object.keys(options).map(item => {
+                _config[item] = options[item]
+            })
+        }
+        if (newData && newData.length === 0) {
+            _config.title.text = "No data";
+        }
+        Highcharts.StockChart(id, _config);
     }
 
     componentDidMount() {

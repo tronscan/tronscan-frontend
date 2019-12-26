@@ -54,28 +54,31 @@ export default class App {
     let {
       data
     } = await xhr.get(
-      `${API_URL}/api/tokens/overview?start=0&limit=1000&filter=trc20`
+      `${API_URL}/api/tokens/overview?start=0&limit=1000&filter=trc20&sort=priceInTrx`
     );
     let imgUrl;
-    for (var i = 0; i < data.tokens.length; i++) {
-      if (!tokens20Map[data.tokens[i].contractAddress]) {
-        if (data.tokens[i].imgUrl) {
-          imgUrl = data.tokens[i].imgUrl;
-        } else {
-          imgUrl = "https://coin.top/production/js/20190509074813.png";
+    if(data.tokens && data.tokens.length){
+      for (var i = 0; i < data.tokens.length; i++) {
+        if (!tokens20Map[data.tokens[i].contractAddress]) {
+          if (data.tokens[i].imgUrl) {
+            imgUrl = data.tokens[i].imgUrl;
+          } else {
+            imgUrl = "https://coin.top/production/js/20190509074813.png";
+          }
+          tokens20Map[data.tokens[i].contractAddress] =
+            data.tokens[i].name +
+            "_&&_" +
+            data.tokens[i].contractAddress +
+            "_&&_" +
+            data.tokens[i].decimal +
+            "_&&_" +
+            data.tokens[i].abbr +
+            "_&&_" +
+            imgUrl;
         }
-        tokens20Map[data.tokens[i].contractAddress] =
-          data.tokens[i].name +
-          "_&&_" +
-          data.tokens[i].contractAddress +
-          "_&&_" +
-          data.tokens[i].decimal +
-          "_&&_" +
-          data.tokens[i].abbr +
-          "_&&_" +
-          imgUrl;
       }
     }
+    
     localStorage.setItem("tokens20Map", JSON.stringify(tokens20Map));
     // store.dispatch(setToken20Map(tokens20Map));
   }

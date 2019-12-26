@@ -1,6 +1,7 @@
 import React, { Fragment } from "react";
 import { Client } from "../../../services/api";
 import { t, tu } from "../../../utils/i18n";
+import { trim } from "lodash";
 import {
   FormattedDate,
   FormattedNumber,
@@ -9,12 +10,16 @@ import {
   injectIntl
 } from "react-intl";
 import TokenHolders from "./TokenHolders";
+import { Icon } from "antd";
 import { NavLink, Route, Switch } from "react-router-dom";
 import { AddressLink, ExternalLink } from "../../common/Links";
 import { TronLoader } from "../../common/loaders";
 import Transfers from "./Transfers.js";
 import TokenInfo from "./TokenInfo.js";
 import { Information } from "./Information.js";
+import qs from "qs";
+import { toastr } from "react-redux-toastr";
+import { isAddressValid } from "@tronscan/client/src/utils/crypto";
 import {
   API_URL,
   ONE_TRX,
@@ -25,6 +30,7 @@ import {
 } from "../../../constants";
 import { login } from "../../../actions/app";
 import { reloadWallet } from "../../../actions/wallet";
+import { updateTokenInfo } from "../../../actions/tokenInfo";
 import { connect } from "react-redux";
 import SweetAlert from "react-bootstrap-sweetalert";
 import { pkToAddress } from "@tronscan/client/src/utils/crypto";
@@ -34,6 +40,11 @@ import xhr from "axios/index";
 import _ from "lodash";
 import WinkSupply from "./winkSupply.js";
 import { CsvExport } from "../../common/CsvExport";
+import { loadUsdPrice } from "../../../actions/blockchain";
+import Code from "../../blockchain/Contract/Code";
+import ExchangeQuotes from "../ExchangeQuotes";
+import ApiClientToken from "../../../services/tokenApi";
+import BigNumber from "bignumber.js";
 
 class Token20Detail extends React.Component {
   constructor() {
@@ -46,83 +57,155 @@ class Token20Detail extends React.Component {
       tabs: [],
       buyAmount: 0,
       alert: null,
-      csvurl: ""
+      csvurl: "",
+      searchAddress: "",
+      searchAddressClose: false
     };
   }
 
-  componentDidMount() {
-    let { match } = this.props;
+  async componentDidMount() {
+    let { match, priceUSD } = this.props;
+    !priceUSD && (await this.props.loadUsdPrice());
     this.loadToken(decodeURI(match.params.address));
   }
 
-  componentDidUpdate(prevProps) {
-    let {match} = this.props;
+  componentDidUpdate(prevProps, nextProps) {
+    let { match } = this.props;
     if (match.params.address !== prevProps.match.params.address) {
       this.loadToken(decodeURI(match.params.address));
     }
+    if (this.props.location !== prevProps.location) {
+      // 路由变化
+      if (this.state.searchAddress != "") {
+        this.setState({
+          searchAddress: "",
+          searchAddressClose: false
+        });
+        this.props.updateTokenInfo({
+          searchAddress: ""
+        });
+      }
+    }
+  }
+
+  async getWinkFund() {
+    let winkSupply = await ApiClientToken.getWinkFund();
+    return winkSupply;
+  }
+
+  async getTransferNum(address) {
+    let params = {
+      contract_address: address,
+      limit: 0
+    };
+    let transferNumber = await ApiClientToken.getTransferNumber(params);
+    return transferNumber;
   }
 
   loadToken = async address => {
-    const tabs = [
-      {
-        id: "tokenInfo",
-        icon: "",
-        path: "",
-        label: <span>{tu("issue_info")}</span>,
-        cmp: () => <TokenInfo token={token} />
-      },
-      {
-        id: "transfers",
-        icon: "",
-        path: "/transfers",
-        label: <span>{tu("token_transfers")}</span>,
-        cmp: () => (
-          <Transfers
-            filter={{ token: address }}
-            getCsvUrl={csvurl => this.setState({ csvurl })}
-            token={token}
-          />
-        )
-      },
-      {
-        id: "holders",
-        icon: "",
-        path: "/holders",
-        label: (
-          <span>
-            {IS_MAINNET ? tu("token_holders") : tu("DAppChain_holders")}
-          </span>
-        ),
-        cmp: () => (
-          <TokenHolders
-            filter={{ token: address }}
-            getCsvUrl={csvurl => this.setState({ csvurl })}
-            token={token}
-          />
-        )
-      }
-    ];
+    let { priceUSD } = this.props;
 
-    if (address === "TLa2f6VPqDgRE67v1736s7bJ8Ray5wYjU7") {
-      tabs.push({
-        id: "WinkSupply",
-        icon: "",
-        path: "/supply",
-        label: <span>{tu("WIN_supply")}</span>,
-        cmp: () => <WinkSupply token={token} />
+    xhr
+      .get(API_URL + "/api/token_trc20?contract=" + address + "&showAll=1")
+      .then(async res => {
+        let token = res.data.trc20_tokens[0];
+        this.props.updateTokenInfo({
+          tokenDetail: token
+        });
+        let tabs = [
+          // {
+          //   id: "tokenInfo",
+          //   icon: "",
+          //   path: "",
+          //   label: <span>{tu("token_issuance_info")}</span>,
+          //   cmp: () => <TokenInfo token={token} />
+          // },
+          {
+            id: "transfers",
+            icon: "",
+            path: "",
+            label: <span>{tu("token_transfers")}</span>,
+            cmp: () => (
+              <Transfers
+                filter={{ token: address }}
+                getCsvUrl={csvurl => this.setState({ csvurl })}
+                token={token}
+              />
+            )
+          },
+          {
+            id: "holders",
+            icon: "",
+            path: "/holders",
+            label: (
+              <span>
+                {IS_MAINNET ? tu("token_holders") : tu("DAppChain_holders")}
+              </span>
+            ),
+            cmp: () => (
+              <TokenHolders
+                filter={{ token: address }}
+                getCsvUrl={csvurl => this.setState({ csvurl })}
+                token={token}
+              />
+            )
+          }
+        ];
+
+        if (IS_MAINNET) {
+          tabs = [
+            ...tabs,
+            {
+              id: "quotes",
+              icon: "",
+              path: "/quotes",
+              label: <span>{tu("token_market")}</span>,
+              cmp: () => <ExchangeQuotes address={address} />
+            },
+            {
+              id: "code",
+              icon: "",
+              path: "/code",
+              label: <span>{tu("contract_title")}</span>,
+              cmp: () => (
+                <div style={{ background: "#fff", padding: "0 2.6%" }}>
+                  <Code filter={{ address: address }} />
+                </div>
+              )
+            }
+          ];
+        }
+        let winkTotalSupply = {};
+        if (address === "TLa2f6VPqDgRE67v1736s7bJ8Ray5wYjU7") {
+          tabs.push({
+            id: "WinkSupply",
+            icon: "",
+            path: "/supply",
+            label: <span>{tu("WIN_supply")}</span>,
+            cmp: () => <WinkSupply token={token} />
+          });
+          winkTotalSupply = await this.getWinkFund();
+        }
+
+        let transferNumber = await this.getTransferNum(address);
+
+        this.setState({ loading: true });
+        token.priceToUsd =
+          token && token["market_info"]
+            ? token["market_info"].priceInTrx * priceUSD
+            : 0;
+
+        token.winkTotalSupply = winkTotalSupply;
+        token.transferNumber = transferNumber.rangeTotal || 0;
+        this.setState({
+          loading: false,
+          token,
+          tabs
+        });
+      })
+      .catch(err => {
+        console.log(err);
       });
-    }
-
-    this.setState({ loading: true });
-    let result = await xhr.get(
-      API_URL + "/api/token_trc20?contract=" + address + "&showAll=1"
-    );
-    let token = result.data.trc20_tokens[0];
-    this.setState({
-      loading: false,
-      token,
-      tabs
-    });
   };
 
   submit = async token => {
@@ -149,6 +232,7 @@ class Token20Detail extends React.Component {
       return false;
     }
   };
+
   onInputChange = value => {
     let { account } = this.props;
     if (value && value.length === 64) {
@@ -161,6 +245,7 @@ class Token20Detail extends React.Component {
     this.setState({ privateKey: value });
     this.privateKey.value = value;
   };
+
   confirmPrivateKey = param => {
     let { privateKey, token } = this.state;
     let { account } = this.props;
@@ -322,6 +407,7 @@ class Token20Detail extends React.Component {
       });
     }
   };
+
   buyTokens = token => {
     let { buyAmount } = this.state;
     if (buyAmount <= 0) {
@@ -485,18 +571,209 @@ class Token20Detail extends React.Component {
     }
   };
 
+  tokensTransferSearchFun = async () => {
+    let serchInputVal = this.searchAddress.value;
+    if (serchInputVal === "") {
+      return false;
+    }
+    let { intl } = this.props;
+    if (!isAddressValid(serchInputVal)) {
+      toastr.warning(
+        intl.formatMessage({
+          id: "warning"
+        }),
+        intl.formatMessage({
+          id: "search_TRC20_error"
+        })
+      );
+      this.setState({
+        searchAddress: ""
+      });
+      return;
+    }
+
+    const {
+      contract_address,
+      total_supply_with_decimals
+    } = this.props.tokensInfo.tokenDetail;
+    await xhr
+      .get(
+        `${API_URL}/api/token_trc20/holders?holder_address=${serchInputVal}&contract_address=${contract_address}`
+      )
+      .then(res => {
+        if (res.data) {
+          let trc20Token = res.data.trc20_tokens;
+          let balance = 0;
+          if (trc20Token.length > 0) {
+            let newBalance = trc20Token[0].balance;
+            let accountedFor =
+              new BigNumber(newBalance)
+                .dividedBy(new BigNumber(total_supply_with_decimals))
+                .toNumber(8) || 0;
+            let trc20TokenObj = {
+              srTag: false,
+              srName: null,
+              addressTag: null,
+              holder_address: serchInputVal,
+              foundationTag: false,
+              balance: newBalance,
+              accountedFor
+            };
+
+            this.props.updateTokenInfo({
+              transferSearchStatus: true,
+              transfer: {
+                ...trc20TokenObj
+              }
+            });
+          } else {
+            this.props.updateTokenInfo({
+              transfer: {
+                srTag: false,
+                srName: null,
+                balance: 0,
+                addressTag: null,
+                holder_address: serchInputVal,
+                foundationTag: false,
+                accountedFor: 0
+              },
+              transferSearchStatus: true
+            });
+          }
+        }
+      })
+      .catch(err => {
+        console.log(err);
+      });
+
+    let { match, tokensInfo } = this.props;
+    const params = {
+      contract_address: decodeURI(match.params.address),
+      relatedAddress: serchInputVal,
+      start_timestamp: tokensInfo.start_timestamp,
+      end_timestamp: tokensInfo.end_timestamp
+    };
+
+    const allData = await Promise.all([
+      Client.getTokenTRC20Transfers({
+        limit: 20,
+        ...params
+      }),
+      Client.getCountByType({
+        type: "trc20",
+        contract: decodeURI(match.params.address),
+        address: serchInputVal
+      })
+    ]).catch(e => {
+      console.log("error:" + e);
+    });
+
+    const [{ list, rangeTotal }, { count }] = allData;
+    let transfers = list || [];
+
+    for (let index in transfers) {
+      transfers[index].index = parseInt(index) + 1;
+    }
+    if (serchInputVal !== "") {
+      transfers.forEach(result => {
+        if (result.to_address === serchInputVal) {
+          result.transfersTag = "in";
+        } else if (result.from_address === serchInputVal) {
+          result.transfersTag = "out";
+        }
+      });
+    }
+
+    this.props.updateTokenInfo({
+      searchAddress: serchInputVal,
+      transfers20ListObj: {
+        transfers,
+        total: count,
+        rangeTotal
+      }
+    });
+  };
+
+  resetSearch = async () => {
+    this.setState({
+      searchAddress: "",
+      searchAddressClose: false
+    });
+    this.props.updateTokenInfo({
+      searchAddress: ""
+    });
+    let { match, tokensInfo } = this.props;
+    const params = {
+      contract_address: decodeURI(match.params.address),
+      start_timestamp: tokensInfo.start_timestamp,
+      end_timestamp: tokensInfo.end_timestamp
+    };
+
+    const allData = await Promise.all([
+      Client.getTokenTRC20Transfers({
+        limit: 20,
+        ...params
+      }),
+      Client.getCountByType({
+        type: "trc20",
+        contract: decodeURI(match.params.address)
+      })
+    ]).catch(e => {
+      this.props.updateTokenInfo({
+        transferSearchStatus: false
+      });
+      console.log("error:" + e);
+    });
+
+    const [{ list, rangeTotal }, { count }] = allData;
+    let transfers = list || [];
+
+    for (let index in transfers) {
+      transfers[index].index = parseInt(index) + 1;
+    }
+    this.props.updateTokenInfo({
+      transfers20ListObj: {
+        transfers,
+        total: count,
+        rangeTotal
+      },
+      transferSearchStatus: false
+    });
+  };
+
+  onSearchKeyDown = ev => {
+    if (ev.keyCode === 13) {
+      this.tokensTransferSearchFun();
+      // $('#_searchBox').css({display: 'none'});
+    }
+  };
+
   render() {
-    let { match, wallet } = this.props;
-    let { token, tabs, loading, buyAmount, alert, csvurl } = this.state;
+    let { match, wallet, priceUSD, intl, tokensInfo } = this.props;
+
+    let tokenTransferTotal = tokensInfo.transfers20ListObj.rangeTotal || 0;
+    let tokensHoldersTotal = tokensInfo.holders20ListObj.rangeTotal || 0;
+    let {
+      token,
+      tabs,
+      loading,
+      buyAmount,
+      alert,
+      csvurl,
+      searchAddress,
+      searchAddressClose
+    } = this.state;
     let pathname = this.props.location.pathname;
+
     let tabName = "";
+
     let rex = /[a-zA-Z0-9]{34}\/?([a-zA-Z\\-]+)$/;
     pathname.replace(rex, function(a, b) {
       tabName = b;
     });
     const defaultImg = require("../../../images/logo_default.png");
     return (
-      <main className="container header-overlap token_black mc-donalds-coin">
+      <main className="container header-overlap token_black mc-donalds-coin tonken20DetailMain">
         {alert}
         {loading ? (
           <div className="card">
@@ -509,7 +786,7 @@ class Token20Detail extends React.Component {
             {token && (
               <div className="col-sm-12">
                 <div className="card">
-                  <div className="card-body">
+                  <div className="card-body mt-2">
                     <div className="d-flex">
                       {token && token.icon_url ? (
                         <div>
@@ -541,15 +818,13 @@ class Token20Detail extends React.Component {
                       ) : (
                         <img className="token-logo" src={defaultImg} />
                       )}
-                      <div
-                        style={{ width: "70%" }}
-                        className="token-description"
-                      >
+                      <div className="token-description">
                         <h5 className="card-title">
                           {token.name} ({token.symbol})
                         </h5>
                         <p className="card-text">{token.token_desc}</p>
                       </div>
+                      <div className="token-sign">TRC20</div>
                       {/*<div className="ml-auto">*/}
                       {/*{(!(token.endTime < new Date() || token.issuedPercentage === 100 || token.startTime > new Date() || token.isBlack) && !token.isBlack) &&*/}
                       {/*<button className="btn btn-default btn-xs d-inline-block"*/}
@@ -559,11 +834,23 @@ class Token20Detail extends React.Component {
                       {/*</div>*/}
                     </div>
                   </div>
-                  <Information token={token}></Information>
+                  <Information token={token} priceUSD={priceUSD}></Information>
                 </div>
 
-                <div className="card mt-3 border_table">
-                  <div className="card-header">
+                <div
+                  className="card mt-3"
+                  style={{
+                    borderTop: "1px solid #d8d8d8"
+                  }}
+                >
+                  <div
+                    className="card-header"
+                    style={{
+                      borderLeft: "1px solid #d8d8d8",
+                      borderRight: "1px solid #d8d8d8",
+                      position: "relative"
+                    }}
+                  >
                     <ul
                       className="nav nav-tabs card-header-tabs"
                       style={{ marginTop: "-12px", marginLeft: "-20px" }}
@@ -581,6 +868,76 @@ class Token20Detail extends React.Component {
                         </li>
                       ))}
                     </ul>
+                    {pathname.length === 43 ? (
+                      <div
+                        className="tokenTransferSearch"
+                        style={{
+                          position: "absolute",
+                          right: "1rem",
+                          top: 6,
+                          height: 26
+                        }}
+                      >
+                        <div
+                          className="input-group-append"
+                          style={{ marginLeft: 0, position: "relative" }}
+                        >
+                          <input
+                            type="text"
+                            ref={ref => (this.searchAddress = ref)}
+                            style={{
+                              border: "none",
+                              minWidth: 240,
+                              padding: "0 1.4rem 0 0.7rem"
+                            }}
+                            placeholder={intl.formatMessage({
+                              id: "search_TRC20"
+                            })}
+                            value={searchAddress}
+                            onKeyDown={this.onSearchKeyDown}
+                            onChange={event => {
+                              if (event.target.value !== "") {
+                                this.setState({
+                                  searchAddress: trim(event.target.value),
+                                  searchAddressClose: true
+                                });
+                              } else {
+                                this.setState({
+                                  searchAddressClose: false
+                                });
+                              }
+                            }}
+                          />
+                          {searchAddressClose ? (
+                            <Icon
+                              onClick={() => {
+                                this.resetSearch();
+                              }}
+                              type="close-circle"
+                              style={{
+                                position: "absolute",
+                                top: "0.6rem",
+                                right: 40
+                              }}
+                            />
+                          ) : null}
+
+                          <button
+                            className="btn box-shadow-none"
+                            style={{
+                              height: "35px",
+                              width: "35px",
+                              background: "#C23631",
+                              borderRadius: "0 2px 2px 0",
+                              color: "#fff"
+                            }}
+                            onClick={() => this.tokensTransferSearchFun()}
+                          >
+                            <i className="fa fa-search" />
+                          </button>
+                        </div>
+                      </div>
+                    ) : null}
                   </div>
                   <div className="card-body p-0">
                     <Switch>
@@ -593,13 +950,23 @@ class Token20Detail extends React.Component {
                         />
                       ))}
                     </Switch>
+                    <div
+                      className="downCsvExport"
+                      style={{
+                        position: "absolute",
+                        left: "20px",
+                        bottom: "28px"
+                      }}
+                    >
+                      {tabName === "" && tokenTransferTotal !== 0 ? (
+                        <CsvExport downloadURL={csvurl} />
+                      ) : null}
+                      {tabName === "holders" && tokensHoldersTotal !== 0 ? (
+                        <CsvExport downloadURL={csvurl} />
+                      ) : null}
+                    </div>
                   </div>
                 </div>
-                {["transfers", "holders"].indexOf(tabName) !== -1 ? (
-                  <CsvExport downloadURL={csvurl} />
-                ) : (
-                  ""
-                )}
               </div>
             )}
           </div>
@@ -612,15 +979,19 @@ class Token20Detail extends React.Component {
 function mapStateToProps(state) {
   return {
     tokens: state.tokens.tokens,
+    tokensInfo: state.tokensInfo,
     wallet: state.wallet,
     currentWallet: state.wallet.current,
-    account: state.app.account
+    account: state.app.account,
+    priceUSD: state.blockchain.usdPrice
   };
 }
 
 const mapDispatchToProps = {
   login,
-  reloadWallet
+  reloadWallet,
+  loadUsdPrice,
+  updateTokenInfo
 };
 
 export default connect(

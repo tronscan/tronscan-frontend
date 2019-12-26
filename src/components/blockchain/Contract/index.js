@@ -21,6 +21,7 @@ import Events from "./Events";
 import Transfers from "./Transfers";
 import Energy from "./Energy";
 import Call from "./Call";
+import TRXChart from "./TrxCharts";
 import { upperFirst } from "lodash";
 import { Truncate } from "../../common/text";
 import xhr from "axios/index";
@@ -38,6 +39,7 @@ import { CsvExport } from "../../common/CsvExport";
 import moment from "moment";
 import rebuildList from "../../../utils/rebuildList";
 import { QuestionMark } from "../../common/QuestionMark.js";
+import {FormattedNumber} from "react-intl";
 
 class SmartContract extends React.Component {
   constructor({ match }) {
@@ -53,13 +55,15 @@ class SmartContract extends React.Component {
         tokenBalances: {}
       },
       token20: null,
-      csvurl: ""
+      csvurl: "",
+      energyRemaining: 0
     };
   }
 
   componentDidMount() {
     let { match, walletType } = this.props;
     this.loadContract(match.params.id);
+    
     const isPrivateKey = walletType.type === "ACCOUNT_PRIVATE_KEY";
     IS_SUNNET && this.getMappingBySidechainAddress(match.params.id);
     this.setState({
@@ -132,7 +136,7 @@ class SmartContract extends React.Component {
             id: "intransactions",
             // icon: "fas fa-handshake",
             path: "/internal-transactions",
-            label: <span>{tu("internal_transactions")}</span>,
+            label: <span>{tu("Internal_txns")}</span>,
             cmp: () => (
               <Transactions
                 getCsvUrl={csvurl => this.setState({ csvurl })}
@@ -159,6 +163,12 @@ class SmartContract extends React.Component {
             path: "/call",
             label: <span>{tu("call")}</span>,
             cmp: () => <Call filter={{ address: id }} />
+          },
+          trx_chart: {
+            id: "trx_chart",
+            path: "/trx-balances-chart",
+            label: <span>{tu("address_balance")}</span>,
+            cmp: () => <TRXChart filter={{ address: id }} />
           }
         }
       }));
@@ -211,7 +221,7 @@ class SmartContract extends React.Component {
             id: "intransactions",
             // icon: "fas fa-handshake",
             path: "/internal-transactions",
-            label: <span>{tu("internal_transactions")}</span>,
+            label: <span>{tu("Internal_txns")}</span>,
             cmp: () => (
               <Transactions
                 getCsvUrl={csvurl => this.setState({ csvurl })}
@@ -238,10 +248,26 @@ class SmartContract extends React.Component {
             path: "/call",
             label: <span>{tu("call")}</span>,
             cmp: () => <Call filter={{ address: id }} />
+          },
+          trx_chart: {
+            id: "trx_chart",
+            path: "/trx-balances-chart",
+            label: <span>{tu("address_balance")}</span>,
+            cmp: () => <TRXChart filter={{ address: id }} />
           }
         }
       }));
     }
+    if(contract&&contract.data&&contract.data[0]&&contract.data[0].creator&&contract.data[0].creator.address){
+      this.loadAddress(contract.data[0].creator.address);
+    }
+  }
+
+  async loadAddress(id){
+    let address = await Client.getAddress(id);
+    this.setState({
+      energyRemaining:address.bandwidth.energyRemaining>= 0?address.bandwidth.energyRemaining:0
+    })
   }
 
   /**
@@ -297,7 +323,8 @@ class SmartContract extends React.Component {
       token20,
       csvurl,
       mainchainAddress,
-      isPrivateKey
+      isPrivateKey,
+      energyRemaining
     } = this.state;
     let { match, intl } = this.props;
     const defaultImg = require("../../../images/logo_default.png");
@@ -487,16 +514,21 @@ class SmartContract extends React.Component {
                                     {contract.creator.address}
                                   </AddressLink>
                                 </span>
-                                <span className="px-1">{tu("at_txn")}</span>
-                                <span style={{ width: "30%" }}>
-                                  <Truncate>
-                                    <TransactionHashLink
-                                      hash={contract.creator.txHash}
-                                    >
-                                      {contract.creator.txHash}
-                                    </TransactionHashLink>
-                                  </Truncate>
-                                </span>
+                               {
+                                  contract.creator.txHash && <span className="d-flex" style={{ width: "70%" }}>
+                                    <span className="px-1">{tu("at_txn")}</span>
+                                      <span style={{ width: "30%" }}>
+                                        <Truncate>
+                                          <TransactionHashLink
+                                            hash={contract.creator.txHash}
+                                          >
+                                            {contract.creator.txHash}
+                                          </TransactionHashLink>
+                                        </Truncate>
+                                      </span>
+                                  </span>  
+                               } 
+                              
                               </div>
                             )}
                           </li>
@@ -517,6 +549,14 @@ class SmartContract extends React.Component {
                                 {moment(contract.date_created).format(
                                   "YYYY-MM-DD HH:mm:ss"
                                 )}
+                              </span>
+                            </div>
+                          </li>
+                          <li>
+                            <p>{tu("contract_available_energy")}:</p>
+                            <div className="d-flex">
+                              <span>
+                                <FormattedNumber value={contract.creator.consume_user_resource_percent < 100 ? energyRemaining : 0}/>
                               </span>
                             </div>
                           </li>

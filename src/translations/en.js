@@ -1,5 +1,9 @@
+/* eslint-disable */
+import {
+    lang19Q4
+} from './versionLang/lang19Q4/en19Q4';
 export const messages = {
-  /*
+    /*
   ##################################################################################
   #                                                                                #
   #  $$$$$$$$\                                                                     #
@@ -343,7 +347,7 @@ export const messages = {
   "open_external_link": "You are opening an external link",
   "private_key_untrusted_website_message_0": "Never enter your private key on an untrusted website.",
   "no_official_tron_website": "is not an official TRON site.",
-  "continue_to_external_website": "Continue to external site",
+  "continue_to_external_website": "Continue",
   "visit_third_party_website":"The page you visit will be redirected to a third-party website. There may be security risks. Are you sure you want to continue?",
   "url_changed": "URL changed",
   "successfully_changed_website_message": "Successfully changed website to ",
@@ -1070,17 +1074,17 @@ export const messages = {
   "a_totle": "A Total of",
   "transaction_info": "transactions found",
   "hold_addr": "Token Holders",
-  "transactions_unit": "Transactions",
-  "transfers_unit": "Transfers",
-  "block_unit": "Blocks",
-  "record_unit": "Transactions",
-  "token_unit": "Tokens",
-  "vote_unit": "Partners",
-  "voter_unit": "Voters",
+  "transactions_unit": "transactions",
+  "transfers_unit": "transfers",
+  "block_unit": "blocks",
+  "record_unit": "transactions",
+  "token_unit": "tokens",
+  "vote_unit": "partners",
+  "voter_unit": "voters",
   "account_unit": "accounts",
   "address_unit": "addresses",
   "contract_unit": "verified contract source codes found",
-  "inter_contract_unit": "Internal Transactions found",
+  "inter_contract_unit": "internal transactions found",
 
   /*
 ##################################################################################
@@ -1188,6 +1192,7 @@ export const messages = {
    "contract_source_code_use": "Terms of Usage",
    "contracts_source-code-usage-terms":"Usage Terms - Contract Source Codes",
    "contract_source_code_match":"Contract source code is verified (Perfect match)",
+   "contract_source_code_no_match":"Contract source code is UnVerified",
    "contract_source_code_p1":"At Tronscan we have a moral, ethical and legal obligation that the all contract source codes (a.k.a. end user data) provided to us is (1) only used within the scope of the services we provide and (2) usage governed in accordance to our general",
    "contract_source_code_p1_use_service":"terms of service.",
    "contract_source_code_p2_1":"source code verification provides transparency for end users interacting with smart contracts. The",
@@ -1539,7 +1544,7 @@ export const messages = {
   "propose_12": "Propose to modify the fee of 1 energy",
   "propose_13": "Propose to modify the cost of trading pair creation",
   "propose_14": "Propose to modify the maximum execution time of one transaction",
-  "propose_15": "Propose to allow to change the account name",
+  "propose_15": "Propose to allow duplicate account name",
   "propose_16": "Propose to allow the same token name",
   "propose_17": "Propose to allow resource delegation",
   "propose_18": "Propose to modify the total energy limit",
@@ -2048,7 +2053,7 @@ export const messages = {
   "select_trx_tip1": "TRC20 token issuance is recommended",
   "select_trx_tip2": "click here",
   "select_trx_tip3": "learn more about the differences between TRC10 and TRC20 tokens",
-  "select_tip1": "Issuing TRC10 tokens will consume 1024 TRX. Smart contract deployment is not necessary. ",
+  "select_tip1": "Issuing TRC10 tokens will consume 1024 TRX. Smart contract deployment is not necessary. ",
   "select_tip2": "Issuing TRC20 tokens will need smart contract deployment. TRX will not be consumed.",
   "name_v_required": "token name is required",
   "name_v_format": "token name has to contain letters, numbers and space",
@@ -2125,8 +2130,8 @@ export const messages = {
   "str_9": "Unable to verify the parameters",
   "token_login_no_updated": "The login account is inconsistent with the publisher and cannot be updated",
   "information_is_being_confirmed": "Information is being confirmed, this process may take 10 minutes, please try again later",
-
   "interTrx_tip": "Internal Transactions is an operation which a general address calls a Smart Contract， and the Smart Contract transfers token to other address.",
+  "interTrx_tip_contract":"Internal transactions from contract execution",
   "event_tip": "Events is to let the programmer or external interface provider use it to pay attention to contract operations and audits.",
   /* 2019-07-06*/
   "trc20_free_orders": "0 trading fee for all orders",
@@ -2248,9 +2253,9 @@ export const messages = {
   "Main_Chain":"MainChain",
 
 
-  "7day": "one week",
-  "14day": "two weeks",
-  "30day": "one month",
+  "7day": "7 Days",
+  "14day": "14 Days",
+  "30day": "1 Month",
   "select_tip": "To view data other than 2000 You can manually adjust the time window",
   "date_number_tip": "{total} records in the current time range",
   "date_list_tip": "Only the first 2000 data are displayed",
@@ -2312,7 +2317,7 @@ export const messages = {
   "no_rewards_available_yet":"No rewards available",
   "total_tron_ecosystem_tokens":"Total TRON-ecosystem tokens:",
   "number_of_lists":"Number of lists:",
-  "total_in_tronscan":"Total in tronscan:",
+  "total_in_tronscan":"Total in tronscan",
   "develpopers_reward_tip":"Thank you for considering to help out with the java-tron! TRON Foundation welcome contributions from anyone on the internet, and are grateful for your contributions.",
   "verifty_contract_result":"Result",
   "main_contract_deployment":"(Please select the main contract deployment)",
@@ -2376,7 +2381,7 @@ export const messages = {
      ##################################################################################
   */
  "muti_sign":"Multi-signature",
- "translations_wait_sign":"Transactions waiting for my signature",
+ "translations_wait_sign":"Unsigned transactions",
   "transfer_multi_sign":"Multi-signature transfer",
   "permission":"Access",
   "owner_permission":"Owner access group",
@@ -2453,5 +2458,16 @@ export const messages = {
   "signature_threshold_required":"Threshold is requried",
   "signaure_control_address_tip":"Control address refers to the associated control addresses of owner permission, SR permission and active permission. Display of the three types of permissions will change subsequently when the control address is modified.",
   "permission_name_limit":"Please input English characters and numbers",
+
+  // 2019-12-10
+  "ledger_tronlink":"Login to TRONSCAN via TronLink",
+   // 2019-12-18
+   "address_vote_reward_pending":"Unwithdrawn voting reward",
+   "address_balance":"TRX Balance",
+   "address_get_energe":"For Energy",
+   "address_get_bandwith":"For Bandwidth",
+   "address_freeze_owner":"To your account",
+   "address_freeze_other":"To others' account(s)",
+   ...lang19Q4,
 
 };

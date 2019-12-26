@@ -128,15 +128,27 @@ class Code extends React.Component {
     } = this.props;
     const { contractVerifyState, contractInfoList } = this.state;
     let smartcontract = await this.tronWeb.trx.getContract(address);
-    if (contractVerifyState) {
+    let contractInfoListNew;
+     if (contractVerifyState) {
+      contractInfoListNew = { abi: smartcontract.abi, ...contractInfoList };
+     }else{
+      contractInfoListNew = smartcontract;
+     }
       this.setState({
-        contractInfoList: { abi: smartcontract.abi, ...contractInfoList }
+        contractInfoList: contractInfoListNew
+      },()=>{
+       if(contractInfoListNew.abi){
+          this.getContractTokenList();
+          this.viewFuntions();
+          this.payableFuntions();
+          this.nonePayableFuntions();
+       }
       });
-    } else {
-      this.setState({
-        contractInfoList: smartcontract
-      });
-    }
+    // } else {
+    //   this.setState({
+    //     contractInfoList: smartcontract
+    //   });
+    // }
   }
 
   /**
@@ -155,6 +167,7 @@ class Code extends React.Component {
         abi: { entrys }
       }
     } = this.state;
+    //console.log('entrys',entrys);
     if (entrys) {
       const list = entrys.filter(
         entry =>
@@ -385,18 +398,10 @@ class Code extends React.Component {
           <div className="tab-choice">
             {radioBtnItem}
             <p className="contract-source-code-title">
-              {contractVerifyState ? (
-                <img
-                  style={{ width: "20px", height: "20px" }}
-                  src={require("../../../images/contract/Verified.png")}
-                />
-              ) : (
-                <img
-                  style={{ width: "20px", height: "20px" }}
-                  src={require("../../../images/contract/Unverified.png")}
-                />
-              )}
-              {tu("contract_source_code_match")}
+              {contractVerifyState===true ? <div><img style={{ width: "20px", height: "20px" }} src={require("../../../images/contract/Verified.png")}/> {tu("contract_source_code_match")}</div>
+               : <div><img style={{ width: "20px", height: "20px" }} src={require("../../../images/contract/Unverified.png")}/>{tu("contract_source_code_no_match")}</div>
+              }
+              
             </p>
             <div className="d-flex contract-header_list contract-detail">
               <div className="contract-header__item contract-header">
@@ -455,7 +460,6 @@ class Code extends React.Component {
         )}
       </div>
     );
-
     // 去验证合约Item
     const contractVerifyBtnItem = (
       <div className="contrat-verify">
@@ -480,7 +484,8 @@ class Code extends React.Component {
           </div>
         ) : (
           <div>
-            {contractVerifyState ? contractMessItem : contractVerifyBtnItem}
+            {/* {contractVerifyState ? contractMessItem : contractVerifyBtnItem} */}
+            { contractMessItem }
           </div>
         )}
         <div className="tab-container">{tabContent}</div>

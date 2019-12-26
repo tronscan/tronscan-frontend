@@ -383,26 +383,26 @@ export class ExternalLink extends React.PureComponent {
     this.setState({
       modal: (
         <Modal
-          className="modal-dialog-centered"
+          className="modal-dialog-centered modal-dialog-link"
           fade={false}
           isOpen={true}
           toggle={this.hideModal}
         >
-          <ModalHeader className="text-center">
+          <ModalHeader className="text-center" toggle={this.hideModal}>
             {tu("open_external_link")}
           </ModalHeader>
           <ModalBody className="text-center p-3" onClick={this.hideModal}>
             <span className="font-weight-bold text-truncate d-block">
               {url}
             </span>
-            {tu("visit_third_party_website")}
+            {tu("token_cau_risk")}
           </ModalBody>
           <ModalFooter>
             {this.renderExternalLink()}
             &nbsp;
-            <Button color="secondary" onClick={this.hideModal}>
+            {/* <Button color="secondary" onClick={this.hideModal}>
               {tu("cancel")}
-            </Button>
+            </Button> */}
           </ModalFooter>
         </Modal>
       )
