@@ -18,6 +18,8 @@ export default function UpdateEnergyLimitContract(props) {
                         <Field label="owner_address"><AddressLink address={contract['owner_address']} /></Field>
                         : ''
                 }
+                 <Field label="合约地址"><ContractLink address={'TK3VSP3kwp7XssTGpisRSKGHE69nhk1hen'} /></Field>
+                 <Field label="能量上线">50000</Field>
             </tbody>
         </table>
     </Fragment>

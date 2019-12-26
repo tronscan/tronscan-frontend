@@ -1,14 +1,17 @@
 import React, {Fragment} from "react";
 import {AddressLink, ExternalLink, ContractLink, TokenTRC20Link} from "../../../common/Links";
 import Field from "../../../tools/TransactionViewer/Field";
+import SignList from './common/SignList'
 export default function UpdateBrokerageContract(props) {
+    console.log(11111);
     const contract = props.contract;
+    const {brokerage,signList} =contract;
     return <Fragment>
         <div className="card-body table-title">
             <h5>
                 <i className="fa fa-exchange-alt"></i>
                 &nbsp;&nbsp;
-            {contract.contractType}
+                交易类型-{contract.contractType}
             </h5>
         </div>
         <table className="table">
@@ -18,6 +21,8 @@ export default function UpdateBrokerageContract(props) {
                         <Field label="owner_address"><AddressLink address={contract['owner_address']} /></Field>
                         : ''
                 }
+                <Field label="选民分成比例">{brokerage}%</Field>
+                <SignList signList={signList}/>
             </tbody>
         </table>
     </Fragment>

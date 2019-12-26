@@ -36,6 +36,7 @@ $color-grey: #d2d1d1;
 @import "sourceCode.scss";
 @import "contract";
 @import "tokens";
+@import "transaction.scss";
 body {
   overflow-y: scroll;
 }
