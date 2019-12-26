@@ -8,7 +8,7 @@ import Field from "../../../tools/TransactionViewer/Field";
 import { AddressLink } from "../../../common/Links";
 import { TRXPrice } from "../../../common/Price";
 import { ONE_TRX } from "../../../../constants";
-
+import {TransationTitle} from './common/Title'
 class UpdateAssetContract extends React.Component {
   constructor(props) {
     super(props);
@@ -18,13 +18,7 @@ class UpdateAssetContract extends React.Component {
     let { contract } = this.props;
     return (
       <Fragment>
-        <div className="card-body table-title">
-          <h5>
-            <i className="fa fa-exchange-alt"></i>
-            {tu("transation_type")}-
-            <small>{tu("transation_transfer_trx")}</small>
-          </h5>
-        </div>
+         <TransationTitle contractType={contract.contractType}></TransationTitle>
         <div className="table-responsive">
           <table className="table">
             <tbody>

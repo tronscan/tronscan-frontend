@@ -18,7 +18,7 @@ class TransferContract extends React.Component {
     let { contract } = this.props;
     return (
       <Fragment>
-        <TransationTitle contractType="TransferContract"></TransationTitle>
+        <TransationTitle contractType={contract.contractType}></TransationTitle>
         <div className="table-responsive">
           <table className="table">
             <tbody>
