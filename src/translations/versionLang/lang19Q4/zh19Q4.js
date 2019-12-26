@@ -39,10 +39,15 @@ export const lang19Q4 = {
     "transfersDetailQuantity": "持有量",
     "transfersDetailPercentage": "占比",
     "transfersDetailValue": "价值",
+    'contract_code_overview_name':'名称',
+    'contract_code_overview_creator':'创建者',
+    'contract_code_overview_account':'账户',
+
+
 
     // 2019-12-10
-    "token_basic_view": "基本概况",
-    "token_additional_materials": "补充资料",
+    "token_basic_view": "基本信息",
+    "token_additional_materials": "更多资料",
     "token_hold_user": "持有者",
     "token_capitalization": "流通市值/总市值",
     "token_credit_rating": "信用评级",

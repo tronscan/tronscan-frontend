@@ -39,6 +39,10 @@ export const lang19Q4 = {
     "transfersDetailQuantity": "مقدار",
     "transfersDetailPercentage": "درصد",
     "transfersDetailValue": "ارزش",
+
+    'contract_code_overview_name':'نام',
+    'contract_code_overview_creator':'خالق',
+    'contract_code_overview_account':'حساب',
     // 2019-12-10
     "token_basic_view": "مبانی",
     "token_additional_materials": "اطلاعات تکمیلی",

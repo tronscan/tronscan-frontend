@@ -238,7 +238,7 @@ export const routes = [
   },
   {
     path: "/address/:id",
-    label: "address",
+    label: "contract_code_overview_account",
     component: Address,
     showInMenu: false
   },

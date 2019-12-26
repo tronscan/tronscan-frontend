@@ -39,6 +39,10 @@ export const lang19Q4 = {
     "transfersDetailQuantity": "クォンティティー",
     "transfersDetailPercentage": "割合",
     "transfersDetailValue": "価格",
+
+    'contract_code_overview_name':'名前',
+    'contract_code_overview_creator':'作成者',
+    'contract_code_overview_account':'アカウント',
     // 2019-12-10
 
     "token_basic_view": "基本プロファイル",

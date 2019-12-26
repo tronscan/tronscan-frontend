@@ -39,6 +39,9 @@ export const lang19Q4 = {
     "transfersDetailQuantity": "الكمية",
     "transfersDetailPercentage": "النسبة ا لمئوية",
     "transfersDetailValue": "القيمة",
+    'contract_code_overview_name':'اسم',
+    'contract_code_overview_creator':'المنشئ',
+    'contract_code_overview_account':'الحساب',
     // 2019-12-10
     "token_basic_view": "الأساسيات",
     "token_additional_materials": "معلومات تكميلية",

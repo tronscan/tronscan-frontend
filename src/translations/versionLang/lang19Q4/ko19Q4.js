@@ -39,6 +39,10 @@ export const lang19Q4 = {
     "transfersDetailQuantity": "수량",
     "transfersDetailPercentage": "점유율",
     "transfersDetailValue": "가치",
+
+    'contract_code_overview_name':'이름',
+    'contract_code_overview_creator':'창조자',
+    'contract_code_overview_account':'계정',
     // 2019-12-10
     "token_basic_view": "개요",
     "token_additional_materials": "자료 보충",

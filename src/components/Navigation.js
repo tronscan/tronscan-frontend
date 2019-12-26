@@ -541,14 +541,14 @@ class Navigation extends React.Component {
         default:
           return tronLogoInvertedTestNet;
       }
-    } else if(!IS_MAINNET){
-        switch (theme) {
-            case "light":
-                return tronLogoSunNet;
-            default:
-                return tronLogoSunNet;
-        }
-    } {
+    }else if(!IS_MAINNET){
+      switch (theme) {
+          case "light":
+              return tronLogoSunNet;
+          default:
+              return tronLogoSunNet;
+      }
+    }else{
       switch (theme) {
         case "tron":
           return tronLogoBlue;

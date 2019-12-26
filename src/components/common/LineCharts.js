@@ -1,3 +1,4 @@
+/*eslint-disable */
 import React from 'react'
 import moment from 'moment';
 import config from './chart.config.js'

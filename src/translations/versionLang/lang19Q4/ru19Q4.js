@@ -40,6 +40,10 @@ export const lang19Q4 = {
     "transfersDetailPercentage": "Процент",
     "transfersDetailValue": "Значение",
 
+    'contract_code_overview_name':'имя',
+    'contract_code_overview_creator':'творец',
+    'contract_code_overview_account':'УЧЕТНЫЕ ЗАПИСИ',
+
     // 2019-12-10
     "token_basic_view": "Обзор",
     "token_additional_materials": "Информация Профиля",
