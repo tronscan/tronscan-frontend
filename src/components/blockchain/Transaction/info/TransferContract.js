@@ -1,3 +1,7 @@
+/*
+* Auther:xueyuanying
+* Date:2019-12-25
+*/
 import React, { Fragment } from "react";
 import { tu } from "../../../../utils/i18n";
 import Field from "../../../tools/TransactionViewer/Field";
@@ -23,7 +27,6 @@ class TransferContract extends React.Component {
         </div>
         <div className="table-responsive">
           <table className="table">
-            <thead></thead>
             <tbody>
               <Field label="from">
                 <AddressLink address={contract["owner_address"]}>

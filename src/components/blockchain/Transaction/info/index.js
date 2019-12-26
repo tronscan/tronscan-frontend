@@ -16,6 +16,18 @@ import ExchangeWithdrawContract from './ExchangeWithdrawContract'
 import ExchangeTransactionContract from './ExchangeTransactionContract'
 import UpdateEnergyLimitContract from './UpdateEnergyLimitContract'
 import UpdateBrokerageContract from './UpdateBrokerageContract'
+import FreezeBalanceContract from './FreezeBalanceContract'
+import UnFreezeBalanceContract from './UnFreezeBalanceContract'
+import TransferAssetContract from './TransferAssetContract'
+import ParticipateAssetIssueContract from './ParticipateAssetIssueContract'
+import AccountCreateContract from './AccountCreateContract'
+import AssetIssueContract from './AssetIssueContract'
+import UnfreezeAssetContract from './UnfreezeAssetContract'
+import UpdateAssetContract from './UpdateAssetContract'
+import WithdrawBalanceContract from './WithdrawBalanceContract'
+
+
+
 /**
  * Get the title
  * @param {*} contract 
@@ -85,35 +97,37 @@ export default function Info({contract}) {
             case "TRANSFERCONTRACT":
                 return <TransferContract contract={contract}/>;
             case "TRANSFERASSETCONTRACT":
-                return '';
+                return <TransferAssetContract contract={contract}></TransferAssetContract>;
             case "PARTICIPATEASSETISSUECONTRACT":
-                return '';
+                return <ParticipateAssetIssueContract contract={contract}></ParticipateAssetIssueContract>;
             case "WITNESSUPDATECONTRACT":
                 return ''
             case "WITNESSCREATECONTRACT":
-                return ''
+                return ""
             case "ACCOUNTUPDATECONTRACT":
                 return ''
             case "ACCOUNTCREATECONTRACT":
-                return ''
+                return <AccountCreateContract contract={contract}></AccountCreateContract>;
             case "WITHDRAWBALANCECONTRACT":
-                return '';
+                return <WithdrawBalanceContract contract={contract}></WithdrawBalanceContract>;
             case "FREEZEBALANCECONTRACT":
-                return '';
+                return <FreezeBalanceContract contract={contract}></FreezeBalanceContract>;
             case "UNFREEZEBALANCECONTRACT":
-                return '';
+                return <UnFreezeBalanceContract contract={contract}></UnFreezeBalanceContract>;
             case "VOTEWITNESSCONTRACT":
                 return '';
             case "ASSETISSUECONTRACT":
-                return '';
+                return <AssetIssueContract contract={contract}></AssetIssueContract>;
             case "PROPOSALCREATECONTRACT":
                 return '';
             case "TRIGGERSMARTCONTRACT":
                 return '';
-            case "UPDATEBROKERAGECONTRACT":
-                return '';
+            case "UNFREEZEASSETCONTRACT":
+                return <UnfreezeAssetContract contract={contract}></UnfreezeAssetContract>;
+            case "UPDATEASSETCONTRACT":
+                return <UpdateAssetContract contract={contract}></UpdateAssetContract>;
             case "UPDATESETTINGCONTRACT":
-                return <UpdateSettingContract contract={contract}/>;    
+                    return <UpdateSettingContract contract={contract}/>;    
             case "EXCHANGECREATECONTRACT":
                 return <ExchangeCreateContract contract={contract}/>;
             case "EXCHANGEINJECTCONTRACT":
