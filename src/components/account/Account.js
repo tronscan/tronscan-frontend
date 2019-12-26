@@ -1877,9 +1877,11 @@ export default class Account extends Component {
         } else if (this.props.walletType.type === "ACCOUNT_TRONLINK" || this.props.walletType.type === "ACCOUNT_PRIVATE_KEY") {
             tronWeb = account.tronWeb;
         }
+        console.log('tronWeb',)
         let value = 100 - brokerageValue;
         // updateBrokerage
         const unSignTransaction = await tronWeb.transactionBuilder.updateBrokerage(value,tronWeb.defaultAddress.base58).catch(e => false);
+        console.log('unSignTransaction',unSignTransaction)  
         const {result} = await transactionResultManager(unSignTransaction, tronWeb)
         res = result;
         if (res) {
