@@ -2011,7 +2011,9 @@ export class EnergyConsumeDistributionChart extends React.Component {
 }
 
 
-
+/**
+ * Overall Freezing Rate
+ */
 export class OverallFreezingRateChart extends React.Component {
 
     constructor(props) {
@@ -2331,6 +2333,329 @@ export class OverallFreezingRateChart extends React.Component {
         )
     }
 }
+/**
+ * TRX Supply
+ */
+export class lineTRXSupplyChart extends React.Component {
+
+    constructor(props) {
+        super(props)
+        this.myChart = null;
+        let id = ('_' + Math.random()).replace('.', '_');
+        this.state = {
+            lineId: 'OverallFreezingRateChart' + id
+        }
+    }
+
+    initLine(id) {
+        let _config = cloneDeep(config.OverallFreezingRateChart);
+        let {intl, data} = this.props;
+        let newData = cloneDeep(data)
+        let freezingRate = [];
+        let freezeTotal = [];
+        let turnoverTotal = [];
+        let timestamp = []
+        newData.map((val) => {
+            freezingRate.push(val['freezing_rate_percent']);
+            freezeTotal.push(val['total_freeze_weight']);
+            turnoverTotal.push(val['total_turn_over_num']);
+            timestamp.push(val['timestamp'])
+            //timestamp.push(moment(val['timestamp']).format("YYYY-MM-DD"))
+        })
+       
+        if (newData && newData.length > 0) {
+            let options =  {
+                title: {
+                    text: intl.formatMessage({id: 'charts_overall_freezing_rate'})
+                },
+                exporting: {
+                    enabled: true,
+                    sourceWidth: 1072,
+                    sourceHeight: 500,
+                    filename:intl.formatMessage({id: 'charts_overall_freezing_rate'})
+                },
+                rangeSelector: {
+                    inputDateFormat: '%Y-%m-%d',
+                    //allButtonsEnabled: true,
+                    buttons: [
+                    {
+                        type: 'all',
+                        text: intl.formatMessage({id: 'all'})
+                    },
+                    {
+                        type: 'year',
+                        count: 1,
+                        text: intl.formatMessage({id: 'freezing_rangeSelector_botton_text_1y'})
+                    },
+                    {
+                        type: 'month',
+                        count: 6,
+                        text: intl.formatMessage({id: 'freezing_rangeSelector_botton_text_6m'})
+                    },
+                    {
+                        type: 'month',
+                        count: 3,
+                        text: intl.formatMessage({id: 'freezing_rangeSelector_botton_text_3m'})
+                    },
+                    {
+                        type: 'month',
+                        count: 1,
+                        text: intl.formatMessage({id: 'freezing_rangeSelector_botton_text_1m'})
+                    }],
+                    selected: 0,
+                    buttonTheme: {
+                        width: 50
+                    },
+                },
+                navigator: {
+                    maskFill: 'rgba(198,72,68, 0.3)',
+                    xAxis: {
+                        labels: {
+                            format: '{value:%Y-%m-%d}',
+                            // enabled:false
+                        },
+                    },
+                   
+                },
+                scrollbar: {
+                   // enabled: false
+                },
+                xAxis: {
+                    //type: 'datetime',
+                    ordinal: false,
+                    categories:timestamp,
+                    dateTimeLabelFormats: {
+                        millisecond: '%H:%M:%S.%L',
+                        second: '%H:%M:%S',
+                        minute: '%H:%M',
+                        hour: '%H:%M',
+                        day: '%Y-%m-%d',
+                        week: '%m-%d',
+                        month: '%Y-%m',
+                        year: '%Y'
+                    },
+                    gridLineColor: '#eeeeee',
+                    labels: {
+                        style: {
+                            color: "#999999"
+                        },
+                        autoRotation: [-10, -20, -30, -40, -50, -60, -70, -80, -90],
+                    },
+                    title: {
+                        enabled: false
+                    },
+                  
+                
+                },
+                yAxis: [
+                    { // Primary yAxis
+                      labels: {
+                        format: '{value}%',
+                        style: {
+                          color: "#434343"
+                        }
+                      },
+                      title: {
+                        text: intl.formatMessage({id: 'freezing_column_freezing_rate'}),
+                        style: {
+                            color: "#434343"
+                        }
+                      },
+                      opposite: false,
+                      min:0
+                    }, { // Secondary yAxis
+                      title: {
+                        text: intl.formatMessage({id: 'freezing_column_total_circulation_chart'}),
+                        style: {
+                          color: "#C64844"
+                        }
+                      },
+                      labels: {
+                        style: {
+                            color: "#C64844"
+                        }
+                      },
+                    }
+                ],
+                plotOptions: {
+                    column: {
+                        grouping: false,
+                        shadow: false,
+                        borderWidth: 0
+                    },
+                    spline: {
+                        marker: {
+                            fillColor:"#5A5A5A",
+                            width: 8,
+                            height: 8,
+                            lineWidth: 0,  //线条宽度
+                            radius: 4,    //半径宽度
+                        }
+                    },
+                    series: {
+                        events: {
+                            // legendItemClick: function(e) {
+                            //     /*var target = e.target; 
+                            //     console.log(target === this);
+                            //     */
+                            //     var index = this.index;
+                            //     var series = this.chart.series;
+                            //     if(series[index].name == intl.formatMessage({id: 'freezing_column_total_circulation'})) {
+                            //         this.chart.yAxis[1].update({
+                            //             title:{
+                            //                 text: intl.formatMessage({id: 'freezing_column_total_circulation_chart'})
+                            //             }
+                            //         });
+                            //     }else if(series[index].name == intl.formatMessage({id: 'freezing_column_total_frozen'})){
+                            //         this.chart.yAxis[1].update({
+                            //             title:{
+                            //                 text: intl.formatMessage({id: 'freezing_column_total_frozen'})
+                            //             }
+                            //         });
+                            //     }
+                            // },
+                            hide: function(event) {
+                                var index = this.index;
+                                var series = this.chart.series;
+                                console.log(series[index].name)
+                                if(series[index].name == intl.formatMessage({id: 'freezing_column_total_circulation'})) {
+                                    this.chart.yAxis[1].update({
+                                        title:{
+                                            text: intl.formatMessage({id: 'freezing_column_total_frozen_chart'})
+                                        }
+                                    });
+                                }else if(series[index].name == intl.formatMessage({id: 'freezing_column_total_frozen'})){
+                                    this.chart.yAxis[1].update({
+                                        title:{
+                                            text: intl.formatMessage({id: 'freezing_column_total_circulation_chart'})
+                                        }
+                                    });
+                                }
+                            },
+                            show: function() {
+                                var index = this.index;
+                                var series = this.chart.series;
+                                console.log(series[index].name)
+                                if(series[index].name == intl.formatMessage({id: 'freezing_column_total_circulation'})) {
+                                    this.chart.yAxis[1].update({
+                                        title:{
+                                            text: intl.formatMessage({id: 'freezing_column_total_circulation_chart'})
+                                        }
+                                    });
+                                }else if(series[index].name == intl.formatMessage({id: 'freezing_column_total_frozen'})){
+                                    this.chart.yAxis[1].update({
+                                        title:{
+                                            text: intl.formatMessage({id: 'freezing_column_total_frozen_chart'})
+                                        }
+                                    });
+                                }
+                            }
+                        }
+                    }
+                },
+                tooltip: {
+                    useHTML: true,
+                    shadow: true,
+                    split: false,
+                    shared: true,
+                    borderColor: '#7F8C8D',
+                    borderRadius: 2,
+                    backgroundColor: 'white',
+                    formatter: function () {
+                        var s;
+                        var points = this.points;
+                        var pointsLength = points.length;
+                      
+                        s = '<table class="tableformat" style="border: 0px;padding-left:10px;padding-right:10px" min-width="100%"><tr><td colspan=2 style="padding-bottom:5px;"><span style="font-size: 10px;"> ' + moment(points[0].x).format("YYYY-MM-DD") + '</span><br></td></tr>'
+                        for (let index = 0; index < pointsLength; index += 1) {
+                            s += '<tr><td style="padding-top:4px;padding-bottom:4px;border-top:1px solid #D5D8DC;" valign="top">' + '<span style="color:' + points[index].series.color + ';font-size: 15px !important;">\u25A0</span> ' + intl.formatMessage({id: points[index].series.name })+ '</td>' +
+                                '<td align="right" style="padding-top:5px;padding-left:10px;padding-bottom:4px;border-top:1px solid #D5D8DC;"><span ><b style="color:#C23631">' +
+                                (points[index].series.name == intl.formatMessage({id: 'freezing_column_freezing_rate'}) ? Highcharts.numberFormat(points[index].y, 2, '.', ',') + ' %</b>' : points[index].series.name ==  intl.formatMessage({id: 'freezing_column_total_circulation'}) ?  toThousands((new BigNumber(points[index].y)).decimalPlaces(6)) + '</b>':Highcharts.numberFormat(points[index].y, 0, '.', ',') + '</b>')
+                                + '</span>' +
+                                '</td></tr>'
+                        }
+                        s += '</table>';
+                        return s;
+                    },
+
+                },
+                series: [{
+                    name: intl.formatMessage({id: 'freezing_column_total_circulation'}),
+                    type: 'column',
+                    yAxis: 1,
+                    color: "#DA8885",
+                    data:turnoverTotal,
+                    pointStart: Date.UTC(2019, 11, 20),
+			        pointInterval: 24 * 3600 * 1000 , // one day
+                    tooltip: {
+                        valueSuffix: ' '
+                    },
+                    showInNavigator: false,
+                    dataGrouping: { // 针对highstock,将指定数量的数据合并展现为一个点
+                        enabled: false
+                    }
+                }, {
+                    name: intl.formatMessage({id: 'freezing_column_total_frozen'}),
+                    type: 'column',
+                    yAxis: 1,
+                    color: "#C64844",
+                    data:freezeTotal,
+                    pointStart: Date.UTC(2019, 11, 20),
+			        pointInterval: 24 * 3600 * 1000 , // one day
+                    tooltip: {
+                        valueSuffix: ' '
+                    },
+                    showInNavigator: false,
+                    dataGrouping: { // 针对highstock,将指定数量的数据合并展现为一个点
+                        enabled: false
+                    }
+                }, {
+                    name: intl.formatMessage({id: 'freezing_column_freezing_rate'}),
+                    type: 'spline',
+                    color: "#5A5A5A",
+                    data:freezingRate,
+                    pointStart: Date.UTC(2019, 11, 20),
+			        pointInterval: 24 * 3600 * 1000 , // one day
+                    marker: {
+                        enabled: true,
+                    
+                    },
+                    tooltip: {
+                        valueSuffix: ' %'
+                    },
+                    showInNavigator: true,
+                    dataGrouping: { // 针对highstock,将指定数量的数据合并展现为一个点
+                        enabled: false
+                    }
+                }]
+            }
+            Object.keys(options).map(item => {
+                _config[item] = options[item]
+            })
+        }
+        if (newData && newData.length === 0) {
+            _config.title.text = "No data";
+        }
+        Highcharts.StockChart(id, _config);
+    }
+
+    componentDidMount() {
+        this.initLine(this.state.lineId);
+    }
+
+    componentDidUpdate() {
+        this.initLine(this.state.lineId);
+    }
+
+    render() {
+        return (
+            <div>
+                <div id={this.state.lineId} style={this.props.style}></div>
+            </div>
+        )
+    }
+}
+
 
 function setOption(config, child) {
     Object.keys(child).map(item => {

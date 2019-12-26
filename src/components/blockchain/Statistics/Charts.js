@@ -25,25 +25,9 @@ import {QuestionMark} from "../../common/QuestionMark";
 import { CsvExport } from "../../common/CsvExport";
 import isMobile from "../../../utils/isMobile";
 import {
-    LineReactHighChartAdd,
-    LineReactHighChartTx,
-    LineReactHighChartTotalTxns,
-    LineReactHighChartBlockchainSize,
-    BarReactHighChartBlockSize,
-    LineReactHighChartPrice,
-    LineReactHighChartVolumeUsd,
-    EnergyConsumeChart,
-    ContractInvocationChart,
-    ContractInvocationDistributionChart,
-    EnergyConsumeDistributionChart,
     OverallFreezingRateChart,
+    lineTRXSupplyChart
 } from "../../common/LineCharts";
-
-import {
-    RepresentativesRingPieReact,
-    SupplyTypesTRXPieChart,
-} from "../../common/RingPieChart";
-
 import {loadPriceData} from "../../../actions/markets";
 import {t} from "../../../utils/i18n";
 
@@ -55,7 +39,6 @@ class StatCharts extends React.Component {
 
     constructor() {
         super();
-
         this.state = {
             accounts: null,
             transactionStats: null,
@@ -97,6 +80,12 @@ class StatCharts extends React.Component {
             OverallFreezingRateParams:{
                 start_day:'2019-12-01',
                 end_day: moment().format("YYYY-MM-DD")
+            },
+            SupplyData:null,
+            SupplyParams:{
+                limit:1000,  
+                start_day:moment('2019-12-01').valueOf(),
+                end_day: moment().valueOf()
             }
         };
     }
@@ -108,7 +97,10 @@ class StatCharts extends React.Component {
         switch (chartName){
             case 'OverallFreezingRate':
                 this.loadOverallFreezingRate();
-                break;   
+                break;  
+            case 'supply':
+                this.loadSupply();
+                break;    
             default:
                 this.loadTxOverviewStats();
                 break;
@@ -327,141 +319,179 @@ class StatCharts extends React.Component {
         });
     }
 
+    async loadSupply() {
+        let { start_day, end_day, limit} = this.state.SupplyParams;
+        
+        let {data: {data}} = await xhr.get(API_URL + "/api/turnover?size="+ limit +"&start="+ start_day+"&end="+end_day); 
+        console.log('data',data)
+        let x;
+        data.map((item, index) => {
+            item.timestamp = moment(item.day).valueOf();
+            x = new BigNumber(item.total_turn_over);
+            item.total_turn_over_num = x.decimalPlaces(6).toNumber();
+            item.total_unfreezing_weight = x.minus(item.total_freeze_weight).decimalPlaces(6).toNumber();
+        })
+        this.setState({
+            OverallFreezingRate:  sortBy(data, function(o) { return o.timestamp; }),
+            OverallFreezingRateRevers:  data
+        });
+       
+        // let higest = {date: '', increment: ''};
+        // let lowest = {date: '', increment: ''};
+        // let pr = cloneDeep(data).sort(this.compare('freezing_rate'));
+        // for (let p in pr) {
+        //     pr[p] = {date: pr[p].time, ...pr[p]};
+        // }
+        // this.setState({
+        //     summit: {
+        //         OverallFreezingRate_sort: [
+        //             {
+        //                 date: pr[pr.length - 1].timestamp ,
+        //                 increment: pr[pr.length - 1].freezing_rate ? (pr[pr.length - 1].freezing_rate * 100).toFixed(2) + '%': 0
+        //             },
+        //             {
+        //                 date: pr[0].timestamp,
+        //                 increment: pr[0].freezing_rate ? (pr[0].freezing_rate * 100).toFixed(2) + '%': 0
+        //             }],
+
+        //     }
+        // });
+    }
+
     freezingCustomizedColumn = () => {
-    let {intl} = this.props;
-    let column = [
-        {
-            title: upperFirst(intl.formatMessage({id: 'freezing_column_time'})),
-            dataIndex: 'day',
-            key: 'day',
-            width: '60px',
-            align: 'center',
+        let {intl} = this.props;
+        let column = [
+            {
+                title: upperFirst(intl.formatMessage({id: 'freezing_column_time'})),
+                dataIndex: 'day',
+                key: 'day',
+                width: '60px',
+                align: 'center',
+                render: (text, record, index) => {
+                    return <span>{text}</span>
+                }
+            },
+            {
+                title: upperFirst(intl.formatMessage({id: 'freezing_column_total_circulation'})),
+                dataIndex: 'total_turn_over',
+                key: 'total_turn_over',
+                render: (text, record, index) => {
+                    return <FormattedNumber value={text}  minimumFractionDigits={6}/>
+                }
+            },
+            {
+                title: upperFirst(intl.formatMessage({id: 'freezing_column_total_frozen'})),
+                dataIndex: 'total_freeze_weight',
+                key: 'total_freeze_weight',
+                render: (text, record, index) => {
+                    return <FormattedNumber value={text}/>
+                }
+            },
+            {
+            title: () => {
+                let text = intl.formatMessage({id: 'freezing_column_freezing_rate_tip'}); 
+                return (
+                <div>
+                    {upperFirst(intl.formatMessage({id: 'freezing_column_freezing_rate'}))}
+                    <span className="ml-2">
+                    <QuestionMark placement="top" text={text} />
+                    </span>
+                </div>
+                )
+            },
+            dataIndex: 'freezing_column_freezing_rate',
+            key: 'freezing_column_freezing_rate',
             render: (text, record, index) => {
-                return <span>{text}</span>
-            }
-        },
-        {
-            title: upperFirst(intl.formatMessage({id: 'freezing_column_total_circulation'})),
-            dataIndex: 'total_turn_over',
-            key: 'total_turn_over',
-            render: (text, record, index) => {
-                return <FormattedNumber value={text}  minimumFractionDigits={6}/>
-            }
-        },
-        {
-            title: upperFirst(intl.formatMessage({id: 'freezing_column_total_frozen'})),
-            dataIndex: 'total_freeze_weight',
-            key: 'total_freeze_weight',
-            render: (text, record, index) => {
-                return <FormattedNumber value={text}/>
-            }
-        },
-        {
-        title: () => {
-            let text = intl.formatMessage({id: 'freezing_column_freezing_rate_tip'}); 
-            return (
-              <div>
-                {upperFirst(intl.formatMessage({id: 'freezing_column_freezing_rate'}))}
-                <span className="ml-2">
-                  <QuestionMark placement="top" text={text} />
+                return <span>
+                    {record.freezing_rate?
+                        <span>
+                            <FormattedNumber
+                            value={(record.freezing_rate)*100}
+                            minimumFractionDigits={2}
+                            maximumFractionDigits={2}
+                        /> %
+                        </span>    
+                    :<span>0</span>
+                    }
+                    
                 </span>
-              </div>
-            )
-        },
-        dataIndex: 'freezing_column_freezing_rate',
-        key: 'freezing_column_freezing_rate',
-        render: (text, record, index) => {
-            return <span>
-                {record.freezing_rate?
+                }
+            },
+            {
+            title: () => {
+                let text = intl.formatMessage({id: 'freezing_column_energy_ratio_tip'}); 
+                return (
+                <div>
+                    {upperFirst(intl.formatMessage({id: 'freezing_column_energy_ratio'}))}
+                    <span className="ml-2">
+                    <QuestionMark placement="top" text={text} />
+                    </span>
+                </div>
+                )
+            },
+            dataIndex: 'caller_amount',
+            key: 'caller_amount',
+            render: (text, record, index) => {
+                return <span>
+                {record.energy_rate?
                     <span>
                         <FormattedNumber
-                        value={(record.freezing_rate)*100}
+                        value={(record.energy_rate)*100}
                         minimumFractionDigits={2}
                         maximumFractionDigits={2}
                     /> %
                     </span>    
-                 :<span>0</span>
+                :<span>0</span>
                 }
-                
             </span>
             }
-        },
-        {
-        title: () => {
-            let text = intl.formatMessage({id: 'freezing_column_energy_ratio_tip'}); 
-            return (
-              <div>
-                {upperFirst(intl.formatMessage({id: 'freezing_column_energy_ratio'}))}
-                <span className="ml-2">
-                  <QuestionMark placement="top" text={text} />
-                </span>
-              </div>
-            )
-        },
-        dataIndex: 'caller_amount',
-        key: 'caller_amount',
-        render: (text, record, index) => {
-            return <span>
-            {record.energy_rate?
-                <span>
-                    <FormattedNumber
-                    value={(record.energy_rate)*100}
-                    minimumFractionDigits={2}
-                    maximumFractionDigits={2}
-                /> %
-                </span>    
-             :<span>0</span>
+            },
+            {
+            title: () => {
+                let text = intl.formatMessage({id: 'freezing_column_bandwidth_ratio_tip'}); 
+                return (
+                <div>
+                    {upperFirst(intl.formatMessage({id: 'freezing_column_bandwidth_ratio'}))}
+                    <span className="ml-2">
+                    <QuestionMark placement="top" text={text} />
+                    </span>
+                </div>
+                )
+            },
+            dataIndex: 'trigger_amount',
+            key: 'trigger_amount',
+            render: (text, record, index) => {
+                return <span>
+                {record.net_rate?
+                    <span>
+                        <FormattedNumber
+                        value={(record.net_rate)*100}
+                        minimumFractionDigits={2}
+                        maximumFractionDigits={2}
+                    /> %
+                    </span>    
+                :<span>0</span>
+                }
+            </span>
             }
-        </span>
-        }
-        },
-        {
-        title: () => {
-            let text = intl.formatMessage({id: 'freezing_column_bandwidth_ratio_tip'}); 
-            return (
-              <div>
-                {upperFirst(intl.formatMessage({id: 'freezing_column_bandwidth_ratio'}))}
-                <span className="ml-2">
-                  <QuestionMark placement="top" text={text} />
-                </span>
-              </div>
-            )
-        },
-        dataIndex: 'trigger_amount',
-        key: 'trigger_amount',
-        render: (text, record, index) => {
-            return <span>
-            {record.net_rate?
-                <span>
-                    <FormattedNumber
-                    value={(record.net_rate)*100}
-                    minimumFractionDigits={2}
-                    maximumFractionDigits={2}
-                /> %
-                </span>    
-             :<span>0</span>
-            }
-        </span>
-        }
-        },
-    //   {
-    //     title: upperFirst(intl.formatMessage({id: 'freezing_column_more'})),
-    //     dataIndex: 'caller_percent',
-    //     key: 'caller_percent',
-    //     render: (text, record, index) => {
-    //       return <span>{text}</span>
-    //     }
-    //   },
-        
-    ];
-    return column;
+            },
+        //   {
+        //     title: upperFirst(intl.formatMessage({id: 'freezing_column_more'})),
+        //     dataIndex: 'caller_percent',
+        //     key: 'caller_percent',
+        //     render: (text, record, index) => {
+        //       return <span>{text}</span>
+        //     }
+        //   },
+            
+        ];
+        return column;
     }
     render() {
         let {match, intl} = this.props;
         let {txOverviewStats, txOverviewStatsFull, 
-            addressesStats, blockSizeStats, blockchainSizeStats, summit ,OverallFreezingRate,OverallFreezingRateRevers } = this.state;
+            addressesStats, blockSizeStats, blockchainSizeStats, summit ,OverallFreezingRate, OverallFreezingRateRevers, SupplyData } = this.state;
         let { start_day, end_day} = this.state.OverallFreezingRateParams;
-
         let unit;
         let csvurl = API_URL + "/api/freezeresource?start_day=" + start_day+"&end_day="+end_day + "&format=csv";
         let freezing_column = this.freezingCustomizedColumn();
@@ -471,8 +501,6 @@ class StatCharts extends React.Component {
         } else {
             unit = 'number';
         }
-        
-
         return (
             <main className="container header-overlap">
                 {
@@ -516,19 +544,25 @@ class StatCharts extends React.Component {
                                        data={OverallFreezingRate}
                                        intl={intl}
                                    />
-                                   <div className="token_black">
-                                   <div className="col-md-12 table_pos">
-                                       {/* <p>{ intl.formatMessage({id: 'a_total'}) + intl.formatNumber(ContractInvocationDistributionParams.total_energy)+ 
-                                           intl.formatMessage({id: 'Contract_times_calls'})}
-                                       </p> */}
-                                       
-                                   </div>
-                                   </div>
-
                                </div>
                            }
                            </div>
-                       }
+                        }
+                        {
+                           match.params.chartName === 'supply' &&
+                           <div>
+                           {
+                               SupplyData === null ? <TronLoader/> :
+                               <div>
+                                   <lineTRXSupplyChart
+                                       style={{height: chartHeight}}
+                                       data={SupplyData}
+                                       intl={intl}
+                                   />
+                               </div>
+                           }
+                           </div>
+                        }
                     </div>
 
                   </div>
