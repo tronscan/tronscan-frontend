@@ -502,7 +502,7 @@ class Transfers extends React.Component {
             <TronLoader />
           </div>
         )}
-        <div className="row transfers">
+        <div className="row transfers token20Detail">
           <div className="col-md-12 ">
             {tokensInfo.transferSearchStatus ? (
               <div
