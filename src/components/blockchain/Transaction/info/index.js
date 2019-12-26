@@ -25,8 +25,7 @@ import AssetIssueContract from './AssetIssueContract'
 import UnfreezeAssetContract from './UnfreezeAssetContract'
 import UpdateAssetContract from './UpdateAssetContract'
 import WithdrawBalanceContract from './WithdrawBalanceContract'
-
-
+ 
 
 /**
  * Get the title

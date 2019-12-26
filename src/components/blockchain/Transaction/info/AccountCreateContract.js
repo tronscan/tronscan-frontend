@@ -9,6 +9,7 @@ import Field from "../../../tools/TransactionViewer/Field";
 import { AddressLink } from "../../../common/Links";
 import { TRXPrice } from "../../../common/Price";
 import { ONE_TRX } from "../../../../constants";
+import {TransationTitle} from './common/Title'
 
 class TransferContract extends React.Component {
   constructor(props) {
@@ -19,33 +20,13 @@ class TransferContract extends React.Component {
     let { contract } = this.props;
     return (
       <Fragment>
-        <div className="card-body table-title">
-          <h5>
-            <i className="fa fa-exchange-alt"></i>
-            {tu("transation_type")}-
-            <small>{tu("transation_transfer_trx")}</small>
-          </h5>
-        </div>
+       <TransationTitle contractType="TransferContract"></TransationTitle>
         <div className="table-responsive">
           <table className="table">
-            <tbody>
-              <Field label="from">
-                <AddressLink address={contract["owner_address"]}>
-                  {contract["owner_address"]}
-                </AddressLink>
-              </Field>
-              <Field label="to">
-                <AddressLink address={contract["to_address"]}>
-                  {contract["to_address"]}
-                </AddressLink>
-              </Field>
-              <Field label="amount">
-                <TRXPrice amount={contract.amount / ONE_TRX} />
-              </Field>
-              <Field label="note">
-                {decodeURIComponent(contract.contract_note || "")}
-              </Field>
-            </tbody>
+              <tbody>
+                <Field label="transation_owner_address"><AddressLink address={contract['owner_address']}/></Field>
+                <Field label="transtaion_activate_account"><AddressLink address={contract['account_address']}/></Field>
+              </tbody>
           </table>
         </div>
       </Fragment>
