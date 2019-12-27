@@ -26,7 +26,7 @@ import UnfreezeAssetContract from './UnfreezeAssetContract'
 import UpdateAssetContract from './UpdateAssetContract'
 import WithdrawBalanceContract from './WithdrawBalanceContract'
 import WitnessCreateContract from './WitnessCreateContract'
-
+import AccountPermissionUpdateContract from './AccountPermissionUpdateContract'
 
 
 import TriggerContract from './TriggerContract'
@@ -124,8 +124,6 @@ export default function Info({contract}) {
                 return '';
             case "TRIGGERSMARTCONTRACT":
                 return <TriggerContract contract={contract}></TriggerContract>;
-            case "UPDATEBROKERAGECONTRACT":
-                return '';
             case "UNFREEZEASSETCONTRACT":
                 return <UnfreezeAssetContract contract={contract}></UnfreezeAssetContract>;
             case "UPDATEASSETCONTRACT":
@@ -144,6 +142,8 @@ export default function Info({contract}) {
                 return <UpdateEnergyLimitContract contract={contract}/>;
             case "UPDATEBROKERAGECONTRACT":
                 return <UpdateBrokerageContract contract={contract}/>;
+            case "ACCOUNTPERMISSIONUPDATECONTRACT":
+                return <AccountPermissionUpdateContract contract={contract}/>
             default:
                 return (
                     <Fragment>

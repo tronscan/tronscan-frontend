@@ -150,6 +150,7 @@ export const lang19Q4 = {
     "TRX_historical_data":"TRX balance historical data in the contract",
     "TRX_historical_data_y_text":"Amount（TRX）",
     "TRX_historical_data_tip":"TRX Amount",
-
-
+    "transaction_rewards_distribution_ratio":"投票者シェア",
+    "transaction_energy_cap":"エネルギーの上限",
+    "transaction_enrgy_cap_tip":"契約デプロイヤが提供する最大エネルギー値",
 }

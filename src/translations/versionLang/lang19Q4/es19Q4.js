@@ -149,4 +149,7 @@ export const lang19Q4 = {
     "TRX_historical_data":"TRX balance historical data in the contract",
     "TRX_historical_data_y_text":"Amount（TRX）",
     "TRX_historical_data_tip":"TRX Amount",
+    "transaction_rewards_distribution_ratio":"Proporción de distribución de recompensas",
+    "transaction_energy_cap":"Límite de energía",
+    "transaction_enrgy_cap_tip":"Máxima energía proporcionada por los implementadores de contrato",
 }

@@ -5,3 +5,69 @@
         padding:0;
     }
 }
+.permission-body{
+    border-bottom:1px solid #6666662b;
+    margin-bottom:10px;
+    .permission-child-item{
+        padding-bottom:10px;
+        display: flex;
+        .permission-label{
+            width:70px;
+        }
+        .permission-text{
+            flex:1;
+            .permission-text-content{
+                width:400px;
+                .key-title{
+                    display: flex;
+                    .key-title-address{
+                        width:350px;
+                    }
+                    .key-title-weight{
+                        flex:1;
+                        text-align:center;
+                    }
+                }
+                ul{
+                    padding:0;
+                    list-style:none;
+                    li{
+                        display: flex;
+                        padding:10px;
+                        border-bottom:1px solid #6666662b;
+                        .key-address {
+                            width:350px;
+                            padding-left:10px;
+                        }   
+                        .key-weight{
+                            flex:1;
+                            text-align:center;
+                        }
+                        position: relative;
+                        .key-icon{
+                            position: absolute;
+                            top:15px;
+                            width:7px;
+                            height:7px;
+                            border-left:1px solid #d8d8d8;
+                            border-bottom:1px solid #d8d8d8;
+                        }
+                    }
+                }
+            }
+            .permission-operations{
+                list-style: none;
+        
+                 overflow: hidden;
+                 li{
+                    float: left;
+                    margin-right:10px;
+                    border: 1px solid #333333;
+                    border-radius: 13.5px;
+                    padding:0 5px;
+                    margin-bottom:10px;
+                 }
+            }
+        }
+    }
+}

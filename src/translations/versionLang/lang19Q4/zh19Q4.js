@@ -221,6 +221,9 @@ export const lang19Q4 = {
     "transation_ACCOUNTPERMISSIONUPDATECONTRACT":"更新账户权限",
     "transation_UPDATEENERGYLIMITCONTRACT":"更新合约能量限制",
     "transation_UPDATEBROKERAGECONTRACT":"更新超级代表佣金比例",
-    "transation_CLEARABICONTRACT":"清除合约ABI "
+    "transation_CLEARABICONTRACT":"清除合约ABI ",
+    "transaction_rewards_distribution_ratio":"选民分成比例",
+    "transaction_energy_cap":"能量上限",
+    "transaction_enrgy_cap_tip":"合约部署者提供的能量上限值",
 
 }
