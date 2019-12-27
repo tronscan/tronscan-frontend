@@ -2,26 +2,21 @@ import React, {Fragment, useState, useEffect} from "react";
 import {tu} from "../../../../utils/i18n";
 import { Icon, Tooltip } from "antd";
 import { upperFirst } from "lodash";
-import {AddressLink, ExternalLink, ContractLink, TokenTRC20Link} from "../../../common/Links";
+import {AddressLink, ExternalLink, ContractLink, TokenTRC20Link, TokenLink} from "../../../common/Links";
 import {TRXPrice} from "../../../common/Price";
 import {ONE_TRX, CONTRACT_ADDRESS_USDT, CONTRACT_ADDRESS_WIN, CONTRACT_ADDRESS_GGC, TRADINGMAP, SUNWEBCONFIG, IS_SUNNET} from "../../../../constants";
 import rebuildList from "../../../../utils/rebuildList";
 import BandwidthUsage from './common/BandwidthUsage'
+import {TransationTitle} from './common/Title'
 import {injectIntl} from "react-intl";
+import {toThousands} from '../../../../utils/number'
 
 function TriggerContract({contract,intl}){
     const defaultImg = require("../../../../images/logo_default.png");
 
     return (
       <Fragment>
-        <div className="card-body table-title">
-          <h5>
-            <i className="fa fa-exchange-alt"></i>
-            {tu("trigger_smart_contract")}
-            <small>{tu('normal_address_trigger_smart_contract')}</small>
-          </h5>
-          {/* {getTitle(contract)} */}
-        </div>
+        <TransationTitle contractType={contract.contractType}></TransationTitle>
         <div className="content">
           <div className="content_pos">
             <div className="d-flex border-bottom pt-2">
@@ -38,12 +33,12 @@ function TriggerContract({contract,intl}){
                 </div>
               </div>
             </div>
-            <div className="d-flex border-bottom pt-2">
+            <div className="d-flex border-bottom">
               <div className="content_box_name">
                 {tu("contract_address")}
               </div>
               <div className="flex1">
-                <div className="d-flex border-bottom content_item">
+                <div className="d-flex content_item">
                   <AddressLink
                     address={contract["contract_address"]}
                     isContract={true}
@@ -60,14 +55,15 @@ function TriggerContract({contract,intl}){
                         type="file-text"
                         style={{
                           verticalAlign: 2,
-                          color: "#77838f"
+                          marginRight: 6,
+                          color: "#333"
                         }}
                       />
                     </Tooltip>
                     {contract["contract_address"]}
                   </AddressLink>
                 </div>
-                <div className="d-flex border-bottom content_item">
+                <div className="d-flex">
                 {JSON.stringify(contract.internal_transactions) !=
                     "{}" && (
                       <div className="flex1">
@@ -102,9 +98,11 @@ function TriggerContract({contract,intl}){
                                       {tu("transfers")}
                                     </div> */}
                                     <div className="mr-1">
-                                      {v.map_amount +
-                                        " " +
-                                        v.map_token_name_abbr}
+                                      {v.map_amount + " "}
+                                      {v.map_token_id ? <TokenLink
+                                        id={v.map_token_id}
+                                        name={v.map_token_name_abbr}
+                                        ></TokenLink> : v.map_token_name_abbr}
                                     </div>
                                     <div className="mr-1">
                                       {tu("from")}
@@ -121,6 +119,7 @@ function TriggerContract({contract,intl}){
                                         {item["caller_address"]}
                                       </ContractLink>
                                     </div>
+                                    <img src={require('../../../../images/transaction/arrow.png')} style={{height: '11px',width: '16px',margin: '5px 5px 0'}}></img>
                                     <div className="mr-1">
                                       {tu("to")}
                                     </div>
@@ -150,7 +149,7 @@ function TriggerContract({contract,intl}){
                 </div>
               </div>
             </div>
-            <div className="d-flex border-bottom pt-2">
+            <div className="d-flex border-bottom">
               <div className="content_box_name">
                 {tu("value")}
               </div>
@@ -171,14 +170,14 @@ function TriggerContract({contract,intl}){
                 undefined &&
               contract.tokenTransferInfo.symbol !==
                 undefined && (
-                <div className="d-flex border-bottom pt-2">
+                <div className="d-flex border-bottom">
                   <div className="content_box_name">
                     {tu("TRC20_transfers")}
                   </div>
                   <div className="flex1">
-                    <div className="d-flex border-bottom content_item">
+                    <div className="d-flex content_item">
                       <div className="content_name">
-                        {tu("from")}:
+                        {tu("from")}
                       </div>
                       <div className="flex1">
                         <AddressLink
@@ -196,9 +195,9 @@ function TriggerContract({contract,intl}){
                         </AddressLink>
                       </div>
                     </div>
-                    <div className="d-flex border-bottom content_item">
+                    <div className="d-flex content_item">
                       <div className="content_name">
-                        {tu("to")}:
+                        {tu("to")}
                       </div>
                       <div className="flex1">
                         <AddressLink
@@ -216,12 +215,12 @@ function TriggerContract({contract,intl}){
                         </AddressLink>
                       </div>
                     </div>
-                    <div className="d-flex border-bottom content_item">
+                    <div className="d-flex content_item">
                       <div className="content_name">
-                        {tu("amount")}:
+                        {tu("amount")}
                       </div>
                       <div className="flex1">
-                        {Number(
+                        {toThousands(Number(
                           contract.tokenTransferInfo[
                             "amount_str"
                           ]
@@ -231,12 +230,12 @@ function TriggerContract({contract,intl}){
                             contract.tokenTransferInfo[
                               "decimals"
                             ]
-                          )}
+                          ))}
                       </div>
                     </div>
-                    <div className="d-flex border-bottom content_item">
+                    <div className="d-flex content_item">
                       <div className="content_name">
-                        {tu("token_txs_info")}:
+                        {tu("token_txs_info")}
                       </div>
                       <div className="flex1">
                         {contract.tokenTransferInfo[
@@ -321,15 +320,34 @@ function TriggerContract({contract,intl}){
                 </div>
               )}
             {
-              contract.cost && <BandwidthUsage cost={contract.cost}></BandwidthUsage>
+              contract.cost && 
+                <div className="d-flex border-bottom">
+                  <div className="content_box_name">
+                    {tu("consume_bandwidth")}
+                  </div>
+                  <div style={{paddingTop: '10px'}}>
+                    <BandwidthUsage cost={contract.cost}></BandwidthUsage>
+                  </div>
+                </div>
+            }
+            {
+              contract.cost && 
+                <div className="d-flex border-bottom">
+                  <div className="content_box_name">
+                    {tu("consume_energy")}
+                  </div>
+                  <div style={{paddingTop: '10px'}}>
+                    <BandwidthUsage cost={contract.cost} type="1"></BandwidthUsage>
+                  </div>
+                </div>
             }
             {contract.method && (
-              <div className="d-flex border-bottom pt-2">
+              <div className="d-flex border-bottom">
                 <div className="content_box_name">
                   {tu("Method_calling")}
                 </div>
                 <div className="flex1">
-                  <div className="d-flex border-bottom content_item">
+                  <div className="d-flex content_item">
                     {/* <div className="content_name">
                       {tu("contract_method")}:
                     </div> */}
@@ -341,7 +359,7 @@ function TriggerContract({contract,intl}){
                     Object.keys(contract.parameter).map(p => {
                       return (
                         <div
-                          className="d-flex border-bottom content_item"
+                          className="d-flex content_item"
                           key={p}
                         >
                           <div className="content_name">
