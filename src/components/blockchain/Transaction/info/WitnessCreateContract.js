@@ -20,7 +20,7 @@ export default function WitnessCreateContract({contract}){
       <table className="table">
           <tbody>
           <Field label="initiate_address"><AddressLink address={contract['owner_address']}/></Field>
-          <Field label="sr_url">{url ? <a href={url} target="_blank">{url}</a> : '--'}</Field>
+          <Field label="sr_url">{url ? <ExternalLink url={url}></ExternalLink> : '--'}</Field>
           <Field label="sr_fee">9,999TRX</Field>
           <Field label="consume_bandwidth">
             <BandwidthUsage cost={contract.cost}></BandwidthUsage>

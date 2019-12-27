@@ -29,7 +29,8 @@ import WitnessCreateContract from './WitnessCreateContract'
 import AccountPermissionUpdateContract from './AccountPermissionUpdateContract'
 import VoteWitnessContract from './VoteWitnessContract'
 import WitnessUpdateContract from './WitnessUpdateContract'
-
+import AccountUpdateContract from './AccountUpdateContract'
+import ProposalCreateContract from './ProposalCreateContract'
 
 
 
@@ -111,7 +112,7 @@ export default function Info({contract}) {
             case "WITNESSCREATECONTRACT":
                 return <WitnessCreateContract contract={contract}></WitnessCreateContract>
             case "ACCOUNTUPDATECONTRACT":
-                return ''
+                return <AccountUpdateContract contract={contract}></AccountUpdateContract>
             case "ACCOUNTCREATECONTRACT":
                 return <AccountCreateContract contract={contract}></AccountCreateContract>;
             case "WITHDRAWBALANCECONTRACT":
@@ -125,7 +126,7 @@ export default function Info({contract}) {
             case "ASSETISSUECONTRACT":
                 return <AssetIssueContract contract={contract}></AssetIssueContract>;
             case "PROPOSALCREATECONTRACT":
-                return '';
+                return <ProposalCreateContract contract={contract}></ProposalCreateContract>;
             case "TRIGGERSMARTCONTRACT":
                 return <TriggerContract contract={contract}></TriggerContract>;
             case "UNFREEZEASSETCONTRACT":
