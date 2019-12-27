@@ -11,6 +11,8 @@ import { ONE_TRX } from "../../../../constants";
 import { NameWithId } from '../../../common/names';
 import rebuildList from "../../../../utils/rebuildList";
 import {TransationTitle} from './common/Title'
+import BandwidthUsage from './common/BandwidthUsage'
+
 
 class TransferAssetContract extends React.Component {
   constructor(props) {
@@ -37,6 +39,8 @@ class TransferAssetContract extends React.Component {
                 <Field label="amount">{tokenIdData.map_amount || 0}</Field>
                 <Field label="trc20_token_id">{contract.map_token_id || '-'}</Field>
                 <Field label="token"><NameWithId value={contract} type="abbr" notamount totoken tokenid={false} /></Field>
+                {JSON.stringify(contract.cost) !=
+                              "{}" && <Field label="consume_bandwidth"><BandwidthUsage cost={contract.cost}/></Field>}
                 </tbody>
             </table>
         </div>

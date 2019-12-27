@@ -9,6 +9,8 @@ import { AddressLink } from "../../../common/Links";
 import { TRXPrice } from "../../../common/Price";
 import { ONE_TRX } from "../../../../constants";
 import {TransationTitle} from './common/Title'
+import BandwidthUsage from './common/BandwidthUsage'
+
 class TransferContract extends React.Component {
   constructor(props) {
     super(props);
@@ -38,6 +40,8 @@ class TransferContract extends React.Component {
               <Field label="note">
                 {decodeURIComponent(contract.contract_note || "")}
               </Field>
+              {JSON.stringify(contract.cost) !=
+                              "{}" && <Field label="consume_bandwidth"><BandwidthUsage cost={contract.cost}/></Field>}
             </tbody>
           </table>
         </div>

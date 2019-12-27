@@ -10,6 +10,7 @@ import { TRXPrice } from "../../../common/Price";
 import { ONE_TRX } from "../../../../constants";
 import {TransationTitle} from './common/Title'
 import { NameWithId } from '../../../common/names';
+import BandwidthUsage from './common/BandwidthUsage'
 
 
 class UnfreezeAssetContract extends React.Component {
@@ -37,7 +38,9 @@ class UnfreezeAssetContract extends React.Component {
                 {contract.asset_name || '-'}
               </Field>
               <Field label="token">
-                <NameWithId value={contract} type="abbr" notamount totoken tokenid={false} />              </Field>
+                <NameWithId value={contract} type="abbr" notamount totoken tokenid={false} /> 
+               </Field>
+               {JSON.stringify(contract.cost) != "{}" && <Field label="consume_bandwidth"><BandwidthUsage cost={contract.cost}/></Field>}
             </tbody>
           </table>
         </div>

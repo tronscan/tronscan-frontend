@@ -10,6 +10,7 @@ import { AddressLink } from "../../../common/Links";
 import { TRXPrice } from "../../../common/Price";
 import { ONE_TRX } from "../../../../constants";
 import {TransationTitle} from './common/Title'
+import BandwidthUsage from './common/BandwidthUsage'
 
 class AccountCreateContract extends React.Component {
   constructor(props) {
@@ -26,6 +27,8 @@ class AccountCreateContract extends React.Component {
               <tbody>
                 <Field label="transaction_owner_address"><AddressLink address={contract['owner_address']}/></Field>
                 <Field label="transaction_activate_account"><AddressLink address={contract['account_address']}/></Field>
+                {JSON.stringify(contract.cost) != "{}" && <Field label="consume_bandwidth"><BandwidthUsage cost={contract.cost}/></Field>}
+
               </tbody>
           </table>
         </div>

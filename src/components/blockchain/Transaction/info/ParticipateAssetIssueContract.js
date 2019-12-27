@@ -11,6 +11,7 @@ import { ONE_TRX } from "../../../../constants";
 import { NameWithId } from '../../../common/names';
 import rebuildList from "../../../../utils/rebuildList";
 import {TransationTitle} from './common/Title'
+import BandwidthUsage from './common/BandwidthUsage'
 
 
 class ParticipateAssetIssueContract extends React.Component {
@@ -32,6 +33,8 @@ class ParticipateAssetIssueContract extends React.Component {
                 <Field label="amount">{contract.amount / ONE_TRX} TRX</Field>
                 <Field label="trc20_token_id">{contract.asset_name || '-'}</Field>
                 <Field label="token"><NameWithId value={contract} type="abbr" notamount totoken tokenid={false} /></Field>
+                {JSON.stringify(contract.cost) !=
+                              "{}" && <Field label="consume_bandwidth"><BandwidthUsage cost={contract.cost}/></Field>}
                 </tbody>
             </table>
         </div>

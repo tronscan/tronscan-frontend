@@ -10,6 +10,8 @@ import { TRXPrice } from "../../../common/Price";
 import { ONE_TRX } from "../../../../constants";
 import {TransationTitle} from './common/Title'
 import {toUtf8} from 'tronweb'
+import BandwidthUsage from './common/BandwidthUsage'
+
 
 class UpdateAssetContract extends React.Component {
   constructor(props) {
@@ -35,6 +37,8 @@ class UpdateAssetContract extends React.Component {
               <Field label="URL"><ExternalLink url={toUtf8(contract.url)}/></Field>
               <Field label="transaction_consumed_bandwidth_cap_per"  tip={true} text="transaction_consumed_bandwidth_cap_per_tip">{}</Field>
               <Field label="transaction_consumed_bandwidth_cap_all"  tip={true} text="transaction_consumed_bandwidth_cap_all_tip">{}</Field>
+              {JSON.stringify(contract.cost) != "{}" && <Field label="consume_bandwidth"><BandwidthUsage cost={contract.cost}/></Field>}
+
             </tbody>
           </table>
         </div>
