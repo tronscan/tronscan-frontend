@@ -1,4 +1,4 @@
-import { API_URL_SUNNET, API_URL } from "../constants.js";
+import { API_URL_SUNNET, API_URL ,IS_NILE} from "../constants.js";
 import xhr from "axios/index";
 class ApiClientAddress {
   constructor() {
@@ -9,6 +9,9 @@ class ApiClientAddress {
 
   async getWalletReward(address) {
     let url = this.apiUrl.tronex;
+    if (IS_NILE) {
+        url="https://api.nileex.io";
+    }
     let { data } = await xhr.get(`${url}/wallet/getReward?address=${address}`);
     return data;
   }
