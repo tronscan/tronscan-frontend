@@ -686,9 +686,9 @@ export class LineReactHighChartBlockchainSize extends React.Component {
         }
         _config.chart.zoomType = 'x';
         _config.chart.marginTop = 80;
-        _config.title.text = intl.formatMessage({id: 'blockchain_size'});
+        _config.title.text = intl.formatMessage({id: 'charts_total_average_blocksize'});
         _config.subtitle.text = intl.formatMessage({id: 'HighChart_tip'});
-        _config.exporting.filename = intl.formatMessage({id: 'blockchain_size'});
+        _config.exporting.filename = intl.formatMessage({id: 'charts_total_average_blocksize'});
         _config.xAxis.tickPixelInterval = 100;
         _config.xAxis.minRange=24 * 3600 * 1000
         _config.yAxis.title.text = intl.formatMessage({id: 'MByte'});
@@ -701,7 +701,7 @@ export class LineReactHighChartBlockchainSize extends React.Component {
             let date = intl.formatDate(this.point.x);
             return (
                 intl.formatMessage({id: 'date'}) + ' : ' + date + '<br/>' +
-                intl.formatMessage({id: 'blockchain_size'}) + ' : ' + this.point.blockchainSize / 1000000
+                intl.formatMessage({id: 'charts_total_average_blocksize'}) + ' : ' + this.point.blockchainSize / 1000000
             )
         }
 
@@ -762,9 +762,9 @@ export class BarReactHighChartBlockSize extends React.Component {
         }
         _config.chart.zoomType = 'x';
         _config.chart.marginTop = 80;
-        _config.title.text = intl.formatMessage({id: 'average_blocksize'});
+        _config.title.text = intl.formatMessage({id: 'charts_average_blocksize'});
         _config.subtitle.text = intl.formatMessage({id: 'HighChart_tip'});
-        _config.exporting.filename = intl.formatMessage({id: 'average_blocksize'});
+        _config.exporting.filename = intl.formatMessage({id: 'charts_average_blocksize'});
         _config.xAxis.tickPixelInterval = 100;
         _config.xAxis.minRange=24 * 3600 * 1000;
         _config.yAxis.title.text = intl.formatMessage({id: 'bytes'});
@@ -955,9 +955,9 @@ export class LineReactHighChartVolumeUsd extends React.Component {
             }
             _config.chart.zoomType = 'x';
             _config.chart.marginTop = 80;
-            _config.title.text = intl.formatMessage({id: 'volume_24'});
+            _config.title.text = intl.formatMessage({id: 'charts_volume_24'});
             _config.subtitle.text = intl.formatMessage({id: 'HighChart_tip'});
-            _config.exporting.filename = intl.formatMessage({id: 'volume_24'});
+            _config.exporting.filename = intl.formatMessage({id: 'charts_volume_24'});
             _config.xAxis.tickPixelInterval = 100;
             // _config.xAxis.minRange=24 * 3600 * 1000
             _config.yAxis.title.text = intl.formatMessage({id: 'billion_usd'});
@@ -970,7 +970,7 @@ export class LineReactHighChartVolumeUsd extends React.Component {
                 let date = intl.formatDate((parseInt(this.point.x)));
                 return (
                     intl.formatMessage({id: 'date'}) + ' : ' + date + '<br/>' +
-                    intl.formatMessage({id: 'volume_24'}) + ' : ' + this.point.y +'<br>'
+                    intl.formatMessage({id: 'volume'}) + ' : ' + this.point.y +'<br>'
                 )
             }
         }
