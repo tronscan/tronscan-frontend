@@ -9,6 +9,8 @@ import { AddressLink } from "../../../common/Links";
 import { TRXPrice } from "../../../common/Price";
 import { ONE_TRX } from "../../../../constants";
 import {TransationTitle} from './common/Title'
+import BandwidthUsage from './common/BandwidthUsage'
+
 
 class WithdrawBalanceContract extends React.Component {
   constructor(props) {
@@ -28,17 +30,11 @@ class WithdrawBalanceContract extends React.Component {
                   {contract["owner_address"]}
                 </AddressLink>
               </Field>
-              <Field label="to">
-                <AddressLink address={contract["to_address"]}>
-                  {contract["to_address"]}
-                </AddressLink>
-              </Field>
               <Field label="amount">
-                <TRXPrice amount={contract.amount / ONE_TRX} />
+                <TRXPrice amount={contract.amount / ONE_TRX || 0} />
               </Field>
-              <Field label="note">
-                {decodeURIComponent(contract.contract_note || "")}
-              </Field>
+              {JSON.stringify(contract.cost) != "{}" && <Field label="consume_bandwidth"><BandwidthUsage cost={contract.cost}/></Field>}
+
             </tbody>
           </table>
         </div>

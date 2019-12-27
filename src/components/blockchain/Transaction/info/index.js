@@ -11,6 +11,11 @@ import { NameWithId } from '../../../common/names';
 import UpdateSettingContract from './UpdateSettingContract'
 import ExchangeCreateContract from './ExchangeCreateContract'
 import TransferContract from './TransferContract'
+import ExchangeInjectContract from './ExchangeInjectContract'
+import ExchangeWithdrawContract from './ExchangeWithdrawContract'
+import ExchangeTransactionContract from './ExchangeTransactionContract'
+import UpdateEnergyLimitContract from './UpdateEnergyLimitContract'
+import UpdateBrokerageContract from './UpdateBrokerageContract'
 import FreezeBalanceContract from './FreezeBalanceContract'
 import UnFreezeBalanceContract from './UnFreezeBalanceContract'
 import TransferAssetContract from './TransferAssetContract'
@@ -21,6 +26,7 @@ import UnfreezeAssetContract from './UnfreezeAssetContract'
 import UpdateAssetContract from './UpdateAssetContract'
 import WithdrawBalanceContract from './WithdrawBalanceContract'
 import WitnessCreateContract from './WitnessCreateContract'
+import AccountPermissionUpdateContract from './AccountPermissionUpdateContract'
 import VoteWitnessContract from './VoteWitnessContract'
 import WitnessUpdateContract from './WitnessUpdateContract'
 import AccountUpdateContract from './AccountUpdateContract'
@@ -54,6 +60,7 @@ const getTitle = contract => {
 };
 
 export default function Info({contract}) {
+    console.log('contract1111',contract)
     let parametersArr = [
         'MAINTENANCE_TIME_INTERVAL',
         'ACCOUNT_UPGRADE_COST',
@@ -84,7 +91,7 @@ export default function Info({contract}) {
         }
 
     }
-    console.log('contract1111',contract)
+  
 
     let TokenIDList = [];
     let tokenIdData;
@@ -122,8 +129,6 @@ export default function Info({contract}) {
                 return <ProposalCreateContract contract={contract}></ProposalCreateContract>;
             case "TRIGGERSMARTCONTRACT":
                 return <TriggerContract contract={contract}></TriggerContract>;
-            case "UPDATEBROKERAGECONTRACT":
-                return '';
             case "UNFREEZEASSETCONTRACT":
                 return <UnfreezeAssetContract contract={contract}></UnfreezeAssetContract>;
             case "UPDATEASSETCONTRACT":
@@ -131,7 +136,19 @@ export default function Info({contract}) {
             case "UPDATESETTINGCONTRACT":
                     return <UpdateSettingContract contract={contract}/>;    
             case "EXCHANGECREATECONTRACT":
-                    return <ExchangeCreateContract contract={contract}/> 
+                return <ExchangeCreateContract contract={contract}/>;
+            case "EXCHANGEINJECTCONTRACT":
+                return <ExchangeInjectContract contract={contract}/>;
+            case "EXCHANGEWITHDRAWCONTRACT":
+                return <ExchangeWithdrawContract contract={contract}/>;
+            case "EXCHANGETRANSACTIONCONTRACT":
+                return <ExchangeTransactionContract contract={contract}/>;
+            case "UPDATEENERGYLIMITCONTRACT":
+                return <UpdateEnergyLimitContract contract={contract}/>;
+            case "UPDATEBROKERAGECONTRACT":
+                return <UpdateBrokerageContract contract={contract}/>;
+            case "ACCOUNTPERMISSIONUPDATECONTRACT":
+                return <AccountPermissionUpdateContract contract={contract}/>
             default:
                 return (
                     <Fragment>
