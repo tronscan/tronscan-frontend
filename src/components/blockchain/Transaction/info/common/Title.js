@@ -19,7 +19,7 @@ export class TransationTitle extends React.Component{
                 <h5>
                     <i className="fa fa-exchange-alt"></i>
                     {tu("transation_type")} -
-                    <small>{tu(`transation_${contractType.toUpperCase()}`)}</small>
+                    <small>{tu(`transation_${contractType && contractType.toUpperCase()}`)}</small>
                 </h5>
             </div>
        ) 

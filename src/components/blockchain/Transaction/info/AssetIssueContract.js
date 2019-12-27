@@ -10,6 +10,7 @@ import { ONE_TRX } from "../../../../constants";
 import {FormattedNumber, FormattedDate, injectIntl} from "react-intl";
 import {toUtf8} from 'tronweb'
 import {Link} from "react-router-dom";
+import {TransationTitle} from './common/Title'
 
 
 class AssetIssueContract extends React.Component {
@@ -21,16 +22,9 @@ class AssetIssueContract extends React.Component {
   }
   render() {
     let { contract } = this.props;
-    console.log(123,contract)
     return (
       <Fragment>
-        <div className="card-body table-title">
-          <h5>
-            <i className="fa fa-exchange-alt"></i>
-            {tu("transation_type")}-
-            <small>{tu("transtaion_token_trc10_issued")}</small>
-          </h5>
-        </div>
+       <TransationTitle contractType={contract.contractType}></TransationTitle>
         <div className="table-responsive">
         <table className="table">
               <tbody>

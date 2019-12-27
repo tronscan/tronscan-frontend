@@ -8,6 +8,7 @@ import Field from "../../../tools/TransactionViewer/Field";
 import { AddressLink } from "../../../common/Links";
 import { TRXPrice } from "../../../common/Price";
 import { ONE_TRX } from "../../../../constants";
+import {TransationTitle} from './common/Title'
 
 class FreezeBalanceContract extends React.Component {
   constructor(props) {
@@ -16,15 +17,10 @@ class FreezeBalanceContract extends React.Component {
   }
   render() {
     let { contract } = this.props;
+    console.log(contract)
     return (
       <Fragment>
-        <div className="card-body table-title">
-          <h5>
-            <i className="fa fa-exchange-alt"></i>
-            {tu("transation_type")}-
-            <small>{tu("transation_freeze_balance")}</small>
-          </h5>
-        </div>
+       <TransationTitle contractType={contract.contractType}></TransationTitle>
         <div className="table-responsive">
         <table className="table">
             <tbody>

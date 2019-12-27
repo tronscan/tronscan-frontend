@@ -10,6 +10,7 @@ import { TRXPrice } from "../../../common/Price";
 import { ONE_TRX } from "../../../../constants";
 import { NameWithId } from '../../../common/names';
 import rebuildList from "../../../../utils/rebuildList";
+import {TransationTitle} from './common/Title'
 
 
 class ParticipateAssetIssueContract extends React.Component {
@@ -27,13 +28,7 @@ class ParticipateAssetIssueContract extends React.Component {
     }
     return (
       <Fragment>
-        <div className="card-body table-title">
-          <h5>
-            <i className="fa fa-exchange-alt"></i>
-            {tu("transation_type")}-
-            <small>{tu("transation_transfer_trx")}</small>
-          </h5>
-        </div>
+       <TransationTitle contractType={contract.contractType}></TransationTitle>
         <div className="table-responsive">
         <table className="table">
               <tbody>

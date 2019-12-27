@@ -11,7 +11,7 @@ import { TRXPrice } from "../../../common/Price";
 import { ONE_TRX } from "../../../../constants";
 import {TransationTitle} from './common/Title'
 
-class TransferContract extends React.Component {
+class AccountCreateContract extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -20,7 +20,7 @@ class TransferContract extends React.Component {
     let { contract } = this.props;
     return (
       <Fragment>
-       <TransationTitle contractType="TransferContract"></TransationTitle>
+       <TransationTitle contractType={contract.contractType}></TransationTitle>
         <div className="table-responsive">
           <table className="table">
               <tbody>
@@ -34,4 +34,4 @@ class TransferContract extends React.Component {
   }
 }
 
-export default TransferContract;
+export default AccountCreateContract;
