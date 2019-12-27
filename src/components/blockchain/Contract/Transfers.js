@@ -23,7 +23,7 @@ class Transfers extends React.Component {
 
     constructor(props) {
         super(props);
-        this.start = moment([2018,5,25]).startOf('day').valueOf();
+        this.start = moment(Date.now() - 7 * 24 * 3600 * 1000).valueOf();
         this.end = moment().valueOf();
         this.state = {
             filter: {},

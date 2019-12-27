@@ -46,7 +46,7 @@ export const lang19Q4 = {
 
     // 2019-12-10
     "token_basic_view": "Overview",
-    "token_additional_materials": "Profile Summary",
+    "token_additional_materials": "More",
     "token_hold_user": "Holders",
     "token_capitalization": "Market Cap/Fully MC",
     "token_credit_rating": "Reputation",
