@@ -996,8 +996,8 @@ class Navigation extends React.Component {
     return (
         <div className="header-top">
           {popup}
-          <div className="logo-wrapper ">
-            <div className="py-2 d-flex px-0">
+          <div className="logo-wrapper">
+            <div className="py-2 d-flex px-0 menu-nav-wrapper">
               <div className="ml-4">
                 <Link to="/">
                   <img src={this.getLogo()} className="logo" alt="Tron"/>
@@ -1015,253 +1015,258 @@ class Navigation extends React.Component {
                   Tronscan is syncing, data might not be up-to-date ({Math.round(syncStatus.sync.progress)}%)
                 </div>
               }
-            <div className="">
-              <button className="navbar-toggler" type="button" data-toggle="collapse"
-                      data-target="#navbar-top">
-                <span className="navbar-toggler-icon"/>
-              </button>
-              <div className="collapse navbar-collapse" id="navbar-top">
-                <ul className="navbar-nav mr-auto">
-                  {filter(routes, r => r.showInMenu !== false).map(route => (
-                      <li key={route.path}  className={IS_MAINNET? 'nav-item dropdown': 'nav-item dropdown pr-3'}>
-                        {
-                          route.linkHref === true ?
-                              <HrefLink
-                                  className={route.routes ? "nav-link" : "nav-link"}
-                                  href={activeLanguage == 'zh' ? route.zhurl : route.enurl}>
-                                {route.icon &&
-                                <i className={route.icon + " d-none d-lg-inline-block mr-1"}/>}
-                                {tu(route.label)}
-                              </HrefLink>
-                              :
-                              <span   className={route.routes ? (route.label == 'nav_network' ? 'nav-network-hot mr-2' : "") : ""}> <NavLink
-                                  className={route.routes ? (route.label == 'nav_network' ? 'nav-link text-capitalize' : "nav-link") : "nav-link"}
-                                  {...((route.routes && route.routes.length > 0) ? {'data-toggle': 'dropdown'} : {})}
-                                  activeClassName="active"
-                                  to={route.redirect? route.redirect: route.path}
-                              >
-                                {route.icon &&
-                                <i className={route.icon + " d-none d-lg-inline-block mr-1"}/>}
-                                {tu(route.label)}
-
-                              </NavLink>
-                              <i className="hot-nav"></i>
-                              </span>
-                              
-                        }
-
-                        {
-                          route.routes && route.label !== "nav_more" && route.label !== "nav_network" &&
-                          <div className="dropdown-menu">
+            
+              <div className="container new-menu-List">
+                <nav className="top-bar navbar navbar-expand-md navbar-dark" style={{padding:0}}> 
+                {/* <button className="navbar-toggler" type="button" data-toggle="collapse"
+                        data-target="#navbar-top">
+                  <span className="navbar-toggler-icon"/>
+                </button> */}
+                {/*   */}
+                  <div className="collapse navbar-collapse" id="navbar-top">
+                    <ul className="navbar-nav">
+                      {filter(routes, r => r.showInMenu !== false).map(route => (
+                          <li key={route.path}  className={IS_MAINNET? 'nav-item dropdown': 'nav-item dropdown pr-3'}>
                             {
-                              route.routes && route.routes.map((subRoute, index) => {
+                              route.linkHref === true ?
+                                  <HrefLink
+                                      className={route.routes ? "nav-link" : "nav-link"}
+                                      href={activeLanguage == 'zh' ? route.zhurl : route.enurl}>
+                                    {route.icon &&
+                                    <i className={route.icon + " d-none d-lg-inline-block mr-1"}/>}
+                                    {tu(route.label)}
+                                  </HrefLink>
+                                  :
+                                  <span   className={route.routes ? (route.label == 'nav_network' ? 'nav-network-hot mr-2' : "") : ""}> <NavLink
+                                      className={route.routes ? (route.label == 'nav_network' ? 'nav-link text-capitalize' : "nav-link") : "nav-link"}
+                                      {...((route.routes && route.routes.length > 0) ? {'data-toggle': 'dropdown'} : {})}
+                                      activeClassName="active"
+                                      to={route.redirect? route.redirect: route.path}
+                                  >
+                                    {route.icon &&
+                                    <i className={route.icon + " d-none d-lg-inline-block mr-1"}/>}
+                                    {tu(route.label)}
 
-                                if (subRoute === '-') {
-                                  return (
-                                      <div key={index} className="dropdown-divider"/>
-                                  );
-                                }
-
-                                if (isString(subRoute)) {
-                                  return (
-                                      <h6 key={index}
-                                          className="dropdown-header">{subRoute}</h6>
-                                  )
-                                }
-
-                                if (subRoute.showInMenu === false) {
-                                  return null;
-                                }
-
-                                if (!isUndefined(subRoute.url)) {
-                                  return (
-                                      <HrefLink
-                                          key={subRoute.url}
-                                          className="dropdown-item text-uppercase"
-                                          href={subRoute.url}>
-                                        {subRoute.icon &&
-                                        <i className={subRoute.icon + " mr-2"}/>}
-                                        {tu(subRoute.label)}
-                                        {subRoute.badge &&
-                                        <Badge value={subRoute.badge}/>}
-                                      </HrefLink>
-                                  );
-                                }
-                                if (!isUndefined(subRoute.enurl) || !isUndefined(subRoute.zhurl)) {
-                                  return (
-                                      <HrefLink
-                                          key={subRoute.enurl}
-                                          className="dropdown-item text-uppercase"
-                                          href={activeLanguage == 'zh' ? subRoute.zhurl : subRoute.enurl}>
-                                        {subRoute.icon &&
-                                        <i className={subRoute.icon + " mr-2"}/>}
-                                        {tu(subRoute.label)}
-                                        {subRoute.badge &&
-                                        <Badge value={subRoute.badge}/>}
-                                      </HrefLink>
-                                  );
-                                }
-
-                                return (
-                                    <Link
-                                        key={subRoute.path}
-                                        className="dropdown-item text-uppercase"
-                                        to={subRoute.path}>
-                                      {subRoute.icon &&
-                                      <i className={subRoute.icon + " mr-2" + " fa_width"}/>}
-                                      {tu(subRoute.label)}
-                                      {subRoute.badge && <Badge value={subRoute.badge}/>}
-                                    </Link>
-                                );
-                              })
+                                  </NavLink>
+                                  <i className="hot-nav"></i>
+                                  </span>
+                                  
                             }
-                          </div>
-                        }
-                        {
-                            route.routes && (route.label == "nav_network" || route.label == "nav_more") &&
-                          <div className="dropdown-menu more-menu" style={{left: 'auto'}}>
-                            {
-                              route.routes && route.routes.map((subRoute, index) => {
-                                return <div className="" key={index}>
-                                  <div className="more-menu-line"></div>
-                                  {
-                                    subRoute.map((Route, j) => {
-                                      if (isString(Route)) {
-                                        return (
-                                            <h6 key={j}
-                                                className="dropdown-header text-uppercase"> {tu(Route)}</h6>
-                                        )
-                                      }
 
-                                      if (Route.showInMenu === false) {
-                                        return null;
-                                      }
-                                      //wjl
-                                      if (!isUndefined(Route.url) && !Route.sidechain && Route.label !== 'developer_challenge') {
-                                        return (
-                                          <span className='mr-3 d-inline-block developer_challenge_box' key={j+Route.label}>
-                                            <HrefLink
-                                                key={Route.url}
-                                                className="dropdown-item text-uppercase"
-                                                href={Route.url}>
-                                              {Route.icon &&
-                                              <i className={Route.icon + " mr-2"} />}
-                                              {tu(Route.label)}
-                                              {Route.badge &&
-                                              <Badge value={Route.badge}/>}
-                                            </HrefLink>
-                                           {Route.label==='NILE TESTNET'&& <span className="new-test-net">new</span>} 
-                                          </span>
-                                        );
-                                      }
-                                      if (!isUndefined(Route.url) && !Route.sidechain && Route.label == 'developer_challenge') {
-                                          return (
-                                              <span className="mr-3 d-inline-block developer_challenge_box" key={Route.url+'_'+ Route.label}>
+                            {
+                              route.routes && route.label !== "nav_more" && route.label !== "nav_network" &&
+                              <div className="dropdown-menu">
+                                {
+                                  route.routes && route.routes.map((subRoute, index) => {
+
+                                    if (subRoute === '-') {
+                                      return (
+                                          <div key={index} className="dropdown-divider"/>
+                                      );
+                                    }
+
+                                    if (isString(subRoute)) {
+                                      return (
+                                          <h6 key={index}
+                                              className="dropdown-header">{subRoute}</h6>
+                                      )
+                                    }
+
+                                    if (subRoute.showInMenu === false) {
+                                      return null;
+                                    }
+
+                                    if (!isUndefined(subRoute.url)) {
+                                      return (
+                                          <HrefLink
+                                              key={subRoute.url}
+                                              className="dropdown-item text-uppercase"
+                                              href={subRoute.url}>
+                                            {subRoute.icon &&
+                                            <i className={subRoute.icon + " mr-2"}/>}
+                                            {tu(subRoute.label)}
+                                            {subRoute.badge &&
+                                            <Badge value={subRoute.badge}/>}
+                                          </HrefLink>
+                                      );
+                                    }
+                                    if (!isUndefined(subRoute.enurl) || !isUndefined(subRoute.zhurl)) {
+                                      return (
+                                          <HrefLink
+                                              key={subRoute.enurl}
+                                              className="dropdown-item text-uppercase"
+                                              href={activeLanguage == 'zh' ? subRoute.zhurl : subRoute.enurl}>
+                                            {subRoute.icon &&
+                                            <i className={subRoute.icon + " mr-2"}/>}
+                                            {tu(subRoute.label)}
+                                            {subRoute.badge &&
+                                            <Badge value={subRoute.badge}/>}
+                                          </HrefLink>
+                                      );
+                                    }
+
+                                    return (
+                                        <Link
+                                            key={subRoute.path}
+                                            className="dropdown-item text-uppercase"
+                                            to={subRoute.path}>
+                                          {subRoute.icon &&
+                                          <i className={subRoute.icon + " mr-2" + " fa_width"}/>}
+                                          {tu(subRoute.label)}
+                                          {subRoute.badge && <Badge value={subRoute.badge}/>}
+                                        </Link>
+                                    );
+                                  })
+                                }
+                              </div>
+                            }
+                            {
+                                route.routes && (route.label == "nav_network" || route.label == "nav_more") &&
+                              <div className="dropdown-menu more-menu" style={{left: 'auto'}}>
+                                {
+                                  route.routes && route.routes.map((subRoute, index) => {
+                                    return <div className="" key={index}>
+                                      <div className="more-menu-line"></div>
+                                      {
+                                        subRoute.map((Route, j) => {
+                                          if (isString(Route)) {
+                                            return (
+                                                <h6 key={j}
+                                                    className="dropdown-header text-uppercase"> {tu(Route)}</h6>
+                                            )
+                                          }
+
+                                          if (Route.showInMenu === false) {
+                                            return null;
+                                          }
+                                          //wjl
+                                          if (!isUndefined(Route.url) && !Route.sidechain && Route.label !== 'developer_challenge') {
+                                            return (
+                                              <span className='mr-3 d-inline-block developer_challenge_box' key={j+Route.label}>
                                                 <HrefLink
-                                                    key={Route.url+'_'+ Route.label}
+                                                    key={Route.url}
                                                     className="dropdown-item text-uppercase"
                                                     href={Route.url}>
                                                   {Route.icon &&
-                                                  <i className={Route.icon + " mr-2"}/>}
-                                                    {tu(Route.label)}
-                                                    {Route.badge &&
-                                                    <Badge value={Route.badge}/>}
-                                              </HrefLink>
-                                              <img src={require("../images/home/hot.svg")} title="hot" className="developer_challenge_hot"/>
+                                                  <i className={Route.icon + " mr-2"} />}
+                                                  {tu(Route.label)}
+                                                  {Route.badge &&
+                                                  <Badge value={Route.badge}/>}
+                                                </HrefLink>
+                                              {Route.label==='NILE TESTNET'&& <span className="new-test-net">new</span>} 
                                               </span>
+                                            );
+                                          }
+                                          if (!isUndefined(Route.url) && !Route.sidechain && Route.label == 'developer_challenge') {
+                                              return (
+                                                  <span className="mr-3 d-inline-block developer_challenge_box" key={Route.url+'_'+ Route.label}>
+                                                    <HrefLink
+                                                        key={Route.url+'_'+ Route.label}
+                                                        className="dropdown-item text-uppercase"
+                                                        href={Route.url}>
+                                                      {Route.icon &&
+                                                      <i className={Route.icon + " mr-2"}/>}
+                                                        {tu(Route.label)}
+                                                        {Route.badge &&
+                                                        <Badge value={Route.badge}/>}
+                                                  </HrefLink>
+                                                  <img src={require("../images/home/hot.svg")} title="hot" className="developer_challenge_hot"/>
+                                                  </span>
 
-                                          );
-                                      }
+                                              );
+                                          }
 
-                                      if (isUndefined(Route.url) && Route.sidechain) {
-                                        const sidechainTab = (
-                                          <a href="javascript:"
-                                            key={Route.label}
-                                            className="dropdown-item text-uppercase"
-                                            onClick={() => this.netSelectChange(IS_MAINNET?'sunnet':'mainnet')}
-                                          >
-                                            {Route.icon && <i className={Route.icon + " mr-2"}/>}
-                                            {IS_MAINNET?tu('Side_Chain'):tu('Main_Chain')}
-                                          </a>
-                                        );
-                                        return sidechainTab
-                                      }
-                                      if (!isUndefined(Route.enurl) || !isUndefined(Route.zhurl)) {
-                                        return (
-                                            <HrefLink
-                                                key={Route.enurl}
+                                          if (isUndefined(Route.url) && Route.sidechain) {
+                                            const sidechainTab = (
+                                              <a href="javascript:"
+                                                key={Route.label}
                                                 className="dropdown-item text-uppercase"
-                                                href={activeLanguage == 'zh' ? Route.zhurl : Route.enurl}>
-                                              {Route.icon &&
-                                              <i className={Route.icon + " mr-2"}/>}
-                                              {tu(Route.label)}
-                                              {Route.badge &&
-                                              <Badge value={Route.badge}/>}
-                                            </HrefLink>
-                                        );
+                                                onClick={() => this.netSelectChange(IS_MAINNET?'sunnet':'mainnet')}
+                                              >
+                                                {Route.icon && <i className={Route.icon + " mr-2"}/>}
+                                                {IS_MAINNET?tu('Side_Chain'):tu('Main_Chain')}
+                                              </a>
+                                            );
+                                            return sidechainTab
+                                          }
+                                          if (!isUndefined(Route.enurl) || !isUndefined(Route.zhurl)) {
+                                            return (
+                                                <HrefLink
+                                                    key={Route.enurl}
+                                                    className="dropdown-item text-uppercase"
+                                                    href={activeLanguage == 'zh' ? Route.zhurl : Route.enurl}>
+                                                  {Route.icon &&
+                                                  <i className={Route.icon + " mr-2"}/>}
+                                                  {tu(Route.label)}
+                                                  {Route.badge &&
+                                                  <Badge value={Route.badge}/>}
+                                                </HrefLink>
+                                            );
+                                          }
+
+                                          return (
+                                              <Link
+                                                  key={Route.path}
+                                                  className="dropdown-item text-uppercase"
+                                                  to={Route.path}>
+                                                {Route.icon &&
+                                                <i className={Route.icon + " mr-2" + " fa_width"}/>}
+                                                {tu(Route.label)}
+                                                {Route.badge && <Badge value={Route.badge}/>}
+                                              </Link>
+                                          );
+                                        })
                                       }
-
-                                      return (
-                                          <Link
-                                              key={Route.path}
-                                              className="dropdown-item text-uppercase"
-                                              to={Route.path}>
-                                            {Route.icon &&
-                                            <i className={Route.icon + " mr-2" + " fa_width"}/>}
-                                            {tu(Route.label)}
-                                            {Route.badge && <Badge value={Route.badge}/>}
-                                          </Link>
-                                      );
-                                    })
-                                  }
-                                </div>
+                                    </div>
 
 
-                              })
+                                  })
+                                }
+                              </div>
                             }
-                          </div>
-                        }
+                          </li>
+                      ))}
+                    </ul>
+                    <ul className="navbar-nav navbar-right">
+                      <li className="nav-item dropdown navbar-right">
+                        <a className="nav-link dropdown-toggle dropdown-menu-right "
+                          data-toggle="dropdown"
+                          href="javascript:">
+                          {activeCurrency.toUpperCase()}
+                        </a>
+                        <div className="dropdown-menu">
+                          {
+                            currencyConversions.map(currency => (
+                                <a key={currency.id}
+                                  className="dropdown-item"
+                                  href="javascript:"
+                                  onClick={() => this.setCurrency(currency.id)}>{currency.name}</a>
+                            ))
+                          }
+                        </div>
                       </li>
-                  ))}
-                </ul>
-                <ul className="navbar-nav navbar-right">
-                  <li className="nav-item dropdown navbar-right">
-                    <a className="nav-link dropdown-toggle dropdown-menu-right "
-                       data-toggle="dropdown"
-                       href="javascript:">
-                      {activeCurrency.toUpperCase()}
-                    </a>
-                    <div className="dropdown-menu">
-                      {
-                        currencyConversions.map(currency => (
-                            <a key={currency.id}
-                               className="dropdown-item"
-                               href="javascript:"
-                               onClick={() => this.setCurrency(currency.id)}>{currency.name}</a>
-                        ))
-                      }
-                    </div>
-                  </li>
-                  <li className="nav-item dropdown navbar-right">
-                    <a className="nav-link dropdown-toggle dropdown-menu-right "
-                       data-toggle="dropdown"
-                       href="javascript:">{activeLanguage.toUpperCase()}</a>
-                    <div className="dropdown-menu languages-menu">
-                      {
-                        Object.keys(languages).map(language => (
-                            <a key={language}
-                               className="dropdown-item"
-                               href="javascript:"
-                               onClick={() => this.setLanguage(language)}>{languages[language]}</a>
-                        ))
-                      }
-                    </div>
-                  </li>
-                </ul>
+                      <li className="nav-item dropdown navbar-right">
+                        <a className="nav-link dropdown-toggle dropdown-menu-right "
+                          data-toggle="dropdown"
+                          href="javascript:">{activeLanguage.toUpperCase()}</a>
+                        <div className="dropdown-menu languages-menu">
+                          {
+                            Object.keys(languages).map(language => (
+                                <a key={language}
+                                  className="dropdown-item"
+                                  href="javascript:"
+                                  onClick={() => this.setLanguage(language)}>{languages[language]}</a>
+                            ))
+                          }
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                </nav>
               </div>
-            </div>
-              <div className="ml-auto d-flex">
               
+
+              <div className="d-flex">
                 <div className="navbar navbar-expand-md navbar-dark py-0">
                   <ul className="navbar-nav navbar-right wallet-nav">
                     {
@@ -1401,9 +1406,7 @@ class Navigation extends React.Component {
               </div>
             </div>
           </div>
-          {/* <nav className="top-bar navbar navbar-expand-md navbar-dark" >
-            
-          </nav> */}
+       
           {
             activeComponent.none ? <div className="container pt-5 pb-4"></div>
                 :
