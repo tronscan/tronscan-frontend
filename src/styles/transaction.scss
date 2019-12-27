@@ -1,0 +1,33 @@
+.transaction-new{
+    th{
+        width:10%;
+        font-size: 14px;
+        color: #666666;
+        font-family: PingFangSC-Regular;
+        font-weight:400;
+    }
+    .fail-result{
+        background: rgba(194,54,49,0.2);
+        border-radius: 2px;
+        padding:3px 10px;
+        font-size: 12px;
+        color: #C23631;
+        .icon-close{
+            vertical-align: middle;
+            margin-bottom: 1px;
+        }
+    }
+    .card-title{
+        font-size:16px;
+        color:#333;
+        font-family: PingFangSC-Medium;
+        font-weight:500;
+    }
+    tr{
+        border-bottom:1px solid #eee;
+    }
+    .list-style-body{
+        border:none!important;
+    }
+
+}

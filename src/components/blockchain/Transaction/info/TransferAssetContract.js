@@ -34,8 +34,8 @@ class TransferAssetContract extends React.Component {
                 <tbody>
                 <Field label="from"><AddressLink address={contract['owner_address']}>{contract['owner_address']}</AddressLink></Field>
                 <Field label="to"><AddressLink address={contract['to_address']}>{contract['to_address']}</AddressLink></Field>
-                <Field label="amount">{tokenIdData.map_amount}</Field>
-                <Field label="trc20_token_id">{contract.map_token_id}</Field>
+                <Field label="amount">{tokenIdData.map_amount || 0}</Field>
+                <Field label="trc20_token_id">{contract.map_token_id || '-'}</Field>
                 <Field label="token"><NameWithId value={contract} type="abbr" notamount totoken tokenid={false} /></Field>
                 </tbody>
             </table>

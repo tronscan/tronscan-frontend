@@ -24,10 +24,10 @@ class FreezeBalanceContract extends React.Component {
         <div className="table-responsive">
         <table className="table">
             <tbody>
-            <Field label="transation_owner_address"><AddressLink address={contract['owner_address']}/></Field>
-            <Field label="transation_receiver_address"><AddressLink address={contract['receiver_address'] ? contract['receiver_address'] : contract['owner_address']}/></Field>
-            <Field label="transation_get_resourse">{tu('tron_power')} & {contract['resource'] ? contract['resource'] : 'Bandwidth'}</Field>
-            <Field label="transation_freeze_num">{contract['frozen_balance'] / ONE_TRX}TRX</Field>
+            <Field label="transaction_owner_address"><AddressLink address={contract['owner_address']}/></Field>
+            <Field label="transaction_receiver_address"><AddressLink address={contract['receiver_address'] ? contract['receiver_address'] : contract['owner_address']}/></Field>
+            <Field label="transaction_get_resourse">{tu('tron_power')} & {contract['resource'] ? contract['resource'] : 'Bandwidth'}</Field>
+            <Field label="transaction_freeze_num">{contract['frozen_balance'] / ONE_TRX}TRX</Field>
             <Field label="frozen_days">{contract['frozen_duration']}</Field>
             </tbody>
         </table>

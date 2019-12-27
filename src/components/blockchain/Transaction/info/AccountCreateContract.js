@@ -24,8 +24,8 @@ class AccountCreateContract extends React.Component {
         <div className="table-responsive">
           <table className="table">
               <tbody>
-                <Field label="transation_owner_address"><AddressLink address={contract['owner_address']}/></Field>
-                <Field label="transtaion_activate_account"><AddressLink address={contract['account_address']}/></Field>
+                <Field label="transaction_owner_address"><AddressLink address={contract['owner_address']}/></Field>
+                <Field label="transaction_activate_account"><AddressLink address={contract['account_address']}/></Field>
               </tbody>
           </table>
         </div>

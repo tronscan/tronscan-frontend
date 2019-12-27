@@ -18,6 +18,7 @@ import tokenApi from '../../../services/tokenApi'
 import { IS_MAINNET } from "../../../constants";
 import {QuestionMark} from '../../common/QuestionMark'
 import Info from './info';
+import {Icon} from 'antd'
 @injectIntl
 class Transaction extends React.Component {
 
@@ -122,7 +123,7 @@ class Transaction extends React.Component {
         );
     }
     return (
-        <main className="container header-overlap">
+        <main className="container header-overlap transaction-new">
           {
             loading ? <div className="card">
                   <TronLoader>
@@ -134,7 +135,7 @@ class Transaction extends React.Component {
                     <div className="card  list-style-header">
                       <div className="card-body">
                         <h5 className="card-title m-0">
-                          {tu("transation_hash")} {transaction.hash}
+                          {tu("transaction_hash")} {transaction.hash}
                           <CopyText text={transaction.hash} className="ml-1"/>
                         </h5>
                       </div>
@@ -145,13 +146,13 @@ class Transaction extends React.Component {
                               transaction.hasOwnProperty("contractRet") &&<tr>
                                   <th>{tu("result")}:</th>
                                   <td>
-                                      {transaction.contractRet.toUpperCase() === SUCCESS ?  SUCCESS : FAIL} {IS_MAINNET && resMessage ? `--${resMessage}` : ''}
+                                      {transaction.contractRet.toUpperCase() === SUCCESS ?  SUCCESS : <span className="fail-result text-uppercase"><Icon type="close-circle" className="mr-1 icon-close"/>FAIL</span>} {IS_MAINNET && resMessage ? `--${resMessage}` : ''}
                                   </td>
                               </tr>
                           }
                           {
                               transaction.hasOwnProperty("confirmed") && <tr>
-                                  <th>{tu("status")}:<QuestionMark placement="right" text={intl.formatMessage({id:'transation_status_tip'})} ></QuestionMark></th>
+                                  <th>{tu("status")} {" "}<QuestionMark placement="right" text={intl.formatMessage({id:'transaction_status_tip'})} ></QuestionMark>:</th>
                                   <td>
                                       {
                                           transaction.confirmed ?

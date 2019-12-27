@@ -28,16 +28,8 @@ class WithdrawBalanceContract extends React.Component {
                   {contract["owner_address"]}
                 </AddressLink>
               </Field>
-              <Field label="to">
-                <AddressLink address={contract["to_address"]}>
-                  {contract["to_address"]}
-                </AddressLink>
-              </Field>
               <Field label="amount">
-                <TRXPrice amount={contract.amount / ONE_TRX} />
-              </Field>
-              <Field label="note">
-                {decodeURIComponent(contract.contract_note || "")}
+                <TRXPrice amount={contract.amount / ONE_TRX || 0} />
               </Field>
             </tbody>
           </table>

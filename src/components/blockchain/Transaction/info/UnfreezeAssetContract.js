@@ -9,6 +9,7 @@ import { AddressLink } from "../../../common/Links";
 import { TRXPrice } from "../../../common/Price";
 import { ONE_TRX } from "../../../../constants";
 import {TransationTitle} from './common/Title'
+import { NameWithId } from '../../../common/names';
 
 
 class UnfreezeAssetContract extends React.Component {
@@ -24,22 +25,19 @@ class UnfreezeAssetContract extends React.Component {
         <div className="table-responsive">
           <table className="table">
             <tbody>
-              <Field label="from">
+              <Field label="transaction_owner_address">
                 <AddressLink address={contract["owner_address"]}>
                   {contract["owner_address"]}
                 </AddressLink>
               </Field>
-              <Field label="to">
-                <AddressLink address={contract["to_address"]}>
-                  {contract["to_address"]}
-                </AddressLink>
-              </Field>
               <Field label="amount">
-                <TRXPrice amount={contract.amount / ONE_TRX} />
+                {(contract.amount / ONE_TRX) || 0}
               </Field>
-              <Field label="note">
-                {decodeURIComponent(contract.contract_note || "")}
+              <Field label="trc20_token_id">
+                {contract.asset_name || '-'}
               </Field>
+              <Field label="token">
+                <NameWithId value={contract} type="abbr" notamount totoken tokenid={false} />              </Field>
             </tbody>
           </table>
         </div>

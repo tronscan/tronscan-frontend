@@ -23,9 +23,9 @@ class UnFreezeBalanceContract extends React.Component {
         <div className="table-responsive">
         <table className="table">
             <tbody>
-            <Field label="transation_owner_address"><AddressLink address={contract['owner_address']}/></Field>
-            <Field label="transation_recycling_address"><AddressLink address={contract['receiver_address'] ? contract['receiver_address'] : contract['owner_address']}/></Field>
-            <Field label="transation_unfreeze_num"></Field>
+            <Field label="transaction_owner_address"><AddressLink address={contract['owner_address']}/></Field>
+            <Field label="transaction_recycling_address"><AddressLink address={contract['receiver_address'] ? contract['receiver_address'] : contract['owner_address']}/></Field>
+            <Field label="transaction_unfreeze_num"></Field>
             </tbody>
         </table>
         </div>

@@ -20,22 +20,18 @@ class ParticipateAssetIssueContract extends React.Component {
   }
   render() {
     let { contract } = this.props;
-    let TokenIDList = [];
-    let tokenIdData;
-    TokenIDList.push(contract)
-    if(TokenIDList){
-        tokenIdData  = rebuildList(TokenIDList,'asset_name','amount')[0]
-    }
+    
     return (
       <Fragment>
        <TransationTitle contractType={contract.contractType}></TransationTitle>
         <div className="table-responsive">
         <table className="table">
               <tbody>
-                <Field label="transation_owner_address"><AddressLink address={contract['owner_address']}>{contract['owner_address']}</AddressLink></Field>
-                <Field label="issuer"><AddressLink address={contract['to_address']}>{contract['to_address']}</AddressLink></Field>
-                <Field label="amount">{contract.amount / ONE_TRX}</Field>
-                <Field label="token"><NameWithId value={contract} notamount totoken/></Field>
+                <Field label="transaction_owner_address"><AddressLink address={contract['owner_address']}>{contract['owner_address']}</AddressLink></Field>
+                <Field label="transaction_token_holder_address"><AddressLink address={contract['to_address']}>{contract['to_address']}</AddressLink></Field>
+                <Field label="amount">{contract.amount / ONE_TRX} TRX</Field>
+                <Field label="trc20_token_id">{contract.asset_name || '-'}</Field>
+                <Field label="token"><NameWithId value={contract} type="abbr" notamount totoken tokenid={false} /></Field>
                 </tbody>
             </table>
         </div>
