@@ -168,10 +168,14 @@ export const lang19Q4 = {
     "origin_energy_usage": "消耗合约所有者的能量",
     "net_fee": "消耗带宽使用的TRX",
     "net_usage": "消耗用户冻结的带宽",
-    "net_free":"消耗用户免费带宽",
+    "net_free":"消耗用户冻结/免费带宽",
     "net_burn":"燃烧 {num}TRX 获取带宽",
     "energy_burn":"燃烧 {num}TRX 获取能量",
-
+    "initiate_address":"发起地址",
+    "candidate_address":"投票地址",
+    "votes_count":"投票数",
+    "sr_fee":"费用",
+    "sr_url":"网址",
 
     // 2019-12-25 xyy
     "transation_detail":"交易详情",
