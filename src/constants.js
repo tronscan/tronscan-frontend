@@ -32,8 +32,8 @@ if (NODE_ENV == "development") {
     // NODEAPI = "http://52.15.126.154:9016";
     NODEAPI = process.env.API_URL;
 } else {
-    MAINNET = window.location.origin === NETURL.MAINNET || NETURL.NEWMAINNET;
-    SUNNET = window.location.origin === NETURL.SUNNET ||  NETURL.NEWSUNNET;
+    MAINNET = window.location.origin === NETURL.NEWMAINNET;
+    SUNNET = window.location.origin === NETURL.NEWSUNNET;
     NODEAPI = process.env.API_URL;
     // NODEAPI = "http://52.15.126.154:9016";
 }
