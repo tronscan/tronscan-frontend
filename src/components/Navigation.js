@@ -997,7 +997,7 @@ class Navigation extends React.Component {
         <div className="header-top">
           {popup}
           <div className="logo-wrapper">
-            <div className="py-2 d-flex px-0 menu-nav-wrapper">
+            <div className="py-2 d-flex px-0 menu-nav-wrapper" style={{ justifyContent:'space-between'}}>
               <div className="ml-4">
                 <Link to="/">
                   <img src={this.getLogo()} className="logo" alt="Tron"/>
@@ -1016,7 +1016,7 @@ class Navigation extends React.Component {
                 </div>
               }
             
-              <div className="container new-menu-List">
+              <div className=" new-menu-List">
                 <nav className="top-bar navbar navbar-expand-md navbar-dark" style={{padding:0}}> 
                 {/* <button className="navbar-toggler" type="button" data-toggle="collapse"
                         data-target="#navbar-top">
@@ -1266,7 +1266,7 @@ class Navigation extends React.Component {
               </div>
               
 
-              <div className="d-flex">
+              <div className="">
                 <div className="navbar navbar-expand-md navbar-dark py-0">
                   <ul className="navbar-nav navbar-right wallet-nav">
                     {
