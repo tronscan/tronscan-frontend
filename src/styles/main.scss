@@ -3442,19 +3442,23 @@ h5 {
 }
 
 .content {
-  color: #666;
-  font-size: 12px;
+  color: #333;
+  font-size: 14px;
 
   &_box_name {
+    display: flex;
+    line-height: 41px;
     font-size: 14px;
     min-width: 130px;
-    padding-top: 7px;
+    color: #666666;
+    &:after{
+      content: ':';
+    }
   }
 
   &_name {
     width: 120px;
-    font-size: 12px;
-    color: #666666;
+    font-size: 14px;
   }
 
   &_voting {
@@ -3484,6 +3488,15 @@ h5 {
       margin-left: 10px * $i;
     }
   }
+}
+.band-item{
+  margin-bottom: 10px;
+}
+.item-belong{
+  background: url(../images/transaction/child.png) no-repeat;
+  padding-left: 18px;
+  background-position: 4px 4px;
+  background-size: 9px 9px;
 }
 
 @media (max-width: 767.98px) {

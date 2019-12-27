@@ -7,6 +7,7 @@ import {TRXPrice} from "../../../common/Price";
 import {ONE_TRX, CONTRACT_ADDRESS_USDT, CONTRACT_ADDRESS_WIN, CONTRACT_ADDRESS_GGC, TRADINGMAP, SUNWEBCONFIG, IS_SUNNET} from "../../../../constants";
 import rebuildList from "../../../../utils/rebuildList";
 import BandwidthUsage from './common/BandwidthUsage'
+import {TransationTitle} from './common/Title'
 import {injectIntl} from "react-intl";
 
 function CreateSmartContract({contract,intl}){
@@ -14,14 +15,7 @@ function CreateSmartContract({contract,intl}){
 
     return (
       <Fragment>
-        <div className="card-body table-title">
-          <h5>
-            <i className="fa fa-exchange-alt"></i>
-            {tu("trigger_smart_contract")}
-            <small>{tu('normal_address_trigger_smart_contract')}</small>
-          </h5>
-          {/* {getTitle(contract)} */}
-        </div>
+        <TransationTitle contractType={contract.contractType}></TransationTitle>
         <div className="content">
           <div className="content_pos">
             <div className="d-flex border-bottom pt-2">
