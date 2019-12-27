@@ -159,6 +159,20 @@ export const lang19Q4 = {
     "TRX_historical_data_y_text":"数量（TRX）",
     "TRX_historical_data_tip":"TRX数量",
    
+    // transaction info  2019-12-25  leon
+    "consume_bandwidth":"消耗带宽",
+    "consume_energy":"消耗能量",
+    "energy_fee": "消耗能量使用的TRX",
+    "energy_usage": "消耗用户冻结的能量",
+    "energy_usage_total": "总消耗的能量",
+    "origin_energy_usage": "消耗合约所有者的能量",
+    "net_fee": "消耗带宽使用的TRX",
+    "net_usage": "消耗用户冻结的带宽",
+    "net_free":"消耗用户免费带宽",
+    "net_burn":"燃烧 {num}TRX 获取带宽",
+    "energy_burn":"燃烧 {num}TRX 获取能量",
+
+
     // 2019-12-25 xyy
     "transaction_detail":"交易详情",
     "transaction_hash":"哈希",

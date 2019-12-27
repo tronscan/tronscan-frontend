@@ -1889,12 +1889,7 @@ export const messages = {
     "unfreeze_warning": "只能解冻自身冻结的TRX，是否继续解冻？",
     "contract_method": "合约方法",
     "contract_parameters": "方法参数",
-    "energy_fee": "消耗能量使用的TRX",
-    "energy_usage": "消耗用户冻结的能量",
-    "energy_usage_total": "总消耗的能量",
-    "origin_energy_usage": "消耗合约提供的能量",
-    "net_fee": "消耗带宽使用的TRX",
-    "net_usage": "消耗用户冻结的带宽",
+    
     "TRC20_transfers": "TRC20 转账",
     "Basic_info": "基本信息",
     "Internal_txns": "内部交易",
