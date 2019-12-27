@@ -42,7 +42,7 @@ export const lang19Q4 = {
 
     'contract_code_overview_name':'Name',
     'contract_code_overview_creator':'Creator',
-    'contract_code_overview_account':'ACCOUNT',
+    'contract_code_overview_account':'Account',
 
     // 2019-12-10
     "token_basic_view": "Overview",
