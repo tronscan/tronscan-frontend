@@ -147,6 +147,7 @@ export const lang19Q4 = {
     "charts_overall_freezing_rate": "全网冻结率",
     "charts_new_addresses": "账户增长",
     "charts_contract_calling": "合约调用",
+    "charts_average_price":"TRX平均价格",
     "freezing_column_time": "时间（UTC）",
     "freezing_column_total_circulation": "TRX总流通量",
     "freezing_column_total_frozen": "TRX冻结量",

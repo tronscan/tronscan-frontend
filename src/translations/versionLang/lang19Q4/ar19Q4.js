@@ -140,6 +140,7 @@ export const lang19Q4 = {
     "charts_overall_freezing_rate": "معدل التجميد الكلي",
     "charts_new_addresses": "نمو الحساب",
     "charts_contract_calling": "دعوة العقد ",
+    "charts_average_price":"متوسط سعر TRX",
     "freezing_column_time": "（UTC）الوقت",
     "freezing_column_total_circulation": "إجمالي تداول TRX",
     "freezing_column_total_frozen": "مجموع TRX المجمدة",

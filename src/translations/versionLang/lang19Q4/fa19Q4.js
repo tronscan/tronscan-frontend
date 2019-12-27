@@ -136,6 +136,7 @@ export const lang19Q4 = {
     "charts_overall_freezing_rate": "نرخ انجماد به طور کلی",
     "charts_new_addresses": "رشد حساب",
     "charts_contract_calling": "تماس با قرارداد",
+    "charts_average_price":"قیمت متوسط TRX",
     "freezing_column_time": "（UTC）زمان",
     "freezing_column_total_circulation": "مجموع گردش TRX",
     "freezing_column_total_frozen": "مجموع TRX فریز شده ",

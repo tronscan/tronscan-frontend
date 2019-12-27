@@ -138,6 +138,7 @@ export const lang19Q4 = {
     "charts_overall_freezing_rate": "Overall Freezing Rate",
     "charts_new_addresses": "Account Growth",
     "charts_contract_calling": "Contract Calling",
+    "charts_average_price": "Average TRX Price",
     "freezing_column_time": "Time（UTC）",
     "freezing_column_total_circulation": "Total circulation of TRX",
     "freezing_column_total_frozen": "Total TRX frozen",

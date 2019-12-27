@@ -137,6 +137,7 @@ export const lang19Q4 = {
     "charts_overall_freezing_rate": "네트워크 전체 동결 속도",
     "charts_new_addresses": "계정 성장",
     "charts_contract_calling": "계약 호출",
+    "charts_average_price":"TRX 평균 가격",
     "freezing_column_time": "시간（UTC）",
     "freezing_column_total_circulation": "TRX 총 유통 량",
     "freezing_column_total_frozen": "TRX 동결 량",

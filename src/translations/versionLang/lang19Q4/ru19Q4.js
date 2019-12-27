@@ -137,6 +137,7 @@ export const lang19Q4 = {
     "charts_overall_freezing_rate": "Общий коэффициент заморозки",
     "charts_new_addresses": "Рост аккаунта",
     "charts_contract_calling": "Вызов контракта",
+    "charts_average_price":"Средняя цена TRX",
     "freezing_column_time": "Время（UTC）",
     "freezing_column_total_circulation": "Общая циркуляция TRX",
     "freezing_column_total_frozen": "Всего замороженных TRX",

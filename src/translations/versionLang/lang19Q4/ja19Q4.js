@@ -138,6 +138,7 @@ export const lang19Q4 = {
     "charts_overall_freezing_rate": "全体的の凍結率",
     "charts_new_addresses": "アカウントの成長",  
     "charts_contract_calling": "契約の呼び出し",
+    "charts_average_price":"TRX平均価格",
     "freezing_column_time": "時間（UTC）",
     "freezing_column_total_circulation": "TRX総合流通量",
     "freezing_column_total_frozen": "TRX凍結量",

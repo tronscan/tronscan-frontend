@@ -341,7 +341,7 @@ class StatsCharts extends React.Component {
                       <span className="ml-5">
                         {tu("charts_daily_transactions")}
                       </span>
-                      <img src={require("../../../images/chart/TRON-Transaction-Chart.png")}
+                      <img src={require("../../../images/chart/Daily-Transactions.png")}
                         style={{ width: 240, filter: 'grayscale(100%)' }}
                         className="ml-5 mt-2"
                       />
@@ -354,7 +354,7 @@ class StatsCharts extends React.Component {
                       <span className="ml-5">
                         {tu("charts_total_transactions")}
                       </span>
-                      <img src={require("../../../images/chart/TRON-Total-Transactions-Chart.png")}
+                      <img src={require("../../../images/chart/Total-Transactions.png")}
                         style={{ width: 240, filter: 'grayscale(100%)' }}
                         className="ml-5 mt-2"
                       />
@@ -367,7 +367,7 @@ class StatsCharts extends React.Component {
                       <span className="ml-5">
                         {tu("charts_volume_24")}
                       </span>
-                      <img src={require("../../../images/chart/24-Hour-Trading-Volume.png")}
+                      <img src={require("../../../images/chart/Daily-Transaction-Volume.png")}
                         style={{ width: 240, filter: 'grayscale(100%)' }}
                         className="ml-5 mt-2" />
                     </Link>
@@ -394,7 +394,7 @@ class StatsCharts extends React.Component {
                       <span className="ml-5">
                         {tu("average_price")}
                       </span>
-                      <img src={require("../../../images/chart/Average-Price.png")}
+                      <img src={require("../../../images/chart/Average-TRX-Price.png")}
                         style={{ width: 240, filter: 'grayscale(100%)' }}
                         className="ml-5 mt-2"
                       />
@@ -447,7 +447,7 @@ class StatsCharts extends React.Component {
                       <span className="ml-5">
                         {tu("charts_new_addresses")}
                       </span>
-                      <img src={require("../../../images/chart/Account-growth.png")}
+                      <img src={require("../../../images/chart/Account-Growth.png")}
                         style={{ width: 240, filter: 'grayscale(100%)' }}
                         className="ml-5 mt-2"
                       />
@@ -475,7 +475,7 @@ class StatsCharts extends React.Component {
                       <span className="ml-5">
                         {tu("charts_average_blocksize")}
                       </span>
-                      <img src={require("../../../images/chart/Average-Block-Size.png")}
+                      <img src={require("../../../images/chart/Daily-Average-Block-Size.png")}
                         style={{ width: 240, filter: 'grayscale(100%)' }}
                         className="ml-5 mt-2"
                       />
@@ -488,7 +488,7 @@ class StatsCharts extends React.Component {
                       <span className="ml-5">
                         {tu("charts_total_average_blocksize")}
                       </span>
-                      <img src={require("../../../images/chart/Blockchain-Size.png")}
+                      <img src={require("../../../images/chart/Cumulative-Block-Size.png")}
                         style={{ width: 240, filter: 'grayscale(100%)' }}
                         className="ml-5 mt-2"
                       />
@@ -516,7 +516,7 @@ class StatsCharts extends React.Component {
                       <span className="ml-5">
                         {tu("charts_daily_energy_consumption")}
                       </span>
-                      <img src={require("../../../images/chart/EnergyConsume.png")}
+                      <img src={require("../../../images/chart/Daily-Energy-Consumption.png")}
                         style={{ width: 240, filter: 'grayscale(100%)' }}
                         className="ml-5 mt-2" />
                     </Link>
@@ -528,7 +528,7 @@ class StatsCharts extends React.Component {
                       <span className="ml-5">
                         {tu("charts_daily_energy_contracts")}
                       </span>
-                      <img src={require("../../../images/chart/EnergyConsumeDistribution.png")}
+                      <img src={require("../../../images/chart/Daily-Energy-Consumption-By-Contracts.png")}
                         style={{ width: 240, filter: 'grayscale(100%)' }}
                         className="ml-5 mt-2" />
                     </Link>
@@ -540,7 +540,7 @@ class StatsCharts extends React.Component {
                       <span className="ml-5">
                         {tu("charts_contract_calling")}
                       </span>
-                      <img src={require("../../../images/chart/ContractInvocation.png")}
+                      <img src={require("../../../images/chart/Contract-Calling.png")}
                         style={{ width: 240, filter: 'grayscale(100%)' }}
                         className="ml-5 mt-2" />
                     </Link>
@@ -552,7 +552,7 @@ class StatsCharts extends React.Component {
                       <span className="ml-5">
                         {tu("charts_daily_contract_calling_profile")}
                       </span>
-                      <img src={require("../../../images/chart/ContractInvocationDistribution.png")}
+                      <img src={require("../../../images/chart/Daily-Contract-Calling-Profile.png")}
                         style={{ width: 240, filter: 'grayscale(100%)' }}
                         className="ml-5 mt-2" />
                     </Link>

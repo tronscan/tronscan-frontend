@@ -845,7 +845,7 @@ export class LineReactHighChartPrice extends React.Component {
                 let date = intl.formatDate(this.point.x);
                 return (
                     intl.formatMessage({id: 'date'}) + ' : ' + date + '<br/>' +
-                    intl.formatMessage({id: 'average_price'}) + ' : ' + this.point.y
+                    intl.formatMessage({id: 'charts_average_price'}) + ' : ' + this.point.y
                 )
             }
         }else{
@@ -860,9 +860,9 @@ export class LineReactHighChartPrice extends React.Component {
             _config.chart.zoomType = 'x';
             _config.chart.marginTop = 80;
             _config.chart.type= 'area';
-            _config.title.text = intl.formatMessage({id: 'average_price'});
+            _config.title.text = intl.formatMessage({id: 'charts_average_price'});
             _config.subtitle.text = intl.formatMessage({id: 'HighChart_tip'});
-            _config.exporting.filename = intl.formatMessage({id: 'average_price'});
+            _config.exporting.filename = intl.formatMessage({id: 'charts_average_price'});
             _config.xAxis.tickPixelInterval = 100;
             // _config.xAxis.minRange=24 * 3600 * 1000
             _config.yAxis.title.text = intl.formatMessage({id: 'usd'});
@@ -876,7 +876,7 @@ export class LineReactHighChartPrice extends React.Component {
                 let date = intl.formatDate(this.point.x);
                 return (
                     intl.formatMessage({id: 'date'}) + ' : ' + date + '<br/>' +
-                    intl.formatMessage({id: 'average_price'}) + ' : ' + this.point.y
+                    intl.formatMessage({id: 'charts_average_price'}) + ' : ' + this.point.y
                 )
             }
         }
@@ -1698,6 +1698,12 @@ export class EnergyConsumeChart extends React.Component {
                     text: intl.formatMessage({id: 'charts_daily_energy_consumption'})
                 },
                 subtitle: {text: intl.formatMessage({id: 'EnergyConsume_subtitle'})},
+                exporting: {
+                    enabled: true,
+                    sourceWidth: 1072,
+                    sourceHeight: 500,
+                    filename: intl.formatMessage({id: 'charts_daily_energy_consumption'})
+                },
                 yAxis: {
                     min: 0,
                     title: {
@@ -1778,6 +1784,12 @@ export class ContractInvocationChart extends React.Component {
                 },
                 subtitle: {
                     text: intl.formatMessage({id: 'HighChart_tip'})
+                },
+                exporting: {
+                    enabled: true,
+                    sourceWidth: 1072,
+                    sourceHeight: 500,
+                    filename: intl.formatMessage({id: 'charts_contract_calling'})
                 },
                 xAxis: {
                     tickPixelInterval: 100
@@ -1875,6 +1887,12 @@ export class ContractInvocationDistributionChart extends React.Component {
                 title: {
                     text: intl.formatMessage({id: 'charts_daily_contract_calling_profile'})
                 },
+                exporting: {
+                    enabled: true,
+                    sourceWidth: 1072,
+                    sourceHeight: 500,
+                    filename: intl.formatMessage({id: 'charts_daily_contract_calling_profile'})
+                },
                 tooltip: {
                     headerFormat: '',
                     pointFormat: '<span style="color:{point.color}">\u25CF</span> <b> {point.name}</b><br/>' +
@@ -1968,6 +1986,12 @@ export class EnergyConsumeDistributionChart extends React.Component {
                 },
                 subtitle: {
                     text: SUBTITLE
+                },
+                exporting: {
+                    enabled: true,
+                    sourceWidth: 1072,
+                    sourceHeight: 500,
+                    filename: intl.formatMessage({id: 'charts_daily_energy_contracts'})
                 },
                 tooltip: {
                     headerFormat: '',
