@@ -19,8 +19,7 @@ class TotalInfo extends React.Component {
         let tableInfo =  rangeTotal > 10000? tableInfoBig : tableInfoSmall;
         //let tableInfoTipSmall = intl.formatMessage({id: 'table_info_big_tip1'}) + ' ' + rangeTotal + ' ' + intl.formatMessage({id: 'table_info_big_tip2'}) + intl.formatMessage({id: 'table_info_big_tip4'});
         let tableInfoTip = intl.formatMessage({id: 'table_info_new_tip'})
-
-        return (
+        return (    
             <Fragment>
                 {
                     !selected?

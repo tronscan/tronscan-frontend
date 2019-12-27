@@ -38,7 +38,7 @@ class StatsCharts extends React.Component {
           id: 'currency'
         },
         {
-          name: 'accounts',
+          name: 'contract_code_overview_account',
           id: 'address'
         },
         {
@@ -341,7 +341,7 @@ class StatsCharts extends React.Component {
                       <span className="ml-5">
                         {tu("charts_daily_transactions")}
                       </span>
-                      <img src={require("../../../images/chart/TRON-Transaction-Chart.png")}
+                      <img src={require("../../../images/chart/Daily-Transactions.png")}
                         style={{ width: 240, filter: 'grayscale(100%)' }}
                         className="ml-5 mt-2"
                       />
@@ -354,10 +354,22 @@ class StatsCharts extends React.Component {
                       <span className="ml-5">
                         {tu("charts_total_transactions")}
                       </span>
-                      <img src={require("../../../images/chart/TRON-Total-Transactions-Chart.png")}
+                      <img src={require("../../../images/chart/Total-Transactions.png")}
                         style={{ width: 240, filter: 'grayscale(100%)' }}
                         className="ml-5 mt-2"
                       />
+                    </Link>
+                  </div>
+                </div>
+                <div className="col-md-4">
+                  <div className="card-chart">
+                    <Link className="card-title" to="/blockchain/stats/volumeStats">
+                      <span className="ml-5">
+                        {tu("charts_volume_24")}
+                      </span>
+                      <img src={require("../../../images/chart/Daily-Transaction-Volume.png")}
+                        style={{ width: 240, filter: 'grayscale(100%)' }}
+                        className="ml-5 mt-2" />
                     </Link>
                   </div>
                 </div>
@@ -380,9 +392,9 @@ class StatsCharts extends React.Component {
                   <div className="card-chart">
                     <Link className="card-title" to="/blockchain/stats/priceStats">
                       <span className="ml-5">
-                        {tu("average_price")}
+                        {tu("charts_average_price")}
                       </span>
-                      <img src={require("../../../images/chart/Average-Price.png")}
+                      <img src={require("../../../images/chart/Average-TRX-Price.png")}
                         style={{ width: 240, filter: 'grayscale(100%)' }}
                         className="ml-5 mt-2"
                       />
@@ -391,13 +403,14 @@ class StatsCharts extends React.Component {
                 </div>
                 <div className="col-md-4">
                   <div className="card-chart">
-                    <Link className="card-title" to="/blockchain/stats/volumeStats">
+                    <Link className="card-title" to="/blockchain/stats/supply">
                       <span className="ml-5">
-                        {tu("volume_24")}
+                        {tu("charts_total_TRX_supply")}
                       </span>
-                      <img src={require("../../../images/chart/24-Hour-Trading-Volume.png")}
+                      <img src={require("../../../images/chart/Total-TRX-Supply.png")}
                         style={{ width: 240, filter: 'grayscale(100%)' }}
-                        className="ml-5 mt-2" />
+                        className="ml-5 mt-2"
+                      />
                     </Link>
                   </div>
                 </div>
@@ -413,19 +426,7 @@ class StatsCharts extends React.Component {
                     </Link>
                   </div>
                 </div>
-                <div className="col-md-4">
-                  <div className="card-chart">
-                    <Link className="card-title" to="/blockchain/stats/supply">
-                      <span className="ml-5">
-                        {tu("total_TRX_supply")}
-                      </span>
-                      <img src={require("../../../images/chart/Total-TRX-Supply.png")}
-                        style={{ width: 240, filter: 'grayscale(100%)' }}
-                        className="ml-5 mt-2"
-                      />
-                    </Link>
-                  </div>
-                </div>
+                
               </div>
             </div>
             {/* address */}
@@ -434,7 +435,7 @@ class StatsCharts extends React.Component {
                 <div className="charts-title mr-3 ml-3">
                   <span>
                     <i className="fa fa-users ml-5 mr-2" />
-                    {tu("accounts")}
+                    {tu("contract_code_overview_account")}
                   </span>
                 </div>
                 <div className="charts-line"></div>
@@ -446,7 +447,7 @@ class StatsCharts extends React.Component {
                       <span className="ml-5">
                         {tu("charts_new_addresses")}
                       </span>
-                      <img src={require("../../../images/chart/Account-growth.png")}
+                      <img src={require("../../../images/chart/Account-Growth.png")}
                         style={{ width: 240, filter: 'grayscale(100%)' }}
                         className="ml-5 mt-2"
                       />
@@ -472,9 +473,9 @@ class StatsCharts extends React.Component {
                   <div className="card-chart">
                     <Link className="card-title" to="/blockchain/stats/blockSizeStats">
                       <span className="ml-5">
-                        {tu("average_blocksize")}
+                        {tu("charts_average_blocksize")}
                       </span>
-                      <img src={require("../../../images/chart/Average-Block-Size.png")}
+                      <img src={require("../../../images/chart/Daily-Average-Block-Size.png")}
                         style={{ width: 240, filter: 'grayscale(100%)' }}
                         className="ml-5 mt-2"
                       />
@@ -485,9 +486,9 @@ class StatsCharts extends React.Component {
                   <div className="card-chart">
                     <Link className="card-title" to="/blockchain/stats/blockchainSizeStats">
                       <span className="ml-5">
-                        {tu("blockchain_size")}
+                        {tu("charts_total_average_blocksize")}
                       </span>
-                      <img src={require("../../../images/chart/Blockchain-Size.png")}
+                      <img src={require("../../../images/chart/Cumulative-Block-Size.png")}
                         style={{ width: 240, filter: 'grayscale(100%)' }}
                         className="ml-5 mt-2"
                       />
@@ -515,7 +516,7 @@ class StatsCharts extends React.Component {
                       <span className="ml-5">
                         {tu("charts_daily_energy_consumption")}
                       </span>
-                      <img src={require("../../../images/chart/EnergyConsume.png")}
+                      <img src={require("../../../images/chart/Daily-Energy-Consumption.png")}
                         style={{ width: 240, filter: 'grayscale(100%)' }}
                         className="ml-5 mt-2" />
                     </Link>
@@ -527,7 +528,7 @@ class StatsCharts extends React.Component {
                       <span className="ml-5">
                         {tu("charts_daily_energy_contracts")}
                       </span>
-                      <img src={require("../../../images/chart/EnergyConsumeDistribution.png")}
+                      <img src={require("../../../images/chart/Daily-Energy-Consumption-By-Contracts.png")}
                         style={{ width: 240, filter: 'grayscale(100%)' }}
                         className="ml-5 mt-2" />
                     </Link>
@@ -539,7 +540,7 @@ class StatsCharts extends React.Component {
                       <span className="ml-5">
                         {tu("charts_contract_calling")}
                       </span>
-                      <img src={require("../../../images/chart/ContractInvocation.png")}
+                      <img src={require("../../../images/chart/Contract-Calling.png")}
                         style={{ width: 240, filter: 'grayscale(100%)' }}
                         className="ml-5 mt-2" />
                     </Link>
@@ -551,7 +552,7 @@ class StatsCharts extends React.Component {
                       <span className="ml-5">
                         {tu("charts_daily_contract_calling_profile")}
                       </span>
-                      <img src={require("../../../images/chart/ContractInvocationDistribution.png")}
+                      <img src={require("../../../images/chart/Daily-Contract-Calling-Profile.png")}
                         style={{ width: 240, filter: 'grayscale(100%)' }}
                         className="ml-5 mt-2" />
                     </Link>
