@@ -9,7 +9,7 @@ import rebuildList from "../../../../utils/rebuildList";
 import BandwidthUsage from './common/BandwidthUsage'
 import {injectIntl} from "react-intl";
 
-function TriggerContract({contract,intl}){
+function CreateSmartContract({contract,intl}){
     const defaultImg = require("../../../../images/logo_default.png");
 
     return (
@@ -362,4 +362,4 @@ function TriggerContract({contract,intl}){
     );
 }
 
-export default injectIntl(TriggerContract)
+export default injectIntl(CreateSmartContract)

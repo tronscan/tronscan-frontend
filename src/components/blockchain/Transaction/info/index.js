@@ -20,6 +20,7 @@ import AssetIssueContract from './AssetIssueContract'
 import UnfreezeAssetContract from './UnfreezeAssetContract'
 import UpdateAssetContract from './UpdateAssetContract'
 import WithdrawBalanceContract from './WithdrawBalanceContract'
+import WitnessCreateContract from './WitnessCreateContract'
 
 
 
@@ -98,7 +99,7 @@ export default function Info({contract}) {
             case "WITNESSUPDATECONTRACT":
                 return ''
             case "WITNESSCREATECONTRACT":
-                return ""
+                return <WitnessCreateContract contract={contract}></WitnessCreateContract>
             case "ACCOUNTUPDATECONTRACT":
                 return ''
             case "ACCOUNTCREATECONTRACT":
