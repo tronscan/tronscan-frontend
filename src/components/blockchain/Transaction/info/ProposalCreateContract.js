@@ -14,16 +14,24 @@ import Field from "../../../tools/TransactionViewer/Field";
 export default function ProposalCreateContract({contract}){
   return(
     <Fragment>
-      <TransationTitle contractType={contract.contractType}></TransationTitle>
-      <table className="table">
-          <tbody>
-          <Field label="owner_address"><AddressLink address={contract['owner_address']}/></Field>
-          <Field label="URL">{contract.url}</Field>
-          {
-            contract.cost && <BandwidthUsage cost={contract.cost}></BandwidthUsage>
-          }
-          </tbody>
-      </table>
+        <TransationTitle contractType={contract.contractType}></TransationTitle>
+        <table className="table">
+            <tbody>
+              <Field label="initiate_address"><AddressLink address={contract['owner_address']}/></Field>
+              <Field label="proposal_ID">222</Field>
+                {
+                    contract['parameters'].map((item)=>{
+                      return <tr>
+                        <th>{tu('proposal_content')}</th>
+                        <td>{tu(`propose_${item.key}`)}</td>
+                      </tr>
+                    })
+                }
+              <Field label="consume_bandwidth">
+                <BandwidthUsage cost={contract.cost}></BandwidthUsage>
+              </Field>
+            </tbody>
+        </table>
     </Fragment>
   )
 }

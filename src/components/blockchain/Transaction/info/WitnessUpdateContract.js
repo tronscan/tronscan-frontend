@@ -13,18 +13,18 @@ import Field from "../../../tools/TransactionViewer/Field";
 import {toUtf8} from 'tronweb'
 
 export default function WitnessUpdateContract({contract}){
-  // const url = toUtf8(contract.url);
+  let url = toUtf8(contract.update_url);
   return(
     <Fragment>
       <TransationTitle contractType={contract.contractType}></TransationTitle>
       <table className="table">
           <tbody>
-          {/* <Field label="initiate_address"><AddressLink address={contract['owner_address']}/></Field>
-          <Field label="sr_url">{url ? <a href={url} target="_blank">{url}</a> : '--'}</Field>
-          <Field label="sr_fee">9,999TRX</Field>
+          <Field label="initiate_address"><AddressLink address={contract['owner_address']}/></Field>
+          <Field label="sr_url">{url ? <ExternalLink url={url}></ExternalLink> : '--'}</Field>
+          {/* <Field label="sr_fee">9,999TRX</Field> */}
           <Field label="consume_bandwidth">
             <BandwidthUsage cost={contract.cost}></BandwidthUsage>
-          </Field> */}
+          </Field>
           </tbody>
       </table>
     </Fragment>

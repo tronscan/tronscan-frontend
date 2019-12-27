@@ -10,18 +10,20 @@ import BandwidthUsage from './common/BandwidthUsage'
 import {TransationTitle} from './common/Title'
 import {injectIntl} from "react-intl";
 import Field from "../../../tools/TransactionViewer/Field";
+import {toUtf8} from 'tronweb'
 
 export default function AccountUpdateContract({contract}){
+  const name = toUtf8(contract.account_name)
   return(
     <Fragment>
       <TransationTitle contractType={contract.contractType}></TransationTitle>
       <table className="table">
           <tbody>
-          <Field label="owner_address"><AddressLink address={contract['owner_address']}/></Field>
-          <Field label="URL">{contract.url}</Field>
-          {
-            contract.cost && <BandwidthUsage cost={contract.cost}></BandwidthUsage>
-          }
+          <Field label="initiate_address"><AddressLink address={contract['owner_address']}/></Field>
+          <Field label="account_name">{name}</Field>
+          <Field label="consume_bandwidth">
+            <BandwidthUsage cost={contract.cost}></BandwidthUsage>
+          </Field>
           </tbody>
       </table>
     </Fragment>

@@ -176,6 +176,8 @@ export const lang19Q4 = {
     "votes_count":"投票数",
     "sr_fee":"费用",
     "sr_url":"网址",
+    "proposal_ID":"提议ID",
+    "proposal_content":"提议内容",
 
     // 2019-12-25 xyy
     "transation_detail":"交易详情",
