@@ -384,7 +384,7 @@ export const routes = [
       [
         "sun_network_product",
         {
-          url: NETURL.SUNNET,
+          url: window.location.origin === NETURL.MAINNET ? NETURL.SUNNET : NETURL.NEWSUNNET,
           icon: "fas fa-columns",
           label: "sun_network_DAppChain"
         }
