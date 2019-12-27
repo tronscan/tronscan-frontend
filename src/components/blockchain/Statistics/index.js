@@ -392,7 +392,7 @@ class StatsCharts extends React.Component {
                   <div className="card-chart">
                     <Link className="card-title" to="/blockchain/stats/priceStats">
                       <span className="ml-5">
-                        {tu("average_price")}
+                        {tu("charts_average_price")}
                       </span>
                       <img src={require("../../../images/chart/Average-TRX-Price.png")}
                         style={{ width: 240, filter: 'grayscale(100%)' }}
