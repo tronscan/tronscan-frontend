@@ -2,11 +2,13 @@ import React from "react";
 import { injectIntl } from "react-intl";
 import moment from "moment";
 import { cloneDeep } from "lodash";
+import {toastr} from 'react-redux-toastr'
 import { Button, Radio, DatePicker } from "antd";
 import { tu } from "../../../utils/i18n";
 import { connect } from "react-redux";
 import { updateTokenInfo } from "../../../actions/tokenInfo";
 const { RangePicker } = DatePicker;
+
 
 class DateSelect extends React.Component {
   constructor(props) {
@@ -14,7 +16,10 @@ class DateSelect extends React.Component {
     this.state = {
       dataItemList: [7, 14, 30],
       dataItem: 7,
-      RangePickerStatus: false
+      RangePickerStatus: false,
+      startValue: moment(Date.now() - 7 * 24 * 3600 * 1000),
+      endValue: moment(new Date()),
+      endOpen: false,
     };
   }
   changeDateByItem(item) {
@@ -24,6 +29,10 @@ class DateSelect extends React.Component {
     // .hour(0).minute(0).second(0)
     const end = moment();
     const start = cloneDeep(end).subtract(item, "days");
+    this.setState({
+      startValue: start,
+      endValue: end,
+    })
     this.props.updateTokenInfo({
       start_timestamp: start.valueOf(),
       end_timestamp: end.valueOf()
@@ -32,7 +41,7 @@ class DateSelect extends React.Component {
   }
   handleSizeChange = e => {
     const value = e.target.value;
-
+  
     if (value === "more") {
       this.setState({
         RangePickerStatus: true
@@ -62,9 +71,65 @@ class DateSelect extends React.Component {
     return current > moment().endOf("day");
   }
 
+  disabledStartDate = (startValue) => {
+    const endValue = this.state.endValue;
+    if (!startValue || !endValue) {
+        return startValue.valueOf() > moment().valueOf() || startValue.valueOf() < moment([2018,5,25]).valueOf();
+    }
+
+
+      return  startValue.valueOf() > endValue.valueOf() || startValue.valueOf() < moment([2018,5,25]).valueOf();
+  }
+
+  disabledEndDate = (endValue) => {
+      const startValue = this.state.startValue;
+      if (!endValue || !startValue) {
+          return endValue.valueOf() > moment().valueOf();
+      }
+      return endValue.valueOf() <= startValue.valueOf() || endValue.valueOf() > moment().valueOf();
+  }
+
+  onChange = (field, value) => {
+      this.setState({
+          [field]: value,
+      });
+  }
+
+  onStartChange = (value) => {
+      this.onChange('startValue', value);
+  }
+
+  onEndChange = (value) => {
+      this.onChange('endValue', value);
+  }
+
+  handleStartOpenChange = (open) => {
+      if (!open) {
+          this.setState({ endOpen: true });
+      }
+  }
+
+  handleEndOpenChange = (open) => {
+      this.setState({ endOpen: open });
+  }
+
+  handleOk = (startValue, endValue) =>{
+      let { onDateOk, intl } = this.props;
+      if(!startValue){
+          toastr.warning(intl.formatMessage({id: 'warning'}), intl.formatMessage({id: 'select_start_time'}));
+          return;
+      }else if(!endValue){
+          toastr.warning(intl.formatMessage({id: 'warning'}), intl.formatMessage({id: 'select_end_time'}));
+          return;
+      }
+      onDateOk(startValue, endValue)
+  } 
+
   render() {
     const { dataItemList, dataItem, RangePickerStatus } = this.state;
     const { dataStyle } = this.props;
+
+    const { startValue, endValue, endOpen } = this.state;
 
     return (
       <div
@@ -89,26 +154,29 @@ class DateSelect extends React.Component {
             </Radio.Group>
           </div>
           <div className="col-xs-4 col-sm-6 singleTimeRange">
-            <RangePicker
-              showTime={{
-                format: "HH:mm:ss"
-              }}
-              format="YYYY-MM-DD HH:mm:ss"
-              placeholder={["Start Time", "End Time"]}
-              onOk={this.onOk}
-              // open={RangePickerStatus}
-              className={`position-absolute`}
-              // disabledDate={this.disabledDate}
-              // onBlur={() => {
-              //   this.setState({
-              //     RangePickerStatus: false
-              //   });
-              // }}
-              style={{
-                right: "1rem",
-                width: "370px"
-              }}
-            />
+            <div className={`position-absolute`}  style={{right: "1rem", width: "415px"}}>
+              <DatePicker
+                    disabledDate={this.disabledStartDate}
+                    showTime
+                    format="YYYY-MM-DD HH:mm:ss"
+                    value={startValue}
+                    placeholder="Start"
+                    onChange={this.onStartChange}
+                    onOpenChange={this.handleStartOpenChange}
+                />
+                &nbsp;&nbsp;~&nbsp;&nbsp;
+                <DatePicker
+                    disabledDate={this.disabledEndDate}
+                    showTime
+                    format="YYYY-MM-DD HH:mm:ss"
+                    value={endValue}
+                    placeholder="End"
+                    onChange={this.onEndChange}
+                    open={endOpen}
+                    onOpenChange={this.handleEndOpenChange}
+                    onOk={() => this.handleOk(startValue, endValue)}
+                />
+              </div>
           </div>
         </div>
       </div>

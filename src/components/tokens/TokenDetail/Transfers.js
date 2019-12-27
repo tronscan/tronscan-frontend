@@ -603,7 +603,7 @@ class Transfers extends React.Component {
                 background: "#fff"
               }}
             >
-              <div style={{ paddingLeft: 8 }}>
+              <div style={{ paddingLeft: 7 }}>
                 {!loading && (
                   <div >
                     <TotalInfo
