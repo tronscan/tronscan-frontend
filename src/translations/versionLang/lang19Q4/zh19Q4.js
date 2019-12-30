@@ -231,7 +231,8 @@ export const lang19Q4 = {
     "transaction_UPDATEBROKERAGECONTRACT":"更新超级代表佣金比例",
     "transaction_CLEARABICONTRACT":"清除合约ABI",
     "transaction_token_holder_address":"通证所有者地址",
-    "transaction_issue_address":"发行者地址"
- 
+    "transaction_issue_address":"发行者地址",
+
+    "transaction_rewards_distribution_ratio":"选民分成比例",
 
 }
