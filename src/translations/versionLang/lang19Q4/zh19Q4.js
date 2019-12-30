@@ -184,7 +184,7 @@ export const lang19Q4 = {
     "transaction_enrgy_cap_tip":"合约部署者提供的能量上限值",
     "transaction_detail":"交易详情",
     "transaction_hash":"哈希",
-    "transaction_status_tip":'"已确认"是指被19个以上超级节点确认，不足19个为"确认中"',
+    "transaction_status_tip":'"已确认"是指被19个以上超级节点确认',
     "transaction_type": "交易类型",
     "transaction_owner_address":"发起地址",
     "transaction_receiver_address":"资源接收地址",

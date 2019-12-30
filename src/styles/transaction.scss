@@ -102,5 +102,12 @@
     .list-style-body{
         border:none!important;
     }
+    .table-responsive{
+        th{
+            &:after{
+                content:':'
+            }
+        }
+    }
 
 }
