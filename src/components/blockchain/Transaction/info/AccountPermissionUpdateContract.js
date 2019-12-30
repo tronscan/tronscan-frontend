@@ -4,18 +4,19 @@ import Field from "../../../tools/TransactionViewer/Field";
 import { TransationTitle } from './common/Title'
 import PermissionItem from './common/PermissionItem'
 import SignList from './common/SignList'
+import BandwidthUsage from './common/BandwidthUsage'
 export default function AccountPermissionUpdateContract(props) {
     const contract = props.contract;
-    let { signList, contractType, owner, actives, withness } = contract;
+    let { signList, contractType, owner, actives, withness,cost } = contract;
     return <Fragment>
         <TransationTitle contractType={contractType} />
         <table className="table">
             <tbody>
                 {
                     contract['owner_address'] &&
-                        <Field label="transation_owner_address"><AddressLink address={contract['owner_address']} /></Field>
+                        <Field label="signature_sponsor"><AddressLink address={contract['owner_address']} /></Field>
                 }
-                <Field label="transation_fee">100 TRX</Field>
+                <Field label="transaction_fee">100 TRX</Field>
                 {
                     owner && <PermissionItem permissionItem={owner} label='signature_privilege'/>
                 }
@@ -25,6 +26,7 @@ export default function AccountPermissionUpdateContract(props) {
                 {
                    actives && <PermissionItem permissionArray={actives} label='signature_active_permissions'/>
                 }
+                 <Field label="address_net_fee"><BandwidthUsage cost = {cost}/></Field>
                  <SignList signList={signList}/>
             </tbody>
         </table>
