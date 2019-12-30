@@ -11,7 +11,8 @@ import SmartTable from "../../common/SmartTable.js"
 import {upperFirst} from "lodash";
 import {TronLoader} from "../../common/loaders";
 import TotalInfo from "../../common/TableTotal";
-import DateRange from "../../common/DateRange";
+// import DateRange from "../../common/DateRange";
+import DateSelect from "../../common/newDateSelect";
 import xhr from "axios/index";
 import {API_URL} from '../../../constants.js'
 import { FormatNumberByDecimals } from '../../../utils/number'
@@ -22,7 +23,7 @@ class Transfers extends React.Component {
 
     constructor(props) {
         super(props);
-        this.start = moment([2018,5,25]).startOf('day').valueOf();
+        this.start = moment(Date.now() - 7 * 24 * 3600 * 1000).valueOf();
         this.end = moment().valueOf();
         this.state = {
             filter: {},
@@ -220,19 +221,23 @@ class Transfers extends React.Component {
                 {loading && <div className="loading-style" style={{marginTop: '-20px'}}><TronLoader/></div>}
                 <div className="row transfers">
                     <div className="col-md-12 table_pos">
-                        <div className="d-flex justify-content-between pl-3 pr-3" style={{left: 'auto'}}>
-                            {total ?<TotalInfo total={total} rangeTotal={rangeTotal} typeText="transaction_info" divClass="table_pos_info_addr"/> :""}
-                            <DateRange onDateOk={(start,end) => this.onDateOk(start,end)} dateClass="date-range-box-TRC20token"/>
+                        <div className="d-flex justify-content-between pl-3 pr-3 pt-3 pb-3">
+                            <DateSelect  onDateOk={(start, end) => this.onDateOk(start, end)}></DateSelect> 
                         </div>
-                        {
-                            (!loading && transfers.length === 0)?
-                                <div className="pt-5 pb-5 text-center no-data transfers-bg-white">{tu("no_transfers")}</div>
-                            : <SmartTable border={false} loading={loading} column={column} data={transfers} total={total} addr="address" transfers="token"
-                                          onPageChange={(page, pageSize) => {
-                                              this.loadPage(page, pageSize)
-                                          }}/>
-                        }
-
+                        <div className="d-flex justify-content-between pl-3 pr-3" style={{left: 'auto'}}>
+                            {<TotalInfo top={60} total={total} rangeTotal={rangeTotal} typeText="transaction_info" divClass="table_pos_info_addr"/> }
+                    
+                        </div>
+                        <div className="contractTableWrapper">
+                            {
+                                (!loading && transfers.length === 0)?
+                                    <div className="pt-5 pb-5 text-center no-data transfers-bg-white">{tu("no_transfers")}</div>
+                                : <SmartTable  position="bottom" border={false} loading={loading} column={column} data={transfers} total={total} addr="address" transfers="token"
+                                            onPageChange={(page, pageSize) => {
+                                                this.loadPage(page, pageSize)
+                                            }}/>
+                            }
+                        </div>
                     </div>
                 </div>
             </Fragment>

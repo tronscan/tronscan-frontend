@@ -40,6 +40,10 @@ export const lang19Q4 = {
     "transfersDetailPercentage": "Процент",
     "transfersDetailValue": "Значение",
 
+    'contract_code_overview_name':'имя',
+    'contract_code_overview_creator':'творец',
+    'contract_code_overview_account':'УЧЕТНЫЕ ЗАПИСИ',
+
     // 2019-12-10
     "token_basic_view": "Обзор",
     "token_additional_materials": "Информация Профиля",
@@ -120,23 +124,30 @@ export const lang19Q4 = {
     "charts_block": "Блок",
     "charts_contract": "Контракт",
     "charts_SR": "SR",
-    "charts_daily_transactions": "Дневные транзакции",
-    "charts_total_transactions": "Всего транзакций",
-    "charts_overall_freezing_rate": "Общий коэффициент заморозки",
-    "charts_new_addresses": "Рост аккаунта",
+    "charts_daily_transactions": "Ежедневные транзакции",
+    "charts_total_transactions": "Общее количество транзакций",
+    "charts_volume_24": "Ежедневный объем транзакции",
+    "charts_total_TRX_supply":"Циркуляция TRX в реальном времени и рыночная капитализация",
+    "charts_total_TRX_supply_vote":"Вознаграждения голосования",
+    "charts_average_blocksize":"Среднесуточный размер блока",
+    "charts_total_average_blocksize":"Совокупность размера блока",
     "charts_daily_energy_consumption": "Ежедневное потребление Энергии",
     "charts_daily_energy_contracts": "Ежедневное потребление Энергии контрактами",
+    "charts_daily_contract_calling_profile": "Ежедневный контракт, вызывающий профиль",
+    "charts_overall_freezing_rate": "Общий коэффициент заморозки",
+    "charts_new_addresses": "Рост аккаунта",
     "charts_contract_calling": "Вызов контракта",
-    "charts_daily_contract_calling_profile": "Профиль вызывающий ежедневный контракт",
+    "charts_average_price":"Средняя цена TRX",
     "freezing_column_time": "Время（UTC）",
     "freezing_column_total_circulation": "Общая циркуляция TRX",
     "freezing_column_total_frozen": "Всего замороженных TRX",
     "freezing_column_freezing_rate": "Коэффициент заморозки",
+    "freezing_column_freezing_rate_highest": "Коэффициент заморозки:",
     "freezing_column_energy_ratio": "TRX-for-Energy ratio",
     "freezing_column_bandwidth_ratio": "TRX-for-bandwidth ratio",
     "freezing_column_freezing_rate_tip": "количество замороженного TRX / общее количество TRX в циркуляции;",
-    "freezing_column_energy_ratio_tip": "Количество TRX для получения энергии в замороженном TRX / замороженном TRX",
-    "freezing_column_bandwidth_ratio_tip": "Количество TRX для получения широкополосной связи в замороженном TRX / количество замороженных TRX",
+    "freezing_column_energy_ratio_tip": "Замороженный TRX для энергии / Общее количество замороженного TRX",
+    "freezing_column_bandwidth_ratio_tip": "Замороженный TRX для пропускной способности / Общее количество замороженного TRX",
     "freezing_column_more": "Больше",
     "freezing_column_total_circulation_chart": "Общая циркуляция（TRX）",
     "freezing_column_total_frozen_chart": "Всего замороженных（TRX）",
@@ -149,5 +160,22 @@ export const lang19Q4 = {
     "TRX_historical_data":"TRX balance historical data in the contract",
     "TRX_historical_data_y_text":"Amount（TRX）",
     "TRX_historical_data_tip":"TRX Amount",
-
+        /*
+    ##################################################################################
+    #                                                                                #
+    # 191230     page index optimization                                             #
+    #                                                                                #
+    ##################################################################################
+    */
+   "index_page_menu_more_dev_resources":"Ресурсы развития",
+   "index_page_search_placeholder":"Поиск по Адресу/Хэшу Транзакции/Токену/Блоку",
+   "index_page_footer_team_info":"Информация о команде",
+   "index_page_footer_feedback":"Обратная связь",
+   "index_page_footer_expand":"Расширить",
+   "index_page_footer_donate_address":"Адрес принадлежит TRON. Ваш донат помогает построить лучшую экосистему TRON.",
+   "index_page_confirmed_blocks":"Подтвержденные блоки",
+   "index_page_confirmed_blocks_tips":"Блоки подтверждены более чем 19 SR",
+   "index_page_switch_tokens":"Поменять токены",
+   "index_page_tronscan_info":"TRONSCAN, лучший blockchain explorer Tron.",
+   "index_page_down_excel_tips":"Измените десятичные дроби вручную при открытии файла в Excel.",
 }

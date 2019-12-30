@@ -1,3 +1,4 @@
+/*eslint-disable */
 import React from 'react'
 import moment from 'moment';
 import config from './chart.config.js'
@@ -685,9 +686,9 @@ export class LineReactHighChartBlockchainSize extends React.Component {
         }
         _config.chart.zoomType = 'x';
         _config.chart.marginTop = 80;
-        _config.title.text = intl.formatMessage({id: 'blockchain_size'});
+        _config.title.text = intl.formatMessage({id: 'charts_total_average_blocksize'});
         _config.subtitle.text = intl.formatMessage({id: 'HighChart_tip'});
-        _config.exporting.filename = intl.formatMessage({id: 'blockchain_size'});
+        _config.exporting.filename = intl.formatMessage({id: 'charts_total_average_blocksize'});
         _config.xAxis.tickPixelInterval = 100;
         _config.xAxis.minRange=24 * 3600 * 1000
         _config.yAxis.title.text = intl.formatMessage({id: 'MByte'});
@@ -700,7 +701,7 @@ export class LineReactHighChartBlockchainSize extends React.Component {
             let date = intl.formatDate(this.point.x);
             return (
                 intl.formatMessage({id: 'date'}) + ' : ' + date + '<br/>' +
-                intl.formatMessage({id: 'blockchain_size'}) + ' : ' + this.point.blockchainSize / 1000000
+                intl.formatMessage({id: 'charts_total_average_blocksize'}) + ' : ' + this.point.blockchainSize / 1000000
             )
         }
 
@@ -761,9 +762,9 @@ export class BarReactHighChartBlockSize extends React.Component {
         }
         _config.chart.zoomType = 'x';
         _config.chart.marginTop = 80;
-        _config.title.text = intl.formatMessage({id: 'average_blocksize'});
+        _config.title.text = intl.formatMessage({id: 'charts_average_blocksize'});
         _config.subtitle.text = intl.formatMessage({id: 'HighChart_tip'});
-        _config.exporting.filename = intl.formatMessage({id: 'average_blocksize'});
+        _config.exporting.filename = intl.formatMessage({id: 'charts_average_blocksize'});
         _config.xAxis.tickPixelInterval = 100;
         _config.xAxis.minRange=24 * 3600 * 1000;
         _config.yAxis.title.text = intl.formatMessage({id: 'bytes'});
@@ -844,7 +845,7 @@ export class LineReactHighChartPrice extends React.Component {
                 let date = intl.formatDate(this.point.x);
                 return (
                     intl.formatMessage({id: 'date'}) + ' : ' + date + '<br/>' +
-                    intl.formatMessage({id: 'average_price'}) + ' : ' + this.point.y
+                    intl.formatMessage({id: 'charts_average_price'}) + ' : ' + this.point.y
                 )
             }
         }else{
@@ -859,9 +860,9 @@ export class LineReactHighChartPrice extends React.Component {
             _config.chart.zoomType = 'x';
             _config.chart.marginTop = 80;
             _config.chart.type= 'area';
-            _config.title.text = intl.formatMessage({id: 'average_price'});
+            _config.title.text = intl.formatMessage({id: 'charts_average_price'});
             _config.subtitle.text = intl.formatMessage({id: 'HighChart_tip'});
-            _config.exporting.filename = intl.formatMessage({id: 'average_price'});
+            _config.exporting.filename = intl.formatMessage({id: 'charts_average_price'});
             _config.xAxis.tickPixelInterval = 100;
             // _config.xAxis.minRange=24 * 3600 * 1000
             _config.yAxis.title.text = intl.formatMessage({id: 'usd'});
@@ -875,7 +876,7 @@ export class LineReactHighChartPrice extends React.Component {
                 let date = intl.formatDate(this.point.x);
                 return (
                     intl.formatMessage({id: 'date'}) + ' : ' + date + '<br/>' +
-                    intl.formatMessage({id: 'average_price'}) + ' : ' + this.point.y
+                    intl.formatMessage({id: 'charts_average_price'}) + ' : ' + this.point.y
                 )
             }
         }
@@ -954,9 +955,9 @@ export class LineReactHighChartVolumeUsd extends React.Component {
             }
             _config.chart.zoomType = 'x';
             _config.chart.marginTop = 80;
-            _config.title.text = intl.formatMessage({id: 'volume_24'});
+            _config.title.text = intl.formatMessage({id: 'charts_volume_24'});
             _config.subtitle.text = intl.formatMessage({id: 'HighChart_tip'});
-            _config.exporting.filename = intl.formatMessage({id: 'volume_24'});
+            _config.exporting.filename = intl.formatMessage({id: 'charts_volume_24'});
             _config.xAxis.tickPixelInterval = 100;
             // _config.xAxis.minRange=24 * 3600 * 1000
             _config.yAxis.title.text = intl.formatMessage({id: 'billion_usd'});
@@ -969,7 +970,7 @@ export class LineReactHighChartVolumeUsd extends React.Component {
                 let date = intl.formatDate((parseInt(this.point.x)));
                 return (
                     intl.formatMessage({id: 'date'}) + ' : ' + date + '<br/>' +
-                    intl.formatMessage({id: 'volume_24'}) + ' : ' + this.point.y +'<br>'
+                    intl.formatMessage({id: 'volume'}) + ' : ' + this.point.y +'<br>'
                 )
             }
         }
@@ -1697,6 +1698,12 @@ export class EnergyConsumeChart extends React.Component {
                     text: intl.formatMessage({id: 'charts_daily_energy_consumption'})
                 },
                 subtitle: {text: intl.formatMessage({id: 'EnergyConsume_subtitle'})},
+                exporting: {
+                    enabled: true,
+                    sourceWidth: 1072,
+                    sourceHeight: 500,
+                    filename: intl.formatMessage({id: 'charts_daily_energy_consumption'})
+                },
                 yAxis: {
                     min: 0,
                     title: {
@@ -1777,6 +1784,12 @@ export class ContractInvocationChart extends React.Component {
                 },
                 subtitle: {
                     text: intl.formatMessage({id: 'HighChart_tip'})
+                },
+                exporting: {
+                    enabled: true,
+                    sourceWidth: 1072,
+                    sourceHeight: 500,
+                    filename: intl.formatMessage({id: 'charts_contract_calling'})
                 },
                 xAxis: {
                     tickPixelInterval: 100
@@ -1874,6 +1887,12 @@ export class ContractInvocationDistributionChart extends React.Component {
                 title: {
                     text: intl.formatMessage({id: 'charts_daily_contract_calling_profile'})
                 },
+                exporting: {
+                    enabled: true,
+                    sourceWidth: 1072,
+                    sourceHeight: 500,
+                    filename: intl.formatMessage({id: 'charts_daily_contract_calling_profile'})
+                },
                 tooltip: {
                     headerFormat: '',
                     pointFormat: '<span style="color:{point.color}">\u25CF</span> <b> {point.name}</b><br/>' +
@@ -1968,6 +1987,12 @@ export class EnergyConsumeDistributionChart extends React.Component {
                 subtitle: {
                     text: SUBTITLE
                 },
+                exporting: {
+                    enabled: true,
+                    sourceWidth: 1072,
+                    sourceHeight: 500,
+                    filename: intl.formatMessage({id: 'charts_daily_energy_contracts'})
+                },
                 tooltip: {
                     headerFormat: '',
                     pointFormat: '<span style="color:{point.color}">\u25CF</span> <b> {point.name}</b><br/>' +
@@ -2038,10 +2063,7 @@ export class OverallFreezingRateChart extends React.Component {
             timestamp.push(val['timestamp'])
             //timestamp.push(moment(val['timestamp']).format("YYYY-MM-DD"))
         })
-        console.log('categories',timestamp)
-        console.log('freezingRate',freezingRate)
-        console.log('freezeTotal',freezeTotal)
-        console.log('turnoverTotal',turnoverTotal)
+       
         if (newData && newData.length > 0) {
             let options =  {
                 title: {
@@ -2158,13 +2180,9 @@ export class OverallFreezingRateChart extends React.Component {
                 ],
                 plotOptions: {
                     column: {
-                        stacking: 'normal',
-                        dataLabels: {
-                            enabled: false,
-                            style: {
-                                textShadow: '0 0 3px black'
-                            }
-                        }
+                        grouping: false,
+                        shadow: false,
+                        borderWidth: 0
                     },
                     spline: {
                         marker: {

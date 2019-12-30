@@ -1324,7 +1324,7 @@ class Statistics extends React.Component {
                                                   </td>
                                                 </tr>
                                                 <tr>
-                                                  <td>+ {tu('node_rewards')}:
+                                                  <td>+ {tu('charts_total_TRX_supply_vote')}:
                                                   </td>
                                                   <td>
                                                       {nodeRewardsNum} TRX

@@ -308,7 +308,7 @@ class SmartContract extends React.Component {
       if (contract.call_value) {
         contractValue = `${contract.call_value} TRX`;
       } else {
-        contractValue = "--";
+        contractValue = "0";
       }
     }
 
@@ -374,7 +374,7 @@ class SmartContract extends React.Component {
                           <li>
                             <p>
                               {upperFirst(
-                                intl.formatMessage({ id: "contract_name" })
+                                intl.formatMessage({ id: "contract_code_overview_name" })
                               )}
                               :{" "}
                             </p>
@@ -504,7 +504,7 @@ class SmartContract extends React.Component {
                         </h6>
                         <ul>
                           <li>
-                            <p>{tu("contract_creator")}:</p>
+                            <p>{tu("contract_code_overview_creator")}:</p>
                             {contract.creator && (
                               <div className="d-flex">
                                 <span style={{ width: "30%" }}>
@@ -515,7 +515,7 @@ class SmartContract extends React.Component {
                                   </AddressLink>
                                 </span>
                                {
-                                  contract.creator.txHash && <span>
+                                  contract.creator.txHash && <span className="d-flex" style={{ width: "70%" }}>
                                     <span className="px-1">{tu("at_txn")}</span>
                                       <span style={{ width: "30%" }}>
                                         <Truncate>

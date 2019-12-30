@@ -45,7 +45,8 @@ import {toastr} from 'react-redux-toastr'
 import Lockr from "lockr";
 import {BarLoader} from "./common/loaders";
 import {Truncate} from "./common/text";
-import { Icon, Select } from 'antd';
+import { TRXPrice } from "./common/Price";
+import { Icon, Select,Tooltip} from 'antd';
 import isMobile from '../utils/isMobile';
 import {Client} from '../services/api';
 import $ from 'jquery';
@@ -541,14 +542,14 @@ class Navigation extends React.Component {
         default:
           return tronLogoInvertedTestNet;
       }
-    } else if(!IS_MAINNET){
-        switch (theme) {
-            case "light":
-                return tronLogoSunNet;
-            default:
-                return tronLogoSunNet;
-        }
-    } {
+    }else if(!IS_MAINNET){
+      switch (theme) {
+          case "light":
+              return tronLogoSunNet;
+          default:
+              return tronLogoSunNet;
+      }
+    }else{
       switch (theme) {
         case "tron":
           return tronLogoBlue;
@@ -998,10 +999,33 @@ class Navigation extends React.Component {
           {popup}
           <div className="logo-wrapper">
             <div className="py-2 d-flex px-0 menu-nav-wrapper" style={{ justifyContent:'space-between'}}>
-              <div className="ml-4">
+              <div className="logoTrxPrice">
                 <Link to="/">
                   <img src={this.getLogo()} className="logo" alt="Tron"/>
                 </Link>
+                <span className="currentTRXInfo">
+                  TRX:
+                  <Tooltip
+                    title={intl.formatMessage({
+                      id: "tooltip_trxPrice"
+                    })}
+                  >
+                    <HrefLink
+                      href="https://coinmarketcap.com/currencies/tron/"
+                      target="_blank"
+                      className="hvr-underline-from-center hvr-underline-white text-muted"
+                    >
+                      <span className="hover-red TRXPrice">
+                        <TRXPrice
+                          showPopup={false}
+                          amount={1}
+                          currency="USD"
+                          source="home"
+                        />
+                      </span>
+                    </HrefLink>
+                  </Tooltip>
+                </span>
               </div>
               {
                 IS_TESTNET &&
@@ -1245,21 +1269,7 @@ class Navigation extends React.Component {
                           }
                         </div>
                       </li>
-                      <li className="nav-item dropdown navbar-right">
-                        <a className="nav-link dropdown-toggle dropdown-menu-right "
-                          data-toggle="dropdown"
-                          href="javascript:">{activeLanguage.toUpperCase()}</a>
-                        <div className="dropdown-menu languages-menu">
-                          {
-                            Object.keys(languages).map(language => (
-                                <a key={language}
-                                  className="dropdown-item"
-                                  href="javascript:"
-                                  onClick={() => this.setLanguage(language)}>{languages[language]}</a>
-                            ))
-                          }
-                        </div>
-                      </li>
+                     
                     </ul>
                   </div>
                 </nav>
@@ -1273,6 +1283,21 @@ class Navigation extends React.Component {
                       wallet.isOpen && <Notifications wallet={wallet} notifications={notifications}/>
                     }
                     {this.renderWallet()}
+                    <li className="nav-item dropdown navbar-right">
+                        <a className="nav-link dropdown-toggle dropdown-menu-right "
+                          data-toggle="dropdown"
+                          href="javascript:">{languages[activeLanguage]}</a>
+                        <div className="dropdown-menu languages-menu">
+                          {
+                            Object.keys(languages).map(language => (
+                                <a key={language}
+                                  className="dropdown-item"
+                                  href="javascript:"
+                                  onClick={() => this.setLanguage(language)}>{languages[language]}</a>
+                            ))
+                          }
+                        </div>
+                      </li>
                   </ul>
                 </div>
               </div>

@@ -39,9 +39,14 @@ export const lang19Q4 = {
     "transfersDetailQuantity": "Quantity",
     "transfersDetailPercentage": "Percentage",
     "transfersDetailValue": "Value",
+
+    'contract_code_overview_name':'Name',
+    'contract_code_overview_creator':'Creator',
+    'contract_code_overview_account':'Account',
+
     // 2019-12-10
     "token_basic_view": "Overview",
-    "token_additional_materials": "Profile Summary",
+    "token_additional_materials": "More",
     "token_hold_user": "Holders",
     "token_capitalization": "Market Cap/Fully MC",
     "token_credit_rating": "Reputation",
@@ -122,21 +127,28 @@ export const lang19Q4 = {
     "charts_SR": "SR",
     "charts_daily_transactions": "Daily Transactions",
     "charts_total_transactions": "Total Transactions",
-    "charts_overall_freezing_rate": "Overall Freezing Rate",
-    "charts_new_addresses": "Accounts Growth",
+    "charts_volume_24": "Daily Transaction Volume",
+    "charts_total_TRX_supply":"Real-Time TRX Supply & Market Cap",
+    "charts_total_TRX_supply_vote":"voting rewards",
+    "charts_average_blocksize":"Daily Average Block Size",
+    "charts_total_average_blocksize":"Cumulative Block Size",
     "charts_daily_energy_consumption": "Daily Energy Consumption",
-    "charts_daily_energy_contracts": "Daily Energy  Consumption By Contracts",
-    "charts_contract_calling": "Contract Calling",
+    "charts_daily_energy_contracts": "Daily Energy Consumption By Contracts",
     "charts_daily_contract_calling_profile": "Daily Contract Calling Profile",
+    "charts_overall_freezing_rate": "Overall Freezing Rate",
+    "charts_new_addresses": "Account Growth",
+    "charts_contract_calling": "Contract Calling",
+    "charts_average_price": "Average TRX Price",
     "freezing_column_time": "Time（UTC）",
     "freezing_column_total_circulation": "Total circulation of TRX",
     "freezing_column_total_frozen": "Total TRX frozen",
     "freezing_column_freezing_rate": "Freezing rate",
+    "freezing_column_freezing_rate_highest": "Freezing rate:",
     "freezing_column_energy_ratio": "TRX-for-Energy ratio",
     "freezing_column_bandwidth_ratio": "TRX-for-bandwidth ratio",
-    "freezing_column_freezing_rate_tip": "amount of TRX frozen/total TRX in circulation",
-    "freezing_column_energy_ratio_tip": "amount of frozen TRX redeemed for Energy/amount of TRX frozen",
-    "freezing_column_bandwidth_ratio_tip": "amount of frozen TRX redeemed for bandwidth/amount of TRX frozen",
+    "freezing_column_freezing_rate_tip": "Amount of TRX frozen / total TRX in circulation",
+    "freezing_column_energy_ratio_tip": "TRX frozen for Energy / Total TRX frozen",
+    "freezing_column_bandwidth_ratio_tip": "TRX frozen for bandwidth / Total TRX frozen",
     "freezing_column_more": "More",
     "freezing_column_total_circulation_chart": "Total circulation（TRX）",
     "freezing_column_total_frozen_chart": "Total frozen（TRX）",
@@ -149,5 +161,22 @@ export const lang19Q4 = {
     "TRX_historical_data":"TRX balance historical data in the contract",
     "TRX_historical_data_y_text":"Amount（TRX）",
     "TRX_historical_data_tip":"TRX Amount",
-
+    /*
+    ##################################################################################
+    #                                                                                #
+    # 191230     page index optimization                                             #
+    #                                                                                #
+    ##################################################################################
+    */
+    "index_page_menu_more_dev_resources":"Development resources",
+    "index_page_search_placeholder":"Search by Address/TXn Hash/Token/Block",
+    "index_page_footer_team_info":"Team info",
+    "index_page_footer_feedback":"Feedback",
+    "index_page_footer_expand":"Expand",
+    "index_page_footer_donate_address":"The address is held by Tron. Your donation helps build a better TRON ecosystem.",
+    "index_page_confirmed_blocks":"Confirmed blocks",
+    "index_page_confirmed_blocks_tips":"Blocks confirmed by over 19  SRs",
+    "index_page_switch_tokens":"Switch tokens",
+    "index_page_tronscan_info":"TRONSCAN, the best blockchain explorer of Tron.",
+    "index_page_down_excel_tips":"Change the decimals mannually when opening the file in Excel.",
 }

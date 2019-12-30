@@ -670,54 +670,7 @@ export const routes = [{
         icon: "fas fa-indent",
         routes: [
             [
-                "tools",
-                {
-                    path: "/tools/system",
-                    icon: false,
-                    label: "system",
-                    component: SystemAsync
-                },
-                {
-                    label: "transaction_viewer",
-                    path: "/tools/transaction-viewer",
-                    icon: false,
-                    component: TransactionViewerAsync
-                },
-                {
-                    label: "tron_convert_tool",
-                    path: "/tools/tron-convert-tool",
-                    icon: false,
-                    component: TronConvertToolAsync
-                }
-                // {
-                //   label: "node_tester",
-                //   path: "/tools/node-tester",
-                //   icon: "fa fa-server",
-                //   component: NodeTesterAsync
-                // }
-                // {
-                //     url: "https://github.com/tronscan/tronscan-desktop/releases",
-                //     icon: "fa fa-download",
-                //     label: "desktop_explorer"
-                // },
-            ],
-            [
-                "testnet",
-                {
-                    url: "https://nile.tronscan.org",
-                    icon: false,
-                    label: "NILE TESTNET",
-                    sidechain: false
-                },
-                {
-                    url: "https://shasta.tronscan.org",
-                    icon: false,
-                    label: "SHASTA TESTNET",
-                    sidechain: false
-                }
-            ],
-            [
-                "Documentation",
+                "index_page_menu_more_dev_resources",
                 {
                     url: "https://tron.network/static/doc/white_paper_v_2_0.pdf",
                     icon: false,
@@ -729,27 +682,15 @@ export const routes = [{
                     label: "tron_architechure"
                 },
                 {
-                    url: "https://dn-peiwo-web.qbox.me/TRON%20Protobuf%20Protocol%20Document.pdf",
-                    icon: false,
-                    label: "tron_protobuf_doc"
-                },
-                {
                     url: "https://github.com/tronscan/tronscan-frontend/blob/dev2019/document/api.md",
                     icon: false,
                     label: "tron_explorer_api"
                 },
                 {
-                    label: "frequently_asked_questions",
+                    url: "https://dn-peiwo-web.qbox.me/TRON%20Protobuf%20Protocol%20Document.pdf",
                     icon: false,
-                    component: FaqAsync,
-                    path: "/help/faq"
+                    label: "tron_protobuf_doc"
                 },
-                {
-                    label: "ledger_guide",
-                    icon: false,
-                    component: LedgerHelpAsync,
-                    path: "/help/ledger"
-                }
                 // {
                 //     label: "copyright",
                 //     component: CopyrightAsync,
@@ -782,6 +723,54 @@ export const routes = [{
                 //     label: "report_an_error"
                 // }
             ],
+            [
+                "testnet",
+                {
+                    url: "https://nile.tronscan.org",
+                    icon: false,
+                    label: "NILE TESTNET",
+                    sidechain: false
+                },
+                {
+                    url: "https://shasta.tronscan.org",
+                    icon: false,
+                    label: "SHASTA TESTNET",
+                    sidechain: false
+                }
+            ],
+            [
+                "tools",
+                {
+                    path: "/tools/system",
+                    icon: false,
+                    label: "system",
+                    component: SystemAsync
+                },
+                {
+                    label: "transaction_viewer",
+                    path: "/tools/transaction-viewer",
+                    icon: false,
+                    component: TransactionViewerAsync
+                },
+                {
+                    label: "tron_convert_tool",
+                    path: "/tools/tron-convert-tool",
+                    icon: false,
+                    component: TronConvertToolAsync
+                }
+                // {
+                //   label: "node_tester",
+                //   path: "/tools/node-tester",
+                //   icon: "fa fa-server",
+                //   component: NodeTesterAsync
+                // }
+                // {
+                //     url: "https://github.com/tronscan/tronscan-desktop/releases",
+                //     icon: "fa fa-download",
+                //     label: "desktop_explorer"
+                // },
+            ],
+           
             [
                 "Other",
                 // {
@@ -816,6 +805,18 @@ export const routes = [{
                     enurl: "https://tron.network/exchangesList?lng=en",
                     zhurl: "https://tron.network/exchangesList?lng=zh",
                     linkHref: true
+                },
+                {
+                    label: "frequently_asked_questions",
+                    icon: false,
+                    component: FaqAsync,
+                    path: "/help/faq"
+                },
+                {
+                    label: "ledger_guide",
+                    icon: false,
+                    component: LedgerHelpAsync,
+                    path: "/help/ledger"
                 }
                 // {
                 //   icon: "fas fa-columns",
