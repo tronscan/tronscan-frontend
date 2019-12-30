@@ -1961,7 +1961,7 @@ export const messages = {
     "table_info_holders_tip1": "当前通证共有",
     "table_info_holders_tip2": "个地址，目前只展示前10,000个(按照通证数量从大到小排序)",
     "Singapore": "新加坡",
-    "table_info_new_tip": "目前只展示前10,000条数据.如果您想要查询其他数据，建议调整时间范围。",
+    "table_info_new_tip": "如果您想要查询其他数据，建议调整时间范围。",
     "select_start_time": "请选择开始时间",
     "select_end_time": "请选择结束时间",
     "binance": "币安BINANCE",

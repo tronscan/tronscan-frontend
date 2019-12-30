@@ -1,3 +1,4 @@
+/*eslint-disable */
 import React, { Fragment } from "react";
 import xhr from "axios/index";
 import { FormattedNumber } from "react-intl";

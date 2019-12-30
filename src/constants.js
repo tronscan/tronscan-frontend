@@ -20,6 +20,8 @@ export const NETURL = {
 
     MAINNET: "https://nile.tronscan.org",
     SUNNET: "https://dappchain.tronscan.org",
+    NEWMAINNET: "https://tronscan.io",
+    NEWSUNNET: "https://dappchain.tronscan.io",
 };
 
 export const TOKENINFO_UPDATE = 'TOKENINFO_UPDATE'
@@ -53,6 +55,7 @@ let NODEAPI;
 //for nile
 //NODEAPI = "http://52.15.126.154:9017";
 NODEAPI="https://nileapi.tronscan.org";
+
 
 export const BLOCK_REWARD = 32;
 export const SR_MAX_COUNT = 27;
