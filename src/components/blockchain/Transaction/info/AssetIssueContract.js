@@ -17,6 +17,7 @@ import { toUtf8 } from "tronweb";
 import { Link } from "react-router-dom";
 import { TransationTitle } from "./common/Title";
 import BandwidthUsage from "./common/BandwidthUsage";
+import SignList from "./common/SignList";
 
 class AssetIssueContract extends React.Component {
   constructor(props) {
@@ -112,6 +113,11 @@ class AssetIssueContract extends React.Component {
               {JSON.stringify(contract.cost) != "{}" && (
                 <Field label="consume_bandwidth">
                   <BandwidthUsage cost={contract.cost} />
+                </Field>
+              )}
+              {contract.signList && (
+                <Field label="signature_list">
+                  <SignList signList={contract.signList} />
                 </Field>
               )}
             </tbody>
