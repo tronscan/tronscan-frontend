@@ -33,7 +33,7 @@ class AssetIssueContract extends React.Component {
         <div className="table-responsive">
           <table className="table">
             <tbody>
-              <Field label="transaction_owner_address">
+              <Field label="transaction_issue_address">
                 <AddressLink address={contract["owner_address"]} />
               </Field>
               <Field label="transaction_fee">{this.state.fee}</Field>

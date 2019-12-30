@@ -34,7 +34,7 @@ class UpdateAssetContract extends React.Component {
               <Field label="description">
                 {toUtf8(contract.description)}
               </Field>
-              <Field label="URL"><ExternalLink url={toUtf8(contract.url)}/></Field>
+              <Field label="sr_url"><ExternalLink url={toUtf8(contract.url)}/></Field>
               <Field label="transaction_consumed_bandwidth_cap_per"  tip={true} text="transaction_consumed_bandwidth_cap_per_tip">{}</Field>
               <Field label="transaction_consumed_bandwidth_cap_all"  tip={true} text="transaction_consumed_bandwidth_cap_all_tip">{}</Field>
               {JSON.stringify(contract.cost) != "{}" && <Field label="consume_bandwidth"><BandwidthUsage cost={contract.cost}/></Field>}
