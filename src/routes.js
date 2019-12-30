@@ -1,14 +1,7 @@
 import React from "react";
-import {
-    flatten
-} from "lodash";
-import {
-    Redirect
-} from "react-router-dom";
-import {
-    IS_MAINNET,
-    NETURL
-} from "./constants";
+import { flatten } from "lodash";
+import { Redirect } from "react-router-dom";
+import { IS_MAINNET, NETURL } from "./constants";
 
 import {
     HomeAsync,
@@ -680,20 +673,20 @@ export const routes = [{
                 "tools",
                 {
                     path: "/tools/system",
-                    icon: "fa fa-database",
+                    icon: false,
                     label: "system",
                     component: SystemAsync
                 },
                 {
                     label: "transaction_viewer",
                     path: "/tools/transaction-viewer",
-                    icon: "fa fa-eye",
+                    icon: false,
                     component: TransactionViewerAsync
                 },
                 {
                     label: "tron_convert_tool",
                     path: "/tools/tron-convert-tool",
-                    icon: "fa fa-random",
+                    icon: false,
                     component: TronConvertToolAsync
                 }
                 // {
@@ -727,33 +720,33 @@ export const routes = [{
                 "Documentation",
                 {
                     url: "https://tron.network/static/doc/white_paper_v_2_0.pdf",
-                    icon: "fa fa-globe",
+                    icon: false,
                     label: "what_is_tron"
                 },
                 {
                     url: "https://dn-peiwo-web.qbox.me/Design_Book_of_TRON_Architecture1.4.pdf",
-                    icon: "fa fa-outdent",
+                    icon: false,
                     label: "tron_architechure"
                 },
                 {
                     url: "https://dn-peiwo-web.qbox.me/TRON%20Protobuf%20Protocol%20Document.pdf",
-                    icon: "fa fa-book",
+                    icon: false,
                     label: "tron_protobuf_doc"
                 },
                 {
                     url: "https://github.com/tronscan/tronscan-frontend/blob/dev2019/document/api.md",
-                    icon: "fa fa-building",
+                    icon: false,
                     label: "tron_explorer_api"
                 },
                 {
                     label: "frequently_asked_questions",
-                    icon: "fa fa-question",
+                    icon: false,
                     component: FaqAsync,
                     path: "/help/faq"
                 },
                 {
                     label: "ledger_guide",
-                    icon: "fa fa-tags",
+                    icon: false,
                     component: LedgerHelpAsync,
                     path: "/help/ledger"
                 }
@@ -811,7 +804,7 @@ export const routes = [{
                 {
                     path: "/markets",
                     label: "markets",
-                    icon: "fa fa-chart-line", // component: MarketsAsync
+                    icon: false, // component: MarketsAsync
                     enurl: "https://coinmarketcap.com/currencies/tron/",
                     zhurl: "https://coinmarketcap.com/zh/currencies/tron/",
                     linkHref: true
@@ -819,7 +812,7 @@ export const routes = [{
                 {
                     path: "/more/list_trx",
                     label: "list_trx",
-                    icon: "fa fa-plus",
+                    icon: false,
                     enurl: "https://tron.network/exchangesList?lng=en",
                     zhurl: "https://tron.network/exchangesList?lng=zh",
                     linkHref: true
