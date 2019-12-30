@@ -179,10 +179,10 @@ export const lang19Q4 = {
     "proposal_ID":"提议ID",
     "proposal_content":"提议内容",
 
-    // 2019-12-25 xyy
     "transaction_energy_cap":"能量上限",
     "transaction_enrgy_cap_tip":"合约部署者提供的能量上限值",
-    "transaction_detail":"交易详情",
+
+    // 2019-12-25 xyy
     "transaction_hash":"哈希",
     "transaction_status_tip":'"已确认"是指被19个以上超级节点确认',
     "transaction_type": "交易类型",
@@ -207,14 +207,14 @@ export const lang19Q4 = {
     "transaction_TRANSFERASSETCONTRACT":"TRC10转账",
     "transaction_ASSETISSUECONTRACT":"发行TRC10通证",
     "transaction_PARTICIPATEASSETISSUECONTRACT":"购买TRC10通证",
-    "transaction_UNFREEZEASSETCONTRACT":"TRC10锁仓提取",
+    "transaction_UNFREEZEASSETCONTRACT":"解冻TRC10 通证",
     "transaction_UPDATEASSETCONTRACT":"更新TRC10通证参数",
     "transaction_ACCOUNTCREATECONTRACT":"激活账户",
     "transaction_WITHDRAWBALANCECONTRACT":"提取奖励",
     "transaction_TRIGGERSMARTCONTRACT":"触发智能合约",
     "transaction_VOTEWITNESSCONTRACT":"投票",
-    "transaction_WITNESSCREATECONTRACT":"创建超级代表候选人",
-    "transaction_WITNESSUPDATECONTRACT":"更新超级代表候选人信息",
+    "transaction_WITNESSCREATECONTRACT":"申请成为SR候选人",
+    "transaction_WITNESSUPDATECONTRACT":"更新SR候选人信息",
     "transaction_ACCOUNTUPDATECONTRACT":"修改账户名称",
     "transaction_PROPOSALCREATECONTRACT":"创建提议",
     "transaction_PROPOSALAPPROVECONTRACT":"赞成提议",
@@ -231,6 +231,8 @@ export const lang19Q4 = {
     "transaction_UPDATEBROKERAGECONTRACT":"更新超级代表佣金比例",
     "transaction_CLEARABICONTRACT":"清除合约ABI",
     "transaction_token_holder_address":"通证所有者地址",
+    "transaction_issue_address":"发行者地址",
+
     "transaction_rewards_distribution_ratio":"选民分成比例",
     "signature_list":"签名列表",
 }
