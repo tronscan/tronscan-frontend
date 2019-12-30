@@ -202,5 +202,6 @@ export const lang19Q4 = {
     "transaction_UPDATEBROKERAGECONTRACT":"نسبت کمیسیون SR را به روز رسانی کنید.",
     "transaction_CLEARABICONTRACT":"قرارداد ABI را پاک کنید.",
     "transaction_token_holder_address":"آدرس دارنده توکن",
-    "transaction_issue_address":"آدرس صادر کننده"
+    "transaction_issue_address":"آدرس صادر کننده",
+    "only_show_sinatures":"فقط آدرس ها را با امضاها نشان دهید",
 }

@@ -33,7 +33,7 @@ class FreezeBalanceContract extends React.Component {
             <Field label="frozen_days">{contract['frozen_duration']}</Field>
             {JSON.stringify(contract.cost) !=
                               "{}" && <Field label="consume_bandwidth"><BandwidthUsage cost={contract.cost}/></Field>}
-             <Field label="signature_list"><SignList signList={contract.signList}/></Field>                  
+            {contract.signList&&<Field label="signature_list"><SignList signList={contract.signList}/></Field>}              
             </tbody>
         </table>
         </div>

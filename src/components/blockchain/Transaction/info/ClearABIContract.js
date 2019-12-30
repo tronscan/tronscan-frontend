@@ -4,6 +4,7 @@ import Field from "../../../tools/TransactionViewer/Field";
 import SignList from './common/SignList'
 import {TransationTitle} from './common/Title'
 import BandwidthUsage from './common/BandwidthUsage'
+import { tu } from "../../../../utils/i18n";
 export default function ClearABIContract(props) {
     const contract = props.contract;
     const {signList,contractType,cost} = contract;
@@ -20,7 +21,7 @@ export default function ClearABIContract(props) {
                 <Field label="address_net_fee"><BandwidthUsage cost = {cost}/></Field>
                 {JSON.stringify(contract.cost) !=
                               "{}" && <Field label="consume_bandwidth"><BandwidthUsage cost={cost}/></Field>}
-                <Field label="signature_list"><SignList signList={signList}/></Field>
+                {signList&&signList.length>1&&<Field label="signature_list" tip={true} text={tu('only_show_sinatures')}><SignList signList={signList}/></Field>}
             </tbody>
         </table>
     </Fragment>

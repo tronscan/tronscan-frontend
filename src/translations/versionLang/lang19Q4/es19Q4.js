@@ -203,5 +203,6 @@ export const lang19Q4 = {
     "transaction_UPDATEBROKERAGECONTRACT":"Renovar el ratio de comisión de SR",
     "transaction_CLEARABICONTRACT":"Eliminar Contrato ABI",
     "transaction_token_holder_address":"Dirección del token holder",
-    "transaction_issue_address":"Dirección del emisor"
+    "transaction_issue_address":"Dirección del emisor",
+    "only_show_sinatures":"Mostrar direcciones solo con firmas",
 }

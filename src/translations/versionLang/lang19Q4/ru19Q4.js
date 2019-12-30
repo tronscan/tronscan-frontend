@@ -203,5 +203,6 @@ export const lang19Q4 = {
     "transaction_UPDATEBROKERAGECONTRACT":"Обновить соотношение комиссионных SR",
     "transaction_CLEARABICONTRACT":"Очистить ABI контракта",
     "transaction_token_holder_address":"Адрес владельца токена",
-    "transaction_issue_address":"Адрес эмитента"
+    "transaction_issue_address":"Адрес эмитента",
+    "only_show_sinatures":"Отображать адреса только с подписями",
 }
