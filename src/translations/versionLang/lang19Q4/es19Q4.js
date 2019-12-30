@@ -152,4 +152,5 @@ export const lang19Q4 = {
     "transaction_rewards_distribution_ratio":"Proporción de distribución de recompensas",
     "transaction_energy_cap":"Límite de energía",
     "transaction_enrgy_cap_tip":"Máxima energía proporcionada por los implementadores de contrato",
+    "signature_list":"Lista de firmas",
 }

@@ -152,4 +152,5 @@ export const lang19Q4 = {
     "transaction_rewards_distribution_ratio":"Коэффициент распределения вознаграждений",
     "transaction_energy_cap":"Предел энергии",
     "transaction_enrgy_cap_tip":"Максимальная Энергия, предоставляемая выпуску контракта",
+    "signature_list":"Список подписей",
 }

@@ -151,4 +151,5 @@ export const lang19Q4 = {
     "transaction_rewards_distribution_ratio":"نسبت توزیع پاداش.",
     "transaction_energy_cap":"حد بالایی انرژی.",
     "transaction_enrgy_cap_tip":"حداکثر انرژی تأمین شده توسط توزیع کنندگان قرارداد.",
+    "signature_list":"لیست امضاها",
 }

@@ -23,7 +23,7 @@ export default function ExchangeCreateContract(props) {
                 <Field label="amount">{toThousands(first_token_balance)}/{toThousands(second_token_balance)}</Field>
                 <Field label="transaction_fee">1,024 TRX</Field>
                 <Field label="address_net_fee"><BandwidthUsage cost = {cost}/></Field>
-                <SignList signList={signList}/>
+                <Field label="signature_list"><SignList signList={signList}/></Field>
             </tbody>
         </table>
     </Fragment>

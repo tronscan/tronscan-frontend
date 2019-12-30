@@ -232,5 +232,5 @@ export const lang19Q4 = {
     "transaction_CLEARABICONTRACT":"清除合约ABI",
     "transaction_token_holder_address":"通证所有者地址",
     "transaction_rewards_distribution_ratio":"选民分成比例",
-
+    "signature_list":"签名列表",
 }

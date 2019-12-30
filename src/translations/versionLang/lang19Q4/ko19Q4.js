@@ -149,4 +149,5 @@ export const lang19Q4 = {
     "transaction_rewards_distribution_ratio":"보상 분배 비율",
     "transaction_energy_cap":"에너지 한도",
     "transaction_enrgy_cap_tip":"계약 배치자가 제공하는 최대 에너지",
+    "signature_list":"서명 목록",
 }

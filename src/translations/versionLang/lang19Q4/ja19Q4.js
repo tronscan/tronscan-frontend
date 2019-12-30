@@ -153,4 +153,5 @@ export const lang19Q4 = {
     "transaction_rewards_distribution_ratio":"投票者シェア",
     "transaction_energy_cap":"エネルギーの上限",
     "transaction_enrgy_cap_tip":"契約デプロイヤが提供する最大エネルギー値",
+    "signature_list":"署名リスト",
 }

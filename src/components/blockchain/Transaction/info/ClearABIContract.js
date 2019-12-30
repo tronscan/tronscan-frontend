@@ -18,7 +18,9 @@ export default function ClearABIContract(props) {
                 }
                 <Field label="contract_address"><ContractLink address={'TD4anu8auWfCDYqQpAEcLXVK6UgME9Jsid'}/></Field>
                 <Field label="address_net_fee"><BandwidthUsage cost = {cost}/></Field>
-                <SignList signList={signList}/>
+                {JSON.stringify(contract.cost) !=
+                              "{}" && <Field label="consume_bandwidth"><BandwidthUsage cost={cost}/></Field>}
+                <Field label="signature_list"><SignList signList={signList}/></Field>
             </tbody>
         </table>
     </Fragment>

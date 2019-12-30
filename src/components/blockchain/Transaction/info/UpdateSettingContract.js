@@ -20,7 +20,7 @@ export default function UpdateSettingContract(props) {
                 <Field lable="contract_address"><ContractLink address={'TD4anu8auWfCDYqQpAEcLXVK6UgME9Jsid'}/></Field>
                 <Field lable="contract_enery" text={tu('contract_enery_tip')}>{tu('contract_percent') } 0% {tu('contract_percent_user')} 100%</Field>
                 <Field label="address_net_fee"><BandwidthUsage cost = {cost}/></Field>
-                <SignList signList={signList}/>
+                <Field label="signature_list"><SignList signList={signList}/></Field>
             </tbody>
         </table>
     </Fragment>

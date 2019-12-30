@@ -152,4 +152,5 @@ export const lang19Q4 = {
     "freezing_column_calls": "نتيجة",
     "transaction_energy_cap":"الحد الأقصى للطاقة",
     "transaction_enrgy_cap_tip":"الحد الأقصى للطاقة التي يوفرها ناشرو العقود",
+    "signature_list":"قائمة التوقيع",
 }

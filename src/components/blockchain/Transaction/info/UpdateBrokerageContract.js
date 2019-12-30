@@ -17,8 +17,9 @@ export default function UpdateBrokerageContract(props) {
                         : ''
                 }
                 <Field label="transaction_rewards_distribution_ratio">{brokerage}%</Field>
-                <Field label="address_net_fee"><BandwidthUsage cost = {cost}/></Field>
-                <SignList signList={signList}/>
+                {JSON.stringify(contract.cost) !=
+                              "{}" && <Field label="consume_bandwidth"><BandwidthUsage cost={cost}/></Field>}
+                <Field label="signature_list"><SignList signList={signList}/></Field>
             </tbody>
         </table>
     </Fragment>

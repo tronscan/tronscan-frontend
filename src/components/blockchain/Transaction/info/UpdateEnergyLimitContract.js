@@ -19,8 +19,9 @@ export default function UpdateEnergyLimitContract(props) {
                 }
                  <Field label="contract_address"><ContractLink address={'TK3VSP3kwp7XssTGpisRSKGHE69nhk1hen'} /></Field>
                  <Field label="transaction_energy_cap" text={tu('transaction_enrgy_cap_tip')}>50000</Field>
-                 <Field label="address_net_fee"><BandwidthUsage cost = {cost}/></Field>
-                 <SignList signList={signList}/>
+                 {JSON.stringify(contract.cost) !=
+                              "{}" && <Field label="consume_bandwidth"><BandwidthUsage cost={cost}/></Field>}
+                <Field label="signature_list"><SignList signList={signList}/></Field>
             </tbody>
         </table>
     </Fragment>
