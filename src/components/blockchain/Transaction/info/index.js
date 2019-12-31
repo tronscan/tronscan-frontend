@@ -31,8 +31,10 @@ import VoteWitnessContract from './VoteWitnessContract'
 import WitnessUpdateContract from './WitnessUpdateContract'
 import AccountUpdateContract from './AccountUpdateContract'
 import ProposalCreateContract from './ProposalCreateContract'
-
-
+import ProposalApproveContract from './ProposalApproveContract'
+import ProposalDeleteContract from './ProposalDeleteContract'
+import SetAccountIdContract from './SetAccountIdContract'
+import CreateSmartContract from './CreateSmartContract'
 
 import TriggerContract from './TriggerContract'
 
@@ -149,6 +151,14 @@ export default function Info({contract}) {
                 return <UpdateBrokerageContract contract={contract}/>;
             case "ACCOUNTPERMISSIONUPDATECONTRACT":
                 return <AccountPermissionUpdateContract contract={contract}/>
+            case "PROPOSALAPPROVECONTRACT":
+                return <ProposalApproveContract contract={contract}></ProposalApproveContract>
+            case "PROPOSALDELETECONTRACT":
+                return <ProposalDeleteContract contract={contract}></ProposalDeleteContract>
+            case "SETACCOUNTIDCONTRACT":
+                return <SetAccountIdContract contract={contract}></SetAccountIdContract>
+            case "CREATESMARTCONTRACT":
+                return <CreateSmartContract contract={contract}></CreateSmartContract> 
             default:
                 return (
                     <Fragment>

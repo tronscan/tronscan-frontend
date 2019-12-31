@@ -178,6 +178,10 @@ export const lang19Q4 = {
     "sr_url":"网址",
     "proposal_ID":"提议ID",
     "proposal_content":"提议内容",
+    "vote_proposal":"是否赞成提议",
+    "vote_yes":"是",
+    "vote_no":"否",
+    "account_id":"账户ID",
 
     // 2019-12-25 xyy
     "transation_detail":"交易详情",

@@ -1,5 +1,5 @@
 import React, {Fragment, useState, useEffect} from "react";
-import {tu} from "../../../../utils/i18n";
+import {tu, t} from "../../../../utils/i18n";
 import { Icon, Tooltip } from "antd";
 import { upperFirst } from "lodash";
 import {AddressLink, ExternalLink, ContractLink, TokenTRC20Link} from "../../../common/Links";
@@ -9,351 +9,73 @@ import rebuildList from "../../../../utils/rebuildList";
 import BandwidthUsage from './common/BandwidthUsage'
 import {TransationTitle} from './common/Title'
 import {injectIntl} from "react-intl";
+import Field from "../../../tools/TransactionViewer/Field";
+import {toUtf8} from 'tronweb'
+import { Client } from "../../../../services/api";
 
+async function contractValue(id) {
+  let contract = await Client.getContractOverview(id);
+  let contractValue = "";
+
+  if (contract.call_token_value) {
+    let tokenList = [{ token_id: contract.call_token_id }];
+    let tokenInfo = rebuildList(tokenList, "token_id", "amount")[0];
+    let value =
+      contract.call_token_value /
+      Math.pow(10, tokenInfo.map_token_precision || 6);
+    if (contract.call_value) {
+      contractValue = `${contract.call_value} TRX ${value} ${tokenInfo.map_token_name}`;
+    } else {
+      contractValue = `${value} ${tokenInfo.map_token_name}`;
+    }
+  } else {
+    if (contract.call_value) {
+      contractValue = `${contract.call_value} TRX`;
+    } else {
+      contractValue = 0;
+    }
+  }
+
+  return contractValue;
+}
+const useFetch = (id) => {
+  const [data, updateData] = useState(0)
+
+  useEffect(async () => {
+      const value = await contractValue(id)
+      updateData(value)
+  }, [id])
+
+  return data
+}
 function CreateSmartContract({contract,intl}){
-    const defaultImg = require("../../../../images/logo_default.png");
-
-    return (
-      <Fragment>
-        <TransationTitle contractType={contract.contractType}></TransationTitle>
-        <div className="content">
-          <div className="content_pos">
-            <div className="d-flex border-bottom pt-2">
-              <div className="content_box_name">
-                {tu("contract_triggers_owner_address")}
-              </div>
-              <div className="flex1">
-                <div className="d-flex border-bottom content_item">
-                  <AddressLink
-                    address={contract["owner_address"]}
-                  >
-                    {contract["owner_address"]}
-                  </AddressLink>
-                </div>
-              </div>
-            </div>
-            <div className="d-flex border-bottom pt-2">
-              <div className="content_box_name">
-                {tu("contract_address")}
-              </div>
-              <div className="flex1">
-                <div className="d-flex border-bottom content_item">
-                  <AddressLink
-                    address={contract["contract_address"]}
-                    isContract={true}
-                  >
-                    <Tooltip
-                      placement="top"
-                      title={upperFirst(
-                        intl.formatMessage({
-                          id: "transfersDetailContractAddress"
-                        })
-                      )}
-                    >
-                      <Icon
-                        type="file-text"
-                        style={{
-                          verticalAlign: 2,
-                          color: "#77838f"
-                        }}
-                      />
-                    </Tooltip>
-                    {contract["contract_address"]}
-                  </AddressLink>
-                </div>
-                <div className="d-flex border-bottom content_item">
-                {JSON.stringify(contract.internal_transactions) !=
-                    "{}" && (
-                      <div className="flex1">
-                        {Object.keys(
-                          contract.internal_transactions
-                        ).map((o, index) => {
-                          let vdom = [];
-                          contract.internal_transactions[o].map(
-                            (item, cindex) => {
-                              // let tokenInfo = rebuildList(
-                              //   JSON.parse(item.value_info_list),
-                              //   "token_id",
-                              //   "call_value"
-                              // )[0];
-                              let tokenList = rebuildList(
-                                JSON.parse(item.value_info_list),
-                                "token_id",
-                                "call_value"
-                              )
-                              let tokenInfo = tokenList[0]
-                              let vnode = []
-                              tokenList.map(v=>{
-                                vnode.push(
-                                  <div
-                                  key={item.transaction_id}
-                                  className={
-                                    "d-flex align-items-center content_item"
-                                  }
-                                >
-                                  <div className="d-flex">
-                                    {/* <div className="mr-1">
-                                      {tu("transfers")}
-                                    </div> */}
-                                    <div className="mr-1">
-                                      {v.map_amount +
-                                        " " +
-                                        v.map_token_name_abbr}
-                                    </div>
-                                    <div className="mr-1">
-                                      {tu("from")}
-                                    </div>
-                                    <div
-                                      className="mr-1"
-                                      style={{ width: "150px" }}
-                                    >
-                                      <ContractLink
-                                        address={
-                                          item["caller_address"]
-                                        }
-                                      >
-                                        {item["caller_address"]}
-                                      </ContractLink>
-                                    </div>
-                                    <div className="mr-1">
-                                      {tu("to")}
-                                    </div>
-                                    <div
-                                      className="mr-1"
-                                      style={{ width: "150px" }}
-                                    >
-                                      <ContractLink
-                                        address={
-                                          item["transfer_to_address"]
-                                        }
-                                      >
-                                        {item["transfer_to_address"]}
-                                      </ContractLink>
-                                    </div>
-                                  </div>
-                                </div>
-                                )
-                              })
-                              vdom.push(vnode);
-                            }
-                          );
-                          return vdom;
-                        })}
-                      </div>
-                  )}
-                </div>
-              </div>
-            </div>
-            <div className="d-flex border-bottom pt-2">
-              <div className="content_box_name">
-                {tu("value")}
-              </div>
-              <div className="flex1">
-                <div className="d-flex content_item">
-                  {contract["call_value"] ? (
-                    <TRXPrice
-                      amount={contract["call_value"] / ONE_TRX}
-                    />
-                  ) : (
-                    <TRXPrice amount={0} />
-                  )}
-                </div>
-              </div>
-            </div>
-            {contract.tokenTransferInfo &&
-              contract.tokenTransferInfo.decimals !==
-                undefined &&
-              contract.tokenTransferInfo.symbol !==
-                undefined && (
-                <div className="d-flex border-bottom pt-2">
-                  <div className="content_box_name">
-                    {tu("TRC20_transfers")}
-                  </div>
-                  <div className="flex1">
-                    <div className="d-flex border-bottom content_item">
-                      <div className="content_name">
-                        {tu("from")}:
-                      </div>
-                      <div className="flex1">
-                        <AddressLink
-                          address={
-                            contract.tokenTransferInfo[
-                              "from_address"
-                            ]
-                          }
-                        >
-                          {
-                            contract.tokenTransferInfo[
-                              "from_address"
-                            ]
-                          }
-                        </AddressLink>
-                      </div>
-                    </div>
-                    <div className="d-flex border-bottom content_item">
-                      <div className="content_name">
-                        {tu("to")}:
-                      </div>
-                      <div className="flex1">
-                        <AddressLink
-                          address={
-                            contract.tokenTransferInfo[
-                              "to_address"
-                            ]
-                          }
-                        >
-                          {
-                            contract.tokenTransferInfo[
-                              "to_address"
-                            ]
-                          }
-                        </AddressLink>
-                      </div>
-                    </div>
-                    <div className="d-flex border-bottom content_item">
-                      <div className="content_name">
-                        {tu("amount")}:
-                      </div>
-                      <div className="flex1">
-                        {Number(
-                          contract.tokenTransferInfo[
-                            "amount_str"
-                          ]
-                        ) /
-                          Math.pow(
-                            10,
-                            contract.tokenTransferInfo[
-                              "decimals"
-                            ]
-                          )}
-                      </div>
-                    </div>
-                    <div className="d-flex border-bottom content_item">
-                      <div className="content_name">
-                        {tu("token_txs_info")}:
-                      </div>
-                      <div className="flex1">
-                        {contract.tokenTransferInfo[
-                          "contract_address"
-                        ] == CONTRACT_ADDRESS_USDT ||
-                        contract.tokenTransferInfo[
-                          "contract_address"
-                        ] == CONTRACT_ADDRESS_WIN ||
-                        contract.tokenTransferInfo[
-                          "contract_address"
-                        ] == CONTRACT_ADDRESS_GGC ? (
-                          <b
-                            className="token-img-top"
-                            style={{ marginRight: 5 }}
-                          >
-                            <img
-                              width={20}
-                              height={20}
-                              src={
-                                contract.tokenTransferInfo[
-                                  "icon_url"
-                                ]
-                              }
-                              alt={
-                                contract.tokenTransferInfo[
-                                  "name"
-                                ]
-                              }
-                              onError={e => {
-                                e.target.onerror = null;
-                                e.target.src = defaultImg;
-                              }}
-                            />
-                            <i
-                              style={{
-                                width: 10,
-                                height: 10,
-                                bottom: -5
-                              }}
-                            ></i>
-                          </b>
-                        ) : (
-                          <img
-                            width={20}
-                            height={20}
-                            src={
-                              contract.tokenTransferInfo[
-                                "icon_url"
-                              ]
-                            }
-                            alt={
-                              contract.tokenTransferInfo["name"]
-                            }
-                            style={{ marginRight: 5 }}
-                            onError={e => {
-                              e.target.onerror = null;
-                              e.target.src = defaultImg;
-                            }}
-                          />
-                        )}
-                        <TokenTRC20Link
-                          name={
-                            contract.tokenTransferInfo["name"]
-                          }
-                          address={
-                            contract.tokenTransferInfo[
-                              "contract_address"
-                            ]
-                          }
-                          namePlus={
-                            contract.tokenTransferInfo["name"] +
-                            " (" +
-                            contract.tokenTransferInfo[
-                              "symbol"
-                            ] +
-                            ")"
-                          }
-                        />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              )}
-            {
-              contract.cost && <BandwidthUsage cost={contract.cost}></BandwidthUsage>
-            }
-            {contract.method && (
-              <div className="d-flex border-bottom pt-2">
-                <div className="content_box_name">
-                  {tu("Method_calling")}
-                </div>
-                <div className="flex1">
-                  <div className="d-flex border-bottom content_item">
-                    {/* <div className="content_name">
-                      {tu("contract_method")}:
-                    </div> */}
-                    <div className="flex1">
-                      {contract.method}
-                    </div>
-                  </div>
-                  {contract.parameter &&
-                    Object.keys(contract.parameter).map(p => {
-                      return (
-                        <div
-                          className="d-flex border-bottom content_item"
-                          key={p}
-                        >
-                          <div className="content_name">
-                            {p}:
-                          </div>
-                          <div className="flex1">
-                            {contract.parameter[p]}
-                          </div>
-                        </div>
-                      );
-                    })}
-                </div>
-              </div>
-            )}
-          </div>
-        </div>
-      </Fragment>
-    );
+  const value = useFetch('TDdZsKY5Mfi959yEyJ1otgfKsNSbBPGPfb')
+  return (
+    <Fragment>
+      <TransationTitle contractType={contract.contractType}></TransationTitle>
+      <table className="table">
+        <tbody>
+          <Field label="contract_creator"><AddressLink address={contract['owner_address']}/></Field>
+          <Field label="contract_address"><AddressLink address={contract['owner_address']}/></Field>
+          <Field label="contract_name">{contract.new_contract.name}</Field>
+          <Field label="contract_enery" tip text={t('contract_enery_tip')}>
+            {tu("contract_percent")}
+            {100 - contract.new_contract.consume_user_resource_percent}%
+            {"  "}
+            {tu("contract_percent_user")}
+            {contract.new_contract.consume_user_resource_percent}%
+          </Field>
+          <Field label="contract_init_assets" tip="true" text={t('contract_init_assets_tip')}>{value}</Field>
+          <Field label="consume_bandwidth">
+            <BandwidthUsage cost={contract.cost}></BandwidthUsage>
+          </Field>
+          <Field label="consume_energy">
+            <BandwidthUsage cost={contract.cost} type="1"></BandwidthUsage>
+          </Field>
+        </tbody>
+    </table>
+    </Fragment>
+  );
 }
 
 export default injectIntl(CreateSmartContract)

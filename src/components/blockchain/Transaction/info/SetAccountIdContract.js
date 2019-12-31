@@ -17,11 +17,11 @@ export default function SetAccountIdContract({contract}){
       <TransationTitle contractType={contract.contractType}></TransationTitle>
       <table className="table">
           <tbody>
-          <Field label="owner_address"><AddressLink address={contract['owner_address']}/></Field>
-          <Field label="URL">{contract.url}</Field>
-          {
-            contract.cost && <BandwidthUsage cost={contract.cost}></BandwidthUsage>
-          }
+          <Field label="initiate_address"><AddressLink address={contract['owner_address']}/></Field>
+          <Field label="account_id">{contract.url}</Field>
+          <Field label="consume_bandwidth">
+            <BandwidthUsage cost={contract.cost}></BandwidthUsage>
+          </Field>
           </tbody>
       </table>
     </Fragment>

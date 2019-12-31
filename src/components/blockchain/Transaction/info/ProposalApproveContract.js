@@ -17,11 +17,20 @@ export default function ProposalApproveContract({contract}){
       <TransationTitle contractType={contract.contractType}></TransationTitle>
       <table className="table">
           <tbody>
-          <Field label="owner_address"><AddressLink address={contract['owner_address']}/></Field>
-          <Field label="URL">{contract.url}</Field>
+          <Field label="initiate_address"><AddressLink address={contract['owner_address']}/></Field>
+          <Field label="proposal_ID">{contract.proposal_id}</Field>
           {
-            contract.cost && <BandwidthUsage cost={contract.cost}></BandwidthUsage>
+              contract['parameters'] && contract['parameters'].map((item)=>{
+                return <tr>
+                  <th>{tu('proposal_content')}</th>
+                  <td>{tu(`propose_${item.key}`)}</td>
+                </tr>
+              })
           }
+          <Field label="vote_proposal">{contract.is_add_approval ? tu('vote_yes') : tu('vote_no')}</Field>
+          <Field label="consume_bandwidth">
+            <BandwidthUsage cost={contract.cost}></BandwidthUsage>
+          </Field>
           </tbody>
       </table>
     </Fragment>
