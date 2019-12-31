@@ -128,10 +128,16 @@ class Transfers extends React.Component {
       ]).catch(e => {
         console.log("error:" + e);
       });
+      // console.log(allData,'allData')
       const [{ list, total, rangeTotal }, { count }] = allData;
 
       let transfers = rebuildList(list, "tokenName", "amount");
-
+      transfers.forEach(res=>{
+        if(res.tokenName === "1000016"){
+          res.map_amount = res.amount/Math.pow(10,6);
+          res.map_token_name_abbr = "TRZ"
+        }
+      })
       for (let index in transfers) {
         transfers[index].index = parseInt(index) + 1;
       }
