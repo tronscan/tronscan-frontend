@@ -90,7 +90,7 @@ export const lang19Q4 = {
     "total_supply_tip2": " TRX are excluded.",
     "market_capitalization_t": "Market Cap",
     "token_tron_total": "Total TRON Tokens",
-    "token_week": "This Week",
+    "token_week": "Last 7 Days",
     "token_scan_total": "Total in TRONSCAN",
     "create_token_btn": "Issue Tokens",
     "token_exchange": "Exchange",
@@ -161,5 +161,14 @@ export const lang19Q4 = {
     "TRX_historical_data":"TRX balance historical data in the contract",
     "TRX_historical_data_y_text":"Amount（TRX）",
     "TRX_historical_data_tip":"TRX Amount",
+    /*
+        ##################################################################################
+        #                                                                                #
+        # Charts 2019-12-30                           #
+        #                                                                                #
+        ##################################################################################
+    */
+   "account_details_contracts":"Contracts Published",
+   "account_details_contracts_no":"No contracts found",
 
 }

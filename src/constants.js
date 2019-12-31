@@ -8,10 +8,10 @@ export const IS_TESTNET = process.env.NET === "testnet";
 export const IS_DESKTOP = process.env.DESKTOP === "true";
 
 export const NETURL = {
-    // MAINNET: "https://tronscan.org",
-    // SUNNET: "https://dappchain.tronscan.org",
-     MAINNET: "http://18.217.215.94:65",
-     SUNNET: "http://18.217.215.94:66",
+    MAINNET: "https://tronscan.org",
+    SUNNET: "https://dappchain.tronscan.org",
+    NEWMAINNET: "https://tronscan.io",
+    NEWSUNNET: "https://dappchain.tronscan.io",
 };
 
 export const TOKENINFO_UPDATE = 'TOKENINFO_UPDATE'
@@ -32,8 +32,8 @@ if (NODE_ENV == "development") {
     // NODEAPI = "http://52.15.126.154:9016";
     NODEAPI = process.env.API_URL;
 } else {
-    MAINNET = window.location.origin === NETURL.MAINNET;
-    SUNNET = window.location.origin === NETURL.SUNNET;
+    MAINNET = (window.location.origin === NETURL.MAINNET ||  window.location.origin === NETURL.NEWMAINNET)
+    SUNNET = (window.location.origin === NETURL.SUNNET ||  window.location.origin === NETURL.NEWSUNNET)
     NODEAPI = process.env.API_URL;
     // NODEAPI = "http://52.15.126.154:9016";
 }

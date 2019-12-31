@@ -90,7 +90,7 @@ export const lang19Q4 = {
     "total_supply_tip2": " TRX исключаются.",
     "market_capitalization_t": "Рыночная кепка",
     "token_tron_total": "Общее Количество Токенов TRON",
-    "token_week": "На этой неделе",
+    "token_week": "Последние 7 дней",
     "token_scan_total": "Всего на TRONSCAN",
     "create_token_btn": "Выданные Токены",
     "token_exchange": "Биржа",
@@ -160,5 +160,14 @@ export const lang19Q4 = {
     "TRX_historical_data":"TRX balance historical data in the contract",
     "TRX_historical_data_y_text":"Amount（TRX）",
     "TRX_historical_data_tip":"TRX Amount",
+    /*
+        ##################################################################################
+        #                                                                                #
+        # Charts 2019-12-30                           #
+        #                                                                                #
+        ##################################################################################
+    */
+   "account_details_contracts":"Contracts Published",
+   "account_details_contracts_no":"No contracts found",
 
 }

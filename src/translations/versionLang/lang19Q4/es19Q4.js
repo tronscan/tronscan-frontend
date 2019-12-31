@@ -85,7 +85,7 @@ export const lang19Q4 = {
     "token_rank": "Clasificación",
     "market_capitalization_t": "Marketcap",
     "token_tron_total": "Número total de token de TRON",
-    "token_week": "Nuevas tokens durante la semana",
+    "token_week": "Los últimos 7 días",
     "token_scan_total": "Número de tokens en TRONSCAN",
     "create_token_btn": "Emisión de token",
     "gain_tip": "Movimiento de 24 horas",
@@ -159,4 +159,13 @@ export const lang19Q4 = {
     "TRX_historical_data":"TRX balance historical data in the contract",
     "TRX_historical_data_y_text":"Amount（TRX）",
     "TRX_historical_data_tip":"TRX Amount",
+    /*
+        ##################################################################################
+        #                                                                                #
+        # Charts 2019-12-30                           #
+        #                                                                                #
+        ##################################################################################
+    */
+    "account_details_contracts":"Contracts Published",
+    "account_details_contracts_no":"No contracts found",
 }
