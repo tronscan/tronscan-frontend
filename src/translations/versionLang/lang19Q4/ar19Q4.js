@@ -86,7 +86,7 @@ export const lang19Q4 = {
     "token_rank": "الترتيب",
     "market_capitalization_t": "القيمة الرمزية في التداول",
     "token_tron_total": "إجمالي عدد رموز ترون",
-    "token_week": "الرموز الجديدة على مدار الأسبوع",
+    "token_week": "اخر 7 ايام",
     "token_scan_total": "عدد الرموز في TRONSCAN",
     "create_token_btn": "إصدار الرمز",
     "gain_tip": "نظام مرجع TRX لـ ٢٤ساعة",
@@ -160,4 +160,16 @@ export const lang19Q4 = {
     "freezing_rangeSelector_botton_text_1m": "١ شهر",
     "freezing_column_a_total": "بيانات TRX المجمدة والمتداولة",
     "freezing_column_calls": "نتيجة",
+    "TRX_historical_data":"TRX balance historical data in the contract",
+    "TRX_historical_data_y_text":"Amount（TRX）",
+    "TRX_historical_data_tip":"TRX Amount",
+    /*
+        ##################################################################################
+        #                                                                                #
+        # Charts 2019-12-30                           #
+        #                                                                                #
+        ##################################################################################
+    */
+   "account_details_contracts":"Contracts Published",
+   "account_details_contracts_no":"No contracts found",
 }
