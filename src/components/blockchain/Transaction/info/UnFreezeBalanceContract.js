@@ -37,7 +37,7 @@ class UnFreezeBalanceContract extends React.Component {
                   }
                 />
               </Field>
-              <Field label="transaction_unfreeze_num"></Field>
+                <Field label="transaction_unfreeze_num">{contract.unfreeze_amount/ONE_TRX || 0} TRX</Field>
               {JSON.stringify(contract.cost) != "{}" && (
                 <Field label="consume_bandwidth">
                   <BandwidthUsage cost={contract.cost} />

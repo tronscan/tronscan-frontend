@@ -165,7 +165,7 @@ export const lang19Q4 = {
     "transaction_recycling_address":"Dirección de reciclaje de recursos",
     "transaction_unfreeze_num":"Cantidad no congelada",
     "transaction_fee":"Cuota",
-    "transaction_consumed_bandwidth_cap_per":"Límite de consumo de ancho de banda para un usuario",
+    "transaction_consumed_bandwidth_cap_per":"Límite de consumo de ancho de banda personal",
     "transaction_consumed_bandwidth_cap_all":"Límite total de consumo de ancho de banda",
     "transaction_frozen_day":"Días congelados",
     "transaction_frozen_number":"Cantidad congelada",

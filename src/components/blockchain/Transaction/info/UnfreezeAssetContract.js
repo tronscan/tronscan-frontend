@@ -12,6 +12,7 @@ import { TransationTitle } from "./common/Title";
 import { NameWithId } from "../../../common/names";
 import BandwidthUsage from "./common/BandwidthUsage";
 import SignList from "./common/SignList";
+import { Link } from "react-router-dom";
 
 class UnfreezeAssetContract extends React.Component {
   constructor(props) {
@@ -32,15 +33,9 @@ class UnfreezeAssetContract extends React.Component {
                 </AddressLink>
               </Field>
               <Field label="amount">{contract.amount / ONE_TRX || 0}</Field>
-              <Field label="trc20_token_id">{contract.asset_name || "-"}</Field>
+              <Field label="trc20_token_id">{contract.token_id}</Field>
               <Field label="token">
-                <NameWithId
-                  value={contract}
-                  type="abbr"
-                  notamount
-                  totoken
-                  tokenid={false}
-                />
+                <Link to={`/token/${contract.token_id}`}>{contract.abbr}</Link>
               </Field>
               {JSON.stringify(contract.cost) != "{}" && (
                 <Field label="consume_bandwidth">

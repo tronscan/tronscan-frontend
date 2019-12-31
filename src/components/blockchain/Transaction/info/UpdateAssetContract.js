@@ -9,7 +9,6 @@ import { AddressLink, ExternalLink } from "../../../common/Links";
 import { TRXPrice } from "../../../common/Price";
 import { ONE_TRX } from "../../../../constants";
 import { TransationTitle } from "./common/Title";
-import { toUtf8 } from "tronweb";
 import BandwidthUsage from "./common/BandwidthUsage";
 import SignList from "./common/SignList";
 
@@ -31,9 +30,9 @@ class UpdateAssetContract extends React.Component {
                   {contract["owner_address"]}
                 </AddressLink>
               </Field>
-              <Field label="description">{toUtf8(contract.description)}</Field>
-              <Field label="sr_url">
-                <ExternalLink url={toUtf8(contract.url)} />
+              <Field label="description">{contract.description}</Field>
+              <Field label="website">
+                <ExternalLink url={contract.url} />
               </Field>
               <Field
                 label="transaction_consumed_bandwidth_cap_per"
