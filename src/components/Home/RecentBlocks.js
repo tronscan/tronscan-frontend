@@ -63,7 +63,7 @@ class RecentBlocks extends Component {
           {/* 测试 */}
           <div className="card-header bg-tron-light d-flex">
             <i className="fa fa-cubes mr-3 fa_width_20 color-grey-100"></i>
-            <h5 className="m-0 lh-175 color-grey-100">
+            <h5 className="m-0 lh-175 color-grey-100 confirmed_block_tip">
               {tu("index_page_confirmed_blocks")}
               <Tooltip placement="top" title={tu("index_page_confirmed_blocks_tips")}>
                 <Icon type="question-circle" style={{verticalAlign: 0,marginLeft: 5}}/>

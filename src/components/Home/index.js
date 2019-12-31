@@ -448,7 +448,7 @@ export default class Home extends Component {
       <main className="home pb-0">
         {/* <i className="main-icon-left"></i>
           <i className="main-icon-right"></i> */}
-        <div className="container-fluid position-relative d-flex pt-3 pt-md-4 mx-auto flex-column">
+        <div className="container-fluid position-relative d-flex pt-1 pt-md-4 mx-auto flex-column">
           {/*<div ref={(el) => this.$ref = el} style={{*/}
           {/*zIndex: 0,*/}
           {/*left: 0,*/}
@@ -457,7 +457,7 @@ export default class Home extends Component {
           {/*bottom: 0,*/}
           {/*}} className="position-absolute"/>*/}
 
-          <div className="container home-splash p-0 p-md-3">
+          <div className="container home-splash p-0 p-md-3" >
             {IS_MAINNET ? (
               <div className="row justify-content-center text-center">
                 <div className="col-12 exchange">

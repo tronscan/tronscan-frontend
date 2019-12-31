@@ -12,6 +12,15 @@
     .navbar {
         background: radial-gradient(at 50% -20%, #343a40bd, #111111ad) fixed;
     }
+    .currentTRXInfo{
+        padding:1px 10px;
+        margin-right: 10px;
+        background: rgba(51,51,51,0.05);
+        font-family: HelveticaNeue;
+font-size: 16px;
+color: #333333;
+line-height: 18px;
+    }
     .top-bar.navbar-dark .navbar-nav .nav-link {
         color: $color-grey;
     }

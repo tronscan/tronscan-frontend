@@ -13,6 +13,18 @@
     .logo-wrapper {
         background: $white;
     }
+    .currentTRXInfo{
+        padding:4px 10px;
+        margin-right: 10px;
+        background: rgba(51,51,51,0.05);
+        font-family: HelveticaNeue;
+        color: #333333;
+        overflow: hidden;
+        .trxTitle{
+            font-size:0.675rem;         
+        }
+
+    }
     .navbar-dark .navbar-nav .nav-link {
         color: #000;
     }
@@ -38,6 +50,7 @@
         }
         .newSearchInput {
             background: #E9E9E9 !important;
+            text-indent: 0.6rem;
         }
         .input-group-append button {
             border-radius: 0 2px 2px 0;

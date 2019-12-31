@@ -995,17 +995,18 @@ class Navigation extends React.Component {
     const isShowSideChain = !type || (type && IS_SUNNET);
 
     return (
-        <div className="header-top">
+        <div className="header-top nav-item-page">
           {popup}
           <div className="logo-wrapper">
-            <div className="py-2 d-flex px-0 menu-nav-wrapper" style={{ justifyContent:'space-between'}}>
+            <div className="py-2 d-flex px-0 menu-nav-wrapper" style={{ justifyContent:'center'}}>
               <div className="logoTrxPrice">
                 <Link to="/">
                   <img src={this.getLogo()} className="logo" alt="Tron"/>
                 </Link>
                 <span className="currentTRXInfo">
-                  TRX:
+                 
                   <Tooltip
+                    placement="bottom"
                     title={intl.formatMessage({
                       id: "tooltip_trxPrice"
                     })}
@@ -1016,6 +1017,7 @@ class Navigation extends React.Component {
                       className="hvr-underline-from-center hvr-underline-white text-muted"
                     >
                       <span className="hover-red TRXPrice">
+                        <span className="trxTitle">TRX:</span> 
                         <TRXPrice
                           showPopup={false}
                           amount={1}
@@ -1303,7 +1305,7 @@ class Navigation extends React.Component {
               </div>
             </div>
           </div>
-          <div style={{boxShadow:"0 2px 40px 0 rgba(4,4,64,0.05)"}}>
+          <div style={{boxShadow:"0 2px 40px 0 rgba(4,4,64,0.05)",background:"#F3F3F3"}}>
             <div className="container  p-0 p-md-3">
               <div className="row justify-content-center text-center">
                 <div className="col-12">
@@ -1317,9 +1319,9 @@ class Navigation extends React.Component {
                                 onKeyDown={this.onSearchKeyDown}
                                 onChange={this.onSearchChange}
                                 onClick={this.callAjax}
-                                placeholder={intl.formatMessage({id: "search_description1"})}/>
+                                placeholder={intl.formatMessage({id: "index_page_search_placeholder"})}/>
                         <div className="input-group-append">
-                          <button className="btn box-shadow-none" disabled={this.isSearching} onClick={this.doSearch}>
+                          <button className="btn box-shadow-none index_page_search" disabled={this.isSearching} onClick={this.doSearch}>
                             {/* <i className="fa fa-search"/> */}
                             {tu("search")}
                           </button>
