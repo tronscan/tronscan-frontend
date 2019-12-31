@@ -6,6 +6,7 @@ import { Client } from "../../../services/api";
 import { tu } from "../../../utils/i18n";
 import { FormattedNumber } from "react-intl";
 import TokenBalances from "./TokenBalances";
+import MyContracts from "./Contracts";
 import { ONE_TRX } from "../../../constants";
 import { AddressLink, ExternalLink } from "../../common/Links";
 import { TRXPrice } from "../../common/Price";
@@ -354,6 +355,17 @@ class Address extends React.Component {
                 getCsvUrl={csvurl => this.setState({ csvurl })}
               />
             )
+          },
+          contracts: {
+            id: "contracts",
+            path: "/contracts",
+            label: <span>{tu("account_details_contracts")}</span>,
+            cmp: () => (
+              <MyContracts
+                filter={{ address: id }}
+                showCandidate={false}
+              />
+            )
           }
         }
       }));
@@ -433,6 +445,17 @@ class Address extends React.Component {
                 filter={{ voter: id }}
                 showVoter={false}
                 showVoterPercentage={false}
+              />
+            )
+          },
+          contracts: {
+            id: "contracts",
+            path: "/contracts",
+            label: <span>{tu("account_details_contracts")}</span>,
+            cmp: () => (
+              <MyContracts
+                filter={{ address: id }}
+                showCandidate={false}
               />
             )
           }

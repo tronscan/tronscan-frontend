@@ -384,7 +384,7 @@ export const routes = [
       [
         "sun_network_product",
         {
-          url: NETURL.SUNNET,
+          url: window.location.origin === NETURL.MAINNET ? NETURL.SUNNET : NETURL.NEWSUNNET,
           icon: "fas fa-columns",
           label: "sun_network_DAppChain"
         }
@@ -457,7 +457,7 @@ export const routes = [
       {
         url:"https://dapp.review/explore/tron?gclid=EAIaIQobChMIx-fB8KH04QIVlHZgCh0ybA1hEAAYASAAEgIad_D_BwE",
         icon: "fas fa-crop-alt",
-        label: "Dappview"
+        label: "Dappreview"
       }
     ]
   },

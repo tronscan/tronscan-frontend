@@ -87,7 +87,7 @@ export const lang19Q4 = {
     "token_rank": "ランキング",
     "market_capitalization_t": "時価総額",
     "token_tron_total": "TRONトークン 総数",
-    "token_week": "今週の新しいトークン",
+    "token_week": "過去7日間",
     "token_scan_total": "TRONSCANのトークン数",
     "create_token_btn": "トークン発行",
     "gain_tip": "24時間の変動量",
@@ -161,6 +161,14 @@ export const lang19Q4 = {
     "TRX_historical_data":"TRX balance historical data in the contract",
     "TRX_historical_data_y_text":"Amount（TRX）",
     "TRX_historical_data_tip":"TRX Amount",
-
+    /*
+        ##################################################################################
+        #                                                                                #
+        # Charts 2019-12-30                           #
+        #                                                                                #
+        ##################################################################################
+    */
+   "account_details_contracts":"Contracts Published",
+   "account_details_contracts_no":"No contracts found",
 
 }
