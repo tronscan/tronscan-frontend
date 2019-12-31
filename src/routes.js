@@ -232,7 +232,7 @@ export const routes = [
   },
   {
     path: "/transaction/:hash",
-    label: "transaction_detail",
+    label: "signature_details",
     component: Transaction,
     showInMenu: false
   },

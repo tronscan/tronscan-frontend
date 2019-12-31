@@ -43,7 +43,8 @@ class Transaction extends React.Component {
       },
       resMessage: '',
       SUCCESS:'SUCCESS',
-      FAIL:'FAIL'
+      FAIL:'FAIL',
+      unfreeze_amount:''
     };
   }
 
@@ -79,7 +80,8 @@ class Transaction extends React.Component {
       const data = await tokenApi.getTransactionInfo(id).catch(e=>{})
       if(data){
         this.setState({
-          resMessage: data && data.resMessage
+          resMessage: data && data.resMessage,
+          unfreeze_amount:data && data.unfreeze_amount
         });
       }
     }
@@ -102,6 +104,7 @@ class Transaction extends React.Component {
                   ...{tokenTransferInfo: transaction['tokenTransferInfo']},
                   ...{contract_note:transaction.data},
                   contractType: ContractTypes[transaction.contractType],
+                  unfreeze_amount:this.state.unfreeze_amount
               }}/>
           ),
         },
@@ -145,15 +148,15 @@ class Transaction extends React.Component {
                           <tbody>
                           {
                               transaction.hasOwnProperty("contractRet") &&<tr>
-                                  <th>{tu("result")}:</th>
+                                  <th>{tu("result")}</th>
                                   <td>
-                                      {transaction.contractRet.toUpperCase() === SUCCESS ?  SUCCESS : <span className="fail-result text-uppercase"><Icon type="close-circle" className="mr-1 icon-close"/>FAIL</span>} {IS_MAINNET && resMessage ? `--${resMessage}` : ''}
+                                      {transaction.contractRet.toUpperCase() === SUCCESS ?  SUCCESS : <span className="fail-result text-uppercase"><Icon type="close-circle" className="mr-1 icon-close"/>FAIL{IS_MAINNET && resMessage ? `-${resMessage}` : ''}</span>} 
                                   </td>
                               </tr>
                           }
                           {
                               transaction.hasOwnProperty("confirmed") && <tr>
-                                  <th>{tu("status")} {" "}<QuestionMark placement="right" text={intl.formatMessage({id:'transaction_status_tip'})} ></QuestionMark>:</th>
+                                  <th>{tu("status")} {" "}<QuestionMark placement="right" text={intl.formatMessage({id:'transaction_status_tip'})} ></QuestionMark></th>
                                   <td>
                                       {
                                           transaction.confirmed ?
@@ -164,12 +167,12 @@ class Transaction extends React.Component {
                               </tr>
                           }
                             <tr>
-                              <th>{tu("block")}:</th>
+                              <th>{tu("block")}</th>
                               <td><BlockNumberLink number={transaction.block}/></td>
                             </tr>
                             {
                               transaction.timestamp !== 0 && <tr>
-                                <th>{tu("time")}:</th>
+                                <th>{tu("time")}</th>
                                 <td>
                                   <FormattedDate value={transaction.timestamp}/>&nbsp;
                                   <FormattedTime value={transaction.timestamp}

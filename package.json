@@ -178,7 +178,7 @@
       "yargs-parser": "^13.1.1"
   },
   "scripts": {
-      "start": "node scripts/start.js",
+      "start": "API_URL=http://52.15.68.74:10000 node scripts/start.js",
       "start:testnet": "NET=testnet API_URL=https://testapi.tronscan.org yarn start",
       "build:shasta": "GENERATE_SOURCEMAP=false API_URL=https://api.shasta.tronscan.org node scripts/build.js",
       "build": "NODE_ENV=production GENERATE_SOURCEMAP=false node scripts/build.js",
