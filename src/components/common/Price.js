@@ -46,10 +46,10 @@ class PriceProviderCmp extends React.PureComponent {
     var dataEur = Lockr.get("dataEur");
     var dataEth = Lockr.get("dataEth");
     let eurURL = encodeURI(
-      `http://api.coinmarketcap.com/v1/ticker/tronix/?convert=EUR`
+      `https://api.coinmarketcap.com/v1/ticker/tronix/?convert=EUR`
     );
     let ethURL = encodeURI(
-      `http://api.coinmarketcap.com/v1/ticker/tronix/?convert=ETH`
+      `https://api.coinmarketcap.com/v1/ticker/tronix/?convert=ETH`
     );
     if (!Lockr.get("dataEur")) {
       var { data: dataEur } = await xhr.get(
