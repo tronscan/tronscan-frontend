@@ -1,16 +1,16 @@
 /*
-* Auther:xueyuanying
-* Date:2019-12-25
-*/
+ * Auther:xueyuanying
+ * Date:2019-12-25
+ */
 import React, { Fragment } from "react";
 import { tu } from "../../../../utils/i18n";
 import Field from "../../../tools/TransactionViewer/Field";
 import { AddressLink } from "../../../common/Links";
 import { TRXPrice } from "../../../common/Price";
 import { ONE_TRX } from "../../../../constants";
-import {TransationTitle} from './common/Title'
-import BandwidthUsage from './common/BandwidthUsage'
-
+import { TransationTitle } from "./common/Title";
+import BandwidthUsage from "./common/BandwidthUsage";
+import SignList from "./common/SignList";
 
 class WithdrawBalanceContract extends React.Component {
   constructor(props) {
@@ -33,8 +33,16 @@ class WithdrawBalanceContract extends React.Component {
               <Field label="amount">
                 <TRXPrice amount={contract.amount / ONE_TRX || 0} />
               </Field>
-              {JSON.stringify(contract.cost) != "{}" && <Field label="consume_bandwidth"><BandwidthUsage cost={contract.cost}/></Field>}
-
+              {JSON.stringify(contract.cost) != "{}" && (
+                <Field label="consume_bandwidth">
+                  <BandwidthUsage cost={contract.cost} />
+                </Field>
+              )}
+              {contract.signList && (
+                <Field label="signature_list">
+                  <SignList signList={contract.signList} />
+                </Field>
+              )}
             </tbody>
           </table>
         </div>
