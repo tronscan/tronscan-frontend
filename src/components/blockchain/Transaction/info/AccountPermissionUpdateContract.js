@@ -5,6 +5,7 @@ import { TransationTitle } from './common/Title'
 import PermissionItem from './common/PermissionItem'
 import SignList from './common/SignList'
 import BandwidthUsage from './common/BandwidthUsage'
+import { tu } from "../../../../utils/i18n";
 export default function AccountPermissionUpdateContract(props) {
     const contract = props.contract;
     let { signList, contractType, owner, actives, withness,cost } = contract;
@@ -28,7 +29,7 @@ export default function AccountPermissionUpdateContract(props) {
                 }
                 {JSON.stringify(contract.cost) !=
                               "{}" && <Field label="consume_bandwidth"><BandwidthUsage cost={cost}/></Field>}
-                <Field label="signature_list"><SignList signList={signList}/></Field>
+                {signList&&signList.length>1&&<Field label="signature_list" tip={true} text={tu('only_show_sinatures')}><SignList signList={signList}/></Field>}
             </tbody>
         </table>
     </Fragment >

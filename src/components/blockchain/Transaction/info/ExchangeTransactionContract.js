@@ -5,6 +5,7 @@ import {toThousands} from '../../../../utils/number'
 import SignList from './common/SignList'
 import {TransationTitle} from './common/Title'
 import BandwidthUsage from './common/BandwidthUsage'
+import { tu } from "../../../../utils/i18n";
 export default function ExchangeTransactionContract(props) {
     const contract = props.contract;
     const {quant,signList,contractType,cost} = contract;
@@ -22,7 +23,7 @@ export default function ExchangeTransactionContract(props) {
                 <Field label="amount">{toThousands(quant)}</Field>
                 {JSON.stringify(contract.cost) !=
                               "{}" && <Field label="consume_bandwidth"><BandwidthUsage cost={cost}/></Field>}
-                <Field label="signature_list"><SignList signList={signList}/></Field>
+                {signList&&signList.length>1&&<Field label="signature_list" tip={true} text={tu('only_show_sinatures')}><SignList signList={signList}/></Field>}
             </tbody>
         </table>
     </Fragment>

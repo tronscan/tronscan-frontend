@@ -200,5 +200,6 @@ export const lang19Q4 = {
     "transaction_UPDATEBROKERAGECONTRACT":"SR 커미션 비율 업데이트",
     "transaction_CLEARABICONTRACT":"계약 ABI 클리어",
     "transaction_token_holder_address":"토큰 소유자 주소",
-    "transaction_issue_address":"발신자 주소"
+    "transaction_issue_address":"발신자 주소",
+    "only_show_sinatures":"서명 있는 주소만 표시",
 }

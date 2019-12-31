@@ -204,5 +204,6 @@ export const lang19Q4 = {
     "transaction_UPDATEBROKERAGECONTRACT":"代表ブローカーの更新",
     "transaction_CLEARABICONTRACT":"契約ABIクリア",
     "transaction_token_holder_address":"トークン保有者の住所",
-    "transaction_issue_address":"発行者の住所"
+    "transaction_issue_address":"発行者の住所",
+    "only_show_sinatures":"署名を残すアドレスのみを表示する",
 }

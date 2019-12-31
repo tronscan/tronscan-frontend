@@ -203,5 +203,6 @@ export const lang19Q4 = {
     "transaction_UPDATEBROKERAGECONTRACT":"تحديث نسبة عمولة الممثل الممتاز",
     "transaction_CLEARABICONTRACT":"مسح العقد ABI",
     "transaction_token_holder_address":"عنوان مالك الرمز",
-    "transaction_issue_address":"عنوان المصدر"
+    "transaction_issue_address":"عنوان المصدر",
+    "only_show_sinatures":"إظهار العناوين مع التوقيعات فقط",
 }

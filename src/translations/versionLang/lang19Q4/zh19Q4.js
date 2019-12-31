@@ -235,4 +235,5 @@ export const lang19Q4 = {
 
     "transaction_rewards_distribution_ratio":"选民分成比例",
     "signature_list":"签名列表",
+    "only_show_sinatures":"只展示参与签名的地址",
 }
