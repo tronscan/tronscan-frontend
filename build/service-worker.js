@@ -16,12 +16,16 @@ importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox
 importScripts(
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   "/precache-manifest.0e347f6e9c6ed4ae725be62d67b89fbd.js"
 =======
   "/precache-manifest.bd665100d1c69cd128d7642cb544ad34.js"
 >>>>>>> origin/master
 =======
   "/precache-manifest.f69e42f7fb943890d76e439bc58789f7.js"
+>>>>>>> origin/master
+=======
+  "/precache-manifest.f850a21f4ab2b8a6ead82bad3b773bc8.js"
 >>>>>>> origin/master
 );
 
