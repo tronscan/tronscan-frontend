@@ -89,7 +89,7 @@ export const lang19Q4 = {
     "token_rank": "排名",
     "market_capitalization_t": "流通市值",
     "token_tron_total": "TRON通证总数",
-    "token_week": "周新增",
+    "token_week": "近7天新增",
     "token_scan_total": "TRONSCAN收录通证数",
     "create_token_btn": "发行通证",
     "gain_tip": "涨跌幅以TRX为参考对象，实行24小时制",
@@ -170,5 +170,15 @@ export const lang19Q4 = {
     "TRX_historical_data":"合约内TRX余额历史数据",
     "TRX_historical_data_y_text":"数量（TRX）",
     "TRX_historical_data_tip":"TRX数量",
+    /*
+        ##################################################################################
+        #                                                                                #
+        # Charts 2019-12-30                           #
+        #                                                                                #
+        ##################################################################################
+    */
+   "account_details_contracts":"已发合约",
+   "account_details_contracts_no":"未查询到合约",
+  
    
 }

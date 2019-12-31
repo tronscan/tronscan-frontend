@@ -459,7 +459,7 @@ export const routes = [
       {
         url:"https://dapp.review/explore/tron?gclid=EAIaIQobChMIx-fB8KH04QIVlHZgCh0ybA1hEAAYASAAEgIad_D_BwE",
         icon: "fas fa-crop-alt",
-        label: "Dappview"
+        label: "Dappreview"
       }
     ]
   },
