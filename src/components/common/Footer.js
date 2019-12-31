@@ -69,7 +69,9 @@ class Footer extends Component {
                     <HrefLink href="https://github.com/tronprotocol/java-tron">java-tron</HrefLink>
                   </li>
                   <li>
-                    <HrefLink href="https://github.com/tronprotocol/Documentation">Documentation</HrefLink>
+                    <HrefLink href={activeLanguage == 'zh'?"https://github.com/tronprotocol/documentation-zh":"https://github.com/tronprotocol/documentation-en"}>  
+                      Documentation
+                    </HrefLink>
                   </li>
                   <li>
                     <HrefLink href="https://developers.tron.network/">Developer Hub</HrefLink>
@@ -247,7 +249,7 @@ class Footer extends Component {
                     </HrefLink>
                   </li>
                   <li className="p-2">
-                    <HrefLink href="https://github.com/tronprotocol/Documentation">
+                    <HrefLink href={activeLanguage == 'zh'?"https://github.com/tronprotocol/documentation-zh":"https://github.com/tronprotocol/documentation-en"}>  
                       Documentation
                     </HrefLink>
                   </li>
