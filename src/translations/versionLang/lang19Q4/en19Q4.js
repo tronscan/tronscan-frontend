@@ -179,6 +179,8 @@ export const lang19Q4 = {
     "index_page_switch_tokens":"Switch tokens",
     "index_page_tronscan_info":"TRONSCAN, the best blockchain explorer of Tron.",
     "index_page_down_excel_tips":"Change the decimals mannually when opening the file in Excel.",
+    "index_page_pane_current":"Current",
+    "index_page_pane_MaxTPS":"Max TPS",
     /*
         ##################################################################################
         #                                                                                #

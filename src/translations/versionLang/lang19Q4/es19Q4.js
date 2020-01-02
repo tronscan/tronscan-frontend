@@ -177,6 +177,8 @@ export const lang19Q4 = {
    "index_page_switch_tokens":"Cambiar Token",
    "index_page_tronscan_info":"TRONSCAN es el navegador mejor de TRON",
    "index_page_down_excel_tips":"Si usa Excel para abrir un documento descargado, debe ajustar manualmente el número de lugares decimales en la celda.",
+   "index_page_pane_current":"TPS actual",
+   "index_page_pane_MaxTPS":"máx.",
     /*
         ##################################################################################
         #                                                                                #

@@ -188,6 +188,9 @@ export const lang19Q4 = {
    "index_page_switch_tokens":"币种切换",
    "index_page_tronscan_info":"TRONSCAN是波场最好用的区块链浏览器",
    "index_page_down_excel_tips":"如使用Excel打开下载文档，需手动调节单元格小数位数。",
+   "index_page_pane_current":"当前",
+   "index_page_pane_MaxTPS":"峰值TPS",
+
 
     /*
         ##################################################################################

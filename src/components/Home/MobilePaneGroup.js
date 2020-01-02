@@ -88,7 +88,11 @@ export default class MobilePanelGroup extends Component {
                 <div className="row pt-3">
                   <div className="col-6 ">
                     <img src={require("../../images/home/node.png")} />
-                    <p className="text-muted mb-0 mt-2">{tu("online_nodes")}</p>
+                    <Tooltip placement="top" title={tu("tooltip_onlineNodes")}>
+                      <p className="text-muted mb-0 mt-2">
+                        {tu("online_nodes")}<Icon type="question-circle" style={{verticalAlign: 0,marginLeft: 0}}/>
+                      </p>
+                    </Tooltip>
                     {complexData.onlineNodes != 0 ? (
                       <h2>
                         <CountUp
@@ -104,8 +108,11 @@ export default class MobilePanelGroup extends Component {
 
                   <div className="col-6">
                     <img src={require("../../images/home/block.png")} />
-                    <p className="text-muted mb-0 mt-2">{tu("block_height")}</p>
-
+                    <Tooltip placement="top" title={tu("tooltip_blockHeight")}>
+                      <p className="text-muted mb-0 mt-2">
+                        {tu("block_height")}<Icon type="question-circle" style={{verticalAlign: 0,marginLeft: 0}}/>
+                      </p>
+                    </Tooltip>
                     {mainnetData.blockHeight != 0 ? (
                       <h2>
                         <CountUp
@@ -125,7 +132,12 @@ export default class MobilePanelGroup extends Component {
                     >
                       <img src={require("../../images/home/tps.png")} />
                       <p className="text-muted mb-0 mt-2">
-                        {tu("current_MaxTPS")}
+                        <Tooltip placement="top" title={tu("tooltip_startTps")}>
+                          {tu("index_page_pane_current")}<Icon type="question-circle" style={{verticalAlign: 0,marginLeft: 0}}/>
+                        </Tooltip>/
+                        <Tooltip placement="top" title={tu("tooltip_tps")}>
+                          {tu("index_page_pane_MaxTPS")}<Icon type="question-circle" style={{verticalAlign: 0,marginLeft: 0}}/>
+                        </Tooltip>
                       </p>
 
                       {complexData.tps ? (
@@ -150,9 +162,11 @@ export default class MobilePanelGroup extends Component {
 
                   <div className="col-6">
                     <img src={require("../../images/home/transctions.png")} />
-                    <p className="text-muted mb-0 mt-2">
-                      {tu("transactions_last_day")}
-                    </p>
+                    <Tooltip placement="top" title={tu("tooltip_transactionPerDay")}>
+                      <p className="text-muted mb-0 mt-2">
+                        {tu("transactions_last_day")}<Icon type="question-circle" style={{verticalAlign: 0,marginLeft: 0}}/>
+                      </p>
+                    </Tooltip>
                     {complexData.transactionPerDay != 0 ? (
                       <h2>
                         <CountUp
@@ -167,9 +181,11 @@ export default class MobilePanelGroup extends Component {
                   </div>
                   <div className="col-6">
                     <img src={require("../../images/home/account.png")} />
-                    <p className="text-muted mb-0 mt-2">
-                      {tu("total_accounts")}
-                    </p>
+                    <Tooltip placement="top" title={tu("tooltip_accounts")}>
+                      <p className="text-muted mb-0 mt-2">
+                        {tu("total_accounts")}<Icon type="question-circle" style={{verticalAlign: 0,marginLeft: 0}}/>
+                      </p>
+                    </Tooltip>
 
                     {complexData.totalAccounts != 0 ? (
                       <h2>
@@ -183,22 +199,7 @@ export default class MobilePanelGroup extends Component {
                       <h2>-</h2>
                     )}
                   </div>
-                  <div className="col-6">
-                    <HrefLink
-                      href="https://coinmarketcap.com/currencies/tron/"
-                      target="_blank"
-                      className="hvr-underline-from-center hvr-underline-white text-muted"
-                    >
-                      <img src={require("../../images/home/price.png")} />
-                      <p className="text-muted mb-0 mt-2">
-                        {tu("pice_per_1trx")}
-                      </p>
-
-                      <h2>
-                        <TRXPrice amount={1} currency="USD" source="home" />
-                      </h2>
-                    </HrefLink>
-                  </div>
+                  
                 </div>
               </div>
             </div>
@@ -216,10 +217,16 @@ export default class MobilePanelGroup extends Component {
                       className="hvr-underline-from-center hvr-underline-white text-muted"
                     >
                       <img src={require("../../images/home/node.png")} />
+                    </Link>
+                    <Tooltip placement="top" title={tu("tooltip_onlineNodes_mainnet")}>
                       <p className="text-muted mb-0 mt-2">
-                        {tu("online_nodes")}
+                        {tu("online_nodes")}<Icon type="question-circle" style={{verticalAlign: 0,marginLeft: 0}}/>
                       </p>
-
+                    </Tooltip>
+                    <Link
+                      to="/blockchain/nodes"
+                      className="hvr-underline-from-center hvr-underline-white text-muted"
+                    >
                       {mainnetData.onlineNodes != 0 ? (
                         <h2>
                           <CountUp
@@ -231,19 +238,24 @@ export default class MobilePanelGroup extends Component {
                       ) : (
                         <h2>-</h2>
                       )}
-                    </Link>
+                     </Link>
                   </div>
-
                   <div className="col-6">
                     <Link
                       to="/blockchain/blocks"
                       className="hvr-underline-from-center hvr-underline-white text-muted"
                     >
                       <img src={require("../../images/home/block.png")} />
+                    </Link>
+                    <Tooltip placement="top" title={tu("tooltip_blockHeight_mainnet")}>
                       <p className="text-muted mb-0 mt-2">
-                        {tu("block_height")}
+                        {tu("block_height")}<Icon type="question-circle" style={{verticalAlign: 0,marginLeft: 0}}/>
                       </p>
-
+                    </Tooltip>
+                    <Link
+                      to="/blockchain/blocks"
+                      className="hvr-underline-from-center hvr-underline-white text-muted"
+                    >
                       {mainnetData.blockHeight != 0 ? (
                         <h2>
                           <CountUp
@@ -264,7 +276,12 @@ export default class MobilePanelGroup extends Component {
                     >
                       <img src={require("../../images/home/tps.png")} />
                       <p className="text-muted mb-0 mt-2">
-                        {tu("current_MaxTPS")}
+                        <Tooltip placement="top" title={tu("tooltip_startTps_mainnet")}>
+                          {tu("index_page_pane_current")}<Icon type="question-circle" style={{verticalAlign: 0,marginLeft: 0}}/>
+                        </Tooltip>/
+                        <Tooltip placement="top" title={tu("tooltip_tps_mainnet")}>
+                          {tu("index_page_pane_MaxTPS")}<Icon type="question-circle" style={{verticalAlign: 0,marginLeft: 0}}/>
+                        </Tooltip>
                       </p>
 
                       {mainnetData.maxTps ? (
@@ -286,16 +303,26 @@ export default class MobilePanelGroup extends Component {
                       )}
                     </div>
                   </div>
-
                   <div className="col-6">
                     <Link
                       to="/blockchain/transactions"
                       className="hvr-underline-from-center hvr-underline-white text-muted"
                     >
                       <img src={require("../../images/home/transctions.png")} />
+                    </Link>
+                    <Tooltip
+                      title={intl.formatMessage({
+                        id: "tooltip_transactionPerDay_mainnet"
+                      })}
+                    >
                       <p className="text-muted mb-0 mt-2">
-                        {tu("transactions_last_day")}
+                        {tu("transactions_last_day")}<Icon type="question-circle" style={{verticalAlign: 0,marginLeft: 0}}/>
                       </p>
+                    </Tooltip>
+                    <Link
+                      to="/blockchain/transactions"
+                      className="hvr-underline-from-center hvr-underline-white text-muted"
+                    >
                       {mainnetData.transactionPerDay != 0 ? (
                         <h2>
                           <CountUp
@@ -315,10 +342,20 @@ export default class MobilePanelGroup extends Component {
                       className="hvr-underline-from-center hvr-underline-white text-muted"
                     >
                       <img src={require("../../images/home/account.png")} />
+                    </Link>
+                    <Tooltip
+                      title={intl.formatMessage({
+                        id: "tooltip_transactionPerDay_mainnet"
+                      })}
+                    >
                       <p className="text-muted mb-0 mt-2">
-                        {tu("total_accounts")}
+                        {tu("tooltip_accounts_mainnet")}<Icon type="question-circle" style={{verticalAlign: 0,marginLeft: 0}}/>
                       </p>
-
+                    </Tooltip>
+                    <Link
+                      to="/blockchain/accounts"
+                      className="hvr-underline-from-center hvr-underline-white text-muted"
+                    >
                       {mainnetData.totalAccounts != 0 ? (
                         <h2>
                           <CountUp
@@ -332,22 +369,6 @@ export default class MobilePanelGroup extends Component {
                       )}
                     </Link>
                   </div>
-                  <div className="col-6">
-                    <HrefLink
-                      href="https://coinmarketcap.com/currencies/tron/"
-                      target="_blank"
-                      className="hvr-underline-from-center hvr-underline-white text-muted"
-                    >
-                      <img src={require("../../images/home/price.png")} />
-                      <p className="text-muted mb-0 mt-2">
-                        {tu("pice_per_1trx")}
-                      </p>
-
-                      <h2>
-                        <TRXPrice amount={1} currency="USD" source="home" />
-                      </h2>
-                    </HrefLink>
-                  </div>
                 </div>
               </div>
             </div>
@@ -359,10 +380,17 @@ export default class MobilePanelGroup extends Component {
               >
                 <p className="mb-0 mobile-title">{tu("sun_network")}</p>
                 <div className="row pt-3">
-                  <div className="col-6 ">
+                  <div className="col-6">
                     <img src={require("../../images/home/node.png")} />
-                    <p className="text-muted mb-0 mt-2">{tu("online_nodes")}</p>
-
+                    <p className="text-muted mb-0 mt-2">
+                      <Tooltip
+                        title={intl.formatMessage({
+                          id: "tooltip_onlineNodes_sunnet"
+                        })}
+                      >
+                        {tu("online_nodes")}<Icon type="question-circle" style={{verticalAlign: 0,marginLeft: 0}}/>
+                      </Tooltip>
+                    </p>
                     {sunnetData.onlineNodes != 0 ? (
                       <h2>
                         <CountUp
@@ -375,11 +403,17 @@ export default class MobilePanelGroup extends Component {
                       <h2>-</h2>
                     )}
                   </div>
-
                   <div className="col-6">
                     <img src={require("../../images/home/block.png")} />
-                    <p className="text-muted mb-0 mt-2">{tu("block_height")}</p>
-
+                    <p className="text-muted mb-0 mt-2">
+                      <Tooltip
+                        title={intl.formatMessage({
+                          id: "tooltip_blockHeight_sunnet"
+                        })}
+                      >
+                        {tu("block_height")}<Icon type="question-circle" style={{verticalAlign: 0,marginLeft: 0}}/>
+                      </Tooltip>
+                    </p>
                     {sunnetData.blockHeight != 0 ? (
                       <h2>
                         <CountUp
@@ -399,7 +433,17 @@ export default class MobilePanelGroup extends Component {
                     >
                       <img src={require("../../images/home/tps.png")} />
                       <p className="text-muted mb-0 mt-2">
-                        {tu("current_MaxTPS")}
+                        <Tooltip
+                          title={intl.formatMessage({
+                            id: "tooltip_startTps_sunnet"
+                          })}
+                        >
+                          {tu("index_page_pane_current")}<Icon type="question-circle" style={{verticalAlign: 0,marginLeft: 0}}/>
+                        </Tooltip>/
+                        <Tooltip placement="top" title={tu("tooltip_tps_sunnet")}>
+                          {tu("index_page_pane_MaxTPS")}
+                          <Icon type="question-circle" style={{verticalAlign: 0,marginLeft: 0}}/>
+                        </Tooltip>
                       </p>
 
                       {sunnetData.maxTps ? (
@@ -425,7 +469,13 @@ export default class MobilePanelGroup extends Component {
                   <div className="col-6">
                     <img src={require("../../images/home/transctions.png")} />
                     <p className="text-muted mb-0 mt-2">
-                      {tu("transactions_last_day")}
+                      <Tooltip
+                          title={intl.formatMessage({
+                            id: "tooltip_transactionPerDay_sunnet"
+                          })}
+                        >
+                        {tu("transactions_last_day")}<Icon type="question-circle" style={{verticalAlign: 0,marginLeft: 0}}/>
+                      </Tooltip>
                     </p>
                     {sunnetData.transactionPerDay != 0 ? (
                       <h2>
@@ -442,7 +492,13 @@ export default class MobilePanelGroup extends Component {
                   <div className="col-6">
                     <img src={require("../../images/home/account.png")} />
                     <p className="text-muted mb-0 mt-2">
-                      {tu("total_accounts")}
+                      <Tooltip
+                          title={intl.formatMessage({
+                            id: "tooltip_accounts_sunnet"
+                          })}
+                        >
+                        {tu("total_accounts")}<Icon type="question-circle" style={{verticalAlign: 0,marginLeft: 0}}/>
+                      </Tooltip>
                     </p>
 
                     {sunnetData.totalAccounts != 0 ? (
@@ -457,22 +513,7 @@ export default class MobilePanelGroup extends Component {
                       <h2>-</h2>
                     )}
                   </div>
-                  <div className="col-6">
-                    <HrefLink
-                      href="https://coinmarketcap.com/currencies/tron/"
-                      target="_blank"
-                      className="hvr-underline-from-center hvr-underline-white text-muted"
-                    >
-                      <img src={require("../../images/home/price.png")} />
-                      <p className="text-muted mb-0 mt-2">
-                        {tu("pice_per_1trx")}
-                      </p>
-
-                      <h2>
-                        <TRXPrice amount={1} currency="USD" source="home" />
-                      </h2>
-                    </HrefLink>
-                  </div>
+                 
                 </div>
               </div>
             </div>
@@ -492,8 +533,12 @@ export default class MobilePanelGroup extends Component {
                     className="hvr-underline-from-center hvr-underline-white text-muted"
                   >
                     <img src={require("../../images/home/node.png")} />
+                  </Link>
                     <p className="text-muted mb-0 mt-2">{tu("online_nodes")}</p>
-
+                  <Link
+                    to="/blockchain/nodes"
+                    className="hvr-underline-from-center hvr-underline-white text-muted"
+                  >
                     {sunnetData.onlineNodes != 0 ? (
                       <h2>
                         <CountUp

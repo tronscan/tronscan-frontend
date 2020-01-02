@@ -177,6 +177,8 @@ export const lang19Q4 = {
    "index_page_switch_tokens":"تغییر توکن ",
    "index_page_tronscan_info":"ترون اسکن ، بهترین کاوشگر بلاکچین ترون است.",
    "index_page_down_excel_tips":"اگر از اکسل برای باز کردن یک سند بارگیری شده استفاده می کنید ، باید تعداد مکان های اعشار در پرونده را به صورت دستی تنظیم کنید.",
+   "index_page_pane_current":"Current",
+   "index_page_pane_MaxTPS":"Max TPS",
     
     /*
         ##################################################################################

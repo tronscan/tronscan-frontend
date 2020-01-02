@@ -182,6 +182,8 @@ export const lang19Q4 = {
     "TRX_historical_data":"TRX balance historical data in the contract",
     "TRX_historical_data_y_text":"Amount（TRX）",
     "TRX_historical_data_tip":"TRX Amount",
+    "index_page_pane_current":"",
+    "index_page_pane_MaxTPS":"",
     /*
         ##################################################################################
         #                                                                                #

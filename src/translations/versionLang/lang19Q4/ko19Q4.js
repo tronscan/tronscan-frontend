@@ -175,6 +175,8 @@ export const lang19Q4 = {
    "index_page_switch_tokens":"코인 스위치",
    "index_page_tronscan_info":"TRONSCAN는 TRON에 최적의 블록체인 브라우저입니다",
    "index_page_down_excel_tips":"Excel을 사용하여 다운로드 한 파일을 열 때 셀의 소수점 이하의 자리수를 수동으로 조정해야합니다.",
+   "index_page_pane_current":"현재",
+   "index_page_pane_MaxTPS":"최대치TPS",
     /*
         ##################################################################################
         #                                                                                #

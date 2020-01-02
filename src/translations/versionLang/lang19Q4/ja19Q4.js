@@ -179,6 +179,8 @@ export const lang19Q4 = {
    "index_page_switch_tokens":"トークンスイッチ",
    "index_page_tronscan_info":"TRONSCANはTRONに最適なブロックチェーンブラウザーです",
    "index_page_down_excel_tips":"Excelを使用してダウンロードしたドキュメントを開く場合、セルの小数点以下の桁数を手動で調整する必要があります。",
+   "index_page_pane_current":"現在のTPS",
+   "index_page_pane_MaxTPS":"ピークTPS",
     /*
         ##################################################################################
         #                                                                                #
