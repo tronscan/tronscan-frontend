@@ -77,11 +77,13 @@ class StatCharts extends React.Component {
             },
             EnergyConsumeDistribution: null,
             OverallFreezingRate:null,
+            OverallFreezingRateRevers:null,
             OverallFreezingRateParams:{
                 start_day:'2019-12-01',
                 end_day: moment().format("YYYY-MM-DD")
             },
             SupplyData:null,
+            SupplyDataRevers:null,
             SupplyParams:{
                 limit:1000,  
                 start_day:moment('2019-12-01').valueOf(),
@@ -321,7 +323,6 @@ class StatCharts extends React.Component {
 
     async loadSupply() {
         let { start_day, end_day, limit} = this.state.SupplyParams;
-        
         let {data: {data}} = await xhr.get(API_URL + "/api/turnover?size="+ limit +"&start="+ start_day+"&end="+end_day); 
         console.log('data',data)
         let x;
@@ -329,7 +330,6 @@ class StatCharts extends React.Component {
             item.timestamp = moment(item.day).valueOf();
             x = new BigNumber(item.total_turn_over);
             item.total_turn_over_num = x.decimalPlaces(6).toNumber();
-            item.total_unfreezing_weight = x.minus(item.total_freeze_weight).decimalPlaces(6).toNumber();
         })
         this.setState({
             OverallFreezingRate:  sortBy(data, function(o) { return o.timestamp; }),

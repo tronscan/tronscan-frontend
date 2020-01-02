@@ -2359,7 +2359,7 @@ export class OverallFreezingRateChart extends React.Component {
     }
 }
 /**
- * TRX Supply
+ * TRX Supply 2019-12-31
  */
 export class lineTRXSupplyChart extends React.Component {
 
