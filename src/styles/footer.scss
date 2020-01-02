@@ -8,7 +8,10 @@
             a{
                 font-family: HelveticaNeue;
                 font-size: 12px;
-                color: rgba(255,255,255,0.5)
+                color: rgba(255,255,255,0.5);
+                &:hover{
+                    color:rgba(255,255,255,1)!important;
+                }
             }
             .p-2{
                 padding-left:0!important;
@@ -19,7 +22,6 @@
         }
         .footer-slogan{
             text-align: right;
-            overflow: hidden;
             img{ 
                 width:96.4px;
             }
@@ -30,6 +32,15 @@
                 text-align: right;
                 line-height: 30px;
             }
+            li{
+                list-style: none;
+                i{
+                    color:rgba(255,255,255,0.2);
+                    &:hover{
+                        color:rgba(255,255,255,1)
+                    }
+                }
+            }
         }
         .footer-icon {
             position: relative;
@@ -39,9 +50,9 @@
                 height: 120px;
                 background: #fff;
                 position: absolute;
-                left: 30px;
-                top: -50px;
-                display: block;
+                left: -53px;
+                top: 37px;
+                display: none;
                 z-index: 100;
 
                 img {
@@ -52,14 +63,14 @@
                 &:before {
                     width: 0;
                     height: 0;
-                    border-top: 7px solid transparent;
-                    border-bottom: 7px solid transparent;
-                    border-left: 12px solid transparent;
-                    border-right: 12px solid #fff;
+                    border-top: 12px solid transparent;
+                    border-bottom: 12px solid #fff;
+                    border-left: 7px solid transparent;
+                    border-right: 7px solid transparent;
                     content: "";
                     position: absolute;
-                    left: -24px;
-                    top: 53px;
+                    left: 53px;
+                    top: -24px;
                 }
             }
 
@@ -71,5 +82,62 @@
                 display: block;
             }
         }
-    }     
+    } 
+    .copyright{
+       border-top:1px solid rgba(255,255,255,0.2);
+       .container{
+          margin:0 auto;
+          .text{
+            font-family: HelveticaNeue;
+            font-size: 11px;
+            color: rgba(255,255,255,0.3);  
+          }
+          &:first-child{
+              padding-left:0!important;
+          }
+          &:last-child{
+            padding-right:0!important;
+        }
+        .switch{
+            min-width:138px;
+            height:24px;
+            background:rgba(0,0,0,0.14);
+            font-family: HelveticaNeue;
+            font-size: 11px;
+            color: #C2C2C2;
+            line-height: 24px;
+            span{
+                display: block;
+                min-width: 83px;
+                text-align: center;
+            }
+            .ant-dropdown-link{
+                width:55px;
+                background: rgba(255,255,255,0.14);
+                border-radius: 0 1px 1px 0;
+                font-family: HelveticaNeue;
+                font-size: 12px;
+                color: #FFFFFF;
+            }
+        }
+        .donate{
+            width:340px;
+            height:24px;
+            line-height: 24px;
+            background: rgba(255,255,255,0.14);
+            .ant-btn{
+               min-width:44px;
+               height:16px;
+               line-height: 16px;
+               padding:0; 
+               margin-top:4px;
+               font-family: HelveticaNeue;
+               font-size: 12px;
+               color: #FFFFFF;
+               margin-left: 4px;
+            }
+
+        }
+       }
+    }    
 }
