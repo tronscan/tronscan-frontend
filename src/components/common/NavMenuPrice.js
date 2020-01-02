@@ -102,7 +102,7 @@ export let PriceProvider = connect(
   mapDispatchToProps
 )(PriceProviderCmp);
 
-export class TRXPrice extends React.PureComponent {
+export class NavMenuTRXPrice extends React.PureComponent {
   constructor() {
     super();
 
@@ -115,7 +115,8 @@ export class TRXPrice extends React.PureComponent {
   renderPrice(value, priceValues) {
     let { currency = "" } = this.props;
     let id = currency || priceValues.priceShown;
-    return priceValues.prices[id.toUpperCase()] * value;
+    console.log(priceValues,id,'111111')
+    return priceValues[id.toUpperCase()] * value;
   }
 
   render() {
@@ -130,7 +131,6 @@ export class TRXPrice extends React.PureComponent {
       ...props
     } = this.props;
     let ele = null;
-    let percent_change_24h = JSON.parse(localStorage.getItem('dataEur')).data[0].percent_change_24h || ''
     return (
       <Consumer>
         {priceValues => {
@@ -201,7 +201,7 @@ export class TRXPrice extends React.PureComponent {
             case "home":
               ele = (
                 <Fragment>
-                    <FormattedNumber
+                  <FormattedNumber
                     value={this.renderPrice(amount, priceValues)}
                     maximumFractionDigits={
                       priceValues.currencies[
@@ -217,15 +217,12 @@ export class TRXPrice extends React.PureComponent {
                         onMouseOut={() => this.setState({ open: false })}
                         {...props}
                       >
-                        <span className="currentTrxPirce">{value} </span>
+                        {value}
                         {showCurreny &&
                           (currency.toUpperCase() ||
                             priceValues.priceShown.toUpperCase())}
-                          {' '}
-                        <span className={Number(percent_change_24h)>0?'greenPrice hidden-mobile':'redPrice hidden-mobile'} style={{display:'inline-block'}}>({percent_change_24h}%)</span>
                       </span>
                     )}
-                  
                   </FormattedNumber>
                   {showPopup && (
                     <Tooltip placement="top" isOpen={open} target={id}>
@@ -293,7 +290,7 @@ export class TRXPrice extends React.PureComponent {
                         onMouseLeave={() => this.setState({ open: false })}
                         {...props}
                       >
-                       {value}
+                        {value}
                         {showCurreny &&
                           (currency.toUpperCase() ||
                             priceValues.priceShown.toUpperCase())}

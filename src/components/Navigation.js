@@ -1003,31 +1003,35 @@ class Navigation extends React.Component {
                 <Link to="/">
                   <img src={this.getLogo()} className="logo" alt="Tron"/>
                 </Link>
-                <span className="currentTRXInfo">
-                 
-                  <Tooltip
-                    placement="bottom"
-                    title={intl.formatMessage({
-                      id: "tooltip_trxPrice"
-                    })}
-                  >
-                    <HrefLink
-                      href="https://coinmarketcap.com/currencies/tron/"
-                      target="_blank"
-                      className="hvr-underline-from-center hvr-underline-white text-muted"
+                {
+                  IS_MAINNET?
+                  <span className="currentTRXInfo">
+                    <Tooltip
+                      placement="bottom"
+                      title={intl.formatMessage({
+                        id: "tooltip_trxPrice"
+                      })}
                     >
-                      <span className="hover-red TRXPrice">
-                        <span className="trxTitle">TRX:</span> 
-                        <TRXPrice
-                          showPopup={false}
-                          amount={1}
-                          currency="USD"
-                          source="home"
-                        />
-                      </span>
-                    </HrefLink>
-                  </Tooltip>
-                </span>
+                      <HrefLink
+                        href="https://coinmarketcap.com/currencies/tron/"
+                        target="_blank"
+                        className="hvr-underline-from-center hvr-underline-white text-muted"
+                      >
+                        <span className="hover-red TRXPrice">
+                          <span className="trxTitle">TRX:</span> 
+                          <TRXPrice
+                            showPopup={false}
+                            amount={1}
+                            currency="USD"
+                            source="home"
+                            showCurreny={true}
+                          />
+                        </span>
+                      </HrefLink>
+                    </Tooltip>
+                  </span>
+                  :null
+                }
               </div>
               {
                 IS_TESTNET &&
@@ -1042,7 +1046,7 @@ class Navigation extends React.Component {
                 </div>
               }
             
-              <div className=" new-menu-List">
+              <div className="new-menu-List">
                 <nav className="top-bar navbar navbar-expand-md navbar-dark" style={{padding:0}}> 
                 {/* <button className="navbar-toggler" type="button" data-toggle="collapse"
                         data-target="#navbar-top">
@@ -1253,7 +1257,7 @@ class Navigation extends React.Component {
                           </li>
                       ))}
                     </ul>
-                    <ul className="navbar-nav navbar-right">
+                    {/* <ul className="navbar-nav navbar-right">
                       <li className="nav-item dropdown navbar-right">
                         <a className="nav-link dropdown-toggle dropdown-menu-right "
                           data-toggle="dropdown"
@@ -1272,7 +1276,7 @@ class Navigation extends React.Component {
                         </div>
                       </li>
                      
-                    </ul>
+                    </ul> */}
                   </div>
                 </nav>
               </div>
@@ -1285,7 +1289,7 @@ class Navigation extends React.Component {
                       wallet.isOpen && <Notifications wallet={wallet} notifications={notifications}/>
                     }
                     {this.renderWallet()}
-                    <li className="nav-item dropdown navbar-right">
+                    <li className="nav-item dropdown navbar-right hidden-mobile" style={{display:'inline-block'}}>
                         <a className="nav-link dropdown-toggle dropdown-menu-right "
                           data-toggle="dropdown"
                           href="javascript:">{languages[activeLanguage]}</a>
