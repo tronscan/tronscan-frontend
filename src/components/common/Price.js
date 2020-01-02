@@ -46,10 +46,10 @@ class PriceProviderCmp extends React.PureComponent {
     var dataEur = Lockr.get("dataEur");
     var dataEth = Lockr.get("dataEth");
     let eurURL = encodeURI(
-      `http://api.coinmarketcap.com/v1/ticker/tronix/?convert=EUR`
+      `https://api.coinmarketcap.com/v1/ticker/tronix/?convert=EUR`
     );
     let ethURL = encodeURI(
-      `http://api.coinmarketcap.com/v1/ticker/tronix/?convert=ETH`
+      `https://api.coinmarketcap.com/v1/ticker/tronix/?convert=ETH`
     );
     if (!Lockr.get("dataEur")) {
       var { data: dataEur } = await xhr.get(
@@ -130,6 +130,7 @@ export class TRXPrice extends React.PureComponent {
       ...props
     } = this.props;
     let ele = null;
+    let percent_change_24h = JSON.parse(localStorage.getItem('dataEur')).data[0].percent_change_24h || ''
     return (
       <Consumer>
         {priceValues => {
@@ -200,7 +201,7 @@ export class TRXPrice extends React.PureComponent {
             case "home":
               ele = (
                 <Fragment>
-                  <FormattedNumber
+                    <FormattedNumber
                     value={this.renderPrice(amount, priceValues)}
                     maximumFractionDigits={
                       priceValues.currencies[
@@ -216,12 +217,15 @@ export class TRXPrice extends React.PureComponent {
                         onMouseOut={() => this.setState({ open: false })}
                         {...props}
                       >
-                        {value}
+                        <span className="currentTrxPirce">{value} </span>
                         {showCurreny &&
                           (currency.toUpperCase() ||
                             priceValues.priceShown.toUpperCase())}
+                          {' '}
+                        <span className={Number(percent_change_24h)>0?'greenPrice hidden-mobile':'redPrice hidden-mobile'} style={{display:'inline-block'}}>({percent_change_24h}%)</span>
                       </span>
                     )}
+                  
                   </FormattedNumber>
                   {showPopup && (
                     <Tooltip placement="top" isOpen={open} target={id}>
@@ -289,7 +293,7 @@ export class TRXPrice extends React.PureComponent {
                         onMouseLeave={() => this.setState({ open: false })}
                         {...props}
                       >
-                        {value}
+                       {value}
                         {showCurreny &&
                           (currency.toUpperCase() ||
                             priceValues.priceShown.toUpperCase())}

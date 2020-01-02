@@ -85,7 +85,7 @@ export const lang19Q4 = {
     "token_rank": "Clasificación",
     "market_capitalization_t": "Marketcap",
     "token_tron_total": "Número total de token de TRON",
-    "token_week": "Nuevas tokens durante la semana",
+    "token_week": "Los últimos 7 días",
     "token_scan_total": "Número de tokens en TRONSCAN",
     "create_token_btn": "Emisión de token",
     "gain_tip": "Movimiento de 24 horas",
@@ -177,4 +177,13 @@ export const lang19Q4 = {
    "index_page_switch_tokens":"Cambiar Token",
    "index_page_tronscan_info":"TRONSCAN es el navegador mejor de TRON",
    "index_page_down_excel_tips":"Si usa Excel para abrir un documento descargado, debe ajustar manualmente el número de lugares decimales en la celda.",
+    /*
+        ##################################################################################
+        #                                                                                #
+        # Charts 2019-12-30                           #
+        #                                                                                #
+        ##################################################################################
+    */
+    "account_details_contracts":"Contracts Published",
+    "account_details_contracts_no":"No contracts found",
 }

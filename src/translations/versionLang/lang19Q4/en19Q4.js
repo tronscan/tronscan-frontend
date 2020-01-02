@@ -90,7 +90,7 @@ export const lang19Q4 = {
     "total_supply_tip2": " TRX are excluded.",
     "market_capitalization_t": "Market Cap",
     "token_tron_total": "Total TRON Tokens",
-    "token_week": "This Week",
+    "token_week": "Last 7 Days",
     "token_scan_total": "Total in TRONSCAN",
     "create_token_btn": "Issue Tokens",
     "token_exchange": "Exchange",
@@ -179,4 +179,14 @@ export const lang19Q4 = {
     "index_page_switch_tokens":"Switch tokens",
     "index_page_tronscan_info":"TRONSCAN, the best blockchain explorer of Tron.",
     "index_page_down_excel_tips":"Change the decimals mannually when opening the file in Excel.",
+    /*
+        ##################################################################################
+        #                                                                                #
+        # Charts 2019-12-30                           #
+        #                                                                                #
+        ##################################################################################
+    */
+   "account_details_contracts":"Contracts Published",
+   "account_details_contracts_no":"No contracts found",
+
 }

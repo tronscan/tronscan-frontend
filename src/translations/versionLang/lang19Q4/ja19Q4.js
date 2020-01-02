@@ -87,7 +87,7 @@ export const lang19Q4 = {
     "token_rank": "ランキング",
     "market_capitalization_t": "時価総額",
     "token_tron_total": "TRONトークン 総数",
-    "token_week": "今週の新しいトークン",
+    "token_week": "過去7日間",
     "token_scan_total": "TRONSCANのトークン数",
     "create_token_btn": "トークン発行",
     "gain_tip": "24時間の変動量",
@@ -179,4 +179,14 @@ export const lang19Q4 = {
    "index_page_switch_tokens":"トークンスイッチ",
    "index_page_tronscan_info":"TRONSCANはTRONに最適なブロックチェーンブラウザーです",
    "index_page_down_excel_tips":"Excelを使用してダウンロードしたドキュメントを開く場合、セルの小数点以下の桁数を手動で調整する必要があります。",
+    /*
+        ##################################################################################
+        #                                                                                #
+        # Charts 2019-12-30                           #
+        #                                                                                #
+        ##################################################################################
+    */
+   "account_details_contracts":"Contracts Published",
+   "account_details_contracts_no":"No contracts found",
+
 }
