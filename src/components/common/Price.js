@@ -218,10 +218,12 @@ export class TRXPrice extends React.PureComponent {
                         {...props}
                       >
                         <span className="currentTrxPirce">{value} </span>
-                        {showCurreny &&
+                        <span className="currentCurrency">
+                          {showCurreny &&
                           (currency.toUpperCase() ||
                             priceValues.priceShown.toUpperCase())}
                           {' '}
+                        </span>
                         <span className={Number(percent_change_24h)>0?'greenPrice hidden-mobile':'redPrice hidden-mobile'} style={{display:'inline-block'}}>({percent_change_24h}%)</span>
                       </span>
                     )}

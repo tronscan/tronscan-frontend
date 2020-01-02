@@ -65,7 +65,7 @@ export const routes = [
   {
     path: "/",
     label: "home_page",
-    icon: "fas fa-home",
+    icon: false,
 
     showInMenu: true,
     showSubMenu: false,
@@ -77,12 +77,12 @@ export const routes = [
   {
     path: "/blockchain",
     label: "blockchain",
-    icon: "fa fa-link",
+    icon: false,
     component: () => <Redirect to="/blockchain/blocks" />,
     routes: [
       {
         label: "nodes",
-        icon: "fa fa-server",
+        icon: false,
         path: "/blockchain/nodes",
         component: NodesAsync,
         showInMenu: true
@@ -91,24 +91,24 @@ export const routes = [
       {
         path: "/blockchain/blocks",
         label: "blocks",
-        icon: "fa fa-cubes",
+        icon: false,
         component: Blocks
       },
       {
-        icon: "fas fa-handshake",
+        icon: false,
         path: "/blockchain/transactions",
         label: "transactions",
         component: Transactions
       },
       {
-        icon: "fas fa-handshake",
+        icon: false,
         path: "/blockchain/transactions/:date",
         label: "daily_transactions",
         component: Transactions,
         showInMenu: false
       },
       {
-        icon: "fa fa-exchange-alt",
+        icon: false,
         path: "/blockchain/transfers",
         label: "transfers",
         component: Transfers
@@ -116,7 +116,7 @@ export const routes = [
       {
         path: "/blockchain/accounts",
         label: "accounts",
-        icon: "fa fa-users",
+        icon: false,
         component: AccountsAsync
       },
 
@@ -128,28 +128,28 @@ export const routes = [
       // },
       {
         label: "statistics",
-        icon: `fa fa-chart-pie`,
+        icon: false,
         path: "/blockchain/stats",
         component: StatisticsAsync,
         showInMenu: IS_MAINNET ? true : false
       },
       {
         label: "statistics",
-        icon: `fa fa-chart-pie`,
+        icon: false,
         path: "/blockchain/stats/:chartName",
         component: SingleChartAsync,
         showInMenu: false
       },
       {
         label: "statistics",
-        icon: `fa fa-chart-pie`,
+        icon: false,
         path: "/blockchain/charts/:chartName",
         component: ChartsAsync,
         showInMenu: false
       },
       {
         label: "live",
-        icon: `fa fa-bolt`,
+        icon: false,
         path: "/blockchain/live",
         component: LiveAsync,
         showInMenu: false
@@ -163,7 +163,7 @@ export const routes = [
       {
         path: "/blockchain/foundation",
         label: "foundation",
-        icon: "fa fa-address-book",
+        icon: false,
         showInMenu: IS_MAINNET ? true : false,
         component: FoundationAsync
       }
@@ -172,52 +172,52 @@ export const routes = [
   {
     path: "/contracts",
     label: "contracts",
-    icon: "fa fa-file-contract",
+    icon: false,
     component: () => <Redirect to="/contracts/contracts" />,
     routes: [
       {
         label: "contracts",
-        icon: "fa fa-file",
+        icon: false,
         path: "/contracts/contracts",
         component: Contracts
       },
       {
         path: "/contracts/contract-triggers",
         label: "trigger",
-        icon: "fa fa-users-cog",
+        icon: false,
         component: ContractTrans
       },
       {
         path: "/contracts/contract-compiler",
         label: "contract_deployment",
-        icon: "fas fa-file-signature",
+        icon: false,
         component: ContractCompilerAsync,
         showInMenu: IS_MAINNET ? true : false
       },
       {
         path: "/contracts/contract-compiler/:type",
         label: "contract_verification",
-        icon: "fas fa-file-signature",
+        icon: false,
         component: ContractCompilerAsync,
         showInMenu: false
       },
       {
         label: "contracts_source-code-usage-terms",
-        icon: "fa fa-file",
+        icon: false,
         path: "/contracts/source-code-usage-terms",
         component: ContractSourceCode,
         showInMenu: false
       },
       {
         label: "contracts_terms",
-        icon: "fa fa-file",
+        icon: false,
         path: "/contracts/terms",
         component: ContractUseServiceTerms,
         showInMenu: false
       },
       {
         label: "contracts_license",
-        icon: "fa fa-file",
+        icon: false,
         path: "/contracts/license",
         component: ContractLicense,
         showInMenu: false
@@ -257,7 +257,7 @@ export const routes = [
   {
     path: "/tokens",
     label: "tokens",
-    icon: "fas fa-coins",
+    icon: false,
     component: TokenOverviewAsync,
     routes: [
       // {
@@ -276,7 +276,7 @@ export const routes = [
       {
         label: "token_overview",
         path: "/tokens/list",
-        icon: "fa fa-list",
+        icon: false,
         component: TokenAllAsync
       },
       // {
@@ -289,7 +289,7 @@ export const routes = [
       {
         label: "token_input",
         path: "/tokens/create",
-        icon: "fa fa-plus-square",
+        icon: false,
         component: TokensCreateAsync,
         showInMenu: IS_MAINNET ? true : false
       },
@@ -301,21 +301,21 @@ export const routes = [
       {
         label: "update_token",
         path: "/tokens/update/:id",
-        icon: "fa fa-plus-square",
+        icon: false,
         component: TokensCreateAsync,
         showInMenu: false
       },
       {
         label: "token_markets_input",
         path: "/tokens/markets/add/:page/:tokenId/:id",
-        icon: "fa fa-plus-square",
+        icon: false,
         component: TokensMarketsAddListAsync,
         showInMenu: false
       },
       {
         label: "token_markets_input",
         path: "/tokens/markets/create/:type/:id",
-        icon: "fa fa-plus-square",
+        icon: false,
         component: TokensMarketsCreateAsync,
         showInMenu: false
       },
@@ -323,14 +323,14 @@ export const routes = [
         /* Write two is to solve the updated copy */
         label: "token_markets_update",
         path: "/tokens/markets/:page/:type/:id",
-        icon: "fa fa-plus-square",
+        icon: false,
         component: TokensMarketsCreateAsync,
         showInMenu: false
       },
       {
         label: "token_rating_rule",
         path: "/tokens/rating-rule",
-        icon: "fa fa-plus-square",
+        icon: false,
         component: RatingRule,
         showInMenu: false
       }
@@ -363,7 +363,7 @@ export const routes = [
   // {
   //   path: "/Poloni DEX",
   //   label: "Poloni DEX",
-  //   icon: "fas fa-rocket",
+  //     icon: false,
   //   enurl: "https://poloniex.org",
   //   zhurl: "https://poloniex.org",
   //   linkHref: true
@@ -371,7 +371,7 @@ export const routes = [
   // {
   //   label: "DEX10",
   //   path: "/exchange",
-  //   icon: "fas fa-exchange-alt",
+  //      icon: false,
   //   component: Exchange,
   //   showInMenu: false,
   //   none: true
@@ -379,13 +379,13 @@ export const routes = [
   {
     path: "/network",
     label: "nav_network",
-    icon: "fas fa-project-diagram",
+    icon: false,
     routes: [
       [
         "sun_network_product",
         {
           url: window.location.origin === NETURL.MAINNET ? NETURL.SUNNET : NETURL.NEWSUNNET,
-          icon: "fas fa-columns",
+          icon: false,
           label: "sun_network_DAppChain"
         }
       ],
@@ -393,18 +393,18 @@ export const routes = [
         "sun_network_relevant_information",
         {
           url: "https://tron.network/sunnetwork/#/",
-          icon: "fa fa-globe",
+          icon: false,
           label: "sun_network_project_introduction"
         },
         {
           url: "https://tron.network/sunnetwork/doc/guide/",
-          icon: "fa fa-book",
+          icon: false,
           label: "sun_network_development_document"
         },
         {
           url:
             "https://support.tronscan.org/hc/en-us/articles/360035944072-SUN-Network-Developer-Challenge-Starts",
-          icon: "fas fa-award",
+            icon: false,
           label: "developer_challenge"
         }
       ]
@@ -413,7 +413,7 @@ export const routes = [
   {
     label: "Poloni DEX",
     path: "/exchange/trc20",
-    icon: "fas fa-exchange-alt",
+    icon: false,
     component: Exchange20,
     isExact: true,
     none: true,
@@ -430,33 +430,33 @@ export const routes = [
   {
     label: "DAPP",
     path: "/dapp",
-    icon: "fas fa-gamepad",
+    icon: false,
     component: null,
     showInMenu: IS_MAINNET ? true : false,
     routes: [
       // {
       //     url: "https://www.tronace.com/?utm_source=TS",
-      //     icon: "fas fa-dollar-sign",
+      //        icon: false,,
       //     label: "TRONAce"
       // },
       // {
       //     url: "https://www.tronbet.io/#/?utm_source=TS",
-      //     icon: "fas fa-dice-six",
+      //         icon: false,,
       //     label: "TRONbet"
       // },
       {
         url: "https://tronlending.org/?utm_source=TS",
-        icon: "fas fa-hand-holding-usd",
+        icon: false,
         label: "TronLending"
       },
       {
           url: "https://dappradar.com/rankings/protocol/tron",
-          icon: "fab fa-dochub", 
+          icon: false,
           label: "DAppradar"
       },
       {
         url:"https://dapp.review/explore/tron?gclid=EAIaIQobChMIx-fB8KH04QIVlHZgCh0ybA1hEAAYASAAEgIad_D_BwE",
-        icon: "fas fa-crop-alt",
+        icon: false,
         label: "Dappreview"
       }
     ]
@@ -464,33 +464,33 @@ export const routes = [
   {
     label: "notice",
     path: "/notice/:id",
-    //icon: "fas fa-exchange-alt",
+    //    icon: false,
     component: Notice,
     showInMenu: false
   },
   {
     label: "TRONSR",
     path: "/sr",
-    icon: "fas fa-chess-queen",
+    icon: false,
     component: RepresentativesAsync,
     routes: [
       {
         label: "representatives",
         path: "/sr/representatives",
-        icon: "fa fa-rocket",
+        icon: false,
         component: RepresentativesAsync
       },
       {
         label: "votes",
         path: "/sr/votes",
-        icon: "fas fa-comment",
+        icon: false,
         component: VoteOverviewAsync,
         showInMenu: IS_MAINNET ? true : false
       },
       {
         label: "committee",
         path: "/sr/committee",
-        icon: "fas fa-users",
+        icon: false,
         component: Committee
       }
     ]
@@ -498,7 +498,7 @@ export const routes = [
   {
     path: "/votes-live",
     label: "live",
-    icon: "fas fa-comment",
+    icon: false,
     component: VoteLiveAsync,
     showInMenu: false
   },
@@ -523,53 +523,53 @@ export const routes = [
   {
     path: "/tools",
     label: "tools",
-    icon: "fa fa-wrench",
+    icon: false,
     component: null,
     showInMenu: false,
     routes: [
       // {
       //   label: "verify_contract_code",
       //   path: "/tools/verify-contract-code",
-      //   icon: "fa fa-check-square",
+      //       icon: false,
       //   component: VerifyContractCodeAsync,
       // },
       {
         label: "transaction_viewer",
         path: "/tools/transaction-viewer",
-        icon: "fa fa-eye",
+        icon: false,
         component: TransactionViewerAsync
       },
       // {
       //   label: "node_tester",
       //   path: "/tools/node-tester",
-      //   icon: "fa fa-server",
+      //      icon: false,
       //   component: NodeTesterAsync
       // },
       {
         label: "tron_convert_tool",
         path: "/tools/tron-convert-tool",
-        icon: "fa fa-random",
+        icon: false,
         component: TronConvertToolAsync
       },
       {
         path: "/tools/system",
-        icon: "fa fa-database",
+        icon: false,
         label: "system",
         component: SystemAsync
       },
       {
         url: "https://github.com/tronscan/tronscan-desktop/releases",
-        icon: "fa fa-download",
+        icon: false,
         label: "desktop_explorer"
       },
       {
         url: "https://explorer.shasta.trongrid.io",
-        icon: "fa fa-link",
+        icon: false,
         label: "link_test_server"
       },
       {
         url: "https://www.trongrid.io/shasta",
-        icon: "fa fa-recycle",
+        icon: false,
         label: "link_test_fauct"
       }
     ]
@@ -577,7 +577,7 @@ export const routes = [
   {
     path: "/help",
     label: "help",
-    icon: "fa fa-question",
+    icon: false,
     component: null,
     showInMenu: false,
     routes: [
@@ -643,12 +643,12 @@ export const routes = [
   // {
   //   path: "/more",
   //   label: "nav_more",
-  //   icon: "fas fa-indent",
+  //       icon: false,
   //   routes: [
   //     {
   //       path: "/markets",
   //       label: "markets",
-  //       icon: "fa fa-chart-line", // component: MarketsAsync
+  //         icon: false,
   //       enurl: "https://coinmarketcap.com/currencies/tron/",
   //       zhurl: "https://coinmarketcap.com/zh/currencies/tron/",
   //       linkHref: true
@@ -656,7 +656,7 @@ export const routes = [
   //     {
   //       path: "/more/list_trx",
   //       label: "list_trx",
-  //       icon: "fa fa-plus",
+  //           icon: false,
   //       enurl: "https://tron.network/exchangesList?lng=en",
   //       zhurl: "https://tron.network/exchangesList?lng=zh",
   //       linkHref: true
@@ -666,7 +666,7 @@ export const routes = [
   {
     path: "/more",
     label: "nav_more",
-    icon: "fas fa-indent",
+    icon: false,
     routes: [
       [
         "index_page_menu_more_dev_resources",
@@ -884,7 +884,7 @@ export const routes = [
   {
     path: "/developersReward",
     label: "developers_scored_users",
-    icon: "fa fa-users",
+    icon: false,
     showInMenu: false,
     component: DevelopersRewardAsync
   }
