@@ -2034,7 +2034,7 @@ export const messages = {
     "footer_fellow_us": "关注我们",
     "footer_developer_resources": "开发中心",
     "footer_support_center": "帮助中心",
-    "footer_tron_network": "波场官网",
+    "footer_tron_network": "TRON官网",
     "login_privatekey_warn": "为确保您的账户安全，请您妥善保管好私钥，以防资产丢失。建议您使用",
     "login_privatekey_warn_safe": "安全登录",
     "token_does_not_support_exchange": "币种暂不支持交易",

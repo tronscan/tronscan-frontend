@@ -8,49 +8,12 @@ import { HrefLink } from "../common/Links";
 import isMobile from "../../utils/isMobile";
 
 class Footer extends Component {
-  constructor(){
-    super()
-    this.state = {
-      links:[
-        {
-          icon:"fab fa-telegram",
-          url:"https://t.me/tronscan_org",
-          name:"Telegram"
-        },
-        {
-          icon:"fab fa-twitter",
-          url:"https://twitter.com/TRONSCAN_ORG",
-          name:"Twitter"
-        },
-        {
-          icon:"fab fa-medium-m",
-          url:"https://medium.com/@TRONSCAN_ORG",
-          name:"Medium"
-        },{
-          icon:"fab fa-discord",
-          url:"https://discord.gg/hqKvyAM",
-          name:"Discord"
-        },
-        {
-          icon:"fab fa-weibo",
-          url:"https://www.weibo.com/tronscan?refer_flag=1005055013_&is_hot=1",
-          name:"Weibo"
-        },
-        {
-          icon:"fab fa-weixin",
-          url:"",
-          name:"WeChat"
-        }
-      ]
-    }
-  }
 
   render() {
     const donate_address = 'TTzPiwbBedv7E8p4FkyPyeqq4RVoqRL3TW';
     let { intl, activeLanguage } = this.props;
-    const {links} = this.state;
     return (
-      <div className="footer-compontent pb-0 footer-new">
+      <div className="footer-compontent pb-0">
         <div className="pt-5 home-footer">
         {
           isMobile?
@@ -213,7 +176,7 @@ class Footer extends Component {
           :
           <div className="container">
             <div className="row text-center text-xs-center text-sm-left text-md-left">
-              {/* <div className="col-xs-12 col-sm-3 col-md-3">
+              <div className="col-xs-12 col-sm-3 col-md-3">
                 <h5>{tu('footer_fellow_us')}</h5>
                 <div className="line" />
                 <ul className="list-unstyled quick-links pt-3">
@@ -251,39 +214,28 @@ class Footer extends Component {
                     </a>
                   </li>
 
-                {/* </ul>
-              </div> */}
-             
-              <div className="col-xs-12 col-sm-2 col-md-2">
-                <h5>{tu('TRON_ecosystem')}</h5>
-                
-                <ul className="list-unstyled quick-links">
-                  <li className="p-2">
-                    <HrefLink href="https://tron.network">
-                        {tu('footer_tron_network')}
-                    </HrefLink>
-                  </li>
-                  <li className="p-2">
-                    <HrefLink href="https://poloniex.org">
-                        {tu('exchange')}
-                    </HrefLink>
-                  </li>
-                  <li className="p-2">
-                    <HrefLink href="https://www.tronlink.org">
-                        {tu('wallet')}
-                    </HrefLink>
-                  </li>
-                  <li className="p-2">
-                    <HrefLink href="https://tron.app">
-                      DApp House
-                    </HrefLink>
-                  </li>
+                    {/*<li className="p-2">*/}
+                    {/*<HrefLink href="https://twitter.com/tronscan3">*/}
+                    {/*<i className="fa fa-angle-right mr-4" /> Twitter-tronscan*/}
+                    {/*</HrefLink>*/}
+                    {/*</li>*/}
+                    {/*<li className="p-2">*/}
+                    {/*<HrefLink href="https://github.com/tronscan/tronscan-frontend/issues/new">*/}
+                    {/*<i className="fa fa-angle-right mr-4" /> {tu('report_an_error')}*/}
+                    {/*</HrefLink>*/}
+                    {/*</li>*/}
+                    {/*<li className="p-2">*/}
+                    {/*<HrefLink href="https://github.com/tronscan/tronscan-frontend">*/}
+                    {/*<i className="fa fa-angle-right mr-4" /> Tronscan Github*/}
+                    {/*</HrefLink>*/}
+                    {/*</li>*/}
+
                 </ul>
               </div>
-              <div className="col-xs-12 col-sm-2 col-md-2"> 
+              <div className="col-xs-12 col-sm-3 col-md-3">
                 <h5>{tu('footer_developer_resources')}</h5>
-                
-                <ul className="list-unstyled quick-links">
+                <div className="line" />
+                <ul className="list-unstyled quick-links pt-3">
                   <li className="p-2">
                     <HrefLink href="https://github.com/tronprotocol">
                      Github
@@ -306,57 +258,93 @@ class Footer extends Component {
                   </li>
                 </ul>
               </div>
-              <div className="col-xs-12 col-sm-2 col-md-2">
-                <h5 className="text-uppercase">{tu('about_us')}</h5>
-                
-                <ul className="list-unstyled quick-links">
+              <div className="col-xs-12 col-sm-3 col-md-3">
+                <h5>{tu('TRON_ecosystem')}</h5>
+                <div className="line" />
+                <ul className="list-unstyled quick-links pt-3">
+                  <li className="p-2">
+                    <HrefLink href="https://tron.network">
+                        {tu('footer_tron_network')}
+                    </HrefLink>
+                  </li>
+                  <li className="p-2">
+                    <HrefLink href="https://poloniex.org">
+                        {tu('exchange')}
+                    </HrefLink>
+                  </li>
+                  <li className="p-2">
+                    <HrefLink href="https://www.tronlink.org">
+                        {tu('wallet')}
+                    </HrefLink>
+                  </li>
+                  <li className="p-2">
+                    <HrefLink href="https://tron.app">
+                      Dapps
+                    </HrefLink>
+                  </li>
+                </ul>
+              </div>
+              <div className="col-xs-12 col-sm-3 col-md-3">
+                <h5 className="text-uppercase">TRONSCAN</h5>
+                <div className="line" />
+                <ul className="list-unstyled quick-links pt-3">
                   <li className="p-2">
                     <Link to="/help/about">
-                        {tu('index_page_footer_team_info')}
+                        {tu('about_us')}
                     </Link>
                   </li>
-                  {/* <li className="p-2">
+                  <li className="p-2">
                     <HrefLink href={activeLanguage == 'zh'?"https://support.tronscan.org/hc/zh-cn/requests/new":"https://support.tronscan.org/hc/en-us/requests/new"}>
                         {tu('contact_us')}
                     </HrefLink>
-                  </li> */}
+                  </li>
                   <li className="p-2">
                     <HrefLink href={activeLanguage == 'zh'?"https://tronscanorg.zendesk.com/hc/zh-cn":"https://tronscanorg.zendesk.com/hc/en-us"}>
                         {tu('footer_support_center')}
                     </HrefLink>
                   </li>
-                  {/* <li className="p-2">
+                  <li className="p-2">
                     <HrefLink href={activeLanguage == 'zh'?"https://tronscanorg.zendesk.com/hc/zh-cn/categories/360001616871-%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98":"https://tronscanorg.zendesk.com/hc/en-us/categories/360001621712-FAQ"}>
                         {tu('frequently_asked_questions')}
                     </HrefLink>
-                  </li> */}
+                  </li>
                 </ul>
               </div>
-              <div className="col-xs-12 col-sm-6 col-md-6">
-                  <div className="fr footer-slogan">
-                    <img src={require('../../images/footer/TRON.png')}/>
-                    <p className="pt-2">{tu('index_page_tronscan_info')}</p>
-                    <ul className="d-flex fr pt-4 mt-4">
-                      {links.map(item=>{
-                        if(item.name != 'WeChat'){
-                          return <li>
-                          <HrefLink href={item.url}>
-                            <i className={`${item.icon} mr-3`} />
-                          </HrefLink>
-                          </li>
-                        }else{
-                          return <li className="footer-icon"><a target="_blank" >
-                              <i className={item.icon}></i>
-                              <div className="code_wrap">
-                                <img src={require("../../images/footer/tronscan_wechat.png")} />
-                              </div>
-                            </a></li>
-                        }                       
-                      })}                     
-                    </ul>
-                  </div>
-              </div>
-
+              {/*<div className="col-xs-12 col-sm-3 col-md-3">*/}
+                {/*<h5>TRON生态</h5>*/}
+                {/*<div className="line" />*/}
+                {/*<ul className="list-unstyled quick-links pt-3">*/}
+                  {/*<li className="p-2">*/}
+                    {/*<Link to="/sr/votes">*/}
+                      {/*<i className="fa fa-angle-right mr-4" />{" "}*/}
+                      {/*{tu("vote_for_super_representatives")}*/}
+                    {/*</Link>*/}
+                  {/*</li>*/}
+                  {/*<li className="p-2">*/}
+                    {/*<Link to="/sr/representatives">*/}
+                      {/*<i className="fa fa-angle-right mr-4" />{" "}*/}
+                      {/*{tu("view_super_representatives")}*/}
+                    {/*</Link>*/}
+                  {/*</li>*/}
+                  {/*<li className="p-2">*/}
+                    {/*<Link to="/wallet/new">*/}
+                      {/*<i className="fa fa-angle-right mr-4" />{" "}*/}
+                      {/*{tu("create_new_wallet")}*/}
+                    {/*</Link>*/}
+                  {/*</li>*/}
+                  {/*<li className="p-2">*/}
+                    {/*<Link to="/tokens/view">*/}
+                      {/*<i className="fa fa-angle-right mr-4" />{" "}*/}
+                      {/*{tu("view_tokens")}*/}
+                    {/*</Link>*/}
+                  {/*</li>*/}
+                  {/*<li className="p-2">*/}
+                    {/*<Link to="/help/copyright">*/}
+                      {/*<i className="fa fa-angle-right mr-4" /> {tu("copyright")}*/}
+                    {/*</Link>*/}
+                  {/*</li>*/}
+                {/*</ul>*/}
+              {/*</div>*/}
             </div>
             <div className="row donate mt-5">
                 <div>
