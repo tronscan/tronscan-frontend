@@ -60,7 +60,7 @@ export function Information({ token: tokens, priceUSD }) {
   // if wink
   if (token.contract_address === "TLa2f6VPqDgRE67v1736s7bJ8Ray5wYjU7") {
     currentTotal = token.winkTotalSupply.totalTurnOver || 0;
-    currentTotalSupplyUsd = token.winkTotalSupply.marketValue || 0;
+    currentTotalSupplyUsd = parseInt(token.winkTotalSupply.marketValue) || 0;
   }
 
   const defaultContent = "-";

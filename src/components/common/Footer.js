@@ -6,6 +6,13 @@ import { withTimers } from "../../utils/timing";
 import { tu,pure_t } from "../../utils/i18n";
 import { HrefLink } from "../common/Links";
 import isMobile from "../../utils/isMobile";
+import {
+  setActiveCurrency,
+} from "../../actions/app"
+import { Menu, Dropdown, Icon,Button } from 'antd';
+import SendModal from "../transfer/Send/SendModal";
+
+
 
 class Footer extends Component {
   constructor(){
@@ -41,13 +48,16 @@ class Footer extends Component {
           url:"",
           name:"WeChat"
         }
-      ]
+      ],
+      modal:null,
+      donateAddress:'TTzPiwbBedv7E8p4FkyPyeqq4RVoqRL3TW'
     }
   }
 
   render() {
-    const donate_address = 'TTzPiwbBedv7E8p4FkyPyeqq4RVoqRL3TW';
-    let { intl, activeLanguage } = this.props;
+    const donate_address = this.state.donateAddress;
+    let modal = this.state.modal;
+    let { intl, activeLanguage,activeCurrency,currencyConversions } = this.props;
     const {links} = this.state;
     return (
       <div className="footer-compontent pb-0 footer-new">
@@ -129,33 +139,33 @@ class Footer extends Component {
                     <HrefLink href="https://www.tronlink.org"> {tu('wallet')}</HrefLink>
                   </li>
                   <li>
-                    <HrefLink href="https://tron.app">Dapps</HrefLink>
+                    <HrefLink href="https://tron.app">DApp House</HrefLink>
                   </li>
                 </ul>
               </div>
               <div className="col-6 col-md-3">
-                <h5 className="text-uppercase">Tronscan</h5>
+            <h5 className="text-uppercase">{tu('about_us')}</h5>
                 <ul className="list-unstyled">
                   <li>
                     <Link to="/help/about">
-                        {tu('about_us')}
+                    {tu('index_page_footer_team_info')}
                     </Link>
                   </li>
-                  <li>
+                  {/* <li>
                     <HrefLink href={activeLanguage == 'zh'?"https://support.tronscan.org/hc/zh-cn/requests/new":"https://support.tronscan.org/hc/en-us/requests/new"}>
                       {tu('contact_us')}
                     </HrefLink>
-                  </li>
+                  </li> */}
                   <li>
                     <HrefLink href={activeLanguage == 'zh'?"https://tronscanorg.zendesk.com/hc/zh-cn":"https://tronscanorg.zendesk.com/hc/en-us"}>
                         {tu('footer_support_center')}
                     </HrefLink>
                   </li>
-                  <li>
+                  {/* <li>
                     <HrefLink href={activeLanguage == 'zh'?"https://tronscanorg.zendesk.com/hc/zh-cn/categories/360001616871-%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98":"https://tronscanorg.zendesk.com/hc/en-us/categories/360001621712-FAQ"}>
                         {tu('frequently_asked_questions')}
                     </HrefLink>
-                  </li>
+                  </li> */}
                 </ul>
               </div>
             </div>
@@ -192,69 +202,33 @@ class Footer extends Component {
               {/*</div>*/}
               {/*<hr />*/}
             {/*</div>*/}
-            <div className="row donate m-0">
-                <div className="px-3 d-flex w-100 justify-content-center">
-                    <div className="d-flex align-items-center pr-2">
-                        <img src={require('../../images/footer/icon-heart.png')} width="15px" height="13px" alt="" className="mr-1"/>
-                        {tu('donateAddress')}
-                        <span>:</span>
+            <div className="copyright pt-5">
+              {modal}
+              <div className="row container">
+                <div className="col-xs-12 col-sm-6 col-md-6 text-center mb-3">
+                    <div className="">
+                      <div className="switch d-flex between">
+                          <span>{tu('index_page_switch_tokens')}</span>
+                          {this.dropCurrency()}
+                      </div>
                     </div>
-                    <Link to={`/address/${donate_address}`} className="text-truncate">{donate_address}</Link>
-                   
+                  </div>
+                  <div className="col-xs-12 col-sm-6 col-md-6 text-center mb-3">
+                    <div className="donate fr nowidth">    
+                          <Link to={`/address/${donate_address}`} className="after">{donate_address}</Link>
+                          <Button type="danger" size={'small'} onClick={this.renderSend}>
+                              {tu('donateAddress')}
+                          </Button> 
+                      </div>
+                      <div className="text mr-3">Copyright© 2017-2019 tronscan.org</div>
+                  </div>
                 </div>
-            </div>
-            
-            <div className="row ">
-              <div className="col-xs-12 col-sm-12 col-md-12 text-center mb-3">
-                <Link to="/help/copyright" className="color-grey-300">
-                  Copyright© 2017-2019 tronscan.org
-                </Link>
               </div>
             </div>
-          </div>
           :
-          <div className="container">
+          <div>
+            <div className="container">
             <div className="row text-center text-xs-center text-sm-left text-md-left">
-              {/* <div className="col-xs-12 col-sm-3 col-md-3">
-                <h5>{tu('footer_fellow_us')}</h5>
-                <div className="line" />
-                <ul className="list-unstyled quick-links pt-3">
-                  <li className="p-2">
-                    <HrefLink href="https://t.me/tronscan_org">
-                      <i className="fab fa-telegram mr-4"></i>Telegram
-                    </HrefLink>
-                  </li>
-                  <li className="p-2">
-                    <HrefLink href="https://twitter.com/TRONSCAN_ORG">
-                      <i className="fab fa-twitter mr-4"></i>Twitter
-                    </HrefLink>
-                  </li>
-                  <li className="p-2">
-                    <HrefLink href="https://medium.com/@TRONSCAN_ORG">
-                      <i className="fab fa-medium-m mr-4"></i>Medium
-                    </HrefLink>
-                  </li>
-                  <li className="p-2">
-                    <HrefLink href="https://discord.gg/hqKvyAM">
-                      <i className="fab fa-discord mr-4"></i>Discord
-                    </HrefLink>
-                  </li>
-                  <li className="p-2">
-                    <HrefLink href="https://www.weibo.com/tronscan?refer_flag=1005055013_&is_hot=1">
-                      <i className="fab fa-weibo mr-4" />Weibo
-                    </HrefLink>
-                  </li>
-                  <li className="p-2">
-                    <a target="_blank" className="footer-icon">
-                      <i className="fab fa-weixin mr-4"></i>WeChat
-                      <div className="code_wrap">
-                        <img src={require("../../images/footer/tronscan_wechat.png")} />
-                      </div>
-                    </a>
-                  </li>
-
-                {/* </ul>
-              </div> */}
              
               <div className="col-xs-12 col-sm-2 col-md-2">
                 <h5>{tu('TRON_ecosystem')}</h5>
@@ -358,78 +332,94 @@ class Footer extends Component {
                     </ul>
                   </div>
               </div>
-
             </div>
-            <div className="row donate mt-5">
-                <div>
-                    <div className="before">
-                        <img src={require('../../images/footer/icon-heart.png')} alt=""/>
-                        {tu('donateAddress')}
-                        <span>:</span></div>
-                    <Link to={`/address/${donate_address}`} className="after">{donate_address}</Link>
+          </div>
+          <div className="copyright pt-5">
+            {modal}
+            <div className="row container">
+              <div className="col-xs-6 col-sm-6 col-md-6 text-center mb-3">
+                  <div className="d-flex">
+                    <span className="text mr-3">Copyright© 2017-2019 tronscan.org</span>
+                    <div className="d-flex switch">
+                        <span>{tu('index_page_switch_tokens')}</span>
+                        {this.dropCurrency()}
+                    </div>
+                  </div>
                 </div>
-            </div>
-            <div className="row">
-              <div className="col-xs-12 col-sm-12 col-md-12">
-                {/*<ul*/}
-                  {/*className="list-unstyled list-inline social text-center"*/}
-                  {/*style={{ marginBottom: 4 }}*/}
-                {/*>*/}
-                  {/*<li className="list-inline-item">*/}
-                    {/*<HrefLink href="https://www.facebook.com/tronfoundation/">*/}
-                      {/*<i className="fab fa-facebook" />*/}
-                    {/*</HrefLink>*/}
-                  {/*</li>*/}
-                  {/*<li className="list-inline-item">*/}
-                    {/*<HrefLink href="https://github.com/tronscan/tronscan-frontend">*/}
-                      {/*<i className="fab fa-github" />*/}
-                    {/*</HrefLink>*/}
-                  {/*</li>*/}
-                  {/*/!*<li className="list-inline-item">*!/*/}
-                    {/*/!*<HrefLink href="https://twitter.com/tronscan3">*!/*/}
-                      {/*/!*<i className="fab fa-twitter" />*!/*/}
-                    {/*/!*</HrefLink>*!/*/}
-                  {/*/!*</li>*!/*/}
-                  {/*<li className="list-inline-item">*/}
-                    {/*<HrefLink href="mailto:feedback@tronscan.org" target="_blank">*/}
-                      {/*<i className="fa fa-envelope" />*/}
-                    {/*</HrefLink>*/}
-                  {/*</li>*/}
-                  {/*<li className="list-inline-item">*/}
-                    {/*<HrefLink*/}
-                      {/*href="https://www.reddit.com/r/Tronix"*/}
-                      {/*target="_blank"*/}
-                    {/*>*/}
-                      {/*<i className="fab fa-reddit-alien" />*/}
-                    {/*</HrefLink>*/}
-                  {/*</li>*/}
-                {/*</ul>*/}
-              </div>
-              <hr />
-            </div>
-            <div className="row ">
-              <div className="col-xs-12 col-sm-12 col-md-12 text-center mb-3">
-                <div className="copy-right">
-                  Copyright© 2017-2019 tronscan.org
+                <div className="col-xs-6 col-sm-6 col-md-6 text-center mb-3">
+                  <div className="donate fr">    
+                        <Link to={`/address/${donate_address}`} className="after">{donate_address}</Link>
+                        <Button type="danger" size={'small'} onClick={this.renderSend}>
+                            {tu('donateAddress')}
+                        </Button> 
+                    </div>
                 </div>
               </div>
             </div>
           </div>
+          
         }
           
         </div>
       </div>
     );
   }
+
+  dropCurrency(){
+    const {currencyConversions,activeCurrency} = this.props;
+    const menu = (
+      <Menu >
+        {
+            currencyConversions.map(currency => (
+              <Menu.Item>
+                <a href="javascript:" onClick={() => this.setCurrency(currency.id)}>
+                {currency.name}
+                </a>
+              </Menu.Item>
+            ))
+          }
+      </Menu>
+    );
+
+    return (
+      <Dropdown overlay={menu} placement="topCenter">
+        <a className="ant-dropdown-link" href="javascript:">
+        {activeCurrency.toUpperCase()} <Icon type="down" />
+        </a>
+      </Dropdown>
+    )
+
+  }
+
+  setCurrency = (currency) => {
+    this.props.setActiveCurrency(currency);
+  };
+
+  renderSend = () => {
+    let { donateAddress } = this.state;
+
+    this.setState({
+      modal: <SendModal to={donateAddress} isOpen={true} onClose={this.hideModal} />
+    });
+  };
+
+  hideModal = () => {
+    this.setState({ modal: null });
+  };
 }
 
 function mapStateToProps(state) {
   return {
-    activeLanguage: state.app.activeLanguage
+    activeLanguage: state.app.activeLanguage,
+    activeCurrency: state.app.activeCurrency,
+    currencyConversions: state.app.currencyConversions,
+
   };
 }
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = {
+  setActiveCurrency
+};
 
 export default connect(
   mapStateToProps,
