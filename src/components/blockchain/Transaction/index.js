@@ -104,7 +104,8 @@ class Transaction extends React.Component {
                   ...{tokenTransferInfo: transaction['tokenTransferInfo']},
                   ...{contract_note:transaction.data},
                   contractType: ContractTypes[transaction.contractType],
-                  unfreeze_amount:this.state.unfreeze_amount
+                  unfreeze_amount:this.state.unfreeze_amount,
+                  ownerAddress: transaction['ownerAddress']
               }}/>
           ),
         },

@@ -17,8 +17,8 @@ export default function SetAccountIdContract({contract}){
       <TransationTitle contractType={contract.contractType}></TransationTitle>
       <table className="table">
           <tbody>
-          <Field label="initiate_address"><AddressLink address={contract['owner_address']}/></Field>
-          <Field label="account_id">{contract.url}</Field>
+          <Field label="initiate_address"><AddressLink address={contract['owner_address']||contract['ownerAddress']}/></Field>
+          <Field label="account_id">{contract.account_name}</Field>
           <Field label="consume_bandwidth">
             <BandwidthUsage cost={contract.cost}></BandwidthUsage>
           </Field>

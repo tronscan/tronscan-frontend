@@ -4,7 +4,7 @@ import {toThousands} from '../../../../../utils/number'
 
 
 export default function BandwidthUsage({cost,type}){
-  if(!cost) return ''
+  if(JSON.stringify(cost) == "{}") return ''
   const {energy_usage_total, origin_energy_usage, energy_usage, energy_fee, energy_burn, net_usage, net_fee} = cost
   return(
     type ? 
