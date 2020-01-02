@@ -332,8 +332,8 @@ class StatCharts extends React.Component {
             item.total_turn_over_num = x.decimalPlaces(6).toNumber();
         })
         this.setState({
-            OverallFreezingRate:  sortBy(data, function(o) { return o.timestamp; }),
-            OverallFreezingRateRevers:  data
+            SupplyData:sortBy(data, function(o) { return o.timestamp; }),
+            SupplyDataRevers:data,
         });
        
         // let higest = {date: '', increment: ''};
@@ -490,7 +490,7 @@ class StatCharts extends React.Component {
     render() {
         let {match, intl} = this.props;
         let {txOverviewStats, txOverviewStatsFull, 
-            addressesStats, blockSizeStats, blockchainSizeStats, summit ,OverallFreezingRate, OverallFreezingRateRevers, SupplyData } = this.state;
+            addressesStats, blockSizeStats, blockchainSizeStats, summit ,OverallFreezingRate, OverallFreezingRateRevers, SupplyData, SupplyDataRevers } = this.state;
         let { start_day, end_day} = this.state.OverallFreezingRateParams;
         let unit;
         let csvurl = API_URL + "/api/freezeresource?start_day=" + start_day+"&end_day="+end_day + "&format=csv";
@@ -593,7 +593,7 @@ class StatCharts extends React.Component {
                                             </div>
                                         </div>
                                         {
-                                            ( OverallFreezingRate.length === 0)?
+                                            ( OverallFreezingRateRevers.length === 0)?
                                             <div className="p-3 text-center no-data">{tu("no_data")}</div>
                                             :
                                             <SmartTable 
