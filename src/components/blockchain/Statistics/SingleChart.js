@@ -179,7 +179,7 @@ class Statistics extends React.Component {
             {value: funds.turnOver, name: 'circulating_supply', selected: true,sliced: true},
             {value: funds.fundTrx, name: 'total_frozen', selected: false,sliced: false},
         ]
-        let eurURL = encodeURI(`http://api.coinmarketcap.com/v1/ticker/tronix/?convert=EUR`);
+        let eurURL = encodeURI(`https://api.coinmarketcap.com/v1/ticker/tronix/?convert=EUR`);
         let trxPriceData = await xhr.get(`${API_URL}/api/system/proxy?url=${eurURL}`);
         let priceUSD = ((parseFloat(trxPriceData.data[0].price_usd))*1000).toFixed(2);
         let priceBTC = ((parseFloat(trxPriceData.data[0].price_btc))*1000).toFixed(5)
@@ -269,7 +269,7 @@ class Statistics extends React.Component {
 
     async loadVolume(){
         let {intl} = this.props;
-        let TRXURL = encodeURI(`http://graphs2.coinmarketcap.com/currencies/tron/`)
+        let TRXURL = encodeURI(`https://graphs2.coinmarketcap.com/currencies/tron/`)
         let volumeData = await xhr.get(
             `${API_URL}/api/system/proxy?url=${TRXURL}`
         );

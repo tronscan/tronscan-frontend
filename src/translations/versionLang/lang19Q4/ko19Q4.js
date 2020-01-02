@@ -89,7 +89,7 @@ export const lang19Q4 = {
     "total_supply_tip2": " TRX 미만인 경우 계산되지 않습니다.",
     "market_capitalization_t": "유통 시세",
     "token_tron_total": "TRON 토큰 총 수",
-    "token_week": "금주 증가 된",
+    "token_week": "지난 7 일",
     "token_scan_total": "TRONSCAN 수록 토큰 수",
     "create_token_btn": "토큰 발행",
     "token_exchange": "거래소",
@@ -175,4 +175,13 @@ export const lang19Q4 = {
    "index_page_switch_tokens":"코인 스위치",
    "index_page_tronscan_info":"TRONSCAN는 TRON에 최적의 블록체인 브라우저입니다",
    "index_page_down_excel_tips":"Excel을 사용하여 다운로드 한 파일을 열 때 셀의 소수점 이하의 자리수를 수동으로 조정해야합니다.",
+    /*
+        ##################################################################################
+        #                                                                                #
+        # Charts 2019-12-30                           #
+        #                                                                                #
+        ##################################################################################
+    */
+   "account_details_contracts":"Contracts Published",
+   "account_details_contracts_no":"No contracts found",
 }

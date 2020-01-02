@@ -86,7 +86,7 @@ export const lang19Q4 = {
     "token_rank": "رتبه بندی",
     "market_capitalization_t": "مقدار توکن های  در حال  گردش",
     "token_tron_total": "تعداد کل توکن های ترون ",
-    "token_week": "توکن های جدید در طول هفته",
+    "token_week": "آخرین 7 روز",
     "token_scan_total": "تعداد توکن های موجود در TRONSCAN",
     "create_token_btn": "صدور توکن",
     "gain_tip": "حرکت 24 ساعته",
@@ -159,6 +159,7 @@ export const lang19Q4 = {
     "TRX_historical_data":"TRX balance historical data in the contract",
     "TRX_historical_data_y_text":"Amount（TRX）",
     "TRX_historical_data_tip":"TRX Amount",
+<<<<<<< HEAD
         /*
     ##################################################################################
     #                                                                                #
@@ -177,4 +178,15 @@ export const lang19Q4 = {
    "index_page_switch_tokens":"تغییر توکن ",
    "index_page_tronscan_info":"ترون اسکن ، بهترین کاوشگر بلاکچین ترون است.",
    "index_page_down_excel_tips":"اگر از اکسل برای باز کردن یک سند بارگیری شده استفاده می کنید ، باید تعداد مکان های اعشار در پرونده را به صورت دستی تنظیم کنید.",
+=======
+    /*
+        ##################################################################################
+        #                                                                                #
+        # Charts 2019-12-30                           #
+        #                                                                                #
+        ##################################################################################
+    */
+   "account_details_contracts":"Contracts Published",
+   "account_details_contracts_no":"No contracts found",
+>>>>>>> master
 }
