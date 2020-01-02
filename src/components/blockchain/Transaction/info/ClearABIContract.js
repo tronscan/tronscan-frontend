@@ -7,17 +7,18 @@ import BandwidthUsage from './common/BandwidthUsage'
 import { tu } from "../../../../utils/i18n";
 export default function ClearABIContract(props) {
     const contract = props.contract;
-    const {signList,contractType,cost} = contract;
+    const {signature,contractType,cost,parameterValue} = contract;
+    let signList = signature;
     return <Fragment>
          <TransationTitle contractType={contractType}/>
         <table className="table">
             <tbody>
                 {
-                    contract['owner_address'] ?
-                        <Field label="signature_sponsor"><AddressLink address={contract['owner_address']} /></Field>
+                    contract['ownerAddress'] ?
+                        <Field label="signature_sponsor"><AddressLink address={contract['ownerAddress']} /></Field>
                         : ''
                 }
-                <Field label="contract_address"><ContractLink address={'TD4anu8auWfCDYqQpAEcLXVK6UgME9Jsid'}/></Field>
+                <Field label="contract_address"><ContractLink address={parameterValue.contract_address}/></Field>
                 <Field label="address_net_fee"><BandwidthUsage cost = {cost}/></Field>
                 {JSON.stringify(contract.cost) !=
                               "{}" && <Field label="consume_bandwidth"><BandwidthUsage cost={cost}/></Field>}

@@ -35,7 +35,7 @@ import ProposalApproveContract from './ProposalApproveContract'
 import ProposalDeleteContract from './ProposalDeleteContract'
 import SetAccountIdContract from './SetAccountIdContract'
 import CreateSmartContract from './CreateSmartContract'
-
+import ClearABIContract from './ClearABIContract'
 import TriggerContract from './TriggerContract'
 
 /**
@@ -159,6 +159,8 @@ export default function Info({contract}) {
                 return <SetAccountIdContract contract={contract}></SetAccountIdContract>
             case "CREATESMARTCONTRACT":
                 return <CreateSmartContract contract={contract}></CreateSmartContract> 
+            case "CLEARABICONTRACT":
+                return <ClearABIContract contract={contract}/>
             default:
                 return (
                     <Fragment>
