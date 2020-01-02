@@ -62,6 +62,9 @@ class SendModal extends React.PureComponent {
           danger
           title={intl.formatMessage({ id: "not_login" })}
           onConfirm={this.hideModal}
+          style={{
+            width:'478px'
+          }}
         >
           {tu("login_first")}
         </SweetAlert>

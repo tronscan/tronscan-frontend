@@ -10,6 +10,8 @@ import {
   setActiveCurrency,
 } from "../../actions/app"
 import { Menu, Dropdown, Icon,Button } from 'antd';
+import SendModal from "../transfer/Send/SendModal";
+
 
 
 class Footer extends Component {
@@ -46,12 +48,15 @@ class Footer extends Component {
           url:"",
           name:"WeChat"
         }
-      ]
+      ],
+      modal:null,
+      donateAddress:'TTzPiwbBedv7E8p4FkyPyeqq4RVoqRL3TW'
     }
   }
 
   render() {
-    const donate_address = 'TTzPiwbBedv7E8p4FkyPyeqq4RVoqRL3TW';
+    const donate_address = this.state.donateAddress;
+    let modal = this.state.modal;
     let { intl, activeLanguage,activeCurrency,currencyConversions } = this.props;
     const {links} = this.state;
     return (
@@ -134,33 +139,33 @@ class Footer extends Component {
                     <HrefLink href="https://www.tronlink.org"> {tu('wallet')}</HrefLink>
                   </li>
                   <li>
-                    <HrefLink href="https://tron.app">Dapps</HrefLink>
+                    <HrefLink href="https://tron.app">DApp House</HrefLink>
                   </li>
                 </ul>
               </div>
               <div className="col-6 col-md-3">
-                <h5 className="text-uppercase">Tronscan</h5>
+            <h5 className="text-uppercase">{tu('about_us')}</h5>
                 <ul className="list-unstyled">
                   <li>
                     <Link to="/help/about">
-                        {tu('about_us')}
+                    {tu('index_page_footer_team_info')}
                     </Link>
                   </li>
-                  <li>
+                  {/* <li>
                     <HrefLink href={activeLanguage == 'zh'?"https://support.tronscan.org/hc/zh-cn/requests/new":"https://support.tronscan.org/hc/en-us/requests/new"}>
                       {tu('contact_us')}
                     </HrefLink>
-                  </li>
+                  </li> */}
                   <li>
                     <HrefLink href={activeLanguage == 'zh'?"https://tronscanorg.zendesk.com/hc/zh-cn":"https://tronscanorg.zendesk.com/hc/en-us"}>
                         {tu('footer_support_center')}
                     </HrefLink>
                   </li>
-                  <li>
+                  {/* <li>
                     <HrefLink href={activeLanguage == 'zh'?"https://tronscanorg.zendesk.com/hc/zh-cn/categories/360001616871-%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98":"https://tronscanorg.zendesk.com/hc/en-us/categories/360001621712-FAQ"}>
                         {tu('frequently_asked_questions')}
                     </HrefLink>
-                  </li>
+                  </li> */}
                 </ul>
               </div>
             </div>
@@ -197,26 +202,29 @@ class Footer extends Component {
               {/*</div>*/}
               {/*<hr />*/}
             {/*</div>*/}
-            <div className="row donate m-0">
-                <div className="px-3 d-flex w-100 justify-content-center">
-                    <div className="d-flex align-items-center pr-2">
-                        <img src={require('../../images/footer/icon-heart.png')} width="15px" height="13px" alt="" className="mr-1"/>
-                        {tu('donateAddress')}
-                        <span>:</span>
+            <div className="copyright pt-5">
+              {modal}
+              <div className="row container">
+                <div className="col-xs-12 col-sm-6 col-md-6 text-center mb-3">
+                    <div className="">
+                      <div className="switch d-flex between">
+                          <span>{tu('index_page_switch_tokens')}</span>
+                          {this.dropCurrency()}
+                      </div>
                     </div>
-                    <Link to={`/address/${donate_address}`} className="text-truncate">{donate_address}</Link>
-                   
+                  </div>
+                  <div className="col-xs-12 col-sm-6 col-md-6 text-center mb-3">
+                    <div className="donate fr nowidth">    
+                          <Link to={`/address/${donate_address}`} className="after">{donate_address}</Link>
+                          <Button type="danger" size={'small'} onClick={this.renderSend}>
+                              {tu('donateAddress')}
+                          </Button> 
+                      </div>
+                      <div className="text mr-3">Copyright© 2017-2019 tronscan.org</div>
+                  </div>
                 </div>
-            </div>
-            
-            <div className="row ">
-              <div className="col-xs-12 col-sm-12 col-md-12 text-center mb-3">
-                <Link to="/help/copyright" className="color-grey-300">
-                  Copyright© 2017-2019 tronscan.org
-                </Link>
               </div>
             </div>
-          </div>
           :
           <div>
             <div className="container">
@@ -327,6 +335,7 @@ class Footer extends Component {
             </div>
           </div>
           <div className="copyright pt-5">
+            {modal}
             <div className="row container">
               <div className="col-xs-6 col-sm-6 col-md-6 text-center mb-3">
                   <div className="d-flex">
@@ -340,10 +349,9 @@ class Footer extends Component {
                 <div className="col-xs-6 col-sm-6 col-md-6 text-center mb-3">
                   <div className="donate fr">    
                         <Link to={`/address/${donate_address}`} className="after">{donate_address}</Link>
-                        <Button type="danger" size={'small'}>
+                        <Button type="danger" size={'small'} onClick={this.renderSend}>
                             {tu('donateAddress')}
-                        </Button>
-                        
+                        </Button> 
                     </div>
                 </div>
               </div>
@@ -385,6 +393,18 @@ class Footer extends Component {
 
   setCurrency = (currency) => {
     this.props.setActiveCurrency(currency);
+  };
+
+  renderSend = () => {
+    let { donateAddress } = this.state;
+
+    this.setState({
+      modal: <SendModal to={donateAddress} isOpen={true} onClose={this.hideModal} />
+    });
+  };
+
+  hideModal = () => {
+    this.setState({ modal: null });
   };
 }
 

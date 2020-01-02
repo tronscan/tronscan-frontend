@@ -128,15 +128,22 @@
             .ant-btn{
                min-width:44px;
                height:16px;
-               line-height: 16px;
+               line-height: 14px;
                padding:0; 
                margin-top:4px;
                font-family: HelveticaNeue;
                font-size: 12px;
                color: #FFFFFF;
                margin-left: 4px;
+               border-radius: 0;
             }
 
+        }
+        .between{
+            justify-content: space-between;
+        }
+        .nowidth{
+            width:auto;
         }
        }
     }    

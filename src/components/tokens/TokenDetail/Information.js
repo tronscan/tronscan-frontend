@@ -75,7 +75,7 @@ export function Information({
            : 0;
          if (token.id == 1002000) {
            currentTotalSupplyUsd =
-            BttSupplyClient.marketValue || currentTotalSupplyUsd;
+            parseInt(BttSupplyClient.marketValue) || currentTotalSupplyUsd;
          }
          const defaultContent = "-";
 
