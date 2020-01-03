@@ -7,8 +7,8 @@ import { tu } from "../../../../utils/i18n";
 import BandwidthUsage from './common/BandwidthUsage'
 export default function UpdateEnergyLimitContract(props) {
     const contract = props.contract;
-    const {signature,contractType,cost,parameterValue} = contract;
-    let signList = signature;
+    const {signature_addresses,contractType,cost,parameterValue} = contract;
+    let signList = signature_addresses;
     return <Fragment>
         <TransationTitle contractType={contractType}/>
         <table className="table">
