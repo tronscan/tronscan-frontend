@@ -179,6 +179,24 @@ export const lang19Q4 = {
     */
    "account_details_contracts":"已发合约",
    "account_details_contracts_no":"未查询到合约",
-  
+   "Supply_TRX_total_chart":"TRX累计流通量",
+   "Supply_total_y_title":"总流通量",
+   "Supply_amount_TRX":"TRX数量",
+   "Supply_TRX_supply_records":"TRX流通数据共",
+   "Supply_TRX_total":"TRX总流通量",
+   "Supply_TRX_total_tip":"累计每日净值+创世块发行量（100,000,000,000 TRX）",
+   "Supply_amount_TRX_produced":"TRX产生量",
+   "Supply_amount_TRX_produced_tip":"出块奖励+节点奖励",
+   "Supply_voting_rewards":"投票奖励",     
+   "Supply_block_rewards":"出块奖励", 
+   "Supply_amount_TRX_burned":"TRX销毁量", 
+   "Supply_amount_TRX_burned_tip1":"非独立日:手续费销毁",    
+   "Supply_amount_TRX_burned_tip2":"独立日:手续费销毁+独立日销毁量（1,000,000,000 TRX）",    
+   "Supply_amount_net_new":"净值",
+   "Supply_amount_net_new_tip":"TRX产生量+TRX销毁量",
+
+
+
+
    
 }

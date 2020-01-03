@@ -26,7 +26,7 @@ import { CsvExport } from "../../common/CsvExport";
 import isMobile from "../../../utils/isMobile";
 import {
     OverallFreezingRateChart,
-    lineTRXSupplyChart
+    LineTRXSupplyChart
 } from "../../common/LineCharts";
 import {loadPriceData} from "../../../actions/markets";
 import {t} from "../../../utils/i18n";
@@ -330,10 +330,14 @@ class StatCharts extends React.Component {
             item.timestamp = moment(item.day).valueOf();
             x = new BigNumber(item.total_turn_over);
             item.total_turn_over_num = x.decimalPlaces(6).toNumber();
+            item.total_burn_num = parseFloat('-'+item.total_burn);
+            item.total_produce_num =  item.total_block_pay + item.total_node_pay;
+            item.worth_num =  (item.total_block_pay + item.total_node_pay) - item.total_burn;
         })
+        console.log('data222',data)
         this.setState({
             SupplyData:sortBy(data, function(o) { return o.timestamp; }),
-            SupplyDataRevers:data,
+            SupplyDataRevers:sortBy(data, function(o) { return -o.timestamp; }),
         });
        
         // let higest = {date: '', increment: ''};
@@ -487,14 +491,157 @@ class StatCharts extends React.Component {
         ];
         return column;
     }
+
+    TRXSupplyCustomizedColumn = () => {
+        let {intl} = this.props;
+        let column = [
+            {
+                title: upperFirst(intl.formatMessage({id: 'freezing_column_time'})),
+                dataIndex: 'day',
+                key: 'day',
+                width: '60px',
+                align: 'center',
+                render: (text, record, index) => {
+                    return <span>{text}</span>
+                }
+            },
+            {
+                title: () => {
+                    let text = intl.formatMessage({id: 'Supply_TRX_total_tip'}); 
+                    return (
+                    <div>
+                        {upperFirst(intl.formatMessage({id: 'Supply_TRX_total'}))}
+                        <span className="ml-2">
+                             <QuestionMark placement="top" text={text} />
+                        </span>
+                    </div>
+                    )
+                },
+                dataIndex: 'total_turn_over',
+                key: 'total_turn_over',
+                render: (text, record, index) => {
+                    return <FormattedNumber value={text}  minimumFractionDigits={6}/>
+                }
+            },
+            {
+                title: () => {
+                    let text = intl.formatMessage({id: 'Supply_amount_TRX_produced_tip'}); 
+                    return (
+                    <div>
+                        {upperFirst(intl.formatMessage({id: 'Supply_amount_TRX_produced'}))}
+                        <span className="ml-2">
+                            <QuestionMark placement="top" text={text} />
+                        </span>
+                    </div>
+                    )
+                },
+                dataIndex: 'total_produce',
+                key: 'total_produce',
+                render: (text, record, index) => {
+                    return <FormattedNumber value={record.total_block_pay +record.total_node_pay}/>
+                }
+            },
+            {
+                title: () => {
+                    //let text = intl.formatMessage({id: 'Supply_block_rewards_tip'}); 
+                    return (
+                    <div>
+                        {upperFirst(intl.formatMessage({id: 'Supply_block_rewards'}))}
+                        {/* <span className="ml-2">
+                            <QuestionMark placement="top" text={text} />
+                        </span> */}
+                    </div>
+                    )
+                },
+                dataIndex: 'freezing_column_freezing_rate',
+                key: 'freezing_column_freezing_rate',
+                render: (text, record, index) => {
+                    return <FormattedNumber value={record.total_block_pay}/>
+                }
+            },
+            {
+            title: () => {
+              //  let text = intl.formatMessage({id: 'freezing_column_energy_ratio_tip'}); 
+                return (
+                <div>
+                    {upperFirst(intl.formatMessage({id: 'Supply_voting_rewards'}))}
+                    {/* <span className="ml-2">
+                    <QuestionMark placement="top" text={text} />
+                    </span> */}
+                </div>
+                )
+            },
+            dataIndex: 'caller_amount',
+            key: 'caller_amount',
+            render: (text, record, index) => {
+                return <FormattedNumber value={record.total_node_pay}/>
+            }
+            },
+            {
+            title: () => {
+                let text = intl.formatMessage({id: 'Supply_amount_TRX_burned_tip1'}); 
+                return (
+                <div>
+                    {upperFirst(intl.formatMessage({id: 'Supply_amount_TRX_burned'}))}
+                    <span className="ml-2">
+                    <QuestionMark placement="top" text={text} />
+                    </span>
+                </div>
+                )
+            },
+            dataIndex: 'total_burn',
+            key: 'total_burn',
+            render: (text, record, index) => {
+                return <span>
+                        <FormattedNumber
+                        value={record.total_burn}
+                        minimumFractionDigits={6}
+                        maximumFractionDigits={6}
+                    /> 
+            </span>
+            }
+            },
+            {
+                title: () => {
+                    let text = intl.formatMessage({id: 'Supply_amount_net_new_tip'}); 
+                    return (
+                    <div>
+                        {upperFirst(intl.formatMessage({id: 'Supply_amount_net_new'}))}
+                        <span className="ml-2">
+                            <QuestionMark placement="top" text={text} />
+                        </span>
+                    </div>
+                    )
+                },
+                dataIndex: 'trigger_amount',
+                key: 'trigger_amount',
+                render: (text, record, index) => {
+                    return <span>
+                        <FormattedNumber
+                        value={(record.total_block_pay + record.total_node_pay) - record.total_burn}
+                        minimumFractionDigits={6}
+                        maximumFractionDigits={6}
+                    /> 
+                </span>
+                }
+            },
+            
+        ];
+        return column;
+    }
+
     render() {
         let {match, intl} = this.props;
         let {txOverviewStats, txOverviewStatsFull, 
             addressesStats, blockSizeStats, blockchainSizeStats, summit ,OverallFreezingRate, OverallFreezingRateRevers, SupplyData, SupplyDataRevers } = this.state;
         let { start_day, end_day} = this.state.OverallFreezingRateParams;
+        let { SupplyParams } = this.state;
         let unit;
-        let csvurl = API_URL + "/api/freezeresource?start_day=" + start_day+"&end_day="+end_day + "&format=csv";
+        let freezeresourceCsvurl = API_URL + "/api/freezeresource?start_day=" + start_day +"&end_day="+end_day + "&format=csv";
+        let supplyCsvurl =  API_URL + "/api/freezeresource?start_day=" + SupplyParams.start_day +"&end_day="+ SupplyParams.end_day + "&format=csv";
         let freezing_column = this.freezingCustomizedColumn();
+        let TRXSupply_column = this.TRXSupplyCustomizedColumn();
+        
         let chartHeight = isMobile? 580: 580
         if (match.params.chartName === 'blockchainSizeStats' || match.params.chartName === 'addressesStats') {
             unit = 'increase';
@@ -554,7 +701,7 @@ class StatCharts extends React.Component {
                            {
                                SupplyData === null ? <TronLoader/> :
                                <div>
-                                   <lineTRXSupplyChart
+                                   <LineTRXSupplyChart
                                        style={{height: chartHeight}}
                                        data={SupplyData}
                                        intl={intl}
@@ -567,39 +714,81 @@ class StatCharts extends React.Component {
 
                   </div>
                    <div>
-                   {
-                        match.params.chartName === 'OverallFreezingRate' &&
-                        <div>
                         {
-                            OverallFreezingRate === null ? <TronLoader/> :
+                            match.params.chartName === 'OverallFreezingRate' &&
+                            <div>
+                                {
+                                    OverallFreezingRate === null ? <TronLoader/> :
+                                    <div>
+                                        <div className="token_black">
+                                            <div className="col-md-12 table_pos" style={{padding:0}}>
+                                                <div className="pt-4 pb-2 d-flex justify-content-between">
+                                                    <div>
+                                                        {
+                                                            intl.formatMessage({id: 'freezing_column_a_total'}) + intl.formatNumber(OverallFreezingRate.length)+ 
+                                                            intl.formatMessage({id: 'freezing_column_calls'})
+                                                        }
+                                                    </div>
+                                                    <div style={{marginTop:-20}}>
+                                                    {[
+                                                        "OverallFreezingRate"
+                                                        ].indexOf(match.params.chartName) !== -1 ? (
+                                                        <CsvExport downloadURL={freezeresourceCsvurl} />
+                                                        ) : (
+                                                        ""
+                                                        )}
+                                                    </div>
+                                                </div>
+                                                {
+                                                    ( OverallFreezingRateRevers.length === 0)?
+                                                    <div className="p-3 text-center no-data">{tu("no_data")}</div>
+                                                    :
+                                                    <SmartTable 
+                                                        bordered={true} 
+                                                        column={freezing_column} 
+                                                        data={OverallFreezingRateRevers}
+                                                        position="bottom"
+                                                    />
+                                                }
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                           </div>
+                        }
+                        {
+                            match.params.chartName === 'supply' &&
+                            <div>
+                        {
+                            SupplyData === null ? <TronLoader/> :
                             <div>
                                 <div className="token_black">
                                     <div className="col-md-12 table_pos" style={{padding:0}}>
                                         <div className="pt-4 pb-2 d-flex justify-content-between">
                                             <div>
                                                 {
-                                                    intl.formatMessage({id: 'freezing_column_a_total'}) + intl.formatNumber(OverallFreezingRate.length)+ 
+                                                    intl.formatMessage({id: 'Supply_TRX_supply_records'}) + intl.formatNumber(SupplyData.length)+ 
                                                     intl.formatMessage({id: 'freezing_column_calls'})
                                                 }
                                             </div>
                                             <div style={{marginTop:-20}}>
                                             {[
-                                                "OverallFreezingRate"
+                                                "OverallFreezingRate","supply"
                                                 ].indexOf(match.params.chartName) !== -1 ? (
-                                                <CsvExport downloadURL={csvurl} />
+                                                <CsvExport downloadURL={supplyCsvurl} />
                                                 ) : (
                                                 ""
                                                 )}
                                             </div>
                                         </div>
                                         {
-                                            ( OverallFreezingRateRevers.length === 0)?
+                                            ( SupplyDataRevers.length === 0)?
                                             <div className="p-3 text-center no-data">{tu("no_data")}</div>
                                             :
                                             <SmartTable 
                                                 bordered={true} 
-                                                column={freezing_column} 
-                                                data={OverallFreezingRateRevers}
+                                                column={TRXSupply_column} 
+                                                data={SupplyDataRevers}
                                                 position="bottom"
                                             />
                                         }
@@ -608,7 +797,7 @@ class StatCharts extends React.Component {
                             </div>
                            }
                            </div>
-                       }
+                        }
                         
                    </div>
                 </div>

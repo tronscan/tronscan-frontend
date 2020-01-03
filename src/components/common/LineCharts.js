@@ -2361,7 +2361,7 @@ export class OverallFreezingRateChart extends React.Component {
 /**
  * TRX Supply 2019-12-31
  */
-export class lineTRXSupplyChart extends React.Component {
+export class LineTRXSupplyChart extends React.Component {
 
     constructor(props) {
         super(props)
@@ -2376,14 +2376,16 @@ export class lineTRXSupplyChart extends React.Component {
         let _config = cloneDeep(config.OverallFreezingRateChart);
         let {intl, data} = this.props;
         let newData = cloneDeep(data)
-        let freezingRate = [];
-        let freezeTotal = [];
-        let turnoverTotal = [];
+        let totalSupply = [];
+        let amountProduced= [];
+        let amountBurned  = [];
+        let totalWorth = [];
         let timestamp = []
         newData.map((val) => {
-            freezingRate.push(val['freezing_rate_percent']);
-            freezeTotal.push(val['total_freeze_weight']);
-            turnoverTotal.push(val['total_turn_over_num']);
+            totalSupply.push(val['total_turn_over_num']);
+            amountProduced.push(val['total_produce_num']);
+            amountBurned.push(val['total_burn_num']);
+            totalWorth.push(val['worth_num']);
             timestamp.push(val['timestamp'])
             //timestamp.push(moment(val['timestamp']).format("YYYY-MM-DD"))
         })
@@ -2475,38 +2477,41 @@ export class lineTRXSupplyChart extends React.Component {
                 yAxis: [
                     { // Primary yAxis
                       labels: {
-                        format: '{value}%',
-                        style: {
-                          color: "#434343"
-                        }
-                      },
-                      title: {
-                        text: intl.formatMessage({id: 'freezing_column_freezing_rate'}),
-                        style: {
-                            color: "#434343"
-                        }
-                      },
-                      opposite: false,
-                      min:0
-                    }, { // Secondary yAxis
-                      title: {
-                        text: intl.formatMessage({id: 'freezing_column_total_circulation_chart'}),
+                        //format: '{value}%',
                         style: {
                           color: "#C64844"
                         }
                       },
-                      labels: {
+                      title: {
+                        text: intl.formatMessage({id: '总流通量'}),
                         style: {
-                            color: "#C64844"
+                            color: "##C64844"
                         }
                       },
+                      opposite: false,
+                      min:0
+                    },
+                    { // Secondary yAxis
+                      title: {
+                        text: intl.formatMessage({id: 'TRX数量'}),
+                        style: {
+                          color: "#333333"
+                        }
+                      },
+                      labels: {
+                        style: {
+                            color: "#333333"
+                        }
+                      },
+                      minRange: 6000000
+
                     }
                 ],
                 plotOptions: {
                     column: {
-                        grouping: false,
-                        shadow: false,
-                        borderWidth: 0
+                        // grouping: false,
+                        // shadow: false,
+                        // borderWidth: 0
                     },
                     spline: {
                         marker: {
@@ -2605,41 +2610,42 @@ export class lineTRXSupplyChart extends React.Component {
 
                 },
                 series: [{
-                    name: intl.formatMessage({id: 'freezing_column_total_circulation'}),
-                    type: 'column',
-                    yAxis: 1,
-                    color: "#DA8885",
-                    data:turnoverTotal,
-                    pointStart: Date.UTC(2019, 11, 20),
-			        pointInterval: 24 * 3600 * 1000 , // one day
-                    tooltip: {
-                        valueSuffix: ' '
-                    },
-                    showInNavigator: false,
-                    dataGrouping: { // 针对highstock,将指定数量的数据合并展现为一个点
-                        enabled: false
-                    }
-                }, {
-                    name: intl.formatMessage({id: 'freezing_column_total_frozen'}),
-                    type: 'column',
-                    yAxis: 1,
-                    color: "#C64844",
-                    data:freezeTotal,
-                    pointStart: Date.UTC(2019, 11, 20),
-			        pointInterval: 24 * 3600 * 1000 , // one day
-                    tooltip: {
-                        valueSuffix: ' '
-                    },
-                    showInNavigator: false,
-                    dataGrouping: { // 针对highstock,将指定数量的数据合并展现为一个点
-                        enabled: false
-                    }
-                }, {
-                    name: intl.formatMessage({id: 'freezing_column_freezing_rate'}),
+                    name: intl.formatMessage({id: 'TRX总流通量'}),
                     type: 'spline',
-                    color: "#5A5A5A",
-                    data:freezingRate,
-                    pointStart: Date.UTC(2019, 11, 20),
+                    yAxis: 0,
+                    color: "#DA8885",
+                    data: totalSupply,
+                    pointStart: Date.UTC(2019, 11, 28),
+			        pointInterval: 24 * 3600 * 1000 , // one day
+                    tooltip: {
+                        valueSuffix: ' '
+                    },
+                    showInNavigator: false,
+                    dataGrouping: { // 针对highstock,将指定数量的数据合并展现为一个点
+                        enabled: false
+                    }
+                }, {
+                    name: intl.formatMessage({id: 'TRX产生量'}),
+                    type: 'spline',
+                    yAxis: 1,
+                    color: "#EDB92B",
+                    data:amountProduced,
+                    pointStart: Date.UTC(2019, 11, 28),
+			        pointInterval: 24 * 3600 * 1000 , // one day
+                    tooltip: {
+                        valueSuffix: ' '
+                    },
+                    showInNavigator: false,
+                    dataGrouping: { // 针对highstock,将指定数量的数据合并展现为一个点
+                        enabled: false
+                    }
+                }, {
+                    name: intl.formatMessage({id: 'TRX销毁量'}),
+                    type: 'spline',
+                    yAxis: 1,
+                    color: "#999999",
+                    data: amountBurned,
+                    pointStart: Date.UTC(2019, 11, 28),
 			        pointInterval: 24 * 3600 * 1000 , // one day
                     marker: {
                         enabled: true,
@@ -2652,7 +2658,28 @@ export class lineTRXSupplyChart extends React.Component {
                     dataGrouping: { // 针对highstock,将指定数量的数据合并展现为一个点
                         enabled: false
                     }
-                }]
+                },
+                {
+                    name: intl.formatMessage({id: '净值'}),
+                    type: 'column',
+                    yAxis: 1,
+                    color: "#4A90E2",
+                    data: totalWorth,
+                    pointStart: Date.UTC(2019, 11, 28),
+			        pointInterval: 24 * 3600 * 1000 , // one day
+                    marker: {
+                        enabled: true,
+                    
+                    },
+                    tooltip: {
+                        valueSuffix: ' %'
+                    },
+                    showInNavigator: true,
+                    dataGrouping: { // 针对highstock,将指定数量的数据合并展现为一个点
+                        enabled: false
+                    }
+                }
+            ]
             }
             Object.keys(options).map(item => {
                 _config[item] = options[item]
