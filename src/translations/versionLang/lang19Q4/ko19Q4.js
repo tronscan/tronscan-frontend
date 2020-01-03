@@ -202,4 +202,22 @@ export const lang19Q4 = {
     "transaction_token_holder_address":"토큰 소유자 주소",
     "transaction_issue_address":"발신자 주소",
     "only_show_sinatures":"서명 있는 주소만 표시",
+
+     // transaction info  2019-12-25  leon
+     "consume_bandwidth":"대역폭 소비",
+     "consume_energy":"에너지 소비",
+     "net_free":"사용자 동결/ 무료 대역폭 소비",
+     "net_burn":"{num} TRX 를 태워 대역폭 획득",
+     "energy_burn":"{num} TRX 를 태워 에너지 획득",
+     "initiate_address":"발신 주소",
+     "candidate_address":"투표 주소",
+     "votes_count":"투표 수",
+     "sr_fee":"비용",
+     "sr_url":"URL",
+     "proposal_ID":"제안 ID",
+     "proposal_content":"제안 내용",
+     "vote_proposal":"제안에 찬성 하십니까?",
+     "vote_yes":"예",
+     "vote_no":"비 승인",
+     "account_id":"계정 ID",
 }

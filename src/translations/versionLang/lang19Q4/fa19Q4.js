@@ -204,4 +204,22 @@ export const lang19Q4 = {
     "transaction_token_holder_address":"آدرس دارنده توکن",
     "transaction_issue_address":"آدرس صادر کننده",
     "only_show_sinatures":"فقط آدرس ها را با امضاها نشان دهید",
+
+     // transaction info  2019-12-25  leon
+     "consume_bandwidth":"از پهنای باند استفاده کنید.",
+     "consume_energy":"از انرژی استفاده کنید.",
+     "net_free":"استفاده از روش فریز / پهنای باند رایگان",
+     "net_burn":"را بسوزانید کنید {num} TRX برای به دست آوردن پهنای باند ،",
+     "energy_burn":"را بسوزانید کنید {num} TRX برای به دست آوردن انرژی ، ",
+     "initiate_address":"آدرس مالک",
+     "candidate_address":"آدرس نامزد.",
+     "votes_count":"تعداد آرا.",
+     "sr_fee":"هزینه",
+     "sr_url":"آدرس اینترنتی",
+     "proposal_ID":"شناسه پیشنهادی",
+     "proposal_content":"محتوا .",
+     "vote_proposal":"آیا به این پیشنهاد رای می دهید ؟",
+     "vote_yes":"بله",
+     "vote_no":"نه",
+     "account_id":"شناسه حساب.",
 }

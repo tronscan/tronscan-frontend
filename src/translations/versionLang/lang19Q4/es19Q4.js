@@ -205,4 +205,22 @@ export const lang19Q4 = {
     "transaction_token_holder_address":"Dirección del token holder",
     "transaction_issue_address":"Dirección del emisor",
     "only_show_sinatures":"Mostrar direcciones solo con firmas",
+
+     // transaction info  2019-12-25  leon
+     "consume_bandwidth":"De lo contrario, el estado será \"está confirmando\".",
+     "consume_energy":"Consumir ancho de banda",
+     "net_free":"Consumo de ancho de banda congelado / libre",
+     "net_burn":"Quemar {num} TRX para ancho de banda",
+     "energy_burn":"Quemar {num} TRX para obtener energía",
+     "initiate_address":"Dirección del propietario",
+     "candidate_address":"Dirección de votar",
+     "votes_count":"Votos",
+     "sr_fee":"Cuota",
+     "sr_url":"URL",
+     "proposal_ID":"ID de propuesta",
+     "proposal_content":"Contenido",
+     "vote_proposal":"¿Votar por la propuesta?",
+     "vote_yes":"Si",
+     "vote_no":"No hay",
+     "account_id":"ID de la cuenta",
 }

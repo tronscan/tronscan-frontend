@@ -7,6 +7,7 @@ import {TRXPrice} from "../../../common/Price";
 import {ONE_TRX, CONTRACT_ADDRESS_USDT, CONTRACT_ADDRESS_WIN, CONTRACT_ADDRESS_GGC, TRADINGMAP, SUNWEBCONFIG, IS_SUNNET} from "../../../../constants";
 import rebuildList from "../../../../utils/rebuildList";
 import BandwidthUsage from './common/BandwidthUsage'
+import SignList from "./common/SignList";
 import {TransationTitle} from './common/Title'
 import {injectIntl} from "react-intl";
 import Field from "../../../tools/TransactionViewer/Field";
@@ -41,22 +42,54 @@ async function contractValue(id) {
 const useFetch = (id) => {
   const [data, updateData] = useState(0)
 
-  useEffect(async () => {
-      const value = await contractValue(id)
-      updateData(value)
-  }, [id])
+  async function getData(){
+    const value = await contractValue(id).catch(e=>{
+      updateData(0) 
+    })
+    updateData(value)
+  }
+  useEffect(() => {
+    getData()
+  }, [getData, id])
 
   return data
 }
 function CreateSmartContract({contract,intl}){
-  const value = useFetch('TDdZsKY5Mfi959yEyJ1otgfKsNSbBPGPfb')
+  const value = useFetch(contract.info && contract.info.contract_address)
   return (
     <Fragment>
       <TransationTitle contractType={contract.contractType}></TransationTitle>
+      <div className="table-responsive">
       <table className="table">
         <tbody>
           <Field label="contract_creator"><AddressLink address={contract['owner_address']}/></Field>
-          <Field label="contract_address"><AddressLink address={contract['owner_address']}/></Field>
+          <Field label="contract_address">
+            <AddressLink
+              address={contract.info && contract.info.contract_address}
+              isContract={true}
+            >
+              <Tooltip
+                placement="top"
+                title={upperFirst(
+                  intl.formatMessage({
+                    id: "transfersDetailContractAddress"
+                  })
+                )}
+              >
+                <Icon
+                  type="file-text"
+                  style={{
+                    fontSize: 12,
+                    verticalAlign: 2,
+                    marginRight: 4,
+                    color: "#333"
+                  }}
+                />
+              </Tooltip>
+              {contract.info && contract.info.contract_address}
+            </AddressLink>
+            {/* <AddressLink address={contract['owner_address']}/> */}
+          </Field>
           <Field label="contract_name">{contract.new_contract.name}</Field>
           <Field label="contract_enery" tip text={t('contract_enery_tip')}>
             {tu("contract_percent")}
@@ -66,14 +99,24 @@ function CreateSmartContract({contract,intl}){
             {contract.new_contract.consume_user_resource_percent}%
           </Field>
           <Field label="contract_init_assets" tip="true" text={t('contract_init_assets_tip')}>{value}</Field>
-          <Field label="consume_bandwidth">
-            <BandwidthUsage cost={contract.cost}></BandwidthUsage>
-          </Field>
-          <Field label="consume_energy">
-            <BandwidthUsage cost={contract.cost} type="1"></BandwidthUsage>
-          </Field>
+          {JSON.stringify(contract.cost) != "{}" && (
+            <Field label="consume_bandwidth">
+              <BandwidthUsage cost={contract.cost} />
+            </Field>
+          )}
+          {JSON.stringify(contract.cost) != "{}" && (
+            <Field label="consume_energy">
+              <BandwidthUsage cost={contract.cost} type="1" />
+            </Field>
+          )}
+          {contract.signList && (
+            <Field label="signature_list">
+              <SignList signList={contract.signList} />
+            </Field>
+          )}
         </tbody>
-    </table>
+      </table>
+      </div>
     </Fragment>
   );
 }
