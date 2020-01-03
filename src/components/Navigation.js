@@ -1020,7 +1020,7 @@ class Navigation extends React.Component {
                           target="_blank"
                           className="hvr-underline-from-center hvr-underline-white text-muted"
                         >
-                          <span className="hover-red TRXPrice">
+                          <span className="TRXPrice">
                             <span className="trxTitle">TRX:</span> 
                             <TRXPrice
                               showPopup={false}
@@ -1609,8 +1609,6 @@ class Navigation extends React.Component {
                                             {Route.badge &&
                                             <Badge value={Route.badge}/>}
                                         </span>
-
-
                                         {Route.label==='NILE TESTNET'&& <span className="new-test-net">new</span>} 
                                       </span>
                                     );

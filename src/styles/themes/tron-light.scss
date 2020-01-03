@@ -34,13 +34,6 @@
         .redPrice{
             color: #C53228;
         }
-        .hover-red{
-           &:hover{
-            .currentTrxPirce{
-                color: #c53027;
-            }
-           }
-        }
         .trxTitle,.currentCurrency{
             font-size:0.7rem;         
         }
