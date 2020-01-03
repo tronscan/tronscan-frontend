@@ -51,7 +51,7 @@
                 background: #fff;
                 position: absolute;
                 left: -53px;
-                top: 37px;
+                top: 30px;
                 display: none;
                 z-index: 100;
 
@@ -121,7 +121,7 @@
             }
         }
         .donate{
-            width:340px;
+            min-width:340px;
             height:24px;
             line-height: 24px;
             background: rgba(255,255,255,0.14);
