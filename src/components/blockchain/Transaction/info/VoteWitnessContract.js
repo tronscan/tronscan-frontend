@@ -1,5 +1,5 @@
 import React, {Fragment, useState, useEffect} from "react";
-import {tu} from "../../../../utils/i18n";
+import {tu, t} from "../../../../utils/i18n";
 import { Icon, Tooltip } from "antd";
 import { upperFirst } from "lodash";
 import {AddressLink, ExternalLink, ContractLink, TokenTRC20Link} from "../../../common/Links";
@@ -13,6 +13,10 @@ import {injectIntl} from "react-intl";
 import Field from "../../../tools/TransactionViewer/Field";
 import {toThousands} from '../../../../utils/number'
 
+
+function setUnit(count){
+  return count > 1 ? t('trans_tickets') : t('trans_ticket')
+}
 
 export default function VoteWitnessContract({contract}){
   
@@ -33,13 +37,13 @@ export default function VoteWitnessContract({contract}){
             <Field label="initiate_address"><AddressLink address={contract['owner_address']}/></Field>
             <Field label="votes_count">
               <div className="flex1">
-                <div className="d-flex band-item">{toThousands(count)}</div>
+                <div className="d-flex band-item">{toThousands(count)}&nbsp;{setUnit(count)}</div>
                 {
                   contract.votes.map((vote,index) => (
                     <div className="d-flex band-item item-belong" key={index}>
                       <span style={{marginRight: '10px'}}>{tu('candidate_address')}:</span>
                       <div style={{minWidth: '340px'}} className="d-flex"><AddressLink address={vote['vote_address']} truncate={false}/> &nbsp;{vote.tag && `(${vote.tag})`}</div>
-                      <span style={{margin: '0 10px'}}>{tu("counts") }:</span> { toThousands(vote['vote_count'])}
+                      <span style={{margin: '0 10px'}}>{tu("counts") }:</span> { toThousands(vote['vote_count'])} &nbsp;{setUnit(vote['vote_count'])}
                     </div>
                   ))
                 }

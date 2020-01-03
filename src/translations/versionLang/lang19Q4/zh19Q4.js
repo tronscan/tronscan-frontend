@@ -182,6 +182,8 @@ export const lang19Q4 = {
     "vote_yes":"是",
     "vote_no":"否",
     "account_id":"账户ID",
+    "trans_ticket":"票",
+    "trans_tickets":"票",
 
     "transaction_energy_cap":"能量上限",
     "transaction_enrgy_cap_tip":"合约部署者提供的能量上限值",

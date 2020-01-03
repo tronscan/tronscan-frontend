@@ -224,4 +224,6 @@ export const lang19Q4 = {
      "vote_yes":"承認する",
      "vote_no":"不承認",
      "account_id":"アカウントID",
+     "trans_ticket":"票",
+     "trans_tickets":"票",
 }

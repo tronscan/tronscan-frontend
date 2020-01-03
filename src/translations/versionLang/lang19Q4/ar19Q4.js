@@ -223,4 +223,6 @@ export const lang19Q4 = {
      "vote_yes":"موافقة",
      "vote_no":"استنكار",
      "account_id":"معرف الحساب",
+     "trans_ticket":"صوتا",
+     "trans_tickets":"صوتا",
 }
