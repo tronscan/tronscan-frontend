@@ -113,8 +113,10 @@ export class TRXPrice extends React.PureComponent {
   }
 
   renderPrice(value, priceValues) {
+    console.log('priceValues',priceValues)
     let { currency = "" } = this.props;
     let id = currency || priceValues.priceShown;
+    console.log('priceValues.prices[id.toUpperCase()] * value;',priceValues.prices[id.toUpperCase()] * value)
     return priceValues.prices[id.toUpperCase()] * value;
   }
 
@@ -148,7 +150,7 @@ export class TRXPrice extends React.PureComponent {
                         onMouseLeave={() => this.setState({ open: false })}
                         {...props}
                       >
-                        {name == "TRX" ? amount / ONE_TRX : amount} {name}
+                        {name == "TRX" ? amount / ONE_TRX : amount} &nbsp; {name}
                       </span>
                     )}
                   </FormattedNumber>
@@ -217,6 +219,7 @@ export class TRXPrice extends React.PureComponent {
                         {...props}
                       >
                         {value}
+                        &nbsp;
                         {showCurreny &&
                           (currency.toUpperCase() ||
                             priceValues.priceShown.toUpperCase())}
@@ -290,6 +293,7 @@ export class TRXPrice extends React.PureComponent {
                         {...props}
                       >
                         {value}
+                        &nbsp;
                         {showCurreny &&
                           (currency.toUpperCase() ||
                             priceValues.priceShown.toUpperCase())}
