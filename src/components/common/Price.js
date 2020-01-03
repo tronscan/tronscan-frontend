@@ -76,16 +76,7 @@ class PriceProviderCmp extends React.PureComponent {
       prices: newPrices,
       activePrice: newPrices[state.priceShown.toUpperCase()]
     }));
-    if(localStorage.getItem('dataEur')){
-      let dataEurObj = JSON.parse(localStorage.getItem('dataEur'));
-      if(dataEurObj.data){
-        let percent_change_24h = dataEur.data&&dataEur.data.length>0? dataEur.data[0].percent_change_24h : null;
-        this.setState({
-          percent_change_24h
-        })
-      }
-
-    }
+   
    
 
   }
@@ -132,7 +123,7 @@ export class TRXPrice extends React.PureComponent {
   }
 
   render() {
-    let { open, id,percent_change_24h } = this.state;
+    let { open, id } = this.state;
     let {
       source,
       name,
@@ -143,6 +134,17 @@ export class TRXPrice extends React.PureComponent {
       ...props
     } = this.props;
     let ele = null;
+    let percent_change_24h = 0;
+    if(localStorage.getItem('dataEur')){
+      let dataEurObj = JSON.parse(localStorage.getItem('dataEur'));
+      if(dataEurObj.data){
+        percent_change_24h = dataEurObj.data[0].percent_change_24h;
+        this.setState({
+          percent_change_24h
+        })
+      }
+
+    }
   
     return (
       <Consumer>

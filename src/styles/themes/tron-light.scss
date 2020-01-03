@@ -9,6 +9,7 @@
     .menu-nav-wrapper{
         max-width: 1600px;
         margin:0 auto;
+        justify-content:center;
     }
     .logo-wrapper {
         background: $white;
@@ -28,7 +29,7 @@
             color: #333333;
         }
         .greenPrice{
-            color:greenyellow;
+            color:rgb(0, 158, 115);
         }
         .redPrice{
             color: #C53228;
@@ -802,6 +803,7 @@ $color: #c23631;
                 word-wrap: break-word;
             }
         }
+        
     }
     .navbar-dark .navbar-nav .nav-link {
         color: $color-grey-100;
@@ -1009,4 +1011,109 @@ $color: #c23631;
 
 .mobile-title {
     font-size: 16px;
+}
+
+
+// mobile
+
+@media(max-width:767.98px){
+    .tron-light{
+        .logo-wrapper{
+            padding: 0 1rem;
+        }
+        .menu-nav-wrapper{
+            justify-content:space-between;
+            .logo{
+                height: 24px;
+            }
+        }
+        .mobileFlexible{
+            display: flex;
+            flex-direction: column;
+        }
+        .loginInfoNavBar{
+            .navbar{
+                margin-top:10px;
+            }
+        }
+        .nav-searchbar{
+            margin-bottom: 1rem !important;
+            input{
+                box-shadow: 0 2px 40px 0 rgba(4,4,64,0.05) !important;
+            }
+        }
+        .navbar{
+            padding: 0;
+        }
+        .drawWrapper{
+            line-height: 38px;
+            margin-left: 18px;
+            i{
+                vertical-align: 0;
+                font-size: 14px;
+                color:#666666;;
+            }
+        } 
+    }
+    .ant-drawer-content{
+        background: rgba(0,0,0,0.85);
+        .ant-drawer-body{
+            padding: 44px 0 0 0;
+        }
+        .ant-collapse-borderless{
+            background: rgba(0, 0, 0, 0.85)
+            // font-family: HelveticaNeue;
+            // color: #FFFFFF;
+        }
+        .ant-collapse {
+            .ant-collapse-item {
+                .ant-collapse-header{
+                    font-family: HelveticaNeue;
+                    color: #FFFFFF;
+                    font-size: 14px;
+                }
+                .ant-collapse-content{
+                    font-family: HelveticaNeue;
+                    color: #FFFFFF;
+                    font-size: 12px;
+                }
+                .mobile-sub-menu{
+                    .dropdown-item{
+                        font-family: HelveticaNeue;
+                        color: #FFFFFF;
+                        font-size: 12px;
+                    }
+                }
+            }
+        }
+        .nav-network-hot{
+            .hot-nav{
+                top:3px;
+            }
+        } 
+        .dropdown-item.active, .dropdown-item:active{
+            background-color:rgba(0, 0, 0, 0.85)  !important;
+            outline: none !important;
+            color:#c23631!important
+        }
+        .dropdown-item:hover, .dropdown-item:focus{
+            background-color:rgba(0, 0, 0, 0.85)  !important;
+            color:#c23631!important
+        }
+    }
+   
+}
+@media(max-width: 991.98px){
+    .tron-light{
+        .menu-nav-wrapper{
+            justify-content:space-between;
+            .logo{
+                height: 24px;
+            }
+        }
+        .mobileFlexible{
+            display: flex;
+            flex-direction: column;
+        }
+    }
 }

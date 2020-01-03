@@ -46,7 +46,7 @@ import Lockr from "lockr";
 import {BarLoader} from "./common/loaders";
 import {Truncate} from "./common/text";
 import { TRXPrice } from "./common/Price";
-import { Icon, Select,Tooltip} from 'antd';
+import { Icon, Select,Tooltip,Drawer,Collapse } from 'antd';
 import isMobile from '../utils/isMobile';
 import {Client} from '../services/api';
 import $ from 'jquery';
@@ -57,6 +57,7 @@ import { getQueryString } from "../utils/url";
 
 
 const { Option } = Select;
+const { Panel } = Collapse;
 class Navigation extends React.Component {
 
   constructor() {
@@ -80,6 +81,7 @@ class Navigation extends React.Component {
       annountime: '1-1',
       announId: 83,
       selectedNet:'',
+      drawerVisible:false,//draw is visible
 
     };
   }
@@ -989,7 +991,7 @@ class Navigation extends React.Component {
       syncStatus,
       walletType: { type },
     } = this.props;
-    let {search, popup, notifications, announcement, announId, annountime, searchResults, selectedNet } = this.state;
+    let {search, popup, notifications, announcement, announId, annountime, searchResults, selectedNet,drawerVisible } = this.state;
 
     let activeComponent = this.getActiveComponent();
     const isShowSideChain = !type || (type && IS_SUNNET);
@@ -998,40 +1000,43 @@ class Navigation extends React.Component {
         <div className="header-top nav-item-page">
           {popup}
           <div className="logo-wrapper">
-            <div className="py-2 d-flex px-0 menu-nav-wrapper" style={{ justifyContent:'center'}}>
+            <div className="py-2 d-flex px-0 menu-nav-wrapper">
               <div className="logoTrxPrice">
-                <Link to="/">
-                  <img src={this.getLogo()} className="logo" alt="Tron"/>
-                </Link>
-                {
-                  IS_MAINNET?
-                  <span className="currentTRXInfo">
-                    <Tooltip
-                      placement="bottom"
-                      title={intl.formatMessage({
-                        id: "tooltip_trxPrice"
-                      })}
-                    >
-                      <HrefLink
-                        href="https://coinmarketcap.com/currencies/tron/"
-                        target="_blank"
-                        className="hvr-underline-from-center hvr-underline-white text-muted"
+                <div className="mobileFlexible">
+                  <Link to="/">
+                    <img src={this.getLogo()} className="logo" alt="Tron"/>
+                  </Link>
+                  {
+                    IS_MAINNET?
+                    <span className="currentTRXInfo">
+                      <Tooltip
+                        placement="bottom"
+                        title={intl.formatMessage({
+                          id: "tooltip_trxPrice"
+                        })}
                       >
-                        <span className="hover-red TRXPrice">
-                          <span className="trxTitle">TRX:</span> 
-                          <TRXPrice
-                            showPopup={false}
-                            amount={1}
-                            currency="USD"
-                            source="home"
-                            showCurreny={true}
-                          />
-                        </span>
-                      </HrefLink>
-                    </Tooltip>
-                  </span>
-                  :null
-                }
+                        <HrefLink
+                          href="https://coinmarketcap.com/currencies/tron/"
+                          target="_blank"
+                          className="hvr-underline-from-center hvr-underline-white text-muted"
+                        >
+                          <span className="hover-red TRXPrice">
+                            <span className="trxTitle">TRX:</span> 
+                            <TRXPrice
+                              showPopup={false}
+                              amount={1}
+                              currency="USD"
+                              source="home"
+                              showCurreny={true}
+                            />
+                          </span>
+                        </HrefLink>
+                      </Tooltip>
+                    </span>
+                    :null
+                  }
+                </div>
+              
               </div>
               {
                 IS_TESTNET &&
@@ -1048,11 +1053,7 @@ class Navigation extends React.Component {
             
               <div className="new-menu-List">
                 <nav className="top-bar navbar navbar-expand-md navbar-dark" style={{padding:0}}> 
-                {/* <button className="navbar-toggler" type="button" data-toggle="collapse"
-                        data-target="#navbar-top">
-                  <span className="navbar-toggler-icon"/>
-                </button> */}
-                {/*   */}
+                {/*  pc nav */}
                   <div className="collapse navbar-collapse" id="navbar-top">
                     <ul className="navbar-nav">
                       {filter(routes, r => r.showInMenu !== false).map(route => (
@@ -1257,32 +1258,12 @@ class Navigation extends React.Component {
                           </li>
                       ))}
                     </ul>
-                    {/* <ul className="navbar-nav navbar-right">
-                      <li className="nav-item dropdown navbar-right">
-                        <a className="nav-link dropdown-toggle dropdown-menu-right "
-                          data-toggle="dropdown"
-                          href="javascript:">
-                          {activeCurrency.toUpperCase()}
-                        </a>
-                        <div className="dropdown-menu">
-                          {
-                            currencyConversions.map(currency => (
-                                <a key={currency.id}
-                                  className="dropdown-item"
-                                  href="javascript:"
-                                  onClick={() => this.setCurrency(currency.id)}>{currency.name}</a>
-                            ))
-                          }
-                        </div>
-                      </li>
-                     
-                    </ul> */}
                   </div>
                 </nav>
               </div>
               
 
-              <div className="">
+              <div className="loginInfoNavBar">
                 <div className="navbar navbar-expand-md navbar-dark py-0">
                   <ul className="navbar-nav navbar-right wallet-nav">
                     {
@@ -1305,8 +1286,14 @@ class Navigation extends React.Component {
                         </div>
                       </li>
                   </ul>
+                  <div className="drawWrapper hidden-PC" onClick={()=>{this.setState({drawerVisible:true})}}>
+                     {/* drawer */}
+                    <Icon type="menu" />
+                  </div>
                 </div>
+               
               </div>
+             
             </div>
           </div>
           <div style={{boxShadow:"0 2px 40px 0 rgba(4,4,64,0.05)",background:"#F3F3F3"}}>
@@ -1460,6 +1447,263 @@ class Navigation extends React.Component {
 
                 </div>
           }
+          {/* drawer mobile nav */}
+          <Drawer
+            placement='right'
+            closable={false}
+            onClose={()=>{
+              this.setState({
+                drawerVisible:false
+              })
+            }}
+            visible={drawerVisible}
+          >
+            <div className="mobile-draw-menu">
+              <Collapse bordered={false} defaultActiveKey={['1']} expandIconPosition="right" accordion={true}>
+              {
+                filter(routes, r => r.showInMenu !== false).map(route => (
+                  route.linkHref?
+                  <span 
+                    onClick={()=>{
+                      this.setState({
+                        drawerVisible:false
+                      })
+                      activeLanguage == 'zh' ? this.props.history.push(route.zhurl) : this.props.history.push(route.enurl)
+                    }}
+                    className={route.routes ? "nav-link" : "nav-link"} href={activeLanguage == 'zh' ? route.zhurl : route.enurl}>
+                    {route.icon &&
+                    <i className={route.icon + " d-none d-lg-inline-block mr-1"}/>}
+                    {tu(route.label)}
+                  </span>
+                  : 
+                  <Panel header={
+                    <span className={route.routes ? (route.label == 'nav_network' ? 'nav-network-hot mr-2' : "") : ""}> 
+                      <span
+                          className={route.routes ? (route.label == 'nav_network' ? 'mobile-nav-link text-capitalize' : "mobile-nav-link") : "nav-link"}
+                          {...((route.routes && route.routes.length > 0) ? {'data-toggle': 'dropdown'} : {})}
+                      >
+                        {route.icon &&
+                        <i className={route.icon + " d-none d-lg-inline-block mr-1"}/>}
+                        {tu(route.label)}
+                      </span>
+                      <i className="hot-nav"></i>
+                    </span>
+                  } key={route.path}>
+                    {
+                      route.routes && route.label !== "nav_more" && route.label !== "nav_network" &&
+                      <div className="mobile-sub-menu">
+                        {
+                          route.routes && route.routes.map((subRoute, index) => {
+                            if (subRoute === '-') {
+                              return (
+                                  <div key={index} className="dropdown-divider"/>
+                              );
+                            }
+                            if (isString(subRoute)) {
+                              return (
+                                  <h6 key={index}
+                                      className="dropdown-header">{subRoute}</h6>
+                              )
+                            }
+                            if (subRoute.showInMenu === false) {
+                              return null;
+                            }
+                            if (!isUndefined(subRoute.url)) {
+                              return (
+                                  <span
+                                      onClick={()=>{
+                                        this.setState({
+                                          drawerVisible:false
+                                        })
+                                        this.props.history.push(subRoute.url)
+                                      }}
+                                      key={subRoute.url}
+                                      className="dropdown-item text-uppercase"
+                                      href={subRoute.url}>
+                                      {subRoute.icon &&
+                                      <i className={subRoute.icon + " mr-2"}/>}
+                                      {tu(subRoute.label)}
+                                      {subRoute.badge &&
+                                      <Badge value={subRoute.badge}/>}
+                                  </span>
+                              );
+                            }
+                            if (!isUndefined(subRoute.enurl) || !isUndefined(subRoute.zhurl)) {
+                              return (
+                                  <span
+                                      onClick={()=>{
+                                        this.setState({
+                                          drawerVisible:false
+                                        })
+                                        this.props.history.push(subRoute.enurl)
+                                      }}
+                                      key={subRoute.enurl}
+                                      className="dropdown-item text-uppercase"
+                                      href={activeLanguage == 'zh' ? subRoute.zhurl : subRoute.enurl}>
+                                    {subRoute.icon &&
+                                    <i className={subRoute.icon + " mr-2"}/>}
+                                    {tu(subRoute.label)}
+                                    {subRoute.badge &&
+                                    <Badge value={subRoute.badge}/>}
+                                  </span>
+                              );
+                            }
+
+                            return (
+                                <span
+                                    onClick={()=>{
+                                      this.setState({
+                                        drawerVisible:false
+                                      })
+                                      this.props.history.push(subRoute.path)
+                                    }}
+                                    key={subRoute.path}
+                                    className="dropdown-item text-uppercase"
+                                    to={subRoute.path}>
+                                  {subRoute.icon &&
+                                  <i className={subRoute.icon + " mr-2" + " fa_width"}/>}
+                                  {tu(subRoute.label)}
+                                  {subRoute.badge && <Badge value={subRoute.badge}/>}
+                                </span>
+                            );
+                          })
+                        }
+                      </div>
+                    }
+                    {
+                        route.routes && (route.label == "nav_network" || route.label == "nav_more") &&
+                      <div>
+                        {
+                          route.routes && route.routes.map((subRoute, index) => {
+                            return <div className="mobile-sub-menu" key={index}>
+                              <div className="more-menu-line"></div>
+                              {
+                                subRoute.map((Route, j) => {
+                                  if (isString(Route)) {
+                                    return (
+                                        <h6 key={j} className="dropdown-header text-uppercase"> {tu(Route)}</h6>
+                                    )
+                                  }
+
+                                  if (Route.showInMenu === false) {
+                                    return null;
+                                  }
+                                  //wjl
+                                  if (!isUndefined(Route.url) && !Route.sidechain && Route.label !== 'developer_challenge') {
+                                    return (
+                                      <span className='mr-3 d-inline-block developer_challenge_box' key={j+Route.label}>
+
+                                        <span
+                                            onClick={()=>{
+                                              this.setState({
+                                                drawerVisible:false
+                                              })
+                                              this.props.history.push(Route.url)
+                                            }}
+                                            key={Route.url}
+                                            className="dropdown-item text-uppercase"
+                                            href={Route.url}>
+                                            
+                                            {Route.icon &&<i className={Route.icon + " mr-2"} />}
+                                            {tu(Route.label)}
+                                            {Route.badge &&
+                                            <Badge value={Route.badge}/>}
+                                        </span>
+
+
+                                        {Route.label==='NILE TESTNET'&& <span className="new-test-net">new</span>} 
+                                      </span>
+                                    );
+                                  }
+                                  if (!isUndefined(Route.url) && !Route.sidechain && Route.label == 'developer_challenge') {
+                                      return (
+                                          <span className="mr-3 d-inline-block developer_challenge_box" key={Route.url+'_'+ Route.label}>
+                                            <span
+                                                onClick={()=>{
+                                                  this.setState({
+                                                    drawerVisible:false
+                                                  })
+                                                
+                                                  this.props.history.push(Route.url)
+                                                }}
+                                                key={Route.url+'_'+ Route.label}
+                                                className="dropdown-item text-uppercase"
+                                                href={Route.url}>
+                                              {Route.icon &&
+                                              <i className={Route.icon + " mr-2"}/>}
+                                                {tu(Route.label)}
+                                                {Route.badge &&
+                                                <Badge value={Route.badge}/>}
+                                          </span>
+                                          <img src={require("../images/home/hot.svg")} title="hot" className="developer_challenge_hot"/>
+                                          </span>
+
+                                      );
+                                  }
+                                  if (isUndefined(Route.url) && Route.sidechain) {
+                                    const sidechainTab = (
+                                      <a href="javascript:"
+                                        key={Route.label}
+                                        className="dropdown-item text-uppercase"
+                                        onClick={() => this.netSelectChange(IS_MAINNET?'sunnet':'mainnet')}
+                                      >
+                                        {Route.icon && <i className={Route.icon + " mr-2"}/>}
+                                        {IS_MAINNET?tu('Side_Chain'):tu('Main_Chain')}
+                                      </a>
+                                    );
+                                    return sidechainTab
+                                  }
+                                  if (!isUndefined(Route.enurl) || !isUndefined(Route.zhurl)) {
+                                    return (
+                                        <span
+                                          onClick={()=>{
+                                            this.setState({
+                                              drawerVisible:false
+                                            })
+                                            activeLanguage == 'zh' ?   this.props.history.push(Route.zhurl) : this.props.history.push(Route.enurl)
+                                          
+                                          }}
+                                            key={Route.enurl}
+                                            className="dropdown-item text-uppercase"
+                                            href={activeLanguage == 'zh' ? Route.zhurl : Route.enurl}>
+                                          {Route.icon &&
+                                          <i className={Route.icon + " mr-2"}/>}
+                                          {tu(Route.label)}
+                                          {Route.badge &&
+                                          <Badge value={Route.badge}/>}
+                                        </span>
+                                    );
+                                  }
+                                  return (
+                                      <span
+                                          onClick={()=>{
+                                            this.setState({
+                                              drawerVisible:false
+                                            })
+                                            this.props.history.push(Route.path)
+                                          }}
+                                          key={Route.path}
+                                          className="dropdown-item text-uppercase"
+                                          to={Route.path}>
+                                        {Route.icon &&
+                                        <i className={Route.icon + " mr-2" + " fa_width"}/>}
+                                        {tu(Route.label)}
+                                        {Route.badge && <Badge value={Route.badge}/>}
+                                      </span>
+                                  );
+                                })
+                              }
+                            </div>
+
+                          })
+                        }
+                      </div>
+                    }
+                  </Panel>
+              ))}
+              </Collapse>
+            </div>
+          </Drawer>
         </div>
     )
   }
