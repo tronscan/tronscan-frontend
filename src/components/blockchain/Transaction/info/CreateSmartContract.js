@@ -55,7 +55,7 @@ const useFetch = (id) => {
   return data
 }
 function CreateSmartContract({contract,intl}){
-  const value = useFetch('TDdZsKY5Mfi959yEyJ1otgfKsNSbBPGPfb')
+  const value = useFetch(contract.info && contract.info.contract_address)
   return (
     <Fragment>
       <TransationTitle contractType={contract.contractType}></TransationTitle>
@@ -65,7 +65,7 @@ function CreateSmartContract({contract,intl}){
           <Field label="contract_creator"><AddressLink address={contract['owner_address']}/></Field>
           <Field label="contract_address">
             <AddressLink
-              address={contract["contract_address"]}
+              address={contract.info && contract.info.contract_address}
               isContract={true}
             >
               <Tooltip
@@ -86,7 +86,7 @@ function CreateSmartContract({contract,intl}){
                   }}
                 />
               </Tooltip>
-              {contract["owner_address"]}
+              {contract.info && contract.info.contract_address}
             </AddressLink>
             {/* <AddressLink address={contract['owner_address']}/> */}
           </Field>

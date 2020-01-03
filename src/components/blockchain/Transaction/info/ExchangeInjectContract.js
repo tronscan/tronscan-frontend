@@ -1,16 +1,18 @@
-import React, {Fragment} from "react";
-import {AddressLink, ExternalLink, ContractLink, TokenTRC20Link} from "../../../common/Links";
+import React, { Fragment } from "react";
+import { AddressLink, TokenLink } from "../../../common/Links";
 import Field from "../../../tools/TransactionViewer/Field";
-import {toThousands} from '../../../../utils/number'
+import { toThousands } from '../../../../utils/number'
 import SignList from './common/SignList'
-import {TransationTitle} from './common/Title'
-import {tu} from "../../../../utils/i18n";
+import { TransationTitle } from './common/Title'
+import { tu } from "../../../../utils/i18n";
 import BandwidthUsage from './common/BandwidthUsage'
 export default function ExchangeInjectContract(props) {
     const contract = props.contract;
-    const {quant,signList,contractType,cost} = contract;
+    const { quant, signature, contractType, cost, exchangeInfo } = contract;
+    const { first_token_name, first_token_id, second_token_name } = exchangeInfo;
+    let signList = signature;
     return <Fragment>
-         <TransationTitle contractType={contractType}/>
+        <TransationTitle contractType={contractType} />
         <table className="table">
             <tbody>
                 {
@@ -18,12 +20,12 @@ export default function ExchangeInjectContract(props) {
                         <Field label="signature_sponsor"><AddressLink address={contract['owner_address']} /></Field>
                         : ''
                 }
-                <Field label="pairs"></Field>
-                <Field label="token_tracker"></Field>
+                <Field label="pairs">{first_token_name} / {second_token_name}</Field>
+                <Field label="token_tracker"><TokenLink id={first_token_id} name={first_token_name}/></Field>
                 <Field label="amount">{toThousands(quant)}</Field>
                 {JSON.stringify(contract.cost) !=
-                              "{}" && <Field label="consume_bandwidth"><BandwidthUsage cost={cost}/></Field>}
-                {signList&&<Field label="signature_list"><SignList signList={signList}/></Field>}
+                    "{}" && <Field label="consume_bandwidth"><BandwidthUsage cost={cost} /></Field>}
+                {signList && <Field label="signature_list"><SignList signList={signList} /></Field>}
             </tbody>
         </table>
     </Fragment>

@@ -31,7 +31,7 @@ class WithdrawBalanceContract extends React.Component {
                 </AddressLink>
               </Field>
               <Field label="amount">
-                <TRXPrice amount={contract.amount / ONE_TRX || 0} />
+                <TRXPrice amount={contract.info.withdraw_amount || 0} />
               </Field>
               {JSON.stringify(contract.cost) != "{}" && (
                 <Field label="consume_bandwidth">
