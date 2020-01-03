@@ -3,6 +3,7 @@
  * Date:2019-12-25
  */
 import React, { Fragment } from "react";
+import { connect } from "react-redux";
 import { tu } from "../../../../utils/i18n";
 import Field from "../../../tools/TransactionViewer/Field";
 import { AddressLink, ExternalLink } from "../../../common/Links";
@@ -17,14 +18,21 @@ import { Link } from "react-router-dom";
 import { TransationTitle } from "./common/Title";
 import BandwidthUsage from "./common/BandwidthUsage";
 import SignList from "./common/SignList";
-
+@connect(
+  state => {
+    return {
+      activeLanguage: state.app.activeLanguage
+     
+    };
+  }
+)
 class AssetIssueContract extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       fee: "1024 TRX",
       createTime:0,
-      UtcUnit:"UTC",
+      UtcUnit:"",
       TrxUnit:'TRX'
     };
   }
@@ -45,8 +53,9 @@ class AssetIssueContract extends React.Component {
     
   }
   render() {
-    let { contract } = this.props;
-    let {createTime,UtcUnit,TrxUnit} = this.state;
+    let { contract,activeLanguage } = this.props;
+    console.log(1111,this.props)
+    let {createTime,TrxUnit} = this.state;
     return (
       <Fragment>
         <TransationTitle contractType={contract.contractType}></TransationTitle>
@@ -72,20 +81,20 @@ class AssetIssueContract extends React.Component {
                 />
               </Field>
                 <Field label="token_price_new">{contract.trx_num/contract.num} {TrxUnit}</Field>
-              {contract.new_limit && <Field
+               <Field
                 label="transaction_consumed_bandwidth_cap_per"
                 tip={true}
                 text="transaction_consumed_bandwidth_cap_per_tip"
               >
-                {contract.new_limit} {tu('bandwidth')}
-              </Field>}
-              {contract.new_public_limit &&<Field
+                {contract.new_limit || 0} {tu('bandwidth')}
+              </Field>
+              <Field
                 label="transaction_consumed_bandwidth_cap_all"
                 tip={true}
                 text="transaction_consumed_bandwidth_cap_all_tip"
               >
-                {contract.new_public_limit} {tu('bandwidth')}
-              </Field>}
+                {contract.new_public_limit || 0} {tu('bandwidth')}
+              </Field>
               <Field label="start_time">
                 {contract.end_time - contract.start_time > 1000 ? (
                   <span>
@@ -96,7 +105,7 @@ class AssetIssueContract extends React.Component {
                       minute="numeric"
                       second="numeric"
                       hour12={false}
-                    /> {UtcUnit}
+                    /> 
                   </span>
                 ) : (
                   "-"
@@ -112,7 +121,7 @@ class AssetIssueContract extends React.Component {
                       minute="numeric"
                       second="numeric"
                       hour12={false}
-                    /> {UtcUnit}
+                    /> 
                   </span>
                 ) : (
                   "-"
@@ -126,7 +135,7 @@ class AssetIssueContract extends React.Component {
                 ></FormattedNumber>
               </Field>
               <Field label="transaction_frozen_day">
-                {contract.frozen_supply[0].frozen_days || 0} {tu('day')}
+                {contract.frozen_supply[0].frozen_days || 0} {tu('day')}{activeLanguage == 'en' && contract.frozen_supply[0].frozen_days>1 && 's'}
               </Field>
               <Field label="transaction_unfreeze_time">
                   <FormattedDate value={createTime} />{" "}
@@ -136,7 +145,7 @@ class AssetIssueContract extends React.Component {
                     minute="numeric"
                     second="numeric"
                     hour12={false}
-                  /> {UtcUnit}
+                  /> 
               </Field>
               {JSON.stringify(contract.cost) != "{}" && (
                 <Field label="consume_bandwidth">

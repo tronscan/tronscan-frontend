@@ -34,20 +34,20 @@ class UpdateAssetContract extends React.Component {
               <Field label="website">
                 <ExternalLink url={contract.url} />
               </Field>
-              {contract.new_limit && <Field
+              <Field
                 label="transaction_consumed_bandwidth_cap_per"
                 tip={true}
                 text="transaction_consumed_bandwidth_cap_per_tip"
               >
-                {contract.new_limit} {tu('bandwidth')}
-              </Field>}
-              {contract.new_public_limit &&<Field
+                {contract.new_limit || 0} {tu('bandwidth')}
+              </Field>
+              <Field
                 label="transaction_consumed_bandwidth_cap_all"
                 tip={true}
                 text="transaction_consumed_bandwidth_cap_all_tip"
               >
-                {contract.new_public_limit} {tu('bandwidth')}
-              </Field>}
+                {contract.new_public_limit || 0} {tu('bandwidth')}
+              </Field>
               {JSON.stringify(contract.cost) != "{}" && (
                 <Field label="consume_bandwidth">
                   <BandwidthUsage cost={contract.cost} />
