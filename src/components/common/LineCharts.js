@@ -383,7 +383,7 @@ export class LineReactHighChartHomeTx extends React.Component {
             _config.yAxis[1].tickAmount = 4;
             _config.yAxis[0].allowDecimals = true;
             _config.yAxis[1].allowDecimals = true;
-            // _config.title['text'] = intl.formatMessage({id: '14_day_transaction_history'});
+            _config.title['text'] = intl.formatMessage({id: '14_day_transaction_history'});
             // _config.exporting.enabled = false;
             // _config.yAxis[0].min = 0;
             // _config.yAxis[1].min = 0;
