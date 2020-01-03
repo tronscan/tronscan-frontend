@@ -108,9 +108,9 @@ class Transaction extends React.Component {
               ...{ contract_note: transaction.data },
               ownerAddress: transaction.ownerAddress,
               contractType: ContractTypes[transaction.contractType],
-              unfreeze_amount: this.state.unfreeze_amount,
               parameterValue:parameterValue,
-              exchangeInfo:transaction.exchange_info
+              exchangeInfo:transaction.exchange_info,
+              ...{info:transaction.info}
             }} />
           ),
         },
@@ -156,7 +156,7 @@ class Transaction extends React.Component {
                           transaction.hasOwnProperty("contractRet") && <tr>
                             <th>{tu("result")}</th>
                             <td>
-                              {transaction.contractRet.toUpperCase() === SUCCESS ? SUCCESS : <span className="fail-result text-uppercase"><Icon type="close-circle" className="mr-1 icon-close" />FAIL{IS_MAINNET && resMessage ? `-${resMessage}` : ''}</span>}
+                              {transaction.contractRet.toUpperCase() === SUCCESS ? SUCCESS : <span className="fail-result text-uppercase"><Icon type="close-circle" className="mr-1 icon-close" />FAIL{IS_MAINNET && transaction.info.resMessage ? `-${transaction.info.resMessage}` : ''}</span>}
                             </td>
                           </tr>
                         }
