@@ -2,82 +2,82 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
         <loc>https://tronscan.io/</loc>
-        <lastmod>2019-08-06</lastmod>
+        <lastmod>2020-01-03</lastmod>
     </url>
     <url>
         <loc>https://tronscan.io/#/blockchain/nodes</loc>
-        <lastmod>2019-08-06</lastmod>
+        <lastmod>2020-01-03</lastmod>
     </url>
     <url>
         <loc>https://tronscan.io/#/blockchain/blocks</loc>
-        <lastmod>2019-08-06</lastmod>
+        <lastmod>2020-01-03</lastmod>
     </url>
     <url>
         <loc>https://tronscan.io/#/blockchain/transactions</loc>
-        <lastmod>2019-08-06</lastmod>
+        <lastmod>2020-01-03</lastmod>
     </url>
     <url>
         <loc>https://tronscan.io/#/blockchain/transfers</loc>
-        <lastmod>2019-08-06</lastmod>
+        <lastmod>2020-01-03</lastmod>
     </url>
     <url>
         <loc>https://tronscan.io/#/blockchain/accounts</loc>
-        <lastmod>2019-08-06</lastmod>
+        <lastmod>2020-01-03</lastmod>
     </url>
     <url>
         <loc>https://tronscan.io/#/blockchain/stats</loc>
-        <lastmod>2019-08-06</lastmod>
+        <lastmod>2020-01-03</lastmod>
     </url>
     <url>
         <loc>https://tronscan.io/#/blockchain/foundation</loc>
-        <lastmod>2019-08-06</lastmod>
+        <lastmod>2020-01-03</lastmod>
     </url>
     <url>
         <loc>https://tronscan.io/#/contracts/contracts</loc>
-        <lastmod>2019-08-06</lastmod>
+        <lastmod>2020-01-03</lastmod>
     </url>
     <url>
         <loc>https://tronscan.io/#/contracts/contract-triggers</loc>
-        <lastmod>2019-08-06</lastmod>
+        <lastmod>2020-01-03</lastmod>
     </url>
     <url>
         <loc>https://tronscan.io/#/contracts/contract-compiler</loc>
-        <lastmod>2019-08-06</lastmod>
+        <lastmod>2020-01-03</lastmod>
     </url>
     <url>
         <loc>https://tronscan.io/#/tokens/list</loc>
-        <lastmod>2019-08-06</lastmod>
+        <lastmod>2020-01-03</lastmod>
     </url>
     <url>
         <loc>https://tronscan.io/#/tokens/view</loc>
-        <lastmod>2019-08-06</lastmod>
+        <lastmod>2020-01-03</lastmod>
     </url>
     <url>
         <loc>https://tronscan.io/#/tokens/create/Type</loc>
-        <lastmod>2019-08-06</lastmod>
+        <lastmod>2020-01-03</lastmod>
     </url>
     <url>
         <loc>https://tronscan.io/#/sr/representatives</loc>
-        <lastmod>2019-08-06</lastmod>
+        <lastmod>2020-01-03</lastmod>
     </url>
     <url>
         <loc>https://tronscan.io/#/sr/votes</loc>
-        <lastmod>2019-08-06</lastmod>
+        <lastmod>2020-01-03</lastmod>
     </url>
     <url>
         <loc>https://tronscan.io/#/sr/committee</loc>
-        <lastmod>2019-08-06</lastmod>
+        <lastmod>2020-01-03</lastmod>
     </url>
     <url>
         <loc>https://tronscan.io/#/tools/transaction-viewer</loc>
-        <lastmod>2019-08-06</lastmod>
+        <lastmod>2020-01-03</lastmod>
     </url>
     <url>
         <loc>https://tronscan.io/#/help/ledger</loc>
-        <lastmod>2019-08-06</lastmod>
+        <lastmod>2020-01-03</lastmod>
     </url>
     <url>
         <loc>https://tronscan.io/#/account</loc>
-        <lastmod>2019-08-06</lastmod>
+        <lastmod>2020-01-03</lastmod>
     </url>
 </urlset>
