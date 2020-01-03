@@ -205,4 +205,22 @@ export const lang19Q4 = {
     "transaction_token_holder_address":"عنوان مالك الرمز",
     "transaction_issue_address":"عنوان المصدر",
     "only_show_sinatures":"إظهار العناوين مع التوقيعات فقط",
+
+     // transaction info  2019-12-25  leon
+     "consume_bandwidth":"عرض النطاق الترددي المستهلك",
+     "consume_energy":"إستهلاك الطاقة",
+     "net_free":"إستهلاك التجميد للمستخدم / عرض النطاق الترددي المجاني",
+     "net_burn":"حرق {num} TRX  لعرض النطاق الترددي",
+     "energy_burn":"حرق {num} TRX للحصول على الطاقة",
+     "initiate_address":"العنوان الأصلي",
+     "candidate_address":"عنوان التصويت",
+     "votes_count":"عدد الاصوات",
+     "sr_fee":"الرسوم",
+     "sr_url":"الرابط",
+     "proposal_ID":"معرف الاقتراح",
+     "proposal_content":"المحتوى",
+     "vote_proposal":"التصويت على الاقتراح؟",
+     "vote_yes":"موافقة",
+     "vote_no":"استنكار",
+     "account_id":"معرف الحساب",
 }

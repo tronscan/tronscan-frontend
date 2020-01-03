@@ -206,4 +206,22 @@ export const lang19Q4 = {
     "transaction_token_holder_address":"トークン保有者の住所",
     "transaction_issue_address":"発行者の住所",
     "only_show_sinatures":"署名を残すアドレスのみを表示する",
+
+     // transaction info  2019-12-25  leon
+     "consume_bandwidth":"帯域幅を消費する",
+     "consume_energy":"エネルギー消費",
+     "net_free":"凍結/空き帯域幅の消費",
+     "net_burn":"帯域幅のために {num} TRX を焼く",
+     "energy_burn":"エネルギーのために {num} TRX を焼く",
+     "initiate_address":"発信アドレス",
+     "candidate_address":"投票アドレス",
+     "votes_count":"投票数",
+     "sr_fee":"費用",
+     "sr_url":"アドレス",
+     "proposal_ID":"プロポーザルID",
+     "proposal_content":"内容",
+     "vote_proposal":"プロポーザルに賛成しますか？",
+     "vote_yes":"承認する",
+     "vote_no":"不承認",
+     "account_id":"アカウントID",
 }

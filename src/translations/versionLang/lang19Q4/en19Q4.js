@@ -206,4 +206,22 @@ export const lang19Q4 = {
     "transaction_issue_address":"Issuer address",
     "only_show_sinatures":"Display addresses with signatures only",
 
+    // transaction info  2019-12-25  leon
+    "consume_bandwidth":"Consume bandwidth",
+    "consume_energy":"Consume Energy",
+    "net_free":"Consumption of frozen/free bandwidth",
+    "net_burn":"Burn {num} TRX for bandwidth",
+    "energy_burn":"Burn {num} TRX for energy",
+    "initiate_address":"Owner address",
+    "candidate_address":"Candidate address",
+    "votes_count":"Count",
+    "sr_fee":"Fee",
+    "sr_url":"URL",
+    "proposal_ID":"Proposal ID",
+    "proposal_content":"Content",
+    "vote_proposal":"Vote for the proposal?",
+    "vote_yes":"Yes",
+    "vote_no":"No",
+    "account_id":"Account ID",
+
 }

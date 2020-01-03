@@ -205,4 +205,22 @@ export const lang19Q4 = {
     "transaction_token_holder_address":"Адрес владельца токена",
     "transaction_issue_address":"Адрес эмитента",
     "only_show_sinatures":"Отображать адреса только с подписями",
+
+     // transaction info  2019-12-25  leon
+     "consume_bandwidth":"Потребляет пропускную способность",
+     "consume_energy":"Потребляет Энергию",
+     "net_free":"Потребление замороженной / свободной пропускной способности",
+     "net_burn":"Сжигает {num} TRX для пропускной способности",
+     "energy_burn":"Сжигает {num} TRX для энергии",
+     "initiate_address":"Адрес владельца",
+     "candidate_address":"Адрес кандидата",
+     "votes_count":"Счет",
+     "sr_fee":"Комиссия",
+     "sr_url":"Ссылка",
+     "proposal_ID":"ID предложения",
+     "proposal_content":"Содержание",
+     "vote_proposal":"Проголосовать за предложение?",
+     "vote_yes":"Здесь",
+     "vote_no":"нет",
+     "account_id":"Аккаунт ID",
 }

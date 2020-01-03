@@ -105,7 +105,8 @@ class Transaction extends React.Component {
                   ...{contract_note:transaction.data},
                   contractType: ContractTypes[transaction.contractType],
                   unfreeze_amount:this.state.unfreeze_amount,
-                  ownerAddress: transaction['ownerAddress']
+                  ownerAddress: transaction['ownerAddress'],
+                  hash: transaction['hash']
               }}/>
           ),
         },
