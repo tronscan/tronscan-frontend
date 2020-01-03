@@ -110,7 +110,8 @@ class Transaction extends React.Component {
               contractType: ContractTypes[transaction.contractType],
               parameterValue:parameterValue,
               exchangeInfo:transaction.exchange_info,
-              ...{info:transaction.info}
+              ...{info:transaction.info},
+              timestamp:transaction.timestamp
             }} />
           ),
         },

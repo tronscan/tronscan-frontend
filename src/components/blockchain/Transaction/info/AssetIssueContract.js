@@ -13,7 +13,6 @@ import {
   FormattedTime,
   injectIntl
 } from "react-intl";
-import { toUtf8 } from "tronweb";
 import { Link } from "react-router-dom";
 import { TransationTitle } from "./common/Title";
 import BandwidthUsage from "./common/BandwidthUsage";
@@ -23,11 +22,31 @@ class AssetIssueContract extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      fee: "1024 TRX"
+      fee: "1024 TRX",
+      createTime:0,
+      UtcUnit:"UTC",
+      TrxUnit:'TRX'
     };
+  }
+  componentDidMount(){
+    this.createTime()
+  }
+
+  createTime(){
+    let {contract} = this.props;
+    let timestamp = contract.timestamp || 0;
+    let freezeTimeStamp = contract.frozen_supply[0].frozen_days || 0
+    let createTime = timestamp + freezeTimeStamp*24*60*60*1000;
+   
+    this.setState({
+      createTime:createTime
+    })
+
+    
   }
   render() {
     let { contract } = this.props;
+    let {createTime,UtcUnit,TrxUnit} = this.state;
     return (
       <Fragment>
         <TransationTitle contractType={contract.contractType}></TransationTitle>
@@ -38,10 +57,10 @@ class AssetIssueContract extends React.Component {
                 <AddressLink address={contract["owner_address"]} />
               </Field>
               <Field label="transaction_fee">{this.state.fee}</Field>
-              <Field label="trc20_token_id">{}</Field>
+              <Field label="trc20_token_id">{contract.token_id}</Field>
               <Field label="token_name">
-                <Link to={`/token/${contract.name}`}>
-                  {toUtf8(contract.abbr)}
+                <Link to={`/token/${contract.token_id}`}>
+                  {contract.abbr}
                 </Link>
               </Field>
               <Field label="total_supply">
@@ -52,21 +71,21 @@ class AssetIssueContract extends React.Component {
                   }
                 />
               </Field>
-              <Field label="token_price_new">{}</Field>
-              <Field
+                <Field label="token_price_new">{contract.trx_num/contract.num} {TrxUnit}</Field>
+              {contract.new_limit && <Field
                 label="transaction_consumed_bandwidth_cap_per"
                 tip={true}
                 text="transaction_consumed_bandwidth_cap_per_tip"
               >
-                {}
-              </Field>
-              <Field
+                {contract.new_limit} {tu('bandwidth')}
+              </Field>}
+              {contract.new_public_limit &&<Field
                 label="transaction_consumed_bandwidth_cap_all"
                 tip={true}
                 text="transaction_consumed_bandwidth_cap_all_tip"
               >
-                {}
-              </Field>
+                {contract.new_public_limit} {tu('bandwidth')}
+              </Field>}
               <Field label="start_time">
                 {contract.end_time - contract.start_time > 1000 ? (
                   <span>
@@ -77,7 +96,7 @@ class AssetIssueContract extends React.Component {
                       minute="numeric"
                       second="numeric"
                       hour12={false}
-                    />
+                    /> {UtcUnit}
                   </span>
                 ) : (
                   "-"
@@ -93,7 +112,7 @@ class AssetIssueContract extends React.Component {
                       minute="numeric"
                       second="numeric"
                       hour12={false}
-                    />
+                    /> {UtcUnit}
                   </span>
                 ) : (
                   "-"
@@ -107,9 +126,18 @@ class AssetIssueContract extends React.Component {
                 ></FormattedNumber>
               </Field>
               <Field label="transaction_frozen_day">
-                {contract.frozen_supply[0].frozen_days || 0}
+                {contract.frozen_supply[0].frozen_days || 0} {tu('day')}
               </Field>
-              <Field label="transaction_unfreeze_time">{}</Field>
+              <Field label="transaction_unfreeze_time">
+                  <FormattedDate value={createTime} />{" "}
+                  <FormattedTime
+                    value={createTime}
+                    hour="numeric"
+                    minute="numeric"
+                    second="numeric"
+                    hour12={false}
+                  /> {UtcUnit}
+              </Field>
               {JSON.stringify(contract.cost) != "{}" && (
                 <Field label="consume_bandwidth">
                   <BandwidthUsage cost={contract.cost} />

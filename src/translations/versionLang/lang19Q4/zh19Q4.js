@@ -211,7 +211,7 @@ export const lang19Q4 = {
     "transaction_TRANSFERASSETCONTRACT":"TRC10转账",
     "transaction_ASSETISSUECONTRACT":"发行TRC10通证",
     "transaction_PARTICIPATEASSETISSUECONTRACT":"购买TRC10通证",
-    "transaction_UNFREEZEASSETCONTRACT":"解冻TRC10 通证",
+    "transaction_UNFREEZEASSETCONTRACT":"解冻TRC10通证",
     "transaction_UPDATEASSETCONTRACT":"更新TRC10通证参数",
     "transaction_ACCOUNTCREATECONTRACT":"激活账户",
     "transaction_WITHDRAWBALANCECONTRACT":"提取奖励",
