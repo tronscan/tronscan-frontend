@@ -113,10 +113,8 @@ export class TRXPrice extends React.PureComponent {
   }
 
   renderPrice(value, priceValues) {
-    console.log('priceValues',priceValues)
     let { currency = "" } = this.props;
     let id = currency || priceValues.priceShown;
-    console.log('priceValues.prices[id.toUpperCase()] * value;',priceValues.prices[id.toUpperCase()] * value)
     return priceValues.prices[id.toUpperCase()] * value;
   }
 
