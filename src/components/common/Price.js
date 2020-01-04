@@ -28,7 +28,7 @@ class PriceProviderCmp extends React.PureComponent {
       priceShown: props.activeCurrency || "TRX",
       currencies: {},
       activePrice: 1,
-      percent_change_24h:0,
+      percent_change_24h: 0
     };
 
     for (let currency of props.currencies) {
@@ -76,9 +76,6 @@ class PriceProviderCmp extends React.PureComponent {
       prices: newPrices,
       activePrice: newPrices[state.priceShown.toUpperCase()]
     }));
-   
-   
-
   }
 
   componentDidMount() {
@@ -135,17 +132,18 @@ export class TRXPrice extends React.PureComponent {
     } = this.props;
     let ele = null;
     let percent_change_24h = 0;
-    if(localStorage.getItem('dataEur')){
-      let dataEurObj = JSON.parse(localStorage.getItem('dataEur'));
-      if(dataEurObj.data){
+    if (localStorage.getItem("dataEur")) {
+      let dataEurObj = JSON.parse(localStorage.getItem("dataEur"));
+      if (dataEurObj.data) {
         percent_change_24h = dataEurObj.data[0].percent_change_24h;
         this.setState({
           percent_change_24h
-        })
+        });
       }
-
     }
-  
+    const myPng = src => {
+      return require(`../../images/home/${src}.png`);
+    };
     return (
       <Consumer>
         {priceValues => {
@@ -216,7 +214,7 @@ export class TRXPrice extends React.PureComponent {
             case "home":
               ele = (
                 <Fragment>
-                    <FormattedNumber
+                  <FormattedNumber
                     value={this.renderPrice(amount, priceValues)}
                     maximumFractionDigits={
                       priceValues.currencies[
@@ -235,14 +233,41 @@ export class TRXPrice extends React.PureComponent {
                         <span className="currentTrxPirce">{value} </span>
                         <span className="currentCurrency">
                           {showCurreny &&
-                          (currency.toUpperCase() ||
-                            priceValues.priceShown.toUpperCase())}
-                          {' '}
+                            (currency.toUpperCase() ||
+                              priceValues.priceShown.toUpperCase())}{" "}
                         </span>
-                        <span className={Number(percent_change_24h)>0?'greenPrice hidden-mobile':'redPrice hidden-mobile'} style={{display:'inline-block'}}>({percent_change_24h}%)</span>
+                        <span
+                          className={
+                            Number(percent_change_24h) > 0
+                              ? "greenPrice hidden-mobile"
+                              : "redPrice hidden-mobile"
+                          }
+                          style={{ display: "inline-block" }}
+                        >
+                          {Number(percent_change_24h) === 0 ? (
+                            <span>({percent_change_24h}%)</span>
+                          ) : (
+                            <span>
+                              ({Number(percent_change_24h) > 0 ? "+" : ""}
+                              {percent_change_24h}%){" "}
+                              {Number(percent_change_24h) > 0 ? (
+                                <img
+                                  className="quotesImg"
+                                  src={myPng("up")}
+                                  alt=""
+                                />
+                              ) : (
+                                <img
+                                  className="quotesImg"
+                                  src={myPng("down")}
+                                  alt=""
+                                />
+                              )}
+                            </span>
+                          )}
+                        </span>
                       </span>
                     )}
-                  
                   </FormattedNumber>
                   {showPopup && (
                     <Tooltip placement="top" isOpen={open} target={id}>
@@ -310,7 +335,7 @@ export class TRXPrice extends React.PureComponent {
                         onMouseLeave={() => this.setState({ open: false })}
                         {...props}
                       >
-                       {value}
+                        {value}
                         {showCurreny &&
                           (currency.toUpperCase() ||
                             priceValues.priceShown.toUpperCase())}

@@ -41,6 +41,7 @@ import {bytesToString} from "@tronscan/client/src/utils/bytes";
 import {hexStr2byteArray} from "@tronscan/client/src/lib/code";
 import {isAddressValid} from "@tronscan/client/src/utils/crypto";
 import ReceiveModal from "./transfer/Receive/ReceiveModal";
+import MenuNavigation from './MenuNavigation';
 import {toastr} from 'react-redux-toastr'
 import Lockr from "lockr";
 import {BarLoader} from "./common/loaders";
@@ -668,6 +669,13 @@ class Navigation extends React.Component {
       window.location.hash = "#/account?from=nav&type=multisign";
   }
 
+  changeCurrentDrawerFun = () =>{
+    const {drawerVisible}= this.state;
+    this.setState({
+      drawerVisible :!drawerVisible
+    })
+  }
+
   renderWallet() {
     let {account, totalTransactions = 0, flags, wallet, activeLanguage} = this.props;
     let {isImportAccount, isTRONlinkLogin, loginWarning, signInWarning, address} = this.state;
@@ -995,7 +1003,6 @@ class Navigation extends React.Component {
 
     let activeComponent = this.getActiveComponent();
     const isShowSideChain = !type || (type && IS_SUNNET);
-    console.log(activeLanguage)
     return (
         <div className="header-top nav-item-page">
           {popup}
@@ -1022,7 +1029,7 @@ class Navigation extends React.Component {
                           className="hvr-underline-from-center hvr-underline-white text-muted"
                         >
                           <span className="TRXPrice">
-                            <span className="trxTitle">TRX:</span> 
+                            <span className="trxTitle">TRX: </span> 
                             <TRXPrice
                               showPopup={false}
                               amount={1}
@@ -1460,247 +1467,7 @@ class Navigation extends React.Component {
             visible={drawerVisible}
           >
             <div className="mobile-draw-menu">
-              <Collapse bordered={false} defaultActiveKey={['1']} expandIconPosition="right" accordion={true}>
-              {
-                filter(routes, r => r.showInMenu !== false).map(route => (
-                  route.linkHref?
-                  <span 
-                    onClick={()=>{
-                      this.setState({
-                        drawerVisible:false
-                      })
-                      activeLanguage == 'zh' ? this.props.history.push(route.zhurl) : this.props.history.push(route.enurl)
-                    }}
-                    className={route.routes ? "nav-link" : "nav-link"} href={activeLanguage == 'zh' ? route.zhurl : route.enurl}>
-                    {route.icon &&
-                    <i className={route.icon + " d-none d-lg-inline-block mr-1"}/>}
-                    {tu(route.label)}
-                  </span>
-                  : 
-                  <Panel header={
-                    <span className={route.routes ? (route.label == 'nav_network' ? 'nav-network-hot mr-2' : "") : ""}> 
-                      <span
-                          className={route.routes ? (route.label == 'nav_network' ? 'mobile-nav-link text-capitalize' : "mobile-nav-link") : "nav-link"}
-                          {...((route.routes && route.routes.length > 0) ? {'data-toggle': 'dropdown'} : {})}
-                      >
-                        {route.icon &&
-                        <i className={route.icon + " d-none d-lg-inline-block mr-1"}/>}
-                        {tu(route.label)}
-                      </span>
-                      <i className="hot-nav"></i>
-                    </span>
-                  } key={route.path}>
-                    {
-                      route.routes && route.label !== "nav_more" && route.label !== "nav_network" &&
-                      <div className="mobile-sub-menu">
-                        {
-                          route.routes && route.routes.map((subRoute, index) => {
-                            if (subRoute === '-') {
-                              return (
-                                  <div key={index} className="dropdown-divider"/>
-                              );
-                            }
-                            if (isString(subRoute)) {
-                              return (
-                                  <h6 key={index}
-                                      className="dropdown-header">{subRoute}</h6>
-                              )
-                            }
-                            if (subRoute.showInMenu === false) {
-                              return null;
-                            }
-                            if (!isUndefined(subRoute.url)) {
-                              return (
-                                  <span
-                                      onClick={()=>{
-                                        this.setState({
-                                          drawerVisible:false
-                                        })
-                                        this.props.history.push(subRoute.url)
-                                      }}
-                                      key={subRoute.url}
-                                      className="dropdown-item text-uppercase"
-                                      href={subRoute.url}>
-                                      {subRoute.icon &&
-                                      <i className={subRoute.icon + " mr-2"}/>}
-                                      {tu(subRoute.label)}
-                                      {subRoute.badge &&
-                                      <Badge value={subRoute.badge}/>}
-                                  </span>
-                              );
-                            }
-                            if (!isUndefined(subRoute.enurl) || !isUndefined(subRoute.zhurl)) {
-                              return (
-                                  <span
-                                      onClick={()=>{
-                                        this.setState({
-                                          drawerVisible:false
-                                        })
-                                        this.props.history.push(subRoute.enurl)
-                                      }}
-                                      key={subRoute.enurl}
-                                      className="dropdown-item text-uppercase"
-                                      href={activeLanguage == 'zh' ? subRoute.zhurl : subRoute.enurl}>
-                                    {subRoute.icon &&
-                                    <i className={subRoute.icon + " mr-2"}/>}
-                                    {tu(subRoute.label)}
-                                    {subRoute.badge &&
-                                    <Badge value={subRoute.badge}/>}
-                                  </span>
-                              );
-                            }
-
-                            return (
-                                <span
-                                    onClick={()=>{
-                                      this.setState({
-                                        drawerVisible:false
-                                      })
-                                      this.props.history.push(subRoute.path)
-                                    }}
-                                    key={subRoute.path}
-                                    className="dropdown-item text-uppercase"
-                                    to={subRoute.path}>
-                                  {subRoute.icon &&
-                                  <i className={subRoute.icon + " mr-2" + " fa_width"}/>}
-                                  {tu(subRoute.label)}
-                                  {subRoute.badge && <Badge value={subRoute.badge}/>}
-                                </span>
-                            );
-                          })
-                        }
-                      </div>
-                    }
-                    {
-                        route.routes && (route.label == "nav_network" || route.label == "nav_more") &&
-                      <div>
-                        {
-                          route.routes && route.routes.map((subRoute, index) => {
-                            return <div className="mobile-sub-menu" key={index}>
-                              <div className="more-menu-line"></div>
-                              {
-                                subRoute.map((Route, j) => {
-                                  if (isString(Route)) {
-                                    return (
-                                        <h6 key={j} className="dropdown-header text-uppercase"> {tu(Route)}</h6>
-                                    )
-                                  }
-
-                                  if (Route.showInMenu === false) {
-                                    return null;
-                                  }
-                                  //wjl
-                                  if (!isUndefined(Route.url) && !Route.sidechain && Route.label !== 'developer_challenge') {
-                                    return (
-                                      <span className='mr-3 d-inline-block developer_challenge_box' key={j+Route.label}>
-
-                                        <span
-                                            onClick={()=>{
-                                              this.setState({
-                                                drawerVisible:false
-                                              })
-                                              this.props.history.push(Route.url)
-                                            }}
-                                            key={Route.url}
-                                            className="dropdown-item text-uppercase"
-                                            href={Route.url}>
-                                            
-                                            {Route.icon &&<i className={Route.icon + " mr-2"} />}
-                                            {tu(Route.label)}
-                                            {Route.badge &&
-                                            <Badge value={Route.badge}/>}
-                                        </span>
-                                        {Route.label==='NILE TESTNET'&& <span className="new-test-net">new</span>} 
-                                      </span>
-                                    );
-                                  }
-                                  if (!isUndefined(Route.url) && !Route.sidechain && Route.label == 'developer_challenge') {
-                                      return (
-                                          <span className="mr-3 d-inline-block developer_challenge_box" key={Route.url+'_'+ Route.label}>
-                                            <span
-                                                onClick={()=>{
-                                                  this.setState({
-                                                    drawerVisible:false
-                                                  })
-                                                
-                                                  this.props.history.push(Route.url)
-                                                }}
-                                                key={Route.url+'_'+ Route.label}
-                                                className="dropdown-item text-uppercase"
-                                                href={Route.url}>
-                                              {Route.icon &&
-                                              <i className={Route.icon + " mr-2"}/>}
-                                                {tu(Route.label)}
-                                                {Route.badge &&
-                                                <Badge value={Route.badge}/>}
-                                          </span>
-                                          <img src={require("../images/home/hot.svg")} title="hot" className="developer_challenge_hot"/>
-                                          </span>
-
-                                      );
-                                  }
-                                  if (isUndefined(Route.url) && Route.sidechain) {
-                                    const sidechainTab = (
-                                      <a href="javascript:"
-                                        key={Route.label}
-                                        className="dropdown-item text-uppercase"
-                                        onClick={() => this.netSelectChange(IS_MAINNET?'sunnet':'mainnet')}
-                                      >
-                                        {Route.icon && <i className={Route.icon + " mr-2"}/>}
-                                        {IS_MAINNET?tu('Side_Chain'):tu('Main_Chain')}
-                                      </a>
-                                    );
-                                    return sidechainTab
-                                  }
-                                  if (!isUndefined(Route.enurl) || !isUndefined(Route.zhurl)) {
-                                    return (
-                                        <span
-                                          onClick={()=>{
-                                            this.setState({
-                                              drawerVisible:false
-                                            })
-                                            activeLanguage == 'zh' ?   this.props.history.push(Route.zhurl) : this.props.history.push(Route.enurl)
-                                          
-                                          }}
-                                            key={Route.enurl}
-                                            className="dropdown-item text-uppercase"
-                                            href={activeLanguage == 'zh' ? Route.zhurl : Route.enurl}>
-                                          {Route.icon &&
-                                          <i className={Route.icon + " mr-2"}/>}
-                                          {tu(Route.label)}
-                                          {Route.badge &&
-                                          <Badge value={Route.badge}/>}
-                                        </span>
-                                    );
-                                  }
-                                  return (
-                                      <span
-                                          onClick={()=>{
-                                            this.setState({
-                                              drawerVisible:false
-                                            })
-                                            this.props.history.push(Route.path)
-                                          }}
-                                          key={Route.path}
-                                          className="dropdown-item text-uppercase"
-                                          to={Route.path}>
-                                        {Route.icon &&
-                                        <i className={Route.icon + " mr-2" + " fa_width"}/>}
-                                        {tu(Route.label)}
-                                        {Route.badge && <Badge value={Route.badge}/>}
-                                      </span>
-                                  );
-                                })
-                              }
-                            </div>
-
-                          })
-                        }
-                      </div>
-                    }
-                  </Panel>
-              ))}
-              </Collapse>
+              <MenuNavigation currentRoutes={routes} changeDrawerFun={()=>this.changeCurrentDrawerFun()}></MenuNavigation>
             </div>
           </Drawer>
         </div>
