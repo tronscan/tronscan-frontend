@@ -308,7 +308,7 @@ class SmartContract extends React.Component {
       if (contract.call_value) {
         contractValue = `${contract.call_value} TRX`;
       } else {
-        contractValue = "0";
+        contractValue = "0 TRX";
       }
     }
 
@@ -431,14 +431,14 @@ class SmartContract extends React.Component {
                             </p>
                             <p className="contract_trx_count">
                               {contract.trxCount}
-                              <Tooltip
+                              {/* <Tooltip
                                 placement="top"
                                 title={intl.formatMessage({
                                   id: "Normal_Transactions"
                                 })}
-                              >
-                                <span className="ml-1"> txns </span>
-                              </Tooltip>
+                              > */}
+                                <span className="ml-1"> Txns </span>
+                              {/* </Tooltip> */}
                             </p>
                           </li>
 
@@ -556,7 +556,8 @@ class SmartContract extends React.Component {
                             <p>{tu("contract_available_energy")}:</p>
                             <div className="d-flex">
                               <span>
-                                <FormattedNumber value={contract.creator.consume_user_resource_percent < 100 ? energyRemaining : 0}/>
+                                <FormattedNumber value={contract.creator.consume_user_resource_percent < 100 ? energyRemaining : 0}/> &nbsp;ENERGY
+                                
                               </span>
                             </div>
                           </li>

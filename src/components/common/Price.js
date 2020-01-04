@@ -148,7 +148,7 @@ export class TRXPrice extends React.PureComponent {
                         onMouseLeave={() => this.setState({ open: false })}
                         {...props}
                       >
-                        {name == "TRX" ? amount / ONE_TRX : amount} {name}
+                        {name == "TRX" ? amount / ONE_TRX : amount} &nbsp; {name}
                       </span>
                     )}
                   </FormattedNumber>
@@ -217,6 +217,7 @@ export class TRXPrice extends React.PureComponent {
                         {...props}
                       >
                         {value}
+                        &nbsp;
                         {showCurreny &&
                           (currency.toUpperCase() ||
                             priceValues.priceShown.toUpperCase())}
@@ -290,6 +291,7 @@ export class TRXPrice extends React.PureComponent {
                         {...props}
                       >
                         {value}
+                        &nbsp;
                         {showCurreny &&
                           (currency.toUpperCase() ||
                             priceValues.priceShown.toUpperCase())}

@@ -2505,7 +2505,22 @@ export class LineTRXSupplyChart extends React.Component {
                       },
                       minRange: 6000000
 
-                    }
+                    },
+                    { // Secondary yAxis
+                        title: {
+                          text: intl.formatMessage({id: 'TRX数量'}),
+                          style: {
+                            color: "#333333"
+                          }
+                        },
+                        labels: {
+                          style: {
+                              color: "#333333"
+                          }
+                        },
+                        minRange: 150000
+  
+                      }
                 ],
                 plotOptions: {
                     column: {
@@ -2642,7 +2657,7 @@ export class LineTRXSupplyChart extends React.Component {
                 }, {
                     name: intl.formatMessage({id: 'TRX销毁量'}),
                     type: 'spline',
-                    yAxis: 1,
+                    yAxis: 2,
                     color: "#999999",
                     data: amountBurned,
                     pointStart: Date.UTC(2019, 11, 28),

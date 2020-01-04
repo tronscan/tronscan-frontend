@@ -91,7 +91,7 @@
     "Recaptcha.js": "/static/js/Recaptcha.6387ec6c.chunk.js",
     "Representative.js": "/static/js/Representative.9289e78d.chunk.js",
     "Representatives.js": "/static/js/Representatives.7b0bac8a.chunk.js",
-    "SingleStats.js": "/static/js/SingleStats.c46830bc.chunk.js",
+    "SingleStats.js": "/static/js/SingleStats.f8651d4d.chunk.js",
     "SmartContract.css": "/static/css/SmartContract.e41670ec.chunk.css",
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -132,7 +132,11 @@
     "Stats.js": "/static/js/Stats.3e43429e.chunk.js",
 =======
     "SmartContract.js": "/static/js/SmartContract.5a2a831b.chunk.js",
+<<<<<<< HEAD
     "Stats.js": "/static/js/Stats.3612fe4c.chunk.js",
+>>>>>>> origin/master
+=======
+    "Stats.js": "/static/js/Stats.40f1912a.chunk.js",
 >>>>>>> origin/master
     "System.js": "/static/js/System.374975be.chunk.js",
     "TRONRating.js": "/static/js/TRONRating.25393d3f.chunk.js",
@@ -154,9 +158,10 @@
     "VoteOverview.js": "/static/js/VoteOverview.0026bf98.chunk.js",
     "WalletWizard.js": "/static/js/WalletWizard.6ed18564.chunk.js",
     "main.css": "/static/css/main.3cbc6601.chunk.css",
-    "main.js": "/static/js/main.4dce7b35.chunk.js",
-    "runtime~main.js": "/static/js/runtime~main.134d265a.js",
+    "main.js": "/static/js/main.78d4735b.chunk.js",
+    "runtime~main.js": "/static/js/runtime~main.26954c0e.js",
     "static/css/70.b903dd66.chunk.css": "/static/css/70.b903dd66.chunk.css",
+<<<<<<< HEAD
 <<<<<<< HEAD
     "static/js/70.175d0108.chunk.js": "/static/js/70.175d0108.chunk.js",
     "static/js/71.9acbdd61.chunk.js": "/static/js/71.9acbdd61.chunk.js",
@@ -168,6 +173,9 @@
 >>>>>>> origin/master
 =======
     "static/js/70.3d015fdc.chunk.js": "/static/js/70.3d015fdc.chunk.js",
+=======
+    "static/js/70.b2d9abe4.chunk.js": "/static/js/70.b2d9abe4.chunk.js",
+>>>>>>> origin/master
     "static/js/71.2b999ba0.chunk.js": "/static/js/71.2b999ba0.chunk.js",
     "static/js/72.7a4d36f5.chunk.js": "/static/js/72.7a4d36f5.chunk.js",
     "static/js/73.0baea12c.chunk.js": "/static/js/73.0baea12c.chunk.js",
@@ -189,6 +197,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     "precache-manifest.0e347f6e9c6ed4ae725be62d67b89fbd.js": "/precache-manifest.0e347f6e9c6ed4ae725be62d67b89fbd.js",
     "precache-manifest.e3b22d73508e34577e791a6d5dbc1141.js": "/precache-manifest.e3b22d73508e34577e791a6d5dbc1141.js",
 =======
@@ -202,6 +211,10 @@
 =======
     "precache-manifest.f850a21f4ab2b8a6ead82bad3b773bc8.js": "/precache-manifest.f850a21f4ab2b8a6ead82bad3b773bc8.js",
     "precache-manifest.fba38a405059d6d0ea46abc71b5c3c43.js": "/precache-manifest.fba38a405059d6d0ea46abc71b5c3c43.js",
+>>>>>>> origin/master
+=======
+    "precache-manifest.97c4e8b8be18f9235f704421d7992bbc.js": "/precache-manifest.97c4e8b8be18f9235f704421d7992bbc.js",
+    "precache-manifest.9e0d3315b0608c756494dbaddf905aca.js": "/precache-manifest.9e0d3315b0608c756494dbaddf905aca.js",
 >>>>>>> origin/master
     "service-worker.js": "/service-worker.js",
     "static/css/70.b903dd66.chunk.css.gz": "/static/css/70.b903dd66.chunk.css.gz",
@@ -249,7 +262,7 @@
     "static/js/5.9e877c53.chunk.js.gz": "/static/js/5.9e877c53.chunk.js.gz",
     "static/js/6.358dd7cd.chunk.js.gz": "/static/js/6.358dd7cd.chunk.js.gz",
     "static/js/7.3debfed8.chunk.js.gz": "/static/js/7.3debfed8.chunk.js.gz",
-    "static/js/70.3d015fdc.chunk.js.gz": "/static/js/70.3d015fdc.chunk.js.gz",
+    "static/js/70.b2d9abe4.chunk.js.gz": "/static/js/70.b2d9abe4.chunk.js.gz",
     "static/js/71.2b999ba0.chunk.js.gz": "/static/js/71.2b999ba0.chunk.js.gz",
     "static/js/72.7a4d36f5.chunk.js.gz": "/static/js/72.7a4d36f5.chunk.js.gz",
     "static/js/73.0baea12c.chunk.js.gz": "/static/js/73.0baea12c.chunk.js.gz",
@@ -365,9 +378,9 @@
     "static/js/Recaptcha.6387ec6c.chunk.js.gz": "/static/js/Recaptcha.6387ec6c.chunk.js.gz",
     "static/js/Representative.9289e78d.chunk.js.gz": "/static/js/Representative.9289e78d.chunk.js.gz",
     "static/js/Representatives.7b0bac8a.chunk.js.gz": "/static/js/Representatives.7b0bac8a.chunk.js.gz",
-    "static/js/SingleStats.c46830bc.chunk.js.gz": "/static/js/SingleStats.c46830bc.chunk.js.gz",
+    "static/js/SingleStats.f8651d4d.chunk.js.gz": "/static/js/SingleStats.f8651d4d.chunk.js.gz",
     "static/js/SmartContract.5a2a831b.chunk.js.gz": "/static/js/SmartContract.5a2a831b.chunk.js.gz",
-    "static/js/Stats.3612fe4c.chunk.js.gz": "/static/js/Stats.3612fe4c.chunk.js.gz",
+    "static/js/Stats.40f1912a.chunk.js.gz": "/static/js/Stats.40f1912a.chunk.js.gz",
     "static/js/System.374975be.chunk.js.gz": "/static/js/System.374975be.chunk.js.gz",
     "static/js/TRONRating.25393d3f.chunk.js.gz": "/static/js/TRONRating.25393d3f.chunk.js.gz",
     "static/js/Token20Detail.3fee4759.chunk.js.gz": "/static/js/Token20Detail.3fee4759.chunk.js.gz",
@@ -393,8 +406,13 @@
 =======
     "static/js/VoteOverview.0026bf98.chunk.js.gz": "/static/js/VoteOverview.0026bf98.chunk.js.gz",
     "static/js/WalletWizard.6ed18564.chunk.js.gz": "/static/js/WalletWizard.6ed18564.chunk.js.gz",
+<<<<<<< HEAD
     "static/js/main.4dce7b35.chunk.js.gz": "/static/js/main.4dce7b35.chunk.js.gz",
     "static/js/runtime~main.134d265a.js.gz": "/static/js/runtime~main.134d265a.js.gz",
+>>>>>>> origin/master
+=======
+    "static/js/main.78d4735b.chunk.js.gz": "/static/js/main.78d4735b.chunk.js.gz",
+    "static/js/runtime~main.26954c0e.js.gz": "/static/js/runtime~main.26954c0e.js.gz",
 >>>>>>> origin/master
     "static/media/10.svg": "/static/media/10.7b00f7c4.svg",
     "static/media/20.svg": "/static/media/20.8b13bad9.svg",
