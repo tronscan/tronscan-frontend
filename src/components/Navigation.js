@@ -995,12 +995,13 @@ class Navigation extends React.Component {
 
     let activeComponent = this.getActiveComponent();
     const isShowSideChain = !type || (type && IS_SUNNET);
-
+    console.log(activeLanguage)
     return (
         <div className="header-top nav-item-page">
           {popup}
           <div className="logo-wrapper">
-            <div className="py-2 d-flex px-0 menu-nav-wrapper">
+            {/* zh en ko ar fa nav menu flex space-between*/}
+            <div className={activeLanguage === 'zh' || activeLanguage === 'en' || activeLanguage === 'ko' || activeLanguage === 'ar' || activeLanguage === 'fa' ? "py-2 d-flex px-0 single-menu-nav-wrapper" : "py-2 d-flex px-0 menu-nav-wrapper"}>
               <div className="logoTrxPrice">
                 <div className="mobileFlexible">
                   <Link to="/">
@@ -1068,7 +1069,7 @@ class Navigation extends React.Component {
                                     {tu(route.label)}
                                   </HrefLink>
                                   :
-                                  <span   className={route.routes ? (route.label == 'nav_network' ? 'nav-network-hot mr-2' : "") : ""}> <NavLink
+                                  <span className={route.routes ? (route.label == 'nav_network' ? 'nav-network-hot mr-2' : "") : ""}> <NavLink
                                       className={route.routes ? (route.label == 'nav_network' ? 'nav-link text-capitalize' : "nav-link") : "nav-link"}
                                       {...((route.routes && route.routes.length > 0) ? {'data-toggle': 'dropdown'} : {})}
                                       activeClassName="active"
@@ -1264,14 +1265,14 @@ class Navigation extends React.Component {
               
 
               <div className="loginInfoNavBar">
-                <div className="navbar navbar-expand-md navbar-dark py-0">
+                <div className="navbar navbar-expand-md navbar-dark py-0 page-right-navbar">
                   <ul className="navbar-nav navbar-right wallet-nav">
                     {
                       wallet.isOpen && <Notifications wallet={wallet} notifications={notifications}/>
                     }
                     {this.renderWallet()}
                     <li className="nav-item dropdown navbar-right hidden-mobile" style={{display:'inline-block'}}>
-                        <a className="nav-link dropdown-toggle dropdown-menu-right "
+                        <a className="nav-link dropdown-toggle dropdown-menu-right pr-0"
                           data-toggle="dropdown"
                           href="javascript:">{languages[activeLanguage]}</a>
                         <div className="dropdown-menu languages-menu">
