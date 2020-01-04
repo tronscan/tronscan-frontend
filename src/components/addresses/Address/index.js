@@ -683,21 +683,21 @@ class Address extends React.Component {
       <div style={{ lineHeight: "25px" }}>
         <div style={{ borderBottom: "1px solid #eee", paddingBottom: "5px" }}>
           {tu("address_get_energe")}：
-          <FormattedNumber value={GetEnergy / ONE_TRX} />
-          TRX ({GetEnergyPer}%)
+          <FormattedNumber value={GetEnergy / ONE_TRX} />&nbsp;TRX
+           ({GetEnergyPer}%)
           <br />
           {tu("address_get_bandwith")}：
-          <FormattedNumber value={GetBandWidth / ONE_TRX} />
-          TRX ({GetBandWidthPer}%)
+          <FormattedNumber value={GetBandWidth / ONE_TRX} />&nbsp;TRX
+           ({GetBandWidthPer}%)
         </div>
         <div style={{ paddingTop: "5px" }}>
           {tu("address_freeze_owner")}：
-          <FormattedNumber value={Owner / ONE_TRX} />
-          TRX ({OwnerPer}%)
+          <FormattedNumber value={Owner / ONE_TRX} />&nbsp;TRX
+           ({OwnerPer}%)
           <br />
           {tu("address_freeze_other")}：
-          <FormattedNumber value={Other / ONE_TRX} />
-          TRX ({OtherPer}%)
+          <FormattedNumber value={Other / ONE_TRX} />&nbsp;TRX
+           ({OtherPer}%)
         </div>
       </div>
     );
@@ -705,13 +705,11 @@ class Address extends React.Component {
       <div>
         <span className="ml-1">(</span>
         {tu("address_tron_power_remaining")}:{" "}
-        <FormattedNumber value={balance / ONE_TRX} />
-        TRX &nbsp;
+        <FormattedNumber value={balance / ONE_TRX} />&nbsp;TRX &nbsp;
         {tu("freeze")}:{" "}
         <Tooltip placement="top" innerClassName="w-100" title={TooltipText}>
           <span style={{color:'rgb(255, 163, 11)'}}>
-          <FormattedNumber value={totalPower / ONE_TRX} />
-          TRX
+          <FormattedNumber value={totalPower / ONE_TRX} />&nbsp;TRX&nbsp;
           </span>
         </Tooltip>
         <span>)</span>
@@ -840,7 +838,7 @@ class Address extends React.Component {
                               <span className="ml-1">:</span>
                             </th>
                             <td>
-                              <span>{address.totalTransactionCount}</span>
+                              <span>{address.totalTransactionCount} Txns</span>
                             </td>
                           </tr>
                           <tr>
@@ -849,16 +847,16 @@ class Address extends React.Component {
                               <div className="d-flex">
                                 <div>
                                   {stats.transactions_in +
-                                    stats.transactions_out}
+                                    stats.transactions_out} Txns
                                 </div>
                                 <div>
                                   <span className="ml-1">(</span>
                                   <i className="fa fa-arrow-down text-success" />
                                   &nbsp;
-                                  <span>{stats.transactions_in}</span>&nbsp;
+                                  <span>{stats.transactions_in} Txns</span>&nbsp;
                                   <i className="fa fa-arrow-up  text-danger" />
                                   &nbsp;
-                                  <span>{stats.transactions_out}</span>&nbsp;
+                                  <span>{stats.transactions_out} Txns</span>&nbsp;
                                   <span>)</span>
                                 </div>
                               </div>
@@ -891,19 +889,19 @@ class Address extends React.Component {
                                                 amount={(totalPower) / ONE_TRX}/> */}
                                   <FormattedNumber
                                     value={totalPower / ONE_TRX}
-                                  ></FormattedNumber>
+                                  ></FormattedNumber> TP
                                   <div>
                                     <span className="ml-1">(</span>{" "}
                                     {tu("address_tron_power_used")}:{" "}
                                     <FormattedNumber
                                       value={address.voteTotal}
-                                    ></FormattedNumber>
+                                    ></FormattedNumber> TP
                                     &nbsp; {tu("address_tron_power_remaining")}:{" "}
                                     <FormattedNumber
                                       value={
                                         totalPower / ONE_TRX - address.voteTotal
                                       }
-                                    ></FormattedNumber>{" "}
+                                    ></FormattedNumber>{" "}TP&nbsp;
                                     <span>)</span>
                                   </div>
                                 </li>

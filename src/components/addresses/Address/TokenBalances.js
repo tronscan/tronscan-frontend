@@ -175,7 +175,7 @@ class TokenBalances extends React.Component {
                     return <span>
                         <FormattedNumber value={text}  maximumFractionDigits={Number(record.map_token_precision)}/>
                         <span>
-                           &nbsp; {record.map_token_name_abbr}
+                           &nbsp;{record.map_token_name_abbr}
                         </span>
                     </span> 
                 }

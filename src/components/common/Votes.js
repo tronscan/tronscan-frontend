@@ -101,7 +101,7 @@ class Votes extends React.Component {
     ];
     let column_c = [
       {
-        title: upperFirst(intl.formatMessage({id: 'candidate'})),
+        title: upperFirst(intl.formatMessage({id: 'witness'})),
         dataIndex: 'candidateAddress',
         key: 'candidateAddress',
         align: 'left',
@@ -179,7 +179,7 @@ class Votes extends React.Component {
       tableInfo = intl.formatMessage({id: 'view_total'}) + ' ' + total + ' ' + intl.formatMessage({id: 'voter_unit'});
     }
     if(filter.voter){
-      tableInfo = intl.formatMessage({id: 'view_total'}) + ' ' + total + ' ' + intl.formatMessage({id: 'vote_unit'});
+      tableInfo = intl.formatMessage({id: 'view_total'}) + ' ' + total + ' ' + intl.formatMessage({id: 'table_info_big2'});
     }
 
     if (!loading && votes.length === 0) {
