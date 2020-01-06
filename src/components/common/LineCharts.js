@@ -118,6 +118,7 @@ export class LineReactHighChartHomeAddress extends React.Component {
             _config.title.text = "No data";
         }
         if (source == 'home'){
+            _config.title.text = intl.formatMessage({id:'14_day_address_growth'})
             if (total && total.length > 0) {
                 //_config.xAxis.categories = [];
                 total.map((val) => {
@@ -156,7 +157,7 @@ export class LineReactHighChartHomeAddress extends React.Component {
             _config.yAxis[1].tickAmount = 4;
             _config.yAxis[0].allowDecimals = true;
             _config.yAxis[1].allowDecimals = true;
-            _config.exporting.enabled = false;
+            _config.exporting.enabled = true;
             //_config.yAxis.min = (data[0].total - 100000)< 0  ? 0 : data[0].total - 100000 ;
             // if(IS_MAINNET){
             //     _config.yAxis.tickInterval = 100000;
@@ -228,6 +229,7 @@ export class LineReactHighChartAdd extends React.Component {
             _config.title.text = "No data";
         }
         if (source == 'home'){
+            _config.title.text = intl.formatMessage({id:'14_day_address_growth'})
             if (data && data.length > 0) {
                 _config.xAxis.categories = [];
 
@@ -239,7 +241,7 @@ export class LineReactHighChartAdd extends React.Component {
                 })
             }
             _config.chart.spacingTop = 20;
-            _config.exporting.enabled = false;
+            _config.exporting.enabled = true;
             _config.yAxis.min = (data[0].total - 100000)< 0  ? 0 : data[0].total - 100000 ;
             if(IS_MAINNET){
                 _config.yAxis.tickInterval = 100000;
@@ -399,13 +401,34 @@ export class LineReactHighChartHomeTx extends React.Component {
                     }
                 }
             }
+            
+            _config.tooltip.shared = true;
+            
+           
             _config.tooltip.formatter = function () {
-                let date = intl.formatDate(this.point.date);
-                return (
-                    intl.formatMessage({id: 'name'}) + ' : ' + intl.formatMessage({id: this.point.name}) + '<br/>' +
-                    intl.formatMessage({id: 'date'}) + ' : ' + date + '<br/>' +
-                    intl.formatMessage({id: 'total_transactions'}) + ' : ' + this.point.y
-                )
+                // let date = intl.formatDate(this.point.date);
+                var s;
+                var points = this.points;
+                var pointsLength = points.length;
+               
+                s = '<div class="" style=""><p ><span style="color:#C23631">'+ moment(points[0].point.date).format("YYYY-MM-DD") + '</span></p><br/>'
+                s+= '<span style="float:right">'+intl.formatMessage({id:'total_transactions'})+'</span><br/>'
+                for (let index = 0; index < pointsLength; index += 1) {
+                    s += '<p style="display:flex;">'+
+                        '<span style="">' + '<span style="color:' + points[index].series.color + ';font-size: 15px !important;">\u25A0</span> ' + intl.formatMessage({id: points[index].series.name })+ '</span>' +
+                        '<span style=""><span><b style="color:#C23631">' +(points[index].series.name == intl.formatMessage({id: 'freezing_column_freezing_rate'}) ? Highcharts.numberFormat(points[index].y, 2, '.', ',') + ' %</b>' : points[index].series.name ==  intl.formatMessage({id: 'freezing_column_total_circulation'}) ?  toThousands((new BigNumber(points[index].y)).decimalPlaces(6)) + '</br>':Highcharts.numberFormat(points[index].y, 0, '.', ',') + '</br>')
+                        +'</span>'+
+                        '</span></p>'
+                }
+                s += '</div>';
+                return s;
+                    
+                
+            //     // return (
+            //     //     intl.formatMessage({id: 'name'}) + ' : ' + intl.formatMessage({id: this.point.name}) + '<br/>' +
+            //     //     intl.formatMessage({id: 'date'}) + ' : ' + date + '<br/>' +
+            //     //     intl.formatMessage({id: 'total_transactions'}) + ' : ' + this.point.y
+            //     // )
             }
         }
         Highcharts.chart(document.getElementById(id),_config);
@@ -459,6 +482,9 @@ export class LineReactHighChartTx extends React.Component {
             _config.yAxis.tickAmount = 4;
             _config.yAxis.allowDecimals = true;
             _config.exporting.enabled = true;
+            _config.title.text = intl.formatMessage({
+                id:'14_day_transaction_history'
+            });
             if(IS_MAINNET){
                 _config.yAxis.tickInterval = 100000;
             }else{
@@ -2273,7 +2299,7 @@ export class OverallFreezingRateChart extends React.Component {
                         for (let index = 0; index < pointsLength; index += 1) {
                             s += '<tr><td style="padding-top:4px;padding-bottom:4px;border-top:1px solid #D5D8DC;" valign="top">' + '<span style="color:' + points[index].series.color + ';font-size: 15px !important;">\u25A0</span> ' + intl.formatMessage({id: points[index].series.name })+ '</td>' +
                                 '<td align="right" style="padding-top:5px;padding-left:10px;padding-bottom:4px;border-top:1px solid #D5D8DC;"><span ><b style="color:#C23631">' +
-                                (points[index].series.name == intl.formatMessage({id: 'freezing_column_freezing_rate'}) ? Highcharts.numberFormat(points[index].y, 2, '.', ',') + ' %</b>' : points[index].series.name ==  intl.formatMessage({id: 'freezing_column_total_circulation'}) ?  toThousands((new BigNumber(points[index].y)).decimalPlaces(6)) + '</b>':Highcharts.numberFormat(points[index].y, 0, '.', ',') + '</b>')
+                                (points[index].series.name == intl.formatMessage({id: 'freezing_column_freezing_rate'}) ? Highcharts.numberFormat(points[index].y, 2, '.', ',') + ' %</b>' : points[index].series.name ==  intl.formatMessage({id: 'freezing_column_total_circulation'}) ?  toThousands((new BigNumber(points[index].y)).decimalPlaces(6)) + '</br>':Highcharts.numberFormat(points[index].y, 0, '.', ',') + '</br>')
                                 + '</span>' +
                                 '</td></tr>'
                         }

@@ -535,7 +535,11 @@ export default {
             }
         },
         title: {
-            text: ''
+            text: '',
+            style:{
+                color: '#c23631',
+                fontSize:"16px"
+            }
         },
         credits: {
             enabled: false
@@ -681,7 +685,11 @@ export default {
             }
         },
         title: {
-            text: ''
+            text: '',
+            style: {
+                color: '#c23631',
+                fontSize:'16px'
+            }
         },
         credits: {
             enabled: false

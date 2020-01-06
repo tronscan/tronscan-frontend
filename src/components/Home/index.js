@@ -679,7 +679,7 @@ export default class Home extends Component {
               <div className="row mt-0 mt-md-4 mb-3">
                 <div className="col-md-6 mt-3 mt-md-0 ">
                   <div className="card " style={styles.card}>
-                    <div
+                    {/* <div
                       className="card-header bg-tron-light pb-0"
                       style={styles.card}
                     >
@@ -688,7 +688,7 @@ export default class Home extends Component {
                           {tu("14_day_transaction_history")}
                         </Link>
                       </h5>
-                    </div>
+                    </div> */}
                     <div className="card-body pt-0">
                       <div
                         style={
@@ -722,7 +722,7 @@ export default class Home extends Component {
                 </div>
                 <div className="col-md-6 mt-3 mt-md-0 ">
                   <div className="card" style={styles.card}>
-                    <div
+                    {/* <div
                       className="card-header bg-tron-light pb-0"
                       style={styles.card}
                     >
@@ -731,7 +731,7 @@ export default class Home extends Component {
                           {tu("14_day_address_growth")}
                         </Link>
                       </h5>
-                    </div>
+                    </div> */}
                     <div className="card-body pt-0">
                       <div
                         style={
@@ -768,19 +768,17 @@ export default class Home extends Component {
               <div className="row mt-0 mt-md-4 mb-3">
                 <div className="col-md-6 mt-3 mt-md-0 ">
                   <div className="card " style={styles.card}>
-                    <div
+                    {/* <div
                       className="card-header bg-tron-light color-grey-100 text-center pb-0"
                       style={styles.card}
                     >
                       <h5 className="mt-1 lh-150">
-                        {/*<Link to="blockchain/stats/txOverviewStats">*/}
-                        {/*{tu("14_day_transaction_history")}*/}
-                        {/*</Link>*/}
+                        
                         <span className="color-tron-100">
                           {tu("14_day_transaction_history")}
                         </span>
                       </h5>
-                    </div>
+                    </div> */}
                     <div
                       className="card-body pt-0"
                       style={{ paddingLeft: "2rem", paddingRight: "2rem" }}
@@ -788,15 +786,15 @@ export default class Home extends Component {
                       <div
                         style={
                           IS_MAINNET
-                            ? { minWidth: 255, height: 260 }
-                            : { minWidth: 255, height: 200 }
+                            ? { minWidth: 255, height: 310 }
+                            : { minWidth: 255, height: 250 }
                         }
                       >
                         {txOverviewStats === null ? (
                           <TronLoader />
                         ) : IS_MAINNET ? (
                           <LineReactHighChartHomeTx
-                            style={{ minWidth: 255, height: 260 }}
+                            style={{ minWidth: 255, height: 310 }}
                             data={txOverviewStats}
                             sun={SunTxOverviewStats}
                             total={TotalTxOverviewStats}
@@ -805,7 +803,7 @@ export default class Home extends Component {
                           />
                         ) : (
                           <LineReactHighChartTx
-                            style={{ minWidth: 255, height: 200 }}
+                            style={{ minWidth: 255, height: 250 }}
                             data={txOverviewStats}
                             intl={intl}
                             source="home"
@@ -817,19 +815,17 @@ export default class Home extends Component {
                 </div>
                 <div className="col-md-6 mt-3 mt-md-0 ">
                   <div className="card" style={styles.card}>
-                    <div
+                    {/* <div
                       className="card-header bg-tron-light color-grey-100 text-center pb-0"
                       style={styles.card}
                     >
                       <h5 className="mt-1 lh-150">
-                        {/*<Link to="blockchain/stats/addressesStats">*/}
-                        {/*{tu("14_day_address_growth")}*/}
-                        {/*</Link>*/}
-                        <span className="color-tron-100">
-                          {tu("14_day_address_growth")}
-                        </span>
+                        <Link to="blockchain/stats/addressesStats">
+                        {tu("14_day_address_growth")}
+                        </Link>
+                       
                       </h5>
-                    </div>
+                    </div> */}
                     <div
                       className="card-body pt-0"
                       style={{ paddingLeft: "2rem", paddingRight: "2rem" }}
@@ -837,15 +833,15 @@ export default class Home extends Component {
                       <div
                         style={
                           IS_MAINNET
-                            ? { minWidth: 255, height: 260 }
-                            : { minWidth: 255, height: 200 }
+                            ? { minWidth: 255, height: 310 }
+                            : { minWidth: 255, height: 250 }
                         }
                       >
                         {addressesStats === null ? (
                           <TronLoader />
                         ) : IS_MAINNET ? (
                           <LineReactHighChartHomeAddress
-                            style={{ minWidth: 255, height: 260 }}
+                            style={{ minWidth: 255, height: 310 }}
                             data={addressesStats}
                             sun={SunAddressesStats}
                             total={TotalAddressesStats}
@@ -854,7 +850,7 @@ export default class Home extends Component {
                           />
                         ) : (
                           <LineReactHighChartAdd
-                            style={{ minWidth: 255, height: 200 }}
+                            style={{ minWidth: 255, height: 250 }}
                             data={addressesStats}
                             intl={intl}
                             source="home"
