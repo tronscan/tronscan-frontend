@@ -19,6 +19,8 @@ class UnFreezeBalanceContract extends React.Component {
   }
   render() {
     let { contract } = this.props;
+    let signList = contract.signature_addresses || [];
+
     return (
       <Fragment>
         <TransationTitle contractType={contract.contractType}></TransationTitle>
@@ -43,9 +45,9 @@ class UnFreezeBalanceContract extends React.Component {
                   <BandwidthUsage cost={contract.cost} />
                 </Field>
               )}
-              {contract.signList && (
+              {signList && signList.length > 1 && (
                 <Field label="signature_list">
-                  <SignList signList={contract.signList} />
+                  <SignList signList={signList} />
                 </Field>
               )}
             </tbody>

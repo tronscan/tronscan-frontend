@@ -27,6 +27,8 @@ class TransferAssetContract extends React.Component {
     if (TokenIDList) {
       tokenIdData = rebuildList(TokenIDList, "asset_name", "amount")[0];
     }
+    let signList = contract.signature_addresses || [];
+
 
     return (
       <Fragment>
@@ -62,9 +64,9 @@ class TransferAssetContract extends React.Component {
                   <BandwidthUsage cost={contract.cost} />
                 </Field>
               )}
-              {contract.signList && (
+               {signList && signList.length > 1 && (
                 <Field label="signature_list">
-                  <SignList signList={contract.signList} />
+                  <SignList signList={signList} />
                 </Field>
               )}
             </tbody>
