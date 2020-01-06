@@ -11,6 +11,7 @@ import SignList from "./common/SignList";
 import {TransationTitle} from './common/Title'
 import {injectIntl} from "react-intl";
 import {toThousands} from '../../../../utils/number'
+import { QuestionMark } from "../../../common/QuestionMark.js";
 
 function TriggerContract({contract,intl}){
     const defaultImg = require("../../../../images/logo_default.png");
@@ -380,9 +381,15 @@ function TriggerContract({contract,intl}){
             {contract.signature_addresses && contract.signature_addresses.length > 1 && (
               <div className="d-flex border-bottom">
                 <div className="content_box_name">
-                  {tu("consume_energy")}:
+                  {tu("signature_list")}
+                  <span className="ml-1">
+                    <QuestionMark
+                      placement="top"
+                      text="only_show_sinatures"
+                    />
+                  </span>:
                 </div>
-                <div>
+                <div className="flex1" style={{padding: '10px 0'}}>
                   <SignList signList={contract.signature_addresses} />
                 </div>
               </div>

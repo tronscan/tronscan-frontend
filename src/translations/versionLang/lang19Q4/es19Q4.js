@@ -208,7 +208,7 @@ export const lang19Q4 = {
 
      // transaction info  2019-12-25  leon
      "consume_bandwidth":"Consumir ancho de banda",
-     "consume_energy":"Consumir ancho de banda",
+     "consume_energy":"Consumir energía",
      "net_free":"Consumo de ancho de banda congelado / libre",
      "net_burn":"Quemar {num} TRX para ancho de banda",
      "energy_burn":"Quemar {num} TRX para obtener energía",

@@ -30,7 +30,7 @@ export default function WitnessCreateContract({contract}){
             </Field>
           )}
           {contract.signature_addresses && contract.signature_addresses.length > 1 && (
-            <Field label="signature_list">
+            <Field label="signature_list" tip={true} text={tu('only_show_sinatures')}>
               <SignList signList={contract.signature_addresses} />
             </Field>
           )}

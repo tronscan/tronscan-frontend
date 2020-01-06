@@ -3448,17 +3448,17 @@ h5 {
   &_box_name {
     // display: flex;
     padding-top: 10px;
-    line-height: 20px;
     font-size: 14px;
     width: 150px;
     color: #666666;
+    line-height: 21px;
     // &:after{
     //   content: ':';
     // }
   }
 
   &_name {
-    width: 120px;
+    min-width: 90px;
     font-size: 14px;
   }
 
