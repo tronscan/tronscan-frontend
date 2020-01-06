@@ -189,11 +189,15 @@ export const lang19Q4 = {
    "Supply_amount_TRX_produced_tip":"出块奖励+节点奖励",
    "Supply_voting_rewards":"投票奖励",     
    "Supply_block_rewards":"出块奖励", 
-   "Supply_amount_TRX_burned":"TRX销毁量", 
-   "Supply_amount_TRX_burned_tip1":"非独立日:手续费销毁",    
-   "Supply_amount_TRX_burned_tip2":"独立日:手续费销毁+独立日销毁量（1,000,000,000 TRX）",    
+   "Supply_amount_TRX_burned":"TRX销毁量",
+   "Supply_amount_TRX_burned_y_title":"销毁量（TRX）",
+   "Supply_amount_TRX_burned_tip1":"手续费销毁",    
+   "Supply_amount_TRX_burned_tip2":"手续费销毁+独立日销毁量（1,000,000,000 TRX）",    
    "Supply_amount_net_new":"净值",
+   "Supply_amount_net_new_y_title":" 产生量/净值（TRX）",
    "Supply_amount_net_new_tip":"TRX产生量+TRX销毁量",
+  
+
 
 
 

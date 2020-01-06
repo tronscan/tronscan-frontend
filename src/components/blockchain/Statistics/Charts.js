@@ -335,7 +335,6 @@ class StatCharts extends React.Component {
             item.worth_num =  (item.total_block_pay + item.total_node_pay) - item.total_burn;
         })
         data.pop()
-        console.log('data222',data)
         this.setState({
             SupplyData:sortBy(data, function(o) { return o.timestamp; }),
             SupplyDataRevers:sortBy(data, function(o) { return -o.timestamp; }),
@@ -508,13 +507,13 @@ class StatCharts extends React.Component {
             },
             {
                 title: () => {
-                    let text = intl.formatMessage({id: 'Supply_TRX_total_tip'}); 
+                    //let text = intl.formatMessage({id: 'Supply_TRX_total_tip'}); 
                     return (
                     <div>
                         {upperFirst(intl.formatMessage({id: 'Supply_TRX_total'}))}
-                        <span className="ml-2">
+                        {/* <span className="ml-2">
                              <QuestionMark placement="top" text={text} />
-                        </span>
+                        </span> */}
                     </div>
                     )
                 },
@@ -595,7 +594,7 @@ class StatCharts extends React.Component {
             render: (text, record, index) => {
                 return <span>
                         <FormattedNumber
-                        value={record.total_burn}
+                        value={record.total_burn_num}
                         minimumFractionDigits={6}
                         maximumFractionDigits={6}
                     /> 

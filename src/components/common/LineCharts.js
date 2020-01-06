@@ -2399,18 +2399,18 @@ export class LineTRXSupplyChart extends React.Component {
                 vote: o.total_node_pay,
             }
         })
-        amountBurned[amountBurned.length-1] = parseFloat(-1000000)
-        console.log('totalWorth',totalWorth)
+        // amountBurned[amountBurned.length-1] = parseFloat(-1000000)
+        // console.log('totalWorth',totalWorth)
         if (newData && newData.length > 0) {
             let options =  {
                 title: {
-                    text: intl.formatMessage({id: 'charts_overall_freezing_rate'})
+                    text: intl.formatMessage({id: 'Supply_TRX_total_chart'})
                 },
                 exporting: {
                     enabled: true,
                     sourceWidth: 1072,
                     sourceHeight: 500,
-                    filename:intl.formatMessage({id: 'charts_overall_freezing_rate'})
+                    filename:intl.formatMessage({id: 'Supply_TRX_total_chart'})
                 },
                 rangeSelector: {
                     inputDateFormat: '%Y-%m-%d',
@@ -2493,17 +2493,17 @@ export class LineTRXSupplyChart extends React.Component {
                         }
                       },
                       title: {
-                        text: intl.formatMessage({id: 'Supply_total_y_title'}),
+                        text: intl.formatMessage({id: 'freezing_column_total_circulation_chart'}),
                         style: {
-                            color: "##C64844"
+                            color: "#C64844"
                         }
                       },
                       opposite: false,
-                      min:-50000000000
+                      min:-30000000000
                     },
                     { // Secondary yAxis
                       title: {
-                        text: intl.formatMessage({id: 'Supply_amount_TRX'}),
+                        text: intl.formatMessage({id: 'Supply_amount_net_new_y_title'}),
                         style: {
                           color: "#333333"
                         }
@@ -2513,33 +2513,31 @@ export class LineTRXSupplyChart extends React.Component {
                             color: "#333333"
                         }
                       },
-                      min:-2500000
-                      //minRange: 6000000
-
+                      min:-300000,
+                      minRange: 6000000
                     },
-                    { // Secondary yAxis
+                    { // Third yAxis
                         title: {
-                          text: intl.formatMessage({id: 'Supply_amount_TRX'}),
+                          text: intl.formatMessage({id: 'Supply_amount_TRX_burned_y_title'}),
                           style: {
-                            color: "#333333"
+                            color: "#999999"
                           }
                         },
                         labels: {
                           style: {
-                              color: "#333333"
+                              color: "#999999"
                           }
                         },
-                        min:-1000000,
+                        min:-300000,
                         max: 1000000,
-  
                       },
                 ],
                 plotOptions: {
-                    column: {
-                        // grouping: false,
-                        // shadow: false,
-                        // borderWidth: 0
-                    },
+                    // column: {
+                    //     // grouping: false,
+                    //     // shadow: false,
+                    //     // borderWidth: 0
+                    // },
                     spline: {
                         marker: {
                            // fillColor:"#5A5A5A",
@@ -2571,42 +2569,42 @@ export class LineTRXSupplyChart extends React.Component {
                             //         });
                             //     }
                             // },
-                            hide: function(event) {
-                                var index = this.index;
-                                var series = this.chart.series;
-                                console.log(series[index].name)
-                                if(series[index].name == intl.formatMessage({id: 'freezing_column_total_circulation'})) {
-                                    this.chart.yAxis[1].update({
-                                        title:{
-                                            text: intl.formatMessage({id: 'freezing_column_total_frozen_chart'})
-                                        }
-                                    });
-                                }else if(series[index].name == intl.formatMessage({id: 'freezing_column_total_frozen'})){
-                                    this.chart.yAxis[1].update({
-                                        title:{
-                                            text: intl.formatMessage({id: 'freezing_column_total_circulation_chart'})
-                                        }
-                                    });
-                                }
-                            },
-                            show: function() {
-                                var index = this.index;
-                                var series = this.chart.series;
-                                console.log(series[index].name)
-                                if(series[index].name == intl.formatMessage({id: 'freezing_column_total_circulation'})) {
-                                    this.chart.yAxis[1].update({
-                                        title:{
-                                            text: intl.formatMessage({id: 'freezing_column_total_circulation_chart'})
-                                        }
-                                    });
-                                }else if(series[index].name == intl.formatMessage({id: 'freezing_column_total_frozen'})){
-                                    this.chart.yAxis[1].update({
-                                        title:{
-                                            text: intl.formatMessage({id: 'freezing_column_total_frozen_chart'})
-                                        }
-                                    });
-                                }
-                            }
+                            // hide: function(event) {
+                            //     var index = this.index;
+                            //     var series = this.chart.series;
+                            //     console.log(series[index].name)
+                            //     if(series[index].name == intl.formatMessage({id: 'freezing_column_total_circulation'})) {
+                            //         this.chart.yAxis[1].update({
+                            //             title:{
+                            //                 text: intl.formatMessage({id: 'freezing_column_total_frozen_chart'})
+                            //             }
+                            //         });
+                            //     }else if(series[index].name == intl.formatMessage({id: 'freezing_column_total_frozen'})){
+                            //         this.chart.yAxis[1].update({
+                            //             title:{
+                            //                 text: intl.formatMessage({id: 'freezing_column_total_circulation_chart'})
+                            //             }
+                            //         });
+                            //     }
+                            // },
+                            // show: function() {
+                            //     var index = this.index;
+                            //     var series = this.chart.series;
+                            //     console.log(series[index].name)
+                            //     if(series[index].name == intl.formatMessage({id: 'freezing_column_total_circulation'})) {
+                            //         this.chart.yAxis[1].update({
+                            //             title:{
+                            //                 text: intl.formatMessage({id: 'freezing_column_total_circulation_chart'})
+                            //             }
+                            //         });
+                            //     }else if(series[index].name == intl.formatMessage({id: 'freezing_column_total_frozen'})){
+                            //         this.chart.yAxis[1].update({
+                            //             title:{
+                            //                 text: intl.formatMessage({id: 'freezing_column_total_frozen_chart'})
+                            //             }
+                            //         });
+                            //     }
+                            // }
                         }
                     }
                 },
@@ -2627,7 +2625,7 @@ export class LineTRXSupplyChart extends React.Component {
                         for (let index = 0; index < pointsLength; index += 1) {
                             s += '<tr><td style="padding-top:4px;padding-bottom:4px;border-top:1px solid #D5D8DC;color:' + points[index].series.color + ';" valign="top">' + '<span style="color:' + points[index].series.color + ';font-size: 15px !important;">\u25A0</span> ' + intl.formatMessage({id: points[index].series.name })+ '</td>' +
                                 '<td align="right" style="padding-top:5px;padding-left:10px;padding-bottom:4px;border-top:1px solid #D5D8DC;"><span ><b style="color:' + points[index].series.color + ';">' +
-                                (points[index].series.name == intl.formatMessage({id: 'freezing_column_freezing_rate'}) ? Highcharts.numberFormat(points[index].y, 2, '.', ',') + ' %</b>' : points[index].series.name ==  intl.formatMessage({id: 'freezing_column_total_circulation'}) ?  toThousands((new BigNumber(points[index].y)).decimalPlaces(6)) + '</b>':Highcharts.numberFormat(points[index].y, 0, '.', ',') + '</b>')
+                                (points[index].series.name == intl.formatMessage({id: 'Supply_TRX_total'}) ? Highcharts.numberFormat(points[index].y, 6, '.', ',') + '</b>' : (points[index].series.name ==  intl.formatMessage({id: 'Supply_amount_TRX_burned'}) || points[index].series.name ==  intl.formatMessage({id: 'Supply_amount_net_new'}) ) ?  toThousands((new BigNumber(points[index].y)).decimalPlaces(6)) + '</b>':Highcharts.numberFormat(points[index].y, 0, '.', ',') + '</b>')
                                 + '</span>'
                                 + (points[index].series.name == intl.formatMessage({id: 'Supply_amount_TRX_produced'})? '<br/><span>'+ intl.formatMessage({id: 'Supply_block_rewards'})+'（'+points[index].point.node+'） + '+ intl.formatMessage({id: 'Supply_voting_rewards'})+'（'+points[index].point.vote+'）</span>':"")
                                 + (points[index].series.name == intl.formatMessage({id: 'Supply_amount_net_new'})? '<br/><span>'+ intl.formatMessage({id: 'Supply_amount_net_new_tip'})+'</span>':"")
@@ -2645,7 +2643,10 @@ export class LineTRXSupplyChart extends React.Component {
                     color: "#DA8885",
                     data: totalSupply,
                     pointStart: Date.UTC(2019, 11, 28),
-			        pointInterval: 24 * 3600 * 1000 , // one day
+                    pointInterval: 24 * 3600 * 1000 , // one day
+                    marker: {
+                        enabled: true,
+                    },
                     showInNavigator: false,
                     dataGrouping: { // 针对highstock,将指定数量的数据合并展现为一个点
                         enabled: false
@@ -2658,8 +2659,8 @@ export class LineTRXSupplyChart extends React.Component {
                     data:amountProduced,
                     pointStart: Date.UTC(2019, 11, 28),
 			        pointInterval: 24 * 3600 * 1000 , // one day
-                    tooltip: {
-                        valueSuffix: ' '
+                    marker: {
+                        enabled: true,
                     },
                     showInNavigator: false,
                     dataGrouping: { // 针对highstock,将指定数量的数据合并展现为一个点
@@ -2676,9 +2677,6 @@ export class LineTRXSupplyChart extends React.Component {
                     marker: {
                         enabled: true,
                     },
-                    tooltip: {
-                        valueSuffix: ' %'
-                    },
                     showInNavigator: false,
                     dataGrouping: { // 针对highstock,将指定数量的数据合并展现为一个点
                         enabled: false
@@ -2693,10 +2691,9 @@ export class LineTRXSupplyChart extends React.Component {
                     data: totalWorth,
                     pointStart: Date.UTC(2019, 11, 28),
 			        pointInterval: 24 * 3600 * 1000 , // one day
-                    marker: {
-                        enabled: true,
-                    
-                    },
+                    // marker: {
+                    //     enabled: true,
+                    // },
                     tooltip: {
                         valueSuffix: ' %'
                     },
