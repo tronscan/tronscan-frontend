@@ -190,8 +190,8 @@ class ExchangeTable extends Component {
           <a
             href={
               item.pairType == 2 || item.pairType == 3
-                ? `https://tronscan.org/#/token20/${item.fTokenAddr}`
-                : `https://tronscan.org/#/token/${item.fTokenAddr}`
+                ? `https://fouccent.org/#/token20/${item.fTokenAddr}`
+                : `https://fouccent.org/#/token/${item.fTokenAddr}`
             }
             target="_blank"
           >

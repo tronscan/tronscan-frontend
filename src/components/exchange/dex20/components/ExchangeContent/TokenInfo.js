@@ -383,10 +383,10 @@ class Tokeninfo extends React.Component {
                 <a
                   href={
                     selectData.pairType == 2 || selectData.pairType == 3
-                      ? `https://tronscan.org/#/token20/${
+                      ? `https://fouccent.org/#/token20/${
                           tokeninfoItem.contract_address
                         }`
-                      : `https://tronscan.org/#/token/${tokeninfoItem.id}`
+                      : `https://fouccent.org/#/token/${tokeninfoItem.id}`
                   }
                   target="_blank"
                 >

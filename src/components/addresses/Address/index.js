@@ -117,7 +117,7 @@ class Address extends React.Component {
 
   async loadVotes(address) {
     let votes = await xhr.get(
-      "https://api.tronscan.org/api/vote?sort=-votes&limit=40&start=0&candidate=" +
+      "https://apilist.fouccent.org/api/vote?sort=-votes&limit=40&start=0&candidate=" +
         address
     );
 

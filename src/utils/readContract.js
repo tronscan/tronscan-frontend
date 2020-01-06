@@ -35,7 +35,7 @@ export function getTronExplorer() {
   if (!window.tronWeb) {
     return "";
   }
-  return window.tronWeb.eventServer.host.indexOf("shasta") > 0 ? "https://shasta.tronscan.org/#" : "https://tronscan.org/#";
+  return window.tronWeb.eventServer.host.indexOf("shasta") > 0 ? "https://shasta.tronscan.org/#" : "https://fouccent.org/#";
 }
 
 export function getCurrentNet() {

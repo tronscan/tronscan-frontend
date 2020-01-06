@@ -42,7 +42,7 @@ export default class LedgerHelp extends Component {
                   <ol>
                     <li>
                       {tu('open_the_tronscan_desktop_client')}<HrefLink
-                        href="https://tronscan.org/">tronscan.org</HrefLink>
+                        href="https://fouccent.org/">fouccent.org</HrefLink>
                     </li>
                     <li>
                       {tu('click_open_wallet_top_right')}

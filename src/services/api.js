@@ -20,7 +20,7 @@ export function buildClient(account) {
 
 export function channel(path, options) {
   // return io(process.env.API_URL + path, options);
-  return io("https://wlcyapi.tronscan.org/socket.io" + path, options);
+  return io("https://apilist.fouccent.org/socket.io" + path, options);
   //return io('http://172.16.20.207:20110/socket.io' + path, options);
 }
 
@@ -74,7 +74,7 @@ class ApiClient20 {
   }
   async getExchangeCalc(query) {
     let { data } = await xhr.get(
-      `https://wlcyapi.tronscan.org/api/exchange/calc`,
+      `https://apilist.fouccent.org/api/exchange/calc`,
       {
         params: query
       }
@@ -217,7 +217,7 @@ class ApiClient20 {
     }
     let { data } = await xhr({
       method: "get",
-      url: `https://apilist.tronscan.org/api/system/proxy?url=https://api.coinmarketcap.com/v1/ticker/${type}/?convert=${covert}`
+      url: `https://apilist.fouccent.org/api/system/proxy?url=https://api.coinmarketcap.com/v1/ticker/${type}/?convert=${covert}`
     });
     return data;
   }

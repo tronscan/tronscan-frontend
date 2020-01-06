@@ -160,7 +160,7 @@ class Statistics extends React.Component {
         //     limit: 35,
         //     sort: '-balance',
         // });
-        let accountData = await xhr.get("https://assistapi.tronscan.org/api/account?limit=35&sort=-balance");
+        let accountData = await xhr.get("https://apilist.fouccent.org/api/account?limit=35&sort=-balance");
         let accounts = accountData.data;
         this.setState({
             accounts: filter(accounts, account => !includes(tronAddresses, account.address))

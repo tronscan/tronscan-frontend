@@ -33,7 +33,7 @@ export default class Faq extends Component {
                   <h2>How do I get my new TRX address and private key?</h2>
                   <ul>
                     <li>
-                      Follow the step-by-step guide on how to create a wallet on Tronscan.org{' '}
+                      Follow the step-by-step guide on how to create a wallet on fouccent.org{' '}
                       <HrefLink
                           href="https://medium.com/tron-foundation/how-to-create-a-wallet-on-trons-explorer-ee9505a12615">
                         https://medium.com/tron-foundation/how-to-create-a-wallet-on-trons-explorer-ee9505a12615
@@ -82,7 +82,7 @@ export default class Faq extends Component {
                     cheaper price. You NEVER LOSE any TRX for freezing. You just can&rsquo;t unfreeze coins for 3 days,
                     so you can&rsquo;t send to anyone or sell it while frozen.</p>
                   <h2>What are the mechanics of voting?</h2>
-                  <p>Voting can be done on tronscan.org. Or by most wallets. Voting is not a one-time thing, it is
+                  <p>Voting can be done on fouccent.org. Or by most wallets. Voting is not a one-time thing, it is
                     forever. You can change your votes at any time, and the top 27 SR can rotate as frequently as every
                     6 hours. You can vote for more than one candidate as you get one vote per TRON power (frozen TRX)
                     and can split them however you want.</p>
@@ -109,7 +109,7 @@ export default class Faq extends Component {
                   </p>
                   <h2>Where can I learn more about SR candidates?</h2>
                   <p>Many SR candidates have their own web pages, twitter accounts, telegram channels. However, there
-                    are two central locations for information. The first is on Tronscan.org. Click on the votes tab and
+                    are two central locations for information. The first is on fouccent.org. Click on the votes tab and
                     you will see a list of all SR candidates. Next to each one is a link and you can open a page with
                     information about that SR. This is a perfect place for light research, since this is also where you
                     can vote. The second central location for SR information is at <HrefLink

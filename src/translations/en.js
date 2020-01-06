@@ -1209,7 +1209,7 @@ export const messages = {
    "contracts_terms":"Use and Service Terms",
    "contract_terms_title_1":"PLEASE READ THESE TERMS OF SERVICE CAREFULLY.",
    "contract_terms_title_2":"BY ACCESSING OR USING OUR SERVICES, YOU AGREE TO BE BOUND BY THESE USE AND SERVICE TERMS AND ALL TERMS INCORPORATED BY REFERENCE.",
-   "contract_terms_title_3":"These Use and any Service Terms and terms expressly incorporated herein (“Terms”) apply to your access to and use of all services (our “Services”) provided by White Ayn Limited/Tronscan.org (“Company,” “we,” or “us”).",
+   "contract_terms_title_3":"These Use and any Service Terms and terms expressly incorporated herein (“Terms”) apply to your access to and use of all services (our “Services”) provided by White Ayn Limited/Fouccent.org (“Company,” “we,” or “us”).",
    "contract_terms_p1_title":"1. ELIGIBILITY",
    "contract_terms_p1_1":"You represent and warrant that you: (a) are of legal age to form a binding contract; (b) have not previously been suspended or removed from using our Services; and (c) have full power and authority to enter into this agreement and  will not violate any other agreement to which you are a party. If you are registering to use the Services on behalf of a legal entity, you further represent and warrant that (i) such legal entity is duly organized and validly existing under the applicable laws of the jurisdiction of its organization, and (ii) you are duly authorized by such legal entity to act on its behalf.",
    "contract_terms_p2_title":"2. ACCOUNT REGISTRATION",
