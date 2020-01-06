@@ -60,7 +60,7 @@ class RecentBlocks extends Component {
 
     return (
         <div className="card" style={styles.card}>
-          {/* 测试 */}
+          {/* test */}
           <div className="card-header bg-tron-light d-flex">
             <i className="fa fa-cubes mr-3 fa_width_20 color-grey-100"></i>
             <h5 className="m-0 lh-175 color-grey-100 confirmed_block_tip">

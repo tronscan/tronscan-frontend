@@ -38,12 +38,23 @@
   .logo-wrapper {
     background: $white;
   }
+  .footerContainer {
+    position: relative;
+    .helpLinkPos {
+      position: absolute;
+      right: -6rem;
+      bottom: 331px;
+    }
+  }
+  .helpLinkWrapper {
+    width: 45px;
+    min-height: 400px;
+  }
   // helpLinkContent
   .helpLinkContent {
     box-sizing: border-box;
     background: #fff;
     overflow: hidden;
-    // width: 45px;
     li {
       width: 45px;
       height: 45px;
