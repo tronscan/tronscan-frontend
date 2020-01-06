@@ -38,9 +38,9 @@ class TransferContract extends React.Component {
               <Field label="amount">
                 <TRXPrice amount={contract.amount / ONE_TRX} />
               </Field>
-              <Field label="note">
+              {contract.contract_note && <Field label="note">
                 {decodeURIComponent(contract.contract_note || "")}
-              </Field>
+              </Field>}
               {JSON.stringify(contract.cost) != "{}" && (
                 <Field label="consume_bandwidth">
                   <BandwidthUsage cost={contract.cost} />

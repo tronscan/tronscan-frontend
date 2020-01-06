@@ -8,9 +8,9 @@ import { tu } from "../../../../utils/i18n";
 import BandwidthUsage from './common/BandwidthUsage'
 export default function ExchangeInjectContract(props) {
     const contract = props.contract;
-    const { quant, signature, contractType, cost, exchangeInfo } = contract;
+    const { quant, signature_addresses, contractType, cost, exchangeInfo } = contract;
     const { first_token_name, first_token_id, second_token_name } = exchangeInfo;
-    let signList = signature;
+    let signList = signature_addresses;
     return <Fragment>
         <TransationTitle contractType={contractType} />
         <table className="table">
