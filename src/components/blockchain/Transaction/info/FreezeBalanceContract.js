@@ -38,14 +38,17 @@ class FreezeBalanceContract extends React.Component {
                   }
                 />
               </Field>
+
+              <Field label="transaction_freeze_num">
+                {contract["frozen_balance"] / ONE_TRX} TRX
+              </Field>
+              <Field label="frozen_days">
+                {contract["frozen_duration"]} {tu("day")}
+              </Field>
               <Field label="transaction_get_resourse">
                 {tu("tron_power")} &{" "}
                 {contract["resource"] ? tu(`energy`) : tu(`bandwidth`)}
               </Field>
-              <Field label="transaction_freeze_num">
-                {contract["frozen_balance"] / ONE_TRX} TRX
-              </Field>
-                <Field label="frozen_days">{contract["frozen_duration"]} {tu('day')}</Field>
               {JSON.stringify(contract.cost) != "{}" && (
                 <Field label="consume_bandwidth">
                   <BandwidthUsage cost={contract.cost} />

@@ -29,7 +29,6 @@ class TransferAssetContract extends React.Component {
     }
     let signList = contract.signature_addresses || [];
 
-
     return (
       <Fragment>
         <TransationTitle contractType={contract.contractType}></TransationTitle>
@@ -64,7 +63,7 @@ class TransferAssetContract extends React.Component {
                   <BandwidthUsage cost={contract.cost} />
                 </Field>
               )}
-               {signList && signList.length > 1 && (
+              {signList && signList.length > 1 && (
                 <Field label="signature_list">
                   <SignList signList={signList} />
                 </Field>

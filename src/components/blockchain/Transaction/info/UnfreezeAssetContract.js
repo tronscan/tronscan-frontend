@@ -34,7 +34,7 @@ class UnfreezeAssetContract extends React.Component {
                   {contract["owner_address"]}
                 </AddressLink>
               </Field>
-              <Field label="amount">{contract.amount / ONE_TRX || 0}</Field>
+              {/* <Field label="amount">{contract.amount / ONE_TRX || 0}</Field> */}
               <Field label="trc20_token_id">{contract.token_id}</Field>
               <Field label="token">
                 <Link to={`/token/${contract.token_id}`}>{contract.abbr}</Link>
