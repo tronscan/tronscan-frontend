@@ -35,9 +35,9 @@ export default function ProposalApproveContract({contract}){
               <BandwidthUsage cost={contract.cost} />
             </Field>
           )}
-          {contract.signList && (
+          {contract.signature_addresses && contract.signature_addresses.length > 1 && (
             <Field label="signature_list">
-              <SignList signList={contract.signList} />
+              <SignList signList={contract.signature_addresses} />
             </Field>
           )}
           </tbody>

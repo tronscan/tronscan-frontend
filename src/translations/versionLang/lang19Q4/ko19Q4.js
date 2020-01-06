@@ -220,4 +220,6 @@ export const lang19Q4 = {
      "vote_yes":"예",
      "vote_no":"비 승인",
      "account_id":"계정 ID",
+     "trans_ticket":"표",
+     "trans_tickets":"표",
 }
