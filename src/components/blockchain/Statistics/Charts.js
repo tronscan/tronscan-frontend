@@ -334,6 +334,7 @@ class StatCharts extends React.Component {
             item.total_produce_num =  item.total_block_pay + item.total_node_pay;
             item.worth_num =  (item.total_block_pay + item.total_node_pay) - item.total_burn;
         })
+        data.pop()
         console.log('data222',data)
         this.setState({
             SupplyData:sortBy(data, function(o) { return o.timestamp; }),

@@ -2399,7 +2399,7 @@ export class LineTRXSupplyChart extends React.Component {
                 vote: o.total_node_pay,
             }
         })
-       // totalWorth[totalWorth.length-1] = parseFloat(-totalWorth[totalWorth.length-1])
+        amountBurned[amountBurned.length-1] = parseFloat(-1000000)
         console.log('totalWorth',totalWorth)
         if (newData && newData.length > 0) {
             let options =  {
@@ -2499,7 +2499,7 @@ export class LineTRXSupplyChart extends React.Component {
                         }
                       },
                       opposite: false,
-                      min:-25000000000
+                      min:-50000000000
                     },
                     { // Secondary yAxis
                       title: {
@@ -2513,9 +2513,26 @@ export class LineTRXSupplyChart extends React.Component {
                             color: "#333333"
                         }
                       },
-                      minRange: 6000000
+                      min:-2500000
+                      //minRange: 6000000
 
                     },
+                    { // Secondary yAxis
+                        title: {
+                          text: intl.formatMessage({id: 'Supply_amount_TRX'}),
+                          style: {
+                            color: "#333333"
+                          }
+                        },
+                        labels: {
+                          style: {
+                              color: "#333333"
+                          }
+                        },
+                        min:-1000000,
+                        max: 1000000,
+  
+                      },
                 ],
                 plotOptions: {
                     column: {
@@ -2651,7 +2668,7 @@ export class LineTRXSupplyChart extends React.Component {
                 }, {
                     name: intl.formatMessage({id: 'Supply_amount_TRX_burned'}),
                     type: 'spline',
-                    yAxis: 1,
+                    yAxis: 2,
                     color: "#999999",
                     data: amountBurned,
                     pointStart: Date.UTC(2019, 11, 28),
