@@ -22,7 +22,6 @@ import SignList from "./common/SignList";
   state => {
     return {
       activeLanguage: state.app.activeLanguage
-     
     };
   }
 )
@@ -54,8 +53,9 @@ class AssetIssueContract extends React.Component {
   }
   render() {
     let { contract,activeLanguage } = this.props;
-    console.log(1111,this.props)
     let {createTime,TrxUnit} = this.state;
+    let signList = contract.signature_addresses || [];
+
     return (
       <Fragment>
         <TransationTitle contractType={contract.contractType}></TransationTitle>
@@ -152,9 +152,9 @@ class AssetIssueContract extends React.Component {
                   <BandwidthUsage cost={contract.cost} />
                 </Field>
               )}
-              {contract.signList && (
+              {signList && signList.length > 1 && (
                 <Field label="signature_list">
-                  <SignList signList={contract.signList} />
+                  <SignList signList={signList} />
                 </Field>
               )}
             </tbody>
