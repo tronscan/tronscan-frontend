@@ -129,7 +129,7 @@ export function Information({
                    <div>
                      {token["market_info"].sShortName == "TRX" ? (
                        <div className="d-flex price-info">
-                         {token.priceToUsd.toFixed(6)} USD
+                         {token.priceToUsd.toFixed(6)} USD&nbsp;
                          <span className="token-price-trx ">
                            {" "}
                            ≈ {token["market_info"].priceInTrx}{" "}

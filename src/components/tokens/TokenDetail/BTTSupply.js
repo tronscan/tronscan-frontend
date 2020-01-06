@@ -210,14 +210,14 @@ class BTTSupply extends React.Component {
                                                                     <td style={{  width: '20%'}}>{tu('in_USD')}:
                                                                     </td>
                                                                     <td>
-                                                                        {priceUSD} &nbsp; USD
+                                                                        {priceUSD}&nbsp;USD
                                                                     </td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td>{tu('in_BTC')}:
                                                                     </td>
                                                                     <td>
-                                                                        {priceBTC} &nbsp; BTC
+                                                                        {priceBTC}&nbsp;BTC
                                                                     </td>
                                                                 </tr>
                                                                 </tbody></table>

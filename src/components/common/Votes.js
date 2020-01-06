@@ -77,7 +77,7 @@ class Votes extends React.Component {
         }
       },
       {
-        title: upperFirst(intl.formatMessage({id: 'votes'})),
+        title: upperFirst(intl.formatMessage({id: 'votes_num'})),
         dataIndex: 'votes',
         key: 'votes',
         align: 'left',
@@ -124,7 +124,7 @@ class Votes extends React.Component {
       // },
       
       {
-        title: upperFirst(intl.formatMessage({id: 'votes'})),
+        title: upperFirst(intl.formatMessage({id: 'votes_num'})),
         dataIndex: 'votes',
         key: 'votes',
         align: 'left',

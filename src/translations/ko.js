@@ -1169,7 +1169,7 @@ export const messages = {
    "contract_create_msg":"가입 정보",
    "contract_create_time":"가입 시간",
    "contract_enery":"어너지 소비 비율",
-   "contract_enery_tip":"스마트 계약을 호출하면 일정 양의 에저지를 소비합니다",
+   "contract_enery_tip":"The energy consumed by calling the smart contract is borne by the contract and the user in proportion",
    "contract_init_assets":"초기 자산",
    "contract_init_assets_tip":"계약이 생성 될 때 계약 작성자가 계약 주소로 입금 한 자산",
    "contract_editor_bug": "컴파일러 취약점 프롬프트",

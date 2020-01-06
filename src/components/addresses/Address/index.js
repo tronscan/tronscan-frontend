@@ -889,13 +889,13 @@ class Address extends React.Component {
                                                 amount={(totalPower) / ONE_TRX}/> */}
                                   <FormattedNumber
                                     value={totalPower / ONE_TRX}
-                                  ></FormattedNumber> TP
+                                  ></FormattedNumber>&nbsp;TP
                                   <div>
                                     <span className="ml-1">(</span>{" "}
                                     {tu("address_tron_power_used")}:{" "}
                                     <FormattedNumber
                                       value={address.voteTotal}
-                                    ></FormattedNumber> TP
+                                    ></FormattedNumber>&nbsp;TP
                                     &nbsp; {tu("address_tron_power_remaining")}:{" "}
                                     <FormattedNumber
                                       value={

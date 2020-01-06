@@ -196,6 +196,7 @@ export const lang19Q4 = {
    "Supply_amount_net_new":"净值",
    "Supply_amount_net_new_y_title":" 产生量/净值（TRX）",
    "Supply_amount_net_new_tip":"TRX产生量+TRX销毁量",
+   "votes_num":"投票数",
   
 
 

@@ -112,7 +112,7 @@ export function Information({ token: tokens, priceUSD }) {
         <div className="d-flex ">
           {token["market_info"] ? (
             <div className="d-flex price-info">
-              {token["priceToUsd"].toFixed(6)} USD 
+              {token["priceToUsd"].toFixed(6)} USD&nbsp;
               <span className="token-price-trx">
                 ≈ {token["market_info"].priceInTrx} TRX
               </span>

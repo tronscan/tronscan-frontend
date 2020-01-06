@@ -2383,9 +2383,9 @@ export class LineTRXSupplyChart extends React.Component {
         let amountBurned  = [];
         let totalWorth = [];
         let timestamp = []
+        let visibleY = [{"visible":true},{"visible":true},{"visible":true},{"visible":true}]
         newData.map((val) => {
             totalSupply.push(val['total_turn_over_num']);
-           // amountProduced.push(val['total_produce_num']);
             amountBurned.push(val['total_burn_num']);
             totalWorth.push(val['worth_num']);
             timestamp.push(val['timestamp'])
@@ -2403,6 +2403,11 @@ export class LineTRXSupplyChart extends React.Component {
         // console.log('totalWorth',totalWorth)
         if (newData && newData.length > 0) {
             let options =  {
+                chart:{
+                    // spacingLeft: 100,
+                    // marginRight: 150
+                
+                },
                 title: {
                     text: intl.formatMessage({id: 'Supply_TRX_total_chart'})
                 },
@@ -2489,17 +2494,19 @@ export class LineTRXSupplyChart extends React.Component {
                     { // Primary yAxis
                       labels: {
                         style: {
-                          color: "#C64844"
+                          color: "#C64844",
                         }
                       },
                       title: {
                         text: intl.formatMessage({id: 'freezing_column_total_circulation_chart'}),
                         style: {
-                            color: "#C64844"
+                            color: "#C64844",
                         }
                       },
                       opposite: false,
-                      min:-30000000000
+                      visible: true,
+                      min:-25000000000,
+                     
                     },
                     { // Secondary yAxis
                       title: {
@@ -2510,13 +2517,17 @@ export class LineTRXSupplyChart extends React.Component {
                       },
                       labels: {
                         style: {
-                            color: "#333333"
-                        }
+                            color: "#333333",
+                        },
+                        
                       },
-                      min:-300000,
-                      minRange: 6000000
+                      visible: true,
+                      opposite: true,
+                      min:-500000,
+                      minRange: 10000000,
+                     // offset: 50,
                     },
-                    { // Third yAxis
+                    { // Thirdary yAxis
                         title: {
                           text: intl.formatMessage({id: 'Supply_amount_TRX_burned_y_title'}),
                           style: {
@@ -2525,11 +2536,15 @@ export class LineTRXSupplyChart extends React.Component {
                         },
                         labels: {
                           style: {
-                              color: "#999999"
-                          }
+                              color: "#999999",
+                          },
+                         
                         },
-                        min:-300000,
-                        max: 1000000,
+                        visible: true,
+                        opposite: true,
+                        min:-500000,
+                        max: 2000000,
+                       // offset: 100,
                       },
                 ],
                 plotOptions: {
@@ -2549,62 +2564,157 @@ export class LineTRXSupplyChart extends React.Component {
                     },
                     series: {
                         events: {
-                            // legendItemClick: function(e) {
-                            //     /*var target = e.target; 
-                            //     console.log(target === this);
-                            //     */
-                            //     var index = this.index;
-                            //     var series = this.chart.series;
-                            //     if(series[index].name == intl.formatMessage({id: 'freezing_column_total_circulation'})) {
-                            //         this.chart.yAxis[1].update({
-                            //             title:{
-                            //                 text: intl.formatMessage({id: 'freezing_column_total_circulation_chart'})
-                            //             }
-                            //         });
-                            //     }else if(series[index].name == intl.formatMessage({id: 'freezing_column_total_frozen'})){
-                            //         this.chart.yAxis[1].update({
-                            //             title:{
-                            //                 text: intl.formatMessage({id: 'freezing_column_total_frozen'})
-                            //             }
-                            //         });
-                            //     }
-                            // },
-                            // hide: function(event) {
-                            //     var index = this.index;
-                            //     var series = this.chart.series;
-                            //     console.log(series[index].name)
-                            //     if(series[index].name == intl.formatMessage({id: 'freezing_column_total_circulation'})) {
-                            //         this.chart.yAxis[1].update({
-                            //             title:{
-                            //                 text: intl.formatMessage({id: 'freezing_column_total_frozen_chart'})
-                            //             }
-                            //         });
-                            //     }else if(series[index].name == intl.formatMessage({id: 'freezing_column_total_frozen'})){
-                            //         this.chart.yAxis[1].update({
-                            //             title:{
-                            //                 text: intl.formatMessage({id: 'freezing_column_total_circulation_chart'})
-                            //             }
-                            //         });
-                            //     }
-                            // },
-                            // show: function() {
-                            //     var index = this.index;
-                            //     var series = this.chart.series;
-                            //     console.log(series[index].name)
-                            //     if(series[index].name == intl.formatMessage({id: 'freezing_column_total_circulation'})) {
-                            //         this.chart.yAxis[1].update({
-                            //             title:{
-                            //                 text: intl.formatMessage({id: 'freezing_column_total_circulation_chart'})
-                            //             }
-                            //         });
-                            //     }else if(series[index].name == intl.formatMessage({id: 'freezing_column_total_frozen'})){
-                            //         this.chart.yAxis[1].update({
-                            //             title:{
-                            //                 text: intl.formatMessage({id: 'freezing_column_total_frozen_chart'})
-                            //             }
-                            //         });
-                            //     }
-                            // }
+                            legendItemClick: function(e) {
+                                /*var target = e.target; 
+                                console.log(target === this);
+                                */
+                                let index = this.index;
+                                console.log('index',index)
+                                let series = this.chart.series
+                                console.log('visibleY[index].visible',visibleY[index].visible)
+                                console.log('visibleY[index].visible',visibleY)
+                                visibleY[index].visible = !visibleY[index].visible;
+                                if(index == 2){
+                                    this.chart.yAxis[2].update({
+                                        visible: visibleY[index].visible,                                        
+                                    });
+                                }
+                                //     console.log('index',index)
+                                //     console.log('visibleY[index].visible',visibleY[index].visible)
+                                //     console.log('visibleY[1].visible',visibleY[1].visible)
+                                //     console.log('visibleY[3].visible',visibleY[3].visible)
+                                //     console.log('111',this.chart.yAxis)
+                                //     if(visibleY[1].visible || visibleY[3].visible){
+                                //         this.chart.yAxis[1].update({
+                                //             visible: true,
+                                            
+                                //         });
+                                         
+                                //     }else if(!visibleY[1].visible && !visibleY[3].visible){
+                                //         this.chart.yAxis[1].update({
+                                //             visible: false
+                                //         });
+                                //     }
+                                //     if(index == 1 || index == 3){
+                                //         console.log('this.chart.yAxis[0].visible',this.chart.yAxis[0].visible)
+                                //         console.log('this.chart.yAxis[2].visible',this.chart.yAxis[2].visible)
+                                //         if(visibleY[index].visible){
+                                //             if(!this.chart.yAxis[0].visible && this.chart.yAxis[2].visible){
+                                //                 this.chart.yAxis[1].update({
+                                //                     offset:35
+                                //                 });
+                                //                 this.chart.yAxis[2].update({
+                                //                     offset:70
+                                //                 });
+                                //             }
+                                //         }else{
+                                //             if(!this.chart.yAxis[0].visible && this.chart.yAxis[2].visible){
+                                //                 this.chart.yAxis[1].update({
+                                //                     offset:35
+                                //                 });
+                                //                 this.chart.yAxis[2].update({
+                                //                     offset:80
+                                //                 });
+                                //             }
+                                //         }
+                                        
+                                        
+                                //     }
+                                   
+                                    
+                                // }else{
+                                //     if(index == 0){
+                                //         // this.chart.redraw();
+                                //         // this.chart.chart.update({
+                                //         //     redraw: false
+                                //         // });
+                                //         // this.chart.yAxis[index].update({
+                                //         //     visible: true
+                                //         // }); 
+                                //         // if(!visibleY[index].visible){
+                                //         //     this.chart.update({
+                                //         //         chart: {
+                                //         //             spacingLeft: 100,
+                                //         //         },
+
+                                //         //     });
+                                //         // }else{
+                                //         //     // this.chart.update({
+                                //         //     //     chart: {
+                                //         //     //         spacingLeft: 0,
+                                //         //     //     },
+                                //         //     // });
+                                //         // }
+                                //         this.chart.yAxis[1].update({
+                                //             offset:35
+                                //         });
+                                //         this.chart.yAxis[index].update({
+                                //             visible: visibleY[index].visible
+                                //         });  
+                                        
+                                //     }else{
+                                //         if(index == 2){
+                                //             if(visibleY[index].visible){
+                                //                 if(!this.chart.yAxis[0].visible && !this.chart.yAxis[1].visible){
+                                //                     this.chart.yAxis[2].update({
+                                //                         offset:50
+                                //                     });
+                                //                 }
+                                //             }
+                                //         }
+                                //         this.chart.yAxis[index].update({
+                                //             visible: visibleY[index].visible
+                                //         });
+                                //     }
+                                    
+                                // }
+                                // console.log('222',this.chart.yAxis)
+                                
+                            },
+
+                            hide: function(event) {
+                                // let index = this.index;
+                                // let series = this.chart.series;let yAxis = this.chart.yAxis;
+                                // console.log(series[index].name)
+                               
+                                // $('#toggle-y').click(function () {
+                                //     yVis0 = !yVis0;
+                                //     chart.yAxis[0].update({
+                                //         visible: yVis
+                                //     });
+                                // });
+                                // let yVis0 = true;
+                                // if(series[index].name == intl.formatMessage({id: 'Supply_TRX_total'})) {
+                                //     yVis0 = !yVis0;
+                                //     this.chart.yAxis[0].update({
+                                //         visible: yVis0
+                                //     });
+                                // }else if(series[index].name == intl.formatMessage({id: 'freezing_column_total_frozen'})){
+                                //     this.chart.yAxis[1].update({
+                                //         title:{
+                                //             text: intl.formatMessage({id: 'freezing_column_total_circulation_chart'})
+                                //         }
+                                //     });
+                                // }
+                            },
+                            show: function() {
+                                // var index = this.index;
+                                // var series = this.chart.series;
+                                // console.log(series[index].name)
+                                // if(series[index].name == intl.formatMessage({id: 'freezing_column_total_circulation'})) {
+                                //     this.chart.yAxis[1].update({
+                                //         title:{
+                                //             text: intl.formatMessage({id: 'freezing_column_total_circulation_chart'})
+                                //         }
+                                //     });
+                                // }else if(series[index].name == intl.formatMessage({id: 'freezing_column_total_frozen'})){
+                                //     this.chart.yAxis[1].update({
+                                //         title:{
+                                //             text: intl.formatMessage({id: 'freezing_column_total_frozen_chart'})
+                                //         }
+                                //     });
+                                //}
+                            }
                         }
                     }
                 },
@@ -2625,7 +2735,7 @@ export class LineTRXSupplyChart extends React.Component {
                         for (let index = 0; index < pointsLength; index += 1) {
                             s += '<tr><td style="padding-top:4px;padding-bottom:4px;border-top:1px solid #D5D8DC;color:' + points[index].series.color + ';" valign="top">' + '<span style="color:' + points[index].series.color + ';font-size: 15px !important;">\u25A0</span> ' + intl.formatMessage({id: points[index].series.name })+ '</td>' +
                                 '<td align="right" style="padding-top:5px;padding-left:10px;padding-bottom:4px;border-top:1px solid #D5D8DC;"><span ><b style="color:' + points[index].series.color + ';">' +
-                                (points[index].series.name == intl.formatMessage({id: 'Supply_TRX_total'}) ? Highcharts.numberFormat(points[index].y, 6, '.', ',') + '</b>' : (points[index].series.name ==  intl.formatMessage({id: 'Supply_amount_TRX_burned'}) || points[index].series.name ==  intl.formatMessage({id: 'Supply_amount_net_new'}) ) ?  toThousands((new BigNumber(points[index].y)).decimalPlaces(6)) + '</b>':Highcharts.numberFormat(points[index].y, 0, '.', ',') + '</b>')
+                                (points[index].series.name == intl.formatMessage({id: 'Supply_TRX_total'}) ? toThousands((new BigNumber(points[index].y)).decimalPlaces(6)) + '</b>' : (points[index].series.name ==  intl.formatMessage({id: 'Supply_amount_TRX_burned'}) || points[index].series.name ==  intl.formatMessage({id: 'Supply_amount_net_new'}) ) ?  toThousands((new BigNumber(points[index].y)).decimalPlaces(6)) + '</b>':Highcharts.numberFormat(points[index].y, 0, '.', ',') + '</b>')
                                 + '</span>'
                                 + (points[index].series.name == intl.formatMessage({id: 'Supply_amount_TRX_produced'})? '<br/><span>'+ intl.formatMessage({id: 'Supply_block_rewards'})+'（'+points[index].point.node+'） + '+ intl.formatMessage({id: 'Supply_voting_rewards'})+'（'+points[index].point.vote+'）</span>':"")
                                 + (points[index].series.name == intl.formatMessage({id: 'Supply_amount_net_new'})? '<br/><span>'+ intl.formatMessage({id: 'Supply_amount_net_new_tip'})+'</span>':"")
@@ -2639,7 +2749,7 @@ export class LineTRXSupplyChart extends React.Component {
                 series: [{
                     name: intl.formatMessage({id: 'Supply_TRX_total'}),
                     type: 'spline',
-                    yAxis: 0,
+                   // yAxis: 0,
                     color: "#DA8885",
                     data: totalSupply,
                     pointStart: Date.UTC(2019, 11, 28),
@@ -2647,10 +2757,11 @@ export class LineTRXSupplyChart extends React.Component {
                     marker: {
                         enabled: true,
                     },
-                    showInNavigator: false,
+                    showInNavigator: true,
                     dataGrouping: { // 针对highstock,将指定数量的数据合并展现为一个点
                         enabled: false
-                    }
+                    },
+                    softThreshold:true,
                 }, {
                     name: intl.formatMessage({id: 'Supply_amount_TRX_produced'}),
                     type: 'spline',
@@ -2665,8 +2776,10 @@ export class LineTRXSupplyChart extends React.Component {
                     showInNavigator: false,
                     dataGrouping: { // 针对highstock,将指定数量的数据合并展现为一个点
                         enabled: false
-                    }
-                }, {
+                    },
+                    softThreshold:true,
+                },
+                {
                     name: intl.formatMessage({id: 'Supply_amount_TRX_burned'}),
                     type: 'spline',
                     yAxis: 2,
@@ -2680,28 +2793,25 @@ export class LineTRXSupplyChart extends React.Component {
                     showInNavigator: false,
                     dataGrouping: { // 针对highstock,将指定数量的数据合并展现为一个点
                         enabled: false
-                    }
+                    },
+                    softThreshold:true,
                 },
                 {
                     name: intl.formatMessage({id: 'Supply_amount_net_new'}),
                     type: 'column',
                     yAxis: 1,
-                    color: "#4A90E2",
-                    negativeColor: '#C64844',//就是这个属性设置负值的颜色
+                    color: "rgba(74,144,226,0.4)",
+                    negativeColor: "rgba(198,72,68.0.4)",//就是这个属性设置负值的颜色
                     data: totalWorth,
                     pointStart: Date.UTC(2019, 11, 28),
 			        pointInterval: 24 * 3600 * 1000 , // one day
-                    // marker: {
-                    //     enabled: true,
-                    // },
-                    tooltip: {
-                        valueSuffix: ' %'
-                    },
-                    showInNavigator: true,
+                    showInNavigator: false,
                     dataGrouping: { // 针对highstock,将指定数量的数据合并展现为一个点
                         enabled: false
-                    }
-                }
+                    },
+                    softThreshold:true,
+                },
+                
             ]
             }
             Object.keys(options).map(item => {

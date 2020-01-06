@@ -258,7 +258,7 @@ class BTTSupply extends React.Component {
                                                         </div>
                                                       }
                                                     </div>
-                                                    <a href='https://info.binance.com/en/research/WIN-2019-07-22.html'>Binance Launchpad Public Sale</a>
+                                                    {/* <a href='https://info.binance.com/en/research/WIN-2019-07-22.html'>Binance Launchpad Public Sale</a> */}
                                                 </div>
                                         }
                                     </div>
