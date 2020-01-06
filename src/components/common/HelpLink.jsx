@@ -1,6 +1,7 @@
 import React, { Component } from "react";
+import { injectIntl } from "react-intl";
 
-export default class HelpLink extends Component {
+class HelpLinkCont extends Component {
   constructor() {
     super();
     this.state = {};
@@ -22,3 +23,5 @@ export default class HelpLink extends Component {
     );
   }
 }
+
+export default injectIntl(HelpLinkCont);

@@ -26,7 +26,6 @@ import { API_URL, IS_MAINNET } from "../../constants";
 import { setWebsocket } from "../../actions/account";
 import Lockr from "lockr";
 import PaneGroup from "./PaneGroup";
-import HelpLink from "./HelpLink";
 
 @connect(
   state => {
@@ -869,9 +868,6 @@ export default class Home extends Component {
               </div>
               <div className="col-md-6 text-center">
                 <RecentTransfers />
-              </div>
-              <div className="helpLink">
-                <HelpLink></HelpLink>
               </div>
             </div>
           </div>
