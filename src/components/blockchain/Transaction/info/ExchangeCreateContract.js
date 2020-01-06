@@ -17,7 +17,7 @@ export default function ExchangeCreateContract(props) {
             <tbody>
                 {
                     contract['owner_address'] ?
-                        <Field label="signature_sponsor"><AddressLink address={contract['owner_address']} /></Field>
+                        <Field label="transaction_owner_address"><AddressLink address={contract['owner_address']} /></Field>
                         : ''
                 }
 

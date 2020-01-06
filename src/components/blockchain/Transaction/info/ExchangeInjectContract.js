@@ -17,7 +17,7 @@ export default function ExchangeInjectContract(props) {
             <tbody>
                 {
                     contract['owner_address'] ?
-                        <Field label="signature_sponsor"><AddressLink address={contract['owner_address']} /></Field>
+                        <Field label="transaction_owner_address"><AddressLink address={contract['owner_address']} /></Field>
                         : ''
                 }
                 <Field label="pairs">{first_token_name} / {second_token_name}</Field>

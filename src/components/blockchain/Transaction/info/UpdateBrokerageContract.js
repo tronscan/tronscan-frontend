@@ -15,7 +15,7 @@ export default function UpdateBrokerageContract(props) {
             <tbody>
                 {
                     contract['owner_address'] ?
-                        <Field label="signature_sponsor"><AddressLink address={contract['owner_address']} /></Field>
+                        <Field label="transaction_owner_address"><AddressLink address={contract['owner_address']} /></Field>
                         : ''
                 }
                 <Field label="transaction_rewards_distribution_ratio">{brokerage}%</Field>
