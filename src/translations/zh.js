@@ -2413,7 +2413,7 @@ export const messages = {
     "signature_failed": "失败",
     "signature_successful": "成功",
     "signature_type": "类型",
-    "signature_sponsor": "发起人",
+    "signature_sponsor": "发起地址",
     "signature_time_left": "剩余时间",
     "signature_list": "待签名列表",
     "signature_operate": "操作",
