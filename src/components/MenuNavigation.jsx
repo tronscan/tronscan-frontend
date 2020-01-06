@@ -229,7 +229,7 @@ class Menunavigation extends Component {
                                   Route.label == "developer_challenge"
                                 ) {
                                   return (
-                                    <Menu.ItemGroup
+                                    <span
                                       className="mr-3 d-inline-block developer_challenge_box"
                                       key={Route.url + "_" + Route.label}
                                     >
@@ -251,7 +251,7 @@ class Menunavigation extends Component {
                                         title="hot"
                                         className="developer_challenge_hot"
                                       />
-                                    </Menu.ItemGroup>
+                                    </span>
                                   );
                                 }
 
@@ -301,7 +301,6 @@ class Menunavigation extends Component {
                                     </HrefLink>
                                   );
                                 }
-
                                 return (
                                   <Link
                                     key={Route.path}

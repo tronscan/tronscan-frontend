@@ -26,6 +26,7 @@ import { API_URL, IS_MAINNET } from "../../constants";
 import { setWebsocket } from "../../actions/account";
 import Lockr from "lockr";
 import PaneGroup from "./PaneGroup";
+import HelpLink from "./HelpLink";
 
 @connect(
   state => {
@@ -457,7 +458,7 @@ export default class Home extends Component {
           {/*bottom: 0,*/}
           {/*}} className="position-absolute"/>*/}
 
-          <div className="container home-splash p-0 p-md-3" >
+          <div className="container home-splash p-0 p-md-3">
             {IS_MAINNET ? (
               <div className="row justify-content-center text-center">
                 <div className="col-12 exchange">
@@ -866,12 +867,15 @@ export default class Home extends Component {
               </div>
             )}
 
-            <div className="row mt-0 mt-md-4">
+            <div className="row mt-0 mt-md-4 indxe-page-bottom-sec">
               <div className="col-md-6 mt-0 mb-3 mt-md-0 text-center">
                 <RecentBlocks />
               </div>
               <div className="col-md-6 text-center">
                 <RecentTransfers />
+              </div>
+              <div className="helpLink">
+                <HelpLink></HelpLink>
               </div>
             </div>
           </div>
