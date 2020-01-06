@@ -85,7 +85,7 @@ class Menunavigation extends Component {
                                   <span
                                     onClick={() => {
                                       this.props.changeDrawerFun();
-                                      window.open(subRoute.url);
+                                      window.open(subRoute.url, "_blank");
                                     }}
                                   >
                                     {subRoute.icon && (
@@ -166,10 +166,7 @@ class Menunavigation extends Component {
                 {route.routes &&
                   (route.label == "nav_network" ||
                     route.label == "nav_more") && (
-                    <div
-                      className="dropdown-menu more-menu"
-                      //   style={{ left: "auto" }}
-                    >
+                    <div>
                       {route.routes &&
                         route.routes.map((subRoute, index) => {
                           return (
@@ -198,29 +195,39 @@ class Menunavigation extends Component {
                                   Route.label !== "developer_challenge"
                                 ) {
                                   return (
-                                    <span
+                                    <Menu.ItemGroup
                                       className="mr-3 d-inline-block developer_challenge_box"
                                       key={j + Route.label}
-                                    >
-                                      <HrefLink
-                                        key={Route.url}
-                                        className="dropdown-item text-uppercase"
-                                        href={Route.url}
-                                      >
-                                        {Route.icon && (
-                                          <i className={Route.icon + " mr-2"} />
-                                        )}
-                                        {tu(Route.label)}
-                                        {Route.badge && (
-                                          <Badge value={Route.badge} />
-                                        )}
-                                      </HrefLink>
-                                      {Route.label === "NILE TESTNET" && (
-                                        <span className="new-test-net">
-                                          new
+                                      title={
+                                        <span
+                                          onClick={() => {
+                                            this.props.changeDrawerFun();
+                                            window.open(Route.url, "_blank");
+                                          }}
+                                        >
+                                          <span
+                                            key={Route.url}
+                                            className="dropdown-item text-uppercase"
+                                            // href={Route.url}
+                                          >
+                                            {Route.icon && (
+                                              <i
+                                                className={Route.icon + " mr-2"}
+                                              />
+                                            )}
+                                            {tu(Route.label)}
+                                            {Route.badge && (
+                                              <Badge value={Route.badge} />
+                                            )}
+                                          </span>
+                                          {Route.label === "NILE TESTNET" && (
+                                            <span className="new-test-net">
+                                              new
+                                            </span>
+                                          )}
                                         </span>
-                                      )}
-                                    </span>
+                                      }
+                                    ></Menu.ItemGroup>
                                   );
                                 }
                                 if (
@@ -229,29 +236,39 @@ class Menunavigation extends Component {
                                   Route.label == "developer_challenge"
                                 ) {
                                   return (
-                                    <span
+                                    <Menu.ItemGroup
                                       className="mr-3 d-inline-block developer_challenge_box"
                                       key={Route.url + "_" + Route.label}
-                                    >
-                                      <HrefLink
-                                        key={Route.url + "_" + Route.label}
-                                        className="dropdown-item text-uppercase"
-                                        href={Route.url}
-                                      >
-                                        {Route.icon && (
-                                          <i className={Route.icon + " mr-2"} />
-                                        )}
-                                        {tu(Route.label)}
-                                        {Route.badge && (
-                                          <Badge value={Route.badge} />
-                                        )}
-                                      </HrefLink>
-                                      <img
-                                        src={require("../images/home/hot.svg")}
-                                        title="hot"
-                                        className="developer_challenge_hot"
-                                      />
-                                    </span>
+                                      title={
+                                        <span
+                                          onClick={() => {
+                                            this.props.changeDrawerFun();
+                                            window.open(Route.url, "_blank");
+                                          }}
+                                        >
+                                          <span
+                                            key={Route.url + "_" + Route.label}
+                                            className="dropdown-item text-uppercase"
+                                            href={Route.url}
+                                          >
+                                            {Route.icon && (
+                                              <i
+                                                className={Route.icon + " mr-2"}
+                                              />
+                                            )}
+                                            {tu(Route.label)}
+                                            {Route.badge && (
+                                              <Badge value={Route.badge} />
+                                            )}
+                                          </span>
+                                          <img
+                                            src={require("../images/home/hot.svg")}
+                                            title="hot"
+                                            className="developer_challenge_hot"
+                                          />
+                                        </span>
+                                      }
+                                    ></Menu.ItemGroup>
                                   );
                                 }
 
@@ -261,11 +278,12 @@ class Menunavigation extends Component {
                                       href="javascript:"
                                       key={Route.label}
                                       className="dropdown-item text-uppercase"
-                                      onClick={() =>
+                                      onClick={() => {
+                                        this.props.changeDrawerFun();
                                         this.netSelectChange(
                                           IS_MAINNET ? "sunnet" : "mainnet"
-                                        )
-                                      }
+                                        );
+                                      }}
                                     >
                                       {Route.icon && (
                                         <i className={Route.icon + " mr-2"} />
@@ -282,7 +300,7 @@ class Menunavigation extends Component {
                                   !isUndefined(Route.zhurl)
                                 ) {
                                   return (
-                                    <HrefLink
+                                    <Menu.ItemGroup
                                       key={Route.enurl}
                                       className="dropdown-item text-uppercase"
                                       href={
@@ -290,35 +308,61 @@ class Menunavigation extends Component {
                                           ? Route.zhurl
                                           : Route.enurl
                                       }
-                                    >
-                                      {Route.icon && (
-                                        <i className={Route.icon + " mr-2"} />
-                                      )}
-                                      {tu(Route.label)}
-                                      {Route.badge && (
-                                        <Badge value={Route.badge} />
-                                      )}
-                                    </HrefLink>
+                                      title={
+                                        <span
+                                          onClick={() => {
+                                            this.props.changeDrawerFun();
+                                            activeLanguage == "zh"
+                                              ? window.open(
+                                                  Route.zhurl,
+                                                  "_blank"
+                                                )
+                                              : window.open(
+                                                  Route.enurl,
+                                                  "_blank"
+                                                );
+                                          }}
+                                        >
+                                          {Route.icon && (
+                                            <i
+                                              className={Route.icon + " mr-2"}
+                                            />
+                                          )}
+                                          {tu(Route.label)}
+                                          {Route.badge && (
+                                            <Badge value={Route.badge} />
+                                          )}
+                                        </span>
+                                      }
+                                    ></Menu.ItemGroup>
                                   );
                                 }
                                 return (
-                                  <Link
+                                  <Menu.ItemGroup
                                     key={Route.path}
                                     className="dropdown-item text-uppercase"
                                     to={Route.path}
-                                  >
-                                    {Route.icon && (
-                                      <i
-                                        className={
-                                          Route.icon + " mr-2" + " fa_width"
-                                        }
-                                      />
-                                    )}
-                                    {tu(Route.label)}
-                                    {Route.badge && (
-                                      <Badge value={Route.badge} />
-                                    )}
-                                  </Link>
+                                    title={
+                                      <span
+                                        onClick={() => {
+                                          this.props.changeDrawerFun();
+                                          this.props.history.push(Route.path);
+                                        }}
+                                      >
+                                        {Route.icon && (
+                                          <i
+                                            className={
+                                              Route.icon + " mr-2" + " fa_width"
+                                            }
+                                          />
+                                        )}
+                                        {tu(Route.label)}
+                                        {Route.badge && (
+                                          <Badge value={Route.badge} />
+                                        )}
+                                      </span>
+                                    }
+                                  ></Menu.ItemGroup>
                                 );
                               })}
                             </div>
@@ -327,19 +371,22 @@ class Menunavigation extends Component {
                     </div>
                   )}
                 {!route.routes && (
-                  <Menu.Item
-                    key={route.path}
-                    className="dropdown-item text-uppercase"
-                  >
-                    <span
-                      onClick={() => {
-                        this.props.changeDrawerFun();
-                        this.props.history.push(route.path);
-                      }}
-                    >
-                      {tu(route.label)}
-                    </span>
-                  </Menu.Item>
+                  <div>
+                    <Menu.ItemGroup
+                      key={route.label}
+                      className="dropdown-item text-uppercase"
+                      title={
+                        <span
+                          onClick={() => {
+                            this.props.changeDrawerFun();
+                            this.props.history.push(route.path);
+                          }}
+                        >
+                          {tu(route.label)}
+                        </span>
+                      }
+                    ></Menu.ItemGroup>
+                  </div>
                 )}
               </span>
             </SubMenu>
