@@ -22,7 +22,7 @@ function TriggerContract({contract,intl}){
           <div className="content_pos">
             <div className="d-flex border-bottom pt-2">
               <div className="content_box_name">
-                {tu("contract_triggers_owner_address")}
+                {tu("contract_triggers_owner_address")}:
               </div>
               <div className="flex1">
                 <div className="d-flex border-bottom content_item">
@@ -36,7 +36,7 @@ function TriggerContract({contract,intl}){
             </div>
             <div className="d-flex border-bottom">
               <div className="content_box_name">
-                {tu("contract_address")}
+                {tu("contract_address")}:
               </div>
               <div className="flex1">
                 <div className="d-flex content_item">
@@ -85,7 +85,7 @@ function TriggerContract({contract,intl}){
                                 "token_id",
                                 "call_value"
                               )
-                              console.log(tokenList)
+                              // console.log(tokenList)
                               let vnode = []
                               tokenList.map(v=>{
                                 vnode.push(
@@ -154,7 +154,7 @@ function TriggerContract({contract,intl}){
             </div>
             <div className="d-flex border-bottom">
               <div className="content_box_name">
-                {tu("value")}
+                {tu("value")}:
               </div>
               <div className="flex1">
                 <div className="d-flex content_item">
@@ -175,7 +175,7 @@ function TriggerContract({contract,intl}){
                 undefined && (
                 <div className="d-flex border-bottom">
                   <div className="content_box_name">
-                    {tu("TRC20_transfers")}
+                    {tu("TRC20_transfers")}:
                   </div>
                   <div className="flex1">
                     <div className="d-flex content_item">
@@ -326,7 +326,7 @@ function TriggerContract({contract,intl}){
               JSON.stringify(contract.cost) != "{}" && 
                 <div className="d-flex border-bottom">
                   <div className="content_box_name">
-                    {tu("consume_bandwidth")}
+                    {tu("consume_bandwidth")}:
                   </div>
                   <div style={{paddingTop: '10px'}}>
                     <BandwidthUsage cost={contract.cost}></BandwidthUsage>
@@ -337,7 +337,7 @@ function TriggerContract({contract,intl}){
               JSON.stringify(contract.cost) != "{}" && 
                 <div className="d-flex border-bottom">
                   <div className="content_box_name">
-                    {tu("consume_energy")}
+                    {tu("consume_energy")}:
                   </div>
                   <div style={{paddingTop: '10px'}}>
                     <BandwidthUsage cost={contract.cost} type="1"></BandwidthUsage>
@@ -347,7 +347,7 @@ function TriggerContract({contract,intl}){
             {contract.method && (
               <div className="d-flex border-bottom">
                 <div className="content_box_name">
-                  {tu("Method_calling")}
+                  {tu("Method_calling")}:
                 </div>
                 <div className="flex1">
                   <div className="d-flex content_item">
@@ -377,13 +377,13 @@ function TriggerContract({contract,intl}){
                 </div>
               </div>
             )}
-            {contract.signList && (
+            {contract.signature_addresses && contract.signature_addresses.length > 1 && (
               <div className="d-flex border-bottom">
                 <div className="content_box_name">
-                  {tu("consume_energy")}
+                  {tu("consume_energy")}:
                 </div>
                 <div>
-                  <SignList signList={contract.signList} />
+                  <SignList signList={contract.signature_addresses} />
                 </div>
               </div>
               )}

@@ -19,7 +19,7 @@ class FreezeBalanceContract extends React.Component {
   }
   render() {
     let { contract } = this.props;
-    console.log(contract);
+    let signList = contract.signature_addresses || [];
     return (
       <Fragment>
         <TransationTitle contractType={contract.contractType}></TransationTitle>
@@ -38,24 +38,27 @@ class FreezeBalanceContract extends React.Component {
                   }
                 />
               </Field>
+
+              <Field label="transaction_freeze_num">
+                {contract["frozen_balance"] / ONE_TRX} TRX
+              </Field>
+              <Field label="frozen_days">
+                {contract["frozen_duration"]} {tu("day")}
+              </Field>
               <Field label="transaction_get_resourse">
                 {tu("tron_power")} &{" "}
                 {contract["resource"] ? tu(`energy`) : tu(`bandwidth`)}
               </Field>
-              <Field label="transaction_freeze_num">
-                {contract["frozen_balance"] / ONE_TRX} TRX
-              </Field>
-                <Field label="frozen_days">{contract["frozen_duration"]} {tu('day')}</Field>
               {JSON.stringify(contract.cost) != "{}" && (
                 <Field label="consume_bandwidth">
                   <BandwidthUsage cost={contract.cost} />
                 </Field>
               )}
-              {contract.signList && (
+              {signList && signList.length > 1 && (
                 <Field label="signature_list">
-                  <SignList signList={contract.signList} />
+                  <SignList signList={signList} />
                 </Field>
-              )}{" "}
+              )}
             </tbody>
           </table>
         </div>

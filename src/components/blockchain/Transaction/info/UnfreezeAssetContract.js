@@ -21,6 +21,8 @@ class UnfreezeAssetContract extends React.Component {
   }
   render() {
     let { contract } = this.props;
+    let signList = contract.signature_addresses || [];
+
     return (
       <Fragment>
         <TransationTitle contractType={contract.contractType}></TransationTitle>
@@ -32,7 +34,7 @@ class UnfreezeAssetContract extends React.Component {
                   {contract["owner_address"]}
                 </AddressLink>
               </Field>
-              <Field label="amount">{contract.amount / ONE_TRX || 0}</Field>
+              {/* <Field label="amount">{contract.amount / ONE_TRX || 0}</Field> */}
               <Field label="trc20_token_id">{contract.token_id}</Field>
               <Field label="token">
                 <Link to={`/token/${contract.token_id}`}>{contract.abbr}</Link>
@@ -42,9 +44,9 @@ class UnfreezeAssetContract extends React.Component {
                   <BandwidthUsage cost={contract.cost} />
                 </Field>
               )}
-              {contract.signList && (
+              {signList && signList.length > 1 && (
                 <Field label="signature_list">
-                  <SignList signList={contract.signList} />
+                  <SignList signList={signList} />
                 </Field>
               )}
             </tbody>

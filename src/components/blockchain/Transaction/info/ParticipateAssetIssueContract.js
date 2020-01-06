@@ -9,7 +9,6 @@ import { AddressLink } from "../../../common/Links";
 import { TRXPrice } from "../../../common/Price";
 import { ONE_TRX } from "../../../../constants";
 import { NameWithId } from "../../../common/names";
-import rebuildList from "../../../../utils/rebuildList";
 import { TransationTitle } from "./common/Title";
 import BandwidthUsage from "./common/BandwidthUsage";
 import SignList from "./common/SignList";
@@ -21,6 +20,7 @@ class ParticipateAssetIssueContract extends React.Component {
   }
   render() {
     let { contract } = this.props;
+    let signList = contract.signature_addresses || [];
 
     return (
       <Fragment>
@@ -38,7 +38,9 @@ class ParticipateAssetIssueContract extends React.Component {
                   {contract["to_address"]}
                 </AddressLink>
               </Field>
-              <Field label="amount">{contract.amount / ONE_TRX} TRX</Field>
+              <Field label="amount">
+                <TRXPrice amount={contract.amount / ONE_TRX} />
+              </Field>
               <Field label="trc20_token_id">{contract.asset_name || "-"}</Field>
               <Field label="token">
                 <NameWithId
@@ -54,9 +56,9 @@ class ParticipateAssetIssueContract extends React.Component {
                   <BandwidthUsage cost={contract.cost} />
                 </Field>
               )}
-              {contract.signList && (
+              {signList && signList.length > 1 && (
                 <Field label="signature_list">
-                  <SignList signList={contract.signList} />
+                  <SignList signList={signList} />
                 </Field>
               )}
             </tbody>

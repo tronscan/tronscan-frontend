@@ -165,8 +165,8 @@ export const lang19Q4 = {
     "transaction_recycling_address":"Адрес утилизации ресурса",
     "transaction_unfreeze_num":"Размороженное количество",
     "transaction_fee":"Комиссия",
-    "transaction_consumed_bandwidth_cap_per":"Лимит расхода пропускной способности одного пользователя",
-    "transaction_consumed_bandwidth_cap_all":"Общий лимит расхода пропускной способности",
+    "transaction_consumed_bandwidth_cap_per":"Личный лимит потребления",
+    "transaction_consumed_bandwidth_cap_all":"Общий предел потребления",
     "transaction_frozen_day":"Дни заморожены",
     "transaction_frozen_number":"Замороженное количество",
     "transaction_unfreeze_time":"Время разморозки",
@@ -223,4 +223,6 @@ export const lang19Q4 = {
      "vote_yes":"Здесь",
      "vote_no":"нет",
      "account_id":"Аккаунт ID",
+     "trans_ticket":"голосов",
+     "trans_tickets":"голосов",
 }
