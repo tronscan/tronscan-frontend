@@ -1315,7 +1315,7 @@ class Navigation extends React.Component {
                                               {Route.badge &&
                                               <Badge value={Route.badge}/>}
                                             </HrefLink>
-                                           {Route.label==='NILE TESTNET'&& <span className="new-test-net">new</span>} 
+                                           {Route.label==='TRONEX TESTNET'&& <span className="new-test-net">new</span>} 
                                           </span>
                                         );
                                       }

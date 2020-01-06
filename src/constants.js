@@ -19,6 +19,7 @@ export const IS_NILE = true;
 export const NETURL = {
 
     MAINNET: "https://nile.tronscan.org",
+    //SUNNET: "https://dappchain.tronscan.org",
     SUNNET: "https://dappchain.tronscan.org",
     NEWMAINNET: "https://tronscan.io",
     NEWSUNNET: "https://dappchain.tronscan.io",
@@ -54,7 +55,8 @@ let NODEAPI;
 //NODEAPI = "http://52.15.126.154:9016";
 //for nile
 //NODEAPI = "http://52.15.126.154:9017";
-NODEAPI="https://nileapi.tronscan.org";
+//NODEAPI="https://nileapi.tronscan.org";
+NODEAPI="http://3.14.14.175:9000";
 
 export const BLOCK_REWARD = 32;
 export const SR_MAX_COUNT = 27;
@@ -71,7 +73,8 @@ export const PUBLIC_URL = process.env.PUBLIC_URL || window.location.origin;
 //test pro
 //export const API_URL_SUNNET = "http://52.15.68.74:10001";
 
-export const API_URL_SUNNET = "https://dappchainapi.tronscan.org";
+//export const API_URL_SUNNET = "https://dappchainapi.tronscan.org";
+export const API_URL_SUNNET = "https://3.136.58.175:9000";
 // export const API_URL_MAINNET = 'https://apilist.tronscan.org';
 export const API_URL = IS_SUNNET ? API_URL_SUNNET : process.env.API_URL;
 export const CONTRACT_MAINNET_API_URL = process.env.API_URL;
@@ -138,10 +141,16 @@ export const SUNWEBCONFIG = {
   // MAINEVENTSERVER: "https://api.trongrid.io",
 
   //for nile
-  MAINFULLNODE: "https://httpapi.nileex.io",
-  MAINSOLIDITYNODE: "https://httpapi.nileex.io",
-  MAINEVENTSERVER: "https://eventtest.nileex.io",
+//   MAINFULLNODE: "https://httpapi.nileex.io",
+//   MAINSOLIDITYNODE: "https://httpapi.nileex.io",
+//   MAINEVENTSERVER: "https://eventtest.nileex.io",
 
+  //for tronex
+  MAINFULLNODE: "https://testapi.tronex.io",
+  MAINSOLIDITYNODE: "https://testapi.tronex.io",
+  MAINEVENTSERVER: "https://testapi.tronex.io",
+
+ 
   SUNFULLNODE: "https://sun.tronex.io",
   SUNSOLIDITYNODE: "https://sun.tronex.io",
   SUNEVENTSERVER: "https://sun.tronex.io",
