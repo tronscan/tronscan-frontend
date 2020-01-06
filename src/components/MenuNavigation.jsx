@@ -16,17 +16,39 @@ const { SubMenu } = Menu;
 class Menunavigation extends Component {
   constructor() {
     super();
-    this.state = {};
+    this.state = {
+      openKeys: []
+    };
   }
 
   componentDidMount() {}
 
+  // menu change time coll put away other menu
+  onOpenChange = openKeys => {
+    let rootSubmenuKeys = [];
+    const { currentRoutes } = this.props;
+    currentRoutes.forEach(res => {
+      rootSubmenuKeys.push(res.path);
+    });
+    const latestOpenKey = openKeys.find(
+      key => this.state.openKeys.indexOf(key) === -1
+    );
+    if (rootSubmenuKeys.indexOf(latestOpenKey) === -1) {
+      this.setState({ openKeys });
+    } else {
+      this.setState({
+        openKeys: latestOpenKey ? [latestOpenKey] : []
+      });
+    }
+  };
+
   render() {
     const { currentRoutes, activeLanguage } = this.props;
-
     return (
       <div>
         <Menu
+          openKeys={this.state.openKeys}
+          onOpenChange={this.onOpenChange}
           style={{ width: 256 }}
           // defaultSelectedKeys={['1']}
           // defaultOpenKeys={['sub1']}
