@@ -1967,6 +1967,8 @@ export class EnergyConsumeDistributionChart extends React.Component {
                 percent: o.percent
             }
         })
+        console.log('data',data)
+        console.log('chartdata',chartdata)
         const SUBTITLE = `
             ${intl.formatMessage({id: 'total_used_energy'})}: ${intl.formatNumber(totalUsedEnergy)}(
             ${intl.formatMessage({id: 'energy_used_by_freezing_TRX'})} ${intl.formatNumber(freezingEnergy)}
@@ -2383,13 +2385,22 @@ export class LineTRXSupplyChart extends React.Component {
         let timestamp = []
         newData.map((val) => {
             totalSupply.push(val['total_turn_over_num']);
-            amountProduced.push(val['total_produce_num']);
+           // amountProduced.push(val['total_produce_num']);
             amountBurned.push(val['total_burn_num']);
             totalWorth.push(val['worth_num']);
             timestamp.push(val['timestamp'])
             //timestamp.push(moment(val['timestamp']).format("YYYY-MM-DD"))
         })
-       
+
+         amountProduced = newData.map(o => {
+            return {
+                y: Number(o.total_produce_num),
+                node: o.total_block_pay,
+                vote: o.total_node_pay,
+            }
+        })
+       // totalWorth[totalWorth.length-1] = parseFloat(-totalWorth[totalWorth.length-1])
+        console.log('totalWorth',totalWorth)
         if (newData && newData.length > 0) {
             let options =  {
                 title: {
@@ -2477,23 +2488,22 @@ export class LineTRXSupplyChart extends React.Component {
                 yAxis: [
                     { // Primary yAxis
                       labels: {
-                        //format: '{value}%',
                         style: {
                           color: "#C64844"
                         }
                       },
                       title: {
-                        text: intl.formatMessage({id: '总流通量'}),
+                        text: intl.formatMessage({id: 'Supply_total_y_title'}),
                         style: {
                             color: "##C64844"
                         }
                       },
                       opposite: false,
-                      min:0
+                      min:-25000000000
                     },
                     { // Secondary yAxis
                       title: {
-                        text: intl.formatMessage({id: 'TRX数量'}),
+                        text: intl.formatMessage({id: 'Supply_amount_TRX'}),
                         style: {
                           color: "#333333"
                         }
@@ -2506,21 +2516,6 @@ export class LineTRXSupplyChart extends React.Component {
                       minRange: 6000000
 
                     },
-                    { // Secondary yAxis
-                        title: {
-                          text: intl.formatMessage({id: 'TRX数量'}),
-                          style: {
-                            color: "#333333"
-                          }
-                        },
-                        labels: {
-                          style: {
-                              color: "#333333"
-                          }
-                        },
-                        minRange: 150000
-  
-                      }
                 ],
                 plotOptions: {
                     column: {
@@ -2530,7 +2525,7 @@ export class LineTRXSupplyChart extends React.Component {
                     },
                     spline: {
                         marker: {
-                            fillColor:"#5A5A5A",
+                           // fillColor:"#5A5A5A",
                             width: 8,
                             height: 8,
                             lineWidth: 0,  //线条宽度
@@ -2610,14 +2605,16 @@ export class LineTRXSupplyChart extends React.Component {
                         var s;
                         var points = this.points;
                         var pointsLength = points.length;
-                      
+                        console.log('points',points)
                         s = '<table class="tableformat" style="border: 0px;padding-left:10px;padding-right:10px" min-width="100%"><tr><td colspan=2 style="padding-bottom:5px;"><span style="font-size: 10px;"> ' + moment(points[0].x).format("YYYY-MM-DD") + '</span><br></td></tr>'
                         for (let index = 0; index < pointsLength; index += 1) {
-                            s += '<tr><td style="padding-top:4px;padding-bottom:4px;border-top:1px solid #D5D8DC;" valign="top">' + '<span style="color:' + points[index].series.color + ';font-size: 15px !important;">\u25A0</span> ' + intl.formatMessage({id: points[index].series.name })+ '</td>' +
-                                '<td align="right" style="padding-top:5px;padding-left:10px;padding-bottom:4px;border-top:1px solid #D5D8DC;"><span ><b style="color:#C23631">' +
+                            s += '<tr><td style="padding-top:4px;padding-bottom:4px;border-top:1px solid #D5D8DC;color:' + points[index].series.color + ';" valign="top">' + '<span style="color:' + points[index].series.color + ';font-size: 15px !important;">\u25A0</span> ' + intl.formatMessage({id: points[index].series.name })+ '</td>' +
+                                '<td align="right" style="padding-top:5px;padding-left:10px;padding-bottom:4px;border-top:1px solid #D5D8DC;"><span ><b style="color:' + points[index].series.color + ';">' +
                                 (points[index].series.name == intl.formatMessage({id: 'freezing_column_freezing_rate'}) ? Highcharts.numberFormat(points[index].y, 2, '.', ',') + ' %</b>' : points[index].series.name ==  intl.formatMessage({id: 'freezing_column_total_circulation'}) ?  toThousands((new BigNumber(points[index].y)).decimalPlaces(6)) + '</b>':Highcharts.numberFormat(points[index].y, 0, '.', ',') + '</b>')
-                                + '</span>' +
-                                '</td></tr>'
+                                + '</span>'
+                                + (points[index].series.name == intl.formatMessage({id: 'Supply_amount_TRX_produced'})? '<br/><span>'+ intl.formatMessage({id: 'Supply_block_rewards'})+'（'+points[index].point.node+'） + '+ intl.formatMessage({id: 'Supply_voting_rewards'})+'（'+points[index].point.vote+'）</span>':"")
+                                + (points[index].series.name == intl.formatMessage({id: 'Supply_amount_net_new'})? '<br/><span>'+ intl.formatMessage({id: 'Supply_amount_net_new_tip'})+'</span>':"")
+                                + '</td></tr>'
                         }
                         s += '</table>';
                         return s;
@@ -2625,22 +2622,19 @@ export class LineTRXSupplyChart extends React.Component {
 
                 },
                 series: [{
-                    name: intl.formatMessage({id: 'TRX总流通量'}),
+                    name: intl.formatMessage({id: 'Supply_TRX_total'}),
                     type: 'spline',
                     yAxis: 0,
                     color: "#DA8885",
                     data: totalSupply,
                     pointStart: Date.UTC(2019, 11, 28),
 			        pointInterval: 24 * 3600 * 1000 , // one day
-                    tooltip: {
-                        valueSuffix: ' '
-                    },
                     showInNavigator: false,
                     dataGrouping: { // 针对highstock,将指定数量的数据合并展现为一个点
                         enabled: false
                     }
                 }, {
-                    name: intl.formatMessage({id: 'TRX产生量'}),
+                    name: intl.formatMessage({id: 'Supply_amount_TRX_produced'}),
                     type: 'spline',
                     yAxis: 1,
                     color: "#EDB92B",
@@ -2655,30 +2649,30 @@ export class LineTRXSupplyChart extends React.Component {
                         enabled: false
                     }
                 }, {
-                    name: intl.formatMessage({id: 'TRX销毁量'}),
+                    name: intl.formatMessage({id: 'Supply_amount_TRX_burned'}),
                     type: 'spline',
-                    yAxis: 2,
+                    yAxis: 1,
                     color: "#999999",
                     data: amountBurned,
                     pointStart: Date.UTC(2019, 11, 28),
 			        pointInterval: 24 * 3600 * 1000 , // one day
                     marker: {
                         enabled: true,
-                    
                     },
                     tooltip: {
                         valueSuffix: ' %'
                     },
-                    showInNavigator: true,
+                    showInNavigator: false,
                     dataGrouping: { // 针对highstock,将指定数量的数据合并展现为一个点
                         enabled: false
                     }
                 },
                 {
-                    name: intl.formatMessage({id: '净值'}),
+                    name: intl.formatMessage({id: 'Supply_amount_net_new'}),
                     type: 'column',
                     yAxis: 1,
                     color: "#4A90E2",
+                    negativeColor: '#C64844',//就是这个属性设置负值的颜色
                     data: totalWorth,
                     pointStart: Date.UTC(2019, 11, 28),
 			        pointInterval: 24 * 3600 * 1000 , // one day
