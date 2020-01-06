@@ -207,7 +207,7 @@ export const lang19Q4 = {
     "only_show_sinatures":"Mostrar direcciones solo con firmas",
 
      // transaction info  2019-12-25  leon
-     "consume_bandwidth":"De lo contrario, el estado será \"está confirmando\".",
+     "consume_bandwidth":"Consumir ancho de banda",
      "consume_energy":"Consumir ancho de banda",
      "net_free":"Consumo de ancho de banda congelado / libre",
      "net_burn":"Quemar {num} TRX para ancho de banda",

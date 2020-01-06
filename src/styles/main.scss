@@ -3446,14 +3446,15 @@ h5 {
   font-size: 14px;
 
   &_box_name {
-    display: flex;
-    line-height: 41px;
+    // display: flex;
+    padding-top: 10px;
+    line-height: 20px;
     font-size: 14px;
-    min-width: 130px;
+    width: 150px;
     color: #666666;
-    &:after{
-      content: ':';
-    }
+    // &:after{
+    //   content: ':';
+    // }
   }
 
   &_name {
