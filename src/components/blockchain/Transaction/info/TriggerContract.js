@@ -377,13 +377,13 @@ function TriggerContract({contract,intl}){
                 </div>
               </div>
             )}
-            {contract.signList && (
+            {contract.signature_addresses && contract.signature_addresses.length > 1 && (
               <div className="d-flex border-bottom">
                 <div className="content_box_name">
                   {tu("consume_energy")}:
                 </div>
                 <div>
-                  <SignList signList={contract.signList} />
+                  <SignList signList={contract.signature_addresses} />
                 </div>
               </div>
               )}
