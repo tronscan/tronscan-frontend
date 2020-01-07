@@ -177,15 +177,44 @@ export class LineReactHighChartHomeAddress extends React.Component {
                     }
                 }
             }
-            _config.tooltip.formatter = function () {
-                let date = intl.formatDate((parseInt(this.point.date)));
-                return (
-                    intl.formatMessage({id: 'name'}) + ' : ' + intl.formatMessage({id: this.point.name}) + '<br/>' +
-                    intl.formatMessage({id: 'date'}) + ' : ' + date + '<br/>' +
-                    intl.formatMessage({id: 'daily_increment'}) + ' : ' + this.point.increment + '<br/>' +
-                    intl.formatMessage({id: 'total_addresses'}) + ' : ' + this.point.total
-                )
+            _config.exporting.buttons = {
+                contextButton: {
+                    menuItems: ['downloadJPEG', 'downloadPNG', 'downloadSVG', 'downloadPDF']
+                  }    
             }
+            _config.tooltip = {
+                useHTML: true,
+                shadow: true,
+                split: false,
+                shared: true,
+                formatter: function () {
+                    var s;
+                    var points = this.points;
+                    var pointsLength = points.length;
+                    
+                    s = '<table class="tableformat" style="border: 0px;" min-width="100%"><tr style="border-bottom:1px solid #D5D8DC;"><td colspan=2 style="padding-bottom:5px;"><span style="font-size: 10px;"> ' + moment(points[0].point.date).format("YYYY-MM-DD") + '</span><br></td><td></td></tr>'
+                    s += '<tr><td></td><td style="text-align:right;">'+intl.formatMessage({id:'daily_increment'})+'</td><td style="text-align:right;">'+intl.formatMessage({id:'total_addresses'})+'</td></tr>' 
+                    for (let index = 0; index < pointsLength; index += 1) { 
+                        s += '<tr style="border-bottom:1px solid #D5D8DC;">'+
+                             '<td style="padding-top:4px;padding-bottom:4px;" valign="top">' + '<span style="color:' + points[index].series.color + ';font-size: 15px !important;">\u25A0</span> ' + intl.formatMessage({id: points[index].series.name })+ '</td>' +
+                             '<td style="padding-top:5px;padding-left:10px;padding-bottom:4px;color:#C23631;font-weight:bold;text-align:right">'+Highcharts.numberFormat(points[index].point.increment, 0, '.', ',') +'</td>'+
+                             '<td align="right" style="padding-top:5px;padding-left:10px;padding-bottom:4px;"><span ><b style="color:#C23631">' +Highcharts.numberFormat(points[index].y, 0, '.', ',') + '</br>'
+                             + '</span>' +
+                            '</td></tr>'
+                    }
+                    s += '</table>';
+                    return s;
+                },
+            }
+            // _config.tooltip.formatter = function () {
+            //     let date = intl.formatDate((parseInt(this.point.date)));
+            //     return (
+            //         intl.formatMessage({id: 'name'}) + ' : ' + intl.formatMessage({id: this.point.name}) + '<br/>' +
+            //         intl.formatMessage({id: 'date'}) + ' : ' + date + '<br/>' +
+            //         intl.formatMessage({id: 'daily_increment'}) + ' : ' + this.point.increment + '<br/>' +
+            //         intl.formatMessage({id: 'total_addresses'}) + ' : ' + this.point.total
+            //     )
+            // }
         }
         Highcharts.chart(document.getElementById(id),_config);
 
@@ -401,27 +430,35 @@ export class LineReactHighChartHomeTx extends React.Component {
                     }
                 }
             }
+            _config.exporting.buttons = {
+                contextButton: {
+                    menuItems: ['downloadJPEG', 'downloadPNG', 'downloadSVG', 'downloadPDF']
+                  }    
+            }
             
-            _config.tooltip.shared = true;
-            
-           
-            _config.tooltip.formatter = function () {
-                // let date = intl.formatDate(this.point.date);
-                var s;
-                var points = this.points;
-                var pointsLength = points.length;
-               
-                s = '<div class="" style=""><p ><span style="color:#C23631">'+ moment(points[0].point.date).format("YYYY-MM-DD") + '</span></p><br/>'
-                s+= '<span style="float:right">'+intl.formatMessage({id:'total_transactions'})+'</span><br/>'
-                for (let index = 0; index < pointsLength; index += 1) {
-                    s += '<p style="display:flex;">'+
-                        '<span style="">' + '<span style="color:' + points[index].series.color + ';font-size: 15px !important;">\u25A0</span> ' + intl.formatMessage({id: points[index].series.name })+ '</span>' +
-                        '<span style=""><span><b style="color:#C23631">' +(points[index].series.name == intl.formatMessage({id: 'freezing_column_freezing_rate'}) ? Highcharts.numberFormat(points[index].y, 2, '.', ',') + ' %</b>' : points[index].series.name ==  intl.formatMessage({id: 'freezing_column_total_circulation'}) ?  toThousands((new BigNumber(points[index].y)).decimalPlaces(6)) + '</br>':Highcharts.numberFormat(points[index].y, 0, '.', ',') + '</br>')
-                        +'</span>'+
-                        '</span></p>'
-                }
-                s += '</div>';
-                return s;
+            _config.tooltip = {
+                useHTML: true,
+                shadow: true,
+                split: false,
+                shared: true,
+                formatter: function () {
+                    var s;
+                    var points = this.points;
+                    var pointsLength = points.length;
+                  
+                    s = '<table class="tableformat" style="border: 0px;" min-width="100%"><tr style="border-bottom:1px solid #D5D8DC;"><td colspan=2 style="padding-bottom:5px;"><span style="font-size: 10px;"> ' + moment(points[0].point.date).format("YYYY-MM-DD") + '</span><br></td></tr>'
+                    s += '<tr><td></td><td style="text-align:right;">'+intl.formatMessage({id:'total_transactions'})+'</td></tr>' 
+                    for (let index = 0; index < pointsLength; index += 1) {
+                        s += '<tr style="border-bottom:1px solid #D5D8DC;"><td style="padding-top:4px;padding-bottom:4px;" valign="top">' + '<span style="color:' + points[index].series.color + ';font-size: 15px !important;">\u25A0</span> ' + intl.formatMessage({id: points[index].series.name })+ '</td>' +
+                            '<td align="right" style="padding-top:5px;padding-left:10px;padding-bottom:4px;"><span ><b style="color:#C23631">' +
+                            Highcharts.numberFormat(points[index].y, 0, '.', ',') + '</br>'
+                            + '</span>' +
+                            '</td></tr>'
+                    }
+                    s += '</table>';
+                    return s;
+                },
+            }
                     
                 
             //     // return (
@@ -429,7 +466,7 @@ export class LineReactHighChartHomeTx extends React.Component {
             //     //     intl.formatMessage({id: 'date'}) + ' : ' + date + '<br/>' +
             //     //     intl.formatMessage({id: 'total_transactions'}) + ' : ' + this.point.y
             //     // )
-            }
+            // }
         }
         Highcharts.chart(document.getElementById(id),_config);
     }
