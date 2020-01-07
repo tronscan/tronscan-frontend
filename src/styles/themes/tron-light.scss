@@ -1195,6 +1195,12 @@ $color: #c23631;
     background: rgba(0, 0, 0, 0.85);
     .ant-drawer-body {
       padding: 44px 0 0 0;
+
+      .ant-menu-inline,
+      .ant-menu-vertical,
+      .ant-menu-vertical-left {
+        border-right: none;
+      }
     }
     .menu-single-tilte {
       font-family: HelveticaNeue;
@@ -1206,6 +1212,7 @@ $color: #c23631;
       color: #c23631 !important;
     }
     .ant-menu {
+      overflow: hidden;
       background: rgba(0, 0, 0, 0.85);
       .ant-menu-submenu {
         .ant-menu-submenu-title {
