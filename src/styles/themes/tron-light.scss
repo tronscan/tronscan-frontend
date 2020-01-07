@@ -1156,6 +1156,7 @@ $color: #c23631;
         height: 24px;
       }
     }
+
     .mobileFlexible {
       display: flex;
       flex-direction: column;
@@ -1184,13 +1185,23 @@ $color: #c23631;
       }
     }
   }
-
+  .ant-menu:not(.ant-menu-horizontal) .ant-menu-item-selected {
+    background: rgba(0, 0, 0, 0.85);
+  }
   .ant-drawer-content {
     background: rgba(0, 0, 0, 0.85);
     .ant-drawer-body {
       padding: 44px 0 0 0;
     }
-
+    .menu-single-tilte {
+      font-family: HelveticaNeue;
+      color: #ffffff;
+      font-size: 14px;
+    }
+    .menu-active-tilte {
+      font-family: HelveticaNeue;
+      color: #c23631 !important;
+    }
     .ant-menu {
       background: rgba(0, 0, 0, 0.85);
       .ant-menu-submenu {

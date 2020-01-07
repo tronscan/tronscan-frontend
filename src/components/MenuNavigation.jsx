@@ -17,7 +17,8 @@ class Menunavigation extends Component {
   constructor() {
     super();
     this.state = {
-      openKeys: []
+      openKeys: [],
+      selectedKeyAry: []
     };
   }
 
@@ -43,309 +44,416 @@ class Menunavigation extends Component {
   };
 
   render() {
-    const { currentRoutes, activeLanguage } = this.props;
+    const { currentRoutes, activeLanguage, currentRouter } = this.props;
+    const { selectedKeyAry } = this.state;
     return (
       <div>
         <Menu
           openKeys={this.state.openKeys}
           onOpenChange={this.onOpenChange}
           style={{ width: 256 }}
-          // defaultSelectedKeys={['1']}
+          defaultSelectedKeys={selectedKeyAry}
           // defaultOpenKeys={['sub1']}
           mode="inline"
         >
-          {filter(currentRoutes, r => r.showInMenu !== false).map(route => (
-            <SubMenu
-              key={route.path}
-              title={
-                <span className="nav-network-hot">
+          {filter(currentRoutes, r => r.showInMenu !== false).map(route =>
+            !route.routes ? (
+              <Menu.Item
+                key={route.label}
+                className="dropdown-item text-uppercase"
+              >
+                <span
+                  className={
+                    currentRouter == route.path
+                      ? "menu-single-tilte menu-active-tilte"
+                      : "menu-single-tilte"
+                  }
+                  style={{
+                    display: "inline-block",
+                    width: "50%"
+                  }}
+                  onClick={() => {
+                    this.props.changeDrawerFun();
+                    this.props.history.push(route.path);
+                  }}
+                >
                   {tu(route.label)}
-                  {route.label == "nav_network" ? (
-                    <i className="hot-nav"></i>
-                  ) : (
-                    ""
-                  )}
                 </span>
-              }
-            >
-              <span>
-                {route.routes &&
-                  route.label !== "nav_more" &&
-                  route.label !== "nav_network" && (
-                    // className="dropdown-menu"
-                    <div>
-                      {route.routes &&
-                        route.routes.map((subRoute, index) => {
-                          if (subRoute === "-") {
-                            return (
-                              <div
-                                key={index}
-                                className="dropdown-divider"
-                              ></div>
-                            );
-                          }
+              </Menu.Item>
+            ) : (
+              <SubMenu
+                key={route.label}
+                title={
+                  <span className="nav-network-hot">
+                    {tu(route.label)}
+                    {route.label == "nav_network" ? (
+                      <i className="hot-nav"></i>
+                    ) : (
+                      ""
+                    )}
+                  </span>
+                }
+              >
+                <span>
+                  {route.routes &&
+                    route.label !== "nav_more" &&
+                    route.label !== "nav_network" && (
+                      // className="dropdown-menu"
+                      <div>
+                        {route.routes &&
+                          route.routes.map((subRoute, index) => {
+                            if (subRoute === "-") {
+                              return (
+                                <div
+                                  key={index}
+                                  className="dropdown-divider"
+                                ></div>
+                              );
+                            }
 
-                          if (isString(subRoute)) {
-                            return (
-                              <h6 key={index} className="dropdown-header">
-                                {subRoute}
-                              </h6>
-                            );
-                          }
+                            if (isString(subRoute)) {
+                              return (
+                                <h6 key={index} className="dropdown-header">
+                                  {subRoute}
+                                </h6>
+                              );
+                            }
 
-                          if (subRoute.showInMenu === false) {
-                            return null;
-                          }
+                            if (subRoute.showInMenu === false) {
+                              return null;
+                            }
 
-                          if (!isUndefined(subRoute.url)) {
-                            return (
-                              <Menu.ItemGroup
-                                key={subRoute.url}
-                                className="dropdown-item text-uppercase"
-                                href={subRoute.url}
-                                title={
-                                  <span
-                                    onClick={() => {
-                                      this.props.changeDrawerFun();
-                                      window.open(subRoute.url, "_blank");
-                                    }}
-                                  >
-                                    {subRoute.icon && (
-                                      <i className={subRoute.icon + " mr-2"} />
-                                    )}
-                                    {tu(subRoute.label)}
-                                    {subRoute.badge && (
-                                      <Badge value={subRoute.badge} />
-                                    )}
-                                  </span>
-                                }
-                              ></Menu.ItemGroup>
-                            );
-                          }
-                          if (
-                            !isUndefined(subRoute.enurl) ||
-                            !isUndefined(subRoute.zhurl)
-                          ) {
-                            return (
-                              <Menu.ItemGroup
-                                key={subRoute.enurl}
-                                className="dropdown-item text-uppercase"
-                                href={
-                                  activeLanguage == "zh"
-                                    ? subRoute.zhurl
-                                    : subRoute.enurl
-                                }
-                                title={
-                                  <span
-                                    onClick={() => {
-                                      this.props.changeDrawerFun();
-                                      this.props.history.push(subRoute.enurl);
-                                    }}
-                                  >
-                                    {subRoute.icon && (
-                                      <i className={subRoute.icon + " mr-2"} />
-                                    )}
-                                    {tu(subRoute.label)}
-                                    {subRoute.badge && (
-                                      <Badge value={subRoute.badge} />
-                                    )}
-                                  </span>
-                                }
-                              ></Menu.ItemGroup>
-                            );
-                          }
-
-                          return (
-                            <Menu.ItemGroup
-                              key={subRoute.path}
-                              className="dropdown-item text-uppercase"
-                              to={subRoute.path}
-                              title={
-                                <span
-                                  onClick={() => {
-                                    this.props.changeDrawerFun();
-                                    this.props.history.push(subRoute.path);
-                                  }}
-                                >
-                                  {subRoute.icon && (
-                                    <i
-                                      className={`${subRoute.icon} mr-2 fa_width`}
-                                    />
-                                  )}
-                                  {tu(subRoute.label)}
-                                  {subRoute.badge && (
-                                    <Badge value={subRoute.badge} />
-                                  )}
-                                </span>
-                              }
-                            ></Menu.ItemGroup>
-                          );
-                        })}
-                    </div>
-                  )}
-                {route.routes &&
-                  (route.label == "nav_network" ||
-                    route.label == "nav_more") && (
-                    <div>
-                      {route.routes &&
-                        route.routes.map((subRoute, index) => {
-                          return (
-                            <div className="" key={index}>
-                              <div className="more-menu-line"></div>
-                              {subRoute.map((Route, j) => {
-                                if (isString(Route)) {
-                                  return (
-                                    <h6
-                                      key={j}
-                                      className="dropdown-header text-uppercase"
-                                    >
-                                      {" "}
-                                      {tu(Route)}
-                                    </h6>
-                                  );
-                                }
-
-                                if (Route.showInMenu === false) {
-                                  return null;
-                                }
-                                //wjl
-                                if (
-                                  !isUndefined(Route.url) &&
-                                  !Route.sidechain &&
-                                  Route.label !== "developer_challenge"
-                                ) {
-                                  return (
-                                    <Menu.ItemGroup
-                                      className="mr-3 d-inline-block developer_challenge_box"
-                                      key={j + Route.label}
-                                      title={
-                                        <span
-                                          onClick={() => {
-                                            this.props.changeDrawerFun();
-                                            window.open(Route.url, "_blank");
-                                          }}
-                                        >
-                                          <span
-                                            key={Route.url}
-                                            className="dropdown-item text-uppercase"
-                                            // href={Route.url}
-                                          >
-                                            {Route.icon && (
-                                              <i
-                                                className={Route.icon + " mr-2"}
-                                              />
-                                            )}
-                                            {tu(Route.label)}
-                                            {Route.badge && (
-                                              <Badge value={Route.badge} />
-                                            )}
-                                          </span>
-                                          {Route.label === "NILE TESTNET" && (
-                                            <span className="new-test-net">
-                                              new
-                                            </span>
-                                          )}
-                                        </span>
-                                      }
-                                    ></Menu.ItemGroup>
-                                  );
-                                }
-                                if (
-                                  !isUndefined(Route.url) &&
-                                  !Route.sidechain &&
-                                  Route.label == "developer_challenge"
-                                ) {
-                                  return (
-                                    <Menu.ItemGroup
-                                      className="mr-3 d-inline-block developer_challenge_box"
-                                      key={Route.url + "_" + Route.label}
-                                      title={
-                                        <span
-                                          onClick={() => {
-                                            this.props.changeDrawerFun();
-                                            window.open(Route.url, "_blank");
-                                          }}
-                                        >
-                                          <span
-                                            key={Route.url + "_" + Route.label}
-                                            className="dropdown-item text-uppercase"
-                                            href={Route.url}
-                                          >
-                                            {Route.icon && (
-                                              <i
-                                                className={Route.icon + " mr-2"}
-                                              />
-                                            )}
-                                            {tu(Route.label)}
-                                            {Route.badge && (
-                                              <Badge value={Route.badge} />
-                                            )}
-                                          </span>
-                                          <img
-                                            src={require("../images/home/hot.svg")}
-                                            title="hot"
-                                            className="developer_challenge_hot"
-                                          />
-                                        </span>
-                                      }
-                                    ></Menu.ItemGroup>
-                                  );
-                                }
-
-                                if (isUndefined(Route.url) && Route.sidechain) {
-                                  const sidechainTab = (
-                                    <a
-                                      href="javascript:"
-                                      key={Route.label}
-                                      className="dropdown-item text-uppercase"
+                            if (!isUndefined(subRoute.url)) {
+                              return (
+                                <Menu.ItemGroup
+                                  key={subRoute.label}
+                                  className="dropdown-item text-uppercase"
+                                  href={subRoute.url}
+                                  title={
+                                    <span
+                                      style={{
+                                        display: "inline-block",
+                                        width: "50%"
+                                      }}
                                       onClick={() => {
                                         this.props.changeDrawerFun();
-                                        this.netSelectChange(
-                                          IS_MAINNET ? "sunnet" : "mainnet"
-                                        );
+                                        window.open(subRoute.url, "_blank");
                                       }}
                                     >
-                                      {Route.icon && (
-                                        <i className={Route.icon + " mr-2"} />
+                                      {subRoute.icon && (
+                                        <i
+                                          className={subRoute.icon + " mr-2"}
+                                        />
                                       )}
-                                      {IS_MAINNET
-                                        ? tu("Side_Chain")
-                                        : tu("Main_Chain")}
-                                    </a>
-                                  );
-                                  return sidechainTab;
+                                      {tu(subRoute.label)}
+                                      {subRoute.badge && (
+                                        <Badge value={subRoute.badge} />
+                                      )}
+                                    </span>
+                                  }
+                                ></Menu.ItemGroup>
+                              );
+                            }
+                            if (
+                              !isUndefined(subRoute.enurl) ||
+                              !isUndefined(subRoute.zhurl)
+                            ) {
+                              return (
+                                <Menu.ItemGroup
+                                  key={subRoute.label}
+                                  className="dropdown-item text-uppercase"
+                                  href={
+                                    activeLanguage == "zh"
+                                      ? subRoute.zhurl
+                                      : subRoute.enurl
+                                  }
+                                  title={
+                                    <span
+                                      style={{
+                                        display: "inline-block",
+                                        width: "50%"
+                                      }}
+                                      onClick={() => {
+                                        this.props.changeDrawerFun();
+
+                                        this.props.history.push(subRoute.enurl);
+                                      }}
+                                    >
+                                      {subRoute.icon && (
+                                        <i
+                                          className={subRoute.icon + " mr-2"}
+                                        />
+                                      )}
+                                      {tu(subRoute.label)}
+                                      {subRoute.badge && (
+                                        <Badge value={subRoute.badge} />
+                                      )}
+                                    </span>
+                                  }
+                                ></Menu.ItemGroup>
+                              );
+                            }
+
+                            return (
+                              <Menu.ItemGroup
+                                key={subRoute.label}
+                                className="dropdown-item text-uppercase"
+                                to={subRoute.path}
+                                title={
+                                  <span
+                                    className={
+                                      currentRouter == subRoute.path
+                                        ? "menu-single-tilte menu-active-tilte"
+                                        : "menu-single-tilte"
+                                    }
+                                    style={{
+                                      display: "inline-block",
+                                      width: "50%"
+                                    }}
+                                    onClick={() => {
+                                      this.props.changeDrawerFun();
+                                      this.props.history.push(subRoute.path);
+                                    }}
+                                  >
+                                    {subRoute.icon && (
+                                      <i
+                                        className={`${subRoute.icon} mr-2 fa_width`}
+                                      />
+                                    )}
+                                    {tu(subRoute.label)}
+                                    {subRoute.badge && (
+                                      <Badge value={subRoute.badge} />
+                                    )}
+                                  </span>
                                 }
-                                if (
-                                  !isUndefined(Route.enurl) ||
-                                  !isUndefined(Route.zhurl)
-                                ) {
+                              ></Menu.ItemGroup>
+                            );
+                          })}
+                      </div>
+                    )}
+                  {route.routes &&
+                    (route.label == "nav_network" ||
+                      route.label == "nav_more") && (
+                      <div>
+                        {route.routes &&
+                          route.routes.map((subRoute, index) => {
+                            return (
+                              <div className="" key={index}>
+                                <div className="more-menu-line"></div>
+                                {subRoute.map((Route, j) => {
+                                  if (isString(Route)) {
+                                    return (
+                                      <h6
+                                        key={j}
+                                        className="dropdown-header text-uppercase"
+                                      >
+                                        {" "}
+                                        {tu(Route)}
+                                      </h6>
+                                    );
+                                  }
+
+                                  if (Route.showInMenu === false) {
+                                    return null;
+                                  }
+                                  //wjl
+                                  if (
+                                    !isUndefined(Route.url) &&
+                                    !Route.sidechain &&
+                                    Route.label !== "developer_challenge"
+                                  ) {
+                                    return (
+                                      <Menu.ItemGroup
+                                        className="mr-3 d-inline-block developer_challenge_box"
+                                        key={Route.label}
+                                        title={
+                                          <span
+                                            style={{
+                                              display: "inline-block",
+                                              width: "50%"
+                                            }}
+                                            onClick={() => {
+                                              this.props.changeDrawerFun();
+                                              window.open(Route.url, "_blank");
+                                            }}
+                                          >
+                                            <span
+                                              key={Route.url}
+                                              className="dropdown-item text-uppercase"
+                                              // href={Route.url}
+                                            >
+                                              {Route.icon && (
+                                                <i
+                                                  className={
+                                                    Route.icon + " mr-2"
+                                                  }
+                                                />
+                                              )}
+                                              {tu(Route.label)}
+                                              {Route.badge && (
+                                                <Badge value={Route.badge} />
+                                              )}
+                                            </span>
+                                            {Route.label === "NILE TESTNET" && (
+                                              <span className="new-test-net">
+                                                new
+                                              </span>
+                                            )}
+                                          </span>
+                                        }
+                                      ></Menu.ItemGroup>
+                                    );
+                                  }
+                                  if (
+                                    !isUndefined(Route.url) &&
+                                    !Route.sidechain &&
+                                    Route.label == "developer_challenge"
+                                  ) {
+                                    return (
+                                      <Menu.ItemGroup
+                                        className="mr-3 d-inline-block developer_challenge_box"
+                                        key={Route.label}
+                                        title={
+                                          <span
+                                            style={{
+                                              display: "inline-block",
+                                              width: "50%"
+                                            }}
+                                            onClick={() => {
+                                              this.props.changeDrawerFun();
+                                              window.open(Route.url, "_blank");
+                                            }}
+                                          >
+                                            <span
+                                              key={
+                                                Route.url + "_" + Route.label
+                                              }
+                                              className="dropdown-item text-uppercase"
+                                              href={Route.url}
+                                            >
+                                              {Route.icon && (
+                                                <i
+                                                  className={
+                                                    Route.icon + " mr-2"
+                                                  }
+                                                />
+                                              )}
+                                              {tu(Route.label)}
+                                              {Route.badge && (
+                                                <Badge value={Route.badge} />
+                                              )}
+                                            </span>
+                                            <img
+                                              src={require("../images/home/hot.svg")}
+                                              title="hot"
+                                              className="developer_challenge_hot"
+                                            />
+                                          </span>
+                                        }
+                                      ></Menu.ItemGroup>
+                                    );
+                                  }
+
+                                  if (
+                                    isUndefined(Route.url) &&
+                                    Route.sidechain
+                                  ) {
+                                    const sidechainTab = (
+                                      <a
+                                        href="javascript:"
+                                        key={Route.label}
+                                        className="dropdown-item text-uppercase"
+                                        style={{
+                                          display: "inline-block",
+                                          width: "50%"
+                                        }}
+                                        onClick={() => {
+                                          this.props.changeDrawerFun();
+                                          this.netSelectChange(
+                                            IS_MAINNET ? "sunnet" : "mainnet"
+                                          );
+                                        }}
+                                      >
+                                        {Route.icon && (
+                                          <i className={Route.icon + " mr-2"} />
+                                        )}
+                                        {IS_MAINNET
+                                          ? tu("Side_Chain")
+                                          : tu("Main_Chain")}
+                                      </a>
+                                    );
+                                    return sidechainTab;
+                                  }
+                                  if (
+                                    !isUndefined(Route.enurl) ||
+                                    !isUndefined(Route.zhurl)
+                                  ) {
+                                    return (
+                                      <Menu.ItemGroup
+                                        key={Route.label}
+                                        className="dropdown-item text-uppercase"
+                                        href={
+                                          activeLanguage == "zh"
+                                            ? Route.zhurl
+                                            : Route.enurl
+                                        }
+                                        title={
+                                          <span
+                                            style={{
+                                              display: "inline-block",
+                                              width: "50%"
+                                            }}
+                                            onClick={() => {
+                                              this.props.changeDrawerFun();
+                                              activeLanguage == "zh"
+                                                ? window.open(
+                                                    Route.zhurl,
+                                                    "_blank"
+                                                  )
+                                                : window.open(
+                                                    Route.enurl,
+                                                    "_blank"
+                                                  );
+                                            }}
+                                          >
+                                            {Route.icon && (
+                                              <i
+                                                className={Route.icon + " mr-2"}
+                                              />
+                                            )}
+                                            {tu(Route.label)}
+                                            {Route.badge && (
+                                              <Badge value={Route.badge} />
+                                            )}
+                                          </span>
+                                        }
+                                      ></Menu.ItemGroup>
+                                    );
+                                  }
                                   return (
                                     <Menu.ItemGroup
-                                      key={Route.enurl}
+                                      key={Route.label}
                                       className="dropdown-item text-uppercase"
-                                      href={
-                                        activeLanguage == "zh"
-                                          ? Route.zhurl
-                                          : Route.enurl
-                                      }
+                                      to={Route.path}
                                       title={
                                         <span
+                                          className={
+                                            currentRouter == Route.path
+                                              ? "menu-single-tilte menu-active-tilte"
+                                              : "menu-single-tilte"
+                                          }
+                                          style={{
+                                            display: "inline-block",
+                                            width: "50%"
+                                          }}
                                           onClick={() => {
                                             this.props.changeDrawerFun();
-                                            activeLanguage == "zh"
-                                              ? window.open(
-                                                  Route.zhurl,
-                                                  "_blank"
-                                                )
-                                              : window.open(
-                                                  Route.enurl,
-                                                  "_blank"
-                                                );
+                                            this.props.history.push(Route.path);
                                           }}
                                         >
                                           {Route.icon && (
                                             <i
-                                              className={Route.icon + " mr-2"}
+                                              className={`${Route.icon} mr-2 fa_width`}
                                             />
                                           )}
                                           {tu(Route.label)}
@@ -356,59 +464,16 @@ class Menunavigation extends Component {
                                       }
                                     ></Menu.ItemGroup>
                                   );
-                                }
-                                return (
-                                  <Menu.ItemGroup
-                                    key={Route.path}
-                                    className="dropdown-item text-uppercase"
-                                    to={Route.path}
-                                    title={
-                                      <span
-                                        onClick={() => {
-                                          this.props.changeDrawerFun();
-                                          this.props.history.push(Route.path);
-                                        }}
-                                      >
-                                        {Route.icon && (
-                                          <i
-                                            className={`${Route.icon} mr-2 fa_width`}
-                                          />
-                                        )}
-                                        {tu(Route.label)}
-                                        {Route.badge && (
-                                          <Badge value={Route.badge} />
-                                        )}
-                                      </span>
-                                    }
-                                  ></Menu.ItemGroup>
-                                );
-                              })}
-                            </div>
-                          );
-                        })}
-                    </div>
-                  )}
-                {!route.routes && (
-                  <div>
-                    <Menu.ItemGroup
-                      key={route.label}
-                      className="dropdown-item text-uppercase"
-                      title={
-                        <span
-                          onClick={() => {
-                            this.props.changeDrawerFun();
-                            this.props.history.push(route.path);
-                          }}
-                        >
-                          {tu(route.label)}
-                        </span>
-                      }
-                    ></Menu.ItemGroup>
-                  </div>
-                )}
-              </span>
-            </SubMenu>
-          ))}
+                                })}
+                              </div>
+                            );
+                          })}
+                      </div>
+                    )}
+                </span>
+              </SubMenu>
+            )
+          )}
         </Menu>
       </div>
     );
@@ -416,6 +481,7 @@ class Menunavigation extends Component {
 }
 function mapStateToProps(state) {
   return {
+    currentRouter: state.router.location.pathname,
     activeLanguage: state.app.activeLanguage,
     router: state.router
   };
