@@ -989,7 +989,7 @@ class Navigation extends React.Component {
 
   render() {
 
-    let {intl, params} = this.props;
+    let {intl, params,currentRouter} = this.props;
     let {
       languages,
       activeLanguage,
@@ -1000,7 +1000,7 @@ class Navigation extends React.Component {
       walletType: { type },
     } = this.props;
     let {search, popup, notifications, announcement, announId, annountime, searchResults, selectedNet,drawerVisible,currentActive } = this.state;
-
+    console.log(currentRouter,'currentRouter')
     let activeComponent = this.getActiveComponent();
     const isShowSideChain = !type || (type && IS_SUNNET);
     return (
@@ -1069,23 +1069,26 @@ class Navigation extends React.Component {
                             {
                               route.linkHref === true ?
                                   <HrefLink
-                                      className={route.routes ? "nav-link" : "nav-link"}
+                                      className={currentRouter == route.path ? "nav-link menu-active-tilte"
+                                      : "nav-link"}
                                       href={activeLanguage == 'zh' ? route.zhurl : route.enurl}>
                                     {route.icon &&
                                     <i className={route.icon + " d-none d-lg-inline-block mr-1"}/>}
                                     {tu(route.label)}
                                   </HrefLink>
                                   :
-                                  <span className={route.routes ? (route.label == 'nav_network' ? 'nav-network-hot mr-2' : "") : ""}> <NavLink
+                                  <span className={route.routes ? (route.label == 'nav_network' ? 'nav-network-hot mr-2' : "") : ""}> 
+                                  <NavLink
                                       className={route.routes ? (route.label == 'nav_network' ? 'nav-link text-capitalize' : "nav-link") : "nav-link"}
                                       {...((route.routes && route.routes.length > 0) ? {'data-toggle': 'dropdown'} : {})}
                                       activeClassName="active"
                                       to={route.redirect? route.redirect: route.path}
                                   >
+                                    <span  className={(currentRouter.slice(1).split('/').indexOf(route.path.slice(1)) !== -1 || (currentRouter==='/exchange/trc20' && route.path ==="/exchange/trc20") || (route.path==='/more' && currentRouter.slice(1,5)==='help') || (route.path==='/more' && currentRouter.slice(1,6)==='tools'))  ? "menu-active-tilte-pc": ""}>
                                     {route.icon &&
                                     <i className={route.icon + " d-none d-lg-inline-block mr-1"}/>}
                                     {tu(route.label)}
-
+                                    </span>
                                   </NavLink>
                                   <i className="hot-nav"></i>
                                   </span>
@@ -1119,7 +1122,7 @@ class Navigation extends React.Component {
                                       return (
                                           <HrefLink
                                               key={subRoute.url}
-                                              className="dropdown-item text-uppercase"
+                                              className={currentRouter == subRoute.url ? "dropdown-item text-uppercase menu-active-tilte-pc" : "dropdown-item text-uppercase"}
                                               href={subRoute.url}>
                                             {subRoute.icon &&
                                             <i className={subRoute.icon + " mr-2"}/>}
@@ -1133,7 +1136,7 @@ class Navigation extends React.Component {
                                       return (
                                           <HrefLink
                                               key={subRoute.enurl}
-                                              className="dropdown-item text-uppercase"
+                                              className={currentRouter == subRoute.enurl ? "dropdown-item text-uppercase menu-active-tilte-pc" : "dropdown-item text-uppercase"}
                                               href={activeLanguage == 'zh' ? subRoute.zhurl : subRoute.enurl}>
                                             {subRoute.icon &&
                                             <i className={subRoute.icon + " mr-2"}/>}
@@ -1147,7 +1150,7 @@ class Navigation extends React.Component {
                                     return (
                                         <Link
                                             key={subRoute.path}
-                                            className="dropdown-item text-uppercase"
+                                            className={currentRouter == subRoute.path ? "dropdown-item text-uppercase menu-active-tilte-pc" : "dropdown-item text-uppercase"}
                                             to={subRoute.path}>
                                           {subRoute.icon &&
                                           <i className={`${subRoute.icon} mr-2  fa_width`}/>}
@@ -1184,7 +1187,7 @@ class Navigation extends React.Component {
                                               <span className='mr-3 d-inline-block developer_challenge_box' key={j+Route.label}>
                                                 <HrefLink
                                                     key={Route.url}
-                                                    className="dropdown-item text-uppercase"
+                                                    className={currentRouter == Route.url ? "dropdown-item text-uppercase menu-active-tilte-pc" : "dropdown-item text-uppercase"}
                                                     href={Route.url}>
                                                   {Route.icon &&
                                                   <i className={Route.icon + " mr-2"} />}
@@ -1201,7 +1204,7 @@ class Navigation extends React.Component {
                                                   <span className="mr-3 d-inline-block developer_challenge_box" key={Route.url+'_'+ Route.label}>
                                                     <HrefLink
                                                         key={Route.url+'_'+ Route.label}
-                                                        className="dropdown-item text-uppercase"
+                                                        className={currentRouter == Route.url ? "dropdown-item text-uppercase menu-active-tilte-pc" : "dropdown-item text-uppercase"}
                                                         href={Route.url}>
                                                       {Route.icon &&
                                                       <i className={Route.icon + " mr-2"}/>}
@@ -1232,7 +1235,7 @@ class Navigation extends React.Component {
                                             return (
                                                 <HrefLink
                                                     key={Route.enurl}
-                                                    className="dropdown-item text-uppercase"
+                                                    className={currentRouter == Route.enurl ? "dropdown-item text-uppercase menu-active-tilte-pc" : "dropdown-item text-uppercase"}
                                                     href={activeLanguage == 'zh' ? Route.zhurl : Route.enurl}>
                                                   {Route.icon &&
                                                   <i className={Route.icon + " mr-2"}/>}
@@ -1246,7 +1249,7 @@ class Navigation extends React.Component {
                                           return (
                                               <Link
                                                   key={Route.path}
-                                                  className="dropdown-item text-uppercase"
+                                                  className={currentRouter == Route.path ? "dropdown-item text-uppercase menu-active-tilte-pc" : "dropdown-item text-uppercase"}
                                                   to={Route.path}>
                                                 {Route.icon &&
                                                 <i className={`${Route.icon} mr-2 fa_width`}/>}
@@ -1511,6 +1514,7 @@ const styles = {
 
 function mapStateToProps(state) {
   return {
+    currentRouter: state.router.location.pathname,
     activeLanguage: state.app.activeLanguage,
     router: state.router,
     languages: state.app.availableLanguages,
