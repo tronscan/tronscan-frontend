@@ -45,7 +45,7 @@ class UnfreezeAssetContract extends React.Component {
                 </Field>
               )}
               {signList && signList.length > 1 && (
-                <Field label="signature_list">
+                <Field label="signature_list" tip={true} text={tu('only_show_sinatures')}>
                   <SignList signList={signList} />
                 </Field>
               )}
