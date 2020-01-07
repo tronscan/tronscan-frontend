@@ -57,7 +57,7 @@ import { getQueryString } from "../utils/url";
 
 
 
-const { Option } = Select;
+
 const { Panel } = Collapse;
 class Navigation extends React.Component {
 
@@ -83,7 +83,7 @@ class Navigation extends React.Component {
       announId: 83,
       selectedNet:'',
       drawerVisible:false,//draw is visible
-
+      currentActive:1
     };
   }
 
@@ -999,7 +999,7 @@ class Navigation extends React.Component {
       syncStatus,
       walletType: { type },
     } = this.props;
-    let {search, popup, notifications, announcement, announId, annountime, searchResults, selectedNet,drawerVisible } = this.state;
+    let {search, popup, notifications, announcement, announId, annountime, searchResults, selectedNet,drawerVisible,currentActive } = this.state;
 
     let activeComponent = this.getActiveComponent();
     const isShowSideChain = !type || (type && IS_SUNNET);
@@ -1150,7 +1150,7 @@ class Navigation extends React.Component {
                                             className="dropdown-item text-uppercase"
                                             to={subRoute.path}>
                                           {subRoute.icon &&
-                                          <i className={subRoute.icon + " mr-2" + " fa_width"}/>}
+                                          <i className={`${subRoute.icon} mr-2  fa_width`}/>}
                                           {tu(subRoute.label)}
                                           {subRoute.badge && <Badge value={subRoute.badge}/>}
                                         </Link>
@@ -1249,7 +1249,7 @@ class Navigation extends React.Component {
                                                   className="dropdown-item text-uppercase"
                                                   to={Route.path}>
                                                 {Route.icon &&
-                                                <i className={Route.icon + " mr-2" + " fa_width"}/>}
+                                                <i className={`${Route.icon} mr-2 fa_width`}/>}
                                                 {tu(Route.label)}
                                                 {Route.badge && <Badge value={Route.badge}/>}
                                               </Link>
@@ -1292,7 +1292,7 @@ class Navigation extends React.Component {
                             ))
                           }
                         </div>
-                      </li>
+                    </li>
                   </ul>
                   <div className="drawWrapper hidden-PC" onClick={()=>{this.setState({drawerVisible:true})}}>
                      {/* drawer */}
@@ -1468,6 +1468,28 @@ class Navigation extends React.Component {
           >
             <div className="mobile-draw-menu">
               <MenuNavigation currentRoutes={routes} changeDrawerFun={()=>this.changeCurrentDrawerFun()}></MenuNavigation>
+              <Collapse bordered={false} expandIconPosition="right" accordion={true} defaultActiveKey={[currentActive]} expandIcon={({ isActive }) => <Icon type="down" rotate={isActive ? 180 : 0} />}>
+                <Panel header={languages[activeLanguage]} key="0" >
+                  <div className="languages-menu">
+                    {
+                      Object.keys(languages).map(language => (
+                          <a key={language}
+                            className="dropdown-item"
+                            href="javascript:"
+                            onClick={() => {
+                              this.changeCurrentDrawerFun();
+                              this.setState({
+                                currentActive:2
+                              })
+                              this.setLanguage(language)
+                            }}>{languages[language]}</a>
+                      ))
+                    }
+                  </div>
+                </Panel>
+              </Collapse>
+            
+                       
             </div>
           </Drawer>
         </div>

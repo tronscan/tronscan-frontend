@@ -169,9 +169,7 @@ class Menunavigation extends Component {
                                 >
                                   {subRoute.icon && (
                                     <i
-                                      className={
-                                        subRoute.icon + " mr-2" + " fa_width"
-                                      }
+                                      className={`${subRoute.icon} mr-2 fa_width`}
                                     />
                                   )}
                                   {tu(subRoute.label)}
@@ -373,9 +371,7 @@ class Menunavigation extends Component {
                                       >
                                         {Route.icon && (
                                           <i
-                                            className={
-                                              Route.icon + " mr-2" + " fa_width"
-                                            }
+                                            className={`${Route.icon} mr-2 fa_width`}
                                           />
                                         )}
                                         {tu(Route.label)}
