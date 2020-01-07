@@ -4,6 +4,7 @@ import Field from "../../../../tools/TransactionViewer/Field";
 import { tu } from "../../../../../utils/i18n";
 import { getContractTypesByHex } from "../../../../../utils/mutiSignHelper";
 function getOperationDom(operations) {
+    operations = getContractTypesByHex(operations);
     if (operations.length) {
         return (<div className="permission-child-item">
             <div className="permission-label">{tu('trc20_cur_order_header_action')}:</div>
@@ -20,12 +21,12 @@ function getOperationDom(operations) {
 export default function PermissionItem(props) {
     let { permissionItem, label, permissionArray } = props;
     permissionArray = permissionArray || [permissionItem];
-    permissionArray.map(item => {
-        if (item.operations) {
-            const arr = getContractTypesByHex(item.operations);
-            item.operations = arr;
-        }
-    })
+    // permissionArray.map(item => {
+    //     if (item.operations) {
+    //         const arr = getContractTypesByHex(item.operations);
+    //         item.operations = arr;
+    //     }
+    // })
     console.log(permissionArray)
     return (
         <Fragment>
@@ -74,7 +75,7 @@ export default function PermissionItem(props) {
                             </div>
                         </div>
                         {
-                            pItem.operations && getOperationDom(pItem.operations)
+                             pItem.operations && getOperationDom(pItem.operations)
                         }
                     </div>
                 ))}
