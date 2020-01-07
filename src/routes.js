@@ -66,7 +66,7 @@ export const routes = [
     path: "/",
     label: "home_page",
     // icon: "fas fa-home",
-    pathKey: 1,
+    pathKey: "/",
     icon: false,
     showInMenu: true,
     showSubMenu: false,
@@ -78,7 +78,7 @@ export const routes = [
   {
     path: "/blockchain",
     label: "blockchain",
-    pathKey: 2,
+    pathKey: "/blockchain",
     // icon: "fa fa-link",
     icon: false,
     component: () => <Redirect to="/blockchain/blocks" />,
@@ -186,7 +186,7 @@ export const routes = [
   {
     path: "/contracts",
     label: "contracts",
-    pathKey: 3,
+    pathKey: "/contracts",
     // icon: "fa fa-file-contract",
     icon: false,
     component: () => <Redirect to="/contracts/contracts" />,
@@ -250,34 +250,29 @@ export const routes = [
   {
     path: "/block/:id",
     label: "block",
-    pathKey: 4,
     component: Block,
     showInMenu: false
   },
   {
     path: "/transaction/:hash",
     label: "transaction",
-    pathKey: 5,
     component: Transaction,
     showInMenu: false
   },
   {
     path: "/address/:id",
-    pathKey: 6,
     label: "contract_code_overview_account",
     component: Address,
     showInMenu: false
   },
   {
     path: "/representative/:id",
-    pathKey: 7,
     label: "representative",
     component: Representative,
     showInMenu: false
   },
   {
     path: "/contract/:id",
-    pathKey: 8,
     label: "contract",
     component: SmartContract,
     showInMenu: false
@@ -285,7 +280,7 @@ export const routes = [
   {
     path: "/tokens",
     label: "tokens",
-    pathKey: 9,
+    pathKey: "/tokens",
     // icon: "fas fa-coins",
     icon: false,
     component: TokenOverviewAsync,
@@ -376,14 +371,12 @@ export const routes = [
   {
     path: "/token/:id",
     label: "token_detail",
-    pathKey: 10,
     component: TokenDetailAsync,
     showInMenu: false
   },
   {
     path: "/token20/:address",
     label: "token_detail",
-    pathKey: 11,
     component: Token20DetailAsync,
     showInMenu: false
   },
@@ -391,14 +384,12 @@ export const routes = [
     label: "update_token",
     component: MyTokenAsync,
     path: "/myToken",
-    pathKey: 12,
     showInMenu: false
   },
   {
     label: "TRONRating",
     component: TRONRatingAsync,
     path: "/rating",
-    pathKey: 13,
     showInMenu: false
   },
   // {
@@ -422,7 +413,7 @@ export const routes = [
     label: "nav_network",
     // icon: "fas fa-project-diagram",
     icon: false,
-    pathKey: 14,
+    pathKey: "/network",
     routes: [
       [
         "sun_network_product",
@@ -465,8 +456,8 @@ export const routes = [
     path: "/exchange/trc20",
     // icon: "fas fa-exchange-alt",
     icon: false,
+    pathKey: "/exchange/trc20",
     component: Exchange20,
-    pathKey: 15,
     isExact: true,
     none: true,
     showInMenu: IS_MAINNET ? true : false
@@ -485,7 +476,7 @@ export const routes = [
     // icon: "fas fa-gamepad",
     icon: false,
     component: null,
-    pathKey: 16,
+    pathKey: "/dapp",
     showInMenu: IS_MAINNET ? true : false,
     routes: [
       // {
@@ -525,7 +516,6 @@ export const routes = [
     //icon: "fas fa-exchange-alt",
     icon: false,
     component: Notice,
-    pathKey: 17,
     showInMenu: false
   },
   {
@@ -533,7 +523,7 @@ export const routes = [
     path: "/sr",
     // icon: "fas fa-chess-queen",
     icon: false,
-    pathKey: 18,
+    pathKey: "/sr",
     component: RepresentativesAsync,
     routes: [
       {
@@ -565,14 +555,12 @@ export const routes = [
     label: "live",
     // icon: "fas fa-comment",
     icon: false,
-    pathKey: 19,
     component: VoteLiveAsync,
     showInMenu: false
   },
   {
     path: "/account",
     label: "account",
-    pathKey: 20,
     showInMenu: false,
     component: AccountAsync
   },
@@ -580,14 +568,12 @@ export const routes = [
     path: "/proposals",
     label: "commission_proposed",
     component: Proposals,
-    pathKey: 21,
     showInMenu: false
   },
   {
     path: "/proposal/:id",
     label: "commission_proposed",
     component: ProposalDetailAsync,
-    pathKey: 22,
     showInMenu: false
   },
   {
@@ -595,7 +581,6 @@ export const routes = [
     label: "tools",
     // icon: "fa fa-wrench",
     icon: false,
-    pathKey: 23,
     component: null,
     showInMenu: false,
     routes: [
@@ -745,7 +730,7 @@ export const routes = [
   // },
   {
     path: "/more",
-    pathKey: 25,
+    pathKey: "/more",
     label: "nav_more",
     // icon: "fas fa-indent",
     icon: false,
@@ -936,14 +921,12 @@ export const routes = [
   {
     path: "/wallet/new",
     label: "wallet",
-    pathKey: 26,
     showInMenu: false,
     component: WalletWizardAsync
   },
   {
     path: "/demo",
     label: "demo",
-    pathKey: 27,
     showInMenu: false,
     showSubMenu: false,
     showSubHeader: false,
@@ -952,7 +935,6 @@ export const routes = [
   {
     path: "/test/btt/supply",
     label: "supply",
-    pathKey: 28,
     showInMenu: false,
     showSubMenu: false,
     showSubHeader: false,
@@ -960,7 +942,6 @@ export const routes = [
   },
   {
     path: "/error",
-    pathKey: 29,
     showInMenu: false,
     showSubMenu: false,
     showSubHeader: false,
@@ -971,7 +952,6 @@ export const routes = [
     label: "developers_scored_users",
     // icon: "fa fa-users",
     icon: false,
-    pathKey: 30,
     showInMenu: false,
     component: DevelopersRewardAsync
   }
