@@ -25,7 +25,7 @@ export default function ExchangeInjectContract(props) {
                 <Field label="amount">{toThousands(quant)}</Field>
                 {JSON.stringify(contract.cost) !=
                     "{}" && <Field label="consume_bandwidth"><BandwidthUsage cost={cost} /></Field>}
-                {signList&&signList.length>1 && <Field label="signature_list"><SignList signList={signList} /></Field>}
+                {signList&&signList.length>1 && <Field label="signature_list" tip={true} text={tu('only_show_sinatures')}><SignList signList={signList} /></Field>}
             </tbody>
         </table>
     </Fragment>
