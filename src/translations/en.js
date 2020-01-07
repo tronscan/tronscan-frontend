@@ -962,7 +962,7 @@ export const messages = {
   "genesis": "Genesis",
   "TRX_distribution_overview": "TRX DISTRIBUTION OVERVIEW",
 
-  "block_produce_rewards": "Block Produce Rewards",
+  "block_produce_rewards": "Block Rewards",
   "node_rewards": "Node Rewards",
   "independence_day_burned": "Independence Day Burned",
   "fee_burned": "Fee Burned",

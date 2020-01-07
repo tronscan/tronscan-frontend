@@ -19,6 +19,7 @@ import HighchartsDrilldown from 'highcharts/modules/drilldown';
 import Highcharts3D from 'highcharts/highcharts-3d';
 import Exporting from 'highcharts/modules/exporting';
 import Variabled from 'highcharts/modules/variable-pie.js';
+import isMobile from './../../utils/isMobile';
 
 import {cloneDeep} from "lodash";
 
@@ -2076,7 +2077,7 @@ export class OverallFreezingRateChart extends React.Component {
                 exporting: {
                     enabled: true,
                     sourceWidth: 1072,
-                    sourceHeight: 500,
+                    sourceHeight: 580,
                     filename:intl.formatMessage({id: 'charts_overall_freezing_rate'})
                 },
                 rangeSelector: {
@@ -2383,7 +2384,7 @@ export class LineTRXSupplyChart extends React.Component {
         let amountBurned  = [];
         let totalWorth = [];
         let timestamp = []
-        let visibleY = [{"visible":true},{"visible":true},{"visible":true},{"visible":true}]
+        let visibleY = isMobile?[{"visible":true},{"visible":false},{"visible":false},{"visible":false}]:[{"visible":true},{"visible":true},{"visible":true},{"visible":true}]
         newData.map((val) => {
             totalSupply.push(val['total_turn_over_num']);
             amountBurned.push(val['total_burn_num']);
@@ -2414,7 +2415,7 @@ export class LineTRXSupplyChart extends React.Component {
                 exporting: {
                     enabled: true,
                     sourceWidth: 1072,
-                    sourceHeight: 500,
+                    sourceHeight: 580,
                     filename:intl.formatMessage({id: 'Supply_TRX_total_chart'})
                 },
                 rangeSelector: {
@@ -2521,7 +2522,7 @@ export class LineTRXSupplyChart extends React.Component {
                         },
                         
                       },
-                      visible: true,
+                      //visible: isMobile?false:true,
                       opposite: true,
                       min:-500000,
                       minRange: 10000000,
@@ -2540,7 +2541,7 @@ export class LineTRXSupplyChart extends React.Component {
                           },
                          
                         },
-                        visible: true,
+                        visible: isMobile?false:true,
                         opposite: true,
                         min:-500000,
                         max: 2000000,
@@ -2737,7 +2738,7 @@ export class LineTRXSupplyChart extends React.Component {
                                 '<td align="right" style="padding-top:5px;padding-left:10px;padding-bottom:4px;border-top:1px solid #D5D8DC;"><span ><b style="color:' + points[index].series.color + ';">' +
                                 (points[index].series.name == intl.formatMessage({id: 'Supply_TRX_total'}) || points[index].series.name ==  intl.formatMessage({id: 'Supply_amount_net_new'}) ? toThousands((new BigNumber(points[index].y)).decimalPlaces(6)) + '</b>' : (points[index].series.name ==  intl.formatMessage({id: 'Supply_amount_TRX_burned'})) ?  ("-" + toThousands((new BigNumber((Math.abs(points[index].y)))).decimalPlaces(6))) + '</b>':Highcharts.numberFormat(points[index].y, 0, '.', ',') + '</b>')
                                 + '</span>'
-                                + (points[index].series.name == intl.formatMessage({id: 'Supply_amount_TRX_produced'})? '<br/><span>'+ intl.formatMessage({id: 'Supply_block_rewards'})+'（'+points[index].point.node+'） + '+ intl.formatMessage({id: 'Supply_voting_rewards'})+'（'+points[index].point.vote+'）</span>':"")
+                                + (points[index].series.name == intl.formatMessage({id: 'Supply_amount_TRX_produced'})? '<br/><span>'+ intl.formatMessage({id: 'Supply_block_rewards'})+'（'+toThousands(points[index].point.node)+'） + '+ intl.formatMessage({id: 'Supply_voting_rewards'})+'（'+toThousands(points[index].point.vote)+'）</span>':"")
                                 + (points[index].series.name == intl.formatMessage({id: 'Supply_amount_net_new'})? '<br/><span>'+ intl.formatMessage({id: 'Supply_amount_net_new_tip'})+'</span>':"")
                                 + '</td></tr>'
                         }
@@ -2778,6 +2779,7 @@ export class LineTRXSupplyChart extends React.Component {
                         enabled: false
                     },
                     softThreshold:true,
+                    visible: isMobile?false:true,
                 },
                 {
                     name: intl.formatMessage({id: 'Supply_amount_TRX_burned'}),
@@ -2795,6 +2797,7 @@ export class LineTRXSupplyChart extends React.Component {
                         enabled: false
                     },
                     softThreshold:true,
+                    visible: isMobile?false:true,
                 },
                 {
                     name: intl.formatMessage({id: 'Supply_amount_net_new'}),
@@ -2810,6 +2813,7 @@ export class LineTRXSupplyChart extends React.Component {
                         enabled: false
                     },
                     softThreshold:true,
+                    visible: isMobile?false:true,
                 },
                 
             ]
