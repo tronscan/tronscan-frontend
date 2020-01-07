@@ -169,5 +169,26 @@ export const lang19Q4 = {
     */
    "account_details_contracts":"Contracts Published",
    "account_details_contracts_no":"No contracts found",
+   "Supply_TRX_total_chart":"Общее количество TRX",
+   "Supply_total_y_title":"Общая циркуляция",
+   "Supply_amount_TRX":"Количество TRX",
+   "Supply_TRX_supply_records":"Циркуляция TRX: всего ",
+   "Supply_TRX_supply_records_total":" записей",
+   "Supply_TRX_total":"Общий объем циркуляции TRX",
+   "Supply_TRX_total_tip":"Накопленная ежедневная чистая стоимость + выпуск блока Genesis (100 000 000 000 TRX)",
+   "Supply_amount_TRX_produced":"Количество произведенного TRX",
+   "Supply_amount_TRX_produced_tip":"Вознаграждения блока + Вознаграждения голосования",
+   "Supply_voting_rewards":"Вознаграждения голосования",     
+   "Supply_block_rewards":"Вознаграждения блока", 
+   "Supply_amount_TRX_burned":"Количество сожженного TRX",
+   "Supply_amount_TRX_burned_y_title":"Сумма уничтожения (TRX)",
+   "Supply_amount_TRX_burned_tip1":"Плата за уничтожение",    
+   "Supply_amount_TRX_burned_tip2":"Уничтожение платы за обслуживание + уничтожение за независимый день (1 000 000 000 TRX)",    
+   "Supply_amount_net_new":"Чистое количество TRX",
+   "Supply_amount_net_new_highest":"Чистое количество TRX:",
+   "Supply_amount_net_new_y_title":"Доходность / Чистая стоимость (TRX)",
+   "Supply_amount_net_new_tip":"TRX поколение + TRX уничтожение",
+   "votes_num":"голосов",
+  
 
 }

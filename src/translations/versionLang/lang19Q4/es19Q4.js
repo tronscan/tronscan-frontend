@@ -166,6 +166,28 @@ export const lang19Q4 = {
         #                                                                                #
         ##################################################################################
     */
-    "account_details_contracts":"Contracts Published",
-    "account_details_contracts_no":"No contracts found",
+   "account_details_contracts":"Contratos publicados",
+   "account_details_contracts_no":"No se encontraron contratos.",
+   "Supply_TRX_total_chart":"Suministro Total De TRX",
+   "Supply_total_y_title":"Circulación Total",
+   "Supply_amount_TRX":"Cantidad de TRX",
+   "Supply_TRX_supply_records":"Datos de la circulación de TRON, ",
+   "Supply_TRX_supply_records_total":" datos en total",
+   "Supply_TRX_total":"Circulación Total de TRX",
+   "Supply_TRX_total_tip":"Valor neto diario acumulado + Emisión del bloque Génesis (100,000,000,000 TRX)",
+   "Supply_amount_TRX_produced":"Producción TRX",
+   "Supply_amount_TRX_produced_tip":"出块奖励 + Recompensas de votación",
+   "Supply_voting_rewards":"Recompensas de votación",     
+   "Supply_block_rewards":"Bloquear recompensas", 
+   "Supply_amount_TRX_burned":"TRX(Cantidad de) TRX quemado销毁量",
+   "Supply_amount_TRX_burned_y_title":"Cantidad de destrucción (TRX)",
+   "Supply_amount_TRX_burned_tip1":"Tasa de destrucción",    
+   "Supply_amount_TRX_burned_tip2":"Destrucción de tarifa de manejo + destrucción de día independiente (1,000,000,000 TRX)",    
+   "Supply_amount_net_new":"Total neto",
+   "Supply_amount_net_new_highest":"Total neto:",
+   "Supply_amount_net_new_y_title":"Rendimiento / Valor neto (TRX)",
+   "Supply_amount_net_new_tip":"Generación TRX + destrucción TRX",
+   "votes_num":"votos",
+    
+   
 }

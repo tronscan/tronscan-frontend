@@ -168,7 +168,28 @@ export const lang19Q4 = {
         #                                                                                #
         ##################################################################################
     */
-   "account_details_contracts":"Contracts Published",
-   "account_details_contracts_no":"No contracts found",
+   "account_details_contracts":"公開された契約",
+   "account_details_contracts_no":"契約が見つかりません",
+   "Supply_TRX_total_chart":"総合TRX供給",
+   "Supply_total_y_title":"総合供給",
+   "Supply_amount_TRX":"TRX数量",
+   "Supply_TRX_supply_records":"流通中のTRX、合計",
+   "Supply_TRX_supply_records_total":"レコード",
+   "Supply_TRX_total":"TRX総合供給",
+   "Supply_TRX_total_tip":"累计每日净值+创世块发行量（100,000,000,000 TRX）",
+   "Supply_amount_TRX_produced":"TRX生産量",
+   "Supply_amount_TRX_produced_tip":"ブロック生産の報酬 + 投票報酬",
+   "Supply_voting_rewards":"投票報酬",     
+   "Supply_block_rewards":"ブロック生産の報酬", 
+   "Supply_amount_TRX_burned":"（量）TRX破棄",
+   "Supply_amount_TRX_burned_y_title":"破壊量（TRX）",
+   "Supply_amount_TRX_burned_tip1":"破壊費",    
+   "Supply_amount_TRX_burned_tip2":"手数料の破壊 + 独立した日の破壊（1,000,000,000 TRX）",    
+   "Supply_amount_net_new":"ネットトータル",
+   "Supply_amount_net_new_highest":"ネットトータル",
+   "Supply_amount_net_new_y_title":"利回り/純価値（TRX）",
+   "Supply_amount_net_new_tip":"TRX生成 + TRX破壊",
+   "votes_num":"投票数",
+  
 
 }

@@ -430,9 +430,9 @@ class StatsCharts extends React.Component {
                   <div className="card-chart">
                     <Link className="card-title" to="/blockchain/charts/supply">
                       <span className="ml-5">
-                        {tu("TRX累计流通量")}222
+                        {tu("Supply_TRX_total_chart")}
                       </span>
-                      <img src={require("../../../images/chart/Total-TRX-Supply.png")}
+                      <img src={require("../../../images/chart/Total-TRX-Supply-Worth.png")}
                         style={{ width: 240, filter: 'grayscale(100%)' }}
                         className="ml-5 mt-2"
                       />

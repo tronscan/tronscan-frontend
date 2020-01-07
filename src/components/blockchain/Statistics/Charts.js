@@ -325,14 +325,15 @@ class StatCharts extends React.Component {
         let { start_day, end_day, limit} = this.state.SupplyParams;
         let {data: {data}} = await xhr.get(API_URL + "/api/turnover?size="+ limit +"&start="+ start_day+"&end="+end_day); 
         console.log('data',data)
-        let x;
+        let x,y;
         data.map((item, index) => {
             item.timestamp = moment(item.day).valueOf();
             x = new BigNumber(item.total_turn_over);
             item.total_turn_over_num = x.decimalPlaces(6).toNumber();
             item.total_burn_num = parseFloat('-'+item.total_burn);
-            item.total_produce_num =  item.total_block_pay + item.total_node_pay;
-            item.worth_num =  (item.total_block_pay + item.total_node_pay) - item.total_burn;
+            item.total_produce_num =  item.total_produce;
+            y = new BigNumber(item.worth);
+            item.worth_num =  y.decimalPlaces(6).toNumber();
         })
         data.pop()
         this.setState({
@@ -340,26 +341,26 @@ class StatCharts extends React.Component {
             SupplyDataRevers:sortBy(data, function(o) { return -o.timestamp; }),
         });
        
-        // let higest = {date: '', increment: ''};
-        // let lowest = {date: '', increment: ''};
-        // let pr = cloneDeep(data).sort(this.compare('freezing_rate'));
-        // for (let p in pr) {
-        //     pr[p] = {date: pr[p].time, ...pr[p]};
-        // }
-        // this.setState({
-        //     summit: {
-        //         OverallFreezingRate_sort: [
-        //             {
-        //                 date: pr[pr.length - 1].timestamp ,
-        //                 increment: pr[pr.length - 1].freezing_rate ? (pr[pr.length - 1].freezing_rate * 100).toFixed(2) + '%': 0
-        //             },
-        //             {
-        //                 date: pr[0].timestamp,
-        //                 increment: pr[0].freezing_rate ? (pr[0].freezing_rate * 100).toFixed(2) + '%': 0
-        //             }],
+        let higest = {date: '', increment: ''};
+        let lowest = {date: '', increment: ''};
+        let pr = cloneDeep(data).sort(this.compare('worth_num'));
+        for (let p in pr) {
+            pr[p] = {date: pr[p].time, ...pr[p]};
+        }
+        this.setState({
+            summit: {
+                supply_sort: [
+                    {
+                        date: pr[pr.length - 1].timestamp ,
+                        increment: pr[pr.length - 1].worth_num ? (pr[pr.length - 1].worth_num): 0
+                    },
+                    {
+                        date: pr[0].timestamp,
+                        increment: pr[0].worth_num ? pr[0].worth_num : 0
+                    }],
 
-        //     }
-        // });
+            }
+        });
     }
 
     freezingCustomizedColumn = () => {
@@ -538,7 +539,7 @@ class StatCharts extends React.Component {
                 dataIndex: 'total_produce',
                 key: 'total_produce',
                 render: (text, record, index) => {
-                    return <FormattedNumber value={record.total_block_pay +record.total_node_pay}/>
+                    return <FormattedNumber value={record.total_produce_num}/>
                 }
             },
             {
@@ -613,12 +614,12 @@ class StatCharts extends React.Component {
                     </div>
                     )
                 },
-                dataIndex: 'trigger_amount',
-                key: 'trigger_amount',
+                dataIndex: 'worth_num',
+                key: 'worth_num',
                 render: (text, record, index) => {
                     return <span>
                         <FormattedNumber
-                        value={(record.total_block_pay + record.total_node_pay) - record.total_burn}
+                        value={record.worth_num}
                         minimumFractionDigits={6}
                         maximumFractionDigits={6}
                     /> 
@@ -651,22 +652,26 @@ class StatCharts extends React.Component {
         return (
             <main className="container header-overlap">
                 {
-                    match.params.chartName != 'pieChart' && match.params.chartName != 'supply' && match.params.chartName != 'ContractInvocationDistribution' && match.params.chartName !='EnergyConsumeDistribution' ?
+                    match.params.chartName != 'pieChart' && match.params.chartName != 'ContractInvocationDistribution' && match.params.chartName !='EnergyConsumeDistribution' ?
                         <div className="alert alert-light" role="alert">
                           <div className="row">
                             <div className="col-md-6 text-center">
                                 {
                                     summit && summit[match.params.chartName + '_sort'] &&
-                                    <span>{t('freezing_column_freezing_rate_highest')}&nbsp;{tu('highest')}{t(unit)}{t('_of')}
-                                      <strong>{' ' + summit[match.params.chartName + '_sort'][0].increment + ' '}</strong>
+                                    <span>
+                                        {match.params.chartName === 'OverallFreezingRate' &&  t('freezing_column_freezing_rate_highest')}
+                                        {match.params.chartName === 'supply' &&  t('Supply_amount_net_new_highest')}
+                                         &nbsp;{tu('highest')}{t(unit)}{t('_of')}
+                                        <strong>{' ' + summit[match.params.chartName + '_sort'][0].increment + ' '}</strong>
                                         {t('was_recorded_on')} {intl.formatDate(summit[match.params.chartName + '_sort'][0].date)}
-                            </span>
+                                    </span>
                                 }
                             </div>
                             <div className="col-md-6 text-center">
                                 {
                                     summit && summit[match.params.chartName + '_sort'] &&
-                                    <span>{t('freezing_column_freezing_rate_highest')}&nbsp;{tu('lowest')}{t(unit)}{t('_of')}
+                                    <span>{match.params.chartName === 'OverallFreezingRate' &&  t('freezing_column_freezing_rate_highest')}
+                                    {match.params.chartName === 'supply' &&  t('Supply_amount_net_new_highest')}&nbsp;{tu('lowest')}{t(unit)}{t('_of')}
                                       <strong>{' ' + summit[match.params.chartName + '_sort'][1].increment + ' '}</strong>
                                         {t('was_recorded_on')} {intl.formatDate(summit[match.params.chartName + '_sort'][1].date)}
                             </span>
@@ -768,7 +773,7 @@ class StatCharts extends React.Component {
                                             <div>
                                                 {
                                                     intl.formatMessage({id: 'Supply_TRX_supply_records'}) + intl.formatNumber(SupplyData.length)+ 
-                                                    intl.formatMessage({id: 'freezing_column_calls'})
+                                                    intl.formatMessage({id: 'Supply_TRX_supply_records_total'})
                                                 }
                                             </div>
                                             <div style={{marginTop:-20}}>
