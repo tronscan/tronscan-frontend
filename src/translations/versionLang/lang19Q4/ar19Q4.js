@@ -219,7 +219,7 @@ export const lang19Q4 = {
      "sr_url":"الرابط",
      "proposal_ID":"معرف الاقتراح",
      "proposal_content":"المحتوى",
-     "vote_proposal":"التصويت على الاقتراح؟",
+     "vote_proposal":"التصويت على الاقتراح",
      "vote_yes":"موافقة",
      "vote_no":"استنكار",
      "account_id":"معرف الحساب",

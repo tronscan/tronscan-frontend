@@ -219,7 +219,7 @@ export const lang19Q4 = {
      "sr_url":"URL",
      "proposal_ID":"ID de propuesta",
      "proposal_content":"Contenido",
-     "vote_proposal":"¿Votar por la propuesta?",
+     "vote_proposal":"¿Votar por la propuesta",
      "vote_yes":"Si",
      "vote_no":"No hay",
      "account_id":"ID de la cuenta",

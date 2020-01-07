@@ -33,18 +33,18 @@ async function contractValue(id) {
     if (contract.call_value) {
       contractValue = `${contract.call_value} TRX`;
     } else {
-      contractValue = 0;
+      contractValue = '0 TRX';
     }
   }
 
   return contractValue;
 }
 const useFetch = (id) => {
-  const [data, updateData] = useState(0)
+  const [data, updateData] = useState('0 TRX')
 
   async function getData(){
     const value = await contractValue(id).catch(e=>{
-      updateData(0) 
+      updateData('0 TRX') 
     })
     updateData(value)
   }

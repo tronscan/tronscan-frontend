@@ -220,7 +220,7 @@ export const lang19Q4 = {
      "sr_url":"アドレス",
      "proposal_ID":"プロポーザルID",
      "proposal_content":"内容",
-     "vote_proposal":"プロポーザルに賛成しますか？",
+     "vote_proposal":"プロポーザルに賛成しますか",
      "vote_yes":"承認する",
      "vote_no":"不承認",
      "account_id":"アカウントID",

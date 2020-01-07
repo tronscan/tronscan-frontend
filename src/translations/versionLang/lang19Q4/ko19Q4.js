@@ -216,7 +216,7 @@ export const lang19Q4 = {
      "sr_url":"URL",
      "proposal_ID":"제안 ID",
      "proposal_content":"제안 내용",
-     "vote_proposal":"제안에 찬성 하십니까?",
+     "vote_proposal":"제안에 찬성 하십니까",
      "vote_yes":"예",
      "vote_no":"비 승인",
      "account_id":"계정 ID",

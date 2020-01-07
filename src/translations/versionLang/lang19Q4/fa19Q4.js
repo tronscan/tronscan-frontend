@@ -218,7 +218,7 @@ export const lang19Q4 = {
      "sr_url":"آدرس اینترنتی",
      "proposal_ID":"شناسه پیشنهادی",
      "proposal_content":"محتوا .",
-     "vote_proposal":"آیا به این پیشنهاد رای می دهید ؟",
+     "vote_proposal":"آیا به این پیشنهاد رای می دهید",
      "vote_yes":"بله",
      "vote_no":"نه",
      "account_id":"شناسه حساب.",
