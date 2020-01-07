@@ -508,13 +508,13 @@ class StatCharts extends React.Component {
             },
             {
                 title: () => {
-                    //let text = intl.formatMessage({id: 'Supply_TRX_total_tip'}); 
+                    let text = intl.formatMessage({id: 'Supply_TRX_total_tip'}); 
                     return (
                     <div>
                         {upperFirst(intl.formatMessage({id: 'Supply_TRX_total'}))}
-                        {/* <span className="ml-2">
-                             <QuestionMark placement="top" text={text} />
-                        </span> */}
+                        <span className="ml-2">
+                             <QuestionMark placement="top" text={text} className="trxsupply-tip"/>
+                        </span>
                     </div>
                     )
                 },
@@ -580,12 +580,13 @@ class StatCharts extends React.Component {
             },
             {
             title: () => {
-                let text = intl.formatMessage({id: 'Supply_amount_TRX_burned_tip1'}); 
+                let text = intl.formatMessage({id: 'Supply_amount_TRX_burned_tip1'})
+                let textTip = intl.formatMessage({id: 'Supply_amount_TRX_burned_tip2'}) ; 
                 return (
                 <div>
                     {upperFirst(intl.formatMessage({id: 'Supply_amount_TRX_burned'}))}
                     <span className="ml-2">
-                    <QuestionMark placement="top" text={text} />
+                        <QuestionMark placement="top" text={text}  testSecond={textTip} className="trxsupply-tip"/>
                     </span>
                 </div>
                 )
@@ -639,7 +640,7 @@ class StatCharts extends React.Component {
         let { SupplyParams } = this.state;
         let unit;
         let freezeresourceCsvurl = API_URL + "/api/freezeresource?start_day=" + start_day +"&end_day="+end_day + "&format=csv";
-        let supplyCsvurl =  API_URL + "/api/freezeresource?start_day=" + SupplyParams.start_day +"&end_day="+ SupplyParams.end_day + "&format=csv";
+        let supplyCsvurl =  API_URL + "/api/turnover?size="+ SupplyParams.limit +"&start=" + SupplyParams.start_day +"&end="+ SupplyParams.end_day + "&format=csv";
         let freezing_column = this.freezingCustomizedColumn();
         let TRXSupply_column = this.TRXSupplyCustomizedColumn();
         

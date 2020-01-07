@@ -183,13 +183,12 @@ export const lang19Q4 = {
    "Supply_block_rewards":"ブロック生産の報酬", 
    "Supply_amount_TRX_burned":"（量）TRX破棄",
    "Supply_amount_TRX_burned_y_title":"破壊量（TRX）",
-   "Supply_amount_TRX_burned_tip1":"破壊費",    
-   "Supply_amount_TRX_burned_tip2":"手数料の破壊 + 独立した日の破壊（1,000,000,000 TRX）",    
+   "Supply_amount_TRX_burned_tip1":"非独立記念日：TRXの破壊額=手数料の破壊。",    
+   "Supply_amount_TRX_burned_tip2":"独立記念日：TRXの破壊額=処理手数料の破壊+独立記念日の破壊量（1,000,000,000 TRX）",    
    "Supply_amount_net_new":"ネットトータル",
    "Supply_amount_net_new_highest":"ネットトータル",
    "Supply_amount_net_new_y_title":"利回り/純価値（TRX）",
    "Supply_amount_net_new_tip":"TRX生成 + TRX破壊",
    "votes_num":"投票数",
-  
 
 }
