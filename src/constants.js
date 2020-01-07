@@ -78,7 +78,9 @@ export const API_URL_SUNNET = "http://3.136.58.175:9000";
 // export const API_URL_MAINNET = 'https://apilist.tronscan.org';
 export const API_URL = IS_SUNNET ? API_URL_SUNNET : process.env.API_URL;
 export const CONTRACT_MAINNET_API_URL = process.env.API_URL;
-export const CONTRACT_NODE_API = NODEAPI;
+//export const CONTRACT_NODE_API = NODEAPI;
+export const CONTRACT_NODE_API = "http://52.15.126.154:9018";
+
 
 //Token issued
 export const MARKET_API_URL = "https://platform.tron.network";
