@@ -239,8 +239,8 @@ export class TRXPrice extends React.PureComponent {
                         <span
                           className={
                             Number(percent_change_24h) > 0
-                              ? "greenPrice hidden-mobile"
-                              : "redPrice hidden-mobile"
+                              ? "greenPrice "
+                              : "redPrice "
                           }
                           style={{ display: "inline-block" }}
                         >

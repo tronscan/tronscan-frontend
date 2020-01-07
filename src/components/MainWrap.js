@@ -4,7 +4,7 @@ import React from "react";
 import Navigation from "./Navigation";
 import Content from "./Content";
 import { IntlProvider } from "react-intl";
-import HelpLinkCont from "./common/HelpLink";
+
 import Lockr from "lockr";
 import { ConnectedRouter } from "react-router-redux";
 import { reduxHistory } from "../store";
