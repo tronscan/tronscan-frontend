@@ -780,7 +780,7 @@ export const routes = [
         //   sidechain: false
         // },
                 {
-                    url: "http://nileex.io/join/getJoinPage",
+                    url: "http://testnet.tronex.io/join/getJoinPage",
                     icon: "fa fa-recycle",
                     label: "link_test_fauct",
                     sidechain: false

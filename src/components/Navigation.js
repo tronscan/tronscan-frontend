@@ -1008,7 +1008,7 @@ class Navigation extends React.Component {
                             <span className="ml-2 d-block" style={{borderLeft:'1px solid #999999',height:'70%'}}>
                             </span>
                             <span className="ml-2" style={{color:"#000000"}}>
-                                NILE TESTNET
+                                TRONEX TESTNET
                             </span>
                         </span>
                         

@@ -37,7 +37,7 @@ class Transfers extends React.Component {
   constructor(props) {
     super(props);
 
-    this.start = moment([2019, 9, 21])
+    this.start = moment([2019, 6, 1])
       .startOf("day")
       .valueOf();
     this.end = moment().valueOf();

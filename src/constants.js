@@ -10,8 +10,8 @@ export const IS_DESKTOP = process.env.DESKTOP === "true";
 
 //export const IS_MAINNET = Lockr.get("NET") === "mainnet" || !Lockr.get("NET");
 //export const IS_SUNNET = Lockr.get("NET") === "sunnet";
-export const IS_MAINNET = true;
-export const IS_SUNNET = false;
+// export const IS_MAINNET = true;
+// export const IS_SUNNET = false;
 
 export const IS_NILE = true;
 
@@ -37,26 +37,26 @@ let MAINNET;
 let SUNNET;
 let NODEAPI;
 
-// if (NODE_ENV == "development") {
-//   MAINNET = Lockr.get("NET") === "mainnet" || !Lockr.get("NET");
-//   SUNNET = Lockr.get("NET") === "sunnet";
-//   // NODEAPI = "http://52.15.126.154:9016";
-//   NODEAPI = process.env.API_URL;
-// } else {
-//   MAINNET = window.location.origin === NETURL.MAINNET;
-//   SUNNET = window.location.origin === NETURL.SUNNET;
-//   NODEAPI = process.env.API_URL;
-//   // NODEAPI = "http://52.15.126.154:9016";
-// }
+if (NODE_ENV == "development") {
+  MAINNET = Lockr.get("NET") === "mainnet" || !Lockr.get("NET");
+  SUNNET = Lockr.get("NET") === "sunnet";
+  // NODEAPI = "http://52.15.126.154:9016";
+  NODEAPI = process.env.API_URL;
+} else {
+  MAINNET = window.location.origin === NETURL.MAINNET;
+  SUNNET = window.location.origin === NETURL.SUNNET;
+  NODEAPI = process.env.API_URL;
+  // NODEAPI = "http://52.15.126.154:9016";
+}
 //
-// export let IS_MAINNET = MAINNET;
-// export let IS_SUNNET = SUNNET;
+export let IS_MAINNET = MAINNET;
+export let IS_SUNNET = SUNNET;
 
 //NODEAPI = "http://52.15.126.154:9016";
 //for nile
 //NODEAPI = "http://52.15.126.154:9017";
 //NODEAPI="https://nileapi.tronscan.org";
-NODEAPI="http://3.14.14.175:9000";
+//NODEAPI="http://3.14.14.175:9000";
 
 export const BLOCK_REWARD = 32;
 export const SR_MAX_COUNT = 27;
@@ -74,7 +74,7 @@ export const PUBLIC_URL = process.env.PUBLIC_URL || window.location.origin;
 //export const API_URL_SUNNET = "http://52.15.68.74:10001";
 
 //export const API_URL_SUNNET = "https://dappchainapi.tronscan.org";
-export const API_URL_SUNNET = "https://3.136.58.175:9000";
+export const API_URL_SUNNET = "http://3.136.58.175:9000";
 // export const API_URL_MAINNET = 'https://apilist.tronscan.org';
 export const API_URL = IS_SUNNET ? API_URL_SUNNET : process.env.API_URL;
 export const CONTRACT_MAINNET_API_URL = process.env.API_URL;

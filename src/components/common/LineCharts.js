@@ -297,7 +297,7 @@ export class LineReactHighChartAdd extends React.Component {
             }
             _config.series[0].marker.enabled = false;
             _config.series[0].pointInterval = 24 * 3600 * 1000;
-            _config.series[0].pointStart = Date.UTC(2019, 9, 21);
+            _config.series[0].pointStart = Date.UTC(2019, 6, 1);
             _config.tooltip.formatter = function () {
                 let date = intl.formatDate(this.point.x);
                 return (
@@ -511,7 +511,7 @@ export class LineReactHighChartTx extends React.Component {
             }
             _config.series[0].marker.enabled = false;
             _config.series[0].pointInterval = 24 * 3600 * 1000;
-            _config.series[0].pointStart = Date.UTC(2019, 9, 21);
+            _config.series[0].pointStart = Date.UTC(2019, 6, 1);
             _config.tooltip.formatter = function () {
                 let date = intl.formatDate(this.point.x);
                 return (
@@ -621,7 +621,7 @@ export class LineReactHighChartTotalTxns extends React.Component {
             }
             _config.series[0].marker.enabled = false;
             _config.series[0].pointInterval = 24 * 3600 * 1000;
-            _config.series[0].pointStart = Date.UTC(2019, 9, 21);
+            _config.series[0].pointStart = Date.UTC(2019, 6, 1);
 
             _config.tooltip.formatter = function () {
                 let date = intl.formatDate(this.point.x);
@@ -696,7 +696,7 @@ export class LineReactHighChartBlockchainSize extends React.Component {
         _config.yAxis.min = 0;
         _config.series[0].marker.enabled = false;
         _config.series[0].pointInterval = 24 * 3600 * 1000;
-        _config.series[0].pointStart = Date.UTC(2019, 9, 21);
+        _config.series[0].pointStart = Date.UTC(2019, 6, 1);
         _config.tooltip.formatter = function () {
             let date = intl.formatDate(this.point.x);
             return (
@@ -773,7 +773,7 @@ export class BarReactHighChartBlockSize extends React.Component {
         _config.series[0].type = 'column';
         _config.series[0].marker.enabled = false;
         _config.series[0].pointInterval = 24 * 3600 * 1000;
-        _config.series[0].pointStart = Date.UTC(2019, 9, 21);
+        _config.series[0].pointStart = Date.UTC(2019, 6, 1);
         _config.tooltip.formatter = function () {
             let date = intl.formatDate(this.point.x);
             return (
