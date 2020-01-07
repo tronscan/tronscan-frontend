@@ -1000,7 +1000,6 @@ class Navigation extends React.Component {
       walletType: { type },
     } = this.props;
     let {search, popup, notifications, announcement, announId, annountime, searchResults, selectedNet,drawerVisible,currentActive } = this.state;
-    console.log(currentRouter,'currentRouter')
     let activeComponent = this.getActiveComponent();
     const isShowSideChain = !type || (type && IS_SUNNET);
     return (
@@ -1260,8 +1259,6 @@ class Navigation extends React.Component {
                                         })
                                       }
                                     </div>
-
-
                                   })
                                 }
                               </div>
