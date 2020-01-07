@@ -13,7 +13,7 @@ export default function ExchangeWithdrawContract(props) {
     let signList = signature_addresses;
     return <Fragment>
         <TransationTitle contractType={contractType} />
-        <table className="table">
+        <table className="table table-responsive">
             <tbody>
                 {
                     contract['owner_address'] ?

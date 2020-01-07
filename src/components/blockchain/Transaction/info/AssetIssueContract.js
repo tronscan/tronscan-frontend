@@ -69,7 +69,7 @@ class AssetIssueContract extends React.Component {
               <Field label="trc20_token_id">{contract.token_id}</Field>
               <Field label="token_name">
                 <Link to={`/token/${contract.token_id}`}>
-                  {contract.abbr}
+                    {contract.parameterValue && contract.parameterValue.name} ({contract.abbr})
                 </Link>
               </Field>
               <Field label="total_supply">

@@ -225,4 +225,7 @@ export const lang19Q4 = {
      "account_id":"معرف الحساب",
      "trans_ticket":"صوتا",
      "trans_tickets":"صوتا",
+
+     "transaction_rewards_distribution_ratio":"نسبة توزيع المكافآت",
+
 }
