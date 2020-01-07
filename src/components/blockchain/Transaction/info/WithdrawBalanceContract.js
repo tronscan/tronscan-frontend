@@ -27,7 +27,7 @@ class WithdrawBalanceContract extends React.Component {
         <div className="table-responsive">
           <table className="table">
             <tbody>
-              <Field label="from">
+              <Field label="transaction_owner_address">
                 <AddressLink address={contract["owner_address"]}>
                   {contract["owner_address"]}
                 </AddressLink>
