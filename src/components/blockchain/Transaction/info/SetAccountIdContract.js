@@ -12,6 +12,7 @@ import {TransationTitle} from './common/Title'
 import {injectIntl} from "react-intl";
 import Field from "../../../tools/TransactionViewer/Field";
 import xhr from "axios/index";
+import {toUtf8} from 'tronweb'
 
 const useFetch = (id) => {
   const [data, updateData] = useState('')
@@ -35,7 +36,7 @@ const useFetch = (id) => {
 }
 
 export default function SetAccountIdContract({contract}){
-  const name = useFetch(contract.hash)
+  // const name = useFetch(contract.hash)
   return(
     <Fragment>
       <TransationTitle contractType={contract.contractType}></TransationTitle>
@@ -43,7 +44,7 @@ export default function SetAccountIdContract({contract}){
       <table className="table">
           <tbody>
           <Field label="initiate_address"><AddressLink address={contract['owner_address']||contract['ownerAddress']}/></Field>
-          <Field label="account_id">{name}</Field>
+          <Field label="account_id">{toUtf8(contract.account_id)}</Field>
           {JSON.stringify(contract.cost) != "{}" && (
             <Field label="consume_bandwidth">
               <BandwidthUsage cost={contract.cost} />
