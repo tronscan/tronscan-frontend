@@ -627,7 +627,6 @@ class Statistics extends React.Component {
     async loadOverallFreezingRate() {
         let { start_day, end_day} = this.state.OverallFreezingRateParams;
         let {data: {data}} = await xhr.get(API_URL + "/api/freezeresource?start_day="+ start_day+"&end_day="+end_day);
-        console.log('data',data)
         data.map((item, index) => {
             item.freezing_percent = ((item.total_freeze_weight / item.total_turn_over)*100).toFixed(2) + '%'
         })

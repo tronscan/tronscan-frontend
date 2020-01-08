@@ -262,8 +262,7 @@ class StatsCharts extends React.Component {
     tabs.forEach((item, index) => {
       // const top = document.getElementById(`${item.id}`);
       let top = $('#' + item.id);
-      // console.log('top',top)
-      // console.log('top.getBoundingClientRect().top', top.offset().top)
+      
       if (top) {
         linkIds.push({ key: item.id, offsetTop: top.offset().top });
       }
@@ -272,8 +271,6 @@ class StatsCharts extends React.Component {
      window.onscroll = function () {
       _this.onScrollEvent(linkIds);
     }
-
-    // console.log('linkIds',this.state.linkIds)
     //window.addEventListener('scroll',this.onScrollEvent.bind(this,linkIds));
 
   };

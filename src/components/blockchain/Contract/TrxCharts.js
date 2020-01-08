@@ -39,7 +39,6 @@ class TRXBalancesChart extends React.Component {
         `${API_URL}/api/contract_account_history?address=${address}`
     );
     let volumeUSD = volumeData.data.data;
-    console.log("volumeUSD",volumeUSD)
     let volume = volumeUSD.map(function (v, i) {
         return {
             time: moment(v['time']).valueOf(),
