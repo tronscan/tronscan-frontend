@@ -1171,7 +1171,7 @@ export const messages = {
    "contract_create_msg":"إنشاء معلومات",
    "contract_create_time":"إنشاء الوقت",
    "contract_enery":"نسبة استهلاك الطاقة",
-   "contract_enery_tip":"استدعاء عقد ذكي يستهلك قدرا معينا من الطاقة",
+   "contract_enery_tip":"The energy consumed by calling the smart contract is borne by the contract and the user in proportion",
    "contract_init_assets":"الأصول الأولية",
    "contract_init_assets_tip":"الأصول المنقولة من قِبل مُنشئ العقد إلى عنوان العقد عند نشر العقد",
    "contract_editor_bug": "توجيهات ضعف المترجم",

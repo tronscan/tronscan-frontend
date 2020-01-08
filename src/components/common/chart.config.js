@@ -1056,7 +1056,7 @@ export default {
 
   OverallFreezingRateChart:{
     chart: {
-        type: '',
+       // type: '',
         zoomType: 'xy'
     },
     title: {

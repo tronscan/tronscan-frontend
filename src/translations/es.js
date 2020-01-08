@@ -1181,7 +1181,7 @@ export const messages = {
  "contract_create_msg":"Información",
  "contract_create_time":"Hora",
  "contract_enery":"Ratio de consumo de energía",
- "contract_enery_tip":"Llamar a contratos inteligentes consume energía",
+ "contract_enery_tip":"The energy consumed by calling the smart contract is borne by the contract and the user in proportion",
  "contract_init_assets":"Activo inicial",
  "contract_init_assets_tip":"El creador del contrato transfiere fondos a la dirección del contrato mientras implementa los contratos",
  "contract_editor_bug": "Advertencia de escapatoria para el compilador",

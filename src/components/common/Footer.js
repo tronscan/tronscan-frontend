@@ -170,7 +170,7 @@ class Footer extends Component {
             <div className="row ">
               <div className="col-xs-12 col-sm-12 col-md-12 text-center mb-3">
                 <Link to="/help/copyright" className="color-grey-300">
-                  Copyright© 2017-2019 tronscan.org
+                  Copyright© 2017-2020 tronscan.org
                 </Link>
               </div>
             </div>
@@ -398,7 +398,7 @@ class Footer extends Component {
             <div className="row ">
               <div className="col-xs-12 col-sm-12 col-md-12 text-center mb-3">
                 <div className="copy-right">
-                  Copyright© 2017-2019 tronscan.org
+                  Copyright© 2017-2020 tronscan.org
                 </div>
               </div>
             </div>
