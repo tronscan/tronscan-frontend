@@ -1168,7 +1168,7 @@ export const messages = {
    "contract_create_msg":"情報を作成する",
   "contract_create_time":"作成時間",
   "contract_enery":"エネルギー消費率",
-  "contract_enery_tip":"スマートコントラクトを呼び出すと、一定量のエネルギーが消費されます",
+  "contract_enery_tip":"The energy consumed by calling the smart contract is borne by the contract and the user in proportion",
   "contract_init_assets":"初期資産",
   "contract_init_assets_tip":"契約の展開時に契約作成者が契約アドレスに転送した資産",
   "contract_editor_bug": "コンパイラの脆弱性のヒント",

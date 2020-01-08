@@ -441,13 +441,13 @@ export const routes = [
           icon: false,
           label: "sun_network_development_document"
         },
-        {
-          url:
-            "https://support.tronscan.org/hc/en-us/articles/360035944072-SUN-Network-Developer-Challenge-Starts",
-          // icon: "fas fa-award",
-          icon: false,
-          label: "developer_challenge"
-        }
+        // {
+        //   url:
+        //     "https://support.tronscan.org/hc/en-us/articles/360035944072-SUN-Network-Developer-Challenge-Starts",
+        //   // icon: "fas fa-award",
+        //   icon: false,
+        //   label: "developer_challenge"
+        // }
       ]
     ]
   },

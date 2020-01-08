@@ -10,7 +10,7 @@ import HelpLinkCont from "./HelpLink";
 import { setActiveCurrency } from "../../actions/app";
 import { Menu, Dropdown, Icon, Button } from "antd";
 import SendModal from "../transfer/Send/SendModal";
-import {QuestionMark} from './QuestionMark'
+import { QuestionMark } from "./QuestionMark";
 
 class Footer extends Component {
   constructor() {
@@ -245,10 +245,16 @@ class Footer extends Component {
                       </div>
                     </div>
                   </div>
-                  <div className="text-center mb-3" style={{margin:'0 auto'}}>
+                  <div
+                    className="text-center mb-3"
+                    style={{ margin: "0 auto" }}
+                  >
                     <div className="fr d-flex">
                       <div className="donate nowidth">
-                        <Link to={`/address/${donate_address}`} className="after">
+                        <Link
+                          to={`/address/${donate_address}`}
+                          className="after"
+                        >
                           {donate_address}
                         </Link>
                         <Button
@@ -258,13 +264,16 @@ class Footer extends Component {
                         >
                           {tu("donateAddress")}
                         </Button>
-                    </div>
-                      <div className="ml-1 mt-1">
-                        <QuestionMark text={intl.formatMessage({id:'index_page_footer_donate_address'})}></QuestionMark>
                       </div>
-
+                      <div className="ml-1 mt-1">
+                        <QuestionMark
+                          text={intl.formatMessage({
+                            id: "index_page_footer_donate_address"
+                          })}
+                        ></QuestionMark>
+                      </div>
                     </div>
-                    
+
                     <div className="text mr-3 text-cnter">
                       Copyright© 2017-2020 tronscan.org
                     </div>
@@ -419,7 +428,10 @@ class Footer extends Component {
                   <div className="col-xs-6 col-sm-6 col-md-6 text-center mb-3">
                     <div className="fr d-flex">
                       <div className="donate">
-                        <Link to={`/address/${donate_address}`} className="after">
+                        <Link
+                          to={`/address/${donate_address}`}
+                          className="after"
+                        >
                           {donate_address}
                         </Link>
                         <Button
@@ -431,11 +443,13 @@ class Footer extends Component {
                         </Button>
                       </div>
                       <div className="ml-1">
-                        <QuestionMark text={intl.formatMessage({id:'index_page_footer_donate_address'})}></QuestionMark>
-
+                        <QuestionMark
+                          text={intl.formatMessage({
+                            id: "index_page_footer_donate_address"
+                          })}
+                        ></QuestionMark>
                       </div>
                     </div>
-                    
                   </div>
                 </div>
               </div>

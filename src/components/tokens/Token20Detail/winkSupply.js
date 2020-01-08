@@ -211,14 +211,14 @@ class BTTSupply extends React.Component {
                                                                     <td style={{  width: '20%'}}>{tu('in_USD')}:
                                                                     </td>
                                                                     <td>
-                                                                        ${priceUSD}
+                                                                        {priceUSD}&nbsp;USD
                                                                     </td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td>{tu('in_BTC')}:
                                                                     </td>
                                                                     <td>
-                                                                        {priceBTC}
+                                                                        {priceBTC}&nbsp;BTC
                                                                     </td>
                                                                 </tr>
                                                                 </tbody></table>
@@ -240,7 +240,7 @@ class BTTSupply extends React.Component {
                                                             </div>
                                                             <div className="counters col-md-6 col-sm-6">
                                                                 <span className="counter">
-                                                                    $<CountUp start={0} end={marketCapitalization} duration={2}  separator="," decimals={2}/>
+                                                                    <CountUp start={0} end={marketCapitalization} duration={2}  separator="," decimals={2}/>&nbsp; USD
                                                                 </span>
                                                                 <h4>{tu('market_capitalization')}</h4>
                                                             </div>
@@ -258,7 +258,7 @@ class BTTSupply extends React.Component {
                                                         </div>
                                                       }
                                                     </div>
-                                                    <a href='https://info.binance.com/en/research/WIN-2019-07-22.html'>Binance Launchpad Public Sale</a>
+                                                    {/* <a href='https://info.binance.com/en/research/WIN-2019-07-22.html'>Binance Launchpad Public Sale</a> */}
                                                 </div>
                                         }
                                     </div>
