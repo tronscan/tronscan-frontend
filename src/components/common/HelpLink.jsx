@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Icon } from "antd";
+import { tu, t } from "../../utils/i18n";
 import { injectIntl } from "react-intl";
 
 class HelpLinkCont extends Component {
@@ -31,7 +32,7 @@ class HelpLinkCont extends Component {
                 }}
               >
                 <Icon type="up" />
-                <p>unfold</p>
+                <p>{tu("index_page_idebar_expand")}</p>
               </li>
               <li className="help commonLi">
                 <a
@@ -53,7 +54,7 @@ class HelpLinkCont extends Component {
                 }}
               >
                 <Icon type="down" />
-                <p>Pack up</p>
+                <p>{tu("collapse")}</p>
               </li>
               <li className="twitter commonLi">
                 <a href="https://twitter.com/TRONSCAN_ORG" target="_blank">

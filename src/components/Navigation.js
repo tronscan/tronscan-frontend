@@ -135,6 +135,7 @@ class Navigation extends React.Component {
     });
     Lockr.set("NET", IS_MAINNET?'mainnet':'sunnet')
 
+
   }
 
   componentWillUpdate(nextProps, nextState) {
@@ -1006,8 +1007,8 @@ class Navigation extends React.Component {
         <div className="header-top nav-item-page">
           {popup}
           <div className="logo-wrapper">
-            {/* zh en ko ar fa nav menu flex space-between*/}
-            <div className={activeLanguage === 'zh'  || activeLanguage === 'ko' || activeLanguage === 'ar' || activeLanguage === 'fa' ? "py-2 d-flex px-0 single-menu-nav-wrapper" : "py-2 d-flex px-0 menu-nav-wrapper"}>
+            {/* zh  ko ar fa nav menu flex space-between*/}
+            <div className={activeLanguage === 'zh' || activeLanguage === 'ko' || activeLanguage === 'ar' || activeLanguage === 'fa' ? "py-2 d-flex px-0 single-menu-nav-wrapper" : "py-2 d-flex px-0 menu-nav-wrapper"}>
               <div className="logoTrxPrice">
                 <div className="mobileFlexible">
                   <Link to="/">
@@ -1087,6 +1088,8 @@ class Navigation extends React.Component {
                                     {route.icon &&
                                     <i className={route.icon + " d-none d-lg-inline-block mr-1"}/>}
                                     {tu(route.label)}
+                                    {route.label !== 'home_page' && route.label !== 'Poloni DEX'?<Icon type="caret-down" /> : null}
+                                   
                                     </span>
                                   </NavLink>
                                   <i className="hot-nav"></i>

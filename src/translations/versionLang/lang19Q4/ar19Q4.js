@@ -184,6 +184,7 @@ export const lang19Q4 = {
     "TRX_historical_data_tip":"TRX Amount",
     "index_page_pane_current":"Current",
     "index_page_pane_MaxTPS":"Max TPS",
+    "index_page_idebar_expand":"توسيع",
     /*
         ##################################################################################
         #                                                                                #
