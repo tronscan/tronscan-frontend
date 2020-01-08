@@ -974,7 +974,7 @@ export const messages = {
   "total_TRX_supply": "Общий объем TRX",
   "market_capitalization": "Рыночная капитализация",
   "circulating_supply": "циркулирующий",
-  "list_trx": "Залистить TRX",
+  "list_trx": "Список бирж указан TRX",
   "burned_trx": "TRX сожжено",
   "supply_notes": "Краудсейл и предварительная продажа доступны по всему миру, за исключением США, Китая и Японии.",
   "14_day_transaction_history": "История транзакций за 14 дней",

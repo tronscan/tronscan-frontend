@@ -164,6 +164,28 @@ export const lang19Q4 = {
     "transaction_energy_cap":"Предел энергии",
     "transaction_enrgy_cap_tip":"Максимальная Энергия, предоставляемая выпуску контракта",
     "signature_list":"Список подписей",
+        /*
+    ##################################################################################
+    #                                                                                #
+    # 191230     page index optimization                                             #
+    #                                                                                #
+    ##################################################################################
+    */
+   "index_page_menu_more_dev_resources":"Ресурсы развития",
+   "index_page_search_placeholder":"Поиск по Адресу/Хэшу Транзакции/Токену/Блоку",
+   "index_page_footer_team_info":"Информация о команде",
+   "index_page_footer_feedback":"Обратная связь",
+   "index_page_footer_expand":"Расширить",
+   "index_page_footer_donate_address":"Адрес принадлежит TRON. Ваш донат помогает построить лучшую экосистему TRON.",
+   "index_page_confirmed_blocks":"Подтвержденные блоки",
+   "index_page_confirmed_blocks_tips":"Блоки подтверждены более чем 19 SR",
+   "index_page_switch_tokens":"Поменять токены",
+   "index_page_tronscan_info":"TRONSCAN, лучший blockchain explorer Tron.",
+   "index_page_down_excel_tips":"Измените десятичные дроби вручную при открытии файла в Excel.",
+   "index_page_pane_current":"Tок",
+   "index_page_pane_MaxTPS":"наивысший TPS",
+   "index_page_idebar_expand":"Expand",
+
     /*
         ##################################################################################
         #                                                                                #

@@ -974,7 +974,7 @@ export const messages = {
   "total_TRX_supply": "Suministro total TRX",
   "market_capitalization": "Capitalización de mercado",
   "circulating_supply": "Suministro circulante",
-  "list_trx": "Lista TRX",
+  "list_trx": "Listar TRX",
   "burned_trx": "TRX Quemados",
   "supply_notes": "Venta al público y venta anticipada disponible en todo el mundo, excepto en EE.UU., China y Japón",
   "14_day_transaction_history": "Historial de transacciones en los últimos 14 días",

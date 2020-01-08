@@ -170,6 +170,29 @@ export const lang19Q4 = {
     "TRX_historical_data":"合约内TRX余额历史数据",
     "TRX_historical_data_y_text":"数量（TRX）",
     "TRX_historical_data_tip":"TRX数量",
+     /*
+    ##################################################################################
+    #                                                                                #
+    # 191230     page index optimization                                             #
+    #                                                                                #
+    ##################################################################################
+    */
+   "index_page_menu_more_dev_resources":"开发资源",
+   "index_page_search_placeholder":"请输入地址/交易哈希/通证/区块号",
+   "index_page_footer_team_info":"团队介绍",
+   "index_page_footer_feedback":"问题反馈",
+   "index_page_footer_expand":"展开",
+   "index_page_footer_donate_address":"该地址为波场持有，您的捐赠将帮助波场建设更美好的生态。",
+   "index_page_confirmed_blocks":"已确认区块",
+   "index_page_confirmed_blocks_tips":"被19个以上超级节点确认的区块",
+   "index_page_switch_tokens":"币种切换",
+   "index_page_tronscan_info":"TRONSCAN是波场最好用的区块链浏览器",
+   "index_page_down_excel_tips":"如使用Excel打开下载文档，需手动调节单元格小数位数。",
+   "index_page_pane_current":"当前",
+   "index_page_pane_MaxTPS":"峰值TPS",
+   "index_page_idebar_expand":"展开",
+  
+
     /*
         ##################################################################################
         #                                                                                #
@@ -179,8 +202,6 @@ export const lang19Q4 = {
     */
    "account_details_contracts":"已发合约",
    "account_details_contracts_no":"未查询到合约",
-  
-   
     // transaction info  2019-12-25  leon
     "consume_bandwidth":"消耗带宽",
     "consume_energy":"消耗能量",
@@ -264,4 +285,10 @@ export const lang19Q4 = {
     "transaction_rewards_distribution_ratio":"选民分成比例",
     "signature_list":"签名列表",
     "only_show_sinatures":"只展示参与签名的地址",
+
+
+
+
+
+
 }

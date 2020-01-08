@@ -235,6 +235,29 @@ export const lang19Q4 = {
      "account_id":"شناسه حساب.",
      "trans_ticket":"رای",
      "trans_tickets":"رای",
+        /*
+    ##################################################################################
+    #                                                                                #
+    # 191230     page index optimization                                             #
+    #                                                                                #
+    ##################################################################################
+    */
+   "index_page_menu_more_dev_resources":"منابع توسعه",
+   "index_page_search_placeholder":"لطفا آدرس / هش / آدرس / تراکنش / بلوک را وارد کنید",
+   "index_page_footer_team_info":"اطلاعات تیم",
+   "index_page_footer_feedback":"بازخورد",
+   "index_page_footer_expand":"در حال گسترش",
+   "index_page_footer_donate_address":"آدرس توسط ترون برگزار می شود. کمک مالی شما به ساخت بهتر اکوسیستم ترون کمک می کند.",
+   "index_page_confirmed_blocks":"بلوک های تأیید شده",
+   "index_page_confirmed_blocks_tips":"بلوک های تأیید شده توسط بیش از 19 سوپرنماینده",
+   "index_page_switch_tokens":"تغییر توکن ",
+   "index_page_tronscan_info":"ترون اسکن ، بهترین کاوشگر بلاکچین ترون است.",
+   "index_page_down_excel_tips":"اگر از اکسل برای باز کردن یک سند بارگیری شده استفاده می کنید ، باید تعداد مکان های اعشار در پرونده را به صورت دستی تنظیم کنید.",
+   "index_page_pane_current":"Current",
+   "index_page_pane_MaxTPS":"Max TPS",
+   "index_page_idebar_expand":"Expand",
+
+    
     /*
         ##################################################################################
         #                                                                                #

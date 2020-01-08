@@ -235,6 +235,27 @@ export const lang19Q4 = {
      "account_id":"ID de la cuenta",
      "trans_ticket":"votos",
      "trans_tickets":"votos",
+        /*
+    ##################################################################################
+    #                                                                                #
+    # 191230     page index optimization                                             #
+    #                                                                                #
+    ##################################################################################
+    */
+   "index_page_menu_more_dev_resources":"Recursos de explotar",
+   "index_page_search_placeholder":"Ingrese la dirección / hash de transacción / token / bloque",
+   "index_page_footer_team_info":"presentación del equipo",
+   "index_page_footer_feedback":"Respuesta de Questiones",
+   "index_page_footer_expand":"Desplegar",
+   "index_page_footer_donate_address":"Dirección sostenida por TRON, se va ayudar a TRON a construir un mejor ecosistema su donación",
+   "index_page_confirmed_blocks":"Bloques confirmados",
+   "index_page_confirmed_blocks_tips":"Bloque confirmado por más que 19 superrepresentantes",
+   "index_page_switch_tokens":"Cambiar Token",
+   "index_page_tronscan_info":"TRONSCAN es el navegador mejor de TRON",
+   "index_page_down_excel_tips":"Si usa Excel para abrir un documento descargado, debe ajustar manualmente el número de lugares decimales en la celda.",
+   "index_page_pane_current":"TPS actual",
+   "index_page_pane_MaxTPS":"máx.",
+   "index_page_idebar_expand":"Expand",
     /*
         ##################################################################################
         #                                                                                #

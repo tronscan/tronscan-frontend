@@ -236,9 +236,30 @@ export const lang19Q4 = {
      "trans_tickets":"صوتا",
 
      "transaction_rewards_distribution_ratio":"نسبة توزيع المكافآت",
+    /*
+    ##################################################################################
+    #                                                                                #
+    # 191230     page index optimization                                             #
+    #                                                                                #
+    ##################################################################################
+    */
+   "index_page_menu_more_dev_resources":"موارد التنمية",
+   "index_page_search_placeholder":"يرجى إدخال عنوان / معاملة التجزئة / الرمز المميز / كتلة",
+   "index_page_footer_team_info":"معلومات الفريق",
+   "index_page_footer_feedback":"الإبلاغ عن مشكلة",
+   "index_page_footer_expand":"توسيع",
+   "index_page_footer_donate_address":"هذا عنوان مؤسسة ترون ، حيث أن تبرعك يساعد في بناء نظام بيئي أفضل في ترون.",
+   "index_page_confirmed_blocks":"تم تأكيد الكتل",
+   "index_page_confirmed_blocks_tips":"تم تأكدت الكتل بأكثر من 19 عقد ممتاز",
+   "index_page_switch_tokens":"التبديل إلى رمز آخر",
+   "index_page_tronscan_info":"TRONSCAN يُعد أفضل مستكشف بلوكتشين من ترون",
+   "index_page_down_excel_tips":"تغيير الكسور العشرية يدويًا عند فتح الملف في إكسل",
 
     "TRX_historical_data":"TRX balance historical data in the contract",
     "TRX_historical_data_tip":"TRX Amount",
+    "index_page_pane_current":"Current",
+    "index_page_pane_MaxTPS":"Max TPS",
+    "index_page_idebar_expand":"توسيع",
     /*
         ##################################################################################
         #                                                                                #

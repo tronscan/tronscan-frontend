@@ -960,7 +960,7 @@ export const messages = {
   "total_TRX_supply": "TRX 총 유통량",
   "market_capitalization": "시장 가치",
   "circulating_supply": "유통량",
-  "list_trx": "상장되 거래소",
+  "list_trx": "거래소에서 TRX 상장",
   "burned_trx": "TRX 소각 수",
   "supply_notes": "미국, 중국, 일본을 제외한 전세계 크라우드 펀딩 및 사전 판매",
   "14_day_transaction_history": "지난 14일간 거래 수",

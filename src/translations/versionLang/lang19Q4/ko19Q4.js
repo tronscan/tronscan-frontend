@@ -233,6 +233,27 @@ export const lang19Q4 = {
      "account_id":"계정 ID",
      "trans_ticket":"표",
      "trans_tickets":"표",
+        /*
+    ##################################################################################
+    #                                                                                #
+    # 191230     page index optimization                                             #
+    #                                                                                #
+    ##################################################################################
+    */
+   "index_page_menu_more_dev_resources":"개발 자원",
+   "index_page_search_placeholder":"주소 / 거래 해시 / 토큰 / 블록을 입력하십시오",
+   "index_page_footer_team_info":"팀 소개",
+   "index_page_footer_feedback":"피드백",
+   "index_page_footer_expand":"확장",
+   "index_page_footer_donate_address":"주소는 TRON Foundation이 보유합니다. 기부금은 더 나은 TRON 생태계 구축에 도움이됩니다.",
+   "index_page_confirmed_blocks":"확인 된 블록",
+   "index_page_confirmed_blocks_tips":"19개 이상의 SR의 확인을 받은 블록",
+   "index_page_switch_tokens":"코인 스위치",
+   "index_page_tronscan_info":"TRONSCAN는 TRON에 최적의 블록체인 브라우저입니다",
+   "index_page_down_excel_tips":"Excel을 사용하여 다운로드 한 파일을 열 때 셀의 소수점 이하의 자리수를 수동으로 조정해야합니다.",
+   "index_page_pane_current":"현재",
+   "index_page_pane_MaxTPS":"최대치TPS",
+   "index_page_idebar_expand":"확장",
     /*
         ##################################################################################
         #                                                                                #

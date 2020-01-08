@@ -959,7 +959,7 @@ export const messages = {
   "total_TRX_supply": "TRXの総ボリューム",
   "market_capitalization": "市場価値",
   "circulating_supply": "ボリューム",
-  "list_trx": "取引所でコインを発行する",
+  "list_trx": "取引所オンラインTRX",
   "burned_trx": "TRXの焼却数",
   "supply_notes": "米国、中国、日本を除き、世界中でクラウドファンドとプリセールスができます",
   "14_day_transaction_history": " 過去14日間の取引数",

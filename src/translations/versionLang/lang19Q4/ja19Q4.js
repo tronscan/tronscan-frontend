@@ -217,6 +217,27 @@ export const lang19Q4 = {
     "transaction_token_holder_address":"トークン保有者の住所",
     "transaction_issue_address":"発行者の住所",
     "only_show_sinatures":"署名を残すアドレスのみを表示する",
+       /*
+    ##################################################################################
+    #                                                                                #
+    # 191230     page index optimization                                             #
+    #                                                                                #
+    ##################################################################################
+    */
+   "index_page_menu_more_dev_resources":"開発資源",
+   "index_page_search_placeholder":"アドレス/ハッシュ/トークン/ブロックする",
+   "index_page_footer_team_info":"グループ紹介",
+   "index_page_footer_feedback":"フィードバック",
+   "index_page_footer_expand":"展開",
+   "index_page_footer_donate_address":"このアドレスはTRONによって保持されており、寄付はTRONがより良いエコロジーを構築するのに役立ちます。",
+   "index_page_confirmed_blocks":"確認済みブロック",
+   "index_page_confirmed_blocks_tips":"19以上のスーパーノードによって確認されたブロック",
+   "index_page_switch_tokens":"トークンスイッチ",
+   "index_page_tronscan_info":"TRONSCANはTRONに最適なブロックチェーンブラウザーです",
+   "index_page_down_excel_tips":"Excelを使用してダウンロードしたドキュメントを開く場合、セルの小数点以下の桁数を手動で調整する必要があります。",
+   "index_page_pane_current":"現在のTPS",
+   "index_page_pane_MaxTPS":"ピークTPS",
+   "index_page_idebar_expand":"展開",
     /*
         ##################################################################################
         #                                                                                #

@@ -964,7 +964,7 @@ export const messages = {
    "total_TRX_supply": "مجموع تی آرایکس تامین شده",
    "market_capitalization": "ارزش بازار",
    "circulating_supply": "گردش موجودی",
-   "list_trx": "لیست تی آرایکس",
+   "list_trx": "فهرست TRX در مبادلات.",
    "burned_trx": "تی آر ایکس سوخته",
    "supply_notes": "پیش فروش موجود در سطح جهانی، به جز در ایالات متحده، چین و ژاپن",
    "14_day_transaction_history": "معاملات ۱۴ روز گذشته",
