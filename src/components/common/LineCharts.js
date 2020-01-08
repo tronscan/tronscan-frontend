@@ -1968,8 +1968,6 @@ export class EnergyConsumeDistributionChart extends React.Component {
                 percent: o.percent
             }
         })
-        console.log('data',data)
-        console.log('chartdata',chartdata)
         const SUBTITLE = `
             ${intl.formatMessage({id: 'total_used_energy'})}: ${intl.formatNumber(totalUsedEnergy)}(
             ${intl.formatMessage({id: 'energy_used_by_freezing_TRX'})} ${intl.formatNumber(freezingEnergy)}
@@ -2241,7 +2239,6 @@ export class OverallFreezingRateChart extends React.Component {
                             show: function() {
                                 var index = this.index;
                                 var series = this.chart.series;
-                                console.log(series[index].name)
                                 if(series[index].name == intl.formatMessage({id: 'freezing_column_total_circulation'})) {
                                     this.chart.yAxis[1].update({
                                         title:{
@@ -2570,10 +2567,7 @@ export class LineTRXSupplyChart extends React.Component {
                                 console.log(target === this);
                                 */
                                 let index = this.index;
-                                console.log('index',index)
                                 let series = this.chart.series
-                                console.log('visibleY[index].visible',visibleY[index].visible)
-                                console.log('visibleY[index].visible',visibleY)
                                 visibleY[index].visible = !visibleY[index].visible;
                                 if(index == 2){
                                     this.chart.yAxis[2].update({

@@ -59,13 +59,11 @@ export async function transactionResultManagerSun(transaction, sunWeb) {
 export async function transactionMultiResultManager(unSignTransaction, tronWeb, permissionId, permissionTime, HexStr) {
     //set transaction expiration time (1H-24H)
     const newTransaction = await tronWeb.transactionBuilder.extendExpiration(unSignTransaction, (3600*permissionTime-60));
-    console.log('newTransaction',newTransaction)
     //sign transaction
     const signedTransaction = await tronWeb.trx.multiSign(newTransaction, tronWeb.defaultPrivateKey , permissionId).catch(e => {
         console.log('e',e)
         return false;
     });
-    console.log('signedTransaction',signedTransaction)
     //set transaction hex parameter value
     if(HexStr && signedTransaction){
         signedTransaction.raw_data.contract[0].parameter.value = HexStr;
