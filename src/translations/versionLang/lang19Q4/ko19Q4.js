@@ -173,7 +173,7 @@ export const lang19Q4 = {
    "Supply_TRX_supply_records_total":"개 레코드",
    "Supply_TRX_total":"TRX 총 유통량",
    "Supply_TRX_total_tip":"누적 일일 순 가치 + 창세기 블록 발급 (100,000,000,000 TRX)",
-   "Supply_amount_TRX_produced":"TTRX 생성",
+   "Supply_amount_TRX_produced":"TRX 생성",
    "Supply_amount_TRX_produced_tip":"블록 보상 + 투표 보상",
    "Supply_voting_rewards":"투표 보상",     
    "Supply_block_rewards":"블록 보상", 

@@ -188,7 +188,7 @@ export const lang19Q4 = {
    "Supply_amount_net_new":"Net new TRX",
    "Supply_amount_net_new_highest":"Net new TRX:",
    "Supply_amount_net_new_y_title":" Generated Amount / Net new Amount（TRX）",
-   "Supply_amount_net_new_tip":"TRX generated + TRX burned",
+   "Supply_amount_net_new_tip":"TRX Produced + TRX Burned",
    "votes_num":"Votes",
 
 
