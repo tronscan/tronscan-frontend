@@ -71,7 +71,7 @@ class Transaction extends React.Component {
 
     let transaction = await Client.getTransactionByHash(id);
     let { raw_data } = await tokenApi.getTransaction(id).catch(e => { });
-    let  parameterValue = raw_data.contract[0].parameter.value;
+    let  parameterValue = raw_data && raw_data.contract[0].parameter.value;
   
     if (!transaction['hash']) {
       this.setState({
