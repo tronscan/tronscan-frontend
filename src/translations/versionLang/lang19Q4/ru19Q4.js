@@ -169,5 +169,26 @@ export const lang19Q4 = {
     */
    "account_details_contracts":"Contracts Published",
    "account_details_contracts_no":"No contracts found",
+   "Supply_TRX_total_chart":"Общее количество TRX",
+   "Supply_total_y_title":"Общая циркуляция",
+   "Supply_amount_TRX":"Количество TRX",
+   "Supply_TRX_supply_records":"Циркуляция TRX: всего ",
+   "Supply_TRX_supply_records_total":" записей",
+   "Supply_TRX_total":"TRX общий тираж",
+   "Supply_TRX_total_tip":"Накопленная ежедневная чистая стоимость + выпуск блока Genesis (100 000 000 000 TRX)",
+   "Supply_amount_TRX_produced":"Произведено",
+   "Supply_amount_TRX_produced_tip":"Вознаграждения блока + Вознаграждения голосования",
+   "Supply_voting_rewards":"Вознаграждения голосования",     
+   "Supply_block_rewards":"Вознаграждения блока", 
+   "Supply_amount_TRX_burned":"Cожженного",
+   "Supply_amount_TRX_burned_y_title":"Сумма уничтожения (TRX)",
+   "Supply_amount_TRX_burned_tip1":"Не День Независимости: сумма TRX сожжена = комиссия сожжена",    
+   "Supply_amount_TRX_burned_tip2":" День независимости: количество сожженного TRX = сожженная комиссия + сожженное кол-во TRX в день независимости (1 000 000 000 TRX)",    
+   "Supply_amount_net_new":"Чистое количество",
+   "Supply_amount_net_new_highest":"Чистое количество:",
+   "Supply_amount_net_new_y_title":"Доходность / Чистая стоимость (TRX)",
+   "Supply_amount_net_new_tip":"TRX поколение + TRX уничтожение",
+   "votes_num":"голосов",
+  
 
 }
