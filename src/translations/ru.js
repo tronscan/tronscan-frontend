@@ -1181,7 +1181,7 @@ export const messages = {
    "contract_create_msg":"Информация",
    "contract_create_time":"Время",
    "contract_enery":"Коэффициент энергопотребления",
-   "contract_enery_tip":"Вызов смарт контрактов потребляет энергию",
+   "contract_enery_tip":"The energy consumed by calling the smart contract is borne by the contract and the user in proportion",
    "contract_init_assets":"Начальный актив",
    "contract_init_assets_tip":"Создатель контракта переводит средства на адрес контракта при выпуске контрактов",
    "contract_editor_bug": "Предупреждение о уязвимости compiler",

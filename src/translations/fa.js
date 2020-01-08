@@ -1171,7 +1171,7 @@ export const messages = {
    "contract_create_msg":"اطلاعات",
    "contract_create_time":"زمان",
    "contract_enery":"نسبت مصرف انرژی.",
-   "contract_enery_tip":"تماس با قراردادهای هوشمند انرژی مصرف می کند.",
+   "contract_enery_tip":"The energy consumed by calling the smart contract is borne by the contract and the user in proportion",
    "contract_init_assets":"دارایی اولیه",
    "contract_init_assets_tip":"سازنده  قرارداد هنگام استقرار قراردادها وجوه را به آدرس قرارداد منتقل می کند.",
    "contract_editor_bug": "هشدار راه گریز برای کامپایلر",

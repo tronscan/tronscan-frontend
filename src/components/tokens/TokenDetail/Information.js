@@ -114,7 +114,9 @@ export function Information({
            {
              name: "address_info_transfers",
              content: token.totalTransactions ? (
-               <FormattedNumber value={token.totalTransactions} />
+               <span>
+                 <FormattedNumber value={token.totalTransactions} /> Txns
+               </span>
              ) : (
                defaultContent
              )
@@ -127,7 +129,7 @@ export function Information({
                    <div>
                      {token["market_info"].sShortName == "TRX" ? (
                        <div className="d-flex price-info">
-                         ${token.priceToUsd.toFixed(6)}
+                         {token.priceToUsd.toFixed(6)} USD&nbsp;
                          <span className="token-price-trx ">
                            {" "}
                            ≈ {token["market_info"].priceInTrx}{" "}
@@ -181,9 +183,9 @@ export function Information({
                <div>
                  {currentTotalSupplyUsd != 0 ? (
                    <span>
-                     $<FormattedNumber
+                     <FormattedNumber
                        value={currentTotalSupplyUsd}
-                     ></FormattedNumber>{" "}
+                     ></FormattedNumber>{" "} USD
                      
                    </span>
                  ) : (
@@ -192,7 +194,7 @@ export function Information({
                  /{" "}
                  {totalSupplyUsd != 0 ? (
                    <span>
-                     $<FormattedNumber value={totalSupplyUsd}></FormattedNumber>{" "}
+                     <FormattedNumber value={totalSupplyUsd}></FormattedNumber>{" "} USD
                      
                    </span>
                  ) : (
@@ -209,9 +211,9 @@ export function Information({
                  style={{ justifyContent: "space-between" }}
                >
                  {tu(`token_rules_${Number(token.level > 100 ? 2 : token.level) || 0}`)}
-                 <Link to="/tokens/rating-rule">
+                 {/* <Link to="/tokens/rating-rule">
                    {tu("token_credit_rating_rule")}
-                 </Link>
+                 </Link> */}
                </div>
              )
            }

@@ -2178,7 +2178,7 @@ export default class Account extends Component {
                     <tr>
                       <th>{tu("transactions")}:</th>
                       <td>
-                        <FormattedNumber value={totalTransactions}/>
+                        <FormattedNumber value={totalTransactions}/> Txns
                       </td>
                     </tr>
                     {

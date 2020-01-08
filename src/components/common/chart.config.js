@@ -1059,7 +1059,10 @@ export default {
         },
         series: []
 
+
     },
+
+
 
     OverallFreezingRateChart: {
         chart: {

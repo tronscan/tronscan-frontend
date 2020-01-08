@@ -1199,7 +1199,7 @@ export const messages = {
     "contract_create_msg": "创建信息",
     "contract_create_time": "创建时间",
     "contract_enery": "能量消耗比例",
-    "contract_enery_tip": "调用智能合约会消耗能量，消耗能量由合约和用户按比例承担",
+    "contract_enery_tip": "调用智能合约消耗的能量由合约和用户按比例承担",
     "contract_init_assets": "初始资产",
     "contract_init_assets_tip": "部署合约时合约创建人向合约地址转入的资产",
     "contract_editor_bug": "编译器漏洞提示",

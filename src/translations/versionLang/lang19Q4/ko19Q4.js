@@ -254,6 +254,7 @@ export const lang19Q4 = {
    "index_page_pane_current":"현재",
    "index_page_pane_MaxTPS":"최대치TPS",
    "index_page_idebar_expand":"확장",
+   "index_page_search_input": "검색",
     /*
         ##################################################################################
         #                                                                                #
@@ -261,6 +262,27 @@ export const lang19Q4 = {
         #                                                                                #
         ##################################################################################
     */
-   "account_details_contracts":"Contracts Published",
-   "account_details_contracts_no":"No contracts found",
+   "account_details_contracts":"계약 게시",
+   "account_details_contracts_no":"계약을 찾을 수 없습니다",
+   "Supply_TRX_total_chart":"TRX 전체 유통량",
+   "Supply_total_y_title":"총 유통량",
+   "Supply_amount_TRX":"TRX 수량",
+   "Supply_TRX_supply_records":"TRX 유통 데이터, 총 ",
+   "Supply_TRX_supply_records_total":"개 레코드",
+   "Supply_TRX_total":"TRX 총 유통량",
+   "Supply_TRX_total_tip":"누적 일일 순 가치 + 창세기 블록 발급 (100,000,000,000 TRX)",
+   "Supply_amount_TRX_produced":"TRX 생성",
+   "Supply_amount_TRX_produced_tip":"블록 보상 + 투표 보상",
+   "Supply_voting_rewards":"투표 보상",     
+   "Supply_block_rewards":"블록 보상", 
+   "Supply_amount_TRX_burned":"TRX 소각 량",
+   "Supply_amount_TRX_burned_y_title":"소각 량（TRX）",
+   "Supply_amount_TRX_burned_tip1":"비 독립 기념일 : TRX 소각 량 = 수수료 소각.",    
+   "Supply_amount_TRX_burned_tip2":"독립 기념일 : TRX 소각 량 = 수수료 소각 + 독립 기념일 소각 량 (1,000,000,000 TRX)",    
+   "Supply_amount_net_new":"순 자산",
+   "Supply_amount_net_new_highest":"순 자산",
+   "Supply_amount_net_new_y_title":"수율 / 순 가치 (TRX)",
+   "Supply_amount_net_new_tip":"TRX 생성 + TRX 소각",
+   "votes_num":"투표",
+  
 }

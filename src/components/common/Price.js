@@ -102,14 +102,46 @@ export let PriceProvider = connect(
   mapDispatchToProps
 )(PriceProviderCmp);
 
+let oTimer = null;
 export class TRXPrice extends React.PureComponent {
   constructor() {
     super();
 
     this.state = {
       open: false,
-      id: alpha(24)
+      id: alpha(24),
+       percent_change_24h: 0
     };
+  }
+
+  async loadTrxPrices() {
+    var dataEur = Lockr.get("dataEur");
+  
+    let eurURL = encodeURI(
+      `https://api.coinmarketcap.com/v1/ticker/tronix/?convert=EUR`
+    );
+  
+    if (!Lockr.get("dataEur")) {
+      var { data: dataEur } = await xhr.get(
+        `${API_URL}/api/system/proxy?url=${eurURL}`
+      );
+    }
+
+    if(dataEur.length>0){
+        let percent_change_24h = dataEur[0].percent_change_24h;
+        this.setState({
+          percent_change_24h
+        });
+    }
+  }
+
+  componentDidMount() {
+    this.loadTrxPrices();
+    oTimer = setInterval(() => this.loadTrxPrices(), 10000);
+  }
+
+  componentWillUnmount() {
+    clearInterval(oTimer);
   }
 
   renderPrice(value, priceValues) {
@@ -119,7 +151,7 @@ export class TRXPrice extends React.PureComponent {
   }
 
   render() {
-    let { open, id } = this.state;
+    let { open, id,percent_change_24h } = this.state;
     let {
       source,
       name,
@@ -130,6 +162,10 @@ export class TRXPrice extends React.PureComponent {
       ...props
     } = this.props;
     let ele = null;
+  
+    const myPng = src => {
+      return require(`../../images/home/${src}.png`);
+    };
     return (
       <Consumer>
         {priceValues => {
@@ -216,11 +252,42 @@ export class TRXPrice extends React.PureComponent {
                         onMouseOut={() => this.setState({ open: false })}
                         {...props}
                       >
-                        {value}
-                        &nbsp;
-                        {showCurreny &&
-                          (currency.toUpperCase() ||
-                            priceValues.priceShown.toUpperCase())}
+                        <span className="currentTrxPirce">{value} </span>
+                        <span className="currentCurrency">
+                          {showCurreny &&
+                            (currency.toUpperCase() ||
+                              priceValues.priceShown.toUpperCase())}{" "}
+                        </span>
+                        <span
+                          className={
+                            Number(percent_change_24h) > 0
+                              ? "greenPrice "
+                              : "redPrice "
+                          }
+                          style={{ display: "inline-block" }}
+                        >
+                          {Number(percent_change_24h) === 0 ? (
+                            <span>({percent_change_24h}%)</span>
+                          ) : (
+                            <span>
+                              ({Number(percent_change_24h) > 0 ? "+" : ""}
+                              {percent_change_24h}%){" "}
+                              {Number(percent_change_24h) > 0 ? (
+                                <img
+                                  className="quotesImg"
+                                  src={myPng("up")}
+                                  alt=""
+                                />
+                              ) : (
+                                <img
+                                  className="quotesImg"
+                                  src={myPng("down")}
+                                  alt=""
+                                />
+                              )}
+                            </span>
+                          )}
+                        </span>
                       </span>
                     )}
                   </FormattedNumber>
