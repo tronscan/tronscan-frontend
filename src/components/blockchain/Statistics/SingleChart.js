@@ -84,7 +84,7 @@ class Statistics extends React.Component {
             ContractInvocation: null,
             ContractInvocationDistribution: null,
             ContractInvocationDistributionParams: {
-                time: new Date().getTime() - 2*24*60*60*1000,
+                time: new Date().getTime() - 24*60*60*1000,
                 range: 20,
                 total_used_energy: 0,
                 scale: '',
@@ -689,7 +689,7 @@ class Statistics extends React.Component {
     }
 
     disabledEndDate = (endValue) => {
-        const startValue = new Date() -  2*24*60*60*1000
+        const startValue = new Date() -  24*60*60*1000
         if (!endValue || !startValue) {
           return false;
         }
