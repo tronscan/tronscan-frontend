@@ -418,11 +418,9 @@ class Code extends React.Component {
             let retValue = false;
             if(!broadcast.result){
               retValue = false;
-              //console.log('retValue222222',retValue)
             }else{
               retValue = await this.getTxResult(signedTransaction.txID);
             }
-            //console.log('retValue3333333',retValue)
             this.setState({
               result: this.formatOutputs(retValue)
             });
@@ -512,7 +510,7 @@ class Code extends React.Component {
         }
 
 
-        //console.log('contractItem',contractItem)
+       
         if (contractItem.outputs == undefined) {
           return reslove(0);
         }
@@ -520,8 +518,7 @@ class Code extends React.Component {
           .map(({ name }) => name)
           .filter(name => !!name);
         const types = contractItem.outputs.map(({ type }) => type);
-        //console.log('names',names)
-         // console.log('types',types)
+        
         let decoded = window.tronWeb.utils.abi.decodeParams(
           names,
           types,

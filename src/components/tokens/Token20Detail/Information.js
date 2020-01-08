@@ -100,8 +100,9 @@ export function Information({ token: tokens, priceUSD }) {
       content: (
         <div>
           {token.transferNumber
-            ? toThousands(token.transferNumber)
-            : defaultContent}
+            ?
+            <span> { toThousands(token.transferNumber)} Txns</span>  
+            : defaultContent} 
         </div>
       )
     },
@@ -111,7 +112,7 @@ export function Information({ token: tokens, priceUSD }) {
         <div className="d-flex ">
           {token["market_info"] ? (
             <div className="d-flex price-info">
-              ${token["priceToUsd"].toFixed(6)}
+              {token["priceToUsd"].toFixed(6)} USD&nbsp;
               <span className="token-price-trx">
                 ≈ {token["market_info"].priceInTrx} TRX
               </span>
@@ -156,7 +157,7 @@ export function Information({ token: tokens, priceUSD }) {
         <div>
           {currentTotalSupplyUsd != 0 ? (
             <span>
-              $<FormattedNumber value={currentTotalSupplyUsd}></FormattedNumber>{" "}
+              <FormattedNumber value={currentTotalSupplyUsd}></FormattedNumber>{" "} USD
               
             </span>
           ) : (
@@ -165,7 +166,7 @@ export function Information({ token: tokens, priceUSD }) {
           /{" "}
           {totalSupplyUsd != 0 ? (
             <span>
-              $<FormattedNumber value={totalSupplyUsd}></FormattedNumber>
+              <FormattedNumber value={totalSupplyUsd}></FormattedNumber> {" "} USD
             </span>
           ) : (
             defaultContent

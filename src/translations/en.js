@@ -962,7 +962,7 @@ export const messages = {
   "genesis": "Genesis",
   "TRX_distribution_overview": "TRX DISTRIBUTION OVERVIEW",
 
-  "block_produce_rewards": "Block Produce Rewards",
+  "block_produce_rewards": "Block Rewards",
   "node_rewards": "Node Rewards",
   "independence_day_burned": "Independence Day Burned",
   "fee_burned": "Fee Burned",
@@ -1181,7 +1181,7 @@ export const messages = {
    "contract_create_msg":"Information",
    "contract_create_time":"CreationTime",
    "contract_enery":"Energy consumption ratio",
-   "contract_enery_tip":"Calling smart contract consumes energy, which is borne by the contract and the user in proportion",
+   "contract_enery_tip":"The energy consumed by calling the smart contract is borne by the contract and the user in proportion",
    "contract_init_assets":"Initial asset",
    "contract_init_assets_tip":"Contract creator transfers funds to contract address while deploying contracts",
    "contract_editor_bug": "Loophole warning for the compiler",

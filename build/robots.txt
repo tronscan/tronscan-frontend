@@ -2,4 +2,4 @@ User-agent: *
 User-agent: Googlebot
 User-agent: Googlebot-Image
 
-Sitemap: https://tronscan.org/sitemap.xml
+Sitemap: https://tronscan.io/sitemap.xml

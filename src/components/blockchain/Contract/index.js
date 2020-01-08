@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
 import React, { Fragment } from "react";
-import { injectIntl } from "react-intl";
+import { injectIntl, FormattedDate, FormattedNumber, FormattedTime } from "react-intl";
 import { connect } from "react-redux";
 import { NavLink, Route, Switch } from "react-router-dom";
 import { Client } from "../../../services/api";
@@ -39,7 +39,6 @@ import { CsvExport } from "../../common/CsvExport";
 import moment from "moment";
 import rebuildList from "../../../utils/rebuildList";
 import { QuestionMark } from "../../common/QuestionMark.js";
-import {FormattedNumber} from "react-intl";
 
 class SmartContract extends React.Component {
   constructor({ match }) {
@@ -308,7 +307,7 @@ class SmartContract extends React.Component {
       if (contract.call_value) {
         contractValue = `${contract.call_value} TRX`;
       } else {
-        contractValue = "0";
+        contractValue = "0 TRX";
       }
     }
 
@@ -431,14 +430,14 @@ class SmartContract extends React.Component {
                             </p>
                             <p className="contract_trx_count">
                               {contract.trxCount}
-                              <Tooltip
+                              {/* <Tooltip
                                 placement="top"
                                 title={intl.formatMessage({
                                   id: "Normal_Transactions"
                                 })}
-                              >
-                                <span className="ml-1"> txns </span>
-                              </Tooltip>
+                              > */}
+                                <span className="ml-1"> Txns </span>
+                              {/* </Tooltip> */}
                             </p>
                           </li>
 
@@ -546,9 +545,16 @@ class SmartContract extends React.Component {
                             <p>{tu("contract_create_time")}:</p>
                             <div className="d-flex">
                               <span>
-                                {moment(contract.date_created).format(
+                                <FormattedDate value={contract.date_created}/>&nbsp;
+                                <FormattedTime value={contract.date_created}
+                                               hour='numeric'
+                                               minute="numeric"
+                                               second='numeric'
+                                               hour12={false}
+                                />
+                                {/* {moment(contract.date_created).format(
                                   "YYYY-MM-DD HH:mm:ss"
-                                )}
+                                )} */}
                               </span>
                             </div>
                           </li>
@@ -556,7 +562,8 @@ class SmartContract extends React.Component {
                             <p>{tu("contract_available_energy")}:</p>
                             <div className="d-flex">
                               <span>
-                                <FormattedNumber value={contract.creator.consume_user_resource_percent < 100 ? energyRemaining : 0}/>
+                                <FormattedNumber value={contract.creator.consume_user_resource_percent < 100 ? energyRemaining : 0}/> &nbsp;ENERGY
+                                
                               </span>
                             </div>
                           </li>

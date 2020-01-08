@@ -41,7 +41,6 @@ export default class ActiveEdit extends Component {
     getOperationsByHex(hex) {
         if (!hex) { return '' }
         const operations = getContractTypesByHex(hex);
-        // console.log('operations',operations)
         return operations.map(item => {
             return <li key={item.id}>{tu(item.value)}</li>
         })

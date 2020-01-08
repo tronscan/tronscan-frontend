@@ -5049,4 +5049,10 @@ h5 {
   flex: 1;
   margin-right: 45px;
 }
-
+.trxsupply-tip{
+  min-width: 200px;
+  .tooltip-inner{
+    max-width: 500px;
+    text-align: left;
+  }
+}

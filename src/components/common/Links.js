@@ -93,8 +93,7 @@ class addressLinkClass extends React.PureComponent {
   };
 
   renderModal = () => {
-    let { address, intl } = this.props;
-
+    let { address, intl, isContract } = this.props;
     this.setState({
       modal: (
         <Modal
@@ -106,7 +105,8 @@ class addressLinkClass extends React.PureComponent {
         >
           <ModalHeader toggle={this.hideModal}>QR CODE</ModalHeader>
           <ModalBody className="text-center">
-            <h5 className="py-2">{tu("wallet_address")}</h5>
+          
+            <h5 className="py-2">{isContract?tu("contract_address") :tu("wallet_address")}</h5>
             <div className="input-group mb-3">
               <input
                 type="text"
@@ -277,7 +277,7 @@ class addressLinkClass extends React.PureComponent {
             </CopyToClipboard>
           </Tooltip>
         )}
-        {includeTransfer && (
+        {includeErcode && (
           <Tooltip placement="top" title={t("show_qr_code")}>
             <span
               className="ml-2"
@@ -288,7 +288,7 @@ class addressLinkClass extends React.PureComponent {
             </span>
           </Tooltip>
         )}
-        {includeErcode && (
+        {includeTransfer && (
           <Tooltip placement="top" title={t("send_tokens")}>
             <span
               className="ml-2"
