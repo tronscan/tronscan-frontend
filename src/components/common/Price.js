@@ -28,7 +28,7 @@ class PriceProviderCmp extends React.PureComponent {
       priceShown: props.activeCurrency || "TRX",
       currencies: {},
       activePrice: 1,
-      percent_change_24h: 0
+     
     };
 
     for (let currency of props.currencies) {
@@ -63,6 +63,14 @@ class PriceProviderCmp extends React.PureComponent {
         `${API_URL}/api/system/proxy?url=${ethURL}`
       );
     }
+
+    if(dataEur.length>0){
+        let percent_change_24h = dataEur[0].percent_change_24h;
+        this.setState({
+          percent_change_24h
+        });
+    }
+   
 
     let newPrices = {
       BTC: parseFloat(dataEur[0].price_btc),
@@ -109,8 +117,34 @@ export class TRXPrice extends React.PureComponent {
 
     this.state = {
       open: false,
-      id: alpha(24)
+      id: alpha(24),
+       percent_change_24h: 0
     };
+  }
+
+  async loadTrxPrices() {
+    var dataEur = Lockr.get("dataEur");
+  
+    let eurURL = encodeURI(
+      `https://api.coinmarketcap.com/v1/ticker/tronix/?convert=EUR`
+    );
+  
+    if (!Lockr.get("dataEur")) {
+      var { data: dataEur } = await xhr.get(
+        `${API_URL}/api/system/proxy?url=${eurURL}`
+      );
+    }
+
+    if(dataEur.length>0){
+        let percent_change_24h = dataEur[0].percent_change_24h;
+        this.setState({
+          percent_change_24h
+        });
+    }
+  }
+
+  componentDidMount() {
+    this.loadTrxPrices();
   }
 
   renderPrice(value, priceValues) {
@@ -120,7 +154,7 @@ export class TRXPrice extends React.PureComponent {
   }
 
   render() {
-    let { open, id } = this.state;
+    let { open, id,percent_change_24h } = this.state;
     let {
       source,
       name,
@@ -131,16 +165,7 @@ export class TRXPrice extends React.PureComponent {
       ...props
     } = this.props;
     let ele = null;
-    let percent_change_24h = 0;
-    if (localStorage.getItem("dataEur")) {
-      let dataEurObj = JSON.parse(localStorage.getItem("dataEur"));
-      if (dataEurObj.data) {
-        percent_change_24h = dataEurObj.data[0].percent_change_24h;
-        this.setState({
-          percent_change_24h
-        });
-      }
-    }
+  
     const myPng = src => {
       return require(`../../images/home/${src}.png`);
     };
