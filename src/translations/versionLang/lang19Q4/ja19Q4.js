@@ -176,7 +176,7 @@ export const lang19Q4 = {
    "Supply_TRX_supply_records":"流通中のTRX、合計",
    "Supply_TRX_supply_records_total":"レコード",
    "Supply_TRX_total":"TRX総合供給",
-   "Supply_TRX_total_tip":"累计每日净值+创世块发行量（100,000,000,000 TRX）",
+   "Supply_TRX_total_tip":"1日の累積純資産+ジェネシスブロック循環（100,000,000,000 TRX）",
    "Supply_amount_TRX_produced":"TRX生産量",
    "Supply_amount_TRX_produced_tip":"ブロック生産の報酬 + 投票報酬",
    "Supply_voting_rewards":"投票報酬",     
@@ -189,6 +189,6 @@ export const lang19Q4 = {
    "Supply_amount_net_new_highest":"ネットトータル",
    "Supply_amount_net_new_y_title":"利回り/純価値（TRX）",
    "Supply_amount_net_new_tip":"TRX生成 + TRX破壊",
-   "votes_num":"投票数",
-
+   "votes_num":"投票",
+  
 }
