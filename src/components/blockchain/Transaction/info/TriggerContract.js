@@ -45,7 +45,7 @@ function TriggerContract({contract,intl}){
                     address={contract["contract_address"]}
                     isContract={true}
                   >
-                    <Tooltip
+                    {/* <Tooltip
                       placement="top"
                       title={upperFirst(
                         intl.formatMessage({
@@ -62,7 +62,7 @@ function TriggerContract({contract,intl}){
                           color: "#333"
                         }}
                       />
-                    </Tooltip>
+                    </Tooltip> */}
                     {contract["contract_address"]}
                   </AddressLink>
                 </div>
