@@ -81,7 +81,9 @@ function getClientEnvironment(publicUrl) {
       // API_URL: process.env.API_URL || `https://testapi.tronscan.org`,
       // API_URL: process.env.API_URL || `http://3.14.14.175:9000`,
       // API_URL: process.env.API_URL ||  `https://nileapi.tronscan.org`,
-        API_URL: process.env.API_URL ||  `http://3.14.14.175:9000`,
+      //  API_URL: process.env.API_URL ||  `http://3.14.14.175:9000`,
+        API_URL: process.env.API_URL ||  `https://tronexapi.tronscan.org`,
+        
       // API_URL: process.env.API_URL || `http://18.190.104.70:9000`,
 
         NET: process.env.NET || `mainnet`,
