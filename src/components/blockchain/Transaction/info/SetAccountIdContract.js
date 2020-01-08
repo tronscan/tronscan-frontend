@@ -14,27 +14,6 @@ import Field from "../../../tools/TransactionViewer/Field";
 import xhr from "axios/index";
 import {toUtf8} from 'tronweb'
 
-const useFetch = (id) => {
-  const [data, updateData] = useState('')
-
-  async function getData(){
-    let res = await xhr.get('https://api.trongrid.io/wallet/gettransactionbyid', {params : {
-      value: id,
-      visible: true
-    }}).catch(e=>{
-      updateData('')
-    })
-    const name = res && res.data && res.data.raw_data && res.data.raw_data.contract && res.data.raw_data.contract[0] && res.data.raw_data.contract[0].parameter && res.data.raw_data.contract[0].parameter.value && res.data.raw_data.contract[0].parameter.value.account_id
-    updateData(name)
-  }
-
-  useEffect(() => {
-    getData()
-  }, [getData])
-
-  return data
-}
-
 export default function SetAccountIdContract({contract}){
   // const name = useFetch(contract.hash)
   return(

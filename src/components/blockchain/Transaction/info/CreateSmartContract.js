@@ -50,7 +50,7 @@ const useFetch = (id) => {
   }
   useEffect(() => {
     getData()
-  }, [getData, id])
+  })
 
   return data
 }
