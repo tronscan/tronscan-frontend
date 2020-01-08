@@ -1007,7 +1007,7 @@ class Navigation extends React.Component {
           {popup}
           <div className="logo-wrapper">
             {/* zh en ko ar fa nav menu flex space-between*/}
-            <div className={activeLanguage === 'zh' || activeLanguage === 'en' || activeLanguage === 'ko' || activeLanguage === 'ar' || activeLanguage === 'fa' ? "py-2 d-flex px-0 single-menu-nav-wrapper" : "py-2 d-flex px-0 menu-nav-wrapper"}>
+            <div className={activeLanguage === 'zh'  || activeLanguage === 'ko' || activeLanguage === 'ar' || activeLanguage === 'fa' ? "py-2 d-flex px-0 single-menu-nav-wrapper" : "py-2 d-flex px-0 menu-nav-wrapper"}>
               <div className="logoTrxPrice">
                 <div className="mobileFlexible">
                   <Link to="/">
