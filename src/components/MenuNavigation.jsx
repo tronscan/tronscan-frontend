@@ -34,7 +34,6 @@ class Menunavigation extends Component {
     const latestOpenKey = openKeys.find(
       key => this.state.openKeys.indexOf(key) === -1
     );
-    console.log(rootSubmenuKeys, openKeys);
     if (rootSubmenuKeys.indexOf(latestOpenKey) === -1) {
       this.setState({ openKeys });
     } else {
