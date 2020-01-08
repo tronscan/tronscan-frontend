@@ -1,3 +1,4 @@
+/*eslint-disable */
 export const tokensMap = {
   "1000001":"SEED_&&_1000001_&&_0_&&_SEED_&&_https://coin.top/production/logo/1000001.jpeg",
   "1000002":"TRX_&&_1000002_&&_0_&&_TRX_&&_https://coin.top/production/js/20190509074813.png",

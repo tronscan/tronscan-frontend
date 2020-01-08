@@ -537,7 +537,7 @@ class TokenDetail extends React.Component {
                         className="tokenTransferSearch"
                         style={{
                           position: "absolute",
-                          right: "20px",
+                          right: "1rem",
                           top: 6,
                           height: 26
                         }}
@@ -545,7 +545,7 @@ class TokenDetail extends React.Component {
                         <div
                           className="input-group-append"
                           style={{
-                            marginLeft: 0,
+                            marginLeft: 7,
                             position: "relative"
                           }}
                         >

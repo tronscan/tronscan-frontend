@@ -128,7 +128,6 @@ class Code extends React.Component {
     } = this.props;
     const { contractVerifyState, contractInfoList } = this.state;
     let smartcontract = await this.tronWeb.trx.getContract(address);
-    //console.log('contractVerifyState',contractVerifyState)
     let contractInfoListNew;
      if (contractVerifyState) {
       contractInfoListNew = { abi: smartcontract.abi, ...contractInfoList };
@@ -138,10 +137,12 @@ class Code extends React.Component {
       this.setState({
         contractInfoList: contractInfoListNew
       },()=>{
-        this.getContractTokenList();
-        this.viewFuntions();
-        this.payableFuntions();
-        this.nonePayableFuntions();
+       if(contractInfoListNew.abi){
+          this.getContractTokenList();
+          this.viewFuntions();
+          this.payableFuntions();
+          this.nonePayableFuntions();
+       }
       });
     // } else {
     //   this.setState({

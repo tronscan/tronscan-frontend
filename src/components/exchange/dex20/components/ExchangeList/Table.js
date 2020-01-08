@@ -1,3 +1,4 @@
+/*eslint-disable */
 import React, { Component, Fragment } from "react";
 import { Table, Icon } from "antd";
 import { QuestionMark } from "../../../../common/QuestionMark";

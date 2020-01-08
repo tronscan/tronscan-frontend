@@ -82,7 +82,7 @@ class BTTSupply extends React.Component {
         let result=await xhr.get(`${API_URL}/api/wink/graphic`);
 
       let supplyTypesChartData = result.data;
-        let eurWinkTronbetURL = encodeURI(`http://api.coinmarketcap.com/v1/ticker/wink-tronbet/?convert=EUR`);
+        let eurWinkTronbetURL = encodeURI(`https://api.coinmarketcap.com/v1/ticker/wink-tronbet/?convert=EUR`);
         let trxPriceData = await xhr.get(`${API_URL}/api/system/proxy?url=${eurWinkTronbetURL}`);
         let priceUSD = ((parseFloat(trxPriceData.data[0].price_usd))*1000).toFixed(3);
         let priceBTC = ((parseFloat(trxPriceData.data[0].price_btc))*1000).toFixed(5);

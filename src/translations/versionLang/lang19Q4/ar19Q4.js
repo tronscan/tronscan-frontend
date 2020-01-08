@@ -34,11 +34,14 @@ export const lang19Q4 = {
     "assetsPercent": "%{portion}:{first}~{end}أفضل حاملي ",
     "assetsPercentshow": "إجمالي أصول {first}~{end}：{usdt} {unit}",
     "holders": "حامل الرمز",
-    "transfersDetailContractAddress": "",
-    "transfersDetailHolder": "",
-    "transfersDetailQuantity": "",
-    "transfersDetailPercentage": "",
-    "transfersDetailValue": "",
+    "transfersDetailContractAddress": "عنوان العقد",
+    "transfersDetailHolder": "ا لمالكين",
+    "transfersDetailQuantity": "الكمية",
+    "transfersDetailPercentage": "النسبة ا لمئوية",
+    "transfersDetailValue": "القيمة",
+    'contract_code_overview_name':'اسم',
+    'contract_code_overview_creator':'المنشئ',
+    'contract_code_overview_account':'الحساب',
     // 2019-12-10
     "token_basic_view": "الأساسيات",
     "token_additional_materials": "معلومات تكميلية",
@@ -83,7 +86,7 @@ export const lang19Q4 = {
     "token_rank": "الترتيب",
     "market_capitalization_t": "القيمة الرمزية في التداول",
     "token_tron_total": "إجمالي عدد رموز ترون",
-    "token_week": "الرموز الجديدة على مدار الأسبوع",
+    "token_week": "اخر 7 ايام",
     "token_scan_total": "عدد الرموز في TRONSCAN",
     "create_token_btn": "إصدار الرمز",
     "gain_tip": "نظام مرجع TRX لـ ٢٤ساعة",
@@ -126,21 +129,28 @@ export const lang19Q4 = {
     "charts_SR": "الممثل الممتاز",
     "charts_daily_transactions": "المعاملات اليومية",
     "charts_total_transactions": "مجموع المعاملات",
+    "charts_volume_24": "حجم المعاملات اليومية",
+    "charts_total_TRX_supply":"تداول TRX في الوقت الحقيقي والقيمة السوقية",
+    "charts_total_TRX_supply_vote":"مكافآت التصويت",
+    "charts_average_blocksize":"متوسط حجم الكتلة اليومي",
+    "charts_total_average_blocksize":"حجم الكتلة التراكمية",
+    "charts_daily_energy_consumption": "استهلاك الطاقة اليومي",
+    "charts_daily_energy_contracts": "استهلاك الطاقة اليومي للعقد",
+    "charts_daily_contract_calling_profile": "توزيع مكالمات العقود اليومية",
     "charts_overall_freezing_rate": "معدل التجميد الكلي",
     "charts_new_addresses": "نمو الحساب",
-    "charts_daily_energy_consumption": "استهلاك الطاقة اليومي",
-    "charts_daily_energy_contracts": "استهلاك الطاقة اليومي بعقود",
     "charts_contract_calling": "دعوة العقد ",
-    "charts_daily_contract_calling_profile": "توزيع دعوة العقود اليومية",
+    "charts_average_price":"متوسط سعر TRX",
     "freezing_column_time": "（UTC）الوقت",
     "freezing_column_total_circulation": "إجمالي تداول TRX",
     "freezing_column_total_frozen": "مجموع TRX المجمدة",
     "freezing_column_freezing_rate": "معدل التجمد",
+    "freezing_column_freezing_rate_highest": "معدل التجمد",
     "freezing_column_energy_ratio": "نسبة TRX مقابل الطاقة",
     "freezing_column_bandwidth_ratio": "نسبة TRX مقابل عرض النطاق الترددي",
     "freezing_column_freezing_rate_tip": "تجميد كمية TRX / إجمالي TRX التداول",
-    "freezing_column_energy_ratio_tip": "عدد TRX للحصول على الطاقة في TRX / TRX المجمدة",
-    "freezing_column_bandwidth_ratio_tip": "عدد TRX للحصول على النطاق العريض في TRX / TRX المجمدة",
+    "freezing_column_energy_ratio_tip": "TRX المجمدة للطاقة / إجمالي TRX المجمدة",
+    "freezing_column_bandwidth_ratio_tip": "TRX المجمدة لعرض النطاق الترددي / إجمالي TRX المجمدة",
     "freezing_column_more": "المزيد",
     "freezing_column_total_circulation_chart": "(TRX) إجمالي تداول ",
     "freezing_column_total_frozen_chart": "(TRX)كمية التجميد ",
@@ -150,7 +160,6 @@ export const lang19Q4 = {
     "freezing_rangeSelector_botton_text_1m": "١ شهر",
     "freezing_column_a_total": "بيانات TRX المجمدة والمتداولة",
     "freezing_column_calls": "نتيجة",
-    "transaction_energy_cap":"الحد الأقصى للطاقة",
     "transaction_enrgy_cap_tip":"الحد الأقصى للطاقة التي يوفرها ناشرو العقود",
     "signature_list":"قائمة التوقيع",
 
@@ -228,4 +237,15 @@ export const lang19Q4 = {
 
      "transaction_rewards_distribution_ratio":"نسبة توزيع المكافآت",
 
+    "TRX_historical_data":"TRX balance historical data in the contract",
+    "TRX_historical_data_tip":"TRX Amount",
+    /*
+        ##################################################################################
+        #                                                                                #
+        # Charts 2019-12-30                           #
+        #                                                                                #
+        ##################################################################################
+    */
+   "account_details_contracts":"Contracts Published",
+   "account_details_contracts_no":"No contracts found",
 }

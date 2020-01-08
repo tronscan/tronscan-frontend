@@ -568,7 +568,7 @@ export const messages = {
   #                                                                                #
   ##################################################################################
   */
-  "details": "詳しい情報",
+  "details": "詳細",
   "issue_a_token": "トークン発行",
   "issue_token": "トークン発行",
   "token_name": "トークン名",
@@ -1928,7 +1928,7 @@ export const messages = {
   "table_info_holders_tip1": "現在のトークンは合計",
   "table_info_holders_tip2": "個アドレスがありますが、前頭の10,000個だけが表示されます。（トークン数量の大きさの順にソートされます）",
   "Singapore": "Singapore",
-  "table_info_new_tip": "今、最初の10,000のデータのみが表示されています。他のデータを検索したい場合は、時間範囲を調整してください。",
+  "table_info_new_tip": "他のデータを検索したい場合は、時間範囲を調整してください。",
   "select_start_time": "開始時間を選択してください",
   "select_end_time": "終了時間を選択してください",
   "binance": "binance",

@@ -1918,7 +1918,7 @@ export const messages = {
   "table_info_holders_tip1": "현재 토큰은 모두",
   "table_info_holders_tip2": "주소에 있으며 상위 10,000 개만 표시됩니다 (토큰수량이 많은것부터적은 순서로 정렬)",
   "Singapore": "Singapore",
-  "table_info_new_tip": "상위 10,000 개의 데이터 만 표시됩니다. 다른 데이터를 조회하려면  시간 범위를 변경해 주시기 바랍니다.",
+  "table_info_new_tip": "다른 데이터를 조회하려면  시간 범위를 변경해 주시기 바랍니다.",
   "select_start_time": "시작 시간을 선택하십시오.",
   "select_end_time": "종료 시간을 선택하십시오.",
   "binance": "binance",

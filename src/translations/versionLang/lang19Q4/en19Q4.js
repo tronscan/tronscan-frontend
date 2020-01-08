@@ -39,9 +39,14 @@ export const lang19Q4 = {
     "transfersDetailQuantity": "Quantity",
     "transfersDetailPercentage": "Percentage",
     "transfersDetailValue": "Value",
+
+    'contract_code_overview_name':'Name',
+    'contract_code_overview_creator':'Creator',
+    'contract_code_overview_account':'Account',
+
     // 2019-12-10
     "token_basic_view": "Overview",
-    "token_additional_materials": "Profile Summary",
+    "token_additional_materials": "More",
     "token_hold_user": "Holders",
     "token_capitalization": "Market Cap/Fully MC",
     "token_credit_rating": "Reputation",
@@ -85,7 +90,7 @@ export const lang19Q4 = {
     "total_supply_tip2": " TRX are excluded.",
     "market_capitalization_t": "Market Cap",
     "token_tron_total": "Total TRON Tokens",
-    "token_week": "This Week",
+    "token_week": "Last 7 Days",
     "token_scan_total": "Total in TRONSCAN",
     "create_token_btn": "Issue Tokens",
     "token_exchange": "Exchange",
@@ -122,21 +127,28 @@ export const lang19Q4 = {
     "charts_SR": "SR",
     "charts_daily_transactions": "Daily Transactions",
     "charts_total_transactions": "Total Transactions",
-    "charts_overall_freezing_rate": "Overall Freezing Rate",
-    "charts_new_addresses": "Accounts Growth",
+    "charts_volume_24": "Daily Transaction Volume",
+    "charts_total_TRX_supply":"Real-Time TRX Supply & Market Cap",
+    "charts_total_TRX_supply_vote":"voting rewards",
+    "charts_average_blocksize":"Daily Average Block Size",
+    "charts_total_average_blocksize":"Cumulative Block Size",
     "charts_daily_energy_consumption": "Daily Energy Consumption",
-    "charts_daily_energy_contracts": "Daily Energy  Consumption By Contracts",
-    "charts_contract_calling": "Contract Calling",
+    "charts_daily_energy_contracts": "Daily Energy Consumption By Contracts",
     "charts_daily_contract_calling_profile": "Daily Contract Calling Profile",
+    "charts_overall_freezing_rate": "Overall Freezing Rate",
+    "charts_new_addresses": "Account Growth",
+    "charts_contract_calling": "Contract Calling",
+    "charts_average_price": "Average TRX Price",
     "freezing_column_time": "Time（UTC）",
     "freezing_column_total_circulation": "Total circulation of TRX",
     "freezing_column_total_frozen": "Total TRX frozen",
     "freezing_column_freezing_rate": "Freezing rate",
+    "freezing_column_freezing_rate_highest": "Freezing rate:",
     "freezing_column_energy_ratio": "TRX-for-Energy ratio",
     "freezing_column_bandwidth_ratio": "TRX-for-bandwidth ratio",
-    "freezing_column_freezing_rate_tip": "amount of TRX frozen/total TRX in circulation",
-    "freezing_column_energy_ratio_tip": "amount of frozen TRX redeemed for Energy/amount of TRX frozen",
-    "freezing_column_bandwidth_ratio_tip": "amount of frozen TRX redeemed for bandwidth/amount of TRX frozen",
+    "freezing_column_freezing_rate_tip": "Amount of TRX frozen / total TRX in circulation",
+    "freezing_column_energy_ratio_tip": "TRX frozen for Energy / Total TRX frozen",
+    "freezing_column_bandwidth_ratio_tip": "TRX frozen for bandwidth / Total TRX frozen",
     "freezing_column_more": "More",
     "freezing_column_total_circulation_chart": "Total circulation（TRX）",
     "freezing_column_total_frozen_chart": "Total frozen（TRX）",
@@ -153,6 +165,15 @@ export const lang19Q4 = {
     "transaction_energy_cap":"Energy cap",
     "transaction_enrgy_cap_tip":"Maximum Energy provided by contract deployers",
     "signature_list":"Signature list",
+    /*
+        ##################################################################################
+        #                                                                                #
+        # Charts 2019-12-30                           #
+        #                                                                                #
+        ##################################################################################
+    */
+   "account_details_contracts":"Contracts Published",
+   "account_details_contracts_no":"No contracts found",
 
     // 2019-12-25 xyy
     "transaction_hash":"Hash",

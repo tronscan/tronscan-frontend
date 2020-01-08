@@ -40,6 +40,10 @@ export const lang19Q4 = {
     "transfersDetailPercentage": "Процент",
     "transfersDetailValue": "Значение",
 
+    'contract_code_overview_name':'имя',
+    'contract_code_overview_creator':'творец',
+    'contract_code_overview_account':'УЧЕТНЫЕ ЗАПИСИ',
+
     // 2019-12-10
     "token_basic_view": "Обзор",
     "token_additional_materials": "Информация Профиля",
@@ -86,7 +90,7 @@ export const lang19Q4 = {
     "total_supply_tip2": " TRX исключаются.",
     "market_capitalization_t": "Рыночная кепка",
     "token_tron_total": "Общее Количество Токенов TRON",
-    "token_week": "На этой неделе",
+    "token_week": "Последние 7 дней",
     "token_scan_total": "Всего на TRONSCAN",
     "create_token_btn": "Выданные Токены",
     "token_exchange": "Биржа",
@@ -120,23 +124,30 @@ export const lang19Q4 = {
     "charts_block": "Блок",
     "charts_contract": "Контракт",
     "charts_SR": "SR",
-    "charts_daily_transactions": "Дневные транзакции",
-    "charts_total_transactions": "Всего транзакций",
-    "charts_overall_freezing_rate": "Общий коэффициент заморозки",
-    "charts_new_addresses": "Рост аккаунта",
+    "charts_daily_transactions": "Ежедневные транзакции",
+    "charts_total_transactions": "Общее количество транзакций",
+    "charts_volume_24": "Ежедневный объем транзакции",
+    "charts_total_TRX_supply":"Циркуляция TRX в реальном времени и рыночная капитализация",
+    "charts_total_TRX_supply_vote":"Вознаграждения голосования",
+    "charts_average_blocksize":"Среднесуточный размер блока",
+    "charts_total_average_blocksize":"Совокупность размера блока",
     "charts_daily_energy_consumption": "Ежедневное потребление Энергии",
     "charts_daily_energy_contracts": "Ежедневное потребление Энергии контрактами",
+    "charts_daily_contract_calling_profile": "Ежедневный контракт, вызывающий профиль",
+    "charts_overall_freezing_rate": "Общий коэффициент заморозки",
+    "charts_new_addresses": "Рост аккаунта",
     "charts_contract_calling": "Вызов контракта",
-    "charts_daily_contract_calling_profile": "Профиль вызывающий ежедневный контракт",
+    "charts_average_price":"Средняя цена TRX",
     "freezing_column_time": "Время（UTC）",
     "freezing_column_total_circulation": "Общая циркуляция TRX",
     "freezing_column_total_frozen": "Всего замороженных TRX",
     "freezing_column_freezing_rate": "Коэффициент заморозки",
+    "freezing_column_freezing_rate_highest": "Коэффициент заморозки:",
     "freezing_column_energy_ratio": "TRX-for-Energy ratio",
     "freezing_column_bandwidth_ratio": "TRX-for-bandwidth ratio",
     "freezing_column_freezing_rate_tip": "количество замороженного TRX / общее количество TRX в циркуляции;",
-    "freezing_column_energy_ratio_tip": "Количество TRX для получения энергии в замороженном TRX / замороженном TRX",
-    "freezing_column_bandwidth_ratio_tip": "Количество TRX для получения широкополосной связи в замороженном TRX / количество замороженных TRX",
+    "freezing_column_energy_ratio_tip": "Замороженный TRX для энергии / Общее количество замороженного TRX",
+    "freezing_column_bandwidth_ratio_tip": "Замороженный TRX для пропускной способности / Общее количество замороженного TRX",
     "freezing_column_more": "Больше",
     "freezing_column_total_circulation_chart": "Общая циркуляция（TRX）",
     "freezing_column_total_frozen_chart": "Всего замороженных（TRX）",
@@ -153,6 +164,15 @@ export const lang19Q4 = {
     "transaction_energy_cap":"Предел энергии",
     "transaction_enrgy_cap_tip":"Максимальная Энергия, предоставляемая выпуску контракта",
     "signature_list":"Список подписей",
+    /*
+        ##################################################################################
+        #                                                                                #
+        # Charts 2019-12-30                           #
+        #                                                                                #
+        ##################################################################################
+    */
+   "account_details_contracts":"Contracts Published",
+   "account_details_contracts_no":"No contracts found",
 
     // 2019-12-25 xyy
     "transaction_hash":"Хэш",

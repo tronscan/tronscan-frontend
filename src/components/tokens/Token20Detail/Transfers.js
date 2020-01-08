@@ -229,7 +229,6 @@ class Transfers extends React.Component {
         ),
         dataIndex: "timestamp",
         key: "timestamp",
-        width: "180px",
         align: "left",
         className: "ant_table",
         render: (text, record, index) => {
@@ -503,7 +502,7 @@ class Transfers extends React.Component {
             <TronLoader />
           </div>
         )}
-        <div className="row transfers">
+        <div className="row transfers token20Detail">
           <div className="col-md-12 ">
             {tokensInfo.transferSearchStatus ? (
               <div
@@ -626,19 +625,22 @@ class Transfers extends React.Component {
                   }}
                 >
                   <DateSelect
+                    dataStyle={{ paddingLeft: 8 }}
                     onDateOk={(start, end) => this.onDateOk(start, end)}
                   />
                 </div>
                 <div className="d-flex justify-content-between pl-3 pr-3">
                   {!loading && (
-                    <TotalInfo
-                      total={total}
-                      rangeTotal={rangeTotal}
-                      typeText="transaction_info"
-                      divClass="table_pos_info_addr"
-                      selected
-                      top={tokensInfo.transferSearchStatus ? "184px" : "70px"}
-                    />
+                    <div style={{ paddingLeft: 8 }}>
+                      <TotalInfo
+                        total={total}
+                        rangeTotal={rangeTotal}
+                        typeText="transaction_info"
+                        divClass="table_pos_info_addr"
+                        selected
+                        top={tokensInfo.transferSearchStatus ? "184px" : "70px"}
+                      />
+                    </div>
                   )}
                 </div>
               </div>

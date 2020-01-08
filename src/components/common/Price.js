@@ -1,3 +1,4 @@
+/*eslint-disable */
 import React, { Fragment } from "react";
 import xhr from "axios/index";
 import { FormattedNumber } from "react-intl";
@@ -45,10 +46,10 @@ class PriceProviderCmp extends React.PureComponent {
     var dataEur = Lockr.get("dataEur");
     var dataEth = Lockr.get("dataEth");
     let eurURL = encodeURI(
-      `http://api.coinmarketcap.com/v1/ticker/tronix/?convert=EUR`
+      `https://api.coinmarketcap.com/v1/ticker/tronix/?convert=EUR`
     );
     let ethURL = encodeURI(
-      `http://api.coinmarketcap.com/v1/ticker/tronix/?convert=ETH`
+      `https://api.coinmarketcap.com/v1/ticker/tronix/?convert=ETH`
     );
     if (!Lockr.get("dataEur")) {
       var { data: dataEur } = await xhr.get(
@@ -147,7 +148,7 @@ export class TRXPrice extends React.PureComponent {
                         onMouseLeave={() => this.setState({ open: false })}
                         {...props}
                       >
-                        {name == "TRX" ? amount / ONE_TRX : amount}&nbsp;{name}
+                        {name == "TRX" ? amount / ONE_TRX : amount} &nbsp; {name}
                       </span>
                     )}
                   </FormattedNumber>

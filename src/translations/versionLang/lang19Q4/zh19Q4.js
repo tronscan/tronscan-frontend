@@ -39,10 +39,15 @@ export const lang19Q4 = {
     "transfersDetailQuantity": "持有量",
     "transfersDetailPercentage": "占比",
     "transfersDetailValue": "价值",
+    'contract_code_overview_name':'名称',
+    'contract_code_overview_creator':'创建者',
+    'contract_code_overview_account':'账户',
+
+
 
     // 2019-12-10
-    "token_basic_view": "基本概况",
-    "token_additional_materials": "补充资料",
+    "token_basic_view": "基本信息",
+    "token_additional_materials": "更多资料",
     "token_hold_user": "持有者",
     "token_capitalization": "流通市值/总市值",
     "token_credit_rating": "信用评级",
@@ -84,7 +89,7 @@ export const lang19Q4 = {
     "token_rank": "排名",
     "market_capitalization_t": "流通市值",
     "token_tron_total": "TRON通证总数",
-    "token_week": "周新增",
+    "token_week": "近7天新增",
     "token_scan_total": "TRONSCAN收录通证数",
     "create_token_btn": "发行通证",
     "gain_tip": "涨跌幅以TRX为参考对象，实行24小时制",
@@ -129,23 +134,30 @@ export const lang19Q4 = {
     "charts_block": "区块",
     "charts_contract": "合约",
     "charts_SR": "超级代表",
-    "charts_daily_transactions": "日交易记录",
-    "charts_total_transactions": "总交易记录",
+    "charts_daily_transactions": "每日交易记录",
+    "charts_total_transactions": "累计交易记录",
+    "charts_volume_24": "每日交易量",
+    "charts_total_TRX_supply":"TRX实时流通量及市值",
+    "charts_total_TRX_supply_vote":"投票奖励",
+    "charts_average_blocksize":"每日区块平均大小",
+    "charts_total_average_blocksize":"累计区块大小",
+    "charts_daily_energy_consumption": "每日能量消耗",
+    "charts_daily_energy_contracts": "每日合约能量消耗",
+    "charts_daily_contract_calling_profile": "每日合约调用分布",
     "charts_overall_freezing_rate": "全网冻结率",
     "charts_new_addresses": "账户增长",
-    "charts_daily_energy_consumption": "日能量消耗",
-    "charts_daily_energy_contracts": "日合约能量消耗",
     "charts_contract_calling": "合约调用",
-    "charts_daily_contract_calling_profile": "日合约调用分布",
+    "charts_average_price":"TRX平均价格",
     "freezing_column_time": "时间（UTC）",
     "freezing_column_total_circulation": "TRX总流通量",
     "freezing_column_total_frozen": "TRX冻结量",
     "freezing_column_freezing_rate": "冻结率",
+    "freezing_column_freezing_rate_highest": "冻结率",
     "freezing_column_energy_ratio": "能量占比",
     "freezing_column_bandwidth_ratio": "带宽占比",
     "freezing_column_freezing_rate_tip": "TRX冻结量/TRX总流通量",
-    "freezing_column_energy_ratio_tip": "冻结的TRX中获取能量的TRX数量/TRX冻结量",
-    "freezing_column_bandwidth_ratio_tip": "冻结的TRX中获取宽带的TRX数量/TRX冻结量",
+    "freezing_column_energy_ratio_tip": "冻结获取能量的TRX数量/冻结TRX数量",
+    "freezing_column_bandwidth_ratio_tip": "冻结获取宽带的TRX数量/冻结TRX数量",
     "freezing_column_more": "更多",
     "freezing_column_total_circulation_chart": "总流通量（TRX）",
     "freezing_column_total_frozen_chart": "冻结量（TRX）",
@@ -158,6 +170,16 @@ export const lang19Q4 = {
     "TRX_historical_data":"合约内TRX余额历史数据",
     "TRX_historical_data_y_text":"数量（TRX）",
     "TRX_historical_data_tip":"TRX数量",
+    /*
+        ##################################################################################
+        #                                                                                #
+        # Charts 2019-12-30                           #
+        #                                                                                #
+        ##################################################################################
+    */
+   "account_details_contracts":"已发合约",
+   "account_details_contracts_no":"未查询到合约",
+  
    
     // transaction info  2019-12-25  leon
     "consume_bandwidth":"消耗带宽",

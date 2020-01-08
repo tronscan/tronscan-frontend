@@ -39,6 +39,10 @@ export const lang19Q4 = {
     "transfersDetailQuantity": "クォンティティー",
     "transfersDetailPercentage": "割合",
     "transfersDetailValue": "価格",
+
+    'contract_code_overview_name':'名前',
+    'contract_code_overview_creator':'作成者',
+    'contract_code_overview_account':'アカウント',
     // 2019-12-10
 
     "token_basic_view": "基本プロファイル",
@@ -83,7 +87,7 @@ export const lang19Q4 = {
     "token_rank": "ランキング",
     "market_capitalization_t": "時価総額",
     "token_tron_total": "TRONトークン 総数",
-    "token_week": "今週の新しいトークン",
+    "token_week": "過去7日間",
     "token_scan_total": "TRONSCANのトークン数",
     "create_token_btn": "トークン発行",
     "gain_tip": "24時間の変動量",
@@ -121,23 +125,30 @@ export const lang19Q4 = {
     "charts_block": "ブロック",
     "charts_contract": "コントラクト",
     "charts_SR": "SR",
-    "charts_daily_transactions": "日取引記録",
-    "charts_total_transactions": "総合取引記録",
-    "charts_overall_freezing_rate": "全体的の凍結率",
-    "charts_new_addresses": "アカウントの成長",
+    "charts_daily_transactions": "毎日の取引",
+    "charts_total_transactions": "総合取引",
+    "charts_volume_24": "毎日の取引量",
+    "charts_total_TRX_supply":"リアルタイムのTRX供給と時価総額",
+    "charts_total_TRX_supply_vote":"投票報酬",
+    "charts_average_blocksize":"1日の平均ブロックサイズ",
+    "charts_total_average_blocksize":"累積ブロックサイズ",
     "charts_daily_energy_consumption": "毎日のエネルギー消費",
-    "charts_daily_energy_contracts": "契約のよる毎日のエネルギー消費",
+    "charts_daily_energy_contracts": "契約の毎日のエネルギー消費",
+    "charts_daily_contract_calling_profile": "契約の呼び出し",
+    "charts_overall_freezing_rate": "全体的の凍結率",
+    "charts_new_addresses": "アカウントの成長",  
     "charts_contract_calling": "契約の呼び出し",
-    "charts_daily_contract_calling_profile": "毎日の契約呼び出しプロファイル",
+    "charts_average_price":"TRX平均価格",
     "freezing_column_time": "時間（UTC）",
     "freezing_column_total_circulation": "TRX総合流通量",
     "freezing_column_total_frozen": "TRX凍結量",
     "freezing_column_freezing_rate": "凍結率",
+    "freezing_column_freezing_rate_highest": "凍結率",
     "freezing_column_energy_ratio": "TRXエネルギー比",
     "freezing_column_bandwidth_ratio": "TRXの帯域幅比",
     "freezing_column_freezing_rate_tip": "凍結したTRXの量/循環中のTRXの合計",
-    "freezing_column_energy_ratio_tip": "エネルギーに交換された凍結TRXの量/凍結されたTRXの量",
-    "freezing_column_bandwidth_ratio_tip": "帯域幅に引き換えられた凍結TRXの量/凍結TRXの量",
+    "freezing_column_energy_ratio_tip": "エネルギー用に凍結されたTRX /凍結されたTRXの合計",
+    "freezing_column_bandwidth_ratio_tip": "帯域幅のために凍結されたTRX /凍結されたTRXの合計",
     "freezing_column_more": "詳しく",
     "freezing_column_total_circulation_chart": "総合流通量（TRX）",
     "freezing_column_total_frozen_chart": "凍結量（TRX）",
@@ -206,6 +217,15 @@ export const lang19Q4 = {
     "transaction_token_holder_address":"トークン保有者の住所",
     "transaction_issue_address":"発行者の住所",
     "only_show_sinatures":"署名を残すアドレスのみを表示する",
+    /*
+        ##################################################################################
+        #                                                                                #
+        # Charts 2019-12-30                           #
+        #                                                                                #
+        ##################################################################################
+    */
+   "account_details_contracts":"Contracts Published",
+   "account_details_contracts_no":"No contracts found",
 
      // transaction info  2019-12-25  leon
      "consume_bandwidth":"帯域幅を消費する",

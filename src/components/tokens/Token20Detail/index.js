@@ -605,16 +605,18 @@ class Token20Detail extends React.Component {
           let trc20Token = res.data.trc20_tokens;
           let balance = 0;
           if (trc20Token.length > 0) {
-            
             let newBalance = trc20Token[0].balance;
-            let accountedFor = new BigNumber(newBalance).dividedBy(new BigNumber(total_supply_with_decimals)).toNumber(8) || 0;
+            let accountedFor =
+              new BigNumber(newBalance)
+                .dividedBy(new BigNumber(total_supply_with_decimals))
+                .toNumber(8) || 0;
             let trc20TokenObj = {
               srTag: false,
               srName: null,
               addressTag: null,
               holder_address: serchInputVal,
               foundationTag: false,
-              balance:newBalance,
+              balance: newBalance,
               accountedFor
             };
 
@@ -624,7 +626,6 @@ class Token20Detail extends React.Component {
                 ...trc20TokenObj
               }
             });
-           
           } else {
             this.props.updateTokenInfo({
               transfer: {
@@ -872,7 +873,7 @@ class Token20Detail extends React.Component {
                         className="tokenTransferSearch"
                         style={{
                           position: "absolute",
-                          right: "20px",
+                          right: "1rem",
                           top: 6,
                           height: 26
                         }}

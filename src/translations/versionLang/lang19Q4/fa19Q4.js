@@ -39,6 +39,10 @@ export const lang19Q4 = {
     "transfersDetailQuantity": "مقدار",
     "transfersDetailPercentage": "درصد",
     "transfersDetailValue": "ارزش",
+
+    'contract_code_overview_name':'نام',
+    'contract_code_overview_creator':'خالق',
+    'contract_code_overview_account':'حساب',
     // 2019-12-10
     "token_basic_view": "مبانی",
     "token_additional_materials": "اطلاعات تکمیلی",
@@ -82,7 +86,7 @@ export const lang19Q4 = {
     "token_rank": "رتبه بندی",
     "market_capitalization_t": "مقدار توکن های  در حال  گردش",
     "token_tron_total": "تعداد کل توکن های ترون ",
-    "token_week": "توکن های جدید در طول هفته",
+    "token_week": "آخرین 7 روز",
     "token_scan_total": "تعداد توکن های موجود در TRONSCAN",
     "create_token_btn": "صدور توکن",
     "gain_tip": "حرکت 24 ساعته",
@@ -120,22 +124,29 @@ export const lang19Q4 = {
     "charts_contract": "قرارداد",
     "charts_SR": "سوپر نماینده",
     "charts_daily_transactions": "معاملات روزانه",
-    "charts_total_transactions": "مجموع معاملات",
+    "charts_total_transactions": "تاریخ تراکنش تجمعی",
+    "charts_volume_24": "حجم معاملات روزانه",
+    "charts_total_TRX_supply":"گردش در زمان واقعی TRX و ارزش بازار",
+    "charts_total_TRX_supply_vote":"پاداش رای گیری",
+    "charts_average_blocksize":"میانگین روزانه اندازه بلوک ",
+    "charts_total_average_blocksize":"اندازه بلوک جمع شده",
+    "charts_daily_energy_consumption": "مصرف روزانه انرژی",
+    "charts_daily_energy_contracts": "مصرف روزانه انرژی قراردادها",
+    "charts_daily_contract_calling_profile": "تماس با قرارداد",
     "charts_overall_freezing_rate": "نرخ انجماد به طور کلی",
     "charts_new_addresses": "رشد حساب",
-    "charts_daily_energy_consumption": "مصرف روزانه انرژی",
-    "charts_daily_energy_contracts": "مصرف روزانه انرژی با قراردادها",
     "charts_contract_calling": "تماس با قرارداد",
-    "charts_daily_contract_calling_profile": "مشخصات تماس روزانه قرارداد",
+    "charts_average_price":"قیمت متوسط TRX",
     "freezing_column_time": "（UTC）زمان",
     "freezing_column_total_circulation": "مجموع گردش TRX",
     "freezing_column_total_frozen": "مجموع TRX فریز شده ",
     "freezing_column_freezing_rate": "میزان فریز شده",
+    "freezing_column_freezing_rate_highest": "میزان فریز شده",
     "freezing_column_energy_ratio": "نسبت TRX به انرژی",
     "freezing_column_bandwidth_ratio": "نسبت پهنای باند TRX",
     "freezing_column_freezing_rate_tip": "مقدار TRX / TRX در چرخه انجماد",
-    "freezing_column_energy_ratio_tip": " ارزش منجمد TRX انرژی / ارزش یخ زده TRX ؛ نسبت پهنای باند",
-    "freezing_column_bandwidth_ratio_tip": "تعداد TRX برای به دست آوردن باند پهن در TRX یخ زده / تعداد TRX یخ زده",
+    "freezing_column_energy_ratio_tip": "فریز TRX  برای به دست آوردن انرژی / میزان TRX فریز شده .",
+    "freezing_column_bandwidth_ratio_tip": "TRX برای پهنای باند / میزان TRX فریز شده.",
     "freezing_column_more": "بیشتر",
     "freezing_column_total_circulation_chart": "（TRX） مجموع گردش",
     "freezing_column_total_frozen_chart": "（TRX）مجموع  فریز شده ",
@@ -224,4 +235,13 @@ export const lang19Q4 = {
      "account_id":"شناسه حساب.",
      "trans_ticket":"رای",
      "trans_tickets":"رای",
+    /*
+        ##################################################################################
+        #                                                                                #
+        # Charts 2019-12-30                           #
+        #                                                                                #
+        ##################################################################################
+    */
+   "account_details_contracts":"Contracts Published",
+   "account_details_contracts_no":"No contracts found",
 }
