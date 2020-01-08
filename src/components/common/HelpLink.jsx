@@ -7,39 +7,19 @@ class HelpLinkCont extends Component {
   constructor() {
     super();
     this.state = {
-      unfold: true,
-      helpShow: false
+      unfold: true
     };
-    this.handleScroll = this.handleScroll.bind(this);
   }
 
   componentDidMount() {}
-
-  conponentWillMount() {
-    window.addEventListener("scroll", this.handleScroll);
-  }
-  // scroll
-  handleScroll() {
-    // let scrillTop = document.body.scrollTop;
-    // if (scrillTop > document.documentElement.clientHeight) {
-    //   this.setState({
-    //     helpShow: true
-    //   });
-    // } else {
-    //   this.setState({
-    //     helpShow: false
-    //   });
-    // }
-  }
 
   render() {
     const myPng = src => {
       return require(`../../images/home/${src}.png`);
     };
-    const { unfold, helpShow } = this.state;
+    const { unfold } = this.state;
     return (
       <div className="helpLinkWrapper hidden-mobile">
-        {/* {helpShow ? ( */}
         <ul className="helpLinkContent">
           {unfold ? (
             <span>
@@ -97,7 +77,6 @@ class HelpLinkCont extends Component {
             </span>
           )}
         </ul>
-        {/* ) : null} */}
       </div>
     );
   }
