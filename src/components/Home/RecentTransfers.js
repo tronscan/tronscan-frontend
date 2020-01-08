@@ -230,7 +230,7 @@ class RecentTransfers extends Component {
                               <i className="fa fa-bars mr-2 mt-1 fa_width color-tron-100"></i>
                               --
                             </div>
-                            <div className="color-grey-200 pt-1 " style={{ fontSize: '1rem' }}>
+                            <div className="color-grey-200 pt-1 " style={{ fontSize: '14px' }}>
                               --
                             </div>
                           </div>
