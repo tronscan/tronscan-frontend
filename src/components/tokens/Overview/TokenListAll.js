@@ -605,7 +605,8 @@ class TokenList extends Component {
     let {tokens, alert, loading, total, totalAll, all,currentWeekAll, currentWeekTotalAll, filter} = this.state;
     let {match, intl} = this.props;
     let column = IS_MAINNET?this.customizedColumn():this.suncustomizedColumn();
-    let mainInfo = `${intl.formatMessage({id: 'token_list_count'})} : ${total} `;
+    let mainInfo = `${intl.formatMessage({id: 'part_total'})} ${total} ${intl.formatMessage({id: 'token_unit'})}`;
+    //let mainInfo = `${intl.formatMessage({id: 'token_list_count'})} : ${total} `;
     let sunInfo = `${intl.formatMessage({id: 'token_list_count'})} : ${total} , ${intl.formatMessage({id: 'total_in_tronscan'})} : ${totalAll} `;
 
     let url = 'https://poloniex.org/launchBase?utm_source=TS3'
@@ -652,7 +653,8 @@ class TokenList extends Component {
                         <div>
                           <div>
                             {all && !IS_MAINNET && <div>{tu('total_tron_ecosystem_tokens')}{all}</div>}
-                            {IS_MAINNET ? mainInfo : sunInfo} 
+                            {IS_MAINNET ? mainInfo : sunInfo}  
+                            {' '}
                             <span>
                               <QuestionMark placement="top" text="newly_issued_token_by_tronscan" className="token-list-info"></QuestionMark>
                             </span>

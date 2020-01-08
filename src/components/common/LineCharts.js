@@ -19,6 +19,7 @@ import HighchartsDrilldown from 'highcharts/modules/drilldown';
 import Highcharts3D from 'highcharts/highcharts-3d';
 import Exporting from 'highcharts/modules/exporting';
 import Variabled from 'highcharts/modules/variable-pie.js';
+import isMobile from './../../utils/isMobile';
 
 import {cloneDeep} from "lodash";
 
@@ -2085,6 +2086,8 @@ export class EnergyConsumeDistributionChart extends React.Component {
                 percent: o.percent
             }
         })
+        console.log('data',data)
+        console.log('chartdata',chartdata)
         const SUBTITLE = `
             ${intl.formatMessage({id: 'total_used_energy'})}: ${intl.formatNumber(totalUsedEnergy)}(
             ${intl.formatMessage({id: 'energy_used_by_freezing_TRX'})} ${intl.formatNumber(freezingEnergy)}
@@ -2154,7 +2157,9 @@ export class EnergyConsumeDistributionChart extends React.Component {
 }
 
 
-
+/**
+ * Overall Freezing Rate
+ */
 export class OverallFreezingRateChart extends React.Component {
 
     constructor(props) {
@@ -2190,7 +2195,7 @@ export class OverallFreezingRateChart extends React.Component {
                 exporting: {
                     enabled: true,
                     sourceWidth: 1072,
-                    sourceHeight: 500,
+                    sourceHeight: 580,
                     filename:intl.formatMessage({id: 'charts_overall_freezing_rate'})
                 },
                 rangeSelector: {
@@ -2474,6 +2479,490 @@ export class OverallFreezingRateChart extends React.Component {
         )
     }
 }
+/**
+ * TRX Supply 2019-12-31
+ */
+export class LineTRXSupplyChart extends React.Component {
+
+    constructor(props) {
+        super(props)
+        this.myChart = null;
+        let id = ('_' + Math.random()).replace('.', '_');
+        this.state = {
+            lineId: 'OverallFreezingRateChart' + id
+        }
+    }
+
+    initLine(id) {
+        let _config = cloneDeep(config.OverallFreezingRateChart);
+        let {intl, data} = this.props;
+        let newData = cloneDeep(data)
+        let totalSupply = [];
+        let amountProduced= [];
+        let amountBurned  = [];
+        let totalWorth = [];
+        let timestamp = []
+        let visibleY = isMobile?[{"visible":true},{"visible":false},{"visible":false},{"visible":false}]:[{"visible":true},{"visible":true},{"visible":true},{"visible":true}]
+        newData.map((val) => {
+            totalSupply.push(val['total_turn_over_num']);
+            amountBurned.push(val['total_burn_num']);
+            totalWorth.push(val['worth_num']);
+            timestamp.push(val['timestamp'])
+            //timestamp.push(moment(val['timestamp']).format("YYYY-MM-DD"))
+        })
+
+         amountProduced = newData.map(o => {
+            return {
+                y: Number(o.total_produce_num),
+                node: o.total_block_pay,
+                vote: o.total_node_pay,
+            }
+        })
+        // amountBurned[amountBurned.length-1] = parseFloat(-1000000)
+        // console.log('totalWorth',totalWorth)
+        if (newData && newData.length > 0) {
+            let options =  {
+                chart:{
+                    // spacingLeft: 100,
+                    // marginRight: 150
+                
+                },
+                title: {
+                    text: intl.formatMessage({id: 'Supply_TRX_total_chart'})
+                },
+                exporting: {
+                    enabled: true,
+                    sourceWidth: 1072,
+                    sourceHeight: 580,
+                    filename:intl.formatMessage({id: 'Supply_TRX_total_chart'})
+                },
+                rangeSelector: {
+                    inputDateFormat: '%Y-%m-%d',
+                    //allButtonsEnabled: true,
+                    buttons: [
+                    {
+                        type: 'all',
+                        text: intl.formatMessage({id: 'all'})
+                    },
+                    {
+                        type: 'year',
+                        count: 1,
+                        text: intl.formatMessage({id: 'freezing_rangeSelector_botton_text_1y'})
+                    },
+                    {
+                        type: 'month',
+                        count: 6,
+                        text: intl.formatMessage({id: 'freezing_rangeSelector_botton_text_6m'})
+                    },
+                    {
+                        type: 'month',
+                        count: 3,
+                        text: intl.formatMessage({id: 'freezing_rangeSelector_botton_text_3m'})
+                    },
+                    {
+                        type: 'month',
+                        count: 1,
+                        text: intl.formatMessage({id: 'freezing_rangeSelector_botton_text_1m'})
+                    }],
+                    selected: 0,
+                    buttonTheme: {
+                        width: 50
+                    },
+                },
+                navigator: {
+                    maskFill: 'rgba(198,72,68, 0.3)',
+                    xAxis: {
+                        labels: {
+                            format: '{value:%Y-%m-%d}',
+                            // enabled:false
+                        },
+                    },
+                   
+                },
+                scrollbar: {
+                   // enabled: false
+                },
+                xAxis: {
+                    //type: 'datetime',
+                    ordinal: false,
+                    categories:timestamp,
+                    dateTimeLabelFormats: {
+                        millisecond: '%H:%M:%S.%L',
+                        second: '%H:%M:%S',
+                        minute: '%H:%M',
+                        hour: '%H:%M',
+                        day: '%Y-%m-%d',
+                        week: '%m-%d',
+                        month: '%Y-%m',
+                        year: '%Y'
+                    },
+                    gridLineColor: '#eeeeee',
+                    labels: {
+                        style: {
+                            color: "#999999"
+                        },
+                        autoRotation: [-10, -20, -30, -40, -50, -60, -70, -80, -90],
+                    },
+                    title: {
+                        enabled: false
+                    },
+                  
+                
+                },
+                yAxis: [
+                    { // Primary yAxis
+                      labels: {
+                        style: {
+                          color: "#C64844",
+                        }
+                      },
+                      title: {
+                        text: intl.formatMessage({id: 'freezing_column_total_circulation_chart'}),
+                        style: {
+                            color: "#C64844",
+                        }
+                      },
+                      opposite: false,
+                      visible: true,
+                      min:-25000000000,
+                     
+                    },
+                    { // Secondary yAxis
+                      title: {
+                        text: intl.formatMessage({id: 'Supply_amount_net_new_y_title'}),
+                        style: {
+                          color: "#333333"
+                        }
+                      },
+                      labels: {
+                        style: {
+                            color: "#333333",
+                        },
+                        
+                      },
+                      //visible: isMobile?false:true,
+                      opposite: true,
+                      min:-500000,
+                      minRange: 10000000,
+                     // offset: 50,
+                    },
+                    { // Thirdary yAxis
+                        title: {
+                          text: intl.formatMessage({id: 'Supply_amount_TRX_burned_y_title'}),
+                          style: {
+                            color: "#999999"
+                          }
+                        },
+                        labels: {
+                          style: {
+                              color: "#999999",
+                          },
+                         
+                        },
+                        visible: isMobile?false:true,
+                        opposite: true,
+                        min:-500000,
+                        max: 2000000,
+                       // offset: 100,
+                      },
+                ],
+                plotOptions: {
+                    // column: {
+                    //     // grouping: false,
+                    //     // shadow: false,
+                    //     // borderWidth: 0
+                    // },
+                    spline: {
+                        marker: {
+                           // fillColor:"#5A5A5A",
+                            width: 8,
+                            height: 8,
+                            lineWidth: 0,  //线条宽度
+                            radius: 4,    //半径宽度
+                        }
+                    },
+                    series: {
+                        events: {
+                            legendItemClick: function(e) {
+                                /*var target = e.target; 
+                                console.log(target === this);
+                                */
+                                let index = this.index;
+                                console.log('index',index)
+                                let series = this.chart.series
+                                console.log('visibleY[index].visible',visibleY[index].visible)
+                                console.log('visibleY[index].visible',visibleY)
+                                visibleY[index].visible = !visibleY[index].visible;
+                                if(index == 2){
+                                    this.chart.yAxis[2].update({
+                                        visible: visibleY[index].visible,                                        
+                                    });
+                                }
+                                //     console.log('index',index)
+                                //     console.log('visibleY[index].visible',visibleY[index].visible)
+                                //     console.log('visibleY[1].visible',visibleY[1].visible)
+                                //     console.log('visibleY[3].visible',visibleY[3].visible)
+                                //     console.log('111',this.chart.yAxis)
+                                //     if(visibleY[1].visible || visibleY[3].visible){
+                                //         this.chart.yAxis[1].update({
+                                //             visible: true,
+                                            
+                                //         });
+                                         
+                                //     }else if(!visibleY[1].visible && !visibleY[3].visible){
+                                //         this.chart.yAxis[1].update({
+                                //             visible: false
+                                //         });
+                                //     }
+                                //     if(index == 1 || index == 3){
+                                //         console.log('this.chart.yAxis[0].visible',this.chart.yAxis[0].visible)
+                                //         console.log('this.chart.yAxis[2].visible',this.chart.yAxis[2].visible)
+                                //         if(visibleY[index].visible){
+                                //             if(!this.chart.yAxis[0].visible && this.chart.yAxis[2].visible){
+                                //                 this.chart.yAxis[1].update({
+                                //                     offset:35
+                                //                 });
+                                //                 this.chart.yAxis[2].update({
+                                //                     offset:70
+                                //                 });
+                                //             }
+                                //         }else{
+                                //             if(!this.chart.yAxis[0].visible && this.chart.yAxis[2].visible){
+                                //                 this.chart.yAxis[1].update({
+                                //                     offset:35
+                                //                 });
+                                //                 this.chart.yAxis[2].update({
+                                //                     offset:80
+                                //                 });
+                                //             }
+                                //         }
+                                        
+                                        
+                                //     }
+                                   
+                                    
+                                // }else{
+                                //     if(index == 0){
+                                //         // this.chart.redraw();
+                                //         // this.chart.chart.update({
+                                //         //     redraw: false
+                                //         // });
+                                //         // this.chart.yAxis[index].update({
+                                //         //     visible: true
+                                //         // }); 
+                                //         // if(!visibleY[index].visible){
+                                //         //     this.chart.update({
+                                //         //         chart: {
+                                //         //             spacingLeft: 100,
+                                //         //         },
+
+                                //         //     });
+                                //         // }else{
+                                //         //     // this.chart.update({
+                                //         //     //     chart: {
+                                //         //     //         spacingLeft: 0,
+                                //         //     //     },
+                                //         //     // });
+                                //         // }
+                                //         this.chart.yAxis[1].update({
+                                //             offset:35
+                                //         });
+                                //         this.chart.yAxis[index].update({
+                                //             visible: visibleY[index].visible
+                                //         });  
+                                        
+                                //     }else{
+                                //         if(index == 2){
+                                //             if(visibleY[index].visible){
+                                //                 if(!this.chart.yAxis[0].visible && !this.chart.yAxis[1].visible){
+                                //                     this.chart.yAxis[2].update({
+                                //                         offset:50
+                                //                     });
+                                //                 }
+                                //             }
+                                //         }
+                                //         this.chart.yAxis[index].update({
+                                //             visible: visibleY[index].visible
+                                //         });
+                                //     }
+                                    
+                                // }
+                                // console.log('222',this.chart.yAxis)
+                                
+                            },
+
+                            hide: function(event) {
+                                // let index = this.index;
+                                // let series = this.chart.series;let yAxis = this.chart.yAxis;
+                                // console.log(series[index].name)
+                               
+                                // $('#toggle-y').click(function () {
+                                //     yVis0 = !yVis0;
+                                //     chart.yAxis[0].update({
+                                //         visible: yVis
+                                //     });
+                                // });
+                                // let yVis0 = true;
+                                // if(series[index].name == intl.formatMessage({id: 'Supply_TRX_total'})) {
+                                //     yVis0 = !yVis0;
+                                //     this.chart.yAxis[0].update({
+                                //         visible: yVis0
+                                //     });
+                                // }else if(series[index].name == intl.formatMessage({id: 'freezing_column_total_frozen'})){
+                                //     this.chart.yAxis[1].update({
+                                //         title:{
+                                //             text: intl.formatMessage({id: 'freezing_column_total_circulation_chart'})
+                                //         }
+                                //     });
+                                // }
+                            },
+                            show: function() {
+                                // var index = this.index;
+                                // var series = this.chart.series;
+                                // console.log(series[index].name)
+                                // if(series[index].name == intl.formatMessage({id: 'freezing_column_total_circulation'})) {
+                                //     this.chart.yAxis[1].update({
+                                //         title:{
+                                //             text: intl.formatMessage({id: 'freezing_column_total_circulation_chart'})
+                                //         }
+                                //     });
+                                // }else if(series[index].name == intl.formatMessage({id: 'freezing_column_total_frozen'})){
+                                //     this.chart.yAxis[1].update({
+                                //         title:{
+                                //             text: intl.formatMessage({id: 'freezing_column_total_frozen_chart'})
+                                //         }
+                                //     });
+                                //}
+                            }
+                        }
+                    }
+                },
+                tooltip: {
+                    useHTML: true,
+                    shadow: true,
+                    split: false,
+                    shared: true,
+                    borderColor: '#7F8C8D',
+                    borderRadius: 2,
+                    backgroundColor: 'white',
+                    formatter: function () {
+                        var s;
+                        var points = this.points;
+                        var pointsLength = points.length;
+                        console.log('points',points)
+                        s = '<table class="tableformat" style="border: 0px;padding-left:10px;padding-right:10px" min-width="100%"><tr><td colspan=2 style="padding-bottom:5px;"><span style="font-size: 10px;"> ' + moment(points[0].x).format("YYYY-MM-DD") + '</span><br></td></tr>'
+                        for (let index = 0; index < pointsLength; index += 1) {
+                            s += '<tr><td style="padding-top:4px;padding-bottom:4px;border-top:1px solid #D5D8DC;color:' + points[index].series.color + ';" valign="top">' + '<span style="color:' + points[index].series.color + ';font-size: 15px !important;">\u25A0</span> ' + intl.formatMessage({id: points[index].series.name })+ '</td>' +
+                                '<td align="right" style="padding-top:5px;padding-left:10px;padding-bottom:4px;border-top:1px solid #D5D8DC;"><span ><b style="color:' + points[index].series.color + ';">' +
+                                (points[index].series.name == intl.formatMessage({id: 'Supply_TRX_total'}) || points[index].series.name ==  intl.formatMessage({id: 'Supply_amount_net_new'}) ? toThousands((new BigNumber(points[index].y)).decimalPlaces(6)) + '</b>' : (points[index].series.name ==  intl.formatMessage({id: 'Supply_amount_TRX_burned'})) ?  ("-" + toThousands((new BigNumber((Math.abs(points[index].y)))).decimalPlaces(6))) + '</b>':Highcharts.numberFormat(points[index].y, 0, '.', ',') + '</b>')
+                                + '</span>'
+                                + (points[index].series.name == intl.formatMessage({id: 'Supply_amount_TRX_produced'})? '<br/><span>'+ intl.formatMessage({id: 'Supply_block_rewards'})+'（'+toThousands(points[index].point.node)+'） + '+ intl.formatMessage({id: 'Supply_voting_rewards'})+'（'+toThousands(points[index].point.vote)+'）</span>':"")
+                                + (points[index].series.name == intl.formatMessage({id: 'Supply_amount_net_new'})? '<br/><span>'+ intl.formatMessage({id: 'Supply_amount_net_new_tip'})+'</span>':"")
+                                + '</td></tr>'
+                        }
+                        s += '</table>';
+                        return s;
+                    },
+
+                },
+                series: [{
+                    name: intl.formatMessage({id: 'Supply_TRX_total'}),
+                    type: 'spline',
+                   // yAxis: 0,
+                    color: "#DA8885",
+                    data: totalSupply,
+                    pointStart: Date.UTC(2019, 11, 28),
+                    pointInterval: 24 * 3600 * 1000 , // one day
+                    marker: {
+                        enabled: true,
+                    },
+                    showInNavigator: true,
+                    dataGrouping: { // 针对highstock,将指定数量的数据合并展现为一个点
+                        enabled: false
+                    },
+                    softThreshold:true,
+                }, {
+                    name: intl.formatMessage({id: 'Supply_amount_TRX_produced'}),
+                    type: 'spline',
+                    yAxis: 1,
+                    color: "#EDB92B",
+                    data:amountProduced,
+                    pointStart: Date.UTC(2019, 11, 28),
+			        pointInterval: 24 * 3600 * 1000 , // one day
+                    marker: {
+                        enabled: true,
+                    },
+                    showInNavigator: false,
+                    dataGrouping: { // 针对highstock,将指定数量的数据合并展现为一个点
+                        enabled: false
+                    },
+                    softThreshold:true,
+                    visible: isMobile?false:true,
+                },
+                {
+                    name: intl.formatMessage({id: 'Supply_amount_TRX_burned'}),
+                    type: 'spline',
+                    yAxis: 2,
+                    color: "#999999",
+                    data: amountBurned,
+                    pointStart: Date.UTC(2019, 11, 28),
+			        pointInterval: 24 * 3600 * 1000 , // one day
+                    marker: {
+                        enabled: true,
+                    },
+                    showInNavigator: false,
+                    dataGrouping: { // 针对highstock,将指定数量的数据合并展现为一个点
+                        enabled: false
+                    },
+                    softThreshold:true,
+                    visible: isMobile?false:true,
+                },
+                {
+                    name: intl.formatMessage({id: 'Supply_amount_net_new'}),
+                    type: 'column',
+                    yAxis: 1,
+                    color: "rgba(74,144,226,0.4)",
+                    negativeColor: "rgba(198,72,68.0.4)",//就是这个属性设置负值的颜色
+                    data: totalWorth,
+                    pointStart: Date.UTC(2019, 11, 28),
+			        pointInterval: 24 * 3600 * 1000 , // one day
+                    showInNavigator: false,
+                    dataGrouping: { // 针对highstock,将指定数量的数据合并展现为一个点
+                        enabled: false
+                    },
+                    softThreshold:true,
+                    visible: isMobile?false:true,
+                },
+                
+            ]
+            }
+            Object.keys(options).map(item => {
+                _config[item] = options[item]
+            })
+        }
+        if (newData && newData.length === 0) {
+            _config.title.text = "No data";
+        }
+        Highcharts.StockChart(id, _config);
+    }
+
+    componentDidMount() {
+        this.initLine(this.state.lineId);
+    }
+
+    componentDidUpdate() {
+        this.initLine(this.state.lineId);
+    }
+
+    render() {
+        return (
+            <div>
+                <div id={this.state.lineId} style={this.props.style}></div>
+            </div>
+        )
+    }
+}
+
 
 function setOption(config, child) {
     Object.keys(child).map(item => {

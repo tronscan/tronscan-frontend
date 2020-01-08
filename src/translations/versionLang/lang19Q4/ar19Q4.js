@@ -192,6 +192,27 @@ export const lang19Q4 = {
         #                                                                                #
         ##################################################################################
     */
-   "account_details_contracts":"Contracts Published",
-   "account_details_contracts_no":"No contracts found",
+   "account_details_contracts":"العقود المنشورة",
+   "account_details_contracts_no":"لم يتم العثور على عقود",
+   "Supply_TRX_total_chart":"إجمالي عرض TRX",
+   "Supply_total_y_title":"مجموع التداول",
+   "Supply_amount_TRX":"كمية TRX",
+   "Supply_TRX_supply_records":"بيانات تداول TRX ، ",
+   "Supply_TRX_supply_records_total":" مجموع السجلات",
+   "Supply_TRX_total":"مجموع تداول TRX ",
+   "Supply_TRX_total_tip":"القيمة التراكمية اليومية الصافية + إصدار كتلة التكوين (100،000،000،000 TRX)",
+   "Supply_amount_TRX_produced":"(كمية) TRX المنتجة",
+   "Supply_amount_TRX_produced_tip":"مكافآت الكتلة + مكافآت التصويت",
+   "Supply_voting_rewards":"مكافآت التصويت",     
+   "Supply_block_rewards":"مكافآت الكتلة", 
+   "Supply_amount_TRX_burned":"تدمير TRX",
+   "Supply_amount_TRX_burned_y_title":"كمية الدمار (TRX)",
+   "Supply_amount_TRX_burned_tip1":"قبل يوم الاستقلال: كمية TRX المحروقة = الرسوم المحروقة",    
+   "Supply_amount_TRX_burned_tip2":"يوم الاستقلال Tron: Burned TRX مبلغ = رسوم الاحتراق + TRX المحروق في يوم الاستقلال (1،000،000،000 TRX)",    
+   "Supply_amount_net_new":"المجموع الصافي",
+   "Supply_amount_net_new_highest":"المجموع الصافي",
+   "Supply_amount_net_new_y_title":" العائد / صافي القيمة (TRX)",
+   "Supply_amount_net_new_tip":"TRX جيل + تدمير TRX",
+   "votes_num":"الأصوات",
+  
 }

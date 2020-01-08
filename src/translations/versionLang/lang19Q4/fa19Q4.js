@@ -189,6 +189,27 @@ export const lang19Q4 = {
         #                                                                                #
         ##################################################################################
     */
-   "account_details_contracts":"Contracts Published",
-   "account_details_contracts_no":"No contracts found",
+   "account_details_contracts":"قراردادها منتشر شد",
+   "account_details_contracts_no":"هیچ قراردادی یافت نشد",
+   "Supply_TRX_total_chart":"گردش تجمعی TRX",
+   "Supply_total_y_title":"مجموع عرضه",
+   "Supply_amount_TRX":"مقدار TRX",
+   "Supply_TRX_supply_records":"TRX در گردش ، در کل",
+   "Supply_TRX_supply_records_total":" رکورد",
+   "Supply_TRX_total":"عرضه کل TRX",
+   "Supply_TRX_total_tip":"ارزش خالص تجمعی روزانه + انتشار بلوک پیدایش (100،000،000،000 TRX)",
+   "Supply_amount_TRX_produced":"(مقدار) TRX تولید شده است.",
+   "Supply_amount_TRX_produced_tip":"پاداش برای تولید بلوک ها + پاداش رای گیری",
+   "Supply_voting_rewards":"پاداش رای گیری",     
+   "Supply_block_rewards":"پاداش برای تولید بلوک ها", 
+   "Supply_amount_TRX_burned":"(مقدار) TRX سوخته شده.",
+   "Supply_amount_TRX_burned_y_title":"مقدار تخریب (TRX)",
+   "Supply_amount_TRX_burned_tip1":"روز استقلال نیست: ارزش تخریب TRX = تخریب هزینه پرداخت؛",    
+   "Supply_amount_TRX_burned_tip2":"روز استقلال: ارزش تخریب TRX = پردازش تخریب هزینه + ارزش تخریب روز استقلال (1،000،000،000 TRX)",   
+   "Supply_amount_net_new":"کل خالص .",
+   "Supply_amount_net_new_highest":"کل خالص .",
+   "Supply_amount_net_new_y_title":"بازده / ارزش خالص (TRX)",
+   "Supply_amount_net_new_tip":"نسل TRX + تخریب TRX",
+   "votes_num":"رای",
+  
 }

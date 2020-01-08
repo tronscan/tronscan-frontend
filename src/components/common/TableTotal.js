@@ -24,7 +24,7 @@ class TotalInfo extends React.Component {
                 {
                     !selected?
                     common? <div className="table_pos_info d-none d-md-block" style={{left: 'auto', top}}>{tableInfo}
-                    <span>
+                    <span className="ml-1">
                             <QuestionMark placement="top" text="to_provide_a_better_experience"></QuestionMark>
                     </span>
                     </div>:<div className="table_pos_info d-none d-md-block" style={{left: 'auto', top}}>
