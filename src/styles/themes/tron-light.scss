@@ -1101,6 +1101,11 @@ $color: #c23631;
   }
   .ant-divider-horizontal.ant-divider-with-text-left .ant-divider-inner-text {
     padding: 0 8px 0 0px;
+    span{
+      width:100px;
+      text-align: right;
+      display: inline-block;
+    }
   }
   .ant-divider-horizontal.ant-divider-with-text-left {
     text-align: left;
