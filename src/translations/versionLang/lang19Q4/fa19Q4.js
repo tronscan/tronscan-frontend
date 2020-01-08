@@ -179,7 +179,7 @@ export const lang19Q4 = {
    "index_page_down_excel_tips":"اگر از اکسل برای باز کردن یک سند بارگیری شده استفاده می کنید ، باید تعداد مکان های اعشار در پرونده را به صورت دستی تنظیم کنید.",
    "index_page_pane_current":"Current",
    "index_page_pane_MaxTPS":"Max TPS",
-   "index_page_idebar_expand":"در حال گسترش",
+   "index_page_idebar_expand":"Expand",
 
     
     /*
