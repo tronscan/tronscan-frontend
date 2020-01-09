@@ -574,14 +574,15 @@ class Transfers extends React.Component {
                             ? new BigNumber(
                                 tokensInfo.transfer.balance
                               ).multipliedBy(
-                                tokensInfo.tokenDetail.market_info.priceInTrx
+                                tokensInfo.tokenDetail.market_info?tokensInfo.tokenDetail.market_info.priceInTrx:1
                               )
                             : new BigNumber(tokensInfo.transfer.balance)
                                 .dividedBy(
                                   Math.pow(10, tokensInfo.tokenDetail.precision)
                                 )
                                 .multipliedBy(
-                                  tokensInfo.tokenDetail.market_info.priceInTrx
+                                  tokensInfo.tokenDetail.market_info? tokensInfo.tokenDetail.market_info.priceInTrx:1
+                                 
                                 )
                         }
                         minimumFractionDigits={2}
