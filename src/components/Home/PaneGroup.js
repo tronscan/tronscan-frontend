@@ -269,7 +269,7 @@ export default class panelGroup extends Component {
                   }}
                 >
                   {
-                  !IS_NILE && <span>                 
+                   <span>                 
                      {isExpand ? tu("collapse") : tu("expand")}
                   <Icon type={isExpand ? "caret-up" : "caret-down"} /></span>
                   }
