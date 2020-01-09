@@ -3499,6 +3499,13 @@ h5 {
   padding-left: 18px;
   background-position: 4px 4px;
   background-size: 9px 9px;
+  .band-item-title{
+    width:300px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    margin-right: 10px;
+  }
 }
 .trans-item-padding{
   padding: 0 0 10px 0;

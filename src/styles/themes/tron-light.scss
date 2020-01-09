@@ -140,7 +140,7 @@
     font-family: HelveticaNeue;
     color: #333333;
     overflow: hidden;
-    a{
+    a {
       margin-top: 4px;
     }
     a:hover {
@@ -920,7 +920,7 @@ $color: #c23631;
   }
   .list-group .list-group-item .media-body {
     .list-item-word {
-      font-size: 1rem;
+      font-size: 14px;
       word-break: normal;
       word-wrap: normal;
     }
@@ -1104,8 +1104,8 @@ $color: #c23631;
   }
   .ant-divider-horizontal.ant-divider-with-text-left .ant-divider-inner-text {
     padding: 0 8px 0 0px;
-    span{
-      width:100px;
+    span {
+      width: 100px;
       text-align: right;
       display: inline-block;
     }
