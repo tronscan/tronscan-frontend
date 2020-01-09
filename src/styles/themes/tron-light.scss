@@ -11,6 +11,17 @@
     width: 6px;
     height: 6px;
   }
+  .new-menu-List {
+    .navbar-nav {
+      .nav-item {
+        &:hover {
+          .nav-link {
+            color: #c23631 !important;
+          }
+        }
+      }
+    }
+  }
   .menu-nav-wrapper {
     max-width: 1600px;
     margin: 0 auto;
