@@ -83,7 +83,8 @@ class Navigation extends React.Component {
       announId: 83,
       selectedNet:'',
       drawerVisible:false,//draw is visible
-      currentActive:1
+      currentActive:1,
+      percent_change_24h:0
     };
   }
 
@@ -134,9 +135,30 @@ class Navigation extends React.Component {
         selectedNet: IS_MAINNET?'mainnet':'sunnet'
     });
     Lockr.set("NET", IS_MAINNET?'mainnet':'sunnet')
-
+    this.loadTrxPrices()
+    this.oTimer = setInterval(() => this.loadTrxPrices(), 10000);
 
   }
+
+  async loadTrxPrices() {
+      var dataEur = Lockr.get("dataEur");
+  
+      let eurURL = encodeURI(
+        `https://api.coinmarketcap.com/v1/ticker/tronix/?convert=EUR`
+      );
+      
+      var { data: dataEurObj } = await xhr.get(
+          `${API_URL}/api/system/proxy?url=${eurURL}`
+      );
+      console.log(dataEurObj,'dataEurObj')
+      if (dataEurObj.length > 0) {
+        let percent_change_24h = dataEurObj[0].percent_change_24h;
+        this.setState({
+          percent_change_24h
+        });
+      }
+     
+    }
 
   componentWillUpdate(nextProps, nextState) {
       let { account,match,walletType } = this.props;
@@ -158,6 +180,7 @@ class Navigation extends React.Component {
           websocket.close();
           Lockr.set("websocket", 'close')
       }
+      clearInterval(this.oTimer)
   }
 
   componentDidUpdate(prevProps) {
@@ -1000,7 +1023,7 @@ class Navigation extends React.Component {
       syncStatus,
       walletType: { type },
     } = this.props;
-    let {search, popup, notifications, announcement, announId, annountime, searchResults, selectedNet,drawerVisible,currentActive } = this.state;
+    let {search, popup, notifications, announcement, announId, annountime, searchResults, selectedNet,drawerVisible,currentActive,percent_change_24h } = this.state;
     let activeComponent = this.getActiveComponent();
     const isShowSideChain = !type || (type && IS_SUNNET);
     return (
@@ -1036,6 +1059,7 @@ class Navigation extends React.Component {
                               currency="USD"
                               source="home"
                               showCurreny={true}
+                              priceChage={percent_change_24h}
                             />
                           </span>
                         </HrefLink>
