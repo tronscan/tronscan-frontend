@@ -567,7 +567,7 @@ class Transfers extends React.Component {
                         fontSize: "14px"
                       }}
                     >
-                      ≈
+                      {''} USD = {''}
                       <FormattedNumber
                         value={
                           tokensInfo.tokenDetail.precision === 0
@@ -588,9 +588,7 @@ class Transfers extends React.Component {
                         minimumFractionDigits={2}
                         maximumFractionDigits={2}
                       ></FormattedNumber>
-                      {/* {(tokensInfo.transfer.balance / Math.pow(10, 6)).toFixed(
-                        0
-                      )} */}
+                      {' '}
                       TRX
                     </span>
                   </div>
