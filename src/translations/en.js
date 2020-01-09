@@ -423,7 +423,7 @@ export const messages = {
   total_supply: "total Supply",
   issued_token: "issued token",
   create_token: "Create Token",
-  description: "Brief Introduction",
+  description: "Brief introduction",
   description_url: "Description URL",
   quote_token_amount: "Quote Token Amount",
   base_token_amount: "Base Token Amount",
@@ -1114,7 +1114,7 @@ export const messages = {
   tron_rating: "Token Reputation",
   my_token_desc_2:
     "If you need to update your information, please send the updates using the following Excel template to token@tronscan.org via your company email or certified email with necessary credentials.",
-  brief_info: "Brief Introduction",
+  brief_info: "Brief introduction",
   website_official: "Official website",
   white_paper: "White Paper",
   GitHub: "GitHub",
@@ -1130,7 +1130,7 @@ export const messages = {
   contact_us: "Contact us",
   my_token: "My Token",
   try_later: "Please try it later",
-  contract_address: "Contract Address",
+  contract_address: "Contract address",
 
   /*
 ##################################################################################
@@ -1548,7 +1548,7 @@ export const messages = {
   contract_notes_5:
     "There is a timeout of up to 45 seconds for each contract compiled. If your contract takes longer than this we will not be able to verify it.",
   contract_notes_6: "More functions are coming in the next version.",
-  contract_address: "Contract Address",
+  contract_address: "Contract address",
   contract_optimization: "Optimization",
   contract_license: "license",
   select_license: "Please select license",

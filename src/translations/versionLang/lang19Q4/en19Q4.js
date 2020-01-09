@@ -272,7 +272,7 @@ export const lang19Q4 = {
 
     // transaction info  2019-12-25  leon
     "consume_bandwidth":"Consume bandwidth",
-    "consume_energy":"Consume Energy",
+    "consume_energy":"Consume energy",
     "net_free":"Consumption of frozen/free bandwidth",
     "net_burn":"Burn {num} TRX for bandwidth",
     "energy_burn":"Burn {num} TRX for energy",

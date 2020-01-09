@@ -34,7 +34,7 @@ export default function PermissionItem(props) {
                 {permissionArray.map((pItem, pIndex) => (
                     <div className="permission-body" key={pIndex}>
                         <div className="permission-child-item">
-                            <div className="permission-label">
+                            <div className="permission-label" style={{width:'113px'}}>
                                 {tu('signature_permission')}:
                                 </div>
                             <div className="permission-text">
@@ -42,7 +42,7 @@ export default function PermissionItem(props) {
                             </div>
                         </div>
                         <div className="permission-child-item">
-                            <div className="permission-label">
+                            <div className="permission-label" style={{width:'113px'}}>
                                 {tu('signature_threshold')}:
                                 </div>
                             <div className="permission-text">
@@ -50,7 +50,7 @@ export default function PermissionItem(props) {
                             </div>
                         </div>
                         <div className="permission-child-item">
-                            <div className="permission-label">
+                            <div className="permission-label" style={{width:'113px'}}>
                                 {tu('signature_keys')}:
                                     </div>
                             <div className="permission-text">
