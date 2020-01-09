@@ -100,20 +100,13 @@ function TriggerContract({contract,intl}){
                                     {/* <div className="mr-1">
                                       {tu("transfers")}
                                     </div> */}
-                                    <div className="mr-1">
-                                      {v.map_amount + " "}
-                                      {/* {v.map_token_id} */}
-                                      {v.map_token_id ? <TokenLink
-                                        id={v.map_token_id}
-                                        name={v.map_token_name_abbr || v.map_token_name}
-                                        ></TokenLink> : v.map_token_name_abbr}
-                                    </div>
-                                    <div className="mr-1">
+                                    
+                                    <div className="mr-2">
                                       {tu("from")}
                                     </div>
                                     <div
-                                      className="mr-1"
-                                      style={{ width: "150px" }}
+                                      className="mr-2"
+                                      style={{ width: "169px" }}
                                     >
                                       <ContractLink
                                         address={
@@ -123,13 +116,13 @@ function TriggerContract({contract,intl}){
                                         {item["caller_address"]}
                                       </ContractLink>
                                     </div>
-                                    <img src={require('../../../../images/transaction/arrow.png')} style={{height: '11px',width: '16px',margin: '5px 5px 0'}}></img>
-                                    <div className="mr-1">
+                                    <img className="mr-2" src={require('../../../../images/transaction/arrow.png')} style={{height: '11px',width: '16px',margin: '6px 5px 0'}}></img>
+                                    <div className="mr-2">
                                       {tu("to")}
                                     </div>
                                     <div
-                                      className="mr-1"
-                                      style={{ width: "150px" }}
+                                      className="mr-2"
+                                      style={{ width: "169px" }}
                                     >
                                       <ContractLink
                                         address={
@@ -138,6 +131,14 @@ function TriggerContract({contract,intl}){
                                       >
                                         {item["transfer_to_address"]}
                                       </ContractLink>
+                                    </div>
+                                    <div className="mx-2">
+                                      {v.map_amount + " "}
+                                      {/* {v.map_token_id} */}
+                                      {v.map_token_id ? <TokenLink
+                                        id={v.map_token_id}
+                                        name={v.map_token_name_abbr || v.map_token_name}
+                                        ></TokenLink> : v.map_token_name_abbr}
                                     </div>
                                   </div>
                                 </div>
