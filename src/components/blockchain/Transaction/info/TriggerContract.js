@@ -132,7 +132,7 @@ function TriggerContract({contract,intl}){
                                         {item["transfer_to_address"]}
                                       </ContractLink>
                                     </div>
-                                    <div className="mr-2">
+                                    <div className="mx-2">
                                       {v.map_amount + " "}
                                       {/* {v.map_token_id} */}
                                       {v.map_token_id ? <TokenLink
