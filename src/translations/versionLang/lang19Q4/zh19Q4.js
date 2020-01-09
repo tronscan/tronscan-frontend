@@ -278,7 +278,7 @@ export const lang19Q4 = {
     "transaction_EXCHANGETRANSACTIONCONTRACT":"执行Bancor交易",
     "transaction_ACCOUNTPERMISSIONUPDATECONTRACT":"更新账户权限",
     "transaction_UPDATEENERGYLIMITCONTRACT":"更新合约能量限制",
-    "transaction_UPDATEBROKERAGECONTRACT":"更新超级代表佣金比例",
+    "transaction_UPDATEBROKERAGECONTRACT":"更新SR佣金比例",
     "transaction_CLEARABICONTRACT":"清除合约ABI",
     "transaction_token_holder_address":"通证所有者地址",
     "transaction_issue_address":"发行者地址",

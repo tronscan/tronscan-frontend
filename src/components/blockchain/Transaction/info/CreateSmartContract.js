@@ -68,7 +68,7 @@ function CreateSmartContract({contract,intl}){
               address={contract.info && contract.info.contract_address}
               isContract={true}
             >
-              <Tooltip
+              {/* <Tooltip
                 placement="top"
                 title={upperFirst(
                   intl.formatMessage({
@@ -85,7 +85,7 @@ function CreateSmartContract({contract,intl}){
                     color: "#333"
                   }}
                 />
-              </Tooltip>
+              </Tooltip> */}
               {contract.info && contract.info.contract_address}
             </AddressLink>
             {/* <AddressLink address={contract['owner_address']}/> */}
@@ -93,7 +93,7 @@ function CreateSmartContract({contract,intl}){
           <Field label="contract_name">{contract.new_contract.name}</Field>
           <Field label="contract_enery" tip text={t('contract_enery_tip')}>
             {tu("contract_percent")}
-            {100 - contract.new_contract.consume_user_resource_percent}%
+            {100 - contract.new_contract.consume_user_resource_percent}%,
             {"  "}
             {tu("contract_percent_user")}
             {contract.new_contract.consume_user_resource_percent}%
