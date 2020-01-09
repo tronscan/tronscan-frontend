@@ -21,7 +21,7 @@ export default function ExchangeCreateContract(props) {
                         : ''
                 }
 
-                <Field label="pairs"><TokenLink id={first_token_id} name={first_token_name}/> / {second_token_name}</Field>
+                <Field label="pairs"><TokenLink id={first_token_id} name={first_token_name}/> / {second_token_name && second_token_name.toUpperCase()}</Field>
                 <Field label="amount">{toThousands(first_token_balance)}/{toThousands(second_token_balance)}</Field>
                 <Field label="transaction_fee">1,024 TRX</Field>
                 {JSON.stringify(contract.cost) !=

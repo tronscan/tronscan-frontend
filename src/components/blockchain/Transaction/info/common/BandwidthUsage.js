@@ -4,7 +4,6 @@ import {toThousands} from '../../../../../utils/number'
 import {injectIntl} from "react-intl";
 
 function BandwidthUsage({cost,type,intl}){
-  console.log(intl)
   if(JSON.stringify(cost) == "{}") return ''
   const {energy_usage_total, origin_energy_usage, energy_usage, energy_fee, energy_burn, net_usage, net_fee} = cost
   return(

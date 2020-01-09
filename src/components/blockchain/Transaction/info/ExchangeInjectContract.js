@@ -20,7 +20,7 @@ export default function ExchangeInjectContract(props) {
                         <Field label="transaction_owner_address"><AddressLink address={contract['owner_address']} /></Field>
                         : ''
                 }
-                <Field label="pairs">{first_token_name} / {second_token_name}</Field>
+                <Field label="pairs">{first_token_name} / {second_token_name && second_token_name.toUpperCase()}</Field>
                 <Field label="token_tracker"><TokenLink id={first_token_id} name={first_token_name}/></Field>
                 <Field label="amount">{toThousands(quant)}</Field>
                 {JSON.stringify(contract.cost) !=

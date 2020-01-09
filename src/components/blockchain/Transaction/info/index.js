@@ -62,7 +62,7 @@ const getTitle = contract => {
 };
 
 export default function Info({contract}) {
-    console.log('contract1111',contract)
+    
     let parametersArr = [
         'MAINTENANCE_TIME_INTERVAL',
         'ACCOUNT_UPGRADE_COST',
