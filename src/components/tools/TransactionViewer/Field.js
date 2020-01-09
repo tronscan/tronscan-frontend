@@ -5,7 +5,7 @@ import {QuestionMark} from '../../common/QuestionMark'
 export default function Field({label, children,tip=false,text}) {
   return (
     <tr>
-      <th>{tu(label)}{tip && <QuestionMark text={text} className="ml-2"></QuestionMark>}</th>
+      <th>{tu(label)}{tip && <span>&nbsp;<QuestionMark text={text} className="ml-2"></QuestionMark></span>}</th>
       <td>{children}</td>
     </tr>
   )

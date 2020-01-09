@@ -193,13 +193,13 @@ export class LineReactHighChartHomeAddress extends React.Component {
                     var points = this.points;
                     var pointsLength = points.length;
                     
-                    s = '<table class="tableformat" style="border: 0px;" min-width="100%"><tr style="border-bottom:1px solid #D5D8DC;"><td colspan=2 style="padding-bottom:5px;"><span style="font-size: 10px;"> ' + moment(points[0].point.date).format("YYYY-MM-DD") + '</span><br></td><td></td></tr>'
-                    s += '<tr><td></td><td style="text-align:right;">'+intl.formatMessage({id:'daily_increment'})+'</td><td style="text-align:right;">'+intl.formatMessage({id:'total_addresses'})+'</td></tr>' 
+                    s = '<table class="tableformat" style="border: 0px;" min-width="100%"><tr style="border-bottom:1px solid #D5D8DC;"><td colspan=2 style="padding:4px 10px;"><span style="font-size: 10px;"> ' + moment(points[0].point.date).format("YYYY-MM-DD") + '</span><br></td><td></td></tr>'
+                    s += '<tr><td style="padding:4px 6px;"></td><td style="text-align:right;padding:4px 6px;">'+intl.formatMessage({id:'daily_increment'})+'</td><td style="text-align:right;padding:4px 6px;">'+intl.formatMessage({id:'total_addresses'})+'</td></tr>' 
                     for (let index = 0; index < pointsLength; index += 1) { 
                         s += '<tr style="border-bottom:1px solid #D5D8DC;">'+
-                             '<td style="padding-top:4px;padding-bottom:4px;" valign="top">' + '<span style="color:' + points[index].series.color + ';font-size: 15px !important;">\u25A0</span> ' + intl.formatMessage({id: points[index].series.name })+ '</td>' +
-                             '<td style="padding-top:5px;padding-left:10px;padding-bottom:4px;color:#C23631;font-weight:bold;text-align:right">'+Highcharts.numberFormat(points[index].point.increment, 0, '.', ',') +'</td>'+
-                             '<td align="right" style="padding-top:5px;padding-left:10px;padding-bottom:4px;"><span ><b style="color:#C23631">' +Highcharts.numberFormat(points[index].y, 0, '.', ',') + '</br>'
+                             '<td style="padding:4px 6px;" valign="top">' + '<span style="color:' + points[index].series.color + ';font-size: 15px !important;">\u25A0</span> ' + intl.formatMessage({id: points[index].series.name })+ '</td>' +
+                             '<td style="padding:4px 6px;;color:#C23631;font-weight:bold;text-align:right">'+Highcharts.numberFormat(points[index].point.increment, 0, '.', ',') +'</td>'+
+                             '<td align="right" style="padding:4px 6px;"><span ><b style="color:#C23631">' +Highcharts.numberFormat(points[index].y, 0, '.', ',') + '</br>'
                              + '</span>' +
                             '</td></tr>'
                     }
@@ -308,12 +308,12 @@ export class LineReactHighChartAdd extends React.Component {
                     var pointsLength = points.length;
                     
                     s = '<table class="tableformat" style="border: 0px;" min-width="100%"><tr style="border-bottom:1px solid #D5D8DC;"><td colspan=2 style="padding-bottom:5px;"><span style="font-size: 10px;"> ' + moment(points[0].point.date).format("YYYY-MM-DD") + '</span><br></td><td></td></tr>'
-                    s += '<tr><td></td><td style="text-align:right;">'+intl.formatMessage({id:'daily_increment'})+'</td><td style="text-align:right;">'+intl.formatMessage({id:'total_addresses'})+'</td></tr>' 
+                    s += '<tr><td style="padding:4px 5px;"></td><td style="text-align:right;padding:4px 5px;">'+intl.formatMessage({id:'daily_increment'})+'</td><td style="text-align:right;padding:4px 5px;">'+intl.formatMessage({id:'total_addresses'})+'</td></tr>' 
                     for (let index = 0; index < pointsLength; index += 1) { 
                         s += '<tr style="border-bottom:1px solid #D5D8DC;">'+
-                             '<td style="padding-top:4px;padding-bottom:4px;" valign="top">' + '<span style="color:' + points[index].series.color + ';font-size: 15px !important;">\u25A0</span> ' + intl.formatMessage({id: points[index].series.name })+ '</td>' +
-                             '<td style="padding-top:5px;padding-left:10px;padding-bottom:4px;color:#C23631;font-weight:bold;text-align:right">'+Highcharts.numberFormat(points[index].point.increment, 0, '.', ',') +'</td>'+
-                             '<td align="right" style="padding-top:5px;padding-left:10px;padding-bottom:4px;"><span ><b style="color:#C23631">' +Highcharts.numberFormat(points[index].y, 0, '.', ',') + '</br>'
+                             '<td style="padding:4px 5px;" valign="top">' + '<span style="color:' + points[index].series.color + ';font-size: 15px !important;">\u25A0</span> ' + intl.formatMessage({id: points[index].series.name })+ '</td>' +
+                             '<td style="padding:4px 5px;color:#C23631;font-weight:bold;text-align:right">'+Highcharts.numberFormat(points[index].point.increment, 0, '.', ',') +'</td>'+
+                             '<td align="right" style="padding:4px 5px;"><span ><b style="color:#C23631">' +Highcharts.numberFormat(points[index].y, 0, '.', ',') + '</br>'
                              + '</span>' +
                             '</td></tr>'
                     }
@@ -470,10 +470,11 @@ export class LineReactHighChartHomeTx extends React.Component {
                     var pointsLength = points.length;
                   
                     s = '<table class="tableformat" style="border: 0px;" min-width="100%"><tr style="border-bottom:1px solid #D5D8DC;"><td colspan=2 style="padding-bottom:5px;"><span style="font-size: 10px;"> ' + moment(points[0].point.date).format("YYYY-MM-DD") + '</span><br></td></tr>'
-                    s += '<tr><td></td><td style="text-align:right;">'+intl.formatMessage({id:'total_transactions'})+'</td></tr>' 
+                    s += '<tr><td></td><td style="text-align:right;padding:4px 6px;">'+intl.formatMessage({id:'total_transactions'})+'</td></tr>' 
                     for (let index = 0; index < pointsLength; index += 1) {
-                        s += '<tr style="border-bottom:1px solid #D5D8DC;"><td style="padding-top:4px;padding-bottom:4px;" valign="top">' + '<span style="color:' + points[index].series.color + ';font-size: 15px !important;">\u25A0</span> ' + intl.formatMessage({id: points[index].series.name })+ '</td>' +
-                            '<td align="right" style="padding-top:5px;padding-left:10px;padding-bottom:4px;"><span ><b style="color:#C23631">' +
+                        s += '<tr style="border-bottom:1px solid #D5D8DC;">'+
+                             '<td style="padding:4px 6px;" valign="top">' + '<span style="color:' + points[index].series.color + ';font-size: 15px !important;">\u25A0</span> ' + intl.formatMessage({id: points[index].series.name })+ '</td>' +
+                             '<td align="right" style="padding:4px 6px;"><span ><b style="color:#C23631">' +
                             Highcharts.numberFormat(points[index].y, 0, '.', ',') + '</br>'
                             + '</span>' +
                             '</td></tr>'
@@ -580,11 +581,11 @@ export class LineReactHighChartTx extends React.Component {
                     var pointsLength = points.length;
                   
                     s = '<table class="tableformat" style="border: 0px;" min-width="100%"><tr style="border-bottom:1px solid #D5D8DC;"><td colspan=2 style="padding-bottom:5px;"><span style="font-size: 10px;"> ' + moment(points[0].point.date).format("YYYY-MM-DD") + '</span><br></td></tr>'
-                    s += '<tr><td></td><td style="text-align:right;">'+intl.formatMessage({id:'total_transactions'})+'</td></tr>' 
-                    for (let index = 0; index < pointsLength; index += 1) {
-                        
-                        s += '<tr style="border-bottom:1px solid #D5D8DC;"><td style="padding-top:4px;padding-bottom:4px;" valign="top">' + '<span style="color:' + points[index].series.color + ';font-size: 15px !important;">\u25A0</span> ' + intl.formatMessage({id: points[index].series.name })+ '</td>' +
-                            '<td align="right" style="padding-top:5px;padding-left:10px;padding-bottom:4px;"><span ><b style="color:#C23631">' +
+                    s += '<tr><td style="padding:4px 6px;"></td><td style="text-align:right;">'+intl.formatMessage({id:'total_transactions'})+'</td></tr>' 
+                    for (let index = 0; index < pointsLength; index += 1) { 
+                        s += '<tr style="border-bottom:1px solid #D5D8DC;">'+
+                             '<td style="padding:4px 6px;" valign="top">' + '<span style="color:' + points[index].series.color + ';font-size: 15px !important;">\u25A0</span> ' + intl.formatMessage({id: points[index].series.name })+ '</td>' +
+                             '<td align="right" style="padding:4px 6px;"><span ><b style="color:#C23631">' +
                             Highcharts.numberFormat(points[index].y, 0, '.', ',') + '</br>'
                             + '</span>' +
                             '</td></tr>'
