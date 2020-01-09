@@ -986,7 +986,7 @@ export const messages = {
   issue_a_new_asset: "Issue a new asset",
   owner_address: "Owner Address",
   frozen_balance: "Frozen Balance",
-  frozen_days: "Frozen Days",
+  frozen_days: "Days frozen",
   counts: "counts",
   TRX_exchange_rate: "TRX Exchange Rate",
   start_time: "Start Time",

@@ -154,14 +154,14 @@ class Footer extends Component {
                       </HrefLink>
                     </li>
                     <li>
-                      <HrefLink href="https://poloniex.org">
-                        {tu("exchange")}
-                      </HrefLink>
-                    </li>
-                    <li>
                       <HrefLink href="https://www.tronlink.org">
                         {" "}
                         {tu("wallet")}
+                      </HrefLink>
+                    </li>
+                    <li>
+                      <HrefLink href="https://poloniex.org">
+                        {tu("exchange")}
                       </HrefLink>
                     </li>
                     <li>
@@ -295,19 +295,14 @@ class Footer extends Component {
                         </HrefLink>
                       </li>
                       <li className="p-2">
-                        <HrefLink href="https://poloniex.org">
-                          {tu("exchange")}
-                        </HrefLink>
+                      <HrefLink href="https://www.tronlink.org">
+                        {" "}
+                        {tu("wallet")}
+                      </HrefLink>
                       </li>
                       <li className="p-2">
-                        <HrefLink
-                          href={
-                            activeLanguage == "zh"
-                              ? "https://github.com/tronprotocol/documentation-zh"
-                              : "https://github.com/tronprotocol/documentation-en"
-                          }
-                        >
-                          Documentation
+                        <HrefLink href="https://poloniex.org">
+                          {tu("exchange")}
                         </HrefLink>
                       </li>
                       <li className="p-2">
@@ -381,7 +376,7 @@ class Footer extends Component {
                         {links.map(item => {
                           if (item.name != "WeChat") {
                             return (
-                              <li>
+                              <li key={item.url}>
                                 <HrefLink href={item.url}>
                                   <i className={`${item.icon} mr-3`} />
                                 </HrefLink>
@@ -466,7 +461,7 @@ class Footer extends Component {
       <Menu>
         {currencyConversions.map(currency => (
           <Menu.Item>
-            <a href="javascript:" onClick={() => this.setCurrency(currency.id)}>
+            <a key={currency.id} href="javascript:" onClick={() => this.setCurrency(currency.id)}>
               {currency.name}
             </a>
           </Menu.Item>
