@@ -14,7 +14,7 @@ import SweetAlert from 'react-bootstrap-sweetalert';
 import _ from 'lodash';
 import { toThousands } from '../../../utils/number';
 import Lockr from 'lockr';
-import { API_URL, CONTRACT_NODE_API, FILE_MAX_SIZE, FILE_MAX_NUM } from '../../../constants';
+import { API_URL, CONTRACT_NODE_API, FILE_MAX_SIZE, FILE_MAX_NUM,IS_MAINNET } from '../../../constants';
 import cx from 'classnames';
 import {Link} from "react-router-dom"
 import WARNIMG from './../../../images/compiler/warning.png';
@@ -410,7 +410,8 @@ class ContractCompiler extends React.Component {
      * 点击部署确认
      */
     deploy = async(options) => {
-        const { account: { tronWeb } } = this.props;
+        const { account: { tronWeb,sunWeb } } = this.props;
+       
         const { name } = options;
 
         // 统计代码
@@ -437,8 +438,10 @@ class ContractCompiler extends React.Component {
                 CompileStatus,
                 compileLoading: false
             });
-
-            const unsigned = await tronWeb.transactionBuilder.createSmartContract(options);
+            
+            const unsigned = IS_MAINNET ? await tronWeb.transactionBuilder.createSmartContract(options) : await sunWeb.sidechain.transactionBuilder.createSmartContract(options);
+            // const unsigned = await tronWeb.transactionBuilder.createSmartContract(options);
+            
 
             infoData = [{
                 type: 'info',
@@ -453,8 +456,8 @@ class ContractCompiler extends React.Component {
                 CompileStatus,
             });
 
-            const signed = await tronWeb.trx.sign(unsigned);
-
+            const signed = IS_MAINNET ? await tronWeb.trx.sign(unsigned) : await sunWeb.sidechain.trx.sign(unsigned);
+            // const signed = await tronWeb.sidechain.trx.sign(unsigned);
             infoData = [{
                 type: 'info',
                 class: 'signed',
@@ -468,7 +471,8 @@ class ContractCompiler extends React.Component {
                 CompileStatus,
             });
 
-            const broadcastResult = await tronWeb.trx.sendRawTransaction(signed);
+            const broadcastResult = IS_MAINNET ? await tronWeb.trx.sendRawTransaction(signed) : await sunWeb.sidechain.trx.sendRawTransaction(signed);
+            // const broadcastResult = await tronWeb.sidechain.trx.sendRawTransaction(signed);
 
             this.setState({
                 txID: signed.txID,
@@ -528,7 +532,7 @@ class ContractCompiler extends React.Component {
      * 部署并更新合约
      */
     deployContract = async(optionsParam) => {
-        const { account: { tronWeb } } = this.props;
+        const { account: { tronWeb,sunWeb } } = this.props;
         let { txID, currentContractName, optimizer, runs, compilerVersion, options,
             CompileStatus, signed } = this.state;
         const { bytecode, abi, name } = optionsParam || options;
@@ -543,7 +547,7 @@ class ContractCompiler extends React.Component {
             // 部署合约
             await this.timeout(20000);
            
-            transactionInfo = await tronWeb.trx.getTransactionInfo(txID)
+            transactionInfo = IS_MAINNET ? await tronWeb.trx.getTransactionInfo(txID) : sunWeb.sidechain.trx.getTransaction(txID)
                 .catch (e => {
                     infoData = [{
                         type: 'error',
