@@ -23,7 +23,7 @@ function TriggerContract({contract,intl}){
           <div className="content_pos">
             <div className="d-flex border-bottom pt-2">
               <div className="content_box_name">
-                {tu("contract_triggers_owner_address")}:
+                {tu("transaction_owner_address")}:
               </div>
               <div className="flex1">
                 <div className="d-flex border-bottom content_item">

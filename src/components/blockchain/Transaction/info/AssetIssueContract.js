@@ -29,7 +29,7 @@ class AssetIssueContract extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      fee: "1024 TRX",
+      fee: "1,024 TRX",
       createTime:0,
       UtcUnit:"",
       TrxUnit:'TRX'

@@ -33,7 +33,7 @@ class UpdateAssetContract extends React.Component {
                 </AddressLink>
               </Field>
               <Field label="description">{contract.description}</Field>
-              <Field label="website">
+              <Field label="sr_url">
                 <ExternalLink url={contract.url} />
               </Field>
               <Field

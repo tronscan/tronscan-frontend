@@ -240,7 +240,7 @@ export const messages = {
     "Do not send TRX from your own wallet or exchange to the above account address of testnet!",
   bandwidth: "bandwidth",
   balance: "Balance",
-  tron_power: "TRON Power",
+  tron_power: "Voting rights",
   transactions: "transactions",
   no_transfers: "No Transfers",
   no_tokens: "No Tokens",
@@ -423,7 +423,7 @@ export const messages = {
   total_supply: "total Supply",
   issued_token: "issued token",
   create_token: "Create Token",
-  description: "Brief Introduction",
+  description: "Brief introduction",
   description_url: "Description URL",
   quote_token_amount: "Quote Token Amount",
   base_token_amount: "Base Token Amount",
@@ -1114,7 +1114,7 @@ export const messages = {
   tron_rating: "Token Reputation",
   my_token_desc_2:
     "If you need to update your information, please send the updates using the following Excel template to token@tronscan.org via your company email or certified email with necessary credentials.",
-  brief_info: "Brief Introduction",
+  brief_info: "Brief introduction",
   website_official: "Official website",
   white_paper: "White Paper",
   GitHub: "GitHub",
@@ -1130,7 +1130,7 @@ export const messages = {
   contact_us: "Contact us",
   my_token: "My Token",
   try_later: "Please try it later",
-  contract_address: "Contract Address",
+  contract_address: "Contract address",
 
   /*
 ##################################################################################
@@ -2103,9 +2103,9 @@ export const messages = {
   contract_method: "Contract Method",
   contract_parameters: "Method Parameters",
   energy_fee: "Burning TRX Number to Get Energy",
-  energy_usage: "Energy Usage from User's Frozen Energy",
+  energy_usage: "Energy usage from user's frozen energy",
   energy_usage_total: "Total Energy Cost",
-  origin_energy_usage: "Energy Usage from Contract Provided",
+  origin_energy_usage: "Consume contract owner's Energy",
   net_fee: "Burning TRX Number to Get Bandwidth",
   net_usage: "Bandwidth Usage from User's Frozen Bandwidth",
   TRC20_transfers: "TRC20 transfers",
