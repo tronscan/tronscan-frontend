@@ -25,20 +25,6 @@ export default function UpdateEnergyLimitContract(props) {
                         address={contract_address}
                         isContract={true}
                     >
-                        <Tooltip
-                            placement="top"
-                            title={tu("transfersDetailContractAddress")}
-                        >
-                            <Icon
-                                type="file-text"
-                                style={{
-                                    fontSize: 12,
-                                    verticalAlign: 2,
-                                    marginRight: 4,
-                                    color: "#333"
-                                }}
-                            />
-                        </Tooltip>
                         {contract_address}
                     </AddressLink>
                 </Field>

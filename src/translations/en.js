@@ -1130,7 +1130,7 @@ export const messages = {
   contact_us: "Contact us",
   my_token: "My Token",
   try_later: "Please try it later",
-  contract_address: "Contract Address",
+  contract_address: "Contract address",
 
   /*
 ##################################################################################
@@ -1548,7 +1548,7 @@ export const messages = {
   contract_notes_5:
     "There is a timeout of up to 45 seconds for each contract compiled. If your contract takes longer than this we will not be able to verify it.",
   contract_notes_6: "More functions are coming in the next version.",
-  contract_address: "Contract Address",
+  contract_address: "Contract address",
   contract_optimization: "Optimization",
   contract_license: "license",
   select_license: "Please select license",
