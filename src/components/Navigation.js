@@ -840,7 +840,9 @@ class Navigation extends React.Component {
                   <div className="nav-link dropdown-toggle nav-item" onClick={(e) => {
                     isMobile && this.clickLoginWithPk(e)
                   }}>
+                    <Divider type="vertical" style={{marginRight:'1rem'}}/>
                     {tu("open_wallet")}
+                  
                     <ul className="dropdown-menu dropdown-menu-right nav-login-wallet" style={{minWidth: style_width}}>
                         <li className="px-2 py-1 border-bottom-0" onClick={(e) => {
                             this.clickLoginWithTronLink(e)
@@ -1031,8 +1033,8 @@ class Navigation extends React.Component {
           {popup}
           <div className="logo-wrapper">
             {/* zh  ko ar fa nav menu flex space-between*/}
-            {/* <div className={activeLanguage === 'zh' || activeLanguage === 'ko' || activeLanguage === 'ar' || activeLanguage === 'fa' ? "py-2 d-flex px-0 single-menu-nav-wrapper" : "py-2 d-flex px-0 menu-nav-wrapper"}> */}
-            <div className={"py-2 d-flex px-0 menu-nav-wrapper"}>
+            <div className={activeLanguage === 'zh' || activeLanguage === 'ko' || activeLanguage === 'ar'  ? "py-2 d-flex px-0 single-menu-nav-wrapper" : "py-2 d-flex px-0 menu-nav-wrapper"}>
+            {/* <div className={"py-2 d-flex px-0 menu-nav-wrapper"}> */}
               <div className="logoTrxPrice">
                 <div className="mobileFlexible">
                   <Link to="/">

@@ -1,6 +1,7 @@
 import React, {Fragment} from "react";
 import {ONE_TRX} from "../../constants";
 import {AddressLink} from "../common/Links";
+import {Divider} from 'antd';
 import {getNotifyPermission, requestNotifyPermissions, sendNotification} from "../../services/notifications";
 import SweetAlert from "react-bootstrap-sweetalert";
 import {connect} from "react-redux";
@@ -187,6 +188,7 @@ class Notifications extends React.Component {
         <li className="nav-item dropdown">
           {modal}
           <a className="nav-link dropdown-toggle" data-toggle="dropdown" href="javascript:;">
+            <Divider type="vertical" style={{marginRight:'1rem'}}/>
             <i className="fa fa-bell mr-2"/>
             {
               notifications.length > 0 &&
