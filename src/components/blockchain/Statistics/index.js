@@ -2,7 +2,7 @@ import React from "react";
 import xhr from "axios/index";
 import { tu } from "../../../utils/i18n";
 import { Client } from "../../../services/api";
-import { ONE_TRX } from "../../../constants";
+import { ONE_TRX,IS_MAINNET } from "../../../constants";
 import { connect } from "react-redux";
 import { injectIntl } from "react-intl";
 import { filter, includes } from "lodash";
@@ -334,7 +334,16 @@ class StatsCharts extends React.Component {
               <div className="row mb-4 mt-4">
                 <div className="col-md-4">
                   <div className="card-chart">
-                    <Link className="card-title" to="/blockchain/stats/txOverviewStats">
+                    {
+                      IS_MAINNET?<Link className="card-title" to="/blockchain/stats/txOverviewStatsType">
+                      <span className="ml-5">
+                        {tu("charts_daily_transactions")}
+                      </span>
+                      <img src={require("../../../images/chart/Daily-Transactions.png")}
+                        style={{ width: 240, filter: 'grayscale(100%)' }}
+                        className="ml-5 mt-2"
+                      />
+                    </Link>:<Link className="card-title" to="/blockchain/stats/txOverviewStats">
                       <span className="ml-5">
                         {tu("charts_daily_transactions")}
                       </span>
@@ -343,6 +352,8 @@ class StatsCharts extends React.Component {
                         className="ml-5 mt-2"
                       />
                     </Link>
+                    }
+                    
                   </div>
                 </div>
                 <div className="col-md-4">
