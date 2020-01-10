@@ -53,6 +53,10 @@ class StatsCharts extends React.Component {
           name: 'charts_SR',
           id: 'sr'
         },
+        {
+          name: 'chart_network',
+          id: 'network'
+        },
 
       ],
       scrollsId: '',
@@ -533,18 +537,6 @@ class StatsCharts extends React.Component {
               <div className="row mb-4 mt-4">
                 <div className="col-md-4">
                   <div className="card-chart">
-                    <Link className="card-title" to="/blockchain/stats/EnergyConsume">
-                      <span className="ml-5">
-                        {tu("charts_daily_energy_consumption")}
-                      </span>
-                      <img src={require("../../../images/chart/Daily-Energy-Consumption.png")}
-                        style={{ width: 240, filter: 'grayscale(100%)' }}
-                        className="ml-5 mt-2" />
-                    </Link>
-                  </div>
-                </div>
-                <div className="col-md-4">
-                  <div className="card-chart">
                     <Link className="card-title" to="/blockchain/stats/EnergyConsumeDistribution">
                       <span className="ml-5">
                         {tu("charts_daily_energy_contracts")}
@@ -603,6 +595,32 @@ class StatsCharts extends React.Component {
                         style={{ width: 240, filter: 'grayscale(100%)' }}
                         className="ml-5 mt-2"
                       />
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div id="network">
+              <div className="row mt-5 d-flex">
+                <div className="charts-title mr-3 ml-3">
+                  <span>
+                    <i className="fas fa-wifi ml-5 mr-2" />
+                    {tu("chart_network")}
+                  </span>
+                </div>
+                <div className="charts-line"></div>
+              </div>
+              <div className="row mb-4 mt-4">
+                <div className="col-md-4">
+                  <div className="card-chart">
+                  <Link className="card-title" to="/blockchain/stats/EnergyConsume">
+                      <span className="ml-5">
+                        {tu("charts_daily_energy_consumption")}
+                      </span>
+                      <img src={require("../../../images/chart/Daily-Energy-Consumption.png")}
+                        style={{ width: 240, filter: 'grayscale(100%)' }}
+                        className="ml-5 mt-2" />
                     </Link>
                   </div>
                 </div>
