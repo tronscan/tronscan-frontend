@@ -566,7 +566,7 @@ class Transfers extends React.Component {
                         fontSize: "14px"
                       }}
                     >
-                      {''} USD = {''}
+                      {''} USD ≈ {''}
                       <FormattedNumber
                         value={
                           tokensInfo.tokenDetail.market_info?
