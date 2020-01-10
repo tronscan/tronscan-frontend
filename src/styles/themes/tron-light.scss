@@ -20,8 +20,16 @@
           }
         }
       }
-      .nav-link{
-        padding:0.5rem 0.6rem;
+    }
+  }
+  .single-menu-nav-wrapper{
+    .new-menu-List {
+      .navbar-nav {
+        .nav-item {
+          .nav-link {
+            padding:0.5rem 0.8rem;
+          }
+        }
       }
     }
   }
@@ -42,7 +50,7 @@
     }
   }
   .single-menu-nav-wrapper {
-    max-width: 1168px;
+    max-width: 1248px;
     margin: 0 auto;
     justify-content: space-between;
     .page-right-navbar {
