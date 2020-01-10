@@ -558,7 +558,6 @@ class Transfers extends React.Component {
                 </div>
                 <div style={listCommonSty}>
                   <div style={listTitleStyle}>
-                  
                     <FormattedNumber
                       value={
                         tokensInfo.tokenDetail.decimals === 0
@@ -589,11 +588,12 @@ class Transfers extends React.Component {
                       {''} USD = {''}
                       <FormattedNumber
                         value={
+                          tokensInfo.tokenDetail.market_info?
                           tokensInfo.tokenDetail.decimals === 0
                             ? new BigNumber(
                                 tokensInfo.transfer.balance
                               ).multipliedBy(
-                                tokensInfo.tokenDetail.market_info?tokensInfo.tokenDetail.market_info.priceInTrx:1
+                                tokensInfo.tokenDetail.market_info?tokensInfo.tokenDetail.market_info.priceInTrx:0
                               )
                             : new BigNumber(tokensInfo.transfer.balance)
                                 .dividedBy(
@@ -602,6 +602,7 @@ class Transfers extends React.Component {
                                 .multipliedBy(
                                   tokensInfo.tokenDetail.market_info?tokensInfo.tokenDetail.market_info.priceInTrx:1
                                 )
+                          :0
                         }
                         minimumFractionDigits={2}
                         maximumFractionDigits={2}
