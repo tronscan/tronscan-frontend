@@ -191,6 +191,7 @@ function TriggerContract({contract,intl}){
                               "from_address"
                             ]
                           }
+                          isContract={contract.contract_map[contract.tokenTransferInfo["from_address"]]}
                         >
                           {
                             contract.tokenTransferInfo[
@@ -211,6 +212,7 @@ function TriggerContract({contract,intl}){
                               "to_address"
                             ]
                           }
+                          isContract={contract.contract_map[contract.tokenTransferInfo["to_address"]]}
                         >
                           {
                             contract.tokenTransferInfo[

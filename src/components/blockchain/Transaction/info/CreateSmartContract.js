@@ -92,10 +92,10 @@ function CreateSmartContract({contract,intl}){
           </Field>
           <Field label="contract_name">{contract.new_contract.name}</Field>
           <Field label="contract_enery" tip text={t('contract_enery_tip')}>
-            {tu("contract_percent")}
+            {tu("contract_percent")}&nbsp;
             {100 - contract.new_contract.consume_user_resource_percent}%,
             {"  "}
-            {tu("contract_percent_user")}
+            {tu("contract_percent_user")}&nbsp;
             {contract.new_contract.consume_user_resource_percent}%
           </Field>
           <Field label="contract_init_assets" tip="true" text={t('contract_init_assets_tip')}>{value}</Field>
