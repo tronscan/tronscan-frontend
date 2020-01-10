@@ -565,86 +565,95 @@ class ContractCompiler extends React.Component {
                 throw new Error('Not getting transaction info!');
             }
 
-            const { id, receipt, resMessage } = transactionInfo;
+        
+            if(IS_MAINNET){
+                const { id, receipt, resMessage } = transactionInfo;
 
-            if (id) {
-                if (receipt.result === 'SUCCESS') {
-                    infoData = [{
-                        type: 'success',
-                        class: 'deploy',
-                        content: `Successful deployed contract '${contractName}'. Cost: ${
-                            receipt.energy_fee
-                                ? toThousands(receipt.energy_fee / 1000000)
-                                : 0
-                        } TRX, ${
-                            receipt.energy_usage
-                                ? toThousands(receipt.energy_usage)
-                                : 0
-                        } energy. Transaction confirm here <a href="/#/transaction/${
-                            id}" target='_blank' class="info_link">${id}</a>`
-                    }];
-                    CompileStatus.push.apply(CompileStatus, infoData);
-                    const base58Adress = tronWeb.address.fromHex(signed.contract_address);
-                    infoData = [{
-                        type: 'success',
-                        class: 'deploy',
-                        content: `Contract address: <a href="/#/contract/${
-                            base58Adress}/code" target='_blank' class="info_link"> ${
-                            base58Adress}</a>`
-                    }];
-                    CompileStatus.push.apply(CompileStatus,infoData);
+                if (id) {
+                    if (receipt.result === 'SUCCESS') {
+                        infoData = [{
+                            type: 'success',
+                            class: 'deploy',
+                            content: `Successful deployed contract '${contractName}'. Cost: ${
+                                receipt.energy_fee
+                                    ? toThousands(receipt.energy_fee / 1000000)
+                                    : 0
+                            } TRX, ${
+                                receipt.energy_usage
+                                    ? toThousands(receipt.energy_usage)
+                                    : 0
+                            } energy. Transaction confirm here <a href="/#/transaction/${
+                                id}" target='_blank' class="info_link">${id}</a>`
+                        }];
+                        CompileStatus.push.apply(CompileStatus, infoData);
+                        const base58Adress = tronWeb.address.fromHex(signed.contract_address);
+                        infoData = [{
+                            type: 'success',
+                            class: 'deploy',
+                            content: `Contract address: <a href="/#/contract/${
+                                base58Adress}/code" target='_blank' class="info_link"> ${
+                                base58Adress}</a>`
+                        }];
+                        CompileStatus.push.apply(CompileStatus,infoData);
 
-                    const params = {
-                        contractAddress: base58Adress,
-                        contractName,
-                        optimizer,
-                        runs,
-                        compiler: compilerVersion,
-                        byteCode: bytecode,
-                        abi: JSON.stringify(abi)
-                    };
+                        const params = {
+                            contractAddress: base58Adress,
+                            contractName,
+                            optimizer,
+                            runs,
+                            compiler: compilerVersion,
+                            byteCode: bytecode,
+                            abi: JSON.stringify(abi)
+                        };
 
-                    // 部署后更新合约
-                    // const { data } = await xhr.post(`${API_URL}/api/solidity/contract/deploy`, params);
-                    const { data } = await xhr.post(`${CONTRACT_NODE_API}/api/solidity/contract/deploy`, params);
-                    const { code } = data;
-                    if (code == 200){
+                        // 部署后更新合约
+                        // const { data } = await xhr.post(`${API_URL}/api/solidity/contract/deploy`, params);
+                        const { data } = await xhr.post(`${CONTRACT_NODE_API}/api/solidity/contract/deploy`, params);
+                        const { code } = data;
+                        if (code == 200){
+                            this.setState({
+                                CompileStatus,
+                                deployLoading: false,
+                            });
+                        }
+                    } else if (receipt.result == 'OUT_OF_ENERGY') {
+                        infoData = [{
+                            type: 'error',
+                            class:'deploy',
+                            content: `FAILED deploying ${name}. You lost: ${
+                                receipt.energy_fee
+                                    ? toThousands(receipt.energy_fee / 1000000)
+                                    : 0
+                            } TRX\nReason: ${
+                                tronWeb.toUtf8(resMessage)}. Transaction here <a href="/#/transaction/${
+                                id}" class="info_link" target='_blank'>${id}</a>`
+                        }];
+                        CompileStatus.push.apply(CompileStatus, infoData);
+                        this.setState({
+                            CompileStatus,
+                            deployLoading: false,
+                        });
+                    } else {
+                        infoData = [{
+                            type: 'error',
+                            content: `FAILED deploying ${contractName}.\nView transaction here <a href="/#/transaction/${
+                                id}" class="info_link" target='_blank'>${id}</a>`
+                        }];
+                        CompileStatus.push.apply(CompileStatus, infoData);
                         this.setState({
                             CompileStatus,
                             deployLoading: false,
                         });
                     }
-                } else if (receipt.result == 'OUT_OF_ENERGY') {
-                    infoData = [{
-                        type: 'error',
-                        class:'deploy',
-                        content: `FAILED deploying ${name}. You lost: ${
-                            receipt.energy_fee
-                                ? toThousands(receipt.energy_fee / 1000000)
-                                : 0
-                        } TRX\nReason: ${
-                            tronWeb.toUtf8(resMessage)}. Transaction here <a href="/#/transaction/${
-                            id}" class="info_link" target='_blank'>${id}</a>`
-                    }];
-                    CompileStatus.push.apply(CompileStatus, infoData);
-                    this.setState({
-                        CompileStatus,
-                        deployLoading: false,
-                    });
-                } else {
-                    infoData = [{
-                        type: 'error',
-                        content: `FAILED deploying ${contractName}.\nView transaction here <a href="/#/transaction/${
-                            id}" class="info_link" target='_blank'>${id}</a>`
-                    }];
-                    CompileStatus.push.apply(CompileStatus, infoData);
-                    this.setState({
-                        CompileStatus,
-                        deployLoading: false,
-                    });
                 }
+            }else{
+                const { id, receipt, resMessage } = transactionInfo;
+
             }
+
         } while (!transactionInfo.id);
+
+        
     }
 
     /**
