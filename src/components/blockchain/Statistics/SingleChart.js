@@ -506,7 +506,7 @@ class Statistics extends React.Component {
 
     async loadTxOverviewStatsType() {
         let { txOverviewStats } = await Client.getTxOverviewStatsAll();
-        console.log('txOverviewStats',txOverviewStats)
+        
 
         let temp = [];
         let addressesTemp = [];
@@ -588,7 +588,7 @@ class Statistics extends React.Component {
         let higest = {date: '', increment: ''};
         let lowest = {date: '', increment: ''};
         let tx = cloneDeep(txOverviewStats).sort(compare('totalTransaction'));
-    
+  
         this.setState({
             summit: {
                 txOverviewStatsType_sort: [

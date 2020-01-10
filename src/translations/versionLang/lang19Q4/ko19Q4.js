@@ -186,5 +186,23 @@ export const lang19Q4 = {
    "Supply_amount_net_new_y_title":"수율 / 순 가치 (TRX)",
    "Supply_amount_net_new_tip":"TRX 생성 + TRX 소각",
    "votes_num":"투표",
+
+   /*
+        ##################################################################################
+        #                                                                                #
+        # txns type chart  2020-01-09                           #
+        #                                                                                #
+        ##################################################################################
+    */
+   "txns_contract_calls":"계약 호출 거래수",
+   "txns_TRX_transfers":"TRX 이체 거래수",
+   "txns_TRC10_transfers":"TRC10 이체 거래수",
+   "txns_frozen_transactions":"동결 거래수",
+   "txns_votes_transactions":"투표 거래수",
+   "txns_other_transactions":"기타 거래수",
+   "txns_shielded_transactions":"익명 거래수",
+   "chart_network_resources":"네트워크 리소스",
+   "chart_active_accounts":"네트워크",
+   "chart_network":"네트워크",
   
 }

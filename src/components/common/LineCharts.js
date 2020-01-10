@@ -2878,6 +2878,11 @@ export class LineTxOverviewStatsType extends React.Component {
             shieldedTxns.push(val['shielded_transaction_num']);
            // timestamp.push(val['date']);
         })
+
+        let pointsStart = newData[0].date || Date.UTC(2018,6,1);
+        let pointsInterval =  24 * 3600 * 1000
+        let colors = ['#7cb5ec', '#90ed7d', '#f7a35c', '#8085e9', 
+        '#f15c80', '#e4d354', '#8d4653', '#91e8e1']
          
         if (newData && newData.length > 0) {
             let options =  {
@@ -2938,8 +2943,7 @@ export class LineTxOverviewStatsType extends React.Component {
                       },
                       opposite: false,
                       visible: true,
-                    
-                     
+                                         
                     },
                     { // Secondary yAxis
                       title: {
@@ -2955,6 +2959,7 @@ export class LineTxOverviewStatsType extends React.Component {
                         
                       },
                       opposite: true,
+                      visible: true
                     },
                     
                 ],
@@ -2987,7 +2992,7 @@ export class LineTxOverviewStatsType extends React.Component {
                         var s;
                         var points = this.points;
                         var pointsLength = points.length;
-                        console.log('points',points)
+                       
                         s = '<table class="tableformat" style="border: 0px;padding-left:10px;padding-right:10px" min-width="100%"><tr><td colspan=2 style="padding-bottom:5px;"><span style="font-size: 10px;"> ' + moment(points[0].x).format("YYYY-MM-DD") + '</span><br></td></tr>'
                         for (let index = 0; index < pointsLength; index += 1) {
                             s += '<tr><td style="padding-top:4px;padding-bottom:4px;border-top:1px solid #D5D8DC;color:' + points[index].series.color + ';" valign="top">' + '<span style="color:' + points[index].series.color + ';font-size: 15px !important;">\u25A0</span> ' + intl.formatMessage({id: points[index].series.name })+ '</td>' +
@@ -3009,50 +3014,50 @@ export class LineTxOverviewStatsType extends React.Component {
                 {
                     name: intl.formatMessage({id: 'total_transactions'}),
                     type: 'spline',
-                    color: "#C64844",
+                    color: colors[0],
                     data: totalTxns,
-                    pointStart: Date.UTC(2019, 6, 1),
-                    pointInterval: 24 * 3600 * 1000 , // one day
+                    pointStart: pointsStart,
+                    pointInterval: pointsInterval , // one day
                     
                 },
                 {
                     name: intl.formatMessage({id: 'txns_contract_calls'}),
                     type: 'spline',
                    // yAxis: 1,
-                   // color: "#DA8885",
+                    color: colors[1],
                     data: triggersTxns,
-                    pointStart: Date.UTC(2019, 6, 1),
-                    pointInterval: 24 * 3600 * 1000 , // one day
+                    pointStart: pointsStart,
+                    pointInterval:pointsInterval , // one day
                    
                 },
                 {
                     name: intl.formatMessage({id: 'txns_TRX_transfers'}),
                     type: 'spline',
                     yAxis: 1,
-                   // color: "#DA8885",
+                    color: colors[2],
                     data: trxTransferTxns,
-                    pointStart: Date.UTC(2019, 6, 1),
-                    pointInterval: 24 * 3600 * 1000 , // one day
+                    pointStart: pointsStart,
+                    pointInterval: pointsInterval , // one day
                     
                 },
                 {
                     name: intl.formatMessage({id: 'txns_TRC10_transfers'}),
                     type: 'spline',
                     yAxis: 1,
-                   // color: "#DA8885",
+                   color: colors[3],
                     data: trc10TransferTxns,
-                    pointStart: Date.UTC(2019, 6, 1),
-                    pointInterval: 24 * 3600 * 1000 , // one day
+                    pointStart: pointsStart,
+                    pointInterval: pointsInterval , // one day
                     
                 },
                 {
                     name: intl.formatMessage({id: 'txns_frozen_transactions'}),
                     type: 'spline',
                     yAxis: 1,
-                   // color: "#DA8885",
+                    color: colors[4],
                     data: freezeTxns,
-                    pointStart: Date.UTC(2019, 6, 1),
-                    pointInterval: 24 * 3600 * 1000 , // one day
+                    pointStart: pointsStart,
+                    pointInterval: pointsInterval , // one day
                     
                 },
                
@@ -3060,19 +3065,19 @@ export class LineTxOverviewStatsType extends React.Component {
                     name: intl.formatMessage({id: 'txns_votes_transactions'}),
                     type: 'spline',
                     yAxis: 1,
-                   // color: "#DA8885",
+                   color: colors[5],
                     data: voteTxns,
-                    pointStart: Date.UTC(2019, 6, 1),
-                    pointInterval: 24 * 3600 * 1000 , // one day
+                    pointStart: pointsStart,
+                    pointInterval: pointsInterval , // one day
                 },
                 {
                     name: intl.formatMessage({id: 'txns_other_transactions'}),
                     type: 'spline',
                     yAxis: 1,
-                   // color: "#DA8885",
+                   color: colors[6],
                     data: otherTxns,
-                    pointStart: Date.UTC(2019, 6, 1),
-                    pointInterval: 24 * 3600 * 1000 , // one day
+                    pointStart: pointsStart,
+                    pointInterval: pointsInterval , // one day
                     
                 },
                 // {
