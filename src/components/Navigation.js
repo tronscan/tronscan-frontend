@@ -47,7 +47,7 @@ import Lockr from "lockr";
 import {BarLoader} from "./common/loaders";
 import {Truncate} from "./common/text";
 import { TRXPrice } from "./common/Price";
-import { Icon, Select,Tooltip,Drawer,Collapse } from 'antd';
+import { Icon,Tooltip,Drawer,Collapse,Divider } from 'antd';
 import isMobile from '../utils/isMobile';
 import {Client} from '../services/api';
 import $ from 'jquery';
@@ -136,7 +136,7 @@ class Navigation extends React.Component {
     });
     Lockr.set("NET", IS_MAINNET?'mainnet':'sunnet')
     this.loadTrxPrices()
-    this.oTimer = setInterval(() => this.loadTrxPrices(), 10000);
+    this.oTimer = setInterval(() => this.loadTrxPrices(), 1000*60*10);
 
   }
 
@@ -150,7 +150,6 @@ class Navigation extends React.Component {
       var { data: dataEurObj } = await xhr.get(
           `${API_URL}/api/system/proxy?url=${eurURL}`
       );
-      console.log(dataEurObj,'dataEurObj')
       if (dataEurObj.length > 0) {
         let percent_change_24h = dataEurObj[0].percent_change_24h;
         this.setState({
@@ -904,6 +903,7 @@ class Navigation extends React.Component {
                                   }}>
                             {tu("sign_in")}
                           </button>
+                   
                         </li>
                         {/* <li className="dropdown-divider blod"/> */}
                         <li className="px-3 py-4">
@@ -1031,7 +1031,8 @@ class Navigation extends React.Component {
           {popup}
           <div className="logo-wrapper">
             {/* zh  ko ar fa nav menu flex space-between*/}
-            <div className={activeLanguage === 'zh' || activeLanguage === 'ko' || activeLanguage === 'ar' || activeLanguage === 'fa' ? "py-2 d-flex px-0 single-menu-nav-wrapper" : "py-2 d-flex px-0 menu-nav-wrapper"}>
+            {/* <div className={activeLanguage === 'zh' || activeLanguage === 'ko' || activeLanguage === 'ar' || activeLanguage === 'fa' ? "py-2 d-flex px-0 single-menu-nav-wrapper" : "py-2 d-flex px-0 menu-nav-wrapper"}> */}
+            <div className={"py-2 d-flex px-0 menu-nav-wrapper"}>
               <div className="logoTrxPrice">
                 <div className="mobileFlexible">
                   <Link to="/">
@@ -1115,8 +1116,9 @@ class Navigation extends React.Component {
                                     {route.label !== 'home_page' && route.label !== 'Poloni DEX'?<Icon type="caret-down" /> : null}
                                    
                                     </span>
+                                    <i className="hot-nav"></i>
                                   </NavLink>
-                                  <i className="hot-nav"></i>
+                                 
                                   </span>
                                   
                             }
@@ -1299,7 +1301,7 @@ class Navigation extends React.Component {
               
 
               <div className="loginInfoNavBar">
-                <div className="navbar navbar-expand-md navbar-dark py-0 page-right-navbar">
+                <div className={IS_MAINNET ? "navbar navbar-expand-md navbar-dark py-0 page-right-navbar mainetMargin" : "navbar navbar-expand-md navbar-dark py-0 page-right-navbar"}>
                   <ul className="navbar-nav navbar-right wallet-nav">
                     {
                       wallet.isOpen && <Notifications wallet={wallet} notifications={notifications}/>
