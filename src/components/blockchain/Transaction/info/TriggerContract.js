@@ -356,7 +356,7 @@ function TriggerContract({contract,intl}){
                     {/* <div className="content_name">
                       {tu("contract_method")}:
                     </div> */}
-                    <div className="flex1">
+                    <div className="flex1" style={{wordBreak: 'break-all'}}>
                       {contract.method}
                     </div>
                   </div>
@@ -370,7 +370,7 @@ function TriggerContract({contract,intl}){
                           <div className="content_name">
                             {p}:
                           </div>
-                          <div className="flex1">
+                          <div className="flex1" style={{wordBreak: 'break-all'}}>
                             {contract.parameter[p]}
                           </div>
                         </div>
