@@ -733,7 +733,7 @@ export default class MobilePanelGroup extends Component {
                     )}
                   </Link>
                 </div>
-                <div className="col-6">
+                {/* <div className="col-6">
                   <HrefLink
                     href="https://coinmarketcap.com/currencies/tron/"
                     target="_blank"
@@ -748,7 +748,7 @@ export default class MobilePanelGroup extends Component {
                       <TRXPrice amount={1} currency="USD" source="home" />
                     </h2>
                   </HrefLink>
-                </div>
+                </div> */}
               </div>
             </div>
           </div>

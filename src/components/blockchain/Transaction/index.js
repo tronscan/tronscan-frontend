@@ -113,7 +113,8 @@ class Transaction extends React.Component {
               ...{info:transaction.info},
               timestamp:transaction.timestamp,
               hash: transaction['hash'],
-              signature_addresses: transaction.signature_addresses
+              signature_addresses: transaction.signature_addresses,
+              contract_map: transaction.contract_map
             }} />
           ),
         },

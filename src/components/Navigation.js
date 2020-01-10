@@ -47,7 +47,7 @@ import Lockr from "lockr";
 import {BarLoader} from "./common/loaders";
 import {Truncate} from "./common/text";
 import { TRXPrice } from "./common/Price";
-import { Icon,Tooltip,Drawer,Collapse } from 'antd';
+import { Icon,Tooltip,Drawer,Collapse,Divider } from 'antd';
 import isMobile from '../utils/isMobile';
 import {Client} from '../services/api';
 import $ from 'jquery';
@@ -903,6 +903,7 @@ class Navigation extends React.Component {
                                   }}>
                             {tu("sign_in")}
                           </button>
+                   
                         </li>
                         {/* <li className="dropdown-divider blod"/> */}
                         <li className="px-3 py-4">
@@ -1300,7 +1301,7 @@ class Navigation extends React.Component {
               
 
               <div className="loginInfoNavBar">
-                <div className="navbar navbar-expand-md navbar-dark py-0 page-right-navbar">
+                <div className={IS_MAINNET ? "navbar navbar-expand-md navbar-dark py-0 page-right-navbar mainetMargin" : "navbar navbar-expand-md navbar-dark py-0 page-right-navbar"}>
                   <ul className="navbar-nav navbar-right wallet-nav">
                     {
                       wallet.isOpen && <Notifications wallet={wallet} notifications={notifications}/>
