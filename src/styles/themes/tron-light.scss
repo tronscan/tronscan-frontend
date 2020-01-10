@@ -20,6 +20,9 @@
           }
         }
       }
+      .nav-link{
+        padding:0.5rem 1rem;
+      }
     }
   }
   .menu-nav-wrapper {
@@ -944,6 +947,7 @@ $color: #c23631;
         word-wrap: break-word;
       }
     }
+
   }
   .navbar-dark .navbar-nav .nav-link {
     color: $color-grey-100;
