@@ -189,6 +189,23 @@ export const lang19Q4 = {
    "Supply_amount_net_new_y_title":"Доходность / Чистая стоимость (TRX)",
    "Supply_amount_net_new_tip":"TRX поколение + TRX уничтожение",
    "votes_num":"голосов",
+   /*
+        ##################################################################################
+        #                                                                                #
+        # txns type chart  2020-01-09                           #
+        #                                                                                #
+        ##################################################################################
+    */
+   "txns_contract_calls":"Вызов контракта",
+   "txns_TRX_transfers":"TRX переводы",
+   "txns_TRC10_transfers":"TRC10 переводы",
+   "txns_frozen_transactions":"Замороженные Транзакции",
+   "txns_votes_transactions":"Голоса",
+   "txns_other_transactions":"Другие транзакции",
+   "txns_shielded_transactions":"Анонимные транзакции",
+   "chart_network_resources":"Сетевые ресурсы",
+   "chart_active_accounts":"Активные аккаунты",
+   "chart_network":"Сеть",
   
 
 }

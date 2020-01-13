@@ -428,11 +428,11 @@ class Code extends React.Component {
             let retValue = false;
             if(!broadcast.result){
               retValue = false;
-              //console.log('retValue222222',retValue)
+            
             }else{
               retValue = await this.getTxResult(signedTransaction.txID);
             }
-            //console.log('retValue3333333',retValue)
+           
             this.setState({
               result: this.formatOutputs(retValue)
             });

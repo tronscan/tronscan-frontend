@@ -73,7 +73,6 @@ export function withTronWeb(InnerComponent) {
         // check if private key insides permission list
         // const address = tronWeb.address.toHex(tronWeb.address.fromPrivateKey(privateKey)).toLowerCase();
         const address = tronWeb.address.toHex(this.props.wallet.address).toLowerCase();
-        console.log('address',address);
         const signWeight = await tronWeb.trx.getSignWeight(transaction, permissionId);
 
         if (signWeight.result.code === 'PERMISSION_ERROR') {

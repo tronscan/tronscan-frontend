@@ -14,7 +14,11 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
+<<<<<<< HEAD
   "/precache-manifest.beaab05017930b7f1672c661816ff5ed.js"
+=======
+  "/precache-manifest.ce49010373c22bfce88c3f71950a5dbf.js"
+>>>>>>> origin/feature/txns-type-chart
 );
 
 self.addEventListener('message', (event) => {
