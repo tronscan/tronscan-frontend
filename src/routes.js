@@ -192,7 +192,7 @@ export const routes = [
         label: "contract_deployment",
         icon: "fas fa-file-signature",
         component: ContractCompilerAsync,
-        showInMenu: IS_MAINNET ? true : false
+        // showInMenu: IS_MAINNET ? true : false
       },
       {
         path: "/contracts/contract-compiler/:type",

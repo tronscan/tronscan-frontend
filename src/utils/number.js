@@ -66,7 +66,6 @@ export function FormatNumberByDecimalsBalance(number, decimals) {
         return 0;
     }
     let curDecimals = Number(decimals)
-    console.log()
     if (curDecimals) {
         const numberString = number.toString();
         const arr = numberString.split(".");
