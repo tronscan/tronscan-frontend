@@ -42,7 +42,8 @@ class AssetIssueContract extends React.Component {
   createTime(){
     let {contract} = this.props;
     let timestamp = contract.timestamp || 0;
-    let freezeTimeStamp = contract.frozen_supply[0].frozen_days || 0
+    let frozen_supply = contract.frozen_supply && contract.frozen_supply[0] ? contract.frozen_supply[0] : {}
+    let freezeTimeStamp = frozen_supply.frozen_days || 0
     let createTime = timestamp + freezeTimeStamp*24*60*60*1000;
    
     this.setState({
@@ -55,7 +56,8 @@ class AssetIssueContract extends React.Component {
     let { contract,activeLanguage } = this.props;
     let {createTime,TrxUnit} = this.state;
     let signList = contract.signature_addresses || [];
-
+    let frozen_supply = contract.frozen_supply && contract.frozen_supply[0] ? contract.frozen_supply[0] : {}
+    
     return (
       <Fragment>
         <TransationTitle contractType={contract.contractType}></TransationTitle>
@@ -127,16 +129,16 @@ class AssetIssueContract extends React.Component {
                   "-"
                 )}
               </Field>
-              <Field label="transaction_frozen_number">
+              {frozen_supply.frozen_amount && <Field label="transaction_frozen_number">
                 <FormattedNumber
                   value={
-                    (contract.frozen_supply[0].frozen_amount || 0) / ONE_TRX
+                    ((frozen_supply.frozen_amount) || 0) / ONE_TRX
                   }
                 ></FormattedNumber>
-              </Field>
-              <Field label="transaction_frozen_day">
-                {contract.frozen_supply[0].frozen_days || 0} {tu('day')}{activeLanguage == 'en' && contract.frozen_supply[0].frozen_days>1 && 's'}
-              </Field>
+              </Field>}
+              {frozen_supply.frozen_days && <Field label="transaction_frozen_day">
+                {(frozen_supply.frozen_days) || 0} {tu('day')}{activeLanguage == 'en' && frozen_supply.frozen_days>1 && 's'}
+              </Field>}
               <Field label="transaction_unfreeze_time">
                   <FormattedDate value={createTime} />{" "}
                   <FormattedTime
