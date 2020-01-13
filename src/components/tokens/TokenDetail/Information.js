@@ -268,7 +268,7 @@ export function Information({
              name: "token_website",
              content: (
                <div>
-                 {token.website != 'no_message' ? <ExternalLink url={token.website} /> : token.url ? (
+                 {token.website && token.website != 'no_message' ? <ExternalLink url={token.website} /> : token.url ? (
                    token.id == TOKEN_ID_BTT ? (
                      <HrefLink href={token.url}>{token.url}</HrefLink>
                    ) : (
