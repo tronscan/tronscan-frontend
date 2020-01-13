@@ -594,18 +594,18 @@ class Statistics extends React.Component {
 
         let higest = {date: '', increment: ''};
         let lowest = {date: '', increment: ''};
-        let tx = cloneDeep(txOverviewStats).sort(compare('totalTransaction'));
+        let tx = cloneDeep(txOverviewStats).sort(compare('newTransactionSeen'));
   
         this.setState({
             summit: {
                 txOverviewStatsType_sort: [
                     {
                         date: tx[tx.length - 1].date,
-                        increment: tx[tx.length - 1].totalTransaction
+                        increment: tx[tx.length - 1].newTransactionSeen
                     },
                     {
                         date: tx[0].date,
-                        increment: tx[0].totalTransaction
+                        increment: tx[0].newTransactionSeen
                     }],
             }
         });
