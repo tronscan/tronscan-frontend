@@ -751,7 +751,7 @@ export const messages = {
   "what_is_tron": "TRON whitepaper V2.0",
   "tron_explorer_api": "TRONSCAN API",
   "tron_architechure": "Архитектура TRON",
-  "tron_protobuf_doc": "Документация Protobuf TRON",
+  "tron_protobuf_doc": "Документация Protobuf",
   "report_an_error": "Отправить сообщение об ошибке / предложение",
   "frequently_asked_questions": "FAQ",
   "telegram": "Telegram",

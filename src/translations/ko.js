@@ -741,7 +741,7 @@ export const messages = {
   "what_is_tron": "TRON 백서V2.0",
   "tron_explorer_api": "TRONSCAN API",
   "tron_architechure": "TRON 구조",
-  "tron_protobuf_doc": "TRON Protobuf문서",
+  "tron_protobuf_doc": "Protobuf문서",
   "report_an_error": "BUG제출/건의",
   "frequently_asked_questions": "자주 묻는 질문",
   "telegram_updates": "Telegram 업데이트",

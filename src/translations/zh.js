@@ -745,7 +745,7 @@ export const messages = {
     "what_is_tron": "波场白皮书 V2.0",
     "tron_explorer_api": "TRONSCAN API",
     "tron_architechure": "波场架构",
-    "tron_protobuf_doc": "TRON Protobuf文档",
+    "tron_protobuf_doc": "Protobuf文档",
     "report_an_error": "提交BUG/建议",
     "frequently_asked_questions": "常见问题",
     "telegram_updates": "Telegram更新",

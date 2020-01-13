@@ -177,7 +177,7 @@ export const lang19Q4 = {
     "index_page_footer_team_info":"Team info",
     "index_page_footer_feedback":"Feedback",
     "index_page_footer_expand":"Expand",
-    "index_page_footer_donate_address":"The address is held by Tron. Your donation helps build a better TRON ecosystem.",
+    "index_page_footer_donate_address":"The address is held by Tron. Your donation helps build a better ecosystem.",
     "index_page_confirmed_blocks":"Confirmed blocks",
     "index_page_confirmed_blocks_tips":"Blocks confirmed by over 19  SRs",
     "index_page_switch_tokens":"Switch tokens",
