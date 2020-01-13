@@ -160,7 +160,7 @@ class Transaction extends React.Component {
                           transaction.hasOwnProperty("contractRet") && <tr>
                             <th>{tu("result")}</th>
                             <td>
-                              {transaction.contractRet.toUpperCase() === SUCCESS ? SUCCESS : <span className="fail-result text-uppercase"><Icon type="close-circle" className="mr-1 icon-close" />FAIL{IS_MAINNET && transaction.info.resMessage ? `-${transaction.info.resMessage}` : ''}</span>}
+                              {transaction.contractRet.toUpperCase() === SUCCESS ? SUCCESS : <span className="fail-result text-uppercase"><Icon type="close-circle" className="mr-1 icon-close" />FAIL{IS_MAINNET && transaction.info && transaction.info.resMessage ? `-${transaction.info.resMessage}` : ''}</span>}
                             </td>
                           </tr>
                         }
