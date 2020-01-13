@@ -2899,7 +2899,7 @@ export class LineTxOverviewStatsType extends React.Component {
                 exporting: {
                     enabled: true,
                     sourceWidth: 1072,
-                    sourceHeight: 580,
+                    sourceHeight: 500,
                     filename:intl.formatMessage({id: 'charts_daily_transactions'})
                 },
                 xAxis: {
