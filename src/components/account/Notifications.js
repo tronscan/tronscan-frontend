@@ -188,7 +188,7 @@ class Notifications extends React.Component {
         <li className="nav-item dropdown">
           {modal}
           <a className="nav-link dropdown-toggle" data-toggle="dropdown" href="javascript:;">
-            <Divider type="vertical" style={{marginRight:'1rem'}}/>
+            <Divider type="vertical" style={{marginRight:'1rem',height: '1.2em'}}/>
             <i className="fa fa-bell mr-2"/>
             {
               notifications.length > 0 &&

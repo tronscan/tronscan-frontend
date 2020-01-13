@@ -840,7 +840,7 @@ class Navigation extends React.Component {
                   <div className="nav-link dropdown-toggle nav-item" onClick={(e) => {
                     isMobile && this.clickLoginWithPk(e)
                   }}>
-                    <Divider type="vertical" style={{marginRight:'1rem'}}/>
+                    <Divider type="vertical" style={{marginRight:'1rem',height: '1.2em'}}/>
                     {tu("open_wallet")}
                   
                     <ul className="dropdown-menu dropdown-menu-right nav-login-wallet" style={{minWidth: style_width}}>
