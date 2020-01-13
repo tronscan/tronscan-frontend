@@ -413,7 +413,7 @@ class ContractCompiler extends React.Component {
         const { account: { tronWeb,sunWeb } } = this.props;
        
         const { name } = options;
-
+        const tron = IS_MAINNET ? tronWeb : sunWeb.sidechain
         // 统计代码
         this.gTagHandler('deploy');
 
@@ -439,7 +439,7 @@ class ContractCompiler extends React.Component {
                 compileLoading: false
             });
             
-            const unsigned = IS_MAINNET ? await tronWeb.transactionBuilder.createSmartContract(options) : await sunWeb.sidechain.transactionBuilder.createSmartContract(options);
+            const unsigned = await tron.transactionBuilder.createSmartContract(options);
             // const unsigned = await tronWeb.transactionBuilder.createSmartContract(options);
             
 
@@ -456,7 +456,7 @@ class ContractCompiler extends React.Component {
                 CompileStatus,
             });
 
-            const signed = IS_MAINNET ? await tronWeb.trx.sign(unsigned) : await sunWeb.sidechain.trx.sign(unsigned);
+            const signed = await tron.trx.sign(unsigned)
             // const signed = await tronWeb.sidechain.trx.sign(unsigned);
             infoData = [{
                 type: 'info',
@@ -471,7 +471,7 @@ class ContractCompiler extends React.Component {
                 CompileStatus,
             });
 
-            const broadcastResult = IS_MAINNET ? await tronWeb.trx.sendRawTransaction(signed) : await sunWeb.sidechain.trx.sendRawTransaction(signed);
+            const broadcastResult = await tron.trx.sendRawTransaction(signed);
             // const broadcastResult = await tronWeb.sidechain.trx.sendRawTransaction(signed);
 
             this.setState({
@@ -541,13 +541,14 @@ class ContractCompiler extends React.Component {
         let infoData = [];
 
         let transactionInfo = {};
+        const tron = IS_MAINNET ? tronWeb : sunWeb.sidechain
 
         do {
 
             // 部署合约
             await this.timeout(20000);
            
-            transactionInfo = IS_MAINNET ? await tronWeb.trx.getTransactionInfo(txID) : sunWeb.sidechain.trx.getTransaction(txID)
+            transactionInfo = await tron.trx.getTransactionInfo(txID)
                 .catch (e => {
                     infoData = [{
                         type: 'error',
@@ -566,89 +567,84 @@ class ContractCompiler extends React.Component {
             }
 
         
-            if(IS_MAINNET){
-                const { id, receipt, resMessage } = transactionInfo;
+            const { id, receipt, resMessage } = transactionInfo;
 
-                if (id) {
-                    if (receipt.result === 'SUCCESS') {
-                        infoData = [{
-                            type: 'success',
-                            class: 'deploy',
-                            content: `Successful deployed contract '${contractName}'. Cost: ${
-                                receipt.energy_fee
-                                    ? toThousands(receipt.energy_fee / 1000000)
-                                    : 0
-                            } TRX, ${
-                                receipt.energy_usage
-                                    ? toThousands(receipt.energy_usage)
-                                    : 0
-                            } energy. Transaction confirm here <a href="/#/transaction/${
-                                id}" target='_blank' class="info_link">${id}</a>`
-                        }];
-                        CompileStatus.push.apply(CompileStatus, infoData);
-                        const base58Adress = tronWeb.address.fromHex(signed.contract_address);
-                        infoData = [{
-                            type: 'success',
-                            class: 'deploy',
-                            content: `Contract address: <a href="/#/contract/${
-                                base58Adress}/code" target='_blank' class="info_link"> ${
-                                base58Adress}</a>`
-                        }];
-                        CompileStatus.push.apply(CompileStatus,infoData);
+            if (id) {
+                if (receipt.result === 'SUCCESS') {
+                    infoData = [{
+                        type: 'success',
+                        class: 'deploy',
+                        content: `Successful deployed contract '${contractName}'. Cost: ${
+                            receipt.energy_fee
+                                ? toThousands(receipt.energy_fee / 1000000)
+                                : 0
+                        } TRX, ${
+                            receipt.energy_usage
+                                ? toThousands(receipt.energy_usage)
+                                : 0
+                        } energy. Transaction confirm here <a href="/#/transaction/${
+                            id}" target='_blank' class="info_link">${id}</a>`
+                    }];
+                    CompileStatus.push.apply(CompileStatus, infoData);
+                    const base58Adress = tronWeb.address.fromHex(signed.contract_address);
+                    infoData = [{
+                        type: 'success',
+                        class: 'deploy',
+                        content: `Contract address: <a href="/#/contract/${
+                            base58Adress}/code" target='_blank' class="info_link"> ${
+                            base58Adress}</a>`
+                    }];
+                    CompileStatus.push.apply(CompileStatus,infoData);
 
-                        const params = {
-                            contractAddress: base58Adress,
-                            contractName,
-                            optimizer,
-                            runs,
-                            compiler: compilerVersion,
-                            byteCode: bytecode,
-                            abi: JSON.stringify(abi)
-                        };
+                    const params = {
+                        contractAddress: base58Adress,
+                        contractName,
+                        optimizer,
+                        runs,
+                        compiler: compilerVersion,
+                        byteCode: bytecode,
+                        abi: JSON.stringify(abi)
+                    };
 
-                        // 部署后更新合约
-                        // const { data } = await xhr.post(`${API_URL}/api/solidity/contract/deploy`, params);
-                        const { data } = await xhr.post(`${CONTRACT_NODE_API}/api/solidity/contract/deploy`, params);
-                        const { code } = data;
-                        if (code == 200){
-                            this.setState({
-                                CompileStatus,
-                                deployLoading: false,
-                            });
-                        }
-                    } else if (receipt.result == 'OUT_OF_ENERGY') {
-                        infoData = [{
-                            type: 'error',
-                            class:'deploy',
-                            content: `FAILED deploying ${name}. You lost: ${
-                                receipt.energy_fee
-                                    ? toThousands(receipt.energy_fee / 1000000)
-                                    : 0
-                            } TRX\nReason: ${
-                                tronWeb.toUtf8(resMessage)}. Transaction here <a href="/#/transaction/${
-                                id}" class="info_link" target='_blank'>${id}</a>`
-                        }];
-                        CompileStatus.push.apply(CompileStatus, infoData);
-                        this.setState({
-                            CompileStatus,
-                            deployLoading: false,
-                        });
-                    } else {
-                        infoData = [{
-                            type: 'error',
-                            content: `FAILED deploying ${contractName}.\nView transaction here <a href="/#/transaction/${
-                                id}" class="info_link" target='_blank'>${id}</a>`
-                        }];
-                        CompileStatus.push.apply(CompileStatus, infoData);
+                    // 部署后更新合约
+                    // const { data } = await xhr.post(`${API_URL}/api/solidity/contract/deploy`, params);
+                    const { data } = await xhr.post(`${CONTRACT_NODE_API}/api/solidity/contract/deploy`, params);
+                    const { code } = data;
+                    if (code == 200){
                         this.setState({
                             CompileStatus,
                             deployLoading: false,
                         });
                     }
+                } else if (receipt.result == 'OUT_OF_ENERGY') {
+                    infoData = [{
+                        type: 'error',
+                        class:'deploy',
+                        content: `FAILED deploying ${name}. You lost: ${
+                            receipt.energy_fee
+                                ? toThousands(receipt.energy_fee / 1000000)
+                                : 0
+                        } TRX\nReason: ${
+                            tronWeb.toUtf8(resMessage)}. Transaction here <a href="/#/transaction/${
+                            id}" class="info_link" target='_blank'>${id}</a>`
+                    }];
+                    CompileStatus.push.apply(CompileStatus, infoData);
+                    this.setState({
+                        CompileStatus,
+                        deployLoading: false,
+                    });
+                } else {
+                    infoData = [{
+                        type: 'error',
+                        content: `FAILED deploying ${contractName}.\nView transaction here <a href="/#/transaction/${
+                            id}" class="info_link" target='_blank'>${id}</a>`
+                    }];
+                    CompileStatus.push.apply(CompileStatus, infoData);
+                    this.setState({
+                        CompileStatus,
+                        deployLoading: false,
+                    });
                 }
-            }else{
-                const { id, receipt, resMessage } = transactionInfo;
-
             }
 
         } while (!transactionInfo.id);

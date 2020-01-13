@@ -29,7 +29,8 @@ let NODEAPI;
 if (NODE_ENV == "development") {
     MAINNET = Lockr.get("NET") === "mainnet" || !Lockr.get("NET");
     SUNNET = Lockr.get("NET") === "sunnet";
-    NODEAPI = "http://18.222.181.154:9017";
+    // NODEAPI = "https://tronexapi.tronscan.org";
+    NODEAPI = "http://18.222.181.154:9017"
     // NODEAPI = process.env.API_URL;
 } else {
     MAINNET = (window.location.origin === NETURL.MAINNET ||  window.location.origin === NETURL.NEWMAINNET)
@@ -57,6 +58,8 @@ export const PUBLIC_URL = process.env.PUBLIC_URL || window.location.origin;
 //export const API_URL_SUNNET = "http://52.15.68.74:10001";
 
 export const API_URL_SUNNET = "https://dappchainapi.tronscan.org";
+// export const API_URL_SUNNET = "https://dapptronexapi.tronscan.org";
+
 // export const API_URL_MAINNET = 'https://apilist.tronscan.org';
 export const API_URL = IS_SUNNET ? API_URL_SUNNET : process.env.API_URL;
 export const CONTRACT_MAINNET_API_URL = process.env.API_URL;
