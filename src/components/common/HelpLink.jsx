@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Icon } from "antd";
 import { tu, t } from "../../utils/i18n";
 import { injectIntl } from "react-intl";
+import { connect } from "react-redux";
 
 class HelpLinkCont extends Component {
   constructor() {
@@ -18,6 +19,7 @@ class HelpLinkCont extends Component {
       return require(`../../images/home/${src}.png`);
     };
     const { unfold } = this.state;
+    const {activeLanguage} = this.props;
     return (
       <div className="helpLinkWrapper hidden-mobile">
         <ul className="helpLinkContent">
@@ -36,7 +38,7 @@ class HelpLinkCont extends Component {
               </li>
               <li className="help commonLi">
                 <a
-                  href="https://support.tronscan.org/hc/zh-cn/requests/new"
+                  href={ activeLanguage == "zh"?'https://support.tronscan.org/hc/zh-cn/requests/new':'https://support.tronscan.org/hc/en-us/requests/new'}
                   target="_blank"
                 >
                   <span className="img"></span>
@@ -81,5 +83,16 @@ class HelpLinkCont extends Component {
     );
   }
 }
+function mapStateToProps(state) {
+  return {
+    activeLanguage: state.app.activeLanguage,
+   
+  };
+}
 
-export default injectIntl(HelpLinkCont);
+
+
+export default connect(
+  mapStateToProps,
+)(injectIntl(HelpLinkCont))
+
