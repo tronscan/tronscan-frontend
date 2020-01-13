@@ -30,8 +30,8 @@ if (NODE_ENV == "development") {
     MAINNET = Lockr.get("NET") === "mainnet" || !Lockr.get("NET");
     SUNNET = Lockr.get("NET") === "sunnet";
     // NODEAPI = "https://tronexapi.tronscan.org";
-    NODEAPI = "http://18.222.181.154:9017"
-    // NODEAPI = process.env.API_URL;
+    // NODEAPI = "http://18.222.181.154:9017"
+    NODEAPI = process.env.API_URL;
 } else {
     MAINNET = (window.location.origin === NETURL.MAINNET ||  window.location.origin === NETURL.NEWMAINNET)
     SUNNET = (window.location.origin === NETURL.SUNNET ||  window.location.origin === NETURL.NEWSUNNET)
@@ -63,7 +63,7 @@ export const API_URL_SUNNET = "https://dappchainapi.tronscan.org";
 // export const API_URL_MAINNET = 'https://apilist.tronscan.org';
 export const API_URL = IS_SUNNET ? API_URL_SUNNET : process.env.API_URL;
 export const CONTRACT_MAINNET_API_URL = process.env.API_URL;
-export const CONTRACT_NODE_API = NODEAPI;
+export const CONTRACT_NODE_API = IS_MAINNET ? API_URL : 'http://18.222.181.154:9017';
 // export const CONTRACT_NODE_API = API_URL;
 //Token issued
 export const MARKET_API_URL = "https://platform.tron.network";
