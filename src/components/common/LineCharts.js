@@ -3024,12 +3024,11 @@ export class LineTxOverviewStatsType extends React.Component {
                 {
                     name: intl.formatMessage({id: 'txns_contract_calls'}),
                     type: 'spline',
-                   // yAxis: 1,
                     color: colors[1],
                     data: triggersTxns,
                     pointStart: pointsStart,
                     pointInterval:pointsInterval , // one day
-                   
+                    visible: false,
                 },
                 {
                     name: intl.formatMessage({id: 'txns_TRX_transfers'}),
@@ -3039,17 +3038,17 @@ export class LineTxOverviewStatsType extends React.Component {
                     data: trxTransferTxns,
                     pointStart: pointsStart,
                     pointInterval: pointsInterval , // one day
-                    
+                    visible: false,
                 },
                 {
                     name: intl.formatMessage({id: 'txns_TRC10_transfers'}),
                     type: 'spline',
                     yAxis: 1,
-                   color: colors[3],
+                    color: colors[3],
                     data: trc10TransferTxns,
                     pointStart: pointsStart,
                     pointInterval: pointsInterval , // one day
-                    
+                    visible: false,
                 },
                 {
                     name: intl.formatMessage({id: 'txns_frozen_transactions'}),
@@ -3059,7 +3058,7 @@ export class LineTxOverviewStatsType extends React.Component {
                     data: freezeTxns,
                     pointStart: pointsStart,
                     pointInterval: pointsInterval , // one day
-                    
+                    visible: false,
                 },
                
                 {
@@ -3070,15 +3069,17 @@ export class LineTxOverviewStatsType extends React.Component {
                     data: voteTxns,
                     pointStart: pointsStart,
                     pointInterval: pointsInterval , // one day
+                    visible: false,
                 },
                 {
                     name: intl.formatMessage({id: 'txns_other_transactions'}),
                     type: 'spline',
                     yAxis: 1,
-                   color: colors[6],
+                    color: colors[6],
                     data: otherTxns,
                     pointStart: pointsStart,
                     pointInterval: pointsInterval , // one day
+                    visible: false,
                     
                 },
                 // {
