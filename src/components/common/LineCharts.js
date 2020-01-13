@@ -2868,26 +2868,27 @@ export class LineTxOverviewStatsType extends React.Component {
         let timestamp = [];
 
         newData.map((val) => {
-            totalTxns.push(val['totalTransaction']);
-            triggersTxns.push(val['triggers']);
-            trxTransferTxns.push(val['trx_transfer']);
-            trc10TransferTxns.push(val['trc10_transfer']);
-            freezeTxns.push(val['freeze_transaction']);
-            voteTxns.push(val['vote_transaction']);
-            otherTxns.push(val['other_transaction']);
+            totalTxns.push(val['newTransactionSeen_num']);
+            triggersTxns.push(val['triggers_num']);
+            trxTransferTxns.push(val['trx_transfer_num']);
+            trc10TransferTxns.push(val['trc10_transfer_num']);
+            freezeTxns.push(val['freeze_transaction_num']);
+            voteTxns.push(val['vote_transaction_num']);
+            otherTxns.push(val['other_transaction_num']);
             shieldedTxns.push(val['shielded_transaction_num']);
            // timestamp.push(val['date']);
         })
 
-        let pointsStart = newData[0].date || Date.UTC(2018,6,1);
+        let pointsStart = newData[0].date || Date.UTC(2018,5,25);
         let pointsInterval =  24 * 3600 * 1000
-        let colors = ['#7cb5ec', '#90ed7d', '#f7a35c', '#8085e9', 
+        let colors = ['#C64844', '#90ed7d', '#f7a35c', '#8085e9', 
         '#f15c80', '#e4d354', '#8d4653', '#91e8e1']
          
         if (newData && newData.length > 0) {
             let options =  {
                 chart:{
-                    type: 'line'
+                    type: 'line',
+                    zoomType: 'x',
                 },
                 title: {
                     text: intl.formatMessage({id: 'charts_daily_transactions'})
@@ -3065,7 +3066,7 @@ export class LineTxOverviewStatsType extends React.Component {
                     name: intl.formatMessage({id: 'txns_votes_transactions'}),
                     type: 'spline',
                     yAxis: 1,
-                   color: colors[5],
+                    color: colors[5],
                     data: voteTxns,
                     pointStart: pointsStart,
                     pointInterval: pointsInterval , // one day

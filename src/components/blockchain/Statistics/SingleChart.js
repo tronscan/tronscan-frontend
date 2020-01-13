@@ -564,7 +564,14 @@ class Statistics extends React.Component {
         //     });
         // }
         txOverviewStats.map((item, index) => {
-            item.shielded_transaction_num = item.shielded_transaction?item.shielded_transaction:0
+            item.newTransactionSeen_num = item.newTransactionSeen?item.newTransactionSeen:0;
+            item.triggers_num = item.newTrigger?item.newTrigger:0;
+            item.trx_transfer_num = item.trx_transfer?item.trx_transfer:0;
+            item.trc10_transfer_num = item.trc10_transfer?item.trc10_transfer:0;
+            item.freeze_transaction_num = item.freeze_transaction?item.freeze_transaction:0;
+            item.vote_transaction_num = item.vote_transaction?item.vote_transaction:0;
+            item.other_transaction_num = item.other_transaction?item.other_transaction:0;
+            item.shielded_transaction_num = item.shielded_transaction?item.shielded_transaction:0;
         })
        
         this.setState({

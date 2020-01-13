@@ -559,7 +559,7 @@ class StatsCharts extends React.Component {
                     </Link>
                   </div>
                 </div>
-                <div className="col-md-4 mt-5">
+                <div className="col-md-4">
                   <div className="card-chart">
                     <Link className="card-title" to="/blockchain/stats/ContractInvocationDistribution">
                       <span className="ml-5">
