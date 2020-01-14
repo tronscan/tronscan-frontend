@@ -63,6 +63,7 @@ export default class OwnerEdit extends Component{
         const name = target.name;
         let value = name==='threshold'?toNumber(target.value):target.value;
         if(name==='permission_name'){
+            // eslint-disable-next-line 
             value = value.replace(/[^\w\.\/]/ig,'');
         }
         this.setState({

@@ -2351,7 +2351,7 @@ export const messages = {
  "tooltip_accounts":"مجموع کل حساب های زمان واقعی در زنجیره اصلی و شبکه سان .",
  "tooltip_accounts_mainnet":"تعداد حسابهای واقعی در زنجیره اصلی",
  "tooltip_accounts_sunnet":"تعداد حسابهای واقعی در شبکه سان ",
- "tooltip_trxPrice":"TRX قیمت USD را با نوسانات زمان واقعی مقایسه می کند.",
+ "tooltip_trxPrice":"TRX در مقابل قیمت USD",
  "tooltip_trxPrice_mainnet":"TRX قیمت USD را با نوسانات زمان واقعی مقایسه می کند.",
  "tooltip_trxPrice_sunnet":"TRX قیمت USD را با نوسانات زمان واقعی مقایسه می کند.",
  "nav_network":"SUN Network",
