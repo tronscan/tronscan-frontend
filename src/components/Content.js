@@ -1,50 +1,47 @@
-import React, {Component} from 'react';
-import {routes} from "../routes";
-import {Route, Switch, Redirect} from "react-router-dom";
-import {filter, isUndefined} from "lodash";
-import {doSearch} from "../services/search";
+import React, { Component } from "react";
+import { routes } from "../routes";
+import { Route, Switch, Redirect } from "react-router-dom";
+import { filter, isUndefined } from "lodash";
+import { doSearch } from "../services/search";
+
 import { ErrorAsync } from "components/async";
 /*function Badge({value}) {
   return <span className="badge badge-pill bg-light align-text-bottom">{value}</span>;
 }*/
 
-const redirectRoute= <Redirect to="/error" />;
+const redirectRoute = <Redirect to="/error" />;
 
 export default class Content extends Component {
-
   constructor() {
     super();
 
     this.state = {
-      search: '',
+      search: ""
     };
   }
 
   doSearch = async () => {
-    let {search} = this.state;
+    let { search } = this.state;
     let result = await doSearch(search);
     if (result !== null) {
       window.location.hash = result;
     }
 
     this.setState({
-      search: '',
+      search: ""
     });
   };
 
-  onSearchKeyDown = (ev) => {
+  onSearchKeyDown = ev => {
     if (ev.keyCode === 13) {
       this.doSearch();
     }
   };
 
-
   render() {
-
     //let {search} = this.state;
     //let {router} = this.props;
     // let location = router.location ? router.location.key : "";
-
 
     return (
       <Switch>
@@ -57,26 +54,27 @@ export default class Content extends Component {
               render={props => (
                 <React.Fragment>
                   <Switch>
-
-                      {
-                          route.routes && filter(route.routes, r => !isUndefined(r.path)).map(subRoute => (
-                              <Route
-                                  exact={true}
-                                  key={subRoute.path}
-                                  path={subRoute.path}
-                                  component={subRoute.component}/>
-                          ))
-                      }
-                    <Route component={route.component}/>
-
+                    {route.routes &&
+                      filter(
+                        route.routes,
+                        r => !isUndefined(r.path)
+                      ).map(subRoute => (
+                        <Route
+                          exact={true}
+                          key={subRoute.path}
+                          path={subRoute.path}
+                          component={subRoute.component}
+                        />
+                      ))}
+                    <Route component={route.component} />
                   </Switch>
                 </React.Fragment>
-              )}/>
-          )
-        })
-        }
-        <Route component={ErrorAsync}/>
+              )}
+            />
+          );
+        })}
+        <Route component={ErrorAsync} />
       </Switch>
-    )
+    );
   }
 }

@@ -7,6 +7,7 @@ import {TronLoader} from "../common/loaders";
 import {AddressLink} from "../common/Links";
 // import TimeAgo from "react-timeago";
 import moment from 'moment';
+import { Tooltip,Icon } from 'antd';
 import {Link} from "react-router-dom";
 import {TRXPrice} from "../common/Price";
 import {withTimers} from "../../utils/timing";
@@ -59,10 +60,16 @@ class RecentBlocks extends Component {
 
     return (
         <div className="card" style={styles.card}>
-          {/* 测试 */}
+          {/* test */}
           <div className="card-header bg-tron-light d-flex">
             <i className="fa fa-cubes mr-3 fa_width_20 color-grey-100"></i>
-            <h5 className="m-0 lh-175 color-grey-100">{tu("blocks")}</h5>
+            <h5 className="m-0 lh-175 color-grey-100 confirmed_block_tip">
+              {tu("index_page_confirmed_blocks")}
+              <Tooltip placement="top" title={tu("index_page_confirmed_blocks_tips")}>
+                <Icon type="question-circle" style={{verticalAlign: 0,marginLeft: 5}}/>
+              </Tooltip>
+            
+            </h5>
             <Link to="/blockchain/blocks"
                   className="ml-auto btn btn-sm btn-default"
                   style={{borderRadius: '0.15rem'}}>

@@ -102,14 +102,44 @@ export let PriceProvider = connect(
   mapDispatchToProps
 )(PriceProviderCmp);
 
+let oTimer = null;
 export class TRXPrice extends React.PureComponent {
   constructor() {
     super();
 
     this.state = {
       open: false,
-      id: alpha(24)
+      id: alpha(24),
+      percent_change_24h: 0
     };
+  }
+
+  // async loadTrxPrices() {
+  //   var dataEur = Lockr.get("dataEur");
+
+  //   let eurURL = encodeURI(
+  //     `https://api.coinmarketcap.com/v1/ticker/tronix/?convert=EUR`
+  //   );
+
+  //   if (!Lockr.get("dataEur")) {
+  //     var { data: dataEur } = await xhr.get(
+  //       `${API_URL}/api/system/proxy?url=${eurURL}`
+  //     );
+  //   }
+  //   if (dataEur.length > 0) {
+  //     let percent_change_24h = dataEur[0].percent_change_24h;
+  //     this.setState({
+  //       percent_change_24h
+  //     });
+  //   }
+  // }
+
+  componentDidMount() {
+    // oTimer = setInterval(() => this.loadTrxPrices(), 10000);
+  }
+
+  componentWillUnmount() {
+    clearInterval(oTimer);
   }
 
   renderPrice(value, priceValues) {
@@ -127,9 +157,14 @@ export class TRXPrice extends React.PureComponent {
       currency = "",
       showCurreny = true,
       showPopup = true,
+      priceChage = 0,
       ...props
     } = this.props;
     let ele = null;
+
+    const myPng = src => {
+      return require(`../../images/home/${src}.png`);
+    };
     return (
       <Consumer>
         {priceValues => {
@@ -148,7 +183,8 @@ export class TRXPrice extends React.PureComponent {
                         onMouseLeave={() => this.setState({ open: false })}
                         {...props}
                       >
-                        {name == "TRX" ? amount / ONE_TRX : amount} &nbsp; {name}
+                        {name == "TRX" ? amount / ONE_TRX : amount} &nbsp;{" "}
+                        {name}
                       </span>
                     )}
                   </FormattedNumber>
@@ -216,11 +252,40 @@ export class TRXPrice extends React.PureComponent {
                         onMouseOut={() => this.setState({ open: false })}
                         {...props}
                       >
-                        {value}
-                        &nbsp;
-                        {showCurreny &&
-                          (currency.toUpperCase() ||
-                            priceValues.priceShown.toUpperCase())}
+                        <span className="currentTrxPirce">{value} </span>
+                        <span className="currentCurrency">
+                          {showCurreny &&
+                            (currency.toUpperCase() ||
+                              priceValues.priceShown.toUpperCase())}{" "}
+                        </span>
+                        <span
+                          className={
+                            Number(priceChage) > 0 ? "greenPrice " : "redPrice "
+                          }
+                          style={{ display: "inline-block" }}
+                        >
+                          {Number(priceChage) === 0 ? (
+                            <span>({priceChage}%)</span>
+                          ) : (
+                            <span>
+                              ({Number(priceChage) > 0 ? "+" : ""}
+                              {priceChage}%){" "}
+                              {Number(priceChage) > 0 ? (
+                                <img
+                                  className="quotesImg"
+                                  src={myPng("up")}
+                                  alt=""
+                                />
+                              ) : (
+                                <img
+                                  className="quotesImg"
+                                  src={myPng("down")}
+                                  alt=""
+                                />
+                              )}
+                            </span>
+                          )}
+                        </span>
                       </span>
                     )}
                   </FormattedNumber>

@@ -56,6 +56,15 @@ class ApiClientToken {
     let res = await xhr.get('https://api.trongrid.io/wallet/gettransactioninfobyid', {params:param});
     return res && res.data
   }
+  async getTransaction(id){
+    const param = {
+      value: id,
+      visible: true
+    }
+    let res = await xhr.get('https://api.trongrid.io/wallet/gettransactionbyid', {params:param});
+    return res && res.data
+  }
+
 }
 
 export default new ApiClientToken();
