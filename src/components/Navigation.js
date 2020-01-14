@@ -1355,7 +1355,7 @@ class Navigation extends React.Component {
                                 onClick={this.callAjax}
                                 placeholder={intl.formatMessage({id: "index_page_search_placeholder"})}/>
                         <div className="input-group-append">
-                          <button style={{textTransform:"none"}} className="btn box-shadow-none index_page_search" disabled={this.isSearching} onClick={this.doSearch}>
+                          <button style={{textTransform:"none"}} className="btn box-shadow-none index_page_search"  onClick={this.doSearch}>
                             {/* <i className="fa fa-search"/> */}
                             {tu("index_page_search_input")}
                           </button>
