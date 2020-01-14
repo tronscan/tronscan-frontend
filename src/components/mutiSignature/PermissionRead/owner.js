@@ -1,4 +1,3 @@
-  
 import React, { Component } from "react";
 import { tu } from "../../../utils/i18n";
 

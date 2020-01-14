@@ -170,6 +170,30 @@ export const lang19Q4 = {
     "TRX_historical_data":"合约内TRX余额历史数据",
     "TRX_historical_data_y_text":"数量（TRX）",
     "TRX_historical_data_tip":"TRX数量",
+     /*
+    ##################################################################################
+    #                                                                                #
+    # 191230     page index optimization                                             #
+    #                                                                                #
+    ##################################################################################
+    */
+   "index_page_menu_more_dev_resources":"开发资源",
+   "index_page_search_placeholder":"请输入地址/交易哈希/通证/区块号",
+   "index_page_footer_team_info":"团队介绍",
+   "index_page_footer_feedback":"问题反馈",
+   "index_page_footer_expand":"展开",
+   "index_page_footer_donate_address":"该地址为波场持有，您的捐赠将帮助波场建设更美好的生态。",
+   "index_page_confirmed_blocks":"已确认区块",
+   "index_page_confirmed_blocks_tips":"被19个以上超级节点确认的区块",
+   "index_page_switch_tokens":"币种切换",
+   "index_page_tronscan_info":"TRONSCAN是波场最好用的区块链浏览器",
+   "index_page_down_excel_tips":"如使用Excel打开下载文档，需手动调节单元格小数位数。",
+   "index_page_pane_current":"当前",
+   "index_page_pane_MaxTPS":"峰值TPS",
+   "index_page_idebar_expand":"展开",
+   "index_page_search_input": "搜索",
+  
+
     /*
         ##################################################################################
         #                                                                                #
@@ -179,6 +203,89 @@ export const lang19Q4 = {
     */
    "account_details_contracts":"已发合约",
    "account_details_contracts_no":"未查询到合约",
+    // transaction info  2019-12-25  leon
+    "consume_bandwidth":"消耗带宽",
+    "consume_energy":"消耗能量",
+    "energy_fee": "消耗能量使用的TRX",
+    "energy_usage": "消耗用户冻结的能量",
+    "energy_usage_total": "总消耗的能量",
+    "origin_energy_usage": "消耗合约所有者的能量",
+    "net_fee": "消耗带宽使用的TRX",
+    "net_usage": "消耗用户冻结的带宽",
+    "net_free":"消耗用户冻结/免费带宽",
+    "net_burn":"燃烧 {num} TRX 获取带宽",
+    "energy_burn":"燃烧 {num} TRX 获取能量",
+    "initiate_address":"发起地址",
+    "candidate_address":"投票地址",
+    "votes_count":"投票数",
+    "sr_fee":"费用",
+    "sr_url":"网址",
+    "proposal_ID":"提议ID",
+    "proposal_content":"提议内容",
+    "vote_proposal":"是否赞成提议",
+    "vote_yes":"是",
+    "vote_no":"否",
+    "account_id":"账户ID",
+    "trans_ticket":"票",
+    "trans_tickets":"票",
+
+    "transaction_energy_cap":"能量上限",
+    "transaction_enrgy_cap_tip":"合约部署者提供的能量上限值",
+
+    // 2019-12-25 xyy
+    "transaction_hash":"哈希",
+    "transaction_status_tip":'"已确认"是指被19个以上超级节点确认',
+    "transaction_type": "交易类型",
+    "transaction_owner_address":"发起地址",
+    "transaction_receiver_address":"资源接收地址",
+    "transaction_freeze_num":"冻结数额",
+    "transaction_get_resourse":"获取资源",
+    "transaction_recycling_address":"资源回收地址",
+    "transaction_unfreeze_num":"解冻数额",
+    "transaction_fee":"费用",
+    "transaction_consumed_bandwidth_cap_per":"个人消耗带宽上限",
+    "transaction_consumed_bandwidth_cap_all":"整体消耗带宽上限",
+    "transaction_frozen_day":"锁仓天数",
+    "transaction_frozen_number":"锁仓数额",
+    "transaction_unfreeze_time":"可解冻时间",
+    "transaction_consumed_bandwidth_cap_per_tip":"发生TRC10转账时单个用户消耗通证持有者的带宽上限",
+    "transaction_consumed_bandwidth_cap_all_tip":"发生TRC10转账时所有用户消耗通证持有者的带宽上限",
+    "transaction_activate_account":"被激活地址",
+    "transaction_TRANSFERCONTRACT":"TRX转账",
+    "transaction_FREEZEBALANCECONTRACT":"冻结资产",
+    "transaction_UNFREEZEBALANCECONTRACT":"解冻资产",
+    "transaction_TRANSFERASSETCONTRACT":"TRC10转账",
+    "transaction_ASSETISSUECONTRACT":"发行TRC10通证",
+    "transaction_PARTICIPATEASSETISSUECONTRACT":"购买TRC10通证",
+    "transaction_UNFREEZEASSETCONTRACT":"TRC10 通证锁仓解冻",
+    "transaction_UPDATEASSETCONTRACT":"更新TRC10通证参数",
+    "transaction_ACCOUNTCREATECONTRACT":"激活账户",
+    "transaction_WITHDRAWBALANCECONTRACT":"提取奖励",
+    "transaction_TRIGGERSMARTCONTRACT":"触发智能合约",
+    "transaction_VOTEWITNESSCONTRACT":"投票",
+    "transaction_WITNESSCREATECONTRACT":"申请成为SR候选人",
+    "transaction_WITNESSUPDATECONTRACT":"更新SR候选人信息",
+    "transaction_ACCOUNTUPDATECONTRACT":"修改账户名称",
+    "transaction_PROPOSALCREATECONTRACT":"创建提议",
+    "transaction_PROPOSALAPPROVECONTRACT":"赞成提议",
+    "transaction_PROPOSALDELETECONTRACT":"撤销提议",
+    "transaction_SETACCOUNTIDCONTRACT":"设置账户ID",
+    "transaction_CREATESMARTCONTRACT":"创建智能合约",
+    "transaction_UPDATESETTINGCONTRACT":"更新合约参数",
+    "transaction_EXCHANGECREATECONTRACT":"创建Bancor交易",
+    "transaction_EXCHANGEINJECTCONTRACT":"Bancor交易注资",
+    "transaction_EXCHANGEWITHDRAWCONTRACT":"Bancor交易撤资",
+    "transaction_EXCHANGETRANSACTIONCONTRACT":"执行Bancor交易",
+    "transaction_ACCOUNTPERMISSIONUPDATECONTRACT":"更新账户权限",
+    "transaction_UPDATEENERGYLIMITCONTRACT":"更新合约能量限制",
+    "transaction_UPDATEBROKERAGECONTRACT":"更新SR佣金比例",
+    "transaction_CLEARABICONTRACT":"清除合约ABI",
+    "transaction_token_holder_address":"通证所有者地址",
+    "transaction_issue_address":"发行者地址",
+
+    "transaction_rewards_distribution_ratio":"选民分成比例",
+    "signature_list":"签名列表",
+    "only_show_sinatures":"只展示参与签名的地址",
    "Supply_TRX_total_chart":"TRX累计流通量",
    "Supply_total_y_title":"总流通量",
    "Supply_amount_TRX":"TRX数量",
@@ -223,6 +330,4 @@ export const lang19Q4 = {
 
 
 
-
-   
 }
