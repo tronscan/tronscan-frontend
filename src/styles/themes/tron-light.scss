@@ -57,8 +57,18 @@
       padding-right: 0;
     }
   }
+  .sunnet-menu-nav-wrapper{
+    max-width: 1380px;
+    margin:0 auto;
+    justify-content: space-between;
+  }
   .logo-wrapper {
     background: $white;
+  }
+  .sunnet-logo-title{
+    display:inline-block;
+    height:30px;
+    margin-top: 0.5rem
   }
   .footerContainer {
     position: relative;
@@ -1198,6 +1208,7 @@ $color: #c23631;
     .loginInfoNavBar {
       .mainetMargin {
         margin-top: 10px;
+        padding:0.5rem 1rem 0.5rem 0;
       }
     }
     .nav-searchbar {
