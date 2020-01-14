@@ -535,7 +535,11 @@ export default {
             }
         },
         title: {
-            text: ''
+            text: '',
+            style:{
+                color: '#c23631',
+                fontSize:"16px"
+            }
         },
         credits: {
             enabled: false
@@ -681,7 +685,11 @@ export default {
             }
         },
         title: {
-            text: ''
+            text: '',
+            style: {
+                color: '#c23631',
+                fontSize:'16px'
+            }
         },
         credits: {
             enabled: false
@@ -732,46 +740,45 @@ export default {
                 month: '%Y-%m',
                 year: '%Y'
             }
-          },
-        yAxis: [
-          {
-              title: {
-                  // align: 'high',
-                  // offset: 0,
-                  text: '',
-                  // rotation: 0,
-                  // x:100,
-                  // y: -10
-              },
-              // min: 0,
-              //minTickInterval:5
-              tickPixelInterval: 30,
-              labels: {
-                  style: {
-                      color: "#c23631",
-                  }
-              },
-              gridLineWidth: 0
-          },
-          {// Secondary yAxis
-              title: {
-                  // align: 'high',
-                  // offset: 0,
-                  text: '',
-                  // rotation: 0,
-                  // x:100,
-                  // y: -10
-              },
-              // min: 0,
-              //minTickInterval:5
-              tickPixelInterval: 30,
-              labels: {
-                  style: {
-                      color: "#333333",
-                  }
-              },
-              opposite: true,
-              gridLineWidth: 0
+        },
+        yAxis: [{
+                title: {
+                    // align: 'high',
+                    // offset: 0,
+                    text: '',
+                    // rotation: 0,
+                    // x:100,
+                    // y: -10
+                },
+                // min: 0,
+                //minTickInterval:5
+                tickPixelInterval: 30,
+                labels: {
+                    style: {
+                        color: "#c23631",
+                    }
+                },
+                gridLineWidth: 0
+            },
+            { // Secondary yAxis
+                title: {
+                    // align: 'high',
+                    // offset: 0,
+                    text: '',
+                    // rotation: 0,
+                    // x:100,
+                    // y: -10
+                },
+                // min: 0,
+                //minTickInterval:5
+                tickPixelInterval: 30,
+                labels: {
+                    style: {
+                        color: "#333333",
+                    }
+                },
+                opposite: true,
+                gridLineWidth: 0
 
             }
         ],
@@ -1052,70 +1059,73 @@ export default {
         },
         series: []
 
-  },
 
-  OverallFreezingRateChart:{
-    chart: {
-       // type: '',
-        zoomType: 'xy'
     },
-    title: {
-        text: ''
-    },
-    subtitle: {
-        text: ''
-    },
-    credits: {
-        enabled: false
-    },
-    legend: {
-      enabled: true,
-      align: 'center',
-    },
-    xAxis: {
-        type: 'datetime',
-        ordinal: false,
-        dateTimeLabelFormats: {
-            millisecond: '%H:%M:%S.%L',
-            second: '%H:%M:%S',
-            minute: '%H:%M',
-            hour: '%H:%M',
-            day: '%Y-%m-%d',
-            week: '%m-%d',
-            month: '%Y-%m',
-            year: '%Y'
+
+
+
+    OverallFreezingRateChart: {
+        chart: {
+            type: '',
+            zoomType: 'xy'
         },
-        gridLineColor: '#eeeeee',
-        labels: {
-            style: {
-                color: "#999999"
-            },
-            autoRotation: [-10, -20, -30, -40, -50, -60, -70, -80, -90],
-            //x:55
-        },
-        // tickmarkPlacement: 'on',
-        // tickPixelInterval: 50,
         title: {
+            text: ''
+        },
+        subtitle: {
+            text: ''
+        },
+        credits: {
             enabled: false
         },
-    
-    },
-    yAxis: [
-      
-    ],
-    tooltip: {
-    
-    },
-    exporting: {
-        enabled: true,
-        sourceWidth: 1072,
-        sourceHeight: 500,
-        filename:''
-    },
-    plotOptions: {
-      
-    },
-    series: []
-  }
+        legend: {
+            enabled: true,
+            align: 'center',
+        },
+        xAxis: {
+            type: 'datetime',
+            ordinal: false,
+            dateTimeLabelFormats: {
+                millisecond: '%H:%M:%S.%L',
+                second: '%H:%M:%S',
+                minute: '%H:%M',
+                hour: '%H:%M',
+                day: '%Y-%m-%d',
+                week: '%m-%d',
+                month: '%Y-%m',
+                year: '%Y'
+            },
+            gridLineColor: '#eeeeee',
+            labels: {
+                style: {
+                    color: "#999999"
+                },
+                autoRotation: [-10, -20, -30, -40, -50, -60, -70, -80, -90],
+                //x:55
+            },
+            // tickmarkPlacement: 'on',
+            // tickPixelInterval: 50,
+            title: {
+                enabled: false
+            },
+
+        },
+        yAxis: [
+
+        ],
+        tooltip: {
+
+        },
+        exporting: {
+            enabled: true,
+            sourceWidth: 1072,
+            sourceHeight: 500,
+            filename: ''
+        },
+        plotOptions: {
+
+        },
+        series: []
+    }
 
 };

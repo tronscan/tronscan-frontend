@@ -1,0 +1,117 @@
+.transaction-new{
+    .child-list{
+        list-style:none;
+        margin:0;
+        padding:0;
+    }
+}
+.permission-body{
+    border-bottom:1px solid #6666662b;
+    margin-bottom:10px;
+    .permission-child-item{
+        padding-bottom:10px;
+        display: flex;
+        .permission-label{
+            width:95px;
+        }
+        .permission-text{
+            flex:1;
+            .permission-text-content{
+                width:400px;
+                .key-title{
+                    display: flex;
+                    .key-title-address{
+                        width:350px;
+                    }
+                    .key-title-weight{
+                        flex:1;
+                        text-align:center;
+                    }
+                }
+                ul{
+                    padding:0;
+                    list-style:none;
+                    li{
+                        display: flex;
+                        padding:10px;
+                        border-bottom:1px solid #6666662b;
+                        .key-address {
+                            width:350px;
+                            padding-left:10px;
+                        }   
+                        .key-weight{
+                            flex:1;
+                            text-align:center;
+                        }
+                        position: relative;
+                        .key-icon{
+                            position: absolute;
+                            top:15px;
+                            width:8px;
+                            height:8px;
+                            border-left:1px solid #d8d8d8;
+                            border-bottom:1px solid #d8d8d8;
+                            box-shadow: -0.3px 0.3px 0.3px #d8d8d8;
+                        }
+                    }
+                }
+            }
+            .permission-operations{
+                list-style: none;
+        
+                 overflow: hidden;
+                 li{
+                    float: left;
+                    margin-right:10px;
+                    border: 1px solid #333333;
+                    border-radius: 13.5px;
+                    padding:0 5px;
+                    margin-bottom:10px;
+                 }
+            }
+        }
+    }
+}
+.transaction-new{
+    th{
+        width:10%;
+        font-size: 14px;
+        color: #666666;
+        font-family: PingFangSC-Regular;
+        font-weight:400;
+    }
+    .fail-result{
+        background: rgba(194,54,49,0.2);
+        border-radius: 2px;
+        padding:3px 10px;
+        font-size: 12px;
+        color: #C23631;
+        .icon-close{
+            vertical-align: middle;
+            margin-bottom: 1px;
+        }
+    }
+    .card-title{
+        font-size:16px;
+        color:#333;
+        font-family: PingFangSC-Medium;
+        font-weight:500;
+    }
+    tr{
+        border-bottom:1px solid #eee;
+    }
+    .list-style-body{
+        border:none!important;
+    }
+    .table-responsive{
+        th{
+            &:after{
+                content:':'
+            }
+          
+            // white-space: normal;
+        }
+    }
+   
+
+}
