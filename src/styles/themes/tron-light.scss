@@ -225,18 +225,21 @@
     input {
       // background-color: $white !important;
       // border: 1px solid $text-block !important;
-      background-color: #f3f3f3 !important;
+      background-color: #DEDEDE !important;
       border-radius: 2px;
     }
     .newSearchInput {
       background: #e9e9e9 !important;
       text-indent: 0.6rem;
+      font-family: HelveticaNeue;
+      color: #999999;
     }
     .input-group-append button {
       border-radius: 0 2px 2px 0;
-      background-color: $main-red;
-      border-color: $main-red;
+      background-color: #C64844;
+      border-color: #C64844;
       color: #fff;
+      font-size:14px;
     }
   }
   // default background style ====================================================

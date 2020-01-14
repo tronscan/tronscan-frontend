@@ -1535,9 +1535,9 @@ class Navigation extends React.Component {
 
 const styles = {
   search: {
-    fontSize: 13,
+    fontSize: 14,
     minWidth: 260,
-    height:36,
+    height:48,
   },
   searchType: {
     fontSize: 13,
