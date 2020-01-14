@@ -2338,7 +2338,7 @@ export const messages = {
   "tooltip_accounts":"عدد حسابات الوقت الفعلي على السلسلة الرئيسية وشبكة SUN و",
   "tooltip_accounts_mainnet":"عدد الحسابات في الوقت الحقيقي على السلسلة الرئيسية",
   "tooltip_accounts_sunnet":"عدد الحسابات في الوقت الحقيقي على شبكة SUN",
-  "tooltip_trxPrice":"مقارنة سعر TRX في الدولار مع التقلبات المرتقبة في الوقت الحقيقي",
+  "tooltip_trxPrice":"TRX مقابل سعر الدولار",
   "tooltip_trxPrice_mainnet":"مقارنة سعر TRX في الدولار مع التقلبات المرتقبة في الوقت الحقيقي",
   "tooltip_trxPrice_sunnet":"مقارنة سعر TRX في الدولار مع التقلبات المرتقبة في الوقت الحقيقي",
   "nav_network":"SUN Network",

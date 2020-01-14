@@ -2354,7 +2354,7 @@ export const messages = {
  "tooltip_accounts":"Cuentas en total en tiempo real en la cadena principal y la red SUN",
  "tooltip_accounts_mainnet":"Cuentas en tiempo real en la cadena principal.",
  "tooltip_accounts_sunnet":"Cuentas en tiempo real en la red SUN",
- "tooltip_trxPrice":"Precio TRX en USD, cotización en tiempo real",
+ "tooltip_trxPrice":"Precio TRX en USD",
  "tooltip_trxPrice_mainnet":"Precio TRX en USD, cotización en tiempo real",
  "tooltip_trxPrice_sunnet":"Precio TRX en USD, cotización en tiempo real",
  "nav_network":"SUN Network",
