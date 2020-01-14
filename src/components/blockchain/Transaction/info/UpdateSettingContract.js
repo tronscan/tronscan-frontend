@@ -24,7 +24,7 @@ export default function UpdateSettingContract(props) {
                         address={contract_address}
                         isContract={true}
                     >
-                        <Tooltip
+                        {/* <Tooltip
                             placement="top"
                             title={tu("transfersDetailContractAddress")}
                         >
@@ -37,7 +37,7 @@ export default function UpdateSettingContract(props) {
                                     color: "#333"
                                 }}
                             />
-                        </Tooltip>
+                        </Tooltip> */}
                         {contract_address}
                     </AddressLink>
                 </Field>

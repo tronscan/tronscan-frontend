@@ -2347,7 +2347,7 @@ export const messages = {
  "tooltip_accounts":"メインチェーンとSUNネットワークのリアルタイムアカウント数の合計",
  "tooltip_accounts_mainnet":"メインチェーンでリアルタイムアカウント数",
  "tooltip_accounts_sunnet":"SUNネットワークトでリアルタイムアカウント数",
- "tooltip_trxPrice":"TRXはUSDの価格対比、リアルタイム変動",
+ "tooltip_trxPrice":"TRXはUSDの価格対比",
  "tooltip_trxPrice_mainnet":"TRXはUSDの価格対比、リアルタイム変動",
  "tooltip_trxPrice_sunnet":"TRXはUSDの価格対比、リアルタイム変動",
  "nav_network":"SUN Network",

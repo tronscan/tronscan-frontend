@@ -60,6 +60,7 @@ class developersReward extends Component {
 
     data.map((item, index) => {
       item.index = index + 1;
+      // eslint-disable-next-line
       item.extraData = new Function("return " + item.extra)();
     });
     this.setState({
@@ -108,6 +109,7 @@ class developersReward extends Component {
   };
 
   showNote = index => {
+    // eslint-disable-next-line 
     let notes = new Function("return " + this.state.developers[index].note)();
     this.setState({
       modal: <Note notes={notes} onHide={this.hideModal} />
