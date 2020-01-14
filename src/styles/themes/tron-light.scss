@@ -33,6 +33,11 @@
       }
     }
   }
+  .loginInfoNavBar {
+    .mainetMargin {
+      padding:0.5rem 1rem 0.5rem 0;
+    }
+  }
   .menu-nav-wrapper {
     max-width: 1600px;
     margin: 0 auto;
@@ -1211,7 +1216,6 @@ $color: #c23631;
     .loginInfoNavBar {
       .mainetMargin {
         margin-top: 10px;
-        padding:0.5rem 1rem 0.5rem 0;
       }
     }
     .nav-searchbar {
