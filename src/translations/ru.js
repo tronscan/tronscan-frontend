@@ -2356,7 +2356,7 @@ export const messages = {
  "tooltip_accounts":"Общее количество аккаунтов в настоящие время в основной сети и SUN Network",
  "tooltip_accounts_mainnet":"Аккаунты в настоящем времени в главной цепи",
  "tooltip_accounts_sunnet":"Аккаунты в настоящем времени в SUN Network",
- "tooltip_trxPrice":"Цена TRX в USD, котировка в настоящем времени",
+ "tooltip_trxPrice":"Цена TRX в USD",
  "tooltip_trxPrice_mainnet":"Цена TRX в USD, котировка в настоящем времени",
  "tooltip_trxPrice_sunnet":"Цена TRX в USD, котировка в настоящем времени",
  "nav_network":"SUN Network",
