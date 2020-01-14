@@ -66,7 +66,6 @@ export function FormatNumberByDecimalsBalance(number, decimals) {
         return 0;
     }
     let curDecimals = Number(decimals)
-    console.log()
     if (curDecimals) {
         const numberString = number.toString();
         const arr = numberString.split(".");
@@ -96,7 +95,6 @@ export function toThousands(num) {
     let arr = NUM.split(".");
     let number = (arr[0] || 0).toString(),
     result = "";
-    console.log('number',number);
     while (number.length > 3) {
         result = "," + number.slice(-3) + result;
         number = number.slice(0, number.length - 3);

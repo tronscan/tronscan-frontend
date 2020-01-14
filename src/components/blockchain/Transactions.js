@@ -19,6 +19,7 @@ import moment from 'moment';
 import xhr from "axios/index";
 import queryString from 'query-string';
 import BlockTime from '../common/blockTime'
+import {tu} from '../../utils/i18n'
 
 
 const RangePicker = DatePicker.RangePicker;
@@ -202,13 +203,13 @@ class Transactions extends React.Component {
                 }
             },
             {
-                title: upperFirst(intl.formatMessage({id: 'contract'})),
+                title: upperFirst(intl.formatMessage({id: 'transaction_type'})),
                 dataIndex: 'contractType',
                 key: 'contractType',
                 align: 'right',
                 className: 'ant_table',
                 render: (text, record, index) => {
-                    return <span>{ContractTypes[text]}</span>
+                    return <span>{ContractTypes[text] && tu(`transaction_${ContractTypes[text]}`)}</span>
                 },
             },
             // {

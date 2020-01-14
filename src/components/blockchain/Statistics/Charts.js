@@ -324,7 +324,6 @@ class StatCharts extends React.Component {
     async loadSupply() {
         let { start_day, end_day, limit} = this.state.SupplyParams;
         let {data: {data}} = await xhr.get(API_URL + "/api/turnover?size="+ limit +"&start="+ start_day+"&end="+end_day); 
-        console.log('data',data)
         let x,y;
         data.map((item, index) => {
             item.timestamp = moment(item.day).valueOf();
