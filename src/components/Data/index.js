@@ -1,5 +1,5 @@
 import React, { Fragment }  from 'react';
-
+import Accounts from './TopData/Accounts'
 
 class BestData extends React.Component{
   constructor(){
@@ -14,7 +14,11 @@ class BestData extends React.Component{
   }
 
   render(){
-    return ''
+    return (
+      <div>
+        <Accounts></Accounts>
+      </div>
+    )
   }
 }
 

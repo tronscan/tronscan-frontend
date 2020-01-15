@@ -133,6 +133,9 @@ export const DevelopersRewardAsync = loadable(() =>
 export const FoundationAsync = loadable(() =>
   import(/* webpackChunkName: "Foundation" */ "./Foundation")
 );
+export const DataAsync = loadable(() =>
+  import(/* webpackChunkName: "Foundation" */ "./Data/index")
+);
 
 export const NodesAsync = loadable(() =>
   import(/* webpackChunkName: "Nodes" */ "./network/Nodes")
