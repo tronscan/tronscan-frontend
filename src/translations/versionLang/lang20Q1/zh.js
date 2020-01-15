@@ -28,6 +28,9 @@ export const lang20Q1 = {
   data_token: "通证",
   data_contract: "合约",
   data_recourse: "资源",
+  data_time1: "1小时",
+  data_time2: "1天",
+  data_time3: "1周",
   data_account_top: "最佳账户",
   data_account_send_Trx: "发送TRX数量",
   data_account_send_Trx_items: "发送TRX总笔数",
@@ -37,5 +40,6 @@ export const lang20Q1 = {
   data_account_vote: "已投票数",
   data_range: "排序",
   data_number: "数量",
-  data_per: "占比"
+  data_per: "占比",
+  data_total: "总计"
 };

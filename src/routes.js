@@ -189,7 +189,15 @@ export const routes = [
         icon: false,
         showInMenu: IS_MAINNET ? true : false,
         component: TopDataAsync
-      }
+      },
+      {
+        path: "/blockchain/data/:name",
+        label: "data_title",
+        // icon: "fa fa-address-book",
+        icon: false,
+        showInMenu: false,
+        component: TopDataAsync
+      },
     ]
   },
   {
@@ -256,6 +264,7 @@ export const routes = [
       }
     ]
   },
+  
   {
     path: "/block/:id",
     label: "block",

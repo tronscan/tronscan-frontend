@@ -7,6 +7,8 @@ import { injectIntl } from "react-intl";
 import { AddressLink } from "../../common/Links";
 import { loadUsdPrice } from "../../../actions/blockchain";
 import { FormattedNumber } from "react-intl";
+import SmartTable from "../../common/SmartTable";
+import { cloneDeep } from "lodash";
 
 @injectIntl
 @connect(
@@ -62,11 +64,7 @@ class Accounts extends React.Component {
     } = this.state;
     return (
       <div className="top-data">
-        <div className="d-flex">
-          {this.renderSendTrxNumberData()}
-          {this.renderSendTrxNumberData()}
-        </div>
-        <Row gutter={{ xs: 8, sm: 20, md: 20 }}>
+        <Row gutter={{ xs: 8, sm: 20, md: 20 }} className="mt-2">
           <Col
             className="gutter-row"
             xs={24}
@@ -80,25 +78,7 @@ class Accounts extends React.Component {
               <h2>
                 {tu("data_account_top")}-{tu("data_account_send_Trx")}
               </h2>
-
-              {/* <div className="data-list">
-                <div className="data-header d-flex">
-                  <span>{tu("data_range")}</span>
-                  <span>{tu("data_account")}</span>
-                  <span>{tu("data_number")}</span>
-                  <span>{tu("data_per")}</span>
-                </div>
-                <div className="data-content">
-                  {sendTrxNumbers.map((item, index) => (
-                    <div className="data-content-li d-flex">
-                      <span>{index + 1}</span>
-                      <div>{item.address}</div>
-                      <div>{item.amount}</div>
-                      <div>{item.percentage}</div>
-                    </div>
-                  ))}
-                </div>
-              </div> */}
+              {this.renderSendTrxNumberData()}
             </div>
           </Col>
           <Col
@@ -121,63 +101,101 @@ class Accounts extends React.Component {
     const { sendTrxNumbers, trxUnit, usdUnit } = this.state;
     const { intl, priceUSD } = this.props;
     const titles = ["data_range", "data_account", "data_number", "data_per"];
+    let lastData = this.setTotal(sendTrxNumbers);
+    let arr = cloneDeep(sendTrxNumbers);
+    arr.push(lastData);
+    let length = arr.length - 1;
+
     const columns = [
       {
         title: intl.formatMessage({ id: titles[0] }),
         dataIndex: "range",
         render: (text, record, index) => {
-          return index;
+          return (
+            <span className="rankWidth">
+              {index == length ? (
+                intl.formatMessage({ id: "data_total" })
+              ) : index < 3 ? (
+                <span className={`rank-${index} rank`}></span>
+              ) : (
+                index + 1
+              )}
+            </span>
+          );
         },
-        className: "ant_table"
+        align: "center"
       },
       {
         title: intl.formatMessage({ id: titles[1] }),
         dataIndex: "address",
         render: (text, record, index) => {
-          return (
-            <AddressLink address={text} truncate={false}>
-              {text}
-            </AddressLink>
+          return text ? (
+            <span className="addressWidth">
+              <span className="">
+                <AddressLink address={text}>{text}</AddressLink>
+              </span>
+            </span>
+          ) : (
+            "--"
           );
         },
-        className: "ant_table width30"
+        align: "center"
       },
       {
         title: intl.formatMessage({ id: titles[2] }),
         dataIndex: "amount",
         render: (text, record, index) => {
           return (
-            <span>
+            <span className="">
               <FormattedNumber value={parseInt(text || 0)}></FormattedNumber>{" "}
               {trxUnit}
-              <br />≈
-              <FormattedNumber
-                value={parseInt(text * priceUSD || 0)}
-              ></FormattedNumber>{" "}
-              {usdUnit}
+              <br />
+              <span className="usd-amount">
+                ≈
+                <FormattedNumber
+                  value={parseInt(text * priceUSD || 0)}
+                ></FormattedNumber>{" "}
+                {usdUnit}
+              </span>
             </span>
           );
         },
-        className: "ant_table"
+        align: "left"
       },
       {
         title: intl.formatMessage({ id: titles[3] }),
         dataIndex: "percentage",
         render: (text, record, index) => {
-          return (text * 100).toFixed(2) + " %";
+          return (
+            <span className="percentageWidth">{(text * 100).toFixed(2)} %</span>
+          );
         },
-        className: "ant_table"
+        align: "right"
       }
     ];
 
     return (
-      <Table
-        columns={columns}
-        dataSource={sendTrxNumbers}
-        // footer={() => <div>111111</div>}
+      <SmartTable
+        bordered={false}
+        loading={false}
+        column={columns}
+        data={arr}
         pagination={false}
+        isPaddingTop={false}
       />
     );
+  }
+
+  setTotal(data) {
+    let totalNumber = 0;
+    let totalPercent = 0;
+    let arr = cloneDeep(data);
+    arr.map(item => {
+      totalNumber += Number(item.amount);
+      totalPercent += Number(item.percentage);
+    });
+
+    return { amount: totalNumber, percentage: totalPercent, address: "" };
   }
 }
 
