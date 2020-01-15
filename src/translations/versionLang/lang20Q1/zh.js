@@ -29,4 +29,7 @@ export const lang20Q1 = {
   data_token: '通证',
   data_contract: '合约',
   data_recourse: '资源',
+  data_time1: '1小时',
+  data_time2: '1天',
+  data_time3: '1周'
 }
