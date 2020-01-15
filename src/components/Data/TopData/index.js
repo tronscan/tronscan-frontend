@@ -96,14 +96,14 @@ class BestData extends React.Component{
                   </div>
                   <div className="card-body p-0 list-style-body__body">
                     <Switch>
-                      {Object.values(tabs).map(tab => (
+                      {/* {Object.values(tabs).map(tab => (
                         // <Route
                         //   key={tab.id}
                         //   exact
                         //   path={match.url + tab.path}
                         //   render={props => <tab.cmp />}
                         // />
-                      ))}
+                      ))} */}
                     </Switch>
                   </div>
                 </div>
