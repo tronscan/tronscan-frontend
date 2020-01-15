@@ -89,8 +89,9 @@
           margin:0 auto;
           .text{
             font-family: HelveticaNeue;
-            font-size: 11px;
+            font-size: 12px;
             color: rgba(255,255,255,0.3);  
+            line-height: 24px;
           }
           &:first-child{
               padding-left:0!important;
@@ -103,7 +104,7 @@
             height:24px;
             background:rgba(0,0,0,0.14);
             font-family: HelveticaNeue;
-            font-size: 11px;
+            font-size: 12px;
             color: #C2C2C2;
             line-height: 24px;
             span{
@@ -126,7 +127,7 @@
             line-height: 24px;
             background: rgba(255,255,255,0.14);
             .ant-btn{
-               min-width:44px;
+            //    min-width:44px;
                height:16px;
                line-height: 14px;
                padding:0; 
@@ -136,6 +137,7 @@
                color: #FFFFFF;
                margin-left: 4px;
                border-radius: 0;
+               padding:0 5px;
             }
             .after{
                 font-size:12px;
