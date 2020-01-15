@@ -58,7 +58,8 @@ import {
   ContractSourceCode,
   ContractUseServiceTerms,
   ContractLicense,
-  RatingRule
+  RatingRule,
+  TopDataAsync
 } from "./components/async";
 
 export const routes = [
@@ -180,6 +181,14 @@ export const routes = [
         icon: false,
         showInMenu: IS_MAINNET ? true : false,
         component: FoundationAsync
+      },
+      {
+        path: "/blockchain/data",
+        label: "data_title",
+        // icon: "fa fa-address-book",
+        icon: false,
+        showInMenu: IS_MAINNET ? true : false,
+        component: TopDataAsync
       }
     ]
   },
