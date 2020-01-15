@@ -237,7 +237,7 @@ class Footer extends Component {
               <div className="copyright pt-5">
                 {modal}
                 <div className="row container">
-                  <div className="col-xs-12 col-sm-6 col-md-6 text-center mb-3">
+                  <div className="col-xs-12 col-sm-6 col-md-6 text-center mb-3 hidden-mobile">
                     <div className="">
                       <div className="switch d-flex between">
                         <span>{tu("index_page_switch_tokens")}</span>

@@ -840,7 +840,7 @@ class Navigation extends React.Component {
                   <div className="nav-link dropdown-toggle nav-item" onClick={(e) => {
                     isMobile && this.clickLoginWithPk(e)
                   }}>
-                    <Divider type="vertical" style={{marginRight:'1rem',height: '1.2em'}}/>
+                    <Divider className="hidden-mobile" type="vertical" style={{marginRight:'1rem',height: '1.2em','display':'inline-block'}}/>
                     {tu("open_wallet")}
                   
                     <ul className="dropdown-menu dropdown-menu-right nav-login-wallet" style={{minWidth: style_width}}>
@@ -1040,7 +1040,7 @@ class Navigation extends React.Component {
                   <Link to="/">
                     <img  src={this.getLogo()} className="logo" alt="Tron"/>
                     {IS_SUNNET?<span className="sunnet-logo-title ">
-                      <Divider type="vertical" style={{height: "70%"}}/>
+                      <Divider className="hidden-mobile" type="vertical" style={{height: "70%",'display':'inline-block'}}/>
                       <span className="ml-2" style={{color:"#000"}}>Dapp Chain</span>
                     </span> :null}
                   </Link>
@@ -1418,7 +1418,7 @@ class Navigation extends React.Component {
                      onClick={this.callAjax}
                      placeholder={intl.formatMessage({id: "search_description1"})}/>
               <div className="input-group-append">
-                <button className="btn box-shadow-none" disabled={this.isSearching} onClick={this.doSearch}>
+                <button className="btn box-shadow-none mobile-button-search" onClick={this.doSearch}>
                   <i className="fa fa-search"/>
                 </button>
               </div>
@@ -1518,6 +1518,24 @@ class Navigation extends React.Component {
                               })
                               this.setLanguage(language)
                             }}>{languages[language]}</a>
+                      ))
+                    }
+                  </div>
+                </Panel>
+                <Panel header={activeCurrency} key="1" >
+                  <div className="currency-menu">
+                    {
+                      currencyConversions.map((current,ind) => (
+                          <a key={ind}
+                            className="dropdown-item"
+                            href="javascript:"
+                            onClick={() => {
+                              this.changeCurrentDrawerFun();
+                              this.setState({
+                                currentActive:2
+                              })
+                              this.props.setActiveCurrency(current.id)
+                            }}>{current.name}</a>
                       ))
                     }
                   </div>

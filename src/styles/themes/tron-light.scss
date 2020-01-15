@@ -206,6 +206,15 @@
       font-size: 0.7rem;
     }
   }
+  .header-top {
+    .hidden-PC{
+      .input-group{
+        input{
+          height:36px !important;
+        }
+      }
+    }
+  }
 
   .navbar-dark .navbar-nav .nav-link {
     color: #000;
@@ -246,6 +255,11 @@
       border-color: #C64844;
       color: #fff;
       font-size:14px;
+    }
+    .input-group-append .mobile-button-search{
+      background: #C23631;
+      border-color: #C23631;
+      width:44px;
     }
   }
   // default background style ====================================================
@@ -1251,6 +1265,9 @@ $color: #c23631;
       .ant-menu-vertical-left {
         border-right: none;
       }
+      .ant-menu-submenu-title,.ant-menu-item,.ant-collapse-header{
+        text-transform: uppercase;
+      }
     }
     .menu-single-tilte {
       font-family: HelveticaNeue;
@@ -1303,9 +1320,12 @@ $color: #c23631;
   .ant-collapse-borderless {
     background: rgba(0, 0, 0, 0.85);
     color: #fff;
-    .ant-collapse-item {
-      border-top: 1px solid #d9d9d9;
+    .ant-collapse-item{
       border-bottom: none;
+      &:first-child {
+        border-top: 1px solid #d9d9d9;
+      }
+     
     }
   }
   .ant-collapse {
