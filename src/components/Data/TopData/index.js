@@ -1,20 +1,24 @@
-import React, { Fragment }  from 'react';
+import React, { Fragment } from "react";
 import { tu } from "../../../utils/i18n";
 import { TronLoader } from "../../common/loaders";
 import { NavLink, Route, Switch } from "react-router-dom";
 
-import Overview from "./Overview"
-import Accounts from './Accounts'
+import Overview from "./Overview";
+import Accounts from "./Accounts";
 
-class BestData extends React.Component{
-  constructor(){
+class BestData extends React.Component {
+  constructor() {
     super();
+    this.state = {
+      tabs: [],
+      loading: true
+    };
   }
-  componentDidMount(){
-
+  componentDidMount() {
+    this.setTabs();
   }
 
-  setTabs(){
+  setTabs() {
     this.setState(prevProps => ({
       loading: false,
       tabs: {
@@ -23,53 +27,43 @@ class BestData extends React.Component{
           id: "Overview",
           path: "",
           label: <span>{tu("data_overview")}</span>,
-          cmp: () => (
-            <Overview />
-          )
+          cmp: () => <Overview />
         },
         accounts: {
-          id: "",
-          path: "",
+          id: "Accounts",
+          path: "/accounts",
           label: <span>{tu("data_account")}</span>,
-          cmp: () => (
-            <Accounts />
-          )
+          cmp: () => <Accounts />
         },
         tokens: {
           id: "",
           path: "",
           label: <span>{tu("data_token")}</span>,
-          cmp: () => (
-            <Overview />
-          )
+          cmp: () => <Overview />
         },
         contracts: {
           id: "",
           path: "",
           label: <span>{tu("data_contract")}</span>,
-          cmp: () => (
-            <Overview />
-          )
+          cmp: () => <Overview />
         },
         resources: {
           id: "",
           path: "",
           label: <span>{tu("data_recourse")}</span>,
-          cmp: () => (
-            <Overview />
-          )
+          cmp: () => <Overview />
         }
       }
-    }))
+    }));
   }
 
-  render(){
-    const {tabs, loading} = this.state
+  render() {
+    const { tabs, loading } = this.state;
     return (
       <main className="container header-overlap token_black">
-        <div className="row">
+        <div className="">
           <div className="col-md-12 ">
-          {loading ? (
+            {loading ? (
               <div className="card">
                 <TronLoader>
                   {/* {tu("loading_address")} {contract.address} */}
@@ -95,15 +89,16 @@ class BestData extends React.Component{
                     </ul>
                   </div>
                   <div className="card-body p-0 list-style-body__body">
+                    <Accounts />
                     <Switch>
-                      {Object.values(tabs).map(tab => (
-                        // <Route
-                        //   key={tab.id}
-                        //   exact
-                        //   path={match.url + tab.path}
-                        //   render={props => <tab.cmp />}
-                        // />
-                      ))}
+                      {/* {Object.values(tabs).map(tab => (
+                        <Route
+                          key={tab.id}
+                          exact
+                          path={match.url + tab.path}
+                          render={props => <tab.cmp />}
+                        />
+                      ))} */}
                     </Switch>
                   </div>
                 </div>
@@ -112,8 +107,8 @@ class BestData extends React.Component{
           </div>
         </div>
       </main>
-    )
+    );
   }
 }
 
-export default BestData
+export default BestData;
