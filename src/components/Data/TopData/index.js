@@ -6,6 +6,7 @@ import { injectIntl, FormattedDate, FormattedNumber, FormattedTime } from "react
 import Clinet from '../../../services/dataApi'
 import Overview from "./Overview"
 import Accounts from './Accounts'
+import DataResources from './Resources';
 
 class BestData extends React.Component{
   constructor(props){
@@ -68,7 +69,7 @@ class BestData extends React.Component{
           path: "/resource",
           label: <span>{tu("data_recourse")}</span>,
           cmp: () => (
-            ''
+            <DataResources />
           )
         }
       },
