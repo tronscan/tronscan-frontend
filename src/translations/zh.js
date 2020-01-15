@@ -2,6 +2,9 @@
 import {
     lang19Q4
 } from './versionLang/lang19Q4/zh19Q4'; /* 2019Q4 */
+import {
+  lang20Q1
+} from './versionLang/lang20Q1/zh'; // 20Q1
 export const messages = {
     /*
     ##################################################################################
@@ -2520,4 +2523,5 @@ export const messages = {
     "address_freeze_owner": "冻结给自己",
     "address_freeze_other": "冻结给他人",
     ...lang19Q4,
+    ...lang20Q1
 };

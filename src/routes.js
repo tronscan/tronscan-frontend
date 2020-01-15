@@ -59,7 +59,7 @@ import {
   ContractUseServiceTerms,
   ContractLicense,
   RatingRule,
-  DataAsync
+  TopDataAsync
 } from "./components/async";
 
 export const routes = [
@@ -184,11 +184,11 @@ export const routes = [
       },
       {
         path: "/blockchain/data",
-        label: "foundation",
+        label: "data_title",
         // icon: "fa fa-address-book",
         icon: false,
         showInMenu: IS_MAINNET ? true : false,
-        component: DataAsync
+        component: TopDataAsync
       }
     ]
   },
