@@ -372,7 +372,7 @@ export default class MobilePanelGroup extends Component {
                       })}
                     >
                       <p className="text-muted mb-0 mt-2">
-                        {tu("transactions_last_day")}
+                        {tu("transactions_last_day")}{' '}
                         <Icon
                           type="question-circle"
                           style={{ verticalAlign: 0, marginLeft: 0, fontSize:'0.8rem', }}

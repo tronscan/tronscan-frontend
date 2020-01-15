@@ -83,7 +83,7 @@ class Navigation extends React.Component {
       announId: 83,
       selectedNet:'',
       drawerVisible:false,//draw is visible
-      currentActive:1,
+      currentActive:3,
       percent_change_24h:0
     };
   }
