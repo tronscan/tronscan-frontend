@@ -2651,7 +2651,7 @@ export const messages = {
     "Total real-time accounts on the Main Chain and SUN Network",
   tooltip_accounts_mainnet: "Real-time accounts on the Main Chain",
   tooltip_accounts_sunnet: "Real-time accounts on SUN Network",
-  tooltip_trxPrice: "TRX price in USD, real-time quote",
+  tooltip_trxPrice: "TRX price in USD",
   tooltip_trxPrice_mainnet: "TRX price in USD, real-time quote",
   tooltip_trxPrice_sunnet: "TRX price in USD, real-time quote",
   nav_network: "SUN Network",

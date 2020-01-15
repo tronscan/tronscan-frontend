@@ -2351,7 +2351,7 @@ export const messages = {
  "tooltip_accounts":"메인 체인과 SUN Network의 실시간 계정 수의 합",
  "tooltip_accounts_mainnet":"메인 체인의 실시간 계정 수",
  "tooltip_accounts_sunnet":"SUN Network의 실시간 계정 수",
- "tooltip_trxPrice":"USD 대비한 TRX 시세, 실시간 변동",
+ "tooltip_trxPrice":"USD 대비한 TRX 시세",
  "tooltip_trxPrice_mainnet":"USD 대비한 TRX 시세, 실시간 변동",
  "tooltip_trxPrice_sunnet":"USD 대비한 TRX 시세, 실시간 변동",
  "nav_network":"SUN Network",

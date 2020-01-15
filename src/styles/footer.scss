@@ -1,13 +1,13 @@
 .footer-new{
     .home-footer{
         h5{
-            font-size: 14px;
+            font-size: 16px;
             color: rgba(255,255,255,0.7);
         }
         .quick-links{
             a{
                 font-family: HelveticaNeue;
-                font-size: 12px;
+                font-size: 14px;
                 color: rgba(255,255,255,0.5);
                 &:hover{
                     color:rgba(255,255,255,1)!important;
@@ -27,7 +27,7 @@
             }
             p{
                 font-family: HelveticaNeue;
-                font-size: 12px;
+                font-size: 14px;
                 color: rgba(255,255,255,0.5);
                 text-align: right;
                 line-height: 30px;
@@ -121,7 +121,7 @@
             }
         }
         .donate{
-            min-width:340px;
+            min-width:310px;
             height:24px;
             line-height: 24px;
             background: rgba(255,255,255,0.14);
@@ -136,6 +136,9 @@
                color: #FFFFFF;
                margin-left: 4px;
                border-radius: 0;
+            }
+            .after{
+                font-size:12px;
             }
 
         }
