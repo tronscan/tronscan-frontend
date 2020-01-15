@@ -5,6 +5,7 @@ import { injectIntl } from "react-intl";
 
 @injectIntl
 export default class OwnerRead extends Component {
+  // eslint-disable-next-line
   constructor(props) {
     super(props);
   }

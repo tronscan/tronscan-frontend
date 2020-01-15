@@ -14,9 +14,10 @@ import Field from "../../../tools/TransactionViewer/Field";
 import {toUtf8} from 'tronweb'
 import { Client } from "../../../../services/api";
 
-async function contractValue(id) {
-  let contract = await Client.getContractOverview(id);
+async function getContractValue(id) {
+  let res = await Client.getContractOverview(id);
   let contractValue = "";
+  let contract = res && res.data && res.data[0]
 
   if (contract.call_token_value) {
     let tokenList = [{ token_id: contract.call_token_id }];
@@ -25,13 +26,15 @@ async function contractValue(id) {
       contract.call_token_value /
       Math.pow(10, tokenInfo.map_token_precision || 6);
     if (contract.call_value) {
-      contractValue = `${contract.call_value} TRX ${value} ${tokenInfo.map_token_name}`;
+      let trxValue = contract.call_value / 1000000
+      contractValue = `${trxValue} TRX ${value} ${tokenInfo.map_token_name}`;
     } else {
       contractValue = `${value} ${tokenInfo.map_token_name}`;
     }
   } else {
     if (contract.call_value) {
-      contractValue = `${contract.call_value} TRX`;
+      let trxValue = contract.call_value / 1000000
+      contractValue = `${trxValue} TRX`;
     } else {
       contractValue = '0 TRX';
     }
@@ -43,7 +46,7 @@ const useFetch = (id) => {
   const [data, updateData] = useState('0 TRX')
 
   async function getData(){
-    const value = await contractValue(id).catch(e=>{
+    const value = await getContractValue(id).catch(e=>{
       updateData('0 TRX') 
     })
     updateData(value)
@@ -93,10 +96,10 @@ function CreateSmartContract({contract,intl}){
           <Field label="contract_name">{contract.new_contract.name}</Field>
           <Field label="contract_enery" tip text={t('contract_enery_tip')}>
             {tu("contract_percent")}&nbsp;
-            {100 - (contract.new_contract.consume_user_resource_percent||0)}%,
+            {100 - (contract.new_contract.consume_user_resource_percent || 0)}%,
             {"  "}
             {tu("contract_percent_user")}&nbsp;
-            {(contract.new_contract.consume_user_resource_percent||0)}%
+            {(contract.new_contract.consume_user_resource_percent || 0)}%
           </Field>
           <Field label="contract_init_assets" tip="true" text={t('contract_init_assets_tip')}>{value}</Field>
           {JSON.stringify(contract.cost) != "{}" && (

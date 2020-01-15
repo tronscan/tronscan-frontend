@@ -278,7 +278,7 @@ export default class panelGroup extends Component {
                     style={{ border: "none", borderRadius: 0 }}
                   >
                     <div className="card-body row pt-3 pb-3 home-stats">
-                    <div className="col-lg-1 col-md-2 col-xs-6"></div>
+                      <div className="col-lg-1 col-md-2 col-xs-6"></div>
                       <div className="col-lg-2 col-md-4 col-xs-12 mb-lg-0  mb-md-3 ">
                         <p className="m-0 panel-title">{tu("online_nodes")}</p>
                         <Tooltip
@@ -729,6 +729,7 @@ export default class panelGroup extends Component {
                   style={{ border: "none", borderRadius: 0 }}
                 >
                   <div className="card-body row pt-3 pb-3 home-stats">
+                    <div className="col-lg-1 col-md-2 col-xs-6"></div>
                     <div className="col-lg-2 col-md-4 col-xs-12 mb-lg-0  mb-md-3">
                       <p className="m-0 panel-title">{tu("online_nodes")}</p>
                       <Tooltip
