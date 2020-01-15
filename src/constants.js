@@ -14,8 +14,7 @@ export const NETURL = {
     SUNNET: "http://18.217.215.94:68",
     NEWMAINNET: "https://tronscan.io",
     NEWSUNNET: "https://dappchain.tronscan.io",
-    // MAINNET: "http://18.217.215.94:65",
-    // SUNNET: "http://18.217.215.94:66",
+
 };
 
 export const TOKENINFO_UPDATE = 'TOKENINFO_UPDATE'

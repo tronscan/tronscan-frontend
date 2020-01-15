@@ -90,10 +90,10 @@ export default class MobilePanelGroup extends Component {
                     <img src={require("../../images/home/node.png")} />
                     <Tooltip placement="top" title={tu("tooltip_onlineNodes")}>
                       <p className="text-muted mb-0 mt-2">
-                        {tu("online_nodes")}
+                        {tu("online_nodes")}{' '}
                         <Icon
                           type="question-circle"
-                          style={{ verticalAlign: 0, marginLeft: 0 }}
+                          style={{ verticalAlign: 0, marginLeft: 0, fontSize:'0.8rem', }}
                         />
                       </p>
                     </Tooltip>
@@ -114,10 +114,10 @@ export default class MobilePanelGroup extends Component {
                     <img src={require("../../images/home/block.png")} />
                     <Tooltip placement="top" title={tu("tooltip_blockHeight")}>
                       <p className="text-muted mb-0 mt-2">
-                        {tu("block_height")}
+                        {tu("block_height")}{' '}
                         <Icon
                           type="question-circle"
-                          style={{ verticalAlign: 0, marginLeft: 0 }}
+                          style={{ verticalAlign: 0, marginLeft: 0, fontSize:'0.8rem', }}
                         />
                       </p>
                     </Tooltip>
@@ -141,18 +141,18 @@ export default class MobilePanelGroup extends Component {
                       <img src={require("../../images/home/tps.png")} />
                       <p className="text-muted mb-0 mt-2">
                         <Tooltip placement="top" title={tu("tooltip_startTps")}>
-                          {tu("index_page_pane_current")}
+                          {tu("index_page_pane_current")}{' '}
                           <Icon
                             type="question-circle"
-                            style={{ verticalAlign: 0, marginLeft: 0 }}
+                            style={{ verticalAlign: 0, marginLeft: 0, fontSize:'0.8rem',}}
                           />
                         </Tooltip>
                         /
                         <Tooltip placement="top" title={tu("tooltip_tps")}>
-                          {tu("index_page_pane_MaxTPS")}
+                          {tu("index_page_pane_MaxTPS")}{' '}
                           <Icon
                             type="question-circle"
-                            style={{ verticalAlign: 0, marginLeft: 0 }}
+                            style={{ verticalAlign: 0, marginLeft: 0, fontSize:'0.8rem', }}
                           />
                         </Tooltip>
                       </p>
@@ -184,10 +184,10 @@ export default class MobilePanelGroup extends Component {
                       title={tu("tooltip_transactionPerDay")}
                     >
                       <p className="text-muted mb-0 mt-2">
-                        {tu("transactions_last_day")}
+                        {tu("transactions_last_day")}{' '}
                         <Icon
                           type="question-circle"
-                          style={{ verticalAlign: 0, marginLeft: 0 }}
+                          style={{ verticalAlign: 0, marginLeft: 0, fontSize:'0.8rem', }}
                         />
                       </p>
                     </Tooltip>
@@ -207,10 +207,10 @@ export default class MobilePanelGroup extends Component {
                     <img src={require("../../images/home/account.png")} />
                     <Tooltip placement="top" title={tu("tooltip_accounts")}>
                       <p className="text-muted mb-0 mt-2">
-                        {tu("total_accounts")}
+                        {tu("total_accounts")}{' '}
                         <Icon
                           type="question-circle"
-                          style={{ verticalAlign: 0, marginLeft: 0 }}
+                          style={{ verticalAlign: 0, marginLeft: 0, fontSize:'0.8rem', }}
                         />
                       </p>
                     </Tooltip>
@@ -250,10 +250,10 @@ export default class MobilePanelGroup extends Component {
                       title={tu("tooltip_onlineNodes_mainnet")}
                     >
                       <p className="text-muted mb-0 mt-2">
-                        {tu("online_nodes")}
+                        {tu("online_nodes")}{' '}
                         <Icon
                           type="question-circle"
-                          style={{ verticalAlign: 0, marginLeft: 0 }}
+                          style={{ verticalAlign: 0, marginLeft: 0, fontSize:'0.8rem', }}
                         />
                       </p>
                     </Tooltip>
@@ -286,10 +286,10 @@ export default class MobilePanelGroup extends Component {
                       title={tu("tooltip_blockHeight_mainnet")}
                     >
                       <p className="text-muted mb-0 mt-2">
-                        {tu("block_height")}
+                        {tu("block_height")}{' '}
                         <Icon
                           type="question-circle"
-                          style={{ verticalAlign: 0, marginLeft: 0 }}
+                          style={{ verticalAlign: 0, marginLeft: 0, fontSize:'0.8rem', }}
                         />
                       </p>
                     </Tooltip>
@@ -321,10 +321,10 @@ export default class MobilePanelGroup extends Component {
                           placement="top"
                           title={tu("tooltip_startTps_mainnet")}
                         >
-                          {tu("index_page_pane_current")}
+                          {tu("index_page_pane_current")}{' '}
                           <Icon
                             type="question-circle"
-                            style={{ verticalAlign: 0, marginLeft: 0 }}
+                            style={{ verticalAlign: 0, marginLeft: 0, fontSize:'0.8rem', }}
                           />
                         </Tooltip>
                         /
@@ -332,10 +332,10 @@ export default class MobilePanelGroup extends Component {
                           placement="top"
                           title={tu("tooltip_tps_mainnet")}
                         >
-                          {tu("index_page_pane_MaxTPS")}
+                          {tu("index_page_pane_MaxTPS")}{' '}
                           <Icon
                             type="question-circle"
-                            style={{ verticalAlign: 0, marginLeft: 0 }}
+                            style={{ verticalAlign: 0, marginLeft: 0, fontSize:'0.8rem', }}
                           />
                         </Tooltip>
                       </p>
@@ -372,10 +372,10 @@ export default class MobilePanelGroup extends Component {
                       })}
                     >
                       <p className="text-muted mb-0 mt-2">
-                        {tu("transactions_last_day")}
+                        {tu("transactions_last_day")}{' '}
                         <Icon
                           type="question-circle"
-                          style={{ verticalAlign: 0, marginLeft: 0 }}
+                          style={{ verticalAlign: 0, marginLeft: 0, fontSize:'0.8rem', }}
                         />
                       </p>
                     </Tooltip>
@@ -409,10 +409,10 @@ export default class MobilePanelGroup extends Component {
                       })}
                     >
                       <p className="text-muted mb-0 mt-2">
-                        {tu("tooltip_accounts_mainnet")}
+                        {tu("tooltip_accounts_mainnet")}{' '}
                         <Icon
                           type="question-circle"
-                          style={{ verticalAlign: 0, marginLeft: 0 }}
+                          style={{ verticalAlign: 0, marginLeft: 0, fontSize:'0.8rem', }}
                         />
                       </p>
                     </Tooltip>
@@ -452,10 +452,10 @@ export default class MobilePanelGroup extends Component {
                           id: "tooltip_onlineNodes_sunnet"
                         })}
                       >
-                        {tu("online_nodes")}
+                        {tu("online_nodes")}{' '}
                         <Icon
                           type="question-circle"
-                          style={{ verticalAlign: 0, marginLeft: 0 }}
+                          style={{ verticalAlign: 0, marginLeft: 0, fontSize:'0.8rem', }}
                         />
                       </Tooltip>
                     </p>
@@ -479,10 +479,10 @@ export default class MobilePanelGroup extends Component {
                           id: "tooltip_blockHeight_sunnet"
                         })}
                       >
-                        {tu("block_height")}
+                        {tu("block_height")}{' '}
                         <Icon
                           type="question-circle"
-                          style={{ verticalAlign: 0, marginLeft: 0 }}
+                          style={{ verticalAlign: 0, marginLeft: 0, fontSize:'0.8rem', }}
                         />
                       </Tooltip>
                     </p>
@@ -510,10 +510,10 @@ export default class MobilePanelGroup extends Component {
                             id: "tooltip_startTps_sunnet"
                           })}
                         >
-                          {tu("index_page_pane_current")}
+                          {tu("index_page_pane_current")}{' '}
                           <Icon
                             type="question-circle"
-                            style={{ verticalAlign: 0, marginLeft: 0 }}
+                            style={{ verticalAlign: 0, marginLeft: 0, fontSize:'0.8rem', }}
                           />
                         </Tooltip>
                         /
@@ -521,10 +521,10 @@ export default class MobilePanelGroup extends Component {
                           placement="top"
                           title={tu("tooltip_tps_sunnet")}
                         >
-                          {tu("index_page_pane_MaxTPS")}
+                          {tu("index_page_pane_MaxTPS")}{' '}
                           <Icon
                             type="question-circle"
-                            style={{ verticalAlign: 0, marginLeft: 0 }}
+                            style={{ verticalAlign: 0, marginLeft: 0, fontSize:'0.8rem', }}
                           />
                         </Tooltip>
                       </p>
@@ -557,10 +557,10 @@ export default class MobilePanelGroup extends Component {
                           id: "tooltip_transactionPerDay_sunnet"
                         })}
                       >
-                        {tu("transactions_last_day")}
+                        {tu("transactions_last_day")}{' '}
                         <Icon
                           type="question-circle"
-                          style={{ verticalAlign: 0, marginLeft: 0 }}
+                          style={{ verticalAlign: 0, marginLeft: 0, fontSize:'0.8rem', }}
                         />
                       </Tooltip>
                     </p>
@@ -584,10 +584,10 @@ export default class MobilePanelGroup extends Component {
                           id: "tooltip_accounts_sunnet"
                         })}
                       >
-                        {tu("total_accounts")}
+                        {tu("total_accounts")}{' '}
                         <Icon
                           type="question-circle"
-                          style={{ verticalAlign: 0, marginLeft: 0 }}
+                          style={{ verticalAlign: 0, marginLeft: 0, fontSize:'0.8rem', }}
                         />
                       </Tooltip>
                     </p>
