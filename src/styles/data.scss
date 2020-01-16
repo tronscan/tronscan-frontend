@@ -1,15 +1,107 @@
+.top-data {
+  .data-items {
+    background: #ffffff;
+    border: 1px solid #eeeeee;
+    border-radius: 0.5px;
+    width: 100%;
+    h2 {
+      background: #f3f3f3;
+      border-radius: 0.5px;
+      height: 45px;
+      line-height: 45px;
+      font-family: PingFangSC-Regular;
+      font-size: 16px;
+      color: #3c3c3c;
+      text-indent: 20px;
+    }
+  }
+  .ant-table .ant-table-thead > tr > th,
+  .ant-table .ant-table-tbody > tr > td {
+    padding: 13px;
+    &:first-child {
+      padding-left: 20px !important;
+    }
+    &:last-child {
+      padding-right: 20px !important;
+    }
+  }
 
-.time-filter{
-  >ul{
+  .addressWidth {
+    width: 220px;
+    display: block;
+    text-align: center;
+  }
+
+  .ant-table-thead {
+    tr {
+      td {
+        font-family: PingFangSC-Medium;
+        font-size: 12px;
+        color: #333333;
+      }
+    }
+  }
+
+  .ant-table-tbody {
+    .ant-table-row.ant-table-row-level-0 {
+      td {
+        font-family: PingFangSC-Regular;
+        font-size: 12px;
+        color: #333333;
+      }
+      .usd-amount {
+        font-size: 10px;
+        color: #999999;
+      }
+      .rank-0 {
+        background: url("../images/data/rank-1.png");
+      }
+      .rank-1 {
+        background: url("../images/data/rank-2.png");
+      }
+      .rank-2 {
+        background: url("../images/data/rank-3.png");
+      }
+      .rank {
+        width: 14.6px;
+        height: 18px;
+        display: inline-block;
+        background-size: 100%;
+      }
+    }
+    .ant-table-row.ant-table-row-level-0:last-child {
+      td {
+        background: #f3f3f3 !important;
+        font-family: PingFangSC-Medium;
+        font-size: 12px;
+        color: #333333;
+      }
+    }
+  }
+}
+.time-filter {
+  > ul {
     display: flex;
     margin: 0;
-    padding: 0;
+    padding: 20px 0;
     list-style-type: none;
-    li{
-      padding: 5px 10px;
+    li {
+      width: 75px;
+      padding: 5px 0;
       cursor: pointer;
-      &.active{
-        color: #C23631;
+      border: 1px solid #eee;
+      border-left: 0;
+      font-size: 12px;
+      text-align: center;
+      &:first-child{
+        border-left: 1px solid #eee;
+      }
+      &.active {
+        color: #c23631;
+        border: 1px solid #c23631;
+      }
+      &:hover{
+        color: #c23631;
       }
     }
   }
