@@ -36,10 +36,10 @@ export const lang20Q1 = {
   
 
   data_account_top: "最佳账户",
-  data_account_send_Trx: "发送TRX数量",
-  data_account_send_Trx_items: "发送TRX总笔数",
-  data_account_receive_Trx: "接收TRX总额",
-  data_account_receive_Trx_items: "接收TRX总笔数",
+  data_account_send_Trx: "最佳账户--发送TRX数量",
+  data_account_send_Trx_items: "最佳账户--发送TRX总笔数",
+  data_account_receive_Trx: "最佳账户--接收TRX总额",
+  data_account_receive_Trx_items: "最佳账户--接收TRX总笔数",
   data_account_freeze: "冻结TRX数量",
   data_account_vote: "已投票数",
   data_range: "排序",
@@ -47,9 +47,26 @@ export const lang20Q1 = {
   data_per: "占比",
   data_total: "总计",
 
+  data_items: "笔数",
+  data_unit_bi: "笔",
+  data_piao: "票数",
+  data_token_top: "最佳通证",
+  data_token_holders: "最佳通证--持有账户",
+  data_token_holder: "持有账户数",
+  data_token_transcation_account: "交易账户数",
+  data_token_transcation_accounts: "最佳通证--交易账户数",
+  data_token_transcation_items: "交易笔数",
+  data_token_transcation_items_total: "最佳通证--交易总笔数",
+  data_token_transcation_numbers: "最佳通证--交易总额",
+  data_token_circle_per: "环比",
+  data_contract_top: "最佳合约",
+  data_contract_trx_number: "最佳合约--TRX总余额",
+  data_contract_accounts: "最佳合约--调用账户数",
+  data_contract_numbers: "总余额",
+  data_contract_times: "最佳合约--调用次数",
+  data_real_time: "实时",
 
-
-
+  
   data_resource_table_title: "最高能量消耗",
   data_resource_table_rank: "排序",
   data_resource_table_account: "账户",
@@ -60,7 +77,6 @@ export const lang20Q1 = {
   data_resource_table_percentage_tips: "当前用户消耗能量/全网用户消耗能量",
   data_resource_table_bandwidth_title: "最高带宽消耗",
   data_resource_table_total: "总计",
-
 
 
 
