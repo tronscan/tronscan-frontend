@@ -394,7 +394,7 @@ class Code extends React.Component {
       //     }
       // </div>
       <div>
-        {IS_MAINNET ? (
+        {/* {IS_MAINNET ? ( */}
           <div className="tab-choice">
             {radioBtnItem}
             <p className="contract-source-code-title">
@@ -455,9 +455,9 @@ class Code extends React.Component {
               </div>
             </div>
           </div>
-        ) : (
+        {/* ) : (
           ""
-        )}
+        )} */}
       </div>
     );
     // 去验证合约Item

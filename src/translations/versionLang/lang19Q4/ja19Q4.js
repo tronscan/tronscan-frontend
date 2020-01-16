@@ -289,4 +289,22 @@ export const lang19Q4 = {
    "Supply_amount_net_new_tip":"TRX生成 + TRX破壊",
    "votes_num":"投票",
 
+   /*
+        ##################################################################################
+        #                                                                                #
+        # txns type chart  2020-01-09                           #
+        #                                                                                #
+        ##################################################################################
+    */
+   "txns_contract_calls":"コントラクト調達数",
+   "txns_TRX_transfers":"TRXの振替数",
+   "txns_TRC10_transfers":"TRC10の振替数",
+   "txns_frozen_transactions":"凍結した取引数",
+   "txns_votes_transactions":"投票数",
+   "txns_other_transactions":"その他の取引数",
+   "txns_shielded_transactions":"匿名取引",
+   "chart_network_resources":"ネットワークリソース",
+   "chart_active_accounts":"ネットワーク",
+   "chart_network":"ネットワーク",
+  
 }

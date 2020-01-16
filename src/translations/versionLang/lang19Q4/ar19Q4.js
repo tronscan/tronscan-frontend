@@ -291,5 +291,23 @@ export const lang19Q4 = {
    "Supply_amount_net_new_y_title":" العائد / صافي القيمة (TRX)",
    "Supply_amount_net_new_tip":"TRX جيل + تدمير TRX",
    "votes_num":"الأصوات",
+
+   /*
+        ##################################################################################
+        #                                                                                #
+        # txns type chart  2020-01-09                           #
+        #                                                                                #
+        ##################################################################################
+    */
+   "txns_contract_calls":"عدد معاملات دعوات العقد",
+   "txns_TRX_transfers":"عدد معاملات تحويل TRX ",
+   "txns_TRC10_transfers":"عدد معاملات تحويل TRC10 ",
+   "txns_frozen_transactions":"عدد المعاملات المجمدة",
+   "txns_votes_transactions":"عدد معاملات التصويت",
+   "txns_other_transactions":"معاملات أخرى",
+   "txns_shielded_transactions":"عدد المعاملات المجهولة",
+   "chart_network_resources":"موارد الشبكة",
+   "chart_active_accounts":"الشبكة",
+   "chart_network":"الشبكة",
   
 }
