@@ -27,7 +27,7 @@ class Tokens extends React.Component {
       trxUnit: "TRX",
       usdUnit: "USD",
       types: {
-        1: {
+        7: {
           title: "data_token_holders",
           tableTitle: [
             "data_range",
@@ -39,7 +39,7 @@ class Tokens extends React.Component {
           data: [],
           isRealTime: true
         },
-        2: {
+        8: {
           title: "data_token_transcation_accounts",
           tableTitle: [
             "data_range",
@@ -50,7 +50,7 @@ class Tokens extends React.Component {
           key: "address_number",
           data: []
         },
-        3: {
+        9: {
           title: "data_token_transcation_items_total",
           tableTitle: [
             "data_range",
@@ -61,7 +61,7 @@ class Tokens extends React.Component {
           key: "transaction_number",
           data: []
         },
-        4: {
+        10: {
           title: "data_token_transcation_numbers",
           tableTitle: [
             "data_range",
@@ -84,20 +84,18 @@ class Tokens extends React.Component {
 
   async getData() {
     let data = [];
-    data[0] = await ApiClientData.getTop10Data({ type: 7, time: 0 });
-    data[1] = await ApiClientData.getTop10Data({ type: 8, time: 1 });
-    data[2] = await ApiClientData.getTop10Data({
-      type: 9,
-      time: 1
-    });
-    data[3] = await ApiClientData.getTop10Data({
-      type: 10,
+    data = await ApiClientData.getTop10Data({
+      type: "7,8,9,10",
       time: 1
     });
 
     let types = this.state.types;
     Object.keys(types).map(index => {
-      types[index].data = data[Number(index) - 1];
+      data.map(subItem => {
+        if (subItem.type == index) {
+          types[index].data = subItem.data || [];
+        }
+      });
     });
 
     this.setState({

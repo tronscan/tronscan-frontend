@@ -81,26 +81,18 @@ class Accounts extends React.Component {
 
   async getData() {
     let data = [];
-    data[0] = await ApiClientData.getTop10Data({ type: 1, time: 1 });
-    data[1] = await ApiClientData.getTop10Data({ type: 2, time: 1 });
-    data[2] = await ApiClientData.getTop10Data({
-      type: 3,
+    data = await ApiClientData.getTop10Data({
+      type: "1,2,3,4,5,6",
       time: 1
     });
-    data[3] = await ApiClientData.getTop10Data({
-      type: 4,
-      time: 1
-    });
-    data[4] = await ApiClientData.getTop10Data({
-      type: 5,
-      time: 0
-    });
-
-    data[5] = await ApiClientData.getTop10Data({ type: 6, time: 0 });
 
     let types = this.state.types;
     Object.keys(types).map(index => {
-      types[index].data = data[Number(index) - 1];
+      data.map(subItem => {
+        if (subItem.type == index) {
+          types[index].data = subItem.data || [];
+        }
+      });
     });
 
     this.setState({
@@ -125,7 +117,7 @@ class Accounts extends React.Component {
             >
               <div className="data-items">
                 <h2>
-                  {tu("data_account_top")}-{tu(types[index].title)}
+                  {tu(types[index].title)}
                   {types[index].isRealTime && (
                     <span className="data-real-time">
                       {tu("data_real_time")}

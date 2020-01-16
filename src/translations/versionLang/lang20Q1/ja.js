@@ -32,6 +32,7 @@ export const lang20Q1 = {
   data_time1: "1時間",
   data_time2: "1日",
   data_time3: "1週間",
+  data_check: "トップ10を見る",
   data_account_top: "最佳账户",
   data_account_send_Trx: "上位のアカウント-送信されたTRXの合計",
   data_account_send_Trx_items: "上位のアカウント-送信された総数",

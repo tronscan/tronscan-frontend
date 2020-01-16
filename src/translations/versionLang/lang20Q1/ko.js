@@ -31,6 +31,7 @@ export const lang20Q1 = {
   data_time1: "1시간",
   data_time2: "1일",
   data_time3: "1주",
+  data_check: "TOP 10 보기",
   data_account_top: "最佳账户",
   data_account_send_Trx: "최고 계정-- TRX 전송 수",
   data_account_send_Trx_items: "최고 계정-- TRX 전송 총 횟수",

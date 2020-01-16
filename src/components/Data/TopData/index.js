@@ -129,27 +129,34 @@ class BestData extends React.Component {
                           </NavLink>
                         </li>
                       ))}
-                    </ul>
-                  </div>
-                  <div className="card-body p-0  list-style-body__body">
-                    <div className="pb-5" >
-                      <div className="time-filter d-flex justify-content-between">
-                        <ul >
-                          {
-                            times.map(v=><li key={v} className={time==v && 'active'} onClick={()=>this.changeTime(v)}>{t(`data_time${v}`)}</li>)
-                          }
-                        </ul>
-                        <div>2020/01/01</div>
+                  </ul>
+                </div>
+                <div className="card-body p-0  list-style-body__body">
+                  <div className="pb-5">
+                    <div className="time-filter d-flex justify-content-between">
+                      <ul>
+                        {times.map(v => (
+                          <li
+                            key={v}
+                            className={time == v && "active"}
+                            onClick={() => this.changeTime(v)}
+                          >
+                            {t(`data_time${v}`)}
+                          </li>
+                        ))}
+                      </ul>
+                      <div>2020/01/01</div>
+                    </div>
+                    {loading ? (
+                      <div className="card">
+                        <TronLoader>
+                          {/* {tu("loading_address")} {contract.address} */}
+                        </TronLoader>
                       </div>
-                      {loading ? (
-                        <div className="card">
-                          <TronLoader>
-                            {/* {tu("loading_address")} {contract.address} */}
-                          </TronLoader>
-                        </div>
-                      ) : (
-                        <Switch>
-                          {tabs && Object.values(tabs).map(tab => (
+                    ) : (
+                      <Switch>
+                        {tabs &&
+                          Object.values(tabs).map(tab => (
                             <Route
                               key={tab.id}
                               exact
@@ -157,11 +164,10 @@ class BestData extends React.Component {
                               render={props => <tab.cmp />}
                             />
                           ))}
-                        </Switch>
-                      )}
-                    </div>
+                      </Switch>
+                    )}
                   </div>
-                
+                </div>
               </div>
             </Fragment>
           </div>
