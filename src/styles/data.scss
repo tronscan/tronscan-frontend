@@ -102,11 +102,25 @@
 .time-filter {
   > ul {
     display: flex;
+    margin: 0;
+    padding: 20px 0;
     list-style-type: none;
     li {
-      padding: 5px 10px;
+      width: 75px;
+      padding: 5px 0;
       cursor: pointer;
+      border: 1px solid #eee;
+      border-left: 0;
+      font-size: 12px;
+      text-align: center;
+      &:first-child{
+        border-left: 1px solid #eee;
+      }
       &.active {
+        color: #c23631;
+        border: 1px solid #c23631;
+      }
+      &:hover{
         color: #c23631;
       }
     }

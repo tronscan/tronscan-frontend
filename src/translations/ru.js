@@ -2,6 +2,9 @@
 import {
     lang19Q4
 } from './versionLang/lang19Q4/ru19Q4'; /* 2019Q4 */
+import {
+  lang20Q1
+} from './versionLang/lang20Q1/ru.js'; /* 2020Q1 */
 export const messages = {
     /*
   ##################################################################################
@@ -2461,5 +2464,6 @@ export const messages = {
 "address_get_bandwith":"Для Пропускной Способности",
 "address_freeze_owner":"Для вашего аккаунта ",
 "address_freeze_other":"Для другого аккаунта(ов)",
-...lang19Q4
+...lang19Q4,
+...lang20Q1
 };

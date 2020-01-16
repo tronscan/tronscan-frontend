@@ -129,32 +129,25 @@ class BestData extends React.Component {
                           </NavLink>
                         </li>
                       ))}
-                  </ul>
-                </div>
-                <div className="time-filter">
-                  <ul>
-                    {times.map(v => (
-                      <li
-                        key={v}
-                        className={time == v && "active"}
-                        onClick={() => this.changeTime(v)}
-                      >
-                        {t(`data_time${v}`)}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                {loading ? (
-                  <div className="card">
-                    <TronLoader>
-                      {/* {tu("loading_address")} {contract.address} */}
-                    </TronLoader>
+                    </ul>
                   </div>
-                ) : (
                   <div className="card-body p-0 list-style-body__body">
-                    <Switch>
-                      {tabs &&
-                        Object.values(tabs).map(tab => (
+                    <div className="time-filter">
+                      <ul >
+                        {
+                          times.map(v=><li key={v} className={time==v && 'active'} onClick={()=>this.changeTime(v)}>{t(`data_time${v}`)}</li>)
+                        }
+                      </ul>
+                    </div>
+                    {loading ? (
+                      <div className="card">
+                        <TronLoader>
+                          {/* {tu("loading_address")} {contract.address} */}
+                        </TronLoader>
+                      </div>
+                    ) : (
+                      <Switch>
+                        {tabs && Object.values(tabs).map(tab => (
                           <Route
                             key={tab.id}
                             exact
@@ -162,9 +155,10 @@ class BestData extends React.Component {
                             render={props => <tab.cmp />}
                           />
                         ))}
-                    </Switch>
+                      </Switch>
+                    )}
                   </div>
-                )}
+                
               </div>
             </Fragment>
           </div>
