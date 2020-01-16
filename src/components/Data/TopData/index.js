@@ -131,32 +131,35 @@ class BestData extends React.Component {
                       ))}
                     </ul>
                   </div>
-                  <div className="card-body p-0 list-style-body__body">
-                    <div className="time-filter">
-                      <ul >
-                        {
-                          times.map(v=><li key={v} className={time==v && 'active'} onClick={()=>this.changeTime(v)}>{t(`data_time${v}`)}</li>)
-                        }
-                      </ul>
-                    </div>
-                    {loading ? (
-                      <div className="card">
-                        <TronLoader>
-                          {/* {tu("loading_address")} {contract.address} */}
-                        </TronLoader>
+                  <div className="card-body p-0  list-style-body__body">
+                    <div className="pb-5" >
+                      <div className="time-filter d-flex justify-content-between">
+                        <ul >
+                          {
+                            times.map(v=><li key={v} className={time==v && 'active'} onClick={()=>this.changeTime(v)}>{t(`data_time${v}`)}</li>)
+                          }
+                        </ul>
+                        <div>2020/01/01</div>
                       </div>
-                    ) : (
-                      <Switch>
-                        {tabs && Object.values(tabs).map(tab => (
-                          <Route
-                            key={tab.id}
-                            exact
-                            path={"/blockchain/data" + tab.path}
-                            render={props => <tab.cmp />}
-                          />
-                        ))}
-                      </Switch>
-                    )}
+                      {loading ? (
+                        <div className="card">
+                          <TronLoader>
+                            {/* {tu("loading_address")} {contract.address} */}
+                          </TronLoader>
+                        </div>
+                      ) : (
+                        <Switch>
+                          {tabs && Object.values(tabs).map(tab => (
+                            <Route
+                              key={tab.id}
+                              exact
+                              path={"/blockchain/data" + tab.path}
+                              render={props => <tab.cmp />}
+                            />
+                          ))}
+                        </Switch>
+                      )}
+                    </div>
                   </div>
                 
               </div>

@@ -141,10 +141,11 @@
   }
 }
 .time-filter {
+  padding: 20px 0;
   > ul {
     display: flex;
     margin: 0;
-    padding: 20px 0;
+    padding-left: 0;
     list-style-type: none;
     li {
       width: 75px;
@@ -163,6 +164,41 @@
       }
       &:hover {
         color: #c23631;
+      }
+    }
+  }
+  >div{
+    line-height: 30px;
+  }
+}
+.data-overview-list{
+  .item{
+    width: 50%;
+    border: 1px solid #eee;
+    font-family: PingFangSC-Regular;
+    font-size: 14px;
+    color: #333333;
+    &:first-child{
+      margin-right: 20px;
+    }
+    .title{
+      line-height: 45px;
+      background: #F3F3F3;
+    }
+    .content-item{
+      line-height: 52px;
+    }
+    .content-detail{
+      padding: 6px 0;
+      &:first-child{
+        border-bottom: 1px solid #eee;
+      }
+      >.detail-item{
+        line-height: 30px;
+        padding-left: 20px;
+        &:first-child{
+          padding-left: 0;
+        }
       }
     }
   }
