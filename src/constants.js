@@ -10,8 +10,10 @@ export const IS_DESKTOP = process.env.DESKTOP === "true";
 export const NETURL = {
     // MAINNET: "https://tronscan.org",
     // SUNNET: "https://dappchain.tronscan.org",
-    MAINNET: "http://18.217.215.94:67",
-    SUNNET: "http://18.217.215.94:68",
+    // MAINNET: "http://18.217.215.94:67",
+    // SUNNET: "http://18.217.215.94:68",
+    MAINNET: "https://debug.tronscan.org",
+    SUNNET: "https://debugdappchain.tronscan.org",
     NEWMAINNET: "https://tronscan.io",
     NEWSUNNET: "https://dappchain.tronscan.io",
 
@@ -65,7 +67,7 @@ export const API_URL_SUNNET = "https://dappchainapi.tronscan.org";
 // export const API_URL_MAINNET = 'https://apilist.tronscan.org';
 export const API_URL = IS_SUNNET ? API_URL_SUNNET : process.env.API_URL;
 export const CONTRACT_MAINNET_API_URL = process.env.API_URL;
-export const CONTRACT_NODE_API = IS_MAINNET ? API_URL : 'http://18.222.181.154:9017';
+export const CONTRACT_NODE_API = API_URL;
 // export const CONTRACT_NODE_API = API_URL;
 //Token issued
 export const MARKET_API_URL = "https://platform.tron.network";
