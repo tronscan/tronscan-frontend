@@ -288,5 +288,22 @@ export const lang19Q4 = {
    "Supply_amount_net_new_y_title":"بازده / ارزش خالص (TRX)",
    "Supply_amount_net_new_tip":"نسل TRX + تخریب TRX",
    "votes_num":"رای",
+   /*
+        ##################################################################################
+        #                                                                                #
+        # txns type chart  2020-01-09                           #
+        #                                                                                #
+        ##################################################################################
+    */
+   "txns_contract_calls":"تماس با قرارداد",
+   "txns_TRX_transfers":"نقل و انتقالات TRX",
+   "txns_TRC10_transfers":"نقل و انتقالات TRC10",
+   "txns_frozen_transactions":"تعداد دفعات دارایی های فریز شده",
+   "txns_votes_transactions":"رأی",
+   "txns_other_transactions":"سایر معاملات",
+   "txns_shielded_transactions":"تعداد معاملات ناشناس",
+   "chart_network_resources":"منابع شبکه",
+   "chart_active_accounts":"شبکه",
+   "chart_network":"شبکه",
   
 }

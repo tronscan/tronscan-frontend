@@ -131,6 +131,7 @@ class Menunavigation extends Component {
                                   href={subRoute.url}
                                   title={
                                     <span
+                                      className="dapp-link-style"
                                       style={{
                                         display: "inline-block",
                                         width: "50%"
@@ -238,7 +239,7 @@ class Menunavigation extends Component {
                         {route.routes &&
                           route.routes.map((subRoute, index) => {
                             return (
-                              <div className="" key={index}>
+                              <div className="more-menu-mobile-wrapper" key={index}>
                                 <div className="more-menu-line"></div>
                                 {subRoute.map((Route, j) => {
                                   if (isString(Route)) {
@@ -264,7 +265,8 @@ class Menunavigation extends Component {
                                   ) {
                                     return (
                                       <Menu.ItemGroup
-                                        className="mr-3 d-inline-block developer_challenge_box"
+                                        className="mr-3  developer_challenge_box" 
+                                        style={{display: 'block',}}
                                         key={Route.label}
                                         title={
                                           <span
@@ -439,8 +441,8 @@ class Menunavigation extends Component {
                                         <span
                                           className={
                                             currentRouter == Route.path
-                                              ? "menu-single-tilte menu-active-tilte"
-                                              : "menu-single-tilte"
+                                              ? "menu-single-tilte more-menu-single-tilte-style menu-active-tilte"
+                                              : "menu-single-tilte more-menu-single-tilte-style"
                                           }
                                           style={{
                                             display: "inline-block",
