@@ -22,6 +22,8 @@
     ##################################################################################
 */
 export const lang20Q1 = {
+   
+
   data_title: "Top Statistics",
   data_overview: "Overview",
   data_account: "Accounts",
@@ -62,8 +64,13 @@ export const lang20Q1 = {
   data_contract_times: "Top Contracts--Number of Calls",
   data_real_time: "Real-time",
   data_resource_table_title: "Peak Energy Consumption",
-  data_resource_table_rank: "排序",
-  data_resource_table_account: "账户",
+  data_resource_table_rank: "Rank",
+  data_resource_table_account: "Account",
   data_resource_table_freezingTRX_energy: "Energy from Freezing TRX",
-  data_resource_table_burningTRX_energy: "Energy from Burning TRX"
+  data_resource_table_burningTRX_energy: "Energy from Burning TRX",
+  data_resource_table_energy_consumed: "Total Energy Consumed",
+  data_resource_table_percentage: "Percentage",
+  data_resource_table_percentage_tips: "Energy consumed by the user/Energy consumed by all users",
+  data_resource_table_bandwidth_title: "Peak Bandwidth Consumption",
+  data_resource_table_total: "Total",
 };

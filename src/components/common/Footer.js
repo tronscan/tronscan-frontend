@@ -373,10 +373,10 @@ class Footer extends Component {
                       <img src={require("../../images/footer/TRON.png")} />
                       <p className="pt-2">{tu("index_page_tronscan_info")}</p>
                       <ul className="d-flex fr pt-4 mt-4">
-                        {links.map(item => {
+                        {links.map((item,ind) => {
                           if (item.name != "WeChat") {
                             return (
-                              <li key={item.url}>
+                              <li key={ind}>
                                 <HrefLink href={item.url}>
                                   <i className={`${item.icon} mr-3`} />
                                 </HrefLink>
@@ -384,7 +384,7 @@ class Footer extends Component {
                             );
                           } else {
                             return (
-                              <li className="footer-icon">
+                              <li className="footer-icon" key={ind}>
                                 <a target="_blank">
                                   <i className={item.icon}></i>
                                   <div className="code_wrap">

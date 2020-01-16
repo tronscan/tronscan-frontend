@@ -135,10 +135,10 @@ class BestData extends React.Component {
                   <div className="pb-5">
                     <div className="time-filter d-flex justify-content-between">
                       <ul>
-                        {times.map(v => (
+                        {times.map((v, ind) => (
                           <li
-                            key={v}
-                            className={time == v && "active"}
+                            key={ind}
+                            className={time == v ? "active" : ""}
                             onClick={() => this.changeTime(v)}
                           >
                             {t(`data_time${v}`)}
@@ -147,24 +147,18 @@ class BestData extends React.Component {
                       </ul>
                       <div>2020/01/01</div>
                     </div>
-                    {loading ? (
-                      <div className="card">
-                        <TronLoader>
-                          {/* {tu("loading_address")} {contract.address} */}
-                        </TronLoader>
-                      </div>
                     ) : (
-                      <Switch>
-                        {tabs &&
-                          Object.values(tabs).map(tab => (
-                            <Route
-                              key={tab.id}
-                              exact
-                              path={"/blockchain/data" + tab.path}
-                              render={props => <tab.cmp />}
-                            />
-                          ))}
-                      </Switch>
+                    <Switch>
+                      {tabs &&
+                        Object.values(tabs).map(tab => (
+                          <Route
+                            key={tab.id}
+                            exact
+                            path={"/blockchain/data" + tab.path}
+                            render={props => <tab.cmp />}
+                          />
+                        ))}
+                    </Switch>
                     )}
                   </div>
                 </div>

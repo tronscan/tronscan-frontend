@@ -23,6 +23,7 @@
 */
 
 export const lang20Q1 = {
+
   data_title: "上位のデータ",
   data_overview: "概要",
   data_account: "アカウント",
@@ -62,10 +63,16 @@ export const lang20Q1 = {
   data_contract_numbers: "トータルバランス（TRX)",
   data_contract_times: "上位契約-コール数",
   data_real_time: "リアルタイム",
+
+
   data_resource_table_title: "ピークエネルギー消費",
-  data_resource_table_rank: "排序",
-  data_resource_table_account: "账户",
-  data_resource_table_freezingTRX_energy:
-    "TRXを凍結するために消費されるエネルギー",
-  data_resource_table_burningTRX_energy: "TRXの燃焼に消費されるエネルギー"
+  data_resource_table_rank: "ランク",
+  data_resource_table_account: "アカウント",
+  data_resource_table_freezingTRX_energy: "TRXを凍結するために消費されるエネルギー",
+  data_resource_table_burningTRX_energy: "TRXの燃焼に消費されるエネルギー",
+  data_resource_table_energy_consumed: "トータルエネルギー",
+  data_resource_table_percentage: "割合",
+  data_resource_table_percentage_tips: "ユーザーが消費するエネルギー/すべてのユーザーが消費するエネルギー",
+  data_resource_table_bandwidth_title: "ピーク帯域幅消費",
+  data_resource_table_total: "トータル",
 };

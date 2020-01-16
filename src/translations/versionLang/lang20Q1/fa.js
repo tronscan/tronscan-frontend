@@ -23,6 +23,7 @@
 */
 
 export const lang20Q1 = {
+
   data_title: "بهترین داده",
   data_overview: "بررسی اجمالی",
   data_account: "حساب",
@@ -62,10 +63,15 @@ export const lang20Q1 = {
   data_contract_numbers: "موجودی کل (TRX)",
   data_contract_times: "قراردادهای برتر - تعداد تماسها",
   data_real_time: "زمان واقعی",
-  data_resource_table_title: "حداکثر مصرف انرژی.",
-  data_resource_table_rank: "排序",
-  data_resource_table_account: "账户",
-  data_resource_table_freezingTRX_energy: "TRX را فریز کنید وانرژی بدست آورید ",
-  data_resource_table_burningTRX_energy:
-    "TRX را فریز کنید و پهنای باند بدست آورید "
+
+    data_resource_table_title: "حداکثر مصرف انرژی.",
+    data_resource_table_rank: "رتبه",
+    data_resource_table_account: "حساب",
+    data_resource_table_freezingTRX_energy: "TRX را فریز کنید وانرژی بدست آورید ",
+    data_resource_table_burningTRX_energy: "TRX را فریز کنید و پهنای باند بدست آورید ",
+    data_resource_table_energy_consumed: "کل انرژی مصرف شده.",
+    data_resource_table_percentage: "درصد",
+    data_resource_table_percentage_tips: "انرژی مصرف شده توسط کاربران فعلی / انرژی مصرف شده توسط کاربران در سراسر شبکه",
+    data_resource_table_bandwidth_title: "حداکثر مصرف پهنای باند.",
+    data_resource_table_total: "کل",
 };

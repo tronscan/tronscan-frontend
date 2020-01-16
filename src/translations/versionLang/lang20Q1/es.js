@@ -22,6 +22,7 @@
     ##################################################################################
 */
 export const lang20Q1 = {
+
   data_title: "El dato mejor",
   data_overview: "general",
   data_account: "La cuenta",
@@ -62,9 +63,15 @@ export const lang20Q1 = {
   data_contract_numbers: "总余额",
   data_contract_times: "调用次数",
   data_real_time: "Tiempo real",
-  data_resource_table_title: "最高能量消耗",
-  data_resource_table_rank: "排序",
-  data_resource_table_account: "账户",
+  
+  data_resource_table_title: "",
+  data_resource_table_rank: "Rank",
+  data_resource_table_account: "Cuentas",
   data_resource_table_freezingTRX_energy: "Energía consumida para congelar TRX",
-  data_resource_table_burningTRX_energy: "Energía consumida para quemar TRX"
+  data_resource_table_burningTRX_energy: "Energía consumida para quemar TRX",
+  data_resource_table_energy_consumed: "Energía total consumida",
+  data_resource_table_percentage: "Porcentaje",
+  data_resource_table_percentage_tips: "",
+  data_resource_table_bandwidth_title: "",
+  data_resource_table_total: "",
 };
