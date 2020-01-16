@@ -15,7 +15,6 @@ import { QuestionMark } from "../../../common/QuestionMark.js";
 
 function TriggerContract({contract,intl}){
     const defaultImg = require("../../../../images/logo_default.png");
-
     return (
       <Fragment>
         <TransationTitle contractType={contract.contractType}></TransationTitle>
@@ -222,6 +221,7 @@ function TriggerContract({contract,intl}){
                         </AddressLink>
                       </div>
                     </div>
+                    
                     <div className="d-flex content_item trans-item-padding">
                       <div className="content_name">
                         {tu("amount")}
@@ -240,6 +240,8 @@ function TriggerContract({contract,intl}){
                           ))}
                       </div>
                     </div>
+
+                    
                     <div className="d-flex content_item trans-item-padding">
                       <div className="content_name">
                         {tu("token_txs_info")}
@@ -323,6 +325,14 @@ function TriggerContract({contract,intl}){
                         />
                       </div>
                     </div>
+                    {contract.contract_note && <div className="d-flex content_item trans-item-padding">
+                      <div className="content_name">
+                        {tu("note")}
+                      </div>
+                      <div className="flex1">
+                        {decodeURIComponent(contract.contract_note || "")}
+                      </div>
+                    </div>}      
                   </div>
                 </div>
               )}
