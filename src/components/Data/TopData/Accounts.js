@@ -25,12 +25,52 @@ class Accounts extends React.Component {
     this.state = {
       trxUnit: "TRX",
       usdUnit: "USD",
-      sendTrxNumbers: [],
-      sendTrxItems: [],
-      receiveTrxNumbers: [],
-      receiveTrxItems: [],
-      freezeTrxNumbers: [],
-      voteTrxNumbers: []
+      types: {
+        1: {
+          title: "data_account_send_Trx",
+          tableTitle: ["data_range", "data_account", "data_number", "data_per"],
+          isUSD: true,
+          key: "amount",
+          data: []
+        },
+        2: {
+          title: "data_account_send_Trx_items",
+          tableTitle: ["data_range", "data_account", "data_items", "data_per"],
+          isUSD: false,
+          key: "transaction_number",
+          data: []
+        },
+        3: {
+          title: "data_account_receive_Trx",
+          tableTitle: ["data_range", "data_account", "data_number", "data_per"],
+          isUSD: true,
+          key: "amount",
+          data: []
+        },
+        4: {
+          title: "data_account_receive_Trx_items",
+          tableTitle: ["data_range", "data_account", "data_items", "data_per"],
+          isUSD: false,
+          key: "transaction_number",
+          data: []
+        },
+        5: {
+          title: "data_account_freeze",
+          tableTitle: ["data_range", "data_account", "data_number", "data_per"],
+          isUSD: true,
+          key: "freeze",
+          data: [],
+          isRealTime: true
+        },
+        6: {
+          title: "data_account_vote",
+          tableTitle: ["data_range", "data_account", "data_piao", "data_per"],
+          isUSD: false,
+          key: "votes",
+          data: [],
+          isRealTime: true
+        }
+      }
     };
   }
   async componentDidMount() {
@@ -40,69 +80,91 @@ class Accounts extends React.Component {
   }
 
   async getData() {
-    let sendTrxNumbers = await ApiClientData.getTop10Data({ type: 1, time: 1 });
-    let sendTrxItems = await ApiClientData.getTop10Data({ type: 2, time: 1 });
-    let receiveTrxNumbers = await ApiClientData.getTop10Data({
+    let data = [];
+    data[0] = await ApiClientData.getTop10Data({ type: 1, time: 1 });
+    data[1] = await ApiClientData.getTop10Data({ type: 2, time: 1 });
+    data[2] = await ApiClientData.getTop10Data({
       type: 3,
       time: 1
     });
-    let voteTrxNumbers = await ApiClientData.getTop10Data({ type: 4, time: 1 });
+    data[3] = await ApiClientData.getTop10Data({
+      type: 4,
+      time: 1
+    });
+    data[4] = await ApiClientData.getTop10Data({
+      type: 5,
+      time: 0
+    });
+
+    data[5] = await ApiClientData.getTop10Data({ type: 6, time: 0 });
+
+    let types = this.state.types;
+    Object.keys(types).map(index => {
+      types[index].data = data[Number(index) - 1];
+    });
+
     this.setState({
-      sendTrxNumbers,
-      sendTrxItems,
-      receiveTrxNumbers,
-      voteTrxNumbers
+      types: types
     });
   }
 
   render() {
-    let {
-      sendTrxNumbers,
-      sendTrxItems,
-      receiveTrxNumbers,
-      voteTrxNumbers
-    } = this.state;
+    let { types } = this.state;
     return (
       <div className="top-data">
         <Row gutter={{ xs: 8, sm: 20, md: 20 }} className="mt-2">
-          <Col
-            className="gutter-row"
-            xs={24}
-            sm={12}
-            md={12}
-            lg={12}
-            xl={12}
-            xxl={12}
-          >
-            <div className="data-items">
-              <h2>
-                {tu("data_account_top")}-{tu("data_account_send_Trx")}
-              </h2>
-              {this.renderSendTrxNumberData()}
-            </div>
-          </Col>
-          <Col
-            className="gutter-row"
-            xs={24}
-            sm={12}
-            md={12}
-            lg={12}
-            xl={12}
-            xxl={12}
-          >
-            <div className="gutter-box">col-6</div>
-          </Col>
+          {Object.keys(types).map(index => (
+            <Col
+              className="gutter-row"
+              xs={24}
+              sm={12}
+              md={12}
+              lg={12}
+              xl={12}
+              xxl={12}
+            >
+              <div className="data-items">
+                <h2>
+                  {tu("data_account_top")}-{tu(types[index].title)}
+                  {types[index].isRealTime && (
+                    <span className="data-real-time">
+                      {tu("data_real_time")}
+                    </span>
+                  )}
+                </h2>
+                {this.renderDataTable(
+                  types[index].data,
+                  types[index].tableTitle,
+                  types[index].isUSD,
+                  types[index].key
+                )}
+              </div>
+            </Col>
+          ))}
         </Row>
       </div>
     );
   }
 
-  renderSendTrxNumberData() {
-    const { sendTrxNumbers, trxUnit, usdUnit } = this.state;
+  setTotal(data, type) {
+    let totalNumber = 0;
+    let totalPercent = 0;
+    let arr = cloneDeep(data);
+    type = type || "amount";
+    arr.map(item => {
+      totalNumber += Number(item[type]);
+      totalPercent += Number(item.percentage);
+    });
+
+    return { [type]: totalNumber, percentage: totalPercent, address: "" };
+  }
+
+  renderDataTable(data, title, isUsd, type) {
+    const { trxUnit, usdUnit } = this.state;
     const { intl, priceUSD } = this.props;
-    const titles = ["data_range", "data_account", "data_number", "data_per"];
-    let lastData = this.setTotal(sendTrxNumbers);
-    let arr = cloneDeep(sendTrxNumbers);
+    const titles = title;
+    let lastData = this.setTotal(data, type);
+    let arr = cloneDeep(data);
     arr.push(lastData);
     let length = arr.length - 1;
 
@@ -147,16 +209,18 @@ class Accounts extends React.Component {
         render: (text, record, index) => {
           return (
             <span className="">
-              <FormattedNumber value={parseInt(text || 0)}></FormattedNumber>{" "}
-              {trxUnit}
+              <FormattedNumber value={record[type] || 0}></FormattedNumber>{" "}
+              {isUsd && trxUnit}
               <br />
-              <span className="usd-amount">
-                ≈
-                <FormattedNumber
-                  value={parseInt(text * priceUSD || 0)}
-                ></FormattedNumber>{" "}
-                {usdUnit}
-              </span>
+              {isUsd && (
+                <span className="usd-amount">
+                  ≈
+                  <FormattedNumber
+                    value={record[type] * priceUSD || 0}
+                  ></FormattedNumber>{" "}
+                  {usdUnit}
+                </span>
+              )}
             </span>
           );
         },
@@ -186,17 +250,7 @@ class Accounts extends React.Component {
     );
   }
 
-  setTotal(data) {
-    let totalNumber = 0;
-    let totalPercent = 0;
-    let arr = cloneDeep(data);
-    arr.map(item => {
-      totalNumber += Number(item.amount);
-      totalPercent += Number(item.percentage);
-    });
-
-    return { amount: totalNumber, percentage: totalPercent, address: "" };
-  }
+  
 }
 
 export default Accounts;

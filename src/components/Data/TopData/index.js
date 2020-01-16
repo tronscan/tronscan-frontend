@@ -11,6 +11,8 @@ import {
 import Clinet from "../../../services/dataApi";
 import Overview from "./Overview";
 import Accounts from "./Accounts";
+import Tokens from "./Tokens";
+import Contracts from "./Contracts";
 import DataResources from "./Resources";
 
 class BestData extends React.Component {
@@ -53,13 +55,13 @@ class BestData extends React.Component {
           id: "token",
           path: "/token",
           label: <span>{tu("data_token")}</span>,
-          cmp: () => ""
+          cmp: () => <Tokens />
         },
         contract: {
           id: "contract",
           path: "/coutract",
           label: <span>{tu("data_contract")}</span>,
-          cmp: () => ""
+          cmp: () => <Contracts />
         },
         resource: {
           id: "resource",

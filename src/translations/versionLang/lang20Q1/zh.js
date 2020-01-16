@@ -41,5 +41,22 @@ export const lang20Q1 = {
   data_range: "排序",
   data_number: "数量",
   data_per: "占比",
-  data_total: "总计"
+  data_total: "总计",
+  data_items: "笔数",
+  data_unit_bi: "笔",
+  data_piao: "票数",
+  data_token_top: "最佳通证",
+  data_token_holders: "持有账户数",
+  data_token_holder: "持有账号",
+  data_token_transcation_account: "交易账户",
+  data_token_transcation_items: "交易笔数",
+  data_token_transcation_items_total: "交易总笔数",
+  data_token_transcation_numbers: "交易总额",
+  data_token_circle_per: "环比",
+  data_contract_top: "最佳合约",
+  data_contract_trx_number: "TRX总余额",
+  data_contract_accounts: "调用账户数",
+  data_contract_numbers: "总余额",
+  data_contract_times: "调用次数",
+  data_real_time: "实时"
 };
