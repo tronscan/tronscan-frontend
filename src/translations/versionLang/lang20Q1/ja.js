@@ -24,4 +24,15 @@
 
 export const lang20Q1 = {
 
+    data_resource_table_title: "ピークエネルギー消費",
+    data_resource_table_rank: "ランク",
+    data_resource_table_account: "アカウント",
+    data_resource_table_freezingTRX_energy: "TRXを凍結するために消費されるエネルギー",
+    data_resource_table_burningTRX_energy: "TRXの燃焼に消費されるエネルギー",
+    data_resource_table_energy_consumed: "トータルエネルギー",
+    data_resource_table_percentage: "割合",
+    data_resource_table_percentage_tips: "ユーザーが消費するエネルギー/すべてのユーザーが消費するエネルギー",
+    data_resource_table_bandwidth_title: "ピーク帯域幅消費",
+    data_resource_table_total: "トータル",
+
 }

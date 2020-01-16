@@ -22,5 +22,14 @@
     ##################################################################################
 */
 export const lang20Q1 = {
-    
- }
+    data_resource_table_title: "الحد الأقصى لاستهلاك الطاقة",
+    data_resource_table_rank: "المرتبة ",
+    data_resource_table_account: "الحسابات",
+    data_resource_table_freezingTRX_energy: "إستهلاك الطاقة لتجميد TRX",
+    data_resource_table_burningTRX_energy: "إستهلاك الطاقة لحرق TRX",
+    data_resource_table_energy_consumed: "إجمالي الطاقة المستهلكة",
+    data_resource_table_percentage: "النسبة المئوية",
+    data_resource_table_percentage_tips: "الطاقة التي يستهلكها المستخدم الحالي / الطاقة التي يستهلكها جميع المستخدمين عبر الشبكة",
+    data_resource_table_bandwidth_title: "الحد الأقصى لاستهلاك عرض النطاق الترددي",
+    data_resource_table_total: "المجموع",
+}

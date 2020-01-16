@@ -50,11 +50,20 @@ export const lang20Q1 = {
 
 
 
-  data_resource_table_title:"最高能量消耗",
-  data_resource_table_rank:"排序",
-  data_resource_table_account:"账户",
-  data_resource_table_freezingTRX_energy:"消耗冻结TRX的能量",
-  data_resource_table_burningTRX_energy:"消耗燃烧TRX的能量",
+  data_resource_table_title: "最高能量消耗",
+  data_resource_table_rank: "排序",
+  data_resource_table_account: "账户",
+  data_resource_table_freezingTRX_energy: "消耗冻结TRX的能量",
+  data_resource_table_burningTRX_energy: "消耗燃烧TRX的能量",
+  data_resource_table_energy_consumed: "消耗总能量",
+  data_resource_table_percentage: "占比",
+  data_resource_table_percentage_tips: "当前用户消耗能量/全网用户消耗能量",
+  data_resource_table_bandwidth_title: "最高带宽消耗",
+  data_resource_table_total: "总计",
+
+
+
+
 
 
 

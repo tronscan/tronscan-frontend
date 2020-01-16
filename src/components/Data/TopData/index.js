@@ -134,7 +134,7 @@ class BestData extends React.Component {
                       <div className="time-filter d-flex justify-content-between">
                         <ul >
                           {
-                            times.map(v=><li key={v} className={time==v && 'active'} onClick={()=>this.changeTime(v)}>{t(`data_time${v}`)}</li>)
+                            times.map((v,ind)=><li key={ind} className={time==v ? 'active':''} onClick={()=>this.changeTime(v)}>{t(`data_time${v}`)}</li>)
                           }
                         </ul>
                         <div>2020/01/01</div>

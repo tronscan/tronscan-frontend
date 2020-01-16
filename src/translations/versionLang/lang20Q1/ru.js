@@ -23,5 +23,14 @@
 */
 
 export const lang20Q1 = {
-
+    data_resource_table_title: "Пиковое Потребление Энергии",
+    data_resource_table_rank: "Рейтинг",
+    data_resource_table_account: "Аккаунт",
+    data_resource_table_freezingTRX_energy: "Энергия от Замораживания TRX",
+    data_resource_table_burningTRX_energy: "Энергия от Сжигания TRX",
+    data_resource_table_energy_consumed: "Общее Количество Потребляемой Энергии",
+    data_resource_table_percentage: "Процент",
+    data_resource_table_percentage_tips: "Энергия, потребляемая пользователем / Энергия, потребляемая всеми пользователями",
+    data_resource_table_bandwidth_title: "Пиковое Потребление Пропускной Способности",
+    data_resource_table_total: "Общее количество",
 }

@@ -22,5 +22,14 @@
     ##################################################################################
 */
 export const lang20Q1 = {
-
+    data_resource_table_title: "",
+    data_resource_table_rank: "Rank",
+    data_resource_table_account: "Cuentas",
+    data_resource_table_freezingTRX_energy: "Energía consumida para congelar TRX",
+    data_resource_table_burningTRX_energy: "Energía consumida para quemar TRX",
+    data_resource_table_energy_consumed: "Energía total consumida",
+    data_resource_table_percentage: "Porcentaje",
+    data_resource_table_percentage_tips: "",
+    data_resource_table_bandwidth_title: "",
+    data_resource_table_total: "",
 }
