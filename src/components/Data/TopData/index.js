@@ -2,6 +2,7 @@ import React, { Fragment } from "react";
 import { tu, t } from "../../../utils/i18n";
 import { TronLoader } from "../../common/loaders";
 import { NavLink, Route, Switch } from "react-router-dom";
+import { connect } from "react-redux";
 import {
   injectIntl,
   FormattedDate,
@@ -27,7 +28,7 @@ class BestData extends React.Component {
         account: "1,2,3,4,5,6",
         token: "7,8,9,10",
         coutract: "11,12,13",
-        resource: ""
+        resource: "14,15"
       }
     };
   }
@@ -94,6 +95,7 @@ class BestData extends React.Component {
       data,
       loading: false
     });
+    
   }
   changeTime(v) {
     this.setState(
@@ -170,5 +172,6 @@ class BestData extends React.Component {
     );
   }
 }
-
+;
 export default injectIntl(BestData);
+

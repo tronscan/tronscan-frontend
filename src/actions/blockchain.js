@@ -7,6 +7,7 @@ export const SET_TOTAL_TRANSACTIONS = 'SET_TOTAL_TRANSACTIONS';
 export const SET_BLOCKS = 'SET_BLOCKS';
 export const SET_USD_PRICE = 'SET_USD_PRICE';
 
+
 export const setUsdPrice = (price = 0) => ({
   type: SET_USD_PRICE,
   price
@@ -33,6 +34,9 @@ export const loadBlocks = () => async (dispatch) => {
     });
     dispatch(setBlocks(blocks));
 };
+
+
+
 
 export const loadTransactions = () => async (dispatch) => {
   let {transfers: list} = await Client.getTransfers({
