@@ -20,7 +20,8 @@ export class QuestionMark extends React.Component {
             <div className="d-inline-block">
                 <div className="question-mark" id={id}
                      onMouseOver={() => this.setState({open: true})}
-                     onMouseOut={() => this.setState({open: false})}>
+                     onMouseOut={() => this.setState({open: false})}
+                    >
                     <i>?</i>
                 </div>
                 <Tooltip placement={placement} isOpen={open} target={id} className={className} innerClassName="w-100">

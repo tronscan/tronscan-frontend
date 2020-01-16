@@ -558,7 +558,6 @@ class Transfers extends React.Component {
                 </div>
                 <div style={listCommonSty}>
                   <div style={listTitleStyle}>
-                    $
                     <FormattedNumber
                       value={
                         tokensInfo.tokenDetail.decimals === 0
@@ -586,29 +585,29 @@ class Transfers extends React.Component {
                         fontSize: "14px"
                       }}
                     >
-                      ≈
+                      {''} USD ≈ {''}
                       <FormattedNumber
                         value={
+                          tokensInfo.tokenDetail.market_info?
                           tokensInfo.tokenDetail.decimals === 0
                             ? new BigNumber(
                                 tokensInfo.transfer.balance
                               ).multipliedBy(
-                                tokensInfo.tokenDetail.market_info.priceInTrx
+                                tokensInfo.tokenDetail.market_info?tokensInfo.tokenDetail.market_info.priceInTrx:0
                               )
                             : new BigNumber(tokensInfo.transfer.balance)
                                 .dividedBy(
                                   Math.pow(10, tokensInfo.tokenDetail.decimals)
                                 )
                                 .multipliedBy(
-                                  tokensInfo.tokenDetail.market_info.priceInTrx
+                                  tokensInfo.tokenDetail.market_info?tokensInfo.tokenDetail.market_info.priceInTrx:1
                                 )
+                          :0
                         }
                         minimumFractionDigits={2}
                         maximumFractionDigits={2}
                       ></FormattedNumber>
-                      {/* {(tokensInfo.transfer.balance / Math.pow(10, 6)).toFixed(
-                        0
-                      )} */}
+                      {' '}
                       TRX
                     </span>
                   </div>

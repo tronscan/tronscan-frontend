@@ -60,7 +60,7 @@ export function Information({ token: tokens, priceUSD }) {
   // if wink
   if (token.contract_address === "TLa2f6VPqDgRE67v1736s7bJ8Ray5wYjU7") {
     currentTotal = token.winkTotalSupply.totalTurnOver || 0;
-    currentTotalSupplyUsd = token.winkTotalSupply.marketValue || 0;
+    currentTotalSupplyUsd = parseInt(token.winkTotalSupply.marketValue) || 0;
   }
 
   const defaultContent = "-";
@@ -100,8 +100,9 @@ export function Information({ token: tokens, priceUSD }) {
       content: (
         <div>
           {token.transferNumber
-            ? toThousands(token.transferNumber)
-            : defaultContent}
+            ?
+            <span> { toThousands(token.transferNumber)} Txns</span>  
+            : defaultContent} 
         </div>
       )
     },
@@ -111,7 +112,7 @@ export function Information({ token: tokens, priceUSD }) {
         <div className="d-flex ">
           {token["market_info"] ? (
             <div className="d-flex price-info">
-              ${token["priceToUsd"].toFixed(6)}
+              {token["priceToUsd"].toFixed(6)} USD&nbsp;
               <span className="token-price-trx">
                 ≈ {token["market_info"].priceInTrx} TRX
               </span>
@@ -156,7 +157,7 @@ export function Information({ token: tokens, priceUSD }) {
         <div>
           {currentTotalSupplyUsd != 0 ? (
             <span>
-              $<FormattedNumber value={currentTotalSupplyUsd}></FormattedNumber>{" "}
+              <FormattedNumber value={currentTotalSupplyUsd}></FormattedNumber>{" "} USD
               
             </span>
           ) : (
@@ -165,7 +166,7 @@ export function Information({ token: tokens, priceUSD }) {
           /{" "}
           {totalSupplyUsd != 0 ? (
             <span>
-              $<FormattedNumber value={totalSupplyUsd}></FormattedNumber>
+              <FormattedNumber value={totalSupplyUsd}></FormattedNumber> {" "} USD
             </span>
           ) : (
             defaultContent
@@ -178,7 +179,7 @@ export function Information({ token: tokens, priceUSD }) {
       content: (
         <div className="d-flex" style={{ justifyContent: "space-between" }}>
           {tu(`token_rules_${Number(token.level > 100 ? 2 : token.level) || 0}`)}
-          <Link to="/tokens/rating-rule">{tu("token_credit_rating_rule")}</Link>
+          {/* <Link to="/tokens/rating-rule">{tu("token_credit_rating_rule")}</Link> */}
         </div>
       )
     }

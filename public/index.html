@@ -47,7 +47,12 @@
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
-        gtag('config', 'UA-117929022-4');
+       // gtag('config', 'UA-117929022-4');
+        gtag('config', 'UA-117929022-4', {
+          'linker': {
+            'domains': ['tronscan.org', 'tronscan.io']
+          }
+        });
     </script>
 
   </body>
