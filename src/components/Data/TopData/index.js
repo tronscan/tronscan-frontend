@@ -29,9 +29,9 @@ class BestData extends React.Component {
         coutract: "11,12,13",
         resource: ""
       },
-      tabs: {
+      // tabs: {
         
-      },
+      // },
     };
   }
   componentDidMount() {
@@ -95,7 +95,7 @@ class BestData extends React.Component {
     // console.log(data)
     this.setState({
       data,
-      loading: false
+      loading:false
     });
   }
   changeTime(v) {
@@ -150,7 +150,7 @@ class BestData extends React.Component {
                       </ul>
                       <div>2020/01/01</div>
                     </div>
-                    ) : (
+                    {loading && <div className="loading-style"><TronLoader/></div>}
                     <Switch>
                       {tabs &&
                         Object.values(tabs).map(tab => (
@@ -162,7 +162,6 @@ class BestData extends React.Component {
                           />
                         ))}
                     </Switch>
-                    )}
                   </div>
                 </div>
               </div>

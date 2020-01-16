@@ -24,8 +24,20 @@ class Overview extends React.Component{
                 </div>
               </div>
               <div className="content">
-                <div className="content-item px-3 d-flex justify-content-between">
+                <div className="content-item px-3 d-flex justify-content-between border-bottom">
                   <div>TRX转账总额</div>
+                  <div>1,234,567</div>
+                </div>
+                <div className="content-item px-3 d-flex justify-content-between border-bottom">
+                  <div>TRX转账总次数</div>
+                  <div>1,234,567</div>
+                </div>
+                <div className="content-item px-3 d-flex justify-content-between border-bottom">
+                  <div>冻结TRX总额</div>
+                  <div>1,234,567</div>
+                </div>
+                <div className="content-item px-3 d-flex justify-content-between">
+                  <div>投票总数</div>
                   <div>1,234,567</div>
                 </div>
               </div>
