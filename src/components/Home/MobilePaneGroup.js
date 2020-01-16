@@ -405,7 +405,7 @@ export default class MobilePanelGroup extends Component {
                     </Link>
                     <Tooltip
                       title={intl.formatMessage({
-                        id: "tooltip_transactionPerDay_mainnet"
+                        id: "tooltip_accounts_mainnet"
                       })}
                     >
                       <p className="text-muted mb-0 mt-2">

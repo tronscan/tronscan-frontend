@@ -265,7 +265,8 @@ class Menunavigation extends Component {
                                   ) {
                                     return (
                                       <Menu.ItemGroup
-                                        className="mr-3 d-inline-block developer_challenge_box"
+                                        className="mr-3  developer_challenge_box" 
+                                        style={{display: 'block',}}
                                         key={Route.label}
                                         title={
                                           <span
@@ -440,8 +441,8 @@ class Menunavigation extends Component {
                                         <span
                                           className={
                                             currentRouter == Route.path
-                                              ? "menu-single-tilte menu-active-tilte"
-                                              : "menu-single-tilte"
+                                              ? "menu-single-tilte more-menu-single-tilte-style menu-active-tilte"
+                                              : "menu-single-tilte more-menu-single-tilte-style"
                                           }
                                           style={{
                                             display: "inline-block",
