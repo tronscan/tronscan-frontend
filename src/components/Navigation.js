@@ -1057,7 +1057,7 @@ class Navigation extends React.Component {
                     </span>}
                   </Link>
                   {
-                    IS_MAINNET?
+                    (!IS_NILE && IS_MAINNET)?
                     <span className="currentTRXInfo">
                       <Tooltip
                         placement="bottom"
