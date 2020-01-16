@@ -74,4 +74,7 @@ export const lang20Q1 = {
   data_resource_table_percentage_tips: "",
   data_resource_table_bandwidth_title: "",
   data_resource_table_total: "",
+  data_contract_account: "Número de asignar cuenta",
+  data_contract_time: "Número de asignación",
+
 };

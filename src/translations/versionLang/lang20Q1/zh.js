@@ -33,7 +33,6 @@ export const lang20Q1 = {
   data_time2: "1天",
   data_time3: "1周",
   data_check: "查看Top 10",
-  
 
   data_account_top: "最佳账户",
   data_account_send_Trx: "最佳账户--发送TRX数量",
@@ -62,11 +61,12 @@ export const lang20Q1 = {
   data_contract_top: "最佳合约",
   data_contract_trx_number: "最佳合约--TRX总余额",
   data_contract_accounts: "最佳合约--调用账户数",
+  data_contract_account: "调用账户数",
+  data_contract_time: "调用次数",
   data_contract_numbers: "总余额",
   data_contract_times: "最佳合约--调用次数",
   data_real_time: "实时",
 
-  
   data_resource_table_title: "最高能量消耗",
   data_resource_table_rank: "排序",
   data_resource_table_account: "账户",
@@ -76,12 +76,5 @@ export const lang20Q1 = {
   data_resource_table_percentage: "占比",
   data_resource_table_percentage_tips: "当前用户消耗能量/全网用户消耗能量",
   data_resource_table_bandwidth_title: "最高带宽消耗",
-  data_resource_table_total: "总计",
-
-
-
-
-
-
-
+  data_resource_table_total: "总计"
 };

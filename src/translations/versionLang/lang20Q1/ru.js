@@ -76,4 +76,7 @@ export const lang20Q1 = {
   data_resource_table_percentage_tips: "Энергия, потребляемая пользователем / Энергия, потребляемая всеми пользователями",
   data_resource_table_bandwidth_title: "Пиковое Потребление Пропускной Способности",
   data_resource_table_total: "Общее количество",
+  data_contract_account: "Аккаунты Вызовов",
+  data_contract_time: "Количество Вызовов",
+
 };
