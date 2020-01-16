@@ -26,7 +26,7 @@ class Contracts extends React.Component {
       trxUnit: "TRX",
       usdUnit: "USD",
       types: {
-        1: {
+        11: {
           title: "data_contract_trx_number",
           tableTitle: [
             "data_range",
@@ -39,7 +39,7 @@ class Contracts extends React.Component {
           data: [],
           isRealTime: true
         },
-        2: {
+        12: {
           title: "data_contract_accounts",
           tableTitle: [
             "data_range",
@@ -51,7 +51,7 @@ class Contracts extends React.Component {
           key: "active_address",
           data: []
         },
-        3: {
+        13: {
           title: "data_contract_times",
           tableTitle: [
             "data_range",
@@ -74,16 +74,18 @@ class Contracts extends React.Component {
 
   async getData() {
     let data = [];
-    data[0] = await ApiClientData.getTop10Data({ type: 11, time: 0 });
-    data[1] = await ApiClientData.getTop10Data({ type: 12, time: 1 });
-    data[2] = await ApiClientData.getTop10Data({
-      type: 13,
+    data = await ApiClientData.getTop10Data({
+      type: "11,12,13",
       time: 1
     });
 
     let types = this.state.types;
     Object.keys(types).map(index => {
-      types[index].data = data[Number(index) - 1];
+      data.map(subItem => {
+        if (subItem.type == index) {
+          types[index].data = subItem.data || [];
+        }
+      });
     });
 
     this.setState({

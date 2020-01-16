@@ -34,6 +34,7 @@ export const lang20Q1 = {
   data_time1: "ساعة واحدة",
   data_time2: "يوم واحد",
   data_time3: "أسبوع واحد",
+  data_check: "عرض الترتيب لأفضل 10 ",
   data_account_top: "最佳账户",
   data_account_send_Trx: "أفضل الحسابات - إجمالي TRX المرسلة",
   data_account_send_Trx_items: "أفضل الحسابات - عدد مرات TRX المرسلة",

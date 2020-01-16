@@ -24,19 +24,21 @@ class BestData extends React.Component {
       time: 1,
       times: [1, 2, 3],
       types: {
-        overview: "",
+        overview: "0",
         account: "1,2,3,4,5,6",
         token: "7,8,9,10",
         coutract: "11,12,13",
         resource: "14,15"
-      }
+      },
+      tabs: {
+        
+      },
     };
   }
   componentDidMount() {
-    this.setTabs();
     this.getData();
   }
-  setTabs() {
+  setTabs(data) {
     this.setState(prevProps => ({
       tabs: {
         ...prevProps.tabs,
@@ -44,13 +46,13 @@ class BestData extends React.Component {
           id: "overview",
           path: "",
           label: <span>{tu("data_overview")}</span>,
-          cmp: () => <Overview />
+          cmp: () => <Overview topData={data}/>
         },
         account: {
           id: "account",
           path: "/account",
           label: <span>{tu("data_account")}</span>,
-          cmp: () => <Accounts />
+          cmp: () => <Accounts topData={data}/>
         },
         token: {
           id: "token",
@@ -68,7 +70,7 @@ class BestData extends React.Component {
           id: "resource",
           path: "/resource",
           label: <span>{tu("data_recourse")}</span>,
-          cmp: () => <DataResources />
+          cmp: () => <DataResources topData={data}/>
         }
       }
     }));
@@ -90,6 +92,14 @@ class BestData extends React.Component {
         loading: false
       });
     });
+    this.setTabs(data);
+    if(match.params.name ==='resource'&&data){
+        data.forEach((res)=>{
+          res.data.forEach((result,ind)=>{
+            result.rank = ind+1
+          })
+        })
+    }
     // console.log(data)
     this.setState({
       data,
@@ -131,39 +141,37 @@ class BestData extends React.Component {
                           </NavLink>
                         </li>
                       ))}
-                    </ul>
-                  </div>
-                  <div className="card-body p-0  list-style-body__body">
-                    <div className="pb-5" >
-                      <div className="time-filter d-flex justify-content-between">
-                        <ul >
-                          {
-                            times.map((v,ind)=><li key={ind} className={time==v ? 'active':''} onClick={()=>this.changeTime(v)}>{t(`data_time${v}`)}</li>)
-                          }
-                        </ul>
-                        <div>2020/01/01</div>
-                      </div>
-                      {loading ? (
-                        <div className="card">
-                          <TronLoader>
-                            {/* {tu("loading_address")} {contract.address} */}
-                          </TronLoader>
-                        </div>
-                      ) : (
-                        <Switch>
-                          {tabs && Object.values(tabs).map(tab => (
-                            <Route
-                              key={tab.id}
-                              exact
-                              path={"/blockchain/data" + tab.path}
-                              render={props => <tab.cmp />}
-                            />
-                          ))}
-                        </Switch>
-                      )}
+                  </ul>
+                </div>
+                <div className="card-body p-0  list-style-body__body">
+                  <div className="pb-5">
+                    <div className="time-filter d-flex justify-content-between">
+                      <ul>
+                        {times.map((v, ind) => (
+                          <li
+                            key={ind}
+                            className={time == v ? "active" : ""}
+                            onClick={() => this.changeTime(v)}
+                          >
+                            {t(`data_time${v}`)}
+                          </li>
+                        ))}
+                      </ul>
+                      <div>2020/01/01</div>
                     </div>
+                    <Switch>
+                      {tabs &&
+                        Object.values(tabs).map(tab => (
+                          <Route
+                            key={tab.id}
+                            exact
+                            path={"/blockchain/data" + tab.path}
+                            render={props => <tab.cmp />}
+                          />
+                        ))}
+                    </Switch>
                   </div>
-                
+                </div>
               </div>
             </Fragment>
           </div>

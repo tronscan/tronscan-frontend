@@ -33,6 +33,7 @@ export const lang20Q1 = {
   data_time1: "یک ساعت",
   data_time2: "یک روز",
   data_time3: "یک هفته",
+  data_check: "مشاهده ۱۰ برتر ",
   data_account_top: "最佳账户",
   data_account_send_Trx: "حساب های برتر - قیمت TRX ارسال شده است.",
   data_account_send_Trx_items: "حساب های برتر - Txn Count ارسال شده است.",

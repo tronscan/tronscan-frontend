@@ -32,6 +32,7 @@ export const lang20Q1 = {
   data_time1: "1 hora",
   data_time2: "1 día",
   data_time3: "1 semana",
+  data_check: "Número de votos Total",
   data_account_top: "最佳账户",
   data_account_send_Trx: "Top cuentas: total de TRX enviados",
   data_account_send_Trx_items: "Top cuentas: recuento de envíos enviados",

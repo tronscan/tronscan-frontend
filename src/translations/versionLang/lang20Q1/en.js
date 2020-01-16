@@ -33,6 +33,7 @@ export const lang20Q1 = {
   data_time1: "1 Hour",
   data_time2: "1 Day",
   data_time3: "1 Week",
+  data_check: "View Top10",
   data_account_top: "最佳账户",
   data_account_send_Trx: "Top Accounts--Total TRX Sent",
   data_account_send_Trx_items: "Top Accounts--Txn Count Sent",
