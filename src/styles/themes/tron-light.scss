@@ -20,6 +20,14 @@
           }
         }
       }
+      .dropdown-menu{
+        z-index: 999;
+      }
+    }
+  }
+  .nav-searchbar{
+    .dropdown-menu{
+      z-index: 300;
     }
   }
   .single-menu-nav-wrapper {
