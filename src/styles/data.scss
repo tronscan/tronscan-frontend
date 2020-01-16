@@ -67,7 +67,6 @@
         font-family: PingFangSC-Regular;
         font-size: 12px;
         color: #333333;
-        height: 64px;
       }
       .usd-amount {
         font-size: 10px;
@@ -89,13 +88,55 @@
         background-size: 100%;
       }
     }
-    .ant-table-row.ant-table-row-level-0:last-child {
-      td {
-        background: #f3f3f3 !important;
-        font-family: PingFangSC-Medium;
-        font-size: 12px;
-        color: #333333;
+  }
+  // account module
+  .data-account {
+    .ant-table-row.ant-table-row-level-0 {
+      &:last-child {
+        td {
+          background: #f3f3f3 !important;
+          font-family: PingFangSC-Medium;
+          font-size: 12px;
+          color: #333333;
+        }
       }
+      td {
+        height: 64px;
+      }
+    }
+  }
+
+  // token module
+  .data-token {
+    .data-token-name {
+      a {
+        font-family: PingFangSC-Regular;
+        font-size: 12px !important;
+        color: #c64844;
+      }
+    }
+    .data-token-logo {
+      width: 16px;
+    }
+  }
+
+  // contract module
+  .data-contract {
+    .ant-table-row.ant-table-row-level-0 {
+      &:last-child {
+        td {
+          background: #f3f3f3 !important;
+          font-family: PingFangSC-Medium;
+          font-size: 12px;
+          color: #333333;
+        }
+      }
+      td {
+        height: 64px;
+      }
+    }
+    .addressWidth {
+      width: 180px;
     }
   }
 }
@@ -113,14 +154,14 @@
       border-left: 0;
       font-size: 12px;
       text-align: center;
-      &:first-child{
+      &:first-child {
         border-left: 1px solid #eee;
       }
       &.active {
         color: #c23631;
         border: 1px solid #c23631;
       }
-      &:hover{
+      &:hover {
         color: #c23631;
       }
     }

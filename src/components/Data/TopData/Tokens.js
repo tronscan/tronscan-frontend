@@ -9,6 +9,7 @@ import { loadUsdPrice } from "../../../actions/blockchain";
 import { FormattedNumber } from "react-intl";
 import SmartTable from "../../common/SmartTable";
 import { cloneDeep } from "lodash";
+import { Link } from "react-router-dom";
 
 @injectIntl
 @connect(
@@ -27,48 +28,50 @@ class Tokens extends React.Component {
       usdUnit: "USD",
       types: {
         1: {
-          title: "data_account_send_Trx",
-          tableTitle: ["data_range", "data_account", "data_number", "data_per"],
-          isUSD: true,
-          key: "amount",
-          data: []
+          title: "data_token_holders",
+          tableTitle: [
+            "data_range",
+            "data_token",
+            "data_token_holder",
+            "data_token_circle_per"
+          ],
+          key: "holders",
+          data: [],
+          isRealTime: true
         },
         2: {
-          title: "data_account_send_Trx_items",
-          tableTitle: ["data_range", "data_account", "data_items", "data_per"],
-          isUSD: false,
-          key: "transaction_number",
+          title: "data_token_transcation_accounts",
+          tableTitle: [
+            "data_range",
+            "data_token",
+            "data_token_transcation_account",
+            "data_token_circle_per"
+          ],
+          key: "address_number",
           data: []
         },
         3: {
-          title: "data_account_receive_Trx",
-          tableTitle: ["data_range", "data_account", "data_number", "data_per"],
-          isUSD: true,
-          key: "amount",
-          data: []
-        },
-        4: {
-          title: "data_account_receive_Trx_items",
-          tableTitle: ["data_range", "data_account", "data_items", "data_per"],
-          isUSD: false,
+          title: "data_token_transcation_items_total",
+          tableTitle: [
+            "data_range",
+            "data_token",
+            "data_token_transcation_items",
+            "data_token_circle_per"
+          ],
           key: "transaction_number",
           data: []
         },
-        5: {
-          title: "data_account_freeze",
-          tableTitle: ["data_range", "data_account", "data_number", "data_per"],
-          isUSD: true,
-          key: "freeze",
+        4: {
+          title: "data_token_transcation_numbers",
+          tableTitle: [
+            "data_range",
+            "data_token",
+            "data_token_transcation_numbers",
+            "data_token_circle_per"
+          ],
+          key: "amount",
           data: [],
-          isRealTime: true
-        },
-        6: {
-          title: "data_account_vote",
-          tableTitle: ["data_range", "data_account", "data_piao", "data_per"],
-          isUSD: false,
-          key: "votes",
-          data: [],
-          isRealTime: true
+          isUSD: true
         }
       }
     };
@@ -81,22 +84,16 @@ class Tokens extends React.Component {
 
   async getData() {
     let data = [];
-    data[0] = await ApiClientData.getTop10Data({ type: 1, time: 1 });
-    data[1] = await ApiClientData.getTop10Data({ type: 2, time: 1 });
+    data[0] = await ApiClientData.getTop10Data({ type: 7, time: 0 });
+    data[1] = await ApiClientData.getTop10Data({ type: 8, time: 1 });
     data[2] = await ApiClientData.getTop10Data({
-      type: 3,
+      type: 9,
       time: 1
     });
     data[3] = await ApiClientData.getTop10Data({
-      type: 4,
+      type: 10,
       time: 1
     });
-    data[4] = await ApiClientData.getTop10Data({
-      type: 5,
-      time: 0
-    });
-
-    data[5] = await ApiClientData.getTop10Data({ type: 6, time: 0 });
 
     let types = this.state.types;
     Object.keys(types).map(index => {
@@ -112,7 +109,7 @@ class Tokens extends React.Component {
     let { types } = this.state;
     return (
       <div className="top-data">
-        <Row gutter={{ xs: 8, sm: 20, md: 20 }} className="mt-2">
+        <Row gutter={{ xs: 8, sm: 20, md: 20 }} className="mt-2 data-token">
           {Object.keys(types).map(index => (
             <Col
               className="gutter-row"
@@ -125,7 +122,7 @@ class Tokens extends React.Component {
             >
               <div className="data-items">
                 <h2>
-                  {tu("data_account_top")}-{tu(types[index].title)}
+                  {tu("data_token_top")}-{tu(types[index].title)}
                   {types[index].isRealTime && (
                     <span className="data-real-time">
                       {tu("data_real_time")}
@@ -146,26 +143,14 @@ class Tokens extends React.Component {
     );
   }
 
-  setTotal(data, type) {
-    let totalNumber = 0;
-    let totalPercent = 0;
-    let arr = cloneDeep(data);
-    type = type || "amount";
-    arr.map(item => {
-      totalNumber += Number(item[type]);
-      totalPercent += Number(item.percentage);
-    });
-
-    return { [type]: totalNumber, percentage: totalPercent, address: "" };
-  }
-
   renderDataTable(data, title, isUsd, type) {
+    const defaultImg = require("../../../images/logo_default.png");
+
     const { trxUnit, usdUnit } = this.state;
     const { intl, priceUSD } = this.props;
     const titles = title;
-    let lastData = this.setTotal(data, type);
     let arr = cloneDeep(data);
-    arr.push(lastData);
+
     let length = arr.length - 1;
 
     const columns = [
@@ -175,9 +160,7 @@ class Tokens extends React.Component {
         render: (text, record, index) => {
           return (
             <span className="rankWidth">
-              {index == length ? (
-                intl.formatMessage({ id: "data_total" })
-              ) : index < 3 ? (
+              {index < 3 ? (
                 <span className={`rank-${index} rank`}></span>
               ) : (
                 index + 1
@@ -189,19 +172,18 @@ class Tokens extends React.Component {
       },
       {
         title: intl.formatMessage({ id: titles[1] }),
-        dataIndex: "address",
+        dataIndex: "name",
         render: (text, record, index) => {
-          return text ? (
-            <span className="addressWidth">
-              <span className="">
-                <AddressLink address={text}>{text}</AddressLink>
-              </span>
+          return (
+            <span className="data-token-name">
+              <Link to={`/token/${record.token}`}>
+                <img src={defaultImg} className="data-token-logo mr-1" />
+                {text}
+              </Link>
             </span>
-          ) : (
-            "--"
           );
         },
-        align: "center"
+        align: "left"
       },
       {
         title: intl.formatMessage({ id: titles[2] }),
@@ -209,17 +191,25 @@ class Tokens extends React.Component {
         render: (text, record, index) => {
           return (
             <span className="">
-              <FormattedNumber value={record[type] || 0}></FormattedNumber>{" "}
-              {isUsd && trxUnit}
-              <br />
-              {isUsd && (
-                <span className="usd-amount">
-                  ≈
+              {isUsd ? (
+                <span>
                   <FormattedNumber
-                    value={record[type] * priceUSD || 0}
-                  ></FormattedNumber>{" "}
-                  {usdUnit}
+                    value={
+                      record.tokenPrice * record.priceInTrx * record.amount
+                    }
+                  ></FormattedNumber>
+                  {trxUnit}
+                  <br />
+                  <span className="usd-amount">
+                    ≈
+                    <FormattedNumber
+                      value={record[type] * priceUSD || 0}
+                    ></FormattedNumber>{" "}
+                    {usdUnit}
+                  </span>
                 </span>
+              ) : (
+                <FormattedNumber value={record[type] || 0}></FormattedNumber>
               )}
             </span>
           );

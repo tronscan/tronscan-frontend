@@ -112,7 +112,7 @@ class Accounts extends React.Component {
     let { types } = this.state;
     return (
       <div className="top-data">
-        <Row gutter={{ xs: 8, sm: 20, md: 20 }} className="mt-2">
+        <Row gutter={{ xs: 8, sm: 20, md: 20 }} className="mt-2 data-account">
           {Object.keys(types).map(index => (
             <Col
               className="gutter-row"
@@ -249,8 +249,6 @@ class Accounts extends React.Component {
       />
     );
   }
-
-  
 }
 
 export default Accounts;
