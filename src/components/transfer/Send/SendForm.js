@@ -299,9 +299,9 @@ class SendForm extends React.Component {
             }
             transactionId = await transactionResultManager(unSignTransaction, tronWeb)
         } else if (this.props.wallet.type === "ACCOUNT_TRONLINK" || this.props.wallet.type === "ACCOUNT_PRIVATE_KEY") {
-             tronWeb = this.props.account.tronWeb;
-            // let contractInstance = await tronWeb.contract().at(contractAddress);
-            // transactionId = await contractInstance.transfer(to, new BigNumber(amount).shiftedBy(decimals).toString()).send();
+              tronWeb = this.props.account.tronWeb;
+            //  let contractInstance = await tronWeb.contract().at(contractAddress);
+            //  transactionId = await contractInstance.transfer(to, new BigNumber(amount).shiftedBy(decimals).toString()).send();
           let unSignTransaction = await tronWeb.transactionBuilder.triggerSmartContract(
             tronWeb.address.toHex(contractAddress),
             'transfer(address,uint256)',
@@ -312,13 +312,13 @@ class SendForm extends React.Component {
             ],
             tronWeb.address.toHex(this.props.wallet.address),
           );
+
           console.log('this.props.wallet.address',this.props.wallet.address)
           if (unSignTransaction.transaction !== undefined)
               unSignTransaction = unSignTransaction.transaction;
           console.log('unSignTransaction',unSignTransaction)       
           console.log('note',note)
-          const transactionWithNote = await this.props.account.tronWeb.transactionBuilder.addUpdateData(unSignTransaction, note, 'utf8');
-          console.log('transactionWithNote',typeof transactionWithNote)    
+          const transactionWithNote = await this.props.account.tronWeb.transactionBuilder.addUpdateData(unSignTransaction, note, 'utf8'); 
           console.log('transactionWithNote',transactionWithNote)    
           transactionId = await transactionResultManager(transactionWithNote, tronWeb)
         }
@@ -402,8 +402,8 @@ class SendForm extends React.Component {
   setAmount = (amount) => {
     let {token, decimals} = this.state;
     let list = token.split('-');
-    let TokenName =  list[1];
-    let TokenType = list[2];
+    let TokenName = list.length>2?list[1]:list[0];
+    let TokenType = list.length>2?list[2]:list[1];
     if (token && TokenType === 'TRC10') {
       if (TokenName === '_') {
         if (amount !== '') {
@@ -425,6 +425,7 @@ class SendForm extends React.Component {
     } else if (token && TokenType === 'TRC20') {
       if (amount !== '') {
         amount = parseFloat(amount);
+        console.log('decimals',decimals);
         amount = round(amount, decimals);
         if (amount <= 0) {
           amount = 0;
