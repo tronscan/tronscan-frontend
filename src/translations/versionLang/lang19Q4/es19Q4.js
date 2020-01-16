@@ -287,5 +287,21 @@ export const lang19Q4 = {
    "Supply_amount_net_new_tip":"TRX Producción + TRX Quemado",
    "votes_num":"votos",
     
-   
+   /*
+        ##################################################################################
+        #                                                                                #
+        # txns type chart  2020-01-09                           #
+        #                                                                                #
+        ##################################################################################
+    */
+   "txns_contract_calls":"Calls de Contrato",
+   "txns_TRX_transfers":"Número de transferir TRX",
+   "txns_TRC10_transfers":"Número de transferir TRC10",
+   "txns_frozen_transactions":"Número de transacciones  Congeladas",
+   "txns_votes_transactions":"Número de votos",
+   "txns_other_transactions":"Otras transacciones",
+   "txns_shielded_transactions":"Número de transacciones anónimas",
+   "chart_network_resources":"Recurso de internet",
+   "chart_active_accounts":"Número de cuentas activas",
+   "chart_network":"Internet",
 }
