@@ -131,6 +131,7 @@ class Menunavigation extends Component {
                                   href={subRoute.url}
                                   title={
                                     <span
+                                      className="dapp-link-style"
                                       style={{
                                         display: "inline-block",
                                         width: "50%"
@@ -238,7 +239,7 @@ class Menunavigation extends Component {
                         {route.routes &&
                           route.routes.map((subRoute, index) => {
                             return (
-                              <div className="" key={index}>
+                              <div className="more-menu-mobile-wrapper" key={index}>
                                 <div className="more-menu-line"></div>
                                 {subRoute.map((Route, j) => {
                                   if (isString(Route)) {

@@ -298,7 +298,7 @@ export const lang19Q4 = {
     */
    "txns_contract_calls":"コントラクト調達数",
    "txns_TRX_transfers":"TRXの振替数",
-   "txns_TRC10_transfers":"trc10の振替数",
+   "txns_TRC10_transfers":"TRC10の振替数",
    "txns_frozen_transactions":"凍結した取引数",
    "txns_votes_transactions":"投票数",
    "txns_other_transactions":"その他の取引数",
