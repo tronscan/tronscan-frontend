@@ -41,5 +41,18 @@ export const lang20Q1 = {
   data_range: "排序",
   data_number: "数量",
   data_per: "占比",
-  data_total: "总计"
+  data_total: "总计",
+
+
+
+
+  data_resource_table_title:"最高能量消耗",
+  data_resource_table_rank:"排序",
+  data_resource_table_account:"账户",
+  data_resource_table_freezingTRX_energy:"消耗冻结TRX的能量",
+  data_resource_table_burningTRX_energy:"消耗燃烧TRX的能量",
+
+
+
+
 };
