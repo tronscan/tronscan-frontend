@@ -325,7 +325,13 @@ class Footer extends Component {
                         </HrefLink>
                       </li>
                       <li className="p-2">
-                        <HrefLink href="https://github.com/tronprotocol/Documentation">
+                        <HrefLink
+                          href={
+                            activeLanguage == "zh"
+                              ? "https://github.com/tronprotocol/documentation-zh"
+                              : "https://github.com/tronprotocol/documentation-en"
+                          }
+                        >
                           Documentation
                         </HrefLink>
                       </li>
