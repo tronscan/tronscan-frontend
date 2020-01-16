@@ -75,4 +75,7 @@ export const lang20Q1 = {
   data_resource_table_percentage_tips: "ユーザーが消費するエネルギー/すべてのユーザーが消費するエネルギー",
   data_resource_table_bandwidth_title: "ピーク帯域幅消費",
   data_resource_table_total: "トータル",
+  data_contract_account: "通話アカウント",
+  data_contract_time: "通話ナンバー",
+
 };

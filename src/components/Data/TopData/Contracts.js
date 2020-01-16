@@ -44,7 +44,7 @@ class Contracts extends React.Component {
           tableTitle: [
             "data_range",
             "data_contract",
-            "data_contract_accounts",
+            "data_contract_account",
             "data_per"
           ],
           isUSD: false,
@@ -56,7 +56,7 @@ class Contracts extends React.Component {
           tableTitle: [
             "data_range",
             "data_contract",
-            "data_contract_times",
+            "data_contract_time",
             "data_per"
           ],
           isUSD: false,
@@ -73,12 +73,7 @@ class Contracts extends React.Component {
   }
 
   async getData() {
-    let data = [];
-    data = await ApiClientData.getTop10Data({
-      type: "11,12,13",
-      time: 1
-    });
-
+    let data = this.props.topData || [];
     let types = this.state.types;
     Object.keys(types).map(index => {
       data.map(subItem => {
@@ -110,7 +105,7 @@ class Contracts extends React.Component {
             >
               <div className="data-items">
                 <h2>
-                  {tu("data_contract_top")}-{tu(types[index].title)}
+                  {tu(types[index].title)}
                   {types[index].isRealTime && (
                     <span className="data-real-time">
                       {tu("data_real_time")}

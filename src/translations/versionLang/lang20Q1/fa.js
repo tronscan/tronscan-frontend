@@ -74,4 +74,7 @@ export const lang20Q1 = {
     data_resource_table_percentage_tips: "انرژی مصرف شده توسط کاربران فعلی / انرژی مصرف شده توسط کاربران در سراسر شبکه",
     data_resource_table_bandwidth_title: "حداکثر مصرف پهنای باند.",
     data_resource_table_total: "کل",
+    data_contract_account: "تعداد تماس با حساب",
+    data_contract_time: "تعداد تماس",
+
 };

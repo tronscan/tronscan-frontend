@@ -30,9 +30,9 @@ class BestData extends React.Component {
         coutract: "11,12,13",
         resource: "14,15"
       },
-      tabs: {
+      // tabs: {
         
-      },
+      // },
     };
   }
   componentDidMount() {
@@ -46,31 +46,31 @@ class BestData extends React.Component {
           id: "overview",
           path: "",
           label: <span>{tu("data_overview")}</span>,
-          cmp: () => <Overview topData={data}/>
+          cmp: () => <Overview topData={data} />
         },
         account: {
           id: "account",
           path: "/account",
           label: <span>{tu("data_account")}</span>,
-          cmp: () => <Accounts topData={data}/>
+          cmp: () => <Accounts topData={data} />
         },
         token: {
           id: "token",
           path: "/token",
           label: <span>{tu("data_token")}</span>,
-          cmp: () => <Tokens />
+          cmp: () => <Tokens topData={data} />
         },
         contract: {
           id: "contract",
           path: "/coutract",
           label: <span>{tu("data_contract")}</span>,
-          cmp: () => <Contracts />
+          cmp: () => <Contracts topData={data} />
         },
         resource: {
           id: "resource",
           path: "/resource",
           label: <span>{tu("data_recourse")}</span>,
-          cmp: () => <DataResources topData={data}/>
+          cmp: () => <DataResources topData={data} />
         }
       }
     }));
@@ -103,7 +103,7 @@ class BestData extends React.Component {
     // console.log(data)
     this.setState({
       data,
-      loading: false
+      loading:false
     });
     
   }
@@ -159,6 +159,7 @@ class BestData extends React.Component {
                       </ul>
                       <div>2020/01/01</div>
                     </div>
+                    {loading && <div className="loading-style"><TronLoader/></div>}
                     <Switch>
                       {tabs &&
                         Object.values(tabs).map(tab => (

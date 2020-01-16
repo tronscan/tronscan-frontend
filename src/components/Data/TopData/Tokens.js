@@ -120,7 +120,7 @@ class Tokens extends React.Component {
             >
               <div className="data-items">
                 <h2>
-                  {tu("data_token_top")}-{tu(types[index].title)}
+                  {tu(types[index].title)}
                   {types[index].isRealTime && (
                     <span className="data-real-time">
                       {tu("data_real_time")}
@@ -174,8 +174,21 @@ class Tokens extends React.Component {
         render: (text, record, index) => {
           return (
             <span className="data-token-name">
-              <Link to={`/token/${record.token}`}>
-                <img src={defaultImg} className="data-token-logo mr-1" />
+              <Link
+                to={
+                  record.type == 10
+                    ? `/token/${record.token_id}`
+                    : `/token20/${record.token_id}`
+                }
+              >
+                <img
+                  src={record.logo ? record.logo : defaultImg}
+                  className="data-token-logo mr-1"
+                  onError={e => {
+                    e.target.onerror = null;
+                    e.target.src = defaultImg;
+                  }}
+                />
                 {text}
               </Link>
             </span>

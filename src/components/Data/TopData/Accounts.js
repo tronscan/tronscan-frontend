@@ -80,12 +80,7 @@ class Accounts extends React.Component {
   }
 
   async getData() {
-    let data = [];
-    data = await ApiClientData.getTop10Data({
-      type: "1,2,3,4,5,6",
-      time: 1
-    });
-
+    let data = this.props.topData || [];
     let types = this.state.types;
     Object.keys(types).map(index => {
       data.map(subItem => {
