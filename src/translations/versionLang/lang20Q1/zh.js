@@ -22,6 +22,7 @@
     ##################################################################################
 */
 export const lang20Q1 = {
+  //leon 20200116
   data_title: "最佳数据统计",
   data_overview: "概览",
   data_account: "账户",
@@ -31,6 +32,9 @@ export const lang20Q1 = {
   data_time1: "1小时",
   data_time2: "1天",
   data_time3: "1周",
+  data_check: "查看Top 10",
+  
+
   data_account_top: "最佳账户",
   data_account_send_Trx: "发送TRX数量",
   data_account_send_Trx_items: "发送TRX总笔数",
