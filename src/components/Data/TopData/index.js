@@ -127,13 +127,7 @@ class BestData extends React.Component{
                       ))}
                     </ul>
                   </div>
-                  <div className="time-filter">
-                    <ul >
-                      {
-                        times.map(v=><li key={v} className={time==v && 'active'} onClick={()=>this.changeTime(v)}>{t(`data_time${v}`)}</li>)
-                      }
-                    </ul>
-                  </div>
+                  
                   {loading ? (
                     <div className="card">
                       <TronLoader>
@@ -142,6 +136,13 @@ class BestData extends React.Component{
                     </div>
                   ) : (
                     <div className="card-body p-0 list-style-body__body">
+                      <div className="time-filter">
+                        <ul >
+                          {
+                            times.map(v=><li key={v} className={time==v && 'active'} onClick={()=>this.changeTime(v)}>{t(`data_time${v}`)}</li>)
+                          }
+                        </ul>
+                      </div>
                       <Switch>
                         {tabs && Object.values(tabs).map(tab => (
                           <Route
