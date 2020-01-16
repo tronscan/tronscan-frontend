@@ -177,7 +177,7 @@ export const lang19Q4 = {
    "index_page_footer_feedback":"Обратная связь",
    "index_page_footer_expand":"Расширить",
    "index_page_footer_donate_address":"Адрес принадлежит TRON. Ваш донат помогает построить лучшую экосистему TRON.",
-   "index_page_confirmed_blocks":"Подтвержденные блоки",
+   "index_page_confirmed_blocks":"блоки",
    "index_page_confirmed_blocks_tips":"Блоки подтверждены более чем 19 SR",
    "index_page_switch_tokens":"Поменять токены",
    "index_page_tronscan_info":"TRONSCAN, лучший blockchain explorer Tron.",
