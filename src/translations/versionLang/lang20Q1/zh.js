@@ -23,7 +23,7 @@
 */
 export const lang20Q1 = {
   //leon 20200116
-  data_title: "最佳数据统计",
+  data_title: "最佳数据",
   data_overview: "概览",
   data_account: "账户",
   data_token: "通证",
@@ -77,6 +77,13 @@ export const lang20Q1 = {
   data_resource_table_percentage_tips: "当前用户消耗能量/全网用户消耗能量",
   data_resource_table_bandwidth_title: "最高带宽消耗",
   data_resource_table_total: "总计",
-  data_token_transcation_number: "交易总额",
 
+  // 2020-01-17
+  data_token_transcation_number: "交易总额",
+  data_token_mark_7: "（本期持有账户数-上期持有账户数）/上期持有账户数×100%",
+  data_token_mark_8: "（本期交易账户数-上期交易账户数）/上期交易账户数×100%",
+  data_token_mark_9: "（本期交易笔数-上期交易笔数）/上期交易比数×100%",
+  data_token_mark_10: "（本期交易账总额-上期交易账总额）/上期交易账总额×100%",
+  data_contract_name: "合约名称",
+  data_title_chart:"图表统计"
 };

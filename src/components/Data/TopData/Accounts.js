@@ -125,7 +125,8 @@ class Accounts extends React.Component {
                   types[index].data,
                   types[index].tableTitle,
                   types[index].isUSD,
-                  types[index].key
+                  types[index].key,
+                  index
                 )}
               </div>
             </Col>
@@ -148,7 +149,7 @@ class Accounts extends React.Component {
     return { [type]: totalNumber, percentage: totalPercent, address: "" };
   }
 
-  renderDataTable(data, title, isUsd, type) {
+  renderDataTable(data, title, isUsd, type, typeIndex) {
     const { trxUnit, usdUnit } = this.state;
     const { intl, priceUSD } = this.props;
     const titles = title;
@@ -174,14 +175,15 @@ class Accounts extends React.Component {
             </span>
           );
         },
-        align: "center"
+        align: "center",
+        width: "100px"
       },
       {
         title: intl.formatMessage({ id: titles[1] }),
         dataIndex: "address",
         render: (text, record, index) => {
           return text ? (
-            <span className="addressWidth">
+            <span>
               {record.addressTag ? (
                 <Link to={`/address/${text}`}>{record.addressTag}</Link>
               ) : (
@@ -189,7 +191,7 @@ class Accounts extends React.Component {
               )}
             </span>
           ) : (
-            "--"
+            <span className="">--</span>
           );
         },
         align: "center"
@@ -215,7 +217,8 @@ class Accounts extends React.Component {
             </span>
           );
         },
-        align: "left"
+        align: "left",
+        width: typeIndex % 2 == 1 && "200px"
       },
       {
         title: intl.formatMessage({ id: titles[3] }),
@@ -225,7 +228,8 @@ class Accounts extends React.Component {
             <span className="percentageWidth">{(text * 100).toFixed(2)} %</span>
           );
         },
-        align: "right"
+        align: "right",
+        width: "100px"
       }
     ];
 

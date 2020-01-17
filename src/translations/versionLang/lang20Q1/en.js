@@ -75,6 +75,14 @@ export const lang20Q1 = {
   data_resource_table_total: "Total",
   data_contract_account: "Calling Accounts",
   data_contract_time: "Number of Calls",
-  data_token_transcation_number: "交易总额",
+  // 2020-01-17
+  data_token_transcation_number: "Txn Amount",
+  data_token_mark_7: "(Number of holders last period - numebr of holders this period)/number of holders last period*100%",
+  data_token_mark_8: "(Number of Txn accounts last period - numebr of Txn accounts this period)/number of Txn accounts last period*100%",
+  data_token_mark_9: "(Txn count this period - Txn count last period) / Txn count last period*100%",
+  data_token_mark_10: "(Txn volume last period - Txn volume this period)/Txn volume last period*100%",
+  data_contract_name: "Contract Name",
+  data_title_chart:"Charts"
+
 
 };
