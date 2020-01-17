@@ -6,12 +6,16 @@ import { Link } from "react-router-dom";
 class Overview extends React.Component{
   constructor(props){
     super(props);
+    this.state = {
+      data:this.props.topData,
+    };
   }
   componentDidMount(){
 
   }
   render(){
-    const { match } = this.props;
+    const { match, topData } = this.props;
+    console.log('topData',topData)
     return(
       <Fragment>
         <div className="data-overview-list">

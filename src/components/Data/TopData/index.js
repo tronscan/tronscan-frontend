@@ -27,7 +27,7 @@ class BestData extends React.Component {
         overview: "0",
         account: "1,2,3,4,5,6",
         token: "7,8,9,10",
-        coutract: "11,12,13",
+        contract: "11,12,13",
         resource: "14,15"
       },
       // tabs: {
@@ -36,9 +36,18 @@ class BestData extends React.Component {
     };
   }
   componentDidMount() {
-    this.getData();
+    let { match } = this.props;
+    this.getData(match.params.name);
   }
-  setTabs(data) {
+  componentDidUpdate(prevProps) {
+    let { match } = this.props;
+    console.log('match.params.name',match.params.name)
+    console.log('prevProps.match.params.name',prevProps.match.params.name)
+    if (match.params.name !== prevProps.match.params.name) {
+      this.getData(match.params.name);
+    }
+  }
+  setTabs(data,time) {
     this.setState(prevProps => ({
       tabs: {
         ...prevProps.tabs,
@@ -46,7 +55,7 @@ class BestData extends React.Component {
           id: "overview",
           path: "",
           label: <span>{tu("data_overview")}</span>,
-          cmp: () => <Overview topData={data} />
+          cmp: () => <Overview topData={data} topTime={time}/>
         },
         account: {
           id: "account",
@@ -62,7 +71,7 @@ class BestData extends React.Component {
         },
         contract: {
           id: "contract",
-          path: "/coutract",
+          path: "/contract",
           label: <span>{tu("data_contract")}</span>,
           cmp: () => <Contracts topData={data} />
         },
@@ -75,16 +84,15 @@ class BestData extends React.Component {
       }
     }));
   }
-  async getData() {
+  async getData(name) {
     const { types } = this.state;
-    const { match } = this.props;
-
     this.setState({
       loading: true
     });
     const { time } = this.state;
+    console.log('name',name)
     const data = await Clinet.getTop10Data({
-      type: types[match.params.name || "overview"],
+      type: types[name || "overview"],
       time: time
     }).catch(e => {
       this.setState({
@@ -92,15 +100,14 @@ class BestData extends React.Component {
         loading: false
       });
     });
-    this.setTabs(data);
-    if(match.params.name ==='resource'&&data){
+    this.setTabs(data,time);
+    if(name ==='resource'&& data){
         data.forEach((res)=>{
           res.data.forEach((result,ind)=>{
             result.rank = ind+1
           })
         })
     }
-    // console.log(data)
     this.setState({
       data,
       loading:false
@@ -108,12 +115,13 @@ class BestData extends React.Component {
     
   }
   changeTime(v) {
+    let { match } = this.props;
     this.setState(
       {
         time: v
       },
       () => {
-        this.getData();
+        this.getData(match.params.name);
       }
     );
   }
@@ -130,7 +138,9 @@ class BestData extends React.Component {
                   <ul className="nav nav-tabs card-header-tabs">
                     {tabs &&
                       Object.values(tabs).map(tab => (
-                        <li key={tab.id} className="nav-item">
+                        <li key={tab.id} className="nav-item"
+                            // onClick={() => this.getData(tab.id)}
+                        >
                           <NavLink
                             exact
                             to={"/blockchain/data" + tab.path}
@@ -138,6 +148,7 @@ class BestData extends React.Component {
                           >
                             <i className={tab.icon + " mr-2"} />
                             {tab.label}
+                            
                           </NavLink>
                         </li>
                       ))}
