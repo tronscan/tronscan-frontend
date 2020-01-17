@@ -8,6 +8,7 @@ import {
 import { QuestionMark } from "../../common/QuestionMark";
 import { upperFirst,cloneDeep } from "lodash";
 import { AddressLink } from "../../common/Links";
+import { Link } from "react-router-dom";
 import SmartTable from "../../common/SmartTable";
 
 
@@ -74,9 +75,11 @@ class DataResources extends React.Component {
         render: (text, record, index) => {
           return text ? (
             <span>
-              <span className="">
+               {record.addressTag ? (
+                <Link to={`/address/${text}`}>{record.addressTag}</Link>
+              ) : (
                 <AddressLink address={text}>{text}</AddressLink>
-              </span>
+              )}
             </span>
           ) : (
             "--"
@@ -210,9 +213,11 @@ class DataResources extends React.Component {
         render: (text, record, index) => {
           return text ? (
             <span>
-              <span>
+               {record.addressTag ? (
+                <Link to={`/address/${text}`}>{record.addressTag}</Link>
+              ) : (
                 <AddressLink address={text}>{text}</AddressLink>
-              </span>
+              )}
             </span>
           ) : (
             "--"
