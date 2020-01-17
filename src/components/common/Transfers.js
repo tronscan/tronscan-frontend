@@ -250,7 +250,7 @@ class Transfers extends React.Component {
           {loading && <div className="loading-style"><TronLoader/></div>}
             {
                 transfers.length? <div className="d-flex justify-content-between" style={{left: 'auto'}}>
-                  <TotalInfo total={total} rangeTotal={rangeTotal} typeText="transactions_unit" common={!address} divClass="table_pos_info_addr"/>
+                  <TotalInfo total={total} rangeTotal={rangeTotal} typeText="transfers_unit" common={!address} divClass="table_pos_info_addr"/>
                   <div className="table_pos_switch d-md-block table_pos_switch_addr table_pos_switch_addr_transfers">
                     <SwitchToken  handleSwitch={this.handleSwitch} text="only_TRX_transfers" isHide={false}/>
                   </div>
@@ -261,7 +261,7 @@ class Transfers extends React.Component {
                     }
                 </div>:<div className="d-flex justify-content-between" style={{left: 'auto'}}>
                   {/*<div className="table_pos_info d-md-block table_pos_info_addr2">{tableInfo}<span> <QuestionMark placement="top" text="to_provide_a_better_experience"></QuestionMark></span></div>*/}
-                    <TotalInfo total={total} rangeTotal={rangeTotal} typeText="transactions_unit" common={!address} divClass="table_pos_info_addr2"/>
+                    <TotalInfo total={total} rangeTotal={rangeTotal} typeText="transfers_unit" common={!address} divClass="table_pos_info_addr2"/>
                   <div className="table_pos_switch d-md-block table_pos_switch_addr2">
                     <SwitchToken  handleSwitch={this.handleSwitch} text="only_TRX_transfers" isHide={false}/>
                   </div>

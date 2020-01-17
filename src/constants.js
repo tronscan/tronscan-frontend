@@ -17,12 +17,12 @@ export const IS_NILE = true;
 
 
 export const NETURL = {
-
     MAINNET: "https://testhttps.tronscan.org",
     //SUNNET: "https://dappchain.tronscan.org",
     SUNNET: "https://dapptronexapi.tronscan.org",
     NEWMAINNET: "https://tronscan.io",
     NEWSUNNET: "https://dappchain.tronscan.io",
+
 };
 
 export const TOKENINFO_UPDATE = 'TOKENINFO_UPDATE'
@@ -81,7 +81,6 @@ export const API_URL = IS_SUNNET ? API_URL_SUNNET : process.env.API_URL;
 export const CONTRACT_MAINNET_API_URL = process.env.API_URL;
 export const CONTRACT_NODE_API = NODEAPI;
 //export const CONTRACT_NODE_API = "http://52.15.126.154:9018";
-
 
 //Token issued
 export const MARKET_API_URL = "https://platform.tron.network";

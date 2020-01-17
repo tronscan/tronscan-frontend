@@ -35,6 +35,7 @@ import {
     ContractInvocationDistributionChart,
     EnergyConsumeDistributionChart,
     OverallFreezingRateChart,
+    LineTxOverviewStatsType,
 } from "../../common/LineCharts";
 
 import {
@@ -60,6 +61,7 @@ class Statistics extends React.Component {
             blockStats: null,
             transactionValueStats: null,
             txOverviewStats: null,
+            txOverviewStatsType:null,
             txOverviewStatsFull: null,
             addressesStats: null,
             blockSizeStats: null,
@@ -84,7 +86,7 @@ class Statistics extends React.Component {
             ContractInvocation: null,
             ContractInvocationDistribution: null,
             ContractInvocationDistributionParams: {
-                time: new Date().getTime() - 2*24*60*60*1000,
+                time: new Date().getTime() - 24*60*60*1000,
                 range: 20,
                 total_used_energy: 0,
                 scale: '',
@@ -137,7 +139,10 @@ class Statistics extends React.Component {
             case 'OverallFreezingRate':
                 this.loadOverallFreezingRate();
                 break;   
-            default:
+            case 'txOverviewStatsType':
+                this.loadTxOverviewStatsType();
+                break;       
+            case 'txOverviewStats':
                 this.loadTxOverviewStats();
                 break;
         }
@@ -344,7 +349,6 @@ class Statistics extends React.Component {
                         date: pr[0].time * 1000,
                         increment: pr[0].close
                     }],
-
             }
         });
     }
@@ -508,6 +512,114 @@ class Statistics extends React.Component {
         });
     }
 
+    async loadTxOverviewStatsType() {
+        let { txOverviewStats } = await Client.getTxOverviewStatsAll();
+        
+
+        let temp = [];
+        let addressesTemp = [];
+        let blockSizeStatsTemp = [];
+        let blockchainSizeStatsTemp = [];
+        // for (let txs in txOverviewStats) {
+        //     let tx = parseInt(txs);
+        //     if (tx === 0) {
+        //         temp.push({
+        //             avgBlockSize: txOverviewStats[tx].avgBlockSize,
+        //             avgBlockTime: txOverviewStats[tx].avgBlockTime,
+        //             blockchainSize: txOverviewStats[tx].blockchainSize,
+        //             date: txOverviewStats[tx].date,
+        //             newAddressSeen: txOverviewStats[tx].newAddressSeen,
+        //             newBlockSeen: txOverviewStats[tx].newBlockSeen,
+        //             newTransactionSeen: txOverviewStats[tx].newTransactionSeen,
+        //             totalAddress: txOverviewStats[tx].totalAddress,
+        //             totalBlockCount: txOverviewStats[tx].totalBlockCount,
+        //             totalTransaction: txOverviewStats[tx].totalTransaction,
+        //             newtotalTransaction:txOverviewStats[tx].totalTransaction,
+        //             newtotalAddress:txOverviewStats[tx].totalAddress,
+        //             newtotalBlockCount:txOverviewStats[tx].totalBlockCount,
+        //         })
+        //         addressesTemp.push({
+        //             date: txOverviewStats[tx].date,
+        //             total: txOverviewStats[tx].newAddressSeen,
+        //             increment: txOverviewStats[tx].newAddressSeen,
+        //         });
+        //     }
+        //     else {
+        //         temp.push({
+        //             date: txOverviewStats[tx].date,
+        //             totalTransaction: (txOverviewStats[tx].totalTransaction - txOverviewStats[tx - 1].totalTransaction),
+        //             avgBlockTime: txOverviewStats[tx].avgBlockTime,
+        //             avgBlockSize: txOverviewStats[tx].avgBlockSize,
+        //             totalBlockCount: (txOverviewStats[tx].totalBlockCount - txOverviewStats[tx - 1].totalBlockCount),
+        //             newAddressSeen: txOverviewStats[tx].newAddressSeen,
+        //             newtotalTransaction:txOverviewStats[tx].totalTransaction,
+        //             newtotalAddress:txOverviewStats[tx].totalAddress,
+        //             newtotalBlockCount:txOverviewStats[tx].totalBlockCount,
+        //         });
+        //         addressesTemp.push({
+        //             date: txOverviewStats[tx].date,
+        //             total: txOverviewStats[tx].totalAddress,
+        //             increment: txOverviewStats[tx].newAddressSeen
+        //         });
+        //     }
+        //     blockSizeStatsTemp.push({
+        //         date: txOverviewStats[tx].date,
+        //         avgBlockSize: txOverviewStats[tx].avgBlockSize
+        //     });
+        //     blockchainSizeStatsTemp.push({
+        //         date: txOverviewStats[tx].date,
+        //         blockchainSize: txOverviewStats[tx].blockchainSize
+        //     });
+        // }
+        txOverviewStats.map((item, index) => {
+            item.newTransactionSeen_num = item.newTransactionSeen?item.newTransactionSeen:0;
+            item.triggers_num = item.newTrigger?item.newTrigger:0;
+            item.trx_transfer_num = item.trx_transfer?item.trx_transfer:0;
+            item.trc10_transfer_num = item.trc10_transfer?item.trc10_transfer:0;
+            item.freeze_transaction_num = item.freeze_transaction?item.freeze_transaction:0;
+            item.vote_transaction_num = item.vote_transaction?item.vote_transaction:0;
+            item.other_transaction_num = item.other_transaction?item.other_transaction:0;
+            item.shielded_transaction_num = item.shielded_transaction?item.shielded_transaction:0;
+        })
+       
+        this.setState({
+            txOverviewStatsType:  txOverviewStats.slice(0, txOverviewStats.length - 1),
+        });
+
+        function compare (property) {
+            return function (obj1, obj2) {
+
+                if (obj1[property] > obj2[property]) {
+                    return 1;
+                } else if (obj1[property] < obj2[property]) {
+                    return -1;
+                } else {
+                    return 0;
+                }
+
+            }
+        }
+
+        let higest = {date: '', increment: ''};
+        let lowest = {date: '', increment: ''};
+        let tx = cloneDeep(txOverviewStats).sort(compare('newTransactionSeen'));
+  
+        this.setState({
+            summit: {
+                txOverviewStatsType_sort: [
+                    {
+                        date: tx[tx.length - 1].date,
+                        increment: tx[tx.length - 1].newTransactionSeen
+                    },
+                    {
+                        date: tx[0].date,
+                        increment: tx[0].newTransactionSeen
+                    }],
+            }
+        });
+    }
+    
+
     // 获取TRON日能量消耗图表
     async loadEnergyConsumeData() {
         let {data} = await xhr.get(API_URL + "/api/energystatistic");
@@ -635,7 +747,6 @@ class Statistics extends React.Component {
     async loadOverallFreezingRate() {
         let { start_day, end_day} = this.state.OverallFreezingRateParams;
         let {data: {data}} = await xhr.get(API_URL + "/api/freezeresource?start_day="+ start_day+"&end_day="+end_day);
-        console.log('data',data)
         data.map((item, index) => {
             item.freezing_percent = ((item.total_freeze_weight / item.total_turn_over)*100).toFixed(2) + '%'
         })
@@ -697,7 +808,7 @@ class Statistics extends React.Component {
     }
 
     disabledEndDate = (endValue) => {
-        const startValue = new Date() -  2*24*60*60*1000
+        const startValue = new Date() -  24*60*60*1000
         if (!endValue || !startValue) {
           return false;
         }
@@ -926,7 +1037,7 @@ class Statistics extends React.Component {
 
     render() {
         let {match, intl} = this.props;
-        let {txOverviewStats, txOverviewStatsFull, 
+        let {txOverviewStats, txOverviewStatsType, txOverviewStatsFull, 
             addressesStats, blockSizeStats, blockchainSizeStats, 
             priceStats, transactionStats, transactionValueStats, 
             blockStats, accounts, volumeStats, pieChart, 
@@ -993,6 +1104,19 @@ class Statistics extends React.Component {
                                         <LineReactHighChartTx source='singleChart' style={{height: chartHeight}}
                                                               data={txOverviewStats} intl={intl}/>
                                 }
+
+                            </div>
+                        }
+                        {
+                            match.params.chartName === 'txOverviewStatsType' &&
+                            <div style={{height: chartHeight}}>
+                                {
+                                    txOverviewStatsType === null ?
+                                        <TronLoader/> :
+                                        <LineTxOverviewStatsType source='singleChart' style={{height: chartHeight}}
+                                                              data={txOverviewStatsType} intl={intl}/>
+                                }
+                                
                             </div>
                         }
                         {

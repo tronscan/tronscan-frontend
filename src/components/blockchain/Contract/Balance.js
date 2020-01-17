@@ -77,7 +77,6 @@ class Balances extends React.Component {
     let {address} = this.state;
     let {intl} = this.props
     return address && <TokenBalances tokenBalances={address} intl={intl}/>
-    // return<div>123123</div>
   }
 }
 

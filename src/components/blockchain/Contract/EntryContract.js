@@ -13,6 +13,14 @@ import { transactionMultiResultManager,transactionResultManagerByLedger } from "
 import xhr from "axios";
 import MonacoEditor from "react-monaco-editor";
 import {withTronWeb} from "../../../utils/tronWeb";
+import {
+  API_URL,
+  IS_MAINNET,
+  SUNWEBCONFIG,
+  CONTRACT_LICENSES,
+  CONTRACT_NODE_API,
+  WARNING_VERSIONS
+} from "../../../constants";
 
 const { Panel } = Collapse;
 // const { Option } = Select;
@@ -46,11 +54,11 @@ class Code extends React.Component {
   async componentDidMount() {
     let { contractItem, address, account } = this.props;
     let { contract } = this.state;
-    const { tronWeb } = this.props.account;
+    const { tronWeb, sunWeb } = this.props.account;
     if (account.isLoggedIn) {
       let addressHex = tronWeb.address.toHex(address);
-
-      let initContract = await tronWeb.contract([contractItem], addressHex);
+      const tron = IS_MAINNET ? tronWeb : sunWeb.sidechain
+      let initContract = await tron.contract([contractItem], addressHex);
       this.setState(
         {
           contract: initContract
@@ -189,7 +197,8 @@ class Code extends React.Component {
    MultiSend =  async(permissionId, permissionTime, from) => {
         const { tokenId, totalValue, contract ,sendTokenDecimals } = this.state;
         let { contractItem, address, account, intl } = this.props;
-        const { tronWeb } = this.props.account;
+        const { tronWeb, sunWeb } = this.props.account;
+        const tron = IS_MAINNET ? tronWeb : sunWeb.sidechain
         let selectorTypeArr = [];
         let selectorValueArr = this.submitValueFormat();
         let selectorArr = [];
@@ -205,7 +214,7 @@ class Code extends React.Component {
                   selectorValueArr[i] = '';
               }
               if(selectorTypeArr[i] == 'address'){
-                  selectorValueArr[i] = tronWeb.address.toHex(selectorValueArr[i]);
+                  selectorValueArr[i] = tron.address.toHex(selectorValueArr[i]);
               }
               selectorArr.push(
                     {type: selectorTypeArr[i], value: selectorValueArr[i]},
@@ -225,12 +234,12 @@ class Code extends React.Component {
                         tokenValue: this.Mul(totalValue,Math.pow(10, sendTokenDecimals))
                     };
                 }
-                let unSignTransaction = await tronWeb.transactionBuilder.triggerSmartContract(
-                    tronWeb.address.toHex(address),
+                let unSignTransaction = await tron.transactionBuilder.triggerSmartContract(
+                    tron.address.toHex(address),
                     function_selector,
                     {'permissionId':permissionId,...options},
                     selectorArr,
-                    tronWeb.address.toHex(from),
+                    tron.address.toHex(from),
                 );
                 if (unSignTransaction.transaction !== undefined)
                     unSignTransaction = unSignTransaction.transaction;
@@ -239,7 +248,7 @@ class Code extends React.Component {
                 let HexStr = Client.getTriggerSmartContractHexStr(unSignTransaction.raw_data.contract[0].parameter.value);
 
                 //sign transaction
-                let SignTransaction = await transactionMultiResultManager(unSignTransaction, tronWeb, permissionId,permissionTime,HexStr);
+                let SignTransaction = await transactionMultiResultManager(unSignTransaction, tron, permissionId,permissionTime,HexStr);
 
                 let { data } = await xhr.post("https://list.tronlink.org/api/wallet/multi/transaction", {
                     "address": account.address,
@@ -278,7 +287,7 @@ class Code extends React.Component {
                         (res == ""
                             ? ""
                             : "Message: " +
-                            tronWeb
+                            tron
                                 .toUtf8(res.substring(res.length - 64, res.length))
                                 .trim());
                     this.setState({
@@ -305,7 +314,8 @@ class Code extends React.Component {
   async Send() {
     const { tokenId, totalValue, contract, sendTokenDecimals } = this.state;
     const { contractItem, intl } = this.props;
-    const { tronWeb } = this.props.account;
+    const { tronWeb, sunWeb } = this.props.account;
+    const tron = IS_MAINNET ? tronWeb : sunWeb.sidechain
     if (this.isLoggedIn()) {
 
       try {
@@ -333,7 +343,7 @@ class Code extends React.Component {
             (res == ""
               ? ""
               : "Message: " +
-                tronWeb
+              tron
                   .toUtf8(res.substring(res.length - 64, res.length))
                   .trim());
           this.setState({
@@ -418,11 +428,11 @@ class Code extends React.Component {
             let retValue = false;
             if(!broadcast.result){
               retValue = false;
-              //console.log('retValue222222',retValue)
+            
             }else{
               retValue = await this.getTxResult(signedTransaction.txID);
             }
-            //console.log('retValue3333333',retValue)
+           
             this.setState({
               result: this.formatOutputs(retValue)
             });
@@ -485,10 +495,11 @@ class Code extends React.Component {
   }
   getTxResult(txID) {
     let { contractItem, intl, address } = this.props;
-    const { tronWeb } = this.props.account;
+    const { tronWeb, sunWeb } = this.props.account;
+    const tron = IS_MAINNET ? tronWeb : sunWeb.sidechain
     return new Promise((reslove, reject) => {
       let checkResult = async function(txID) {
-        const output = await tronWeb.trx.getUnconfirmedTransactionInfo(txID);
+        const output = await tron.trx.getUnconfirmedTransactionInfo(txID);
         //console.log('output',output)
         if (Object.keys(output).length <= 1 && !output.id) {
           return setTimeout(() => {
@@ -498,12 +509,12 @@ class Code extends React.Component {
 
         if (output.result && output.result == "FAILED") {
           return reject({
-            error: tronWeb.toUtf8(output.resMessage),
+            error: tron.toUtf8(output.resMessage),
             transaction: txID,
             output
           });
         }
-        if (!tronWeb.utils.hasProperty(output, "contractResult")) {
+        if (!tron.utils.hasProperty(output, "contractResult")) {
           return reject({
             error: "Failed to execute: " + JSON.stringify(output, null, 2),
             transaction: txID,
@@ -522,7 +533,7 @@ class Code extends React.Component {
         const types = contractItem.outputs.map(({ type }) => type);
         //console.log('names',names)
          // console.log('types',types)
-        let decoded = window.tronWeb.utils.abi.decodeParams(
+        let decoded = tron.utils.abi.decodeParams(
           names,
           types,
           "0x" + output.contractResult[0]
@@ -601,7 +612,8 @@ class Code extends React.Component {
           <div className="d-flex">
               <div className="search-btn" onClick={() => this.sendClick()}>Send</div>
 
-              {/* <div className="search-btn ml-2" onClick={() => this.MultiSendModal()} style={{width:'auto'}}>Multi Send</div> */}
+              {/* {IS_MAINNET ? <div className="search-btn ml-2" onClick={() => this.MultiSendModal()} style={{width:'auto'}}>Multi Send</div> : ''} */}
+
           </div>
 
             {
@@ -617,7 +629,7 @@ class Code extends React.Component {
             <div className="d-flex">
                 <div className="search-btn" onClick={() => this.sendClick()}>Send</div>
 
-                {/* <div className="search-btn ml-2" onClick={() => this.MultiSendModal()} style={{width:'auto'}}>Multi Send</div> */}
+                {/* {IS_MAINNET ? <div className="search-btn ml-2" onClick={() => this.MultiSendModal()} style={{width:'auto'}}>Multi Send</div> : ''} */}
             </div>
             {
                 result && <JSONTree data={result}  theme={theme} invertTheme={true}/>

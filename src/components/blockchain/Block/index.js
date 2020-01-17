@@ -178,7 +178,7 @@ class Block extends React.Component {
                           <tr>
                             <th>{tu("transactions")}:</th>
                             <td>
-                              {totalTransactions} {tv("transactions_count", {transactions: totalTransactions})}
+                              {totalTransactions} Txns
                             </td>
                           </tr>
                           <tr>
