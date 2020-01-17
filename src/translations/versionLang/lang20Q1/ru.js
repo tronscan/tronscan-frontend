@@ -34,7 +34,6 @@ export const lang20Q1 = {
   data_time2: "1 День",
   data_time3: "1 Неделя",
   data_check: "Посмотреть ТОП 10",
-  data_account_top: "最佳账户",
   data_account_send_Trx: "Топ Аккаунты - Всего отправлено TRX",
   data_account_send_Trx_items:
     "Топ Аккаунты - Количество Отправленных Транзакций",
@@ -48,9 +47,7 @@ export const lang20Q1 = {
   data_per: "Процент",
   data_total: "Общее количество",
   data_items: "Txn",
-  data_unit_bi: "笔",
   data_piao: "Голоса",
-  data_token_top: "最佳通证",
   data_token_holders: "Топ Токены - держатели",
   data_token_holder: "Держатели",
   data_token_transcation_account: "Аккаунты Транзакций",
@@ -59,7 +56,6 @@ export const lang20Q1 = {
   data_token_transcation_items_total: "Топ Токены - Количество Транзакций",
   data_token_transcation_numbers: "Топ Токены - Сумма Транзакций",
   data_token_circle_per: "Изменено",
-  data_contract_top: "最佳合约",
   data_contract_trx_number: "Топ Контракты - TRX Баланс",
   data_contract_accounts: "Топ Контракты - Вызов Аккаунтов",
   data_contract_numbers: "Баланс (TRX)",
@@ -78,6 +74,14 @@ export const lang20Q1 = {
   data_resource_table_total: "Общее количество",
   data_contract_account: "Аккаунты Вызовов",
   data_contract_time: "Количество Вызовов",
-  data_token_transcation_number: "交易总额",
+  // 2020-01-17
+  data_token_transcation_number: "Сумма Транзакций",
+  data_token_mark_7: "(Количество держателей последнего периода - количество владельцев этого периода) / количество владельцев последнего периода * 100%",
+  data_token_mark_8: "(Количество транзакций аккаунта за последний период - количество транзакций аккаунта за этот период) / количество транзакций аккаунта за последний период * 100%",
+  data_token_mark_9: "(Количество транзакций за этот период - количество транзакций за последний период) / количество транзакций за последний период * 100%",
+  data_token_mark_10: "(Объем транзакции за последний период - Объем транзакции за этот период) / Объем транзакции за последний период * 100%",
+  data_contract_name: "Название контракта",
+  data_title_chart:"Графики"
+
 
 };

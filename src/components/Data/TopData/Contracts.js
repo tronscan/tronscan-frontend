@@ -31,6 +31,7 @@ class Contracts extends React.Component {
           tableTitle: [
             "data_range",
             "data_contract",
+            "data_contract_name",
             "data_contract_numbers",
             "data_per"
           ],
@@ -44,6 +45,7 @@ class Contracts extends React.Component {
           tableTitle: [
             "data_range",
             "data_contract",
+            "data_contract_name",
             "data_contract_account",
             "data_per"
           ],
@@ -56,6 +58,7 @@ class Contracts extends React.Component {
           tableTitle: [
             "data_range",
             "data_contract",
+            "data_contract_name",
             "data_contract_time",
             "data_per"
           ],
@@ -90,6 +93,8 @@ class Contracts extends React.Component {
 
   render() {
     let { types } = this.state;
+    let lgSize = 12;
+    let smSize = 24;
     return (
       <div className="top-data">
         <Row gutter={{ xs: 8, sm: 20, md: 20 }} className="mt-2 data-contract">
@@ -97,11 +102,11 @@ class Contracts extends React.Component {
             <Col
               className="gutter-row"
               xs={24}
-              sm={12}
-              md={12}
-              lg={12}
-              xl={12}
-              xxl={12}
+              sm={index == 11 ? smSize : lgSize}
+              md={index == 11 ? smSize : lgSize}
+              lg={index == 11 ? smSize : lgSize}
+              xl={index == 11 ? smSize : lgSize}
+              xxl={index == 11 ? smSize : lgSize}
               key={`contract-${index}`}
             >
               <div className="data-items">
@@ -117,7 +122,8 @@ class Contracts extends React.Component {
                   types[index].data,
                   types[index].tableTitle,
                   types[index].isUSD,
-                  types[index].key
+                  types[index].key,
+                  index
                 )}
               </div>
             </Col>
@@ -140,7 +146,7 @@ class Contracts extends React.Component {
     return { [type]: totalNumber, percentage: totalPercent, address: "" };
   }
 
-  renderDataTable(data, title, isUsd, type) {
+  renderDataTable(data, title, isUsd, type, index) {
     const { trxUnit, usdUnit } = this.state;
     const { intl, priceUSD } = this.props;
     const titles = title;
@@ -166,26 +172,51 @@ class Contracts extends React.Component {
             </span>
           );
         },
-        align: "center"
+        align: "center",
+        width: "80px"
       },
       {
         title: intl.formatMessage({ id: titles[1] }),
         dataIndex: "contract",
         render: (text, record, index) => {
           return text ? (
-            <span className="addressWidth">
+            <span className="contractWidth">
               <AddressLink address={text} isContract={true}>
                 {text}
               </AddressLink>
             </span>
           ) : (
-            "--"
+            <span className="contractWidth">--</span>
           );
         },
-        align: "center"
+        align: "center",
+        width: index == 11 ? "" : "120px"
       },
       {
-        title: intl.formatMessage({ id: titles[2] }),
+        title: () => {
+          let title2 = intl.formatMessage({ id: titles[2] });
+          return (
+            <span className={index != 11 && "data-contract-title2"}>
+              {title2}
+            </span>
+          );
+        },
+        dataIndex: "name",
+        render: (text, record, index) => {
+          return text ? <span className="">{text}</span> : "--";
+        },
+        align: "center",
+        width: index == 11 ? "250px" : ""
+      },
+      {
+        title: () => {
+          let title3 = intl.formatMessage({ id: titles[3] });
+          return (
+            <span className={index != 11 && "data-contract-title2"}>
+              {title3}
+            </span>
+          );
+        },
         dataIndex: "amount",
         render: (text, record, index) => {
           return (
@@ -205,17 +236,19 @@ class Contracts extends React.Component {
             </span>
           );
         },
-        align: "left"
+        align: "left",
+        width: index == 11 ? "250px" : ""
       },
       {
-        title: intl.formatMessage({ id: titles[3] }),
+        title: intl.formatMessage({ id: titles[4] }),
         dataIndex: "percentage",
         render: (text, record, index) => {
           return (
             <span className="percentageWidth">{(text * 100).toFixed(2)} %</span>
           );
         },
-        align: "right"
+        align: "right",
+        width: "100px"
       }
     ];
 

@@ -22,9 +22,6 @@
     ##################################################################################
 */
 export const lang20Q1 = {
-
-   
-
   data_title: "أفضل البيانات",
   data_overview: "نظرة عامة",
   data_account: "الحسابات",
@@ -35,7 +32,6 @@ export const lang20Q1 = {
   data_time2: "يوم واحد",
   data_time3: "أسبوع واحد",
   data_check: "عرض الترتيب لأفضل 10 ",
-  data_account_top: "最佳账户",
   data_account_send_Trx: "أفضل الحسابات - إجمالي TRX المرسلة",
   data_account_send_Trx_items: "أفضل الحسابات - عدد مرات TRX المرسلة",
   data_account_receive_Trx: "أفضل الحسابات - إجمالي TRX المستلمة",
@@ -47,9 +43,7 @@ export const lang20Q1 = {
   data_per: "النسبة المئوية",
   data_total: "المجموع",
   data_items: "عدد المرات",
-  data_unit_bi: "笔",
   data_piao: "الأصوات",
-  data_token_top: "最佳通证",
   data_token_holders: "أفضل الرموز - الحسابات الحاملة للرمز",
   data_token_holder: "عدد الحاملين للرموز",
   data_token_transcation_account: "عدد حسابات التداول",
@@ -58,7 +52,6 @@ export const lang20Q1 = {
   data_token_transcation_items_total: "أفضل الرموز - إجمالي عدد المعاملات",
   data_token_transcation_numbers: "أفضل الرموز - مجموع المعاملات",
   data_token_circle_per: "على أساس شهري",
-  data_contract_top: "最佳合约",
   data_contract_trx_number: "أفضل العقود - إجمالي رصيد TRX",
   data_contract_accounts: "أفضل العقود - عدد دعوات الحسابات",
   data_contract_numbers: "مجموع رصيد (TRX)",
@@ -71,13 +64,21 @@ export const lang20Q1 = {
   data_resource_table_burningTRX_energy: "إستهلاك الطاقة لحرق TRX",
   data_resource_table_energy_consumed: "إجمالي الطاقة المستهلكة",
   data_resource_table_percentage: "النسبة المئوية",
-  data_resource_table_percentage_tips: "الطاقة التي يستهلكها المستخدم الحالي / الطاقة التي يستهلكها جميع المستخدمين عبر الشبكة",
-  data_resource_table_bandwidth_title: "الحد الأقصى لاستهلاك عرض النطاق الترددي",
-    data_resource_table_total: "المجموع",
-    data_contract_account: "دعوات عدد حسابات ",
-    data_contract_time: "عدد الدعوات",
+  data_resource_table_percentage_tips:
+    "الطاقة التي يستهلكها المستخدم الحالي / الطاقة التي يستهلكها جميع المستخدمين عبر الشبكة",
+  data_resource_table_bandwidth_title:
+    "الحد الأقصى لاستهلاك عرض النطاق الترددي",
+  data_resource_table_total: "المجموع",
+  data_contract_account: "دعوات عدد حسابات ",
+  data_contract_time: "عدد الدعوات",
 
-    data_token_transcation_number: "交易总额",
+  // 2020-01-17
+  data_token_transcation_number: " مجموع المعاملات",
+  data_token_mark_7: "(عدد الحسابات الحاملة للعملة في الفترة الحالية - عدد الحسابات الحاملة للعملة في الفترة السابقة) / عدد الحسابات الحاملة للعملة في الفترة السابقة × 100 ٪",
+  data_token_mark_8: "(عدد حسابات التداول الحالية - عدد حسابات التداول السابقة) / عدد حسابات التداول السابقة × 100 ٪",
+  data_token_mark_9: "(عدد المعاملات في الفترة الحالية - عدد المعاملات في الفترة السابقة) / نسبة المعاملات الأخيرة × 100 ٪",
+  data_token_mark_10: "(إجمالي رصيد المعاملة للفترة الحالية - إجمالي رصيد المعاملة للفترة السابقة) / إجمالي رصيد المعاملة للفترة السابقة × 100 ٪",
+  data_contract_name: "اسم العقد",
+  data_title_chart:"Charts"
 
 };
-

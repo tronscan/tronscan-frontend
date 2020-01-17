@@ -137,7 +137,7 @@ export const routes = [
       //   component: Contracts,
       // },
       {
-        label: "statistics",
+        label: "data_title_chart",
         // icon: `fa fa-chart-pie`,
         icon: false,
         path: "/blockchain/stats",

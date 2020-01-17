@@ -10,6 +10,7 @@ import { FormattedNumber } from "react-intl";
 import SmartTable from "../../common/SmartTable";
 import { cloneDeep } from "lodash";
 import { Link } from "react-router-dom";
+import { QuestionMark } from "../../common/QuestionMark";
 
 @injectIntl
 @connect(
@@ -83,12 +84,7 @@ class Tokens extends React.Component {
   }
 
   async getData() {
-    let data = [];
-    data = await ApiClientData.getTop10Data({
-      type: "7,8,9,10",
-      time: 1
-    });
-
+    let data = this.props.topData || [];
     let types = this.state.types;
     Object.keys(types).map(index => {
       data.map(subItem => {
@@ -132,7 +128,8 @@ class Tokens extends React.Component {
                   types[index].data,
                   types[index].tableTitle,
                   types[index].isUSD,
-                  types[index].key
+                  types[index].key,
+                  index
                 )}
               </div>
             </Col>
@@ -142,15 +139,13 @@ class Tokens extends React.Component {
     );
   }
 
-  renderDataTable(data, title, isUsd, type) {
+  renderDataTable(data, title, isUsd, type, index) {
     const defaultImg = require("../../../images/logo_default.png");
 
     const { trxUnit, usdUnit } = this.state;
     const { intl, priceUSD } = this.props;
     const titles = title;
     let arr = cloneDeep(data);
-
-    let length = arr.length - 1;
 
     const columns = [
       {
@@ -229,11 +224,24 @@ class Tokens extends React.Component {
         align: "left"
       },
       {
-        title: intl.formatMessage({ id: titles[3] }),
+        title: () => {
+          let title = intl.formatMessage({ id: titles[3] });
+          return (
+            <span>
+              {title}{" "}
+              <QuestionMark
+                text={"data_token_mark_" + index}
+                className="ml-2"
+              ></QuestionMark>
+            </span>
+          );
+        },
         dataIndex: "percentage",
         render: (text, record, index) => {
-          return (
+          return text ? (
             <span className="percentageWidth">{(text * 100).toFixed(2)} %</span>
+          ) : (
+            "0 %"
           );
         },
         align: "right"

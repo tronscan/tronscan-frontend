@@ -34,7 +34,6 @@ export const lang20Q1 = {
   data_time2: "1日",
   data_time3: "1週間",
   data_check: "トップ10を見る",
-  data_account_top: "最佳账户",
   data_account_send_Trx: "上位のアカウント-送信されたTRXの合計",
   data_account_send_Trx_items: "上位のアカウント-送信された総数",
   data_account_receive_Trx: "上位のアカウント-受信したTRXの合計",
@@ -46,9 +45,7 @@ export const lang20Q1 = {
   data_per: "割合",
   data_total: "トータル",
   data_items: "Txn",
-  data_unit_bi: "笔",
   data_piao: "投票",
-  data_token_top: "最佳通证",
   data_token_holders: "トップトークン-所有アカウント",
   data_token_holder: "アドレスアカウント",
   data_token_transcation_account: "Txnアカウント",
@@ -57,7 +54,6 @@ export const lang20Q1 = {
   data_token_transcation_items_total: "上位トークン-Txnカウント",
   data_token_transcation_numbers: "上位トークン-Txnアマウント",
   data_token_circle_per: "週ごと",
-  data_contract_top: "最佳合约",
   data_contract_trx_number: "上位契約-TRX残高",
   data_contract_accounts: "上位契約-通話アカウント",
   data_contract_numbers: "トータルバランス（TRX)",
@@ -77,6 +73,14 @@ export const lang20Q1 = {
   data_resource_table_total: "トータル",
   data_contract_account: "通話アカウント",
   data_contract_time: "通話ナンバー",
-  data_token_transcation_number: "交易总额",
+  // 2020-01-17
+  data_token_transcation_number: "取引量",
+  data_token_mark_7: "（前期の保有者数-今期の保有者数）/前期の保有者数* 100％",
+  data_token_mark_8: "（最終期間の取引アカウントの数-この期間の取引アカウントの数）/最終期間の取引アカウントの数* 100％",
+  data_token_mark_9: "（現在の用語の取引カウント-最後の用語の取引カウント）/最後の用語の取引カウント×100％",
+  data_token_mark_10: "（最終期の取引ボリューム-今期のTxnボリューム）/最終期の取引ボリューム* 100％",
+  data_contract_name: "コントラクトアドレス",
+  data_title_chart:"チャート"
+
 
 };
