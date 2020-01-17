@@ -29,7 +29,7 @@ class BestData extends React.Component {
         contract: "11,12,13",
         resource: "14,15"
       },
-      currentTime:`${moment().subtract(1,'hours').format("HH:mm:ss")}~${moment().format("YYYY-MM-DD HH:mm:ss")}`
+      currentTime:`${moment().subtract(1,'hours').format("YYYY-MM-DD HH:mm:ss")}~${moment().format("HH:mm:ss")}`
 
       // tabs: {
 
@@ -125,7 +125,7 @@ class BestData extends React.Component {
     let { match } = this.props;
     let currentTime;
     if(v===1){
-        currentTime=`${moment().subtract(1,'hours').format("HH:mm:ss")}~${moment().format("YYYY-MM-DD HH:mm:ss")}`
+        currentTime=`${moment().subtract(1,'hours').format("YYYY-MM-DD HH:mm:ss")}~${moment().format("HH:mm:ss")}`
     }else if(v === 2){
       currentTime=`${moment().subtract(1,'day').format("YYYY-MM-DD HH:mm:ss")}~${moment().format("YYYY-MM-DD HH:mm:ss")}`
     }else if(v === 3){
