@@ -296,7 +296,7 @@ class DataResources extends React.Component {
         align: "center",
         render: (text, record, index) => {
           return (
-            <span className="percentageWidth">{(text * 100).toFixed(2)} %</span>
+            <span className="percentageWidth">{(text * 100).toFixed(2)}%</span>
           );
         }
       }
