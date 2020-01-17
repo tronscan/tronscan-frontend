@@ -154,7 +154,7 @@ class BestData extends React.Component {
     });
     topData[0].data.push({
       rank: "111111",
-      address: "--",
+      address: "",
       energy_use: this.sumArr(totalEnergyUseAry) || 0,
       energy_burn: this.sumArr(totalEnergyBurn) || 0,
       whole_energy_use: this.sumArr(totalWholeEnergyUse) || 0,
@@ -180,16 +180,12 @@ class BestData extends React.Component {
     });
     topData[1].data.push({
       rank: "111111",
-      address: "--",
+      address: "",
       net_use: this.sumArr(totalNetUseAry) || 0,
       net_burn: this.sumArr(totalNetBurn) || 0,
       whole_net_use: this.sumArr(totalWholeNetyUse) || 0,
       percentage: this.sumArr(totalPercentage) || 0
     });
-
-
-
-    
   };
 
   render() {

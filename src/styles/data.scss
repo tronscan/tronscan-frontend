@@ -157,6 +157,7 @@
       display: block;
     }
   }
+  
 }
 .time-filter {
   padding: 20px 0;
@@ -220,4 +221,21 @@
       }
     }
   }
+}
+
+// resourceWrapper
+.resourceWrapper{
+  .top-data{
+    .ant-table-row.ant-table-row-level-0 {
+      &:last-child {
+        td {
+          background: #f3f3f3 !important;
+          font-family: PingFangSC-Medium;
+          font-size: 12px;
+          color: hsl(0, 0%, 20%);
+        }
+      }
+    }
+  }
+  
 }
