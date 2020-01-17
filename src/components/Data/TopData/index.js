@@ -137,7 +137,6 @@ class BestData extends React.Component {
   }
 
   dataResourcesEnergyFun(topData) {
-    console.log(topData);
     let energyData;
     if (topData.length == 0) return;
     if (topData.length > 0) {
@@ -164,7 +163,6 @@ class BestData extends React.Component {
   }
 
   bandwithColumnsFooter = (topData) => {
-    console.log(topData);
     let bandWithData;
     if (topData.length == 0) return;
     if (topData.length > 0) {

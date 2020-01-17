@@ -310,7 +310,6 @@ class DataResources extends React.Component {
     let bandWidthColumns = this.customizedBandWidthColumn();
     const { resourcesList, loading, titleStyle } = this.state;
     const { topData } = this.props;
-    console.log(topData);
     let energyData, bandWidthData;
     if (topData.length > 0) {
       energyData = topData[0].data || [];
