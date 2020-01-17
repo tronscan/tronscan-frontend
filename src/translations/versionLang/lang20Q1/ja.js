@@ -23,7 +23,6 @@
 */
 
 export const lang20Q1 = {
-
   data_title: "上位のデータ",
   data_overview: "概要",
   data_account: "アカウント",
@@ -50,7 +49,7 @@ export const lang20Q1 = {
   data_token_holder: "アドレスアカウント",
   data_token_transcation_account: "Txnアカウント",
   data_token_transcation_accounts: "上位トークン-Txnアカウント",
-  data_token_transcation_items: "交易笔数",
+  data_token_transcation_items: "取引数",
   data_token_transcation_items_total: "上位トークン-Txnカウント",
   data_token_transcation_numbers: "上位トークン-Txnアマウント",
   data_token_circle_per: "週ごと",
@@ -60,15 +59,16 @@ export const lang20Q1 = {
   data_contract_times: "上位契約-コール数",
   data_real_time: "リアルタイム",
 
-
   data_resource_table_title: "ピークエネルギー消費",
   data_resource_table_rank: "ランク",
   data_resource_table_account: "アカウント",
-  data_resource_table_freezingTRX_energy: "TRXを凍結するために消費されるエネルギー",
+  data_resource_table_freezingTRX_energy:
+    "TRXを凍結するために消費されるエネルギー",
   data_resource_table_burningTRX_energy: "TRXの燃焼に消費されるエネルギー",
   data_resource_table_energy_consumed: "トータルエネルギー",
   data_resource_table_percentage: "割合",
-  data_resource_table_percentage_tips: "ユーザーが消費するエネルギー/すべてのユーザーが消費するエネルギー",
+  data_resource_table_percentage_tips:
+    "ユーザーが消費するエネルギー/すべてのユーザーが消費するエネルギー",
   data_resource_table_bandwidth_title: "ピーク帯域幅消費",
   data_resource_table_total: "トータル",
   data_contract_account: "通話アカウント",
@@ -76,11 +76,12 @@ export const lang20Q1 = {
   // 2020-01-17
   data_token_transcation_number: "取引量",
   data_token_mark_7: "（前期の保有者数-今期の保有者数）/前期の保有者数* 100％",
-  data_token_mark_8: "（最終期間の取引アカウントの数-この期間の取引アカウントの数）/最終期間の取引アカウントの数* 100％",
-  data_token_mark_9: "（現在の用語の取引カウント-最後の用語の取引カウント）/最後の用語の取引カウント×100％",
-  data_token_mark_10: "（最終期の取引ボリューム-今期のTxnボリューム）/最終期の取引ボリューム* 100％",
+  data_token_mark_8:
+    "（最終期間の取引アカウントの数-この期間の取引アカウントの数）/最終期間の取引アカウントの数* 100％",
+  data_token_mark_9:
+    "（現在の用語の取引カウント-最後の用語の取引カウント）/最後の用語の取引カウント×100％",
+  data_token_mark_10:
+    "（最終期の取引ボリューム-今期のTxnボリューム）/最終期の取引ボリューム* 100％",
   data_contract_name: "コントラクトアドレス",
-  data_title_chart:"チャート"
-
-
+  data_title_chart: "チャート"
 };

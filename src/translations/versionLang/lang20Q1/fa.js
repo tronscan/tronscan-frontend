@@ -23,7 +23,6 @@
 */
 
 export const lang20Q1 = {
-
   data_title: "بهترین داده",
   data_overview: "بررسی اجمالی",
   data_account: "حساب",
@@ -50,7 +49,7 @@ export const lang20Q1 = {
   data_token_holder: "دارندگان",
   data_token_transcation_account: "حساب های Txn",
   data_token_transcation_accounts: "نشانه های برتر - حسابهای Txn.",
-  data_token_transcation_items: "交易笔数",
+  data_token_transcation_items: "تعداد معاملات",
   data_token_transcation_items_total: "نشانه های برتر - تعداد Txn.",
   data_token_transcation_numbers: "نشانه های برتر - مقدار Txn.",
   data_token_circle_per: "تغییر داده شده توسط",
@@ -60,26 +59,30 @@ export const lang20Q1 = {
   data_contract_times: "قراردادهای برتر - تعداد تماسها",
   data_real_time: "زمان واقعی",
 
-    data_resource_table_title: "حداکثر مصرف انرژی.",
-    data_resource_table_rank: "رتبه",
-    data_resource_table_account: "حساب",
-    data_resource_table_freezingTRX_energy: "TRX را فریز کنید وانرژی بدست آورید ",
-    data_resource_table_burningTRX_energy: "TRX را فریز کنید و پهنای باند بدست آورید ",
-    data_resource_table_energy_consumed: "کل انرژی مصرف شده.",
-    data_resource_table_percentage: "درصد",
-    data_resource_table_percentage_tips: "انرژی مصرف شده توسط کاربران فعلی / انرژی مصرف شده توسط کاربران در سراسر شبکه",
-    data_resource_table_bandwidth_title: "حداکثر مصرف پهنای باند.",
-    data_resource_table_total: "کل",
-    data_contract_account: "تعداد تماس با حساب",
-    data_contract_time: "تعداد تماس",
-    // 2020-01-17
+  data_resource_table_title: "حداکثر مصرف انرژی.",
+  data_resource_table_rank: "رتبه",
+  data_resource_table_account: "حساب",
+  data_resource_table_freezingTRX_energy: "TRX را فریز کنید وانرژی بدست آورید ",
+  data_resource_table_burningTRX_energy:
+    "TRX را فریز کنید و پهنای باند بدست آورید ",
+  data_resource_table_energy_consumed: "کل انرژی مصرف شده.",
+  data_resource_table_percentage: "درصد",
+  data_resource_table_percentage_tips:
+    "انرژی مصرف شده توسط کاربران فعلی / انرژی مصرف شده توسط کاربران در سراسر شبکه",
+  data_resource_table_bandwidth_title: "حداکثر مصرف پهنای باند.",
+  data_resource_table_total: "کل",
+  data_contract_account: "تعداد تماس با حساب",
+  data_contract_time: "تعداد تماس",
+  // 2020-01-17
   data_token_transcation_number: "交易总额",
-  data_token_mark_7: "(تعداد حسابهای برگزار شده در دوره فعلی-تعداد حسابهای نگهداری شده در دوره قبل) / تعداد حسابهای نگهدارنده در دوره قبلی 100٪",
-  data_token_mark_8: "(تعداد حسابهای معاملات فعلی-تعداد حسابهای معاملات قبلی) / تعداد حسابهای معاملات قبلی 100٪",
-  data_token_mark_9: "(تعداد معاملات در دوره فعلی-تعداد معاملات در دوره قبل) / آخرین نسبت معامله 100٪",
-  data_token_mark_10: "(کل حساب تراکنش در حساب معاملات دوره ای کل دوره گذشته) / کل حساب تراکنش در دوره قبلی 100٪",
+  data_token_mark_7:
+    "(تعداد حسابهای برگزار شده در دوره فعلی-تعداد حسابهای نگهداری شده در دوره قبل) / تعداد حسابهای نگهدارنده در دوره قبلی 100٪",
+  data_token_mark_8:
+    "(تعداد حسابهای معاملات فعلی-تعداد حسابهای معاملات قبلی) / تعداد حسابهای معاملات قبلی 100٪",
+  data_token_mark_9:
+    "(تعداد معاملات در دوره فعلی-تعداد معاملات در دوره قبل) / آخرین نسبت معامله 100٪",
+  data_token_mark_10:
+    "(کل حساب تراکنش در حساب معاملات دوره ای کل دوره گذشته) / کل حساب تراکنش در دوره قبلی 100٪",
   data_contract_name: "نام قرارداد",
-  data_title_chart:"نمودار آمار"
-
-
+  data_title_chart: "نمودار آمار"
 };

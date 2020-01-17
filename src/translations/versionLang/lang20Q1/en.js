@@ -22,8 +22,6 @@
     ##################################################################################
 */
 export const lang20Q1 = {
-   
-
   data_title: "Top Statistics",
   data_overview: "Overview",
   data_account: "Accounts",
@@ -46,18 +44,15 @@ export const lang20Q1 = {
   data_per: "Percentage",
   data_total: "Total",
   data_items: "Txn Count",
-  data_unit_bi: "笔",
   data_piao: "Votes",
-  data_token_top: "最佳通证",
   data_token_holders: "Top Tokens--Holders",
   data_token_holder: "Holders",
   data_token_transcation_account: "Txn Accounts",
   data_token_transcation_accounts: "Top Tokens--Txn Accounts",
-  data_token_transcation_items: "交易笔数",
+  data_token_transcation_items: "Txn Counts",
   data_token_transcation_items_total: "Top Tokens--Txn Counts",
   data_token_transcation_numbers: "Top Tokens--Txn Amount",
   data_token_circle_per: "Changed by",
-  data_contract_top: "最佳合约",
   data_contract_trx_number: "Top Contracts--TRX Balance",
   data_contract_accounts: "Top Contracts--Calling Accounts",
   data_contract_numbers: "Balance (TRX)",
@@ -70,19 +65,22 @@ export const lang20Q1 = {
   data_resource_table_burningTRX_energy: "Energy from Burning TRX",
   data_resource_table_energy_consumed: "Total Energy Consumed",
   data_resource_table_percentage: "Percentage",
-  data_resource_table_percentage_tips: "Energy consumed by the user/Energy consumed by all users",
+  data_resource_table_percentage_tips:
+    "Energy consumed by the user/Energy consumed by all users",
   data_resource_table_bandwidth_title: "Peak Bandwidth Consumption",
   data_resource_table_total: "Total",
   data_contract_account: "Calling Accounts",
   data_contract_time: "Number of Calls",
   // 2020-01-17
   data_token_transcation_number: "Txn Amount",
-  data_token_mark_7: "(Number of holders last period - numebr of holders this period)/number of holders last period*100%",
-  data_token_mark_8: "(Number of Txn accounts last period - numebr of Txn accounts this period)/number of Txn accounts last period*100%",
-  data_token_mark_9: "(Txn count this period - Txn count last period) / Txn count last period*100%",
-  data_token_mark_10: "(Txn volume last period - Txn volume this period)/Txn volume last period*100%",
+  data_token_mark_7:
+    "(Number of holders last period - numebr of holders this period)/number of holders last period*100%",
+  data_token_mark_8:
+    "(Number of Txn accounts last period - numebr of Txn accounts this period)/number of Txn accounts last period*100%",
+  data_token_mark_9:
+    "(Txn count this period - Txn count last period) / Txn count last period*100%",
+  data_token_mark_10:
+    "(Txn volume last period - Txn volume this period)/Txn volume last period*100%",
   data_contract_name: "Contract Name",
-  data_title_chart:"Charts"
-
-
+  data_title_chart: "Charts"
 };
