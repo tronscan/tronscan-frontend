@@ -2,13 +2,11 @@ import React, { Fragment } from "react";
 import { tu, t } from "../../../utils/i18n";
 import { TronLoader } from "../../common/loaders";
 import { NavLink, Route, Switch } from "react-router-dom";
-import { connect } from "react-redux";
 import {
   injectIntl,
-  FormattedDate,
-  FormattedNumber,
-  FormattedTime
+ 
 } from "react-intl";
+import BigNumber from "bignumber.js";
 import Clinet from "../../../services/dataApi";
 import Overview from "./Overview";
 import Accounts from "./Accounts";
@@ -29,9 +27,9 @@ class BestData extends React.Component {
         token: "7,8,9,10",
         contract: "11,12,13",
         resource: "14,15"
-      },
+      }
       // tabs: {
-        
+
       // },
     };
   }
@@ -41,13 +39,15 @@ class BestData extends React.Component {
   }
   componentDidUpdate(prevProps) {
     let { match } = this.props;
-    console.log('match.params.name',match.params.name)
-    console.log('prevProps.match.params.name',prevProps.match.params.name)
+    console.log("match.params.name", match.params.name);
+    console.log("prevProps.match.params.name", prevProps.match.params.name);
     if (match.params.name !== prevProps.match.params.name) {
       this.getData(match.params.name);
     }
   }
-  setTabs(data,time) {
+
+
+  setTabs(data, time) {
     this.setState(prevProps => ({
       tabs: {
         ...prevProps.tabs,
@@ -55,7 +55,7 @@ class BestData extends React.Component {
           id: "overview",
           path: "",
           label: <span>{tu("data_overview")}</span>,
-          cmp: () => <Overview topData={data} topTime={time}/>
+          cmp: () => <Overview topData={data} topTime={time} />
         },
         account: {
           id: "account",
@@ -84,13 +84,14 @@ class BestData extends React.Component {
       }
     }));
   }
+
   async getData(name) {
     const { types } = this.state;
     this.setState({
       loading: true
     });
     const { time } = this.state;
-    console.log('name',name)
+    console.log("name", name);
     const data = await Clinet.getTop10Data({
       type: types[name || "overview"],
       time: time
@@ -100,20 +101,23 @@ class BestData extends React.Component {
         loading: false
       });
     });
-    this.setTabs(data,time);
-    if(name ==='resource'&& data){
-        data.forEach((res)=>{
-          res.data.forEach((result,ind)=>{
-            result.rank = ind+1
-          })
-        })
+    if (name === "resource" && data) {
+      data.forEach(res => {
+        res.data.forEach((result, ind) => {
+          result.rank = ind + 1;
+        });
+      });
+      this.dataResourcesEnergyFun(data);
+      this.bandwithColumnsFooter(data);
     }
+    this.setTabs(data, time);
+
     this.setState({
       data,
-      loading:false
+      loading: false
     });
-    
   }
+
   changeTime(v) {
     let { match } = this.props;
     this.setState(
@@ -125,6 +129,71 @@ class BestData extends React.Component {
       }
     );
   }
+
+  sumArr(arr) {
+    return arr.reduce(function(prev, cur) {
+      return new BigNumber(prev).plus(new BigNumber(cur)).toString();
+    }, 0);
+  }
+
+  dataResourcesEnergyFun(topData) {
+    console.log(topData);
+    let energyData;
+    if (topData.length == 0) return;
+    if (topData.length > 0) {
+      energyData = topData[0].data || [];
+    }
+    let totalEnergyUseAry = [],
+      totalEnergyBurn = [],
+      totalWholeEnergyUse = [],
+      totalPercentage = [];
+    energyData.forEach(res => {
+      totalEnergyUseAry.push(res.energy_use);
+      totalEnergyBurn.push(res.energy_burn);
+      totalWholeEnergyUse.push(res.whole_energy_use);
+      totalPercentage.push(res.percentage);
+    });
+    topData[0].data.push({
+      rank: "111111",
+      address: "--",
+      energy_use: this.sumArr(totalEnergyUseAry) || 0,
+      energy_burn: this.sumArr(totalEnergyBurn) || 0,
+      whole_energy_use: this.sumArr(totalWholeEnergyUse) || 0,
+      percentage: this.sumArr(totalPercentage) || 0
+    });
+  }
+
+  bandwithColumnsFooter = (topData) => {
+    console.log(topData);
+    let bandWithData;
+    if (topData.length == 0) return;
+    if (topData.length > 0) {
+      bandWithData = topData[1].data || [];
+    }
+    let totalNetUseAry = [],
+      totalNetBurn = [],
+      totalWholeNetyUse = [],
+      totalPercentage = [];
+    bandWithData.forEach(res => {
+      totalNetUseAry.push(res.net_use);
+      totalNetBurn.push(res.net_burn);
+      totalWholeNetyUse.push(res.whole_net_use);
+      totalPercentage.push(res.percentage);
+    });
+    topData[1].data.push({
+      rank: "111111",
+      address: "--",
+      net_use: this.sumArr(totalNetUseAry) || 0,
+      net_burn: this.sumArr(totalNetBurn) || 0,
+      whole_net_use: this.sumArr(totalWholeNetyUse) || 0,
+      percentage: this.sumArr(totalPercentage) || 0
+    });
+
+
+
+    
+  };
+
   render() {
     const { tabs, loading, times, time } = this.state;
     const { match, intl } = this.props;
@@ -138,8 +207,10 @@ class BestData extends React.Component {
                   <ul className="nav nav-tabs card-header-tabs">
                     {tabs &&
                       Object.values(tabs).map(tab => (
-                        <li key={tab.id} className="nav-item"
-                            // onClick={() => this.getData(tab.id)}
+                        <li
+                          key={tab.id}
+                          className="nav-item"
+                          // onClick={() => this.getData(tab.id)}
                         >
                           <NavLink
                             exact
@@ -148,7 +219,6 @@ class BestData extends React.Component {
                           >
                             <i className={tab.icon + " mr-2"} />
                             {tab.label}
-                            
                           </NavLink>
                         </li>
                       ))}
@@ -170,7 +240,11 @@ class BestData extends React.Component {
                       </ul>
                       <div>2020/01/01</div>
                     </div>
-                    {loading && <div className="loading-style"><TronLoader/></div>}
+                    {loading && (
+                      <div className="loading-style">
+                        <TronLoader />
+                      </div>
+                    )}
                     <Switch>
                       {tabs &&
                         Object.values(tabs).map(tab => (
@@ -192,6 +266,4 @@ class BestData extends React.Component {
     );
   }
 }
-;
 export default injectIntl(BestData);
-

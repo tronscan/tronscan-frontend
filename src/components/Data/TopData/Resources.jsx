@@ -4,13 +4,12 @@ import { Table } from "antd";
 import {
   FormattedNumber,
   injectIntl,
-  FormattedDate,
-  FormattedTime
 } from "react-intl";
 import { QuestionMark } from "../../common/QuestionMark";
-import { upperFirst } from "lodash";
+import { upperFirst,cloneDeep } from "lodash";
 import { AddressLink } from "../../common/Links";
 import SmartTable from "../../common/SmartTable";
+
 
 class DataResources extends React.Component {
   constructor() {
@@ -25,9 +24,16 @@ class DataResources extends React.Component {
       }
     };
   }
-  componentDidMount() {}
+  componentDidMount() {
+  }
+
   customizedEnergyColumn = () => {
-    let { intl } = this.props;
+    const { topData,intl } = this.props;
+    let energyData
+    if (topData.length > 0) {
+      energyData = topData[0].data || [];
+    }
+    let length = energyData.length - 1;
     let column = [
       {
         title: upperFirst(
@@ -41,11 +47,16 @@ class DataResources extends React.Component {
         render: (text, record, index) => {
           return (
             <span className="rankWidth">
-              {index < 3 ? (
-                <span className={`rank-${index} rank`}></span>
+               {index == length ? (
+                intl.formatMessage({ id: "data_total" })
               ) : (
-                index + 1
-              )}
+                index < 3 ? (
+                  <span className={`rank-${index} rank`}></span>
+                ) : (
+                  index + 1
+                )
+              )
+             }
             </span>
           );
         }
@@ -153,7 +164,12 @@ class DataResources extends React.Component {
   };
 
   customizedBandWidthColumn = () => {
-    let { intl } = this.props;
+    const { topData,intl } = this.props;
+    let bandWidthData
+    if (topData.length > 0) {
+      bandWidthData = topData[1].data || [];
+    }
+    const length = bandWidthData.length - 1;
     let column = [
       {
         title: upperFirst(
@@ -164,14 +180,18 @@ class DataResources extends React.Component {
         dataIndex: "rank",
         key: "rank",
         render: (text, record, index) => {
-          console.log(index, "index");
           return (
             <span className="rankWidth">
-              {index < 3 ? (
-                <span className={`rank-${index} rank`}></span>
+               {index == length ? (
+                intl.formatMessage({ id: "data_total" })
               ) : (
-                index + 1
-              )}
+                index < 3 ? (
+                  <span className={`rank-${index} rank`}></span>
+                ) : (
+                  index + 1
+                )
+              )
+             }
             </span>
           );
         },
@@ -279,14 +299,23 @@ class DataResources extends React.Component {
     return column;
   };
 
+
+
+
+
+
+
   render() {
     let energyColumns = this.customizedEnergyColumn();
     let bandWidthColumns = this.customizedBandWidthColumn();
     const { resourcesList, loading, titleStyle } = this.state;
     const { topData } = this.props;
     console.log(topData);
-    let energyData = topData[0].data || [];
-    let bandWidthData = topData[1].data || [];
+    let energyData, bandWidthData;
+    if (topData.length > 0) {
+      energyData = topData[0].data || [];
+      bandWidthData = topData[1].data || [];
+    }
 
     return (
       <div className="resourceWrapper">
@@ -307,7 +336,6 @@ class DataResources extends React.Component {
               position="bottom"
               isPaddingTop={false}
               pagination={false}
-              Footer={() => {}}
             />
           )}
         </div>
