@@ -30,7 +30,7 @@ class DataResources extends React.Component {
 
   customizedEnergyColumn = () => {
     const { topData,intl } = this.props;
-    let energyData
+    let energyData = []
     if (topData.length > 0) {
       energyData = topData[0].data || [];
     }
@@ -98,7 +98,7 @@ class DataResources extends React.Component {
         render: (text, record, index) => {
           return (
             <span className="">
-              <FormattedNumber value={parseInt(text || 0)}></FormattedNumber>
+              <FormattedNumber value={parseInt(text || 0)}></FormattedNumber>ENERGY
             </span>
           );
         }
@@ -115,7 +115,7 @@ class DataResources extends React.Component {
         render: (text, record, index) => {
           return (
             <span className="">
-              <FormattedNumber value={parseInt(text || 0)}></FormattedNumber>
+              <FormattedNumber value={parseInt(text || 0)}></FormattedNumber> ENERGY
             </span>
           );
         }
@@ -132,7 +132,7 @@ class DataResources extends React.Component {
         render: (text, record, index) => {
           return (
             <span className="">
-              <FormattedNumber value={parseInt(text || 0)}></FormattedNumber>
+              <FormattedNumber value={parseInt(text || 0)}></FormattedNumber> ENERGY
             </span>
           );
         }
@@ -168,7 +168,7 @@ class DataResources extends React.Component {
 
   customizedBandWidthColumn = () => {
     const { topData,intl } = this.props;
-    let bandWidthData
+    let bandWidthData = []
     if (topData.length > 0) {
       bandWidthData = topData[1].data || [];
     }
@@ -236,7 +236,7 @@ class DataResources extends React.Component {
         render: (text, record, index) => {
           return (
             <span>
-              <FormattedNumber value={parseInt(text || 0)}></FormattedNumber>
+              <FormattedNumber value={parseInt(text || 0)}></FormattedNumber> ENERGY
             </span>
           );
         }
@@ -253,7 +253,7 @@ class DataResources extends React.Component {
         render: (text, record, index) => {
           return (
             <span>
-              <FormattedNumber value={parseInt(text || 0)}></FormattedNumber>
+              <FormattedNumber value={parseInt(text || 0)}></FormattedNumber> ENERGY
             </span>
           );
         }
@@ -270,7 +270,7 @@ class DataResources extends React.Component {
         render: (text, record, index) => {
           return (
             <span>
-              <FormattedNumber value={parseInt(text || 0)}></FormattedNumber>
+              <FormattedNumber value={parseInt(text || 0)}></FormattedNumber> ENERGY
             </span>
           );
         }
