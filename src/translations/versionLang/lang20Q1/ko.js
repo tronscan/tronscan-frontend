@@ -22,7 +22,6 @@
     ##################################################################################
 */
 export const lang20Q1 = {
-
   data_title: "최고 데이터",
   data_overview: "개요",
   data_account: "계정",
@@ -49,7 +48,7 @@ export const lang20Q1 = {
   data_token_holder: "보유 계정 수",
   data_token_transcation_account: "거래 계정 수",
   data_token_transcation_accounts: "최고 토큰-- 거래 계정 수",
-  data_token_transcation_items: "交易笔数",
+  data_token_transcation_items: "거래 총 횟수",
   data_token_transcation_items_total: "최고 토큰-- 거래 총 횟수",
   data_token_transcation_numbers: "최고 토큰-- 거래 총 액",
   data_token_circle_per: "매주",
@@ -65,19 +64,22 @@ export const lang20Q1 = {
   data_resource_table_burningTRX_energy: "TRX 소각에 소비된 대역폭",
   data_resource_table_energy_consumed: "소비된 에너지",
   data_resource_table_percentage: "백분율",
-  data_resource_table_percentage_tips: "현재 사용자 소비 에너지 / 전체 네트워크 사용자 소비 에너지",
+  data_resource_table_percentage_tips:
+    "현재 사용자 소비 에너지 / 전체 네트워크 사용자 소비 에너지",
   data_resource_table_bandwidth_title: "대역폭 최대 소비",
   data_resource_table_total: "총",
   data_contract_account: "호출 계정수",
   data_contract_time: "호출 횟수",
   // 2020-01-17
   data_token_transcation_number: "거래 총 액",
-  data_token_mark_7: "(이번기 보유 된 계정 수-지난기 보유 된 계정 수) / 지난기 보유 된 계정 수 × 100%",
-  data_token_mark_8: "(이번기 거래 계정 수-지난기 거래 계정 수) / 지난기 거래 계정 수 × 100%",
-  data_token_mark_9: "(이번기 거래 횟수-지난기 거래 횟수) / 지난기 거래 횟수 × 100%",
-  data_token_mark_10: "(이번기 거래 계정 총액-지난기 거래 계정 총액) / 지난기 거래 계정 총액 × 100%",
+  data_token_mark_7:
+    "(이번기 보유 된 계정 수-지난기 보유 된 계정 수) / 지난기 보유 된 계정 수 × 100%",
+  data_token_mark_8:
+    "(이번기 거래 계정 수-지난기 거래 계정 수) / 지난기 거래 계정 수 × 100%",
+  data_token_mark_9:
+    "(이번기 거래 횟수-지난기 거래 횟수) / 지난기 거래 횟수 × 100%",
+  data_token_mark_10:
+    "(이번기 거래 계정 총액-지난기 거래 계정 총액) / 지난기 거래 계정 총액 × 100%",
   data_contract_name: "계약 명칭",
-  data_title_chart:"차트"
-
-
+  data_title_chart: "차트"
 };

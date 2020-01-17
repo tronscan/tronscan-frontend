@@ -22,7 +22,6 @@
     ##################################################################################
 */
 export const lang20Q1 = {
-
   data_title: "El dato mejor",
   data_overview: "general",
   data_account: "La cuenta",
@@ -49,7 +48,7 @@ export const lang20Q1 = {
   data_token_holder: "Número de address",
   data_token_transcation_account: "Número de transacciones",
   data_token_transcation_accounts: "Top Tokens--Cuentas de Txn",
-  data_token_transcation_items: "交易笔数",
+  data_token_transcation_items: "Número de transacción total",
   data_token_transcation_items_total:
     "Top Tokens--Número de transferencia de Txn",
   data_token_transcation_numbers: "Top Tokens--saldo total de Txn",
@@ -59,7 +58,7 @@ export const lang20Q1 = {
   data_contract_numbers: "Balance (TRX)",
   data_contract_times: "El mejor contrato - número de asignar",
   data_real_time: "Tiempo real",
-  
+
   data_resource_table_title: "",
   data_resource_table_rank: "Rank",
   data_resource_table_account: "Cuentas",
@@ -74,12 +73,14 @@ export const lang20Q1 = {
   data_contract_time: "Número de asignación",
   // 2020-01-17
   data_token_transcation_number: "Cantidad de transacción",
-  data_token_mark_7: "(Número de holders del último período - número de holders de este período) / número de holders del último período * 100%",
-  data_token_mark_8: "(Número de cuentas de número de transacción total el último período - número de cuentas de número de transacción total este período) / número de cuentas de número de transacción el último período * 100%",
-  data_token_mark_9: "(Volumen Txn último período - Volumen de Número de transacción total de este período) / Volumen de Número de transacción total del  último período * 100%",
-  data_token_mark_10: "Energía consumida por el usuario / Energía consumida por todos los usuarios",
+  data_token_mark_7:
+    "(Número de holders del último período - número de holders de este período) / número de holders del último período * 100%",
+  data_token_mark_8:
+    "(Número de cuentas de número de transacción total el último período - número de cuentas de número de transacción total este período) / número de cuentas de número de transacción el último período * 100%",
+  data_token_mark_9:
+    "(Volumen Txn último período - Volumen de Número de transacción total de este período) / Volumen de Número de transacción total del  último período * 100%",
+  data_token_mark_10:
+    "Energía consumida por el usuario / Energía consumida por todos los usuarios",
   data_contract_name: "Nombre del contrato",
-  data_title_chart:"gráfico"
-
-
+  data_title_chart: "gráfico"
 };

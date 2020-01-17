@@ -101,6 +101,8 @@ class Tokens extends React.Component {
 
   render() {
     let { types } = this.state;
+    const livetImg = require("../../../images/data/live.svg");
+
     return (
       <div className="top-data">
         <Row gutter={{ xs: 8, sm: 20, md: 20 }} className="mt-2 data-token">
@@ -119,9 +121,7 @@ class Tokens extends React.Component {
                 <h2>
                   {tu(types[index].title)}
                   {types[index].isRealTime && (
-                    <span className="data-real-time">
-                      {tu("data_real_time")}
-                    </span>
+                    <img src={livetImg} className="data-real-time" />
                   )}
                 </h2>
                 {this.renderDataTable(

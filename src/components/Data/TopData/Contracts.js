@@ -95,6 +95,8 @@ class Contracts extends React.Component {
     let { types } = this.state;
     let lgSize = 12;
     let smSize = 24;
+    const livetImg = require("../../../images/data/live.svg");
+
     return (
       <div className="top-data">
         <Row gutter={{ xs: 8, sm: 20, md: 20 }} className="mt-2 data-contract">
@@ -113,9 +115,7 @@ class Contracts extends React.Component {
                 <h2>
                   {tu(types[index].title)}
                   {types[index].isRealTime && (
-                    <span className="data-real-time">
-                      {tu("data_real_time")}
-                    </span>
+                    <img src={livetImg} className="data-real-time" />
                   )}
                 </h2>
                 {this.renderDataTable(
@@ -151,7 +151,7 @@ class Contracts extends React.Component {
     const { intl, priceUSD } = this.props;
     const titles = title;
     let lastData = this.setTotal(data, type);
-    let arr = cloneDeep(data);
+    let arr = cloneDeep(data) || [];
     arr.push(lastData);
     let length = arr.length - 1;
 
