@@ -7,6 +7,7 @@ import {
   FormattedDate,
   FormattedTime
 } from "react-intl";
+import { QuestionMark } from "../../common/QuestionMark";
 import { upperFirst } from "lodash";
 import { AddressLink } from "../../common/Links";
 import SmartTable from "../../common/SmartTable";
@@ -15,7 +16,6 @@ class DataResources extends React.Component {
   constructor() {
     super();
     this.state = {
-      data: [],
       loading: false,
       resourcesList: [{ id: 1 }],
       titleStyle: {
@@ -41,7 +41,7 @@ class DataResources extends React.Component {
         render: (text, record, index) => {
           return (
             <span className="rankWidth">
-               {index < 3 ? (
+              {index < 3 ? (
                 <span className={`rank-${index} rank`}></span>
               ) : (
                 index + 1
@@ -59,10 +59,10 @@ class DataResources extends React.Component {
         dataIndex: "address",
         key: "address",
         align: "center",
-        width: "12%",
+        width: "150px",
         render: (text, record, index) => {
           return text ? (
-            <span className="addressWidth">
+            <span>
               <span className="">
                 <AddressLink address={text}>{text}</AddressLink>
               </span>
@@ -124,11 +124,21 @@ class DataResources extends React.Component {
         }
       },
       {
-        title: upperFirst(
-          intl.formatMessage({
-            id: "data_resource_table_percentage"
-          })
-        ),
+        title: () => {
+          return (
+            <div>
+              <span className="mr-2">
+                {upperFirst(
+                  intl.formatMessage({ id: "data_resource_table_percentage" })
+                )}
+              </span>
+              <QuestionMark
+                placement="top"
+                text="data_resource_table_percentage_tips"
+              />
+            </div>
+          );
+        },
         dataIndex: "percentage",
         key: "percentage",
         align: "center",
@@ -175,11 +185,11 @@ class DataResources extends React.Component {
         ),
         dataIndex: "address",
         key: "address",
-        width: "12%",
+        width: "150px",
         align: "center",
         render: (text, record, index) => {
           return text ? (
-            <span className="addressWidth">
+            <span>
               <span>
                 <AddressLink address={text}>{text}</AddressLink>
               </span>
@@ -241,11 +251,21 @@ class DataResources extends React.Component {
         }
       },
       {
-        title: upperFirst(
-          intl.formatMessage({
-            id: "data_resource_table_percentage"
-          })
-        ),
+        title: () => {
+          return (
+            <div>
+              <span className="mr-2">
+                {upperFirst(
+                  intl.formatMessage({ id: "data_resource_table_percentage" })
+                )}
+              </span>
+              <QuestionMark
+                placement="top"
+                text="data_resource_table_percentage_tips"
+              />
+            </div>
+          );
+        },
         dataIndex: "percentage",
         key: "percentage",
         align: "center",
@@ -262,7 +282,7 @@ class DataResources extends React.Component {
   render() {
     let energyColumns = this.customizedEnergyColumn();
     let bandWidthColumns = this.customizedBandWidthColumn();
-    const { data, resourcesList, loading, titleStyle } = this.state;
+    const { resourcesList, loading, titleStyle } = this.state;
     const { topData } = this.props;
     console.log(topData);
     let energyData = topData[0].data || [];
@@ -286,6 +306,8 @@ class DataResources extends React.Component {
               data={energyData}
               position="bottom"
               isPaddingTop={false}
+              pagination={false}
+              Footer={() => {}}
             />
           )}
         </div>
@@ -305,6 +327,7 @@ class DataResources extends React.Component {
               data={bandWidthData}
               position="bottom"
               isPaddingTop={false}
+              pagination={false}
             />
           )}
         </div>
