@@ -76,5 +76,7 @@ export const lang20Q1 = {
   data_resource_table_percentage: "占比",
   data_resource_table_percentage_tips: "当前用户消耗能量/全网用户消耗能量",
   data_resource_table_bandwidth_title: "最高带宽消耗",
-  data_resource_table_total: "总计"
+  data_resource_table_total: "总计",
+  data_token_transcation_number: "交易总额",
+
 };

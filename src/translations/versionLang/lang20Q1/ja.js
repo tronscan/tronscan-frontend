@@ -77,5 +77,6 @@ export const lang20Q1 = {
   data_resource_table_total: "トータル",
   data_contract_account: "通話アカウント",
   data_contract_time: "通話ナンバー",
+  data_token_transcation_number: "交易总额",
 
 };

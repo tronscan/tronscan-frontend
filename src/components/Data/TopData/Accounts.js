@@ -9,6 +9,7 @@ import { loadUsdPrice } from "../../../actions/blockchain";
 import { FormattedNumber } from "react-intl";
 import SmartTable from "../../common/SmartTable";
 import { cloneDeep } from "lodash";
+import { Link } from "react-router-dom";
 
 @injectIntl
 @connect(
@@ -109,6 +110,7 @@ class Accounts extends React.Component {
               lg={12}
               xl={12}
               xxl={12}
+              key={`account-${index}`}
             >
               <div className="data-items">
                 <h2>
@@ -180,9 +182,11 @@ class Accounts extends React.Component {
         render: (text, record, index) => {
           return text ? (
             <span className="addressWidth">
-              <span className="">
+              {record.addressTag ? (
+                <Link to={`/address/${text}`}>{record.addressTag}</Link>
+              ) : (
                 <AddressLink address={text}>{text}</AddressLink>
-              </span>
+              )}
             </span>
           ) : (
             "--"

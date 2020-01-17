@@ -77,6 +77,7 @@ export const lang20Q1 = {
     data_contract_account: "دعوات عدد حسابات ",
     data_contract_time: "عدد الدعوات",
 
+    data_token_transcation_number: "交易总额",
 
 };
 

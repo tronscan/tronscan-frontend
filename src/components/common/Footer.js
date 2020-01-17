@@ -295,10 +295,10 @@ class Footer extends Component {
                         </HrefLink>
                       </li>
                       <li className="p-2">
-                      <HrefLink href="https://www.tronlink.org">
-                        {" "}
-                        {tu("wallet")}
-                      </HrefLink>
+                        <HrefLink href="https://www.tronlink.org">
+                          {" "}
+                          {tu("wallet")}
+                        </HrefLink>
                       </li>
                       <li className="p-2">
                         <HrefLink href="https://poloniex.org">
@@ -373,7 +373,7 @@ class Footer extends Component {
                       <img src={require("../../images/footer/TRON.png")} />
                       <p className="pt-2">{tu("index_page_tronscan_info")}</p>
                       <ul className="d-flex fr pt-4 mt-4">
-                        {links.map((item,ind) => {
+                        {links.map((item, ind) => {
                           if (item.name != "WeChat") {
                             return (
                               <li key={ind}>
@@ -460,10 +460,13 @@ class Footer extends Component {
     const menu = (
       <Menu>
         {currencyConversions.map(currency => (
-          <Menu.Item>
-            <a key={currency.id} href="javascript:" onClick={() => this.setCurrency(currency.id)}>
+          <Menu.Item key={currency.id}>
+            <div
+              key={currency.id}
+              onClick={() => this.setCurrency(currency.id)}
+            >
               {currency.name}
-            </a>
+            </div>
           </Menu.Item>
         ))}
       </Menu>
@@ -471,9 +474,9 @@ class Footer extends Component {
 
     return (
       <Dropdown overlay={menu} placement="topCenter">
-        <a className="ant-dropdown-link" href="javascript:">
+        <div className="ant-dropdown-link">
           {activeCurrency.toUpperCase()} <Icon type="down" />
-        </a>
+        </div>
       </Dropdown>
     );
   }

@@ -102,6 +102,7 @@ class Contracts extends React.Component {
               lg={12}
               xl={12}
               xxl={12}
+              key={`contract-${index}`}
             >
               <div className="data-items">
                 <h2>

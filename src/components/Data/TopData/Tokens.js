@@ -66,7 +66,7 @@ class Tokens extends React.Component {
           tableTitle: [
             "data_range",
             "data_token",
-            "data_token_transcation_numbers",
+            "data_token_transcation_number",
             "data_token_circle_per"
           ],
           key: "amount",
@@ -117,6 +117,7 @@ class Tokens extends React.Component {
               lg={12}
               xl={12}
               xxl={12}
+              key={`tokens-${index}`}
             >
               <div className="data-items">
                 <h2>
