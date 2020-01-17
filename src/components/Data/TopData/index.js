@@ -6,6 +6,7 @@ import {
   injectIntl,
  
 } from "react-intl";
+import moment from 'moment';
 import BigNumber from "bignumber.js";
 import Clinet from "../../../services/dataApi";
 import Overview from "./Overview";
@@ -27,7 +28,9 @@ class BestData extends React.Component {
         token: "7,8,9,10",
         contract: "11,12,13",
         resource: "14,15"
-      }
+      },
+      currentTime:`${moment().subtract(1,'hours').format("HH:mm:ss")}~${moment().format("YYYY-MM-DD HH:mm:ss")}`
+
       // tabs: {
 
       // },
@@ -120,9 +123,18 @@ class BestData extends React.Component {
 
   changeTime(v) {
     let { match } = this.props;
+    let currentTime;
+    if(v===1){
+        currentTime=`${moment().subtract(1,'hours').format("HH:mm:ss")}~${moment().format("YYYY-MM-DD HH:mm:ss")}`
+    }else if(v === 2){
+      currentTime=`${moment().subtract(1,'day').format("YYYY-MM-DD HH:mm:ss")}~${moment().format("YYYY-MM-DD HH:mm:ss")}`
+    }else if(v === 3){
+      currentTime=`${moment().subtract(7,'days').format("YYYY-MM-DD HH:mm:ss")}~${moment().format("YYYY-MM-DD HH:mm:ss")}`
+    }
     this.setState(
       {
-        time: v
+        time: v,
+        currentTime
       },
       () => {
         this.getData(match.params.name);
@@ -189,7 +201,7 @@ class BestData extends React.Component {
   };
 
   render() {
-    const { tabs, loading, times, time } = this.state;
+    const { tabs, loading, times, time,currentTime } = this.state;
     const { match, intl } = this.props;
     return (
       <main className="container header-overlap token_black">
@@ -232,7 +244,7 @@ class BestData extends React.Component {
                           </li>
                         ))}
                       </ul>
-                      <div>2020/01/01</div>
+                      <div>{currentTime}</div>
                     </div>
                     {loading && (
                       <div className="loading-style">
