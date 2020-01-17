@@ -196,7 +196,7 @@ class Contracts extends React.Component {
         title: () => {
           let title2 = intl.formatMessage({ id: titles[2] });
           return (
-            <span className={index != 11 && "data-contract-title2"}>
+            <span className={index != 11 ? "data-contract-title2":''}>
               {title2}
             </span>
           );
@@ -212,7 +212,7 @@ class Contracts extends React.Component {
         title: () => {
           let title3 = intl.formatMessage({ id: titles[3] });
           return (
-            <span className={index != 11 && "data-contract-title2"}>
+            <span className={index != 11 ? "data-contract-title2":''}>
               {title3}
             </span>
           );

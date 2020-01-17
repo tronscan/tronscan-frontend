@@ -25,7 +25,7 @@ export const lang20Q1 = {
   data_title: "Top Statistics",
   data_overview: "Overview",
   data_account: "Accounts",
-  data_token: "La cuenta",
+  data_token: "Tokens",
   data_contract: "Contracts",
   data_recourse: "Resources",
   data_time1: "1 Hour",
@@ -82,5 +82,27 @@ export const lang20Q1 = {
   data_token_mark_10:
     "(Txn volume last period - Txn volume this period)/Txn volume last period*100%",
   data_contract_name: "Contract Name",
-  data_title_chart: "Charts"
+  data_title_chart:"Charts",
+  // 2020-01-17 overview
+  data_TRX_transfer_total:"TRX Transfer Amount",
+  data_TRX_transfer_count:"TRX Transfer Count",
+  data_TRX_frozen_total:"Total TRX Frozen",
+  data_votes_total:"Total Votes",
+  data_TRON_tokens_total:"Toal TRON Tokens",
+  data_TRC10_tokens_total:"TRC10 Tokens",
+  data_TRC20_tokens_total:"TRC20 Tokens",
+  data_TRONSCAN_tokens_entered:"Tokens Entered on TRONSCAN",
+  data_TRONSCAN_TRC10_entries:"TRC10 Entries",
+  data_TRONSCAN_TRC20_entries:"TRC20 Entries",
+  data_TRX_balance:"TRX Balance",
+  data_calling_accounts:"Calling Accounts",
+  data_calling_number:"Number of Calls",
+  data_energy_consumed_total:"Total Energy Consumed",
+  data_energy_freezed:"Energy from Freezing TRX",
+  data_energy_burned:"Energy from Burning TRX",
+  data_bandwidth_consumed_total:"Total Bandwidth Consumed",
+  data_bandwidth_freezed:"Bandwidth from Freezing TRX",
+  data_bandwidth_burned:"Bandwidth from Burning TRX",
+
+
 };

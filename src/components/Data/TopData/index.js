@@ -4,7 +4,8 @@ import { TronLoader } from "../../common/loaders";
 import { NavLink, Route, Switch } from "react-router-dom";
 import {
   injectIntl,
- 
+  FormattedDate,
+  FormattedTime,
 } from "react-intl";
 import moment from 'moment';
 import BigNumber from "bignumber.js";
@@ -29,11 +30,39 @@ class BestData extends React.Component {
         contract: "11,12,13",
         resource: "14,15"
       },
-      currentTime:`${moment().subtract(1,'hours').format("YYYY-MM-DD HH:mm:ss")}~${moment().format("HH:mm:ss")}`
-
-      // tabs: {
-
-      // },
+    //  currentTime:`${moment().subtract(1,'hours').format("YYYY-MM-DD HH:mm:ss")}~${moment().format("HH:mm:ss")}`,
+      tabs: {
+        overview: {
+          id: "overview",
+          path: "",
+          label: <span>{tu("data_overview")}</span>,
+          cmp: () => <Overview/>
+        },
+        account: {
+          id: "account",
+          path: "/account",
+          label: <span>{tu("data_account")}</span>,
+          cmp: () => <Accounts />
+        },
+        token: {
+          id: "token",
+          path: "/token",
+          label: <span>{tu("data_token")}</span>,
+          cmp: () => <Tokens/>
+        },
+        contract: {
+          id: "contract",
+          path: "/contract",
+          label: <span>{tu("data_contract")}</span>,
+          cmp: () => <Contracts />
+        },
+        resource: {
+          id: "resource",
+          path: "/resource",
+          label: <span>{tu("data_recourse")}</span>,
+          cmp: () => <DataResources />
+        }
+      },
     };
   }
   componentDidMount() {
@@ -89,6 +118,7 @@ class BestData extends React.Component {
   }
 
   async getData(name) {
+    let start_time,end_time;
     const { types } = this.state;
     this.setState({
       loading: true
@@ -101,7 +131,9 @@ class BestData extends React.Component {
     }).catch(e => {
       this.setState({
         data: null,
-        loading: false
+        loading: false,
+        start_time:'',
+        end_time:'',
       });
     });
     if (name === "resource" && data) {
@@ -113,28 +145,36 @@ class BestData extends React.Component {
       this.dataResourcesEnergyFun(data);
       this.bandwithColumnsFooter(data);
     }
-    this.setTabs(data, time);
-
+    console.log('data123',data)
+    if(name){
+      start_time = data[0].start_time;
+      end_time = data[0].end_time;
+    }else{
+      start_time = data.start_time;
+      end_time = data.end_time;
+    }
     this.setState({
       data,
-      loading: false
+      loading:false,
+      start_time,
+      end_time,
     });
   }
 
   changeTime(v) {
     let { match } = this.props;
-    let currentTime;
-    if(v===1){
-        currentTime=`${moment().subtract(1,'hours').format("YYYY-MM-DD HH:mm:ss")}~${moment().format("HH:mm:ss")}`
-    }else if(v === 2){
-      currentTime=`${moment().subtract(1,'day').format("YYYY-MM-DD HH:mm:ss")}~${moment().format("YYYY-MM-DD HH:mm:ss")}`
-    }else if(v === 3){
-      currentTime=`${moment().subtract(7,'days').format("YYYY-MM-DD HH:mm:ss")}~${moment().format("YYYY-MM-DD HH:mm:ss")}`
-    }
+    // let currentTime;
+    // if(v===1){
+    //     currentTime=`${moment().subtract(1,'hours').format("YYYY-MM-DD HH:mm:ss")}~${moment().format("HH:mm:ss")}`
+    // }else if(v === 2){
+    //   currentTime=`${moment().subtract(1,'day').format("YYYY-MM-DD HH:mm:ss")}~${moment().format("YYYY-MM-DD HH:mm:ss")}`
+    // }else if(v === 3){
+    //   currentTime=`${moment().subtract(7,'days').format("YYYY-MM-DD HH:mm:ss")}~${moment().format("YYYY-MM-DD HH:mm:ss")}`
+    // }
     this.setState(
       {
         time: v,
-        currentTime
+      //  currentTime
       },
       () => {
         this.getData(match.params.name);
@@ -201,7 +241,7 @@ class BestData extends React.Component {
   };
 
   render() {
-    const { tabs, loading, times, time,currentTime } = this.state;
+    const { tabs, loading, times, time, start_time, end_time } = this.state;
     const { match, intl } = this.props;
     return (
       <main className="container header-overlap token_black">
@@ -244,7 +284,30 @@ class BestData extends React.Component {
                           </li>
                         ))}
                       </ul>
-                      <div>{currentTime}</div>
+                      {
+                        (start_time && end_time) && <div>
+                        <span>
+                          <FormattedDate value={start_time}/>&nbsp;
+                          <FormattedTime value={start_time}
+                                          hour='numeric'
+                                          minute="numeric"
+                                          second='numeric'
+                                          hour12={false}
+                          />
+                        </span>
+                        -
+                        <span>
+                          <FormattedDate value={end_time}/>&nbsp;
+                          <FormattedTime value={end_time}
+                                          hour='numeric'
+                                          minute="numeric"
+                                          second='numeric'
+                                          hour12={false}
+                          />
+                        </span>
+                      </div>
+                      }
+                      
                     </div>
                     {loading && (
                       <div className="loading-style">

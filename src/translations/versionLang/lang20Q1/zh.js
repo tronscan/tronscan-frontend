@@ -85,5 +85,26 @@ export const lang20Q1 = {
   data_token_mark_9: "（本期交易笔数-上期交易笔数）/上期交易比数×100%",
   data_token_mark_10: "（本期交易账总额-上期交易账总额）/上期交易账总额×100%",
   data_contract_name: "合约名称",
-  data_title_chart:"图表统计"
+  data_title_chart:"图表统计",
+  // 2020-01-17 overview
+  data_TRX_transfer_total:"TRX转账总额",
+  data_TRX_transfer_count:"TRX转账总次数",
+  data_TRX_frozen_total:"冻结TRX数量",
+  data_votes_total:"投票总数",
+  data_TRON_tokens_total:"TRON通证总数",
+  data_TRC10_tokens_total:"10通证总数",
+  data_TRC20_tokens_total:"20通证总数",
+  data_TRONSCAN_tokens_entered:"TRONSCAN录入总数",
+  data_TRONSCAN_TRC10_entries:"10通证录入数",
+  data_TRONSCAN_TRC20_entries:"20通证录入数",
+  data_TRX_balance:"TRX总余额",
+  data_calling_accounts:"调用账户数",
+  data_calling_number:"调用次数",
+  data_energy_consumed_total:"消耗总能量",
+  data_energy_freezed:"消耗冻结TRX的能量",
+  data_energy_burned:"消耗燃烧TRX的能量",
+  data_bandwidth_consumed_total:"消耗总带宽",
+  data_bandwidth_freezed:"消耗冻结TRX的带宽",
+  data_bandwidth_burned:"消耗燃烧TRX的带宽",
+
 };
