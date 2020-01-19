@@ -346,6 +346,15 @@
     .ant-table .ant-table-tbody > tr > td {
       padding: 13px;
     }
+    .ant-table-body{
+      .resourceAddress{
+        a{
+          font-family: PingFangSC-Regular;
+          font-size: 13px;
+          color: #C23631;
+        }
+      }
+    }
     .ant-table-row.ant-table-row-level-0 {
       &:last-child {
         td {

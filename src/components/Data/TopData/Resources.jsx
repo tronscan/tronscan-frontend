@@ -81,7 +81,7 @@ class DataResources extends React.Component {
         width: "150px",
         render: (text, record, index) => {
           return text ? (
-            <span>
+            <span className="resourceAddress">
                {record.addressTag ? (
                 <Link to={`/address/${text}`}>{record.addressTag}</Link>
               ) : (
@@ -226,7 +226,7 @@ class DataResources extends React.Component {
         align: "center",
         render: (text, record, index) => {
           return text ? (
-            <span>
+            <span className="resourceAddress">
                {record.addressTag ? (
                 <Link to={`/address/${text}`}>{record.addressTag}</Link>
               ) : (
