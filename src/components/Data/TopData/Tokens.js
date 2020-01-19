@@ -24,6 +24,8 @@ import { QuestionMark } from "../../common/QuestionMark";
 class Tokens extends React.Component {
   constructor() {
     super();
+    const txnUnit = "Txns";
+    const trxUnit = "TRX";
     this.state = {
       trxUnit: "TRX",
       usdUnit: "USD",
@@ -60,7 +62,8 @@ class Tokens extends React.Component {
             "data_token_circle_per"
           ],
           key: "transaction_number",
-          data: []
+          data: [],
+          unit: txnUnit
         },
         10: {
           title: "data_token_transcation_numbers",
@@ -72,7 +75,8 @@ class Tokens extends React.Component {
           ],
           key: "amount",
           data: [],
-          isUSD: true
+          isUSD: true,
+          unit: trxUnit
         }
       }
     };
@@ -129,7 +133,8 @@ class Tokens extends React.Component {
                   types[index].tableTitle,
                   types[index].isUSD,
                   types[index].key,
-                  index
+                  index,
+                  types[index].unit
                 )}
               </div>
             </Col>
@@ -139,7 +144,7 @@ class Tokens extends React.Component {
     );
   }
 
-  renderDataTable(data, title, isUsd, type, index) {
+  renderDataTable(data, title, isUsd, type, index, unit) {
     const defaultImg = require("../../../images/logo_default.png");
 
     const { trxUnit, usdUnit } = this.state;
@@ -205,7 +210,7 @@ class Tokens extends React.Component {
                       record.tokenPrice * record.priceInTrx * record.amount
                     }
                   ></FormattedNumber>{" "}
-                  {trxUnit}
+                  {unit}
                   <br />
                   <span className="usd-amount">
                     ≈
@@ -216,7 +221,10 @@ class Tokens extends React.Component {
                   </span>
                 </span>
               ) : (
-                <FormattedNumber value={record[type] || 0}></FormattedNumber>
+                <span>
+                  <FormattedNumber value={record[type] || 0}></FormattedNumber>{" "}
+                  {unit}
+                </span>
               )}
             </span>
           );

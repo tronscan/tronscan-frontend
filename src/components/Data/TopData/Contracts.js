@@ -25,6 +25,8 @@ class Contracts extends React.Component {
     this.state = {
       trxUnit: "TRX",
       usdUnit: "USD",
+      tpUnit:'TP',
+      txnUnit:'Txns',
       types: {
         11: {
           title: "data_contract_trx_number",

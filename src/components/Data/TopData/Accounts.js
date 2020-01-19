@@ -23,9 +23,13 @@ import { Link } from "react-router-dom";
 class Accounts extends React.Component {
   constructor() {
     super();
+    const tpUnit = "TP";
+    const txnUnit = "Txns";
     this.state = {
       trxUnit: "TRX",
       usdUnit: "USD",
+      tpUnit: "TP",
+      txnUnit: "Txns",
       types: {
         1: {
           title: "data_account_send_Trx",
@@ -38,6 +42,7 @@ class Accounts extends React.Component {
           title: "data_account_send_Trx_items",
           tableTitle: ["data_range", "data_account", "data_items", "data_per"],
           isUSD: false,
+          unit: txnUnit,
           key: "transaction_number",
           data: []
         },
@@ -52,6 +57,7 @@ class Accounts extends React.Component {
           title: "data_account_receive_Trx_items",
           tableTitle: ["data_range", "data_account", "data_items", "data_per"],
           isUSD: false,
+          unit: txnUnit,
           key: "transaction_number",
           data: []
         },
@@ -67,6 +73,7 @@ class Accounts extends React.Component {
           title: "data_account_vote",
           tableTitle: ["data_range", "data_account", "data_piao", "data_per"],
           isUSD: false,
+          unit: tpUnit,
           key: "votes",
           data: [],
           isRealTime: true
@@ -107,8 +114,8 @@ class Accounts extends React.Component {
             <Col
               className="gutter-row"
               xs={24}
-              sm={12}
-              md={12}
+              sm={24}
+              md={24}
               lg={12}
               xl={12}
               xxl={12}
@@ -126,7 +133,8 @@ class Accounts extends React.Component {
                   types[index].tableTitle,
                   types[index].isUSD,
                   types[index].key,
-                  index
+                  index,
+                  types[index].unit
                 )}
               </div>
             </Col>
@@ -149,7 +157,7 @@ class Accounts extends React.Component {
     return { [type]: totalNumber, percentage: totalPercent, address: "" };
   }
 
-  renderDataTable(data, title, isUsd, type, typeIndex) {
+  renderDataTable(data, title, isUsd, type, typeIndex, unit) {
     const { trxUnit, usdUnit } = this.state;
     const { intl, priceUSD } = this.props;
     const titles = title;
@@ -205,6 +213,7 @@ class Accounts extends React.Component {
             <span className="">
               <FormattedNumber value={record[type] || 0}></FormattedNumber>{" "}
               {isUsd && trxUnit}
+              {unit}
               <br />
               {isUsd && (
                 <span className="usd-amount">
@@ -219,7 +228,10 @@ class Accounts extends React.Component {
           );
         },
         align: "left",
-        // width: typeIndex % 2 == 1 && "45%"
+        width:
+          typeIndex == 6
+            ? "150px"
+            : (typeIndex == 2 || typeIndex == 4) && "100px"
       },
       {
         title: intl.formatMessage({ id: titles[3] }),

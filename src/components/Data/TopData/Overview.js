@@ -123,7 +123,7 @@ class Overview extends React.Component{
                   <div className="content-item-USD-left">{tu('data_TRX_transfer_total')}</div>
                   <div className="content-item-USD-right num-font-bold">
                     <span className="d-block">
-                      {toThousands(data.trx_transfer_amount)}{" "}TRX
+                    <FormattedNumber value={data.trx_transfer_amount || 0}></FormattedNumber>{" "}TRX
                     </span>
                     <span className="d-block usd-amount float-right">
                     ≈
@@ -136,15 +136,15 @@ class Overview extends React.Component{
                 </div>
                 <div className="content-item px-3 d-flex justify-content-between border-bottom">
                   <div>{tu('data_TRX_transfer_count')}</div>
-                  <div>{toThousands(data.trx_transaction_number)}{" "}Txns</div>
+                  <div> <FormattedNumber value={data.trx_transaction_number || 0}></FormattedNumber>{" "}Txns</div>
                 </div>
                 <div className="content-item px-3 d-flex justify-content-between border-bottom">
                   <div>{tu('data_TRX_frozen_total')}</div>
-                  <div> {toThousands(data.whole_freeze)}{" "}TRX</div>
+                  <div> <FormattedNumber value={data.whole_freeze || 0}></FormattedNumber>{" "}TRX</div>
                 </div>
                 <div className="content-item px-3 d-flex justify-content-between">
                   <div>{tu('data_votes_total')}</div>
-                  <div> {toThousands(data.whole_vote)}{" "}TP</div>
+                  <div> <FormattedNumber value={data.whole_vote || 0}></FormattedNumber>{" "}TP</div>
                 </div>
               </div>
             </div>
@@ -159,15 +159,17 @@ class Overview extends React.Component{
                 <div className="content-detail px-3 border-bottom">
                   <div className="detail-item d-flex justify-content-between">
                     <div>{tu('data_TRON_tokens_total')}</div>
-                    <div className="font14"> {toThousands(data.token_all)}</div>
+                    <div className="font14"> <FormattedNumber value={data.token_all || 0}></FormattedNumber></div>
                   </div>
                   <div className="detail-item d-flex justify-content-between">
                     <div>{tu('data_TRC10_tokens_total')}</div>
-                    <div> {toThousands(data.trc10_all)}</div>
+                    <div><FormattedNumber value={data.trc10_all || 0}></FormattedNumber></div>
+
                   </div>
                   <div className="detail-item d-flex justify-content-between">
                     <div>{tu('data_TRC20_tokens_total')}</div>
-                    <div> {toThousands(data.trc20_all)}</div>
+                    <div><FormattedNumber value={data.trc20_all || 0}></FormattedNumber></div>
+
                   </div>
                 </div>
               </div>
@@ -175,15 +177,15 @@ class Overview extends React.Component{
                 <div className="content-detail px-3">
                   <div className="detail-item d-flex justify-content-between">
                     <div>{tu('data_TRONSCAN_tokens_entered')}</div>
-                    <div className="font14"> {toThousands(data.token_record)}</div>
+                    <div className="font14"><FormattedNumber value={data.token_record || 0}></FormattedNumber></div>
                   </div>
                   <div className="detail-item d-flex justify-content-between">
                     <div>{tu('data_TRONSCAN_TRC10_entries')}</div>
-                    <div> {toThousands(data.trc10_record)}</div>
+                    <div><FormattedNumber value={data.trc10_record || 0}></FormattedNumber></div>
                   </div>
                   <div className="detail-item d-flex justify-content-between">
                     <div>{tu('data_TRONSCAN_TRC20_entries')}</div>
-                    <div> {toThousands(data.trc20_record)}</div>
+                    <div><FormattedNumber value={data.trc20_record || 0}></FormattedNumber></div>
                   </div>
                 </div>
               </div>
@@ -203,7 +205,9 @@ class Overview extends React.Component{
                   <div className="content-item-USD-left">{tu('data_TRX_balance')}</div>
                   <div className="content-item-USD-right num-font-bold">
                     <span className="d-block">
-                      {toThousands(data.contract_whole_balance)}{" "}TRX
+                    <FormattedNumber
+                      value={data.contract_whole_balance || 0}
+                    ></FormattedNumber>{" "}TRX
                     </span>
                     <span className="d-block usd-amount float-right">
                     ≈
@@ -216,16 +220,12 @@ class Overview extends React.Component{
                 </div>
                 <div className="content-item px-3 d-flex justify-content-between border-bottom">
                   <div>{tu('data_calling_accounts')}</div>
-                  <div>{toThousands(data.contract_active_address)}</div>
+                  <div><FormattedNumber value={data.contract_active_address || 0}></FormattedNumber></div>
                 </div>
                 <div className="content-item px-3 d-flex justify-content-between border-bottom">
                   <div>{tu('data_calling_number')}</div>
-                  <div>{toThousands(data.contract_triggers)}</div>
+                  <div><FormattedNumber value={data.contract_triggers || 0}></FormattedNumber></div>
                 </div>
-                {/* <div className="content-item px-3 d-flex justify-content-between">
-                  <div>投票总数</div>
-                  <div> {toThousands(data.whole_vote)}{" "}TP</div>
-                </div> */}
               </div>
             </div>
             <div className="item">
@@ -239,15 +239,21 @@ class Overview extends React.Component{
                 <div className="content-detail px-3 border-bottom">
                   <div className="detail-item d-flex justify-content-between">
                     <div>{tu('data_energy_consumed_total')}</div>
-                    <div className="font14 item-white-space"> {toThousands(data.energy_usage)}{" "}ENERGY</div>
+                    <div className="font14 item-white-space">
+                       <FormattedNumber value={data.energy_usage || 0}></FormattedNumber>{" "}ENERGY
+                    </div>
                   </div>
                   <div className="detail-item d-flex justify-content-between">
                     <div>{tu('data_energy_freezed')}</div>
-                    <div className="item-white-space">{toThousands(data.whole_energy_use)}{" "}ENERGY</div>
+                    <div className="item-white-space">
+                      <FormattedNumber value={data.whole_energy_use || 0}></FormattedNumber>{" "}ENERGY
+                    </div>
                   </div>
                   <div className="detail-item d-flex justify-content-between">
                     <div>{tu('data_energy_burned')}</div>
-                    <div className="item-white-space">{toThousands(data.whole_energy_burn)}{" "}ENERGY</div>
+                    <div className="item-white-space">
+                      <FormattedNumber value={data.whole_energy_burn || 0}></FormattedNumber>{" "}ENERGY
+                    </div>
                   </div>
                 </div>
               </div>
@@ -255,15 +261,21 @@ class Overview extends React.Component{
                 <div className="content-detail px-3">
                   <div className="detail-item d-flex justify-content-between">
                     <div>{tu('data_bandwidth_consumed_total')}</div>
-                    <div className="font14 item-white-space"> {toThousands(data.net_usage)}{" "}BANDWIDTH</div>
+                    <div className="font14 item-white-space">
+                       <FormattedNumber value={data.net_usage || 0}></FormattedNumber>{" "}BANDWIDTH
+                    </div>
                   </div>
                   <div className="detail-item d-flex justify-content-between">
                     <div>{tu('data_bandwidth_freezed')}</div>
-                    <div className="item-white-space"> {toThousands(data.whole_net_use)}{" "}BANDWIDTH</div>
+                    <div className="item-white-space">
+                       <FormattedNumber value={data.whole_net_use || 0}></FormattedNumber>{" "}BANDWIDTH
+                    </div>
                   </div>
                   <div className="detail-item d-flex justify-content-between">
                     <div>{tu('data_bandwidth_burned')}</div>
-                    <div className="item-white-space">{toThousands(data.whole_net_burn)}{" "}BANDWIDTH</div>
+                    <div className="item-white-space">
+                    <FormattedNumber value={data.whole_net_burn || 0}></FormattedNumber>{" "}BANDWIDTH
+                    </div>
                   </div>
                 </div>
               </div>
