@@ -161,6 +161,8 @@
 }
 .time-filter {
   padding: 20px 0;
+  display: flex;
+  flex-direction: row;
   > ul {
     display: flex;
     margin: 0;
@@ -190,8 +192,20 @@
     line-height: 30px;
   }
 }
-.data-overview-list {
-  .item {
+.data-overview-list{
+  font-family: PingFangSC-Regular;
+  font-size: 14px;
+  color: #333333;
+  .data-overview-row{
+    display: flex;
+    flex-direction: row;
+    margin-top: 1rem;
+  }
+  .usd-amount {
+    font-size: 10px;
+    color: #999999;
+  }
+  .item{
     width: 50%;
     border: 1px solid #eee;
     font-family: PingFangSC-Regular;
@@ -204,22 +218,103 @@
       line-height: 45px;
       background: #f3f3f3;
     }
-    .content-item {
-      line-height: 52px;
-    }
-    .content-detail {
-      padding: 6px 0;
-      &:first-child {
-        border-bottom: 1px solid #eee;
+    .content-item-USD{
+      &-left{
+        line-height: 54px;
       }
+      &-right{
+        padding-top: 7px;
+        padding-bottom: 7px;
+      }
+    }
+    .content-item{
+      padding-top: 1rem;
+      padding-bottom: 1rem;
+      > div{
+        &:last-child {
+            font-family: PingFangSC-Semibold;
+        }
+      }
+    }  
+    .content-detail{
+      padding: 6px 0;
+      // &:first-child {
+      //   border-bottom: 1px solid #eee;
+      // }
       > .detail-item {
-        line-height: 30px;
+        line-height: 32px;
         padding-left: 20px;
         &:first-child {
           padding-left: 0;
         }
+        > div{
+          &:last-child {
+              font-family: PingFangSC-Semibold;
+              font-size: 12px;
+          }
+        }
       }
     }
+  }
+  .num-font-bold{
+    font-family: PingFangSC-Semibold;
+  }
+  .font14{
+    font-size: 14px!important;
+  }
+
+}
+
+@media only screen and (max-width: 768px) {
+  .time-filter {
+    padding: 10px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }  
+  .data-overview-list{
+    font-size: 12px;
+    .data-overview-row{
+      display: flex;
+      flex-direction: column;
+    }
+    .item{
+      font-size: 12px;
+      width:100%;
+      margin-top: 1rem;
+      &:last-child {
+        margin-top: 0;
+      }
+      .content-detail{
+        padding: 6px 0;
+        // &:first-child {
+        //   border-bottom: 1px solid #eee;
+        // }
+        > .detail-item {
+          line-height: 32px;
+          padding-left: 4px;
+          &:first-child {
+            padding-left: 0;
+          }
+          > div{
+            &:last-child {
+                font-family: PingFangSC-Semibold;
+                font-size: 12px;
+            }
+          }
+        }
+      }
+    }
+    .content{
+      font-size: 12px;
+    }
+    .font14{
+      font-size: 12px!important;
+    }
+    .item-white-space{
+      white-space: normal;
+    }
+    
   }
 }
 
