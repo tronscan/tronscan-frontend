@@ -145,7 +145,6 @@ class BestData extends React.Component {
       this.dataResourcesEnergyFun(data);
       this.bandwithColumnsFooter(data);
     }
-    console.log('data123',data)
     this.setTabs(data, time);
     if(name){
       start_time = data[0].start_time;
