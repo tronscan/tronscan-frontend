@@ -83,5 +83,25 @@ export const lang20Q1 = {
   data_token_mark_10:
     "（最終期の取引ボリューム-今期のTxnボリューム）/最終期の取引ボリューム* 100％",
   data_contract_name: "コントラクトアドレス",
-  data_title_chart: "チャート"
+  data_title_chart: "チャート",
+  // 2020-01-17 overview
+  data_TRX_transfer_total:"TRX送信",
+  data_TRX_transfer_count:"TRX総合送信回数",
+  data_TRX_frozen_total:"総合フリーズTRX",
+  data_votes_total:"投票総数",
+  data_TRON_tokens_total:"TRONトークン総数",
+  data_TRC10_tokens_total:"TRC10総数",
+  data_TRC20_tokens_total:"TRC10総数",
+  data_TRONSCAN_tokens_entered:"TRONSCAN登録総数",
+  data_TRONSCAN_TRC10_entries:"TRC10エントリー",
+  data_TRONSCAN_TRC20_entries:"TRC10エントリー",
+  data_TRX_balance:"TRXバランス",
+  data_calling_accounts:"通話アカウント",
+  data_calling_number:"通話ナンバー",
+  data_energy_consumed_total:"トータルエネルギー",
+  data_energy_freezed:"TRXを凍結するために消費されるエネルギー",
+  data_energy_burned:"TRXの燃焼に消費されるエネルギー",
+  data_bandwidth_consumed_total:"消費される総帯域幅",
+  data_bandwidth_freezed:"TRXをフリーズするために消費される帯域幅",
+  data_bandwidth_burned:"TRXの書き込みに消費される帯域幅",
 };

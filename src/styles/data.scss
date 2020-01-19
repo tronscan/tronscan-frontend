@@ -262,7 +262,9 @@
   .font14{
     font-size: 14px!important;
   }
-
+}
+.item-white-space{
+  white-space: nowrap;
 }
 
 @media only screen and (max-width: 768px) {
@@ -311,9 +313,7 @@
     .font14{
       font-size: 12px!important;
     }
-    .item-white-space{
-      white-space: normal;
-    }
+    
     
   }
 }

@@ -86,5 +86,25 @@ export const lang20Q1 = {
   data_token_mark_10:
     "(Объем транзакции за последний период - Объем транзакции за этот период) / Объем транзакции за последний период * 100%",
   data_contract_name: "Название контракта",
-  data_title_chart: "Графики"
+  data_title_chart: "Графики",
+  // 2020-01-17 overview
+  data_TRX_transfer_total:"Сумма Перевода TRX",
+  data_TRX_transfer_count:"Количество Переводов TRX",
+  data_TRX_frozen_total:"Всего Замороженых TRX",
+  data_votes_total:"Всего голосов",
+  data_TRON_tokens_total:"Всего токенов TRON",
+  data_TRC10_tokens_total:"TRC10 Токены",
+  data_TRC20_tokens_total:"TRC20 Токены",
+  data_TRONSCAN_tokens_entered:"Токены, введенные на TRONSCAN",
+  data_TRONSCAN_TRC10_entries:"TRC10 Записи",
+  data_TRONSCAN_TRC20_entries:"TRC20 Записи",
+  data_TRX_balance:"TRX Баланс",
+  data_calling_accounts:"Аккаунты Вызовов",
+  data_calling_number:"Количество Вызовов",
+  data_energy_consumed_total:"Общее Количество Потребляемой Энергии",
+  data_energy_freezed:"Энергия от Замораживания TRX",
+  data_energy_burned:"Энергия от Сжигания TRX",
+  data_bandwidth_consumed_total:"Общее Потребление Пропускной Способности",
+  data_bandwidth_freezed:"Пропускная Способность после Замораживания TRX",
+  data_bandwidth_burned:"Пропускная Способность после Сжигания TRX",
 };

@@ -84,5 +84,25 @@ export const lang20Q1 = {
   data_token_mark_10:
     "(کل حساب تراکنش در حساب معاملات دوره ای کل دوره گذشته) / کل حساب تراکنش در دوره قبلی 100٪",
   data_contract_name: "نام قرارداد",
-  data_title_chart: "نمودار آمار"
+  data_title_chart: "نمودار آمار",
+  // 2020-01-17 overview
+  data_TRX_transfer_total:"مجموع کل TRX انتقال داده شده",
+  data_TRX_transfer_count:"تعداد کل TRX انتقال داده شده",
+  data_TRX_frozen_total:"کل TRX فریز",
+  data_votes_total:"تعداد آرا",
+  data_TRON_tokens_total:"کل توکن های ترون ",
+  data_TRC10_tokens_total:"توکن های TRC10",
+  data_TRC20_tokens_total:"توکن های TRC20",
+  data_TRONSCAN_tokens_entered:"تعداد کل ورودی های ترون اسکن",
+  data_TRONSCAN_TRC10_entries:"ورودی های TRC10",
+  data_TRONSCAN_TRC20_entries:"ورودی های TRC20",
+  data_TRX_balance:"بالانس  TRX",
+  data_calling_accounts:"تعداد تماس با حساب",
+  data_calling_number:"تعداد تماس",
+  data_energy_consumed_total:"کل انرژی مصرف شده",
+  data_energy_freezed:"TRX را فریز کنید وانرژی بدست آورید ",
+  data_energy_burned:"TRX را فریز کنید و پهنای باند بدست آورید ",
+  data_bandwidth_consumed_total:"مصرف کل پهنای باند",
+  data_bandwidth_freezed:"پهنای باند از طریق فریز TRX",
+  data_bandwidth_burned:"پهنای باند از طریق سوزاندن TRX",
 };
