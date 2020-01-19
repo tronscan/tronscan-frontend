@@ -79,8 +79,9 @@
     position: relative;
     .helpLinkPos {
       position: fixed;
-      right: 6rem;
-      bottom: 18.5rem;
+      right: 0rem;
+      // bottom: 21.4rem;
+      bottom: 60px;
     }
   }
   .helpLinkWrapper {
