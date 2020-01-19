@@ -74,7 +74,7 @@ export const lang20Q1 = {
   data_contract_account: "تعداد تماس با حساب",
   data_contract_time: "تعداد تماس",
   // 2020-01-17
-  data_token_transcation_number: "交易总额",
+  data_token_transcation_number: "مجموع معامله",
   data_token_mark_7:
     "(تعداد حسابهای برگزار شده در دوره فعلی-تعداد حسابهای نگهداری شده در دوره قبل) / تعداد حسابهای نگهدارنده در دوره قبلی 100٪",
   data_token_mark_8:
