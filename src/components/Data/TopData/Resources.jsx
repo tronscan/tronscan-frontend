@@ -367,7 +367,7 @@ class DataResources extends React.Component {
           )}
         </div>
         <h4 style={titleStyle} className="mt-4 mb-2">
-          最高带宽消耗
+          {tu("data_resource_table_bandwidth_title")}
         </h4>
         <div className="resourceTable top-data">
           {resourcesList.length === 0 ? (
