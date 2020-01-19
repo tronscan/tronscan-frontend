@@ -16,7 +16,7 @@ class HelpLinkCont extends Component {
   componentDidMount() {
     window.onscroll = function () {
       if(document.body.scrollHeight == document.body.clientHeight + document.documentElement.scrollTop){
-        console.log(12312312)
+        console.log(document.body.scrollHeight,document.body.clientHeight,document.documentElement.scrollTop)
       
       }
     }
