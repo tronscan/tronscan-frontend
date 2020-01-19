@@ -42,7 +42,7 @@ export const lang20Q1 = {
   data_account_freeze: "Топ Аккаунты -- Замороженных TRX",
   data_account_vote: "Топ Аккаунты -- Голосование",
   data_range: "Рейтинг",
-  data_number: "Количество (TRX)",
+  data_number: "Количество",
   data_per: "Процент",
   data_total: "Общее количество",
   data_items: "Txn",
@@ -57,7 +57,7 @@ export const lang20Q1 = {
   data_token_circle_per: "Изменено",
   data_contract_trx_number: "Топ Контракты -- TRX Баланс",
   data_contract_accounts: "Топ Контракты -- Вызов Аккаунтов",
-  data_contract_numbers: "Баланс (TRX)",
+  data_contract_numbers: "Баланс",
   data_contract_times: "Топ Контракты -- Количество Вызовов",
   data_real_time: "Реальное время",
 
