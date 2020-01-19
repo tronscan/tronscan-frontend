@@ -14,12 +14,12 @@ class HelpLinkCont extends Component {
   }
 
   componentDidMount() {
-    window.onscroll = function () {
-      if(document.body.scrollHeight == document.body.clientHeight + document.documentElement.scrollTop){
-        console.log(document.body.scrollHeight,document.body.clientHeight,document.documentElement.scrollTop)
+    // window.onscroll = function () {
+    //   if(document.body.scrollHeight == document.body.clientHeight + document.documentElement.scrollTop){
+    //     console.log(document.body.scrollHeight,document.body.clientHeight,document.documentElement.scrollTop)
       
-      }
-    }
+    //   }
+    // }
 
   }
 
