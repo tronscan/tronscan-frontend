@@ -1330,14 +1330,18 @@ $color: #c23631;
 }
 @media (max-width: 991.98px) {
   .tron-light {
-    .nav-link {
-      padding: 0;
-    }
-    ul.navbar-nav {
-      li:first-child {
-        margin-top: 10px;
+    .loginInfoNavBar{
+      .nav-link {
+        padding: 0;
+      }
+      ul.navbar-nav {
+        li:first-child {
+          margin-top: 10px;
+        }
       }
     }
+   
+   
   
     .menu-nav-wrapper {
       justify-content: space-between;
