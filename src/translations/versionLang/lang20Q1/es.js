@@ -82,5 +82,25 @@ export const lang20Q1 = {
   data_token_mark_10:
     "Energía consumida por el usuario / Energía consumida por todos los usuarios",
   data_contract_name: "Nombre del contrato",
-  data_title_chart: "gráfico"
+  data_title_chart: "gráfico",
+  // 2020-01-17 overview
+  data_TRX_transfer_total:"Cantidad de transferencia de TRX",
+  data_TRX_transfer_count:"Número de Transferencia de  TRX ",
+  data_TRX_frozen_total:"TRX congelado",
+  data_votes_total:"Número de votos Total",
+  data_TRON_tokens_total:"Total TRON Tokens",
+  data_TRC10_tokens_total:"Número de TRC10 tokens",
+  data_TRC20_tokens_total:"Número de TRC20 tokens",
+  data_TRONSCAN_tokens_entered:"tokens recordados en TRONSCAN",
+  data_TRONSCAN_TRC10_entries:"TRC10 tokens recordados",
+  data_TRONSCAN_TRC20_entries:"TRC20 tokens recordados",
+  data_TRX_balance:"Saldo total de TRX",
+  data_calling_accounts:"Número de asignar cuenta",
+  data_calling_number:"Número de asignación",
+  data_energy_consumed_total:"Energía total consumida",
+  data_energy_freezed:"Energía consumida para congelar TRX",
+  data_energy_burned:"Energía consumida para quemar TRX",
+  data_bandwidth_consumed_total:"Ancho de banda total consumido",
+  data_bandwidth_freezed:"Ancho de banda consumido para congelar TRX",
+  data_bandwidth_burned:"Ancho de banda consumido para quemar TRX",
 };
