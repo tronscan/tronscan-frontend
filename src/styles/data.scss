@@ -26,7 +26,7 @@
     }
   }
   .ant-table table{
-    width:100%.1%;
+    width:100.1%;
   }
   .ant-table .ant-table-thead > tr > th,
   .ant-table .ant-table-tbody > tr > td {
@@ -342,6 +342,10 @@
 // resourceWrapper
 .resourceWrapper {
   .top-data {
+    .ant-table .ant-table-thead > tr > th,
+    .ant-table .ant-table-tbody > tr > td {
+      padding: 13px;
+    }
     .ant-table-row.ant-table-row-level-0 {
       &:last-child {
         td {
