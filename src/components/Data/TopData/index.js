@@ -15,13 +15,14 @@ import Accounts from "./Accounts";
 import Tokens from "./Tokens";
 import Contracts from "./Contracts";
 import DataResources from "./Resources";
+import Lockr from "lockr";
 
 class BestData extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       loading: false,
-      time: 1,
+      time: Lockr.get('TopDataTime')?Lockr.get('TopDataTime'):1,
       times: [1, 2, 3],
       types: {
         overview: "0",
@@ -67,17 +68,21 @@ class BestData extends React.Component {
   }
   componentDidMount() {
     let { match } = this.props;
-    this.getData(match.params.name);
+    let { time } = this.state;
+    this.getData(match.params.name,0);
   }
   componentDidUpdate(prevProps) {
     let { match } = this.props;
-    console.log("match.params.name", match.params.name);
-    console.log("prevProps.match.params.name", prevProps.match.params.name);
+    let { time } = this.state;
     if (match.params.name !== prevProps.match.params.name) {
-      this.getData(match.params.name);
+      Lockr.set('TopDataTime',time)
+      this.getData(match.params.name,1);
     }
   }
 
+  componentWillUnmount() {
+   //  Lockr.rm('TopDataTime')
+  }
 
   setTabs(data, time) {
     this.setState(prevProps => ({
@@ -117,14 +122,13 @@ class BestData extends React.Component {
     }));
   }
 
-  async getData(name) {
+  async getData(name,index) {
     let start_time,end_time;
     const { types } = this.state;
     this.setState({
       loading: true
     });
     const { time } = this.state;
-    console.log("name", name);
     const data = await Clinet.getTop10Data({
       type: types[name || "overview"],
       time: time
@@ -146,15 +150,13 @@ class BestData extends React.Component {
       this.bandwithColumnsFooter(data);
     }
     this.setTabs(data, time);
-    if(name){
-      if(data.length>0){
+
+    if(name && data && data[0]){
         start_time = data[0].start_time;
         end_time = data[0].end_time;
-      }
-
-    }else{
-      start_time = data.start_time;
-      end_time = data.end_time;
+    }else if(!name && data) {
+        start_time = data.start_time;
+        end_time = data.end_time;
     }
     this.setState({
       data,
@@ -174,13 +176,14 @@ class BestData extends React.Component {
     // }else if(v === 3){
     //   currentTime=`${moment().subtract(7,'days').format("YYYY-MM-DD HH:mm:ss")}~${moment().format("YYYY-MM-DD HH:mm:ss")}`
     // }
+    Lockr.set('TopDataTime', v);
     this.setState(
       {
         time: v,
       //  currentTime
       },
       () => {
-        this.getData(match.params.name);
+        this.getData(match.params.name,2);
       }
     );
   }
@@ -259,7 +262,6 @@ class BestData extends React.Component {
                         <li
                           key={tab.id}
                           className="nav-item"
-                          // onClick={() => this.getData(tab.id)}
                         >
                           <NavLink
                             exact
@@ -288,7 +290,7 @@ class BestData extends React.Component {
                         ))}
                       </ul>
                       {
-                        (start_time && end_time) && <div className="time-style">
+                        (start_time && end_time) && <div className="time-style d-flex justify-content-between">
                         <span>
                             <span className="time-date"><FormattedDate value={start_time} /></span>&nbsp;
                             <span className="time-hms"><FormattedTime value={start_time}
@@ -298,7 +300,7 @@ class BestData extends React.Component {
                                 hour12={false}
                               /></span>
                         </span>
-                        -
+                        <span>-</span>
                         <span>
                         <span className="time-date"><FormattedDate value={end_time}/></span>&nbsp;
                         <span className="time-hms"><FormattedTime value={end_time}
