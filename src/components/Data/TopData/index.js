@@ -147,8 +147,11 @@ class BestData extends React.Component {
     }
     this.setTabs(data, time);
     if(name){
-      start_time = data[0].start_time;
-      end_time = data[0].end_time;
+      if(data.length>0){
+        start_time = data[0].start_time;
+        end_time = data[0].end_time;
+      }
+
     }else{
       start_time = data.start_time;
       end_time = data.end_time;
