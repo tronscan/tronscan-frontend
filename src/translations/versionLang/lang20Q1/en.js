@@ -25,7 +25,7 @@ export const lang20Q1 = {
   data_title: "Top Statistics",
   data_overview: "Overview",
   data_account: "Accounts",
-  data_token: "La cuenta",
+  data_token: "Tokens",
   data_contract: "Contracts",
   data_recourse: "Resources",
   data_time1: "1 Hour",

@@ -39,8 +39,8 @@ export const lang20Q1 = {
   data_account_send_Trx_items: "最佳账户--发送TRX总笔数",
   data_account_receive_Trx: "最佳账户--接收TRX总额",
   data_account_receive_Trx_items: "最佳账户--接收TRX总笔数",
-  data_account_freeze: "冻结TRX数量",
-  data_account_vote: "已投票数",
+  data_account_freeze: "最佳账户--冻结TRX数量",
+  data_account_vote: "最佳账户--已投票数",
   data_range: "排序",
   data_number: "数量",
   data_per: "占比",
@@ -85,5 +85,5 @@ export const lang20Q1 = {
   data_token_mark_9: "（本期交易笔数-上期交易笔数）/上期交易比数×100%",
   data_token_mark_10: "（本期交易账总额-上期交易账总额）/上期交易账总额×100%",
   data_contract_name: "合约名称",
-  data_title_chart:"图表统计"
+  data_title_chart: "图表统计"
 };
