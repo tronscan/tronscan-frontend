@@ -87,7 +87,7 @@ export const lang20Q1 = {
   data_contract_name: "合约名称",
   data_title_chart: "图表统计",
   // 2020-01-17 overview
-  data_TRX_transfer_total: "TRX转账总额",
+  data_TRX_transfer_total: "TRX转账数量",
   data_TRX_transfer_count: "TRX转账总次数",
   data_TRX_frozen_total: "冻结TRX数量",
   data_votes_total: "投票总数",
