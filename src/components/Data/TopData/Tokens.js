@@ -166,7 +166,7 @@ class Tokens extends React.Component {
       },
       {
         title: intl.formatMessage({ id: titles[1] }),
-        dataIndex: "name",
+        dataIndex: "abbr",
         render: (text, record, index) => {
           return (
             <span className="data-token-name">

@@ -114,7 +114,7 @@ class Overview extends React.Component{
             <div className="item">
               <div className="title px-3 d-flex justify-content-between">
                 <div>{t('data_account')}</div>
-                <div>
+                <div className="see-top10">
                   <Link to="/blockchain/data/account">{t('data_check')}</Link>
                 </div>
               </div>
@@ -151,7 +151,7 @@ class Overview extends React.Component{
             <div className="item">
               <div className="title px-3 d-flex justify-content-between">
                 <div>{t('data_token')}</div>
-                <div>
+                <div className="see-top10">
                   <Link to="/blockchain/data/token">{t('data_check')}</Link>
                 </div>
               </div>
@@ -194,7 +194,7 @@ class Overview extends React.Component{
             <div className="item">
               <div className="title px-3 d-flex justify-content-between">
                 <div>{t('data_contract')}</div>
-                <div>
+                <div className="see-top10">
                   <Link to="/blockchain/data/contract">{t('data_check')}</Link>
                 </div>
               </div>
@@ -231,7 +231,7 @@ class Overview extends React.Component{
             <div className="item">
               <div className="title px-3 d-flex justify-content-between">
                 <div>{t("data_recourse")}</div>
-                <div>
+                <div className="see-top10">
                   <Link to="/blockchain/data/resource">{t('data_check')}</Link>
                 </div>
               </div>

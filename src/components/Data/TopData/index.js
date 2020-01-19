@@ -285,25 +285,25 @@ class BestData extends React.Component {
                         ))}
                       </ul>
                       {
-                        (start_time && end_time) && <div>
+                        (start_time && end_time) && <div className="time-style">
                         <span>
-                          <FormattedDate value={start_time}/>&nbsp;
-                          <FormattedTime value={start_time}
-                                          hour='numeric'
-                                          minute="numeric"
-                                          second='numeric'
-                                          hour12={false}
-                          />
+                            <span className="time-date"><FormattedDate value={start_time} /></span>&nbsp;
+                            <span className="time-hms"><FormattedTime value={start_time}
+                                hour='numeric'
+                                minute="numeric"
+                                second='numeric'
+                                hour12={false}
+                              /></span>
                         </span>
                         -
                         <span>
-                          <FormattedDate value={end_time}/>&nbsp;
-                          <FormattedTime value={end_time}
+                        <span className="time-date"><FormattedDate value={end_time}/></span>&nbsp;
+                        <span className="time-hms"><FormattedTime value={end_time}
                                           hour='numeric'
                                           minute="numeric"
                                           second='numeric'
                                           hour12={false}
-                          />
+                          /></span>
                         </span>
                       </div>
                       }

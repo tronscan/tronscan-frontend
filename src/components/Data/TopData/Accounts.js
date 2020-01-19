@@ -194,7 +194,8 @@ class Accounts extends React.Component {
             <span className="">--</span>
           );
         },
-        align: "center"
+        align: "center",
+        width: typeIndex % 2 == 1 && "35%"
       },
       {
         title: intl.formatMessage({ id: titles[2] }),
@@ -218,7 +219,7 @@ class Accounts extends React.Component {
           );
         },
         align: "left",
-        width: typeIndex % 2 == 1 && "200px"
+        // width: typeIndex % 2 == 1 && "45%"
       },
       {
         title: intl.formatMessage({ id: titles[3] }),
@@ -229,7 +230,7 @@ class Accounts extends React.Component {
           );
         },
         align: "right",
-        width: "100px"
+        width: "90px"
       }
     ];
 

@@ -260,7 +260,7 @@ class Contracts extends React.Component {
           );
         },
         align: "right",
-        width: "100px"
+        width: "90px"
       }
     ];
 

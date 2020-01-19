@@ -25,9 +25,12 @@
       }
     }
   }
+  .ant-table table{
+    width:100%.1%;
+  }
   .ant-table .ant-table-thead > tr > th,
   .ant-table .ant-table-tbody > tr > td {
-    padding: 13px;
+    padding: 6px 10px;
     &:first-child {
       padding-left: 20px !important;
     }
@@ -97,7 +100,7 @@
         }
       }
       td {
-        height: 64px;
+        height: 50px;
       }
     }
   }
@@ -116,7 +119,7 @@
     }
     .ant-table-row.ant-table-row-level-0 {
       td {
-        height: 64px;
+        height: 50px;
       }
     }
   }
@@ -157,6 +160,26 @@
       width: 50px;
       display: block;
     }
+  }
+}
+.time-style {
+  .time-date{
+    font-family: PingFangSC-Regular;
+    font-size: 14px;
+    color: #696969;
+  }
+  .time-hms{
+    font-family: PingFangSC-Regular;
+    font-size: 14px;
+    color: #999999;
+  }
+}
+.see-top10{
+  a{
+    font-family: PingFangSC-Semibold;
+    font-size: 14px;
+    color: #C23631;
+    font-weight:bold;
   }
 }
 .time-filter {
