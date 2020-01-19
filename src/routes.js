@@ -175,20 +175,20 @@ export const routes = [
       //   showInMenu: false
       // },
       {
-        path: "/blockchain/foundation",
-        label: "foundation",
-        // icon: "fa fa-address-book",
-        icon: false,
-        showInMenu: IS_MAINNET ? true : false,
-        component: FoundationAsync
-      },
-      {
         path: "/blockchain/data",
         label: "data_title",
         // icon: "fa fa-address-book",
         icon: false,
         showInMenu: IS_MAINNET ? true : false,
         component: TopDataAsync
+      },
+      {
+        path: "/blockchain/foundation",
+        label: "foundation",
+        // icon: "fa fa-address-book",
+        icon: false,
+        showInMenu: IS_MAINNET ? true : false,
+        component: FoundationAsync
       },
       {
         path: "/blockchain/data/:name",
