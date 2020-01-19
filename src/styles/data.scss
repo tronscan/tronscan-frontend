@@ -45,6 +45,7 @@
         word-break: break-all;
         white-space: pre-wrad;
         word-wrap: break-word;
+        font-weight: bold;
       }
     }
   }
@@ -71,7 +72,7 @@
       }
       .rank {
         width: 14.6px;
-        height: 18px;
+        height: 17px;
         display: inline-block;
         background-size: 100%;
       }
@@ -157,7 +158,6 @@
       display: block;
     }
   }
-  
 }
 .time-filter {
   padding: 20px 0;
@@ -192,11 +192,11 @@
     line-height: 30px;
   }
 }
-.data-overview-list{
+.data-overview-list {
   font-family: PingFangSC-Regular;
   font-size: 14px;
   color: #333333;
-  .data-overview-row{
+  .data-overview-row {
     display: flex;
     flex-direction: row;
     margin-top: 1rem;
@@ -205,7 +205,7 @@
     font-size: 10px;
     color: #999999;
   }
-  .item{
+  .item {
     width: 50%;
     border: 1px solid #eee;
     font-family: PingFangSC-Regular;
@@ -218,25 +218,25 @@
       line-height: 45px;
       background: #f3f3f3;
     }
-    .content-item-USD{
-      &-left{
+    .content-item-USD {
+      &-left {
         line-height: 54px;
       }
-      &-right{
+      &-right {
         padding-top: 7px;
         padding-bottom: 7px;
       }
     }
-    .content-item{
+    .content-item {
       padding-top: 1rem;
       padding-bottom: 1rem;
-      > div{
+      > div {
         &:last-child {
-            font-family: PingFangSC-Semibold;
+          font-family: PingFangSC-Semibold;
         }
       }
-    }  
-    .content-detail{
+    }
+    .content-detail {
       padding: 6px 0;
       // &:first-child {
       //   border-bottom: 1px solid #eee;
@@ -247,23 +247,23 @@
         &:first-child {
           padding-left: 0;
         }
-        > div{
+        > div {
           &:last-child {
-              font-family: PingFangSC-Semibold;
-              font-size: 12px;
+            font-family: PingFangSC-Semibold;
+            font-size: 12px;
           }
         }
       }
     }
   }
-  .num-font-bold{
+  .num-font-bold {
     font-family: PingFangSC-Semibold;
   }
-  .font14{
-    font-size: 14px!important;
+  .font14 {
+    font-size: 14px !important;
   }
 }
-.item-white-space{
+.item-white-space {
   white-space: nowrap;
 }
 
@@ -273,21 +273,21 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-  }  
-  .data-overview-list{
+  }
+  .data-overview-list {
     font-size: 12px;
-    .data-overview-row{
+    .data-overview-row {
       display: flex;
       flex-direction: column;
     }
-    .item{
+    .item {
       font-size: 12px;
-      width:100%;
+      width: 100%;
       margin-top: 1rem;
       &:last-child {
         margin-top: 0;
       }
-      .content-detail{
+      .content-detail {
         padding: 6px 0;
         // &:first-child {
         //   border-bottom: 1px solid #eee;
@@ -298,29 +298,27 @@
           &:first-child {
             padding-left: 0;
           }
-          > div{
+          > div {
             &:last-child {
-                font-family: PingFangSC-Semibold;
-                font-size: 12px;
+              font-family: PingFangSC-Semibold;
+              font-size: 12px;
             }
           }
         }
       }
     }
-    .content{
+    .content {
       font-size: 12px;
     }
-    .font14{
-      font-size: 12px!important;
+    .font14 {
+      font-size: 12px !important;
     }
-    
-    
   }
 }
 
 // resourceWrapper
-.resourceWrapper{
-  .top-data{
+.resourceWrapper {
+  .top-data {
     .ant-table-row.ant-table-row-level-0 {
       &:last-child {
         td {
@@ -332,5 +330,4 @@
       }
     }
   }
-  
 }
