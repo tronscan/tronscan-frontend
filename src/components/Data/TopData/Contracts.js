@@ -196,14 +196,26 @@ class Contracts extends React.Component {
         title: () => {
           let title2 = intl.formatMessage({ id: titles[2] });
           return (
-            <span className={index != 11 ? "data-contract-title2":''}>
+            <span className={index != 11 ? "data-contract-title2" : ""}>
               {title2}
             </span>
           );
         },
         dataIndex: "name",
         render: (text, record, index) => {
-          return text ? <span className="">{text}</span> : "--";
+          return text ? (
+            <span className="">
+              {record.contract == "TWjkoz18Y48SgWoxEeGG11ezCCzee8wo1A"
+                ? "JustGame"
+                : text}
+            </span>
+          ) : (
+            <span>
+              {record.contract == "TWjkoz18Y48SgWoxEeGG11ezCCzee8wo1A"
+                ? "JustGame"
+                : "--"}
+            </span>
+          );
         },
         align: "center",
         width: index == 11 ? "250px" : ""
@@ -212,7 +224,7 @@ class Contracts extends React.Component {
         title: () => {
           let title3 = intl.formatMessage({ id: titles[3] });
           return (
-            <span className={index != 11 ? "data-contract-title2":''}>
+            <span className={index != 11 ? "data-contract-title2" : ""}>
               {title3}
             </span>
           );
