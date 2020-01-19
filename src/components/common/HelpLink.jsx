@@ -8,11 +8,23 @@ class HelpLinkCont extends Component {
   constructor() {
     super();
     this.state = {
-      unfold: true
+      unfold: true,
+      isFootPosition:false
     };
   }
 
-  componentDidMount() {}
+  componentDidMount() {
+    window.onscroll = function () {
+      if(document.body.scrollHeight == document.body.clientHeight + document.documentElement.scrollTop){
+        console.log(12312312)
+      
+      }
+    }
+
+  }
+
+  
+
 
   render() {
     const myPng = src => {
