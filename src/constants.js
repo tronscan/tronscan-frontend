@@ -8,36 +8,35 @@ export const IS_TESTNET = process.env.NET === "testnet";
 export const IS_DESKTOP = process.env.DESKTOP === "true";
 
 export const NETURL = {
-    MAINNET: "https://tronscan.org",
-    SUNNET: "https://dappchain.tronscan.org",
-    NEWMAINNET: "https://tronscan.io",
-    NEWSUNNET: "https://dappchain.tronscan.io",
-    // MAINNET: "http://18.217.215.94:65",
-    // SUNNET: "http://18.217.215.94:66",
+  // MAINNET: "https://tronscan.org",
+  // SUNNET: "https://dappchain.tronscan.org",
+  NEWMAINNET: "https://tronscan.io",
+  NEWSUNNET: "https://dappchain.tronscan.io",
+  MAINNET: "http://18.217.215.94:65",
+  SUNNET: "http://18.217.215.94:66"
 };
 
-export const TOKENINFO_UPDATE = 'TOKENINFO_UPDATE'
+export const TOKENINFO_UPDATE = "TOKENINFO_UPDATE";
 
-
-
-let {
-    NET,
-    NODE_ENV
-} = process.env;
+let { NET, NODE_ENV } = process.env;
 let MAINNET;
 let SUNNET;
 let NODEAPI;
 
 if (NODE_ENV == "development") {
-    MAINNET = Lockr.get("NET") === "mainnet" || !Lockr.get("NET");
-    SUNNET = Lockr.get("NET") === "sunnet";
-    // NODEAPI = "http://52.15.126.154:9016";
-    NODEAPI = process.env.API_URL;
+  MAINNET = Lockr.get("NET") === "mainnet" || !Lockr.get("NET");
+  SUNNET = Lockr.get("NET") === "sunnet";
+  // NODEAPI = "http://52.15.126.154:9016";
+  NODEAPI = process.env.API_URL;
 } else {
-    MAINNET = (window.location.origin === NETURL.MAINNET ||  window.location.origin === NETURL.NEWMAINNET)
-    SUNNET = (window.location.origin === NETURL.SUNNET ||  window.location.origin === NETURL.NEWSUNNET)
-    NODEAPI = process.env.API_URL;
-    // NODEAPI = "http://52.15.126.154:9016";
+  MAINNET =
+    window.location.origin === NETURL.MAINNET ||
+    window.location.origin === NETURL.NEWMAINNET;
+  SUNNET =
+    window.location.origin === NETURL.SUNNET ||
+    window.location.origin === NETURL.NEWSUNNET;
+  NODEAPI = process.env.API_URL;
+  // NODEAPI = "http://52.15.126.154:9016";
 }
 
 export let IS_MAINNET = MAINNET;
@@ -85,9 +84,9 @@ export const FILE_MAX_NUM = 10;
 
 // currency type
 export const CURRENCYTYPE = {
-    TRX: "TRX",
-    TRX10: "TRX10",
-    TRX20: "TRX20"
+  TRX: "TRX",
+  TRX10: "TRX10",
+  TRX20: "TRX20"
 };
 
 // mapping energy
@@ -111,38 +110,38 @@ export const TRCWITHDRAWMIN = 1;
 
 // trading type
 export const TRADINGMAP = {
-    MAPPING: "mapping",
-    WITHDRAW: "withdraw",
-    DEPOSIT: "deposit",
-    APPROVE: "approve"
+  MAPPING: "mapping",
+  WITHDRAW: "withdraw",
+  DEPOSIT: "deposit",
+  APPROVE: "approve"
 };
 
 // SunWeb config
 export const SUNWEBCONFIG = {
-    MAINFULLNODE: "https://api.trongrid.io",
-    MAINSOLIDITYNODE: "https://api.trongrid.io",
-    MAINEVENTSERVER: "https://api.trongrid.io",
-    SUNFULLNODE: "https://sun.tronex.io",
-    SUNSOLIDITYNODE: "https://sun.tronex.io",
-    SUNEVENTSERVER: "https://sun.tronex.io",
-    MAINNET: "TWaPZru6PR5VjgT4sJrrZ481Zgp3iJ8Rfo",
-    SIDECHAIN: "TGKotco6YoULzbYisTBuP6DWXDjEgJSpYz",
-    SIDEID: "41E209E4DE650F0150788E8EC5CAFA240A23EB8EB7"
-    // MAINFULLNODE: 'http://47.252.84.158:8070',
-    // MAINSOLIDITYNODE: 'http://47.252.84.158:8071',
-    // MAINEVENTSERVER: 'http://47.252.81.14:8070',
-    // SUNFULLNODE: 'http://47.252.85.90:8070',
-    // SUNSOLIDITYNODE: 'http://47.252.85.90:8071',
-    // SUNEVENTSERVER: 'http://47.252.87.129:8070',
-    // MAINNET: 'TFLtPoEtVJBMcj6kZPrQrwEdM3W3shxsBU',
-    // SIDECHAIN: 'TRDepx5KoQ8oNbFVZ5sogwUxtdYmATDRgX',
-    // SIDEID: '413AF23F37DA0D48234FDD43D89931E98E1144481B',
+  MAINFULLNODE: "https://api.trongrid.io",
+  MAINSOLIDITYNODE: "https://api.trongrid.io",
+  MAINEVENTSERVER: "https://api.trongrid.io",
+  SUNFULLNODE: "https://sun.tronex.io",
+  SUNSOLIDITYNODE: "https://sun.tronex.io",
+  SUNEVENTSERVER: "https://sun.tronex.io",
+  MAINNET: "TWaPZru6PR5VjgT4sJrrZ481Zgp3iJ8Rfo",
+  SIDECHAIN: "TGKotco6YoULzbYisTBuP6DWXDjEgJSpYz",
+  SIDEID: "41E209E4DE650F0150788E8EC5CAFA240A23EB8EB7"
+  // MAINFULLNODE: 'http://47.252.84.158:8070',
+  // MAINSOLIDITYNODE: 'http://47.252.84.158:8071',
+  // MAINEVENTSERVER: 'http://47.252.81.14:8070',
+  // SUNFULLNODE: 'http://47.252.85.90:8070',
+  // SUNSOLIDITYNODE: 'http://47.252.85.90:8071',
+  // SUNEVENTSERVER: 'http://47.252.87.129:8070',
+  // MAINNET: 'TFLtPoEtVJBMcj6kZPrQrwEdM3W3shxsBU',
+  // SIDECHAIN: 'TRDepx5KoQ8oNbFVZ5sogwUxtdYmATDRgX',
+  // SIDEID: '413AF23F37DA0D48234FDD43D89931E98E1144481B',
 };
 
 //Socket config
 export const TORNSOCKET = {
-    WSSURLMAIN: "wss://apilist.tronscan.org/api/tronsocket",
-    WSSURLSUN: "wss://dappchainapi.tronscan.org/api/tronsocket"
+  WSSURLMAIN: "wss://apilist.tronscan.org/api/tronsocket",
+  WSSURLSUN: "wss://dappchainapi.tronscan.org/api/tronsocket"
 };
 
 // export const TORNSOCKET = {
@@ -152,30 +151,30 @@ export const TORNSOCKET = {
 
 // token type
 export const TOKENTYPE = {
-    TOKEN10: "trc10",
-    TOKEN20: "trc20"
+  TOKEN10: "trc10",
+  TOKEN20: "trc20"
 };
 
 // market basic page
 export const MARKETPAGE = {
-    CREATE: "create",
-    UPDATE: "update"
+  CREATE: "create",
+  UPDATE: "update"
 };
 
 // market token verify status
 export const VERIFYSTATUS = {
-    HASBEENSUBMITTEDTHREE: -3,
-    NOTRECORDED: -2, // No recorded
-    HASBEENRECORDED: -1, // Has been recorded
-    HASBEENSUBMITTED: 0, // Has been submitted
-    NOTRECOMMENDED: 1, // not recommended
-    TOAUDIT: 2, // to audit
-    APPROVED: 3, // reviewed for recommendation
-    RECOMMENDED: 4, // reviewed and recommended
-    REJECTED: 5, // rejected
-    SHELVES: 6, // Has been off the shelves
-    CONFIRMED: 7, // Have been confirmed
-    RECOMMENDEDFAILED: 8 // Review recommendation failed
+  HASBEENSUBMITTEDTHREE: -3,
+  NOTRECORDED: -2, // No recorded
+  HASBEENRECORDED: -1, // Has been recorded
+  HASBEENSUBMITTED: 0, // Has been submitted
+  NOTRECOMMENDED: 1, // not recommended
+  TOAUDIT: 2, // to audit
+  APPROVED: 3, // reviewed for recommendation
+  RECOMMENDED: 4, // reviewed and recommended
+  REJECTED: 5, // rejected
+  SHELVES: 6, // Has been off the shelves
+  CONFIRMED: 7, // Have been confirmed
+  RECOMMENDEDFAILED: 8 // Review recommendation failed
 };
 
 // JSEncrypt key
@@ -188,8 +187,6 @@ export const FROMID = 1;
 /* eslint-disable */
 export const URLREGEXP = /^((ht|f)tps?):\/\/[\w\-]+(\.[\w\-]+)+([\w\-.,@?^=%&:\\/~+#]*[\w\-@?^=%&\\/~+#])?$/;
 
-
-
 export const ADDRESS_SIZE = 34;
 export const ADDRESS_PREFIX = "41";
 export const ADDRESS_PREFIX_BYTE = 0x41;
@@ -197,19 +194,19 @@ export const ADDRESS_PREFIX_REGEX = /^(41)/;
 
 // contract
 export const CONTRACT_LICENSES = [
-    "--",
-    "None",
-    "Unlicense",
-    "MIT",
-    "GNU GPLv2",
-    "GNU GPLv3",
-    "GNU LGPLv2.1",
-    "GNU LGPLv3",
-    "BSD-2-Clause",
-    "BSD-3-Clause",
-    "MPL-2.0",
-    "OSL-3.0",
-    "Apache-2.0"
+  "--",
+  "None",
+  "Unlicense",
+  "MIT",
+  "GNU GPLv2",
+  "GNU GPLv3",
+  "GNU LGPLv2.1",
+  "GNU LGPLv3",
+  "BSD-2-Clause",
+  "BSD-3-Clause",
+  "MPL-2.0",
+  "OSL-3.0",
+  "Apache-2.0"
 ];
 
-export const WARNING_VERSIONS = []
+export const WARNING_VERSIONS = [];
