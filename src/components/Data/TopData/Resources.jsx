@@ -31,9 +31,11 @@ class DataResources extends React.Component {
   customizedEnergyColumn = () => {
     const { topData,intl } = this.props;
     let energyData = []
-    if (topData.length > 0) {
-      energyData = topData[0].data || [];
+   
+    if (topData) {
+      topData[0].data ? energyData = topData[0].data : [];
     }
+
     let length = energyData.length - 1;
     let column = [
       {
@@ -169,8 +171,8 @@ class DataResources extends React.Component {
   customizedBandWidthColumn = () => {
     const { topData,intl } = this.props;
     let bandWidthData = []
-    if (topData.length > 0) {
-      bandWidthData = topData[1].data || [];
+    if (topData) {
+      topData[1].data ? bandWidthData = topData[1].data : [];
     }
     const length = bandWidthData.length - 1;
     let column = [
@@ -316,9 +318,9 @@ class DataResources extends React.Component {
     const { resourcesList, loading, titleStyle } = this.state;
     const { topData } = this.props;
     let energyData, bandWidthData;
-    if (topData.length > 0) {
-      energyData = topData[0].data || [];
-      bandWidthData = topData[1].data || [];
+    if (topData) {
+      topData[0].data ? energyData = topData[0].data : [];
+      topData[1].data ? bandWidthData = topData[1].data : [];
     }
 
     return (

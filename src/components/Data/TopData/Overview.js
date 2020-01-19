@@ -239,15 +239,15 @@ class Overview extends React.Component{
                 <div className="content-detail px-3 border-bottom">
                   <div className="detail-item d-flex justify-content-between">
                     <div>{tu('data_energy_consumed_total')}</div>
-                    <div className="font14"> {toThousands(data.energy_usage)}{" "}ENERGY</div>
+                    <div className="font14 item-white-space"> {toThousands(data.energy_usage)}{" "}ENERGY</div>
                   </div>
                   <div className="detail-item d-flex justify-content-between">
                     <div>{tu('data_energy_freezed')}</div>
-                    <div> {toThousands(data.whole_energy_use)}{" "}ENERGY</div>
+                    <div className="item-white-space">{toThousands(data.whole_energy_use)}{" "}ENERGY</div>
                   </div>
                   <div className="detail-item d-flex justify-content-between">
                     <div>{tu('data_energy_burned')}</div>
-                    <div> {toThousands(data.whole_energy_burn)}{" "}ENERGY</div>
+                    <div className="item-white-space">{toThousands(data.whole_energy_burn)}{" "}ENERGY</div>
                   </div>
                 </div>
               </div>
@@ -255,15 +255,15 @@ class Overview extends React.Component{
                 <div className="content-detail px-3">
                   <div className="detail-item d-flex justify-content-between">
                     <div>{tu('data_bandwidth_consumed_total')}</div>
-                    <div className="font14 white-space"> {toThousands(data.net_usage)}{" "}BANDWIDTH</div>
+                    <div className="font14 item-white-space"> {toThousands(data.net_usage)}{" "}BANDWIDTH</div>
                   </div>
                   <div className="detail-item d-flex justify-content-between">
                     <div>{tu('data_bandwidth_freezed')}</div>
-                    <div> {toThousands(data.whole_net_use)}{" "}BANDWIDTH</div>
+                    <div className="item-white-space"> {toThousands(data.whole_net_use)}{" "}BANDWIDTH</div>
                   </div>
                   <div className="detail-item d-flex justify-content-between">
                     <div>{tu('data_bandwidth_burned')}</div>
-                    <div> {toThousands(data.whole_net_burn)}{" "}BANDWIDTH</div>
+                    <div className="item-white-space">{toThousands(data.whole_net_burn)}{" "}BANDWIDTH</div>
                   </div>
                 </div>
               </div>

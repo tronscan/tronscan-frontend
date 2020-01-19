@@ -81,5 +81,25 @@ export const lang20Q1 = {
   data_token_mark_10:
     "(이번기 거래 계정 총액-지난기 거래 계정 총액) / 지난기 거래 계정 총액 × 100%",
   data_contract_name: "계약 명칭",
-  data_title_chart: "차트"
+  data_title_chart: "차트",
+  // 2020-01-17 overview
+  data_TRX_transfer_total:"TRX 이체 총액",
+  data_TRX_transfer_count:"TRX 이체 횟수",
+  data_TRX_frozen_total:"동결 TRX 총액",
+  data_votes_total:"투표 총수",
+  data_TRON_tokens_total:"TRON 토큰 총수",
+  data_TRC10_tokens_total:"TRC10 토큰 총수",
+  data_TRC20_tokens_total:"TRC20 토큰 총수",
+  data_TRONSCAN_tokens_entered:"TRONSCAN 입력 총수",
+  data_TRONSCAN_TRC10_entries:"TRC10 토큰 입력 수",
+  data_TRONSCAN_TRC20_entries:"TRC20 토큰 입력 수",
+  data_TRX_balance:"TRX 잔액",
+  data_calling_accounts:"호출 계정수",
+  data_calling_number:"호출 횟수",
+  data_energy_consumed_total:"소비된 에너지",
+  data_energy_freezed:"TRX 동결에 소비된 에너지",
+  data_energy_burned:"TRX 소각에 소비된 대역폭",
+  data_bandwidth_consumed_total:"소비된 총 대역폭",
+  data_bandwidth_freezed:"TRX 동결에 소비된 대역폭",
+  data_bandwidth_burned:"TRX 소각에 소비된 대역폭",
 };

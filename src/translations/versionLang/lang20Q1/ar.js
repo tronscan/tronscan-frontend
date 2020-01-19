@@ -83,5 +83,25 @@ export const lang20Q1 = {
   data_token_mark_10:
     "(إجمالي رصيد المعاملة للفترة الحالية - إجمالي رصيد المعاملة للفترة السابقة) / إجمالي رصيد المعاملة للفترة السابقة × 100 ٪",
   data_contract_name: "اسم العقد",
-  data_title_chart: "Charts"
+  data_title_chart:"إحصائيات الرسم البياني",
+  // 2020-01-17 overview
+  data_TRX_transfer_total:"مجموع تحويل TRX ",
+  data_TRX_transfer_count:"إجمالي عدد عمليات تحويل TRX",
+  data_TRX_frozen_total:"مجموع TRX المجمدة",
+  data_votes_total:"مجموع الأصوات",
+  data_TRON_tokens_total:"مجموع رموز ترون",
+  data_TRC10_tokens_total:"رموز TRC10",
+  data_TRC20_tokens_total:"رموز TRC20",
+  data_TRONSCAN_tokens_entered:"إجمالي عدد إدخالات TRONSCAN",
+  data_TRONSCAN_TRC10_entries:"إدخالات الرمز TRC10",
+  data_TRONSCAN_TRC20_entries:"إدخالات الرمز TRC20",
+  data_TRX_balance:"رصيد TRX",
+  data_calling_accounts:"دعوات عدد حسابات ",
+  data_calling_number:"عدد الدعوات",
+  data_energy_consumed_total:"إجمالي الطاقة المستهلكة",
+  data_energy_freezed:"إستهلاك الطاقة لتجميد TRX",
+  data_energy_burned:"إستهلاك الطاقة لحرق TRX",
+  data_bandwidth_consumed_total:"إجمالي عرض النطاق الترددي المستهلك",
+  data_bandwidth_freezed:"عرض النطاق الترددي المستهلك لتجميد TRX",
+  data_bandwidth_burned:"عرض النطاق الترددي المستهلك لحرق TRX",
 };
