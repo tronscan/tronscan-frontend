@@ -25,12 +25,13 @@
       }
     }
   }
-  .ant-table table{
-    width:100.1%;
+  .ant-table table {
+    width: 100.1%;
   }
   .ant-table .ant-table-thead > tr > th,
   .ant-table .ant-table-tbody > tr > td {
     padding: 6px 10px;
+    white-space: nowrap;
     &:first-child {
       padding-left: 20px !important;
     }
@@ -163,23 +164,23 @@
   }
 }
 .time-style {
-  .time-date{
+  .time-date {
     font-family: PingFangSC-Regular;
     font-size: 14px;
     color: #696969;
   }
-  .time-hms{
+  .time-hms {
     font-family: PingFangSC-Regular;
     font-size: 14px;
     color: #999999;
   }
 }
-.see-top10{
-  a{
+.see-top10 {
+  a {
     font-family: PingFangSC-Semibold;
     font-size: 14px;
-    color: #C23631;
-    font-weight:bold;
+    color: #c23631;
+    font-weight: bold;
   }
 }
 .time-filter {
@@ -346,12 +347,12 @@
     .ant-table .ant-table-tbody > tr > td {
       padding: 13px;
     }
-    .ant-table-body{
-      .resourceAddress{
-        a{
+    .ant-table-body {
+      .resourceAddress {
+        a {
           font-family: PingFangSC-Regular;
           font-size: 13px;
-          color: #C23631;
+          color: #c23631;
         }
       }
     }

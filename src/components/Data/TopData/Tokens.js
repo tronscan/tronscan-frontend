@@ -114,8 +114,8 @@ class Tokens extends React.Component {
             <Col
               className="gutter-row"
               xs={24}
-              sm={12}
-              md={12}
+              sm={24}
+              md={24}
               lg={12}
               xl={12}
               xxl={12}
@@ -167,7 +167,8 @@ class Tokens extends React.Component {
             </span>
           );
         },
-        align: "center"
+        align: "center",
+        width: "80px"
       },
       {
         title: intl.formatMessage({ id: titles[1] }),
