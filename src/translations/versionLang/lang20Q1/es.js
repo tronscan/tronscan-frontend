@@ -66,7 +66,10 @@ export const lang20Q1 = {
   data_resource_table_burningTRX_energy: "Energía consumida para quemar TRX",
   data_resource_table_energy_consumed: "Energía total consumida",
   data_resource_table_percentage: "Porcentaje",
-  data_resource_table_percentage_tips: "Ancho de banda consumido por el usuario / Ancho de banda consumido por todos los usuarios",
+  data_resource_table_percentage_tips:
+    "Ancho de banda consumido por el usuario / Ancho de banda consumido por todos los usuarios",
+  data_resource_bandwith_table_percentage_tips:
+    "Ancho de banda consumido por el usuario / Ancho de banda consumido por todos los usuarios",
   data_resource_table_bandwidth_title: "Consumo pico de ancho de banda",
   data_resource_table_total: "",
   data_contract_account: "Número de asignar cuenta",

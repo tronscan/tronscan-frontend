@@ -66,6 +66,8 @@ export const lang20Q1 = {
   data_resource_table_percentage: "백분율",
   data_resource_table_percentage_tips:
     "현재 사용자 소비 에너지 / 전체 네트워크 사용자 소비 에너지",
+  data_resource_bandwith_table_percentage_tips:
+    "현재 사용자 소비 대역폭 / 전체 네트워크 사용자 소비 대역폭",
   data_resource_table_bandwidth_title: "대역폭 최대 소비",
   data_resource_table_total: "총",
   data_contract_account: "호출 계정수",
