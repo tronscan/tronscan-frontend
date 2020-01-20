@@ -211,7 +211,10 @@ class Accounts extends React.Component {
         render: (text, record, index) => {
           return (
             <span className="">
-              <FormattedNumber value={record[type] || 0}></FormattedNumber>{" "}
+              <FormattedNumber
+                value={record[type] || 0}
+                maximumFractionDigits={isUsd ? 6 : 0}
+              ></FormattedNumber>{" "}
               {isUsd && trxUnit}
               {unit}
               <br />
@@ -220,6 +223,7 @@ class Accounts extends React.Component {
                   ≈
                   <FormattedNumber
                     value={record[type] * priceUSD || 0}
+                    maximumFractionDigits={3}
                   ></FormattedNumber>{" "}
                   {usdUnit}
                 </span>
