@@ -284,7 +284,7 @@ class SubmitInfo extends Component {
                         <p className="border-dashed">
                             {fprice} {tokenSymbol}  = {sprice} TRX
                             <span className="ml-4">
-                                TRX{tu('trc20_last_price')}: <TRXPrice amount={1} currency="USD" source="home"/>
+                                TRX{tu('trc20_last_price')}: <TRXPrice amount={1} currency="USD"/>
                             </span>
                         </p>
                     </Col>

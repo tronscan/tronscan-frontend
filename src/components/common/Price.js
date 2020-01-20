@@ -1,7 +1,7 @@
 /*eslint-disable */
 import React, { Fragment } from "react";
 import xhr from "axios/index";
-import { FormattedNumber } from "react-intl";
+import { FormattedNumber,injectIntl } from "react-intl";
 import { Tooltip } from "reactstrap";
 import { alpha } from "../../utils/str";
 import { connect } from "react-redux";
@@ -103,6 +103,7 @@ export let PriceProvider = connect(
 )(PriceProviderCmp);
 
 let oTimer = null;
+@injectIntl
 export class TRXPrice extends React.PureComponent {
   constructor() {
     super();

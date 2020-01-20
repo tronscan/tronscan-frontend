@@ -131,7 +131,7 @@ class Tokens extends React.Component {
 
     return (
       <div className="top-data">
-        <Row gutter={{ xs: 8, sm: 20, md: 20 }} className="mt-2 data-token">
+        <Row gutter={{ xs: 8, sm: 20, md: 20 }} className="data-token">
           {Object.keys(types).map(index => (
             <Col
               className="gutter-row"
@@ -166,7 +166,7 @@ class Tokens extends React.Component {
     );
   }
 
-  renderDataTable(data, title, isUsd, type, index, unit) {
+  renderDataTable(data, title, isUsd, type, typeIndex, unit) {
     const defaultImg = require("../../../images/logo_default.png");
 
     const { trxUnit, usdUnit, UsdToTrx } = this.state;
@@ -190,7 +190,7 @@ class Tokens extends React.Component {
           );
         },
         align: "center",
-        width: "80px"
+        width: "100px"
       },
       {
         title: intl.formatMessage({ id: titles[1] }),
@@ -218,7 +218,8 @@ class Tokens extends React.Component {
             </span>
           );
         },
-        align: "left"
+        align: "left",
+        width: typeIndex != 10 && "150px"
       },
       {
         title: intl.formatMessage({ id: titles[2] }),
@@ -264,7 +265,8 @@ class Tokens extends React.Component {
             </span>
           );
         },
-        align: "left"
+        align: "left",
+        width: typeIndex != 10 && "150px"
       },
       {
         title: () => {
@@ -273,7 +275,7 @@ class Tokens extends React.Component {
             <span>
               {title}{" "}
               <QuestionMark
-                text={"data_token_mark_" + index}
+                text={"data_token_mark_" + typeIndex}
                 className="ml-2"
               ></QuestionMark>
             </span>
@@ -293,7 +295,7 @@ class Tokens extends React.Component {
             "0 %"
           );
         },
-        align: "right"
+        align: "left"
       }
     ];
 

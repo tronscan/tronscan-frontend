@@ -109,7 +109,7 @@ class Accounts extends React.Component {
 
     return (
       <div className="top-data">
-        <Row gutter={{ xs: 8, sm: 20, md: 20 }} className="mt-2 data-account">
+        <Row gutter={{ xs: 8, sm: 20, md: 20 }} className="data-account">
           {Object.keys(types).map(index => (
             <Col
               className="gutter-row"
@@ -245,7 +245,7 @@ class Accounts extends React.Component {
             <span className="percentageWidth">{(text * 100).toFixed(2)} %</span>
           );
         },
-        align: "right",
+        align: "left",
         width: "90px"
       }
     ];
