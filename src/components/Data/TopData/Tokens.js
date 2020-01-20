@@ -206,11 +206,7 @@ class Tokens extends React.Component {
             <span className="">
               {isUsd ? (
                 <span>
-                  <FormattedNumber
-                    value={
-                      record.tokenPrice * record.priceInTrx * record.amount
-                    }
-                  ></FormattedNumber>{" "}
+                  <FormattedNumber value={record.priceInTrx}></FormattedNumber>{" "}
                   {unit}
                   <br />
                   <span className="usd-amount">
