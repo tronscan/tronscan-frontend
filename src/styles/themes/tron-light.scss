@@ -1214,6 +1214,13 @@ $color: #c23631;
   font-size: 16px;
 }
 
+@media (min-width: 768px) and (max-width: 980px) {
+  .tron-light {
+    .mobileFlexible {
+      display: block;
+    }
+  }
+}
 // mobile
 
 @media (max-width: 767.98px) {
@@ -1409,9 +1416,5 @@ $color: #c23631;
         color: #c23631 !important;
       }
     }
-  }
-}
-@media (max-width: 991.98px) {
-  .tron-light {
   }
 }

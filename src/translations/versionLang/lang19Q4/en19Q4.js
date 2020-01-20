@@ -179,7 +179,7 @@ export const lang19Q4 = {
     "index_page_footer_expand":"Expand",
     "index_page_footer_donate_address":"The address is held by TRON. Your donation helps build a better ecosystem.",
     "index_page_confirmed_blocks":"Confirmed blocks",
-    "index_page_confirmed_blocks_tips":"Blocks confirmed by over 19  SRs",
+    "index_page_confirmed_blocks_tips":"Blocks confirmed by 19 or more SRs",
     "index_page_switch_tokens":"Switch tokens",
     "index_page_tronscan_info":"TRONSCAN | the best block explorer of TRON.",
     "index_page_down_excel_tips":"Change the decimals mannually when opening the file in Excel.",

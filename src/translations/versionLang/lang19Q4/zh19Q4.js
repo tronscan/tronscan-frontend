@@ -184,7 +184,7 @@ export const lang19Q4 = {
    "index_page_footer_expand":"展开",
    "index_page_footer_donate_address":"该地址为波场持有，您的捐赠将帮助波场建设更美好的生态。",
    "index_page_confirmed_blocks":"已确认区块",
-   "index_page_confirmed_blocks_tips":"被19个以上超级节点确认的区块",
+   "index_page_confirmed_blocks_tips":"被19个及以上超级节点确认的区块",
    "index_page_switch_tokens":"币种切换",
    "index_page_tronscan_info":"TRONSCAN | 最好用的区块链浏览器",
    "index_page_down_excel_tips":"如使用Excel打开下载文档，需手动调节单元格小数位数。",
