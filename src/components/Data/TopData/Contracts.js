@@ -101,7 +101,7 @@ class Contracts extends React.Component {
 
     return (
       <div className="top-data">
-        <Row gutter={{ xs: 8, sm: 20, md: 20 }} className="mt-2 data-contract">
+        <Row gutter={{ xs: 8, sm: 20, md: 20 }} className="data-contract">
           {Object.keys(types).map(index => (
             <Col
               className="gutter-row"
@@ -219,7 +219,7 @@ class Contracts extends React.Component {
             </span>
           );
         },
-        align: "center",
+        align: "left",
         width: index == 11 ? "250px" : ""
       },
       {
@@ -265,7 +265,7 @@ class Contracts extends React.Component {
             <span className="percentageWidth">{(text * 100).toFixed(2)} %</span>
           );
         },
-        align: "right"
+        align: "left"
         // width: index == 11 ? "" : "90px"
       }
     ];
