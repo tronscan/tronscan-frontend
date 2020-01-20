@@ -268,7 +268,6 @@ class BestData extends React.Component {
                             to={"/blockchain/data" + tab.path}
                             className="nav-link text-dark"
                           >
-                            <i className={tab.icon + " mr-2"} />
                             {tab.label}
                           </NavLink>
                         </li>
