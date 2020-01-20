@@ -123,7 +123,7 @@ class Overview extends React.Component{
                   <div className="content-item-USD-left">{tu('data_TRX_transfer_total')}</div>
                   <div className="content-item-USD-right num-font-bold">
                     <span className="d-block">
-                    <FormattedNumber value={data.trx_transfer_amount || 0}></FormattedNumber>{" "}TRX
+                    <FormattedNumber value={data.trx_transfer_amount || 0}  maximumFractionDigits={6}></FormattedNumber>{" "}TRX
                     </span>
                     <span className="d-block usd-amount float-right">
                     ≈
@@ -140,7 +140,7 @@ class Overview extends React.Component{
                 </div>
                 <div className="content-item px-3 d-flex justify-content-between border-bottom">
                   <div>{tu('data_TRX_frozen_total')}</div>
-                  <div> <FormattedNumber value={data.whole_freeze || 0}></FormattedNumber>{" "}TRX</div>
+                  <div> <FormattedNumber value={data.whole_freeze || 0} maximumFractionDigits={0}></FormattedNumber>{" "}TRX</div>
                 </div>
                 <div className="content-item px-3 d-flex justify-content-between">
                   <div>{tu('data_votes_total')}</div>
@@ -207,6 +207,7 @@ class Overview extends React.Component{
                     <span className="d-block">
                     <FormattedNumber
                       value={data.contract_whole_balance || 0}
+                      maximumFractionDigits={6}
                     ></FormattedNumber>{" "}TRX
                     </span>
                     <span className="d-block usd-amount float-right">
