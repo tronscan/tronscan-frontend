@@ -175,7 +175,7 @@ class Contracts extends React.Component {
           );
         },
         align: "center",
-        width: "80px"
+        width: index == 11 ? "100px" : "80px"
       },
       {
         title: intl.formatMessage({ id: titles[1] }),
@@ -191,8 +191,8 @@ class Contracts extends React.Component {
             <span className="contractWidth">--</span>
           );
         },
-        align: "center",
-        width: index == 11 ? "" : "120px"
+        align: "left",
+        width: index == 11 ? "300px" : "150px"
       },
       {
         title: () => {
@@ -254,8 +254,8 @@ class Contracts extends React.Component {
             </span>
           );
         },
-        align: "left",
-        width: index == 11 ? "250px" : ""
+        align: "left"
+        // width: index == 11 ? "250px" : ""
       },
       {
         title: intl.formatMessage({ id: titles[4] }),
@@ -265,8 +265,8 @@ class Contracts extends React.Component {
             <span className="percentageWidth">{(text * 100).toFixed(2)} %</span>
           );
         },
-        align: "right",
-        width: "90px"
+        align: "right"
+        // width: index == 11 ? "" : "90px"
       }
     ];
 

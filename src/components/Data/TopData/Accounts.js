@@ -202,7 +202,7 @@ class Accounts extends React.Component {
             <span className="">--</span>
           );
         },
-        align: "center",
+        align: "left",
         width: typeIndex % 2 == 1 && "35%"
       },
       {
