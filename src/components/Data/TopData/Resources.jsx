@@ -357,7 +357,7 @@ class DataResources extends React.Component {
         <h4 style={titleStyle} className="mt-4 mb-2">
           {tu("data_resource_table_bandwidth_title")}
         </h4>
-        <div className="resourceTable top-data">
+        <div className="resourceTable bandWidthTable top-data">
           {resourcesList.length === 0 ? (
             <div className="pt-5 pb-5 text-center no-data transfers-bg-white">
               {tu("no_transfers")}
