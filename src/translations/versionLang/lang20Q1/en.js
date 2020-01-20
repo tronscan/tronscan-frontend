@@ -67,6 +67,8 @@ export const lang20Q1 = {
   data_resource_table_percentage: "Percentage",
   data_resource_table_percentage_tips:
     "Energy consumed by the user/Energy consumed by all users",
+  data_resource_bandwith_table_percentage_tips:
+    "Bandwidth consumed by the user/Bandwidth consumed by all users",
   data_resource_table_bandwidth_title: "Peak Bandwidth Consumption",
   data_resource_table_total: "Total",
   data_contract_account: "Calling Accounts",

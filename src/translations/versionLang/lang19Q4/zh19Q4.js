@@ -306,6 +306,25 @@ export const lang19Q4 = {
    "Supply_amount_net_new_y_title":" 产生量/净值（TRX）",
    "Supply_amount_net_new_tip":"TRX产生量 + TRX销毁量",
    "votes_num":"投票数",
+
+    /*
+        ##################################################################################
+        #                                                                                #
+        # txns type chart  2020-01-09                           #
+        #                                                                                #
+        ##################################################################################
+    */
+   "txns_contract_calls":"合约调用交易数",
+   "txns_TRX_transfers":"TRX转账交易数",
+   "txns_TRC10_transfers":"TRC10转账交易数",
+   "txns_frozen_transactions":"冻结交易数",
+   "txns_votes_transactions":"投票交易数",
+   "txns_other_transactions":"其它交易数",
+   "txns_shielded_transactions":"匿名交易数",
+   "chart_network_resources":"网络资源",
+   "chart_active_accounts":"活跃账户数",
+   "chart_network":"网络",
+
   
 
 

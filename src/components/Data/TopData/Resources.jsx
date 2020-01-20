@@ -1,16 +1,12 @@
 import React, { Fragment } from "react";
 import { tu, t } from "../../../utils/i18n";
 import { Table } from "antd";
-import {
-  FormattedNumber,
-  injectIntl,
-} from "react-intl";
+import { FormattedNumber, injectIntl } from "react-intl";
 import { QuestionMark } from "../../common/QuestionMark";
-import { upperFirst,cloneDeep } from "lodash";
+import { upperFirst, cloneDeep } from "lodash";
 import { AddressLink } from "../../common/Links";
 import { Link } from "react-router-dom";
 import SmartTable from "../../common/SmartTable";
-
 
 class DataResources extends React.Component {
   constructor() {
@@ -25,19 +21,18 @@ class DataResources extends React.Component {
       }
     };
   }
-  componentDidMount() {
-  }
+  componentDidMount() {}
 
   customizedEnergyColumn = () => {
-    const { topData,intl } = this.props;
-    let energyData = []
+    const { topData, intl } = this.props;
+    let energyData = [];
     if (topData) {
-      if(topData.length>0){
-        topData[0].data ? energyData = topData[0].data : [];
-      }else{
+      if (topData.length > 0) {
+        topData[0].data ? (energyData = topData[0].data) : [];
+      } else {
         energyData = [];
       }
-    }else{
+    } else {
       energyData = [];
     }
 
@@ -55,16 +50,13 @@ class DataResources extends React.Component {
         render: (text, record, index) => {
           return (
             <span className="rankWidth">
-               {index == length ? (
+              {index == length ? (
                 intl.formatMessage({ id: "data_total" })
+              ) : index < 3 ? (
+                <span className={`rank-${index} rank`}></span>
               ) : (
-                index < 3 ? (
-                  <span className={`rank-${index} rank`}></span>
-                ) : (
-                  index + 1
-                )
-              )
-             }
+                index + 1
+              )}
             </span>
           );
         }
@@ -82,7 +74,7 @@ class DataResources extends React.Component {
         render: (text, record, index) => {
           return text ? (
             <span className="resourceAddress">
-               {record.addressTag ? (
+              {record.addressTag ? (
                 <Link to={`/address/${text}`}>{record.addressTag}</Link>
               ) : (
                 <AddressLink address={text}>{text}</AddressLink>
@@ -105,7 +97,8 @@ class DataResources extends React.Component {
         render: (text, record, index) => {
           return (
             <span className="">
-              <FormattedNumber value={parseInt(text || 0)}></FormattedNumber> ENERGY
+              <FormattedNumber value={parseInt(text || 0)}></FormattedNumber>{" "}
+              ENERGY
             </span>
           );
         }
@@ -122,7 +115,8 @@ class DataResources extends React.Component {
         render: (text, record, index) => {
           return (
             <span className="">
-              <FormattedNumber value={parseInt(text || 0)}></FormattedNumber> ENERGY
+              <FormattedNumber value={parseInt(text || 0)}></FormattedNumber>{" "}
+              ENERGY
             </span>
           );
         }
@@ -139,7 +133,8 @@ class DataResources extends React.Component {
         render: (text, record, index) => {
           return (
             <span className="">
-              <FormattedNumber value={parseInt(text || 0)}></FormattedNumber> ENERGY
+              <FormattedNumber value={parseInt(text || 0)}></FormattedNumber>{" "}
+              ENERGY
             </span>
           );
         }
@@ -174,16 +169,15 @@ class DataResources extends React.Component {
   };
 
   customizedBandWidthColumn = () => {
-    const { topData,intl } = this.props;
-    let bandWidthData = []
+    const { topData, intl } = this.props;
+    let bandWidthData = [];
     if (topData) {
-      if(topData.length>0){
-        topData[1].data ? bandWidthData = topData[1].data : [];
-      }else{
-        bandWidthData=[]
+      if (topData.length > 0) {
+        topData[1].data ? (bandWidthData = topData[1].data) : [];
+      } else {
+        bandWidthData = [];
       }
-     
-    }else{
+    } else {
       bandWidthData = [];
     }
     const length = bandWidthData.length - 1;
@@ -199,16 +193,13 @@ class DataResources extends React.Component {
         render: (text, record, index) => {
           return (
             <span className="rankWidth">
-               {index == length ? (
+              {index == length ? (
                 intl.formatMessage({ id: "data_total" })
+              ) : index < 3 ? (
+                <span className={`rank-${index} rank`}></span>
               ) : (
-                index < 3 ? (
-                  <span className={`rank-${index} rank`}></span>
-                ) : (
-                  index + 1
-                )
-              )
-             }
+                index + 1
+              )}
             </span>
           );
         },
@@ -227,7 +218,7 @@ class DataResources extends React.Component {
         render: (text, record, index) => {
           return text ? (
             <span className="resourceAddress">
-               {record.addressTag ? (
+              {record.addressTag ? (
                 <Link to={`/address/${text}`}>{record.addressTag}</Link>
               ) : (
                 <AddressLink address={text}>{text}</AddressLink>
@@ -241,7 +232,7 @@ class DataResources extends React.Component {
       {
         title: upperFirst(
           intl.formatMessage({
-            id: "data_resource_table_freezingTRX_energy"
+            id: "data_bandwidth_freezed"
           })
         ),
         dataIndex: "net_use",
@@ -250,7 +241,8 @@ class DataResources extends React.Component {
         render: (text, record, index) => {
           return (
             <span>
-              <FormattedNumber value={parseInt(text || 0)}></FormattedNumber> ENERGY
+              <FormattedNumber value={parseInt(text || 0)}></FormattedNumber>{" "}
+              BANDWIDTH
             </span>
           );
         }
@@ -258,7 +250,7 @@ class DataResources extends React.Component {
       {
         title: upperFirst(
           intl.formatMessage({
-            id: "data_resource_table_burningTRX_energy"
+            id: "data_bandwidth_burned"
           })
         ),
         dataIndex: "net_burn",
@@ -267,7 +259,8 @@ class DataResources extends React.Component {
         render: (text, record, index) => {
           return (
             <span>
-              <FormattedNumber value={parseInt(text || 0)}></FormattedNumber> ENERGY
+              <FormattedNumber value={parseInt(text || 0)}></FormattedNumber>{" "}
+              BANDWIDTH
             </span>
           );
         }
@@ -275,7 +268,7 @@ class DataResources extends React.Component {
       {
         title: upperFirst(
           intl.formatMessage({
-            id: "data_resource_table_energy_consumed"
+            id: "data_bandwidth_consumed_total"
           })
         ),
         dataIndex: "whole_net_use",
@@ -284,7 +277,8 @@ class DataResources extends React.Component {
         render: (text, record, index) => {
           return (
             <span>
-              <FormattedNumber value={parseInt(text || 0)}></FormattedNumber> ENERGY
+              <FormattedNumber value={parseInt(text || 0)}></FormattedNumber>{" "}
+              BANDWIDTH
             </span>
           );
         }
@@ -300,7 +294,7 @@ class DataResources extends React.Component {
               </span>
               <QuestionMark
                 placement="top"
-                text="data_resource_table_percentage_tips"
+                text="data_resource_bandwith_table_percentage_tips"
               />
             </div>
           );
@@ -318,30 +312,24 @@ class DataResources extends React.Component {
     return column;
   };
 
-
-
-
-
-
-
   render() {
     let energyColumns = this.customizedEnergyColumn();
     let bandWidthColumns = this.customizedBandWidthColumn();
     const { resourcesList, loading, titleStyle } = this.state;
     const { topData } = this.props;
     let energyData, bandWidthData;
-   
+
     if (topData) {
-      if(topData.length>0){
-        topData[0].data ? energyData = topData[0].data : [];
-        topData[1].data ? bandWidthData = topData[1].data : [];
-      }else{
+      if (topData.length > 0) {
+        topData[0].data ? (energyData = topData[0].data) : [];
+        topData[1].data ? (bandWidthData = topData[1].data) : [];
+      } else {
         energyData = [];
-        bandWidthData = []
+        bandWidthData = [];
       }
-    }else{
+    } else {
       energyData = [];
-      bandWidthData = []
+      bandWidthData = [];
     }
 
     return (

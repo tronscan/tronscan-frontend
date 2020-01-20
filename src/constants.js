@@ -14,6 +14,7 @@ export const NETURL = {
   NEWSUNNET: "https://dappchain.tronscan.io",
   MAINNET: "http://18.217.215.94:65",
   SUNNET: "http://18.217.215.94:66"
+
 };
 
 export const TOKENINFO_UPDATE = "TOKENINFO_UPDATE";
@@ -24,10 +25,12 @@ let SUNNET;
 let NODEAPI;
 
 if (NODE_ENV == "development") {
-  MAINNET = Lockr.get("NET") === "mainnet" || !Lockr.get("NET");
-  SUNNET = Lockr.get("NET") === "sunnet";
-  // NODEAPI = "http://52.15.126.154:9016";
-  NODEAPI = process.env.API_URL;
+
+    MAINNET = Lockr.get("NET") === "mainnet" || !Lockr.get("NET");
+    SUNNET = Lockr.get("NET") === "sunnet";
+    // NODEAPI = "https://tronexapi.tronscan.org";
+    // NODEAPI = "http://18.222.181.154:9017"
+    NODEAPI = process.env.API_URL;
 } else {
   MAINNET =
     window.location.origin === NETURL.MAINNET ||
@@ -41,6 +44,8 @@ if (NODE_ENV == "development") {
 
 export let IS_MAINNET = MAINNET;
 export let IS_SUNNET = SUNNET;
+
+
 
 export const BLOCK_REWARD = 32;
 export const SR_MAX_COUNT = 27;
@@ -60,8 +65,8 @@ export const API_URL_SUNNET = "https://dappchainapi.tronscan.org";
 // export const API_URL_MAINNET = 'https://apilist.tronscan.org';
 export const API_URL = IS_SUNNET ? API_URL_SUNNET : process.env.API_URL;
 export const CONTRACT_MAINNET_API_URL = process.env.API_URL;
-export const CONTRACT_NODE_API = NODEAPI;
-
+export const CONTRACT_NODE_API = API_URL;
+// export const CONTRACT_NODE_API = API_URL;
 //Token issued
 export const MARKET_API_URL = "https://platform.tron.network";
 

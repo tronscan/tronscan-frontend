@@ -228,7 +228,7 @@ export const routes = [
         // icon: "fas fa-file-signature",
         icon: false,
         component: ContractCompilerAsync,
-        showInMenu: IS_MAINNET ? true : false
+        // showInMenu: IS_MAINNET ? true : false
       },
       {
         path: "/contracts/contract-compiler/:type",

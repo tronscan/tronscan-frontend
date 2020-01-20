@@ -20,14 +20,22 @@
           }
         }
       }
+      .dropdown-menu{
+        z-index: 999;
+      }
     }
   }
-  .single-menu-nav-wrapper{
+  .nav-searchbar{
+    .dropdown-menu{
+      z-index: 300;
+    }
+  }
+  .single-menu-nav-wrapper {
     .new-menu-List {
       .navbar-nav {
         .nav-item {
           .nav-link {
-            padding:0.5rem 0.8rem;
+            padding: 0.5rem 0.8rem;
           }
         }
       }
@@ -35,7 +43,7 @@
   }
   .loginInfoNavBar {
     .mainetMargin {
-      padding:0.5rem 1rem 0.5rem 0;
+      padding: 0.5rem 1rem 0.5rem 0;
     }
   }
   .menu-nav-wrapper {
@@ -62,18 +70,18 @@
       padding-right: 0;
     }
   }
-  .sunnet-menu-nav-wrapper{
+  .sunnet-menu-nav-wrapper {
     max-width: 1380px;
-    margin:0 auto;
+    margin: 0 auto;
     justify-content: space-between;
   }
   .logo-wrapper {
     background: $white;
   }
-  .sunnet-logo-title{
-    display:inline-block;
-    height:30px;
-    margin-top: 0.5rem
+  .sunnet-logo-title {
+    display: inline-block;
+    height: 30px;
+    margin-top: 0.5rem;
   }
   .footerContainer {
     position: relative;
@@ -207,6 +215,15 @@
       font-size: 0.7rem;
     }
   }
+  .header-top {
+    .hidden-PC {
+      .input-group {
+        input {
+          height: 36px !important;
+        }
+      }
+    }
+  }
 
   .navbar-dark .navbar-nav .nav-link {
     color: #000;
@@ -231,22 +248,30 @@
     input {
       // background-color: $white !important;
       // border: 1px solid $text-block !important;
-      background-color: #DEDEDE !important;
+      background-color: #dedede !important;
       border-radius: 2px;
     }
     .newSearchInput {
       background: #e9e9e9 !important;
       text-indent: 0.6rem;
       font-family: HelveticaNeue;
+      color:#212529;
+    }
+    .newSearchInput::placeholder{
       color: #999999;
     }
     .input-group-append button {
-      width:72px;
+      width: 72px;
       border-radius: 0 2px 2px 0;
-      background-color: #C64844;
-      border-color: #C64844;
+      background-color: #c64844;
+      border-color: #c64844;
       color: #fff;
-      font-size:14px;
+      font-size: 14px;
+    }
+    .input-group-append .mobile-button-search {
+      background: #c23631;
+      border-color: #c23631;
+      width: 44px;
     }
   }
   // default background style ====================================================
@@ -975,7 +1000,6 @@ $color: #c23631;
         word-wrap: break-word;
       }
     }
-
   }
   .navbar-dark .navbar-nav .nav-link {
     color: $color-grey-100;
@@ -1252,11 +1276,30 @@ $color: #c23631;
       .ant-menu-vertical-left {
         border-right: none;
       }
+      .ant-menu-submenu-title,
+      .ant-menu-item,
+      .ant-collapse-header {
+        text-transform: uppercase;
+      }
+      // .ant-menu-submenu {
+      //   .ant-menu {
+      //     .dropdown-item {
+      //       text-transform: none;
+      //       span {
+      //         text-transform: none;
+      //       }
+      //     }
+      //   }
+      // }
     }
     .menu-single-tilte {
       font-family: HelveticaNeue;
       color: #ffffff;
       font-size: 14px;
+
+    }
+    .dapp-link-style{
+      padding-left: 0.8rem;
     }
     .menu-active-tilte {
       font-family: HelveticaNeue;
@@ -1275,6 +1318,13 @@ $color: #c23631;
           font-family: HelveticaNeue;
           color: #ffffff;
           font-size: 12px;
+          .menu-single-tilte{
+            padding-left: 0.8rem;
+            font-size: 12px;
+          }
+          .more-menu-single-tilte-style{
+            padding-left: 0;
+          }
           .dropdown-item {
             line-height: 1.6rem;
             font-family: HelveticaNeue;
@@ -1282,6 +1332,15 @@ $color: #c23631;
             font-size: 12px;
           }
         }
+      }
+     
+    }
+     .more-menu-mobile-wrapper{
+        padding-left:0.8rem;
+      }
+    .languages-menu,.currency-menu{
+      .dropdown-item{
+        padding:0.25rem 1.5rem;
       }
     }
     .nav-network-hot {
@@ -1305,8 +1364,10 @@ $color: #c23631;
     background: rgba(0, 0, 0, 0.85);
     color: #fff;
     .ant-collapse-item {
-      border-top: 1px solid #d9d9d9;
       border-bottom: none;
+      &:first-child {
+        border-top: 1px solid #d9d9d9;
+      }
     }
   }
   .ant-collapse {
@@ -1330,14 +1391,18 @@ $color: #c23631;
 }
 @media (max-width: 991.98px) {
   .tron-light {
-    .nav-link {
-      padding: 0;
-    }
-    ul.navbar-nav {
-      li:first-child {
-        margin-top: 10px;
+    .loginInfoNavBar{
+      .nav-link {
+        padding: 0;
+      }
+      ul.navbar-nav {
+        li:first-child {
+          margin-top: 10px;
+        }
       }
     }
+   
+   
   
     .menu-nav-wrapper {
       justify-content: space-between;

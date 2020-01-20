@@ -75,6 +75,8 @@ export const lang20Q1 = {
   data_resource_table_energy_consumed: "消耗总能量",
   data_resource_table_percentage: "占比",
   data_resource_table_percentage_tips: "当前用户消耗能量/全网用户消耗能量",
+  data_resource_bandwith_table_percentage_tips:
+    "当前用户消耗带宽/全网用户消耗带宽",
   data_resource_table_bandwidth_title: "最高带宽消耗",
   data_resource_table_total: "总计",
 
