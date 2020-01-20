@@ -1307,7 +1307,7 @@ class Navigation extends React.Component {
               
 
               <div className="loginInfoNavBar">
-                <div className={IS_MAINNET ? "navbar navbar-expand-md navbar-dark py-0 page-right-navbar mainetMargin" : "navbar navbar-expand-md navbar-dark py-0 page-right-navbar"}>
+                <div className={IS_MAINNET ? "navbar navbar-expand-md navbar-dark py-0 page-right-navbar mainetMargin mobileMarginMenu" : "navbar navbar-expand-md navbar-dark py-0 page-right-navbar"}>
                   <ul className="navbar-nav navbar-right wallet-nav">
                     {
                       wallet.isOpen && <Notifications wallet={wallet} notifications={notifications}/>

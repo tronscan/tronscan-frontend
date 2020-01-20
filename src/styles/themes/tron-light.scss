@@ -20,13 +20,13 @@
           }
         }
       }
-      .dropdown-menu{
+      .dropdown-menu {
         z-index: 999;
       }
     }
   }
-  .nav-searchbar{
-    .dropdown-menu{
+  .nav-searchbar {
+    .dropdown-menu {
       z-index: 300;
     }
   }
@@ -255,9 +255,9 @@
       background: #e9e9e9 !important;
       text-indent: 0.6rem;
       font-family: HelveticaNeue;
-      color:#212529;
+      color: #212529;
     }
-    .newSearchInput::placeholder{
+    .newSearchInput::placeholder {
       color: #999999;
     }
     .input-group-append button {
@@ -1296,9 +1296,8 @@ $color: #c23631;
       font-family: HelveticaNeue;
       color: #ffffff;
       font-size: 14px;
-
     }
-    .dapp-link-style{
+    .dapp-link-style {
       padding-left: 0.8rem;
     }
     .menu-active-tilte {
@@ -1318,11 +1317,11 @@ $color: #c23631;
           font-family: HelveticaNeue;
           color: #ffffff;
           font-size: 12px;
-          .menu-single-tilte{
+          .menu-single-tilte {
             padding-left: 0.8rem;
             font-size: 12px;
           }
-          .more-menu-single-tilte-style{
+          .more-menu-single-tilte-style {
             padding-left: 0;
           }
           .dropdown-item {
@@ -1333,14 +1332,14 @@ $color: #c23631;
           }
         }
       }
-     
     }
-     .more-menu-mobile-wrapper{
-        padding-left:0.8rem;
-      }
-    .languages-menu,.currency-menu{
-      .dropdown-item{
-        padding:0.25rem 1.5rem;
+    .more-menu-mobile-wrapper {
+      padding-left: 0.8rem;
+    }
+    .languages-menu,
+    .currency-menu {
+      .dropdown-item {
+        padding: 0.25rem 1.5rem;
       }
     }
     .nav-network-hot {
@@ -1391,7 +1390,14 @@ $color: #c23631;
 }
 @media (max-width: 991.98px) {
   .tron-light {
-    .loginInfoNavBar{
+    .mobileMarginMenu {
+      .navbar-nav {
+        .nav-static {
+          padding-top: 10px;
+        }
+      }
+    }
+    .loginInfoNavBar {
       .nav-link {
         padding: 0;
       }
@@ -1401,9 +1407,7 @@ $color: #c23631;
         }
       }
     }
-   
-   
-  
+
     .menu-nav-wrapper {
       justify-content: space-between;
       .logo {
