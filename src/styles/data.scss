@@ -367,4 +367,13 @@
       }
     }
   }
+  .bandWidthTable {
+    .ant-table-thead {
+      th {
+        .ant-table-column-title {
+          white-space: normal;
+        }
+      }
+    }
+  }
 }
