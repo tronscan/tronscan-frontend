@@ -207,9 +207,8 @@ class Tokens extends React.Component {
               {isUsd ? (
                 <span>
                   <FormattedNumber
-                    value={
-                      record.tokenPrice * record.priceInTrx * record.amount
-                    }
+                    value={record.priceInTrx}
+                    maximumFractionDigits={6}
                   ></FormattedNumber>{" "}
                   {unit}
                   <br />
@@ -217,6 +216,7 @@ class Tokens extends React.Component {
                     ≈
                     <FormattedNumber
                       value={record[type] * priceUSD || 0}
+                      maximumFractionDigits={3}
                     ></FormattedNumber>{" "}
                     {usdUnit}
                   </span>

@@ -25,8 +25,8 @@ class Contracts extends React.Component {
     this.state = {
       trxUnit: "TRX",
       usdUnit: "USD",
-      tpUnit:'TP',
-      txnUnit:'Txns',
+      tpUnit: "TP",
+      txnUnit: "Txns",
       types: {
         11: {
           title: "data_contract_trx_number",
@@ -235,7 +235,10 @@ class Contracts extends React.Component {
         render: (text, record, index) => {
           return (
             <span className="">
-              <FormattedNumber value={record[type] || 0}></FormattedNumber>{" "}
+              <FormattedNumber
+                value={record[type] || 0}
+                maximumFractionDigits={isUsd ? 6 : 0}
+              ></FormattedNumber>{" "}
               {isUsd && trxUnit}
               <br />
               {isUsd && (
@@ -243,6 +246,7 @@ class Contracts extends React.Component {
                   ≈
                   <FormattedNumber
                     value={record[type] * priceUSD || 0}
+                    maximumFractionDigits={3}
                   ></FormattedNumber>{" "}
                   {usdUnit}
                 </span>
