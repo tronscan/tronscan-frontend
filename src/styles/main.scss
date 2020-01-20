@@ -487,8 +487,8 @@ tr a {
   height: 100px;
   max-width: 100%;
 }
-@media (min-width: 79px){
-  #root{
+@media (min-width: 79px) {
+  #root {
     min-width: 1424px;
     width: 100%;
   }
@@ -497,7 +497,7 @@ tr a {
 /* Mobile fixes */
 
 @media only screen and (max-width: 768px) {
-  #root{
+  #root {
     min-width: 100%;
     width: 100%;
   }
@@ -3239,7 +3239,7 @@ h5 {
 }
 
 .languages-menu {
-  left: -10px;
+  left: -22px;
 }
 
 .transactions-rangePicker {
