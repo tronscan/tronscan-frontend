@@ -1243,6 +1243,14 @@ $color: #c23631;
 
 @media (max-width: 767.98px) {
   .tron-light {
+    .logo-wrapper {
+      .logoTrxPrice {
+        padding-left:0;
+      }
+      .loginInfoNavBar {
+        padding-right: 0;
+      }
+    }
     .mobileFlexible {
       display: flex;
       flex-direction: column;
