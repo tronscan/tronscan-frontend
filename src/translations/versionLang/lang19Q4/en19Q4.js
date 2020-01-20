@@ -238,7 +238,7 @@ export const lang19Q4 = {
 
     // 2019-12-25 xyy
     "transaction_hash":"Hash",
-    "transaction_status_tip":'Transactions confirmed by over 19 SRs will be marked "confirmed"',
+    "transaction_status_tip":'Transactions confirmed by 19 or more SRs will be marked "confirmed"',
     "transaction_type": "Transaction type",
     "transaction_owner_address":"Owner address",
     "transaction_receiver_address":"Resource-receiving address",
