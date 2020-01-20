@@ -282,7 +282,13 @@ class Tokens extends React.Component {
         dataIndex: "percentage",
         render: (text, record, index) => {
           return text ? (
-            <span className="percentageWidth">{(text * 100).toFixed(2)} %</span>
+            <span className="percentageWidth">
+              <FormattedNumber
+                value={text * 100}
+                maximumFractionDigits={3}
+              ></FormattedNumber>{" "}
+              %
+            </span>
           ) : (
             "0 %"
           );
