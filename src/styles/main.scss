@@ -57,7 +57,7 @@ body {
 #root {
   min-height: 100%;
   display: flex;
-  min-width: 1200px;
+  // min-width: 1424px;
   flex-direction: column;
 }
 
@@ -487,10 +487,20 @@ tr a {
   height: 100px;
   max-width: 100%;
 }
+@media (min-width: 79px){
+  #root{
+    min-width: 1424px;
+    width: 100%;
+  }
+}
 
 /* Mobile fixes */
 
 @media only screen and (max-width: 768px) {
+  #root{
+    min-width: 100%;
+    width: 100%;
+  }
   .more-menu {
     min-width: 100% !important;
     flex-direction: column !important;

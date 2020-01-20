@@ -1218,6 +1218,34 @@ $color: #c23631;
 
 @media (max-width: 767.98px) {
   .tron-light {
+    .mobileFlexible {
+      display: flex;
+      flex-direction: column;
+    }
+    .mobileMarginMenu {
+      .navbar-nav {
+        .nav-static {
+          padding-top: 10px;
+        }
+      }
+    }
+    .loginInfoNavBar {
+      .nav-link {
+        padding: 0;
+      }
+      ul.navbar-nav {
+        li:first-child {
+          margin-top: 10px;
+        }
+      }
+    }
+
+    .menu-nav-wrapper {
+      justify-content: space-between;
+      .logo {
+        height: 26px;
+      }
+    }
     .currentTRXInfo {
       margin-right: 0;
       .TRXPric {
@@ -1233,11 +1261,6 @@ $color: #c23631;
       .logo {
         height: 24px;
       }
-    }
-
-    .mobileFlexible {
-      display: flex;
-      flex-direction: column;
     }
     .loginInfoNavBar {
       .mainetMargin {
