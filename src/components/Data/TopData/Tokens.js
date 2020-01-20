@@ -11,6 +11,8 @@ import SmartTable from "../../common/SmartTable";
 import { cloneDeep } from "lodash";
 import { Link } from "react-router-dom";
 import { QuestionMark } from "../../common/QuestionMark";
+import xhr from "axios/index";
+import { API_URL } from "../../../constants";
 
 @injectIntl
 @connect(
@@ -29,6 +31,7 @@ class Tokens extends React.Component {
     this.state = {
       trxUnit: "TRX",
       usdUnit: "USD",
+      UsdToTrx: 0,
       types: {
         7: {
           title: "data_token_holders",
@@ -73,7 +76,7 @@ class Tokens extends React.Component {
             "data_token_transcation_number",
             "data_token_circle_per"
           ],
-          key: "amount",
+          key: "priceInTrx",
           data: [],
           isUSD: true,
           unit: trxUnit
@@ -82,9 +85,28 @@ class Tokens extends React.Component {
     };
   }
   async componentDidMount() {
+    this.getUsdtPrice();
     this.getData();
     let { priceUSD } = this.props;
     !priceUSD && (await this.props.loadUsdPrice());
+  }
+
+  getUsdtPrice() {
+    xhr
+      .get(
+        API_URL +
+          "/api/token_trc20?contract=TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t&showAll=1"
+      )
+      .then(res => {
+        let trc20_tokens = res.data.trc20_tokens || [];
+        let UsdToTrx =
+          trc20_tokens && trc20_tokens[0] && trc20_tokens[0].market_info
+            ? trc20_tokens[0].market_info.priceInTrx
+            : 0;
+        this.setState({
+          UsdToTrx
+        });
+      });
   }
 
   async getData() {
@@ -147,7 +169,7 @@ class Tokens extends React.Component {
   renderDataTable(data, title, isUsd, type, index, unit) {
     const defaultImg = require("../../../images/logo_default.png");
 
-    const { trxUnit, usdUnit } = this.state;
+    const { trxUnit, usdUnit, UsdToTrx } = this.state;
     const { intl, priceUSD } = this.props;
     const titles = title;
     let arr = cloneDeep(data);
@@ -206,11 +228,23 @@ class Tokens extends React.Component {
             <span className="">
               {isUsd ? (
                 <span>
-                  <FormattedNumber
-                    value={record.priceInTrx}
-                    maximumFractionDigits={6}
-                  ></FormattedNumber>{" "}
-                  {unit}
+                  {record.token_id == "TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t" ? (
+                    <span>
+                      <FormattedNumber
+                        value={record.priceInTrx / UsdToTrx}
+                        maximumFractionDigits={6}
+                      ></FormattedNumber>{" "}
+                      USDT
+                    </span>
+                  ) : (
+                    <span>
+                      <FormattedNumber
+                        value={record.priceInTrx}
+                        maximumFractionDigits={6}
+                      ></FormattedNumber>{" "}
+                      {unit}
+                    </span>
+                  )}
                   <br />
                   <span className="usd-amount">
                     ≈
