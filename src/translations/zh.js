@@ -2386,7 +2386,7 @@ export const messages = {
     "tooltip_accounts": "主链与SUN Network 实时账户数之和",
     "tooltip_accounts_mainnet": "主链上实时账户数",
     "tooltip_accounts_sunnet": "SUN Network上实时账户数",
-    "tooltip_trxPrice": "TRX对比USD的价格",
+    "tooltip_trxPrice": "TRX的USD价格",
     "tooltip_trxPrice_mainnet": "TRX对比USD的价格，实时波动",
     "tooltip_trxPrice_sunnet": "TRX对比USD的价格，实时波动",
     "nav_network": "SUN Network",

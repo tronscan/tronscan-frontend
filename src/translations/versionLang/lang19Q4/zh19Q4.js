@@ -234,7 +234,7 @@ export const lang19Q4 = {
 
     // 2019-12-25 xyy
     "transaction_hash":"哈希",
-    "transaction_status_tip":'"已确认"是指被19个以上超级节点确认',
+    "transaction_status_tip":'"已确认"是指被19个及以上超级节点确认',
     "transaction_type": "交易类型",
     "transaction_owner_address":"发起地址",
     "transaction_receiver_address":"资源接收地址",
@@ -260,7 +260,7 @@ export const lang19Q4 = {
     "transaction_UNFREEZEASSETCONTRACT":"TRC10 通证锁仓解冻",
     "transaction_UPDATEASSETCONTRACT":"更新TRC10通证参数",
     "transaction_ACCOUNTCREATECONTRACT":"激活账户",
-    "transaction_WITHDRAWBALANCECONTRACT":"提取奖励",
+    "transaction_WITHDRAWBALANCECONTRACT":"提取收益",
     "transaction_TRIGGERSMARTCONTRACT":"触发智能合约",
     "transaction_VOTEWITNESSCONTRACT":"投票",
     "transaction_WITNESSCREATECONTRACT":"申请成为SR候选人",

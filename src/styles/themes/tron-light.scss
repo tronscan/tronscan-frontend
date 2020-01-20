@@ -41,18 +41,24 @@
       }
     }
   }
+ 
   .loginInfoNavBar {
+    padding-right:30px;
     .mainetMargin {
       padding: 0.5rem 1rem 0.5rem 0;
     }
   }
   .menu-nav-wrapper {
-    max-width: 1600px;
-    margin: 0 auto;
-    justify-content: center;
+ 
+    padding:0 30px;
+    justify-content: space-between;
     .page-right-navbar {
       padding-right: 0;
     }
+  }
+  .logoTrxPrice{
+    display: flex;
+    padding-left:30px;
   }
   .indxe-page-bottom-sec {
     position: relative;
@@ -63,16 +69,16 @@
     }
   }
   .single-menu-nav-wrapper {
-    max-width: 1268px;
-    margin: 0 auto;
+    // max-width: 1268px;
+    // margin: 0 auto;
     justify-content: space-between;
     .page-right-navbar {
       padding-right: 0;
     }
   }
   .sunnet-menu-nav-wrapper {
-    max-width: 1380px;
-    margin: 0 auto;
+    // max-width: 1380px;
+    // margin: 0 auto;
     justify-content: space-between;
   }
   .logo-wrapper {
@@ -1270,6 +1276,7 @@ $color: #c23631;
       }
     }
     .loginInfoNavBar {
+     
       .mainetMargin {
         margin-top: 10px;
       }
