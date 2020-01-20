@@ -3238,8 +3238,9 @@ h5 {
   margin-top: -4px;
 }
 
-.languages-menu {
+.dropdown-menu.languages-menu {
   left: -22px;
+  min-width: 5rem;
 }
 
 .transactions-rangePicker {

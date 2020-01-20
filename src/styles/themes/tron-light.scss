@@ -41,24 +41,38 @@
       }
     }
   }
- 
+  // logo wrapper style
+  .logo-wrapper {
+    background: $white;
+    .logoTrxPrice {
+      padding-left: 30px;
+    }
+    .loginInfoNavBar {
+      padding-right: 30px;
+    }
+  }
+  .single-logo-wrapper {
+    .logoTrxPrice {
+      padding-left: 0;
+    }
+    .loginInfoNavBar {
+      padding-right: 0;
+    }
+  }
   .loginInfoNavBar {
-    padding-right:30px;
     .mainetMargin {
       padding: 0.5rem 1rem 0.5rem 0;
     }
   }
   .menu-nav-wrapper {
- 
-    padding:0 30px;
+    padding: 0 30px;
     justify-content: space-between;
     .page-right-navbar {
       padding-right: 0;
     }
   }
-  .logoTrxPrice{
+  .logoTrxPrice {
     display: flex;
-    padding-left:30px;
   }
   .indxe-page-bottom-sec {
     position: relative;
@@ -81,9 +95,7 @@
     // margin: 0 auto;
     justify-content: space-between;
   }
-  .logo-wrapper {
-    background: $white;
-  }
+
   .sunnet-logo-title {
     display: inline-block;
     height: 30px;
@@ -1276,7 +1288,6 @@ $color: #c23631;
       }
     }
     .loginInfoNavBar {
-     
       .mainetMargin {
         margin-top: 10px;
       }
@@ -1425,5 +1436,3 @@ $color: #c23631;
     }
   }
 }
-
-
