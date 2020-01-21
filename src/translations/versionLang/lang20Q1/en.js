@@ -58,7 +58,7 @@ export const lang20Q1 = {
   data_contract_numbers: "Balance",
   data_contract_times: "Top Contracts--Number of Calls",
   data_real_time: "Real-time",
-  data_resource_table_title: "Top accounts by Energy consumption",
+  data_resource_table_title: "Peak Energy Consumption",
   data_resource_table_rank: "Rank",
   data_resource_table_account: "Account",
   data_resource_table_freezingTRX_energy: "Energy from Freezing TRX",
@@ -69,7 +69,7 @@ export const lang20Q1 = {
     "Energy consumed by the user/Energy consumed by all users",
   data_resource_bandwith_table_percentage_tips:
     "Bandwidth consumed by the user/Bandwidth consumed by all users",
-  data_resource_table_bandwidth_title: "Top accounts by bandwidth consumption",
+  data_resource_table_bandwidth_title: "Peak Bandwidth Consumption",
   data_resource_table_total: "Total",
   data_contract_account: "Calling Accounts",
   data_contract_time: "Number of Calls",
@@ -102,9 +102,10 @@ export const lang20Q1 = {
   data_energy_consumed_total: "Total Energy Consumed",
   data_energy_freezed: "Energy from Freezing TRX",
   data_energy_burned: "Energy from Burning TRX",
+  data_whole_contract_use: "Energy from Contract Deployer",
   data_bandwidth_consumed_total: "Total Bandwidth Consumed",
   data_bandwidth_freezed: "Bandwidth from Freezing TRX",
   data_bandwidth_burned: "Bandwidth from Burning TRX",
-  data_area: "Only tokens listed on POLONI DEX are included"
-
+  data_area:
+    "Only tokens listed on <a href='https://poloniex.org/'>POLONI DEX</a> are included"
 };

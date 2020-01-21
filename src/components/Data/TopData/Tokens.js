@@ -126,12 +126,20 @@ class Tokens extends React.Component {
   }
 
   render() {
+    let { intl } = this.props;
     let { types } = this.state;
     const livetImg = require("../../../images/data/live.svg");
 
     return (
       <div className="top-data">
-        <p className="data-area">{tu("data_area")}</p>
+        <p className="data-area">
+          <div
+            className="content"
+            dangerouslySetInnerHTML={{
+              __html: intl.formatMessage({ id: "data_area" })
+            }}
+          />
+        </p>
         <Row gutter={{ xs: 8, sm: 20, md: 20 }} className="data-token">
           {Object.keys(types).map(index => (
             <Col

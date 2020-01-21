@@ -9,6 +9,8 @@ import { loadUsdPrice } from "../../../actions/blockchain";
 import { FormattedNumber } from "react-intl";
 import SmartTable from "../../common/SmartTable";
 import { cloneDeep } from "lodash";
+import isMobile from "../../../utils/isMobile";
+
 
 @injectIntl
 @connect(
@@ -175,7 +177,7 @@ class Contracts extends React.Component {
           );
         },
         align: "center",
-        width: index == 11 ? "15%" : "10%"
+        width: index == 11 ? (isMobile ? '10%' : '5%') : "10%"
       },
       {
         title: intl.formatMessage({ id: titles[1] }),
@@ -192,7 +194,7 @@ class Contracts extends React.Component {
           );
         },
         align: "left",
-        width: index == 11 ? "35%" : "30%"
+        width: index == 11 ? (isMobile ? '30%' : '35%') : "30%"
       },
       {
         title: () => {

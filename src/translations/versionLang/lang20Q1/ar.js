@@ -57,7 +57,7 @@ export const lang20Q1 = {
   data_contract_numbers: "مجموع رصيد",
   data_contract_times: "أفضل العقود - عدد الدعوات",
   data_real_time: "الوقت الحقيقي",
-  data_resource_table_title: "حساب الحد الإقصى لإستهلاك الطاقة",
+  data_resource_table_title: "الحد الأقصى لاستهلاك الطاقة",
   data_resource_table_rank: "المرتبة ",
   data_resource_table_account: "الحسابات",
   data_resource_table_freezingTRX_energy: "إستهلاك الطاقة لتجميد TRX",
@@ -69,7 +69,7 @@ export const lang20Q1 = {
   data_resource_bandwith_table_percentage_tips:
     "النطاق الترددي الذي يستهلكه المستخدمون الحاليون / النطاق الترددي الذي يستهلكه جميع المستخدمين عبر الشبكة",
   data_resource_table_bandwidth_title:
-    "حساب الحد الأقصى لاستهلاك عرض النطاق الترددي",
+    "الحد الأقصى لاستهلاك عرض النطاق الترددي",
   data_resource_table_total: "المجموع",
   data_contract_account: "دعوات عدد حسابات ",
   data_contract_time: "عدد الدعوات",
@@ -103,9 +103,9 @@ export const lang20Q1 = {
   data_energy_consumed_total: "إجمالي الطاقة المستهلكة",
   data_energy_freezed: "إستهلاك الطاقة لتجميد TRX",
   data_energy_burned: "إستهلاك الطاقة لحرق TRX",
+  data_whole_contract_use:"الطاقة من ناشر العقد",
   data_bandwidth_consumed_total: "إجمالي عرض النطاق الترددي المستهلك",
   data_bandwidth_freezed: "عرض النطاق الترددي المستهلك لتجميد TRX",
   data_bandwidth_burned: "عرض النطاق الترددي المستهلك لحرق TRX",
-  data_area: "يتم تضمين إحصائيات الرموز المدرجة فقط على POLONI DEX"
-
+  data_area: "يتم تضمين إحصائيات الرموز المدرجة فقط على <a href='https://poloniex.org/'>POLONI DEX</a>"
 };

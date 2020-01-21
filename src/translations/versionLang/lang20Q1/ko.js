@@ -57,7 +57,7 @@ export const lang20Q1 = {
   data_contract_numbers: "총 잔액",
   data_contract_times: "최고 계약-- 호출 횟수",
   data_real_time: "실시간",
-  data_resource_table_title: "계정 최대 에너지 소비",
+  data_resource_table_title: "에너지 최대 소비",
   data_resource_table_rank: "랭크",
   data_resource_table_account: "계정",
   data_resource_table_freezingTRX_energy: "TRX 동결에 소비된 에너지",
@@ -68,7 +68,7 @@ export const lang20Q1 = {
     "현재 사용자 소비 에너지 / 전체 네트워크 사용자 소비 에너지",
   data_resource_bandwith_table_percentage_tips:
     "현재 사용자 소비 대역폭 / 전체 네트워크 사용자 소비 대역폭",
-  data_resource_table_bandwidth_title: "계정 최대 대역폭 소비",
+  data_resource_table_bandwidth_title: "대역폭 최대 소비",
   data_resource_table_total: "총",
   data_contract_account: "호출 계정수",
   data_contract_time: "호출 횟수",
@@ -101,8 +101,10 @@ export const lang20Q1 = {
   data_energy_consumed_total: "소비된 에너지",
   data_energy_freezed: "TRX 동결에 소비된 에너지",
   data_energy_burned: "TRX 소각에 소비된 대역폭",
+  data_whole_contract_use: "계약 전개 자로부터의 에너지",
   data_bandwidth_consumed_total: "소비된 총 대역폭",
   data_bandwidth_freezed: "TRX 동결에 소비된 대역폭",
   data_bandwidth_burned: "TRX 소각에 소비된 대역폭",
-  data_area: "POLONI DEX 거래소에 상장 된 토큰 만 계산"
+  data_area:
+    "<a href='https://poloniex.org/'>POLONI DEX</a> 거래소에 상장 된 토큰 만 계산"
 };

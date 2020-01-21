@@ -219,7 +219,7 @@ class BestData extends React.Component {
       energy_use: this.sumArr(totalEnergyUseAry) || 0,
       energy_burn: this.sumArr(totalEnergyBurn) || 0,
       whole_energy_use: this.sumArr(totalWholeEnergyUse) || 0,
-      percentage: this.sumArr(totalPercentage) || 0
+      percentage: this.sumArr(totalPercentage) || 0,
     });
   }
 
