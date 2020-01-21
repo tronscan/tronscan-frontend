@@ -107,5 +107,6 @@ export const lang20Q1 = {
   data_bandwidth_consumed_total: "مصرف کل پهنای باند",
   data_bandwidth_freezed: "پهنای باند از طریق فریز TRX",
   data_bandwidth_burned: "پهنای باند از طریق سوزاندن TRX",
-  data_area: "فقط علائم ذکر شده در بورس POLONI DEX محاسبه می شود."
+  data_area:
+    "فقط علائم ذکر شده در بورس <a href='https://poloniex.org/'>POLONI DEX</a> محاسبه می شود."
 };

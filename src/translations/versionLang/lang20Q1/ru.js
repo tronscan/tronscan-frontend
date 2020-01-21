@@ -109,5 +109,6 @@ export const lang20Q1 = {
   data_bandwidth_consumed_total: "Общее Потребление Пропускной Способности",
   data_bandwidth_freezed: "Пропускная Способность после Замораживания TRX",
   data_bandwidth_burned: "Пропускная Способность после Сжигания TRX",
-  data_area: "Only tokens listed on POLONI DEX are included"
+  data_area:
+    "Only tokens listed on <a href='https://poloniex.org/'>POLONI DEX</a> are included"
 };

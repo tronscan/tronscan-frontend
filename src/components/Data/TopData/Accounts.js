@@ -192,11 +192,17 @@ class Accounts extends React.Component {
         render: (text, record, index) => {
           return text ? (
             <span>
-              {record.addressTag ? (
+              {/* {record.addressTag ? (
                 <Link to={`/address/${text}`}>{record.addressTag}</Link>
               ) : (
                 <AddressLink address={text}>{text}</AddressLink>
-              )}
+              )} */}
+              <span>
+                {record.addressTag && (
+                  <Link to={`/address/${text}`}>{record.addressTag}</Link>
+                )}
+                <AddressLink address={text}>{text}</AddressLink>
+              </span>
             </span>
           ) : (
             <span className="">--</span>

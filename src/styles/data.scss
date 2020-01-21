@@ -5,7 +5,7 @@
   .data-items {
     background: #ffffff;
     border: 1px solid #eeeeee;
-    border-bottom:0;
+    border-bottom: 0;
     border-radius: 0.5px;
     width: 100%;
     overflow: hidden;
@@ -19,7 +19,7 @@
       color: #3c3c3c;
       position: relative;
       padding-left: 20px;
-      margin-bottom:0;
+      margin-bottom: 0;
       .data-real-time {
         position: absolute;
         top: 0;
@@ -31,10 +31,10 @@
   .ant-table table {
     width: 100.1%;
   }
-  .ant-table-tbody>tr>td{
-    border-bottom:0;
+  .ant-table-tbody > tr > td {
+    border-bottom: 0;
   }
-  
+
   .ant-table .ant-table-thead > tr > th,
   .ant-table .ant-table-tbody > tr > td {
     padding: 6px 10px;
@@ -46,7 +46,7 @@
       padding-right: 20px !important;
     }
   }
-  .ant-table .ant-table-thead > tr > th{
+  .ant-table .ant-table-thead > tr > th {
     padding: 12px 10px;
   }
 
@@ -144,7 +144,6 @@
           margin-top: 22px;
         }
       }
-
     }
     .data-token-name {
       a {
@@ -166,7 +165,7 @@
   // contract module
   .data-contract {
     .gutter-row {
-      &:first-child{
+      &:first-child {
         margin-top: 0;
       }
     }
@@ -346,7 +345,7 @@
     .data-overview-row {
       display: flex;
       flex-direction: column;
-      .item{
+      .item {
         &:nth-child(2) {
           margin-top: 1rem;
         }
@@ -398,7 +397,7 @@
     .ant-table-body {
       .resourceAddress {
         a {
-          font-family: PingFangSC-Regular;
+          // font-family: PingFangSC-Regular;
           font-size: 13px;
           color: #c23631;
         }
