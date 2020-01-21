@@ -104,10 +104,9 @@
   .footerContainer {
     position: relative;
     .helpLinkPos {
-      position: fixed;
-      right: 0rem;
-      // bottom: 21.4rem;
-      bottom: 60px;
+      position: absolute;
+      right: -6rem;
+      bottom: 403px;
     }
   }
   .helpLinkWrapper {
@@ -1237,7 +1236,7 @@ $color: #c23631;
   font-size: 16px;
 }
 
-@media (min-width: 768px) and (max-width: 980px) {
+@media (min-width: 769px) and (max-width: 980px) {
   .tron-light {
     .mobileFlexible {
       display: block;
@@ -1246,11 +1245,11 @@ $color: #c23631;
 }
 // mobile
 
-@media (max-width: 767.98px) {
+@media (max-width: 768px) {
   .tron-light {
     .logo-wrapper {
       .logoTrxPrice {
-        padding-left:0;
+        padding-left: 0;
       }
       .loginInfoNavBar {
         padding-right: 0;
