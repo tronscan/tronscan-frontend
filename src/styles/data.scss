@@ -5,6 +5,7 @@
   .data-items {
     background: #ffffff;
     border: 1px solid #eeeeee;
+    border-bottom:0;
     border-radius: 0.5px;
     width: 100%;
     overflow: hidden;
@@ -28,6 +29,9 @@
   }
   .ant-table table {
     width: 100.1%;
+  }
+  .ant-table-tbody>tr>td{
+    border-bottom:0;
   }
   .ant-table .ant-table-thead > tr > th,
   .ant-table .ant-table-tbody > tr > td {
