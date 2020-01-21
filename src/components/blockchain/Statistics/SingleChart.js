@@ -890,7 +890,7 @@ class Statistics extends React.Component {
             dataIndex: 'contract_address',
             key: 'contract_address',
             render: (text, record, index) => {
-              return <AddressLink address={text}/>
+              return <AddressLink address={text} isContract={true}/>
             }
           },
           {

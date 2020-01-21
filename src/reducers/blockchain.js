@@ -5,7 +5,7 @@ const initialState = {
   transactions: [],
   blocks: [],
   totalNumberOfTransactions: 0,
-  usdPrice: 0
+  usdPrice: 0,
 };
 
 export function blockchainReducer(state = initialState, action) {
@@ -38,6 +38,8 @@ export function blockchainReducer(state = initialState, action) {
         usdPrice: action.price,
       }
     }
+
+
     default:
       return state;
   }

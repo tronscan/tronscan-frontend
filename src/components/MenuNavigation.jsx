@@ -86,11 +86,7 @@ class Menunavigation extends Component {
                 title={
                   <span className="nav-network-hot">
                     {tu(route.label)}
-                    {route.label == "nav_network" ? (
-                      <i className="hot-nav"></i>
-                    ) : (
-                      ""
-                    )}
+                  
                   </span>
                 }
               >

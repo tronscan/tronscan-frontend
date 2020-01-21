@@ -1,7 +1,7 @@
 /*eslint-disable */
 import React, { Fragment } from "react";
 import xhr from "axios/index";
-import { FormattedNumber } from "react-intl";
+import { FormattedNumber,injectIntl } from "react-intl";
 import { Tooltip } from "reactstrap";
 import { alpha } from "../../utils/str";
 import { connect } from "react-redux";
@@ -103,6 +103,7 @@ export let PriceProvider = connect(
 )(PriceProviderCmp);
 
 let oTimer = null;
+@injectIntl
 export class TRXPrice extends React.PureComponent {
   constructor() {
     super();
@@ -238,12 +239,12 @@ export class TRXPrice extends React.PureComponent {
                 <Fragment>
                   <FormattedNumber
                     value={this.renderPrice(amount, priceValues)}
-                    maximumFractionDigits={
-                      priceValues.currencies[
-                        currency.toUpperCase() ||
-                          priceValues.priceShown.toUpperCase()
-                      ].fractions || 3
-                    }
+                    // maximumFractionDigits={
+                    //   priceValues.currencies[
+                    //     currency.toUpperCase() ||
+                    //       priceValues.priceShown.toUpperCase()
+                    //   ].fractions || 3
+                    // }
                   >
                     {value => (
                       <span
@@ -269,20 +270,7 @@ export class TRXPrice extends React.PureComponent {
                           ) : (
                             <span>
                               ({Number(priceChage) > 0 ? "+" : ""}
-                              {priceChage}%){" "}
-                              {Number(priceChage) > 0 ? (
-                                <img
-                                  className="quotesImg"
-                                  src={myPng("up")}
-                                  alt=""
-                                />
-                              ) : (
-                                <img
-                                  className="quotesImg"
-                                  src={myPng("down")}
-                                  alt=""
-                                />
-                              )}
+                              {priceChage}%)
                             </span>
                           )}
                         </span>

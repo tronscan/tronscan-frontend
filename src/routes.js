@@ -58,7 +58,8 @@ import {
   ContractSourceCode,
   ContractUseServiceTerms,
   ContractLicense,
-  RatingRule
+  RatingRule,
+  TopDataAsync
 } from "./components/async";
 
 export const routes = [
@@ -136,7 +137,7 @@ export const routes = [
       //   component: Contracts,
       // },
       {
-        label: "statistics",
+        label: "data_title_chart",
         // icon: `fa fa-chart-pie`,
         icon: false,
         path: "/blockchain/stats",
@@ -174,13 +175,29 @@ export const routes = [
       //   showInMenu: false
       // },
       {
+        path: "/blockchain/data",
+        label: "data_title",
+        // icon: "fa fa-address-book",
+        icon: false,
+        showInMenu: IS_MAINNET ? true : false,
+        component: TopDataAsync
+      },
+      {
         path: "/blockchain/foundation",
         label: "foundation",
         // icon: "fa fa-address-book",
         icon: false,
         showInMenu: IS_MAINNET ? true : false,
         component: FoundationAsync
-      }
+      },
+      {
+        path: "/blockchain/data/:name",
+        label: "data_title",
+        // icon: "fa fa-address-book",
+        icon: false,
+        showInMenu: false,
+        component: TopDataAsync
+      },
     ]
   },
   {
@@ -247,6 +264,7 @@ export const routes = [
       }
     ]
   },
+  
   {
     path: "/block/:id",
     label: "block",

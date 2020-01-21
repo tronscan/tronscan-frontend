@@ -2,6 +2,9 @@
 import {
     lang19Q4
 } from './versionLang/lang19Q4/fa19Q4'; /* 2019Q4 */
+import {
+  lang20Q1
+} from './versionLang/lang20Q1/fa'; /* 2020Q1 */
 export const messages = {
    /*
     ##################################################################################
@@ -2456,5 +2459,6 @@ export const messages = {
 "address_get_bandwith":"برای به دست آوردن پهنای باند .",
 "address_freeze_owner":"به حساب خودم .",
 "address_freeze_other":"به حساب (های) دیگران",
-...lang19Q4
+...lang19Q4,
+...lang20Q1
 };

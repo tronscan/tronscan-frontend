@@ -295,10 +295,10 @@ class Footer extends Component {
                         </HrefLink>
                       </li>
                       <li className="p-2">
-                      <HrefLink href="https://www.tronlink.org">
-                        {" "}
-                        {tu("wallet")}
-                      </HrefLink>
+                        <HrefLink href="https://www.tronlink.org">
+                          {" "}
+                          {tu("wallet")}
+                        </HrefLink>
                       </li>
                       <li className="p-2">
                         <HrefLink href="https://poloniex.org">
@@ -379,10 +379,10 @@ class Footer extends Component {
                       <img src={require("../../images/footer/TRON.png")} />
                       <p className="pt-2">{tu("index_page_tronscan_info")}</p>
                       <ul className="d-flex fr pt-4 mt-4">
-                        {links.map(item => {
+                        {links.map((item, ind) => {
                           if (item.name != "WeChat") {
                             return (
-                              <li key={item.url}>
+                              <li key={ind}>
                                 <HrefLink href={item.url}>
                                   <i className={`${item.icon} mr-3`} />
                                 </HrefLink>
@@ -390,7 +390,7 @@ class Footer extends Component {
                             );
                           } else {
                             return (
-                              <li className="footer-icon">
+                              <li className="footer-icon" key={ind}>
                                 <a target="_blank">
                                   <i className={item.icon}></i>
                                   <div className="code_wrap">
@@ -420,7 +420,7 @@ class Footer extends Component {
                       <span className="text mr-3">
                         Copyright© 2017-2020 tronscan.org
                       </span>
-                      <div className="d-flex switch">
+                      <div className="d-flex switch hidden-mobile">
                         <span>{tu("index_page_switch_tokens")}</span>
                         {this.dropCurrency()}
                       </div>
@@ -466,10 +466,13 @@ class Footer extends Component {
     const menu = (
       <Menu>
         {currencyConversions.map(currency => (
-          <Menu.Item>
-            <a key={currency.id} href="javascript:" onClick={() => this.setCurrency(currency.id)}>
+          <Menu.Item key={currency.id}>
+            <div
+              key={currency.id}
+              onClick={() => this.setCurrency(currency.id)}
+            >
               {currency.name}
-            </a>
+            </div>
           </Menu.Item>
         ))}
       </Menu>
@@ -477,9 +480,9 @@ class Footer extends Component {
 
     return (
       <Dropdown overlay={menu} placement="topCenter">
-        <a className="ant-dropdown-link" href="javascript:">
+        <div className="ant-dropdown-link">
           {activeCurrency.toUpperCase()} <Icon type="down" />
-        </a>
+        </div>
       </Dropdown>
     );
   }

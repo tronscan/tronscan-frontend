@@ -2,6 +2,9 @@
 import {
     lang19Q4
 } from './versionLang/lang19Q4/ja19Q4'; /* 2019Q4 */
+import {
+  lang20Q1
+} from './versionLang/lang20Q1/ja'; /* 2020Q1 */
 export const messages = {
     /*
   ##################################################################################
@@ -2452,5 +2455,6 @@ export const messages = {
 "address_get_bandwith":"帯域幅を取得するには",
 "address_freeze_owner":"自分に固定する",
 "address_freeze_other":"他人に固定する",
-...lang19Q4
+...lang19Q4,
+...lang20Q1
 }
