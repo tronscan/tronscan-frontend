@@ -19,6 +19,7 @@
       color: #3c3c3c;
       position: relative;
       padding-left: 20px;
+      margin-bottom:0;
       .data-real-time {
         position: absolute;
         top: 0;
@@ -33,6 +34,7 @@
   .ant-table-tbody>tr>td{
     border-bottom:0;
   }
+  
   .ant-table .ant-table-thead > tr > th,
   .ant-table .ant-table-tbody > tr > td {
     padding: 6px 10px;
@@ -43,6 +45,9 @@
     &:last-child {
       padding-right: 20px !important;
     }
+  }
+  .ant-table .ant-table-thead > tr > th{
+    padding: 12px 10px;
   }
 
   .ant-table-thead {
