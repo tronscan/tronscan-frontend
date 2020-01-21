@@ -105,5 +105,7 @@ export const lang20Q1 = {
   data_energy_burned: "Energía consumida para quemar TRX",
   data_bandwidth_consumed_total: "Ancho de banda total consumido",
   data_bandwidth_freezed: "Ancho de banda consumido para congelar TRX",
-  data_bandwidth_burned: "Ancho de banda consumido para quemar TRX"
+  data_bandwidth_burned: "Ancho de banda consumido para quemar TRX",
+  data_area: "仅统计在POLONI DEX交易所上线的通证"
+
 };

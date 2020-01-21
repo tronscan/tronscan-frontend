@@ -59,7 +59,7 @@ export const lang20Q1 = {
   data_contract_times: "قراردادهای برتر - تعداد تماسها",
   data_real_time: "زمان واقعی",
 
-  data_resource_table_title: "حداکثر مصرف انرژی.",
+  data_resource_table_title: "حداکثر مصرف انرژی را حساب کنید.",
   data_resource_table_rank: "رتبه",
   data_resource_table_account: "حساب",
   data_resource_table_freezingTRX_energy: "TRX را فریز کنید وانرژی بدست آورید ",
@@ -71,7 +71,7 @@ export const lang20Q1 = {
     "انرژی مصرف شده توسط کاربران فعلی / انرژی مصرف شده توسط کاربران در سراسر شبکه",
   data_resource_bandwith_table_percentage_tips:
     "کاربر فعلی پهنای باند را مصرف می کند / کل شبکه پهنای باند را مصرف می کند.",
-  data_resource_table_bandwidth_title: "حداکثر مصرف پهنای باند.",
+  data_resource_table_bandwidth_title: "حداکثر مصرف پهنای باند را حساب کنید.",
   data_resource_table_total: "کل",
   data_contract_account: "تعداد تماس با حساب",
   data_contract_time: "تعداد تماس",
@@ -106,5 +106,7 @@ export const lang20Q1 = {
   data_energy_burned: "TRX را فریز کنید و پهنای باند بدست آورید ",
   data_bandwidth_consumed_total: "مصرف کل پهنای باند",
   data_bandwidth_freezed: "پهنای باند از طریق فریز TRX",
-  data_bandwidth_burned: "پهنای باند از طریق سوزاندن TRX"
+  data_bandwidth_burned: "پهنای باند از طریق سوزاندن TRX",
+  data_area: "فقط علائم ذکر شده در بورس POLONI DEX محاسبه می شود."
+
 };

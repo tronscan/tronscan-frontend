@@ -67,7 +67,7 @@ export const lang20Q1 = {
   data_contract_times: "最佳合约--调用次数",
   data_real_time: "实时",
 
-  data_resource_table_title: "最高能量消耗",
+  data_resource_table_title: "账户最高能量消耗",
   data_resource_table_rank: "排序",
   data_resource_table_account: "账户",
   data_resource_table_freezingTRX_energy: "消耗冻结TRX的能量",
@@ -77,7 +77,7 @@ export const lang20Q1 = {
   data_resource_table_percentage_tips: "当前用户消耗能量/全网用户消耗能量",
   data_resource_bandwith_table_percentage_tips:
     "当前用户消耗带宽/全网用户消耗带宽",
-  data_resource_table_bandwidth_title: "最高带宽消耗",
+  data_resource_table_bandwidth_title: "账户最高带宽消耗",
   data_resource_table_total: "总计",
 
   // 2020-01-17
@@ -107,5 +107,6 @@ export const lang20Q1 = {
   data_energy_burned: "消耗燃烧TRX的能量",
   data_bandwidth_consumed_total: "消耗总带宽",
   data_bandwidth_freezed: "消耗冻结TRX的带宽",
-  data_bandwidth_burned: "消耗燃烧TRX的带宽"
+  data_bandwidth_burned: "消耗燃烧TRX的带宽",
+  data_area: "仅统计在POLONI DEX交易所上线的通证"
 };
