@@ -158,7 +158,20 @@
   .item .title {
     max-width: 190px !important;
   }
+  @media (min-width: 992px){
+    .item .title {
+      max-width: 140px !important;
+    }
+  }
+  @media (min-width: 768px){
+    .item .title {
+      max-width: 100px!important;
+    } 
+  }
+  
+  
 }
+
 
 // @media (min-width: 79px){
 //   #root{
