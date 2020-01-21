@@ -2,6 +2,9 @@
 import {
     lang19Q4
 } from './versionLang/lang19Q4/ko19Q4'; /* 2019Q4 */
+import {
+  lang20Q1
+} from './versionLang/lang20Q1/ko.js'; /* 2020Q1 */
 export const messages = {
     /*
   ##################################################################################
@@ -2456,5 +2459,6 @@ export const messages = {
    "address_get_bandwith":"대역폭 획득하려면",
    "address_freeze_owner":"자신에게 동결",
    "address_freeze_other":"타인에게 동결",
-   ...lang19Q4
+   ...lang19Q4,
+   ...lang20Q1
 };

@@ -241,6 +241,7 @@ export default class SmartTable extends Component {
       bordered,
       pagination = true,
       scroll,
+      Footer,
       locale,
       addr,
       transfers,
@@ -275,6 +276,7 @@ export default class SmartTable extends Component {
               dataSource={data}
               locale={locale}
               scroll={scroll}
+              footer={Footer}
               pagination={paginationStatus}
               loading={loading}
               onChange={this.handleTableChange}
@@ -285,6 +287,7 @@ export default class SmartTable extends Component {
             <Table
               bordered={bordered}
               columns={columns}
+              footer={Footer}
               rowKey={(record, index) => {
                 return index;
               }}
