@@ -61,7 +61,7 @@ export const lang20Q1 = {
   data_contract_times: "Топ Контракты -- Количество Вызовов",
   data_real_time: "Реальное время",
 
-  data_resource_table_title: "Пиковое Потребление Энергии",
+  data_resource_table_title: "Топ аккаунты по потреблению энергии",
   data_resource_table_rank: "Рейтинг",
   data_resource_table_account: "Аккаунт",
   data_resource_table_freezingTRX_energy: "Энергия от Замораживания TRX",
@@ -73,7 +73,7 @@ export const lang20Q1 = {
   data_resource_bandwith_table_percentage_tips:
     "Пропускная способность, потребляемая пользователем / Пропускная способность, потребляемая всеми пользователями",
   data_resource_table_bandwidth_title:
-    "Пиковое Потребление Пропускной Способности",
+    "Топ аккаунты по потреблению пропускной способности",
   data_resource_table_total: "Общее количество",
   data_contract_account: "Аккаунты Вызовов",
   data_contract_time: "Количество Вызовов",
@@ -110,5 +110,4 @@ export const lang20Q1 = {
   data_bandwidth_freezed: "Пропускная Способность после Замораживания TRX",
   data_bandwidth_burned: "Пропускная Способность после Сжигания TRX",
   data_area: "Only tokens listed on POLONI DEX are included"
-
 };

@@ -108,5 +108,4 @@ export const lang20Q1 = {
   data_bandwidth_freezed: "پهنای باند از طریق فریز TRX",
   data_bandwidth_burned: "پهنای باند از طریق سوزاندن TRX",
   data_area: "فقط علائم ذکر شده در بورس POLONI DEX محاسبه می شود."
-
 };

@@ -107,5 +107,4 @@ export const lang20Q1 = {
   data_bandwidth_freezed: "TRXをフリーズするために消費される帯域幅",
   data_bandwidth_burned: "TRXの書き込みに消費される帯域幅",
   data_area: "POLONI DEX取引所で上場されるトークンのみをカウントします"
-
 };
