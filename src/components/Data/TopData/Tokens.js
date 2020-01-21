@@ -131,6 +131,7 @@ class Tokens extends React.Component {
 
     return (
       <div className="top-data">
+        <p className="data-area">{tu("data_area")}</p>
         <Row gutter={{ xs: 8, sm: 20, md: 20 }} className="data-token">
           {Object.keys(types).map(index => (
             <Col

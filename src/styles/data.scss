@@ -82,8 +82,19 @@
       }
     }
   }
+  .data-area {
+    font-family: PingFangSC-Regular;
+    font-size: 14px;
+    color: #999999;
+  }
   // account module
   .data-account {
+    .gutter-row {
+      &:first-child,
+      &:nth-child(2) {
+        margin-top: 0;
+      }
+    }
     .text-truncate.address-link {
       // margin: 0 auto;
     }
@@ -108,6 +119,12 @@
 
   // token module
   .data-token {
+    .gutter-row {
+      &:first-child,
+      &:nth-child(2) {
+        margin-top: 0;
+      }
+    }
     .data-token-name {
       a {
         font-family: PingFangSC-Regular;
@@ -127,6 +144,12 @@
 
   // contract module
   .data-contract {
+    .gutter-row {
+      &:first-child,
+      &:nth-child(2) {
+        margin-top: 0;
+      }
+    }
     .ant-table-row.ant-table-row-level-0 {
       &:last-child {
         td {
