@@ -37,7 +37,7 @@ export const lang20Q1 = {
   data_account_top: "最佳账户",
   data_account_send_Trx: "最佳账户--发送TRX数量",
   data_account_send_Trx_items: "最佳账户--发送TRX总笔数",
-  data_account_receive_Trx: "最佳账户--接收TRX总额",
+  data_account_receive_Trx: "最佳账户--接收TRX数量",
   data_account_receive_Trx_items: "最佳账户--接收TRX总笔数",
   data_account_freeze: "最佳账户--冻结TRX数量",
   data_account_vote: "最佳账户--已投票数",
