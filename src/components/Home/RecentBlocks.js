@@ -184,7 +184,7 @@ class RecentBlocks extends Component {
                 // blocks.length != 0 && transactions.length != 0
                   blocks.length != 0 ? (
                     blocks.map(block => (
-                      <li key={block.number} className="list-group-item overflow-h">
+                      <li key={block.number} className="list-group-item overflow-h" style={{ minHeight: "100px" }}>
                         <div key={block.number} className="d-flex flex-column">
                           <div className="media-body mb-0 d-flex" style={{paddingTop: 1}}>
                             <div className="text-left">

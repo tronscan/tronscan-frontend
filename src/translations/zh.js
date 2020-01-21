@@ -2,6 +2,9 @@
 import {
     lang19Q4
 } from './versionLang/lang19Q4/zh19Q4'; /* 2019Q4 */
+import {
+  lang20Q1
+} from './versionLang/lang20Q1/zh'; // 20Q1
 export const messages = {
     /*
     ##################################################################################
@@ -58,7 +61,7 @@ export const messages = {
     "bytes": "字节",
     "MByte": "兆字节",
     "produced_by": "出块者",
-    "block_reward": "区块奖励",
+    "block_reward": "区块收益",
     "contract": "合约",
     "from": "发送人",
     "to": "接收人",
@@ -175,7 +178,7 @@ export const messages = {
     "blocks_produced": "出块数量",
     "blocks_missed": "丢失区块数量",
     "productivity": "效率",
-    "rewards": "奖励",
+    "rewards": "收益",
     "token_created": "通证已创建",
     "witness": "超级代表",
     "asset_participation": "参与通证发行",
@@ -309,10 +312,10 @@ export const messages = {
     "apply_super_representative_candidate": "申请成为超级代表",
     "your_personal_website_address": "个人网页地址",
     "apply_for_delegate_predescription": "每个代币持有者都有机会成为TRON超级代表。然而，为了让网络和社区更加平稳有效地运作，我们制定了一套标准和规定，让符合条件的合伙人成为超级代表推荐人。我们以推荐超级代表的形式，增加他们当选的机会。新推荐的超级代表每周更新并发布一次。",
-    "apply_for_delegate_description": "每个代币持有者都可以通过账户管理页面，申请成为超级代表候选人，或是在投票页面为候选人投票。每个用户可以为多个候选人投票，最高投票数必须少于或者等于持有TRX的数量。投票结果以每名用户的最终投票结果为准，票数会在每天的02:00(GMT+8)，08:00(GMT+8)，14:00(GMT+8)，20:00(GMT+8)刷新，用户也可以查看实时票数。票数最高的前27名候选人可以成为超级代表，超级代表负责打包交易出块，每次出块奖励16个TRX。27个超级代表和前100名代表合伙人也可以根据票数获得节点奖励。申请成为候选人需要一次性扣除9,999TRX的手续费，用户为超级代表候选人投票不消耗TRX。",
+    "apply_for_delegate_description": "每个代币持有者都可以通过账户管理页面，申请成为超级代表候选人，或是在投票页面为候选人投票。每个用户可以为多个候选人投票，最高投票数必须少于或者等于持有TRX的数量。投票结果以每名用户的最终投票结果为准，票数会在每天的02:00(GMT+8)，08:00(GMT+8)，14:00(GMT+8)，20:00(GMT+8)刷新，用户也可以查看实时票数。票数最高的前27名候选人可以成为超级代表，超级代表负责打包交易出块，每次出块收益16个TRX。27个超级代表和前100名代表合伙人也可以根据票数获得节点收益。申请成为候选人需要一次性扣除9,999TRX的手续费，用户为超级代表候选人投票不消耗TRX。",
     "apply_for_delegate_predescription_1": "每个代币持有者都有机会成为TRON超级代表。花费9,999TRX的申请费之后，你就成为超级代表候选人。超级代表候选人可以接受用户的投票。",
-    "apply_for_delegate_predescription_2": "票数最高的前27名候选人可以成为超级代表，超级代表负责打包交易出块，每次出块奖励16TRX。",
-    "apply_for_delegate_predescription_3": "27个超级代表和前100名超级代表合伙人也可以根据票数获得节点奖励。",
+    "apply_for_delegate_predescription_2": "票数最高的前27名候选人可以成为超级代表，超级代表负责打包交易出块，每次出块收益16TRX。",
+    "apply_for_delegate_predescription_3": "27个超级代表和前100名超级代表合伙人也可以根据票数获得节点收益。",
     "unknown_error": "发生未知错误",
     "representative_understand": "我已了解如何成为波场超级代表",
     "generate_account": "点击生成账户密码及地址",
@@ -366,12 +369,12 @@ export const messages = {
     "create_sr_landing_page_message_0": "超级代表可以创建一个着陆页，在该页面上他们可以分享有关其团队和计划的更多信息",
     "set_github_url_message_0": "你已经配置你的Github模板了吗？ 然后可以使用下面的按钮设置URL",
     "set_github_link": "设置Github链接",
-    "could_not_claim_rewards": "不能申请奖励",
-    "claim_rewards_error_message": "在尝试申请奖励时出现问题，请稍后再试。",
-    "rewards_claimed": "奖励确认！",
-    "successfully_claimed_rewards": "成功获得奖励",
-    "claim_rewards": "获得奖励",
-    "sr_receive_reward_message_0": "作为代表，您将获得出块奖励，这些奖励可以每24小时申领一次",
+    "could_not_claim_rewards": "不能申请收益",
+    "claim_rewards_error_message": "在尝试申请收益时出现问题，请稍后再试。",
+    "rewards_claimed": "收益确认！",
+    "successfully_claimed_rewards": "成功获得收益",
+    "claim_rewards": "获得收益",
+    "sr_receive_reward_message_0": "作为代表，您将获得出块收益，这些收益可以每24小时申领一次",
     "intro": "介绍",
     "budget_expenses": "预算费用",
     "server_configuration": "服务器配置",
@@ -834,7 +837,7 @@ export const messages = {
     "ledger_note_message_1": "目前仅支持Ledger Nano S,Ledger Nano X,Ledger Blue",
     "ledger_note_message_2": "使用谷歌chrome浏览器",
     "ledger_note_message_3": "支持功能：TRX转账，TRC 10 通证转账，TRC 20 通证转账，冻结TRX，解冻TRX，投票，设置账户名称。",
-    "ledger_note_message_4": "目前不支持的功能：创建通证，交易所交易，申请超级代表，解冻锁仓的通证，领取出块奖励，更新github链接，创建交易对，交易对注资，交易对撤资。",
+    "ledger_note_message_4": "目前不支持的功能：创建通证，交易所交易，申请超级代表，解冻锁仓的通证，领取出块收益，更新github链接，创建交易对，交易对注资，交易对撤资。",
 
     /*
     ##################################################################################
@@ -952,8 +955,8 @@ export const messages = {
     "breakdown_supply_types": "TRX分布",
     "genesis": "创世块发行",
     "TRX_distribution_overview": "TRX分布概览",
-    "block_produce_rewards": "出块奖励",
-    "node_rewards": "节点奖励",
+    "block_produce_rewards": "出块收益",
+    "node_rewards": "节点收益",
     "independence_day_burned": "独立日烧毁",
     "fee_burned": "手续费烧毁",
     "current_total_supply": "当前总流通量",
@@ -1532,7 +1535,7 @@ export const messages = {
      ##################################################################################
     */
     "committee": "TRON委员会",
-    "committee_dec_1": "委员会用于修改TRON网络动态参数，如出块奖励、交易费用等等。",
+    "committee_dec_1": "委员会用于修改TRON网络动态参数，如出块收益、交易费用等等。",
     "committee_dec_2": "委员会由当前的{total}个超级代表组成。",
     "committee_dec_3": "每个超级代表都具有提议权、对提议的投票权。",
     "committee_dec_4": "当提议在有效期内获得{total}个代表及以上的赞成票时，该提议获得通过，并在下个维护期内进行网络参数修改。",
@@ -1550,8 +1553,8 @@ export const messages = {
     "propose_3": "提议修改创建账户费用",
     "propose_4": "提议修改TRX抵扣带宽的费用",
     "propose_5": "提议修改通证发行费用",
-    "propose_6": "提议修改超级代表出块奖励",
-    "propose_7": "提议修改分给前127名超级代表及合伙人的奖励",
+    "propose_6": "提议修改超级代表出块收益",
+    "propose_7": "提议修改分给前127名超级代表及合伙人的收益",
     "propose_8": "提议修改创建账户的费用",
     "propose_9": "提议修改创建账户时对带宽的消耗",
     "propose_10": "提议开启虚拟机功能",
@@ -1575,7 +1578,7 @@ export const messages = {
     "propose_27": "提议开启协议优化功能",
     "propose_28": "提议支持波场虚拟机0.5.4的新功能",
     "propose_30": "提议开启去中心化投票分红机制",
-    "propose_31": "提议修改分给前127名超级代表及合伙人的区块投票奖励",
+    "propose_31": "提议修改分给前127名超级代表及合伙人的区块投票收益",
     "propose_minute": "分钟",
     "propose_unactivate": "未开启",
     "propose_not_allowed": "不允许",
@@ -2314,13 +2317,13 @@ export const messages = {
      ##################################################################################
     */
     "SR_set_brokerage": "设置选民分成比例",
-    "SR_brokerage_save_tip": "每一轮投票结束后，奖励将按照最后一次设置的比例分给选民",
+    "SR_brokerage_save_tip": "每一轮投票结束后，收益将按照最后一次设置的比例分给选民",
     "SR_brokerage_save": "保存",
     "SR_brokerage_save_verify": "请输入0~100之间的数值",
     "SR_reward_available": "可领取",
     "SR_set_github_learn_more": "了解更多",
-    "SR_vote_for_reward": "投票所获奖励",
-    "SR_receive_award_btn": "领取奖励",
+    "SR_vote_for_reward": "投票所获收益",
+    "SR_receive_award_btn": "领取收益",
     "SR_receive_award_tip1": "暂不可领，",
     "SR_receive_award_tip2": "24小时内只能领取一次",
     "SR_brokerage_save_result": "已保存选民分成比例！",
@@ -2330,11 +2333,11 @@ export const messages = {
     "rewards_claimed_submitted": "交易已提交",
     "rewards_claimed_hash": "交易哈希值：",
     "rewards_claimed_hash_await": "稍后交易确认后可在账户页查看",
-    "voting_brokerage": "选民奖励分成比例",
-    "voting_brokerage_tip": "超级代表所获得的奖励中，分给投票者的比例。投票奖励 = 总奖励数 * 投票分成比例 *（投票票数 / 得票总数）",
-    "SR_set_brokerage_contract": "超级代表设置奖励分成比例",
+    "voting_brokerage": "选民收益分成比例",
+    "voting_brokerage_tip": "超级代表所获得的收益中，分给投票者的比例。投票收益 = 总收益数 * 投票分成比例 *（投票票数 / 得票总数）",
+    "SR_set_brokerage_contract": "超级代表设置收益分成比例",
     "countdown_to_voting": "本轮投票结束倒计时",
-    "no_rewards_available_yet": "暂无可领取奖励",
+    "no_rewards_available_yet": "暂无可领取收益",
     "total_tron_ecosystem_tokens": "波场生态通证总数：",
     "number_of_lists": "列表数量：",
     "total_in_tronscan": "共收录",
@@ -2383,7 +2386,7 @@ export const messages = {
     "tooltip_accounts": "主链与SUN Network 实时账户数之和",
     "tooltip_accounts_mainnet": "主链上实时账户数",
     "tooltip_accounts_sunnet": "SUN Network上实时账户数",
-    "tooltip_trxPrice": "TRX对比USD的价格",
+    "tooltip_trxPrice": "TRX的USD价格",
     "tooltip_trxPrice_mainnet": "TRX对比USD的价格，实时波动",
     "tooltip_trxPrice_sunnet": "TRX对比USD的价格，实时波动",
     "nav_network": "SUN Network",
@@ -2496,7 +2499,7 @@ export const messages = {
     "Contract Energy Limit Update": "更新合约能量限制",
     "Contract ABI Clear": "清除合约ABI",
     "Vote": "投票",
-    "Reward Withdraw": "提取奖励",
+    "Reward Withdraw": "提取收益",
     "Proposal Create": "创建提议",
     "Proposal Approve": "赞成提议",
     "Proposal Cancel": "撤销提议",
@@ -2513,11 +2516,12 @@ export const messages = {
     "ledger_tronlink": "通过TronLink登录TRONSCAN ",
 
     // 2019-12-18
-    "address_vote_reward_pending": "待领取投票奖励",
+    "address_vote_reward_pending": "待领取投票收益",
     "address_balance": "TRX余额",
     "address_get_energe": "为了获得能量",
     "address_get_bandwith": "为了获得带宽",
     "address_freeze_owner": "冻结给自己",
     "address_freeze_other": "冻结给他人",
     ...lang19Q4,
+    ...lang20Q1
 };

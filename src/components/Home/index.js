@@ -461,13 +461,13 @@ export default class Home extends Component {
             {IS_MAINNET ? (
               <div className="row justify-content-center text-center">
                 <div className="col-12 exchange">
-                  <div className="notice">
+                  <div className="notice notice-new-style">
                     <img
                       src={require("../../images/announcement-logo.png")}
                       alt=""
                     />
 
-                    <div className="notice-wrap">
+                    <div className="notice-wrap ">
                       {this.state.notice.length == 0
                         ? this.state.newNotice.map((v, i) => (
                             <a className="item" key={i}>

@@ -105,8 +105,9 @@ class addressLinkClass extends React.PureComponent {
         >
           <ModalHeader toggle={this.hideModal}>QR CODE</ModalHeader>
           <ModalBody className="text-center">
-          
-            <h5 className="py-2">{isContract?tu("contract_address") :tu("wallet_address")}</h5>
+            <h5 className="py-2">
+              {isContract ? tu("contract_address") : tu("wallet_address")}
+            </h5>
             <div className="input-group mb-3">
               <input
                 type="text"
