@@ -107,5 +107,5 @@ export const lang20Q1 = {
   data_bandwidth_consumed_total: "إجمالي عرض النطاق الترددي المستهلك",
   data_bandwidth_freezed: "عرض النطاق الترددي المستهلك لتجميد TRX",
   data_bandwidth_burned: "عرض النطاق الترددي المستهلك لحرق TRX",
-  data_area: "يتم تضمين إحصائيات الرموز المدرجة فقط على <a href='https://poloniex.org/'>POLONI DEX</a>"
+  data_area: "يتم تضمين إحصائيات الرموز المدرجة فقط على <a href='https://poloniex.org/'  target='_blank'>POLONI DEX</a>"
 };

@@ -107,6 +107,6 @@ export const lang20Q1 = {
   data_bandwidth_consumed_total: "Ancho de banda total consumido",
   data_bandwidth_freezed: "Ancho de banda consumido para congelar TRX",
   data_bandwidth_burned: "Ancho de banda consumido para quemar TRX",
-  data_area: "Only tokens listed on <a href='https://poloniex.org/'>POLONI DEX</a> are included"
+  data_area: "Only tokens listed on <a href='https://poloniex.org/'  target='_blank'>POLONI DEX</a> are included"
 
 };
