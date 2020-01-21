@@ -203,16 +203,19 @@ class BestData extends React.Component {
     let totalEnergyUseAry = [],
       totalEnergyBurn = [],
       totalWholeEnergyUse = [],
-      totalPercentage = [];
+      totalPercentage = [],
+      totalContractUse = [];
     energyData.forEach(res => {
       totalEnergyUseAry.push(res.energy_use);
       totalEnergyBurn.push(res.energy_burn);
       totalWholeEnergyUse.push(res.whole_energy_use);
       totalPercentage.push(res.percentage);
+      totalContractUse.push(res.energy_use);
     });
     topData[0].data.push({
       rank: "111111",
       address: "",
+      contract_use:this.sumArr(totalContractUse) || 0,
       energy_use: this.sumArr(totalEnergyUseAry) || 0,
       energy_burn: this.sumArr(totalEnergyBurn) || 0,
       whole_energy_use: this.sumArr(totalWholeEnergyUse) || 0,

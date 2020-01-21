@@ -175,7 +175,7 @@ class Contracts extends React.Component {
           );
         },
         align: "center",
-        width: index == 11 ? "100px" : "80px"
+        width: index == 11 ? "15%" : "10%"
       },
       {
         title: intl.formatMessage({ id: titles[1] }),
@@ -192,7 +192,7 @@ class Contracts extends React.Component {
           );
         },
         align: "left",
-        width: index == 11 ? "300px" : "150px"
+        width: index == 11 ? "35%" : "30%"
       },
       {
         title: () => {
@@ -220,7 +220,7 @@ class Contracts extends React.Component {
           );
         },
         align: "left",
-        width: index == 11 ? "250px" : ""
+        width: index == 11 ? "20%" : ""
       },
       {
         title: () => {

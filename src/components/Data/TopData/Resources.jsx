@@ -124,6 +124,24 @@ class DataResources extends React.Component {
       {
         title: upperFirst(
           intl.formatMessage({
+            id: "data_whole_contract_use"
+          })
+        ),
+        dataIndex: "contract_use",
+        key: "contract_use",
+        align: "left",
+        render: (text, record, index) => {
+          return (
+            <span className="">
+              <FormattedNumber value={parseInt(text || 0)}></FormattedNumber>{" "}
+              ENERGY
+            </span>
+          );
+        }
+      },
+      {
+        title: upperFirst(
+          intl.formatMessage({
             id: "data_resource_table_energy_consumed"
           })
         ),

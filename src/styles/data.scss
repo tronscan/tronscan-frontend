@@ -5,6 +5,7 @@
   .data-items {
     background: #ffffff;
     border: 1px solid #eeeeee;
+    border-bottom:0;
     border-radius: 0.5px;
     width: 100%;
     overflow: hidden;
@@ -18,6 +19,7 @@
       color: #3c3c3c;
       position: relative;
       padding-left: 20px;
+      margin-bottom:0;
       .data-real-time {
         position: absolute;
         top: 0;
@@ -29,6 +31,10 @@
   .ant-table table {
     width: 100.1%;
   }
+  .ant-table-tbody>tr>td{
+    border-bottom:0;
+  }
+  
   .ant-table .ant-table-thead > tr > th,
   .ant-table .ant-table-tbody > tr > td {
     padding: 6px 10px;
@@ -39,6 +45,9 @@
     &:last-child {
       padding-right: 20px !important;
     }
+  }
+  .ant-table .ant-table-thead > tr > th{
+    padding: 12px 10px;
   }
 
   .ant-table-thead {
@@ -95,6 +104,11 @@
       &:nth-child(2) {
         margin-top: 0;
       }
+      @media only screen and (max-width: 768px) {
+        &:nth-child(2) {
+          margin-top: 22px;
+        }
+      }
     }
     .text-truncate.address-link {
       // margin: 0 auto;
@@ -125,6 +139,12 @@
       &:nth-child(2) {
         margin-top: 0;
       }
+      @media only screen and (max-width: 768px) {
+        &:nth-child(2) {
+          margin-top: 22px;
+        }
+      }
+
     }
     .data-token-name {
       a {
@@ -395,7 +415,7 @@
       }
     }
   }
-  .bandWidthTable {
+  .resourceTable{
     .ant-table-thead {
       th {
         .ant-table-column-title {
