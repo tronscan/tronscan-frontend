@@ -108,7 +108,7 @@ export class PriceInfo extends Component {
                         (1 {first.abbr} = {`${abbrAmount} ${last.abbr}`})
                     </span>
                     <span className="mr-3">
-                        TRX{tu('trc20_last_price')}: <TRXPrice amount={1} currency="USD" source="home"/>
+                        TRX{tu('trc20_last_price')}: <TRXPrice amount={1} currency="USD"/>
                     </span>
                 </div>
             </Form.Item>

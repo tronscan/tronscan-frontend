@@ -239,12 +239,12 @@ export class TRXPrice extends React.PureComponent {
                 <Fragment>
                   <FormattedNumber
                     value={this.renderPrice(amount, priceValues)}
-                    maximumFractionDigits={
-                      priceValues.currencies[
-                        currency.toUpperCase() ||
-                          priceValues.priceShown.toUpperCase()
-                      ].fractions || 3
-                    }
+                    // maximumFractionDigits={
+                    //   priceValues.currencies[
+                    //     currency.toUpperCase() ||
+                    //       priceValues.priceShown.toUpperCase()
+                    //   ].fractions || 3
+                    // }
                   >
                     {value => (
                       <span
@@ -270,20 +270,7 @@ export class TRXPrice extends React.PureComponent {
                           ) : (
                             <span>
                               ({Number(priceChage) > 0 ? "+" : ""}
-                              {priceChage}%){" "}
-                              {Number(priceChage) > 0 ? (
-                                <img
-                                  className="quotesImg"
-                                  src={myPng("up")}
-                                  alt=""
-                                />
-                              ) : (
-                                <img
-                                  className="quotesImg"
-                                  src={myPng("down")}
-                                  alt=""
-                                />
-                              )}
+                              {priceChage}%)
                             </span>
                           )}
                         </span>

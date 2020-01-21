@@ -840,7 +840,6 @@ class Navigation extends React.Component {
                   <div className="nav-link dropdown-toggle nav-item" onClick={(e) => {
                     isMobile && this.clickLoginWithPk(e)
                   }}>
-                    <Divider className="hidden-mobile" type="vertical" style={{marginRight:'1rem',height: '1.2em','display':'inline-block'}}/>
                     {tu("open_wallet")}
                   
                     <ul className="dropdown-menu dropdown-menu-right nav-login-wallet" style={{minWidth: style_width}}>
@@ -1040,7 +1039,6 @@ class Navigation extends React.Component {
                   <Link to="/">
                     <img  src={this.getLogo()} className="logo" alt="Tron"/>
                     {IS_SUNNET?<span className="sunnet-logo-title ">
-                      <Divider className="hidden-mobile" type="vertical" style={{height: "70%",'display':'inline-block'}}/>
                       <span className="ml-2" style={{color:"#000"}}>Dapp Chain</span>
                     </span> :null}
                   </Link>
@@ -1312,7 +1310,9 @@ class Navigation extends React.Component {
                       wallet.isOpen && <Notifications wallet={wallet} notifications={notifications}/>
                     }
                     {this.renderWallet()}
-                    <li className="nav-item dropdown navbar-right hidden-mobile" style={{display:'inline-block'}}>
+                   
+                    <li className="nav-item dropdown navbar-right hidden-mobile" style={{display:'flex'}}>
+                        <Divider className="hidden-mobile" type="vertical" style={{marginTop:'0.7rem',height: '1.2em','display':'inline-block'}}/>
                         <a className="nav-link dropdown-toggle dropdown-menu-right pr-0"
                           data-toggle="dropdown"
                           href="javascript:">{languages[activeLanguage]}</a>
