@@ -104,6 +104,7 @@ export const lang20Q1 = {
   data_energy_consumed_total: "کل انرژی مصرف شده",
   data_energy_freezed: "TRX را فریز کنید وانرژی بدست آورید ",
   data_energy_burned: "TRX را فریز کنید و پهنای باند بدست آورید ",
+  data_whole_contract_use: "انرژی حاصل از ایجاد کننده قرارداد",
   data_bandwidth_consumed_total: "مصرف کل پهنای باند",
   data_bandwidth_freezed: "پهنای باند از طریق فریز TRX",
   data_bandwidth_burned: "پهنای باند از طریق سوزاندن TRX",

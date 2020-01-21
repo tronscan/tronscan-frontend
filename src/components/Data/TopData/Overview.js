@@ -47,6 +47,7 @@ class Overview extends React.Component {
           net_usage: topData.last_hour_net_usage,
           whole_energy_use: topData.last_hour_whole_energy_use,
           whole_energy_burn: topData.last_hour_whole_energy_burn,
+          whole_contract_use: topData.last_hour_whole_contract_use,
           whole_net_use: topData.last_hour_whole_net_use,
           whole_net_burn: topData.last_hour_whole_net_burn,
           token_all: topData.token_all,
@@ -65,7 +66,7 @@ class Overview extends React.Component {
           whole_vote: topData.whole_vote,
           token_sum_transaction: topData.last_day_token_sum_transaction,
           token_sum_transaction_amount:
-            topData.last_day_token_sum_transaction_amount,
+          topData.last_day_token_sum_transaction_amount,
           contract_whole_balance: topData.contract_whole_balance,
           contract_active_address: topData.last_day_contract_active_address,
           contract_triggers: topData.last_day_contract_triggers,
@@ -73,6 +74,7 @@ class Overview extends React.Component {
           net_usage: topData.last_day_net_usage,
           whole_energy_use: topData.last_day_whole_energy_use,
           whole_energy_burn: topData.last_day_whole_energy_burn,
+          whole_contract_use: topData.last_day_whole_contract_use,
           whole_net_use: topData.last_day_whole_net_use,
           whole_net_burn: topData.last_day_whole_net_burn,
           token_all: topData.token_all,
@@ -90,8 +92,7 @@ class Overview extends React.Component {
           whole_freeze: topData.whole_freeze,
           whole_vote: topData.whole_vote,
           token_sum_transaction: topData.last_week_token_sum_transaction,
-          token_sum_transaction_amount:
-            topData.last_week_token_sum_transaction_amount,
+          token_sum_transaction_amount: topData.last_week_token_sum_transaction_amount,
           contract_whole_balance: topData.contract_whole_balance,
           contract_active_address: topData.last_week_contract_active_address,
           contract_triggers: topData.last_week_contract_triggers,
@@ -99,6 +100,7 @@ class Overview extends React.Component {
           net_usage: topData.last_week_net_usage,
           whole_energy_use: topData.last_week_whole_energy_use,
           whole_energy_burn: topData.last_week_whole_energy_burn,
+          whole_contract_use: topData.last_week_whole_contract_use,
           whole_net_use: topData.last_week_whole_net_use,
           whole_net_burn: topData.last_week_whole_net_burn,
           token_all: topData.token_all,
@@ -280,7 +282,7 @@ class Overview extends React.Component {
                     ></FormattedNumber>
                   </div>
                 </div>
-                <div className="content-item px-3 d-flex justify-content-between border-bottom">
+                <div className="content-item px-3 d-flex justify-content-between border-0">
                   <div>{tu("data_calling_number")}</div>
                   <div>
                     <FormattedNumber
@@ -300,7 +302,7 @@ class Overview extends React.Component {
               <div className="content">
                 <div className="content-detail px-3 border-bottom">
                   <div className="detail-item d-flex justify-content-between">
-                    <div>{tu("data_resource_table_title")}</div>
+                    <div>{tu("data_energy_consumed_total")}</div>
                     <div className="font14 item-white-space">
                       <FormattedNumber
                         value={data.energy_usage || 0}
@@ -326,12 +328,22 @@ class Overview extends React.Component {
                       ENERGY
                     </div>
                   </div>
+                  <div className="detail-item d-flex justify-content-between">
+                    <div>{tu("data_whole_contract_use")}</div>
+                    <div className="item-white-space">
+                      <FormattedNumber
+                        value={data.whole_contract_use || 0}
+                      ></FormattedNumber>{" "}
+                      ENERGY
+                    </div>
+                  </div>
+                
                 </div>
               </div>
               <div className="content">
                 <div className="content-detail px-3">
                   <div className="detail-item d-flex justify-content-between">
-                    <div>{tu("data_resource_table_bandwidth_title")}</div>
+                    <div>{tu("data_bandwidth_consumed_total")}</div>
                     <div className="font14 item-white-space">
                       <FormattedNumber
                         value={data.net_usage || 0}

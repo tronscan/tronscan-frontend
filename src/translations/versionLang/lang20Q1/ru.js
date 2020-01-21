@@ -106,6 +106,7 @@ export const lang20Q1 = {
   data_energy_consumed_total: "Общее Количество Потребляемой Энергии",
   data_energy_freezed: "Энергия от Замораживания TRX",
   data_energy_burned: "Энергия от Сжигания TRX",
+  data_whole_contract_use: "Энергия от подрядчика",
   data_bandwidth_consumed_total: "Общее Потребление Пропускной Способности",
   data_bandwidth_freezed: "Пропускная Способность после Замораживания TRX",
   data_bandwidth_burned: "Пропускная Способность после Сжигания TRX",

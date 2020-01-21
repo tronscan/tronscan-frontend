@@ -102,6 +102,7 @@ export const lang20Q1 = {
   data_energy_consumed_total: "Total Energy Consumed",
   data_energy_freezed: "Energy from Freezing TRX",
   data_energy_burned: "Energy from Burning TRX",
+  data_whole_contract_use: "Energy from Contract Deployer",
   data_bandwidth_consumed_total: "Total Bandwidth Consumed",
   data_bandwidth_freezed: "Bandwidth from Freezing TRX",
   data_bandwidth_burned: "Bandwidth from Burning TRX",

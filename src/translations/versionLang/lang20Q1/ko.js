@@ -101,6 +101,7 @@ export const lang20Q1 = {
   data_energy_consumed_total: "소비된 에너지",
   data_energy_freezed: "TRX 동결에 소비된 에너지",
   data_energy_burned: "TRX 소각에 소비된 대역폭",
+  data_whole_contract_use: "계약 전개 자로부터의 에너지",
   data_bandwidth_consumed_total: "소비된 총 대역폭",
   data_bandwidth_freezed: "TRX 동결에 소비된 대역폭",
   data_bandwidth_burned: "TRX 소각에 소비된 대역폭",

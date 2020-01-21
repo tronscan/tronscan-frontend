@@ -103,9 +103,9 @@ export const lang20Q1 = {
   data_energy_consumed_total: "إجمالي الطاقة المستهلكة",
   data_energy_freezed: "إستهلاك الطاقة لتجميد TRX",
   data_energy_burned: "إستهلاك الطاقة لحرق TRX",
+  data_whole_contract_use:"الطاقة من ناشر العقد",
   data_bandwidth_consumed_total: "إجمالي عرض النطاق الترددي المستهلك",
   data_bandwidth_freezed: "عرض النطاق الترددي المستهلك لتجميد TRX",
   data_bandwidth_burned: "عرض النطاق الترددي المستهلك لحرق TRX",
-  data_area:
-    "يتم تضمين إحصائيات الرموز المدرجة فقط على <a href='https://poloniex.org/'>POLONI DEX</a>"
+  data_area: "يتم تضمين إحصائيات الرموز المدرجة فقط على <a href='https://poloniex.org/'>POLONI DEX</a>"
 };

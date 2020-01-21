@@ -103,6 +103,7 @@ export const lang20Q1 = {
   data_energy_consumed_total: "トータルエネルギー",
   data_energy_freezed: "TRXを凍結するために消費されるエネルギー",
   data_energy_burned: "TRXの燃焼に消費されるエネルギー",
+  data_whole_contract_use:"契約デプロイヤーからのエネルギー",
   data_bandwidth_consumed_total: "消費される総帯域幅",
   data_bandwidth_freezed: "TRXをフリーズするために消費される帯域幅",
   data_bandwidth_burned: "TRXの書き込みに消費される帯域幅",
