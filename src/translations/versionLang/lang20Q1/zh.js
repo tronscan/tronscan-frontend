@@ -108,6 +108,6 @@ export const lang20Q1 = {
   data_bandwidth_consumed_total: "消耗总带宽",
   data_bandwidth_freezed: "消耗冻结TRX的带宽",
   data_bandwidth_burned: "消耗燃烧TRX的带宽",
-  data_area:"仅统计<a href='https://poloniex.org/'>POLONI DEX</a>交易所上线的通证",
+  data_area:"仅统计<a href='https://poloniex.org/' target='_blank'>POLONI DEX</a>交易所上线的通证",
 
 };

@@ -294,8 +294,8 @@ class BestData extends React.Component {
                       {
                         (start_time && end_time) && <div className="time-style d-flex justify-content-between">
                         <span>
-                            <span className="time-date"><FormattedDate value={start_time} /></span>&nbsp;
-                            <span className="time-hms"><FormattedTime value={start_time}
+                            <span className={time == 1 ? 'time-date' : 'time-hms'}><FormattedDate value={start_time} /></span>&nbsp;
+                            <span className={time != 1 ? 'time-date' : 'time-hms'}><FormattedTime value={start_time}
                                 hour='numeric'
                                 minute="numeric"
                                 second='numeric'
@@ -304,8 +304,8 @@ class BestData extends React.Component {
                         </span>
                         <span>-</span>
                         <span>
-                        <span className="time-date"><FormattedDate value={end_time}/></span>&nbsp;
-                        <span className="time-hms"><FormattedTime value={end_time}
+                        <span className={time == 1 ? 'time-date' : 'time-hms'}><FormattedDate value={end_time}/></span>&nbsp;
+                        <span className={time != 1 ? 'time-date' : 'time-hms'}><FormattedTime value={end_time}
                                           hour='numeric'
                                           minute="numeric"
                                           second='numeric'
