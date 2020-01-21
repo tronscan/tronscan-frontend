@@ -146,8 +146,7 @@
   // contract module
   .data-contract {
     .gutter-row {
-      &:first-child,
-      &:nth-child(2) {
+      &:first-child{
         margin-top: 0;
       }
     }
@@ -327,6 +326,11 @@
     .data-overview-row {
       display: flex;
       flex-direction: column;
+      .item{
+        &:nth-child(2) {
+          margin-top: 1rem;
+        }
+      }
     }
     .item {
       font-size: 12px;
