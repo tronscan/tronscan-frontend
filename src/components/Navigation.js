@@ -1104,7 +1104,7 @@ class Navigation extends React.Component {
                                       {tu(route.label)}
                                     </HrefLink>
                                     :
-                                    <span className={route.routes ? (route.label == 'nav_network' ? 'nav-network-hot mr-2' : "") : ""}> 
+                                    <span className={route.routes ? (route.label == 'nav_network' ? 'nav-network-hot' : "") : ""}> 
                                     <NavLink
                                         className={route.routes ? (route.label == 'nav_network' ? 'nav-link text-capitalize' : "nav-link") : "nav-link"}
                                         {...((route.routes && route.routes.length > 0) ? {'data-toggle': 'dropdown'} : {})}
