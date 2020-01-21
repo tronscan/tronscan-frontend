@@ -132,14 +132,14 @@ class Tokens extends React.Component {
 
     return (
       <div className="top-data">
-        <p className="data-area">
-          <div
-            className="content"
-            dangerouslySetInnerHTML={{
-              __html: intl.formatMessage({ id: "data_area" })
-            }}
-          />
-        </p>
+        
+        <div
+          className="data-area mb-3"
+          dangerouslySetInnerHTML={{
+            __html: intl.formatMessage({ id: "data_area" })
+          }}
+        />
+     
         <Row gutter={{ xs: 8, sm: 20, md: 20 }} className="data-token">
           {Object.keys(types).map(index => (
             <Col

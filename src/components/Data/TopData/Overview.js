@@ -27,9 +27,7 @@ class Overview extends React.Component {
   }
   render() {
     const { match, topData, topTime, priceUSD } = this.props;
-    let data = {};
-    console.log("time", topTime);
-    console.log("topData", topData);
+    let data = {}
     switch (topTime) {
       case 1:
         data = {
