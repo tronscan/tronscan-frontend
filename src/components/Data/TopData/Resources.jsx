@@ -69,7 +69,7 @@ class DataResources extends React.Component {
         ),
         dataIndex: "address",
         key: "address",
-        align: "center",
+        align: "left",
         width: "150px",
         render: (text, record, index) => {
           return text ? (
@@ -93,7 +93,7 @@ class DataResources extends React.Component {
         ),
         dataIndex: "energy_use",
         key: "energy_use",
-        align: "center",
+        align: "left",
         render: (text, record, index) => {
           return (
             <span className="">
@@ -111,7 +111,7 @@ class DataResources extends React.Component {
         ),
         dataIndex: "energy_burn",
         key: "energy_burn",
-        align: "center",
+        align: "left",
         render: (text, record, index) => {
           return (
             <span className="">
@@ -129,7 +129,7 @@ class DataResources extends React.Component {
         ),
         dataIndex: "whole_energy_use",
         key: "whole_energy_use",
-        align: "center",
+        align: "left",
         render: (text, record, index) => {
           return (
             <span className="">
@@ -157,7 +157,7 @@ class DataResources extends React.Component {
         },
         dataIndex: "percentage",
         key: "percentage",
-        align: "center",
+        align: "left",
         render: (text, record, index) => {
           return (
             <span className="percentageWidth">{(text * 100).toFixed(2)}%</span>
@@ -214,7 +214,7 @@ class DataResources extends React.Component {
         dataIndex: "address",
         key: "address",
         width: "150px",
-        align: "center",
+        align: "left",
         render: (text, record, index) => {
           return text ? (
             <span className="resourceAddress">
@@ -237,7 +237,7 @@ class DataResources extends React.Component {
         ),
         dataIndex: "net_use",
         key: "net_use",
-        align: "center",
+        align: "left",
         render: (text, record, index) => {
           return (
             <span>
@@ -255,7 +255,7 @@ class DataResources extends React.Component {
         ),
         dataIndex: "net_burn",
         key: "net_burn",
-        align: "center",
+        align: "left",
         render: (text, record, index) => {
           return (
             <span>
@@ -273,7 +273,7 @@ class DataResources extends React.Component {
         ),
         dataIndex: "whole_net_use",
         key: "whole_net_use",
-        align: "center",
+        align: "left",
         render: (text, record, index) => {
           return (
             <span>
@@ -301,7 +301,7 @@ class DataResources extends React.Component {
         },
         dataIndex: "percentage",
         key: "percentage",
-        align: "center",
+        align: "left",
         render: (text, record, index) => {
           return (
             <span className="percentageWidth">{(text * 100).toFixed(2)}%</span>

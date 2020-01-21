@@ -420,7 +420,7 @@ class Footer extends Component {
                       <span className="text mr-3">
                         Copyright© 2017-2020 tronscan.org
                       </span>
-                      <div className="d-flex switch">
+                      <div className="d-flex switch hidden-mobile">
                         <span>{tu("index_page_switch_tokens")}</span>
                         {this.dropCurrency()}
                       </div>

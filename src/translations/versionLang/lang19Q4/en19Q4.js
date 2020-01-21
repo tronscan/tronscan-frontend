@@ -181,7 +181,7 @@ export const lang19Q4 = {
     "index_page_confirmed_blocks":"Confirmed blocks",
     "index_page_confirmed_blocks_tips":"Blocks confirmed by 19 or more SRs",
     "index_page_switch_tokens":"Switch tokens",
-    "index_page_tronscan_info":"TRONSCAN | the best block explorer of TRON.",
+    "index_page_tronscan_info":"TRONSCAN | The best block explorer of TRON.",
     "index_page_down_excel_tips":"Change the decimals mannually when opening the file in Excel.",
     "index_page_pane_current":"Current",
     "index_page_pane_MaxTPS":"Max TPS",

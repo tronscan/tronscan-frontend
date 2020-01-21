@@ -104,9 +104,9 @@
   .footerContainer {
     position: relative;
     .helpLinkPos {
-      position: absolute;
-      right: -6rem;
-      bottom: 403px;
+      position: fixed;
+      right: 0;
+      bottom: 60px;
     }
   }
   .helpLinkWrapper {
