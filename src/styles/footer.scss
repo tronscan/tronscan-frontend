@@ -158,16 +158,17 @@
   .item .title {
     max-width: 190px !important;
   }
-  @media (min-width: 992px){
-    .item .title {
-      max-width: 140px !important;
-    }
-  }
-  @media (min-width: 768px){
+  @media screen and (min-width: 768px) and (max-width:992px){
     .item .title {
       max-width: 100px!important;
     } 
   }
+  @media only screen and (min-width: 992px) and (max-width:1200px) {
+    .item .title {
+      max-width: 140px !important;
+    }
+  }
+  
   
   
 }

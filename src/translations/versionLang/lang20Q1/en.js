@@ -107,5 +107,5 @@ export const lang20Q1 = {
   data_bandwidth_freezed: "Bandwidth from Freezing TRX",
   data_bandwidth_burned: "Bandwidth from Burning TRX",
   data_area:
-    "Only tokens listed on <a href='https://poloniex.org/'>POLONI DEX</a> are included"
+    "Only tokens listed on <a href='https://poloniex.org/'  target='_blank'>POLONI DEX</a> are included"
 };
