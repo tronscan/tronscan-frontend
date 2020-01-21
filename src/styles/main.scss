@@ -487,7 +487,7 @@ tr a {
   height: 100px;
   max-width: 100%;
 }
-@media (min-width: 79px) {
+@media (min-width: 768px) {
   #root {
     min-width: 1424px;
     width: 100%;
@@ -496,7 +496,7 @@ tr a {
 
 /* Mobile fixes */
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 767px) {
   #root {
     min-width: 100%;
     width: 100%;
