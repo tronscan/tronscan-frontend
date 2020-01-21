@@ -95,6 +95,11 @@
       &:nth-child(2) {
         margin-top: 0;
       }
+      @media only screen and (max-width: 768px) {
+        &:nth-child(2) {
+          margin-top: 22px;
+        }
+      }
     }
     .text-truncate.address-link {
       // margin: 0 auto;
@@ -125,6 +130,12 @@
       &:nth-child(2) {
         margin-top: 0;
       }
+      @media only screen and (max-width: 768px) {
+        &:nth-child(2) {
+          margin-top: 22px;
+        }
+      }
+
     }
     .data-token-name {
       a {
