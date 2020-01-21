@@ -184,7 +184,7 @@ class Accounts extends React.Component {
           );
         },
         align: "center",
-        width: "15%"
+        width: "10%"
       },
       {
         title: intl.formatMessage({ id: titles[1] }),

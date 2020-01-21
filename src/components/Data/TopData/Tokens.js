@@ -191,7 +191,7 @@ class Tokens extends React.Component {
           );
         },
         align: "center",
-        width: "100px"
+        width: "15%"
       },
       {
         title: intl.formatMessage({ id: titles[1] }),
@@ -220,7 +220,7 @@ class Tokens extends React.Component {
           );
         },
         align: "left",
-        width: typeIndex != 10 && "150px"
+        width: typeIndex != 10 && "30%"
       },
       {
         title: intl.formatMessage({ id: titles[2] }),
@@ -267,7 +267,7 @@ class Tokens extends React.Component {
           );
         },
         align: "left",
-        width: typeIndex != 10 && "150px"
+        width: typeIndex != 10 && "30%"
       },
       {
         title: () => {
