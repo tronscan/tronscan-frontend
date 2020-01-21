@@ -1243,6 +1243,13 @@ $color: #c23631;
     }
   }
 }
+@media screen and (max-width: 768px) and (min-width: 768px) {
+  .tron-light {
+    .mobileFlexible {
+      display: block;
+    }
+  }
+}
 // mobile
 
 @media (max-width: 768px) {
