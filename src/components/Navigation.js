@@ -1118,7 +1118,7 @@ class Navigation extends React.Component {
                                       {route.label !== 'home_page' && route.label !== 'Poloni DEX'?<Icon type="caret-down" /> : null}
                                     
                                       </span>
-                                      <i className="hot-nav"></i>
+                                      {/* <i className="hot-nav"></i> */}
                                     </NavLink>
                                   
                                     </span>
