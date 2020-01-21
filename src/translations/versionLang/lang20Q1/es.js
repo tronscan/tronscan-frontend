@@ -59,7 +59,8 @@ export const lang20Q1 = {
   data_contract_times: "El mejor contrato--número de asignar",
   data_real_time: "Tiempo real",
 
-  data_resource_table_title: "Consumo pico de energía",
+  // data_resource_table_title: "Consumo pico de energía",
+  data_resource_table_title: "Top accounts by Energy consumption",
   data_resource_table_rank: "Rank",
   data_resource_table_account: "Cuentas",
   data_resource_table_freezingTRX_energy: "Energía consumida para congelar TRX",
@@ -70,7 +71,8 @@ export const lang20Q1 = {
     "Ancho de banda consumido por el usuario / Ancho de banda consumido por todos los usuarios",
   data_resource_bandwith_table_percentage_tips:
     "Ancho de banda consumido por el usuario / Ancho de banda consumido por todos los usuarios",
-  data_resource_table_bandwidth_title: "Consumo pico de ancho de banda",
+  // data_resource_table_bandwidth_title: "Consumo pico de ancho de banda",
+  data_resource_table_bandwidth_title: "Top accounts by bandwidth consumption",
   data_resource_table_total: "",
   data_contract_account: "Número de asignar cuenta",
   data_contract_time: "Número de asignación",
@@ -106,6 +108,6 @@ export const lang20Q1 = {
   data_bandwidth_consumed_total: "Ancho de banda total consumido",
   data_bandwidth_freezed: "Ancho de banda consumido para congelar TRX",
   data_bandwidth_burned: "Ancho de banda consumido para quemar TRX",
-  data_area: "仅统计在POLONI DEX交易所上线的通证"
+  data_area: "Only tokens listed on POLONI DEX are included"
 
 };
