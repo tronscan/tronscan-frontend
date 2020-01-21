@@ -203,20 +203,23 @@ class BestData extends React.Component {
     let totalEnergyUseAry = [],
       totalEnergyBurn = [],
       totalWholeEnergyUse = [],
-      totalPercentage = [];
+      totalPercentage = [],
+      totalContractUse = [];
     energyData.forEach(res => {
       totalEnergyUseAry.push(res.energy_use);
       totalEnergyBurn.push(res.energy_burn);
       totalWholeEnergyUse.push(res.whole_energy_use);
       totalPercentage.push(res.percentage);
+      totalContractUse.push(res.energy_use);
     });
     topData[0].data.push({
       rank: "111111",
       address: "",
+      contract_use:this.sumArr(totalContractUse) || 0,
       energy_use: this.sumArr(totalEnergyUseAry) || 0,
       energy_burn: this.sumArr(totalEnergyBurn) || 0,
       whole_energy_use: this.sumArr(totalWholeEnergyUse) || 0,
-      percentage: this.sumArr(totalPercentage) || 0
+      percentage: this.sumArr(totalPercentage) || 0,
     });
   }
 
@@ -291,8 +294,8 @@ class BestData extends React.Component {
                       {
                         (start_time && end_time) && <div className="time-style d-flex justify-content-between">
                         <span>
-                            <span className={time != 1 ? "time-hms" : "time-date"}><FormattedDate value={start_time} /></span>&nbsp;
-                            <span className={time == 1 ? "time-hms" : "time-date"}><FormattedTime value={start_time}
+                            <span className="time-date"><FormattedDate value={start_time} /></span>&nbsp;
+                            <span className="time-hms"><FormattedTime value={start_time}
                                 hour='numeric'
                                 minute="numeric"
                                 second='numeric'
@@ -301,8 +304,8 @@ class BestData extends React.Component {
                         </span>
                         <span>-</span>
                         <span>
-                        <span className={time != 1 ? "time-hms" : "time-date"}><FormattedDate value={end_time}/></span>&nbsp;
-                        <span className={time == 1 ? "time-hms" : "time-date"}><FormattedTime value={end_time}
+                        <span className="time-date"><FormattedDate value={end_time}/></span>&nbsp;
+                        <span className="time-hms"><FormattedTime value={end_time}
                                           hour='numeric'
                                           minute="numeric"
                                           second='numeric'

@@ -59,7 +59,7 @@ export const lang20Q1 = {
   data_contract_times: "上位契約-コール数",
   data_real_time: "リアルタイム",
 
-  data_resource_table_title: "アカウントの最大エネルギー消費",
+  data_resource_table_title: "ピークエネルギー消費",
   data_resource_table_rank: "ランク",
   data_resource_table_account: "アカウント",
   data_resource_table_freezingTRX_energy:
@@ -71,7 +71,7 @@ export const lang20Q1 = {
     "ユーザーが消費するエネルギー/すべてのユーザーが消費するエネルギー",
   data_resource_bandwith_table_percentage_tips:
     "ユーザーが消費する帯域幅/すべてのユーザーが消費する帯域幅",
-  data_resource_table_bandwidth_title: "アカウントの最大帯域幅消費",
+  data_resource_table_bandwidth_title: "ピーク帯域幅消費",
   data_resource_table_total: "トータル",
   data_contract_account: "通話アカウント",
   data_contract_time: "通話ナンバー",

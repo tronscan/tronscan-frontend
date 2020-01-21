@@ -84,7 +84,10 @@ class Menunavigation extends Component {
               <SubMenu
                 key={route.pathKey}
                 title={
-                  <span className="nav-network-hot">{tu(route.label)}</span>
+                  <span className="nav-network-hot">
+                    {tu(route.label)}
+                  
+                  </span>
                 }
               >
                 <span>
@@ -232,10 +235,7 @@ class Menunavigation extends Component {
                         {route.routes &&
                           route.routes.map((subRoute, index) => {
                             return (
-                              <div
-                                className="more-menu-mobile-wrapper"
-                                key={index}
-                              >
+                              <div className="more-menu-mobile-wrapper" key={index}>
                                 <div className="more-menu-line"></div>
                                 {subRoute.map((Route, j) => {
                                   if (isString(Route)) {
@@ -261,8 +261,8 @@ class Menunavigation extends Component {
                                   ) {
                                     return (
                                       <Menu.ItemGroup
-                                        className="mr-3  developer_challenge_box"
-                                        style={{ display: "block" }}
+                                        className="mr-3  developer_challenge_box" 
+                                        style={{display: 'block',}}
                                         key={Route.label}
                                         title={
                                           <span

@@ -74,11 +74,10 @@ class DataResources extends React.Component {
         render: (text, record, index) => {
           return text ? (
             <span className="resourceAddress">
-              {record.addressTag ? (
+               {record.addressTag && (
                 <Link to={`/address/${text}`}>{record.addressTag}</Link>
-              ) : (
-                <AddressLink address={text}>{text}</AddressLink>
               )}
+              <AddressLink address={text}>{text}</AddressLink>
             </span>
           ) : (
             "--"
@@ -111,6 +110,24 @@ class DataResources extends React.Component {
         ),
         dataIndex: "energy_burn",
         key: "energy_burn",
+        align: "left",
+        render: (text, record, index) => {
+          return (
+            <span className="">
+              <FormattedNumber value={parseInt(text || 0)}></FormattedNumber>{" "}
+              ENERGY
+            </span>
+          );
+        }
+      },
+      {
+        title: upperFirst(
+          intl.formatMessage({
+            id: "data_whole_contract_use"
+          })
+        ),
+        dataIndex: "contract_use",
+        key: "contract_use",
         align: "left",
         render: (text, record, index) => {
           return (
@@ -218,11 +235,10 @@ class DataResources extends React.Component {
         render: (text, record, index) => {
           return text ? (
             <span className="resourceAddress">
-              {record.addressTag ? (
+              {record.addressTag && (
                 <Link to={`/address/${text}`}>{record.addressTag}</Link>
-              ) : (
-                <AddressLink address={text}>{text}</AddressLink>
               )}
+              <AddressLink address={text}>{text}</AddressLink>
             </span>
           ) : (
             "--"
