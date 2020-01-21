@@ -209,12 +209,12 @@
   .time-date {
     font-family: PingFangSC-Regular;
     font-size: 14px;
-    color: #696969;
+    color: #999999;
   }
   .time-hms {
     font-family: PingFangSC-Regular;
     font-size: 14px;
-    color: #999999;
+    color: #696969;
   }
 }
 .see-top10 {
@@ -283,6 +283,7 @@
     .title {
       line-height: 45px;
       background: #f3f3f3;
+      color: #000;
     }
     .content-item-USD {
       &-left {
