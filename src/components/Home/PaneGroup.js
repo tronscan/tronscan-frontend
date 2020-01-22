@@ -88,7 +88,7 @@ export default class panelGroup extends Component {
     Lockr.set("dataEur", data.priceEUR);
     let { mainnetData, sunnetData, complexData, onlineNodesSun } = this.state;
     let Data = {
-      onlineNodes: data.node.total,
+      onlineNodes: (data && data.node && data.node.total)? data.node.total: 0,
       maxTps: data.tps.data.maxTps ? data.tps.data.maxTps : 0,
       tps: data.tps.data.currentTps ? data.tps.data.currentTps : 0,
       blockHeight: data.tps.data.blockHeight ? data.tps.data.blockHeight : 0,
