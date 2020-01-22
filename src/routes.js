@@ -427,6 +427,38 @@ export const routes = [
   //   none: true
   // },
   {
+    label: "TRONSR",
+    path: "/sr",
+    // icon: "fas fa-chess-queen",
+    icon: false,
+    pathKey: "/sr",
+    component: RepresentativesAsync,
+    routes: [
+      {
+        label: "representatives",
+        path: "/sr/representatives",
+        // icon: "fa fa-rocket",
+        icon: false,
+        component: RepresentativesAsync
+      },
+      {
+        label: "votes",
+        path: "/sr/votes",
+        // icon: "fas fa-comment",
+        icon: false,
+        component: VoteOverviewAsync,
+        showInMenu: IS_MAINNET ? true : false
+      },
+      {
+        label: "committee",
+        path: "/sr/committee",
+        // icon: "fas fa-users",
+        icon: false,
+        component: Committee
+      }
+    ]
+  },
+  {
     label: "DAPP",
     path: "/dapp",
     // icon: "fas fa-gamepad",
@@ -466,38 +498,7 @@ export const routes = [
       }
     ]
   },
-  {
-    label: "TRONSR",
-    path: "/sr",
-    // icon: "fas fa-chess-queen",
-    icon: false,
-    pathKey: "/sr",
-    component: RepresentativesAsync,
-    routes: [
-      {
-        label: "representatives",
-        path: "/sr/representatives",
-        // icon: "fa fa-rocket",
-        icon: false,
-        component: RepresentativesAsync
-      },
-      {
-        label: "votes",
-        path: "/sr/votes",
-        // icon: "fas fa-comment",
-        icon: false,
-        component: VoteOverviewAsync,
-        showInMenu: IS_MAINNET ? true : false
-      },
-      {
-        label: "committee",
-        path: "/sr/committee",
-        // icon: "fas fa-users",
-        icon: false,
-        component: Committee
-      }
-    ]
-  },
+ 
   {
     path: "/network",
     label: "nav_network",
