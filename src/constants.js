@@ -9,7 +9,7 @@ export const IS_DESKTOP = process.env.DESKTOP === "true";
 
 export const NETURL = {
   MAINNET: "https://dubug.tronscan.org",
-  SUNNET: "https://debugdappchain.tronscan.org",
+  SUNNET: "https://dubugdappchain.tronscan.org",
   NEWMAINNET: "https://tronscan.io",
   NEWSUNNET: "https://dappchain.tronscan.io",
   // MAINNET: "https://tronscan.org",
