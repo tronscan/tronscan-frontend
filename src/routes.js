@@ -427,6 +427,78 @@ export const routes = [
   //   none: true
   // },
   {
+    label: "DAPP",
+    path: "/dapp",
+    // icon: "fas fa-gamepad",
+    icon: false,
+    component: null,
+    pathKey: "/dapp",
+    showInMenu: IS_MAINNET ? true : false,
+    routes: [
+      // {
+      //     url: "https://www.tronace.com/?utm_source=TS",
+      //     icon: "fas fa-dollar-sign",
+      //     label: "TRONAce"
+      // },
+      // {
+      //     url: "https://www.tronbet.io/#/?utm_source=TS",
+      //     icon: "fas fa-dice-six",
+      //     label: "TRONbet"
+      // },
+      {
+        url: "https://tronlending.org/?utm_source=TS",
+        // icon: "fas fa-hand-holding-usd",
+        icon: false,
+        label: "TronLending"
+      },
+      {
+        url: "https://dappradar.com/rankings/protocol/tron",
+        // icon: "fab fa-dochub",
+        icon: false,
+        label: "DAppradar"
+      },
+      {
+        url:
+          "https://dapp.review/explore/tron?gclid=EAIaIQobChMIx-fB8KH04QIVlHZgCh0ybA1hEAAYASAAEgIad_D_BwE",
+        // icon: "fas fa-crop-alt",
+        icon: false,
+        label: "Dappreview"
+      }
+    ]
+  },
+  {
+    label: "TRONSR",
+    path: "/sr",
+    // icon: "fas fa-chess-queen",
+    icon: false,
+    pathKey: "/sr",
+    component: RepresentativesAsync,
+    routes: [
+      {
+        label: "representatives",
+        path: "/sr/representatives",
+        // icon: "fa fa-rocket",
+        icon: false,
+        component: RepresentativesAsync
+      },
+      {
+        label: "votes",
+        path: "/sr/votes",
+        // icon: "fas fa-comment",
+        icon: false,
+        component: VoteOverviewAsync,
+        showInMenu: IS_MAINNET ? true : false
+      },
+      {
+        label: "committee",
+        path: "/sr/committee",
+        // icon: "fas fa-users",
+        icon: false,
+        component: Committee
+      }
+    ]
+  },
+  {
     path: "/network",
     label: "nav_network",
     // icon: "fas fa-project-diagram",
@@ -488,46 +560,7 @@ export const routes = [
   //   component: Exchangetrc,
   //   none: true
   // },
-  {
-    label: "DAPP",
-    path: "/dapp",
-    // icon: "fas fa-gamepad",
-    icon: false,
-    component: null,
-    pathKey: "/dapp",
-    showInMenu: IS_MAINNET ? true : false,
-    routes: [
-      // {
-      //     url: "https://www.tronace.com/?utm_source=TS",
-      //     icon: "fas fa-dollar-sign",
-      //     label: "TRONAce"
-      // },
-      // {
-      //     url: "https://www.tronbet.io/#/?utm_source=TS",
-      //     icon: "fas fa-dice-six",
-      //     label: "TRONbet"
-      // },
-      {
-        url: "https://tronlending.org/?utm_source=TS",
-        // icon: "fas fa-hand-holding-usd",
-        icon: false,
-        label: "TronLending"
-      },
-      {
-        url: "https://dappradar.com/rankings/protocol/tron",
-        // icon: "fab fa-dochub",
-        icon: false,
-        label: "DAppradar"
-      },
-      {
-        url:
-          "https://dapp.review/explore/tron?gclid=EAIaIQobChMIx-fB8KH04QIVlHZgCh0ybA1hEAAYASAAEgIad_D_BwE",
-        // icon: "fas fa-crop-alt",
-        icon: false,
-        label: "Dappreview"
-      }
-    ]
-  },
+ 
   {
     label: "notice",
     path: "/notice/:id",
@@ -536,38 +569,7 @@ export const routes = [
     component: Notice,
     showInMenu: false
   },
-  {
-    label: "TRONSR",
-    path: "/sr",
-    // icon: "fas fa-chess-queen",
-    icon: false,
-    pathKey: "/sr",
-    component: RepresentativesAsync,
-    routes: [
-      {
-        label: "representatives",
-        path: "/sr/representatives",
-        // icon: "fa fa-rocket",
-        icon: false,
-        component: RepresentativesAsync
-      },
-      {
-        label: "votes",
-        path: "/sr/votes",
-        // icon: "fas fa-comment",
-        icon: false,
-        component: VoteOverviewAsync,
-        showInMenu: IS_MAINNET ? true : false
-      },
-      {
-        label: "committee",
-        path: "/sr/committee",
-        // icon: "fas fa-users",
-        icon: false,
-        component: Committee
-      }
-    ]
-  },
+ 
   {
     path: "/votes-live",
     label: "live",
