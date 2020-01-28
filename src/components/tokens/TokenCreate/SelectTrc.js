@@ -109,8 +109,8 @@ export class TokenCreate extends Component {
           <h2 className="mb-4 font-weight-bold">{tu('select_type')}</h2>
           <h5 className="f-18 mb-4 d-block">
             {tu('select_trx_tip1')}
-            <a className="col-red mx-1" href={url} target="_bank">{tu('select_trx_tip2')}</a>
-            {tu('select_trx_tip3')}
+            {/* <a className="col-red mx-1" href={url} target="_bank">{tu('select_trx_tip2')}</a>
+            {tu('select_trx_tip3')} */}
           </h5>
           <p className="text-muted mb-4 font-weight-light">{tu('select_tip1')}<br/>
           {tu('select_tip2')}</p>
