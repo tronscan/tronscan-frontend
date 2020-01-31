@@ -2248,7 +2248,7 @@ export const messages = {
 
 
   "developers_username": "username",
-  "developers_current_year":"total points",
+  "developers_current_year":"year's points",
   "developers_current_quarter": "quarter's points",
   "developers_current_month":"month's points",
   "developers_view_points":"View Points Details",
