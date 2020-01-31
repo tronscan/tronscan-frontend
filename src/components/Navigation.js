@@ -1363,32 +1363,32 @@ class Navigation extends React.Component {
                           {
                             searchResults && searchResults.map((result, index) => {
                                 if (result.desc === 'Block') {
-                                  return <Link className="dropdown-item text-uppercase" to={"/block/" + trim(result.value)} onClick={() => {
+                                  return <Link className="dropdown-item dropdown-text-none" to={"/block/" + trim(result.value)} onClick={() => {
                                     this.afterSearch()
                                   }} key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></Link>
                                 }
                                 if (result.desc === 'Token-TRC20') {
-                                  return <Link className="dropdown-item text-uppercase" to={"/token20/" + trim(result.value.split(' ')[result.value.split(' ').length-1])} onClick={() => {
+                                  return <Link className="dropdown-item dropdown-text-none" to={"/token20/" + trim(result.value.split(' ')[result.value.split(' ').length-1])} onClick={() => {
                                     this.afterSearch()
                                   }} key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></Link>
                                 }
                                 if (result.desc === 'Token-TRC10') {
-                                  return <Link className="dropdown-item text-uppercase" to={"/token/" + trim(result.value.split(' ')[result.value.split(' ').length-1])} onClick={() => {
+                                  return <Link className="dropdown-item dropdown-text-none" to={"/token/" + trim(result.value.split(' ')[result.value.split(' ').length-1])} onClick={() => {
                                     this.afterSearch()
                                   }} key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></Link>
                                 }
                                 if (result.desc === 'Address') {
-                                  return <Link className="dropdown-item text-uppercase" to={"/address/" + trim(result.value)} onClick={() => {
+                                  return <Link className="dropdown-item dropdown-text-none" to={"/address/" + trim(result.value)} onClick={() => {
                                     this.afterSearch()
                                   }} key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></Link>
                                 }
                                 if (result.desc === 'Contract') {
-                                  return <Link className="dropdown-item text-uppercase" to={"/contract/" + trim(result.value)+'/code'} onClick={() => {
+                                  return <Link className="dropdown-item dropdown-text-none" to={"/contract/" + trim(result.value)+'/code'} onClick={() => {
                                     this.afterSearch()
                                   }} key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></Link>
                                 }
                                 if (result.desc === 'TxHash') {
-                                  return <Link className="dropdown-item text-uppercase" to={"/transaction/" + trim(result.value)} onClick={() => {
+                                  return <Link className="dropdown-item dropdown-text-none" to={"/transaction/" + trim(result.value)} onClick={() => {
                                     this.afterSearch()
                                   }} key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></Link>
                                 }
