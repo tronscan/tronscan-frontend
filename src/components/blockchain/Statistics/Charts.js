@@ -26,7 +26,8 @@ import { CsvExport } from "../../common/CsvExport";
 import isMobile from "../../../utils/isMobile";
 import {
     OverallFreezingRateChart,
-    LineTRXSupplyChart
+    LineTRXSupplyChart,
+    HoldTrxAccountChart
 } from "../../common/LineCharts";
 import {loadPriceData} from "../../../actions/markets";
 import {t} from "../../../utils/i18n";
@@ -88,13 +89,19 @@ class StatCharts extends React.Component {
                 limit:1000,  
                 start_day:moment('2019-12-01').valueOf(),
                 end_day: moment().valueOf()
-            }
+            },
+            HoldTrxAccount:null,
+            HoldTrxAccountParams:{
+                start_day:'2019-12-01',
+                end_day: moment().format("YYYY-MM-DD")
+            },
         };
     }
 
     componentDidMount() {
         let {match} = this.props;
         let chartName = match.params.chartName;
+        
        
         switch (chartName){
             case 'OverallFreezingRate':
@@ -102,7 +109,10 @@ class StatCharts extends React.Component {
                 break;  
             case 'supply':
                 this.loadSupply();
-                break;    
+                break; 
+            case 'HoldTrxAccount':
+                this.loadHoldTrxAccount();
+                break; 
             default:
                 this.loadTxOverviewStats();
                 break;
@@ -356,6 +366,45 @@ class StatCharts extends React.Component {
                     {
                         date: pr[0].timestamp,
                         increment: pr[0].worth_num ? pr[0].worth_num : 0
+                    }],
+
+            }
+        });
+    }
+
+    //hold trx account
+    async loadHoldTrxAccount() {
+        let { start_day, end_day} = this.state.HoldTrxAccountParams;
+        let {data: {data}} = await xhr.get(API_URL + "/api/freezeresource?start_day="+ start_day+"&end_day="+end_day);       
+        let x;
+        data.map((item, index) => {
+            item.timestamp = moment(item.day).valueOf();
+            item.hold_trx_rate = parseFloat((item.freezing_rate * 100).toFixed(2));
+            x = new BigNumber(item.total_turn_over);
+            item.hold_total = x.decimalPlaces(6).toNumber();
+            item.account_total = x.minus(item.total_freeze_weight).decimalPlaces(6).toNumber();
+
+        })
+        this.setState({
+            HoldTrxAccount:  sortBy(data, function(o) { return o.timestamp; })
+        });
+       
+        let higest = {date: '', increment: ''};
+        let lowest = {date: '', increment: ''};
+        let pr = cloneDeep(data).sort(this.compare('freezing_rate'));
+        for (let p in pr) {
+            pr[p] = {date: pr[p].time, ...pr[p]};
+        }
+        this.setState({
+            summit: {
+                HoldTrxAccount_sort: [
+                    {
+                        date: pr[pr.length - 1].timestamp ,
+                        increment: pr[pr.length - 1].freezing_rate ? (pr[pr.length - 1].freezing_rate * 100).toFixed(2) + '%': 0
+                    },
+                    {
+                        date: pr[0].timestamp,
+                        increment: pr[0].freezing_rate ? (pr[0].freezing_rate * 100).toFixed(2) + '%': 0
                     }],
 
             }
@@ -634,12 +683,13 @@ class StatCharts extends React.Component {
     render() {
         let {match, intl} = this.props;
         let {txOverviewStats, txOverviewStatsFull, 
-            addressesStats, blockSizeStats, blockchainSizeStats, summit ,OverallFreezingRate, OverallFreezingRateRevers, SupplyData, SupplyDataRevers } = this.state;
+            addressesStats, blockSizeStats, blockchainSizeStats, summit ,OverallFreezingRate, OverallFreezingRateRevers, SupplyData, SupplyDataRevers,HoldTrxAccount } = this.state;
         let { start_day, end_day} = this.state.OverallFreezingRateParams;
         let { SupplyParams } = this.state;
         let unit;
         let freezeresourceCsvurl = API_URL + "/api/freezeresource?start_day=" + start_day +"&end_day="+end_day + "&format=csv";
         let supplyCsvurl =  API_URL + "/api/turnover?size="+ SupplyParams.limit +"&start=" + SupplyParams.start_day +"&end="+ SupplyParams.end_day + "&format=csv";
+        let HoldTrxAccountCsvUrl = API_URL + "/api/freezeresource?start_day=" + start_day +"&end_day="+end_day + "&format=csv"
         let freezing_column = this.freezingCustomizedColumn();
         let TRXSupply_column = this.TRXSupplyCustomizedColumn();
         
@@ -661,6 +711,7 @@ class StatCharts extends React.Component {
                                     <span>
                                         {match.params.chartName === 'OverallFreezingRate' &&  t('freezing_column_freezing_rate_highest')}
                                         {match.params.chartName === 'supply' &&  t('Supply_amount_net_new_highest')}
+                                        {match.params.chartName === 'HoldTrxAccount' &&  t('chart_hold_trx_account_per')}
                                          &nbsp;{tu('highest')}{t(unit)}{t('_of')}
                                         <strong>{' ' + summit[match.params.chartName + '_sort'][0].increment + ' '}</strong>
                                         {t('was_recorded_on')} {intl.formatDate(summit[match.params.chartName + '_sort'][0].date)}
@@ -671,6 +722,7 @@ class StatCharts extends React.Component {
                                 {
                                     summit && summit[match.params.chartName + '_sort'] &&
                                     <span>{match.params.chartName === 'OverallFreezingRate' &&  t('freezing_column_freezing_rate_highest')}
+                                    {match.params.chartName === 'HoldTrxAccount' &&  t('chart_hold_trx_account_per')}
                                     {match.params.chartName === 'supply' &&  t('Supply_amount_net_new_highest')}&nbsp;{tu('lowest')}{t(unit)}{t('_of')}
                                       <strong>{' ' + summit[match.params.chartName + '_sort'][1].increment + ' '}</strong>
                                         {t('was_recorded_on')} {intl.formatDate(summit[match.params.chartName + '_sort'][1].date)}
@@ -709,6 +761,21 @@ class StatCharts extends React.Component {
                                    <LineTRXSupplyChart
                                        style={{height: chartHeight}}
                                        data={SupplyData}
+                                       intl={intl}
+                                   />
+                               </div>
+                           }
+                           </div>
+                        }
+                        {
+                           match.params.chartName === 'HoldTrxAccount' &&
+                           <div>
+                           {
+                               HoldTrxAccount === null ? <TronLoader/> :
+                               <div>
+                                   <HoldTrxAccountChart
+                                       style={{height: chartHeight}}
+                                       data={HoldTrxAccount}
                                        intl={intl}
                                    />
                                </div>
@@ -801,6 +868,39 @@ class StatCharts extends React.Component {
                                 </div>
                             </div>
                            }
+                           </div>
+                        }
+                        {
+                            match.params.chartName === 'HoldTrxAccount' &&
+                            <div>
+                                {
+                                    HoldTrxAccount === null ? <TronLoader/> :
+                                    <div>
+                                        <div className="token_black">
+                                            <div className="col-md-12 table_pos" style={{padding:0}}>
+                                                <div className="pb-2">
+                                                    <div style={{ float: 'right',marginTop:20}}>
+                                                            [
+                                                            <span style={{fontWeight:'bold'}}>&nbsp;<Link to="/blockchain/accounts">{tu('chart_hold_trx_more')}</Link>&nbsp;</span>
+                                                            ]
+                                                    </div>  
+                                                    <div style={{}}>
+                                                    {[
+                                                        "HoldTrxAccount"
+                                                        ].indexOf(match.params.chartName) !== -1 ? (
+                                                        <CsvExport downloadURL={HoldTrxAccountCsvUrl} style={{marginTop:-20}}/>
+                                                        ) : (
+                                                        ""
+                                                        )}
+                                                        
+                                                    </div>
+                                                     
+                                                </div>
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
                            </div>
                         }
                         

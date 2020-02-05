@@ -110,4 +110,13 @@ export const lang20Q1 = {
   data_bandwidth_burned: "消耗燃烧TRX的带宽",
   data_area:"仅统计<a href='https://poloniex.org/' target='_blank'>POLONI DEX</a>交易所上线的通证",
 
+  // 2020-02-04
+  chart_hold_trx_account:'持有TRX账户统计',
+  chart_hold_trx_account_per:'持币占比',
+  chart_hold_account_sum:'总账户数',
+  chart_hold_trx:'持有TRX账户数',
+  chart_hold_trx_more:'更多数据',
+  chart_hold_trx_number:'账户数'
+
+
 };
