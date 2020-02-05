@@ -145,6 +145,10 @@ class Statistics extends React.Component {
             case 'txOverviewStats':
                 this.loadTxOverviewStats();
                 break;
+            default:
+                this.loadTxOverviewStats();
+                break;
+
         }
     }
 
