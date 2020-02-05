@@ -116,7 +116,11 @@ export const lang20Q1 = {
   chart_hold_account_sum:'总账户数',
   chart_hold_trx:'持有TRX账户数',
   chart_hold_trx_more:'更多数据',
-  chart_hold_trx_number:'账户数'
+  chart_hold_trx_number:'账户数',
+  chart_resource_user_freeing:'用户冻结trx的能量',
+  chart_resource_user_burning:'用户烧毁trx的能量',
+  chart_resource_contract_deployer:'合约部署者提供的能量'
+
 
 
 };

@@ -381,8 +381,8 @@ class StatCharts extends React.Component {
             item.timestamp = moment(item.day).valueOf();
             item.hold_trx_rate = parseFloat((item.freezing_rate * 100).toFixed(2));
             x = new BigNumber(item.total_turn_over);
-            item.hold_total = x.decimalPlaces(6).toNumber();
-            item.account_total = x.minus(item.total_freeze_weight).decimalPlaces(6).toNumber();
+            item.account_total = x.decimalPlaces(6).toNumber();
+            item.hold_total = new BigNumber(item.total_freeze_weight).decimalPlaces(6).toNumber();
 
         })
         this.setState({

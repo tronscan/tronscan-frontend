@@ -3271,6 +3271,7 @@ export class HoldTrxAccountChart extends React.Component {
             timestamp.push(val['timestamp'])
             //timestamp.push(moment(val['timestamp']).format("YYYY-MM-DD"))
         })
+
        
         if (newData && newData.length > 0) {
             let options =  {
@@ -3416,12 +3417,15 @@ export class HoldTrxAccountChart extends React.Component {
                         var pointsLength = points.length;
                       
                         s = '<table class="tableformat" style="border: 0px;padding-left:10px;padding-right:10px" min-width="100%"><tr><td colspan=2 style="padding-bottom:5px;"><span style="font-size: 10px;"> ' + moment(points[0].x).format("YYYY-MM-DD") + '</span><br></td></tr>'
+
                         for (let index = 0; index < pointsLength; index += 1) {
-                            s += '<tr><td style="padding-top:4px;padding-bottom:4px;border-top:1px solid #D5D8DC;" valign="top">' + '<span style="color:' + points[index].series.color + ';font-size: 15px !important;">\u25A0</span> ' + intl.formatMessage({id: points[index].series.name })+ '</td>' +
-                                '<td align="right" style="padding-top:5px;padding-left:10px;padding-bottom:4px;border-top:1px solid #D5D8DC;"><span ><b style="color:#C23631">' +
-                                (points[index].series.name == intl.formatMessage({id: 'freezing_column_freezing_rate'}) ? Highcharts.numberFormat(points[index].y, 2, '.', ',') + ' %</b>' : points[index].series.name ==  intl.formatMessage({id: 'freezing_column_total_circulation'}) ?  toThousands((new BigNumber(points[index].y)).decimalPlaces(6)) + '</br>':Highcharts.numberFormat(points[index].y, 0, '.', ',') + '</br>')
-                                + '</span>' +
-                                '</td></tr>'
+                            s += `<tr>
+                                    <td style="padding-top:4px;padding-bottom:4px;border-top:1px solid #D5D8DC;" valign="top"><span style="color:'${points[index].series.color}';font-size: 15px !important;">\u25A0</span>${intl.formatMessage({id: points[index].series.name })}</td>
+                                    <td align="right" style="padding-top:5px;padding-left:10px;padding-bottom:4px;border-top:1px solid #D5D8DC;"><span>
+                                    <b style="color:#C23631">
+                                    ${(index == 2 ? Highcharts.numberFormat(points[index].y, 2, '.', ',') + ' %</b>' : points[index].series.name ==  intl.formatMessage({id: 'chart_hold_account_sum'}) ?  toThousands((new BigNumber(points[index].y)).decimalPlaces(6)):Highcharts.numberFormat(points[index].y, 0, '.', ','))}
+                                    </span>
+                                </td></tr>`
                         }
                         s += '</table>';
                         return s;
