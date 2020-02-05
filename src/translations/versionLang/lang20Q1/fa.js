@@ -109,5 +109,12 @@ export const lang20Q1 = {
   data_bandwidth_freezed: "پهنای باند از طریق فریز TRX",
   data_bandwidth_burned: "پهنای باند از طریق سوزاندن TRX",
   data_area:
-    "فقط علائم ذکر شده در بورس <a href='https://poloniex.org/'  target='_blank'>POLONI DEX</a> محاسبه می شود."
+    "فقط علائم ذکر شده در بورس <a href='https://poloniex.org/'  target='_blank'>POLONI DEX</a> محاسبه می شود.",
+
+  // index nav
+
+  index_navigation_explorers: "مرورگر",
+  index_navigation_data: "اطلاعات",
+  index_navigation_committee: "کمیته ترون",
+  index_navigation_proposals: "پیشنهاد"
 };

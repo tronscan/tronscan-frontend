@@ -103,10 +103,17 @@ export const lang20Q1 = {
   data_energy_consumed_total: "Energía total consumida",
   data_energy_freezed: "Energía consumida para congelar TRX",
   data_energy_burned: "Energía consumida para quemar TRX",
-  data_whole_contract_use:"Energía del desplegador de contratos",
+  data_whole_contract_use: "Energía del desplegador de contratos",
   data_bandwidth_consumed_total: "Ancho de banda total consumido",
   data_bandwidth_freezed: "Ancho de banda consumido para congelar TRX",
   data_bandwidth_burned: "Ancho de banda consumido para quemar TRX",
-  data_area: "Only tokens listed on <a href='https://poloniex.org/'  target='_blank'>POLONI DEX</a> are included"
+  data_area:
+    "Only tokens listed on <a href='https://poloniex.org/'  target='_blank'>POLONI DEX</a> are included",
 
+  // index nav
+
+  index_navigation_explorers: "EXPLORADORES",
+  index_navigation_data: "DATOS",
+  index_navigation_committee: "COMITÉ",
+  index_navigation_proposals: "PROPUESTAS"
 };

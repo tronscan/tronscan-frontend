@@ -106,5 +106,11 @@ export const lang20Q1 = {
   data_bandwidth_freezed: "TRX 동결에 소비된 대역폭",
   data_bandwidth_burned: "TRX 소각에 소비된 대역폭",
   data_area:
-    "<a href='https://poloniex.org/'  target='_blank'>POLONI DEX</a> 거래소에 상장 된 토큰 만 계산"
+    "<a href='https://poloniex.org/'  target='_blank'>POLONI DEX</a> 거래소에 상장 된 토큰 만 계산",
+  // index nav
+
+  index_navigation_explorers: "브라우저",
+  index_navigation_data: "데이터",
+  index_navigation_committee: "위원회",
+  index_navigation_proposals: "제안"
 };

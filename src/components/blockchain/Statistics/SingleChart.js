@@ -1477,7 +1477,7 @@ class Statistics extends React.Component {
                                                 </tr>
                                                 <tr>
                                                   <td style={{color:'red'}} className="go-foundation">
-                                                    <Link to="/blockchain/foundation" style={{color:'red',}}>{tu("total_frozen")}</Link>
+                                                    <Link to="/data/foundation" style={{color:'red',}}>{tu("total_frozen")}</Link>
                                                   </td>
                                                   <td>
                                                       {foundationFreeze} TRX

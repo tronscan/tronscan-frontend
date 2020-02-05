@@ -75,7 +75,8 @@ export const lang20Q1 = {
   data_resource_table_energy_consumed: "消耗总能量",
   data_resource_table_percentage: "占比",
   data_resource_table_percentage_tips: "当前用户消耗能量/全网用户消耗能量",
-  data_resource_bandwith_table_percentage_tips: "当前用户消耗带宽/全网用户消耗带宽",
+  data_resource_bandwith_table_percentage_tips:
+    "当前用户消耗带宽/全网用户消耗带宽",
   data_resource_table_bandwidth_title: "最高带宽消耗",
   data_resource_table_total: "总计",
 
@@ -108,6 +109,13 @@ export const lang20Q1 = {
   data_bandwidth_consumed_total: "消耗总带宽",
   data_bandwidth_freezed: "消耗冻结TRX的带宽",
   data_bandwidth_burned: "消耗燃烧TRX的带宽",
-  data_area:"仅统计<a href='https://poloniex.org/' target='_blank'>POLONI DEX</a>交易所上线的通证",
+  data_area:
+    "仅统计<a href='https://poloniex.org/' target='_blank'>POLONI DEX</a>交易所上线的通证",
 
+  // index nav
+
+  index_navigation_explorers: "浏览器",
+  index_navigation_data: "数据",
+  index_navigation_committee: "委员会",
+  index_navigation_proposals: "提议"
 };
