@@ -1,0 +1,59 @@
+.proposal-header{
+  display: flex;
+  justify-content: flex-end;
+  padding: 10px 0 20px;
+  a{
+    display: block;
+    margin-left: 14px;
+    padding: 3px 12px;
+    border: 1px solid #979797;
+    color: #666666;
+    text-align: center;
+    &:hover{
+      color: #C64844;
+      border-color: #C64844;
+    }
+  }
+}
+.proposal-table{
+  .ant-table a{
+    font-family: Helvetica;
+  }
+  .badge{
+    font-family: PingFangSC-Regular;
+    font-weight: 300;
+    &.badge-danger{
+      background: rgba(194,54,49,0.1);
+    }
+    &.badge-success{
+      background: rgba(105, 194, 101, 0.1);
+    }
+    &.badge-secondary {
+      background: rgba(153,153,153,0.10);
+      color: #999;
+    }
+    &.badge-warning{
+      background: rgba(245,166,35,0.10);
+      color: #F5A623;
+    }
+  }
+  .detail-action{
+    display: flex;
+    flex-direction: column;
+    a{
+      font-size: 12px;
+      &.proposal-more{
+        color: #C64844;
+        border: 1px solid #C64844;
+      }
+      &.proposal-approve{
+        border: 1px solid #6CC368;
+        color: #6CC368;;
+      }
+      &.proposal-cancel{
+        color: #999999;
+        text-decoration: underline;
+      }
+    }
+  }
+}

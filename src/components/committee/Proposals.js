@@ -7,7 +7,9 @@ import SmartTable from "../common/SmartTable.js"
 import {FormattedDate, FormattedTime, injectIntl} from "react-intl";
 import {TronLoader} from "../common/loaders";
 import {AddressLink} from "../common/Links";
+import {QuestionMark} from "../common/QuestionMark";
 import {ONE_TRX,IS_MAINNET} from "../../constants";
+import { Table } from "antd";
 
 class Proposal extends React.Component {
 
@@ -17,6 +19,13 @@ class Proposal extends React.Component {
             dataSource:[],
             total:0,
             loading: false,
+            pagination: {
+                showQuickJumper: true,
+                position: "bottom",
+                showSizeChanger: true,
+                defaultPageSize: 20,
+                total: 0
+            },
         };
     }
 
@@ -550,20 +559,26 @@ class Proposal extends React.Component {
                 return ( record.proposer.name?
                     <AddressLink address={record.proposer.address}>{record.proposer.name}</AddressLink>:
                     <AddressLink address={record.proposer.address}>{record.proposer.address}</AddressLink>
-
                 )
             }
         },
         {
-            title: upperFirst(intl.formatMessage({id: 'proposal_time_of_creation'})),
+            title: upperFirst(intl.formatMessage({id: 'proposal_time_of_creation'})) + '/ ' + upperFirst(intl.formatMessage({id: 'proposal_endtime'})),
             dataIndex: 'createTime',
             key: 'createTime',
             width:'15%',
+            align: 'center',
             render: (text, record, index) => {
-                return <span>
+                return <div>
+                    <div style={{color: '#333'}}>
                         <FormattedDate value={Number(text)}/>&nbsp;
-                        <FormattedTime value={Number(text)}  hour='numeric' minute="numeric" second='numeric' hour12={false}/>&nbsp;
-                </span>
+                        <FormattedTime value={Number(text)}  hour='numeric' minute="numeric" second='numeric' hour12={false}/>
+                    </div>
+                    <div style={{color: '#C23631'}}>
+                        <FormattedDate value={Number(text)}/>&nbsp;
+                        <FormattedTime value={Number(text)}  hour='numeric' minute="numeric" second='numeric' hour12={false}/>
+                    </div>
+                </div>
             }
 
         },
@@ -572,6 +587,7 @@ class Proposal extends React.Component {
             title:upperFirst(intl.formatMessage({id: 'proposal_status'})),
             dataIndex: 'state',
             key: 'state',
+            align: 'center',
             render: (text, record, index) => {
                 return <div>
                     {
@@ -602,17 +618,44 @@ class Proposal extends React.Component {
             }
         },
         {
-            title:"",
+            title: () => {
+                let text = upperFirst(intl.formatMessage({id: 'proposal_valid_votes'})) + ' / ' + upperFirst(intl.formatMessage({id: 'proposal_total_votes'}))
+                let text1 = upperFirst(intl.formatMessage({id: 'proposal_votes_tip'}))
+                return (
+                    <div>
+                        {text}
+                        <span className="mr-2">
+                            <QuestionMark placement="top" text={text1} />
+                        </span>
+                    </div>
+                  )
+            },
+            dataIndex: 'votes',
+            key: 'votes',
+            width:'12%',
+            align: 'center',
+            render: (text, record, index) => {
+                return '10/33'
+            }
+        },
+        {
+            title: upperFirst(intl.formatMessage({id: 'proposal_action'})),
             dataIndex: 'details',
             key: 'details',
             width:'12%',
+            align: 'center',
             render: (text, record, index) => {
                 return (
-                    <Link
-                        to={`/proposal/${record.proposalId}`}
-                        className="float-right text-primary btn btn-default btn-sm">
-                        {tu("learn_more")}
-                    </Link>
+                    <div className="detail-action">
+                        <Link
+                            to={`/proposal/${record.proposalId}`}
+                            className="proposal-more">
+                            {tu("proposal_more")}
+                        </Link>
+                        <a href="javascript:;" className="proposal-approve">{tu('proposal_approve')}</a>
+                        <a href="javascript:;" className="proposal-cancel">{tu('proposal_cancel_approve')}</a>
+                    </div>
+                    
 
                 )
             }
@@ -627,7 +670,7 @@ class Proposal extends React.Component {
 
     render() {
 
-        let {page, total, pageSize, loading, dataSource, emptyState: EmptyState = null} = this.state;
+        let {page, total, pageSize, loading, dataSource, emptyState: EmptyState = null, pagination} = this.state;
         let column = this.getColumns();
         let {intl} = this.props;
 
@@ -638,9 +681,27 @@ class Proposal extends React.Component {
 
         return (
             <main className="container header-overlap committee">
-                <div className="token_black table_pos">
+                <div className="token_black table_pos proposal-table">
+                    <div className="proposal-header">
+                        <Link to="">{tu("proposal_create")}</Link>
+                        <Link to="">{tu("proposal_mine")}</Link>
+                    </div>
                     {loading && <div className="loading-style"><TronLoader/></div>}
-                    {!loading&&<SmartTable bordered={true} column={column} data={dataSource} total={dataSource.length} locale={locale} />}
+                    {!loading&&
+                        <Table
+                        bordered={true}
+                        columns={column}
+                        rowKey={(record, index) => {
+                          return index;
+                        }}
+                        dataSource={dataSource}
+                        scroll={scroll}
+                        pagination={pagination}
+                        loading={loading}
+                        onChange={this.handleTableChange}
+                      />
+                    // <SmartTable bordered={true} column={column} data={dataSource} total={dataSource.length} locale={locale} />
+                    }
                 </div>
             </main>
         )

@@ -39,6 +39,7 @@ $color-grey: #d2d1d1;
 @import "transaction";
 @import "footer";
 @import "data";
+@import "proposal";
 body {
   overflow-y: scroll;
 }
@@ -2467,6 +2468,7 @@ h5 {
     font-style: normal;
     font-weight: 500;
     color: #3e3f3a !important;
+    height: 100%;
     //transform: scale(0.9);
   }
 }

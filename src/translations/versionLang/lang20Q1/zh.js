@@ -110,4 +110,16 @@ export const lang20Q1 = {
   data_bandwidth_burned: "消耗燃烧TRX的带宽",
   data_area:"仅统计<a href='https://poloniex.org/' target='_blank'>POLONI DEX</a>交易所上线的通证",
 
+  // 2020-2-5 leon
+  proposal_create: "发起提议",
+  proposal_mine: "我的提议",
+  proposal_endtime: "截止时间",
+  proposal_total_votes: "总得票",
+  proposal_valid_votes: "有效票",
+  proposal_votes_tip: "有效票是前27名超级代表所投的票，总得票是所有超级代表投的票",
+  proposal_action: "操作",
+  proposal_more: "查看详情",
+  proposal_approve: "赞成",
+  proposal_cancel_approve: "取消赞成",
+  
 };
