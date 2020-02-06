@@ -111,5 +111,18 @@ export const lang20Q1 = {
   data_bandwidth_freezed: "Пропускная Способность после Замораживания TRX",
   data_bandwidth_burned: "Пропускная Способность после Сжигания TRX",
   data_area:
-    "Only tokens listed on <a href='https://poloniex.org/'  target='_blank'>POLONI DEX</a> are included"
+    "Only tokens listed on <a href='https://poloniex.org/'  target='_blank'>POLONI DEX</a> are included",
+
+     // 2020-02-04
+  chart_hold_trx_account:'持有TRX账户统计',
+  chart_hold_trx_account_per:'持币占比',
+  chart_hold_trx_account_per_t:'持币占比',
+  chart_hold_trx_account_per_tip:'Accounts holding TRX/Total accounts',
+  chart_hold_account_sum:'总账户数',
+  chart_hold_trx:'持有TRX账户数',
+  chart_hold_trx_more:'更多数据',
+  chart_hold_trx_number:'账户数',
+  chart_resource_user_freeing:'用户冻结trx的能量',
+  chart_resource_user_burning:'用户烧毁trx的能量',
+  chart_resource_contract_deployer:'合约部署者提供的能量'
 };

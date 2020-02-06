@@ -113,6 +113,7 @@ export const lang20Q1 = {
   // 2020-02-04
   chart_hold_trx_account:'持有TRX账户统计',
   chart_hold_trx_account_per:'持币占比',
+  chart_hold_trx_account_per_t:'持币占比',
   chart_hold_account_sum:'总账户数',
   chart_hold_trx:'持有TRX账户数',
   chart_hold_trx_more:'更多数据',

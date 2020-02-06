@@ -3272,6 +3272,9 @@ export class HoldTrxAccountChart extends React.Component {
             //timestamp.push(moment(val['timestamp']).format("YYYY-MM-DD"))
         })
 
+        let pointStart = newData[0].timestamp ||  Date.UTC(2019, 11, 20);
+        let pointInterval = 24 * 3600 * 1000;
+
        
         if (newData && newData.length > 0) {
             let options =  {
@@ -3420,7 +3423,7 @@ export class HoldTrxAccountChart extends React.Component {
 
                         for (let index = 0; index < pointsLength; index += 1) {
                             s += `<tr>
-                                    <td style="padding-top:4px;padding-bottom:4px;border-top:1px solid #D5D8DC;" valign="top"><span style="color:'${points[index].series.color}';font-size: 15px !important;">\u25A0</span>${intl.formatMessage({id: points[index].series.name })}</td>
+                                    <td style="padding-top:4px;padding-bottom:4px;border-top:1px solid #D5D8DC;" valign="top"><span style="color:${points[index].series.color};font-size: 15px !important;">\u25A0</span>${intl.formatMessage({id: points[index].series.name })}</td>
                                     <td align="right" style="padding-top:5px;padding-left:10px;padding-bottom:4px;border-top:1px solid #D5D8DC;"><span>
                                     <b style="color:#C23631">
                                     ${(index == 2 ? Highcharts.numberFormat(points[index].y, 2, '.', ',') + ' %</b>' : points[index].series.name ==  intl.formatMessage({id: 'chart_hold_account_sum'}) ?  toThousands((new BigNumber(points[index].y)).decimalPlaces(6)):Highcharts.numberFormat(points[index].y, 0, '.', ','))}
@@ -3438,8 +3441,8 @@ export class HoldTrxAccountChart extends React.Component {
                     yAxis: 1,
                     color: "#DA8885",
                     data:accountTotal,
-                    pointStart: Date.UTC(2019, 11, 20),
-			        pointInterval: 24 * 3600 * 1000 , // one day
+                    pointStart: pointStart,
+			        pointInterval: pointInterval , // one day
                     tooltip: {
                         valueSuffix: ' '
                     },
@@ -3453,8 +3456,8 @@ export class HoldTrxAccountChart extends React.Component {
                     yAxis: 1,
                     color: "#C64844",
                     data:holdTotal,
-                    pointStart: Date.UTC(2019, 11, 20),
-			        pointInterval: 24 * 3600 * 1000 , // one day
+                    pointStart: pointStart,
+			        pointInterval: pointInterval , // one day
                     tooltip: {
                         valueSuffix: ' '
                     },
@@ -3467,8 +3470,8 @@ export class HoldTrxAccountChart extends React.Component {
                     type: 'spline',
                     color: "#5A5A5A",
                     data:holdTrxRate,
-                    pointStart: Date.UTC(2019, 11, 20),
-			        pointInterval: 24 * 3600 * 1000 , // one day
+                    pointStart: pointStart,
+			        pointInterval:pointInterval , // one day
                     marker: {
                         enabled: true,
                     

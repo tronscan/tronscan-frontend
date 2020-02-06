@@ -108,5 +108,18 @@ export const lang20Q1 = {
   data_bandwidth_freezed: "TRXをフリーズするために消費される帯域幅",
   data_bandwidth_burned: "TRXの書き込みに消費される帯域幅",
   data_area:
-    "<a href='https://poloniex.org/'  target='_blank'>POLONI DEX</a>取引所で上場されるトークンのみをカウントします"
+    "<a href='https://poloniex.org/'  target='_blank'>POLONI DEX</a>取引所で上場されるトークンのみをカウントします",
+
+     // 2020-02-04
+  chart_hold_trx_account:'全てのTRXアカウント統計',
+  chart_hold_trx_account_per:'TRX保有者の割合',
+  chart_hold_trx_account_per_t:'TRX保有者の割合',
+  chart_hold_trx_account_per_tip:'TRX / 総合アカウントを保持するアカウント',
+  chart_hold_account_sum:'総合アカウント数',
+  chart_hold_trx:'TRXを保持しているアカウント',
+  chart_hold_trx_more:'さらにデータを見る',
+  chart_hold_trx_number:'アカウントのナンバー',
+  chart_resource_user_freeing:'TRXの凍結によるエネルギー',
+  chart_resource_user_burning:'TRXの燃焼によるエネルギー',
+  chart_resource_contract_deployer:'契約展開者からのエネルギー'
 };

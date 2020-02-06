@@ -375,36 +375,32 @@ class StatCharts extends React.Component {
     //hold trx account
     async loadHoldTrxAccount() {
         let { start_day, end_day} = this.state.HoldTrxAccountParams;
-        let {data: {data}} = await xhr.get(API_URL + "/api/freezeresource?start_day="+ start_day+"&end_day="+end_day);       
+        let {data: {data}} = await xhr.get(API_URL + "/api/stats/overview?start_day="+ start_day+"&end_day="+end_day);       
         let x;
         data.map((item, index) => {
-            item.timestamp = moment(item.day).valueOf();
-            item.hold_trx_rate = parseFloat((item.freezing_rate * 100).toFixed(2));
-            x = new BigNumber(item.total_turn_over);
-            item.account_total = x.decimalPlaces(6).toNumber();
-            item.hold_total = new BigNumber(item.total_freeze_weight).decimalPlaces(6).toNumber();
+            item.timestamp = item.date; 
+            x = new BigNumber(item.totalAddress);
+            item.account_total = x.decimalPlaces(0).toNumber();
+            item.hold_total = new BigNumber(item.accountWithTrx || 0).decimalPlaces(0).toNumber();
+            item.hold_trx_rate = parseFloat((item.hold_total/item.account_total * 100).toFixed(2));
 
         })
         this.setState({
             HoldTrxAccount:  sortBy(data, function(o) { return o.timestamp; })
         });
        
-        let higest = {date: '', increment: ''};
-        let lowest = {date: '', increment: ''};
-        let pr = cloneDeep(data).sort(this.compare('freezing_rate'));
-        for (let p in pr) {
-            pr[p] = {date: pr[p].time, ...pr[p]};
-        }
+        let pr = cloneDeep(data).sort(this.compare('hold_trx_rate'));
+        
         this.setState({
             summit: {
                 HoldTrxAccount_sort: [
                     {
-                        date: pr[pr.length - 1].timestamp ,
-                        increment: pr[pr.length - 1].freezing_rate ? (pr[pr.length - 1].freezing_rate * 100).toFixed(2) + '%': 0
+                        date: pr[pr.length - 1].date,
+                        increment: pr[pr.length - 1].hold_trx_rate ? (pr[pr.length - 1].hold_trx_rate).toFixed(2) + '%': 0
                     },
                     {
-                        date: pr[0].timestamp,
-                        increment: pr[0].freezing_rate ? (pr[0].freezing_rate * 100).toFixed(2) + '%': 0
+                        date: pr[0].date,
+                        increment: pr[0].hold_trx_rate ? (pr[0].hold_trx_rate).toFixed(2) + '%': 0
                     }],
 
             }
@@ -685,11 +681,14 @@ class StatCharts extends React.Component {
         let {txOverviewStats, txOverviewStatsFull, 
             addressesStats, blockSizeStats, blockchainSizeStats, summit ,OverallFreezingRate, OverallFreezingRateRevers, SupplyData, SupplyDataRevers,HoldTrxAccount } = this.state;
         let { start_day, end_day} = this.state.OverallFreezingRateParams;
+        let start_day_hold_trx_start_day = this.state.HoldTrxAccountParams.start_day;
+        let start_day_hold_trx_end_day = this.state.HoldTrxAccountParams.end_day
+
         let { SupplyParams } = this.state;
         let unit;
         let freezeresourceCsvurl = API_URL + "/api/freezeresource?start_day=" + start_day +"&end_day="+end_day + "&format=csv";
         let supplyCsvurl =  API_URL + "/api/turnover?size="+ SupplyParams.limit +"&start=" + SupplyParams.start_day +"&end="+ SupplyParams.end_day + "&format=csv";
-        let HoldTrxAccountCsvUrl = API_URL + "/api/freezeresource?start_day=" + start_day +"&end_day="+end_day + "&format=csv"
+        let HoldTrxAccountCsvUrl = API_URL + "/api/stats/overview?start_day=" + start_day_hold_trx_start_day +"&end_day="+start_day_hold_trx_end_day + "&format=csv"
         let freezing_column = this.freezingCustomizedColumn();
         let TRXSupply_column = this.TRXSupplyCustomizedColumn();
         
@@ -711,7 +710,7 @@ class StatCharts extends React.Component {
                                     <span>
                                         {match.params.chartName === 'OverallFreezingRate' &&  t('freezing_column_freezing_rate_highest')}
                                         {match.params.chartName === 'supply' &&  t('Supply_amount_net_new_highest')}
-                                        {match.params.chartName === 'HoldTrxAccount' &&  t('chart_hold_trx_account_per')}
+                                        {match.params.chartName === 'HoldTrxAccount' &&  t('chart_hold_trx_account_per_t')}
                                          &nbsp;{tu('highest')}{t(unit)}{t('_of')}
                                         <strong>{' ' + summit[match.params.chartName + '_sort'][0].increment + ' '}</strong>
                                         {t('was_recorded_on')} {intl.formatDate(summit[match.params.chartName + '_sort'][0].date)}
@@ -722,7 +721,7 @@ class StatCharts extends React.Component {
                                 {
                                     summit && summit[match.params.chartName + '_sort'] &&
                                     <span>{match.params.chartName === 'OverallFreezingRate' &&  t('freezing_column_freezing_rate_highest')}
-                                    {match.params.chartName === 'HoldTrxAccount' &&  t('chart_hold_trx_account_per')}
+                                    {match.params.chartName === 'HoldTrxAccount' &&  t('chart_hold_trx_account_per_t')}
                                     {match.params.chartName === 'supply' &&  t('Supply_amount_net_new_highest')}&nbsp;{tu('lowest')}{t(unit)}{t('_of')}
                                       <strong>{' ' + summit[match.params.chartName + '_sort'][1].increment + ' '}</strong>
                                         {t('was_recorded_on')} {intl.formatDate(summit[match.params.chartName + '_sort'][1].date)}
