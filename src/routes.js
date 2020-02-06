@@ -82,7 +82,6 @@ export const routes = [
     pathKey: "/blockchain",
     // icon: "fa fa-link",
     icon: false,
-    component: () => <Redirect to="/blockchain/blocks" />,
     routes: [
       [
         {
@@ -211,6 +210,70 @@ export const routes = [
           component: ContractLicense,
           showInMenu: false
         }
+      ],
+      [
+        {
+          label: "token_overview",
+          path: "/tokens/list",
+          // icon: "fa fa-list",
+          icon: false,
+          component: TokenAllAsync
+        },
+      
+        {
+          label: "token_input",
+          path: "/tokens/create",
+          // icon: "fa fa-plus-square",
+          icon: false,
+          component: TokensCreateAsync,
+          showInMenu: IS_MAINNET ? true : false
+        },
+        {
+          path: "/tokens/create/:step",
+          component: TokensCreateAsync,
+          showInMenu: false
+        },
+        {
+          label: "update_token",
+          path: "/tokens/update/:id",
+          // icon: "fa fa-plus-square",
+          icon: false,
+          component: TokensCreateAsync,
+          showInMenu: false
+        },
+        {
+          label: "token_markets_input",
+          path: "/tokens/markets/add/:page/:tokenId/:id",
+          // icon: "fa fa-plus-square",
+          icon: false,
+          component: TokensMarketsAddListAsync,
+          showInMenu: false
+        },
+        {
+          label: "token_markets_input",
+          path: "/tokens/markets/create/:type/:id",
+          // icon: "fa fa-plus-square",
+          icon: false,
+          component: TokensMarketsCreateAsync,
+          showInMenu: false
+        },
+        {
+          /* Write two is to solve the updated copy */
+          label: "token_markets_update",
+          path: "/tokens/markets/:page/:type/:id",
+          // icon: "fa fa-plus-square",
+          icon: false,
+          component: TokensMarketsCreateAsync,
+          showInMenu: false
+        },
+        {
+          label: "token_rating_rule",
+          path: "/tokens/rating-rule",
+          // icon: "fa fa-plus-square",
+          icon: false,
+          component: RatingRule,
+          showInMenu: false
+        }
       ]
     ]
   },
@@ -303,97 +366,79 @@ export const routes = [
     component: SmartContract,
     showInMenu: false
   },
-  {
-    path: "/tokens",
-    label: "tokens",
-    pathKey: "/tokens",
-    // icon: "fas fa-coins",
-    icon: false,
-    component: TokenOverviewAsync,
-    routes: [
-      // {
-      //   label: "overview_TRC20",
-      //   path: "/tokens/trc20",
-      //   icon: "fas fa-table",
-      //   component: TokenTRC20ListAsync
-      // },
-      // "-",
-      // {
-      //   label: "overview_TRC10",
-      //   path: "/tokens/list",
-      //   icon: "fa fa-list",
-      //   component: TokenListAsync
-      // },
-      {
-        label: "token_overview",
-        path: "/tokens/list",
-        // icon: "fa fa-list",
-        icon: false,
-        component: TokenAllAsync
-      },
-      // {
-      //   label: "participate",
-      //   path: "/tokens/view",
-      //   icon: "fas fa-coins",
-      //   component: TokenOverviewAsync,
-      //   showInMenu: IS_MAINNET ? true : false
-      // },
-      {
-        label: "token_input",
-        path: "/tokens/create",
-        // icon: "fa fa-plus-square",
-        icon: false,
-        component: TokensCreateAsync,
-        showInMenu: IS_MAINNET ? true : false
-      },
-      {
-        path: "/tokens/create/:step",
-        component: TokensCreateAsync,
-        showInMenu: false
-      },
-      {
-        label: "update_token",
-        path: "/tokens/update/:id",
-        // icon: "fa fa-plus-square",
-        icon: false,
-        component: TokensCreateAsync,
-        showInMenu: false
-      },
-      {
-        label: "token_markets_input",
-        path: "/tokens/markets/add/:page/:tokenId/:id",
-        // icon: "fa fa-plus-square",
-        icon: false,
-        component: TokensMarketsAddListAsync,
-        showInMenu: false
-      },
-      {
-        label: "token_markets_input",
-        path: "/tokens/markets/create/:type/:id",
-        // icon: "fa fa-plus-square",
-        icon: false,
-        component: TokensMarketsCreateAsync,
-        showInMenu: false
-      },
-      {
-        /* Write two is to solve the updated copy */
-        label: "token_markets_update",
-        path: "/tokens/markets/:page/:type/:id",
-        // icon: "fa fa-plus-square",
-        icon: false,
-        component: TokensMarketsCreateAsync,
-        showInMenu: false
-      },
-      {
-        label: "token_rating_rule",
-        path: "/tokens/rating-rule",
-        // icon: "fa fa-plus-square",
-        icon: false,
-        component: RatingRule,
-        showInMenu: false
-      }
-    ]
-  },
+  // {
+  //   path: "/tokens",
+  //   label: "tokens",
+  //   pathKey: "/tokens",
+  //   // icon: "fas fa-coins",
+  //   icon: false,
+  //   component: TokenOverviewAsync,
+  //   routes: [
+    
+  //     {
+  //       label: "token_overview",
+  //       path: "/tokens/list",
+  //       // icon: "fa fa-list",
+  //       icon: false,
+  //       component: TokenAllAsync
+  //     },
+    
+  //     {
+  //       label: "token_input",
+  //       path: "/tokens/create",
+  //       // icon: "fa fa-plus-square",
+  //       icon: false,
+  //       component: TokensCreateAsync,
+  //       showInMenu: IS_MAINNET ? true : false
+  //     },
+  //     {
+  //       path: "/tokens/create/:step",
+  //       component: TokensCreateAsync,
+  //       showInMenu: false
+  //     },
+  //     {
+  //       label: "update_token",
+  //       path: "/tokens/update/:id",
+  //       // icon: "fa fa-plus-square",
+  //       icon: false,
+  //       component: TokensCreateAsync,
+  //       showInMenu: false
+  //     },
+  //     {
+  //       label: "token_markets_input",
+  //       path: "/tokens/markets/add/:page/:tokenId/:id",
+  //       // icon: "fa fa-plus-square",
+  //       icon: false,
+  //       component: TokensMarketsAddListAsync,
+  //       showInMenu: false
+  //     },
+  //     {
+  //       label: "token_markets_input",
+  //       path: "/tokens/markets/create/:type/:id",
+  //       // icon: "fa fa-plus-square",
+  //       icon: false,
+  //       component: TokensMarketsCreateAsync,
+  //       showInMenu: false
+  //     },
+  //     {
+  //       /* Write two is to solve the updated copy */
+  //       label: "token_markets_update",
+  //       path: "/tokens/markets/:page/:type/:id",
+  //       // icon: "fa fa-plus-square",
+  //       icon: false,
+  //       component: TokensMarketsCreateAsync,
+  //       showInMenu: false
+  //     },
+  //     {
+  //       label: "token_rating_rule",
+  //       path: "/tokens/rating-rule",
+  //       // icon: "fa fa-plus-square",
+  //       icon: false,
+  //       component: RatingRule,
+  //       showInMenu: false
+  //     }
+  //   ]
+  // },
   {
     path: "/token/:id",
     label: "token_detail",
