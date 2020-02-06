@@ -87,7 +87,7 @@ export const lang20Q1 = {
   data_token_mark_9: "（本期交易笔数-上期交易笔数）/上期交易笔数×100%",
   data_token_mark_10: "（本期交易账总额-上期交易账总额）/上期交易账总额×100%",
   data_contract_name: "合约名称",
-  data_title_chart: "图表统计",
+  data_title_chart: "统计图表",
   // 2020-01-17 overview
   data_TRX_transfer_total: "TRX转账数量",
   data_TRX_transfer_count: "TRX转账总笔数",

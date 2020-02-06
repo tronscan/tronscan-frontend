@@ -11,6 +11,9 @@ import { setActiveCurrency } from "../../actions/app";
 import { Menu, Dropdown, Icon, Button } from "antd";
 import SendModal from "../transfer/Send/SendModal";
 import { QuestionMark } from "./QuestionMark";
+import {
+  setLanguage,
+} from "../../actions/app";
 
 class Footer extends Component {
   constructor() {
@@ -53,6 +56,11 @@ class Footer extends Component {
     };
   }
 
+
+  setLanguage = (language) => {
+    this.props.setLanguage(language);
+  };
+
   render() {
     const donate_address = this.state.donateAddress;
     let modal = this.state.modal;
@@ -60,8 +68,10 @@ class Footer extends Component {
       intl,
       activeLanguage,
       activeCurrency,
-      currencyConversions
+      currencyConversions,
+      languages,
     } = this.props;
+   
     const { links } = this.state;
     return (
       <div className="footer-compontent pb-0 footer-new">
@@ -111,7 +121,6 @@ class Footer extends Component {
                     </li>
                   </ul>
                 </div>
-
                 <div className="col-6 col-md-3">
                   <h5>{tu("footer_developer_resources")}</h5>
                   <ul className="list-unstyled">
@@ -143,7 +152,6 @@ class Footer extends Component {
                     </li>
                   </ul>
                 </div>
-
                 <div className="col-6 col-md-3">
                   <h5>{tu("TRON_ecosystem")}</h5>
                   <ul className="list-unstyled">
@@ -200,6 +208,7 @@ class Footer extends Component {
                   </li> */}
                   </ul>
                 </div>
+                
               </div>
               {/*<div className="row mt-3">*/}
               {/*<div className="col-xs-12 col-sm-12 col-md-12">*/}
@@ -239,7 +248,7 @@ class Footer extends Component {
                 <div className="row container">
                   <div className="col-xs-12 col-sm-6 col-md-6 text-center mb-3 hidden-mobile">
                     <div className="">
-                      <div className="switch d-flex between">
+                      <div className="switch d-flex between hidden-mobile">
                         <span>{tu("index_page_switch_tokens")}</span>
                         {this.dropCurrency()}
                       </div>
@@ -374,7 +383,30 @@ class Footer extends Component {
                   </li> */}
                     </ul>
                   </div>
-                  <div className="col-xs-12 col-sm-6 col-md-6">
+                  <div className="col-xs-12 col-sm-1 col-md-2">
+                    <h5 className="text-uppercase">{tu("index_page_switch_tokens")}</h5>
+                    <ul className="list-unstyled">
+                      <li className="currencySwitch p-2">
+                        {this.dropCurrency()}
+                      </li>
+                    </ul>
+                  </div>
+                  <div className="col-xs-12 col-sm-1 col-md-1">
+                    <a className="dropdown-toggle pr-0 footerLanguages text-uppercase"
+                        data-toggle="dropdown"
+                        href="javascript:">{languages[activeLanguage]}</a>
+                    <div className="dropdown-menu languages-menu footer-languages">
+                      {
+                        Object.keys(languages).map(language => (
+                            <a key={language}
+                              className="dropdown-item"
+                              href="javascript:"
+                              onClick={() => this.setLanguage(language)}>{languages[language]}</a>
+                        ))
+                      }
+                    </div>
+                  </div>
+                  <div className="col-xs-12 col-sm-3 col-md-3">
                     <div className="fr footer-slogan">
                       <img src={require("../../images/footer/TRON.png")} />
                       <p className="pt-2">{tu("index_page_tronscan_info")}</p>
@@ -420,10 +452,10 @@ class Footer extends Component {
                       <span className="text mr-3">
                         Copyright© 2017-2020 tronscan.org
                       </span>
-                      <div className="d-flex switch hidden-mobile">
+                      {/* <div className="d-flex switch hidden-mobile">
                         <span>{tu("index_page_switch_tokens")}</span>
                         {this.dropCurrency()}
-                      </div>
+                      </div> */}
                     </div>
                   </div>
                   <div className="col-xs-6 col-sm-6 col-md-6 text-center mb-3">
@@ -510,12 +542,14 @@ function mapStateToProps(state) {
   return {
     activeLanguage: state.app.activeLanguage,
     activeCurrency: state.app.activeCurrency,
+    languages: state.app.availableLanguages,
     currencyConversions: state.app.currencyConversions
   };
 }
 
 const mapDispatchToProps = {
-  setActiveCurrency
+  setActiveCurrency,
+  setLanguage,
 };
 
 export default connect(

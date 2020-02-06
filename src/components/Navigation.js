@@ -1162,6 +1162,7 @@ class Navigation extends React.Component {
                                             </HrefLink>
                                         );
                                       }
+                                      
                                       if (!isUndefined(subRoute.enurl) || !isUndefined(subRoute.zhurl)) {
                                         return (
                                             <HrefLink
@@ -1244,7 +1245,6 @@ class Navigation extends React.Component {
                                                     </HrefLink>
                                                     <img src={require("../images/home/hot.svg")} title="hot" className="developer_challenge_hot"/>
                                                     </span>
-
                                                 );
                                             }
 
@@ -1313,7 +1313,8 @@ class Navigation extends React.Component {
                    
                     <li className="nav-item dropdown navbar-right hidden-mobile" style={{display:'flex'}}>
                         <Divider className="hidden-mobile" type="vertical" style={{marginTop:'0.7rem',height: '1.2em','display':'inline-block'}}/>
-                        <a className="nav-link dropdown-toggle dropdown-menu-right pr-0"
+                        {/* test icon */}
+                        {/* <a className="nav-link dropdown-toggle dropdown-menu-right pr-0"
                           data-toggle="dropdown"
                           href="javascript:">{languages[activeLanguage]}</a>
                         <div className="dropdown-menu languages-menu">
@@ -1325,7 +1326,7 @@ class Navigation extends React.Component {
                                   onClick={() => this.setLanguage(language)}>{languages[language]}</a>
                             ))
                           }
-                        </div>
+                        </div> */}
                     </li>
                   </ul>
                   <div className="drawWrapper hidden-PC" onClick={()=>{this.setState({drawerVisible:true})}}>

@@ -129,15 +129,12 @@ export const routes = [
           icon: false,
           component: AccountsAsync
         },
-
         // {
         //   path: "/blockchain/contracts",
         //   label: "Verified_contracts",
         //   icon: "fa fa-file",
         //   component: Contracts,
         // },
-
-       
         {
           label: "live",
           // icon: `fa fa-bolt`,
