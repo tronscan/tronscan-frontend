@@ -3468,7 +3468,7 @@ export class HoldTrxAccountChart extends React.Component {
                 }, {
                     name: intl.formatMessage({id: 'chart_hold_trx_account_per'}),
                     type: 'spline',
-                    color: "#5A5A5A",
+                    color: "#5A5A5A",     
                     data:holdTrxRate,
                     pointStart: pointStart,
 			        pointInterval:pointInterval , // one day

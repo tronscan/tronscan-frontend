@@ -873,7 +873,7 @@ class StatCharts extends React.Component {
                             match.params.chartName === 'HoldTrxAccount' &&
                             <div>
                                 {
-                                    HoldTrxAccount === null ? <TronLoader/> :
+                                    HoldTrxAccount &&
                                     <div>
                                         <div className="token_black">
                                             <div className="col-md-12 table_pos" style={{padding:0}}>

@@ -485,7 +485,7 @@ class StatsCharts extends React.Component {
                       <span className="ml-5">
                         {tu("chart_hold_trx_account")}
                       </span>
-                      <img src={require("../../../images/chart/Overall-Freezing-Rate.png")}
+                      <img src={require("../../../images/chart/Accounts_holding_TRX.png")}
                         style={{ width: 240, filter: 'grayscale(100%)' }}
                         className="ml-5 mt-2" />
                     </Link>
