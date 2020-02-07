@@ -1329,9 +1329,7 @@ class Navigation extends React.Component {
                     <li className="nav-item dropdown navbar-right hidden-mobile" style={{display:'flex'}}>
                         <Divider className="hidden-mobile" type="vertical" style={{marginTop:'0.7rem',height: '1.2em','display':'inline-block'}}/>
                         {/* test icon */}
-                      
-
-                        <a className="nav-link dropdown-toggle dropdown-menu-right pr-0"
+                        <a className="nav-link dropdown-toggle dropdown-menu-right pr-0 nav-testnet-dropdown-menu"
                           data-toggle="dropdown"
                           href="javascript:">
                           <img src={require("../images/home/icon.png")} width="16px" height="16px"/>
@@ -1528,7 +1526,28 @@ class Navigation extends React.Component {
             <div className="mobile-draw-menu">
               <MenuNavigation currentRoutes={routes} changeDrawerFun={()=>this.changeCurrentDrawerFun()}></MenuNavigation>
               <Collapse bordered={false} expandIconPosition="right" accordion={true} defaultActiveKey={[currentActive]} expandIcon={({ isActive }) => <Icon type="down" rotate={isActive ? 180 : 0} />}>
-                <Panel header={languages[activeLanguage]} key="0" >
+                <Panel header={'EXPLORERS'} key="0" >
+                  <div className="languages-menu mobile-testnet-dropdown-menu">
+                    {
+                      testNetAry.map((net,ind) => (
+                          <a key={ind}
+                            target="_blank"
+                            className="dropdown-item"
+                            href={net.url}
+                            onClick={() => {
+                              this.changeCurrentDrawerFun();
+                              this.setState({
+                                currentActive:3
+                              })
+                            }}>
+                              {net.label}
+                              {net.label==='NILE TESTNET'&& <span className="new-test-net">new</span>} 
+                            </a>
+                      ))
+                    }
+                  </div>
+                </Panel>
+                <Panel header={languages[activeLanguage]} key="1" >
                   <div className="languages-menu">
                     {
                       Object.keys(languages).map(language => (
@@ -1538,7 +1557,7 @@ class Navigation extends React.Component {
                             onClick={() => {
                               this.changeCurrentDrawerFun();
                               this.setState({
-                                currentActive:2
+                                currentActive:3
                               })
                               this.setLanguage(language)
                             }}>{languages[language]}</a>
@@ -1546,7 +1565,7 @@ class Navigation extends React.Component {
                     }
                   </div>
                 </Panel>
-                <Panel header={activeCurrency} key="1" >
+                <Panel header={activeCurrency} key="2" >
                   <div className="currency-menu">
                     {
                       currencyConversions.map((current,ind) => (
@@ -1556,7 +1575,7 @@ class Navigation extends React.Component {
                             onClick={() => {
                               this.changeCurrentDrawerFun();
                               this.setState({
-                                currentActive:2
+                                currentActive:3
                               })
                               this.props.setActiveCurrency(current.id)
                             }}>{current.name}</a>
