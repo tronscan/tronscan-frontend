@@ -688,7 +688,7 @@ class StatCharts extends React.Component {
         let unit;
         let freezeresourceCsvurl = API_URL + "/api/freezeresource?start_day=" + start_day +"&end_day="+end_day + "&format=csv";
         let supplyCsvurl =  API_URL + "/api/turnover?size="+ SupplyParams.limit +"&start=" + SupplyParams.start_day +"&end="+ SupplyParams.end_day + "&format=csv";
-        let HoldTrxAccountCsvUrl = API_URL + "/api/stats/overview?start_day=" + start_day_hold_trx_start_day +"&end_day="+start_day_hold_trx_end_day + "&format=csv"
+        let HoldTrxAccountCsvUrl = API_URL + "/api/v2/node/overview_upload?type=trxHolder";
         let freezing_column = this.freezingCustomizedColumn();
         let TRXSupply_column = this.TRXSupplyCustomizedColumn();
         
