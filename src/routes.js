@@ -148,9 +148,7 @@ export const routes = [
         //   path: "/blockchain/ContractInter",
         //   component: ContractInter,
         //   showInMenu: false
-        // },
-
-       
+        // },  
       ],
       [
         {
@@ -863,21 +861,6 @@ export const routes = [
         //     url: "https://github.com/tronscan/tronscan-frontend/issues/new",
         //     label: "report_an_error"
         // }
-      ],
-      [
-        "testnet",
-        {
-          url: "https://nile.tronscan.org",
-          icon: false,
-          label: "NILE TESTNET",
-          sidechain: false
-        },
-        {
-          url: "https://shasta.tronscan.org",
-          icon: false,
-          label: "SHASTA TESTNET",
-          sidechain: false
-        }
       ],
       [
         "tools",

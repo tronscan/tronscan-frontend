@@ -84,7 +84,22 @@ class Navigation extends React.Component {
       selectedNet:'',
       drawerVisible:false,//draw is visible
       currentActive:3,
-      percent_change_24h:0
+      percent_change_24h:0,
+      testNetAry: [
+        "testnet",
+        {
+          url: "https://nile.tronscan.org",
+          icon: false,
+          label: "NILE TESTNET",
+          sidechain: false
+        },
+        {
+          url: "https://shasta.tronscan.org",
+          icon: false,
+          label: "SHASTA TESTNET",
+          sidechain: false
+        }
+      ]
     };
   }
 
@@ -1024,7 +1039,7 @@ class Navigation extends React.Component {
       syncStatus,
       walletType: { type },
     } = this.props;
-    let {search, popup, notifications, announcement, announId, annountime, searchResults, selectedNet,drawerVisible,currentActive,percent_change_24h } = this.state;
+    let {search, popup, notifications, announcement, announId, annountime, searchResults, selectedNet,drawerVisible,currentActive,percent_change_24h,testNetAry } = this.state;
     let activeComponent = this.getActiveComponent();
     const isShowSideChain = !type || (type && IS_SUNNET);
     return (
@@ -1314,19 +1329,28 @@ class Navigation extends React.Component {
                     <li className="nav-item dropdown navbar-right hidden-mobile" style={{display:'flex'}}>
                         <Divider className="hidden-mobile" type="vertical" style={{marginTop:'0.7rem',height: '1.2em','display':'inline-block'}}/>
                         {/* test icon */}
-                        {/* <a className="nav-link dropdown-toggle dropdown-menu-right pr-0"
+                      
+
+                        <a className="nav-link dropdown-toggle dropdown-menu-right pr-0"
                           data-toggle="dropdown"
-                          href="javascript:">{languages[activeLanguage]}</a>
-                        <div className="dropdown-menu languages-menu">
+                          href="javascript:">
+                          <img src={require("../images/home/icon.png")} width="16px" height="16px"/>
+                        </a>
+                        <div className="dropdown-menu testnet-dropdown-menu">
                           {
-                            Object.keys(languages).map(language => (
-                                <a key={language}
+                            testNetAry.map((item,ind) => (
+                                <a key={ind}
+                                  target="_blank"
                                   className="dropdown-item"
-                                  href="javascript:"
-                                  onClick={() => this.setLanguage(language)}>{languages[language]}</a>
+                                  href={item.url}
+                                  >
+                                    {item.label}
+                                    {item.label==='NILE TESTNET'&& <span className="new-test-net">new</span>} 
+                                </a>
                             ))
                           }
-                        </div> */}
+                        </div>
+        
                     </li>
                   </ul>
                   <div className="drawWrapper hidden-PC" onClick={()=>{this.setState({drawerVisible:true})}}>

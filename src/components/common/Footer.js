@@ -383,30 +383,15 @@ class Footer extends Component {
                   </li> */}
                     </ul>
                   </div>
-                  <div className="col-xs-12 col-sm-1 col-md-2">
+                  {/* <div className="col-xs-12 col-sm-1 col-md-2">
                     <h5 className="text-uppercase">{tu("index_page_switch_tokens")}</h5>
                     <ul className="list-unstyled">
                       <li className="currencySwitch p-2">
                         {this.dropCurrency()}
                       </li>
                     </ul>
-                  </div>
-                  <div className="col-xs-12 col-sm-1 col-md-1">
-                    <a className="dropdown-toggle pr-0 footerLanguages text-uppercase"
-                        data-toggle="dropdown"
-                        href="javascript:">{languages[activeLanguage]}</a>
-                    <div className="dropdown-menu languages-menu footer-languages">
-                      {
-                        Object.keys(languages).map(language => (
-                            <a key={language}
-                              className="dropdown-item"
-                              href="javascript:"
-                              onClick={() => this.setLanguage(language)}>{languages[language]}</a>
-                        ))
-                      }
-                    </div>
-                  </div>
-                  <div className="col-xs-12 col-sm-3 col-md-3">
+                  </div> */}
+                  <div className="col-xs-12 col-sm-6 col-md-6">
                     <div className="fr footer-slogan">
                       <img src={require("../../images/footer/TRON.png")} />
                       <p className="pt-2">{tu("index_page_tronscan_info")}</p>
@@ -452,10 +437,26 @@ class Footer extends Component {
                       <span className="text mr-3">
                         Copyright© 2017-2020 tronscan.org
                       </span>
-                      {/* <div className="d-flex switch hidden-mobile">
+                      <div className="d-flex switch hidden-mobile">
                         <span>{tu("index_page_switch_tokens")}</span>
-                        {this.dropCurrency()}
-                      </div> */}
+                        {this.dropCurrency()} 
+                      </div>
+                     
+                      <div className="d-flex footerLanguagesWrapper hidden-mobile">
+                        <a className="dropdown-toggle pr-0 footerLanguages text-uppercase"
+                        data-toggle="dropdown"
+                        href="javascript:"> {languages[activeLanguage]}</a>
+                        <div className="dropdown-menu languages-menu footer-languages">
+                          {
+                            Object.keys(languages).map(language => (
+                                <a key={language}
+                                  className="dropdown-item"
+                                  href="javascript:"
+                                  onClick={() => this.setLanguage(language)}>{languages[language]}</a>
+                            ))
+                          }
+                        </div>
+                      </div>
                     </div>
                   </div>
                   <div className="col-xs-6 col-sm-6 col-md-6 text-center mb-3">

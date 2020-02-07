@@ -3236,17 +3236,29 @@ h5 {
 
 .dropdown-menu {
   margin-top: -4px;
- 
 }
+
+.footerLanguagesWrapper{
+  padding:6px 8px 0;
+  margin-left: 1rem;
+  background: rgba(255, 255, 255, 0.14);
+  border-radius: 0 1px 1px 0;
+  color: #ffffff;
+  font-family: PingFangSC-Medium;
+  font-size: 12px;
+  line-height: 1;
+  .footerLanguages:hover{
+    color: rgba(255, 255, 255, 0.7) !important;
+  }
+}
+
 .footerContainer{
   .footerLanguages{
     line-height: 1;
     font-size: 16px;
     color: rgba(255, 255, 255, 0.7) !important;
   }
-  .footerLanguages:hover{
-    color: rgba(255, 255, 255, 0.7) !important;
-  }
+  
 }
 
 .dropdown-menu.footer-languages{
