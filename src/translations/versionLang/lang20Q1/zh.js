@@ -110,4 +110,9 @@ export const lang20Q1 = {
   data_bandwidth_burned: "消耗燃烧TRX的带宽",
   data_area:"仅统计<a href='https://poloniex.org/' target='_blank'>POLONI DEX</a>交易所上线的通证",
 
+  //2020-02-08
+  chart_resource_user_freeing:'用户冻结trx的能量',
+  chart_resource_user_burning:'用户烧毁trx的能量',
+  chart_resource_contract_deployer:'合约部署者提供的能量'
+
 };
