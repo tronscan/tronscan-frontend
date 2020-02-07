@@ -84,17 +84,18 @@ export const routes = [
     icon: false,
     routes: [
       [
+        'block',
         {
           label: "nodes",
           // icon: "fa fa-server",
           icon: false,
-          path: "/blockchain/nodes",
+          path: "/block/nodes",
           component: NodesAsync,
           showInMenu: true
           // showInMenu: IS_MAINNET?true:false,
         },
         {
-          path: "/blockchain/blocks",
+          path: "/block/blocks",
           label: "blocks",
           // icon: "fa fa-cubes",
           icon: false,
@@ -103,14 +104,14 @@ export const routes = [
         {
           // icon: "fas fa-handshake",
           icon: false,
-          path: "/blockchain/transactions",
+          path: "/block/transactions",
           label: "transactions",
           component: Transactions
         },
         {
           // icon: "fas fa-handshake",
           icon: false,
-          path: "/blockchain/transactions/:date",
+          path: "/block/transactions/:date",
           label: "daily_transactions",
           component: Transactions,
           showInMenu: false
@@ -118,19 +119,19 @@ export const routes = [
         {
           // icon: "fa fa-exchange-alt",
           icon: false,
-          path: "/blockchain/transfers",
+          path: "/block/transfers",
           label: "transfers",
           component: Transfers
         },
         {
-          path: "/blockchain/accounts",
+          path: "/block/accounts",
           label: "accounts",
           // icon: "fa fa-users",
           icon: false,
           component: AccountsAsync
         },
         // {
-        //   path: "/blockchain/contracts",
+        //   path: "/block/contracts",
         //   label: "Verified_contracts",
         //   icon: "fa fa-file",
         //   component: Contracts,
@@ -139,18 +140,19 @@ export const routes = [
           label: "live",
           // icon: `fa fa-bolt`,
           icon: false,
-          path: "/blockchain/live",
+          path: "/block/live",
           component: LiveAsync,
           showInMenu: false
         }, // {
         //   label: "inter_tnxl",
         //   icon: `fa fa-random`,
-        //   path: "/blockchain/ContractInter",
+        //   path: "/block/ContractInter",
         //   component: ContractInter,
         //   showInMenu: false
         // },  
       ],
       [
+        'contracts',
         {
           label: "contracts",
           // icon: "fa fa-file",
@@ -207,6 +209,7 @@ export const routes = [
         }
       ],
       [
+        'token',
         {
           label: "token_overview",
           path: "/tokens/list",
@@ -459,14 +462,6 @@ export const routes = [
     showInMenu: false
   },
   // {
-  //   path: "/Poloni DEX",
-  //   label: "Poloni DEX",
-  //   icon: "fas fa-rocket",
-  //   enurl: "https://poloniex.org",
-  //   zhurl: "https://poloniex.org",
-  //   linkHref: true
-  // },
-  // {
   //   label: "DEX10",
   //   path: "/exchange",
   //   icon: "fas fa-exchange-alt",
@@ -601,15 +596,6 @@ export const routes = [
     none: true,
     showInMenu: IS_MAINNET ? true : false
   },
-  // {
-  //   label: "Poloni DEX",
-  //   path: "/exchange/:type",
-  //   redirect: "/exchange/trc20",
-  //   icon: "fas fa-exchange-alt",
-  //   component: Exchangetrc,
-  //   none: true
-  // },
-
   {
     label: "notice",
     path: "/notice/:id",
@@ -774,29 +760,6 @@ export const routes = [
       }
     ]
   },
-  // {
-  //   path: "/more",
-  //   label: "nav_more",
-  //   icon: "fas fa-indent",
-  //   routes: [
-  //     {
-  //       path: "/markets",
-  //       label: "markets",
-  //       icon: "fa fa-chart-line", // component: MarketsAsync
-  //       enurl: "https://coinmarketcap.com/currencies/tron/",
-  //       zhurl: "https://coinmarketcap.com/zh/currencies/tron/",
-  //       linkHref: true
-  //     },
-  //     {
-  //       path: "/more/list_trx",
-  //       label: "list_trx",
-  //       icon: "fa fa-plus",
-  //       enurl: "https://tron.network/exchangesList?lng=en",
-  //       zhurl: "https://tron.network/exchangesList?lng=zh",
-  //       linkHref: true
-  //     }
-  //   ]
-  // },
   {
     path: "/more",
     pathKey: "/more",
@@ -949,29 +912,6 @@ export const routes = [
       ]
     ]
   },
-  // {
-  //     path: "/more",
-  //     label: "NewMore",
-  //     icon: "fas fa-indent",
-  //     routes: [
-  //         {
-  //             path: "/markets",
-  //             label: "markets",
-  //             icon: "fa fa-chart-line", // component: MarketsAsync
-  //             enurl: "https://coinmarketcap.com/currencies/tron/",
-  //             zhurl: "https://coinmarketcap.com/zh/currencies/tron/",
-  //             linkHref: true
-  //         },
-  //         {
-  //             path: "/more/list_trx",
-  //             label: "list_trx",
-  //             icon: "fa fa-plus",
-  //             enurl: "https://tron.network/exchangesList?lng=en",
-  //             zhurl: "https://tron.network/exchangesList?lng=zh",
-  //             linkHref: true
-  //         }
-  //     ]
-  // },
   {
     path: "/wallet/new",
     label: "wallet",
