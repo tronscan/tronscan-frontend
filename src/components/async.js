@@ -237,6 +237,10 @@ export const Proposals = loadable(() =>
   import(/* webpackChunkName: "Proposals" */ "./committee/Proposals")
 );
 
+export const ProposalsCreateAsync = loadable(() =>
+  import(/* webpackChunkName: "ProposalsCreate" */ "./committee/ProposalCreate/index")
+);
+
 export const ErrorAsync = loadable(() =>
   import(/* webpackChunkName: "ErrorAsync" */ "./Error")
 );

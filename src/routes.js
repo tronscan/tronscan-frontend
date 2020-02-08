@@ -48,6 +48,7 @@ import {
   ContractTrans,
   Committee,
   Proposals,
+  ProposalsCreateAsync,
   Block,
   Transaction,
   Address,
@@ -591,6 +592,18 @@ export const routes = [
     component: Proposals,
     showInMenu: false
   },
+  {
+    path: "/proposalscreate",
+    component: ProposalsCreateAsync,
+    label: "commission_proposed",
+    showInMenu:  false
+  },
+  {
+    path: "/proposalscreate/:step",
+    component: ProposalsCreateAsync,
+    label: "commission_proposed",
+    showInMenu: false
+  }, 
   {
     path: "/proposal/:id",
     label: "commission_proposed",

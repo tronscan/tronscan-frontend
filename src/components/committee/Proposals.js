@@ -683,7 +683,7 @@ class Proposal extends React.Component {
             <main className="container header-overlap committee">
                 <div className="token_black table_pos proposal-table">
                     <div className="proposal-header">
-                        <Link to="">{tu("proposal_create")}</Link>
+                        <Link to="/proposalscreate">{tu("proposal_create")}</Link>
                         <Link to="">{tu("proposal_mine")}</Link>
                     </div>
                     {loading && <div className="loading-style"><TronLoader/></div>}
