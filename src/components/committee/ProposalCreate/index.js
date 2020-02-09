@@ -19,11 +19,11 @@ import { API_URL, ONE_TRX } from "../../../constants";
 import { TronLoader } from "../../common/loaders";
 import { Client } from "../../../services/api";
 import _ from "lodash";
-
+import WARNIMG from './../../../images/compiler/warning.png';
 const confirm = Modal.confirm;
 
 const Step = Steps.Step;
-const typeMap = ["Type", "Record", "Confirm", "Result"];
+const typeMap = ["Select", "Propose", "Confirm", "Result"];
 @connect(state => ({
   account: state.app.account,
   wallet: state.wallet.current
@@ -105,7 +105,7 @@ export class ProposalsCreate extends Component {
       // }
       console.log('123123')
     //  this.setDefaultData();
-      location.href = "#/proposalscreate/Type";
+      location.href = "#/proposalscreate/Select";
     }
   }
 
@@ -407,8 +407,18 @@ export class ProposalsCreate extends Component {
 
   render() {
     let { step, modal, paramData, leave_lock, isUpdate, loading } = this.state;
-    //let info = !isUpdate ?['type', 'input', 'confirm', 'result']:['update_token', 'confirm', 'result'];
-    let info = ["type", "input", "confirm", "result"];
+    let info = ["propose_select", "propose_value", "propose_confirm", "propose_result"];
+    // 发起提议文案Item
+    const ProposalCreateItem = (
+      <div className="proposal-text-container mb-4">
+          <div className="compile-icon ml-0">
+              <img src={WARNIMG} />
+          </div>
+          <div className="compile-text">
+              {tu('proposal_create_info')}
+          </div>
+      </div>
+    );
     return (
       <main className="container pb-3 token-create header-overlap tokencreated token_black">
         <div className="steps mb-4 py-2">
@@ -437,8 +447,9 @@ export class ProposalsCreate extends Component {
         ) : (
           <div className="row">
             <div className="col-sm-12">
+             {ProposalCreateItem} 
               <div className="card">
-                <div className="card-body">
+                <div className="">
                   {step === 0 && (
                     <SelectTrc
                       state={this.state}

@@ -595,13 +595,13 @@ export const routes = [
   {
     path: "/proposalscreate",
     component: ProposalsCreateAsync,
-    label: "commission_proposed",
+    label: "proposal_create",
     showInMenu:  false
   },
   {
     path: "/proposalscreate/:step",
     component: ProposalsCreateAsync,
-    label: "commission_proposed",
+    label: "proposal_create",
     showInMenu: false
   }, 
   {
