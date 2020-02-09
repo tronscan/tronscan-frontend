@@ -2,7 +2,7 @@ import React, {Fragment} from "react";
 import {Client} from "../../../services/api";
 import {AddressLink, TransactionHashLink, TokenTRC20Link} from "../../common/Links";
 import {tu, t} from "../../../utils/i18n";
-import TimeAgo from "react-timeago";
+// import TimeAgo from "react-timeago";
 import moment from 'moment';
 import {Truncate} from "../../common/text";
 import {withTimers} from "../../../utils/timing";
@@ -11,18 +11,19 @@ import SmartTable from "../../common/SmartTable.js"
 import {upperFirst} from "lodash";
 import {TronLoader} from "../../common/loaders";
 import TotalInfo from "../../common/TableTotal";
-import DateRange from "../../common/DateRange";
+// import DateRange from "../../common/DateRange";
+import DateSelect from "../../common/newDateSelect";
 import xhr from "axios/index";
 import {API_URL} from '../../../constants.js'
 import { FormatNumberByDecimals } from '../../../utils/number'
-
+import BlockTime from '../../common/blockTime'
 
 
 class Transfers extends React.Component {
 
     constructor(props) {
         super(props);
-        this.start = moment([2018,5,25]).startOf('day').valueOf();
+        this.start = moment(Date.now() - 7 * 24 * 3600 * 1000).valueOf();
         this.end = moment().valueOf();
         this.state = {
             filter: {},
@@ -106,7 +107,9 @@ class Transfers extends React.Component {
                 width: '150px',
                 className: 'ant_table',
                 render: (text, record, index) => {
-                    return <TimeAgo date={Number(record.block_ts)} title={moment(record.block_ts).format("MMM-DD-YYYY HH:mm:ss A")}/>
+                    return <BlockTime time={Number(record.block_ts)}></BlockTime>
+
+                    // <TimeAgo date={Number(record.block_ts)} title={moment(record.block_ts).format("MMM-DD-YYYY HH:mm:ss A")}/>
                 }
             },
             {
@@ -115,7 +118,7 @@ class Transfers extends React.Component {
                 key: 'transferFromAddress',
                 className: 'ant_table',
                 render: (text, record, index) => {
-                    return <AddressLink address={record.from_address}/>
+                    return <AddressLink address={record.from_address}>{record.from_address}</AddressLink>
                 }
             },
             {
@@ -132,7 +135,7 @@ class Transfers extends React.Component {
                 key: 'transferToAddress',
                 className: 'ant_table',
                 render: (text, record, index) => {
-                    return <AddressLink address={record.to_address}/>
+                    return <AddressLink address={record.to_address}>{record.to_address}</AddressLink>
                 },
             },
             {
@@ -218,19 +221,23 @@ class Transfers extends React.Component {
                 {loading && <div className="loading-style" style={{marginTop: '-20px'}}><TronLoader/></div>}
                 <div className="row transfers">
                     <div className="col-md-12 table_pos">
-                        <div className="d-flex justify-content-between pl-3 pr-3" style={{left: 'auto'}}>
-                            {total ?<TotalInfo total={total} rangeTotal={rangeTotal} typeText="transaction_info" divClass="table_pos_info_addr"/> :""}
-                            <DateRange onDateOk={(start,end) => this.onDateOk(start,end)} dateClass="date-range-box-TRC20token"/>
+                        <div className="d-flex justify-content-between pl-3 pr-3 pt-3 pb-3">
+                            <DateSelect  onDateOk={(start, end) => this.onDateOk(start, end)}></DateSelect> 
                         </div>
-                        {
-                            (!loading && transfers.length === 0)?
-                                <div className="pt-5 pb-5 text-center no-data transfers-bg-white">{tu("no_transfers")}</div>
-                            : <SmartTable border={false} loading={loading} column={column} data={transfers} total={total} addr="address" transfers="token"
-                                          onPageChange={(page, pageSize) => {
-                                              this.loadPage(page, pageSize)
-                                          }}/>
-                        }
-
+                        <div className="d-flex justify-content-between pl-3 pr-3" style={{left: 'auto'}}>
+                            {<TotalInfo top={60} total={total} rangeTotal={rangeTotal} typeText="transaction_info" divClass="table_pos_info_addr"/> }
+                    
+                        </div>
+                        <div className="contractTableWrapper">
+                            {
+                                (!loading && transfers.length === 0)?
+                                    <div className="pt-5 pb-5 text-center no-data transfers-bg-white">{tu("no_transfers")}</div>
+                                : <SmartTable  position="bottom" border={false} loading={loading} column={column} data={transfers} total={total} addr="address" transfers="token"
+                                            onPageChange={(page, pageSize) => {
+                                                this.loadPage(page, pageSize)
+                                            }}/>
+                            }
+                        </div>
                     </div>
                 </div>
             </Fragment>

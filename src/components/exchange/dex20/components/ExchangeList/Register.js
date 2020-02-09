@@ -233,14 +233,14 @@ class Register extends Component {
       isLoading: false
     });
 
-    let buyObj = await this.getList(data ? data.buy : [], 1);
-    let sellObj = await this.getList(data ? data.sell : []);
+    let buyObj = this.getNewList(data ? data.buy : [], 1);
+    let sellObj = this.getNewList(data ? data.sell : []);
     if (code === 0) {
       if (data) {
         this.setState(
           {
             buyList: buyObj.listN,
-            sellList: sellObj.listN.reverse()
+            sellList: sellObj.listN
           }
           // () => {
           // setRegister({
@@ -253,78 +253,39 @@ class Register extends Component {
       }
     }
   }
+  getNewList(data, type) {
+    let list = data
 
-  async getList(data, type) {
-    let { limit } = this.state;
-    let { pairs } = this.props;
-    let sPrecision = pairs.sPrecision ? pairs.sPrecision : 6;
-
-    let obj1 = {};
-    let obj2 = {};
-    let listN = [];
-    let arr = [];
-    if (data) {
-      data = data.reduce((cur, next) => {
-        obj2[next.OrderID] ? "" : (obj2[next.OrderID] = true && cur.push(next));
-        return cur;
-      }, []);
-      data.map(v => {
-        if (obj1[v.Price]) {
-          obj1[v.Price]["amount"] += v.amount;
-          obj1[v.Price]["curTurnover"] += v.curTurnover;
-        } else {
-          obj1[v.Price] = {
-            amount: v.amount,
-            curTurnover: v.curTurnover
-          };
-        }
-      });
-      let list = Object.keys(obj1)
-        .map(v => +v)
-        .sort((a, b) => {
-          return type ? b - a : a - b;
-        });
-
-      let amount_list = [];
-      let amountSum = 0;
-      list.map((v, index) => {
-        let amount = obj1[v].amount;
-        let curTurnover = obj1[v].curTurnover;
-        let cje = amount * v;
-        let key = index;
-        listN.push({
-          key: key + 1,
-          price: (+v).toFixed(sPrecision),
-          amount: amount.toFixed(2),
-          curTurnover: curTurnover,
-          cje: cje.toFixed(sPrecision)
-        });
-        amount_list.push(amount);
-        amountSum += amount;
-        //数据拼接成深度图所需数据[[价格，数量]，[价格，数量]]
-        let item = [
-          parseFloat((+v).toFixed(sPrecision)),
-          // parseFloat(amount.toFixed(2))
-          amountSum
-        ];
-        arr.push(item);
-      });
-      // const _max = Math.max.apply(null, amount_list)
-      // if (type === 2) {
-      //   this.buyMax = _max
-      // } else {
-      //   this.sellMax = _max
-      // }
-
-      listN.length > limit && (listN.length = limit);
+    let amount_list = []
+    let listN = []
+    
+    list.length > this.limit && (list.length = this.limit)
+    if(type == 1){
+    }else{
+      list = list.reverse();
+    }
+    
+    list.map(v => {
+      let cje = v.Amount * v.Price
+      listN.push({
+        price: (+v.Price).toFixed(this.pairs.sPrecision),
+        amount: v.Amount.toFixed(2),
+        cje: cje.toFixed(this.pairs.sPrecision)
+      })
+      amount_list.push(v.Amount)
+    })
+    const _max = Math.max.apply(null, amount_list)
+    if (type === 1) {
+      this.buyMax = _max
+    } else {
+      this.sellMax = _max
     }
 
-    return {
-      listN,
-      arr: type === 1 ? arr.reverse() : arr
-      // tokenId: data[0].ExchangeID
-    };
+    console.log(_max)
+
+    return listN
   }
+
 
   setActiveClass = (record, index) => {
     return record.exchange_id === this.state.activeIndex

@@ -3,8 +3,9 @@ import { injectIntl } from "react-intl";
 import { Client } from "../../services/api";
 import { Link } from "react-router-dom";
 import { tu } from "../../utils/i18n";
-import TimeAgo from "react-timeago";
+// import TimeAgo from "react-timeago";
 import { Utc2BeijingDateTime } from "../../utils/DateTime";
+import BlockTime from '../common/blockTime'
 
 class Notice extends React.Component {
   constructor() {
@@ -75,9 +76,10 @@ class Notice extends React.Component {
                   {focus["title" + lg]}
                 </div>
                 <div className="exchange-box-right-vice-title">
-                  <span className="author">TRXMarket</span>
+                  <span className="author">Poloni DEX</span>
                   <div className="line" />
-                  <TimeAgo date={date} />
+                  <BlockTime time={date}></BlockTime>
+                  {/* <TimeAgo date={date} /> */}
                 </div>
                 <div className="exchange-box-right-content">
                   <div

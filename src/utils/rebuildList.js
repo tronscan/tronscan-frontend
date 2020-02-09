@@ -2,11 +2,14 @@ import {upperCase} from 'lodash'
 import {tokensMap} from "./tokensMap.js";
 import xhr from "axios/index";
 import {API_URL} from '../constants.js'
+import { store } from './../store';
 
 export default (list = [], tokenId, amount, infolist=false) => {
   let IDmap = {};
   let newList = list.map(item => item);
 
+  // const { account: { tokenMap } } = store.getState();
+  // IDmap = tokenMap;
   const tokenmap = localStorage.getItem('tokensMap');
   IDmap = JSON.parse(tokenmap);
 
@@ -102,7 +105,7 @@ function setItem(item,name,id,pre,amount,abbr,logo,index=''){
 }
 
 async function  getTokensMap() {
-    let {data} = await xhr.get(`${API_URL}/api/token?showAll=1&limit=4000`);
+    let {data} = await xhr.get(`${API_URL}/api/token?showAll=1&limit=5000&id_gt=1002653&fields=id,name,precision,abbr,imgUrl`);
     let imgUrl;
     for (var i = 0; i < data.data.length; i++) {
       if (!tokensMap[data.data[i].id]) {

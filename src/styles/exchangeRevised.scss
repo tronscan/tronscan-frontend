@@ -140,7 +140,7 @@
   .tab-pdr {
     .ant-table-scroll {
       .ant-table-body {
-        min-height: 1100px;
+        // min-height: 1100px;
       }
     }
     .ant-table-thead {
@@ -175,5 +175,11 @@
 
   .ant-table {
     font-family: Arial;
+  }
+  .txt-center{
+    text-align: center;
+    line-height: 22px;
+    color:#999;
+    font-size:12px;
   }
 }

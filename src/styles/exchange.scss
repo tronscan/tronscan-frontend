@@ -8,6 +8,9 @@ $green: #69c265;
 .col-green {
   color: $green;
 }
+.col-gray {
+  color: #999;
+}
 
 .exchange {
   .ant-input-group-addon,
@@ -86,6 +89,11 @@ $green: #69c265;
         &:hover {
           .title {
             color: rgba(60, 9, 6, 0.8);
+          }
+        }
+        &-2 {
+          @media only screen and (max-width: 990px) {
+            display: none;
           }
         }
 
@@ -386,7 +394,7 @@ $green: #69c265;
         td,
         th {
           border-color: #fff;
-          padding: 4px 8px !important;
+          padding: 6px 8px !important;
         }
       }
     }

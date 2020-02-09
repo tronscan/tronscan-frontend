@@ -204,7 +204,7 @@ export class BasicInfo extends PureComponent {
                         <img className="previewLogo" id="previewLogo" src={logoUrl}
                              style={{width: '60px', height: '60px', marginTop: '-52px', marginLeft: '10px'}}/>
                         <a className="close" onClick={this.resetLogo}>
-                          <i className="fa fa-times" aria-hidden="true"></i>
+                          <i className="fa fa-times" ></i>
                         </a>
                       </div>
                       }

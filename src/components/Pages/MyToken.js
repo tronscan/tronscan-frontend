@@ -158,7 +158,7 @@ class MyToken extends Component {
                       }
                     </div>
                     <button className="btn btn-danger" onClick={this.download}><i className="fa fa-download mr-1"
-                                                                                  aria-hidden="true"></i>{tu('download_excel')}
+                                                                                  ></i>{tu('download_excel')}
                     </button>
                   </div>
                 </div>

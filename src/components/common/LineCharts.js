@@ -1,7 +1,10 @@
+/*eslint-disable */
 import React from 'react'
 import moment from 'moment';
 import config from './chart.config.js'
-
+import { IS_MAINNET } from "../../constants"
+import BigNumber from "bignumber.js"
+import { toThousands } from './../../utils/number'
 import echarts from 'echarts/lib/echarts'
 import 'echarts/lib/chart/line'
 import 'echarts/lib/component/title'
@@ -10,13 +13,13 @@ import 'echarts/lib/component/dataZoom'
 import 'echarts/lib/component/toolbox'
 import 'echarts/lib/component/markPoint'
 import 'echarts/lib/chart/bar'
-
 import Highcharts from 'highcharts/highstock';
 import HighchartsMore from 'highcharts/highcharts-more';
 import HighchartsDrilldown from 'highcharts/modules/drilldown';
 import Highcharts3D from 'highcharts/highcharts-3d';
 import Exporting from 'highcharts/modules/exporting';
 import Variabled from 'highcharts/modules/variable-pie.js';
+import isMobile from './../../utils/isMobile';
 
 import {cloneDeep} from "lodash";
 
@@ -39,7 +42,7 @@ export class SupplyAreaHighChart extends React.Component {
     initArea(id) {
         let total = 990000000000;
         let _config = cloneDeep(config.supplyAreaHighChart);
-        let {intl, data, source} = this.props;
+        let {intl, data, source, chartData} = this.props;
         if (data && data.length === 0) {
             _config.title.text = "No data";
         }
@@ -56,10 +59,10 @@ export class SupplyAreaHighChart extends React.Component {
         }
         _config.chart.zoomType = 'x';
         _config.chart.marginTop = 80;
-        _config.title.text = intl.formatMessage({id: 'BTT_Token_Release_Schedule'});
-        _config.subtitle.text = intl.formatMessage({id: 'source_btt_team'});
-        _config.exporting.filename = intl.formatMessage({id: 'BTT_Token_Release_Schedule'});
-        _config.xAxis.categories = ['2019-01','2019-02','2019-03','2019-04','2019-05','2019-06','2019-07','2019-08','2019-09','2019-10','2019-11','2019-12','2020-01', '2020-02', '2020-03','2020-04','2020-05','2020-06','2020-07','2020-08','2020-09','2020-10','2020-11','2020-12','2021-01','2021-02','2021-03','2021-04','2021-05','2021-06','2021-07','2021-08','2021-09','2021-10','2021-11','2021-12','2022-01','2022-02','2022-03','2022-04','2022-05','2022-06','2022-07','2022-08','2022-09','2022-10','2022-11','2022-12'];
+        _config.title.text = chartData.title;
+        _config.subtitle.text = chartData.subtitle;
+        _config.exporting.filename = chartData.exporting;
+        _config.xAxis.categories = chartData.xAxis;
         // _config.xAxis.tickPixelInterval = 100;
         // _config.xAxis.minRange=24 * 3600 * 1000;
         // _config.yAxis.title.text = intl.formatMessage({id: 'addresses_amount'});
@@ -99,6 +102,145 @@ export class SupplyAreaHighChart extends React.Component {
         )
     }
 }
+export class LineReactHighChartHomeAddress extends React.Component {
+
+    constructor(props) {
+        super(props)
+        this.myChart = null;
+        let id = ('_' + Math.random()).replace('.', '_');
+        this.state = {
+            lineId: 'lineAdd' + id
+        }
+    }
+    initLine(id) {
+        let _config = cloneDeep(config.HomeHighChart);
+        let {intl, data, sun, total, source} = this.props;
+        if (data && data.length === 0) {
+            _config.title.text = "No data";
+        }
+        if (source == 'home'){
+            _config.title.text = intl.formatMessage({id:'14_day_address_growth'})
+            if (total && total.length > 0) {
+                //_config.xAxis.categories = [];
+                total.map((val) => {
+                    let tempTotal;
+                    tempTotal = {...val, y: val.total};
+                    //_config.xAxis.categories.push(moment(val.date).format('M/D'));
+                    _config.series[0].data.push(tempTotal);
+
+                })
+                _config.series[0].name =  intl.formatMessage({id: 'TRON'});
+            }
+            if (data && data.length > 0) {
+                _config.xAxis.categories = [];
+
+                data.map((val) => {
+                    let temp;
+                    temp = {...val, y: val.total};
+                    _config.xAxis.categories.push(moment(val.date).format('M/D'));
+                    _config.series[1].data.push(temp);
+                })
+                _config.series[1].name =  intl.formatMessage({id: 'main_chain'});
+            }
+            if (sun && sun.length > 0) {
+                //_config.xAxis.categories = [];
+                sun.map((val) => {
+                    let tempSun;
+                    tempSun = {...val, y: val.total};
+                   //_config.xAxis.categories.push(moment(val.date).format('M/D'));
+                    _config.series[2].data.push(tempSun);
+                })
+                _config.series[2].name =  intl.formatMessage({id: 'sun_network'});
+            }
+
+            _config.chart.spacingTop = 20;
+            _config.yAxis[0].tickAmount = 4;
+            _config.yAxis[1].tickAmount = 4;
+            _config.yAxis[0].allowDecimals = true;
+            _config.yAxis[1].allowDecimals = true;
+            _config.exporting.enabled = true;
+            //_config.yAxis.min = (data[0].total - 100000)< 0  ? 0 : data[0].total - 100000 ;
+            // if(IS_MAINNET){
+            //     _config.yAxis.tickInterval = 100000;
+            // }else{
+            //     _config.yAxis.tickInterval = 1000
+            // }
+            // _config.yAxis.tickAmount = 4;
+            // _config.yAxis.allowDecimals = true;
+            if(IS_MAINNET) {
+                _config.yAxis[0].labels.formatter = function () {
+                    if (this.value < 1000000 && this.value >= 1000) {
+                        return this.value / 1000 + 'k'
+                    } else if (this.value >= 1000000) {
+                        return this.value / 1000000 + 'M'
+                    } else if (this.value < 1000) {
+                        return this.value
+                    }
+                }
+            }
+            _config.exporting.buttons = {
+                contextButton: {
+                    menuItems: ['downloadJPEG', 'downloadPNG', 'downloadSVG', 'downloadPDF']
+                  }    
+            }
+            _config.tooltip = {
+                useHTML: true,
+                shadow: true,
+                split: false,
+                shared: true,
+                formatter: function () {
+                    var s;
+                    var points = this.points;
+                    var pointsLength = points.length;
+                    
+                    s = '<table class="tableformat" style="border: 0px;" min-width="100%"><tr style="border-bottom:1px solid #D5D8DC;"><td colspan=2 style="padding:4px 10px;"><span style="font-size: 10px;"> ' + moment(points[0].point.date).format("YYYY-MM-DD") + '</span><br></td><td></td></tr>'
+                    s += '<tr><td style="padding:4px 6px;"></td><td style="text-align:right;padding:4px 6px;">'+intl.formatMessage({id:'daily_increment'})+'</td><td style="text-align:right;padding:4px 6px;">'+intl.formatMessage({id:'total_addresses'})+'</td></tr>' 
+                    for (let index = 0; index < pointsLength; index += 1) { 
+                        s += '<tr style="border-bottom:1px solid #D5D8DC;">'+
+                             '<td style="padding:4px 6px;" valign="top">' + '<span style="color:' + points[index].series.color + ';font-size: 15px !important;">\u25A0</span> ' + intl.formatMessage({id: points[index].series.name })+ '</td>' +
+                             '<td style="padding:4px 6px;;color:#C23631;font-weight:bold;text-align:right">'+Highcharts.numberFormat(points[index].point.increment, 0, '.', ',') +'</td>'+
+                             '<td align="right" style="padding:4px 6px;"><span ><b style="color:#C23631">' +Highcharts.numberFormat(points[index].y, 0, '.', ',') + '</br>'
+                             + '</span>' +
+                            '</td></tr>'
+                    }
+                    s += '</table>';
+                    return s;
+                },
+            }
+            // _config.tooltip.formatter = function () {
+            //     let date = intl.formatDate((parseInt(this.point.date)));
+            //     return (
+            //         intl.formatMessage({id: 'name'}) + ' : ' + intl.formatMessage({id: this.point.name}) + '<br/>' +
+            //         intl.formatMessage({id: 'date'}) + ' : ' + date + '<br/>' +
+            //         intl.formatMessage({id: 'daily_increment'}) + ' : ' + this.point.increment + '<br/>' +
+            //         intl.formatMessage({id: 'total_addresses'}) + ' : ' + this.point.total
+            //     )
+            // }
+        }
+        Highcharts.chart(document.getElementById(id),_config);
+
+    }
+    shouldComponentUpdate(nextProps)  {
+        if(nextProps.intl.locale !== this.props.intl.locale){
+            return true
+        }
+        return  false
+    }
+    componentDidMount() {
+        this.initLine(this.state.lineId);
+    }
+    componentDidUpdate() {
+        this.initLine(this.state.lineId);
+    }
+
+    render() {
+        return (
+            <div>
+                <div id={this.state.lineId} style={this.props.style}></div>
+            </div>
+        )
+    }
+}
 
 export class LineReactHighChartAdd extends React.Component {
 
@@ -117,6 +259,7 @@ export class LineReactHighChartAdd extends React.Component {
             _config.title.text = "No data";
         }
         if (source == 'home'){
+            _config.title.text = intl.formatMessage({id:'14_day_address_growth'})
             if (data && data.length > 0) {
                 _config.xAxis.categories = [];
 
@@ -126,27 +269,57 @@ export class LineReactHighChartAdd extends React.Component {
                     _config.xAxis.categories.push(moment(val.date).format('M/D'));
                     _config.series[0].data.push(temp);
                 })
+                _config.series[0].name = 'SUN Network'
             }
             _config.chart.spacingTop = 20;
-            _config.exporting.enabled = false;
-            _config.yAxis.min = data[0].total - 100000;
-            _config.yAxis.tickInterval = 100000;
+            _config.exporting.enabled = true;
+            _config.yAxis.min = (data[0].total - 100000)< 0  ? 0 : data[0].total - 100000 ;
+            if(IS_MAINNET){
+                _config.yAxis.tickInterval = 100000;
+            }else{
+                _config.yAxis.tickInterval = 1000
+            }
             _config.yAxis.tickAmount = 4;
             _config.yAxis.allowDecimals = true;
-            _config.yAxis.labels.formatter = function() {
-                if(this.value < 1000000){
-                    return this.value/1000 + 'k'
-                }else if(this.value >= 1000000){
-                    return this.value/1000000 + 'M'
+            if(IS_MAINNET) {
+                _config.yAxis.labels.formatter = function () {
+                    if (this.value < 1000000 && this.value >= 1000) {
+                        return this.value / 1000 + 'k'
+                    } else if (this.value >= 1000000) {
+                        return this.value / 1000000 + 'M'
+                    } else if (this.value < 1000) {
+                        return this.value
+                    }
                 }
             }
-            _config.tooltip.formatter = function () {
-                let date = intl.formatDate((parseInt(this.point.date)));
-                return (
-                    intl.formatMessage({id: 'date'}) + ' : ' + date + '<br/>' +
-                    intl.formatMessage({id: 'daily_increment'}) + ' : ' + this.point.increment + '<br/>' +
-                    intl.formatMessage({id: 'total_addresses'}) + ' : ' + this.point.total
-                )
+            _config.exporting.buttons = {
+                contextButton: {
+                    menuItems: ['downloadJPEG', 'downloadPNG', 'downloadSVG', 'downloadPDF']
+                  }    
+            }
+            _config.tooltip = {
+                useHTML: true,
+                shadow: true,
+                split: false,
+                shared: true,
+                formatter: function () {
+                    var s;
+                    var points = this.points;
+                    var pointsLength = points.length;
+                    
+                    s = '<table class="tableformat" style="border: 0px;" min-width="100%"><tr style="border-bottom:1px solid #D5D8DC;"><td colspan=2 style="padding-bottom:5px;"><span style="font-size: 10px;"> ' + moment(points[0].point.date).format("YYYY-MM-DD") + '</span><br></td><td></td></tr>'
+                    s += '<tr><td style="padding:4px 5px;"></td><td style="text-align:right;padding:4px 5px;">'+intl.formatMessage({id:'daily_increment'})+'</td><td style="text-align:right;padding:4px 5px;">'+intl.formatMessage({id:'total_addresses'})+'</td></tr>' 
+                    for (let index = 0; index < pointsLength; index += 1) { 
+                        s += '<tr style="border-bottom:1px solid #D5D8DC;">'+
+                             '<td style="padding:4px 5px;" valign="top">' + '<span style="color:' + points[index].series.color + ';font-size: 15px !important;">\u25A0</span> ' + intl.formatMessage({id: points[index].series.name })+ '</td>' +
+                             '<td style="padding:4px 5px;color:#C23631;font-weight:bold;text-align:right">'+Highcharts.numberFormat(points[index].point.increment, 0, '.', ',') +'</td>'+
+                             '<td align="right" style="padding:4px 5px;"><span ><b style="color:#C23631">' +Highcharts.numberFormat(points[index].y, 0, '.', ',') + '</br>'
+                             + '</span>' +
+                            '</td></tr>'
+                    }
+                    s += '</table>';
+                    return s;
+                },
             }
         }else{
             if (data && data.length === 0) {
@@ -161,9 +334,9 @@ export class LineReactHighChartAdd extends React.Component {
             }
             _config.chart.zoomType = 'x';
             _config.chart.marginTop = 80;
-            _config.title.text = intl.formatMessage({id: 'address_growth_chart'});
+            _config.title.text = intl.formatMessage({id: 'charts_new_addresses'});
             _config.subtitle.text = intl.formatMessage({id: 'HighChart_tip'});
-            _config.exporting.filename = intl.formatMessage({id: 'address_growth_chart'});
+            _config.exporting.filename = intl.formatMessage({id: 'charts_new_addresses'});
             _config.xAxis.tickPixelInterval = 100;
             _config.xAxis.minRange=24 * 3600 * 1000;
             _config.yAxis.title.text = intl.formatMessage({id: 'addresses_amount'});
@@ -213,6 +386,135 @@ export class LineReactHighChartAdd extends React.Component {
     }
 }
 
+export class LineReactHighChartHomeTx extends React.Component {
+
+    constructor(props) {
+        super(props)
+        this.myChart = null;
+        let id = ('_' + Math.random()).replace('.', '_');
+        this.state = {
+            lineId: 'lineTx' + id
+        }
+    }
+    initLine(id) {
+        let _config = cloneDeep(config.HomeHighChart);
+        let {intl, data, sun, total, source} = this.props;
+
+        if (source == 'home'){
+            if (total && total.length > 0) {
+                _config.xAxis.categories = [];
+                total.map((val) => {
+                    let tempTotal;
+                    tempTotal = {...val, y: val.totalTransaction};
+                    _config.xAxis.categories.push(moment(val.date).format('M/D'));
+                    _config.series[0].data.push(tempTotal);
+                })
+                _config.series[0].name =  intl.formatMessage({id: 'TRON'});
+            }
+            if (data && data.length > 0) {
+                //_config.xAxis.categories = [];
+                data.map((val) => {
+                    let temp;
+                    temp = {...val, y: val.totalTransaction};
+                    //_config.xAxis.categories.push(moment(val.date).format('M/D'));
+                    _config.series[1].data.push(temp);
+                })
+                _config.series[1].name = intl.formatMessage({id: 'main_chain'});
+            }
+            if (sun && sun.length > 0) {
+               // _config.xAxis.categories = [];
+                sun.map((val) => {
+                    let tempSun;
+                    tempSun = {...val, y: val.totalTransaction};
+                    //_config.xAxis.categories.push(moment(val.date).format('M/D'));
+                    _config.series[2].data.push(tempSun);
+                })
+                _config.series[2].name =  intl.formatMessage({id: 'sun_network'});
+            }
+
+            _config.chart.spacingTop = 20;
+            _config.yAxis[0].tickAmount = 4;
+            _config.yAxis[1].tickAmount = 4;
+            _config.yAxis[0].allowDecimals = true;
+            _config.yAxis[1].allowDecimals = true;
+            _config.title['text'] = intl.formatMessage({id: '14_day_transaction_history'});
+            // _config.exporting.enabled = false;
+            // _config.yAxis[0].min = 0;
+            // _config.yAxis[1].min = 0;
+            
+            if(IS_MAINNET) {
+                _config.yAxis[0].labels.formatter = function () {
+                    if (this.value < 1000000 && this.value >= 1000) {
+                        return this.value / 1000 + 'k'
+                    } else if (this.value >= 1000000) {
+                        return this.value / 1000000 + 'M'
+                    } else if (this.value < 1000) {
+                        return this.value
+                    }
+                }
+            }
+            _config.exporting.buttons = {
+                contextButton: {
+                    menuItems: ['downloadJPEG', 'downloadPNG', 'downloadSVG', 'downloadPDF']
+                  }    
+            }
+            
+            _config.tooltip = {
+                useHTML: true,
+                shadow: true,
+                split: false,
+                shared: true,
+                formatter: function () {
+                    var s;
+                    var points = this.points;
+                    var pointsLength = points.length;
+                  
+                    s = '<table class="tableformat" style="border: 0px;" min-width="100%"><tr style="border-bottom:1px solid #D5D8DC;"><td colspan=2 style="padding-bottom:5px;"><span style="font-size: 10px;"> ' + moment(points[0].point.date).format("YYYY-MM-DD") + '</span><br></td></tr>'
+                    s += '<tr><td></td><td style="text-align:right;padding:4px 6px;">'+intl.formatMessage({id:'total_transactions'})+'</td></tr>' 
+                    for (let index = 0; index < pointsLength; index += 1) {
+                        s += '<tr style="border-bottom:1px solid #D5D8DC;">'+
+                             '<td style="padding:4px 6px;" valign="top">' + '<span style="color:' + points[index].series.color + ';font-size: 15px !important;">\u25A0</span> ' + intl.formatMessage({id: points[index].series.name })+ '</td>' +
+                             '<td align="right" style="padding:4px 6px;"><span ><b style="color:#C23631">' +
+                            Highcharts.numberFormat(points[index].y, 0, '.', ',') + '</br>'
+                            + '</span>' +
+                            '</td></tr>'
+                    }
+                    s += '</table>';
+                    return s;
+                },
+            }
+                    
+                
+            //     // return (
+            //     //     intl.formatMessage({id: 'name'}) + ' : ' + intl.formatMessage({id: this.point.name}) + '<br/>' +
+            //     //     intl.formatMessage({id: 'date'}) + ' : ' + date + '<br/>' +
+            //     //     intl.formatMessage({id: 'total_transactions'}) + ' : ' + this.point.y
+            //     // )
+            // }
+        }
+        Highcharts.chart(document.getElementById(id),_config);
+    }
+    shouldComponentUpdate(nextProps)  {
+        if(nextProps.intl.locale !== this.props.intl.locale){
+            return true
+        }
+        return  false
+    }
+    componentDidMount() {
+        this.initLine(this.state.lineId);
+    }
+    componentDidUpdate() {
+        this.initLine(this.state.lineId);
+    }
+
+    render() {
+        return (
+            <div>
+                <div id={this.state.lineId} style={this.props.style}></div>
+            </div>
+        )
+    }
+}
 export class LineReactHighChartTx extends React.Component {
 
     constructor(props) {
@@ -235,30 +537,70 @@ export class LineReactHighChartTx extends React.Component {
                     temp = {...val, y: val.totalTransaction};
                     _config.xAxis.categories.push(moment(val.date).format('M/D'));
                     _config.series[0].data.push(temp);
+                    
                 })
+                _config.series[0].name= 'SUN Network';
             }
             _config.chart.spacingTop = 20;
             _config.yAxis.tickAmount = 4;
             _config.yAxis.allowDecimals = true;
-            _config.exporting.enabled = false;
-            _config.yAxis.tickInterval = 1000000;
+            _config.exporting.enabled = true;
+            _config.title.text = intl.formatMessage({
+                id:'14_day_transaction_history'
+            });
+            if(IS_MAINNET){
+                _config.yAxis.tickInterval = 100000;
+            }else{
+                _config.yAxis.tickInterval = 10000
+            }
             _config.yAxis.min = 0;
-            _config.yAxis.labels.formatter = function() {
-                if(this.value < 1000000 && this.value >= 1000 ){
-                    return this.value/1000 + 'k'
-                }else if(this.value >= 1000000){
-                    return this.value/1000000 + 'M'
-                }else if(this.value <1000){
-                    return this.value
+            if(IS_MAINNET) {
+                _config.yAxis.labels.formatter = function () {
+                    if (this.value < 1000000 && this.value >= 1000) {
+                        return this.value / 1000 + 'k'
+                    } else if (this.value >= 1000000) {
+                        return this.value / 1000000 + 'M'
+                    } else if (this.value < 1000) {
+                        return this.value
+                    }
                 }
             }
-            _config.tooltip.formatter = function () {
-                let date = intl.formatDate(this.point.date);
-                return (
-                    intl.formatMessage({id: 'date'}) + ' : ' + date + '<br/>' +
-                    intl.formatMessage({id: 'total_transactions'}) + ' : ' + this.point.y
-                )
+            _config.exporting.buttons = {
+                contextButton: {
+                    menuItems: ['downloadJPEG', 'downloadPNG', 'downloadSVG', 'downloadPDF']
+                  }    
             }
+            _config.tooltip = {
+                useHTML: true,
+                shadow: true,
+                split: false,
+                shared: true,
+                formatter: function () {
+                    var s;
+                    var points = this.points;
+                    var pointsLength = points.length;
+                  
+                    s = '<table class="tableformat" style="border: 0px;" min-width="100%"><tr style="border-bottom:1px solid #D5D8DC;"><td colspan=2 style="padding-bottom:5px;"><span style="font-size: 10px;"> ' + moment(points[0].point.date).format("YYYY-MM-DD") + '</span><br></td></tr>'
+                    s += '<tr><td style="padding:4px 6px;"></td><td style="text-align:right;">'+intl.formatMessage({id:'total_transactions'})+'</td></tr>' 
+                    for (let index = 0; index < pointsLength; index += 1) { 
+                        s += '<tr style="border-bottom:1px solid #D5D8DC;">'+
+                             '<td style="padding:4px 6px;" valign="top">' + '<span style="color:' + points[index].series.color + ';font-size: 15px !important;">\u25A0</span> ' + intl.formatMessage({id: points[index].series.name })+ '</td>' +
+                             '<td align="right" style="padding:4px 6px;"><span ><b style="color:#C23631">' +
+                            Highcharts.numberFormat(points[index].y, 0, '.', ',') + '</br>'
+                            + '</span>' +
+                            '</td></tr>'
+                    }
+                    s += '</table>';
+                    return s;
+                },
+            }
+            // _config.tooltip.formatter = function () {
+            //     let date = intl.formatDate(this.point.date);
+            //     return (
+            //         intl.formatMessage({id: 'date'}) + ' : ' + date + '<br/>' +
+            //         intl.formatMessage({id: 'total_transactions'}) + ' : ' + this.point.y
+            //     )
+            // }
         }else{
             if (data && data.length === 0) {
                 _config.title.text = "No data";
@@ -272,9 +614,9 @@ export class LineReactHighChartTx extends React.Component {
             }
             _config.chart.zoomType = 'x';
             _config.chart.marginTop = 80;
-            _config.title.text = intl.formatMessage({id: 'tron_transaction_chart'});
+            _config.title.text = intl.formatMessage({id: 'charts_daily_transactions'});
             _config.subtitle.text = intl.formatMessage({id: 'HighChart_tip'});
-            _config.exporting.filename = intl.formatMessage({id: 'tron_transaction_chart'});
+            _config.exporting.filename = intl.formatMessage({id: 'charts_daily_transactions'});
             _config.xAxis.tickPixelInterval = 100;
             _config.xAxis.minRange=24 * 3600 * 1000
             _config.yAxis.title.text = intl.formatMessage({id: 'transactions_per_day'});
@@ -380,9 +722,9 @@ export class LineReactHighChartTotalTxns extends React.Component {
             }
             _config.chart.zoomType = 'x';
             _config.chart.marginTop = 80;
-            _config.title.text = intl.formatMessage({id: 'tron_total_transactions_chart'});
+            _config.title.text = intl.formatMessage({id: 'charts_total_transactions'});
             _config.subtitle.text = intl.formatMessage({id: 'HighChart_tip'});
-            _config.exporting.filename = intl.formatMessage({id: 'tron_total_transactions_chart'});
+            _config.exporting.filename = intl.formatMessage({id: 'charts_total_transactions'});
             _config.xAxis.tickPixelInterval = 100;
             _config.xAxis.minRange=24 * 3600 * 1000;
             _config.yAxis.title.text = intl.formatMessage({id: 'totle_transactions_per_day'});
@@ -400,14 +742,18 @@ export class LineReactHighChartTotalTxns extends React.Component {
             _config.series[0].marker.enabled = false;
             _config.series[0].pointInterval = 24 * 3600 * 1000;
             _config.series[0].pointStart = Date.UTC(2018, 5, 25);
+
             _config.tooltip.formatter = function () {
                 let date = intl.formatDate(this.point.x);
                 return (
+                    intl.formatMessage({id: 'TRON'}) + '<br/>' +
                     intl.formatMessage({id: 'date'}) + ' : ' + date + '<br/>' +
                     intl.formatMessage({id: 'total_transactions'}) + ' : ' + this.point.y
                 )
             }
+
         }
+
          
         Highcharts.chart(document.getElementById(id),_config);
     }
@@ -460,9 +806,9 @@ export class LineReactHighChartBlockchainSize extends React.Component {
         }
         _config.chart.zoomType = 'x';
         _config.chart.marginTop = 80;
-        _config.title.text = intl.formatMessage({id: 'blockchain_size'});
+        _config.title.text = intl.formatMessage({id: 'charts_total_average_blocksize'});
         _config.subtitle.text = intl.formatMessage({id: 'HighChart_tip'});
-        _config.exporting.filename = intl.formatMessage({id: 'blockchain_size'});
+        _config.exporting.filename = intl.formatMessage({id: 'charts_total_average_blocksize'});
         _config.xAxis.tickPixelInterval = 100;
         _config.xAxis.minRange=24 * 3600 * 1000
         _config.yAxis.title.text = intl.formatMessage({id: 'MByte'});
@@ -475,7 +821,7 @@ export class LineReactHighChartBlockchainSize extends React.Component {
             let date = intl.formatDate(this.point.x);
             return (
                 intl.formatMessage({id: 'date'}) + ' : ' + date + '<br/>' +
-                intl.formatMessage({id: 'blockchain_size'}) + ' : ' + this.point.blockchainSize / 1000000
+                intl.formatMessage({id: 'charts_total_average_blocksize'}) + ' : ' + this.point.blockchainSize / 1000000
             )
         }
 
@@ -536,9 +882,9 @@ export class BarReactHighChartBlockSize extends React.Component {
         }
         _config.chart.zoomType = 'x';
         _config.chart.marginTop = 80;
-        _config.title.text = intl.formatMessage({id: 'average_blocksize'});
+        _config.title.text = intl.formatMessage({id: 'charts_average_blocksize'});
         _config.subtitle.text = intl.formatMessage({id: 'HighChart_tip'});
-        _config.exporting.filename = intl.formatMessage({id: 'average_blocksize'});
+        _config.exporting.filename = intl.formatMessage({id: 'charts_average_blocksize'});
         _config.xAxis.tickPixelInterval = 100;
         _config.xAxis.minRange=24 * 3600 * 1000;
         _config.yAxis.title.text = intl.formatMessage({id: 'bytes'});
@@ -619,7 +965,7 @@ export class LineReactHighChartPrice extends React.Component {
                 let date = intl.formatDate(this.point.x);
                 return (
                     intl.formatMessage({id: 'date'}) + ' : ' + date + '<br/>' +
-                    intl.formatMessage({id: 'average_price'}) + ' : ' + this.point.y
+                    intl.formatMessage({id: 'charts_average_price'}) + ' : ' + this.point.y
                 )
             }
         }else{
@@ -634,9 +980,9 @@ export class LineReactHighChartPrice extends React.Component {
             _config.chart.zoomType = 'x';
             _config.chart.marginTop = 80;
             _config.chart.type= 'area';
-            _config.title.text = intl.formatMessage({id: 'average_price'});
+            _config.title.text = intl.formatMessage({id: 'charts_average_price'});
             _config.subtitle.text = intl.formatMessage({id: 'HighChart_tip'});
-            _config.exporting.filename = intl.formatMessage({id: 'average_price'});
+            _config.exporting.filename = intl.formatMessage({id: 'charts_average_price'});
             _config.xAxis.tickPixelInterval = 100;
             // _config.xAxis.minRange=24 * 3600 * 1000
             _config.yAxis.title.text = intl.formatMessage({id: 'usd'});
@@ -650,7 +996,7 @@ export class LineReactHighChartPrice extends React.Component {
                 let date = intl.formatDate(this.point.x);
                 return (
                     intl.formatMessage({id: 'date'}) + ' : ' + date + '<br/>' +
-                    intl.formatMessage({id: 'average_price'}) + ' : ' + this.point.y
+                    intl.formatMessage({id: 'charts_average_price'}) + ' : ' + this.point.y
                 )
             }
         }
@@ -729,9 +1075,9 @@ export class LineReactHighChartVolumeUsd extends React.Component {
             }
             _config.chart.zoomType = 'x';
             _config.chart.marginTop = 80;
-            _config.title.text = intl.formatMessage({id: 'volume_24'});
+            _config.title.text = intl.formatMessage({id: 'charts_volume_24'});
             _config.subtitle.text = intl.formatMessage({id: 'HighChart_tip'});
-            _config.exporting.filename = intl.formatMessage({id: 'volume_24'});
+            _config.exporting.filename = intl.formatMessage({id: 'charts_volume_24'});
             _config.xAxis.tickPixelInterval = 100;
             // _config.xAxis.minRange=24 * 3600 * 1000
             _config.yAxis.title.text = intl.formatMessage({id: 'billion_usd'});
@@ -744,7 +1090,102 @@ export class LineReactHighChartVolumeUsd extends React.Component {
                 let date = intl.formatDate((parseInt(this.point.x)));
                 return (
                     intl.formatMessage({id: 'date'}) + ' : ' + date + '<br/>' +
+                    intl.formatMessage({id: 'volume'}) + ' : ' + this.point.y +'<br>'
+                )
+            }
+        }
+
+        Highcharts.chart(document.getElementById(id),_config);
+    }
+
+    shouldComponentUpdate(nextProps)  {
+        if(nextProps.intl.locale !== this.props.intl.locale){
+            return true
+        }
+        return  false
+    }
+    componentDidMount() {
+        this.initLine(this.state.lineId);
+    }
+    componentDidUpdate() {
+        this.initLine(this.state.lineId);
+    }
+
+    render() {
+        return (
+            <div>
+                <div id={this.state.lineId} style={this.props.style}></div>
+            </div>
+        )
+    }
+}
+
+export class LineReactHighChartTRXVolumeContract extends React.Component {
+
+    constructor(props) {
+        super(props)
+        this.myChart = null;
+        let id = ('_' + Math.random()).replace('.', '_');
+        this.state = {
+            lineId: 'lineReactVolumeUsd' + id
+        }
+    }
+    initLine(id) {
+        let _config = cloneDeep(config.overviewHighChart);
+
+        let {intl, data, source} = this.props;
+        if (data && data.length === 0) {
+            _config.title.text = "No data";
+        }
+        if (source == 'markets'){
+            if (data && data.length > 0) {
+                data.map((val) => {
+                    let temp;
+                    temp = [val.time,val.volume_billion]
+                    _config.series[0].data.push(temp);
+                })
+            }
+            _config.chart.spacingTop = 20;
+            _config.xAxis.tickPixelInterval = 100;
+            // _config.yAxis.title.text = intl.formatMessage({id: 'billion_usd'});
+            _config.yAxis.tickAmount = 5;
+            _config.yAxis.min = 0;
+            _config.exporting.enabled = false;
+            _config.series[0].marker.enabled = false;
+            _config.tooltip.formatter = function () {
+                let date = intl.formatDate((parseInt(this.point.x)));
+                return (
+                    intl.formatMessage({id: 'date'}) + ' : ' + date + '<br/>' +
                     intl.formatMessage({id: 'volume_24'}) + ' : ' + this.point.y +'<br>'
+                )
+            }
+        }else{
+            if (data && data.length > 0) {
+                data.map((val) => {
+                    let temp;
+                    temp = [val.time,val.volume_billion]
+                    // temp = {...val, y: val.volume_billion};
+                    _config.series[0].data.push(temp);
+                })
+            }
+            _config.chart.zoomType = 'x';
+            _config.chart.marginTop = 80;
+            _config.title.text = intl.formatMessage({id: 'TRX_historical_data'});
+            _config.subtitle.text = intl.formatMessage({id: 'HighChart_tip'});
+            _config.exporting.filename = intl.formatMessage({id: 'TRX_historical_data'});
+            _config.xAxis.tickPixelInterval = 100;
+            // _config.xAxis.minRange=24 * 3600 * 1000
+            _config.yAxis.title.text = intl.formatMessage({id: 'TRX_historical_data_y_text'});
+            _config.yAxis.tickAmount = 6;
+            _config.yAxis.min = 0;
+            _config.series[0].marker.enabled = false;
+            _config.series[0].pointInterval = 24 * 3600 * 1000;
+            // _config.series[0].pointStart = Date.UTC(2018, 5, 25);
+            _config.tooltip.formatter = function () {
+                let date = intl.formatDate((parseInt(this.point.x)));
+                return (
+                    intl.formatMessage({id: 'date'}) + ' : ' + date + '<br/>' +
+                    intl.formatMessage({id: 'TRX_historical_data_tip'}) + ' : ' + this.point.y +'<br>'
                 )
             }
         }
@@ -796,7 +1237,7 @@ export class LineReactAdd extends React.Component {
         }
 
         if (source !== 'home') {
-            _config.title.text = intl.formatMessage({id: 'address_growth_chart'});
+            _config.title.text = intl.formatMessage({id: 'charts_new_addresses'});
             _config.title.link = '#/blockchain/stats/addressesStats';
             _config.toolbox.feature = {
                 restore: {
@@ -890,7 +1331,7 @@ export class LineReactTx extends React.Component {
         }
 
         if (source !== 'home') {
-            _config.title.text = intl.formatMessage({id: 'tron_transaction_chart'});
+            _config.title.text = intl.formatMessage({id: 'charts_daily_transactions'});
             _config.title.link = '#/blockchain/stats/txOverviewStats';
             _config.toolbox.feature = {
                 restore: {
@@ -1374,9 +1815,15 @@ export class EnergyConsumeChart extends React.Component {
                 },
                 colors: map[type],
                 title: {
-                    text: intl.formatMessage({id: 'EnergyConsume_title'})
+                    text: intl.formatMessage({id: 'charts_daily_energy_consumption'})
                 },
                 subtitle: {text: intl.formatMessage({id: 'EnergyConsume_subtitle'})},
+                exporting: {
+                    enabled: true,
+                    sourceWidth: 1072,
+                    sourceHeight: 500,
+                    filename: intl.formatMessage({id: 'charts_daily_energy_consumption'})
+                },
                 yAxis: {
                     min: 0,
                     title: {
@@ -1453,10 +1900,16 @@ export class ContractInvocationChart extends React.Component {
                 chart: { zoomType: 'x' },
                 colors: ['#f7a35c', '#f15c80'],
                 title: {
-                    text: intl.formatMessage({id: 'contract_call_chart'})
+                    text: intl.formatMessage({id: 'charts_contract_calling'})
                 },
                 subtitle: {
                     text: intl.formatMessage({id: 'HighChart_tip'})
+                },
+                exporting: {
+                    enabled: true,
+                    sourceWidth: 1072,
+                    sourceHeight: 500,
+                    filename: intl.formatMessage({id: 'charts_contract_calling'})
                 },
                 xAxis: {
                     tickPixelInterval: 100
@@ -1536,15 +1989,15 @@ export class ContractInvocationDistributionChart extends React.Component {
     initLine(id) {
         let _config = cloneDeep(config.overviewHighChart);
         let {intl, data} = this.props;
-
+        let newData = cloneDeep(data)
         
-        var chartdata = data.slice(0).map(o => {
+        var chartdata = newData.slice(0).map(o => {
             o.y= o.trigger_amount
             o.name = o.contract_address
             return o
         })
        
-        if (data && data.length > 0) {
+        if (newData && newData.length > 0) {
             let options =  {
                 chart: {
                     type: 'variablepie'
@@ -1552,7 +2005,13 @@ export class ContractInvocationDistributionChart extends React.Component {
                 colors: ['#7cb5ec', '#434348', '#90ed7d', '#f7a35c', '#8085e9', 
    '#f15c80', '#e4d354', '#2b908f', '#f45b5b', '#91e8e1'],
                 title: {
-                    text: intl.formatMessage({id: 'contract_call_chart_day'})
+                    text: intl.formatMessage({id: 'charts_daily_contract_calling_profile'})
+                },
+                exporting: {
+                    enabled: true,
+                    sourceWidth: 1072,
+                    sourceHeight: 500,
+                    filename: intl.formatMessage({id: 'charts_daily_contract_calling_profile'})
                 },
                 tooltip: {
                     headerFormat: '',
@@ -1574,7 +2033,7 @@ export class ContractInvocationDistributionChart extends React.Component {
                 _config[item] = options[item]
             })
         }
-        if (data && data.length === 0) {
+        if (newData && newData.length === 0) {
             _config.title.text = "No data";
         }
         Highcharts.chart(id, _config);
@@ -1643,10 +2102,16 @@ export class EnergyConsumeDistributionChart extends React.Component {
                 colors: ['#7cb5ec', '#434348', '#90ed7d', '#f7a35c', '#8085e9', 
    '#f15c80', '#e4d354', '#2b908f', '#f45b5b', '#91e8e1'],
                 title: {
-                    text: intl.formatMessage({id: 'total_energy_used_chart'})
+                    text: intl.formatMessage({id: 'charts_daily_energy_contracts'})
                 },
                 subtitle: {
                     text: SUBTITLE
+                },
+                exporting: {
+                    enabled: true,
+                    sourceWidth: 1072,
+                    sourceHeight: 500,
+                    filename: intl.formatMessage({id: 'charts_daily_energy_contracts'})
                 },
                 tooltip: {
                     headerFormat: '',
@@ -1681,6 +2146,7 @@ export class EnergyConsumeDistributionChart extends React.Component {
     }
 
     render() {
+
         return (
             <div>
                 <div id={this.state.lineId} style={this.props.style}></div>
@@ -1688,6 +2154,1095 @@ export class EnergyConsumeDistributionChart extends React.Component {
         )
     }
 }
+
+
+/**
+ * Overall Freezing Rate
+ */
+export class OverallFreezingRateChart extends React.Component {
+
+    constructor(props) {
+        super(props)
+        this.myChart = null;
+        let id = ('_' + Math.random()).replace('.', '_');
+        this.state = {
+            lineId: 'OverallFreezingRateChart' + id
+        }
+    }
+
+    initLine(id) {
+        let _config = cloneDeep(config.OverallFreezingRateChart);
+        let {intl, data} = this.props;
+        let newData = cloneDeep(data)
+        let freezingRate = [];
+        let freezeTotal = [];
+        let turnoverTotal = [];
+        let timestamp = []
+        newData.map((val) => {
+            freezingRate.push(val['freezing_rate_percent']);
+            freezeTotal.push(val['total_freeze_weight']);
+            turnoverTotal.push(val['total_turn_over_num']);
+            timestamp.push(val['timestamp'])
+            //timestamp.push(moment(val['timestamp']).format("YYYY-MM-DD"))
+        })
+       
+        if (newData && newData.length > 0) {
+            let options =  {
+                title: {
+                    text: intl.formatMessage({id: 'charts_overall_freezing_rate'})
+                },
+                exporting: {
+                    enabled: true,
+                    sourceWidth: 1072,
+                    sourceHeight: 580,
+                    filename:intl.formatMessage({id: 'charts_overall_freezing_rate'})
+                },
+                rangeSelector: {
+                    inputDateFormat: '%Y-%m-%d',
+                    //allButtonsEnabled: true,
+                    buttons: [
+                    {
+                        type: 'all',
+                        text: intl.formatMessage({id: 'all'})
+                    },
+                    {
+                        type: 'year',
+                        count: 1,
+                        text: intl.formatMessage({id: 'freezing_rangeSelector_botton_text_1y'})
+                    },
+                    {
+                        type: 'month',
+                        count: 6,
+                        text: intl.formatMessage({id: 'freezing_rangeSelector_botton_text_6m'})
+                    },
+                    {
+                        type: 'month',
+                        count: 3,
+                        text: intl.formatMessage({id: 'freezing_rangeSelector_botton_text_3m'})
+                    },
+                    {
+                        type: 'month',
+                        count: 1,
+                        text: intl.formatMessage({id: 'freezing_rangeSelector_botton_text_1m'})
+                    }],
+                    selected: 0,
+                    buttonTheme: {
+                        width: 50
+                    },
+                },
+                navigator: {
+                    maskFill: 'rgba(198,72,68, 0.3)',
+                    xAxis: {
+                        labels: {
+                            format: '{value:%Y-%m-%d}',
+                            // enabled:false
+                        },
+                    },
+                   
+                },
+                scrollbar: {
+                   // enabled: false
+                },
+                xAxis: {
+                    //type: 'datetime',
+                    ordinal: false,
+                    categories:timestamp,
+                    dateTimeLabelFormats: {
+                        millisecond: '%H:%M:%S.%L',
+                        second: '%H:%M:%S',
+                        minute: '%H:%M',
+                        hour: '%H:%M',
+                        day: '%Y-%m-%d',
+                        week: '%m-%d',
+                        month: '%Y-%m',
+                        year: '%Y'
+                    },
+                    gridLineColor: '#eeeeee',
+                    labels: {
+                        style: {
+                            color: "#999999"
+                        },
+                        autoRotation: [-10, -20, -30, -40, -50, -60, -70, -80, -90],
+                    },
+                    title: {
+                        enabled: false
+                    },
+                  
+                
+                },
+                yAxis: [
+                    { // Primary yAxis
+                      labels: {
+                        format: '{value}%',
+                        style: {
+                          color: "#434343"
+                        }
+                      },
+                      title: {
+                        text: intl.formatMessage({id: 'freezing_column_freezing_rate'}),
+                        style: {
+                            color: "#434343"
+                        }
+                      },
+                      opposite: false,
+                      min:0
+                    }, { // Secondary yAxis
+                      title: {
+                        text: intl.formatMessage({id: 'freezing_column_total_circulation_chart'}),
+                        style: {
+                          color: "#C64844"
+                        }
+                      },
+                      labels: {
+                        style: {
+                            color: "#C64844"
+                        }
+                      },
+                    }
+                ],
+                plotOptions: {
+                    column: {
+                        grouping: false,
+                        shadow: false,
+                        borderWidth: 0
+                    },
+                    spline: {
+                        marker: {
+                            fillColor:"#5A5A5A",
+                            width: 8,
+                            height: 8,
+                            lineWidth: 0,  //线条宽度
+                            radius: 4,    //半径宽度
+                        }
+                    },
+                    series: {
+                        events: {
+                            // legendItemClick: function(e) {
+                            //     /*var target = e.target; 
+                            //     console.log(target === this);
+                            //     */
+                            //     var index = this.index;
+                            //     var series = this.chart.series;
+                            //     if(series[index].name == intl.formatMessage({id: 'freezing_column_total_circulation'})) {
+                            //         this.chart.yAxis[1].update({
+                            //             title:{
+                            //                 text: intl.formatMessage({id: 'freezing_column_total_circulation_chart'})
+                            //             }
+                            //         });
+                            //     }else if(series[index].name == intl.formatMessage({id: 'freezing_column_total_frozen'})){
+                            //         this.chart.yAxis[1].update({
+                            //             title:{
+                            //                 text: intl.formatMessage({id: 'freezing_column_total_frozen'})
+                            //             }
+                            //         });
+                            //     }
+                            // },
+                            hide: function(event) {
+                                var index = this.index;
+                                var series = this.chart.series;
+                                console.log(series[index].name)
+                                if(series[index].name == intl.formatMessage({id: 'freezing_column_total_circulation'})) {
+                                    this.chart.yAxis[1].update({
+                                        title:{
+                                            text: intl.formatMessage({id: 'freezing_column_total_frozen_chart'})
+                                        }
+                                    });
+                                }else if(series[index].name == intl.formatMessage({id: 'freezing_column_total_frozen'})){
+                                    this.chart.yAxis[1].update({
+                                        title:{
+                                            text: intl.formatMessage({id: 'freezing_column_total_circulation_chart'})
+                                        }
+                                    });
+                                }
+                            },
+                            show: function() {
+                                var index = this.index;
+                                var series = this.chart.series;
+                                if(series[index].name == intl.formatMessage({id: 'freezing_column_total_circulation'})) {
+                                    this.chart.yAxis[1].update({
+                                        title:{
+                                            text: intl.formatMessage({id: 'freezing_column_total_circulation_chart'})
+                                        }
+                                    });
+                                }else if(series[index].name == intl.formatMessage({id: 'freezing_column_total_frozen'})){
+                                    this.chart.yAxis[1].update({
+                                        title:{
+                                            text: intl.formatMessage({id: 'freezing_column_total_frozen_chart'})
+                                        }
+                                    });
+                                }
+                            }
+                        }
+                    }
+                },
+                tooltip: {
+                    useHTML: true,
+                    shadow: true,
+                    split: false,
+                    shared: true,
+                    borderColor: '#7F8C8D',
+                    borderRadius: 2,
+                    backgroundColor: 'white',
+                    formatter: function () {
+                        var s;
+                        var points = this.points;
+                        var pointsLength = points.length;
+                      
+                        s = '<table class="tableformat" style="border: 0px;padding-left:10px;padding-right:10px" min-width="100%"><tr><td colspan=2 style="padding-bottom:5px;"><span style="font-size: 10px;"> ' + moment(points[0].x).format("YYYY-MM-DD") + '</span><br></td></tr>'
+                        for (let index = 0; index < pointsLength; index += 1) {
+                            s += '<tr><td style="padding-top:4px;padding-bottom:4px;border-top:1px solid #D5D8DC;" valign="top">' + '<span style="color:' + points[index].series.color + ';font-size: 15px !important;">\u25A0</span> ' + intl.formatMessage({id: points[index].series.name })+ '</td>' +
+                                '<td align="right" style="padding-top:5px;padding-left:10px;padding-bottom:4px;border-top:1px solid #D5D8DC;"><span ><b style="color:#C23631">' +
+                                (points[index].series.name == intl.formatMessage({id: 'freezing_column_freezing_rate'}) ? Highcharts.numberFormat(points[index].y, 2, '.', ',') + ' %</b>' : points[index].series.name ==  intl.formatMessage({id: 'freezing_column_total_circulation'}) ?  toThousands((new BigNumber(points[index].y)).decimalPlaces(6)) + '</br>':Highcharts.numberFormat(points[index].y, 0, '.', ',') + '</br>')
+                                + '</span>' +
+                                '</td></tr>'
+                        }
+                        s += '</table>';
+                        return s;
+                    },
+
+                },
+                series: [{
+                    name: intl.formatMessage({id: 'freezing_column_total_circulation'}),
+                    type: 'column',
+                    yAxis: 1,
+                    color: "#DA8885",
+                    data:turnoverTotal,
+                    pointStart: Date.UTC(2019, 11, 20),
+			        pointInterval: 24 * 3600 * 1000 , // one day
+                    tooltip: {
+                        valueSuffix: ' '
+                    },
+                    showInNavigator: false,
+                    dataGrouping: { // 针对highstock,将指定数量的数据合并展现为一个点
+                        enabled: false
+                    }
+                }, {
+                    name: intl.formatMessage({id: 'freezing_column_total_frozen'}),
+                    type: 'column',
+                    yAxis: 1,
+                    color: "#C64844",
+                    data:freezeTotal,
+                    pointStart: Date.UTC(2019, 11, 20),
+			        pointInterval: 24 * 3600 * 1000 , // one day
+                    tooltip: {
+                        valueSuffix: ' '
+                    },
+                    showInNavigator: false,
+                    dataGrouping: { // 针对highstock,将指定数量的数据合并展现为一个点
+                        enabled: false
+                    }
+                }, {
+                    name: intl.formatMessage({id: 'freezing_column_freezing_rate'}),
+                    type: 'spline',
+                    color: "#5A5A5A",
+                    data:freezingRate,
+                    pointStart: Date.UTC(2019, 11, 20),
+			        pointInterval: 24 * 3600 * 1000 , // one day
+                    marker: {
+                        enabled: true,
+                    
+                    },
+                    tooltip: {
+                        valueSuffix: ' %'
+                    },
+                    showInNavigator: true,
+                    dataGrouping: { // 针对highstock,将指定数量的数据合并展现为一个点
+                        enabled: false
+                    }
+                }]
+            }
+            Object.keys(options).map(item => {
+                _config[item] = options[item]
+            })
+        }
+        if (newData && newData.length === 0) {
+            _config.title.text = "No data";
+        }
+        Highcharts.StockChart(id, _config);
+    }
+
+    componentDidMount() {
+        this.initLine(this.state.lineId);
+    }
+
+    componentDidUpdate() {
+        this.initLine(this.state.lineId);
+    }
+
+    render() {
+        return (
+            <div>
+                <div id={this.state.lineId} style={this.props.style}></div>
+            </div>
+        )
+    }
+}
+/**
+ * TRX Supply 2019-12-31
+ */
+export class LineTRXSupplyChart extends React.Component {
+
+    constructor(props) {
+        super(props)
+        this.myChart = null;
+        let id = ('_' + Math.random()).replace('.', '_');
+        this.state = {
+            lineId: 'OverallFreezingRateChart' + id
+        }
+    }
+
+    initLine(id) {
+        let _config = cloneDeep(config.OverallFreezingRateChart);
+        let {intl, data} = this.props;
+        let newData = cloneDeep(data)
+        let totalSupply = [];
+        let amountProduced= [];
+        let amountBurned  = [];
+        let totalWorth = [];
+        let timestamp = []
+        let visibleY = isMobile?[{"visible":true},{"visible":false},{"visible":false},{"visible":false}]:[{"visible":true},{"visible":true},{"visible":true},{"visible":true}]
+        newData.map((val) => {
+            totalSupply.push(val['total_turn_over_num']);
+            amountBurned.push(val['total_burn_num']);
+            totalWorth.push(val['worth_num']);
+            timestamp.push(val['timestamp'])
+            //timestamp.push(moment(val['timestamp']).format("YYYY-MM-DD"))
+        })
+
+         amountProduced = newData.map(o => {
+            return {
+                y: Number(o.total_produce_num),
+                node: o.total_block_pay,
+                vote: o.total_node_pay,
+            }
+        })
+        // amountBurned[amountBurned.length-1] = parseFloat(-1000000)
+        // console.log('totalWorth',totalWorth)
+        if (newData && newData.length > 0) {
+            let options =  {
+                chart:{
+                    // spacingLeft: 100,
+                    // marginRight: 150
+                
+                },
+                title: {
+                    text: intl.formatMessage({id: 'Supply_TRX_total_chart'})
+                },
+                exporting: {
+                    enabled: true,
+                    sourceWidth: 1072,
+                    sourceHeight: 580,
+                    filename:intl.formatMessage({id: 'Supply_TRX_total_chart'})
+                },
+                rangeSelector: {
+                    inputDateFormat: '%Y-%m-%d',
+                    //allButtonsEnabled: true,
+                    buttons: [
+                    {
+                        type: 'all',
+                        text: intl.formatMessage({id: 'all'})
+                    },
+                    {
+                        type: 'year',
+                        count: 1,
+                        text: intl.formatMessage({id: 'freezing_rangeSelector_botton_text_1y'})
+                    },
+                    {
+                        type: 'month',
+                        count: 6,
+                        text: intl.formatMessage({id: 'freezing_rangeSelector_botton_text_6m'})
+                    },
+                    {
+                        type: 'month',
+                        count: 3,
+                        text: intl.formatMessage({id: 'freezing_rangeSelector_botton_text_3m'})
+                    },
+                    {
+                        type: 'month',
+                        count: 1,
+                        text: intl.formatMessage({id: 'freezing_rangeSelector_botton_text_1m'})
+                    }],
+                    selected: 0,
+                    buttonTheme: {
+                        width: 50
+                    },
+                },
+                navigator: {
+                    maskFill: 'rgba(198,72,68, 0.3)',
+                    xAxis: {
+                        labels: {
+                            format: '{value:%Y-%m-%d}',
+                            // enabled:false
+                        },
+                    },
+                   
+                },
+                scrollbar: {
+                   // enabled: false
+                },
+                xAxis: {
+                    //type: 'datetime',
+                    ordinal: false,
+                    categories:timestamp,
+                    dateTimeLabelFormats: {
+                        millisecond: '%H:%M:%S.%L',
+                        second: '%H:%M:%S',
+                        minute: '%H:%M',
+                        hour: '%H:%M',
+                        day: '%Y-%m-%d',
+                        week: '%m-%d',
+                        month: '%Y-%m',
+                        year: '%Y'
+                    },
+                    gridLineColor: '#eeeeee',
+                    labels: {
+                        style: {
+                            color: "#999999"
+                        },
+                        autoRotation: [-10, -20, -30, -40, -50, -60, -70, -80, -90],
+                    },
+                    title: {
+                        enabled: false
+                    },
+                  
+                
+                },
+                yAxis: [
+                    { // Primary yAxis
+                      labels: {
+                        style: {
+                          color: "#C64844",
+                        }
+                      },
+                      title: {
+                        text: intl.formatMessage({id: 'freezing_column_total_circulation_chart'}),
+                        style: {
+                            color: "#C64844",
+                        }
+                      },
+                      opposite: false,
+                      visible: true,
+                      min:-25000000000,
+                     
+                    },
+                    { // Secondary yAxis
+                      title: {
+                        text: intl.formatMessage({id: 'Supply_amount_net_new_y_title'}),
+                        style: {
+                          color: "#333333"
+                        }
+                      },
+                      labels: {
+                        style: {
+                            color: "#333333",
+                        },
+                        
+                      },
+                      //visible: isMobile?false:true,
+                      opposite: true,
+                      min:-500000,
+                      minRange: 10000000,
+                     // offset: 50,
+                    },
+                    { // Thirdary yAxis
+                        title: {
+                          text: intl.formatMessage({id: 'Supply_amount_TRX_burned_y_title'}),
+                          style: {
+                            color: "#999999"
+                          }
+                        },
+                        labels: {
+                          style: {
+                              color: "#999999",
+                          },
+                         
+                        },
+                        visible: isMobile?false:true,
+                        opposite: true,
+                        min:-500000,
+                        max: 2000000,
+                       // offset: 100,
+                      },
+                ],
+                plotOptions: {
+                    // column: {
+                    //     // grouping: false,
+                    //     // shadow: false,
+                    //     // borderWidth: 0
+                    // },
+                    spline: {
+                        marker: {
+                           // fillColor:"#5A5A5A",
+                            width: 8,
+                            height: 8,
+                            lineWidth: 0,  //线条宽度
+                            radius: 4,    //半径宽度
+                        }
+                    },
+                    series: {
+                        events: {
+                            legendItemClick: function(e) {
+                                /*var target = e.target; 
+                                console.log(target === this);
+                                */
+                                let index = this.index;
+                                let series = this.chart.series
+                                visibleY[index].visible = !visibleY[index].visible;
+                                if(index == 2){
+                                    this.chart.yAxis[2].update({
+                                        visible: visibleY[index].visible,                                        
+                                    });
+                                }
+                                //     console.log('index',index)
+                                //     console.log('visibleY[index].visible',visibleY[index].visible)
+                                //     console.log('visibleY[1].visible',visibleY[1].visible)
+                                //     console.log('visibleY[3].visible',visibleY[3].visible)
+                                //     console.log('111',this.chart.yAxis)
+                                //     if(visibleY[1].visible || visibleY[3].visible){
+                                //         this.chart.yAxis[1].update({
+                                //             visible: true,
+                                            
+                                //         });
+                                         
+                                //     }else if(!visibleY[1].visible && !visibleY[3].visible){
+                                //         this.chart.yAxis[1].update({
+                                //             visible: false
+                                //         });
+                                //     }
+                                //     if(index == 1 || index == 3){
+                                //         console.log('this.chart.yAxis[0].visible',this.chart.yAxis[0].visible)
+                                //         console.log('this.chart.yAxis[2].visible',this.chart.yAxis[2].visible)
+                                //         if(visibleY[index].visible){
+                                //             if(!this.chart.yAxis[0].visible && this.chart.yAxis[2].visible){
+                                //                 this.chart.yAxis[1].update({
+                                //                     offset:35
+                                //                 });
+                                //                 this.chart.yAxis[2].update({
+                                //                     offset:70
+                                //                 });
+                                //             }
+                                //         }else{
+                                //             if(!this.chart.yAxis[0].visible && this.chart.yAxis[2].visible){
+                                //                 this.chart.yAxis[1].update({
+                                //                     offset:35
+                                //                 });
+                                //                 this.chart.yAxis[2].update({
+                                //                     offset:80
+                                //                 });
+                                //             }
+                                //         }
+                                        
+                                        
+                                //     }
+                                   
+                                    
+                                // }else{
+                                //     if(index == 0){
+                                //         // this.chart.redraw();
+                                //         // this.chart.chart.update({
+                                //         //     redraw: false
+                                //         // });
+                                //         // this.chart.yAxis[index].update({
+                                //         //     visible: true
+                                //         // }); 
+                                //         // if(!visibleY[index].visible){
+                                //         //     this.chart.update({
+                                //         //         chart: {
+                                //         //             spacingLeft: 100,
+                                //         //         },
+
+                                //         //     });
+                                //         // }else{
+                                //         //     // this.chart.update({
+                                //         //     //     chart: {
+                                //         //     //         spacingLeft: 0,
+                                //         //     //     },
+                                //         //     // });
+                                //         // }
+                                //         this.chart.yAxis[1].update({
+                                //             offset:35
+                                //         });
+                                //         this.chart.yAxis[index].update({
+                                //             visible: visibleY[index].visible
+                                //         });  
+                                        
+                                //     }else{
+                                //         if(index == 2){
+                                //             if(visibleY[index].visible){
+                                //                 if(!this.chart.yAxis[0].visible && !this.chart.yAxis[1].visible){
+                                //                     this.chart.yAxis[2].update({
+                                //                         offset:50
+                                //                     });
+                                //                 }
+                                //             }
+                                //         }
+                                //         this.chart.yAxis[index].update({
+                                //             visible: visibleY[index].visible
+                                //         });
+                                //     }
+                                    
+                                // }
+                                // console.log('222',this.chart.yAxis)
+                                
+                            },
+
+                            hide: function(event) {
+                                // let index = this.index;
+                                // let series = this.chart.series;let yAxis = this.chart.yAxis;
+                                // console.log(series[index].name)
+                               
+                                // $('#toggle-y').click(function () {
+                                //     yVis0 = !yVis0;
+                                //     chart.yAxis[0].update({
+                                //         visible: yVis
+                                //     });
+                                // });
+                                // let yVis0 = true;
+                                // if(series[index].name == intl.formatMessage({id: 'Supply_TRX_total'})) {
+                                //     yVis0 = !yVis0;
+                                //     this.chart.yAxis[0].update({
+                                //         visible: yVis0
+                                //     });
+                                // }else if(series[index].name == intl.formatMessage({id: 'freezing_column_total_frozen'})){
+                                //     this.chart.yAxis[1].update({
+                                //         title:{
+                                //             text: intl.formatMessage({id: 'freezing_column_total_circulation_chart'})
+                                //         }
+                                //     });
+                                // }
+                            },
+                            show: function() {
+                                // var index = this.index;
+                                // var series = this.chart.series;
+                                // console.log(series[index].name)
+                                // if(series[index].name == intl.formatMessage({id: 'freezing_column_total_circulation'})) {
+                                //     this.chart.yAxis[1].update({
+                                //         title:{
+                                //             text: intl.formatMessage({id: 'freezing_column_total_circulation_chart'})
+                                //         }
+                                //     });
+                                // }else if(series[index].name == intl.formatMessage({id: 'freezing_column_total_frozen'})){
+                                //     this.chart.yAxis[1].update({
+                                //         title:{
+                                //             text: intl.formatMessage({id: 'freezing_column_total_frozen_chart'})
+                                //         }
+                                //     });
+                                //}
+                            }
+                        }
+                    }
+                },
+                tooltip: {
+                    useHTML: true,
+                    shadow: true,
+                    split: false,
+                    shared: true,
+                    borderColor: '#7F8C8D',
+                    borderRadius: 2,
+                    backgroundColor: 'white',
+                    formatter: function () {
+                        var s;
+                        var points = this.points;
+                        var pointsLength = points.length;
+                        console.log('points',points)
+                        s = '<table class="tableformat" style="border: 0px;padding-left:10px;padding-right:10px" min-width="100%"><tr><td colspan=2 style="padding-bottom:5px;"><span style="font-size: 10px;"> ' + moment(points[0].x).format("YYYY-MM-DD") + '</span><br></td></tr>'
+                        for (let index = 0; index < pointsLength; index += 1) {
+                            s += '<tr><td style="padding-top:4px;padding-bottom:4px;border-top:1px solid #D5D8DC;color:' + points[index].series.color + ';" valign="top">' + '<span style="color:' + points[index].series.color + ';font-size: 15px !important;">\u25A0</span> ' + intl.formatMessage({id: points[index].series.name })+ '</td>' +
+                                '<td align="right" style="padding-top:5px;padding-left:10px;padding-bottom:4px;border-top:1px solid #D5D8DC;"><span ><b style="color:' + points[index].series.color + ';">' +
+                                (points[index].series.name == intl.formatMessage({id: 'Supply_TRX_total'}) || points[index].series.name ==  intl.formatMessage({id: 'Supply_amount_net_new'}) ? toThousands((new BigNumber(points[index].y)).decimalPlaces(6)) + '</b>' : (points[index].series.name ==  intl.formatMessage({id: 'Supply_amount_TRX_burned'})) ?  ("-" + toThousands((new BigNumber((Math.abs(points[index].y)))).decimalPlaces(6))) + '</b>':Highcharts.numberFormat(points[index].y, 0, '.', ',') + '</b>')
+                                + '</span>'
+                                + (points[index].series.name == intl.formatMessage({id: 'Supply_amount_TRX_produced'})? '<br/><span>'+ intl.formatMessage({id: 'Supply_block_rewards'})+'（'+toThousands(points[index].point.node)+'） + '+ intl.formatMessage({id: 'Supply_voting_rewards'})+'（'+toThousands(points[index].point.vote)+'）</span>':"")
+                                + (points[index].series.name == intl.formatMessage({id: 'Supply_amount_net_new'})? '<br/><span>'+ intl.formatMessage({id: 'Supply_amount_net_new_tip'})+'</span>':"")
+                                + '</td></tr>'
+                        }
+                        s += '</table>';
+                        return s;
+                    },
+
+                },
+                series: [{
+                    name: intl.formatMessage({id: 'Supply_TRX_total'}),
+                    type: 'spline',
+                   // yAxis: 0,
+                    color: "#DA8885",
+                    data: totalSupply,
+                    pointStart: Date.UTC(2019, 11, 28),
+                    pointInterval: 24 * 3600 * 1000 , // one day
+                    marker: {
+                        enabled: true,
+                    },
+                    showInNavigator: true,
+                    dataGrouping: { // 针对highstock,将指定数量的数据合并展现为一个点
+                        enabled: false
+                    },
+                    softThreshold:true,
+                }, {
+                    name: intl.formatMessage({id: 'Supply_amount_TRX_produced'}),
+                    type: 'spline',
+                    yAxis: 1,
+                    color: "#EDB92B",
+                    data:amountProduced,
+                    pointStart: Date.UTC(2019, 11, 28),
+			        pointInterval: 24 * 3600 * 1000 , // one day
+                    marker: {
+                        enabled: true,
+                    },
+                    showInNavigator: false,
+                    dataGrouping: { // 针对highstock,将指定数量的数据合并展现为一个点
+                        enabled: false
+                    },
+                    softThreshold:true,
+                    visible: isMobile?false:true,
+                },
+                {
+                    name: intl.formatMessage({id: 'Supply_amount_TRX_burned'}),
+                    type: 'spline',
+                    yAxis: 2,
+                    color: "#999999",
+                    data: amountBurned,
+                    pointStart: Date.UTC(2019, 11, 28),
+			        pointInterval: 24 * 3600 * 1000 , // one day
+                    marker: {
+                        enabled: true,
+                    },
+                    showInNavigator: false,
+                    dataGrouping: { // 针对highstock,将指定数量的数据合并展现为一个点
+                        enabled: false
+                    },
+                    softThreshold:true,
+                    visible: isMobile?false:true,
+                },
+                {
+                    name: intl.formatMessage({id: 'Supply_amount_net_new'}),
+                    type: 'column',
+                    yAxis: 1,
+                    color: "rgba(74,144,226,0.4)",
+                    negativeColor: "rgba(198,72,68.0.4)",//就是这个属性设置负值的颜色
+                    data: totalWorth,
+                    pointStart: Date.UTC(2019, 11, 28),
+			        pointInterval: 24 * 3600 * 1000 , // one day
+                    showInNavigator: false,
+                    dataGrouping: { // 针对highstock,将指定数量的数据合并展现为一个点
+                        enabled: false
+                    },
+                    softThreshold:true,
+                    visible: isMobile?false:true,
+                },
+                
+            ]
+            }
+            Object.keys(options).map(item => {
+                _config[item] = options[item]
+            })
+        }
+        if (newData && newData.length === 0) {
+            _config.title.text = "No data";
+        }
+        Highcharts.StockChart(id, _config);
+    }
+
+    componentDidMount() {
+        this.initLine(this.state.lineId);
+    }
+
+    componentDidUpdate() {
+        this.initLine(this.state.lineId);
+    }
+
+    render() {
+        return (
+            <div>
+                <div id={this.state.lineId} style={this.props.style}></div>
+            </div>
+        )
+    }
+}
+
+/**
+ * Txns Type 2020-01-09
+ */
+export class LineTxOverviewStatsType extends React.Component {
+
+    constructor(props) {
+        super(props)
+        this.myChart = null;
+        let id = ('_' + Math.random()).replace('.', '_');
+        this.state = {
+            lineId: 'OverallFreezingRateChart' + id
+        }
+    }
+
+    initLine(id) {
+        let _config = cloneDeep(config.OverallFreezingRateChart);
+        let {intl, data} = this.props;
+        let newData = cloneDeep(data);
+        let totalTxns = [];
+        let triggersTxns= [];
+        let trxTransferTxns  = [];
+        let trc10TransferTxns = [];
+        let freezeTxns= [];
+        let voteTxns= [];
+        let otherTxns=[];
+        let shieldedTxns = [];
+        let timestamp = [];
+
+        newData.map((val) => {
+            totalTxns.push(val['newTransactionSeen_num']);
+            triggersTxns.push(val['triggers_num']);
+            trxTransferTxns.push(val['trx_transfer_num']);
+            trc10TransferTxns.push(val['trc10_transfer_num']);
+            freezeTxns.push(val['freeze_transaction_num']);
+            voteTxns.push(val['vote_transaction_num']);
+            otherTxns.push(val['other_transaction_num']);
+            shieldedTxns.push(val['shielded_transaction_num']);
+           // timestamp.push(val['date']);
+        })
+
+        let pointsStart = newData[0].date || Date.UTC(2018,5,25);
+        let pointsInterval =  24 * 3600 * 1000
+        let colors = ['#C64844', '#90ed7d', '#f7a35c', '#8085e9', 
+        '#f15c80', '#e4d354', '#8d4653', '#91e8e1']
+         
+        if (newData && newData.length > 0) {
+            let options =  {
+                chart:{
+                    type: 'line',
+                    zoomType: 'x',
+                },
+                title: {
+                    text: intl.formatMessage({id: 'charts_daily_transactions'})
+                },
+                subtitle: {
+                    text: intl.formatMessage({id: 'HighChart_tip'})
+                },
+                exporting: {
+                    enabled: true,
+                    sourceWidth: 1072,
+                    sourceHeight: 500,
+                    filename:intl.formatMessage({id: 'charts_daily_transactions'})
+                },
+                xAxis: {
+                    type: 'datetime',
+                    // ordinal: false,
+                    // categories:timestamp,
+                    dateTimeLabelFormats: {
+                        millisecond: '%H:%M:%S.%L',
+                        second: '%H:%M:%S',
+                        minute: '%H:%M',
+                        hour: '%H:%M',
+                        day: '%Y-%m-%d',
+                        week: '%m-%d',
+                        month: '%Y-%m',
+                        year: '%Y'
+                    },
+                    gridLineColor: '#eeeeee',
+                    labels: {
+                        style: {
+                            color: "#999999"
+                        },
+                        autoRotation: [-10, -20, -30, -40, -50, -60, -70, -80, -90],
+                    },
+                    title: {
+                        enabled: false
+                    },
+                  
+                
+                },
+                yAxis: [
+                    { // Primary yAxis
+                      labels: {
+                        style: {
+                          color: "#C64844",
+                        }
+                      },
+                      title: {
+                        text: intl.formatMessage({id: 'transactions_per_day'}),
+                        style: {
+                            color: "#C64844",
+                        }
+                      },
+                      opposite: false,
+                      visible: true,
+                                         
+                    },
+                    { // Secondary yAxis
+                      title: {
+                        text: intl.formatMessage({id: 'transactions_per_day'}),
+                        style: {
+                          color: "#333333"
+                        }
+                      },
+                      labels: {
+                        style: {
+                            color: "#333333",
+                        },
+                        
+                      },
+                      opposite: true,
+                      visible: true
+                    },
+                    
+                ],
+                plotOptions: {
+                    // column: {
+                    //     // grouping: false,
+                    //     // shadow: false,
+                    //     // borderWidth: 0
+                    // },
+                    spline: {
+                        marker: {
+                           // fillColor:"#5A5A5A",
+                            width: 8,
+                            height: 8,
+                            lineWidth: 0,  //线条宽度
+                            radius: 4,    //半径宽度
+                        }
+                    },
+                    
+                },
+                tooltip: {
+                    useHTML: true,
+                    shadow: true,
+                    split: false,
+                    shared: true,
+                    borderColor: '#7F8C8D',
+                    borderRadius: 2,
+                    backgroundColor: 'white',
+                    formatter: function () {
+                        var s;
+                        var points = this.points;
+                        var pointsLength = points.length;
+                       
+                        s = '<table class="tableformat" style="border: 0px;padding-left:10px;padding-right:10px" min-width="100%"><tr><td colspan=2 style="padding-bottom:5px;"><span style="font-size: 10px;"> ' + moment(points[0].x).format("YYYY-MM-DD") + '</span><br></td></tr>'
+                        for (let index = 0; index < pointsLength; index += 1) {
+                            s += '<tr><td style="padding-top:4px;padding-bottom:4px;border-top:1px solid #D5D8DC;color:' + points[index].series.color + ';" valign="top">' + '<span style="color:' + points[index].series.color + ';font-size: 15px !important;">\u25A0</span> ' + intl.formatMessage({id: points[index].series.name })+ '</td>' +
+                                '<td align="right" style="padding-top:5px;padding-left:10px;padding-bottom:4px;border-top:1px solid #D5D8DC;"><span ><b style="color:' + points[index].series.color + ';">' +
+                                (points[index].series.name == intl.formatMessage({id: 'Supply_TRX_total'}) || points[index].series.name ==  intl.formatMessage({id: 'Supply_amount_net_new'}) ? toThousands((new BigNumber(points[index].y)).decimalPlaces(6)) + '</b>' : (points[index].series.name ==  intl.formatMessage({id: 'Supply_amount_TRX_burned'})) ?  ("-" + toThousands((new BigNumber((Math.abs(points[index].y)))).decimalPlaces(6))) + '</b>':Highcharts.numberFormat(points[index].y, 0, '.', ',') + '</b>')
+                                + '</span>'
+                                + (points[index].series.name == intl.formatMessage({id: 'Supply_amount_TRX_produced'})? '<br/><span>'+ intl.formatMessage({id: 'Supply_block_rewards'})+'（'+toThousands(points[index].point.node)+'） + '+ intl.formatMessage({id: 'Supply_voting_rewards'})+'（'+toThousands(points[index].point.vote)+'）</span>':"")
+                                + (points[index].series.name == intl.formatMessage({id: 'Supply_amount_net_new'})? '<br/><span>'+ intl.formatMessage({id: 'Supply_amount_net_new_tip'})+'</span>':"")
+                                + '</td></tr>'
+                        }
+                        s += '</table>';
+                        return s;
+                    },
+
+                },
+               
+
+                series: [
+                {
+                    name: intl.formatMessage({id: 'total_transactions'}),
+                    type: 'spline',
+                    color: colors[0],
+                    data: totalTxns,
+                    pointStart: pointsStart,
+                    pointInterval: pointsInterval , // one day
+                    
+                },
+                {
+                    name: intl.formatMessage({id: 'txns_contract_calls'}),
+                    type: 'spline',
+                    color: colors[1],
+                    data: triggersTxns,
+                    pointStart: pointsStart,
+                    pointInterval:pointsInterval , // one day
+                    visible: false,
+                },
+                {
+                    name: intl.formatMessage({id: 'txns_TRX_transfers'}),
+                    type: 'spline',
+                    yAxis: 1,
+                    color: colors[2],
+                    data: trxTransferTxns,
+                    pointStart: pointsStart,
+                    pointInterval: pointsInterval , // one day
+                    visible: false,
+                },
+                {
+                    name: intl.formatMessage({id: 'txns_TRC10_transfers'}),
+                    type: 'spline',
+                    yAxis: 1,
+                    color: colors[3],
+                    data: trc10TransferTxns,
+                    pointStart: pointsStart,
+                    pointInterval: pointsInterval , // one day
+                    visible: false,
+                },
+                {
+                    name: intl.formatMessage({id: 'txns_frozen_transactions'}),
+                    type: 'spline',
+                    yAxis: 1,
+                    color: colors[4],
+                    data: freezeTxns,
+                    pointStart: pointsStart,
+                    pointInterval: pointsInterval , // one day
+                    visible: false,
+                },
+               
+                {
+                    name: intl.formatMessage({id: 'txns_votes_transactions'}),
+                    type: 'spline',
+                    yAxis: 1,
+                    color: colors[5],
+                    data: voteTxns,
+                    pointStart: pointsStart,
+                    pointInterval: pointsInterval , // one day
+                    visible: false,
+                },
+                {
+                    name: intl.formatMessage({id: 'txns_other_transactions'}),
+                    type: 'spline',
+                    yAxis: 1,
+                    color: colors[6],
+                    data: otherTxns,
+                    pointStart: pointsStart,
+                    pointInterval: pointsInterval , // one day
+                    visible: false,
+                    
+                },
+                // {
+                //     name: intl.formatMessage({id: 'txns_shielded_transactions'}),
+                //     type: 'spline',
+                //     yAxis: 1,
+                //    // color: "#DA8885",
+                //     data: shieldedTxns,
+                //     pointStart: Date.UTC(2019, 6, 1),
+                //     pointInterval: 24 * 3600 * 1000 , // one day
+                    
+                // },
+
+            ]
+            }
+            Object.keys(options).map(item => {
+                _config[item] = options[item]
+            })
+        }
+        if (newData && newData.length === 0) {
+            _config.title.text = "No data";
+        }
+        Highcharts.chart(document.getElementById(id),_config);
+    }
+
+    componentDidMount() {
+        this.initLine(this.state.lineId);
+    }
+
+    componentDidUpdate() {
+        this.initLine(this.state.lineId);
+    }
+
+    render() {
+        return (
+            <div>
+                <div id={this.state.lineId} style={this.props.style}></div>
+            </div>
+        )
+    }
+}
+
+
+
 
 function setOption(config, child) {
     Object.keys(child).map(item => {

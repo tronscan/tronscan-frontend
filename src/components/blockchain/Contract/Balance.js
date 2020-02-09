@@ -1,5 +1,4 @@
 import React from "react";
-import {tu, tv} from "../../../utils/i18n";
 import {Client} from "../../../services/api";
 import { injectIntl } from "react-intl";
 import TokenBalances from '../../addresses/Address/TokenBalances.js'
@@ -78,7 +77,6 @@ class Balances extends React.Component {
     let {address} = this.state;
     let {intl} = this.props
     return address && <TokenBalances tokenBalances={address} intl={intl}/>
-    // return<div>123123</div>
   }
 }
 

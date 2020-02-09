@@ -1,6 +1,4 @@
 import React from 'react'
-import {connect} from "react-redux";
-import {injectIntl} from "react-intl";
 
 import config from './chart.config.js'
 
@@ -137,9 +135,14 @@ export class RepresentativesRingPieReact extends React.Component {
       let _config = cloneDeep(config.ringPieHighChart3D);
       if (data.length) {
           for (let index in data) {
-              if (data[index].name.indexOf("http://") > -1) {
-                  data[index].name = data[index].name.substring(7).split('.com')[0];
+              if(data[index].name){
+                  if (data[index].name.indexOf("http://") > -1) {
+                      data[index].name = data[index].name.substring(7).split('.com')[0];
+                  }
+              }else{
+                  data[index].name =  data[index].address
               }
+
           }
       }
       if (data && data.length === 0) {
@@ -226,7 +229,7 @@ export class SupplyTypesTRXPieChart extends React.Component {
         _config.exporting.filename = intl.formatMessage({id: message.id});
         _config.tooltip.formatter = function () {
             return (
-                intl.formatMessage({id: this.point.name}) + ' (' + intl.formatNumber(this.point.y) + ' TRX' + ')<br/>' +
+                intl.formatMessage({id: this.point.name}) + ' (' + intl.formatNumber(this.point.y) + ' TRX)<br/>' +
                 intl.formatMessage({id: '_percentage'}) + ' : ' + this.point.percentage.toFixed(2) + '%'
             )
         }

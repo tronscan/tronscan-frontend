@@ -1,5 +1,4 @@
 import xhr from "axios/index";
-import {round} from "lodash";
 
 export const SET_VOLUME_DATA = 'SET_VOLUME_DATA';
 export const SET_PRICE_DATA = 'SET_PRICE_DATA';

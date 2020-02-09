@@ -1,12 +1,9 @@
-import React from "react";
-import {tu} from "../../utils/i18n";
+import React,{Component}  from "react";
 import {RecaptchaAsync} from "../common/async";
-import xhr from "axios/index";
 import {FormattedNumber} from "react-intl";
 import {Alert} from "reactstrap";
 
-export default class TestNetRequest extends React.Component {
-
+class TestNetRequest extends Component {
     constructor() {
         super();
         this.state = {
@@ -110,28 +107,28 @@ export default class TestNetRequest extends React.Component {
 
     render() {
         return (
-            <div>
-                <React.Fragment>
-                    <div className="d-flex justify-content-center">
-                        <RecaptchaAsync
-                            sitekey="6LejYqQUAAAAADMEfCJkRyZdvzxtqdX5-83yUUjH"
-                            render="explicit"
-                            onloadCallback={this.onLoad}
-                            expiredCallback={this.onExpired}
-                            verifyCallback={this.onVerify}/>
-                    </div>
-                    {/*<button className="btn btn-secondary"*/}
-                            {/*onClick={this.requestTrx}*/}
-                            {/*disabled={!this.canRequest()}>*/}
-                        {/*{tu("request_trx_for_testing")}*/}
-                    {/*</button>*/}
-                    {/*<button type="button"*/}
-                            {/*className="btn btn-lg btn-verify text-capitalize mt-3 mb-4"*/}
-                            {/*onClick={this.requestTrx}*/}
-                            {/*disabled={!this.canRequest()}>{tu('verify_and_publish')}</button>*/}
-                    {/*<button type="button" className="btn btn-lg ml-3 btn-reset text-capitalize  mt-3 mb-4">{tu('reset')}</button>*/}
-                </React.Fragment>
-            </div>
+            <React.Fragment>
+                <div className="d-flex justify-content-center">
+                    <RecaptchaAsync
+                        sitekey="6LejYqQUAAAAADMEfCJkRyZdvzxtqdX5-83yUUjH"
+                        render="explicit"
+                        onloadCallback={this.onLoad}
+                        expiredCallback={this.onExpired}
+                        verifyCallback={this.onVerify}/>
+                </div>
+                {/*<button className="btn btn-secondary"*/}
+                        {/*onClick={this.requestTrx}*/}
+                        {/*disabled={!this.canRequest()}>*/}
+                    {/*{tu("request_trx_for_testing")}*/}
+                {/*</button>*/}
+                {/*<button type="button"*/}
+                        {/*className="btn btn-lg btn-verify text-capitalize mt-3 mb-4"*/}
+                        {/*onClick={this.requestTrx}*/}
+                        {/*disabled={!this.canRequest()}>{tu('verify_and_publish')}</button>*/}
+                {/*<button type="button" className="btn btn-lg ml-3 btn-reset text-capitalize  mt-3 mb-4">{tu('reset')}</button>*/}
+            </React.Fragment>
         )
     }
 }
+
+export default TestNetRequest

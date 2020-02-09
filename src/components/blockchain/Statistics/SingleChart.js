@@ -33,7 +33,9 @@ import {
     EnergyConsumeChart,
     ContractInvocationChart,
     ContractInvocationDistributionChart,
-    EnergyConsumeDistributionChart
+    EnergyConsumeDistributionChart,
+    OverallFreezingRateChart,
+    LineTxOverviewStatsType,
 } from "../../common/LineCharts";
 
 import {
@@ -59,6 +61,7 @@ class Statistics extends React.Component {
             blockStats: null,
             transactionValueStats: null,
             txOverviewStats: null,
+            txOverviewStatsType:null,
             txOverviewStatsFull: null,
             addressesStats: null,
             blockSizeStats: null,
@@ -83,13 +86,18 @@ class Statistics extends React.Component {
             ContractInvocation: null,
             ContractInvocationDistribution: null,
             ContractInvocationDistributionParams: {
-                time: new Date().getTime() - 2*24*60*60*1000,
+                time: new Date().getTime() - 24*60*60*1000,
                 range: 20,
                 total_used_energy: 0,
                 scale: '',
                 range_type: 'Top20'
             },
-            EnergyConsumeDistribution: null
+            EnergyConsumeDistribution: null,
+            OverallFreezingRate:null,
+            OverallFreezingRateParams:{
+                start_day:'2019-12-01',
+                end_day:'2019-12-12'
+            }
         };
     }
 
@@ -102,7 +110,7 @@ class Statistics extends React.Component {
                 this.loadTotalTRXSupply();
                 setInterval(() => {
                     this.loadTotalTRXSupply();
-                }, 30000);
+                }, 60000);
                 break;
             case 'pieChart':
                 this.loadPieChart();
@@ -128,10 +136,19 @@ class Statistics extends React.Component {
             case 'EnergyConsumeDistribution':
                 this.loadEnergyConsumeDistribution();
                 break;
-                
+            case 'OverallFreezingRate':
+                this.loadOverallFreezingRate();
+                break;   
+            case 'txOverviewStatsType':
+                this.loadTxOverviewStatsType();
+                break;       
+            case 'txOverviewStats':
+                this.loadTxOverviewStats();
+                break;
             default:
                 this.loadTxOverviewStats();
                 break;
+
         }
     }
 
@@ -171,9 +188,10 @@ class Statistics extends React.Component {
             {value: funds.turnOver, name: 'circulating_supply', selected: true,sliced: true},
             {value: funds.fundTrx, name: 'total_frozen', selected: false,sliced: false},
         ]
-        let trxPriceData = await xhr.get(`https://api.coinmarketcap.com/v1/ticker/tronix/?convert=EUR`);
+        let eurURL = encodeURI(`https://api.coinmarketcap.com/v1/ticker/tronix/?convert=EUR`);
+        let trxPriceData = await xhr.get(`${API_URL}/api/system/proxy?url=${eurURL}`);
         let priceUSD = ((parseFloat(trxPriceData.data[0].price_usd))*1000).toFixed(2);
-        let priceBTC = ((parseFloat(trxPriceData.data[0].price_btc))*1000).toFixed(5);
+        let priceBTC = ((parseFloat(trxPriceData.data[0].price_btc))*1000).toFixed(5)
         let marketCapitalization = ((parseFloat(trxPriceData.data[0].price_usd)*(funds.totalTurnOver))).toFixed(2);
         this.setState({
             supplyTypesChart: supplyTypesChartData,
@@ -260,7 +278,11 @@ class Statistics extends React.Component {
 
     async loadVolume(){
         let {intl} = this.props;
-        let volumeData = await xhr.get("https://server.tron.network/api/v2/node/market_data");
+        let TRXURL = encodeURI(`https://graphs2.coinmarketcap.com/currencies/tron/`)
+        let volumeData = await xhr.get(
+            `${API_URL}/api/system/proxy?url=${TRXURL}`
+        );
+    
         let volumeUSD = volumeData.data.market_cap_by_available_supply
 
         let volume = volumeUSD.map(function (v, i) {
@@ -323,7 +345,6 @@ class Statistics extends React.Component {
                         date: pr[0].time * 1000,
                         increment: pr[0].close
                     }],
-
             }
         });
     }
@@ -487,6 +508,114 @@ class Statistics extends React.Component {
         });
     }
 
+    async loadTxOverviewStatsType() {
+        let { txOverviewStats } = await Client.getTxOverviewStatsAll();
+        
+
+        let temp = [];
+        let addressesTemp = [];
+        let blockSizeStatsTemp = [];
+        let blockchainSizeStatsTemp = [];
+        // for (let txs in txOverviewStats) {
+        //     let tx = parseInt(txs);
+        //     if (tx === 0) {
+        //         temp.push({
+        //             avgBlockSize: txOverviewStats[tx].avgBlockSize,
+        //             avgBlockTime: txOverviewStats[tx].avgBlockTime,
+        //             blockchainSize: txOverviewStats[tx].blockchainSize,
+        //             date: txOverviewStats[tx].date,
+        //             newAddressSeen: txOverviewStats[tx].newAddressSeen,
+        //             newBlockSeen: txOverviewStats[tx].newBlockSeen,
+        //             newTransactionSeen: txOverviewStats[tx].newTransactionSeen,
+        //             totalAddress: txOverviewStats[tx].totalAddress,
+        //             totalBlockCount: txOverviewStats[tx].totalBlockCount,
+        //             totalTransaction: txOverviewStats[tx].totalTransaction,
+        //             newtotalTransaction:txOverviewStats[tx].totalTransaction,
+        //             newtotalAddress:txOverviewStats[tx].totalAddress,
+        //             newtotalBlockCount:txOverviewStats[tx].totalBlockCount,
+        //         })
+        //         addressesTemp.push({
+        //             date: txOverviewStats[tx].date,
+        //             total: txOverviewStats[tx].newAddressSeen,
+        //             increment: txOverviewStats[tx].newAddressSeen,
+        //         });
+        //     }
+        //     else {
+        //         temp.push({
+        //             date: txOverviewStats[tx].date,
+        //             totalTransaction: (txOverviewStats[tx].totalTransaction - txOverviewStats[tx - 1].totalTransaction),
+        //             avgBlockTime: txOverviewStats[tx].avgBlockTime,
+        //             avgBlockSize: txOverviewStats[tx].avgBlockSize,
+        //             totalBlockCount: (txOverviewStats[tx].totalBlockCount - txOverviewStats[tx - 1].totalBlockCount),
+        //             newAddressSeen: txOverviewStats[tx].newAddressSeen,
+        //             newtotalTransaction:txOverviewStats[tx].totalTransaction,
+        //             newtotalAddress:txOverviewStats[tx].totalAddress,
+        //             newtotalBlockCount:txOverviewStats[tx].totalBlockCount,
+        //         });
+        //         addressesTemp.push({
+        //             date: txOverviewStats[tx].date,
+        //             total: txOverviewStats[tx].totalAddress,
+        //             increment: txOverviewStats[tx].newAddressSeen
+        //         });
+        //     }
+        //     blockSizeStatsTemp.push({
+        //         date: txOverviewStats[tx].date,
+        //         avgBlockSize: txOverviewStats[tx].avgBlockSize
+        //     });
+        //     blockchainSizeStatsTemp.push({
+        //         date: txOverviewStats[tx].date,
+        //         blockchainSize: txOverviewStats[tx].blockchainSize
+        //     });
+        // }
+        txOverviewStats.map((item, index) => {
+            item.newTransactionSeen_num = item.newTransactionSeen?item.newTransactionSeen:0;
+            item.triggers_num = item.newTrigger?item.newTrigger:0;
+            item.trx_transfer_num = item.trx_transfer?item.trx_transfer:0;
+            item.trc10_transfer_num = item.trc10_transfer?item.trc10_transfer:0;
+            item.freeze_transaction_num = item.freeze_transaction?item.freeze_transaction:0;
+            item.vote_transaction_num = item.vote_transaction?item.vote_transaction:0;
+            item.other_transaction_num = item.other_transaction?item.other_transaction:0;
+            item.shielded_transaction_num = item.shielded_transaction?item.shielded_transaction:0;
+        })
+       
+        this.setState({
+            txOverviewStatsType:  txOverviewStats.slice(0, txOverviewStats.length - 1),
+        });
+
+        function compare (property) {
+            return function (obj1, obj2) {
+
+                if (obj1[property] > obj2[property]) {
+                    return 1;
+                } else if (obj1[property] < obj2[property]) {
+                    return -1;
+                } else {
+                    return 0;
+                }
+
+            }
+        }
+
+        let higest = {date: '', increment: ''};
+        let lowest = {date: '', increment: ''};
+        let tx = cloneDeep(txOverviewStats).sort(compare('newTransactionSeen'));
+  
+        this.setState({
+            summit: {
+                txOverviewStatsType_sort: [
+                    {
+                        date: tx[tx.length - 1].date,
+                        increment: tx[tx.length - 1].newTransactionSeen
+                    },
+                    {
+                        date: tx[0].date,
+                        increment: tx[0].newTransactionSeen
+                    }],
+            }
+        });
+    }
+    
+
     // 获取TRON日能量消耗图表
     async loadEnergyConsumeData() {
         let {data} = await xhr.get(API_URL + "/api/energystatistic");
@@ -554,7 +683,7 @@ class Statistics extends React.Component {
         });
     }
 
-   // 每日合约消耗能量分布
+    // 每日合约消耗能量分布
     async loadEnergyConsumeDistribution(){
         let { time, range} = this.state.ContractInvocationDistributionParams
         let {data: {total, totalEnergy, data}} = await xhr.get(API_URL + "/api/energydailystatistic?limit="+ range+"&day="+time);
@@ -610,6 +739,22 @@ class Statistics extends React.Component {
         });
     }
 
+    //冻结率
+    async loadOverallFreezingRate() {
+        let { start_day, end_day} = this.state.OverallFreezingRateParams;
+        let {data: {data}} = await xhr.get(API_URL + "/api/freezeresource?start_day="+ start_day+"&end_day="+end_day);
+        data.map((item, index) => {
+            item.freezing_percent = ((item.total_freeze_weight / item.total_turn_over)*100).toFixed(2) + '%'
+        })
+        this.setState({
+            OverallFreezingRate: data,
+            // ContractInvocationDistributionParams: {
+            //     ...this.state.ContractInvocationDistributionParams,
+            //     total_energy: totalTrigger
+            // }
+        });
+    }
+
     onChangeDate = (date, dateString) => {
         let {match} = this.props;
         let chartName = match.params.chartName;
@@ -659,7 +804,7 @@ class Statistics extends React.Component {
     }
 
     disabledEndDate = (endValue) => {
-        const startValue = new Date() -  2*24*60*60*1000
+        const startValue = new Date() -  24*60*60*1000
         if (!endValue || !startValue) {
           return false;
         }
@@ -673,7 +818,7 @@ class Statistics extends React.Component {
                 title: "#",
                 dataIndex: 'index',
                 key: 'index',
-                width: '40px',
+                width: '60px',
                 align: 'center',
                 render: (text, record, index) => {
                   return <span>{text}</span>
@@ -738,7 +883,7 @@ class Statistics extends React.Component {
                 title: "#",
                 dataIndex: 'index',
                 key: 'index',
-                width: '40px',
+                width: '60px',
                 align: 'center',
                 render: (text, record, index) => {
                   return <span>{text}</span>
@@ -749,7 +894,7 @@ class Statistics extends React.Component {
             dataIndex: 'contract_address',
             key: 'contract_address',
             render: (text, record, index) => {
-              return <AddressLink address={text}/>
+              return <AddressLink address={text} isContract={true}/>
             }
           },
           {
@@ -796,11 +941,99 @@ class Statistics extends React.Component {
         return column;
       }
 
+      freezingCustomizedColumn = () => {
+        let {intl} = this.props;
+        let column = [
+            {
+                title: upperFirst(intl.formatMessage({id: 'freezing_column_time'})),
+                dataIndex: 'day',
+                key: 'day',
+                width: '60px',
+                align: 'center',
+                render: (text, record, index) => {
+                  return <span>{text}</span>
+                }
+            },
+          {
+            title: upperFirst(intl.formatMessage({id: 'freezing_column_total_circulation'})),
+            dataIndex: 'total_turn_over',
+            key: 'total_turn_over',
+            render: (text, record, index) => {
+              return <FormattedNumber value={text}/>
+            }
+          },
+          {
+            title: upperFirst(intl.formatMessage({id: 'freezing_column_total_frozen'})),
+            dataIndex: 'total_freeze_weight',
+            key: 'total_freeze_weight',
+            render: (text, record, index) => {
+              return <FormattedNumber value={text}/>
+            }
+          },
+          {
+            title: upperFirst(intl.formatMessage({id: 'freezing_column_freezing_rate'})),
+            dataIndex: 'freezing_column_freezing_rate',
+            key: 'freezing_column_freezing_rate',
+            render: (text, record, index) => {
+                return <span>
+                    <FormattedNumber
+                        value={(record.total_freeze_weight/record.total_turn_over)*100}
+                        minimumFractionDigits={2}
+                        maximumFractionDigits={2}
+                    /> %
+                </span>
+
+
+            }
+          },
+          {
+            title: upperFirst(intl.formatMessage({id: 'freezing_column_energy_ratio'})),
+            dataIndex: 'caller_amount',
+            key: 'caller_amount',
+            render: (text, record, index) => {
+                return <span>
+                    <FormattedNumber
+                        value={(record.total_energy_weight/record.total_freeze_weight)*100} 
+                        minimumFractionDigits={2}
+                        maximumFractionDigits={2}
+                    /> %
+
+                </span>
+            }
+          },
+          {
+            title: upperFirst(intl.formatMessage({id: 'freezing_column_bandwidth_ratio'})),
+            dataIndex: 'trigger_amount',
+            key: 'trigger_amount',
+            render: (text, record, index) => {
+                return <span>
+                    <FormattedNumber
+                        value={(record.total_net_weight/record.total_freeze_weight)*100} 
+                        minimumFractionDigits={2}
+                        maximumFractionDigits={2}
+                    /> %
+                </span>
+            }
+          },
+        //   {
+        //     title: upperFirst(intl.formatMessage({id: 'freezing_column_more'})),
+        //     dataIndex: 'caller_percent',
+        //     key: 'caller_percent',
+        //     render: (text, record, index) => {
+        //       return <span>{text}</span>
+        //     }
+        //   },
+          
+        ];
+        return column;
+      }
+
+
 
 
     render() {
         let {match, intl} = this.props;
-        let {txOverviewStats, txOverviewStatsFull, 
+        let {txOverviewStats, txOverviewStatsType, txOverviewStatsFull, 
             addressesStats, blockSizeStats, blockchainSizeStats, 
             priceStats, transactionStats, transactionValueStats, 
             blockStats, accounts, volumeStats, pieChart, 
@@ -810,12 +1043,13 @@ class Statistics extends React.Component {
             priceUSD,priceBTC,marketCapitalization,foundationFreeze,
             circulatingNum, energyConsumeData, ContractInvocation,
             ContractInvocationDistribution, ContractInvocationDistributionParams,
-            EnergyConsumeDistribution } = this.state;
+            EnergyConsumeDistribution,OverallFreezingRate } = this.state;
 
         let unit;
         let uploadURL = API_URL + "/api/v2/node/overview_upload";
-        let column = this.customizedColumn()
-        let call_colum = this.callCustomizedColumn()
+        let column = this.customizedColumn();
+        let call_colum = this.callCustomizedColumn();
+        let freezing_column = this.freezingCustomizedColumn();
 
         let chartHeight = isMobile? 240: 500
 
@@ -866,6 +1100,19 @@ class Statistics extends React.Component {
                                         <LineReactHighChartTx source='singleChart' style={{height: chartHeight}}
                                                               data={txOverviewStats} intl={intl}/>
                                 }
+
+                            </div>
+                        }
+                        {
+                            match.params.chartName === 'txOverviewStatsType' &&
+                            <div style={{height: chartHeight}}>
+                                {
+                                    txOverviewStatsType === null ?
+                                        <TronLoader/> :
+                                        <LineTxOverviewStatsType source='singleChart' style={{height: chartHeight}}
+                                                              data={txOverviewStatsType} intl={intl}/>
+                                }
+                                
                             </div>
                         }
                         {
@@ -1117,6 +1364,41 @@ class Statistics extends React.Component {
                             </div>
                         }
 
+{
+                           
+                           match.params.chartName === 'OverallFreezingRate' &&
+                           <div>
+                           {
+                               OverallFreezingRate === null ? <TronLoader/> :
+                               <div>
+                                   
+                               
+                                   <OverallFreezingRateChart
+                                       style={{height: chartHeight}}
+                                       data={OverallFreezingRate}
+                                       intl={intl}
+                                   />
+                                   <div className="token_black">
+                                   <div className="col-md-12 table_pos">
+                                       {/* <p>{ intl.formatMessage({id: 'a_total'}) + intl.formatNumber(ContractInvocationDistributionParams.total_energy)+ 
+                                           intl.formatMessage({id: 'Contract_times_calls'})}
+                                       </p> */}
+                                       {( OverallFreezingRate.length === 0)?
+                                       <div className="p-3 text-center no-data">{tu("no_data")}</div>
+                                       :
+                                       <SmartTable 
+                                           bordered={true} 
+                                           column={freezing_column} 
+                                           data={OverallFreezingRate} 
+                                       />}
+                                   </div>
+                                   </div>
+
+                               </div>
+                           }
+                           </div>
+                       }
+
                         
                         {
 
@@ -1170,7 +1452,7 @@ class Statistics extends React.Component {
                                                   </td>
                                                 </tr>
                                                 <tr>
-                                                  <td>+ {tu('node_rewards')}:
+                                                  <td>+ {tu('charts_total_TRX_supply_vote')}:
                                                   </td>
                                                   <td>
                                                       {nodeRewardsNum} TRX
@@ -1307,8 +1589,4 @@ const
         loadPriceData,
     };
 
-export default connect(mapStateToProps, mapDispatchToProps)
-
-(
-    injectIntl(Statistics)
-)
+export default connect(mapStateToProps, mapDispatchToProps)(injectIntl(Statistics))

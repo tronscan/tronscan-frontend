@@ -1,15 +1,17 @@
 import React from "react";
-import {Sticky, StickyContainer} from "react-sticky";
-import Paging from "./Paging";
 import {Client} from "../../services/api";
 import {BlockNumberLink} from "./Links";
 import {t, tu} from "../../utils/i18n";
 import {FormattedNumber,injectIntl} from "react-intl";
-import TimeAgo from "react-timeago";
+import {API_URL} from "../../constants";
+// import TimeAgo from "react-timeago";
 import moment from 'moment';
 import SmartTable from "./SmartTable.js"
 import {upperFirst} from "lodash";
 import {TronLoader} from "./loaders";
+import qs from 'qs'
+import BlockTime from '../common/blockTime'
+
 
 class Blocks extends React.Component {
 
@@ -37,16 +39,20 @@ class Blocks extends React.Component {
 
   load = async (page = 1, pageSize = 20) => {
 
-    let {filter} = this.props;
+    let {filter, getCsvUrl} = this.props;
 
     this.setState({ loading: true });
 
-    let {blocks, total} = await Client.getBlocks({
+    const params = {
       sort: '-number',
       limit: pageSize,
       start: (page-1) * pageSize,
       ...filter,
-    });
+    }
+    const query = qs.stringify({ format: 'csv',...params})
+    getCsvUrl(`${API_URL}/api/block?${query}`)
+
+    let {blocks, total} = await Client.getBlocks(params);
 
     this.setState({
       page,
@@ -76,7 +82,8 @@ class Blocks extends React.Component {
         align: 'left',
         className: 'ant_table',
         render: (text, record, index) => {
-          return <TimeAgo date={text} title={moment(text).format("MMM-DD-YYYY HH:mm:ss A")}/>
+          return <BlockTime time={text}></BlockTime>
+          // <TimeAgo date={text} title={moment(text).format("MMM-DD-YYYY HH:mm:ss A")}/>
         }
       },
       {

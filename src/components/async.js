@@ -1,588 +1,269 @@
 import React from "react";
-import { asyncComponent } from "react-async-component";
-import { TronLoader } from "./common/loaders";
+import loadable from "@/utils/loadable";
 
-const $script = require("scriptjs");
+export const StatisticsAsync = loadable(() =>
+  import(/* webpackChunkName: "Stats" */ "./blockchain/Statistics/index.js")
+);
 
-export const StatisticsAsync = asyncComponent({
-  LoadingComponent: () => <TronLoader />,
-  resolve: () =>
-    new Promise(resolve =>
-      // Webpack's code splitting API w/naming
-      require.ensure(
-        [],
-        require => {
-          $script("", () => {
-            resolve(require("./blockchain/Statistics/index.js"));
-          });
-        },
-        "Stats"
-      )
-    )
-});
+export const SingleChartAsync = loadable(() =>
+  import(
+    /* webpackChunkName: "SingleStats" */ "./blockchain/Statistics/SingleChart.js"
+  )
+);
 
-export const SingleChartAsync = asyncComponent({
-  LoadingComponent: () => <TronLoader />,
-  resolve: () =>
-    new Promise(resolve =>
-      // Webpack's code splitting API w/naming
-      require.ensure(
-        [],
-        require => {
-          $script("", () => {
-            resolve(require("./blockchain/Statistics/SingleChart.js"));
-          });
-        },
-        "SingleStats"
-      )
-    )
-});
+export const ChartsAsync = loadable(() =>
+  import(
+    /* webpackChunkName: "Charts" */ "./blockchain/Statistics/Charts.js"
+  )
+);
 
-export const MarketsAsync = asyncComponent({
-  LoadingComponent: () => <TronLoader />,
-  resolve: () =>
-    new Promise(resolve =>
-      // Webpack's code splitting API w/naming
-      require.ensure(
-        [],
-        require => {
-          $script("", () => {
-            resolve(require("./markets"));
-          });
-        },
-        "Markets"
-      )
-    )
-});
+export const MarketsAsync = loadable(() =>
+  import(/* webpackChunkName: "Markets" */ "./markets")
+);
 
-export const WalletWizardAsync = asyncComponent({
-  LoadingComponent: () => <TronLoader />,
-  resolve: () =>
-    new Promise(resolve =>
-      // Webpack's code splitting API w/naming
-      require.ensure(
-        [],
-        require => {
-          $script("", () => {
-            resolve(require("./wallet/Wizard"));
-          });
-        },
-        "WalletWizard"
-      )
-    )
-});
+export const WalletWizardAsync = loadable(() =>
+  import(/* webpackChunkName: "WalletWizard" */ "./wallet/Wizard")
+);
 
-export const VerifyContractCodeAsync = asyncComponent({
-  LoadingComponent: () => <TronLoader />,
-  resolve: () =>
-    new Promise(resolve =>
-      // Webpack's code splitting API w/naming
-      require.ensure(
-        [],
-        require => {
-          $script("", () => {
-            resolve(require("./tools/VerifyContractCode"));
-          });
-        },
-        "VerifyContractCode"
-      )
-    )
-});
+export const VerifyContractCodeAsync = loadable(() =>
+  import(
+    /* webpackChunkName: "VerifyContractCode" */ "./tools/VerifyContractCode"
+  )
+);
 
-export const TransactionViewerAsync = asyncComponent({
-  LoadingComponent: () => <TronLoader />,
-  resolve: () =>
-    new Promise(resolve =>
-      // Webpack's code splitting API w/naming
-      require.ensure(
-        [],
-        require => {
-          $script("", () => {
-            resolve(require("./tools/TransactionViewer"));
-          });
-        },
-        "TransactionViewer"
-      )
-    )
-});
+export const TransactionViewerAsync = loadable(() =>
+  import(
+    /* webpackChunkName: "TransactionViewer" */ "./tools/TransactionViewer"
+  )
+);
 
-export const VoteOverviewAsync = asyncComponent({
-  LoadingComponent: () => <TronLoader />,
-  resolve: () =>
-    new Promise(resolve =>
-      // Webpack's code splitting API w/naming
-      require.ensure(
-        [],
-        require => {
-          $script("", () => {
-            resolve(require("./voting/VoteOverview"));
-          });
-        },
-        "VoteOverview"
-      )
-    )
-});
+export const VoteOverviewAsync = loadable(() =>
+  import(/* webpackChunkName: "VoteOverview" */ "./voting/VoteOverview")
+);
 
-export const VoteLiveAsync = asyncComponent({
-  LoadingComponent: () => <TronLoader />,
-  resolve: () =>
-    new Promise(resolve =>
-      // Webpack's code splitting API w/naming
-      require.ensure(
-        [],
-        require => {
-          $script("", () => {
-            resolve(require("./voting/VoteLive"));
-          });
-        },
-        "VoteLive"
-      )
-    )
-});
+export const VoteLiveAsync = loadable(() =>
+  import(/* webpackChunkName: "VoteLive" */ "./voting/VoteLive")
+);
 
-export const RepresentativesAsync = asyncComponent({
-  LoadingComponent: () => <TronLoader />,
-  resolve: () =>
-    new Promise(resolve =>
-      // Webpack's code splitting API w/naming
-      require.ensure(
-        [],
-        require => {
-          $script("", () => {
-            resolve(require("./representatives/Representatives"));
-          });
-        },
-        "Representatives"
-      )
-    )
-});
+export const RepresentativesAsync = loadable(() =>
+  import(
+    /* webpackChunkName: "Representatives" */ "./representatives/Representatives"
+  )
+);
 
-export const AccountAsync = asyncComponent({
-  LoadingComponent: () => <TronLoader />,
-  resolve: () =>
-    new Promise(resolve =>
-      // Webpack's code splitting API w/naming
-      require.ensure(
-        [],
-        require => {
-          $script("", () => {
-            resolve(require("./account/Account"));
-          });
-        },
-        "Account"
-      )
-    )
-});
+export const AccountAsync = loadable(() =>
+  import(/* webpackChunkName: "Account" */ "./account/Account")
+);
 
-export const NodeTesterAsync = asyncComponent({
-  LoadingComponent: () => <TronLoader />,
-  resolve: () =>
-    new Promise(resolve =>
-      // Webpack's code splitting API w/naming
-      require.ensure(
-        [],
-        require => {
-          $script("", () => {
-            resolve(require("./tools/NodeTester/index"));
-          });
-        },
-        "NodeTester"
-      )
-    )
-});
+export const NodeTesterAsync = loadable(() =>
+  import(/* webpackChunkName: "NodeTester" */ "./tools/NodeTester/index")
+);
 
-export const TronConvertToolAsync = asyncComponent({
-  LoadingComponent: () => <TronLoader />,
-  resolve: () =>
-    new Promise(resolve =>
-      // Webpack's code splitting API w/naming
-      require.ensure(
-        [],
-        require => {
-          $script("", () => {
-            resolve(require("./tools/TronConvertTool"));
-          });
-        },
-        "TronConvertTool"
-      )
-    )
-});
+export const TronConvertToolAsync = loadable(() =>
+  import(/* webpackChunkName: "TronConvertTool" */ "./tools/TronConvertTool")
+);
 
-export const SystemAsync = asyncComponent({
-  LoadingComponent: () => <TronLoader />,
-  resolve: () =>
-    new Promise(resolve =>
-      // Webpack's code splitting API w/naming
-      require.ensure(
-        [],
-        require => {
-          $script("", () => {
-            resolve(require("./tools/System"));
-          });
-        },
-        "System"
-      )
-    )
-});
+export const SystemAsync = loadable(() =>
+  import(/* webpackChunkName: "System" */ "./tools/System")
+);
 
-export const DemoAsync = asyncComponent({
-  LoadingComponent: () => <TronLoader />,
-  resolve: () =>
-    new Promise(resolve =>
-      // Webpack's code splitting API w/naming
-      require.ensure(
-        [],
-        require => {
-          $script("", () => {
-            resolve(require("./Demo"));
-          });
-        },
-        "DemoAsync"
-      )
-    )
-});
+export const DemoAsync = loadable(() =>
+  import(/* webpackChunkName: "DemoAsync" */ "./Demo")
+);
 
-export const FaqAsync = asyncComponent({
-  LoadingComponent: () => <TronLoader />,
-  resolve: () =>
-    new Promise(resolve =>
-      // Webpack's code splitting API w/naming
-      require.ensure(
-        [],
-        require => {
-          $script("", () => {
-            resolve(require("./Pages/Faq"));
-          });
-        },
-        "FaqAsync"
-      )
-    )
-});
+export const FaqAsync = loadable(() =>
+  import(/* webpackChunkName: "FaqAsync" */ "./Pages/Faq")
+);
 
-export const MyTokenAsync = asyncComponent({
-  LoadingComponent: () => <TronLoader />,
-  resolve: () =>
-    new Promise(resolve =>
-      // Webpack's code splitting API w/naming
-      require.ensure(
-        [],
-        require => {
-          $script("", () => {
-            resolve(require("./Pages/MyToken"));
-          });
-        },
-        "MyToken"
-      )
-    )
-});
+export const MyTokenAsync = loadable(() =>
+  import(/* webpackChunkName: "MyToken" */ "./Pages/MyToken")
+);
 
-export const TRONRatingAsync = asyncComponent({
-  LoadingComponent: () => <TronLoader />,
-  resolve: () =>
-    new Promise(resolve =>
-      // Webpack's code splitting API w/naming
-      require.ensure(
-        [],
-        require => {
-          $script("", () => {
-            resolve(require("./Pages/TRONRating"));
-          });
-        },
-        "TRONRating"
-      )
-    )
-});
+export const TRONRatingAsync = loadable(() =>
+  import(/* webpackChunkName: "TRONRating" */ "./Pages/TRONRating")
+);
 
-export const CopyrightAsync = asyncComponent({
-  LoadingComponent: () => <TronLoader />,
-  resolve: () =>
-    new Promise(resolve =>
-      // Webpack's code splitting API w/naming
-      require.ensure(
-        [],
-        require => {
-          $script("", () => {
-            resolve(require("./Pages/Copyright"));
-          });
-        },
-        "CopyrightAsync"
-      )
-    )
-});
+export const CopyrightAsync = loadable(() =>
+  import(/* webpackChunkName: "CopyrightAsync" */ "./Pages/Copyright")
+);
 
-export const LedgerHelpAsync = asyncComponent({
-  LoadingComponent: () => <TronLoader />,
-  resolve: () =>
-    new Promise(resolve =>
-      // Webpack's code splitting API w/naming
-      require.ensure(
-        [],
-        require => {
-          $script("", () => {
-            resolve(require("./Pages/LedgerHelp"));
-          });
-        },
-        "LedgerHelp"
-      )
-    )
-});
+export const LedgerHelpAsync = loadable(() =>
+  import(/* webpackChunkName: "LedgerHelp" */ "./Pages/LedgerHelp")
+);
 
-export const TokenOverviewAsync = asyncComponent({
-  LoadingComponent: () => <TronLoader />,
-  resolve: () =>
-    new Promise(resolve =>
-      // Webpack's code splitting API w/naming
-      require.ensure(
-        [],
-        require => {
-          $script("", () => {
-            resolve(require("./tokens/Overview/index"));
-          });
-        },
-        "TokenOverview"
-      )
-    )
-});
+export const TokenOverviewAsync = loadable(() =>
+  import(/* webpackChunkName: "TokenOverview" */ "./tokens/Overview/index")
+);
 
-export const TokenListAsync = asyncComponent({
-  LoadingComponent: () => <TronLoader />,
-  resolve: () =>
-    new Promise(resolve =>
-      // Webpack's code splitting API w/naming
-      require.ensure(
-        [],
-        require => {
-          $script("", () => {
-            resolve(require("./tokens/Overview/TokenList"));
-          });
-        },
-        "TokenList"
-      )
-    )
-});
+export const TokenListAsync = loadable(() =>
+  import(/* webpackChunkName: "TokenList" */ "./tokens/Overview/TokenList")
+);
 
-export const TokenTRC20ListAsync = asyncComponent({
-  LoadingComponent: () => <TronLoader />,
-  resolve: () =>
-    new Promise(resolve =>
-      // Webpack's code splitting API w/naming
-      require.ensure(
-        [],
-        require => {
-          $script("", () => {
-            resolve(require("./tokens/Overview/TokenListTRC20"));
-          });
-        },
-        "TokenList"
-      )
-    )
-});
+export const TokenTRC20ListAsync = loadable(() =>
+  import(
+    /* webpackChunkName: "TokenListTRC20" */ "./tokens/Overview/TokenListTRC20"
+  )
+);
 
-export const TokenAllAsync = asyncComponent({
-  LoadingComponent: () => <TronLoader />,
-  resolve: () =>
-    new Promise(resolve =>
-      // Webpack's code splitting API w/naming
-      require.ensure(
-        [],
-        require => {
-          $script("", () => {
-            resolve(require("./tokens/Overview/TokenListAll"));
-          });
-        },
-        "TokenList"
-      )
-    )
-});
+export const TokenAllAsync = loadable(() =>
+  import(
+    /* webpackChunkName: "TokenListAll" */ "./tokens/Overview/TokenListAll"
+  )
+);
 
+export const TokensCreateAsync = loadable(() =>
+  import(/* webpackChunkName: "TokensCreate" */ "./tokens/TokenCreate/index")
+);
 
+export const TokensMarketsCreateAsync = loadable(() =>
+  import(/* webpackChunkName: "TokensCreate" */ "./markets/TokenCreate/index")
+);
 
-export const TokensCreateAsync = asyncComponent({
-  LoadingComponent: () => <TronLoader />,
-  resolve: () =>
-    new Promise(resolve =>
-      // Webpack's code splitting API w/naming
-      require.ensure(
-        [],
-        require => {
-          $script("", () => {
-            //resolve(require("./tokens/TokenCreate"));
-            resolve(require("./tokens/TokenCreate/index"));
-          });
-        },
-        "TokensCreate"
-      )
-    )
-});
+export const TokensMarketsAddListAsync = loadable(() =>
+  import(/* webpackChunkName: "MarketCreate" */ "./markets/MarketCreate/index")
+);
 
-export const TokensUpdateAsync = asyncComponent({
-    LoadingComponent: () => <TronLoader />,
-    resolve: () =>
-        new Promise(resolve =>
-            // Webpack's code splitting API w/naming
-            require.ensure(
-                [],
-                require => {
-                    $script("", () => {
-                        //resolve(require("./tokens/TokenCreate"));
-                        resolve(require("./tokens/TokenCreate/index"));
-                    });
-                },
-                "TokensCreate"
-            )
-        )
-});
+export const AccountsAsync = loadable(() =>
+  import(/* webpackChunkName: "Accounts" */ "./Accounts")
+);
 
-export const AccountsAsync = asyncComponent({
-  LoadingComponent: () => <TronLoader />,
-  resolve: () =>
-    new Promise(resolve =>
-      // Webpack's code splitting API w/naming
-      require.ensure(
-        [],
-        require => {
-          $script("", () => {
-            resolve(require("./Accounts"));
-          });
-        },
-        "Accounts"
-      )
-    )
-});
+export const DevelopersRewardAsync = loadable(() =>
+  import(/* webpackChunkName: "Accounts" */ "./Pages/DevelopersReward")
+);
+export const FoundationAsync = loadable(() =>
+  import(/* webpackChunkName: "Foundation" */ "./Foundation")
+);
+export const TopDataAsync = loadable(() =>
+  import(/* webpackChunkName: "Foundation" */ "./Data/TopData/index")
+);
 
-export const FoundationAsync = asyncComponent({
-  LoadingComponent: () => <TronLoader />,
-  resolve: () =>
-    new Promise(resolve =>
-      // Webpack's code splitting API w/naming
-      require.ensure(
-        [],
-        require => {
-          $script("", () => {
-            resolve(require("./Foundation"));
-          });
-        },
-        "Foundation"
-      )
-    )
-});
+export const NodesAsync = loadable(() =>
+  import(/* webpackChunkName: "Nodes" */ "./network/Nodes")
+);
 
-export const NodesAsync = asyncComponent({
-  LoadingComponent: () => <TronLoader />,
-  resolve: () =>
-    new Promise(resolve =>
-      // Webpack's code splitting API w/naming
-      require.ensure(
-        [],
-        require => {
-          $script("", () => {
-            resolve(require("./network/Nodes"));
-          });
-        },
-        "Nodes"
-      )
-    )
-});
+export const LiveAsync = loadable(() =>
+  import(/* webpackChunkName: "Live" */ "./blockchain/Live")
+);
 
-export const LiveAsync = asyncComponent({
-  LoadingComponent: () => <TronLoader />,
-  resolve: () =>
-    new Promise(resolve =>
-      // Webpack's code splitting API w/naming
-      require.ensure(
-        [],
-        require => {
-          $script("", () => {
-            resolve(require("./blockchain/Live"));
-          });
-        },
-        "Live"
-      )
-    )
-});
+export const TokenDetailAsync = loadable(() =>
+  import(/* webpackChunkName: "TokenDetail" */ "./tokens/TokenDetail/index")
+);
 
-export const TokenDetailAsync = asyncComponent({
-  LoadingComponent: () => <TronLoader />,
-  resolve: () =>
-    new Promise(resolve =>
-      // Webpack's code splitting API w/naming
-      require.ensure(
-        [],
-        require => {
-          $script("", () => {
-            resolve(require("./tokens/TokenDetail/index"));
-          });
-        },
-        "TokenDetail"
-      )
-    )
-});
+export const Token20DetailAsync = loadable(() =>
+  import(/* webpackChunkName: "Token20Detail" */ "./tokens/Token20Detail/index")
+);
 
-export const Token20DetailAsync = asyncComponent({
-  LoadingComponent: () => <TronLoader />,
-  resolve: () =>
-    new Promise(resolve =>
-      // Webpack's code splitting API w/naming
-      require.ensure(
-        [],
-        require => {
-          $script("", () => {
-            resolve(require("./tokens/Token20Detail/index"));
-          });
-        },
-        "Token20Detail"
-      )
-    )
-});
+export const ProposalDetailAsync = loadable(() =>
+  import(
+    /* webpackChunkName: "ProposalDetail" */ "./committee/ProposalDetail/index"
+  )
+);
 
-// export const TokensExchangeAsync = asyncComponent({
-//   LoadingComponent: () => (
-//       <TronLoader/>
-//   ),
-//   resolve: () => new Promise(resolve =>
-//       // Webpack's code splitting API w/naming
-//       require.ensure(
-//           [],
-//           (require) => {
-//             $script("", () => {
-//               resolve(require("./Exchange/index"));
-//             });
-//           },
-//           'Exchange',
-//       )
-//   )
-// });
+export const ContractCompilerAsync = loadable(() =>
+  import(
+    /* webpackChunkName: "ContractCompiler" */ "./blockchain/Compiler/index"
+  )
+);
 
-export const ProposalDetailAsync = asyncComponent({
-  LoadingComponent: () => <TronLoader />,
-  resolve: () =>
-    new Promise(resolve =>
-      // Webpack's code splitting API w/naming
-      require.ensure(
-        [],
-        require => {
-          $script("", () => {
-            resolve(require("./committee/ProposalDetail/index"));
-          });
-        },
-        "ProposalDetail"
-      )
-    )
-});
+export const AboutAsync = loadable(() =>
+  import(/* webpackChunkName: "About" */ "./Pages/About")
+);
 
-export const AboutAsync = asyncComponent({
-  LoadingComponent: () => <TronLoader />,
-  resolve: () =>
-    new Promise(resolve =>
-      // Webpack's code splitting API w/naming
-      require.ensure(
-        [],
-        require => {
-          $script("", () => {
-            resolve(require("./Pages/About"));
-          });
-        },
-        "About"
-      )
-    )
-});
+export const HomeAsync = loadable(() =>
+  import(/* webpackChunkName: "Home" */ "./Home")
+);
+
+export const SmartContract = loadable(() =>
+  import(/* webpackChunkName: "SmartContract" */ "./blockchain/Contract")
+);
+
+export const Exchangetrc = loadable(() =>
+  import(/* webpackChunkName: "Exchangetrc" */ "./exchange/index")
+);
+
+export const Representative = loadable(() =>
+  import(
+    /* webpackChunkName: "Representative" */ "./representatives/representative"
+  )
+);
+
+export const BTTSupplyTemp = loadable(() =>
+  import(
+    /* webpackChunkName: "BTTSupplyTemp" */ "./tokens/TokenDetail/tempBtt.js"
+  )
+);
+
+export const Block = loadable(() =>
+  import(/* webpackChunkName: "Block" */ "./blockchain/Block")
+);
+
+export const Transaction = loadable(() =>
+  import(/* webpackChunkName: "Transaction" */ "./blockchain/Transaction")
+);
+
+export const Address = loadable(() =>
+  import(/* webpackChunkName: "Address" */ "./addresses/Address")
+);
+
+export const Blocks = loadable(() =>
+  import(/* webpackChunkName: "Blocks" */ "./blockchain/Blocks")
+);
+
+export const Transactions = loadable(() =>
+  import(/* webpackChunkName: "Transactions" */ "./blockchain/Transactions")
+);
+
+export const Transfers = loadable(() =>
+  import(/* webpackChunkName: "Transfers" */ "./blockchain/Transfers")
+);
+
+export const Contracts = loadable(() =>
+  import(/* webpackChunkName: "Contracts" */ "./blockchain/Contracts")
+);
+
+export const Notice = loadable(() =>
+  import(/* webpackChunkName: "Notice" */ "./exchange/notice")
+);
+
+export const ContractTrans = loadable(() =>
+  import(/* webpackChunkName: "ContractTrans" */ "./blockchain/ContractTrans")
+);
+
+export const Committee = loadable(() =>
+  import(/* webpackChunkName: "Committee" */ "./committee/index")
+);
+
+export const Proposals = loadable(() =>
+  import(/* webpackChunkName: "Proposals" */ "./committee/Proposals")
+);
+
+export const ErrorAsync = loadable(() =>
+  import(/* webpackChunkName: "ErrorAsync" */ "./Error")
+);
+
+export const Exchange20 = loadable(() =>
+  import(/* webpackChunkName: "Exchange20" */ "./exchange/dex20/index")
+);
+export const ContractSourceCode = loadable(() =>
+  import(
+    /* webpackChunkName: "ContractSourceCode" */ "./blockchain/Contract/SourceCode"
+  )
+);
+
+export const ContractUseServiceTerms = loadable(() =>
+  import(
+    /* webpackChunkName: "ContractSourceCode" */ "./blockchain/Contract/UseServiceTerms"
+  )
+);
+
+export const ContractLicense = loadable(() =>
+  import(
+    /* webpackChunkName: "ContractSourceCode" */ "./blockchain/Contract/License"
+  )
+);
+
+export const RatingRule = loadable(() =>
+  import(
+    /* webpackChunkName: "ContractSourceCode" */ "./tokens/RatingRule"
+  )
+);

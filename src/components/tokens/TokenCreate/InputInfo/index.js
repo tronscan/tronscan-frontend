@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {injectIntl} from "react-intl";
 import {connect} from "react-redux";
 import {t, tu} from "../../../../utils/i18n";
-import {BaseInfo} from './BaseInfo'
+import BaseInfo from './BaseInfo'
 import { ContractInfo } from './ContractInfo';
 import { PriceInfo } from './PriceInfo';
 import { SocialInfo } from './SocialInfo';
@@ -62,6 +62,22 @@ export class TokenCreate extends Component {
         }
         return true
     };
+    showModal = (msg) => {
+        let { intl } = this.props;
+        this.setState({
+            modal:
+                <SweetAlert
+                    error
+                    confirmBtnText={intl.formatMessage({id: 'confirm'})}
+                    confirmBtnBsStyle="success"
+                    onConfirm={this.hideModal}
+                    style={{marginLeft: '-240px', marginTop: '-195px'}}
+                >
+                    {tu(msg)}
+                </SweetAlert>
+            }
+        );
+    }
 
     hideModal = () => {
         this.setState({
@@ -110,7 +126,6 @@ export class TokenCreate extends Component {
         const {intl, nextStep} = this.props;
         const { modal,isUpdate } = this.state;
         const {form} = this.props;
-
         return (
             <main className="">
                 {modal}
@@ -118,7 +133,7 @@ export class TokenCreate extends Component {
                     className="ant-advanced-search-form"
                 >
                     {/* base info */}
-                    <BaseInfo form={form} intl={intl} state={this.state}/>
+                    <BaseInfo form={form} intl={intl} state={this.state} showModal={(msg) => {this.showModal(msg)}}/>
 
                     {/* contract info */}
                     <ContractInfo form={form} intl={intl} state={this.state} loadContractCode={(id) => { this.loadContractCode(id) }}/>

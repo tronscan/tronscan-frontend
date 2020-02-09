@@ -157,10 +157,10 @@ export default class Trx {
    * example
    */
   async signTransactionWithTokenName(
-    path: string,
-    rawTxHex: string,
-    tokenSignatures: string[],
-  ): Promise<string> {
+    path,
+    rawTxHex,
+    tokenSignatures,
+  ) {
     console.log(tokenSignatures);
     //const bipPath = BIPPath.fromString(path).toPathArray();
     let paths = splitPath(path);

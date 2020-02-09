@@ -10,6 +10,8 @@ import SmartTable from "./SmartTable.js"
 import {upperFirst} from "lodash";
 import {TronLoader} from "./loaders";
 import {withTimers} from "../../utils/timing";
+import qs from 'qs'
+import {API_URL} from "../../constants";
 
 class Votes extends React.Component {
 
@@ -37,16 +39,20 @@ class Votes extends React.Component {
 
   load = async (page = 1, pageSize = 20) => {
 
-    let {filter} = this.props;
+    let {filter, getCsvUrl} = this.props;
 
     this.setState({loading: true});
 
-    let {votes, total, totalVotes} = await Client.getVotes({
+    const params = {
       sort: '-votes',
       limit: pageSize,
       start: (page - 1) * pageSize,
       ...filter,
-    });
+    }
+    const query = qs.stringify({ format: 'csv',...params})
+    getCsvUrl && getCsvUrl(`${API_URL}/api/vote?${query}`)
+
+    let {votes, total, totalVotes} = await Client.getVotes(params);
 
     this.setState({
       page,
@@ -71,7 +77,7 @@ class Votes extends React.Component {
         }
       },
       {
-        title: upperFirst(intl.formatMessage({id: 'votes'})),
+        title: upperFirst(intl.formatMessage({id: 'votes_num'})),
         dataIndex: 'votes',
         key: 'votes',
         align: 'left',
@@ -95,7 +101,7 @@ class Votes extends React.Component {
     ];
     let column_c = [
       {
-        title: upperFirst(intl.formatMessage({id: 'candidate'})),
+        title: upperFirst(intl.formatMessage({id: 'witness'})),
         dataIndex: 'candidateAddress',
         key: 'candidateAddress',
         align: 'left',
@@ -118,7 +124,7 @@ class Votes extends React.Component {
       // },
       
       {
-        title: upperFirst(intl.formatMessage({id: 'votes'})),
+        title: upperFirst(intl.formatMessage({id: 'votes_num'})),
         dataIndex: 'votes',
         key: 'votes',
         align: 'left',
@@ -173,7 +179,7 @@ class Votes extends React.Component {
       tableInfo = intl.formatMessage({id: 'view_total'}) + ' ' + total + ' ' + intl.formatMessage({id: 'voter_unit'});
     }
     if(filter.voter){
-      tableInfo = intl.formatMessage({id: 'view_total'}) + ' ' + total + ' ' + intl.formatMessage({id: 'vote_unit'});
+      tableInfo = intl.formatMessage({id: 'view_total'}) + ' ' + total + ' ' + intl.formatMessage({id: 'table_info_big2'});
     }
 
     if (!loading && votes.length === 0) {

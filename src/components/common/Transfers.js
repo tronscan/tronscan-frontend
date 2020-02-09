@@ -1,27 +1,23 @@
-import React, {Fragment} from "react";
-import {FormattedDate, FormattedNumber, FormattedTime, injectIntl} from "react-intl";
-import {Sticky, StickyContainer} from "react-sticky";
-import Paging from "./Paging";
+import React from "react";
+import {injectIntl} from "react-intl";
 import {Client} from "../../services/api";
 import {AddressLink, TransactionHashLink} from "./Links";
-import {TRXPrice} from "./Price";
-import {ONE_TRX} from "../../constants";
 import {tu} from "../../utils/i18n";
-import TimeAgo from "react-timeago";
-import {Truncate} from "./text";
+// import TimeAgo from "react-timeago";
+import {Truncate,TruncateAddress} from "./text";
 import {withTimers} from "../../utils/timing";
 import SmartTable from "./SmartTable.js"
 import {upperFirst,upperCase} from "lodash";
 import {TronLoader} from "./loaders";
-import {ContractTypes} from "../../utils/protocol";
 import rebuildList from "../../utils/rebuildList";
 import {SwitchToken} from "./Switch";
 import TotalInfo from "./TableTotal";
 import DateRange from "./DateRange";
-import {DatePicker} from 'antd';
 import moment from 'moment';
 import {NameWithId} from "./names";
 import _ from "lodash";
+import BlockTime from '../common/blockTime'
+
 
 class Transfers extends React.Component {
   constructor(props) {
@@ -162,7 +158,8 @@ class Transfers extends React.Component {
         className: 'ant_table',
         width: '14%',
         render: (text, record, index) => {
-          return <TimeAgo date={text} title={moment(text).format("MMM-DD-YYYY HH:mm:ss A")}/>
+          return <BlockTime time={text}></BlockTime>
+          // <TimeAgo date={text} title={moment(text).format("MMM-DD-YYYY HH:mm:ss A")}/>
         }
       },
       {
@@ -173,8 +170,8 @@ class Transfers extends React.Component {
         className: 'ant_table',
         render: (text, record, index) => {
           return record.fromtip?
-          <AddressLink address={text}/>:
-          <Truncate><span>{text}</span></Truncate>
+              <AddressLink address={text}>{text}</AddressLink>:
+              <TruncateAddress>{text}</TruncateAddress>
         }
       },
       {
@@ -193,8 +190,8 @@ class Transfers extends React.Component {
         className: 'ant_table',
         render: (text, record, index) => {
           return record.totip?
-          <AddressLink address={text}/>:
-          <Truncate><span>{text}</span></Truncate>
+              <AddressLink address={text}>{text}</AddressLink>:
+              <TruncateAddress>{text}</TruncateAddress>
         }
       },
       {
@@ -253,7 +250,7 @@ class Transfers extends React.Component {
           {loading && <div className="loading-style"><TronLoader/></div>}
             {
                 transfers.length? <div className="d-flex justify-content-between" style={{left: 'auto'}}>
-                  <TotalInfo total={total} rangeTotal={rangeTotal} typeText="transactions_unit" common={!address} divClass="table_pos_info_addr"/>
+                  <TotalInfo total={total} rangeTotal={rangeTotal} typeText="transfers_unit" common={!address} divClass="table_pos_info_addr"/>
                   <div className="table_pos_switch d-md-block table_pos_switch_addr table_pos_switch_addr_transfers">
                     <SwitchToken  handleSwitch={this.handleSwitch} text="only_TRX_transfers" isHide={false}/>
                   </div>
@@ -264,7 +261,7 @@ class Transfers extends React.Component {
                     }
                 </div>:<div className="d-flex justify-content-between" style={{left: 'auto'}}>
                   {/*<div className="table_pos_info d-md-block table_pos_info_addr2">{tableInfo}<span> <QuestionMark placement="top" text="to_provide_a_better_experience"></QuestionMark></span></div>*/}
-                    <TotalInfo total={total} rangeTotal={rangeTotal} typeText="transactions_unit" common={!address} divClass="table_pos_info_addr2"/>
+                    <TotalInfo total={total} rangeTotal={rangeTotal} typeText="transfers_unit" common={!address} divClass="table_pos_info_addr2"/>
                   <div className="table_pos_switch d-md-block table_pos_switch_addr2">
                     <SwitchToken  handleSwitch={this.handleSwitch} text="only_TRX_transfers" isHide={false}/>
                   </div>

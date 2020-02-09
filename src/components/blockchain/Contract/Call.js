@@ -1,8 +1,5 @@
 import React from "react";
-import ReactAce from 'react-ace-editor';
-import {CopyText} from "../../common/Copy";
-import {tu, tv} from "../../../utils/i18n";
-import {Client} from "../../../services/api";
+import {tu} from "../../../utils/i18n";
 import xhr from "axios";
 import {API_URL} from "../../../constants";
 import { AddressLink} from "../../common/Links";

@@ -1,9 +1,8 @@
-import React, { Fragment } from "react";
+import React from "react";
 import { injectIntl } from "react-intl";
 import { DatePicker } from 'antd';
 import moment from 'moment';
 import {toastr} from 'react-redux-toastr'
-import {t, tu} from "../../utils/i18n";
 
 class DateRange extends React.Component {
 
