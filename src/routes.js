@@ -324,7 +324,7 @@ export const routes = [
         showInMenu: false
       },
       {
-        label: "statistics",
+        label: "data_title_chart",
         // icon: `fa fa-chart-pie`,
         icon: false,
         path: "/data/charts/:chartName",
