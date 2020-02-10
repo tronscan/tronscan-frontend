@@ -118,5 +118,18 @@ export const lang20Q1 = {
   index_navigation_explorers: "EXPLORERS",
   index_navigation_data: "ДАННЫЕ",
   index_navigation_committee: "КОМИТЕТ",
-  index_navigation_proposals: "ПРЕДЛОЖЕНИЯ"
+  index_navigation_proposals: "ПРЕДЛОЖЕНИЯ",
+  
+  // 2020-02-04
+  chart_hold_trx_account:'Аккаунты, удерживающие TRX',
+  chart_hold_trx_account_per:'Процент держателя TRX',
+  chart_hold_trx_account_per_t:'Процент держателя TRX',
+  chart_hold_trx_account_per_tip:'Аккаунты, удерживающие TRX / Всего аккаунтов',
+  chart_hold_account_sum:'Всего аккаунтов',
+  chart_hold_trx:'Аккаунты, удерживающие TRX',
+  chart_hold_trx_more:'Больше данных',
+  chart_hold_trx_number:'Количество аккаунтов',
+  chart_resource_user_freeing:'Энергия от замораживания TRX',
+  chart_resource_user_burning:'Энергия от сжигания TRX',
+  chart_resource_contract_deployer:'Энергия от выпускников контрактов'
 };
