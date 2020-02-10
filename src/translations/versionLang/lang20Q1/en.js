@@ -114,5 +114,17 @@ export const lang20Q1 = {
   index_navigation_explorers: "EXPLORERS",
   index_navigation_data: "DATA",
   index_navigation_committee: "COMMITTEE",
-  index_navigation_proposals: "PROPOSALS"
+  index_navigation_proposals: "PROPOSALS",
+     // 2020-02-04
+  chart_hold_trx_account:'Accounts holding TRX',
+  chart_hold_trx_account_per:'TRX holder percentage',
+  chart_hold_trx_account_per_t:'TRX holder percentage:',
+  chart_hold_trx_account_per_tip:'Accounts holding TRX/Total accounts',
+  chart_hold_account_sum:'Total accounts',
+  chart_hold_trx:'Accounts holding TRX',
+  chart_hold_trx_more:'More data',
+  chart_hold_trx_number:'Number of accounts',
+  chart_resource_user_freeing:'Energy from freezing TRX',
+  chart_resource_user_burning:'Energy from burning TRX',
+  chart_resource_contract_deployer:'Energy from contract deployers'
 };

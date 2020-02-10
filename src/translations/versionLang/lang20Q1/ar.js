@@ -115,5 +115,18 @@ export const lang20Q1 = {
   index_navigation_explorers: "المتصفح",
   index_navigation_data: "البيانات",
   index_navigation_committee: "لجنة ترون",
-  index_navigation_proposals: "اقتراح"
+  index_navigation_proposals: "اقتراح",
+
+   // 2020-02-04
+   chart_hold_trx_account:'إحصائيات الحسابات المحتفظه بـ TRX',
+   chart_hold_trx_account_per:'نسبة الاحتفاظ بالعملة',
+   chart_hold_trx_account_per_t:'نسبة الاحتفاظ بالعملة',
+   chart_hold_trx_account_per_tip:'عدد الحسابات المحتفظه بـ TRX / إجمالي الحسابات',
+   chart_hold_account_sum:'إجمالي عدد الحسابات',
+   chart_hold_trx:'عدد الحسابات المحتفظه بـ TRX ',
+   chart_hold_trx_more:'المزيد من البيانات',
+   chart_hold_trx_number:'عدد الحسابات',
+   chart_resource_user_freeing:'الطاقة من تجميد TRX',
+   chart_resource_user_burning:'الطاقة من حرق TRX',
+   chart_resource_contract_deployer:'الطاقة من ناشري العقود'
 };
