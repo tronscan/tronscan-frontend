@@ -127,6 +127,14 @@ button:focus {
     vertical-align: 0.1em;
   }
 }
+.logo-wrapper{
+  .dropdown-toggle {
+    &:after {
+      vertical-align: 0.1em;
+      color:rgba(51,51,51,0.50);
+    }
+  }
+}
 
 .sub-header {
   h4 {
@@ -371,7 +379,10 @@ tr a {
     display: flex;
     justify-content: center;
     margin-bottom: 6px;
-
+    a.after{
+      line-height: 24px;
+      margin-right: 5px;
+    }
     & > div {
       color: #fff;
       height: 30px;
@@ -386,6 +397,7 @@ tr a {
         display: flex;
         align-items: center;
         justify-content: center;
+       
       }
 
       .before {

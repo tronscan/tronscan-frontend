@@ -246,7 +246,7 @@ class Footer extends Component {
                 {modal}
                 <div className="row container">
                   <div className="col-xs-12 col-sm-6 col-md-6 text-center mb-3 hidden-mobile">
-                    <div className="">
+                    <div>
                       <div className="switch d-flex between hidden-mobile">
                         <span>{tu("index_page_switch_tokens")}</span>
                         {this.dropCurrency()}
@@ -517,7 +517,7 @@ class Footer extends Component {
     return (
       <Dropdown overlay={menu} placement="topCenter">
         <div className="ant-dropdown-link">
-          {activeCurrency.toUpperCase()} <Icon type="down" />
+          {activeCurrency.toUpperCase()} <Icon type="caret-down" style={{color: '#fff',marginLeft:"4px",fontSize:'10px'}} />
         </div>
       </Dropdown>
     );

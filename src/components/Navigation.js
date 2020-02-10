@@ -1131,7 +1131,7 @@ class Navigation extends React.Component {
                                       {route.icon &&
                                       <i className={route.icon + " d-none d-lg-inline-block mr-1"}/>}
                                       {tu(route.label)}
-                                      {route.label !== 'home_page' && route.label !== 'Poloni DEX'?<Icon type="caret-down" /> : null}
+                                      {route.label !== 'home_page' && route.label !== 'Poloni DEX'?<Icon type="caret-down" style={{color: 'rgba(51,51,51,0.50)',marginLeft:"4px",fontSize:'8px'}} /> : null}
                                     
                                       </span>
                                       {/* <i className="hot-nav"></i> */}
