@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="13px" height="13px" viewBox="0 0 13 13" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.1 (57501) - http://www.bohemiancoding.com/sketch -->
+    <title>20</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M1,-4.10782519e-15 L11.5857864,4.4408921e-16 C12.1380712,-6.38418645e-16 12.5857864,0.44771525 12.5857864,1 C12.5857864,1.26521649 12.4804296,1.5195704 12.2928932,1.70710678 L1.70710678,12.2928932 C1.31658249,12.6834175 0.683417511,12.6834175 0.292893219,12.2928932 C0.10535684,12.1053568 -6.60684078e-16,11.8510029 -2.22044605e-16,11.5857864 L-2.99760217e-15,1 C-3.06523754e-15,0.44771525 0.44771525,-4.45046134e-15 1,-4.5519144e-15 Z" id="path-1"></path>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="自选" transform="translate(-376.000000, -352.000000)">
+            <g id="市场" transform="translate(360.000000, 199.000000)">
+                <g id="列表" transform="translate(16.000000, 90.000000)">
+                    <g id="分组" transform="translate(0.000000, 34.000000)">
+                        <g id="20" transform="translate(0.000000, 29.000000)">
+                            <mask id="mask-2" fill="white">
+                                <use xlink:href="#path-1"></use>
+                            </mask>
+                            <use id="Mask" fill="#F5A623" fill-rule="nonzero" xlink:href="#path-1"></use>
+                            <text mask="url(#mask-2)" transform="translate(4.656854, 4.656854) rotate(-45.000000) translate(-4.656854, -4.656854) " font-family="PingFang-SC-Bold, PingFang SC" font-size="6" font-weight="bold" fill="#FFFFFF">
+                                <tspan x="1.05685425" y="6.65685425">20</tspan>
+                            </text>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

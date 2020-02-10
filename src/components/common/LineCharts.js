@@ -3278,6 +3278,7 @@ export class HoldTrxAccountChart extends React.Component {
        
         if (newData && newData.length > 0) {
             let options =  {
+                
                 title: {
                     text: intl.formatMessage({id: 'chart_hold_trx_account'})
                 },
