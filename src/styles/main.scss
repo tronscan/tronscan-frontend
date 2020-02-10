@@ -3105,11 +3105,10 @@ h5 {
 }
 
 .more-menu {
-  right: 0;
   flex-direction: row;
   position: absolute;
   top: 90%;
-  right: 0;
+  left: 0;
   z-index: 1000;
   float: left;
   min-width: 10rem;
