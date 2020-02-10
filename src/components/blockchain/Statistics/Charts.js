@@ -374,7 +374,8 @@ class StatCharts extends React.Component {
 
     //hold trx account
     async loadHoldTrxAccount() {
-        let {data: {data}} = await xhr.get(API_URL + "/api/stats/overview?type=trxHolder");       
+        
+        let {data: {data}} = await xhr.get(API_URL + "/api/stats/overview?type=trxHolder");      
         let x;
         data.map((item, index) => {
             item.timestamp = item.date; 

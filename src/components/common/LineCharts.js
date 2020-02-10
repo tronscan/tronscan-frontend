@@ -3272,7 +3272,7 @@ export class HoldTrxAccountChart extends React.Component {
             //timestamp.push(moment(val['timestamp']).format("YYYY-MM-DD"))
         })
 
-        let pointStart = newData[0].timestamp ||  Date.UTC(2019, 11, 20);
+        let pointStart = newData[0].timestamp ||  Date.UTC(2020, 2, 4);
         let pointInterval = 24 * 3600 * 1000;
 
        
@@ -3335,6 +3335,7 @@ export class HoldTrxAccountChart extends React.Component {
                 },
                 xAxis: {
                     //type: 'datetime',
+                    // tickInterval: 5*24*60*60*1000,
                     ordinal: false,
                     categories:timestamp,
                     dateTimeLabelFormats: {
