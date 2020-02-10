@@ -152,7 +152,7 @@ export const routes = [
         // },  
       ],
       [
-        'contracts',
+        'contract_title',
         {
           label: "contracts",
           // icon: "fa fa-file",

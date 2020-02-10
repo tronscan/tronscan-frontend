@@ -1050,7 +1050,7 @@ class Navigation extends React.Component {
             {/* <div className={!IS_MAINNET?(activeLanguage == 'ru'||activeLanguage == 'es' ||activeLanguage == 'ja' ?'py-2 d-flex px-0 sunnet-menu-nav-wrapper':'py-2 d-flex px-0 single-menu-nav-wrapper' ):(activeLanguage === 'zh' || activeLanguage === 'ko' || activeLanguage === 'ar'  ? "py-2 d-flex px-0 single-menu-nav-wrapper" : "py-2 d-flex px-0 menu-nav-wrapper") }> */}
             <div className={"py-2 d-flex px-0 menu-nav-wrapper"}>
               <div className="logoTrxPrice">
-                <div className="mobileFlexible d-flex">
+                <div className="mobileFlexible">
                   <Link to="/">
                     <img  src={this.getLogo()} className="logo" alt="Tron"/>
                     {IS_SUNNET?<span className="sunnet-logo-title ">
@@ -1059,7 +1059,7 @@ class Navigation extends React.Component {
                   </Link>
                   {
                     IS_MAINNET?
-                    <span className="currentTRXInfo">
+                    <div className="currentTRXInfo">
                       <Tooltip
                         placement="bottom"
                         title={intl.formatMessage({
@@ -1084,7 +1084,7 @@ class Navigation extends React.Component {
                           </span>
                         </HrefLink>
                       </Tooltip>
-                    </span>
+                    </div>
                     :null
                   }
                 </div>

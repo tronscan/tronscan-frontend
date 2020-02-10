@@ -12,6 +12,7 @@
     height: 6px;
   }
   .new-menu-List {
+    padding-top:10px;
     .navbar-nav {
       .nav-item {
         &:hover {
@@ -48,6 +49,7 @@
       padding-left: 30px;
     }
     .loginInfoNavBar {
+      padding-top:10px;
       padding-right: 32px;
     }
   }
@@ -201,18 +203,14 @@
     }
   }
   .currentTRXInfo {
-    margin-right: 10px;
     font-family: HelveticaNeue;
     color: #333333;
     overflow: hidden;
-    a {
-      margin-top: 8px;
-    }
     a:hover {
       color: #8e8c84 !important;
     }
     .TRXPrice {
-      padding: 4px 10px;
+      padding: 4px 10px 4px 0;
       &:hover {
         cursor: pointer;
       }
