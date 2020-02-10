@@ -1,13 +1,13 @@
 .footer-new {
   .home-footer {
     h5 {
-      font-size: 16px;
+      font-size: 14px;
       color: rgba(255, 255, 255, 0.7);
     }
     .quick-links {
       a {
         font-family: HelveticaNeue;
-        font-size: 14px;
+        font-size: 12px;
         color: rgba(255, 255, 255, 0.5);
         &:hover {
           color: rgba(255, 255, 255, 1) !important;
@@ -27,7 +27,7 @@
       }
       p {
         font-family: HelveticaNeue;
-        font-size: 14px;
+        font-size: 12px;
         color: rgba(255, 255, 255, 0.5);
         text-align: right;
         line-height: 30px;
@@ -92,11 +92,12 @@
       font-size: 12px;
       color: #ffffff;
       text-align: center;
+      line-height: 24px;
     }
   }
   .copyright {
     border-top: 1px solid rgba(255, 255, 255, 0.2);
-    .container {
+    .footerContainer {
       margin: 0 auto;
       .text {
         font-family: HelveticaNeue;
@@ -162,6 +163,9 @@
       }
     }
   }
+}
+.footerTronSection{
+  justify-content: space-between;
 }
 
 // 2020-01-20

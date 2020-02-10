@@ -1107,7 +1107,6 @@ class Navigation extends React.Component {
                     <div className="collapse navbar-collapse" id="navbar-top">
                       <ul className="navbar-nav">
                         {filter(routes, r => r.showInMenu !== false).map(route => (
-
                             <li key={route.path}  className={IS_MAINNET? 'nav-item dropdown': 'nav-item dropdown pr-3'}>
                               {
                                 route.linkHref === true ?
@@ -1318,8 +1317,6 @@ class Navigation extends React.Component {
                   </nav>
                 </div>
               </div>
-              
-
               <div className="loginInfoNavBar">
                 <div className={IS_MAINNET ? "navbar navbar-expand-md navbar-dark py-0 page-right-navbar mainetMargin mobileMarginMenu" : "navbar navbar-expand-md navbar-dark py-0 page-right-navbar"}>
                   <ul className="navbar-nav navbar-right wallet-nav">
@@ -1549,7 +1546,13 @@ class Navigation extends React.Component {
                     }
                   </div>
                 </Panel>
-                <Panel header={languages[activeLanguage]} key="1" >
+                <Panel header={
+                  <span>
+                    <img src={require(`../images/home/${activeLanguage}.svg`)} alt="" style={{height:'16px',marginRight:'2px'}}/>
+                    {languages[activeLanguage]}
+                  </span>  
+                  
+                  } key="1" >
                   <div className="languages-menu">
                     {
                       Object.keys(languages).map(language => (
@@ -1562,7 +1565,10 @@ class Navigation extends React.Component {
                                 currentActive:3
                               })
                               this.setLanguage(language)
-                            }}>{languages[language]}</a>
+                            }}>
+                               <img src={require(`../images/home/${language}.svg`)} alt="" style={{height:'16px',marginRight:'2px'}} />
+                              {languages[language]}
+                            </a>
                       ))
                     }
                   </div>
@@ -1586,8 +1592,6 @@ class Navigation extends React.Component {
                   </div>
                 </Panel>
               </Collapse>
-            
-                       
             </div>
           </Drawer>
         </div>
