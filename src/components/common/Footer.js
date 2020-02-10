@@ -208,7 +208,6 @@ class Footer extends Component {
                   </li> */}
                   </ul>
                 </div>
-                
               </div>
               {/*<div className="row mt-3">*/}
               {/*<div className="col-xs-12 col-sm-12 col-md-12">*/}
@@ -383,15 +382,18 @@ class Footer extends Component {
                   </li> */}
                     </ul>
                   </div>
-                  {/* <div className="col-xs-12 col-sm-1 col-md-2">
+                  <div className="col-xs-12 col-sm-1 col-md-2">
                     <h5 className="text-uppercase">{tu("index_page_switch_tokens")}</h5>
                     <ul className="list-unstyled">
                       <li className="currencySwitch p-2">
                         {this.dropCurrency()}
                       </li>
                     </ul>
-                  </div> */}
-                  <div className="col-xs-12 col-sm-6 col-md-6">
+                  </div>
+                  <div className="col-xs-12 col-sm-1 col-md-2">
+                    
+                  </div>
+                  <div className="col-xs-12 col-sm-4 col-md-4">
                     <div className="fr footer-slogan">
                       <img src={require("../../images/footer/TRON.png")} />
                       <p className="pt-2">{tu("index_page_tronscan_info")}</p>
