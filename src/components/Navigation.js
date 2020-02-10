@@ -1141,7 +1141,7 @@ class Navigation extends React.Component {
                               }
 
                               {
-                                route.routes && route.label !== "nav_more" && route.label !== "nav_network" && route.label !== "blockchain" &&
+                                route.routes && route.label !== "nav_more" && route.label !== "nav_network" && route.label !== "newblock" &&
                                 <div className="dropdown-menu">
                                   {
                                     route.routes && route.routes.map((subRoute, index) => {
@@ -1209,7 +1209,7 @@ class Navigation extends React.Component {
                                 </div>
                               }
                               {
-                                  route.routes && (route.label == "nav_network" || route.label == "nav_more" || route.label == "blockchain") &&
+                                  route.routes && (route.label == "nav_network" || route.label == "nav_more" || route.label == "newblock") &&
                                 <div className="dropdown-menu more-menu" style={{left: 'auto'}}>
                                   {
                                     route.routes && route.routes.map((subRoute, index) => {
