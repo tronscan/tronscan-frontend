@@ -1100,13 +1100,14 @@ class Navigation extends React.Component {
                     Tronscan is syncing, data might not be up-to-date ({Math.round(syncStatus.sync.progress)}%)
                   </div>
                 }
-              
+            
                 <div className="new-menu-List">
                   <nav className="top-bar navbar navbar-expand-md navbar-dark" style={{padding:0}}> 
                   {/*  pc nav */}
                     <div className="collapse navbar-collapse" id="navbar-top">
                       <ul className="navbar-nav">
                         {filter(routes, r => r.showInMenu !== false).map(route => (
+
                             <li key={route.path}  className={IS_MAINNET? 'nav-item dropdown': 'nav-item dropdown pr-3'}>
                               {
                                 route.linkHref === true ?
@@ -1126,7 +1127,8 @@ class Navigation extends React.Component {
                                         activeClassName="active"
                                         to={route.redirect? route.redirect: route.path}
                                     >
-                                      <span  className={(currentRouter.slice(1).split('/').indexOf(route.path.slice(1)) !== -1 || (currentRouter==='/exchange/trc20' && route.path ==="/exchange/trc20") || (route.path==='/more' && currentRouter.slice(1,5)==='help') || (route.path==='/more' && currentRouter.slice(1,6)==='tools'))  ? "menu-active-tilte-pc": ""}>
+                                      <span  className={
+                                        (currentRouter.slice(1).split('/').indexOf(route.path.slice(1)) !== -1 || (currentRouter==='/exchange/trc20' && route.path ==="/exchange/trc20") || (route.path==='/more' && currentRouter.slice(1,5)==='help') || (route.path==='/more' && currentRouter.slice(1,6)==='tools')) || (route.path==='/newblock' && currentRouter.slice(1,11)==='blockchain') || (route.path==='/newblock' && currentRouter.slice(1,10)==='contracts') || (route.path==='/newblock' && currentRouter.slice(1,7)==='tokens') ? "menu-active-tilte-pc": ""}>
                                       {route.icon &&
                                       <i className={route.icon + " d-none d-lg-inline-block mr-1"}/>}
                                       {tu(route.label)}
