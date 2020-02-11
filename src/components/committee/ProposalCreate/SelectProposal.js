@@ -7,7 +7,8 @@ import { Steps, Table, Checkbox } from 'antd';
 import SweetAlert from "react-bootstrap-sweetalert";
 import {Client} from "../../../services/api";
 import {upperFirst} from 'lodash'
-import {ONE_TRX,IS_MAINNET} from "../../../constants";
+import {API_URL, ONE_TRX,IS_MAINNET} from "../../../constants";
+import xhr from "axios";
 const Step = Steps.Step;
 
 @connect(
@@ -35,7 +36,9 @@ export class SelectProposal extends Component {
   }
 async getChainparameters() {
     if(IS_MAINNET){
-        let { tronParameters } = await Client.getChainparameters();
+        let data  = await xhr.get(`${API_URL}/api/chainparameters?type=1`);
+        let tronParameters = data.data.tronParameters;
+        console.log('tronParameters',tronParameters)
         if(!tronParameters){
             return
         }

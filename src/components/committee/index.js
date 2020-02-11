@@ -6,7 +6,7 @@ import {upperFirst} from 'lodash'
 import {Client} from "../../services/api";
 import {Link} from "react-router-dom";
 import {ONE_TRX,IS_MAINNET} from "../../constants";
-
+import _ from "lodash";
 
 class Committee extends React.Component {
 
@@ -45,8 +45,8 @@ class Committee extends React.Component {
             if(!tronParameters){
                 return
             }
-            let EnergyLimitNew   = {key: "getTotalEnergyLimitNew", value: 100000000000};
-            tronParameters.splice(19, 0, EnergyLimitNew);
+            // let EnergyLimitNew   = {key: "getTotalEnergyLimitNew", value: 100000000000};
+            // tronParameters.splice(19, 0, EnergyLimitNew);
             tronParameters.map(item => {
                 switch (item['key']){
                     case "getMaintenanceTimeInterval":
@@ -117,21 +117,22 @@ class Committee extends React.Component {
                         item.name = 'propose_17';
                         item.id = '16';
                         break;
-                    case "getTotalEnergyLimit":
-                        item.name = 'propose_18';
-                        item.id = '17';
-                        break;
+                    // case "getTotalEnergyLimit":
+                    //     item.name = 'propose_18';
+                    //     item.id = '17';
+                    //     break;
                     case "getAllowTvmTransferTrc10":
                         item.name = 'propose_19';
                         item.id = '18';
                         break;
-                    case "getTotalEnergyLimitNew":
-                        item.name = 'propose_18_1';
+                    // case "getTotalEnergyLimitNew":
+                    //     item.name = 'propose_18_1';
+                    //     item.id = '19';
+                    //     break;
+                    case "getTotalEnergyCurrentLimit":
+                        item.name = 'propose_20';
                         item.id = '19';
-                        break;
-                    // case "getTotalEnergyCurrentLimit":
-                    //     item.name = 'propose_20';
-                    // break;
+                    break;
                     case "getAllowMultiSign":
                         item.name = 'propose_21';
                         item.id = '20';
@@ -160,8 +161,20 @@ class Committee extends React.Component {
                         break;
                     case "getAllowTvmConstantinople":
                         item.name = 'propose_28';
-                        item.id = '25';
+                        item.id = '26';
                         break;
+                    case "getAllowShieldedTransaction":
+                        item.name = 'propose_29';
+                        item.id = '27';
+                        break; 
+                    case "getShieldedTransactionFee":
+                        item.name = 'propose_28_1';
+                        item.id = '28';
+                        break;
+                    case "getAdaptiveResourceLimitMultiplier":
+                        item.name = 'propose_29_1';
+                        item.id = '29';
+                        break;    
                     case "getChangeDelegation":
                         item.name = 'propose_30';
                         item.id = '30';
@@ -170,6 +183,14 @@ class Committee extends React.Component {
                         item.name = 'propose_31';
                         item.id = '31';
                         break;
+                    case "getAllowTvmSolidity059":
+                        item.name = 'propose_32';
+                        item.id = '32';
+                        break;
+                    case "getAdaptiveResourceLimitTargetRatio":
+                        item.name = 'propose_33';
+                        item.id = '33';
+                        break;        
                 }
             });
             let tronParametersNew = [];
@@ -179,7 +200,7 @@ class Committee extends React.Component {
                 }
             })
             this.setState({
-                dataSource: tronParametersNew
+                dataSource: _(tronParametersNew).sortBy(tb => Number(tb.id)).value()
             })
         }else{
             let { tronParameters } = await Client.getChainparameters();
@@ -466,6 +487,25 @@ class Committee extends React.Component {
                                         </div>
                                     }
                                     {
+                                        record.key == 'getAllowShieldedTransaction' && <div>
+                                            {
+                                                text? <span>{tu('propose_allowed')}</span>:
+                                                    <span>{tu('propose_not_allowed')}</span>
+                                            }
+                                        </div>
+                                    }
+                                    {                       
+                                        record.key == 'getShieldedTransactionFee' && <div>
+                                            <span>{text / ONE_TRX}</span> &nbsp;<span>TRX</span>
+                                        </div>
+                                    }
+                                    {                       
+                                        record.key == 'getAdaptiveResourceLimitMultiplier' && <div>
+                                            <span>{text}</span>
+                                        </div>
+                                    }
+
+                                    {
                                         record.key == 'getChangeDelegation' && <div>
                                             {
                                                 text? <span>{tu('propose_activate')}</span>:
@@ -479,7 +519,19 @@ class Committee extends React.Component {
                                                 <span>{text / ONE_TRX}</span> &nbsp;<span>TRX</span>
                                             </div>
                                     }
-
+                                    {
+                                        record.key == 'getAllowTvmSolidity059' && <div>
+                                            {
+                                                text? <span>{tu('propose_allowed')}</span>:
+                                                    <span>{tu('propose_not_allowed')}</span>
+                                            }
+                                        </div>
+                                    }
+                                    {                       
+                                        record.key == 'getAdaptiveResourceLimitTargetRatio' && <div>
+                                            <span>{text}</span>
+                                        </div>
+                                    }
                                 </div>:<div>
                                     {
                                         record.key == 'getChargingSwitch' && <div>
