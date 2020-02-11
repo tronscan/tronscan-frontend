@@ -11,6 +11,7 @@
     width: 6px;
     height: 6px;
   }
+
   .new-menu-List {
     padding-top:10px;
     .navbar-nav {
@@ -26,6 +27,7 @@
       }
     }
   }
+ 
   .nav-searchbar {
     .dropdown-menu {
       z-index: 300;
@@ -51,6 +53,18 @@
     .loginInfoNavBar {
       padding-top:10px;
       padding-right: 32px;
+    }
+  }
+  // sunnet menu
+  .sunnet-menu-nav-wrapper{
+    .new-menu-List {
+      padding-top:0;
+    }
+    .loginInfoNavBar{
+      padding-top: 0;
+    }
+    #navbar-top{
+      margin-left: 1rem;
     }
   }
   .single-logo-wrapper {

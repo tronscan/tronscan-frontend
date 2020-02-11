@@ -280,6 +280,7 @@ export const routes = [
     label: "index_navigation_data",
     pathKey: "/data",
     // icon: "fa fa-file-contract",
+    showInMenu: IS_MAINNET ? true : false,
     icon: false,
     component: () => <Redirect to="/data/stats" />,
     routes: [
