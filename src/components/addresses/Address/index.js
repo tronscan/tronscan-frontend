@@ -814,6 +814,7 @@ class Address extends React.Component {
                             <th>{tu("address")}:</th>
                             <td>
                               <AddressLink address={addr} includeCopy={true} />
+                              <div>{address.addressTag && <span className="addressTag">{address.addressTag}</span>}</div>
                             </td>
                           </tr>
                           {!address.representative.enabled ? (
