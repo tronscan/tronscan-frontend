@@ -3325,7 +3325,8 @@ export class HoldTrxAccountChart extends React.Component {
                     maskFill: 'rgba(198,72,68, 0.3)',
                     xAxis: {
                         labels: {
-                            format: '{value:%Y-%m-%d}',
+                            format:'{value:%Y-%m-%d}',
+                            x: 0
                             // enabled:false
                         },
                     },
