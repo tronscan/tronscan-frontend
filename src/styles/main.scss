@@ -953,7 +953,13 @@ th {
   .nav-item .nav-login-wallet {
     display: none !important;
   }
-
+  .footer-new{
+    .home-footer{
+      .developCenter{
+        margin:0;
+      }
+    }
+  }
   .nav-item .nav-login-wallet,
   .nav-item .account-dropdown-menu,
   .nav-static .nav-login-wallet,
@@ -1017,7 +1023,7 @@ th {
   }
 
   .home-footer .quick-links li {
-    width: 50%;
+    width: 100%;
     text-align: left;
   }
 
@@ -3248,6 +3254,29 @@ h5 {
 .dropdown-menu {
   margin-top: -4px;
 }
+.footerCurrencyBtn{
+  padding:3px 10px;
+  background: rgba(255, 255, 255, 0.14);
+  text-align: center;
+  height:24px;
+  box-sizing: border-box;
+  // &:hover{
+  //   .dropdown-menu {
+  //     display: block;
+  //   }
+  // }
+  .dropdown-menu {
+    margin-top: 0px;
+  }
+  .footerCurrencyTitle{
+    font-size: 12px;
+    font-family: HelveticaNeue;
+    color: #FFFFFF;
+  }
+  .footerCurrencyTitle:hover{
+    color: rgba(255, 255, 255, 0.7) !important;
+  }
+}
 
 .footerLanguagesWrapper{
   padding:3px 4px;
@@ -3257,6 +3286,17 @@ h5 {
   font-family: PingFangSC-Medium;
   font-size: 12px;
   height:24px;
+  // &:hover{
+  //   .dropdown-menu {
+  //     display: block;
+  //   }
+  // }
+  // .dropdown-toggle:active {
+  //   pointer-events: none;
+  // }
+  .dropdown-menu {
+    margin-top: 0px;
+  }
   .footerLanguages{
     font-family: PingFangSC-Medium;
     font-size: 12px;

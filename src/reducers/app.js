@@ -43,13 +43,7 @@ import {
   TRCWITHDRAWMIN
 } from "../constants";
 
-let curBrowserLang = navigator.language || navigator.userLanguage;
-let curLanAbbr = curBrowserLang.substr(0, 2);
-let curLanAbbreviation = Lockr.get('language') || curLanAbbr;
-var languageAry = ['zh', 'en','es','ja','ar','ko','ru','fa'];
-if (languageAry.indexOf(curLanAbbreviation) < 0) {
-    curLanAbbreviation = 'en';
-}
+
 
 
 
@@ -71,7 +65,7 @@ const initialState = {
     fa: "فارسی",
     es: "Español"
   },
-  activeLanguage: curLanAbbreviation,
+  activeLanguage: 'en',
   account: {
     key: undefined,
     address: undefined,

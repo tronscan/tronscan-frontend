@@ -320,7 +320,7 @@ class Footer extends Component {
                         </li>
                       </ul>
                     </div>
-                    <div style={{margin:'0 74px 0 90px'}}>
+                    <div className="developCenter">
                       <h5>{tu("footer_developer_resources")}</h5>
 
                       <ul className="list-unstyled quick-links">
@@ -390,12 +390,12 @@ class Footer extends Component {
                         <span className="currencySwitch">{this.dropCurrency()}</span>
                       </h5>
                     </div>
-                    <div className="hidden-mobile footerLanguagesWrapper">
+                    <div className="hidden-mobile footerLanguagesWrapper dropdown">
                       <img src={require(`../../images/home/${activeLanguage}.svg`)} alt="" style={{marginRight:'6px'}}/>
                       <a className="dropdown-toggle pr-0 footerLanguages text-uppercase"
                             data-toggle="dropdown"
                             href="javascript:">{languages[activeLanguage]}</a>
-                      <div className="dropdown-menu languages-menu footer-languages">
+                      <div className="dropdown-menu languages-menu footer-languages" aria-labelledby="navbarDropdown">
                         {
                           Object.keys(languages).map(language => (
                               <a key={language}
@@ -457,10 +457,6 @@ class Footer extends Component {
                       <span className="text mr-3">
                         Copyright© 2017-2020 tronscan.org
                       </span>
-                      {/* <div className="d-flex switch hidden-mobile">
-                        <span>{tu("index_page_switch_tokens")}</span>
-                        {this.dropCurrency()} 
-                      </div> */}
                     </div>
                   </div>
                   <div className="col-xs-6 col-sm-6 col-md-6 text-center mb-3">
@@ -500,27 +496,25 @@ class Footer extends Component {
 
   dropCurrency() {
     const { currencyConversions, activeCurrency } = this.props;
-    const menu = (
-      <Menu>
-        {currencyConversions.map(currency => (
-          <Menu.Item key={currency.id}>
-            <div
-              key={currency.id}
-              onClick={() => this.setCurrency(currency.id)}
-            >
-              {currency.name}
-            </div>
-          </Menu.Item>
-        ))}
-      </Menu>
-    );
+
 
     return (
-      <Dropdown overlay={menu} placement="bottomCenter">
-        <div className="ant-dropdown-link">
-          {activeCurrency.toUpperCase()} <Icon type="caret-down" style={{color: '#fff',marginLeft:"4px",fontSize:'10px'}} />
+      <div className="footerCurrencyBtn dropdown">
+        <a className="dropdown-toggle pr-0 footerCurrencyTitle text-uppercase"
+          data-toggle="dropdown"
+          href="javascript:">{activeCurrency.toUpperCase()}</a>
+        <div className="dropdown-menu languages-menu footer-languages" aria-labelledby="navbarDropdown">
+          {currencyConversions.map(currency => (
+            <a 
+              key={currency.id}
+              className="dropdown-item"
+              href="javascript:"
+              onClick={() => this.setCurrency(currency.id)}>
+                {currency.name}
+            </a>
+          ))}
         </div>
-      </Dropdown>
+      </div>
     );
   }
 
