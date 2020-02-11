@@ -41,15 +41,16 @@ class Footer extends Component {
           name: "Discord"
         },
         {
+          icon: "fab fa-weixin",
+          url: "",
+          name: "WeChat"
+        },
+        {
           icon: "fab fa-weibo",
           url: "https://www.weibo.com/tronscan?refer_flag=1005055013_&is_hot=1",
           name: "Weibo"
         },
-        {
-          icon: "fab fa-weixin",
-          url: "",
-          name: "WeChat"
-        }
+       
       ],
       modal: null,
       donateAddress: "TTzPiwbBedv7E8p4FkyPyeqq4RVoqRL3TW"
@@ -428,7 +429,7 @@ class Footer extends Component {
                             return (
                               <li className="footer-icon" key={ind}>
                                 <a target="_blank">
-                                  <i className={item.icon}></i>
+                                  <i className={`${item.icon} mr-3`}></i>
                                   <div className="code_wrap">
                                     <img
                                       src={require("../../images/footer/tronscan_wechat.png")}
@@ -515,7 +516,7 @@ class Footer extends Component {
     );
 
     return (
-      <Dropdown overlay={menu} placement="topCenter">
+      <Dropdown overlay={menu} placement="bottomCenter">
         <div className="ant-dropdown-link">
           {activeCurrency.toUpperCase()} <Icon type="caret-down" style={{color: '#fff',marginLeft:"4px",fontSize:'10px'}} />
         </div>
