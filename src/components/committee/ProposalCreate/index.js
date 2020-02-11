@@ -5,10 +5,10 @@ import { FormattedNumber, FormattedDate, injectIntl } from "react-intl";
 import "moment/min/locales";
 import moment from "moment";
 import { Steps } from "antd";
-import SelectTrc from "./SelectTrc";
-import InputInfo from "./InputInfo/index";
+import SelectProposal from "./SelectProposal";
+import SetProposal from "./SetProposal";
 import SubmitInfo from "./SubmitInfo";
-import ResultInfo from "./resultInfo";
+import ResultInfo from "./ResultInfo";
 import { Prompt } from "react-router";
 import { BrowserRouter } from "react-router-dom";
 import SweetAlert from "react-bootstrap-sweetalert";
@@ -451,7 +451,7 @@ export class ProposalsCreate extends Component {
               <div className="card">
                 <div className="">
                   {step === 0 && (
-                    <SelectTrc
+                    <SelectProposal
                       state={this.state}
                       nextStep={number => {
                         this.changeStep(number);
@@ -464,7 +464,7 @@ export class ProposalsCreate extends Component {
                     />
                   )}
                   {step === 1 && (
-                    <InputInfo
+                    <SetProposal
                       state={this.state}
                       nextStep={number => {
                         this.changeStep(number);

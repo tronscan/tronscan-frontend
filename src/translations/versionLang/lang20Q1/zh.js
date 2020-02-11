@@ -135,7 +135,8 @@ export const lang20Q1 = {
   propose_confirm: "确认提议", 
   propose_result: "提议结果",
   proposal_create_info: "提议是指对TRON网络参数进行修改，每个超级代表都具有提议权、对提议的投票权。当提议在有效期内获得19个及以上超级代表的赞成票时，该提议获得通过，并在下个维护期内进行网络参数修改。",
-
+  propose_select_table: "选择",
+  
  
 
 };

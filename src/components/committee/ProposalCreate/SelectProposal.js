@@ -3,7 +3,7 @@ import {t, tu} from "../../../utils/i18n";
 import {connect} from "react-redux";
 import {FormattedNumber, FormattedDate, injectIntl} from "react-intl";
 import 'moment/min/locales';
-import { Steps,Table } from 'antd';
+import { Steps, Table, Checkbox } from 'antd';
 import SweetAlert from "react-bootstrap-sweetalert";
 import {Client} from "../../../services/api";
 import {upperFirst} from 'lodash'
@@ -16,7 +16,7 @@ const Step = Steps.Step;
   })
 )
 
-export class TokenCreate extends Component {
+export class SelectProposal extends Component {
 
   constructor(props) {
     super(props);
@@ -28,8 +28,11 @@ export class TokenCreate extends Component {
   }
   componentDidMount() {
     this.getChainparameters();
-}
-
+  }
+  onChange(e,record) {
+    console.log(`checked = ${e.target.checked}`);
+    console.log(`record =` ,record);
+  }
 async getChainparameters() {
     if(IS_MAINNET){
         let { tronParameters } = await Client.getChainparameters();
@@ -326,7 +329,8 @@ async getChainparameters() {
             </span>
 
         }
-    }, {
+    },
+    {
         title: upperFirst(intl.formatMessage({id: 'propose_parameters'})),
         dataIndex: 'name',
         key: 'name',
@@ -334,8 +338,6 @@ async getChainparameters() {
             return <span>
                  {text && intl.formatMessage({id: text})}
             </span>
-
-
         }
     },
     {
@@ -598,8 +600,6 @@ async getChainparameters() {
                                         }
                                     </div>
                                 }
-
-
                             </div>
                         }
                     </div>
@@ -608,7 +608,20 @@ async getChainparameters() {
             </div>
 
         }
-    }];
+    },
+    {
+      title: upperFirst(intl.formatMessage({id: 'propose_select_table'})),
+      dataIndex: 'select',
+      key: 'select',
+      align:'right',
+      width:'15%',
+      render: (text, record, index) => {
+          return <span>
+               <Checkbox onChange={(e)=>this.onChange(e,record)}></Checkbox>
+          </span>
+      }
+    },
+  ];
 
     return (
         <Table
@@ -629,20 +642,23 @@ async getChainparameters() {
     const { locale } = this.props.intl
     
     return (
-        <main className="text-center">
+        <main>
           {this.state.modalSelect}
           <div className="mt-4">
             {this.getColumns()}
           </div>
-          <button 
+          {/* <button 
             type="button" 
             className="btn btn-danger btn-lg btn-w" 
             style={{width: '252px'}}
             onClick={this.goToNextStep}
-         >{tu('trc20_confirm')}</button>
+         >{tu('trc20_confirm')}</button> */}
+          <div className="text-right mt-4">
+            <button className="ml-4 btn btn-danger btn-lg" onClick={this.goToNextStep}>{tu('next')}</button>
+          </div>
         </main>
     )
   }
 }
 
-export default injectIntl(TokenCreate);
+export default injectIntl(SelectProposal);

@@ -276,6 +276,8 @@ class Committee extends React.Component {
                 return <span>
                      {text && intl.formatMessage({id: text})}
                 </span>
+
+
             }
         },
         {
