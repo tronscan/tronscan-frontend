@@ -1053,9 +1053,7 @@ class Navigation extends React.Component {
                 <div className="mobileFlexible">
                   <Link to="/">
                     <img  src={this.getLogo()} className="logo" alt="Tron"/>
-                    {IS_SUNNET?<span className="sunnet-logo-title ">
-                      <span className="ml-2" style={{color:"#000"}}>Dapp Chain</span>
-                    </span> :null}
+                 
                   </Link>
                   {
                     IS_MAINNET?
