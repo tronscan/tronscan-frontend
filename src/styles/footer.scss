@@ -2,9 +2,8 @@
   .dropdown:hover>.dropdown-menu {
     display: block;
   }
-  
-  .dropdown>.dropdown-toggle:active {
-    pointer-events: none;
+  .dropup:hover>.dropdown-menu {
+    display: block;
   }
   .home-footer {
     h5 {
@@ -190,6 +189,10 @@
   justify-content: space-between;
 }
 
+
+// .dropdown>.dropdown-toggle:active {
+//   pointer-events: none;
+// }
 
 
 // 2020-01-20

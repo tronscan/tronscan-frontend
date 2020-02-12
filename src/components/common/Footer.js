@@ -390,7 +390,7 @@ class Footer extends Component {
                         <span className="currencySwitch">{this.dropCurrency()}</span>
                       </h5>
                     </div>
-                    <div className="hidden-mobile footerLanguagesWrapper dropdown">
+                    <div className="hidden-mobile footerLanguagesWrapper dropup">
                       <img src={require(`../../images/home/${activeLanguage}.svg`)} alt="" style={{marginRight:'6px'}}/>
                       <a className="dropdown-toggle pr-0 footerLanguages text-uppercase"
                             data-toggle="dropdown"
