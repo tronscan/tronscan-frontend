@@ -58,7 +58,7 @@
         background: #fff;
         position: absolute;
         left: -53px;
-        top: 30px;
+        top: -127px;
         display: none;
         z-index: 100;
 
@@ -70,14 +70,14 @@
         &:before {
           width: 0;
           height: 0;
-          border-top: 12px solid transparent;
-          border-bottom: 12px solid #fff;
+          border-bottom: 12px solid transparent;
+          border-top: 12px solid #fff;
           border-left: 7px solid transparent;
           border-right: 7px solid transparent;
           content: "";
           position: absolute;
           left: 53px;
-          top: -24px;
+          top: 118px;
         }
       }
 
@@ -105,6 +105,9 @@
       text-align: center;
       line-height: 24px;
     }
+  }
+  .footerCopyrightWrapper{
+    padding:16px 0;
   }
   .copyright {
     border-top: 1px solid rgba(255, 255, 255, 0.2);

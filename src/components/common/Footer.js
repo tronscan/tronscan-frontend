@@ -449,17 +449,17 @@ class Footer extends Component {
                   <HelpLinkCont></HelpLinkCont>
                 </div>
               </div>
-              <div className="copyright pt-5">
+              <div className="copyright footerCopyrightWrapper">
                 {modal}
-                <div className="row footerContainer">
-                  <div className="col-xs-6 col-sm-6 col-md-6 text-center mb-3">
+                <div className="row footerContainer copyrightFooterContainer">
+                  <div className="col-xs-6 col-sm-6 col-md-6 text-center">
                     <div className="d-flex">
                       <span className="text mr-3">
                         Copyright© 2017-2020 tronscan.org
                       </span>
                     </div>
                   </div>
-                  <div className="col-xs-6 col-sm-6 col-md-6 text-center mb-3">
+                  <div className="col-xs-6 col-sm-6 col-md-6 text-center">
                     <div className="fr d-flex">
                       <div className="donate">
                         <Link
