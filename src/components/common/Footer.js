@@ -111,7 +111,7 @@ class Footer extends Component {
                       </HrefLink>
                     </li>
                     <li>
-                      <a target="_blank" className="footer-icon">
+                      <a target="_blank" className="footer-icon mobile-footer-icon">
                         <i className="fab fa-weixin mr-1"></i>WeChat
                         <div className="code_wrap">
                           <img

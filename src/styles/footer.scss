@@ -49,6 +49,7 @@
         }
       }
     }
+
     .footer-icon {
       position: relative;
 
@@ -87,6 +88,11 @@
 
       &:active .code_wrap {
         display: block;
+      }
+    }
+    .mobile-footer-icon{
+      .code_wrap {
+        left: -10px;
       }
     }
     .developCenter{
