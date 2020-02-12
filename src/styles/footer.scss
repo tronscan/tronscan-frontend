@@ -5,6 +5,10 @@
   .dropup:hover>.dropdown-menu {
     display: block;
   }
+  .dropup>.dropdown-toggle:active {
+    pointer-events: none;
+  }
+
   .home-footer {
     h5 {
       font-size: 14px;
@@ -190,9 +194,7 @@
 }
 
 
-// .dropdown>.dropdown-toggle:active {
-//   pointer-events: none;
-// }
+
 
 
 // 2020-01-20
