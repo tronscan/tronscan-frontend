@@ -401,7 +401,10 @@ class Footer extends Component {
                               <a key={language}
                                 className="dropdown-item"
                                 href="javascript:"
-                                onClick={() => this.setLanguage(language)}>
+                                onClick={() => {
+                                  this.setLanguage(language);
+                                  document.documentElement.scrollTop = 0;
+                                }}>
                                   <img src={require(`../../images/home/${language}.svg`)} alt="" style={{marginRight:'6px'}}/>
                                   {languages[language]}
                                 </a>
