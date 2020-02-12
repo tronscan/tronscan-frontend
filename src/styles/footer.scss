@@ -1,5 +1,11 @@
 .footer-new {
+  .dropdown:hover>.dropdown-menu {
+    display: block;
+  }
   
+  .dropdown>.dropdown-toggle:active {
+    pointer-events: none;
+  }
   .home-footer {
     h5 {
       font-size: 14px;
@@ -174,13 +180,7 @@
 .footerTronSection{
   justify-content: space-between;
 }
-.dropdown:hover>.dropdown-menu {
-  display: block;
-}
 
-.dropdown>.dropdown-toggle:active {
-  pointer-events: none;
-}
 
 
 // 2020-01-20
