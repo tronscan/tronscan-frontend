@@ -1329,7 +1329,7 @@ class Navigation extends React.Component {
                         <a className="nav-link dropdown-toggle dropdown-menu-right pr-0 nav-testnet-dropdown-menu"
                           data-toggle="dropdown"
                           href="javascript:">
-                          <img src={require("../images/home/icon.png")} width="16px" height="16px"/>
+                          <img src={require("../images/home/icon.svg")} width="16px" height="16px"/>
                         </a>
                         <div className="dropdown-menu testnet-dropdown-menu">
                           {
