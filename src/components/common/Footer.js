@@ -11,6 +11,9 @@ import { setActiveCurrency } from "../../actions/app";
 import { Menu, Dropdown, Icon, Button } from "antd";
 import SendModal from "../transfer/Send/SendModal";
 import { QuestionMark } from "./QuestionMark";
+import {
+  setLanguage,
+} from "../../actions/app";
 
 class Footer extends Component {
   constructor() {
@@ -38,20 +41,26 @@ class Footer extends Component {
           name: "Discord"
         },
         {
+          icon: "fab fa-weixin",
+          url: "",
+          name: "WeChat"
+        },
+        {
           icon: "fab fa-weibo",
           url: "https://www.weibo.com/tronscan?refer_flag=1005055013_&is_hot=1",
           name: "Weibo"
         },
-        {
-          icon: "fab fa-weixin",
-          url: "",
-          name: "WeChat"
-        }
+       
       ],
       modal: null,
       donateAddress: "TTzPiwbBedv7E8p4FkyPyeqq4RVoqRL3TW"
     };
   }
+
+
+  setLanguage = (language) => {
+    this.props.setLanguage(language);
+  };
 
   render() {
     const donate_address = this.state.donateAddress;
@@ -60,8 +69,10 @@ class Footer extends Component {
       intl,
       activeLanguage,
       activeCurrency,
-      currencyConversions
+      currencyConversions,
+      languages,
     } = this.props;
+   
     const { links } = this.state;
     return (
       <div className="footer-compontent pb-0 footer-new">
@@ -100,7 +111,7 @@ class Footer extends Component {
                       </HrefLink>
                     </li>
                     <li>
-                      <a target="_blank" className="footer-icon">
+                      <a target="_blank" className="footer-icon mobile-footer-icon">
                         <i className="fab fa-weixin mr-1"></i>WeChat
                         <div className="code_wrap">
                           <img
@@ -111,7 +122,6 @@ class Footer extends Component {
                     </li>
                   </ul>
                 </div>
-
                 <div className="col-6 col-md-3">
                   <h5>{tu("footer_developer_resources")}</h5>
                   <ul className="list-unstyled">
@@ -143,7 +153,6 @@ class Footer extends Component {
                     </li>
                   </ul>
                 </div>
-
                 <div className="col-6 col-md-3">
                   <h5>{tu("TRON_ecosystem")}</h5>
                   <ul className="list-unstyled">
@@ -238,8 +247,8 @@ class Footer extends Component {
                 {modal}
                 <div className="row container">
                   <div className="col-xs-12 col-sm-6 col-md-6 text-center mb-3 hidden-mobile">
-                    <div className="">
-                      <div className="switch d-flex between">
+                    <div>
+                      <div className="switch d-flex between hidden-mobile">
                         <span>{tu("index_page_switch_tokens")}</span>
                         {this.dropCurrency()}
                       </div>
@@ -283,98 +292,129 @@ class Footer extends Component {
             </div>
           ) : (
             <div>
-              <div className="container footerContainer">
-                <div className="row text-center text-xs-center text-sm-left text-md-left">
-                  <div className="col-xs-12 col-sm-2 col-md-2">
-                    <h5>{tu("TRON_ecosystem")}</h5>
+              <div className="footerContainer">
+                <div className="text-center text-xs-center text-sm-left text-md-left d-flex footerTronSection">
+                  <div className="d-flex">
+                    <div className="">
+                      <h5>{tu("TRON_ecosystem")}</h5>
 
-                    <ul className="list-unstyled quick-links">
-                      <li className="p-2">
-                        <HrefLink href="https://tron.network">
-                          {tu("footer_tron_network")}
-                        </HrefLink>
-                      </li>
-                      <li className="p-2">
-                        <HrefLink href="https://www.tronlink.org">
-                          {" "}
-                          {tu("wallet")}
-                        </HrefLink>
-                      </li>
-                      <li className="p-2">
-                        <HrefLink href="https://poloniex.org">
-                          {tu("exchange")}
-                        </HrefLink>
-                      </li>
-                      <li className="p-2">
-                        <HrefLink href="https://tron.app">DApp House</HrefLink>
-                      </li>
-                    </ul>
-                  </div>
-                  <div className="col-xs-12 col-sm-2 col-md-2">
-                    <h5>{tu("footer_developer_resources")}</h5>
+                      <ul className="list-unstyled quick-links">
+                        <li className="p-2">
+                          <HrefLink href="https://tron.network">
+                            {tu("footer_tron_network")}
+                          </HrefLink>
+                        </li>
+                        <li className="p-2">
+                          <HrefLink href="https://www.tronlink.org">
+                            {" "}
+                            {tu("wallet")}
+                          </HrefLink>
+                        </li>
+                        <li className="p-2">
+                          <HrefLink href="https://poloniex.org">
+                            {tu("exchange")}
+                          </HrefLink>
+                        </li>
+                        <li className="p-2">
+                          <HrefLink href="https://tron.app">DApp House</HrefLink>
+                        </li>
+                      </ul>
+                    </div>
+                    <div className="developCenter">
+                      <h5>{tu("footer_developer_resources")}</h5>
 
-                    <ul className="list-unstyled quick-links">
-                      <li className="p-2">
-                        <HrefLink href="https://github.com/tronprotocol">
-                          Github
-                        </HrefLink>
-                      </li>
-                      <li className="p-2">
-                        <HrefLink href="https://github.com/tronprotocol/java-tron">
-                          java-tron
-                        </HrefLink>
-                      </li>
-                      <li className="p-2">
-                        <HrefLink
-                          href={
-                            activeLanguage == "zh"
-                              ? "https://github.com/tronprotocol/documentation-zh"
-                              : "https://github.com/tronprotocol/documentation-en"
-                          }
-                        >
-                          Documentation
-                        </HrefLink>
-                      </li>
-                      <li className="p-2">
-                        <HrefLink href="https://developers.tron.network/">
-                          Developer Hub
-                        </HrefLink>
-                      </li>
-                    </ul>
-                  </div>
-                  <div className="col-xs-12 col-sm-2 col-md-2">
-                    <h5 className="text-uppercase">{tu("about_us")}</h5>
+                      <ul className="list-unstyled quick-links">
+                        <li className="p-2">
+                          <HrefLink href="https://github.com/tronprotocol">
+                            Github
+                          </HrefLink>
+                        </li>
+                        <li className="p-2">
+                          <HrefLink href="https://github.com/tronprotocol/java-tron">
+                            java-tron
+                          </HrefLink>
+                        </li>
+                        <li className="p-2">
+                          <HrefLink
+                            href={
+                              activeLanguage == "zh"
+                                ? "https://github.com/tronprotocol/documentation-zh"
+                                : "https://github.com/tronprotocol/documentation-en"
+                            }
+                          >
+                            Documentation
+                          </HrefLink>
+                        </li>
+                        <li className="p-2">
+                          <HrefLink href="https://developers.tron.network/">
+                            Developer Hub
+                          </HrefLink>
+                        </li>
+                      </ul>
+                    </div>
+                    <div className="">
+                      <h5 className="text-uppercase">{tu("about_us")}</h5>
 
-                    <ul className="list-unstyled quick-links">
-                      <li className="p-2">
-                        <Link to="/help/about">
-                          {tu("index_page_footer_team_info")}
-                        </Link>
-                      </li>
-                      {/* <li className="p-2">
-                    <HrefLink href={activeLanguage == 'zh'?"https://support.tronscan.org/hc/zh-cn/requests/new":"https://support.tronscan.org/hc/en-us/requests/new"}>
-                        {tu('contact_us')}
-                    </HrefLink>
-                  </li> */}
-                      {/* <li className="p-2">
-                        <HrefLink
-                          href={
-                            activeLanguage == "zh"
-                              ? "https://tronscanorg.zendesk.com/hc/zh-cn"
-                              : "https://tronscanorg.zendesk.com/hc/en-us"
-                          }
-                        >
-                          {tu("footer_support_center")}
-                        </HrefLink>
-                      </li> */}
-                      {/* <li className="p-2">
-                    <HrefLink href={activeLanguage == 'zh'?"https://tronscanorg.zendesk.com/hc/zh-cn/categories/360001616871-%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98":"https://tronscanorg.zendesk.com/hc/en-us/categories/360001621712-FAQ"}>
-                        {tu('frequently_asked_questions')}
-                    </HrefLink>
-                  </li> */}
-                    </ul>
+                      <ul className="list-unstyled quick-links">
+                        <li className="p-2">
+                          <Link to="/help/about">
+                            {tu("index_page_footer_team_info")}
+                          </Link>
+                        </li>
+                        {/* <li className="p-2">
+                      <HrefLink href={activeLanguage == 'zh'?"https://support.tronscan.org/hc/zh-cn/requests/new":"https://support.tronscan.org/hc/en-us/requests/new"}>
+                          {tu('contact_us')}
+                      </HrefLink>
+                    </li> */}
+                        {/* <li className="p-2">
+                          <HrefLink
+                            href={
+                              activeLanguage == "zh"
+                                ? "https://tronscanorg.zendesk.com/hc/zh-cn"
+                                : "https://tronscanorg.zendesk.com/hc/en-us"
+                            }
+                          >
+                            {tu("footer_support_center")}
+                          </HrefLink>
+                        </li> */}
+                        {/* <li className="p-2">
+                      <HrefLink href={activeLanguage == 'zh'?"https://tronscanorg.zendesk.com/hc/zh-cn/categories/360001616871-%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98":"https://tronscanorg.zendesk.com/hc/en-us/categories/360001621712-FAQ"}>
+                          {tu('frequently_asked_questions')}
+                      </HrefLink>
+                    </li> */}
+                      </ul>
+                    </div>
+                    <div className="hidden-mobile" style={{margin:'0 90px 0 90px'}}>
+                      <h5 className="text-uppercase hidden-mobile d-flex">
+                        <span style={{padding:"5px 7px",background:"rgba(0, 0, 0, 0.14)",fontFamily: "HelveticaNeue",fontSize: "11px", color: "#C2C2C2"}}>{tu("index_page_switch_tokens")}</span>
+                        <span className="currencySwitch">{this.dropCurrency()}</span>
+                      </h5>
+                    </div>
+                    <div className="hidden-mobile footerLanguagesWrapper dropup">
+                      <img src={require(`../../images/home/${activeLanguage}.svg`)} alt="" style={{marginRight:'6px'}}/>
+                      <a className="dropdown-toggle pr-0 footerLanguages text-uppercase"
+                            data-toggle="dropdown"
+                            href="javascript:">{languages[activeLanguage]}</a>
+                      <div className="dropdown-menu languages-menu footer-languages" aria-labelledby="navbarDropdown">
+                        {
+                          Object.keys(languages).map(language => (
+                              <a key={language}
+                                className="dropdown-item"
+                                href="javascript:"
+                                onClick={() => {
+                                  this.setLanguage(language);
+                                  document.documentElement.scrollTop = 0;
+                                }}>
+                                  <img src={require(`../../images/home/${language}.svg`)} alt="" style={{marginRight:'6px'}}/>
+                                  {languages[language]}
+                                </a>
+                          ))
+                        }
+                      </div>
+                    </div>
+                   
                   </div>
-                  <div className="col-xs-12 col-sm-6 col-md-6">
+                  <div>
                     <div className="fr footer-slogan">
                       <img src={require("../../images/footer/TRON.png")} />
                       <p className="pt-2">{tu("index_page_tronscan_info")}</p>
@@ -392,7 +432,7 @@ class Footer extends Component {
                             return (
                               <li className="footer-icon" key={ind}>
                                 <a target="_blank">
-                                  <i className={item.icon}></i>
+                                  <i className={`${item.icon} mr-3`}></i>
                                   <div className="code_wrap">
                                     <img
                                       src={require("../../images/footer/tronscan_wechat.png")}
@@ -406,27 +446,23 @@ class Footer extends Component {
                       </ul>
                     </div>
                   </div>
-
-                  <div className="helpLinkPos">
-                    <HelpLinkCont></HelpLinkCont>
-                  </div>
+                  
+                </div>
+                <div className="helpLinkPos">
+                  <HelpLinkCont></HelpLinkCont>
                 </div>
               </div>
-              <div className="copyright pt-5">
+              <div className="copyright footerCopyrightWrapper">
                 {modal}
-                <div className="row container">
-                  <div className="col-xs-6 col-sm-6 col-md-6 text-center mb-3">
+                <div className="row footerContainer copyrightFooterContainer">
+                  <div className="col-xs-6 col-sm-6 col-md-6 text-center">
                     <div className="d-flex">
                       <span className="text mr-3">
                         Copyright© 2017-2020 tronscan.org
                       </span>
-                      <div className="d-flex switch hidden-mobile">
-                        <span>{tu("index_page_switch_tokens")}</span>
-                        {this.dropCurrency()}
-                      </div>
                     </div>
                   </div>
-                  <div className="col-xs-6 col-sm-6 col-md-6 text-center mb-3">
+                  <div className="col-xs-6 col-sm-6 col-md-6 text-center">
                     <div className="fr d-flex">
                       <div className="donate">
                         <Link
@@ -463,27 +499,25 @@ class Footer extends Component {
 
   dropCurrency() {
     const { currencyConversions, activeCurrency } = this.props;
-    const menu = (
-      <Menu>
-        {currencyConversions.map(currency => (
-          <Menu.Item key={currency.id}>
-            <div
-              key={currency.id}
-              onClick={() => this.setCurrency(currency.id)}
-            >
-              {currency.name}
-            </div>
-          </Menu.Item>
-        ))}
-      </Menu>
-    );
+
 
     return (
-      <Dropdown overlay={menu} placement="topCenter">
-        <div className="ant-dropdown-link">
-          {activeCurrency.toUpperCase()} <Icon type="down" />
+      <div className="footerCurrencyBtn dropup">
+        <a className="dropdown-toggle pr-0 footerCurrencyTitle text-uppercase"
+          data-toggle="dropdown"
+          href="javascript:">{activeCurrency.toUpperCase()}</a>
+        <div className="dropdown-menu languages-menu footer-languages" aria-labelledby="navbarDropdown">
+          {currencyConversions.map(currency => (
+            <a 
+              key={currency.id}
+              className="dropdown-item"
+              href="javascript:"
+              onClick={() => this.setCurrency(currency.id)}>
+                {currency.name}
+            </a>
+          ))}
         </div>
-      </Dropdown>
+      </div>
     );
   }
 
@@ -510,12 +544,14 @@ function mapStateToProps(state) {
   return {
     activeLanguage: state.app.activeLanguage,
     activeCurrency: state.app.activeCurrency,
+    languages: state.app.availableLanguages,
     currencyConversions: state.app.currencyConversions
   };
 }
 
 const mapDispatchToProps = {
-  setActiveCurrency
+  setActiveCurrency,
+  setLanguage,
 };
 
 export default connect(

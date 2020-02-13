@@ -268,7 +268,7 @@ class BestData extends React.Component {
                         >
                           <NavLink
                             exact
-                            to={"/blockchain/data" + tab.path}
+                            to={"/data/bestdata" + tab.path}
                             className="nav-link text-dark"
                           >
                             {tab.label}
@@ -327,7 +327,7 @@ class BestData extends React.Component {
                           <Route
                             key={tab.id}
                             exact
-                            path={"/blockchain/data" + tab.path}
+                            path={"/data/bestdata" + tab.path}
                             render={props => <tab.cmp />}
                           />
                         ))}
