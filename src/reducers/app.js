@@ -194,7 +194,7 @@ export function appReducer(state = initialState, action) {
       const HttpProvider = TronWeb.providers.HttpProvider; // This provider is optional, you can just use a url for the nodes instead
       const fullNode = new HttpProvider(ServerNode); // Full node http endpoint
       const solidityNode = new HttpProvider(ServerNode); // Solidity node http endpoint
-      const eventServer = ServerNode; // Contract events http endpoint
+      const eventServer = SUNWEBCONFIG.MAINEVENTSERVER; // Contract events http endpoint
       const privateKey = action.privateKey;
       const tronWeb = new TronWeb({
         fullNode,
@@ -206,7 +206,7 @@ export function appReducer(state = initialState, action) {
         {
           fullNode: ServerNode,
           solidityNode: ServerNode,
-          eventServer: ServerNode
+          eventServer: SUNWEBCONFIG.MAINEVENTSERVER
         },
         {
           fullNode: SUNWEBCONFIG.SUNFULLNODE,

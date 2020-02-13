@@ -1,7 +1,7 @@
 
 let config = {
     curEnv:'production',
-    networkUrl : `https://api.trongrid.io`,
+    networkUrl : `https://api.tronstack.io`,
     api:{
         mutiSign:{
             apiPostMutiSignedTansaction:'https://list.tronlink.org/api/wallet/multi/transaction'

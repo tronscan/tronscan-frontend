@@ -35,7 +35,7 @@ export function withTronWeb(InnerComponent) {
       const tronWeb = new TronWeb(
         networkUrl,
         networkUrl,
-        networkUrl);
+        SUNWEBCONFIG.MAINEVENTSERVER);
 
       tronWeb.trx.sign = this.buildTransactionSigner(tronWeb, false);
       tronWeb.trx.multiSign = this.buildTransactionSigner(tronWeb, true);

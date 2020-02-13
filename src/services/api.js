@@ -5,10 +5,11 @@ import xhr from "axios/index";
 import { API_URL } from "../constants.js";
 import { setLoginWithAddress } from "../actions/app.js";
 
-const ServerNode = "https://api.trongrid.io";
+const fullNodeStack = "https://api.tronstack.io";
+const ServerNode = "https://api.tronex.io";
 const HttpProvider = TronWeb.providers.HttpProvider; // This provider is optional, you can just use a url for the nodes instead
-const fullNode = new HttpProvider(ServerNode); // Full node http endpoint
-const solidityNode = new HttpProvider(ServerNode); // Solidity node http endpoint
+const fullNode = new HttpProvider(fullNodeStack); // Full node http endpoint
+const solidityNode = new HttpProvider(fullNodeStack); // Solidity node http endpoint
 const eventServer = ServerNode; // Contract events http endpoint
 export const tronWeb = new TronWeb(fullNode, solidityNode, eventServer);
 
