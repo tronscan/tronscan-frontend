@@ -186,11 +186,20 @@
       .nowidth {
         min-width: auto;
       }
+     
     }
   }
 }
 .footerTronSection{
   justify-content: space-between;
+}
+.mobile-footer{
+  .mobileCopyright{
+    color:#fff;
+  }
+  .donate{
+    background: rgba(255, 255, 255, 0.14);
+  }
 }
 
 
