@@ -84,7 +84,6 @@ export const routes = [
     icon: false,
     routes: [
       [
-        'block',
         {
           label: "nodes",
           // icon: "fa fa-server",
@@ -152,7 +151,6 @@ export const routes = [
         // },  
       ],
       [
-        'contract_title',
         {
           label: "contracts",
           // icon: "fa fa-file",
@@ -209,7 +207,6 @@ export const routes = [
         }
       ],
       [
-        'token',
         {
           label: "token_overview",
           path: "/tokens/list",
