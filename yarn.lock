@@ -10200,6 +10200,7 @@ react-base16-styling@^0.6.0:
 react-bootstrap-sweetalert@^4.4.1:
   version "4.4.1"
   resolved "https://registry.yarnpkg.com/react-bootstrap-sweetalert/-/react-bootstrap-sweetalert-4.4.1.tgz#94410a79c6d6a1e7ce4ede810904c90d08f6a01a"
+  integrity sha512-czUP6EPXb6GZopxxkixm+a5OaV+kbdxhFbsHaFNIF3l9jBypHCv29TrV8OOruAwrG+GpCmEd8LzzyYPZ0aL9TA==
   dependencies:
     object-assign "^4.1.0"
 

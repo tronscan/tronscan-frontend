@@ -48,6 +48,8 @@ import {
   ContractTrans,
   Committee,
   Proposals,
+  MyProposals,
+  myParticipated,
   Block,
   Transaction,
   Address,
@@ -595,6 +597,18 @@ export const routes = [
     path: "/proposal/:id",
     label: "commission_proposed",
     component: ProposalDetailAsync,
+    showInMenu: false
+  },
+  {
+    path: "/myproposals",
+    label: "proposal_mine",
+    component: MyProposals,
+    showInMenu: false
+  },
+  {
+    path: "/myproposals/myparticipated",
+    label: "proposal_mine",
+    component: myParticipated,
     showInMenu: false
   },
   {

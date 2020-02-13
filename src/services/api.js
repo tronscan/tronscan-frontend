@@ -2,9 +2,8 @@ import { Client as ApiClient } from "@tronscan/client";
 import io from "socket.io-client";
 import TronWeb from "tronweb";
 import xhr from "axios/index";
-import { API_URL } from "../constants.js";
+import { API_URL,API_URL_SUNNET } from "../constants.js";
 import { setLoginWithAddress } from "../actions/app.js";
-
 const ServerNode = "https://api.trongrid.io";
 const HttpProvider = TronWeb.providers.HttpProvider; // This provider is optional, you can just use a url for the nodes instead
 const fullNode = new HttpProvider(ServerNode); // Full node http endpoint
@@ -260,5 +259,26 @@ class ApiClient20 {
     return data;
   }
 }
+
+class ApiProposal{
+  constructor() {
+    this.apiUrl = {
+      mainnet: API_URL,
+      sunnet: API_URL_SUNNET
+    };
+  }
+  async getMyProposalList(options = {},type) {
+    let url = this.apiUrl[type || "mainnet"];
+    let { data } = await xhr.get(
+      `${url}/api/account-proposal`,
+      {
+        params: options
+      }
+    );
+    return data;
+  }
+}
+
+export const proposalApi = new ApiProposal();
 
 export const Client20 = new ApiClient20();

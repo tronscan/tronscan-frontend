@@ -1,75 +1,49 @@
-import React from "react";
+import React, {Fragment} from "react";
 import { connect } from 'react-redux';
-import {tu} from "../../utils/i18n";
-import {upperFirst} from 'lodash'
-import {Client} from "../../services/api";
-import {Link, withRouter} from "react-router-dom";
-import SmartTable from "../common/SmartTable.js"
+import {tu,t} from "../../../utils/i18n";
+import { Client, proposalApi } from "../../../services/api";
 import {FormattedDate, FormattedTime, injectIntl} from "react-intl";
-import {TronLoader} from "../common/loaders";
-import {AddressLink} from "../common/Links";
-import {QuestionMark} from "../common/QuestionMark";
-import {ONE_TRX,IS_MAINNET} from "../../constants";
+import {TronLoader} from "../../common/loaders";
+import {AddressLink} from "../../common/Links";
+import {QuestionMark} from "../../common/QuestionMark";
+import {ONE_TRX,IS_MAINNET} from "../../../constants";
+import {NavLink, Route, Switch} from "react-router-dom";
+import {upperFirst} from 'lodash'
+import {Link} from "react-router-dom";
 import { Table } from "antd";
 import SweetAlert from 'react-bootstrap-sweetalert';
-import {Modal, ModalBody, ModalHeader} from "reactstrap";
-import ApplyForDelegate from "./common/ApplyForDelegate";
-import Lockr from "lockr";
-const xhr = require("axios");
-class Proposal extends React.Component {
 
-    constructor() {
-        super();
-        this.state = {
-            dataSource:[],
-            total:0,
-            loading: false,
-            pagination: {
-                showQuickJumper: true,
-                position: "bottom",
-                showSizeChanger: true,
-                defaultPageSize: 20,
-                total: 0
-            },
-            modal: null,
-            isTronLink: 0
-        };
+
+class MyParticipated extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+        dataSource:[],
+        total:0,
+        loading: false,
+        pagination: {
+            showQuickJumper: true,
+            position: "bottom",
+            showSizeChanger: true,
+            defaultPageSize: 20,
+            total: 0
+        },
+        modal: null,
     }
+  }
 
-    componentDidMount() {
+    componentDidMount(){
         let { account, currentWallet } = this.props;
         this.load();
-        if (account.isLoggedIn) {
-            this.setState({
-                isTronLink: Lockr.get("islogin"),
-            });
-        }
     }
-    onChange = (page, pageSize) => {
-        this.load(page, pageSize);
-    };
-    handleTableChange = (pagination, filters, sorter) => {
-        const pager = { ...this.state.pagination };
-        pager.current = pagination.current;
-        pager.pageSize = pagination.pageSize;
-        this.setState(
-          {
-            pagination: pager
-          },
-          () => this.load(pager.current, pager.pageSize)
-        );
-    };
-
-
     load = async (page = 1, pageSize = 20) => {
-
+        let { account, currentWallet } = this.props;
         this.setState({ loading: true });
-        let { account } = this.props;
-        let {proposal, total} = await Client.getProposalList({
-            sort: '-number',
+        let { data, total } = await proposalApi.getMyProposalList({
             limit: pageSize,
-            start: (page-1) * pageSize,
-            address: account.address || ''
+            start: (page - 1) * pageSize,
+            address: account.address,
+            type: 2
         });
         let parametersArr = [
             'getMaintenanceTimeInterval',
@@ -93,7 +67,7 @@ class Proposal extends React.Component {
             'getAllowTvmTransferTrc10',
             'getTotalEnergyLimitNew',
             'getAllowMultiSign',
-           // 'getTotalEnergyCurrentLimit',
+            // 'getTotalEnergyCurrentLimit',
             'getAllowAdaptiveEnergy',
             //'getTotalEnergyTargetLimit',
             //'getTotalEnergyAverageUsage',
@@ -108,56 +82,55 @@ class Proposal extends React.Component {
             'getChangeDelegation',
             'getWitness127PayPerBlock',
         ];
-
         let sunsideArr = [
             {
-                id:'1000000',
-                key:'getChargingSwitch',
+                id: '1000000',
+                key: 'getChargingSwitch',
             },
             {
-                id:'1000001',
-                key:'getSideChainGateWayList',
+                id: '1000001',
+                key: 'getSideChainGateWayList',
             },
             {
-                id:'1000003',
-                key:'getProposalExpireTime',
+                id: '1000003',
+                key: 'getProposalExpireTime',
             },
             {
-                id:'1000004',
-                key:'getVoteWitnessSwitch',
+                id: '1000004',
+                key: 'getVoteWitnessSwitch',
             },
             {
-                id:'1000007',
-                key:'getFundInjectAddress',
+                id: '1000007',
+                key: 'getFundInjectAddress',
             },
             {
-                id:'1000008',
-                key:'getFundDistributeEnableSwitch',
+                id: '1000008',
+                key: 'getFundDistributeEnableSwitch',
             },
             {
-                id:'1000009',
-                key:'getDayToSustainByFund',
+                id: '1000009',
+                key: 'getDayToSustainByFund',
             },
             {
-                id:'1000010',
-                key:'getPercentToPayWitness',
+                id: '1000010',
+                key: 'getPercentToPayWitness',
             },
-
-        ]
-        if(IS_MAINNET){
-            for(let item in proposal){
-                for(let j in proposal[item]['paramters']){
-                    proposal[item]['paramters'][j]['proposalKey'] = parametersArr[proposal[item]['paramters'][j]['key']];
-                    proposal[item]['paramters'][j]['proposalVal'] = proposal[item]['paramters'][j]['value'];
+        ];
+        if (IS_MAINNET) {
+            for (let item in data) {
+                for (let j in data[item]['paramters']) {
+                    data[item]['paramters'][j]['proposalKey'] = parametersArr[data[item]['paramters'][j]['key']];
+                    data[item]['paramters'][j]['proposalVal'] = data[item]['paramters'][j]['value'];
                 }
             }
-        }else{
-            for(let item in proposal){
-                for(let j in proposal[item]['paramters']){
-                    for(let i in sunsideArr){
-                        if(sunsideArr[i]['id']== proposal[item]['paramters'][j]['key']){
-                             proposal[item]['paramters'][j]['proposalKey'] = sunsideArr[i]['key'];
-                             proposal[item]['paramters'][j]['proposalVal'] = proposal[item]['paramters'][j]['value'];
+        }
+        else {
+            for (let item in data) {
+                for (let j in data[item]['paramters']) {
+                    for (let i in sunsideArr) {
+                        if (sunsideArr[i]['id'] == data[item]['paramters'][j]['key']) {
+                            data[item]['paramters'][j]['proposalKey'] = sunsideArr[i]['key'];
+                            data[item]['paramters'][j]['proposalVal'] = data[item]['paramters'][j]['value'];
                         }
                     }
                 }
@@ -165,57 +138,30 @@ class Proposal extends React.Component {
         }
         this.setState({
             loading: false,
-            dataSource: proposal,
+            dataSource: data,
             total,
             page,
             pagination: {
                 ...this.state.pagination,
                 total
             }
-        })
-
+        });
     };
-
-    /**
-     * 是否登陆
-     */
-    isLoggedIn = (type) => {
-        let { account, intl } = this.props;
-        if (!account.isLoggedIn){
-            if(type != 1){
-                this.setState({
-                    modal: <SweetAlert
-                        warning
-                        title={tu('proposal_not_sign_in')}
-                        confirmBtnText={intl.formatMessage({ id: 'confirm' })}
-                        confirmBtnBsStyle="danger"
-                        onConfirm={() => this.setState({ modal: null })}
-                        style={{ marginLeft: '-240px', marginTop: '-195px' }}
-                    >
-                    </SweetAlert>
-                });
-            }
-            
-        }
-        return account.isLoggedIn;
+    handleTableChange = (pagination, filters, sorter) => {
+        const pager = { ...this.state.pagination };
+        pager.current = pagination.current;
+        pager.pageSize = pagination.pageSize;
+        this.setState(
+          {
+            pagination: pager
+          },
+          () => this.load(pager.current, pager.pageSize)
+        );
     };
-
     getColumns() {
         let { account, intl } = this.props;
         let { dataSource } = this.state;
-
-        const columns = [{
-            title: upperFirst(intl.formatMessage({id: 'propose_number'})),
-            dataIndex: 'index',
-            key: 'index',
-            className: 'position-relative',
-            render: (text, record, index) => {
-            return  <div style={{fontFamily: 'HelveticaNeue-Medium'}}>
-                        {record.createSelf ? <div className="mine-flag">{tu('proposal_my')}</div> : ''}
-                        {'#' + record.proposalId}
-                    </div>
-            }
-        },
+        const columns = [
         {
             title: upperFirst(intl.formatMessage({id: 'proposal_content_info'})),
             dataIndex: 'proposalVal',
@@ -608,18 +554,6 @@ class Proposal extends React.Component {
             }
         },
         {
-            title: upperFirst(intl.formatMessage({id: 'proposer'})),
-            dataIndex: 'name',
-            key: 'name',
-            width:'15%',
-            render: (text, record, index) => {
-                return ( record.proposer.name?
-                    <AddressLink address={record.proposer.address}>{record.proposer.name}</AddressLink>:
-                    <AddressLink address={record.proposer.address}>{record.proposer.address}</AddressLink>
-                )
-            }
-        },
-        {
             title: upperFirst(intl.formatMessage({id: 'proposal_time_of_creation'})) + '/ ' + upperFirst(intl.formatMessage({id: 'proposal_endtime'})),
             dataIndex: 'createTime',
             key: 'createTime',
@@ -645,6 +579,7 @@ class Proposal extends React.Component {
             dataIndex: 'state',
             key: 'state',
             align: 'center',
+            width:'12%',
             render: (text, record, index) => {
                 return <div>
                     {
@@ -685,14 +620,14 @@ class Proposal extends React.Component {
                             <QuestionMark placement="top" text={text1} />
                         </span>
                     </div>
-                  )
+                )
             },
             dataIndex: 'votes',
             key: 'votes',
             width:'12%',
             align: 'center',
             render: (text, record, index) => {
-                return record.validVotes + ' / ' + record.totalVotes
+                return `${record.validVotes}/${record.totalVotes}`
             }
         },
         {
@@ -711,14 +646,11 @@ class Proposal extends React.Component {
                                 {tu("proposal_more")}
                             </Link>
                         </div>
-                        {account.address ? 
+                        {account.address && record.state === 'PENDING' ? 
                         (<div>
-                            {record.state === 'PENDING' && !record.approveSelf && <div>
-                                <a href="javascript:;" className="proposal-approve" onClick={() => this.qualificationsVerify(record.proposalId,true)} >{tu('proposal_approve')}</a>
-                            </div>}
-                            {record.state === 'PENDING' && record.approveSelf && <div>
-                                <a href="javascript:;" className="proposal-cancel" onClick={() => this.qualificationsVerify(record.proposalId)}>{tu('proposal_cancel_approve')}</a>
-                            </div>}
+                            <div>
+                                <a href="javascript:;" className="proposal-cancel" onClick={() => this.cancelModal(record.proposalId)}>{tu('proposal_cancel_approve')}</a>
+                            </div>
                         </div>) : ""}
                     </div>
                     
@@ -730,23 +662,33 @@ class Proposal extends React.Component {
         return columns
     }
 
-    qualificationsVerify(id,v){
-        const { account, account: { tronWeb }, currentWallet } = this.props;
-        if(currentWallet.representative.enabled){
-            if(v){
-                this.voteProposal(id,v)
-            }else{
-                this.cancelModal(id)
-            }
-        }else{
-            this.applySuperModal()
-        }
+    // cancel modal
+    cancelModal(id){
+        let { intl } = this.props;
+        this.setState({
+            modal: <SweetAlert
+                showCancel
+                title=""
+                confirmBtnText={intl.formatMessage({ id: 'confirm' })}
+                cancelBtnText={intl.formatMessage({ id: 'cancel' })}
+                confirmBtnBsStyle="link"
+                confirmBtnCssClass="modal-confirm"
+                cancelBtnCssClass="modal-cancel"
+                onCancel={() => this.hideModal()}
+                onConfirm={() => this.cancelFun(id)}>
+                <div style={{color: '#333',padding:'30px 0'}}>{tu('proposal_cancel_tip')}</div>
+            </SweetAlert>
+        });
     }
+    hideModal = () => {
+        this.setState({
+          modal: null,
+        });
+    };
 
-    //vote proposal
-    async voteProposal(id,v){
+    async cancelFun(id){
         const { account, account: { tronWeb }, currentWallet } = this.props;
-        const data = await tronWeb.transactionBuilder.voteProposal(id, v , account.address, 1).catch(e=>{
+        const data = await tronWeb.transactionBuilder.voteProposal(id, false , account.address, 1).catch(e=>{
             this.setState({
                 modal: (
                   <SweetAlert warning timeout="3000" onConfirm={this.hideModal}>
@@ -765,128 +707,35 @@ class Proposal extends React.Component {
             });
         }
     }
-    
-    // cancel modal
-    cancelModal(id){
-        let { intl } = this.props;
-        this.setState({
-            modal: <SweetAlert
-                showCancel
-                title=""
-                confirmBtnText={intl.formatMessage({ id: 'confirm' })}
-                cancelBtnText={intl.formatMessage({ id: 'cancel' })}
-                confirmBtnBsStyle="link"
-                confirmBtnCssClass="modal-confirm"
-                cancelBtnCssClass="modal-cancel"
-                onCancel={() => this.setState({ modal: null })}
-                onConfirm={() => this.voteProposal(id, false)}>
-                <div style={{color: '#333',padding:'30px 0'}}>{tu('proposal_cancel_tip')}</div>
-            </SweetAlert>
-        });
-    }
-    hideModal = () => {
-        this.setState({
-          modal: null,
-        });
-    };
-    // 
-    applySuperModal(){
-        let { intl } = this.props;
-        this.setState({
-            modal: 
-                <Modal isOpen={true} toggle={this.hideModal} className="committee-modal" style={{width: '460px'}}>
-                    <ModalHeader toggle={this.hideModal} className=""></ModalHeader>
-                    <ModalBody>
-                        <div style={{color: '#333',padding:'10px 0 50px',fontSize: '16px',textAlign: 'center'}}>{tu('proposal_apply_super')}</div>
-                        <div style={{display: 'flex', justifyContent: 'center'}}>
-                            <div style={{width: '220px',height: '38px',lineHeight: '38px', textAlign: 'center', background: '#69C265', color: '#fff',cursor: 'pointer'}}
-                                onClick={() => {
-                                    this.applyForDelegate()
-                                }}>
-                                {tu('proposal_apply_super_btn')}
-                            </div>
-                        </div>
-                    </ModalBody>
-                </Modal>
-        });
 
-    }
 
-    applyForDelegate = () => {
-        let {privateKey} = this.state;
-    
-        this.setState({
-          modal: (
-              <ApplyForDelegate
-                  isTronLink={this.state.isTronLink}
-                  privateKey={privateKey}
-                  onCancel={this.hideModal}
-                  onConfirm={() => {
-                    // setTimeout(() => this.props.reloadWallet(), 1200);
-                    this.setState({
-                        modal: (
-                            <SweetAlert success timeout="3000" onConfirm={this.hideModal}>
-                              {tu("proposal_apply_super_success")}
-                            </SweetAlert>
-                        )
-                    });
-                  }}/>
-          )
-        })
-      }
-
-    pageHandle(type){
-        
-        if (!this.isLoggedIn()) {
-            return;
-        }
-        const { account, currentWallet } = this.props;
-        if(!currentWallet.representative.enabled){
-            this.applySuperModal()
-            return
-        }
-        this.props.history.push(type ? "" : "myproposals");
-    }
-    render() {
-
+    render(){
         let {modal, page, total, pageSize, loading, dataSource, emptyState: EmptyState = null, pagination} = this.state;
         let column = this.getColumns();
         let {intl} = this.props;
-
-        let tableInfo = intl.formatMessage({id: 'view_total'}) + ' ' + total + ' ' + intl.formatMessage({id: 'token_unit'})
-        let locale  = {emptyText: intl.formatMessage({id: 'no_commission_proposed_found'})}
-
-
-
         return (
-            <main className="container header-overlap committee">
+            <div className="">
                 {modal}
-                <div className="token_black table_pos proposal-table">
-                    <div className="proposal-header">
-                        <a href="javascript:;" onClick={()=>this.pageHandle(1)}>{tu("proposal_create")}</a>
-                        <a href="javascript:;" onClick={()=>this.pageHandle()}>{tu("proposal_mine")}</a>
-                    </div>
-                    {loading && <div className="loading-style"><TronLoader/></div>}
-                    {!loading&&
-                        <Table
+                {loading && <div className="loading-style"><TronLoader/></div>}
+                {!loading&&
+                    <Table
                         bordered={true}
                         columns={column}
                         rowKey={(record, index) => {
-                          return index;
+                        return index;
                         }}
                         dataSource={dataSource}
                         scroll={scroll}
                         pagination={pagination}
                         loading={loading}
                         onChange={this.handleTableChange}
-                      />
-                    // <SmartTable bordered={true} column={column} data={dataSource} total={dataSource.length} locale={locale} />
-                    }
-                </div>
-            </main>
+                    />
+                }
+            </div>
         )
     }
 }
+
 
 function mapStateToProps(state) {
     return {
@@ -894,4 +743,6 @@ function mapStateToProps(state) {
         currentWallet: state.wallet.current
     };
 }
-export default connect(mapStateToProps, null)(withRouter(injectIntl(Proposal)));
+
+export default connect(mapStateToProps, null)(injectIntl(MyParticipated));
+
