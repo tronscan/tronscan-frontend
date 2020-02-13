@@ -5091,3 +5091,15 @@ h5 {
 .dropdown-text-none{
   text-transform: none !important;
 }
+
+.proposal-text-container {
+  background: #fff ;
+  padding: 25px 54px;
+  display: flex;
+  align-items: center;
+  .compile-text {
+    border-left: 1px rgba(151, 151, 151, 0.3) solid;
+    margin-left: 55px;
+    padding-left: 50px;
+  }
+}

@@ -244,6 +244,10 @@ export const myParticipated = loadable(() =>
 );
 
 
+export const ProposalsCreateAsync = loadable(() =>
+  import(/* webpackChunkName: "ProposalsCreate" */ "./committee/ProposalCreate/index")
+);
+
 export const ErrorAsync = loadable(() =>
   import(/* webpackChunkName: "ErrorAsync" */ "./Error")
 );
