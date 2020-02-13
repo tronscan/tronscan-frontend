@@ -502,7 +502,7 @@ class Footer extends Component {
 
 
     return (
-      <div className="footerCurrencyBtn dropdown">
+      <div className="footerCurrencyBtn dropup">
         <a className="dropdown-toggle pr-0 footerCurrencyTitle text-uppercase"
           data-toggle="dropdown"
           href="javascript:">{activeCurrency.toUpperCase()}</a>
