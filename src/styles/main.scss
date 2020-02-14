@@ -3111,6 +3111,14 @@ h5 {
       }
     }
   }
+  .nav-static{
+    &:hover {
+      .dropdown-menu {
+        display: block;
+      }
+    }
+  }
+
 
   .nav-item {
     &:hover {
@@ -3265,6 +3273,7 @@ h5 {
   //     display: block;
   //   }
   // }
+ 
   .dropdown-menu {
     margin-top: 0px;
   }

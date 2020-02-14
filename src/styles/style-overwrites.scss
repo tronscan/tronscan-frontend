@@ -789,3 +789,10 @@ body .token_black {
     padding: 0;
   }
 }
+
+.footerCurrencyBtn{
+  .dropup .dropdown-toggle::after{
+    border-bottom: 0.3em solid;
+    border-top: 0;
+  }
+}
