@@ -284,7 +284,7 @@ class Footer extends Component {
                     </div>
 
                     <div className="text mr-3 text-cnter mobileCopyright">
-                      Copyright© 2017-2020 tronscan.io
+                      Copyright© 2017-2020 tronscan.org
                     </div>
                   </div>
                 </div>
@@ -458,7 +458,7 @@ class Footer extends Component {
                   <div className="col-xs-6 col-sm-6 col-md-6 text-center">
                     <div className="d-flex">
                       <span className="text mr-3">
-                        Copyright© 2017-2020 tronscan.io
+                        Copyright© 2017-2020 tronscan.org
                       </span>
                     </div>
                   </div>
