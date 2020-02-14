@@ -245,7 +245,7 @@ class Footer extends Component {
               {/*</div>*/}
               <div className="copyright pt-5">
                 {modal}
-                <div className="row container">
+                <div className="row container" style={{paddingRight:0}}>
                   <div className="col-xs-12 col-sm-6 col-md-6 text-center mb-3 hidden-mobile">
                     <div>
                       <div className="switch d-flex between hidden-mobile">
@@ -283,8 +283,8 @@ class Footer extends Component {
                       </div>
                     </div>
 
-                    <div className="text mr-3 text-cnter">
-                      Copyright© 2017-2020 tronscan.org
+                    <div className="text mr-3 text-cnter mobileCopyright">
+                      Copyright© 2017-2020 tronscan.io
                     </div>
                   </div>
                 </div>
@@ -458,7 +458,7 @@ class Footer extends Component {
                   <div className="col-xs-6 col-sm-6 col-md-6 text-center">
                     <div className="d-flex">
                       <span className="text mr-3">
-                        Copyright© 2017-2020 tronscan.org
+                        Copyright© 2017-2020 tronscan.io
                       </span>
                     </div>
                   </div>
