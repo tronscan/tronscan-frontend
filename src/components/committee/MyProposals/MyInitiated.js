@@ -13,27 +13,27 @@ import {Link} from "react-router-dom";
 import { Table } from "antd";
 import {Modal, ModalBody, ModalHeader} from "reactstrap";
 import SweetAlert from 'react-bootstrap-sweetalert';
-
+import {transactionResultManager, transactionResultManagerSun} from "../../../utils/tron";
 
 
 
 class MyInitiated extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-        dataSource:[],
-        total:0,
-        loading: false,
-        pagination: {
-            showQuickJumper: true,
-            position: "bottom",
-            showSizeChanger: true,
-            defaultPageSize: 20,
-            total: 0
-        },
-        modal: null,
+    constructor() {
+        super();
+        this.state = {
+            dataSource:[],
+            total:0,
+            loading: false,
+            pagination: {
+                showQuickJumper: true,
+                position: "bottom",
+                showSizeChanger: true,
+                defaultPageSize: 20,
+                total: 0
+            },
+            modal: null,
+        }
     }
-  }
 
     componentDidMount(){
         let { account, currentWallet } = this.props;
@@ -79,11 +79,13 @@ class MyInitiated extends React.Component {
             'getAllowProtoFilterNum',
             '',
             'getAllowTvmConstantinople',
-            '',
-            '',
-            '',
+            'getAllowShieldedTransaction',
+            'getShieldedTransactionFee',
+            'getAdaptiveResourceLimitMultiplier',
             'getChangeDelegation',
             'getWitness127PayPerBlock',
+            'getAllowTvmSolidity059',
+            'getAdaptiveResourceLimitTargetRatio'
         ];
         let sunsideArr = [
             {
@@ -447,6 +449,34 @@ class MyInitiated extends React.Component {
                                             </div>
                                         }
                                         {
+                                            item.proposalKey == 'getAllowShieldedTransaction' &&
+                                            <div>
+                                                <span>{ intl.formatMessage({id: 'propose_29'})}</span>
+                                                <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
+                                                {
+                                                    item.proposalVal? <span>{tu('propose_allowed')}</span>:
+                                                        <span>{tu('propose_not_allowed')}</span>
+                                                }
+                                            </div>
+                                        }
+                                        {
+                                            item.proposalKey == 'getShieldedTransactionFee' &&
+                                            <div>
+                                                <span>{ intl.formatMessage({id: 'propose_28_1'})}</span>
+                                                <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
+                                                <span>{item.proposalVal / ONE_TRX}</span> &nbsp;
+                                                <span>TRX</span>
+                                            </div>
+                                        }
+                                        {
+                                            item.proposalKey == 'getAdaptiveResourceLimitMultiplier' &&
+                                            <div>
+                                                <span>{ intl.formatMessage({id: 'propose_29_1'})}</span>
+                                                <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
+                                                <span>{ item.proposalVal }</span>
+                                            </div>
+                                        }
+                                        {
                                             item.proposalKey == 'getChangeDelegation' &&
                                             <div>
                                                 <span>{ intl.formatMessage({id: 'propose_30'})}</span>
@@ -467,6 +497,25 @@ class MyInitiated extends React.Component {
                                                 <span>TRX</span>
                                             </div>
 
+                                        }
+                                        {
+                                            item.proposalKey == 'getAllowTvmSolidity059' &&
+                                            <div>
+                                                <span>{ intl.formatMessage({id: 'propose_32'})}</span>
+                                                <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
+                                                {
+                                                    item.proposalVal? <span>{tu('propose_allowed')}</span>:
+                                                        <span>{tu('propose_not_allowed')}</span>
+                                                }
+                                            </div>
+                                        }
+                                        {
+                                            item.proposalKey == 'getAdaptiveResourceLimitTargetRatio' &&
+                                            <div>
+                                                <span>{ intl.formatMessage({id: 'propose_33'})}</span>
+                                                <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
+                                                <span>{ item.proposalVal }</span>
+                                            </div>
                                         }
                                     </div>:<div>
                                         {
@@ -691,17 +740,9 @@ class MyInitiated extends React.Component {
     }
 
     async cancelFun(id){
-        const { account, account: { tronWeb }, currentWallet } = this.props;
-        const data = await tronWeb.transactionBuilder.deleteProposal(id, account.address, 1).catch(e=>{
-            this.setState({
-                modal: (
-                  <SweetAlert warning timeout="3000" onConfirm={this.hideModal}>
-                    {tu("proposal_fail")}
-                  </SweetAlert>
-                )
-              })
-        })
-        if(data){
+        let res = await this.getResult(id);
+
+        if(res){
             this.setState({
                 modal: (
                     <SweetAlert success timeout="3000" onConfirm={this.hideModal}>
@@ -709,9 +750,41 @@ class MyInitiated extends React.Component {
                     </SweetAlert>
                 )
             });
+        }else{
+            this.setState({
+                modal: (
+                  <SweetAlert warning timeout="3000" onConfirm={this.hideModal}>
+                    {tu("proposal_fail")}
+                  </SweetAlert>
+                )
+            })
         }
     }
 
+    async getResult(id, v){
+        let res;
+        let {isTronLink} = this.state;
+        let {account} = this.props;
+        if(IS_MAINNET){
+            let tronWeb;
+            if (this.props.walletType.type === "ACCOUNT_LEDGER"){
+                tronWeb = this.props.tronWeb();
+            }else if(this.props.walletType.type === "ACCOUNT_TRONLINK" || this.props.walletType.type === "ACCOUNT_PRIVATE_KEY"){
+                tronWeb = account.tronWeb;
+            }
+
+            const unSignTransaction = await tronWeb.transactionBuilder.deleteProposal(id, account.address, 1).catch(e=> console.log(e));
+            const {result} = await transactionResultManager(unSignTransaction, tronWeb);
+
+            res = result;
+        }else{
+            const unSignTransaction = await account.sunWeb.sidechain.transactionBuilder.deleteProposal(id, account.address, 1).catch(e=> console.log(e));
+            const {result} = await transactionResultManagerSun(unSignTransaction, account.sunWeb);
+            res = result;
+        }
+
+        return res
+    }
 
     render(){
         let {modal, page, total, pageSize, loading, dataSource, emptyState: EmptyState = null, pagination} = this.state;
@@ -744,7 +817,8 @@ class MyInitiated extends React.Component {
 function mapStateToProps(state) {
     return {
         account: state.app.account,
-        currentWallet: state.wallet.current
+        currentWallet: state.wallet.current,
+        walletType: state.app.wallet,
     };
 }
 

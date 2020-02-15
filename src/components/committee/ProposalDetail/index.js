@@ -26,7 +26,7 @@ class ProposalDetail extends React.Component {
     async load(id) {
         this.setState({loading: true});
         let {data} = await Client.getProposalById(id);
-        let obj = data.data[0]
+        let obj = IS_MAINNET ? data.data[0] : data
         let parametersArr = [
             'getMaintenanceTimeInterval',
             'getAccountUpgradeCost',
@@ -58,11 +58,13 @@ class ProposalDetail extends React.Component {
             'getAllowProtoFilterNum',
             '',
             'getAllowTvmConstantinople',
-            '',
-            '',
-            '',
+            'getAllowShieldedTransaction',
+            'getShieldedTransactionFee',
+            'getAdaptiveResourceLimitMultiplier',
             'getChangeDelegation',
             'getWitness127PayPerBlock',
+            'getAllowTvmSolidity059',
+            'getAdaptiveResourceLimitTargetRatio'
         ];
 
         let sunsideArr = [
@@ -441,6 +443,34 @@ class ProposalDetail extends React.Component {
                                                                                     </div>
                                                                                 }
                                                                                 {
+                                                                                    item.proposalKey == 'getAllowShieldedTransaction' &&
+                                                                                    <div>
+                                                                                        <span>{ intl.formatMessage({id: 'propose_29'})}</span>
+                                                                                        <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
+                                                                                        {
+                                                                                            item.proposalVal? <span>{tu('propose_allowed')}</span>:
+                                                                                                <span>{tu('propose_not_allowed')}</span>
+                                                                                        }
+                                                                                    </div>
+                                                                                }
+                                                                                {
+                                                                                    item.proposalKey == 'getShieldedTransactionFee' &&
+                                                                                    <div>
+                                                                                        <span>{ intl.formatMessage({id: 'propose_28_1'})}</span>
+                                                                                        <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
+                                                                                        <span>{item.proposalVal / ONE_TRX}</span> &nbsp;
+                                                                                        <span>TRX</span>
+                                                                                    </div>
+                                                                                }
+                                                                                {
+                                                                                    item.proposalKey == 'getAdaptiveResourceLimitMultiplier' &&
+                                                                                    <div>
+                                                                                        <span>{ intl.formatMessage({id: 'propose_29_1'})}</span>
+                                                                                        <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
+                                                                                        <span>{ item.proposalVal }</span>
+                                                                                    </div>
+                                                                                }
+                                                                                {
                                                                                     item.proposalKey == 'getChangeDelegation' &&
                                                                                     <div>
                                                                                         <span>{ intl.formatMessage({id: 'propose_30'})}</span>
@@ -449,19 +479,37 @@ class ProposalDetail extends React.Component {
                                                                                             item.proposalVal? <span>{tu('propose_activate')}</span>:
                                                                                                 <span>{tu('propose_unactivate')}</span>
                                                                                         }
-
                                                                                     </div>
                                                                                 }
                                                                                 {
 
                                                                                     item.proposalKey == 'getWitness127PayPerBlock' &&
-                                                                                    <div className="">
+                                                                                    <div className="mt-1">
                                                                                         <span>{ intl.formatMessage({id: 'propose_31'})}</span>
                                                                                         <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
-                                                                                        <span className='col-green'>{ item.proposalVal / ONE_TRX}</span> &nbsp;
+                                                                                        <span>{ item.proposalVal / ONE_TRX}</span> &nbsp;
                                                                                         <span>TRX</span>
                                                                                     </div>
 
+                                                                                }
+                                                                                {
+                                                                                    item.proposalKey == 'getAllowTvmSolidity059' &&
+                                                                                    <div>
+                                                                                        <span>{ intl.formatMessage({id: 'propose_32'})}</span>
+                                                                                        <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
+                                                                                        {
+                                                                                            item.proposalVal? <span>{tu('propose_allowed')}</span>:
+                                                                                                <span>{tu('propose_not_allowed')}</span>
+                                                                                        }
+                                                                                    </div>
+                                                                                }
+                                                                                {
+                                                                                    item.proposalKey == 'getAdaptiveResourceLimitTargetRatio' &&
+                                                                                    <div>
+                                                                                        <span>{ intl.formatMessage({id: 'propose_33'})}</span>
+                                                                                        <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
+                                                                                        <span>{ item.proposalVal }</span>
+                                                                                    </div>
                                                                                 }
 
 
@@ -593,7 +641,7 @@ class ProposalDetail extends React.Component {
                                             </div>}
                                         </div>
                                     </div>
-                                    {proposal && <div className="proposal-detail-wrap">
+                                    {IS_MAINNET && proposal && <div className="proposal-detail-wrap">
                                         <div className="detail-header">
                                             <h2>{t("proposal_details")}</h2>
                                             <div className="votes">
@@ -641,6 +689,35 @@ class ProposalDetail extends React.Component {
                                                 <div className="detail-item-content">
                                                     {
                                                         proposal.approvals.candidate.map((item,index) => (
+                                                            <Link to={`/address/${item.address}`} key={index}>{item.name || addressFormat(item.address)}</Link>
+                                                        ))
+                                                    }
+                                                </div>
+                                            </div>}
+                                        </div>
+                                    </div>}
+                                    {!IS_MAINNET && proposal && <div className="proposal-detail-wrap">
+                                        <div className="detail-header">
+                                            <h2>{t("proposal_details")}</h2>
+                                            <div className="votes">
+                                                <span>
+                                                   {/* {t("proposal_valid_votes")}: {proposal.validVotes}; */}
+                                                   {t("proposal_total_votes")}: {proposal.approvals.length}
+                                                </span>
+                                                {/* <span className="ml-2">
+                                                    <QuestionMark placement="top" text="proposal_votes_tip" />
+                                                </span> */}
+                                            </div>
+                                        </div>
+                                        <div className="detail-content">
+                                            {proposal.approvals && proposal.approvals.length > 0 && <div className="detail-item blue">
+                                                <div className="detail-item-title ">
+                                                    <i></i>
+                                                    {tu("proposal_super_votes")} : {proposal.approvals.length}
+                                                </div>
+                                                <div className="detail-item-content">
+                                                    {
+                                                        proposal.approvals.map((item,index) => (
                                                             <Link to={`/address/${item.address}`} key={index}>{item.name || addressFormat(item.address)}</Link>
                                                         ))
                                                     }

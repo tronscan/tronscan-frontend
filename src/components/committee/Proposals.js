@@ -15,7 +15,8 @@ import SweetAlert from 'react-bootstrap-sweetalert';
 import {Modal, ModalBody, ModalHeader} from "reactstrap";
 import ApplyForDelegate from "./common/ApplyForDelegate";
 import Lockr from "lockr";
-const xhr = require("axios");
+import {transactionResultManager, transactionResultManagerSun} from "../../utils/tron";
+
 class Proposal extends React.Component {
 
     constructor() {
@@ -102,11 +103,13 @@ class Proposal extends React.Component {
             'getAllowProtoFilterNum',
             '',
             'getAllowTvmConstantinople',
-            '',
-            '',
-            '',
+            'getAllowShieldedTransaction',
+            'getShieldedTransactionFee',
+            'getAdaptiveResourceLimitMultiplier',
             'getChangeDelegation',
             'getWitness127PayPerBlock',
+            'getAllowTvmSolidity059',
+            'getAdaptiveResourceLimitTargetRatio'
         ];
 
         let sunsideArr = [
@@ -205,7 +208,7 @@ class Proposal extends React.Component {
         let { dataSource } = this.state;
 
         const columns = [{
-            title: upperFirst(intl.formatMessage({id: 'propose_number'})),
+            title: upperFirst(intl.formatMessage({id: 'proposal_serial'})),
             dataIndex: 'index',
             key: 'index',
             className: 'position-relative',
@@ -498,6 +501,34 @@ class Proposal extends React.Component {
                                             </div>
                                         }
                                         {
+                                            item.proposalKey == 'getAllowShieldedTransaction' &&
+                                            <div>
+                                                <span>{ intl.formatMessage({id: 'propose_29'})}</span>
+                                                <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
+                                                {
+                                                    item.proposalVal? <span>{tu('propose_allowed')}</span>:
+                                                        <span>{tu('propose_not_allowed')}</span>
+                                                }
+                                            </div>
+                                        }
+                                        {
+                                            item.proposalKey == 'getShieldedTransactionFee' &&
+                                            <div>
+                                                <span>{ intl.formatMessage({id: 'propose_28_1'})}</span>
+                                                <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
+                                                <span>{item.proposalVal / ONE_TRX}</span> &nbsp;
+                                                <span>TRX</span>
+                                            </div>
+                                        }
+                                        {
+                                            item.proposalKey == 'getAdaptiveResourceLimitMultiplier' &&
+                                            <div>
+                                                <span>{ intl.formatMessage({id: 'propose_29_1'})}</span>
+                                                <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
+                                                <span>{ item.proposalVal }</span>
+                                            </div>
+                                        }
+                                        {
                                             item.proposalKey == 'getChangeDelegation' &&
                                             <div>
                                                 <span>{ intl.formatMessage({id: 'propose_30'})}</span>
@@ -518,6 +549,25 @@ class Proposal extends React.Component {
                                                 <span>TRX</span>
                                             </div>
 
+                                        }
+                                        {
+                                            item.proposalKey == 'getAllowTvmSolidity059' &&
+                                            <div>
+                                                <span>{ intl.formatMessage({id: 'propose_32'})}</span>
+                                                <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
+                                                {
+                                                    item.proposalVal? <span>{tu('propose_allowed')}</span>:
+                                                        <span>{tu('propose_not_allowed')}</span>
+                                                }
+                                            </div>
+                                        }
+                                        {
+                                            item.proposalKey == 'getAdaptiveResourceLimitTargetRatio' &&
+                                            <div>
+                                                <span>{ intl.formatMessage({id: 'propose_33'})}</span>
+                                                <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
+                                                <span>{ item.proposalVal }</span>
+                                            </div>
                                         }
                                     </div>:<div>
                                         {
@@ -691,6 +741,7 @@ class Proposal extends React.Component {
             key: 'votes',
             width:'12%',
             align: 'center',
+            className: !IS_MAINNET && 'hidden',
             render: (text, record, index) => {
                 return record.validVotes + ' / ' + record.totalVotes
             }
@@ -745,17 +796,8 @@ class Proposal extends React.Component {
 
     //vote proposal
     async voteProposal(id,v){
-        const { account, account: { tronWeb }, currentWallet } = this.props;
-        const data = await tronWeb.transactionBuilder.voteProposal(id, v , account.address, 1).catch(e=>{
-            this.setState({
-                modal: (
-                  <SweetAlert warning timeout="3000" onConfirm={this.hideModal}>
-                    {tu("proposal_fail")}
-                  </SweetAlert>
-                )
-              })
-        })
-        if(data){
+        let res = await this.getResult(id,v);
+        if(res){
             this.setState({
                 modal: (
                     <SweetAlert success timeout="3000" onConfirm={this.hideModal}>
@@ -763,7 +805,40 @@ class Proposal extends React.Component {
                     </SweetAlert>
                 )
             });
+        }else{
+            this.setState({
+                modal: (
+                  <SweetAlert warning timeout="3000" onConfirm={this.hideModal}>
+                    {tu("proposal_fail")}
+                  </SweetAlert>
+                )
+            })
         }
+    }
+
+    async getResult(id, v){
+        let res;
+        let {isTronLink} = this.state;
+        let {account} = this.props;
+        if(IS_MAINNET){
+            let tronWeb;
+            if (this.props.walletType.type === "ACCOUNT_LEDGER"){
+                tronWeb = this.props.tronWeb();
+            }else if(this.props.walletType.type === "ACCOUNT_TRONLINK" || this.props.walletType.type === "ACCOUNT_PRIVATE_KEY"){
+                tronWeb = account.tronWeb;
+            }
+
+            const unSignTransaction = await tronWeb.transactionBuilder.voteProposal(id, v , account.address, 1).catch(e=> console.log(e));
+            const {result} = await transactionResultManager(unSignTransaction, tronWeb);
+
+            res = result;
+        }else{
+            const unSignTransaction = await account.sunWeb.sidechain.transactionBuilder.voteProposal(id, v , account.address, 1).catch(e=> console.log(e));
+            const {result} = await transactionResultManagerSun(unSignTransaction, account.sunWeb);
+            res = result;
+        }
+
+        return res
     }
     
     // cancel modal
@@ -845,7 +920,7 @@ class Proposal extends React.Component {
             this.applySuperModal()
             return
         }
-        this.props.history.push(type ? "" : "myproposals");
+        this.props.history.push(type ? "proposalscreate" : "myproposals");
     }
     render() {
 
@@ -862,10 +937,10 @@ class Proposal extends React.Component {
             <main className="container header-overlap committee">
                 {modal}
                 <div className="token_black table_pos proposal-table">
-                    <div className="proposal-header">
+                    {IS_MAINNET && <div className="proposal-header">
                         <a href="javascript:;" onClick={()=>this.pageHandle(1)}>{tu("proposal_create")}</a>
                         <a href="javascript:;" onClick={()=>this.pageHandle()}>{tu("proposal_mine")}</a>
-                    </div>
+                    </div>}
                     {loading && <div className="loading-style"><TronLoader/></div>}
                     {!loading&&
                         <Table
@@ -891,7 +966,8 @@ class Proposal extends React.Component {
 function mapStateToProps(state) {
     return {
         account: state.app.account,
-        currentWallet: state.wallet.current
+        currentWallet: state.wallet.current,
+        walletType: state.app.wallet,
     };
 }
 export default connect(mapStateToProps, null)(withRouter(injectIntl(Proposal)));

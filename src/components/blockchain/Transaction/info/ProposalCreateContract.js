@@ -23,10 +23,10 @@ export default function ProposalCreateContract({contract}){
               <Field label="initiate_address"><AddressLink address={contract['owner_address']}/></Field>
               {/* <Field label="proposal_ID">222</Field> */}
                 {
-                    contract['parameters'] && contract['parameters'].map((item)=>{
-                      return <tr>
+                    contract['parameters'] && contract['parameters'].map((item,index)=>{
+                      return <tr key={index}>
                         <th>{tu('proposal_content')}</th>
-                        <td>{tu(`propose_${item.key}`)}<ProposalValue item={item}/></td>
+                        <td><ProposalValue item={item}/></td>
                       </tr>
                     })
                 }

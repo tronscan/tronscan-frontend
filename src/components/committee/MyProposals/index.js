@@ -1,14 +1,14 @@
 import React, {Fragment} from "react";
 import {tu,t} from "../../../utils/i18n";
-import {Client} from "../../../services/api";
+import { connect } from 'react-redux';
+import {Client, proposalApi} from "../../../services/api";
 import {FormattedDate, FormattedTime, injectIntl} from "react-intl";
 import {TronLoader} from "../../common/loaders";
 import {AddressLink} from "../../common/Links";
 import {QuestionMark} from "../../common/QuestionMark";
 import {ONE_TRX,IS_MAINNET} from "../../../constants";
-import {NavLink, Route, Switch} from "react-router-dom";
+import {NavLink, Route, Switch, Link} from "react-router-dom";
 import {upperFirst} from 'lodash'
-import {Link} from "react-router-dom";
 import MyInitiated from './MyInitiated'
 import MyParticipated from './MyParticipated'
 
@@ -34,16 +34,29 @@ class MyProposals extends React.Component {
               cmp: () => <MyParticipated/>,
             },
           },
+          total: 0
       };
   }
 
   componentDidMount() {
-    // let {match} = this.props;
-    // this.load(match.params.id)
+    this.load();
   }
-
+  load = async (page = 1, pageSize = 20) => {
+      let { account, currentWallet } = this.props;
+      this.setState({ loading: true });
+      let { data, total } = await proposalApi.getMyProposalList({
+          limit: pageSize,
+          start: (page - 1) * pageSize,
+          address: account.address
+      });
+      
+      this.setState({
+          loading: false,
+          total,
+      });
+  };
   render(){
-    let {tabs, loading} = this.state;
+    let {tabs, loading, total} = this.state;
     let {activeLanguage, match} = this.props;
     return(
       <main className="container header-overlap committee">
@@ -52,35 +65,52 @@ class MyProposals extends React.Component {
                   <TronLoader>
                   </TronLoader>
                 </div> :
-                <div className="row proposal-table my-proposals-table">
-                  <div className="col-md-12 ">
-                    <div className="">
-                      <div className="card-header list-style-body__header">
-                        <ul className="nav nav-tabs card-header-tabs">
-                          {
-                            Object.values(tabs).map(tab => (
-                                <li key={tab.id} className="nav-item">
-                                  <NavLink exact to={match.url + tab.path} className="nav-link text-dark">
-                                    {tab.label}
-                                  </NavLink>
-                                </li>
-                            ))
-                          }
-                        </ul>
-                      </div>
-                      <div className="card-body p-0 token_black">
-                        <Switch>
-                          {
-                            Object.values(tabs).map(tab => (
-                                <Route key={tab.id} exact path={match.url + tab.path}
-                                       render={(props) => (<tab.cmp />)}/>
-                            ))
-                          }
-                        </Switch>
+                <div>
+                  {
+                    total > 0 ? 
+                    <div className="row proposal-table my-proposals-table">
+                      <div className="col-md-12 ">
+                        <div className="">
+                          <div className="card-header list-style-body__header">
+                            <ul className="nav nav-tabs card-header-tabs">
+                              {
+                                Object.values(tabs).map(tab => (
+                                    <li key={tab.id} className="nav-item">
+                                      <NavLink exact to={match.url + tab.path} className="nav-link text-dark">
+                                        {tab.label}
+                                      </NavLink>
+                                    </li>
+                                ))
+                              }
+                            </ul>
+                          </div>
+                          <div className="card-body p-0 token_black">
+                            <Switch>
+                              {
+                                Object.values(tabs).map(tab => (
+                                    <Route key={tab.id} exact path={match.url + tab.path}
+                                          render={(props) => (<tab.cmp />)}/>
+                                ))
+                              }
+                            </Switch>
+                          </div>
+                        </div>
                       </div>
                     </div>
-                  </div>
+                    :
+                    <div className="my-proposals-empty">
+                      <img src={require('../../../images/proposals/tron-empty.svg')} alt=""/>
+                      <div>
+                        {t('trc20_no_data')},
+                        {t('proposal_go')}
+                        <Link to="/proposalscreate">{t('proposal_create')}</Link>
+                        {t('proposal_or')}
+                        <Link to="/proposals">{t('proposal_vote_link')}</Link>
+                      </div>
+                    </div>
+                  }
                 </div>
+                
           }
 
         </main>
@@ -88,4 +118,12 @@ class MyProposals extends React.Component {
   }
 }
 
-export default injectIntl(MyProposals);
+
+function mapStateToProps(state) {
+  return {
+      account: state.app.account,
+      currentWallet: state.wallet.current
+  };
+}
+
+export default connect(mapStateToProps, null)(injectIntl(MyProposals));

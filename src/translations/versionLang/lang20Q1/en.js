@@ -107,5 +107,47 @@ export const lang20Q1 = {
   data_bandwidth_freezed: "Bandwidth from Freezing TRX",
   data_bandwidth_burned: "Bandwidth from Burning TRX",
   data_area:
-    "Only tokens listed on <a href='https://poloniex.org/'  target='_blank'>POLONI DEX</a> are included"
+    "Only tokens listed on <a href='https://poloniex.org/'  target='_blank'>POLONI DEX</a> are included",
+
+  
+  // 2020-2-5 leon
+  proposal_serial: "No.",
+  proposal_create: "Raise a proposal",
+  proposal_mine: "My proposals",
+  proposal_endtime: "Time of expiration",
+  proposal_total_votes: "Total votes",
+  proposal_valid_votes: "Valid votes",
+  proposal_votes_tip: "Valid votes are from the top 27 SRs. Total votes are votes casted by all SRs.",
+  proposal_action: "Operations",
+  proposal_more: "View details",
+  proposal_approve: "Cast a vote",
+  proposal_cancel_approve: "Withdraw the vote",
+  proposal_not_sign_in: "Please log in to use this feature.",
+  proposal_cancel_tip: "Are you sure to withdraw the vote? ",
+  proposal_apply_super: "This feature is only available to SRs.",
+  proposal_apply_super_btn: "Apply to be an SR",
+  proposal_apply_super_desc: "All TRX-holders can apply to be SR candidates. The 27 most voted candidates will become SRs, and the top 28 - 127 candidates will become super partenrs. SRs are responsible for packing transactions and generating blocks. They are also entitled to block rewards and voting rewards. Super partners do not pack transaction or generate blocks and are only eligible for voting rewards. All SR candidates, super partners and SRs can raise proposals to modify parameters on the TRON network.",
+  // proposal_apply_super_input_name: "请输入您的名称",
+  // proposal_apply_super_input_name_ph: "3-30个字符，设置后不可修改",
+  proposal_apply_super_input_website: "Please enter your URL",
+  proposal_apply_super_input_website_ph: "Link to project website or social media page",
+  proposal_apply_super_success: "Application successful. SR features are now enabled.",
+  proposal_my: "My",
+  proposal_details: "Votes",
+  proposal_super_votes: "SR votes",
+  proposal_super_partner_votes: "SR partner votes",
+  proposal_super_candidate_votes: "SR candidate votes",
+  proposal_my_initiate: "Initiated",
+  proposal_my_participate: "Participated",
+  proposal_cancel: "Withdraw the proposal",
+  proposal_cancel_tip1: "Are you sure to withdraw the vote?",
+  proposal_fail: "提交失败",
+  proposal_success: "提交成功",
+  proposal_nodata: "暂无数据",
+  proposal_go: "",
+  proposal_or: "or",
+  proposal_vote_link: "Vote for the proposal",
+
+
+
 };

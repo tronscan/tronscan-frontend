@@ -111,6 +111,7 @@ export const lang20Q1 = {
   data_area:"仅统计<a href='https://poloniex.org/' target='_blank'>POLONI DEX</a>交易所上线的通证",
 
   // 2020-2-5 leon
+  proposal_serial: "序号",
   proposal_create: "发起提议",
   proposal_mine: "我的提议",
   proposal_endtime: "截止时间",
@@ -126,8 +127,8 @@ export const lang20Q1 = {
   proposal_apply_super: "该功能仅对超级代表开放，您暂时无法使用！",
   proposal_apply_super_btn: "申请成为超级代表",
   proposal_apply_super_desc: "每个TRX持有者都可以申请成为超级代表候选人，获得投票数最高的前27名候选人将成为超级代表，第28～127名成为超级代表合伙人。超级代表有出块和打包交易的义务，同时也会获得相应的投票和出块奖励。超级代表合伙人不参与出块和打包交易，仅可以获得投票奖励。所有超级代表候选人、超级代表合伙人和超级代表，都有权利发起提议来修改TRON网络参数。",
-  proposal_apply_super_input_name: "请输入您的名称",
-  proposal_apply_super_input_name_ph: "3-30个字符，设置后不可修改",
+  // proposal_apply_super_input_name: "请输入您的名称",
+  // proposal_apply_super_input_name_ph: "3-30个字符，设置后不可修改",
   proposal_apply_super_input_website: "请输入您的网址",
   proposal_apply_super_input_website_ph: "项目官网或个人社交媒体主页链接",
   proposal_apply_super_success: "申请成功，您可以正常使用超级代表相关功能",
@@ -139,10 +140,13 @@ export const lang20Q1 = {
   proposal_my_initiate: "我发起的提议",
   proposal_my_participate: "我参与的提议",
   proposal_cancel: "取消提议",
-  proposal_cancel_tip1: "您确定取消赞成该提议？",
+  proposal_cancel_tip1: "您确定取消该提议？",
   proposal_fail: "提交失败",
   proposal_success: "提交成功",
-  
+  // proposal_nodata: "暂无数据",
+  proposal_go: "前去",
+  proposal_or: "或",
+  proposal_vote_link: "给提议投票",
 
   /*
     ##################################################################################
