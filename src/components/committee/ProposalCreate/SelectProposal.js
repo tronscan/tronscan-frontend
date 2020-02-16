@@ -3,10 +3,10 @@ import {t, tu} from "../../../utils/i18n";
 import {connect} from "react-redux";
 import {FormattedNumber, FormattedDate, injectIntl} from "react-intl";
 import 'moment/min/locales';
-import { Steps, Table, Checkbox } from 'antd';
+import { Steps, Table, Checkbox, Tag } from 'antd';
 import SweetAlert from "react-bootstrap-sweetalert";
 import {Client} from "../../../services/api";
-import {upperFirst} from 'lodash'
+import _,{upperFirst} from 'lodash'
 import {API_URL, ONE_TRX,IS_MAINNET} from "../../../constants";
 import xhr from "axios";
 const Step = Steps.Step;
@@ -22,6 +22,7 @@ export class SelectProposal extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      dataSource:[],
       modalSelect: null,
       issuedAsset: null,
       ...this.props.state
@@ -29,225 +30,316 @@ export class SelectProposal extends Component {
   }
   componentDidMount() {
     this.getChainparameters();
+    
   }
-  onChange(e,record) {
-    console.log(`checked = ${e.target.checked}`);
-    console.log(`record =` ,record);
+  hasSelectProposal = () => {
+
   }
-async getChainparameters() {
-    if(IS_MAINNET){
-        let data  = await xhr.get(`${API_URL}/api/chainparameters?type=1`);
-        let tronParameters = data.data.tronParameters;
-        console.log('tronParameters',tronParameters)
-        if(!tronParameters){
-            return
-        }
-        let EnergyLimitNew   = {key: "getTotalEnergyLimitNew", value: 100000000000};
-        tronParameters.splice(19, 0, EnergyLimitNew);
-        tronParameters.map(item => {
-            switch (item['key']){
-                case "getMaintenanceTimeInterval":
-                    item.name = 'propose_1';
-                    item.id = '0';
-                    break;
-                case "getAccountUpgradeCost":
-                    item.name = 'propose_2';
-                    item.id = '1';
-                    break;
-                case "getCreateAccountFee":
-                    item.name = 'propose_3';
-                    item.id = '2';
-                    break;
-                case "getTransactionFee":
-                    item.name = 'propose_4';
-                    item.id = '3';
-                    break;
-                case "getAssetIssueFee":
-                    item.name = 'propose_5';
-                    item.id = '4';
-                    break;
-                case "getWitnessPayPerBlock":
-                    item.name = 'propose_6';
-                    item.id = '5';
-                    break;
-                case "getWitnessStandbyAllowance":
-                    item.name = 'propose_7';
-                    item.id = '6';
-                    break;
-                // case "getCreateNewAccountFeeInSystemContract":
-                //     item.name = 'propose_8';
-                //     item.id = '7';
-                //     break;
-                // case "getCreateNewAccountBandwidthRate":
-                //     item.name = 'propose_9';
-                //     item.id = '8';
-                //     break;
-                case "getAllowCreationOfContracts":
-                    item.name = 'propose_10';
-                    item.id = '9';
-                    break;
-                case "getRemoveThePowerOfTheGr":
-                    item.name = 'propose_11';
-                    item.id = '10';
-                    break;
-                case "getEnergyFee":
-                    item.name = 'propose_12';
-                    item.id = '11';
-                    break;
-                case "getExchangeCreateFee":
-                    item.name = 'propose_13';
-                    item.id = '12';
-                    break;
-                case "getMaxCpuTimeOfOneTx":
-                    item.name = 'propose_14';
-                    item.id = '13';
-                    break;
-                case "getAllowUpdateAccountName":
-                    item.name = 'propose_15';
-                    item.id = '14';
-                    break;
-                case "getAllowSameTokenName":
-                    item.name = 'propose_16';
-                    item.id = '15';
-                    break;
-                case "getAllowDelegateResource":
-                    item.name = 'propose_17';
-                    item.id = '16';
-                    break;
-                case "getTotalEnergyLimit":
-                    item.name = 'propose_18';
-                    item.id = '17';
-                    break;
-                case "getAllowTvmTransferTrc10":
-                    item.name = 'propose_19';
-                    item.id = '18';
-                    break;
-                case "getTotalEnergyLimitNew":
-                    item.name = 'propose_18_1';
-                    item.id = '19';
-                    break;
-                // case "getTotalEnergyCurrentLimit":
-                //     item.name = 'propose_20';
-                // break;
-                case "getAllowMultiSign":
-                    item.name = 'propose_21';
-                    item.id = '20';
-                    break;
-                case "getAllowAdaptiveEnergy":
-                    item.name = 'propose_22';
-                    item.id = '21';
-                    break;
-                // case "getTotalEnergyTargetLimit":
-                //     item.name = 'propose_23';
-                // break;
-                // case "getTotalEnergyAverageUsage":
-                //     item.name = 'propose_24';
-                // break;
-                case "getUpdateAccountPermissionFee":
-                    item.name = 'propose_25';
-                    item.id = '22';
-                    break;
-                case "getMultiSignFee":
-                    item.name = 'propose_26';
-                    item.id = '23';
-                    break;
-                case "getAllowProtoFilterNum":
-                    item.name = 'propose_27';
-                    item.id = '24';
-                    break;
-                case "getAllowTvmConstantinople":
-                    item.name = 'propose_28';
-                    item.id = '25';
-                    break;
-                case "getChangeDelegation":
-                    item.name = 'propose_30';
-                    item.id = '30';
-                    break;
-                case "getWitness127PayPerBlock":
-                    item.name = 'propose_31';
-                    item.id = '31';
-                    break;
-            }
-        });
-        let tronParametersNew = [];
-        tronParameters.map(item => {
-            if(item.name){
-                tronParametersNew.push(item)
-            }
-        })
+  onChange(e,record,index) {
+      console.log('e',e)
+     let { proposalsCreateList, dataSource } = this.state;
+    console.log('this.props.state',this.props.state)  
+    console.log('proposalsSelectedList111',proposalsCreateList) 
+    //let proposalsCreateListNew = proposalsCreateList;
+    if(e){
+        let proposalsSelectedListNew = proposalsCreateList;
+        proposalsSelectedListNew.push({'key': record.id, 'value':record.value, 'name':record.name})
         this.setState({
-            dataSource: tronParametersNew
+            proposalsCreateList:  proposalsSelectedListNew
+        },()=>{
+            let dataSourceArr = dataSource.slice(0);
+            for(let i = 0; i<dataSourceArr.length;i++){
+                if(record.id == dataSourceArr[i]['id']){
+                    dataSourceArr[i].checked = true;
+                }
+            }
+            this.setState({
+                dataSource: dataSourceArr
+            })
+            console.log('proposalsSelectedList222',proposalsCreateList) 
+            console.log('dataSource',dataSource)
         })
     }else{
-        let { tronParameters } = await Client.getChainparameters();
-        if(!tronParameters){
-            return
+        let proposalsSelectedListNew
+        if(index == 10000){
+            proposalsCreateList =  _(proposalsCreateList).filter(proposal => proposal.key !== record.key).value()
+        }else{
+            proposalsCreateList =  _(proposalsCreateList).filter(proposal => proposal.key !== record.id).value()
+        }
+        this.setState({
+            proposalsCreateList: [...proposalsCreateList]
+        },()=>{
+
+            let dataSourceArr = dataSource.slice(0);
+            for(let i = 0; i<dataSourceArr.length;i++){
+                    if(index == 10000){
+                        if(record.key == dataSourceArr[i]['id']){
+                            dataSourceArr[i].checked = false;
+                            console.log('dataSourceArr[i]1111',record.key)
+                        }
+                    }else{
+                        if(record.id == dataSourceArr[i]['id']){
+                            dataSourceArr[i].checked = false;
+                            console.log('dataSourceArr[i]222',record.id)
+                        }
+                    }
+                    
+                    // else{
+                    //     dataSource[i].checked = false;
+                    // }
+                //}
+            }
+            this.setState({
+                dataSource: dataSourceArr
+            })
+            console.log('proposalsSelectedList3333',proposalsCreateList) 
+            console.log('dataSource',dataSource)
+            
+            
+        })
+    }  
+    console.log(`checked = ${e}`);
+    console.log(`record =` ,record);
+    //this.props.nextState({'proposalsCreateList':proposalsCreateList})
+    console.log('proposalsSelectedList444',proposalsCreateList) 
+
+  }
+    async getChainparameters() {
+        let {proposalsCreateList} = this.state;
+        if(IS_MAINNET){
+            let data  = await xhr.get(`${API_URL}/api/chainparameters?type=1`);
+            let tronParameters = data.data.tronParameters;
+            console.log('tronParameters',tronParameters)
+            if(!tronParameters){
+                return
+            }
+            // let EnergyLimitNew   = {key: "getTotalEnergyLimitNew", value: 100000000000};
+            // tronParameters.splice(19, 0, EnergyLimitNew);
+            tronParameters.map(item => {
+                switch (item['key']){
+                    case "getMaintenanceTimeInterval":
+                        item.name = 'propose_1';
+                        item.id = '0';
+                        break;
+                    case "getAccountUpgradeCost":
+                        item.name = 'propose_2';
+                        item.id = '1';
+                        break;
+                    case "getCreateAccountFee":
+                        item.name = 'propose_3';
+                        item.id = '2';
+                        break;
+                    case "getTransactionFee":
+                        item.name = 'propose_4';
+                        item.id = '3';
+                        break;
+                    case "getAssetIssueFee":
+                        item.name = 'propose_5';
+                        item.id = '4';
+                        break;
+                    case "getWitnessPayPerBlock":
+                        item.name = 'propose_6';
+                        item.id = '5';
+                        break;
+                    case "getWitnessStandbyAllowance":
+                        item.name = 'propose_7';
+                        item.id = '6';
+                        break;
+                    // case "getCreateNewAccountFeeInSystemContract":
+                    //     item.name = 'propose_8';
+                    //     item.id = '7';
+                    //     break;
+                    // case "getCreateNewAccountBandwidthRate":
+                    //     item.name = 'propose_9';
+                    //     item.id = '8';
+                    //     break;
+                    case "getAllowCreationOfContracts":
+                        item.name = 'propose_10';
+                        item.id = '9';
+                        break;
+                    case "getRemoveThePowerOfTheGr":
+                        item.name = 'propose_11';
+                        item.id = '10';
+                        break;
+                    case "getEnergyFee":
+                        item.name = 'propose_12';
+                        item.id = '11';
+                        break;
+                    case "getExchangeCreateFee":
+                        item.name = 'propose_13';
+                        item.id = '12';
+                        break;
+                    case "getMaxCpuTimeOfOneTx":
+                        item.name = 'propose_14';
+                        item.id = '13';
+                        break;
+                    case "getAllowUpdateAccountName":
+                        item.name = 'propose_15';
+                        item.id = '14';
+                        break;
+                    case "getAllowSameTokenName":
+                        item.name = 'propose_16';
+                        item.id = '15';
+                        break;
+                    case "getAllowDelegateResource":
+                        item.name = 'propose_17';
+                        item.id = '16';
+                        break;
+                    // case "getTotalEnergyLimit":
+                    //     item.name = 'propose_18';
+                    //     item.id = '17';
+                    //     break;
+                    case "getAllowTvmTransferTrc10":
+                        item.name = 'propose_19';
+                        item.id = '18';
+                        break;
+                    // case "getTotalEnergyLimitNew":
+                    //     item.name = 'propose_18_1';
+                    //     item.id = '19';
+                    //     break;
+                    case "getTotalEnergyCurrentLimit":
+                        item.name = 'propose_20';
+                        item.id = '19';
+                    break;
+                    case "getAllowMultiSign":
+                        item.name = 'propose_21';
+                        item.id = '20';
+                        break;
+                    case "getAllowAdaptiveEnergy":
+                        item.name = 'propose_22';
+                        item.id = '21';
+                        break;
+                    // case "getTotalEnergyTargetLimit":
+                    //     item.name = 'propose_23';
+                    // break;
+                    // case "getTotalEnergyAverageUsage":
+                    //     item.name = 'propose_24';
+                    // break;
+                    case "getUpdateAccountPermissionFee":
+                        item.name = 'propose_25';
+                        item.id = '22';
+                        break;
+                    case "getMultiSignFee":
+                        item.name = 'propose_26';
+                        item.id = '23';
+                        break;
+                    case "getAllowProtoFilterNum":
+                        item.name = 'propose_27';
+                        item.id = '24';
+                        break;
+                    case "getAllowTvmConstantinople":
+                        item.name = 'propose_28';
+                        item.id = '26';
+                        break;
+                    case "getAllowShieldedTransaction":
+                        item.name = 'propose_29';
+                        item.id = '27';
+                        break; 
+                    case "getShieldedTransactionFee":
+                        item.name = 'propose_28_1';
+                        item.id = '28';
+                        break;
+                    case "getAdaptiveResourceLimitMultiplier":
+                        item.name = 'propose_29_1';
+                        item.id = '29';
+                        break;    
+                    case "getChangeDelegation":
+                        item.name = 'propose_30';
+                        item.id = '30';
+                        break;
+                    case "getWitness127PayPerBlock":
+                        item.name = 'propose_31';
+                        item.id = '31';
+                        break;
+                    case "getAllowTvmSolidity059":
+                        item.name = 'propose_32';
+                        item.id = '32';
+                        break;
+                    case "getAdaptiveResourceLimitTargetRatio":
+                        item.name = 'propose_33';
+                        item.id = '33';
+                        break;        
+                }
+            });
+            let tronParametersNew = [];
+            tronParameters.map(item => {
+                if(item.name){
+                    tronParametersNew.push(item)
+                }
+            })
+            this.setState({
+                dataSource: _(tronParametersNew).sortBy(tb => Number(tb.id)).value()
+            })
+        }else{
+            let { tronParameters } = await Client.getChainparameters();
+            if(!tronParameters){
+                return
+            }
+
+            let sunside = [
+                'getChargingSwitch',
+                'getSideChainGateWayList',
+                'getProposalExpireTime',
+                'getVoteWitnessSwitch',
+                'getFundInjectAddress',
+                'getFundDistributeEnableSwitch',
+                'getDayToSustainByFund',
+                'getPercentToPayWitness',
+            ]
+
+            let sunsideparameters = tronParameters.filter(function(v){
+                return sunside.indexOf(v.key)!==-1
+            })
+            sunsideparameters.map(item => {
+                switch (item['key']){
+                    case "getChargingSwitch":
+                        item.name = 'sun_propose_1';
+                        item.id= '1000000';
+                        break;
+                    case "getSideChainGateWayList":
+                        item.name = 'sun_propose_2';
+                        item.id = '1000001';
+                        break;
+                    case "getProposalExpireTime":
+                        item.name = 'sun_propose_3';
+                        item.id = '1000003';
+                        break;
+                    case "getVoteWitnessSwitch":
+                        item.name = 'sun_propose_4';
+                        item.id =  '1000004';
+                        break;
+                    case "getFundInjectAddress":
+                        item.name = 'sun_propose_5';
+                        item.id = '1000007';
+                        break;
+                    case "getFundDistributeEnableSwitch":
+                        item.name = 'sun_propose_6';
+                        item.id = '1000008';
+                        break;
+                    case "getDayToSustainByFund":
+                        item.name = 'sun_propose_7';
+                        item.id = '1000009';
+                        break;
+                    case "getPercentToPayWitness":
+                        item.name = 'sun_propose_8';
+                        item.id = '1000010';
+                        break;
+                }
+            });
+            let tronParametersNew = [];
+            sunsideparameters.map(item => {
+                if(item.name){
+                    tronParametersNew.push(item)
+                }
+            })
+
+            this.setState({
+                dataSource: tronParametersNew.slice(0,2)
+            })
+
         }
 
-        let sunside = [
-            'getChargingSwitch',
-            'getSideChainGateWayList',
-            'getProposalExpireTime',
-            'getVoteWitnessSwitch',
-            'getFundInjectAddress',
-            'getFundDistributeEnableSwitch',
-            'getDayToSustainByFund',
-            'getPercentToPayWitness',
-        ]
-
-        let sunsideparameters = tronParameters.filter(function(v){
-            return sunside.indexOf(v.key)!==-1
-        })
-        sunsideparameters.map(item => {
-            switch (item['key']){
-                case "getChargingSwitch":
-                    item.name = 'sun_propose_1';
-                    item.id= '1000000';
-                    break;
-                case "getSideChainGateWayList":
-                    item.name = 'sun_propose_2';
-                    item.id = '1000001';
-                    break;
-                case "getProposalExpireTime":
-                    item.name = 'sun_propose_3';
-                    item.id = '1000003';
-                    break;
-                case "getVoteWitnessSwitch":
-                    item.name = 'sun_propose_4';
-                    item.id =  '1000004';
-                    break;
-                case "getFundInjectAddress":
-                    item.name = 'sun_propose_5';
-                    item.id = '1000007';
-                    break;
-                case "getFundDistributeEnableSwitch":
-                    item.name = 'sun_propose_6';
-                    item.id = '1000008';
-                    break;
-                case "getDayToSustainByFund":
-                    item.name = 'sun_propose_7';
-                    item.id = '1000009';
-                    break;
-                case "getPercentToPayWitness":
-                    item.name = 'sun_propose_8';
-                    item.id = '1000010';
-                    break;
-            }
-        });
-        let tronParametersNew = [];
-        sunsideparameters.map(item => {
-            if(item.name){
-                tronParametersNew.push(item)
-            }
-        })
-
-        this.setState({
-            dataSource: tronParametersNew.slice(0,2)
-        })
-
     }
-
-}
   
   componentDidUpdate(prevProps, prevState) {
     let {wallet} = this.props;
@@ -258,36 +350,22 @@ async getChainparameters() {
     }
   }
 
-  setSelect(type) {
-    const {isLoggedInFn, nextState} = this.props
-    nextState({type: type})
-    // if(isLoggedInFn()){
-    //   if(type == 'trc10'){
-    //     if(this.state.issuedAsset){
-    //       nextState({type: type})
-    //     }else{
-    //       this.setModal()
-    //     }
-    //   }else{
-    //     nextState({type: type})
-    //   }
-    // }
-  }
 
   goToNextStep =() => {
-    const {nextStep, isLoggedInFn, wallet, isAuthorFn} = this.props
+    const {nextStep, isLoggedInFn, isApplySuperModalFn, wallet, isAuthorFn} = this.props
     const {issuedAsset, isUpdate,paramData:{author}} = this.state;
     const {type} = this.props.state;
     if(!isLoggedInFn()) return;
-    if( isUpdate  && !isAuthorFn(author)) return;
-    if(!issuedAsset && (type == 'trc10')){
-      this.setModal('trx_token_account_limit')
-      return
-    }
+    // if(!isApplySuperModalFn()) return;
+    // if(!issuedAsset && (type == 'trc10')){
+    //   this.setModal('trx_token_account_limit')
+    //   return
+    // }
     // if(wallet.balance < 1024*Math.pow(10,6)){
     //   this.setModal('trx_token_fee_message')
     //   return
     // }
+    this.props.nextState(this.state)
     nextStep(1)
   }
 
@@ -318,8 +396,22 @@ async getChainparameters() {
 
   getColumns() {
     let { intl } = this.props;
-    let { dataSource } = this.state;
-
+    let { dataSource, proposalsCreateList } = this.state;
+    console.log('dataSource=======',dataSource)
+    console.log('proposalsCreateList=============',proposalsCreateList)
+    let dataSourceArr = dataSource.slice(0);
+    for(let i = 0; i < proposalsCreateList.length;i++){
+        for(let j = 0; j < dataSourceArr.length;j++){
+            if(proposalsCreateList[i]['key'] == dataSourceArr[j]['id']){
+                dataSourceArr[j].checked = true;
+            }
+        }
+        
+    }
+    console.log('dataSourceArr========99123',dataSourceArr)
+    // this.setState({
+    //     dataSource: dataSourceArr
+    // })
     const columns = [{
         title: upperFirst(intl.formatMessage({id: 'propose_number'})),
         key: 'index',
@@ -529,6 +621,25 @@ async getChainparameters() {
                                     </div>
                                 }
                                 {
+                                    record.key == 'getAllowShieldedTransaction' && <div>
+                                        {
+                                            text? <span>{tu('propose_allowed')}</span>:
+                                                <span>{tu('propose_not_allowed')}</span>
+                                        }
+                                    </div>
+                                }
+                                {                       
+                                    record.key == 'getShieldedTransactionFee' && <div>
+                                        <span>{text / ONE_TRX}</span> &nbsp;<span>TRX</span>
+                                    </div>
+                                }
+                                {                       
+                                    record.key == 'getAdaptiveResourceLimitMultiplier' && <div>
+                                        <span>{text}</span>
+                                    </div>
+                                }
+
+                                {
                                     record.key == 'getChangeDelegation' && <div>
                                         {
                                             text? <span>{tu('propose_activate')}</span>:
@@ -542,7 +653,19 @@ async getChainparameters() {
                                             <span>{text / ONE_TRX}</span> &nbsp;<span>TRX</span>
                                         </div>
                                 }
-
+                                {
+                                    record.key == 'getAllowTvmSolidity059' && <div>
+                                        {
+                                            text? <span>{tu('propose_allowed')}</span>:
+                                                <span>{tu('propose_not_allowed')}</span>
+                                        }
+                                    </div>
+                                }
+                                {                       
+                                    record.key == 'getAdaptiveResourceLimitTargetRatio' && <div>
+                                        <span>{text}</span>
+                                    </div>
+                                }
                             </div>:<div>
                                 {
                                     record.key == 'getChargingSwitch' && <div>
@@ -603,6 +726,8 @@ async getChainparameters() {
                                         }
                                     </div>
                                 }
+
+
                             </div>
                         }
                     </div>
@@ -613,14 +738,14 @@ async getChainparameters() {
         }
     },
     {
-      title: upperFirst(intl.formatMessage({id: 'propose_select_table'})),
+      title: upperFirst(intl.formatMessage({id: 'proposal_select_table'})),
       dataIndex: 'select',
       key: 'select',
       align:'right',
       width:'15%',
       render: (text, record, index) => {
           return <span>
-               <Checkbox onChange={(e)=>this.onChange(e,record)}></Checkbox>
+               <Checkbox checked={record.checked} onChange={(e)=>this.onChange(e.target.checked,record,index)}></Checkbox>
           </span>
       }
     },
@@ -637,27 +762,40 @@ async getChainparameters() {
             }}
         />
     )
-}
+  }
+
+  tagClose = (tag) => {
+    let { proposalsCreateList, dataSource} = this.state;
+    console.log('tag',tag)
+    let index = 10000
+    this.onChange(false,tag,10000)
+    
+  };
   
 
   render() {
-    let {type} = this.props.state
+    let {proposalsCreateList,dataSource} = this.state;
     const { locale } = this.props.intl
-    
+    console.log('dataSource========222',dataSource)
     return (
         <main>
           {this.state.modalSelect}
+          { proposalsCreateList.length > 0 &&  <div>
+                <h5>{tu('proposal_selected_network_parameters')}:</h5>  
+                <div>
+                    {proposalsCreateList.map((tag, index) => {
+                       return <Tag key={tag.key} closable onClose={() => this.tagClose(tag)}>
+                            {tu(tag.name)}
+                        </Tag>
+                    })}
+                </div> 
+            </div>  
+          }
           <div className="mt-4">
             {this.getColumns()}
           </div>
-          {/* <button 
-            type="button" 
-            className="btn btn-danger btn-lg btn-w" 
-            style={{width: '252px'}}
-            onClick={this.goToNextStep}
-         >{tu('trc20_confirm')}</button> */}
           <div className="text-right mt-4">
-            <button className="ml-4 btn btn-danger btn-lg" onClick={this.goToNextStep}>{tu('next')}</button>
+            <button disabled={proposalsCreateList.length === 0} className="ml-4 btn btn-danger btn-lg" onClick={this.goToNextStep}>{tu('next')}</button>
           </div>
         </main>
     )

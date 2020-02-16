@@ -12,7 +12,7 @@ import ResultInfo from "./resultInfo";
 import { Prompt } from "react-router";
 import { BrowserRouter } from "react-router-dom";
 import SweetAlert from "react-bootstrap-sweetalert";
-import { Modal, Button } from "antd";
+import { Button } from "antd";
 import NavigationPrompt from "react-router-navigation-prompt";
 import xhr from "axios";
 import { API_URL, ONE_TRX } from "../../../constants";
@@ -20,8 +20,10 @@ import { TronLoader } from "../../common/loaders";
 import { Client } from "../../../services/api";
 import _ from "lodash";
 import WARNIMG from './../../../images/compiler/warning.png';
-const confirm = Modal.confirm;
-
+import {Modal, ModalBody, ModalHeader} from "reactstrap";
+import ApplyForDelegate from "./../common/ApplyForDelegate";
+import Lockr from "lockr";
+// const confirm = Modal.confirm;
 const Step = Steps.Step;
 const typeMap = ["Select", "Propose", "Confirm", "Result"];
 @connect(state => ({
@@ -39,277 +41,30 @@ export class ProposalsCreate extends Component {
       modal: null,
       isUpdate: false,
       leave_lock: false,
-      social_total: 20,
-      social_current: 4,
+      proposalsCreateList:[],
       paramData: {
-        token_id: "",
-        token_name: "",
-        token_abbr: "",
-        token_introduction: "",
-        token_supply: "",
-        precision: 0,
-        logo_url: "https://coin.top/production/upload/logo/default.png",
-        file_name: "",
-        author: "",
-        contract_address: "",
-        contract_created_date: "",
-        contract_created_address: "",
-        contract_code: "",
-        website: "",
-        email: "",
-        white_paper: "",
-        github_url: "",
-        trx_amount: "",
-        token_amount: "",
-        participation_type: true,
-        participation_start_date: moment()
-          .add(1, "days")
-          .startOf("day"),
-        participation_end_date: moment()
-          .add(2, "days")
-          .startOf("day"),
-        freeze_type: false,
-        freeze_amount: 0,
-        freeze_date: 0
+        res: "",
+        errorInfo: ""
       },
-      iconList: [
-        { method: "Twitter", active: true, link: [""] },
-        { method: "Facebook", active: true, link: [""] },
-        { method: "Telegram", active: true, link: [""] },
-        { method: "Weibo", active: true, link: [""] },
-        { method: "Reddit", active: false, link: [""] },
-        { method: "Medium", active: false, link: [""] },
-        { method: "Steem", active: false, link: [""] },
-        { method: "Instagram", active: false, link: [""] },
-        { method: "Wechat", active: false, link: [""] },
-        { method: "Group", active: false, link: [""] },
-        { method: "Discord", active: false, link: [""] }
-      ],
-      res: "",
-      errorInfo: ""
+      isTronLink: 0,
     };
   }
 
   componentDidMount() {
-    let { match } = this.props;
+    let { match, account } = this.props;
+    //login status
     if (this.isLoggedIn(1)) {
-      // if (match.path === "/tokens/update/:id" && match.params.id) {
-      //   if (!isNaN(match.params.id)) {
-      //     this.loadToken10(match.params.id);
-      //   } else {
-      //     this.loadToken20(match.params.id);
-      //   }
-      // } else {
-      //   this.setDefaultData();
-      //   location.href = "#/proposals/create/Type";
-      // }
-      console.log('123123')
-    //  this.setDefaultData();
+      this.setDefaultData();
       location.href = "#/proposalscreate/Select";
     }
+    if (account.isLoggedIn) {
+      this.setState({
+          isTronLink: Lockr.get("islogin"),
+      });
+  }
   }
 
-  loadToken10 = async id => {
-    let { account, intl } = this.props;
-    this.setState({ loading: true, isUpdate: true });
-    let result = await xhr.get(API_URL + "/api/token?id=" + id + "&showAll=1");
-    let token = result.data.data[0];
-    let new_social_media = [];
-
-    Object.keys(token).map(key => {
-      if (token[key] == "no_message") token[key] = "";
-    });
-    if (!token) {
-      this.setState({
-        loading: false,
-        token: null,
-        modal: (
-          <SweetAlert
-            info
-            confirmBtnText={intl.formatMessage({ id: "confirm" })}
-            confirmBtnBsStyle="success"
-            onConfirm={this.goAccount}
-            style={{ marginLeft: "-240px", marginTop: "-195px" }}
-          >
-            {tu("information_is_being_confirmed")}
-          </SweetAlert>
-        )
-      });
-      return;
-    } else {
-      if (!this.isAuthor(token.ownerAddress)) {
-        return;
-      }
-    }
-
-    let { frozen_supply } = await Client.getAccountByAddressNew(
-      token.ownerAddress
-    );
-
-    if (token.new_social_media && token.new_social_media.length > 0) {
-      new_social_media = JSON.parse(token.new_social_media);
-      for (let icon in this.state.iconList) {
-        let hasMethod = false;
-        for (let item in new_social_media) {
-          if (
-            new_social_media[item].method === this.state.iconList[icon].method
-          ) {
-            hasMethod = true;
-          }
-        }
-        if (!hasMethod) {
-          new_social_media.push({
-            method: this.state.iconList[icon].method,
-            active: false,
-            link: [""]
-          });
-        }
-      }
-    } else {
-      new_social_media = this.state.iconList;
-      new_social_media.map((item, index) => {
-        token.social_media.map((name, icon_index) => {
-          if (item.method == name.name) {
-            item.link[0] = name.url;
-          }
-        });
-      });
-    }
-
-    this.setState({
-      loading: false,
-      step: 1,
-      type: "trc10",
-      isUpdate: true,
-      paramData: {
-        token_id: id,
-        token_name: token.name,
-        token_abbr: token.abbr,
-        token_introduction: token.description,
-        token_supply: (
-          token.totalSupply / Math.pow(10, token.precision)
-        ).toString(),
-        precision: token.precision,
-        logo_url: token.imgUrl,
-        author: token.ownerAddress,
-        trx_amount: (token.trxNum / ONE_TRX).toString(),
-        token_amount: (
-          token.num.toString() / Math.pow(10, token.precision)
-        ).toString(),
-        participation_type:
-          token.endTime - token.startTime > 1000 ? true : false,
-        participation_start_date: moment(token.startTime),
-        participation_end_date: moment(token.endTime),
-        freeze_type: frozen_supply.length > 0 ? true : false,
-        freeze_amount:
-          frozen_supply.length > 0 ? frozen_supply[0].amount.toString() : "",
-        freeze_date: frozen_supply.length > 0 ? frozen_supply[0].expires : "",
-        website: token.url,
-        email: token.email ? token.email : "",
-        white_paper: token.white_paper,
-        github_url: token.github
-      },
-      iconList: new_social_media
-    });
-  };
-
-  loadToken20 = async id => {
-    let { account, intl } = this.props;
-    this.setState({ loading: true, isUpdate: true });
-    let result = await xhr.get(API_URL + "/api/token_trc20?contract=" + id);
-    let token = result.data.trc20_tokens[0];
-    let contractInfo;
-    let new_social_media = [];
-    if (!token) {
-      this.setState({
-        loading: false,
-        token: null,
-        modal: (
-          <SweetAlert
-            info
-            confirmBtnText={intl.formatMessage({ id: "confirm" })}
-            confirmBtnBsStyle="success"
-            onConfirm={this.goAccount}
-            style={{ marginLeft: "-240px", marginTop: "-195px" }}
-          >
-            {tu("information_is_being_confirmed")}
-          </SweetAlert>
-        )
-      });
-
-      return;
-    } else {
-      if (!this.isAuthor(token.issue_address)) {
-        return;
-      } else {
-        contractInfo = await Client.getContractInfo(token.contract_address);
-      }
-    }
-
-    if (token.new_social_media && token.new_social_media.length > 0) {
-      new_social_media = JSON.parse(token.new_social_media);
-      for (let icon in this.state.iconList) {
-        let hasMethod = false;
-        for (let item in new_social_media) {
-          if (
-            new_social_media[item].method === this.state.iconList[icon].method
-          ) {
-            hasMethod = true;
-          }
-        }
-        if (!hasMethod) {
-          new_social_media.push({
-            method: this.state.iconList[icon].method,
-            active: false,
-            link: [""]
-          });
-        }
-      }
-    } else {
-      new_social_media = this.state.iconList;
-      new_social_media.map((item, index) => {
-        token.social_media_list.map((name, icon_index) => {
-          if (item.method == name.name) {
-            if (!(name.url.includes("[") && name.url.includes("]"))) {
-              name.url = '["' + name.url + '"]';
-            }
-            item.link = JSON.parse(name.url);
-          }
-        });
-      });
-    }
-    this.setState({
-      loading: false,
-      step: 1,
-      type: "trc20",
-      isUpdate: true,
-      paramData: {
-        token_id: id,
-        token_name: token.name,
-        token_abbr: token.symbol,
-        token_introduction: token.token_desc,
-        token_supply: (
-          token.total_supply_with_decimals / Math.pow(10, token.decimals)
-        ).toString(),
-        precision: token.decimals,
-        logo_url: token.icon_url,
-        author: token.issue_address,
-        contract_address: token.contract_address,
-        //contract_created_date: moment(token.issue_time),
-        contract_created_date: contractInfo.data[0].date_created
-          ? moment(contractInfo.data[0].date_created)
-          : "",
-        contract_created_address: contractInfo.data[0].creator.address
-          ? contractInfo.data[0].creator.address
-          : "",
-        website: token.home_page,
-        email: token.email ? token.email : "",
-        white_paper: token.white_paper
-      },
-      iconList: new_social_media
-    });
-  };
-
+  
   componentDidUpdate(prevProps, prevState) {
     let { wallet } = this.props;
     if (wallet !== null) {
@@ -339,30 +94,10 @@ export class ProposalsCreate extends Component {
     }
   };
   changeState = params => {
+    console.log('params',params)
     this.setState(params);
   };
-  isAuthor = author => {
-    let { intl, account } = this.props;
-    if (account.address !== author) {
-      this.setState({
-        loading: false,
-        step: 0,
-        modal: (
-          <SweetAlert
-            error
-            confirmBtnText={intl.formatMessage({ id: "confirm" })}
-            confirmBtnBsStyle="success"
-            onConfirm={this.hideModal}
-            style={{ marginLeft: "-240px", marginTop: "-195px" }}
-          >
-            {tu("token_create_auther_different")}
-          </SweetAlert>
-        )
-      });
-      return false;
-    }
-    return true;
-  };
+ 
 
   hideModal = () => {
     this.setState({
@@ -395,6 +130,60 @@ export class ProposalsCreate extends Component {
     return account.isLoggedIn;
   };
 
+  // 
+  applySuperModal(){
+    let { intl } = this.props;
+    this.setState({
+        modal: 
+            <Modal isOpen={true} toggle={this.hideModal} className="committee-modal" style={{width: '460px'}}>
+                <ModalHeader toggle={this.hideModal} className=""></ModalHeader>
+                <ModalBody>
+                    <div style={{color: '#333',padding:'10px 0 50px',fontSize: '16px',textAlign: 'center'}}>{tu('proposal_apply_super')}</div>
+                    <div style={{display: 'flex', justifyContent: 'center'}}>
+                        <div style={{width: '220px',height: '38px',lineHeight: '38px', textAlign: 'center', background: '#69C265', color: '#fff',cursor: 'pointer'}}
+                            onClick={() => {
+                                this.applyForDelegate()
+                            }}>
+                            {tu('proposal_apply_super_btn')}
+                        </div>
+                    </div>
+                </ModalBody>
+            </Modal>
+    });
+
+}
+
+  applyForDelegate = () => {
+    let {privateKey} = this.state;
+    this.setState({
+      modal: (
+          <ApplyForDelegate
+              isTronLink={this.state.isTronLink}
+              privateKey={privateKey}
+              onCancel={this.hideModal}
+              onConfirm={() => {
+                // setTimeout(() => this.props.reloadWallet(), 1200);
+                this.setState({
+                    modal: (
+                        <SweetAlert success timeout="3000" onConfirm={this.hideModal}>
+                          {tu("proposal_apply_super_success")}
+                        </SweetAlert>
+                    )
+                });
+              }}/>
+      )
+    })
+  }
+  isApplySuperModal = () =>{
+    const { wallet } = this.props;
+    if(!wallet.representative.enabled){
+        this.applySuperModal()
+        return
+    }
+  }
+ 
+  
+
   navigationchange(nextLocation) {
     const { leave_lock, step } = this.state;
     return (
@@ -407,7 +196,7 @@ export class ProposalsCreate extends Component {
 
   render() {
     let { step, modal, paramData, leave_lock, isUpdate, loading } = this.state;
-    let info = ["propose_select", "propose_value", "propose_confirm", "propose_result"];
+    let info = ["proposal_select", "proposal_value", "proposal_confirm", "proposal_result"];
     // 发起提议文案Item
     const ProposalCreateItem = (
       <div className="proposal-text-container mb-4">
@@ -447,7 +236,7 @@ export class ProposalsCreate extends Component {
         ) : (
           <div className="row">
             <div className="col-sm-12">
-             {ProposalCreateItem} 
+             {(step==0 || step==1) &&  ProposalCreateItem} 
               <div className="card">
                 <div className="">
                   {step === 0 && (
@@ -460,7 +249,7 @@ export class ProposalsCreate extends Component {
                         this.changeState(params);
                       }}
                       isLoggedInFn={this.isLoggedIn}
-                      isAuthorFn={this.isAuthor}
+                      isApplySuperModalFn = {this.isApplySuperModal}
                     />
                   )}
                   {step === 1 && (
@@ -472,6 +261,8 @@ export class ProposalsCreate extends Component {
                       nextState={params => {
                         this.changeState(params);
                       }}
+                      isLoggedInFn={this.isLoggedIn}
+                      isApplySuperModalFn = {this.isApplySuperModal}
                     />
                   )}
                   {step === 2 && (
@@ -483,6 +274,8 @@ export class ProposalsCreate extends Component {
                       nextState={params => {
                         this.changeState(params);
                       }}
+                      isLoggedInFn={this.isLoggedIn}
+                      isApplySuperModalFn = {this.isApplySuperModal}
                     />
                   )}
                   {step === 3 && (

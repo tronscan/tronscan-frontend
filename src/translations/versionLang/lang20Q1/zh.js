@@ -155,13 +155,18 @@ export const lang20Q1 = {
     #                                                                                #
     ##################################################################################
   */
-  propose_select: "选择网络参数",
-  propose_value: "修改提议值", 
-  propose_confirm: "确认提议", 
-  propose_result: "提议结果",
+  proposal_select: "选择网络参数",
+  proposal_value: "修改提议值", 
+  proposal_confirm: "确认提议", 
+  proposal_result: "提议结果",
   proposal_create_info: "提议是指对TRON网络参数进行修改，每个超级代表都具有提议权、对提议的投票权。当提议在有效期内获得19个及以上超级代表的赞成票时，该提议获得通过，并在下个维护期内进行网络参数修改。",
-  propose_select_table: "选择",
-  
+  proposal_select_table: "选择",
+  proposal_selected_network_parameters:"已选择网络参数",
+  proposal_content:"提议内容",
+  proposal_new_value:"提议值",
+  proposal_submit_text:"您确定发起提议吗？",
+  proposal_created_successful:"发起提议成功",
+  proposal_created_failure:"发起提议失败",
  
 
 };
