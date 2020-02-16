@@ -167,6 +167,7 @@ export const lang20Q1 = {
   proposal_submit_text:"您确定发起提议吗？",
   proposal_created_successful:"发起提议成功",
   proposal_created_failure:"发起提议失败",
- 
+  proposal_validate_text_0:"请输入[81000-86400000]的数值",
+  proposal_validate_text_1:"请输入[81000-86400000]的数值"
 
 };

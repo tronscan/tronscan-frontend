@@ -3,7 +3,7 @@ import {t, tu} from "../../../utils/i18n";
 import {connect} from "react-redux";
 import {FormattedNumber, FormattedDate, injectIntl} from "react-intl";
 import 'moment/min/locales';
-import { Steps, Table, Checkbox,Input } from 'antd';
+import { Steps, Table, Checkbox, Input, InputNumber, Form, Select } from 'antd';
 import SweetAlert from "react-bootstrap-sweetalert";
 import {Client} from "../../../services/api";
 import _,{upperFirst} from 'lodash'
@@ -38,7 +38,18 @@ export class SetProposal extends Component {
     let {proposalsCreateList,dataSource} = this.state;
     console.log('proposalsCreateList',proposalsCreateList);
     console.log('dataSource',dataSource)
-    
+    let dataSourceSelected =  _(dataSource).filter(source => source.checked).value()
+    dataSourceSelected.map((item,index)=>{
+        console.log('item=====================1000000009123123',item)
+        switch (item['key']){
+            case "getMaintenanceTimeInterval":
+                this.props.form.setFieldsValue({
+                    "getMaintenanceTimeInterval": item.newValue?item.newValue/1000:''
+                });
+                break;
+        }
+        
+    })
   }
 
   
@@ -49,6 +60,12 @@ export class SetProposal extends Component {
         this.checkExistingToken()
       }
     }
+    // console.log('prevState.step',prevState.step)
+    // console.log('this.state.step',this.state.step)
+    // if(prevProps.step !== this.props.step){
+
+    // }
+    
   }
 
   setSelect(type) {
@@ -112,8 +129,20 @@ export class SetProposal extends Component {
 
   getColumns() {
     let { intl } = this.props;
+    const { getFieldDecorator, setFieldsValue } = this.props.form;
+   
     let { dataSource, proposalsCreateList } = this.state;
     let dataSourceSelected =  _(dataSource).filter(source => source.checked).value()
+    // dataSourceSelected.map((item,index)=>{
+    //     switch (item['key']){
+    //         case "getMaintenanceTimeInterval":
+    //             this.props.form.setFieldsValue({
+    //                 [item.key]: item.newValue?item.newValue:0
+    //             });
+    //             break;
+    //     }
+        
+    // })
     console.log('dataSource=======',dataSource)
     console.log('dataSourceSelected=======',dataSourceSelected)
     const columns = [
@@ -437,17 +466,24 @@ export class SetProposal extends Component {
     //   width:'15%',
       render: (text, record, index) => {
           return <span>
-               {/* <Checkbox checked={record.checked} onChange={(e)=>this.onChange(e.target.checked,record,index)}></Checkbox> */}
-                {                       
-                    record.key == 'getAdaptiveResourceLimitTargetRatio' && <div>
-                        <Input placeholder="Basic usage" onChange={(e) => this.onInputGetAdaptiveResourceLimitTargetRatio(e, record)}/>
-                    </div>
-                }
-                {                       
-                    record.key == 'getMaintenanceTimeInterval' && <div>
-                        <Input placeholder="Basic usage" onChange={(e) => this.onInputGetAdaptiveResourceLimitTargetRatio(e, record)}/>
-                    </div>
-                }
+            
+                <Form.Item>
+                    {getFieldDecorator('getMaintenanceTimeInterval', {
+                        rules: [{ required: true, message: tu("proposal_validate_text_0")},
+                      //  { min: 81000, max: 86400000, message: tu("proposal_validate_text_0") }
+                    ],
+                    })(
+                        <InputNumber
+                            placeholder={intl.formatMessage({id: 'proposal_validate_text_0'})}
+                            min={81000}
+                            max={86400000}
+                            className="proposal_w-230"
+                            onChange={(e)=>{this.onInputChange(e,record)}}
+                        />,
+                        <InputNumber
+                />
+                    )}
+                </Form.Item>
           </span>
       }
     },
@@ -466,20 +502,24 @@ export class SetProposal extends Component {
     )
   }
 
-  onInputGetAdaptiveResourceLimitTargetRatio = (e, record) =>{
-    console.log('e',e.target.value) 
-    console.log('record',record) 
+  onInputChange = (e, record) =>{
+    console.log('e=========================10000000000',e) 
+    console.log('record=========================10000000000',record) 
     let {proposalsCreateList,dataSource} = this.state;
+    let inputValue;
+    if(record.key == 'getMaintenanceTimeInterval'){
+        inputValue = e*1000
+    }
     proposalsCreateList.map((item,index)=>{
         console.log('item',item)
         if(item.key == record.id){
-            item.newValue = e.target.value
+            item.newValue = inputValue
         }
     })
     dataSource.map((item,index)=>{
         console.log('item',item)
         if(item.id == record.id){
-            item.newValue = e.target.value
+            item.newValue = inputValue
         }
     })
     this.setState({
@@ -492,6 +532,16 @@ export class SetProposal extends Component {
 
   }
 
+  handleSubmit = e => {
+    e.preventDefault();
+    this.props.form.validateFields((err, values) => {
+      if (!err) {
+        console.log('Received values of form: ', values);
+        this.goToNextStep()
+      }
+    });
+  };
+
 
   render() {
     let {type} = this.props.state;
@@ -502,18 +552,21 @@ export class SetProposal extends Component {
     return (
         <main>
           {this.state.modalSelect}
-          <div className="mt-4">
-            {this.getColumns()}
-          </div>
-          <div className="text-right mt-4">
-            <button className="btn btn-default btn-lg"onClick={() => nextStep(0)}>
-                {tu("prev_step")}
-            </button>
-            <button className="ml-4 btn btn-danger btn-lg" onClick={this.goToNextStep}>{tu('next')}</button>
-          </div>
+          <Form layout="inline" onSubmit={this.handleSubmit}>
+            <div className="mt-4">
+                    {this.getColumns()}
+            </div>
+            <div className="text-right mt-4">
+                <button className="btn btn-default btn-lg"onClick={() => nextStep(0)}>
+                    {tu("prev_step")}
+                </button>
+                <button className="ml-4 btn btn-danger btn-lg" htmlType="submit" >{tu('next')}</button>
+            </div>
+        </Form>
         </main>
     )
   }
 }
 
-export default injectIntl(SetProposal);
+export default Form.create({ name: 'set_proposal' })(injectIntl(SetProposal));
+

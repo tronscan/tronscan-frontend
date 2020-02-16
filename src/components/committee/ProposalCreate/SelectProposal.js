@@ -404,6 +404,7 @@ export class SelectProposal extends Component {
         for(let j = 0; j < dataSourceArr.length;j++){
             if(proposalsCreateList[i]['key'] == dataSourceArr[j]['id']){
                 dataSourceArr[j].checked = true;
+                dataSourceArr[j].newValue = proposalsCreateList[i].newValue;
             }
         }
         
