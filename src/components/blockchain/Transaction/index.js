@@ -171,14 +171,20 @@ class Transaction extends React.Component {
                               {
                                 transaction.confirmed ?
                                   <span className="badge badge-success text-uppercase">{tu("Confirmed")}</span> :
-                                  <span className="badge badge-danger text-uppercase">{tu("Unconfirmed")}</span>
+                                  <span className="badge badge-confirmed text-uppercase">{tu("Unconfirmed")}</span>
                               }
                             </td>
                           </tr>
                         }
                         <tr>
-                          <th>{tu("block")}</th>
-                          <td><BlockNumberLink number={transaction.block} /></td>
+                          <th>
+                            {tu("block")}
+                          </th>
+                          <td>
+                            {
+                                transaction.confirmed ?  <BlockNumberLink number={transaction.block} /> : <span>（pending）</span>  
+                            }
+                          </td>
                         </tr>
                         {
                           transaction.timestamp !== 0 && <tr>
