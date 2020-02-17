@@ -132,10 +132,4 @@ export const lang20Q1 = {
   chart_resource_contract_deployer:'合约部署者提供的能量'
 
 
-
-  //2020-02-08
-  chart_resource_user_freeing:'用户冻结trx的能量',
-  chart_resource_user_burning:'用户烧毁trx的能量',
-  chart_resource_contract_deployer:'合约部署者提供的能量'
-
 };
