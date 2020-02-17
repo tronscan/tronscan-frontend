@@ -166,7 +166,7 @@ class Transaction extends React.Component {
                         }
                         {
                           transaction.hasOwnProperty("confirmed") && <tr>
-                            <th>{tu("status")} {" "}<QuestionMark placement="right" text={intl.formatMessage({ id: 'transaction_status_tip' })} ></QuestionMark></th>
+                            <th>{tu("status")} {" "}<QuestionMark placement="right" text={intl.formatMessage({ id: 'full_node_version_confirmed_tips' })} ></QuestionMark></th>
                             <td>
                               {
                                 transaction.confirmed ?
