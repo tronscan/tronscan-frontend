@@ -84,7 +84,22 @@ class Navigation extends React.Component {
       selectedNet:'',
       drawerVisible:false,//draw is visible
       currentActive:3,
-      percent_change_24h:0
+      percent_change_24h:0,
+      testNetAry: [
+        "testnet",
+        {
+          url: "https://nile.tronscan.org",
+          icon: false,
+          label: "NILE TESTNET",
+          sidechain: false
+        },
+        {
+          url: "https://shasta.tronscan.org",
+          icon: false,
+          label: "SHASTA TESTNET",
+          sidechain: false
+        }
+      ]
     };
   }
 
@@ -1024,27 +1039,25 @@ class Navigation extends React.Component {
       syncStatus,
       walletType: { type },
     } = this.props;
-    let {search, popup, notifications, announcement, announId, annountime, searchResults, selectedNet,drawerVisible,currentActive,percent_change_24h } = this.state;
+    let {search, popup, notifications, announcement, announId, annountime, searchResults, selectedNet,drawerVisible,currentActive,percent_change_24h,testNetAry } = this.state;
     let activeComponent = this.getActiveComponent();
     const isShowSideChain = !type || (type && IS_SUNNET);
     return (
         <div className="header-top nav-item-page">
           {popup}
-        <div className={activeLanguage == 'ru'? "logo-wrapper single-logo-wrapper":"logo-wrapper"}>
+        <div className={"logo-wrapper"}>
             {/* zh  ko ar fa nav menu flex space-between*/}
             {/* <div className={!IS_MAINNET?(activeLanguage == 'ru'||activeLanguage == 'es' ||activeLanguage == 'ja' ?'py-2 d-flex px-0 sunnet-menu-nav-wrapper':'py-2 d-flex px-0 single-menu-nav-wrapper' ):(activeLanguage === 'zh' || activeLanguage === 'ko' || activeLanguage === 'ar'  ? "py-2 d-flex px-0 single-menu-nav-wrapper" : "py-2 d-flex px-0 menu-nav-wrapper") }> */}
-            <div className={"py-2 d-flex px-0 menu-nav-wrapper"}>
+            <div className={IS_SUNNET ? "py-2 d-flex px-0 menu-nav-wrapper sunnet-menu-nav-wrapper":"py-2 d-flex px-0 menu-nav-wrapper"}>
               <div className="logoTrxPrice">
-                <div className="mobileFlexible d-flex">
+                <div className="mobileFlexible">
                   <Link to="/">
                     <img  src={this.getLogo()} className="logo" alt="Tron"/>
-                    {IS_SUNNET?<span className="sunnet-logo-title ">
-                      <span className="ml-2" style={{color:"#000"}}>Dapp Chain</span>
-                    </span> :null}
+                 
                   </Link>
                   {
                     IS_MAINNET?
-                    <span className="currentTRXInfo">
+                    <div className="currentTRXInfo">
                       <Tooltip
                         placement="bottom"
                         title={intl.formatMessage({
@@ -1069,7 +1082,7 @@ class Navigation extends React.Component {
                           </span>
                         </HrefLink>
                       </Tooltip>
-                    </span>
+                    </div>
                     :null
                   }
                 </div>
@@ -1085,7 +1098,7 @@ class Navigation extends React.Component {
                     Tronscan is syncing, data might not be up-to-date ({Math.round(syncStatus.sync.progress)}%)
                   </div>
                 }
-              
+            
                 <div className="new-menu-List">
                   <nav className="top-bar navbar navbar-expand-md navbar-dark" style={{padding:0}}> 
                   {/*  pc nav */}
@@ -1111,11 +1124,12 @@ class Navigation extends React.Component {
                                         activeClassName="active"
                                         to={route.redirect? route.redirect: route.path}
                                     >
-                                      <span  className={(currentRouter.slice(1).split('/').indexOf(route.path.slice(1)) !== -1 || (currentRouter==='/exchange/trc20' && route.path ==="/exchange/trc20") || (route.path==='/more' && currentRouter.slice(1,5)==='help') || (route.path==='/more' && currentRouter.slice(1,6)==='tools'))  ? "menu-active-tilte-pc": ""}>
+                                      <span  className={
+                                        (currentRouter.slice(1).split('/').indexOf(route.path.slice(1)) !== -1 || (currentRouter==='/exchange/trc20' && route.path ==="/exchange/trc20") || (route.path==='/more' && currentRouter.slice(1,5)==='help') || (route.path==='/more' && currentRouter.slice(1,6)==='tools')) || (route.path==='/newblock' && currentRouter.slice(1,11)==='blockchain') || (route.path==='/newblock' && currentRouter.slice(1,10)==='contracts') || (route.path==='/newblock' && currentRouter.slice(1,7)==='tokens') ? "menu-active-tilte-pc": ""}>
                                       {route.icon &&
                                       <i className={route.icon + " d-none d-lg-inline-block mr-1"}/>}
                                       {tu(route.label)}
-                                      {route.label !== 'home_page' && route.label !== 'Poloni DEX'?<Icon type="caret-down" /> : null}
+                                      {route.label !== 'home_page' && route.label !== 'Poloni DEX'?<Icon type="caret-down" style={{color: 'rgba(51,51,51,0.50)',marginLeft:"4px",fontSize:'8px'}} /> : null}
                                     
                                       </span>
                                       {/* <i className="hot-nav"></i> */}
@@ -1126,7 +1140,7 @@ class Navigation extends React.Component {
                               }
 
                               {
-                                route.routes && route.label !== "nav_more" && route.label !== "nav_network" &&
+                                route.routes && route.label !== "nav_more" && route.label !== "nav_network" && route.label !== "newblock" &&
                                 <div className="dropdown-menu">
                                   {
                                     route.routes && route.routes.map((subRoute, index) => {
@@ -1162,6 +1176,7 @@ class Navigation extends React.Component {
                                             </HrefLink>
                                         );
                                       }
+                                      
                                       if (!isUndefined(subRoute.enurl) || !isUndefined(subRoute.zhurl)) {
                                         return (
                                             <HrefLink
@@ -1193,7 +1208,7 @@ class Navigation extends React.Component {
                                 </div>
                               }
                               {
-                                  route.routes && (route.label == "nav_network" || route.label == "nav_more") &&
+                                  route.routes && (route.label == "nav_network" || route.label == "nav_more" || route.label == "newblock") &&
                                 <div className="dropdown-menu more-menu" style={{left: 'auto'}}>
                                   {
                                     route.routes && route.routes.map((subRoute, index) => {
@@ -1244,7 +1259,6 @@ class Navigation extends React.Component {
                                                     </HrefLink>
                                                     <img src={require("../images/home/hot.svg")} title="hot" className="developer_challenge_hot"/>
                                                     </span>
-
                                                 );
                                             }
 
@@ -1301,8 +1315,6 @@ class Navigation extends React.Component {
                   </nav>
                 </div>
               </div>
-              
-
               <div className="loginInfoNavBar">
                 <div className={IS_MAINNET ? "navbar navbar-expand-md navbar-dark py-0 page-right-navbar mainetMargin mobileMarginMenu" : "navbar navbar-expand-md navbar-dark py-0 page-right-navbar"}>
                   <ul className="navbar-nav navbar-right wallet-nav">
@@ -1313,19 +1325,27 @@ class Navigation extends React.Component {
                    
                     <li className="nav-item dropdown navbar-right hidden-mobile" style={{display:'flex'}}>
                         <Divider className="hidden-mobile" type="vertical" style={{marginTop:'0.7rem',height: '1.2em','display':'inline-block'}}/>
-                        <a className="nav-link dropdown-toggle dropdown-menu-right pr-0"
+                        {/* test icon */}
+                        <a className="nav-link dropdown-toggle dropdown-menu-right pr-0 nav-testnet-dropdown-menu"
                           data-toggle="dropdown"
-                          href="javascript:">{languages[activeLanguage]}</a>
-                        <div className="dropdown-menu languages-menu">
+                          href="javascript:">
+                          <img src={require("../images/home/icon.svg")} width="16px" height="16px"/>
+                        </a>
+                        <div className="dropdown-menu testnet-dropdown-menu">
                           {
-                            Object.keys(languages).map(language => (
-                                <a key={language}
+                            testNetAry.map((item,ind) => (
+                                <a key={ind}
+                                  target="_blank"
                                   className="dropdown-item"
-                                  href="javascript:"
-                                  onClick={() => this.setLanguage(language)}>{languages[language]}</a>
+                                  href={item.url}
+                                  >
+                                    {item.label}
+                                    {item.label==='NILE TESTNET'&& <span className="new-test-net">new</span>} 
+                                </a>
                             ))
                           }
                         </div>
+        
                     </li>
                   </ul>
                   <div className="drawWrapper hidden-PC" onClick={()=>{this.setState({drawerVisible:true})}}>
@@ -1502,8 +1522,35 @@ class Navigation extends React.Component {
           >
             <div className="mobile-draw-menu">
               <MenuNavigation currentRoutes={routes} changeDrawerFun={()=>this.changeCurrentDrawerFun()}></MenuNavigation>
-              <Collapse bordered={false} expandIconPosition="right" accordion={true} defaultActiveKey={[currentActive]} expandIcon={({ isActive }) => <Icon type="down" rotate={isActive ? 180 : 0} />}>
-                <Panel header={languages[activeLanguage]} key="0" >
+              <Collapse accordion bordered={false} expandIconPosition="right" accordion={true} defaultActiveKey={[currentActive]} expandIcon={({ isActive }) => <Icon type="down" rotate={isActive ? 180 : 0} />}>
+                <Panel header={'EXPLORERS'} key="0" >
+                  <div className="languages-menu mobile-testnet-dropdown-menu">
+                    {
+                      testNetAry.map((net,ind) => (
+                          <a key={ind}
+                            target="_blank"
+                            className="dropdown-item"
+                            href={net.url}
+                            onClick={() => {
+                              this.changeCurrentDrawerFun();
+                              this.setState({
+                                currentActive:3
+                              })
+                            }}>
+                              {net.label}
+                              {net.label==='NILE TESTNET'&& <span className="new-test-net">new</span>} 
+                            </a>
+                      ))
+                    }
+                  </div>
+                </Panel>
+                <Panel header={
+                  <span>
+                    <img src={require(`../images/home/${activeLanguage}.svg`)} alt="" style={{height:'16px',marginRight:'2px'}}/>
+                    {languages[activeLanguage]}
+                  </span>  
+                  
+                  } key="1" >
                   <div className="languages-menu">
                     {
                       Object.keys(languages).map(language => (
@@ -1513,15 +1560,18 @@ class Navigation extends React.Component {
                             onClick={() => {
                               this.changeCurrentDrawerFun();
                               this.setState({
-                                currentActive:2
+                                currentActive:3
                               })
                               this.setLanguage(language)
-                            }}>{languages[language]}</a>
+                            }}>
+                               <img src={require(`../images/home/${language}.svg`)} alt="" style={{height:'16px',marginRight:'2px'}} />
+                              {languages[language]}
+                            </a>
                       ))
                     }
                   </div>
                 </Panel>
-                <Panel header={activeCurrency} key="1" >
+                <Panel header={activeCurrency} key="2" >
                   <div className="currency-menu">
                     {
                       currencyConversions.map((current,ind) => (
@@ -1531,7 +1581,7 @@ class Navigation extends React.Component {
                             onClick={() => {
                               this.changeCurrentDrawerFun();
                               this.setState({
-                                currentActive:2
+                                currentActive:3
                               })
                               this.props.setActiveCurrency(current.id)
                             }}>{current.name}</a>
@@ -1540,8 +1590,6 @@ class Navigation extends React.Component {
                   </div>
                 </Panel>
               </Collapse>
-            
-                       
             </div>
           </Drawer>
         </div>

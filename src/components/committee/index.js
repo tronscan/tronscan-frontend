@@ -602,7 +602,8 @@ class Committee extends React.Component {
                 </div>
 
             }
-        }];
+        }
+    ];
 
         return (
             <Table

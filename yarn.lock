@@ -10200,7 +10200,6 @@ react-base16-styling@^0.6.0:
 react-bootstrap-sweetalert@^4.4.1:
   version "4.4.1"
   resolved "https://registry.yarnpkg.com/react-bootstrap-sweetalert/-/react-bootstrap-sweetalert-4.4.1.tgz#94410a79c6d6a1e7ce4ede810904c90d08f6a01a"
-  integrity sha512-czUP6EPXb6GZopxxkixm+a5OaV+kbdxhFbsHaFNIF3l9jBypHCv29TrV8OOruAwrG+GpCmEd8LzzyYPZ0aL9TA==
   dependencies:
     object-assign "^4.1.0"
 
@@ -12186,9 +12185,9 @@ tronstation@^1.0.1:
     "@babel/runtime" "^7.0.0"
     babel-runtime "^6.26.0"
 
-tronweb@^2.7.1:
-  version "2.8.0"
-  resolved "https://registry.yarnpkg.com/tronweb/-/tronweb-2.8.0.tgz#e70247486590376a4ee3497d4c5dd66aa5f312d6"
+tronweb@^2.10.1:
+  version "2.10.1"
+  resolved "https://registry.yarnpkg.com/tronweb/-/tronweb-2.10.1.tgz#f30354d3bcc99b6e7bcbec5ea7635c781b1a50df"
   dependencies:
     "@babel/runtime" "^7.0.0"
     axios "^0.19.0"
@@ -12202,9 +12201,9 @@ tronweb@^2.7.1:
     semver "^5.6.0"
     validator "^10.7.1"
 
-tronweb@^2.8.1:
-  version "2.8.1"
-  resolved "https://registry.yarnpkg.com/tronweb/-/tronweb-2.8.1.tgz#b37bf830debff34ccc101da44f8d36775b654944"
+tronweb@^2.7.1:
+  version "2.8.0"
+  resolved "https://registry.yarnpkg.com/tronweb/-/tronweb-2.8.0.tgz#e70247486590376a4ee3497d4c5dd66aa5f312d6"
   dependencies:
     "@babel/runtime" "^7.0.0"
     axios "^0.19.0"

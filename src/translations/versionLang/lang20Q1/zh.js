@@ -75,7 +75,8 @@ export const lang20Q1 = {
   data_resource_table_energy_consumed: "消耗总能量",
   data_resource_table_percentage: "占比",
   data_resource_table_percentage_tips: "当前用户消耗能量/全网用户消耗能量",
-  data_resource_bandwith_table_percentage_tips: "当前用户消耗带宽/全网用户消耗带宽",
+  data_resource_bandwith_table_percentage_tips:
+    "当前用户消耗带宽/全网用户消耗带宽",
   data_resource_table_bandwidth_title: "最高带宽消耗",
   data_resource_table_total: "总计",
 
@@ -86,7 +87,7 @@ export const lang20Q1 = {
   data_token_mark_9: "（本期交易笔数-上期交易笔数）/上期交易笔数×100%",
   data_token_mark_10: "（本期交易账总额-上期交易账总额）/上期交易账总额×100%",
   data_contract_name: "合约名称",
-  data_title_chart: "图表统计",
+  data_title_chart: "统计图表",
   // 2020-01-17 overview
   data_TRX_transfer_total: "TRX转账数量",
   data_TRX_transfer_count: "TRX转账总笔数",
@@ -108,7 +109,29 @@ export const lang20Q1 = {
   data_bandwidth_consumed_total: "消耗总带宽",
   data_bandwidth_freezed: "消耗冻结TRX的带宽",
   data_bandwidth_burned: "消耗燃烧TRX的带宽",
-  data_area:"仅统计<a href='https://poloniex.org/' target='_blank'>POLONI DEX</a>交易所上线的通证",
+  data_area:
+    "仅统计<a href='https://poloniex.org/' target='_blank'>POLONI DEX</a>交易所上线的通证",
+
+  // index nav
+
+  index_navigation_explorers: "浏览器",
+  index_navigation_data: "数据",
+  index_navigation_committee: "委员会",
+  index_navigation_proposals: "提议",
+  // 2020-02-04
+  chart_hold_trx_account:'持有TRX账户统计',
+  chart_hold_trx_account_per:'持币占比',
+  chart_hold_trx_account_per_t:'持币占比',
+  chart_hold_trx_account_per_tip:'持有TRX账户数/总账户数',
+  chart_hold_account_sum:'总账户数',
+  chart_hold_trx:'持有TRX账户数',
+  chart_hold_trx_more:'更多数据',
+  chart_hold_trx_number:'账户数',
+  chart_resource_user_freeing:'用户冻结trx的能量',
+  chart_resource_user_burning:'用户烧毁trx的能量',
+  chart_resource_contract_deployer:'合约部署者提供的能量',
+
+
 
   // 2020-2-5 leon
   proposal_serial: "序号",
@@ -155,13 +178,28 @@ export const lang20Q1 = {
     #                                                                                #
     ##################################################################################
   */
-  propose_select: "选择网络参数",
-  propose_value: "修改提议值", 
-  propose_confirm: "确认提议", 
-  propose_result: "提议结果",
+  proposal_select: "选择网络参数",
+  proposal_value: "修改提议值", 
+  proposal_confirm: "确认提议", 
+  proposal_result: "提议结果",
   proposal_create_info: "提议是指对TRON网络参数进行修改，每个超级代表都具有提议权、对提议的投票权。当提议在有效期内获得19个及以上超级代表的赞成票时，该提议获得通过，并在下个维护期内进行网络参数修改。",
-  propose_select_table: "选择",
-  
- 
-
+  proposal_select_table: "选择",
+  proposal_selected_network_parameters:"已选择网络参数",
+  proposal_content:"提议内容",
+  proposal_new_value:"提议值",
+  proposal_submit_text:"您确定发起提议吗？",
+  proposal_created_successful:"发起提议成功",
+  proposal_created_failure:"发起提议失败",
+  proposal_validate_text_0:"请输入[81-86400]的数值",
+  proposal_validate_text_1:"请输入[0-100000000000]的数值",
+  proposal_validate_text_2:"请输入[0-1000]的数值",
+  proposal_validate_text_3:"请选择允许/不允许",
+  proposal_validate_text_4:"请输入数值",
+  proposal_validate_text_5:"请输入[0-100000]的数值",
+  proposal_validate_text_6:"请选择开启/不开启",
+  proposal_validate_text_7:"请输入[0-10000]的数值",
+  proposal_validate_text_8:"请输入[0-1000]的数值",
+  propose_not_activate:"不开启",
+  proposal_value_same:"提议值与当前值一样",
+  go_to_proposals_list:"去给提议投票"
 };

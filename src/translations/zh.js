@@ -120,6 +120,7 @@ export const messages = {
     ##################################################################################
     */
     "blockchain": "区块链",
+    "newblock":"区块链",
     "wallet": "钱包",
     "home": "主页",
     "transfers": "转账",
@@ -919,7 +920,7 @@ export const messages = {
     "TRX_exchange_rate": "TRX汇率",
     "start_time": "开始时间",
     "end_time": "结束时间",
-    "contracts": "合约",
+    "contracts": "合约概览",
     "search_description": "搜索地址，区块，交易，通证",
     "search_description1": "搜索地址，区块，交易，通证",
     "transaction": "交易",
@@ -2037,7 +2038,7 @@ export const messages = {
     "footer_fellow_us": "关注我们",
     "footer_developer_resources": "开发中心",
     "footer_support_center": "帮助中心",
-    "footer_tron_network": "TRON官网",
+    "footer_tron_network": "官网",
     "login_privatekey_warn": "为确保您的账户安全，请您妥善保管好私钥，以防资产丢失。建议您使用",
     "login_privatekey_warn_safe": "安全登录",
     "token_does_not_support_exchange": "币种暂不支持交易",

@@ -3,13 +3,13 @@ import {t, tu} from "../../../utils/i18n";
 import {connect} from "react-redux";
 import {FormattedNumber, FormattedDate, injectIntl} from "react-intl";
 import 'moment/min/locales';
-import { Steps, Table, Checkbox } from 'antd';
+import { Steps, Table, Checkbox, Input, InputNumber, Form, Select } from 'antd';
 import SweetAlert from "react-bootstrap-sweetalert";
 import {Client} from "../../../services/api";
-import {upperFirst} from 'lodash'
+import _,{upperFirst} from 'lodash'
 import {ONE_TRX,IS_MAINNET} from "../../../constants";
 const Step = Steps.Step;
-
+const { Option } = Select;
 @connect(
   state => ({
     wallet: state.wallet.current,
@@ -27,224 +27,146 @@ export class SetProposal extends Component {
     };
   }
   componentDidMount() {
-    this.getChainparameters();
+    this.getSelectedPropsal();
   }
   onChange(e,record) {
     console.log(`checked = ${e.target.checked}`);
     console.log(`record =` ,record);
   }
-async getChainparameters() {
-    if(IS_MAINNET){
-        let { tronParameters } = await Client.getChainparameters();
-        if(!tronParameters){
-            return
+  
+  getSelectedPropsal = () => {
+    let {proposalsCreateList,dataSource} = this.state;
+    console.log('proposalsCreateList',proposalsCreateList);
+    console.log('dataSource',dataSource)
+    let dataSourceSelected =  _(dataSource).filter(source => source.checked).value()
+    dataSourceSelected.map((item,index)=>{
+        console.log('item=====================1000000009123123',item)
+        switch (item['key']){
+            case "getMaintenanceTimeInterval":
+                this.props.form.setFieldsValue({
+                    "getMaintenanceTimeInterval": item.newValue?item.newValue/1000:''
+                });
+            break;
+            case "getAccountUpgradeCost":
+                this.props.form.setFieldsValue({
+                    "getAccountUpgradeCost": item.newValue?item.newValue/ONE_TRX:''
+                });
+            break;
+            case "getCreateAccountFee":
+                this.props.form.setFieldsValue({
+                    "getCreateAccountFee": item.newValue?item.newValue/ONE_TRX:''
+                });
+            break;
+            case "getTransactionFee":
+                this.props.form.setFieldsValue({
+                    "getTransactionFee": item.newValue?item.newValue/ONE_TRX:''
+                });
+            break;
+            case "getAssetIssueFee":
+                this.props.form.setFieldsValue({
+                    "getAssetIssueFee": item.newValue?item.newValue/ONE_TRX:''
+                });
+            break;
+            case "getWitnessPayPerBlock":
+                this.props.form.setFieldsValue({
+                    "getWitnessPayPerBlock": item.newValue?item.newValue/ONE_TRX:''
+                });
+            break;
+            case "getWitnessStandbyAllowance":
+                this.props.form.setFieldsValue({
+                    "getWitnessStandbyAllowance": item.newValue?item.newValue/ONE_TRX:''
+                });
+            break;
+            case "getEnergyFee":
+                this.props.form.setFieldsValue({
+                    "getEnergyFee": item.newValue?item.newValue/ONE_TRX:''
+                });
+            break;
+            case "getExchangeCreateFee":
+                this.props.form.setFieldsValue({
+                    "getExchangeCreateFee": item.newValue?item.newValue/ONE_TRX:''
+                });
+            break;
+            case "getMaxCpuTimeOfOneTx":
+                this.props.form.setFieldsValue({
+                    "getMaxCpuTimeOfOneTx": item.newValue?item.newValue:''
+                });
+            break;    
+            case "getAllowUpdateAccountName":
+                this.props.form.setFieldsValue({
+                    "getAllowUpdateAccountName": item.newValue?item.newValue:undefined
+                });
+            break;  
+            case "getAllowTvmTransferTrc10":
+                this.props.form.setFieldsValue({
+                    "getAllowTvmTransferTrc10": item.newValue?item.newValue:undefined
+                });
+            break; 
+            case "getTotalEnergyCurrentLimit":
+                this.props.form.setFieldsValue({
+                    "getTotalEnergyCurrentLimit": item.newValue?item.newValue/ONE_TRX:''
+                });
+            break; 
+            case "getAllowMultiSign":
+                this.props.form.setFieldsValue({
+                    "getAllowMultiSign": item.newValue?item.newValue:undefined
+                });
+            break; 
+            case "getAllowAdaptiveEnergy":
+                this.props.form.setFieldsValue({
+                    "getAllowAdaptiveEnergy": item.newValue?item.newValue:undefined
+                });
+            break; 
+            case "getUpdateAccountPermissionFee":
+                this.props.form.setFieldsValue({
+                    "getUpdateAccountPermissionFee": item.newValue?item.newValue/ONE_TRX:''
+                });
+            break; 
+            case "getMultiSignFee":
+                this.props.form.setFieldsValue({
+                    "getMultiSignFee": item.newValue?item.newValue/ONE_TRX:''
+                });
+            break; 
+            case "getAllowProtoFilterNum":
+                this.props.form.setFieldsValue({
+                    "getAllowProtoFilterNum": item.newValue?item.newValue:undefined
+                });
+            break;
+            case "getShieldedTransactionFee":
+                this.props.form.setFieldsValue({
+                    "getShieldedTransactionFee": item.newValue?item.newValue/ONE_TRX:''
+                });
+            break;  
+            case "getAdaptiveResourceLimitMultiplier":
+                this.props.form.setFieldsValue({
+                    "getAdaptiveResourceLimitMultiplier": item.newValue?item.newValue:''
+                });
+            break;  
+            case "getChangeDelegation":
+                this.props.form.setFieldsValue({
+                    "getChangeDelegation": item.newValue?item.newValue:undefined
+                });
+            break; 
+            case "getWitness127PayPerBlock":
+                this.props.form.setFieldsValue({
+                    "getShieldedTransactionFee": item.newValue?item.newValue/ONE_TRX:''
+                });
+            break;  
+            case "getAllowTvmSolidity059":
+                    this.props.form.setFieldsValue({
+                    "getAllowTvmSolidity059": item.newValue?item.newValue:undefined
+                });
+            break;  
+            case "getAdaptiveResourceLimitTargetRatio":
+                this.props.form.setFieldsValue({
+                    "getAdaptiveResourceLimitTargetRatio": item.newValue?item.newValue:''
+                });
+            break;   
         }
-        let EnergyLimitNew   = {key: "getTotalEnergyLimitNew", value: 100000000000};
-        tronParameters.splice(19, 0, EnergyLimitNew);
-        tronParameters.map(item => {
-            switch (item['key']){
-                case "getMaintenanceTimeInterval":
-                    item.name = 'propose_1';
-                    item.id = '0';
-                    break;
-                case "getAccountUpgradeCost":
-                    item.name = 'propose_2';
-                    item.id = '1';
-                    break;
-                case "getCreateAccountFee":
-                    item.name = 'propose_3';
-                    item.id = '2';
-                    break;
-                case "getTransactionFee":
-                    item.name = 'propose_4';
-                    item.id = '3';
-                    break;
-                case "getAssetIssueFee":
-                    item.name = 'propose_5';
-                    item.id = '4';
-                    break;
-                case "getWitnessPayPerBlock":
-                    item.name = 'propose_6';
-                    item.id = '5';
-                    break;
-                case "getWitnessStandbyAllowance":
-                    item.name = 'propose_7';
-                    item.id = '6';
-                    break;
-                // case "getCreateNewAccountFeeInSystemContract":
-                //     item.name = 'propose_8';
-                //     item.id = '7';
-                //     break;
-                // case "getCreateNewAccountBandwidthRate":
-                //     item.name = 'propose_9';
-                //     item.id = '8';
-                //     break;
-                case "getAllowCreationOfContracts":
-                    item.name = 'propose_10';
-                    item.id = '9';
-                    break;
-                case "getRemoveThePowerOfTheGr":
-                    item.name = 'propose_11';
-                    item.id = '10';
-                    break;
-                case "getEnergyFee":
-                    item.name = 'propose_12';
-                    item.id = '11';
-                    break;
-                case "getExchangeCreateFee":
-                    item.name = 'propose_13';
-                    item.id = '12';
-                    break;
-                case "getMaxCpuTimeOfOneTx":
-                    item.name = 'propose_14';
-                    item.id = '13';
-                    break;
-                case "getAllowUpdateAccountName":
-                    item.name = 'propose_15';
-                    item.id = '14';
-                    break;
-                case "getAllowSameTokenName":
-                    item.name = 'propose_16';
-                    item.id = '15';
-                    break;
-                case "getAllowDelegateResource":
-                    item.name = 'propose_17';
-                    item.id = '16';
-                    break;
-                case "getTotalEnergyLimit":
-                    item.name = 'propose_18';
-                    item.id = '17';
-                    break;
-                case "getAllowTvmTransferTrc10":
-                    item.name = 'propose_19';
-                    item.id = '18';
-                    break;
-                case "getTotalEnergyLimitNew":
-                    item.name = 'propose_18_1';
-                    item.id = '19';
-                    break;
-                // case "getTotalEnergyCurrentLimit":
-                //     item.name = 'propose_20';
-                // break;
-                case "getAllowMultiSign":
-                    item.name = 'propose_21';
-                    item.id = '20';
-                    break;
-                case "getAllowAdaptiveEnergy":
-                    item.name = 'propose_22';
-                    item.id = '21';
-                    break;
-                // case "getTotalEnergyTargetLimit":
-                //     item.name = 'propose_23';
-                // break;
-                // case "getTotalEnergyAverageUsage":
-                //     item.name = 'propose_24';
-                // break;
-                case "getUpdateAccountPermissionFee":
-                    item.name = 'propose_25';
-                    item.id = '22';
-                    break;
-                case "getMultiSignFee":
-                    item.name = 'propose_26';
-                    item.id = '23';
-                    break;
-                case "getAllowProtoFilterNum":
-                    item.name = 'propose_27';
-                    item.id = '24';
-                    break;
-                case "getAllowTvmConstantinople":
-                    item.name = 'propose_28';
-                    item.id = '25';
-                    break;
-                case "getChangeDelegation":
-                    item.name = 'propose_30';
-                    item.id = '30';
-                    break;
-                case "getWitness127PayPerBlock":
-                    item.name = 'propose_31';
-                    item.id = '31';
-                    break;
-            }
-        });
-        let tronParametersNew = [];
-        tronParameters.map(item => {
-            if(item.name){
-                tronParametersNew.push(item)
-            }
-        })
-        this.setState({
-            dataSource: tronParametersNew
-        })
-    }else{
-        let { tronParameters } = await Client.getChainparameters();
-        if(!tronParameters){
-            return
-        }
+        
+    })
+  }
 
-        let sunside = [
-            'getChargingSwitch',
-            'getSideChainGateWayList',
-            'getProposalExpireTime',
-            'getVoteWitnessSwitch',
-            'getFundInjectAddress',
-            'getFundDistributeEnableSwitch',
-            'getDayToSustainByFund',
-            'getPercentToPayWitness',
-        ]
-
-        let sunsideparameters = tronParameters.filter(function(v){
-            return sunside.indexOf(v.key)!==-1
-        })
-        sunsideparameters.map(item => {
-            switch (item['key']){
-                case "getChargingSwitch":
-                    item.name = 'sun_propose_1';
-                    item.id= '1000000';
-                    break;
-                case "getSideChainGateWayList":
-                    item.name = 'sun_propose_2';
-                    item.id = '1000001';
-                    break;
-                case "getProposalExpireTime":
-                    item.name = 'sun_propose_3';
-                    item.id = '1000003';
-                    break;
-                case "getVoteWitnessSwitch":
-                    item.name = 'sun_propose_4';
-                    item.id =  '1000004';
-                    break;
-                case "getFundInjectAddress":
-                    item.name = 'sun_propose_5';
-                    item.id = '1000007';
-                    break;
-                case "getFundDistributeEnableSwitch":
-                    item.name = 'sun_propose_6';
-                    item.id = '1000008';
-                    break;
-                case "getDayToSustainByFund":
-                    item.name = 'sun_propose_7';
-                    item.id = '1000009';
-                    break;
-                case "getPercentToPayWitness":
-                    item.name = 'sun_propose_8';
-                    item.id = '1000010';
-                    break;
-            }
-        });
-        let tronParametersNew = [];
-        sunsideparameters.map(item => {
-            if(item.name){
-                tronParametersNew.push(item)
-            }
-        })
-
-        this.setState({
-            dataSource: tronParametersNew.slice(0,2)
-        })
-
-    }
-
-}
   
   componentDidUpdate(prevProps, prevState) {
     let {wallet} = this.props;
@@ -253,6 +175,7 @@ async getChainparameters() {
         this.checkExistingToken()
       }
     }
+    
   }
 
   setSelect(type) {
@@ -276,16 +199,17 @@ async getChainparameters() {
     const {issuedAsset, isUpdate,paramData:{author}} = this.state;
     const {type} = this.props.state;
     if(!isLoggedInFn()) return;
-    if( isUpdate  && !isAuthorFn(author)) return;
-    if(!issuedAsset && (type == 'trc10')){
-      this.setModal('trx_token_account_limit')
-      return
-    }
+    // if( isUpdate  && !isAuthorFn(author)) return;
+    // if(!issuedAsset && (type == 'trc10')){
+    //   this.setModal('trx_token_account_limit')
+    //   return
+    // }
     // if(wallet.balance < 1024*Math.pow(10,6)){
     //   this.setModal('trx_token_fee_message')
     //   return
     // }
-    nextStep(1)
+    this.props.nextState(this.state)
+    nextStep(2)
   }
 
   setModal = (msg) => {
@@ -315,23 +239,15 @@ async getChainparameters() {
 
   getColumns() {
     let { intl } = this.props;
-    let { dataSource } = this.state;
-
-    const columns = [{
-        title: upperFirst(intl.formatMessage({id: 'propose_number'})),
-        key: 'index',
-        width:'20%',
-        render: (text, record, index) => {
-            return <span>
-                {
-                  '#'+ record.id
-                }
-            </span>
-
-        }
-    },
+    const { getFieldDecorator, setFieldsValue } = this.props.form;
+   
+    let { dataSource, proposalsCreateList } = this.state;
+    let dataSourceSelected =  _(dataSource).filter(source => source.checked).value()
+    console.log('dataSource=======',dataSource)
+    console.log('dataSourceSelected=======',dataSourceSelected)
+    const columns = [
     {
-        title: upperFirst(intl.formatMessage({id: 'propose_parameters'})),
+        title: upperFirst(intl.formatMessage({id: 'proposal_content'})),
         dataIndex: 'name',
         key: 'name',
         render: (text, record, index) => {
@@ -341,7 +257,7 @@ async getChainparameters() {
         }
     },
     {
-        title:upperFirst(intl.formatMessage({id: 'propose_current_value'})),
+        title:upperFirst(intl.formatMessage({id: 'proposal_new_value'})),
         dataIndex: 'value',
         key: 'value',
         render: (text, record, index) => {
@@ -526,6 +442,25 @@ async getChainparameters() {
                                     </div>
                                 }
                                 {
+                                    record.key == 'getAllowShieldedTransaction' && <div>
+                                        {
+                                            text? <span>{tu('propose_allowed')}</span>:
+                                                <span>{tu('propose_not_allowed')}</span>
+                                        }
+                                    </div>
+                                }
+                                {                       
+                                    record.key == 'getShieldedTransactionFee' && <div>
+                                        <span>{text / ONE_TRX}</span> &nbsp;<span>TRX</span>
+                                    </div>
+                                }
+                                {                       
+                                    record.key == 'getAdaptiveResourceLimitMultiplier' && <div>
+                                        <span>{text}</span>
+                                    </div>
+                                }
+
+                                {
                                     record.key == 'getChangeDelegation' && <div>
                                         {
                                             text? <span>{tu('propose_activate')}</span>:
@@ -539,7 +474,19 @@ async getChainparameters() {
                                             <span>{text / ONE_TRX}</span> &nbsp;<span>TRX</span>
                                         </div>
                                 }
-
+                                {
+                                    record.key == 'getAllowTvmSolidity059' && <div>
+                                        {
+                                            text? <span>{tu('propose_allowed')}</span>:
+                                                <span>{tu('propose_not_allowed')}</span>
+                                        }
+                                    </div>
+                                }
+                                {                       
+                                    record.key == 'getAdaptiveResourceLimitTargetRatio' && <div>
+                                        <span>{text}</span>
+                                    </div>
+                                }
                             </div>:<div>
                                 {
                                     record.key == 'getChargingSwitch' && <div>
@@ -600,6 +547,8 @@ async getChainparameters() {
                                         }
                                     </div>
                                 }
+
+
                             </div>
                         }
                     </div>
@@ -610,14 +559,414 @@ async getChainparameters() {
         }
     },
     {
-      title: upperFirst(intl.formatMessage({id: 'propose_select_table'})),
+      title: upperFirst(intl.formatMessage({id: 'proposal_new_value'})),
       dataIndex: 'select',
       key: 'select',
       align:'right',
-      width:'15%',
+    //   width:'15%',
       render: (text, record, index) => {
           return <span>
-               <Checkbox onChange={(e)=>this.onChange(e,record)}></Checkbox>
+              {
+                  record.key == "getMaintenanceTimeInterval" &&  <Form.Item>
+                    {getFieldDecorator('getMaintenanceTimeInterval', {
+                        rules: [{ required: true, message: tu("proposal_validate_text_0")},
+                    ],
+                    })(
+                        <InputNumber
+                            placeholder={intl.formatMessage({id: 'proposal_validate_text_0'})}
+                            min={81}
+                            max={86400}
+                            className="proposal_w-230"
+                            onChange={(e)=>{this.onInputChange(e,record)}}
+                        />,
+                        <InputNumber/>
+                    )}
+                </Form.Item>
+              }
+              {
+                record.key == "getAccountUpgradeCost" &&  <Form.Item>
+                    {getFieldDecorator('getAccountUpgradeCost', {
+                        rules: [{ required: true, message: tu("proposal_validate_text_1")},
+                    ],
+                    })(
+                        <InputNumber
+                            placeholder={intl.formatMessage({id: 'proposal_validate_text_1'})}
+                            min={0}
+                            max={100000000000}
+                            className="proposal_w-230"
+                            onChange={(e)=>{this.onInputChange(e,record)}}
+                        />,
+                        <InputNumber/>
+                    )}
+                </Form.Item>
+              } 
+              {
+                record.key == "getCreateAccountFee" &&  <Form.Item>
+                    {getFieldDecorator('getCreateAccountFee', {
+                        rules: [{ required: true, message: tu("proposal_validate_text_1")},
+                    ],
+                    })(
+                        <InputNumber
+                            placeholder={intl.formatMessage({id: 'proposal_validate_text_1'})}
+                            min={0}
+                            max={100000000000}
+                            className="proposal_w-230"
+                            onChange={(e)=>{this.onInputChange(e,record)}}
+                        />,
+                        <InputNumber/>
+                    )}
+                </Form.Item>
+              } 
+              {
+                record.key == "getTransactionFee" &&  <Form.Item>
+                    {getFieldDecorator('getTransactionFee', {
+                        rules: [{ required: true, message: tu("proposal_validate_text_1")},
+                    ],
+                    })(
+                        <InputNumber
+                            placeholder={intl.formatMessage({id: 'proposal_validate_text_1'})}
+                            min={0}
+                            max={100000000000}
+                            className="proposal_w-230"
+                            onChange={(e)=>{this.onInputChange(e,record)}}
+                        />,
+                        <InputNumber/>
+                    )}
+                </Form.Item>
+              } 
+              {
+                record.key == "getAssetIssueFee" &&  <Form.Item>
+                    {getFieldDecorator('getAssetIssueFee', {
+                        rules: [{ required: true, message: tu("proposal_validate_text_1")},
+                    ],
+                    })(
+                        <InputNumber
+                            placeholder={intl.formatMessage({id: 'proposal_validate_text_1'})}
+                            min={0}
+                            max={100000000000}
+                            className="proposal_w-230"
+                            onChange={(e)=>{this.onInputChange(e,record)}}
+                        />,
+                        <InputNumber/>
+                    )}
+                </Form.Item>
+              } 
+              {
+                record.key == "getWitnessPayPerBlock" &&  <Form.Item>
+                    {getFieldDecorator('getWitnessPayPerBlock', {
+                        rules: [{ required: true, message: tu("proposal_validate_text_1")},
+                    ],
+                    })(
+                        <InputNumber
+                            placeholder={intl.formatMessage({id: 'proposal_validate_text_1'})}
+                            min={0}
+                            max={100000000000}
+                            className="proposal_w-230"
+                            onChange={(e)=>{this.onInputChange(e,record)}}
+                        />,
+                        <InputNumber/>
+                    )}
+                </Form.Item>
+              } 
+              {
+                record.key == "getWitnessStandbyAllowance" &&  <Form.Item>
+                    {getFieldDecorator('getWitnessStandbyAllowance', {
+                        rules: [{ required: true, message: tu("proposal_validate_text_1")},
+                    ],
+                    })(
+                        <InputNumber
+                            placeholder={intl.formatMessage({id: 'proposal_validate_text_1'})}
+                            min={0}
+                            max={100000000000}
+                            className="proposal_w-230"
+                            onChange={(e)=>{this.onInputChange(e,record)}}
+                        />,
+                        <InputNumber/>
+                    )}
+                </Form.Item>
+              } 
+              {
+                record.key == "getEnergyFee" &&  <Form.Item>
+                    {getFieldDecorator('getEnergyFee', {
+                        rules: [{ required: true, message: tu("proposal_validate_text_1")},
+                    ],
+                    })(
+                        <InputNumber
+                            placeholder={intl.formatMessage({id: 'proposal_validate_text_1'})}
+                            min={0}
+                            max={100000000000}
+                            className="proposal_w-230"
+                            onChange={(e)=>{this.onInputChange(e,record)}}
+                        />,
+                        <InputNumber/>
+                    )}
+                </Form.Item>
+              } 
+              {
+                record.key == "getExchangeCreateFee" &&  <Form.Item>
+                    {getFieldDecorator('getExchangeCreateFee', {
+                        rules: [{ required: true, message: tu("proposal_validate_text_1")},
+                    ],
+                    })(
+                        <InputNumber
+                            placeholder={intl.formatMessage({id: 'proposal_validate_text_1'})}
+                            min={0}
+                            max={100000000000}
+                            className="proposal_w-230"
+                            onChange={(e)=>{this.onInputChange(e,record)}}
+                        />,
+                        <InputNumber/>
+                    )}
+                </Form.Item>
+              } 
+              {
+                record.key == "getMaxCpuTimeOfOneTx" &&  <Form.Item>
+                    {getFieldDecorator('getMaxCpuTimeOfOneTx', {
+                        rules: [{ required: true, message: tu("proposal_validate_text_2")},
+                    ],
+                    })(
+                        <InputNumber
+                            placeholder={intl.formatMessage({id: 'proposal_validate_text_2'})}
+                            min={0}
+                            max={1000}
+                            className="proposal_w-230"
+                            onChange={(e)=>{this.onInputChange(e,record)}}
+                        />,
+                        <InputNumber/>
+                    )}
+                </Form.Item>
+              } 
+              {
+                record.key == "getAllowUpdateAccountName" &&  <Form.Item>
+                    {getFieldDecorator('getAllowUpdateAccountName', {
+                        rules: [{ required: true, message: tu("proposal_validate_text_3") }],
+                    })(
+                        <Select
+                            placeholder={intl.formatMessage({id: 'proposal_validate_text_3'})}
+                            onChange={(e)=>{this.onInputChange(e,record)}}
+                            className="proposal_w-230"
+                        >
+                            <Option value="1">{tu("propose_allowed")}</Option>
+                            <Option value="0">{tu("propose_not_allowed")}</Option>
+                        </Select>,
+                    )}
+                </Form.Item>
+              } 
+              {
+                record.key == "getAllowTvmTransferTrc10" &&  <Form.Item>
+                    {getFieldDecorator('getAllowTvmTransferTrc10', {
+                        rules: [{ required: true, message: tu("proposal_validate_text_3") }],
+                    })(
+                        <Select
+                            placeholder={intl.formatMessage({id: 'proposal_validate_text_3'})}
+                            onChange={(e)=>{this.onInputChange(e,record)}}
+                            className="proposal_w-230"
+                        >
+                            <Option value="1">{tu("propose_allowed")}</Option>
+                            <Option value="0">{tu("propose_not_allowed")}</Option>
+                        </Select>,
+                    )}
+                </Form.Item>
+              }
+              {
+                record.key == "getTotalEnergyCurrentLimit" &&  <Form.Item>
+                    {getFieldDecorator('getTotalEnergyCurrentLimit', {
+                        rules: [{ required: true, message: tu("proposal_validate_text_4")},
+                    ],
+                    })(
+                        <InputNumber
+                            placeholder={intl.formatMessage({id: 'proposal_validate_text_4'})}
+                            min={0}
+                            className="proposal_w-230"
+                            onChange={(e)=>{this.onInputChange(e,record)}}
+                        />,
+                        <InputNumber/>
+                    )}
+                </Form.Item>
+              } 
+              {
+                record.key == "getAllowMultiSign" &&  <Form.Item>
+                    {getFieldDecorator('getAllowMultiSign', {
+                        rules: [{ required: true, message: tu("proposal_validate_text_3") }],
+                    })(
+                        <Select
+                            placeholder={intl.formatMessage({id: 'proposal_validate_text_3'})}
+                            onChange={(e)=>{this.onInputChange(e,record)}}
+                            className="proposal_w-230"
+                        >
+                            <Option value="1">{tu("propose_allowed")}</Option>
+                            <Option value="0">{tu("propose_not_allowed")}</Option>
+                        </Select>,
+                    )}
+                </Form.Item>
+              } 
+              {
+                record.key == "getAllowAdaptiveEnergy" &&  <Form.Item>
+                    {getFieldDecorator('getAllowAdaptiveEnergy', {
+                        rules: [{ required: true, message: tu("proposal_validate_text_3") }],
+                    })(
+                        <Select
+                            placeholder={intl.formatMessage({id: 'proposal_validate_text_3'})}
+                            onChange={(e)=>{this.onInputChange(e,record)}}
+                            className="proposal_w-230"
+                        >
+                            <Option value="1">{tu("propose_allowed")}</Option>
+                            <Option value="0">{tu("propose_not_allowed")}</Option>
+                        </Select>,
+                    )}
+                </Form.Item>
+              } 
+              {
+                record.key == "getUpdateAccountPermissionFee" &&  <Form.Item>
+                    {getFieldDecorator('getUpdateAccountPermissionFee', {
+                        rules: [{ required: true, message: tu("proposal_validate_text_5")},
+                    ],
+                    })(
+                        <InputNumber
+                            placeholder={intl.formatMessage({id: 'proposal_validate_text_5'})}
+                            min={0}
+                            max={100000}
+                            className="proposal_w-230"
+                            onChange={(e)=>{this.onInputChange(e,record)}}
+                        />,
+                        <InputNumber/>
+                    )}
+                </Form.Item>
+              } 
+              {
+                record.key == "getMultiSignFee" &&  <Form.Item>
+                    {getFieldDecorator('getMultiSignFee', {
+                        rules: [{ required: true, message: tu("proposal_validate_text_5")},
+                    ],
+                    })(
+                        <InputNumber
+                            placeholder={intl.formatMessage({id: 'proposal_validate_text_5'})}
+                            min={0}
+                            max={100000}
+                            className="proposal_w-230"
+                            onChange={(e)=>{this.onInputChange(e,record)}}
+                        />,
+                        <InputNumber/>
+                    )}
+                </Form.Item>
+              }
+              {
+                record.key == "getAllowProtoFilterNum" &&  <Form.Item>
+                    {getFieldDecorator('getAllowProtoFilterNum', {
+                        rules: [{ required: true, message: tu("proposal_validate_text_6") }],
+                    })(
+                        <Select
+                            placeholder={intl.formatMessage({id: 'proposal_validate_text_6'})}
+                            onChange={(e)=>{this.onInputChange(e,record)}}
+                            className="proposal_w-230"
+                        >
+                            <Option value="1">{tu("propose_activate")}</Option>
+                            <Option value="0">{tu("propose_not_activate")}</Option>
+                        </Select>,
+                    )}
+                </Form.Item>
+              }
+              {
+                record.key == "getShieldedTransactionFee" &&  <Form.Item>
+                    {getFieldDecorator('getShieldedTransactionFee', {
+                        rules: [{ required: true, message: tu("proposal_validate_text_5")},
+                    ],
+                    })(
+                        <InputNumber
+                            placeholder={intl.formatMessage({id: 'proposal_validate_text_5'})}
+                            min={0}
+                            max={100000}
+                            className="proposal_w-230"
+                            onChange={(e)=>{this.onInputChange(e,record)}}
+                        />,
+                        <InputNumber/>
+                    )}
+                </Form.Item>
+              }   
+              {
+                record.key == "getAdaptiveResourceLimitMultiplier" &&  <Form.Item>
+                    {getFieldDecorator('getAdaptiveResourceLimitMultiplier', {
+                        rules: [{ required: true, message: tu("proposal_validate_text_7")},
+                    ],
+                    })(
+                        <InputNumber
+                            placeholder={intl.formatMessage({id: 'proposal_validate_text_7'})}
+                            min={0}
+                            max={10000}
+                            className="proposal_w-230"
+                            onChange={(e)=>{this.onInputChange(e,record)}}
+                        />,
+                        <InputNumber/>
+                    )}
+                </Form.Item>
+              }
+              {
+                record.key == "getChangeDelegation" &&  <Form.Item>
+                    {getFieldDecorator('getChangeDelegation', {
+                        rules: [{ required: true, message: tu("proposal_validate_text_6") }],
+                    })(
+                        <Select
+                            placeholder={intl.formatMessage({id: 'proposal_validate_text_6'})}
+                            onChange={(e)=>{this.onInputChange(e,record)}}
+                            className="proposal_w-230"
+                        >
+                            <Option value="1">{tu("propose_activate")}</Option>
+                            <Option value="0">{tu("propose_not_activate")}</Option>
+                        </Select>,
+                    )}
+                </Form.Item>
+              }  
+              {
+                record.key == "getWitness127PayPerBlock" &&  <Form.Item>
+                    {getFieldDecorator('getWitness127PayPerBlock', {
+                        rules: [{ required: true, message: tu("proposal_validate_text_1")},
+                    ],
+                    })(
+                        <InputNumber
+                            placeholder={intl.formatMessage({id: 'proposal_validate_text_1'})}
+                            min={0}
+                            max={100000000000}
+                            className="proposal_w-230"
+                            onChange={(e)=>{this.onInputChange(e,record)}}
+                        />,
+                        <InputNumber/>
+                    )}
+                </Form.Item>
+              } 
+              {
+                record.key == "getAllowTvmSolidity059" &&  <Form.Item>
+                    {getFieldDecorator('getAllowTvmSolidity059', {
+                        rules: [{ required: true, message: tu("proposal_validate_text_3") }],
+                    })(
+                        <Select
+                            placeholder={intl.formatMessage({id: 'proposal_validate_text_3'})}
+                            onChange={(e)=>{this.onInputChange(e,record)}}
+                            className="proposal_w-230"
+                        >
+                            <Option value="1">{tu("propose_allowed")}</Option>
+                            <Option value="0">{tu("propose_not_allowed")}</Option>
+                        </Select>,
+                    )}
+                </Form.Item>
+              } 
+              {
+                record.key == "getAdaptiveResourceLimitTargetRatio" &&  <Form.Item>
+                    {getFieldDecorator('getAdaptiveResourceLimitTargetRatio', {
+                        rules: [{ required: true, message: tu("proposal_validate_text_8")},
+                    ],
+                    })(
+                        <InputNumber
+                            placeholder={intl.formatMessage({id: 'proposal_validate_text_8'})}
+                            min={0}
+                            max={1000}
+                            className="proposal_w-230"
+                            onChange={(e)=>{this.onInputChange(e,record)}}
+                        />,
+                        <InputNumber/>
+                    )}
+                </Form.Item>
+              }
+
           </span>
       }
     },
@@ -625,7 +974,7 @@ async getChainparameters() {
 
     return (
         <Table
-            dataSource={dataSource}
+            dataSource={dataSourceSelected}
             columns={columns}
             pagination={false}
             bordered={true}
@@ -634,31 +983,144 @@ async getChainparameters() {
             }}
         />
     )
-}
-  
+  }
+
+  onInputChange = (e, record) =>{
+    console.log('e=========================10000000000',e) 
+    console.log('record=========================10000000000',record) 
+    let {proposalsCreateList,dataSource} = this.state;
+    let inputValue;
+    switch (record.key){
+        case "getMaintenanceTimeInterval":
+            inputValue = e * 1000
+            break;
+        case "getAccountUpgradeCost":
+            inputValue = e * ONE_TRX
+            break;
+        case "getCreateAccountFee":
+            inputValue = e * ONE_TRX
+            break;  
+        case "getTransactionFee":
+            inputValue = e * ONE_TRX
+            break;     
+        case "getAssetIssueFee":
+            inputValue = e * ONE_TRX
+            break;    
+        case "getWitnessPayPerBlock":
+            inputValue = e * ONE_TRX
+            break;  
+        case "getWitnessStandbyAllowance":
+            inputValue = e * ONE_TRX
+            break;   
+        case "getEnergyFee":
+            inputValue = e * ONE_TRX
+            break;          
+        case "getExchangeCreateFee":
+            inputValue = e * ONE_TRX
+            break;     
+        case "getMaxCpuTimeOfOneTx":
+            inputValue = e
+            break;    
+        case "getAllowUpdateAccountName":
+            inputValue = e
+            break;  
+        case "getAllowTvmTransferTrc10":
+            inputValue = e
+            break; 
+        case "getTotalEnergyCurrentLimit":
+            inputValue = e * ONE_TRX
+            break; 
+        case "getAllowMultiSign":
+            inputValue = e
+            break;   
+        case "getAllowAdaptiveEnergy":
+            inputValue = e
+            break;  
+        case "getUpdateAccountPermissionFee":
+            inputValue = e * ONE_TRX
+            break;
+        case "getMultiSignFee":
+            inputValue = e * ONE_TRX
+            break;  
+        case "getAllowProtoFilterNum":
+            inputValue = e
+            break;   
+        case "getShieldedTransactionFee":
+            inputValue = e * ONE_TRX
+            break;  
+        case "getAdaptiveResourceLimitMultiplier":
+            inputValue = e 
+            break; 
+        case "getChangeDelegation":
+            inputValue = e 
+            break;   
+        case "getWitness127PayPerBlock":
+            inputValue = e * ONE_TRX
+            break; 
+        case "getAllowTvmSolidity059":
+            inputValue = e 
+            break;   
+        case "getAdaptiveResourceLimitTargetRatio":
+            inputValue = e 
+            break;       
+    }
+    proposalsCreateList.map((item,index)=>{
+        console.log('item',item)
+        if(item.key == record.id){
+            item.newValue = inputValue
+        }
+    })
+    dataSource.map((item,index)=>{
+        console.log('item',item)
+        if(item.id == record.id){
+            item.newValue = inputValue
+        }
+    })
+    this.setState({
+        proposalsCreateList,
+        dataSource,
+    },()=>{
+        console.log('proposalsCreateList999====99999',proposalsCreateList)
+        console.log('dataSource999=======999',dataSource)
+    })
+
+  }
+
+  handleSubmit = e => {
+    e.preventDefault();
+    this.props.form.validateFields((err, values) => {
+      if (!err) {
+        console.log('Received values of form: ', values);
+        this.goToNextStep()
+      }
+    });
+  };
+
 
   render() {
-    let {type} = this.props.state
-    const { locale } = this.props.intl
+    let {type} = this.props.state;
+    let {nextStep} = this.props;
+    const { locale } = this.props.intl;
+
     
     return (
         <main>
           {this.state.modalSelect}
-          <div className="mt-4">
-            {this.getColumns()}
-          </div>
-          {/* <button 
-            type="button" 
-            className="btn btn-danger btn-lg btn-w" 
-            style={{width: '252px'}}
-            onClick={this.goToNextStep}
-         >{tu('trc20_confirm')}</button> */}
-          <div className="text-right mt-4">
-            <button className="ml-4 btn btn-danger btn-lg" onClick={this.goToNextStep}>{tu('next')}</button>
-          </div>
+          <Form layout="inline" onSubmit={this.handleSubmit}>
+            <div className="mt-4">
+                    {this.getColumns()}
+            </div>
+            <div className="text-right mt-4">
+                <button className="btn btn-default btn-lg"onClick={() => nextStep(0)}>
+                    {tu("prev_step")}
+                </button>
+                <button className="ml-4 btn btn-danger btn-lg" htmlType="submit" >{tu('next')}</button>
+            </div>
+        </Form>
         </main>
     )
   }
 }
 
-export default injectIntl(SetProposal);
+export default Form.create({ name: 'set_proposal' })(injectIntl(SetProposal));
+

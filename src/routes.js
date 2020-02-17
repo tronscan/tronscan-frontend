@@ -80,10 +80,297 @@ export const routes = [
     strict: true
   },
   {
+    path: "/newblock",
+    label: "newblock",
+    pathKey: "/newblock",
+    // icon: "fa fa-link",
+    icon: false,
+    routes: [
+      [
+        {
+          label: "nodes",
+          // icon: "fa fa-server",
+          icon: false,
+          path: "/blockchain/nodes",
+          component: NodesAsync,
+          showInMenu: true
+          // showInMenu: IS_MAINNET?true:false,
+        },
+        {
+          path: "/blockchain/blocks",
+          label: "blocks",
+          // icon: "fa fa-cubes",
+          icon: false,
+          component: Blocks
+        },
+        {
+          // icon: "fas fa-handshake",
+          icon: false,
+          path: "/blockchain/transactions",
+          label: "transactions",
+          component: Transactions
+        },
+        {
+          // icon: "fas fa-handshake",
+          icon: false,
+          path: "/blockchain/transactions/:date",
+          label: "daily_transactions",
+          component: Transactions,
+          showInMenu: false
+        },
+        {
+          // icon: "fa fa-exchange-alt",
+          icon: false,
+          path: "/blockchain/transfers",
+          label: "transfers",
+          component: Transfers
+        },
+        {
+          path: "/blockchain/accounts",
+          label: "accounts",
+          // icon: "fa fa-users",
+          icon: false,
+          component: AccountsAsync
+        },
+        // {
+        //   path: "/block/contracts",
+        //   label: "Verified_contracts",
+        //   icon: "fa fa-file",
+        //   component: Contracts,
+        // },
+        {
+          label: "live",
+          // icon: `fa fa-bolt`,
+          icon: false,
+          path: "/blockchain/live",
+          component: LiveAsync,
+          showInMenu: false
+        }, // {
+        //   label: "inter_tnxl",
+        //   icon: `fa fa-random`,
+        //   path: "/block/ContractInter",
+        //   component: ContractInter,
+        //   showInMenu: false
+        // },  
+      ],
+      [
+        {
+          label: "contracts",
+          // icon: "fa fa-file",
+          icon: false,
+          path: "/contracts/contracts",
+          component: Contracts
+        },
+        {
+          path: "/contracts/contract-triggers",
+          label: "trigger",
+          // icon: "fa fa-users-cog",
+          icon: false,
+          component: ContractTrans
+        },
+        {
+          path: "/contracts/contract-compiler",
+          label: "contract_deployment",
+          // icon: "fas fa-file-signature",
+          icon: false,
+          component: ContractCompilerAsync
+          // showInMenu: IS_MAINNET ? true : false
+        },
+        {
+          path: "/contracts/contract-compiler/:type",
+          label: "contract_verification",
+          // icon: "fas fa-file-signature",
+          icon: false,
+          component: ContractCompilerAsync,
+          showInMenu: false
+        },
+        {
+          label: "contracts_source-code-usage-terms",
+          // icon: "fa fa-file",
+          icon: false,
+          path: "/contracts/source-code-usage-terms",
+          component: ContractSourceCode,
+          showInMenu: false
+        },
+        {
+          label: "contracts_terms",
+          // icon: "fa fa-file",
+          icon: false,
+          path: "/contracts/terms",
+          component: ContractUseServiceTerms,
+          showInMenu: false
+        },
+        {
+          label: "contracts_license",
+          // icon: "fa fa-file",
+          icon: false,
+          path: "/contracts/license",
+          component: ContractLicense,
+          showInMenu: false
+        }
+      ],
+      [
+        {
+          label: "token_overview",
+          path: "/tokens/list",
+          // icon: "fa fa-list",
+          icon: false,
+          component: TokenAllAsync
+        },
+      
+        {
+          label: "token_input",
+          path: "/tokens/create",
+          // icon: "fa fa-plus-square",
+          icon: false,
+          component: TokensCreateAsync,
+          showInMenu: IS_MAINNET ? true : false
+        },
+        {
+          path: "/tokens/create/:step",
+          component: TokensCreateAsync,
+          showInMenu: false
+        },
+        {
+          label: "update_token",
+          path: "/tokens/update/:id",
+          // icon: "fa fa-plus-square",
+          icon: false,
+          component: TokensCreateAsync,
+          showInMenu: false
+        },
+        {
+          label: "token_markets_input",
+          path: "/tokens/markets/add/:page/:tokenId/:id",
+          // icon: "fa fa-plus-square",
+          icon: false,
+          component: TokensMarketsAddListAsync,
+          showInMenu: false
+        },
+        {
+          label: "token_markets_input",
+          path: "/tokens/markets/create/:type/:id",
+          // icon: "fa fa-plus-square",
+          icon: false,
+          component: TokensMarketsCreateAsync,
+          showInMenu: false
+        },
+        {
+          /* Write two is to solve the updated copy */
+          label: "token_markets_update",
+          path: "/tokens/markets/:page/:type/:id",
+          // icon: "fa fa-plus-square",
+          icon: false,
+          component: TokensMarketsCreateAsync,
+          showInMenu: false
+        },
+        {
+          label: "token_rating_rule",
+          path: "/tokens/rating-rule",
+          // icon: "fa fa-plus-square",
+          icon: false,
+          component: RatingRule,
+          showInMenu: false
+        }
+      ]
+    ]
+  },
+  {
+    path: "/data",
+    label: "index_navigation_data",
+    pathKey: "/data",
+    // icon: "fa fa-file-contract",
+    showInMenu: IS_MAINNET ? true : false,
+    icon: false,
+    component: () => <Redirect to="/data/stats" />,
+    routes: [
+      {
+        label: "data_title_chart",
+        // icon: `fa fa-chart-pie`,
+        icon: false,
+        path: "/data/stats",
+        component: StatisticsAsync,
+        showInMenu: IS_MAINNET ? true : false
+      },
+      {
+        path: "/data/bestdata",
+        label: "data_title",
+        // icon: "fa fa-address-book",
+        icon: false,
+        showInMenu: IS_MAINNET ? true : false,
+        component: TopDataAsync
+      },
+      {
+        path: "/data/bestdata/:name",
+        label: "data_title",
+        // icon: "fa fa-address-book",
+        icon: false,
+        showInMenu: false,
+        component: TopDataAsync
+      },
+      {
+        path: "/data/foundation",
+        label: "foundation",
+        // icon: "fa fa-address-book",
+        icon: false,
+        showInMenu: IS_MAINNET ? true : false,
+        component: FoundationAsync
+      },
+      {
+        label: "statistics",
+        // icon: `fa fa-chart-pie`,
+        icon: false,
+        path: "/data/stats/:chartName",
+        component: SingleChartAsync,
+        showInMenu: false
+      },
+      {
+        label: "data_title_chart",
+        // icon: `fa fa-chart-pie`,
+        icon: false,
+        path: "/data/charts/:chartName",
+        component: ChartsAsync,
+        showInMenu: false
+      },
+    ]
+  },
+
+  {
+    path: "/block/:id",
+    label: "block",
+    component: Block,
+    showInMenu: false
+  },
+  {
+    path: "/transaction/:hash",
+    label: "signature_details",
+    component: Transaction,
+    showInMenu: false
+  },
+  {
+    path: "/address/:id",
+    label: "contract_code_overview_account",
+    component: Address,
+    showInMenu: false
+  },
+  {
+    path: "/representative/:id",
+    label: "representative",
+    component: Representative,
+    showInMenu: false
+  },
+  {
+    path: "/contract/:id",
+    label: "contract",
+    component: SmartContract,
+    showInMenu: false
+  },
+  {
     path: "/blockchain",
     label: "blockchain",
     pathKey: "/blockchain",
     // icon: "fa fa-link",
+    showInMenu: false,
     icon: false,
     component: () => <Redirect to="/blockchain/blocks" />,
     routes: [
@@ -208,6 +495,7 @@ export const routes = [
     label: "contracts",
     pathKey: "/contracts",
     // icon: "fa fa-file-contract",
+    showInMenu: false,
     icon: false,
     component: () => <Redirect to="/contracts/contracts" />,
     routes: [
@@ -267,58 +555,16 @@ export const routes = [
       }
     ]
   },
-  
-  {
-    path: "/block/:id",
-    label: "block",
-    component: Block,
-    showInMenu: false
-  },
-  {
-    path: "/transaction/:hash",
-    label: "signature_details",
-    component: Transaction,
-    showInMenu: false
-  },
-  {
-    path: "/address/:id",
-    label: "contract_code_overview_account",
-    component: Address,
-    showInMenu: false
-  },
-  {
-    path: "/representative/:id",
-    label: "representative",
-    component: Representative,
-    showInMenu: false
-  },
-  {
-    path: "/contract/:id",
-    label: "contract",
-    component: SmartContract,
-    showInMenu: false
-  },
   {
     path: "/tokens",
     label: "tokens",
     pathKey: "/tokens",
     // icon: "fas fa-coins",
+    showInMenu: false,
     icon: false,
     component: TokenOverviewAsync,
     routes: [
-      // {
-      //   label: "overview_TRC20",
-      //   path: "/tokens/trc20",
-      //   icon: "fas fa-table",
-      //   component: TokenTRC20ListAsync
-      // },
-      // "-",
-      // {
-      //   label: "overview_TRC10",
-      //   path: "/tokens/list",
-      //   icon: "fa fa-list",
-      //   component: TokenListAsync
-      // },
+    
       {
         label: "token_overview",
         path: "/tokens/list",
@@ -326,13 +572,7 @@ export const routes = [
         icon: false,
         component: TokenAllAsync
       },
-      // {
-      //   label: "participate",
-      //   path: "/tokens/view",
-      //   icon: "fas fa-coins",
-      //   component: TokenOverviewAsync,
-      //   showInMenu: IS_MAINNET ? true : false
-      // },
+    
       {
         label: "token_input",
         path: "/tokens/create",
@@ -414,14 +654,6 @@ export const routes = [
     showInMenu: false
   },
   // {
-  //   path: "/Poloni DEX",
-  //   label: "Poloni DEX",
-  //   icon: "fas fa-rocket",
-  //   enurl: "https://poloniex.org",
-  //   zhurl: "https://poloniex.org",
-  //   linkHref: true
-  // },
-  // {
   //   label: "DEX10",
   //   path: "/exchange",
   //   icon: "fas fa-exchange-alt",
@@ -430,7 +662,7 @@ export const routes = [
   //   none: true
   // },
   {
-    label: "TRONSR",
+    label: "index_navigation_committee",
     path: "/sr",
     // icon: "fas fa-chess-queen",
     icon: false,
@@ -453,7 +685,7 @@ export const routes = [
         showInMenu: IS_MAINNET ? true : false
       },
       {
-        label: "committee",
+        label: "index_navigation_proposals",
         path: "/sr/committee",
         // icon: "fas fa-users",
         icon: false,
@@ -501,7 +733,7 @@ export const routes = [
       }
     ]
   },
- 
+
   {
     path: "/network",
     label: "nav_network",
@@ -534,7 +766,7 @@ export const routes = [
           // icon: "fa fa-book",
           icon: false,
           label: "sun_network_development_document"
-        },
+        }
         // {
         //   url:
         //     "https://support.tronscan.org/hc/en-us/articles/360035944072-SUN-Network-Developer-Challenge-Starts",
@@ -556,15 +788,6 @@ export const routes = [
     none: true,
     showInMenu: IS_MAINNET ? true : false
   },
-  // {
-  //   label: "Poloni DEX",
-  //   path: "/exchange/:type",
-  //   redirect: "/exchange/trc20",
-  //   icon: "fas fa-exchange-alt",
-  //   component: Exchangetrc,
-  //   none: true
-  // },
- 
   {
     label: "notice",
     path: "/notice/:id",
@@ -573,7 +796,7 @@ export const routes = [
     component: Notice,
     showInMenu: false
   },
- 
+
   {
     path: "/votes-live",
     label: "live",
@@ -753,29 +976,6 @@ export const routes = [
       }
     ]
   },
-  // {
-  //   path: "/more",
-  //   label: "nav_more",
-  //   icon: "fas fa-indent",
-  //   routes: [
-  //     {
-  //       path: "/markets",
-  //       label: "markets",
-  //       icon: "fa fa-chart-line", // component: MarketsAsync
-  //       enurl: "https://coinmarketcap.com/currencies/tron/",
-  //       zhurl: "https://coinmarketcap.com/zh/currencies/tron/",
-  //       linkHref: true
-  //     },
-  //     {
-  //       path: "/more/list_trx",
-  //       label: "list_trx",
-  //       icon: "fa fa-plus",
-  //       enurl: "https://tron.network/exchangesList?lng=en",
-  //       zhurl: "https://tron.network/exchangesList?lng=zh",
-  //       linkHref: true
-  //     }
-  //   ]
-  // },
   {
     path: "/more",
     pathKey: "/more",
@@ -840,21 +1040,6 @@ export const routes = [
         //     url: "https://github.com/tronscan/tronscan-frontend/issues/new",
         //     label: "report_an_error"
         // }
-      ],
-      [
-        "testnet",
-        {
-          url: "https://nile.tronscan.org",
-          icon: false,
-          label: "NILE TESTNET",
-          sidechain: false
-        },
-        {
-          url: "https://shasta.tronscan.org",
-          icon: false,
-          label: "SHASTA TESTNET",
-          sidechain: false
-        }
       ],
       [
         "tools",
@@ -943,29 +1128,6 @@ export const routes = [
       ]
     ]
   },
-  // {
-  //     path: "/more",
-  //     label: "NewMore",
-  //     icon: "fas fa-indent",
-  //     routes: [
-  //         {
-  //             path: "/markets",
-  //             label: "markets",
-  //             icon: "fa fa-chart-line", // component: MarketsAsync
-  //             enurl: "https://coinmarketcap.com/currencies/tron/",
-  //             zhurl: "https://coinmarketcap.com/zh/currencies/tron/",
-  //             linkHref: true
-  //         },
-  //         {
-  //             path: "/more/list_trx",
-  //             label: "list_trx",
-  //             icon: "fa fa-plus",
-  //             enurl: "https://tron.network/exchangesList?lng=en",
-  //             zhurl: "https://tron.network/exchangesList?lng=zh",
-  //             linkHref: true
-  //         }
-  //     ]
-  // },
   {
     path: "/wallet/new",
     label: "wallet",

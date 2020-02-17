@@ -107,6 +107,25 @@ export const lang20Q1 = {
   data_bandwidth_burned: "TRX 소각에 소비된 대역폭",
   data_area:
     "<a href='https://poloniex.org/'  target='_blank'>POLONI DEX</a> 거래소에 상장 된 토큰 만 계산",
+  // index nav
+
+  index_navigation_explorers: "브라우저",
+  index_navigation_data: "데이터",
+  index_navigation_committee: "위원회",
+  index_navigation_proposals: "제안",
+
+    // 2020-02-04
+  chart_hold_trx_account:'TRX 보유 계정 통계',
+  chart_hold_trx_account_per:'TRX 보유자 비율',
+  chart_hold_trx_account_per_t:'TRX 보유자 비율',
+  chart_hold_trx_account_per_tip:'TRX 보유 계정수/ 총 계정수',
+  chart_hold_account_sum:'총 계정수',
+  chart_hold_trx:'TRX 보유 계정수',
+  chart_hold_trx_more:'더 많은 데이터',
+  chart_hold_trx_number:'계정수',
+  chart_resource_user_freeing:'TRX 동결 에너지',
+  chart_resource_user_burning:'TRX 소각 에너지',
+  chart_resource_contract_deployer:'계약 배치자가 제공하는 에너지',
 
 
   // 2020-2-5 leon
@@ -146,4 +165,7 @@ export const lang20Q1 = {
   proposal_go: "",
   proposal_or: "또는",
   proposal_vote_link: "제안에 투표",
+
+  
+
 };

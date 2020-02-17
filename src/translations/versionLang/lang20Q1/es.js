@@ -103,11 +103,31 @@ export const lang20Q1 = {
   data_energy_consumed_total: "Energía total consumida",
   data_energy_freezed: "Energía consumida para congelar TRX",
   data_energy_burned: "Energía consumida para quemar TRX",
-  data_whole_contract_use:"Energía del desplegador de contratos",
+  data_whole_contract_use: "Energía del desplegador de contratos",
   data_bandwidth_consumed_total: "Ancho de banda total consumido",
   data_bandwidth_freezed: "Ancho de banda consumido para congelar TRX",
   data_bandwidth_burned: "Ancho de banda consumido para quemar TRX",
   data_area: "Only tokens listed on <a href='https://poloniex.org/'  target='_blank'>POLONI DEX</a> are included",
+  // index nav
+  index_navigation_explorers: "EXPLORADORES",
+  index_navigation_data: "DATOS",
+  index_navigation_committee: "COMITÉ",
+  index_navigation_proposals: "PROPUESTAS",
+
+  // 2020-02-04
+  chart_hold_trx_account:'Estadísticas de cuentas que ocupan TRX',
+  chart_hold_trx_account_per:'Proporción de token',
+  chart_hold_trx_account_per_t:'Proporción de token',
+  chart_hold_trx_account_per_tip:'Cuentas que contienen TRX / Cuentas totales',
+  chart_hold_account_sum:'Número total de cuentas',
+  chart_hold_trx:'Número de cuentas que contienen TRX',
+  chart_hold_trx_more:'Más datos',
+  chart_hold_trx_number:'Número de cuenta',
+  chart_resource_user_freeing:'Congela la energía de TRX',
+  chart_resource_user_burning:'Quema energía de TRX',
+  chart_resource_contract_deployer:'Energía proporcionada por los implementadores de contrato',
+
+  
 
   // 2020-2-5 leon
   proposal_serial: "No.",
@@ -147,4 +167,6 @@ export const lang20Q1 = {
   proposal_or: "o",
   proposal_vote_link: "Votar por la propuesta",
 
+
+   
 };
