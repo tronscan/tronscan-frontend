@@ -178,7 +178,10 @@ class Transactions extends React.Component {
                 align: 'left',
                 className: 'ant_table',
                 render: (text, record, index) => {
-                    return <BlockNumberLink number={text}/>
+                    return <span>
+                        {record.confirmed ? <BlockNumberLink number={text}/> :<span>（pending）</span>  }
+                    </span>
+                    
                 }
             },
             {
@@ -189,6 +192,17 @@ class Transactions extends React.Component {
                 render: (text, record, index) => {
                     return <BlockTime time={text}></BlockTime>
                     // <TimeAgo date={text} title={moment(text).format("MMM-DD-YYYY HH:mm:ss A")}/>
+                }
+            },
+            {
+                title: upperFirst(intl.formatMessage({id: 'status'})),
+                dataIndex: 'confirmed',
+                key: 'confirmed',
+                align: 'left',
+                className: 'ant_table',
+                width: '14%',
+                render: (text, record, index) => {
+                    return  text ? <span><img style={{ width: "20px", height: "20px" }} src={require("../../images/contract/Verified.png")}/> {tu('full_node_version_confirmed')}</span> : <span><img style={{ width: "20px", height: "20px" }} src={require("../../images/contract/Unverified.png")}/> {tu('full_node_version_unconfirmed')}</span>
                 }
             },
             {
