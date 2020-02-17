@@ -6,15 +6,18 @@ import {NavLink, Route, Switch} from "react-router-dom";
 import {Client} from "../../../services/api";
 import {tu, tv} from "../../../utils/i18n";
 // import TimeAgoI18N from "../../common/TimeAgoI18N";
-import {FormattedDate, FormattedNumber, FormattedTime} from "react-intl";
+import {FormattedDate, FormattedNumber, FormattedTime,injectIntl} from "react-intl";
 import {AddressLink, BlockNumberLink} from "../../common/Links";
 import {CopyText} from "../../common/Copy";
+import { QuestionMark } from '../../common/QuestionMark'
 import {TronLoader} from "../../common/loaders";
 import Transactions from "../../common/Transactions";
 import {Truncate} from "../../common/text";
 import Transfers from "../../common/Transfers";
 import {Alert} from "reactstrap";
 
+
+@injectIntl
 class Block extends React.Component {
 
 
@@ -106,7 +109,7 @@ class Block extends React.Component {
   render() {
 
     let {block, tabs, loading, totalTransactions, notFound} = this.state;
-    let {activeLanguage, match} = this.props;
+    let {activeLanguage, match, intl} = this.props;
     if (notFound) {
       return (
           <main className="container header-overlap">
@@ -138,7 +141,10 @@ class Block extends React.Component {
                         <table className="table table-hover m-0">
                           <tbody>
                           <tr>
-                            <th>{tu("status")}:</th>
+                            <th>
+                              <span>{tu("status")}</span>{' '}
+                              <QuestionMark placement="right" text={intl.formatMessage({ id: 'full_node_version_confirmed_tips' })} ></QuestionMark>:
+                            </th>
                             <td>
                               {
                                 block.confirmed ?
