@@ -125,6 +125,15 @@ class Blocks extends React.Component {
         }
       },
       {
+        title: upperFirst(intl.formatMessage({id: 'status'})),
+        dataIndex: 'status',
+        key: 'status',
+        align: 'center',
+        render: (text, record, index) => {
+          return '状态待补充'
+        }
+      },
+      {
         title: upperFirst(intl.formatMessage({id: 'transactions'})),
         dataIndex: 'nrOfTrx',
         key: 'nrOfTrx',

@@ -8,6 +8,7 @@ import {tu, tv} from "../../../utils/i18n";
 // import TimeAgoI18N from "../../common/TimeAgoI18N";
 import {FormattedDate, FormattedNumber, FormattedTime} from "react-intl";
 import {AddressLink, BlockNumberLink} from "../../common/Links";
+import {Tooltip,Icon} from 'antd';
 import {CopyText} from "../../common/Copy";
 import {TronLoader} from "../../common/loaders";
 import Transactions from "../../common/Transactions";
@@ -145,6 +146,9 @@ class Block extends React.Component {
                                     <span className="badge badge-success text-uppercase">{tu("Confirmed")}</span> :
                                     <span className="badge badge-danger text-uppercase">{tu("Unconfirmed")}</span>
                               }
+                              <Tooltip placement="top" title={tu("full_node_version_confirmed_tips")}>
+                                <Icon type="question-circle" style={{verticalAlign: 0,marginLeft: 5}}/>
+                              </Tooltip>
                             </td>
                           </tr>
                           <tr>
