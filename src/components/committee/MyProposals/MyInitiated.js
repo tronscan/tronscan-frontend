@@ -34,7 +34,15 @@ class MyInitiated extends React.Component {
             modal: null,
         }
     }
-
+    // shouldComponentUpdate(nextProps,nextState) {
+    //     // if (nextProps.intl.locale !== this.props.locale) {
+    //     //     return true
+    //     // }
+    //     // if (nextState.dataSource !== this.state.dataSource) {
+    //     //     return true
+    //     // }
+    //     return true
+    // }
     componentDidMount(){
         let { account, currentWallet } = this.props;
         this.load();
@@ -819,6 +827,7 @@ function mapStateToProps(state) {
         account: state.app.account,
         currentWallet: state.wallet.current,
         walletType: state.app.wallet,
+        locale: state.app.activeLanguage
     };
 }
 

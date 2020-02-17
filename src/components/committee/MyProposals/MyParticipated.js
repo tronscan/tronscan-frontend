@@ -16,23 +16,31 @@ import {transactionResultManager, transactionResultManagerSun} from "../../../ut
 
 
 class MyParticipated extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-        dataSource:[],
-        total:0,
-        loading: false,
-        pagination: {
-            showQuickJumper: true,
-            position: "bottom",
-            showSizeChanger: true,
-            defaultPageSize: 20,
-            total: 0
-        },
-        modal: null,
+    constructor() {
+        super();
+        this.state = {
+            dataSource:[],
+            total:0,
+            loading: false,
+            pagination: {
+                showQuickJumper: true,
+                position: "bottom",
+                showSizeChanger: true,
+                defaultPageSize: 20,
+                total: 0
+            },
+            modal: null,
+        }
     }
-  }
-
+    // shouldComponentUpdate(nextProps,nextState) {
+    //     if (nextProps.intl.locale !== this.props.locale) {
+    //         return true
+    //     }
+    //     if (nextState.dataSource !== this.state.dataSource) {
+    //         return true
+    //     }
+    //     return false
+    // }
     componentDidMount(){
         let { account, currentWallet } = this.props;
         this.load();
@@ -815,6 +823,7 @@ function mapStateToProps(state) {
         account: state.app.account,
         currentWallet: state.wallet.current,
         walletType: state.app.wallet,
+        locale: state.app.activeLanguage
     };
 }
 
