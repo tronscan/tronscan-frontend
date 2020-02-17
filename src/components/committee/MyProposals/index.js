@@ -7,7 +7,7 @@ import {TronLoader} from "../../common/loaders";
 import {AddressLink} from "../../common/Links";
 import {QuestionMark} from "../../common/QuestionMark";
 import {ONE_TRX,IS_MAINNET} from "../../../constants";
-import {NavLink, Route, Switch, Link} from "react-router-dom";
+import {NavLink, Route, Switch, Link, withRouter} from "react-router-dom";
 import {upperFirst} from 'lodash'
 import MyInitiated from './MyInitiated'
 import MyParticipated from './MyParticipated'
@@ -37,7 +37,12 @@ class MyProposals extends React.Component {
           total: 0
       };
   }
-
+  componentWillMount(){
+    let { account, currentWallet } = this.props;
+    if(!account || !(currentWallet && currentWallet.representative && currentWallet.representative.enabled)){
+      this.props.history.push('/proposals')
+    }
+  }
   componentDidMount() {
     this.load();
   }
@@ -126,4 +131,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, null)(injectIntl(MyProposals));
+export default connect(mapStateToProps, null)(withRouter(injectIntl(MyProposals)));
