@@ -187,7 +187,7 @@ class Transactions extends React.Component {
         className: 'ant_table',
         width: '12%',
         render: (text, record, index) => {
-        return  text ? <span><img style={{ width: "20px", height: "20px" }} src={require("../../images/contract/Verified.png")}/> {tu('full_node_version_confirmed')}</span> : <span><img style={{ width: "20px", height: "20px" }} src={require("../../images/contract/Unverified.png")}/>{tu('full_node_version_unconfirmed')}</span>
+        return  text ? <span><img style={{ width: "20px", height: "20px" }} src={require("../../images/contract/Verified.png")}/> {tu('full_node_version_confirmed')}</span> : <span><img style={{ width: "20px", height: "20px" }} src={require("../../images/contract/Unverified.png")}/> {tu('full_node_version_unconfirmed')}</span>
         }
       },
       {
@@ -299,33 +299,20 @@ class Transactions extends React.Component {
         }
       },
       {
-        title: upperFirst(intl.formatMessage({id: 'trc20_my_trans_header_status'})),
+        title: upperFirst(intl.formatMessage({id: 'result'})),
         dataIndex: 'rejected',
         key: 'rejected',
         align: 'left',
         className: 'ant_table _text_nowrap',
         render: (text, record, index) => {
-          // return <span>
-          //     {/* {
-          //         text?<img style={{width: '20px', height: '20px'}} src={require("../../images/contract/Unverified.png")}/>:<img style={{width: '20px', height: '20px'}} src={require("../../images/contract/Verified.png")}/>
-          //     } */}
+          return <span>
+              {
+                  text?'FAIL':'SUCCESS'
+              }
               
-          // </span>
-              return  !text ? <span><img style={{ width: "20px", height: "20px" }} src={require("../../images/contract/Verified.png")}/> {tu('full_node_version_confirmed')}</span> : <span><img style={{ width: "20px", height: "20px" }} src={require("../../images/contract/Unverified.png")}/>{tu('full_node_version_unconfirmed')}</span>
+          </span>
         }
-      
       },
-      // {
-      //   title: upperFirst(intl.formatMessage({id: 'status'})),
-      //   dataIndex: 'confirmed',
-      //   key: 'confirmed',
-      //   align: 'left',
-      //   className: 'ant_table',
-      //   width: '12%',
-      //   render: (text, record, index) => {
-      //   return  text ? <span><img style={{ width: "20px", height: "20px" }} src={require("../../images/contract/Verified.png")}/> {tu('full_node_version_confirmed')}</span> : <span><img style={{ width: "20px", height: "20px" }} src={require("../../images/contract/Unverified.png")}/>{tu('full_node_version_unconfirmed')}</span>
-      //   }
-      // },
       {
         title: upperFirst(intl.formatMessage({id: 'amount'})),
         dataIndex: 'valueInfoList',
