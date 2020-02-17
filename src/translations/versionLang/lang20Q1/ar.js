@@ -167,7 +167,7 @@ export const lang20Q1 = {
   proposal_go: "",
   proposal_or: "أو",
   proposal_vote_link: "التصويت على الاقتراح",
-
+  proposal_balance_not_enough: "عدم كفاية الرصيد",
   
 
 };

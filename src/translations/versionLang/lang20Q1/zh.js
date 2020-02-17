@@ -170,6 +170,7 @@ export const lang20Q1 = {
   proposal_go: "前去",
   proposal_or: "或",
   proposal_vote_link: "给提议投票",
+  proposal_balance_not_enough: "余额不足",
 
   /*
     ##################################################################################

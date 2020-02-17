@@ -138,13 +138,13 @@ export const lang20Q1 = {
   proposal_create: "Поднять предложение",
   proposal_mine: "Мои предложения",
   proposal_endtime: "Время истечения",
-  proposal_total_votes: "Всего голосов",
-  proposal_valid_votes: "Действительные голоса",
+  proposal_total_votes: "все",
+  proposal_valid_votes: "годный голос",
   proposal_votes_tip: "Действительные голоса от лучших 27 SR.  Общее количество голосов - это голоса, отданные всеми SR. ",
   proposal_action: "Операции",
-  proposal_more: "Посмотреть детали",
+  proposal_more: "подробнее",
   proposal_approve: "Голосовать",
-  proposal_cancel_approve: "Снять голосование",
+  proposal_cancel_approve: "не согласен",
   proposal_not_sign_in: "Пожалуйста, войдите, чтобы использовать эту функцию.",
   proposal_cancel_tip: "Вы уверены, что хотите снять голосование?",
   proposal_apply_super: "Эта функция доступна только для SR.",
@@ -169,6 +169,7 @@ export const lang20Q1 = {
   proposal_go: "",
   proposal_or: "или",
   proposal_vote_link: "Проголосовать за предложение",
+  proposal_balance_not_enough: "Недостаточный баланс",
 
   
 

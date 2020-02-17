@@ -165,7 +165,7 @@ export const lang20Q1 = {
   proposal_go: "",
   proposal_or: "또는",
   proposal_vote_link: "제안에 투표",
-
+  proposal_balance_not_enough: "잔액 불충분",
   
 
 };

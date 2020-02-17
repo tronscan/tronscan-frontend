@@ -733,7 +733,7 @@ class MyInitiated extends React.Component {
                 <Modal isOpen={true} toggle={this.hideModal} className="committee-modal" style={{width: '460px'}}>
                     <ModalHeader toggle={this.hideModal} className=""></ModalHeader>
                     <ModalBody style={{padding: '0 0 1.5rem'}}>
-                        <div style={{color: '#333',padding:'10px 0 20px',fontSize: '16px',textAlign: 'center'}}>{tu('proposal_cancel_tip1')}</div>
+                        <div style={{color: '#333',padding:'0 0 30px',fontSize: '16px',textAlign: 'center'}}>{tu('proposal_cancel_tip1')}</div>
                         <div style={{display: 'flex', justifyContent: 'center'}}>
                             <div style={{width: '90px',height: '38px',lineHeight: '38px', textAlign: 'center', background: '#C23631', color: '#fff',cursor: 'pointer'}}
                                 onClick={() => {
@@ -803,7 +803,7 @@ class MyInitiated extends React.Component {
                 {modal}
                 {loading && <div className="loading-style"><TronLoader/></div>}
                 {!loading&&
-                    <Table
+                    (total > 0  ? <Table
                         bordered={true}
                         columns={column}
                         rowKey={(record, index) => {
@@ -814,7 +814,17 @@ class MyInitiated extends React.Component {
                         pagination={pagination}
                         loading={loading}
                         onChange={this.handleTableChange}
-                    />
+                    /> : 
+                    <div className="my-proposals-empty">
+                      <img src={require('../../../images/proposals/tron-empty.svg')} alt=""/>
+                      <div>
+                        {t('trc20_no_data')},
+                        {t('proposal_go')}
+                        <Link to="/proposalscreate">{t('proposal_create')}</Link>
+                        {t('proposal_or')}
+                        <Link to="/proposals">{t('proposal_vote_link')}</Link>
+                      </div>
+                    </div>)
                 }
             </div>
         )

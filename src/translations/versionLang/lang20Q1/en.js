@@ -139,7 +139,7 @@ export const lang20Q1 = {
   proposal_action: "Operations",
   proposal_more: "View details",
   proposal_approve: "Cast a vote",
-  proposal_cancel_approve: "Withdraw the vote",
+  proposal_cancel_approve: "Undo vote",
   proposal_not_sign_in: "Please log in to use this feature.",
   proposal_cancel_tip: "Are you sure to withdraw the vote? ",
   proposal_apply_super: "This feature is only available to SRs.",
@@ -157,7 +157,7 @@ export const lang20Q1 = {
   proposal_super_candidate_votes: "SR candidate votes",
   proposal_my_initiate: "Initiated",
   proposal_my_participate: "Participated",
-  proposal_cancel: "Withdraw the proposal",
+  proposal_cancel: "Withdraw it",
   proposal_cancel_tip1: "Are you sure to withdraw the vote?",
   proposal_fail: "Submission Failed",
   proposal_success: "Submitted successfully",
@@ -165,7 +165,7 @@ export const lang20Q1 = {
   proposal_go: "",
   proposal_or: "or",
   proposal_vote_link: "Vote for the proposal",
-
+  proposal_balance_not_enough: "Insufficient balance",
 
   
 

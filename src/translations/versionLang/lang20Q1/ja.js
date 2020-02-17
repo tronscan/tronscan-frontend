@@ -166,7 +166,7 @@ export const lang20Q1 = {
   proposal_go: "",
   proposal_or: "または",
   proposal_vote_link: "提案に投票する",
-
+  proposal_balance_not_enough: "資金不足",
   
 
 };

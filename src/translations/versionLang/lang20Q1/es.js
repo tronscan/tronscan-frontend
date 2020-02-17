@@ -134,13 +134,13 @@ export const lang20Q1 = {
   proposal_create: "Haz una propuesta",
   proposal_mine: "Mis propuestas",
   proposal_endtime: "Tiempo de caducidad",
-  proposal_total_votes: "Total de votos",
-  proposal_valid_votes: "Votos válidos",
+  proposal_total_votes: "todos",
+  proposal_valid_votes: "votos válidos",
   proposal_votes_tip: "Votos válidos son los votos para los top 27 SR, votos totales son los para todos los aplicantes de ser SR",
   proposal_action: "Operaciones",
   proposal_more: "Ver detalles",
   proposal_approve: "Aprobado",
-  proposal_cancel_approve: "Cancelar voto",
+  proposal_cancel_approve: "Discrepar",
   proposal_not_sign_in: "Inicia sesión para utilizar esta función.",
   proposal_cancel_tip: "¿Estás seguro de cancelar el voto?",
   proposal_apply_super: "Esta función solo está disponible para los SR.",
@@ -166,7 +166,7 @@ export const lang20Q1 = {
   proposal_go: "",
   proposal_or: "o",
   proposal_vote_link: "Votar por la propuesta",
-
+  proposal_balance_not_enough: "Saldo insuficiente",
 
    
 };

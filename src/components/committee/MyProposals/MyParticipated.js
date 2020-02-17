@@ -799,7 +799,7 @@ class MyParticipated extends React.Component {
                 {modal}
                 {loading && <div className="loading-style"><TronLoader/></div>}
                 {!loading&&
-                    <Table
+                    (total > 0 ? <Table
                         bordered={true}
                         columns={column}
                         rowKey={(record, index) => {
@@ -810,7 +810,17 @@ class MyParticipated extends React.Component {
                         pagination={pagination}
                         loading={loading}
                         onChange={this.handleTableChange}
-                    />
+                    /> :
+                    <div className="my-proposals-empty">
+                      <img src={require('../../../images/proposals/tron-empty.svg')} alt=""/>
+                      <div>
+                        {t('trc20_no_data')},
+                        {t('proposal_go')}
+                        <Link to="/proposalscreate">{t('proposal_create')}</Link>
+                        {t('proposal_or')}
+                        <Link to="/proposals">{t('proposal_vote_link')}</Link>
+                      </div>
+                    </div>)
                 }
             </div>
         )

@@ -33,7 +33,8 @@ class Proposal extends React.Component {
                 total: 0
             },
             modal: null,
-            isTronLink: 0
+            isTronLink: 0,
+            balanceTip: false,
         };
     }
 
@@ -770,7 +771,12 @@ class Proposal extends React.Component {
                             {record.state === 'PENDING' && record.approveSelf && <div>
                                 <a href="javascript:;" className="proposal-cancel" onClick={() => this.qualificationsVerify(record.proposalId)}>{tu('proposal_cancel_approve')}</a>
                             </div>}
-                        </div>) : ""}
+                        </div>) : 
+                        <div>
+                            {record.state === 'PENDING' && <div>
+                                <a href="javascript:;" className="proposal-approve" onClick={() => this.qualificationsVerify(record.proposalId,true)} >{tu('proposal_approve')}</a>
+                            </div>}
+                        </div>}
                     </div>
                     
 
@@ -782,6 +788,9 @@ class Proposal extends React.Component {
     }
 
     qualificationsVerify(id,v){
+        if (!this.isLoggedIn()) {
+            return;
+        }
         const { account, account: { tronWeb }, currentWallet } = this.props;
         if(currentWallet.representative.enabled){
             if(v){
@@ -862,21 +871,24 @@ class Proposal extends React.Component {
     hideModal = () => {
         this.setState({
           modal: null,
+          balanceTip: false
         });
     };
     // 
-    applySuperModal(){
+    applySuperModal = () => {
         let { intl } = this.props;
+        let { balanceTip } = this.state
         this.setState({
             modal: 
-                <Modal isOpen={true} toggle={this.hideModal} className="committee-modal" style={{width: '460px'}}>
+                <Modal isOpen={true} toggle={this.hideModal} className="committee-modal modal-dialog-centered" style={{width: '460px'}}>
                     <ModalHeader toggle={this.hideModal} className=""></ModalHeader>
                     <ModalBody>
                         <div style={{color: '#333',padding:'10px 0 50px',fontSize: '16px',textAlign: 'center'}}>{tu('proposal_apply_super')}</div>
-                        <div style={{display: 'flex', justifyContent: 'center'}}>
+                        <div style={{display: 'flex', justifyContent: 'center',flexDirection: 'column',alignItems: 'center'}}>
+                            <div className={balanceTip ? "balance-tip show" : "balance-tip"}>{tu('proposal_balance_not_enough')}</div>
                             <div style={{width: '220px',height: '38px',lineHeight: '38px', textAlign: 'center', background: '#69C265', color: '#fff',cursor: 'pointer'}}
                                 onClick={() => {
-                                    this.applyForDelegate()
+                                    this.showApplyForDelegate()
                                 }}>
                                 {tu('proposal_apply_super_btn')}
                             </div>
@@ -885,6 +897,32 @@ class Proposal extends React.Component {
                 </Modal>
         });
 
+    }
+
+    showApplyForDelegate(){
+        const { currentWallet } = this.props;
+        if(currentWallet.balance >= 9999000000){
+            this.applyForDelegate()
+        }else{
+            // this.setState({
+            //     balanceTip: true
+            // })
+            this.setState({
+                modal: 
+                    <Modal isOpen={true} toggle={this.hideModal} className="committee-modal modal-dialog-centered" style={{width: '460px'}}>
+                        <ModalHeader toggle={this.hideModal} className=""></ModalHeader>
+                        <ModalBody>
+                            <div style={{color: '#333',padding:'10px 0 50px',fontSize: '16px',textAlign: 'center'}}>{tu('proposal_apply_super')}</div>
+                            <div style={{display: 'flex', justifyContent: 'center',flexDirection: 'column',alignItems: 'center'}}>
+                                <div className="balance-tip show">{tu('proposal_balance_not_enough')}</div>
+                                <div style={{width: '220px',height: '38px',lineHeight: '38px', textAlign: 'center', background: '#69C265', color: '#fff',cursor: 'pointer'}}>
+                                    {tu('proposal_apply_super_btn')}
+                                </div>
+                            </div>
+                        </ModalBody>
+                    </Modal>
+            });
+        }
     }
 
     applyForDelegate = () => {

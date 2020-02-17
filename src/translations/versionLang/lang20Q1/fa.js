@@ -167,7 +167,7 @@ export const lang20Q1 = {
   proposal_go: "",
   proposal_or: "یا",
   proposal_vote_link: "به یک پیشنهاد رأی دهید",
-
+  proposal_balance_not_enough: "تعادل کافی",
   
 
 };
