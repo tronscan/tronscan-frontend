@@ -197,10 +197,9 @@ class TransfersAll extends React.Component {
                                 record.confirmed ?
                                     <span><img style={{ width: "20px", height: "20px" }} src={require("../../images/contract/Verified.png")}/> {tu('full_node_version_confirmed')}</span>
                                       : 
-                                    <span><img style={{ width: "20px", height: "20px" }} src={require("../../images/contract/Unverified.png")}/>{tu('full_node_version_unconfirmed')}</span>
+                                    <span><img style={{ width: "20px", height: "20px" }} src={require("../../images/contract/Unverified.png")}/> {tu('full_node_version_unconfirmed')}</span>
                             }
                         </div>
-
                     )
                 }
             },
