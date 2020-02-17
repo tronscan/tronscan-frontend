@@ -127,5 +127,11 @@ export const lang20Q1 = {
   chart_hold_trx_number:'アカウントのナンバー',
   chart_resource_user_freeing:'TRXの凍結によるエネルギー',
   chart_resource_user_burning:'TRXの燃焼によるエネルギー',
-  chart_resource_contract_deployer:'契約展開者からのエネルギー'
+  chart_resource_contract_deployer:'契約展開者からのエネルギー',
+
+  // full node
+  full_node_version_latest_block:'最新のブロック',
+  full_node_version_confirmed:'CONFIRMED',
+  full_node_version_unconfirmed:'UNCONFIRMED',
+  full_node_version_confirmed_tips:'19以上のSRによって確認されたトランザクションは、「確認済み」とマークされます，そうでなければ「確認される」',
 };

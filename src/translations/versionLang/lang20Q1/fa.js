@@ -128,5 +128,13 @@ export const lang20Q1 = {
   chart_hold_trx_number:'تعداد حسابها',
   chart_resource_user_freeing:'کاربر انرژی trx را یخ می زند',
   chart_resource_user_burning:'کاربر انرژی trx را می سوزاند',
-  chart_resource_contract_deployer:'انرژی تأمین شده توسط توزیع کنندگان قرارداد'
+  chart_resource_contract_deployer:'انرژی تأمین شده توسط توزیع کنندگان قرارداد',
+
+    
+  // full node
+  full_node_version_latest_block:'آخرین بلوک',
+  full_node_version_confirmed:'CONFIRMED',
+  full_node_version_unconfirmed:'UNCONFIRMED',
+  full_node_version_confirmed_tips:'"تأیید شده" به معنی تأیید شده توسط 19 یا بیشتر گره فوق العاده است ، در غیر این صورت "باید تأیید شود"',
+
 };
