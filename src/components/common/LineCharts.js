@@ -3248,6 +3248,280 @@ export class LineTxOverviewStatsType extends React.Component {
 }
 
 
+/**
+ * hold trx account
+ */
+export class HoldTrxAccountChart extends React.Component {
+
+    constructor(props) {
+        super(props)
+        this.myChart = null;
+        let id = ('_' + Math.random()).replace('.', '_');
+        this.state = {
+            lineId: 'HoldTrxAccountChart' + id
+        }
+    }
+
+    initLine(id) {
+        let _config = cloneDeep(config.HoldTrxAccountChart);
+        let {intl, data} = this.props;
+        let newData = cloneDeep(data)
+        let holdTrxRate = [];
+        let holdTotal = [];
+        let accountTotal = [];
+        let timestamp = []
+        newData.map((val) => {
+            holdTrxRate.push(val['hold_trx_rate']);
+            holdTotal.push(val['hold_total']);
+            accountTotal.push(val['account_total']);
+            timestamp.push(val['timestamp'])
+            //timestamp.push(moment(val['timestamp']).format("YYYY-MM-DD"))
+        })
+
+        let pointStart = newData[0].timestamp ||  Date.UTC(2020, 2, 4);
+        let pointInterval = 24 * 3600 * 1000;
+
+       
+        if (newData && newData.length > 0) {
+            let options =  {
+                
+                title: {
+                    text: intl.formatMessage({id: 'chart_hold_trx_account'})
+                },
+                exporting: {
+                    enabled: true,
+                    sourceWidth: 1072,
+                    sourceHeight: 580,
+                    filename:intl.formatMessage({id: 'chart_hold_trx_account'})
+                },
+                rangeSelector: {
+                    inputDateFormat: '%Y-%m-%d',
+                    //allButtonsEnabled: true,
+                    buttons: [
+                    {
+                        type: 'all',
+                        text: intl.formatMessage({id: 'all'})
+                    },
+                    {
+                        type: 'year',
+                        count: 1,
+                        text: intl.formatMessage({id: 'freezing_rangeSelector_botton_text_1y'})
+                    },
+                    {
+                        type: 'month',
+                        count: 6,
+                        text: intl.formatMessage({id: 'freezing_rangeSelector_botton_text_6m'})
+                    },
+                    {
+                        type: 'month',
+                        count: 3,
+                        text: intl.formatMessage({id: 'freezing_rangeSelector_botton_text_3m'})
+                    },
+                    {
+                        type: 'month',
+                        count: 1,
+                        text: intl.formatMessage({id: 'freezing_rangeSelector_botton_text_1m'})
+                    }],
+                    selected: 0,
+                    buttonTheme: {
+                        width: 50
+                    },
+                },
+                navigator: {
+                    maskFill: 'rgba(198,72,68, 0.3)',
+                    xAxis: {
+                        labels: {
+                            format:'{value:%Y-%m-%d}',
+                            x: 0
+                            // enabled:false
+                        },
+                    },
+                   
+                },
+                scrollbar: {
+                   // enabled: false
+                },
+                xAxis: {
+                    //type: 'datetime',
+                    // tickInterval: 5*24*60*60*1000,
+                    ordinal: false,
+                    categories:timestamp,
+                    dateTimeLabelFormats: {
+                        millisecond: '%H:%M:%S.%L',
+                        second: '%H:%M:%S',
+                        minute: '%H:%M',
+                        hour: '%H:%M',
+                        day: '%Y-%m-%d',
+                        week: '%m-%d',
+                        month: '%Y-%m',
+                        year: '%Y'
+                    },
+                    gridLineColor: '#eeeeee',
+                    labels: {
+                        style: {
+                            color: "#999999"
+                        },
+                        autoRotation: [-10, -20, -30, -40, -50, -60, -70, -80, -90],
+                    },
+                    title: {
+                        enabled: false
+                    },
+                  
+                
+                },
+                yAxis: [
+                    { // Primary yAxis
+                      labels: {
+                        format: '{value}%',
+                        style: {
+                          color: "#434343"
+                        }
+                      },
+                      title: {
+                        text:  intl.formatMessage({id: 'chart_hold_trx_account_per'}) ,
+                        style: {
+                            color: "#434343"
+                        }
+                      },
+                      opposite: false,
+                      min:0
+                    }, { // Secondary yAxis
+                      title: {
+                        text: intl.formatMessage({id: 'chart_hold_trx_number'}),
+                        style: {
+                          color: "#C64844"
+                        }
+                      },
+                      labels: {
+                        style: {
+                            color: "#C64844"
+                        }
+                      },
+                    }
+                ],
+                plotOptions: {
+                    column: {
+                        grouping: false,
+                        shadow: false,
+                        borderWidth: 0
+                    },
+                    spline: {
+                        marker: {
+                            fillColor:"#5A5A5A",
+                            width: 8,
+                            height: 8,
+                            lineWidth: 0,  //线条宽度
+                            radius: 4,    //半径宽度
+                        }
+                    },
+                },
+                tooltip: {
+                    useHTML: true,
+                    shadow: true,
+                    split: false,
+                    shared: true,
+                    borderColor: '#7F8C8D',
+                    borderRadius: 2,
+                    backgroundColor: 'white',
+                    formatter: function () {
+                        var s;
+                        var points = this.points;
+                        var pointsLength = points.length;
+                      
+                        s = '<table class="tableformat" style="border: 0px;padding-left:10px;padding-right:10px" min-width="100%"><tr><td colspan=2 style="padding-bottom:5px;"><span style="font-size: 10px;"> ' + moment(points[0].x).format("YYYY-MM-DD") + '</span><br></td></tr>'
+
+                        for (let index = 0; index < pointsLength; index += 1) {
+                            s += `<tr>
+                                    <td style="padding-top:4px;padding-bottom:4px;border-top:1px solid #D5D8DC;" valign="top"><span style="color:${points[index].series.color};font-size: 15px !important;">\u25A0</span>${intl.formatMessage({id: points[index].series.name })}</td>
+                                    <td align="right" style="padding-top:5px;padding-left:10px;padding-bottom:4px;border-top:1px solid #D5D8DC;"><span>
+                                    <b style="color:#C23631">
+                                    ${(index == 2 ? Highcharts.numberFormat(points[index].y, 2, '.', ',') + ' %</b>' : points[index].series.name ==  intl.formatMessage({id: 'chart_hold_account_sum'}) ?  toThousands((new BigNumber(points[index].y)).decimalPlaces(6)):Highcharts.numberFormat(points[index].y, 0, '.', ','))}
+                                    </span>
+                                </td></tr>`
+                        }
+                        s += '</table>';
+                        return s;
+                    },
+
+                },
+                series: [{
+                    name: intl.formatMessage({id: 'chart_hold_account_sum'}),
+                    type: 'column',
+                    yAxis: 1,
+                    color: "#DA8885",
+                    data:accountTotal,
+                    pointStart: pointStart,
+			        pointInterval: pointInterval , // one day
+                    tooltip: {
+                        valueSuffix: ' '
+                    },
+                    showInNavigator: false,
+                    dataGrouping: { // 针对highstock,将指定数量的数据合并展现为一个点
+                        enabled: false
+                    }
+                }, {
+                    name: intl.formatMessage({id: 'chart_hold_trx'}),
+                    type: 'column',
+                    yAxis: 1,
+                    color: "#C64844",
+                    data:holdTotal,
+                    pointStart: pointStart,
+			        pointInterval: pointInterval , // one day
+                    tooltip: {
+                        valueSuffix: ' '
+                    },
+                    showInNavigator: false,
+                    dataGrouping: { // 针对highstock,将指定数量的数据合并展现为一个点
+                        enabled: false
+                    }
+                }, {
+                    name: intl.formatMessage({id: 'chart_hold_trx_account_per'}),
+                    type: 'spline',
+                    color: "#5A5A5A",     
+                    data:holdTrxRate,
+                    pointStart: pointStart,
+			        pointInterval:pointInterval , // one day
+                    marker: {
+                        enabled: true,
+                    
+                    },
+                    tooltip: {
+                        valueSuffix: ' %'
+                    },
+                    showInNavigator: true,
+                    dataGrouping: { // 针对highstock,将指定数量的数据合并展现为一个点
+                        enabled: false
+                    }
+                }]
+            }
+            Object.keys(options).map(item => {
+                _config[item] = options[item]
+            })
+        }
+        if (newData && newData.length === 0) {
+            _config.title.text = "No data";
+        }
+        Highcharts.StockChart(id, _config);
+    }
+
+    componentDidMount() {
+        this.initLine(this.state.lineId);
+    }
+
+    componentDidUpdate() {
+        this.initLine(this.state.lineId);
+    }
+
+    render() {
+        return (
+            <div>
+                <div id={this.state.lineId} style={this.props.style}></div>
+            </div>
+        )
+    }
+}
+
+
 
 
 function setOption(config, child) {

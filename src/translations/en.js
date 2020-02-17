@@ -118,6 +118,7 @@ export const messages = {
   ##################################################################################
   */
   blockchain: "Blockchain",
+  newblock:"Blockchain",
   wallet: "Wallet",
   home: "Home",
   transfers: "Transfers",

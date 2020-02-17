@@ -43,6 +43,10 @@ import {
   TRCWITHDRAWMIN
 } from "../constants";
 
+
+
+
+
 const initialState = {
   theme: Lockr.get("theme", "light"),
   accounts: [],
@@ -61,7 +65,7 @@ const initialState = {
     fa: "فارسی",
     es: "Español"
   },
-  activeLanguage: "en",
+  activeLanguage: 'en',
   account: {
     key: undefined,
     address: undefined,
