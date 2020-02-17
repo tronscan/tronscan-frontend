@@ -204,7 +204,7 @@ class Transactions extends React.Component {
                             <span className="badge badge-danger text-uppercase">{tu("Unconfirmed")}</span>
                     } */}
                     {
-                      record.confirmed ? <span><img style={{ width: "20px", height: "20px" }} src={require("../../../images/contract/Verified.png")}/> {tu('full_node_version_confirmed')}</span> : <span><img style={{ width: "20px", height: "20px" }} src={require("../../../images/contract/Unverified.png")}/>{tu('full_node_version_unconfirmed')}</span>
+                      record.confirmed ? <span><img style={{ width: "20px", height: "20px" }} src={require("../../../images/contract/Verified.png")}/> {tu('full_node_version_confirmed')}</span> : <span><img style={{ width: "20px", height: "20px" }} src={require("../../../images/contract/Unverified.png")}/> {tu('full_node_version_unconfirmed')}</span>
                     }
                 </div>
 
