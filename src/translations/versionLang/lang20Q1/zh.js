@@ -75,7 +75,8 @@ export const lang20Q1 = {
   data_resource_table_energy_consumed: "消耗总能量",
   data_resource_table_percentage: "占比",
   data_resource_table_percentage_tips: "当前用户消耗能量/全网用户消耗能量",
-  data_resource_bandwith_table_percentage_tips: "当前用户消耗带宽/全网用户消耗带宽",
+  data_resource_bandwith_table_percentage_tips:
+    "当前用户消耗带宽/全网用户消耗带宽",
   data_resource_table_bandwidth_title: "最高带宽消耗",
   data_resource_table_total: "总计",
 
@@ -86,7 +87,7 @@ export const lang20Q1 = {
   data_token_mark_9: "（本期交易笔数-上期交易笔数）/上期交易笔数×100%",
   data_token_mark_10: "（本期交易账总额-上期交易账总额）/上期交易账总额×100%",
   data_contract_name: "合约名称",
-  data_title_chart: "图表统计",
+  data_title_chart: "统计图表",
   // 2020-01-17 overview
   data_TRX_transfer_total: "TRX转账数量",
   data_TRX_transfer_count: "TRX转账总笔数",
@@ -108,7 +109,29 @@ export const lang20Q1 = {
   data_bandwidth_consumed_total: "消耗总带宽",
   data_bandwidth_freezed: "消耗冻结TRX的带宽",
   data_bandwidth_burned: "消耗燃烧TRX的带宽",
-  data_area:"仅统计<a href='https://poloniex.org/' target='_blank'>POLONI DEX</a>交易所上线的通证",
+  data_area:
+    "仅统计<a href='https://poloniex.org/' target='_blank'>POLONI DEX</a>交易所上线的通证",
+
+  // index nav
+
+  index_navigation_explorers: "浏览器",
+  index_navigation_data: "数据",
+  index_navigation_committee: "委员会",
+  index_navigation_proposals: "提议",
+  // 2020-02-04
+  chart_hold_trx_account:'持有TRX账户统计',
+  chart_hold_trx_account_per:'持币占比',
+  chart_hold_trx_account_per_t:'持币占比',
+  chart_hold_trx_account_per_tip:'持有TRX账户数/总账户数',
+  chart_hold_account_sum:'总账户数',
+  chart_hold_trx:'持有TRX账户数',
+  chart_hold_trx_more:'更多数据',
+  chart_hold_trx_number:'账户数',
+  chart_resource_user_freeing:'用户冻结trx的能量',
+  chart_resource_user_burning:'用户烧毁trx的能量',
+  chart_resource_contract_deployer:'合约部署者提供的能量'
+
+
 
   // 2020-2-5 leon
   proposal_serial: "序号",
