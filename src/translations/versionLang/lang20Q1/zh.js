@@ -167,7 +167,16 @@ export const lang20Q1 = {
   proposal_submit_text:"您确定发起提议吗？",
   proposal_created_successful:"发起提议成功",
   proposal_created_failure:"发起提议失败",
-  proposal_validate_text_0:"请输入[81000-86400000]的数值",
-  proposal_validate_text_1:"请输入[81000-86400000]的数值"
-
+  proposal_validate_text_0:"请输入[81-86400]的数值",
+  proposal_validate_text_1:"请输入[0-100000000000]的数值",
+  proposal_validate_text_2:"请输入[0-1000]的数值",
+  proposal_validate_text_3:"请选择允许/不允许",
+  proposal_validate_text_4:"请输入数值",
+  proposal_validate_text_5:"请输入[0-100000]的数值",
+  proposal_validate_text_6:"请选择开启/不开启",
+  proposal_validate_text_7:"请输入[0-10000]的数值",
+  proposal_validate_text_8:"请输入[0-1000]的数值",
+  propose_not_activate:"不开启",
+  proposal_value_same:"提议值与当前值一样",
+  go_to_proposals_list:"去给提议投票"
 };

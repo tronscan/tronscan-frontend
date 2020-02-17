@@ -5111,5 +5111,11 @@ h5 {
 }
 
 .proposal_w-230{
-  width: 230px;
+  width: 230px !important;
+}
+.proposal-value-same{
+  font-family: PingFangSC-Regular;
+  font-size: 14px;
+  color: #C23631;
+  // line-height: 20px;
 }

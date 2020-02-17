@@ -26,6 +26,7 @@ export class SubmitProposal extends Component {
     this.state = {
       modal: null,
       loading: false,
+      dataSourceSelectedArr:[],
       ...this.props.state
     };
   }
@@ -38,9 +39,22 @@ export class SubmitProposal extends Component {
   }
   
   getSelectedPropsal = () => {
-    let {proposalsCreateList,dataSource} = this.state;
-    console.log('proposalsCreateList',proposalsCreateList);
-    console.log('dataSource',dataSource)
+    let { dataSource, proposalsCreateList, dataSourceSelectedArr } = this.state;
+    let dataSourceSelected =  _(dataSource).filter(source => source.checked).value()
+    dataSourceSelected.map((item,index)=>{
+        if(item.value === item.newValue){
+            item.same = true
+
+        }else{
+            item.same = false
+        }
+    })
+    this.setState({
+        dataSourceSelectedArr:dataSourceSelected
+    })
+    console.log('dataSource=======',dataSource)
+    console.log('dataSourceSelected=======',dataSourceSelected)
+    console.log('dataSourceSelectedArr=======',dataSourceSelectedArr)
     
   }
 
@@ -54,21 +68,7 @@ export class SubmitProposal extends Component {
     }
   }
 
-  setSelect(type) {
-    const {isLoggedInFn, nextState} = this.props
-    nextState({type: type})
-    // if(isLoggedInFn()){
-    //   if(type == 'trc10'){
-    //     if(this.state.issuedAsset){
-    //       nextState({type: type})
-    //     }else{
-    //       this.setModal()
-    //     }
-    //   }else{
-    //     nextState({type: type})
-    //   }
-    // }
-  }
+
 
   goToNextStep =() => {
     const {nextStep, isLoggedInFn, wallet, isAuthorFn} = this.props
@@ -114,10 +114,7 @@ export class SubmitProposal extends Component {
 
   getColumns() {
     let { intl } = this.props;
-    let { dataSource, proposalsCreateList } = this.state;
-    let dataSourceSelected =  _(dataSource).filter(source => source.checked).value()
-    console.log('dataSource=======',dataSource)
-    console.log('dataSourceSelected=======',dataSourceSelected)
+    let { dataSourceSelectedArr } = this.state
     const columns = [
     {
         title: upperFirst(intl.formatMessage({id: 'proposal_content'})),
@@ -142,16 +139,36 @@ export class SubmitProposal extends Component {
                                 {
                                     record.key == 'getMaintenanceTimeInterval' && <div><span>{text / (1000 * 60 * 60)}</span> &nbsp;<span>{
                                         intl.formatMessage({id: "propose_hour"})
-                                    }</span></div>
+                                    }</span>
+                                        {
+                                            record.same && <span className="proposal-value-same ml-1">({tu('proposal_value_same')})</span>
+                                        }
+                                        
+                                    </div>
                                 }
                                 {
-                                    record.key == 'getAccountUpgradeCost' && <div><span>{text / ONE_TRX}</span> &nbsp;<span>TRX</span></div>
+                                    record.key == 'getAccountUpgradeCost' && <div>
+                                        <span>{text / ONE_TRX}</span> &nbsp;<span>TRX</span>
+                                        {
+                                            record.same && <span className="proposal-value-same ml-1">({tu('proposal_value_same')})</span>
+                                        }
+                                    </div>
                                 }
                                 {
-                                    record.key == 'getCreateAccountFee' && <div><span>{text / ONE_TRX}</span> &nbsp;<span>TRX</span></div>
+                                    record.key == 'getCreateAccountFee' && <div>
+                                        <span>{text / ONE_TRX}</span> &nbsp;<span>TRX</span>
+                                        {
+                                            record.same && <span className="proposal-value-same ml-1">({tu('proposal_value_same')})</span>
+                                        }
+                                    </div>
                                 }
                                 {
-                                    record.key == 'getTransactionFee' && <div><span>{text}</span> &nbsp;<span>Sun/byte</span></div>
+                                    record.key == 'getTransactionFee' && <div>
+                                        <span>{text}</span> &nbsp;<span>Sun/byte</span>
+                                        {
+                                            record.same && <span className="proposal-value-same ml-1">({tu('proposal_value_same')})</span>
+                                        }
+                                    </div>
                                 }
                                 {
                                     record.key == 'getAssetIssueFee' && <div><span>{text / ONE_TRX}</span> &nbsp;<span>TRX</span></div>
@@ -435,7 +452,7 @@ export class SubmitProposal extends Component {
 
     return (
         <Table
-            dataSource={dataSourceSelected}
+            dataSource={dataSourceSelectedArr}
             columns={columns}
             pagination={false}
             bordered={true}
@@ -532,9 +549,11 @@ export class SubmitProposal extends Component {
 
 
   render() {
-    let {modal} = this.state;
-    let {nextStep} = this.props;
+    let { modal, dataSource, dataSourceSelectedArr } = this.state;
+    let { nextStep } = this.props;
     const { locale } = this.props.intl;
+    let disabledArr =  _(dataSourceSelectedArr).filter(source => source.same).value()
+    
     return (
         <main>
           {modal}
@@ -545,7 +564,7 @@ export class SubmitProposal extends Component {
             <button className="btn btn-default btn-lg"onClick={() => nextStep(1)}>
                 {tu("prev_step")}
             </button>
-            <button className="ml-4 btn btn-danger btn-lg" onClick={this.confirmSubmit}>{tu('submit')}</button>
+            <button className="ml-4 btn btn-danger btn-lg" onClick={this.confirmSubmit} disabled={disabledArr.length > 0}>{tu('submit')}</button>
           </div>
         </main>
     )

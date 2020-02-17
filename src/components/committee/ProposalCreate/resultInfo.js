@@ -33,8 +33,8 @@ export class resultInfo extends Component {
         });
     }
 
-    goToTokensList = () => {
-        window.location.hash = "#/tokens/list";
+    goToProposalsList = () => {
+        window.location.hash = "#/proposals";
     }
 
     render() {
@@ -61,9 +61,9 @@ export class resultInfo extends Component {
                                     </div>
                                 </div>
                             }
-                        </div>
-                        <div className="d-flex mt-3">
-                            <button className="btn btn-default btn-lg" onClick={this.goToTokensList}>{tu('token_input_failure_no_submit')}</button>
+                        </div> */}
+                        {/* <div className="d-flex mt-3">
+                            <button className="btn btn-danger btn-lg" onClick={this.goToProposalsList}>{tu('go_to_proposals_list')}</button>
                             <button className="ml-4 btn btn-danger btn-lg" onClick={this.againInput}>{tu('token_input_failure_submit')}</button>
                         </div> */}
                     </div>
@@ -84,6 +84,10 @@ export class resultInfo extends Component {
                         {/*<p className="mt-4 submit-market">*/}
                             {/*{tu('token_input_success_trx_market')}*/}
                         {/*</p>*/}
+                        <div className="d-flex mt-3">
+                            <button className="btn btn-danger btn-lg" onClick={this.goToProposalsList}>{tu('go_to_proposals_list')}</button>
+                            {/* <button className="ml-4 btn btn-danger btn-lg" onClick={this.againInput}>{tu('token_input_failure_submit')}</button> */}
+                        </div>
                     </div>
                 }
 

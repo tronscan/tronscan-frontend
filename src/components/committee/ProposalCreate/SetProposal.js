@@ -9,7 +9,7 @@ import {Client} from "../../../services/api";
 import _,{upperFirst} from 'lodash'
 import {ONE_TRX,IS_MAINNET} from "../../../constants";
 const Step = Steps.Step;
-
+const { Option } = Select;
 @connect(
   state => ({
     wallet: state.wallet.current,
@@ -46,7 +46,122 @@ export class SetProposal extends Component {
                 this.props.form.setFieldsValue({
                     "getMaintenanceTimeInterval": item.newValue?item.newValue/1000:''
                 });
-                break;
+            break;
+            case "getAccountUpgradeCost":
+                this.props.form.setFieldsValue({
+                    "getAccountUpgradeCost": item.newValue?item.newValue/ONE_TRX:''
+                });
+            break;
+            case "getCreateAccountFee":
+                this.props.form.setFieldsValue({
+                    "getCreateAccountFee": item.newValue?item.newValue/ONE_TRX:''
+                });
+            break;
+            case "getTransactionFee":
+                this.props.form.setFieldsValue({
+                    "getTransactionFee": item.newValue?item.newValue/ONE_TRX:''
+                });
+            break;
+            case "getAssetIssueFee":
+                this.props.form.setFieldsValue({
+                    "getAssetIssueFee": item.newValue?item.newValue/ONE_TRX:''
+                });
+            break;
+            case "getWitnessPayPerBlock":
+                this.props.form.setFieldsValue({
+                    "getWitnessPayPerBlock": item.newValue?item.newValue/ONE_TRX:''
+                });
+            break;
+            case "getWitnessStandbyAllowance":
+                this.props.form.setFieldsValue({
+                    "getWitnessStandbyAllowance": item.newValue?item.newValue/ONE_TRX:''
+                });
+            break;
+            case "getEnergyFee":
+                this.props.form.setFieldsValue({
+                    "getEnergyFee": item.newValue?item.newValue/ONE_TRX:''
+                });
+            break;
+            case "getExchangeCreateFee":
+                this.props.form.setFieldsValue({
+                    "getExchangeCreateFee": item.newValue?item.newValue/ONE_TRX:''
+                });
+            break;
+            case "getMaxCpuTimeOfOneTx":
+                this.props.form.setFieldsValue({
+                    "getMaxCpuTimeOfOneTx": item.newValue?item.newValue:''
+                });
+            break;    
+            case "getAllowUpdateAccountName":
+                this.props.form.setFieldsValue({
+                    "getAllowUpdateAccountName": item.newValue?item.newValue:undefined
+                });
+            break;  
+            case "getAllowTvmTransferTrc10":
+                this.props.form.setFieldsValue({
+                    "getAllowTvmTransferTrc10": item.newValue?item.newValue:undefined
+                });
+            break; 
+            case "getTotalEnergyCurrentLimit":
+                this.props.form.setFieldsValue({
+                    "getTotalEnergyCurrentLimit": item.newValue?item.newValue/ONE_TRX:''
+                });
+            break; 
+            case "getAllowMultiSign":
+                this.props.form.setFieldsValue({
+                    "getAllowMultiSign": item.newValue?item.newValue:undefined
+                });
+            break; 
+            case "getAllowAdaptiveEnergy":
+                this.props.form.setFieldsValue({
+                    "getAllowAdaptiveEnergy": item.newValue?item.newValue:undefined
+                });
+            break; 
+            case "getUpdateAccountPermissionFee":
+                this.props.form.setFieldsValue({
+                    "getUpdateAccountPermissionFee": item.newValue?item.newValue/ONE_TRX:''
+                });
+            break; 
+            case "getMultiSignFee":
+                this.props.form.setFieldsValue({
+                    "getMultiSignFee": item.newValue?item.newValue/ONE_TRX:''
+                });
+            break; 
+            case "getAllowProtoFilterNum":
+                this.props.form.setFieldsValue({
+                    "getAllowProtoFilterNum": item.newValue?item.newValue:undefined
+                });
+            break;
+            case "getShieldedTransactionFee":
+                this.props.form.setFieldsValue({
+                    "getShieldedTransactionFee": item.newValue?item.newValue/ONE_TRX:''
+                });
+            break;  
+            case "getAdaptiveResourceLimitMultiplier":
+                this.props.form.setFieldsValue({
+                    "getAdaptiveResourceLimitMultiplier": item.newValue?item.newValue:''
+                });
+            break;  
+            case "getChangeDelegation":
+                this.props.form.setFieldsValue({
+                    "getChangeDelegation": item.newValue?item.newValue:undefined
+                });
+            break; 
+            case "getWitness127PayPerBlock":
+                this.props.form.setFieldsValue({
+                    "getShieldedTransactionFee": item.newValue?item.newValue/ONE_TRX:''
+                });
+            break;  
+            case "getAllowTvmSolidity059":
+                    this.props.form.setFieldsValue({
+                    "getAllowTvmSolidity059": item.newValue?item.newValue:undefined
+                });
+            break;  
+            case "getAdaptiveResourceLimitTargetRatio":
+                this.props.form.setFieldsValue({
+                    "getAdaptiveResourceLimitTargetRatio": item.newValue?item.newValue:''
+                });
+            break;   
         }
         
     })
@@ -60,11 +175,6 @@ export class SetProposal extends Component {
         this.checkExistingToken()
       }
     }
-    // console.log('prevState.step',prevState.step)
-    // console.log('this.state.step',this.state.step)
-    // if(prevProps.step !== this.props.step){
-
-    // }
     
   }
 
@@ -133,16 +243,6 @@ export class SetProposal extends Component {
    
     let { dataSource, proposalsCreateList } = this.state;
     let dataSourceSelected =  _(dataSource).filter(source => source.checked).value()
-    // dataSourceSelected.map((item,index)=>{
-    //     switch (item['key']){
-    //         case "getMaintenanceTimeInterval":
-    //             this.props.form.setFieldsValue({
-    //                 [item.key]: item.newValue?item.newValue:0
-    //             });
-    //             break;
-    //     }
-        
-    // })
     console.log('dataSource=======',dataSource)
     console.log('dataSourceSelected=======',dataSourceSelected)
     const columns = [
@@ -466,24 +566,407 @@ export class SetProposal extends Component {
     //   width:'15%',
       render: (text, record, index) => {
           return <span>
-            
-                <Form.Item>
+              {
+                  record.key == "getMaintenanceTimeInterval" &&  <Form.Item>
                     {getFieldDecorator('getMaintenanceTimeInterval', {
                         rules: [{ required: true, message: tu("proposal_validate_text_0")},
-                      //  { min: 81000, max: 86400000, message: tu("proposal_validate_text_0") }
                     ],
                     })(
                         <InputNumber
                             placeholder={intl.formatMessage({id: 'proposal_validate_text_0'})}
-                            min={81000}
-                            max={86400000}
+                            min={81}
+                            max={86400}
                             className="proposal_w-230"
                             onChange={(e)=>{this.onInputChange(e,record)}}
                         />,
-                        <InputNumber
-                />
+                        <InputNumber/>
                     )}
                 </Form.Item>
+              }
+              {
+                record.key == "getAccountUpgradeCost" &&  <Form.Item>
+                    {getFieldDecorator('getAccountUpgradeCost', {
+                        rules: [{ required: true, message: tu("proposal_validate_text_1")},
+                    ],
+                    })(
+                        <InputNumber
+                            placeholder={intl.formatMessage({id: 'proposal_validate_text_1'})}
+                            min={0}
+                            max={100000000000}
+                            className="proposal_w-230"
+                            onChange={(e)=>{this.onInputChange(e,record)}}
+                        />,
+                        <InputNumber/>
+                    )}
+                </Form.Item>
+              } 
+              {
+                record.key == "getCreateAccountFee" &&  <Form.Item>
+                    {getFieldDecorator('getCreateAccountFee', {
+                        rules: [{ required: true, message: tu("proposal_validate_text_1")},
+                    ],
+                    })(
+                        <InputNumber
+                            placeholder={intl.formatMessage({id: 'proposal_validate_text_1'})}
+                            min={0}
+                            max={100000000000}
+                            className="proposal_w-230"
+                            onChange={(e)=>{this.onInputChange(e,record)}}
+                        />,
+                        <InputNumber/>
+                    )}
+                </Form.Item>
+              } 
+              {
+                record.key == "getTransactionFee" &&  <Form.Item>
+                    {getFieldDecorator('getTransactionFee', {
+                        rules: [{ required: true, message: tu("proposal_validate_text_1")},
+                    ],
+                    })(
+                        <InputNumber
+                            placeholder={intl.formatMessage({id: 'proposal_validate_text_1'})}
+                            min={0}
+                            max={100000000000}
+                            className="proposal_w-230"
+                            onChange={(e)=>{this.onInputChange(e,record)}}
+                        />,
+                        <InputNumber/>
+                    )}
+                </Form.Item>
+              } 
+              {
+                record.key == "getAssetIssueFee" &&  <Form.Item>
+                    {getFieldDecorator('getAssetIssueFee', {
+                        rules: [{ required: true, message: tu("proposal_validate_text_1")},
+                    ],
+                    })(
+                        <InputNumber
+                            placeholder={intl.formatMessage({id: 'proposal_validate_text_1'})}
+                            min={0}
+                            max={100000000000}
+                            className="proposal_w-230"
+                            onChange={(e)=>{this.onInputChange(e,record)}}
+                        />,
+                        <InputNumber/>
+                    )}
+                </Form.Item>
+              } 
+              {
+                record.key == "getWitnessPayPerBlock" &&  <Form.Item>
+                    {getFieldDecorator('getWitnessPayPerBlock', {
+                        rules: [{ required: true, message: tu("proposal_validate_text_1")},
+                    ],
+                    })(
+                        <InputNumber
+                            placeholder={intl.formatMessage({id: 'proposal_validate_text_1'})}
+                            min={0}
+                            max={100000000000}
+                            className="proposal_w-230"
+                            onChange={(e)=>{this.onInputChange(e,record)}}
+                        />,
+                        <InputNumber/>
+                    )}
+                </Form.Item>
+              } 
+              {
+                record.key == "getWitnessStandbyAllowance" &&  <Form.Item>
+                    {getFieldDecorator('getWitnessStandbyAllowance', {
+                        rules: [{ required: true, message: tu("proposal_validate_text_1")},
+                    ],
+                    })(
+                        <InputNumber
+                            placeholder={intl.formatMessage({id: 'proposal_validate_text_1'})}
+                            min={0}
+                            max={100000000000}
+                            className="proposal_w-230"
+                            onChange={(e)=>{this.onInputChange(e,record)}}
+                        />,
+                        <InputNumber/>
+                    )}
+                </Form.Item>
+              } 
+              {
+                record.key == "getEnergyFee" &&  <Form.Item>
+                    {getFieldDecorator('getEnergyFee', {
+                        rules: [{ required: true, message: tu("proposal_validate_text_1")},
+                    ],
+                    })(
+                        <InputNumber
+                            placeholder={intl.formatMessage({id: 'proposal_validate_text_1'})}
+                            min={0}
+                            max={100000000000}
+                            className="proposal_w-230"
+                            onChange={(e)=>{this.onInputChange(e,record)}}
+                        />,
+                        <InputNumber/>
+                    )}
+                </Form.Item>
+              } 
+              {
+                record.key == "getExchangeCreateFee" &&  <Form.Item>
+                    {getFieldDecorator('getExchangeCreateFee', {
+                        rules: [{ required: true, message: tu("proposal_validate_text_1")},
+                    ],
+                    })(
+                        <InputNumber
+                            placeholder={intl.formatMessage({id: 'proposal_validate_text_1'})}
+                            min={0}
+                            max={100000000000}
+                            className="proposal_w-230"
+                            onChange={(e)=>{this.onInputChange(e,record)}}
+                        />,
+                        <InputNumber/>
+                    )}
+                </Form.Item>
+              } 
+              {
+                record.key == "getMaxCpuTimeOfOneTx" &&  <Form.Item>
+                    {getFieldDecorator('getMaxCpuTimeOfOneTx', {
+                        rules: [{ required: true, message: tu("proposal_validate_text_2")},
+                    ],
+                    })(
+                        <InputNumber
+                            placeholder={intl.formatMessage({id: 'proposal_validate_text_2'})}
+                            min={0}
+                            max={1000}
+                            className="proposal_w-230"
+                            onChange={(e)=>{this.onInputChange(e,record)}}
+                        />,
+                        <InputNumber/>
+                    )}
+                </Form.Item>
+              } 
+              {
+                record.key == "getAllowUpdateAccountName" &&  <Form.Item>
+                    {getFieldDecorator('getAllowUpdateAccountName', {
+                        rules: [{ required: true, message: tu("proposal_validate_text_3") }],
+                    })(
+                        <Select
+                            placeholder={intl.formatMessage({id: 'proposal_validate_text_3'})}
+                            onChange={(e)=>{this.onInputChange(e,record)}}
+                            className="proposal_w-230"
+                        >
+                            <Option value="1">{tu("propose_allowed")}</Option>
+                            <Option value="0">{tu("propose_not_allowed")}</Option>
+                        </Select>,
+                    )}
+                </Form.Item>
+              } 
+              {
+                record.key == "getAllowTvmTransferTrc10" &&  <Form.Item>
+                    {getFieldDecorator('getAllowTvmTransferTrc10', {
+                        rules: [{ required: true, message: tu("proposal_validate_text_3") }],
+                    })(
+                        <Select
+                            placeholder={intl.formatMessage({id: 'proposal_validate_text_3'})}
+                            onChange={(e)=>{this.onInputChange(e,record)}}
+                            className="proposal_w-230"
+                        >
+                            <Option value="1">{tu("propose_allowed")}</Option>
+                            <Option value="0">{tu("propose_not_allowed")}</Option>
+                        </Select>,
+                    )}
+                </Form.Item>
+              }
+              {
+                record.key == "getTotalEnergyCurrentLimit" &&  <Form.Item>
+                    {getFieldDecorator('getTotalEnergyCurrentLimit', {
+                        rules: [{ required: true, message: tu("proposal_validate_text_4")},
+                    ],
+                    })(
+                        <InputNumber
+                            placeholder={intl.formatMessage({id: 'proposal_validate_text_4'})}
+                            min={0}
+                            className="proposal_w-230"
+                            onChange={(e)=>{this.onInputChange(e,record)}}
+                        />,
+                        <InputNumber/>
+                    )}
+                </Form.Item>
+              } 
+              {
+                record.key == "getAllowMultiSign" &&  <Form.Item>
+                    {getFieldDecorator('getAllowMultiSign', {
+                        rules: [{ required: true, message: tu("proposal_validate_text_3") }],
+                    })(
+                        <Select
+                            placeholder={intl.formatMessage({id: 'proposal_validate_text_3'})}
+                            onChange={(e)=>{this.onInputChange(e,record)}}
+                            className="proposal_w-230"
+                        >
+                            <Option value="1">{tu("propose_allowed")}</Option>
+                            <Option value="0">{tu("propose_not_allowed")}</Option>
+                        </Select>,
+                    )}
+                </Form.Item>
+              } 
+              {
+                record.key == "getAllowAdaptiveEnergy" &&  <Form.Item>
+                    {getFieldDecorator('getAllowAdaptiveEnergy', {
+                        rules: [{ required: true, message: tu("proposal_validate_text_3") }],
+                    })(
+                        <Select
+                            placeholder={intl.formatMessage({id: 'proposal_validate_text_3'})}
+                            onChange={(e)=>{this.onInputChange(e,record)}}
+                            className="proposal_w-230"
+                        >
+                            <Option value="1">{tu("propose_allowed")}</Option>
+                            <Option value="0">{tu("propose_not_allowed")}</Option>
+                        </Select>,
+                    )}
+                </Form.Item>
+              } 
+              {
+                record.key == "getUpdateAccountPermissionFee" &&  <Form.Item>
+                    {getFieldDecorator('getUpdateAccountPermissionFee', {
+                        rules: [{ required: true, message: tu("proposal_validate_text_5")},
+                    ],
+                    })(
+                        <InputNumber
+                            placeholder={intl.formatMessage({id: 'proposal_validate_text_5'})}
+                            min={0}
+                            max={100000}
+                            className="proposal_w-230"
+                            onChange={(e)=>{this.onInputChange(e,record)}}
+                        />,
+                        <InputNumber/>
+                    )}
+                </Form.Item>
+              } 
+              {
+                record.key == "getMultiSignFee" &&  <Form.Item>
+                    {getFieldDecorator('getMultiSignFee', {
+                        rules: [{ required: true, message: tu("proposal_validate_text_5")},
+                    ],
+                    })(
+                        <InputNumber
+                            placeholder={intl.formatMessage({id: 'proposal_validate_text_5'})}
+                            min={0}
+                            max={100000}
+                            className="proposal_w-230"
+                            onChange={(e)=>{this.onInputChange(e,record)}}
+                        />,
+                        <InputNumber/>
+                    )}
+                </Form.Item>
+              }
+              {
+                record.key == "getAllowProtoFilterNum" &&  <Form.Item>
+                    {getFieldDecorator('getAllowProtoFilterNum', {
+                        rules: [{ required: true, message: tu("proposal_validate_text_6") }],
+                    })(
+                        <Select
+                            placeholder={intl.formatMessage({id: 'proposal_validate_text_6'})}
+                            onChange={(e)=>{this.onInputChange(e,record)}}
+                            className="proposal_w-230"
+                        >
+                            <Option value="1">{tu("propose_activate")}</Option>
+                            <Option value="0">{tu("propose_not_activate")}</Option>
+                        </Select>,
+                    )}
+                </Form.Item>
+              }
+              {
+                record.key == "getShieldedTransactionFee" &&  <Form.Item>
+                    {getFieldDecorator('getShieldedTransactionFee', {
+                        rules: [{ required: true, message: tu("proposal_validate_text_5")},
+                    ],
+                    })(
+                        <InputNumber
+                            placeholder={intl.formatMessage({id: 'proposal_validate_text_5'})}
+                            min={0}
+                            max={100000}
+                            className="proposal_w-230"
+                            onChange={(e)=>{this.onInputChange(e,record)}}
+                        />,
+                        <InputNumber/>
+                    )}
+                </Form.Item>
+              }   
+              {
+                record.key == "getAdaptiveResourceLimitMultiplier" &&  <Form.Item>
+                    {getFieldDecorator('getAdaptiveResourceLimitMultiplier', {
+                        rules: [{ required: true, message: tu("proposal_validate_text_7")},
+                    ],
+                    })(
+                        <InputNumber
+                            placeholder={intl.formatMessage({id: 'proposal_validate_text_7'})}
+                            min={0}
+                            max={10000}
+                            className="proposal_w-230"
+                            onChange={(e)=>{this.onInputChange(e,record)}}
+                        />,
+                        <InputNumber/>
+                    )}
+                </Form.Item>
+              }
+              {
+                record.key == "getChangeDelegation" &&  <Form.Item>
+                    {getFieldDecorator('getChangeDelegation', {
+                        rules: [{ required: true, message: tu("proposal_validate_text_6") }],
+                    })(
+                        <Select
+                            placeholder={intl.formatMessage({id: 'proposal_validate_text_6'})}
+                            onChange={(e)=>{this.onInputChange(e,record)}}
+                            className="proposal_w-230"
+                        >
+                            <Option value="1">{tu("propose_activate")}</Option>
+                            <Option value="0">{tu("propose_not_activate")}</Option>
+                        </Select>,
+                    )}
+                </Form.Item>
+              }  
+              {
+                record.key == "getWitness127PayPerBlock" &&  <Form.Item>
+                    {getFieldDecorator('getWitness127PayPerBlock', {
+                        rules: [{ required: true, message: tu("proposal_validate_text_1")},
+                    ],
+                    })(
+                        <InputNumber
+                            placeholder={intl.formatMessage({id: 'proposal_validate_text_1'})}
+                            min={0}
+                            max={100000000000}
+                            className="proposal_w-230"
+                            onChange={(e)=>{this.onInputChange(e,record)}}
+                        />,
+                        <InputNumber/>
+                    )}
+                </Form.Item>
+              } 
+              {
+                record.key == "getAllowTvmSolidity059" &&  <Form.Item>
+                    {getFieldDecorator('getAllowTvmSolidity059', {
+                        rules: [{ required: true, message: tu("proposal_validate_text_3") }],
+                    })(
+                        <Select
+                            placeholder={intl.formatMessage({id: 'proposal_validate_text_3'})}
+                            onChange={(e)=>{this.onInputChange(e,record)}}
+                            className="proposal_w-230"
+                        >
+                            <Option value="1">{tu("propose_allowed")}</Option>
+                            <Option value="0">{tu("propose_not_allowed")}</Option>
+                        </Select>,
+                    )}
+                </Form.Item>
+              } 
+              {
+                record.key == "getAdaptiveResourceLimitTargetRatio" &&  <Form.Item>
+                    {getFieldDecorator('getAdaptiveResourceLimitTargetRatio', {
+                        rules: [{ required: true, message: tu("proposal_validate_text_8")},
+                    ],
+                    })(
+                        <InputNumber
+                            placeholder={intl.formatMessage({id: 'proposal_validate_text_8'})}
+                            min={0}
+                            max={1000}
+                            className="proposal_w-230"
+                            onChange={(e)=>{this.onInputChange(e,record)}}
+                        />,
+                        <InputNumber/>
+                    )}
+                </Form.Item>
+              }
+
           </span>
       }
     },
@@ -507,8 +990,79 @@ export class SetProposal extends Component {
     console.log('record=========================10000000000',record) 
     let {proposalsCreateList,dataSource} = this.state;
     let inputValue;
-    if(record.key == 'getMaintenanceTimeInterval'){
-        inputValue = e*1000
+    switch (record.key){
+        case "getMaintenanceTimeInterval":
+            inputValue = e * 1000
+            break;
+        case "getAccountUpgradeCost":
+            inputValue = e * ONE_TRX
+            break;
+        case "getCreateAccountFee":
+            inputValue = e * ONE_TRX
+            break;  
+        case "getTransactionFee":
+            inputValue = e * ONE_TRX
+            break;     
+        case "getAssetIssueFee":
+            inputValue = e * ONE_TRX
+            break;    
+        case "getWitnessPayPerBlock":
+            inputValue = e * ONE_TRX
+            break;  
+        case "getWitnessStandbyAllowance":
+            inputValue = e * ONE_TRX
+            break;   
+        case "getEnergyFee":
+            inputValue = e * ONE_TRX
+            break;          
+        case "getExchangeCreateFee":
+            inputValue = e * ONE_TRX
+            break;     
+        case "getMaxCpuTimeOfOneTx":
+            inputValue = e
+            break;    
+        case "getAllowUpdateAccountName":
+            inputValue = e
+            break;  
+        case "getAllowTvmTransferTrc10":
+            inputValue = e
+            break; 
+        case "getTotalEnergyCurrentLimit":
+            inputValue = e * ONE_TRX
+            break; 
+        case "getAllowMultiSign":
+            inputValue = e
+            break;   
+        case "getAllowAdaptiveEnergy":
+            inputValue = e
+            break;  
+        case "getUpdateAccountPermissionFee":
+            inputValue = e * ONE_TRX
+            break;
+        case "getMultiSignFee":
+            inputValue = e * ONE_TRX
+            break;  
+        case "getAllowProtoFilterNum":
+            inputValue = e
+            break;   
+        case "getShieldedTransactionFee":
+            inputValue = e * ONE_TRX
+            break;  
+        case "getAdaptiveResourceLimitMultiplier":
+            inputValue = e 
+            break; 
+        case "getChangeDelegation":
+            inputValue = e 
+            break;   
+        case "getWitness127PayPerBlock":
+            inputValue = e * ONE_TRX
+            break; 
+        case "getAllowTvmSolidity059":
+            inputValue = e 
+            break;   
+        case "getAdaptiveResourceLimitTargetRatio":
+            inputValue = e 
+            break;       
     }
     proposalsCreateList.map((item,index)=>{
         console.log('item',item)
