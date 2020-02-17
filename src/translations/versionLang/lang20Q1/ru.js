@@ -145,9 +145,9 @@ export const lang20Q1 = {
   proposal_my_participate: "Приняли участие",
   proposal_cancel: "Снять голос",
   proposal_cancel_tip1: "Вы уверены, что хотите снять голос?",
-  proposal_fail: "提交失败",
-  proposal_success: "提交成功",
+  proposal_fail: "Ошибка отправки",
+  proposal_success: "Отправлено успешно",
   proposal_go: "",
-  proposal_or: "或",
+  proposal_or: "или",
   proposal_vote_link: "Проголосовать за предложение",
 };

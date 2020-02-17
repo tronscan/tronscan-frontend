@@ -140,11 +140,11 @@ export const lang20Q1 = {
   proposal_my_participate: "Participó",
   proposal_cancel: "Cancelar la propuesta",
   proposal_cancel_tip1: "Estás seguro de cancelar la propuesta",
-  proposal_fail: "提交失败",
-  proposal_success: "提交成功",
+  proposal_fail: "Envío fallido",
+  proposal_success: "Enviado satisfactoriamente",
   // proposal_nodata: "暂无数据",
   proposal_go: "",
-  proposal_or: "或",
+  proposal_or: "o",
   proposal_vote_link: "Votar por la propuesta",
 
 };

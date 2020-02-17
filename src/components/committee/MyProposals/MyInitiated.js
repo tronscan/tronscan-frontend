@@ -207,7 +207,7 @@ class MyInitiated extends React.Component {
                                             </div>
                                         }
                                         {
-                                            record.proposalKey == 'getTransactionFee' &&
+                                            item.proposalKey == 'getTransactionFee' &&
                                             <div>
                                                 <span>{ intl.formatMessage({id: 'propose_4'})}</span>
                                                 <span>{ intl.formatMessage({id: 'proposal_to'})}</span>

@@ -142,10 +142,10 @@ export const lang20Q1 = {
   proposal_my_participate: "参加しました",
   proposal_cancel: "投票を取り消す",
   proposal_cancel_tip1: "投票を取り下げてもよろしいですか？",
-  proposal_fail: "提交失败",
-  proposal_success: "提交成功",
+  proposal_fail: "提出に失敗しました",
+  proposal_success: "正常に送信されました",
   // proposal_nodata: "暂无数据",
   proposal_go: "",
-  proposal_or: "或",
+  proposal_or: "または",
   proposal_vote_link: "提案に投票する",
 };

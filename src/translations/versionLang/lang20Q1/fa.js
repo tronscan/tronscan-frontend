@@ -142,10 +142,10 @@ export const lang20Q1 = {
   proposal_my_participate: "پیشنهاد مشارکت من",
   proposal_cancel: "پیشنهاد را لغو کنید",
   proposal_cancel_tip1: "آیا مطمئن هستید که می خواهید پیشنهاد خود را لغو کنید؟",
-  proposal_fail: "提交失败",
-  proposal_success: "提交成功",
+  proposal_fail: "ارسال ناموفق بود",
+  proposal_success: "با موفقیت ثبت شد",
   // proposal_nodata: "暂无数据",
   proposal_go: "",
-  proposal_or: "或",
+  proposal_or: "یا",
   proposal_vote_link: "به یک پیشنهاد رأی دهید",
 };

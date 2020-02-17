@@ -140,10 +140,10 @@ export const lang20Q1 = {
   proposal_my_participate: "참여",
   proposal_cancel: "제안 취소",
   proposal_cancel_tip1: "제안을 취소하겠습니까?",
-  proposal_fail: "提交失败",
-  proposal_success: "提交成功",
+  proposal_fail: "제출 실패",
+  proposal_success: "성공적으로 제출",
   // proposal_nodata: "暂无数据",
   proposal_go: "",
-  proposal_or: "或",
+  proposal_or: "또는",
   proposal_vote_link: "제안에 투표",
 };

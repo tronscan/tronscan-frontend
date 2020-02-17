@@ -140,10 +140,10 @@ export const lang20Q1 = {
   proposal_my_participate: "الاقتراح الذي شاركت به",
   proposal_cancel: "سحب الاقتراح",
   proposal_cancel_tip1: "هل أنت متأكد من سحب الاقتراح؟",
-  proposal_fail: "提交失败",
-  proposal_success: "提交成功",
+  proposal_fail: "فشل التقديم",
+  proposal_success: "تم الإرسال بنجاح",
   // proposal_nodata: "暂无数据",
   proposal_go: "",
-  proposal_or: "或",
+  proposal_or: "أو",
   proposal_vote_link: "التصويت على الاقتراح",
 };
