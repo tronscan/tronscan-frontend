@@ -140,6 +140,4 @@ export const lang20Q1 = {
 
 
 
-  
-
 };
