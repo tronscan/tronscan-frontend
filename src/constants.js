@@ -12,7 +12,7 @@ export const NETURL = {
   // SUNNET: "https://debugdappchain.tronscan.org",
   NEWMAINNET: "https://tronscan.io",
   NEWSUNNET: "https://dappchain.tronscan.io",
-  MAINNET: "http://testhttps.tronscan.org/",
+  MAINNET: "https://testhttps.tronscan.org",
   SUNNET: "https://dappchain.tronscan.org",
   // MAINNET: "http://18.217.215.94:65",
   // SUNNET: "http://18.217.215.94:66",
