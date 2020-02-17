@@ -149,7 +149,7 @@ export class SetProposal extends Component {
             break; 
             case "getWitness127PayPerBlock":
                 this.props.form.setFieldsValue({
-                    "getShieldedTransactionFee": item.newValue?item.newValue/ONE_TRX:''
+                    "getWitness127PayPerBlock": item.newValue?item.newValue/ONE_TRX:''
                 });
             break;  
             case "getAllowTvmSolidity059":

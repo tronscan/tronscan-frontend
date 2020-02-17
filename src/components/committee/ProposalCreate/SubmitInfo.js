@@ -171,13 +171,28 @@ export class SubmitProposal extends Component {
                                     </div>
                                 }
                                 {
-                                    record.key == 'getAssetIssueFee' && <div><span>{text / ONE_TRX}</span> &nbsp;<span>TRX</span></div>
+                                    record.key == 'getAssetIssueFee' && <div>
+                                        <span>{text / ONE_TRX}</span> &nbsp;<span>TRX</span>
+                                        {
+                                            record.same && <span className="proposal-value-same ml-1">({tu('proposal_value_same')})</span>
+                                        }
+                                    </div>
                                 }
                                 {
-                                    record.key == 'getWitnessPayPerBlock' && <div><span>{text / ONE_TRX}</span> &nbsp;<span>TRX</span></div>
+                                    record.key == 'getWitnessPayPerBlock' && <div>
+                                        <span>{text / ONE_TRX}</span> &nbsp;<span>TRX</span>
+                                        {
+                                            record.same && <span className="proposal-value-same ml-1">({tu('proposal_value_same')})</span>
+                                        }
+                                    </div>
                                 }
                                 {
-                                    record.key == 'getWitnessStandbyAllowance' && <div><span>{text / ONE_TRX}</span> &nbsp;<span>TRX</span></div>
+                                    record.key == 'getWitnessStandbyAllowance' && <div>
+                                        <span>{text / ONE_TRX}</span> &nbsp;<span>TRX</span>
+                                        {
+                                            record.same && <span className="proposal-value-same ml-1">({tu('proposal_value_same')})</span>
+                                        }
+                                    </div>
                                 }
                                 {/*{*/}
                                     {/*record.key == 'getCreateNewAccountFeeInSystemContract' && <div><span>{text / ONE_TRX}</span> &nbsp;<span>TRX</span></div>*/}
@@ -190,12 +205,18 @@ export class SubmitProposal extends Component {
                                         {
                                             <span>{tu('propose_activate')}</span>
                                         }
+                                        {
+                                            record.same && <span className="proposal-value-same ml-1">({tu('proposal_value_same')})</span>
+                                        }
                                     </div>
                                 }
                                 {
                                     record.key == 'getRemoveThePowerOfTheGr' && <div>
                                         {
                                             <span>{tu('propose_finished')}</span>
+                                        }
+                                        {
+                                            record.same && <span className="proposal-value-same ml-1">({tu('proposal_value_same')})</span>
                                         }
                                     </div>
                                 }
@@ -204,6 +225,9 @@ export class SubmitProposal extends Component {
                                         {
                                             <span>{text / ONE_TRX} TRX</span>
                                         }
+                                        {
+                                            record.same && <span className="proposal-value-same ml-1">({tu('proposal_value_same')})</span>
+                                        }
                                     </div>
                                 }
                                 {
@@ -211,12 +235,18 @@ export class SubmitProposal extends Component {
                                         {
                                             <span>{text / ONE_TRX} TRX</span>
                                         }
+                                        {
+                                            record.same && <span className="proposal-value-same ml-1">({tu('proposal_value_same')})</span>
+                                        }
                                     </div>
                                 }
                                 {
                                     record.key == 'getMaxCpuTimeOfOneTx' && <div>
                                         {
                                             <span>{text} ms</span>
+                                        }
+                                        {
+                                            record.same && <span className="proposal-value-same ml-1">({tu('proposal_value_same')})</span>
                                         }
                                     </div>
                                 }
@@ -226,6 +256,9 @@ export class SubmitProposal extends Component {
                                             text? <span>{tu('propose_allowed')}</span>:
                                                 <span>{tu('propose_not_allowed')}</span>
                                         }
+                                        {
+                                            record.same && <span className="proposal-value-same ml-1">({tu('proposal_value_same')})</span>
+                                        }
                                     </div>
                                 }
                                 {
@@ -233,6 +266,9 @@ export class SubmitProposal extends Component {
                                         {
                                             text? <span>{tu('propose_allowed')}</span>:
                                                 <span>{tu('propose_not_allowed')}</span>
+                                        }
+                                        {
+                                            record.same && <span className="proposal-value-same ml-1">({tu('proposal_value_same')})</span>
                                         }
                                     </div>
                                 }
@@ -242,6 +278,9 @@ export class SubmitProposal extends Component {
                                             text? <span>{tu('propose_allowed')}</span>:
                                                 <span>{tu('propose_not_allowed')}</span>
                                         }
+                                        {
+                                            record.same && <span className="proposal-value-same ml-1">({tu('proposal_value_same')})</span>
+                                        }
                                     </div>
                                 }
 
@@ -249,6 +288,9 @@ export class SubmitProposal extends Component {
                                     record.key == 'getTotalEnergyLimit' && <div>
                                         {
                                             <span>{text}</span>
+                                        }
+                                        {
+                                            record.same && <span className="proposal-value-same ml-1">({tu('proposal_value_same')})</span>
                                         }
                                     </div>
                                 }
@@ -258,6 +300,9 @@ export class SubmitProposal extends Component {
                                             text? <span>{tu('propose_allowed')}</span>:
                                                 <span>{tu('propose_not_allowed')}</span>
                                         }
+                                        {
+                                            record.same && <span className="proposal-value-same ml-1">({tu('proposal_value_same')})</span>
+                                        }
                                     </div>
                                 }
                                 {
@@ -265,12 +310,18 @@ export class SubmitProposal extends Component {
                                         {
                                             <span>{text}</span>
                                         }
+                                        {
+                                            record.same && <span className="proposal-value-same ml-1">({tu('proposal_value_same')})</span>
+                                        }
                                     </div>
                                 }
                                 {
                                     record.key == 'getTotalEnergyCurrentLimit' && <div>
                                         {
                                             <span>{text}</span>
+                                        }
+                                        {
+                                            record.same && <span className="proposal-value-same ml-1">({tu('proposal_value_same')})</span>
                                         }
                                     </div>
                                 }
@@ -280,6 +331,9 @@ export class SubmitProposal extends Component {
                                             text? <span>{tu('propose_allowed')}</span>:
                                                 <span>{tu('propose_not_allowed')}</span>
                                         }
+                                        {
+                                            record.same && <span className="proposal-value-same ml-1">({tu('proposal_value_same')})</span>
+                                        }
                                     </div>
                                 }
                                 {
@@ -288,12 +342,18 @@ export class SubmitProposal extends Component {
                                             text? <span>{tu('propose_allowed')}</span>:
                                                 <span>{tu('propose_not_allowed')}</span>
                                         }
+                                        {
+                                            record.same && <span className="proposal-value-same ml-1">({tu('proposal_value_same')})</span>
+                                        }
                                     </div>
                                 }
                                 {
                                     record.key == 'getTotalEnergyTargetLimit' && <div>
                                         <span>{text}</span>/
                                         <span>{tu('propose_minute')}</span>
+                                        {
+                                            record.same && <span className="proposal-value-same ml-1">({tu('proposal_value_same')})</span>
+                                        }
                                     </div>
                                 }
                                 {
@@ -302,17 +362,28 @@ export class SubmitProposal extends Component {
                                             text?<span><span>{text}</span>/<span>{tu('propose_minute')}</span></span>:
                                                 <span>{tu('propose_unactivate')}</span>
                                         }
+                                        {
+                                            record.same && <span className="proposal-value-same ml-1">({tu('proposal_value_same')})</span>
+                                        }
                                     </div>
                                 }
                                 {
                                     record.key == 'getUpdateAccountPermissionFee' && <div>
                                         <span>{text / ONE_TRX}</span> &nbsp;
-                                        <span>TRX</span></div>
+                                        <span>TRX</span>
+                                        {
+                                            record.same && <span className="proposal-value-same ml-1">({tu('proposal_value_same')})</span>
+                                        }
+                                    </div>
                                 }
                                 {
                                     record.key == 'getMultiSignFee' && <div>
                                         <span>{text / ONE_TRX}</span> &nbsp;
-                                        <span>TRX</span></div>
+                                        <span>TRX</span>
+                                        {
+                                            record.same && <span className="proposal-value-same ml-1">({tu('proposal_value_same')})</span>
+                                        }
+                                    </div>
                                 }
 
                                 {
@@ -320,6 +391,9 @@ export class SubmitProposal extends Component {
                                         {
                                             text? <span>{tu('propose_activate')}</span>:
                                                 <span>{tu('propose_unactivate')}</span>
+                                        }
+                                        {
+                                            record.same && <span className="proposal-value-same ml-1">({tu('proposal_value_same')})</span>
                                         }
                                     </div>
                                 }
@@ -329,6 +403,9 @@ export class SubmitProposal extends Component {
                                             text? <span>{tu('propose_allowed')}</span>:
                                                 <span>{tu('propose_not_allowed')}</span>
                                         }
+                                        {
+                                            record.same && <span className="proposal-value-same ml-1">({tu('proposal_value_same')})</span>
+                                        }
                                     </div>
                                 }
                                 {
@@ -337,16 +414,25 @@ export class SubmitProposal extends Component {
                                             text? <span>{tu('propose_allowed')}</span>:
                                                 <span>{tu('propose_not_allowed')}</span>
                                         }
+                                        {
+                                            record.same && <span className="proposal-value-same ml-1">({tu('proposal_value_same')})</span>
+                                        }
                                     </div>
                                 }
                                 {                       
                                     record.key == 'getShieldedTransactionFee' && <div>
                                         <span>{text / ONE_TRX}</span> &nbsp;<span>TRX</span>
+                                        {
+                                            record.same && <span className="proposal-value-same ml-1">({tu('proposal_value_same')})</span>
+                                        }
                                     </div>
                                 }
                                 {                       
                                     record.key == 'getAdaptiveResourceLimitMultiplier' && <div>
                                         <span>{text}</span>
+                                        {
+                                            record.same && <span className="proposal-value-same ml-1">({tu('proposal_value_same')})</span>
+                                        }
                                     </div>
                                 }
 
@@ -356,13 +442,18 @@ export class SubmitProposal extends Component {
                                             text? <span>{tu('propose_activate')}</span>:
                                                 <span>{tu('propose_unactivate')}</span>
                                         }
+                                        {
+                                            record.same && <span className="proposal-value-same ml-1">({tu('proposal_value_same')})</span>
+                                        }
                                     </div>
                                 }
                                 {
-                                    record.key == 'getWitness127PayPerBlock' &&
-                                        <div>
-                                            <span>{text / ONE_TRX}</span> &nbsp;<span>TRX</span>
-                                        </div>
+                                    record.key == 'getWitness127PayPerBlock' && <div>
+                                        <span>{text / ONE_TRX}</span> &nbsp;<span>TRX</span>
+                                        {
+                                        record.same && <span className="proposal-value-same ml-1">({tu('proposal_value_same')})</span>
+                                        }
+                                    </div>
                                 }
                                 {
                                     record.key == 'getAllowTvmSolidity059' && <div>
@@ -370,11 +461,17 @@ export class SubmitProposal extends Component {
                                             text? <span>{tu('propose_allowed')}</span>:
                                                 <span>{tu('propose_not_allowed')}</span>
                                         }
+                                        {
+                                            record.same && <span className="proposal-value-same ml-1">({tu('proposal_value_same')})</span>
+                                        }
                                     </div>
                                 }
                                 {                       
                                     record.key == 'getAdaptiveResourceLimitTargetRatio' && <div>
                                         <span>{text}</span>
+                                        {
+                                            record.same && <span className="proposal-value-same ml-1">({tu('proposal_value_same')})</span>
+                                        }
                                     </div>
                                 }
                             </div>:<div>

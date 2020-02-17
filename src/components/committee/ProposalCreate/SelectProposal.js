@@ -251,10 +251,10 @@ export class SelectProposal extends Component {
                         item.name = 'propose_31';
                         item.id = '31';
                         break;
-                    case "getAllowTvmSolidity059":
-                        item.name = 'propose_32';
-                        item.id = '32';
-                        break;
+                    // case "getAllowTvmSolidity059":
+                    //     item.name = 'propose_32';
+                    //     item.id = '32';
+                    //     break;
                     case "getAdaptiveResourceLimitTargetRatio":
                         item.name = 'propose_33';
                         item.id = '33';
