@@ -174,7 +174,7 @@ class TransfersAll extends React.Component {
                 dataIndex: 'hash',
                 key: 'hash',
                 align: 'left',
-                width: '10%',
+                width: '9%',
                 className: 'ant_table',
                 render: (text, record, index) => {
                     return <Truncate>
@@ -189,6 +189,7 @@ class TransfersAll extends React.Component {
                 dataIndex: 'status',
                 key: 'status',
                 align: 'left',
+                width: '10%',
                 className: 'ant_table',
                 render: (text, record, index) => {
                     return (
@@ -220,7 +221,7 @@ class TransfersAll extends React.Component {
                 key: 'block',
                 align: 'left',
                 className: 'ant_table',
-                width: '10%',
+                width: '8%',
                 render: (text, record, index) => {
                     return <BlockNumberLink number={record.block}/>
                 }
