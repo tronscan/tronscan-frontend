@@ -128,9 +128,9 @@ export const SUNWEBCONFIG = {
   // MAINSOLIDITYNODE: "https://api.trongrid.io",
   // MAINEVENTSERVER: "https://api.trongrid.io",
 
-  MAINFULLNODE: "https://testhttpapi.tronex.io",
-  MAINSOLIDITYNODE: "https://testhttpapi.tronex.io",
-  MAINEVENTSERVER: "https://testapi.tronex.io",
+  MAINFULLNODE: "https://api.nileex.io",
+  MAINSOLIDITYNODE: "https://api.nileex.io",
+  MAINEVENTSERVER: "https://event.nileex.io",
 
   SUNFULLNODE: "https://sun.tronex.io",
   SUNSOLIDITYNODE: "https://sun.tronex.io",
