@@ -191,7 +191,7 @@ class Footer extends Component {
                       {tu('contact_us')}
                     </HrefLink>
                   </li> */}
-                    {/* <li>
+                    <li>
                       <HrefLink
                         href={
                           activeLanguage == "zh"
@@ -201,7 +201,7 @@ class Footer extends Component {
                       >
                         {tu("footer_support_center")}
                       </HrefLink>
-                    </li> */}
+                    </li>
                     {/* <li>
                     <HrefLink href={activeLanguage == 'zh'?"https://tronscanorg.zendesk.com/hc/zh-cn/categories/360001616871-%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98":"https://tronscanorg.zendesk.com/hc/en-us/categories/360001621712-FAQ"}>
                         {tu('frequently_asked_questions')}
@@ -366,7 +366,7 @@ class Footer extends Component {
                           {tu('contact_us')}
                       </HrefLink>
                     </li> */}
-                        {/* <li className="p-2">
+                         <li className="p-2">
                           <HrefLink
                             href={
                               activeLanguage == "zh"
@@ -376,7 +376,7 @@ class Footer extends Component {
                           >
                             {tu("footer_support_center")}
                           </HrefLink>
-                        </li> */}
+                        </li>
                         {/* <li className="p-2">
                       <HrefLink href={activeLanguage == 'zh'?"https://tronscanorg.zendesk.com/hc/zh-cn/categories/360001616871-%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98":"https://tronscanorg.zendesk.com/hc/en-us/categories/360001621712-FAQ"}>
                           {tu('frequently_asked_questions')}
