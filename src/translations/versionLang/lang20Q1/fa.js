@@ -169,5 +169,35 @@ export const lang20Q1 = {
   proposal_vote_link: "به یک پیشنهاد رأی دهید",
   proposal_balance_not_enough: "تعادل کافی",
   
-
+/*
+    ##################################################################################
+    #                                                                                #
+    # proposals create                           #
+    #                                                                                #
+    ##################################################################################
+  */
+  proposal_select: "پارامترهای شبکه را انتخاب کنید",
+  proposal_value: "مقدار پیشنهادی را تغییر دهید", 
+  proposal_confirm: "پیشنهاد را تأیید کنید", 
+  proposal_result: "نتایج پیشنهادی",
+  proposal_create_info: "پیشنهاد مربوط به اصلاح پارامترهای شبکه ترون است.هر نماینده فوق العاده حق ارائه پیشنهاد و حق رأی دادن به پیشنهاد را دارد. هنگامی که این پیشنهاد در دوره اعتبار 19 یا بیشتر آراء فوق العاده دریافت کرد ، این پیشنهاد تصویب شد و پارامترهای شبکه در دوره نگهداری بعدی اصلاح شد.",
+  proposal_select_table: "انتخاب کنید",
+  proposal_selected_network_parameters:"پارامترهای شبکه انتخاب شده است",
+  proposal_content:"محتوای پیشنهادی",
+  proposal_new_value:"مقدار پیشنهادی",
+  proposal_submit_text:"آیا مطمئن هستید که می خواهید پیشنهادی را اجرا کنید؟",
+  proposal_created_successful:"طرح پیشنهادی با موفقیت انجام شد",
+  proposal_created_failure:"پیشنهاد انجام نشد",
+  proposal_validate_text_0:"لطفاً ارزش 81-86400 را وارد کنید",
+  proposal_validate_text_1:"لطفاً ارزش 0-100000000000 را وارد کنید",
+  proposal_validate_text_2:"لطفاً ارزش 0-1000 را وارد کنید",
+  proposal_validate_text_3:"لطفا اجازه / مجاز را انتخاب کنید",
+  proposal_validate_text_4:"لطفاً یک مقدار وارد کنید",
+  proposal_validate_text_5:"لطفاً ارزش 0-100000 را وارد کنید",
+  proposal_validate_text_6:"لطفا روشن / خاموش را انتخاب کنید",
+  proposal_validate_text_7:"لطفاً ارزش 1-10000 را وارد کنید",
+  proposal_validate_text_8:"لطفاً ارزش 1-1000 را وارد کنید",
+  propose_not_activate:"باز نیست",
+  proposal_value_same:"مقدار پیشنهادی برابر با مقدار فعلی است",
+  go_to_proposals_list:"به یک پیشنهاد رأی دهید",
 };

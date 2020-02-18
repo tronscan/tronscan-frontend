@@ -169,4 +169,36 @@ export const lang20Q1 = {
   proposal_balance_not_enough: "資金不足",
   
 
+  /*
+    ##################################################################################
+    #                                                                                #
+    # proposals create                           #
+    #                                                                                #
+    ##################################################################################
+  */
+  proposal_select: "ネットワークパラメータを選択する",
+  proposal_value: "新しい値を提案する", 
+  proposal_confirm: "提出", 
+  proposal_result: "結果",
+  proposal_create_info: "TRONネットワークパラメータを変更する提案が開始されました。各SRには、提案を開始して投票する権利があります。有効期限が切れる前に19人以上のSRから投票を受け取った場合、提案は合格とみなされ、次のメンテナンス期間にネットワークパラメータが修正されます。",
+  proposal_select_table: "選択",
+  proposal_selected_network_parameters:"選択されたネットワークパラメータ",
+  proposal_content:"提案内容",
+  proposal_new_value:"新しい価値",
+  proposal_submit_text:"提案を開始してもよろしいですか？",
+  proposal_created_successful:"提案が開始されました",
+  proposal_created_failure:"プロポーザルを開始できませんでした",
+  proposal_validate_text_0:"81〜86400の値を入力してください",
+  proposal_validate_text_1:"0〜100000000000の値を入力してください",
+  proposal_validate_text_2:"0〜1000の値を入力してください",
+  proposal_validate_text_3:"許可/許可しないを選択してください",
+  proposal_validate_text_4:"値を入力してください",
+  proposal_validate_text_5:"0〜100000の値を入力してください",
+  proposal_validate_text_6:"オン/オフを選択してください",
+  proposal_validate_text_7:"1〜10000の値を入力してください",
+  proposal_validate_text_8:"1〜1000の値を入力してください",
+  propose_not_activate:"開かない",
+  proposal_value_same:"新しい値は現在の値と同じです",
+  go_to_proposals_list:"提案に投票する",
+
 };

@@ -891,7 +891,7 @@ export class SetProposal extends Component {
                     })(
                         <InputNumber
                             placeholder={intl.formatMessage({id: 'proposal_validate_text_7'})}
-                            min={0}
+                            min={1}
                             max={10000}
                             className="proposal_w-230"
                             onChange={(e)=>{this.onInputChange(e,record)}}
@@ -957,7 +957,7 @@ export class SetProposal extends Component {
                     })(
                         <InputNumber
                             placeholder={intl.formatMessage({id: 'proposal_validate_text_8'})}
-                            min={0}
+                            min={1}
                             max={1000}
                             className="proposal_w-230"
                             onChange={(e)=>{this.onInputChange(e,record)}}

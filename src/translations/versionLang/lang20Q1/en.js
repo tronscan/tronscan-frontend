@@ -167,6 +167,36 @@ export const lang20Q1 = {
   proposal_vote_link: "Vote for the proposal",
   proposal_balance_not_enough: "Insufficient balance",
 
-  
+  /*
+    ##################################################################################
+    #                                                                                #
+    # proposals create                           #
+    #                                                                                #
+    ##################################################################################
+  */
+  proposal_select: "Select network parameters",
+  proposal_value: "Propose a new value", 
+  proposal_confirm: "Confirm", 
+  proposal_result: "Result",
+  proposal_create_info: "A proposal is initiated to modify TRON network parameters. Each SR has the right to initiate and vote for proposals. Upon receiving votes from 19 or more SRs before the expiry date, a proposal is deemed pass and according network parameters will be modified in the following maintenance period.",
+  proposal_select_table: "Select",
+  proposal_selected_network_parameters:"Selected network parameters",
+  proposal_content:"Proposal content",
+  proposal_new_value:"New value",
+  proposal_submit_text:"Are you sure to initiate the proposal?",
+  proposal_created_successful:"Proposal initiated",
+  proposal_created_failure:"Failed to initiate proposal",
+  proposal_validate_text_0:"Please enter a value between 81-86400",
+  proposal_validate_text_1:"Please enter a value between 0-100000000000",
+  proposal_validate_text_2:"Please enter a value between 0-1000",
+  proposal_validate_text_3:"Please select allow/disallow",
+  proposal_validate_text_4:"Please enter a value",
+  proposal_validate_text_5:"Please enter a value between 0-100000",
+  proposal_validate_text_6:"Please select on / off",
+  proposal_validate_text_7:"Please enter a value between 1-10000",
+  proposal_validate_text_8:"Please enter a value between 1-1000",
+  propose_not_activate:"Not Activate",
+  proposal_value_same:"The new value is identical to the current one",
+  go_to_proposals_list:"Vote for the proposal",
 
 };
