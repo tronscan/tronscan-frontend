@@ -35,6 +35,7 @@ class Proposal extends React.Component {
             modal: null,
             isTronLink: 0,
             balanceTip: false,
+            isAction: false
         };
     }
 
@@ -788,9 +789,16 @@ class Proposal extends React.Component {
     }
 
     qualificationsVerify(id,v){
+        
         if (!this.isLoggedIn()) {
             return;
         }
+        if(this.state.isAction){
+            return
+        }
+        this.setState({
+            isAction: true
+        })
         const { account, account: { tronWeb }, currentWallet } = this.props;
         if(currentWallet.representative.enabled){
             if(v){
@@ -823,6 +831,9 @@ class Proposal extends React.Component {
                 )
             })
         }
+        this.setState({
+            isAction: false
+        })
     }
 
     async getResult(id, v){
@@ -865,7 +876,8 @@ class Proposal extends React.Component {
                 onCancel={() => this.setState({ modal: null })}
                 onConfirm={() => this.voteProposal(id, false)}>
                 <div style={{color: '#333',padding:'30px 0'}}>{tu('proposal_cancel_tip')}</div>
-            </SweetAlert>
+            </SweetAlert>,
+            isAction: false
         });
     }
     hideModal = () => {
@@ -894,7 +906,8 @@ class Proposal extends React.Component {
                             </div>
                         </div>
                     </ModalBody>
-                </Modal>
+                </Modal>,
+            balanceTip: false
         });
 
     }

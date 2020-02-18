@@ -730,7 +730,7 @@ class MyInitiated extends React.Component {
         let { intl } = this.props;
         this.setState({
             modal: 
-                <Modal isOpen={true} toggle={this.hideModal} className="committee-modal" style={{width: '460px'}}>
+                <Modal isOpen={true} toggle={this.hideModal} className="committee-modal modal-dialog-centered" style={{width: '460px'}}>
                     <ModalHeader toggle={this.hideModal} className=""></ModalHeader>
                     <ModalBody style={{padding: '0 0 1.5rem'}}>
                         <div style={{color: '#333',padding:'0 0 30px',fontSize: '16px',textAlign: 'center'}}>{tu('proposal_cancel_tip1')}</div>

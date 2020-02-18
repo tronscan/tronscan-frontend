@@ -484,7 +484,7 @@ class ProposalDetail extends React.Component {
                                                                                 {
 
                                                                                     item.proposalKey == 'getWitness127PayPerBlock' &&
-                                                                                    <div className="mt-1">
+                                                                                    <div className="">
                                                                                         <span>{ intl.formatMessage({id: 'propose_31'})}</span>
                                                                                         <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
                                                                                         <span>{ item.proposalVal / ONE_TRX}</span> &nbsp;
