@@ -27,6 +27,7 @@ export class SetProposal extends Component {
     };
   }
   componentDidMount() {
+    this.props.nextState({leave_lock: true})
     this.getSelectedPropsal();
   }
   onChange(e,record) {

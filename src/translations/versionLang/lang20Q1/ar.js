@@ -200,5 +200,5 @@ export const lang20Q1 = {
   propose_not_activate:"غير مفتوح",
   proposal_value_same:"القيمة المقترحة مماثلة للقيمة الحالية",
   go_to_proposals_list:"التصويت على الاقتراح",
-
+  proposal_quit:"لديك حاليا عملية غير مكتملة ، هل أنت متأكد من رغبتك في الخروج؟",
 };

@@ -175,7 +175,7 @@ export const lang20Q1 = {
     #                                                                                #
     ##################################################################################
   */
-  proposal_select: "Seleccionar parámetros de red",
+  proposal_select: "Seleccionar parámetros",
   proposal_value: "Proponer un nuevo valor", 
   proposal_confirm: "Confirmar", 
   proposal_result: "Resultado",
@@ -199,5 +199,5 @@ export const lang20Q1 = {
   propose_not_activate:"No abierto",
   proposal_value_same:"El nuevo valor es idéntico al actual.",
   go_to_proposals_list:"Votar por la propuesta",  
-
+  proposal_quit:"El intento está inacabado. ¿Estás seguro de dejarlo? ",
 };

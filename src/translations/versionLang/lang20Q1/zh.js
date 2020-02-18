@@ -203,5 +203,6 @@ export const lang20Q1 = {
   propose_not_activate:"不开启",
   proposal_value_same:"提议值与当前值一样",
   go_to_proposals_list:"去给提议投票",
+  proposal_quit:"您当前有未完成的操作，确定退出吗？",
 
 };

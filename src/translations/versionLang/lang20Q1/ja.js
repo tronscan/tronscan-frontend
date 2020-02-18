@@ -200,5 +200,6 @@ export const lang20Q1 = {
   propose_not_activate:"開かない",
   proposal_value_same:"新しい値は現在の値と同じです",
   go_to_proposals_list:"提案に投票する",
+  proposal_quit:"その試みは未完です。終了しますか？",
 
 };

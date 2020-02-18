@@ -210,7 +210,7 @@ export class ProposalsCreate extends Component {
     );
     return (
       <main className="container pb-3 token-create header-overlap tokencreated token_black">
-        <div className="steps mb-4 py-2">
+        <div className="steps mb-4 py-2 ">
           {info.map((item, index) => {
             let stepclass = "";
             if (index < step) {
@@ -305,7 +305,7 @@ export class ProposalsCreate extends Component {
             <SweetAlert
               info
               showCancel
-              title={tu("leave_tip")}
+              title={tu("proposal_quit")}
               confirmBtnText={tu("confirm")}
               cancelBtnText={tu("cancel")}
               cancelBtnBsStyle="default"

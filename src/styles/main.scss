@@ -5222,6 +5222,7 @@ h5 {
     color: #C23631;
     padding: 0 10px;
     position: relative;
+    margin-top: 10px;
   }
   .anticon-close{
     color: #fff;
@@ -5237,7 +5238,7 @@ h5 {
     justify-content: center;
     transform: scale(0.5);
     &:hover{
-      color: #999;
+      color: #fff;
     }
   }
 }

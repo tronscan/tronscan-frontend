@@ -200,4 +200,5 @@ export const lang20Q1 = {
   propose_not_activate:"باز نیست",
   proposal_value_same:"مقدار پیشنهادی برابر با مقدار فعلی است",
   go_to_proposals_list:"به یک پیشنهاد رأی دهید",
+  proposal_quit:"شما در حال حاضر عملیات ناتمام دارید. آیا مطمئن هستید که می خواهید خارج شوید؟ ",
 };

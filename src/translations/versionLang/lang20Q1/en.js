@@ -198,5 +198,6 @@ export const lang20Q1 = {
   propose_not_activate:"Not Activate",
   proposal_value_same:"The new value is identical to the current one",
   go_to_proposals_list:"Vote for the proposal",
-
+  proposal_quit:"The attempt is unfinished. Are you sure to quit? ",
+  
 };

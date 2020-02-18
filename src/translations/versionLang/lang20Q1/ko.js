@@ -198,5 +198,5 @@ export const lang20Q1 = {
   propose_not_activate:"열지 않음",
   proposal_value_same:"새로운 수치는 현재 수치와 동일합니다",
   go_to_proposals_list:"제안에 투표",
-
+  proposal_quit:"아직 완성되지 않았습니다. 종료 하시겠습니까?",
 };

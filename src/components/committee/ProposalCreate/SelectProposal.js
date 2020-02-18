@@ -29,6 +29,7 @@ export class SelectProposal extends Component {
     };
   }
   componentDidMount() {
+    this.props.nextState({leave_lock: true})
     this.getChainparameters();
     
   }
