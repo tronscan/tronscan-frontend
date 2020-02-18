@@ -48,14 +48,14 @@ class HelpLinkCont extends Component {
                 <Icon type="up" />
                 <p>{tu("index_page_idebar_expand")}</p>
               </li>
-              {/* <li className="help commonLi">
+             <li className="help commonLi">
                 <a
                   href={ activeLanguage == "zh"?'https://support.tronscan.org/hc/zh-cn/requests/new':'https://support.tronscan.org/hc/en-us/requests/new'}
                   target="_blank"
                 >
                   <span className="img"></span>
                 </a>
-              </li> */}
+              </li>
             </span>
           ) : (
             <span>
@@ -80,14 +80,14 @@ class HelpLinkCont extends Component {
                   <span className="img"></span>
                 </a>
               </li>
-              {/* <li className="help commonLi">
+             <li className="help commonLi">
                 <a
                   href="https://support.tronscan.org/hc/zh-cn/requests/new"
                   target="_blank"
                 >
                   <span className="img"></span>
                 </a>
-              </li> */}
+              </li>
             </span>
           )}
         </ul>

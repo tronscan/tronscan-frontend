@@ -90,14 +90,14 @@ class LedgerAccess extends Component {
                 </a>
                 {t("ledger_website_download")}
               </div>
-              {/* <div>
+              { <div>
                 <a
                   target="_blank"
                   href="https://support.tronscan.org/hc/en-us/articles/360025936472-LEDGER-GUIDE"
                 >
                   {tu("ledger_click_help")}>
                 </a>
-              </div> */}
+              </div> }
             </div>
             <div className="text-center pt-5 mx-5">
               <img
