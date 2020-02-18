@@ -3,6 +3,8 @@ import { injectIntl} from "react-intl";
 import {Client} from "../../services/api";
 import {AddressLink, TransactionHashLink, BlockNumberLink, TokenLink, TokenTRC20Link} from "./Links";
 import {tu, tv} from "../../utils/i18n";
+import {connect} from "react-redux";
+
 // import TimeAgo from "react-timeago";
 import {Truncate,TruncateAddress} from "./text";
 import {withTimers} from "../../utils/timing";
@@ -164,7 +166,7 @@ class TransfersAll extends React.Component {
         }
 
     }
-    customizedColumn = () => {
+    customizedColumn = (activeLanguage) => {
         let { intl } = this.props;
             const defaultImg = require("../../images/logo_default.png");
 
@@ -188,7 +190,7 @@ class TransfersAll extends React.Component {
                 title: upperFirst(intl.formatMessage({id: 'status'})),
                 dataIndex: 'status',
                 key: 'status',
-                width: "17%",
+                width: activeLanguage === 'zh' ?'10%' :"17%",
                 align: 'left',
                 className: 'ant_table',
                 render: (text, record, index) => {
@@ -446,9 +448,8 @@ class TransfersAll extends React.Component {
     render() {
 
         let {transfers, filter, total, rangeTotal = 0, loading, emptyState: EmptyState = null} = this.state;
-        let column = this.customizedColumn();
-        let {intl, istrc20, address = false} = this.props;
-
+        let {intl, istrc20, address = false,activeLanguage} = this.props;
+        let column = this.customizedColumn(activeLanguage);
         let tableInfo = intl.formatMessage({id: 'view_total'}) + ' ' + total + ' ' + intl.formatMessage({id: 'transfers_unit'})
         let locale  = {emptyText: intl.formatMessage({id: 'no_transfers'})}
         // if (!loading && transfers.length === 0) {
@@ -498,4 +499,11 @@ class TransfersAll extends React.Component {
     }
 }
 
-export default withTimers(injectIntl(TransfersAll));
+function mapStateToProps(state) {
+    return {
+      activeLanguage: state.app.activeLanguage,
+    };
+}
+
+
+export default connect(mapStateToProps)(withTimers(injectIntl(TransfersAll)));

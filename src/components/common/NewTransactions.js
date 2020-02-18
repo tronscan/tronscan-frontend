@@ -2,6 +2,7 @@ import React, {Fragment} from "react";
 import {FormattedDate, FormattedNumber, FormattedTime, injectIntl} from "react-intl";
 import {Sticky, StickyContainer} from "react-sticky";
 import Paging from "./Paging";
+import {connect} from "react-redux";
 import {Client} from "../../services/api";
 import {TransactionHashLink, AddressLink, BlockNumberLink} from "./Links";
 import {tu} from "../../utils/i18n";
@@ -189,7 +190,7 @@ class NewTransactions extends React.Component {
         });
     };
 
-    customizedColumn = () => {
+    customizedColumn = (activeLanguage) => {
         let {intl} = this.props;
         let column = [
 
@@ -213,7 +214,7 @@ class NewTransactions extends React.Component {
                 dataIndex: 'status',
                 key: 'status',
                 align: 'left',
-                width: '15%',
+                width: activeLanguage ==='ru' ? '25%' :'15%',
                 className: 'ant_table',
                 render: (text, record, index) => {
                     return (
@@ -323,6 +324,7 @@ class NewTransactions extends React.Component {
 
     trc20CustomizedColumn = () => {
         let {intl} = this.props;
+       
         let column = [
 
             {
@@ -430,8 +432,9 @@ class NewTransactions extends React.Component {
     render() {
 
         let {transactions, total, rangeTotal, loading, EmptyState = null} = this.state;
-        let {intl, isinternal, address = false} = this.props;
-        let column = !isinternal? this.customizedColumn():
+        let {intl, isinternal, address = false,activeLanguage} = this.props;
+       
+        let column = !isinternal? this.customizedColumn(activeLanguage):
             this.trc20CustomizedColumn();
        // let tableInfo = intl.formatMessage({id: 'view_total'}) + ' ' + total + ' ' + intl.formatMessage({id: 'transactions_unit'})
 
@@ -490,5 +493,10 @@ class NewTransactions extends React.Component {
         );
     }
 }
+function mapStateToProps(state) {
+    return {
+      activeLanguage: state.app.activeLanguage,
+    };
+  }
 
-export default (injectIntl(NewTransactions));
+export default  connect(mapStateToProps)(injectIntl(NewTransactions));
