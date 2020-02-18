@@ -167,5 +167,36 @@ export const lang20Q1 = {
   proposal_vote_link: "제안에 투표",
   proposal_balance_not_enough: "잔액 불충분",
   
+  /*
+    ##################################################################################
+    #                                                                                #
+    # proposals create                           #
+    #                                                                                #
+    ##################################################################################
+  */
+  proposal_select: "네트워크 매개 변수 선택",
+  proposal_value: "새로운 가치 제안", 
+  proposal_confirm: "제안 확인", 
+  proposal_result: "결과",
+  proposal_create_info: "TRON 네트워크 매개 변수를 수정하기 위한 제안이 시작되었습니다. 각 SR은 제안을 시작하고 투표 할 권리가 있습니다. 만료일 이전에 19개 이상의 SR로부터 투표를 받으면 제안이 통과 된 것으로 간주되며 다음 유지 보수 기간에 네트워크 매개 변수가 수정됩니다.",
+  proposal_select_table: "선택",
+  proposal_selected_network_parameters:"선택된 네트워크 매개 변수",
+  proposal_content:"제안 내용",
+  proposal_new_value:"새로운 가치",
+  proposal_submit_text:"제안을 제출 하시겠습니까?",
+  proposal_created_successful:"제안 제출 성공",
+  proposal_created_failure:"제안을 시작하지 못했습니다",
+  proposal_validate_text_0:"81-86400 사이의 수치를 입력하세요",
+  proposal_validate_text_1:"0-100000000000 사이의 수치를 입력하세요",
+  proposal_validate_text_2:"0-1000 사이의 수치를 입력하세요",
+  proposal_validate_text_3:"허용 / 금지를 선택하세요",
+  proposal_validate_text_4:"값을 입력하십시오",
+  proposal_validate_text_5:"1-100000 사이의 수치를 입력하세요",
+  proposal_validate_text_6:"온 / 오프를 선택하십시오",
+  proposal_validate_text_7:"1-10000 사이의 수치를 입력하세요",
+  proposal_validate_text_8:"1-1000 사이의 수치를 입력하세요",
+  propose_not_activate:"열지 않음",
+  proposal_value_same:"새로운 수치는 현재 수치와 동일합니다",
+  go_to_proposals_list:"제안에 투표",
 
 };

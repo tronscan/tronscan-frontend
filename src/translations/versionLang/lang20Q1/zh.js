@@ -198,9 +198,10 @@ export const lang20Q1 = {
   proposal_validate_text_4:"请输入数值",
   proposal_validate_text_5:"请输入[0-100000]的数值",
   proposal_validate_text_6:"请选择开启/不开启",
-  proposal_validate_text_7:"请输入[0-10000]的数值",
-  proposal_validate_text_8:"请输入[0-1000]的数值",
+  proposal_validate_text_7:"请输入[1-10000]的数值",
+  proposal_validate_text_8:"请输入[1-1000]的数值",
   propose_not_activate:"不开启",
   proposal_value_same:"提议值与当前值一样",
-  go_to_proposals_list:"去给提议投票"
+  go_to_proposals_list:"去给提议投票",
+
 };

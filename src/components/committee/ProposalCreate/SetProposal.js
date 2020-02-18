@@ -257,7 +257,7 @@ export class SetProposal extends Component {
         }
     },
     {
-        title:upperFirst(intl.formatMessage({id: 'proposal_new_value'})),
+        title:upperFirst(intl.formatMessage({id: 'propose_current_value'})),
         dataIndex: 'value',
         key: 'value',
         render: (text, record, index) => {
@@ -891,7 +891,7 @@ export class SetProposal extends Component {
                     })(
                         <InputNumber
                             placeholder={intl.formatMessage({id: 'proposal_validate_text_7'})}
-                            min={0}
+                            min={1}
                             max={10000}
                             className="proposal_w-230"
                             onChange={(e)=>{this.onInputChange(e,record)}}
@@ -957,7 +957,7 @@ export class SetProposal extends Component {
                     })(
                         <InputNumber
                             placeholder={intl.formatMessage({id: 'proposal_validate_text_8'})}
-                            min={0}
+                            min={1}
                             max={1000}
                             className="proposal_w-230"
                             onChange={(e)=>{this.onInputChange(e,record)}}
@@ -1098,23 +1098,23 @@ export class SetProposal extends Component {
 
 
   render() {
-    let {type} = this.props.state;
+    let { dataSource } = this.state;
     let {nextStep} = this.props;
     const { locale } = this.props.intl;
-
-    
+    let disabledArr =  _(dataSource).filter(source => !!source.newValue).value()
+    console.log('disabledArr',disabledArr)
     return (
         <main>
           {this.state.modalSelect}
           <Form layout="inline" onSubmit={this.handleSubmit}>
-            <div className="mt-4">
+            <div className="mt-4 set-proposal-form">
                     {this.getColumns()}
             </div>
             <div className="text-right mt-4">
-                <button className="btn btn-default btn-lg"onClick={() => nextStep(0)}>
+                <button className="btn btn-default btn-lg" onClick={() => nextStep(0)}>
                     {tu("prev_step")}
                 </button>
-                <button className="ml-4 btn btn-danger btn-lg" htmlType="submit" >{tu('next')}</button>
+                <button className="ml-4 btn btn-danger btn-lg" htmlType="submit" disabled={disabledArr.length == 0}>{tu('next')}</button>
             </div>
         </Form>
         </main>

@@ -785,9 +785,9 @@ export class SelectProposal extends Component {
                 <h5>{tu('proposal_selected_network_parameters')}:</h5>  
                 <div>
                     {proposalsCreateList.map((tag, index) => {
-                       return <Tag key={tag.key} closable onClose={() => this.tagClose(tag)}>
-                            {tu(tag.name)}
-                        </Tag>
+                       return <span className="proposals-tag"><Tag key={tag.key} closable onClose={() => this.tagClose(tag)}>
+                                    {tu(tag.name)}
+                              </Tag></span>
                     })}
                 </div> 
             </div>  

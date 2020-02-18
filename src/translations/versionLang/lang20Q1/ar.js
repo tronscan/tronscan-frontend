@@ -169,5 +169,36 @@ export const lang20Q1 = {
   proposal_vote_link: "التصويت على الاقتراح",
   proposal_balance_not_enough: "عدم كفاية الرصيد",
   
+  /*
+    ##################################################################################
+    #                                                                                #
+    # proposals create                           #
+    #                                                                                #
+    ##################################################################################
+  */
+  proposal_select: "حدد معايير الشبكة",
+  proposal_value: "تعديل القيمة المقترحة", 
+  proposal_confirm: "تأكيد الاقتراح", 
+  proposal_result: "النتيجة",
+  proposal_create_info: "يشير الاقتراح إلى تعديل معايير شبكة ترون ولكل ممثل ممتاز الحق في الاقتراح والتصويت على الاقتراح ، فعندما يحصل الاقتراح على 19 صوت أو أكثر خلال فترة الصلاحية يعتبر الاقتراح مقبولًا وسيتم تعديله وفقًا لمعايير الشبكة في فترة التعديل التالية.",
+  proposal_select_table: "حدد",
+  proposal_selected_network_parameters:"معلمات الشبكة المحددة",
+  proposal_content:"محتوى الاقتراح",
+  proposal_new_value:"القيمة المقترحة",
+  proposal_submit_text:"هل أنت متأكد أنك تريد تقديم اقتراح؟",
+  proposal_created_successful:"تم تقديم الإقتراح بنجاح",
+  proposal_created_failure:"فشل في بدء الاقتراح",
+  proposal_validate_text_0:"الرجاء إدخال قيمة بين 81-86400",
+  proposal_validate_text_1:"الرجاء إدخال قيمة بين 0-100000000000",
+  proposal_validate_text_2:"الرجاء إدخال قيمة بين 0-1000",
+  proposal_validate_text_3:"يرجى اختيار سماح / عدم السماح",
+  proposal_validate_text_4:"الرجاء إدخال قيمة",
+  proposal_validate_text_5:"الرجاء إدخال قيمة بين 0-100000",
+  proposal_validate_text_6:"يرجى اختيار / إيقاف",
+  proposal_validate_text_7:"الرجاء إدخال قيمة بين 1-10000",
+  proposal_validate_text_8:"الرجاء إدخال قيمة بين 1-1000",
+  propose_not_activate:"غير مفتوح",
+  proposal_value_same:"القيمة المقترحة مماثلة للقيمة الحالية",
+  go_to_proposals_list:"التصويت على الاقتراح",
 
 };

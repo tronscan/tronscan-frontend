@@ -5215,3 +5215,41 @@ h5 {
   margin-top:6px;
   display: inline-block;
 }
+.proposals-tag{
+  .ant-tag{
+    border-radius: 10px;
+    border: 1px solid #999;
+    color: #C23631;
+    padding: 0 10px;
+    position: relative;
+  }
+  .anticon-close{
+    color: #fff;
+    position: absolute;
+    top: -10px;
+    right: -5px;
+    background: #C23631;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: scale(0.5);
+    &:hover{
+      color: #999;
+    }
+  }
+}
+.ant-form-inline{
+  .set-proposal-form{
+    .ant-table-row{
+        .ant-form-item-with-help{
+          margin-bottom: 0;
+        }
+        .ant-form-item{
+          margin-right: 0;
+        }
+    }
+  }
+}

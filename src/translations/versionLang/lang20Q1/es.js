@@ -168,5 +168,36 @@ export const lang20Q1 = {
   proposal_vote_link: "Votar por la propuesta",
   proposal_balance_not_enough: "Saldo insuficiente",
 
-   
+ /*
+    ##################################################################################
+    #                                                                                #
+    # proposals create                           #
+    #                                                                                #
+    ##################################################################################
+  */
+  proposal_select: "Seleccionar parámetros de red",
+  proposal_value: "Proponer un nuevo valor", 
+  proposal_confirm: "Confirmar", 
+  proposal_result: "Resultado",
+  proposal_create_info: "Se crea una propuesta para iniciar la modificación de los parámetros de red TRON. Cada SR tiene derecho a iniciar y votar propuestas. Al recibir los votos de 19 o más SR antes de la fecha de vencimiento, una propuesta se considera aprobada y los parámetros de la red se modificarán en el siguiente período de mantenimiento.",
+  proposal_select_table: "Seleccione",
+  proposal_selected_network_parameters:"Parámetros de red seleccionados",
+  proposal_content:"Contenido de la propuesta",
+  proposal_new_value:"Nuevo valor",
+  proposal_submit_text:"¿Estás seguro de iniciar la propuesta?",
+  proposal_created_successful:"Propuesta iniciada con éxito",
+  proposal_created_failure:"No se pudo lanzar la propuesta.",
+  proposal_validate_text_0:"Por favor, introduzca un valor entre 81-86400",
+  proposal_validate_text_1:"Por favor, introduzca un valor entre 0-100000000000",
+  proposal_validate_text_2:"Por favor, introduzca un valor entre 0-1000",
+  proposal_validate_text_3:"Seleccione permitir / no permitir",
+  proposal_validate_text_4:"Por favor ingrese un valor",
+  proposal_validate_text_5:"Por favor, introduzca un valor entre 0-100000",
+  proposal_validate_text_6:"Por favor seleccione activar / desactivar",
+  proposal_validate_text_7:"Por favor, introduzca un valor entre 1-10000",
+  proposal_validate_text_8:"Por favor, introduzca un valor entre 1-1000",
+  propose_not_activate:"No abierto",
+  proposal_value_same:"El nuevo valor es idéntico al actual.",
+  go_to_proposals_list:"Votar por la propuesta",  
+
 };
