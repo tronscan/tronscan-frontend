@@ -1786,16 +1786,18 @@ export class EnergyConsumeChart extends React.Component {
     initLine(id) {
         let _config = cloneDeep(config.overviewHighChart);
         let {intl, data, type} = this.props;
-
+        const colors = ['#D5887F', '#C23631','#FFA602']
         const map = {
             c1: ['#D5887F', '#C23631'],
-            c2: ['#C23631', '#D5887F']
+            c2: ['#C23631', '#D5887F'],
+            
         }
 
         if (data && data.length > 0) {
             let chartData = [
-                { name: intl.formatMessage({id: 'freezing_energy'}), data: []},
-                { name: intl.formatMessage({id: 'burning_energy'}), data: []},
+                { name: intl.formatMessage({id: 'chart_resource_user_freeing'}), data: []},
+                { name: intl.formatMessage({id: 'chart_resource_user_burning'}), data: []},
+                { name: intl.formatMessage({id: 'chart_resource_contract_deployer'}), data: []},
             ]
             data.map(item => {
                 chartData[0].data.push([
@@ -1806,6 +1808,10 @@ export class EnergyConsumeChart extends React.Component {
                     item.day,
                     Number(item.trx)
                 ])
+                chartData[2].data.push([
+                    item.day,
+                    Number(item.contract_supplied)
+                ])
             })
 
             let options = {
@@ -1813,7 +1819,7 @@ export class EnergyConsumeChart extends React.Component {
                     type: 'column',
                     zoomType: 'x'
                 },
-                colors: map[type],
+                colors: colors,
                 title: {
                     text: intl.formatMessage({id: 'charts_daily_energy_consumption'})
                 },

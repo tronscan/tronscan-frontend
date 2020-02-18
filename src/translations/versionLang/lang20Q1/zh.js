@@ -139,5 +139,4 @@ export const lang20Q1 = {
   full_node_version_confirmed_tips:'“已确认”是指被19个及以上超级节点确认，否则为“待确认”',
 
 
-
 };

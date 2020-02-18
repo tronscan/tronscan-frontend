@@ -849,7 +849,7 @@ class Statistics extends React.Component {
             }
           },
           {
-            title: upperFirst(intl.formatMessage({id: 'freezing_energy'})),
+            title: upperFirst(intl.formatMessage({id: 'chart_resource_user_freeing'})),
             dataIndex: 'energy',
             key: 'energy',
             render: (text, record, index) => {
@@ -857,11 +857,19 @@ class Statistics extends React.Component {
             }
           },
           {
-            title: upperFirst(intl.formatMessage({id: 'burning_energy'})),
+            title: upperFirst(intl.formatMessage({id: 'chart_resource_user_burning'})),
             dataIndex: 'trx',
             key: 'trx',
             render: (text, record, index) => {
               return <FormattedNumber value={text}/>
+            }
+          },
+          {
+            title: upperFirst(intl.formatMessage({id: 'chart_resource_contract_deployer'})),
+            dataIndex: 'contract_supplied',
+            key: 'contract_supplied',
+            render: (text, record, index) => {
+              return <FormattedNumber value={text || 0}/>
             }
           },
           {
