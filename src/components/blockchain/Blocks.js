@@ -129,7 +129,7 @@ class Blocks extends React.Component {
         title: upperFirst(intl.formatMessage({id: 'status'})),
         dataIndex: 'status',
         key: 'status',
-        align: 'center',
+        align: 'left',
         render: (text, record, index) => {
           return <span>
             {

@@ -185,7 +185,7 @@ class Transactions extends React.Component {
         key: 'confirmed',
         align: 'left',
         className: 'ant_table',
-        width: '14%',
+        width: '15%',
         render: (text, record, index) => {
         return  text ? <span><img style={{ width: "20px", height: "20px" }} src={require("../../images/contract/Verified.png")}/> {tu('full_node_version_confirmed')}</span> : <span><img style={{ width: "20px", height: "20px" }} src={require("../../images/contract/Unverified.png")}/> {tu('full_node_version_unconfirmed')}</span>
         }
