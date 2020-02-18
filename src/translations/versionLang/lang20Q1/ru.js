@@ -166,8 +166,8 @@ export const lang20Q1 = {
   proposal_cancel_tip1: "Вы уверены, что хотите снять голос?",
   proposal_fail: "Ошибка отправки",
   proposal_success: "Отправлено успешно",
-  proposal_go: "",
-  proposal_or: "или",
+  proposal_go: " ",
+  proposal_or: " или ",
   proposal_vote_link: "Проголосовать за предложение",
   proposal_balance_not_enough: "Недостаточный баланс",
 

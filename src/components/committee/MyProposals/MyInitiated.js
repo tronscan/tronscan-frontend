@@ -32,6 +32,7 @@ class MyInitiated extends React.Component {
                 total: 0
             },
             modal: null,
+            isAction: false
         }
     }
     // shouldComponentUpdate(nextProps,nextState) {
@@ -724,6 +725,7 @@ class MyInitiated extends React.Component {
     hideModal = () => {
         this.setState({
           modal: null,
+          isAction: false
         });
     };
     cancelModal(id){
@@ -748,6 +750,12 @@ class MyInitiated extends React.Component {
     }
 
     async cancelFun(id){
+        if(this.state.isAction){
+            return
+        }
+        this.setState({
+            isAction: true
+        })
         let res = await this.getResult(id);
 
         if(res){
@@ -767,6 +775,9 @@ class MyInitiated extends React.Component {
                 )
             })
         }
+        this.setState({
+            isAction: false
+        })
     }
 
     async getResult(id, v){
@@ -790,7 +801,7 @@ class MyInitiated extends React.Component {
             const {result} = await transactionResultManagerSun(unSignTransaction, account.sunWeb);
             res = result;
         }
-
+        
         return res
     }
 

@@ -30,6 +30,7 @@ class MyParticipated extends React.Component {
                 total: 0
             },
             modal: null,
+            isAction: false
         }
     }
     // shouldComponentUpdate(nextProps,nextState) {
@@ -741,10 +742,17 @@ class MyParticipated extends React.Component {
     hideModal = () => {
         this.setState({
           modal: null,
+          isAction: false
         });
     };
 
     async cancelFun(id){
+        if(this.state.isAction){
+            return
+        }
+        this.setState({
+            isAction: true
+        })
         let res = await this.getResult(id,false);
         if(res){
             this.setState({
@@ -763,6 +771,9 @@ class MyParticipated extends React.Component {
                 )
             })
         }
+        this.setState({
+            isAction: false
+        })
     }
 
     async getResult(id, v){

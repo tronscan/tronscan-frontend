@@ -162,7 +162,7 @@ export const lang20Q1 = {
   proposal_fail: "제출 실패",
   proposal_success: "성공적으로 제출",
   // proposal_nodata: "暂无数据",
-  proposal_go: "",
+  proposal_go: " ",
   proposal_or: "또는",
   proposal_vote_link: "제안에 투표",
   proposal_balance_not_enough: "잔액 불충분",

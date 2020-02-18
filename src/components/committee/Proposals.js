@@ -883,7 +883,8 @@ class Proposal extends React.Component {
     hideModal = () => {
         this.setState({
           modal: null,
-          balanceTip: false
+          balanceTip: false,
+          isAction: false
         });
     };
     // 

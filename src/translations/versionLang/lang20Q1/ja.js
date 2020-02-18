@@ -163,7 +163,7 @@ export const lang20Q1 = {
   proposal_fail: "提出に失敗しました",
   proposal_success: "正常に送信されました",
   // proposal_nodata: "暂无数据",
-  proposal_go: "",
+  proposal_go: " ",
   proposal_or: "または",
   proposal_vote_link: "提案に投票する",
   proposal_balance_not_enough: "資金不足",

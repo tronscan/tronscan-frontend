@@ -164,7 +164,7 @@ export const lang20Q1 = {
   proposal_fail: "ارسال ناموفق بود",
   proposal_success: "با موفقیت ثبت شد",
   // proposal_nodata: "暂无数据",
-  proposal_go: "",
+  proposal_go: " ",
   proposal_or: "یا",
   proposal_vote_link: "به یک پیشنهاد رأی دهید",
   proposal_balance_not_enough: "تعادل کافی",

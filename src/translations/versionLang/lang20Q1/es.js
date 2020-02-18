@@ -163,8 +163,8 @@ export const lang20Q1 = {
   proposal_fail: "Envío fallido",
   proposal_success: "Enviado satisfactoriamente",
   // proposal_nodata: "暂无数据",
-  proposal_go: "",
-  proposal_or: "o",
+  proposal_go: " ",
+  proposal_or: " o ",
   proposal_vote_link: "Votar por la propuesta",
   proposal_balance_not_enough: "Saldo insuficiente",
 
