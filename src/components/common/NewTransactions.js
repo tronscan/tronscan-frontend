@@ -214,7 +214,7 @@ class NewTransactions extends React.Component {
                 dataIndex: 'status',
                 key: 'status',
                 align: 'left',
-                width: activeLanguage ==='ru' ? '25%' :'15%',
+                width: activeLanguage ==='ru' ? '34%' :'16%',
                 className: 'ant_table',
                 render: (text, record, index) => {
                     return (
@@ -257,7 +257,7 @@ class NewTransactions extends React.Component {
                 key: 'timestamp',
                 align: 'left',
                 className: 'ant_table',
-                width: '15%',
+                width: activeLanguage ==='ru' ? '12%' : '15%',
                 render: (text, record, index) => {
                     return <BlockTime time={text}></BlockTime>
                     // <TimeAgo date={text} title={moment(text).format("MMM-DD-YYYY HH:mm:ss A")}/>
