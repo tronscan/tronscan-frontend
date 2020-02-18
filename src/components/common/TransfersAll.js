@@ -188,17 +188,17 @@ class TransfersAll extends React.Component {
                 title: upperFirst(intl.formatMessage({id: 'status'})),
                 dataIndex: 'status',
                 key: 'status',
+                width: "17%",
                 align: 'left',
-                width: '10%',
                 className: 'ant_table',
                 render: (text, record, index) => {
                     return (
                         <div>
                             {
                                 record.confirmed ?
-                                    <span><img style={{ width: "20px", height: "20px" }} src={require("../../images/contract/Verified.png")}/> {tu('full_node_version_confirmed')}</span>
+                                    <span className="d-flex"><img style={{ width: "20px", height: "20px" }} src={require("../../images/contract/Verified.png")}/> {tu('full_node_version_confirmed')}</span>
                                       : 
-                                    <span><img style={{ width: "20px", height: "20px" }} src={require("../../images/contract/Unverified.png")}/> {tu('full_node_version_unconfirmed')}</span>
+                                    <span className="d-flex"><img style={{ width: "20px", height: "20px" }} src={require("../../images/contract/Unverified.png")}/> {tu('full_node_version_unconfirmed')}</span>
                             }
                         </div>
                     )
@@ -210,7 +210,7 @@ class TransfersAll extends React.Component {
                 key: 'contractRet',
                 align: 'left',
                 className: 'ant_table',
-                width: '10%',
+                width: '11%',
                 render: (text, record, index) => {
                     return <span>{text}</span>
                 }
@@ -221,7 +221,7 @@ class TransfersAll extends React.Component {
                 key: 'block',
                 align: 'left',
                 className: 'ant_table',
-                width: '8%',
+                width: '9%',
                 render: (text, record, index) => {
                     return <BlockNumberLink number={record.block}/>
                 }
@@ -244,7 +244,7 @@ class TransfersAll extends React.Component {
                 key: 'owner_address',
                 align: 'left',
                 className: 'ant_table address_max_width',
-                width: '10%',
+                width: '9%',
                 render: (text, record, index) => {
                     return <div>
                         {
@@ -271,7 +271,7 @@ class TransfersAll extends React.Component {
                 key: 'to_address',
                 align: 'left',
                 className: 'ant_table address_max_width',
-                width: '10%',
+                width: '9%',
                 render: (text, record, index) => {
                     return record.totip?
                         <AddressLink address={text}>{text}</AddressLink>:
