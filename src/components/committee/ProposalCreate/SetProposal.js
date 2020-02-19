@@ -41,56 +41,55 @@ export class SetProposal extends Component {
     console.log('dataSource',dataSource)
     let dataSourceSelected =  _(dataSource).filter(source => source.checked).value()
     dataSourceSelected.map((item,index)=>{
-        console.log('item=====================1000000009123123',item)
         switch (item['key']){
             case "getMaintenanceTimeInterval":
                 this.props.form.setFieldsValue({
-                    "getMaintenanceTimeInterval": item.newValue?item.newValue/1000:''
+                    "getMaintenanceTimeInterval": item.newValue !== undefined?item.newValue/1000:''
                 });
             break;
             case "getAccountUpgradeCost":
                 this.props.form.setFieldsValue({
-                    "getAccountUpgradeCost": item.newValue?item.newValue/ONE_TRX:''
+                    "getAccountUpgradeCost": item.newValue !== undefined?item.newValue/ONE_TRX:''
                 });
             break;
             case "getCreateAccountFee":
                 this.props.form.setFieldsValue({
-                    "getCreateAccountFee": item.newValue?item.newValue/ONE_TRX:''
+                    "getCreateAccountFee": item.newValue !== undefined?item.newValue/ONE_TRX:''
                 });
             break;
             case "getTransactionFee":
                 this.props.form.setFieldsValue({
-                    "getTransactionFee": item.newValue?item.newValue/ONE_TRX:''
+                    "getTransactionFee": item.newValue !== undefined?item.newValue/ONE_TRX:''
                 });
             break;
             case "getAssetIssueFee":
                 this.props.form.setFieldsValue({
-                    "getAssetIssueFee": item.newValue?item.newValue/ONE_TRX:''
+                    "getAssetIssueFee": item.newValue !== undefined?item.newValue/ONE_TRX:''
                 });
             break;
             case "getWitnessPayPerBlock":
                 this.props.form.setFieldsValue({
-                    "getWitnessPayPerBlock": item.newValue?item.newValue/ONE_TRX:''
+                    "getWitnessPayPerBlock": item.newValue !== undefined?item.newValue/ONE_TRX:''
                 });
             break;
             case "getWitnessStandbyAllowance":
                 this.props.form.setFieldsValue({
-                    "getWitnessStandbyAllowance": item.newValue?item.newValue/ONE_TRX:''
+                    "getWitnessStandbyAllowance": item.newValue !== undefined?item.newValue/ONE_TRX:''
                 });
             break;
             case "getEnergyFee":
                 this.props.form.setFieldsValue({
-                    "getEnergyFee": item.newValue?item.newValue/ONE_TRX:''
+                    "getEnergyFee": item.newValue !== undefined?item.newValue/ONE_TRX:''
                 });
             break;
             case "getExchangeCreateFee":
                 this.props.form.setFieldsValue({
-                    "getExchangeCreateFee": item.newValue?item.newValue/ONE_TRX:''
+                    "getExchangeCreateFee": item.newValue !== undefined?item.newValue/ONE_TRX:''
                 });
             break;
             case "getMaxCpuTimeOfOneTx":
                 this.props.form.setFieldsValue({
-                    "getMaxCpuTimeOfOneTx": item.newValue?item.newValue:''
+                    "getMaxCpuTimeOfOneTx": item.newValue !== undefined?item.newValue:''
                 });
             break;    
             case "getAllowUpdateAccountName":
@@ -104,8 +103,9 @@ export class SetProposal extends Component {
                 });
             break; 
             case "getTotalEnergyCurrentLimit":
+                console.log('item.newValue',item.newValue)
                 this.props.form.setFieldsValue({
-                    "getTotalEnergyCurrentLimit": item.newValue?item.newValue/ONE_TRX:''
+                    "getTotalEnergyCurrentLimit": item.newValue !== undefined? item.newValue/ONE_TRX:''
                 });
             break; 
             case "getAllowMultiSign":
@@ -120,12 +120,12 @@ export class SetProposal extends Component {
             break; 
             case "getUpdateAccountPermissionFee":
                 this.props.form.setFieldsValue({
-                    "getUpdateAccountPermissionFee": item.newValue?item.newValue/ONE_TRX:''
+                    "getUpdateAccountPermissionFee": item.newValue !== undefined?item.newValue/ONE_TRX:''
                 });
             break; 
             case "getMultiSignFee":
                 this.props.form.setFieldsValue({
-                    "getMultiSignFee": item.newValue?item.newValue/ONE_TRX:''
+                    "getMultiSignFee": item.newValue !== undefined?item.newValue/ONE_TRX:''
                 });
             break; 
             case "getAllowProtoFilterNum":
@@ -135,12 +135,12 @@ export class SetProposal extends Component {
             break;
             case "getShieldedTransactionFee":
                 this.props.form.setFieldsValue({
-                    "getShieldedTransactionFee": item.newValue?item.newValue/ONE_TRX:''
+                    "getShieldedTransactionFee": item.newValue !== undefined?item.newValue/ONE_TRX:''
                 });
             break;  
             case "getAdaptiveResourceLimitMultiplier":
                 this.props.form.setFieldsValue({
-                    "getAdaptiveResourceLimitMultiplier": item.newValue?item.newValue:''
+                    "getAdaptiveResourceLimitMultiplier": item.newValue !== undefined?item.newValue:''
                 });
             break;  
             case "getChangeDelegation":
@@ -150,7 +150,7 @@ export class SetProposal extends Component {
             break; 
             case "getWitness127PayPerBlock":
                 this.props.form.setFieldsValue({
-                    "getWitness127PayPerBlock": item.newValue?item.newValue/ONE_TRX:''
+                    "getWitness127PayPerBlock": item.newValue !== undefined?item.newValue/ONE_TRX:''
                 });
             break;  
             case "getAllowTvmSolidity059":
@@ -160,7 +160,7 @@ export class SetProposal extends Component {
             break;  
             case "getAdaptiveResourceLimitTargetRatio":
                 this.props.form.setFieldsValue({
-                    "getAdaptiveResourceLimitTargetRatio": item.newValue?item.newValue:''
+                    "getAdaptiveResourceLimitTargetRatio": item.newValue !== undefined?item.newValue:''
                 });
             break;   
         }
@@ -577,6 +577,7 @@ export class SetProposal extends Component {
                             placeholder={intl.formatMessage({id: 'proposal_validate_text_0'})}
                             min={81}
                             max={86400}
+                            precision={0}
                             className="proposal_w-230"
                             onChange={(e)=>{this.onInputChange(e,record)}}
                         />,
@@ -594,6 +595,7 @@ export class SetProposal extends Component {
                             placeholder={intl.formatMessage({id: 'proposal_validate_text_1'})}
                             min={0}
                             max={100000000000}
+                            precision={6}
                             className="proposal_w-230"
                             onChange={(e)=>{this.onInputChange(e,record)}}
                         />,
@@ -611,6 +613,7 @@ export class SetProposal extends Component {
                             placeholder={intl.formatMessage({id: 'proposal_validate_text_1'})}
                             min={0}
                             max={100000000000}
+                            precision={6}
                             className="proposal_w-230"
                             onChange={(e)=>{this.onInputChange(e,record)}}
                         />,
@@ -628,6 +631,7 @@ export class SetProposal extends Component {
                             placeholder={intl.formatMessage({id: 'proposal_validate_text_1'})}
                             min={0}
                             max={100000000000}
+                            precision={6}
                             className="proposal_w-230"
                             onChange={(e)=>{this.onInputChange(e,record)}}
                         />,
@@ -645,6 +649,7 @@ export class SetProposal extends Component {
                             placeholder={intl.formatMessage({id: 'proposal_validate_text_1'})}
                             min={0}
                             max={100000000000}
+                            precision={6}
                             className="proposal_w-230"
                             onChange={(e)=>{this.onInputChange(e,record)}}
                         />,
@@ -662,6 +667,7 @@ export class SetProposal extends Component {
                             placeholder={intl.formatMessage({id: 'proposal_validate_text_1'})}
                             min={0}
                             max={100000000000}
+                            precision={6}
                             className="proposal_w-230"
                             onChange={(e)=>{this.onInputChange(e,record)}}
                         />,
@@ -679,6 +685,7 @@ export class SetProposal extends Component {
                             placeholder={intl.formatMessage({id: 'proposal_validate_text_1'})}
                             min={0}
                             max={100000000000}
+                            precision={6}
                             className="proposal_w-230"
                             onChange={(e)=>{this.onInputChange(e,record)}}
                         />,
@@ -696,6 +703,7 @@ export class SetProposal extends Component {
                             placeholder={intl.formatMessage({id: 'proposal_validate_text_1'})}
                             min={0}
                             max={100000000000}
+                            precision={6}
                             className="proposal_w-230"
                             onChange={(e)=>{this.onInputChange(e,record)}}
                         />,
@@ -713,6 +721,7 @@ export class SetProposal extends Component {
                             placeholder={intl.formatMessage({id: 'proposal_validate_text_1'})}
                             min={0}
                             max={100000000000}
+                            precision={6}
                             className="proposal_w-230"
                             onChange={(e)=>{this.onInputChange(e,record)}}
                         />,
@@ -730,6 +739,7 @@ export class SetProposal extends Component {
                             placeholder={intl.formatMessage({id: 'proposal_validate_text_2'})}
                             min={0}
                             max={1000}
+                            precision={0}
                             className="proposal_w-230"
                             onChange={(e)=>{this.onInputChange(e,record)}}
                         />,
@@ -772,12 +782,14 @@ export class SetProposal extends Component {
               {
                 record.key == "getTotalEnergyCurrentLimit" &&  <Form.Item>
                     {getFieldDecorator('getTotalEnergyCurrentLimit', {
-                        rules: [{ required: true, message: tu("proposal_validate_text_4")},
+                        rules: [{ required: true, message: tu("proposal_validate_text_1")},
                     ],
                     })(
                         <InputNumber
-                            placeholder={intl.formatMessage({id: 'proposal_validate_text_4'})}
+                            placeholder={intl.formatMessage({id: 'proposal_validate_text_1'})}
                             min={0}
+                            max={100000000000}
+                            precision={6}
                             className="proposal_w-230"
                             onChange={(e)=>{this.onInputChange(e,record)}}
                         />,
@@ -827,6 +839,7 @@ export class SetProposal extends Component {
                             placeholder={intl.formatMessage({id: 'proposal_validate_text_5'})}
                             min={0}
                             max={100000}
+                            precision={6}
                             className="proposal_w-230"
                             onChange={(e)=>{this.onInputChange(e,record)}}
                         />,
@@ -844,6 +857,7 @@ export class SetProposal extends Component {
                             placeholder={intl.formatMessage({id: 'proposal_validate_text_5'})}
                             min={0}
                             max={100000}
+                            precision={6}
                             className="proposal_w-230"
                             onChange={(e)=>{this.onInputChange(e,record)}}
                         />,
@@ -877,6 +891,7 @@ export class SetProposal extends Component {
                             placeholder={intl.formatMessage({id: 'proposal_validate_text_5'})}
                             min={0}
                             max={100000}
+                            precision={6}
                             className="proposal_w-230"
                             onChange={(e)=>{this.onInputChange(e,record)}}
                         />,
@@ -894,6 +909,7 @@ export class SetProposal extends Component {
                             placeholder={intl.formatMessage({id: 'proposal_validate_text_7'})}
                             min={1}
                             max={10000}
+                            precision={0}
                             className="proposal_w-230"
                             onChange={(e)=>{this.onInputChange(e,record)}}
                         />,
@@ -927,6 +943,7 @@ export class SetProposal extends Component {
                             placeholder={intl.formatMessage({id: 'proposal_validate_text_1'})}
                             min={0}
                             max={100000000000}
+                            precision={6}
                             className="proposal_w-230"
                             onChange={(e)=>{this.onInputChange(e,record)}}
                         />,
@@ -960,6 +977,7 @@ export class SetProposal extends Component {
                             placeholder={intl.formatMessage({id: 'proposal_validate_text_8'})}
                             min={1}
                             max={1000}
+                            precision={0}
                             className="proposal_w-230"
                             onChange={(e)=>{this.onInputChange(e,record)}}
                         />,
@@ -1066,13 +1084,11 @@ export class SetProposal extends Component {
             break;       
     }
     proposalsCreateList.map((item,index)=>{
-        console.log('item',item)
         if(item.key == record.id){
             item.newValue = inputValue
         }
     })
     dataSource.map((item,index)=>{
-        console.log('item',item)
         if(item.id == record.id){
             item.newValue = inputValue
         }
@@ -1100,10 +1116,12 @@ export class SetProposal extends Component {
 
   render() {
     let { dataSource } = this.state;
-    let {nextStep} = this.props;
+    let { nextStep } = this.props;
     const { locale } = this.props.intl;
-    let disabledArr =  _(dataSource).filter(source => !!source.newValue).value()
+    console.log('dataSource',dataSource)
+    let disabledArr =  _(dataSource).filter(source => (source.checked && source.newValue >=0)).value()
     console.log('disabledArr',disabledArr)
+    
     return (
         <main>
           {this.state.modalSelect}

@@ -1,5 +1,6 @@
 import React, {Component, Fragment, PureComponent} from 'react';
 import {t, tu} from "../../../utils/i18n";
+import BigNumber from "bignumber.js";
 import {connect} from "react-redux";
 import {FormattedNumber, FormattedDate, injectIntl} from "react-intl";
 import 'moment/min/locales';
@@ -319,7 +320,7 @@ export class SubmitProposal extends Component {
                                 {
                                     record.key == 'getTotalEnergyCurrentLimit' && <div>
                                         {
-                                            <span>{text}</span>
+                                            <span>{new BigNumber(text).toFixed()}</span>
                                         }
                                         {
                                             record.same && <span className="proposal-value-same ml-1">({tu('proposal_value_same')})</span>
@@ -623,7 +624,7 @@ export class SubmitProposal extends Component {
     let proposalsCreateListNew  = [];
     let res;
     proposalsCreateList.map((item,index)=>{
-      proposalsCreateListNew.push({"key": Number(item.key), "value":Number(item.newValue)})
+      proposalsCreateListNew.push({"key": Number(item.key), "value":parseFloat(item.newValue)})
     })
     console.log('proposalsCreateListNew',proposalsCreateListNew)
     const unSignTransaction = await tronWeb.transactionBuilder.createProposal(proposalsCreateListNew,tronWeb.defaultAddress.hex,1).catch(res=>console.log(res))
