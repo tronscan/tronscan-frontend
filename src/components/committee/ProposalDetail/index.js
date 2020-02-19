@@ -158,7 +158,7 @@ class ProposalDetail extends React.Component {
                                                         <div className="item-title">{t("proposal_time_of_creation")}:</div>
                                                         <div className="item-info">
                                                             <FormattedDate value={Number(proposal.createTime)}/>&nbsp;
-                                                            <FormattedTime value={Number(proposal.createTime)}/>&nbsp;
+                                                            <FormattedTime value={Number(proposal.createTime)} hour='numeric' minute="numeric" second='numeric' hour12={false}/>&nbsp;
                                                         </div>
                                                     </div>
                                                     
@@ -602,7 +602,7 @@ class ProposalDetail extends React.Component {
                                                         <div className="item-title">{t("proposal_time_of_expire")}:</div>
                                                         <div className="item-info">
                                                             <FormattedDate value={Number(proposal.expirationTime)}/>&nbsp;
-                                                            <FormattedTime value={Number(proposal.expirationTime)}/>&nbsp;
+                                                            <FormattedTime value={Number(proposal.expirationTime)} hour='numeric' minute="numeric" second='numeric' hour12={false}/>&nbsp;
                                                         </div>
                                                     </div>
                                                 </div>
