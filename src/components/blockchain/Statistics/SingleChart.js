@@ -1381,7 +1381,7 @@ class Statistics extends React.Component {
                                             (${intl.formatMessage({id: 'chart_resource_user_freeing'})} ${intl.formatNumber(energyConsumeDataTop.freezingEnergy)} ENERGY,
                                             ${intl.formatMessage({id: 'chart_resource_user_burning'})} ${intl.formatNumber(energyConsumeDataTop.burningEnergy)} ENERGY,
                                             ${intl.formatMessage({id: 'chart_resource_contract_deployer'})} ${intl.formatNumber(energyConsumeDataTop.userBurningEnergy)} ENERGY),
-                                            ${upperFirst(intl.formatMessage({id:'energy_scale'}))}${ContractInvocationDistributionParams.scale}`}
+                                            ${upperFirst(intl.formatMessage({id:'energy_scale'}))} ${ContractInvocationDistributionParams.scale}`}
                                         </p>
                                         {( EnergyConsumeDistribution.length === 0)?
                                         <div className="p-3 text-center no-data">{tu("no_data")}</div>
