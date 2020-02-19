@@ -255,7 +255,7 @@ export class SubmitProposal extends Component {
                                 {
                                     record.key == 'getAllowUpdateAccountName' && <div>
                                         {
-                                            text? <span>{tu('propose_allowed')}</span>:
+                                            Number(text)? <span>{tu('propose_allowed')}</span>:
                                                 <span>{tu('propose_not_allowed')}</span>
                                         }
                                         {
@@ -266,7 +266,7 @@ export class SubmitProposal extends Component {
                                 {
                                     record.key == 'getAllowSameTokenName' && <div>
                                         {
-                                            text? <span>{tu('propose_allowed')}</span>:
+                                            Number(text)? <span>{tu('propose_allowed')}</span>:
                                                 <span>{tu('propose_not_allowed')}</span>
                                         }
                                         {
@@ -277,7 +277,7 @@ export class SubmitProposal extends Component {
                                 {
                                     record.key == 'getAllowDelegateResource' && <div>
                                         {
-                                            text? <span>{tu('propose_allowed')}</span>:
+                                            Number(text)? <span>{tu('propose_allowed')}</span>:
                                                 <span>{tu('propose_not_allowed')}</span>
                                         }
                                         {
@@ -299,7 +299,7 @@ export class SubmitProposal extends Component {
                                 {
                                     record.key == 'getAllowTvmTransferTrc10' && <div>
                                         {
-                                            text? <span>{tu('propose_allowed')}</span>:
+                                            Number(text)? <span>{tu('propose_allowed')}</span>:
                                                 <span>{tu('propose_not_allowed')}</span>
                                         }
                                         {
@@ -330,7 +330,7 @@ export class SubmitProposal extends Component {
                                 {
                                     record.key == 'getAllowMultiSign' && <div>
                                         {
-                                            text? <span>{tu('propose_allowed')}</span>:
+                                            Number(text)? <span>{tu('propose_allowed')}</span>:
                                                 <span>{tu('propose_not_allowed')}</span>
                                         }
                                         {
@@ -341,7 +341,7 @@ export class SubmitProposal extends Component {
                                 {
                                     record.key == 'getAllowAdaptiveEnergy' && <div>
                                         {
-                                            text? <span>{tu('propose_allowed')}</span>:
+                                            Number(text)? <span>{tu('propose_allowed')}</span>:
                                                 <span>{tu('propose_not_allowed')}</span>
                                         }
                                         {
@@ -362,7 +362,7 @@ export class SubmitProposal extends Component {
                                     record.key == 'getTotalEnergyAverageUsage' && <div>
                                         {
                                             text?<span><span>{text}</span>/<span>{tu('propose_minute')}</span></span>:
-                                                <span>{tu('propose_unactivate')}</span>
+                                                <span>{tu('propose_not_activate')}</span>
                                         }
                                         {
                                             record.same && <span className="proposal-value-same ml-1">({tu('proposal_value_same')})</span>
@@ -391,8 +391,8 @@ export class SubmitProposal extends Component {
                                 {
                                     record.key == 'getAllowProtoFilterNum' && <div>
                                         {
-                                            text? <span>{tu('propose_activate')}</span>:
-                                                <span>{tu('propose_unactivate')}</span>
+                                            Number(text)? <span>{tu('propose_activate')}</span>:
+                                                <span>{tu('propose_not_activate')}</span>
                                         }
                                         {
                                             record.same && <span className="proposal-value-same ml-1">({tu('proposal_value_same')})</span>
@@ -402,7 +402,7 @@ export class SubmitProposal extends Component {
                                 {
                                     record.key == 'getAllowTvmConstantinople' && <div>
                                         {
-                                            text? <span>{tu('propose_allowed')}</span>:
+                                            Number(text)? <span>{tu('propose_allowed')}</span>:
                                                 <span>{tu('propose_not_allowed')}</span>
                                         }
                                         {
@@ -413,7 +413,7 @@ export class SubmitProposal extends Component {
                                 {
                                     record.key == 'getAllowShieldedTransaction' && <div>
                                         {
-                                            text? <span>{tu('propose_allowed')}</span>:
+                                            Number(text)? <span>{tu('propose_allowed')}</span>:
                                                 <span>{tu('propose_not_allowed')}</span>
                                         }
                                         {
@@ -441,8 +441,8 @@ export class SubmitProposal extends Component {
                                 {
                                     record.key == 'getChangeDelegation' && <div>
                                         {
-                                            text? <span>{tu('propose_activate')}</span>:
-                                                <span>{tu('propose_unactivate')}</span>
+                                            Number(text)? <span>{tu('propose_activate')}</span>:
+                                                <span>{tu('propose_not_activate')}</span>
                                         }
                                         {
                                             record.same && <span className="proposal-value-same ml-1">({tu('proposal_value_same')})</span>
@@ -460,7 +460,7 @@ export class SubmitProposal extends Component {
                                 {
                                     record.key == 'getAllowTvmSolidity059' && <div>
                                         {
-                                            text? <span>{tu('propose_allowed')}</span>:
+                                            Number(text)? <span>{tu('propose_allowed')}</span>:
                                                 <span>{tu('propose_not_allowed')}</span>
                                         }
                                         {
@@ -481,7 +481,7 @@ export class SubmitProposal extends Component {
                                     record.key == 'getChargingSwitch' && <div>
                                         {
                                             record.value != '0'? <span>{tu('propose_activate')}</span>:
-                                                <span>{tu('propose_unactivate')}</span>
+                                                <span>{tu('propose_not_activate')}</span>
                                         }
                                     </div>
                                 }
@@ -503,7 +503,7 @@ export class SubmitProposal extends Component {
                                     record.key == 'getVoteWitnessSwitch' && <div>
                                         {
                                             record.value != '0'? <span>{tu('propose_activate')}</span>:
-                                                <span>{tu('propose_unactivate')}</span>
+                                                <span>{tu('propose_not_activate')}</span>
                                         }
                                     </div>
                                 }
@@ -518,7 +518,7 @@ export class SubmitProposal extends Component {
                                     record.key == 'getFundDistributeEnableSwitch' && <div>
                                         {
                                             record.value != '0'? <span>{tu('propose_activate')}</span>:
-                                                <span>{tu('propose_unactivate')}</span>
+                                                <span>{tu('propose_not_activate')}</span>
                                         }
                                     </div>
                                 }
