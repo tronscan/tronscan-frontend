@@ -1358,7 +1358,7 @@ class Statistics extends React.Component {
                                         </p> */}
                                          <p style={{textAlign:'center'}}>
                                             {`${upperFirst(intl.formatMessage({id:'total_energy_used'}))}: ${intl.formatNumber(ContractInvocationDistributionParams.total_energy)} ENERGY,
-                                            ${ContractInvocationDistributionParams.range_type}${intl.formatMessage({id:'chart_energy'})}: ${intl.formatNumber(ContractInvocationDistributionParams.total_used_energy)} ENERGY,
+                                            ${ContractInvocationDistributionParams.range_type} ${intl.formatMessage({id:'chart_energy'})}: ${intl.formatNumber(ContractInvocationDistributionParams.total_used_energy)} ENERGY,
                                             ${upperFirst(intl.formatMessage({id:'energy_scale'}))}${ContractInvocationDistributionParams.scale}`}
                                         </p>
                                         {( EnergyConsumeDistribution.length === 0)?
