@@ -151,7 +151,7 @@ class ProposalDetail extends React.Component {
                                             {proposal && <div className="">
                                                 <div className="header-item">
                                                     <div className="d-flex">
-                                                        <div className="item-title">{t("proposer")}:</div>
+                                                        <div className="item-title">{t("proposer")} :</div>
                                                         <div className="item-info">{proposal.proposer.name ?  <AddressLink address={proposal.proposer.address}>{proposal.proposer.name}</AddressLink> : <AddressLink address={proposal.proposer.address}>{proposal.proposer.address}</AddressLink>}</div>
                                                     </div>
                                                     <div className="d-flex">
@@ -165,7 +165,7 @@ class ProposalDetail extends React.Component {
                                                     </div>
                                                 <div className="header-item">
                                                     <div className="d-flex">
-                                                        <div className="item-title">{t("proposal_content_info")}:</div>
+                                                        <div className="item-title">{t("proposal_content_info")} :</div>
                                                         <div className="item-info">
                                                             {
                                                                 proposal && proposal.paramters.map((item,index) => {
@@ -608,7 +608,7 @@ class ProposalDetail extends React.Component {
                                                 </div>
                                                 <div className="header-item">
                                                 <div className="d-flex">
-                                                    <div className="item-title">{t("proposal_status")}:</div>
+                                                    <div className="item-title">{t("proposal_status")} :</div>
                                                         <div className="item-info">
                                                             {
                                                                 proposal.state == 'PENDING' &&

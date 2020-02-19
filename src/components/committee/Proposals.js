@@ -35,18 +35,29 @@ class Proposal extends React.Component {
             modal: null,
             isTronLink: 0,
             balanceTip: false,
-            isAction: false
+            isAction: false,
+            timer: null,
+            page: 1,
+            pageSize: 20
         };
     }
 
     componentDidMount() {
         let { account, currentWallet } = this.props;
         this.load();
+        
         if (account.isLoggedIn) {
+            let timer = setInterval(() => {
+                this.load(1,20,1);
+            }, 10000);
             this.setState({
                 isTronLink: Lockr.get("islogin"),
+                timer
             });
         }
+    }
+    componentWillUnmount(){
+        clearInterval(this.state.timer)
     }
     onChange = (page, pageSize) => {
         this.load(page, pageSize);
@@ -59,14 +70,23 @@ class Proposal extends React.Component {
           {
             pagination: pager
           },
-          () => this.load(pager.current, pager.pageSize)
+          () => {
+                this.load(pager.current, pager.pageSize)
+                clearInterval(this.state.timer)
+                let timer = setInterval(() => {
+                    this.load(pager.current, pager.pageSize, 1);
+                }, 10000);
+                this.setState({
+                    timer
+                });
+            }
         );
     };
 
 
-    load = async (page = 1, pageSize = 20) => {
+    load = async (page = 1, pageSize = 20, type) => {
 
-        this.setState({ loading: true });
+        this.setState({ loading: type ? false : true });
         let { account } = this.props;
         let {proposal, total} = await Client.getProposalList({
             sort: '-number',
@@ -732,7 +752,7 @@ class Proposal extends React.Component {
                 let text1 = upperFirst(intl.formatMessage({id: 'proposal_votes_tip'}))
                 return (
                     <div>
-                        {text}
+                        {text} {' '}
                         <span className="mr-2">
                             <QuestionMark placement="top" text={text1} />
                         </span>

@@ -23,12 +23,20 @@ export default function ProposalDeleteContract({contract}){
           <Field label="initiate_address"><AddressLink address={contract['owner_address']}/></Field>
           <Field label="proposal_ID">{contract.proposal_id}</Field>
           {
-              contract['parameters'] && contract['parameters'].map((item)=>{
-                return <tr>
-                  <th>{tu('proposal_content')}</th>
-                  <td><ProposalValue item={item}/></td>
-                </tr>
-              })
+              // contract['parameters'] && contract['parameters'].map((item)=>{
+              //   return <tr>
+              //     <th>{tu('proposal_content')}</th>
+              //     <td><ProposalValue item={item}/></td>
+              //   </tr>
+              // })
+              contract['parameters'] && <tr>
+                <th>{tu('proposal_content')}</th>
+                <td>
+                  {contract['parameters'].map((item,index)=>{
+                    return <ProposalValue item={item}/>
+                  })}  
+                </td>
+              </tr>
           }
           {/* <Field label="vote_proposal">{contract.is_add_approval ? tu('vote_yes') : tu('vote_no')}</Field> */}
           {JSON.stringify(contract.cost) != "{}" && (

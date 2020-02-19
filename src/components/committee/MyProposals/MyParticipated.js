@@ -30,7 +30,8 @@ class MyParticipated extends React.Component {
                 total: 0
             },
             modal: null,
-            isAction: false
+            isAction: false,
+            timer: null
         }
     }
     // shouldComponentUpdate(nextProps,nextState) {
@@ -45,10 +46,19 @@ class MyParticipated extends React.Component {
     componentDidMount(){
         let { account, currentWallet } = this.props;
         this.load();
+        let timer = setInterval(() => {
+            this.load(1,20,1);
+        }, 10000);
+        this.setState({
+            timer
+        });
     }
-    load = async (page = 1, pageSize = 20) => {
+    componentWillUnmount(){
+        clearInterval(this.state.timer)
+    }
+    load = async (page = 1, pageSize = 20, type) => {
         let { account, currentWallet } = this.props;
-        this.setState({ loading: true });
+        this.setState({ loading: type ? false : true });
         let { data, total } = await proposalApi.getMyProposalList({
             limit: pageSize,
             start: (page - 1) * pageSize,
@@ -167,7 +177,16 @@ class MyParticipated extends React.Component {
           {
             pagination: pager
           },
-          () => this.load(pager.current, pager.pageSize)
+          () => {
+                this.load(pager.current, pager.pageSize)
+                clearInterval(this.state.timer)
+                let timer = setInterval(() => {
+                    this.load(pager.current, pager.pageSize, 1);
+                }, 10000);
+                this.setState({
+                    timer
+                });
+            }
         );
     };
     getColumns() {
@@ -674,7 +693,7 @@ class MyParticipated extends React.Component {
                 let text1 = upperFirst(intl.formatMessage({id: 'proposal_votes_tip'}))
                 return (
                     <div>
-                        {text}
+                        {text}{' '}
                         <span className="mr-2">
                             <QuestionMark placement="top" text={text1} />
                         </span>
