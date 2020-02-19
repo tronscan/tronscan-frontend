@@ -1085,12 +1085,12 @@ export class SetProposal extends Component {
     }
     proposalsCreateList.map((item,index)=>{
         if(item.key == record.id){
-            item.newValue = inputValue
+            item.newValue = parseFloat(inputValue)
         }
     })
     dataSource.map((item,index)=>{
         if(item.id == record.id){
-            item.newValue = inputValue
+            item.newValue = parseFloat(inputValue)
         }
     })
     this.setState({
