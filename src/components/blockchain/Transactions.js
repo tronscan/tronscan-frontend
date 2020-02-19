@@ -178,10 +178,7 @@ class Transactions extends React.Component {
                 align: 'left',
                 className: 'ant_table',
                 render: (text, record, index) => {
-                    return <span>
-                        {record.confirmed ? <BlockNumberLink number={text}/> :<span>（pending）</span>  }
-                    </span>
-                    
+                    return <BlockNumberLink number={text}/>
                 }
             },
             {

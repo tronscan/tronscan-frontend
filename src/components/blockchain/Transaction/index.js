@@ -181,9 +181,7 @@ class Transaction extends React.Component {
                             {tu("block")}
                           </th>
                           <td>
-                            {
-                                transaction.confirmed ?  <BlockNumberLink number={transaction.block} /> : <span>（pending）</span>  
-                            }
+                            <BlockNumberLink number={transaction.block} />
                           </td>
                         </tr>
                         {
