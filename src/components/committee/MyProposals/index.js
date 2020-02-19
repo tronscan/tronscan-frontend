@@ -46,6 +46,13 @@ class MyProposals extends React.Component {
   componentDidMount() {
     this.load();
   }
+  componentDidUpdate(prevProps){
+    let { account } = this.props
+    if(prevProps.account.address != account.address){
+      this.props.history.push('/proposals')
+    }
+    
+}
   load = async (page = 1, pageSize = 20) => {
       let { account, currentWallet } = this.props;
       this.setState({ loading: true });

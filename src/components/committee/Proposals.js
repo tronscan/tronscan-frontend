@@ -44,7 +44,7 @@ class Proposal extends React.Component {
 
     componentDidMount() {
         let { account, currentWallet } = this.props;
-        this.load();
+        
         
         if (account.isLoggedIn) {
             let timer = setInterval(() => {
@@ -55,6 +55,23 @@ class Proposal extends React.Component {
                 timer
             });
         }
+        this.load();
+    }
+    componentDidUpdate(prevProps){
+        let { account } = this.props
+        let { page, pageSize } = this.state
+        if(prevProps.account.address != account.address){
+            clearInterval(this.state.timer)
+            this.load(page, pageSize, 1);
+            let timer = setInterval(() => {
+                this.load(page, pageSize, 1);
+            }, 10000);
+            this.setState({
+                isTronLink: Lockr.get("islogin"),
+                timer
+            });
+        }
+        
     }
     componentWillUnmount(){
         clearInterval(this.state.timer)
@@ -68,7 +85,9 @@ class Proposal extends React.Component {
         pager.pageSize = pagination.pageSize;
         this.setState(
           {
-            pagination: pager
+            pagination: pager,
+            page: pager.current,
+            pageSize: pager.pageSize
           },
           () => {
                 this.load(pager.current, pager.pageSize)
