@@ -138,7 +138,5 @@ export const lang20Q1 = {
   full_node_version_confirmed_tips:'"تأیید شده" به معنی تأیید شده توسط 19 یا بیشتر گره فوق العاده است ، در غیر این صورت "باید تأیید شود"',
 
   // 2020-02-19
-  chart_total_energy:'总能量消耗',
-  chart_energy:'能量消耗',
-  chart_energy_per:'占总能量消耗',
+  chart_energy:'انرژی استفاده شده',
 };

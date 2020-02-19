@@ -1786,7 +1786,7 @@ export class EnergyConsumeChart extends React.Component {
     initLine(id) {
         let _config = cloneDeep(config.overviewHighChart);
         let {intl, data, type} = this.props;
-        const colors = ['#D5887F', '#C23631','#FFA602']
+        const colors = ['#8085E9', '#C23631','#F5A623']
         const map = {
             c1: ['#D5887F', '#C23631'],
             c2: ['#C23631', '#D5887F'],

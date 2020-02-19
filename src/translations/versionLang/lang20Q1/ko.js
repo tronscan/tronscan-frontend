@@ -134,9 +134,7 @@ export const lang20Q1 = {
   full_node_version_confirmed_tips:'SR에서 확인 된 19 개가 넘는 트랜잭션이 "확인 됨"으로 표시되고 그렇지 않은 경우 "확인되지 않음"',
 
   // 2020-02-19
-  chart_total_energy:'总能量消耗',
-  chart_energy:'能量消耗',
-  chart_energy_per:'占总能量消耗',
+  chart_energy:'사용 된 에너지',
 
 
 };

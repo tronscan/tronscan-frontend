@@ -139,8 +139,6 @@ export const lang20Q1 = {
   full_node_version_confirmed_tips:'“已确认”是指被19个及以上超级节点确认，否则为“待确认”',
 
   // 2020-02-19
-  chart_total_energy:'总能量消耗',
   chart_energy:'能量消耗',
-  chart_energy_per:'占总能量消耗',
 
 };

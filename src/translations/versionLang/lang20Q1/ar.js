@@ -137,7 +137,5 @@ export const lang20Q1 = {
     full_node_version_confirmed_tips:'"مؤكد" يعني تأكيده بـ 19 عقدًا أو أكثر ، وإلا فسيتم "التأكيد"',
 
     // 2020-02-19
-  chart_total_energy:'总能量消耗',
-  chart_energy:'能量消耗',
-  chart_energy_per:'占总能量消耗',
+  chart_energy:'الطاقة المستخدمة',
 };

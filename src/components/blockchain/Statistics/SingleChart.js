@@ -828,7 +828,7 @@ class Statistics extends React.Component {
             title: upperFirst(intl.formatMessage({id: 'contract_address'})),
             dataIndex: 'contract_address',
             key: 'contract_address',
-            width: '20%',
+            width: '15%',
             render: (text, record, index) => {
             return <Truncate><AddressLink address={text} isContract={true}>{text}</AddressLink></Truncate>
             }
@@ -924,7 +924,7 @@ class Statistics extends React.Component {
               },
             dataIndex: 'percent',
             key: 'percent',
-            width: '7%',
+            width: '12%',
             render: (text, record, index) => {
               return <span>{text}</span>
             }
@@ -1357,9 +1357,9 @@ class Statistics extends React.Component {
                                             intl.formatMessage({id:'energe'})}
                                         </p> */}
                                          <p style={{textAlign:'center'}}>
-                                            {`${intl.formatMessage({id:'chart_total_energy'})}: ${intl.formatNumber(ContractInvocationDistributionParams.total_energy)} ENERGY;
-                                            ${ContractInvocationDistributionParams.range_type}${intl.formatMessage({id:'chart_energy'})}: ${intl.formatNumber(ContractInvocationDistributionParams.total_used_energy)} ENERGY;
-                                            ${intl.formatMessage({id:'chart_energy_per'})}${ContractInvocationDistributionParams.scale}`}
+                                            {`${upperFirst(intl.formatMessage({id:'total_energy_used'}))}: ${intl.formatNumber(ContractInvocationDistributionParams.total_energy)} ENERGY,
+                                            ${ContractInvocationDistributionParams.range_type}${intl.formatMessage({id:'chart_energy'})}: ${intl.formatNumber(ContractInvocationDistributionParams.total_used_energy)} ENERGY,
+                                            ${upperFirst(intl.formatMessage({id:'energy_scale'}))}${ContractInvocationDistributionParams.scale}`}
                                         </p>
                                         {( EnergyConsumeDistribution.length === 0)?
                                         <div className="p-3 text-center no-data">{tu("no_data")}</div>
