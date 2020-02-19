@@ -97,6 +97,11 @@ class Statistics extends React.Component {
             OverallFreezingRateParams:{
                 start_day:'2019-12-01',
                 end_day:'2019-12-12'
+            },
+            energyConsumeDataTop:{
+                freezingEnergy:0,
+                burningEnergy:0,
+                userBurningEnergy:0
             }
         };
     }
@@ -690,13 +695,21 @@ class Statistics extends React.Component {
 
         let totle_used_energy = 0
         let used_scale = ''
+        let freezingEnergy = 0
+        let burningEnergy = 0
+        let userBurningEnergy = 0;
 
         data.map((item, index) => {
             item.percent = ((item.total_energy / totalEnergy)*100).toFixed(2) + '%'
             item.index = index+1
             item.name = item.name || '-'
             totle_used_energy += item.total_energy
+            freezingEnergy += Number(item.energy)
+            burningEnergy += Number(item.trx)
+            userBurningEnergy += Number(item.contract_supplied)
         })
+
+        
 
         used_scale = ((totle_used_energy / totalEnergy)*100).toFixed(2) + '%'
 
@@ -707,6 +720,11 @@ class Statistics extends React.Component {
                 total_used_energy: totle_used_energy,
                 scale: used_scale,
                 total_energy: totalEnergy
+            },
+            energyConsumeDataTop:{
+                freezingEnergy,
+                burningEnergy,
+                userBurningEnergy
             }
         });
     }
@@ -1100,7 +1118,7 @@ class Statistics extends React.Component {
             priceUSD,priceBTC,marketCapitalization,foundationFreeze,
             circulatingNum, energyConsumeData, ContractInvocation,
             ContractInvocationDistribution, ContractInvocationDistributionParams,
-            EnergyConsumeDistribution,OverallFreezingRate } = this.state;
+            EnergyConsumeDistribution,OverallFreezingRate,energyConsumeDataTop } = this.state;
 
         let unit;
         let uploadURL = API_URL + "/api/v2/node/overview_upload";
@@ -1109,6 +1127,7 @@ class Statistics extends React.Component {
         let freezing_column = this.freezingCustomizedColumn();
 
         let chartHeight = isMobile? 240: 500
+       
 
         if (match.params.chartName === 'blockchainSizeStats' || match.params.chartName === 'addressesStats') {
             unit = 'increase';
@@ -1358,7 +1377,10 @@ class Statistics extends React.Component {
                                         </p> */}
                                          <p style={{textAlign:'center'}}>
                                             {`${upperFirst(intl.formatMessage({id:'total_energy_used'}))}: ${intl.formatNumber(ContractInvocationDistributionParams.total_energy)} ENERGY,
-                                            ${ContractInvocationDistributionParams.range_type} ${intl.formatMessage({id:'chart_energy'})}: ${intl.formatNumber(ContractInvocationDistributionParams.total_used_energy)} ENERGY,
+                                            ${ContractInvocationDistributionParams.range_type} ${intl.formatMessage({id:'chart_energy'})}: ${intl.formatNumber(ContractInvocationDistributionParams.total_used_energy)} ENERGY
+                                            (${intl.formatMessage({id: 'chart_resource_user_freeing'})} ${intl.formatNumber(energyConsumeDataTop.freezingEnergy)} ENERGY,
+                                            ${intl.formatMessage({id: 'chart_resource_user_burning'})} ${intl.formatNumber(energyConsumeDataTop.burningEnergy)} ENERGY,
+                                            ${intl.formatMessage({id: 'chart_resource_contract_deployer'})} ${intl.formatNumber(energyConsumeDataTop.userBurningEnergy)} ENERGY),
                                             ${upperFirst(intl.formatMessage({id:'energy_scale'}))}${ContractInvocationDistributionParams.scale}`}
                                         </p>
                                         {( EnergyConsumeDistribution.length === 0)?

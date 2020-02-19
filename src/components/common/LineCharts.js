@@ -2093,13 +2093,14 @@ export class EnergyConsumeDistributionChart extends React.Component {
                 percent: o.percent
             }
         })
-        const SUBTITLE = `
-            ${intl.formatMessage({id: 'total_used_energy'})}: ${intl.formatNumber(totalUsedEnergy)}(
-            ${intl.formatMessage({id: 'chart_resource_user_freeing'})} ${intl.formatNumber(freezingEnergy)}
-            ${intl.formatMessage({id: 'chart_resource_user_burning'})} ${intl.formatNumber(burningEnergy)}
-            ${intl.formatMessage({id: 'chart_resource_contract_deployer'})} ${intl.formatNumber(userBurningEnergy)}
-            )
-        `
+        // const SUBTITLE = `
+        //     ${intl.formatMessage({id: 'total_used_energy'})}: ${intl.formatNumber(totalUsedEnergy)}(
+        //     ${intl.formatMessage({id: 'chart_resource_user_freeing'})} ${intl.formatNumber(freezingEnergy)} ENERGY
+        //     ${intl.formatMessage({id: 'chart_resource_user_burning'})} ${intl.formatNumber(burningEnergy)} ENERGY
+        //     ${intl.formatMessage({id: 'chart_resource_contract_deployer'})} ${intl.formatNumber(userBurningEnergy)} ENERGY
+        //     )
+        // `
+        const SUBTITLE = ''
        
         if (data && data.length > 0) {
             let options =  {
@@ -2112,7 +2113,10 @@ export class EnergyConsumeDistributionChart extends React.Component {
                     text: intl.formatMessage({id: 'charts_daily_energy_contracts'})
                 },
                 subtitle: {
-                    text: SUBTITLE
+                    text: SUBTITLE,
+                    style:{
+                        fontSize:"12"
+                    }
                 },
                 exporting: {
                     enabled: true,
