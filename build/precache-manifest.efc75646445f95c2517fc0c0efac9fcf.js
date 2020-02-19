@@ -16,19 +16,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/editor.worker.js.gz"
   },
   {
-    "revision": "eb950dea8758ec4481b41f076a4c9926",
+    "revision": "96e18c54e761f53dd949fd6a0514c914",
     "url": "/index.html"
   },
   {
-    "revision": "5cd2fd80297527940a16b2b7eef4f1b4",
+    "revision": "731d71d854ed2371178e003ea318c650",
     "url": "/index.html.gz"
-  },
-  {
-    "url": "/precache-manifest.64992794f9bce8cc93f9871696c469c6.js"
-  },
-  {
-    "revision": "0fa725591c010cae6b5b98ccd263e118",
-    "url": "/service-worker.js"
   },
   {
     "revision": "ee476a9ab601ab5344c3",
@@ -703,12 +696,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/js/TokensCreate.34fed018.chunk.js.gz"
   },
   {
-    "revision": "ceb184a8eb8dd088c2c4",
-    "url": "/static/js/Transaction.b83eaf35.chunk.js"
+    "revision": "6ad2e1347c515e6e0eae",
+    "url": "/static/js/Transaction.04e1eca8.chunk.js"
   },
   {
-    "revision": "dd4348b8bdd183851002e75e675be660",
-    "url": "/static/js/Transaction.b83eaf35.chunk.js.gz"
+    "revision": "3de370ebe8336d78bef828b196da95f3",
+    "url": "/static/js/Transaction.04e1eca8.chunk.js.gz"
   },
   {
     "revision": "5e4844039072a96187d4",
@@ -783,12 +776,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/js/main.4a1f83e9.chunk.js.gz"
   },
   {
-    "revision": "7ffe4f11326d066f8eea",
-    "url": "/static/js/runtime~main.d8a5f2e9.js"
+    "revision": "e58bde6e7f08aea94315",
+    "url": "/static/js/runtime~main.4a9ecf91.js"
   },
   {
-    "revision": "8db05ac56fe59d37738091214180c85e",
-    "url": "/static/js/runtime~main.d8a5f2e9.js.gz"
+    "revision": "e679c6b30b6ff1d7851f5adde5ea2554",
+    "url": "/static/js/runtime~main.4a9ecf91.js.gz"
   },
   {
     "revision": "7b00f7c4e78ed9cfc676c64c040965e8",

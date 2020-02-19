@@ -94,8 +94,7 @@ function setValue(item,intl){
     case 19:
     case 29:
     case 33:
-      return 
-      <span>
+      return <span>
         <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
         <span>{ item.value }</span>
       </span>;
