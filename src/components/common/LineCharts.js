@@ -2079,13 +2079,13 @@ export class EnergyConsumeDistributionChart extends React.Component {
         let totalUsedEnergy = 0
         let freezingEnergy = 0
         let burningEnergy = 0
+        let userBurningEnergy = 0;
 
-        
         var chartdata = data.slice(0).map(o => {
             totalUsedEnergy += Number(o.total_energy)
             freezingEnergy += Number(o.energy)
             burningEnergy += Number(o.trx)
-
+            userBurningEnergy += Number(o.contract_supplied)
             return {
                 name: o.contract_address,
                 y: Number(o.total_energy),
@@ -2095,8 +2095,9 @@ export class EnergyConsumeDistributionChart extends React.Component {
         })
         const SUBTITLE = `
             ${intl.formatMessage({id: 'total_used_energy'})}: ${intl.formatNumber(totalUsedEnergy)}(
-            ${intl.formatMessage({id: 'energy_used_by_freezing_TRX'})} ${intl.formatNumber(freezingEnergy)}
-            ${intl.formatMessage({id: 'energy_used_by_burning_TRX'})} ${intl.formatNumber(burningEnergy)}
+            ${intl.formatMessage({id: 'chart_resource_user_freeing'})} ${intl.formatNumber(freezingEnergy)}
+            ${intl.formatMessage({id: 'chart_resource_user_burning'})} ${intl.formatNumber(burningEnergy)}
+            ${intl.formatMessage({id: 'chart_resource_contract_deployer'})} ${intl.formatNumber(userBurningEnergy)}
             )
         `
        

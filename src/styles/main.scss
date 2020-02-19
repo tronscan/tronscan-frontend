@@ -5186,3 +5186,10 @@ h5 {
   margin-top:6px;
   display: inline-block;
 }
+
+.th-word-break{
+  // width:100px;
+  word-break: break-all;
+    white-space: normal;
+    word-wrap: break-word;
+}

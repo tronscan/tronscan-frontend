@@ -818,64 +818,113 @@ class Statistics extends React.Component {
                 title: "#",
                 dataIndex: 'index',
                 key: 'index',
-                width: '60px',
+                width: '5%',
                 align: 'center',
                 render: (text, record, index) => {
-                  return <span>{text}</span>
+                  return <span style={{width:''}}>{text}</span>
                 }
             },
           {
             title: upperFirst(intl.formatMessage({id: 'contract_address'})),
             dataIndex: 'contract_address',
             key: 'contract_address',
+            width: '20%',
             render: (text, record, index) => {
-              return <AddressLink address={text} isContract={true}/>
+            return <Truncate><AddressLink address={text} isContract={true}>{text}</AddressLink></Truncate>
             }
           },
           {
-            title: upperFirst(intl.formatMessage({id: 'contract_name'})),
+            title: () => {
+                let title2 = upperFirst(intl.formatMessage({id: 'contract_name'}))
+                return (
+                  <span className={'th-word-break'}>
+                    {title2}
+                  </span>
+                );
+              },
             dataIndex: 'name',
             key: 'name',
+            width: '15%',
             render: (text, record, index) => {
-              return <span>{text || '-'}</span>
+              return <span style={{wordBreak:'break-all'}}>{text || '-'}</span>
             }
           },
           {
-            title: upperFirst(intl.formatMessage({id: 'total_energy_used'})),
+            title: () => {
+                let title2 = upperFirst(intl.formatMessage({id: 'total_energy_used'}))
+                return (
+                  <span className={'th-word-break'}>
+                    {title2}
+                  </span>
+                );
+              },
+              width: '12%',
             dataIndex: 'total_energy',
             key: 'total_energy',
             render: (text, record, index) => {
-              return <FormattedNumber value={text}/>
+              return <span style={{width:''}}><FormattedNumber value={text}/></span>
             }
           },
           {
-            title: upperFirst(intl.formatMessage({id: 'chart_resource_user_freeing'})),
+            title: () => {
+                let title2 = upperFirst(intl.formatMessage({id: 'chart_resource_user_freeing'}))
+                return (
+                  <span className={'th-word-break'}>
+                    {title2}
+                  </span>
+                );
+              },
+              width: '12%',
             dataIndex: 'energy',
             key: 'energy',
             render: (text, record, index) => {
-              return <FormattedNumber value={text}/>
+              return <span style={{width:''}}><FormattedNumber value={text}/></span>
             }
           },
           {
-            title: upperFirst(intl.formatMessage({id: 'chart_resource_user_burning'})),
+            title: () => {
+                let title2 = upperFirst(intl.formatMessage({id: 'chart_resource_user_burning'}))
+                return (
+                  <span className={'th-word-break'}>
+                    {title2}
+                  </span>
+                );
+              },
             dataIndex: 'trx',
             key: 'trx',
+            width: '12%',
             render: (text, record, index) => {
-              return <FormattedNumber value={text}/>
+              return <span style={{width:''}}><FormattedNumber value={text}/></span>
             }
           },
           {
-            title: upperFirst(intl.formatMessage({id: 'chart_resource_contract_deployer'})),
+            title: () => {
+                let title2 = upperFirst(intl.formatMessage({id: 'chart_resource_contract_deployer'}))
+                return (
+                  <span className={'th-word-break'}>
+                    {title2}
+                  </span>
+                );
+              },
+            width: '12%',
             dataIndex: 'contract_supplied',
             key: 'contract_supplied',
             render: (text, record, index) => {
-              return <FormattedNumber value={text || 0}/>
+              return <span style={{width:''}}><FormattedNumber value={text || 0}/></span>
             }
           },
           {
-            title: upperFirst(intl.formatMessage({id: 'energy_scale'})),
+            title: () => {
+                let title2 = upperFirst(intl.formatMessage({id: 'energy_scale'}))
+                return (
+                  <span className={'th-word-break'}>
+                    {title2}
+                  </span>
+                );
+              },
             dataIndex: 'percent',
             key: 'percent',
+            width: '7%',
             render: (text, record, index) => {
               return <span>{text}</span>
             }
@@ -1301,11 +1350,16 @@ class Statistics extends React.Component {
                                     />
                                     <div className="token_black">
                                     <div className="col-md-12 table_pos">
-                                        <p>{intl.formatMessage({id:'a_total'})+ intl.formatNumber(ContractInvocationDistributionParams.total_energy)+ 
+                                        {/* <p>{intl.formatMessage({id:'a_total'})+ intl.formatNumber(ContractInvocationDistributionParams.total_energy)+ 
                                         intl.formatMessage({id:'energe'})+' ('+ intl.formatMessage({id:'with_the_proportion_of'})+ContractInvocationDistributionParams.scale+
                                             ') '+ intl.formatMessage({id:'uesd_by_the'}) + ContractInvocationDistributionParams.range_type +
                                             intl.formatMessage({id:'contracts_from_the_total_used_of'}) + intl.formatNumber(ContractInvocationDistributionParams.total_used_energy)+
                                             intl.formatMessage({id:'energe'})}
+                                        </p> */}
+                                         <p style={{textAlign:'center'}}>
+                                            {`${intl.formatMessage({id:'chart_total_energy'})}: ${intl.formatNumber(ContractInvocationDistributionParams.total_energy)} ENERGY;
+                                            ${ContractInvocationDistributionParams.range_type}${intl.formatMessage({id:'chart_energy'})}: ${intl.formatNumber(ContractInvocationDistributionParams.total_used_energy)} ENERGY;
+                                            ${intl.formatMessage({id:'chart_energy_per'})}${ContractInvocationDistributionParams.scale}`}
                                         </p>
                                         {( EnergyConsumeDistribution.length === 0)?
                                         <div className="p-3 text-center no-data">{tu("no_data")}</div>

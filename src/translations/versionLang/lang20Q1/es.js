@@ -135,5 +135,10 @@ export const lang20Q1 = {
   full_node_version_unconfirmed:'UNCONFIRMED',
   full_node_version_confirmed_tips:'"Confirmado" significa confirmado por 19 o más supernodos, de lo contrario es "por confirmar"',
 
+  // 2020-02-19
+  chart_total_energy:'总能量消耗',
+  chart_energy:'能量消耗',
+  chart_energy_per:'占总能量消耗',
+
 
 };

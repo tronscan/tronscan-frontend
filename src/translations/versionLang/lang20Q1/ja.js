@@ -134,4 +134,9 @@ export const lang20Q1 = {
   full_node_version_confirmed:'CONFIRMED',
   full_node_version_unconfirmed:'UNCONFIRMED',
   full_node_version_confirmed_tips:'19以上のSRによって確認されたトランザクションは、「確認済み」とマークされます，そうでなければ「確認される」',
+
+  // 2020-02-19
+  chart_total_energy:'总能量消耗',
+  chart_energy:'能量消耗',
+  chart_energy_per:'占总能量消耗',
 };
