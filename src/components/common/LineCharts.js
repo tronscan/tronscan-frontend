@@ -1786,16 +1786,18 @@ export class EnergyConsumeChart extends React.Component {
     initLine(id) {
         let _config = cloneDeep(config.overviewHighChart);
         let {intl, data, type} = this.props;
-
+        const colors = ['#8085E9', '#C23631','#F5A623']
         const map = {
             c1: ['#D5887F', '#C23631'],
-            c2: ['#C23631', '#D5887F']
+            c2: ['#C23631', '#D5887F'],
+            
         }
 
         if (data && data.length > 0) {
             let chartData = [
-                { name: intl.formatMessage({id: 'freezing_energy'}), data: []},
-                { name: intl.formatMessage({id: 'burning_energy'}), data: []},
+                { name: intl.formatMessage({id: 'chart_resource_user_freeing'}), data: []},
+                { name: intl.formatMessage({id: 'chart_resource_user_burning'}), data: []},
+                { name: intl.formatMessage({id: 'chart_resource_contract_deployer'}), data: []},
             ]
             data.map(item => {
                 chartData[0].data.push([
@@ -1806,6 +1808,10 @@ export class EnergyConsumeChart extends React.Component {
                     item.day,
                     Number(item.trx)
                 ])
+                chartData[2].data.push([
+                    item.day,
+                    Number(item.contract_supplied)
+                ])
             })
 
             let options = {
@@ -1813,7 +1819,7 @@ export class EnergyConsumeChart extends React.Component {
                     type: 'column',
                     zoomType: 'x'
                 },
-                colors: map[type],
+                colors: colors,
                 title: {
                     text: intl.formatMessage({id: 'charts_daily_energy_consumption'})
                 },
@@ -2073,13 +2079,13 @@ export class EnergyConsumeDistributionChart extends React.Component {
         let totalUsedEnergy = 0
         let freezingEnergy = 0
         let burningEnergy = 0
+        let userBurningEnergy = 0;
 
-        
         var chartdata = data.slice(0).map(o => {
             totalUsedEnergy += Number(o.total_energy)
             freezingEnergy += Number(o.energy)
             burningEnergy += Number(o.trx)
-
+            userBurningEnergy += Number(o.contract_supplied)
             return {
                 name: o.contract_address,
                 y: Number(o.total_energy),
@@ -2087,12 +2093,14 @@ export class EnergyConsumeDistributionChart extends React.Component {
                 percent: o.percent
             }
         })
-        const SUBTITLE = `
-            ${intl.formatMessage({id: 'total_used_energy'})}: ${intl.formatNumber(totalUsedEnergy)}(
-            ${intl.formatMessage({id: 'energy_used_by_freezing_TRX'})} ${intl.formatNumber(freezingEnergy)}
-            ${intl.formatMessage({id: 'energy_used_by_burning_TRX'})} ${intl.formatNumber(burningEnergy)}
-            )
-        `
+        // const SUBTITLE = `
+        //     ${intl.formatMessage({id: 'total_used_energy'})}: ${intl.formatNumber(totalUsedEnergy)}(
+        //     ${intl.formatMessage({id: 'chart_resource_user_freeing'})} ${intl.formatNumber(freezingEnergy)} ENERGY
+        //     ${intl.formatMessage({id: 'chart_resource_user_burning'})} ${intl.formatNumber(burningEnergy)} ENERGY
+        //     ${intl.formatMessage({id: 'chart_resource_contract_deployer'})} ${intl.formatNumber(userBurningEnergy)} ENERGY
+        //     )
+        // `
+        const SUBTITLE = ''
        
         if (data && data.length > 0) {
             let options =  {
@@ -2105,7 +2113,10 @@ export class EnergyConsumeDistributionChart extends React.Component {
                     text: intl.formatMessage({id: 'charts_daily_energy_contracts'})
                 },
                 subtitle: {
-                    text: SUBTITLE
+                    text: SUBTITLE,
+                    style:{
+                        fontSize:"12"
+                    }
                 },
                 exporting: {
                     enabled: true,

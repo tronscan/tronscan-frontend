@@ -14,8 +14,8 @@ export const NETURL = {
   NEWSUNNET: "https://dappchain.tronscan.io",
   MAINNET: "https://tronscan.org",
   SUNNET: "https://dappchain.tronscan.org",
-  // MAINNET: "http://18.217.215.94:65",
-  // SUNNET: "http://18.217.215.94:66",
+  // MAINNET: "http://18.217.215.94:69",
+  // SUNNET: "http://18.217.215.94:70",
 };
 
 export const TOKENINFO_UPDATE = "TOKENINFO_UPDATE";
@@ -132,7 +132,9 @@ export const SUNWEBCONFIG = {
   SUNEVENTSERVER: "https://sun.tronex.io",
   MAINNET: "TWaPZru6PR5VjgT4sJrrZ481Zgp3iJ8Rfo",
   SIDECHAIN: "TGKotco6YoULzbYisTBuP6DWXDjEgJSpYz",
-  SIDEID: "41E209E4DE650F0150788E8EC5CAFA240A23EB8EB7"
+  SIDEID: "41E209E4DE650F0150788E8EC5CAFA240A23EB8EB7",
+
+  // for shasta
   // MAINFULLNODE: 'http://47.252.84.158:8070',
   // MAINSOLIDITYNODE: 'http://47.252.84.158:8071',
   // MAINEVENTSERVER: 'http://47.252.81.14:8070',
@@ -142,6 +144,18 @@ export const SUNWEBCONFIG = {
   // MAINNET: 'TFLtPoEtVJBMcj6kZPrQrwEdM3W3shxsBU',
   // SIDECHAIN: 'TRDepx5KoQ8oNbFVZ5sogwUxtdYmATDRgX',
   // SIDEID: '413AF23F37DA0D48234FDD43D89931E98E1144481B',
+
+  //for nile
+  // MAINFULLNODE: "https://httpapi.nileex.io",
+  // MAINSOLIDITYNODE: "https://httpapi.nileex.io",
+  // MAINEVENTSERVER: "https://eventtest.nileex.io",
+
+  // SUNFULLNODE: "https://sun.tronex.io",
+  // SUNSOLIDITYNODE: "https://sun.tronex.io",
+  // SUNEVENTSERVER: "https://sun.tronex.io",
+  // MAINNET: "TWaPZru6PR5VjgT4sJrrZ481Zgp3iJ8Rfo",
+  // SIDECHAIN: "TGKotco6YoULzbYisTBuP6DWXDjEgJSpYz",
+  // SIDEID: "41E209E4DE650F0150788E8EC5CAFA240A23EB8EB7"
 };
 
 //Socket config

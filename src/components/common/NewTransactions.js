@@ -2,6 +2,7 @@ import React, {Fragment} from "react";
 import {FormattedDate, FormattedNumber, FormattedTime, injectIntl} from "react-intl";
 import {Sticky, StickyContainer} from "react-sticky";
 import Paging from "./Paging";
+import {connect} from "react-redux";
 import {Client} from "../../services/api";
 import {TransactionHashLink, AddressLink, BlockNumberLink} from "./Links";
 import {tu} from "../../utils/i18n";
@@ -189,7 +190,7 @@ class NewTransactions extends React.Component {
         });
     };
 
-    customizedColumn = () => {
+    customizedColumn = (activeLanguage) => {
         let {intl} = this.props;
         let column = [
 
@@ -198,7 +199,7 @@ class NewTransactions extends React.Component {
                 dataIndex: 'hash',
                 key: 'hash',
                 align: 'left',
-                width:'10%',
+                width:'8%',
                 className: 'ant_table',
                 render: (text, record, index) => {
                     return <Truncate>
@@ -213,17 +214,18 @@ class NewTransactions extends React.Component {
                 dataIndex: 'status',
                 key: 'status',
                 align: 'left',
+                width: activeLanguage ==='ru' ? '34%' :'16%',
                 className: 'ant_table',
                 render: (text, record, index) => {
                     return (
-                        <div>
-                            {
+                        <span>
+                             {
                                 record.confirmed ?
-                                    <span className="badge badge-success text-uppercase">{tu("Confirmed")}</span> :
-                                    <span className="badge badge-danger text-uppercase">{tu("Unconfirmed")}</span>
+                                    <span  className="d-flex"><img style={{ width: "20px", height: "20px" }} src={require("../../images/contract/Verified.png")}/> <span>{tu('full_node_version_confirmed')}</span></span>
+                                      : 
+                                    <span  className="d-flex"><img style={{ width: "20px", height: "20px" }} src={require("../../images/contract/Unverified.png")}/> <span>{tu('full_node_version_unconfirmed')}</span></span>
                             }
-                        </div>
-
+                        </span>
                     )
                 }
             },
@@ -233,7 +235,7 @@ class NewTransactions extends React.Component {
                 key: 'contractRet',
                 align: 'left',
                 className: 'ant_table',
-                width: '15%',
+                width: '14%',
                 render: (text, record, index) => {
                     return <span>{text}</span>
                 }
@@ -255,7 +257,7 @@ class NewTransactions extends React.Component {
                 key: 'timestamp',
                 align: 'left',
                 className: 'ant_table',
-                width: '15%',
+                width: activeLanguage ==='ru' ? '12%' : '15%',
                 render: (text, record, index) => {
                     return <BlockTime time={text}></BlockTime>
                     // <TimeAgo date={text} title={moment(text).format("MMM-DD-YYYY HH:mm:ss A")}/>
@@ -284,8 +286,6 @@ class NewTransactions extends React.Component {
                             record.cost?
                                 <FormattedNumber value={record.cost.net_usage + record.cost.net_fee/10 }/>
                                 : <span>-</span>
-
-
                         }
                     </span>
                 }
@@ -324,6 +324,7 @@ class NewTransactions extends React.Component {
 
     trc20CustomizedColumn = () => {
         let {intl} = this.props;
+       
         let column = [
 
             {
@@ -431,8 +432,9 @@ class NewTransactions extends React.Component {
     render() {
 
         let {transactions, total, rangeTotal, loading, EmptyState = null} = this.state;
-        let {intl, isinternal, address = false} = this.props;
-        let column = !isinternal? this.customizedColumn():
+        let {intl, isinternal, address = false,activeLanguage} = this.props;
+       
+        let column = !isinternal? this.customizedColumn(activeLanguage):
             this.trc20CustomizedColumn();
        // let tableInfo = intl.formatMessage({id: 'view_total'}) + ' ' + total + ' ' + intl.formatMessage({id: 'transactions_unit'})
 
@@ -491,5 +493,10 @@ class NewTransactions extends React.Component {
         );
     }
 }
+function mapStateToProps(state) {
+    return {
+      activeLanguage: state.app.activeLanguage,
+    };
+  }
 
-export default (injectIntl(NewTransactions));
+export default  connect(mapStateToProps)(injectIntl(NewTransactions));

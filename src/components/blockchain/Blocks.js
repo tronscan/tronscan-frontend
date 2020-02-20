@@ -4,6 +4,7 @@ import {loadTokens} from "../../actions/tokens";
 import {connect} from "react-redux";
 // import TimeAgo from "react-timeago";
 import moment from 'moment';
+import { tu } from "../../utils/i18n";
 import {FormattedNumber, injectIntl} from "react-intl";
 import {Client} from "../../services/api";
 import {AddressLink, BlockNumberLink} from "../common/Links";
@@ -122,6 +123,23 @@ class Blocks extends React.Component {
         render: (text, record, index) => {
           return <BlockTime time={text}></BlockTime>
           // <TimeAgo date={text} title={moment(text).format("MMM-DD-YYYY HH:mm:ss A")}/>
+        }
+      },
+      {
+        title: upperFirst(intl.formatMessage({id: 'status'})),
+        dataIndex: 'status',
+        key: 'status',
+        align: 'left',
+        render: (text, record, index) => {
+          return <span>
+            {
+               record.confirmed ? 
+               <span><img style={{ width: "20px", height: "20px" }} src={require("../../images/contract/Verified.png")}/> {tu('full_node_version_confirmed')}</span>
+                 : 
+               <span><img style={{ width: "20px", height: "20px" }} src={require("../../images/contract/Unverified.png")}/> {tu('full_node_version_unconfirmed')}</span>
+            }
+          </span>
+         
         }
       },
       {
