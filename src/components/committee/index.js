@@ -428,6 +428,7 @@ class Committee extends React.Component {
                                                 <span>{text} ENERGY</span>
                                             }
                                         </div>
+                                        
                                     }
                                     {
                                         record.key == 'getAllowMultiSign' && <div>
