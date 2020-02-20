@@ -32,7 +32,7 @@ class RecentTransfers extends Component {
     this.props.loadTransactions();
     this.props.setInterval(() => {
       this.props.loadTransactions();
-    }, 10000);
+    }, 3000);
   }
 
   render() {
