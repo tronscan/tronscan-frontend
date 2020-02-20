@@ -21,6 +21,7 @@ import xhr from "axios/index";
 import {NameWithId} from "../common/names";
 import rebuildList from "../../utils/rebuildList";
 import BlockTime from '../common/blockTime'
+import { tu } from "../../utils/i18n";
 
 
 const RangePicker = DatePicker.RangePicker;
@@ -142,6 +143,20 @@ class Transfers extends React.Component {
         className: 'ant_table',
         render: (text, record, index) => {
           return  <AddressLink address={text}>{text}</AddressLink>
+        }
+      },
+      {
+        title: upperFirst(intl.formatMessage({id: 'status'})),
+        dataIndex: 'confirmed',
+        key: 'confirmed',
+        align: 'left',
+        className: 'ant_table',
+        width: '14%',
+        render: (text, record, index) => {
+        return  text ? 
+        <span><img style={{ width: "20px", height: "20px" }} src={require("../../images/contract/Verified.png")}/> {tu('full_node_version_confirmed')}</span>
+         : <span>
+           <img style={{ width: "20px", height: "20px" }} src={require("../../images/contract/Unverified.png")}/> {tu('full_node_version_unconfirmed')}</span>
         }
       },
       {

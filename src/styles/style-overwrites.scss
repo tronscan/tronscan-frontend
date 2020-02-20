@@ -637,6 +637,7 @@ body .token_black {
     font-style: italic;
   }
 }
+
 .testnet-dropdown-menu{
   left:-100px;
   .new-test-net {
@@ -654,6 +655,7 @@ body .token_black {
     font-style: italic;
   }
 }
+
 .nav {
   .dropdown-menu {
     border-radius: 2px;
@@ -723,6 +725,19 @@ body .token_black {
           border-right-color: rgb(232, 232, 232) !important;
         }
       }
+    }
+  }
+}
+
+.transaction-new,.header-overlap{
+  .badge-confirmed{
+    background: rgba(153,153,153,0.20);
+    border-radius: 2px;
+    span{
+      font-family: PingFangSC-Regular;
+      font-size: 12px;
+      color: #666666;
+      text-align: center;
     }
   }
 }

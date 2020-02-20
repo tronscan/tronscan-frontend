@@ -2,6 +2,11 @@
   .dropdown:hover>.dropdown-menu {
     display: block;
   }
+  .dropup  {
+    .dropdown-menu{
+      bottom:17px;
+    }
+  }
   .dropup:hover>.dropdown-menu {
     display: block;
   }

@@ -78,30 +78,7 @@ export function timeDiffFormat(time) {
     let firstTime = ''
     let secondTime = ''
 
-    // if(mapTimeValue[key[0]] > 0){   
-    //     timeObj = unitTime(dateMap,mapTimeValue,0,key)
-    // }else{
-    //    if(mapTimeValue[key[1]] >= 1){
-    //     timeObj = unitTime(dateMap,mapTimeValue,1,key)
-    //    }else{
-    //         if(mapTimeValue[key[2]] >=1){ 
-    //             timeObj = unitTime(dateMap,mapTimeValue,2,key)
-
-    //         }else{
-    //             if(mapTimeValue[key[3]] >= 1){                   
-    //                 timeObj = unitTime(dateMap,mapTimeValue,3,key)
-    //             }else{
-    //                 if(mapTimeValue[key[4]] >= 1){                      
-    //                     timeObj = unitTime(dateMap,mapTimeValue,4,key)
-    //                 }else{
-    //                     firstUnit = mapTimeValue[key[5]] > 1 ? dateMap[key[5]].plural : dateMap[key[5]].odd
-    //                     firstTime = mapTimeValue[key[5]]
-    //                     timeObj = {firstTime,secondTime:0,firstUnit,secondUnit:null,string:`${firstTime} ${firstUnit}`}
-    //                 }
-    //             }
-    //         }
-    //    }
-    // }
+    
     if (mapTimeValue[key[0]] >= 1) {
         timeObj = unitTime(dateMap, mapTimeValue, 0, key)
     } else if (mapTimeValue[key[1]] >= 1) {
@@ -111,16 +88,15 @@ export function timeDiffFormat(time) {
     } else {
         firstUnit = mapTimeValue[key[3]] > 1 ? dateMap[key[3]].plural : dateMap[key[3]].odd
         firstTime = mapTimeValue[key[3]]
+        let string = firstTime < 1 ? 'less than 1sec' : `${firstTime}${firstUnit}`
         timeObj = {
             firstTime,
             secondTime: 0,
             firstUnit,
             secondUnit: null,
-            string: `${firstTime}${firstUnit}`
+            string: string
         }
     }
-
-
     return timeObj
 }
 
