@@ -425,7 +425,7 @@ class Committee extends React.Component {
                                     {
                                         record.key == 'getTotalEnergyCurrentLimit' && <div>
                                             {
-                                                <span>{text}</span>
+                                                <span>{text} ENERGY</span>
                                             }
                                         </div>
                                     }

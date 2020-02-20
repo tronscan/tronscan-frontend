@@ -195,6 +195,7 @@ export const lang20Q1 = {
   proposal_validate_text_6:"온 / 오프를 선택하십시오",
   proposal_validate_text_7:"1-10000 사이의 수치를 입력하세요",
   proposal_validate_text_8:"1-1000 사이의 수치를 입력하세요",
+  proposal_validate_text_9:"0-100000000000000000 사이의 수치를 입력하세요",
   propose_not_activate:"열지 않음",
   proposal_value_same:"새로운 수치는 현재 수치와 동일합니다",
   go_to_proposals_list:"제안에 투표",

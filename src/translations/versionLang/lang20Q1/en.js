@@ -195,6 +195,7 @@ export const lang20Q1 = {
   proposal_validate_text_6:"Please select on / off",
   proposal_validate_text_7:"Please enter a value between 1-10000",
   proposal_validate_text_8:"Please enter a value between 1-1000",
+  proposal_validate_text_9:"Please enter a value between 0-100000000000000000",
   propose_not_activate:"Not Activate",
   proposal_value_same:"The new value is identical to the current one",
   go_to_proposals_list:"Vote for the proposal",

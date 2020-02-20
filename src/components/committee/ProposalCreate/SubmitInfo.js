@@ -320,7 +320,7 @@ export class SubmitProposal extends Component {
                                 {
                                     record.key == 'getTotalEnergyCurrentLimit' && <div>
                                         {
-                                            <span>{new BigNumber(text).toFixed()}</span>
+                                            <span>{new BigNumber(text).toFixed()} ENERGY</span>
                                         }
                                         {
                                             record.same && <span className="proposal-value-same ml-1">({tu('proposal_value_same')})</span>

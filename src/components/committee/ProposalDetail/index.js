@@ -356,7 +356,7 @@ class ProposalDetail extends React.Component {
                                                                                     <div>
                                                                                         <span>{ intl.formatMessage({id: 'propose_20'})}</span>
                                                                                         <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
-                                                                                        <span>{item.proposalVal}</span>
+                                                                                        <span>{item.proposalVal} ENERGY</span>
                                                                                     </div>
                                                                                 }
                                                                                 {

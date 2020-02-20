@@ -105,7 +105,7 @@ export class SetProposal extends Component {
             case "getTotalEnergyCurrentLimit":
                 console.log('item.newValue',item.newValue)
                 this.props.form.setFieldsValue({
-                    "getTotalEnergyCurrentLimit": item.newValue !== undefined? item.newValue/ONE_TRX:''
+                    "getTotalEnergyCurrentLimit": item.newValue !== undefined? item.newValue:''
                 });
             break; 
             case "getAllowMultiSign":
@@ -381,7 +381,7 @@ export class SetProposal extends Component {
                                 {
                                     record.key == 'getTotalEnergyCurrentLimit' && <div>
                                         {
-                                            <span>{text}</span>
+                                            <span>{text} ENERGY</span>
                                         }
                                     </div>
                                 }
@@ -782,14 +782,14 @@ export class SetProposal extends Component {
               {
                 record.key == "getTotalEnergyCurrentLimit" &&  <Form.Item>
                     {getFieldDecorator('getTotalEnergyCurrentLimit', {
-                        rules: [{ required: true, message: tu("proposal_validate_text_1")},
+                        rules: [{ required: true, message: tu("proposal_validate_text_9")},
                     ],
                     })(
                         <InputNumber
-                            placeholder={intl.formatMessage({id: 'proposal_validate_text_1'})}
+                            placeholder={intl.formatMessage({id: 'proposal_validate_text_9'})}
                             min={0}
-                            max={100000000000}
-                            precision={6}
+                            max={100000000000000000}
+                            precision={0}
                             className="proposal_w-230"
                             onChange={(e)=>{this.onInputChange(e,record)}}
                         />,
@@ -1047,7 +1047,7 @@ export class SetProposal extends Component {
             inputValue = e
             break; 
         case "getTotalEnergyCurrentLimit":
-            inputValue = e * ONE_TRX
+            inputValue = e
             break; 
         case "getAllowMultiSign":
             inputValue = e

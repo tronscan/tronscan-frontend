@@ -197,6 +197,7 @@ export const lang20Q1 = {
   proposal_validate_text_6:"オン/オフを選択してください",
   proposal_validate_text_7:"1〜10000の値を入力してください",
   proposal_validate_text_8:"1〜1000の値を入力してください",
+  proposal_validate_text_9:"0〜100000000000000000の値を入力してください",
   propose_not_activate:"開かない",
   proposal_value_same:"新しい値は現在の値と同じです",
   go_to_proposals_list:"提案に投票する",
