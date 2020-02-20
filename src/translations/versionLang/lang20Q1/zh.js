@@ -129,8 +129,16 @@ export const lang20Q1 = {
   chart_hold_trx_number:'账户数',
   chart_resource_user_freeing:'用户冻结trx的能量',
   chart_resource_user_burning:'用户烧毁trx的能量',
-  chart_resource_contract_deployer:'合约部署者提供的能量'
+  chart_resource_contract_deployer:'合约部署者提供的能量',
+  
+  
+  // full node
+  full_node_version_latest_block:'最新区块',
+  full_node_version_confirmed:'已确认',
+  full_node_version_unconfirmed:'待确认',
+  full_node_version_confirmed_tips:'“已确认”是指被19个及以上超级节点确认，否则为“待确认”',
 
-
+  // 2020-02-19
+  chart_energy:'能量消耗',
 
 };

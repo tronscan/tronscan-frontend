@@ -131,5 +131,14 @@ export const lang20Q1 = {
   chart_hold_trx_number:'Количество аккаунтов',
   chart_resource_user_freeing:'Энергия от замораживания TRX',
   chart_resource_user_burning:'Энергия от сжигания TRX',
-  chart_resource_contract_deployer:'Энергия от выпускников контрактов'
+  chart_resource_contract_deployer:'Энергия от выпускников контрактов',
+
+  // full node
+  full_node_version_latest_block:'Последний блок',
+  full_node_version_confirmed:'CONFIRMED',
+  full_node_version_unconfirmed:'UNCONFIRMED',
+  full_node_version_confirmed_tips:'«Подтвержденный» означает подтвержденный 19 или более суперузлами, в противном случае он «должен быть подтвержден»',
+
+  // 2020-02-19
+  chart_energy:'используемая энергия',
 };

@@ -128,5 +128,14 @@ export const lang20Q1 = {
    chart_hold_trx_number:'عدد الحسابات',
    chart_resource_user_freeing:'الطاقة من تجميد TRX',
    chart_resource_user_burning:'الطاقة من حرق TRX',
-   chart_resource_contract_deployer:'الطاقة من ناشري العقود'
+   chart_resource_contract_deployer:'الطاقة من ناشري العقود',
+
+    // full node
+    full_node_version_latest_block:'أحدث كتلة',
+    full_node_version_confirmed:'CONFIRMED',
+    full_node_version_unconfirmed:'UNCONFIRMED',
+    full_node_version_confirmed_tips:'"مؤكد" يعني تأكيده بـ 19 عقدًا أو أكثر ، وإلا فسيتم "التأكيد"',
+
+    // 2020-02-19
+  chart_energy:'الطاقة المستخدمة',
 };

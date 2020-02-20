@@ -125,5 +125,16 @@ export const lang20Q1 = {
   chart_hold_trx_number:'계정수',
   chart_resource_user_freeing:'TRX 동결 에너지',
   chart_resource_user_burning:'TRX 소각 에너지',
-  chart_resource_contract_deployer:'계약 배치자가 제공하는 에너지'
+  chart_resource_contract_deployer:'계약 배치자가 제공하는 에너지',
+
+  // full node
+  full_node_version_latest_block:'최신 블록',
+  full_node_version_confirmed:'CONFIRMED',
+  full_node_version_unconfirmed:'UNCONFIRMED',
+  full_node_version_confirmed_tips:'SR에서 확인 된 19 개가 넘는 트랜잭션이 "확인 됨"으로 표시되고 그렇지 않은 경우 "확인되지 않음"',
+
+  // 2020-02-19
+  chart_energy:'사용 된 에너지',
+
+
 };

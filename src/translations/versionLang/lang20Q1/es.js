@@ -127,5 +127,16 @@ export const lang20Q1 = {
   index_navigation_explorers: "EXPLORADORES",
   index_navigation_data: "DATOS",
   index_navigation_committee: "COMITÉ",
-  index_navigation_proposals: "PROPUESTAS"
+  index_navigation_proposals: "PROPUESTAS",
+
+  // full node
+  full_node_version_latest_block:'Último bloque',
+  full_node_version_confirmed:'CONFIRMED',
+  full_node_version_unconfirmed:'UNCONFIRMED',
+  full_node_version_confirmed_tips:'"Confirmado" significa confirmado por 19 o más supernodos, de lo contrario es "por confirmar"',
+
+  // 2020-02-19
+  chart_energy:'Consumo de energía'
+
+
 };
