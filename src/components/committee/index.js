@@ -2,7 +2,7 @@ import React from "react";
 import {tu,tv} from "../../utils/i18n";
 import {injectIntl} from "react-intl";
 import { Table } from 'antd';
-import {upperFirst} from 'lodash'
+import _,{upperFirst} from 'lodash'
 import {Client} from "../../services/api";
 import {Link} from "react-router-dom";
 import {ONE_TRX,IS_MAINNET} from "../../constants";
@@ -170,6 +170,14 @@ class Committee extends React.Component {
                         item.name = 'propose_31';
                         item.id = '31';
                         break;
+                    case "getAllowTvmSolidity059":
+                        item.name = 'propose_32';
+                        item.id = '32';
+                        break;
+                    case "getAdaptiveResourceLimitTargetRatio":
+                        item.name = 'propose_33';
+                        item.id = '33';
+                        break;        
                 }
             });
             let tronParametersNew = [];
@@ -179,7 +187,7 @@ class Committee extends React.Component {
                 }
             })
             this.setState({
-                dataSource: tronParametersNew
+                dataSource: _(tronParametersNew).sortBy(tb => Number(tb.id)).value()
             })
         }else{
             let { tronParameters } = await Client.getChainparameters();
@@ -478,6 +486,19 @@ class Committee extends React.Component {
                                             <div>
                                                 <span>{text / ONE_TRX}</span> &nbsp;<span>TRX</span>
                                             </div>
+                                    }
+                                    {
+                                        record.key == 'getAllowTvmSolidity059' && <div>
+                                            {
+                                                text? <span>{tu('propose_allowed')}</span>:
+                                                    <span>{tu('propose_not_allowed')}</span>
+                                            }
+                                        </div>
+                                    }
+                                    {                       
+                                        record.key == 'getAdaptiveResourceLimitTargetRatio' && <div>
+                                            <span>{text}</span>
+                                        </div>
                                     }
 
                                 </div>:<div>

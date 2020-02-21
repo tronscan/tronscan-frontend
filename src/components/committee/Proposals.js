@@ -73,7 +73,9 @@ class Proposal extends React.Component {
             '',
             'getChangeDelegation',
             'getWitness127PayPerBlock',
-        ];
+            'getAllowTvmSolidity059',
+            'getAdaptiveResourceLimitTargetRatio'
+        ]
 
         let sunsideArr = [
             {
@@ -452,6 +454,25 @@ class Proposal extends React.Component {
                                                 <span>TRX</span>
                                             </div>
 
+                                        }
+                                        {
+                                            item.proposalKey == 'getAllowTvmSolidity059' &&
+                                            <div>
+                                                <span>{ intl.formatMessage({id: 'propose_32'})}</span>
+                                                <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
+                                                {
+                                                    item.proposalVal? <span>{tu('propose_allowed')}</span>:
+                                                        <span>{tu('propose_not_allowed')}</span>
+                                                }
+                                            </div>
+                                        }
+                                        {
+                                            item.proposalKey == 'getAdaptiveResourceLimitTargetRatio' &&
+                                            <div>
+                                                <span>{ intl.formatMessage({id: 'propose_33'})}</span>
+                                                <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
+                                                <span>{ item.proposalVal }</span>
+                                            </div>
                                         }
                                     </div>:<div>
                                         {
