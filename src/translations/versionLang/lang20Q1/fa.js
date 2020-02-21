@@ -202,4 +202,14 @@ export const lang20Q1 = {
   proposal_value_same:"مقدار پیشنهادی برابر با مقدار فعلی است",
   go_to_proposals_list:"به یک پیشنهاد رأی دهید",
   proposal_quit:"شما در حال حاضر عملیات ناتمام دارید. آیا مطمئن هستید که می خواهید خارج شوید؟ ",
+
+    
+  // full node
+  full_node_version_latest_block:'آخرین بلوک',
+  full_node_version_confirmed:'CONFIRMED',
+  full_node_version_unconfirmed:'UNCONFIRMED',
+  full_node_version_confirmed_tips:'"تأیید شده" به معنی تأیید شده توسط 19 یا بیشتر گره فوق العاده است ، در غیر این صورت "باید تأیید شود"',
+
+  // 2020-02-19
+  chart_energy:'انرژی استفاده شده',
 };

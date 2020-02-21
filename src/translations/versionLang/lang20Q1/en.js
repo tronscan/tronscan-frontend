@@ -201,4 +201,13 @@ export const lang20Q1 = {
   go_to_proposals_list:"Vote for the proposal",
   proposal_quit:"The attempt is unfinished. Are you sure to quit? ",
   
+
+   // full node
+  full_node_version_latest_block:'Latest block',
+  full_node_version_confirmed:'CONFIRMED',
+  full_node_version_unconfirmed:'UNCONFIRMED',
+  full_node_version_confirmed_tips:'Transactions confirmed by 19 or more SRs will be marked "confirmed"，or is“uncomfirmed”',
+
+  // 2020-02-19
+  chart_energy:'energy used',
 };

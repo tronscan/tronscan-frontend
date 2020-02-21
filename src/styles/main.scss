@@ -5215,6 +5215,7 @@ h5 {
   margin-top:6px;
   display: inline-block;
 }
+
 .proposals-tag{
   .ant-tag{
     border-radius: 10px;
@@ -5253,4 +5254,11 @@ h5 {
         }
     }
   }
+}
+
+.th-word-break{
+  // width:100px;
+  // word-break: break-all;
+    white-space: normal;
+    // word-wrap: break-word;
 }

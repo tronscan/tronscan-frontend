@@ -203,4 +203,12 @@ export const lang20Q1 = {
   go_to_proposals_list:"提案に投票する",
   proposal_quit:"その試みは未完です。終了しますか？",
 
+  // full node
+  full_node_version_latest_block:'最新のブロック',
+  full_node_version_confirmed:'CONFIRMED',
+  full_node_version_unconfirmed:'UNCONFIRMED',
+  full_node_version_confirmed_tips:'19以上のSRによって確認されたトランザクションは、「確認済み」とマークされます，そうでなければ「確認される」',
+
+  // 2020-02-19
+  chart_energy:'使用エネルギー'
 };

@@ -2,11 +2,10 @@ import React from "react";
 import {tu,tv} from "../../utils/i18n";
 import {injectIntl} from "react-intl";
 import { Table } from 'antd';
-import {upperFirst} from 'lodash'
+import _,{upperFirst} from 'lodash'
 import {Client} from "../../services/api";
 import {Link} from "react-router-dom";
 import {ONE_TRX,IS_MAINNET} from "../../constants";
-import _ from "lodash";
 
 class Committee extends React.Component {
 

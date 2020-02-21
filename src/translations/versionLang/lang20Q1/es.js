@@ -201,4 +201,14 @@ export const lang20Q1 = {
   proposal_value_same:"El nuevo valor es idéntico al actual.",
   go_to_proposals_list:"Votar por la propuesta",  
   proposal_quit:"El intento está inacabado. ¿Estás seguro de dejarlo? ",
+  // full node
+  full_node_version_latest_block:'Último bloque',
+  full_node_version_confirmed:'CONFIRMED',
+  full_node_version_unconfirmed:'UNCONFIRMED',
+  full_node_version_confirmed_tips:'"Confirmado" significa confirmado por 19 o más supernodos, de lo contrario es "por confirmar"',
+
+  // 2020-02-19
+  chart_energy:'Consumo de energía'
+
+
 };

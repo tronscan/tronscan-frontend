@@ -202,4 +202,13 @@ export const lang20Q1 = {
   proposal_value_same:"القيمة المقترحة مماثلة للقيمة الحالية",
   go_to_proposals_list:"التصويت على الاقتراح",
   proposal_quit:"لديك حاليا عملية غير مكتملة ، هل أنت متأكد من رغبتك في الخروج؟",
+  
+  // full node
+  full_node_version_latest_block:'أحدث كتلة',
+  full_node_version_confirmed:'CONFIRMED',
+  full_node_version_unconfirmed:'UNCONFIRMED',
+  full_node_version_confirmed_tips:'"مؤكد" يعني تأكيده بـ 19 عقدًا أو أكثر ، وإلا فسيتم "التأكيد"',
+
+  // 2020-02-19
+  chart_energy:'الطاقة المستخدمة',
 };

@@ -166,19 +166,23 @@ class Transaction extends React.Component {
                         }
                         {
                           transaction.hasOwnProperty("confirmed") && <tr>
-                            <th>{tu("status")} {" "}<QuestionMark placement="right" text={intl.formatMessage({ id: 'transaction_status_tip' })} ></QuestionMark></th>
+                            <th>{tu("status")} {" "}<QuestionMark placement="right" text={intl.formatMessage({ id: 'full_node_version_confirmed_tips' })} ></QuestionMark></th>
                             <td>
                               {
                                 transaction.confirmed ?
-                                  <span className="badge badge-success text-uppercase">{tu("Confirmed")}</span> :
-                                  <span className="badge badge-danger text-uppercase">{tu("Unconfirmed")}</span>
+                                  <span className="badge badge-success text-uppercase">{tu("full_node_version_confirmed")}</span> :
+                                  <span className="badge badge-confirmed text-uppercase">{tu("full_node_version_unconfirmed")}</span>
                               }
                             </td>
                           </tr>
                         }
                         <tr>
-                          <th>{tu("block")}</th>
-                          <td><BlockNumberLink number={transaction.block} /></td>
+                          <th>
+                            {tu("block")}
+                          </th>
+                          <td>
+                            <BlockNumberLink number={transaction.block} />
+                          </td>
                         </tr>
                         {
                           transaction.timestamp !== 0 && <tr>

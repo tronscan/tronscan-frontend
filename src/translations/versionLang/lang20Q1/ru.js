@@ -204,4 +204,12 @@ export const lang20Q1 = {
   proposal_value_same:"Новое значение идентично текущему",
   go_to_proposals_list:"Проголосовать за предложение",
   proposal_quit:"В настоящее время у вас есть незавершенные операции. Вы уверены, что хотите выйти?",
+  // full node
+  full_node_version_latest_block:'Последний блок',
+  full_node_version_confirmed:'CONFIRMED',
+  full_node_version_unconfirmed:'UNCONFIRMED',
+  full_node_version_confirmed_tips:'«Подтвержденный» означает подтвержденный 19 или более суперузлами, в противном случае он «должен быть подтвержден»',
+
+  // 2020-02-19
+  chart_energy:'используемая энергия',
 };
