@@ -1762,11 +1762,11 @@ export const messages = {
   propose_25: "Propose to modify the fee for updating account permission",
   propose_26: "Propose to modify the fee for multi-signature",
   propose_27: "Propose to enable protocol optimization",
-  propose_28:
-    "Propose to support the new features of TRON Virtual Machine 0.5.4",
+  propose_28: "Propose to support the new features of TRON Virtual Machine 0.5.4",
   propose_30: "Propose to support the decentralized vote dividend",
-  propose_31:
-    "Propose to modify the block voting rewards given to the top 27 SRs and the following 100 partners",
+  propose_31: "Propose to modify the block voting rewards given to the top 27 SRs and the following 100 partners",
+  propose_32: "Propose to allow  TVM to support solidity 0.5.9",
+  propose_33: "Propose to modify the adaptive resource limit target ratio",
   propose_minute: "minute",
   propose_unactivate: "Not activated",
   propose_not_allowed: "Not allowed",

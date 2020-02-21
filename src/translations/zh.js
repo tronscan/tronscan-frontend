@@ -1580,6 +1580,8 @@ export const messages = {
     "propose_28": "提议支持波场虚拟机0.5.4的新功能",
     "propose_30": "提议开启去中心化投票分红机制",
     "propose_31": "提议修改分给前127名超级代表及合伙人的区块投票收益",
+    "propose_32": "提议允许虚拟机支持0.5.9版本的Solidity编译器",
+    "propose_33": "提议修改能量目标值",
     "propose_minute": "分钟",
     "propose_unactivate": "未开启",
     "propose_not_allowed": "不允许",
