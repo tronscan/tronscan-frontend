@@ -1,4 +1,4 @@
-import AppTrx from 'hw-app-trx';
+import AppTrx from '@ledgerhq/hw-app-trx';
 import Transport from "@ledgerhq/hw-transport-u2f";
 
 export default class LedgerBridge {

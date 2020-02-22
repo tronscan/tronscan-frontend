@@ -8,12 +8,6 @@ import { loginWithLedger } from "../../actions/app";
 import { tu, t } from "../../utils/i18n";
 import { withTronWeb } from "../../utils/tronWeb";
 
-export default
-@connect(null, {
-  loginWithLedger
-})
-@withRouter
-@withTronWeb
 class LedgerAccess extends Component {
   constructor(props) {
     super(props);
@@ -181,3 +175,7 @@ class LedgerAccess extends Component {
     );
   }
 }
+
+export default connect(null, { 
+    loginWithLedger
+  })(withRouter(withTronWeb(LedgerAccess)))
