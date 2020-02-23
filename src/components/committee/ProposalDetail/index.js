@@ -485,15 +485,15 @@ class ProposalDetail extends React.Component {
                                                                                                 <br/>
                                                                                                 <div>
                                                                                                     {tu('getAllowTvmSolidity059_tips')}
-                                                                                                    <a className="ml-2" href="https://github.com/tronprotocol/java-tron/issues/2959" target="_blank">{tu("learn_more")}></a>
+                                                                                                    <a className="ml-2" href="https://github.com/tronprotocol/tips/blob/master/proposal/proposal-32.md" target="_blank">{tu("learn_more")}></a>
                                                                                                 </div>
                                                                                             
                                                                                                 <div>
                                                                                                     tronprotocol/tips:
-                                                                                                    <a className="ml-2" href="https://github.com/tronprotocol/tips/issues/43" target="_blank">{tu("#tip43")}</a>
-                                                                                                    <a className="ml-2" href="https://github.com/tronprotocol/tips/issues/44" target="_blank">{tu("#tip44")}</a>
-                                                                                                    <a className="ml-2" href="https://github.com/tronprotocol/tips/issues/54" target="_blank">{tu("#tip54")}</a>
-                                                                                                    <a className="ml-2" href="https://github.com/tronprotocol/tips/issues/60" target="_blank">{tu("#tip60")}</a>
+                                                                                                    <a className="ml-2" href="https://github.com/tronprotocol/tips/blob/master/tip-43.md" target="_blank">{tu("#tip43")}</a>
+                                                                                                    <a className="ml-2" href="https://github.com/tronprotocol/tips/blob/master/tip-44.md" target="_blank">{tu("#tip44")}</a>
+                                                                                                    <a className="ml-2" href="https://github.com/tronprotocol/tips/blob/master/tip-54.md" target="_blank">{tu("#tip54")}</a>
+                                                                                                    <a className="ml-2" href="https://github.com/tronprotocol/tips/blob/master/tip-60.md" target="_blank">{tu("#tip60")}</a>
                                                                                                 </div>
                                                                                             </div>
                                                                                             
