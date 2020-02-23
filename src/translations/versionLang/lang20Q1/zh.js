@@ -215,4 +215,5 @@ export const lang20Q1 = {
   go_to_proposals_list:"去给提议投票",
   proposal_quit:"您当前有未完成的操作，确定退出吗？",
 
+  getAllowTvmSolidity059_tips:"TVM（TRON虚拟机）的三个新功能将被打开：支持并行签名验证，多签名验证以及判断地址是否为合约地址。",
 };
