@@ -200,7 +200,7 @@ class Block extends React.Component {
                           </tr>
                           {
                             block.witnessAddress !== "" && <tr>
-                              <th>{tu("witness")}:</th>
+                              <th>{tu("produced_by")}:</th>
                               <td>
                                 <Truncate>
                                   <AddressLink address={block.witnessAddress} includeCopy={true}>{block.witnessName}</AddressLink>
