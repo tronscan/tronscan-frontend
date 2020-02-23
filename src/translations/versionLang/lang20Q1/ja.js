@@ -136,5 +136,7 @@ export const lang20Q1 = {
   full_node_version_confirmed_tips:'19以上のSRによって確認されたトランザクションは、「確認済み」とマークされます，そうでなければ「確認される」',
 
   // 2020-02-19
-  chart_energy:'使用エネルギー'
+  chart_energy:'使用エネルギー',
+  getAllowTvmSolidity059_tips:"Three new features of TVM (TRON Virtual Machine) will be opened: support for parallel signature verification, multi signature verification, and judge whether the address is the contract address",
+
 };
