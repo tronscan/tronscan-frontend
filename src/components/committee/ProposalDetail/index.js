@@ -490,10 +490,10 @@ class ProposalDetail extends React.Component {
                                                                                             
                                                                                                 <div>
                                                                                                     tronprotocol/tips:
-                                                                                                    <a className="ml-2" href="https://github.com/tronprotocol/tips/issues/43" target="_blank">{tu("#43")}</a>
-                                                                                                    <a className="ml-2" href="https://github.com/tronprotocol/tips/issues/44" target="_blank">{tu("#44")}</a>
-                                                                                                    <a className="ml-2" href="https://github.com/tronprotocol/tips/issues/54" target="_blank">{tu("#54")}</a>
-                                                                                                    <a className="ml-2" href="https://github.com/tronprotocol/tips/issues/60" target="_blank">{tu("#60")}</a>
+                                                                                                    <a className="ml-2" href="https://github.com/tronprotocol/tips/issues/43" target="_blank">{tu("#tip43")}</a>
+                                                                                                    <a className="ml-2" href="https://github.com/tronprotocol/tips/issues/44" target="_blank">{tu("#tip44")}</a>
+                                                                                                    <a className="ml-2" href="https://github.com/tronprotocol/tips/issues/54" target="_blank">{tu("#tip54")}</a>
+                                                                                                    <a className="ml-2" href="https://github.com/tronprotocol/tips/issues/60" target="_blank">{tu("#tip60")}</a>
                                                                                                 </div>
                                                                                             </div>
                                                                                             
