@@ -136,7 +136,8 @@ export const lang20Q1 = {
   full_node_version_confirmed_tips:'"Confirmado" significa confirmado por 19 o más supernodos, de lo contrario es "por confirmar"',
 
   // 2020-02-19
-  chart_energy:'Consumo de energía'
+  chart_energy:'Consumo de energía',
 
+  getAllowTvmSolidity059_tips:"Three new features of TVM (TRON Virtual Machine) will be opened: support for parallel signature verification, multi signature verification, and judge whether the address is the contract address",
 
 };

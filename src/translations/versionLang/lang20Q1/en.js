@@ -137,4 +137,7 @@ export const lang20Q1 = {
 
   // 2020-02-19
   chart_energy:'energy used',
+  
+  getAllowTvmSolidity059_tips:"Three new features of TVM (TRON Virtual Machine) will be opened: support for parallel signature verification, multi signature verification, and judge whether the address is the contract address.",
+
 };
