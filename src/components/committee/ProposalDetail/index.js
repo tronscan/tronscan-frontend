@@ -481,7 +481,22 @@ class ProposalDetail extends React.Component {
                                                                                                     item.proposalVal? <span>{tu('propose_allowed')}</span>:
                                                                                                         <span>{tu('propose_not_allowed')}</span>
                                                                                                 }
+                                                                                                <br/>
+                                                                                                <br/>
+                                                                                                <div>
+                                                                                                    {tu('getAllowTvmSolidity059_tips')}
+                                                                                                    <a className="ml-2" href="https://github.com/tronprotocol/java-tron/issues/2959" target="_blank">{tu("learn_more")}></a>
+                                                                                                </div>
+                                                                                            
+                                                                                                <div>
+                                                                                                    tronprotocol/tips:
+                                                                                                    <a className="ml-2" href="https://github.com/tronprotocol/tips/issues/43" target="_blank">{tu("#43")}</a>
+                                                                                                    <a className="ml-2" href="https://github.com/tronprotocol/tips/issues/44" target="_blank">{tu("#44")}</a>
+                                                                                                    <a className="ml-2" href="https://github.com/tronprotocol/tips/issues/54" target="_blank">{tu("#54")}</a>
+                                                                                                    <a className="ml-2" href="https://github.com/tronprotocol/tips/issues/60" target="_blank">{tu("#60")}</a>
+                                                                                                </div>
                                                                                             </div>
+                                                                                            
                                                                                         }
                                                                                         {
                                                                                             item.proposalKey == 'getAdaptiveResourceLimitTargetRatio' &&
