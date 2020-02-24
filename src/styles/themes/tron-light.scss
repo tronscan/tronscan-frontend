@@ -13,7 +13,7 @@
   }
 
   .new-menu-List {
-    padding-top:10px;
+    padding-top: 10px;
     .navbar-nav {
       .nav-item {
         &:hover {
@@ -27,7 +27,7 @@
       }
     }
   }
- 
+
   .nav-searchbar {
     .dropdown-menu {
       z-index: 300;
@@ -51,19 +51,19 @@
       padding-left: 30px;
     }
     .loginInfoNavBar {
-      padding-top:10px;
+      padding-top: 10px;
       padding-right: 32px;
     }
   }
   // sunnet menu
-  .sunnet-menu-nav-wrapper{
+  .sunnet-menu-nav-wrapper {
     .new-menu-List {
-      padding-top:0;
-    }
-    .loginInfoNavBar{
       padding-top: 0;
     }
-    #navbar-top{
+    .loginInfoNavBar {
+      padding-top: 0;
+    }
+    #navbar-top {
       margin-left: 1rem;
     }
   }
@@ -91,12 +91,16 @@
     display: flex;
   }
   .indxe-page-bottom-sec {
+    margin-top: 20px;
     position: relative;
     .helpLink {
       position: absolute;
       right: -8rem;
       bottom: 16rem;
     }
+  }
+  .indxe-page-bottom-sec-pc {
+    margin-top: 20px;
   }
   .single-menu-nav-wrapper {
     // max-width: 1268px;
@@ -127,8 +131,8 @@
       bottom: 60px;
     }
   }
-  .copyrightFooterContainer{
-    height:24px;
+  .copyrightFooterContainer {
+    height: 24px;
   }
   .helpLinkWrapper {
     width: 45px;
@@ -1098,6 +1102,16 @@ $color: #c23631;
     //  background: url("../images/main/mian_bg_right.png") no-repeat;
     //  background-size: 100% 100%;
     //}
+    .pc-home-splash {
+      padding: 20px 1rem !important;
+      margin-top: 10px;
+      .noticeNews {
+        margin-bottom: 10px;
+      }
+    }
+    .transferBlockSec {
+      padding: 0 0 73px;
+    }
   }
   .home .color-grey-100 {
     color: $color-grey-100 !important;

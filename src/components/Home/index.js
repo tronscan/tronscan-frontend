@@ -448,7 +448,7 @@ export default class Home extends Component {
       <main className="home pb-0">
         {/* <i className="main-icon-left"></i>
           <i className="main-icon-right"></i> */}
-        <div className="container-fluid position-relative d-flex pt-1 pt-md-4 mx-auto flex-column">
+        <div className={isMobile ? "container-fluid position-relative d-flex pt-1 pt-md-4 mx-auto flex-column" : "container-fluid position-relative d-flex  mx-auto flex-column"}>
           {/*<div ref={(el) => this.$ref = el} style={{*/}
           {/*zIndex: 0,*/}
           {/*left: 0,*/}
@@ -457,11 +457,17 @@ export default class Home extends Component {
           {/*bottom: 0,*/}
           {/*}} className="position-absolute"/>*/}
 
-          <div className="container home-splash p-0 p-md-3">
+          <div
+            className={
+              isMobile
+                ? "container home-splash p-0 p-md-3"
+                : "container pc-home-splash p-0 p-md-3"
+            }
+          >
             {IS_MAINNET ? (
               <div className="row justify-content-center text-center">
-                <div className="col-12 exchange">
-                   <div className="notice notice-new-style">
+                <div className="col-12 exchange noticeNews">
+                  <div className="notice notice-new-style">
                     <img
                       src={require("../../images/announcement-logo.png")}
                       alt=""
@@ -505,35 +511,6 @@ export default class Home extends Component {
                       </a>
                     ) : null}
                   </div>
-                  {/*<p className="mt-5 mt-5-logo">*/}
-                  {/*<img src={this.getLogo()}*/}
-                  {/*className="animated ad-600ms zoomIn"/>*/}
-                  {/*</p>*/}
-                  {/*<h2 className="mb-5 text-muted animated fadeIn ad-1600ms" style={{fontSize: 32}}>*/}
-                  {/*{tu("tron_main_message")}*/}
-                  {/*</h2>*/}
-                  {/*
-                    <div className={
-                      "input-group input-group-lg mb-4" +
-                      (isShaking ? " animated shake " : "") +
-                      (hasFound ? " animated bounceOut" : "")
-                    }>
-                      <input type="text"
-                             className="form-control p-3 bg-tron-light  color-grey-100 border-0 box-shadow-none"
-                             style={{fontSize: 13, borderRadius: 0}}
-                             value={search}
-                             onKeyDown={this.onSearchKeyDown}
-                             onChange={ev => this.setState({search: ev.target.value})}
-                             placeholder={intl.formatMessage({id: 'search_description'})}/>
-
-                      <div className="input-group-append">
-                        <button className="btn btn-search box-shadow-none" onClick={this.doSearch}
-                                style={{borderRadius: 0}}>
-                          <i className="fa fa-search"/>
-                        </button>
-                      </div>
-                    </div>
-                    */}
                 </div>
               </div>
             ) : (
@@ -672,7 +649,7 @@ export default class Home extends Component {
             {/* )} */}
           </div>
         </div>
-        <div className=" pb-3 pb-md-5">
+        <div className={isMobile? "pb-3 pb-md-5":"transferBlockSec"}>
           <div className="container">
             {isMobile ? (
               <div className="row mt-0 mt-md-4 mb-3">
@@ -764,7 +741,7 @@ export default class Home extends Component {
                 </div>
               </div>
             ) : (
-              <div className="row mt-0 mt-md-4 mb-3">
+              <div className="row mt-0 ">
                 <div className="col-md-6 mt-3 mt-md-0 ">
                   <div className="card " style={styles.card}>
                     {/* <div
@@ -862,7 +839,7 @@ export default class Home extends Component {
               </div>
             )}
 
-            <div className="row mt-0 mt-md-4 indxe-page-bottom-sec">
+            <div className={isMobile?"row mt-0 mt-md-4 indxe-page-bottom-sec":"row indxe-page-bottom-sec-pc"}>
               <div className="col-md-6 mt-0 mb-3 mt-md-0 text-center">
                 <RecentBlocks />
               </div>
