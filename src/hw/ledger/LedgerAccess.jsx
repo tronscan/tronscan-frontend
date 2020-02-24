@@ -8,12 +8,6 @@ import { loginWithLedger } from "../../actions/app";
 import { tu, t } from "../../utils/i18n";
 import { withTronWeb } from "../../utils/tronWeb";
 
-export default
-@connect(null, {
-  loginWithLedger
-})
-@withRouter
-@withTronWeb
 class LedgerAccess extends Component {
   constructor(props) {
     super(props);
@@ -90,14 +84,14 @@ class LedgerAccess extends Component {
                 </a>
                 {t("ledger_website_download")}
               </div>
-              {/* <div>
+              { <div>
                 <a
                   target="_blank"
                   href="https://support.tronscan.org/hc/en-us/articles/360025936472-LEDGER-GUIDE"
                 >
                   {tu("ledger_click_help")}>
                 </a>
-              </div> */}
+              </div> }
             </div>
             <div className="text-center pt-5 mx-5">
               <img
@@ -181,3 +175,7 @@ class LedgerAccess extends Component {
     );
   }
 }
+
+export default connect(null, { 
+    loginWithLedger
+  })(withRouter(withTronWeb(LedgerAccess)))

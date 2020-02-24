@@ -93,7 +93,8 @@ class Menunavigation extends Component {
                 <span>
                   {route.routes &&
                     route.label !== "nav_more" &&
-                    route.label !== "nav_network" && (
+                    route.label !== "nav_network" && 
+                    route.label !== "newblock" && (
                       // className="dropdown-menu"
                       <div>
                         {route.routes &&
@@ -230,7 +231,7 @@ class Menunavigation extends Component {
                     )}
                   {route.routes &&
                     (route.label == "nav_network" ||
-                      route.label == "nav_more") && (
+                      route.label == "nav_more" ||  route.label == "newblock") && (
                       <div>
                         {route.routes &&
                           route.routes.map((subRoute, index) => {

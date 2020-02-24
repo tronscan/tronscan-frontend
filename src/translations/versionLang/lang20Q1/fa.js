@@ -109,5 +109,34 @@ export const lang20Q1 = {
   data_bandwidth_freezed: "پهنای باند از طریق فریز TRX",
   data_bandwidth_burned: "پهنای باند از طریق سوزاندن TRX",
   data_area:
-    "فقط علائم ذکر شده در بورس <a href='https://poloniex.org/'  target='_blank'>POLONI DEX</a> محاسبه می شود."
+    "فقط علائم ذکر شده در بورس <a href='https://poloniex.org/'  target='_blank'>POLONI DEX</a> محاسبه می شود.",
+
+  // index nav
+
+  index_navigation_explorers: "مرورگر",
+  index_navigation_data: "اطلاعات",
+  index_navigation_committee: "کمیته ترون",
+  index_navigation_proposals: "پیشنهاد",
+     // 2020-02-04
+  chart_hold_trx_account:'آمار نگهداری حسابهای TRX',
+  chart_hold_trx_account_per:'نسبت نگه داشتن ارز',
+  chart_hold_trx_account_per_t:'نسبت نگه داشتن ارز',
+  chart_hold_trx_account_per_tip:'حساب های TRX / کل حساب ها',
+  chart_hold_account_sum:'تعداد کل حسابها',
+  chart_hold_trx:'تعداد کل حساب های TRX',
+  chart_hold_trx_more:'داده های بیشتر',
+  chart_hold_trx_number:'تعداد حسابها',
+  chart_resource_user_freeing:'کاربر انرژی trx را یخ می زند',
+  chart_resource_user_burning:'کاربر انرژی trx را می سوزاند',
+  chart_resource_contract_deployer:'انرژی تأمین شده توسط توزیع کنندگان قرارداد',
+
+    
+  // full node
+  full_node_version_latest_block:'آخرین بلوک',
+  full_node_version_confirmed:'CONFIRMED',
+  full_node_version_unconfirmed:'UNCONFIRMED',
+  full_node_version_confirmed_tips:'"تأیید شده" به معنی تأیید شده توسط 19 یا بیشتر گره فوق العاده است ، در غیر این صورت "باید تأیید شود"',
+
+  // 2020-02-19
+  chart_energy:'انرژی استفاده شده',
 };

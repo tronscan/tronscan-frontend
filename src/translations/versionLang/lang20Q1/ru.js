@@ -111,5 +111,34 @@ export const lang20Q1 = {
   data_bandwidth_freezed: "Пропускная Способность после Замораживания TRX",
   data_bandwidth_burned: "Пропускная Способность после Сжигания TRX",
   data_area:
-    "Only tokens listed on <a href='https://poloniex.org/'  target='_blank'>POLONI DEX</a> are included"
+    "Only tokens listed on <a href='https://poloniex.org/'  target='_blank'>POLONI DEX</a> are included",
+
+  // index nav
+
+  index_navigation_explorers: "EXPLORERS",
+  index_navigation_data: "ДАННЫЕ",
+  index_navigation_committee: "КОМИТЕТ",
+  index_navigation_proposals: "ПРЕДЛОЖЕНИЯ",
+  
+  // 2020-02-04
+  chart_hold_trx_account:'Аккаунты, удерживающие TRX',
+  chart_hold_trx_account_per:'Процент держателя TRX',
+  chart_hold_trx_account_per_t:'Процент держателя TRX',
+  chart_hold_trx_account_per_tip:'Аккаунты, удерживающие TRX / Всего аккаунтов',
+  chart_hold_account_sum:'Всего аккаунтов',
+  chart_hold_trx:'Аккаунты, удерживающие TRX',
+  chart_hold_trx_more:'Больше данных',
+  chart_hold_trx_number:'Количество аккаунтов',
+  chart_resource_user_freeing:'Энергия от замораживания TRX',
+  chart_resource_user_burning:'Энергия от сжигания TRX',
+  chart_resource_contract_deployer:'Энергия от выпускников контрактов',
+
+  // full node
+  full_node_version_latest_block:'Последний блок',
+  full_node_version_confirmed:'CONFIRMED',
+  full_node_version_unconfirmed:'UNCONFIRMED',
+  full_node_version_confirmed_tips:'«Подтвержденный» означает подтвержденный 19 или более суперузлами, в противном случае он «должен быть подтвержден»',
+
+  // 2020-02-19
+  chart_energy:'используемая энергия',
 };

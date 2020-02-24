@@ -121,6 +121,7 @@ export const messages = {
   ##################################################################################
   */
   "blockchain": "Blockchain",
+  "newblock":"Blockchain",
   "wallet": "Cartera",
   "home": "Principal",
   "transfers": "Transferencias",
@@ -1560,6 +1561,8 @@ export const messages = {
   "propose_28": "Propose to support the new features of TRON Virtual Machine 0.5.4",
   "propose_30":"Propose to support the decentralized vote dividend",
   "propose_31": "Propose to modify the block voting rewards given to the top 27 SRs and the following 100 partners",
+  "propose_32": "Proponer permitir que TVM soporte solidez 0.5.9",
+  "propose_33": "Proponer modificar la relación objetivo de límite de recursos adaptativos",
   "propose_unactivate": "No abierto",
   "propose_minute": "min",
   "propose_not_allowed": "No permitido",

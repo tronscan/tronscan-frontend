@@ -103,10 +103,38 @@ export const lang20Q1 = {
   data_energy_consumed_total: "トータルエネルギー",
   data_energy_freezed: "TRXを凍結するために消費されるエネルギー",
   data_energy_burned: "TRXの燃焼に消費されるエネルギー",
-  data_whole_contract_use:"契約デプロイヤーからのエネルギー",
+  data_whole_contract_use: "契約デプロイヤーからのエネルギー",
   data_bandwidth_consumed_total: "消費される総帯域幅",
   data_bandwidth_freezed: "TRXをフリーズするために消費される帯域幅",
   data_bandwidth_burned: "TRXの書き込みに消費される帯域幅",
   data_area:
-    "<a href='https://poloniex.org/'  target='_blank'>POLONI DEX</a>取引所で上場されるトークンのみをカウントします"
+    "<a href='https://poloniex.org/'  target='_blank'>POLONI DEX</a>取引所で上場されるトークンのみをカウントします",
+
+  // index nav
+
+  index_navigation_explorers: "エクスプローラ",
+  index_navigation_data: "データ",
+  index_navigation_committee: "委員会",
+  index_navigation_proposals: "提議",
+     // 2020-02-04
+  chart_hold_trx_account:'全てのTRXアカウント統計',
+  chart_hold_trx_account_per:'TRX保有者の割合',
+  chart_hold_trx_account_per_t:'TRX保有者の割合',
+  chart_hold_trx_account_per_tip:'TRX / 総合アカウントを保持するアカウント',
+  chart_hold_account_sum:'総合アカウント数',
+  chart_hold_trx:'TRXを保持しているアカウント',
+  chart_hold_trx_more:'さらにデータを見る',
+  chart_hold_trx_number:'アカウントのナンバー',
+  chart_resource_user_freeing:'TRXの凍結によるエネルギー',
+  chart_resource_user_burning:'TRXの燃焼によるエネルギー',
+  chart_resource_contract_deployer:'契約展開者からのエネルギー',
+
+  // full node
+  full_node_version_latest_block:'最新のブロック',
+  full_node_version_confirmed:'CONFIRMED',
+  full_node_version_unconfirmed:'UNCONFIRMED',
+  full_node_version_confirmed_tips:'19以上のSRによって確認されたトランザクションは、「確認済み」とマークされます，そうでなければ「確認される」',
+
+  // 2020-02-19
+  chart_energy:'使用エネルギー'
 };

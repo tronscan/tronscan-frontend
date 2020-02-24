@@ -624,6 +624,38 @@ body .token_black {
   }
 }
 
+.mobile-testnet-dropdown-menu{
+  .new-test-net {
+    display: inline-block;
+    /* width: 30px; */
+    padding: 0 2px;
+    background: #c64844;
+    color: #fff;
+    line-height: 10px;
+    text-align: center;
+    font-size: 10px;
+    font-style: italic;
+  }
+}
+
+.testnet-dropdown-menu{
+  left:-100px;
+  .new-test-net {
+    display: inline-block;
+    /* width: 30px; */
+    padding: 0 2px;
+    position: absolute;
+    right: 10px;
+    top: 26px;
+    background: #c64844;
+    color: #fff;
+    line-height: 10px;
+    text-align: center;
+    font-size: 10px;
+    font-style: italic;
+  }
+}
+
 .nav {
   .dropdown-menu {
     border-radius: 2px;
@@ -697,6 +729,19 @@ body .token_black {
   }
 }
 
+.transaction-new,.header-overlap{
+  .badge-confirmed{
+    background: rgba(153,153,153,0.20);
+    border-radius: 2px;
+    span{
+      font-family: PingFangSC-Regular;
+      font-size: 12px;
+      color: #666666;
+      text-align: center;
+    }
+  }
+}
+
 .distributionWrapper {
   .card {
     padding: 0 !important;
@@ -757,5 +802,12 @@ body .token_black {
 .resourceWrapper {
   .ant-table-footer {
     padding: 0;
+  }
+}
+
+.footerCurrencyBtn{
+  .dropup .dropdown-toggle::after{
+    border-bottom: 0.3em solid;
+    border-top: 0;
   }
 }

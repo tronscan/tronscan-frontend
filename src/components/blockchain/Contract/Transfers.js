@@ -144,13 +144,20 @@ class Transfers extends React.Component {
                 key: 'status',
                 align: 'left',
                 className: 'ant_table',
+                width:'15%',
                 render: (text, record, index) => {
                     return (
                         <div>
-                            {
+                            {/* {
                                 record.confirmed ?
                                     <span className="badge badge-success text-uppercase">{tu("Confirmed")}</span> :
                                     <span className="badge badge-danger text-uppercase">{tu("Unconfirmed")}</span>
+                            } */}
+                            {
+                                record.confirmed ? 
+                                    <span><img style={{ width: "20px", height: "20px" }} src={require("../../../images/contract/Verified.png")}/> {tu('full_node_version_confirmed')}</span>
+                                     : 
+                                    <span><img style={{ width: "20px", height: "20px" }} src={require("../../../images/contract/Unverified.png")}/> {tu('full_node_version_unconfirmed')}</span>
                             }
                         </div>
 

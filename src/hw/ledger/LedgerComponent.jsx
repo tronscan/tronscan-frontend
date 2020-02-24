@@ -1,6 +1,6 @@
 import React from "react";
 import Transport from "@ledgerhq/hw-transport-u2f";
-import AppTrx from 'hw-app-trx';
+import AppTrx from '@ledgerhq/hw-app-trx';
 
 export class LedgerComponent extends React.Component {
 
