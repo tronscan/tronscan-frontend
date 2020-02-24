@@ -669,40 +669,40 @@ class ProposalDetail extends React.Component {
                                             </div>
                                         </div>
                                         <div className="detail-content">
-                                            {proposal.approvals && proposal.approvals.sr.length > 0 && <div className="detail-item blue">
+                                            {proposal.typeApprovals && proposal.typeApprovals.sr.length > 0 && <div className="detail-item blue">
                                                 <div className="detail-item-title ">
                                                     <i></i>
-                                                    {tu("proposal_super_votes")} : {proposal.approvals.sr.length}
+                                                    {tu("proposal_super_votes")} : {proposal.typeApprovals.sr.length}
                                                 </div>
                                                 <div className="detail-item-content">
                                                     {
-                                                        proposal.approvals.sr.map((item,index) => (
+                                                        proposal.typeApprovals.sr.map((item,index) => (
                                                             <Link to={`/address/${item.address}`} key={index}>{item.name || addressFormat(item.address)}</Link>
                                                         ))
                                                     }
                                                 </div>
                                             </div>}
-                                            {proposal.approvals && proposal.approvals.partner.length > 0 && <div className="detail-item orange">
+                                            {proposal.typeApprovals && proposal.typeApprovals.partner.length > 0 && <div className="detail-item orange">
                                                 <div className="detail-item-title ">
                                                     <i></i>
-                                                    {tu("proposal_super_partner_votes")} : {proposal.approvals.partner.length}
+                                                    {tu("proposal_super_partner_votes")} : {proposal.typeApprovals.partner.length}
                                                 </div>
                                                 <div className="detail-item-content">
                                                     {
-                                                        proposal.approvals.partner.map((item,index) => (
+                                                        proposal.typeApprovals.partner.map((item,index) => (
                                                             <Link to={`/address/${item.address}`} key={index}>{item.name || addressFormat(item.address)}</Link>
                                                         ))
                                                     }
                                                 </div>
                                             </div>}
-                                            {proposal.approvals && proposal.approvals.candidate.length > 0 && <div className="detail-item green">
+                                            {proposal.typeApprovals && proposal.typeApprovals.candidate.length > 0 && <div className="detail-item green">
                                                 <div className="detail-item-title ">
                                                     <i></i>
-                                                    {tu("proposal_super_candidate_votes")} : {proposal.approvals.candidate.length}
+                                                    {tu("proposal_super_candidate_votes")} : {proposal.typeApprovals.candidate.length}
                                                 </div>
                                                 <div className="detail-item-content">
                                                     {
-                                                        proposal.approvals.candidate.map((item,index) => (
+                                                        proposal.typeApprovals.candidate.map((item,index) => (
                                                             <Link to={`/address/${item.address}`} key={index}>{item.name || addressFormat(item.address)}</Link>
                                                         ))
                                                     }
