@@ -8,11 +8,11 @@ export const IS_TESTNET = process.env.NET === "testnet";
 export const IS_DESKTOP = process.env.DESKTOP === "true";
 
 export const NETURL = {
-  // MAINNET: "https://debug.tronscan.org",
+  MAINNET: "https://testhttps.tronscan.org",
   // SUNNET: "https://debugdappchain.tronscan.org",
   NEWMAINNET: "https://tronscan.io",
   NEWSUNNET: "https://dappchain.tronscan.io",
-  MAINNET: "https://tronscan.org",
+  //MAINNET: "https://tronscan.org",
   SUNNET: "https://dappchain.tronscan.org",
 };
 
