@@ -760,9 +760,6 @@ class Address extends React.Component {
     return (
       <main className="container header-overlap">
         <Helmet>
-          <meta name="twitter:image:src" content="https://coin.top/production/js/2018-08-22-09-02-22_share-logo.png" ></meta>
-          <meta name="twitter:site" content="@tronscan" ></meta>
-          <meta name="twitter:card" content="summary" ></meta>
           <meta name="twitter:title" property="og:title" content="TRONSCAN | TRON BlockChain Explorer"></meta>
           <meta name="twitter:description" property="og:description" id="description" content={addr + " TRONSCAN is the first blockchain browser in the tron community. It supports multiple login methods and provides a complete browsing and search experience. Experience the tron-ecology in the TRONSCAN blockchain browser.TRONSCAN是首款社区型波场区块链浏览器，它支持多种登录方式，提供完善的浏览和查找体验。体验波场生态尽在TRONSCAN波场区块链浏览器。"}></meta>
         </Helmet>
