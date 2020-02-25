@@ -26,7 +26,7 @@ class ProposalDetail extends React.Component {
     async load(id) {
         this.setState({loading: true});
         let {data} = await Client.getProposalById(id);
-        let obj = IS_MAINNET ? data.data[0] : data
+        let obj = data
         let parametersArr = [
             'getMaintenanceTimeInterval',
             'getAccountUpgradeCost',
