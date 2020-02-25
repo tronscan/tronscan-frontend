@@ -121,6 +121,7 @@
         "react-dev-utils": "^9.0.1",
         "react-dom": "^16.8.6",
         "react-flip-move": "^3.0.2",
+        "react-helmet": "^5.2.1",
         "react-input-autosize": "^2.2.1",
         "react-intl": "^2.4.0",
         "react-json-tree": "^0.11.2",
