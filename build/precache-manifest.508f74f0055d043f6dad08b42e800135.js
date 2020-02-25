@@ -16,18 +16,18 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/editor.worker.js.gz"
   },
   {
-    "revision": "1ed1a5ce7012717e2ea6498416d3355b",
+    "revision": "b1f63ec977d39f5628e848663062b8e2",
     "url": "/index.html"
   },
   {
-    "revision": "80e23f1cfe2e002f9adf5ab6992eb6da",
+    "revision": "e63c40db58659e1ad5144759baa79533",
     "url": "/index.html.gz"
   },
   {
-    "url": "/precache-manifest.3a4ebfbafdb23615697ed3dfa9242b7d.js"
+    "url": "/precache-manifest.967bc99883d99f4e227ea4863a1ab69d.js"
   },
   {
-    "revision": "f438b6262ba1f68775109f26ad3b6786",
+    "revision": "4596e1e88ddd9e7236cb0fb85d5c8366",
     "url": "/service-worker.js"
   },
   {
