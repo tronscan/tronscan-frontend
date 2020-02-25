@@ -37,11 +37,7 @@ export class SelectProposal extends Component {
 
   }
   onChange(e,record,index) {
-      console.log('e',e)
      let { proposalsCreateList, dataSource } = this.state;
-    console.log('this.props.state',this.props.state)  
-    console.log('proposalsSelectedList111',proposalsCreateList) 
-    //let proposalsCreateListNew = proposalsCreateList;
     if(e){
         let proposalsSelectedListNew = proposalsCreateList;
         proposalsSelectedListNew.push({'key': record.id, 'value':record.value, 'name':record.name})
@@ -57,8 +53,6 @@ export class SelectProposal extends Component {
             this.setState({
                 dataSource: dataSourceArr
             })
-            console.log('proposalsSelectedList222',proposalsCreateList) 
-            console.log('dataSource',dataSource)
         })
     }else{
         let proposalsSelectedListNew
@@ -76,12 +70,12 @@ export class SelectProposal extends Component {
                     if(index == 10000){
                         if(record.key == dataSourceArr[i]['id']){
                             dataSourceArr[i].checked = false;
-                            console.log('dataSourceArr[i]1111',record.key)
+                           
                         }
                     }else{
                         if(record.id == dataSourceArr[i]['id']){
                             dataSourceArr[i].checked = false;
-                            console.log('dataSourceArr[i]222',record.id)
+                           
                         }
                     }
                     
@@ -93,16 +87,12 @@ export class SelectProposal extends Component {
             this.setState({
                 dataSource: dataSourceArr
             })
-            console.log('proposalsSelectedList3333',proposalsCreateList) 
-            console.log('dataSource',dataSource)
+           
             
             
         })
     }  
-    console.log(`checked = ${e}`);
-    console.log(`record =` ,record);
-    //this.props.nextState({'proposalsCreateList':proposalsCreateList})
-    console.log('proposalsSelectedList444',proposalsCreateList) 
+   
 
   }
     async getChainparameters() {
@@ -110,7 +100,7 @@ export class SelectProposal extends Component {
         if(IS_MAINNET){
             let data  = await xhr.get(`${API_URL}/api/chainparameters?type=1`);
             let tronParameters = data.data.tronParameters;
-            console.log('tronParameters',tronParameters)
+           
             if(!tronParameters){
                 return
             }
@@ -398,8 +388,7 @@ export class SelectProposal extends Component {
   getColumns() {
     let { intl } = this.props;
     let { dataSource, proposalsCreateList } = this.state;
-    console.log('dataSource=======',dataSource)
-    console.log('proposalsCreateList=============',proposalsCreateList)
+   
     let dataSourceArr = dataSource.slice(0);
     for(let i = 0; i < proposalsCreateList.length;i++){
         for(let j = 0; j < dataSourceArr.length;j++){
@@ -410,7 +399,7 @@ export class SelectProposal extends Component {
         }
         
     }
-    console.log('dataSourceArr========99123',dataSourceArr)
+    
     // this.setState({
     //     dataSource: dataSourceArr
     // })
@@ -768,7 +757,7 @@ export class SelectProposal extends Component {
 
   tagClose = (tag) => {
     let { proposalsCreateList, dataSource} = this.state;
-    console.log('tag',tag)
+   
     let index = 10000
     this.onChange(false,tag,10000)
     
@@ -778,7 +767,6 @@ export class SelectProposal extends Component {
   render() {
     let {proposalsCreateList,dataSource} = this.state;
     const { locale } = this.props.intl
-    console.log('dataSource========222',dataSource)
     return (
         <main>
           {this.state.modalSelect}

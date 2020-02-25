@@ -94,7 +94,6 @@ export class ProposalsCreate extends Component {
     }
   };
   changeState = params => {
-    console.log('params',params)
     this.setState(params);
   };
  

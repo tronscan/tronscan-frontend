@@ -37,8 +37,6 @@ export class SetProposal extends Component {
   
   getSelectedPropsal = () => {
     let {proposalsCreateList,dataSource} = this.state;
-    console.log('proposalsCreateList',proposalsCreateList);
-    console.log('dataSource',dataSource)
     let dataSourceSelected =  _(dataSource).filter(source => source.checked).value()
     dataSourceSelected.map((item,index)=>{
         switch (item['key']){
@@ -103,7 +101,6 @@ export class SetProposal extends Component {
                 });
             break; 
             case "getTotalEnergyCurrentLimit":
-                console.log('item.newValue',item.newValue)
                 this.props.form.setFieldsValue({
                     "getTotalEnergyCurrentLimit": item.newValue !== undefined? item.newValue:''
                 });
@@ -244,8 +241,6 @@ export class SetProposal extends Component {
    
     let { dataSource, proposalsCreateList } = this.state;
     let dataSourceSelected =  _(dataSource).filter(source => source.checked).value()
-    console.log('dataSource=======',dataSource)
-    console.log('dataSourceSelected=======',dataSourceSelected)
     const columns = [
     {
         title: upperFirst(intl.formatMessage({id: 'proposal_content'})),
@@ -1005,8 +1000,6 @@ export class SetProposal extends Component {
   }
 
   onInputChange = (e, record) =>{
-    console.log('e=========================10000000000',e) 
-    console.log('record=========================10000000000',record) 
     let {proposalsCreateList,dataSource} = this.state;
     let inputValue;
     switch (record.key){
@@ -1097,8 +1090,7 @@ export class SetProposal extends Component {
         proposalsCreateList,
         dataSource,
     },()=>{
-        console.log('proposalsCreateList999====99999',proposalsCreateList)
-        console.log('dataSource999=======999',dataSource)
+        
     })
 
   }
@@ -1118,10 +1110,7 @@ export class SetProposal extends Component {
     let { dataSource } = this.state;
     let { nextStep } = this.props;
     const { locale } = this.props.intl;
-    console.log('dataSource',dataSource)
     let disabledArr =  _(dataSource).filter(source => (source.checked && source.newValue >=0)).value()
-    console.log('disabledArr',disabledArr)
-    
     return (
         <main>
           {this.state.modalSelect}

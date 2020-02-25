@@ -43,7 +43,6 @@ export class SubmitProposal extends Component {
   getSelectedPropsal = () => {
     let { dataSource, proposalsCreateList, dataSourceSelectedArr } = this.state;
     let dataSourceSelected =  _(dataSource).filter(source => source.checked).value()
-    console.log('dataSourceSelected222',dataSourceSelected)
     dataSourceSelected.map((item,index)=>{
         if(item.value === parseFloat(item.newValue)){
             item.same = true
@@ -55,9 +54,7 @@ export class SubmitProposal extends Component {
     this.setState({
         dataSourceSelectedArr:dataSourceSelected
     })
-    console.log('dataSource=======',dataSource)
-    console.log('dataSourceSelected=======',dataSourceSelected)
-    console.log('dataSourceSelectedArr=======',dataSourceSelectedArr)
+    
     
   }
 
@@ -564,11 +561,8 @@ export class SubmitProposal extends Component {
   }
 
   onInputGetAdaptiveResourceLimitTargetRatio = (e, record) =>{
-    console.log('e',e.target.value) 
-    console.log('record',record) 
     let {proposalsCreateList} = this.state;
     proposalsCreateList.map((item,index)=>{
-        console.log('item',item)
         if(item.key == record.id){
             item.newValue = e.target.value
         }
@@ -576,7 +570,7 @@ export class SubmitProposal extends Component {
     this.setState({
         proposalsCreateList
     },()=>{
-        console.log('proposalsCreateList',proposalsCreateList)
+       
     })
 
   }
@@ -627,9 +621,9 @@ export class SubmitProposal extends Component {
     proposalsCreateList.map((item,index)=>{
       proposalsCreateListNew.push({"key": Number(item.key), "value":parseFloat(item.newValue)})
     })
-    console.log('proposalsCreateListNew',proposalsCreateListNew)
+  
     const unSignTransaction = await tronWeb.transactionBuilder.createProposal(proposalsCreateListNew,tronWeb.defaultAddress.hex,1).catch(res=>console.log(res))
-    console.log('unSignTransaction',unSignTransaction)
+  
   
     if (!unSignTransaction && unSignTransaction != "") {
       res = false;
