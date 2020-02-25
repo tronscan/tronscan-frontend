@@ -1,0 +1,352 @@
+.committee{
+  .proposal-header{
+    display: flex;
+    justify-content: flex-end;
+    padding: 10px 0 20px;
+    a{
+      display: block;
+      margin-left: 14px;
+      padding: 3px 12px;
+      border: 1px solid #979797;
+      color: #666666;
+      text-align: center;
+      &:hover{
+        color: #C64844;
+        border-color: #C64844;
+      }
+    }
+  }
+  .my-proposals-table{
+    margin-top: 10px;
+    .card-header {
+      border: 1px solid #D8D8D8;
+      border-bottom: none;
+      .nav-tabs{
+        .nav-link{
+          font-size: 1rem;
+          font-family: PingFangSC-Regular;
+        }
+      }
+    }
+    .ant-table{
+      &.ant-table-bordered{
+        border: 1px solid #D8D8D8;
+        border-top: none;
+      }
+      thead{
+        th{
+          background-color: #fff;
+          border: 1px solid #f3f3f3!important;
+          border-left: none!important;
+        }
+      }
+    }
+  }
+  .proposal-table{
+    .ant-table {
+      color: #333;
+      a{
+        font-family: Helvetica;
+      }
+      .ant-table-thead{
+        tr{
+          th{
+            font-family: Helvetica;
+            font-size: 14px;
+            color: #666666;
+            font-weight: 400;
+          }
+        }
+      }
+      .hidden{
+        display: none;
+      }
+      .mine-flag{
+        position: absolute;
+        left: 0;
+        top: 5px;
+        height: 20px;
+        width: 32px; 
+        background: url(../images/rect.svg) no-repeat;
+        font-size: 12px;
+        color: #fff;
+        line-height: 20px;
+        span{
+          display:inline-block;
+          transform: scale(0.9);
+          width: 80%;
+          text-align: center;
+        }
+      }
+    }
+    
+    .badge{
+      font-family: PingFangSC-Regular;
+      font-weight: 300;
+      &.badge-danger{
+        background: rgba(194,54,49,0.1);
+      }
+      &.badge-success{
+        background: rgba(105, 194, 101, 0.1);
+      }
+      &.badge-secondary {
+        background: rgba(153,153,153,0.10);
+        color: #999;
+      }
+      &.badge-warning{
+        background: rgba(245,166,35,0.10);
+        color: #F5A623;
+      }
+    }
+    .detail-action{
+      display: flex;
+      flex-direction: column;
+      div{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        a{
+          min-width: 70px;
+          height: 24px;
+          line-height: 24px;
+          font-size: 12px;
+          &.proposal-more{
+            color: #C64844!important;
+            border: 1px solid #C64844;
+          }
+          &.proposal-approve{
+            margin-top: 4px;
+            border: 1px solid #6CC368;
+            color: #6CC368!important;
+          }
+          &.proposal-cancel{
+            white-space: nowrap;
+            color: #999999!important;
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+  }
+  .sweet-alert{
+    padding: 40px 0!important;
+    .btn{
+      font-family: PingFangSC-Medium;
+      font-size: 14px;
+      color: #fff;
+      height: 38px;
+      padding: 0 30px;
+      text-decoration: none;
+      &.modal-confirm{
+        background: #C23631;
+        font-size: 14px;
+      }
+      &.modal-cancel{
+        background: #D2D2D2;
+        margin-right: 40px!important;
+        font-size: 14px;
+      }
+      &.apply-super{
+        background: #69C265;
+      }
+    }
+  }
+  .my-proposals-empty{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    // margin-top: 10px;
+    padding: 100px 0 150px;
+    background-color: #fff;
+    img{
+      margin-bottom: 30px;
+    }
+  }
+}
+.committee-modal{
+  .modal-header{
+    border-bottom: 0;
+  }
+  .modal-body{
+    padding-bottom: 50px;
+  }
+  .close{
+    font-size: 30px;
+    color: #666;
+  }
+  .balance-tip{
+    color: #e60815;
+    display: none;
+    margin-bottom: 5px;
+    &.show{
+      display: block;
+    }
+  }
+}
+body .modal-dialog.apply-super-modal{
+  max-width: 700px;
+  .modal-header{
+    padding: 25px 30px 0;
+  }
+  .modal-body{
+    padding: 5px 30px 30px;
+    .body-text{
+      font-size: 12px;
+      color: #666666;
+    }
+  }
+}
+
+.proposal-detail{
+  $p-blue: #0477FF;
+  $p-green: #32C956;
+  $p-orange: #FF9065;
+  .proposal-header{
+    .header-item{
+      display: flex;
+      
+      >div{
+        flex: 1;
+        padding: 10px 0;
+        border-bottom: 1px solid #eee;
+        &:first-child{
+          margin-right: 60px;
+        }
+      }
+      .item-title{
+        width: 128px;
+      }
+      .item-info{
+        flex: 1;
+      }
+      .badge{
+        font-family: PingFangSC-Regular;
+        font-weight: 300;
+        &.badge-danger{
+          background: rgba(194,54,49,0.1);
+        }
+        &.badge-success{
+          background: rgba(105, 194, 101, 0.1);
+        }
+        &.badge-secondary {
+          background: rgba(153,153,153,0.10);
+          color: #999;
+        }
+        &.badge-warning{
+          background: rgba(245,166,35,0.10);
+          color: #F5A623;
+        }
+      }
+    }
+  }
+  .proposal-detail-wrap{
+    padding: 20px 0;
+    .detail-header{
+      h2{
+        font-size: 16px;
+        color: #333333;
+      }
+      .votes{
+        // font-size: 14px;
+        color: #999999;
+      }
+    }
+    .detail-content{
+      .detail-item{
+        margin: 10px 0;
+        background-color: #fff;
+        .detail-item-title{
+          height: 46px;
+          line-height: 46px;
+          font-size: 14px;
+          border-bottom: 1px solid #eee;
+          i{
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            margin: 0 10px;
+          }
+        }
+        .detail-item-content{
+          display: flex;
+          flex-wrap: wrap;
+          padding: 10px 30px;
+          a{
+            width: 18%;
+            margin-right: 2%;
+            padding: 10px 0;
+            color: #666666;
+            overflow: hidden;
+          }
+        }
+        &.green{
+          .detail-item-title{
+            color: $p-green;
+            i{
+              background-color: $p-green;
+            }
+          }
+          .detail-item-content{
+            a:hover{
+              color: $p-green!important;
+            }
+          }
+        }
+        &.blue{
+          .detail-item-title{
+            color: $p-blue;
+            i{
+              background-color: $p-blue;
+            }
+          }
+          .detail-item-content{
+            a:hover{
+              color: $p-blue!important;
+            }
+          }
+        }
+        &.orange{
+          .detail-item-title{
+            color: $p-orange;
+            i{
+              background-color: $p-orange;
+            }
+          }
+          .detail-item-content{
+            a:hover{
+              color: $p-orange!important;
+            }
+          }
+        }
+      }
+    }
+  }
+  @media only screen and (max-width: 768px) {
+    .proposal-header{
+      .header-item{
+        display: flex;
+        flex-direction: column;
+        &:nth-child(2){
+          flex-direction: column-reverse;
+        }
+        >div{
+          &:first-child{
+            margin-right: 0;
+          }
+        }
+      }
+    }
+    .proposal-detail-wrap{
+      .detail-content{
+        .detail-item{
+          .detail-item-content{
+            a{
+              width: 48%;
+              margin-right: 2%;
+            }
+          }
+        }
+      }
+    }
+  }
+}

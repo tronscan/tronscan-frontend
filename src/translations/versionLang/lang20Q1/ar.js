@@ -107,9 +107,9 @@ export const lang20Q1 = {
   data_bandwidth_consumed_total: "إجمالي عرض النطاق الترددي المستهلك",
   data_bandwidth_freezed: "عرض النطاق الترددي المستهلك لتجميد TRX",
   data_bandwidth_burned: "عرض النطاق الترددي المستهلك لحرق TRX",
-  data_area:
-    "يتم تضمين إحصائيات الرموز المدرجة فقط على <a href='https://poloniex.org/'  target='_blank'>POLONI DEX</a>",
 
+  data_area: "يتم تضمين إحصائيات الرموز المدرجة فقط على <a href='https://poloniex.org/'  target='_blank'>POLONI DEX</a>",
+ 
   // index nav
 
   index_navigation_explorers: "المتصفح",
@@ -117,26 +117,99 @@ export const lang20Q1 = {
   index_navigation_committee: "لجنة ترون",
   index_navigation_proposals: "اقتراح",
 
-   // 2020-02-04
-   chart_hold_trx_account:'إحصائيات الحسابات المحتفظه بـ TRX',
-   chart_hold_trx_account_per:'نسبة الاحتفاظ بالعملة',
-   chart_hold_trx_account_per_t:'نسبة الاحتفاظ بالعملة',
-   chart_hold_trx_account_per_tip:'عدد الحسابات المحتفظه بـ TRX / إجمالي الحسابات',
-   chart_hold_account_sum:'إجمالي عدد الحسابات',
-   chart_hold_trx:'عدد الحسابات المحتفظه بـ TRX ',
-   chart_hold_trx_more:'المزيد من البيانات',
-   chart_hold_trx_number:'عدد الحسابات',
-   chart_resource_user_freeing:'الطاقة من تجميد TRX',
-   chart_resource_user_burning:'الطاقة من حرق TRX',
-   chart_resource_contract_deployer:'الطاقة من ناشري العقود',
+  // 2020-02-04
+  chart_hold_trx_account:'إحصائيات الحسابات المحتفظه بـ TRX',
+  chart_hold_trx_account_per:'نسبة الاحتفاظ بالعملة',
+  chart_hold_trx_account_per_t:'نسبة الاحتفاظ بالعملة',
+  chart_hold_trx_account_per_tip:'عدد الحسابات المحتفظه بـ TRX / إجمالي الحسابات',
+  chart_hold_account_sum:'إجمالي عدد الحسابات',
+  chart_hold_trx:'عدد الحسابات المحتفظه بـ TRX ',
+  chart_hold_trx_more:'المزيد من البيانات',
+  chart_hold_trx_number:'عدد الحسابات',
+  chart_resource_user_freeing:'الطاقة من تجميد TRX',
+  chart_resource_user_burning:'الطاقة من حرق TRX',
+  chart_resource_contract_deployer:'الطاقة من ناشري العقود',
+  
+  // 2020-2-5 leon
+  proposal_serial:"الرقم",
+  proposal_create: "رفع اقتراح",
+  proposal_mine: "اقتراحي",
+  proposal_endtime: "وقت انتهاء المدة",
+  proposal_total_votes: "مجموع الأصوات",
+  proposal_valid_votes: "الأصوات الصحيحة",
+  proposal_votes_tip: "الأصوات الصالحة هي الأصوات التي يتم التصويت عليها من قبل أفضل 27 ممثلًا ، وإجمالي الأصوات هي الأصوات التي يتم التصويت عليها من قبل جميع الممثلين الممتازين.",
+  proposal_action: "العمليات",
+  proposal_more: "عرض التفاصيل",
+  proposal_approve: "ادلي بصوتك",
+  proposal_cancel_approve: "سحب الاقتراح",
+  proposal_not_sign_in: "يرجى تسجيل الدخول لاستخدام هذه الميزة",
+  proposal_cancel_tip: "هل أنت متأكد من أنك تريد إلغاء اقتراحك؟",
+  proposal_apply_super: "هذه الميزة متاحة فقط للممثلين الممتازين ، أنت غير متاح مؤقتًا!",
+  proposal_apply_super_btn: "التقدم بطلب للحصول على ممثل ممتاز",
+  proposal_apply_super_desc: "يمكن لكل حامل TRX التقدم ليصبح مرشحًا تمثيليًا مُمتازاً وَسيصبح من أفضل 27 مرشحًا بأعلى عدد من الأصوات ، ومن 28 إلى 127 مرشح سيصبحون شركاء للممثلين الممتازين.الممثلين الممتازين ملزمين بإنتاج كتل ومعاملات الحزمة وسيحصلون أيضًا على مكافآت التصويت والكتل المقابلة ، فلا يشارك شركاء الممثلين الممتازين في معاملات الطرود والحزم لذلك يمكنهم فقط الحصول على مكافآت التصويت ، ويحق لجميع مُرشحي الممثلين الممتازين وشركاء الممثلين الممتازين تقديم مقترحات لتعديل معايير شبكة ترون.",
+  // proposal_apply_super_input_name: "请输入您的名称",
+  // proposal_apply_super_input_name_ph: "3-30个字符，设置后不可修改",
+  proposal_apply_super_input_website: "الرجاء إدخال عنوان URL الخاص بك",
+  proposal_apply_super_input_website_ph: "رابط لموقع المشروع أو صفحة التواصل الاجتماعي",
+  proposal_apply_super_success: "تم التقديم بنجاح ، يمكنك استخدام وظائف وميزات الممثل الممتاز الآن",
+  proposal_my: "الخاص بي",
+  proposal_details: "تفاصيل التصويت",
+  proposal_super_votes: "عدد أصوات الممثل الممتاز",
+  proposal_super_partner_votes: "عدد أصوت شريك الممثل الممتاز",
+  proposal_super_candidate_votes: "عدد أصوات المرشحين للممثل الممتاز",
+  proposal_my_initiate: "الاقتراح الذي رفعته",
+  proposal_my_participate: "الاقتراح الذي شاركت به",
+  proposal_cancel: "سحب الاقتراح",
+  proposal_cancel_tip1: "هل أنت متأكد من سحب الاقتراح؟",
+  proposal_fail: "فشل التقديم",
+  proposal_success: "تم الإرسال بنجاح",
+  // proposal_nodata: "暂无数据",
+  proposal_go: " ",
+  proposal_or: "أو",
+  proposal_vote_link: "التصويت على الاقتراح",
+  proposal_balance_not_enough: "عدم كفاية الرصيد",
+  
+  /*
+    ##################################################################################
+    #                                                                                #
+    # proposals create                           #
+    #                                                                                #
+    ##################################################################################
+  */
+  proposal_select: "حدد معايير الشبكة",
+  proposal_value: "تعديل القيمة المقترحة", 
+  proposal_confirm: "تأكيد الاقتراح", 
+  proposal_result: "النتيجة",
+  proposal_create_info: "يشير الاقتراح إلى تعديل معايير شبكة ترون ولكل ممثل ممتاز الحق في الاقتراح والتصويت على الاقتراح ، فعندما يحصل الاقتراح على 19 صوت أو أكثر خلال فترة الصلاحية يعتبر الاقتراح مقبولًا وسيتم تعديله وفقًا لمعايير الشبكة في فترة التعديل التالية.",
+  proposal_select_table: "حدد",
+  proposal_selected_network_parameters:"معلمات الشبكة المحددة",
+  proposal_content:"محتوى الاقتراح",
+  proposal_new_value:"القيمة المقترحة",
+  proposal_submit_text:"هل أنت متأكد أنك تريد تقديم اقتراح؟",
+  proposal_created_successful:"تم تقديم الإقتراح بنجاح",
+  proposal_created_failure:"فشل في بدء الاقتراح",
+  proposal_validate_text_0:"الرجاء إدخال قيمة بين 81-86400",
+  proposal_validate_text_1:"الرجاء إدخال قيمة بين 0-100000000000",
+  proposal_validate_text_2:"الرجاء إدخال قيمة بين 0-1000",
+  proposal_validate_text_3:"يرجى اختيار سماح / عدم السماح",
+  proposal_validate_text_4:"الرجاء إدخال قيمة",
+  proposal_validate_text_5:"الرجاء إدخال قيمة بين 0-100000",
+  proposal_validate_text_6:"يرجى اختيار / إيقاف",
+  proposal_validate_text_7:"الرجاء إدخال قيمة بين 1-10000",
+  proposal_validate_text_8:"الرجاء إدخال قيمة بين 1-1000",
+  proposal_validate_text_9:"0-100000000000000000 الرجاء إدخال قيمة بين",
+  propose_not_activate:"غير مفتوح",
+  proposal_value_same:"القيمة المقترحة مماثلة للقيمة الحالية",
+  go_to_proposals_list:"التصويت على الاقتراح",
+  proposal_quit:"لديك حاليا عملية غير مكتملة ، هل أنت متأكد من رغبتك في الخروج؟",
+  
+  // full node
+  full_node_version_latest_block:'أحدث كتلة',
+  full_node_version_confirmed:'CONFIRMED',
+  full_node_version_unconfirmed:'UNCONFIRMED',
+  full_node_version_confirmed_tips:'"مؤكد" يعني تأكيده بـ 19 عقدًا أو أكثر ، وإلا فسيتم "التأكيد"',
 
-    // full node
-    full_node_version_latest_block:'أحدث كتلة',
-    full_node_version_confirmed:'CONFIRMED',
-    full_node_version_unconfirmed:'UNCONFIRMED',
-    full_node_version_confirmed_tips:'"مؤكد" يعني تأكيده بـ 19 عقدًا أو أكثر ، وإلا فسيتم "التأكيد"',
-
-    // 2020-02-19
+  // 2020-02-19
   chart_energy:'الطاقة المستخدمة',
 
   getAllowTvmSolidity059_tips:"Three new features of TVM (TRON Virtual Machine) will be opened: support for parallel signature verification, multi signature verification, and judge whether the address is the contract address.",
