@@ -43,8 +43,9 @@ export class SubmitProposal extends Component {
   getSelectedPropsal = () => {
     let { dataSource, proposalsCreateList, dataSourceSelectedArr } = this.state;
     let dataSourceSelected =  _(dataSource).filter(source => source.checked).value()
+    console.log('dataSourceSelected222',dataSourceSelected)
     dataSourceSelected.map((item,index)=>{
-        if(item.value === item.newValue){
+        if(item.value === parseFloat(item.newValue)){
             item.same = true
 
         }else{
