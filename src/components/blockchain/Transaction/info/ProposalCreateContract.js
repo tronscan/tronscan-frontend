@@ -23,12 +23,20 @@ export default function ProposalCreateContract({contract}){
               <Field label="initiate_address"><AddressLink address={contract['owner_address']}/></Field>
               {/* <Field label="proposal_ID">222</Field> */}
                 {
-                    contract['parameters'] && contract['parameters'].map((item)=>{
-                      return <tr>
-                        <th>{tu('proposal_content')}</th>
-                        <td>{tu(`propose_${item.key}`)}<ProposalValue item={item}/></td>
-                      </tr>
-                    })
+                    // contract['parameters'] && contract['parameters'].map((item,index)=>{
+                    //   return <tr key={index}>
+                    //     <th>{tu('proposal_content')}</th>
+                    //     <td><ProposalValue item={item}/></td>
+                    //   </tr>
+                    // })
+                    contract['parameters'] && <tr>
+                      <th>{tu('proposal_content')}</th>
+                      <td>
+                        {contract['parameters'].map((item,index)=>{
+                          return <ProposalValue item={item}/>
+                        })}  
+                      </td>
+                    </tr>
                 }
               {JSON.stringify(contract.cost) != "{}" && (
                 <Field label="consume_bandwidth">
