@@ -1355,11 +1355,10 @@ class Navigation extends React.Component {
                 </div>
                
               </div>
-             
             </div>
           </div>
           <div style={{boxShadow:"0 2px 40px 0 rgba(4,4,64,0.05)",background:"#F3F3F3"}}>
-            <div className="container  p-0 p-md-3">
+            <div className={isMobile ? "container p-0 p-md-3" : "container p-0 index-page-search-sec" }>
               <div className="row justify-content-center text-center">
                 <div className="col-12">
                   {
