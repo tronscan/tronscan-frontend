@@ -29,6 +29,7 @@ class AppCmp extends Component {
       this.state.store.dispatch(loadSyncStatus());
     }, 90000);
     this.state.store.dispatch(loadSyncStatus());
+   
   }
 
   render() {
