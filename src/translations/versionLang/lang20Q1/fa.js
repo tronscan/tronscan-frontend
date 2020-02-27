@@ -117,7 +117,7 @@ export const lang20Q1 = {
   index_navigation_data: "اطلاعات",
   index_navigation_committee: "کمیته ترون",
   index_navigation_proposals: "پیشنهاد",
-     // 2020-02-04
+    // 2020-02-04
   chart_hold_trx_account:'آمار نگهداری حسابهای TRX',
   chart_hold_trx_account_per:'نسبت نگه داشتن ارز',
   chart_hold_trx_account_per_t:'نسبت نگه داشتن ارز',
@@ -129,6 +129,79 @@ export const lang20Q1 = {
   chart_resource_user_freeing:'کاربر انرژی trx را یخ می زند',
   chart_resource_user_burning:'کاربر انرژی trx را می سوزاند',
   chart_resource_contract_deployer:'انرژی تأمین شده توسط توزیع کنندگان قرارداد',
+  
+  // 2020-2-5 leon
+  proposal_serial: "شماره سریال",
+  proposal_create: "آغاز طرح",
+  proposal_mine: "پیشنهاد من",
+  proposal_endtime: "زمان شکست",
+  proposal_total_votes: "کل آرا",
+  proposal_valid_votes: "آراء معتبر",
+  proposal_votes_tip: "آرای معتبر آرای معتبر 27 نماینده برتر فوق العاده است و کل آراء آرای همه نمایندگان فوق العاده است.",
+  proposal_action: "عملیاتی",
+  proposal_more: "مشاهده جزئیات",
+  proposal_approve: "تأیید کنید",
+  proposal_cancel_approve: "لغو نفع.",
+  proposal_not_sign_in: "برای استفاده از این ویژگی باید وارد سیستم شوید و وارد سیستم نشده اید!",
+  proposal_cancel_tip: "آیا مطمئن هستید که می خواهید پیشنهاد خود را لغو کنید؟",
+  proposal_apply_super: "این ویژگی فقط برای نمایندگان عالی طراحی شده است ، برای شما به طور موقت در دسترس نیستید!",
+  proposal_apply_super_btn: "برای نماینده عالی درخواست کنید",
+  proposal_apply_super_desc: "هر یک از دارندگان TRX می تواند درخواست کند کاندیدای نماینده فوق العاده شود 27 کاندیدای برتر با بیشترین تعداد آرا نمایندگان فوق العاده می شوند و 28 تا 127 به شرکای نماینده فوق العاده تبدیل می شوند. نمایندگان فوق العاده وظیفه دارند بلوک و معاملات بسته را تولید کنند ، همچنین رأی گیری مربوطه را دریافت می کنند و جوایز بلوکی را نیز دریافت می کنند. شرکای نماینده فوق العاده در معاملات بلاک و بسته شرکت نمی کنند و فقط می توانند جوایز رأی دهند. همه نامزدهای نماینده فوق العاده ، شرکای نماینده فوق العاده و نمایندگان فوق العاده حق دارند پیشنهادهایی را برای تغییر پارامترهای شبکه ترون ارائه دهند.",
+  // proposal_apply_super_input_name: "请输入您的名称",
+  // proposal_apply_super_input_name_ph: "3-30个字符，设置后不可修改",
+  proposal_apply_super_input_website: "لطفا آدرس اینترنتی خود را وارد کنید",
+  proposal_apply_super_input_website_ph: "وب سایت رسمی پروژه یا پیوند صفحه اصلی رسانه اجتماعی شخصی",
+  proposal_apply_super_success: "برنامه موفق ، می توانید از توابع نماینده فوق العاده استفاده کنید",
+  proposal_my: "برای من",
+  proposal_details: "جزئیات رأی",
+  proposal_super_votes: "نماینده فوق العاده رای می دهد",
+  proposal_super_partner_votes: "رأی شریک نماینده فوق العاده",
+  proposal_super_candidate_votes: "نامزد نماینده فوق العاده رأی می دهد",
+  proposal_my_initiate: "آغاز پیشنهاد من",
+  proposal_my_participate: "پیشنهاد مشارکت من",
+  proposal_cancel: "پیشنهاد را لغو کنید",
+  proposal_cancel_tip1: "آیا مطمئن هستید که می خواهید پیشنهاد خود را لغو کنید؟",
+  proposal_fail: "ارسال ناموفق بود",
+  proposal_success: "با موفقیت ثبت شد",
+  // proposal_nodata: "暂无数据",
+  proposal_go: " ",
+  proposal_or: "یا",
+  proposal_vote_link: "به یک پیشنهاد رأی دهید",
+  proposal_balance_not_enough: "تعادل کافی",
+  
+/*
+    ##################################################################################
+    #                                                                                #
+    # proposals create                           #
+    #                                                                                #
+    ##################################################################################
+  */
+  proposal_select: "پارامترهای شبکه را انتخاب کنید",
+  proposal_value: "مقدار پیشنهادی را تغییر دهید", 
+  proposal_confirm: "پیشنهاد را تأیید کنید", 
+  proposal_result: "نتایج پیشنهادی",
+  proposal_create_info: "پیشنهاد مربوط به اصلاح پارامترهای شبکه ترون است.هر نماینده فوق العاده حق ارائه پیشنهاد و حق رأی دادن به پیشنهاد را دارد. هنگامی که این پیشنهاد در دوره اعتبار 19 یا بیشتر آراء فوق العاده دریافت کرد ، این پیشنهاد تصویب شد و پارامترهای شبکه در دوره نگهداری بعدی اصلاح شد.",
+  proposal_select_table: "انتخاب کنید",
+  proposal_selected_network_parameters:"پارامترهای شبکه انتخاب شده است",
+  proposal_content:"محتوای پیشنهادی",
+  proposal_new_value:"مقدار پیشنهادی",
+  proposal_submit_text:"آیا مطمئن هستید که می خواهید پیشنهادی را اجرا کنید؟",
+  proposal_created_successful:"طرح پیشنهادی با موفقیت انجام شد",
+  proposal_created_failure:"پیشنهاد انجام نشد",
+  proposal_validate_text_0:"لطفاً ارزش 81-86400 را وارد کنید",
+  proposal_validate_text_1:"لطفاً ارزش 0-100000000000 را وارد کنید",
+  proposal_validate_text_2:"لطفاً ارزش 0-1000 را وارد کنید",
+  proposal_validate_text_3:"لطفا اجازه / مجاز را انتخاب کنید",
+  proposal_validate_text_4:"لطفاً یک مقدار وارد کنید",
+  proposal_validate_text_5:"لطفاً ارزش 0-100000 را وارد کنید",
+  proposal_validate_text_6:"لطفا روشن / خاموش را انتخاب کنید",
+  proposal_validate_text_7:"لطفاً ارزش 1-10000 را وارد کنید",
+  proposal_validate_text_8:"لطفاً ارزش 1-1000 را وارد کنید",
+  proposal_validate_text_9:"لطفاً ارزش 0-100000000000000000 را وارد کنید",
+  propose_not_activate:"باز نیست",
+  proposal_value_same:"مقدار پیشنهادی برابر با مقدار فعلی است",
+  go_to_proposals_list:"به یک پیشنهاد رأی دهید",
+  proposal_quit:"شما در حال حاضر عملیات ناتمام دارید. آیا مطمئن هستید که می خواهید خارج شوید؟ ",
 
     
   // full node
@@ -139,4 +212,6 @@ export const lang20Q1 = {
 
   // 2020-02-19
   chart_energy:'انرژی استفاده شده',
+  getAllowTvmSolidity059_tips:"Three new features of TVM (TRON Virtual Machine) will be opened: support for parallel signature verification, multi signature verification, and judge whether the address is the contract address",
+
 };
