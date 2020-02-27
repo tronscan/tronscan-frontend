@@ -188,7 +188,7 @@ getPerformanceTiming () {
                       redirectTime:redirect,
                       onloadCallbackTime:loadEvent,
                       uninstallPageTime: unloadEvent,
-                      isMobile:isMobile
+                      isMobile:isMobile && isMobile[0]
                   };
                  
                   ApiClientMonitor.setMonitor(data)
