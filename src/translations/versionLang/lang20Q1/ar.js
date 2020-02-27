@@ -214,4 +214,12 @@ export const lang20Q1 = {
 
   getAllowTvmSolidity059_tips:"Three new features of TVM (TRON Virtual Machine) will be opened: support for parallel signature verification, multi signature verification, and judge whether the address is the contract address.",
 
+
+  // 0227 torn sr
+  sr_vote_team_information:'الفريق',
+  sr_vote_last_ranking:'الترتيب الأخير',
+  sr_vote_last_votes:'الأصوات الأخيرة',
+  sr_vote_current_ranking:'الترتيب الحالي',
+  sr_vote_current_vote:'الأصوات الحالية',
+  sr_vote_percent_note:'超级代表在上轮投票中所得票数占所有投票数的比例',
 };

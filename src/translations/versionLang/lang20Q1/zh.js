@@ -216,4 +216,17 @@ export const lang20Q1 = {
   proposal_quit:"您当前有未完成的操作，确定退出吗？",
 
   getAllowTvmSolidity059_tips:"TVM（TRON虚拟机）的三个新功能将被打开：支持并行签名验证，多签名验证以及判断地址是否为合约地址。",
+
+  // 0227 torn sr
+  sr_vote_team_information:'团队详情',
+  sr_vote_last_ranking:'上轮排名',
+  sr_vote_last_votes:'上轮得票',
+  sr_vote_current_ranking:'实时排名',
+  sr_vote_current_vote:'实时得票',
+  sr_vote_percent_note:'超级代表在上轮投票中所得票数占所有投票数的比例',
+
+
+
+
+
 };
