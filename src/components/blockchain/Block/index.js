@@ -47,6 +47,7 @@ class Block extends React.Component {
           cmp: () => <TronLoader/>,
         },
       },
+      confirmedNum:0
     };
   }
 
@@ -82,6 +83,31 @@ class Block extends React.Component {
       });
       return;
     }
+    console.log(block.number,'block.number')
+    if(block.number){
+      let confirmNumObj =  await Client.getBlockByNumber(block.number);
+      let confirmedNum = confirmNumObj && confirmNumObj.confirmedNum;
+      this.setState({
+        confirmedNum
+      })
+      let updateTime = null;
+      updateTime = setInterval(async() => {
+        let confirmNumObj =  await Client.getBlockByNumber(block.number);
+        let confirmedNum = confirmNumObj && confirmNumObj.confirmedNum;
+        this.setState({
+          confirmedNum
+        })
+        if(confirmedNum > 18){
+          block = await Client.getBlockByNumber(id);
+          this.setState({
+            block
+          })
+        }
+        if(confirmedNum === 27){
+          clearInterval(updateTime)
+        }
+      }, 3000);
+    }
 
     this.setState({
       loading: false,
@@ -108,7 +134,7 @@ class Block extends React.Component {
 
   render() {
 
-    let {block, tabs, loading, totalTransactions, notFound} = this.state;
+    let {block, tabs, loading, totalTransactions, notFound,confirmedNum} = this.state;
     let {activeLanguage, match, intl} = this.props;
     if (notFound) {
       return (
@@ -148,8 +174,14 @@ class Block extends React.Component {
                             <td>
                               {
                                 block.confirmed ?
-                                    <span className="badge badge-success text-uppercase">{tu("full_node_version_confirmed")}</span> :
+                                  <div>
+                                    <span className="badge badge-success text-uppercase">{tu("full_node_version_confirmed")} </span> 
+                                    <span>（{confirmedNum} Srs {tu("full_node_version_confirmed")}）</span>
+                                  </div>:
+                                  <div>
                                     <span className="badge badge-confirmed text-uppercase">{tu("full_node_version_unconfirmed")}</span>
+                                    <span>（{confirmedNum} Srs {tu("full_node_version_confirmed")}）</span>
+                                  </div>
                               }
                             </td>
                           </tr>

@@ -92,9 +92,27 @@ class Transaction extends React.Component {
     }
     if(transaction && transaction.block){
       let confirmNumObj =  await Client.getBlockByNumber(transaction.block);
+      let confirmedNum = confirmNumObj && confirmNumObj.confirmedNum;
       this.setState({
-        confirmedNum:confirmNumObj.confirmedNum
+        confirmedNum
       })
+      let updateTime = null;
+      updateTime = setInterval(async() => {
+        let confirmNumObj =  await Client.getBlockByNumber(transaction.block);
+        let confirmedNum = confirmNumObj && confirmNumObj.confirmedNum;
+        this.setState({
+          confirmedNum
+        })
+        if(confirmedNum > 18){
+          transaction = await Client.getTransactionByHash(id);
+          this.setState({
+            transaction
+          })
+        }
+        if(confirmedNum === 27){
+          clearInterval(updateTime)
+        }
+      }, 3000);
     }
 
 
@@ -181,11 +199,11 @@ class Transaction extends React.Component {
                                 transaction.confirmed ?
                                   <div>
                                     <span className="badge badge-success text-uppercase">{tu("full_node_version_confirmed")} </span> 
-                                    <span>（{confirmedNum}Srs {tu("full_node_version_confirmed")}）</span>
+                                    <span>（{confirmedNum} Srs {tu("full_node_version_confirmed")}）</span>
                                   </div>:
                                   <div>
                                     <span className="badge badge-confirmed text-uppercase">{tu("full_node_version_unconfirmed")}</span>
-                                    <span>（{confirmedNum}Srs {tu("full_node_version_confirmed")}）</span>
+                                    <span>（{confirmedNum} Srs {tu("full_node_version_confirmed")}）</span>
                                   </div>
                                  
                               }
