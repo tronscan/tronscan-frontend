@@ -665,20 +665,30 @@ export default class VoteOverview extends React.Component {
                     <table className="table vote-table table-hover m-0">
                       <thead className="thead-light">
                         <tr>
-                          <th className="text-center" style={{ width: 50 }}>
-                            {tu("SR_rank")}
-                          </th>
+                          
                           <th>{tu("name")}</th>
-
-                          <th className="text-right" style={{ width: 150 }}>
-                            {tu("SR_votes")}
+                          <th className="text-center" style={{ width: 50 }}>
+                            {tu("sr_vote_last_ranking")}
                           </th>
                           <th className="text-right" style={{ width: 150 }}>
-                            {tu("live")}
+                            {tu("sr_vote_last_votes")}
                           </th>
                           <th className="text-right" style={{ width: 100 }}>
                             {tu("percentage")}
+                            <span className="ml-2">
+                              <QuestionMark
+                                placement="top"
+                                text="sr_vote_percent_note"
+                              />
+                            </span>
                           </th>
+                          <th className="text-right" style={{ width: 50 }}>
+                            {tu("sr_vote_current_ranking")}
+                          </th>
+                          <th className="text-right" style={{ width: 150 }}>
+                            {tu("sr_vote_current_vote")}
+                          </th>
+                          
                           <th className="text-right" style={{ width: 150 }}>
                             {tu("SR_voteRatio")}
                             <span className="ml-2">
@@ -706,6 +716,48 @@ export default class VoteOverview extends React.Component {
                         {filteredCandidates.map((candidate, index) => {
                           return (
                             <tr key={candidate.address + "_" + index}>
+                              
+                              <td className="d-flex flex-row ">
+                                <div
+                                  className="text-center text-sm-left"
+                                  style={{ minWidth: "150px" }}
+                                >
+                                  <div className="d-flex flex-row ">
+                                    <Truncate>
+                                      <AddressLink
+                                        address={candidate.address}
+                                        className="font-weight-bold"
+                                      >
+                                        {candidate.name || candidate.url}
+                                      </AddressLink>
+                                    </Truncate>
+                                    <Link
+                                      className="btn btn-lg btn-block btn-default mt-1"
+                                      to={`/representative/${candidate.address}`}
+                                    >
+                                      {tu("sr_vote_team_information")}
+                                      {/* <i className="fas fa-users ml-2" /> */}
+                                    </Link>
+                                  </div>
+                                  
+
+                                  <AddressLink
+                                    className="small text-muted"
+                                    address={candidate.address}
+                                  >{candidate.address}</AddressLink>
+                                </div>
+                                {/* {!votingEnabled && candidate.hasPage && (
+                                  <div className="_team ml-0 ml-sm-auto">
+                                    <Link
+                                      className="btn btn-lg btn-block btn-default mt-1"
+                                      to={`/representative/${candidate.address}`}
+                                    >
+                                      {tu("open_team_page")}
+                                      <i className="fas fa-users ml-2" />
+                                    </Link>
+                                  </div>
+                                )} */}
+                              </td>
                               {viewStats ? (
                                 <th
                                   className="font-weight-bold pt-4 text-center"
@@ -717,40 +769,10 @@ export default class VoteOverview extends React.Component {
                                   {candidate.lastRanking}
                                 </th>
                               ) : (
-                                <th className="font-weight-bold pt-4 text-center">
+                                <td className="font-weight-bold pt-4 text-center">
                                   {candidate.lastRanking}
-                                </th>
+                                </td>
                               )}
-                              <td className="d-flex flex-row ">
-                                <div
-                                  className="text-center text-sm-left"
-                                  style={{ minWidth: "150px" }}
-                                >
-                                  <Truncate>
-                                    <AddressLink
-                                      address={candidate.address}
-                                      className="font-weight-bold"
-                                    >
-                                      {candidate.name || candidate.url}
-                                    </AddressLink>
-                                  </Truncate>
-                                  <AddressLink
-                                    className="small text-muted"
-                                    address={candidate.address}
-                                  />
-                                </div>
-                                {!votingEnabled && candidate.hasPage && (
-                                  <div className="_team ml-0 ml-sm-auto">
-                                    <Link
-                                      className="btn btn-lg btn-block btn-default mt-1"
-                                      to={`/representative/${candidate.address}`}
-                                    >
-                                      {tu("open_team_page")}
-                                      <i className="fas fa-users ml-2" />
-                                    </Link>
-                                  </div>
-                                )}
-                              </td>
                               <td className="small text-right align-middle">
                                 {totalVotes > 0 && (
                                   <Fragment>
@@ -760,6 +782,22 @@ export default class VoteOverview extends React.Component {
                                     <br />
                                   </Fragment>
                                 )}
+                              </td>
+                              <td className="small text-right align-middle">
+                                {totalVotes > 0 && (
+                                  <Fragment>
+                                    <FormattedNumber
+                                      value={candidate.votesPercentage}
+                                      minimumFractionDigits={2}
+                                      maximumFractionDigits={2}
+                                    />
+                                    %
+                                  </Fragment>
+                                )}
+                              </td>
+                              <td className="font-weight-bold pt-4 text-center">
+                                <p>{candidate.realTimeRanking}</p>
+                                {candidate.change_cycle != 0 && <p>{candidate.change_cycle}</p>}
                               </td>
                               <td className="small text-right align-middle _liveVotes">
                                 {totalVotes > 0 && (
@@ -789,18 +827,7 @@ export default class VoteOverview extends React.Component {
                                   </Fragment>
                                 )}
                               </td>
-                              <td className="small text-right align-middle">
-                                {totalVotes > 0 && (
-                                  <Fragment>
-                                    <FormattedNumber
-                                      value={candidate.votesPercentage}
-                                      minimumFractionDigits={2}
-                                      maximumFractionDigits={2}
-                                    />
-                                    %
-                                  </Fragment>
-                                )}
-                              </td>
+                              
                               <td className="small text-right align-middle">
                                 {
                                   <Fragment>
@@ -815,7 +842,8 @@ export default class VoteOverview extends React.Component {
                               </td>
                               {votingEnabled && trxBalance > 0 && (
                                 <td className="vote-input-field">
-                                  <div className="input-group">
+                                  <div className="input-group"
+                                    style={{ minWidth: "100px" }}>
                                     <div className="input-group-prepend">
                                       <button
                                         className="btn btn-outline-danger"
