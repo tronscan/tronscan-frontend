@@ -9,6 +9,7 @@ import {
 import {
   store
 } from "./../store";
+import ApiClientMonitor from './../services/monitor'
 // import { setToken20Map, setTokenMap } from './../actions/account';
 
 export default class App {
@@ -186,8 +187,8 @@ getPerformanceTiming () {
                       onloadCallbackTime:loadEvent,
                       uninstallPageTime: unloadEvent
                   };
-                  
-                  console.log(data)
+                 
+                  ApiClientMonitor.setMonitor(data)
                   return data;
                 }
               })
