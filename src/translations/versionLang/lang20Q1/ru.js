@@ -112,14 +112,13 @@ export const lang20Q1 = {
   data_bandwidth_burned: "Пропускная Способность после Сжигания TRX",
   data_area:
     "Only tokens listed on <a href='https://poloniex.org/'  target='_blank'>POLONI DEX</a> are included",
-
   // index nav
 
   index_navigation_explorers: "EXPLORERS",
   index_navigation_data: "ДАННЫЕ",
   index_navigation_committee: "КОМИТЕТ",
   index_navigation_proposals: "ПРЕДЛОЖЕНИЯ",
-  
+
   // 2020-02-04
   chart_hold_trx_account:'Аккаунты, удерживающие TRX',
   chart_hold_trx_account_per:'Процент держателя TRX',
@@ -133,6 +132,78 @@ export const lang20Q1 = {
   chart_resource_user_burning:'Энергия от сжигания TRX',
   chart_resource_contract_deployer:'Энергия от выпускников контрактов',
 
+
+  // 2020-2-5 leon
+  proposal_serial: "Нет",
+  proposal_create: "Поднять предложение",
+  proposal_mine: "Мои предложения",
+  proposal_endtime: "Время истечения",
+  proposal_total_votes: "все",
+  proposal_valid_votes: "годный голос",
+  proposal_votes_tip: "Действительные голоса от лучших 27 SR.  Общее количество голосов - это голоса, отданные всеми SR. ",
+  proposal_action: "Операции",
+  proposal_more: "подробнее",
+  proposal_approve: "Голосовать",
+  proposal_cancel_approve: "не согласен",
+  proposal_not_sign_in: "Пожалуйста, войдите, чтобы использовать эту функцию.",
+  proposal_cancel_tip: "Вы уверены, что хотите снять голосование?",
+  proposal_apply_super: "Эта функция доступна только для SR.",
+  proposal_apply_super_btn: "Подать заявку на SR",
+  proposal_apply_super_desc: "Все TRX-держатели могут подать заявку на участие в качестве кандидата в SR 27 наиболее проголосовавших кандидатов станут SR, а лучшие 28 - 127 кандидатов станут супер-партнерами. SR отвечают за упаковку транзакций и генерацию блоков. Они также имеют право блокировать награды и награды голосования. Суперпартнеры не упаковывают транзакции и не генерируют блоки и имеют право только на вознаграждение за голосование. Все кандидаты в SR, супер-партнеры и SR могут подать предложения по изменению параметров в сети TRON.",
+  // proposal_apply_super_input_name: "请输入您的名称",
+  // proposal_apply_super_input_name_ph: "3-30个字符，设置后不可修改",
+  proposal_apply_super_input_website: "Пожалуйста, введите ваш URL",
+  proposal_apply_super_input_website_ph: "Ссылка на сайт проекта или страницу социальной сети",
+  proposal_apply_super_success: "Заявка прошла успешна.  Функции SR теперь включены.",
+  proposal_my: "Мой",
+  proposal_details: "Голоса",
+  proposal_super_votes: "SR голоса",
+  proposal_super_partner_votes: "Голоса Супер партнеров",
+  proposal_super_candidate_votes: "Голоса кандидатов SR",
+  proposal_my_initiate: "Инициировано",
+  proposal_my_participate: "Приняли участие",
+  proposal_cancel: "Снять голос",
+  proposal_cancel_tip1: "Вы уверены, что хотите снять голос?",
+  proposal_fail: "Ошибка отправки",
+  proposal_success: "Отправлено успешно",
+  proposal_go: " ",
+  proposal_or: " или ",
+  proposal_vote_link: "Проголосовать за предложение",
+  proposal_balance_not_enough: "Недостаточный баланс",
+
+  /*
+    ##################################################################################
+    #                                                                                #
+    # proposals create                           #
+    #                                                                                #
+    ##################################################################################
+  */
+  proposal_select: "Выберите параметры сети",
+  proposal_value: "новое значение", 
+  proposal_confirm: "Подтвердить", 
+  proposal_result: "Результат",
+  proposal_create_info: "Инициировано предложение изменить параметры сети TRON. Каждый SR имеет право инициировать и голосовать за предложения. После получения голосов от 19 или более SR до истечения срока действия предложение считается принятым и соответствующие параметры сети будут изменены в следующем периоде обслуживания.",
+  proposal_select_table: "Выбрать",
+  proposal_selected_network_parameters:"Настройки сети выбраны",
+  proposal_content:"Содержание предложения",
+  proposal_new_value:"Новое значение",
+  proposal_submit_text:"Вы уверены, что инициируете предложение?",
+  proposal_created_successful:"Предложение инициировано",
+  proposal_created_failure:"Предложение не удалось",
+  proposal_validate_text_0:"Пожалуйста, введите значение между 81-86400",
+  proposal_validate_text_1:"Пожалуйста, введите значение между 0-100000000000",
+  proposal_validate_text_2:"Пожалуйста, введите значение между 0-1000",
+  proposal_validate_text_3:"Пожалуйста, выберите разрешить/запретить",
+  proposal_validate_text_4:"Пожалуйста, введите значение",
+  proposal_validate_text_5:"Пожалуйста, введите значение между 0-100000",
+  proposal_validate_text_6:"Пожалуйста, выберите вкл / выкл",
+  proposal_validate_text_7:"Пожалуйста, введите значение между 1-10000",
+  proposal_validate_text_8:"Пожалуйста, введите значение между 1-1000",
+  proposal_validate_text_9:"Пожалуйста, введите значение между 0-100000000000000000",
+  propose_not_activate:"Не открыт",
+  proposal_value_same:"Новое значение идентично текущему",
+  go_to_proposals_list:"Проголосовать за предложение",
+  proposal_quit:"В настоящее время у вас есть незавершенные операции. Вы уверены, что хотите выйти?",
   // full node
   full_node_version_latest_block:'Последний блок',
   full_node_version_confirmed:'CONFIRMED',
@@ -143,4 +214,12 @@ export const lang20Q1 = {
   chart_energy:'используемая энергия',
   getAllowTvmSolidity059_tips:"Three new features of TVM (TRON Virtual Machine) will be opened: support for parallel signature verification, multi signature verification, and judge whether the address is the contract address",
 
+
+  // 0227 torn sr
+  sr_vote_team_information:'команда',
+  sr_vote_last_ranking:'Последний рейтинг',
+  sr_vote_last_votes:'Последние голоса',
+  sr_vote_current_ranking:'Текущий рейтинг',
+  sr_vote_current_vote:'Текущие голоса',
+  sr_vote_percent_note:'超级代表在上轮投票中所得票数占所有投票数的比例',
 };

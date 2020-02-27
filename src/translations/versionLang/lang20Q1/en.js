@@ -115,7 +115,7 @@ export const lang20Q1 = {
   index_navigation_data: "DATA",
   index_navigation_committee: "COMMITTEE",
   index_navigation_proposals: "PROPOSALS",
-     // 2020-02-04
+    // 2020-02-04
   chart_hold_trx_account:'Accounts holding TRX',
   chart_hold_trx_account_per:'TRX holder percentage',
   chart_hold_trx_account_per_t:'TRX holder percentage:',
@@ -128,6 +128,79 @@ export const lang20Q1 = {
   chart_resource_user_burning:'Energy from burning TRX',
   chart_resource_contract_deployer:'Energy from contract deployers',
   
+  // 2020-2-5 leon
+  proposal_serial: "No.",
+  proposal_create: "Raise a proposal",
+  proposal_mine: "My proposals",
+  proposal_endtime: "Time of Expiration",
+  proposal_total_votes: "Total Votes",
+  proposal_valid_votes: "Valid Votes",
+  proposal_votes_tip: "Valid votes are from the top 27 SRs. Total votes are votes casted by all SRs.",
+  proposal_action: "Operations",
+  proposal_more: "View details",
+  proposal_approve: "Cast a vote",
+  proposal_cancel_approve: "Undo vote",
+  proposal_not_sign_in: "Please log in to use this feature.",
+  proposal_cancel_tip: "Are you sure to withdraw the vote? ",
+  proposal_apply_super: "This feature is only available to SRs.",
+  proposal_apply_super_btn: "Apply to be an SR",
+  proposal_apply_super_desc: "All TRX-holders can apply to be SR candidates. The 27 most voted candidates will become SRs, and the top 28 - 127 candidates will become super partenrs. SRs are responsible for packing transactions and generating blocks. They are also entitled to block rewards and voting rewards. Super partners do not pack transaction or generate blocks and are only eligible for voting rewards. All SR candidates, super partners and SRs can raise proposals to modify parameters on the TRON network.",
+  // proposal_apply_super_input_name: "请输入您的名称",
+  // proposal_apply_super_input_name_ph: "3-30个字符，设置后不可修改",
+  proposal_apply_super_input_website: "Please enter your URL",
+  proposal_apply_super_input_website_ph: "Link to project website or social media page",
+  proposal_apply_super_success: "Application successful. SR features are now enabled.",
+  proposal_my: "My",
+  proposal_details: "Votes",
+  proposal_super_votes: "SR votes",
+  proposal_super_partner_votes: "SR partner votes",
+  proposal_super_candidate_votes: "SR candidate votes",
+  proposal_my_initiate: "Initiated",
+  proposal_my_participate: "Participated",
+  proposal_cancel: "Withdraw it",
+  proposal_cancel_tip1: "Are you sure to withdraw the vote?",
+  proposal_fail: "Submission Failed",
+  proposal_success: "Submitted successfully",
+  // proposal_nodata: "暂无数据",
+  proposal_go: " ",
+  proposal_or: " or ",
+  proposal_vote_link: "Vote for the proposal",
+  proposal_balance_not_enough: "Insufficient balance",
+
+  /*
+    ##################################################################################
+    #                                                                                #
+    # proposals create                           #
+    #                                                                                #
+    ##################################################################################
+  */
+  proposal_select: "Select network parameters",
+  proposal_value: "Propose a new value", 
+  proposal_confirm: "Confirm", 
+  proposal_result: "Result",
+  proposal_create_info: "A proposal is initiated to modify TRON network parameters. Each SR has the right to initiate and vote for proposals. Upon receiving votes from 19 or more SRs before the expiry date, a proposal is deemed pass and according network parameters will be modified in the following maintenance period.",
+  proposal_select_table: "Select",
+  proposal_selected_network_parameters:"Selected network parameters",
+  proposal_content:"Proposal content",
+  proposal_new_value:"New value",
+  proposal_submit_text:"Are you sure to initiate the proposal?",
+  proposal_created_successful:"Proposal initiated",
+  proposal_created_failure:"Failed to initiate proposal",
+  proposal_validate_text_0:"Please enter a value between 81-86400",
+  proposal_validate_text_1:"Please enter a value between 0-100000000000",
+  proposal_validate_text_2:"Please enter a value between 0-1000",
+  proposal_validate_text_3:"Please select allow/disallow",
+  proposal_validate_text_4:"Please enter a value",
+  proposal_validate_text_5:"Please enter a value between 0-100000",
+  proposal_validate_text_6:"Please select on / off",
+  proposal_validate_text_7:"Please enter a value between 1-10000",
+  proposal_validate_text_8:"Please enter a value between 1-1000",
+  proposal_validate_text_9:"Please enter a value between 0-100000000000000000",
+  propose_not_activate:"Not Activate",
+  proposal_value_same:"The new value is identical to the current one",
+  go_to_proposals_list:"Vote for the proposal",
+  proposal_quit:"The attempt is unfinished. Are you sure to quit? ",
+  
 
    // full node
   full_node_version_latest_block:'Latest block',
@@ -139,5 +212,15 @@ export const lang20Q1 = {
   chart_energy:'energy used',
   
   getAllowTvmSolidity059_tips:"Three new features of TVM (TRON Virtual Machine) will be opened: support for parallel signature verification, multi signature verification, and judge whether the address is the contract address.",
+
+
+
+   // 0227 torn sr
+   sr_vote_team_information:'Team information',
+   sr_vote_last_ranking:'Last Ranking',
+   sr_vote_last_votes:'Last Votes',
+   sr_vote_current_ranking:'Current Ranking',
+   sr_vote_current_vote:'Current Votes',
+   sr_vote_percent_note:'超级代表在上轮投票中所得票数占所有投票数的比例',
 
 };
