@@ -10,6 +10,8 @@ import {
   store
 } from "./../store";
 import ApiClientMonitor from './../services/monitor'
+import isMobile from "./../utils/isMobile";
+
 // import { setToken20Map, setTokenMap } from './../actions/account';
 
 export default class App {
@@ -185,7 +187,8 @@ getPerformanceTiming () {
                       tcpBuildTime:connect,
                       redirectTime:redirect,
                       onloadCallbackTime:loadEvent,
-                      uninstallPageTime: unloadEvent
+                      uninstallPageTime: unloadEvent,
+                      isMobile:isMobile
                   };
                  
                   ApiClientMonitor.setMonitor(data)
