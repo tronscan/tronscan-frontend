@@ -44,7 +44,8 @@ class Transaction extends React.Component {
       resMessage: '',
       SUCCESS: 'SUCCESS',
       FAIL: 'FAIL',
-      unfreeze_amount: ''
+      unfreeze_amount: '',
+      confirmedNum:0
     };
   }
 
@@ -56,6 +57,7 @@ class Transaction extends React.Component {
       this.props.setLanguage(lang);
     }
     this.load(match.params.hash);
+
   }
 
   componentDidUpdate(prevProps) {
@@ -88,6 +90,13 @@ class Transaction extends React.Component {
         });
       }
     }
+    if(transaction && transaction.block){
+      let confirmNumObj =  await Client.getBlockByNumber(transaction.block);
+      this.setState({
+        confirmedNum:confirmNumObj.confirmedNum
+      })
+    }
+
 
     this.setState({
       loading: false,
@@ -124,7 +133,7 @@ class Transaction extends React.Component {
 
   render() {
 
-    let { transaction, tabs, loading, notFound, resMessage, SUCCESS, FAIL } = this.state;
+    let { transaction, tabs, loading, notFound, resMessage, SUCCESS, FAIL,confirmedNum } = this.state;
 
     let { match, intl } = this.props;
     if (notFound) {
@@ -172,10 +181,11 @@ class Transaction extends React.Component {
                                 transaction.confirmed ?
                                   <div>
                                     <span className="badge badge-success text-uppercase">{tu("full_node_version_confirmed")} </span> 
-                                    <span>（19Srs {tu("full_node_version_confirmed")}）</span>
+                                    <span>（{confirmedNum}Srs {tu("full_node_version_confirmed")}）</span>
                                   </div>:
                                   <div>
                                     <span className="badge badge-confirmed text-uppercase">{tu("full_node_version_unconfirmed")}</span>
+                                    <span>（{confirmedNum}Srs {tu("full_node_version_confirmed")}）</span>
                                   </div>
                                  
                               }
