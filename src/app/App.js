@@ -24,7 +24,7 @@ export default class App {
     this.getTokensMap();
     this.getTokens20Map();
     this.setExternalLinkHandler(null);
-    this.MonitoringParameters();
+    // this.MonitoringParameters();
   }
 
   async getTokensMap() {

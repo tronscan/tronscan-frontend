@@ -1017,7 +1017,7 @@ class Token20Detail extends React.Component {
                       onloadCallbackTime:loadEvent,
                       uninstallPageTime: unloadEvent,
                       isMobile:isMobile && isMobile[0],
-                      isRefresh:false
+                      
                   };
                  
                   ApiClientMonitor.setMonitor(data)
