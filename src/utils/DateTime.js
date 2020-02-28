@@ -179,3 +179,68 @@ export function  getPerformanceTiming () {
   
     return times;
     }
+
+
+        
+ export function getPerformanceTimingEntry(){
+    let  entryTimesList = [];
+    let entryList = window.performance.getEntries();
+    let obj = {loadPage:0,domReady:0,redirect:0,lookupDomain:0,ttfb:0,request:0,loadEvent:0,unloadEvent:0,connect:0};
+    entryList.forEach((item,index)=>{
+    
+       let templeObj = {};
+       
+    //    let usefulType = ['navigation','script','css','fetch','xmlhttprequest','link','img'];
+    //    if(usefulType.indexOf(item.initiatorType)>-1){
+    //      templeObj.name = item.name;
+         if(item.nextHopProtocol){
+         templeObj.nextHopProtocol = item.nextHopProtocol;
+        
+         //dns查询耗时
+         templeObj.lookupDomain = item.domainLookupEnd - item.domainLookupStart;
+         
+         //tcp链接耗时
+         templeObj.connect = item.connectEnd - item.connectStart;
+         
+         //请求时间
+         templeObj.request = item.responseEnd - item.requestStart;
+  
+         //重定向时间
+         templeObj.redirect = item.redirectEnd - item.redirectStart;
+
+         //
+         templeObj.loadPage = item.duration;
+
+        //  templeObj.domReady = item.domComplete - item.responseEnd;
+
+        //  templeObj.ttfb = item.responseStart - item.navigationStart;
+
+        //  templeObj.loadEvent = item.loadEventEnd - item.loadEventStart;
+
+        //  templeObj.unloadEvent = item.unloadEventEnd - item.unloadEventStart;
+
+         entryTimesList.push(templeObj);
+         
+         }
+    //    }
+    
+    });
+  
+    entryTimesList.forEach((subitem,index)=>{
+        obj.loadPage += Number(subitem.loadPage)
+        // obj.domReady += Number(subitem.domReady)
+        obj.redirect += Number(subitem.redirect)
+        obj.lookupDomain += Number(subitem.lookupDomain)
+        // obj.ttfb += Number(subitem.ttfb)
+        obj.request += Number(subitem.request)
+        // obj.loadEvent += Number(subitem.loadEvent)
+        // obj.unloadEvent += Number(subitem.unloadEvent)
+        obj.connect += Number(subitem.connect)
+    })
+    
+
+    return obj
+
+  
+ }  
+
