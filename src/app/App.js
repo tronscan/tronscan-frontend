@@ -135,7 +135,8 @@ export default class App {
                       redirectTime:redirect,
                       onloadCallbackTime:loadEvent,
                       uninstallPageTime: unloadEvent,
-                      isMobile:isMobile && isMobile[0]
+                      isMobile:isMobile && isMobile[0],
+                      isRefresh:true
                   };
                  
                   ApiClientMonitor.setMonitor(data)

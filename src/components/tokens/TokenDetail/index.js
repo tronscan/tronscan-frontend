@@ -694,7 +694,8 @@ class TokenDetail extends React.Component {
                       redirectTime:redirect,
                       onloadCallbackTime:loadEvent,
                       uninstallPageTime: unloadEvent,
-                      isMobile:isMobile && isMobile[0]
+                      isMobile:isMobile && isMobile[0],
+                      isRefresh:false
                   };
                  
                   ApiClientMonitor.setMonitor(data)
