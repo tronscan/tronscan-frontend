@@ -101,7 +101,7 @@
         "postcss-preset-env": "6.6.0",
         "postcss-safe-parser": "4.0.1",
         "progress-bar-webpack-plugin": "^1.12.1",
-        "promise": "8.0.1",
+        "promise": "^8.0.3",
         "prop-types": "^15.6.1",
         "qrcode": "^1.2.0",
         "qrcode.react": "^0.8.0",
