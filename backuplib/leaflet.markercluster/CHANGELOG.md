@@ -1,4 +1,4 @@
-Leaflet.markercluster xyy
+Leaflet.markercluster
 =====================
 
 (all changes without author notice are by [@danzel](https://github.com/danzel))

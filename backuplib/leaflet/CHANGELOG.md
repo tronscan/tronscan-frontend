@@ -1,4 +1,4 @@
-Leaflet Changelog xueyuanying
+Leaflet Changelog
 =================
 
 (all changes without author notice are by [@mourner](https://github.com/mourner))
