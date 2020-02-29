@@ -53,7 +53,7 @@ import isMobile from "../../../utils/isMobile";
 import ApiClientMonitor from '../../../services/monitor'
 class Token20Detail extends React.Component {
   constructor() {
-    window.performance.mark("mySetTimeout-start");
+    window.performance.mark("start2");
     super();
     this.state = {
       privateKey: "",
@@ -1002,19 +1002,35 @@ class Token20Detail extends React.Component {
           var navi = perf.navigation;
           window.performance.mark("mySetTimeout-end2");
 
-          performance.measure(
+          window.performance.measure(
             "mySetTimeout",
-            "mySetTimeout-start2",
+            "start2",
             "mySetTimeout-end2"
           );
+          var measure5  =-1;
+          if (performance.navigation.type == 1 ) {
+            performance.measure(
+              "mySetTimeout5",
+              "start",
+              "start2"
+            );
+            var measures5 = window.performance.getEntriesByName("mySetTimeout5");
+            measure5 = measures5[0].duration;
+          }
+          
           var measures = window.performance.getEntriesByName("mySetTimeout");
           var measure = measures[0];
+
+          // var measures6 = window.performance.getEntriesByName("mySetTimeout6");
+          // var measure6 = measures6[0];
 
           var timer = setInterval(function() {
               if (0 !== timing.loadEventEnd) {
                   timing = perf.timing;
                   let {loadPage,domReady,redirect,lookupDomain,ttfb,request,loadEvent,unloadEvent,connect} = getPerformanceTiming()
                   clearInterval(timer);
+                  var time = performance.timing;
+
                   var data = {
                       url: window.location.href,
                       timezone: new Date().getTimezoneOffset()/60,
@@ -1031,11 +1047,19 @@ class Token20Detail extends React.Component {
                       isMobile:isMobile && isMobile[0],
                       navigationtype:performance.navigation.type,
                       measure:measure.duration,
+                      dompreload: time.responseEnd - time.navigationStart,
+                      domloadend:time.domComplete - time.domLoading,
+                      domative:time.domInteractive - time.domLoading,
+                      shelllod:time.domContentLoadedEventEnd - time.domContentLoadedEventStart,
+                      measure5:measure5,
+                      blankTime:time.domLoading - time.fetchStart
                       
                   };
                   window.performance.clearMarks();
                   window.performance.clearMeasures();
-                  
+                  // console.log('measure6:',measure6)
+                 // console.log('token2:',data)
+
                   ApiClientMonitor.setMonitor(data)
                   return data;
                 }

@@ -51,8 +51,6 @@ import ApiClientMonitor from '../../services/monitor'
 @injectIntl
 export default class Home extends Component {
   constructor() {
-    window.performance.mark("mySetTimeout-start2");
-
     super();
     this.listener = null;
     this.state = {
@@ -86,7 +84,11 @@ export default class Home extends Component {
       newNotice: [" ", " ", " "]
     };
   }
+  async componentWillMount() {
+    window.performance.mark("start2");
 
+    //console.log('Component WILL MOUNT!')
+}
   async loadNodes() {
     // let {total} = await Client.getNodeLocations();
     let { data } = await xhr.get(`${API_URL}/api/node`);
@@ -909,17 +911,34 @@ export default class Home extends Component {
 
           performance.measure(
             "mySetTimeout",
-            "mySetTimeout-start2",
+            "start2",
             "mySetTimeout-end2"
           );
+
+          var measure5  =-1;
+          if (performance.navigation.type == 1) {
+            performance.measure(
+              "mySetTimeout5",
+              "start",
+              "start2"
+            );
+            var measures5 = window.performance.getEntriesByName("mySetTimeout5");
+            measure5 = measures5[0].duration;
+          }
+ 
+
           var measures = window.performance.getEntriesByName("mySetTimeout");
           var measure = measures[0];
+
+
+
 
           var timer = setInterval(function() {
               if (0 !== timing.loadEventEnd) {
                   timing = perf.timing;
                   let {loadPage,domReady,redirect,lookupDomain,ttfb,request,loadEvent,unloadEvent,connect} = getPerformanceTiming()
                   clearInterval(timer);
+                  var time = performance.timing;
                   var data = {
                       url: window.location.href,
                       timezone: new Date().getTimezoneOffset()/60,
@@ -936,14 +955,21 @@ export default class Home extends Component {
                       isMobile:isMobile && isMobile[0],
                       navigationtype:performance.navigation.type,
                       measure:measure.duration,
-                
+                      dompreload: time.responseEnd - time.navigationStart,
+                      domloadend:time.domComplete - time.domLoading,
+                      domative:time.domInteractive - time.domLoading,
+                      shelllod:time.domContentLoadedEventEnd - time.domContentLoadedEventStart,
+                      measure5:measure5,
+                      blankTime:time.domLoading - time.fetchStart
                   };
 
                 window.performance.clearMarks();
                 window.performance.clearMeasures();
 
-                  //console.log('data1',data)
-                  ApiClientMonitor.setMonitor(data)
+                //console.log('measure:',measure)
+                //console.log('measure5:',measure5)
+                //console.log('home',data)
+                ApiClientMonitor.setMonitor(data)
                   return data;
                 }
               })

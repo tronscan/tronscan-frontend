@@ -40,7 +40,7 @@ import ApiClientMonitor from '../../../services/monitor'
 @withTronWeb
 class TokenDetail extends React.Component {
   constructor() {
-    window.performance.mark("mySetTimeout-start3");
+    window.performance.mark("start2");
 
     super();
     this.start = moment([2018, 5, 25])
@@ -683,17 +683,30 @@ class TokenDetail extends React.Component {
 
           performance.measure(
             "mySetTimeout",
-            "mySetTimeout-start3",
+            "start2",
             "mySetTimeout-end3"
           );
           var measures = window.performance.getEntriesByName("mySetTimeout");
           var measure = measures[0];
+
+          var measure5  =-1;
+          if (performance.navigation.type == 1) {
+            performance.measure(
+              "mySetTimeout5",
+              "start",
+              "start2"
+            );
+            var measures5 = window.performance.getEntriesByName("mySetTimeout5");
+            measure5 = measures5[0].duration;
+          }
 
           var timer = setInterval(function() {
               if (0 !== timing.loadEventEnd) {
                   timing = perf.timing;
                   let {loadPage,domReady,redirect,lookupDomain,ttfb,request,loadEvent,unloadEvent,connect} = getPerformanceTiming()
                   clearInterval(timer);
+                  var time = performance.timing;
+
                   var data = {
                       url: window.location.href,
                       timezone: new Date().getTimezoneOffset()/60,
@@ -710,10 +723,18 @@ class TokenDetail extends React.Component {
                       isMobile:isMobile && isMobile[0],
                       navigationtype:performance.navigation.type,
                       measure:measure.duration,
+                      dompreload: time.responseEnd - time.navigationStart,
+                      domloadend:time.domComplete - time.domLoading,
+                      domative:time.domInteractive - time.domLoading,
+                      shelllod:time.domContentLoadedEventEnd - time.domContentLoadedEventStart,
+                      measure5:measure5,
+                      blankTime:time.domLoading - time.fetchStart
                   };
                  
+
                   window.performance.clearMarks();
                   window.performance.clearMeasures();
+                  //console.log('token1:',data)
 
                   ApiClientMonitor.setMonitor(data)
                   return data;
