@@ -222,4 +222,6 @@ export const lang20Q1 = {
   sr_vote_current_ranking:'Текущий рейтинг',
   sr_vote_current_vote:'Текущие голоса',
   sr_vote_percent_note:'超级代表在上轮投票中所得票数占所有投票数的比例',
+
+  block_detail_confirmed_show:'Confirmed Blocks',
 };
