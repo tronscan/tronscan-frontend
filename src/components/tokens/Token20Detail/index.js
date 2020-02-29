@@ -46,14 +46,15 @@ import ExchangeQuotes from "../ExchangeQuotes";
 import ApiClientToken from "../../../services/tokenApi";
 import BigNumber from "bignumber.js";
 import {
-  getPerformanceTiming
+  getPerformanceTiming,
+  getPerformanceTimingEntry
 } from "../../../utils/DateTime";
 import isMobile from "../../../utils/isMobile";
 import ApiClientMonitor from '../../../services/monitor'
 class Token20Detail extends React.Component {
   constructor() {
+    window.performance.mark("mySetTimeout-start");
     super();
-
     this.state = {
       privateKey: "",
       loading: true,
@@ -71,7 +72,8 @@ class Token20Detail extends React.Component {
     let { match, priceUSD } = this.props;
     !priceUSD && (await this.props.loadUsdPrice());
     this.loadToken(decodeURI(match.params.address));
-    this.MonitoringParameters()
+    this.MonitoringParameters();
+
   }
 
   componentDidUpdate(prevProps, nextProps) {
@@ -998,6 +1000,16 @@ class Token20Detail extends React.Component {
           var perf = window.performance || window.webkitPerformance;
           var timing = perf.timing;
           var navi = perf.navigation;
+          window.performance.mark("mySetTimeout-end2");
+
+          performance.measure(
+            "mySetTimeout",
+            "mySetTimeout-start2",
+            "mySetTimeout-end2"
+          );
+          var measures = window.performance.getEntriesByName("mySetTimeout");
+          var measure = measures[0];
+
           var timer = setInterval(function() {
               if (0 !== timing.loadEventEnd) {
                   timing = perf.timing;
@@ -1017,9 +1029,13 @@ class Token20Detail extends React.Component {
                       onloadCallbackTime:loadEvent,
                       uninstallPageTime: unloadEvent,
                       isMobile:isMobile && isMobile[0],
+                      navigationtype:performance.navigation.type,
+                      measure:measure.duration,
                       
                   };
-                 
+                  window.performance.clearMarks();
+                  window.performance.clearMeasures();
+                  
                   ApiClientMonitor.setMonitor(data)
                   return data;
                 }

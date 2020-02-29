@@ -40,6 +40,8 @@ import ApiClientMonitor from '../../../services/monitor'
 @withTronWeb
 class TokenDetail extends React.Component {
   constructor() {
+    window.performance.mark("mySetTimeout-start3");
+
     super();
     this.start = moment([2018, 5, 25])
       .startOf("day")
@@ -676,6 +678,17 @@ class TokenDetail extends React.Component {
           var perf = window.performance || window.webkitPerformance;
           var timing = perf.timing;
           var navi = perf.navigation;
+
+          window.performance.mark("mySetTimeout-end3");
+
+          performance.measure(
+            "mySetTimeout",
+            "mySetTimeout-start3",
+            "mySetTimeout-end3"
+          );
+          var measures = window.performance.getEntriesByName("mySetTimeout");
+          var measure = measures[0];
+
           var timer = setInterval(function() {
               if (0 !== timing.loadEventEnd) {
                   timing = perf.timing;
@@ -695,9 +708,13 @@ class TokenDetail extends React.Component {
                       onloadCallbackTime:loadEvent,
                       uninstallPageTime: unloadEvent,
                       isMobile:isMobile && isMobile[0],
-                     
+                      navigationtype:performance.navigation.type,
+                      measure:measure.duration,
                   };
                  
+                  window.performance.clearMarks();
+                  window.performance.clearMeasures();
+
                   ApiClientMonitor.setMonitor(data)
                   return data;
                 }

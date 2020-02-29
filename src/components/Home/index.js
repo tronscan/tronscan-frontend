@@ -51,6 +51,8 @@ import ApiClientMonitor from '../../services/monitor'
 @injectIntl
 export default class Home extends Component {
   constructor() {
+    window.performance.mark("mySetTimeout-start2");
+
     super();
     this.listener = null;
     this.state = {
@@ -366,8 +368,8 @@ export default class Home extends Component {
     // intl.locale == "zh"? data.articles.unshift(noticezhIEO):data.articles.unshift(noticeenIEO);
     this.setState({ notice: data.articles });
 
-    this.MonitoringParameters()
-    this.MonitoringParameters1()
+    this.MonitoringParameters();
+
 
   }
 
@@ -902,6 +904,17 @@ export default class Home extends Component {
           var perf = window.performance || window.webkitPerformance;
           var timing = perf.timing;
           var navi = perf.navigation;
+
+          window.performance.mark("mySetTimeout-end2");
+
+          performance.measure(
+            "mySetTimeout",
+            "mySetTimeout-start2",
+            "mySetTimeout-end2"
+          );
+          var measures = window.performance.getEntriesByName("mySetTimeout");
+          var measure = measures[0];
+
           var timer = setInterval(function() {
               if (0 !== timing.loadEventEnd) {
                   timing = perf.timing;
@@ -921,11 +934,16 @@ export default class Home extends Component {
                       onloadCallbackTime:loadEvent,
                       uninstallPageTime: unloadEvent,
                       isMobile:isMobile && isMobile[0],
+                      navigationtype:performance.navigation.type,
+                      measure:measure.duration,
                 
                   };
-                 
-                  console.log('data1',data)
-                  // ApiClientMonitor.setMonitor(data)
+
+                window.performance.clearMarks();
+                window.performance.clearMeasures();
+
+                  //console.log('data1',data)
+                  ApiClientMonitor.setMonitor(data)
                   return data;
                 }
               })
