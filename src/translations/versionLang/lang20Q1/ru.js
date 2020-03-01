@@ -217,9 +217,9 @@ export const lang20Q1 = {
 
   // 0227 torn sr
   sr_vote_team_information:'команда',
-  sr_vote_last_ranking:'Последний рейтинг',
+  sr_vote_last_ranking:'Last Ranking',
   sr_vote_last_votes:'Последние голоса',
-  sr_vote_current_ranking:'Текущий рейтинг',
+  sr_vote_current_ranking:'Current Ranking',
   sr_vote_current_vote:'Текущие голоса',
-  sr_vote_percent_note:'超级代表在上轮投票中所得票数占所有投票数的比例',
+  sr_vote_percent_note:'SR голоса в последнем раунде/все голоса',
 };

@@ -219,5 +219,5 @@ export const lang20Q1 = {
   sr_vote_last_votes:'Ultimos votos',
   sr_vote_current_ranking:'Ranking actual',
   sr_vote_current_vote:'Votos actuales',
-  sr_vote_percent_note:'超级代表在上轮投票中所得票数占所有投票数的比例',
+  sr_vote_percent_note:'Votos para SR en la última ronda / todos los votos',
 };
