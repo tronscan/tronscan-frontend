@@ -220,4 +220,6 @@ export const lang20Q1 = {
   sr_vote_current_ranking:'Ranking actual',
   sr_vote_current_vote:'Votos actuales',
   sr_vote_percent_note:'Votos para SR en la última ronda / todos los votos',
+
+  block_detail_confirmed_show:'Confirmed Blocks',
 };

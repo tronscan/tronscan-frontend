@@ -222,4 +222,6 @@ export const lang20Q1 = {
   sr_vote_current_ranking:'Current Ranking',
   sr_vote_current_vote:'Текущие голоса',
   sr_vote_percent_note:'SR голоса в последнем раунде/все голоса',
+
+  block_detail_confirmed_show:'Confirmed Blocks',
 };

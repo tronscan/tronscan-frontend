@@ -223,4 +223,6 @@ export const lang20Q1 = {
    sr_vote_current_vote:'Current Votes',
    sr_vote_percent_note:'SR votes in the last round/all votes',
 
+   block_detail_confirmed_show:'Confirmed Blocks',
+
 };

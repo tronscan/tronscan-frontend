@@ -219,5 +219,7 @@ export const lang20Q1 = {
   sr_vote_current_vote:'현재 투표',
   sr_vote_percent_note:'SR 이 전 라운드에서의 득표수 / 총 득표수',
 
+  block_detail_confirmed_show:'Confirmed Blocks',
+
 
 };
