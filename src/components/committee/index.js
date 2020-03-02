@@ -44,7 +44,7 @@ class Committee extends React.Component {
             if(!tronParameters){
                 return
             }
-            // let EnergyLimitNew   = {key: "getTotalEnergyLimitNew", value: 100000000000};
+            // let EnergyLimitNew   = {key: "getShieldedTransactionCreateAccountFee", value: 1000000};
             // tronParameters.splice(19, 0, EnergyLimitNew);
             tronParameters.map(item => {
                 switch (item['key']){
@@ -189,7 +189,15 @@ class Committee extends React.Component {
                     case "getAdaptiveResourceLimitTargetRatio":
                         item.name = 'propose_33';
                         item.id = '33';
-                        break;        
+                        break;     
+                    case "getShieldedTransactionCreateAccountFee":
+                        item.name = 'propose_34';
+                        item.id = '34';
+                        break;
+                    case "getForbidTransferToContract":
+                        item.name = 'propose_35';
+                        item.id = '35';
+                        break;           
                 }
             });
             let tronParametersNew = [];
@@ -530,6 +538,20 @@ class Committee extends React.Component {
                                     {                       
                                         record.key == 'getAdaptiveResourceLimitTargetRatio' && <div>
                                             <span>{text}</span>
+                                        </div>
+                                    }
+                                    {
+                                        record.key == 'getShieldedTransactionCreateAccountFee' &&
+                                            <div>
+                                                <span>{text / ONE_TRX}</span> &nbsp;<span>TRX</span>
+                                            </div>
+                                    }
+                                    {
+                                        record.key == 'getForbidTransferToContract' && <div>
+                                            {
+                                                text? <span>{tu('propose_prohibit')}</span>:
+                                                    <span>{tu('propose_unprohibit')}</span>
+                                            }
                                         </div>
                                     }
                                 </div>:<div>

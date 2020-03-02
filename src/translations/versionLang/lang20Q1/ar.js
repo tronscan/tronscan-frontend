@@ -198,6 +198,7 @@ export const lang20Q1 = {
   proposal_validate_text_7:"الرجاء إدخال قيمة بين 1-10000",
   proposal_validate_text_8:"الرجاء إدخال قيمة بين 1-1000",
   proposal_validate_text_9:"0-100000000000000000 الرجاء إدخال قيمة بين",
+  proposal_validate_text_10:"يرجى اختيار الحظر / ليس الحظر",
   propose_not_activate:"غير مفتوح",
   proposal_value_same:"القيمة المقترحة مماثلة للقيمة الحالية",
   go_to_proposals_list:"التصويت على الاقتراح",
