@@ -221,6 +221,6 @@ export const lang20Q1 = {
   sr_vote_current_vote:'現在の投票',
   sr_vote_percent_note:'前回投票でスーパー代表が受け取った票の割合',
 
-  block_detail_confirmed_show:'Confirmed Blocks',
+  block_detail_confirmed_show:'Block Confirmation',
 
 };

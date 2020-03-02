@@ -223,5 +223,5 @@ export const lang20Q1 = {
    sr_vote_current_vote:'رای های فعلی',
    sr_vote_percent_note:'درصد آراء نماینده فوق العاده در آخرین دور رای گیری به دست می آید.',
 
-   block_detail_confirmed_show:'Confirmed Blocks',
+   block_detail_confirmed_show:'Block Confirmation',
 };

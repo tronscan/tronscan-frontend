@@ -223,5 +223,5 @@ export const lang20Q1 = {
   sr_vote_current_vote:'الأصوات الحالية',
   sr_vote_percent_note:'نسبة الأصوات التي تلقاها الممثل الممتاز في الجولة الأخيرة من التصويت',
   
-  block_detail_confirmed_show:'Confirmed Blocks',
+  block_detail_confirmed_show:'Block Confirmation',
 };

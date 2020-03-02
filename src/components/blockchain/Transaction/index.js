@@ -90,16 +90,17 @@ class Transaction extends React.Component {
         });
       }
     }
+
     if(transaction && transaction.block){
-      let confirmNumObj =  await Client.getBlockByNumber(transaction.block);
-      let confirmedNum = confirmNumObj && confirmNumObj.confirmedNum;
+      let confirmNumObj =  await Client.getTransactionByHash(id);
+      let confirmedNum = confirmNumObj && confirmNumObj.confirmations;
       this.setState({
         confirmedNum
       })
       let updateTime = null;
       updateTime = setInterval(async() => {
-        let confirmNumObj =  await Client.getBlockByNumber(transaction.block);
-        let confirmedNum = confirmNumObj && confirmNumObj.confirmedNum;
+        let confirmNumObj =  await Client.getTransactionByHash(id);
+        let confirmedNum = confirmNumObj && confirmNumObj.confirmations;
         this.setState({
           confirmedNum
         })
@@ -108,13 +109,11 @@ class Transaction extends React.Component {
           this.setState({
             transaction
           })
-        }
-        if(confirmedNum === 27){
           clearInterval(updateTime)
         }
       }, 3000);
     }
-
+   
 
     this.setState({
       loading: false,
