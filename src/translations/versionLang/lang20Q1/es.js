@@ -205,7 +205,7 @@ export const lang20Q1 = {
   full_node_version_latest_block:'Último bloque',
   full_node_version_confirmed:'CONFIRMED',
   full_node_version_unconfirmed:'UNCONFIRMED',
-  full_node_version_confirmed_tips:'"Confirmado" significa confirmado por 19 o más supernodos, de lo contrario es "por confirmar"',
+  full_node_version_confirmed_tips:'Transactions confirmed by 19 or more blocks will be marked "CONFIRMED"，otherwise is“UNCONFIRMED” or "ROLLED BACK"',
 
   // 2020-02-19
   chart_energy:'Consumo de energía',
@@ -221,5 +221,8 @@ export const lang20Q1 = {
   sr_vote_current_vote:'Votos actuales',
   sr_vote_percent_note:'Votos para SR en la última ronda / todos los votos',
 
-  block_detail_confirmed_show:'Confirmed Blocks',
+  block_detail_confirmed_show:'confirmed by {num} blocks',
+  block_detail_confirmed_over_show:'confirmed by over 200 blocks',
+  block_detail_rolled_back:'ROLLED BACK',
+
 };

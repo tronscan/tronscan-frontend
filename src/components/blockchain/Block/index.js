@@ -10,6 +10,7 @@ import {
   FormattedDate,
   FormattedNumber,
   FormattedTime,
+  FormattedMessage,
   injectIntl
 } from "react-intl";
 import { AddressLink, BlockNumberLink } from "../../common/Links";
@@ -190,10 +191,12 @@ class Block extends React.Component {
                               </span>
                               {
                                 confirmedNum >200?
-                                <span>
-                                （{tu("block_detail_confirmed_show")}>200）
+                                <span className="block-status-tag">
+                                  {tu("block_detail_confirmed_over_show")}
                                 </span>
-                                : <span>（{tu("block_detail_confirmed_show")} {confirmedNum}）</span>
+                                : <span className="block-status-tag">
+                                    <FormattedMessage id="block_detail_confirmed_show" values={{num: confirmedNum}}></FormattedMessage>
+                                  </span>
                               }
                             </div>
                           ) : (
@@ -203,10 +206,13 @@ class Block extends React.Component {
                               </span>
                               {
                                 confirmedNum >200?
-                                <span>
-                                （{tu("block_detail_confirmed_show")}>200）
+                                <span className="block-status-tag">
+                                  {tu("block_detail_confirmed_over_show")}
                                 </span>
-                                : <span>（{tu("block_detail_confirmed_show")} {confirmedNum}）</span>
+                                : <span className="block-status-tag">
+                                    <FormattedMessage id="block_detail_confirmed_show" values={{num: confirmedNum}}>
+                                  </FormattedMessage>
+                                  </span>
                               }
                             </div>
                           )}
