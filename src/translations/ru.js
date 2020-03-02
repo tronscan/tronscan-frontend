@@ -2333,7 +2333,7 @@ export const messages = {
   "SR_rank": "ранжирование",
   "SR_blocksMissed": "Пропущено блоков",
   "SR_votes": "Голоса",
-  "SR_voteRatio": "Соотношение голосов",
+  "SR_voteRatio": "Voting sharing ratio",
   "SR_normal":"Обычный",
   "SR_avnormal":"ненормальный",
   /*

@@ -2331,7 +2331,7 @@ export const messages = {
   "SR_rank": "Clasificación",
   "SR_blocksMissed": "Bloques perdidos",
   "SR_votes": "Votos",
-  "SR_voteRatio": "Ratio de intercambio de votos",
+  "SR_voteRatio": "Voting sharing ratio",
   "SR_normal":"Normal",
   "SR_avnormal":"Anormal",
    /*

@@ -221,7 +221,7 @@ export const lang20Q1 = {
    sr_vote_last_votes:'رای های آخرین',
    sr_vote_current_ranking:'رتبه بندی فعلی',
    sr_vote_current_vote:'رای های فعلی',
-   sr_vote_percent_note:'超级代表在上轮投票中所得票数占所有投票数的比例',
+   sr_vote_percent_note:'درصد آراء نماینده فوق العاده در آخرین دور رای گیری به دست می آید.',
 
    block_detail_confirmed_show:'Confirmed Blocks',
 };
