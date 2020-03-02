@@ -34,6 +34,7 @@ import { CsvExport } from "../../common/CsvExport";
 import moment from "moment";
 import ApiClientAddress from "../../../services/addressApi";
 import { alpha } from "../../../utils/str";
+import Resource from "./Resource";
 
 BigNumber.config({ EXPONENTIAL_AT: [-1e9, 1e9] });
 
@@ -98,7 +99,7 @@ class Address extends React.Component {
     if (match.params.id !== prevProps.match.params.id) {
       this.loadAddress(match.params.id);
       this.loadWitness(match.params.id);
-      this.loadWalletReward(match.params.id)
+      this.loadWalletReward(match.params.id);
     }
   }
 
@@ -361,10 +362,7 @@ class Address extends React.Component {
             path: "/contracts",
             label: <span>{tu("account_details_contracts")}</span>,
             cmp: () => (
-              <MyContracts
-                filter={{ address: id }}
-                showCandidate={false}
-              />
+              <MyContracts filter={{ address: id }} showCandidate={false} />
             )
           }
         }
@@ -453,10 +451,7 @@ class Address extends React.Component {
             path: "/contracts",
             label: <span>{tu("account_details_contracts")}</span>,
             cmp: () => (
-              <MyContracts
-                filter={{ address: id }}
-                showCandidate={false}
-              />
+              <MyContracts filter={{ address: id }} showCandidate={false} />
             )
           }
         }
@@ -675,29 +670,31 @@ class Address extends React.Component {
     let totalType2 = Owner + Other;
     let GetEnergyPer =
       totalType1 != 0 ? ((GetEnergy / totalType1) * 100).toFixed(2) : "-";
-    let GetBandWidthPer = totalType1 != 0 ? (100 - GetEnergyPer).toFixed(2) : "-";
-    let OwnerPer = totalType2 != 0 ? ((Owner / totalType2) * 100).toFixed(2) : "-";
+    let GetBandWidthPer =
+      totalType1 != 0 ? (100 - GetEnergyPer).toFixed(2) : "-";
+    let OwnerPer =
+      totalType2 != 0 ? ((Owner / totalType2) * 100).toFixed(2) : "-";
     let OtherPer = totalType2 != 0 ? (100 - OwnerPer).toFixed(2) : "-";
 
     const TooltipText = (
       <div style={{ lineHeight: "25px" }}>
         <div style={{ borderBottom: "1px solid #eee", paddingBottom: "5px" }}>
           {tu("address_get_energe")}：
-          <FormattedNumber value={GetEnergy / ONE_TRX} />&nbsp;TRX
-           ({GetEnergyPer}%)
+          <FormattedNumber value={GetEnergy / ONE_TRX} />
+          &nbsp;TRX ({GetEnergyPer}%)
           <br />
           {tu("address_get_bandwith")}：
-          <FormattedNumber value={GetBandWidth / ONE_TRX} />&nbsp;TRX
-           ({GetBandWidthPer}%)
+          <FormattedNumber value={GetBandWidth / ONE_TRX} />
+          &nbsp;TRX ({GetBandWidthPer}%)
         </div>
         <div style={{ paddingTop: "5px" }}>
           {tu("address_freeze_owner")}：
-          <FormattedNumber value={Owner / ONE_TRX} />&nbsp;TRX
-           ({OwnerPer}%)
+          <FormattedNumber value={Owner / ONE_TRX} />
+          &nbsp;TRX ({OwnerPer}%)
           <br />
           {tu("address_freeze_other")}：
-          <FormattedNumber value={Other / ONE_TRX} />&nbsp;TRX
-           ({OtherPer}%)
+          <FormattedNumber value={Other / ONE_TRX} />
+          &nbsp;TRX ({OtherPer}%)
         </div>
       </div>
     );
@@ -705,11 +702,13 @@ class Address extends React.Component {
       <div>
         <span className="ml-1">(</span>
         {tu("address_tron_power_remaining")}:{" "}
-        <FormattedNumber value={balance / ONE_TRX} />&nbsp;TRX &nbsp;
+        <FormattedNumber value={balance / ONE_TRX} />
+        &nbsp;TRX &nbsp;
         {tu("freeze")}:{" "}
         <Tooltip placement="top" innerClassName="w-100" title={TooltipText}>
-          <span style={{color:'rgb(255, 163, 11)'}}>
-          <FormattedNumber value={totalPower / ONE_TRX} />&nbsp;TRX&nbsp;
+          <span style={{ color: "rgb(255, 163, 11)" }}>
+            <FormattedNumber value={totalPower / ONE_TRX} />
+            &nbsp;TRX&nbsp;
           </span>
         </Tooltip>
         <span>)</span>
@@ -738,7 +737,9 @@ class Address extends React.Component {
       availableEnergyPercentage,
       csvurl,
       walletReward,
-      balance
+      balance,
+      netLimit,
+      energyLimit
     } = this.state;
     let { match, intl } = this.props;
     let addr = match.params.id;
@@ -814,7 +815,13 @@ class Address extends React.Component {
                             <th>{tu("address")}:</th>
                             <td>
                               <AddressLink address={addr} includeCopy={true} />
-                              <div>{address.addressTag && <span className="addressTag">{address.addressTag}</span>}</div>
+                              <div>
+                                {address.addressTag && (
+                                  <span className="addressTag">
+                                    {address.addressTag}
+                                  </span>
+                                )}
+                              </div>
                             </td>
                           </tr>
                           {!address.representative.enabled ? (
@@ -848,16 +855,19 @@ class Address extends React.Component {
                               <div className="d-flex">
                                 <div>
                                   {stats.transactions_in +
-                                    stats.transactions_out} Txns
+                                    stats.transactions_out}{" "}
+                                  Txns
                                 </div>
                                 <div>
                                   <span className="ml-1">(</span>
                                   <i className="fa fa-arrow-down text-success" />
                                   &nbsp;
-                                  <span>{stats.transactions_in} Txns</span>&nbsp;
+                                  <span>{stats.transactions_in} Txns</span>
+                                  &nbsp;
                                   <i className="fa fa-arrow-up  text-danger" />
                                   &nbsp;
-                                  <span>{stats.transactions_out} Txns</span>&nbsp;
+                                  <span>{stats.transactions_out} Txns</span>
+                                  &nbsp;
                                   <span>)</span>
                                 </div>
                               </div>
@@ -890,19 +900,22 @@ class Address extends React.Component {
                                                 amount={(totalPower) / ONE_TRX}/> */}
                                   <FormattedNumber
                                     value={totalPower / ONE_TRX}
-                                  ></FormattedNumber>&nbsp;TP
+                                  ></FormattedNumber>
+                                  &nbsp;TP
                                   <div>
                                     <span className="ml-1">(</span>{" "}
                                     {tu("address_tron_power_used")}:{" "}
                                     <FormattedNumber
                                       value={address.voteTotal}
-                                    ></FormattedNumber>&nbsp;TP
-                                    &nbsp; {tu("address_tron_power_remaining")}:{" "}
+                                    ></FormattedNumber>
+                                    &nbsp;TP &nbsp;{" "}
+                                    {tu("address_tron_power_remaining")}:{" "}
                                     <FormattedNumber
                                       value={
                                         totalPower / ONE_TRX - address.voteTotal
                                       }
-                                    ></FormattedNumber>{" "}TP&nbsp;
+                                    ></FormattedNumber>{" "}
+                                    TP&nbsp;
                                     <span>)</span>
                                   </div>
                                 </li>
@@ -918,9 +931,12 @@ class Address extends React.Component {
                             </th>
                             <td>
                               <ul className="list-unstyled m-0">
-                                <li className="d-flex">   
-                                  <TRXPrice amount={walletReward / ONE_TRX} showPopup={false}/>
-                                  </li>
+                                <li className="d-flex">
+                                  <TRXPrice
+                                    amount={walletReward / ONE_TRX}
+                                    showPopup={false}
+                                  />
+                                </li>
                               </ul>
                             </td>
                           </tr>
@@ -934,7 +950,10 @@ class Address extends React.Component {
                             <td>
                               <ul className="list-unstyled m-0">
                                 <li className="">
-                                <FormattedNumber value={(balance + totalPower) / ONE_TRX} /> TRX
+                                  <FormattedNumber
+                                    value={(balance + totalPower) / ONE_TRX}
+                                  />{" "}
+                                  TRX
                                   <div>{this.renderFrozenTokens()}</div>
                                 </li>
                               </ul>
@@ -1011,8 +1030,22 @@ class Address extends React.Component {
                         </tbody>
                       </table>
                     </div>
-                    <div className="col-md-6 d-flex address-circle">
-                      <div className="address-circle-bandwidth d-flex">
+                    <div className="col-md-6 address-circle">
+                      <Resource
+                        availableBandWidthPercentage={
+                          availableBandWidthPercentage
+                        }
+                        netRemaining={netRemaining}
+                        availableEnergyPercentage={availableEnergyPercentage}
+                        energyRemaining={energyRemaining}
+                        netLimit={netLimit}
+                        energyLimit={energyLimit}
+                        totalPower={totalPower}
+                        powerPercentage={(totalPower-address.voteTotal)/totalPower*100}
+                        powerRemaining={totalPower - address.voteTotal}
+                      ></Resource>
+                    </div>
+                    {/* <div className="address-circle-bandwidth d-flex">
                         <Tooltip
                           title={this.bandWidthCircle}
                           overlayStyle={{ maxWidth: "500px" }}
@@ -1062,7 +1095,7 @@ class Address extends React.Component {
                           </h5>
                         </div>
                       </div>
-                    </div>
+                    </div> */}
                     {/*
                             <div className={address.representative.enabled ? 'col-md-6 mt-3 mt-md-0' : ''}>
                               {
