@@ -787,7 +787,7 @@ export default class VoteOverview extends React.Component {
                                     address={candidate.address}
                                   >{candidate.address}</AddressLink>
                                 </div>
-                                {!votingEnabled && !candidate.hasPage && (
+                                {!votingEnabled && candidate.hasPage && (
                                   <div className="_team ml-3">
                                     <Link
                                       className="btn btn-sm btn-block btn-default mt-1"
