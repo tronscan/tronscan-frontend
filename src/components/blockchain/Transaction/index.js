@@ -199,11 +199,23 @@ class Transaction extends React.Component {
                                 transaction.confirmed ?
                                   <div>
                                     <span className="badge badge-success text-uppercase">{tu("full_node_version_confirmed")} </span> 
-                                    <span>（{tu("block_detail_confirmed_show")} {confirmedNum}）</span>
+                                    {
+                                      confirmedNum >200?
+                                      <span>
+                                      （{tu("block_detail_confirmed_show")}>200）
+                                      </span>
+                                      : <span>（{tu("block_detail_confirmed_show")} {confirmedNum}）</span>
+                                    }
                                   </div>:
                                   <div>
                                     <span className="badge badge-confirmed text-uppercase">{tu("full_node_version_unconfirmed")}</span>
-                                    <span>（{tu("block_detail_confirmed_show")} {confirmedNum}）</span>
+                                    {
+                                      confirmedNum >200?
+                                      <span>
+                                      （{tu("block_detail_confirmed_show")}>200）
+                                      </span>
+                                      : <span>（{tu("block_detail_confirmed_show")} {confirmedNum}）</span>
+                                    }
                                   </div>
                                  
                               }
