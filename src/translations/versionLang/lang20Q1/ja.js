@@ -207,7 +207,7 @@ export const lang20Q1 = {
   full_node_version_latest_block:'最新のブロック',
   full_node_version_confirmed:'CONFIRMED',
   full_node_version_unconfirmed:'UNCONFIRMED',
-  full_node_version_confirmed_tips:'19以上のSRによって確認されたトランザクションは、「確認済み」とマークされます，そうでなければ「確認される」',
+  full_node_version_confirmed_tips:'Transactions confirmed by 19 or more blocks will be marked "CONFIRMED"，otherwise is“UNCONFIRMED” or "ROLLED BACK"',
 
   // 2020-02-19
   chart_energy:'使用エネルギー',
@@ -221,6 +221,9 @@ export const lang20Q1 = {
   sr_vote_current_vote:'現在の投票',
   sr_vote_percent_note:'前回投票でスーパー代表が受け取った票の割合',
 
-  block_detail_confirmed_show:'Block Confirmation',
+  block_detail_confirmed_show:'confirmed by {num} blocks',
+  block_detail_confirmed_over_show:'confirmed by over 200 blocks',
+  block_detail_rolled_back:'ROLLED BACK',
+
 
 };

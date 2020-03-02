@@ -207,7 +207,7 @@ export const lang20Q1 = {
   full_node_version_latest_block:'أحدث كتلة',
   full_node_version_confirmed:'CONFIRMED',
   full_node_version_unconfirmed:'UNCONFIRMED',
-  full_node_version_confirmed_tips:'"مؤكد" يعني تأكيده بـ 19 عقدًا أو أكثر ، وإلا فسيتم "التأكيد"',
+  full_node_version_confirmed_tips:'Transactions confirmed by 19 or more blocks will be marked "CONFIRMED"，otherwise is“UNCONFIRMED” or "ROLLED BACK"',
 
   // 2020-02-19
   chart_energy:'الطاقة المستخدمة',
@@ -223,5 +223,7 @@ export const lang20Q1 = {
   sr_vote_current_vote:'الأصوات الحالية',
   sr_vote_percent_note:'نسبة الأصوات التي تلقاها الممثل الممتاز في الجولة الأخيرة من التصويت',
   
-  block_detail_confirmed_show:'Block Confirmation',
+  block_detail_confirmed_show:'confirmed by {num} blocks',
+  block_detail_confirmed_over_show:'confirmed by over 200 blocks',
+
 };

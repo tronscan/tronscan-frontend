@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { Route, Switch } from "react-router-dom";
 import { Client } from "../../../services/api";
 import { tu } from "../../../utils/i18n";
-import { FormattedDate, FormattedTime, injectIntl } from "react-intl";
+import { FormattedDate, FormattedTime, injectIntl,FormattedMessage } from "react-intl";
 import { BlockNumberLink } from "../../common/Links";
 import { CopyText } from "../../common/Copy";
 import { TronLoader } from "../../common/loaders";
@@ -200,20 +200,27 @@ class Transaction extends React.Component {
                                     <span className="badge badge-success text-uppercase">{tu("full_node_version_confirmed")} </span> 
                                     {
                                       confirmedNum >200?
-                                      <span>
-                                      （{tu("block_detail_confirmed_show")}>200）
+                                      <span className="block-status-tag">
+                                          {tu("block_detail_confirmed_over_show")}
                                       </span>
-                                      : <span>（{tu("block_detail_confirmed_show")} {confirmedNum}）</span>
+                                      : <span className="block-status-tag">
+                                          <FormattedMessage id="block_detail_confirmed_show" values={{num: confirmedNum}}>
+                                          </FormattedMessage>
+                                        </span>
                                     }
                                   </div>:
                                   <div>
                                     <span className="badge badge-confirmed text-uppercase">{tu("full_node_version_unconfirmed")}</span>
                                     {
-                                      confirmedNum >200?
-                                      <span>
-                                      （{tu("block_detail_confirmed_show")}>200）
+                                      confirmedNum > 200?
+                                      <span className="block-status-tag">
+                                          {tu("block_detail_confirmed_over_show")}
                                       </span>
-                                      : <span>（{tu("block_detail_confirmed_show")} {confirmedNum}）</span>
+                                      : 
+                                      <span  className="block-status-tag">
+                                        <FormattedMessage id="block_detail_confirmed_show" values={{num: confirmedNum}}>
+                                        </FormattedMessage>
+                                      </span>
                                     }
                                   </div>
                                  

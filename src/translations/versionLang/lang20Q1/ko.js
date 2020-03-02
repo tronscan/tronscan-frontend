@@ -204,7 +204,7 @@ export const lang20Q1 = {
   full_node_version_latest_block:'최신 블록',
   full_node_version_confirmed:'CONFIRMED',
   full_node_version_unconfirmed:'UNCONFIRMED',
-  full_node_version_confirmed_tips:'SR에서 확인 된 19 개가 넘는 트랜잭션이 "확인 됨"으로 표시되고 그렇지 않은 경우 "확인되지 않음"',
+  full_node_version_confirmed_tips:'Transactions confirmed by 19 or more blocks will be marked "CONFIRMED"，otherwise is“UNCONFIRMED” or "ROLLED BACK"',
 
   // 2020-02-19
   chart_energy:'사용 된 에너지',
@@ -219,7 +219,10 @@ export const lang20Q1 = {
   sr_vote_current_vote:'현재 투표',
   sr_vote_percent_note:'SR 이 전 라운드에서의 득표수 / 총 득표수',
 
-  block_detail_confirmed_show:'Block Confirmation',
+  block_detail_confirmed_show:'confirmed by {num} blocks',
+  block_detail_confirmed_over_show:'confirmed by over 200 blocks',
+  block_detail_rolled_back:'ROLLED BACK',
+
 
 
 };
