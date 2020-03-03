@@ -1043,6 +1043,7 @@ class Address extends React.Component {
                         totalPower={totalPower}
                         powerPercentage={(totalPower-address.voteTotal)/totalPower*100}
                         powerRemaining={totalPower - address.voteTotal}
+                        address={this.props.match}
                       ></Resource>
                     </div>
                     {/* <div className="address-circle-bandwidth d-flex">

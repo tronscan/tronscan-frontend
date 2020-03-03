@@ -22,10 +22,10 @@ class Resource extends React.Component {
     this.loadWitness()
   }
 
-  async loadWitness(id) {
-      console.log(this.props.match)
+  async loadWitness() {
+      let address = this.props.address;
     /* 需要总票数，实时排名俩个参数*/
-    let { data } = await Client.getVoteWitness(id);
+    let { data } = await Client.getVoteWitness(address);
     this.setState({
         realTimeVotes: data.realTimeVotes,
         realTimeRanking: data.realTimeRanking,
@@ -99,6 +99,9 @@ class Resource extends React.Component {
             剩余： <FormattedNumber value={powerRemaining || 0} />
             / <FormattedNumber value={totalPower || 0} />
           </p>
+        </div>
+        <div>
+          
         </div>
       </Fragment>
     );
