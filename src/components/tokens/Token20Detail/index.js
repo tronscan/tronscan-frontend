@@ -83,7 +83,6 @@ class Token20Detail extends React.Component {
       measure5 = measures5[0].duration;
       this.MonitoringParameters3(measure5);
     } 
-    //console.log('token20 measure5:',measure5)
 
 }
 
@@ -1054,20 +1053,19 @@ class Token20Detail extends React.Component {
                       uninstallPageTime: unloadEvent,
                       isMobile:isMobile && isMobile[0],
                       navigationtype:performance.navigation.type,
-                      measure:measure.duration,
+                      measure:parseInt(measure.duration),
                       dompreload: time.responseEnd - time.navigationStart,
                       domloadend:time.domComplete - time.domLoading,
                       domative:time.domInteractive - time.domLoading,
                       shelllod:time.domContentLoadedEventEnd - time.domContentLoadedEventStart,
-                      measure5:measure5,
+                      measure5:parseInt(measure5),
                       blankTime:time.domLoading - time.fetchStart,
                       v:'v1'
                       
                   };
                   window.performance.clearMarks();
                   window.performance.clearMeasures();
-                  // console.log('measure6:',measure6)
-                 // console.log('token2:',data)
+                 
 
                   ApiClientMonitor.setMonitor(data)
                   return data;
@@ -1100,7 +1098,6 @@ class Token20Detail extends React.Component {
                       timing = perf.timing;
                       let {loadPage,domReady,redirect,lookupDomain,ttfb,request,loadEvent,unloadEvent,connect} = getPerformanceTiming()
                       clearInterval(timer);
-                     // console.log('MonitoringParameters3 time',timing)
                       var time = performance.timing;
                       var data = {
                           url: window.location.href,
@@ -1117,12 +1114,12 @@ class Token20Detail extends React.Component {
                           uninstallPageTime: unloadEvent,
                           isMobile:isMobile && isMobile[0],
                           navigationtype:performance.navigation.type,
-                          measure:measure.duration,
+                          measure:parseInt(measure.duration),
                           dompreload: time.responseEnd - time.navigationStart,
                           domloadend:time.domComplete - time.domLoading,
                           domative:time.domInteractive - time.domLoading,
                           shelllod:time.domContentLoadedEventEnd - time.domContentLoadedEventStart,
-                          measure5:measure5,
+                          measure5:parseInt(measure5),
                           blankTime:time.domLoading - time.fetchStart,
                           v:'v3'
                       };
@@ -1130,7 +1127,6 @@ class Token20Detail extends React.Component {
                     // window.performance.clearMarks();
                     // window.performance.clearMeasures();
 
-                    //console.log('home3',data)
                     ApiClientMonitor.setMonitor(data)
                       return data;
                     }
