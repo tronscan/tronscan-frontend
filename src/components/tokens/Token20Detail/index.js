@@ -68,6 +68,25 @@ class Token20Detail extends React.Component {
     };
   }
 
+  async componentWillMount() {
+    window.performance.mark("start2");
+
+    //console.log('Component WILL MOUNT!')
+    var measure5  =-1;
+    if (performance.navigation.type == 1) {
+      performance.measure(
+        "mySetTimeout5",
+        "start",
+        "start2"
+      );
+      var measures5 = window.performance.getEntriesByName("mySetTimeout5");
+      measure5 = measures5[0].duration;
+      this.MonitoringParameters3(measure5);
+    } 
+    //console.log('token20 measure5:',measure5)
+
+}
+
   async componentDidMount() {
     let { match, priceUSD } = this.props;
     !priceUSD && (await this.props.loadUsdPrice());
@@ -983,19 +1002,6 @@ class Token20Detail extends React.Component {
   }
 
   MonitoringParameters(){
-    // 1.时区  timezone
-    // 2.浏览器 browser
-    // 3.页面URL  url
-    // 5.页面加载完成的时间  pageLoadTime
-    // 6.内容加载完成的时间  contentLoadTime
-    // 7.DNS 查询时间  dnsSearchTime
-    // 8.dom解析时间		domAnalyzeTime
-    // 9.ttfb读取页面第一个字节的时间	ttfbReadTime
-    // 10.TCP 建立连接完成握手的时间	tcpBuildTime
-    // 11.重定向的时间	redirectTime
-    // 12.执行 onload 回调函数的时间	onloadCallbackTime
-    // 13.卸载页面的时间	uninstallPageTime
-   
       if (window.performance || window.webkitPerformance) {
           var perf = window.performance || window.webkitPerformance;
           var timing = perf.timing;
@@ -1030,7 +1036,9 @@ class Token20Detail extends React.Component {
                   let {loadPage,domReady,redirect,lookupDomain,ttfb,request,loadEvent,unloadEvent,connect} = getPerformanceTiming()
                   clearInterval(timer);
                   var time = performance.timing;
-
+                  if (measure5 == -1) {
+                    measure5 = domReady;
+                  }
                   var data = {
                       url: window.location.href,
                       timezone: new Date().getTimezoneOffset()/60,
@@ -1052,7 +1060,8 @@ class Token20Detail extends React.Component {
                       domative:time.domInteractive - time.domLoading,
                       shelllod:time.domContentLoadedEventEnd - time.domContentLoadedEventStart,
                       measure5:measure5,
-                      blankTime:time.domLoading - time.fetchStart
+                      blankTime:time.domLoading - time.fetchStart,
+                      v:'v1'
                       
                   };
                   window.performance.clearMarks();
@@ -1067,6 +1076,68 @@ class Token20Detail extends React.Component {
             }
          
       }
+
+      MonitoringParameters3(measure5){
+        let _this = this;
+          if (window.performance || window.webkitPerformance) {
+              var perf = window.performance || window.webkitPerformance;
+              var timing = perf.timing;
+              var navi = perf.navigation;
+    
+              window.performance.mark("mySetTimeout-end2");
+    
+              performance.measure(
+                "mySetTimeout",
+                "start2",
+                "mySetTimeout-end2"
+              ); 
+  
+              var measures = window.performance.getEntriesByName("mySetTimeout");
+              var measure = measures[0];
+
+              var timer = setInterval(function() {
+                   {
+                      timing = perf.timing;
+                      let {loadPage,domReady,redirect,lookupDomain,ttfb,request,loadEvent,unloadEvent,connect} = getPerformanceTiming()
+                      clearInterval(timer);
+                     // console.log('MonitoringParameters3 time',timing)
+                      var time = performance.timing;
+                      var data = {
+                          url: window.location.href,
+                          timezone: new Date().getTimezoneOffset()/60,
+                          browser:window.navigator.userAgent,
+                          pageLoadTime:loadPage,
+                          contentLoadTime:request,
+                          dnsSearchTime:lookupDomain,
+                          domAnalyzeTime:domReady,
+                          ttfbReadTime:ttfb,
+                          tcpBuildTime:connect,
+                          redirectTime:redirect,
+                          onloadCallbackTime:loadEvent,
+                          uninstallPageTime: unloadEvent,
+                          isMobile:isMobile && isMobile[0],
+                          navigationtype:performance.navigation.type,
+                          measure:measure.duration,
+                          dompreload: time.responseEnd - time.navigationStart,
+                          domloadend:time.domComplete - time.domLoading,
+                          domative:time.domInteractive - time.domLoading,
+                          shelllod:time.domContentLoadedEventEnd - time.domContentLoadedEventStart,
+                          measure5:measure5,
+                          blankTime:time.domLoading - time.fetchStart,
+                          v:'v3'
+                      };
+    
+                    // window.performance.clearMarks();
+                    // window.performance.clearMeasures();
+
+                    //console.log('home3',data)
+                    ApiClientMonitor.setMonitor(data)
+                      return data;
+                    }
+                  })
+                }         
+          }      
+
 }
 
 function mapStateToProps(state) {
