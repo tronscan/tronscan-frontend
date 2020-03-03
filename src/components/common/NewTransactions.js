@@ -6,6 +6,7 @@ import {connect} from "react-redux";
 import {Client} from "../../services/api";
 import {TransactionHashLink, AddressLink, BlockNumberLink} from "./Links";
 import {tu} from "../../utils/i18n";
+import { Icon } from "antd";
 // import TimeAgo from "react-timeago";
 import {TronLoader} from "./loaders";
 import {Truncate} from "./text";
@@ -42,8 +43,10 @@ class NewTransactions extends React.Component {
                 <TronLoader>
                     Loading Transactions
                 </TronLoader>
-            )
+            ),
+            timeType: true
         };
+        
     }
 
     componentDidMount() {
@@ -190,12 +193,20 @@ class NewTransactions extends React.Component {
         });
     };
 
+    changeType() {
+        let { timeType } = this.state;
+
+        this.setState({
+            timeType: !timeType
+        });
+    }
+
     customizedColumn = (activeLanguage) => {
         let {intl} = this.props;
+        let { timeType } = this.state;
         let column = [
-
             {
-                title: upperFirst(intl.formatMessage({id: 'hash'})),
+                title: upperFirst(intl.formatMessage({id: 'transaction_hash'})),
                 dataIndex: 'hash',
                 key: 'hash',
                 align: 'left',
@@ -210,11 +221,84 @@ class NewTransactions extends React.Component {
                 }
             },
             {
+                title: upperFirst(intl.formatMessage({id: 'block' })),
+                dataIndex: 'block',
+                key: 'block',
+                align: 'left',
+                className: 'ant_table',
+                width: '10%',
+                render: (text, record, index) => {
+                    return <BlockNumberLink number={record.block}/>
+                }
+            },
+            {
+                title: (
+                    <span
+                        className="token-change-type"
+                        onClick={this.changeType.bind(this)}
+                    >
+                        {upperFirst(
+                        intl.formatMessage({
+                            id: timeType ? "age" : "trc20_cur_order_header_order_time"
+                        })
+                        )}
+                        <Icon
+                        type="retweet"
+                        style={{
+                            verticalAlign: 0,
+                            marginLeft: 10
+                        }}
+                        />
+                    </span>
+                ),
+                dataIndex: 'timestamp',
+                key: 'timestamp',
+                align: 'left',
+                className: 'ant_table',
+                width: activeLanguage ==='ru' ? '12%' : '15%',
+                render: (text, record, index) => {
+                    return(
+                        <div>
+                            {timeType ? (
+                            <BlockTime time={Number(record.timestamp)}> </BlockTime>
+                            ) : (
+                            <span className="">
+                                <FormattedDate value={record.timestamp} /> &nbsp;
+                                <FormattedTime
+                                value={record.timestamp}
+                                hour="numeric"
+                                minute="numeric"
+                                second="numeric"
+                                hour12={false}
+                                />
+                            </span>
+                            )}
+                        </div>
+                    ) 
+                        
+                    // <BlockTime time={text}></BlockTime>
+                    // <TimeAgo date={text} title={moment(text).format("MMM-DD-YYYY HH:mm:ss A")}/>
+                }
+            },
+            {
+                title: upperFirst(intl.formatMessage({id: 'contract_type'})),
+                dataIndex: 'contractType',
+                key: 'contractType',
+                align: 'left',
+                width: '20%',
+                className: 'ant_table _text_nowrap',
+                render: (text, record, index) => {
+                    return <span>{ContractTypes[text]}</span>
+                }
+            },
+            {
                 title: upperFirst(intl.formatMessage({id: 'status'})),
                 dataIndex: 'status',
                 key: 'status',
                 align: 'left',
                 width: activeLanguage ==='ru' ? '34%' :'16%',
+                filterMultiple: true,
+                onFilter: (value, record) => record.address.indexOf(value) === 0,
                 className: 'ant_table',
                 render: (text, record, index) => {
                     return (
@@ -241,71 +325,33 @@ class NewTransactions extends React.Component {
                 }
             },
             {
-                title: upperFirst(intl.formatMessage({id: 'block' })),
-                dataIndex: 'block',
-                key: 'block',
-                align: 'left',
-                className: 'ant_table',
-                width: '10%',
+                title: upperFirst(
+                  intl.formatMessage({
+                    id: "amount"
+                  })
+                ),
+                dataIndex: "amount",
+                key: "amount",
+                align: "right",
+                className: "ant_table",
                 render: (text, record, index) => {
-                    return <BlockNumberLink number={record.block}/>
+                  return <FormattedNumber value={record.contractData.amount / Math.pow(10,6)}></FormattedNumber>;
                 }
-            },
-            {
-                title: upperFirst(intl.formatMessage({id: 'age'})),
-                dataIndex: 'timestamp',
-                key: 'timestamp',
-                align: 'left',
-                className: 'ant_table',
-                width: activeLanguage ==='ru' ? '12%' : '15%',
+              },
+              {
+                title: upperFirst(
+                  intl.formatMessage({
+                    id: "tokens"
+                  })
+                ),
+                dataIndex: "tokens",
+                align: "center",
+                key: "tokens",
+                className: "ant_table",
                 render: (text, record, index) => {
-                    return <BlockTime time={text}></BlockTime>
-                    // <TimeAgo date={text} title={moment(text).format("MMM-DD-YYYY HH:mm:ss A")}/>
+                  return <span> {record.map_token_name_abbr} </span>;
                 }
-            },
-            {
-                title: upperFirst(intl.formatMessage({id: 'contract_type'})),
-                dataIndex: 'contractType',
-                key: 'contractType',
-                align: 'left',
-                width: '20%',
-                className: 'ant_table _text_nowrap',
-                render: (text, record, index) => {
-                    return <span>{ContractTypes[text]}</span>
-                }
-            },
-            {
-                title: upperFirst(intl.formatMessage({id: 'address_net_fee'})),
-                dataIndex: 'address_net_fee',
-                key: 'address_net_fee',
-                align: 'left',
-                className: 'ant_table',
-                render: (text, record, index) => {
-                    return <span>
-                        {
-                            record.cost?
-                                <FormattedNumber value={record.cost.net_usage + record.cost.net_fee/10 }/>
-                                : <span>-</span>
-                        }
-                    </span>
-                }
-            },
-            {
-                title: upperFirst(intl.formatMessage({id: 'address_energy_fee'})),
-                dataIndex: 'address_energy_fee',
-                key: 'address_energy_fee',
-                align: 'left',
-                className: 'ant_table',
-                render: (text, record, index) => {
-                    return <span>
-                        {
-                            record.cost?
-                                <FormattedNumber value={record.cost.energy_usage_total}/>
-                                : <span>-</span>
-                        }
-                    </span>
-                }
-            },
+            }
             // {
             //     title: upperFirst(intl.formatMessage({id: 'status'})),
             //     dataIndex: 'confirmed',
