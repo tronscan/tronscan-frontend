@@ -4,14 +4,36 @@ import { tu } from "../../../utils/i18n";
 import { FormattedNumber } from "react-intl";
 import BigNumber from "bignumber.js";
 import { injectIntl } from "react-intl";
+import { Client } from "../../../services/api";
+
 
 class Resource extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+        realTimeRanking:'',
+        realTimeVotes:'',
+        lastRanking:'',
+        lastCycleVotes:''
+    };
   }
 
-  componentDidMount() {}
+  componentDidMount() {
+    this.loadWitness()
+  }
+
+  async loadWitness(id) {
+      console.log(this.props.match)
+    /* 需要总票数，实时排名俩个参数*/
+    let { data } = await Client.getVoteWitness(id);
+    this.setState({
+        realTimeVotes: data.realTimeVotes,
+        realTimeRanking: data.realTimeRanking,
+        lastRanking:data.lastRanking,
+        lastCycleVotes:data.lastCycleVotes
+    });
+  }
+
 
   render() {
     let {
