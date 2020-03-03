@@ -13,8 +13,8 @@ import {ContractTypes} from "../../utils/protocol";
 import SmartTable from "./SmartTable.js"
 import {upperFirst} from "lodash";
 import {QuestionMark} from "./QuestionMark";
-import TotalInfo from "./TableTotal";
-import DateSelect from './dateSelect'
+import TotalInfo from "./../../components/addresses/components/TableTotal";
+import DateSelect from './../../components/addresses/components/dateSelect'
 import {DatePicker} from 'antd';
 import moment from 'moment';
 import {NameWithId} from "./names";
@@ -448,30 +448,35 @@ class NewTransactions extends React.Component {
         // }
 
         return (
-          <div className={"token_black table_pos " + (address ? "mt-5" : "")}>
+          <div className={"token_black " + (address ? "mt-5" : "")} style={{padding:'30px 0'}}>
             {loading && (
               <div className="loading-style">
                 <TronLoader />
               </div>
             )}
-            {!loading && (
-              <TotalInfo
-                total={total}
-                rangeTotal={rangeTotal}
-                typeText="transactions_unit"
-                common={!address}
-                top={address ? "-28px" : "26"}
-                selected
-              />
-            )}
-            {address ? (
-              <DateSelect
-                onDateOk={(start, end) => this.onDateOk(start, end)}
-                dataStyle={{ marginTop: "-3.3rem" }}
-              />
-            ) : (
-              ""
-            )}
+            <div style={{marginBottom:'20px'}}>
+                {address ? (
+                <DateSelect
+                    onDateOk={(start, end) => this.onDateOk(start, end)}
+                    dataStyle={{ marginTop: "-3.3rem" }}
+                />
+                ) : (
+                ""
+                )}
+            </div>
+            <div>
+                {!loading && (
+                <TotalInfo
+                    total={total}
+                    rangeTotal={rangeTotal}
+                    typeText="transactions_unit"
+                    common={!address}
+                    // top={address ? "-28px" : "26"}
+                    selected
+                />
+                )}
+            </div>
+         
             {!loading && transactions.length === 0 ? (
               <div className="p-3 text-center no-data">
                 {tu("no_transactions")}
@@ -480,6 +485,7 @@ class NewTransactions extends React.Component {
               <SmartTable
                 bordered={true}
                 loading={loading}
+                position="bottom"
                 column={column}
                 data={transactions}
                 total={rangeTotal > 2000 ? 2000 : rangeTotal}
