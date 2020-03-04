@@ -1,0 +1,65 @@
+.account-new {
+  .address-circle {
+    padding: 0 32px 0 60px;
+
+    font-size: 14px;
+    color: #999999;
+    .title {
+      font-size: 14px;
+      color: #333333;
+    }
+    .remain {
+      font-size: 16px;
+      color: #3f3f3f;
+    }
+    .just-con {
+      justify-content: space-between;
+      margin-bottom: 3px;
+    }
+    .address-circle-bandwidth {
+      margin-right: 0;
+    }
+    .address-res {
+      margin-bottom: 50px;
+    }
+  }
+  .resource-item {
+    justify-content: space-between;
+    .resource-item-i {
+      width: 6px;
+      height: 16px;
+      background: rgba(245, 167, 37, 0.2);
+      border-radius: 3px;
+      border-radius: 3px;
+    }
+    .resource-item-i-active {
+      background: rgba(245, 167, 37, 1);
+    }
+  }
+  .representive {
+    justify-content: space-between;
+    h6 {
+      font-size: 15px;
+      color: #c23631;
+      border-bottom: 1px solid #cccccc;
+      padding: 10px 0;
+    }
+    p {
+      border-bottom: 1px dashed #cccccc;
+      line-height: 50px;
+      justify-content: space-between;
+    }
+    .text-danger {
+      color: #c23631 !important;
+    }
+
+    .text-sunccess {
+      color: #69c265 !important;
+    }
+    .color333 {
+      color: #333 !important;
+      font-size: 14px;
+      padding: 0 10px;
+    }
+  }
+}

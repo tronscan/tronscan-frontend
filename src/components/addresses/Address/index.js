@@ -757,7 +757,7 @@ class Address extends React.Component {
       tabName = b;
     });
     return (
-      <main className="container header-overlap">
+      <main className="container header-overlap account-new">
         <div className="row">
           <div className="col-md-12 ">
             {loading ? (
@@ -1041,9 +1041,12 @@ class Address extends React.Component {
                         netLimit={netLimit}
                         energyLimit={energyLimit}
                         totalPower={totalPower}
-                        powerPercentage={(totalPower-address.voteTotal)/totalPower*100}
+                        powerPercentage={
+                          ((totalPower - address.voteTotal) / totalPower) *
+                            100 || 0
+                        }
                         powerRemaining={totalPower - address.voteTotal}
-                        address={this.props.match}
+                        address={this.props.match.params.id || ""}
                       ></Resource>
                     </div>
                     {/* <div className="address-circle-bandwidth d-flex">
