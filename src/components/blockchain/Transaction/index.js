@@ -73,7 +73,7 @@ class Transaction extends React.Component {
   }
 
   componentWillUnmount() {
-    clearInterval(updateTime);
+    // clearInterval(updateTime);
   }
 
   async load(id) {
@@ -99,32 +99,32 @@ class Transaction extends React.Component {
       }
     }
 
-    if (transaction && transaction.block) {
-      let confirmNumObj = await Client.getTransactionByHash(id);
-      let confirmedNum = confirmNumObj && confirmNumObj.confirmations;
-      this.setState({
-        confirmedNum
-      });
+    // if (transaction && transaction.block) {
+    //   let confirmNumObj = await Client.getTransactionByHash(id);
+    //   let confirmedNum = confirmNumObj && confirmNumObj.confirmations;
+    //   this.setState({
+    //     confirmedNum
+    //   });
 
-      if (confirmedNum < 19) {
-        updateTime = setInterval(async () => {
-          let confirmNumObj = await Client.getTransactionByHash(id);
-          let confirmedNum = confirmNumObj && confirmNumObj.confirmations;
-          this.setState({
-            confirmedNum
-          });
-          if (confirmedNum > 18) {
-            transaction = await Client.getTransactionByHash(id);
-            this.setState({
-              transaction
-            });
-            clearInterval(updateTime);
-          }
-        }, 3000);
-      } else {
-        clearInterval(updateTime);
-      }
-    }
+    //   if (confirmedNum < 19) {
+    //     updateTime = setInterval(async () => {
+    //       let confirmNumObj = await Client.getTransactionByHash(id);
+    //       let confirmedNum = confirmNumObj && confirmNumObj.confirmations;
+    //       this.setState({
+    //         confirmedNum
+    //       });
+    //       if (confirmedNum > 18) {
+    //         transaction = await Client.getTransactionByHash(id);
+    //         this.setState({
+    //           transaction
+    //         });
+    //         clearInterval(updateTime);
+    //       }
+    //     }, 3000);
+    //   } else {
+    //     clearInterval(updateTime);
+    //   }
+    // }
 
     this.setState({
       loading: false,
@@ -171,8 +171,8 @@ class Transaction extends React.Component {
       notFound,
       resMessage,
       SUCCESS,
-      FAIL,
-      confirmedNum
+      FAIL
+      // confirmedNum
     } = this.state;
 
     let { match, intl } = this.props;
@@ -247,7 +247,7 @@ class Transaction extends React.Component {
                                 <span className="badge badge-success text-uppercase">
                                   {tu("full_node_version_confirmed")}{" "}
                                 </span>
-                                {confirmedNum > 200 ? (
+                                {/* {confirmedNum > 200 ? (
                                   <span className="block-status-tag">
                                     {tu("block_detail_confirmed_over_show")}
                                   </span>
@@ -258,14 +258,14 @@ class Transaction extends React.Component {
                                       values={{ num: confirmedNum }}
                                     ></FormattedMessage>
                                   </span>
-                                )}
+                                )} */}
                               </div>
                             ) : (
                               <div>
                                 <span className="badge badge-confirmed text-uppercase">
                                   {tu("full_node_version_unconfirmed")}
                                 </span>
-                                {confirmedNum > 200 ? (
+                                {/* {confirmedNum > 200 ? (
                                   <span className="block-status-tag">
                                     {tu("block_detail_confirmed_over_show")}
                                   </span>
@@ -276,7 +276,7 @@ class Transaction extends React.Component {
                                       values={{ num: confirmedNum }}
                                     ></FormattedMessage>
                                   </span>
-                                )}
+                                )} */}
                               </div>
                             )}
                           </td>

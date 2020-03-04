@@ -21,7 +21,7 @@ import Transactions from "../../common/Transactions";
 import { Truncate } from "../../common/text";
 import Transfers from "../../common/Transfers";
 import { Alert } from "reactstrap";
-let updateTime = null;
+// let updateTime = null;
 @injectIntl
 class Block extends React.Component {
   constructor({ match }) {
@@ -69,7 +69,7 @@ class Block extends React.Component {
   }
 
   componentWillUnmount() {
-    clearInterval(updateTime);
+    // clearInterval(updateTime);
   }
 
   async loadBlock(id) {
@@ -89,32 +89,33 @@ class Block extends React.Component {
       });
       return;
     }
-    if (block.number) {
-      let confirmNumObj = await Client.getBlockByNumber(block.number);
-      let confirmedNum = confirmNumObj && confirmNumObj.confirmations;
-      this.setState({
-        confirmedNum
-      });
+    // blcok detail confirm num
+    // if (block.number) {
+    //   let confirmNumObj = await Client.getBlockByNumber(block.number);
+    //   let confirmedNum = confirmNumObj && confirmNumObj.confirmations;
+    //   this.setState({
+    //     confirmedNum
+    //   });
 
-      if (confirmedNum < 19) {
-        updateTime = setInterval(async () => {
-          let confirmNumObj = await Client.getBlockByNumber(block.number);
-          let confirmedNum = confirmNumObj && confirmNumObj.confirmations;
-          this.setState({
-            confirmedNum
-          });
-          if (confirmedNum > 18) {
-            block = await Client.getBlockByNumber(id);
-            this.setState({
-              block
-            });
-            clearInterval(updateTime);
-          }
-        }, 3000);
-      } else {
-        clearInterval(updateTime);
-      }
-    }
+    //   if (confirmedNum < 19) {
+    //     updateTime = setInterval(async () => {
+    //       let confirmNumObj = await Client.getBlockByNumber(block.number);
+    //       let confirmedNum = confirmNumObj && confirmNumObj.confirmations;
+    //       this.setState({
+    //         confirmedNum
+    //       });
+    //       if (confirmedNum > 18) {
+    //         block = await Client.getBlockByNumber(id);
+    //         this.setState({
+    //           block
+    //         });
+    //         clearInterval(updateTime);
+    //       }
+    //     }, 3000);
+    //   } else {
+    //     clearInterval(updateTime);
+    //   }
+    // }
 
     this.setState({
       loading: false,
@@ -145,8 +146,8 @@ class Block extends React.Component {
       tabs,
       loading,
       totalTransactions,
-      notFound,
-      confirmedNum
+      notFound
+      // confirmedNum
     } = this.state;
     let { activeLanguage, match, intl } = this.props;
     if (notFound) {
@@ -197,7 +198,7 @@ class Block extends React.Component {
                               <span className="badge badge-success text-uppercase">
                                 {tu("full_node_version_confirmed")}{" "}
                               </span>
-                              {confirmedNum > 200 ? (
+                              {/* {confirmedNum > 200 ? (
                                 <span className="block-status-tag">
                                   {tu("block_detail_confirmed_over_show")}
                                 </span>
@@ -208,14 +209,14 @@ class Block extends React.Component {
                                     values={{ num: confirmedNum }}
                                   ></FormattedMessage>
                                 </span>
-                              )}
+                              )} */}
                             </div>
                           ) : (
                             <div>
                               <span className="badge badge-confirmed text-uppercase">
                                 {tu("full_node_version_unconfirmed")}
                               </span>
-                              {confirmedNum > 200 ? (
+                              {/* {confirmedNum > 200 ? (
                                 <span className="block-status-tag">
                                   {tu("block_detail_confirmed_over_show")}
                                 </span>
@@ -226,7 +227,7 @@ class Block extends React.Component {
                                     values={{ num: confirmedNum }}
                                   ></FormattedMessage>
                                 </span>
-                              )}
+                              )} */}
                             </div>
                           )}
                         </td>
