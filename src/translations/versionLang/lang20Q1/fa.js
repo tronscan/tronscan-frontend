@@ -198,6 +198,7 @@ export const lang20Q1 = {
   proposal_validate_text_7:"لطفاً ارزش 1-10000 را وارد کنید",
   proposal_validate_text_8:"لطفاً ارزش 1-1000 را وارد کنید",
   proposal_validate_text_9:"لطفاً ارزش 0-100000000000000000 را وارد کنید",
+  proposal_validate_text_10:"لطفا ممنوعیت / ممنوعیت انتخاب کنید",
   propose_not_activate:"باز نیست",
   proposal_value_same:"مقدار پیشنهادی برابر با مقدار فعلی است",
   go_to_proposals_list:"به یک پیشنهاد رأی دهید",

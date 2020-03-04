@@ -200,6 +200,7 @@ export const lang20Q1 = {
   proposal_validate_text_7:"Пожалуйста, введите значение между 1-10000",
   proposal_validate_text_8:"Пожалуйста, введите значение между 1-1000",
   proposal_validate_text_9:"Пожалуйста, введите значение между 0-100000000000000000",
+  proposal_validate_text_10:"Пожалуйста, выберите бан / не бан",
   propose_not_activate:"Не открыт",
   proposal_value_same:"Новое значение идентично текущему",
   go_to_proposals_list:"Проголосовать за предложение",
