@@ -21,7 +21,7 @@ import Transactions from "../../common/Transactions";
 import { Truncate } from "../../common/text";
 import Transfers from "../../common/Transfers";
 import { Alert } from "reactstrap";
-
+let updateTime = null;
 @injectIntl
 class Block extends React.Component {
   constructor({ match }) {
@@ -68,6 +68,10 @@ class Block extends React.Component {
     }
   }
 
+  componentWillUnmount() {
+    clearInterval(updateTime);
+  }
+
   async loadBlock(id) {
     this.setState({ loading: true, block: { number: id } });
 
@@ -91,7 +95,7 @@ class Block extends React.Component {
       this.setState({
         confirmedNum
       });
-      let updateTime = null;
+
       if (confirmedNum < 19) {
         updateTime = setInterval(async () => {
           let confirmNumObj = await Client.getBlockByNumber(block.number);

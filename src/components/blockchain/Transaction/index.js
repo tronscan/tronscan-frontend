@@ -24,6 +24,8 @@ import { IS_MAINNET } from "../../../constants";
 import { QuestionMark } from "../../common/QuestionMark";
 import Info from "./info";
 import { Icon } from "antd";
+
+let updateTime = null;
 @injectIntl
 class Transaction extends React.Component {
   constructor() {
@@ -70,6 +72,10 @@ class Transaction extends React.Component {
     }
   }
 
+  componentWillUnmount() {
+    clearInterval(updateTime);
+  }
+
   async load(id) {
     this.setState({ loading: true, transaction: { hash: id } });
 
@@ -99,7 +105,7 @@ class Transaction extends React.Component {
       this.setState({
         confirmedNum
       });
-      let updateTime = null;
+
       if (confirmedNum < 19) {
         updateTime = setInterval(async () => {
           let confirmNumObj = await Client.getTransactionByHash(id);
