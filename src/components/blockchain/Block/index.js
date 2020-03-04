@@ -92,20 +92,24 @@ class Block extends React.Component {
         confirmedNum
       });
       let updateTime = null;
-      updateTime = setInterval(async () => {
-        let confirmNumObj = await Client.getBlockByNumber(block.number);
-        let confirmedNum = confirmNumObj && confirmNumObj.confirmations;
-        this.setState({
-          confirmedNum
-        });
-        if (confirmedNum > 18) {
-          block = await Client.getBlockByNumber(id);
+      if (confirmedNum < 19) {
+        updateTime = setInterval(async () => {
+          let confirmNumObj = await Client.getBlockByNumber(block.number);
+          let confirmedNum = confirmNumObj && confirmNumObj.confirmations;
           this.setState({
-            block
+            confirmedNum
           });
-          clearInterval(updateTime);
-        }
-      }, 3000);
+          if (confirmedNum > 18) {
+            block = await Client.getBlockByNumber(id);
+            this.setState({
+              block
+            });
+            clearInterval(updateTime);
+          }
+        }, 3000);
+      } else {
+        clearInterval(updateTime);
+      }
     }
 
     this.setState({
@@ -189,31 +193,36 @@ class Block extends React.Component {
                               <span className="badge badge-success text-uppercase">
                                 {tu("full_node_version_confirmed")}{" "}
                               </span>
-                              {
-                                confirmedNum >200?
+                              {confirmedNum > 200 ? (
                                 <span className="block-status-tag">
                                   {tu("block_detail_confirmed_over_show")}
                                 </span>
-                                : <span className="block-status-tag">
-                                    <FormattedMessage id="block_detail_confirmed_show" values={{num: confirmedNum}}></FormattedMessage>
-                                  </span>
-                              }
+                              ) : (
+                                <span className="block-status-tag">
+                                  <FormattedMessage
+                                    id="block_detail_confirmed_show"
+                                    values={{ num: confirmedNum }}
+                                  ></FormattedMessage>
+                                </span>
+                              )}
                             </div>
                           ) : (
                             <div>
                               <span className="badge badge-confirmed text-uppercase">
                                 {tu("full_node_version_unconfirmed")}
                               </span>
-                              {
-                                confirmedNum >200?
+                              {confirmedNum > 200 ? (
                                 <span className="block-status-tag">
                                   {tu("block_detail_confirmed_over_show")}
                                 </span>
-                                : <span className="block-status-tag">
-                                    <FormattedMessage id="block_detail_confirmed_show" values={{num: confirmedNum}}>
-                                  </FormattedMessage>
-                                  </span>
-                              }
+                              ) : (
+                                <span className="block-status-tag">
+                                  <FormattedMessage
+                                    id="block_detail_confirmed_show"
+                                    values={{ num: confirmedNum }}
+                                  ></FormattedMessage>
+                                </span>
+                              )}
                             </div>
                           )}
                         </td>
