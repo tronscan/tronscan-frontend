@@ -230,6 +230,8 @@ export const lang20Q1 = {
   block_detail_confirmed_over_show:'超过200个区块已确认',
   block_detail_rolled_back:'已回退',
 
+  freeze_TRX_error:"冻结TRX时出现问题，请稍后重试",
+
 
 
 

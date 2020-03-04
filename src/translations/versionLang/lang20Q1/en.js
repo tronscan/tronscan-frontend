@@ -217,16 +217,18 @@ export const lang20Q1 = {
 
 
    // 0227 torn sr
-   sr_vote_team_information:'Team information',
-   sr_vote_last_ranking:'Last Ranking',
-   sr_vote_last_votes:'Last Votes',
-   sr_vote_current_ranking:'Current Ranking',
-   sr_vote_current_vote:'Current Votes',
-   sr_vote_percent_note:'SR votes in the last round/all votes',
+  sr_vote_team_information:'Team information',
+  sr_vote_last_ranking:'Last Ranking',
+  sr_vote_last_votes:'Last Votes',
+  sr_vote_current_ranking:'Current Ranking',
+  sr_vote_current_vote:'Current Votes',
+  sr_vote_percent_note:'SR votes in the last round/all votes',
 
-   block_detail_confirmed_show:'confirmed by {num} blocks',
-   block_detail_confirmed_over_show:'confirmed by over 200 blocks',
-   block_detail_rolled_back:'ROLLED BACK',
+  block_detail_confirmed_show:'confirmed by {num} blocks',
+  block_detail_confirmed_over_show:'confirmed by over 200 blocks',
+  block_detail_rolled_back:'ROLLED BACK',
+
+  freeze_TRX_error:"Something went wrong while trying to freeze TRX, please try again later.",
 
 
 };

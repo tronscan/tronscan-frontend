@@ -227,4 +227,6 @@ export const lang20Q1 = {
   block_detail_confirmed_show:'confirmed by {num} blocks',
   block_detail_confirmed_over_show:'confirmed by over 200 blocks',
 
+  freeze_TRX_error:"Something went wrong while trying to freeze TRX, please try again later.",
+
 };
