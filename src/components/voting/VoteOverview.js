@@ -638,6 +638,7 @@ export default class VoteOverview extends React.Component {
                       ? "flex-row-reverse justify-content-end"
                       : "") + " d-flex"
                   }
+                  style={{flexWrap: 'wrap'}}
                 >
                   <div className="_ranks mr-2" style={{ whiteSpace: "nowrap" }}>
                     {tu("most_ranks")}
@@ -648,7 +649,7 @@ export default class VoteOverview extends React.Component {
                     style={isRightText ? { maxWidth: "110px" } : {}}
                   >
                     {Math.abs(biggestGainer.change_cycle) ? (
-                      <AddressLink address={biggestGainer.address}>
+                      <AddressLink address={biggestGainer.address} truncate={false}>
                         {biggestGainer.name || biggestGainer.url}
                       </AddressLink>
                     ) : (
