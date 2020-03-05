@@ -35,6 +35,7 @@ import moment from "moment";
 import ApiClientAddress from "../../../services/addressApi";
 import { alpha } from "../../../utils/str";
 import Resource from "./Resource";
+import Representative from "./Representative";
 
 BigNumber.config({ EXPONENTIAL_AT: [-1e9, 1e9] });
 
@@ -757,7 +758,7 @@ class Address extends React.Component {
       tabName = b;
     });
     return (
-      <main className="container header-overlap">
+      <main className="container header-overlap account-new">
         <div className="row">
           <div className="col-md-12 ">
             {loading ? (
@@ -779,256 +780,267 @@ class Address extends React.Component {
                   )}
                   <div className="row">
                     <div className="col-md-6">
-                      <table className="table m-0">
-                        <tbody>
-                          {Boolean(rank) && (
-                            <tr>
-                              <th>{tu("rank_real_time")}:</th>
-                              <td>{rank}</td>
-                            </tr>
-                          )}
-                          {address.representative.enabled && (
-                            <Fragment>
-                              {address.name && (
-                                <tr>
-                                  <th>{tu("name")}:</th>
-                                  <td>{address.name}</td>
-                                </tr>
-                              )}
+                      {address.representative.enabled ? (
+                        <Representative
+                          address={address}
+                          TRXBalanceTotal={TRXBalanceTotal}
+                          balance={balance}
+                          totalPower={totalPower}
+                          data={this.state}
+                          url={match.url}
+                        />
+                      ) : (
+                        <table className="table m-0">
+                          <tbody>
+                            {Boolean(rank) && (
                               <tr>
-                                <th>{tu("website")}:</th>
-                                <td>
-                                  <ExternalLink
-                                    url={address.representative.url}
-                                  />
-                                </td>
+                                <th>{tu("rank_real_time")}:</th>
+                                <td>{rank}</td>
                               </tr>
-                              <tr>
-                                <th>{tu("blocks_produced")}:</th>
-                                <td>
-                                  <FormattedNumber value={blocksProduced} />
-                                </td>
-                              </tr>
-                            </Fragment>
-                          )}
-                          <tr>
-                            <th>{tu("address")}:</th>
-                            <td>
-                              <AddressLink address={addr} includeCopy={true} />
-                              <div>
-                                {address.addressTag && (
-                                  <span className="addressTag">
-                                    {address.addressTag}
-                                  </span>
+                            )}
+                            {address.representative.enabled && (
+                              <Fragment>
+                                {address.name && (
+                                  <tr>
+                                    <th>{tu("name")}:</th>
+                                    <td>{address.name}</td>
+                                  </tr>
                                 )}
-                              </div>
-                            </td>
-                          </tr>
-                          {!address.representative.enabled ? (
+                                <tr>
+                                  <th>{tu("website")}:</th>
+                                  <td>
+                                    <ExternalLink
+                                      url={address.representative.url}
+                                    />
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <th>{tu("blocks_produced")}:</th>
+                                  <td>
+                                    <FormattedNumber value={blocksProduced} />
+                                  </td>
+                                </tr>
+                              </Fragment>
+                            )}
                             <tr>
-                              <th>{tu("name")}:</th>
+                              <th>{tu("address")}:</th>
                               <td>
-                                <span>{address.name ? address.name : "-"}</span>
+                                <AddressLink
+                                  address={addr}
+                                  includeCopy={true}
+                                />
+                                <div>
+                                  {address.addressTag && (
+                                    <span className="addressTag">
+                                      {address.addressTag}
+                                    </span>
+                                  )}
+                                </div>
                               </td>
                             </tr>
-                          ) : (
-                            ""
-                          )}
-                          <tr>
-                            <th>
-                              <span className="mr-1">
-                                {tu("address_info_transactions")}
-                              </span>
-                              <QuestionMark
-                                placement="top"
-                                text="address_transactions_tip"
-                              />
-                              <span className="ml-1">:</span>
-                            </th>
-                            <td>
-                              <span>{address.totalTransactionCount} Txns</span>
-                            </td>
-                          </tr>
-                          <tr>
-                            <th>{tu("address_info_transfers")}:</th>
-                            <td>
-                              <div className="d-flex">
-                                <div>
-                                  {stats.transactions_in +
-                                    stats.transactions_out}{" "}
-                                  Txns
-                                </div>
-                                <div>
-                                  <span className="ml-1">(</span>
-                                  <i className="fa fa-arrow-down text-success" />
-                                  &nbsp;
-                                  <span>{stats.transactions_in} Txns</span>
-                                  &nbsp;
-                                  <i className="fa fa-arrow-up  text-danger" />
-                                  &nbsp;
-                                  <span>{stats.transactions_out} Txns</span>
-                                  &nbsp;
-                                  <span>)</span>
-                                </div>
-                              </div>
-                            </td>
-                          </tr>
-                          {/*<tr>*/}
-                          {/*<th>{tu("balance")}:</th>*/}
-                          {/*<td>*/}
-                          {/*<ul className="list-unstyled m-0">*/}
-                          {/*<li>*/}
-                          {/*<TRXPrice amount={address.balance / ONE_TRX}/>*/}
-                          {/*</li>*/}
-                          {/*</ul>*/}
-                          {/*</td>*/}
-                          {/*</tr>*/}
-                          <tr>
-                            <th>
-                              <span className="mr-1">{tu("tron_power")}</span>
-                              <QuestionMark
-                                placement="top"
-                                text="address_tron_power_tip"
-                                className="ml-1"
-                              />
-                              <span className="ml-1">:</span>
-                            </th>
-                            <td>
-                              <ul className="list-unstyled m-0">
-                                <li className="d-flex">
-                                  {/* <TRXPrice showCurreny={false}
-                                                amount={(totalPower) / ONE_TRX}/> */}
-                                  <FormattedNumber
-                                    value={totalPower / ONE_TRX}
-                                  ></FormattedNumber>
-                                  &nbsp;TP
+                            {!address.representative.enabled ? (
+                              <tr>
+                                <th>{tu("name")}:</th>
+                                <td>
+                                  <span>
+                                    {address.name ? address.name : "-"}
+                                  </span>
+                                </td>
+                              </tr>
+                            ) : (
+                              ""
+                            )}
+                            <tr>
+                              <th>
+                                <span className="mr-1">
+                                  {tu("address_info_transactions")}
+                                </span>
+                                <QuestionMark
+                                  placement="top"
+                                  text="address_transactions_tip"
+                                />
+                                <span className="ml-1">:</span>
+                              </th>
+                              <td>
+                                <span>
+                                  {address.totalTransactionCount} Txns
+                                </span>
+                              </td>
+                            </tr>
+                            <tr>
+                              <th>{tu("address_info_transfers")}:</th>
+                              <td>
+                                <div className="d-flex">
                                   <div>
-                                    <span className="ml-1">(</span>{" "}
-                                    {tu("address_tron_power_used")}:{" "}
-                                    <FormattedNumber
-                                      value={address.voteTotal}
-                                    ></FormattedNumber>
-                                    &nbsp;TP &nbsp;{" "}
-                                    {tu("address_tron_power_remaining")}:{" "}
-                                    <FormattedNumber
-                                      value={
-                                        totalPower / ONE_TRX - address.voteTotal
-                                      }
-                                    ></FormattedNumber>{" "}
-                                    TP&nbsp;
+                                    {stats.transactions_in +
+                                      stats.transactions_out}{" "}
+                                    Txns
+                                  </div>
+                                  <div>
+                                    <span className="ml-1">(</span>
+                                    <i className="fa fa-arrow-down text-success" />
+                                    &nbsp;
+                                    <span>{stats.transactions_in} Txns</span>
+                                    &nbsp;
+                                    <i className="fa fa-arrow-up  text-danger" />
+                                    &nbsp;
+                                    <span>{stats.transactions_out} Txns</span>
+                                    &nbsp;
                                     <span>)</span>
                                   </div>
-                                </li>
-                              </ul>
-                            </td>
-                          </tr>
-                          <tr>
-                            <th>
-                              <span className="mr-1">
-                                {tu("address_vote_reward_pending")}
-                              </span>
-                              <span className="ml-1">:</span>
-                            </th>
-                            <td>
-                              <ul className="list-unstyled m-0">
-                                <li className="d-flex">
-                                  <TRXPrice
-                                    amount={walletReward / ONE_TRX}
-                                    showPopup={false}
-                                  />
-                                </li>
-                              </ul>
-                            </td>
-                          </tr>
-                          <tr>
-                            <th>
-                              <span className="mr-1">
-                                {tu("address_balance")}
-                              </span>
-                              <span className="ml-1">:</span>
-                            </th>
-                            <td>
-                              <ul className="list-unstyled m-0">
-                                <li className="">
-                                  <FormattedNumber
-                                    value={(balance + totalPower) / ONE_TRX}
-                                  />{" "}
-                                  TRX
-                                  <div>{this.renderFrozenTokens()}</div>
-                                </li>
-                              </ul>
-                            </td>
-                          </tr>
-                          <tr>
-                            <th>
-                              <span className="mr-1">
-                                {tu("total_balance")}
-                              </span>
-                              <QuestionMark
-                                placement="top"
-                                text="address_total_balance_tip"
-                                className="ml-1"
-                              />
-                              <span className="ml-1">:</span>
-                            </th>
-                            <td>
-                              <ul className="list-unstyled m-0">
-                                <li>
-                                  <div>
-                                    <TRXPrice amount={TRXBalanceTotal} />{" "}
-                                    <span className="small">
-                                      (
-                                      <TRXPrice
-                                        amount={TRXBalanceTotal}
-                                        currency="USD"
-                                        showPopup={false}
-                                      />
-                                      )
-                                    </span>
-                                  </div>
-
-                                  <div>
-                                    <span className="small">
-                                      {tu("address_total_balance_info_sources")}
-                                      ：
-                                    </span>
-                                    <span className="small">
-                                      <HrefLink
-                                        href={
-                                          intl.locale == "zh"
-                                            ? "https://poloniex.org/zh/"
-                                            : "https://poloniex.org/"
-                                        }
-                                      >
-                                        Poloni DEX
-                                      </HrefLink>
-                                    </span>
-                                    <img
-                                      width={15}
-                                      height={15}
-                                      style={{ marginLeft: 5 }}
-                                      src={require("../../../images/svg/market.png")}
-                                      alt=""
-                                    />
-                                  </div>
-                                </li>
-                              </ul>
-                            </td>
-                          </tr>
-                          {Boolean(totalVotes) && (
+                                </div>
+                              </td>
+                            </tr>
                             <tr>
-                              <th>{tu("total_votes")}:</th>
+                              <th>
+                                <span className="mr-1">{tu("tron_power")}</span>
+                                <QuestionMark
+                                  placement="top"
+                                  text="address_tron_power_tip"
+                                  className="ml-1"
+                                />
+                                <span className="ml-1">:</span>
+                              </th>
                               <td>
                                 <ul className="list-unstyled m-0">
-                                  <li>
-                                    <FormattedNumber value={totalVotes} />
+                                  <li className="d-flex">
+                                    {/* <TRXPrice showCurreny={false}
+                                                amount={(totalPower) / ONE_TRX}/> */}
+                                    <FormattedNumber
+                                      value={totalPower / ONE_TRX}
+                                    ></FormattedNumber>
+                                    &nbsp;TP
+                                    <div>
+                                      <span className="ml-1">(</span>{" "}
+                                      {tu("address_tron_power_used")}:{" "}
+                                      <FormattedNumber
+                                        value={address.voteTotal}
+                                      ></FormattedNumber>
+                                      &nbsp;TP &nbsp;{" "}
+                                      {tu("address_tron_power_remaining")}:{" "}
+                                      <FormattedNumber
+                                        value={
+                                          totalPower / ONE_TRX -
+                                          address.voteTotal
+                                        }
+                                      ></FormattedNumber>{" "}
+                                      TP&nbsp;
+                                      <span>)</span>
+                                    </div>
                                   </li>
                                 </ul>
                               </td>
                             </tr>
-                          )}
-                        </tbody>
-                      </table>
+                            <tr>
+                              <th>
+                                <span className="mr-1">
+                                  {tu("address_vote_reward_pending")}
+                                </span>
+                                <span className="ml-1">:</span>
+                              </th>
+                              <td>
+                                <ul className="list-unstyled m-0">
+                                  <li className="d-flex">
+                                    <TRXPrice
+                                      amount={walletReward / ONE_TRX}
+                                      showPopup={false}
+                                    />
+                                  </li>
+                                </ul>
+                              </td>
+                            </tr>
+                            <tr>
+                              <th>
+                                <span className="mr-1">
+                                  {tu("address_balance")}
+                                </span>
+                                <span className="ml-1">:</span>
+                              </th>
+                              <td>
+                                <ul className="list-unstyled m-0">
+                                  <li className="">
+                                    <FormattedNumber
+                                      value={(balance + totalPower) / ONE_TRX}
+                                    />{" "}
+                                    TRX
+                                    <div>{this.renderFrozenTokens()}</div>
+                                  </li>
+                                </ul>
+                              </td>
+                            </tr>
+                            <tr>
+                              <th>
+                                <span className="mr-1">
+                                  {tu("total_balance")}
+                                </span>
+                                <QuestionMark
+                                  placement="top"
+                                  text="address_total_balance_tip"
+                                  className="ml-1"
+                                />
+                                <span className="ml-1">:</span>
+                              </th>
+                              <td>
+                                <ul className="list-unstyled m-0">
+                                  <li>
+                                    <div>
+                                      <TRXPrice amount={TRXBalanceTotal} />{" "}
+                                      <span className="small">
+                                        (
+                                        <TRXPrice
+                                          amount={TRXBalanceTotal}
+                                          currency="USD"
+                                          showPopup={false}
+                                        />
+                                        )
+                                      </span>
+                                    </div>
+
+                                    <div>
+                                      <span className="small">
+                                        {tu(
+                                          "address_total_balance_info_sources"
+                                        )}
+                                        ：
+                                      </span>
+                                      <span className="small">
+                                        <HrefLink
+                                          href={
+                                            intl.locale == "zh"
+                                              ? "https://poloniex.org/zh/"
+                                              : "https://poloniex.org/"
+                                          }
+                                        >
+                                          Poloni DEX
+                                        </HrefLink>
+                                      </span>
+                                      <img
+                                        width={15}
+                                        height={15}
+                                        style={{ marginLeft: 5 }}
+                                        src={require("../../../images/svg/market.png")}
+                                        alt=""
+                                      />
+                                    </div>
+                                  </li>
+                                </ul>
+                              </td>
+                            </tr>
+                            {Boolean(totalVotes) && (
+                              <tr>
+                                <th>{tu("total_votes")}:</th>
+                                <td>
+                                  <ul className="list-unstyled m-0">
+                                    <li>
+                                      <FormattedNumber value={totalVotes} />
+                                    </li>
+                                  </ul>
+                                </td>
+                              </tr>
+                            )}
+                          </tbody>
+                        </table>
+                      )}
                     </div>
                     <div className="col-md-6 address-circle">
                       <Resource
@@ -1041,8 +1053,12 @@ class Address extends React.Component {
                         netLimit={netLimit}
                         energyLimit={energyLimit}
                         totalPower={totalPower}
-                        powerPercentage={(totalPower-address.voteTotal)/totalPower*100}
+                        powerPercentage={
+                          ((totalPower - address.voteTotal) / totalPower) *
+                            100 || 0
+                        }
                         powerRemaining={totalPower - address.voteTotal}
+                        address={this.props.match.params.id || ""}
                       ></Resource>
                     </div>
                     {/* <div className="address-circle-bandwidth d-flex">
