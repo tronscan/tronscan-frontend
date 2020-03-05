@@ -225,5 +225,14 @@ export const lang20Q1 = {
   account_resource_realTime: "本轮",
   account_resource_rank: "排名",
   account_resource_votes: "得票数",
-  account_resource_remain: "剩余"
+  account_resource_remain: "剩余",
+  account_resource_last_tip: "上一轮投票周期的获得票数与排名",
+  account_resource_realTime_tip: "当前投票周期实时获得的票数与实时排名",
+  account_representative_block_ratio:'出块效率',
+  account_representative_block_prize:'累计获得出块收益',
+  account_representative_vote_prize:'累计获得投票收益',
+  account_representative_split_ratio:'分成比例',
+
+
+
 };

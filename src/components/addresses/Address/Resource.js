@@ -118,7 +118,7 @@ class Resource extends React.Component {
           <section className="">
             <h6>
               {tu("account_resource_last")}{" "}
-              <QuestionMark placement="top" text="contract_balance_tip" />
+              <QuestionMark placement="top" text="account_resource_last_tip" />
             </h6>
             <p>
               {tu("account_resource_rank")}:{" "}
@@ -136,7 +136,7 @@ class Resource extends React.Component {
           <section className="">
             <h6>
               {tu("account_resource_realTime")}{" "}
-              <QuestionMark placement="top" text="contract_balance_tip" />
+              <QuestionMark placement="top" text="account_resource_realTime_tip" />
             </h6>
             <p className="d-flex">
               <span>
