@@ -66,7 +66,7 @@ export const lang19Q4 = {
     "token_rating_rule_title_p1_title": "未知",
     "token_rating_rule_title_p1": "未知信用评级是新录入通证的默认评级，若通证发行成功后未补充更新信息，只有强制基本信息的话，将会被认为是未知通证。强制基本信息包括：通证名称、通证简称、通证简介、发行量、精度、发行者，TRC20通证还应包含发行合约、合约创建时间和合约创建者。",
     "token_rating_rule_title_p2_title": "中立",
-    "token_rating_rule_title_p2": "此类通证在发行成功后补充更新了信息，具体包括：官网、Logo、邮箱、GitHub地址、白皮书地址、社交媒体链接（至少一个）",
+    "token_rating_rule_title_p2": "此类通证在发行成功后补充更新了信息，具体包括：官网、Logo、白皮书地址、社交媒体链接（至少一个）",
     "token_rating_rule_title_p3_title": "OK",
     "token_rating_rule_title_p3": "若通证在POLONIDEX正式上线交易，则会获得OK信用评级。",
     "token_rating_rule_title_p3_1": "POLONIDEX上币申请需要在TRONSCAN进行，在申请前需要了解以下事项： ",
