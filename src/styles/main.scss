@@ -221,6 +221,58 @@ tr a {
 }
 
 .vote-table {
+  tr{
+    th{
+      font-weight: normal;
+      .sort-wrap{
+        width: 8px;
+        i{
+          position: absolute;
+          
+          &.up{
+            top: 2px;
+            width: 0;
+            height: 0;
+            border: 4px solid transparent;
+            border-bottom: 4px solid  #999;
+            margin-bottom: 4px;
+            &.active{
+              border-bottom-color: #3E3F3B;
+            }
+          }
+          &.down{
+            bottom: 0;
+            width: 0;
+            height: 0;
+            border: 4px solid transparent;
+            border-top: 4px solid  #999;
+            &.active{
+              border-top-color: #3E3F3B;
+            }
+          }
+          
+        }
+        
+      }
+    }
+    td{
+      &.up{
+        background: rgba(105,194,101,0.03);
+        .text{
+          color: #69C265;
+        }
+      }
+      &.down{
+        background: rgba(226,93,101,0.03);
+        .text{
+          color: #C23631;
+        }
+      }
+      .text{
+        color:#999;
+      }
+    }
+  }
   .progress {
     height: 15px;
     line-height: 15px;
@@ -1933,7 +1985,7 @@ h5 {
   }
 
   ._liveVotes span:nth-child(3) {
-    color: red;
+    // color: red;
   }
 
   ._team a {
