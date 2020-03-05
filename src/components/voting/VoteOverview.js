@@ -410,7 +410,7 @@ export default class VoteOverview extends React.Component {
     for (let address of Object.keys(votes)) {
       if (votes[address] != "") {
         witnessVotes[address] = parseInt(votes[address], 10);
-      } 
+      }
       // else {
       //   witnessVotes[address] = 0;
       // }
