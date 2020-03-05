@@ -249,7 +249,15 @@ export class SelectProposal extends Component {
                     case "getAdaptiveResourceLimitTargetRatio":
                         item.name = 'propose_33';
                         item.id = '33';
-                        break;        
+                        break;   
+                    case "getShieldedTransactionCreateAccountFee":
+                        item.name = 'propose_34';
+                        item.id = '34';
+                        break;   
+                    case "getForbidTransferToContract":
+                        item.name = 'propose_35';
+                        item.id = '35';
+                        break;                          
                 }
             });
             let tronParametersNew = [];
@@ -657,6 +665,21 @@ export class SelectProposal extends Component {
                                         <span>{text}</span>
                                     </div>
                                 }
+                                {
+                                    record.key == 'getShieldedTransactionCreateAccountFee' &&
+                                        <div>
+                                            <span>{text / ONE_TRX}</span> &nbsp;<span>TRX</span>
+                                        </div>
+                                }
+                                {
+                                    record.key == 'getForbidTransferToContract' && <div>
+                                        {
+                                            text? <span>{tu('propose_prohibit')}</span>:
+                                                <span>{tu('propose_unprohibit')}</span>
+                                        }
+                                    </div>
+                                }
+
                             </div>:<div>
                                 {
                                     record.key == 'getChargingSwitch' && <div>

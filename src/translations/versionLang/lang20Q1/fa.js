@@ -198,6 +198,7 @@ export const lang20Q1 = {
   proposal_validate_text_7:"لطفاً ارزش 1-10000 را وارد کنید",
   proposal_validate_text_8:"لطفاً ارزش 1-1000 را وارد کنید",
   proposal_validate_text_9:"لطفاً ارزش 0-100000000000000000 را وارد کنید",
+  proposal_validate_text_10:"لطفا ممنوعیت / ممنوعیت انتخاب کنید",
   propose_not_activate:"باز نیست",
   proposal_value_same:"مقدار پیشنهادی برابر با مقدار فعلی است",
   go_to_proposals_list:"به یک پیشنهاد رأی دهید",
@@ -208,10 +209,25 @@ export const lang20Q1 = {
   full_node_version_latest_block:'آخرین بلوک',
   full_node_version_confirmed:'CONFIRMED',
   full_node_version_unconfirmed:'UNCONFIRMED',
-  full_node_version_confirmed_tips:'"تأیید شده" به معنی تأیید شده توسط 19 یا بیشتر گره فوق العاده است ، در غیر این صورت "باید تأیید شود"',
+  full_node_version_confirmed_tips:'Transactions confirmed by 19 or more blocks will be marked "CONFIRMED"，otherwise is“UNCONFIRMED” or "ROLLED BACK"',
 
   // 2020-02-19
   chart_energy:'انرژی استفاده شده',
   getAllowTvmSolidity059_tips:"Three new features of TVM (TRON Virtual Machine) will be opened: support for parallel signature verification, multi signature verification, and judge whether the address is the contract address",
+
+
+   // 0227 torn sr
+   sr_vote_team_information:'تیم',
+   sr_vote_last_ranking:'رتبه بندی آخرین',
+   sr_vote_last_votes:'رای های آخرین',
+   sr_vote_current_ranking:'رتبه بندی فعلی',
+   sr_vote_current_vote:'رای های فعلی',
+   sr_vote_percent_note:'درصد آراء نماینده فوق العاده در آخرین دور رای گیری به دست می آید.',
+
+   block_detail_confirmed_show:'confirmed by {num} blocks',
+   block_detail_confirmed_over_show:'confirmed by over 200 blocks',
+   block_detail_rolled_back:'ROLLED BACK',
+
+   freeze_TRX_error:"Something went wrong while trying to freeze TRX, please try again later.",
 
 };
