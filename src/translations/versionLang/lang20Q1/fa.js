@@ -229,5 +229,6 @@ export const lang20Q1 = {
    block_detail_rolled_back:'ROLLED BACK',
 
    freeze_TRX_error:"Something went wrong while trying to freeze TRX, please try again later.",
+   votes_cannot_exceed_5_SRs:"Votes cannot exceed 5 SRs",
 
 };
