@@ -9,8 +9,8 @@ import {Truncate} from "./text";
 import {ContractTypes} from "../../utils/protocol";
 import SmartTable from "./SmartTable.js"
 import {upperFirst} from "lodash";
-import TotalInfo from "./TableTotal";
-import DateSelect from './dateSelect'
+import TotalInfo from "./../../components/addresses/components/TableTotal";
+import DateSelect from './../../components/addresses/components/dateSelect'
 import {DatePicker} from 'antd';
 import moment from 'moment';
 import {NameWithId} from "./names";

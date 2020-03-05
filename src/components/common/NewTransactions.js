@@ -281,11 +281,16 @@ class NewTransactions extends React.Component {
                 }
             },
             {
-                title: upperFirst(intl.formatMessage({id: 'contract_type'})),
+                title: upperFirst(intl.formatMessage({id: 'transaction_type'})),
                 dataIndex: 'contractType',
                 key: 'contractType',
                 align: 'left',
                 width: '20%',
+                filters: [
+                    { text: 'Joe', value: 'Joe' },
+                    { text: 'Jim', value: 'Jim' },
+                ],
+                // onFilter: (value, record) => record.name.includes(value),
                 className: 'ant_table _text_nowrap',
                 render: (text, record, index) => {
                     return <span>{ContractTypes[text]}</span>
@@ -297,8 +302,10 @@ class NewTransactions extends React.Component {
                 key: 'status',
                 align: 'left',
                 width: activeLanguage ==='ru' ? '34%' :'16%',
-                filterMultiple: true,
-                onFilter: (value, record) => record.address.indexOf(value) === 0,
+                filters: [
+                    { text: 'Joe', value: 'Joe' },
+                    { text: 'Jim', value: 'Jim' },
+                ],
                 className: 'ant_table',
                 render: (text, record, index) => {
                     return (
@@ -337,19 +344,30 @@ class NewTransactions extends React.Component {
                 render: (text, record, index) => {
                   return <FormattedNumber value={record.contractData.amount / Math.pow(10,6)}></FormattedNumber>;
                 }
-              },
-              {
-                title: upperFirst(
-                  intl.formatMessage({
-                    id: "tokens"
-                  })
+            },
+            {
+                title: (
+                    <span>
+                        {
+                            upperFirst(
+                                intl.formatMessage({
+                                    id: "tokens"
+                                })
+                            )
+                        }
+                        {' '}
+                        <QuestionMark
+                            placement="top"
+                            text="account_tab_transactions_token_info"
+                        />
+                    </span>
                 ),
                 dataIndex: "tokens",
-                align: "center",
+                align: "left",
                 key: "tokens",
                 className: "ant_table",
                 render: (text, record, index) => {
-                  return <span> {record.map_token_name_abbr} </span>;
+                    return <span> {record.map_token_name_abbr} </span>;
                 }
             }
             // {
