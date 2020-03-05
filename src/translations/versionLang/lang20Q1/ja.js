@@ -198,6 +198,7 @@ export const lang20Q1 = {
   proposal_validate_text_7:"1〜10000の値を入力してください",
   proposal_validate_text_8:"1〜1000の値を入力してください",
   proposal_validate_text_9:"0〜100000000000000000の値を入力してください",
+  proposal_validate_text_10:"禁止/禁止しないを選択してください",
   propose_not_activate:"開かない",
   proposal_value_same:"新しい値は現在の値と同じです",
   go_to_proposals_list:"提案に投票する",
@@ -207,10 +208,25 @@ export const lang20Q1 = {
   full_node_version_latest_block:'最新のブロック',
   full_node_version_confirmed:'CONFIRMED',
   full_node_version_unconfirmed:'UNCONFIRMED',
-  full_node_version_confirmed_tips:'19以上のSRによって確認されたトランザクションは、「確認済み」とマークされます，そうでなければ「確認される」',
+  full_node_version_confirmed_tips:'Transactions confirmed by 19 or more blocks will be marked "CONFIRMED"，otherwise is“UNCONFIRMED” or "ROLLED BACK"',
 
   // 2020-02-19
   chart_energy:'使用エネルギー',
   getAllowTvmSolidity059_tips:"Three new features of TVM (TRON Virtual Machine) will be opened: support for parallel signature verification, multi signature verification, and judge whether the address is the contract address",
+
+  // 0227 torn sr
+  sr_vote_team_information:'チーム',
+  sr_vote_last_ranking:'最終ランキング',
+  sr_vote_last_votes:'最終投票',
+  sr_vote_current_ranking:'現在のランキング',
+  sr_vote_current_vote:'現在の投票',
+  sr_vote_percent_note:'前回投票でスーパー代表が受け取った票の割合',
+
+  block_detail_confirmed_show:'confirmed by {num} blocks',
+  block_detail_confirmed_over_show:'confirmed by over 200 blocks',
+  block_detail_rolled_back:'ROLLED BACK',
+
+  freeze_TRX_error:"Something went wrong while trying to freeze TRX, please try again later.",
+
 
 };

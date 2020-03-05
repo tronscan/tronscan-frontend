@@ -996,7 +996,7 @@ export default class Account extends Component {
                 this.setState({
                   modal: (
                       <SweetAlert warning title={tu("Error")} onConfirm={this.hideModal}>
-                        Something went wrong while trying to freeze TRX
+                          {tu('freeze_TRX_error')}
                       </SweetAlert>
                   )
                 });
