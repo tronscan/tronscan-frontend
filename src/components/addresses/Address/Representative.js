@@ -8,6 +8,7 @@ import { FormattedNumber } from "react-intl";
 import { ONE_TRX } from "../../../constants";
 import { Tooltip } from "antd";
 import { ExternalLink } from "../../common/Links";
+import { NavLink, Route, Switch } from "react-router-dom";
 
 class Representative extends React.Component {
   constructor(props) {
@@ -27,10 +28,10 @@ class Representative extends React.Component {
       stats,
       blocksProduced
     } = this.props.data;
-    let { intl } = this.props;
+    let { intl, url } = this.props;
     return (
       <Fragment>
-        <table className="table m-0">
+        <table className="table m-0 table-style">
           <tbody>
             <tr>
               <th>{tu("name")}:</th>
@@ -47,10 +48,18 @@ class Representative extends React.Component {
                 <span className="ml-1">:</span>
               </th>
               <td>
-                <ul className="list-unstyled m-0">
-                  <li>
+                <ul className="list-unstyled m-0 ">
+                  <li className="d-flex just-con mobile-no-flex">
                     <div>
-                      <TRXPrice amount={TRXBalanceTotal} />{" "}
+                      <NavLink exact to={url}>
+                        <span
+                          className="colorYellow"
+                          onClick={this.scrollToAnchor.bind(this)}
+                        >
+                          <TRXPrice amount={TRXBalanceTotal} />{" "}
+                        </span>
+                      </NavLink>
+
                       <span className="small">
                         (
                         <TRXPrice
@@ -66,7 +75,7 @@ class Representative extends React.Component {
                       <span className="small">
                         {tu("address_total_balance_info_sources")}：
                       </span>
-                      <span className="small">
+                      <span className="small href-link">
                         <HrefLink
                           href={
                             intl.locale == "zh"
@@ -77,13 +86,6 @@ class Representative extends React.Component {
                           Poloni DEX
                         </HrefLink>
                       </span>
-                      <img
-                        width={15}
-                        height={15}
-                        style={{ marginLeft: 5 }}
-                        src={require("../../../images/svg/market.png")}
-                        alt=""
-                      />
                     </div>
                   </li>
                 </ul>
@@ -96,9 +98,13 @@ class Representative extends React.Component {
               </th>
               <td>
                 <ul className="list-unstyled m-0">
-                  <li className="">
-                    <FormattedNumber value={(balance + totalPower) / ONE_TRX} />{" "}
-                    TRX
+                  <li className="d-flex">
+                    <span>
+                      <FormattedNumber
+                        value={(balance + totalPower) / ONE_TRX}
+                      />{" "}
+                      TRX
+                    </span>
                     <div>{this.renderFrozenTokens()}</div>
                   </li>
                 </ul>
@@ -129,16 +135,32 @@ class Representative extends React.Component {
                 <span className="ml-1">:</span>
               </th>
               <td>
-                <span>{address.totalTransactionCount} Txns</span>
+                <NavLink exact to={url + "/transactions"}>
+                  <span
+                    className="colorYellow"
+                    onClick={this.scrollToAnchor.bind(this)}
+                  >
+                    {address.totalTransactionCount} Txns
+                  </span>
+                </NavLink>
               </td>
             </tr>
             <tr>
-              <th>{tu("address_info_transfers")}:</th>
+              <th>
+                <span className="mr-1">{tu("address_info_transfers")}</span>
+                <QuestionMark placement="top" text="address_transactions_tip" />
+                <span className="ml-1">:</span>
+              </th>
               <td>
                 <div className="d-flex">
-                  <div>
-                    {stats.transactions_in + stats.transactions_out} Txns
-                  </div>
+                  <NavLink exact to={url + "/transfers"}>
+                    <div
+                      className="colorYellow"
+                      onClick={this.scrollToAnchor.bind(this)}
+                    >
+                      {stats.transactions_in + stats.transactions_out} Txns
+                    </div>
+                  </NavLink>
                   <div>
                     <span className="ml-1">(</span>
                     <i className="fa fa-arrow-down text-success" />
@@ -159,7 +181,7 @@ class Representative extends React.Component {
                 <span className="mr-1">
                   {tu("account_representative_split_ratio")}
                 </span>
-
+                <QuestionMark placement="top" text="address_transactions_tip" />
                 <span className="ml-1">:</span>
               </th>
               <td>
@@ -167,9 +189,20 @@ class Representative extends React.Component {
               </td>
             </tr>
             <tr>
-              <th>{tu("blocks_produced")}:</th>
+              <th>
+                <span className="mr-1">{tu("blocks_produced")}</span>
+                <QuestionMark placement="top" text="address_transactions_tip" />
+                <span className="ml-1">:</span>
+              </th>
               <td>
-                <FormattedNumber value={blocksProduced} />
+                <NavLink exact to={url + "/blocks"}>
+                  <span
+                    className="colorYellow"
+                    onClick={this.scrollToAnchor.bind(this)}
+                  >
+                    <FormattedNumber value={blocksProduced} />
+                  </span>
+                </NavLink>
               </td>
             </tr>
             <tr>
@@ -177,7 +210,7 @@ class Representative extends React.Component {
                 <span className="mr-1">
                   {tu("account_representative_block_ratio")}
                 </span>
-
+                <QuestionMark placement="top" text="address_transactions_tip" />
                 <span className="ml-1">:</span>
               </th>
               <td>
@@ -189,7 +222,7 @@ class Representative extends React.Component {
                 <span className="mr-1">
                   {tu("account_representative_block_prize")}
                 </span>
-
+                <QuestionMark placement="top" text="address_transactions_tip" />
                 <span className="ml-1">:</span>
               </th>
               <td>
@@ -201,6 +234,7 @@ class Representative extends React.Component {
                 <span className="mr-1">
                   {tu("account_representative_vote_prize")}
                 </span>
+                <QuestionMark placement="top" text="address_transactions_tip" />
                 <span className="ml-1">:</span>
               </th>
               <td>
@@ -281,6 +315,10 @@ class Representative extends React.Component {
       </div>
     );
   }
+
+  scrollToAnchor = () => {
+    window.scrollTo(0, 800);
+  };
 }
 
 export default injectIntl(Representative);

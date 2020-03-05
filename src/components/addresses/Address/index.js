@@ -787,6 +787,7 @@ class Address extends React.Component {
                           balance={balance}
                           totalPower={totalPower}
                           data={this.state}
+                          url={match.url}
                         />
                       ) : (
                         <table className="table m-0">
