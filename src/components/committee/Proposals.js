@@ -724,7 +724,7 @@ class Proposal extends React.Component {
             title: upperFirst(intl.formatMessage({id: 'proposer'})),
             dataIndex: 'name',
             key: 'name',
-            width:'15%',
+            width:'20%',
             render: (text, record, index) => {
                 return ( record.proposer.name?
                     <AddressLink address={record.proposer.address}>{record.proposer.name}</AddressLink>:
