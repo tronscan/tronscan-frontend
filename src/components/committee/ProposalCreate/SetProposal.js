@@ -159,6 +159,16 @@ export class SetProposal extends Component {
                 this.props.form.setFieldsValue({
                     "getAdaptiveResourceLimitTargetRatio": item.newValue !== undefined?item.newValue:''
                 });
+            break;  
+            case "getShieldedTransactionCreateAccountFee":
+                this.props.form.setFieldsValue({
+                    "getShieldedTransactionCreateAccountFee": item.newValue !== undefined?item.newValue/ONE_TRX:''
+                });
+            break;  
+            case "getForbidTransferToContract":
+                    this.props.form.setFieldsValue({
+                    "getForbidTransferToContract": item.newValue?item.newValue:undefined
+                });
             break;   
         }
         
@@ -481,6 +491,20 @@ export class SetProposal extends Component {
                                 {                       
                                     record.key == 'getAdaptiveResourceLimitTargetRatio' && <div>
                                         <span>{text}</span>
+                                    </div>
+                                }
+                                {
+                                    record.key == 'getShieldedTransactionCreateAccountFee' &&
+                                        <div>
+                                            <span>{text / ONE_TRX}</span> &nbsp;<span>TRX</span>
+                                        </div>
+                                }
+                                {
+                                    record.key == 'getForbidTransferToContract' && <div>
+                                        {
+                                            text? <span>{tu('propose_prohibit')}</span>:
+                                                <span>{tu('propose_unprohibit')}</span>
+                                        }
                                     </div>
                                 }
                             </div>:<div>
@@ -980,6 +1004,40 @@ export class SetProposal extends Component {
                     )}
                 </Form.Item>
               }
+              {
+                record.key == "getShieldedTransactionCreateAccountFee" &&  <Form.Item>
+                    {getFieldDecorator('getShieldedTransactionCreateAccountFee', {
+                        rules: [{ required: true, message: tu("proposal_validate_text_5")},
+                    ],
+                    })(
+                        <InputNumber
+                            placeholder={intl.formatMessage({id: 'proposal_validate_text_5'})}
+                            min={0}
+                            max={10000}
+                            precision={6}
+                            className="proposal_w-230"
+                            onChange={(e)=>{this.onInputChange(e,record)}}
+                        />,
+                        <InputNumber/>
+                    )}
+                </Form.Item>
+              } 
+              {
+                record.key == "getForbidTransferToContract" &&  <Form.Item>
+                    {getFieldDecorator('getForbidTransferToContract', {
+                        rules: [{ required: true, message: tu("proposal_validate_text_10") }],
+                    })(
+                        <Select
+                            placeholder={intl.formatMessage({id: 'proposal_validate_text_10'})}
+                            onChange={(e)=>{this.onInputChange(e,record)}}
+                            className="proposal_w-230"
+                        >
+                            <Option value="1">{tu("propose_prohibit")}</Option>
+                            <Option value="0">{tu("propose_not_prohibit")}</Option>
+                        </Select>,
+                    )}
+                </Form.Item>
+              } 
 
           </span>
       }
@@ -1074,7 +1132,13 @@ export class SetProposal extends Component {
             break;   
         case "getAdaptiveResourceLimitTargetRatio":
             inputValue = e 
-            break;       
+            break;  
+        case "getShieldedTransactionCreateAccountFee":
+            inputValue = e * ONE_TRX
+            break; 
+        case "getForbidTransferToContract":
+            inputValue = e 
+            break;      
     }
     proposalsCreateList.map((item,index)=>{
         if(item.key == record.id){

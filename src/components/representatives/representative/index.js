@@ -283,7 +283,7 @@ class Representative extends React.Component {
               </Alert>
             </div>
             <p>
-              <Link to="/votes" className="btn btn-primary">
+              <Link to="/sr/votes" className="btn btn-primary">
                 Go Back
               </Link>
             </p>
