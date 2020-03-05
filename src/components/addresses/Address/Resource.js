@@ -59,60 +59,62 @@ class Resource extends React.Component {
     } = this.state;
     return (
       <Fragment>
-        <div className="address-circle-energy address-res">
-          <div className="d-flex just-con">
-            <span className="title">{tu("energy")}</span>
-            <span>
-              {tu("account_resource_remain")}:{" "}
-              <span className="remain">
-                <FormattedNumber value={energyRemaining || 0} />
+        <div className="">
+          <div className="address-circle-energy address-res">
+            <div className="d-flex just-con">
+              <span className="title">{tu("energy")}</span>
+              <span>
+                {tu("account_resource_remain")}:{" "}
+                <span className="remain">
+                  <FormattedNumber value={energyRemaining || 0} />
+                </span>
+                /<FormattedNumber value={energyLimit || 0} />
               </span>
-              /<FormattedNumber value={energyLimit || 0} />
-            </span>
+            </div>
+            <Tooltip
+              title={this.energyCircle}
+              overlayStyle={{ maxWidth: "500px" }}
+            >
+              {this.newProgress(availableEnergyPercentage)}
+            </Tooltip>
           </div>
-          <Tooltip
-            title={this.energyCircle}
-            overlayStyle={{ maxWidth: "500px" }}
-          >
-            {this.newProgress(availableEnergyPercentage)}
-          </Tooltip>
-        </div>
-        <div className="address-circle-bandwidth address-res">
-          <div className="d-flex just-con">
-            <span className="title">{tu("bandwidth")}</span>
-            <span>
-              {tu("account_resource_remain")}:{" "}
-              <span className="remain">
-                <FormattedNumber value={netRemaining || 0} />
+          <div className="address-circle-bandwidth address-res">
+            <div className="d-flex just-con">
+              <span className="title">{tu("bandwidth")}</span>
+              <span>
+                {tu("account_resource_remain")}:{" "}
+                <span className="remain">
+                  <FormattedNumber value={netRemaining || 0} />
+                </span>
+                /<FormattedNumber value={netLimit || 0} />
               </span>
-              /<FormattedNumber value={netLimit || 0} />
-            </span>
-          </div>
+            </div>
 
-          <Tooltip
-            title={this.bandWidthCircle}
-            overlayStyle={{ maxWidth: "500px" }}
-          >
-            {this.newProgress(availableBandWidthPercentage)}
-          </Tooltip>
-        </div>
-        <div className="address-circle-bandwidth address-res">
-          <div className="d-flex just-con">
-            <span className="title">{tu("tron_power")}</span>
-            <span>
-              {tu("account_resource_remain")}:{" "}
-              <span className="remain">
-                <FormattedNumber value={powerRemaining || 0} />
-              </span>
-              /<FormattedNumber value={totalPower || 0} />
-            </span>
+            <Tooltip
+              title={this.bandWidthCircle}
+              overlayStyle={{ maxWidth: "500px" }}
+            >
+              {this.newProgress(availableBandWidthPercentage)}
+            </Tooltip>
           </div>
-          <Tooltip
-            title={this.powerCircle}
-            overlayStyle={{ maxWidth: "500px" }}
-          >
-            {this.newProgress(powerPercentage)}
-          </Tooltip>
+          <div className="address-circle-bandwidth address-res">
+            <div className="d-flex just-con">
+              <span className="title">{tu("tron_power")}</span>
+              <span>
+                {tu("account_resource_remain")}:{" "}
+                <span className="remain">
+                  <FormattedNumber value={powerRemaining || 0} />
+                </span>
+                /<FormattedNumber value={totalPower || 0} />
+              </span>
+            </div>
+            <Tooltip
+              title={this.powerCircle}
+              overlayStyle={{ maxWidth: "500px" }}
+            >
+              {this.newProgress(powerPercentage)}
+            </Tooltip>
+          </div>
         </div>
         <div className="d-flex representive">
           <section className="">
@@ -136,7 +138,10 @@ class Resource extends React.Component {
           <section className="">
             <h6>
               {tu("account_resource_realTime")}{" "}
-              <QuestionMark placement="top" text="account_resource_realTime_tip" />
+              <QuestionMark
+                placement="top"
+                text="account_resource_realTime_tip"
+              />
             </h6>
             <p className="d-flex">
               <span>

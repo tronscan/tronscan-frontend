@@ -231,7 +231,10 @@ export const lang20Q1 = {
   account_representative_block_ratio:'出块效率',
   account_representative_block_prize:'累计获得出块收益',
   account_representative_vote_prize:'累计获得投票收益',
-  account_representative_split_ratio:'分成比例',
+  account_representative_split_ratio: '分成比例',
+  account_representative_voter: '分给选民',
+  account_representative_owner: '自留',
+
 
 
 
