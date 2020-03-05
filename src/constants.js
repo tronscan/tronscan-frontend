@@ -8,14 +8,14 @@ export const IS_TESTNET = process.env.NET === "testnet";
 export const IS_DESKTOP = process.env.DESKTOP === "true";
 
 export const NETURL = {
-  // MAINNET: "https://debug.tronscan.org",
-  // SUNNET: "https://debugdappchain.tronscan.org",
+  MAINNET: "https://debug.tronscan.org",
+  SUNNET: "https://debugdappchain.tronscan.org",
   NEWMAINNET: "https://tronscan.io",
   NEWSUNNET: "https://dappchain.tronscan.io",
   // MAINNET: "https://tronscan.org",
   // SUNNET: "https://dappchain.tronscan.org",
-  MAINNET: "http://18.217.215.94:67",
-  SUNNET: "http://18.217.215.94:68"
+  // MAINNET: "http://18.217.215.94:67",
+  // SUNNET: "http://18.217.215.94:68"
 };
 
 export const TOKENINFO_UPDATE = "TOKENINFO_UPDATE";
@@ -121,13 +121,13 @@ export const TRADINGMAP = {
 
 // SunWeb config
 export const SUNWEBCONFIG = {
-  // MAINFULLNODE: "https://api.trongrid.io",
-  // MAINSOLIDITYNODE: "https://api.trongrid.io",
-  // MAINEVENTSERVER: "https://api.trongrid.io",
+  MAINFULLNODE: "https://api.trongrid.io",
+  MAINSOLIDITYNODE: "https://api.trongrid.io",
+  MAINEVENTSERVER: "https://api.trongrid.io",
 
-  MAINFULLNODE: "https://api.nileex.io",
-  MAINSOLIDITYNODE: "https://api.nileex.io",
-  MAINEVENTSERVER: "https://event.nileex.io",
+  // MAINFULLNODE: "https://api.nileex.io",
+  // MAINSOLIDITYNODE: "https://api.nileex.io",
+  // MAINEVENTSERVER: "https://event.nileex.io",
 
   SUNFULLNODE: "https://sun.tronex.io",
   SUNSOLIDITYNODE: "https://sun.tronex.io",
