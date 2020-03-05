@@ -66,11 +66,11 @@ class LedgerAccess extends Component {
     tronWebLedger.defaultAddress = defaultAddress;
     this.props.loginWithLedger(address, tronWebLedger);
     history.push("/account");
-    window.gtag("event", "login", {
-      event_category: "Ledger",
-      event_label: this.props.account.address,
+    window.gtag("event", "Ledger", {
+      event_category: "Login",
+      event_label: address,
       referrer: window.location.origin,
-      value: this.props.account.address
+      value: address
     });
     onClose && onClose();
   };

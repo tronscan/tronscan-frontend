@@ -137,7 +137,7 @@ export const lang20Q1 = {
   full_node_version_latest_block:'最新区块',
   full_node_version_confirmed:'已确认',
   full_node_version_unconfirmed:'待确认',
-  full_node_version_confirmed_tips:'“已确认”是指被19个及以上超级节点确认，否则为“待确认”',
+  full_node_version_confirmed_tips:'“已确认”是指被19个及以上区块确认，否则为“待确认”或“已回退”',
 
   // 2020-02-19
   chart_energy:'能量消耗',
@@ -210,10 +210,29 @@ export const lang20Q1 = {
   proposal_validate_text_7:"请输入[1-10000]的数值",
   proposal_validate_text_8:"请输入[1-1000]的数值",
   proposal_validate_text_9:"请输入[0-100000000000000000]的数值",
+  proposal_validate_text_10:"请选择禁止/不禁止",
   propose_not_activate:"不开启",
   proposal_value_same:"提议值与当前值一样",
   go_to_proposals_list:"去给提议投票",
   proposal_quit:"您当前有未完成的操作，确定退出吗？",
 
   getAllowTvmSolidity059_tips:"TVM（TRON虚拟机）的三个新功能将被打开：支持并行签名验证，多签名验证以及判断地址是否为合约地址。",
+
+  // 0227 torn sr
+  sr_vote_team_information:'团队详情',
+  sr_vote_last_ranking:'上轮排名',
+  sr_vote_last_votes:'上轮得票',
+  sr_vote_current_ranking:'实时排名',
+  sr_vote_current_vote:'实时得票',
+  sr_vote_percent_note:'超级代表在上轮投票中所得票数占所有投票数的比例',
+
+  block_detail_confirmed_show:'{num}个区块已确认',
+  block_detail_confirmed_over_show:'超过200个区块已确认',
+  block_detail_rolled_back:'已回退',
+
+  freeze_TRX_error:"冻结TRX时出现问题，请稍后重试",
+
+
+
+
 };

@@ -474,6 +474,25 @@ export class SubmitProposal extends Component {
                                         }
                                     </div>
                                 }
+                                {
+                                    record.key == 'getShieldedTransactionCreateAccountFee' && <div>
+                                        <span>{text / ONE_TRX}</span> &nbsp;<span>TRX</span>
+                                        {
+                                        record.same && <span className="proposal-value-same ml-1">({tu('proposal_value_same')})</span>
+                                        }
+                                    </div>
+                                }
+                                {
+                                    record.key == 'getForbidTransferToContract' && <div>
+                                        {
+                                            Number(text)? <span>{tu('propose_prohibit')}</span>:
+                                                <span>{tu('propose_not_prohibit')}</span>
+                                        }
+                                        {
+                                            record.same && <span className="proposal-value-same ml-1">({tu('proposal_value_same')})</span>
+                                        }
+                                    </div>
+                                }
                             </div>:<div>
                                 {
                                     record.key == 'getChargingSwitch' && <div>
