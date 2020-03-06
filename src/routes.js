@@ -845,14 +845,14 @@ export const routes = [
     showSubHeader: false,
     component: DemoAsync
   },
-  {
-    path: "/test/btt/supply",
-    label: "supply",
-    showInMenu: false,
-    showSubMenu: false,
-    showSubHeader: false,
-    component: BTTSupplyTemp
-  },
+  // {
+  //   path: "/test/btt/supply",
+  //   label: "supply",
+  //   showInMenu: false,
+  //   showSubMenu: false,
+  //   showSubHeader: false,
+  //   component: BTTSupplyTemp
+  // },
   {
     path: "/error",
     showInMenu: false,
