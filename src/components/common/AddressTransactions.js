@@ -342,14 +342,6 @@ class Transactions extends React.Component {
         }
       },
       {
-        title: "",
-        className: "ant_table",
-        width: "30px",
-        render: (text, record, index) => {
-          return <img src={require("../../images/arrow.png")} />;
-        }
-      },
-      {
         title: upperFirst(intl.formatMessage({ id: "to" })),
         dataIndex: "to",
         key: "to",
@@ -393,7 +385,22 @@ class Transactions extends React.Component {
               })
             : "-";
         }
-      }
+      },
+      {
+      title: 
+        upperFirst(
+            intl.formatMessage({
+                id: "tokens"
+            })
+        ),
+        dataIndex: "tokens",
+        align: "left",
+        key: "tokens",
+        className: "ant_table",
+        render: (text, record, index) => {
+            return <span> {record.map_token_name_abbr} </span>;
+        }
+    }
       // {
       //   title: upperFirst(intl.formatMessage({id: 'contract_type'})),
       //   dataIndex: 'contractType',
