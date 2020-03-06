@@ -214,8 +214,6 @@ class Statistics extends React.Component {
         }else{
             priceBTC = 0
         }
-        console.log(priceBTC,'priceBTC')
-
         
         this.setState({
             supplyTypesChart: supplyTypesChartData,
