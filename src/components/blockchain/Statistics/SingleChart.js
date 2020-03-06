@@ -9,6 +9,7 @@ import {tronAddresses} from "../../../utils/tron";
 import {TronLoader} from "../../common/loaders";
 import PieReact from "../../common/PieChart";
 import LineReact from "../../common/LineChart";
+import {BigNumber} from 'bignumber.js'
 import {cloneDeep} from "lodash";
 import {tu} from "../../../utils/i18n";
 import CountUp from 'react-countup';
@@ -179,11 +180,43 @@ class Statistics extends React.Component {
             {value: funds.turnOver, name: 'circulating_supply', selected: true,sliced: true},
             {value: funds.fundTrx, name: 'total_frozen', selected: false,sliced: false},
         ]
-        let eurURL = encodeURI(`https://api.coinmarketcap.com/v1/ticker/tronix/?convert=EUR`);
-        let trxPriceData = await xhr.get(`${API_URL}/api/system/proxy?url=${eurURL}`);
-        let priceUSD = ((parseFloat(trxPriceData.data[0].price_usd))*1000).toFixed(2);
-        let priceBTC = ((parseFloat(trxPriceData.data[0].price_btc))*1000).toFixed(5)
-        let marketCapitalization = ((parseFloat(trxPriceData.data[0].price_usd)*(funds.totalTurnOver))).toFixed(2);
+        // cmc change api
+        let btcURL =  encodeURI(
+            `https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest?symbol=TRX&convert=BTC`
+        );
+        let usdURL = encodeURI(
+            `https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest?symbol=TRX&convert=USD`
+        );
+        var { data: {data:dataBTC} } = await xhr.post(
+            `${API_URL}/api/system/proxy`,
+            {
+              url:btcURL
+            }
+          );
+        var { data: {data:dataUSD} } = await xhr.post(
+            `${API_URL}/api/system/proxy`,
+            {
+                url:usdURL
+            }
+        );
+
+        let priceUSD,marketCapitalization
+        if(dataUSD){
+            priceUSD = (parseFloat(dataUSD.TRX.quote.USD.price)*1000).toFixed(2);  
+            marketCapitalization = (dataUSD.TRX.quote.USD.price*(funds.totalTurnOver)).toFixed(2);
+        }else{
+            priceUSD = 0
+        }
+        let priceBTC;
+        if(dataBTC){
+            let  x = new BigNumber(dataBTC.TRX.quote.BTC.price); 
+            priceBTC = x.multipliedBy(1000).toFixed(5);
+        }else{
+            priceBTC = 0
+        }
+        console.log(priceBTC,'priceBTC')
+
+        
         this.setState({
             supplyTypesChart: supplyTypesChartData,
             genesisNum:intl.formatNumber(funds.genesisBlockIssue),
@@ -200,50 +233,6 @@ class Statistics extends React.Component {
         });
     }
 
-    // async loadTotalTRXSupply(){
-    //     let {intl} = this.props;
-    //     let TronicsSupportPlanTotal = Math.abs((48051405879291 + 47301714286684 + 43765311477181 +  43778265726411 + 40084942291066 + 30849150245777 + 26800712361681 ) / ONE_TRX).toFixed(2);
-    //     let random = Math.random();
-    //     let balanceData = await xhr.get(`${API_URL}/api/fund?random="${random}&page_index=1&per_page=1`);
-    //     let TRONFoundationTotal = balanceData.data.data.total/ONE_TRX - TronicsSupportPlanTotal;
-    //     let {blocks} = await Client.getBlocks({
-    //         limit: 1,
-    //         sort: '-number',
-    //     });
-    //     let blockHeight = blocks[0] ? blocks[0].number : 0;
-    //     let nodeRewardsNum = blockHeight * 16;
-    //     let blockProduceRewardsNum = blockHeight * 32;
-    //     let address = await Client.getAddress('TLsV52sRDL79HXGGm9yzwKibb6BeruhUzy');
-    //     let startFeeBurnedNum = Math.abs(-9223372036854.775808)
-    //     let feeBurnedNum = (startFeeBurnedNum - Math.abs(address.balance / ONE_TRX)).toFixed(2);
-    //     let genesisNum = 100000000000;
-    //     let independenceDayBurned = 1000000000;
-    //     let currentTotalSupply = genesisNum + blockProduceRewardsNum + nodeRewardsNum - independenceDayBurned - feeBurnedNum;
-    //     let circulatingNum = (currentTotalSupply  - TRONFoundationTotal).toFixed(2);
-    //     let supplyTypesChartData = [
-    //         {value: circulatingNum, name: 'circulating_supply', selected: true,sliced: true},
-    //         {value: TRONFoundationTotal, name: 'total_frozen', selected: false,sliced: false},
-    //
-    //     ]
-    //     let trxPriceData = await xhr.get(`https://api.coinmarketcap.com/v1/ticker/tronix/?convert=EUR`);
-    //     let priceUSD = ((parseFloat(trxPriceData.data[0].price_usd))*1000).toFixed(2);
-    //     let priceBTC = ((parseFloat(trxPriceData.data[0].price_btc))*1000).toFixed(5);
-    //     let marketCapitalization = ((parseFloat(trxPriceData.data[0].price_usd)*currentTotalSupply)).toFixed(2);
-    //     this.setState({
-    //         supplyTypesChart: supplyTypesChartData,
-    //         genesisNum:intl.formatNumber(genesisNum),
-    //         blockProduceRewardsNum:intl.formatNumber(blockProduceRewardsNum),
-    //         nodeRewardsNum:intl.formatNumber(nodeRewardsNum),
-    //         independenceDayBurned:intl.formatNumber(independenceDayBurned),
-    //         feeBurnedNum:intl.formatNumber(feeBurnedNum),
-    //         currentTotalSupply:currentTotalSupply,
-    //         priceUSD:priceUSD,
-    //         priceBTC:priceBTC,
-    //         marketCapitalization:marketCapitalization,
-    //         foundationFreeze:intl.formatNumber(TRONFoundationTotal),
-    //         circulatingNum:intl.formatNumber(circulatingNum)
-    //     });
-    // }
     async loadPieChart(){
         let {intl} = this.props;
         let {statisticData} = await Client.getStatisticData()
