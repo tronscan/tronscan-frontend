@@ -145,6 +145,7 @@ class Navigation extends React.Component {
       );
       if (dataEurObj.TRX) {
         let percent_change_24h = dataEurObj.TRX.quote.USD.percent_change_24h.toFixed(2) || 0;
+        console.log(percent_change_24h)
         this.setState({
           percent_change_24h
         });
