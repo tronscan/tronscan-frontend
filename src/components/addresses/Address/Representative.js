@@ -1,6 +1,7 @@
 import React, { Fragment } from "react";
 import { tu } from "../../../utils/i18n";
 import { injectIntl } from "react-intl";
+import { Link } from "react-router-dom";
 import { QuestionMark } from "../../common/QuestionMark";
 import { TRXPrice } from "../../common/Price";
 import { HrefLink } from "../../common/Links";
@@ -13,7 +14,9 @@ import { NavLink, Route, Switch } from "react-router-dom";
 class Representative extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+        votingEnabled:false
+    };
   }
 
   componentDidMount() {}
@@ -26,9 +29,12 @@ class Representative extends React.Component {
       totalPower,
       walletReward,
       stats,
-      blocksProduced
+      blocksProduced,
+      hasPage
     } = this.props.data;
     let { intl, url } = this.props;
+    let {votingEnabled} = this.state;
+    console.log(this.props.data)
     return (
       <Fragment>
         <table className="table m-0 table-style">
@@ -239,9 +245,22 @@ class Representative extends React.Component {
               </td>
             </tr>
             <tr>
-              <th>{tu("website")}:</th>
+              <th className="line36">{tu("website")}:</th>
               <td>
-                <ExternalLink url={address.representative.url} />
+              <div className="d-flex">
+                  <span className="line36"><ExternalLink url={address.representative.url} /></span>
+                
+                {!votingEnabled && hasPage && (
+                    <div className="_team ml-3">
+                    <Link
+                        className="btn btn-sm btn-block btn-default mt-1"
+                        to={`/representative/${address.address}`}
+                    >
+                        {tu("sr_vote_team_information")}
+                    </Link>
+                    </div>
+                )}
+                </div>
               </td>
             </tr>
           </tbody>

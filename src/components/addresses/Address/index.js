@@ -11,7 +11,7 @@ import { ONE_TRX } from "../../../constants";
 import { AddressLink, ExternalLink } from "../../common/Links";
 import { TRXPrice } from "../../common/Price";
 import { TronLoader } from "../../common/loaders";
-import Transactions from "../../common/Transactions";
+import Transactions from "../../common/AddressTransactions";
 import NewTransactions from "../../common/NewTransactions";
 import Votes from "../../common/Votes";
 import TransfersAll from "../../common/TransfersAll";
@@ -52,6 +52,7 @@ class Address extends React.Component {
       votes: null,
       rank: 0,
       totalVotes: 0,
+      hasPage:false,
       address: {
         address: "",
         balance: 0,
@@ -543,7 +544,8 @@ class Address extends React.Component {
     let { data } = await Client.getVoteWitness(id);
     this.setState({
       totalVotes: data.realTimeVotes,
-      rank: data.realTimeRanking
+      rank: data.realTimeRanking,
+      hasPage:data.hasPage
     });
   }
 
