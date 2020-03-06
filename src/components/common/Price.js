@@ -89,7 +89,6 @@ class PriceProviderCmp extends React.PureComponent {
       }
     );
 
-    console.log(dataEur,dataEth,dataBTC,111111)
     let BTC_Price;
     if(dataBTC){
       BTC_Price = parseFloat(dataBTC.TRX.quote.BTC.price); 

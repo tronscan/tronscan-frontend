@@ -26,6 +26,8 @@ import {
   setExchanges20Search,
   getExchangesByIdsContent
 } from "../../../../../actions/exchange";
+import { loadUsdPrice } from "../../../../../actions/blockchain";
+
 import { connect } from "react-redux";
 import Lockr from "lockr";
 import { QuestionMark } from "../../../../common/QuestionMark";
@@ -93,12 +95,14 @@ class ExchangeList extends React.Component {
     const {
       getExchanges20,
       getExchangesByIds,
-      getExchangesByIdsContent
+      getExchangesByIdsContent,
+      loadUsdPrice
     } = this.props;
     //get every token unit conversion
+    await loadUsdPrice()
     await this.getCovert("trx");
     await this.getCovert("usdt");
-
+    
     getExchanges20(1);
     getExchanges20(0);
     getExchanges20(2);
@@ -621,30 +625,34 @@ class ExchangeList extends React.Component {
   }
   // Unit conversion 
   async getCovert(type) {
-    const { setPriceConvert } = this.props;
+    const { setPriceConvert, priceUSD } = this.props;
     let { priceObj } = this.state;
-    let data = await Client20.coinMarketCap(type, "ETH");
-    let data1 = await Client20.coinMarketCap(type, "EUR");
+    // let data = await Client20.coinMarketCap(type, "USD");
+    // let data1 = await Client20.coinMarketCap(type, "EUR");
     if (type === "trx") {
       let trxToOther = {};
-
+      // let _price = data.data &&
+      //               data.data.TRX &&
+      //               data.data.TRX.quote &&
+      //               data.data.TRX.quote['USD'] && 
+      //               data.data.TRX.quote['USD'].price
       trxToOther = {
-        usd: data[0].price_usd,
-        btc: data[0].price_btc,
-        eth: data[0].price_eth,
-        eur: data1[0].price_eur,
+        usd: priceUSD,
+        // btc: data[0].price_btc,
+        // eth: data[0].price_eth,
+        // eur: data1[0].price_eur,
         trx: 1
       };
       priceObj.trxToOther = trxToOther;
     } else if (type === "usdt") {
       let usdtToOther = {};
 
-      let data2 = await Client20.coinMarketCap(type, "TRX");
+      // let data2 = await Client20.coinMarketCap(type, "TRX");
       usdtToOther = {
-        trx: data2[0].price_trx,
-        btc: data[0].price_btc,
-        eth: data[0].price_eth,
-        eur: data1[0].price_eur,
+        // trx: data2[0].price_trx,
+        // btc: data[0].price_btc,
+        // eth: data[0].price_eth,
+        // eur: data1[0].price_eur,
         usd: 1
       };
       priceObj.usdtToOther = usdtToOther;
@@ -783,7 +791,8 @@ function mapStateToProps(state) {
     klineLock: state.exchange.klineLock,
     price: state.exchange.price,
     exchanges20SearchList: state.exchange.searchList,
-    exchanges20SearchListByIds: state.exchange.searchListByIds
+    exchanges20SearchListByIds: state.exchange.searchListByIds,
+    priceUSD: state.blockchain.usdPrice
   };
 }
 
@@ -796,7 +805,8 @@ const mapDispatchToProps = {
   getExchanges20Search,
   getExchangesByIds,
   setExchanges20Search,
-  getExchangesByIdsContent
+  getExchangesByIdsContent,
+  loadUsdPrice
 };
 
 export default connect(
