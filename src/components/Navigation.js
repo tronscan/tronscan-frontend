@@ -254,6 +254,13 @@ class Navigation extends React.Component {
         if (tronWeb && tronWeb.defaultAddress.base58) {
           this.props.loginWithTronLink(tronWeb.defaultAddress.base58, tronWeb, sunWeb).then(() => {
             toastr.info(intl.formatMessage({id: 'success'}), intl.formatMessage({id: 'login_success'}));
+            
+            window.gtag("event", "Tronlink", {
+              event_category: "Login",
+              event_label: tronWeb.defaultAddress.base58,
+              referrer: window.location.origin,
+              value: tronWeb.defaultAddress.base58
+            });
           });
           this.setState({address: tronWeb.defaultAddress.base58});
           clearInterval(timer)
