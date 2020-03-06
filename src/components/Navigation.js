@@ -157,16 +157,19 @@ class Navigation extends React.Component {
 
   async loadTrxPrices() {
       var dataEur = Lockr.get("dataEur");
-  
       let eurURL = encodeURI(
-        `https://api.coinmarketcap.com/v1/ticker/tronix/?convert=EUR`
+       `https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest?symbol=TRX&convert=USD` 
       );
-      
-      var { data: dataEurObj } = await xhr.get(
-          `${API_URL}/api/system/proxy?url=${eurURL}`
+      var { data: {data: dataEurObj} } = await xhr.post(
+          `${API_URL}/api/system/proxy`,
+          {
+            url:eurURL
+          }
       );
-      if (dataEurObj.length > 0) {
-        let percent_change_24h = dataEurObj[0].percent_change_24h;
+      console.log(dataEurObj,'dataEurObj')
+      if (dataEurObj.TRX) {
+        let percent_change_24h = dataEurObj.TRX.quote.USD.percent_change_24h.toFixed(2) || 0;
+        console.log(percent_change_24h)
         this.setState({
           percent_change_24h
         });
