@@ -8,7 +8,7 @@ import { FormattedNumber } from "react-intl";
 import TokenBalances from "./TokenBalances";
 import MyContracts from "./Contracts";
 import { ONE_TRX } from "../../../constants";
-import { AddressLink, ExternalLink } from "../../common/Links";
+import { AddressLink, ExternalLink, HrefLink } from "../../common/Links";
 import { TRXPrice } from "../../common/Price";
 import { TronLoader } from "../../common/loaders";
 import Transactions from "../../common/Transactions";
@@ -28,7 +28,6 @@ import {
 } from "../../../utils/number";
 import { Progress, Tooltip } from "antd";
 import BigNumber from "bignumber.js";
-import { HrefLink } from "../../common/Links";
 import { QuestionMark } from "../../common/QuestionMark";
 import { CsvExport } from "../../common/CsvExport";
 import moment from "moment";
@@ -716,7 +715,9 @@ class Address extends React.Component {
       </div>
     );
   }
-
+  scrollToAnchor = () => {
+    window.scrollTo(0, 800);
+  };
   render() {
     let {
       totalPower,
@@ -770,16 +771,32 @@ class Address extends React.Component {
             ) : (
               <Fragment>
                 <div className="card list-style-header">
-                  {address.representative.enabled && (
+                  {/* {address.representative.enabled && (
                     <div className="card-body">
                       <h5 className="card-title m-0">
                         <i className="fa fa-cube mr-2" />
                         {tu("representatives")}
                       </h5>
                     </div>
-                  )}
-                  <div className="row">
-                    <div className="col-md-6">
+                  )} */}
+                  <div className="address-title">
+                    <AddressLink
+                      address={address.address}
+                      isContract={true}
+                      includeCopy={true}
+                      includeTransfer={true}
+                      includeErcode={true}
+                    />
+                    <div>
+                      {address.addressTag && (
+                        <span className="addressTag">
+                          {address.addressTag}
+                        </span>
+                      )}
+                    </div>
+                  </div>
+                  <div className="row info-wrap">
+                    <div className="col-md-7">
                       {address.representative.enabled ? (
                         <Representative
                           address={address}
@@ -792,257 +809,127 @@ class Address extends React.Component {
                       ) : (
                         <table className="table m-0">
                           <tbody>
-                            {Boolean(rank) && (
-                              <tr>
-                                <th>{tu("rank_real_time")}:</th>
-                                <td>{rank}</td>
-                              </tr>
-                            )}
-                            {address.representative.enabled && (
-                              <Fragment>
-                                {address.name && (
-                                  <tr>
-                                    <th>{tu("name")}:</th>
-                                    <td>{address.name}</td>
-                                  </tr>
-                                )}
-                                <tr>
-                                  <th>{tu("website")}:</th>
-                                  <td>
-                                    <ExternalLink
-                                      url={address.representative.url}
-                                    />
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <th>{tu("blocks_produced")}:</th>
-                                  <td>
-                                    <FormattedNumber value={blocksProduced} />
-                                  </td>
-                                </tr>
-                              </Fragment>
-                            )}
                             <tr>
-                              <th>{tu("address")}:</th>
-                              <td>
-                                <AddressLink
-                                  address={addr}
-                                  includeCopy={true}
-                                />
-                                <div>
-                                  {address.addressTag && (
-                                    <span className="addressTag">
-                                      {address.addressTag}
-                                    </span>
-                                  )}
-                                </div>
-                              </td>
-                            </tr>
-                            {!address.representative.enabled ? (
-                              <tr>
-                                <th>{tu("name")}:</th>
-                                <td>
-                                  <span>
-                                    {address.name ? address.name : "-"}
-                                  </span>
-                                </td>
-                              </tr>
-                            ) : (
-                              ""
-                            )}
-                            <tr>
-                              <th>
-                                <span className="mr-1">
-                                  {tu("address_info_transactions")}
-                                </span>
-                                <QuestionMark
-                                  placement="top"
-                                  text="address_transactions_tip"
-                                />
-                                <span className="ml-1">:</span>
-                              </th>
+                              <th>{tu("name")}:</th>
                               <td>
                                 <span>
-                                  {address.totalTransactionCount} Txns
+                                  {address.name ? address.name : "-"}
                                 </span>
                               </td>
                             </tr>
                             <tr>
-                              <th>{tu("address_info_transfers")}:</th>
-                              <td>
-                                <div className="d-flex">
+                            <th>
+                              <span className="mr-1">{tu("total_balance")}</span>
+                              <QuestionMark
+                                placement="top"
+                                text="address_total_balance_tip"
+                                className="ml-1"
+                              />
+                              <span className="ml-1">:</span>
+                            </th>
+                            <td>
+                              <ul className="list-unstyled m-0 ">
+                                <li className="d-flex just-con mobile-no-flex">
                                   <div>
-                                    {stats.transactions_in +
-                                      stats.transactions_out}{" "}
-                                    Txns
+                                    <NavLink exact to={match.url}>
+                                      <span
+                                        className="colorYellow"
+                                        onClick={this.scrollToAnchor.bind(this)}
+                                      >
+                                        <TRXPrice amount={TRXBalanceTotal} />{" "}
+                                      </span>
+                                    </NavLink>
+
+                                    <span className="small">
+                                      (
+                                      <TRXPrice
+                                        amount={TRXBalanceTotal}
+                                        currency="USD"
+                                        showPopup={false}
+                                      />
+                                      )
+                                    </span>
                                   </div>
+
                                   <div>
-                                    <span className="ml-1">(</span>
-                                    <i className="fa fa-arrow-down text-success" />
-                                    &nbsp;
-                                    <span>{stats.transactions_in} Txns</span>
-                                    &nbsp;
-                                    <i className="fa fa-arrow-up  text-danger" />
-                                    &nbsp;
-                                    <span>{stats.transactions_out} Txns</span>
-                                    &nbsp;
-                                    <span>)</span>
-                                  </div>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <th>
-                                <span className="mr-1">{tu("tron_power")}</span>
-                                <QuestionMark
-                                  placement="top"
-                                  text="address_tron_power_tip"
-                                  className="ml-1"
-                                />
-                                <span className="ml-1">:</span>
-                              </th>
-                              <td>
-                                <ul className="list-unstyled m-0">
-                                  <li className="d-flex">
-                                    {/* <TRXPrice showCurreny={false}
-                                                amount={(totalPower) / ONE_TRX}/> */}
-                                    <FormattedNumber
-                                      value={totalPower / ONE_TRX}
-                                    ></FormattedNumber>
-                                    &nbsp;TP
-                                    <div>
-                                      <span className="ml-1">(</span>{" "}
-                                      {tu("address_tron_power_used")}:{" "}
-                                      <FormattedNumber
-                                        value={address.voteTotal}
-                                      ></FormattedNumber>
-                                      &nbsp;TP &nbsp;{" "}
-                                      {tu("address_tron_power_remaining")}:{" "}
-                                      <FormattedNumber
-                                        value={
-                                          totalPower / ONE_TRX -
-                                          address.voteTotal
+                                    <span className="small">
+                                      {tu("address_total_balance_info_sources")}：
+                                    </span>
+                                    <span className="small href-link">
+                                      <HrefLink
+                                        href={
+                                          intl.locale == "zh"
+                                            ? "https://poloniex.org/zh/"
+                                            : "https://poloniex.org/"
                                         }
-                                      ></FormattedNumber>{" "}
-                                      TP&nbsp;
-                                      <span>)</span>
-                                    </div>
-                                  </li>
-                                </ul>
-                              </td>
-                            </tr>
-                            <tr>
-                              <th>
-                                <span className="mr-1">
-                                  {tu("address_vote_reward_pending")}
-                                </span>
-                                <span className="ml-1">:</span>
-                              </th>
-                              <td>
-                                <ul className="list-unstyled m-0">
-                                  <li className="d-flex">
-                                    <TRXPrice
-                                      amount={walletReward / ONE_TRX}
-                                      showPopup={false}
-                                    />
-                                  </li>
-                                </ul>
-                              </td>
-                            </tr>
-                            <tr>
-                              <th>
-                                <span className="mr-1">
-                                  {tu("address_balance")}
-                                </span>
-                                <span className="ml-1">:</span>
-                              </th>
-                              <td>
-                                <ul className="list-unstyled m-0">
-                                  <li className="">
+                                      >
+                                        Poloni DEX
+                                      </HrefLink>
+                                    </span>
+                                  </div>
+                                </li>
+                              </ul>
+                            </td>
+                          </tr>
+                          <tr>
+                            <th>
+                              <span className="mr-1">{tu("address_balance")}</span>
+                              <span className="ml-1">:</span>
+                            </th>
+                            <td>
+                              <ul className="list-unstyled m-0">
+                                <li className="d-flex">
+                                  <span>
                                     <FormattedNumber
                                       value={(balance + totalPower) / ONE_TRX}
                                     />{" "}
                                     TRX
-                                    <div>{this.renderFrozenTokens()}</div>
-                                  </li>
-                                </ul>
-                              </td>
-                            </tr>
-                            <tr>
-                              <th>
-                                <span className="mr-1">
-                                  {tu("total_balance")}
+                                  </span>
+                                  <div>{this.renderFrozenTokens()}</div>
+                                </li>
+                              </ul>
+                            </td>
+                          </tr>
+                          <tr>
+                            <th>
+                              <span className="mr-1">
+                                {tu("address_vote_reward_pending")}
+                              </span>
+                              <span className="ml-1">:</span>
+                            </th>
+                            <td>
+                              <ul className="list-unstyled m-0">
+                                <li className="d-flex">
+                                  <TRXPrice
+                                    amount={walletReward / ONE_TRX}
+                                    showPopup={false}
+                                  />
+                                </li>
+                              </ul>
+                            </td>
+                          </tr>
+                          <tr>
+                            <th>
+                              <span className="mr-1">{tu("address_info_transactions")}</span>
+                              <QuestionMark placement="top" text="address_transactions_tip" />
+                              <span className="ml-1">:</span>
+                            </th>
+                            <td>
+                              <NavLink exact to={match.url + "/transactions"}>
+                                <span
+                                  className="colorYellow"
+                                  onClick={this.scrollToAnchor.bind(this)}
+                                >
+                                  {address.totalTransactionCount} Txns
                                 </span>
-                                <QuestionMark
-                                  placement="top"
-                                  text="address_total_balance_tip"
-                                  className="ml-1"
-                                />
-                                <span className="ml-1">:</span>
-                              </th>
-                              <td>
-                                <ul className="list-unstyled m-0">
-                                  <li>
-                                    <div>
-                                      <TRXPrice amount={TRXBalanceTotal} />{" "}
-                                      <span className="small">
-                                        (
-                                        <TRXPrice
-                                          amount={TRXBalanceTotal}
-                                          currency="USD"
-                                          showPopup={false}
-                                        />
-                                        )
-                                      </span>
-                                    </div>
-
-                                    <div>
-                                      <span className="small">
-                                        {tu(
-                                          "address_total_balance_info_sources"
-                                        )}
-                                        ：
-                                      </span>
-                                      <span className="small">
-                                        <HrefLink
-                                          href={
-                                            intl.locale == "zh"
-                                              ? "https://poloniex.org/zh/"
-                                              : "https://poloniex.org/"
-                                          }
-                                        >
-                                          Poloni DEX
-                                        </HrefLink>
-                                      </span>
-                                      <img
-                                        width={15}
-                                        height={15}
-                                        style={{ marginLeft: 5 }}
-                                        src={require("../../../images/svg/market.png")}
-                                        alt=""
-                                      />
-                                    </div>
-                                  </li>
-                                </ul>
-                              </td>
-                            </tr>
-                            {Boolean(totalVotes) && (
-                              <tr>
-                                <th>{tu("total_votes")}:</th>
-                                <td>
-                                  <ul className="list-unstyled m-0">
-                                    <li>
-                                      <FormattedNumber value={totalVotes} />
-                                    </li>
-                                  </ul>
-                                </td>
-                              </tr>
-                            )}
+                              </NavLink>
+                            </td>
+                          </tr>
                           </tbody>
                         </table>
                       )}
                     </div>
-                    <div className="col-md-6 address-circle">
+                    <div className="col-md-5 address-circle">
                       <Resource
                         availableBandWidthPercentage={
                           availableBandWidthPercentage

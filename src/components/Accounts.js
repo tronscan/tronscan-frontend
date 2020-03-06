@@ -13,6 +13,8 @@ import {QuestionMark} from "./common/QuestionMark";
 import xhr from "axios/index";
 import {Client} from "../services/api";
 import {Tooltip, Table} from 'antd'
+import { Link } from "react-router-dom";
+
 
 
 class Accounts extends Component {
@@ -303,6 +305,9 @@ class Accounts extends Component {
       return (
         <main className="container header-overlap pb-3 token_black">
           <div className="row">
+            <div className="d-flex col-md-12 justify-content-end my-2">
+              <Link to="">{tu('account_more')}></Link>
+            </div>
             <div className="d-flex col-md-12">
               <div className="card h-100 widget-icon accout_unit">
                 {/* <WidgetIcon className="fa fa-users text-secondary"/> */}
@@ -328,7 +333,7 @@ class Accounts extends Component {
           {loading && <div className="loading-style"><TronLoader/></div>}
           <div className="row mt-2">
             <div className="col-md-12 table_pos">
-              {total ?<div className="d-none d-md-block">
+              {total ?<div className="d-none d-md-block mt-2 mb-1">
                       <div>
                         {tu('account_total_tip')}
                         {/* {tu('view_total')} {rangeTotal} {tu('account_unit')}  */}

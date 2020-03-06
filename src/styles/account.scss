@@ -1,4 +1,10 @@
 .account-new {
+  .list-style-header{
+    padding: 0;
+  }
+  .info-wrap{
+    padding: 0 2.6%;
+  }
   .just-con {
     justify-content: space-between;
   }
@@ -11,7 +17,14 @@
   .color2000 {
     color: #200000;
   }
-
+  .address-title{
+    padding: 20px 2.6%;
+    background: #F4F4F2;
+    font-size: 16px;
+    .fa{
+      color: #666;
+    }
+  }
   .address-circle {
     padding: 0 32px 0 60px;
 

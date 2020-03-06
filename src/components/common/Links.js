@@ -264,7 +264,7 @@ class addressLinkClass extends React.PureComponent {
           <Tooltip placement="top" title={t("Copy")}>
             <CopyToClipboard
               text={address}
-              className="ml-1"
+              className="ml-3"
               onCopy={() => {
                 message.success(
                   intl.formatMessage({ id: "contract_copy_success" }),
@@ -281,7 +281,7 @@ class addressLinkClass extends React.PureComponent {
         {includeErcode && (
           <Tooltip placement="top" title={t("show_qr_code")}>
             <span
-              className="ml-2"
+              className="ml-3"
               onClick={this.renderModal}
               style={{ cursor: "pointer" }}
             >
@@ -292,7 +292,7 @@ class addressLinkClass extends React.PureComponent {
         {includeTransfer && (
           <Tooltip placement="top" title={t("send_tokens")}>
             <span
-              className="ml-2"
+              className="ml-3"
               onClick={this.renderSend}
               style={{ cursor: "pointer" }}
             >
