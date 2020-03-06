@@ -213,43 +213,49 @@ class Navigation extends React.Component {
         }
 
     }
-
     reLoginWithTronLink = () => {
-        let {intl} = this.props;
-        let { address } = this.state;
-        if(getQueryString('from') == 'tronlink'){
-            Lockr.set("islogin", 1)
-        }
-        if (Lockr.get("islogin")) {
-            let timer = null;
-            let count = 0;
-            timer = setInterval(() => {
-                const tronWeb = window.tronWeb;
-                const sunWeb = window.sunWeb;
-                if (tronWeb && tronWeb.defaultAddress.base58) {
-                    this.props.loginWithTronLink(tronWeb.defaultAddress.base58, tronWeb, sunWeb).then(() => {
-                        toastr.info(intl.formatMessage({id: 'success'}), intl.formatMessage({id: 'login_success'}));
-                    });
-                    this.setState({address: tronWeb.defaultAddress.base58});
-                    clearInterval(timer)
-                } else {
-                    count++
-                    if (count > 30) {
-                        count = 0
-                        Lockr.set("islogin", 0)
-                        clearInterval(timer)
-                    }
-                }
-            }, 100)
-        }
+      let {intl} = this.props;
+      let { address } = this.state;
+      if(getQueryString('from') == 'tronlink'){
+          Lockr.set("islogin", 1)
+      }
+      if (Lockr.get("islogin")) {
+        let timer = null;
+        let count = 0;
+        timer = setInterval(() => {
+          const tronWeb = window.tronWeb;
+          const sunWeb = window.sunWeb;
+          if (tronWeb && tronWeb.defaultAddress.base58) {
+            this.props.loginWithTronLink(tronWeb.defaultAddress.base58, tronWeb, sunWeb).then(() => {
+              toastr.info(intl.formatMessage({id: 'success'}), intl.formatMessage({id: 'login_success'}));
+              window.gtag("event", "Tronlink", {
+                event_category: "Login",
+                event_label: tronWeb.defaultAddress.base58,
+                referrer: window.location.origin,
+                value: tronWeb.defaultAddress.base58
+              });
+  
+            });
+            this.setState({address: tronWeb.defaultAddress.base58});
+            clearInterval(timer)
+          } else {
+            count++
+            if (count > 30) {
+              count = 0
+              Lockr.set("islogin", 0)
+              clearInterval(timer)
+            }
+          }
+        }, 100)
+      }
     }
-
+  
     setLanguage = (language) => {
-        this.props.setLanguage(language);
+      this.props.setLanguage(language);
     };
-
+  
     setCurrency = (currency) => {
-        this.props.setActiveCurrency(currency);
+      this.props.setActiveCurrency(currency);
     };
 
     login(e) {
