@@ -14,11 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-<<<<<<< HEAD
-  "/precache-manifest.f89deb0d1364e146da771f18a7176ab2.js"
-=======
-  "/precache-manifest.4d2950c373485a8a5094aa885d67c104.js"
->>>>>>> origin/feature/ledger-tronscan
+  "/precache-manifest.e27a5708f56150a740832fa826e2247b.js"
 );
 
 self.addEventListener('message', (event) => {
