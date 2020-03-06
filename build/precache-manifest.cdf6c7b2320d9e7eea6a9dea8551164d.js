@@ -16,19 +16,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/editor.worker.js.gz"
   },
   {
-    "revision": "0a63136fb5734a6dd30888224f79f8e5",
+    "revision": "c02519f3541e366a0f63160def7324a3",
     "url": "/index.html"
   },
   {
-    "revision": "d2168f8ae8b9b6479c7dddeff5212498",
+    "revision": "7314d5299a951c0a2605ba5af8726240",
     "url": "/index.html.gz"
-  },
-  {
-    "url": "/precache-manifest.e80b530eb96477f9eb1c3b95a7d410ee.js"
-  },
-  {
-    "revision": "1175a6174cf12e914e62779534261c8e",
-    "url": "/service-worker.js"
   },
   {
     "revision": "2049ed155519de840684",
@@ -103,7 +96,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/css/Token20Detail.17b6c95c.chunk.css.gz"
   },
   {
-    "revision": "2ce5bdf5258d04878362",
+    "revision": "223eae1cd50fd589807e",
     "url": "/static/css/main.c27628f0.chunk.css"
   },
   {
@@ -775,12 +768,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/js/WalletWizard.cd3b155b.chunk.js.gz"
   },
   {
-    "revision": "2ce5bdf5258d04878362",
-    "url": "/static/js/main.dcdff5e0.chunk.js"
+    "revision": "223eae1cd50fd589807e",
+    "url": "/static/js/main.3126e699.chunk.js"
   },
   {
-    "revision": "e74ac8299761051fdeb6646357ab6378",
-    "url": "/static/js/main.dcdff5e0.chunk.js.gz"
+    "revision": "edaa6be7737cff1ba0f0c78ff5141485",
+    "url": "/static/js/main.3126e699.chunk.js.gz"
   },
   {
     "revision": "5d6f49145c59d313b6a9",
@@ -1001,6 +994,10 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "9f9e875b1093440ab382154088307874",
     "url": "/static/media/trc_active.9f9e875b.png"
+  },
+  {
+    "revision": "79d370ce86b3cc42344a069ddec977a0",
+    "url": "/static/media/tron-banner-1.79d370ce.png"
   },
   {
     "revision": "7071586ad89496745b428597388e88cb",
