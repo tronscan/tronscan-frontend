@@ -45,6 +45,7 @@ class PriceProviderCmp extends React.PureComponent {
   async loadPrices() {
     var dataEur = Lockr.get("dataEur");
     var dataEth = Lockr.get("dataEth");
+    // old api https://api.coinmarketcap.com/v1/ticker/bittorrent/?convert=EUR
     let eurURL = encodeURI(
       `https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest?symbol=TRX&convert=EUR`
     );
