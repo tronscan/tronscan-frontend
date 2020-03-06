@@ -132,6 +132,25 @@ class Navigation extends React.Component {
         Lockr.set("NET", IS_MAINNET?'mainnet':'sunnet')
 
     }
+    async loadTrxPrices() {
+      var dataEur = Lockr.get("dataEur");
+      let eurURL = encodeURI(
+       `https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest?symbol=TRX&convert=USD` 
+      );
+      var { data: {data: dataEurObj} } = await xhr.post(
+          `${API_URL}/api/system/proxy`,
+          {
+            url:eurURL
+          }
+      );
+      if (dataEurObj.TRX) {
+        let percent_change_24h = dataEurObj.TRX.quote.USD.percent_change_24h.toFixed(2) || 0;
+        this.setState({
+          percent_change_24h
+        });
+      }
+     
+    }
 
     componentWillUpdate(nextProps, nextState) {
         let { account,match,walletType } = this.props;

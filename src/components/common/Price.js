@@ -46,28 +46,60 @@ class PriceProviderCmp extends React.PureComponent {
     var dataEur = Lockr.get("dataEur");
     var dataEth = Lockr.get("dataEth");
     let eurURL = encodeURI(
-      `https://api.coinmarketcap.com/v1/ticker/tronix/?convert=EUR`
+      `https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest?symbol=TRX&convert=EUR`
     );
     let ethURL = encodeURI(
-      `https://api.coinmarketcap.com/v1/ticker/tronix/?convert=ETH`
+      `https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest?symbol=TRX&convert=ETH`
+    );
+    let btcURL =  encodeURI(
+      `https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest?symbol=TRX&convert=BTC`
+    );
+    let usdURL = encodeURI(
+      `https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest?symbol=TRX&convert=USD`
     );
     if (!Lockr.get("dataEur")) {
-      var { data: dataEur } = await xhr.get(
-        `${API_URL}/api/system/proxy?url=${eurURL}`
+      var { data: {data:dataEur} } = await xhr.post(
+        `${API_URL}/api/system/proxy`,
+        {
+          url:eurURL
+        }
       );
     }
 
     if (!Lockr.get("dataEth")) {
-      var { data: dataEth } = await xhr.get(
-        `${API_URL}/api/system/proxy?url=${ethURL}`
+      var { data: {data:dataEth} } = await xhr.post(
+        `${API_URL}/api/system/proxy`,
+        {
+          url:ethURL
+        }
       );
     }
 
+    var { data: {data:dataBTC} } = await xhr.post(
+      `${API_URL}/api/system/proxy`,
+      {
+        url:btcURL
+      }
+    );
+    var { data: {data:dataUSD} } = await xhr.post(
+      `${API_URL}/api/system/proxy`,
+      {
+        url:usdURL
+      }
+    );
+
+    console.log(dataEur,dataEth,dataBTC,111111)
+    let BTC_Price;
+    if(dataBTC){
+      BTC_Price = parseFloat(dataBTC.TRX.quote.BTC.price); 
+    }else{
+      BTC_Price = 0
+    }
     let newPrices = {
-      BTC: parseFloat(dataEur[0].price_btc),
-      EUR: parseFloat(dataEur[0].price_eur),
-      USD: parseFloat(dataEur[0].price_usd),
-      ETH: parseFloat(dataEth[0].price_eth),
+      BTC: BTC_Price,
+      EUR: parseFloat(dataEur.TRX.quote.EUR.price),
+      USD: parseFloat(dataUSD.TRX.quote.USD.price),
+      ETH: parseFloat(dataEth.TRX.quote.ETH.price),
       TRX: 1
     };
 
@@ -108,8 +140,18 @@ export class TRXPrice extends React.PureComponent {
 
     this.state = {
       open: false,
-      id: alpha(24)
+      id: alpha(24),
     };
+  }
+
+  
+
+  componentDidMount() {
+    // oTimer = setInterval(() => this.loadTrxPrices(), 10000);
+  }
+
+  componentWillUnmount() {
+    clearInterval(oTimer);
   }
 
   renderPrice(value, priceValues) {
