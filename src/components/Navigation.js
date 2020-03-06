@@ -166,10 +166,8 @@ class Navigation extends React.Component {
             url:eurURL
           }
       );
-      console.log(dataEurObj,'dataEurObj')
       if (dataEurObj.TRX) {
         let percent_change_24h = dataEurObj.TRX.quote.USD.percent_change_24h.toFixed(2) || 0;
-        console.log(percent_change_24h)
         this.setState({
           percent_change_24h
         });
@@ -254,6 +252,13 @@ class Navigation extends React.Component {
         if (tronWeb && tronWeb.defaultAddress.base58) {
           this.props.loginWithTronLink(tronWeb.defaultAddress.base58, tronWeb, sunWeb).then(() => {
             toastr.info(intl.formatMessage({id: 'success'}), intl.formatMessage({id: 'login_success'}));
+            
+            window.gtag("event", "Tronlink", {
+              event_category: "Login",
+              event_label: tronWeb.defaultAddress.base58,
+              referrer: window.location.origin,
+              value: tronWeb.defaultAddress.base58
+            });
           });
           this.setState({address: tronWeb.defaultAddress.base58});
           clearInterval(timer)
