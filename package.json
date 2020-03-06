@@ -179,6 +179,7 @@
     },
     "scripts": {
         "start": "node scripts/start.js",
+        "start:https": "HTTPS=true node scripts/start.js",
         "start:testnet": "NET=testnet API_URL=https://testapi.tronscan.org yarn start",
         "build:shasta": "GENERATE_SOURCEMAP=false API_URL=https://api.shasta.tronscan.org node scripts/build.js",
         "build": "NODE_ENV=production GENERATE_SOURCEMAP=false node scripts/build.js",

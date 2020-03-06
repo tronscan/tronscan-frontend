@@ -200,6 +200,7 @@ export const lang20Q1 = {
   proposal_validate_text_7:"Пожалуйста, введите значение между 1-10000",
   proposal_validate_text_8:"Пожалуйста, введите значение между 1-1000",
   proposal_validate_text_9:"Пожалуйста, введите значение между 0-100000000000000000",
+  proposal_validate_text_10:"Пожалуйста, выберите бан / не бан",
   propose_not_activate:"Не открыт",
   proposal_value_same:"Новое значение идентично текущему",
   go_to_proposals_list:"Проголосовать за предложение",
@@ -208,10 +209,25 @@ export const lang20Q1 = {
   full_node_version_latest_block:'Последний блок',
   full_node_version_confirmed:'CONFIRMED',
   full_node_version_unconfirmed:'UNCONFIRMED',
-  full_node_version_confirmed_tips:'«Подтвержденный» означает подтвержденный 19 или более суперузлами, в противном случае он «должен быть подтвержден»',
+  full_node_version_confirmed_tips:'Transactions confirmed by 19 or more blocks will be marked "CONFIRMED"，otherwise is“UNCONFIRMED” or "ROLLED BACK"',
 
   // 2020-02-19
   chart_energy:'используемая энергия',
   getAllowTvmSolidity059_tips:"Three new features of TVM (TRON Virtual Machine) will be opened: support for parallel signature verification, multi signature verification, and judge whether the address is the contract address",
+
+
+  // 0227 torn sr
+  sr_vote_team_information:'команда',
+  sr_vote_last_ranking:'Last Ranking',
+  sr_vote_last_votes:'Последние голоса',
+  sr_vote_current_ranking:'Current Ranking',
+  sr_vote_current_vote:'Текущие голоса',
+  sr_vote_percent_note:'SR голоса в последнем раунде/все голоса',
+
+  block_detail_confirmed_show:'confirmed by {num} blocks',
+  block_detail_confirmed_over_show:'confirmed by over 200 blocks',
+  block_detail_rolled_back:'ROLLED BACK',
+
+  freeze_TRX_error:"Something went wrong while trying to freeze TRX, please try again later.",
 
 };

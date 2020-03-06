@@ -63,7 +63,7 @@ export const lang19Q4 = {
     "token_rating_rule_title_p1_title": "Unknown",
     "token_rating_rule_title_p1": "Unknown is set as the default reputation for a newly added token. A token will be classified as unknown if no updates but mandatory information is provided after a successful token issuance. Mandatory information includes the token name, token abbreviation, token overview, total supply, decimals and issuer; for TRC20 tokens, information on the contract, time of contract creation and contract creator should also be provided.     ",
     "token_rating_rule_title_p2_title": "Neutral",
-    "token_rating_rule_title_p2": "Tokens assessed as neutral have their information added or updated after a successful token issuance. The information includes: official website, logo, email address, GitHub address, white paper address and social profile link(s).   ",
+    "token_rating_rule_title_p2": "Tokens assessed as neutral have their information added or updated after a successful token issuance. The information includes: official website, logo, white paper address and social profile link(s).",
     "token_rating_rule_title_p3_title": "OK",
     "token_rating_rule_title_p3": "Tokens listed and openly traded on POLONIDEX will be given the OK reputation.   ",
     "token_rating_rule_title_p3_1": "Please apply through TRONSCAN for listing tokens on POLONIDEX. Before you submit the request, note:   ",
@@ -304,4 +304,9 @@ export const lang19Q4 = {
    "chart_network_resources":"Recurso de internet",
    "chart_active_accounts":"Número de cuentas activas",
    "chart_network":"Internet",
+
+
+    // account tab transfers transactions  internal-transactions
+    "account_tab_transactions_token_info":"如果交易中不包含通证信息，则展示“—”"
+
 }

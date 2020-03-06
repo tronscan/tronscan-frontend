@@ -14,8 +14,8 @@ export const NETURL = {
   NEWSUNNET: "https://dappchain.tronscan.io",
   MAINNET: "https://tronscan.org",
   SUNNET: "https://dappchain.tronscan.org",
-  // MAINNET: "https://testhttps.tronscan.org",
-  // SUNNET: "http://18.217.215.94:72",
+  // MAINNET: "http://18.217.215.94:67",
+  // SUNNET: "http://18.217.215.94:68"
 };
 
 export const TOKENINFO_UPDATE = "TOKENINFO_UPDATE";
@@ -26,12 +26,11 @@ let SUNNET;
 let NODEAPI;
 
 if (NODE_ENV == "development") {
-
-    MAINNET = Lockr.get("NET") === "mainnet" || !Lockr.get("NET");
-    SUNNET = Lockr.get("NET") === "sunnet";
-    // NODEAPI = "https://tronexapi.tronscan.org";
-    // NODEAPI = "http://18.222.181.154:9017"
-    NODEAPI = process.env.API_URL;
+  MAINNET = Lockr.get("NET") === "mainnet" || !Lockr.get("NET");
+  SUNNET = Lockr.get("NET") === "sunnet";
+  // NODEAPI = "https://tronexapi.tronscan.org";
+  // NODEAPI = "http://18.222.181.154:9017"
+  NODEAPI = process.env.API_URL;
 } else {
   MAINNET =
     window.location.origin === NETURL.MAINNET ||
@@ -45,8 +44,6 @@ if (NODE_ENV == "development") {
 
 export let IS_MAINNET = MAINNET;
 export let IS_SUNNET = SUNNET;
-
-
 
 export const BLOCK_REWARD = 32;
 export const SR_MAX_COUNT = 27;
@@ -137,7 +134,7 @@ export const SUNWEBCONFIG = {
   SUNEVENTSERVER: "https://sun.tronex.io",
   MAINNET: "TWaPZru6PR5VjgT4sJrrZ481Zgp3iJ8Rfo",
   SIDECHAIN: "TGKotco6YoULzbYisTBuP6DWXDjEgJSpYz",
-  SIDEID: "41E209E4DE650F0150788E8EC5CAFA240A23EB8EB7",
+  SIDEID: "41E209E4DE650F0150788E8EC5CAFA240A23EB8EB7"
 
   // for shasta
   // MAINFULLNODE: 'http://47.252.84.158:8070',
