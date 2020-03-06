@@ -215,9 +215,13 @@ class ApiClient20 {
     if (secend_token === "usdt") {
       type = "tether";
     }
+    const url = 'https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest?symbol=TRX&convert=USD'
     let { data } = await xhr({
-      method: "get",
-      url: `https://apilist.tronscan.org/api/system/proxy?url=https://api.coinmarketcap.com/v1/ticker/${type}/?convert=${covert}`
+      method: "post",
+      url: `${API_URL}/api/system/proxy`,
+      data: {
+        url
+      }
     });
     return data;
   }
