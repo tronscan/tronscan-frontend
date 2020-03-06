@@ -148,7 +148,7 @@ class Representative extends React.Component {
             <tr>
               <th>
                 <span className="mr-1">{tu("address_info_transfers")}</span>
-                <QuestionMark placement="top" text="address_transactions_tip" />
+                <QuestionMark placement="top" text="account_representative_transfer_tip" />
                 <span className="ml-1">:</span>
               </th>
               <td>
@@ -181,7 +181,7 @@ class Representative extends React.Component {
                 <span className="mr-1">
                   {tu("account_representative_split_ratio")}
                 </span>
-                <QuestionMark placement="top" text="address_transactions_tip" />
+                <QuestionMark placement="top" text="account_representative_split_ratio_tip" />
                 <span className="ml-1">:</span>
               </th>
               <td>
@@ -191,7 +191,6 @@ class Representative extends React.Component {
             <tr>
               <th>
                 <span className="mr-1">{tu("blocks_produced")}</span>
-                <QuestionMark placement="top" text="address_transactions_tip" />
                 <span className="ml-1">:</span>
               </th>
               <td>
@@ -210,7 +209,7 @@ class Representative extends React.Component {
                 <span className="mr-1">
                   {tu("account_representative_block_ratio")}
                 </span>
-                <QuestionMark placement="top" text="address_transactions_tip" />
+                <QuestionMark placement="top" text="account_representative_block_ratio_tip" />
                 <span className="ml-1">:</span>
               </th>
               <td>
@@ -222,7 +221,6 @@ class Representative extends React.Component {
                 <span className="mr-1">
                   {tu("account_representative_block_prize")}
                 </span>
-                <QuestionMark placement="top" text="address_transactions_tip" />
                 <span className="ml-1">:</span>
               </th>
               <td>
@@ -234,7 +232,6 @@ class Representative extends React.Component {
                 <span className="mr-1">
                   {tu("account_representative_vote_prize")}
                 </span>
-                <QuestionMark placement="top" text="address_transactions_tip" />
                 <span className="ml-1">:</span>
               </th>
               <td>
