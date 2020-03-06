@@ -20,9 +20,9 @@ import {
 
 import {loadPriceData} from "../../../actions/markets";
 import {t} from "../../../utils/i18n";
-
 import BigNumber from "bignumber.js";
 BigNumber.config({ EXPONENTIAL_AT: [-1e9, 1e9] });
+
 class BTTSupply extends React.Component {
 
     constructor() {
@@ -96,9 +96,7 @@ class BTTSupply extends React.Component {
         let priceUSD = ((parseFloat(trxPriceDataUSD.price))*1000).toFixed(3);
         let  x = new BigNumber(trxPriceDataBTC.price);
         let priceBTC = x.multipliedBy(1000).decimalPlaces(5).toNumber();
-       
-        // let priceUSD = ((parseFloat(trxPriceData.data[0].price_usd))*1000).toFixed(3);
-        // let priceBTC = ((parseFloat(trxPriceData.data[0].price_btc))*1000).toFixed(5);
+
         let marketCapitalization = ((parseFloat(trxPriceDataUSD.price)*(funds.totalTurnOver))).toFixed(2);
         this.setState({
             supplyTypesChart: supplyTypesChartData,
