@@ -35,43 +35,43 @@ class Demo extends Component {
     */
 
 
-    let vol = await xhr.get("https://api.coinmarketcap.com/v1/ticker/tron/");
+    // let vol = await xhr.get("https://api.coinmarketcap.com/v1/ticker/tron/");
 
-    let volume = vol.data[0]["24h_volume_usd"];
+    // let volume = vol.data[0]["24h_volume_usd"];
 
-    let totalAccounts = await Client.getAccounts();
+    // let totalAccounts = await Client.getAccounts();
 
-    let {txOverviewStats} = await Client.getTxOverviewStats();
+    // let {txOverviewStats} = await Client.getTxOverviewStats();
 
-    let temp = [];
+    // let temp = [];
 
-    for (let txs in txOverviewStats) {
-      let tx = parseInt(txs);
-      if (tx === 0) {
-        temp.push(txOverviewStats[tx]);
-      }
-      else {
-        temp.push({
-          date: txOverviewStats[tx].date,
-          totalTransaction: (txOverviewStats[tx].totalTransaction - txOverviewStats[tx - 1].totalTransaction),
-          avgBlockTime: txOverviewStats[tx].avgBlockTime,
-          avgBlockSize: txOverviewStats[tx].avgBlockSize,
-          totalBlockCount: (txOverviewStats[tx].totalBlockCount - txOverviewStats[tx - 1].totalBlockCount),
-          newAddressSeen: txOverviewStats[tx].newAddressSeen
-        });
+    // for (let txs in txOverviewStats) {
+    //   let tx = parseInt(txs);
+    //   if (tx === 0) {
+    //     temp.push(txOverviewStats[tx]);
+    //   }
+    //   else {
+    //     temp.push({
+    //       date: txOverviewStats[tx].date,
+    //       totalTransaction: (txOverviewStats[tx].totalTransaction - txOverviewStats[tx - 1].totalTransaction),
+    //       avgBlockTime: txOverviewStats[tx].avgBlockTime,
+    //       avgBlockSize: txOverviewStats[tx].avgBlockSize,
+    //       totalBlockCount: (txOverviewStats[tx].totalBlockCount - txOverviewStats[tx - 1].totalBlockCount),
+    //       newAddressSeen: txOverviewStats[tx].newAddressSeen
+    //     });
 
-      }
-    }
+    //   }
+    // }
 
 
-    this.setState(prevState => ({
-      volume: volume,
-      previousVolume: prevState.volume,
-      // totalAccounts: totalAccounts.total,
-      transactionLastDay: temp[temp.length - 1].totalTransaction,
-      previousTransactionLastDay: prevState.transactionLastDay,
-      txOverviewStats: temp
-    }));
+    // this.setState(prevState => ({
+    //   volume: volume,
+    //   previousVolume: prevState.volume,
+    //   // totalAccounts: totalAccounts.total,
+    //   transactionLastDay: temp[temp.length - 1].totalTransaction,
+    //   previousTransactionLastDay: prevState.transactionLastDay,
+    //   txOverviewStats: temp
+    // }));
 
   }
 
