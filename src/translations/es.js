@@ -2273,6 +2273,7 @@ export const messages = {
   "sun_propose_6": "Administre si el interruptor de incentivo para testigo en la cadena lateral está activado / desactivado",
   "sun_propose_7": "Métricas de distribución del grupo de incentivos de la cadena lateral",
   "sun_propose_8": "Proporción de ingresos del testigo en la cadena lateral",
+  sun_propose_12: "Propose to allow DAppChain 1.0.2 upgrade",
   "day":"día",
 
   "developers_username": "username",

@@ -102,7 +102,10 @@ class ProposalDetail extends React.Component {
                 id:'1000010',
                 key:'getPercentToPayWitness',
             },
-
+            {
+                id:'1000012',
+                key:'getUpdateGateway_v1_0_2',
+            }
         ]
         if(IS_MAINNET){
             for(let item in obj.paramters){
@@ -620,6 +623,17 @@ class ProposalDetail extends React.Component {
                                                                                         <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
                                                                                         {
                                                                                             <span>{item.proposalVal} %</span>
+                                                                                        }
+                                                                                    </div>
+                                                                                }
+                                                                                {
+                                                                                    item.proposalKey == 'getUpdateGateway_v1_0_2' &&
+                                                                                    <div>
+                                                                                        <span>{ intl.formatMessage({id: 'sun_propose_12'})}</span>
+                                                                                        <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
+                                                                                        {
+                                                                                            item.proposalVal? <span>{tu('propose_allowed')}</span>:
+                                                                                                <span>{tu('propose_not_allowed')}</span>
                                                                                         }
                                                                                     </div>
                                                                                 }

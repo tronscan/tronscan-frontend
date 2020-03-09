@@ -2275,6 +2275,7 @@ export const messages = {
   "sun_propose_6": "Управлять включением/выключением стимула для witness на сайдчейн",
   "sun_propose_7": "Метрики распределения стимулирующего пула сайдчейн",
   "sun_propose_8": "Коэффициент прибыли witness на сайдчейн",
+  sun_propose_12: "Propose to allow DAppChain 1.0.2 upgrade",
   "day":"день",
 
 
