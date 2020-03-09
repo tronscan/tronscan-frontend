@@ -52,6 +52,7 @@ class Address extends React.Component {
       votes: null,
       rank: 0,
       totalVotes: 0,
+      hasPage:false,
       address: {
         address: "",
         balance: 0,
@@ -83,7 +84,14 @@ class Address extends React.Component {
       frozenBandwidth: 0,
       sentDelegateResource: 0,
       frozenEnergy: 0,
-      TRXBalance: 0
+      TRXBalance: 0,
+      realTimeVotes: 0,
+      realTimeRanking: 0,
+      lastRanking: 0,
+      lastCycleVotes: 0,
+      changeVotes: 0,
+      changeRank:0
+    
     };
   }
 
@@ -543,7 +551,15 @@ class Address extends React.Component {
     let { data } = await Client.getVoteWitness(id);
     this.setState({
       totalVotes: data.realTimeVotes,
-      rank: data.realTimeRanking
+      rank: data.realTimeRanking,
+      hasPage:data.hasPage,
+      realTimeVotes: data.realTimeVotes,
+      realTimeRanking: data.realTimeRanking,
+      lastRanking: data.lastRanking,
+      lastCycleVotes: data.lastCycleVotes,
+      changeVotes: data.changeVotes,
+      changeRank: data.realTimeRanking - data.lastRanking
+    
     });
   }
 
@@ -740,7 +756,13 @@ class Address extends React.Component {
       walletReward,
       balance,
       netLimit,
-      energyLimit
+      energyLimit,
+      realTimeVotes,
+      realTimeRanking,
+      lastRanking,
+      lastCycleVotes,
+      changeVotes,
+      changeRank
     } = this.state;
     let { match, intl } = this.props;
     let addr = match.params.id;
@@ -782,10 +804,6 @@ class Address extends React.Component {
                     <div className="col-md-6">
                       {address.representative.enabled ? (
                         <Representative
-                          address={address}
-                          TRXBalanceTotal={TRXBalanceTotal}
-                          balance={balance}
-                          totalPower={totalPower}
                           data={this.state}
                           url={match.url}
                         />
@@ -1059,6 +1077,12 @@ class Address extends React.Component {
                         }
                         powerRemaining={totalPower - address.voteTotal}
                         address={this.props.match.params.id || ""}
+                        realTimeVotes={realTimeVotes}
+                        realTimeRanking={realTimeRanking}
+                        lastRanking={lastRanking}
+                        lastCycleVotes={lastCycleVotes}
+                        changeVotes={changeVotes}
+                        changeRank={changeRank}
                       ></Resource>
                     </div>
                     {/* <div className="address-circle-bandwidth d-flex">

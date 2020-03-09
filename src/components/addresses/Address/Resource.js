@@ -20,21 +20,7 @@ class Resource extends React.Component {
   }
 
   componentDidMount() {
-    this.loadWitness();
-  }
-
-  async loadWitness() {
-    let address = this.props.address;
-    /* 需要总票数，实时排名俩个参数*/
-    let { data } = await Client.getVoteWitness(address);
-    this.setState({
-      realTimeVotes: data.realTimeVotes,
-      realTimeRanking: data.realTimeRanking,
-      lastRanking: data.lastRanking,
-      lastCycleVotes: data.lastCycleVotes,
-      changeVotes: data.changeVotes,
-      changeRank: data.realTimeRanking - data.lastRanking
-    });
+    
   }
 
   render() {
@@ -47,16 +33,14 @@ class Resource extends React.Component {
       energyLimit,
       totalPower,
       powerPercentage,
-      powerRemaining
-    } = this.props;
-    let {
-      realTimeRanking,
+      powerRemaining,
       realTimeVotes,
+      realTimeRanking,
       lastRanking,
       lastCycleVotes,
       changeVotes,
       changeRank
-    } = this.state;
+    } = this.props;
     return (
       <Fragment>
         <div className="">

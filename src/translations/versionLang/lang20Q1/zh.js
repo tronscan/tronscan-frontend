@@ -231,11 +231,20 @@ export const lang20Q1 = {
   account_resource_last_tip: "上一轮投票周期的获得票数与排名",
   account_resource_realTime_tip: "当前投票周期实时获得的票数与实时排名",
   account_representative_block_ratio: "出块效率",
+  account_representative_block_ratio_tip: "实际出块数量与应出块数量的比值",
   account_representative_block_prize: "累计获得出块收益",
   account_representative_vote_prize: "累计获得投票收益",
   account_representative_split_ratio: "分成比例",
+  account_representative_split_ratio_tip: "获得的总收益中分为选民的占比及自留占比",
   account_representative_voter: "分给选民",
   account_representative_owner: "自留",
+  account_representative_block_table_res: "资源消耗",
+  account_representative_block_table_prize: "出块收益",
+  account_representative_block_desc: "累计出块{block}个，累计获得出块收益{trx}TRX",
+  account_representative_voters_per_tip: "该选民投票数量占总得票的比例",
+  account_representative_transfer_tip: "关联当前账户的TRX/10通证/ 20通证转账数",
+  account_representative_unit:'当前共{number}名选民',
+
 
   // 0227 torn sr
   sr_vote_team_information: "团队详情",

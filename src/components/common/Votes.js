@@ -12,6 +12,7 @@ import {TronLoader} from "./loaders";
 import {withTimers} from "../../utils/timing";
 import qs from 'qs'
 import {API_URL} from "../../constants";
+import { Table, Input, Button, Icon } from "antd";
 
 class Votes extends React.Component {
 
@@ -175,12 +176,14 @@ class Votes extends React.Component {
     let column = this.customizedColumn(filter);
     let {intl} = this.props;
     let tableInfo;
-    if(filter.candidate) {
-      tableInfo = intl.formatMessage({id: 'view_total'}) + ' ' + total + ' ' + intl.formatMessage({id: 'voter_unit'});
-    }
-    if(filter.voter){
-      tableInfo = intl.formatMessage({id: 'view_total'}) + ' ' + total + ' ' + intl.formatMessage({id: 'table_info_big2'});
-    }
+    // if(filter.candidate) {
+    //   tableInfo = intl.formatMessage({id: 'view_total'}) + ' ' + total + ' ' + intl.formatMessage({id: 'voter_unit'});
+    // }
+    // if(filter.voter){
+    //   tableInfo = intl.formatMessage({id: 'view_total'}) + ' ' + total + ' ' + intl.formatMessage({id: 'table_info_big2'});
+    // }
+
+    tableInfo = intl.formatMessage({id: 'account_representative_unit'},{number:total})
 
     if (!loading && votes.length === 0) {
       if (!EmptyState) {
@@ -193,15 +196,33 @@ class Votes extends React.Component {
       return <EmptyState/>;
     }
 
+    let pagination = true;
+    const paginationStatus = pagination
+      ? {
+          total: total,
+          ...this.state.pagination
+        }
+      : pagination;
+
     return (
 
         <div className="token_black table_pos">
           {loading && <div className="loading-style"><TronLoader/></div>}
-          {total ?<div className="table_pos_info d-none d-md-block" style={{left: 'auto'}}>{tableInfo}</div> : ''}
-          <SmartTable bordered={true} loading={loading} column={column} data={votes} total={total}
+          {total ?<div className="table_pos_info d-none d-md-block table-no-absolute" style={{left: 'auto'}}>{tableInfo}</div> : ''}
+          {/* <SmartTable bordered={true} loading={loading} column={column} data={votes} total={total}
                       onPageChange={(page, pageSize) => {
                         this.load(page, pageSize)
-                      }}/>
+                      }}/> */}
+          <Table
+          bordered={true}
+          loading={loading}
+          dataSource={votes}
+          columns={column}
+          pagination={paginationStatus}
+          onChange={(page, pageSize) => {
+            this.load(page, pageSize);
+          }}
+        />
         </div>
     )
   }
