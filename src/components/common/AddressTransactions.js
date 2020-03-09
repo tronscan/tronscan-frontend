@@ -458,7 +458,7 @@ class Transactions extends React.Component {
     // }
 
     return (
-      <div className={"token_black table_pos mt-5"}>
+      <div className={"token_black mt-5"} >
         {loading && (
           <div className="loading-style">
             <TronLoader />
