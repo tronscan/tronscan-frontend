@@ -16,11 +16,11 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/editor.worker.js.gz"
   },
   {
-    "revision": "980636461ff66920e0df687ad7bc54ee",
+    "revision": "fc9b0bc5588a95b9b9ab0601b3b2b0cf",
     "url": "/index.html"
   },
   {
-    "revision": "1de874ae65f1606eea940759d3ccbb31",
+    "revision": "e6c1443bd7a90e61871170496b04ac84",
     "url": "/index.html.gz"
   },
   {
@@ -96,7 +96,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/css/Token20Detail.17b6c95c.chunk.css.gz"
   },
   {
-    "revision": "1cc6b777af0e1da74774",
+    "revision": "f417d456a9598e865183",
     "url": "/static/css/main.c27628f0.chunk.css"
   },
   {
@@ -768,12 +768,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/js/WalletWizard.fda47537.chunk.js.gz"
   },
   {
-    "revision": "1cc6b777af0e1da74774",
-    "url": "/static/js/main.b0bcdc6f.chunk.js"
+    "revision": "f417d456a9598e865183",
+    "url": "/static/js/main.fe97ba19.chunk.js"
   },
   {
-    "revision": "6352b09efe74d88ea7ff8d01da571046",
-    "url": "/static/js/main.b0bcdc6f.chunk.js.gz"
+    "revision": "a3e1d247ea8b9d437ae5fef3c541c6e1",
+    "url": "/static/js/main.fe97ba19.chunk.js.gz"
   },
   {
     "revision": "1c5bdf02f0270b91fe03",
