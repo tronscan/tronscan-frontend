@@ -3,7 +3,7 @@
     padding: 0;
   }
   .info-wrap{
-    padding: 0 2.6%;
+    padding: 20px 2.6% 26px;
   }
   .just-con {
     justify-content: space-between;
@@ -25,8 +25,12 @@
       color: #666;
     }
   }
+  .address-info{
+    padding-right: 60px;
+    border-right: 1px solid #eee;
+  }
   .address-circle {
-    padding: 0 32px 0 60px;
+    padding-left: 60px;
 
     font-size: 14px;
     color: #999999;
@@ -54,6 +58,9 @@
     }
     .address-res {
       margin-bottom: 50px;
+      &:last-child{
+        margin-bottom: 0;
+      }
     }
   }
   .resource-item {
@@ -102,11 +109,15 @@
       font-size: 14px;
       color: #666666;
       font-weight: normal;
+      border: 0;
+      border-bottom: 1px solid #eee;
     }
     td {
       font-family: PingFangSC-Regular;
       font-size: 14px;
       color: #333333;
+      border: 0;
+      border-bottom: 1px solid #eee;
     }
     .href-link {
       a {

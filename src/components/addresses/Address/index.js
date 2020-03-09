@@ -798,7 +798,7 @@ class Address extends React.Component {
                     </div>
                   </div>
                   <div className="row info-wrap">
-                    <div className="col-md-7">
+                    <div className="col-md-7 address-info">
                       {address.representative.enabled ? (
                         <Representative
                           address={address}
@@ -831,7 +831,7 @@ class Address extends React.Component {
                             </th>
                             <td>
                               <ul className="list-unstyled m-0 ">
-                                <li className="d-flex just-con mobile-no-flex">
+                                <li className="d-flex just-con mobile-no-flex flex-wrap">
                                   <div>
                                     <NavLink exact to={match.url}>
                                       <span
@@ -865,7 +865,7 @@ class Address extends React.Component {
                                             : "https://poloniex.org/"
                                         }
                                       >
-                                        Poloni DEX
+                                        POLONIDEX
                                       </HrefLink>
                                     </span>
                                   </div>
@@ -880,7 +880,7 @@ class Address extends React.Component {
                             </th>
                             <td>
                               <ul className="list-unstyled m-0">
-                                <li className="d-flex">
+                                <li className="d-flex flex-wrap">
                                   <span>
                                     <FormattedNumber
                                       value={(balance + totalPower) / ONE_TRX}
@@ -922,16 +922,49 @@ class Address extends React.Component {
                                   className="colorYellow"
                                   onClick={this.scrollToAnchor.bind(this)}
                                 >
-                                  {address.totalTransactionCount} Txns
+                                  {address.totalTransactionCount} &nbsp;
                                 </span>
                               </NavLink>
+                              Txns
+                            </td>
+                          </tr>
+                          <tr>
+                            <th>
+                              <span className="mr-1">{tu("address_info_transfers")}</span>
+                              <QuestionMark placement="top" text="account_representative_transfer_tip" />
+                              <span className="ml-1">:</span>
+                            </th>
+                            <td>
+                              <div className="d-flex">
+                                <NavLink exact to={match.url + "/transfers"}>
+                                  <div
+                                    className="colorYellow"
+                                    onClick={this.scrollToAnchor.bind(this)}
+                                  >
+                                    {stats.transactions} &nbsp;
+                                  </div>
+                                </NavLink>
+                                Txns
+                                <div>
+                                  <span className="ml-1">(</span>
+                                  <i className="fa fa-arrow-down text-success" />
+                                  &nbsp;
+                                  <span>{stats.transactions_in} Txns</span>
+                                  &nbsp;
+                                  <i className="fa fa-arrow-up  text-danger" />
+                                  &nbsp;
+                                  <span>{stats.transactions_out} Txns</span>
+                                  &nbsp;
+                                  <span>)</span>
+                                </div>
+                              </div>
                             </td>
                           </tr>
                           </tbody>
                         </table>
                       )}
                     </div>
-                    <div className="col-md-5 address-circle">
+                    <div className={`col-md-5 address-circle ${!address.representative.enabled && 'justify-content-center'}`}>
                       <Resource
                         availableBandWidthPercentage={
                           availableBandWidthPercentage
@@ -948,6 +981,7 @@ class Address extends React.Component {
                         }
                         powerRemaining={totalPower - address.voteTotal}
                         address={this.props.match.params.id || ""}
+                        isRepresentative={address.representative.enabled}
                       ></Resource>
                     </div>
                     {/* <div className="address-circle-bandwidth d-flex">
