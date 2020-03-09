@@ -2271,7 +2271,7 @@ export const messages = {
    "sun_propose_6": "مدیریت سوئیچ تشویقی برای شاهد در زنجیره جانبی روشن یا خاموش ",
    "sun_propose_7": "معیارهای توزیع استخر تشویقی زنجیره جانبی را وارد کنید .",
    "sun_propose_8": "نسبت درآمد حاصل از شاهد در زنجیره جانبی.",
-
+   sun_propose_12: "Propose to allow DAppChain 1.0.2 upgrade",
 
    "developers_username": "username",
    "developers_current_year":"year's points",

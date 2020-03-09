@@ -410,10 +410,20 @@ export default class VoteOverview extends React.Component {
     for (let address of Object.keys(votes)) {
       if (votes[address] != "") {
         witnessVotes[address] = parseInt(votes[address], 10);
-      } 
-      // else {
-      //   witnessVotes[address] = 0;
-      // }
+      }
+    }
+    if(this.props.walletType.type === "ACCOUNT_LEDGER" && Object.keys(witnessVotes).length > 5){
+      this.setState({
+        votesSubmitted: false,
+        submittingVotes: false,
+        votingEnabled: true,
+        modal: (
+          <SweetAlert warning title={tu("error")} onConfirm={this.hideModal}>
+            {tu("votes_cannot_exceed_5_SRs")}
+          </SweetAlert>
+        )
+      });
+      return;
     }
     if (IS_MAINNET) {
       if (this.props.walletType.type === "ACCOUNT_LEDGER") {

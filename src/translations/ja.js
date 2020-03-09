@@ -2267,6 +2267,7 @@ export const messages = {
   "sun_propose_6": "サイドチェーン witnessインセンティブスイッチがデフォルトではオフとなります",
   "sun_propose_7": "サイドチェーンインセンティブ奨金プールの分配パラメーター",
   "sun_propose_8": "サイドチェーンの収益はインセンティブ奨金プールで蓄積された割合",
+  sun_propose_12: "Propose to allow DAppChain 1.0.2 upgrade",
   "day":"日",
 
   "developers_username": "username",
