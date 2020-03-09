@@ -20,6 +20,8 @@ import {
 
 import {loadPriceData} from "../../../actions/markets";
 import {t} from "../../../utils/i18n";
+import BigNumber from "bignumber.js";
+BigNumber.config({ EXPONENTIAL_AT: [-1e9, 1e9] });
 
 class BTTSupply extends React.Component {
 
@@ -80,12 +82,22 @@ class BTTSupply extends React.Component {
         let total = 990000000000;
         let result=await xhr.get(`${API_URL}/api/bittorrent/graphic`);
 
-      let supplyTypesChartData = result.data;
-        let eurBittorrentURL = encodeURI(`https://api.coinmarketcap.com/v1/ticker/bittorrent/?convert=EUR`);
-        let trxPriceData = await xhr.get(`${API_URL}/api/system/proxy?url=${eurBittorrentURL}`);
-        let priceUSD = ((parseFloat(trxPriceData.data[0].price_usd))*1000).toFixed(3);
-        let priceBTC = ((parseFloat(trxPriceData.data[0].price_btc))*1000).toFixed(5);
-        let marketCapitalization = ((parseFloat(trxPriceData.data[0].price_usd)*(funds.totalTurnOver))).toFixed(2);
+        let supplyTypesChartData = result.data;
+        let USDWinkTronbetURL = encodeURI(`https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest?symbol=BTT&convert=USD`);
+        let BTCWinkTronbetURL = encodeURI(`https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest?symbol=BTT&convert=BTC`);
+        let USDData = await xhr.post(`${API_URL}/api/system/proxy`,{
+            url:USDWinkTronbetURL
+        });
+        let BTCData= await xhr.post(`${API_URL}/api/system/proxy`,{
+            url:BTCWinkTronbetURL
+        });
+        let trxPriceDataUSD = USDData.data.data.BTT.quote.USD;
+        let trxPriceDataBTC = BTCData.data.data.BTT.quote.BTC;
+        let priceUSD = ((parseFloat(trxPriceDataUSD.price))*1000).toFixed(3);
+        let  x = new BigNumber(trxPriceDataBTC.price);
+        let priceBTC = x.multipliedBy(1000).decimalPlaces(5).toNumber();
+
+        let marketCapitalization = ((parseFloat(trxPriceDataUSD.price)*(funds.totalTurnOver))).toFixed(2);
         this.setState({
             supplyTypesChart: supplyTypesChartData,
              genesisNum:intl.formatNumber(total),
