@@ -2555,6 +2555,8 @@ export const messages = {
     "Manage if the incentive switch for witness on the side chain is on/off ",
   sun_propose_7: "Distribution metrics of the side chain incentive pool",
   sun_propose_8: "Revenue ratio of witness on the side chain",
+
+  sun_propose_12: "Propose to allow DAppChain 1.0.2 upgrade",
   day: "day",
 
   developers_username: "username",
